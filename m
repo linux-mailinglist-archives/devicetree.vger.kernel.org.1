@@ -1,116 +1,138 @@
-Return-Path: <devicetree+bounces-101027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD7019700BA
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 10:08:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AD969700BE
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 10:17:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48D8A281560
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 08:08:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E47162840F5
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 08:17:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B6551494C3;
-	Sat,  7 Sep 2024 08:08:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE8713A863;
+	Sat,  7 Sep 2024 08:17:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pi0MR6rh"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="hVLvXf3W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.web.de (mout.web.de [212.227.17.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB8FF4D59F;
-	Sat,  7 Sep 2024 08:08:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E11E71B85E5;
+	Sat,  7 Sep 2024 08:17:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725696505; cv=none; b=VxWXprrkk4XKVwtLwkJ9CoQ2fNN9JKqxdDoGpKocHJzBZ5S/h/DPrOVIjvNqTInx939yBoeVaGi0TMbnuZeJMtlvYAiSNmOn+sTC3sqz2It11Sji49xsp3CTrdaU+TXdjteexqxXfLA4ZEwQBG2knTPuLNFrliSJinuOHVDmSZo=
+	t=1725697030; cv=none; b=WPZZ5x1Ej8mCdnKEFsBkJHlMmiU8wyEiMquPoj0Go5EoTpK7mnbKPeompjwCZNPXBbip/t55u9nm+iiTjacRnOW5/UH1qUAPgTnmM51T/A3tmzfh2h5hDlQPGal5usvnVvQ0NxY9nY6/ilyshjLkkJ4e4qmO9mQZM/gRfAqgyEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725696505; c=relaxed/simple;
-	bh=kSHDYLqAQsR2WoHVJicKWQRllhivKq7SL+0aQ1x8Tzk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=al/LsbAX5DANdILWsiy4l741gzBCBE7DmIbglOWX3tP06ueSVmZwW7wibWId4vf1WvrXtm1vI9+tpK+uzvW8P/qd16Z3fnfN1OZy35+ftDe7ahZ5cT3H4peJaNmRgLZCAETBezed4BghEshwlMJ9LfmKP+V6pY4U/OaPEgqJ0Ls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pi0MR6rh; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a7a81bd549eso285441466b.3;
-        Sat, 07 Sep 2024 01:08:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725696502; x=1726301302; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kSHDYLqAQsR2WoHVJicKWQRllhivKq7SL+0aQ1x8Tzk=;
-        b=Pi0MR6rhdG49EDoBfVjCYaThtnlfiDdgjHXSCOP6+UKRKBxoL5/zQXTilXXVZFLzjx
-         zlqtjHwTWi7cZ5iOsl+khOAkTzIoFq1xXtSNIJu//mPdMRpxMrgGFD2veLsw3eV9ZJPq
-         GpNTq9HrzDRSArb7U8H04joJetD50iZ1QYzGJbps3wudXjxQgl3vBLrcZVaqF/su84qW
-         0360nmBpD3A3dY+9zeUT5JK6VZGrtZuxBfFm1PDjT7cAiMR7NTAiswWgV5asqwx/KZ6B
-         hJsoDA3sMz7hdK/tvF5T9kocl192V05QN09o2V+buoZuIUwHHbgPSOFxgrtsQA5Ko/vz
-         du7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725696502; x=1726301302;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kSHDYLqAQsR2WoHVJicKWQRllhivKq7SL+0aQ1x8Tzk=;
-        b=UKBD1dYLJviJutYQGtxIUMyzklSIoZCGueXiLBIdFd+ibKL3LwOwQZSFwcxmbuGkIo
-         lRDgpk2fnH72N0BDsf/tjGcyvFVyWT8cn9Tx7B+h5jYXGqBkFDsbrcMzzIAUoCpTLgVX
-         Z0DgE/nzM1ImFUMXHOG/C3G7BHujTbmceOCor/J0NYFaaGtkRsGstpqWM658Hyueqo0O
-         OQmeNX8PGXzXeydKLhpATKRoHUVAwotuxa6/b+zCsGd5MdMYQ80YLPBY9juF+8lO72s7
-         234Gz5XAKrG97eaOQpsLrqv7NxfzssbxQa83VFvXec082iZP1Gt9wTLj16wdZS03uF4B
-         9G3w==
-X-Forwarded-Encrypted: i=1; AJvYcCUsRWe13XR7bhVYqsd67/iE2sQWUgpthKgUfx2TB32k8ztRVTvPk5Jkj9mG+4Lk2rX+HRedJn6HRT6f@vger.kernel.org, AJvYcCWaQrFyGPh0/TOIuFFB6d9jzYvNF4yuT6oJI4TlGQNzDLULU/6cTLF66L4DvI/mjNBr2hyjUWMQi00NREM=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpMh9XgKInSdyCf8KC54JjBnpIX0MnZ+lxQMGbuB3bdcW2Rxxf
-	VO7BTdyLuQUIUbN2BNcWg0bJ39RSXSra0sSgyClaP/BISWe5yxvhVV1f5ruT4T4mbmlmoKKJC7K
-	i3hQnMLSD7Eao3JW6ep7zZ3K0/kc=
-X-Google-Smtp-Source: AGHT+IGPTkO39hgErmS+Z3Xr8V3YRQhXuxzN+qzRN7M1pY9F102PaN1oqqJJk5oNCHR9jmilkr0WjSzr7xdwGQPGCIo=
-X-Received: by 2002:a17:907:5007:b0:a8a:9195:922d with SMTP id
- a640c23a62f3a-a8a919597cfmr238991366b.0.1725696501579; Sat, 07 Sep 2024
- 01:08:21 -0700 (PDT)
+	s=arc-20240116; t=1725697030; c=relaxed/simple;
+	bh=gvsW8BNIX7ljcrGWrKD6clzUjbfdkYMLn3v7uub/6MQ=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=izZkvzfm2bgO0AbUy73MfOVt9p6RZi9HBZYN78JKdjOyuK8fz91iUyIv+9S/xcoqqWkDrPXq8p1XyiQHzfmdway1rhJV8u8veIGrQTgg2uIB2AUgQ5WpfZl0cHztRz8LG9vMFVx5NJ8lkVTq3/5GXTUFuLRD3yUNS8SU2X3kNEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=hVLvXf3W; arc=none smtp.client-ip=212.227.17.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1725697009; x=1726301809; i=markus.elfring@web.de;
+	bh=1Mu96APm/7R/w7K+9IvvOwhZsTEP32teqBSIVibe/dU=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=hVLvXf3WFsdgdiJPtcuSILojs7qpt2WHEdbgdm5cVtsG4xon+vSeZLZnhXniazQk
+	 vv5pm3O2k+FcAMYOhlufRRjNTcEVfqDvc+cPrz+Un0QQXuGuNyIVSLFSATWxc8U6r
+	 Cxc5HHgJgp77LpT5gUf4W83AwXdVW1u78GCWRcHGg5r1Sho9t9zHTGPPzg7kIotiC
+	 pCSitXocBLx0kJ0N9a+Os4tRML0+sKXCIaEmuVvNdPfg9s8qnO/UdDwRULDs5b4pb
+	 +Vgw7yeFpbJMx/WHaTsv66k/GBTVRi78QU0Di3V/7apVmqlJYsiJMOGMxx7FNQf2+
+	 FlgP1xpQuFeXDLMyqw==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.84.95]) by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MSZHv-1scDWM0IH3-00PRSE; Sat, 07
+ Sep 2024 10:10:27 +0200
+Message-ID: <d79dbfae-d50b-45e5-b430-be8106bbb03c@web.de>
+Date: Sat, 7 Sep 2024 10:10:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1725518229.git.zhoubinbin@loongson.cn> <282dadefdaac7917fd681a6e84a5f0f07d0557bc.1725518229.git.zhoubinbin@loongson.cn>
- <76612fdc-996c-4cfd-b5f7-04acb5b717be@sirena.org.uk>
-In-Reply-To: <76612fdc-996c-4cfd-b5f7-04acb5b717be@sirena.org.uk>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Sat, 7 Sep 2024 14:08:08 +0600
-Message-ID: <CAMpQs4KedjHVK=Y87beuc0M_DadrXWWgcC5ob+wXfdy4XtCdWw@mail.gmail.com>
-Subject: Re: [PATCH v1 08/10] ASoC: loongson: Add I2S controller driver as
- platform device
-To: Mark Brown <broonie@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	Huacai Chen <chenhuacai@kernel.org>, devicetree@vger.kernel.org, 
-	linux-sound@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+To: Junhao Xie <bigfoot@classfun.cn>, devicetree@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+Cc: LKML <linux-kernel@vger.kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Chukun Pan <amadeus@jmu.edu.cn>, Conor Dooley <conor+dt@kernel.org>,
+ =?UTF-8?B?R8O8bnRlciBSw7Zjaw==?= <linux@roeck-us.net>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Jean Delvare <jdelvare@suse.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+ Rob Herring <robh@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>
+References: <20240906093630.2428329-2-bigfoot@classfun.cn>
+Subject: Re: [PATCH 1/9] mfd: Add driver for Photonicat power management MCU
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20240906093630.2428329-2-bigfoot@classfun.cn>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:3sDZvZ572CstfLRiymj0OEa2v50uxQRQS5dGEo6EFlvxjxYXotF
+ iqSgsOe0U9L+cf9Xd7SKvjmB4Ob5MfVx3nFns3ltwbXYO6Zvkj3hqOxCWZDHFKgRP2B5l7s
+ dnGTu2+IcVzqaedRB5bfzg4zd4MslQitWJZMwCfnV+eEszme1/BaaIf8r3D0eu7hwTiiX2C
+ bc+jMBkrtEYHS4L0Oa85Q==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:hQwvtSihhyM=;ZvsDh+ewC/rGs/AQZ4pUdxKdguu
+ /7Dlmmzgx7ViXxl9CTTAadFCgTm91BJX01+CMVanf86teKHwyxK7SkgfzcxZPyve5XX+BYTeF
+ oXnMG4+wx5/wIzRHIWE0hJZCJiCFKQ/p/UZ6F5NvVyyXYftPNxq4vQ9IGpc/+P653j9zrguhA
+ +Pj4916QdVnjdR0tkSKf++3qStUvAH5GMcJdpVID7c67Qh6Tk7M3BqB3YiFcbt0KUUzBtxPHU
+ 7gVf2awH+qCdGxzuGg0cIg6XShFH2FVeYk58i5ICM0V97v7X5YDFyUDt1io1TpQu26QekifgJ
+ Cm5pMDya9q2US3bNQWpg1Mc/HF/pqrYN1f05qa0rL2KUgayeT/kXQR4+WOMmfM2hoT5Z2gnw+
+ Uzjy02T697sGHOruySceLgBXsWCA249FnKqinrJYYjEO0vKjihdlywxrjkt8EUOZiFGIQ+qhm
+ 7D64lLz/WllzrR/SpFBsyMSy1CBj/jRoV/2rgywR8vRFZ/X2QegTm/QcRE9Nlv4edn2SrJNfp
+ Mt69oeHmHVQFMVbU6+ZblpjNZqk+otxn/G4wm41jJp1s7vWAca7l6N4MQ3+Db5IUWkaXTspXd
+ Bm8AAtRGtWKFFn8bKs9VxZHJvVOCFHetcuQDg75OeCRXwnAj3mzgfceboyahv2KgO5Vr+rlTp
+ oDvaVc8HMFq55qiNRjJjsIkjOfkTMxYgff3VwssoK9A9UuFffZ7Ao5UjcMDVRM1z6iF8jPNL9
+ vwQ6cSWf4lZAdcOIeup2zLFUoH7YzAMT5Wu43LBnW3tTo+Ab+U3nGmf4qh3X9n4ubmph3dh8d
+ Xe13PuDCHS/ZPGfSqe264SyA==
 
-On Thu, Sep 5, 2024 at 8:36=E2=80=AFPM Mark Brown <broonie@kernel.org> wrot=
-e:
->
-> On Thu, Sep 05, 2024 at 03:07:21PM +0800, Binbin Zhou wrote:
-> > The Loongson I2S controller exists not only in PCI form (LS7A bridge
-> > chip), but also in platform device form (Loongson-2K1000 SoC).
-> >
-> > This patch adds support for platform device I2S controller.
->
-> Can some of this be shared with the PCI version - is it the same IP in a
-> different wrapper, or is it a new IP?
+=E2=80=A6
+> +++ b/drivers/mfd/photonicat-pmu.c
+> @@ -0,0 +1,501 @@
+=E2=80=A6
+> +int pcat_pmu_execute(struct pcat_request *request)
+> +{
+=E2=80=A6
 
-Hi Mark:
+Under which circumstances would you become interested to apply statements
+like the following?
 
-Thanks for your reply.
 
-To be exact, they are similar, such as the definition of the
-controller registers.
-But for example, DMA data processing is different. In the pci version
-of i2s, the DMA controller is built-in, while the DMA controller here
-is external, using ls2x-apbdma (drivers/dma/ls2x-apb-dma.c)
+> +	mutex_lock(&pmu->reply_lock);
+> +	if (request->frame_id =3D=3D 0)
+> +		request->frame_id =3D atomic_inc_return(&pmu->frame);
+> +	pmu->reply =3D request;
+> +	mutex_unlock(&pmu->reply_lock);
+=E2=80=A6
 
-Thanks.
-Binbin
+A) guard(mutex)(&pmu->reply_lock);
+   https://elixir.bootlin.com/linux/v6.11-rc6/source/include/linux/mutex.h=
+#L196
+
+
+
+> +		spin_lock_irqsave(&pmu->bus_lock, flags);
+> +		ret =3D pcat_pmu_raw_write(pmu, request->frame_id, req->cmd,
+> +					 true, req->data, req->size);
+> +		spin_unlock_irqrestore(&pmu->bus_lock, flags);
+=E2=80=A6
+
+B) guard(spinlock_irqsave)(&pmu->bus_lock);
+   https://elixir.bootlin.com/linux/v6.11-rc6/source/include/linux/spinloc=
+k.h#L572
+
+
+Regards,
+Markus
 
