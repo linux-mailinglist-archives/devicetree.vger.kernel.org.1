@@ -1,195 +1,146 @@
-Return-Path: <devicetree+bounces-101057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45BA1970253
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 15:13:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFC56970264
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 15:30:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4C56282F00
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 13:13:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 607AD283F97
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 13:30:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0834015B99D;
-	Sat,  7 Sep 2024 13:13:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B92D156F4A;
+	Sat,  7 Sep 2024 13:30:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ORXKqv2w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D3oiQbe2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDFE015ADA7;
-	Sat,  7 Sep 2024 13:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B5B7947A;
+	Sat,  7 Sep 2024 13:30:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725714781; cv=none; b=WprcGh/87Xm9Osyi7Ycwef2ibefU6N+bqOPFi4HxVeFucZP6ErsBmx7UUXLYW8d/k4b4W01EaAV+4ZP/Zx1G6QOMRIdhzC70tRikt2WboIbavvCz2OgChPwamCAV/vTqyuSBbRYrcJwHeQLv20A6VxfJLcxXwCsrKhqQn9Nv3aY=
+	t=1725715822; cv=none; b=gCeDPSv59RLStylUgBb/486hj3T3ymuKM8zEDaSvdyZdO1+fjsUHd88kDTobugibZMvUrzSooRAz7McU/2y8zO3iu+vjRy3fAlLEcvpB+NfHP2JduR9CxA4bMvx8j5VQU8fN6XTA89sgIT9Qsnyq9QVgwpvC88JDqY/LOiUzX1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725714781; c=relaxed/simple;
-	bh=5xcVFcC3lSy5078QzRE82HrNFUD+O2QbexTWLvWcD9A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HuLnUUELbxLAXfvJwqvlw+i8zlmS+M0YmfO1Xk3WQ3WBRzaskdR3J49Kb7PjaQWeVgTIv+92cWf/Rm11ru50fXmTA1weIEQN45B61zCu/7FvU3vaMgv7uLEBTdAF+vX+bn2H70BiyBuzVhUMjYkd5r1zTtK5n0J+YLF2X4GrtU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ORXKqv2w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8DB4C4CEC2;
-	Sat,  7 Sep 2024 13:12:57 +0000 (UTC)
+	s=arc-20240116; t=1725715822; c=relaxed/simple;
+	bh=aY18vlW/L4kb/gRa6VcsduMXnD5MdEnK7MC9k8KzS2M=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=a0hG/OwP+hUEqMe9LjxPRG1q+hQrhfPEH1vj7LWGhsPgCwPTVrGFTO+GP8CSqo3ah3P9vrDYzsoccjdzolTf/W4dCTJIUYKDHccGc8AhjTF/Ml3Z+lAiLhC/Fxdcff++DwqqnNXI/5tH7StRgpB+LSVLVBu2KxfMD7acIsFJPPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D3oiQbe2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87618C4CEC2;
+	Sat,  7 Sep 2024 13:30:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725714781;
-	bh=5xcVFcC3lSy5078QzRE82HrNFUD+O2QbexTWLvWcD9A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ORXKqv2wNTUxArmAh0ldnGJjCkLb7QzNweO0N/OmbsskJIQyydxv5F3okI9Nw1UEi
-	 om+AFyNAV2yE/QBbSYxt3jHZU+Ry+BxYFi832H+JkmA53IHOQc07wS7tItmiWvgK4d
-	 BbkWS8z6u7MYuh0VVRywAXVtoMuTrspo3zOyO+Jpb9P/6ToLLizr0Y2lCMAysAAT3t
-	 wD/rB/rgrQxw01qaLVwhSZMJF+06fUlONvDypybm52KglqW3R4As5Qddrg2Rd1jZtg
-	 kLNfs7pu9HuDwnVvMDmsPZWcRTN59iHSdGcHfF2D86JYY8IiK+xD09brtacOqAKdkD
-	 Rhfyzm9OK9POg==
-Message-ID: <6bfc4c47-e29d-4141-8ba9-c5b0803ab756@kernel.org>
-Date: Sat, 7 Sep 2024 15:12:54 +0200
+	s=k20201202; t=1725715821;
+	bh=aY18vlW/L4kb/gRa6VcsduMXnD5MdEnK7MC9k8KzS2M=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=D3oiQbe2QgRd3H0U4NZ1b7p7SZtUJeQAxP7E53oY4EVY44Q/yf1BHh3URlksXF8h2
+	 h27FzkWsjkaDXQMfqd6qISAMjG1VzPU8XO6cwsnAD4sCPhPj69SgGKFNAQrHPDVbFx
+	 azd73H7wzlJqUuDDNhpGu3CPlGy9XyMNJBKASgKmJ+LBKXl1cGXLUtaayMm4h9Iukk
+	 JrjdMwO/xcCWdmg+44vy6Bj9oPdq+hidsQv2KAiUDMW33rGxvYdYbbfWnP0+mCuj4D
+	 xgXwUx4g+FVhGY5gTPDknXab7iXRLbHSw/QGLYg7dlScYxNe53hPWUk6K8Q+6LEV8f
+	 a/hHcK3/mcsCg==
+Date: Sat, 7 Sep 2024 14:30:11 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-sunxi@lists.linux.dev, linux-pm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, quentin.schulz@free-electrons.com,
+ mripard@kernel.org, tgamblin@baylibre.com, aidanmacdonald.0x0@gmail.com,
+ u.kleine-koenig@pengutronix.de, lee@kernel.org, samuel@sholland.org,
+ jernej.skrabec@gmail.com, sre@kernel.org, wens@csie.org,
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de,
+ jonathan.cameron@huawei.com, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V4 00/15] Add Battery and USB Supply for AXP717
+Message-ID: <20240907143011.56ab068f@jic23-huawei>
+In-Reply-To: <20240821215456.962564-1-macroalpha82@gmail.com>
+References: <20240821215456.962564-1-macroalpha82@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/1] dt-bindings: memory-controllers: fsl,ifc: add
- compatible string fsl,ifc-nand
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Michael Walle <mwalle@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- "open list:MEMORY CONTROLLER DRIVERS" <linux-kernel@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, imx@lists.linux.dev
-References: <20240830191144.1375849-1-Frank.Li@nxp.com>
- <l2xjrs7txycf3uhhhyzypfzoem2fr4fsvbyg3bt4ktfpbzxz47@loiytha55oml>
- <ZtX8k7UB/Txri5HF@lizhi-Precision-Tower-5810>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <ZtX8k7UB/Txri5HF@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 02/09/2024 19:57, Frank Li wrote:
-> On Mon, Sep 02, 2024 at 09:11:05AM +0200, Krzysztof Kozlowski wrote:
->> On Fri, Aug 30, 2024 at 03:11:43PM -0400, Frank Li wrote:
->>> ifc can connect nor, nand and fpag. Add child node "nand@" under fsl,ifc
->>> and compatible string "fsl,ifc-nand" when ifc connect to nand flash.
->>>
->>> Fix below warning:
->>> arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: /soc/memory-controller@1530000/nand@1,0:
->>> 	failed to match any schema with compatible: ['fsl,ifc-nand']
->>>
->>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
->>> ---
->>> Change from v2 to v3
->>> - add partition child node for nand
->>> - Only partition property is used at ppc
->>> Change from v1 to v2
->>> - add address-cells and size-cells
->>> ---
->>>  .../memory-controllers/fsl/fsl,ifc.yaml       | 26 +++++++++++++++++++
->>>  1 file changed, 26 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/memory-controllers/fsl/fsl,ifc.yaml b/Documentation/devicetree/bindings/memory-controllers/fsl/fsl,ifc.yaml
->>> index d1c3421bee107..5a11224da8914 100644
->>> --- a/Documentation/devicetree/bindings/memory-controllers/fsl/fsl,ifc.yaml
->>> +++ b/Documentation/devicetree/bindings/memory-controllers/fsl/fsl,ifc.yaml
->>> @@ -58,6 +58,32 @@ properties:
->>>        access window as configured.
->>>
->>>  patternProperties:
->>> +  "^nand@[a-f0-9]+(,[a-f0-9]+)+$":
->>> +    type: object
->>> +    properties:
->>> +      compatible:
->>> +        const: fsl,ifc-nand
->>> +
->>> +      reg:
->>> +        maxItems: 1
->>> +
->>> +      "#address-cells":
->>> +        const: 1
->>> +
->>> +      "#size-cells":
->>> +        const: 1
->>> +
->>> +    patternProperties:
->>> +      "^partition@[0-9a-f]+":
->>> +        $ref: /schemas/mtd/partitions/partition.yaml#
->>> +        deprecated: true
->>> +
->>> +    required:
->>> +      - compatible
->>> +      - reg
->>> +
->>> +    additionalProperties: false
->>> +
->>>    "^.*@[a-f0-9]+(,[a-f0-9]+)+$":
->>
->> This pattern is for NAND already. I don't understand why you are
->> duplicating it. If this part does not work, fix it.
+On Wed, 21 Aug 2024 16:54:41 -0500
+Chris Morgan <macroalpha82@gmail.com> wrote:
+
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> It is old binding. It did not require compatible string. It should split
-> into nand\flash\fpga ...
+> Add support for monitoring the USB charger and battery charger on the
+> AXP717 PMIC. This required some driver refactoring of the axp20x USB
+> and battery charger as the AXP717 is somewhat different but can still
+> benefit from some common elements.
 > 
-> The difference part require difference compatible string. NAND is only
-> 1st step to improve it.
+> Note that as of now the charging current now value may be incorrect as
+> the scale and offsets were not documented in the datasheet. I suspect
+> the scale is 1 and the offset is somewhere around 450mA though.
+Applied 1, 8 and 12 to the IIO togreg branch.
 
-I understand. I would prefer to make it complete, which you are quite
-close to it. Just change the remaining pattern for example:
+I was waiting for some mess related to my tree to pan out upstream.
+Unfortunately that leaves us rather tight on timing for the coming
+merge window but hopefully Greg will take a last minute pull request
+for char-misc.
 
-(flash|fpga)......:
-  type: object
-  oneOf:
-    - $ref: /schemas/board/fsl,fpga-qixis.yaml#
-    - $ref: /schemas/mtd/mtd-physmap.yaml#
-  unevaluatedProperties: false
+Jonathan
 
-or something similar.
-
-
-Best regards,
-Krzysztof
+> 
+> Changes from V3:
+>  - Remove accidental AXP717_BOOST regulator in header file, as it is
+>    not part of this patch series.
+>  - Add an absolute min/max constraint for input-current-limit-microamp
+>    in device tree documentation.
+>  - Correct an issue found by kernel test robot <lkp@intel.com> by
+>    explicitly adding linux/bitfield.h include. Details here:
+>    https://lore.kernel.org/oe-kbuild-all/202408201228.Hee4eSYl-lkp@intel.com/
+> 
+> Changes from V2:
+>  - Added constraints for input-current-limit-microamp constraints for
+>    x-powers,axp20x-usb-power-supply.yaml.
+>  - Used FIELD_GET() and removed unnecessary -EINVAL per comments from
+>    Jonathan Cameron.
+> 
+> Changes from V1:
+>  - Refactored against mainline to remove BOOST pre-requisite.
+>  - Corrected commit subjects for DT bindings.
+>  - Split refactoring and AXP717 support into different patches.
+>  - Added IRQ for VBUS over voltage. There appears to be a bug
+>    with the VBUS fault IRQ because it is assigned IRQ num 0.
+>  - Corrected battery driver to report POWER_SUPPLY_PROP_VOLTAGE_MIN
+>    and POWER_SUPPLY_PROP_VOLTAGE_MAX instead of *_DESIGN.
+> 
+> 
+> Chris Morgan (15):
+>   iio: adc: axp20x_adc: Add adc_en1 and adc_en2 to axp_data
+>   power: supply: axp20x_battery: Remove design from min and max voltage
+>   power: supply: axp20x_battery: Make iio and battery config per device
+>   power: supply: axp20x_usb_power: Make VBUS and IIO config per device
+>   dt-bindings: power: supply: axp20x: Add input-current-limit-microamp
+>   power: supply: axp20x_usb_power: add input-current-limit-microamp
+>   dt-bindings: power: supply: axp20x-battery: Add monitored-battery
+>   dt-bindings: iio: adc: Add AXP717 compatible
+>   dt-bindings: power: supply: axp20x: Add AXP717 compatible
+>   dt-bindings: power: supply: axp20x: Add AXP717 compatible
+>   mfd: axp20x: Add ADC, BAT, and USB cells for AXP717
+>   iio: adc: axp20x_adc: add support for AXP717 ADC
+>   power: supply: axp20x_usb_power: Add support for AXP717
+>   power: supply: axp20x_battery: add support for AXP717
+>   arm64: dts: allwinner: h700: Add charger for Anbernic RG35XX
+> 
+>  .../bindings/iio/adc/x-powers,axp209-adc.yaml |  12 +
+>  .../x-powers,axp20x-battery-power-supply.yaml |   7 +
+>  .../x-powers,axp20x-usb-power-supply.yaml     |  72 ++-
+>  .../sun50i-h700-anbernic-rg35xx-2024.dts      |  21 +
+>  drivers/iio/adc/axp20x_adc.c                  | 182 +++++-
+>  drivers/mfd/axp20x.c                          |  25 +-
+>  drivers/power/supply/axp20x_battery.c         | 591 ++++++++++++++++--
+>  drivers/power/supply/axp20x_usb_power.c       | 353 ++++++++++-
+>  include/linux/mfd/axp20x.h                    |  26 +
+>  9 files changed, 1188 insertions(+), 101 deletions(-)
+> 
 
 
