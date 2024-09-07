@@ -1,135 +1,195 @@
-Return-Path: <devicetree+bounces-101055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101057-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CEEE97023D
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 14:52:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45BA1970253
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 15:13:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B183283710
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 12:52:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4C56282F00
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2024 13:13:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9131415D5CA;
-	Sat,  7 Sep 2024 12:51:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0834015B99D;
+	Sat,  7 Sep 2024 13:13:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="z7Cun+N/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ORXKqv2w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B73D115B992
-	for <devicetree@vger.kernel.org>; Sat,  7 Sep 2024 12:51:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDFE015ADA7;
+	Sat,  7 Sep 2024 13:13:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725713494; cv=none; b=MpyGqzmbmJGMdcmGgwg6BLRG/cTArw6ujHrHHoTt7UYZMsvMkgE8hO/V8KTdH9WAnXZgQaYHVi8koixbmw2hOl+zEoznzkNzKf3X605ge/N1jckcfgJ8nnxgMwMjxIRbDRKcNbExjPI5op83MwFZyHMF1IumZnsSxMoM9Ms7vBY=
+	t=1725714781; cv=none; b=WprcGh/87Xm9Osyi7Ycwef2ibefU6N+bqOPFi4HxVeFucZP6ErsBmx7UUXLYW8d/k4b4W01EaAV+4ZP/Zx1G6QOMRIdhzC70tRikt2WboIbavvCz2OgChPwamCAV/vTqyuSBbRYrcJwHeQLv20A6VxfJLcxXwCsrKhqQn9Nv3aY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725713494; c=relaxed/simple;
-	bh=Om2AhE/49Do7xLXq7286Q52iN2U3h4+EcOngsQ+aodU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Av28cD2OzYar1mgS9bvz/Mf5qMcZa2+904RCZBgEHkhZQ0PlynIxH0PZlbEWrwTpYEXBqv1hLxe6KJhNsqsb+V0iFx5MXzQ/AeY51GF3LvmLmCJtjvtBf1ex4WLmEMrzE8F8Fa497TBqR+D/7vNNhfy8QattLBG1+eoBKK1/QyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=z7Cun+N/; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2f75c56f16aso5692451fa.0
-        for <devicetree@vger.kernel.org>; Sat, 07 Sep 2024 05:51:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725713491; x=1726318291; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7sWs0Yh5GOl19xy1ip0mx+la4ukXR/+lSq5N8TyxyHg=;
-        b=z7Cun+N/vhAgrPA9E3dNohz1cVNYh3JKQgLJtn3NMSwvbaque2tuMMSEGUcUy6l4Ur
-         s6kb0qzGaLdUxLlcDL7WRm88/Ct1GAhpeXux0TLsHs4LdZHoMBXaoBqPIKIsb3LYxgET
-         tkt3CYG42alX0chPfOxD3akac9QIGlbwpTOonDusmaUgdWPEC50CjBTihAMNt2crktXl
-         CElyHndaxFsDo3XASklHaHnvNQeP2QKFjVVQ/xiqHWh7cRvyLEWZxsay84ZPZQWVWSOy
-         fGjo2ZkKrob8RfQ/Rs3jTatMpTuvYdaigYItd+nwwi6Gr2jUFU6jSbh1y+BYyWwpAJdZ
-         Knjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725713491; x=1726318291;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7sWs0Yh5GOl19xy1ip0mx+la4ukXR/+lSq5N8TyxyHg=;
-        b=Tn/MowYky7yjU79TbfkJuMVWL+bkjVFQefbakbLtjf4cnUPKCeyKidm6s+4mbv9n0x
-         iA2oR8IOCQj0QNTbHFp8JFyhnKiyK33rBFf8ZgRjYa6tz455pdfwN3AscnWCCHOixFPu
-         hqw3o8HJQ7bB5IqybuD1qjAUlpTsVy3u4Vb8u9nSH4yNvIGCGhEB013kfAsgUeTvj8ec
-         7s+icsFSNb8b00xOiZvABiSemimIRvGEGu4zWiXHn0NB+3ADYCvTRyc72dZq1xPZF3Xx
-         EWHQg+x1wqWqfU+Ya6iLdgKqt9KH0AsebZbF899KuBRMciwioei4tAtzAykHGKCSWHs/
-         P/ZA==
-X-Forwarded-Encrypted: i=1; AJvYcCVi4dMGg5gTWc7GPNI4wnrgihMJDxkrTRnPo8aYB323rzKKjae5op4gopIRcI1SCSRqMvAXmJja9N9e@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+7wvP0ba1Dmh8j0+RdtWjRXEO7IqEXMEdrvxeQQ7B+uCstQbT
-	LtKfqM1tLPCM4A31egLQsw11dIy7paElm6nzfAlB0vLIck41Ah6PEzMQTiqF7gE=
-X-Google-Smtp-Source: AGHT+IGhqpckvhWmOG6EkU6IpaNRuD3yiEYQhHIW7VWjV1wlz4lF/h38bNZ5W5o8L+nGAnp6CZNHFg==
-X-Received: by 2002:a05:6512:3502:b0:52b:bf8e:ffea with SMTP id 2adb3069b0e04-536587fce54mr3016089e87.40.1725713490684;
-        Sat, 07 Sep 2024 05:51:30 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5365f8cb76fsm143273e87.177.2024.09.07.05.51.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Sep 2024 05:51:30 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sat, 07 Sep 2024 15:51:27 +0300
-Subject: [PATCH 4/4] arm64: dts: qcom: qcm6490-rb3gen2: enable WiFi
+	s=arc-20240116; t=1725714781; c=relaxed/simple;
+	bh=5xcVFcC3lSy5078QzRE82HrNFUD+O2QbexTWLvWcD9A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HuLnUUELbxLAXfvJwqvlw+i8zlmS+M0YmfO1Xk3WQ3WBRzaskdR3J49Kb7PjaQWeVgTIv+92cWf/Rm11ru50fXmTA1weIEQN45B61zCu/7FvU3vaMgv7uLEBTdAF+vX+bn2H70BiyBuzVhUMjYkd5r1zTtK5n0J+YLF2X4GrtU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ORXKqv2w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8DB4C4CEC2;
+	Sat,  7 Sep 2024 13:12:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725714781;
+	bh=5xcVFcC3lSy5078QzRE82HrNFUD+O2QbexTWLvWcD9A=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ORXKqv2wNTUxArmAh0ldnGJjCkLb7QzNweO0N/OmbsskJIQyydxv5F3okI9Nw1UEi
+	 om+AFyNAV2yE/QBbSYxt3jHZU+Ry+BxYFi832H+JkmA53IHOQc07wS7tItmiWvgK4d
+	 BbkWS8z6u7MYuh0VVRywAXVtoMuTrspo3zOyO+Jpb9P/6ToLLizr0Y2lCMAysAAT3t
+	 wD/rB/rgrQxw01qaLVwhSZMJF+06fUlONvDypybm52KglqW3R4As5Qddrg2Rd1jZtg
+	 kLNfs7pu9HuDwnVvMDmsPZWcRTN59iHSdGcHfF2D86JYY8IiK+xD09brtacOqAKdkD
+	 Rhfyzm9OK9POg==
+Message-ID: <6bfc4c47-e29d-4141-8ba9-c5b0803ab756@kernel.org>
+Date: Sat, 7 Sep 2024 15:12:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/1] dt-bindings: memory-controllers: fsl,ifc: add
+ compatible string fsl,ifc-nand
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Michael Walle <mwalle@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ "open list:MEMORY CONTROLLER DRIVERS" <linux-kernel@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, imx@lists.linux.dev
+References: <20240830191144.1375849-1-Frank.Li@nxp.com>
+ <l2xjrs7txycf3uhhhyzypfzoem2fr4fsvbyg3bt4ktfpbzxz47@loiytha55oml>
+ <ZtX8k7UB/Txri5HF@lizhi-Precision-Tower-5810>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <ZtX8k7UB/Txri5HF@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240907-rb3g2-fixes-v1-4-eb9da98e9f80@linaro.org>
-References: <20240907-rb3g2-fixes-v1-0-eb9da98e9f80@linaro.org>
-In-Reply-To: <20240907-rb3g2-fixes-v1-0-eb9da98e9f80@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Komal Bajaj <quic_kbajaj@quicinc.com>, 
- cros-qcom-dts-watchers@chromium.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, ath11k@lists.infradead.org, 
- Kalle Valo <kvalo@kernel.org>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=821;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=Om2AhE/49Do7xLXq7286Q52iN2U3h4+EcOngsQ+aodU=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBm3ExO0pHd0WKIcWTD7FOZykBxXIUyqiFeVUak+
- CufdfpCGtaJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZtxMTgAKCRCLPIo+Aiko
- 1T+qB/wMeJVn2ogUiKRQAvEC4RAi62kilDEcn4FSYr3YYKo70j0oT6VQC5P5VcMwNyzuhErRAso
- 3NzNTD+RKZ791SQO/GiwMR8By8cT+7O4a2zQP4XmerfLuiD9a9dbk39eO5PmmvNhBXUzJIMCZuE
- /fOwB1ha+Uxm/7FqsINkm1seiZUajN6vrGZOfa9H0Ii9l+LB7cwuFZAo3LdkL5TQel7DzBiRSQa
- BwOipQTaAjqrCvnwZxe/fmxRmxV5iNYAKWrOxO+ccZHmlGeuS4DXHhY4jo5pApmPqq8uAsN2ptT
- eLOuthF6TLV6EgbN8ekSIpWOTcYaGMD/NRFVuBhSGl4Spw0q
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-Enable WiFi device and specify the calibration variant name on the
-RB3gen2 device.
+On 02/09/2024 19:57, Frank Li wrote:
+> On Mon, Sep 02, 2024 at 09:11:05AM +0200, Krzysztof Kozlowski wrote:
+>> On Fri, Aug 30, 2024 at 03:11:43PM -0400, Frank Li wrote:
+>>> ifc can connect nor, nand and fpag. Add child node "nand@" under fsl,ifc
+>>> and compatible string "fsl,ifc-nand" when ifc connect to nand flash.
+>>>
+>>> Fix below warning:
+>>> arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: /soc/memory-controller@1530000/nand@1,0:
+>>> 	failed to match any schema with compatible: ['fsl,ifc-nand']
+>>>
+>>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+>>> ---
+>>> Change from v2 to v3
+>>> - add partition child node for nand
+>>> - Only partition property is used at ppc
+>>> Change from v1 to v2
+>>> - add address-cells and size-cells
+>>> ---
+>>>  .../memory-controllers/fsl/fsl,ifc.yaml       | 26 +++++++++++++++++++
+>>>  1 file changed, 26 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/memory-controllers/fsl/fsl,ifc.yaml b/Documentation/devicetree/bindings/memory-controllers/fsl/fsl,ifc.yaml
+>>> index d1c3421bee107..5a11224da8914 100644
+>>> --- a/Documentation/devicetree/bindings/memory-controllers/fsl/fsl,ifc.yaml
+>>> +++ b/Documentation/devicetree/bindings/memory-controllers/fsl/fsl,ifc.yaml
+>>> @@ -58,6 +58,32 @@ properties:
+>>>        access window as configured.
+>>>
+>>>  patternProperties:
+>>> +  "^nand@[a-f0-9]+(,[a-f0-9]+)+$":
+>>> +    type: object
+>>> +    properties:
+>>> +      compatible:
+>>> +        const: fsl,ifc-nand
+>>> +
+>>> +      reg:
+>>> +        maxItems: 1
+>>> +
+>>> +      "#address-cells":
+>>> +        const: 1
+>>> +
+>>> +      "#size-cells":
+>>> +        const: 1
+>>> +
+>>> +    patternProperties:
+>>> +      "^partition@[0-9a-f]+":
+>>> +        $ref: /schemas/mtd/partitions/partition.yaml#
+>>> +        deprecated: true
+>>> +
+>>> +    required:
+>>> +      - compatible
+>>> +      - reg
+>>> +
+>>> +    additionalProperties: false
+>>> +
+>>>    "^.*@[a-f0-9]+(,[a-f0-9]+)+$":
+>>
+>> This pattern is for NAND already. I don't understand why you are
+>> duplicating it. If this part does not work, fix it.
+> 
+> It is old binding. It did not require compatible string. It should split
+> into nand\flash\fpga ...
+> 
+> The difference part require difference compatible string. NAND is only
+> 1st step to improve it.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
-Cc: ath11k@lists.infradead.org
-Cc: Kalle Valo <kvalo@kernel.org>
----
- arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 3 +++
- 1 file changed, 3 insertions(+)
+I understand. I would prefer to make it complete, which you are quite
+close to it. Just change the remaining pattern for example:
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-index 00b755779608..41d800e09638 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-@@ -800,6 +800,9 @@ &ufs_mem_phy {
- 
- &wifi {
- 	memory-region = <&wlan_fw_mem>;
-+	qcom,ath11k-calibration-variant = "Qualcomm_rb3gen2";
-+
-+	status = "okay";
- };
- 
- /* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
+(flash|fpga)......:
+  type: object
+  oneOf:
+    - $ref: /schemas/board/fsl,fpga-qixis.yaml#
+    - $ref: /schemas/mtd/mtd-physmap.yaml#
+  unevaluatedProperties: false
 
--- 
-2.39.2
+or something similar.
+
+
+Best regards,
+Krzysztof
 
 
