@@ -1,136 +1,131 @@
-Return-Path: <devicetree+bounces-101146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F21CF9709F9
-	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2024 23:10:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9865A970A7B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 00:41:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B175B2123E
-	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2024 21:10:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4C711C21483
+	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2024 22:41:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 134F918005B;
-	Sun,  8 Sep 2024 21:10:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8EA8178376;
+	Sun,  8 Sep 2024 22:40:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="2uWcj+fS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SKO99+Z2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D58417BB1E;
-	Sun,  8 Sep 2024 21:09:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C60114D420;
+	Sun,  8 Sep 2024 22:40:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725829800; cv=none; b=XlxuKMxDpSKBKxMqvvwz5aCp+amS9uaV650dgKFS4qrIAPpfgHgfjReRZnBk40Vr4LNk/FqdzsHYgN2SlT5TYGXdN3ezewK9zM18I3r3rZzgjt8mjIDmAriDIZAj/FLvrj76AG9DKExqUrnclERPWFVFieTh/NXRft1GCsrdXVI=
+	t=1725835256; cv=none; b=RQ+tsJU+R/aXeZmEHwPq/yEMCg8/rWCuSuZCjrSKJVlCdNLlPwkeXcYGk8r0dLetsY8rCuUIk8jpUHKaxiSu9fx2Kw/Rp4c0OkU6gGHQIu/FxmjMxIdEl4yg860ZyPqMpgdacyhl7qW6u62/wAh9w/rNoe6ZO7mLoHlUO5k2enA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725829800; c=relaxed/simple;
-	bh=equbU9VBMIwdvGkqWk+AjPVcTc+O1BMZPBWXnDB1Dyo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rHqimKcnp5GjJpo4+eQgRSda1VoQcokfamvR2y7D/YtHACidx0Rvc4KOsjR23YaG1LNSfGZBXZQD+qN81Xqu9xhFbRygXPGMXq9pUvtwdA7yWZJogoa7II1mrhNNrdyJGjJLNUPB/b9rVFi9/j0jyutnRNiIjkDqZ8rY680mjCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=2uWcj+fS; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=q1jpFbe8UJlfuFdvluwPG8fKnNdFZmBXVzuyZQAcBU0=; b=2uWcj+fSeC3gcEwnxueXgjo0si
-	Z3hkjgc4JZ0ZdQi6FYCFmDU1+Nv/5yQK7ScViFakuhTZu+D2GzRMq0vg0xBtkw3tc/II49bUcg3df
-	6f09+FSg4iDFa9dRssvhusUL3rsmNNEi/AUUj6EE0B9jsJtBUU2HfgUvff1l17LxvlnxQf2E1G8WN
-	ZuJy3/T1KNISHP21A27l86XKZNYErHsyPPNsSYBILehyY34QrpWVKw+spe1kyq5K0HnUHLF8muwAQ
-	ovVnCMHuVElR3a8PJzSN+Gaz/xlZ/K72xbZz8dx/L78piG/xDHe52h6YHTKEqwZKTD+fsqIAMRsSD
-	rQcD5sNA==;
-Received: from i5e8616cc.versanet.de ([94.134.22.204] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1snPA7-0003s9-U9; Sun, 08 Sep 2024 23:09:35 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: lee@kernel.org,
-	jikos@kernel.org,
-	jic23@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	jdelvare@suse.com,
-	linux@roeck-us.net,
-	srinivas.pandruvada@linux.intel.com,
-	bentiss@kernel.org,
-	dmitry.torokhov@gmail.com,
-	pavel@ucw.cz,
-	ukleinek@debian.org,
+	s=arc-20240116; t=1725835256; c=relaxed/simple;
+	bh=X5q/4quCzG4F83jGJS3OIZIk4uVa+btfsAT1Fsn+06c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VCD9dj+r+SymXvIkB2cKSrEtxXWJTlXEqDd0pvXYLlzIPUl5uAeognkwxBnKs0EZrSsxbTbQwslFPGkMtK/xbvn+qOsIrokpea77+p37QOM6UsHC1jcYr8Swscq3N+iXsmEp9zkSzDfu56CtWFAv3qL3I3FXpJYcAYu9hsivcQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SKO99+Z2; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-42cb9a0c300so33045e9.0;
+        Sun, 08 Sep 2024 15:40:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725835253; x=1726440053; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZFvHRy15mVoNEuxCo+R3TYqGZa7Awd0sq9cO2j8mkAs=;
+        b=SKO99+Z2tW4qIvl0A4PWwbYxT6GZowZY+wGAYpsfk92VWtsTnn0cAEXtvJL+8Uo1Fm
+         fb6wzSTx9WcamYL6s4y/RMtzm6w0opD6w/hwEMXkgMHJMN4qodCqPr98IKAs56FEp0uL
+         NLV3Fz38+iB0BiHFLs0831WkWUX07WAI1g/GMI780aQwlEK/PLK181aJcuAToqREgXFH
+         YM4m/p+HhG/t2WwfFq2sco8J2Dxgaq1/LdvU2lxdnIl4HRLxViZibK5Yk2vp8TpZ0ypL
+         CSFjsFR5S0zqHHf4FkuKcCy4jr25gNGdXNYMPhSJq1YJrencOaDI4LPgQLVAqUPHrJn6
+         gQdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725835253; x=1726440053;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZFvHRy15mVoNEuxCo+R3TYqGZa7Awd0sq9cO2j8mkAs=;
+        b=hZ24gb4xaemJRiOaqFPmFF+57q+XzyzESM6D8JoSl7iZWSSnGOXYsN6zGej/k/io3B
+         7ZP5e/PLJsVQo3NN5kc1z/IPL4PxBdIrX1N3Qnhn59Z1nOhS1UyDBbkTFPpfzY9N/EQx
+         h5IGI0AqpopxO0riT3zwcObdHdibj5PzoLVJX13qWX7UiRFvVNlr4ijpcWqvwDGKmXbM
+         cENWUIeHKONELPUOEirJXNBCsAvW44sje7y2h6VPYuuYb1zWn9FmHE1ONqHyVqp0Ucoa
+         lXaxy6XPq1U46NYLByfVrv0hQNjNlIs9CbblCR9fUNmacdZFMpu8eulx1jCLyhIN9Tej
+         IlNw==
+X-Forwarded-Encrypted: i=1; AJvYcCV4VibuC1kVGbtUWFXhMaEaXv9pAF+l4EioJ3jxT5wk7jdBX1zZClwNo6iSgAPBTBCy4ZuvUg+a6tNgA+Fadw==@vger.kernel.org, AJvYcCXP4KyBiGRsqRU44xFL7j3KzT2xsRuVHDHsVAI2H4jzOzDrMMRMz0xSwOP0dd1glSr4jTPzmoytxs/aKymQ@vger.kernel.org, AJvYcCXVvX9S/CjTE+XGtmE95vNaRipXUmPkeOI2caTQ0hY2IBPVaODhRM4rV5aomcqV0Bkox6ITQ9FeBKFJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwDraAY1JHUrWUpunkVj4YhZfTr2MwyHUbYQq+oJmChIhB/x8f/
+	df5vwiilR+sAGf85OKWAqodWU4eP7CjFA3m8OBmJ3FVEwuDrcMo=
+X-Google-Smtp-Source: AGHT+IFvhv/dZnQMlwMkX8KEgvmhs93ZuA/rmnJ/PN4oT/Jk8njw2e9kBTDg802mCNVs9QC3c+jR9g==
+X-Received: by 2002:adf:f8c1:0:b0:366:ee9b:847 with SMTP id ffacd0b85a97d-378895ca759mr5803583f8f.14.1725835253043;
+        Sun, 08 Sep 2024 15:40:53 -0700 (PDT)
+Received: from surface.home (2a01cb080508df00ca9665fffed23409.ipv6.abo.wanadoo.fr. [2a01:cb08:508:df00:ca96:65ff:fed2:3409])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42ca0600651sm90883925e9.32.2024.09.08.15.40.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 Sep 2024 15:40:52 -0700 (PDT)
+From: =?UTF-8?q?J=C3=A9r=C3=B4me=20de=20Bretagne?= <jerome.debretagne@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-input@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	Heiko Stuebner <heiko@sntech.de>
-Subject: [PATCH v8 9/9] arm64: dts: rockchip: set hdd led labels on qnap-ts433
-Date: Sun,  8 Sep 2024 23:08:03 +0200
-Message-ID: <20240908210803.3339919-10-heiko@sntech.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240908210803.3339919-1-heiko@sntech.de>
-References: <20240908210803.3339919-1-heiko@sntech.de>
+	Maximilian Luz <luzmaximilian@gmail.com>
+Subject: [PATCH v2 0/5] Microsoft Surface Pro 9 5G support
+Date: Mon,  9 Sep 2024 00:35:00 +0200
+Message-ID: <20240908223505.21011-1-jerome.debretagne@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-The automatically generated names for the LEDs from color and function
-do not match nicely for the 4 hdds, so set them manually per the label
-property to also match the LEDs generated from the MCU.
+This series brings support for the SC8280XP-based Microsoft Surface
+Pro 9 5G.
 
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+Changes in v2:
+- Style fixes
+- Rename the devicetree to sc8280xp-microsoft-arcata.dts
+- Update the audio nodes to use codec@ instead of wcd9380-rx or -tx
+- Document which node corresponds to which physical USB Type-C port
+- Reordering to get property-0 followed by property-names consistently
+- Add a dedicated Wi-Fi calibration variant
+- Remove gpio-reserved-ranges in tlmm node as not needed to boot
+- Add support for Surface Pro 9 5G in surface_aggregator_registry.c
+- Switch to the upstream "microsoft,surface-sam" binding
+- Fix uart18 clock from S1 to S2
+- Include Acked-by: and Reviewed-by: tags
+- Link to v1: https://lore.kernel.org/all/20240903224252.6207-1-jerome.debretagne@gmail.com/
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts b/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
-index 4bc5f5691d45..7bd32d230ad2 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
-@@ -50,6 +50,7 @@ led-0 {
- 			color = <LED_COLOR_ID_GREEN>;
- 			function = LED_FUNCTION_DISK;
- 			gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_LOW>;
-+			label = "hdd1:green:disk";
- 			linux,default-trigger = "disk-activity";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&hdd1_led_pin>;
-@@ -59,6 +60,7 @@ led-1 {
- 			color = <LED_COLOR_ID_GREEN>;
- 			function = LED_FUNCTION_DISK;
- 			gpios = <&gpio1 RK_PD6 GPIO_ACTIVE_LOW>;
-+			label = "hdd2:green:disk";
- 			linux,default-trigger = "disk-activity";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&hdd2_led_pin>;
-@@ -68,6 +70,7 @@ led-2 {
- 			color = <LED_COLOR_ID_GREEN>;
- 			function = LED_FUNCTION_DISK;
- 			gpios = <&gpio1 RK_PD7 GPIO_ACTIVE_LOW>;
-+			label = "hdd3:green:disk";
- 			linux,default-trigger = "disk-activity";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&hdd3_led_pin>;
-@@ -77,6 +80,7 @@ led-3 {
- 			color = <LED_COLOR_ID_GREEN>;
- 			function = LED_FUNCTION_DISK;
- 			gpios = <&gpio2 RK_PA0 GPIO_ACTIVE_LOW>;
-+			label = "hdd4:green:disk";
- 			linux,default-trigger = "disk-activity";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&hdd4_led_pin>;
+---
+Jérôme de Bretagne (5):
+  dt-bindings: arm: qcom: Document Microsoft Surface Pro 9 5G
+  firmware: qcom: scm: Allow QSEECOM on Microsoft Surface Pro 9 5G
+  platform/surface: aggregator_registry: Add Surface Pro 9 5G
+  arm64: dts: qcom: sc8280xp: Add uart18
+  arm64: dts: qcom: sc8280xp: Add Microsoft Surface Pro 9 5G
+
+ .../devicetree/bindings/arm/qcom.yaml         |    1 +
+ arch/arm64/boot/dts/qcom/Makefile             |    1 +
+ .../dts/qcom/sc8280xp-microsoft-arcata.dts    | 1032 +++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        |   48 +
+ drivers/firmware/qcom/qcom_scm.c              |    1 +
+ .../surface/surface_aggregator_registry.c     |   17 +
+ 6 files changed, 1100 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
+
 -- 
-2.43.0
+2.45.2
 
 
