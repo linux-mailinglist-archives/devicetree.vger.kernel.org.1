@@ -1,56 +1,58 @@
-Return-Path: <devicetree+bounces-101102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 146F19705D5
-	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2024 10:44:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60CCF9705DD
+	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2024 10:47:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91E082821D6
-	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2024 08:44:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 174CF1F21E1D
+	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2024 08:47:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF344136325;
-	Sun,  8 Sep 2024 08:44:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72BDF1422B1;
+	Sun,  8 Sep 2024 08:47:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="esqiCvbF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qPnB3wpq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A56562AF09;
-	Sun,  8 Sep 2024 08:44:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 476DE13DDA3;
+	Sun,  8 Sep 2024 08:47:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725785059; cv=none; b=JWsvRHsvW88c3kW6V+dL5a0ENUoS5pcNNx3ZxHlVue9noY1llF5dEmc9DWhTc/78azDKskL5mkzwQ8BIYuxChjPAoF1lsJ6jdveo4pzmrm8TNX0fFbyEgGyRJcHNlN710m+CDZawDnfVz8KFIZo7LF6MbHKLlqoDACnl6UxdrhY=
+	t=1725785251; cv=none; b=VOMNvTSb9DtRvZMwMfZQHn3ajjJdHWgucOxHvPvJRBL0yhJNet+jHs4sJtjSNFXfXCa4tyamzYe0UYaLgFAoZzpZZEqJJ6ZWVftO19ewPWqo3SJ037Oj5imB8JgD6giOYy6CICr7etr8P3yjYYwpxDq3WyBgG7+tDPpofdnpbkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725785059; c=relaxed/simple;
-	bh=1x4faPVymiRDVgWHocoMMmvn+fAB0HBRw9eKgy70B48=;
+	s=arc-20240116; t=1725785251; c=relaxed/simple;
+	bh=I5sxYl65FXj1bReWOukIcqvrR1M53LH1xySBrKJBkgM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uqKPKKwEk2DZ4XdQdswWXG5MJMX3//lIJSTVF/zq/oxKQjwaNrgCwTjzNECwPmJz6rcZsgqRMRZCSCMXFztuVY59p1Rbs6gnMFAC+NmhhFucWkHBOaCfSK3113xqiiFPkI1k0fy539Xnaxh2LjWkqcI0XDcwPgeozZ81xAQEOTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=esqiCvbF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71941C4CEC3;
-	Sun,  8 Sep 2024 08:44:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Tq7eUUB3dBuAIrPU+7kMZhhx5Ar7DGg5a09pOSsRiDZe8hfWN8w5hkfxD4PnFZd3Bp32SB16ulO6jazwb/UZeLVzSJC5LUv+n/ty4VWQuYIG3RoadjbtWafB/XW9eLzU1dBl5iN7havEp+FZK054Y1/lxEQ1dW4RcXQ/fY2j9po=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qPnB3wpq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CC10C4CEC6;
+	Sun,  8 Sep 2024 08:47:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725785059;
-	bh=1x4faPVymiRDVgWHocoMMmvn+fAB0HBRw9eKgy70B48=;
+	s=k20201202; t=1725785250;
+	bh=I5sxYl65FXj1bReWOukIcqvrR1M53LH1xySBrKJBkgM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=esqiCvbFnxsnc5OWIivc0/xWPzL1VjiQ5T4zNJ/noL0ZEKjOdTJgFD4n2s4t++xPo
-	 lxuR/XQZEVAc0j0FOzwSPwnW9K9k4JKp4MYh08ywFbP64DXmQJ2c+9kBzmSGcmMlH3
-	 vg42i0EF5+pRVs0kGgicJ2pvNNJQ2WExUHCIDHN2VzYYxbhSaGTqeh7HVhsW4cV9sx
-	 TTD+cv4zHeVfHnEU4XFujAWYMeoZKbvJnIdUw2en/SP37kRpYJMIkTstCWnfXtiyTw
-	 6GQ1of4VNhsmrwTD9eM8PF47wWWb9bS2IvQAWC2IsiLPVCdrmiksO2lRuXYMZBlBXJ
-	 vyw4/q8OOW+uQ==
-Date: Sun, 8 Sep 2024 10:44:15 +0200
+	b=qPnB3wpqgznQh64jDiSSdVl0Vi51VB/cdzUhIrU9EbLBajm4/JG5x1w/sGSJWh3sP
+	 2Ho65QHP7MWHvQiSBoUpi56Lg+46QcwcPKQherROZ19NwJYG7qu9nmDz0r8OGv6A52
+	 gREd/YZmbB1DGpbTT6sOpkFhk0iL29KPRZe2P5fO83vdAlOZUJIvHmGoaA9zuU/sM2
+	 N6qQzfs3tJ8EkVdxUJMwPRDN80BesbdW75LrdglHRFdAUL4gZtFzAnDluCgDYQD6tV
+	 VtaDClSuW2kD02kE0EKCNeW7ZmgsCHgo1Qo79Btabv0GWP9WtvBLynvtp5cZho3vVg
+	 7/2Dg6ILBb0Dg==
+Date: Sun, 8 Sep 2024 10:47:27 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Vasileios Amoiridis <vassilisamir@gmail.com>, robh@kernel.org, 
-	saravanak@google.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] of/irq: Use helper to define resources
-Message-ID: <w4mq5nareqaf3fpwf3hr4oywgxlnjy33va5ftspw5rmdxuflms@x3lw3pj64tig>
-References: <20240904160239.121301-1-vassilisamir@gmail.com>
- <20240904160239.121301-3-vassilisamir@gmail.com>
- <ZtltLjZkFBWSbl2s@smile.fi.intel.com>
+To: =?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <trabarni@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	=?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>
+Subject: Re: [PATCH 1/2] dt-bindings: power: supply: bq256xx: Add
+ omit-battery-class property
+Message-ID: <6jdweloqynw2fu6legthfbzctnoirzzkxhduxfcrowegaztd6a@ilak6fagpokv>
+References: <20240907-bq256xx-omit-battery-class-v1-0-45f6d8dbd1e5@mainlining.org>
+ <20240907-bq256xx-omit-battery-class-v1-1-45f6d8dbd1e5@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,23 +61,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ZtltLjZkFBWSbl2s@smile.fi.intel.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240907-bq256xx-omit-battery-class-v1-1-45f6d8dbd1e5@mainlining.org>
 
-On Thu, Sep 05, 2024 at 11:34:54AM +0300, Andy Shevchenko wrote:
-> On Wed, Sep 04, 2024 at 06:02:38PM +0200, Vasileios Amoiridis wrote:
-> > Resources definition can become simpler and more organised by using the
-> > dedicated helpers.
-> 
-> Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> 
-> ...
-> 
-> > +		*r = DEFINE_RES_IRQ_NAMED(irq, name ? name : of_node_full_name(dev))
-> 
-> Just use Elvis to make this shorten.
-> Btw, have you ever compiled this?
+On Sat, Sep 07, 2024 at 01:07:45PM +0200, Barnab=C3=A1s Cz=C3=A9m=C3=A1n wr=
+ote:
+> Add omit-battery-class property for avoid system create a battery device.
+>=20
+> Signed-off-by: Barnab=C3=A1s Cz=C3=A9m=C3=A1n <barnabas.czeman@mainlining=
+=2Eorg>
 
-It wasn't ever built... and if not built, probably not tested, either.
+Please run scripts/checkpatch.pl and fix reported warnings. Then please
+run  and (probably) fix more warnings.
+Some warnings can be ignored, especially from --strict run, but the code
+here looks like it needs a fix. Feel free to get in touch if the warning
+is not clear.
+
+Your SoB does not match.
 
 Best regards,
 Krzysztof
