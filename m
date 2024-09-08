@@ -1,125 +1,124 @@
-Return-Path: <devicetree+bounces-101097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2BA8970497
-	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2024 03:02:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 629EE9704FB
+	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2024 05:25:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51AC0283076
-	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2024 01:02:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C6B7282FA3
+	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2024 03:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1E8B4683;
-	Sun,  8 Sep 2024 01:02:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05D08208D7;
+	Sun,  8 Sep 2024 03:25:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="f31NDp+N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bgSr9YUl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA3C7181;
-	Sun,  8 Sep 2024 01:02:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1B1F45C0B;
+	Sun,  8 Sep 2024 03:25:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725757353; cv=none; b=A12DruV3FZEeac/JrRaZLDSPw0uSSNYz3xVIpNaHe4e/p732yueJRenqEcAkudLiS4S4BNtrKzKYA7n8auM30G9w1hDKLxp+2kA/s9nNRLk3WLNBFyHLO1ilfBk3MGDUNpL+Fz1JvlszhsTT7Agsxtr6unPvXHy/PtF1f2snlwE=
+	t=1725765919; cv=none; b=LTNoKVWitu6JjMNPG7TRqwO/+lb0IvtK3YrJ5ERcqaarJg72Pnea9IRCt+fiIlkIMuRhq28uYhlScuDRuGVYZVadDl+POWgwqyN3GOHKQv0Q7JEJ36GC6JnccmIQTFOif1RrDeDsVMww0zwGlWSWk6uCJROGlGVmxrmk2eZDwr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725757353; c=relaxed/simple;
-	bh=F0s7ixT9XH5I6XOBr+KkTkTMxUaSIGOaGHhl2A4jZKI=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kwKH1LAXDm30TwPs84Zp7J4SuGPmlvGGDYC9ZiMzLDZ4tgFGRRgXtzLvg8k/MirrPIzJMO3nXz5sJZg7Hdj7CD2/a3TksnUutp6QAKP8oZumy6ZfeA/m6Fjk08ycXJC0LtGWalAxeieS2bCO6luFh74poiws7DAJIl0Gr6A/77g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=f31NDp+N; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4880fnkh014185;
-	Sun, 8 Sep 2024 01:02:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=9+3mVQXFRnFOnGuVXqAeii
-	ZKG/0loiyMqVxdiPFiiSo=; b=f31NDp+NW5l1v9X3SQ6DuXOFXG+1XmzBuJPJLk
-	B7lccsJvJaz4vzCX2QqtXg9f+tL/QBpATirTOykUS/7BfBEBEi7HyJOljXFlpvIu
-	UkESAg/08fCwSnRbP7VpTlL9RTjq+2mEZadK3lhTrUR56fm3wRWybma2+l2mvLY9
-	Mw8uZ1bX/mHE+KLdBxM4it7E7YNLOiaXxCPQ1pvzQ48YBXP/yXjjUv6H2lPaFFej
-	jyGuFY5EJguF4VCyNuzmWMmozTChFDyh2HUKFiyitQbRNbYjVMO7654HF3/5Vnj8
-	qQCyOITspWhIuANBI4maK0Qx1t+UTX5fdelYcZVQkeAuU90w==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy59r4ax-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 08 Sep 2024 01:02:22 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48812M3O014068
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 8 Sep 2024 01:02:22 GMT
-Received: from hu-nkela-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sat, 7 Sep 2024 18:02:18 -0700
-From: Nikunj Kela <quic_nkela@quicinc.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>, <quic_psodagud@quicinc.com>,
-        Nikunj Kela
-	<quic_nkela@quicinc.com>
-Subject: [PATCH v3] dt-bindings: arm: GIC: add ESPI and EPPI specifiers
-Date: Sat, 7 Sep 2024 18:02:05 -0700
-Message-ID: <20240908010205.863701-1-quic_nkela@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1725765919; c=relaxed/simple;
+	bh=izGX5IudWXgEPrTjrFt+ZvVIsIuXuq42/A8TQru98MI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KNJPXLWtW9cwGdzDWlqKanODutkSmzprLbBqbaI9B1Yj2H1kz48/c8wMpM3CTCn4PQ/jH+nkUrQY9qUOoN9a7fOzx5nJJ8vw3Ir+owQmI9XjRRsaps3LQouVHGgq6KvSJ+EhqNVdpzsIidNmE/CjBOZC8ixm/pQ8+WDmueJK2EU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bgSr9YUl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BF81C4CEC4;
+	Sun,  8 Sep 2024 03:25:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725765919;
+	bh=izGX5IudWXgEPrTjrFt+ZvVIsIuXuq42/A8TQru98MI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bgSr9YUl3ec2QDIJBhlp9ubWExTyxIkzDjQN8a9tGQFMqFE/HCfJF+2j6BqWybUQ4
+	 rxAWSxKi9BrdJndn7N+koNEgWja7ktN6MPpupqSUMosOrMtJZK4k/4MrnZqIu1IcZ6
+	 +TIIIyn/xxJ0TeV1W2nGXcugc+abm6flwytC+s6f9fP/72+4uVUM7wI+SSUjD5uXQH
+	 HsWTfoKQDwDLS9IPk0pZI2L86uv7Ld9DbJa1V2BFMcbKI9Ci+UuIR6oYTPvP9gNnom
+	 EEOFI81IAdmB7Jvj+CZUOtt2m6ZZDJWlCMoHO/GB81BUj22Dyh+d/5+PB5kKTJKVpZ
+	 K3Mm26tEWtq3Q==
+Date: Sat, 7 Sep 2024 22:25:16 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, iommu@lists.linux.dev, linux-arm-msm@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/7] iommu/arm-smmu-qcom: apply num_context_bank fixes
+ for SDM630 / SDM660
+Message-ID: <ptugcisjsh6mdnkhrdhbtetykjpeya4epmlbqbuayst5efgjq4@mzan2bvz74r7>
+References: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
+ <20240907-sdm660-wifi-v1-1-e316055142f8@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: V5b_YhaldSlPk4b-Z_9qpa8eZ8lK6Fqr
-X-Proofpoint-ORIG-GUID: V5b_YhaldSlPk4b-Z_9qpa8eZ8lK6Fqr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- bulkscore=0 mlxlogscore=543 phishscore=0 impostorscore=0 mlxscore=0
- priorityscore=1501 clxscore=1015 adultscore=0 lowpriorityscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409080007
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240907-sdm660-wifi-v1-1-e316055142f8@linaro.org>
 
-Add interrupt specifier for extended SPI and extended PPI interrupts.
+On Sat, Sep 07, 2024 at 09:48:12PM GMT, Dmitry Baryshkov wrote:
+> The Qualcomm SDM630 / SDM660 platform requires the same kind of
+> workaround as MSM8998: some IOMMUs have context banks reserved by
+> firmware / TZ, touching those banks resets the board.
+> 
+> Apply the num_context_bank workaround to those two SMMU devices in order
+> to allow them to be used by Linux.
+> 
+> Fixes: b812834b5329 ("iommu: arm-smmu-qcom: Add sdm630/msm8998 compatibles for qcom quirks")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Qualcomm SA8255p platform uses extended SPI for SCMI 'a2p' doorbells.
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
 
-Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
----
+> ---
+>  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> index 087fb4f6f4d3..13a3e3585c89 100644
+> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> @@ -288,6 +288,12 @@ static int qcom_smmu_cfg_probe(struct arm_smmu_device *smmu)
+>  	 */
+>  	if (of_device_is_compatible(smmu->dev->of_node, "qcom,msm8998-smmu-v2") && smmu->num_context_banks == 13)
+>  		smmu->num_context_banks = 12;
 
-Changes in v3:
-	- Removed the patch from original series[1]
+This should now be wrapped in {}
 
-Changes in v2:
-	- Modified subject line and description
-	- Added EPPI macro
+Regards,
+Bjorn
 
-[1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
----
- include/dt-bindings/interrupt-controller/arm-gic.h | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/include/dt-bindings/interrupt-controller/arm-gic.h b/include/dt-bindings/interrupt-controller/arm-gic.h
-index 35b6f69b7db6..887f53363e8a 100644
---- a/include/dt-bindings/interrupt-controller/arm-gic.h
-+++ b/include/dt-bindings/interrupt-controller/arm-gic.h
-@@ -12,6 +12,8 @@
- 
- #define GIC_SPI 0
- #define GIC_PPI 1
-+#define GIC_ESPI 2
-+#define GIC_EPPI 3
- 
- /*
-  * Interrupt specifier cell 2.
--- 
-2.34.1
-
+> +	else if (of_device_is_compatible(smmu->dev->of_node, "qcom,sdm630-smmu-v2")) {
+> +		if (smmu->num_context_banks == 21) /* SDM630 / SDM660 A2NOC SMMU */
+> +			smmu->num_context_banks = 7;
+> +		else if (smmu->num_context_banks == 14) /* SDM630 / SDM660 LPASS SMMU */
+> +			smmu->num_context_banks = 13;
+> +	}
+>  
+>  	/*
+>  	 * Some platforms support more than the Arm SMMU architected maximum of
+> @@ -350,6 +356,11 @@ static int qcom_adreno_smmuv2_cfg_probe(struct arm_smmu_device *smmu)
+>  	/* Support for 16K pages is advertised on some SoCs, but it doesn't seem to work */
+>  	smmu->features &= ~ARM_SMMU_FEAT_FMT_AARCH64_16K;
+>  
+> +	/* TZ protects several last context banks, hide them from Linux */
+> +	if (of_device_is_compatible(smmu->dev->of_node, "qcom,sdm630-smmu-v2") &&
+> +	    smmu->num_context_banks == 5)
+> +		smmu->num_context_banks = 2;
+> +
+>  	return 0;
+>  }
+>  
+> 
+> -- 
+> 2.39.2
+> 
 
