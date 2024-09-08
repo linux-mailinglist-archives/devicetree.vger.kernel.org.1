@@ -1,117 +1,185 @@
-Return-Path: <devicetree+bounces-101119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3696970863
-	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2024 17:18:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EE4397086D
+	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2024 17:40:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBE7F1C214D4
-	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2024 15:18:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 605CC1C215D7
+	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2024 15:40:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B01DE17333D;
-	Sun,  8 Sep 2024 15:18:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8748A171E68;
+	Sun,  8 Sep 2024 15:40:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IHotEJL4"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="XILgvEbv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+Received: from msa.smtpout.orange.fr (msa-210.smtpout.orange.fr [193.252.23.210])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BD5AEAF9;
-	Sun,  8 Sep 2024 15:18:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9766134AC;
+	Sun,  8 Sep 2024 15:40:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.252.23.210
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725808695; cv=none; b=OJxqSMqexe+Q41/5QXO4uhtxA6TwZzrSwtQjRZKH1Pse5k83HDm9HbTgpnIY95CzG1V4O5w4wKqG2eSRA/6f++nIML0P19IvCdwfneJA215ovbPpWo2npjPWdzX6lTGJTS33HfagNNBpE+e16B1p/b5a/W4med0XBwuJ+8toPtc=
+	t=1725810048; cv=none; b=mwR2A4f5GIYinD1ga40ZcnkDcPze492LsccmgOYPVDkfn9ACKm5U8tFixBhvJTCkgM/kolPr2J5W+3e2yfMhN9ix3VtQ6Qvdc14ZcMotFjtMAwMy68iY3uhrZ6VyEjLot+I8po3i+jgCbTvLng8jzdV/PR0f1r8z2vHSuGAiOtw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725808695; c=relaxed/simple;
-	bh=HetVwA2icroIjaoAACllYQdENIflDpr1iRlBdiqUea0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=lyFxNiWXn3lpWEXf2fiXEyczJQjIF6B8LNhKwmwy5879KX79ExAEioFN0DWRi4H4p850U2b3OHd3YJWBbdKcf+BVuAIjGn8qv6TALyGFm9iFC2bnU27KOB33dPIqPa3fUXapHzRQO+ECVzVaQF5hU+Wed78eyfqNmR9RthdD6VU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IHotEJL4; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-718d985b6bbso1868312b3a.2;
-        Sun, 08 Sep 2024 08:18:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725808693; x=1726413493; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=cZpkFOIc5/0NZVjzEtOpjFbI0AWB4oMd9gmLouDFEeg=;
-        b=IHotEJL4HY3rnpW+jFKEmP3sKEUwYRLD1jHHa31qL1Zg+4Bwq136XzQ5dHHe3Lq0jo
-         uViq3dIBD15XHfPVI+tYPEYDDNi/Ugo6UPorpDK9R4Mul/xcsBd4/UlCyifO3J6Yurih
-         2szgK8ImvpXbVv0Q7LPMjbA2j+/VbAG5IjTyQViStAm/N1kl44n96VaUKoy7Pe3uZmZN
-         ss9iP+oKrEmZjRD1vo/8nNKhgPozCB7RAvjchKnScQSl12jmTBbZb6IewLYxIk4yTHKQ
-         5a36S2Asf/DetF3hqverrKyogzHAEZzoPGYjxafJ68Y/dSgnuflkCvXXoInM3HRb9/OQ
-         I5mA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725808693; x=1726413493;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cZpkFOIc5/0NZVjzEtOpjFbI0AWB4oMd9gmLouDFEeg=;
-        b=cYZlK37pFpiKGudf7vlNDpbj6UroJVn5Znb4wN2CnsdtZKAmuIgfTejva20lMOS4AP
-         h0zP7rrOmY5NIZD6bFiG0ssL5P1AaGaQoYBVIhZcf7odgLOISPsNq0w3CAcTZVsJO/Ff
-         noJ/NyDMfmbnv1a+PErjsbCR50fNK4Flsh1ree9s9I9yguzSF4W6cBDnP/Um75ixsnHo
-         6td9mb0VN+JZ2cHo45QIcU5xUSGno5Q0kHchvZvYLjRMnFX5x1QawWExoYDkkp3Nq8Fw
-         GOExdcjaasnlw7fIDwoHeOdj7F6oS+K4lT25hzvJQhPn1kW+KhR6RU3hr/AY0/AQTmQu
-         eDGA==
-X-Forwarded-Encrypted: i=1; AJvYcCVv7Wj4OSS0HZX4wb02vHq4IMWEm18cdNkkwgcEbiLIm/v0hnI43BNW88+VjGqFOTeIEfxq0LwTq8+nKg==@vger.kernel.org, AJvYcCVvwfKdO3x6gpXpxj1Jm+EUsdBmmCwqjTk0unC+1JAZq7A6hT+MbH3Gpm7HeTL5dk+FWeKBgnc2VMyx9nCz@vger.kernel.org
-X-Gm-Message-State: AOJu0YzsV/s7BJpnTojqeZve9DWwF9dQwB7NHyTDqEHF8TbIYLOLcRs8
-	QxxSY4fEOSiLaeLg9d37VGTZ02Ag9fDJu3UyGXsjKyp7u8gBLFtBjcqBGURHvXU=
-X-Google-Smtp-Source: AGHT+IGR61g7iCGyQpL5P0HJuPGkQYU5vhjGLDzD63FYU3Ri0vLjIEuowo2Fdledz7GNOA4i7PVtYA==
-X-Received: by 2002:a05:6a00:816:b0:717:8cef:4053 with SMTP id d2e1a72fcca58-718d5e9028cmr11064320b3a.14.1725808693173;
-        Sun, 08 Sep 2024 08:18:13 -0700 (PDT)
-Received: from debian.tail629bbc.ts.net ([103.57.172.39])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-718e5982ed0sm2231777b3a.148.2024.09.08.08.18.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Sep 2024 08:18:12 -0700 (PDT)
-From: Sayyad Abid <sayyad.abid16@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marek Vasut <marex@denx.de>,
-	Michael Welling <mwelling@ieee.org>,
-	linux-input@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	sayyad.abid16@gmail.com
-Subject: [PATCH] dt-binding: touchscreen: fix x-plat-ohm missing type definition
-Date: Sun,  8 Sep 2024 20:47:43 +0530
-Message-Id: <20240908151742.2453402-1-sayyad.abid16@gmail.com>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1725810048; c=relaxed/simple;
+	bh=g25NVEPkLYfQKiBQT41BXUY41SwfOzr/KnSecEgtyZw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SEysMrLmda03m1KPFUHBM31+sj8Jk0qNg1XVHW4GXQQFhU3Dl40kvmnnkdofLzv+xNw5kGFxTSg5x51JACBAKxxeEMbd8hS9soDrQZ2Q9yuY2FaxhaU4igpKuOVLXOoTk0gMWMgutJL/zWiLFsX0RkCXGoCDHzm/UYRrcoSqpoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=XILgvEbv; arc=none smtp.client-ip=193.252.23.210
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id nK1qs6CH2OcVznK1qs0yP5; Sun, 08 Sep 2024 17:40:43 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1725810043;
+	bh=FwZvZLmaerUCdXxSG0fc+ZRB7XAjK/XuKX5y8QgnPCU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=XILgvEbvugzYhWWlI9DF9C3M5IzX1ebALuzSZuLViNOp+t2gcYiwLY0orI7QiIq5p
+	 XkkOiPRFZDK1qW871r1ti1tqTudoIUg+cV8+8nejN/kzgoQA0l5Dpn19Hp1NoWQ8Os
+	 wETVprcZ/s9KSCMVKGLaAaT0fvPQEV1L4bVsR470wsCtH2vP1O72uzhTfYZ3oyw2UU
+	 slnWminUDKLBxdjH6wwz3wfUVy3TcClVR2zqOVoOnypGI2EDGAxS0wwiua+ZFtBbnV
+	 vJjLxmnzkUifJzy0/DbltLFF8RkOAJ3phKUTelptCq3YBUNqNvEU1oaJXRQOHR2z9B
+	 W7NDn5tt+Hnrw==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Sun, 08 Sep 2024 17:40:43 +0200
+X-ME-IP: 90.11.132.44
+Message-ID: <2e2f0626-b9aa-4230-9396-d241615db8f9@wanadoo.fr>
+Date: Sun, 8 Sep 2024 17:40:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/9] iio: backend adi-axi-dac: extend features
+To: adureghello@baylibre.com
+Cc: Michael.Hennerich@analog.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, dlechner@baylibre.com, jic23@kernel.org,
+ krzk+dt@kernel.org, lars@metafoo.de, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, nuno.sa@analog.com,
+ olivier.moysan@foss.st.com, robh@kernel.org
+References: <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-0-87d669674c00@baylibre.com>
+ <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-3-87d669674c00@baylibre.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-3-87d669674c00@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-This patch fixes the issue with x-plat-ohm missing a type definition.
-The patch adds the fix for this issue by adding value of this property
-should be a 32-bit unsigned integer.
+Le 05/09/2024 à 17:17, Angelo Dureghello a écrit :
+> From: Angelo Dureghello <adureghello-rdvid1DuHRBWk0Htik3J/w@public.gmane.org>
+> 
+> Extend DAC backend with new features required for the AXI driver
+> version for the ad3552r DAC. Mainly, a new compatible string has
+> been added to support a DAC IP very similar to the generic DAC IP
+> but with some customizations to work with the ad3552r.
+> 
+> Then, a serie of generic functions has been added to match with
+> ad3552r needs. Function names has been kept generic as much as
+> possible, to allow re-utilization from other frontend drivers.
 
-Signed-off-by: Sayyad Abid <sayyad.abid16@gmail.com>
+Hi,
 
----
- .../devicetree/bindings/input/touchscreen/ti,tsc2005.yaml       | 2 ++
- 1 file changed, 2 insertions(+)
+...
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml b/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
-index 7187c390b2f5..98ff65cf9f9f 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
-@@ -38,6 +38,8 @@ properties:
- 
-   ti,x-plate-ohms:
-     description: resistance of the touchscreen's X plates in ohm (defaults to 280)
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
- 
-   ti,esd-recovery-timeout-ms:
-     description: |
--- 
-2.39.2
+> +static int axi_dac_read_raw(struct iio_backend *back,
+> +			    struct iio_chan_spec const *chan,
+> +			    int *val, int *val2, long mask)
+> +{
+> +	struct axi_dac_state *st = iio_backend_get_priv(back);
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_FREQUENCY:
+> +		*val = clk_get_rate(devm_clk_get(st->dev, 0));
+
+Having a devm_clk_get() in such a place is really unusual.
+Is it correct?
+
+This look like a memory leak to me.
+
+> +
+> +		return IIO_VAL_INT;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+
+...
+
+> +		/*
+> +		 * Both REG_CNTRL_2 and AXI_DAC_CNTRL_DATA_WR need to know
+> +		 * the data size. So keeping data size control here only,
+> +		 * since data size is mandatory for to the current transfer.
+
+"... for to ..." sounds strange to my *non*-native English ears.
+
+> +		 * DDR state handled separately by specific backend calls,
+> +		 * generally all raw register writes are SDR.
+> +		 */
+> +		if (data_size == 1)
+> +			ret = regmap_set_bits(st->regmap, AXI_DAC_REG_CNTRL_2,
+> +					      AXI_DAC_SYMB_8B);
+> +		else
+> +			ret = regmap_clear_bits(st->regmap, AXI_DAC_REG_CNTRL_2,
+> +						AXI_DAC_SYMB_8B);
+> +		if (ret)
+> +			return ret;
+
+...
+
+> @@ -556,10 +792,12 @@ static int axi_dac_probe(struct platform_device *pdev)
+>   	if (!st)
+>   		return -ENOMEM;
+>   
+> -	expected_ver = device_get_match_data(&pdev->dev);
+> -	if (!expected_ver)
+> +	info = device_get_match_data(&pdev->dev);
+> +	if (!info)
+
+writing:
+	st->info = device_get_match_data(&pdev->dev);
+	if (!st->info)
+
+would save the 'info' variable and a few lines of code without loosing 
+(IMHO) readability.
+
+CJ
+
+>   		return -ENODEV;
+>   
+> +	st->info = info;
+> +
+>   	clk = devm_clk_get_enabled(&pdev->dev, NULL);
+>   	if (IS_ERR(clk))
+>   		return dev_err_probe(&pdev->dev, PTR_ERR(clk),
+> @@ -588,12 +826,13 @@ static int axi_dac_probe(struct platform_device *pdev)
+>   	if (ret)
+>   		return ret;
+>   
+> -	if (ADI_AXI_PCORE_VER_MAJOR(ver) != ADI_AXI_PCORE_VER_MAJOR(*expected_ver)) {
+> +	if (ADI_AXI_PCORE_VER_MAJOR(ver) !=
+> +		ADI_AXI_PCORE_VER_MAJOR(st->info->version)) {
+>   		dev_err(&pdev->dev,
+>   			"Major version mismatch. Expected %d.%.2d.%c, Reported %d.%.2d.%c\n",
+> -			ADI_AXI_PCORE_VER_MAJOR(*expected_ver),
+> -			ADI_AXI_PCORE_VER_MINOR(*expected_ver),
+> -			ADI_AXI_PCORE_VER_PATCH(*expected_ver),
+> +			ADI_AXI_PCORE_VER_MAJOR(st->info->version),
+> +			ADI_AXI_PCORE_VER_MINOR(st->info->version),
+> +			ADI_AXI_PCORE_VER_PATCH(st->info->version),
+>   			ADI_AXI_PCORE_VER_MAJOR(ver),
+>   			ADI_AXI_PCORE_VER_MINOR(ver),
+>   			ADI_AXI_PCORE_VER_PATCH(ver));
+> @@ -631,10 +870,18 @@ static int axi_dac_probe(struct platform_device *pdev)
+>   	return 0;
+>   }
+
+...
 
 
