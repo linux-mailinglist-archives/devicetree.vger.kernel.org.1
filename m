@@ -1,242 +1,188 @@
-Return-Path: <devicetree+bounces-101281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 235DB9712AA
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:55:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2A849712B1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:56:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 255471C227AE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:55:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CDF31C21BEE
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:56:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A47A81B29AA;
-	Mon,  9 Sep 2024 08:54:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E30D1B250C;
+	Mon,  9 Sep 2024 08:56:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wmLUSfCe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U7VT9iYw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EE241B1D64
-	for <devicetree@vger.kernel.org>; Mon,  9 Sep 2024 08:54:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D726B176237;
+	Mon,  9 Sep 2024 08:56:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725872093; cv=none; b=rJZxPtIA9eGk8+f7i51ZDx95dfLHVxl7qzEdKaurPtziNMXznnLx527Wd6iBL1PrDQmrtG+HMjvxwmPjplgqWD8t70JT8xeExT/l73QO7EelzQHVKDiTLD6oDNjpYz+PpUWo/WcXHJZAtKghmedQDo/mh8UGJUb/TVQNnqcBFFE=
+	t=1725872211; cv=none; b=PI+w3kYK1bGnZKW231BPBnFS4ZFYzRigEfwELRpxwIJ+Awvdn8DG4cbQyKDL5xILxDiGUCbccLd9wV+aHZedRvnOhCODPcxWEH6+2yg3IBYmhD7MdibFY66+/sqJdMEjMmEWTT4C7xeFZUGAY0L5+uKyjE58m3sBGt2wlMg5Qm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725872093; c=relaxed/simple;
-	bh=9NW2eWgUEPYGMgqTTAJOulDxRDM5ZibU1CDb2TG/UIU=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=I84V9RF5DD9jUCt3OygF3Ty/XJPF+HQP8Snj58bCmYL45bYHPoZ5AtmBa6CmKUIKjUINizAdVkXeCsjdKbqQTJEvk+yNHiMV079fi0VrQAzvFNH2OlwJXbDJAlJIhmKxq8Rnxs+5iQSOM95QaTMMBP8Wf8d4TQ3McA7tZEWX79g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wmLUSfCe; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a8a7cdfdd80so220387566b.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Sep 2024 01:54:50 -0700 (PDT)
+	s=arc-20240116; t=1725872211; c=relaxed/simple;
+	bh=IHVEyXjXEadqqP4bsMBt8xo2VWroQd70mE6fg0tm3MA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=pNc8XNeR/lDsFeTbrry8FjMlVTcHfjEp5WmjxbDf6lZOUs9WkAgrycJ7xvlV13AB3LF2aI9MXlxQeoE/2n6RKv8c3IFCibUxAn0d9aSwWwDtZjPU0AZGNi+dMevRAanHIQBz97XUVUq5B6kv1EqD4UbNs0aBPWhaSx8KNlVNZIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U7VT9iYw; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-42cae102702so17717375e9.0;
+        Mon, 09 Sep 2024 01:56:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725872089; x=1726476889; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yG/d1qUdxYTFFDjEy58VtD5KHrMD8xW4N/b1u+y2Cz0=;
-        b=wmLUSfCeZfx5N1YW7DQI+Nx8gTyE0MzE5qmzP1M15eOOtXLDV4Hx5iuyOHZLrv2CTq
-         vsHCI4TeqFki44NEgXxIXmP9ciBb3ewhCVw+EVx4pxTVtnwLSjQRu3mxrqJxrbj/NHLr
-         0te7IOIx5G2dFhmGPh69O3s+QYQtLp9NbGDgr71U+pPHHveP8j8XuuT7CRAkXOfQVBXO
-         eP47SrE3tjLWvwXKXmAmoFpmksml42PSF0gMH0GBqRB+G0VKjIUh+9gcneJZ/DJ7PTDa
-         qIjwXMrAQpoAKmMOGw6WdBerr9Mc/KtHoc2hWoMxAy+79FMXt6ScumW+Oa9+YgKUGBru
-         kWqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725872089; x=1726476889;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+        d=gmail.com; s=20230601; t=1725872208; x=1726477008; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=yG/d1qUdxYTFFDjEy58VtD5KHrMD8xW4N/b1u+y2Cz0=;
-        b=DdV5ocCGETfoNH2b9xMz/sbE00lPhz9hr2eVXPBVXyxtknL/4KA+fs5FbHDBcYLZQ0
-         mPvR8/hj7uSv4/Ls9XYY5RIy4qUr+yQktrPAb917aGJlS5nnIq49c9SGwxDoW4OHfJnr
-         tNsYIABGvXn3sNfzGpjMbKOlzwPWhmxXrqC9SxkmOrQs6MJPOT37g287nJAUKjUYanjW
-         Xi3p5zK8XYpIhr21EOZaZWVWk5sVOzfFAmT/JQrcsU6CZIK1lnvk04r+R0zrMzTjkYUz
-         DCsRdNEuVNL0nSMPoZRa8bQ9KqXxxk5WKaF8rInh/QSKusHAj0kpOmii/J7HcaM27HKV
-         beDA==
-X-Forwarded-Encrypted: i=1; AJvYcCXiqnk8XktWtU6wyZchWvcXAPteVXejAmjVZNvxihAJVk14S9qm27JdbJgUBY6tVaQ/6gBHlluwG5Fj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVY0Sx3WHLJFW758V2ehuG9D1zPweu3y7fGF91nr8+1R62MZcw
-	E5cAeIfdCZ2HmUEnQ9M8/7uC0M1FW5TSCoUAUxrH5mIAtw0Z3bZ8ZZPf4UttrY8=
-X-Google-Smtp-Source: AGHT+IEvfzk/SxAXufH/seMQzMP3N3vvMRUKKCoLzWJKRZt4xOsE+GdEic8FWJngVTj/WRC44oGsQA==
-X-Received: by 2002:a17:906:da85:b0:a7a:9f0f:ab2c with SMTP id a640c23a62f3a-a8a8866090amr889703866b.29.1725872088318;
-        Mon, 09 Sep 2024 01:54:48 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:63a3:6883:a358:b850? ([2a01:e0a:982:cbb0:63a3:6883:a358:b850])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8d25ce96d9sm307445466b.157.2024.09.09.01.54.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Sep 2024 01:54:48 -0700 (PDT)
-Message-ID: <b3a5dd54-90ba-4d75-9650-efbff12cddeb@linaro.org>
-Date: Mon, 9 Sep 2024 10:54:48 +0200
+        bh=/BmGU95A8hfLAsZCZFz/EirdQEHMm/2AkTfuMxVV4Mo=;
+        b=U7VT9iYwPf1jwOlAjZyhd7UrzU5+46T0QQQFFHeLs1cxLywvlsGZDLAOX5GzEf8/wD
+         rSwtwjPVKCAY5T2rvzQ215RTb0je2Y60AfVV6Z+Txii/DPrd7TEL69Vv2/vvi1s1tcwa
+         lLjZ7dB+MqFxCcLOjYx3/A5121feiAG4qsn9tcLvDpeYbf/tdl37oW2WwIwJaXKLN2UX
+         QofQm/DwONMQJs1uBcY02uU15qmxx91yItHxeGnoQeBbD72LCws38injR6P7EqUhVx6V
+         erPnUd5+4kINrIjHC+7HEfUAY3qm3mJct2o4eeKEXVVnOWVNtyT8wVSuFBy9gOGBdG18
+         OVWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725872208; x=1726477008;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/BmGU95A8hfLAsZCZFz/EirdQEHMm/2AkTfuMxVV4Mo=;
+        b=Ez0sLgQSbvApG0npKLnhyeM+9JdW4NoLg+hwslOnHl8Uc9gftWhntd8obx0uQB4KW1
+         b8BKEQQs8cd4q5bym4CJAtN607tb3STOy0Je14fz7oe0irZ08w9jM4LNTIVDV4Wv3n15
+         g3PJhw87xSczvMX1U5TGDpdfeyQjuLqZ9Q+fmj+sqCeJp6HydC1sZY200qVxR29eRn5q
+         1Hrb8HKyaVKin3T4NqZVUxoiwk1IbqGn93n9I+9/Vbqn6++7vIEKR1UBBFmJsDJUshou
+         Zqf6/8MwOQHeCrrDVVIJQH4zzfce7ewnZofghDv/VjQ4rItmSY9KH4DFd1Vf1lKfcm3K
+         CtXw==
+X-Forwarded-Encrypted: i=1; AJvYcCURjH6ko4zRKi7vvmbQr/AMO1kyD4tDqAyfgLaDDQMSywa/ssKCrjDHQ9rPhqnVdttkfBTOnE1KaSWa@vger.kernel.org, AJvYcCVOvSQBMJYquus+t2u/W28tA0Qkmv1gdVfcP+p/7k3tlJcx4J67JlDauI+eQcuo1vyiJF5Lqt1Ik8taNjSV@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0ScNpQFn78/MP8Oj1i5VFizpbW63vrvcuic9EF6B7NcPZN453
+	h3ZfpPwubdzjqyeYDs7w2gPTuEyOhy8Mp+KnPhFfyQvMS+PhAQ4gKJcUYuKjKKc=
+X-Google-Smtp-Source: AGHT+IEHm1v1khJv8a55IRYehk34lw+ZogsDBIzuQMF7zF1B6HV7gIXGvMxLW8eAqQw5NmagzJCnXg==
+X-Received: by 2002:a05:6000:4597:b0:375:48e6:f30f with SMTP id ffacd0b85a97d-37894a04036mr3606204f8f.30.1725872207167;
+        Mon, 09 Sep 2024 01:56:47 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378956654f4sm5443169f8f.43.2024.09.09.01.56.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Sep 2024 01:56:46 -0700 (PDT)
+Message-ID: <d48fa85725b27be77a5542e798c0dcbd4e08765b.camel@gmail.com>
+Subject: Re: [PATCH v2 8/9] iio: dac: ad3552r: add axi platform driver
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Angelo Dureghello
+ <adureghello@baylibre.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Nuno =?ISO-8859-1?Q?S=E1?=
+ <nuno.sa@analog.com>,  Jonathan Cameron <jic23@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Date: Mon, 09 Sep 2024 11:00:55 +0200
+In-Reply-To: <b289a789-0440-4c1f-9f75-6d7e8e04189d@baylibre.com>
+References: 
+	<20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-0-87d669674c00@baylibre.com>
+	 <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-8-87d669674c00@baylibre.com>
+	 <b289a789-0440-4c1f-9f75-6d7e8e04189d@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 4/4] i2c: i2c-qcom-geni: Enable i2c controller sharing
- between two subsystems
-To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
- konrad.dybcio@linaro.org, andersson@kernel.org, andi.shyti@kernel.org,
- linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
- conor+dt@kernel.org, agross@kernel.org, devicetree@vger.kernel.org,
- vkoul@kernel.org, linux@treblig.org, dan.carpenter@linaro.org,
- Frank.Li@nxp.com, konradybcio@kernel.org
-Cc: quic_vdadhani@quicinc.com
-References: <20240906191438.4104329-1-quic_msavaliy@quicinc.com>
- <20240906191438.4104329-5-quic_msavaliy@quicinc.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240906191438.4104329-5-quic_msavaliy@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
-Hi,
+Hi all,
 
-On 06/09/2024 21:14, Mukesh Kumar Savaliya wrote:
-> Add support to share I2C SE by two Subsystems in a mutually exclusive way.
-> Use  "qcom,shared-se" flag in a particular i2c instance node if the
-> usecase requires i2c controller to be shared.
-> 
-> I2C driver just need to mark first_msg and last_msg flag to help indicate
-> GPI driver to  take lock and unlock TRE there by protecting from concurrent
-> access from other EE or Subsystem.
-> 
-> gpi_create_i2c_tre() function at gpi.c will take care of adding Lock and
-> Unlock TRE for the respective transfer operations.
-> 
-> Since the GPIOs are also shared for the i2c bus between two SS, do not
-> touch GPIO configuration during runtime suspend and only turn off the
-> clocks. This will allow other SS to continue to transfer the data
-> without any disturbance over the IO lines.
+Some comments on top of what David already said...
 
-This doesn't answer my question about what would be the behavior if one
-use uses, for example, GPI DMA, and the Linux kernel FIFO mode or SE DMA ?
+On Thu, 2024-09-05 at 15:40 -0500, David Lechner wrote:
+> On 9/5/24 10:17 AM, Angelo Dureghello wrote:
+>=20
+> ...
+>=20
+> > +
+> > +static int ad3552r_axi_read_raw(struct iio_dev *indio_dev,
+> > +				struct iio_chan_spec const *chan,
+> > +				int *val, int *val2, long mask)
+> > +{
+> > +	struct ad3552r_axi_state *st =3D iio_priv(indio_dev);
+> > +	int err, ch =3D chan->channel;
+> > +
+> > +	switch (mask) {
+> > +	case IIO_CHAN_INFO_SAMP_FREQ: {
+> > +		int clk_rate;
+> > +
+> > +		err =3D iio_backend_read_raw(st->back, chan, &clk_rate, 0,
+> > +					=C2=A0=C2=A0 IIO_CHAN_INFO_FREQUENCY);
+>=20
+> This seems odd to me. How does the backend know what frequency we want?
+> It would make more sense to me if this somehow indicated that we were
+> getting the SPI SCLK rate.
+>=20
 
-Because it seems to "fix" only the GPI DMA shared case.
+Yes, this sampling frequency bit seems very wrong atm. And the thing is, we=
+'re
+not even getting SCLK. According to [1], the /4 and /8 is for clk_in which =
+is
+not the same as SCLK (unless I'm missing something).=C2=A0
 
-Neil
+OTOH, if in the backend patch, that clk_get() is somehow getting sclk, that=
+'s
+wrong because sclk is an output clk of the IP. So we need to get clk_in whi=
+ch
+should be (typically) 133MHz.
 
-> 
-> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-> ---
->   drivers/i2c/busses/i2c-qcom-geni.c | 29 ++++++++++++++++++++++-------
->   1 file changed, 22 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
-> index eebb0cbb6ca4..ee2e431601a6 100644
-> --- a/drivers/i2c/busses/i2c-qcom-geni.c
-> +++ b/drivers/i2c/busses/i2c-qcom-geni.c
-> @@ -1,5 +1,6 @@
->   // SPDX-License-Identifier: GPL-2.0
->   // Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
-> +// Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
->   
->   #include <linux/acpi.h>
->   #include <linux/clk.h>
-> @@ -99,6 +100,7 @@ struct geni_i2c_dev {
->   	struct dma_chan *rx_c;
->   	bool gpi_mode;
->   	bool abort_done;
-> +	bool is_shared;
->   };
->   
->   struct geni_i2c_desc {
-> @@ -602,6 +604,7 @@ static int geni_i2c_gpi_xfer(struct geni_i2c_dev *gi2c, struct i2c_msg msgs[], i
->   	peripheral.clk_div = itr->clk_div;
->   	peripheral.set_config = 1;
->   	peripheral.multi_msg = false;
-> +	peripheral.shared_se = gi2c->is_shared;
->   
->   	for (i = 0; i < num; i++) {
->   		gi2c->cur = &msgs[i];
-> @@ -612,6 +615,8 @@ static int geni_i2c_gpi_xfer(struct geni_i2c_dev *gi2c, struct i2c_msg msgs[], i
->   		if (i < num - 1)
->   			peripheral.stretch = 1;
->   
-> +		peripheral.first_msg = (i == 0);
-> +		peripheral.last_msg = (i == num - 1);
->   		peripheral.addr = msgs[i].addr;
->   
->   		ret =  geni_i2c_gpi(gi2c, &msgs[i], &config,
-> @@ -631,8 +636,11 @@ static int geni_i2c_gpi_xfer(struct geni_i2c_dev *gi2c, struct i2c_msg msgs[], i
->   		dma_async_issue_pending(gi2c->tx_c);
->   
->   		time_left = wait_for_completion_timeout(&gi2c->done, XFER_TIMEOUT);
-> -		if (!time_left)
-> +		if (!time_left) {
-> +			dev_err(gi2c->se.dev, "I2C timeout gpi flags:%d addr:0x%x\n",
-> +						gi2c->cur->flags, gi2c->cur->addr);
->   			gi2c->err = -ETIMEDOUT;
-> +		}
->   
->   		if (gi2c->err) {
->   			ret = gi2c->err;
-> @@ -800,6 +808,11 @@ static int geni_i2c_probe(struct platform_device *pdev)
->   		gi2c->clk_freq_out = KHZ(100);
->   	}
->   
-> +	if (of_property_read_bool(pdev->dev.of_node, "qcom,shared-se")) {
-> +		gi2c->is_shared = true;
-> +		dev_dbg(&pdev->dev, "Shared SE Usecase\n");
-> +	}
-> +
->   	if (has_acpi_companion(dev))
->   		ACPI_COMPANION_SET(&gi2c->adap.dev, ACPI_COMPANION(dev));
->   
-> @@ -962,14 +975,16 @@ static int __maybe_unused geni_i2c_runtime_suspend(struct device *dev)
->   	struct geni_i2c_dev *gi2c = dev_get_drvdata(dev);
->   
->   	disable_irq(gi2c->irq);
-> -	ret = geni_se_resources_off(&gi2c->se);
-> -	if (ret) {
-> -		enable_irq(gi2c->irq);
-> -		return ret;
-> -
-> +	if (gi2c->is_shared) {
-> +		geni_se_clks_off(&gi2c->se);
->   	} else {
-> -		gi2c->suspended = 1;
-> +		ret = geni_se_resources_off(&gi2c->se);
-> +		if (ret) {
-> +			enable_irq(gi2c->irq);
-> +			return ret;
-> +		}
->   	}
-> +	gi2c->suspended = 1;
->   
->   	clk_disable_unprepare(gi2c->core_clk);
->   
+> > +		if (err !=3D IIO_VAL_INT)
+>=20
+> Would be better to call the variable ret instead of err if it can hold
+> something besides an error code.
+>=20
+> > +			return err;
+> > +
+> > +		/*
+> > +		 * Data stream SDR/DDR (clk_in/8 or clk_in/4 update rate).
+> > +		 * Samplerate has sense in DDR only.
+>=20
+> We should also mention that this assumes QSPI in addtion to DDR enabled.
+>=20
+
+I understand the QSPI bit but why the DDR part? I just don't understand the
+comment "Samplerate has sense in DDR only.". It needs way more explanation =
+if
+that is true...
+
+> > +		 */
+> > +		if (st->single_channel)
+> > +			clk_rate =3D DIV_ROUND_CLOSEST(clk_rate, 4);
+> > +		else
+> > +			clk_rate =3D DIV_ROUND_CLOSEST(clk_rate, 8);
+> > +
+>=20
+
+This division also looks to be very backend dependent. So it's far from ide=
+al
+being in here...
+
+To me, the way we need to get this done is for the backend to effectively r=
+eport
+back SCLK (in a correct way). Then, depending on the number of bits per clk=
+ (4
+for QSPI), the word size and DDR vs SDR we get the device sample rate. With=
+ it,
+we then choose one of Jonathan's suggestion (a per channel attr might be le=
+ss
+confusing).
+
+All the above said, I probably need to catch up on the above. It might happ=
+en
+that David and Angelo already got some more info from the hdl guys while I =
+was
+on vacation.
+
+[1]: https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
+- Nuno S=C3=A1
 
 
