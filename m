@@ -1,215 +1,271 @@
-Return-Path: <devicetree+bounces-101159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C87F8970AD5
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 02:45:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44F6C970B58
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 03:37:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DB041F2165C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 00:45:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A7680B2089C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 01:37:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 241D2AD2C;
-	Mon,  9 Sep 2024 00:45:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DD2820B35;
+	Mon,  9 Sep 2024 01:36:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="I+ux4opw"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Dgb6vJDH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2027.outbound.protection.outlook.com [40.92.103.27])
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2051.outbound.protection.outlook.com [40.107.241.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D23F4C8D;
-	Mon,  9 Sep 2024 00:45:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.103.27
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E87911B28A;
+	Mon,  9 Sep 2024 01:36:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.51
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725842723; cv=fail; b=R4CnjE52WCiKDoeoQyW3hjLut6CFEr0m+QXh6Gu3nPrzs8fnnowkJEchnj2w2Q6yl9GcKjKWgDmRaavv9jz3kVAhCIqOXGqTvyS1ef3VH9d5XLqyFVfhmDrHspQKgfzmwqTs4JQxDFQQmVel3ny5ZwpO4I0GVTjfPbkRC7zoXag=
+	t=1725845807; cv=fail; b=jBvyEc7RHIqqnY4K0AvZCQpvAtMdoS/9PRwgs8A5A12CRLROEcOtb6kp+Kcb//pxNQq9gra4hoXeZJdZayP2L550sYST1YFZHTpOHhZcRSvp31fohzZqccmUncL4JEhfP22w9swYFuS9PIbrgi+xfGoMwoTbBRptO0l/zQ+E1/A=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725842723; c=relaxed/simple;
-	bh=+DPe5+mbADSnz1iqKPH14J19Rqp4ZUJB4RRpmipPfEs=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=URV5PgUpKtrl899Ieab+YTeMQx6RAoBYiUCIVaSG10sZV5z1qfW1EJPhhrL7nXpQrmu/OqKQ36yWr0nAUyBMgfAV9KlHj56BjpYY9CcQdvlEj3aqeh/QmUk1jLR661VTdQF9VuCkFM5S2Cf2diEyq4UspWgWv1UGN7nvr9olzMQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=I+ux4opw; arc=fail smtp.client-ip=40.92.103.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+	s=arc-20240116; t=1725845807; c=relaxed/simple;
+	bh=ezp/DM3ZYTXMLM4T+RzKkM2SBT7PEO3cu+Ct/bnOlsQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=K59fHZpSLwoTsLQTlGpjkCISKMAWgYpA5/WEuTlt6+1/+QIH7AHLudj5TBKjM1N1oVFBh2037ScukwHzN1Dl3CGDiowuFMg1fIoZu/7wMu6uRvYcIojUZF5o5lHChNtf+5Flme17KuPfsFpaSvFEJlT5SgI1I3n9nWVxthKoRD0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Dgb6vJDH; arc=fail smtp.client-ip=40.107.241.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tOJu31gcoR3QDB+9Nz3Y1yYVg/SxCfwR0b3uB91hOPcTMc4Gg4cZuOJPTA4Xh6zBqJdhswwH5PAVUbi6YVxh0azKCwXG6A/HGlmel3smG1Wqu0adlpg6wppiu475zdHBPGRbxWqpXatD/8yBw82ytX7KDgIIWeL89ATM7bPn4CM0ygXXEEI1zZYjOG1l+YA090H3l3gsqx46C7bvb5VGpHMB5yyYfyqTpqEAsq4seLTEuO6koTT3Tm6OtkWVVTcD7eLK8ISPDpaDC1Ok6JRGRZQRMI+Xaz+TCSq9sXUnvwdTJGvBFzMvPiJ7Kh07wC3wqvACMJPq5eg+5PNysabxCQ==
+ b=q7J18XKS80FLRK46p55NCyfHNERu489p+Z/HSqg0CsQ+ZAXwg5C6JXofB44JZ9UBBdMeOfL2ARTiAv0cd6pxBqOM9IENlFZv7yrLsKmhDf0iBWmrdWQfAm8VYzQVDo3rD7qX8zJd7+YBkUaeMeM1YyAITChO0i/bJnfNldu58EiP2YWIMVANTZpjgg5TspOfVCVgQe2ZacETnm576qezTh39ljHDCsZ9xYJhesrGW/F2aAdyA0IdQsF0IrMKgP4ZZpKG96hX0neeQk/JrFLvebdJI7lkEo4HNj1CbgAYLh1QRF8+U/oVE5+WZpnlwt/gghaEiHBQPOT8mew2kiilPw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vzrsSpjTbMITQ+WG9Mk3Yh/o8s/ex1WGywDnClXjzKI=;
- b=UIY4cj8e2l9MCc8WK4E/ANgQKk9cLLmFGWiAZyAz1xsA8fUikHsB9XalMR2Lj8KYnjly3pY4UKzqAsAOYGJvHaR4GucH1b+S6Q5WTjcrLmq85KJ4zsLmjRFXm2TBsIWikjwZ9hG0FPcRir51+e2yO3RcsZEixn6UzpSU53aSNbUMb1yKnjxrP40NUL/haH6idNm2Cz8Ah7xARinPv5tJ/MwkYcanvSkZ4VVRf2dlaAVRQEQqYfsrQz3KBuZaNwzWALg3EnH8rq1lUXiTBFOYlHL9/Phqd2N5vesb/jsRF2w1C77oIXJPuBk4jJu3mrZjCApUUPLwQmU/v8a4pbDeIw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
+ bh=CcztvXqRPthcdid682MfSOoXMzAibxkpyqXXs2/pckc=;
+ b=kTicsD3JqP4wk+8KLaXwThsK7NJC+Coyquf0vPBwCugtedjV8v4vockpyZtOuX5JUAKV0zTP+0LC/e1DLbG/LZSb+X1F6fGm5z0ry1L0lHJKaAEvCcPsO6Ry12hdKpUEOxFsiRekbT3+CvwvvsVGuYazbSDkZuIl1ek/DCX9yhZKbY8ieHIE5xoF90oy46TlLLigrv+ReP1Y8tI7+zXWSKDVRdJn/dlLkWnOugkhmkT4Q631n1I71OgMssNURXToSPgHwq2V4SSPxjpuUHTw4i6/0aLlLlnxPv8Onbmleng089Sg/2LZDUFX3LZD82mkqlH/H7erTMJdISpV+r6pVg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vzrsSpjTbMITQ+WG9Mk3Yh/o8s/ex1WGywDnClXjzKI=;
- b=I+ux4opw3SlAXtnmLcFemy1G8Q3YNWtf5RdhWtX6OZsr1rXpWj2W/oSzmDKMvwbeQfYSk9P5FWZVyOCirxFKFs7e17x1/aEY5zudtgY7m4UJN/m3OcP8W1lYguq55aZMDivyQcqaYfg5MMtx3REA9KISAAAC0R34z1+QDXZCbyd69WyABZjlloKeph4faGnRQhT0Yph57QCXOPOaalbtZ70jMEhpQrQEmV6JX/bTY11gnIdnQBOpBkK0r/dFfRSxYJx2meJxH31nVaTqw2ZQT+l5JszoVhUFV3SHiYV5dQXgL9BRpuPPcNs5ese/wrh6fo0mbPQFLUD9xTdf1MEcOw==
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
- by MA0P287MB0916.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:e0::9) with
+ bh=CcztvXqRPthcdid682MfSOoXMzAibxkpyqXXs2/pckc=;
+ b=Dgb6vJDHHg/4n2xX6tH5wEu/fyL108/AciLfo3fLhKsfYY4TZiL8FgI6DOEHSS9utTMjN04tqaG+ImYlvZAnGKDeqTJfL9DBBxjI63Ev3WWeh/oy1QnUU6rDAR34wOpmNph80CffmcUFPsvuJT5Ay3zf6csBKXFGlzlLxAlYHq6GV/p6axUMRrGPTPFESgkyVIdcP70Dxo920XrlfHWfELv4hY9RYmVGX9PkE00o9fALTQV+FHTbLXe+q2B4YG4ad6Tpr8+CL4EiyD5VIRJLhlRbVnC487YTmiZ6BUqbeOprigD2o4UmNaian+sCFHHOtXiqLbGiXf+z1mCV3fqG2g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com (2603:10a6:102:211::7)
+ by AS8PR04MB8451.eurprd04.prod.outlook.com (2603:10a6:20b:347::20) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.23; Mon, 9 Sep
- 2024 00:45:14 +0000
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c%4]) with mapi id 15.20.7939.022; Mon, 9 Sep 2024
- 00:45:14 +0000
-Message-ID:
- <MA0P287MB28222BA933FA505DDAC89CEBFE992@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-Date: Mon, 9 Sep 2024 08:45:09 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: sophgo: add bindings for sg2042
-To: Krzysztof Kozlowski <krzk@kernel.org>, Chen Wang <unicornxw@gmail.com>
-Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, inochiama@outlook.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-riscv@lists.infradead.org, chao.wei@sophgo.com,
- haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, chunzhi.lin@sophgo.com
-References: <cover.1725536870.git.unicorn_wang@outlook.com>
- <6e5fb37472b916cb9d9abfbe3bea702d8d0d9737.1725536870.git.unicorn_wang@outlook.com>
- <clq2dwmsks56553cythofgd3x5sw4t6pss7cxup2hrvj2n563g@3ishagojtabx>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <clq2dwmsks56553cythofgd3x5sw4t6pss7cxup2hrvj2n563g@3ishagojtabx>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [eEI5scsklPZ1p9qOPj/U6wDOGRUh7rlH]
-X-ClientProxiedBy: TYCP286CA0012.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:26c::16) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:138::5)
-X-Microsoft-Original-Message-ID:
- <c1c15693-925b-451c-aa10-60df07d18467@outlook.com>
+ 2024 01:36:41 +0000
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db]) by PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db%6]) with mapi id 15.20.7918.024; Mon, 9 Sep 2024
+ 01:36:41 +0000
+From: Wei Fang <wei.fang@nxp.com>
+To: davem@davemloft.net,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrew@lunn.ch,
+	f.fainelli@gmail.com,
+	hkallweit1@gmail.com
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: [PATCH v2 net] dt-bindings: net: tja11xx: fix the broken binding
+Date: Mon,  9 Sep 2024 09:21:52 +0800
+Message-Id: <20240909012152.431647-1-wei.fang@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR01CA0019.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:192::12) To PAXPR04MB8510.eurprd04.prod.outlook.com
+ (2603:10a6:102:211::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|MA0P287MB0916:EE_
-X-MS-Office365-Filtering-Correlation-Id: 99743621-d3e0-4eb1-a0e3-08dcd068aac0
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8510:EE_|AS8PR04MB8451:EE_
+X-MS-Office365-Filtering-Correlation-Id: 51496558-9aa5-44b4-cdbc-08dcd06fdaf5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|15080799006|461199028|6090799003|5072599009|19110799003|8060799006|3412199025|440099028|4302099013|1602099012;
+	BCL:0;ARA:13230040|376014|7416014|52116014|366016|1800799024|38350700014;
 X-Microsoft-Antispam-Message-Info:
-	lKntOInxYLx2HCLzTXKuayj5jI/iU3eFwcqkTrUotiJXPFocOjKfS8tx+N7RwsdPgrXKv+VeJisndqrxxwSso4ZCkoouBEacI1pEvZvuF8Jyf9dQbbXjvsPSpMjnj0E4tAZsA6ksmsIn2RzZJu4KN14bb6W23tl7XuXaDx2a4ppWqgyYUaCPR5zWOWJt/VpEb3QLhi1hA4vVXn+m+mR5b0dZ3QgC3P4E3iyZiW+U4M4q3QWKCHnYOaRr49BNbzsQ5vJHtLk5yOsNNdAu4F0rf3VrWWimTJUoavVHDOPGBbj7/kVwAvYLJhTIlJtkGwjI+goiT4Mn2Kqi3ggWeNH87v+DcOkeJ+LIXofJntDUsimw4sj6SjfewzyZFZQnTWJvMpiI5PQwCSikyZQn8BcqDFjcxJiuUvfguoQNPJu3Kqj9O8rq+9jtzmaT23VNC1L9L7scxFmx5HXP2V4ncutyVkyEn4WPUVSkXloUxYHTD2ilLYP1DazPjNzgmoMvqUYnGXdYGX7nLdkBFn/4q5/ra+7myUz5JHaI+cUU/AUOgiJp9/b/FvFa1ZEvyXViRPP84zDyd2f0/WbW0ZXdv1tJ9dQLXdDO/c09wVCExjNH1DqECGfpZjqLGzB3Fh7gMP03GJSIhbSVCOs/SYMc9WzHYHpI9gRCASHbD+1AbFQjbJMuZN3DcYtaxDw32HnubLnTSIuTwniZJMZ7QGKVqVQD0IJZN3lA/m1z9bVJb9dLnsOmZY/kNwb9R7nGCZpfAQG4//91OEcbCaxizZkeWm8kcFemfvEAAZw+W710vvitORTuHbrCXfswvuD/LZ8KkXAAswbbdOvxopB24S2lVt8sTTn4+kJO2V8onoIyd2lI5oo=
+	=?us-ascii?Q?nd+0MzhSBmEw92xZj2xo/9EwfMX5eSmhJBH1YuAg1tlARKPjHtIbhRvuOcGV?=
+ =?us-ascii?Q?To8q4MmNuUgNFDzcsVVkG9TIKa7qDPJnjbaj3XXd/mGfbxjKtfp9TEKGOY7/?=
+ =?us-ascii?Q?lICsqMDuW7gdOM2uYuGs/RTToU3jvnceIfZ32Sr5DalaSyo9YNHJZysRYySf?=
+ =?us-ascii?Q?qD0DLIF0MQNHEAkcM9ii+mHeBJ9bceSv/w3s9aclDRXoWzXWviShDZmE5zH2?=
+ =?us-ascii?Q?BvtQ1KWQxaxp934/0FMWhmHwvtuI5ZeBHfsAN1fCD76c+gzIVDVAVh9MRe2p?=
+ =?us-ascii?Q?z9GcUV9miIBr65/X2kJ4v/IbpDLj/9dypHa1fLu3t9j86PVJx2D0AWrI9p4w?=
+ =?us-ascii?Q?nHq2Ch9t+w+2fGVIbXpgTpiqia7FPcuuWidI0HavlzhZumoNMTWXdzw6KCqI?=
+ =?us-ascii?Q?AK2AmlB2RdnTSFS1+TsOlCmWGEjmDUOcv74kfaeTVt0noUBbFdctlfVXfTOQ?=
+ =?us-ascii?Q?9AfELQR9fPJfvcsTTYDuSBKfNwSxmO1YgRBAgUqJslGT+lfqfNyOuZcBsZJ7?=
+ =?us-ascii?Q?6Poh5FJiDyJRW6cqSFQw9cfjJHrerefWTc03euSciUUd3o5C/j2h2c2lozse?=
+ =?us-ascii?Q?xekWYXb2Bgr+IQq1fVip7zHiNJjO/eyEKy4d3eIJi7ADIj2ZTMIkg8eJCJlw?=
+ =?us-ascii?Q?ljvZbXAKo4Nf8NavZMgbnC1eG7auc5Knw44bbg5oVMILwOw5DASpo6uo/hl5?=
+ =?us-ascii?Q?okGkmKPspleyf3PlIxvLIPJOx8AJeY/MXWFqUr72CuaqwaCDxvw5V67t/lZQ?=
+ =?us-ascii?Q?gs6SQQPc93/seCeyIFpy2KmBuEhe6VACedyKxD29luc7Tx+1Fw0JskR9tDDr?=
+ =?us-ascii?Q?35fqfOZRQD7xrFwrGQ0Xx0Y8UA1ueQipprlofFlW+aevtsWMepPmoJmq75Cd?=
+ =?us-ascii?Q?/mAXNb5ey67lmZBhDWdUe2m/6D+j4E3+P7rQdMbOhlDmlpOe/itwYw7Cqtl4?=
+ =?us-ascii?Q?pwcyN1RGlPE/Z2BMDdqq/KHAPmBx8XQxFB7HnYnKTC7o5NZHmJsplGdR27ro?=
+ =?us-ascii?Q?cx4H+Btbrd1mrJkDu8GFrqkVmEQ7yBlyvfzGVZX9CXjV8F9acDFuo2SuGhEk?=
+ =?us-ascii?Q?aTz9M215N5Y1b71gUawfIl6BYRXqM6ru1Tu4s+g7BmkgTr8zcKFtJj7IXaoa?=
+ =?us-ascii?Q?sHQdE//FzlV8TE973ykDrlAo9Koe6suwe2I7v2dy4dEsfMaHASulaLRfUYAz?=
+ =?us-ascii?Q?pNUIDBzUXXmLBzXeyQ3sIw2w8nHxg8IgDworlF6QQFKK3jfVsESig+hkv3f/?=
+ =?us-ascii?Q?B69VOp8hGYYGnAVZdMyYS/FJ5HJGjwE/DOWYI7eud4vCFM93AyaoaTyRnamm?=
+ =?us-ascii?Q?B1uf7LgPZt4Y5hL4lMlv+FteFWj4hLtDIqFssFODoQNa0/W7ICm2zopGsDJ2?=
+ =?us-ascii?Q?eeCHt4v9Ib6Q8wDGxD2amKqHANGwd0BKNt/qip6bmelEWg0+uA=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8510.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?M1Npd09EcHBRYXV1cUtac3hjRmUvUXpwM000ZmxXeTJ3WUhURW8xaVYzakQv?=
- =?utf-8?B?djNnZStJTDBTOEdWNThMLzJwZHZienhpZFpsWnFvSXVuT1lLL0hoSHBFQ21J?=
- =?utf-8?B?Q0hvREtQYW5Vcm1PeW90cFQ1YW5rRUlQSkU4OC94STQ0cWZlZGs5eXZ4bWRm?=
- =?utf-8?B?WXJwTGZkdGVQSkhLbGxER1U1ZC9GRm5GbDNmazNURDJibzVnMWxkUjVlY0VW?=
- =?utf-8?B?a1h3Z0VaQ011RzJaRmtVS05mT2puamtCUFF5RWNSMHRmMjNFcFh5bEVKS1Fn?=
- =?utf-8?B?V01ycTlPMnJMTzdYWkZRbzVTNHJJVUF1WndBcjIvSm5jdHliU1R0M0ozY2dZ?=
- =?utf-8?B?MUU5S0xpS3U0MWpKYkpXczNLaUdzRTJ0TytXOGNJY2F1V2VSY1QwbWtjODl1?=
- =?utf-8?B?SmhkaXB6QmU0MFA5ZVk0TGcrWUtuek51N0tBMUxrdW9aZUpBSWNWWXp0WGZC?=
- =?utf-8?B?UWZUN0F4VlNldE8wMHNkc1hZOHNDODhBVGhEb3N1bGVZWUFyNlRxa2VPenVL?=
- =?utf-8?B?djVYZythN3VUSW50d09uUUhsNmc3QzJ3NjhjZ0JvalJSOS9sdkdRYVJJb0ZH?=
- =?utf-8?B?eGFVNE9tREZubnBpNE94NUQwM3Axai9sc0ZENHFac0lwcTNqODF4aHRHajdW?=
- =?utf-8?B?NExLVGtTV2dUUFlnc0crc0ZkbmxLRzYxUnBpQy93T1hDUlFpeCtTc2hHRUZm?=
- =?utf-8?B?bDRGUkdZcmM1VnV2aUg5V09NRE1WSFRCWFBOekNmd0hvdkNMdGp4bTV1NEVR?=
- =?utf-8?B?T09Fb1FlR0pibHBFOVlyRXVDUForR20wY1U5R3F5UWRQL2VlekxMazJVZVJz?=
- =?utf-8?B?d1IxQytHUkoxTXM5VS9lcUl5UENXODNNRlJoRUlTUlZYSDFVTEJLYTQ2bjNU?=
- =?utf-8?B?SW1mS3pnSm95TWpwOFlDU1RVajdSRTJkLzgrUlczSGtlU0hHQ0hOb1JuS3ow?=
- =?utf-8?B?Ry9mMHJXL3pPaDc1RTk5eTJ4L0loNEZZS1pQcDgzSHZIalFhQjFYWm8rV0JV?=
- =?utf-8?B?OEg4UHFJTU9JL3NoMUxQWmxMZ1pQdU03U0NzbWQ2U0xyK2JBcjNzZTBxTGUv?=
- =?utf-8?B?OE9ydVlXd3VVcmZhNEhTc2xteVViSFBTMXBOY0pkT25Zb3JacmUxZHBQaWJB?=
- =?utf-8?B?Zm41SU4vOFFZS1Nacmo5aFo3TGQ3eTNCZVg0RUlYMDRBWHEwTlFYVXpkTWRs?=
- =?utf-8?B?cUtPMEN0MVVPajVhcm40Ri9VZEh1UkVuLythT1IyVzY4aUU3M2Y1Z3dJWmIw?=
- =?utf-8?B?amVvZ0g2Y3NxcXBublNOVzZlY0xwd3J4emNZY1gvN1lMdnA0dy9vN2RhMkN3?=
- =?utf-8?B?TkxWOTJRYWRUcWp2TFlsVjVTcXloS01oVVNUUzZ0ZkgxZytqZUVla3dsdldq?=
- =?utf-8?B?aS82cVNqZWk0aVFWNXE4TTBWd0xEalN2OTdHdFMrc0NaWE5IVEV2NnhER3ph?=
- =?utf-8?B?M29KOEEwY0toRWhPN2NyRlA5U1UvRFpBVXdCcDE1S0Q3SERmS0IwQ2hVdW0z?=
- =?utf-8?B?T3JYZVplN3UveDBzSGJvT0I5NksvV2c0SG1ld1B5RE5Ob0NhTkJMamJKaTVr?=
- =?utf-8?B?RmJ3akgzbVdiY3NDRmFKTTV5clByNGMwcmlOSitDc0lQY29RR0pFUjBzeFJn?=
- =?utf-8?B?RmZtM1BOVEx0MHFiZERYZEI5YmRrVGwzWGRxZHRzREJVaUdZY2dRdGl2U0RC?=
- =?utf-8?Q?zEQpviX16NEWu5ez9zo6?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 99743621-d3e0-4eb1-a0e3-08dcd068aac0
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+	=?us-ascii?Q?aj/g6kZ822nKK/U8BUTxLUbDSvKmzJEE3sKU8FkX8GiwI10pIVAocje41CXp?=
+ =?us-ascii?Q?i4fFCEHWKUcIyTQmkGFM9Jy3jHr4kMxIr2r0f2VkjcDvFykcUchjo4LzmR4/?=
+ =?us-ascii?Q?2olXXLGye4PuHquK66zj1kAzMwy9CWmU5367Viy9QzneHna2SLZXKV3l4qVv?=
+ =?us-ascii?Q?asohft9IqjPWQZ337PruAWRXDjsub6EuBLux1BEO7c49m+o2zt0OY+IsxJtS?=
+ =?us-ascii?Q?3qYXoPy0BJgf8paxIi/P/4gGqzfHq5oAZDwX4L4wkOB5PqrUxKmfUoECpuCy?=
+ =?us-ascii?Q?uMIGAjBvY/GRqzv0uxjsPCovYKWUKXOnPuAFhPMDjn1UfnMiT+Hwwx2tjGpS?=
+ =?us-ascii?Q?agOvukJrTJrliD0rvuh/7EWTteMttgMbwdV7pH6LfbtrQsaCFTV3aPb9oXzv?=
+ =?us-ascii?Q?xWyCz+Ukl7bBkcAx7XyuZagmtF3A96kzs7IgHiZrfaqNG3DiC/LoZt0ib3KW?=
+ =?us-ascii?Q?TEkD5VTKOGe8MeYENEKm973ixFbVwQ88CCLOI78UOcjpg/d9FPRhPNoX+OBV?=
+ =?us-ascii?Q?IEZSLd1jADVcoOIxGX/AptUmkKgQPVCMjV25M1aE6XrGf1VZGq8khuY9BuPH?=
+ =?us-ascii?Q?fbB7CCQib6CvmzC07TmMFEKh3gY/UTK+OncccvRCS8TvcJAnTeSUo+LL88pc?=
+ =?us-ascii?Q?bYGK5pt/N6sIOhiQAKej/Ooreqqu8ojw03BDsC0RxNKqkxQVEpsg+N2pdeC3?=
+ =?us-ascii?Q?/C6otTS2ZL67msdfSEhPky/TMHU9QqZm+Tn+Y7EAnec+vTsy8T/mk5M+IUaS?=
+ =?us-ascii?Q?auH30jxtGXPOmeRvSFU+GtEYyG1vRFWBvAzJzVDJkCH1b7zEA9CE6ypFHl27?=
+ =?us-ascii?Q?AGYhdhybs5KKs2BfyJrQeR7DMU19Nzd/q3knktISf3g/QYPCuVt9yP7126y4?=
+ =?us-ascii?Q?E4JMHlWFEwlyfQdOvcxNMtjP1Us/pMvC38y0NaMa8tc+boQAQoPopaGXWiTY?=
+ =?us-ascii?Q?MNf++82MxmxxJ1wzWYoz2zwv2V/eIV3AaOkPf7SiEwlRjh/hGq9N/thzjdMn?=
+ =?us-ascii?Q?7x/KFIEzP2JErJJ9B943LjuCzypYzGhkcBfgX3PgEorp9EOcDlM1uzz5wdPq?=
+ =?us-ascii?Q?OmemLjNI6aLuSlx+zb1k97FSeOYHedKZYf9GZgO2kMmqYfkQUx3MrVC6LNtb?=
+ =?us-ascii?Q?5oQshadTvh0OT+6JWmNcOsw1+ydn/e7T+W1RXstrph+WUugYGmjcyBgMW9yj?=
+ =?us-ascii?Q?RI0/5m6FOJoyK5sjhvRiznFKJZHjfgfF3Yw6HPR2vOzhLkOe0KOYOgEjeifv?=
+ =?us-ascii?Q?PaiMySzZdHrBTXVeJ+niI/TV+NVg7Y8sQQJvLa0/LKSacOiu1BW2W5P2jpmh?=
+ =?us-ascii?Q?PCdpbZka845U0zZihYOR2il79E4tsbDuqzMtgb14haS0G9Vs1av8e4axVHgh?=
+ =?us-ascii?Q?j+WwdTMF5PvCAV7j7X/xfu7CCiVlEOGJkamYgWuVTv26L0ljPrnk29lYgSFw?=
+ =?us-ascii?Q?DWsDBkUqOQT8FEgA2yVI6+V56OXRgvKrKUmCDiMMidmCIwx56QuOSORjcI3I?=
+ =?us-ascii?Q?/KVCaUHtbjnb7iDHjW/8kkvgDUgQ0yAChyiAfBtr4PK2RQOArMTO2m4NRdtH?=
+ =?us-ascii?Q?WMq2yGaZlcHnE/Bspfl2JLqc1w+Jd9OdiLmB1l2Y?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 51496558-9aa5-44b4-cdbc-08dcd06fdaf5
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8510.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2024 00:45:14.2324
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2024 01:36:41.5487
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB0916
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4+tdVOWVuwthnvtAlxR/U6BpKcrrI00rdmIk8pAexeCgaaZ3slXMx7CHODVmvPVYRvLITv7pXoZeZHcB91PxNg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8451
 
+As Rob pointed in another mail thread [1], the binding of tja11xx PHY
+is completely broken, the schema cannot catch the error in the DTS. A
+compatiable string must be needed if we want to add a custom propety.
+So extract known PHY IDs from the tja11xx PHY drivers and convert them
+into supported compatible string list to fix the broken binding issue.
 
-On 2024/9/6 18:31, Krzysztof Kozlowski wrote:
-> On Thu, Sep 05, 2024 at 08:10:25PM +0800, Chen Wang wrote:
->> From: Chen Wang <unicorn_wang@outlook.com>
->>
->> Add binding document for sophgo,sg2042-pwm.
-> A nit, subject: drop second/last, redundant "bindings for". The
-> "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
->
-> Say something useful about hardware instead. The same in commit msg -
-> you keep saying obvious and duplicated commit subject.
-OK, thanks
->> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
->> ---
->>   .../bindings/pwm/sophgo,sg2042-pwm.yaml       | 52 +++++++++++++++++++
->>   1 file changed, 52 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml b/Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
->> new file mode 100644
->> index 000000000000..10212694dd41
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
->> @@ -0,0 +1,52 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pwm/sophgo,sg2042-pwm.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Sophgo SG2042 PWM controller
->> +
->> +maintainers:
->> +  - Chen Wang <unicorn_wang@outlook.com>
->> +
->> +description: |
-> drop |
-Ack and thansk.
->> +  This controller contains 4 channels which can generate PWM waveforms.
->> +
->> +allOf:
->> +  - $ref: pwm.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: sophgo,sg2042-pwm
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  clock-names:
->> +    items:
->> +      - const: apb
->> +
->> +  "#pwm-cells":
->> +    # See pwm.yaml in this directory for a description of the cells format.
-> Drop
-Ack and thanks.
->> +    const: 2
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +
->> +additionalProperties: false
-> unevaluatedProperties instead
-Yes, my mistake, thanks.
-> Best regards,
-> Krzysztof
->
+[1]: https://lore.kernel.org/netdev/31058f49-bac5-49a9-a422-c43b121bf049@kernel.org/T/
+
+Fixes: 52b2fe4535ad ("dt-bindings: net: tja11xx: add nxp,refclk_in property")
+Signed-off-by: Wei Fang <wei.fang@nxp.com>
+---
+V2 changes:
+1. Add more compatible strings based on TJA11xx data sheets.
+V1 link: https://lore.kernel.org/imx/20240904145720.GA2552590-robh@kernel.org/T/
+---
+ .../devicetree/bindings/net/nxp,tja11xx.yaml  | 62 ++++++++++++++-----
+ 1 file changed, 46 insertions(+), 16 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/nxp,tja11xx.yaml b/Documentation/devicetree/bindings/net/nxp,tja11xx.yaml
+index 85bfa45f5122..a754a61adc2d 100644
+--- a/Documentation/devicetree/bindings/net/nxp,tja11xx.yaml
++++ b/Documentation/devicetree/bindings/net/nxp,tja11xx.yaml
+@@ -14,8 +14,53 @@ maintainers:
+ description:
+   Bindings for NXP TJA11xx automotive PHYs
+ 
++properties:
++  compatible:
++    enum:
++      - ethernet-phy-id0180.dc40
++      - ethernet-phy-id0180.dc41
++      - ethernet-phy-id0180.dc48
++      - ethernet-phy-id0180.dd00
++      - ethernet-phy-id0180.dd01
++      - ethernet-phy-id0180.dd02
++      - ethernet-phy-id0180.dc80
++      - ethernet-phy-id0180.dc82
++      - ethernet-phy-id001b.b010
++      - ethernet-phy-id001b.b013
++      - ethernet-phy-id001b.b030
++      - ethernet-phy-id001b.b031
++
+ allOf:
+   - $ref: ethernet-phy.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - ethernet-phy-id0180.dc40
++              - ethernet-phy-id0180.dc41
++              - ethernet-phy-id0180.dc48
++              - ethernet-phy-id0180.dd00
++              - ethernet-phy-id0180.dd01
++              - ethernet-phy-id0180.dd02
++
++    then:
++      properties:
++        nxp,rmii-refclk-in:
++          type: boolean
++          description: |
++            The REF_CLK is provided for both transmitted and received data
++            in RMII mode. This clock signal is provided by the PHY and is
++            typically derived from an external 25MHz crystal. Alternatively,
++            a 50MHz clock signal generated by an external oscillator can be
++            connected to pin REF_CLK. A third option is to connect a 25MHz
++            clock to pin CLK_IN_OUT. So, the REF_CLK should be configured
++            as input or output according to the actual circuit connection.
++            If present, indicates that the REF_CLK will be configured as
++            interface reference clock input when RMII mode enabled.
++            If not present, the REF_CLK will be configured as interface
++            reference clock output when RMII mode enabled.
++            Only supported on TJA1100 and TJA1101.
+ 
+ patternProperties:
+   "^ethernet-phy@[0-9a-f]+$":
+@@ -32,22 +77,6 @@ patternProperties:
+         description:
+           The ID number for the child PHY. Should be +1 of parent PHY.
+ 
+-      nxp,rmii-refclk-in:
+-        type: boolean
+-        description: |
+-          The REF_CLK is provided for both transmitted and received data
+-          in RMII mode. This clock signal is provided by the PHY and is
+-          typically derived from an external 25MHz crystal. Alternatively,
+-          a 50MHz clock signal generated by an external oscillator can be
+-          connected to pin REF_CLK. A third option is to connect a 25MHz
+-          clock to pin CLK_IN_OUT. So, the REF_CLK should be configured
+-          as input or output according to the actual circuit connection.
+-          If present, indicates that the REF_CLK will be configured as
+-          interface reference clock input when RMII mode enabled.
+-          If not present, the REF_CLK will be configured as interface
+-          reference clock output when RMII mode enabled.
+-          Only supported on TJA1100 and TJA1101.
+-
+     required:
+       - reg
+ 
+@@ -60,6 +89,7 @@ examples:
+         #size-cells = <0>;
+ 
+         tja1101_phy0: ethernet-phy@4 {
++            compatible = "ethernet-phy-id0180.dc40";
+             reg = <0x4>;
+             nxp,rmii-refclk-in;
+         };
+-- 
+2.34.1
+
 
