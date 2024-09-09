@@ -1,266 +1,144 @@
-Return-Path: <devicetree+bounces-101226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65B0597103B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:50:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 858E297105D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:54:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2022828163D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 07:50:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 303CF28141D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 07:54:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 585531B013F;
-	Mon,  9 Sep 2024 07:49:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DFB91B013F;
+	Mon,  9 Sep 2024 07:53:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IqFopMOU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RPm6VSh6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2D791B1429;
-	Mon,  9 Sep 2024 07:49:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 022601B0131;
+	Mon,  9 Sep 2024 07:53:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725868176; cv=none; b=M5TpEKcddeUWMTIa9U2NxmAMDes2oRg/XfbkrO8U3nY3wawUSezsOaGJkfmlP51HXIhvODwKxm13vCKd5fJW+42fPZpni1oQYzGTnsUDzqLmuFtcBvYLXpjRVySzxrbzdcpQaC7rhSXhpbk2yw9cknO/rHmFWqlUsZcRxeixums=
+	t=1725868433; cv=none; b=JhTVicgjUsDhB1NIpYqiHFqwXVEHgGAEYwhN352Z9Fmo6PR4EEWnGo+nLCZ+PpduuUfZdWQBkVnf4k4J35SlnkwiPkViGk9YkpJ67Z+mVRn+VLPwcUYV8z0euu5LFs4KPHw9p6X7qZ8zAlBdq798RRdw8ZEvIv3SRwbugQkJA20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725868176; c=relaxed/simple;
-	bh=c4kb+NQLYuRyYBta+T3iL1FIoEajZ0NeSTvuhuKN0l4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=N5EDZ4MuA43xSyaTlnpXd56uQzmT7zD6rRiZISzAiWVK0IBSItq5JkVbf98itjgWiJ+JJo3YIOdfz6ifkHaY9lal9YwEbOfmlc795AT3usCiU+BfBGh9FtIwMcy5KNAOSttBF4WKk57C4RvOeNCeleoA/57Kx9JG0IeRyXE565Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IqFopMOU; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-374bd0da617so2454157f8f.3;
-        Mon, 09 Sep 2024 00:49:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725868171; x=1726472971; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=gUUPsWFf3kxSxAf8i1tbi6kRTbOtSo56vFc2PzePdGk=;
-        b=IqFopMOUX17jeQmbmuG7EiKgNuiUWPrUKo9tBmF5zp67nVlU7BSmDOx1JJBr65MGk8
-         4OJuNYfeJAHrJ2icER5hO5BArGpYDTdRYyNUEbmw9yU6ZwN61+yffIPdBG17HJtcowQL
-         6qZ1S3hQotnCZ2OUQkw2u6557bhy/YqGBjb/RR8njvlyHWiOFeA2CHN960xoXVqg26rS
-         V3dTIFJAzmVMmAy5kANFx0YLvnbrF/zcpbHpYXRU6Nbsk+C3DN9XgQ6FN45PApSnraGT
-         zNJ40gmSqUh3X69FyEKtQDX++/zYgwd+f5jvBOvYQIQXW7uX26BYzgt2CmUhDEWUo2oG
-         l/0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725868171; x=1726472971;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gUUPsWFf3kxSxAf8i1tbi6kRTbOtSo56vFc2PzePdGk=;
-        b=buIa/J+VkeKNnvxeXk/qGWNx8WZveL2gFS4OS+3Cxu7Qc/kmver6drNxUvKZow8poD
-         NsFFyB9pHCgiEbiIxoUG3rfRdAR3Hwtu8fc9GLvLD91GhBmnd1JlFly9lJENrpHF5AoG
-         TJCS0EPo2X+z9ol0tGLjpb1sweKaEeYn+dvouC/PygEe7Tdzg16X/AfX5uoU8QqPywBX
-         RaLE74ca+ij6EhSUKUCX3LEOvsnUcs5HbmRkNlNkkcL6ljSU/FUn9kFsIAZYb64Yd3Y3
-         nn1Kidk+g+zIHnD+WLZk/c99X8/59eDpYmAqW2iQpBoio7FV+YIyWbernkQKkU2qGE02
-         iSSA==
-X-Forwarded-Encrypted: i=1; AJvYcCVwxabysgx3viNbaq7nEv3pve8//JNhjsEhkxJj6lZxd9POJNeain0EKXnA+w75DFfRSrIVCUY1m2ZoWAk0@vger.kernel.org, AJvYcCWSF1ldgO3KysiwNdBCme25tZC9viCKVNYVv7bBn5YOG5k5BZ/UMwPOH3XE7YZptH15oZ+K0hi9jECp@vger.kernel.org, AJvYcCWYfzyfy3u6b/PLmDQltARrAT+eT+hMwVobvxVf7ndNykatbiU7azMSZJNNUIb0LVB9uGoXBdcCSzJn@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrPc25jUWtRbzPPxU2pLae1FES7aOlA42MbftQT5hYPKXDhid8
-	hK6KihtlgTK62621TX/Uk/88Xhxo+m2KmN3LOLlWAfOUjPw6jGhf
-X-Google-Smtp-Source: AGHT+IEUi7D4gbsnPGIII6nUkNfXzMD0/T7Et9m3L5Zn9dHOBdYzLQESmA0o27c8akcxcsY+KC9vEg==
-X-Received: by 2002:adf:e747:0:b0:374:b381:e12a with SMTP id ffacd0b85a97d-378896124edmr6228062f8f.33.1725868170793;
-        Mon, 09 Sep 2024 00:49:30 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42cb0642f99sm64639175e9.40.2024.09.09.00.49.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Sep 2024 00:49:30 -0700 (PDT)
-Message-ID: <05be6feab2fd34801ec0a521859acea4cfd1b074.camel@gmail.com>
-Subject: Re: [PATCH v2 4/9] iio: backend adi-axi-dac: add registering of
- child fdt node
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, Angelo Dureghello
- <adureghello@baylibre.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Nuno =?ISO-8859-1?Q?S=E1?=
- <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Olivier Moysan
- <olivier.moysan@foss.st.com>,  linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
-Date: Mon, 09 Sep 2024 09:53:39 +0200
-In-Reply-To: <20240908133613.796d8817@jic23-huawei>
-References: 
-	<20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-0-87d669674c00@baylibre.com>
-	 <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-4-87d669674c00@baylibre.com>
-	 <7bd162bb-dce8-4aff-9f56-1ab73b091a28@baylibre.com>
-	 <38cc5356fc737460f6962d6aae274e72f5b5c73d.camel@gmail.com>
-	 <20240908133613.796d8817@jic23-huawei>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 
+	s=arc-20240116; t=1725868433; c=relaxed/simple;
+	bh=ahLJCzH38r4amWW2OkSmwBXliEUmYNpHeiVErh4CIIo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=agjxGij2aXL88mezbWWcTbu2UuaDfoWot7BJ1/n5O8HQFWsReqr2R7CRF+0rlYrLiLYV+dcBBBGX6xzTX9UYz6+JdMPjbt9/mKTxIRoN75MXBChJ3MyKUtc9F9m3BKJYxGij49HoFVKKOtNxh+Do7Ag/m2Kia393X5yFENutC4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RPm6VSh6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05A40C4CEC5;
+	Mon,  9 Sep 2024 07:53:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725868432;
+	bh=ahLJCzH38r4amWW2OkSmwBXliEUmYNpHeiVErh4CIIo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RPm6VSh6M/WpCkCX9Jc14cJ+kH6OlULTKpiRNukROhDXrJIP1KOw8mapxyd/cg/KS
+	 gbpD6HAg/3LY3uxdgO35x5tuqq0AVbSH2HO0CGHl3ih0qOcpSjsJSLR4ILCrp4nHWs
+	 pc5R6ghcf2w53LyW2lgb4GF9q6q1vOj1IvpiQUTo9BGm2odQz8qp+QzaK2teY8kmuj
+	 iX8azkoAhpDueJZPdB9lNLaKNB2q68KgMpYqDPgBPKVjnUrVcNIQqiOgHFT/48606r
+	 70FCJd/Ek8RSqsgJGLq4mR+h4ajO2MowodcKyByGVE8uSyGx/ydyqHLcB8FzsLxuAr
+	 JNHbsnBmfIcnA==
+Message-ID: <d31d7f30-5b6b-4d3f-85fa-62835e1e9b6c@kernel.org>
+Date: Mon, 9 Sep 2024 09:53:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 06/10] ASoC: loongson: Fix codec detection failure on
+ FDT systems
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen
+ <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Huacai Chen <chenhuacai@kernel.org>,
+ devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
+ Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+References: <cover.1725518229.git.zhoubinbin@loongson.cn>
+ <f9111564acc6c9ac011318a7eb3c6843ea0529ce.1725518229.git.zhoubinbin@loongson.cn>
+ <x2vcgpjlamobnlsj7ty5aekj35kjzpraizqd2zhvbwi7mhputx@snxtfb3hgznb>
+ <CAMpQs4JsbodfscgQPYVz0K99mYAQzZp3pvhmHuvddsw3YWvQEA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAMpQs4JsbodfscgQPYVz0K99mYAQzZp3pvhmHuvddsw3YWvQEA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, 2024-09-08 at 13:36 +0100, Jonathan Cameron wrote:
-> On Fri, 06 Sep 2024 09:08:59 +0200
-> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
->=20
-> > On Thu, 2024-09-05 at 14:19 -0500, David Lechner wrote:
-> > > On 9/5/24 10:17 AM, Angelo Dureghello wrote:=C2=A0=20
-> > > > From: Angelo Dureghello <adureghello@baylibre.com>
-> > > >=20
-> > > > Change to obtain the fdt use case as reported in the
-> > > > adi,ad3552r.yaml file in this patchset, with the DAC device that
-> > > > is actually using the backend set as a child node of the backend.
-> > > >=20
-> > > > To obtain this, registering all the child fdt nodes as platform
-> > > > devices.
-> > > >=20
-> > > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> > > > Co-developed-by: David Lechner <dlechner@baylibre.com>
-> > > > Co-developed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
-> > > > ---
-> > > > =C2=A0drivers/iio/dac/adi-axi-dac.c | 15 +++++++++++++++
-> > > > =C2=A01 file changed, 15 insertions(+)
-> > > >=20
-> > > > diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-ax=
-i-
-> > > > dac.c
-> > > > index cc31e1dcd1df..e883cd557b6a 100644
-> > > > --- a/drivers/iio/dac/adi-axi-dac.c
-> > > > +++ b/drivers/iio/dac/adi-axi-dac.c
-> > > > @@ -783,6 +783,7 @@ static int axi_dac_probe(struct platform_device
-> > > > *pdev)
-> > > > =C2=A0{
-> > > > =C2=A0	struct axi_dac_state *st;
-> > > > =C2=A0	const struct axi_dac_info *info;
-> > > > +	struct platform_device *child_pdev;
-> > > > =C2=A0	void __iomem *base;
-> > > > =C2=A0	unsigned int ver;
-> > > > =C2=A0	struct clk *clk;
-> > > > @@ -862,6 +863,20 @@ static int axi_dac_probe(struct platform_devic=
-e
-> > > > *pdev)
-> > > > =C2=A0		return dev_err_probe(&pdev->dev, ret,
-> > > > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 "failed to register iio
-> > > > backend\n");
-> > > > =C2=A0
-> > > > +	device_for_each_child_node_scoped(&pdev->dev, child) {=C2=A0=20
-> > >=20
-> > > This should use fwnode_for_each_available_child_node() so that it ski=
-ps
-> > > nodes with status !=3D "okay".
->=20
-> Ah. That oddity strikes again...
->=20
-> > >=20
-> > > Would be nice to introduce a scoped version of this function too.
-> > >=20
-> > > Also, if we are allowing multiple devices on the bus, the DT bindings
-> > > need to have a reg property that is unique for each child.
-> > > =C2=A0=20
-> > > > +		struct platform_device_info pi;
-> > > > +
-> > > > +		memset(&pi, 0, sizeof(pi));=C2=A0=20
-> > >=20
-> > > struct platform_device_info pi =3D { };
-> > >=20
-> > > avoids the need for memset().
-> > > =C2=A0=20
-> > > > +
-> > > > +		pi.name =3D fwnode_get_name(child);
-> > > > +		pi.id =3D PLATFORM_DEVID_AUTO;
-> > > > +		pi.fwnode =3D child;=C2=A0=20
-> > >=20
-> > > Need to have pi.parent =3D &pdev->dev;
-> > >=20
-> > > It could also make sense to have all of the primary bus functions
-> > > (reg read/write, ddr enable/disable, etc.) passed here as platform
-> > > data instead of having everything go through the IIO backend.=C2=A0=
-=20
-> >=20
-> > Note that ddr enable/disable is something that makes sense to be in the
-> > backend
-> > anyways as it is something that exists in LVDS/CMOS interfaces that are=
- only
-> > running
-> > the dataplane. Bus operations like read/write could make sense but that
-> > would mean an
-> > interface directly between the axi-dac and the child devices (bypassing=
- the
-> > backend
-> > or any other middle layer - maybe we could create a tiny adi-axi-bus la=
-yer
-> > on the IIO
-> > topdir or any other place in IIO) which I'm not so sure (and is a bit o=
-dd).
-> > OTOH,
-> > this bus stuff goes a bit out of scope of the backend main idea/goal so
-> > yeah... Well,
-> > let's see what others have to say about it but I don't dislike the idea=
-.
->=20
-> For the read/write using platform data does seem reasonable to me.
-> Agreed that DDR is dataplane (at least sometimes) so backend ops probably
-> appropriate.
->=20
-> >=20
-> > > =C2=A0=20
-> > > > +
-> > > > +		child_pdev =3D platform_device_register_full(&pi);
-> > > > +		if (IS_ERR(child_pdev))
-> > > > +			return PTR_ERR(child_pdev);=C2=A0=20
-> > >=20
-> > > These devices need to be unregistered on any error return and when
-> > > the parent device is removed.
-> > > =C2=A0=20
-> >=20
-> > Definitely this needs to be tested by manually unbinding the axi-dac de=
-vice
-> > for
-> > example. I'm not really sure how this will look like and if there's any
-> > problem in
-> > removing twice the same device (likely there is). The thing is that whe=
-n we
-> > connect a
-> > frontend with it's backend, a devlink is created (that guarantees that =
-the
-> > frontend
-> > is removed before the backend). So, I'm fairly confident that if we add=
- a
-> > devm action
-> > in here to unregister the child devices, by the time we unregister the
-> > child, it
-> > should be already gone (unless driver core somehow handles this).
-> >=20
-> > All of the above needs careful testing but one way out it (and since in=
- here
-> > we have
-> > the parent - child relationship), we could add a boolean flag 'skip_dev=
-link'
-> > to
-> > 'struct iio_backend_info' so that devlinks are skipped on these
-> > arrangements. Or we
-> > could automatically detect that the frontend is a child of the backend =
-and
-> > skip the
-> > link (though an explicit flag might be better).
->=20
-> Agreed it needs testing but I'm not sure why it would already have gone.
-> The driver would have unbound, but the platform device /child would still=
- be
-> there
-> I think at time of removal. Can probably get away with devm to tear
-> it down when the backend device then goes away.
->=20
-> Maybe I'm missing some subtlety though.
->=20
+On 09/09/2024 09:51, Binbin Zhou wrote:
+>>
+>>> +     return ret;
+>>> +}
+>>> +
+>>> +static int loongson_parse_codec(struct device *dev, struct device_node **dai_node,
+>>> +                             const char **dai_name)
+>>> +{
+>>> +     struct of_phandle_args args;
+>>> +     struct device_node *codec;
+>>> +     int ret = 0;
+>>>
+>>>       codec = of_get_child_by_name(dev->of_node, "codec");
+>>> -     if (!codec) {
+>>> -             dev_err(dev, "audio-codec property missing or invalid\n");
+>>> +     if (!codec)
+>>
+>> Hm? So you exit here and then caller does of_node_put on stack value.
+>> This is buggy.
+> 
+> Sorry, I can not get your point, I think there is nothing that should be put.
 
-Hmm, I guess there was some confusion of me not explaining myself. What I w=
-anted
-to say is that we will be unregistering the same device twice. But yeah, ma=
-ybe
-it ends up just being a NOP in the driver core. But yeah, we definitely nee=
-d to
-test this and make sure that the device is only gone by the time the parent
-device calls platform_device_unregister() on it.
+You drop reference from a pointer which is a random stack value.
 
-- Nuno S=C3=A1
+Best regards,
+Krzysztof
 
 
