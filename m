@@ -1,62 +1,56 @@
-Return-Path: <devicetree+bounces-101429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F899971C4E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 16:18:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD943971C60
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 16:22:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BB031C21E5C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:18:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 723F81F2496D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:22:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E51F1BA26E;
-	Mon,  9 Sep 2024 14:18:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25ADA1BA285;
+	Mon,  9 Sep 2024 14:22:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KRUftkhI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ubjIc8Wq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D9A61AD5C1;
-	Mon,  9 Sep 2024 14:18:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0055F1BA27C
+	for <devicetree@vger.kernel.org>; Mon,  9 Sep 2024 14:22:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725891532; cv=none; b=k80CGejmGc7FtV3Q64iIWI0t/JKo+7lP33SR5nYil/w+ABn93CHTVgtSNyfOnIzsQqoJWFI6cUuM1yeb93WLkPI1QXsv8KbQky01LD21mmb865SNwMZA7wp2wn8XBNEDQWNz9tPUPRXfSd5wsc1nyaZuU1dScUnxrEXJwuqMOHU=
+	t=1725891748; cv=none; b=cjyHN0VlfxAP3rLSfyGrLK7nxUHAygrZEuaIU9IeCv4pRCOuH0b8tUkpU/9Ocenymjbw5W55HFR815PRjXmQOoMlJWNeCVIq4/HEZY3qIplw9IMzdXXl4pV1fFsBwXOqu3CGswxqIy1FF0Ju9Z/uxgcZYO0trXUwN6SjiC3rolM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725891532; c=relaxed/simple;
-	bh=PnmCdAiSZLqmrOvlmp6sRwwUDoGa5lxrigQUCX6Ca5s=;
+	s=arc-20240116; t=1725891748; c=relaxed/simple;
+	bh=Hezfj/kPm64KvITcfkt3URf9tx9rvGYy7rBd9swWi4w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UrWsWEetOa7P0zo9/SjqdkPkkMm9lJjvJaNdvY4Xiet7wGTnlFpb74z6k7dHtKR/LYdovbxIMhfCfPUzHSdLgFXWjHBmrk8wCVZf0/I1LMgxYXKDcKm4dusY5I/TUSb8hls6A5kOv3lznT1XIl3E2u8hlCzBZpE6JBejUOBTRpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KRUftkhI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9062DC4CEC5;
-	Mon,  9 Sep 2024 14:18:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xzjqt4IuDVr5D3+j2Z38hMIhnurvrxDcMuk+HlajvjqsjA+iBCrEZCGoeikjX2G62sOe1xaF50RchHt5LUokv5Rg0W1GyluzM5tb8et6+ogB9iVOOiCziP7jeazG87yMxu+1/JvcFBexa70sMA7AoizoPBLpu0FJG9u8ykpidpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ubjIc8Wq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6288EC4CEC5;
+	Mon,  9 Sep 2024 14:22:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725891531;
-	bh=PnmCdAiSZLqmrOvlmp6sRwwUDoGa5lxrigQUCX6Ca5s=;
+	s=k20201202; t=1725891747;
+	bh=Hezfj/kPm64KvITcfkt3URf9tx9rvGYy7rBd9swWi4w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KRUftkhI9KGqeBcFDi7T5YX5L7dRjrP0xnLxAzNReVrJQkzrVYQUiWGClkioSVwsv
-	 xbllfR0eSdsxxnxwrraAcDCKbWG3jomU2sc01oUNf7p0SU9W0uxlwnXxPB0r4UAN9f
-	 gU1Il6uhCqEDvvO9/1lZpYaVgnP7nVPY5aNFEA8WCMNpNoEbhVrk12GPN8RABPGIl3
-	 uZAM+4ErcP5BG2CuG+sA1XeE4ayNo8ZHHVQFmjLJFvQ1fF3rr1jV+gJG+Gzz5f8YrR
-	 bpA4M+HWFJGKrspow1qyYcDeztDIepNHb520TF1Wr9vXdSfRvCSiOO2u7Dxe6pLlDV
-	 KDyfiS+MWMklg==
-Date: Mon, 9 Sep 2024 09:18:50 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, imx@lists.linux.dev,
-	Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, linux-doc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Re: [PATCH v7 2/5] dt-bindings: arm: fsl: add imx-se-fw binding doc
-Message-ID: <172589152997.4184616.5889493628960272898.robh@kernel.org>
-References: <20240904-imx-se-if-v7-0-5afd2ab74264@nxp.com>
- <20240904-imx-se-if-v7-2-5afd2ab74264@nxp.com>
+	b=ubjIc8WqYl0D6MnVk/IUOhrN6X2QqzKYlc5FTH8pdSO/YfWN0yFX4gJ3hbU1G4GSi
+	 NZjpPwxu8KgusT4tWKdzHnJROjLVbYUmXVYq7ceCrbUArbYu7Mmbt0MCoLIoKRdePm
+	 do/IRo1oLJcmreyNtzW5zmeGe+2iGwYIOFAO1+08E9g1fXK4EGbY1c8Ks9+lewR6Gu
+	 TmWqdvo5jbDEr3gxKp8/7/IzPZrURXMisLPjYo/YgnsMfxaoTD0e1nVYf6o0tFM8oJ
+	 ARDkhOYe/O8zoxShS2TVNVKG5CxTMS+FAPyIyaiJRUTLEmM/9x7U/pZL5HiWdo0Y8+
+	 7T5Jyue9ltEYg==
+Date: Mon, 9 Sep 2024 09:22:26 -0500
+From: Rob Herring <robh@kernel.org>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Mark Brown <broonie@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Linux-ALSA <alsa-devel@alsa-project.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] ASoC: dt-bindings: renesas,rsnd: add
+ post-init-providers property
+Message-ID: <20240909142226.GA4185128-robh@kernel.org>
+References: <871q1zkmrc.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,33 +59,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240904-imx-se-if-v7-2-5afd2ab74264@nxp.com>
+In-Reply-To: <871q1zkmrc.wl-kuninori.morimoto.gx@renesas.com>
 
-
-On Wed, 04 Sep 2024 16:21:18 +0530, Pankaj Gupta wrote:
-> The NXP security hardware IP(s) like: i.MX EdgeLock Enclave, V2X etc.,
-> creates an embedded secure enclave within the SoC boundary to enable
-> features like:
-> - HSM
-> - SHE
-> - V2X
+On Wed, Sep 04, 2024 at 11:44:08PM +0000, Kuninori Morimoto wrote:
+> At least if rsnd is using DPCM connection with Audio-Graph-Card2,
+> fw_devlink might doesn't have enough information to break the cycle
+> (Same problem might occur with Multi-CPU/Codec or Codec2Codec).
+> In such case, rsnd driver will not be probed.
+> Add post-init-providers support to break the link cycle.
 > 
-> Secure-Enclave(s) communication interface are typically via message
-> unit, i.e., based on mailbox linux kernel driver. This driver enables
-> communication ensuring well defined message sequence protocol between
-> Application Core and enclave's firmware.
-> 
-> Driver configures multiple misc-device on the MU, for multiple
-> user-space applications, to be able to communicate over single MU.
-> 
-> It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
-> 
-> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 > ---
->  .../devicetree/bindings/firmware/fsl,imx-se.yaml   | 91 ++++++++++++++++++++++
->  1 file changed, 91 insertions(+)
+> v1 -> v2
+> 	- remove basic description/type
+> 	- add detail description
+> 	- update git-log
 > 
+>  Documentation/devicetree/bindings/sound/renesas,rsnd.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> index 07ec6247d9def..458877ce4aa42 100644
+> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> @@ -112,6 +112,13 @@ properties:
+>      description: List of necessary clock names.
+>      # details are defined below
+>  
+> +  post-init-providers:
+> +    description: |
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Don't need '|' if there's no formatting.
 
+> +      At least if rsnd is using DPCM connection with Audio-Graph-Card2, fw_devlink might doesn't
+> +      have enough information to break the cycle. rsnd driver will not be probed in such case.
+
+Wrap lines at 80, not 100 unless there's good reason to extend them.
+
+> +      Add post-init-providers property to indicate which link in the cycle to break.
+
+That describes every use of post-init-providers. Drop.
+
+> +      Same problem might occur with Multi-CPU/Codec or Codec2Codec.
+> +
+>    # ports is below
+>    port:
+>      $ref: audio-graph-port.yaml#/definitions/port-base
+> -- 
+> 2.43.0
+> 
 
