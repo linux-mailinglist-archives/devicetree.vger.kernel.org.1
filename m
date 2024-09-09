@@ -1,48 +1,54 @@
-Return-Path: <devicetree+bounces-101526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0191A972320
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 22:05:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E294C97238F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 22:23:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F2DE1F2557D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 20:05:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6C54282714
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 20:23:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0498173440;
-	Mon,  9 Sep 2024 20:05:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8097189F57;
+	Mon,  9 Sep 2024 20:22:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AGSsTNC6"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="SI8ycpVd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5C3C1F95E;
-	Mon,  9 Sep 2024 20:05:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EDA916EB55;
+	Mon,  9 Sep 2024 20:22:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725912315; cv=none; b=PKIPmXP/5O0aBhumgWVsm1M3xV+KFqios3ouNcc6ux6g/4oQcJIrLgKZYwUgCe6cqGcO6XvXXG1fAAwkxAKrCxnlbjBYNFzf18DfmhtHvfyNUSmoy2vH+5mbWCUlxXYxFqLc6cc1VvWl6whFFb+DEtxSe6NPL8fOcMtBUn9AZmM=
+	t=1725913379; cv=none; b=hu+h/AcEgYJRgTRWxLb2HkHD+i8xz3mYjW411ABzSaCGRf0PKQDb/FXRPoiKiP6xEKGcz3aYlbSOUAYnGvdZeb8fJjla2rHPToZi5ofgAdqe833E5XTwLTB4bg1U+JxvOR+wcRqHGHRlDnbvVVLCrmideZbn0za/2sDwXj0Ytx4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725912315; c=relaxed/simple;
-	bh=WAjFmHe8CHpD+UbXJ0yMn429XuMtyhYznyF+ycDlMRw=;
+	s=arc-20240116; t=1725913379; c=relaxed/simple;
+	bh=fym61vLnxXmDgk70up1GmkJ4kJkjM6TUHDTPoPEQZ3A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PpxTyjWYe2gwZCAbO686Ur/Q+uCiHyjwUr/ltxlFFhkaF/kPv/UuL+yoPaxSOZt9cPv+S1cExzeiX7ivMHuzX2GY0ZQwH6dSZEuCLNJMd7BynkDeMoKMdE6vHaLFPl59vufOPQvF39rcDkPjD9GnxfpqybajbfcHCrE1dDiOw08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AGSsTNC6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9E0AC4CEC5;
-	Mon,  9 Sep 2024 20:05:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725912315;
-	bh=WAjFmHe8CHpD+UbXJ0yMn429XuMtyhYznyF+ycDlMRw=;
+	 In-Reply-To:Content-Type; b=WSl0UdoPajH3a9Dl28BZa6fDOH8VvfZzU9xSxoh/N+7LKtibTfLXxjDJBjJWVWJ4L652lr4ZLg07jgHzJx4RfQOtkOJCvIwcwvy0w48BrneF5eycuXqoARvWo+HOeUGbC0xsLWiR0nWMNvteBDbmDUscukXsTsqq4MpWMzMTIXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=SI8ycpVd; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 1DC4B86E61;
+	Mon,  9 Sep 2024 22:22:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1725913376;
+	bh=gh2pbKUyt80M2vvl5LahTSASU0bun/RjZ+T7oyUJOyw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AGSsTNC6StWvz0ciGaK9NhvO6Zgb/AHhG3iN5H4Gcg2fff0kUgsFNiC1JEFMw+0ac
-	 sIbKL8bZkT1gox4K75CFXdgCAN8l1eu7EdnvnIVO81i8oaPqHauh5dCePJAcTTcgRx
-	 PU/BsIt5GDNCB9MUTRRuDP0LN7skFUjfdKNf1DzR+f/GJKZoIfPvJ6i7NoY65OqAGD
-	 GNdMeVOlsla18fAI5ZxdDwQrkOZfWrj7QzWDhuDYVO8iTG5IA9ftmjOKISzL++eA3l
-	 jxcFvZcNXak3fhomT/hHB+KhlL1YO32qMPYUJZ2KLBioDso3sdHZ7XZo+NcDkQG8OT
-	 6lBMCziXzyUJA==
-Message-ID: <734452da-6a3e-4063-ab42-607ac8dd10ac@kernel.org>
-Date: Mon, 9 Sep 2024 22:05:08 +0200
+	b=SI8ycpVdcefwl+a6fifw/j7nVoXVk/vSZiyh+oMmexzbjjtSOYGLrLYcnU2zsKyuc
+	 9ROQVkyiYcc9CNVWdSIAZcZe5996rGGQWMEO6X7XNHhWQoMKIkXefZ8QYOdoOxyRh8
+	 hletsVMuCXl/ZyUoWZI5Zg+/ZBpPeDmqmu/8BdEf2VN6hTXKrKGhXZaQ/xC6zNeqZR
+	 EEzOvNKl+b8avx9KhOKNqA8uyf1PTfm0mmrGganwqJtdXVSTZbglR/0ryDG88aifG0
+	 3k+kC2fONgbho/dx55R7GRBtfJhHp8dBLv3HqZWzx4jJo1/A5cGbub5G8uzzhGcTR9
+	 5UqfZAgyqwDBQ==
+Message-ID: <a25ab711-2680-4bc0-a80e-40699b504903@denx.de>
+Date: Mon, 9 Sep 2024 21:54:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,108 +56,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/1] arm64: dts: qcom: Add coresight nodes for x1e80100
-To: Jie Gan <quic_jiegan@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Jinlong Mao <quic_jinlmao@quicinc.com>, Tao Zhang <quic_taozha@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Song Chai <quic_songchai@quicinc.com>, Yushan Li <quic_yushli@quicinc.com>
-References: <20240905103825.2154633-1-quic_jiegan@quicinc.com>
- <20240905103825.2154633-2-quic_jiegan@quicinc.com>
+Subject: Re: [PATCH v4 5/5] wifi: wilc1000: Add WILC3000 support
+To: Kalle Valo <kvalo@kernel.org>
+Cc: linux-wireless@vger.kernel.org, Ajay Singh <ajay.kathat@microchip.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, netdev@vger.kernel.org
+References: <20240829004510.178016-1-marex@denx.de>
+ <20240829004510.178016-5-marex@denx.de> <87ed5tgofh.fsf@kernel.org>
+ <343a45a8-1891-4e66-a77c-ad6e4d485903@denx.de> <87seu8g96u.fsf@kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konradybcio@kernel.org>
-In-Reply-To: <20240905103825.2154633-2-quic_jiegan@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <87seu8g96u.fsf@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On 5.09.2024 12:38 PM, Jie Gan wrote:
-> Add following coresight components for x1e80100 platform.
-> It includes CTI, dummy sink, dynamic Funnel, Replicator, STM,
-> TPDM, TPDA and TMC ETF.
+On 9/9/24 5:04 PM, Kalle Valo wrote:
+> Marek Vasut <marex@denx.de> writes:
 > 
-> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
-> Tested-by: Yushan Li <quic_yushli@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 1516 ++++++++++++++++++++++++
->  1 file changed, 1516 insertions(+)
+>> On 9/9/24 11:35 AM, Kalle Valo wrote:
+>>
+>>> Marek Vasut <marex@denx.de> writes:
+>>>
+>>>> From: Ajay Singh <ajay.kathat@microchip.com>
+>>>>
+>>>> Add support for the WILC3000 chip. The chip is similar to WILC1000,
+>>>> except that the register layout is slightly different and it does
+>>>> not support WPA3/SAE.
+>>>>
+>>>> Signed-off-by: Ajay Singh <ajay.kathat@microchip.com>
+>>>> Signed-off-by: Marek Vasut <marex@denx.de>
+>>> [...]
+>>>
+>>>> --- a/drivers/net/wireless/microchip/wilc1000/cfg80211.c
+>>>> +++ b/drivers/net/wireless/microchip/wilc1000/cfg80211.c
+>>>> @@ -313,6 +313,13 @@ static int connect(struct wiphy *wiphy, struct net_device *dev,
+>>>>      	vif->connecting = true;
+>>>>    +	if (sme->auth_type == NL80211_AUTHTYPE_SAE &&
+>>>> +	    is_wilc3000(vif->wilc->chipid)) {
+>>>> +		netdev_err(dev, "WILC3000: WPA3 not supported\n");
+>>>> +		ret = -EOPNOTSUPP;
+>>>> +		goto out_error;
+>>>> +	}
+>>> This looks wrong. If wilc3000 doesn't support SAE you shouldn't
+>>> advertise NL80211_FEATURE_SAE to user space. I think the check for
+>>> wilc3000 should be in wilc_create_wiphy():
+>>> if (!is_wilc3000(vif->wilc->chipid))
+>>
+>> It is probably better to do "if (is_wilc1000(wl->chipid))" here.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> index 74b694e74705..9d6f3098e144 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> @@ -305,6 +305,19 @@ CLUSTER_CL5: cluster-sleep-1 {
->  		};
->  	};
->  
-> +	dummy-sink {
-> +		compatible = "arm,coresight-dummy-sink";
-> +
-> +		in-ports {
-> +			port {
-> +				eud_in: endpoint {
-> +					remote-endpoint =
-> +					<&swao_rep_out1>;
-
-Don't be scared to keep the lines 100-long, easier to read that way
-
-[...]
-
-> +		tpda@10004000 {
-> +			compatible = "qcom,coresight-tpda", "arm,primecell";
-> +			reg = <0x0 0x10004000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +
-> +			out-ports {
-> +				port {
-> +					qdss_tpda_out: endpoint {
-> +						remote-endpoint =
-> +						<&funnel0_in6>;
-> +					};
-> +				};
-> +			};
-> +
-> +			in-ports {
-
-'i' < 'o', please sort things alphabetically if there's no other sorting key
-as per Documentation/devicetree/bindings/dts-coding-style.rst
-
-[...]
-
-> +		tpda@10c2b000 {
-> +			compatible = "qcom,coresight-tpda", "arm,primecell";
-> +			reg = <0x0 0x10c2b000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +
-> +			out-ports {
-> +				port {
-> +					dlct1_tpda_out: endpoint {
-> +						remote-endpoint =
-> +						<&dlct1_funnel_in0>;
-> +					};
-> +				};
-> +			};
-> +
-> +			in-ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@4 {
-> +					reg = <4>;
-> +					dlct1_tpda_in4: endpoint {
-
-Please keep a new line between the last property (reg here) and the
-following subnode
-
-I was able to confirm that this patch doesn't break booting on the
-Surface laptop anymore.
-
-Konrad
+> Good point.
+I did send v5 which grew a few more patches to address getting chipid early.
 
