@@ -1,145 +1,120 @@
-Return-Path: <devicetree+bounces-101296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDB3197140B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:43:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27DCA97141C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:44:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66C091F2323C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:43:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 80113B25085
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:44:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC8DA1B29DB;
-	Mon,  9 Sep 2024 09:43:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E86291B3B26;
+	Mon,  9 Sep 2024 09:44:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ecEvKZXu"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="HA1fYfiy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 392F8161916;
-	Mon,  9 Sep 2024 09:43:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BBCC1B3740;
+	Mon,  9 Sep 2024 09:44:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725874986; cv=none; b=s58E5ruLV89B1mPnBmq4qc1ETmzyZvHKZTfybTCKG9TDeT03gA0dCwE5D1GiMGfJC0BMCWal4nR8UNnEKfwJpXb04262IQTJfEJZsYmdzP+r7VmjbvnfKA3E/SWycusvwuu3HVOfwqxPwB5ICAPspF2J3MNit2UPrpupvlKdyl8=
+	t=1725875051; cv=none; b=gEZ1Q5sUQy9CQld+tmtFVNvEFDKVYLTxfWNPBnlQLOIvHrZ/0Os4e0Bv9m9iykcxzcN0RHsCsX0uWc7LKipfRx4eZZ35NTXz0zybV+ut192Wye5rhtiloxtxNwP1zxl7Va6aDnnoLzkePizHBweazgo/HYq+zrqpea9aNd63Kfk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725874986; c=relaxed/simple;
-	bh=DhIoIebUv4PD3LizG5RpptLQUIEStidCV5UBA3Ms/Ok=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d/JVI6vEzKaBQ773a+roYTeveEAuOIURLi1CPHdmRe2+kHhP9pg4V0Vvign8UGQr31Oc8z6eVyRuEhqhnKYgkPfoHEKH7cltqUSYb49so437S0fscE0fCtoZE9I5umEu2Uhz928oy7m4ke0VY4sbCxc2HLakcFdH5Rb4K4QehpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ecEvKZXu; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5c26852aff1so4533717a12.3;
-        Mon, 09 Sep 2024 02:43:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725874983; x=1726479783; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ji0IvUtxVUfOYtXesPSGRkrVGhlLL5hSJeqIOnfvC5o=;
-        b=ecEvKZXuj+mWwnAsKVAlFSfuBgum+pqdLLrDXLMCvEUe6UH+vGcrpOXdXMKgxe++Ak
-         GBw0nyvTVmZ0wHAs2ioNMxgBXqiwfriM8laXogJtsWIdb1tqIzdMi9+8r7ztM94Z+SXI
-         BJ9A9r2zzQaDpGgKTdTpK1M7g6dDmh7mvqvOS6JaXEo9FYrRg4148IvNQHB/KsUvtL1w
-         V9BB7Op0M0GCbY3MB+E5SVa1ZFCt634GudSPlKs8Xt7IfgJm3lk/QbTOS7apHuf36jqB
-         YfNnjAgB1K4AwKSvQMYU2XZH6cM+3wWNvELthBeqgHO9doGK4fUfbzQ5phZ7425kBYoa
-         JPYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725874983; x=1726479783;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ji0IvUtxVUfOYtXesPSGRkrVGhlLL5hSJeqIOnfvC5o=;
-        b=fxrOgBP7GJ0Y4CRjMFRHSJgAC1/ZBxT5huy8da/WBC7SwiCyMV+RXj9SNzFo7yS5iM
-         s6KMTesHR9t3W/Su50fU/r9AxoeYiqopz6bgfU75Cn8CzaXoZ/KqeUfSEuyMcvn2y/vk
-         PakvJxqBI+iVYWadnVErgQBTD/H6d5fSg/qX0qyMa4LckV7oJ0Y/Z5ebo6YDw+gUSzwm
-         dkKPr5ktcOScD8Sdch2M2OHropl1wLqAqrdDPSduvR58bVi9dqWFZiv+JU403XMAPo6o
-         usMU9PVmVMhlyD1pOjub0/oxNtZkFd0yftSOvBDj77p2pcvEsJYpoe1F2/j4zYoayHRs
-         w8FA==
-X-Forwarded-Encrypted: i=1; AJvYcCVSV3R4efUnLaBgMLqVMJZJQFzIT9uSFiIo3BUTqh2C0fcE0iaazOA+QnMHyGbEQOLxIvmIs2e1UnbH@vger.kernel.org, AJvYcCWgVulYlezsys/tSe5iPnygXn7hsNZ8gjJ3wAGyRWVzYj8XM10VFLV9fVxCxWE6j0Di/6l7k+TH1udfJGAY@vger.kernel.org
-X-Gm-Message-State: AOJu0YwLUKRRmpvqwDTeTUU6DAMcARdnmlAZdWq1bATaTncGU+5E+VGF
-	a0qSjvKLSn6lgxA8VwQN7XIl8GButkRSwiwQMCgzK2u04QqIthy/
-X-Google-Smtp-Source: AGHT+IHsut9MezX+RTKRlovYO1s+sRZbsf5akjJcSm8/w0bQW6T6B9e2Pa66ERuitPaxaEK8jwSRAA==
-X-Received: by 2002:a05:6402:34d6:b0:5c3:1089:ff3c with SMTP id 4fb4d7f45d1cf-5c3e974d9f6mr3460080a12.35.1725874983126;
-        Mon, 09 Sep 2024 02:43:03 -0700 (PDT)
-Received: from toolbox (31-10-206-125.static.upc.ch. [31.10.206.125])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c3ebd4693fsm2812530a12.37.2024.09.09.02.43.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Sep 2024 02:43:02 -0700 (PDT)
-Date: Mon, 9 Sep 2024 11:43:00 +0200
-From: Max Krummenacher <max.oss.09@gmail.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Francesco Dolcini <francesco@dolcini.it>,
-	Aradhya Bhatia <a-bhatia1@ti.com>, max.krummenacher@toradex.com,
-	Jyri Sarha <jyri.sarha@iki.fi>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	DRI Development List <dri-devel@lists.freedesktop.org>,
-	Devicetree List <devicetree@vger.kernel.org>,
-	Linux Kernel List <linux-kernel@vger.kernel.org>,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
-	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Randolph Sapp <rs@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
-	Jayesh Choudhary <j-choudhary@ti.com>, Jai Luthra <j-luthra@ti.com>
-Subject: Re: [PATCH v3 0/4] drm/tidss: Add OLDI bridge support
-Message-ID: <Zt7DJFM_xxOkhDwX@toolbox>
-References: <20240716084248.1393666-1-a-bhatia1@ti.com>
- <20240906114311.GA32916@francesco-nb>
- <c60d518b-ace4-48a8-87e5-35de13bc426a@ideasonboard.com>
+	s=arc-20240116; t=1725875051; c=relaxed/simple;
+	bh=h5LA/enNgw1sNFYXeart0ZorY5rVj4crVb/Vfqx8aUI=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lP7TkxGkwmaYG3OWHslPTLnAgEo1lp8N8oiHHqohpHNQhD2kHBJ7cVGV5hCxwd6UtKSptZb5vYkQq7KVYysUptmmXxwOaWAfRPpb4ApcX6Lr3WgtnL0D9Ld1SbFE4kFD3fsPQ6C9jhTfUoPe+oXGGM4aR4RTg0Xp1F4nO7WXFV0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=HA1fYfiy; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1725875050; x=1757411050;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=h5LA/enNgw1sNFYXeart0ZorY5rVj4crVb/Vfqx8aUI=;
+  b=HA1fYfiypLp2Xd0x+Tbo5DuzRn63fI5PiZz7WFnXD/MfgwWppH/ou7IA
+   K/mPqBbMe13EpuzQdojyXUt5d+GKEkwrbWAlXDLIPC1TWBCNR1qimNE61
+   Ik5yQqA04nYhh5orvoQRVNuGyr2uIFlwnvxH8qXUdOAlsLR6tgErTQ6xw
+   YpGWcobcwdU5UNCouyj97VuY4lRYcGSK0TqXQqMixm+Wb93DEDleZXHES
+   aoR1jzcqr6puAQl0DxHA8/MO8Y8/IJ/s5NR8U3XlBvCjgdKKuPzpvo8ND
+   b9/LEFHUnxZjyURkh/RVMpmaX3vcmRJ6nu8wuCKUOh/w7JmsSD23TzqM/
+   A==;
+X-CSE-ConnectionGUID: L5CatC7qR+24yrk0PqV2lQ==
+X-CSE-MsgGUID: JW9LqD7NTV6izxZSQ6janA==
+X-IronPort-AV: E=Sophos;i="6.10,213,1719903600"; 
+   d="scan'208";a="262473465"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 Sep 2024 02:44:09 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 9 Sep 2024 02:43:27 -0700
+Received: from DEN-DL-M70577 (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Mon, 9 Sep 2024 02:43:25 -0700
+Date: Mon, 9 Sep 2024 09:43:24 +0000
+From: Daniel Machon <daniel.machon@microchip.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+	Lars Povlsen <lars.povlsen@microchip.com>, Steen Hegelund
+	<Steen.Hegelund@microchip.com>, <UNGLinuxDriver@microchip.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, <linux-phy@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH 8/9] dt-bindings: phy: sparx5: document lan969x in sparx5
+ dt-bindings
+Message-ID: <20240909094324.u2aahgnrmxkxt7fc@DEN-DL-M70577>
+References: <20240906-sparx5-lan969x-serdes-driver-v1-0-8d630614c58a@microchip.com>
+ <20240906-sparx5-lan969x-serdes-driver-v1-8-8d630614c58a@microchip.com>
+ <c0aa5342-a2af-4ac4-bc33-b6dbfff77f63@kernel.org>
+ <20240909082241.hvw3a7yig3pujrsk@DEN-DL-M70577>
+ <ee4d4375-873b-4b9c-b694-f0191e5c2c54@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <c60d518b-ace4-48a8-87e5-35de13bc426a@ideasonboard.com>
+In-Reply-To: <ee4d4375-873b-4b9c-b694-f0191e5c2c54@kernel.org>
 
-On Mon, Sep 09, 2024 at 11:15:28AM +0300, Tomi Valkeinen wrote:
-> Hi,
+> >>>    compatible:
+> >>> -    const: microchip,sparx5-serdes
+> >>> +    enum:
+> >>> +      - microchip,sparx5-serdes
+> >>> +      - microchip,lan969x-serdes
+> >>
+> >> It seems there is no lan969x SoC/chip. Are you sure you are using
+> >> correct naming, matching what kernel is using? Maybe you just sent
+> >> whatever you had in downstream (hint: that's never a good idea).
+> >
+> > You are right. There is no upstream support for lan969x SoC yet. The
+> > upstreaming of the lan969x SoC has just begun, and this series is part
+> > of that upstreaming effort. The lan969x switch driver (not submitted
+> > yet) will depend on this SERDES driver, however, their functionality is
+> > really independent of each other. That is why I am also upstreaming the
+> > SERDES- and switch driver series independent of each other.
 > 
-> On 06/09/2024 14:43, Francesco Dolcini wrote:
-> > +Max
-> > 
-> > Hello Aradhya,
-> > 
-> > On Tue, Jul 16, 2024 at 02:12:44PM +0530, Aradhya Bhatia wrote:
-> > > The addition of the 2nd OLDI TX (and a 2nd DSS in AM62Px) creates a need
-> > > for some major changes for a full feature experience.
-> > > 
-> > > 1. The OF graph needs to be updated to accurately show the data flow.
-> > > 2. The tidss and OLDI drivers now need to support the dual-link and the
-> > >     cloned single-link OLDI video signals.
-> > > 3. The drivers also need to support the case where 2 OLDI TXes are
-> > >     connected to 2 different VPs - thereby creating 2 independent streams
-> > >     of single-link OLDI outputs.
-> > 
-> > Have you considered/tested the use case in which only single link is used?
-> > You do not mention it here and to me this is a relevant use case.
-> > 
-> > There is a workaround for this (use option 2, cloned, even if nothing is
-> > connected to the second link), but this seems not correct.
-> > 
-> > We (Max in Cc here) noticed that this specific use case is broken on
-> > your downstream v6.6 TI branch.
-> 
-> What if you set "fw_devlink=off" kernel boot parameter?
+> That's not exactly my point. Becayse lan969x appears. I claim you use
+> incorrect name, so are you sure you do not use wildcards?
+> Best regards,
+> Krzysztof
 
-Hi Tomi
+Ahh.
 
-My overlay specifing a single link which did not work by default
-results in a working panel with "fw_devlink=off" on the cmdline.
+So the problem is the 'x' in lan969x, right? I think we have a habbit of
+documenting compatible strings like this in bindings. Anyway, what I can
+do is document the different part numbers in the bindings: lan9691,
+lan9692, lan9693, lan9694, lan9696 and lan9698.
 
-Max
-> 
->  Tomi
-> 
+/Daniel
+
 
