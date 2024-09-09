@@ -1,183 +1,309 @@
-Return-Path: <devicetree+bounces-101532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A4D79723C4
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 22:36:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AABEC9723D1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 22:39:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE9DF1F23D97
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 20:36:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 664EE284991
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 20:39:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E5AB18A92B;
-	Mon,  9 Sep 2024 20:36:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0F8818A939;
+	Mon,  9 Sep 2024 20:38:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="e9GOhW4a"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="CMLsXmZi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11011004.outbound.protection.outlook.com [52.101.65.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE349189F45
-	for <devicetree@vger.kernel.org>; Mon,  9 Sep 2024 20:36:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725914208; cv=none; b=BjNnLh9K4k9xyEnN3GDnZ5nHMGI2Ozq+WFEoKeVdj4VVfG+UMrn/lV1gEENBJPFWH5jA6p7nGj5fxUjod5c2gnmikarBrP7ZilGQBJ5YJyR5fSAMe+mvh58S699f5rShgJP0uu69iMKqZZ5VRE6xt/E2jmZrp4Ei3iHDuEkRduk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725914208; c=relaxed/simple;
-	bh=Yzro7utLjjy/Ud6rybm9pgqAO/Hl6TVb21JgRDGRqXs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CW+83FGSN/4jZRBhcTy/VHI+LgxwwV7Y/kclMjKmK01MoWNg/AYqc2gPw+P9ffWwxyq2o+6ompTbyH9/LfBIcNHnsIqCWzIcUBySILLxcZChEUdRC2bJJBgdHwpdWsbBFfVF9FbQPUn3OxUzhO7M99PD9dPyDtQrln/54k4C+fE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=e9GOhW4a; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 784192C03C3;
-	Tue, 10 Sep 2024 08:36:43 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1725914203;
-	bh=m+bTG75BqMIu+iCEQFO/NuATjbLFaetK4sxOKKWiy4o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=e9GOhW4aspaZIsw96UgiIxE3F3ZRAaP4YqVvl4GiEd60cQPpW9fuD7PjFVFO3r5Tn
-	 TTMU/L6rp7fZuH8OkeAPTKkKzwHWci4QWJtawuJ71dWo5ZtjIYJwt6X0DNoGr+KrCc
-	 OxVJ+nz7wriXWQKg0Xlue6kRn4B5xF0n+LrHHdyE7qSGXVogUw5xPJGInGwV/GDvVX
-	 FQ44HUi2B8Xp9mOZ6+UhFE7Vc/cdNp5fk6DgLY2q3Ue+CcuCYB5gn7wOI6WqTBVmVh
-	 ZDNglrj+omoVptWebVPULqtCVXQdC7xR8LZ36IPH7utQjZZWuoHar1myOIqdZ6BFhZ
-	 To85DdkyPGWsA==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B66df5c5b0000>; Tue, 10 Sep 2024 08:36:43 +1200
-Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 5CDFD13ED56;
-	Tue, 10 Sep 2024 08:36:43 +1200 (NZST)
-Message-ID: <01656780-0a90-4c7b-bedf-2e45992cd16c@alliedtelesis.co.nz>
-Date: Tue, 10 Sep 2024 08:36:43 +1200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C96618A931;
+	Mon,  9 Sep 2024 20:38:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.4
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725914305; cv=fail; b=kmhpESCUIUWoVg3rEzSdY6J7oeMObIJWzMq27MlInW8tHI/E65DQXkzE8fwJ4gy7MWDerMiDcjoTOE8wLpl3bORKnxHh3ljd5mum0NQcHb1NgGuEGo9m5X2BmKc11ULw44gso71Zf5g0H9EW/sdsNEmOs6W5pelSVmCcKGEwLu4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725914305; c=relaxed/simple;
+	bh=Qfac5kU2GDRBgClF5EhkseIVrxs/JAfkl2Sn0YrSjXA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=L8+A5ekcIpT0sm29UlwAEi1n53lYShFgolf82LjB7alQtezVipC8z6P/jhfnJCA7TVlPVkqBv4QmyZ4iK7WeBzumyQEgwTSU5g9U1Gr9DnxTVuhS8QFUefSUxSZQi8d6rNuJ6p4Fnlsk8HImTaM49Ga57ku6eyeJDmNYO6zsw3U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=CMLsXmZi; arc=fail smtp.client-ip=52.101.65.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pUCEas0dAR8XU4GzcBX8AigIkbaL/9FC8MvDM3BJVQhX93Zl/1IGtYUma0Lt00jGQMonIwsrN0JlGTNiTl+5xtjLFRO7Mj7PaeCjmn8sP1D3MZyZkc5X+mXQng+qMU6Rn7adXF4e9Gotll/xMb2YQlMjXuJOAOX7ab2sSw5QJe8IxXgLkqvG0TGsIEnW0NcUESpjhL/yV5a0C95MbZxd0bi59c47aXI1bGYau9bJg4aVIxsvnF1uEW4eDwFpEHf9r0QWw0Lshutvp9yjosKfH8sEZuAiNnAffJAMBrK6ZHcZVYaEUTkwZmuwfTFEzS0NfiymvMg5FpNCBWZBIBrVrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EcHsRXL2N8yDOwSplGftL7QZNCPTRYorlve6buR+ovM=;
+ b=CXfdKs8mP5CQ8fu2PzeWAjNId0//0fpVz5SwQwZ2lM3e2ptRlIt425w1/U5fdlGkZvXmsFERRvB07XeqWHnWdazo0Z/6Ao6jBvHoHQOo4Pn1oI5Upsr7a4HX4CUwPbmgx/x25eGXmSxUKuAnh0zC6gdyv3aYJCPj5+su1FBaeP09NQ0OefhtoalCmQszVjnuECftw17fyxRmxyrt2p3Xv6N8qjoVYR7UEOEPm5T/nKKAY5iX8uNidUB/twEwXrCDjeNOXKCmrMwGA+POwKM8PdNu7sDUpUDxk4+zqOcMY4iucdpTyboUt3uNJjuzfA3XkWbbhk57NRzVkEzylEeUKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EcHsRXL2N8yDOwSplGftL7QZNCPTRYorlve6buR+ovM=;
+ b=CMLsXmZimP7Om/oyzjgPTT4XqSTPfwG9vws1HMxmRVT4FxkVAPjwbQCAYfzcVuscwVmVEnzBf8uGq6UWzZIXXop5jm8fVfsvZZA70sF2pBjPB9C5/pTMuuHuRE/ktTUd167x5ULl4gxdryPBe8Rbd9wc3NHkBIhTD1BZAQTfq+IJJHCoXR9hfsc3EvPjsjFnAO1ImINV+jEYoDUnsbght5nsHfQZDvPu+GMyQWLQBEqhr4Zm3lDgUmgvqcru3DshKyIb3f/GW8IBpWy+5xelXd4QpL1KMAtL3ZGhis2t2EsOaquRtfugQu7/atnxXrKHE1uWlh24W+flbTUlUqDrNg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS8PR04MB7943.eurprd04.prod.outlook.com (2603:10a6:20b:2a1::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24; Mon, 9 Sep
+ 2024 20:38:18 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.7939.022; Mon, 9 Sep 2024
+ 20:38:18 +0000
+Date: Mon, 9 Sep 2024 16:38:10 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:CAN NETWORK DRIVERS" <linux-can@vger.kernel.org>,
+	"open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Cc: imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/1] dt-bindings: can: convert microchip,mcp251x.txt
+ to yaml
+Message-ID: <Zt9csuQwWomPqlqc@lizhi-Precision-Tower-5810>
+References: <20240814164407.4022211-1-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240814164407.4022211-1-Frank.Li@nxp.com>
+X-ClientProxiedBy: SJ0PR05CA0106.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::21) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add Realtek switch
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- tsbogend@alpha.franken.de, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-References: <20240909014707.2003091-1-chris.packham@alliedtelesis.co.nz>
- <20240909014707.2003091-2-chris.packham@alliedtelesis.co.nz>
- <63sbuzij27crjxv6d6qjblv55al5zk4ivsah4ji2kvddhbua57@xo4vt2tqs5cn>
-Content-Language: en-US
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <63sbuzij27crjxv6d6qjblv55al5zk4ivsah4ji2kvddhbua57@xo4vt2tqs5cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=KIj5D0Fo c=1 sm=1 tr=0 ts=66df5c5b a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=EaEq8P2WXUwA:10 a=62ntRvTiAAAA:8 a=gEfo2CItAAAA:8 a=6q6VGa3TjoECEa-skyYA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=pToNdpNmrtiFLRE6bQ9Z:22 a=sptkURWiP4Gy88Gu7hUp:22
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB7943:EE_
+X-MS-Office365-Filtering-Correlation-Id: 862909df-656c-4551-cc20-08dcd10f569c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|7416014|376014|1800799024|366016|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?ZIzKZhfWSGz3VosANPqPxJ0DiFuA/+GSIVlXUU4AxeA0i8uMKio8x+SXeE4U?=
+ =?us-ascii?Q?hkbb7E3X/bXfarC+4i7U/OYR6WLcgyhoKeJ6a1lOodiIRY/TGN/Vn51wRpG6?=
+ =?us-ascii?Q?2OHIYUhFelonBqwM6EpHanjiJhpsFbfyWy4wTA2rQmQvn/vRvmaNtcBt0Gmh?=
+ =?us-ascii?Q?zDzhBueRgBY34S+EMCrFQcJT2nvB+YqJKXQek2Yy646WAIUzJnwOpevweqow?=
+ =?us-ascii?Q?zXGWdL39yxj/PPU5zi9+eq7c/53J6OTcBVP3flMc65asIDCWIyUwHTLN4GXj?=
+ =?us-ascii?Q?3GJKBz8ZEoWVt9MSudul/0xAGG3CwYRO8Jq8l0XPTAnwxH06vHx1nhHtZbZj?=
+ =?us-ascii?Q?5cn5CxDxg7Gh2VtauWxHqOVgAXvVcWjtHcY9b6Bt32IXyvHXtfWXpYt7lynD?=
+ =?us-ascii?Q?ljQKxI68zY4ZHQa9HX98cvlghYmR3xlQMbocGuy/tRVRZfW6OZYAGvcSClp9?=
+ =?us-ascii?Q?PWxpyoQi6z40PMILanNtRnKYU5akIHqyRBUUJ29RcfPDQcuJvG2MzA3GROFt?=
+ =?us-ascii?Q?Lzv5Pbp4uvH8+uu/YqOztxLOh8L90KecgLzVLvolanPxT9KTyhPULZd7QdLn?=
+ =?us-ascii?Q?CiVMda5DDEdRQITJz69mXFmUIvxthUf1N2u/QVse/jyqN+nUPmrmOoCykvLx?=
+ =?us-ascii?Q?65rrlzM0vuDyHMDJ4xXpVX1aP7/BPdSNEejyqkATRwYsX73ICifeOLUV6rtY?=
+ =?us-ascii?Q?PMRWYRa0NB6mfeLlj5fI47z5OUA1BKZDk0ZS5hK4KuJi/jXef1wS8xSQMg0h?=
+ =?us-ascii?Q?nzfiqZwnddQa/4T+3wUhsa8n41g3nYM/R2eLMW96shQ429w2EvyACVvniW1m?=
+ =?us-ascii?Q?Gt7j9RYHQwKo2aiQ+dyhLAVLo+fvqqoLFDaWgucbg5Siaqyy48NXTYGQRWsk?=
+ =?us-ascii?Q?Cqkl3Gsudr1fys1dVPH7MT7g4gxR+i8Vn9b9jisRR36ftdfPOsoFk7tCv7nJ?=
+ =?us-ascii?Q?COd7KQxg10USZf73zTlfT4tDfHekogVgVUxLR/4EFmHxt6SO9hBZGjQWf4L7?=
+ =?us-ascii?Q?z80dCSRIxZGRtKiwl5A58aVWc1oVI3hexgOZhkh0V1LyeZ4b3MRPLJjpYAHg?=
+ =?us-ascii?Q?wFWRipHrV0TnV1waAthsGrnQmKsvR/jW82eDwT0HBC0qGk8SRyK8MDpzzXXL?=
+ =?us-ascii?Q?XqtxzZn4dzvlgYBE6cgCFM4DIM80/Qoi8Ec45feFA+Ea2WEm08gwKy4LlFC0?=
+ =?us-ascii?Q?Eec3QAxWH2Dhg0TKhgH0kD4LDqh7M5u5eW4EuuuqMxvT1Q5KjuyLsvYweUww?=
+ =?us-ascii?Q?SgyvyvKI6A+jMrUOB5lKUb/HSncl10paaETCFhE9R9EYH8Ys3Z7rrcR32pk4?=
+ =?us-ascii?Q?M4/Pumz8mCUFvrgVXVDOrbb1BkvcGGg1sF+rmAqjNu1N0BrAkWOnu1wbr47q?=
+ =?us-ascii?Q?xlKAEEo=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(376014)(1800799024)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?EMYsCEQv/zIyEZZ4XyPtSsbNYe3681rKCD8egbz3LuAXo1382iR/WHsF6nNn?=
+ =?us-ascii?Q?hyXfcu5sVLCxznYNgMA0prEnsdGzFRjNAr1SMRl9DbesKjFqd5290BbopSJz?=
+ =?us-ascii?Q?93Xv/xeu4FfuN+q2he1ltcNvivlWhCkWUqthWUCOJXuLNVa81Otk6fA8alyW?=
+ =?us-ascii?Q?3O0LMSrUgkOTG04pm2pb+qwEnciee8507OqWdbmXqHg2oUU+v7pyavffKJlN?=
+ =?us-ascii?Q?cKnO25D2q67i5mPUSnvp+VFT70yoVr2Qm4hWv9DFX3Reuw75HtyFxgatk1W/?=
+ =?us-ascii?Q?QQQ+cpfJjzsnYJ9coxv+rBtfgJBh97q+I7D+9V7RPwb436YMKBudsG1T/22b?=
+ =?us-ascii?Q?EdYJUIQmCYBh0VZxJY+hgriKqIEpnzAU9OhYoO7XOJpTrrDw20c+DEN5iRcQ?=
+ =?us-ascii?Q?WfmO7dEab/IJwahTeFL/17tnTUBjTU8AtoBL4tN0zMxE5Ar12A570z2UPU/Q?=
+ =?us-ascii?Q?ESzWoHWhJhIXmBPNgjO7Nfnkk5MXjDfGJ+tqsgHrr2b6xjFsV5Lb3h2nzX0r?=
+ =?us-ascii?Q?klsHMQlYo8GnDfAK/v5YgZELNPWeapqXnzpCNbm2FCYMN7lszit8IXh5DLnp?=
+ =?us-ascii?Q?GYCcBdn/XPKkJCrUK2w8pIbR/LzOO+d41hQqFdCvm+f7MSaKgNdvd/xcXoxx?=
+ =?us-ascii?Q?DTZPhli5diq2W4KJhf1useTn+Z7H5jBwd1RaNh78T5J+e5myZecFuwhm7UN4?=
+ =?us-ascii?Q?FxYaYnIUiIRjiU2wmpTHXbYBYeVxHH+WvU64aZI1j4/68VwHyTaVdE9ntfUN?=
+ =?us-ascii?Q?jJnS9AxgwmgcORe3dSW5SPQMWoZSy8bcRRyk6Q7NEMOogZhE5ljX+qE63WqH?=
+ =?us-ascii?Q?Xy+SBTAqBmE22ifC68nK2va91RsgS+t2/2QgNoLn4dtfi5otQb0nKi4W5k5m?=
+ =?us-ascii?Q?rtHiHpR++7ZQ342wkDrkbb7mQoJ1ubAu9DBhkWkGFzaooeOKQMFp1Cn5dAPj?=
+ =?us-ascii?Q?gZoswsvI4APMvS3cLQXRobMU4qdB2MMGODjGUifGkStFXWs3+zmLQpOAoLho?=
+ =?us-ascii?Q?HvXr+AVGzCVGYCWWfpyk4rPhL5b1Rs47oFpiDZezTMhN5NNp1H0H7ACC483V?=
+ =?us-ascii?Q?5auY2IXHJ+yGZCHmfDfCHPQOTkIFAWpR9ucJz+wru9woLkTSAi2AAdFluTOi?=
+ =?us-ascii?Q?7UahRydn76FMBE9M84B0cNpvGG6JqbXJESbhRz6FiKe6Rfx6CgcGvo1l0pBO?=
+ =?us-ascii?Q?9z9et/JhT8Nz9lSAXzKn4tcsz8mkKMvyd3okutfgELNbSV6Ax9/IYqA6179V?=
+ =?us-ascii?Q?Kr3/O+d0GKC5mi+dBJ7vZjjcDxJH15UQWYsEbu3CWc/yJp1mwAfMOQm12cwy?=
+ =?us-ascii?Q?HJ7qjR7q8JdLkiz9I9V4UNYenu4npaBBGXmkqLBy4iOuNyl1mI9NFWxnd6A9?=
+ =?us-ascii?Q?sR2WEE7KkU3mSIMsQTdqFkNfqHH43E4ZS3iRltz90RpEcMGEEGtJsbMj1nGP?=
+ =?us-ascii?Q?rO/NFRGCOgaiOhl13GAAF2bxsZqbb7alG1TZAZvf3yDLcipmBYOxbwQJ4hyK?=
+ =?us-ascii?Q?AeoWhQhIL+5fKob/EKzRhLVphpXWUYvKf2wucEuNbuKiMxrm0FBlTgEMLPBj?=
+ =?us-ascii?Q?piIF1nCW39D4LQmWrGM=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 862909df-656c-4551-cc20-08dcd10f569c
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2024 20:38:18.8621
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: SVdvTrNf/BuCAg2QEmwyGftPGqz/70EDYUdE2LolffZgj9041o11t3CK7Za+DRoFpBmTo4F7DKsf/86cTlI0qg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7943
 
-Hi Krzysztof,
-
-On 9/09/24 18:38, Krzysztof Kozlowski wrote:
-> On Mon, Sep 09, 2024 at 01:47:06PM +1200, Chris Packham wrote:
->> Add device tree schema for the Realtek switch. Currently the only
->> supported feature is the syscon-reboot which is needed to be able to
->> reboot the board.
->>
->> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
->> ---
->>   .../bindings/mfd/realtek,switch.yaml          | 50 +++++++++++++++++++
->>   1 file changed, 50 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/mfd/realtek,switch.yaml
-> Use compatible as filename.
-
-My hope was eventually that this would support multiple Realtek 
-switches. But sure for now at least I can name it after the one in front 
-of me.
-
+On Wed, Aug 14, 2024 at 12:44:06PM -0400, Frank Li wrote:
+> Convert binding doc microchip,mcp251x.txt to yaml.
+> Additional change:
+> - add ref to spi-peripheral-props.yaml
 >
->> diff --git a/Documentation/devicetree/bindings/mfd/realtek,switch.yaml b/Documentation/devicetree/bindings/mfd/realtek,switch.yaml
->> new file mode 100644
->> index 000000000000..84b57f87bd3a
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mfd/realtek,switch.yaml
->> @@ -0,0 +1,50 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://scanmail.trustwave.com/?c=20988&d=55fe5gyquxahZ_dJqiHMxmkDG8M1MWjoNtZN70yrng&u=http%3a%2f%2fdevicetree%2eorg%2fschemas%2fmfd%2frealtek%2cswitch%2eyaml%23
->> +$schema: http://scanmail.trustwave.com/?c=20988&d=55fe5gyquxahZ_dJqiHMxmkDG8M1MWjoNoNFvkz8nA&u=http%3a%2f%2fdevicetree%2eorg%2fmeta-schemas%2fcore%2eyaml%23
->> +
->> +title: Realtek Switch with Internal CPU
-> What sort of Switch? Like network switch? Then this should be placed in
-> respective net (or deeper, e.g. net/dsa/) directory.
-Yes network switch. But this is one of those all in one chips that has a 
-CPU, network switch and various peripherals. MFD seemed appropriate.
+> Fix below warning:
+> arch/arm64/boot/dts/freescale/imx8dx-colibri-eval-v3.dtb: /bus@5a000000/spi@5a020000/can@0:
+> 	failed to match any schema with compatible: ['microchip,mcp2515']
 >
-> Maintainers go here. See example-schema.
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
 
-Ack.
+Marc:
 
->> +
->> +description:
->> +  The RTL9302 ethernet switch has an internal CPU. The switch is a multi-port
->> +  networking switch that supports many interfaces. Additionally, the device can
->> +  support MDIO, SPI and I2C busses.
-> I don't get why syscon node is called switch. This looks incomplete or
-> you used description from some other device.
+Ping. Conor Dooley already acked it.
 
-Yes I did take a lot of inspiration from the mscc,ocelot. I am working 
-on more support for the switch and some of the other peripherals so I 
-figured I'd word it towards that end goal. If you prefer I could word 
-this more towards the one function (reboot) that is supported right now.
+Frank
 
-> But if this is DSA, then you miss dsa ref and dsa-related properties.
-
-So far I'm resisting DSA. The usage of the RTL9300 as a SoC+Switch 
-doesn't really lend itself to the DSA architecture (there is a external 
-CPU mode that would). I think eventually we'd end up with something like 
-the mscc,oscelot where both switchdev and DSA usage is supported. There 
-would be some properties (e.g. port/phy arrangement) that apply to both 
-uses.
-
-I have got a (kind of) working proof of concept switchdev driver which 
-has some of the support you've mentioned. It's not really ready so I 
-didn't include the dt-binding for that stuff in this patch.
-
->> +
->> +maintainers:
->> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - enum:
->> +          - realtek,rtl9302c-switch
->> +      - const: syscon
->> +      - const: simple-mfd
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  reboot:
->> +    $ref: /schemas/power/reset/syscon-reboot.yaml#
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - reboot
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    switch0: ethernet-switch@1b000000 {
-> Drop unused label.
-Ack.
+> change from v1 to v2
+> - Change maintainer to can's maintainer
+> - remove label 'can0' in example
+> - file name use microchip,mcp2510.yaml
+> ---
+>  .../bindings/net/can/microchip,mcp2510.yaml   | 70 +++++++++++++++++++
+>  .../bindings/net/can/microchip,mcp251x.txt    | 30 --------
+>  2 files changed, 70 insertions(+), 30 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/can/microchip,mcp2510.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt
 >
-> Best regards,
-> Krzysztof
+> diff --git a/Documentation/devicetree/bindings/net/can/microchip,mcp2510.yaml b/Documentation/devicetree/bindings/net/can/microchip,mcp2510.yaml
+> new file mode 100644
+> index 0000000000000..db446dde68420
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/can/microchip,mcp2510.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/can/microchip,mcp2510.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip MCP251X stand-alone CAN controller
+> +
+> +maintainers:
+> +  - Marc Kleine-Budde <mkl@pengutronix.de>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - microchip,mcp2510
+> +      - microchip,mcp2515
+> +      - microchip,mcp25625
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description: Regulator that powers the CAN controller.
+> +
+> +  xceiver-supply:
+> +    description: Regulator that powers the CAN transceiver.
+> +
+> +  gpio-controller: true
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - interrupts
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        can@1 {
+> +             compatible = "microchip,mcp2515";
+> +             reg = <1>;
+> +             clocks = <&clk24m>;
+> +             interrupt-parent = <&gpio4>;
+> +             interrupts = <13 IRQ_TYPE_LEVEL_LOW>;
+> +             vdd-supply = <&reg5v0>;
+> +             xceiver-supply = <&reg5v0>;
+> +             gpio-controller;
+> +             #gpio-cells = <2>;
+> +        };
+> +    };
+> +
+> diff --git a/Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt b/Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt
+> deleted file mode 100644
+> index 381f8fb3e865a..0000000000000
+> --- a/Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt
+> +++ /dev/null
+> @@ -1,30 +0,0 @@
+> -* Microchip MCP251X stand-alone CAN controller device tree bindings
+> -
+> -Required properties:
+> - - compatible: Should be one of the following:
+> -   - "microchip,mcp2510" for MCP2510.
+> -   - "microchip,mcp2515" for MCP2515.
+> -   - "microchip,mcp25625" for MCP25625.
+> - - reg: SPI chip select.
+> - - clocks: The clock feeding the CAN controller.
+> - - interrupts: Should contain IRQ line for the CAN controller.
+> -
+> -Optional properties:
+> - - vdd-supply: Regulator that powers the CAN controller.
+> - - xceiver-supply: Regulator that powers the CAN transceiver.
+> - - gpio-controller: Indicates this device is a GPIO controller.
+> - - #gpio-cells: Should be two. The first cell is the pin number and
+> -                the second cell is used to specify the gpio polarity.
+> -
+> -Example:
+> -	can0: can@1 {
+> -		compatible = "microchip,mcp2515";
+> -		reg = <1>;
+> -		clocks = <&clk24m>;
+> -		interrupt-parent = <&gpio4>;
+> -		interrupts = <13 IRQ_TYPE_LEVEL_LOW>;
+> -		vdd-supply = <&reg5v0>;
+> -		xceiver-supply = <&reg5v0>;
+> -		gpio-controller;
+> -		#gpio-cells = <2>;
+> -	};
+> --
+> 2.34.1
 >
 
