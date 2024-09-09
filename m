@@ -1,135 +1,152 @@
-Return-Path: <devicetree+bounces-101447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9241971DB7
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 17:13:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F3B1971DC3
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 17:15:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97E0F283CD2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 15:13:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2305CB23358
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 15:15:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4947820B35;
-	Mon,  9 Sep 2024 15:13:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE3F63B290;
+	Mon,  9 Sep 2024 15:15:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZVWS7fJj"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="cs9qV1fX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D2FD1CFBE;
-	Mon,  9 Sep 2024 15:13:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A0B383AB;
+	Mon,  9 Sep 2024 15:15:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725894812; cv=none; b=DsOVXBEG/cgvOq+5nNvwXrhwEdRtO5J2R8A9/az2qan0wnsvcKAONIkZezhRkstKc/xMo5gq/3aKYy5oIRMvgT6YbI3Tjq6oVm2JcVE+t4jadmqUUAKViNYKOq0L3fHVyyev263ZRsujtdiBlFjnToRSdDJE21nTF+mLKjb/cX0=
+	t=1725894923; cv=none; b=qBZsdwZw4H+zyN3a0eZIo39PGqP2XklmMA1dB4Q8OKNQgXGNzyxSypkrylThmoIikIo3tLvqusD/KX8OwkCbgNq1r6IW41Hok3/ct0TtYMF5M0H4yF6nBqZf0RTV5Xmpaf5xStlO8ctEUYi7kDUdalDiQC1G1Ifnds8WAawcr78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725894812; c=relaxed/simple;
-	bh=yV2uXKxMqi7mz1WN5z5wldbH9IOzkDhnMu2iCjQncXE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lBi/hniS5MksEQNH9YgCVGAE2hOq55b62kPF0PO20bPGs9TUYiz7qnQsWnqL2G3193n4wdBgRq9TWR632LjA2qPNv/emWS8YNZdt8ZuefkqFJe9Qe4s9HdoUaGSU06eKetrWSdBdyZZQ31vrTPqVg6MYLtFwkZHin5b5G3HZt24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZVWS7fJj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4081CC4CEC5;
-	Mon,  9 Sep 2024 15:13:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725894811;
-	bh=yV2uXKxMqi7mz1WN5z5wldbH9IOzkDhnMu2iCjQncXE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZVWS7fJjWHCb2XkF55GdXZwdBa+k3fkK+cw4UAr3EqvXyTfI5HLn3r58KlFT/WDsV
-	 PbYkTrZ4q73wlMOAtln4UfzZhSNyw09TeVtwWa9cZstso/O6rFXy/25dKOep/Z+Lqg
-	 2/ryq9Rmmkg/IT5inkt7UJmyMX4C4VjXEEqEufpvMSldUx7grYFUZC95ESgJAwIzqp
-	 Lfbvi7+DUpG3/H1Hdd1NyUrzTIdwyD9Taohfem49TD5DdHFTf1Sos/GP3wif/E8ULa
-	 6UG4dRuiD7mru0RBVt1NTuKA9fFOwcen268rsBW+UcX49ttd79K4myATTYwdclAO0M
-	 hTWfZ2LATQ6Ow==
-Date: Mon, 9 Sep 2024 17:13:28 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Sandy Huang <hjc@rock-chips.com>, 
-	Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
-	kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>, 
-	Luis de Arquer <ldearquer@gmail.com>, Algea Cao <algea.cao@rock-chips.com>
-Subject: Re: [PATCH v6 1/3] drm/bridge: synopsys: Add DW HDMI QP TX
- Controller support library
-Message-ID: <20240909-horned-congenial-curassow-ebc5fa@houat>
-References: <20240906-b4-rk3588-bridge-upstream-v6-0-a3128fb103eb@collabora.com>
- <20240906-b4-rk3588-bridge-upstream-v6-1-a3128fb103eb@collabora.com>
+	s=arc-20240116; t=1725894923; c=relaxed/simple;
+	bh=7eBDbIZBoCNdgrtkB2Ysz8rn1Ya0WQpeA0tUMqyjFIg=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=m/NQP7Nc7juO52z9q5PsBv3pOTOFs+KDDkGJ4e7N4wCb87DpVGHFxkvMiTkWebel9zzaNlDPgSwQg2CoeEgw/fPm/mVabHngo1MsfX9utEed/FjcUQkveVe+AJQQPJ83W99LwXK1ShVI4jLIyZGmyR9UujQy7HCYELQkP/Q0/jo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=cs9qV1fX; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1725894922; x=1757430922;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=7eBDbIZBoCNdgrtkB2Ysz8rn1Ya0WQpeA0tUMqyjFIg=;
+  b=cs9qV1fXyczDsAn7EpX42DWwuVE1knwIqj/B8OnAg+AxlRyCF94B1+rk
+   TkWuFi0ZJTLX1b3n4HwZROCDJQCoeH7dO2TQPkQXEgOQvnUi0tRnjeXyD
+   +suhHylim12vAzAZyhrBLP+L5kp1X66GxoZVzK+F+LavZIK+KVCFClaGB
+   xl67/RJ8TuZyjAj6gx5KRrXii+wTUhLDUy1mGDT2zS6iNQxkvbXp6NQxQ
+   s4TxNI8Fou5dLReXKO0zJJ+LGMmNWPxeyi1UboCVIiq3ZvCTmMF2p2kb+
+   ybiWqf+/FIoyNnoJl1QcXMqxNZxbUmB51o3D3tsOE9yH0ZMcJJn1HTiDa
+   A==;
+X-CSE-ConnectionGUID: /ltMKKTeRqSXWxXLFfJz/g==
+X-CSE-MsgGUID: FiYGY5+RRX+z7Dxmn8NWFw==
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; 
+   d="scan'208";a="31514493"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 Sep 2024 08:15:21 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 9 Sep 2024 08:14:54 -0700
+Received: from DEN-DL-M70577.microchip.com (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Mon, 9 Sep 2024 08:14:52 -0700
+From: Daniel Machon <daniel.machon@microchip.com>
+Subject: [PATCH v2 0/9] phy: sparx5-serdes: add support for lan969x serdes
+ driver
+Date: Mon, 9 Sep 2024 17:14:40 +0200
+Message-ID: <20240909-sparx5-lan969x-serdes-driver-v2-0-d695bcb57b84@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="a6pjesfz3btllyif"
-Content-Disposition: inline
-In-Reply-To: <20240906-b4-rk3588-bridge-upstream-v6-1-a3128fb103eb@collabora.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOAQ32YC/32OQQ7CIBREr2JY+w2lLQFX3sN0QQHlJxaajyE1T
+ e8urXuXL5l5MyvLntBndj2tjHzBjClWEOcTs8HEpwd0lZngouNKCMizoaWHl4la6gVq3fkMjrB
+ 4AtUq7UbntFGaVcVM/oHLob8PlUeTPYxkog27dDIY91jA/E70OU6UZg//9jSX//dKAxyUky2XT
+ Wd7ZW4TWko24HyxaWLDtm1fMOtkyOMAAAA=
+To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+	Lars Povlsen <lars.povlsen@microchip.com>, Steen Hegelund
+	<Steen.Hegelund@microchip.com>, <UNGLinuxDriver@microchip.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-phy@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+X-Mailer: b4 0.14-dev
 
+The lan969x switch chip (upstreaming efforts beginning soon) has ten 10G
+SERDES'es which share the same features and data rates as the Sparx5 10G
+SERDES'es. Lets take advantage of this and reuse the existing SERDES
+driver for lan969x.
 
---a6pjesfz3btllyif
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+In order to do this, we add a new indirection layer to the register
+macros, that takes register differences into account. Additionally, we
+add driver match data for other differences that we need to handle.
+These other differences are handled by a combination of constants (eg.
+the number of SERDES'es), ops and if's
 
-Hi,
+Patch #1 adds support for match data.
 
-On Fri, Sep 06, 2024 at 04:17:40AM GMT, Cristian Ciocaltea wrote:
-> +static enum drm_connector_status
-> +dw_hdmi_qp_bridge_detect(struct drm_bridge *bridge)
-> +{
-> +	struct dw_hdmi_qp *hdmi = bridge->driver_private;
-> +	enum drm_connector_status status;
-> +
-> +	status = hdmi->phy.ops->read_hpd(hdmi, hdmi->phy.data);
-> +
-> +	dev_dbg(hdmi->dev, "%s conn=%d scramb=%d\n", __func__,
-> +		status == connector_status_connected, hdmi->scramb_enabled);
-> +
-> +	if (hdmi->scramb_enabled) {
-> +		cancel_delayed_work_sync(&hdmi->scramb_work);
-> +
-> +		if (status == connector_status_connected)
-> +			dw_hdmi_qp_check_and_set_scramb(hdmi);
-> +	}
-> +
-> +	return status;
-> +}
+Patch #2 adds a struct to handle constants and adds a constant for the
+number of SERDES'es.
 
-Unfortunately, that won't work. The HDMI Spec has (HDMI 2.0, Section
-6.1.3.1 - Scrambling Control):
+Patch #3 adds a constant for the number of CMU's
 
-The minimum time period between the write to the Scrambling_Enable bit,
-and the transmission of a scrambled video signal is not specified;
-however the Source shall not begin transmission of a scrambled video
-signal before writing a 1 to the Scrambling_Enable bit. The maximum time
-period between the write to the Scrambling_Enable bit and the
-transmission of a scrambled video signal shall be 100 ms.
+Patch #4 adds a struct for ops and adds a function for setting SERDES
+type.
 
-So you need to disable the output and enable it again.
+Patch #5 adds a function for getting the number of CMU's.
 
-vc4 does just that, you can have a look here:
-https://elixir.bootlin.com/linux/v6.10.9/source/drivers/gpu/drm/vc4/vc4_hdmi.c#L410
+Patch #6 adds register macro indirection layer.
 
-Maxime
+Patch #7 adds SERDES target types (eg. Sparx5, lan969x) to be used for
+branching out based on the target.
 
---a6pjesfz3btllyif
-Content-Type: application/pgp-signature; name="signature.asc"
+Patch #8 adds support for lan969x in the Sparx5 dt-bindings.
 
------BEGIN PGP SIGNATURE-----
+Patch #9 introduces the new lan969x SERDES driver.
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZt8QmAAKCRAnX84Zoj2+
-djUdAYDRdEgSW7Wj/UA+T/XsaiAocjWHwnktCrXecrwrTQQLmwTpGoDKU6nmsxBR
-eU74UeEBfiF7DgCZ3hfYdjQvzGKKyzvQQQitqxvSxT4+rBQyGtUKC89mLd+1wOlo
-uzb+gTqbBA==
-=hgwR
------END PGP SIGNATURE-----
+Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
+---
+Changes in v2:
+- Changed the subject and commit description.
+- Added compatible strings for all lan969x SKU's in the dt-bindings.
+- Got rid of example in dt-bindings.
+- Added new compatible string: lan9691-serdes to driver.
+- Link to v1: https://lore.kernel.org/r/20240906-sparx5-lan969x-serdes-driver-v1-0-8d630614c58a@microchip.com
 
---a6pjesfz3btllyif--
+---
+Daniel Machon (9):
+      phy: sparx5-serdes: add support for private match data
+      phy: sparx5-serdes: add constants to match data
+      phy: sparx5-serdes: add constant for the number of CMU's
+      phy: sparx5-serdes: add ops to match data
+      phy: sparx5-serdes: add function for getting the CMU index
+      phy: sparx5-serdes: add indirection layer to register macros
+      phy: sparx5-serdes: add support for branching on chip type
+      dt-bindings: phy: sparx5: document lan969x
+      phy: lan969x-serdes: add support for lan969x serdes driver
+
+ .../bindings/phy/microchip,sparx5-serdes.yaml      |  17 +-
+ drivers/phy/microchip/sparx5_serdes.c              | 195 +++++-
+ drivers/phy/microchip/sparx5_serdes.h              |  44 +-
+ drivers/phy/microchip/sparx5_serdes_regs.h         | 746 ++++++++++++++-------
+ 4 files changed, 706 insertions(+), 296 deletions(-)
+---
+base-commit: 221f9cce949ac8042f65b71ed1fde13b99073256
+change-id: 20240822-sparx5-lan969x-serdes-driver-8389dbdd9a89
+
+Best regards,
+-- 
+Daniel Machon <daniel.machon@microchip.com>
+
 
