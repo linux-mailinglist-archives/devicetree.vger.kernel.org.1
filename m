@@ -1,65 +1,58 @@
-Return-Path: <devicetree+bounces-101513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC16797226F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 21:16:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8753972280
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 21:23:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE7CA1C22251
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 19:16:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64DDAB224B9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 19:23:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2204216EB55;
-	Mon,  9 Sep 2024 19:16:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FwWJEjJm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92ECA189F47;
+	Mon,  9 Sep 2024 19:23:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9112210EC;
-	Mon,  9 Sep 2024 19:16:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F10B17C7D5;
+	Mon,  9 Sep 2024 19:23:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725909392; cv=none; b=mCS39qeMDHUNcp63+0QVjuOkiXgIuM9QL05qNpYGF47pArwZgSRiEQI0x/hHev9bP8pFWuN5doJ9EqNYN3/DBDZcmSd53UniDvsZuEySxT82VHm+lFbpFq3sjYGitCNCQiq33/FFl3UvhNv4rDaMGN3/6nW18EBviVoDMJBQagw=
+	t=1725909816; cv=none; b=k6j/yrpsWWugltkxg9rR1ZWosfR6Nqp3j8oZG4n0R0jdjh2xAdnnZQk4+4xxjId+Cz+2bDD3oaW9k/55S7PrWAlDCI6Yl1LUnfsAomlFnajJJieUeMuSHiOiAwANYzYMj0NcZcSvq83j+j656Oy4ZgsY2K4Q81x2Kxw71mE0PwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725909392; c=relaxed/simple;
-	bh=MqYZtOzr+xyINDrpQoCb1CSGseIhFZ2oocZhQDmUqS0=;
+	s=arc-20240116; t=1725909816; c=relaxed/simple;
+	bh=u2RN3vQAYk/XvwmBVDV7ioRu8REE5BqsQ8i7L2NZpoo=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cPohUY4kTGb045pjSO7mUE/n9ZCDZHrX+REP/n0yGiRlWgn9n5jusmqOdnm2dJ5cKFFJbz1qNh269R8rnE+g8Ae/WCldcKMBlzHIHFZZPCccTzKZuK1FpESug219kGLiDpWD/HF097Kiwso2wMkIyITY0Ba4bXzMZ3oUTXP/u+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FwWJEjJm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83C8CC4CEC5;
-	Mon,  9 Sep 2024 19:16:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725909390;
-	bh=MqYZtOzr+xyINDrpQoCb1CSGseIhFZ2oocZhQDmUqS0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=FwWJEjJmE+p4Sj9E1d+dv3yYbUyGEx/WBf69zDLj5US3R+6cafx1iU4hq7EEyqu76
-	 xxJb+rFFqVhdFTs1E6Wr+l3GpUNk6rw6sqAeiqKS9tx8RMKblMgEWUXl8rjv3Bce3u
-	 +l21qvvsHeVqhJD33Uw29E8vK3G/zljhN9ucRAGMwv1SpBo4WeMmQ9UL0xX8OcQNGV
-	 1MkK/Kz/kU1E/fTc1an9Hu2A7h+kgWXyYq0q/OtAy8JkjD2zpFRO5kh9JaNoyLdmaI
-	 Z+nHGDH0BD45pm22v7O30fvd343YY2KuOd4dAVz+WOKVwHKjyQd16NB/AFLioZgtne
-	 wGqULG+T76kiw==
-Date: Mon, 9 Sep 2024 20:16:21 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Olivier Moysan
- <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, David Lechner
- <dlechner@baylibre.com>
-Subject: Re: [PATCH v2 1/9] dt-bindings: iio: dac: ad3552r: add io-backend
- property
-Message-ID: <20240909201621.31bdca1a@jic23-huawei>
-In-Reply-To: <be279b0f-8337-4d3b-87c2-f426ddb302e3@baylibre.com>
-References: <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-0-87d669674c00@baylibre.com>
-	<20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-1-87d669674c00@baylibre.com>
-	<20240908132925.331c5175@jic23-huawei>
-	<be279b0f-8337-4d3b-87c2-f426ddb302e3@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	 MIME-Version:Content-Type; b=tuQju5B761Vh1TUtqF9kxls5dq+gQ8Uyi8gnycKQ0gyWnAp+eNtN6ufJUkU+q83sJxKx4K5KpvnDY0ZNQB05gbIHuT7tuRJVA07+qajLgM2XVxQnY3Mwmh0wNkXJpLT2pJC+BHXhL7hVYNXWao0lakknO9Fcafl38hnwuYYwEzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3EDBF106F;
+	Mon,  9 Sep 2024 12:24:02 -0700 (PDT)
+Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 71BF83F73B;
+	Mon,  9 Sep 2024 12:23:29 -0700 (PDT)
+Date: Mon, 9 Sep 2024 20:23:26 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Sam Edwards <cfsworks@gmail.com>
+Cc: bigunclemax@gmail.com, anarsoul@gmail.com, aou@eecs.berkeley.edu,
+ conor+dt@kernel.org, contact@jookia.org, cristian.ciocaltea@collabora.com,
+ daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
+ jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, lukasz.luba@arm.com, mkl@pengutronix.de,
+ palmer@dabbelt.com, paul.walmsley@sifive.com, rafael@kernel.org,
+ robh+dt@kernel.org, rui.zhang@intel.com, samuel@sholland.org,
+ tiny.windzz@gmail.com, wens@csie.org
+Subject: Re: [PATCH v6 3/3] riscv: dts: allwinner: d1: Add thermal sensor
+Message-ID: <20240909202326.59927766@minigeek.lan>
+In-Reply-To: <08466bb0-4306-4941-97e1-e62ba07d8ea2@gmail.com>
+References: <20231217210629.131486-4-bigunclemax@gmail.com>
+	<08466bb0-4306-4941-97e1-e62ba07d8ea2@gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,50 +62,28 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Mon, 9 Sep 2024 13:39:26 +0200
-Angelo Dureghello <adureghello@baylibre.com> wrote:
+On Mon, 9 Sep 2024 10:16:56 -0700
+Sam Edwards <cfsworks@gmail.com> wrote:
 
-> On 08/09/24 2:29 PM, Jonathan Cameron wrote:
-> > On Thu, 05 Sep 2024 17:17:31 +0200
-> > Angelo Dureghello <adureghello@baylibre.com> wrote:
-> >  
-> >> From: Angelo Dureghello <adureghello@baylibre.com>
-> >>
-> >> There is a version AXI DAC IP block (for FPGAs) that provides
-> >> a physical bus for AD3552R and similar chips. This can be used
-> >> instead of a typical SPI controller to be able to use the chip
-> >> in ways that typical SPI controllers are not capable of.
-> >>
-> >> The binding is modified so that either the device is a SPI
-> >> peripheral or it uses an io-backend.
-> >>
-> >> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> >>   
-> >>   required:
-> >>     - compatible
-> >> -  - reg
-> >> -  - spi-max-frequency  
-> > Sort of feels like both reg and spi-max-frequency
-> > are valid things to specify.  
-> 
-> This specific backend IP generates a fixed non-configurable clock
-> frequency, so i don't think the spi-max-frequency is needed.
-Ah fair enough.
-> 
-> 
-> > Maybe we have an excellent IP and dodgy wiring so want
-> > to clamp the frequency (long term - don't need to support
-> > in the driver today).
-> >
-> > Maybe we have an axi_dac IP that supports multiple
-> > front end devices?  So maybe just keep reg?  
-> 
-> yes, this is what i am wondering now too, i simplified with just one
-> frontend node, are multimple frontends (and so reg property) needed ?
-It does little harm to have one. So I'd say keep it as required.
+Hi,
 
-Detection of what is required should be based on something more
-specific than reg being there or not.
+> Hi Maksim,
+> 
+> Apologies if I have failed to find a v7 of this patch in my searching, 
+> but I'm seeing that patch #3 here was never applied, so Linux still does 
+> not enable the thermal sensor in these chips. I just thought I'd give 
+> you a heads-up in case you weren't aware. :)
 
-Jonathan
+There is an unaddressed comment on this patch: to remove the "disabled"
+status line. Sam, feel free to fix this and send the patch again,
+unless Maksim beats you to it.
+
+Cheers,
+Andre
+
+> 
+> Thanks for all your hard work,
+> Sam
+> 
+
 
