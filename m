@@ -1,48 +1,56 @@
-Return-Path: <devicetree+bounces-101394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D39971877
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 13:42:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB71997187D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 13:44:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AE331F233FE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:42:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E74A81C208DB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:44:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A8CE1B583E;
-	Mon,  9 Sep 2024 11:42:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C3BB1B5EAA;
+	Mon,  9 Sep 2024 11:44:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GgLTtOu3"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WZEDz6fl";
+	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="aqfDUh0M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from a7-40.smtp-out.eu-west-1.amazonses.com (a7-40.smtp-out.eu-west-1.amazonses.com [54.240.7.40])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D70BA1B3B2B;
-	Mon,  9 Sep 2024 11:42:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A1E41B5EA1;
+	Mon,  9 Sep 2024 11:44:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.40
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725882158; cv=none; b=J89eWs3Eyre3Pw+0avV7r+xeXLkYrH0OIcZSjHRHjUkuGEmSnOWzViWbU4W6gjlSRa45dKLLtRthXBDhSYahrVEGuvAygvthmlAHQy1YlQC/vM4z8GfgMt9nL6gG6kQ92oVu5+MGzfsRouKYCeGQJNFImRRAx4KQLyhiveySC4U=
+	t=1725882249; cv=none; b=d4fk4XA5Ru3hiBIYPXGXW0m1GM2+pwU3vJOTsqqaiC3apkJ9EuPph/DF85AiRnXsmMnJRdWw/HuyunpoYAJ5qcHuKGo8pe+gB5gGzbbxX00nkW5TnksIlioafAK0P1urkzrXDOKuMIpMuvbRn6rAGpvFA+1xqqg+jo3VMNdRZoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725882158; c=relaxed/simple;
-	bh=jTS2duUuelFUEWL5W5blm09+GDl7fbsvZPrsW5wOvf4=;
+	s=arc-20240116; t=1725882249; c=relaxed/simple;
+	bh=5h1cpryF4X32+0kSthzAIdsn9OIb6lI/YBijLBKiv84=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jNX2QZteE0Obc5Ci5fLFjw+3SYNJOHO3iGFO1cnP2gTazuPN7dv8eRAvGACJOgBs5JcNM3y24gldeww1NDOaR2vctShvn77gAfJZz7QDL/q5YKhX5fR3naIPXi8A0GCRngxw7lQP6JM9Xeh7wMbVOW7FJ7GHJamlyUVxKLUBHkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GgLTtOu3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 076EFC4CEC6;
-	Mon,  9 Sep 2024 11:42:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725882158;
-	bh=jTS2duUuelFUEWL5W5blm09+GDl7fbsvZPrsW5wOvf4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GgLTtOu3hlULQXhk3zpAr0M+qWb+zegffj8FHoJizVNaE/x1g149r3PJZZkO9LiZy
-	 r1VGtXbUETPwqFJGWy8Q/UAyMVASVZEO9k5s0Ai33qyCaPpy5oUcfjfGX0HF1PDHSz
-	 224Q47HIfwPWJfhS02fLl0aMQ+OyRYLvrN0/+VWKph9KbiKZxAFGg5UNxV7r2jwwfy
-	 /6KdwSQf8er4KU6F/OHA0U3+VhZaJG13dSCMV7Vm3NN4u05KTwsNityAJlaVJn0uBT
-	 tk3l9D/WEnbohHT3R0WbLcOKL9iFMVVJ2g1zKQOSONiZDbsRYCjZ52K+3QEiPbmpK0
-	 Ui083/YGRKMzQ==
-Message-ID: <b5b540f7-d26f-4529-8066-506aa02a0654@kernel.org>
-Date: Mon, 9 Sep 2024 13:42:34 +0200
+	 In-Reply-To:Content-Type; b=Cx8Flbw8Eg6AqI6HYTpYbCV9agQemkXhrGOw8VWpkdB0clZRh6EKpfwcBEFeqjhtNAQYyLYXfnJx4HPcu+RWu7pDUHBk5sD1PaQBizSEbm7yKtbm5nTafqvTNoh77T/QWqvfKIvO10U4SdUssbg2RrS/gjcN7v8WUZ/18k+1C1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=WZEDz6fl; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=aqfDUh0M; arc=none smtp.client-ip=54.240.7.40
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazonses.collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1725882246;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding;
+	bh=5h1cpryF4X32+0kSthzAIdsn9OIb6lI/YBijLBKiv84=;
+	b=WZEDz6flt5zc6e1H+MfzCf0VzfUJif6uzxLxPeAbEIqAoD2grIQzhl0k8zo9w+Su
+	QjkUXA2ATRJSi27q24vxAfnyJdi2aoZ2SWsVSwySptjYOUgjAUO5fH4LDsYivk04B9h
+	oeUfsiPqUOuHw7C+/OUMnPtR/oopWKjSIdbT8MuVGq1cIWLuj03zA4liqnOmqhu+iEd
+	DUDVJDPXv/YqDO5IhF3uG4m1WwJ4Uk+lTYlMt0VumUVlR5JuNCnswgjwDGA/zj8/KgT
+	xt9KNdelTtevLlrUo5DSXVoaE8ihyinqBvvUESl7Kh4IdVGikgTDlBU6kPDjl58xagx
+	PQIT9E9IWg==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1725882246;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID;
+	bh=5h1cpryF4X32+0kSthzAIdsn9OIb6lI/YBijLBKiv84=;
+	b=aqfDUh0MY3otv0eaAQ0v+Ci0rK15hWc+qXQ6RTFFOpOdDx+KnE8iqPkEL1532j4b
+	b1hnb5MXs1Dzrgxu3c7iuKmxQDk93TsC2zuQtDQNq/QY/FO+NKESdJae48AhRMCPsFf
+	4/gA67ah9EkB65H7z8cVeXjWGM7g8bR2EvfKXhYg=
+Message-ID: <01020191d6992288-f834e61d-ad1d-4de7-90b4-77525530532c-000000@eu-west-1.amazonses.com>
+Date: Mon, 9 Sep 2024 11:44:05 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,80 +58,50 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/13] arm64: dts: mediatek: mt8188: Add CPU performance
- controller for CPUFreq
-To: Fei Shao <fshao@chromium.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20240909111535.528624-1-fshao@chromium.org>
- <20240909111535.528624-2-fshao@chromium.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 0/4] arm64: dts: mt8183: Add i2c-scl-internal-delay-ns
+To: Hsin-Te Yuan <yuanhsinte@chromium.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	Hsin-Yi Wang <hsinyi@chromium.org>, 
+	Enric Balletbo i Serra <eballetbo@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, 
+	Daolong Zhu <jg_daolongzhu@mediatek.corp-partner.google.com>
+References: <20240909-i2c-delay-v1-0-4b406617a5f5@chromium.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240909111535.528624-2-fshao@chromium.org>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20240909-i2c-delay-v1-0-4b406617a5f5@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
+X-SES-Outgoing: 2024.09.09-54.240.7.40
 
-On 09/09/2024 13:14, Fei Shao wrote:
-> Add performance controller node and performance-domains properties for
-> CPUFreq support on MT8188 SoC.
+Il 09/09/24 09:29, Hsin-Te Yuan ha scritto:
+> Add i2c-scl-internal-delay-ns for each device.
 > 
-> Signed-off-by: Fei Shao <fshao@chromium.org>
+> Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
 > ---
+> Daolong Zhu (4):
+>        arm64: dts: mt8183: fennel: add i2c2's i2c-scl-internal-delay-ns
+>        arm64: dts: mt8183: burnet: add i2c2's i2c-scl-internal-delay-ns
+>        arm64: dts: mt8183: cozmo: add i2c2's i2c-scl-internal-delay-ns
+>        arm64: dts: mt8183: Damu: add i2c2's i2c-scl-internal-delay-ns
+> 
+>   arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts  | 3 +++
+>   arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dts   | 2 ++
+>   arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts    | 3 +++
+>   arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel.dtsi | 3 +++
+>   4 files changed, 11 insertions(+)
+> ---
+> base-commit: ee9a43b7cfe2d8a3520335fea7d8ce71b8cabd9d
+> change-id: 20240909-i2c-delay-6d202918ee0f
+> 
+> Best regards,
 
-Order of these patches is not helping. You mix new features with fixes
-and bindings.
 
-Please split fixes from the rest. Bindings are expected to be first in
-the series.
+For the entire series:
 
-Best regards,
-Krzysztof
-
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
