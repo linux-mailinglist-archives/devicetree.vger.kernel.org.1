@@ -1,107 +1,161 @@
-Return-Path: <devicetree+bounces-101294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FB929713EC
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:36:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84C7E9713F0
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:36:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45DD31F276AB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:36:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07E6A1F27666
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:36:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4230C1B29D9;
-	Mon,  9 Sep 2024 09:35:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7391F1AE860;
+	Mon,  9 Sep 2024 09:36:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XKUEkF6n"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="U1ctQX5e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-183.mta1.migadu.com (out-183.mta1.migadu.com [95.215.58.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E4B1AE860;
-	Mon,  9 Sep 2024 09:35:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C04011B2EE6
+	for <devicetree@vger.kernel.org>; Mon,  9 Sep 2024 09:36:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725874520; cv=none; b=sc47RMXTpGS+olgRH63FNmFcrGbZqYFDibghU9vmYmcLjdrMLrqpa3rUbmzmrISF4D3Qx5TBM2wWlr6VGgdNeOKz9OnkIipUXw4ngsTmNFIfiMV8e62IRvU6PoJBkFuiW4wdmsXJeTfrsqzj4X1Fa8dY50yygod38ha+485t4M4=
+	t=1725874595; cv=none; b=m5fBoTJTIh2hYpFbFBbzHe6JCD4vbJvrTCzxUmYhDDTs4zrHJlm+GRHW1WRz0cvt2JpB38wBZmtDlEIo9P6yOsXYRbtuYoVDCT/P0wcWZHgNRtEQ7UWs8JhVVHzRDw7S+7DTpSr745DWdbZOYzkn9llBCRGQWRZGnO8rdvrLBDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725874520; c=relaxed/simple;
-	bh=iIyFNvwIG1Fw7RLDG38tcwNwZ7jG3tyy1/sydkiK+WA=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=kWFyCmL81Z2lpHbZTt+L7eP4SXdW61KrftSvVXJCS0S7ZJZ2dEAy07yahapaMN9uguqNqmzPB7bB6w+jR9D8/OYrQog6TJ3Itcw7doXKiIMFjJshBXC/B7UAeWN2NjhPCqDOHFC/iVagNQaHRX0wnXrZ8aqyiyBTAK6hIunK2FM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XKUEkF6n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CD25C4CEC5;
-	Mon,  9 Sep 2024 09:35:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725874519;
-	bh=iIyFNvwIG1Fw7RLDG38tcwNwZ7jG3tyy1/sydkiK+WA=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=XKUEkF6n6kVkzicmCdmhKOwsRez695tp1Pa+jluYyL6jZMw4TKP8RVR/XimidPvPL
-	 2XBw4ZDmcM8nXwbF/3eG8cMzlLCB/QUO/Z8zDdUl1/G4ZvXQ9KhQY6HbM+xqS6o+Z9
-	 /MHFJjRVf3RS3HE62uUM29pssK8XBkWbz6pb5O6OinRH/trj5uprwEyG2dzk/QNxpa
-	 gSM0x+bgcbngaB+8H5J70Fi6WTD90Tij/7KOjHFE3168R7Rcde3vZQcrPiLoMYO4qn
-	 KBmX8S4zPavEjCjbRPTnCfOyoy39MC+VnQY0rcfPrfHIWSL6Krif89VetMzYSNlEm7
-	 MwUkjgO+29UHw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-wireless@vger.kernel.org,  Ajay Singh <ajay.kathat@microchip.com>,
-  "David S. Miller" <davem@davemloft.net>,  Adham Abozaeid
- <adham.abozaeid@microchip.com>,  Alexis =?utf-8?Q?Lothor=C3=A9?=
- <alexis.lothore@bootlin.com>,  Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-  Conor Dooley <conor+dt@kernel.org>,  Eric Dumazet <edumazet@google.com>,
-  Jakub Kicinski <kuba@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  Rob Herring
- <robh@kernel.org>,  devicetree@vger.kernel.org,  netdev@vger.kernel.org
-Subject: Re: [PATCH v4 5/5] wifi: wilc1000: Add WILC3000 support
-References: <20240829004510.178016-1-marex@denx.de>
-	<20240829004510.178016-5-marex@denx.de>
-Date: Mon, 09 Sep 2024 12:35:14 +0300
-In-Reply-To: <20240829004510.178016-5-marex@denx.de> (Marek Vasut's message of
-	"Thu, 29 Aug 2024 02:45:03 +0200")
-Message-ID: <87ed5tgofh.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=arc-20240116; t=1725874595; c=relaxed/simple;
+	bh=z5/BGydgdEnhBJZo1+Hv7AYPwWMJEANcKtIyFwyHm8c=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=napMZTBR9E/7UhyNyaa4j4EblJrr6OtCQ8i7l7xCnQI4nMNHeuhOZvs8Vz77IRzn5blxackD5dyshWDRZQ+JLCPKLMCJCjyohara+vc1XMKA1g3bi2SRB4fp7WulDXUqNIJvgHBECDST3mkGxC/5zpH4399ZFhupWodSsX6+Z/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=U1ctQX5e; arc=none smtp.client-ip=95.215.58.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1725874588;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ac7MnXk0+4OmEaGl+o2m4y/0M5iH7c+3GKkl4Qy3D8A=;
+	b=U1ctQX5eIeSZpzL1FGOk+YNq1zfqhAuIOYZnZk4KkZeMNWuidAVb0ZgcLHt3miY80lhy3h
+	N2+P20Z6umpmoxsROgk+CpQp0Ti6yzJWVcaQbzXjVYPTlE76xnPUMHDNsBIOnA4EOMdbTi
+	THbjO7xFXzRxHPYbD5S2Qe+nEbWOYAoFn1zgj2mtmpyF9m491GZOCkH+3zHw4BwCGQmx05
+	ox/AUJvJnH4OulTrG+t2f/zonHSyo2pjhgY5h97NVrxiXw3t55o7lLDK1MzF8jFQbkN3d1
+	xctqBIVEWLNbfql6B43xP4nZe3k8Df2lsVV7vTOfxG+D3sdTzI6kx9lffNlERA==
+Content-Type: multipart/signed;
+ boundary=8c1b658f7c448cb5c0b613f89153b15bab673f392c82b551568fd1d1d6ee;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Mon, 09 Sep 2024 11:36:14 +0200
+Message-Id: <D41NH5VO0A7T.26F04WDY1UTCR@cknow.org>
+Cc: <detlev.casanova@collabora.com>, <heiko@sntech.de>,
+ <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+ <hjc@rock-chips.com>, <mripard@kernel.org>,
+ <sebastian.reichel@collabora.com>, <linux-rockchip@lists.infradead.org>,
+ <sjoerd@collabora.com>, "Andy Yan" <andy.yan@rock-chips.com>,
+ <krzk+dt@kernel.org>, <robh@kernel.org>
+Subject: Re: [PATCH v2 05/11] drm/rockchip: vop2: Introduce vop hardware
+ version
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Sascha Hauer" <s.hauer@pengutronix.de>, "Andy Yan" <andyshrk@163.com>
+References: <20240904120238.3856782-1-andyshrk@163.com>
+ <20240904120238.3856782-6-andyshrk@163.com>
+ <ZtlZgKcDQFF_WnCn@pengutronix.de>
+ <2326e2ea.8264.191c13bab93.Coremail.andyshrk@163.com>
+ <Zt68U6hnPA0KrxXB@pengutronix.de>
+In-Reply-To: <Zt68U6hnPA0KrxXB@pengutronix.de>
+X-Migadu-Flow: FLOW_OUT
 
-Marek Vasut <marex@denx.de> writes:
+--8c1b658f7c448cb5c0b613f89153b15bab673f392c82b551568fd1d1d6ee
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-> From: Ajay Singh <ajay.kathat@microchip.com>
+On Mon Sep 9, 2024 at 11:13 AM CEST, Sascha Hauer wrote:
+> On Thu, Sep 05, 2024 at 04:09:58PM +0800, Andy Yan wrote:
+> >  At 2024-09-05 15:10:56, "Sascha Hauer" <s.hauer@pengutronix.de> wrote:
+> >  >On Wed, Sep 04, 2024 at 08:02:32PM +0800, Andy Yan wrote:
+> >  >> From: Andy Yan <andy.yan@rock-chips.com>
+> >  >>
+> >  >> There is a version number hardcoded in the VOP VERSION_INFO
+> >  >> register, and the version number increments sequentially based
+> >  >> on the production order of the SOC.
+> >  >>
+> >  >> So using this version number to distinguish different VOP features
+> >  >> will simplify the code.
+> >  >>
+> >  >> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> >  >>
+> >  >> ---
+> >  >>
+> >  >> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h b/drivers=
+/gpu/drm/rockchip/rockchip_drm_vop2.h
+> >  >> index 9b269f6e576e..871d9bcd1d80 100644
+> >  >> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+> >  >> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+> >  >> @@ -13,6 +13,15 @@
+> >  >>  #include "rockchip_drm_drv.h"
+> >  >>  #include "rockchip_drm_vop.h"
+> >  >>
+> >  >> +#define VOP2_VERSION(major, minor, build)     ((major) << 24 | (mi=
+nor) << 16 | (build))
+> >  >> +
+> >  >> +/* The new SOC VOP version is bigger than the old */
+> >  >> +#define VOP_VERSION_RK3568    VOP2_VERSION(0x40, 0x15, 0x8023)
+> >  >> +#define VOP_VERSION_RK3588    VOP2_VERSION(0x40, 0x17, 0x6786)
+> >  >> +#define VOP_VERSION_RK3528    VOP2_VERSION(0x50, 0x17, 0x1263)
+> >  >> +#define VOP_VERSION_RK3562    VOP2_VERSION(0x50, 0x17, 0x4350)
+> >  >> +#define VOP_VERSION_RK3576    VOP2_VERSION(0x50, 0x19, 0x9765)
+> >  >
+> >  >What about the RK3566? Does it have the same version code as the RK35=
+68?
+> >  >
+> >  >This new version field replaces the soc_id mechanism we had before to
+> >  >99%. You keep the soc_id around just for distinguishing between RK356=
+6
+> >  >and RK3568. It would be nice to fully replace it.
+> >  >
+> >  >I see that the VOP_VERSION_RK* numbers are the same as found in the
+> >  >VOP2_SYS_VERSION_INF registers. On the other hand you never read the
+> >  >value from the register which make the VOP_VERSION_RK* just arbitrary
+> >  >numbers. Wouldn't it be possible to make something up for RK3566, lik=
+e
+> >  >VOP2_VERSION(0x40, 0x15, 0x8022) to get rid of the soc_id thingy?
+> >  Yes=EF=BC=8CRK3566 and RK3568 share the same VOP IP block=EF=BC=8C so =
+the version code at VERSION_REGISTER is
+> >  the same, the difference between rk3568 and rk33566 are introduced at =
+soc Integration=E3=80=82
+> >  So i would still like to keep the soc_id to  handle situation like thi=
+s=E3=80=82As we always have such  cause=EF=BC=8C one
+> >  same IP block=EF=BC=8C but there are some subtle differences in featur=
+es across different SOCs.
 >
-> Add support for the WILC3000 chip. The chip is similar to WILC1000,
-> except that the register layout is slightly different and it does
-> not support WPA3/SAE.
->
-> Signed-off-by: Ajay Singh <ajay.kathat@microchip.com>
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> Fine with me. You could leave a comment in the code or commit
+> message that explains why we need both.
 
-[...]
+Also (or especially?) add that to the commit message of patch 6 of this
+series. Patch 6's commit message talks about RK3576 while it changes
+code related to RK3566 and I (too?) thought that not using VOP_VERSION
+was an oversight, while it turns out to be deliberate.
 
-> --- a/drivers/net/wireless/microchip/wilc1000/cfg80211.c
-> +++ b/drivers/net/wireless/microchip/wilc1000/cfg80211.c
-> @@ -313,6 +313,13 @@ static int connect(struct wiphy *wiphy, struct net_device *dev,
->  
->  	vif->connecting = true;
->  
-> +	if (sme->auth_type == NL80211_AUTHTYPE_SAE &&
-> +	    is_wilc3000(vif->wilc->chipid)) {
-> +		netdev_err(dev, "WILC3000: WPA3 not supported\n");
-> +		ret = -EOPNOTSUPP;
-> +		goto out_error;
-> +	}
+Cheers,
+  Diederik
 
-This looks wrong. If wilc3000 doesn't support SAE you shouldn't
-advertise NL80211_FEATURE_SAE to user space. I think the check for
-wilc3000 should be in wilc_create_wiphy():
+--8c1b658f7c448cb5c0b613f89153b15bab673f392c82b551568fd1d1d6ee
+Content-Type: application/pgp-signature; name="signature.asc"
 
-if (!is_wilc3000(vif->wilc->chipid))
-	wiphy->features |= NL80211_FEATURE_SAE;
+-----BEGIN PGP SIGNATURE-----
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZt7BlQAKCRDXblvOeH7b
+bjNCAQD75I99I8eQyeyxfrEV5TDf/AH75sfVSERvC4tYJYmhUQEAzK6ErqvvskFA
+GFfJz2HXP1a+zRS/z7wpv3XGdG83eQ4=
+=9uHr
+-----END PGP SIGNATURE-----
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+--8c1b658f7c448cb5c0b613f89153b15bab673f392c82b551568fd1d1d6ee--
 
