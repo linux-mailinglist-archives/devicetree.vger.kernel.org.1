@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-101245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9D4A971178
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:13:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 506F197117C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:13:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4E191C20398
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:12:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73D441C222E8
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:13:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E35761B29A5;
-	Mon,  9 Sep 2024 08:12:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 289DF1B29C9;
+	Mon,  9 Sep 2024 08:12:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ejhpkQnC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NmzOXc3r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8E831B251A;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 004461B29B8;
 	Mon,  9 Sep 2024 08:12:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725869536; cv=none; b=KlIFd34y7RDUKZCQqiyTiQn9kVvP614YEWE6EFohbnc6xudiXjCG/2H/mPyAgfgW+r7igC2oEMa1SiV3hAXHurl5hzRxzm8IckCo485JYAV8sX0CgaPYGMJAuaokDtpjXm2uvBv3YzP5/V+CLdg5qdT1brUf0fEBds4HJ/1CxUg=
+	t=1725869537; cv=none; b=QLxHzSM5uF15oTlnq3TRSBGOr4BWYTp9A1rlRSkF+Rvs293bSIVeyOqUXdTmpMt8AF4ALWVigLBc4hHqpJG9Lh7mbxiEUY/aKQd+211Gh9mTpij8OU2pGA6rQoO876MT4sm3yPEXMJegqTFdrNRuCTNGFWuSqHEAjgwTQTW7F28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725869536; c=relaxed/simple;
-	bh=985+UlFULic6LgAh253V4PgK2g0KvpjtDw3UMIKIEeA=;
+	s=arc-20240116; t=1725869537; c=relaxed/simple;
+	bh=xnkrIHWz0C+Ukid8QKlf5IsbUMUDj0jNbjFGkqdX5YE=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=I/SPfqIG3+L72dsq2e68WswM9PS7G1QRRZQeU81P6DiyTSvACFaJokYfBlOdSZHrxW4zqUzJxTXaVnWpvOVXPWTnUdydVa4vk8VoZUtE60Wp1qrJ6tQlrE9znexN+7WEZJvxSG+ANDj0BJzl61ktG+RF0aMrj8XNkxbkVmfLDy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ejhpkQnC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 91C26C4CECC;
+	 In-Reply-To:To:Cc; b=OwOPipdm7Q0Ze2e1hsPT8C+rLRpoATciEnL+tX3zdqYMNkYomj81fDGmUxkcgtD4fTEDYM8wiSDDn+ryjZFvd2V2rwQbczZBNHNIwb6RVuu7/MZ5tXx9VmWkOxFs8gdNgGdqvcdiUlYAipBNqsMtcmqrCtvNWeAkGWyMQSNRuPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NmzOXc3r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CE7E9C4DE0B;
 	Mon,  9 Sep 2024 08:12:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1725869536;
-	bh=985+UlFULic6LgAh253V4PgK2g0KvpjtDw3UMIKIEeA=;
+	bh=xnkrIHWz0C+Ukid8QKlf5IsbUMUDj0jNbjFGkqdX5YE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ejhpkQnC6+CQ6QqhbHrUGXJhL2vTU8PjcGIdKLc5jPb547l4owmEnrFDnSq7a1ECc
-	 INkvIdj8KcfjBM2XPvjQrTUpij2IkIOluPq1tC5BE7XHXXD1DJv9Y6cqd3fN+vnZXy
-	 3h79cy8VDHhOFrOSD+mpnyY04SWkixlYbKhAfHeXlA1FhaF8wTaIdXzzzOwhoFdJ9W
-	 dVs/ZUOltDtg8HbqJwHBDVLZ+jIS09QvWn15e0fEYVw47/tffnFxl+yWL1rflZqZlB
-	 n3xBSfwvVaD6TGXS2xE3cv5s9emAICgvGsI7zl30jcggPT5P6iVbxjs0NE5liydSBj
-	 s2e/7/9qJ4S6w==
+	b=NmzOXc3rNOBmPQ28EIOsd9LCK3m7eI+hxvr9odr+JHcUd7p/4ujs3n544ze2C2xc6
+	 CJcv2NSM1SnNaTH3nSc8sD7KOT2/XV9oiwyDCyKusjwwRkb7F6HS2t09jLxHqQVVmQ
+	 jNxZZL+Z7Dx2DH05QXaRvJbM1UtQ2coLa5f8EIv2J52IE54saCoK++SqLhaVawnG9p
+	 jjXcMqRtbdFBnMBNxTsnI1hd5ju87WrI1fPDY7TUN18H5W/nITlx7V82+zmL4iYvDY
+	 dW3e2vJmg55UCypCKGllJKg6tZm96/WUlAm1BQsFQ3tEUiv8eQv6Ig91N1ZrRGUgtR
+	 VeUyf0a9uWxqQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C1F1ECE581;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C7708ECE57B;
 	Mon,  9 Sep 2024 08:12:16 +0000 (UTC)
 From: Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
-Date: Mon, 09 Sep 2024 11:10:47 +0300
-Subject: [PATCH v12 22/38] dt-bindings: input: Add Cirrus EP93xx keypad
+Date: Mon, 09 Sep 2024 11:10:51 +0300
+Subject: [PATCH v12 26/38] ASoC: dt-bindings: ep93xx: Document DMA support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,22 +55,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240909-ep93xx-v12-22-e86ab2423d4b@maquefel.me>
+Message-Id: <20240909-ep93xx-v12-26-e86ab2423d4b@maquefel.me>
 References: <20240909-ep93xx-v12-0-e86ab2423d4b@maquefel.me>
 In-Reply-To: <20240909-ep93xx-v12-0-e86ab2423d4b@maquefel.me>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+To: Hartley Sweeten <hsweeten@visionengravers.com>, 
+ Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.13-dev-e3e53
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1725869532; l=3131;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1725869532; l=1224;
  i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
- bh=ArW40vHeN5DKryw3IpGISVSZUOgIwSTy8lnGeu9e4oI=;
- b=7wbnohTwtyZLeZcb6669UPAGH1p6i5N+sFLAO3V3q+k00nwMyt02B1FIGKVubmhiTiX5bIf86S3Z
- C5aJTlWFDv2rX9RXu9qeZT5Eit37d/uAeLUwSKgju1OWyW37hkJ5
+ bh=IYgRqPiUpJda2whx2paj9O35GPXheF0lc1rCPFeTg9o=;
+ b=hiOE3FKypH7rjUviLJZys8O3EV8AT1xBVVJkdnIkIKXMnzS/gemZ5cS3wS05uVJAkhfPSW8TvOlk
+ aDXgYEQ5B529koRy1gR8p1/U+cgptIk8auXz+xgaqXwhL9ehjllZ
 X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
  pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
 X-Endpoint-Received: by B4 Relay for nikita.shubin@maquefel.me/20230718
@@ -80,107 +81,45 @@ Reply-To: nikita.shubin@maquefel.me
 
 From: Nikita Shubin <nikita.shubin@maquefel.me>
 
-Add YAML bindings for ep93xx SoC keypad.
+Document DMA support in binding document.
 
 Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Mark Brown <broonie@kernel.org>
 ---
- .../bindings/input/cirrus,ep9307-keypad.yaml       | 87 ++++++++++++++++++++++
- 1 file changed, 87 insertions(+)
+ .../devicetree/bindings/sound/cirrus,ep9301-i2s.yaml         | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/input/cirrus,ep9307-keypad.yaml b/Documentation/devicetree/bindings/input/cirrus,ep9307-keypad.yaml
-new file mode 100644
-index 000000000000..a0d2460c55ab
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/cirrus,ep9307-keypad.yaml
-@@ -0,0 +1,87 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/cirrus,ep9307-keypad.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml b/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
+index 453d493c941f..36a320ddf534 100644
+--- a/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
++++ b/Documentation/devicetree/bindings/sound/cirrus,ep9301-i2s.yaml
+@@ -40,6 +40,16 @@ properties:
+       - const: sclk
+       - const: lrclk
+ 
++  dmas:
++    items:
++      - description: out DMA channel
++      - description: in DMA channel
 +
-+title: Cirrus ep93xx keypad
++  dma-names:
++    items:
++      - const: tx
++      - const: rx
 +
-+maintainers:
-+  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
-+
-+allOf:
-+  - $ref: /schemas/input/matrix-keymap.yaml#
-+
-+description:
-+  The KPP is designed to interface with a keypad matrix with 2-point contact
-+  or 3-point contact keys. The KPP is designed to simplify the software task
-+  of scanning a keypad matrix. The KPP is capable of detecting, debouncing,
-+  and decoding one or multiple keys pressed simultaneously on a keypad.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: cirrus,ep9307-keypad
-+      - items:
-+          - enum:
-+              - cirrus,ep9312-keypad
-+              - cirrus,ep9315-keypad
-+          - const: cirrus,ep9307-keypad
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  debounce-delay-ms:
-+    description: |
-+          Time in microseconds that key must be pressed or
-+          released for state change interrupt to trigger.
-+
-+  cirrus,prescale:
-+    description: row/column counter pre-scaler load value
-+    $ref: /schemas/types.yaml#/definitions/uint16
-+    maximum: 1023
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - linux,keymap
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/input/input.h>
-+    #include <dt-bindings/clock/cirrus,ep9301-syscon.h>
-+    keypad@800f0000 {
-+        compatible = "cirrus,ep9307-keypad";
-+        reg = <0x800f0000 0x0c>;
-+        interrupt-parent = <&vic0>;
-+        interrupts = <29>;
-+        clocks = <&eclk EP93XX_CLK_KEYPAD>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&keypad_default_pins>;
-+        linux,keymap = <KEY_UP>,
-+                       <KEY_DOWN>,
-+                       <KEY_VOLUMEDOWN>,
-+                       <KEY_HOME>,
-+                       <KEY_RIGHT>,
-+                       <KEY_LEFT>,
-+                       <KEY_ENTER>,
-+                       <KEY_VOLUMEUP>,
-+                       <KEY_F6>,
-+                       <KEY_F8>,
-+                       <KEY_F9>,
-+                       <KEY_F10>,
-+                       <KEY_F1>,
-+                       <KEY_F2>,
-+                       <KEY_F3>,
-+                       <KEY_POWER>;
-+    };
+ required:
+   - compatible
+   - '#sound-dai-cells'
+@@ -61,6 +71,8 @@ examples:
+                  <&syscon 30>,
+                  <&syscon 31>;
+         clock-names = "mclk", "sclk", "lrclk";
++        dmas = <&dma0 0 1>, <&dma0 0 2>;
++        dma-names = "tx", "rx";
+     };
+ 
+ ...
 
 -- 
 2.43.2
