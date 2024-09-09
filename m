@@ -1,180 +1,153 @@
-Return-Path: <devicetree+bounces-101251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD16A9711B4
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:22:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 166679711B7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:22:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0584E1C2263D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:22:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C374A2865C4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:22:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69FC01B1500;
-	Mon,  9 Sep 2024 08:12:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 035281779AE;
+	Mon,  9 Sep 2024 08:15:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="buAXRUe4"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vdHgOCHh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11E161B14F8;
-	Mon,  9 Sep 2024 08:12:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 244DB1509AE;
+	Mon,  9 Sep 2024 08:15:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725869578; cv=none; b=A1BLQNdlJI3ESMYucmRxO2V/T1VYKoS/Te3xqoOGMPZ4EBLtQJ+/+H4+RGhZIhVkCW3EAK71VXv32ybUSbD73MFLm3JJmSC/UF+HrlbPOgPA5ZRaqn9uEUDh08QEynyGfIj0I0X1FuUD4TkJdd9SwSNnDahN5d1KA4lb/9iRD1Q=
+	t=1725869737; cv=none; b=ucI1eeYrCkLNanWZKly9chkJTxbvQnAuIId/rA0jzMegqIDfvuC8F08CaJ15Sypo78+fYuXvxzabvXfDUv+voFY+SvVQ6v+jSnCpK0sgNkn3Jr0wNQoXyCWQ7DJ6nNhkLYf8kL1+vTAyzYRW+s6tjWTn2+BqBRhbUCbCC6oFd3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725869578; c=relaxed/simple;
-	bh=qn1o8Intnk0JCIq1CUGzHv/zXzVk+ma3u3ksckHSnV0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Y3A7JwhE4vmESAPPdJX/oyawFc5OBJNajhtcYVBGVojHKWCyHpjaGwwFyUAq+RzS5fwQ0u2CdBrHxSXEJwzjSJ94MWclShETqAobWpTkp3Qg7cU/FWqJQceSqjPqIg1j6nFRCGhMfm+oaXWgIEUkKbHpzCUUa3g7BXiz/6Yge4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=buAXRUe4; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-53659867cbdso4337543e87.3;
-        Mon, 09 Sep 2024 01:12:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725869574; x=1726474374; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mKbJpq6YIA11aEfz21wae3H60/ixEHXlJ4hbELPq0J4=;
-        b=buAXRUe4Qw0V/hR834zf5ajmzx20ym9p0letzBP6bQp31X3ZPprHcUV9bDn++Q+N13
-         r9jy7q+tIiNo7981r/wCMtBv4LDAa7Wwg3aWY68oWBbbIrDdJH0afTjDzeuSp37EVClE
-         ywngmE7izHdxRF6I5cHbZcs5x8Ps0oMIrGJEOeSuDangaKMrmyJ4hLXrPrwX4AW8MXJ8
-         MF9w/Ha1wc8J9IkjOHdN40LT02Gio81NAaqju1K5KeTVRYWH5G2iKe15FVAc3lK0Ez+U
-         k1uGN6axOYccUUbbbk3v37B5Sq3Mp1PLY08OfCntoWxmkI2/SIu1K6Ywn7rXby/2V7w5
-         kCSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725869574; x=1726474374;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mKbJpq6YIA11aEfz21wae3H60/ixEHXlJ4hbELPq0J4=;
-        b=RzsgvlxTNdh5zZcUSe96Wps34hszD/TPUxXD06vZnEmSqXUvsqIP55xy5Leb8OC/AT
-         7+7kLNqA/ErdcRALpTN9JoIb1cTBe3vyPg6KVSPoAuX62sQ2M1PtyCjV7k4saRq0PooD
-         BYkM+FsPhwszk0Xdxfd6/LJJmdTr8EihC2KQpMQyY1pG0cThK7R0ATFWW9O876O9SVqP
-         AjIq4oHSHq3g+qRtJPQUjSCNUepFErS79+FdaziqV8Bubd4W+l694dIaoBFPkhxVdtAp
-         AnvW4R13oCZ9wPadKcnGG41F4FmQHBQ7kXNH8HvuI57t4Q2nc8XgeMzjHXEc7nvu9grW
-         2PPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWVJVVJlBLro9+8wUW8qdug9m6k/qGQq207cLiji6JN8cZKdZ/yAMFgJuCd6rOe116pD7mbs3O2XR/Lzq4=@vger.kernel.org, AJvYcCXq0jyWAcAsi2fQRUNz2aXJveeSjPieo3EsJYYljoWjsM2BFvXHbK4LN5jBMQyYm3emf3xQuAKAoMKD@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrCfIloipEADpMmX9NKgL93hFD8mb5YMhsZCq+fUc4Oj47pg+R
-	l22ZW/6+ZqE/nSrdSarbcAjSygDYyyEPLiw6+wDnwe+gSXCMuHR6vb/I8JpgHF5nKVowiOICWN5
-	s8tZNpVBXqnb4sDvhJB6wswiyQ8E=
-X-Google-Smtp-Source: AGHT+IHnQ8xuztnsBBgMvF4HoqhobltRiRUWVc47gSpztUAjtDauIHerV4oHBCZhp65S/wW7OsWE+NRnD31fY1WpNhQ=
-X-Received: by 2002:a05:6512:1245:b0:536:54bd:8374 with SMTP id
- 2adb3069b0e04-53658818949mr5167330e87.60.1725869573576; Mon, 09 Sep 2024
- 01:12:53 -0700 (PDT)
+	s=arc-20240116; t=1725869737; c=relaxed/simple;
+	bh=mLxIOmnUfTWHKDy0RraF2PSz1kY2vALX8CG3SWnHtaA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aTDXD+v2/j8esAEFkN+qKhwqDUsBv8L5lxqzU7x4B8zhWNiiTlchH3uzvzZDnCZpezS6dX+Z4lPZRq27h/RagasYNb+IEmXfHlLvm8PTlFUEiTVdIBzwOWe7KWbU8BsFVlM9EvzWAAVPLC4Si00Mci1PTAypkxs/W9hvHqKD2kA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=vdHgOCHh; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-156-87-48.elisa-laajakaista.fi [91.156.87.48])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BA3DD3EA;
+	Mon,  9 Sep 2024 10:14:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1725869657;
+	bh=mLxIOmnUfTWHKDy0RraF2PSz1kY2vALX8CG3SWnHtaA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=vdHgOCHhan2TIGa+DjdOzgyplnNWIObqllHvJPXLvVFM0A81u4GcLZhu51Bt8b8xd
+	 VVy/FZG3FJ3KBzosP/EkfOw97y/H3IdNqZbDZH5inpO4DG4ShXWkNgfYTmxSEGC7bQ
+	 NGi1WfM0nfhruANQelXOkrncv0QRmT3H7WJJimPs=
+Message-ID: <c60d518b-ace4-48a8-87e5-35de13bc426a@ideasonboard.com>
+Date: Mon, 9 Sep 2024 11:15:28 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1725518229.git.zhoubinbin@loongson.cn> <e987b0beabba169577c8923557690984f226b29b.1725518229.git.zhoubinbin@loongson.cn>
- <zes7kfwmz57lhyfvxuyk64n7eykb52txxatbqgqnue7e3yab7g@d7cg7ql4gyl4>
-In-Reply-To: <zes7kfwmz57lhyfvxuyk64n7eykb52txxatbqgqnue7e3yab7g@d7cg7ql4gyl4>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Mon, 9 Sep 2024 14:12:40 +0600
-Message-ID: <CAMpQs4Jwms+P7Uu-N1koT8WYKW8KCdMoo7pkPkdaO2aY7TAD+A@mail.gmail.com>
-Subject: Re: [PATCH v1 01/10] ASoC: dt-bindings: Add Everest ES8323 Codec
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Huacai Chen <chenhuacai@kernel.org>, 
-	devicetree@vger.kernel.org, linux-sound@vger.kernel.org, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/4] drm/tidss: Add OLDI bridge support
+To: Francesco Dolcini <francesco@dolcini.it>,
+ Aradhya Bhatia <a-bhatia1@ti.com>, max.krummenacher@toradex.com
+Cc: Jyri Sarha <jyri.sarha@iki.fi>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ DRI Development List <dri-devel@lists.freedesktop.org>,
+ Devicetree List <devicetree@vger.kernel.org>,
+ Linux Kernel List <linux-kernel@vger.kernel.org>, Nishanth Menon
+ <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+ Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+ Randolph Sapp <rs@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
+ Jayesh Choudhary <j-choudhary@ti.com>, Jai Luthra <j-luthra@ti.com>
+References: <20240716084248.1393666-1-a-bhatia1@ti.com>
+ <20240906114311.GA32916@francesco-nb>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20240906114311.GA32916@francesco-nb>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof:
+Hi,
 
-Thanks for your review.
+On 06/09/2024 14:43, Francesco Dolcini wrote:
+> +Max
+> 
+> Hello Aradhya,
+> 
+> On Tue, Jul 16, 2024 at 02:12:44PM +0530, Aradhya Bhatia wrote:
+>> The addition of the 2nd OLDI TX (and a 2nd DSS in AM62Px) creates a need
+>> for some major changes for a full feature experience.
+>>
+>> 1. The OF graph needs to be updated to accurately show the data flow.
+>> 2. The tidss and OLDI drivers now need to support the dual-link and the
+>>     cloned single-link OLDI video signals.
+>> 3. The drivers also need to support the case where 2 OLDI TXes are
+>>     connected to 2 different VPs - thereby creating 2 independent streams
+>>     of single-link OLDI outputs.
+> 
+> Have you considered/tested the use case in which only single link is used?
+> You do not mention it here and to me this is a relevant use case.
+> 
+> There is a workaround for this (use option 2, cloned, even if nothing is
+> connected to the second link), but this seems not correct.
+> 
+> We (Max in Cc here) noticed that this specific use case is broken on
+> your downstream v6.6 TI branch.
 
-On Fri, Sep 6, 2024 at 4:21=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On Thu, Sep 05, 2024 at 03:02:14PM +0800, Binbin Zhou wrote:
-> > Add Everest Semiconductor ES8316 low power audio CODEC binding with DT
-> > schema format using json-schema.
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > ---
-> >  .../bindings/sound/everest,es8323.yaml        | 49 +++++++++++++++++++
-> >  1 file changed, 49 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/sound/everest,es8=
-323.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/sound/everest,es8323.yam=
-l b/Documentation/devicetree/bindings/sound/everest,es8323.yaml
-> > new file mode 100644
-> > index 000000000000..0450d0f49d03
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/sound/everest,es8323.yaml
-> > @@ -0,0 +1,49 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/sound/everest,es8323.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Everest ES8323 audio CODECs
-> > +
-> > +maintainers:
-> > +  - Binbin Zhou <zhoubinbin@loongson.cn>
-> > +
-> > +allOf:
-> > +  - $ref: dai-common.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: everest,es8323
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    description: clock for master clock (MCLK)
-> > +    maxItems: 1
-> > +
-> > +  clock-names:
-> > +    const: mclk
-> > +
-> > +  '#sound-dai-cells':
-> > +    const: 0
->
-> No audio-graph-port? Are you sure? It looks exactly like
-> everest,es8316...
+What if you set "fw_devlink=off" kernel boot parameter?
 
-I checked and they are indeed very similar and it seems I just need to
-add to everest,es8316.yaml instead of a new file.
+  Tomi
 
-Thanks.
-Binbin
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - '#sound-dai-cells'
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <0>;
-> > +      codec@10 {
-> > +        compatible =3D "everest,es8323";
-> > +        reg =3D <0x10>;
-> > +        #sound-dai-cells =3D <0>;
->
-> Make the example complete. Assuming this binding stays...
->
-> Best regards,
-> Krzysztof
->
 
