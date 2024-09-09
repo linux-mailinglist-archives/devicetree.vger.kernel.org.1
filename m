@@ -1,221 +1,107 @@
-Return-Path: <devicetree+bounces-101499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57EE1972010
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 19:10:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7543F972026
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 19:17:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1F451F24193
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 17:10:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 209CF1F2452A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 17:17:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6193E170A01;
-	Mon,  9 Sep 2024 17:10:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5E6C16DECB;
+	Mon,  9 Sep 2024 17:17:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gateworks.com header.i=@gateworks.com header.b="UbVtjPoD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JY3sl1qn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AB2C16C852
-	for <devicetree@vger.kernel.org>; Mon,  9 Sep 2024 17:10:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 675F3282E2;
+	Mon,  9 Sep 2024 17:17:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725901852; cv=none; b=SIbqnf7Yh0ZwpJaQFCbFWxyalmlpYJYMDWPGIotkjJtG0zFTLCP7ATg84fnA+JBy3yjbljl7dp3XIPgeTk9ev4zthbESp+YP6mk6QaBcR4Pvps/Z6u1bcPG68s/qw4zlZjffVZ5IHvg67m4Zshv/YFXvpiy0mdN4pmXzwg/zE7I=
+	t=1725902222; cv=none; b=ox8wiu3NJeCJu8x+DLd8S752APE9BG5qAAuZN1sUxiO5vq6laR+bMgOcPAA1CVRBqxBxkV71bPRCmHXa+Xz3ObOj5dktieKl/LNYhhAV/lac6JMpjDvxWNj3bhSRfaNQ/h/4vGk+lvT5hfxNUPgBBuvP8ivpFEYWQ30ezLWFGbA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725901852; c=relaxed/simple;
-	bh=dRfrIZS6Njo27yDGcp/CX4lUhpe+PQOLnAbXzE3pqCk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Wsv3TdKXr1yaoJDIDc/BRBtHBvzl8pIUWlqmSYw6kxRz551M58kabxOMoHkn/xVaubteRuKJ3F2hzSlHxnEOEDLq6NrkOBHMYFmjUeHtW4neOYHR0SK6PmOPh/nbSfLsWUURyCYoYcG8V5qRtAOdsSg73KkuPqiG25/6HYUcL+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; dkim=pass (2048-bit key) header.d=gateworks.com header.i=@gateworks.com header.b=UbVtjPoD; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a8d4093722bso307999266b.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Sep 2024 10:10:49 -0700 (PDT)
+	s=arc-20240116; t=1725902222; c=relaxed/simple;
+	bh=J7ZxKBd8GNjoUAMjkac/WKKJV8okz4PGJYbZ3Y3ZgkY=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=avZw4+A9J/4aQYo2I5ib3LMtSBOWEcd5ut0/qIoOg/1lntqjnsDcZ31cBsCFXSYh+v4yfXAFWcVGyT4HSU7eirU1N+7cbPC37o5fsFMb+uv5EBsawRdFzNU2KErWMA1FdBOEjNMozgylahL3DNBpMV4IhhHFz1nEaJ5rhk+lJ1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JY3sl1qn; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2068acc8a4fso43325395ad.1;
+        Mon, 09 Sep 2024 10:17:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks.com; s=google; t=1725901848; x=1726506648; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4OukvZRcUZByAUfm38hAhCqj1SLJokR0fI3NcQUB9xg=;
-        b=UbVtjPoD73UllsA90e2GIdrZtRI9WFZY/R1IipLb+vW3e2SXIYEB/6pOJQBYQkbZTP
-         EYSD9ZWYzDK946q/rAPj6SXxU0GuqY4VkzpHX0FoVfFLP55lO7psXJg3ewg4J2NJITZT
-         yS8C8NlTtBV/nsVlbiD5pnZwcrSRf8/i3YYvGroe4KRbYet1x3ILn6AVvGo4SczeLxIU
-         8SaHzdpWOafns2sf2+pMbEx0iOLVFg4TBi5yCbjPrGXIRv34LXvwLfAm2Ljpff6hf22t
-         STokcLUAqvu0lVWB+BRHWyXmkXleg335lTEvRti9w8Q+uOwV8/AkCYMVSfP1AeXP5hjl
-         wxkA==
+        d=gmail.com; s=20230601; t=1725902221; x=1726507021; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=hauHXk0UHvL9WIL9OJwYkRJrxeJ42bwu7guvi9wUyZ0=;
+        b=JY3sl1qnjLg4/r0ntWouCd3WpY6GppXlx7hP2US9/VU584jvVDDxGbXMp1FyZMnUWo
+         u77ji/zmcuV+Ht5XwvQK0rEnwb3x7MFuz53Q9jh2ur7ElNGIlv6OCNEmxx/JROojhLFt
+         YXKIYFXRV8LIjAX6OS/go5ey9rYvtQr6iV+j492LWMm3e6L1HBPTgHlRy41xaaib8SMa
+         BrTSK/mmx2nPKfT9gu35IE34sOapUlPSHBmWKx09CTLG787B8B4TyLLhdwuLIsKoAHnS
+         tjNPSpyb5jRu29bAFSecb3eiYoJ0SnaVvWz/r1SE4pHLMxEMJHsGSOs4nYTBn9tVraxv
+         oHuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725901848; x=1726506648;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4OukvZRcUZByAUfm38hAhCqj1SLJokR0fI3NcQUB9xg=;
-        b=g0kBL0YrZP4MeelcN+HNWRpFAXHTdWFqi1hHHVtxSJKyRzqHvYsv/ky0DL+9CWqFil
-         9UIURnlwVBITyPE/BKj5Fo0PoU2r8uDoCrBuLpfXQpcEMJ6SOyI1G2sqnWRVxQjZGSqD
-         te5anEQTc6XdRQKiBeI4JxT57nKx654v/rgSHTffP5qGJ0B38QlvNWVhALhkOhRptb+k
-         gYDYrQWbWZt/rwWwRFNMZ+IVi+Rl5YRpY4qa177FfXsWJzXlzqw2zMvvvpn63vYwTorw
-         gSGFIw151i93yZOhmDz03dekW9AXTwm76KDRFze95+tzzo8im0XmnJSHxxx/VgnxFjQs
-         VyPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWIqMraLwh/VI1qaXL49Gtaj66dFmRaxEJnovvmGO5Mqbdf7ZSBdMO7ytNrk+4l4WXsS2Z1EpLhZ/RJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyidwDn180UJM1xXwpdBEaqlFHRabKXjTfTT7egk+UcRvClBkZ5
-	bt+Rr/ugf3BSLYLltUc88GRLLoaYtdWWCt96jCDcCuQZAO4a5PxJX2vsMz81SmIHJ+Z35CxFwtk
-	FoReRR+4hOsEtI7D8oyw9Lzd1uygnKD+OzAsdcA==
-X-Google-Smtp-Source: AGHT+IF/4AsAIyAQZgiHx9WUmw49BwTwtOVNEZFc4QOFGTSEQ/1CBo+iochu5lAkAw4d00gWIi2brAodC5mIGAHH+l8=
-X-Received: by 2002:a17:907:724c:b0:a8a:8127:4af with SMTP id
- a640c23a62f3a-a8d1c4d739amr1019260566b.39.1725901846987; Mon, 09 Sep 2024
- 10:10:46 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1725902221; x=1726507021;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hauHXk0UHvL9WIL9OJwYkRJrxeJ42bwu7guvi9wUyZ0=;
+        b=IsFA5TrjJD1bOO8Zm9m+acIxCxZOk2YuXKFp8te2+7Ih4sAmLQMcvg81sWDnoxvWrL
+         VjdJmUGLqsm5FrUFD23h7vjUOYPqTxt+itsWLyx3ngQgK4fmHI4jIJ7xFEPDbJyUvgj8
+         vrP8thmGJXVqMd1h26GWrb6vfBaSGAtv4VXMq5+Y0p3eJt52i4MMiF+jpGYrt3y8avIc
+         4xragrImeDAP2o+evEj0VZiUyMKlqMknmkD0Vw85ARqyTsQXzKaF4x93id+YXQob5Vlt
+         ruqEkkdVe6oLP2I0ZOMOc1SJ/nKoaWj2gV5CFjuPPL3U4ZnZGraM/vc15tC+kLwnaqPi
+         jM/w==
+X-Forwarded-Encrypted: i=1; AJvYcCULs+ix832Mk2eoGb7l7AlJANgr76nQO4wJuhygM78F9QD6CgwUh9fv6IF3+CmOjGsw7MVBHQhK+s0=@vger.kernel.org, AJvYcCVNOhC5/C7VxrZC/UEMv9StGpphYo6rW9ciOv/q8wJR0OIuc9f4dYpQ/NObGC/G9uicjyvTwAI9cTNS@vger.kernel.org, AJvYcCW+fBVEoeWHSO9mtClJ8+Oupb00Lxg+ve+kz+3+z6ZgYjajb5dX5ptZ/DeYNyD0TykLJCtV202bK+brfLOu@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRrgs2HVLGn49fqyalsvTjwtoGJB2HNakjO8hofUa7nw9BVSKC
+	FZ6sxyt6JlCLdcizJ5JVV42e9AXeIwUO7nW3k2TdXa/gJRA4x+b2
+X-Google-Smtp-Source: AGHT+IHnNeEvODa1Qt6cj+F9ZMmq0nJBVXi/m6bl9hffcSzJHoVbOj9/wfPZtg6NqY9graxO1THDuw==
+X-Received: by 2002:a17:903:120d:b0:205:866d:174f with SMTP id d9443c01a7336-207070002e8mr83668675ad.44.1725902220449;
+        Mon, 09 Sep 2024 10:17:00 -0700 (PDT)
+Received: from ?IPV6:2601:1c2:c184:dc00:6c38:4539:e063:d0ba? ([2601:1c2:c184:dc00:6c38:4539:e063:d0ba])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20710f31729sm36233705ad.261.2024.09.09.10.16.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Sep 2024 10:16:59 -0700 (PDT)
+Message-ID: <08466bb0-4306-4941-97e1-e62ba07d8ea2@gmail.com>
+Date: Mon, 9 Sep 2024 10:16:56 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240807-fsl_dts_warning-v2-0-89e08c38831a@nxp.com>
- <20240807-fsl_dts_warning-v2-3-89e08c38831a@nxp.com> <CAJ+vNU3ZsJG-eoqf3JcHTyDwjp4uOW1XiEhnOfWZ1FJ-q1Y9Hw@mail.gmail.com>
- <ZtoDviZZQ0/pVGZs@lizhi-Precision-Tower-5810>
-In-Reply-To: <ZtoDviZZQ0/pVGZs@lizhi-Precision-Tower-5810>
-From: Tim Harvey <tharvey@gateworks.com>
-Date: Mon, 9 Sep 2024 10:10:35 -0700
-Message-ID: <CAJ+vNU2gabeVrKvDe_e7R4yuNp2Gn94QQTLYptfPRWmy=+hRdQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/6] arm64: dts: imx8mm-venice-gw7901: add
- #address(size)-cells for gsc@20
-To: Frank Li <Frank.li@nxp.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+From: Sam Edwards <cfsworks@gmail.com>
+Subject: Re: [PATCH v6 3/3] riscv: dts: allwinner: d1: Add thermal sensor
+To: bigunclemax@gmail.com
+Cc: anarsoul@gmail.com, andre.przywara@arm.com, aou@eecs.berkeley.edu,
+ conor+dt@kernel.org, contact@jookia.org, cristian.ciocaltea@collabora.com,
+ daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
+ jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, lukasz.luba@arm.com, mkl@pengutronix.de,
+ palmer@dabbelt.com, paul.walmsley@sifive.com, rafael@kernel.org,
+ robh+dt@kernel.org, rui.zhang@intel.com, samuel@sholland.org,
+ tiny.windzz@gmail.com, wens@csie.org
+References: <20231217210629.131486-4-bigunclemax@gmail.com>
+Content-Language: en-US
+In-Reply-To: <20231217210629.131486-4-bigunclemax@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Sep 5, 2024 at 12:17=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
->
-> On Thu, Sep 05, 2024 at 11:56:41AM -0700, Tim Harvey wrote:
-> > On Wed, Aug 7, 2024 at 7:54=E2=80=AFAM Frank Li <Frank.Li@nxp.com> wrot=
-e:
-> > >
-> > > Add #address-cells and #size-cells for gsc@20 to fix below warning:
-> > > arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb: gsc@20: '#add=
-ress-cells' is a required propert
-> > >
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >  arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b=
-/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> > > index 136cb30df03a6..35ae0faa815bc 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> > > @@ -364,6 +364,8 @@ gsc: gsc@20 {
-> > >                 interrupts =3D <16 IRQ_TYPE_EDGE_FALLING>;
-> > >                 interrupt-controller;
-> > >                 #interrupt-cells =3D <1>;
-> > > +               #address-cells =3D <1>;
-> > > +               #size-cells =3D <0>;
-> > >
-> > >                 adc {
-> > >                         compatible =3D "gw,gsc-adc";
-> > >
-> > > --
-> > > 2.34.1
-> > >
-> > >
-> >
-> > Hi Frank,
-> >
-> > I just noticed this patch (along with a few others to
-> > imx8m*venice*dts* which undoes what was done in commit 3343ab4cc698
-> > "arm64: dts: freescale: imx8m*-venice-*: fix gw,gsc dt-schema
-> > warnings" which my commit message states: Fix the dt-schema warnings
-> > due to #address-cells/#size-cells being unnecessary when there are no
-> > children with reg cells.
-> >
-> > With your patch applied I now see warnings again:
-> > $ touch arch/arm64/boot/dts/freescale/imx8m*venice*.dts*; make dtbs W=
-=3D1
-> >   DTC     arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dtb
-> >   DTC     arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x.dtb
-> >   DTC     arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x.dtb
-> >   DTC     arch/arm64/boot/dts/freescale/imx8mm-venice-gw75xx-0x.dtb
-> >   DTC     arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb
-> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts:361.14-467.4:
-> > Warning (avoid_unnecessary_addr_size): /soc@0/bus@30800000/i2c@3
-> > 0a20000/gsc@20: unnecessary #address-cells/#size-cells without
-> > "ranges", "dma-ranges" or child "reg" property
->
-> make ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- -j8 CHECK_DTBS=3Dy f=
-reescale/imx8mm-venice-gw7901.dtb
-> No warning report at my side.
->
-> Did you update your dt schema?
->
-> pip3 install git+https://github.com/devicetree-org/dt-schema.git@main
->
+Hi Maksim,
 
-Frank,
+Apologies if I have failed to find a v7 of this patch in my searching, 
+but I'm seeing that patch #3 here was never applied, so Linux still does 
+not enable the thermal sensor in these chips. I just thought I'd give 
+you a heads-up in case you weren't aware. :)
 
-Yes, I've updated my dt-schema with the above command.
-
-So with your patch a make CHECK_DTBS=3Dy produces no warnings but a make W=
-=3D1 does:
-$ touch arch/arm64/boot/dts/freescale/imx8m*venice*.dts*; make
-ARCH=3Darm64 CROSS_COMPILE=3Daar
-ch64-linux-gnu- -j8 CHECK_DTBS=3Dy freescale/imx8mm-venice-gw7901.dtb
-  SYNC    include/config/auto.conf.cmd
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-/usr/src/venice/linux-next/Documentation/devicetree/bindings/input/touchscr=
-een/ti,tsc2005.yaml:
-ti,x-plate-ohms: missing type definit
-ion
-  DTC_CHK arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb
-$ touch arch/arm64/boot/dts/freescale/imx8m*venice*.dts*; make
-ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- -j8 W=3D1
-freescale/imx8mm-venice-gw7901.dtb
-  DTC     arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb
-arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts:361.14-467.4:
-Warning (avoid_unnecessary_addr_size): /soc@0/bus@30800000/i2c@3
-0a20000/gsc@20: unnecessary #address-cells/#size-cells without
-"ranges", "dma-ranges" or child "reg" property
-
-reverting your patch flips this around:
-$ git revert c59339ec2661
-$ touch arch/arm64/boot/dts/freescale/imx8m*venice*.dts*; make
-ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- -j8 W=3D1
-freescale/imx8mm-venice-gw7901.dtb
-  UPD     include/config/kernel.release
-  DTC     arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb
-tharvey@tharvey:/usr/src/venice/linux-next$ touch
-arch/arm64/boot/dts/freescale/imx8m*venice*.dts*; make ARCH=3Darm64
-CROSS_COMPILE=3Daarch64-linux-gnu- -j8 CHECK_DTBS=3Dy
-freescale/imx8mm-venice-gw7901.dtb
-  DTC_CHK arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb
-/usr/src/venice/linux-next/arch/arm64/boot/dts/freescale/imx8mm-venice-gw79=
-01.dtb:
-gsc@20: '#address-cells' is a required property
-        from schema $id: http://devicetree.org/schemas/mfd/gateworks-gsc.ya=
-ml#
-/usr/src/venice/linux-next/arch/arm64/boot/dts/freescale/imx8mm-venice-gw79=
-01.dtb:
-gsc@20: '#size-cells' is a required property
-        from schema $id: http://devicetree.org/schemas/mfd/gateworks-gsc.ya=
-ml#
-tharvey@tharvey:/usr/src/venice/linux-next$ touch
-arch/arm64/boot/dts/freescale/imx8m*venice*.dts*; make ARCH=3Darm64
-CROSS_COMPILE=3Daarch64-linux-gnu- -j8 W=3D1
-freescale/imx8mm-venice-gw7901.dtb
-  DTC     arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb
-
-Maybe the dt experts can tell us what the difference is with
-CHECK_DTBS=3Dy vs W=3D1 and which patch is correct between
-c59339ec2661 arm64: dts: imx8mm-venice-gw7901: add
-#address(size)-cells for gsc@20
-3343ab4cc698 arm64: dts: freescale: imx8m*-venice-*: fix gw,gsc
-dt-schema warnings
-
-Best Regards,
-
-Tim
+Thanks for all your hard work,
+Sam
 
