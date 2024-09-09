@@ -1,63 +1,59 @@
-Return-Path: <devicetree+bounces-101531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C75D09723AC
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 22:30:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A4D79723C4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 22:36:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B719283AD1
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 20:30:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE9DF1F23D97
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 20:36:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 357DD18A95C;
-	Mon,  9 Sep 2024 20:30:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E5AB18A92B;
+	Mon,  9 Sep 2024 20:36:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Yz6uNCpy"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="e9GOhW4a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 830114428;
-	Mon,  9 Sep 2024 20:30:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE349189F45
+	for <devicetree@vger.kernel.org>; Mon,  9 Sep 2024 20:36:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725913835; cv=none; b=qPEMwCzuPt5WPrCaI1mLHz1W2hoQi08GI3TRklGooGhw9nvYaK3klPGaKcJPHcSgLMNIb7P+DX8f8V1o1LU0nyS9/pGIM8Knr8nQosixtmO0DjsXuqyDsUNcnEx7Ux2JLlADBY1lEo8ZTagFcnC1jcIBmE4JQvOjMMgYarmDs5M=
+	t=1725914208; cv=none; b=BjNnLh9K4k9xyEnN3GDnZ5nHMGI2Ozq+WFEoKeVdj4VVfG+UMrn/lV1gEENBJPFWH5jA6p7nGj5fxUjod5c2gnmikarBrP7ZilGQBJ5YJyR5fSAMe+mvh58S699f5rShgJP0uu69iMKqZZ5VRE6xt/E2jmZrp4Ei3iHDuEkRduk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725913835; c=relaxed/simple;
-	bh=e/lXweERor0ETtdzLqqAZlCy9RlOEBK030OaDQWeOhs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bLHVAeUVXvtP5kaZoMfBk71FCBKnaaDWpn7WQ7COhCPDsVd1H2Uh9UOaTuhFpYgOE5pjGhQEsOaKZKaAlEjxrKBMJkvbHHMPNi7hSlTr71c4ghkfzeoygDdoz3Pi5Y7eUsFd0M4T6ha2DII3VTYqCSQjVbmIeRGVGLI5iQ3IJ6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Yz6uNCpy; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 489DRTrg026720;
-	Mon, 9 Sep 2024 20:29:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1C+dV5dIn4U4sQGXBEilezGsLj0xJ9FofhsWLX08yM0=; b=Yz6uNCpyk2hOa6sn
-	jOi5b3vGjCaNsePo4yzmO0aN9UClUScbNyNvblb3w6qXJAlED4GfrWlufNKupHDJ
-	S5CjgOk++kkx+J/XNElYXWxqZOKD2DrS/c+Oh7XRkf3xFlPeYPKo7w3N+jEDlQkU
-	jjPiyW1riTQ7ToAZEg9Ifw0KQPeyl/TbwvaLsB/QifYID1FwPb7NrOgwmDeXRQVI
-	NXe319XNNSE95I+NLaVfQ1C5sD5/F19syXePY9MgbhiAq8HdF5wN8YPbvvfqLFGb
-	u3j/TLWYEBpZBnvVrYQyQn1HrZFzdM2oP+8q74grZHxWvp5KUjiSjdsnNfbrKhqu
-	haI0wQ==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy6e3x6g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Sep 2024 20:29:42 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 489KTfoQ002368
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Sep 2024 20:29:41 GMT
-Received: from [10.110.76.134] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 9 Sep 2024
- 13:29:37 -0700
-Message-ID: <d206e315-3324-4814-b98d-027c3af6ebb6@quicinc.com>
-Date: Mon, 9 Sep 2024 13:29:37 -0700
+	s=arc-20240116; t=1725914208; c=relaxed/simple;
+	bh=Yzro7utLjjy/Ud6rybm9pgqAO/Hl6TVb21JgRDGRqXs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CW+83FGSN/4jZRBhcTy/VHI+LgxwwV7Y/kclMjKmK01MoWNg/AYqc2gPw+P9ffWwxyq2o+6ompTbyH9/LfBIcNHnsIqCWzIcUBySILLxcZChEUdRC2bJJBgdHwpdWsbBFfVF9FbQPUn3OxUzhO7M99PD9dPyDtQrln/54k4C+fE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=e9GOhW4a; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 784192C03C3;
+	Tue, 10 Sep 2024 08:36:43 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1725914203;
+	bh=m+bTG75BqMIu+iCEQFO/NuATjbLFaetK4sxOKKWiy4o=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=e9GOhW4aspaZIsw96UgiIxE3F3ZRAaP4YqVvl4GiEd60cQPpW9fuD7PjFVFO3r5Tn
+	 TTMU/L6rp7fZuH8OkeAPTKkKzwHWci4QWJtawuJ71dWo5ZtjIYJwt6X0DNoGr+KrCc
+	 OxVJ+nz7wriXWQKg0Xlue6kRn4B5xF0n+LrHHdyE7qSGXVogUw5xPJGInGwV/GDvVX
+	 FQ44HUi2B8Xp9mOZ6+UhFE7Vc/cdNp5fk6DgLY2q3Ue+CcuCYB5gn7wOI6WqTBVmVh
+	 ZDNglrj+omoVptWebVPULqtCVXQdC7xR8LZ36IPH7utQjZZWuoHar1myOIqdZ6BFhZ
+	 To85DdkyPGWsA==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B66df5c5b0000>; Tue, 10 Sep 2024 08:36:43 +1200
+Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id 5CDFD13ED56;
+	Tue, 10 Sep 2024 08:36:43 +1200 (NZST)
+Message-ID: <01656780-0a90-4c7b-bedf-2e45992cd16c@alliedtelesis.co.nz>
+Date: Tue, 10 Sep 2024 08:36:43 +1200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,87 +61,121 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 16/21] dt-bindings: spi: document support for SA8255p
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add Realtek switch
 To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <rafael@kernel.org>,
-        <viresh.kumar@linaro.org>, <herbert@gondor.apana.org.au>,
-        <davem@davemloft.net>, <sudeep.holla@arm.com>, <andi.shyti@kernel.org>,
-        <tglx@linutronix.de>, <will@kernel.org>, <robin.murphy@arm.com>,
-        <joro@8bytes.org>, <jassisinghbrar@gmail.com>, <lee@kernel.org>,
-        <linus.walleij@linaro.org>, <amitk@kernel.org>,
-        <thara.gopinath@gmail.com>, <broonie@kernel.org>,
-        <cristian.marussi@arm.com>, <rui.zhang@intel.com>,
-        <lukasz.luba@arm.com>, <wim@linux-watchdog.org>, <linux@roeck-us.net>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <linux-crypto@vger.kernel.org>, <arm-scmi@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
-        <iommu@lists.linux.dev>, <linux-gpio@vger.kernel.org>,
-        <linux-serial@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>, <kernel@quicinc.com>,
-        <quic_psodagud@quicinc.com>, Praveen Talari <quic_ptalari@quicinc.com>
-References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
- <20240903220240.2594102-1-quic_nkela@quicinc.com>
- <20240903220240.2594102-17-quic_nkela@quicinc.com>
- <sdxhnqvdbcpmbp3l7hcnsrducpa5zrgbmkykwfluhrthqhznxi@6i4xiqrre3qg>
- <b369bd73-ce2f-4373-8172-82c0cca53793@quicinc.com>
- <9a655c1c-97f6-4606-8400-b3ce1ed3c8bf@kernel.org>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ tsbogend@alpha.franken.de, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20240909014707.2003091-1-chris.packham@alliedtelesis.co.nz>
+ <20240909014707.2003091-2-chris.packham@alliedtelesis.co.nz>
+ <63sbuzij27crjxv6d6qjblv55al5zk4ivsah4ji2kvddhbua57@xo4vt2tqs5cn>
 Content-Language: en-US
-From: Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <9a655c1c-97f6-4606-8400-b3ce1ed3c8bf@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <63sbuzij27crjxv6d6qjblv55al5zk4ivsah4ji2kvddhbua57@xo4vt2tqs5cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 7fCK6lhX7moA3Z0_YwrAyh39NPgkf4B7
-X-Proofpoint-ORIG-GUID: 7fCK6lhX7moA3Z0_YwrAyh39NPgkf4B7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
- bulkscore=0 clxscore=1015 mlxscore=0 lowpriorityscore=0 impostorscore=0
- mlxlogscore=999 spamscore=0 adultscore=0 priorityscore=1501 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2408220000
- definitions=main-2409090161
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=KIj5D0Fo c=1 sm=1 tr=0 ts=66df5c5b a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=EaEq8P2WXUwA:10 a=62ntRvTiAAAA:8 a=gEfo2CItAAAA:8 a=6q6VGa3TjoECEa-skyYA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=pToNdpNmrtiFLRE6bQ9Z:22 a=sptkURWiP4Gy88Gu7hUp:22
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
+Hi Krzysztof,
 
-On 9/4/2024 6:21 AM, Krzysztof Kozlowski wrote:
-> On 04/09/2024 14:48, Nikunj Kela wrote:
->> On 9/3/2024 11:34 PM, Krzysztof Kozlowski wrote:
->>> On Tue, Sep 03, 2024 at 03:02:35PM -0700, Nikunj Kela wrote:
->>>> Add compatible representing spi support on SA8255p.
->>>>
->>>> Clocks and interconnects are being configured in firmware VM
->>>> on SA8255p platform, therefore making them optional.
->>>>
->>> Please use standard email subjects, so with the PATCH keyword in the
->>> title.  helps here to create proper versioned patches.
->> Where did I miss PATCH keyword in the subject here? It says "[PATCH v2
->> 16/21] dt-bindings: spi: document support for SA8255p"
-> Oh, wrong template. It was about spi prefix, 
+On 9/09/24 18:38, Krzysztof Kozlowski wrote:
+> On Mon, Sep 09, 2024 at 01:47:06PM +1200, Chris Packham wrote:
+>> Add device tree schema for the Realtek switch. Currently the only
+>> supported feature is the syscon-reboot which is needed to be able to
+>> reboot the board.
+>>
+>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+>> ---
+>>   .../bindings/mfd/realtek,switch.yaml          | 50 +++++++++++++++++++
+>>   1 file changed, 50 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/mfd/realtek,switch.yaml
+> Use compatible as filename.
 
-These are the latest 4 commits in linux-next for spi:
+My hope was eventually that this would support multiple Realtek 
+switches. But sure for now at least I can name it after the one in front 
+of me.
 
-12736adc43b7 dt-bindings: spi: nxp-fspi: add imx8ulp support
-b0cdf9cc0895 spi: dt-bindings: Add rockchip,rk3576-spi compatible
-d6d0af1b9eff dt-bindings: spi: add PIC64GX SPI/QSPI compatibility to
-MPFS SPI/QSPI bindings
-1c4d834e4e81 spi: dt-bindings: convert spi-sc18is602.txt to yaml format
-
-Now I am confused which prefix format shall I use? first spi or first
-dt-bindings?
-
-
-> should be this one:
 >
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching. For bindings, the preferred subjects are
-> explained here:
-> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+>> diff --git a/Documentation/devicetree/bindings/mfd/realtek,switch.yaml b/Documentation/devicetree/bindings/mfd/realtek,switch.yaml
+>> new file mode 100644
+>> index 000000000000..84b57f87bd3a
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mfd/realtek,switch.yaml
+>> @@ -0,0 +1,50 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://scanmail.trustwave.com/?c=20988&d=55fe5gyquxahZ_dJqiHMxmkDG8M1MWjoNtZN70yrng&u=http%3a%2f%2fdevicetree%2eorg%2fschemas%2fmfd%2frealtek%2cswitch%2eyaml%23
+>> +$schema: http://scanmail.trustwave.com/?c=20988&d=55fe5gyquxahZ_dJqiHMxmkDG8M1MWjoNoNFvkz8nA&u=http%3a%2f%2fdevicetree%2eorg%2fmeta-schemas%2fcore%2eyaml%23
+>> +
+>> +title: Realtek Switch with Internal CPU
+> What sort of Switch? Like network switch? Then this should be placed in
+> respective net (or deeper, e.g. net/dsa/) directory.
+Yes network switch. But this is one of those all in one chips that has a 
+CPU, network switch and various peripherals. MFD seemed appropriate.
+>
+> Maintainers go here. See example-schema.
+
+Ack.
+
+>> +
+>> +description:
+>> +  The RTL9302 ethernet switch has an internal CPU. The switch is a multi-port
+>> +  networking switch that supports many interfaces. Additionally, the device can
+>> +  support MDIO, SPI and I2C busses.
+> I don't get why syscon node is called switch. This looks incomplete or
+> you used description from some other device.
+
+Yes I did take a lot of inspiration from the mscc,ocelot. I am working 
+on more support for the switch and some of the other peripherals so I 
+figured I'd word it towards that end goal. If you prefer I could word 
+this more towards the one function (reboot) that is supported right now.
+
+> But if this is DSA, then you miss dsa ref and dsa-related properties.
+
+So far I'm resisting DSA. The usage of the RTL9300 as a SoC+Switch 
+doesn't really lend itself to the DSA architecture (there is a external 
+CPU mode that would). I think eventually we'd end up with something like 
+the mscc,oscelot where both switchdev and DSA usage is supported. There 
+would be some properties (e.g. port/phy arrangement) that apply to both 
+uses.
+
+I have got a (kind of) working proof of concept switchdev driver which 
+has some of the support you've mentioned. It's not really ready so I 
+didn't include the dt-binding for that stuff in this patch.
+
+>> +
+>> +maintainers:
+>> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +          - realtek,rtl9302c-switch
+>> +      - const: syscon
+>> +      - const: simple-mfd
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  reboot:
+>> +    $ref: /schemas/power/reset/syscon-reboot.yaml#
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - reboot
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    switch0: ethernet-switch@1b000000 {
+> Drop unused label.
+Ack.
 >
 > Best regards,
 > Krzysztof
