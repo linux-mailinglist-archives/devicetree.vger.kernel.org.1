@@ -1,124 +1,126 @@
-Return-Path: <devicetree+bounces-101320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 753B5971528
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:18:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10CDB971544
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:26:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35332283FC2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:18:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A62D61F25419
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:26:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C42E91B3F2D;
-	Mon,  9 Sep 2024 10:18:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEC031B3F20;
+	Mon,  9 Sep 2024 10:26:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="LBhzIK9r"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m2IQvUu1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 532711B29D9;
-	Mon,  9 Sep 2024 10:18:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DA161AC8BF;
+	Mon,  9 Sep 2024 10:26:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725877122; cv=none; b=VX/SHvhCcK8yKIBAxqE8c1lwTgiFSlP3WDpGPdPOENrK91J0aJKMUteEwhNEyBuE913Z1KYm3292w1zdDXlgzzBMUpQ28hWlka9pYzxoIv+q0bklc23Hyr92+gW1ElQcxlwNw3SxIPN3YPWNzP4buD2LTcTNvGeDKkkeOovBcvA=
+	t=1725877572; cv=none; b=H1i+VMtHWJ4Uz8iaoFou5afujhPqbdtG8ZL+2KgFcoeuSC1MzHSkmlum4c/sQAA84L6eIEqjxljTYz9dIWfIN9+AvihX/OKJLs2m2ItXy7Vt8h3dbMKRirVyREgsc1nKxdv1zfeHhEJQEh97dnU9uKtGHG48y+x5vwwq0cnlu3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725877122; c=relaxed/simple;
-	bh=tIl/YJLpYvs/TThG/hy945WRcGfsN7p0+d+XW5VLkZ8=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qAq7BESL939CUX6tU7XxKrqJzlCjxKz7VIpDD8YRf4V3mTYhtguttLvfu4ftyfnkOkn4PXXXwSIO+WwUcarY627vYSOUvcdU8O74tij3VpgN1EW3xkvUt+5YQlg3qQco+e2IQ56+uIya2zHSGBgqRaOpRavbVcV1ZJfla94UxPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=LBhzIK9r; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1725877121; x=1757413121;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=tIl/YJLpYvs/TThG/hy945WRcGfsN7p0+d+XW5VLkZ8=;
-  b=LBhzIK9r1ARHRn3Nu4xjNpUY1LO+hq7NuCoWZzfFc/8OgsJ8CcSwzHUR
-   93+gvsODsYEtA0UOuxFQccrIki3fB2FhXkWxOxTsTf5hNpJJDpAWrf6Jv
-   W3fQ/pGGSB7xV3Ghfvj6gs0YcSo/SPfx4MunwFJrxRk1QuyER+DW/Dp5u
-   fJ2C9O1p3lIWiR5u2YXAAuTiRLFzJjkL9nSzuuBRyAT4rW+iV+zo/er8J
-   uhyx7u79azcD3CDEb2csGmnt4k3lex2yONaDd4/qeh1GqJ0oFIf88lvVW
-   PegFhf56xB51aJuV+TnPLbxtFn6xylhLCHpMEYxr/SyakU9BDuvY7g+zd
-   A==;
-X-CSE-ConnectionGUID: FaCcdkUXQ1iQi8THvrR/tA==
-X-CSE-MsgGUID: /bM7iPiJR8ultVWPqJQGxA==
-X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; 
-   d="asc'?scan'208";a="31498624"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 Sep 2024 03:18:39 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 9 Sep 2024 03:18:34 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Mon, 9 Sep 2024 03:18:30 -0700
-Date: Mon, 9 Sep 2024 11:17:58 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: WangYuli <wangyuli@uniontech.com>
-CC: <stable@vger.kernel.org>, <gregkh@linuxfoundation.org>,
-	<sashal@kernel.org>, <william.qiu@starfivetech.com>,
-	<emil.renner.berthing@canonical.com>, <xingyu.wu@starfivetech.com>,
-	<walker.chen@starfivetech.com>, <robh@kernel.org>,
-	<hal.feng@starfivetech.com>, <kernel@esmil.dk>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<paul.walmsley@sifive.com>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
-	<devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <richardcochran@gmail.com>,
-	<netdev@vger.kernel.org>
-Subject: Re: [PATCH 6.6 1/4] riscv: dts: starfive: add assigned-clock* to
- limit frquency
-Message-ID: <20240909-fidgeting-baggage-e9ef9fab9ca4@wendy>
-References: <D200DC520B462771+20240909074645.1161554-1-wangyuli@uniontech.com>
+	s=arc-20240116; t=1725877572; c=relaxed/simple;
+	bh=vjRysiKxyGdGA4AY0ytCy+i5GAF/On6Gr0J08cUMKDk=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Pm1S2sByojc1GQp6C6zXPvVcoXx+zi63EAc9ECxhrVvOA/S8JaBAtROCNI7oMcU0QWXe8NrJ6bAcPb5BrEExLDNxVg8KUsy7086wCOuyGEEN35ojCf0dGgGRmM9MAQdggFc5XFaqvtms8TAOeMHnAYrXe7a92Jj53wlDjPVEuqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m2IQvUu1; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-371941bbfb0so2480416f8f.0;
+        Mon, 09 Sep 2024 03:26:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725877569; x=1726482369; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ISibUxuI97oG6O4QKOeX0myJkEm0PAQbIlWNwEF4zn8=;
+        b=m2IQvUu140F9HVv/JPWkAjMoZ9XmpSC5sMxBRa2hgNLrrv70BblE+EArux7UG2Mg5B
+         JqJ0WErmVdnaom0KN7l7FWQd1Oh8WJmdSZbVNhCDshZGN0iccdXM/vpkrKmt6v0jn+eR
+         dZNEsN4LmYVArDlLbjTJVkNz1T5QYl5ceYOQBp8nyeswxPdcckxNcFhh6wmu51mEgL6K
+         LixwhxNZgMBxfHYQHku28FYAgD3enuafxJOOWwm16obnABGz93uLvXANtQJofQfqebyt
+         sEQzLyuq5Zqpr+JJWeAPJCCLplvWrYUeylRNj3RTyjHZFOyXjqswqyuJdd6KEfwv6B/b
+         vHAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725877569; x=1726482369;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ISibUxuI97oG6O4QKOeX0myJkEm0PAQbIlWNwEF4zn8=;
+        b=fA3u+FHGpIZ9YR9shwsSSKFx77vHQXeiwnmf58jv9jPNkBFYxTmIk/hEN/k2IOLfWi
+         HS3R6Te0cT+ST5LEVuxsK3211z050UkPg3cdqO4DSpDcw4qzqYlP4XHnN2DOZVvF32I/
+         /Nri7pkomn6rEUPs/kmUh396KRhoRQICp0tZv90fX8WJEJIKMH/pvyHJ+cvcoe9sH378
+         cYlgBwKfrnzg4CzLnRRicRMWZ10xVQAW8m+hiLLMYtbr2uJf70/dXS3G476xE3CWErdA
+         HKpcGw2IcrUgkR7xENpChhIjYJH1wcyB3VYpeLABAPTQl+EiyBXag8pa94Y9eo2DQn9e
+         3cCw==
+X-Forwarded-Encrypted: i=1; AJvYcCURdAI3M602erfQtVSHFgtFS6qkLibQ6w93X37G+0uUykctcBAOzQLMf2SWXPahlBzfd63CybnScLhreSZI@vger.kernel.org, AJvYcCUmb/B0HpezQvCg/QqSbUF61lP2cQOD3UEj0AD1dG6iy6wYeFz97j7RD0BC6ENyWKXVzxQpZ9Hpdz3Q@vger.kernel.org, AJvYcCWgGtQtq2w9CihIUwndf3iHGE8Zki8VZwCawSHhKSOQFwZSElakVYXGufh0on+Lp7pNPfzkm4mlUL69@vger.kernel.org, AJvYcCX+baSUJEozkYTnQoDPGlFx687ddZ9ggqi5TUWQHUZ37vou1XD5BOYgVZ6YF8swPoEKSCsWH1Vvi4P5xWM=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyO4J8/HziY8qf2KkiH0VVMH0gd0jQR3DyqeThTWORZMSibkj5w
+	9IqnDDs+bH+2NAf+bdbCb4mSArOmzOGlh3B8MaNixZ7raMagGTYi
+X-Google-Smtp-Source: AGHT+IGBK9cph81z/hY52nwArccd2p7hMtUV1kAy86UaX3SM3/dXzcfTpymVaLI65YmnG+9CrrYawA==
+X-Received: by 2002:a5d:5547:0:b0:374:c31e:971a with SMTP id ffacd0b85a97d-378922b81f4mr4172859f8f.0.1725877568946;
+        Mon, 09 Sep 2024 03:26:08 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378956767c4sm5651474f8f.63.2024.09.09.03.26.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Sep 2024 03:26:08 -0700 (PDT)
+Message-ID: <fd23afc9700089acddec7537133dc96975580b07.camel@gmail.com>
+Subject: Re: [PATCH v3 1/3] input: touchscreem: ad7877: add match table
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, Dmitry Torokhov
+ <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Michael
+ Hennerich <michael.hennerich@analog.com>, Mark Brown <broonie@kernel.org>, 
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org
+Date: Mon, 09 Sep 2024 12:30:17 +0200
+In-Reply-To: <20240909093101.14113-1-antoniu.miclaus@analog.com>
+References: <20240909093101.14113-1-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="rBzuFpmdaeKLjDQC"
-Content-Disposition: inline
-In-Reply-To: <D200DC520B462771+20240909074645.1161554-1-wangyuli@uniontech.com>
 
---rBzuFpmdaeKLjDQC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Sep 09, 2024 at 03:46:27PM +0800, WangYuli wrote:
-> From: William Qiu <william.qiu@starfivetech.com>
+On Mon, 2024-09-09 at 12:30 +0300, Antoniu Miclaus wrote:
+> Add match table for the ad7877 driver and define the compatible string.
 >=20
-> In JH7110 SoC, we need to go by-pass mode, so we need add the
-> assigned-clock* properties to limit clock frquency.
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+> no changes in v3.
+> =C2=A0drivers/input/touchscreen/ad7877.c | 7 +++++++
+> =C2=A01 file changed, 7 insertions(+)
 >=20
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: WangYuli <wangyuli@uniontech.com>
+> diff --git a/drivers/input/touchscreen/ad7877.c
+> b/drivers/input/touchscreen/ad7877.c
+> index a0598e9c7aff..7886454a19c6 100644
+> --- a/drivers/input/touchscreen/ad7877.c
+> +++ b/drivers/input/touchscreen/ad7877.c
+> @@ -805,10 +805,17 @@ static int ad7877_resume(struct device *dev)
+> =C2=A0
+> =C2=A0static DEFINE_SIMPLE_DEV_PM_OPS(ad7877_pm, ad7877_suspend, ad7877_r=
+esume);
+> =C2=A0
+> +static const struct of_device_id ad7877_of_match[] =3D {
+> +	{ .compatible =3D "adi,ad7877", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, ad7877_of_match);
+> +
 
-What makes any of the patches in this 4 patch series stable material?
+Just curious, is there any reason for this patch to be split from patch 2? =
+Also,
+this patch should directly include mod_devicetable.h for 'struct of_device_=
+id'
+(instead of relying in other headers).
 
-Confused,
-Conor.
+- Nuno S=C3=A1
 
---rBzuFpmdaeKLjDQC
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZt7LVgAKCRB4tDGHoIJi
-0r3UAP9HR5mU/RutuFppy65U3q0D7i129EDL2Zh5HCsiIL48YwEAvSdcIMGjnuaH
-T/LYM7x+opdeozaYtb1S58WtiVokywE=
-=di5l
------END PGP SIGNATURE-----
-
---rBzuFpmdaeKLjDQC--
 
