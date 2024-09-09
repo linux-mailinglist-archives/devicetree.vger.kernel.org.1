@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-101277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7357197125D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:43:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7658971264
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:45:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 908771C21D3A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:43:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 353FF28112B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:45:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7BC41B1501;
-	Mon,  9 Sep 2024 08:43:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE9D11B251C;
+	Mon,  9 Sep 2024 08:45:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="1ZUPUKXD"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="qNNuh/NS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC6571B1D74;
-	Mon,  9 Sep 2024 08:43:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC15B1B1D7A;
+	Mon,  9 Sep 2024 08:45:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725871403; cv=none; b=NfjYZSQgU/YrXLJZKCH6fjLpwuw413GAhwzJ9BZOI2VlzuRUbhRNTF8q2Hbfp6WCA2ElJINKdlwLIpA6je426eltfEN/b88J0Lz+yHVyHYJuRbjvpX42Pl3mijicXV/uk1K3wiYtjU7jYFSdBvM0UktCemLbNrLqutqQY1F2V2E=
+	t=1725871503; cv=none; b=GY7fuCnIYY3tULP+I0yVKuhRhsirEtuAwAlty0cqg1G8GPFqi1Omf02iJe0DogSB4dHfDHfHvmGeDy/KWB6FFvnA7knZ21A/2l643Imb2iaT4Ub5L1345YMTODQ/crgUoZg1FsaDjSNIsh+2OWXd2Xl2WK84vsM/02k1CetBB1Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725871403; c=relaxed/simple;
-	bh=NCvZaRmInNyO6/bn+alAoJC9fBdeWLO6ORxUU1OwehI=;
+	s=arc-20240116; t=1725871503; c=relaxed/simple;
+	bh=s+xlewCctMaDsFweMYj/4diRQjW82za84FW+swoCSDI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=sn5i/bPG4I3o3EIWxLyC530JdFapmV2DV2hBSnL0rbNy5h1p9tq8EoMQoEMgCgMyANoNqAwqiKgNmhY7u1g1ULiFkMrN+zG+c2QvvM066olcGvLS5A0sbwIZeGOU3th4L5nkJrzlS6N1XNmg8Va3WCutVCzR1Y63KF9fiAd0o2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=1ZUPUKXD; arc=none smtp.client-ip=91.207.212.93
+	 In-Reply-To:Content-Type; b=h2GFQcDbrVcqZh4CGALTrTWVen5aZtJwjZaQuTXfWmIsHoCCtDpXKDPSINbtI1RvrSFD/YT7BTdb3h5Dod2zvF5BdItcSucFglv1DYsRFe06IOetD2RtTdyYfYHvoCc+oioqE/byb3dO1NlwKcL1xYxrHixoBjOPWaM4qEjhS54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=qNNuh/NS; arc=none smtp.client-ip=91.207.212.93
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
 Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4898JE8Z024312;
-	Mon, 9 Sep 2024 10:42:48 +0200
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48986X8W022718;
+	Mon, 9 Sep 2024 10:44:52 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	n6xIfcMW57LQttpcgJ8NDKLX/2xFxLOZhvVevVVN+Qo=; b=1ZUPUKXDqxzLmXgx
-	UlOfaf0b6I06jcd2hXkX659nNr42+Q+wxv9YGYdv+0LusFhvvyijmgRioNjaLyBR
-	C7jfBi+jtC5KrGHQr9cSPwcWA6uX5pDHPjbWZ9I4T2zkmcXS9KrL4MXpstwl/qSh
-	Mmbv5u1L6wmqK2D3IStQ+qC/B7hz7gAE+pf8DrDODGdrg5pCBLeyIOssaqb5HPiY
-	P6BrPaFqBoGz6nqTuHDkbaYYbvVuVmPnXGvY8dfB4x/vlVJkQpoMXKtuUsE9GYn8
-	B4hXI0mwo9soGWFmMQRWujrl4Md7tQJeiAI9Uhn7brLmhglfOEJvKt3joUaDjZns
-	kx2PDg==
+	IOm4ThO68sZ/MvSmIYIo32o7N2x0/3KIu3jjeSGhrfw=; b=qNNuh/NSwbUHYh/2
+	sAmk4jT3EuhQ+Qprw8LdvXJHKc4Zm1iShImlwC7kHV8TDPsrzIWcsRdwAWV+tiVA
+	J7WPCfFx2LjeuFKOKRl0u1822YLjnNtpmTHWeBc8ifXnHKN+ory/ZnuDFUChfsHi
+	/AOlfM+I3M+QPrGCN/9UhEIICYner1UKOvTRE7eoMetsE23MZsphw91WBaWNWmeE
+	hu693aUCUHX+TGavdnVBKuNRvrBs8WBGHwOqLEt6wOd9HipL1R6vSCq5H1OGnHSy
+	o6JzTzg/P4bxMRYQhAo0b9C+zRfFpTmAzamptvKrMiwFZxcT0/PLL+zeizsMG9ll
+	mr5kmg==
 Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41gyaum1hq-1
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41gyaum1s0-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Sep 2024 10:42:48 +0200 (MEST)
+	Mon, 09 Sep 2024 10:44:51 +0200 (MEST)
 Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1963C4002D;
-	Mon,  9 Sep 2024 10:41:37 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id AE4ED24EE46;
-	Mon,  9 Sep 2024 10:40:46 +0200 (CEST)
-Received: from [10.129.178.212] (10.129.178.212) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 3544340048;
+	Mon,  9 Sep 2024 10:43:54 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0916A24F388;
+	Mon,  9 Sep 2024 10:42:18 +0200 (CEST)
+Received: from [10.131.140.24] (10.131.140.24) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 9 Sep
- 2024 10:40:46 +0200
-Message-ID: <f7cead97-7f26-4923-b04d-7ce812a32577@foss.st.com>
-Date: Mon, 9 Sep 2024 10:40:44 +0200
+ 2024 10:42:17 +0200
+Message-ID: <4b37dccd-bfc6-4355-847f-f613a4a87263@foss.st.com>
+Date: Mon, 9 Sep 2024 10:42:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,250 +67,137 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/5] phy: stm32: Add support for STM32MP25 COMBOPHY.
-To: Philipp Zabel <p.zabel@pengutronix.de>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <mcoquelin.stm32@gmail.com>,
-        <alexandre.torgue@foss.st.com>
-CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <fabrice.gasnier@foss.st.com>
-References: <20240903121303.2953150-1-christian.bruel@foss.st.com>
- <20240903121303.2953150-3-christian.bruel@foss.st.com>
- <d743de28a5dd643cf775f4d8a3baaabd09d48c48.camel@pengutronix.de>
-From: Christian Bruel <christian.bruel@foss.st.com>
+Subject: Re: [PATCH v2 2/2] media: i2c: Add driver for ST VD56G3 camera sensor
+To: Sakari Ailus <sakari.ailus@iki.fi>
+CC: <benjamin.mugnier@foss.st.com>, <mchehab@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240521162950.6987-1-sylvain.petinot@foss.st.com>
+ <20240521162950.6987-3-sylvain.petinot@foss.st.com>
+ <ZlXEvR3yKe0W8X_q@valkosipuli.retiisi.eu>
+ <ecccf332-66e5-43c0-8a48-d49b0aa1e5a9@foss.st.com>
+ <Zt6ei2-orFC4Jq1g@valkosipuli.retiisi.eu>
+From: Sylvain Petinot <sylvain.petinot@foss.st.com>
 Content-Language: en-US
-In-Reply-To: <d743de28a5dd643cf775f4d8a3baaabd09d48c48.camel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+In-Reply-To: <Zt6ei2-orFC4Jq1g@valkosipuli.retiisi.eu>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-Hi,
+Hello Sakari,
 
-On 9/6/24 15:44, Philipp Zabel wrote:
-> Hi,
+Thanks for your feedback, no worries about the delay ...
+
+On 9/9/2024 9:06 AM, Sakari Ailus wrote:
+> Hi Sylwain,
 > 
-> On Di, 2024-09-03 at 14:13 +0200, Christian Bruel wrote:
->> Addition of the COMBOPHY driver found on STM32MP25 platforms
+> Apologies for the delay...
+> 
+> On Mon, Jun 03, 2024 at 11:59:29AM +0200, Sylvain Petinot wrote:
+>>>> +/*
+>>>> + * The VD56G3 pixel array is organized as follows:
+>>>> + *
+>>>> + * +--------------------------------+
+>>>> + * |                                | \
+>>>> + * |   +------------------------+   |  |
+>>>> + * |   |                        |   |  |
+>>>> + * |   |                        |   |  |
+>>>> + * |   |                        |   |  |
+>>>> + * |   |                        |   |  |
+>>>> + * |   |                        |   |  |
+>>>> + * |   |   Default resolution   |   |  | Native height (1364)
+>>>
+>>> What's outside the default resolution? It doesn't appear the driver would
+>>> allow capturing pixels out side this area.
 >>
->> This single lane PHY is shared (exclusive) between the USB3 and PCIE
->> controllers.
->> Supports 5Gbit/s for PCIE gen2 or 2.5Gbit/s for PCIE gen1.
+>> Well both native and default resolutions are supported in the
+>> 'vd56g3_supported_modes' below.
+>> However this quite exotic resolution (1364 x 1124) isn't well supported
+>> by csi receivers, ISPs. That's why the default resolution of the driver
+>> is 1120 x 1360 (multiple of 16).
+> 
+> Ack.
+> 
+> I'd still keep the native resolution as the default and allow configuring
+> something else if the user space wants to.
+> 
+> The desired resolution really depends on the use case (as well as the ISP).
+
+Sure, I can change the default to the native... The choice I made was
+more a way to simplify (my) life (several times we went into debugging
+before realizing that it was the exotic resolution causing the unwanted
+behavior).
+But, that's probably better, I'll change it for V4.
+
+> 
+>>>> +		break;
+>>>> +	case V4L2_CID_EXPOSURE_AUTO:
+>>>> +		is_auto = (ctrl->val == V4L2_EXPOSURE_AUTO);
+>>>> +		__v4l2_ctrl_grab(sensor->ae_lock_ctrl, !is_auto);
+>>>> +		__v4l2_ctrl_grab(sensor->ae_bias_ctrl, !is_auto);
+>>>> +		break;
+>>>> +	default:
+>>>> +		break;
+>>>
+>>> You could omit default here.
 >>
->> Supports wakeup-source capability to wakeup system using remote-wakeup
->> capable USB device
+>> I don't really like switch case without default. For sure I can omit,
+>> but I prefer making it explicit.
+> 
+> I'm ok with that.
+> 
+> ...
+> 
+>>>> +static int vd56g3_power_off(struct vd56g3 *sensor)
+>>>> +{
+>>>> +	clk_disable_unprepare(sensor->xclk);
+>>>> +	gpiod_set_value_cansleep(sensor->reset_gpio, 1);
+>>>> +	regulator_bulk_disable(ARRAY_SIZE(sensor->supplies), sensor->supplies);
+>>>> +	return 0;
+>>>
+>>> You can make the return type void.
+>>>
+>>> Do you need two pairs of functions doing the same, or could you call
+>>> vd56g3_runtime_resume and vd56g3_runtime_suspend from driver's probe and
+>>> remove functions, too?
 >>
->> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
->> ---
->>   drivers/phy/st/Kconfig              |  11 +
->>   drivers/phy/st/Makefile             |   1 +
->>   drivers/phy/st/phy-stm32-combophy.c | 590 ++++++++++++++++++++++++++++
->>   3 files changed, 602 insertions(+)
->>   create mode 100644 drivers/phy/st/phy-stm32-combophy.c
+>> "Well, in fact, I tested both options before submitting V2 (I mean the
+>> unification of vd56g3_runtime_resume/suspend functions with
+>> vd56g3_power_on/off).
 >>
-> [...]
->> diff --git a/drivers/phy/st/phy-stm32-combophy.c b/drivers/phy/st/phy-stm32-combophy.c
->> new file mode 100644
->> index 000000000000..305ba124d092
->> --- /dev/null
->> +++ b/drivers/phy/st/phy-stm32-combophy.c
->> @@ -0,0 +1,590 @@
-> [...]
->> +static int stm32_combophy_pll_init(struct stm32_combophy *combophy)
->> +{
->> +	int ret;
->> +	u32 refclksel, pllmult, propcntrl, val;
->> +	u32 clk_rate;
->> +	struct clk *clk;
->> +
->> +	if (combophy->have_pad_clk)
->> +		clk = combophy->clks[PAD_CLK].clk;
->> +	else
->> +		clk = combophy->clks[KER_CLK].clk;
->> +
->> +	clk_rate = clk_get_rate(clk);
->> +
->> +	reset_control_assert(combophy->phy_reset);
->> +
->> +	dev_dbg(combophy->dev, "%s pll init rate %d\n",
->> +		combophy->have_pad_clk ? "External" : "Ker", clk_rate);
->> +
->> +	/*
->> +	 * vddcombophy is interconnected with vddcore. Isolation bit should be unset
->> +	 * before using the ComboPHY.
->> +	 */
->> +	regmap_update_bits(combophy->regmap, SYSCFG_COMBOPHY_CR2,
->> +			   SYSCFG_COMBOPHY_CR2_ISO_DIS, SYSCFG_COMBOPHY_CR2_ISO_DIS);
->> +
->> +	if (combophy->type != PHY_TYPE_PCIE)
->> +		regmap_update_bits(combophy->regmap, SYSCFG_COMBOPHY_CR1,
->> +				   SYSCFG_COMBOPHY_CR1_REFSSPEN, SYSCFG_COMBOPHY_CR1_REFSSPEN);
+>> The unification option has the advantage of simplifying the code and
+>> removing two "useless" functions. The only drawback is that I had to
+>> call v4l2_i2c_subdev_init() earlier in the probe() function, whereas
+>> it's currently called in vd56g3_subdev_init() (currently at the end of
+>> the probe()). OK, it's not a big deal, but I find that the resulting
+>> code is not as well structured/divided (thus readable).
+>>
+>> I'm interested to get your feedback to decide wich option to push for V3.
 > 
-> Could the multiple accesses to SYSCFG_COMBOPHY_CR1 be consolidated into
-> a single regmap_update_bits()?
+> I'd prefer calling v4l2_i2c_subdev_init() earlier, in order to set the
+> device context. These are usually among those things that should be done as
+> early as possible, in order to avoid invalid pointers where much of the
+> driver code expects something else.
 
-yes, thanks
+Yes, the V3 I pushed include this modification.
 
 > 
->> +
->> +	if (combophy->type == PHY_TYPE_PCIE && !combophy->have_pad_clk)
->> +		regmap_update_bits(combophy->regmap, SYSCFG_PCIEPRGCR,
->> +				   STM32MP25_PCIEPRGCR_EN, STM32MP25_PCIEPRGCR_EN);
->> +
->> +	if (of_property_present(combophy->dev->of_node, "st,ssc-on")) {
->> +		dev_dbg(combophy->dev, "Enabling clock with SSC\n");
->> +		regmap_update_bits(combophy->regmap, SYSCFG_COMBOPHY_CR1,
->> +				   SYSCFG_COMBOPHY_CR1_SSCEN, SYSCFG_COMBOPHY_CR1_SSCEN);
->> +	}
->> +
->> +	if (!of_property_read_u32(combophy->dev->of_node, "st,rx-equalizer", &val)) {
->> +		dev_dbg(combophy->dev, "Set RX equalizer %u\n", val);
->> +		if (val > SYSCFG_COMBOPHY_CR4_RX0_EQ) {
->> +			dev_err(combophy->dev, "Invalid value %u for rx0 equalizer\n", val);
+> Btw. if you're not in too much hurry (I guess so?), we're just about to
+> rework the sensor API, to include internal pads and embedded data, for
+> better sensor configurability. It'll take a while before we're there
+> though, but when this driver is merged, the existing API must continue to
+> work.
 > 
-> This path looks like it should deassert the phy_reset as well.
 
-Ack
+I have a few branches with stream API (notably for the support of status
+lines), but I need a to test a bit more before pushing.
 
-> 
->> +			return -EINVAL;
->> +		}
->> +
->> +		regmap_update_bits(combophy->regmap, SYSCFG_COMBOPHY_CR4,
->> +			   SYSCFG_COMBOPHY_CR4_RX0_EQ, val);
->> +	}
->> +
->> +	if (combophy->type == PHY_TYPE_PCIE) {
->> +		ret = stm32_impedance_tune(combophy);
->> +		if (ret) {
->> +			reset_control_deassert(combophy->phy_reset);
->> +			goto out;
->> +		}
->> +
->> +		regmap_update_bits(combophy->regmap, SYSCFG_COMBOPHY_CR1,
->> +				   SYSCFG_COMBOPHY_CR1_REFUSEPAD,
->> +				   combophy->have_pad_clk ? SYSCFG_COMBOPHY_CR1_REFUSEPAD : 0);
->> +	}
->> +
->> +	switch (clk_rate) {
->> +	case 100000000:
->> +		pllmult = MPLLMULT_100;
->> +		refclksel = REFCLKSEL_0;
->> +		propcntrl = 0x8u << 4;
->> +		break;
->> +	case 19200000:
->> +		pllmult = MPLLMULT_19_2;
->> +		refclksel = REFCLKSEL_1;
->> +		propcntrl = 0x8u << 4;
->> +		break;
->> +	case 25000000:
->> +		pllmult = MPLLMULT_25;
->> +		refclksel = REFCLKSEL_0;
->> +		propcntrl = 0xeu << 4;
->> +		break;
->> +	case 24000000:
->> +		pllmult = MPLLMULT_24;
->> +		refclksel = REFCLKSEL_1;
->> +		propcntrl = 0xeu << 4;
->> +		break;
->> +	case 20000000:
->> +		pllmult = MPLLMULT_20;
->> +		refclksel = REFCLKSEL_0;
->> +		propcntrl = 0xeu << 4;
->> +		break;
->> +	default:
->> +		dev_err(combophy->dev, "Invalid rate 0x%x\n", clk_rate);
->> +		reset_control_deassert(combophy->phy_reset);
->> +		ret = -EINVAL;
->> +		goto out;
->> +	};
->> +
->> +	regmap_update_bits(combophy->regmap, SYSCFG_COMBOPHY_CR1,
->> +			   SYSCFG_COMBOPHY_CR1_REFCLKDIV2, REFCLDIV_0);
->> +	regmap_update_bits(combophy->regmap, SYSCFG_COMBOPHY_CR1,
->> +			   SYSCFG_COMBOPHY_CR1_REFCLKSEL, refclksel);
->> +	regmap_update_bits(combophy->regmap, SYSCFG_COMBOPHY_CR1,
->> +			   SYSCFG_COMBOPHY_CR1_MPLLMULT, pllmult);
->> +
->> +	/*
->> +	 * Force elasticity buffer to be tuned for the reference clock as
->> +	 * the separated clock model is not supported
->> +	 */
->> +	regmap_update_bits(combophy->regmap, SYSCFG_COMBOPHY_CR5,
->> +			   SYSCFG_COMBOPHY_CR5_COMMON_CLOCKS, SYSCFG_COMBOPHY_CR5_COMMON_CLOCKS);
->> +
->> +	reset_control_deassert(combophy->phy_reset);
->> +
->> +	ret = regmap_read_poll_timeout(combophy->regmap, SYSCFG_COMBOPHY_SR, val,
->> +				       !(val & STM32MP25_PIPE0_PHYSTATUS),
->> +				       10, 1000);
->> +	if (ret) {
->> +		dev_err(combophy->dev, "timeout, cannot lock PLL\n");
->> +		goto out;
->> +	}
->> +
->> +	if (combophy->type == PHY_TYPE_PCIE) {
->> +		val = readl_relaxed(combophy->base + COMBOPHY_SUP_ANA_MPLL_LOOP_CTL);
->> +		val &= ~COMBOPHY_PROP_CNTRL;
->> +		val |= propcntrl;
->> +		writel_relaxed(val, combophy->base + COMBOPHY_SUP_ANA_MPLL_LOOP_CTL);
->> +	}
->> +
->> +	return 0;
->> +
->> +out:
->> +	if (combophy->type == PHY_TYPE_PCIE && !combophy->have_pad_clk)
->> +		regmap_update_bits(combophy->regmap, SYSCFG_PCIEPRGCR,
->> +				   STM32MP25_PCIEPRGCR_EN, 0);
->> +
->> +	if (combophy->type != PHY_TYPE_PCIE)
->> +		regmap_update_bits(combophy->regmap, SYSCFG_COMBOPHY_CR1,
->> +				   SYSCFG_COMBOPHY_CR1_REFSSPEN, 0);
->> +
->> +	regmap_update_bits(combophy->regmap, SYSCFG_COMBOPHY_CR2,
->> +			   SYSCFG_COMBOPHY_CR2_ISO_DIS, 0);
->> +
->> +	return ret;
->> +}
->> +
-> [...]
->> +
->> +static int stm32_combophy_probe(struct platform_device *pdev)
->> +{
->> +	struct stm32_combophy *combophy;
->> +	struct device *dev = &pdev->dev;
->> +	struct phy_provider *phy_provider;
->> +	int ret, irq;
->> +
->> +	combophy = devm_kzalloc(dev, sizeof(*combophy), GFP_KERNEL);
->> +	if (!combophy)
->> +		return -ENOMEM;
->> +
->> +	combophy->dev = dev;
->> +
->> +	dev_set_drvdata(dev, combophy);
->> +
->> +	combophy->base = devm_platform_ioremap_resource(pdev, 0);
->> +	if (IS_ERR(combophy->base))
->> +		return PTR_ERR(combophy->base);
->> +
->> +	if (stm32_combophy_get_clocks(combophy))
->> +		return ret;
->> +
->> +	combophy->phy_reset = devm_reset_control_get(dev, "phy");
-> 
-> Please use devm_reset_control_get_exclusive() directly.
 
-OK,
-
-thanks,
-Christian
-> 
-> regards
-> Philipp
+--
+Sylvain
 
