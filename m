@@ -1,126 +1,165 @@
-Return-Path: <devicetree+bounces-101321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10CDB971544
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:26:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F7CF971578
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:38:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A62D61F25419
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:26:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DB242808E3
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:38:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEC031B3F20;
-	Mon,  9 Sep 2024 10:26:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F43C1B4C2E;
+	Mon,  9 Sep 2024 10:38:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m2IQvUu1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fCpZP2Z3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DA161AC8BF;
-	Mon,  9 Sep 2024 10:26:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2803C1B374D
+	for <devicetree@vger.kernel.org>; Mon,  9 Sep 2024 10:38:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725877572; cv=none; b=H1i+VMtHWJ4Uz8iaoFou5afujhPqbdtG8ZL+2KgFcoeuSC1MzHSkmlum4c/sQAA84L6eIEqjxljTYz9dIWfIN9+AvihX/OKJLs2m2ItXy7Vt8h3dbMKRirVyREgsc1nKxdv1zfeHhEJQEh97dnU9uKtGHG48y+x5vwwq0cnlu3M=
+	t=1725878310; cv=none; b=RjQ563ATtvR7EbpFcKQnvbV15S67HCGx5dqwPH+qyfEcTrTAtrtXlUeCeDRpm7AJKPpLbperHO4uRPB6fqEtBO/hjgYOcy7JSGfMCjJ58c85As7T3fPRRuGArOQD+Ke5cRLyzQIRomTM901oAAP8TJszTQyu918aMwBu3Iy4hL4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725877572; c=relaxed/simple;
-	bh=vjRysiKxyGdGA4AY0ytCy+i5GAF/On6Gr0J08cUMKDk=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Pm1S2sByojc1GQp6C6zXPvVcoXx+zi63EAc9ECxhrVvOA/S8JaBAtROCNI7oMcU0QWXe8NrJ6bAcPb5BrEExLDNxVg8KUsy7086wCOuyGEEN35ojCf0dGgGRmM9MAQdggFc5XFaqvtms8TAOeMHnAYrXe7a92Jj53wlDjPVEuqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m2IQvUu1; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-371941bbfb0so2480416f8f.0;
-        Mon, 09 Sep 2024 03:26:11 -0700 (PDT)
+	s=arc-20240116; t=1725878310; c=relaxed/simple;
+	bh=6/F0wT7inBEmaWykWGbz5BE8PBD72m9tx6HDZJCE590=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YtHyOj+E2A+r1uxrG63asoNbK0bSM4qc3HBYbPm62hI1NM+lhDFTjW+9oE1ggu6H1M6fzmDXLeo/8UprOwVE4tlCZJjV1HJXOoB99KGVh5WvxKoLeRINio59CT/3ZXDn0RK/TDHkp+iTces7+4EbHwBShjMHb3PBSemOGiC9DI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fCpZP2Z3; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-42cb198f23fso2330915e9.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Sep 2024 03:38:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725877569; x=1726482369; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ISibUxuI97oG6O4QKOeX0myJkEm0PAQbIlWNwEF4zn8=;
-        b=m2IQvUu140F9HVv/JPWkAjMoZ9XmpSC5sMxBRa2hgNLrrv70BblE+EArux7UG2Mg5B
-         JqJ0WErmVdnaom0KN7l7FWQd1Oh8WJmdSZbVNhCDshZGN0iccdXM/vpkrKmt6v0jn+eR
-         dZNEsN4LmYVArDlLbjTJVkNz1T5QYl5ceYOQBp8nyeswxPdcckxNcFhh6wmu51mEgL6K
-         LixwhxNZgMBxfHYQHku28FYAgD3enuafxJOOWwm16obnABGz93uLvXANtQJofQfqebyt
-         sEQzLyuq5Zqpr+JJWeAPJCCLplvWrYUeylRNj3RTyjHZFOyXjqswqyuJdd6KEfwv6B/b
-         vHAw==
+        d=linaro.org; s=google; t=1725878306; x=1726483106; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ijYUl9N3eSS0f0UB+sT+1fxof8sK7+47VVf4ZxSBQqs=;
+        b=fCpZP2Z3HEAhlY4S671Z9g7qGJQgC045coZUDkgslkQObPodUz/0y+efFZzgJKI99b
+         mfjEnewMRfvQAWi0Heaf3QrmzMvS7OTsriQ5QhxunVERK9vdbRb8mp4dMdgYkwEa8FcU
+         5u9uuZCu66gs6M9+jwjwk7/67NdT/BTw3pDaEgKwlLedmO4zIX6MqcXSwGHd1gfJ6R6e
+         YRmpghjyigVWTO9T5+tGBUWVUMP5brx5MLhFnXIkunFvsX+ckcoKGxMc5zhowEDjEl/z
+         Uxunwn3T1rCfAGEAa3NDAJM2FwlctR01wlr8bubTDurwl0xBw4sbpZK4AK5cpjE9xScx
+         kIow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725877569; x=1726482369;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ISibUxuI97oG6O4QKOeX0myJkEm0PAQbIlWNwEF4zn8=;
-        b=fA3u+FHGpIZ9YR9shwsSSKFx77vHQXeiwnmf58jv9jPNkBFYxTmIk/hEN/k2IOLfWi
-         HS3R6Te0cT+ST5LEVuxsK3211z050UkPg3cdqO4DSpDcw4qzqYlP4XHnN2DOZVvF32I/
-         /Nri7pkomn6rEUPs/kmUh396KRhoRQICp0tZv90fX8WJEJIKMH/pvyHJ+cvcoe9sH378
-         cYlgBwKfrnzg4CzLnRRicRMWZ10xVQAW8m+hiLLMYtbr2uJf70/dXS3G476xE3CWErdA
-         HKpcGw2IcrUgkR7xENpChhIjYJH1wcyB3VYpeLABAPTQl+EiyBXag8pa94Y9eo2DQn9e
-         3cCw==
-X-Forwarded-Encrypted: i=1; AJvYcCURdAI3M602erfQtVSHFgtFS6qkLibQ6w93X37G+0uUykctcBAOzQLMf2SWXPahlBzfd63CybnScLhreSZI@vger.kernel.org, AJvYcCUmb/B0HpezQvCg/QqSbUF61lP2cQOD3UEj0AD1dG6iy6wYeFz97j7RD0BC6ENyWKXVzxQpZ9Hpdz3Q@vger.kernel.org, AJvYcCWgGtQtq2w9CihIUwndf3iHGE8Zki8VZwCawSHhKSOQFwZSElakVYXGufh0on+Lp7pNPfzkm4mlUL69@vger.kernel.org, AJvYcCX+baSUJEozkYTnQoDPGlFx687ddZ9ggqi5TUWQHUZ37vou1XD5BOYgVZ6YF8swPoEKSCsWH1Vvi4P5xWM=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyO4J8/HziY8qf2KkiH0VVMH0gd0jQR3DyqeThTWORZMSibkj5w
-	9IqnDDs+bH+2NAf+bdbCb4mSArOmzOGlh3B8MaNixZ7raMagGTYi
-X-Google-Smtp-Source: AGHT+IGBK9cph81z/hY52nwArccd2p7hMtUV1kAy86UaX3SM3/dXzcfTpymVaLI65YmnG+9CrrYawA==
-X-Received: by 2002:a5d:5547:0:b0:374:c31e:971a with SMTP id ffacd0b85a97d-378922b81f4mr4172859f8f.0.1725877568946;
-        Mon, 09 Sep 2024 03:26:08 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378956767c4sm5651474f8f.63.2024.09.09.03.26.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Sep 2024 03:26:08 -0700 (PDT)
-Message-ID: <fd23afc9700089acddec7537133dc96975580b07.camel@gmail.com>
-Subject: Re: [PATCH v3 1/3] input: touchscreem: ad7877: add match table
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, Dmitry Torokhov
- <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Michael
- Hennerich <michael.hennerich@analog.com>, Mark Brown <broonie@kernel.org>, 
- linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org
-Date: Mon, 09 Sep 2024 12:30:17 +0200
-In-Reply-To: <20240909093101.14113-1-antoniu.miclaus@analog.com>
-References: <20240909093101.14113-1-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 
+        d=1e100.net; s=20230601; t=1725878306; x=1726483106;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ijYUl9N3eSS0f0UB+sT+1fxof8sK7+47VVf4ZxSBQqs=;
+        b=VMudBMpkE3tkl1FTL12pvae6UIeI8O4POs/Z3a9ZHjNcyd4kovL+Qj9i1DPJB9caSt
+         MZujCdkdsgITmFCfwyt4iFSkVbMhxfSP6sJT4LaQwu0UUzpdub/yIXfsp2cN0c7Aq92h
+         F6wHtYFgEJxRq6MIChD2o7qStOjBrrZpacurVoSg0p2oi2+vMesCE0cSSkOy/vKcyjKF
+         kj5o6Es+RKwtPjcvvlvCsEbVhyd+1fFrCTTVJ31MQegKO09ZvDak0AO//fDqpi77rzTT
+         2eQTVrg/lFv+mIedUDpyAgFS67Q5TQlVbqiRdApiCeWpfFpyajbxixLUGNQG+b/WRyBc
+         +Gpg==
+X-Forwarded-Encrypted: i=1; AJvYcCXDDvCBlZtfCSRouQD9vUXl5BwVYiQdXO9CrSdCd5uJc+Ipz0hBnpETbGy8giN+LEjqPd9KD46b7Onq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz94flnp2YT6H8RJF7EgPBJ0Y3pIq2sIaHiRyP+HN1vYEfoIoeW
+	sCAaFiSsmJK7rvhL4pBpDiTzflxfIsx7ywLKUh3bvBByNgtWwbU+VNpgTHI1vw0=
+X-Google-Smtp-Source: AGHT+IFDLK63GZH/VXcYHv1Pz3VepCfJL2pAqtm7kevYgRA4TLaFcNcJJe+27zjauLdzZyBhseF+gw==
+X-Received: by 2002:a05:6000:2c5:b0:374:bebd:e714 with SMTP id ffacd0b85a97d-378895ca7c6mr3603101f8f.4.1725878305859;
+        Mon, 09 Sep 2024 03:38:25 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.82])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378956ddae5sm5657776f8f.97.2024.09.09.03.38.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Sep 2024 03:38:25 -0700 (PDT)
+Message-ID: <ac72665f-0138-4951-aa90-d1defebac9ca@linaro.org>
+Date: Mon, 9 Sep 2024 12:38:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6.6 1/4] riscv: dts: starfive: add assigned-clock* to
+ limit frquency
+To: Conor Dooley <conor.dooley@microchip.com>,
+ WangYuli <wangyuli@uniontech.com>
+Cc: stable@vger.kernel.org, gregkh@linuxfoundation.org, sashal@kernel.org,
+ william.qiu@starfivetech.com, emil.renner.berthing@canonical.com,
+ xingyu.wu@starfivetech.com, walker.chen@starfivetech.com, robh@kernel.org,
+ hal.feng@starfivetech.com, kernel@esmil.dk, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org, richardcochran@gmail.com,
+ netdev@vger.kernel.org
+References: <D200DC520B462771+20240909074645.1161554-1-wangyuli@uniontech.com>
+ <20240909-fidgeting-baggage-e9ef9fab9ca4@wendy>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240909-fidgeting-baggage-e9ef9fab9ca4@wendy>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, 2024-09-09 at 12:30 +0300, Antoniu Miclaus wrote:
-> Add match table for the ad7877 driver and define the compatible string.
->=20
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
-> no changes in v3.
-> =C2=A0drivers/input/touchscreen/ad7877.c | 7 +++++++
-> =C2=A01 file changed, 7 insertions(+)
->=20
-> diff --git a/drivers/input/touchscreen/ad7877.c
-> b/drivers/input/touchscreen/ad7877.c
-> index a0598e9c7aff..7886454a19c6 100644
-> --- a/drivers/input/touchscreen/ad7877.c
-> +++ b/drivers/input/touchscreen/ad7877.c
-> @@ -805,10 +805,17 @@ static int ad7877_resume(struct device *dev)
-> =C2=A0
-> =C2=A0static DEFINE_SIMPLE_DEV_PM_OPS(ad7877_pm, ad7877_suspend, ad7877_r=
-esume);
-> =C2=A0
-> +static const struct of_device_id ad7877_of_match[] =3D {
-> +	{ .compatible =3D "adi,ad7877", },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, ad7877_of_match);
-> +
+On 09/09/2024 12:17, Conor Dooley wrote:
+> On Mon, Sep 09, 2024 at 03:46:27PM +0800, WangYuli wrote:
+>> From: William Qiu <william.qiu@starfivetech.com>
+>>
+>> In JH7110 SoC, we need to go by-pass mode, so we need add the
+>> assigned-clock* properties to limit clock frquency.
+>>
+>> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+>> Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>> Signed-off-by: WangYuli <wangyuli@uniontech.com>
+> 
+> What makes any of the patches in this 4 patch series stable material?
 
-Just curious, is there any reason for this patch to be split from patch 2? =
-Also,
-this patch should directly include mod_devicetable.h for 'struct of_device_=
-id'
-(instead of relying in other headers).
+That's for stable? It needs to follow stable process rules, so proper
+commit ID.
 
-- Nuno S=C3=A1
+Best regards,
+Krzysztof
 
 
