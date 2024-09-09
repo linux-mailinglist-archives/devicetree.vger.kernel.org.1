@@ -1,147 +1,173 @@
-Return-Path: <devicetree+bounces-101405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7859C9718EE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:09:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B0809718FB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:11:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A251E1C229FF
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:09:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C363D1F22F56
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:11:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C4501B6535;
-	Mon,  9 Sep 2024 12:09:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n4IJVq8h"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DCB31B6535;
+	Mon,  9 Sep 2024 12:11:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2070C172BCE;
-	Mon,  9 Sep 2024 12:09:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 371A5172BCE;
+	Mon,  9 Sep 2024 12:11:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725883759; cv=none; b=Q1DBsVn/akZBb0rioj/RJ56cR/BO/1yYa4ghM1L5jjw9S3UO+7YoCppe2CT39JnucmftQU6N/Wj3KFWlWpvs4/Zhwiz5fCPEoXvMaOiOXpllcZRjBJF2Y4aN9tpS6D6ddVRewh3YCpjm+EHHssF0uHEGqBPUIiBL5LYhZjYATXk=
+	t=1725883881; cv=none; b=Y4hoYkYlEBcVXoiwXP+qNrs8i3a6r+k2OYN39EOq+aI8jzQ4P+oXK+9YCbfuM4f+yik7OKJknxDNwogmq4q9Jojv2fUVPNMqIWahVgsciKuX29nPIvxUAvff6BRRm8RZ9+DWlzBgAUBd9ui2qEyVBZPHcNTXviHTaDZJHrq18H8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725883759; c=relaxed/simple;
-	bh=35r31MC1hoPfgkzZj32kgu2btsUDLWvPk4HhgkKwsFk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sHbbLzlfJ2TSBQMerxBoCIZ9qh7uXJJ7ZQOE7WYZAGoZWTSv3JUGiVKMt4/siguOepwP85+EPD/FzKTiU+c8gz/UIC51YSPcfiDcZW+/LIimAlcBcrimCyY9sR7Ffu39RzWhJ/epGB4IkW2PVPphYGBL/wxCxV9OWc+oVpM0HfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n4IJVq8h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B49EC4CEC5;
-	Mon,  9 Sep 2024 12:09:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725883759;
-	bh=35r31MC1hoPfgkzZj32kgu2btsUDLWvPk4HhgkKwsFk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=n4IJVq8hFbgNniXADh5xYEX/UKTDVVS8xY7y2YdFJFd5zaINN8kqG8IzoTgIAh04K
-	 xOgDVSiE+Cve+Ux1Xag6XbGGyx/A3mDov/7CuQVbdTm0wgMxv4VwaZiNPTjFe5MeIs
-	 lfzTg3YCBfqfspvOIZeayYfGJk0PugfiCM4qfNxZ4EdhgQqcJaZrrzA0KKugPF0cvD
-	 qa35yesnb9KLuRRxFuXfhRo1AIVUDT2Ncpn2Qa20ye9A5y2rx00MpMz8zVbwIlmVqQ
-	 jz3lChwkEj4+zivPBUjaSracH1n40oaxb4vv+qdlAyv7O5Vx4sZmpl4TVMpOrypaTl
-	 qkDsJIVhNErnQ==
-Message-ID: <25873dfa-fe70-4ef6-b840-795faaec1f07@kernel.org>
-Date: Mon, 9 Sep 2024 14:09:11 +0200
+	s=arc-20240116; t=1725883881; c=relaxed/simple;
+	bh=39bHDieju2KDrK1NVgP6S2Lyn0IKtZ3wRK9Z+78eCR0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Jt+3stwVmgsUbJYMN1tFTE1frjmUeyc8/icVIRx38sbSi/e5SgUe6CJD2HVith6NkAvRModiLUDIAVO6eMVaCUroHELAdj79Xc3Oju3+CCX3u4l97BXHQQz3uTsxChb2gT7MEHdqPu3upjuIU2b4h2DLoFKRi1TwQrnqBxQ7TFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6b47ff8a59aso41071177b3.2;
+        Mon, 09 Sep 2024 05:11:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725883877; x=1726488677;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jcqCtl6E7A4OPOryoegwZKV2Sgx5JBQZ+r80cmVrDm8=;
+        b=QmQO2MwaqGQl4QsRSvyujyD401EJ6ohNMTZ3QzytKENK+zD+SK1xVVSfbmSmUmNImF
+         /4YccT+P75hhLNMmfEWWvwOQkz3eDQI82bGQqZHWUgmVSnvrvPy9Mh02mxOilUr8AroB
+         Oujuvxq6Afz6FoG9z6KEDaxnshpUl3Ul8z8yYJjHfuGostc5hFLwrwFNAxKlwTwsU6rp
+         3CPiz6IltiNTsGefFCmWn/C7AAi8D2EkR9gtKIht6u5iBGXbGchV7wXtTBY4ri0nQjPp
+         9mVwuz1u+w2mZrAy9snN+PvYuSn0kfsX0D0G3l6ypvCnI/NaVMoZs1i2BNm9SO4U4/MK
+         VgLA==
+X-Forwarded-Encrypted: i=1; AJvYcCUK/Znbi9GkSPXzXl0Qrpn3VmRmhxES4k/yf/0CswKJ9OybwTZ+81OVQqsJel7K3hkwnX1SF2wZ4levIMo4@vger.kernel.org, AJvYcCViwgLiolWg6S636ujbO4ahzCqGJpqk+ICROgyEgxkHjFuGA+OxE1wi+rTZWW0VhXm9LfnThXEgjtdW@vger.kernel.org, AJvYcCWzg0o022zlujWoyfgCegna9RJALm1kvA3gq/Ne90wUBMhgtUIWcBVe6ICUztFyziRJgdgp/vqaO8fA@vger.kernel.org, AJvYcCXC0bcWGCEOQQ+AXhum9IDlq+IUMVmWLyRlI3QAQ9JlCmu3LQ5NYPcMvDO36aBDcR/KIoNPYUU3E4ucsDqqnoSzFmQ=@vger.kernel.org, AJvYcCXmH8uYRiSM90qaStVnE7PQA2DJRhWGa6d1zZpCSrfnlW16L2iElTIFAxrrOS5KyKAfgFNhSk8CgQmW@vger.kernel.org
+X-Gm-Message-State: AOJu0YzueTovKQ4KIQc5ItMbnBB+NAInvrIc3wpwkRAF2H2T8N7f4xfS
+	R7mww10HS0bZClgP2kla17exA+3FzUIG0Dra5rQ+tRhC3pbCEpawWU2MSoDd
+X-Google-Smtp-Source: AGHT+IGDII4HeTicxTe5FjVMRM0+oi+fdq5O0AyQMHadyK9M/YQm7V1LD1w2OYDOnLADgv4fSM1BGw==
+X-Received: by 2002:a05:690c:b:b0:664:a85d:47c6 with SMTP id 00721157ae682-6db4516c241mr120039097b3.33.1725883876780;
+        Mon, 09 Sep 2024 05:11:16 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6db5c6229c2sm8912217b3.54.2024.09.09.05.11.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Sep 2024 05:11:16 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-690aabe2600so37544547b3.0;
+        Mon, 09 Sep 2024 05:11:16 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU4WC20Txrnk5UsddshTjusolfUINmyqmegAFCwBBgDfUGFYTC6G+hR0ugxjoi3BvndqTW7FRLK0IpR@vger.kernel.org, AJvYcCU8DmxoRTg2TW11bRaxVxpFrFf01zdaYGkzKuRd8/bBX3pRZJjzSAC9dOPFkICNIUaV50Q/+VkQU1J5@vger.kernel.org, AJvYcCVi7aLnIVlHeaUThepCI9jbWZQPhNVkgXKFLXBjdnMUIalAntWONUwFF/FBHG35LBF/z1e04tKLKb+7Hz7wxKw2azY=@vger.kernel.org, AJvYcCWjKgwvnAUHtt1HAKqIe02n6gz7KIXg+LXj81XovDV/8iFsfJYoygTAx9j1iv3ENSQc0KUCp6wq02Uy@vger.kernel.org, AJvYcCXgzB9ac6wgbNEm141XpyhpDXrUl8hHKBJZmegGxHqcVswBsnKjH+LCU1dZNyNimZYOSNXYFo9xoQu2AJAo@vger.kernel.org
+X-Received: by 2002:a05:690c:64c7:b0:6b0:e813:753b with SMTP id
+ 00721157ae682-6db45272fd9mr131856427b3.38.1725883875698; Mon, 09 Sep 2024
+ 05:11:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] ARM: dts: imx6qdl-apalis: Update audio card name
-To: Hiago De Franco <hiagofranco@gmail.com>, Shawn Guo <shawnguo@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Hiago De Franco <hiago.franco@toradex.com>
-References: <20240909114902.82380-1-hiagofranco@gmail.com>
- <20240909114902.82380-2-hiagofranco@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240909114902.82380-2-hiagofranco@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240830130218.3377060-8-claudiu.beznea.uj@bp.renesas.com>
+ <83fac884d749bda0cf0b346e4e869bc8.sboyd@kernel.org> <d8303146-89e0-4229-a3fe-9f3c42434045@tuxon.dev>
+ <c744cf7a70a3f97722146215a7620cfb.sboyd@kernel.org> <CAMuHMdX40ROk2vZe9VHoiPDJCvtrjto+swkicv29LFyQ7zoVng@mail.gmail.com>
+ <951b5c09c3ca2de3f0a28a078084f7dd.sboyd@kernel.org>
+In-Reply-To: <951b5c09c3ca2de3f0a28a078084f7dd.sboyd@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 9 Sep 2024 14:11:03 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWBT6AaH2_5qj+j4s8JeeO3qrhYUTCVG=s_J13nSzYPsQ@mail.gmail.com>
+Message-ID: <CAMuHMdWBT6AaH2_5qj+j4s8JeeO3qrhYUTCVG=s_J13nSzYPsQ@mail.gmail.com>
+Subject: Re: [PATCH v3 07/12] arm64: dts: renesas: r9a08g045: Add VBATTB node
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: alexandre.belloni@bootlin.com, claudiu beznea <claudiu.beznea@tuxon.dev>, 
+	conor+dt@kernel.org, krzk+dt@kernel.org, magnus.damm@gmail.com, 
+	mturquette@baylibre.com, p.zabel@pengutronix.de, robh@kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 09/09/2024 13:49, Hiago De Franco wrote:
-> From: Hiago De Franco <hiago.franco@toradex.com>
-> 
-> Update the audio card name for Apalis iMX6 to match its specific SoM
-> name, making it less than 15 characters to fix the following warning
-> 
-> fsl-asoc-card sound: ASoC: driver name too long
-> 'imx6q-apalis-sgtl5000' -> 'imx6q-apalis-sg'
-> 
-> making it compliant with the ALSA configuration specification [1].
-> 
-> [1] Documentation/sound/alsa-configuration.rst
-> 
-> Signed-off-by: Hiago De Franco <hiago.franco@toradex.com>
-> ---
->  arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
-> index edf55760a5c1..1c72da417011 100644
-> --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
-> @@ -191,7 +191,7 @@ sound {
->  			"MIC_IN", "Mic Jack",
->  			"Mic Jack", "Mic Bias",
->  			"Headphone Jack", "HP_OUT";
-> -		model = "imx6q-apalis-sgtl5000";
-> +		model = "apalis-imx6";
+Hi Stephen,
 
-Doesn't this break all the users? E.g. ALSA UCM and whatever
-user-space-parsing stuff you have?
+On Sat, Sep 7, 2024 at 1:01=E2=80=AFAM Stephen Boyd <sboyd@kernel.org> wrot=
+e:
+> Quoting Geert Uytterhoeven (2024-09-06 00:28:38)
+> > On Thu, Sep 5, 2024 at 8:09=E2=80=AFPM Stephen Boyd <sboyd@kernel.org> =
+wrote:
+> > > Quoting claudiu beznea (2024-09-04 05:17:30)
+> > > > On 03.09.2024 22:48, Stephen Boyd wrote:
+> > > > > The node name should be something like clock-<frequency> but if t=
+he
+> > > > > frequency is different per-board then I don't know what should ha=
+ppen
+> > > > > here.
+> > > >
+> > > > The frequency should be always around 32768 Hz but not necessarily =
+exactly
+> > > > 32768 Hz. It depends on what is installed on the board, indeed. RTC=
+ can do
+> > > > time error adjustments based on the variations around 32768 Hz.
+> > > >
+> > > > > Can you leave the vbattb_xtal phandle up above and then require
+> > > > > the node to be defined in the board with the proper frequency aft=
+er the
+> > > > > dash?
+> > > >
+> > > > Is it OK for you something like this (applied on top of this series=
+)?
+> > >
+> > > Yes, it's too bad we can't append to a property in DT, or somehow lea=
+ve
+> > > alone certain cells and only modify one of them.
+> >
+> > My main objections are that (1) this approach is different than the one=
+ used
+> > for all other external clock inputs on Renesas SoCs, and (2) this requi=
+res
+> > duplicating part of the clocks property in all board DTS files.
+>
+> Can 'clock-ranges' be used here? Leave the cell as null in the SoC dtsi
+> file and then fill it in with clocks property at the parent node. I
+> think you'd have to use clock-names for this though.
 
-Best regards,
-Krzysztof
+"clock-ranges" does not seem to be well-documented...
 
+IUIC, your suggestion is to:
+  1. Add "clock-ranges" to the /soc subnode,
+  2. Completely leave out the "rtx" clock from the clocks property
+     of the vbattb@1005c000 node,
+  3. Add the following to the board DTS:
+
+        &soc {
+                clocks =3D <&vbattb_xtal>;
+                clock-names =3D "rtx";
+        };
+
+Then, when resolving "rtx" for the vbattb@1005c000 node,
+of_parse_clkspec() would iterate up and find the proper vbattb_xtal.
+Is that correct? And probably that should be done for other external
+clock inputs as well?
+
+Still, it looks a bit complicated and un-intuitive. And what about
+e.g. carrier boards with a SoM, where some clocks are provided by
+the SoM, and some by the carrier? In that case you still have to
+override the clock and clock-names properties in the carrier .dts,
+thus duplicating all clocks provided by the SoM.
+
+So I prefer the original approach, like is done for all other external
+SoC clock inputs on Renesas SoCs.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
