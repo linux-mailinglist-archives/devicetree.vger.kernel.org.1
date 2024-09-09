@@ -1,221 +1,137 @@
-Return-Path: <devicetree+bounces-101235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A337B97113E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:10:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D11F97112B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:07:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0C571C22444
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:10:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E9D0B21C5B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:07:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1BA21B3F0A;
-	Mon,  9 Sep 2024 08:07:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14BD41B14EB;
+	Mon,  9 Sep 2024 08:06:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GyKMe9e+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a/UJ7aFe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72BC11B3B16;
-	Mon,  9 Sep 2024 08:07:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAC141B1415;
+	Mon,  9 Sep 2024 08:06:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725869229; cv=none; b=FRX3nuw3P5qcwNuwFDAQcteC61AbopAvpFWsJFdDQCSowoZ4G/H9s6MeLgxjXN4r8IoB85/j0GPEkLfmtqj2tgMR0C06pNwJbTt4vlNnS+ffR6Joj9QK96IPEn2JnZd8vRzbjOC8AHFjbHsqGmubkcjOrQ57ICZEIUIZPpyP5Vk=
+	t=1725869179; cv=none; b=Ylohote8t4gj+cyYzkfV7UlzoU8pFw5TCyJoFJravuyMRzCjugNLFAeyeN9fLiqU4fiR2WDsQKVNH1Nhwuc2Qf0v78UXR9gCyaN1Oax6tQ+bnCaSE4kXUCjKRQItWqPnVKTDcdPmzcDIw/3UWCFcOcJpnjseBzPQmFg4vpTunxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725869229; c=relaxed/simple;
-	bh=taKj446+/fKcRx0XZYjC92kpqKNCYpK4TAy3GsEXvbo=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=auOuhRLpJmzhTPCV5ZyI9Z8EUDFGwSxKZbHwwQF6NsRw/HtY+HJ1bae2FboLZ8U00qW29r5odckNV84crH2oLXYjwfexuUQENmT9Ritn1jgRN/YLoM4+6/ZeT65K9CwezKzo6Jfot+qmoFTzpr0Rp0KUmjd6Zdnd5+d1ffoHGSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GyKMe9e+; arc=none smtp.client-ip=209.85.216.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2d873dc644dso2917136a91.3;
-        Mon, 09 Sep 2024 01:07:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725869228; x=1726474028; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YrsojVcXdP7VbUJkVIZWlDcZmLbxH8yTx3aUvs3NVIY=;
-        b=GyKMe9e+0QjarPP0WFwOZtPOEEObSBcpe8IdLmFAOEjt2OXLo1zNBqz091AIXu6dWN
-         +s4iDDzc2Q1j0OlFAyZ/oo4Dfe0+HPOJuCUeWhquYDygctULnCr7i7JjKEd21Yr4fPCg
-         nHtYqr+rqYVau+FhCiUiffz2sJxvAxoMHENoKnYwo8eMjTVTECe96euLHtZfhkpCRU9a
-         Dzg4k/5oO5fGqVFYLQ3NkBBeP4od3VV66o+tmpm7giwhXaf1deLghsc0y3iIB7ltSNXH
-         m/wCLl/qh5+HfwNNRMq3sX/L3lfoglR7c9HW9Jf5Hsc9Pbvh2cO+aksBBiz/pVnYpQjP
-         43UA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725869228; x=1726474028;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YrsojVcXdP7VbUJkVIZWlDcZmLbxH8yTx3aUvs3NVIY=;
-        b=uHIrCoRZdTGy4s7Eu1Ss0p01yCuf8JTQJGoPNllOZtiCHDCnv/Qr3wXSeib5M1G0O0
-         p1XhZOXlSbuo9pm51o7fva/tLIqlbNxJeMgXeOvmNmUvE+fRT5QCG+/jjtABsNHdxWfh
-         WySOkyrftbIKHTP+DYC3figEk5e8rSVaEn4RDQeT07PqWRwhm9d4wnPYc7jFKi3eg3Q0
-         npyFX0wVNCAm7xlFArfbqICe3EWQJdKbfL3zp1850UaG0eUdB8gO6xidgHmNpmxicHwY
-         YJ197z4jgdU03GTY+q2oAljJGTS7RQ92iBLQF+TYsTQKEGlrz6yUaUt6zch15N6bh39j
-         t0vw==
-X-Forwarded-Encrypted: i=1; AJvYcCW2vX6a5mBEJbA0epOzjGoDS1DG5iV0Gt7Hmxt45gpSfnKtugNrNp2r4rsbz4AS8YldSfBabF+FIuao@vger.kernel.org, AJvYcCXE9qiQ4adRJb0h7qEcq52AVRKq4FUk6x17Ojb4mXJFHWEyOOHRheuzhb6Q9GcMU319dP6PJRKPoqC2rT3F@vger.kernel.org
-X-Gm-Message-State: AOJu0YwLVzjWqlWjt32+mE/ZTJKCWXwpc9GlcxG9WsU9RghQ+YLcCilC
-	YRKkl3i/1X8ctPCRfM2ntaM++isj0EK00tiGKHlVAtd02Sym/C4T
-X-Google-Smtp-Source: AGHT+IFVeStqcCLHFeJFmPSKwkY6xVOD7KFhLsjEH2hXJSBguqu/gXh13TrqWZOjarwMr7+jXXH3aQ==
-X-Received: by 2002:a17:90a:c706:b0:2da:8974:b3e3 with SMTP id 98e67ed59e1d1-2dafd0971e1mr7978914a91.27.1725869227864;
-        Mon, 09 Sep 2024 01:07:07 -0700 (PDT)
-Received: from peter-bmc.dhcpserver.bu9bmc.local (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2db043c4916sm3917541a91.31.2024.09.09.01.07.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Sep 2024 01:07:07 -0700 (PDT)
-From: Peter Yin <peteryin.openbmc@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] ARM: dts: aspeed: Harma: revise sgpio line name
-Date: Mon,  9 Sep 2024 16:04:59 +0800
-Message-Id: <20240909080459.3457853-3-peteryin.openbmc@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240909080459.3457853-1-peteryin.openbmc@gmail.com>
-References: <20240909080459.3457853-1-peteryin.openbmc@gmail.com>
+	s=arc-20240116; t=1725869179; c=relaxed/simple;
+	bh=B8NIFss8+EtPkMmzo2Nx5NiyDNM9fZn2i4sHvg3qmOw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JdTea4/jVeG/Ii8ZZ6/+dJgEcQcyXTt9WMSg5TsOKpFxU2VDuyHcdQFe3hwXmDXVdrTM/CQeKc7T2vXpqmwKfa82l22ZU2mK5g5T+ZEEgzjWwkXMJXH39MS1vdKJ7EFeF7c7OfjTzpKJii8YzcrCoPJd0jcEwPeqyXmwc1YKNs8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a/UJ7aFe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5937C4CEC5;
+	Mon,  9 Sep 2024 08:06:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725869178;
+	bh=B8NIFss8+EtPkMmzo2Nx5NiyDNM9fZn2i4sHvg3qmOw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=a/UJ7aFe0LodUgl/tMzzllQMhUugMeXS0yDHBkCfGHlIiwWMIaKiQXIVUym8JydgS
+	 e4v4TmYud/S5bLu723trd9AHQMmJ2QMbb+XaxsLvtIJTaWEdfb7g3Wc4rLFgfnsdgn
+	 ohpjiGQgHxGa9QZhSdZ/VMzJbkw39oNs3y4XhKukX4h4khZqh/hGnUKfj1AiGpbah6
+	 VK7/2DbbE6BZ4E+aQm+UieGAIbkglhEKxLN9+Ou+rttOHp4puSc4lSolDgunUX8MT+
+	 o7UkdFdNlGErqyPNbPTZA5ltzbAzTXQ4vGmYKSHhGfz88NQd79Hth3q4XCS6LcBFYJ
+	 nWWxPb4QE3zcQ==
+Message-ID: <6842b2d4-0d6b-4c32-a32b-2eee53dc7fce@kernel.org>
+Date: Mon, 9 Sep 2024 10:06:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] mips: dts: realtek: Add syscon-reboot node
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>, lee@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ tsbogend@alpha.franken.de
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mips@vger.kernel.org
+References: <20240909014707.2003091-1-chris.packham@alliedtelesis.co.nz>
+ <20240909014707.2003091-3-chris.packham@alliedtelesis.co.nz>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240909014707.2003091-3-chris.packham@alliedtelesis.co.nz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-power-card-enable
-power-fault-n
-power-hsc-good
-power-chassis-good
+On 09/09/2024 03:47, Chris Packham wrote:
+> The board level reset on systems using the RTL9302 can be driven via the
+> switch. Use a syscon-reboot node to represent this.
+> 
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+>  .../dts/realtek/cameo-rtl9302c-2x-rtl8224-2xge.dts    |  3 +++
+>  arch/mips/boot/dts/realtek/rtl930x.dtsi               | 11 +++++++++++
+>  2 files changed, 14 insertions(+)
+> 
+> diff --git a/arch/mips/boot/dts/realtek/cameo-rtl9302c-2x-rtl8224-2xge.dts b/arch/mips/boot/dts/realtek/cameo-rtl9302c-2x-rtl8224-2xge.dts
+> index 77d2566545f2..a517135446a3 100644
+> --- a/arch/mips/boot/dts/realtek/cameo-rtl9302c-2x-rtl8224-2xge.dts
+> +++ b/arch/mips/boot/dts/realtek/cameo-rtl9302c-2x-rtl8224-2xge.dts
+> @@ -71,3 +71,6 @@ partition@1180000 {
+>  		};
+>  	};
+>  };
+> +&switch0 {
+> +	status = "okay";
+> +};
 
-asic0-card-type-detection0-n
-asic0-card-type-detection1-n
-asic0-card-type-detection2-n
-presence-cmm
+Drop, redundant.
 
-uart-switch-button
-uart-switch-lsb
-uart-switch-msb
-
-reset-control-cmos-clear
-
-Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
----
- .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 36 +++++++++----------
- 1 file changed, 16 insertions(+), 20 deletions(-)
-
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-index 92068c65eae4..9cb511a846e3 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-@@ -393,12 +393,6 @@ gpio@31 {
- 		reg = <0x31>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
--
--		gpio-line-names =
--		"","","","",
--		"","","presence-cmm","",
--		"","","","",
--		"","","","";
- 	};
- 
- 	// PTTV FRU
-@@ -422,12 +416,6 @@ gpio@31 {
- 		reg = <0x31>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
--
--		gpio-line-names =
--		"","","","",
--		"","","presence-cmm","",
--		"","","","",
--		"","","","";
- 	};
- 
- 	// Aegis FRU
-@@ -566,7 +554,7 @@ &gpio0 {
- 	/*B0-B7*/	"","","","",
- 			"bmc-spi-mux-select-0","led-identify","","",
- 	/*C0-C7*/	"reset-cause-platrst","","","","",
--			"cpu0-err-alert","","",
-+			"power-hsc-good","power-chassis-good","",
- 	/*D0-D7*/	"","","sol-uart-select","","","","","",
- 	/*E0-E7*/	"","","","","","","","",
- 	/*F0-F7*/	"","","","","","","","",
-@@ -585,14 +573,16 @@ &gpio0 {
- 	/*O0-O7*/	"","","","","","","","",
- 	/*P0-P7*/	"power-button","power-host-control",
- 			"reset-button","","led-power","","","",
--	/*Q0-Q7*/	"","","","","","power-chassis-control","","",
-+	/*Q0-Q7*/
-+			"","","","",
-+			"","power-chassis-control","","uart-switch-button",
- 	/*R0-R7*/	"","","","","","","","",
- 	/*S0-S7*/	"","","","","","","","",
- 	/*T0-T7*/	"","","","","","","","",
- 	/*U0-U7*/	"","","","","","","led-identify-gate","",
- 	/*V0-V7*/	"","","","",
- 			"rtc-battery-voltage-read-enable","",
--			"power-chassis-good","",
-+			"","",
- 	/*W0-W7*/	"","","","","","","","",
- 	/*X0-X7*/	"","","","","","","","",
- 	/*Y0-Y7*/	"","","","","","","","",
-@@ -673,7 +663,7 @@ &sgpiom0 {
- 	"presence-asic-modules-0","rt-cpu0-p1-force-enable",
- 	"presence-asic-modules-1","bios-debug-msg-disable",
- 	"","uart-control-buffer-select",
--	"","ac-control-n",
-+	"presence-cmm","ac-control-n",
- 	/*G0-G3 line 96-103*/
- 	"FM_CPU_CORETYPE2","",
- 	"FM_CPU_CORETYPE1","",
-@@ -685,7 +675,7 @@ &sgpiom0 {
- 	"FM_BOARD_REV_ID2","",
- 	"FM_BOARD_REV_ID1","",
- 	/*H0-H3 line 112-119*/
--	"FM_BOARD_REV_ID0","",
-+	"FM_BOARD_REV_ID0","reset-control-cmos-clear",
- 	"","","","","","",
- 	/*H4-H7 line 120-127*/
- 	"","",
-@@ -700,7 +690,7 @@ &sgpiom0 {
- 	/*I4-I7 line 136-143*/
- 	"","","","","","","","",
- 	/*J0-J3 line 144-151*/
--	"","","","","","","","",
-+	"","","power-card-enable","","","","","",
- 	/*J4-J7 line 152-159*/
- 	"SLOT_ID_BCB_0","",
- 	"SLOT_ID_BCB_1","",
-@@ -716,9 +706,15 @@ &sgpiom0 {
- 	"cpu0-thermtrip-alert","",
- 	"reset-cause-pcie","",
- 	/*L4-L7 line 184-191*/
--	"pvdd11-ocp-alert","","","","","","","",
-+	"pvdd11-ocp-alert","",
-+	"power-fault-n","",
-+	"asic0-card-type-detection0-n","",
-+	"asic0-card-type-detection1-n","",
- 	/*M0-M3 line 192-199*/
--	"","","","","","","","",
-+	"asic0-card-type-detection2-n","",
-+	"uart-switch-lsb","",
-+	"uart-switch-msb","",
-+	"","",
- 	/*M4-M7 line 200-207*/
- 	"","","","","","","","",
- 	/*N0-N3 line 208-215*/
--- 
-2.25.1
+Best regards,
+Krzysztof
 
 
