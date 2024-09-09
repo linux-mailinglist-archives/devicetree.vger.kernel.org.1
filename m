@@ -1,123 +1,135 @@
-Return-Path: <devicetree+bounces-101446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C459B971DA2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 17:10:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9241971DB7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 17:13:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70A9F1F23977
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 15:10:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97E0F283CD2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 15:13:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78CD61B7FD;
-	Mon,  9 Sep 2024 15:10:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4947820B35;
+	Mon,  9 Sep 2024 15:13:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pi0osoIL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZVWS7fJj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 488CC1CD0C;
-	Mon,  9 Sep 2024 15:10:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D2FD1CFBE;
+	Mon,  9 Sep 2024 15:13:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725894636; cv=none; b=Z7aWSZ8vRy0WmfeXv2L9mQdDXNV8AnGkFGHK1FXtc12kKsnpGKaLguc5ij9IO6uihybx2d33MwMbFrsXkXtW+LeevRYMEMupHINmbFrK05gWIYB/kFOcLd3aejhR/lhav4wCTBxLWGnskWs4QQJsy6/2ZYaqtqmOnMXnP4F5Uzg=
+	t=1725894812; cv=none; b=DsOVXBEG/cgvOq+5nNvwXrhwEdRtO5J2R8A9/az2qan0wnsvcKAONIkZezhRkstKc/xMo5gq/3aKYy5oIRMvgT6YbI3Tjq6oVm2JcVE+t4jadmqUUAKViNYKOq0L3fHVyyev263ZRsujtdiBlFjnToRSdDJE21nTF+mLKjb/cX0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725894636; c=relaxed/simple;
-	bh=+iq8ZuR0xNfhMb6f8AZQy5xUVme4rLtghqLGlbhb6LE=;
+	s=arc-20240116; t=1725894812; c=relaxed/simple;
+	bh=yV2uXKxMqi7mz1WN5z5wldbH9IOzkDhnMu2iCjQncXE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DArp4kEm9JuoLtz+uozYLLas6bGdIE997to2u5ATfFean5Pg4AtkH4Wdol9QO1thg89CMvhHralOgHN4Y/Nm+k4MpxklA1U2qZfAZiHoGVxkLh8Ayl4RlFZ23SraZVYbEqJgy8PFNYyjKA/gg8PSxzQbncQ+Cz8zeGv772/dCN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pi0osoIL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0608C4CEC7;
-	Mon,  9 Sep 2024 15:10:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lBi/hniS5MksEQNH9YgCVGAE2hOq55b62kPF0PO20bPGs9TUYiz7qnQsWnqL2G3193n4wdBgRq9TWR632LjA2qPNv/emWS8YNZdt8ZuefkqFJe9Qe4s9HdoUaGSU06eKetrWSdBdyZZQ31vrTPqVg6MYLtFwkZHin5b5G3HZt24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZVWS7fJj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4081CC4CEC5;
+	Mon,  9 Sep 2024 15:13:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725894635;
-	bh=+iq8ZuR0xNfhMb6f8AZQy5xUVme4rLtghqLGlbhb6LE=;
+	s=k20201202; t=1725894811;
+	bh=yV2uXKxMqi7mz1WN5z5wldbH9IOzkDhnMu2iCjQncXE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pi0osoILqDfQAZmIUTrsSAIV/aKtDdNvbWcXzcx7nl3NC0WX+PYB075uPOwwRS1hR
-	 VYWy/gqeeF3XYKLdYaHZTCVuwJSWVsxbLidm8thp+q6OqltvvYt0NjsjIjrN52IlKO
-	 GJtcyIQiWegtjExazp3FS3oP6u8QKDJ+S9nTOPw1e61kj1tKEodXVHnPfvk5bOJjXV
-	 DDGTSGQPCbGn620sFJGLJPQeQ790MpHBwE1vgiyuLGlYzZBjamAlG4hdJrOz5oSr1Z
-	 82TaHkrqlFCeajdf94jPTmc9rNbsh6TF7wZDcZSG/wYwH1J1/okQlijxvMl3ou0llk
-	 G9qKJtWhURwYg==
-Date: Mon, 9 Sep 2024 16:10:28 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc: Mohammad Rafi Shaik <quic_mohs@quicinc.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Bard Liao <yung-chuan.liao@linux.intel.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-	Sanyog Kale <sanyog.r.kale@intel.com>,
-	linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
-	kernel@quicinc.com, quic_pkumpatl@quicinc.com
-Subject: Re: [PATCH v1 0/4] Add static channel mapping between soundwire
- master and slave
-Message-ID: <fb137d59-c8ef-4e02-89f6-9abf8a3f12e5@sirena.org.uk>
-References: <20240909105547.2691015-1-quic_mohs@quicinc.com>
- <Zt8LC4IY7DGq8Qom@opensource.cirrus.com>
+	b=ZVWS7fJjWHCb2XkF55GdXZwdBa+k3fkK+cw4UAr3EqvXyTfI5HLn3r58KlFT/WDsV
+	 PbYkTrZ4q73wlMOAtln4UfzZhSNyw09TeVtwWa9cZstso/O6rFXy/25dKOep/Z+Lqg
+	 2/ryq9Rmmkg/IT5inkt7UJmyMX4C4VjXEEqEufpvMSldUx7grYFUZC95ESgJAwIzqp
+	 Lfbvi7+DUpG3/H1Hdd1NyUrzTIdwyD9Taohfem49TD5DdHFTf1Sos/GP3wif/E8ULa
+	 6UG4dRuiD7mru0RBVt1NTuKA9fFOwcen268rsBW+UcX49ttd79K4myATTYwdclAO0M
+	 hTWfZ2LATQ6Ow==
+Date: Mon, 9 Sep 2024 17:13:28 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Sandy Huang <hjc@rock-chips.com>, 
+	Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>, 
+	Luis de Arquer <ldearquer@gmail.com>, Algea Cao <algea.cao@rock-chips.com>
+Subject: Re: [PATCH v6 1/3] drm/bridge: synopsys: Add DW HDMI QP TX
+ Controller support library
+Message-ID: <20240909-horned-congenial-curassow-ebc5fa@houat>
+References: <20240906-b4-rk3588-bridge-upstream-v6-0-a3128fb103eb@collabora.com>
+ <20240906-b4-rk3588-bridge-upstream-v6-1-a3128fb103eb@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="0VQUlaAE/r6Fm+ww"
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="a6pjesfz3btllyif"
 Content-Disposition: inline
-In-Reply-To: <Zt8LC4IY7DGq8Qom@opensource.cirrus.com>
-X-Cookie: Anything is possible, unless it's not.
+In-Reply-To: <20240906-b4-rk3588-bridge-upstream-v6-1-a3128fb103eb@collabora.com>
 
 
---0VQUlaAE/r6Fm+ww
+--a6pjesfz3btllyif
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 09, 2024 at 03:49:47PM +0100, Charles Keepax wrote:
-> On Mon, Sep 09, 2024 at 04:25:43PM +0530, Mohammad Rafi Shaik wrote:
+Hi,
 
-> > Add static channel map support between soundwire master and slave.
-> > This patch series will resolve channel mask mismatch between master and=
- slave.
+On Fri, Sep 06, 2024 at 04:17:40AM GMT, Cristian Ciocaltea wrote:
+> +static enum drm_connector_status
+> +dw_hdmi_qp_bridge_detect(struct drm_bridge *bridge)
+> +{
+> +	struct dw_hdmi_qp *hdmi = bridge->driver_private;
+> +	enum drm_connector_status status;
+> +
+> +	status = hdmi->phy.ops->read_hpd(hdmi, hdmi->phy.data);
+> +
+> +	dev_dbg(hdmi->dev, "%s conn=%d scramb=%d\n", __func__,
+> +		status == connector_status_connected, hdmi->scramb_enabled);
+> +
+> +	if (hdmi->scramb_enabled) {
+> +		cancel_delayed_work_sync(&hdmi->scramb_work);
+> +
+> +		if (status == connector_status_connected)
+> +			dw_hdmi_qp_check_and_set_scramb(hdmi);
+> +	}
+> +
+> +	return status;
+> +}
 
-=2E..
+Unfortunately, that won't work. The HDMI Spec has (HDMI 2.0, Section
+6.1.3.1 - Scrambling Control):
 
-> > For AMIC2 usecase, The Slave need to configure TX2 Port with channel ma=
-sk 1 and
-> > for Master required PORT1 with channel mask 2,
-> >=20
-> > In existing design master and slave configured with same channel mask, =
-it will fail
-> > AMIC2 usecase.
+The minimum time period between the write to the Scrambling_Enable bit,
+and the transmission of a scrambled video signal is not specified;
+however the Source shall not begin transmission of a scrambled video
+signal before writing a 1 to the Scrambling_Enable bit. The maximum time
+period between the write to the Scrambling_Enable bit and the
+transmission of a scrambled video signal shall be 100 ms.
 
-> Apologies but I am not really following what exactly the issue is
-> here? How do these ports map to DAI links? It looks like you are
-> attempting to have AMIC2 produced by one DAI link, but consumed
-> by another?
+So you need to disable the output and enable it again.
 
-Yes, and it's also not clear to me why this is device specific.
+vc4 does just that, you can have a look here:
+https://elixir.bootlin.com/linux/v6.10.9/source/drivers/gpu/drm/vc4/vc4_hdmi.c#L410
 
---0VQUlaAE/r6Fm+ww
+Maxime
+
+--a6pjesfz3btllyif
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbfD+AACgkQJNaLcl1U
-h9Au7wf/U9b5eAsInNOjUnuTMx81qHdkNyxcwOyRGo9BnLIEeY6WEzH5BIgSkVVj
-kHf250hHlRGglWrR8zCVesc1yH0X66KZ9+rTH+7cW4SH/V9CiWHy1Z69VZie2N3Z
-wi8TPB6W+Zq9m2BrIu+8BUs+UBuwMuVfAkZnrkZhclRJceOkm/wL2dHXSJ+xfFdJ
-cFFYNNsri7IJ4M/+DtefOnrEcvvYEy9mWAO2tEvIYEYT+6pk1wy5Hbeqv9s9BF62
-Mj1DoIUb3iRlKGk/717jqIEXSHoR7Hx9UDphrXZAumPxb0uw5rWYI2l8dmqwKpxL
-wc9eUX2wlWjnRnKGP+2G8j/lMSa/4g==
-=eard
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZt8QmAAKCRAnX84Zoj2+
+djUdAYDRdEgSW7Wj/UA+T/XsaiAocjWHwnktCrXecrwrTQQLmwTpGoDKU6nmsxBR
+eU74UeEBfiF7DgCZ3hfYdjQvzGKKyzvQQQitqxvSxT4+rBQyGtUKC89mLd+1wOlo
+uzb+gTqbBA==
+=hgwR
 -----END PGP SIGNATURE-----
 
---0VQUlaAE/r6Fm+ww--
+--a6pjesfz3btllyif--
 
