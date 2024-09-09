@@ -1,225 +1,306 @@
-Return-Path: <devicetree+bounces-101288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F11297132D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:18:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29A9F971388
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:29:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FAB11F257EF
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:18:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5A92284000
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:29:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1DBD1B2EF7;
-	Mon,  9 Sep 2024 09:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4AE01B3B21;
+	Mon,  9 Sep 2024 09:28:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Pq9sWnfm"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="T+p/AU9h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2036.outbound.protection.outlook.com [40.92.103.36])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C21F1B253B;
-	Mon,  9 Sep 2024 09:18:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725873505; cv=none; b=txRuRz1JjJHMrZibdYP0JRbanT1fk7U3sCrT0EC05vl4ikXGTkbtapYLOJN2Yta04JPvaSCS/U11qtuOfeR2zYn+zOyc4/ljerD8VbVPfL9t+XNu2uOFPvteL7hqCYWhy/l/ZbwRcrrWIM9hbiPjS5LhIn16Lzl/FUMVKr6Ffl0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725873505; c=relaxed/simple;
-	bh=bvfjSC5phQoKuCouGkBJTQXwhIYeaiEJfkF1aQTCjb4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=M1EXABbdXcPEHP7J2irOdf/43uqky70CmFAfOkhcK01mAqG5CqDOs+Pt/7F1mKxVbkeiDeoi0C8Cc7S2k9SUM5Zh7KIMtLZZr4D1pqAwykeHicbSfFTpeqdHWAHRH9GMdIgvgaqchMYrn2uJ/5iK3TafExb/3MEwiAcBjhO9fDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Pq9sWnfm; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 488Nm1Oh021078;
-	Mon, 9 Sep 2024 09:18:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	L/IJrSHy7E4FooCJHAm7B+K/qE7+a22FjpwLDSTK1Oc=; b=Pq9sWnfmUITZXqz3
-	Ye4QsQ+bm4x4i+5JpJrfN4CXjtOE6b/e5HSx6JoX9Nd8l8/mEVb+K1QDo4MVMhPX
-	N+ikxXhdi6G+etu5jNs5zWow//AvcOOV1W39t5K3voCJUORjiq70v8hUk7P8v+gL
-	mrZNSmQQ8envru54tNdbq/VoOrshtFnmeD5c36FYSSKrNbqHLinza2RPTJALxqRv
-	mNsFzQi8gK0ozuzvBOx2byIx5aNhOVdhGwG46hlzEjCqdsbnFij8zLdttuNoTRRp
-	4FeC2wQ3lkHqruwq0RSChVRsHq3mukme8wlZVA/qCg5nKTyFRPpadjVF3A2ZNL6R
-	tBetZw==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy6p2afs-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Sep 2024 09:18:13 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4899ICIm007772
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Sep 2024 09:18:12 GMT
-Received: from [10.217.219.207] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 9 Sep 2024
- 02:18:07 -0700
-Message-ID: <3bd27b6d-74b8-4f7b-b3eb-64682442bbda@quicinc.com>
-Date: Mon, 9 Sep 2024 14:48:04 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DC761B373E;
+	Mon,  9 Sep 2024 09:28:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.103.36
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725874088; cv=fail; b=IDmybvtHWEiNVhOyR9id87NVHxkmYj2xisKj6FSVkCUA/3fs5fhqjXmr5u+kmh+Y0NkOk9IvU9J+t9DF1mayp44tTkH7XYvV8Daf5BysJMtw3W6kIizF0fvYtgVY6Msfc96jkqYAw3wvYd2tqoRq80iqqh4azzlYT+oLKWz37oQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725874088; c=relaxed/simple;
+	bh=0W96JVl57d5RwvgDbvo/3/OTe1EL1ooaFat0+clQN4A=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Jc3KzOIBy80iY04EvrQ5B+um83F+yQeFUnfi4988gshwp+irl3k7cjvBkAMAbVtWM/TgI6RumtogMKMeanXomz6KuJFKGfQFGWiwWD6vNRkzPbh8oB9K/J1GsmduzuXQ7FGYNY6Zu5k52/3MpwOrDKxVsZG1LfrUoX3ohHS74MA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=T+p/AU9h; arc=fail smtp.client-ip=40.92.103.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iQBK/GI1SP0gymr+ikte6qDucYtULt6iZwBr9+wipG2nw03TBxU0bpk9AhKwoU4md7xx6TiVNTZJpM3SmvuJ/DKrNHDaxJMQ2CKW8dzPLDZdi7M2L1DdW3tXGC9vpLc+ClXpneHZqhVW7xEBKdt4mJwfaYgwaoWtuA7pCCJUtN7cfNBDdL3cYIywQNdEoGshhewk6aSJsziLgVdnPuIzIZfAW3RM3Ol5tvbIBJ0V3PExIv/WQZvYKTG51QDsum0n+sLVrk6OuuzBAkVnmI41znh2sjaCuKa7YvH4hEFgpOTjRmFDYLQlyA0oaYj3J9Y4OpGvEiOURweZB4k7OLoYTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hbuYg0oj4AOdRnCuV+Vsh0li1qyY6E6vAWQO6+qQeF0=;
+ b=S9tQ43KK3135frAFKTr18xadqHnrFSPqcfQFVf/E88l3JfWwmZwwGgD+HLWQm10MnCjCpbYOeKspcEsJHaYJjh8v+4X5suK4LgLGW+pyXDX0nOPdspHw5yRUvWIRDKb94ICvZx4PcQYnXFzPphaMF5lICUjyhx6fYYIw7agQ4hdAmoxj8Ri2YE8KH88NZG/UnfjxHgle3NbCfHjMosKXYRnwVrWGEbo/2D1eJHjVLYvrG8NOBBcmdYlMrKjCyiCt2sSbthuMBzlGLSZXDe8y/Hhu3F3KX40QWM8IkIqlNr/QOzJcP5THle0c7Z7pmyvx2+G29owLjzjEP2sTjCf2mg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hbuYg0oj4AOdRnCuV+Vsh0li1qyY6E6vAWQO6+qQeF0=;
+ b=T+p/AU9hiuNqBD+QwU5XIUdHdVWzjp/W7z9uKkgZo8fS1tSAX/5QG9JZHd+HD4vUW+QmYU5BrDoCIT8a5Rp8WUx8IzAp9A9NYoXS+Ww5+z63EIciP2Cv8OWD7ripArKsXlWn0EC4zfF8Owxl+Qij/rTAkkHydNH/3t+M2+NLTD/Owo7X2oohtx1GMmdBlazP0LUakJjBt1PtzRSw7guCZuiuHdAlw6kkWQg3TxFdJW/zl4bSedkq6YNHA4KSd9Xv+tyUi+lfhkAB//yOmygshXepXUXovi1ZHR1nDtIEgJ0WDDfhnJMJJGRe7+j8Qn7cFxWk1JBLMKE5xu6S+p9Eew==
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+ by PN0P287MB0476.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:121::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.17; Mon, 9 Sep
+ 2024 09:27:59 +0000
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a94:ad0a:9071:806c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a94:ad0a:9071:806c%4]) with mapi id 15.20.7939.022; Mon, 9 Sep 2024
+ 09:27:59 +0000
+Message-ID:
+ <MA0P287MB28226A4E7548F8AC57B966C8FE992@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Date: Mon, 9 Sep 2024 17:27:54 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] pwm: sophgo: add driver for Sophgo SG2042 PWM
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Chen Wang <unicornxw@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ inochiama@outlook.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+ linux-riscv@lists.infradead.org, chao.wei@sophgo.com,
+ haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, chunzhi.lin@sophgo.com
+References: <cover.1725536870.git.unicorn_wang@outlook.com>
+ <3985690b29340982a45314bdcc914c554621e909.1725536870.git.unicorn_wang@outlook.com>
+ <id7arbp2z5ui3krscder6vrv5g7v3rvjxpde2eyg7pn5lxjvha@fdishk36pt35>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <id7arbp2z5ui3krscder6vrv5g7v3rvjxpde2eyg7pn5lxjvha@fdishk36pt35>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TMN: [wHthis/48JzHlJmzm0eRbO+QAa313E3g]
+X-ClientProxiedBy: SI1PR02CA0008.apcprd02.prod.outlook.com
+ (2603:1096:4:1f7::14) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:138::5)
+X-Microsoft-Original-Message-ID:
+ <f2d7f9a9-f333-479f-b766-5178ff5e0702@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] i2c: i2c-qcom-geni: Enable i2c controller sharing
- between two subsystems
-To: <neil.armstrong@linaro.org>, <konrad.dybcio@linaro.org>,
-        <andersson@kernel.org>, <andi.shyti@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
-        <conor+dt@kernel.org>, <agross@kernel.org>,
-        <devicetree@vger.kernel.org>, <vkoul@kernel.org>, <linux@treblig.org>,
-        <dan.carpenter@linaro.org>, <Frank.Li@nxp.com>,
-        <konradybcio@kernel.org>
-CC: <quic_vdadhani@quicinc.com>
-References: <20240906191438.4104329-1-quic_msavaliy@quicinc.com>
- <20240906191438.4104329-5-quic_msavaliy@quicinc.com>
- <b3a5dd54-90ba-4d75-9650-efbff12cddeb@linaro.org>
-Content-Language: en-US
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-In-Reply-To: <b3a5dd54-90ba-4d75-9650-efbff12cddeb@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: -sJyNF0Pcpq-AtjnklkLCs46O_uGJGZ0
-X-Proofpoint-GUID: -sJyNF0Pcpq-AtjnklkLCs46O_uGJGZ0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- bulkscore=0 lowpriorityscore=0 mlxlogscore=999 spamscore=0 phishscore=0
- impostorscore=0 suspectscore=0 mlxscore=0 malwarescore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409090073
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN0P287MB0476:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6f563e06-ff02-4feb-8f2b-08dcd0b1b1d5
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|19110799003|6090799003|5072599009|8060799006|15080799006|461199028|3412199025|440099028;
+X-Microsoft-Antispam-Message-Info:
+	OD3re4mAfHjfFSTbAEVUrCARHTIgDf3m0HGEupXm1gwnDKdwnPsX0zTlZITBA6/ipmPyz3p7esVwgjAsshsBWfNoUyeB7LWnVm2R9AgarwP+8sZ9bBF/dESS7nu/zkq7bP9bvOh16OveuSnUKNo9Y6fzIPKkOGgi4Zu08Ia9mSO7twvFp4Fhz24IK9Egdkg3fDHShTh61SQkNTXWPJSYx/GkEDH3KOSNphe0s8y5TRlyhQ5h1yUB7Sae6ANZRLYWSSbOKbjnhzP08/xLm6FuRVcwmTJnRrEVeYSJxyBh36suZMpyIosumN4y3Z/04HEHNp3ItDkSkOIWnknavmkJuo1f4vWjvJVQQC3UPqu3dA+PKR9ngLUuc42C/OizTyPqhdDyvOjgcmTffOY75z3XivQRQ5MRU4pa5r3C5XEIkJpki1SHaw+NfrGjjOzJ3qlUm/rPB2oPINu41JBv4NmUTbpvXzT9AZGqku9vtuWY5KU42youcd5AqGS6DK5H9PwA+B67tV76DL1H+oLAaCViWAsLR4oPkKQA8NRy/FoBWFjuZeGUjAeuqnIQcAVVyIgbXTcc3yTUCxmHaLH6qvh6gMUvReGmVbCXCJnOwbGy4Pqi0GLeI/NFktgu/9BoGTJnhq2ZnPLGenrIeBbNoJkgAkcbOV6SZC5vZHmlJNyrtRXqP7jXxZ+yxTDPz5CN5dWWSuJ/V/60IKCTDQ9CM9cnxt9mYK4bikSmcRuPLRK3CkE=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?QnhqQ1FnTk9WeU1qRU41N3A5Zmc1R2pZaWpHYnliOGt6Vkt2TFFHeFAxZ3Ew?=
+ =?utf-8?B?L3poUEt4S0ZLb0lKaHlLaldneXNqQmRzRFY2NFQ1SkpvdTNxR3g5azFyTEZl?=
+ =?utf-8?B?T2RZQTErN0haOFdMRWcvZ2ZFZVpGTUxTODhYSEx6cEIxVmpud1R5K2Q2TlJZ?=
+ =?utf-8?B?alVnMHRoZ3d0Ri9jems2ZU4wTjhabHEyWUFmRjZNWXhoWXp4akZSdHJQRUtG?=
+ =?utf-8?B?TGszRDFnU0dKV2ttRFI0QlN5OE54TUgrVGRtQmY0MFBWenRvbGcxL2tLdThV?=
+ =?utf-8?B?NDhsZi8xejNOTFg2N0EyT2dnZFlZMWNneXBDaWw2QjNudEF5NS9zS09xc0VH?=
+ =?utf-8?B?emFIakVBWXFsMTVWWUd1a2FYczM3aFZ1WjZkYms4cVR2d2NLc3QzL1VLSHBG?=
+ =?utf-8?B?RU1hWnlWcDduUk5YN3MzdllqUlVLMGxDbDhSUnNBWUozYXdVK3NLWFVOdmU5?=
+ =?utf-8?B?QTJQdDE0NEk3cTlXcE5RSDNlM3hYK3JwNEd2cjhEb3Y5Z1oxaERVYnpQbmMx?=
+ =?utf-8?B?dWd0Z1ZudHJ1RzBTTTRmSEc4Q2duam1SdHBoNEhSN3dRVnJRY0VQYTZzd3hN?=
+ =?utf-8?B?T0VUNlU1RExKLzJLbCt3eXZMWWxkYWpnSXhLSXVmK0h5N0RzSjU4K3JkZ29y?=
+ =?utf-8?B?SWZRNWVIcndPTDZxSElZN256VXNNOUI4MkQxVnBYR0ZJenc2d1NvM0pSMWl5?=
+ =?utf-8?B?MHNPaC9uVmJYK1djcW5xWU03YnpXbnh2NHZKNDRLL05ZS05KN3FSSlZjUnhL?=
+ =?utf-8?B?cWVnWlIyZ1VydlFsa0xjcHdyQkNTdlQzSk5TRFhTWkVwZXJrTkF1VU1XdXFY?=
+ =?utf-8?B?bWY0a0RUQ3VmMGxySzZLUDM2WU5CcEZKZDZNOUFmRW9SeG5raDhjR0JSa28r?=
+ =?utf-8?B?dlZ6Q21KUnpMMlgySjAvbTVxbUViN29vWkMrWEUra1BrcTJubUpmOVpkeDF6?=
+ =?utf-8?B?bmZjSUhLZEYySGF5YXQxMTJ6UUg2SmMyZkZRaGpTSmRNUVhGdGYzMVVEL2Mz?=
+ =?utf-8?B?elpOdEowSUY2VFFyMmlJODljSmc5a0U4dThhK05yb2pQeFpENm1Rd1M1Qmpi?=
+ =?utf-8?B?amVnVElaWWJ0RHZVaUdZRm90d3BKeHptbUVBZU5JL2J4ZFhnTHA3V1NaTmJ0?=
+ =?utf-8?B?TFdaNStUSXFLbXJ4NEdoQnF6Nzh5WTdSK3NjWGlObHQ1eTFsbkw5ZHU1RUpE?=
+ =?utf-8?B?bkp2MzB0WVBiZFZkM1B1Vit2R0hMOGl0WUZxSEJ5b1psbEUzWU1JeHYzWlZh?=
+ =?utf-8?B?WmlRRXN4RHRvTFR5RGFMN1FuUHFESjhTMG1QaTFvdDNYamRTb0E3VnJ1b1Nl?=
+ =?utf-8?B?alNudmxHaU9SQUxMNk9vQlYyTHdaSnlBRTlXWHE3cE9GeEMyU0ZBK0ZvVFNY?=
+ =?utf-8?B?aThZV2YzSkYrVU9CcURxM2VJN3hoMkpNL2VNSzRXd2E1Z3pIZktab3IwaUtW?=
+ =?utf-8?B?RGhWcnk0T3kyVTZDVTBoam9DVlVwZ0E4bXNQdHZWS2VCbVp1aDhJdDdjNHRx?=
+ =?utf-8?B?Nm02aXZ0YW40TlVNeUxLWG9nVTFZOTRDNEx6cTY4SG9oYzNwZjNsUmVjTzFq?=
+ =?utf-8?B?MnI2elpEa1FGVmZhWFV1b2hCbzN3dDExdW9EQkEwNDNsb2Jrbkl5VWs4T3Fh?=
+ =?utf-8?B?WE9wTVF4UXZxemRYd0ZWVXZteW5IUjZXaUowRExEdHI0VFgvM3l6T3ZJVHd3?=
+ =?utf-8?Q?VL+CdQ1AM7sAW4Bn1cDU?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6f563e06-ff02-4feb-8f2b-08dcd0b1b1d5
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2024 09:27:59.5788
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB0476
 
-Hi Neil,
 
-On 9/9/2024 2:24 PM, neil.armstrong@linaro.org wrote:
-> Hi,
-> 
-> On 06/09/2024 21:14, Mukesh Kumar Savaliya wrote:
->> Add support to share I2C SE by two Subsystems in a mutually exclusive 
->> way.
->> Use  "qcom,shared-se" flag in a particular i2c instance node if the
->> usecase requires i2c controller to be shared.
->>
->> I2C driver just need to mark first_msg and last_msg flag to help indicate
->> GPI driver to  take lock and unlock TRE there by protecting from 
->> concurrent
->> access from other EE or Subsystem.
->>
->> gpi_create_i2c_tre() function at gpi.c will take care of adding Lock and
->> Unlock TRE for the respective transfer operations.
->>
->> Since the GPIOs are also shared for the i2c bus between two SS, do not
->> touch GPIO configuration during runtime suspend and only turn off the
->> clocks. This will allow other SS to continue to transfer the data
->> without any disturbance over the IO lines.
-> 
-> This doesn't answer my question about what would be the behavior if one
-> use uses, for example, GPI DMA, and the Linux kernel FIFO mode or SE DMA ?
-> 
-Shared usecase is not supported for non GSI mode (FIFO and DMA), it 
-should be static usecase. Dynamic sharing from two clients of two 
-subsystems is only for GSI mode. Hope this helps ?
-> Because it seems to "fix" only the GPI DMA shared case.
-> 
-> Neil
-> 
->>
->> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
->> ---
->>   drivers/i2c/busses/i2c-qcom-geni.c | 29 ++++++++++++++++++++++-------
->>   1 file changed, 22 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/i2c/busses/i2c-qcom-geni.c 
->> b/drivers/i2c/busses/i2c-qcom-geni.c
->> index eebb0cbb6ca4..ee2e431601a6 100644
->> --- a/drivers/i2c/busses/i2c-qcom-geni.c
->> +++ b/drivers/i2c/busses/i2c-qcom-geni.c
->> @@ -1,5 +1,6 @@
->>   // SPDX-License-Identifier: GPL-2.0
->>   // Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
->> +// Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights 
->> reserved.
->>   #include <linux/acpi.h>
->>   #include <linux/clk.h>
->> @@ -99,6 +100,7 @@ struct geni_i2c_dev {
->>       struct dma_chan *rx_c;
->>       bool gpi_mode;
->>       bool abort_done;
->> +    bool is_shared;
->>   };
->>   struct geni_i2c_desc {
->> @@ -602,6 +604,7 @@ static int geni_i2c_gpi_xfer(struct geni_i2c_dev 
->> *gi2c, struct i2c_msg msgs[], i
->>       peripheral.clk_div = itr->clk_div;
->>       peripheral.set_config = 1;
->>       peripheral.multi_msg = false;
->> +    peripheral.shared_se = gi2c->is_shared;
->>       for (i = 0; i < num; i++) {
->>           gi2c->cur = &msgs[i];
->> @@ -612,6 +615,8 @@ static int geni_i2c_gpi_xfer(struct geni_i2c_dev 
->> *gi2c, struct i2c_msg msgs[], i
->>           if (i < num - 1)
->>               peripheral.stretch = 1;
->> +        peripheral.first_msg = (i == 0);
->> +        peripheral.last_msg = (i == num - 1);
->>           peripheral.addr = msgs[i].addr;
->>           ret =  geni_i2c_gpi(gi2c, &msgs[i], &config,
->> @@ -631,8 +636,11 @@ static int geni_i2c_gpi_xfer(struct geni_i2c_dev 
->> *gi2c, struct i2c_msg msgs[], i
->>           dma_async_issue_pending(gi2c->tx_c);
->>           time_left = wait_for_completion_timeout(&gi2c->done, 
->> XFER_TIMEOUT);
->> -        if (!time_left)
->> +        if (!time_left) {
->> +            dev_err(gi2c->se.dev, "I2C timeout gpi flags:%d 
->> addr:0x%x\n",
->> +                        gi2c->cur->flags, gi2c->cur->addr);
->>               gi2c->err = -ETIMEDOUT;
->> +        }
->>           if (gi2c->err) {
->>               ret = gi2c->err;
->> @@ -800,6 +808,11 @@ static int geni_i2c_probe(struct platform_device 
->> *pdev)
->>           gi2c->clk_freq_out = KHZ(100);
->>       }
->> +    if (of_property_read_bool(pdev->dev.of_node, "qcom,shared-se")) {
->> +        gi2c->is_shared = true;
->> +        dev_dbg(&pdev->dev, "Shared SE Usecase\n");
->> +    }
+On 2024/9/6 0:03, Uwe Kleine-König wrote:
+> Hello,
+>
+> On Thu, Sep 05, 2024 at 08:10:42PM +0800, Chen Wang wrote:
+[......]
+>> +static void pwm_sg2042_config(void __iomem *base, unsigned int channo, u32 period, u32 hlperiod)
+>> +{
+>> +	writel(period, base + REG_GROUP * channo + REG_PERIOD);
+>> +	writel(hlperiod, base + REG_GROUP * channo + REG_HLPERIOD);
+>> +}
+> I suggest to use the following instead:
+>
+> 	#define SG2042_HLPERIOD(chan) ((chan) * 8 + 0)
+> 	#define SG2042_PERIOD(chan) ((chan) * 8 + 4)
+>
+> 	...
+>
+> 	static void pwm_sg2042_config(void __iomem *base, unsigned int chan, u32 period, u32 hlperiod)
+> 	{
+> 		writel(period, base + SG2042_PERIOD(chan));
+> 		writel(hlperiod, base + SG2042_HLPERIOD(chan));
+> 	}
+>
+> The (subjective?) advantage is that the definition of SG2042_HLPERIOD
+> contains information about all channel's HLPERIOD register and the usage
+> in pwm_sg2042_config is obviously(?) right.
+>
+> (Another advantage is that the register names have a prefix unique to
+> the driver, so there is no danger of mixing it up with some other
+> hardware's driver that might also have a register named "PERIOD".)
+Agree, will fix this in next version.
+> Is this racy? i.e. can it happen that between the two writel the output
+> is defined by the new period and old duty_cycle?
+>
+> How does the hardware behave on reconfiguration? Does it complete the
+> currently running period? Please document that in a comment at the start
+> of the driver like many other drivers do. (See
+>
+> 	sed -rn '/Limitations:/,/\*\/?$/p' drivers/pwm/*.c
+>
+> )
+
+When hlperiod or period is modified, PWM will start to output waveforms 
+with the new configuration after completing the running period. Will 
+document in a comment as other drivers do.
+
+>> +static int pwm_sg2042_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>> +			    const struct pwm_state *state)
+>> +{
+>> +	struct sg2042_pwm_chip *sg2042_pwm = to_sg2042_pwm_chip(chip);
+>> +	u32 hlperiod;
+>> +	u32 period;
+>> +	u64 f_clk;
+>> +	u64 p;
 >> +
->>       if (has_acpi_companion(dev))
->>           ACPI_COMPANION_SET(&gi2c->adap.dev, ACPI_COMPANION(dev));
->> @@ -962,14 +975,16 @@ static int __maybe_unused 
->> geni_i2c_runtime_suspend(struct device *dev)
->>       struct geni_i2c_dev *gi2c = dev_get_drvdata(dev);
->>       disable_irq(gi2c->irq);
->> -    ret = geni_se_resources_off(&gi2c->se);
->> -    if (ret) {
->> -        enable_irq(gi2c->irq);
->> -        return ret;
->> -
->> +    if (gi2c->is_shared) {
->> +        geni_se_clks_off(&gi2c->se);
->>       } else {
->> -        gi2c->suspended = 1;
->> +        ret = geni_se_resources_off(&gi2c->se);
->> +        if (ret) {
->> +            enable_irq(gi2c->irq);
->> +            return ret;
->> +        }
->>       }
->> +    gi2c->suspended = 1;
->>       clk_disable_unprepare(gi2c->core_clk);
-> 
-> 
+>> +	if (!state->enabled) {
+>> +		pwm_sg2042_config(sg2042_pwm->base, pwm->hwpwm, 0, 0);
+>> +		return 0;
+>> +	}
+> Here you're missing (I guess):
+>
+> 	if (state->polarity == PWM_POLARITY_INVERSED)
+> 		return -EINVAL;
+Yes, it is required, will add this in next version, thanks.
+>> +	/*
+>> +	 * Period of High level (duty_cycle) = HLPERIOD x Period_clk
+>> +	 * Period of One Cycle (period) = PERIOD x Period_clk
+>> +	 */
+>> +	f_clk = clk_get_rate(sg2042_pwm->base_clk);
+>> +
+>> +	p = f_clk * state->period;
+> This might overflow.
+>
+>> +	do_div(p, NSEC_PER_SEC);
+>> +	period = (u32)p;
+> This gets very wrong if p happens to be bigger than U32_MAX.
+>
+> If you ensure f_clk <= NSEC_PER_SEC in .probe() (in combination with a
+> call to clk_rate_exclusive_get()), you can do:
+>
+> 	period_cycles = min(mul_u64_u64_div_u64(f_clk, state->period, NSEC_PER_SEC), U32_MAX);
+> 	duty_cycles = min(mul_u64_u64_div_u64(f_clk, state->duty_cycle, NSEC_PER_SEC), U32_MAX);
+>
+> This would also allow to store the clkrate in the driver private struct
+> and drop the pointer to the clk from there.
+f_clk should be 100M and <=NSEC_PER_SEC, will improve the code as your 
+suggestion, thanks.
+>> +	p = f_clk * state->duty_cycle;
+>> +	do_div(p, NSEC_PER_SEC);
+>> +	hlperiod = (u32)p;
+>> +
+>> +	dev_dbg(pwmchip_parent(chip), "chan[%d]: period=%u, hlperiod=%u\n",
+>> +		pwm->hwpwm, period, hlperiod);
+> pwm->hwpwm is an unsigned int, so use %u for it.
+Ok, will fix.
+>> +	pwm_sg2042_config(sg2042_pwm->base, pwm->hwpwm, period, hlperiod);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct pwm_ops pwm_sg2042_ops = {
+>> +	.apply		= pwm_sg2042_apply,
+> No .get_state() possible? Please use a single space before =.
+Will add .get_state() and improve the format.
+>> +};
+>> +
+>> +static const struct of_device_id sg2042_pwm_match[] = {
+>> +	{ .compatible = "sophgo,sg2042-pwm" },
+>> +	{ },
+> Please drop the , after the sentinel entry.
+OK
+>> +};
+>> +MODULE_DEVICE_TABLE(of, sg2042_pwm_match);
+>> +
+>> +static int pwm_sg2042_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct sg2042_pwm_chip *sg2042_pwm;
+>> +	struct pwm_chip *chip;
+>> +	int ret;
+>> +
+>> +	chip = devm_pwmchip_alloc(&pdev->dev, SG2042_PWM_CHANNELNUM, sizeof(*sg2042_pwm));
+>> +	if (IS_ERR(chip))
+>> +		return PTR_ERR(chip);
+>> +	sg2042_pwm = to_sg2042_pwm_chip(chip);
+>> +
+>> +	chip->ops = &pwm_sg2042_ops;
+>> +
+>> +	sg2042_pwm->base = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(sg2042_pwm->base))
+>> +		return PTR_ERR(sg2042_pwm->base);
+>> +
+>> +	sg2042_pwm->base_clk = devm_clk_get_enabled(&pdev->dev, "apb");
+>> +	if (IS_ERR(sg2042_pwm->base_clk))
+>> +		return dev_err_probe(dev, PTR_ERR(sg2042_pwm->base_clk),
+>> +				     "failed to get base clk\n");
+>> +
+>> +	ret = devm_pwmchip_add(&pdev->dev, chip);
+>> +	if (ret < 0)
+>> +		return dev_err_probe(dev, ret, "failed to register PWM chip\n");
+>> +
+>> +	platform_set_drvdata(pdev, chip);
+> This is unused and should/can be dropped.
+OK, will drop this, thanks for point it out. I should have cleaned it up.
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static struct platform_driver pwm_sg2042_driver = {
+>> +	.driver	= {
+>> +		.name	= "sg2042-pwm",
+>> +		.of_match_table = of_match_ptr(sg2042_pwm_match),
+>> +	},
+>> +	.probe = pwm_sg2042_probe,
+>> +};
+>> +module_platform_driver(pwm_sg2042_driver);
+> Please use a single space before =.
+Ok, will improve the format.
+>> +MODULE_AUTHOR("Chen Wang");
+>> +MODULE_DESCRIPTION("Sophgo SG2042 PWM driver");
+>> +MODULE_LICENSE("GPL");
+>> -- 
+>> 2.34.1
+>>
+> Best regards
+> Uwe
 
