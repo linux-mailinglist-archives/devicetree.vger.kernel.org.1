@@ -1,120 +1,110 @@
-Return-Path: <devicetree+bounces-101297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27DCA97141C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:44:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29397971424
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:45:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 80113B25085
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:44:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A17651F249D4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:45:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E86291B3B26;
-	Mon,  9 Sep 2024 09:44:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37DDE1B3B2B;
+	Mon,  9 Sep 2024 09:45:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="HA1fYfiy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DyV2kapX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BBCC1B3740;
-	Mon,  9 Sep 2024 09:44:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A2321B1D4E;
+	Mon,  9 Sep 2024 09:45:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725875051; cv=none; b=gEZ1Q5sUQy9CQld+tmtFVNvEFDKVYLTxfWNPBnlQLOIvHrZ/0Os4e0Bv9m9iykcxzcN0RHsCsX0uWc7LKipfRx4eZZ35NTXz0zybV+ut192Wye5rhtiloxtxNwP1zxl7Va6aDnnoLzkePizHBweazgo/HYq+zrqpea9aNd63Kfk=
+	t=1725875109; cv=none; b=jlvdpBO5Ft6fuvC67C42Qc3awcrT8qNzcmYHcdI7Bf4ZSMAyU/VRx4bKXFydx7qDzwZthRLWgX46jw467X91WYQn7BgVLvnJ4IAlfqn5s7MFmYBt75QaXie+W4yMS5fEmEB872fxnPr2asVockEz3LWMAb+VlXWEeDm+eR/dRao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725875051; c=relaxed/simple;
-	bh=h5LA/enNgw1sNFYXeart0ZorY5rVj4crVb/Vfqx8aUI=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lP7TkxGkwmaYG3OWHslPTLnAgEo1lp8N8oiHHqohpHNQhD2kHBJ7cVGV5hCxwd6UtKSptZb5vYkQq7KVYysUptmmXxwOaWAfRPpb4ApcX6Lr3WgtnL0D9Ld1SbFE4kFD3fsPQ6C9jhTfUoPe+oXGGM4aR4RTg0Xp1F4nO7WXFV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=HA1fYfiy; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1725875050; x=1757411050;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=h5LA/enNgw1sNFYXeart0ZorY5rVj4crVb/Vfqx8aUI=;
-  b=HA1fYfiypLp2Xd0x+Tbo5DuzRn63fI5PiZz7WFnXD/MfgwWppH/ou7IA
-   K/mPqBbMe13EpuzQdojyXUt5d+GKEkwrbWAlXDLIPC1TWBCNR1qimNE61
-   Ik5yQqA04nYhh5orvoQRVNuGyr2uIFlwnvxH8qXUdOAlsLR6tgErTQ6xw
-   YpGWcobcwdU5UNCouyj97VuY4lRYcGSK0TqXQqMixm+Wb93DEDleZXHES
-   aoR1jzcqr6puAQl0DxHA8/MO8Y8/IJ/s5NR8U3XlBvCjgdKKuPzpvo8ND
-   b9/LEFHUnxZjyURkh/RVMpmaX3vcmRJ6nu8wuCKUOh/w7JmsSD23TzqM/
-   A==;
-X-CSE-ConnectionGUID: L5CatC7qR+24yrk0PqV2lQ==
-X-CSE-MsgGUID: JW9LqD7NTV6izxZSQ6janA==
-X-IronPort-AV: E=Sophos;i="6.10,213,1719903600"; 
-   d="scan'208";a="262473465"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 Sep 2024 02:44:09 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 9 Sep 2024 02:43:27 -0700
-Received: from DEN-DL-M70577 (10.10.85.11) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Mon, 9 Sep 2024 02:43:25 -0700
-Date: Mon, 9 Sep 2024 09:43:24 +0000
-From: Daniel Machon <daniel.machon@microchip.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-	Lars Povlsen <lars.povlsen@microchip.com>, Steen Hegelund
-	<Steen.Hegelund@microchip.com>, <UNGLinuxDriver@microchip.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, <linux-phy@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-Subject: Re: [PATCH 8/9] dt-bindings: phy: sparx5: document lan969x in sparx5
- dt-bindings
-Message-ID: <20240909094324.u2aahgnrmxkxt7fc@DEN-DL-M70577>
-References: <20240906-sparx5-lan969x-serdes-driver-v1-0-8d630614c58a@microchip.com>
- <20240906-sparx5-lan969x-serdes-driver-v1-8-8d630614c58a@microchip.com>
- <c0aa5342-a2af-4ac4-bc33-b6dbfff77f63@kernel.org>
- <20240909082241.hvw3a7yig3pujrsk@DEN-DL-M70577>
- <ee4d4375-873b-4b9c-b694-f0191e5c2c54@kernel.org>
+	s=arc-20240116; t=1725875109; c=relaxed/simple;
+	bh=jhqHA0uVnwtC2Pdc0XOc7SW+3wqNA2H0J2IUl/abSxA=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=eVJZJqj/Wt8Z/ScpemeFSomw3cAiae8uEwLeWwTzU1luIl8RN6ojdVYaGkGbyFMAxd+3aOkcYEKfYDi1DiKX3h30yo8Yq7dpmVGtpiKp2JmhET4tfxXNxZ4p/1Yo+10IgCMj2nloLUt6y0zuTgvqTfPBNK06/PJVmgGb3fSkUOc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DyV2kapX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C0C4C4CEC5;
+	Mon,  9 Sep 2024 09:45:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725875108;
+	bh=jhqHA0uVnwtC2Pdc0XOc7SW+3wqNA2H0J2IUl/abSxA=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=DyV2kapXelG+iFIT+i6zbWTfEkFG8Q36rstlUCDkoS5HGNCKtjIrUVh83IYCNFSqu
+	 GKdlY5ReQTfyrpAzuQvqVIq11h0183HbST2mNUKwsQ2bqS5LkMTx5hhXh/IJpqtPPY
+	 2E5Q8fKy4VhLGMoy9t8P6qNEidtclLa5RLLvoLPVjXi50MPaagXffZoPLsf28kSb9N
+	 NfcYToaXX9DgOVV5Ii6Pyq5Vjd6AV8UMedlrZm4Fd8QC3/UWoL3QTgSyF9H17ykAqQ
+	 dX0ksoGv9ul7IgsH8jAb/c/MDDNRZjBME4Ezp78vHEHOCZ6K+HbGgpeK50fHJ427bt
+	 cpDLXbQjWi+HA==
+Date: Mon, 09 Sep 2024 04:45:07 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ee4d4375-873b-4b9c-b694-f0191e5c2c54@kernel.org>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Nikita Shubin <nikita.shubin@maquefel.me>
+Cc: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ linux-pwm@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240909-ep93xx-v12-12-e86ab2423d4b@maquefel.me>
+References: <20240909-ep93xx-v12-0-e86ab2423d4b@maquefel.me>
+ <20240909-ep93xx-v12-12-e86ab2423d4b@maquefel.me>
+Message-Id: <172587509814.3289077.10746482650513855019.robh@kernel.org>
+Subject: Re: [PATCH v12 12/38] dt-bindings: pwm: Add Cirrus EP93xx
 
-> >>>    compatible:
-> >>> -    const: microchip,sparx5-serdes
-> >>> +    enum:
-> >>> +      - microchip,sparx5-serdes
-> >>> +      - microchip,lan969x-serdes
-> >>
-> >> It seems there is no lan969x SoC/chip. Are you sure you are using
-> >> correct naming, matching what kernel is using? Maybe you just sent
-> >> whatever you had in downstream (hint: that's never a good idea).
-> >
-> > You are right. There is no upstream support for lan969x SoC yet. The
-> > upstreaming of the lan969x SoC has just begun, and this series is part
-> > of that upstreaming effort. The lan969x switch driver (not submitted
-> > yet) will depend on this SERDES driver, however, their functionality is
-> > really independent of each other. That is why I am also upstreaming the
-> > SERDES- and switch driver series independent of each other.
+
+On Mon, 09 Sep 2024 11:10:37 +0300, Nikita Shubin wrote:
+> Add YAML bindings for ep93xx SoC PWM.
 > 
-> That's not exactly my point. Becayse lan969x appears. I claim you use
-> incorrect name, so are you sure you do not use wildcards?
-> Best regards,
-> Krzysztof
+> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+> Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/pwm/cirrus,ep9301-pwm.yaml | 53 ++++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+> 
 
-Ahh.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-So the problem is the 'x' in lan969x, right? I think we have a habbit of
-documenting compatible strings like this in bindings. Anyway, what I can
-do is document the different part numbers in the bindings: lan9691,
-lan9692, lan9693, lan9694, lan9696 and lan9698.
+yamllint warnings/errors:
 
-/Daniel
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/pwm/cirrus,ep9301-pwm.example.dts:18:18: fatal error: dt-bindings/clock/cirrus,ep9301-syscon.h: No such file or directory
+   18 |         #include <dt-bindings/clock/cirrus,ep9301-syscon.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.lib:442: Documentation/devicetree/bindings/pwm/cirrus,ep9301-pwm.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1432: dt_binding_check] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240909-ep93xx-v12-12-e86ab2423d4b@maquefel.me
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
