@@ -1,48 +1,76 @@
-Return-Path: <devicetree+bounces-101506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C4BB97214C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 19:47:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CA399721B9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 20:16:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8E042846FE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 17:47:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1FDC2823B1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 18:16:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67FBB17A938;
-	Mon,  9 Sep 2024 17:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4C3417DFF7;
+	Mon,  9 Sep 2024 18:16:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bvjU6cht"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CUGVgh+x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BA6116F0E8;
-	Mon,  9 Sep 2024 17:47:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AB88524C4;
+	Mon,  9 Sep 2024 18:16:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725904027; cv=none; b=gkKAzg5UtbVT3sujbUs1w2yrz0+nl0yvujzmE9rIgii43HgV7uPxjv9FixcdvOfZGezzO2/1v5AoDcmWR5ossjDLtOpK/GJG56xZ0WLuVe3lksOn3iWG8mUr+Rzv26vwjF0KjyzcU2R2DpMUDenroiSf5Z4Ru30i+lFJdBnF7PQ=
+	t=1725905806; cv=none; b=R/IGdYrbSUGAoC01WQQ9T3aYkL0f+nu1mJz89IqrvuYtFwE58oxxOhIqdVmrmtvHHAMc0om0/yl0QDV5axrxuMUV5JGYzdac07bSbLdTLTtMp7yG1kw85anvnhoJo2GXU2qjCWSmAleEJnFu4qFKwVuCWEdJaLoEpDgCLygILSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725904027; c=relaxed/simple;
-	bh=d5MQ6P0P6PSk7ZUlMTuS+1vmsGp+cPoQ1jmGFxw4P7c=;
+	s=arc-20240116; t=1725905806; c=relaxed/simple;
+	bh=qcr5MOHYJhKsitzdAiM0iybFMvgqUPw4gHKBKCHGWv0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DQo185QI/fAYcixsQAkJA0AXDw225Huukjqyxat7jKJAMve7AtrsCUWHrELMDFL2h/ZQlOQaSyCXUUioFb6khgGs7fRfTQ+5PfzoCLMeFlOPHw20RnilkAqYc2bqyDtP5s5ajqWVOoBIsqBLqb/KGl2HH2iTJN0X2HLBOyZvdyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bvjU6cht; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCE8AC4CEC8;
-	Mon,  9 Sep 2024 17:47:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725904026;
-	bh=d5MQ6P0P6PSk7ZUlMTuS+1vmsGp+cPoQ1jmGFxw4P7c=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bvjU6cht362onuC87em4aUt8sWaFGl3zfD07QULlAvFMt0rFPE/xT+L/AjOxT3fsS
-	 V61ZFLEMD18uM7gBroeBLgsujPW/BsBOpKLBT7WmWJFIkRaK15UhimPB02HO6BbFEQ
-	 saRumcLXByrefl4c1C4sW8fSB/qFgSNFehNUHwK/X49zlEH5ftSzX+oH3nU4EC0FU+
-	 2ZGYFKxQjeedzflGRk+t1eeDbMH69U+9c2sHq4beEdrqSsAN2CqoF6ltywlC7FY7tW
-	 mQtFXZwQbb0W938G483nSbu6mN86KdVU+KxqNNI++CINltXbo8UWDfEc615mMHKAcX
-	 42vFouSCSpnpQ==
-Message-ID: <a3eb6224-b355-4477-9d24-fee96f00e593@kernel.org>
-Date: Mon, 9 Sep 2024 19:47:01 +0200
+	 In-Reply-To:Content-Type; b=p/5WXwiUHrBr6EKG5lvE+N4gsSNT85Zf7q5UwrRheRnxHTf+q8IQPr/kJby8/6Bw+tShZaFOL8+NjG8SgooAU0tFENc6GtsU2wCLSQ+zpoYQ1e9d4g7ltdbRP/w9KPkTdsRNMy8Gc/gR6yafbr8XXGrPR69c6rslHOdAZi061R8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CUGVgh+x; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-206aee4073cso47869155ad.1;
+        Mon, 09 Sep 2024 11:16:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725905804; x=1726510604; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=zrATOHe5XjPdhMztHbQbQTeeUa2zuUhhA4iaEWDma3M=;
+        b=CUGVgh+xjscfO6W6KzgWu2XmhKSAQcEREWGodwlf7zQDc4Hh5iX13cAejZM0K3rUIG
+         YFm7HD+hCPGbuBD38frClHUY39vnPWRbPIuACvq7KaITMpGFQPEhQJGZadwWijOxvHc1
+         +TMEiBSYCtWIx5b/Wd7pE0GTmMy/ly509ceoROhb1MiTh0wiMtW92HBeTKd261a/Qrmy
+         eplN0GG/Y5DKVFWYmD371MR5SQJV3z6BK/z6+L0wVHzUiZF0g0HFRrWFX8d3Cana6wtR
+         ueJH3hjsz+Ku8tzJPFV0M7rZWSGtI2Oazq84KKgSa7PHorIRq7aBhnvejtZlpUTogNi0
+         oC3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725905804; x=1726510604;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zrATOHe5XjPdhMztHbQbQTeeUa2zuUhhA4iaEWDma3M=;
+        b=Cgea947C0zUewrjMT9L71WfJvPrpduuFmnPlfcLUIUAiaiSFZx8wZCC26Bf1Vg+7v5
+         mOKKWbB4nWsCgbkmtfaX6qPrsdpvElpJvVlqZNj2IcSD+VK+csF+ZWea5VZdhqoTPO72
+         g88UqIBoYfaPx/MOz/76pl8LZtMZNeS6mkG2yy60ljp5XRva+NnS81e5YTYPLKCps6sY
+         VcraR18DpAnyZr9dgLsW++7nAxAREsjcdToar3FfJ5pkDJ6ImP6Iti/5oj+xc6yptr99
+         tk6hzLuoA8zu0kLHv8VrjnjcFIcRV7AXRMqSd3BglYMH7pELxxDVCHqicSXdvbuNzfUN
+         fBFw==
+X-Forwarded-Encrypted: i=1; AJvYcCVuXTCHDGjrCy5qPkeJQnSw6bjA1ZGi5rJpt0J5YVngthammmv2ZY1sg+fvnQEozy1C0N8nMsx/Jj10GXkD@vger.kernel.org, AJvYcCWhEVziqpw89lAfXsb2kthR8sZbGtkR4Y88vk6HneHMF6j0/Q+Hj6EUeHTrARsjrjh8MDEgd+qDZYTq@vger.kernel.org, AJvYcCXJRoEQ2MJJsdA8skR24lvcxNEN5YkcrT4vdriwGePdtCKgm2DwfhYZv59SPY0+nEnEBYC4flaUTJNz@vger.kernel.org, AJvYcCXnpmrSPF5q4ow6U1/SIUZKhH/QkcnI8oQGUQJNbPkzoatlwkJWrqs8aFbQpgrZ/R6T58UR+Khk9AP2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzr3Fch3JpvIE/nr+bsmB+RHIf5Ji2vrnuI1RSOsOKpPbHjlk6e
+	xIhdoMxkvIgWmewbDI+GHVXabrqXxhT8s7lafUSHxIrycgvMJr2p27wLKg==
+X-Google-Smtp-Source: AGHT+IFirGzM0CCUfiXl/kaXhL3US9esvMkev6/AQ2dfwTH+uze+N8uCelG8kf4lIJfPOETvDE9aiA==
+X-Received: by 2002:a17:902:ce0b:b0:202:51ca:9823 with SMTP id d9443c01a7336-206f05f62f3mr225447475ad.46.1725905804488;
+        Mon, 09 Sep 2024 11:16:44 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20710e1a63csm36850415ad.13.2024.09.09.11.16.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Sep 2024 11:16:44 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <d76290e0-f5e7-4192-92b8-94f260270fe3@roeck-us.net>
+Date: Mon, 9 Sep 2024 11:16:41 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,140 +78,131 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-binding: touchscreen: fix x-plat-ohm missing type
- definition
-To: Sayyad Abid <sayyad.abid16@gmail.com>
-Cc: devicetree@vger.kernel.org, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+Subject: Re: [PATCH 2/3] hwmon: (pmbus/core) add POWER_GOOD signal limits
+ support
+To: Jerome Brunet <jbrunet@baylibre.com>, Jean Delvare <jdelvare@suse.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
- Michael Welling <mwelling@ieee.org>, linux-input@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240908151742.2453402-1-sayyad.abid16@gmail.com>
- <sllpurhdxfgducp5hb3rs7u5db76vy2wtmyha7uspskvvek463@tq2aq65qqw4x>
- <CACVUEBmCBW7a3gyZ78ZyEtxHiFkie=3wuMz-+Oq_FfTjQX6AVw@mail.gmail.com>
- <edf29295-d360-4038-a490-3a5cbb8c28cd@kernel.org>
- <CACVUEB=eQUFbDV80D7sPkK84FmnR7j66gRGvB8eusV_cz-QmAQ@mail.gmail.com>
- <CACVUEB=UBQ=qnEGHodXjYNcMicOW6dGb1Z-V1CPkBV15+OdmwA@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-i2c@vger.kernel.org
+References: <20240909-tps25990-v1-0-39b37e43e795@baylibre.com>
+ <20240909-tps25990-v1-2-39b37e43e795@baylibre.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <CACVUEB=UBQ=qnEGHodXjYNcMicOW6dGb1Z-V1CPkBV15+OdmwA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20240909-tps25990-v1-2-39b37e43e795@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 09/09/2024 14:48, Sayyad Abid wrote:
-> On Mon, Sep 9, 2024 at 1:36 PM Sayyad Abid <sayyad.abid16@gmail.com> wrote:
->>
->> On Mon, Sep 9, 2024 at 1:21 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>
->>> On 09/09/2024 09:48, Sayyad Abid wrote:
->>>> On Mon, Sep 9, 2024 at 12:02 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>>>
->>>>> On Sun, Sep 08, 2024 at 08:47:43PM +0530, Sayyad Abid wrote:
->>>>>> This patch fixes the issue with x-plat-ohm missing a type definition.
->>>>>> The patch adds the fix for this issue by adding value of this property
->>>>>
->>>>> You repeated twice the same while it is unclear why this is missing.
->>>> I must have overlooked it, my bad.
->>>
->>> Keep discussion public.
->> I am away form my desktop and trying to reply with Gmail's client,
->> I use mutt otherwise hence the trouble. I hit 'reply' instead of 'reply all'.
->>>
->>>>>
->>>>> Also:
->>>>> Please do not use "This commit/patch/change", but imperative mood. See
->>>>> longer explanation here:
->>>>> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
->>>> Okay, I'll refer to this article for any further patches. Thank you!
->>>>>
->>>>>
->>>>>> should be a 32-bit unsigned integer.
->>>>>>
->>>>>> Signed-off-by: Sayyad Abid <sayyad.abid16@gmail.com>
->>>>>>
->>>>>> ---
->>>>>>  .../devicetree/bindings/input/touchscreen/ti,tsc2005.yaml       | 2 ++
->>>>>>  1 file changed, 2 insertions(+)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml b/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
->>>>>> index 7187c390b2f5..98ff65cf9f9f 100644
->>>>>> --- a/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
->>>>>> @@ -38,6 +38,8 @@ properties:
->>>>>>
->>>>>>    ti,x-plate-ohms:
->>>>>>      description: resistance of the touchscreen's X plates in ohm (defaults to 280)
->>>>>
->>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>>
->>>>> $ref should not be needed, so what is exactly missing? Provide some
->>>>> sort of proof that you are fixing real issue.
->>>> I ran dt_bindings_check on the file which resulted in a warning
->>>> "x-plate-ohm : missing type definition", to resolve this warning I
->>>> looked at the other yaml files in the ti,txc2005.yaml directory
->>>> (/Documentation/devicetree/bindings/input/touchscreen/), Where I found
->>>> out that one of the TI's touchscreen (ti,am3359) binding used $ref
->>>> property for the similar "x-plate-resistance" property.
->>>>
->>>> Adding the $ref resolved the warnings.
->>>
->>> You run some older dtschema.
->> I'll update this and check again.
-> So I did a full clean clone of the kernel repo and followed the
-> dtschema installation
-> as mentioned in the Linux Kernel Documentation.
-> Running the dt_binding_check resulted in the same warning.
+On 9/9/24 08:39, Jerome Brunet wrote:
+> Add support for POWER_GOOD_ON and POWER_GOOD_OFF standard PMBus commands.
+> 
+> For PMBus devices that offer a POWER_GOOD signal, these commands are used
+> for setting the output voltage at which a power good signal should be
+> asserted and negated.
+> 
+> Power Good signals are device and manufacturer specific. Many factors other
+> than output voltage may be used to determine whether or not the POWER_GOOD
+> signal is to be asserted. PMBus device users are instructed to consult the
+> device manufacturer’s product literature for the specifics of the device
+> they are using.
+> 
+> Note that depending on the choice of the device manufacturer that a device
+> may drive a POWER_GOOD signal high or low to indicate that the signal is
+> asserted.
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>   drivers/hwmon/pmbus/pmbus.h      | 3 +++
+>   drivers/hwmon/pmbus/pmbus_core.c | 6 ++++++
+>   2 files changed, 9 insertions(+)
+> 
+> diff --git a/drivers/hwmon/pmbus/pmbus.h b/drivers/hwmon/pmbus/pmbus.h
+> index 5d5dc774187b..e322d2dd9fb7 100644
+> --- a/drivers/hwmon/pmbus/pmbus.h
+> +++ b/drivers/hwmon/pmbus/pmbus.h
+> @@ -78,6 +78,9 @@ enum pmbus_regs {
+>   	PMBUS_IIN_OC_FAULT_LIMIT	= 0x5B,
+>   	PMBUS_IIN_OC_WARN_LIMIT		= 0x5D,
+>   
+> +	PMBUS_POWER_GOOD_ON		= 0x5E,
+> +	PMBUS_POWER_GOOD_OFF		= 0x5F,
+> +
+>   	PMBUS_POUT_OP_FAULT_LIMIT	= 0x68,
+>   	PMBUS_POUT_OP_WARN_LIMIT	= 0x6A,
+>   	PMBUS_PIN_OP_WARN_LIMIT		= 0x6B,
+> diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
+> index 0ea6fe7eb17c..94ddf0166770 100644
+> --- a/drivers/hwmon/pmbus/pmbus_core.c
+> +++ b/drivers/hwmon/pmbus/pmbus_core.c
+> @@ -1768,6 +1768,12 @@ static const struct pmbus_limit_attr vout_limit_attrs[] = {
+>   		.attr = "crit",
+>   		.alarm = "crit_alarm",
+>   		.sbit = PB_VOLTAGE_OV_FAULT,
+> +	}, {
+> +		.reg = PMBUS_POWER_GOOD_ON,
+> +		.attr = "good_on",
+> +	}, {
+> +		.reg = PMBUS_POWER_GOOD_OFF,
+> +		.attr = "good_off",
+>   	}, {
+>   		.reg = PMBUS_VIRT_READ_VOUT_AVG,
+>   		.update = true,
+> 
 
-The dtschema change fixing this ("schemas: property-units: Exclude some
-non-conforming properties") is not yet in a released version, so I
-suggest do nothing or try the latest dtschema from master. But in any
-case this change does not look good. ohms should not have a ref, so even
-if this warning is legitimate, the fix should be probably different.
+Those attributes are not hardware monitoring attributes and therefore not
+acceptable. In general I am not sure if they should be configurable in the
+first place, but definitely not from the hardware monitoring subsystem.
+Maybe the regulator subsystem callbacks set_over_voltage_protection and
+set_under_voltage_protection would be appropriate (with severity
+REGULATOR_SEVERITY_PROT), but that should be discussed with regulator
+subsystem maintainers.
 
-Best regards,
-Krzysztof
+Thanks,
+Guenter
 
 
