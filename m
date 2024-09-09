@@ -1,57 +1,56 @@
-Return-Path: <devicetree+bounces-101197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 465EC970DE9
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:32:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5285970DFB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:38:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F17471F214F4
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 06:32:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 968201F21822
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 06:38:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10E1B176FAC;
-	Mon,  9 Sep 2024 06:32:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED4A91AC8B0;
+	Mon,  9 Sep 2024 06:38:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D5/KtBZW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zuxn0T1q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5869B658;
-	Mon,  9 Sep 2024 06:32:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFCF1335A7;
+	Mon,  9 Sep 2024 06:38:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725863572; cv=none; b=uaJxpD8rb+q+OcUhuA/T6pr6bj1MIKdnpFcYH0TgSLHk5ZMvPVZJIdsZ/QO5jAC3rU1gykqsGkybSPonzkvexsNFD1/wN03c6t9PJIrHg0llubW84al9scN+A9lxbr8POZ4iaDP2KLBleWt9ruWC5mvt6whyu9WL6MElwn2Zcto=
+	t=1725863907; cv=none; b=sHmgx6PXP9wDzPp59yk5u4IS1J52wllMEzd/jBW5I4awwnVgzIv4saLZSZrmeGJot6ToMS944yEAMKiDNSkU8AShNo2ZdDHcxw8nMzv3sVmBxvUqa2g2Tt6RlNfe2A5kqKnwoY3JbB/OQPqIgwo5jWRDIcXVdoC3vl944mfWTzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725863572; c=relaxed/simple;
-	bh=3VjCDHyYl7o6cspbJQhyt1tYrUbMkyEfRXkZVsxszqE=;
+	s=arc-20240116; t=1725863907; c=relaxed/simple;
+	bh=PrE+vmp+YuruV5xPvzE2CNTbonarogVhQjvr8wPqSzo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O8FFad+2i7NdzKrDumMIPW+EASJFZacg2L2rdzXATg1zdmyQR8WMW6KqvbZ44ocQvzN8vMThvfYtEu3yWe3nvkxr8E9KWkmiBgnc/HOVaJ0lWh2V/bc4QnMgxlbCl+PzyiwjTUPupgjVZq0nhY8krvit93ccHJlVWfTK3ziUZdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D5/KtBZW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F86AC4CEC5;
-	Mon,  9 Sep 2024 06:32:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jwTYnq+N7InfZ8mbBq5mPwv4QZ7JGSVjL3ZctncWD1ltBX4qr1+39OOEEG93s6+nbat8pY4FKBlAUZASJLXe3J4IINu+sTZuBu1LFJd9E/gU2lkop9DgCy6/v6mNZKStrxH/ElW4FJNrIjULIU5hHgFdLnLRNwKEto3oSKgug0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zuxn0T1q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86402C4CEC5;
+	Mon,  9 Sep 2024 06:38:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725863571;
-	bh=3VjCDHyYl7o6cspbJQhyt1tYrUbMkyEfRXkZVsxszqE=;
+	s=k20201202; t=1725863907;
+	bh=PrE+vmp+YuruV5xPvzE2CNTbonarogVhQjvr8wPqSzo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=D5/KtBZWJ/+RqP4w+B2plo+Ivny1XXxJ2WYXymmd308ny95yjU2oWdAcoApImCJ1T
-	 2+axcMkmeCPOGkx3NTr3WEYKY0IBq71m7dA6hjoHUrXwXZ2YFozWFsIksfOiyqU9yk
-	 qpyk2dXTeyXeEo0IJeeDALinX84HLkqxMaD7fwtyEr/AMm364K10nu4wECnv92Dtgs
-	 tssVXT5qk9E1aj/+NseLpd2N3UZb+FhHetIwuMVLt+S25jkmLkNoFm7iba5QZyKkus
-	 Kq5eu1GQ1MAxwocm98dgG27qWoybMWSf+oAY3hOYqjF/lVN3Jif+uPSxdY+PZG6OLz
-	 yLUXgUiGL9OyA==
-Date: Mon, 9 Sep 2024 08:32:47 +0200
+	b=Zuxn0T1qdNlZeEDMmAo4TJE+F3nWIg5ZYEixIBVM2kGcRcIwmzIuMfx2ccj/nQ6/o
+	 8l2dbJnwec5qobdEEEy8R6AjGf+93MjMZc//gPqKupm5kQuUJkhokalyIk3mUErVh4
+	 TgBkU+l0gM00D1/Jj2oeSlAnbmmNYYXRYUF0F1PUcrsJ6TqvAplxp8sPM4AXkOwlPg
+	 s95knC6NrCAjaCTUmayOxdK4eNLvlxYNMZ+8y4Lhkz0gm4IRNDQzr3YEflTdKVMpbt
+	 wfUEmcDe6TQo5vNEs+Xy1NHYeTGd4jLzJGaH84Mw064BWP2HtJDa6zsyOLa0Ie1/cC
+	 mlsQoforll3RA==
+Date: Mon, 9 Sep 2024 08:38:23 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sayyad Abid <sayyad.abid16@gmail.com>
-Cc: devicetree@vger.kernel.org, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
-	Michael Welling <mwelling@ieee.org>, linux-input@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-binding: touchscreen: fix x-plat-ohm missing type
- definition
-Message-ID: <sllpurhdxfgducp5hb3rs7u5db76vy2wtmyha7uspskvvek463@tq2aq65qqw4x>
-References: <20240908151742.2453402-1-sayyad.abid16@gmail.com>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, tsbogend@alpha.franken.de, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add Realtek switch
+Message-ID: <63sbuzij27crjxv6d6qjblv55al5zk4ivsah4ji2kvddhbua57@xo4vt2tqs5cn>
+References: <20240909014707.2003091-1-chris.packham@alliedtelesis.co.nz>
+ <20240909014707.2003091-2-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,46 +59,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240908151742.2453402-1-sayyad.abid16@gmail.com>
+In-Reply-To: <20240909014707.2003091-2-chris.packham@alliedtelesis.co.nz>
 
-On Sun, Sep 08, 2024 at 08:47:43PM +0530, Sayyad Abid wrote:
-> This patch fixes the issue with x-plat-ohm missing a type definition.
-> The patch adds the fix for this issue by adding value of this property
-
-You repeated twice the same while it is unclear why this is missing.
-
-Also:
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-
-> should be a 32-bit unsigned integer.
+On Mon, Sep 09, 2024 at 01:47:06PM +1200, Chris Packham wrote:
+> Add device tree schema for the Realtek switch. Currently the only
+> supported feature is the syscon-reboot which is needed to be able to
+> reboot the board.
 > 
-> Signed-off-by: Sayyad Abid <sayyad.abid16@gmail.com>
-> 
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 > ---
->  .../devicetree/bindings/input/touchscreen/ti,tsc2005.yaml       | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../bindings/mfd/realtek,switch.yaml          | 50 +++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/realtek,switch.yaml
+
+Use compatible as filename.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml b/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
-> index 7187c390b2f5..98ff65cf9f9f 100644
-> --- a/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
-> @@ -38,6 +38,8 @@ properties:
->  
->    ti,x-plate-ohms:
->      description: resistance of the touchscreen's X plates in ohm (defaults to 280)
+> diff --git a/Documentation/devicetree/bindings/mfd/realtek,switch.yaml b/Documentation/devicetree/bindings/mfd/realtek,switch.yaml
+> new file mode 100644
+> index 000000000000..84b57f87bd3a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/realtek,switch.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/realtek,switch.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Realtek Switch with Internal CPU
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+What sort of Switch? Like network switch? Then this should be placed in
+respective net (or deeper, e.g. net/dsa/) directory.
 
-$ref should not be needed, so what is exactly missing? Provide some
-sort of proof that you are fixing real issue.
+Maintainers go here. See example-schema.
 
 > +
+> +description:
+> +  The RTL9302 ethernet switch has an internal CPU. The switch is a multi-port
+> +  networking switch that supports many interfaces. Additionally, the device can
+> +  support MDIO, SPI and I2C busses.
 
-Just one blank line.
+I don't get why syscon node is called switch. This looks incomplete or
+you used description from some other device.
 
+But if this is DSA, then you miss dsa ref and dsa-related properties.
+
+> +
+> +maintainers:
+> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - realtek,rtl9302c-switch
+> +      - const: syscon
+> +      - const: simple-mfd
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reboot:
+> +    $ref: /schemas/power/reset/syscon-reboot.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reboot
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    switch0: ethernet-switch@1b000000 {
+
+Drop unused label.
 
 Best regards,
 Krzysztof
