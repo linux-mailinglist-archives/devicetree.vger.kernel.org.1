@@ -1,162 +1,108 @@
-Return-Path: <devicetree+bounces-101337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB59C9715E0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:59:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12B1B9715E2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:59:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 977A71F24CCD
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:59:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCE591F24EA5
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:59:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EFD51B533A;
-	Mon,  9 Sep 2024 10:59:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 729D01B5309;
+	Mon,  9 Sep 2024 10:59:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="SDq3bFHz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FFS7h9fR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2AC51B5338;
-	Mon,  9 Sep 2024 10:59:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48EE81B250A;
+	Mon,  9 Sep 2024 10:59:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725879547; cv=none; b=Yz0JrCEO7FzICPG9ka5b0yro6DqOL0RkxJuEdtyfzQ02VBER3vu6y40isAjlblNjFLXDyX8zeT14TGIuExNW7rIMrO2xqwK0BP74dZfHav0gJG7bDGV1U5SdVGEmWQCXwc53Xu6ChZhDwZISMc61FAdEofDZsN6181mxnyw6ces=
+	t=1725879575; cv=none; b=Z4Q1Wt3WVDfVx7qtbO7LeneGRmOA2POGeS4M2xxs953bh0rmVPjuJAnQiLnxa/U8zHDzHIRx3qOMHFBDLzL4e1cGxcAUUwlIpxZi79bUL7CGiegS/ZV0I1H/0JpQTEqF8FWN/itzWn56DNp8nWWLesA17pbMN+xVrTHIQf/RvwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725879547; c=relaxed/simple;
-	bh=t3Rf1MeA3cyYGLppiLzQ0ZvIDTirQffgCL6XpYhVB3A=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ISppXEl8Y+72D0kaAacWMPr14bT4NVvoTeCQdr5s0AzOFvDVAWrxms6bDTb6gGP0KHuZ+Fgq6zZ3nY5qBpM+pMzZ9W+15W4xgrfNbgrpyMvb94+TJfFoFW+OvUpPgEfE1uYGjLSZUjYx3Q+fO4OAx08KAV5TlbEKRBMsbJ1sSMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=SDq3bFHz; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1725879544; x=1757415544;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=t3Rf1MeA3cyYGLppiLzQ0ZvIDTirQffgCL6XpYhVB3A=;
-  b=SDq3bFHz6+9/tsurpgKQYGC20ycnERx4265rHDSiNsLsnnBiFAV7mI+j
-   J1AeJGsmiLLBy66Nf4ykskXmFaHlmshh/QQsdakwPW0Y2ZhiRPLqDwzQP
-   Yviw9WmvvHChgqMQ0elY4TNr3VgvaaQk9hUJKQKs8qmJMwPrVqalnfL57
-   yW5S1gFpb5LXNfCzG8SqAVBUCxF+iQF7lTGALBRzumazXhYn7kNW7Xo6o
-   wMFsuijGGjTvb5+0F486ANFD915dfsFbneS8fero6tTJMAMfKrQHr66e8
-   TrUZ9eIzBkOls82RORqN02AVN3wdRWCNqsJ9eU8VHGGieibxT1+qdBiof
-   Q==;
-X-CSE-ConnectionGUID: Fq4UIs45Smiz1mW+q5x7cA==
-X-CSE-MsgGUID: e+e1WZbtSqmzJSCwPJBKhA==
-X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; 
-   d="asc'?scan'208";a="34626940"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 Sep 2024 03:59:03 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 9 Sep 2024 03:58:38 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Mon, 9 Sep 2024 03:58:36 -0700
-Date: Mon, 9 Sep 2024 11:58:04 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Rob Herring <robh@kernel.org>
-CC: Conor Dooley <conor@kernel.org>, <devicetree@vger.kernel.org>,
-	<cyril.jean@microchip.com>, <valentina.fernandezalanis@microchip.com>,
-	<nitin.deshpande@microchip.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC v1] dt-bindings: add IP versioning document for Microchip
- FPGAs
-Message-ID: <20240909-fernlike-thickness-98b8c0566a0a@wendy>
-References: <20240830-culinary-cautious-2c2c19902dcb@spud>
- <20240903145943.GA1002295-robh@kernel.org>
+	s=arc-20240116; t=1725879575; c=relaxed/simple;
+	bh=8XQXWK0HfzqGtCmM0NNh3z8UfxNWWoHob7J/lVoRZCs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FJa9R8y3wfT3FQ1s3a0drqPMRAhRPRzHp4HgWBKfiEUEXwzZx2uWbzWYZJrfDsDqeQKALh3Z688VW/0Y0Ix+7ptT84orucDQwXs2XBfdsMzlTRUvdUmkK9dJRAsBoZJ8KxwYUQ2ghzaKZgAp4QaTiM4wUdbv4TINAsSMfHnQIKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FFS7h9fR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD4A5C4CEC5;
+	Mon,  9 Sep 2024 10:59:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725879574;
+	bh=8XQXWK0HfzqGtCmM0NNh3z8UfxNWWoHob7J/lVoRZCs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FFS7h9fRp8TOPR5GnYHWpbM8T5cjCRp6U68dZXHHeAteBgYHS2znuWFNIABgKnrw4
+	 PXNPctq+8s7Uuyhm0dim1yciToykPpEV5RXae9fKfJM3/tLwEBBZZlc92LjIVr9HjY
+	 /UNZHk8GYoM56pIdjQSoO6rluNSytwbfTQLemR4OtsN2sySWTey9CSJUJVHriTj8KN
+	 toNn+Gbr7wwW9Jkr8WGrP2Kjo+VjUJDFnOzLCxpg9EbKrzeCatRLiWslM8Ks6ZPKit
+	 TaRWPMM3l9iFsY2SM5/1O1qIPUC5Cr4+gY6/rPejNIi/WCudavZr6Hv6w9OlZEVc6i
+	 RTwPpXGXPwGdA==
+Message-ID: <486ec029-dc10-48bf-af8d-c0a8426d3247@kernel.org>
+Date: Mon, 9 Sep 2024 12:59:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="KAW/k6vNVrLCa629"
-Content-Disposition: inline
-In-Reply-To: <20240903145943.GA1002295-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/2] arm64: dts: qcom: sm8650: extend the register
+ range for UFS ICE
+To: Bartosz Golaszewski <brgl@bgdev.pl>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Gaurav Kashyap <quic_gaurkash@quicinc.com>,
+ Om Prakash Singh <quic_omprsing@quicinc.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+References: <20240906-wrapped-keys-dts-v6-0-3f0287cf167e@linaro.org>
+ <20240906-wrapped-keys-dts-v6-1-3f0287cf167e@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <20240906-wrapped-keys-dts-v6-1-3f0287cf167e@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---KAW/k6vNVrLCa629
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 6.09.2024 7:56 PM, Bartosz Golaszewski wrote:
+> From: Gaurav Kashyap <quic_gaurkash@quicinc.com>
+> 
+> The Inline Crypto Engine (ICE) for UFS/EMMC supports the Hardware Key
+> Manager (HWKM) to securely manage storage keys. Enable using this
+> hardware on sm8650.
+> 
+> This requires us to increase the register range: HWKM is an additional
+> piece of hardware sitting alongside ICE, and extends the old ICE's
+> register space.
+> 
+> Reviewed-by: Om Prakash Singh <quic_omprsing@quicinc.com>
+> Tested-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Gaurav Kashyap <quic_gaurkash@quicinc.com>
+> Co-developed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> index 01ac3769ffa6..54b119d6cf92 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> @@ -2595,7 +2595,7 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+>  		ice: crypto@1d88000 {
+>  			compatible = "qcom,sm8650-inline-crypto-engine",
+>  				     "qcom,inline-crypto-engine";
+> -			reg = <0 0x01d88000 0 0x8000>;
+> +			reg = <0 0x01d88000 0 0x10000>;
 
-On Tue, Sep 03, 2024 at 09:59:43AM -0500, Rob Herring wrote:
-> On Fri, Aug 30, 2024 at 05:00:40PM +0100, Conor Dooley wrote:
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> >=20
-> > This is a pretty rough document I conjured up in 5 minutes, to document
-> > my expectations for compatible strings for both our FPGA IP blocks and
-> > reference designs that we ship, a la the one that exists for SiFive IPs.
-> > There's been some internal conversations lately about this naming etc,
-> > so good to have something written down.
-> >=20
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> > cc: cyril.jean@microchip.com
-> > CC: valentina.fernandezalanis@microchip.com
-> > CC: nitin.deshpande@microchip.com
-> > CC: Rob Herring <robh@kernel.org>
-> > CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> > CC: Conor Dooley <conor+dt@kernel.org>
-> > CC: devicetree@vger.kernel.org
-> > CC: linux-kernel@vger.kernel.org
-> > ---
-> >  .../bindings/microchip/ip-versioning.txt      | 34 +++++++++++++++++++
-> >  1 file changed, 34 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/microchip/ip-vers=
-ioning.txt
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/microchip/ip-versioning.=
-txt b/Documentation/devicetree/bindings/microchip/ip-versioning.txt
-> > new file mode 100644
-> > index 000000000000..4a4e0e74c4e6
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/microchip/ip-versioning.txt
-> > @@ -0,0 +1,34 @@
-> > +Devicetree compatible string versioning for Microchip FPGA IP blocks a=
-nd reference designs
-> > +
-> > +This document describes the versioning guidelines for compatible strin=
-gs
-> > +used on Microchip FPGA IP blocks and reference designs.
-> > +
-> > +IP block-specific compatible strings are in the form:
-> > +"microchip,<ip-block-name>-rtl-v<major version number>"
-> > +or optionally:
-> > +"microchip,<ip-block-name>-rtl-v<major version number>.<minor version =
-number>"
-> > +
-> > +<ip-block-name> should be the name of the IP in Libero's IP catalog.
-> > +In most cases a major version should be sufficient, as breaking change=
-s are
-> > +intended to be accompanied by a version update, but if not, the option=
-al minor
-> > +version should be used,
->=20
-> Please cover where do version numbers come from?
+I see mentions of this being a bit longer, any reasons not to stretch
+it to full size?
 
-=46rom the IP itself, it's either listed in the catalog entry or in the
-information for the instance. I'll have to double check exactly where it
-can be found, but that is the source.
-
---KAW/k6vNVrLCa629
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZt7UuwAKCRB4tDGHoIJi
-0i3pAQDYB/GCqhU85G2zrGx98WK2fKYBVhbIFiyGAGjtzR8LwwD/eWvsdSSzEhvW
-H33lggGHia//bGtutzSr7fY6MIbRjwE=
-=iJ0Z
------END PGP SIGNATURE-----
-
---KAW/k6vNVrLCa629--
+Konrad
 
