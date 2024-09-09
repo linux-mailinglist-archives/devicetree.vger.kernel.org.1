@@ -1,210 +1,270 @@
-Return-Path: <devicetree+bounces-101225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27386971038
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:50:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D35B597104A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:51:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 997CD1F22888
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 07:50:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFB321C21FE2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 07:51:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C26C81B011E;
-	Mon,  9 Sep 2024 07:49:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 360CF1B0107;
+	Mon,  9 Sep 2024 07:51:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P6G35EI4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y32/EI+f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97B83176237;
-	Mon,  9 Sep 2024 07:49:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EAD0176237;
+	Mon,  9 Sep 2024 07:51:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725868170; cv=none; b=aym+sJeBrQTfcfuq3R65YAeJKgdQZsTxKUk4o0nx0CIHQBuoiapVPpQP5SaQJ8HA3Hb12TPF4ntT78NHLv1X25pjcgSaf9X5mkIPI63/Y11seJYmddz5CFgckW5BK/dmwtfIcmBOaZ1Mn7p8z5P9CykAsCcQKtvs5/WbfomILZ4=
+	t=1725868311; cv=none; b=O/9KqLyKjmxFPoM240spTMiUE121U6MJJyYhSLZ6cFizlYcH368NV/tub3lz3ZFSoMTaMXGRfJvHbM7dKHqOHE2Bxpfzd9XYxsl01XlJj55QCv+gWb1Pi/VYELlBNWd7KwIpRXpLzxwZ3n0Ctwtu6ezvKV7snEB3VEEpX2yA36U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725868170; c=relaxed/simple;
-	bh=FTuoSXELtLCOh5BnCjC8lJ3uQ2EFiM4zfdhfD7OGYyk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=R1B61nTy15gabvjXa5hD6yMH2xy6ImZ1mwRtOlG3kPy/SXTQiUG+ncrs9pZSlq2IIKp/esibxkh3QFaBfGhyGP61mwz4i7WEF3EU4pHGEyb65U616ooFW9wgVSF9IL5lCiCTccLByu3Gq/wIpl5MTd/sZNRL3/klOf9JHR6wul0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P6G35EI4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1A87C4CEC5;
-	Mon,  9 Sep 2024 07:49:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725868170;
-	bh=FTuoSXELtLCOh5BnCjC8lJ3uQ2EFiM4zfdhfD7OGYyk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=P6G35EI4u9pRe1w/qM1qhBsFQ5L+4nUO5mxTSi7q8deEABj0BreLIGiRUxCek6yOB
-	 16DLDRpng9/uy7Rc+PlJv+WRJz/bbtzEFMn0FXxubt6I9W++6UM0DBQTttM9c0vXtC
-	 O7V0tmKDmqYvEfS4mt068NW/MxmHVQcifhs/ClyW3+J5KSCDPTZ41WYPyj9EgNrU45
-	 fbtPv1AR/pjFcECOVOkhaz7ufTSehpmE/+IArHLP6TgEKWOWcjfLWWoFuFy8A0GdAF
-	 nE88UgpmQq+qwUzRxfja5RjO+Ej/+Zvx4BfebMol8dc11A6SstD7M6TwI9+F3NVU7e
-	 eCTgVaudPHhvA==
-Message-ID: <91f9c0fc-c9bc-43ac-917c-b1aa86f53f97@kernel.org>
-Date: Mon, 9 Sep 2024 09:49:22 +0200
+	s=arc-20240116; t=1725868311; c=relaxed/simple;
+	bh=NaK4IGkK3yYM9oPYSZNZv1mQk+31AqxJcc0vqsBTh4o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uEuoM11AEPwCxQ6qihZPjZB7hV5WTk+ncpKCV7o2tF8qOJJ2/R1/z9+rYV5zIPQUE+YJhhlg1t5gNYFljF/vF3bI+Qjhe8ZCtsbZS89+pBms65qIbDlGQvWsowok32ro8ukg0TbjYj3npKYHMWsy81rxf3TlVMxORsfH0ohtF0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y32/EI+f; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a86e9db75b9so514144366b.1;
+        Mon, 09 Sep 2024 00:51:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725868308; x=1726473108; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NnlMePaQtVgsvXk9LZxuNr2z31hgnUzp7zp9Z82EdG4=;
+        b=Y32/EI+fmUFHuB2dUKLcjsrEd4BvF62kW5zQVc+jTNxUYbI7wXliDxDc1VrZ8nCHY0
+         vPEt1+b768PuUh0ZmUdMsSgMtWcegRe8A3okw9PrGj483j25BrDjvLu5QTwt/OKPgl6V
+         LXcsNKkaNJrRMmFk8xsnkSdfMX8bcv4C0hFFJVDdyfa646m0Vu6ZIBGmtJ29QE/nHcrL
+         XNmoxb9/r2NnaA2KgXpR5z9DjydAmgAj1dWaW2MwG4xys8A/h6KHVmVCxPRmCNJp/4ak
+         u4fmD2TxdQzJiv7X4WJ46Vh7kQHqKsi0yg1WU1C7R03X2SPsO5C2lF93z9yb+St2SuTp
+         qbjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725868308; x=1726473108;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NnlMePaQtVgsvXk9LZxuNr2z31hgnUzp7zp9Z82EdG4=;
+        b=rN/2GejFzzP9iuZP3lTF3QcVdqxmbnvWXCqeNFkKhoze89fQCAcblo0V0WL1Dc6kAI
+         xHUr7bGwsJChujpOe92HFlNy0v5xpo5NmPXRS+LjzxaNgMkYg49fJuQpMrk+MDzg0/Fo
+         lwUmwW26bCYtV17a2cMey01cVAJqUFEJ+JY6QVf2iehQnQOVn91vUt6ONrJHQsXbRKDg
+         KKyF1TZfQQZlsYccQ6nIA+F+ehWJY7RfwYtFswXXbZm/2xsGdNHm/OqeJu+GE6/KW3OI
+         acATY8C0nM3DZCuVE72wuB4isBbTSkkgod1do/2BeJUfxBQm2BkZLNXCpABnOWFEJaKn
+         iyZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVrIh2NFeciSzVVw0Tu+d0R+XBNBbr2U1Ya64m8TqGQzrmnTIoKy4+LQ3PLImECBFRJaEtOeyGOD1q8@vger.kernel.org, AJvYcCXn9ZV2BuOkwpdEGDWoKmNXjo1Yw+6DQ56bWX8O0tsBi1i6V8ID1MH7wBZOvAV/rjCpJmBW1Rii3kg5xgQ=@vger.kernel.org
+X-Gm-Message-State: AOJu0YznV7b3CFP6fZVNdFReHiTyID/s5+8np8USqO+5/+iuBcvXxSEH
+	przJSJUO1P3WY1st0j7p262NX4prVkWcSSTDHri03yHVjggwKIR/d6VFs0dBrrwf/Lk762+0lGq
+	hRmy7HRiKXa6ATJb+G1DTa/Ewe1o=
+X-Google-Smtp-Source: AGHT+IEhowGhRw3O8ArkWuoOyknvA+dN/sW3KyN/Fh6QVm9IsWldUL1q16FBTUiLgmmhisNSM7Df20xn6rpR9GQt0hI=
+X-Received: by 2002:a17:907:3e04:b0:a7a:97ca:3056 with SMTP id
+ a640c23a62f3a-a8a885f5cd9mr986531866b.16.1725868307394; Mon, 09 Sep 2024
+ 00:51:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/7] dt-bindings: PCI: ti,am65: Extend for use with PVU
-To: Jan Kiszka <jan.kiszka@siemens.com>
-Cc: Nishanth Menon <nm@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-pci@vger.kernel.org, Siddharth Vadapalli <s-vadapalli@ti.com>,
- Bao Cheng Su <baocheng.su@siemens.com>, Hua Qian Li
- <huaqian.li@siemens.com>, Diogo Ivo <diogo.ivo@siemens.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Bjorn Helgaas <bhelgaas@google.com>
-References: <cover.1725816753.git.jan.kiszka@siemens.com>
- <33d08f61fe9bd692da0eceab91209832bf16e804.1725816753.git.jan.kiszka@siemens.com>
- <n5l36lo6at3yfbexqc5wcxgxop5wwfzldhhm43rwr6qy2epf7a@jq7l6wiyvydc>
- <0f2c79b5-2aa8-4d4c-b568-e74876fd6ecd@siemens.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <0f2c79b5-2aa8-4d4c-b568-e74876fd6ecd@siemens.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <cover.1725518229.git.zhoubinbin@loongson.cn> <f9111564acc6c9ac011318a7eb3c6843ea0529ce.1725518229.git.zhoubinbin@loongson.cn>
+ <x2vcgpjlamobnlsj7ty5aekj35kjzpraizqd2zhvbwi7mhputx@snxtfb3hgznb>
+In-Reply-To: <x2vcgpjlamobnlsj7ty5aekj35kjzpraizqd2zhvbwi7mhputx@snxtfb3hgznb>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Mon, 9 Sep 2024 13:51:32 +0600
+Message-ID: <CAMpQs4JsbodfscgQPYVz0K99mYAQzZp3pvhmHuvddsw3YWvQEA@mail.gmail.com>
+Subject: Re: [PATCH v1 06/10] ASoC: loongson: Fix codec detection failure on
+ FDT systems
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Huacai Chen <chenhuacai@kernel.org>, 
+	devicetree@vger.kernel.org, linux-sound@vger.kernel.org, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 09/09/2024 08:48, Jan Kiszka wrote:
-> On 09.09.24 08:22, Krzysztof Kozlowski wrote:
->> On Sun, Sep 08, 2024 at 07:32:28PM +0200, Jan Kiszka wrote:
->>> From: Jan Kiszka <jan.kiszka@siemens.com>
->>>
->>> The PVU on the AM65 SoC is capable of restricting DMA from PCIe devices
->>> to specific regions of host memory. Add the optional property
->>> "memory-regions" to point to such regions of memory when PVU is used.
->>>
->>> Since the PVU deals with system physical addresses, utilizing the PVU
->>> with PCIe devices also requires setting up the VMAP registers to map the
->>> Requester ID of the PCIe device to the CBA Virtual ID, which in turn is
->>> mapped to the system physical address. Hence, describe the VMAP
->>> registers which are optional unless the PVU shall be used for PCIe.
->>>
->>> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
->>> ---
->>> CC: Lorenzo Pieralisi <lpieralisi@kernel.org>
->>> CC: "Krzysztof Wilczyński" <kw@linux.com>
->>> CC: Bjorn Helgaas <bhelgaas@google.com>
->>> CC: linux-pci@vger.kernel.org
->>> ---
->>>  .../bindings/pci/ti,am65-pci-host.yaml        | 29 +++++++++++++++++--
->>>  1 file changed, 26 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
->>> index 0a9d10532cc8..0c297d12173c 100644
->>> --- a/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
->>> +++ b/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
->>> @@ -20,14 +20,18 @@ properties:
->>>        - ti,keystone-pcie
->>>  
->>>    reg:
->>> -    maxItems: 4
->>> +    minItems: 4
->>> +    maxItems: 6
->>>  
->>>    reg-names:
->>> +    minItems: 4
->>>      items:
->>>        - const: app
->>>        - const: dbics
->>>        - const: config
->>>        - const: atu
->>> +      - const: vmap_lp
->>> +      - const: vmap_hp
->>>  
->>>    interrupts:
->>>      maxItems: 1
->>> @@ -83,13 +87,30 @@ if:
->>>      compatible:
->>>        enum:
->>>          - ti,am654-pcie-rc
->>> +
->>>  then:
->>> +  properties:
->>> +    memory-region:
->>
->> I think I said it two times already. You must define properties in
->> top-level. That's how we expect, that's how dtschema works (even if it
->> works fine otherwise, it's not always that case), that's how almost all
->> bindings are written.
-> 
-> Look, if you have such rules, also enhance the checker, or people like
-> me will continue to work intuitively. Add reasoning along that as well,
+Hi Krzysztof:
 
-That would be ideal, but I also asked to do this twice. It does not
-matter if dtschema  or me tells you this, if you do not implement it.
+Thanks for your detailed review.
 
-> would help further to reduce your review effort. The current situation
-> with rather fuzzy results from the checker and strange mechanisms inside
-> (see my maxItems finding) is not very helpful IMHO.
-> 
-> I this concrete case, I would add this item top-level, just to set
-> maxItems to 0 for ti,keystone-pcie? Not a pattern I'm finding anywhere.
-> Or do we have to allow memory-regions for all compatibles now?
+On Fri, Sep 6, 2024 at 4:29=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+>
+> On Thu, Sep 05, 2024 at 03:02:55PM +0800, Binbin Zhou wrote:
+> > When the Codec is compiled into a module, we can't use
+> > snd_soc_of_get_dlc() to get the codec dai_name, use
+> > snd_soc_get_dai_name() instead.
+> >
+> > Also, for the cpu dailink, its dai_name is already defined as
+> > "loongson-i2s", so just get the corresponding of_node attribute here.
+> >
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > ---
+> >  sound/soc/loongson/loongson_card.c | 89 +++++++++++++++++++++---------
+> >  1 file changed, 63 insertions(+), 26 deletions(-)
+> >
+> > diff --git a/sound/soc/loongson/loongson_card.c b/sound/soc/loongson/lo=
+ongson_card.c
+> > index a25287efdd5c..d45a3e77cb90 100644
+> > --- a/sound/soc/loongson/loongson_card.c
+> > +++ b/sound/soc/loongson/loongson_card.c
+> > @@ -119,44 +119,81 @@ static int loongson_card_parse_acpi(struct loongs=
+on_card_data *data)
+> >       return 0;
+> >  }
+> >
+> > -static int loongson_card_parse_of(struct loongson_card_data *data)
+> > +static int loongson_parse_cpu(struct device *dev, struct device_node *=
+*dai_node)
+> >  {
+> > -     struct snd_soc_card *card =3D &data->snd_card;
+> > -     struct device_node *cpu, *codec;
+> > -     struct device *dev =3D card->dev;
+> > -     int ret, i;
+> > +     struct device_node *cpu;
+> > +     int ret =3D 0;
+> >
+> >       cpu =3D of_get_child_by_name(dev->of_node, "cpu");
+> > -     if (!cpu) {
+> > -             dev_err(dev, "platform property missing or invalid\n");
+> > +     if (!cpu)
+> >               return -EINVAL;
+> > -     }
+> > +
+> > +     *dai_node =3D of_parse_phandle(cpu, "sound-dai", 0);
+> > +     if (!*dai_node)
+> > +             ret =3D -EINVAL;
+> > +
+> > +     of_node_put(cpu);
+>
+> This goes just after of_parse_phandle, which simplifies your code.
 
-Is it really not suitable for all the compatibles? Maybe these are quite
-different devices in such case?
+OK.. the ret param is unnecessary also.
+>
+> > +     return ret;
+> > +}
+> > +
+> > +static int loongson_parse_codec(struct device *dev, struct device_node=
+ **dai_node,
+> > +                             const char **dai_name)
+> > +{
+> > +     struct of_phandle_args args;
+> > +     struct device_node *codec;
+> > +     int ret =3D 0;
+> >
+> >       codec =3D of_get_child_by_name(dev->of_node, "codec");
+> > -     if (!codec) {
+> > -             dev_err(dev, "audio-codec property missing or invalid\n")=
+;
+> > +     if (!codec)
+>
+> Hm? So you exit here and then caller does of_node_put on stack value.
+> This is buggy.
 
-But if it is not really suitable, then you can disallow it for other
-variants with :false. This is also explicitly documented in example-schema:
-https://elixir.bootlin.com/linux/v5.19/source/Documentation/devicetree/bindings/example-schema.yaml#L212
+Sorry, I can not get your point, I think there is nothing that should be pu=
+t.
+>
+> > +             return -EINVAL;
+> > +
+> > +     ret =3D of_parse_phandle_with_args(codec, "sound-dai", "#sound-da=
+i-cells", 0, &args);
+> > +     if (ret)
+> > +             goto free_codec;
+> > +
+> > +     ret =3D snd_soc_get_dai_name(&args, dai_name);
+> > +     if (ret)
+>
+> Your error paths should clean here. Each function is responsible to
+> clean up after itself in case of errors, not rely on caller.
 
-> 
-> Sorry for all these iterations, but you should see from my questions and
-> actions where the problems in the concepts are.
+Yes, I should of_node_put(args.np); here
+>
+> > +             goto free_codec;
+> > +
+> > +     *dai_node =3D of_parse_phandle(codec, "sound-dai", 0);
+> > +     if (!*dai_node)
+> >               ret =3D -EINVAL;
+> > -             goto free_cpu;
+> > +
+> > +free_codec:
+>
+> You are not freeing any resources here (at least not directly). You are
+> dropping reference. Use matching label name. free is associated with
+> kalloc()..
+>
 
-Best regards,
-Krzysztof
+OK, I will rename the label name as codec_put.
 
+Thanks.
+Binbin
+>
+> > +     of_node_put(codec);
+> > +     return ret;
+> > +}
+> > +
+> > +static int loongson_card_parse_of(struct loongson_card_data *data)
+> > +{
+> > +     struct device_node *codec_dai_node, *cpu_dai_node;
+> > +     struct snd_soc_card *card =3D &data->snd_card;
+> > +     struct device *dev =3D card->dev;
+> > +     const char *codec_dai_name;
+> > +     int ret =3D 0, i;
+> > +
+> > +     ret =3D loongson_parse_cpu(dev, &cpu_dai_node);
+> > +     if (ret) {
+> > +             dev_err(dev, "cpu property missing or invalid.\n");
+> > +             goto out;
+> > +     }
+> > +
+> > +     ret =3D loongson_parse_codec(dev, &codec_dai_node, &codec_dai_nam=
+e);
+> > +     if (ret) {
+> > +             dev_err(dev, "audio-codec property missing or invalid.\n"=
+);
+> > +             goto out;
+> >       }
+> >
+> >       for (i =3D 0; i < card->num_links; i++) {
+> > -             ret =3D snd_soc_of_get_dlc(cpu, NULL, loongson_dai_links[=
+i].cpus, 0);
+> > -             if (ret) {
+> > -                     dev_err(dev, "getting cpu dlc error (%d)\n", ret)=
+;
+> > -                     goto free_codec;
+> > -             }
+> > -
+> > -             ret =3D snd_soc_of_get_dlc(codec, NULL, loongson_dai_link=
+s[i].codecs, 0);
+> > -             if (ret) {
+> > -                     dev_err(dev, "getting codec dlc error (%d)\n", re=
+t);
+> > -                     goto free_codec;
+> > -             }
+> > +             loongson_dai_links[i].platforms->of_node =3D cpu_dai_node=
+;
+> > +             loongson_dai_links[i].cpus->of_node =3D cpu_dai_node;
+> > +             loongson_dai_links[i].codecs->of_node =3D codec_dai_node;
+> > +             loongson_dai_links[i].codecs->dai_name =3D codec_dai_name=
+;
+> >       }
+> >
+> > -free_codec:
+> > -     of_node_put(codec);
+> > -free_cpu:
+> > -     of_node_put(cpu);
+> > +out:
+> > +     of_node_put(codec_dai_node);
+>
+> Yeah, so here we see drop of reference from stack-based pointer...
+>
+> Best regards,
+> Krzysztof
+>
 
