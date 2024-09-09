@@ -1,74 +1,54 @@
-Return-Path: <devicetree+bounces-101439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 170CC971CF0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 16:42:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0754971D05
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 16:47:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5852284182
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:41:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFEA6283E88
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:47:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DDBD1BAEDC;
-	Mon,  9 Sep 2024 14:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B41AB1BB6A4;
+	Mon,  9 Sep 2024 14:47:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="L1GSHfwc"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="tnaY9OlZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9775F1BA866
-	for <devicetree@vger.kernel.org>; Mon,  9 Sep 2024 14:41:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B8EC1BB693;
+	Mon,  9 Sep 2024 14:47:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725892915; cv=none; b=t13AqjOoEXM2NZSjnTrKBTwxVonOYchISxM9TeG5lEp17UIvrx3YGuQ3vv9Ui3JgNqEAJ4h76Ex1vyZvJ4+EF8/UDRiEI3axU5HwSKNxLiVX+wsPRGiYNLG/j7SpQZd+TgYn8PBbVn9ubjv4sCpmlhYH/hDN1JmPwbSIj+QmzNY=
+	t=1725893229; cv=none; b=Q+uG+cjFP1RNp+I0VB/w7DKh83EKf5rh8b4hfDulUezB+4oCCsDRBzEKtSOThltAhG1t03B9tXlbkcuPnblBTSKlNN+eRf3g4pAuvAIPyb8s1lXYe0lsYslQcI/LeErm+6qV+YwZhzK2rxggojAAPWKm1AHmM8HwCjURqO8KVh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725892915; c=relaxed/simple;
-	bh=hlwuCoMiTFjOvGjDzFfNBiaciFK9W3358+LrmXZ3MZM=;
+	s=arc-20240116; t=1725893229; c=relaxed/simple;
+	bh=9Gzbd2dG7QoWiV64goAdZCW+tIhQU1T6aetWtNSDzOU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RQCdEOHdI9HyrBt+fhtKK9IBN9iUDN5tWnQdiBrOHF0mTbdL3aLM7JvxVxWomtH8Td7GW7yq9GzHVGXLJRD+FFDKRePFFWvN/4J066Nywge0QmKIIJ8hjVTw9Y6NZ0c9Ugdlglhw7C2dceuCfY9CkV0imo/wYd2JFWlcnujrolQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=L1GSHfwc; arc=none smtp.client-ip=209.85.161.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-5e1d5acb04bso649544eaf.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Sep 2024 07:41:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725892913; x=1726497713; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ergTFrc3hkuKd2AyBuJCZyB8TPkciUiO0ypONM2rJEQ=;
-        b=L1GSHfwcwi/aR/JCVguQxIn3qbsIFw46x2I7eVLlEX/kN4mEjA45NY3hdCK857Ju6p
-         2SFbtbQPcLhg+iKySWS1E4jDGIzLhLJHiipCxfTeAsF2qxuVQADCOPsR2pytp+qwTkUy
-         8ecwNVBlMTzCV88EPYkXwg88noSyu9ZZGDlKvOVEbrcP7VnWRpPFBy5QYMNexclcyEGy
-         VZrltnHbq/kXQ2HsXko2fvblNEoTc80KYX6BR2h0iwgDGdaveuJfdgcn5/KeJp0GqAIC
-         7V1GOxYKeQX1wrdLHa7GWDgvTRrq2ZsvZwaj29me4AvHNatLzIl4oZOag+VFG9sJEujM
-         Lzog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725892913; x=1726497713;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ergTFrc3hkuKd2AyBuJCZyB8TPkciUiO0ypONM2rJEQ=;
-        b=MTQG+nbJERoNoHUUFme2xfNlc63eVFwhfxANnTWjCCIb1Gp3tBqsgXWk3U8ymNU77P
-         NKII09YU2vmKsb1iJ/si0GGB/+tclvO+I3lZiofPJvNLXa+91fM1xmJlhqgW/aiHRNhF
-         6ZK6ZjqCF8MCLHXRBwnfGgvIvFaYOvMNLT9HMjVZc0OIiq8A7kmSXyn41LFNZIqHD4Et
-         bF7GIxy2DlNbr0EPTuNgcy7Cu31hYILoQ0Sl+OxZTJLffccAdLD413rFxkITm/S7atZH
-         eTkzguVfOvCJ4HBVgclyQgjdzArBVIDSK0TGjKoGmiUYVlvMdSI2vSn3F3pidjZrW9Wr
-         bUlw==
-X-Forwarded-Encrypted: i=1; AJvYcCVUtUcdZVaJltjBVnO9CcTsEGeYar6TJXytLXpaU6mcwSXTsmhCr1LtoSTTt3QloEjPeB8KEp8/ph3i@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvDMJuSP7PgGCSFQqgE2+dVPWLvyt/FYI/Byz0X2C4fI6sL2v/
-	azo6B/OuGZkJMZD5rk0Mv6qfye5FaQNdToJkaAwYsKZSxELyakhpXqPYH9qkxNE=
-X-Google-Smtp-Source: AGHT+IH14XO4FnzbwUxso+GMg4/c5FgtdhuuI9KHVd9+tevCm359YHQIjLcWutCFzG7p9HdVx3jurQ==
-X-Received: by 2002:a05:6820:220f:b0:5dc:a733:d98a with SMTP id 006d021491bc7-5e1a9d3deaemr13156525eaf.7.1725892912675;
-        Mon, 09 Sep 2024 07:41:52 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5e1bf2f5bfbsm1127180eaf.30.2024.09.09.07.41.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Sep 2024 07:41:52 -0700 (PDT)
-Message-ID: <35b927a2-aef4-4d9f-9d8c-b12ad0f600a5@baylibre.com>
-Date: Mon, 9 Sep 2024 09:41:51 -0500
+	 In-Reply-To:Content-Type; b=rk50gTMluv3u5kbn7bsOsG3EKXZ+aExk2Rx4l0Qb41qltGMvbonMHlhjAi/7skUof+15SBhzUYP9At1Icqk5B1xUZsS5Rb5u0stY1GE9HVhsP6tIQ23So71DxzI/e+BNqV4j5ZVpE9jK26h+voK+2hh9NqzRR7/hIg7EHETIF5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=tnaY9OlZ; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id B465B88D1F;
+	Mon,  9 Sep 2024 16:47:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1725893226;
+	bh=abEgI6y3lahDLU8egHHKB/x2ZmdtIf5ahawR2erK5c4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tnaY9OlZF84mOXfmjX4mIubXPW2W+5c9lpc5hwKKWvDd7hUmwsYFAiJNJM4fgSnTY
+	 S80+7dRHSZMuLMQVsl4hHIpiSUhltSt2Gl//KdJMB9YD4TEMBT2TCkdr5GbwFu5iev
+	 hywxBlrkSDTqQ+ydk7LqVLHRuDv71sw3+/mJ8P3A0f/oJ1isam9mG/ytN7zE/4oOu4
+	 d/c6jyRlOjbhPr0ACSxaIX5prfXec+QIVY/6XavzkQKJbeNjzP12dF+RyYmel43XtO
+	 roU/tb7JOZAi3VcG3FqemkGLTfhmmmskVgCd82Fa8phyHKRK1+CjLFnY+69DyrJQXZ
+	 OB6BoyH6KrunA==
+Message-ID: <343a45a8-1891-4e66-a77c-ad6e4d485903@denx.de>
+Date: Mon, 9 Sep 2024 16:46:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,79 +56,63 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] iio: dac: support the ad8460 Waveform DAC
-To: "Tinaco, Mariel" <Mariel.Tinaco@analog.com>,
- Jonathan Cameron <jic23@kernel.org>
-Cc: "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- "Hennerich, Michael" <Michael.Hennerich@analog.com>,
- Conor Dooley <conor+dt@kernel.org>,
- Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
- Dimitri Fedrau <dima.fedrau@gmail.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <noname.nuno@gmail.com>
-References: <20240904023040.23352-1-Mariel.Tinaco@analog.com>
- <20240904023040.23352-3-Mariel.Tinaco@analog.com>
- <20240907181449.1453bd41@jic23-huawei>
- <SJ0PR03MB62241B8DAC3C45C192819ED391992@SJ0PR03MB6224.namprd03.prod.outlook.com>
+Subject: Re: [PATCH v4 5/5] wifi: wilc1000: Add WILC3000 support
+To: Kalle Valo <kvalo@kernel.org>
+Cc: linux-wireless@vger.kernel.org, Ajay Singh <ajay.kathat@microchip.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, netdev@vger.kernel.org
+References: <20240829004510.178016-1-marex@denx.de>
+ <20240829004510.178016-5-marex@denx.de> <87ed5tgofh.fsf@kernel.org>
 Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <SJ0PR03MB62241B8DAC3C45C192819ED391992@SJ0PR03MB6224.namprd03.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <87ed5tgofh.fsf@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On 9/9/24 3:22 AM, Tinaco, Mariel wrote:
+On 9/9/24 11:35 AM, Kalle Valo wrote:
+> Marek Vasut <marex@denx.de> writes:
 > 
+>> From: Ajay Singh <ajay.kathat@microchip.com>
+>>
+>> Add support for the WILC3000 chip. The chip is similar to WILC1000,
+>> except that the register layout is slightly different and it does
+>> not support WPA3/SAE.
+>>
+>> Signed-off-by: Ajay Singh <ajay.kathat@microchip.com>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
 > 
-
-...
-
->>> +	if (IS_ERR(state->regmap))
->>> +		return dev_err_probe(dev, PTR_ERR(state->regmap),
->>> +				     "Failed to initialize regmap");
->>> +
->>> +	state->sync_clk = devm_clk_get_enabled(dev, NULL);
->>> +	if (IS_ERR(state->sync_clk))
->>> +		return dev_err_probe(dev, PTR_ERR(state->sync_clk),
->>> +				     "Failed to get sync clk\n");
->>> +
->>> +	state->tmp_adc_channel = devm_iio_channel_get(dev, "ad8460-
->> tmp");
->>> +	if (IS_ERR_OR_NULL(state->tmp_adc_channel)) {
->>> +		indio_dev->channels = ad8460_channels;
->>> +		indio_dev->num_channels = ARRAY_SIZE(ad8460_channels);
->>> +	} else {
->>> +		indio_dev->channels = ad8460_channels_with_tmp_adc;
->>> +		indio_dev->num_channels =
->> ARRAY_SIZE(ad8460_channels_with_tmp_adc);
->>> +	}
->>> +
->> Add and enable the various other supplies. They are probably always on in
->> which case the regulator framework will work it's magic to avoid use having to
->> care that they aren't in the dts.
+> [...]
 > 
-> If the other supplies are added, do they need to be tied up as well to the
-> Private structure just like ref_1p2v? Or do I just apply the 
-> devm_regulator_get_enable_read_voltage to it?
+>> --- a/drivers/net/wireless/microchip/wilc1000/cfg80211.c
+>> +++ b/drivers/net/wireless/microchip/wilc1000/cfg80211.c
+>> @@ -313,6 +313,13 @@ static int connect(struct wiphy *wiphy, struct net_device *dev,
+>>   
+>>   	vif->connecting = true;
+>>   
+>> +	if (sme->auth_type == NL80211_AUTHTYPE_SAE &&
+>> +	    is_wilc3000(vif->wilc->chipid)) {
+>> +		netdev_err(dev, "WILC3000: WPA3 not supported\n");
+>> +		ret = -EOPNOTSUPP;
+>> +		goto out_error;
+>> +	}
 > 
-> ret = devm_regulator_get_enable_read_voltage(&client->dev, "vdd");
-> If (ret < 0 && ret != -ENODEV)
-> 	return dev_err_probe(ltc2309->dev, ret,
-> 				"failed to get vref voltage\n");
+> This looks wrong. If wilc3000 doesn't support SAE you shouldn't
+> advertise NL80211_FEATURE_SAE to user space. I think the check for
+> wilc3000 should be in wilc_create_wiphy():
 > 
+> if (!is_wilc3000(vif->wilc->chipid))
 
-For supplies that just supply power, we usually don't worry
-about the voltage, so just use devm_regulator_get_enable().
-Or if there are lots of supplies, you can use
-devm_regulator_bulk_get_enable() to do them all at once.
+It is probably better to do "if (is_wilc1000(wl->chipid))" here. This 
+way, fixed in V5, thanks.
 
-They don't need to be added to the private structure.
+> 	wiphy->features |= NL80211_FEATURE_SAE;
 
-Also, lots of chips have to have supplies turned on in a
-certain order. This one is no exception, so be sure to
-have a look at the "POWER SUPPLY SEQUENCING" section in
-the datasheet to make sure the driver turns things on in
-the right order.
 
