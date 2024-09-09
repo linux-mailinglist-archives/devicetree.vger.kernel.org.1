@@ -1,75 +1,65 @@
-Return-Path: <devicetree+bounces-101469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE207971E7F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 17:56:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D292971EA1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 18:03:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A39EB22ABC
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 15:56:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3825F1C23859
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 16:03:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7167C7CF16;
-	Mon,  9 Sep 2024 15:56:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEFA713CA81;
+	Mon,  9 Sep 2024 16:03:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gyv9JeuP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IsqarH1A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 064C677110;
-	Mon,  9 Sep 2024 15:56:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52975137764;
+	Mon,  9 Sep 2024 16:03:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725897388; cv=none; b=tgpqh15bK3kAvlPCnGcEH2XGm3sx4LRg8fvbiMyCk8W9yBitwiFzsCYB69bKpwUpMkOa3sUjM62wNlokGNuQG8PVa6ElxG6cOL5syixAIBw+PZG0mU0VI9Sk3DgdqX32TQvi2vcOslGETFKNbsxAZ97URGZTOP8RVaH2P0mg2vM=
+	t=1725897798; cv=none; b=cln13Htf20UBc1+LPc6mGRd8A0yesDlOMSbr6Mf+6K3KkWe37Cd0YzN6hQjGdQKiQ5jAK8PfwG7vGajjflSuoQ0BtCj9kfNK+o/NClLez5DdwHWn4P21w0zbyq9eLmRzovHmQyX4cVEoW4snhJi2AoI1sc3OyUnO5W/WqmmglWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725897388; c=relaxed/simple;
-	bh=pT2EUSaLUXi+dOJKC0VVWgsH8wTzFavxhQ7iLA4dl+I=;
+	s=arc-20240116; t=1725897798; c=relaxed/simple;
+	bh=PDO5Q2PW0U8Dl37qialTE5Jq9umZ1RqHzT6t9eTX7oo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WKU/99zLjRkPP3o5WDNwgCSLPnV7HmNu0b8gvuY7qUnzFWiUCKkH+N0rENDlaHo6AhNhdLM10iMDJQpxsX1jX81eF58hhqCK9jEXbGd62fOj2MVuWKcrOreOa5MYQ9RKjKbxMhtBGhSaAXpi4TtLfDpgDW5ju3eDnOlwiYEpkeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gyv9JeuP; arc=none smtp.client-ip=209.85.215.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-7cd8803fe0aso3217384a12.0;
-        Mon, 09 Sep 2024 08:56:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725897386; x=1726502186; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=9dFyHJI2v/P8Ov3wwNKVMHA53Z7GGngYjJBvosOcyvM=;
-        b=Gyv9JeuPGIlp0Jboe3V3j2bw3rqVX4TYcRloMsNYIoAvPGk0uR+HlwWkYnCAZywxOu
-         fQ3oXuTvSTOtwsx5fVkXD0cQjjbVbkyaFIOz/iGo7Ex+BK3iX0fCien7OmihVBj2TCIL
-         zbiDdwR3z7o5+mA3+En5Pco6cSImCgkVi2Dy9wd2REs3hPNCSJO0CGzk60MmwAwtbKEJ
-         qds2sWTxSOU45rh+dkq5FKfa2Y93OpMsCUzVAN83fq78sjxbIN1e/5kiq4acitxeavrK
-         jiZjWxjVlTye0RXThHrzYiXinAnqU/IwzjMiDOjSdPeI7Sx0AVYS9U14BayZc0FSkLu5
-         SUUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725897386; x=1726502186;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9dFyHJI2v/P8Ov3wwNKVMHA53Z7GGngYjJBvosOcyvM=;
-        b=KGJpxFu2uCz9/ltI928FHYekYFpCPROzpn5G3acWoamnSQCiT+p2u771ZUoMefYRCp
-         z0iLXAig9UdUTexdhoguQuq8kKFp061oq0AnBcCs0+YVlBoc+Dwj5KfW88uFTaBCgWXC
-         /h6yaBDbkksobuIKX/99PI8dkYQEHckigmhN6/dBCHNew7ETzUvo85XAWRENAoXfZvlN
-         kn+SGgXzG4Q5EuOjeDwmDm7EPVUHqwUfY7z+y5rpZn8HyYrumJ5DHvHTPxROKBYjwuW3
-         qfOPPfsWVOsRj0rpzqoMyZJ2gS+FPqpHYzzabUotxlcsSfSrNanT8JlT5OLxUuS9PyDr
-         Vvtg==
-X-Forwarded-Encrypted: i=1; AJvYcCUyZm9B/PLHyqIs4eGtwEPp1FmfBf7AyNGWB/YuHpFSaWgJcN1bqoGkXY6Zn9DbEdASY+qfQz65@vger.kernel.org, AJvYcCWEPYGT/cCOfj5DDBJLVLYv8bAfnywNdZrCBTleiEOn3cOv8KqHPCDCtkhTVUqH327+zYOLuBJDKm1k2mwr@vger.kernel.org, AJvYcCXduJFFP9Xt4FrZfj5P78ri0FbT0AZSGxWjCKclEPgvUCdSnh7uVETQEMUZ+pygFyo9T2J56voHycwP@vger.kernel.org
-X-Gm-Message-State: AOJu0YylIedj1ukDChYYhVnvXWTghiQgrUvAXH3uleB7SnvvTgw8lh52
-	06WJ5Ip/VoOpglvhsM09Q1WhDWLuIzPCLGHjihjXzclHL8gAmOI+
-X-Google-Smtp-Source: AGHT+IFrvFzePGSvr3x+U1HAhXpiaJt7YCnQsmyk2Qasm8IxN7EsKlYpk5e2kddp324I2xmvA9iuYg==
-X-Received: by 2002:a05:6a21:a4ca:b0:1cf:4d8a:a12d with SMTP id adf61e73a8af0-1cf4d8aa3a7mr890091637.1.1725897386098;
-        Mon, 09 Sep 2024 08:56:26 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-718e5990c24sm3664181b3a.213.2024.09.09.08.56.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Sep 2024 08:56:25 -0700 (PDT)
-Message-ID: <b08916e8-e682-450f-9253-efb001abf759@gmail.com>
-Date: Mon, 9 Sep 2024 08:56:22 -0700
+	 In-Reply-To:Content-Type; b=fQvgpeGhxedH0bAYx1v39r3FeMmH44y8xda56ArwJDxqP6bOluTNh6CEe0+S8RsiZnI+DqJ5stdCoqev9BVnpFzNuh1EKoYRuKz5lyLJuk4/tNix4vHsvTwaUdeNp366LVDOGTGJiR87XfLODIG7+aYRzQtJhyDw7a81XaxBsCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IsqarH1A; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1725897797; x=1757433797;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=PDO5Q2PW0U8Dl37qialTE5Jq9umZ1RqHzT6t9eTX7oo=;
+  b=IsqarH1AiA0v80uPh/ukCv6UyAKxWWLh9pMQusQS2CqoiAv4YrK3wOfH
+   kcrV3g4SAZhao8f1Z1SQJ2k30ZYsp5P4LnpUGEEs75x4hvrwX0+Bu3bYX
+   JMR2XLpLNe2QMM0GYvSRsfkJewaFMEGFX7RmcfmeZrUTSZ40sd9X/YGQV
+   K9KcfotabpaiJ0fVJHvYb95Q7tXxAbQoYB31LOqoO0viBb+SvSR2wDUJE
+   siZOp/f8TyVJcMwFwEyNMmrWfwekSWtG74o7od1FKY0vkJ2kKM/kh8fHe
+   BxVGhxbEiVVQ2GnIcfzH55tOHYN+EdfPMqlP1VHgq616k73PdW1bgPnoM
+   g==;
+X-CSE-ConnectionGUID: 3J2ZnHQLTB+cKgum4AwDDg==
+X-CSE-MsgGUID: cjT9vLx7TUe3vktr4G/Mog==
+X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="35747373"
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; 
+   d="scan'208";a="35747373"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2024 09:03:16 -0700
+X-CSE-ConnectionGUID: Wbp3KqQkREOjxTGxEV3hFw==
+X-CSE-MsgGUID: LO4DXqsKSbOOvbpNnTj+0Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; 
+   d="scan'208";a="67456255"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO [10.245.246.241]) ([10.245.246.241])
+  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2024 09:03:12 -0700
+Message-ID: <d6625b2e-c926-478b-b3bf-5e241270da62@linux.intel.com>
+Date: Mon, 9 Sep 2024 18:03:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,95 +67,86 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: ethernet-phy: Add
- master-slave role property for SPE PHYs
-To: Oleksij Rempel <o.rempel@pengutronix.de>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+Subject: Re: [PATCH v1 0/4] Add static channel mapping between soundwire
+ master and slave
+To: Mohammad Rafi Shaik <quic_mohs@quicinc.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: kernel@pengutronix.de, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
- devicetree@vger.kernel.org
-References: <20240909124342.2838263-1-o.rempel@pengutronix.de>
- <20240909124342.2838263-2-o.rempel@pengutronix.de>
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Bard Liao <yung-chuan.liao@linux.intel.com>, Jaroslav Kysela
+ <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc: Sanyog Kale <sanyog.r.kale@intel.com>, linux-arm-msm@vger.kernel.org,
+ alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ quic_rohkumar@quicinc.com, kernel@quicinc.com, quic_pkumpatl@quicinc.com
+References: <20240909105547.2691015-1-quic_mohs@quicinc.com>
 Content-Language: en-US
-From: Florian Fainelli <f.fainelli@gmail.com>
-Autocrypt: addr=f.fainelli@gmail.com; keydata=
- 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
- HGuUuzv+GKZ6nsysJw==
-In-Reply-To: <20240909124342.2838263-2-o.rempel@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <20240909105547.2691015-1-quic_mohs@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 9/9/24 05:43, Oleksij Rempel wrote:
-> Introduce a new `master-slave` string property in the ethernet-phy
-> binding to specify the link role for Single Pair Ethernet
-> (1000/100/10Base-T1) PHYs. This property supports the values
-> `forced-master` and `forced-slave`, which allow the PHY to operate in a
-> predefined role, necessary when hardware strap pins are unavailable or
-> wrongly set.
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> ---
-> changes v2:
-> - use string property instead of multiple flags
-> ---
->   .../devicetree/bindings/net/ethernet-phy.yaml      | 14 ++++++++++++++
->   1 file changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> index d9b62741a2259..025e59f6be6f3 100644
-> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> @@ -158,6 +158,20 @@ properties:
->         Mark the corresponding energy efficient ethernet mode as
->         broken and request the ethernet to stop advertising it.
->   
-> +  master-slave:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum:
-> +      - forced-master
-> +      - forced-slave
-> +    description: |
-> +      Specifies the predefined link role for the PHY in Single Pair Ethernet
-> +      (1000/100/10Base-T1).  This property is required for setups where the link
-> +      role must be assigned by the device tree due to limitations in using
-> +      hardware strap pins.
 
-Nit: the way this is implemented right now, this is also applicable to 
-1000BaseT which is fine, just needs to be called out explicitly IMHO.
--- 
-Florian
+
+On 9/9/24 12:55, Mohammad Rafi Shaik wrote:
+> Add static channel map support between soundwire master and slave.
+> This patch series will resolve channel mask mismatch between master and slave.
+> 
+> Scenario: wcd937x AMIC2 usecase
+> 
+>                           Master                 Slave (wcd937x)
+>                      +--------------+           +--------------+
+>                      |  +--------+  |           |  +--------+  |
+>          AMIC1 ----->|  | PORT1  |  |           |  |   TX1  |  |<-----------AMIC1
+>          AMIC2 ----->|  |        |  |           |  |        |  |
+>                      |  +--------+  |           |  +--------+  |
+>                      |              |           |              |
+>          AMIC3 ----->|  +--------+  |           |  +--------+  |
+>                      |  |  PORT2 |  |           |  |   TX2  |  |<-----------AMIC2
+>                      |  |        |  |           |  |        |  |<-----------AMIC3
+>                      |  +--------+  |           |  +--------+  |
+>                      |              |           |              |
+>                      |  +--------+  |           |  +--------+  |
+>  DMIC0...DMIC3------>|  |  PORT3 |  |           |  |   TX3  |  |<-----------DMIC0...DMIC3
+>                      |  |        |  |           |  |        |  |<-----------MBHC
+>                      |  +--------+  |           |  +--------+  |
+>                      |              |           |              |
+>                      |  +--------+  |           |  +--------+  |
+>  DMIC4...DMIC37----->|  |  PORT4 |  |           |  |   TX4  |  |<-----------DMIC4...DMIC7
+>                      |  |        |  |           |  |        |  |
+>                      |  +--------+  |           |  +--------+  |
+>                      |              |           |              |
+>                      +------------- +           +--------------+
+> 
+> For AMIC2 usecase, The Slave need to configure TX2 Port with channel mask 1 and
+> for Master required PORT1 with channel mask 2,
+> 
+> In existing design master and slave configured with same channel mask, it will fail
+> AMIC2 usecase.
+> 
+> The New design will help to configure channel mapping between master and slave from
+> device tree.
+
+That's rather controversial...
+
+In theory you already have the means to deal with a different channel
+mapping in the hw_params callback for your manager and peripheral
+devices. That's how we e.g. send a 2ch stream on the manager to two
+separate amplifiers and program which channel is used by what amplifier.
+
+The common part between manager and peripheral is the notion of
+'stream', and you can add a different port/stream configuration for
+manager and peripheral with sdw_stream_add_master() and
+sdw_stream_add_slave() respectively.
+
+Port1 and TX2 can be used by just setting the relevant port_config.num
+value.
+
+Likewise the port_config.ch_mask can be programmed at will to select the
+relevant mappings. See e.g. rt1308_sdw_hw_params() in rt1308-sdw.c, the
+mapping were handled with a set_tdm_slot() callback before.
+
+In short, please re-visit your hw_params() implementation first and use
+the existing 'stream' APIs.
 
