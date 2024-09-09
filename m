@@ -1,88 +1,116 @@
-Return-Path: <devicetree+bounces-101472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B3BE971EAC
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 18:04:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54DED971EB7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 18:06:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E89C2B23DEF
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 16:04:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D5A51C238CD
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 16:06:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A7B413A3E6;
-	Mon,  9 Sep 2024 16:04:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 019431386DF;
+	Mon,  9 Sep 2024 16:06:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cd7tt4XB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uQEmJJIK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4630913A240;
-	Mon,  9 Sep 2024 16:04:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA7A458ABF;
+	Mon,  9 Sep 2024 16:06:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725897842; cv=none; b=ijEpVMDvjEeUZVaZAVXUzH/i4rd3FWGSRSvlIx5Nf7KKO0k+iL78wD+HqvQwQmoUAYn5vxVgN88+QR4EtzZA0++CLuOqrXHT3W7KRP3SGFSoXJXkSHjcs0bjxsw0xLHO52iRUlRW9FWXKNVO1g4ovxzpKHwM6xNlizKSw0u2npE=
+	t=1725898002; cv=none; b=XEqBB7Em05Z++C5YvkQca3NK+nsNw7GaQFpcpFgWGiO9XUppyIouloF3CM/4J+M3u5c9aW91UrghGoLDuOccUhRPPM04lHBUhLWnU9h8K6BbnrdGSXfGvVOX6o6W3QsGkRWZHxTpO/+wLqmG18UkTyCPinSHLuRT3XMl/xkbuis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725897842; c=relaxed/simple;
-	bh=XcUDm/k+911vW3FZtkVePJXLt22j80SWvX41/HfoO3w=;
+	s=arc-20240116; t=1725898002; c=relaxed/simple;
+	bh=mDVnefQAJunAzspN/WsR1bpxkh1iGXg4R1jTU0SJ5zk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AIV2fXVoj83cUG6dv3i5zHOjDFA/1L5w7/AwlVbP7Ch0m5d4GlswuiYJdu01ycNWb36UFHA+NIXTe1R0C63F+R2q4c7uF9gMJHEC7yjHGwKRZFlKSZJgyVDQ6jX0OM/1iC8lm3q2iLZ1PIz9DDeQb/7DFg55dElG8BqUa5VjWho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cd7tt4XB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B71B7C4CEC5;
-	Mon,  9 Sep 2024 16:04:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TbTU/2XJ0wXK1O1mnCfbhBcUztgrLYBeqjNDN2uLxCsb4bj8BWGk5DmKl6AtEkiLANr0TGi2AXuW3RzVP3OmbEP/xVZifk/YxDf2UAA7ChCBu95CFGET4M5pQKWGGaFSmT/4L0qzsgsc2DqbX7GzuSe3DWauR0jf10CA2pZXsgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uQEmJJIK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73B56C4CEC5;
+	Mon,  9 Sep 2024 16:06:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725897841;
-	bh=XcUDm/k+911vW3FZtkVePJXLt22j80SWvX41/HfoO3w=;
+	s=k20201202; t=1725898002;
+	bh=mDVnefQAJunAzspN/WsR1bpxkh1iGXg4R1jTU0SJ5zk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Cd7tt4XBxV3SFOwaiRoDq9Bwimf/e2Z6oHXS6IplUIbZRoBGbllmWvj+4TSsOx2yr
-	 poSh9WS6+0+OcteGNXurFGmDxl28P5JVLHJznBh/4lgCSvCd8ErA9LsSLpGb3KGhXi
-	 Z9Qo4SVvIrjEpIOSA0y+oryXRehmY05vLxF2y5BnMYCyt7+UcpEB4hKwJd8CPEmxgU
-	 V4XqCoI47JBNuwM4CO+HyafDV+BhsYilNMCMhVxr3oDhsIDXLa21KAXfLi3RdGirDW
-	 qAEq61fzbhXRUbxR8jaUDCNn2XcEyVkSW8vx8qsj9AqGQNErQtYsVOVAU2IMVfksqF
-	 4TfB4V5q5da6Q==
-Date: Mon, 9 Sep 2024 11:04:00 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: andrew@lunn.ch, devicetree@vger.kernel.org, davem@davemloft.net,
-	conor+dt@kernel.org, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	pabeni@redhat.com, hkallweit1@gmail.com, f.fainelli@gmail.com,
-	krzk+dt@kernel.org
-Subject: Re: [PATCH v2 net] dt-bindings: net: tja11xx: fix the broken binding
-Message-ID: <172589770898.219234.12343458471539869016.robh@kernel.org>
-References: <20240909012152.431647-1-wei.fang@nxp.com>
+	b=uQEmJJIK9i4b2nmvW46aeXYhPMA9/zZm4b9452RpqaHyyfkPcFmPcyapYTH7uULRf
+	 S7KnvUrSKOR2mHjaMKH45hlLSYL30kjOy/3TGdGj2qqgXfvIcRVaddtxnD3NdCUtjX
+	 OB2+1RWxjcPQYrYfVqcbFjLrnrX1lS3DLAas38fqEWpEvqSUC9oQuQlWmYqp3bZwrE
+	 5xuX75HATmmF5uE06MMgwjWVO5HBkiPH1XaE2tFzC1iXNISST+0NWDQqzKxX6w1dpl
+	 YS+UMuBPszxoNcrja40bWNGGOuL7ZtYoqTk1GGbY5JvWoUINd5EzCrNbZ9DQ+/Dm8T
+	 GFY9EJmyH5eJQ==
+Date: Mon, 9 Sep 2024 17:06:37 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Angelo Dureghello <adureghello@baylibre.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>
+Subject: Re: [PATCH v2 1/9] dt-bindings: iio: dac: ad3552r: add io-backend
+ property
+Message-ID: <20240909-retrieval-guide-da2a35e571a5@spud>
+References: <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-0-87d669674c00@baylibre.com>
+ <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-1-87d669674c00@baylibre.com>
+ <20240908132925.331c5175@jic23-huawei>
+ <20240909-dwelled-specimen-949f44c8d04d@wendy>
+ <1dca9ce52e7c701c7fb6cbbc723e9dff5d0ace8b.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="QJgtZu1F/+wMZDUF"
 Content-Disposition: inline
-In-Reply-To: <20240909012152.431647-1-wei.fang@nxp.com>
+In-Reply-To: <1dca9ce52e7c701c7fb6cbbc723e9dff5d0ace8b.camel@gmail.com>
 
 
-On Mon, 09 Sep 2024 09:21:52 +0800, Wei Fang wrote:
-> As Rob pointed in another mail thread [1], the binding of tja11xx PHY
-> is completely broken, the schema cannot catch the error in the DTS. A
-> compatiable string must be needed if we want to add a custom propety.
-> So extract known PHY IDs from the tja11xx PHY drivers and convert them
-> into supported compatible string list to fix the broken binding issue.
-> 
-> [1]: https://lore.kernel.org/netdev/31058f49-bac5-49a9-a422-c43b121bf049@kernel.org/T/
-> 
-> Fixes: 52b2fe4535ad ("dt-bindings: net: tja11xx: add nxp,refclk_in property")
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
-> ---
-> V2 changes:
-> 1. Add more compatible strings based on TJA11xx data sheets.
-> V1 link: https://lore.kernel.org/imx/20240904145720.GA2552590-robh@kernel.org/T/
-> ---
->  .../devicetree/bindings/net/nxp,tja11xx.yaml  | 62 ++++++++++++++-----
->  1 file changed, 46 insertions(+), 16 deletions(-)
-> 
+--QJgtZu1F/+wMZDUF
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+On Mon, Sep 09, 2024 at 04:03:17PM +0200, Nuno S=E1 wrote:
+> On Mon, 2024-09-09 at 13:46 +0100, Conor Dooley wrote:
+> > On Sun, Sep 08, 2024 at 01:29:25PM +0100, Jonathan Cameron wrote:
 
+> > I'd also really like to know how this fits in with spi-offloads. It
+> > /feels/, and I'd like to reiterate the word feels, like a rather similar
+> > idea just applied to a DAC instead of an ADC.
+>=20
+> The offload main principle is to replay a spi transfer periodically given=
+ an
+> input trigger. I'm not so sure we have that same principle in here. In he=
+re I
+> guess we stream data over the qspi interface based on SCLK which can look
+> similar. The difference is that this IP does not need any trigger for any=
+ spi
+> transfer replay (I think).=20
+
+Right, if the trigger part is what decides it for you then I'm wildin
+here.
+
+--QJgtZu1F/+wMZDUF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZt8dDQAKCRB4tDGHoIJi
+0s4xAQC4NATh6G425B4WZvd5sGTC5i3wnUDbjaIlQmp/hHwjPQD+L1esehPkEcGt
+6094n/y+3K7GbjRT7uSXeGW9wQf2LQo=
+=Wl47
+-----END PGP SIGNATURE-----
+
+--QJgtZu1F/+wMZDUF--
 
