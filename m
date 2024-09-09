@@ -1,293 +1,180 @@
-Return-Path: <devicetree+bounces-101250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 418F3971183
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:13:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD16A9711B4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:22:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF04328359D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:13:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0584E1C2263D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:22:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEB981B2EF4;
-	Mon,  9 Sep 2024 08:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69FC01B1500;
+	Mon,  9 Sep 2024 08:12:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jGzP7ulD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="buAXRUe4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B621C1B2EDC;
-	Mon,  9 Sep 2024 08:12:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11E161B14F8;
+	Mon,  9 Sep 2024 08:12:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725869537; cv=none; b=U4zqUH8XjKmk2gSGQ4cXKEl9EHkHwthUI+qqleYty5NXlosqmMv9YGoYFr4OU5O7xG62smyDUzEp4om2RqaJljATHF1b83h9f1s7Qf8o9isbwt/vxfaps5NDdo+yRDkfZorAkoQwOQ2UlX8pJnm8rF+UKO/FzAdWUUeTTaoxjj0=
+	t=1725869578; cv=none; b=A1BLQNdlJI3ESMYucmRxO2V/T1VYKoS/Te3xqoOGMPZ4EBLtQJ+/+H4+RGhZIhVkCW3EAK71VXv32ybUSbD73MFLm3JJmSC/UF+HrlbPOgPA5ZRaqn9uEUDh08QEynyGfIj0I0X1FuUD4TkJdd9SwSNnDahN5d1KA4lb/9iRD1Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725869537; c=relaxed/simple;
-	bh=vKYC6D97w/y4jgWpLESdEMTxBxEMonZN1YA8CgWSeKk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tmpEcdFWaaxjSJyce55x2Cl6J5lhMy2cihrOsrf+GeSL9j8yLpZf4kxJRQmYcLue2z26L0LhKSHqRDhNtnGlGge1j749CVWX24vuH+kPGIkGqlKdBzNKfEVeu5aT7PfCwO6iq0kmZXUZN22WEft0a+nqHySdOigtxCeb0x8/Fvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jGzP7ulD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 19876C4CEDC;
-	Mon,  9 Sep 2024 08:12:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725869537;
-	bh=vKYC6D97w/y4jgWpLESdEMTxBxEMonZN1YA8CgWSeKk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=jGzP7ulDYIlO9p6GkR8UFqMgAnANtku7oi/pxznuxLfd9MjcKqSkF5zwdxijF4Gzx
-	 bkltqGFehpi7dzIgUcObDgH4wWXEUs5k8EfEWpEzdNt0VZc1tdy90jHjvyeAKCtlXF
-	 bUPbmq3iBOEdKHt4iDfShQrai1gASwP9q+yPsX9dU04dxuC2pEsFbBwKEsFVxYJTKc
-	 m5p/Z/dnkSZZpJYoAtDJkR7j3rG2gAgGAJ8b50cHaaKjglzQ/bo1TlzWXVxv96VCC9
-	 AWwjn4CtSn2bh3cl6pFJ8ji1YCLdwAMQy4UregL7bhb24Mnl75Q65IPuXyoi08HPJu
-	 r+Mc9rOX8+06g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 13586ECE582;
-	Mon,  9 Sep 2024 08:12:17 +0000 (UTC)
-From: Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
-Date: Mon, 09 Sep 2024 11:10:56 +0300
-Subject: [PATCH v12 31/38] ARM: dts: ep93xx: Add EDB9302 DT
+	s=arc-20240116; t=1725869578; c=relaxed/simple;
+	bh=qn1o8Intnk0JCIq1CUGzHv/zXzVk+ma3u3ksckHSnV0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Y3A7JwhE4vmESAPPdJX/oyawFc5OBJNajhtcYVBGVojHKWCyHpjaGwwFyUAq+RzS5fwQ0u2CdBrHxSXEJwzjSJ94MWclShETqAobWpTkp3Qg7cU/FWqJQceSqjPqIg1j6nFRCGhMfm+oaXWgIEUkKbHpzCUUa3g7BXiz/6Yge4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=buAXRUe4; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-53659867cbdso4337543e87.3;
+        Mon, 09 Sep 2024 01:12:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725869574; x=1726474374; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mKbJpq6YIA11aEfz21wae3H60/ixEHXlJ4hbELPq0J4=;
+        b=buAXRUe4Qw0V/hR834zf5ajmzx20ym9p0letzBP6bQp31X3ZPprHcUV9bDn++Q+N13
+         r9jy7q+tIiNo7981r/wCMtBv4LDAa7Wwg3aWY68oWBbbIrDdJH0afTjDzeuSp37EVClE
+         ywngmE7izHdxRF6I5cHbZcs5x8Ps0oMIrGJEOeSuDangaKMrmyJ4hLXrPrwX4AW8MXJ8
+         MF9w/Ha1wc8J9IkjOHdN40LT02Gio81NAaqju1K5KeTVRYWH5G2iKe15FVAc3lK0Ez+U
+         k1uGN6axOYccUUbbbk3v37B5Sq3Mp1PLY08OfCntoWxmkI2/SIu1K6Ywn7rXby/2V7w5
+         kCSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725869574; x=1726474374;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mKbJpq6YIA11aEfz21wae3H60/ixEHXlJ4hbELPq0J4=;
+        b=RzsgvlxTNdh5zZcUSe96Wps34hszD/TPUxXD06vZnEmSqXUvsqIP55xy5Leb8OC/AT
+         7+7kLNqA/ErdcRALpTN9JoIb1cTBe3vyPg6KVSPoAuX62sQ2M1PtyCjV7k4saRq0PooD
+         BYkM+FsPhwszk0Xdxfd6/LJJmdTr8EihC2KQpMQyY1pG0cThK7R0ATFWW9O876O9SVqP
+         AjIq4oHSHq3g+qRtJPQUjSCNUepFErS79+FdaziqV8Bubd4W+l694dIaoBFPkhxVdtAp
+         AnvW4R13oCZ9wPadKcnGG41F4FmQHBQ7kXNH8HvuI57t4Q2nc8XgeMzjHXEc7nvu9grW
+         2PPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWVJVVJlBLro9+8wUW8qdug9m6k/qGQq207cLiji6JN8cZKdZ/yAMFgJuCd6rOe116pD7mbs3O2XR/Lzq4=@vger.kernel.org, AJvYcCXq0jyWAcAsi2fQRUNz2aXJveeSjPieo3EsJYYljoWjsM2BFvXHbK4LN5jBMQyYm3emf3xQuAKAoMKD@vger.kernel.org
+X-Gm-Message-State: AOJu0YyrCfIloipEADpMmX9NKgL93hFD8mb5YMhsZCq+fUc4Oj47pg+R
+	l22ZW/6+ZqE/nSrdSarbcAjSygDYyyEPLiw6+wDnwe+gSXCMuHR6vb/I8JpgHF5nKVowiOICWN5
+	s8tZNpVBXqnb4sDvhJB6wswiyQ8E=
+X-Google-Smtp-Source: AGHT+IHnQ8xuztnsBBgMvF4HoqhobltRiRUWVc47gSpztUAjtDauIHerV4oHBCZhp65S/wW7OsWE+NRnD31fY1WpNhQ=
+X-Received: by 2002:a05:6512:1245:b0:536:54bd:8374 with SMTP id
+ 2adb3069b0e04-53658818949mr5167330e87.60.1725869573576; Mon, 09 Sep 2024
+ 01:12:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240909-ep93xx-v12-31-e86ab2423d4b@maquefel.me>
-References: <20240909-ep93xx-v12-0-e86ab2423d4b@maquefel.me>
-In-Reply-To: <20240909-ep93xx-v12-0-e86ab2423d4b@maquefel.me>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Nikita Shubin <nikita.shubin@maquefel.me>, 
- Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-Mailer: b4 0.13-dev-e3e53
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1725869532; l=4426;
- i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
- bh=pj+rxI95A+j8JkHAzAVaFYn5Zmsf24e76lXK30Ms+sQ=;
- b=d4Jwkvi7VwB1HryzJhqbIAgb/QdwA4WLq7zfKpvRBQi53Y4+3AncwgxuVad2WagTdr+bXs1bMjZq
- cG9tZdIIDg5PliyMDr7jFo+u9tu01uvSmIOQ8dNM+eHVgLa65+tc
-X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
- pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
-X-Endpoint-Received: by B4 Relay for nikita.shubin@maquefel.me/20230718
- with auth_id=65
-X-Original-From: Nikita Shubin <nikita.shubin@maquefel.me>
-Reply-To: nikita.shubin@maquefel.me
+References: <cover.1725518229.git.zhoubinbin@loongson.cn> <e987b0beabba169577c8923557690984f226b29b.1725518229.git.zhoubinbin@loongson.cn>
+ <zes7kfwmz57lhyfvxuyk64n7eykb52txxatbqgqnue7e3yab7g@d7cg7ql4gyl4>
+In-Reply-To: <zes7kfwmz57lhyfvxuyk64n7eykb52txxatbqgqnue7e3yab7g@d7cg7ql4gyl4>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Mon, 9 Sep 2024 14:12:40 +0600
+Message-ID: <CAMpQs4Jwms+P7Uu-N1koT8WYKW8KCdMoo7pkPkdaO2aY7TAD+A@mail.gmail.com>
+Subject: Re: [PATCH v1 01/10] ASoC: dt-bindings: Add Everest ES8323 Codec
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Huacai Chen <chenhuacai@kernel.org>, 
+	devicetree@vger.kernel.org, linux-sound@vger.kernel.org, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Hi Krzysztof:
 
-Add device tree for Cirrus EDB9302.
+Thanks for your review.
 
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
----
- arch/arm/boot/dts/cirrus/Makefile           |   1 +
- arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts | 181 ++++++++++++++++++++++++++++
- 2 files changed, 182 insertions(+)
+On Fri, Sep 6, 2024 at 4:21=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+>
+> On Thu, Sep 05, 2024 at 03:02:14PM +0800, Binbin Zhou wrote:
+> > Add Everest Semiconductor ES8316 low power audio CODEC binding with DT
+> > schema format using json-schema.
+> >
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > ---
+> >  .../bindings/sound/everest,es8323.yaml        | 49 +++++++++++++++++++
+> >  1 file changed, 49 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/sound/everest,es8=
+323.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/sound/everest,es8323.yam=
+l b/Documentation/devicetree/bindings/sound/everest,es8323.yaml
+> > new file mode 100644
+> > index 000000000000..0450d0f49d03
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/sound/everest,es8323.yaml
+> > @@ -0,0 +1,49 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/sound/everest,es8323.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Everest ES8323 audio CODECs
+> > +
+> > +maintainers:
+> > +  - Binbin Zhou <zhoubinbin@loongson.cn>
+> > +
+> > +allOf:
+> > +  - $ref: dai-common.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: everest,es8323
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    description: clock for master clock (MCLK)
+> > +    maxItems: 1
+> > +
+> > +  clock-names:
+> > +    const: mclk
+> > +
+> > +  '#sound-dai-cells':
+> > +    const: 0
+>
+> No audio-graph-port? Are you sure? It looks exactly like
+> everest,es8316...
 
-diff --git a/arch/arm/boot/dts/cirrus/Makefile b/arch/arm/boot/dts/cirrus/Makefile
-index 211a7e2f2115..e6015983e464 100644
---- a/arch/arm/boot/dts/cirrus/Makefile
-+++ b/arch/arm/boot/dts/cirrus/Makefile
-@@ -4,5 +4,6 @@ dtb-$(CONFIG_ARCH_CLPS711X) += \
- dtb-$(CONFIG_ARCH_CLPS711X) += \
- 	ep7211-edb7211.dtb
- dtb-$(CONFIG_ARCH_EP93XX) += \
-+	ep93xx-edb9302.dtb \
- 	ep93xx-bk3.dtb \
- 	ep93xx-ts7250.dtb
-diff --git a/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts b/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts
-new file mode 100644
-index 000000000000..312b2be1c638
---- /dev/null
-+++ b/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts
-@@ -0,0 +1,181 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/*
-+ * Device Tree file for Cirrus Logic EDB9302 board based on EP9302 SoC
-+ */
-+/dts-v1/;
-+#include "ep93xx.dtsi"
-+
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+	compatible = "cirrus,edb9302", "cirrus,ep9301";
-+	model = "cirrus,edb9302";
-+
-+	chosen {
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		/* should be set from ATAGS */
-+		reg = <0x0000000 0x800000>,
-+		      <0x1000000 0x800000>,
-+		      <0x4000000 0x800000>,
-+		      <0x5000000 0x800000>;
-+	};
-+
-+	sound {
-+		compatible = "audio-graph-card2";
-+		label = "EDB93XX";
-+		links = <&i2s_port>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		led-0 {
-+			label = "grled";
-+			gpios = <&gpio4 0 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			function = LED_FUNCTION_HEARTBEAT;
-+		};
-+
-+		led-1 {
-+			label = "rdled";
-+			gpios = <&gpio4 1 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_FAULT;
-+		};
-+	};
-+};
-+
-+&adc {
-+	status = "okay";
-+};
-+
-+&ebi {
-+	flash@60000000 {
-+		compatible = "cfi-flash";
-+		reg = <0x60000000 0x1000000>;
-+		bank-width = <2>;
-+	};
-+};
-+
-+&eth0 {
-+	phy-handle = <&phy0>;
-+};
-+
-+&gpio0 {
-+	gpio-ranges = <&syscon 0 153 1>,
-+		      <&syscon 1 152 1>,
-+		      <&syscon 2 151 1>,
-+		      <&syscon 3 148 1>,
-+		      <&syscon 4 147 1>,
-+		      <&syscon 5 146 1>,
-+		      <&syscon 6 145 1>,
-+		      <&syscon 7 144 1>;
-+};
-+
-+&gpio1 {
-+	gpio-ranges = <&syscon 0 143 1>,
-+		      <&syscon 1 142 1>,
-+		      <&syscon 2 141 1>,
-+		      <&syscon 3 140 1>,
-+		      <&syscon 4 165 1>,
-+		      <&syscon 5 164 1>,
-+		      <&syscon 6 163 1>,
-+		      <&syscon 7 160 1>;
-+};
-+
-+&gpio2 {
-+	gpio-ranges = <&syscon 0 115 1>;
-+};
-+
-+/* edb9302 doesn't have GPIO Port D present */
-+&gpio3 {
-+	status = "disabled";
-+};
-+
-+&gpio4 {
-+	gpio-ranges = <&syscon 0 97 2>;
-+};
-+
-+&gpio5 {
-+	gpio-ranges = <&syscon 1 170 1>,
-+		      <&syscon 2 169 1>,
-+		      <&syscon 3 168 1>;
-+};
-+
-+&gpio6 {
-+	gpio-ranges = <&syscon 0 87 2>;
-+};
-+
-+&gpio7 {
-+	gpio-ranges = <&syscon 2 199 4>;
-+};
-+
-+&i2s {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2s_on_ac97_pins>;
-+	status = "okay";
-+	i2s_port: port {
-+		i2s_ep: endpoint {
-+			system-clock-direction-out;
-+			frame-master;
-+			bitclock-master;
-+			mclk-fs = <256>;
-+			dai-format = "i2s";
-+			convert-channels = <2>;
-+			convert-sample-format = "s32_le";
-+			remote-endpoint = <&codec_ep>;
-+		};
-+	};
-+};
-+
-+&mdio0 {
-+	phy0: ethernet-phy@1 {
-+		reg = <1>;
-+		device_type = "ethernet-phy";
-+	};
-+};
-+
-+&spi0 {
-+	cs-gpios = <&gpio0 6 GPIO_ACTIVE_LOW
-+		    &gpio0 7 GPIO_ACTIVE_LOW>;
-+	dmas = <&dma1 10 2>, <&dma1 10 1>;
-+	dma-names = "rx", "tx";
-+	status = "okay";
-+
-+	cs4271: codec@0 {
-+		compatible = "cirrus,cs4271";
-+		reg = <0>;
-+		#sound-dai-cells = <0>;
-+		spi-max-frequency = <6000000>;
-+		spi-cpol;
-+		spi-cpha;
-+		reset-gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
-+		port {
-+			codec_ep: endpoint {
-+				remote-endpoint = <&i2s_ep>;
-+			};
-+		};
-+	};
-+
-+	at25f1024: eeprom@1 {
-+		compatible = "atmel,at25";
-+		reg = <1>;
-+		address-width = <8>;
-+		size = <0x20000>;
-+		pagesize = <256>;
-+		spi-max-frequency = <20000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	status = "okay";
-+};
+I checked and they are indeed very similar and it seems I just need to
+add to everest,es8316.yaml instead of a new file.
 
--- 
-2.43.2
-
-
+Thanks.
+Binbin
+>
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - '#sound-dai-cells'
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+> > +      #address-cells =3D <1>;
+> > +      #size-cells =3D <0>;
+> > +      codec@10 {
+> > +        compatible =3D "everest,es8323";
+> > +        reg =3D <0x10>;
+> > +        #sound-dai-cells =3D <0>;
+>
+> Make the example complete. Assuming this binding stays...
+>
+> Best regards,
+> Krzysztof
+>
 
