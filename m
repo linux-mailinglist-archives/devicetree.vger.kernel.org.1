@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-101238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BDA5971163
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:12:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAF05971169
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:12:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEBF9283260
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:12:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82A5E283533
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:12:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 535481B1D48;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 633E71B1D4E;
 	Mon,  9 Sep 2024 08:12:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dcTfbj4Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AiQgFJxA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21E951B14FA;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38F761B150C;
 	Mon,  9 Sep 2024 08:12:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725869536; cv=none; b=J5XyNojATSb2qHDSobdulg3k09wW/aJI11nFJ1j7+PuBbGX9E/qK1ENcpVEhnU3b2txzOv+ZlF2tw+rIaT141+jpmOa87YPGOyU70QAIut/G8jVlY7WlHHVoflltxk83ndSDJDqkNooh37FvuRrbUFPfUrm2sR64mebqRbw+uX0=
+	t=1725869536; cv=none; b=Y87UwZ14B0nsVEHEMgzGlUPVAWo52IL8GOCQOoD5CHEoIOzL6ERvQCpjuvyane+wp6qzk2reXhbDKFTjKLE5XiCjrs2wjWoKV4Jn548zS99PhYNXj5BXJsOl+zNb5Epa/b327tmbYNBXcRIG202cZjVTBDmEzwFVYtSG1ybKA78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1725869536; c=relaxed/simple;
-	bh=3Q2bRQKoQu0LqnylJP2cSZjMQXfgAIE/N3cWrJixn1M=;
+	bh=DG6Gyo/AhYeDkc08pgAbNNL+jl66p9ctVC7NLxEKR68=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=S1YOkL6cSsUzMbXG0tk4qGbGjSLFaBkbZ//hvZgy/MlhEIMPmeSCAb/lOYNolhTHp0SahprPHUem2eeOocJEHSWpD1Qa1wp9Mqk7hA2PlQOEX21ztBKbrCH1Uzt7YUQxKoEskXc69r3mpSzUB8ID+8CDMRpD1ooIEtVVyeXReCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dcTfbj4Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id EED1AC4CEE3;
-	Mon,  9 Sep 2024 08:12:15 +0000 (UTC)
+	 In-Reply-To:To:Cc; b=LyggdvgU7Pv2ks22HM80PYbGHhC9Pm4AjvO9wWFzBEsa0uHEtqvGZc9WjhTgVcHXJSGprxzFtmXErh6XvOPAksweniY03P7PBbHh/GYTXYZzeK4FESOtc4y84xU2gTCJkmrmiVVu+XFmLbtpB3F9O4M6Dgm97Y4Ari0pT84YMWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AiQgFJxA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 16A79C4CEEB;
+	Mon,  9 Sep 2024 08:12:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1725869536;
-	bh=3Q2bRQKoQu0LqnylJP2cSZjMQXfgAIE/N3cWrJixn1M=;
+	bh=DG6Gyo/AhYeDkc08pgAbNNL+jl66p9ctVC7NLxEKR68=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=dcTfbj4YbAL+0j3j7L9TT8TaNrHRvJ3bMq8gn2sMoB/lQVLu93Xxh7FNe3hbJeOmH
-	 4p5jqAGB7VFVpjjlyOrBIZXXlgZk5zt1o8WCK6oYULscLePkrpogEoFppnV3tZWLYu
-	 W7fGWo6/u88JObd+X+1/H7hjunP4nYk8DZDMN5QMdjCt+V3/MDphAq20EpDpqep0Xi
-	 eS7v8YgHHJiVHhJLRSUB33PEy4YNRMdAIM+cr115Z97eRcDWYpZrE3IatQUDMaochA
-	 wg6RyWiTukapIz92ogbKjw+sXDYlmYntqCWBlhUZC2VZFWRRmS+XOB4jhrv26nvyZO
-	 OBDX6oGqfgZwQ==
+	b=AiQgFJxAug3Sy6r0LjlUSqNk0GnYGxM8hV9HaC0jth5Vo7s62o0aOEJ6J2WUDIICb
+	 egWk9bfhnpXWhNfJlOefyn3/R/EdKcLessu3wrbUkxehQorZjt4/ecYTSLYK7DHJqt
+	 3fHOQcUKxsrZjK0kZVdyuXJD/fHr148B931PEQvC3AdLqa1M2+5gsU573h1+SjJ1hZ
+	 86OFI7abmOKmQpIL+EiggBTz4UFZAHk/g6GFrgAD5epo8uDT5LzgYStfD+llmOnNPx
+	 L5qLqiVLWeQbvNhM6iLdF1U2cOk/UukPtFlunW7z6FXcAHWI3uJYfM459QTcXcCheR
+	 sHJI2O/s0YzkA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E7E6AECE57E;
-	Mon,  9 Sep 2024 08:12:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0FD29ECE57F;
+	Mon,  9 Sep 2024 08:12:16 +0000 (UTC)
 From: Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
-Date: Mon, 09 Sep 2024 11:10:37 +0300
-Subject: [PATCH v12 12/38] dt-bindings: pwm: Add Cirrus EP93xx
+Date: Mon, 09 Sep 2024 11:10:39 +0300
+Subject: [PATCH v12 14/38] dt-bindings: spi: Add Cirrus EP93xx
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,24 +54,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240909-ep93xx-v12-12-e86ab2423d4b@maquefel.me>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240909-ep93xx-v12-14-e86ab2423d4b@maquefel.me>
 References: <20240909-ep93xx-v12-0-e86ab2423d4b@maquefel.me>
 In-Reply-To: <20240909-ep93xx-v12-0-e86ab2423d4b@maquefel.me>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
  Nikita Shubin <nikita.shubin@maquefel.me>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.13-dev-e3e53
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1725869532; l=1848;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1725869532; l=2297;
  i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
- bh=z+2yOwm4hvQxzJhJWQahTMtiq2gz+415iGkW4eGQ8Eg=;
- b=BKMcbpSvBzFDo1pfWnRshephYxpkTcVW6xLIg+/FlhCmNfnUinlFF23AD4/I/sG6vDirP/xI3Fwq
- XWhB5RkqADV9estuD8ZbXvbylxwJ3lyj9lQf63B4TYUnSonS1p+9
+ bh=jJL2qB0kTVm0ECXQdY2vGGR9TsGC8ONTPNp8ZLPMM2E=;
+ b=TLRu4+Bg6JWRqqSa9yZN5XhB7rf3NCSVopk1URawM8NDcXUxHexwsRMJhMs5ZjCbFqStoETRkjTb
+ dWVqMWwICRRHE9palsPIONgXZxqUyTJvH2Y45Ig/XbL791vjkqjN
 X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
  pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
 X-Endpoint-Received: by B4 Relay for nikita.shubin@maquefel.me/20230718
@@ -81,73 +81,90 @@ Reply-To: nikita.shubin@maquefel.me
 
 From: Nikita Shubin <nikita.shubin@maquefel.me>
 
-Add YAML bindings for ep93xx SoC PWM.
+Add YAML bindings for ep93xx SoC SPI.
 
 Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
-Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Mark Brown <broonie@kernel.org>
 ---
- .../devicetree/bindings/pwm/cirrus,ep9301-pwm.yaml | 53 ++++++++++++++++++++++
- 1 file changed, 53 insertions(+)
+ .../devicetree/bindings/spi/cirrus,ep9301-spi.yaml | 70 ++++++++++++++++++++++
+ 1 file changed, 70 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/pwm/cirrus,ep9301-pwm.yaml b/Documentation/devicetree/bindings/pwm/cirrus,ep9301-pwm.yaml
+diff --git a/Documentation/devicetree/bindings/spi/cirrus,ep9301-spi.yaml b/Documentation/devicetree/bindings/spi/cirrus,ep9301-spi.yaml
 new file mode 100644
-index 000000000000..903210ef9c31
+index 000000000000..73980a27dc00
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/cirrus,ep9301-pwm.yaml
-@@ -0,0 +1,53 @@
++++ b/Documentation/devicetree/bindings/spi/cirrus,ep9301-spi.yaml
+@@ -0,0 +1,70 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/pwm/cirrus,ep9301-pwm.yaml#
++$id: http://devicetree.org/schemas/spi/cirrus,ep9301-spi.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Cirrus Logic ep93xx PWM controller
++title: EP93xx SoC SPI controller
 +
 +maintainers:
 +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
 +  - Nikita Shubin <nikita.shubin@maquefel.me>
 +
 +allOf:
-+  - $ref: pwm.yaml#
++  - $ref: spi-controller.yaml#
 +
 +properties:
 +  compatible:
 +    oneOf:
-+      - const: cirrus,ep9301-pwm
++      - const: cirrus,ep9301-spi
 +      - items:
 +          - enum:
-+              - cirrus,ep9302-pwm
-+              - cirrus,ep9307-pwm
-+              - cirrus,ep9312-pwm
-+              - cirrus,ep9315-pwm
-+          - const: cirrus,ep9301-pwm
++              - cirrus,ep9302-spi
++              - cirrus,ep9307-spi
++              - cirrus,ep9312-spi
++              - cirrus,ep9315-spi
++          - const: cirrus,ep9301-spi
 +
 +  reg:
++    items:
++      - description: SPI registers region
++
++  interrupts:
 +    maxItems: 1
 +
 +  clocks:
 +    items:
-+      - description: SoC PWM clock
++      - description: SPI Controller reference clock source
 +
-+  "#pwm-cells":
-+    const: 3
++  dmas:
++    items:
++      - description: rx DMA channel
++      - description: tx DMA channel
++
++  dma-names:
++    items:
++      - const: rx
++      - const: tx
 +
 +required:
 +  - compatible
 +  - reg
++  - interrupts
 +  - clocks
 +
 +unevaluatedProperties: false
 +
 +examples:
 +  - |
++    #include <dt-bindings/gpio/gpio.h>
 +    #include <dt-bindings/clock/cirrus,ep9301-syscon.h>
-+    pwm@80910000 {
-+        compatible = "cirrus,ep9301-pwm";
-+        reg = <0x80910000 0x10>;
-+        clocks = <&syscon EP93XX_CLK_PWM>;
-+        #pwm-cells = <3>;
++    spi@808a0000 {
++        compatible = "cirrus,ep9301-spi";
++        reg = <0x808a0000 0x18>;
++        interrupt-parent = <&vic1>;
++        interrupts = <21>;
++        clocks = <&syscon EP93XX_CLK_SPI>;
++        dmas = <&dma1 10 2>, <&dma1 10 1>;
++        dma-names = "rx", "tx";
++        cs-gpios = <&gpio5 2 GPIO_ACTIVE_HIGH>;
 +    };
 
 -- 
