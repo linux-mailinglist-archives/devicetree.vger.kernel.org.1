@@ -1,312 +1,369 @@
-Return-Path: <devicetree+bounces-101407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D123971923
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:18:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8006F97192F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:19:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF05A2816D5
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:18:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F30D11F22B71
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:19:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60FEB1B78ED;
-	Mon,  9 Sep 2024 12:18:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="OCO4iSyF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 946F41B78FC;
+	Mon,  9 Sep 2024 12:19:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02E621B5EC7;
-	Mon,  9 Sep 2024 12:18:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34A251779B8
+	for <devicetree@vger.kernel.org>; Mon,  9 Sep 2024 12:19:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725884316; cv=none; b=QFn6Zq/BCh4Gs6oxOBq3F3+507M5eOmUkh5EbLRav8RJ2RV9CHF4V8MNGPW37k3CuV9vHgGhZnF6CLACtt4KB/64AIx+Y3AiaBMfcnu3h4oZpsEWLaaIaa+6CmuLzS8szykaYDsD94OCZhq8ZHuFG9wUmxkofexhHvVbHH4CW8U=
+	t=1725884390; cv=none; b=Kb7YE1kJdWIMV4oo1WN6MMkDd5c42HiL0FtkLAp3XgXXzLaaxXMXw9s4rolhhnBHPcVZHW4PgP9B1oTqy05sW+kZmfn1m0cd8M5hNz+3cuW25mySa2GVCQfXg7kxo78rVrKqEX69epZGqSCiBJ3+E8IWo0j0ZrnOlxFC+9NFYWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725884316; c=relaxed/simple;
-	bh=9lHlopNyUBYE5/RRriLjsiAwSzIU1+qthOZCQLrQenM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uvnu+sEjuXl8lKHPAJCEoc/p2RAp8ewR0G9shxcLOYeWzW1QOxgMiPYMPbz0QcoEjFJ7zBsNOp/l4XCcdzOPsQ2kOmZ53vAbJRha25yReamiL/fWOGGsNmVn8bE191EVjLjFN45awUAzhIUU+xSVVuXsJDxJSHSeJ16dPuJEcDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=OCO4iSyF; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1725884314; x=1757420314;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9lHlopNyUBYE5/RRriLjsiAwSzIU1+qthOZCQLrQenM=;
-  b=OCO4iSyFpVg9inrYuogMDb0hBrR9somI4BtKH+yNKrw8cAdSRs2W/9e7
-   drBArAffJYU9HPpwm3Jk2JGiwU9Ww0VkHNrvMx0CcpxAj/bGVZcvjnbnC
-   6ih42CHmFzkcB06nzeEHOlYNk3C19m9TrQno2W8OENN6m1L3+7WBAkqWa
-   7MXOSVV79Q9PvPXa2Xn1tQrO3myplItZ/GApNBg+mpuntEjJsYR48WBTc
-   iin/SM67HtTo2HXY0rJxPqBOcs8kpUE4Hzx0pVBnI81TF+ZgNO9w0PcjD
-   OldhFD0A1pOajIGSycBZAJmjnvqbSEkob+PPrZM8o+hzjgeenko/EH+k8
-   A==;
-X-CSE-ConnectionGUID: g7KiyjGIR6GFWp74rkJR0A==
-X-CSE-MsgGUID: wdZkLXUTT62i3I3tX5YKGw==
-X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; 
-   d="asc'?scan'208";a="198947431"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 Sep 2024 05:18:32 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 9 Sep 2024 05:18:08 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Mon, 9 Sep 2024 05:18:05 -0700
-Date: Mon, 9 Sep 2024 13:17:33 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Angelo Dureghello <adureghello@baylibre.com>
-CC: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>, Conor Dooley
-	<conor@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
-	<Michael.Hennerich@analog.com>, Nuno =?iso-8859-1?Q?S=E1?=
-	<nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>,
-	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <dlechner@baylibre.com>
-Subject: Re: [PATCH RFC 4/8] dt-bindings: iio: dac: add adi axi-dac bus
- property
-Message-ID: <20240909-humiliate-gravel-adf4966538e0@wendy>
-References: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
- <20240829-wip-bl-ad3552r-axi-v0-v1-4-b6da6015327a@baylibre.com>
- <20240829-stopwatch-morality-a933abb4d688@spud>
- <d4eddc24-9192-4a4a-ac67-4cfbd429a6a9@baylibre.com>
- <20240830-quilt-appointee-4a7947e84988@spud>
- <9015bc26-1a3a-49df-8728-12ceb8993035@baylibre.com>
- <20240906-venomous-candle-8348b00640ca@squawk>
- <5fd8374285d7dadd68777efabad753b981d29f40.camel@gmail.com>
- <f60ea1cd-ac24-4640-86be-71d636c1818e@baylibre.com>
+	s=arc-20240116; t=1725884390; c=relaxed/simple;
+	bh=XaGZJ26DCOzIFIxENjPMinMJ9iBdoY4E+FVtRLbXef0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GefhlNKaJI+Pi5ky2U2vI6yhKKMQeOMqVroRkRgIIkEQ8vouc2XvL+AUkRePx7tzMu3NvXVDYgxa+9+8hXKmB4sJn1mwdHUklcU4Td3ezKwuOvfqUr5pN8SE0Ve9IkW0JPLGJP23qBnTwNDhTWcu+CSxtOpHDn7JtECAvG64SO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1sndMe-0006Tx-V0; Mon, 09 Sep 2024 14:19:29 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sha@pengutronix.de>)
+	id 1sndMe-006ePa-CL; Mon, 09 Sep 2024 14:19:28 +0200
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1sndMe-00Fhph-0r;
+	Mon, 09 Sep 2024 14:19:28 +0200
+Date: Mon, 9 Sep 2024 14:19:28 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Pankaj Gupta <pankaj.gupta@nxp.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 4/5] firmware: imx: add driver for NXP EdgeLock Enclave
+Message-ID: <Zt7n0AxGEw-ZXbui@pengutronix.de>
+References: <20240904-imx-se-if-v7-0-5afd2ab74264@nxp.com>
+ <20240904-imx-se-if-v7-4-5afd2ab74264@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="WHCfdZomYcGBQi5w"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f60ea1cd-ac24-4640-86be-71d636c1818e@baylibre.com>
+In-Reply-To: <20240904-imx-se-if-v7-4-5afd2ab74264@nxp.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
---WHCfdZomYcGBQi5w
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, Sep 04, 2024 at 04:21:20PM +0530, Pankaj Gupta wrote:
+> NXP hardware IP(s) for secure-enclaves like Edgelock Enclave(ELE),
+> are embedded in the SoC to support the features like HSM, SHE & V2X,
+> using message based communication interface.
+> 
+> The secure enclave FW communicates on a dedicated messaging unit(MU)
+> based interface(s) with application core, where kernel is running.
+> It exists on specific i.MX processors. e.g. i.MX8ULP, i.MX93.
+> 
+> This patch adds the driver for communication interface to secure-enclave,
+> for exchanging messages with NXP secure enclave HW IP(s) like EdgeLock
+> Enclave (ELE) from Kernel-space, used by kernel management layers like
+> - DM-Crypt.
+> 
+> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+> ---
+>  drivers/firmware/imx/Kconfig        |  12 +
+>  drivers/firmware/imx/Makefile       |   2 +
+>  drivers/firmware/imx/ele_base_msg.c | 286 ++++++++++++++++++++
+>  drivers/firmware/imx/ele_base_msg.h |  95 +++++++
+>  drivers/firmware/imx/ele_common.c   | 306 +++++++++++++++++++++
+>  drivers/firmware/imx/ele_common.h   |  51 ++++
+>  drivers/firmware/imx/se_ctrl.c      | 515 ++++++++++++++++++++++++++++++++++++
+>  drivers/firmware/imx/se_ctrl.h      |  99 +++++++
+>  include/linux/firmware/imx/se_api.h |  14 +
+>  9 files changed, 1380 insertions(+)
+> 
+> diff --git a/drivers/firmware/imx/Kconfig b/drivers/firmware/imx/Kconfig
+> index 183613f82a11..0f6877a24f0b 100644
+> --- a/drivers/firmware/imx/Kconfig
+> +++ b/drivers/firmware/imx/Kconfig
+> @@ -22,3 +22,15 @@ config IMX_SCU
+>  
+>  	  This driver manages the IPC interface between host CPU and the
+>  	  SCU firmware running on M4.
+> +
+> +config IMX_SEC_ENCLAVE
+> +	tristate "i.MX Embedded Secure Enclave - EdgeLock Enclave Firmware driver."
+> +	depends on IMX_MBOX && ARCH_MXC && ARM64
+> +	default m if ARCH_MXC
+> +
+> +	help
+> +	  It is possible to use APIs exposed by the iMX Secure Enclave HW IP called:
+> +	  - EdgeLock Enclave Firmware (for i.MX8ULP, i.MX93),
+> +	    like base, HSM, V2X & SHE using the SAB protocol via the shared Messaging
+> +	    Unit. This driver exposes these interfaces via a set of file descriptors
+> +	    allowing to configure shared memory, send and receive messages.
+> diff --git a/drivers/firmware/imx/Makefile b/drivers/firmware/imx/Makefile
+> index 8f9f04a513a8..aa9033e0e9e3 100644
+> --- a/drivers/firmware/imx/Makefile
+> +++ b/drivers/firmware/imx/Makefile
+> @@ -1,3 +1,5 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  obj-$(CONFIG_IMX_DSP)		+= imx-dsp.o
+>  obj-$(CONFIG_IMX_SCU)		+= imx-scu.o misc.o imx-scu-irq.o rm.o imx-scu-soc.o
+> +sec_enclave-objs		= se_ctrl.o ele_common.o ele_base_msg.o
+> +obj-${CONFIG_IMX_SEC_ENCLAVE}	+= sec_enclave.o
+> diff --git a/drivers/firmware/imx/ele_base_msg.c b/drivers/firmware/imx/ele_base_msg.c
+> new file mode 100644
+> index 000000000000..e3e570a25e85
+> --- /dev/null
+> +++ b/drivers/firmware/imx/ele_base_msg.c
+> @@ -0,0 +1,286 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright 2024 NXP
+> + */
+> +
+> +#include <linux/types.h>
+> +
+> +#include <linux/completion.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/genalloc.h>
+> +
+> +#include "ele_base_msg.h"
+> +#include "ele_common.h"
+> +
+> +int ele_get_info(struct device *dev, struct ele_dev_info *s_info)
 
-On Sat, Sep 07, 2024 at 10:53:07AM +0200, Angelo Dureghello wrote:
->=20
-> On 06/09/24 1:32 PM, Nuno S=E1 wrote:
-> > On Fri, 2024-09-06 at 10:04 +0100, Conor Dooley wrote:
-> > > On Mon, Sep 02, 2024 at 11:32:37AM +0200, Angelo Dureghello wrote:
-> > > > Hi Conor,
-> > > >=20
-> > > >=20
-> > > > On 30/08/24 5:33 PM, Conor Dooley wrote:
-> > > > > On Fri, Aug 30, 2024 at 10:19:49AM +0200, Angelo Dureghello wrote:
-> > > > > > Hi Conor,
-> > > > > >=20
-> > > > > > On 29/08/24 5:46 PM, Conor Dooley wrote:
-> > > > > > > On Thu, Aug 29, 2024 at 02:32:02PM +0200, Angelo Dureghello w=
-rote:
-> > > > > > > > From: Angelo Dureghello <adureghello@baylibre.com>
-> > > > > > > >=20
-> > > > > > > > Add bus property.
-> > > > > > > RFC it may be, but you do need to explain what this bus-type =
-actually
-> > > > > > > describes for commenting on the suitability of the method to =
-be
-> > > > > > > meaningful.
-> > > > > > thanks for the feedbacks,
-> > > > > >=20
-> > > > > > a "bus" is intended as a generic interface connected to the tar=
-get,
-> > > > > > may be used from a custom IP (fpga) to communicate with the tar=
-get
-> > > > > > device (by read/write(reg and value)) using a special custom in=
-terface.
-> > > > > >=20
-> > > > > > The bus could also be physically the same of some well-known ex=
-isting
-> > > > > > interfaces (as parallel, lvds or other uncommon interfaces), bu=
-t using
-> > > > > > an uncommon/custom protocol over it.
-> > > > > >=20
-> > > > > > In concrete, actually bus-type is added to the backend since the
-> > > > > > ad3552r DAC chip can be connected (for maximum speed) by a 5 la=
-nes DDR
-> > > > > > parallel bus (interface that i named QSPI, but it's not exactly=
- a QSPI
-> > > > > > as a protocol), so it's a device-specific interface.
-> > > > > >=20
-> > > > > > With additions in this patchset, other frontends, of course not=
- only
-> > > > > > DACs, will be able to add specific busses and read/wrtie to the=
- bus
-> > > > > > as needed.
-> > > > > >=20
-> > > > > > > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> > > > > > > > ---
-> > > > > > > >  =A0=A0 Documentation/devicetree/bindings/iio/dac/adi,axi-d=
-ac.yaml | 9
-> > > > > > > > +++++++++
-> > > > > > > >  =A0=A0 1 file changed, 9 insertions(+)
-> > > > > > > >=20
-> > > > > > > > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,=
-axi-dac.yaml
-> > > > > > > > b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> > > > > > > > index a55e9bfc66d7..a7ce72e1cd81 100644
-> > > > > > > > --- a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac=
-=2Eyaml
-> > > > > > > > +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac=
-=2Eyaml
-> > > > > > > > @@ -38,6 +38,15 @@ properties:
-> > > > > > > >  =A0=A0=A0=A0 clocks:
-> > > > > > > >  =A0=A0=A0=A0=A0=A0 maxItems: 1
-> > > > > > > You mentioned about new compatible strings, does the one curr=
-ently
-> > > > > > > listed in this binding support both bus types?
-> > > > > You didn't answer this, and there's insufficient explanation of t=
-he
-> > > > > "hardware" in this RFC, but I found this which is supposedly the
-> > > > > backend:
-> > > > > https://github.com/analogdevicesinc/hdl/tree/main/library/axi_ad3=
-552r
-> > > > > adi,axi-dac.yaml has a single compatible, and that compatible has
-> > > > > nothing to do with "axi_ad3552r" as it is "adi,axi-dac-9.1.b". I =
-would
-> > > > > expect either justification for reuse of the compatible, or a bra=
-nd new
-> > > > > compatible for this backend, even if the driver can mostly be reu=
-sed.
-> > > > >=20
-> > > > > Could you please link to whatever ADI wiki has detailed informati=
-on on
-> > > > > how this stuff works so that I can look at it to better understan=
-d the
-> > > > > axes of configuration here?
-> > > > https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.ht=
-ml
-> > > >=20
-> > > > that has same structure and register set of the generic ADI AXI-DAC=
- IP:
-> > > > https://wiki.analog.com/resources/fpga/docs/axi_dac_ip
-> > > >=20
-> > > >=20
-> > > > > > > Making the bus type decision based on compatible only really =
-makes sense
-> > > > > > > if they're different versions of the IP, but not if they're d=
-ifferent
-> > > > > > > configuration options for a given version.
-> > > > > > >=20
-> > > > > > > > +=A0 bus-type:
-> > > > > > DAC IP on fpga actually respects same structure and register se=
-t, except
-> > > > > > for a named "custom" register that may use specific bitfields d=
-epending
-> > > > > > on the application of the IP.
-> > > > > To paraphrase:
-> > > > > "The register map is the same, except for the bit that is differe=
-nt".
-> > > > > If ADI is shipping several different configurations of this IP for
-> > > > > different DACs, I'd be expecting different compatibles for each b=
-ackend
-> > > > > to be honest
-> > > > i am still quite new to this fpga-based implementations, at least f=
-or how
-> > > > such IPs are actually interfacing to the linux subsystem, so i may =
-miss
-> > > > some point.
-> > > >=20
-> > > > About the "adi,axi-dac-9.1.b" compatible, the generic DAC IP regist=
-er set
-> > > > is mostly the same structure of this ad3552r IP (links above), exce=
-pt for
-> > > > bitfields in the=A0DAC_CUSTOM_CTRL register.
-> > > >=20
-> > > > My choice for now was to add a bus-type property.
-> > > >=20
-> > > > Not an HDL expert, but i think a different bus means, from an hardw=
-are point
-> > > > of
-> > > > view, a different IP in terms of internal fpga circuitry, even if n=
-ot as a
-> > > > register-set.
-> > >=20
-> > > Depending on whether or not the unmodified driver can be used with th=
-is
-> > > IP (so the QSPI bus stuff would need to be optional) then a fallback
-> > > should be used given the degree of similarity. It, however, seems lik=
-ely
-> > > that is not the case, and without the QSPI bus there'd be no way to
-> > > communicate with the device. Is there any reason to use this IP as a
-> > > backend, without connecting the QSPI bus at all, leaving the ADC/DAC =
-on
-> > > a regular SPI bus?
-> > >=20
-> > Somewhere in my replies, I'm doing the exact same question to myself. W=
-e probably
-> > need to speak with the FPGA folks but I guess (hope) they had a good re=
-ason for this.
->=20
-> to clarify a bit the custom (fpga-based) QSPI need, i did some checks in =
-the
-> datasheets:
->=20
-> 1. ADI is actually supporting ad3552r by eval-ad3552r-fmcx eval boards,
-> with specific fmc connector for the ZedBoard (zynq7000). This is the
-> current focused hardware for this job.
+I repeat once again:
 
-"currently focused" being the key words! Since it is FPGA IP, you've got
-no control over where it is being used, so the particular use case you're
-developing for is not really that important.
+The context pointer argument should be struct se_if_priv *.
 
-> 2. Zynq7000 std non-fpga controller is designed to control flash memories,
-> but can operate in "raw I/O" mode, so it may work with ad3552r, but is not
-> supporting DDR, even if it may reach 100Mhz clock.
->=20
-> 3. ad3552r accepts a maximum clock of 66Mhz. So for ZedBoard maximum speed
-> of 33MUPS cannot be reached without DDR.
->=20
-> 4. ad3552r requires DDR only in the data part, and in DDR mode we
-> may also send some "non-loop" reg read/write, so requiring also the
-> address to be sent in SDR. Not sure how many QSPI controllers in the mark=
-et
-> are
-> working this way, even if it seems quite standard, looks like not many are
-> actually
-> supporting DDR. There may be, but not actually in the priority of my
-> customer
-> right now. And in that case, we could extend the generic spi ad3552r.c.
+Do not expect foreign code to pass in a struct device * here from which
+you blindly expect that it's the right one.
 
-I think you need to ignore your use case here, and just consider whether or
-not this IP can be used as a backend without the QSPI feature. That's
-probably an easier thing to determine than whether or not there's another
-controller out there that can satisfy the constraints. The docs say it
-"interfaces", but that's such a generic word that it ultimately means
-close to nothing.. There's the sync ability, but from my reading of the
-github.io page, it doesn't do anything when the axi-dac is not actually
-in the data path.
+> +int ele_fetch_soc_info(struct device *dev, u16 *soc_rev, u64 *serial_num)
 
-Cheers,
-Conor.
+Also here and all the other functions in this file.
 
+> + *
+> + * Header file for the EdgeLock Enclave Base API(s).
+> + */
+> +
+> +#ifndef ELE_BASE_MSG_H
+> +#define ELE_BASE_MSG_H
+> +
+> +#include <linux/device.h>
+> +#include <linux/types.h>
+> +
+> +#define WORD_SZ				i4
 
---WHCfdZomYcGBQi5w
-Content-Type: application/pgp-signature; name="signature.asc"
+Unused.
 
------BEGIN PGP SIGNATURE-----
+> +#define ELE_NONE_VAL			0x0
+> +
+> +#define ELE_GET_INFO_REQ		0xDA
+> +#define ELE_GET_INFO_REQ_MSG_SZ		0x10
+> +#define ELE_GET_INFO_RSP_MSG_SZ		0x08
+> +
+> +#define DEFAULT_IMX_SOC_VER		0xA000
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZt7nXQAKCRB4tDGHoIJi
-0rZ3AP9KgkjSVLU4/Cy0wspT2P3QWzIeygrFTMcuCVz/UBOrVgEAjyhnxFBtOZUZ
-l9a17ScSFRjsbstzNtgZ7l7OH3BrWw8=
-=08y7
------END PGP SIGNATURE-----
+Unused
 
---WHCfdZomYcGBQi5w--
+> +#define SOC_VER_MASK			0xFFFF0000
+
+Unused
+
+> +int ele_msg_send(struct se_if_priv *priv,
+> +		 void *tx_msg,
+> +		 int tx_msg_sz)
+> +{
+> +	struct se_msg_hdr *header;
+> +	int err;
+> +
+> +	header = tx_msg;
+> +
+> +	/*
+> +	 * Check that the size passed as argument matches the size
+> +	 * carried in the message.
+> +	 */
+> +	if (header->size << 2 != tx_msg_sz) {
+> +		err = -EINVAL;
+> +		dev_err(priv->dev,
+> +			"User buf hdr: 0x%x, sz mismatced with input-sz (%d != %d).",
+> +			*(u32 *)header,
+> +			header->size << 2, tx_msg_sz);
+> +		goto exit;
+> +	}
+> +	guard(mutex)(&priv->se_if_lock);
+
+Drop this mutex. All it does is to protect mbox_send_message() which
+already has its own locking.
+
+> +
+> +	err = mbox_send_message(priv->tx_chan, tx_msg);
+> +	if (err < 0) {
+> +		dev_err(priv->dev, "Error: mbox_send_message failure.\n");
+> +		return err;
+> +	}
+> +	err = tx_msg_sz;
+> +
+> +exit:
+> +	return err;
+> +}
+> +
+> +void se_if_rx_callback(struct mbox_client *mbox_cl, void *msg)
+> +{
+> +	struct se_clbk_handle *se_clbk_hdl;
+> +	struct device *dev = mbox_cl->dev;
+> +	struct se_msg_hdr *header;
+> +	struct se_if_priv *priv;
+> +	u32 rx_msg_sz;
+> +
+> +	priv = dev_get_drvdata(dev);
+> +
+> +	/* The function can be called with NULL msg */
+
+You already identified this as a possible case...
+
+> +	if (!msg) {
+> +		dev_err(dev, "Message is invalid\n");
+
+...so why print an error message here?
+
+> +		return;
+> +	}
+> +
+> +	header = msg;
+> +	rx_msg_sz = header->size << 2;
+> +
+> +	/* Incoming command: wake up the receiver if any. */
+> +	if (header->tag == priv->cmd_tag) {
+> +		se_clbk_hdl = &priv->cmd_receiver_clbk_hdl;
+> +		dev_dbg(dev,
+> +			"Selecting cmd receiver for mesg header:0x%x.",
+> +			*(u32 *) header);
+> +
+> +		/* Pre-allocated buffer of MAX_NVM_MSG_LEN
+> +		 * as the NVM command are initiated by FW.
+> +		 * Size is revealed as part of this call function.
+> +		 */
+> +		if (rx_msg_sz > MAX_NVM_MSG_LEN) {
+> +			dev_err(dev,
+> +				"CMD-RCVER NVM: hdr(0x%x) with different sz(%d != %d).\n",
+> +				*(u32 *) header,
+> +				rx_msg_sz, se_clbk_hdl->rx_msg_sz);
+> +
+> +			se_clbk_hdl->rx_msg_sz = MAX_NVM_MSG_LEN;
+> +		}
+> +		se_clbk_hdl->rx_msg_sz = rx_msg_sz;
+> +
+> +	} else if (header->tag == priv->rsp_tag) {
+> +		se_clbk_hdl = &priv->waiting_rsp_clbk_hdl;
+> +		dev_dbg(dev,
+> +			"Selecting resp waiter for mesg header:0x%x.",
+> +			*(u32 *) header);
+> +
+> +		if (rx_msg_sz != se_clbk_hdl->rx_msg_sz
+> +				&& !exception_for_size(priv, header)) {
+> +			dev_err(dev,
+> +				"Rsp to CMD: hdr(0x%x) with different sz(%d != %d).\n",
+> +				*(u32 *) header,
+> +				rx_msg_sz, se_clbk_hdl->rx_msg_sz);
+> +
+> +			se_clbk_hdl->rx_msg_sz = min(rx_msg_sz, se_clbk_hdl->rx_msg_sz);
+> +		}
+> +	} else {
+> +		dev_err(dev, "Failed to select a device for message: %.8x\n",
+> +			*((u32 *) header));
+> +		return;
+> +	}
+> +
+> +	memcpy(se_clbk_hdl->rx_msg, msg, se_clbk_hdl->rx_msg_sz);
+> +
+> +	/* Allow user to read */
+> +	atomic_inc(&se_clbk_hdl->pending_hdr);
+> +
+> +	wake_up_interruptible(&se_clbk_hdl->wq);
+
+You are rebuilding a completion here, why not use a completion then?
+
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/of_reserved_mem.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +#include <linux/string.h>
+> +#include <linux/sys_soc.h>
+> +
+> +#include "ele_base_msg.h"
+> +#include "ele_common.h"
+> +#include "se_ctrl.h"
+> +
+> +#define RESERVED_DMA_POOL		BIT(0)
+
+Unused
+
+> +static void se_load_firmware(const struct firmware *fw, void *context)
+> +{
+> +	struct se_if_priv *priv = context;
+> +	const struct se_if_node_info *info = priv->info;
+> +	phys_addr_t se_fw_phyaddr;
+> +	u8 *se_fw_buf;
+> +	int ret;
+> +
+> +	if (!fw) {
+> +		if (priv->fw_fail > MAX_FW_LOAD_RETRIES)
+> +			dev_dbg(priv->dev,
+> +				 "External FW not found, using ROM FW.\n");
+> +		else {
+> +			/*add a bit delay to wait for firmware priv released */
+> +			msleep(20);
+> +
+> +			/* Load firmware one more time if timeout */
+> +			request_firmware_nowait(THIS_MODULE,
+> +					FW_ACTION_UEVENT, priv->se_img_file_to_load,
+> +					priv->dev, GFP_KERNEL, priv,
+> +					se_load_firmware);
+> +			priv->fw_fail++;
+> +			dev_dbg(priv->dev, "Value of retries = 0x%x.\n",
+> +				priv->fw_fail);
+> +		}
+> +
+> +		return;
+> +	}
+
+Are you continuously trying to load the firmware here in the hope that
+the rootfs is mounted before your retry counter exceeds?
+
+Don't do this.
+
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
