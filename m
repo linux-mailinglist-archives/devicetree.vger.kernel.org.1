@@ -1,122 +1,141 @@
-Return-Path: <devicetree+bounces-101479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A73C3971EF4
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 18:20:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCFFF971F30
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 18:27:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2CE71C2271B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 16:20:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B38028196E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 16:27:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08D0913BC3D;
-	Mon,  9 Sep 2024 16:20:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EFB21531C0;
+	Mon,  9 Sep 2024 16:27:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zm7V0rmx"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="maX7j6w8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD3C313A879;
-	Mon,  9 Sep 2024 16:20:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E91C2C87A;
+	Mon,  9 Sep 2024 16:27:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725898810; cv=none; b=FbL83yWmjr9hUXaYiuBygtLmwmOGXfUaI9dcESGp2d25W3g5j0ngTG1CUbbuWWbHRIQtYUnb0pfXLL0rT3tCodrM2+OK+ARWrs2Y+KI3jj5cXoN03/kSsCm/dbc0cmcP8GXohLx8ok8NKmco6i29aWOl2dzzTxmN3VjZ0jWsy14=
+	t=1725899261; cv=none; b=lP0JSPnf1GHeOBqwEEhu4C1bpSQDR/ZbA1uIdtKL/5dlo3AR5L6oR9awJRjfes2spaswy6xzVJMsXl3iFZCR1gL4WFwddGfxe/AUdDlNBOHadgBccI0mFW03rE3d75fcPlc7bZrGZnK0MIrsYKXqkXlS4VJqtImRWn5ze2kzKj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725898810; c=relaxed/simple;
-	bh=TS/pSz1uD3dN1/wXh7XIMM8S8qVOA+/r9H0LYbQw3Mc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qoQqRND9FZET7vuHV7oKKz0PehICs7+gVonw1QWFu3pASy2O0CSYchshyT+9AMLdW8cr2I6JCLcs92SLwcPVtkC2XQCezx+fCg2x59uX8rPVxoqmu1Mg2ht0P8UXN9KanMclm3hQQHcYuIlgeMbAE3boU9AVlm6bLTg3HjWNKR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zm7V0rmx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25BC2C4CEC5;
-	Mon,  9 Sep 2024 16:20:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725898810;
-	bh=TS/pSz1uD3dN1/wXh7XIMM8S8qVOA+/r9H0LYbQw3Mc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zm7V0rmxhwjWgkzWrThPJEsFRUDqWvq+1iX2K8gqArj2yYKcaWSZ/iSEzLx+829cf
-	 uSvLFRpjPcofMUYkvhheUgVBHXiJl8cxbl0bBSopOM/WAxzMfBVnnb//ysEw0Ud/Oa
-	 HtLsJy0AxBBHGFqqSQD7sTaGIREmQJ65ZO+SYq9l9zyQSoYpdGM07295TOTNdipeP8
-	 +zRdjXCgCu1I7nnWQJoSds6af8lNvlqPJLGwcF7NRCaO1sJ1tdSM8gkGeOgoLp8fw7
-	 WJo10TsVsiqAJzW19QeQbbLiubZmuOZqvOfaE9Ar8ZNEyPer3gJR2onSpgOpPrYTFk
-	 tWe/WP1baRfoA==
-Date: Mon, 9 Sep 2024 11:20:09 -0500
-From: Rob Herring <robh@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <f.fainelli@gmail.com>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: ethernet-phy: Add
- master-slave role property for SPE PHYs
-Message-ID: <20240909162009.GA339652-robh@kernel.org>
-References: <20240909124342.2838263-1-o.rempel@pengutronix.de>
- <20240909124342.2838263-2-o.rempel@pengutronix.de>
+	s=arc-20240116; t=1725899261; c=relaxed/simple;
+	bh=gReMfDfyQxK0TNX+VbTFEwbiTxD2pt6LzymgTSl1Vi0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=k52jn3zo+Ocf2j0JjXlxMMFYvbLHafLVsQQoGqViuUeHvZ+Q7/+5vrQed/Y+Luq9uKKSc5dGcnToZFoftEBG9yGc69OskWhRPbD0xI3aj3mzrVG34LncVHZNk5QP9QKN0xi6bMHjYsQQ3yx9/tub9cFw0OqTzFLIGB3y3di2w5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=maX7j6w8; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 489DRSHV024830;
+	Mon, 9 Sep 2024 16:27:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	+QEnHSC22Ligfn27HbKmLaJnl2aanTUvxvtU0qRFqNk=; b=maX7j6w8BxPDGEMc
+	QswnA7mdRwzT+aCa7v9Y77d99cRaIzi013VH0pQhp1iq3/0Y6LunMiSsUwMeaE8l
+	j/xcQnrNqhw1D8RrrjMgOy7stQDl/qafOukBO75MF+h2nYpMKneebBkdEoJguhYA
+	0oxDze4TzIR1ndUOnGF1bDcXe8wqGuQtyTUWvsIOhAz89DTf73T4N0TAPJx46+CE
+	GxqlBuGgT90p0YDXwtmdFsvr8HrN0EpgrSzNR2u282DAgesFophR8F8kPNkvClVj
+	f/Pz98x7IyBJqWYOYTmUG8Q4mrp5cpwdnY4lctvsf8S1xGmeMbD0o83IeiphUXfL
+	UJgGag==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy5rbdra-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Sep 2024 16:27:35 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 489GRYT6013497
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 9 Sep 2024 16:27:34 GMT
+Received: from [10.110.76.134] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 9 Sep 2024
+ 09:27:31 -0700
+Message-ID: <3f4bfa7b-c365-4fcb-a818-18e2f9351475@quicinc.com>
+Date: Mon, 9 Sep 2024 09:27:31 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240909124342.2838263-2-o.rempel@pengutronix.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] dt-bindings: arm: GIC: add ESPI and EPPI specifiers
+To: Rob Herring <robh@kernel.org>
+CC: <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        <quic_psodagud@quicinc.com>
+References: <20240908010205.863701-1-quic_nkela@quicinc.com>
+ <20240909155431.GA207498-robh@kernel.org>
+Content-Language: en-US
+From: Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <20240909155431.GA207498-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: sQ4O9qt3Gn1LRs0oXduX4kD6-FmdVpha
+X-Proofpoint-ORIG-GUID: sQ4O9qt3Gn1LRs0oXduX4kD6-FmdVpha
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ clxscore=1015 malwarescore=0 bulkscore=0 lowpriorityscore=0 adultscore=0
+ mlxscore=0 impostorscore=0 priorityscore=1501 mlxlogscore=751 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2408220000
+ definitions=main-2409090130
 
-On Mon, Sep 09, 2024 at 02:43:40PM +0200, Oleksij Rempel wrote:
-> Introduce a new `master-slave` string property in the ethernet-phy
-> binding to specify the link role for Single Pair Ethernet
-> (1000/100/10Base-T1) PHYs. This property supports the values
-> `forced-master` and `forced-slave`, which allow the PHY to operate in a
-> predefined role, necessary when hardware strap pins are unavailable or
-> wrongly set.
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> ---
-> changes v2:
-> - use string property instead of multiple flags
-> ---
->  .../devicetree/bindings/net/ethernet-phy.yaml      | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> index d9b62741a2259..025e59f6be6f3 100644
-> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> @@ -158,6 +158,20 @@ properties:
->        Mark the corresponding energy efficient ethernet mode as
->        broken and request the ethernet to stop advertising it.
->  
-> +  master-slave:
 
-Outdated terminology and kind of vague what it is for...
+On 9/9/2024 8:54 AM, Rob Herring wrote:
+> On Sat, Sep 07, 2024 at 06:02:05PM -0700, Nikunj Kela wrote:
+>> Add interrupt specifier for extended SPI and extended PPI interrupts.
+> Are extended SPI and PPI a GIC defined thing? What version of GIC?
+>
+> Yes, I think I already asked these questions, but I only remember what 
+> you put into the commit message.
 
-The usual transformation to 'controller-device' would not make much
-sense though. I think a better name would be "spe-link-role" or
-"spe-link-mode".
+Got it, let me add those details in the commit description. Thanks
 
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum:
-> +      - forced-master
-> +      - forced-slave
-> +    description: |
-> +      Specifies the predefined link role for the PHY in Single Pair Ethernet
-> +      (1000/100/10Base-T1).  This property is required for setups where the link
-> +      role must be assigned by the device tree due to limitations in using
-> +      hardware strap pins.
-> +
-> +      - 'forced-master': The PHY is forced to operate as a master.
-> +      - 'forced-slave': The PHY is forced to operate as a slave.
-> +
->    pses:
->      $ref: /schemas/types.yaml#/definitions/phandle-array
->      maxItems: 1
-> -- 
-> 2.39.2
-> 
+
+>
+>> Qualcomm SA8255p platform uses extended SPI for SCMI 'a2p' doorbells.
+>>
+>> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+>> ---
+>>
+>> Changes in v3:
+>> 	- Removed the patch from original series[1]
+>>
+>> Changes in v2:
+>> 	- Modified subject line and description
+>> 	- Added EPPI macro
+>>
+>> [1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
+>> ---
+>>  include/dt-bindings/interrupt-controller/arm-gic.h | 2 ++
+>>  1 file changed, 2 insertions(+)
+>>
+>> diff --git a/include/dt-bindings/interrupt-controller/arm-gic.h b/include/dt-bindings/interrupt-controller/arm-gic.h
+>> index 35b6f69b7db6..887f53363e8a 100644
+>> --- a/include/dt-bindings/interrupt-controller/arm-gic.h
+>> +++ b/include/dt-bindings/interrupt-controller/arm-gic.h
+>> @@ -12,6 +12,8 @@
+>>  
+>>  #define GIC_SPI 0
+>>  #define GIC_PPI 1
+>> +#define GIC_ESPI 2
+>> +#define GIC_EPPI 3
+>>  
+>>  /*
+>>   * Interrupt specifier cell 2.
+>> -- 
+>> 2.34.1
+>>
 
