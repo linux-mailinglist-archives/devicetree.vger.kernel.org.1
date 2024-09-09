@@ -1,107 +1,99 @@
-Return-Path: <devicetree+bounces-101385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D0A971732
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 13:37:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9416197180B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 13:39:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8AD3282369
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:37:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 485C21F212BB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:39:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2788A1B5EAB;
-	Mon,  9 Sep 2024 11:37:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23E6B1B5833;
+	Mon,  9 Sep 2024 11:39:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kUinRO14"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="ki2Tz3sG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E676A1B5EA4;
-	Mon,  9 Sep 2024 11:37:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 540C71B533B;
+	Mon,  9 Sep 2024 11:39:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725881829; cv=none; b=qMiwfOIAOQxpFaM++gtG6707FzQrDjjaoQye6YsPLLjafHr0dXLWluyvRHV8SMAl2WcqbCmTTBySdb8xJg2nXoC7s/Vby0pnUKzLD7vphPYgusHEh9QzVzcOI1KKPF/HV/0efMQlC/UdgaWvI8oz9a07y8A3YOsl+k4rJvinMu4=
+	t=1725881958; cv=none; b=gq/NyvTEzJ5SG35ZGpshpPR2B3W+6vVAV7tnHJsJpHgKxTC0oSiGsQ80cszUvMaAGWfa+TEXqqSKAxn2IdLgUEUDueHGpAPZ/nxHWB770N2OnVBOPDV0DSiqNlobH9S//gNymDpe7tO/tbwlYrkzi3oYY7UbWTY7ZtXiSvSxIe4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725881829; c=relaxed/simple;
-	bh=3czTVn6KoEgnQPJMLjyix/3iHm0d8N+yW4Xrv+9GXtA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HqpLy0dcChtiPg46PA0xL8mJTo8YmMcYYBPeZ/uveihLVfN00mCwRRiJHiZwGMcWWEiuBPv9CxnD0UPnx+59VrtxpuXYN/tsr/bTzVBUT5E1NyghQLGRZi6GvAXRegRP0DoU6t1f/1EUSbTTZZqnh3vRrX8tC6dNJJZVNVv3ujw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kUinRO14; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57EC4C4CEC8;
-	Mon,  9 Sep 2024 11:37:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725881828;
-	bh=3czTVn6KoEgnQPJMLjyix/3iHm0d8N+yW4Xrv+9GXtA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kUinRO14so4QeA95muzzYb293hGbk4b/wF0Fft2Vg7qqFMKh5hSj2tyKutijcblJ9
-	 kNnBZVq630q+1vnawi+OoNRQScZG2WeFhOIr2ztY08aPU40Q9ahJnsuaef+H1EMO3Q
-	 X7reKwjThMZpZzfsbXwa72cieXgONu4pjFVpb74SouBJjbgvUbnRhYwPkdu9i12hWn
-	 fqxr6bOkkRWgMeeWEc5aO/AiW/77TA54rLUYeGzhskIe/jfKFhpS9Xyqeelbxf8HVe
-	 mTXQKmixYXkjcSQ4f4RKJ4clbdOhIx+k3cKRrkA7ltyYT0wigaQsG2SxmPqbu3bYPn
-	 AuXoCI9n64WUA==
-Message-ID: <3fa58f58-c1d2-41ac-b85b-c86bce5c06b9@kernel.org>
-Date: Mon, 9 Sep 2024 13:37:00 +0200
+	s=arc-20240116; t=1725881958; c=relaxed/simple;
+	bh=kggfsNTCZhvoiaY0CpNYztQnwK0ju67Soie53btb2iw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qTDpQuOcIZt4DHqE0QvI48abw/G00FKGPJkuAaZG/fM4DHeUZAiGqU5KVwIx6xAAgja3Fps7M+C4i2Gp3PJmZlxTomlwCV+fcsNF9i0dzuQQg2k5xSYWKDIjGuKWcdlivfACZDXbFUCqHShCZwCxcBRKe5pgk3GNX2sn/McdMFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=ki2Tz3sG; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: lukma@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 13C6B88D1F;
+	Mon,  9 Sep 2024 13:39:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1725881954;
+	bh=8CR2aDii7smh/tqc1g8mB9eAQqyrlVh29TmUpt45vTE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=ki2Tz3sGZjcVdNyebmUuo0faz1vJCgVzN61ghmAKxDePv8xfNhWVX6z9TwaKaYrdh
+	 if9YlPzpr99y3Lbq9Khy3KVQuG09nKvXW2A7djhloaKJE/NXz/SwTonokeyhzo6Mz3
+	 M2dhgoYTMyyVthRBXrAtQYRwD46DdwHzC8S6D4wIms8nSDbJt93n2sqnmhp0N5JW2O
+	 tsshiWZOKdBbsKTfLn29ChNTfwhMu6A0YAvDaV5Cr06ggn5cV9mokoz12qki+P1Err
+	 kIWLeMAfjbhBo70ZmlJdmQWZqa3CQ6neZ6hyBF61RJ5oHS/ZO6h4ZZzdBJU1/BVbt6
+	 0dhMpWPAx9e2w==
+From: Lukasz Majewski <lukma@denx.de>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	devicetree@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>,
+	Michael Walle <mwalle@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	Lukasz Majewski <lukma@denx.de>
+Subject: [PATCH] dt-bindings: arm: Document the btt3 i.MX28 based board
+Date: Mon,  9 Sep 2024 13:38:58 +0200
+Message-Id: <20240909113858.359112-1-lukma@denx.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] i2c: i2c-qcom-geni: Enable i2c controller sharing
- between two subsystems
-To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
- neil.armstrong@linaro.org, konrad.dybcio@linaro.org, andersson@kernel.org,
- andi.shyti@kernel.org, linux-arm-msm@vger.kernel.org,
- dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, conor+dt@kernel.org, agross@kernel.org,
- devicetree@vger.kernel.org, vkoul@kernel.org, linux@treblig.org,
- dan.carpenter@linaro.org, Frank.Li@nxp.com, konradybcio@kernel.org
-Cc: quic_vdadhani@quicinc.com
-References: <20240906191438.4104329-1-quic_msavaliy@quicinc.com>
- <20240906191438.4104329-5-quic_msavaliy@quicinc.com>
- <b3a5dd54-90ba-4d75-9650-efbff12cddeb@linaro.org>
- <3bd27b6d-74b8-4f7b-b3eb-64682442bbda@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konradybcio@kernel.org>
-In-Reply-To: <3bd27b6d-74b8-4f7b-b3eb-64682442bbda@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On 9.09.2024 11:18 AM, Mukesh Kumar Savaliya wrote:
-> Hi Neil,
-> 
-> On 9/9/2024 2:24 PM, neil.armstrong@linaro.org wrote:
->> Hi,
->>
->> On 06/09/2024 21:14, Mukesh Kumar Savaliya wrote:
->>> Add support to share I2C SE by two Subsystems in a mutually exclusive way.
->>> Use  "qcom,shared-se" flag in a particular i2c instance node if the
->>> usecase requires i2c controller to be shared.
->>>
->>> I2C driver just need to mark first_msg and last_msg flag to help indicate
->>> GPI driver to  take lock and unlock TRE there by protecting from concurrent
->>> access from other EE or Subsystem.
->>>
->>> gpi_create_i2c_tre() function at gpi.c will take care of adding Lock and
->>> Unlock TRE for the respective transfer operations.
->>>
->>> Since the GPIOs are also shared for the i2c bus between two SS, do not
->>> touch GPIO configuration during runtime suspend and only turn off the
->>> clocks. This will allow other SS to continue to transfer the data
->>> without any disturbance over the IO lines.
->>
->> This doesn't answer my question about what would be the behavior if one
->> use uses, for example, GPI DMA, and the Linux kernel FIFO mode or SE DMA ?
->>
-> Shared usecase is not supported for non GSI mode (FIFO and DMA), it should be static usecase. Dynamic sharing from two clients of two subsystems is only for GSI mode. Hope this helps ?
+The imx287 based btt3 board is very similar to xea in terms of used SOM
+module.
 
-This should very much be explained in commit message and perhaps in code
+Signed-off-by: Lukasz Majewski <lukma@denx.de>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-And since it can't work with FIFO mode, there should be checks in code
-to disallow such invalid configurations
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 80747d79418a..f290c824a91b 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -97,6 +97,7 @@ properties:
+               - i2se,duckbill
+               - i2se,duckbill-2
+               - karo,tx28                 # Ka-Ro electronics TX28 module
++              - lwn,imx28-btt3
+               - lwn,imx28-xea
+               - msr,m28cu3                # M28 SoM with custom base board
+               - schulercontrol,imx28-sps1
+-- 
+2.39.2
 
-Konrad
 
