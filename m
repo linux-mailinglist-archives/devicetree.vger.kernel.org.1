@@ -1,104 +1,115 @@
-Return-Path: <devicetree+bounces-101541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8397B9724AF
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 23:54:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D99869724D3
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 00:00:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45ECC2845F6
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 21:54:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1731C1C22DAC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 22:00:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E2DF18B468;
-	Mon,  9 Sep 2024 21:54:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAB1418A930;
+	Mon,  9 Sep 2024 22:00:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NQxyacZq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E69438F5A;
-	Mon,  9 Sep 2024 21:54:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=108.161.129.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A1CC17085C;
+	Mon,  9 Sep 2024 22:00:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725918847; cv=none; b=rXUQEqPat1mWRNi+t6xi1QXdprh5RBj4D6wT9s0eMkyNO8KIqW+WC55nNKi5mWyiuIJ7GNRrqMqzIh4eSGAANeTnsD1rIEuLjdo5N4EJ6/yzgra934jO1xLXEbdNediyzkKCAdA9Kdc6nleu+czAEl4KobMrS+6PX8fF5PfWoqY=
+	t=1725919241; cv=none; b=KPI93kEssoG1zSpMEpEmXPquuB49ToTcgYOnFbjV6CBt7qYLKb5MEsIRnep6IRz9AJv+FFIM2dtCvGbfgEdJPhZZc0oO+44ucFxC7OdQPrXXdTEGPGlGjWmvoegdnlRy13Nn7XSM6+l+//4YRHkqKYjGu+xGaBDK1nmY/IlEOuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725918847; c=relaxed/simple;
-	bh=OkAJo248tKLDNkWPbKRksWV7A/KTwjY3L0KE6W6ettg=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bxhIj7OUJ/+MYBNDWLbZeNnaUq4Rb3EkswbgJUKtEIQOupJqSppqJ9SoNOnHlZNBhBwkz+Md5g9XovHkzgo5ZrdiCiTfp8xRjxB0jEKj3HNbVLTghTgI9Ye/RueM9Slk/vFDCCFks6PnpTbZ/q1WW9nygVruBW6pO6oEzy5hXGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; arc=none smtp.client-ip=108.161.129.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
-Received: from syn-068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-	by finn.localdomain with esmtp (Exim 4.95)
-	(envelope-from <tharvey@gateworks.com>)
-	id 1snmKe-00EUmv-Ta;
-	Mon, 09 Sep 2024 21:54:01 +0000
-From: Tim Harvey <tharvey@gateworks.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Li Yang <leoyang.li@nxp.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Cc: Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH] arm64: dts: imx8mp-venice*: enable NPU support
-Date: Mon,  9 Sep 2024 14:53:59 -0700
-Message-Id: <20240909215359.780561-1-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1725919241; c=relaxed/simple;
+	bh=JGqxWA1KpqkAc55m1tTC6BCwYiBtn9t2WlYbKLNP9PA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t7LTXBUPaCpQdJxHG8SxPM471MOStfjEMmgVhfFTSHGkq3ACgq+APyboa9FzIZJAnDgICCdN7sBdIXBRuqtHIIF6zuSXMC7Co2tinYkIw12v9oaz/whXBOcG0cs26YHEwJYV7Hf4pZIBUOTM39HeTvDnDITYrucP8n4HGZAeJFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NQxyacZq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22797C4CEC5;
+	Mon,  9 Sep 2024 22:00:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725919241;
+	bh=JGqxWA1KpqkAc55m1tTC6BCwYiBtn9t2WlYbKLNP9PA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NQxyacZqx2mx4EIfylMDD80N8nKpi6Z4sD/6j/wb42m457LVQ7pSUYuqK9GwJ591u
+	 PbP+1nkeIN/X9dNDZ+QlCx7QuEuRErypeBcRu04QZcCVboJCDgqIAoCZlUQIoaZ3ry
+	 7yEiOmZB03zKzR2vJjhBoA1r0BTUqVtYhw9gX5VdjH7qmXrvgfaT7Ux6Om8uea3lgk
+	 k3uIZrrYN8N0cpQA3ftiduW3sSUipu5n8RYtU192usneRZ8bZN3ZxBrr1R26ApGpSO
+	 22OhK7XfNoCuee+oiepdl8ebEpfvTsT05+vRXrdkfbAMAYGjE2ObeU03mP7wkJrL0L
+	 3oNMpguap45Qw==
+Date: Mon, 9 Sep 2024 23:00:30 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Nikunj Kela <quic_nkela@quicinc.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, andersson@kernel.org,
+	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org,
+	herbert@gondor.apana.org.au, davem@davemloft.net,
+	sudeep.holla@arm.com, andi.shyti@kernel.org, tglx@linutronix.de,
+	will@kernel.org, robin.murphy@arm.com, joro@8bytes.org,
+	jassisinghbrar@gmail.com, lee@kernel.org, linus.walleij@linaro.org,
+	amitk@kernel.org, thara.gopinath@gmail.com,
+	cristian.marussi@arm.com, rui.zhang@intel.com, lukasz.luba@arm.com,
+	wim@linux-watchdog.org, linux@roeck-us.net,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-crypto@vger.kernel.org, arm-scmi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+	iommu@lists.linux.dev, linux-gpio@vger.kernel.org,
+	linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-watchdog@vger.kernel.org, kernel@quicinc.com,
+	quic_psodagud@quicinc.com,
+	Praveen Talari <quic_ptalari@quicinc.com>
+Subject: Re: [PATCH v2 16/21] dt-bindings: spi: document support for SA8255p
+Message-ID: <70673636-5b44-4b61-865c-83f9c5d3501d@sirena.org.uk>
+References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
+ <20240903220240.2594102-1-quic_nkela@quicinc.com>
+ <20240903220240.2594102-17-quic_nkela@quicinc.com>
+ <sdxhnqvdbcpmbp3l7hcnsrducpa5zrgbmkykwfluhrthqhznxi@6i4xiqrre3qg>
+ <b369bd73-ce2f-4373-8172-82c0cca53793@quicinc.com>
+ <9a655c1c-97f6-4606-8400-b3ce1ed3c8bf@kernel.org>
+ <d206e315-3324-4814-b98d-027c3af6ebb6@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="+4FsY8uVcR5U7FtS"
+Content-Disposition: inline
+In-Reply-To: <d206e315-3324-4814-b98d-027c3af6ebb6@quicinc.com>
+X-Cookie: Anything is possible, unless it's not.
 
-The IMX8MP has a VeriSilicon (Vivante VIP8000) NPU which
-is supported by the etnaviv driver. Enable it.
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
- arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi | 4 ++++
- arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts  | 4 ++++
- 2 files changed, 8 insertions(+)
+--+4FsY8uVcR5U7FtS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
-index 6c75a5ecf56b..f0211a96855b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
-@@ -393,6 +393,10 @@ &i2c3 {
- 	status = "okay";
- };
- 
-+&npu {
-+	status = "okay";
-+};
-+
- /* off-board header */
- &uart1 {
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-index 9885948952b4..8a04b66a4afc 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-@@ -666,6 +666,10 @@ &i2c4 {
- 	status = "okay";
- };
- 
-+&npu {
-+	status = "okay";
-+};
-+
- &pcie_phy {
- 	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
- 	fsl,clkreq-unsupported;
--- 
-2.25.1
+On Mon, Sep 09, 2024 at 01:29:37PM -0700, Nikunj Kela wrote:
 
+> Now I am confused which prefix format shall I use? first spi or first
+> dt-bindings?
+
+spi: first.
+
+--+4FsY8uVcR5U7FtS
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbfb/0ACgkQJNaLcl1U
+h9DmmAf9G79iJqbIo+rLvhxVQG/V00Xz3Y1hZjGbPTyKNQIuiSThwS/ZexjpAnky
+dxPN6CKinfv2CcaHSqAfTaiOX7e41E6yQe0MhZRHgvnp9GWDwzFR+vo/Jkf7vOvk
+FdHkgDxP+8DqOEk/JvSsuUbeWBm8+6SYmz3aY49ZDdTM/AWXoLpfIuRG9HHI4oC0
+pcewKeElbb4mm8XtAESmg+SfofXpaXXqWnzrqGfKnG2Jhz2SYaDIbLUzRrIcMyQC
+UkUJzcsdp019ZGJl0xUhb05YlxUPnZ2vQ1OJaDh/15NkTWCoSTdDX1WTWjHtmjfB
+soCaA83E+/cUHrHnZjH7ZOZFfA0F2A==
+=OtuN
+-----END PGP SIGNATURE-----
+
+--+4FsY8uVcR5U7FtS--
 
