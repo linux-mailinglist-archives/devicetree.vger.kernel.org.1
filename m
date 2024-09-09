@@ -1,115 +1,97 @@
-Return-Path: <devicetree+bounces-101542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D99869724D3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 00:00:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF94D9724E2
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 00:02:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1731C1C22DAC
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 22:00:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 050D31C216EC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 22:02:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAB1418A930;
-	Mon,  9 Sep 2024 22:00:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 782E618A930;
+	Mon,  9 Sep 2024 22:02:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NQxyacZq"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="T/EMmWsy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A1CC17085C;
-	Mon,  9 Sep 2024 22:00:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7522120DC4;
+	Mon,  9 Sep 2024 22:02:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725919241; cv=none; b=KPI93kEssoG1zSpMEpEmXPquuB49ToTcgYOnFbjV6CBt7qYLKb5MEsIRnep6IRz9AJv+FFIM2dtCvGbfgEdJPhZZc0oO+44ucFxC7OdQPrXXdTEGPGlGjWmvoegdnlRy13Nn7XSM6+l+//4YRHkqKYjGu+xGaBDK1nmY/IlEOuA=
+	t=1725919334; cv=none; b=l97mmg8dxpd8R431qnS7s3MViFHb5HmH6n09NZ+xHzxtzrhFbknFwNMNS9pd7bYTPYNtbmDNSU/MNTs/tJfV8tRKBMLoAjajvWjebvZriMlTBqpgu1Rocq7arGbf1ygqPdBDwN3fzfjGyLzSN+/dfpraidynffCrsx7fT3NMgyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725919241; c=relaxed/simple;
-	bh=JGqxWA1KpqkAc55m1tTC6BCwYiBtn9t2WlYbKLNP9PA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t7LTXBUPaCpQdJxHG8SxPM471MOStfjEMmgVhfFTSHGkq3ACgq+APyboa9FzIZJAnDgICCdN7sBdIXBRuqtHIIF6zuSXMC7Co2tinYkIw12v9oaz/whXBOcG0cs26YHEwJYV7Hf4pZIBUOTM39HeTvDnDITYrucP8n4HGZAeJFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NQxyacZq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22797C4CEC5;
-	Mon,  9 Sep 2024 22:00:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725919241;
-	bh=JGqxWA1KpqkAc55m1tTC6BCwYiBtn9t2WlYbKLNP9PA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NQxyacZqx2mx4EIfylMDD80N8nKpi6Z4sD/6j/wb42m457LVQ7pSUYuqK9GwJ591u
-	 PbP+1nkeIN/X9dNDZ+QlCx7QuEuRErypeBcRu04QZcCVboJCDgqIAoCZlUQIoaZ3ry
-	 7yEiOmZB03zKzR2vJjhBoA1r0BTUqVtYhw9gX5VdjH7qmXrvgfaT7Ux6Om8uea3lgk
-	 k3uIZrrYN8N0cpQA3ftiduW3sSUipu5n8RYtU192usneRZ8bZN3ZxBrr1R26ApGpSO
-	 22OhK7XfNoCuee+oiepdl8ebEpfvTsT05+vRXrdkfbAMAYGjE2ObeU03mP7wkJrL0L
-	 3oNMpguap45Qw==
-Date: Mon, 9 Sep 2024 23:00:30 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Nikunj Kela <quic_nkela@quicinc.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, andersson@kernel.org,
-	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, rafael@kernel.org, viresh.kumar@linaro.org,
-	herbert@gondor.apana.org.au, davem@davemloft.net,
-	sudeep.holla@arm.com, andi.shyti@kernel.org, tglx@linutronix.de,
-	will@kernel.org, robin.murphy@arm.com, joro@8bytes.org,
-	jassisinghbrar@gmail.com, lee@kernel.org, linus.walleij@linaro.org,
-	amitk@kernel.org, thara.gopinath@gmail.com,
-	cristian.marussi@arm.com, rui.zhang@intel.com, lukasz.luba@arm.com,
-	wim@linux-watchdog.org, linux@roeck-us.net,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-crypto@vger.kernel.org, arm-scmi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-	iommu@lists.linux.dev, linux-gpio@vger.kernel.org,
-	linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, kernel@quicinc.com,
-	quic_psodagud@quicinc.com,
-	Praveen Talari <quic_ptalari@quicinc.com>
-Subject: Re: [PATCH v2 16/21] dt-bindings: spi: document support for SA8255p
-Message-ID: <70673636-5b44-4b61-865c-83f9c5d3501d@sirena.org.uk>
-References: <20240828203721.2751904-1-quic_nkela@quicinc.com>
- <20240903220240.2594102-1-quic_nkela@quicinc.com>
- <20240903220240.2594102-17-quic_nkela@quicinc.com>
- <sdxhnqvdbcpmbp3l7hcnsrducpa5zrgbmkykwfluhrthqhznxi@6i4xiqrre3qg>
- <b369bd73-ce2f-4373-8172-82c0cca53793@quicinc.com>
- <9a655c1c-97f6-4606-8400-b3ce1ed3c8bf@kernel.org>
- <d206e315-3324-4814-b98d-027c3af6ebb6@quicinc.com>
+	s=arc-20240116; t=1725919334; c=relaxed/simple;
+	bh=lYe0rkgDtNI/jidOEoLsGYoSEBJ5bkP3iMRt2gTBbhg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jAHgeUq0ghnv2D09tbS/1TveM6JU8OKoh+qN8VG2KwJox1SaOE/olLXBlDG97Iauthlj4ZvhwMYPSHvxAQWjMS54PYk1To3JMnR00gsRZpVaakNocmjSBFI1k9gKayXYplBfCWqBhmH+puW7q8mJ3t22RxGnS2UKvQi0rntXEAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=T/EMmWsy; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 5804F889CD;
+	Tue, 10 Sep 2024 00:02:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1725919330;
+	bh=VkV/85NfsMuF4xAjgFPcrSD/zAtFj55s0fBB60UNJPk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=T/EMmWsynmIAniaAax3Ts4ckj3WGIo3W74CW+ygL4+jbdBbxF/5WCyajRoAXwsU0g
+	 4xBON9dsRX6hNfeaE9Q8pwJ2EzHv2R+rMtm9sBSIQmO5fASAK7e9VjGH7Ryk5pAAwA
+	 2lpKaWLJsrOirglnL+cguURyn3Dt9WuYSMJy51tKh4c+C8dYb84Qmp0ibnV2G5Lop9
+	 1h3nFmU5glRC33r/3FJi6VgNvuokCPxDmXGUzObxJa+1Kh6qrF+WZjXAvt+9XVpm+D
+	 0/lcOLALKjgr2huvXV9Y6PTjGQMGp9xRDdwV983d/RexK6KWDikaq1Sptr3RNLXyRy
+	 8jM+QbMVuRO3A==
+Message-ID: <29644c36-41ab-46b5-b758-b79f5d668912@denx.de>
+Date: Tue, 10 Sep 2024 00:02:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="+4FsY8uVcR5U7FtS"
-Content-Disposition: inline
-In-Reply-To: <d206e315-3324-4814-b98d-027c3af6ebb6@quicinc.com>
-X-Cookie: Anything is possible, unless it's not.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 5/5] wifi: wilc1000: Add WILC3000 support
+To: Ajay.Kathat@microchip.com, kvalo@kernel.org
+Cc: linux-wireless@vger.kernel.org, davem@davemloft.net,
+ alexis.lothore@bootlin.com, claudiu.beznea@tuxon.dev, conor+dt@kernel.org,
+ edumazet@google.com, kuba@kernel.org, krzk+dt@kernel.org, pabeni@redhat.com,
+ robh@kernel.org, devicetree@vger.kernel.org, netdev@vger.kernel.org
+References: <20240829004510.178016-1-marex@denx.de>
+ <20240829004510.178016-5-marex@denx.de> <87ed5tgofh.fsf@kernel.org>
+ <7205210d-8bf8-41ba-9462-38e619027a45@microchip.com>
+ <87le00g2dw.fsf@kernel.org>
+ <898e5736-9d9f-46ae-ba56-952b0cce9183@microchip.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <898e5736-9d9f-46ae-ba56-952b0cce9183@microchip.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
+On 9/9/24 11:11 PM, Ajay.Kathat@microchip.com wrote:
 
---+4FsY8uVcR5U7FtS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+[...]
 
-On Mon, Sep 09, 2024 at 01:29:37PM -0700, Nikunj Kela wrote:
-
-> Now I am confused which prefix format shall I use? first spi or first
-> dt-bindings?
-
-spi: first.
-
---+4FsY8uVcR5U7FtS
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbfb/0ACgkQJNaLcl1U
-h9DmmAf9G79iJqbIo+rLvhxVQG/V00Xz3Y1hZjGbPTyKNQIuiSThwS/ZexjpAnky
-dxPN6CKinfv2CcaHSqAfTaiOX7e41E6yQe0MhZRHgvnp9GWDwzFR+vo/Jkf7vOvk
-FdHkgDxP+8DqOEk/JvSsuUbeWBm8+6SYmz3aY49ZDdTM/AWXoLpfIuRG9HHI4oC0
-pcewKeElbb4mm8XtAESmg+SfofXpaXXqWnzrqGfKnG2Jhz2SYaDIbLUzRrIcMyQC
-UkUJzcsdp019ZGJl0xUhb05YlxUPnZ2vQ1OJaDh/15NkTWCoSTdDX1WTWjHtmjfB
-soCaA83E+/cUHrHnZjH7ZOZFfA0F2A==
-=OtuN
------END PGP SIGNATURE-----
-
---+4FsY8uVcR5U7FtS--
+>>> Does it make sense to add a module parameter for device type(wilc1000 or
+>>> wilc3000) to address device-specific featurization.
+>>
+>> We don't do hacks like that in upstream, it's expected that the driver
+>> does this all automatically.
+> 
+> Marek has already submitted the patch to delay calling wiphy_register() so it
+> should work at run time for both the devices.
+> I'm just curious to know for which scenario the module parameters should be
+> used. Can it be used for enabling or disabling any feature, configuring any
+> parameters, instead of complete device-specific featurization.
+Module parameters are applicable for tunables which cannot be otherwise 
+configured at runtime. Runtime configuration is always preferable. For 
+the wilc, I don't think there is anything which has to be a module 
+parameter, maybe firmware filename could be it.
 
