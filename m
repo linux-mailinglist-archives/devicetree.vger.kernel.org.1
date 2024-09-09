@@ -1,141 +1,95 @@
-Return-Path: <devicetree+bounces-101480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCFFF971F30
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 18:27:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DEBD971F3E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 18:30:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B38028196E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 16:27:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB1E8B22A3F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 16:30:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EFB21531C0;
-	Mon,  9 Sep 2024 16:27:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F1511537C8;
+	Mon,  9 Sep 2024 16:30:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="maX7j6w8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iVoKh7Bt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E91C2C87A;
-	Mon,  9 Sep 2024 16:27:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D72002771C;
+	Mon,  9 Sep 2024 16:30:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725899261; cv=none; b=lP0JSPnf1GHeOBqwEEhu4C1bpSQDR/ZbA1uIdtKL/5dlo3AR5L6oR9awJRjfes2spaswy6xzVJMsXl3iFZCR1gL4WFwddGfxe/AUdDlNBOHadgBccI0mFW03rE3d75fcPlc7bZrGZnK0MIrsYKXqkXlS4VJqtImRWn5ze2kzKj8=
+	t=1725899444; cv=none; b=aKwHBHpfUZvXQCLLoj+RePRL0O9QtlIlU740VFXwXPPNzoM53tTRGf47ve5pMkZ+7QJWTJlf8SFbKllrYj2lV75PvCKk9y4FLkiLWyHiv3CVi1wr+fGDtZw0nKTfAWJmgsCAPS68vVIgPGGEjTZAaoL7Dxp9a4mhq/oNzARb4sQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725899261; c=relaxed/simple;
-	bh=gReMfDfyQxK0TNX+VbTFEwbiTxD2pt6LzymgTSl1Vi0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=k52jn3zo+Ocf2j0JjXlxMMFYvbLHafLVsQQoGqViuUeHvZ+Q7/+5vrQed/Y+Luq9uKKSc5dGcnToZFoftEBG9yGc69OskWhRPbD0xI3aj3mzrVG34LncVHZNk5QP9QKN0xi6bMHjYsQQ3yx9/tub9cFw0OqTzFLIGB3y3di2w5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=maX7j6w8; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 489DRSHV024830;
-	Mon, 9 Sep 2024 16:27:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+QEnHSC22Ligfn27HbKmLaJnl2aanTUvxvtU0qRFqNk=; b=maX7j6w8BxPDGEMc
-	QswnA7mdRwzT+aCa7v9Y77d99cRaIzi013VH0pQhp1iq3/0Y6LunMiSsUwMeaE8l
-	j/xcQnrNqhw1D8RrrjMgOy7stQDl/qafOukBO75MF+h2nYpMKneebBkdEoJguhYA
-	0oxDze4TzIR1ndUOnGF1bDcXe8wqGuQtyTUWvsIOhAz89DTf73T4N0TAPJx46+CE
-	GxqlBuGgT90p0YDXwtmdFsvr8HrN0EpgrSzNR2u282DAgesFophR8F8kPNkvClVj
-	f/Pz98x7IyBJqWYOYTmUG8Q4mrp5cpwdnY4lctvsf8S1xGmeMbD0o83IeiphUXfL
-	UJgGag==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy5rbdra-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Sep 2024 16:27:35 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 489GRYT6013497
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Sep 2024 16:27:34 GMT
-Received: from [10.110.76.134] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 9 Sep 2024
- 09:27:31 -0700
-Message-ID: <3f4bfa7b-c365-4fcb-a818-18e2f9351475@quicinc.com>
-Date: Mon, 9 Sep 2024 09:27:31 -0700
+	s=arc-20240116; t=1725899444; c=relaxed/simple;
+	bh=SijMxlPS2d+y1Q8eTo8Td1dmzevGnURxE5EkxDDjDjU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bDURaWiYv/xBlzdyTagOp1VkN2aASQ3NHB9D1wj7+fV0jnlaMmfWfauiq3cu4r7q+ZBfyZKkh0UtwPdTVtJGaY+4ujUlkSreGKVWO9ERORYBzjPa+8AaHxYm8+a7OSVxQ/tU7rDoaSel5OzhtHbj+fGZLrRy7xc/dJJp9Ppt7Uk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iVoKh7Bt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2360C4CEC7;
+	Mon,  9 Sep 2024 16:30:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725899443;
+	bh=SijMxlPS2d+y1Q8eTo8Td1dmzevGnURxE5EkxDDjDjU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iVoKh7BtDABa4TTEUYl0bfbva4OeD+0ythCEfgZUnHLQqMkxLheT263aYiFhhx678
+	 pu7Qc++6CJRxThHZeJHmK1YSf4M9dCGtMiFy5mZKLzk0iuljH+/93rd1CWVtCYnyf2
+	 KEwAZ1Ydq11k7sUW7+g/eSqldyAsDw9v62mLylhjU/RiirgNxbYAbyBFsbvNc5HS7s
+	 sIweFNbnwxMrStZGYnX/ZrzGT/7hcJtH+gS2H6fHmAo3K5AyXe04K/U3+QTv0bTEMG
+	 014JGGm1utlAEcv44sVX7kUX0KRetGBwD+6iOoG3d2H0aQ3GNn3uCBPVQ4eMnNz/CS
+	 hJQoWv5iGHvcA==
+Date: Mon, 9 Sep 2024 17:30:38 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Masahiro Yamada <masahiroy@kernel.org>
+Cc: linux-kbuild@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-snps-arc@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Michal Simek <monstr@monstr.eu>, Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+	linux-openrisc@vger.kernel.org, Dinh Nguyen <dinguyen@kernel.org>
+Subject: Re: [PATCH 06/15] riscv: migrate to the generic rule for built-in DTB
+Message-ID: <20240909-trial-composer-83d5f5cc4fc6@spud>
+References: <20240904234803.698424-1-masahiroy@kernel.org>
+ <20240904234803.698424-7-masahiroy@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: arm: GIC: add ESPI and EPPI specifiers
-To: Rob Herring <robh@kernel.org>
-CC: <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        <quic_psodagud@quicinc.com>
-References: <20240908010205.863701-1-quic_nkela@quicinc.com>
- <20240909155431.GA207498-robh@kernel.org>
-Content-Language: en-US
-From: Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <20240909155431.GA207498-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: sQ4O9qt3Gn1LRs0oXduX4kD6-FmdVpha
-X-Proofpoint-ORIG-GUID: sQ4O9qt3Gn1LRs0oXduX4kD6-FmdVpha
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- clxscore=1015 malwarescore=0 bulkscore=0 lowpriorityscore=0 adultscore=0
- mlxscore=0 impostorscore=0 priorityscore=1501 mlxlogscore=751 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2408220000
- definitions=main-2409090130
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="1zmht3JeO8heTtkb"
+Content-Disposition: inline
+In-Reply-To: <20240904234803.698424-7-masahiroy@kernel.org>
 
 
-On 9/9/2024 8:54 AM, Rob Herring wrote:
-> On Sat, Sep 07, 2024 at 06:02:05PM -0700, Nikunj Kela wrote:
->> Add interrupt specifier for extended SPI and extended PPI interrupts.
-> Are extended SPI and PPI a GIC defined thing? What version of GIC?
->
-> Yes, I think I already asked these questions, but I only remember what 
-> you put into the commit message.
+--1zmht3JeO8heTtkb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Got it, let me add those details in the commit description. Thanks
+On Thu, Sep 05, 2024 at 08:47:42AM +0900, Masahiro Yamada wrote:
+> Select GENERIC_BUILTIN_DTB when built-in DTB support is enabled.
+>=20
+> To keep consistency across architectures, this commit also renames
+> CONFIG_BUILTIN_DTB_SOURCE to CONFIG_BUILTIN_DTB_NAME.
+>=20
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
 
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
->
->> Qualcomm SA8255p platform uses extended SPI for SCMI 'a2p' doorbells.
->>
->> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
->> ---
->>
->> Changes in v3:
->> 	- Removed the patch from original series[1]
->>
->> Changes in v2:
->> 	- Modified subject line and description
->> 	- Added EPPI macro
->>
->> [1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
->> ---
->>  include/dt-bindings/interrupt-controller/arm-gic.h | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/include/dt-bindings/interrupt-controller/arm-gic.h b/include/dt-bindings/interrupt-controller/arm-gic.h
->> index 35b6f69b7db6..887f53363e8a 100644
->> --- a/include/dt-bindings/interrupt-controller/arm-gic.h
->> +++ b/include/dt-bindings/interrupt-controller/arm-gic.h
->> @@ -12,6 +12,8 @@
->>  
->>  #define GIC_SPI 0
->>  #define GIC_PPI 1
->> +#define GIC_ESPI 2
->> +#define GIC_EPPI 3
->>  
->>  /*
->>   * Interrupt specifier cell 2.
->> -- 
->> 2.34.1
->>
+--1zmht3JeO8heTtkb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZt8irgAKCRB4tDGHoIJi
+0trhAQDqKRWWntMPCunsAaxopzU2jYVbAtsCUiJEW/z2j58/yAD7BJE6vqDg5O7Y
+VqGnVulUhYdkydfA4mgszdVz6GVWzQQ=
+=QBvD
+-----END PGP SIGNATURE-----
+
+--1zmht3JeO8heTtkb--
 
