@@ -1,270 +1,148 @@
-Return-Path: <devicetree+bounces-101227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D35B597104A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:51:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 960D997104F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:52:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFB321C21FE2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 07:51:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 311FFB2145F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 07:52:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 360CF1B0107;
-	Mon,  9 Sep 2024 07:51:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C409F1B0128;
+	Mon,  9 Sep 2024 07:52:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y32/EI+f"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Zq6JXZ//"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EAD0176237;
-	Mon,  9 Sep 2024 07:51:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 832DA1AF4D9;
+	Mon,  9 Sep 2024 07:52:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725868311; cv=none; b=O/9KqLyKjmxFPoM240spTMiUE121U6MJJyYhSLZ6cFizlYcH368NV/tub3lz3ZFSoMTaMXGRfJvHbM7dKHqOHE2Bxpfzd9XYxsl01XlJj55QCv+gWb1Pi/VYELlBNWd7KwIpRXpLzxwZ3n0Ctwtu6ezvKV7snEB3VEEpX2yA36U=
+	t=1725868337; cv=none; b=J86bvj4H6zq+UeUvbcoIsugXo7gJt3+CZeOwPkeML8ki+7PiE+SKBliKU4YrPfIMHEXeTO5KquJSbI2tYBBI52GCkCFX8b8DxAYgiDyKDzW+bl3idQMSwoB/DUfxsoUsYQUrPNTdz2PcTrR8GYUlJrk3J3UFx2b41mZDStzDF2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725868311; c=relaxed/simple;
-	bh=NaK4IGkK3yYM9oPYSZNZv1mQk+31AqxJcc0vqsBTh4o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uEuoM11AEPwCxQ6qihZPjZB7hV5WTk+ncpKCV7o2tF8qOJJ2/R1/z9+rYV5zIPQUE+YJhhlg1t5gNYFljF/vF3bI+Qjhe8ZCtsbZS89+pBms65qIbDlGQvWsowok32ro8ukg0TbjYj3npKYHMWsy81rxf3TlVMxORsfH0ohtF0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y32/EI+f; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a86e9db75b9so514144366b.1;
-        Mon, 09 Sep 2024 00:51:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725868308; x=1726473108; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NnlMePaQtVgsvXk9LZxuNr2z31hgnUzp7zp9Z82EdG4=;
-        b=Y32/EI+fmUFHuB2dUKLcjsrEd4BvF62kW5zQVc+jTNxUYbI7wXliDxDc1VrZ8nCHY0
-         vPEt1+b768PuUh0ZmUdMsSgMtWcegRe8A3okw9PrGj483j25BrDjvLu5QTwt/OKPgl6V
-         LXcsNKkaNJrRMmFk8xsnkSdfMX8bcv4C0hFFJVDdyfa646m0Vu6ZIBGmtJ29QE/nHcrL
-         XNmoxb9/r2NnaA2KgXpR5z9DjydAmgAj1dWaW2MwG4xys8A/h6KHVmVCxPRmCNJp/4ak
-         u4fmD2TxdQzJiv7X4WJ46Vh7kQHqKsi0yg1WU1C7R03X2SPsO5C2lF93z9yb+St2SuTp
-         qbjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725868308; x=1726473108;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NnlMePaQtVgsvXk9LZxuNr2z31hgnUzp7zp9Z82EdG4=;
-        b=rN/2GejFzzP9iuZP3lTF3QcVdqxmbnvWXCqeNFkKhoze89fQCAcblo0V0WL1Dc6kAI
-         xHUr7bGwsJChujpOe92HFlNy0v5xpo5NmPXRS+LjzxaNgMkYg49fJuQpMrk+MDzg0/Fo
-         lwUmwW26bCYtV17a2cMey01cVAJqUFEJ+JY6QVf2iehQnQOVn91vUt6ONrJHQsXbRKDg
-         KKyF1TZfQQZlsYccQ6nIA+F+ehWJY7RfwYtFswXXbZm/2xsGdNHm/OqeJu+GE6/KW3OI
-         acATY8C0nM3DZCuVE72wuB4isBbTSkkgod1do/2BeJUfxBQm2BkZLNXCpABnOWFEJaKn
-         iyZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVrIh2NFeciSzVVw0Tu+d0R+XBNBbr2U1Ya64m8TqGQzrmnTIoKy4+LQ3PLImECBFRJaEtOeyGOD1q8@vger.kernel.org, AJvYcCXn9ZV2BuOkwpdEGDWoKmNXjo1Yw+6DQ56bWX8O0tsBi1i6V8ID1MH7wBZOvAV/rjCpJmBW1Rii3kg5xgQ=@vger.kernel.org
-X-Gm-Message-State: AOJu0YznV7b3CFP6fZVNdFReHiTyID/s5+8np8USqO+5/+iuBcvXxSEH
-	przJSJUO1P3WY1st0j7p262NX4prVkWcSSTDHri03yHVjggwKIR/d6VFs0dBrrwf/Lk762+0lGq
-	hRmy7HRiKXa6ATJb+G1DTa/Ewe1o=
-X-Google-Smtp-Source: AGHT+IEhowGhRw3O8ArkWuoOyknvA+dN/sW3KyN/Fh6QVm9IsWldUL1q16FBTUiLgmmhisNSM7Df20xn6rpR9GQt0hI=
-X-Received: by 2002:a17:907:3e04:b0:a7a:97ca:3056 with SMTP id
- a640c23a62f3a-a8a885f5cd9mr986531866b.16.1725868307394; Mon, 09 Sep 2024
- 00:51:47 -0700 (PDT)
+	s=arc-20240116; t=1725868337; c=relaxed/simple;
+	bh=tYpdgaZCN0lmhTqQidVM517rCDCWKPWudibqWnwydI8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hh1/prBYLk43uoaz2bmqoCV5Th/nDoO9kzinaCVpvh5usdH/kuBY8phJ1yignsZOpQktN4NL2exAVU3nUoBIXKA5PnWcgBPupZpFVa7opfUGpFuB8kDJYYNIPMoytyAqO3Mn0VpzEQbPSqDwAQ1kAvxbHYMhPwRK9uWp7Y/KLKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Zq6JXZ//; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 26DFA40005;
+	Mon,  9 Sep 2024 07:52:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1725868327;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ryHecAjCKFHY5a39/P+GIvh5tYnxD8Fg8PfucobQxhs=;
+	b=Zq6JXZ//+adouwtwkw6boEPhyiUb2gfFl1RlA0RtXhCzJdYB5HfGK1TUuiPkVXECfEwRwo
+	5FksXPPXTfRR/GOVEhY+/BBte1UQQL25WwxYjwMs8hI6zh80c0qZ8lho8BBY9p/4i7aqGx
+	HVeByxhdV3V98xdhXabPHXeeVJJ+ojd/5b5xx4NhZ2xsZZaBgPbGmDkM7S5gBdiuQFAVn4
+	WF17yA5QBKYBiKqL8Q7+2YUgOIzQQwVr5fl42DKQM21/Muj8AIaUrastdmO0NdIpt/nGT+
+	dfkAHGEQdaTjvIEcerwNh6l4fmtvPPZrqc3P4P4ns6/jQPS79ay20fahDCDf3g==
+Date: Mon, 9 Sep 2024 09:52:03 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Lee Jones <lee@kernel.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Andy Shevchenko
+ <andy.shevchenko@gmail.com>, Simon Horman <horms@kernel.org>, Arnd Bergmann
+ <arnd@arndb.de>, Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Lars Povlsen <lars.povlsen@microchip.com>, Steen
+ Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon
+ <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, Rob Herring
+ <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?=
+ <clement.leger@bootlin.com>
+Subject: Re: [PATCH v5 3/8] mfd: syscon: Add reference counting and device
+ managed support
+Message-ID: <20240909095203.3d6effdb@bootlin.com>
+In-Reply-To: <20240903180116.717a499b@bootlin.com>
+References: <20240808154658.247873-1-herve.codina@bootlin.com>
+	<20240808154658.247873-4-herve.codina@bootlin.com>
+	<20240903153839.GB6858@google.com>
+	<20240903180116.717a499b@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1725518229.git.zhoubinbin@loongson.cn> <f9111564acc6c9ac011318a7eb3c6843ea0529ce.1725518229.git.zhoubinbin@loongson.cn>
- <x2vcgpjlamobnlsj7ty5aekj35kjzpraizqd2zhvbwi7mhputx@snxtfb3hgznb>
-In-Reply-To: <x2vcgpjlamobnlsj7ty5aekj35kjzpraizqd2zhvbwi7mhputx@snxtfb3hgznb>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Mon, 9 Sep 2024 13:51:32 +0600
-Message-ID: <CAMpQs4JsbodfscgQPYVz0K99mYAQzZp3pvhmHuvddsw3YWvQEA@mail.gmail.com>
-Subject: Re: [PATCH v1 06/10] ASoC: loongson: Fix codec detection failure on
- FDT systems
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Huacai Chen <chenhuacai@kernel.org>, 
-	devicetree@vger.kernel.org, linux-sound@vger.kernel.org, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-Hi Krzysztof:
+Hi Lee, Arnd,
 
-Thanks for your detailed review.
+On Tue, 3 Sep 2024 18:01:16 +0200
+Herve Codina <herve.codina@bootlin.com> wrote:
 
-On Fri, Sep 6, 2024 at 4:29=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On Thu, Sep 05, 2024 at 03:02:55PM +0800, Binbin Zhou wrote:
-> > When the Codec is compiled into a module, we can't use
-> > snd_soc_of_get_dlc() to get the codec dai_name, use
-> > snd_soc_get_dai_name() instead.
-> >
-> > Also, for the cpu dailink, its dai_name is already defined as
-> > "loongson-i2s", so just get the corresponding of_node attribute here.
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > ---
-> >  sound/soc/loongson/loongson_card.c | 89 +++++++++++++++++++++---------
-> >  1 file changed, 63 insertions(+), 26 deletions(-)
-> >
-> > diff --git a/sound/soc/loongson/loongson_card.c b/sound/soc/loongson/lo=
-ongson_card.c
-> > index a25287efdd5c..d45a3e77cb90 100644
-> > --- a/sound/soc/loongson/loongson_card.c
-> > +++ b/sound/soc/loongson/loongson_card.c
-> > @@ -119,44 +119,81 @@ static int loongson_card_parse_acpi(struct loongs=
-on_card_data *data)
-> >       return 0;
-> >  }
-> >
-> > -static int loongson_card_parse_of(struct loongson_card_data *data)
-> > +static int loongson_parse_cpu(struct device *dev, struct device_node *=
-*dai_node)
-> >  {
-> > -     struct snd_soc_card *card =3D &data->snd_card;
-> > -     struct device_node *cpu, *codec;
-> > -     struct device *dev =3D card->dev;
-> > -     int ret, i;
-> > +     struct device_node *cpu;
-> > +     int ret =3D 0;
-> >
-> >       cpu =3D of_get_child_by_name(dev->of_node, "cpu");
-> > -     if (!cpu) {
-> > -             dev_err(dev, "platform property missing or invalid\n");
-> > +     if (!cpu)
-> >               return -EINVAL;
-> > -     }
-> > +
-> > +     *dai_node =3D of_parse_phandle(cpu, "sound-dai", 0);
-> > +     if (!*dai_node)
-> > +             ret =3D -EINVAL;
-> > +
-> > +     of_node_put(cpu);
->
-> This goes just after of_parse_phandle, which simplifies your code.
-
-OK.. the ret param is unnecessary also.
->
-> > +     return ret;
-> > +}
-> > +
-> > +static int loongson_parse_codec(struct device *dev, struct device_node=
- **dai_node,
-> > +                             const char **dai_name)
-> > +{
-> > +     struct of_phandle_args args;
-> > +     struct device_node *codec;
-> > +     int ret =3D 0;
-> >
-> >       codec =3D of_get_child_by_name(dev->of_node, "codec");
-> > -     if (!codec) {
-> > -             dev_err(dev, "audio-codec property missing or invalid\n")=
-;
-> > +     if (!codec)
->
-> Hm? So you exit here and then caller does of_node_put on stack value.
-> This is buggy.
-
-Sorry, I can not get your point, I think there is nothing that should be pu=
-t.
->
-> > +             return -EINVAL;
-> > +
-> > +     ret =3D of_parse_phandle_with_args(codec, "sound-dai", "#sound-da=
-i-cells", 0, &args);
-> > +     if (ret)
-> > +             goto free_codec;
-> > +
-> > +     ret =3D snd_soc_get_dai_name(&args, dai_name);
-> > +     if (ret)
->
-> Your error paths should clean here. Each function is responsible to
-> clean up after itself in case of errors, not rely on caller.
-
-Yes, I should of_node_put(args.np); here
->
-> > +             goto free_codec;
-> > +
-> > +     *dai_node =3D of_parse_phandle(codec, "sound-dai", 0);
-> > +     if (!*dai_node)
-> >               ret =3D -EINVAL;
-> > -             goto free_cpu;
-> > +
-> > +free_codec:
->
-> You are not freeing any resources here (at least not directly). You are
-> dropping reference. Use matching label name. free is associated with
-> kalloc()..
->
-
-OK, I will rename the label name as codec_put.
-
-Thanks.
-Binbin
->
-> > +     of_node_put(codec);
-> > +     return ret;
-> > +}
-> > +
-> > +static int loongson_card_parse_of(struct loongson_card_data *data)
-> > +{
-> > +     struct device_node *codec_dai_node, *cpu_dai_node;
-> > +     struct snd_soc_card *card =3D &data->snd_card;
-> > +     struct device *dev =3D card->dev;
-> > +     const char *codec_dai_name;
-> > +     int ret =3D 0, i;
-> > +
-> > +     ret =3D loongson_parse_cpu(dev, &cpu_dai_node);
-> > +     if (ret) {
-> > +             dev_err(dev, "cpu property missing or invalid.\n");
-> > +             goto out;
-> > +     }
-> > +
-> > +     ret =3D loongson_parse_codec(dev, &codec_dai_node, &codec_dai_nam=
-e);
-> > +     if (ret) {
-> > +             dev_err(dev, "audio-codec property missing or invalid.\n"=
-);
-> > +             goto out;
-> >       }
-> >
-> >       for (i =3D 0; i < card->num_links; i++) {
-> > -             ret =3D snd_soc_of_get_dlc(cpu, NULL, loongson_dai_links[=
-i].cpus, 0);
-> > -             if (ret) {
-> > -                     dev_err(dev, "getting cpu dlc error (%d)\n", ret)=
-;
-> > -                     goto free_codec;
-> > -             }
-> > -
-> > -             ret =3D snd_soc_of_get_dlc(codec, NULL, loongson_dai_link=
-s[i].codecs, 0);
-> > -             if (ret) {
-> > -                     dev_err(dev, "getting codec dlc error (%d)\n", re=
-t);
-> > -                     goto free_codec;
-> > -             }
-> > +             loongson_dai_links[i].platforms->of_node =3D cpu_dai_node=
-;
-> > +             loongson_dai_links[i].cpus->of_node =3D cpu_dai_node;
-> > +             loongson_dai_links[i].codecs->of_node =3D codec_dai_node;
-> > +             loongson_dai_links[i].codecs->dai_name =3D codec_dai_name=
-;
-> >       }
-> >
-> > -free_codec:
-> > -     of_node_put(codec);
-> > -free_cpu:
-> > -     of_node_put(cpu);
-> > +out:
-> > +     of_node_put(codec_dai_node);
->
-> Yeah, so here we see drop of reference from stack-based pointer...
->
+> Hi Lee,
+> 
+> On Tue, 3 Sep 2024 16:38:39 +0100
+> Lee Jones <lee@kernel.org> wrote:
+> 
+> > On Thu, 08 Aug 2024, Herve Codina wrote:
+> >   
+> > > From: Clément Léger <clement.leger@bootlin.com>
+> > > 
+> > > Syscon releasing is not supported.
+> > > Without release function, unbinding a driver that uses syscon whether
+> > > explicitly or due to a module removal left the used syscon in a in-use
+> > > state.
+> > > 
+> > > For instance a syscon_node_to_regmap() call from a consumer retrieves a
+> > > syscon regmap instance. Internally, syscon_node_to_regmap() can create
+> > > syscon instance and add it to the existing syscon list. No API is
+> > > available to release this syscon instance, remove it from the list and
+> > > free it when it is not used anymore.
+> > > 
+> > > Introduce reference counting in syscon in order to keep track of syscon
+> > > usage using syscon_{get,put}() and add a device managed version of
+> > > syscon_regmap_lookup_by_phandle(), to automatically release the syscon
+> > > instance on the consumer removal.
+> > > 
+> > > Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > > ---
+> > >  drivers/mfd/syscon.c       | 138 ++++++++++++++++++++++++++++++++++---
+> > >  include/linux/mfd/syscon.h |  16 +++++
+> > >  2 files changed, 144 insertions(+), 10 deletions(-)    
+> > 
+> > This doesn't look very popular.
+> > 
+> > What are the potential ramifications for existing users?
+> >   
+> 
+> Existing user don't use devm_syscon_regmap_lookup_by_phandle() nor
+> syscon_put_regmap().
+> 
+> So refcount is incremented but never decremented. syscon is never
+> released. Exactly the same as current implementation.
+> Nothing change for existing users.
+> 
 > Best regards,
-> Krzysztof
->
+> Hervé
+
+I hope I answered to Lee's question related to possible impacts on
+existing drivers.
+
+Is there anything else that blocks this patch from being applied ?
+
+Best regards,
+Hervé
 
