@@ -1,66 +1,64 @@
-Return-Path: <devicetree+bounces-101286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A2FD97130B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:13:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D011E97130F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:14:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44B38287F1E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:13:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B740B20B64
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:14:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D5311B2EE7;
-	Mon,  9 Sep 2024 09:13:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Nm6fxUam"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47AAF1B29D8;
+	Mon,  9 Sep 2024 09:14:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC131B2ECF;
-	Mon,  9 Sep 2024 09:13:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AA071B14FB
+	for <devicetree@vger.kernel.org>; Mon,  9 Sep 2024 09:14:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725873197; cv=none; b=atfKy/w0ytOdmSpWopVi0xwpGy9jywKC+2uCYYXiKKFK9r6hcFVXOjbL4EWNmy7Scuok0VMD3Xfl3JdOA5X4iSwrzd+i/yhEG9xXDSv8R2oD1rHFCReCIRqEO3vq8P7Dq5Y6im+oA8L4xGbvNiNiF8b74LZLBQWWRB/F+XpBgLg=
+	t=1725873244; cv=none; b=Sj3wVXs3XPeUP7l41JY1KGORjITvpbiSdVahw2Eg74bzDILolXbsWECrRRo0/0eHPpdpQybR/h9H4QeLNaZ6SsgPSnD1ST3RtLOnEKaYaOEacS/5PbIYAQVuTjyC1XWkM10KptNhQum17W+xX23+zhPPte+4lqnbHKiYi0JtSck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725873197; c=relaxed/simple;
-	bh=e2ZtB7/J/dXnRJ3lIbCKVoMI6QBb+RQ9HEmJypzOLus=;
+	s=arc-20240116; t=1725873244; c=relaxed/simple;
+	bh=M2PD1CroHou5Nhjj6pWmNVTmSiDvnL/wF88QwBNxXqM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Uw/Oa9GcWnDJLVlace2jF255zNfWTfvt/UNI7Rz3XJo5hfkJh+PMWGWkoqDhVcE+oQOSbKbqjcPnfnQy37fI4PjgAtiWrzirvnZ5A1pZ2Nhg2wf372UVV+YlnWdkrhSGvOom13sqNtlminfmGD4jsTjDnzl77SpHMRx87niGtwE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Nm6fxUam; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (unknown [213.208.157.109])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 066356EC;
-	Mon,  9 Sep 2024 11:11:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1725873117;
-	bh=e2ZtB7/J/dXnRJ3lIbCKVoMI6QBb+RQ9HEmJypzOLus=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Nm6fxUamoqf9FVPhR27x5kHHzMJvdy5JYdIx5BAkw7hGYyej0KQTJVwloDyVbkcpI
-	 U10/RsZYyT8ZGr3iwr0TxRDXb96BmbsaQH2rLF9joOMIWfZG+mENhGfrRRfmgU+UsL
-	 2pZrK/V9j8anOzXnwiuA3CYwQwI/jA4/D+JX2+eo=
-Date: Mon, 9 Sep 2024 11:13:07 +0200
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, Naushir Patuck <naush@raspberrypi.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Kieran Bingham <kieran.bingham@ideasonboard.com>, 
-	kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v4 3/4] media: raspberrypi: Add support for RP1-CFE
-Message-ID: <yib2r4wisxvk3kgogbjqawrpmfq6lcezfk4xjmftj44jzkbclc@icapodv2ffzk>
-References: <20240904-rp1-cfe-v4-3-f1b5b3d69c81@ideasonboard.com>
- <202409051822.ZzUGw3XQ-lkp@intel.com>
- <20240905111120.GK16183@pendragon.ideasonboard.com>
- <40cc1e95-b9fc-4c27-9428-1698d0bf9d25@ideasonboard.com>
- <763b3147-d7cb-44a7-b73b-8f7f4fd622ab@ideasonboard.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DQKPhz6rjWHhI+5jrTK/N3PTtB5Az2Bp6AJIOo0LpPHwNz/oyHU+dVRzBtVzRIUW4TN/xJHy+/fwhYe5FJpryoJTg/Sfh1cURBaLXs500XntNTJvSYR1UNUT6RW9rIsTp8Q4gs7Lh1kq3Kht9LG3BSQBiscNAtewC40PJrWMxHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1snaT9-0004BL-4W; Mon, 09 Sep 2024 11:13:59 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sha@pengutronix.de>)
+	id 1snaT5-006c5g-91; Mon, 09 Sep 2024 11:13:55 +0200
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1snaT5-00FfJM-0X;
+	Mon, 09 Sep 2024 11:13:55 +0200
+Date: Mon, 9 Sep 2024 11:13:55 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: detlev.casanova@collabora.com, heiko@sntech.de,
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	hjc@rock-chips.com, mripard@kernel.org,
+	sebastian.reichel@collabora.com, linux-rockchip@lists.infradead.org,
+	sjoerd@collabora.com, Andy Yan <andy.yan@rock-chips.com>,
+	krzk+dt@kernel.org, robh@kernel.org
+Subject: Re: Re: [PATCH v2 05/11] drm/rockchip: vop2: Introduce vop hardware
+ version
+Message-ID: <Zt68U6hnPA0KrxXB@pengutronix.de>
+References: <20240904120238.3856782-1-andyshrk@163.com>
+ <20240904120238.3856782-6-andyshrk@163.com>
+ <ZtlZgKcDQFF_WnCn@pengutronix.de>
+ <2326e2ea.8264.191c13bab93.Coremail.andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,87 +68,91 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <763b3147-d7cb-44a7-b73b-8f7f4fd622ab@ideasonboard.com>
+In-Reply-To: <2326e2ea.8264.191c13bab93.Coremail.andyshrk@163.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Tomi
+On Thu, Sep 05, 2024 at 04:09:58PM +0800, Andy Yan wrote:
+>    Hi Sascha,
+> 
+>  At 2024-09-05 15:10:56, "Sascha Hauer" <s.hauer@pengutronix.de> wrote:
+>  >Hi Andy,
+>  >
+>  >On Wed, Sep 04, 2024 at 08:02:32PM +0800, Andy Yan wrote:
+>  >> From: Andy Yan <andy.yan@rock-chips.com>
+>  >>
+>  >> There is a version number hardcoded in the VOP VERSION_INFO
+>  >> register, and the version number increments sequentially based
+>  >> on the production order of the SOC.
+>  >>
+>  >> So using this version number to distinguish different VOP features
+>  >> will simplify the code.
+>  >>
+>  >> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+>  >>
+>  >> ---
+>  >>
+>  >> Changes in v2:
+>  >> - Introduce vop hardware version
+>  >>
+>  >>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c |  7 ++++---
+>  >>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.h | 11 +++++++++++
+>  >>  drivers/gpu/drm/rockchip/rockchip_vop2_reg.c |  3 +++
+>  >>  3 files changed, 18 insertions(+), 3 deletions(-)
+>  >>
+>  >> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+>  >> index 9b269f6e576e..871d9bcd1d80 100644
+>  >> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+>  >> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+>  >> @@ -13,6 +13,15 @@
+>  >>  #include "rockchip_drm_drv.h"
+>  >>  #include "rockchip_drm_vop.h"
+>  >>
+>  >> +#define VOP2_VERSION(major, minor, build)     ((major) << 24 | (minor) << 16 | (build))
+>  >> +
+>  >> +/* The new SOC VOP version is bigger than the old */
+>  >> +#define VOP_VERSION_RK3568    VOP2_VERSION(0x40, 0x15, 0x8023)
+>  >> +#define VOP_VERSION_RK3588    VOP2_VERSION(0x40, 0x17, 0x6786)
+>  >> +#define VOP_VERSION_RK3528    VOP2_VERSION(0x50, 0x17, 0x1263)
+>  >> +#define VOP_VERSION_RK3562    VOP2_VERSION(0x50, 0x17, 0x4350)
+>  >> +#define VOP_VERSION_RK3576    VOP2_VERSION(0x50, 0x19, 0x9765)
+>  >
+>  >What about the RK3566? Does it have the same version code as the RK3568?
+>  >
+>  >This new version field replaces the soc_id mechanism we had before to
+>  >99%. You keep the soc_id around just for distinguishing between RK3566
+>  >and RK3568. It would be nice to fully replace it.
+>  >
+>  >I see that the VOP_VERSION_RK* numbers are the same as found in the
+>  >VOP2_SYS_VERSION_INF registers. On the other hand you never read the
+>  >value from the register which make the VOP_VERSION_RK* just arbitrary
+>  >numbers. Wouldn't it be possible to make something up for RK3566, like
+>  >VOP2_VERSION(0x40, 0x15, 0x8022) to get rid of the soc_id thingy?
+>  Yes，RK3566 and RK3568 share the same VOP IP block， so the version code at VERSION_REGISTER is
+>  the same, the difference between rk3568 and rk33566 are introduced at soc Integration。
+>  So i would still like to keep the soc_id to  handle situation like this。As we always have such  cause， one
+>  same IP block， but there are some subtle differences in features across different SOCs.
 
-On Mon, Sep 09, 2024 at 08:22:59AM GMT, Tomi Valkeinen wrote:
-> Hi Laurent, Jacopo,
->
-> On 09/09/2024 08:08, Tomi Valkeinen wrote:
-> > Hi,
-> >
-> > On 05/09/2024 14:11, Laurent Pinchart wrote:
-> > > On Thu, Sep 05, 2024 at 06:50:48PM +0800, kernel test robot wrote:
-> > > > Hi Tomi,
-> > > >
-> > > > kernel test robot noticed the following build warnings:
-> > > >
-> > > > [auto build test WARNING on 431c1646e1f86b949fa3685efc50b660a364c2b6]
-> > > >
-> > > > url:    https://github.com/intel-lab-lkp/linux/commits/Tomi-
-> > > > Valkeinen/media-uapi-Add-meta-formats-for-PiSP-FE-config-and-
-> > > > stats/20240904-192729
-> > > > base:   431c1646e1f86b949fa3685efc50b660a364c2b6
-> > > > patch link:    https://lore.kernel.org/r/20240904-rp1-cfe-v4-3-
-> > > > f1b5b3d69c81%40ideasonboard.com
-> > > > patch subject: [PATCH v4 3/4] media: raspberrypi: Add support
-> > > > for RP1-CFE
-> > > > config: m68k-allmodconfig (https://download.01.org/0day-ci/
-> > > > archive/20240905/202409051822.ZzUGw3XQ-lkp@intel.com/config)
-> > > > compiler: m68k-linux-gcc (GCC) 14.1.0
-> > > > reproduce (this is a W=1 build):
-> > > > (https://download.01.org/0day-ci/
-> > > > archive/20240905/202409051822.ZzUGw3XQ-lkp@intel.com/reproduce)
-> > > >
-> > > > If you fix the issue in a separate patch/commit (i.e. not just a
-> > > > new version of
-> > > > the same patch/commit), kindly add following tags
-> > > > | Reported-by: kernel test robot <lkp@intel.com>
-> > > > | Closes: https://lore.kernel.org/oe-kbuild-
-> > > > all/202409051822.ZzUGw3XQ-lkp@intel.com/
-> > > >
-> > > > All warnings (new ones prefixed by >>):
-> > > >
-> > > > > > drivers/media/platform/raspberrypi/rp1-cfe/cfe.c:2445:12:
-> > > > > > warning: 'cfe_runtime_resume' defined but not used
-> > > > > > [-Wunused-function]
-> > > >      2445 | static int cfe_runtime_resume(struct device *dev)
-> > > >           |            ^~~~~~~~~~~~~~~~~~
-> > > > > > drivers/media/platform/raspberrypi/rp1-cfe/cfe.c:2435:12:
-> > > > > > warning: 'cfe_runtime_suspend' defined but not used
-> > > > > > [-Wunused-function]
-> > > >      2435 | static int cfe_runtime_suspend(struct device *dev)
-> > > >           |            ^~~~~~~~~~~~~~~~~~~
-> > > > vim +/cfe_runtime_resume +2445
-> > > > drivers/media/platform/raspberrypi/ rp1-cfe/cfe.c
-> > >
-> > > The recommended way to fix this is to switch from SET_RUNTIME_PM_OPS()
-> > > to RUNTIME_PM_OPS() and use pm_ptr() to set .driver.pm. This being said,
-> > > the driver won't work on a kernel with !CONFIG_PM given how you
-> > > implemented probe() and remove().
-> > >
-> > > The pisp-be driver suffered from the same issue and Jacopo fixed it in
-> > > the last version. You can have a look at implement something similar.
-> >
-> > I can't right away think of any reason to not just depend on CONFIG_PM
-> > and be done with it without any tricks. Do you know if there's a reason?
+Fine with me. You could leave a comment in the code or commit
+message that explains why we need both.
 
-We had the same discussion, and even if I would be fine depending on
-CONFIG_PM, supporting !CONFIG_PM is not that much work, I kept it as
-an optional dependency (it was suggested during the review as well)
+>  I have considered reading the version register directly, but I haven't found a suitable method yet.
 
->
-> Also, I don't think pisp-be is correct. It just calls
-> pispbe_runtime_resume() in probe() to wake the IP up (which only enables
-> pisp clock), without telling the runtime PM about it. This means the parent
-> device and the suppliers may not be powered up.
+You could check the expected version from the driver data against
+the register value, but that would only be an additional sanity check.
+Not sure if it's worth it.
 
-Are you referring to the code currently in the tree or to this patch ?
-https://patchwork.linuxtv.org/project/linux-media/patch/20240904095836.344833-5-jacopo.mondi@ideasonboard.com/
+Sascha
 
->
->  Tomi
->
->
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
