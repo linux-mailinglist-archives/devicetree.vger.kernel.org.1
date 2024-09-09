@@ -1,139 +1,114 @@
-Return-Path: <devicetree+bounces-101416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E2A39719DF
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:50:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB8AD971A03
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:53:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B6D2282D32
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:50:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7F02282309
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:53:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EC1C1B81B6;
-	Mon,  9 Sep 2024 12:49:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 966EF1B81D8;
+	Mon,  9 Sep 2024 12:53:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="HwgsT1B8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YSio4dXn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CC4C1B7904;
-	Mon,  9 Sep 2024 12:49:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 628381B5811;
+	Mon,  9 Sep 2024 12:53:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725886198; cv=none; b=DecMi6AKIoIjtGyIgZd//xvPA4JtJyN0qbguwLQDtEmBrEM8CVfK1EMxbR84OM0vNIqB0xlmsbfrlboVeF3A5qm2jZhp+HU8cJhnxmdGScLnMqX3rZ0cW9867272Q1ZYlvJXemJKWJ9KEa6GAMp/8OFF7uP5HHbKjHOV3IBBnx8=
+	t=1725886402; cv=none; b=Ny49Yv+bU+URnyz8jUk6pdCV30bqoK29fdSM4NPts7/Z2skQu/KP9cxIJ9TACIoz473a+3rdTVnsPRlipGVUGkpIj1V4lFWYuxcCQJI4xmAIVRFe0sdiDuMGpsI1ATcAWeLDnRwiPeTOjwict1lckXthC5PFBTvUBt0TJlGAGIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725886198; c=relaxed/simple;
-	bh=POoZAlpXWIcBBhqnM0thSxdA88hrh+LbpyPm9LHJaF0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ad9LS7bnTd8H8w7QJOTZrmD2AvAW3leGvGHj3Q+qhfM3McGssoxfOyVahjQLWcflOCFDw4TMk1gKmYSDOGgOWNVCQ4Hfk6hMp5vXxDooC2Eb5cXsd9WVuCh3jaT5ZWdcLkE7k/PfpUY3FpsKYIdXS87VDhIN99X4J3M2KWSFIYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=HwgsT1B8; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 28265120004;
-	Mon,  9 Sep 2024 15:49:31 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 28265120004
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1725886171;
-	bh=awRRfm8rHC7gTrRPbeDo7AQhEId5BvBbvaNmDJyoOtI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=HwgsT1B8gsB1Fa2ATlyDFo/sgssLM/3EC0foIMhOu5iQMtaPSTG+E+dF/2ACPv0tu
-	 kNUao55Lk9YYwj6YKJQZ1lfyLHFsF1a3DEpZ0d23HeCG19xucwhWEQsSMMm7Dc+OKU
-	 cE7V7c3D88/23R5UJzTxrOZHQYxAIFNalw9s4pomdLevu2+GhoB25XtRqvgo5BVhtr
-	 QatqxC+6g9d0h7HhcToCn46uk8f5Nl10sh7LoQDldbyw9fWb9VxD79fUXzbPO5k1TC
-	 q8sKx12Ba4izUou5VZWONyTW/dM+ykaGo+jePewtJN0NBrL/lbeJmcqJaAg2g2YlDl
-	 remHYvJ5Js7oQ==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon,  9 Sep 2024 15:49:30 +0300 (MSK)
-Message-ID: <fcd005d2-dba4-4980-8d0d-f55632c7a6d9@salutedevices.com>
-Date: Mon, 9 Sep 2024 15:49:29 +0300
+	s=arc-20240116; t=1725886402; c=relaxed/simple;
+	bh=pDUb1q6JzchBUPz4BgEpFQep9MHv+L4GOI9KmQV3dIU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qml+9aoimAbhxNGzSpRCr5QmJ3eNxbHgXVlyPuN/dr33+yX91UZ+cOeTPL4ex0So58fs58HZg7CSNUgyG42jdWzT+AwHDGWpYDfHImzxO+U13d17Cmtb66JeIQYbhRsSDxK56z/WZItSjrkHXVQcsiGT0rhXE1I0f2AyFDAbdpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YSio4dXn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EABD9C4CEC5;
+	Mon,  9 Sep 2024 12:53:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725886401;
+	bh=pDUb1q6JzchBUPz4BgEpFQep9MHv+L4GOI9KmQV3dIU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YSio4dXnQO1lqCO1VCgX5k5A6E0mhV3QEepBPzppUCkpKehJy4Y1zyIBG7jGim5KG
+	 5ii/eRDqCB8yBwCj81NHo/V/ACNKlicMhbg0kGq5X9VqgixufE88v6jq5OAJmwYuxu
+	 wagl+aXwcOrN5mL1pfdnr8krgViqUov/XIMm4VDO8gxgQXo6nhNxuJJybBHbnELacj
+	 xICmh9cD+7n69YaQDZbZ7/eHajeLzGddbzvn9il7UYRv1tbc/iorX5kykqeHXCGbc3
+	 W0P3O/NDhqUB+WDIHI+orXmTqrEYa6M9efFzk9hczx48Yl7gl5uxc97dVq0nX5//2F
+	 VQdyIvCZfH/Ag==
+Date: Mon, 9 Sep 2024 14:53:17 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>, 
+	neil.armstrong@linaro.org, konrad.dybcio@linaro.org, andersson@kernel.org, 
+	linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, conor+dt@kernel.org, agross@kernel.org, 
+	devicetree@vger.kernel.org, vkoul@kernel.org, linux@treblig.org, dan.carpenter@linaro.org, 
+	Frank.Li@nxp.com, quic_vdadhani@quicinc.com
+Subject: Re: [PATCH v2 4/4] i2c: i2c-qcom-geni: Enable i2c controller sharing
+ between two subsystems
+Message-ID: <fhojgh44bcqhpbdffclop75uq2m32txvkwlht3sipiq2kdfr27@6gv7gpaaybhv>
+References: <20240906191438.4104329-1-quic_msavaliy@quicinc.com>
+ <20240906191438.4104329-5-quic_msavaliy@quicinc.com>
+ <b3a5dd54-90ba-4d75-9650-efbff12cddeb@linaro.org>
+ <3bd27b6d-74b8-4f7b-b3eb-64682442bbda@quicinc.com>
+ <3fa58f58-c1d2-41ac-b85b-c86bce5c06b9@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [DMARC error][DKIM error] [PATCH 1/2] dt-bindings: pwm: amlogic:
- Document C3 PWM
-To: <kelvin.zhang@amlogic.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Kevin Hilman
-	<khilman@baylibre.com>, <linux-pwm@vger.kernel.org>, Jerome Brunet
-	<jbrunet@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Rob Herring
-	<robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	=?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Heiner Kallweit
-	<hkallweit1@gmail.com>
-References: <20240906-c3-pwm-v1-0-acaf17fad247@amlogic.com>
- <20240906-c3-pwm-v1-1-acaf17fad247@amlogic.com>
-Content-Language: en-US
-From: George Stark <gnstark@salutedevices.com>
-In-Reply-To: <20240906-c3-pwm-v1-1-acaf17fad247@amlogic.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
- p-i-exch-a-m1.sberdevices.ru (172.24.196.116)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 187629 [Sep 09 2024]
-X-KSMG-AntiSpam-Version: 6.1.1.5
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 32 0.3.32 766319f57b3d5e49f2c79a76e7d7087b621090df, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;lore.kernel.org:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/09/09 07:41:00
-X-KSMG-LinksScanning: Clean, bases: 2024/09/09 07:41:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/09/09 09:27:00 #26546224
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3fa58f58-c1d2-41ac-b85b-c86bce5c06b9@kernel.org>
 
-Hello Kelvin, Krzysztof
+Thank you guys for your reviews,
 
-There's acked yet not merged patch [1] adding amlogic,meson-a1-pwm with 
-s4 as back-compatible. Should amlogic,c3-pwm be added in the enum along 
-with a1?
-
-[1] 
-https://lore.kernel.org/linux-arm-kernel/dbb4be50-4793-40ab-b362-6c9a6dd87324@salutedevices.com/T/
-
-On 9/6/24 15:46, Kelvin Zhang via B4 Relay wrote:
-> From: Kelvin Zhang <kelvin.zhang@amlogic.com>
+On Mon, Sep 09, 2024 at 01:37:00PM GMT, Konrad Dybcio wrote:
+> On 9.09.2024 11:18 AM, Mukesh Kumar Savaliya wrote:
+> > Hi Neil,
+> > 
+> > On 9/9/2024 2:24 PM, neil.armstrong@linaro.org wrote:
+> >> Hi,
+> >>
+> >> On 06/09/2024 21:14, Mukesh Kumar Savaliya wrote:
+> >>> Add support to share I2C SE by two Subsystems in a mutually exclusive way.
+> >>> Use  "qcom,shared-se" flag in a particular i2c instance node if the
+> >>> usecase requires i2c controller to be shared.
+> >>>
+> >>> I2C driver just need to mark first_msg and last_msg flag to help indicate
+> >>> GPI driver to  take lock and unlock TRE there by protecting from concurrent
+> >>> access from other EE or Subsystem.
+> >>>
+> >>> gpi_create_i2c_tre() function at gpi.c will take care of adding Lock and
+> >>> Unlock TRE for the respective transfer operations.
+> >>>
+> >>> Since the GPIOs are also shared for the i2c bus between two SS, do not
+> >>> touch GPIO configuration during runtime suspend and only turn off the
+> >>> clocks. This will allow other SS to continue to transfer the data
+> >>> without any disturbance over the IO lines.
+> >>
+> >> This doesn't answer my question about what would be the behavior if one
+> >> use uses, for example, GPI DMA, and the Linux kernel FIFO mode or SE DMA ?
+> >>
+> > Shared usecase is not supported for non GSI mode (FIFO and DMA), it should be static usecase. Dynamic sharing from two clients of two subsystems is only for GSI mode. Hope this helps ?
 > 
-> Document amlogic,c3-pwm compatible, which falls back to the meson-s4-pwm
-> group.
+> This should very much be explained in commit message and perhaps in code
 > 
-> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
-> ---
->   Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml | 4 ++++
->   1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> index 1d71d4f8f328..356371164acd 100644
-> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> @@ -44,6 +44,10 @@ properties:
->                 - amlogic,meson-axg-pwm-v2
->                 - amlogic,meson-g12-pwm-v2
->             - const: amlogic,meson8-pwm-v2
-> +      - items:
-> +          - enum:
-> +              - amlogic,c3-pwm
-> +          - const: amlogic,meson-s4-pwm
->   
->     reg:
->       maxItems: 1
-> 
+> And since it can't work with FIFO mode, there should be checks in code
+> to disallow such invalid configurations
 
--- 
-Best regards
-George
+it would be nice if, along with all these open questions and
+clarifications on the commit message, we could add some good
+comments to the code as well.
+
+Thanks,
+Andi
 
