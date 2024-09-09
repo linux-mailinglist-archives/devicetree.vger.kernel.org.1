@@ -1,63 +1,78 @@
-Return-Path: <devicetree+bounces-101219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EA6C97100C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:45:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A2E5971010
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:46:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F500B20EA2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 07:45:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 763E31C2212D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 07:46:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45C3B1AD412;
-	Mon,  9 Sep 2024 07:45:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DE581AF4EB;
+	Mon,  9 Sep 2024 07:46:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XHpKd5Y/"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MYcZfupA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18C2022081;
-	Mon,  9 Sep 2024 07:45:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 100A1172BCE;
+	Mon,  9 Sep 2024 07:46:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725867926; cv=none; b=eGHtyz+VHJSGGJ0Ch6O3vw4hEH720vYBKQVN1t95ih2hl/CNu4dQ3fC22J0yPaIaQ29/ggEnc24/qi3E3U9N6hUjF5VRgKbtiTTBliqaslfBtCsF9fzqReiqYmXlhOIsdQUNA+wCwrxjIqWXDToKLX3bY8AKMjniBD6nlAvog1Q=
+	t=1725867970; cv=none; b=LaLXtS8/Cv1jXxAQBfy0tMeY2d77D9d+LXODKT6N/NK+2NkqbLdyCJTvn1FYfxrDR/cdklPmiOGE21/OeSQfinEgWwCOparvJ3WdaDRzZaBdb8AmLCJJP4uIbhZHgnm5hHrfsDKnmQRN+ZT3bPbSw+d7+rOeAQQKRaJXejZ5fME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725867926; c=relaxed/simple;
-	bh=98wllfeOjQQOsjMIWtvuLiG8VAzd5cCOmswCZsBuOWM=;
+	s=arc-20240116; t=1725867970; c=relaxed/simple;
+	bh=usR1pa53UGdMCV6/LNXgemsvTIq2YpsDIf+l+rBvhVE=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jJ/tdp31J+Loj3ksI/XlDucSAclzPtFvjbjeSLxE4Xvt5XcRwo0NEKHCKzmFKc4vPHkN6A5h00lWCwARCGN0NzL3IpVF7NBkBIngAF1+iQmGFzxVlHAAH3u852jQAkv8hp/d7s9GODeqLXJC8q/h1YO4RbgDSZGb+YKpD392+K4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XHpKd5Y/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A9CBC4CEC5;
-	Mon,  9 Sep 2024 07:45:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725867924;
-	bh=98wllfeOjQQOsjMIWtvuLiG8VAzd5cCOmswCZsBuOWM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=XHpKd5Y/V3O48F+S3tN2AaqN4z/c5/Y1W/1t/tW/BS5Lr1mNGI/uYlXn0w/LgLm79
-	 mdaqWqJVkkzzjmoFakgzDNW0/C+FvYsBzb/TNWnYG+wqS4DJdSSzXDqTMlHTqeHWb1
-	 F2Hp5SPc0QI8L/60zM7+CGsr6xT3bunjxehvPN8Y7+arrOY9aTbBPYmIMD5rNGeGuV
-	 /GhSRN2zvjosfV9sah8j2+NBquJRPLKhSSztnfNQtHy1EI8brLmu8F9Oq9UQK6KY/c
-	 ET+wuXhvMJigZVDL5OceZqCJc6nnCC0n7C2UF5zTECspN/GGfa9YjKq77omD7IbbZp
-	 7MyZKyqTVM+QA==
-Date: Mon, 9 Sep 2024 08:44:44 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Dumitru Ceclan via B4 Relay
- <devnull+dumitru.ceclan.analog.com@kernel.org>
-Cc: dumitru.ceclan@analog.com, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, mitrutzceclan@gmail.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Conor Dooley
- <conor.dooley@microchip.com>, Nuno Sa <nuno.sa@analog.com>
-Subject: Re: [PATCH v3 0/3] Add support for AD4113
-Message-ID: <20240909084444.5b515bb1@jic23-huawei>
-In-Reply-To: <20240908114143.414a9367@jic23-huawei>
-References: <20240812-ad4113-v3-0-046e785dd253@analog.com>
-	<20240817111902.2ed6b98a@jic23-huawei>
-	<20240908114143.414a9367@jic23-huawei>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	 MIME-Version:Content-Type; b=PFiFQBzUVmFf/PvGgofx6bV8qy+VI8IBaS/3Big3Nzx/2FGcpSU+KB59pkCI1NFU9JvT0HWsi6TxskOt1BI/teIEfpxfVjFTVPTg4+cHmVfM77Y41zxV7/pijoJYw6AzjtgM9m+sfNbxTLZW0+cmziqCSrR2yE/DAMn1aEC6/HA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MYcZfupA; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2D4B01C0009;
+	Mon,  9 Sep 2024 07:45:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1725867958;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hJaC0HWL8QFh/tgOwfDDBfAbVaCe45J448i8/ZUpWZw=;
+	b=MYcZfupA7H62RyKeIANbWTrwQppl333+j/qywB0iNywL8VuYvSIIET77QWNnNw/Aak5+2X
+	yxxkrWh01O8Ktm0lf3RKTLmJS26YuSe61fPR4VQ+/mlZ5ch0G4gVrBiokzMeilTErg2PzI
+	IXcPQKXb5MlJ+MhaISBgY7hdZyCDrK7Wvphtik9GkWE512Al2CWTLpH2Lr28IDOg3YkLTH
+	tS1/cwfEECJFFqop2osjuAIDd4dl9SPuhotNiohmAlDvzg9sfdWr2HFLWVg8eSJM2YQlvT
+	fy47zDVSRmD6pV9713wizaWlxKglvyDWcP7tn8uccTvnOGjHxen97RUmH77zFg==
+Date: Mon, 9 Sep 2024 09:45:54 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Andy Shevchenko
+ <andy.shevchenko@gmail.com>, Simon Horman <horms@kernel.org>, Lee Jones
+ <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Derek Kiernan
+ <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, Bjorn
+ Helgaas <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>, Lars
+ Povlsen <lars.povlsen@microchip.com>, Steen Hegelund
+ <Steen.Hegelund@microchip.com>, Daniel Machon
+ <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, Rob Herring
+ <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 1/8] misc: Add support for LAN966x PCI device
+Message-ID: <20240909094554.20523717@bootlin.com>
+In-Reply-To: <2024081356-mutable-everyday-6f9d@gregkh>
+References: <20240808154658.247873-1-herve.codina@bootlin.com>
+	<20240808154658.247873-2-herve.codina@bootlin.com>
+	<2024081356-mutable-everyday-6f9d@gregkh>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,106 +80,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-On Sun, 8 Sep 2024 11:41:43 +0100
-Jonathan Cameron <jic23@kernel.org> wrote:
+Hi Greg, Rob,
 
-> On Sat, 17 Aug 2024 11:19:02 +0100
-> Jonathan Cameron <jic23@kernel.org> wrote:
->=20
-> > On Mon, 12 Aug 2024 11:13:13 +0300
-> > Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.o=
-rg> wrote:
-> >  =20
-> > > This patch series adds support for the AD4113 ADC within the existing
-> > > AD7173 driver.
-> > >=20
-> > > The AD4113 is a low power, low noise, 16-bit, =CE=A3-=CE=94 analog-to=
--digital
-> > > converter (ADC) that integrates an analog front end (AFE) for four
-> > > fully differential or eight single-ended inputs.
-> > >=20
-> > > The part is not released yet and the documentation is not public.
-> > > Register map is identical to AD4114 besides the lower width data
-> > > register and the GPIO register.
-> > >=20
-> > > Particularities of this model:
-> > > - 16 bit data register
-> > > - no temperature sensor
-> > > - no current inputs
-> > > - input buffers
-> > > - internal reference
-> > > - external reference REF-/REF+
-> > > - no second external reference REF2-/REF2+
-> > > - no AVDD2 supply
-> > > - 2 GPIO pins with config bits starting at a higher position in regis=
-ter
-> > > - 8 VINx inputs with voltage divider
-> > > - 16 channel registers and 8 setup registers
-> > >=20
-> > > Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>   =20
-> > Hi.
-> >=20
-> > Series is fine, but I don't yet have the fix=20
-> > [PATCH] iio: adc: ad7173: Fix incorrect compatible string
-> > in the upstream of my togreg branch.
-> >=20
-> > Hence this will have to wait a little while for that to be present.
-> > Otherwise this will create a fiddly merge for linux-next etc. =20
->=20
-> Tree juggling didn't go entirely according to plan so unfortunately
-> this has slipped back to next cycle unless there is a delay in the
-> 6.12 merge window opening.
->=20
-> Sorry about that, and I'll make sure to queued it up nice and early
-> after rc1.
-Applied now.  Given Linus wasn't super clear on whether he plans to
-do an rc8 I might still send a speculative pull request in case
-there is a delay.  If so I'll do that in a few days after this
-as first sat in my testing branch for 0-day to look then togreg
-branch hence Linux-next for a day or two after that.
+On Tue, 13 Aug 2024 11:57:15 +0200
+Greg Kroah-Hartman <gregkh@linuxfoundation.org> wrote:
 
-Jonathan
+> On Thu, Aug 08, 2024 at 05:46:50PM +0200, Herve Codina wrote:
+> > Add a PCI driver that handles the LAN966x PCI device using a device-tree
+> > overlay. This overlay is applied to the PCI device DT node and allows to
+> > describe components that are present in the device.
+> > 
+> > The memory from the device-tree is remapped to the BAR memory thanks to
+> > "ranges" properties computed at runtime by the PCI core during the PCI
+> > enumeration.
+> > 
+> > The PCI device itself acts as an interrupt controller and is used as the
+> > parent of the internal LAN966x interrupt controller to route the
+> > interrupts to the assigned PCI INTx interrupt.
+> > 
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>  
+> 
+> misc device is fine, even if it's not really one :)
+> 
+> Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
->=20
-> >=20
-> > Jonathan
-> >  =20
-> > > ---
-> > > Changes in v3:
-> > > - lowercase chip ID
-> > > - add patch to correctly order chip IDs defines
-> > > - picked up RB and ACK tags
-> > > - Link to v2: https://lore.kernel.org/r/20240809-ad4113-v2-0-2a70c101=
-a1f4@analog.com
-> > >=20
-> > > Changes in v2:
-> > > - correctly set realbits and storagebits to 16 in iio_chan_spec
-> > > - describe bindings restrictions in commit message due to lack of
-> > >   sufficient diff context
-> > > - describe model differences better in cover letter
-> > > - Link to v1: https://lore.kernel.org/r/20240807-ad4113-v1-0-2d338f70=
-2c7b@analog.com
-> > >=20
-> > > ---
-> > > Dumitru Ceclan (3):
-> > >       dt-bindings: adc: ad7173: add support for ad4113
-> > >       iio: adc: ad7173: order chipID by value
-> > >       iio: adc: ad7173: add support for ad4113
-> > >=20
-> > >  .../devicetree/bindings/iio/adc/adi,ad7173.yaml    |  3 ++
-> > >  drivers/iio/adc/ad7173.c                           | 38 ++++++++++++=
-++++++++--
-> > >  2 files changed, 39 insertions(+), 2 deletions(-)
-> > > ---
-> > > base-commit: 1c61e13d7dc9003662bd7fd6064dfea67e64b014
-> > > change-id: 20240725-ad4113-baa63ff99245
-> > >=20
-> > > Best regards,   =20
-> >=20
-> >  =20
->=20
->=20
+I didn't receive other feedback on this patch.
 
+Is there anything blocking to have it applied?
+
+Best regards,
+Hervé
 
