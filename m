@@ -1,121 +1,96 @@
-Return-Path: <devicetree+bounces-101536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29C13972467
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 23:18:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA27B97249C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 23:41:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2AD22846C7
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 21:18:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DE351F242C9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 21:41:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 828A118C326;
-	Mon,  9 Sep 2024 21:18:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J/6I3CbD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31EE218A6BA;
+	Mon,  9 Sep 2024 21:41:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A966189F2F;
-	Mon,  9 Sep 2024 21:18:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9331217C9E8;
+	Mon,  9 Sep 2024 21:41:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=108.161.129.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725916727; cv=none; b=tXDRrHq2jLLOICQlOW2L4d6QT+SVkHuqBebpRVgVnEIEF4dS63s/igVK2SAXvDnslC7iV3ioyCvYH6i/jbHsgnCwFKOP5A57kNTe0tBgYBVGSn6jL3SPAWAmZSedH7B0092CFWDx8FsIlw7vMpiO9Frv++p05Wp0C70s9+fYbp0=
+	t=1725918080; cv=none; b=bjnS8j72JXkVgLZSi8CbJAS48HLQqmwuH7Vn1LjHkUwMwgQooWTWH9Wz0dmcHTsP0iGM9LxRdduq+sDIbASvdsXwry4NaoIW9p2whkQ/ErU+NV96VbMcojIYVg35HIDbVMtfZVXbQ0FeneYWkr0Q2JbVwqD4WTGlO4GRiidn1+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725916727; c=relaxed/simple;
-	bh=m+5SkT5EybNjaxvCRkvBg5O1miTtGMUqFVea2R19J2w=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=GYtYtvSUffIBQuSO2tOO92BduLTylFAciEfui1jS7b7FkNocPLrexWvoP67uqzNi3pbDzoj0BoZqSz9WsvZYDQokJYup8AHTKgpf7n9SIGI01MsI6kbZ0KtrR1T5ZRg4Yp8ZYH1rWcTk0jw8lQVA3vU9w3qTle2nPSsk3Rdh97s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J/6I3CbD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7BE8C4CEC5;
-	Mon,  9 Sep 2024 21:18:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725916725;
-	bh=m+5SkT5EybNjaxvCRkvBg5O1miTtGMUqFVea2R19J2w=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=J/6I3CbDnNTKmJ3L2IF152M/ltoPcO5pFmy+gkca+OT1rP4WbrlaYXtr58+Vpxw87
-	 LkrpSj8boSoQSpmNL4d4en/VfCIwyWsyw50l7ejeJV7+aAbdCKlA18NULD1Baf7kXd
-	 S0lxQHfWWmtae2GQAMPVFzv0YAzZnctIsOUZ0rxlY4GYs5e1/uLhp8xZIqAealnVFs
-	 +pLWI0oWIP6iw1X14AyJJMEw5svZsWbKqJNh4a5Tget9R2dCRPlzCCRkVjWkh6OSoN
-	 x22OuX5oJfC3eM6+/L+GY9AJ1Isiu3gIqMebsuGdobnrLvdcNx/5VxgesPEt7kApwM
-	 +cN69JplcUIig==
-Message-ID: <8fa43530daa941b059b2de1e15dd7773.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1725918080; c=relaxed/simple;
+	bh=GTVDmWxvB819jdsoUGb5a3UvxVpzRPws0zKvOkvRCdc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=D5jozNDjIb9UiHFEKtiAFtcn7IFRGSXbabohROrIO1dBceOgVkWQIbRBHiDpQ3bwJhcZND1RM5dHV/s5aGzo4OUUAVtHgx7VU2mfi0+cXt88NYCMmQx5Ro7aKdcF497tVE7+BXjQM7LmadEaxaESLz3fDCfiXPCusP5Pg0He7EE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; arc=none smtp.client-ip=108.161.129.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
+Received: from syn-068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+	by finn.localdomain with esmtp (Exim 4.95)
+	(envelope-from <tharvey@gateworks.com>)
+	id 1snm86-00E27X-Sm;
+	Mon, 09 Sep 2024 21:41:03 +0000
+From: Tim Harvey <tharvey@gateworks.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Li Yang <leoyang.li@nxp.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Cc: Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH] arm64: dts: imx8mp-venice-gw74xx: add M2SKT_GPIO10 gpio configuration
+Date: Mon,  9 Sep 2024 14:41:00 -0700
+Message-Id: <20240909214100.777927-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAMuHMdWBT6AaH2_5qj+j4s8JeeO3qrhYUTCVG=s_J13nSzYPsQ@mail.gmail.com>
-References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com> <20240830130218.3377060-8-claudiu.beznea.uj@bp.renesas.com> <83fac884d749bda0cf0b346e4e869bc8.sboyd@kernel.org> <d8303146-89e0-4229-a3fe-9f3c42434045@tuxon.dev> <c744cf7a70a3f97722146215a7620cfb.sboyd@kernel.org> <CAMuHMdX40ROk2vZe9VHoiPDJCvtrjto+swkicv29LFyQ7zoVng@mail.gmail.com> <951b5c09c3ca2de3f0a28a078084f7dd.sboyd@kernel.org> <CAMuHMdWBT6AaH2_5qj+j4s8JeeO3qrhYUTCVG=s_J13nSzYPsQ@mail.gmail.com>
-Subject: Re: [PATCH v3 07/12] arm64: dts: renesas: r9a08g045: Add VBATTB node
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: alexandre.belloni@bootlin.com, claudiu beznea <claudiu.beznea@tuxon.dev>, conor+dt@kernel.org, krzk+dt@kernel.org, magnus.damm@gmail.com, mturquette@baylibre.com, p.zabel@pengutronix.de, robh@kernel.org, linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 09 Sep 2024 14:18:43 -0700
-User-Agent: alot/0.10
+Content-Transfer-Encoding: 8bit
 
-Quoting Geert Uytterhoeven (2024-09-09 05:11:03)
-> Hi Stephen,
->=20
-> On Sat, Sep 7, 2024 at 1:01=E2=80=AFAM Stephen Boyd <sboyd@kernel.org> wr=
-ote:
-> > Quoting Geert Uytterhoeven (2024-09-06 00:28:38)
-> > >
-> > > My main objections are that (1) this approach is different than the o=
-ne used
-> > > for all other external clock inputs on Renesas SoCs, and (2) this req=
-uires
-> > > duplicating part of the clocks property in all board DTS files.
-> >
-> > Can 'clock-ranges' be used here? Leave the cell as null in the SoC dtsi
-> > file and then fill it in with clocks property at the parent node. I
-> > think you'd have to use clock-names for this though.
->=20
-> "clock-ranges" does not seem to be well-documented...
+The GW74xx D revision has added a M2SKT_GPIO10 GPIO which routes to the
+GPIO10 pin of the M.2 socket for compatibility with certain devices.
 
-Yeah, I wasn't aware of it for years!
+Add the iomux and a line name for this.
 
->=20
-> IUIC, your suggestion is to:
->   1. Add "clock-ranges" to the /soc subnode,
->   2. Completely leave out the "rtx" clock from the clocks property
->      of the vbattb@1005c000 node,
->   3. Add the following to the board DTS:
->=20
->         &soc {
->                 clocks =3D <&vbattb_xtal>;
->                 clock-names =3D "rtx";
->         };
->=20
-> Then, when resolving "rtx" for the vbattb@1005c000 node,
-> of_parse_clkspec() would iterate up and find the proper vbattb_xtal.
-> Is that correct? And probably that should be done for other external
-> clock inputs as well?
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Sounds about right.
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+index d765b7972841..9885948952b4 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+@@ -299,7 +299,7 @@ &gpio2 {
+ &gpio3 {
+ 	gpio-line-names =
+ 		"", "", "", "", "", "", "m2_rst", "",
+-		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "m2_gpio10", "",
+ 		"", "", "", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "";
+ };
+@@ -816,6 +816,7 @@ MX8MP_IOMUXC_SD2_CLK__GPIO2_IO13	0x40000150 /* PCIE1_WDIS# */
+ 			MX8MP_IOMUXC_SD2_CMD__GPIO2_IO14	0x40000150 /* PCIE3_WDIS# */
+ 			MX8MP_IOMUXC_SD2_DATA3__GPIO2_IO18	0x40000150 /* PCIE2_WDIS# */
+ 			MX8MP_IOMUXC_NAND_DATA00__GPIO3_IO06	0x40000040 /* M2SKT_RST# */
++			MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14	0x40000040 /* M2SKT_GPIO10 */
+ 			MX8MP_IOMUXC_SAI3_TXD__GPIO5_IO01	0x40000104 /* UART_TERM */
+ 			MX8MP_IOMUXC_SAI3_TXFS__GPIO4_IO31	0x40000104 /* UART_RS485 */
+ 			MX8MP_IOMUXC_SAI3_TXC__GPIO5_IO00	0x40000104 /* UART_HALF */
+-- 
+2.25.1
 
->=20
-> Still, it looks a bit complicated and un-intuitive. And what about
-> e.g. carrier boards with a SoM, where some clocks are provided by
-> the SoM, and some by the carrier? In that case you still have to
-> override the clock and clock-names properties in the carrier .dts,
-> thus duplicating all clocks provided by the SoM.
-
-This is the same case as the board wanting to override the soc node?
-When it's a SoM is there a node for the SoM? Is the clock on the SoM?
-Does this case exist? Hopefully this isn't a straw man.
-
->=20
-> So I prefer the original approach, like is done for all other external
-> SoC clock inputs on Renesas SoCs.
->=20
-
-Sure. I'm just suggesting to follow the preferred approach by DT
-maintainers. I don't feel strongly either way and I'm not the SoC
-maintainer so feel free to do what you want.
 
