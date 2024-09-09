@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-101237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD5F7971160
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:12:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2693C97116A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:12:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A0901F25CA1
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:12:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D41D82833DF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 08:12:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 164691B14ED;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 640191B1D5D;
 	Mon,  9 Sep 2024 08:12:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ewj3CjUw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mv/GC30K"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCBBC1B0108;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AA991B150D;
 	Mon,  9 Sep 2024 08:12:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725869535; cv=none; b=YqZ/LnOBg46Pdlue6bfdOrMRe8ySaEI3r4OF61A2oP0xH0GpPm/X20DQL/HOGU2WAzeK8DJbOsvgRTRl/1Voq4QMrTBC1rwpTKTVREETPlTV+hMtjLrTMj7m20DRCMBBoKFwGYhDuTNL6hEA3CZ+CKeQ2SWPnyu/BQI0O4qYCNo=
+	t=1725869536; cv=none; b=LH3TGjlKcWV0ryLDBGrxH3wwYYe/N4FaNqLHBoIO4mTH0Lo/T3SCh98QIiEiaDZyZgJqmkfO5iXNgc4OVmVLGz416i+FIttC9TGxNSLO90NO6cRlzcTfIuJQJf7j3eiwhd9532apHb11UqywruoOQPvkC4Os0dW1dsTR4BXg2Uw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725869535; c=relaxed/simple;
-	bh=zv3gOiLnT6e7x2kyU/07S/W45M5GmXrbiqEXY9uKY5s=;
+	s=arc-20240116; t=1725869536; c=relaxed/simple;
+	bh=OwXslceZMSHlNCp9gnYCsH+AlosVcBVrdxvtTOSfLHE=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WdEPMQgy62AB3iSeK7YA0t1+NNHcKPOmeBOqAvPImkAdp12WeTZcOhj8VWqEY2vcg2aB/RkbTaxO52zMGaA3ccTckdraZNcX0h90His8okVhf61eSNaDecDCX7UjSebE4eTi71zQHqnYJ6ZVQPtCLJSbCNai3yWc+beuhbgugfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ewj3CjUw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 92CE2C4CED7;
+	 In-Reply-To:To:Cc; b=KSqmJmRTPP47/yxLZscIniubsqziwx41wbE7BFyAehsZDw7Wh4DTY35SXGIW328dFJzghXy6lz8t/4B/Wn7xlLuXZEe5h7lUiXx6RgnRaTdhVm/bUpaY838oT0HDXenVb5URKf5RPi4quw/yHU4VEA8zpL5X4kAEjyO+dFEk8Q8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mv/GC30K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B76B8C4CEDB;
 	Mon,  9 Sep 2024 08:12:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1725869535;
-	bh=zv3gOiLnT6e7x2kyU/07S/W45M5GmXrbiqEXY9uKY5s=;
+	bh=OwXslceZMSHlNCp9gnYCsH+AlosVcBVrdxvtTOSfLHE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Ewj3CjUwPPidX/GwydvB0pZ5VSP22prVfwrIoJPtSu3rrCIJ6TIfiVAGt0W9WsVQc
-	 xnpLI7QbxufgXHSjaY5l6YbojJw/nsVWej6wbAETUBCmLGOEh518ZsIvwbpP/HoNGe
-	 olKpFvqFiGofBOZ4b99f5VYzXsyPf51YQw7neqFVrr3LOEnZJ/koHRlGrg3wLUTrYB
-	 x9B6o+TB3Yqql4ZwrzTafbUQZYXpxiGp9kifUEzZk0toI0Bnbp/tUIzVsru6Vc6mb9
-	 fb50gZfZiZl5pePzRCTaLX3WGb/soVU1MeL826tu/xnGy6KWcnDS5YAaucm8c/8ZTw
-	 21DI1N1y1vFjA==
+	b=Mv/GC30KsMPjYlNvrIwovUPues6eetqWuHXKHjmfFvLzdywuUFnQZv/FD1uLr1HAG
+	 enYA3+6AqOyDKeDigTMUCFXrBSzwXCfUyGmITqhkBn4Ycby4PdCzD2YPqB/1CDe72S
+	 aDDT35q3VhunlGWoCOiqsfoFU81pglYXDJ/t6PD8PMbQSqfDjXErnWV6nKvYe/ChQz
+	 jVEwTmum2LAUHJjt4DgYjHi30YKSD2K1DM04blWRy18ETFHKdeNOJaroyWgQhlzde5
+	 WladIiGbCXq8SEthJu/jq6nmnawQYcX71689DTj9sGkcNGfs6a3H97q3EEoNeYZg0H
+	 l7DKheC5eZJkg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B5F1E6FE49;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AEFD1CD4F4C;
 	Mon,  9 Sep 2024 08:12:15 +0000 (UTC)
 From: Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
-Date: Mon, 09 Sep 2024 11:10:31 +0300
-Subject: [PATCH v12 06/38] dt-bindings: soc: Add Cirrus EP93xx
+Date: Mon, 09 Sep 2024 11:10:33 +0300
+Subject: [PATCH v12 08/38] dt-bindings: dma: Add Cirrus EP93xx
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,23 +55,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240909-ep93xx-v12-6-e86ab2423d4b@maquefel.me>
+Message-Id: <20240909-ep93xx-v12-8-e86ab2423d4b@maquefel.me>
 References: <20240909-ep93xx-v12-0-e86ab2423d4b@maquefel.me>
 In-Reply-To: <20240909-ep93xx-v12-0-e86ab2423d4b@maquefel.me>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Nikita Shubin <nikita.shubin@maquefel.me>, 
- Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-clk@vger.kernel.org
+ Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
+ Nikita Shubin <nikita.shubin@maquefel.me>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.13-dev-e3e53
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1725869532; l=6134;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1725869532; l=7696;
  i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
- bh=3qRH8iBzDzq1XDMd29PQTUf0/U/lo+zRZQ47DrczBzM=;
- b=e9ABTjjHG9W7Tsfrb86tYATq8gq5i+Da2K7V7w69G2hIrm+nRj9CUiUybfDae7FG8tDYQqEodbiM
- 2O7ng+0VBHG9P7XgT5+hK5UqkpFqsIdBf6O3+UrhDb/G7i/DxyIk
+ bh=Y0DItFCDipfwR6StRBre7127VedaUlKJubOzvlu96UM=;
+ b=GAnN0CDd+SmDOF7VfOSvQsINkSFNHn0Yz4hs0kPe43GE60ULUx3YEsgZGTu3cGZza2xZMm9mxEqm
+ HvtbKhu0B+JZfz0G2Q6zOQ6UF+HiZRYD38h0bprWfpw4V1o38m0R
 X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
  pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
 X-Endpoint-Received: by B4 Relay for nikita.shubin@maquefel.me/20230718
@@ -81,213 +81,256 @@ Reply-To: nikita.shubin@maquefel.me
 
 From: Nikita Shubin <nikita.shubin@maquefel.me>
 
-Add device tree bindings for the Cirrus Logic EP93xx SoC.
+Add YAML bindings for ep93xx SoC DMA.
 
 Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+Acked-by: Vinod Koul <vkoul@kernel.org>
 ---
- .../bindings/arm/cirrus/cirrus,ep9301.yaml         | 38 +++++++++
- .../bindings/soc/cirrus/cirrus,ep9301-syscon.yaml  | 94 ++++++++++++++++++++++
- include/dt-bindings/clock/cirrus,ep9301-syscon.h   | 46 +++++++++++
- 3 files changed, 178 insertions(+)
+ .../bindings/dma/cirrus,ep9301-dma-m2m.yaml        |  84 ++++++++++++
+ .../bindings/dma/cirrus,ep9301-dma-m2p.yaml        | 144 +++++++++++++++++++++
+ 2 files changed, 228 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/cirrus/cirrus,ep9301.yaml b/Documentation/devicetree/bindings/arm/cirrus/cirrus,ep9301.yaml
+diff --git a/Documentation/devicetree/bindings/dma/cirrus,ep9301-dma-m2m.yaml b/Documentation/devicetree/bindings/dma/cirrus,ep9301-dma-m2m.yaml
 new file mode 100644
-index 000000000000..170aad5dd7ed
+index 000000000000..871b76ddf90f
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/cirrus/cirrus,ep9301.yaml
-@@ -0,0 +1,38 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++++ b/Documentation/devicetree/bindings/dma/cirrus,ep9301-dma-m2m.yaml
+@@ -0,0 +1,84 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/arm/cirrus/cirrus,ep9301.yaml#
++$id: http://devicetree.org/schemas/dma/cirrus,ep9301-dma-m2m.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Cirrus Logic EP93xx platforms
-+
-+description:
-+  The EP93xx SoC is a ARMv4T-based with 200 MHz ARM9 CPU.
++title: Cirrus Logic ep93xx SoC DMA controller
 +
 +maintainers:
 +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
 +  - Nikita Shubin <nikita.shubin@maquefel.me>
 +
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+      - description: The TS-7250 is a compact, full-featured Single Board
-+          Computer (SBC) based upon the Cirrus EP9302 ARM9 CPU
-+        items:
-+          - const: technologic,ts7250
-+          - const: cirrus,ep9301
-+
-+      - description: The Liebherr BK3 is a derivate from ts7250 board
-+        items:
-+          - const: liebherr,bk3
-+          - const: cirrus,ep9301
-+
-+      - description: EDB302 is an evaluation board by Cirrus Logic,
-+          based on a Cirrus Logic EP9302 CPU
-+        items:
-+          - const: cirrus,edb9302
-+          - const: cirrus,ep9301
-+
-+additionalProperties: true
-diff --git a/Documentation/devicetree/bindings/soc/cirrus/cirrus,ep9301-syscon.yaml b/Documentation/devicetree/bindings/soc/cirrus/cirrus,ep9301-syscon.yaml
-new file mode 100644
-index 000000000000..7cb1b4114985
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/cirrus/cirrus,ep9301-syscon.yaml
-@@ -0,0 +1,94 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/cirrus/cirrus,ep9301-syscon.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cirrus Logic EP93xx Platforms System Controller
-+
-+maintainers:
-+  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
-+  - Nikita Shubin <nikita.shubin@maquefel.me>
-+
-+description: |
-+  Central resources are controlled by a set of software-locked registers,
-+  which can be used to prevent accidental accesses. Syscon generates
-+  the various bus and peripheral clocks and controls the system startup
-+  configuration.
-+
-+  The System Controller (Syscon) provides:
-+  - Clock control
-+  - Power management
-+  - System configuration management
-+
-+  Syscon registers are common for all EP93xx SoC's, through some actual peripheral
-+  may be missing depending on actual SoC model.
++allOf:
++  - $ref: dma-controller.yaml#
 +
 +properties:
 +  compatible:
 +    oneOf:
++      - const: cirrus,ep9301-dma-m2m
 +      - items:
 +          - enum:
-+              - cirrus,ep9302-syscon
-+              - cirrus,ep9307-syscon
-+              - cirrus,ep9312-syscon
-+              - cirrus,ep9315-syscon
-+          - const: cirrus,ep9301-syscon
-+          - const: syscon
-+      - items:
-+          - const: cirrus,ep9301-syscon
-+          - const: syscon
++              - cirrus,ep9302-dma-m2m
++              - cirrus,ep9307-dma-m2m
++              - cirrus,ep9312-dma-m2m
++              - cirrus,ep9315-dma-m2m
++          - const: cirrus,ep9301-dma-m2m
 +
 +  reg:
-+    maxItems: 1
-+
-+  "#clock-cells":
-+    const: 1
++    items:
++      - description: m2m0 channel registers
++      - description: m2m1 channel registers
 +
 +  clocks:
 +    items:
-+      - description: reference clock
++      - description: m2m0 channel gate clock
++      - description: m2m1 channel gate clock
 +
-+patternProperties:
-+  '^pins-':
-+    type: object
-+    description: pin node
-+    $ref: /schemas/pinctrl/pinmux-node.yaml
++  clock-names:
++    items:
++      - const: m2m0
++      - const: m2m1
 +
-+    properties:
-+      function:
-+        enum: [ spi, ac97, i2s, pwm, keypad, pata, lcd, gpio ]
++  interrupts:
++    items:
++      - description: m2m0 channel interrupt
++      - description: m2m1 channel interrupt
 +
-+      groups:
-+        enum: [ ssp, ac97, i2s_on_ssp, i2s_on_ac97, pwm1, gpio1agrp,
-+                gpio2agrp, gpio3agrp, gpio4agrp, gpio6agrp, gpio7agrp,
-+                rasteronsdram0grp, rasteronsdram3grp, keypadgrp, idegrp ]
++  '#dma-cells':
++    const: 2
++    description: |
++      The first cell is the unique device channel number as indicated by this
++      table for ep93xx:
 +
-+    required:
-+      - function
-+      - groups
++      10: SPI controller
++      11: IDE controller
 +
-+    unevaluatedProperties: false
++      The second cell is the DMA direction line number:
++
++      1: Memory to device
++      2: Device to memory
 +
 +required:
 +  - compatible
 +  - reg
-+  - "#clock-cells"
 +  - clocks
++  - clock-names
++  - interrupts
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    syscon@80930000 {
-+      compatible = "cirrus,ep9301-syscon", "syscon";
-+      reg = <0x80930000 0x1000>;
-+
-+      #clock-cells = <1>;
-+      clocks = <&xtali>;
-+
-+      spi_default_pins: pins-spi {
-+        function = "spi";
-+        groups = "ssp";
-+      };
++    #include <dt-bindings/clock/cirrus,ep9301-syscon.h>
++    dma-controller@80000100 {
++        compatible = "cirrus,ep9301-dma-m2m";
++        reg = <0x80000100 0x0040>,
++              <0x80000140 0x0040>;
++        clocks = <&syscon EP93XX_CLK_M2M0>,
++                 <&syscon EP93XX_CLK_M2M1>;
++        clock-names = "m2m0", "m2m1";
++        interrupt-parent = <&vic0>;
++        interrupts = <17>, <18>;
++        #dma-cells = <2>;
 +    };
-diff --git a/include/dt-bindings/clock/cirrus,ep9301-syscon.h b/include/dt-bindings/clock/cirrus,ep9301-syscon.h
+diff --git a/Documentation/devicetree/bindings/dma/cirrus,ep9301-dma-m2p.yaml b/Documentation/devicetree/bindings/dma/cirrus,ep9301-dma-m2p.yaml
 new file mode 100644
-index 000000000000..6bb8f532e7d0
+index 000000000000..d14c31553543
 --- /dev/null
-+++ b/include/dt-bindings/clock/cirrus,ep9301-syscon.h
-@@ -0,0 +1,46 @@
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-+#ifndef DT_BINDINGS_CIRRUS_EP93XX_CLOCK_H
-+#define DT_BINDINGS_CIRRUS_EP93XX_CLOCK_H
++++ b/Documentation/devicetree/bindings/dma/cirrus,ep9301-dma-m2p.yaml
+@@ -0,0 +1,144 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/dma/cirrus,ep9301-dma-m2p.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#define EP93XX_CLK_PLL1		0
-+#define EP93XX_CLK_PLL2		1
++title: Cirrus Logic ep93xx SoC M2P DMA controller
 +
-+#define EP93XX_CLK_FCLK		2
-+#define EP93XX_CLK_HCLK		3
-+#define EP93XX_CLK_PCLK		4
++maintainers:
++  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
++  - Nikita Shubin <nikita.shubin@maquefel.me>
 +
-+#define EP93XX_CLK_UART		5
-+#define EP93XX_CLK_SPI		6
-+#define EP93XX_CLK_PWM		7
-+#define EP93XX_CLK_USB		8
++allOf:
++  - $ref: dma-controller.yaml#
 +
-+#define EP93XX_CLK_M2M0		9
-+#define EP93XX_CLK_M2M1		10
++properties:
++  compatible:
++    oneOf:
++      - const: cirrus,ep9301-dma-m2p
++      - items:
++          - enum:
++              - cirrus,ep9302-dma-m2p
++              - cirrus,ep9307-dma-m2p
++              - cirrus,ep9312-dma-m2p
++              - cirrus,ep9315-dma-m2p
++          - const: cirrus,ep9301-dma-m2p
 +
-+#define EP93XX_CLK_M2P0		11
-+#define EP93XX_CLK_M2P1		12
-+#define EP93XX_CLK_M2P2		13
-+#define EP93XX_CLK_M2P3		14
-+#define EP93XX_CLK_M2P4		15
-+#define EP93XX_CLK_M2P5		16
-+#define EP93XX_CLK_M2P6		17
-+#define EP93XX_CLK_M2P7		18
-+#define EP93XX_CLK_M2P8		19
-+#define EP93XX_CLK_M2P9		20
++  reg:
++    items:
++      - description: m2p0 channel registers
++      - description: m2p1 channel registers
++      - description: m2p2 channel registers
++      - description: m2p3 channel registers
++      - description: m2p4 channel registers
++      - description: m2p5 channel registers
++      - description: m2p6 channel registers
++      - description: m2p7 channel registers
++      - description: m2p8 channel registers
++      - description: m2p9 channel registers
 +
-+#define EP93XX_CLK_UART1	21
-+#define EP93XX_CLK_UART2	22
-+#define EP93XX_CLK_UART3	23
++  clocks:
++    items:
++      - description: m2p0 channel gate clock
++      - description: m2p1 channel gate clock
++      - description: m2p2 channel gate clock
++      - description: m2p3 channel gate clock
++      - description: m2p4 channel gate clock
++      - description: m2p5 channel gate clock
++      - description: m2p6 channel gate clock
++      - description: m2p7 channel gate clock
++      - description: m2p8 channel gate clock
++      - description: m2p9 channel gate clock
 +
-+#define EP93XX_CLK_ADC		24
-+#define EP93XX_CLK_ADC_EN	25
++  clock-names:
++    items:
++      - const: m2p0
++      - const: m2p1
++      - const: m2p2
++      - const: m2p3
++      - const: m2p4
++      - const: m2p5
++      - const: m2p6
++      - const: m2p7
++      - const: m2p8
++      - const: m2p9
 +
-+#define EP93XX_CLK_KEYPAD	26
++  interrupts:
++    items:
++      - description: m2p0 channel interrupt
++      - description: m2p1 channel interrupt
++      - description: m2p2 channel interrupt
++      - description: m2p3 channel interrupt
++      - description: m2p4 channel interrupt
++      - description: m2p5 channel interrupt
++      - description: m2p6 channel interrupt
++      - description: m2p7 channel interrupt
++      - description: m2p8 channel interrupt
++      - description: m2p9 channel interrupt
 +
-+#define EP93XX_CLK_VIDEO	27
++  '#dma-cells':
++    const: 2
++    description: |
++      The first cell is the unique device channel number as indicated by this
++      table for ep93xx:
 +
-+#define EP93XX_CLK_I2S_MCLK	28
-+#define EP93XX_CLK_I2S_SCLK	29
-+#define EP93XX_CLK_I2S_LRCLK	30
++      0: I2S channel 1
++      1: I2S channel 2 (unused)
++      2: AC97 channel 1 (unused)
++      3: AC97 channel 2 (unused)
++      4: AC97 channel 3 (unused)
++      5: I2S channel 3 (unused)
++      6: UART1 (unused)
++      7: UART2 (unused)
++      8: UART3 (unused)
++      9: IRDA (unused)
 +
-+#endif /* DT_BINDINGS_CIRRUS_EP93XX_CLOCK_H */
++      The second cell is the DMA direction line number:
++
++      1: Memory to device
++      2: Device to memory
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/cirrus,ep9301-syscon.h>
++    dma-controller@80000000 {
++        compatible = "cirrus,ep9301-dma-m2p";
++        reg = <0x80000000 0x0040>,
++              <0x80000040 0x0040>,
++              <0x80000080 0x0040>,
++              <0x800000c0 0x0040>,
++              <0x80000240 0x0040>,
++              <0x80000200 0x0040>,
++              <0x800002c0 0x0040>,
++              <0x80000280 0x0040>,
++              <0x80000340 0x0040>,
++              <0x80000300 0x0040>;
++        clocks = <&syscon EP93XX_CLK_M2P0>,
++                 <&syscon EP93XX_CLK_M2P1>,
++                 <&syscon EP93XX_CLK_M2P2>,
++                 <&syscon EP93XX_CLK_M2P3>,
++                 <&syscon EP93XX_CLK_M2P4>,
++                 <&syscon EP93XX_CLK_M2P5>,
++                 <&syscon EP93XX_CLK_M2P6>,
++                 <&syscon EP93XX_CLK_M2P7>,
++                 <&syscon EP93XX_CLK_M2P8>,
++                 <&syscon EP93XX_CLK_M2P9>;
++        clock-names = "m2p0", "m2p1",
++                      "m2p2", "m2p3",
++                      "m2p4", "m2p5",
++                      "m2p6", "m2p7",
++                      "m2p8", "m2p9";
++        interrupt-parent = <&vic0>;
++        interrupts = <7>, <8>, <9>, <10>, <11>, <12>, <13>, <14>, <15>, <16>;
++        #dma-cells = <2>;
++    };
 
 -- 
 2.43.2
