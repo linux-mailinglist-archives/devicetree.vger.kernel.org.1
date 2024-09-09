@@ -1,155 +1,143 @@
-Return-Path: <devicetree+bounces-101427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D09D1971BFC
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 16:01:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 216EC971C27
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 16:11:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F501285C27
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:01:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CA651C21DC8
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:11:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 942CC1BB682;
-	Mon,  9 Sep 2024 13:59:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40EF01B9B4B;
+	Mon,  9 Sep 2024 14:11:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W8WSi2AD"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="AGKcNBv5";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="gU3UY3c8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D069C3C3C;
-	Mon,  9 Sep 2024 13:59:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAA59178CDE;
+	Mon,  9 Sep 2024 14:11:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725890353; cv=none; b=QDYlOyVXyHlvYRnN2h+V/6qTPQsGWzHbRDBY8T+0lJvz/FmIOl+9qZC0GMCEj4XvELX8csYpT/6xXMH6CEds+MNFe+ApKhnIP30htzFpkiGorPNEnGxumouo8APK7Dd2uTq7Pyr6iu5eSupU4cC+eNSez32+bYxUzCJSThsUFiQ=
+	t=1725891092; cv=none; b=VgOCdr1/Pdn52j0wGQWNWebNLfI55GoW5Dpv/f0ACnUsicW54Ah/nCDZdpzC6F9JIfU0pZVtCa2AK3FGMHieEj55kXCyhTeBP2jBzMs59WvAhvGljtKPlSNeCgcUd9ecEqxrP/dnJEni27WgNgNinTrHuomsGakkB8AATmkMBso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725890353; c=relaxed/simple;
-	bh=787Q5Wa5m5HrCT5V4ZDXDS5AXFc35wVlUo2l/EkAdyk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Exld6qEkd2jDBK0qMbbiEe2jS9IzqsEVNIOIn1+joekK41n0m9BDbvgIQ1uyB8xSA/XwHgmDwx5E62gj9kPZxFD74/Fh6EMJqSeMsToVtcUBgsDqfpFG9lsweXU+viNCaNm6R9ofn1wZ4eJ8UrkHweQOf4FCQd8y9+u0d4fT/F8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W8WSi2AD; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a8d6ac24a3bso59056866b.1;
-        Mon, 09 Sep 2024 06:59:11 -0700 (PDT)
+	s=arc-20240116; t=1725891092; c=relaxed/simple;
+	bh=SGvdbxphfmspCsY8b2qTpepEdJjJLbN0XnZ1znF8qbM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FcprsoPkkOxJMdto9eoE+1FlZxXcFZUUlWL+J0hRhJllOqHspvSua2l8TsXMs+3SjTEwo2ZP3lxrEwjsTArmsJOuI1qc2iDB9q1uBQZiDGVaWRpSpAHWGv6hGwpY5Wn+XN/9MRZIs7u4JXVl7SEnQ8y5zjpmO30VtzQqOWoBqE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=AGKcNBv5; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=gU3UY3c8 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725890350; x=1726495150; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=787Q5Wa5m5HrCT5V4ZDXDS5AXFc35wVlUo2l/EkAdyk=;
-        b=W8WSi2ADDy16WfopEXit+H6hTeSFPUmP+/YW/qFYDhjdLOzSqMIGWmCrdl05uYVpXH
-         7kwhYVsQQXvljvQpCZLoPJ7lciyHP6GgB8ae5PWSb4YpnzVg36avvEeEHQM0oxR76UKf
-         aJXCnnTOcPFg3BPmPQOaK3CAlr8TbvRcPnjixJiWKf5JT1Qt+vBqiHl1RVnut5ppvNSm
-         iRB8WEGQAixH4Ql9q9ROdcazhdO8aA+2q9J7lDE5Dqx3DaPsdoufU+e4NORT1qBZxP68
-         QYQ3c4otq+Yv0aEqXrkFBSOFBD7PPy0OYVn2Q8B2IvlI+BUklueHIVZ4uUtL8OCU2lsD
-         K0fA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725890350; x=1726495150;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=787Q5Wa5m5HrCT5V4ZDXDS5AXFc35wVlUo2l/EkAdyk=;
-        b=mh6P8BdM7OE+eEYksKhJA4qSpqO29e8dsSu/FpL+DIfH3jnRxV68eWHp7Gu/w3KBk3
-         y5FvuPmRjBdlVIC8lWcIXOH3Wf04bEd+Ua0e30xDA+oKzWAFc85EqMKPG3ygfXHuTGC/
-         WOhrqbGReDzKg5wi/Yhw7hCicqJ0zgntWbs9O730ILXHsuuKuTwT0F2nmRQDEOyN/y61
-         rApjZ7BwVyI8XI2ZoXyLvr5YTP79eOMBCiow0M77Bn1ian3vGrEaWfDHLJc3+9/SJlQa
-         RP0zY3OWhBYoSeHaNB9apDK0hd/7j8hhfEki29RftNh9lyLmoUBYg5DonApp03WhsMop
-         T8NQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUI+xn9hkdlbwObZGlck0gODGsHfPAZLI+/ZHQs8eVgEytW49onGzOadzwWSHpSLnAK8udesI6uDyMW@vger.kernel.org, AJvYcCVqyQ8HS642AKqZUFVx3gJ2CVtKTQ1MHfXq0YMIockC0fx5xKCaT0zOhIkEDa9KxsRtynIueLqm2s3rBbaf@vger.kernel.org, AJvYcCW/OmH4EYacDzgpEftlbDfsvWzN2yxcYKTFQfNnsEzkZN/AFEkHlpYY8Zxe8j31M81HTYop3G9NJao9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDJ28rTUvO+cRp4g3X/evOuWoDcJMFvXEylWJgDReDkWgacJzh
-	a6YWP8vjCVPRIK8bLEy8vkcnvOdyZU2D4gerqMxpMx7wjCdsAn4rzMxk7oidXag=
-X-Google-Smtp-Source: AGHT+IHqYan8uVpmjjcNz83SJitrYmuJRA8f5YjQQ20wZ3TpgcLKeSt/JBwDU+whhfOI8fmFgMJ5Aw==
-X-Received: by 2002:a17:907:9287:b0:a7d:c464:d5f3 with SMTP id a640c23a62f3a-a8a85fb7e90mr1225118266b.11.1725890349209;
-        Mon, 09 Sep 2024 06:59:09 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8d25a258a3sm344254966b.89.2024.09.09.06.59.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Sep 2024 06:59:08 -0700 (PDT)
-Message-ID: <1dca9ce52e7c701c7fb6cbbc723e9dff5d0ace8b.camel@gmail.com>
-Subject: Re: [PATCH v2 1/9] dt-bindings: iio: dac: ad3552r: add io-backend
- property
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Conor Dooley <conor.dooley@microchip.com>, Jonathan Cameron
-	 <jic23@kernel.org>
-Cc: Angelo Dureghello <adureghello@baylibre.com>, Lars-Peter Clausen
-	 <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
- =?ISO-8859-1?Q?S=E1?=
-	 <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Olivier Moysan
-	 <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, David Lechner
-	 <dlechner@baylibre.com>
-Date: Mon, 09 Sep 2024 16:03:17 +0200
-In-Reply-To: <20240909-dwelled-specimen-949f44c8d04d@wendy>
-References: 
-	<20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-0-87d669674c00@baylibre.com>
-	 <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-1-87d669674c00@baylibre.com>
-	 <20240908132925.331c5175@jic23-huawei>
-	 <20240909-dwelled-specimen-949f44c8d04d@wendy>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1725891089; x=1757427089;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=+j8lFlBsaShntDOrjXrB7TyHBj/n+3DZD/tr32Okp7U=;
+  b=AGKcNBv5enSXQsTQeLr0O311uF3FTISfsKbWFePy5UzAJqDgFKoF2kwb
+   hW/Z/EXb9/WOuLnGN0fFQ3vcFwxjDD5Oi0YGKHZdA+Il3K3vIjSErmRkL
+   7+VK8icderA0Y2ui84+mHbS5y6hQXH7ykrl3oZPOBoHzgWIksR/eaXT+a
+   iEF0ygBjPACk5v3k5Lwi03yHXM3TuuaiMAErUeEng7zv0sSU2LKFEMdXK
+   FfzAaQjjoHCewPMa7sKqwGbsKWDq7I1zCm7t3EuLoCWodjAQTB8BCn/cY
+   3WNENtFmlnf6drIu8YEJLwozzx0CXqx/MdbSPM1tPPntTz7fCztmSUTLE
+   Q==;
+X-CSE-ConnectionGUID: BtBnGZZPSTuxoFlUYT7eyw==
+X-CSE-MsgGUID: 0U/4v52iRB6ESHNAmYGWBw==
+X-IronPort-AV: E=Sophos;i="6.10,214,1719871200"; 
+   d="scan'208";a="38842554"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 09 Sep 2024 16:11:20 +0200
+X-CheckPoint: {66DF0208-1B-C661815F-E221238E}
+X-MAIL-CPID: 4EDA6A5EC0D98CBAA8C4679C54659C20_1
+X-Control-Analysis: str=0001.0A782F19.66DF0208.0146,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DAF8316B1F7;
+	Mon,  9 Sep 2024 16:11:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1725891076;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=+j8lFlBsaShntDOrjXrB7TyHBj/n+3DZD/tr32Okp7U=;
+	b=gU3UY3c8fc3pjvMMkD+CA5fwJ8eblBb2Dk8INfDUgI4H5o7mCgP5kx0LsW/Iut0D59/R0e
+	+fc2kFwgWudLNqMWTzC+43T8ANYWbl2CkW3DWmUjFLpfcJ2rpYRZFl1Jjsy+vdeoxxaqmk
+	egSO6fC88/l1bkRpw8ObfleTppkWUg45w9/s7GJD21zeRQ+3Sk6IM9U6sWeSCkekliJQDm
+	/c3dK+r+aQs68pZm+ToYfhwMWT6lSIVxOl9cQ8fOvi8UYCAJOYPAIYIHkey0rnTCajnLcv
+	nC1Zr3t+7FOqpGwrFM+fZPrjMvm3/y/jNzSW7aFgcS3TkX+ThcEffQMo0cvLKw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
+Cc: linux@ew.tq-group.com, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] ARM: dts: imx6qdl: Add reserved memory area for CMA memory
+Date: Mon, 09 Sep 2024 16:11:14 +0200
+Message-ID: <2751338.mvXUDI8C0e@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <10526262.nUPlyArG6x@steina-w>
+References: <20240827142458.265558-1-alexander.stein@ew.tq-group.com> <10526262.nUPlyArG6x@steina-w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, 2024-09-09 at 13:46 +0100, Conor Dooley wrote:
-> On Sun, Sep 08, 2024 at 01:29:25PM +0100, Jonathan Cameron wrote:
-> > On Thu, 05 Sep 2024 17:17:31 +0200
-> > Angelo Dureghello <adureghello@baylibre.com> wrote:
+Am Mittwoch, 28. August 2024, 09:49:36 CEST schrieb Alexander Stein:
+> Am Dienstag, 27. August 2024, 16:24:58 CEST schrieb Alexander Stein:
+> > Default CMA size is too small for HDMI output and VPU usage. Increase t=
+he
+> > default size by providing a CMA memory area.
 > >=20
-> > > From: Angelo Dureghello <adureghello@baylibre.com>
-> > >=20
-> > > There is a version AXI DAC IP block (for FPGAs) that provides
-> > > a physical bus for AD3552R and similar chips. This can be used
-> > > instead of a typical SPI controller to be able to use the chip
-> > > in ways that typical SPI controllers are not capable of.
-> > >=20
-> > > The binding is modified so that either the device is a SPI
-> > > peripheral or it uses an io-backend.
-> > >=20
-> > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> > Smallest RAM variant has 512MiB.
 > >=20
-> > > =C2=A0
-> > > =C2=A0required:
-> > > =C2=A0=C2=A0 - compatible
-> > > -=C2=A0 - reg
-> > > -=C2=A0 - spi-max-frequency
-> > Sort of feels like both reg and spi-max-frequency
-> > are valid things to specify.=20
+> >  arch/arm/boot/dts/nxp/imx/imx6qdl-mba6.dtsi | 14 ++++++++++++++
+> >  1 file changed, 14 insertions(+)
 > >=20
-> > Maybe we have an excellent IP and dodgy wiring so want
-> > to clamp the frequency (long term - don't need to support
-> > in the driver today).
-> >=20
-> > Maybe we have an axi_dac IP that supports multiple
-> > front end devices?=C2=A0 So maybe just keep reg?
+> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-mba6.dtsi b/arch/arm/boo=
+t/dts/nxp/imx/imx6qdl-mba6.dtsi
+> > index d03f7065ddfd7..8ba3ec27bee07 100644
+> > --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-mba6.dtsi
+> > +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-mba6.dtsi
+> > @@ -106,6 +106,20 @@ reg_vcc3v3_audio: regulator-vcc3v3-audio {
+> >  		vin-supply =3D <&reg_mba6_3p3v>;
+> >  	};
+> > =20
+> > +	reserved-memory {
+> > +		#address-cells =3D <1>;
+> > +		#size-cells =3D <1>;
+> > +		ranges;
+> > +
+> > +		linux,cma {
+> > +			compatible =3D "shared-dma-pool";
+> > +			reusable;
+> > +			size =3D <0x14000000>;
+> > +			alloc-ranges =3D <0x10000000 0x20000000>;
+> > +			linux,cma-default;
+> > +		};
+> > +	};
+> > +
 >=20
-> I'd like to be convinced that this incarnation of the AXI DAC IP is not
-> a spi controller and that a ref to spi-controller.yaml is not out of
-> place here. It may not be something that you'd ever use generally, given
-> the "weird" interface to it, but it does seem to be one regardless.
->=20
+> Please do not merge yet.
+> I just noticed that this breaks mmap'ed fbdev usage. It only works when C=
+MA
+> area is in HighMem.
 
-Agreed.. As weird as it get's, it's acting as a spi controller.
+Okay, now that commit 5a498d4d06d6d ("drm/fbdev-dma: Only install deferred
+I/O if necessary") has been applied, the mentioned problem is gone.
+This patch can be applied if there are no concerns.
 
-> I'd also really like to know how this fits in with spi-offloads. It
-> /feels/, and I'd like to reiterate the word feels, like a rather similar
-> idea just applied to a DAC instead of an ADC.
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-The offload main principle is to replay a spi transfer periodically given a=
-n
-input trigger. I'm not so sure we have that same principle in here. In here=
- I
-guess we stream data over the qspi interface based on SCLK which can look
-similar. The difference is that this IP does not need any trigger for any s=
-pi
-transfer replay (I think).=20
 
-- Nuno S=C3=A1
 
