@@ -1,1251 +1,230 @@
-Return-Path: <devicetree+bounces-101466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE546971E61
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 17:45:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 218C1971E76
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 17:52:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09E491C2349F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 15:45:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40ADC1C22D54
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 15:52:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D75611386D8;
-	Mon,  9 Sep 2024 15:45:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72B7D58ABF;
+	Mon,  9 Sep 2024 15:52:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qUkoPUYz"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HE7cUbcu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9591513699B;
-	Mon,  9 Sep 2024 15:45:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A52362E64B;
+	Mon,  9 Sep 2024 15:52:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725896720; cv=none; b=KO9lYa45It2r6x8QfygV2s/N/EoYYJSBdbfe/srEdMghm8w104SXeVxcFkdm2LKNdUP77TYcGq4a8JFfy7johazloeZgvbGNBJZjzNu1DNnObw8mz2PjAjdnHxmp9Q8PpnGCGqkZoXjArVxGrGZPx5iyWFEUJQR1iuE7RhqGkQ4=
+	t=1725897172; cv=none; b=uvD5hqCjNrjs+jnoTAo7c/5yN+niJRv3dUi0LVjRrofaiaEwppJItJZFGzk9cjnWcaAQn5OsMPIcRaVxmhFgWxHT5QFFn3xkiOi7tbwIS5Ls5fdbiVJnjV5/U6gQSfCYrb+CAftD382FcEKYJfBJ/MERO3oRLTcPB3kwrlfllTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725896720; c=relaxed/simple;
-	bh=i2AOkfBj9iK1aJV6eERpEjJN88IAO3ULnHj1yuC7AVo=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=lknwQ2HOVmIi9nCGV3w4wd+6PRZji9gz45+q/jOeCWQzXrfT9RUZXuWJJy0Dphnzcm14LO/0wpCsvXBmuf88wvuCIdvPX0MEmq7pTUgY6W+bmp5ZAQmp4ut7mB+zCAEHhGHA25F+/4O3t15HgxSp71wZCMCKajOK1JK4QHwvFr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qUkoPUYz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02A0DC4CEC8;
-	Mon,  9 Sep 2024 15:45:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725896720;
-	bh=i2AOkfBj9iK1aJV6eERpEjJN88IAO3ULnHj1yuC7AVo=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=qUkoPUYzeUxHGRAvFoCAGKzb3g0SzxJb2p2XVsFTEgbn+2KhQIuuRn7SVotIOZOdg
-	 3jTSapchX4IlFM/fwh5HPKbe5DdswV18PYEB0VyCjtqytJyiz3dX4A63nfHYrcIlLx
-	 PGsreCuLosdna6wTl0AjR0QsREpQPSeN/M2lNQAXTf5wAu/HP0iFbLZdCYVAImufL1
-	 Q39hD3pYLVKw9vv5oLrIKEUrrBmN8OB069+WpPegslsHrImqq8GjmVJ7f0H7A9e7Xz
-	 cZk+AYY0sE37/NNA6HQS6llTbjIWQp8lsrqXtmvukJv9YdTg9+u6Tb4ddCiWoPk3Yd
-	 9XoiqlYtlrcEw==
-Date: Mon, 09 Sep 2024 10:45:19 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1725897172; c=relaxed/simple;
+	bh=vyFxGJC2gaUCC9d9aoXJ7yEsJc3w1CNJ/3ibxlNoiew=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F1ad0iRGLgpp0jZwZkn012kbmYuFUuovtVb5YQCsmxFTLr25pqsrJgarLadbTnPm/xu65aD5MQiW9zwkbpIMuQ2kp4FS2+FngwnEVJFmjXoL6BYldb0lp0l1dpKXpXQk+OPQxDQkZ4TbRlOYV8QXDsO1fW97g2OvG+6gKPKvZNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HE7cUbcu; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1725897170; x=1757433170;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=vyFxGJC2gaUCC9d9aoXJ7yEsJc3w1CNJ/3ibxlNoiew=;
+  b=HE7cUbcuzgshDF1qPiK7XdAFZH95yJiVGWafr+EUZeN/Ikctg0BlZeTF
+   gVOtPwlrQV9TCI8C4yiSfMd5BlUjMUvaH2+miDjCog7RDpm+UzszzYB05
+   lg+j91Dm+Uk7/u9E5JwQhFYAoxmPsPETB4dPImG38Qy62QbRtBO8sIaJn
+   cS5XIAdjqgvQlYymFVcdrl81PwxIZ1ICbdoWoQ29bhodmn+/V7Lz9pAM+
+   38z2oZU4efGj7DclLZz8wj6py0OjqUhx4pTDI6qcaxuS0NoVH0Ln9Suj5
+   M1qvZFSsV4yd9VPJUOLzCbIlMc5Cgr+Fx8xVLvN0vycaJp832uXNeK9Vs
+   g==;
+X-CSE-ConnectionGUID: /eHLozntRb6N7fhAwHD/mg==
+X-CSE-MsgGUID: qQVWuBcBR1CD8cedo6kZPg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="13443266"
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; 
+   d="scan'208";a="13443266"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2024 08:52:49 -0700
+X-CSE-ConnectionGUID: jcnxAf0PSrCL7claosPc6Q==
+X-CSE-MsgGUID: vTZCCGJpTG+a0ZQfIV2MIQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; 
+   d="scan'208";a="67238507"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2024 08:52:45 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id 2E99511F817;
+	Mon,  9 Sep 2024 18:52:42 +0300 (EEST)
+Date: Mon, 9 Sep 2024 15:52:42 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH v4 3/4] media: raspberrypi: Add support for RP1-CFE
+Message-ID: <Zt8ZysTT5DIZr-J7@kekkonen.localdomain>
+References: <20240904-rp1-cfe-v4-3-f1b5b3d69c81@ideasonboard.com>
+ <202409051822.ZzUGw3XQ-lkp@intel.com>
+ <20240905111120.GK16183@pendragon.ideasonboard.com>
+ <40cc1e95-b9fc-4c27-9428-1698d0bf9d25@ideasonboard.com>
+ <763b3147-d7cb-44a7-b73b-8f7f4fd622ab@ideasonboard.com>
+ <yib2r4wisxvk3kgogbjqawrpmfq6lcezfk4xjmftj44jzkbclc@icapodv2ffzk>
+ <d5188c0a-4a52-4378-89b1-48f606e448cc@ideasonboard.com>
+ <ggtlreq5gyhzfdv6yzeuia46y7fxpuyvg236prig52t43xsl2a@crlqks2nhfpe>
+ <20240909134516.GA9448@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Lukasz Majewski <lukma@denx.de>
-Cc: imx@lists.linux.dev, Fabio Estevam <festevam@gmail.com>, 
- devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Shawn Guo <shawnguo@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-In-Reply-To: <20240909113952.359425-1-lukma@denx.de>
-References: <20240909113952.359425-1-lukma@denx.de>
-Message-Id: <172589661102.199189.4560235768779018115.robh@kernel.org>
-Subject: Re: [PATCH v4] dts: nxp: mxs: Add descriptions for imx287 based
- btt3-[012] devices
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240909134516.GA9448@pendragon.ideasonboard.com>
 
+Hi Laurent,
 
-On Mon, 09 Sep 2024 13:39:52 +0200, Lukasz Majewski wrote:
-> The btt3 device' HW revisions from 0 to 2 use imx287 SoC and are to
-> some extend similar to already upstreamed XEA devices, hence are
-> using common imx28-lwe.dtsi file.
+On Mon, Sep 09, 2024 at 04:45:16PM +0300, Laurent Pinchart wrote:
+> On Mon, Sep 09, 2024 at 03:29:30PM +0200, Jacopo Mondi wrote:
+> > On Mon, Sep 09, 2024 at 01:04:35PM GMT, Tomi Valkeinen wrote:
+> > > On 09/09/2024 12:13, Jacopo Mondi wrote:
+> > > > On Mon, Sep 09, 2024 at 08:22:59AM GMT, Tomi Valkeinen wrote:
+> > > > > On 09/09/2024 08:08, Tomi Valkeinen wrote:
+> > > > > > On 05/09/2024 14:11, Laurent Pinchart wrote:
+> > > > > > > On Thu, Sep 05, 2024 at 06:50:48PM +0800, kernel test robot wrote:
+> > > > > > > > Hi Tomi,
+> > > > > > > >
+> > > > > > > > kernel test robot noticed the following build warnings:
+> > > > > > > >
+> > > > > > > > [auto build test WARNING on 431c1646e1f86b949fa3685efc50b660a364c2b6]
+> > > > > > > >
+> > > > > > > > url:    https://github.com/intel-lab-lkp/linux/commits/Tomi-
+> > > > > > > > Valkeinen/media-uapi-Add-meta-formats-for-PiSP-FE-config-and-
+> > > > > > > > stats/20240904-192729
+> > > > > > > > base:   431c1646e1f86b949fa3685efc50b660a364c2b6
+> > > > > > > > patch link:    https://lore.kernel.org/r/20240904-rp1-cfe-v4-3-
+> > > > > > > > f1b5b3d69c81%40ideasonboard.com
+> > > > > > > > patch subject: [PATCH v4 3/4] media: raspberrypi: Add support
+> > > > > > > > for RP1-CFE
+> > > > > > > > config: m68k-allmodconfig (https://download.01.org/0day-ci/
+> > > > > > > > archive/20240905/202409051822.ZzUGw3XQ-lkp@intel.com/config)
+> > > > > > > > compiler: m68k-linux-gcc (GCC) 14.1.0
+> > > > > > > > reproduce (this is a W=1 build):
+> > > > > > > > (https://download.01.org/0day-ci/
+> > > > > > > > archive/20240905/202409051822.ZzUGw3XQ-lkp@intel.com/reproduce)
+> > > > > > > >
+> > > > > > > > If you fix the issue in a separate patch/commit (i.e. not just a
+> > > > > > > > new version of
+> > > > > > > > the same patch/commit), kindly add following tags
+> > > > > > > > | Reported-by: kernel test robot <lkp@intel.com>
+> > > > > > > > | Closes: https://lore.kernel.org/oe-kbuild-
+> > > > > > > > all/202409051822.ZzUGw3XQ-lkp@intel.com/
+> > > > > > > >
+> > > > > > > > All warnings (new ones prefixed by >>):
+> > > > > > > >
+> > > > > > > > > > drivers/media/platform/raspberrypi/rp1-cfe/cfe.c:2445:12:
+> > > > > > > > > > warning: 'cfe_runtime_resume' defined but not used
+> > > > > > > > > > [-Wunused-function]
+> > > > > > > >       2445 | static int cfe_runtime_resume(struct device *dev)
+> > > > > > > >            |            ^~~~~~~~~~~~~~~~~~
+> > > > > > > > > > drivers/media/platform/raspberrypi/rp1-cfe/cfe.c:2435:12:
+> > > > > > > > > > warning: 'cfe_runtime_suspend' defined but not used
+> > > > > > > > > > [-Wunused-function]
+> > > > > > > >       2435 | static int cfe_runtime_suspend(struct device *dev)
+> > > > > > > >            |            ^~~~~~~~~~~~~~~~~~~
+> > > > > > > > vim +/cfe_runtime_resume +2445
+> > > > > > > > drivers/media/platform/raspberrypi/ rp1-cfe/cfe.c
+> > > > > > >
+> > > > > > > The recommended way to fix this is to switch from SET_RUNTIME_PM_OPS()
+> > > > > > > to RUNTIME_PM_OPS() and use pm_ptr() to set .driver.pm. This being said,
+> > > > > > > the driver won't work on a kernel with !CONFIG_PM given how you
+> > > > > > > implemented probe() and remove().
+> > > > > > >
+> > > > > > > The pisp-be driver suffered from the same issue and Jacopo fixed it in
+> > > > > > > the last version. You can have a look at implement something similar.
+> > > > > >
+> > > > > > I can't right away think of any reason to not just depend on CONFIG_PM
+> > > > > > and be done with it without any tricks. Do you know if there's a reason?
+> > > >
+> > > > We had the same discussion, and even if I would be fine depending on
+> > > > CONFIG_PM, supporting !CONFIG_PM is not that much work, I kept it as
+> > > > an optional dependency (it was suggested during the review as well)
+> > > >
+> > > > >
+> > > > > Also, I don't think pisp-be is correct. It just calls
+> > > > > pispbe_runtime_resume() in probe() to wake the IP up (which only enables
+> > > > > pisp clock), without telling the runtime PM about it. This means the parent
+> > > > > device and the suppliers may not be powered up.
+> > > >
+> > > > Are you referring to the code currently in the tree or to this patch ?
+> > > > https://patchwork.linuxtv.org/project/linux-media/patch/20240904095836.344833-5-jacopo.mondi@ideasonboard.com/
+> > >
+> > > Ah, I missed that one.
+> > >
+> > > I don't think it fixes the issue I mentioned. If we have PM enabled, and the
+> > > parent device requires powering up for the child device (BE) to be
+> > > accessible, the driver will crash when calling pispbe_hw_init(). I think you
+> > > should call pm_runtime_set_active() before calling pispbe_runtime_resume().
+> > 
+> > As discussed, this is not a problem currently for BE, but indeed you
+> > have a point.
+> > 
+> > Sad note: most of all the occurrences of "grep set_active" in
+> > drivers/media/platform/ show that set_active() is used as I've done in
+> > my patch
+> > 
+> > > However, you said above that "supporting !CONFIG_PM is not that much work".
+> > > Maybe not. But how much work is it to get it right (for both PM and !PM),
+> > > and make sure it stays right? =).
+> > >
+> > > Just my opinion, but if there are zero use cases for the !PM, I would just
+> > > go with "depends on PM" to keep the driver simpler, less bug-prone, and
+> > > easier to maintain.
 > 
-> New, imx28-btt3.dtsi has been added to embrace common DTS
-> properties for different HW revisions for this device.
+> I'm fine with that, and for platform drivers, that's my preferred
+> option. Sakari ?
+
+I'm concerned with your (?) recent finding that many architectures don't
+have support for CONFIG_PM. In this case the device is very unlikely to be
+used outside ARM(64) so I guess it's fine.
+
 > 
-> As a result - changes introduced in imx28-btt3-[012].dts are
-> minimal.
+> > I don't see a use case for !PM and we confirmed with RPi they don't
+> > need to support it. During the review of a previous version of the BE
+> > driver iirc I've been asked to support !PM but I'm not sure I recall
+> > the reasons.
 > 
-> Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> 
-> ---
-> Changes for v2:
-> - Rename dts file from btt3-[012] to imx28-btt3-[012] to match current
->   linux kernel naming convention
-> - Remove 'wlf,wm8974' from compatible for codec@1a
-> 
-> Changes for v3:
-> - Keep alphabethical order for Makefile entries
-> 
-> Changes for v4:
-> - Change compatible for btt3 board (to 'lwn,imx28-btt3')
-> ---
->  arch/arm/boot/dts/nxp/mxs/Makefile         |   3 +
->  arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts |  12 +
->  arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts |   8 +
->  arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts |  12 +
->  arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi  | 320 +++++++++++++++++++++
->  5 files changed, 355 insertions(+)
->  create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts
->  create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts
->  create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts
->  create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi
-> 
+> I hope it wasn't me :-)
 
+Me neither. Although it'd be nice: CONFIG_PM isn't a hardware specific
+option as such. As one part of the kernel requires !CONFIG_PM and another
+CONFIG_PM, we can expect problems, at least in principle.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Ideally all architectures would support it so CONFIG_PM could be removed
+and we could say the problem has been solved. :-)
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+-- 
+Regards,
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y nxp/mxs/imx28-btt3-0.dtb nxp/mxs/imx28-btt3-1.dtb nxp/mxs/imx28-btt3-2.dtb' for 20240909113952.359425-1-lukma@denx.de:
-
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: /: compatible: 'oneOf' conditional failed, one must be fixed:
-	['lwn,imx28-btt3', 'fsl,imx28'] is too short
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: /: compatible: 'oneOf' conditional failed, one must be fixed:
-		['lwn,imx28-btt3', 'fsl,imx28'] is too short
-		'lwn,imx28-btt3' is not one of ['tq,imx8dxp-tqma8xdp-mba8xx']
-		'lwn,imx28-btt3' is not one of ['tq,imx8qxp-tqma8xqp-mba8xx']
-		'tq,imx8dxp-tqma8xdp' was expected
-		'tq,imx8qxp-tqma8xqp' was expected
-	['lwn,imx28-btt3', 'fsl,imx28'] is too long
-	'lwn,imx28-btt3' is not one of ['armadeus,imx1-apf9328', 'fsl,imx1ads']
-	'lwn,imx28-btt3' is not one of ['creative,x-fi3', 'fsl,imx23-evk', 'fsl,stmp378x-devb', 'olimex,imx23-olinuxino', 'sandisk,sansa_fuze_plus']
-	'lwn,imx28-btt3' is not one of ['fsl,imx25-pdk', 'karo,imx25-tx25']
-	'lwn,imx28-btt3' is not one of ['eukrea,mbimxsd25-baseboard']
-	'lwn,imx28-btt3' is not one of ['eukrea,mbimxsd25-baseboard-cmo-qvga', 'eukrea,mbimxsd25-baseboard-dvi-svga', 'eukrea,mbimxsd25-baseboard-dvi-vga']
-	'lwn,imx28-btt3' is not one of ['armadeus,imx27-apf27', 'fsl,imx27-pdk']
-	'armadeus,imx27-apf27dev' was expected
-	'eukrea,mbimxsd27-baseboard' was expected
-	'phytec,imx27-pca100-rdk' was expected
-	'phytec,imx27-pcm970' was expected
-	'lwn,imx28-btt3' is not one of ['armadeus,imx28-apf28', 'bluegiga,apx4devkit', 'crystalfontz,cfa10036', 'eukrea,mbmx28lc', 'fsl,imx28-evk', 'i2se,duckbill', 'i2se,duckbill-2', 'karo,tx28', 'lwn,imx28-xea', 'msr,m28cu3', 'schulercontrol,imx28-sps1', 'technologic,imx28-ts4600']
-	'aries,m28' was expected
-	'aries,m28evk' was expected
-	'armadeus,imx28-apf28dev' was expected
-	'lwn,imx28-btt3' is not one of ['crystalfontz,cfa10037', 'crystalfontz,cfa10049', 'crystalfontz,cfa10057', 'crystalfontz,cfa10058']
-	'lwn,imx28-btt3' is not one of ['crystalfontz,cfa10055', 'crystalfontz,cfa10056']
-	'lwn,imx28-btt3' is not one of ['i2se,duckbill-2-485', 'i2se,duckbill-2-enocean', 'i2se,duckbill-2-spi']
-	'eukrea,mbmx283lc' was expected
-	'eukrea,mbmx287lc' was expected
-	'lwn,imx28-btt3' is not one of ['buglabs,imx31-bug', 'logicpd,imx31-lite']
-	'lwn,imx28-btt3' is not one of ['fsl,imx35-pdk']
-	'eukrea,mbimxsd35-baseboard' was expected
-	'lwn,imx28-btt3' is not one of ['fsl,imx50-evk', 'kobo,aura']
-	'lwn,imx28-btt3' is not one of ['armadeus,imx51-apf51', 'fsl,imx51-babbage', 'technologic,imx51-ts4800', 'zii,imx51-scu3-esb', 'zii,imx51-scu2-mezz', 'zii,imx51-rdu1']
-	'armadeus,imx51-apf51dev' was expected
-	'digi,connectcore-ccxmx51-jsk' was expected
-	'eukrea,mbimxsd51' was expected
-	'lwn,imx28-btt3' is not one of ['bhf,cx9020', 'fsl,imx53-ard', 'fsl,imx53-evk', 'fsl,imx53-qsb', 'fsl,imx53-qsrb', 'fsl,imx53-smd', 'ge,imx53-cpuvo', 'inversepath,imx53-usbarmory', 'karo,tx53', 'kiebackpeter,imx53-ddc', 'kiebackpeter,imx53-hsc', 'menlo,m53menlo', 'starterkit,sk-imx53', 'voipac,imx53-dmm-668']
-	'aries,imx53-m53evk' was expected
-	'tq,mba53' was expected
-	'lwn,imx28-btt3' is not one of ['auvidea,h100', 'bosch,imx6q-acc', 'boundary,imx6q-nitrogen6_max', 'boundary,imx6q-nitrogen6_som2', 'boundary,imx6q-nitrogen6x', 'compulab,cm-fx6', 'dmo,imx6q-edmqmx6', 'ds,imx6q-sbc', 'embest,imx6q-marsboard', 'emtrion,emcon-mx6', 'emtrion,emcon-mx6-avari', 'engicam,imx6-icore', 'engicam,imx6-icore-rqs', 'fsl,imx6q-arm2', 'fsl,imx6q-sabreauto', 'fsl,imx6q-sabrelite', 'fsl,imx6q-sabresd', 'karo,imx6q-tx6q', 'kiebackpeter,imx6q-tpc', 'kontron,imx6q-samx6i', 'kosagi,imx6q-novena', 'kvg,vicut1q', 'logicpd,imx6q-logicpd', 'lwn,display5', 'lwn,mccmon6', 'nutsboard,imx6q-pistachio', 'microsys,sbc6x', 'poslab,imx6q-savageboard', 'prt,prti6q', 'prt,prtwd2', 'rex,imx6q-rex-pro', 'skov,imx6q-skov-revc-lt2', 'skov,imx6q-skov-revc-lt6', 'skov,imx6q-skov-reve-mi1010ait-1cp1', 'solidrun,cubox-i/q', 'solidrun,hummingboard/q', 'solidrun,hummingboard2/q', 'solidrun,solidsense/q', 'tbs,imx6q-tbs2910', 'technexion,imx6q-pico-dwarf', 'technexion,imx6q-pico-hobbit', 'tech
- nexion,imx6q-pico-nymph', 'technexion,imx6q-pico-pi', 'technologic,imx6q-ts4900', 'technologic,imx6q-ts7970', 'toradex,apalis_imx6q', 'udoo,imx6q-udoo', 'uniwest,imx6q-evi', 'variscite,dt6customboard', 'wand,imx6q-wandboard', 'ysoft,imx6q-yapp4-crux', 'ysoft,imx6q-yapp4-pegasus', 'zealz,imx6q-gk802', 'zii,imx6q-zii-rdu2']
-	'lwn,imx28-btt3' is not one of ['advantech,imx6q-dms-ba16', 'ge,imx6q-b450v3', 'ge,imx6q-b650v3', 'ge,imx6q-b850v3']
-	'armadeus,imx6q-apf6dev' was expected
-	'compulab,utilite-pro' was expected
-	'dfi,fs700-m60-6qd' was expected
-	'dh,imx6q-dhcom-pdk2' was expected
-	'lwn,imx28-btt3' is not one of ['gw,imx6q-gw51xx', 'gw,imx6q-gw52xx', 'gw,imx6q-gw53xx', 'gw,imx6q-gw5400-a', 'gw,imx6q-gw54xx', 'gw,imx6q-gw551x', 'gw,imx6q-gw552x', 'gw,imx6q-gw553x', 'gw,imx6q-gw560x', 'gw,imx6q-gw5903', 'gw,imx6q-gw5904', 'gw,imx6q-gw5907', 'gw,imx6q-gw5910', 'gw,imx6q-gw5912', 'gw,imx6q-gw5913']
-	'kontron,imx6q-samx6i-ads2' was expected
-	'lwn,imx28-btt3' is not one of ['phytec,imx6q-pbac06-emmc', 'phytec,imx6q-pbac06-nand']
-	'phytec,imx6q-pbab01' was expected
-	'lwn,imx28-btt3' is not one of ['toradex,apalis_imx6q-ixora', 'toradex,apalis_imx6q-ixora-v1.1', 'toradex,apalis_imx6q-ixora-v1.2', 'toradex,apalis_imx6q-eval', 'toradex,apalis_imx6q-eval-v1.2']
-	'variscite,mx6customboard' was expected
-	'tq,imx6q-mba6x-a' was expected
-	'tq,imx6q-mba6x-b' was expected
-	'lwn,imx28-btt3' is not one of ['boundary,imx6qp-nitrogen6_max', 'boundary,imx6qp-nitrogen6_som2', 'fsl,imx6qp-sabreauto', 'fsl,imx6qp-sabresd', 'karo,imx6qp-tx6qp', 'kvg,vicutp', 'prt,prtwd3', 'wand,imx6qp-wandboard', 'ysoft,imx6qp-yapp4-crux-plus', 'ysoft,imx6qp-yapp4-pegasus-plus', 'zii,imx6qp-zii-rdu2']
-	'phytec,imx6qp-pbac06-nand' was expected
-	'tq,imx6qp-mba6x-b' was expected
-	'lwn,imx28-btt3' is not one of ['abb,aristainetos-imx6dl-4', 'abb,aristainetos-imx6dl-7', 'abb,aristainetos2-imx6dl-4', 'abb,aristainetos2-imx6dl-7', 'alt,alti6p', 'boundary,imx6dl-nit6xlite', 'boundary,imx6dl-nitrogen6x', 'bticino,imx6dl-mamoj', 'eckelmann,imx6dl-ci4x10', 'emtrion,emcon-mx6', 'emtrion,emcon-mx6-avari', 'engicam,imx6-icore', 'engicam,imx6-icore-rqs', 'fsl,imx6dl-sabreauto', 'fsl,imx6dl-sabrelite', 'fsl,imx6dl-sabresd', 'karo,imx6dl-tx6dl', 'kontron,imx6dl-samx6i', 'kvg,victgo', 'kvg,vicut1', 'ply,plybas', 'ply,plym2m', 'poslab,imx6dl-savageboard', 'prt,prtmvt', 'prt,prtrvt', 'prt,prtvt7', 'rex,imx6dl-rex-basic', 'riot,imx6s-riotboard', 'sielaff,imx6dl-board', 'skov,imx6dl-skov-revc-lt2', 'skov,imx6dl-skov-revc-lt6', 'solidrun,cubox-i/dl', 'solidrun,hummingboard/dl', 'solidrun,hummingboard2/dl', 'solidrun,solidsense/dl', 'technexion,imx6dl-pico-dwarf', 'technexion,imx6dl-pico-hobbit', 'technexion,imx6dl-pico-nymph', 'technexion,imx6dl-pico-pi', 'technologic,imx6dl-ts
- 4900', 'technologic,imx6dl-ts7970', 'toradex,colibri_imx6dl', 'udoo,imx6dl-udoo', 'vdl,lanmcu', 'wand,imx6dl-wandboard', 'ysoft,imx6dl-yapp4-draco', 'ysoft,imx6dl-yapp4-hydra', 'ysoft,imx6dl-yapp4-lynx', 'ysoft,imx6dl-yapp4-orion', 'ysoft,imx6dl-yapp4-phoenix', 'ysoft,imx6dl-yapp4-ursa']
-	'armadeus,imx6dl-apf6dev' was expected
-	'lwn,imx28-btt3' is not one of ['ge,imx6dl-b105v2', 'ge,imx6dl-b105pv2', 'ge,imx6dl-b125v2', 'ge,imx6dl-b125pv2', 'ge,imx6dl-b155v2']
-	'dfi,fs700-m60-6dl' was expected
-	'dh,imx6dl-dhcom-picoitx' was expected
-	'lwn,imx28-btt3' is not one of ['gw,imx6dl-gw51xx', 'gw,imx6dl-gw52xx', 'gw,imx6dl-gw53xx', 'gw,imx6dl-gw54xx', 'gw,imx6dl-gw551x', 'gw,imx6dl-gw552x', 'gw,imx6dl-gw553x', 'gw,imx6dl-gw560x', 'gw,imx6dl-gw5903', 'gw,imx6dl-gw5904', 'gw,imx6dl-gw5907', 'gw,imx6dl-gw5910', 'gw,imx6dl-gw5912', 'gw,imx6dl-gw5913']
-	'kontron,imx6dl-samx6i-ads2' was expected
-	'lwn,imx28-btt3' is not one of ['phytec,imx6dl-pbac06-emmc', 'phytec,imx6dl-pbac06-nand']
-	'phytec,imx6dl-pbab01' was expected
-	'lwn,imx28-btt3' is not one of ['toradex,colibri_imx6dl-aster', 'toradex,colibri_imx6dl-eval-v3', 'toradex,colibri_imx6dl-iris', 'toradex,colibri_imx6dl-iris-v2']
-	'dh,imx6s-dhcom-drc02' was expected
-	'tq,imx6dl-mba6x-a' was expected
-	'tq,imx6dl-mba6x-b' was expected
-	'lwn,imx28-btt3' is not one of ['fsl,imx6sl-evk', 'kobo,aura2', 'kobo,tolino-shine2hd', 'kobo,tolino-shine3', 'kobo,tolino-vision', 'kobo,tolino-vision5', 'revotics,imx6sl-warp']
-	'lwn,imx28-btt3' is not one of ['fsl,imx6sll-evk', 'kobo,clarahd', 'kobo,librah2o']
-	'lwn,imx28-btt3' is not one of ['boundary,imx6sx-nitrogen6sx', 'fsl,imx6sx-sabreauto', 'fsl,imx6sx-sdb', 'fsl,imx6sx-sdb-reva', 'samtec,imx6sx-vining-2000', 'udoo,neobasic', 'udoo,neoextended', 'udoo,neofull']
-	'lwn,imx28-btt3' is not one of ['engicam,imx6ul-geam', 'engicam,imx6ul-isiot', 'fsl,imx6ul-14x14-evk', 'karo,imx6ul-tx6ul', 'kontron,sl-imx6ul', 'prt,prti6g', 'technexion,imx6ul-pico-dwarf', 'technexion,imx6ul-pico-hobbit', 'technexion,imx6ul-pico-pi']
-	'armadeus,imx6ul-opos6uldev' was expected
-	'lwn,imx28-btt3' is not one of ['digi,ccimx6ulsbcexpress', 'digi,ccimx6ulsbcpro']
-	'grinn,imx6ul-liteboard' was expected
-	'lwn,imx28-btt3' is not one of ['phytec,imx6ul-pbacd10-emmc', 'phytec,imx6ul-pbacd10-nand']
-	'kontron,bl-imx6ul' was expected
-	'kontron,bl-imx6ul-43' was expected
-	'lwn,imx28-btt3' is not one of ['tq,imx6ul-tqma6ul1-mba6ulx']
-	'lwn,imx28-btt3' is not one of ['tq,imx6ul-tqma6ul2-mba6ulx']
-	'lwn,imx28-btt3' is not one of ['tq,imx6ul-tqma6ul2l-mba6ulx', 'tq,imx6ul-tqma6ul2l-mba6ulxl']
-	'lwn,imx28-btt3' is not one of ['fsl,imx6ull-14x14-evk', 'joz,jozacp', 'kontron,sl-imx6ull', 'myir,imx6ull-mys-6ulx-eval', 'toradex,colibri-imx6ull', 'toradex,colibri-imx6ull-emmc', 'toradex,colibri-imx6ull-wifi', 'uni-t,uti260b']
-	'armadeus,imx6ull-opos6uldev' was expected
-	'lwn,imx28-btt3' is not one of ['chargebyte,imx6ull-tarragon-master', 'chargebyte,imx6ull-tarragon-micro', 'chargebyte,imx6ull-tarragon-slave', 'chargebyte,imx6ull-tarragon-slavext']
-	'lwn,imx28-btt3' is not one of ['dh,imx6ull-dhcom-drc02', 'dh,imx6ull-dhcom-pdk2', 'dh,imx6ull-dhcom-picoitx']
-	'marantec,imx6ull-dhcor-maveo-box' was expected
-	'lwn,imx28-btt3' is not one of ['phytec,imx6ull-pbacd10-emmc', 'phytec,imx6ull-pbacd10-nand']
-	'lwn,imx28-btt3' is not one of ['phytec,imx6ull-phygate-tauri-emmc', 'phytec,imx6ull-phygate-tauri-nand']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx6ull-aster', 'toradex,colibri-imx6ull-eval', 'toradex,colibri-imx6ull-iris', 'toradex,colibri-imx6ull-iris-v2']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx6ull-emmc-aster', 'toradex,colibri-imx6ull-emmc-eval', 'toradex,colibri-imx6ull-emmc-iris', 'toradex,colibri-imx6ull-emmc-iris-v2']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx6ull-wifi-eval', 'toradex,colibri-imx6ull-wifi-aster', 'toradex,colibri-imx6ull-wifi-iris', 'toradex,colibri-imx6ull-wifi-iris-v2']
-	'kontron,bl-imx6ull' was expected
-	'lwn,imx28-btt3' is not one of ['tq,imx6ull-tqma6ull2-mba6ulx']
-	'lwn,imx28-btt3' is not one of ['tq,imx6ull-tqma6ull2l-mba6ulx', 'tq,imx6ull-tqma6ull2l-mba6ulxl']
-	'lwn,imx28-btt3' is not one of ['seeed,imx6ull-seeed-npi-emmc', 'seeed,imx6ull-seeed-npi-nand']
-	'lwn,imx28-btt3' is not one of ['bsh,imx6ulz-bsh-smm-m2', 'fsl,imx6ulz-14x14-evk']
-	'lwn,imx28-btt3' is not one of ['element14,imx7s-warp', 'toradex,colibri-imx7s']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx7s-aster', 'toradex,colibri-imx7s-eval-v3', 'toradex,colibri-imx7s-iris', 'toradex,colibri-imx7s-iris-v2']
-	'tq,imx7s-mba7' was expected
-	'lwn,imx28-btt3' is not one of ['boundary,imx7d-nitrogen7', 'compulab,cl-som-imx7', 'fsl,imx7d-sdb', 'fsl,imx7d-sdb-reva', 'kam,imx7d-flex-concentrator', 'kam,imx7d-flex-concentrator-mfg', 'novtech,imx7d-meerkat96', 'remarkable,imx7d-remarkable2', 'storopack,imx7d-smegw01', 'technexion,imx7d-pico-dwarf', 'technexion,imx7d-pico-hobbit', 'technexion,imx7d-pico-nymph', 'technexion,imx7d-pico-pi', 'toradex,colibri-imx7d', 'toradex,colibri-imx7d-emmc', 'zii,imx7d-rmu2', 'zii,imx7d-rpu2']
-	'tq,imx7d-mba7' was expected
-	'compulab,sbc-imx7' was expected
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx7d-aster', 'toradex,colibri-imx7d-eval-v3', 'toradex,colibri-imx7d-iris', 'toradex,colibri-imx7d-iris-v2']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx7d-emmc-aster', 'toradex,colibri-imx7d-emmc-eval-v3', 'toradex,colibri-imx7d-emmc-iris', 'toradex,colibri-imx7d-emmc-iris-v2']
-	'lwn,imx28-btt3' is not one of ['ea,imx7ulp-com', 'fsl,imx7ulp-evk']
-	'lwn,imx28-btt3' is not one of ['beacon,imx8mm-beacon-kit', 'boundary,imx8mm-nitrogen8mm', 'dmo,imx8mm-data-modul-edm-sbc', 'emtrion,emcon-mx8mm-avari', 'fsl,imx8mm-ddr4-evk', 'fsl,imx8mm-evk', 'fsl,imx8mm-evkb', 'gateworks,imx8mm-gw75xx-0x', 'gateworks,imx8mm-gw7904', 'gw,imx8mm-gw71xx-0x', 'gw,imx8mm-gw72xx-0x', 'gw,imx8mm-gw73xx-0x', 'gw,imx8mm-gw7901', 'gw,imx8mm-gw7902', 'gw,imx8mm-gw7903', 'innocomm,wb15-evk', 'kontron,imx8mm-sl', 'kontron,imx8mm-osm-s', 'toradex,verdin-imx8mm', 'toradex,verdin-imx8mm-nonwifi', 'toradex,verdin-imx8mm-wifi', 'prt,prt8mm']
-	'lwn,imx28-btt3' is not one of ['compulab,imx8mm-iot-gateway']
-	'ees,imx8mm-emtop-baseboard' was expected
-	'lwn,imx28-btt3' is not one of ['engicam,icore-mx8mm-ctouch2', 'engicam,icore-mx8mm-edimm2.2']
-	'kontron,imx8mm-bl' was expected
-	'kontron,imx8mm-bl-osm-s' was expected
-	'lwn,imx28-btt3' is not one of ['menlo,mx8menlo', 'toradex,verdin-imx8mm-nonwifi-dahlia', 'toradex,verdin-imx8mm-nonwifi-dev', 'toradex,verdin-imx8mm-nonwifi-mallow', 'toradex,verdin-imx8mm-nonwifi-yavia']
-	'lwn,imx28-btt3' is not one of ['toradex,verdin-imx8mm-wifi-dahlia', 'toradex,verdin-imx8mm-wifi-dev', 'toradex,verdin-imx8mm-wifi-mallow', 'toradex,verdin-imx8mm-wifi-yavia']
-	'lwn,imx28-btt3' is not one of ['phytec,imx8mm-phyboard-polis-rdk', 'phytec,imx8mm-phygate-tauri-l']
-	'variscite,var-som-mx8mm-symphony' was expected
-	'lwn,imx28-btt3' is not one of ['cloos,imx8mm-phg', 'tq,imx8mm-tqma8mqml-mba8mx']
-	'lwn,imx28-btt3' is not one of ['beacon,imx8mn-beacon-kit', 'bsh,imx8mn-bsh-smm-s2', 'bsh,imx8mn-bsh-smm-s2pro', 'fsl,imx8mn-ddr3l-evk', 'fsl,imx8mn-ddr4-evk', 'fsl,imx8mn-evk', 'gw,imx8mn-gw7902']
-	'lwn,imx28-btt3' is not one of ['dimonoff,gateway-evk', 'rve,gateway', 'variscite,var-som-mx8mn-symphony']
-	'lwn,imx28-btt3' is not one of ['tq,imx8mn-tqma8mqnl-mba8mx']
-	'lwn,imx28-btt3' is not one of ['beacon,imx8mp-beacon-kit', 'dmo,imx8mp-data-modul-edm-sbc', 'emcraft,imx8mp-navqp', 'fsl,imx8mp-evk', 'gateworks,imx8mp-gw71xx-2x', 'gateworks,imx8mp-gw72xx-2x', 'gateworks,imx8mp-gw73xx-2x', 'gateworks,imx8mp-gw74xx', 'gateworks,imx8mp-gw75xx-2x', 'skov,imx8mp-skov-revb-hdmi', 'skov,imx8mp-skov-revb-lt6', 'skov,imx8mp-skov-revb-mi1010ait-1cp1', 'toradex,verdin-imx8mp', 'toradex,verdin-imx8mp-nonwifi', 'toradex,verdin-imx8mp-wifi']
-	'avnet,sm2s-imx8mp-14N0600E-ep1' was expected
-	'lwn,imx28-btt3' is not one of ['dh,imx8mp-dhcom-pdk2', 'dh,imx8mp-dhcom-pdk3']
-	'lwn,imx28-btt3' is not one of ['engicam,icore-mx8mp-edimm2.2']
-	'phytec,imx8mp-phyboard-pollux-rdk' was expected
-	'lwn,imx28-btt3' is not one of ['polyhex,imx8mp-debix-model-a']
-	'lwn,imx28-btt3' is not one of ['polyhex,imx8mp-debix-som-a-bmb-08']
-	'lwn,imx28-btt3' is not one of ['toradex,verdin-imx8mp-nonwifi-dahlia', 'toradex,verdin-imx8mp-nonwifi-dev', 'toradex,verdin-imx8mp-nonwifi-mallow', 'toradex,verdin-imx8mp-nonwifi-yavia']
-	'lwn,imx28-btt3' is not one of ['toradex,verdin-imx8mp-wifi-dahlia', 'toradex,verdin-imx8mp-wifi-dev', 'toradex,verdin-imx8mp-wifi-mallow', 'toradex,verdin-imx8mp-wifi-yavia']
-	'lwn,imx28-btt3' is not one of ['tq,imx8mp-tqma8mpql-mba8mpxl', 'tq,imx8mp-tqma8mpql-mba8mp-ras314']
-	'variscite,var-som-mx8mp-symphony' was expected
-	'lwn,imx28-btt3' is not one of ['boundary,imx8mq-nitrogen8m', 'boundary,imx8mq-nitrogen8m-som', 'einfochips,imx8mq-thor96', 'fsl,imx8mq-evk', 'google,imx8mq-phanbell', 'kontron,pitx-imx8m', 'purism,librem5-devkit', 'solidrun,hummingboard-pulse', 'technexion,pico-pi-imx8m']
-	'mntre,reform2' was expected
-	'lwn,imx28-btt3' is not one of ['purism,librem5r2', 'purism,librem5r3', 'purism,librem5r4']
-	'lwn,imx28-btt3' is not one of ['tq,imx8mq-tqma8mq-mba8mx']
-	'lwn,imx28-btt3' is not one of ['zii,imx8mq-ultra-rmb3', 'zii,imx8mq-ultra-zest']
-	'lwn,imx28-btt3' is not one of ['fsl,imx8qm-mek', 'toradex,apalis-imx8', 'toradex,apalis-imx8-v1.1']
-	'lwn,imx28-btt3' is not one of ['toradex,apalis-imx8-eval', 'toradex,apalis-imx8-eval-v1.2', 'toradex,apalis-imx8-ixora-v1.1']
-	'lwn,imx28-btt3' is not one of ['toradex,apalis-imx8-v1.1-eval', 'toradex,apalis-imx8-v1.1-eval-v1.2', 'toradex,apalis-imx8-v1.1-ixora-v1.1', 'toradex,apalis-imx8-v1.1-ixora-v1.2']
-	'lwn,imx28-btt3' is not one of ['einfochips,imx8qxp-ai_ml', 'fsl,imx8qxp-mek']
-	'lwn,imx28-btt3' is not one of ['fsl,imx8dxl-evk']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx8x-aster', 'toradex,colibri-imx8x-eval-v3', 'toradex,colibri-imx8x-iris', 'toradex,colibri-imx8x-iris-v2']
-	'lwn,imx28-btt3' is not one of ['fsl,imx8ulp-evk']
-	'lwn,imx28-btt3' is not one of ['fsl,imx93-9x9-qsb', 'fsl,imx93-11x11-evk', 'fsl,imx93-14x14-evk']
-	'lwn,imx28-btt3' is not one of ['fsl,imx95-19x19-evk']
-	'lwn,imx28-btt3' is not one of ['fsl,imxrt1050-evk']
-	'lwn,imx28-btt3' is not one of ['fsl,imxrt1170-evk']
-	'lwn,imx28-btt3' is not one of ['tq,imx93-tqma9352-mba93xxca', 'tq,imx93-tqma9352-mba93xxla']
-	'phytec,imx93-phyboard-segin' was expected
-	'variscite,var-som-mx93-symphony' was expected
-	'kontron,imx93-bl-osm-s' was expected
-	'lwn,imx28-btt3' is not one of ['fsl,vf500', 'fsl,vf510', 'fsl,vf600', 'fsl,vf610', 'fsl,vf610m4']
-	'toradex,vf500-colibri_vf50-on-eval' was expected
-	'lwn,imx28-btt3' is not one of ['fsl,vf610-twr', 'lwn,bk4', 'phytec,vf610-cosmic', 'toradex,vf610-colibri_vf61']
-	'toradex,vf610-colibri_vf61-on-eval' was expected
-	'lwn,imx28-btt3' is not one of ['zii,vf610cfu1', 'zii,vf610dev-c', 'zii,vf610dev-b', 'zii,vf610scu4-aib', 'zii,vf610dtu', 'zii,vf610spu3', 'zii,vf610spb4']
-	'lwn,imx28-btt3' is not one of ['ebs-systart,oxalis', 'fsl,ls1012a-rdb', 'fsl,ls1012a-frdm', 'fsl,ls1012a-frwy', 'fsl,ls1012a-qds']
-	'lwn,imx28-btt3' is not one of ['fsl,ls1021a-iot', 'fsl,ls1021a-moxa-uc-8410a', 'fsl,ls1021a-qds', 'fsl,ls1021a-tsn', 'fsl,ls1021a-twr']
-	'lwn,imx28-btt3' is not one of ['tq,ls1021a-tqmls1021a-mbls102xa']
-	'lwn,imx28-btt3' is not one of ['fsl,ls1028a-qds', 'fsl,ls1028a-rdb']
-	'kontron,kbox-a-230-ls' was expected
-	'lwn,imx28-btt3' is not one of ['kontron,sl28-var1-ads2', 'kontron,sl28-var2-ads2', 'kontron,sl28-var3-ads2', 'kontron,sl28-var4-ads2']
-	'lwn,imx28-btt3' is not one of ['kontron,sl28-var1', 'kontron,sl28-var2', 'kontron,sl28-var3', 'kontron,sl28-var4']
-	'kontron,sl28' was expected
-	'lwn,imx28-btt3' is not one of ['fsl,ls1043a-rdb', 'fsl,ls1043a-qds']
-	'lwn,imx28-btt3' is not one of ['tq,ls1043a-tqmls1043a-mbls10xxa']
-	'lwn,imx28-btt3' is not one of ['fsl,ls1046a-frwy', 'fsl,ls1046a-qds', 'fsl,ls1046a-rdb']
-	'lwn,imx28-btt3' is not one of ['tq,ls1046a-tqmls1046a-mbls10xxa']
-	'lwn,imx28-btt3' is not one of ['fsl,ls1088a-qds', 'fsl,ls1088a-rdb']
-	'lwn,imx28-btt3' is not one of ['tq,ls1088a-tqmls1088a-mbls10xxa']
-	'lwn,imx28-btt3' is not one of ['fsl,ls2080a-simu', 'fsl,ls2080a-qds', 'fsl,ls2080a-rdb']
-	'lwn,imx28-btt3' is not one of ['fsl,ls2081a-rdb']
-	'lwn,imx28-btt3' is not one of ['fsl,ls2088a-qds', 'fsl,ls2088a-rdb']
-	'lwn,imx28-btt3' is not one of ['fsl,lx2160a-bluebox3', 'fsl,lx2160a-bluebox3-rev-a', 'fsl,lx2160a-qds', 'fsl,lx2160a-rdb', 'fsl,lx2162a-qds']
-	'lwn,imx28-btt3' is not one of ['solidrun,clearfog-cx', 'solidrun,honeycomb']
-	'lwn,imx28-btt3' is not one of ['solidrun,lx2162a-clearfog']
-	'lwn,imx28-btt3' is not one of ['tq,lx2160a-tqmlx2160a-mblx2160a']
-	'lwn,imx28-btt3' is not one of ['nxp,s32g274a-evb', 'nxp,s32g274a-rdb2']
-	'lwn,imx28-btt3' is not one of ['nxp,s32g399a-rdb3']
-	'lwn,imx28-btt3' is not one of ['fsl,s32v234-evb']
-	'lwn,imx28-btt3' is not one of ['traverse,ten64']
-	'fsl,imx1' was expected
-	'fsl,imx23' was expected
-	'fsl,imx25' was expected
-	'eukrea,cpuimx25' was expected
-	'eukrea,mbimxsd25-baseboard' was expected
-	'fsl,imx27' was expected
-	'armadeus,imx27-apf27' was expected
-	'eukrea,cpuimx27' was expected
-	'phytec,imx27-pca100' was expected
-	'phytec,imx27-pcm038' was expected
-	'denx,m28' was expected
-	'denx,m28evk' was expected
-	'armadeus,imx28-apf28' was expected
-	'crystalfontz,cfa10036' was expected
-	'crystalfontz,cfa10037' was expected
-	'i2se,duckbill-2' was expected
-	'eukrea,mbmx28lc' was expected
-	'fsl,imx31' was expected
-	'fsl,imx35' was expected
-	'eukrea,cpuimx35' was expected
-	'fsl,imx50' was expected
-	'fsl,imx51' was expected
-	'armadeus,imx51-apf51' was expected
-	'digi,connectcore-ccxmx51-som' was expected
-	'eukrea,cpuimx51' was expected
-	'fsl,imx53' was expected
-	'denx,imx53-m53evk' was expected
-	'tq,tqma53' was expected
-	'fsl,imx6q' was expected
-	'advantech,imx6q-ba16' was expected
-	'armadeus,imx6q-apf6' was expected
-	'compulab,cm-fx6' was expected
-	'dfi,fs700e-m60' was expected
-	'dh,imx6q-dhcom-som' was expected
-	'gw,ventana' was expected
-	'kontron,imx6q-samx6i' was expected
-	'phytec,imx6q-pbac06' was expected
-	'phytec,imx6q-pfla02' was expected
-	'toradex,apalis_imx6q' was expected
-	'variscite,var-som-imx6q' was expected
-	'tq,mba6a' was expected
-	'tq,mba6b' was expected
-	'fsl,imx6qp' was expected
-	'phytec,imx6qp-pbac06' was expected
-	'fsl,imx6dl' was expected
-	'armadeus,imx6dl-apf6' was expected
-	'congatec,qmx6' was expected
-	'dh,imx6dl-dhcom-som' was expected
-	'kontron,imx6dl-samx6i' was expected
-	'phytec,imx6dl-pbac06' was expected
-	'phytec,imx6dl-pfla02' was expected
-	'toradex,colibri_imx6dl' was expected
-	'dh,imx6s-dhcom-som' was expected
-	'fsl,imx6sl' was expected
-	'fsl,imx6sll' was expected
-	'fsl,imx6sx' was expected
-	'fsl,imx6ul' was expected
-	'armadeus,imx6ul-opos6ul' was expected
-	'digi,ccimx6ulsom' was expected
-	'grinn,imx6ul-litesom' was expected
-	'phytec,imx6ul-pbacd10' was expected
-	'kontron,sl-imx6ul' was expected
-	'tq,imx6ul-tqma6ul1' was expected
-	'tq,imx6ul-tqma6ul2' was expected
-	'tq,imx6ul-tqma6ul2l' was expected
-	'fsl,imx6ull' was expected
-	'armadeus,imx6ull-opos6ul' was expected
-	'dh,imx6ull-dhcom-som' was expected
-	'dh,imx6ull-dhcor-som' was expected
-	'phytec,imx6ull-pbacd10' was expected
-	'phytec,imx6ull-phygate-tauri' was expected
-	'toradex,colibri-imx6ull' was expected
-	'toradex,colibri-imx6ull-emmc' was expected
-	'toradex,colibri-imx6ull-wifi' was expected
-	'kontron,sl-imx6ull' was expected
-	'tq,imx6ull-tqma6ull2' was expected
-	'tq,imx6ull-tqma6ull2l' was expected
-	'seeed,imx6ull-seeed-npi' was expected
-	'fsl,imx7s' was expected
-	'toradex,colibri-imx7s' was expected
-	'tq,imx7s-tqma7' was expected
-	'fsl,imx7d' was expected
-	'tq,imx7d-tqma7' was expected
-	'compulab,cl-som-imx7' was expected
-	'toradex,colibri-imx7d' was expected
-	'toradex,colibri-imx7d-emmc' was expected
-	'fsl,imx7ulp' was expected
-	'fsl,imx8mm' was expected
-	'compulab,imx8mm-ucm-som' was expected
-	'ees,imx8mm-emtop-som' was expected
-	'engicam,icore-mx8mm' was expected
-	'kontron,imx8mm-sl' was expected
-	'kontron,imx8mm-osm-s' was expected
-	'toradex,verdin-imx8mm-nonwifi' was expected
-	'toradex,verdin-imx8mm-wifi' was expected
-	'phytec,imx8mm-phycore-som' was expected
-	'variscite,var-som-mx8mm' was expected
-	'tq,imx8mm-tqma8mqml' was expected
-	'fsl,imx8mn' was expected
-	'variscite,var-som-mx8mn' was expected
-	'tq,imx8mn-tqma8mqnl' was expected
-	'fsl,imx8mp' was expected
-	'avnet,sm2s-imx8mp-14N0600E' was expected
-	'dh,imx8mp-dhcom-som' was expected
-	'engicam,icore-mx8mp' was expected
-	'phytec,imx8mp-phycore-som' was expected
-	'polyhex,imx8mp-debix' was expected
-	'polyhex,imx8mp-debix-som-a' was expected
-	'toradex,verdin-imx8mp-nonwifi' was expected
-	'toradex,verdin-imx8mp-wifi' was expected
-	'tq,imx8mp-tqma8mpql' was expected
-	'variscite,var-som-mx8mp' was expected
-	'fsl,imx8mq' was expected
-	'boundary,imx8mq-nitrogen8m-som' was expected
-	'purism,librem5' was expected
-	'tq,imx8mq-tqma8mq' was expected
-	'zii,imx8mq-ultra' was expected
-	'fsl,imx8qm' was expected
-	'toradex,apalis-imx8' was expected
-	'toradex,apalis-imx8-v1.1' was expected
-	'fsl,imx8qxp' was expected
-	'fsl,imx8dxl' was expected
-	'toradex,colibri-imx8x' was expected
-	'fsl,imx8ulp' was expected
-	'fsl,imx93' was expected
-	'fsl,imx95' was expected
-	'fsl,imxrt1050' was expected
-	'fsl,imxrt1170' was expected
-	'tq,imx93-tqma9352' was expected
-	'phytec,imx93-phycore-som' was expected
-	'variscite,var-som-mx93' was expected
-	'kontron,imx93-osm-s' was expected
-	'toradex,vf500-colibri_vf50' was expected
-	'fsl,vf610' was expected
-	'toradex,vf610-colibri_vf61' was expected
-	'zii,vf610dev' was expected
-	'fsl,ls1012a' was expected
-	'fsl,ls1021a' was expected
-	'tq,ls1021a-tqmls1021a' was expected
-	'fsl,ls1028a' was expected
-	'kontron,sl28-var4' was expected
-	'fsl,imx28' is not one of ['kontron,sl28-var1', 'kontron,sl28-var2', 'kontron,sl28-var3', 'kontron,sl28-var4']
-	'fsl,ls1043a' was expected
-	'tq,ls1043a-tqmls1043a' was expected
-	'fsl,ls1046a' was expected
-	'tq,ls1046a-tqmls1046a' was expected
-	'fsl,ls1088a' was expected
-	'tq,ls1088a-tqmls1088a' was expected
-	'fsl,ls2080a' was expected
-	'fsl,ls2081a' was expected
-	'fsl,ls2088a' was expected
-	'fsl,lx2160a' was expected
-	'solidrun,lx2160a-cex7' was expected
-	'solidrun,lx2162a-som' was expected
-	'tq,lx2160a-tqmlx2160a' was expected
-	'nxp,s32g2' was expected
-	'nxp,s32g3' was expected
-	'fsl,s32v234' was expected
-	from schema $id: http://devicetree.org/schemas/arm/fsl.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: /: compatible: 'oneOf' conditional failed, one must be fixed:
-	['lwn,imx28-btt3', 'fsl,imx28'] is too short
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: /: compatible: 'oneOf' conditional failed, one must be fixed:
-		['lwn,imx28-btt3', 'fsl,imx28'] is too short
-		'lwn,imx28-btt3' is not one of ['tq,imx8dxp-tqma8xdp-mba8xx']
-		'lwn,imx28-btt3' is not one of ['tq,imx8qxp-tqma8xqp-mba8xx']
-		'tq,imx8dxp-tqma8xdp' was expected
-		'tq,imx8qxp-tqma8xqp' was expected
-	['lwn,imx28-btt3', 'fsl,imx28'] is too long
-	'lwn,imx28-btt3' is not one of ['armadeus,imx1-apf9328', 'fsl,imx1ads']
-	'lwn,imx28-btt3' is not one of ['creative,x-fi3', 'fsl,imx23-evk', 'fsl,stmp378x-devb', 'olimex,imx23-olinuxino', 'sandisk,sansa_fuze_plus']
-	'lwn,imx28-btt3' is not one of ['fsl,imx25-pdk', 'karo,imx25-tx25']
-	'lwn,imx28-btt3' is not one of ['eukrea,mbimxsd25-baseboard']
-	'lwn,imx28-btt3' is not one of ['eukrea,mbimxsd25-baseboard-cmo-qvga', 'eukrea,mbimxsd25-baseboard-dvi-svga', 'eukrea,mbimxsd25-baseboard-dvi-vga']
-	'lwn,imx28-btt3' is not one of ['armadeus,imx27-apf27', 'fsl,imx27-pdk']
-	'armadeus,imx27-apf27dev' was expected
-	'eukrea,mbimxsd27-baseboard' was expected
-	'phytec,imx27-pca100-rdk' was expected
-	'phytec,imx27-pcm970' was expected
-	'lwn,imx28-btt3' is not one of ['armadeus,imx28-apf28', 'bluegiga,apx4devkit', 'crystalfontz,cfa10036', 'eukrea,mbmx28lc', 'fsl,imx28-evk', 'i2se,duckbill', 'i2se,duckbill-2', 'karo,tx28', 'lwn,imx28-xea', 'msr,m28cu3', 'schulercontrol,imx28-sps1', 'technologic,imx28-ts4600']
-	'aries,m28' was expected
-	'aries,m28evk' was expected
-	'armadeus,imx28-apf28dev' was expected
-	'lwn,imx28-btt3' is not one of ['crystalfontz,cfa10037', 'crystalfontz,cfa10049', 'crystalfontz,cfa10057', 'crystalfontz,cfa10058']
-	'lwn,imx28-btt3' is not one of ['crystalfontz,cfa10055', 'crystalfontz,cfa10056']
-	'lwn,imx28-btt3' is not one of ['i2se,duckbill-2-485', 'i2se,duckbill-2-enocean', 'i2se,duckbill-2-spi']
-	'eukrea,mbmx283lc' was expected
-	'eukrea,mbmx287lc' was expected
-	'lwn,imx28-btt3' is not one of ['buglabs,imx31-bug', 'logicpd,imx31-lite']
-	'lwn,imx28-btt3' is not one of ['fsl,imx35-pdk']
-	'eukrea,mbimxsd35-baseboard' was expected
-	'lwn,imx28-btt3' is not one of ['fsl,imx50-evk', 'kobo,aura']
-	'lwn,imx28-btt3' is not one of ['armadeus,imx51-apf51', 'fsl,imx51-babbage', 'technologic,imx51-ts4800', 'zii,imx51-scu3-esb', 'zii,imx51-scu2-mezz', 'zii,imx51-rdu1']
-	'armadeus,imx51-apf51dev' was expected
-	'digi,connectcore-ccxmx51-jsk' was expected
-	'eukrea,mbimxsd51' was expected
-	'lwn,imx28-btt3' is not one of ['bhf,cx9020', 'fsl,imx53-ard', 'fsl,imx53-evk', 'fsl,imx53-qsb', 'fsl,imx53-qsrb', 'fsl,imx53-smd', 'ge,imx53-cpuvo', 'inversepath,imx53-usbarmory', 'karo,tx53', 'kiebackpeter,imx53-ddc', 'kiebackpeter,imx53-hsc', 'menlo,m53menlo', 'starterkit,sk-imx53', 'voipac,imx53-dmm-668']
-	'aries,imx53-m53evk' was expected
-	'tq,mba53' was expected
-	'lwn,imx28-btt3' is not one of ['auvidea,h100', 'bosch,imx6q-acc', 'boundary,imx6q-nitrogen6_max', 'boundary,imx6q-nitrogen6_som2', 'boundary,imx6q-nitrogen6x', 'compulab,cm-fx6', 'dmo,imx6q-edmqmx6', 'ds,imx6q-sbc', 'embest,imx6q-marsboard', 'emtrion,emcon-mx6', 'emtrion,emcon-mx6-avari', 'engicam,imx6-icore', 'engicam,imx6-icore-rqs', 'fsl,imx6q-arm2', 'fsl,imx6q-sabreauto', 'fsl,imx6q-sabrelite', 'fsl,imx6q-sabresd', 'karo,imx6q-tx6q', 'kiebackpeter,imx6q-tpc', 'kontron,imx6q-samx6i', 'kosagi,imx6q-novena', 'kvg,vicut1q', 'logicpd,imx6q-logicpd', 'lwn,display5', 'lwn,mccmon6', 'nutsboard,imx6q-pistachio', 'microsys,sbc6x', 'poslab,imx6q-savageboard', 'prt,prti6q', 'prt,prtwd2', 'rex,imx6q-rex-pro', 'skov,imx6q-skov-revc-lt2', 'skov,imx6q-skov-revc-lt6', 'skov,imx6q-skov-reve-mi1010ait-1cp1', 'solidrun,cubox-i/q', 'solidrun,hummingboard/q', 'solidrun,hummingboard2/q', 'solidrun,solidsense/q', 'tbs,imx6q-tbs2910', 'technexion,imx6q-pico-dwarf', 'technexion,imx6q-pico-hobbit', 'tech
- nexion,imx6q-pico-nymph', 'technexion,imx6q-pico-pi', 'technologic,imx6q-ts4900', 'technologic,imx6q-ts7970', 'toradex,apalis_imx6q', 'udoo,imx6q-udoo', 'uniwest,imx6q-evi', 'variscite,dt6customboard', 'wand,imx6q-wandboard', 'ysoft,imx6q-yapp4-crux', 'ysoft,imx6q-yapp4-pegasus', 'zealz,imx6q-gk802', 'zii,imx6q-zii-rdu2']
-	'lwn,imx28-btt3' is not one of ['advantech,imx6q-dms-ba16', 'ge,imx6q-b450v3', 'ge,imx6q-b650v3', 'ge,imx6q-b850v3']
-	'armadeus,imx6q-apf6dev' was expected
-	'compulab,utilite-pro' was expected
-	'dfi,fs700-m60-6qd' was expected
-	'dh,imx6q-dhcom-pdk2' was expected
-	'lwn,imx28-btt3' is not one of ['gw,imx6q-gw51xx', 'gw,imx6q-gw52xx', 'gw,imx6q-gw53xx', 'gw,imx6q-gw5400-a', 'gw,imx6q-gw54xx', 'gw,imx6q-gw551x', 'gw,imx6q-gw552x', 'gw,imx6q-gw553x', 'gw,imx6q-gw560x', 'gw,imx6q-gw5903', 'gw,imx6q-gw5904', 'gw,imx6q-gw5907', 'gw,imx6q-gw5910', 'gw,imx6q-gw5912', 'gw,imx6q-gw5913']
-	'kontron,imx6q-samx6i-ads2' was expected
-	'lwn,imx28-btt3' is not one of ['phytec,imx6q-pbac06-emmc', 'phytec,imx6q-pbac06-nand']
-	'phytec,imx6q-pbab01' was expected
-	'lwn,imx28-btt3' is not one of ['toradex,apalis_imx6q-ixora', 'toradex,apalis_imx6q-ixora-v1.1', 'toradex,apalis_imx6q-ixora-v1.2', 'toradex,apalis_imx6q-eval', 'toradex,apalis_imx6q-eval-v1.2']
-	'variscite,mx6customboard' was expected
-	'tq,imx6q-mba6x-a' was expected
-	'tq,imx6q-mba6x-b' was expected
-	'lwn,imx28-btt3' is not one of ['boundary,imx6qp-nitrogen6_max', 'boundary,imx6qp-nitrogen6_som2', 'fsl,imx6qp-sabreauto', 'fsl,imx6qp-sabresd', 'karo,imx6qp-tx6qp', 'kvg,vicutp', 'prt,prtwd3', 'wand,imx6qp-wandboard', 'ysoft,imx6qp-yapp4-crux-plus', 'ysoft,imx6qp-yapp4-pegasus-plus', 'zii,imx6qp-zii-rdu2']
-	'phytec,imx6qp-pbac06-nand' was expected
-	'tq,imx6qp-mba6x-b' was expected
-	'lwn,imx28-btt3' is not one of ['abb,aristainetos-imx6dl-4', 'abb,aristainetos-imx6dl-7', 'abb,aristainetos2-imx6dl-4', 'abb,aristainetos2-imx6dl-7', 'alt,alti6p', 'boundary,imx6dl-nit6xlite', 'boundary,imx6dl-nitrogen6x', 'bticino,imx6dl-mamoj', 'eckelmann,imx6dl-ci4x10', 'emtrion,emcon-mx6', 'emtrion,emcon-mx6-avari', 'engicam,imx6-icore', 'engicam,imx6-icore-rqs', 'fsl,imx6dl-sabreauto', 'fsl,imx6dl-sabrelite', 'fsl,imx6dl-sabresd', 'karo,imx6dl-tx6dl', 'kontron,imx6dl-samx6i', 'kvg,victgo', 'kvg,vicut1', 'ply,plybas', 'ply,plym2m', 'poslab,imx6dl-savageboard', 'prt,prtmvt', 'prt,prtrvt', 'prt,prtvt7', 'rex,imx6dl-rex-basic', 'riot,imx6s-riotboard', 'sielaff,imx6dl-board', 'skov,imx6dl-skov-revc-lt2', 'skov,imx6dl-skov-revc-lt6', 'solidrun,cubox-i/dl', 'solidrun,hummingboard/dl', 'solidrun,hummingboard2/dl', 'solidrun,solidsense/dl', 'technexion,imx6dl-pico-dwarf', 'technexion,imx6dl-pico-hobbit', 'technexion,imx6dl-pico-nymph', 'technexion,imx6dl-pico-pi', 'technologic,imx6dl-ts
- 4900', 'technologic,imx6dl-ts7970', 'toradex,colibri_imx6dl', 'udoo,imx6dl-udoo', 'vdl,lanmcu', 'wand,imx6dl-wandboard', 'ysoft,imx6dl-yapp4-draco', 'ysoft,imx6dl-yapp4-hydra', 'ysoft,imx6dl-yapp4-lynx', 'ysoft,imx6dl-yapp4-orion', 'ysoft,imx6dl-yapp4-phoenix', 'ysoft,imx6dl-yapp4-ursa']
-	'armadeus,imx6dl-apf6dev' was expected
-	'lwn,imx28-btt3' is not one of ['ge,imx6dl-b105v2', 'ge,imx6dl-b105pv2', 'ge,imx6dl-b125v2', 'ge,imx6dl-b125pv2', 'ge,imx6dl-b155v2']
-	'dfi,fs700-m60-6dl' was expected
-	'dh,imx6dl-dhcom-picoitx' was expected
-	'lwn,imx28-btt3' is not one of ['gw,imx6dl-gw51xx', 'gw,imx6dl-gw52xx', 'gw,imx6dl-gw53xx', 'gw,imx6dl-gw54xx', 'gw,imx6dl-gw551x', 'gw,imx6dl-gw552x', 'gw,imx6dl-gw553x', 'gw,imx6dl-gw560x', 'gw,imx6dl-gw5903', 'gw,imx6dl-gw5904', 'gw,imx6dl-gw5907', 'gw,imx6dl-gw5910', 'gw,imx6dl-gw5912', 'gw,imx6dl-gw5913']
-	'kontron,imx6dl-samx6i-ads2' was expected
-	'lwn,imx28-btt3' is not one of ['phytec,imx6dl-pbac06-emmc', 'phytec,imx6dl-pbac06-nand']
-	'phytec,imx6dl-pbab01' was expected
-	'lwn,imx28-btt3' is not one of ['toradex,colibri_imx6dl-aster', 'toradex,colibri_imx6dl-eval-v3', 'toradex,colibri_imx6dl-iris', 'toradex,colibri_imx6dl-iris-v2']
-	'dh,imx6s-dhcom-drc02' was expected
-	'tq,imx6dl-mba6x-a' was expected
-	'tq,imx6dl-mba6x-b' was expected
-	'lwn,imx28-btt3' is not one of ['fsl,imx6sl-evk', 'kobo,aura2', 'kobo,tolino-shine2hd', 'kobo,tolino-shine3', 'kobo,tolino-vision', 'kobo,tolino-vision5', 'revotics,imx6sl-warp']
-	'lwn,imx28-btt3' is not one of ['fsl,imx6sll-evk', 'kobo,clarahd', 'kobo,librah2o']
-	'lwn,imx28-btt3' is not one of ['boundary,imx6sx-nitrogen6sx', 'fsl,imx6sx-sabreauto', 'fsl,imx6sx-sdb', 'fsl,imx6sx-sdb-reva', 'samtec,imx6sx-vining-2000', 'udoo,neobasic', 'udoo,neoextended', 'udoo,neofull']
-	'lwn,imx28-btt3' is not one of ['engicam,imx6ul-geam', 'engicam,imx6ul-isiot', 'fsl,imx6ul-14x14-evk', 'karo,imx6ul-tx6ul', 'kontron,sl-imx6ul', 'prt,prti6g', 'technexion,imx6ul-pico-dwarf', 'technexion,imx6ul-pico-hobbit', 'technexion,imx6ul-pico-pi']
-	'armadeus,imx6ul-opos6uldev' was expected
-	'lwn,imx28-btt3' is not one of ['digi,ccimx6ulsbcexpress', 'digi,ccimx6ulsbcpro']
-	'grinn,imx6ul-liteboard' was expected
-	'lwn,imx28-btt3' is not one of ['phytec,imx6ul-pbacd10-emmc', 'phytec,imx6ul-pbacd10-nand']
-	'kontron,bl-imx6ul' was expected
-	'kontron,bl-imx6ul-43' was expected
-	'lwn,imx28-btt3' is not one of ['tq,imx6ul-tqma6ul1-mba6ulx']
-	'lwn,imx28-btt3' is not one of ['tq,imx6ul-tqma6ul2-mba6ulx']
-	'lwn,imx28-btt3' is not one of ['tq,imx6ul-tqma6ul2l-mba6ulx', 'tq,imx6ul-tqma6ul2l-mba6ulxl']
-	'lwn,imx28-btt3' is not one of ['fsl,imx6ull-14x14-evk', 'joz,jozacp', 'kontron,sl-imx6ull', 'myir,imx6ull-mys-6ulx-eval', 'toradex,colibri-imx6ull', 'toradex,colibri-imx6ull-emmc', 'toradex,colibri-imx6ull-wifi', 'uni-t,uti260b']
-	'armadeus,imx6ull-opos6uldev' was expected
-	'lwn,imx28-btt3' is not one of ['chargebyte,imx6ull-tarragon-master', 'chargebyte,imx6ull-tarragon-micro', 'chargebyte,imx6ull-tarragon-slave', 'chargebyte,imx6ull-tarragon-slavext']
-	'lwn,imx28-btt3' is not one of ['dh,imx6ull-dhcom-drc02', 'dh,imx6ull-dhcom-pdk2', 'dh,imx6ull-dhcom-picoitx']
-	'marantec,imx6ull-dhcor-maveo-box' was expected
-	'lwn,imx28-btt3' is not one of ['phytec,imx6ull-pbacd10-emmc', 'phytec,imx6ull-pbacd10-nand']
-	'lwn,imx28-btt3' is not one of ['phytec,imx6ull-phygate-tauri-emmc', 'phytec,imx6ull-phygate-tauri-nand']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx6ull-aster', 'toradex,colibri-imx6ull-eval', 'toradex,colibri-imx6ull-iris', 'toradex,colibri-imx6ull-iris-v2']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx6ull-emmc-aster', 'toradex,colibri-imx6ull-emmc-eval', 'toradex,colibri-imx6ull-emmc-iris', 'toradex,colibri-imx6ull-emmc-iris-v2']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx6ull-wifi-eval', 'toradex,colibri-imx6ull-wifi-aster', 'toradex,colibri-imx6ull-wifi-iris', 'toradex,colibri-imx6ull-wifi-iris-v2']
-	'kontron,bl-imx6ull' was expected
-	'lwn,imx28-btt3' is not one of ['tq,imx6ull-tqma6ull2-mba6ulx']
-	'lwn,imx28-btt3' is not one of ['tq,imx6ull-tqma6ull2l-mba6ulx', 'tq,imx6ull-tqma6ull2l-mba6ulxl']
-	'lwn,imx28-btt3' is not one of ['seeed,imx6ull-seeed-npi-emmc', 'seeed,imx6ull-seeed-npi-nand']
-	'lwn,imx28-btt3' is not one of ['bsh,imx6ulz-bsh-smm-m2', 'fsl,imx6ulz-14x14-evk']
-	'lwn,imx28-btt3' is not one of ['element14,imx7s-warp', 'toradex,colibri-imx7s']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx7s-aster', 'toradex,colibri-imx7s-eval-v3', 'toradex,colibri-imx7s-iris', 'toradex,colibri-imx7s-iris-v2']
-	'tq,imx7s-mba7' was expected
-	'lwn,imx28-btt3' is not one of ['boundary,imx7d-nitrogen7', 'compulab,cl-som-imx7', 'fsl,imx7d-sdb', 'fsl,imx7d-sdb-reva', 'kam,imx7d-flex-concentrator', 'kam,imx7d-flex-concentrator-mfg', 'novtech,imx7d-meerkat96', 'remarkable,imx7d-remarkable2', 'storopack,imx7d-smegw01', 'technexion,imx7d-pico-dwarf', 'technexion,imx7d-pico-hobbit', 'technexion,imx7d-pico-nymph', 'technexion,imx7d-pico-pi', 'toradex,colibri-imx7d', 'toradex,colibri-imx7d-emmc', 'zii,imx7d-rmu2', 'zii,imx7d-rpu2']
-	'tq,imx7d-mba7' was expected
-	'compulab,sbc-imx7' was expected
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx7d-aster', 'toradex,colibri-imx7d-eval-v3', 'toradex,colibri-imx7d-iris', 'toradex,colibri-imx7d-iris-v2']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx7d-emmc-aster', 'toradex,colibri-imx7d-emmc-eval-v3', 'toradex,colibri-imx7d-emmc-iris', 'toradex,colibri-imx7d-emmc-iris-v2']
-	'lwn,imx28-btt3' is not one of ['ea,imx7ulp-com', 'fsl,imx7ulp-evk']
-	'lwn,imx28-btt3' is not one of ['beacon,imx8mm-beacon-kit', 'boundary,imx8mm-nitrogen8mm', 'dmo,imx8mm-data-modul-edm-sbc', 'emtrion,emcon-mx8mm-avari', 'fsl,imx8mm-ddr4-evk', 'fsl,imx8mm-evk', 'fsl,imx8mm-evkb', 'gateworks,imx8mm-gw75xx-0x', 'gateworks,imx8mm-gw7904', 'gw,imx8mm-gw71xx-0x', 'gw,imx8mm-gw72xx-0x', 'gw,imx8mm-gw73xx-0x', 'gw,imx8mm-gw7901', 'gw,imx8mm-gw7902', 'gw,imx8mm-gw7903', 'innocomm,wb15-evk', 'kontron,imx8mm-sl', 'kontron,imx8mm-osm-s', 'toradex,verdin-imx8mm', 'toradex,verdin-imx8mm-nonwifi', 'toradex,verdin-imx8mm-wifi', 'prt,prt8mm']
-	'lwn,imx28-btt3' is not one of ['compulab,imx8mm-iot-gateway']
-	'ees,imx8mm-emtop-baseboard' was expected
-	'lwn,imx28-btt3' is not one of ['engicam,icore-mx8mm-ctouch2', 'engicam,icore-mx8mm-edimm2.2']
-	'kontron,imx8mm-bl' was expected
-	'kontron,imx8mm-bl-osm-s' was expected
-	'lwn,imx28-btt3' is not one of ['menlo,mx8menlo', 'toradex,verdin-imx8mm-nonwifi-dahlia', 'toradex,verdin-imx8mm-nonwifi-dev', 'toradex,verdin-imx8mm-nonwifi-mallow', 'toradex,verdin-imx8mm-nonwifi-yavia']
-	'lwn,imx28-btt3' is not one of ['toradex,verdin-imx8mm-wifi-dahlia', 'toradex,verdin-imx8mm-wifi-dev', 'toradex,verdin-imx8mm-wifi-mallow', 'toradex,verdin-imx8mm-wifi-yavia']
-	'lwn,imx28-btt3' is not one of ['phytec,imx8mm-phyboard-polis-rdk', 'phytec,imx8mm-phygate-tauri-l']
-	'variscite,var-som-mx8mm-symphony' was expected
-	'lwn,imx28-btt3' is not one of ['cloos,imx8mm-phg', 'tq,imx8mm-tqma8mqml-mba8mx']
-	'lwn,imx28-btt3' is not one of ['beacon,imx8mn-beacon-kit', 'bsh,imx8mn-bsh-smm-s2', 'bsh,imx8mn-bsh-smm-s2pro', 'fsl,imx8mn-ddr3l-evk', 'fsl,imx8mn-ddr4-evk', 'fsl,imx8mn-evk', 'gw,imx8mn-gw7902']
-	'lwn,imx28-btt3' is not one of ['dimonoff,gateway-evk', 'rve,gateway', 'variscite,var-som-mx8mn-symphony']
-	'lwn,imx28-btt3' is not one of ['tq,imx8mn-tqma8mqnl-mba8mx']
-	'lwn,imx28-btt3' is not one of ['beacon,imx8mp-beacon-kit', 'dmo,imx8mp-data-modul-edm-sbc', 'emcraft,imx8mp-navqp', 'fsl,imx8mp-evk', 'gateworks,imx8mp-gw71xx-2x', 'gateworks,imx8mp-gw72xx-2x', 'gateworks,imx8mp-gw73xx-2x', 'gateworks,imx8mp-gw74xx', 'gateworks,imx8mp-gw75xx-2x', 'skov,imx8mp-skov-revb-hdmi', 'skov,imx8mp-skov-revb-lt6', 'skov,imx8mp-skov-revb-mi1010ait-1cp1', 'toradex,verdin-imx8mp', 'toradex,verdin-imx8mp-nonwifi', 'toradex,verdin-imx8mp-wifi']
-	'avnet,sm2s-imx8mp-14N0600E-ep1' was expected
-	'lwn,imx28-btt3' is not one of ['dh,imx8mp-dhcom-pdk2', 'dh,imx8mp-dhcom-pdk3']
-	'lwn,imx28-btt3' is not one of ['engicam,icore-mx8mp-edimm2.2']
-	'phytec,imx8mp-phyboard-pollux-rdk' was expected
-	'lwn,imx28-btt3' is not one of ['polyhex,imx8mp-debix-model-a']
-	'lwn,imx28-btt3' is not one of ['polyhex,imx8mp-debix-som-a-bmb-08']
-	'lwn,imx28-btt3' is not one of ['toradex,verdin-imx8mp-nonwifi-dahlia', 'toradex,verdin-imx8mp-nonwifi-dev', 'toradex,verdin-imx8mp-nonwifi-mallow', 'toradex,verdin-imx8mp-nonwifi-yavia']
-	'lwn,imx28-btt3' is not one of ['toradex,verdin-imx8mp-wifi-dahlia', 'toradex,verdin-imx8mp-wifi-dev', 'toradex,verdin-imx8mp-wifi-mallow', 'toradex,verdin-imx8mp-wifi-yavia']
-	'lwn,imx28-btt3' is not one of ['tq,imx8mp-tqma8mpql-mba8mpxl', 'tq,imx8mp-tqma8mpql-mba8mp-ras314']
-	'variscite,var-som-mx8mp-symphony' was expected
-	'lwn,imx28-btt3' is not one of ['boundary,imx8mq-nitrogen8m', 'boundary,imx8mq-nitrogen8m-som', 'einfochips,imx8mq-thor96', 'fsl,imx8mq-evk', 'google,imx8mq-phanbell', 'kontron,pitx-imx8m', 'purism,librem5-devkit', 'solidrun,hummingboard-pulse', 'technexion,pico-pi-imx8m']
-	'mntre,reform2' was expected
-	'lwn,imx28-btt3' is not one of ['purism,librem5r2', 'purism,librem5r3', 'purism,librem5r4']
-	'lwn,imx28-btt3' is not one of ['tq,imx8mq-tqma8mq-mba8mx']
-	'lwn,imx28-btt3' is not one of ['zii,imx8mq-ultra-rmb3', 'zii,imx8mq-ultra-zest']
-	'lwn,imx28-btt3' is not one of ['fsl,imx8qm-mek', 'toradex,apalis-imx8', 'toradex,apalis-imx8-v1.1']
-	'lwn,imx28-btt3' is not one of ['toradex,apalis-imx8-eval', 'toradex,apalis-imx8-eval-v1.2', 'toradex,apalis-imx8-ixora-v1.1']
-	'lwn,imx28-btt3' is not one of ['toradex,apalis-imx8-v1.1-eval', 'toradex,apalis-imx8-v1.1-eval-v1.2', 'toradex,apalis-imx8-v1.1-ixora-v1.1', 'toradex,apalis-imx8-v1.1-ixora-v1.2']
-	'lwn,imx28-btt3' is not one of ['einfochips,imx8qxp-ai_ml', 'fsl,imx8qxp-mek']
-	'lwn,imx28-btt3' is not one of ['fsl,imx8dxl-evk']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx8x-aster', 'toradex,colibri-imx8x-eval-v3', 'toradex,colibri-imx8x-iris', 'toradex,colibri-imx8x-iris-v2']
-	'lwn,imx28-btt3' is not one of ['fsl,imx8ulp-evk']
-	'lwn,imx28-btt3' is not one of ['fsl,imx93-9x9-qsb', 'fsl,imx93-11x11-evk', 'fsl,imx93-14x14-evk']
-	'lwn,imx28-btt3' is not one of ['fsl,imx95-19x19-evk']
-	'lwn,imx28-btt3' is not one of ['fsl,imxrt1050-evk']
-	'lwn,imx28-btt3' is not one of ['fsl,imxrt1170-evk']
-	'lwn,imx28-btt3' is not one of ['tq,imx93-tqma9352-mba93xxca', 'tq,imx93-tqma9352-mba93xxla']
-	'phytec,imx93-phyboard-segin' was expected
-	'variscite,var-som-mx93-symphony' was expected
-	'kontron,imx93-bl-osm-s' was expected
-	'lwn,imx28-btt3' is not one of ['fsl,vf500', 'fsl,vf510', 'fsl,vf600', 'fsl,vf610', 'fsl,vf610m4']
-	'toradex,vf500-colibri_vf50-on-eval' was expected
-	'lwn,imx28-btt3' is not one of ['fsl,vf610-twr', 'lwn,bk4', 'phytec,vf610-cosmic', 'toradex,vf610-colibri_vf61']
-	'toradex,vf610-colibri_vf61-on-eval' was expected
-	'lwn,imx28-btt3' is not one of ['zii,vf610cfu1', 'zii,vf610dev-c', 'zii,vf610dev-b', 'zii,vf610scu4-aib', 'zii,vf610dtu', 'zii,vf610spu3', 'zii,vf610spb4']
-	'lwn,imx28-btt3' is not one of ['ebs-systart,oxalis', 'fsl,ls1012a-rdb', 'fsl,ls1012a-frdm', 'fsl,ls1012a-frwy', 'fsl,ls1012a-qds']
-	'lwn,imx28-btt3' is not one of ['fsl,ls1021a-iot', 'fsl,ls1021a-moxa-uc-8410a', 'fsl,ls1021a-qds', 'fsl,ls1021a-tsn', 'fsl,ls1021a-twr']
-	'lwn,imx28-btt3' is not one of ['tq,ls1021a-tqmls1021a-mbls102xa']
-	'lwn,imx28-btt3' is not one of ['fsl,ls1028a-qds', 'fsl,ls1028a-rdb']
-	'kontron,kbox-a-230-ls' was expected
-	'lwn,imx28-btt3' is not one of ['kontron,sl28-var1-ads2', 'kontron,sl28-var2-ads2', 'kontron,sl28-var3-ads2', 'kontron,sl28-var4-ads2']
-	'lwn,imx28-btt3' is not one of ['kontron,sl28-var1', 'kontron,sl28-var2', 'kontron,sl28-var3', 'kontron,sl28-var4']
-	'kontron,sl28' was expected
-	'lwn,imx28-btt3' is not one of ['fsl,ls1043a-rdb', 'fsl,ls1043a-qds']
-	'lwn,imx28-btt3' is not one of ['tq,ls1043a-tqmls1043a-mbls10xxa']
-	'lwn,imx28-btt3' is not one of ['fsl,ls1046a-frwy', 'fsl,ls1046a-qds', 'fsl,ls1046a-rdb']
-	'lwn,imx28-btt3' is not one of ['tq,ls1046a-tqmls1046a-mbls10xxa']
-	'lwn,imx28-btt3' is not one of ['fsl,ls1088a-qds', 'fsl,ls1088a-rdb']
-	'lwn,imx28-btt3' is not one of ['tq,ls1088a-tqmls1088a-mbls10xxa']
-	'lwn,imx28-btt3' is not one of ['fsl,ls2080a-simu', 'fsl,ls2080a-qds', 'fsl,ls2080a-rdb']
-	'lwn,imx28-btt3' is not one of ['fsl,ls2081a-rdb']
-	'lwn,imx28-btt3' is not one of ['fsl,ls2088a-qds', 'fsl,ls2088a-rdb']
-	'lwn,imx28-btt3' is not one of ['fsl,lx2160a-bluebox3', 'fsl,lx2160a-bluebox3-rev-a', 'fsl,lx2160a-qds', 'fsl,lx2160a-rdb', 'fsl,lx2162a-qds']
-	'lwn,imx28-btt3' is not one of ['solidrun,clearfog-cx', 'solidrun,honeycomb']
-	'lwn,imx28-btt3' is not one of ['solidrun,lx2162a-clearfog']
-	'lwn,imx28-btt3' is not one of ['tq,lx2160a-tqmlx2160a-mblx2160a']
-	'lwn,imx28-btt3' is not one of ['nxp,s32g274a-evb', 'nxp,s32g274a-rdb2']
-	'lwn,imx28-btt3' is not one of ['nxp,s32g399a-rdb3']
-	'lwn,imx28-btt3' is not one of ['fsl,s32v234-evb']
-	'lwn,imx28-btt3' is not one of ['traverse,ten64']
-	'fsl,imx1' was expected
-	'fsl,imx23' was expected
-	'fsl,imx25' was expected
-	'eukrea,cpuimx25' was expected
-	'eukrea,mbimxsd25-baseboard' was expected
-	'fsl,imx27' was expected
-	'armadeus,imx27-apf27' was expected
-	'eukrea,cpuimx27' was expected
-	'phytec,imx27-pca100' was expected
-	'phytec,imx27-pcm038' was expected
-	'denx,m28' was expected
-	'denx,m28evk' was expected
-	'armadeus,imx28-apf28' was expected
-	'crystalfontz,cfa10036' was expected
-	'crystalfontz,cfa10037' was expected
-	'i2se,duckbill-2' was expected
-	'eukrea,mbmx28lc' was expected
-	'fsl,imx31' was expected
-	'fsl,imx35' was expected
-	'eukrea,cpuimx35' was expected
-	'fsl,imx50' was expected
-	'fsl,imx51' was expected
-	'armadeus,imx51-apf51' was expected
-	'digi,connectcore-ccxmx51-som' was expected
-	'eukrea,cpuimx51' was expected
-	'fsl,imx53' was expected
-	'denx,imx53-m53evk' was expected
-	'tq,tqma53' was expected
-	'fsl,imx6q' was expected
-	'advantech,imx6q-ba16' was expected
-	'armadeus,imx6q-apf6' was expected
-	'compulab,cm-fx6' was expected
-	'dfi,fs700e-m60' was expected
-	'dh,imx6q-dhcom-som' was expected
-	'gw,ventana' was expected
-	'kontron,imx6q-samx6i' was expected
-	'phytec,imx6q-pbac06' was expected
-	'phytec,imx6q-pfla02' was expected
-	'toradex,apalis_imx6q' was expected
-	'variscite,var-som-imx6q' was expected
-	'tq,mba6a' was expected
-	'tq,mba6b' was expected
-	'fsl,imx6qp' was expected
-	'phytec,imx6qp-pbac06' was expected
-	'fsl,imx6dl' was expected
-	'armadeus,imx6dl-apf6' was expected
-	'congatec,qmx6' was expected
-	'dh,imx6dl-dhcom-som' was expected
-	'kontron,imx6dl-samx6i' was expected
-	'phytec,imx6dl-pbac06' was expected
-	'phytec,imx6dl-pfla02' was expected
-	'toradex,colibri_imx6dl' was expected
-	'dh,imx6s-dhcom-som' was expected
-	'fsl,imx6sl' was expected
-	'fsl,imx6sll' was expected
-	'fsl,imx6sx' was expected
-	'fsl,imx6ul' was expected
-	'armadeus,imx6ul-opos6ul' was expected
-	'digi,ccimx6ulsom' was expected
-	'grinn,imx6ul-litesom' was expected
-	'phytec,imx6ul-pbacd10' was expected
-	'kontron,sl-imx6ul' was expected
-	'tq,imx6ul-tqma6ul1' was expected
-	'tq,imx6ul-tqma6ul2' was expected
-	'tq,imx6ul-tqma6ul2l' was expected
-	'fsl,imx6ull' was expected
-	'armadeus,imx6ull-opos6ul' was expected
-	'dh,imx6ull-dhcom-som' was expected
-	'dh,imx6ull-dhcor-som' was expected
-	'phytec,imx6ull-pbacd10' was expected
-	'phytec,imx6ull-phygate-tauri' was expected
-	'toradex,colibri-imx6ull' was expected
-	'toradex,colibri-imx6ull-emmc' was expected
-	'toradex,colibri-imx6ull-wifi' was expected
-	'kontron,sl-imx6ull' was expected
-	'tq,imx6ull-tqma6ull2' was expected
-	'tq,imx6ull-tqma6ull2l' was expected
-	'seeed,imx6ull-seeed-npi' was expected
-	'fsl,imx7s' was expected
-	'toradex,colibri-imx7s' was expected
-	'tq,imx7s-tqma7' was expected
-	'fsl,imx7d' was expected
-	'tq,imx7d-tqma7' was expected
-	'compulab,cl-som-imx7' was expected
-	'toradex,colibri-imx7d' was expected
-	'toradex,colibri-imx7d-emmc' was expected
-	'fsl,imx7ulp' was expected
-	'fsl,imx8mm' was expected
-	'compulab,imx8mm-ucm-som' was expected
-	'ees,imx8mm-emtop-som' was expected
-	'engicam,icore-mx8mm' was expected
-	'kontron,imx8mm-sl' was expected
-	'kontron,imx8mm-osm-s' was expected
-	'toradex,verdin-imx8mm-nonwifi' was expected
-	'toradex,verdin-imx8mm-wifi' was expected
-	'phytec,imx8mm-phycore-som' was expected
-	'variscite,var-som-mx8mm' was expected
-	'tq,imx8mm-tqma8mqml' was expected
-	'fsl,imx8mn' was expected
-	'variscite,var-som-mx8mn' was expected
-	'tq,imx8mn-tqma8mqnl' was expected
-	'fsl,imx8mp' was expected
-	'avnet,sm2s-imx8mp-14N0600E' was expected
-	'dh,imx8mp-dhcom-som' was expected
-	'engicam,icore-mx8mp' was expected
-	'phytec,imx8mp-phycore-som' was expected
-	'polyhex,imx8mp-debix' was expected
-	'polyhex,imx8mp-debix-som-a' was expected
-	'toradex,verdin-imx8mp-nonwifi' was expected
-	'toradex,verdin-imx8mp-wifi' was expected
-	'tq,imx8mp-tqma8mpql' was expected
-	'variscite,var-som-mx8mp' was expected
-	'fsl,imx8mq' was expected
-	'boundary,imx8mq-nitrogen8m-som' was expected
-	'purism,librem5' was expected
-	'tq,imx8mq-tqma8mq' was expected
-	'zii,imx8mq-ultra' was expected
-	'fsl,imx8qm' was expected
-	'toradex,apalis-imx8' was expected
-	'toradex,apalis-imx8-v1.1' was expected
-	'fsl,imx8qxp' was expected
-	'fsl,imx8dxl' was expected
-	'toradex,colibri-imx8x' was expected
-	'fsl,imx8ulp' was expected
-	'fsl,imx93' was expected
-	'fsl,imx95' was expected
-	'fsl,imxrt1050' was expected
-	'fsl,imxrt1170' was expected
-	'tq,imx93-tqma9352' was expected
-	'phytec,imx93-phycore-som' was expected
-	'variscite,var-som-mx93' was expected
-	'kontron,imx93-osm-s' was expected
-	'toradex,vf500-colibri_vf50' was expected
-	'fsl,vf610' was expected
-	'toradex,vf610-colibri_vf61' was expected
-	'zii,vf610dev' was expected
-	'fsl,ls1012a' was expected
-	'fsl,ls1021a' was expected
-	'tq,ls1021a-tqmls1021a' was expected
-	'fsl,ls1028a' was expected
-	'kontron,sl28-var4' was expected
-	'fsl,imx28' is not one of ['kontron,sl28-var1', 'kontron,sl28-var2', 'kontron,sl28-var3', 'kontron,sl28-var4']
-	'fsl,ls1043a' was expected
-	'tq,ls1043a-tqmls1043a' was expected
-	'fsl,ls1046a' was expected
-	'tq,ls1046a-tqmls1046a' was expected
-	'fsl,ls1088a' was expected
-	'tq,ls1088a-tqmls1088a' was expected
-	'fsl,ls2080a' was expected
-	'fsl,ls2081a' was expected
-	'fsl,ls2088a' was expected
-	'fsl,lx2160a' was expected
-	'solidrun,lx2160a-cex7' was expected
-	'solidrun,lx2162a-som' was expected
-	'tq,lx2160a-tqmlx2160a' was expected
-	'nxp,s32g2' was expected
-	'nxp,s32g3' was expected
-	'fsl,s32v234' was expected
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: /: compatible: 'oneOf' conditional failed, one must be fixed:
-	['lwn,imx28-btt3', 'fsl,imx28'] is too short
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: /: compatible: 'oneOf' conditional failed, one must be fixed:
-		['lwn,imx28-btt3', 'fsl,imx28'] is too short
-		'lwn,imx28-btt3' is not one of ['tq,imx8dxp-tqma8xdp-mba8xx']
-		'lwn,imx28-btt3' is not one of ['tq,imx8qxp-tqma8xqp-mba8xx']
-		'tq,imx8dxp-tqma8xdp' was expected
-		'tq,imx8qxp-tqma8xqp' was expected
-	['lwn,imx28-btt3', 'fsl,imx28'] is too long
-	'lwn,imx28-btt3' is not one of ['armadeus,imx1-apf9328', 'fsl,imx1ads']
-	'lwn,imx28-btt3' is not one of ['creative,x-fi3', 'fsl,imx23-evk', 'fsl,stmp378x-devb', 'olimex,imx23-olinuxino', 'sandisk,sansa_fuze_plus']
-	'lwn,imx28-btt3' is not one of ['fsl,imx25-pdk', 'karo,imx25-tx25']
-	'lwn,imx28-btt3' is not one of ['eukrea,mbimxsd25-baseboard']
-	'lwn,imx28-btt3' is not one of ['eukrea,mbimxsd25-baseboard-cmo-qvga', 'eukrea,mbimxsd25-baseboard-dvi-svga', 'eukrea,mbimxsd25-baseboard-dvi-vga']
-	'lwn,imx28-btt3' is not one of ['armadeus,imx27-apf27', 'fsl,imx27-pdk']
-	'armadeus,imx27-apf27dev' was expected
-	'eukrea,mbimxsd27-baseboard' was expected
-	'phytec,imx27-pca100-rdk' was expected
-	'phytec,imx27-pcm970' was expected
-	'lwn,imx28-btt3' is not one of ['armadeus,imx28-apf28', 'bluegiga,apx4devkit', 'crystalfontz,cfa10036', 'eukrea,mbmx28lc', 'fsl,imx28-evk', 'i2se,duckbill', 'i2se,duckbill-2', 'karo,tx28', 'lwn,imx28-xea', 'msr,m28cu3', 'schulercontrol,imx28-sps1', 'technologic,imx28-ts4600']
-	'aries,m28' was expected
-	'aries,m28evk' was expected
-	'armadeus,imx28-apf28dev' was expected
-	'lwn,imx28-btt3' is not one of ['crystalfontz,cfa10037', 'crystalfontz,cfa10049', 'crystalfontz,cfa10057', 'crystalfontz,cfa10058']
-	'lwn,imx28-btt3' is not one of ['crystalfontz,cfa10055', 'crystalfontz,cfa10056']
-	'lwn,imx28-btt3' is not one of ['i2se,duckbill-2-485', 'i2se,duckbill-2-enocean', 'i2se,duckbill-2-spi']
-	'eukrea,mbmx283lc' was expected
-	'eukrea,mbmx287lc' was expected
-	'lwn,imx28-btt3' is not one of ['buglabs,imx31-bug', 'logicpd,imx31-lite']
-	'lwn,imx28-btt3' is not one of ['fsl,imx35-pdk']
-	'eukrea,mbimxsd35-baseboard' was expected
-	'lwn,imx28-btt3' is not one of ['fsl,imx50-evk', 'kobo,aura']
-	'lwn,imx28-btt3' is not one of ['armadeus,imx51-apf51', 'fsl,imx51-babbage', 'technologic,imx51-ts4800', 'zii,imx51-scu3-esb', 'zii,imx51-scu2-mezz', 'zii,imx51-rdu1']
-	'armadeus,imx51-apf51dev' was expected
-	'digi,connectcore-ccxmx51-jsk' was expected
-	'eukrea,mbimxsd51' was expected
-	'lwn,imx28-btt3' is not one of ['bhf,cx9020', 'fsl,imx53-ard', 'fsl,imx53-evk', 'fsl,imx53-qsb', 'fsl,imx53-qsrb', 'fsl,imx53-smd', 'ge,imx53-cpuvo', 'inversepath,imx53-usbarmory', 'karo,tx53', 'kiebackpeter,imx53-ddc', 'kiebackpeter,imx53-hsc', 'menlo,m53menlo', 'starterkit,sk-imx53', 'voipac,imx53-dmm-668']
-	'aries,imx53-m53evk' was expected
-	'tq,mba53' was expected
-	'lwn,imx28-btt3' is not one of ['auvidea,h100', 'bosch,imx6q-acc', 'boundary,imx6q-nitrogen6_max', 'boundary,imx6q-nitrogen6_som2', 'boundary,imx6q-nitrogen6x', 'compulab,cm-fx6', 'dmo,imx6q-edmqmx6', 'ds,imx6q-sbc', 'embest,imx6q-marsboard', 'emtrion,emcon-mx6', 'emtrion,emcon-mx6-avari', 'engicam,imx6-icore', 'engicam,imx6-icore-rqs', 'fsl,imx6q-arm2', 'fsl,imx6q-sabreauto', 'fsl,imx6q-sabrelite', 'fsl,imx6q-sabresd', 'karo,imx6q-tx6q', 'kiebackpeter,imx6q-tpc', 'kontron,imx6q-samx6i', 'kosagi,imx6q-novena', 'kvg,vicut1q', 'logicpd,imx6q-logicpd', 'lwn,display5', 'lwn,mccmon6', 'nutsboard,imx6q-pistachio', 'microsys,sbc6x', 'poslab,imx6q-savageboard', 'prt,prti6q', 'prt,prtwd2', 'rex,imx6q-rex-pro', 'skov,imx6q-skov-revc-lt2', 'skov,imx6q-skov-revc-lt6', 'skov,imx6q-skov-reve-mi1010ait-1cp1', 'solidrun,cubox-i/q', 'solidrun,hummingboard/q', 'solidrun,hummingboard2/q', 'solidrun,solidsense/q', 'tbs,imx6q-tbs2910', 'technexion,imx6q-pico-dwarf', 'technexion,imx6q-pico-hobbit', 'tech
- nexion,imx6q-pico-nymph', 'technexion,imx6q-pico-pi', 'technologic,imx6q-ts4900', 'technologic,imx6q-ts7970', 'toradex,apalis_imx6q', 'udoo,imx6q-udoo', 'uniwest,imx6q-evi', 'variscite,dt6customboard', 'wand,imx6q-wandboard', 'ysoft,imx6q-yapp4-crux', 'ysoft,imx6q-yapp4-pegasus', 'zealz,imx6q-gk802', 'zii,imx6q-zii-rdu2']
-	'lwn,imx28-btt3' is not one of ['advantech,imx6q-dms-ba16', 'ge,imx6q-b450v3', 'ge,imx6q-b650v3', 'ge,imx6q-b850v3']
-	'armadeus,imx6q-apf6dev' was expected
-	'compulab,utilite-pro' was expected
-	'dfi,fs700-m60-6qd' was expected
-	'dh,imx6q-dhcom-pdk2' was expected
-	'lwn,imx28-btt3' is not one of ['gw,imx6q-gw51xx', 'gw,imx6q-gw52xx', 'gw,imx6q-gw53xx', 'gw,imx6q-gw5400-a', 'gw,imx6q-gw54xx', 'gw,imx6q-gw551x', 'gw,imx6q-gw552x', 'gw,imx6q-gw553x', 'gw,imx6q-gw560x', 'gw,imx6q-gw5903', 'gw,imx6q-gw5904', 'gw,imx6q-gw5907', 'gw,imx6q-gw5910', 'gw,imx6q-gw5912', 'gw,imx6q-gw5913']
-	'kontron,imx6q-samx6i-ads2' was expected
-	'lwn,imx28-btt3' is not one of ['phytec,imx6q-pbac06-emmc', 'phytec,imx6q-pbac06-nand']
-	'phytec,imx6q-pbab01' was expected
-	'lwn,imx28-btt3' is not one of ['toradex,apalis_imx6q-ixora', 'toradex,apalis_imx6q-ixora-v1.1', 'toradex,apalis_imx6q-ixora-v1.2', 'toradex,apalis_imx6q-eval', 'toradex,apalis_imx6q-eval-v1.2']
-	'variscite,mx6customboard' was expected
-	'tq,imx6q-mba6x-a' was expected
-	'tq,imx6q-mba6x-b' was expected
-	'lwn,imx28-btt3' is not one of ['boundary,imx6qp-nitrogen6_max', 'boundary,imx6qp-nitrogen6_som2', 'fsl,imx6qp-sabreauto', 'fsl,imx6qp-sabresd', 'karo,imx6qp-tx6qp', 'kvg,vicutp', 'prt,prtwd3', 'wand,imx6qp-wandboard', 'ysoft,imx6qp-yapp4-crux-plus', 'ysoft,imx6qp-yapp4-pegasus-plus', 'zii,imx6qp-zii-rdu2']
-	'phytec,imx6qp-pbac06-nand' was expected
-	'tq,imx6qp-mba6x-b' was expected
-	'lwn,imx28-btt3' is not one of ['abb,aristainetos-imx6dl-4', 'abb,aristainetos-imx6dl-7', 'abb,aristainetos2-imx6dl-4', 'abb,aristainetos2-imx6dl-7', 'alt,alti6p', 'boundary,imx6dl-nit6xlite', 'boundary,imx6dl-nitrogen6x', 'bticino,imx6dl-mamoj', 'eckelmann,imx6dl-ci4x10', 'emtrion,emcon-mx6', 'emtrion,emcon-mx6-avari', 'engicam,imx6-icore', 'engicam,imx6-icore-rqs', 'fsl,imx6dl-sabreauto', 'fsl,imx6dl-sabrelite', 'fsl,imx6dl-sabresd', 'karo,imx6dl-tx6dl', 'kontron,imx6dl-samx6i', 'kvg,victgo', 'kvg,vicut1', 'ply,plybas', 'ply,plym2m', 'poslab,imx6dl-savageboard', 'prt,prtmvt', 'prt,prtrvt', 'prt,prtvt7', 'rex,imx6dl-rex-basic', 'riot,imx6s-riotboard', 'sielaff,imx6dl-board', 'skov,imx6dl-skov-revc-lt2', 'skov,imx6dl-skov-revc-lt6', 'solidrun,cubox-i/dl', 'solidrun,hummingboard/dl', 'solidrun,hummingboard2/dl', 'solidrun,solidsense/dl', 'technexion,imx6dl-pico-dwarf', 'technexion,imx6dl-pico-hobbit', 'technexion,imx6dl-pico-nymph', 'technexion,imx6dl-pico-pi', 'technologic,imx6dl-ts
- 4900', 'technologic,imx6dl-ts7970', 'toradex,colibri_imx6dl', 'udoo,imx6dl-udoo', 'vdl,lanmcu', 'wand,imx6dl-wandboard', 'ysoft,imx6dl-yapp4-draco', 'ysoft,imx6dl-yapp4-hydra', 'ysoft,imx6dl-yapp4-lynx', 'ysoft,imx6dl-yapp4-orion', 'ysoft,imx6dl-yapp4-phoenix', 'ysoft,imx6dl-yapp4-ursa']
-	'armadeus,imx6dl-apf6dev' was expected
-	'lwn,imx28-btt3' is not one of ['ge,imx6dl-b105v2', 'ge,imx6dl-b105pv2', 'ge,imx6dl-b125v2', 'ge,imx6dl-b125pv2', 'ge,imx6dl-b155v2']
-	'dfi,fs700-m60-6dl' was expected
-	'dh,imx6dl-dhcom-picoitx' was expected
-	'lwn,imx28-btt3' is not one of ['gw,imx6dl-gw51xx', 'gw,imx6dl-gw52xx', 'gw,imx6dl-gw53xx', 'gw,imx6dl-gw54xx', 'gw,imx6dl-gw551x', 'gw,imx6dl-gw552x', 'gw,imx6dl-gw553x', 'gw,imx6dl-gw560x', 'gw,imx6dl-gw5903', 'gw,imx6dl-gw5904', 'gw,imx6dl-gw5907', 'gw,imx6dl-gw5910', 'gw,imx6dl-gw5912', 'gw,imx6dl-gw5913']
-	'kontron,imx6dl-samx6i-ads2' was expected
-	'lwn,imx28-btt3' is not one of ['phytec,imx6dl-pbac06-emmc', 'phytec,imx6dl-pbac06-nand']
-	'phytec,imx6dl-pbab01' was expected
-	'lwn,imx28-btt3' is not one of ['toradex,colibri_imx6dl-aster', 'toradex,colibri_imx6dl-eval-v3', 'toradex,colibri_imx6dl-iris', 'toradex,colibri_imx6dl-iris-v2']
-	'dh,imx6s-dhcom-drc02' was expected
-	'tq,imx6dl-mba6x-a' was expected
-	'tq,imx6dl-mba6x-b' was expected
-	'lwn,imx28-btt3' is not one of ['fsl,imx6sl-evk', 'kobo,aura2', 'kobo,tolino-shine2hd', 'kobo,tolino-shine3', 'kobo,tolino-vision', 'kobo,tolino-vision5', 'revotics,imx6sl-warp']
-	'lwn,imx28-btt3' is not one of ['fsl,imx6sll-evk', 'kobo,clarahd', 'kobo,librah2o']
-	'lwn,imx28-btt3' is not one of ['boundary,imx6sx-nitrogen6sx', 'fsl,imx6sx-sabreauto', 'fsl,imx6sx-sdb', 'fsl,imx6sx-sdb-reva', 'samtec,imx6sx-vining-2000', 'udoo,neobasic', 'udoo,neoextended', 'udoo,neofull']
-	'lwn,imx28-btt3' is not one of ['engicam,imx6ul-geam', 'engicam,imx6ul-isiot', 'fsl,imx6ul-14x14-evk', 'karo,imx6ul-tx6ul', 'kontron,sl-imx6ul', 'prt,prti6g', 'technexion,imx6ul-pico-dwarf', 'technexion,imx6ul-pico-hobbit', 'technexion,imx6ul-pico-pi']
-	'armadeus,imx6ul-opos6uldev' was expected
-	'lwn,imx28-btt3' is not one of ['digi,ccimx6ulsbcexpress', 'digi,ccimx6ulsbcpro']
-	'grinn,imx6ul-liteboard' was expected
-	'lwn,imx28-btt3' is not one of ['phytec,imx6ul-pbacd10-emmc', 'phytec,imx6ul-pbacd10-nand']
-	'kontron,bl-imx6ul' was expected
-	'kontron,bl-imx6ul-43' was expected
-	'lwn,imx28-btt3' is not one of ['tq,imx6ul-tqma6ul1-mba6ulx']
-	'lwn,imx28-btt3' is not one of ['tq,imx6ul-tqma6ul2-mba6ulx']
-	'lwn,imx28-btt3' is not one of ['tq,imx6ul-tqma6ul2l-mba6ulx', 'tq,imx6ul-tqma6ul2l-mba6ulxl']
-	'lwn,imx28-btt3' is not one of ['fsl,imx6ull-14x14-evk', 'joz,jozacp', 'kontron,sl-imx6ull', 'myir,imx6ull-mys-6ulx-eval', 'toradex,colibri-imx6ull', 'toradex,colibri-imx6ull-emmc', 'toradex,colibri-imx6ull-wifi', 'uni-t,uti260b']
-	'armadeus,imx6ull-opos6uldev' was expected
-	'lwn,imx28-btt3' is not one of ['chargebyte,imx6ull-tarragon-master', 'chargebyte,imx6ull-tarragon-micro', 'chargebyte,imx6ull-tarragon-slave', 'chargebyte,imx6ull-tarragon-slavext']
-	'lwn,imx28-btt3' is not one of ['dh,imx6ull-dhcom-drc02', 'dh,imx6ull-dhcom-pdk2', 'dh,imx6ull-dhcom-picoitx']
-	'marantec,imx6ull-dhcor-maveo-box' was expected
-	'lwn,imx28-btt3' is not one of ['phytec,imx6ull-pbacd10-emmc', 'phytec,imx6ull-pbacd10-nand']
-	'lwn,imx28-btt3' is not one of ['phytec,imx6ull-phygate-tauri-emmc', 'phytec,imx6ull-phygate-tauri-nand']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx6ull-aster', 'toradex,colibri-imx6ull-eval', 'toradex,colibri-imx6ull-iris', 'toradex,colibri-imx6ull-iris-v2']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx6ull-emmc-aster', 'toradex,colibri-imx6ull-emmc-eval', 'toradex,colibri-imx6ull-emmc-iris', 'toradex,colibri-imx6ull-emmc-iris-v2']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx6ull-wifi-eval', 'toradex,colibri-imx6ull-wifi-aster', 'toradex,colibri-imx6ull-wifi-iris', 'toradex,colibri-imx6ull-wifi-iris-v2']
-	'kontron,bl-imx6ull' was expected
-	'lwn,imx28-btt3' is not one of ['tq,imx6ull-tqma6ull2-mba6ulx']
-	'lwn,imx28-btt3' is not one of ['tq,imx6ull-tqma6ull2l-mba6ulx', 'tq,imx6ull-tqma6ull2l-mba6ulxl']
-	'lwn,imx28-btt3' is not one of ['seeed,imx6ull-seeed-npi-emmc', 'seeed,imx6ull-seeed-npi-nand']
-	'lwn,imx28-btt3' is not one of ['bsh,imx6ulz-bsh-smm-m2', 'fsl,imx6ulz-14x14-evk']
-	'lwn,imx28-btt3' is not one of ['element14,imx7s-warp', 'toradex,colibri-imx7s']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx7s-aster', 'toradex,colibri-imx7s-eval-v3', 'toradex,colibri-imx7s-iris', 'toradex,colibri-imx7s-iris-v2']
-	'tq,imx7s-mba7' was expected
-	'lwn,imx28-btt3' is not one of ['boundary,imx7d-nitrogen7', 'compulab,cl-som-imx7', 'fsl,imx7d-sdb', 'fsl,imx7d-sdb-reva', 'kam,imx7d-flex-concentrator', 'kam,imx7d-flex-concentrator-mfg', 'novtech,imx7d-meerkat96', 'remarkable,imx7d-remarkable2', 'storopack,imx7d-smegw01', 'technexion,imx7d-pico-dwarf', 'technexion,imx7d-pico-hobbit', 'technexion,imx7d-pico-nymph', 'technexion,imx7d-pico-pi', 'toradex,colibri-imx7d', 'toradex,colibri-imx7d-emmc', 'zii,imx7d-rmu2', 'zii,imx7d-rpu2']
-	'tq,imx7d-mba7' was expected
-	'compulab,sbc-imx7' was expected
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx7d-aster', 'toradex,colibri-imx7d-eval-v3', 'toradex,colibri-imx7d-iris', 'toradex,colibri-imx7d-iris-v2']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx7d-emmc-aster', 'toradex,colibri-imx7d-emmc-eval-v3', 'toradex,colibri-imx7d-emmc-iris', 'toradex,colibri-imx7d-emmc-iris-v2']
-	'lwn,imx28-btt3' is not one of ['ea,imx7ulp-com', 'fsl,imx7ulp-evk']
-	'lwn,imx28-btt3' is not one of ['beacon,imx8mm-beacon-kit', 'boundary,imx8mm-nitrogen8mm', 'dmo,imx8mm-data-modul-edm-sbc', 'emtrion,emcon-mx8mm-avari', 'fsl,imx8mm-ddr4-evk', 'fsl,imx8mm-evk', 'fsl,imx8mm-evkb', 'gateworks,imx8mm-gw75xx-0x', 'gateworks,imx8mm-gw7904', 'gw,imx8mm-gw71xx-0x', 'gw,imx8mm-gw72xx-0x', 'gw,imx8mm-gw73xx-0x', 'gw,imx8mm-gw7901', 'gw,imx8mm-gw7902', 'gw,imx8mm-gw7903', 'innocomm,wb15-evk', 'kontron,imx8mm-sl', 'kontron,imx8mm-osm-s', 'toradex,verdin-imx8mm', 'toradex,verdin-imx8mm-nonwifi', 'toradex,verdin-imx8mm-wifi', 'prt,prt8mm']
-	'lwn,imx28-btt3' is not one of ['compulab,imx8mm-iot-gateway']
-	'ees,imx8mm-emtop-baseboard' was expected
-	'lwn,imx28-btt3' is not one of ['engicam,icore-mx8mm-ctouch2', 'engicam,icore-mx8mm-edimm2.2']
-	'kontron,imx8mm-bl' was expected
-	'kontron,imx8mm-bl-osm-s' was expected
-	'lwn,imx28-btt3' is not one of ['menlo,mx8menlo', 'toradex,verdin-imx8mm-nonwifi-dahlia', 'toradex,verdin-imx8mm-nonwifi-dev', 'toradex,verdin-imx8mm-nonwifi-mallow', 'toradex,verdin-imx8mm-nonwifi-yavia']
-	'lwn,imx28-btt3' is not one of ['toradex,verdin-imx8mm-wifi-dahlia', 'toradex,verdin-imx8mm-wifi-dev', 'toradex,verdin-imx8mm-wifi-mallow', 'toradex,verdin-imx8mm-wifi-yavia']
-	'lwn,imx28-btt3' is not one of ['phytec,imx8mm-phyboard-polis-rdk', 'phytec,imx8mm-phygate-tauri-l']
-	'variscite,var-som-mx8mm-symphony' was expected
-	'lwn,imx28-btt3' is not one of ['cloos,imx8mm-phg', 'tq,imx8mm-tqma8mqml-mba8mx']
-	'lwn,imx28-btt3' is not one of ['beacon,imx8mn-beacon-kit', 'bsh,imx8mn-bsh-smm-s2', 'bsh,imx8mn-bsh-smm-s2pro', 'fsl,imx8mn-ddr3l-evk', 'fsl,imx8mn-ddr4-evk', 'fsl,imx8mn-evk', 'gw,imx8mn-gw7902']
-	'lwn,imx28-btt3' is not one of ['dimonoff,gateway-evk', 'rve,gateway', 'variscite,var-som-mx8mn-symphony']
-	'lwn,imx28-btt3' is not one of ['tq,imx8mn-tqma8mqnl-mba8mx']
-	'lwn,imx28-btt3' is not one of ['beacon,imx8mp-beacon-kit', 'dmo,imx8mp-data-modul-edm-sbc', 'emcraft,imx8mp-navqp', 'fsl,imx8mp-evk', 'gateworks,imx8mp-gw71xx-2x', 'gateworks,imx8mp-gw72xx-2x', 'gateworks,imx8mp-gw73xx-2x', 'gateworks,imx8mp-gw74xx', 'gateworks,imx8mp-gw75xx-2x', 'skov,imx8mp-skov-revb-hdmi', 'skov,imx8mp-skov-revb-lt6', 'skov,imx8mp-skov-revb-mi1010ait-1cp1', 'toradex,verdin-imx8mp', 'toradex,verdin-imx8mp-nonwifi', 'toradex,verdin-imx8mp-wifi']
-	'avnet,sm2s-imx8mp-14N0600E-ep1' was expected
-	'lwn,imx28-btt3' is not one of ['dh,imx8mp-dhcom-pdk2', 'dh,imx8mp-dhcom-pdk3']
-	'lwn,imx28-btt3' is not one of ['engicam,icore-mx8mp-edimm2.2']
-	'phytec,imx8mp-phyboard-pollux-rdk' was expected
-	'lwn,imx28-btt3' is not one of ['polyhex,imx8mp-debix-model-a']
-	'lwn,imx28-btt3' is not one of ['polyhex,imx8mp-debix-som-a-bmb-08']
-	'lwn,imx28-btt3' is not one of ['toradex,verdin-imx8mp-nonwifi-dahlia', 'toradex,verdin-imx8mp-nonwifi-dev', 'toradex,verdin-imx8mp-nonwifi-mallow', 'toradex,verdin-imx8mp-nonwifi-yavia']
-	'lwn,imx28-btt3' is not one of ['toradex,verdin-imx8mp-wifi-dahlia', 'toradex,verdin-imx8mp-wifi-dev', 'toradex,verdin-imx8mp-wifi-mallow', 'toradex,verdin-imx8mp-wifi-yavia']
-	'lwn,imx28-btt3' is not one of ['tq,imx8mp-tqma8mpql-mba8mpxl', 'tq,imx8mp-tqma8mpql-mba8mp-ras314']
-	'variscite,var-som-mx8mp-symphony' was expected
-	'lwn,imx28-btt3' is not one of ['boundary,imx8mq-nitrogen8m', 'boundary,imx8mq-nitrogen8m-som', 'einfochips,imx8mq-thor96', 'fsl,imx8mq-evk', 'google,imx8mq-phanbell', 'kontron,pitx-imx8m', 'purism,librem5-devkit', 'solidrun,hummingboard-pulse', 'technexion,pico-pi-imx8m']
-	'mntre,reform2' was expected
-	'lwn,imx28-btt3' is not one of ['purism,librem5r2', 'purism,librem5r3', 'purism,librem5r4']
-	'lwn,imx28-btt3' is not one of ['tq,imx8mq-tqma8mq-mba8mx']
-	'lwn,imx28-btt3' is not one of ['zii,imx8mq-ultra-rmb3', 'zii,imx8mq-ultra-zest']
-	'lwn,imx28-btt3' is not one of ['fsl,imx8qm-mek', 'toradex,apalis-imx8', 'toradex,apalis-imx8-v1.1']
-	'lwn,imx28-btt3' is not one of ['toradex,apalis-imx8-eval', 'toradex,apalis-imx8-eval-v1.2', 'toradex,apalis-imx8-ixora-v1.1']
-	'lwn,imx28-btt3' is not one of ['toradex,apalis-imx8-v1.1-eval', 'toradex,apalis-imx8-v1.1-eval-v1.2', 'toradex,apalis-imx8-v1.1-ixora-v1.1', 'toradex,apalis-imx8-v1.1-ixora-v1.2']
-	'lwn,imx28-btt3' is not one of ['einfochips,imx8qxp-ai_ml', 'fsl,imx8qxp-mek']
-	'lwn,imx28-btt3' is not one of ['fsl,imx8dxl-evk']
-	'lwn,imx28-btt3' is not one of ['toradex,colibri-imx8x-aster', 'toradex,colibri-imx8x-eval-v3', 'toradex,colibri-imx8x-iris', 'toradex,colibri-imx8x-iris-v2']
-	'lwn,imx28-btt3' is not one of ['fsl,imx8ulp-evk']
-	'lwn,imx28-btt3' is not one of ['fsl,imx93-9x9-qsb', 'fsl,imx93-11x11-evk', 'fsl,imx93-14x14-evk']
-	'lwn,imx28-btt3' is not one of ['fsl,imx95-19x19-evk']
-	'lwn,imx28-btt3' is not one of ['fsl,imxrt1050-evk']
-	'lwn,imx28-btt3' is not one of ['fsl,imxrt1170-evk']
-	'lwn,imx28-btt3' is not one of ['tq,imx93-tqma9352-mba93xxca', 'tq,imx93-tqma9352-mba93xxla']
-	'phytec,imx93-phyboard-segin' was expected
-	'variscite,var-som-mx93-symphony' was expected
-	'kontron,imx93-bl-osm-s' was expected
-	'lwn,imx28-btt3' is not one of ['fsl,vf500', 'fsl,vf510', 'fsl,vf600', 'fsl,vf610', 'fsl,vf610m4']
-	'toradex,vf500-colibri_vf50-on-eval' was expected
-	'lwn,imx28-btt3' is not one of ['fsl,vf610-twr', 'lwn,bk4', 'phytec,vf610-cosmic', 'toradex,vf610-colibri_vf61']
-	'toradex,vf610-colibri_vf61-on-eval' was expected
-	'lwn,imx28-btt3' is not one of ['zii,vf610cfu1', 'zii,vf610dev-c', 'zii,vf610dev-b', 'zii,vf610scu4-aib', 'zii,vf610dtu', 'zii,vf610spu3', 'zii,vf610spb4']
-	'lwn,imx28-btt3' is not one of ['ebs-systart,oxalis', 'fsl,ls1012a-rdb', 'fsl,ls1012a-frdm', 'fsl,ls1012a-frwy', 'fsl,ls1012a-qds']
-	'lwn,imx28-btt3' is not one of ['fsl,ls1021a-iot', 'fsl,ls1021a-moxa-uc-8410a', 'fsl,ls1021a-qds', 'fsl,ls1021a-tsn', 'fsl,ls1021a-twr']
-	'lwn,imx28-btt3' is not one of ['tq,ls1021a-tqmls1021a-mbls102xa']
-	'lwn,imx28-btt3' is not one of ['fsl,ls1028a-qds', 'fsl,ls1028a-rdb']
-	'kontron,kbox-a-230-ls' was expected
-	'lwn,imx28-btt3' is not one of ['kontron,sl28-var1-ads2', 'kontron,sl28-var2-ads2', 'kontron,sl28-var3-ads2', 'kontron,sl28-var4-ads2']
-	'lwn,imx28-btt3' is not one of ['kontron,sl28-var1', 'kontron,sl28-var2', 'kontron,sl28-var3', 'kontron,sl28-var4']
-	'kontron,sl28' was expected
-	'lwn,imx28-btt3' is not one of ['fsl,ls1043a-rdb', 'fsl,ls1043a-qds']
-	'lwn,imx28-btt3' is not one of ['tq,ls1043a-tqmls1043a-mbls10xxa']
-	'lwn,imx28-btt3' is not one of ['fsl,ls1046a-frwy', 'fsl,ls1046a-qds', 'fsl,ls1046a-rdb']
-	'lwn,imx28-btt3' is not one of ['tq,ls1046a-tqmls1046a-mbls10xxa']
-	'lwn,imx28-btt3' is not one of ['fsl,ls1088a-qds', 'fsl,ls1088a-rdb']
-	'lwn,imx28-btt3' is not one of ['tq,ls1088a-tqmls1088a-mbls10xxa']
-	'lwn,imx28-btt3' is not one of ['fsl,ls2080a-simu', 'fsl,ls2080a-qds', 'fsl,ls2080a-rdb']
-	'lwn,imx28-btt3' is not one of ['fsl,ls2081a-rdb']
-	'lwn,imx28-btt3' is not one of ['fsl,ls2088a-qds', 'fsl,ls2088a-rdb']
-	'lwn,imx28-btt3' is not one of ['fsl,lx2160a-bluebox3', 'fsl,lx2160a-bluebox3-rev-a', 'fsl,lx2160a-qds', 'fsl,lx2160a-rdb', 'fsl,lx2162a-qds']
-	'lwn,imx28-btt3' is not one of ['solidrun,clearfog-cx', 'solidrun,honeycomb']
-	'lwn,imx28-btt3' is not one of ['solidrun,lx2162a-clearfog']
-	'lwn,imx28-btt3' is not one of ['tq,lx2160a-tqmlx2160a-mblx2160a']
-	'lwn,imx28-btt3' is not one of ['nxp,s32g274a-evb', 'nxp,s32g274a-rdb2']
-	'lwn,imx28-btt3' is not one of ['nxp,s32g399a-rdb3']
-	'lwn,imx28-btt3' is not one of ['fsl,s32v234-evb']
-	'lwn,imx28-btt3' is not one of ['traverse,ten64']
-	'fsl,imx1' was expected
-	'fsl,imx23' was expected
-	'fsl,imx25' was expected
-	'eukrea,cpuimx25' was expected
-	'eukrea,mbimxsd25-baseboard' was expected
-	'fsl,imx27' was expected
-	'armadeus,imx27-apf27' was expected
-	'eukrea,cpuimx27' was expected
-	'phytec,imx27-pca100' was expected
-	'phytec,imx27-pcm038' was expected
-	'denx,m28' was expected
-	'denx,m28evk' was expected
-	'armadeus,imx28-apf28' was expected
-	'crystalfontz,cfa10036' was expected
-	'crystalfontz,cfa10037' was expected
-	'i2se,duckbill-2' was expected
-	'eukrea,mbmx28lc' was expected
-	'fsl,imx31' was expected
-	'fsl,imx35' was expected
-	'eukrea,cpuimx35' was expected
-	'fsl,imx50' was expected
-	'fsl,imx51' was expected
-	'armadeus,imx51-apf51' was expected
-	'digi,connectcore-ccxmx51-som' was expected
-	'eukrea,cpuimx51' was expected
-	'fsl,imx53' was expected
-	'denx,imx53-m53evk' was expected
-	'tq,tqma53' was expected
-	'fsl,imx6q' was expected
-	'advantech,imx6q-ba16' was expected
-	'armadeus,imx6q-apf6' was expected
-	'compulab,cm-fx6' was expected
-	'dfi,fs700e-m60' was expected
-	'dh,imx6q-dhcom-som' was expected
-	'gw,ventana' was expected
-	'kontron,imx6q-samx6i' was expected
-	'phytec,imx6q-pbac06' was expected
-	'phytec,imx6q-pfla02' was expected
-	'toradex,apalis_imx6q' was expected
-	'variscite,var-som-imx6q' was expected
-	'tq,mba6a' was expected
-	'tq,mba6b' was expected
-	'fsl,imx6qp' was expected
-	'phytec,imx6qp-pbac06' was expected
-	'fsl,imx6dl' was expected
-	'armadeus,imx6dl-apf6' was expected
-	'congatec,qmx6' was expected
-	'dh,imx6dl-dhcom-som' was expected
-	'kontron,imx6dl-samx6i' was expected
-	'phytec,imx6dl-pbac06' was expected
-	'phytec,imx6dl-pfla02' was expected
-	'toradex,colibri_imx6dl' was expected
-	'dh,imx6s-dhcom-som' was expected
-	'fsl,imx6sl' was expected
-	'fsl,imx6sll' was expected
-	'fsl,imx6sx' was expected
-	'fsl,imx6ul' was expected
-	'armadeus,imx6ul-opos6ul' was expected
-	'digi,ccimx6ulsom' was expected
-	'grinn,imx6ul-litesom' was expected
-	'phytec,imx6ul-pbacd10' was expected
-	'kontron,sl-imx6ul' was expected
-	'tq,imx6ul-tqma6ul1' was expected
-	'tq,imx6ul-tqma6ul2' was expected
-	'tq,imx6ul-tqma6ul2l' was expected
-	'fsl,imx6ull' was expected
-	'armadeus,imx6ull-opos6ul' was expected
-	'dh,imx6ull-dhcom-som' was expected
-	'dh,imx6ull-dhcor-som' was expected
-	'phytec,imx6ull-pbacd10' was expected
-	'phytec,imx6ull-phygate-tauri' was expected
-	'toradex,colibri-imx6ull' was expected
-	'toradex,colibri-imx6ull-emmc' was expected
-	'toradex,colibri-imx6ull-wifi' was expected
-	'kontron,sl-imx6ull' was expected
-	'tq,imx6ull-tqma6ull2' was expected
-	'tq,imx6ull-tqma6ull2l' was expected
-	'seeed,imx6ull-seeed-npi' was expected
-	'fsl,imx7s' was expected
-	'toradex,colibri-imx7s' was expected
-	'tq,imx7s-tqma7' was expected
-	'fsl,imx7d' was expected
-	'tq,imx7d-tqma7' was expected
-	'compulab,cl-som-imx7' was expected
-	'toradex,colibri-imx7d' was expected
-	'toradex,colibri-imx7d-emmc' was expected
-	'fsl,imx7ulp' was expected
-	'fsl,imx8mm' was expected
-	'compulab,imx8mm-ucm-som' was expected
-	'ees,imx8mm-emtop-som' was expected
-	'engicam,icore-mx8mm' was expected
-	'kontron,imx8mm-sl' was expected
-	'kontron,imx8mm-osm-s' was expected
-	'toradex,verdin-imx8mm-nonwifi' was expected
-	'toradex,verdin-imx8mm-wifi' was expected
-	'phytec,imx8mm-phycore-som' was expected
-	'variscite,var-som-mx8mm' was expected
-	'tq,imx8mm-tqma8mqml' was expected
-	'fsl,imx8mn' was expected
-	'variscite,var-som-mx8mn' was expected
-	'tq,imx8mn-tqma8mqnl' was expected
-	'fsl,imx8mp' was expected
-	'avnet,sm2s-imx8mp-14N0600E' was expected
-	'dh,imx8mp-dhcom-som' was expected
-	'engicam,icore-mx8mp' was expected
-	'phytec,imx8mp-phycore-som' was expected
-	'polyhex,imx8mp-debix' was expected
-	'polyhex,imx8mp-debix-som-a' was expected
-	'toradex,verdin-imx8mp-nonwifi' was expected
-	'toradex,verdin-imx8mp-wifi' was expected
-	'tq,imx8mp-tqma8mpql' was expected
-	'variscite,var-som-mx8mp' was expected
-	'fsl,imx8mq' was expected
-	'boundary,imx8mq-nitrogen8m-som' was expected
-	'purism,librem5' was expected
-	'tq,imx8mq-tqma8mq' was expected
-	'zii,imx8mq-ultra' was expected
-	'fsl,imx8qm' was expected
-	'toradex,apalis-imx8' was expected
-	'toradex,apalis-imx8-v1.1' was expected
-	'fsl,imx8qxp' was expected
-	'fsl,imx8dxl' was expected
-	'toradex,colibri-imx8x' was expected
-	'fsl,imx8ulp' was expected
-	'fsl,imx93' was expected
-	'fsl,imx95' was expected
-	'fsl,imxrt1050' was expected
-	'fsl,imxrt1170' was expected
-	'tq,imx93-tqma9352' was expected
-	'phytec,imx93-phycore-som' was expected
-	'variscite,var-som-mx93' was expected
-	'kontron,imx93-osm-s' was expected
-	'toradex,vf500-colibri_vf50' was expected
-	'fsl,vf610' was expected
-	'toradex,vf610-colibri_vf61' was expected
-	'zii,vf610dev' was expected
-	'fsl,ls1012a' was expected
-	'fsl,ls1021a' was expected
-	'tq,ls1021a-tqmls1021a' was expected
-	'fsl,ls1028a' was expected
-	'kontron,sl28-var4' was expected
-	'fsl,imx28' is not one of ['kontron,sl28-var1', 'kontron,sl28-var2', 'kontron,sl28-var3', 'kontron,sl28-var4']
-	'fsl,ls1043a' was expected
-	'tq,ls1043a-tqmls1043a' was expected
-	'fsl,ls1046a' was expected
-	'tq,ls1046a-tqmls1046a' was expected
-	'fsl,ls1088a' was expected
-	'tq,ls1088a-tqmls1088a' was expected
-	'fsl,ls2080a' was expected
-	'fsl,ls2081a' was expected
-	'fsl,ls2088a' was expected
-	'fsl,lx2160a' was expected
-	'solidrun,lx2160a-cex7' was expected
-	'solidrun,lx2162a-som' was expected
-	'tq,lx2160a-tqmlx2160a' was expected
-	'nxp,s32g2' was expected
-	'nxp,s32g3' was expected
-	'fsl,s32v234' was expected
-	from schema $id: http://devicetree.org/schemas/arm/fsl.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: /: failed to match any schema with compatible: ['lwn,imx28-btt3', 'fsl,imx28']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: /: failed to match any schema with compatible: ['lwn,imx28-btt3', 'fsl,imx28']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: /: failed to match any schema with compatible: ['lwn,imx28-btt3', 'fsl,imx28']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: /apb@80000000/apbh-bus@80000000/interrupt-controller@80000000: failed to match any schema with compatible: ['fsl,imx28-icoll', 'fsl,icoll']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: /apb@80000000/apbh-bus@80000000/interrupt-controller@80000000: failed to match any schema with compatible: ['fsl,imx28-icoll', 'fsl,icoll']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: /apb@80000000/apbh-bus@80000000/interrupt-controller@80000000: failed to match any schema with compatible: ['fsl,imx28-icoll', 'fsl,icoll']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: /apb@80000000/apbh-bus@80000000/interrupt-controller@80000000: failed to match any schema with compatible: ['fsl,imx28-icoll', 'fsl,icoll']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: /apb@80000000/apbh-bus@80000000/interrupt-controller@80000000: failed to match any schema with compatible: ['fsl,imx28-icoll', 'fsl,icoll']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: /apb@80000000/apbh-bus@80000000/interrupt-controller@80000000: failed to match any schema with compatible: ['fsl,imx28-icoll', 'fsl,icoll']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: nand-controller@8000c000: #size-cells: 0 was expected
-	from schema $id: http://devicetree.org/schemas/mtd/gpmi-nand.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: nand-controller@8000c000: #size-cells: 0 was expected
-	from schema $id: http://devicetree.org/schemas/mtd/nand-controller.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: nand-controller@8000c000: #size-cells: 0 was expected
-	from schema $id: http://devicetree.org/schemas/mtd/gpmi-nand.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: nand-controller@8000c000: #size-cells: 0 was expected
-	from schema $id: http://devicetree.org/schemas/mtd/gpmi-nand.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: spi@80010000: $nodename:0: 'spi@80010000' does not match '^mmc(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/mmc/mxs-mmc.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: spi@80010000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'bus-width', 'clocks', 'non-removable', 'vmmc-supply' were unexpected)
-	from schema $id: http://devicetree.org/schemas/mmc/mxs-mmc.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: nand-controller@8000c000: #size-cells: 0 was expected
-	from schema $id: http://devicetree.org/schemas/mtd/nand-controller.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: nand-controller@8000c000: #size-cells: 0 was expected
-	from schema $id: http://devicetree.org/schemas/mtd/nand-controller.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: spi@80010000: $nodename:0: 'spi@80010000' does not match '^mmc(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/mmc/mxs-mmc.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: spi@80010000: $nodename:0: 'spi@80010000' does not match '^mmc(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/mmc/mxs-mmc.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: spi@80010000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'bus-width', 'clocks', 'non-removable', 'vmmc-supply' were unexpected)
-	from schema $id: http://devicetree.org/schemas/mmc/mxs-mmc.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: spi@80010000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'bus-width', 'clocks', 'non-removable', 'vmmc-supply' were unexpected)
-	from schema $id: http://devicetree.org/schemas/mmc/mxs-mmc.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: spi@80012000: $nodename:0: 'spi@80012000' does not match '^mmc(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/mmc/mxs-mmc.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: spi@80012000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'bus-width', 'clocks', 'keep-power-in-suspend', 'mmc-pwrseq', 'no-1-8-v', 'non-removable', 'pm-ignore-notify', 'vmmc-supply', 'wlan@1' were unexpected)
-	from schema $id: http://devicetree.org/schemas/mmc/mxs-mmc.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: spi@80012000: $nodename:0: 'spi@80012000' does not match '^mmc(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/mmc/mxs-mmc.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: spi@80012000: $nodename:0: 'spi@80012000' does not match '^mmc(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/mmc/mxs-mmc.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: spi@80012000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'bus-width', 'clocks', 'keep-power-in-suspend', 'mmc-pwrseq', 'no-1-8-v', 'non-removable', 'pm-ignore-notify', 'vmmc-supply', 'wlan@1' were unexpected)
-	from schema $id: http://devicetree.org/schemas/mmc/mxs-mmc.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: spi@80012000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'bus-width', 'clocks', 'keep-power-in-suspend', 'mmc-pwrseq', 'no-1-8-v', 'non-removable', 'pm-ignore-notify', 'vmmc-supply', 'wlan@1' were unexpected)
-	from schema $id: http://devicetree.org/schemas/mmc/mxs-mmc.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: spi@80014000: Unevaluated properties are not allowed ('clocks' was unexpected)
-	from schema $id: http://devicetree.org/schemas/spi/mxs-spi.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: spi@80014000: Unevaluated properties are not allowed ('clocks' was unexpected)
-	from schema $id: http://devicetree.org/schemas/spi/mxs-spi.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: spi@80014000: Unevaluated properties are not allowed ('clocks' was unexpected)
-	from schema $id: http://devicetree.org/schemas/spi/mxs-spi.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: spi@80016000: Unevaluated properties are not allowed ('clocks' was unexpected)
-	from schema $id: http://devicetree.org/schemas/spi/mxs-spi.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: spi@80016000: Unevaluated properties are not allowed ('clocks' was unexpected)
-	from schema $id: http://devicetree.org/schemas/spi/mxs-spi.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: spi@80016000: Unevaluated properties are not allowed ('clocks' was unexpected)
-	from schema $id: http://devicetree.org/schemas/spi/mxs-spi.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: pinctrl@80018000: compatible: ['fsl,imx28-pinctrl', 'simple-bus'] is too long
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-mxs.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: pinctrl@80018000: 'auart0-2pins@0', 'auart0@0', 'auart1-2pins@0', 'auart1@0', 'auart2-2pins@0', 'auart2-2pins@1', 'auart2-pins@0', 'auart3-2pins@0', 'auart3-2pins@1', 'auart3@0', 'auart4@0', 'auart4@1', 'can0@0', 'can1@0', 'duart-4pins@0', 'duart@0', 'duart@1', 'gpmi-nand@0', 'gpmi-status-cfg@0', 'hog@0', 'hog@1', 'i2c0@0', 'i2c0@1', 'i2c1@0', 'i2c1@1', 'keypad-bttc@0', 'lcdif-16bit@0', 'lcdif-18bit@0', 'lcdif-24bit@0', 'lcdif-bttc@0', 'lcdif-bttc@1', 'lcdif-sync@0', 'mac0@0', 'mac0@1', 'mac1@0', 'mmc0-4bit@0', 'mmc0-8bit@0', 'mmc0-cd-cfg@0', 'mmc0-sck-cfg@0', 'mmc1-4bit@0', 'mmc1-cd-cfg@0', 'mmc1-sck-cfg@0', 'mmc2-4bit@0', 'mmc2-4bit@1', 'mmc2-cd-cfg@0', 'mmc2-sck-cfg@0', 'mmc2-sck-cfg@1', 'pwm0@0', 'pwm2@0', 'pwm3@0', 'pwm3@1', 'pwm4@0', 'saif0@0', 'saif0@1', 'saif1@0', 'spi2@0', 'spi3@0', 'spi3@1', 'ssp1-sdio@0', 'usb0@0', 'usb0@1', 'usb0id1@0', 'usb0id@0', 'usb1@0', 'usb1@1', 'wifi_en_pin@0' do not match any of the regexes: 'gpio@[0-9]+
- $', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-mxs.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: pinctrl@80018000: compatible: ['fsl,imx28-pinctrl', 'simple-bus'] is too long
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-mxs.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: pinctrl@80018000: 'auart0-2pins@0', 'auart0@0', 'auart1-2pins@0', 'auart1@0', 'auart2-2pins@0', 'auart2-2pins@1', 'auart2-pins@0', 'auart3-2pins@0', 'auart3-2pins@1', 'auart3@0', 'auart4@0', 'auart4@1', 'can0@0', 'can1@0', 'duart-4pins@0', 'duart@0', 'duart@1', 'gpmi-nand@0', 'gpmi-status-cfg@0', 'hog@0', 'hog@1', 'i2c0@0', 'i2c0@1', 'i2c1@0', 'i2c1@1', 'keypad-bttc@0', 'lcdif-16bit@0', 'lcdif-18bit@0', 'lcdif-24bit@0', 'lcdif-bttc@0', 'lcdif-bttc@1', 'lcdif-sync@0', 'mac0@0', 'mac0@1', 'mac1@0', 'mmc0-4bit@0', 'mmc0-8bit@0', 'mmc0-cd-cfg@0', 'mmc0-sck-cfg@0', 'mmc1-4bit@0', 'mmc1-cd-cfg@0', 'mmc1-sck-cfg@0', 'mmc2-4bit@0', 'mmc2-4bit@1', 'mmc2-cd-cfg@0', 'mmc2-sck-cfg@0', 'mmc2-sck-cfg@1', 'pwm0@0', 'pwm2@0', 'pwm3@0', 'pwm3@1', 'pwm4@0', 'saif0@0', 'saif0@1', 'saif1@0', 'spi2@0', 'spi3@0', 'spi3@1', 'ssp1-sdio@0', 'usb0@0', 'usb0@1', 'usb0id1@0', 'usb0id@0', 'usb1@0', 'usb1@1', 'wifi_en_pin@0' do not match any of the regexes: 'gpio@[0-9]+
- $', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-mxs.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: pinctrl@80018000: compatible: ['fsl,imx28-pinctrl', 'simple-bus'] is too long
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-mxs.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: pinctrl@80018000: 'auart0-2pins@0', 'auart0@0', 'auart1-2pins@0', 'auart1@0', 'auart2-2pins@0', 'auart2-2pins@1', 'auart2-pins@0', 'auart3-2pins@0', 'auart3-2pins@1', 'auart3@0', 'auart4@0', 'auart4@1', 'can0@0', 'can1@0', 'duart-4pins@0', 'duart@0', 'duart@1', 'gpmi-nand@0', 'gpmi-status-cfg@0', 'hog@0', 'hog@1', 'i2c0@0', 'i2c0@1', 'i2c1@0', 'i2c1@1', 'keypad-bttc@0', 'lcdif-16bit@0', 'lcdif-18bit@0', 'lcdif-24bit@0', 'lcdif-bttc@0', 'lcdif-bttc@1', 'lcdif-sync@0', 'mac0@0', 'mac0@1', 'mac1@0', 'mmc0-4bit@0', 'mmc0-8bit@0', 'mmc0-cd-cfg@0', 'mmc0-sck-cfg@0', 'mmc1-4bit@0', 'mmc1-cd-cfg@0', 'mmc1-sck-cfg@0', 'mmc2-4bit@0', 'mmc2-4bit@1', 'mmc2-cd-cfg@0', 'mmc2-sck-cfg@0', 'mmc2-sck-cfg@1', 'pwm0@0', 'pwm2@0', 'pwm3@0', 'pwm3@1', 'pwm4@0', 'saif0@0', 'saif0@1', 'saif1@0', 'spi2@0', 'spi3@0', 'spi3@1', 'ssp1-sdio@0', 'usb0@0', 'usb0@1', 'usb0id1@0', 'usb0id@0', 'usb1@0', 'usb1@1', 'wifi_en_pin@0' do not match any of the regexes: 'gpio@[0-9]+
- $', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-mxs.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: /apb@80000000/apbh-bus@80000000/digctl@8001c000: failed to match any schema with compatible: ['fsl,imx28-digctl', 'fsl,imx23-digctl']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: /apb@80000000/apbh-bus@80000000/digctl@8001c000: failed to match any schema with compatible: ['fsl,imx28-digctl', 'fsl,imx23-digctl']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: /apb@80000000/apbh-bus@80000000/digctl@8001c000: failed to match any schema with compatible: ['fsl,imx28-digctl', 'fsl,imx23-digctl']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: /apb@80000000/apbh-bus@80000000/digctl@8001c000: failed to match any schema with compatible: ['fsl,imx28-digctl', 'fsl,imx23-digctl']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: /apb@80000000/apbh-bus@80000000/digctl@8001c000: failed to match any schema with compatible: ['fsl,imx28-digctl', 'fsl,imx23-digctl']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: /apb@80000000/apbh-bus@80000000/digctl@8001c000: failed to match any schema with compatible: ['fsl,imx28-digctl', 'fsl,imx23-digctl']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: lcdif@80030000: 'port' is a required property
-	from schema $id: http://devicetree.org/schemas/display/fsl,lcdif.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: lcdif@80030000: 'display', 'display0', 'display1', 'lcd-supply' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/display/fsl,lcdif.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: lcdif@80030000: 'port' is a required property
-	from schema $id: http://devicetree.org/schemas/display/fsl,lcdif.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: lcdif@80030000: 'display', 'display0', 'display1', 'lcd-supply' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/display/fsl,lcdif.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: lcdif@80030000: 'port' is a required property
-	from schema $id: http://devicetree.org/schemas/display/fsl,lcdif.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: lcdif@80030000: 'display', 'display0', 'display1', 'lcd-supply' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/display/fsl,lcdif.yaml
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: /apb@80000000/apbx-bus@80040000/lradc@80050000: failed to match any schema with compatible: ['fsl,imx28-lradc']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: /apb@80000000/apbx-bus@80040000/lradc@80050000: failed to match any schema with compatible: ['fsl,imx28-lradc']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: /apb@80000000/apbx-bus@80040000/lradc@80050000: failed to match any schema with compatible: ['fsl,imx28-lradc']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: /apb@80000000/apbx-bus@80040000/timrot@80068000: failed to match any schema with compatible: ['fsl,imx28-timrot', 'fsl,timrot']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dtb: /apb@80000000/apbx-bus@80040000/timrot@80068000: failed to match any schema with compatible: ['fsl,imx28-timrot', 'fsl,timrot']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: /apb@80000000/apbx-bus@80040000/timrot@80068000: failed to match any schema with compatible: ['fsl,imx28-timrot', 'fsl,timrot']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dtb: /apb@80000000/apbx-bus@80040000/timrot@80068000: failed to match any schema with compatible: ['fsl,imx28-timrot', 'fsl,timrot']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: /apb@80000000/apbx-bus@80040000/timrot@80068000: failed to match any schema with compatible: ['fsl,imx28-timrot', 'fsl,timrot']
-arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dtb: /apb@80000000/apbx-bus@80040000/timrot@80068000: failed to match any schema with compatible: ['fsl,imx28-timrot', 'fsl,timrot']
-
-
-
-
-
+Sakari Ailus
 
