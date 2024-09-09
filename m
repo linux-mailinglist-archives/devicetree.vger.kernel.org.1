@@ -1,110 +1,123 @@
-Return-Path: <devicetree+bounces-101445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1E1A971D72
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 17:04:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C459B971DA2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 17:10:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 711FE284B6C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 15:04:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70A9F1F23977
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 15:10:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A79BB19BB7;
-	Mon,  9 Sep 2024 15:04:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78CD61B7FD;
+	Mon,  9 Sep 2024 15:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pmqu16jk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pi0osoIL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ABBA18EB1;
-	Mon,  9 Sep 2024 15:04:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 488CC1CD0C;
+	Mon,  9 Sep 2024 15:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725894270; cv=none; b=E6y7yT0kHju4JHtWFbEF4A5Mgz+Q16pz9WP4HQx7ue6fQwmQvqHL+F+wUtC3FzY5xGqE/8QMHr+W/yf6EidT+SRt4CcLC8bifvNnbAycN8JgUgw1w7QH2IyGDVxgznE9KBeqpifh+fRg2CYeVuIBPeUaYXK/pnHtnrq9Y4jAEzQ=
+	t=1725894636; cv=none; b=Z7aWSZ8vRy0WmfeXv2L9mQdDXNV8AnGkFGHK1FXtc12kKsnpGKaLguc5ij9IO6uihybx2d33MwMbFrsXkXtW+LeevRYMEMupHINmbFrK05gWIYB/kFOcLd3aejhR/lhav4wCTBxLWGnskWs4QQJsy6/2ZYaqtqmOnMXnP4F5Uzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725894270; c=relaxed/simple;
-	bh=jJ++vCECAJfKHzTW5oT1kH64h5kQ5KsgEJwaDueHyzI=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=CaMM/jU4NcQbyNC9mgIxIlg53nXqdxAriCGg9j8PZeXbLv5bGq9Zrx+wGmmRPJBJ/DUtFrFbg4oGEAcOdYybE8K4xMjpcTJyN78VwMCd2bO8zYAkac+BpLXFTZDbknvYgIhtK5iYIVsZDcMZM9dy4fgBK1uL91MYI9TS2qPZClY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pmqu16jk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBC15C4CEC5;
-	Mon,  9 Sep 2024 15:04:26 +0000 (UTC)
+	s=arc-20240116; t=1725894636; c=relaxed/simple;
+	bh=+iq8ZuR0xNfhMb6f8AZQy5xUVme4rLtghqLGlbhb6LE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DArp4kEm9JuoLtz+uozYLLas6bGdIE997to2u5ATfFean5Pg4AtkH4Wdol9QO1thg89CMvhHralOgHN4Y/Nm+k4MpxklA1U2qZfAZiHoGVxkLh8Ayl4RlFZ23SraZVYbEqJgy8PFNYyjKA/gg8PSxzQbncQ+Cz8zeGv772/dCN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pi0osoIL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0608C4CEC7;
+	Mon,  9 Sep 2024 15:10:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725894270;
-	bh=jJ++vCECAJfKHzTW5oT1kH64h5kQ5KsgEJwaDueHyzI=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=pmqu16jkp61Y2myVfR/pRh5NciKY8dLqucrC94s9rcRkU99LLw7t+5TO5cnFUbNT0
-	 EPb5awSQncK7Lwvo0Op67uAzW19MVdQsfXnoXYkzrHTodSgGY98Y/fYvY/p/EkGyJa
-	 gjQMGVi7zBM59DodL00LWzzmPkm9QVqxNza/evy5p/qvIT2dBU6nQvTURZDNUzLrEC
-	 8DO4NxcGiM84DjNDv8rA3SHj23FB5vTxJ+sUaIASexfth9VzlI5EKCNwRKPrGEX5wL
-	 dm5DazV0ldqKdwD4iJLKUdiqTcxUFLIjQnRJaiVUDW+vFpcP6ccVxt2CSVxwwBRz4a
-	 MtwZcjw7zZJbw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-wireless@vger.kernel.org,  Ajay Singh <ajay.kathat@microchip.com>,
-  "David S. Miller" <davem@davemloft.net>,  Adham Abozaeid
- <adham.abozaeid@microchip.com>,  Alexis =?utf-8?Q?Lothor=C3=A9?=
- <alexis.lothore@bootlin.com>,  Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-  Conor Dooley <conor+dt@kernel.org>,  Eric Dumazet <edumazet@google.com>,
-  Jakub Kicinski <kuba@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  Rob Herring
- <robh@kernel.org>,  devicetree@vger.kernel.org,  netdev@vger.kernel.org
-Subject: Re: [PATCH v4 5/5] wifi: wilc1000: Add WILC3000 support
-References: <20240829004510.178016-1-marex@denx.de>
-	<20240829004510.178016-5-marex@denx.de> <87ed5tgofh.fsf@kernel.org>
-	<343a45a8-1891-4e66-a77c-ad6e4d485903@denx.de>
-Date: Mon, 09 Sep 2024 18:04:25 +0300
-In-Reply-To: <343a45a8-1891-4e66-a77c-ad6e4d485903@denx.de> (Marek Vasut's
-	message of "Mon, 9 Sep 2024 16:46:18 +0200")
-Message-ID: <87seu8g96u.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=k20201202; t=1725894635;
+	bh=+iq8ZuR0xNfhMb6f8AZQy5xUVme4rLtghqLGlbhb6LE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pi0osoILqDfQAZmIUTrsSAIV/aKtDdNvbWcXzcx7nl3NC0WX+PYB075uPOwwRS1hR
+	 VYWy/gqeeF3XYKLdYaHZTCVuwJSWVsxbLidm8thp+q6OqltvvYt0NjsjIjrN52IlKO
+	 GJtcyIQiWegtjExazp3FS3oP6u8QKDJ+S9nTOPw1e61kj1tKEodXVHnPfvk5bOJjXV
+	 DDGTSGQPCbGn620sFJGLJPQeQ790MpHBwE1vgiyuLGlYzZBjamAlG4hdJrOz5oSr1Z
+	 82TaHkrqlFCeajdf94jPTmc9rNbsh6TF7wZDcZSG/wYwH1J1/okQlijxvMl3ou0llk
+	 G9qKJtWhURwYg==
+Date: Mon, 9 Sep 2024 16:10:28 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc: Mohammad Rafi Shaik <quic_mohs@quicinc.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Bard Liao <yung-chuan.liao@linux.intel.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+	Sanyog Kale <sanyog.r.kale@intel.com>,
+	linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
+	kernel@quicinc.com, quic_pkumpatl@quicinc.com
+Subject: Re: [PATCH v1 0/4] Add static channel mapping between soundwire
+ master and slave
+Message-ID: <fb137d59-c8ef-4e02-89f6-9abf8a3f12e5@sirena.org.uk>
+References: <20240909105547.2691015-1-quic_mohs@quicinc.com>
+ <Zt8LC4IY7DGq8Qom@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="0VQUlaAE/r6Fm+ww"
+Content-Disposition: inline
+In-Reply-To: <Zt8LC4IY7DGq8Qom@opensource.cirrus.com>
+X-Cookie: Anything is possible, unless it's not.
 
-Marek Vasut <marex@denx.de> writes:
 
-> On 9/9/24 11:35 AM, Kalle Valo wrote:
->
->> Marek Vasut <marex@denx.de> writes:
->> 
->>> From: Ajay Singh <ajay.kathat@microchip.com>
->>>
->>> Add support for the WILC3000 chip. The chip is similar to WILC1000,
->>> except that the register layout is slightly different and it does
->>> not support WPA3/SAE.
->>>
->>> Signed-off-by: Ajay Singh <ajay.kathat@microchip.com>
->>> Signed-off-by: Marek Vasut <marex@denx.de>
->> [...]
->> 
->>> --- a/drivers/net/wireless/microchip/wilc1000/cfg80211.c
->>> +++ b/drivers/net/wireless/microchip/wilc1000/cfg80211.c
->>> @@ -313,6 +313,13 @@ static int connect(struct wiphy *wiphy, struct net_device *dev,
->>>     	vif->connecting = true;
->>>   +	if (sme->auth_type == NL80211_AUTHTYPE_SAE &&
->>> +	    is_wilc3000(vif->wilc->chipid)) {
->>> +		netdev_err(dev, "WILC3000: WPA3 not supported\n");
->>> +		ret = -EOPNOTSUPP;
->>> +		goto out_error;
->>> +	}
->> This looks wrong. If wilc3000 doesn't support SAE you shouldn't
->> advertise NL80211_FEATURE_SAE to user space. I think the check for
->> wilc3000 should be in wilc_create_wiphy():
->> if (!is_wilc3000(vif->wilc->chipid))
->
-> It is probably better to do "if (is_wilc1000(wl->chipid))" here.
+--0VQUlaAE/r6Fm+ww
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Good point.
+On Mon, Sep 09, 2024 at 03:49:47PM +0100, Charles Keepax wrote:
+> On Mon, Sep 09, 2024 at 04:25:43PM +0530, Mohammad Rafi Shaik wrote:
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+> > Add static channel map support between soundwire master and slave.
+> > This patch series will resolve channel mask mismatch between master and=
+ slave.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+=2E..
+
+> > For AMIC2 usecase, The Slave need to configure TX2 Port with channel ma=
+sk 1 and
+> > for Master required PORT1 with channel mask 2,
+> >=20
+> > In existing design master and slave configured with same channel mask, =
+it will fail
+> > AMIC2 usecase.
+
+> Apologies but I am not really following what exactly the issue is
+> here? How do these ports map to DAI links? It looks like you are
+> attempting to have AMIC2 produced by one DAI link, but consumed
+> by another?
+
+Yes, and it's also not clear to me why this is device specific.
+
+--0VQUlaAE/r6Fm+ww
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbfD+AACgkQJNaLcl1U
+h9Au7wf/U9b5eAsInNOjUnuTMx81qHdkNyxcwOyRGo9BnLIEeY6WEzH5BIgSkVVj
+kHf250hHlRGglWrR8zCVesc1yH0X66KZ9+rTH+7cW4SH/V9CiWHy1Z69VZie2N3Z
+wi8TPB6W+Zq9m2BrIu+8BUs+UBuwMuVfAkZnrkZhclRJceOkm/wL2dHXSJ+xfFdJ
+cFFYNNsri7IJ4M/+DtefOnrEcvvYEy9mWAO2tEvIYEYT+6pk1wy5Hbeqv9s9BF62
+Mj1DoIUb3iRlKGk/717jqIEXSHoR7Hx9UDphrXZAumPxb0uw5rWYI2l8dmqwKpxL
+wc9eUX2wlWjnRnKGP+2G8j/lMSa/4g==
+=eard
+-----END PGP SIGNATURE-----
+
+--0VQUlaAE/r6Fm+ww--
 
