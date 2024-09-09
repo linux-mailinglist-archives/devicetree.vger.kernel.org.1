@@ -1,130 +1,124 @@
-Return-Path: <devicetree+bounces-101319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2133971515
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:15:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 753B5971528
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:18:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 678B01F23B6A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:15:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35332283FC2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 10:18:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 844B31B3F16;
-	Mon,  9 Sep 2024 10:15:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C42E91B3F2D;
+	Mon,  9 Sep 2024 10:18:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FqoyAXHV"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="LBhzIK9r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 594B61AC8BF;
-	Mon,  9 Sep 2024 10:15:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 532711B29D9;
+	Mon,  9 Sep 2024 10:18:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725876913; cv=none; b=s9QuZk6aLn5D4JA6hkqztGjDWTuaEAJ1ZK2DFqcXcwX3HbnQtlmamM4UhkyGT3ytUfVZZknCfVy4BgHgt931x3xgUhOABaupSvUYJxG2Y5ReGhqJiGmiGv4aQrTele3oQlvOwFWnXl4WXT/XKMn8z/oD+5J2d17LrAXR9vXKnZ4=
+	t=1725877122; cv=none; b=VX/SHvhCcK8yKIBAxqE8c1lwTgiFSlP3WDpGPdPOENrK91J0aJKMUteEwhNEyBuE913Z1KYm3292w1zdDXlgzzBMUpQ28hWlka9pYzxoIv+q0bklc23Hyr92+gW1ElQcxlwNw3SxIPN3YPWNzP4buD2LTcTNvGeDKkkeOovBcvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725876913; c=relaxed/simple;
-	bh=JvPjEY9H1xzob0l1t98pW0PA/og5aOm+LDRIetXTdH0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SV2suAGjqLfuwKrYcBoWzUL1YSFwudP8mlbSJc2YHMb5R8PKKXybFKaK0wmi9lAY4OAExXG3Uuo71ka/zRAb/C8FLK7krcVazzGPr9sqhb64muXkug/VbT0Qvr/pJTpWfSD2XahqF6CdHbv3k/xiQeY7OEoPcjC03duv4+xSUSM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FqoyAXHV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73D9EC4CEC5;
-	Mon,  9 Sep 2024 10:15:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725876912;
-	bh=JvPjEY9H1xzob0l1t98pW0PA/og5aOm+LDRIetXTdH0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FqoyAXHVBBHzd6uVo1/5XEAELYoYUDMcFfXhwvVyw9p7ZIk6YW1mYXslDYxFzG30p
-	 0X6ugtAszkHMhpSljXdWAJgp9gOK7/bwIkLUiF5r7qvS3nwi4p/fHT192XTQwc6HXD
-	 ER1NFm4pNf1mfAyc16KdNbnKSDqgLZzTElMyBI936IVxG8xY3qfQtoaLzotwT51+Rq
-	 dqPuAZWLdwf12+ouc6d+2ZrpwS+kaNtpsiEtrB8GEe36Tyi3ZZ7fShsb387lRSxMju
-	 zaYFGuprt7D5kGYPcHwzdjEjzfS6D7lQX1/pu4KjP4SprpcK3SywtRH8ilw5splfvq
-	 PDTXIBrP9KteQ==
-Date: Mon, 9 Sep 2024 12:15:09 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Keke Li <keke.li@amlogic.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kieran.bingham@ideasonboard.com, 
-	laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com
-Subject: Re: [PATCH v2 5/9] dt-bindings: media: Add amlogic,c3-isp.yaml
-Message-ID: <el2p23rs3p4ng5qqljdc6vr5exvpveoda3rimq3pax7l5rwlju@2ebdcjzf7ju4>
-References: <20240909-c3isp-v2-0-3c866a1cea56@amlogic.com>
- <20240909-c3isp-v2-5-3c866a1cea56@amlogic.com>
+	s=arc-20240116; t=1725877122; c=relaxed/simple;
+	bh=tIl/YJLpYvs/TThG/hy945WRcGfsN7p0+d+XW5VLkZ8=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qAq7BESL939CUX6tU7XxKrqJzlCjxKz7VIpDD8YRf4V3mTYhtguttLvfu4ftyfnkOkn4PXXXwSIO+WwUcarY627vYSOUvcdU8O74tij3VpgN1EW3xkvUt+5YQlg3qQco+e2IQ56+uIya2zHSGBgqRaOpRavbVcV1ZJfla94UxPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=LBhzIK9r; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1725877121; x=1757413121;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=tIl/YJLpYvs/TThG/hy945WRcGfsN7p0+d+XW5VLkZ8=;
+  b=LBhzIK9r1ARHRn3Nu4xjNpUY1LO+hq7NuCoWZzfFc/8OgsJ8CcSwzHUR
+   93+gvsODsYEtA0UOuxFQccrIki3fB2FhXkWxOxTsTf5hNpJJDpAWrf6Jv
+   W3fQ/pGGSB7xV3Ghfvj6gs0YcSo/SPfx4MunwFJrxRk1QuyER+DW/Dp5u
+   fJ2C9O1p3lIWiR5u2YXAAuTiRLFzJjkL9nSzuuBRyAT4rW+iV+zo/er8J
+   uhyx7u79azcD3CDEb2csGmnt4k3lex2yONaDd4/qeh1GqJ0oFIf88lvVW
+   PegFhf56xB51aJuV+TnPLbxtFn6xylhLCHpMEYxr/SyakU9BDuvY7g+zd
+   A==;
+X-CSE-ConnectionGUID: FaCcdkUXQ1iQi8THvrR/tA==
+X-CSE-MsgGUID: /bM7iPiJR8ultVWPqJQGxA==
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; 
+   d="asc'?scan'208";a="31498624"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 Sep 2024 03:18:39 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 9 Sep 2024 03:18:34 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Mon, 9 Sep 2024 03:18:30 -0700
+Date: Mon, 9 Sep 2024 11:17:58 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: WangYuli <wangyuli@uniontech.com>
+CC: <stable@vger.kernel.org>, <gregkh@linuxfoundation.org>,
+	<sashal@kernel.org>, <william.qiu@starfivetech.com>,
+	<emil.renner.berthing@canonical.com>, <xingyu.wu@starfivetech.com>,
+	<walker.chen@starfivetech.com>, <robh@kernel.org>,
+	<hal.feng@starfivetech.com>, <kernel@esmil.dk>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<paul.walmsley@sifive.com>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
+	<devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <richardcochran@gmail.com>,
+	<netdev@vger.kernel.org>
+Subject: Re: [PATCH 6.6 1/4] riscv: dts: starfive: add assigned-clock* to
+ limit frquency
+Message-ID: <20240909-fidgeting-baggage-e9ef9fab9ca4@wendy>
+References: <D200DC520B462771+20240909074645.1161554-1-wangyuli@uniontech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="rBzuFpmdaeKLjDQC"
 Content-Disposition: inline
-In-Reply-To: <20240909-c3isp-v2-5-3c866a1cea56@amlogic.com>
+In-Reply-To: <D200DC520B462771+20240909074645.1161554-1-wangyuli@uniontech.com>
 
-On Mon, Sep 09, 2024 at 03:24:15PM +0800, Keke Li wrote:
-> c3-isp is used to process raw image.
-> 
-> Signed-off-by: Keke Li <keke.li@amlogic.com>
-> ---
->  .../devicetree/bindings/media/amlogic,c3-isp.yaml  | 98 ++++++++++++++++++++++
->  1 file changed, 98 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/amlogic,c3-isp.yaml b/Documentation/devicetree/bindings/media/amlogic,c3-isp.yaml
-> new file mode 100644
-> index 000000000000..dfa439cdc380
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/amlogic,c3-isp.yaml
-> @@ -0,0 +1,98 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/amlogic,c3-isp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic C3 Image Signal Processing Unit
-> +
-> +maintainers:
-> +  - Keke Li <keke.li@amlogic.com>
-> +
-> +description:
-> +  Amlogic ISP is the RAW image processing module
-> +  and supports three channels image output.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - amlogic,c3-isp
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  reg-names:
-> +    items:
-> +      - const: isp
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: vapb
-> +      - const: isp0
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
+--rBzuFpmdaeKLjDQC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Only one port? Then use "port" instead of "ports".
+On Mon, Sep 09, 2024 at 03:46:27PM +0800, WangYuli wrote:
+> From: William Qiu <william.qiu@starfivetech.com>
+>=20
+> In JH7110 SoC, we need to go by-pass mode, so we need add the
+> assigned-clock* properties to limit clock frquency.
+>=20
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: WangYuli <wangyuli@uniontech.com>
 
-Best regards,
-Krzysztof
+What makes any of the patches in this 4 patch series stable material?
 
+Confused,
+Conor.
+
+--rBzuFpmdaeKLjDQC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZt7LVgAKCRB4tDGHoIJi
+0r3UAP9HR5mU/RutuFppy65U3q0D7i129EDL2Zh5HCsiIL48YwEAvSdcIMGjnuaH
+T/LYM7x+opdeozaYtb1S58WtiVokywE=
+=di5l
+-----END PGP SIGNATURE-----
+
+--rBzuFpmdaeKLjDQC--
 
