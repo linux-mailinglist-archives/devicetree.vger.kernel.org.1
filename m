@@ -1,114 +1,104 @@
-Return-Path: <devicetree+bounces-101417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB8AD971A03
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:53:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F91D971A0F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:55:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7F02282309
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:53:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1393B2476D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 966EF1B81D8;
-	Mon,  9 Sep 2024 12:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D7E61B9B5E;
+	Mon,  9 Sep 2024 12:54:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YSio4dXn"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="eACSEQnT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 628381B5811;
-	Mon,  9 Sep 2024 12:53:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F22141B9B24;
+	Mon,  9 Sep 2024 12:54:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725886402; cv=none; b=Ny49Yv+bU+URnyz8jUk6pdCV30bqoK29fdSM4NPts7/Z2skQu/KP9cxIJ9TACIoz473a+3rdTVnsPRlipGVUGkpIj1V4lFWYuxcCQJI4xmAIVRFe0sdiDuMGpsI1ATcAWeLDnRwiPeTOjwict1lckXthC5PFBTvUBt0TJlGAGIo=
+	t=1725886477; cv=none; b=rpo2p9pOXAT+6H31X0yP/omogk3YaviPywR0BUWgAVGU2S2vlmIq0fzALUIc6Itl+RKl4snJboJiRl0hhuTSNCbg634BVWP7rZ4v0aXypSy+YvsqsCWpxI/EIrcd5E4S8ail51nMhV1gotIqtOLFKp3Yqw+jnj90/fbABme8II4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725886402; c=relaxed/simple;
-	bh=pDUb1q6JzchBUPz4BgEpFQep9MHv+L4GOI9KmQV3dIU=;
+	s=arc-20240116; t=1725886477; c=relaxed/simple;
+	bh=9w0sSJFSbDZblgKV2bqF1IwJcU9aE1btO0FgCad6Mc4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qml+9aoimAbhxNGzSpRCr5QmJ3eNxbHgXVlyPuN/dr33+yX91UZ+cOeTPL4ex0So58fs58HZg7CSNUgyG42jdWzT+AwHDGWpYDfHImzxO+U13d17Cmtb66JeIQYbhRsSDxK56z/WZItSjrkHXVQcsiGT0rhXE1I0f2AyFDAbdpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YSio4dXn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EABD9C4CEC5;
-	Mon,  9 Sep 2024 12:53:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725886401;
-	bh=pDUb1q6JzchBUPz4BgEpFQep9MHv+L4GOI9KmQV3dIU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YSio4dXnQO1lqCO1VCgX5k5A6E0mhV3QEepBPzppUCkpKehJy4Y1zyIBG7jGim5KG
-	 5ii/eRDqCB8yBwCj81NHo/V/ACNKlicMhbg0kGq5X9VqgixufE88v6jq5OAJmwYuxu
-	 wagl+aXwcOrN5mL1pfdnr8krgViqUov/XIMm4VDO8gxgQXo6nhNxuJJybBHbnELacj
-	 xICmh9cD+7n69YaQDZbZ7/eHajeLzGddbzvn9il7UYRv1tbc/iorX5kykqeHXCGbc3
-	 W0P3O/NDhqUB+WDIHI+orXmTqrEYa6M9efFzk9hczx48Yl7gl5uxc97dVq0nX5//2F
-	 VQdyIvCZfH/Ag==
-Date: Mon, 9 Sep 2024 14:53:17 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>, 
-	neil.armstrong@linaro.org, konrad.dybcio@linaro.org, andersson@kernel.org, 
-	linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, conor+dt@kernel.org, agross@kernel.org, 
-	devicetree@vger.kernel.org, vkoul@kernel.org, linux@treblig.org, dan.carpenter@linaro.org, 
-	Frank.Li@nxp.com, quic_vdadhani@quicinc.com
-Subject: Re: [PATCH v2 4/4] i2c: i2c-qcom-geni: Enable i2c controller sharing
- between two subsystems
-Message-ID: <fhojgh44bcqhpbdffclop75uq2m32txvkwlht3sipiq2kdfr27@6gv7gpaaybhv>
-References: <20240906191438.4104329-1-quic_msavaliy@quicinc.com>
- <20240906191438.4104329-5-quic_msavaliy@quicinc.com>
- <b3a5dd54-90ba-4d75-9650-efbff12cddeb@linaro.org>
- <3bd27b6d-74b8-4f7b-b3eb-64682442bbda@quicinc.com>
- <3fa58f58-c1d2-41ac-b85b-c86bce5c06b9@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=gG0xfCaknYA5su258R5rRC8IuCYLoLB+KiHf91kZdvsY8ydXnrTae1W81+Og+ct1VJvPQcJEooSscIRNiTV5LSoAffnm2lTEwMlzlCzOaue4NxV7W5qQGxzSL5NhykzZnSdj+YtPGW0eDYmBYZO7vuLo0eRfR7MrZAIC1X1kavM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=eACSEQnT; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 213641FCD1;
+	Mon,  9 Sep 2024 14:54:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1725886464;
+	bh=N+n+sNoWLrte5yaPsNU7QlZO/lCcS8hz3s32YZuFi0U=; h=From:To:Subject;
+	b=eACSEQnTt45lSSQdZN0JawLzeNSnTQkZKSICFVuzeO6IvA9l4wuG12yQlgINGcKyS
+	 2VavSq7wIprqvAsg46uvSbdRHliwhik0WYPhXCPPHz9TYOPK4fak+JU0C2AtoaBfL/
+	 kcQsJMm4u9PQ4CHtGLpThdg8vw4CXAN2oemXuMfqn1/Z+jB3xBE/aaacwx/990zUz1
+	 7ViGthwWIbjE9cQkA9ZA3rPQXOKEktSria73wfaNDTZNN8uImKhRWwqaz8n+cmlCVG
+	 C6M1YDsJ6AkRxTdqXsBTb7pwkw7zE0wdd4a/aus7ieP92Zh52aA9xb2wJF1jbBPVIL
+	 9ywlFJHZAjNnQ==
+Date: Mon, 9 Sep 2024 14:54:19 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Hiago De Franco <hiagofranco@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Hiago De Franco <hiago.franco@toradex.com>
+Subject: Re: [PATCH 1/3] ARM: dts: imx6qdl-apalis: Update audio card name
+Message-ID: <20240909125419.GA33114@francesco-nb>
+References: <20240909114902.82380-1-hiagofranco@gmail.com>
+ <20240909114902.82380-2-hiagofranco@gmail.com>
+ <25873dfa-fe70-4ef6-b840-795faaec1f07@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3fa58f58-c1d2-41ac-b85b-c86bce5c06b9@kernel.org>
+In-Reply-To: <25873dfa-fe70-4ef6-b840-795faaec1f07@kernel.org>
 
-Thank you guys for your reviews,
+Hello Krzysztof,
+thanks for the review/feedback.
 
-On Mon, Sep 09, 2024 at 01:37:00PM GMT, Konrad Dybcio wrote:
-> On 9.09.2024 11:18 AM, Mukesh Kumar Savaliya wrote:
-> > Hi Neil,
-> > 
-> > On 9/9/2024 2:24 PM, neil.armstrong@linaro.org wrote:
-> >> Hi,
-> >>
-> >> On 06/09/2024 21:14, Mukesh Kumar Savaliya wrote:
-> >>> Add support to share I2C SE by two Subsystems in a mutually exclusive way.
-> >>> Use  "qcom,shared-se" flag in a particular i2c instance node if the
-> >>> usecase requires i2c controller to be shared.
-> >>>
-> >>> I2C driver just need to mark first_msg and last_msg flag to help indicate
-> >>> GPI driver to  take lock and unlock TRE there by protecting from concurrent
-> >>> access from other EE or Subsystem.
-> >>>
-> >>> gpi_create_i2c_tre() function at gpi.c will take care of adding Lock and
-> >>> Unlock TRE for the respective transfer operations.
-> >>>
-> >>> Since the GPIOs are also shared for the i2c bus between two SS, do not
-> >>> touch GPIO configuration during runtime suspend and only turn off the
-> >>> clocks. This will allow other SS to continue to transfer the data
-> >>> without any disturbance over the IO lines.
-> >>
-> >> This doesn't answer my question about what would be the behavior if one
-> >> use uses, for example, GPI DMA, and the Linux kernel FIFO mode or SE DMA ?
-> >>
-> > Shared usecase is not supported for non GSI mode (FIFO and DMA), it should be static usecase. Dynamic sharing from two clients of two subsystems is only for GSI mode. Hope this helps ?
+On Mon, Sep 09, 2024 at 02:09:11PM +0200, Krzysztof Kozlowski wrote:
+> On 09/09/2024 13:49, Hiago De Franco wrote:
+> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
+> > index edf55760a5c1..1c72da417011 100644
+> > --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
+> > +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
+> > @@ -191,7 +191,7 @@ sound {
+> >  			"MIC_IN", "Mic Jack",
+> >  			"Mic Jack", "Mic Bias",
+> >  			"Headphone Jack", "HP_OUT";
+> > -		model = "imx6q-apalis-sgtl5000";
+> > +		model = "apalis-imx6";
 > 
-> This should very much be explained in commit message and perhaps in code
-> 
-> And since it can't work with FIFO mode, there should be checks in code
-> to disallow such invalid configurations
+> Doesn't this break all the users? E.g. ALSA UCM and whatever
+> user-space-parsing stuff you have?
 
-it would be nice if, along with all these open questions and
-clarifications on the commit message, we could add some good
-comments to the code as well.
+I am not sure about "all" users, but for sure it's a breaking change.
+There is no ALSA UCM for this board (and also not for the other twos in
+this series), we just worked on it and we thought that if we want to do
+such a change the moment is now.
 
-Thanks,
-Andi
+What should we do?
+
+Francesco
+
+
+
 
