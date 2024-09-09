@@ -1,56 +1,60 @@
-Return-Path: <devicetree+bounces-101430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD943971C60
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 16:22:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B9D3971C87
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 16:29:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 723F81F2496D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:22:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3132B2206E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:29:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25ADA1BA285;
-	Mon,  9 Sep 2024 14:22:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C57101BA28B;
+	Mon,  9 Sep 2024 14:29:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ubjIc8Wq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AJQGDV5u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0055F1BA27C
-	for <devicetree@vger.kernel.org>; Mon,  9 Sep 2024 14:22:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 998561BA27B;
+	Mon,  9 Sep 2024 14:29:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725891748; cv=none; b=cjyHN0VlfxAP3rLSfyGrLK7nxUHAygrZEuaIU9IeCv4pRCOuH0b8tUkpU/9Ocenymjbw5W55HFR815PRjXmQOoMlJWNeCVIq4/HEZY3qIplw9IMzdXXl4pV1fFsBwXOqu3CGswxqIy1FF0Ju9Z/uxgcZYO0trXUwN6SjiC3rolM=
+	t=1725892151; cv=none; b=AsWTUECBnA9BQ41+wwuB00fqWPRAuHAz0ULMTdr3vqj8GNTxxKiOv99dVAXN5d8I7QCN8qxNk5oMwR1bNUprySSM8dQofjEiFFO6GM3tPKOGgLJCTlKxpSqW1WzduHSwcQ1rDOYVzBI+EG+WpWtOzU5SnPWrpK/mmPM65JQaKt8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725891748; c=relaxed/simple;
-	bh=Hezfj/kPm64KvITcfkt3URf9tx9rvGYy7rBd9swWi4w=;
+	s=arc-20240116; t=1725892151; c=relaxed/simple;
+	bh=ygupWqgakZDWPAThV+hVt9dHU8i5bT2GtFewIkRe/Xc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xzjqt4IuDVr5D3+j2Z38hMIhnurvrxDcMuk+HlajvjqsjA+iBCrEZCGoeikjX2G62sOe1xaF50RchHt5LUokv5Rg0W1GyluzM5tb8et6+ogB9iVOOiCziP7jeazG87yMxu+1/JvcFBexa70sMA7AoizoPBLpu0FJG9u8ykpidpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ubjIc8Wq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6288EC4CEC5;
-	Mon,  9 Sep 2024 14:22:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eACDzddSC2ociT3HS7YdzBNLoThS6/jOLgMpdlZZWDUHvcNhGhrHnW7a3tyR6vbobqqakenpmfjRAwj/PzqxP0Q6ZEgeDi8AsuOBiRi+7VpNzJSgKzB2m8qJbwrAhSbuSM/C6qS9efqmsaeeSEu4itswyYAkVdVzh+X/SPgHsuw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AJQGDV5u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2E36C4CEC5;
+	Mon,  9 Sep 2024 14:29:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725891747;
-	bh=Hezfj/kPm64KvITcfkt3URf9tx9rvGYy7rBd9swWi4w=;
+	s=k20201202; t=1725892151;
+	bh=ygupWqgakZDWPAThV+hVt9dHU8i5bT2GtFewIkRe/Xc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ubjIc8WqYl0D6MnVk/IUOhrN6X2QqzKYlc5FTH8pdSO/YfWN0yFX4gJ3hbU1G4GSi
-	 NZjpPwxu8KgusT4tWKdzHnJROjLVbYUmXVYq7ceCrbUArbYu7Mmbt0MCoLIoKRdePm
-	 do/IRo1oLJcmreyNtzW5zmeGe+2iGwYIOFAO1+08E9g1fXK4EGbY1c8Ks9+lewR6Gu
-	 TmWqdvo5jbDEr3gxKp8/7/IzPZrURXMisLPjYo/YgnsMfxaoTD0e1nVYf6o0tFM8oJ
-	 ARDkhOYe/O8zoxShS2TVNVKG5CxTMS+FAPyIyaiJRUTLEmM/9x7U/pZL5HiWdo0Y8+
-	 7T5Jyue9ltEYg==
-Date: Mon, 9 Sep 2024 09:22:26 -0500
+	b=AJQGDV5uLFE66Cpvc1fZQiJEbuZJ7+TRFU9q0/E+sHDAQuJzN8p4wXcGy5+VxWo4G
+	 OC0M54HOY8fRSM8GftiIj6mHj+zoqYAbNF1NdNR2YPq8CdkvUVaO3o6ivRrA5V8iHv
+	 K9uCJIAHCmQVWAH/Mz8REnP8/+YV+n2W9E0KdwBQqldpY4EM4q7IfvZR9ayqPQ7Fre
+	 eM7wfg42c7VVdOJygg8ZRYYfh6iuh6wDRCBQ4Txlfxa36IjYINkLBEo3W4HSq5CTqw
+	 Tzm8ygtSzRPaicwjdRBB3YvFIa70THIT5tLJDIHXLIQNk6QhCeJsizXQOYe1mMPSFK
+	 CnIbegu3MHJuw==
+Date: Mon, 9 Sep 2024 09:29:10 -0500
 From: Rob Herring <robh@kernel.org>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Mark Brown <broonie@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Linux-ALSA <alsa-devel@alsa-project.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] ASoC: dt-bindings: renesas,rsnd: add
- post-init-providers property
-Message-ID: <20240909142226.GA4185128-robh@kernel.org>
-References: <871q1zkmrc.wl-kuninori.morimoto.gx@renesas.com>
+To: Dhruva Gole <d-gole@ti.com>
+Cc: Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Vignesh Raghavendra <vigneshr@ti.com>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: opp: operating-points-v2-ti-cpu:
+ Describe opp-supported-hw
+Message-ID: <20240909142910.GA4188780-robh@kernel.org>
+References: <20240905-b4-opp-dt-binding-fix-v2-1-1e3d2a06748d@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,53 +63,58 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <871q1zkmrc.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <20240905-b4-opp-dt-binding-fix-v2-1-1e3d2a06748d@ti.com>
 
-On Wed, Sep 04, 2024 at 11:44:08PM +0000, Kuninori Morimoto wrote:
-> At least if rsnd is using DPCM connection with Audio-Graph-Card2,
-> fw_devlink might doesn't have enough information to break the cycle
-> (Same problem might occur with Multi-CPU/Codec or Codec2Codec).
-> In such case, rsnd driver will not be probed.
-> Add post-init-providers support to break the link cycle.
+On Thu, Sep 05, 2024 at 10:44:32AM +0530, Dhruva Gole wrote:
+> It seems like we missed migrating the complete information from the old
+> DT binding where we had described what the opp-supported-hw is supposed
+> to describe. Hence, bring back the description from the previous binding
+> to the current one along with a bit more context on what the values are
+> supposed to be.
 > 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Fixes: e576a9a8603f ("dt-bindings: cpufreq: Convert ti-cpufreq to json schema")
+> Signed-off-by: Dhruva Gole <d-gole@ti.com>
 > ---
-> v1 -> v2
-> 	- remove basic description/type
-> 	- add detail description
-> 	- update git-log
+> Changes in v2:
+> - Drop the patch where I updated Maintainers since it's already picked
+>   by Viresh.
+> - Add more details of how to populate the property based on device
+>   documents like TRM/ datasheet.
+> - Link to v1: https://lore.kernel.org/r/20240903-b4-opp-dt-binding-fix-v1-0-f7e186456d9f@ti.com
+> ---
+>  .../bindings/opp/operating-points-v2-ti-cpu.yaml         | 16 +++++++++++++++-
+>  1 file changed, 15 insertions(+), 1 deletion(-)
 > 
->  Documentation/devicetree/bindings/sound/renesas,rsnd.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> index 07ec6247d9def..458877ce4aa42 100644
-> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> @@ -112,6 +112,13 @@ properties:
->      description: List of necessary clock names.
->      # details are defined below
->  
-> +  post-init-providers:
-> +    description: |
+> diff --git a/Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.yaml b/Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.yaml
+> index 02d1d2c17129..fd260b20c59c 100644
+> --- a/Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.yaml
+> +++ b/Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.yaml
+> @@ -45,7 +45,21 @@ patternProperties:
+>        clock-latency-ns: true
+>        opp-hz: true
+>        opp-microvolt: true
+> -      opp-supported-hw: true
+> +      opp-supported-hw:
+> +        description: |
+> +          Two bitfields indicating:
+> +            1. Which revision of the SoC the OPP is supported by.
+> +            This can be easily obtained from the datasheet of the
+> +            part being ordered/used. For eg. it will be 0x01 for SR1.0
+> +            2. Which eFuse bits indicate this OPP is available.
+> +            The device datasheet has a table talking about Device Speed Grades.
+> +            If one were to sort this table and only retain the unique elements
+> +            of the MAXIMUM OPERATING FREQUENCY starting from the first row
+> +            which tells the lowest OPP, to the highest. The corresponding bits
+> +            need to be set based on N elements of speed grade the device supports.
+> +            So, if there are 3 possible unique MAXIMUM OPERATING FREQUENCY
+> +            in the table, then BIT(0), (1) and (2) will be set, which means
+> +            the value shall be 0x7.
 
-Don't need '|' if there's no formatting.
+I still have no clue what the bitfield layout is. Where do 0x1 and 0x7 
+go in the examples from above?
 
-> +      At least if rsnd is using DPCM connection with Audio-Graph-Card2, fw_devlink might doesn't
-> +      have enough information to break the cycle. rsnd driver will not be probed in such case.
+How many 32-bit words is not defined by the common 
+schema. You need to define that here (maxItems/minItems).
 
-Wrap lines at 80, not 100 unless there's good reason to extend them.
-
-> +      Add post-init-providers property to indicate which link in the cycle to break.
-
-That describes every use of post-init-providers. Drop.
-
-> +      Same problem might occur with Multi-CPU/Codec or Codec2Codec.
-> +
->    # ports is below
->    port:
->      $ref: audio-graph-port.yaml#/definitions/port-base
-> -- 
-> 2.43.0
-> 
+Rob
 
