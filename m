@@ -1,203 +1,210 @@
-Return-Path: <devicetree+bounces-101224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3E8197102D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:49:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27386971038
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:50:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E4111F227F3
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 07:49:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 997CD1F22888
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 07:50:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE10D1B0129;
-	Mon,  9 Sep 2024 07:47:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C26C81B011E;
+	Mon,  9 Sep 2024 07:49:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=uniontech.com header.i=@uniontech.com header.b="Zm/zCQIR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P6G35EI4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgbr2.qq.com (smtpbgbr2.qq.com [54.207.22.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1505D1B012A;
-	Mon,  9 Sep 2024 07:47:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.22.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97B83176237;
+	Mon,  9 Sep 2024 07:49:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725868059; cv=none; b=AJup85D+mHoyTcaWYExtelJl4t5jPD8QPjaLf1FiYzKSXm8CvsbwsjedLN/8FEQMXbzFvTi7HZsddMO8QKkeTb+KPcTBtfNPhO08Y2AuvWPPZKQl3T7rMq03KgTAtbtyBiERXPfLBkf4JTASzq442wnL50gmm+d/Q7WoKW2k+3E=
+	t=1725868170; cv=none; b=aym+sJeBrQTfcfuq3R65YAeJKgdQZsTxKUk4o0nx0CIHQBuoiapVPpQP5SaQJ8HA3Hb12TPF4ntT78NHLv1X25pjcgSaf9X5mkIPI63/Y11seJYmddz5CFgckW5BK/dmwtfIcmBOaZ1Mn7p8z5P9CykAsCcQKtvs5/WbfomILZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725868059; c=relaxed/simple;
-	bh=gHoIWe4DshAryM3sWTVzuIt+3nqqVmIKyTTPUBOz6MI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GgtcPaQnxFUmL7hi28qpb9ZEmVXeG/ZUDsjfXXeh+VsF2JruoiN0BiGgH6c9bXFKaz2VDJ14uoDpsZGgaogUnlT1gBupWeeNYyoGniYnnXW37QUQqOlYX2jpLA/Bn3B2wYLZcTQKgsQUHqmstXxG3iyU6GynymgaFvMbozm5xsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=uniontech.com; spf=pass smtp.mailfrom=uniontech.com; dkim=pass (1024-bit key) header.d=uniontech.com header.i=@uniontech.com header.b=Zm/zCQIR; arc=none smtp.client-ip=54.207.22.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=uniontech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=uniontech.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
-	s=onoh2408; t=1725868043;
-	bh=5FdF3iaUoY2lzZR+9NIbIdVYtZtH02F85kfv8IfYqbE=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=Zm/zCQIRRsqDTHRyD0xI2bKDYLjr4bLTLYfVWDPUgcZRuwhg7llqiEsv9pu9w1lE4
-	 B26P7gqCaUBtQplfMzHwq+OXNmEntiaY8fhy4ylV2u/0akjbGwK8Hdq524ptGUApux
-	 UUaF+FAqKbCSb7JSezkCfNzyg1nYnv/AUA5UiBSA=
-X-QQ-mid: bizesmtpsz13t1725868033tg17wn
-X-QQ-Originating-IP: TzYnNEJLZSXkcsiHg6P6agGU+dL18pXPSJ1Y7rEcoMk=
-Received: from localhost.localdomain ( [113.57.152.160])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 09 Sep 2024 15:47:09 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 1
-X-BIZMAIL-ID: 18407148698930502739
-From: WangYuli <wangyuli@uniontech.com>
-To: stable@vger.kernel.org,
-	gregkh@linuxfoundation.org,
-	sashal@kernel.org,
-	william.qiu@starfivetech.com,
-	emil.renner.berthing@canonical.com,
-	conor.dooley@microchip.com,
-	wangyuli@uniontech.com,
-	xingyu.wu@starfivetech.com,
-	walker.chen@starfivetech.com,
-	robh@kernel.org,
-	hal.feng@starfivetech.com
-Cc: kernel@esmil.dk,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	richardcochran@gmail.com,
-	netdev@vger.kernel.org
-Subject: [PATCH 6.6 4/4] riscv: dts: starfive: Add JH7110 PWM-DAC support
-Date: Mon,  9 Sep 2024 15:46:30 +0800
-Message-ID: <37CBC770FBB00E54+20240909074645.1161554-4-wangyuli@uniontech.com>
-X-Mailer: git-send-email 2.43.4
-In-Reply-To: <20240909074645.1161554-1-wangyuli@uniontech.com>
-References: <20240909074645.1161554-1-wangyuli@uniontech.com>
+	s=arc-20240116; t=1725868170; c=relaxed/simple;
+	bh=FTuoSXELtLCOh5BnCjC8lJ3uQ2EFiM4zfdhfD7OGYyk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=R1B61nTy15gabvjXa5hD6yMH2xy6ImZ1mwRtOlG3kPy/SXTQiUG+ncrs9pZSlq2IIKp/esibxkh3QFaBfGhyGP61mwz4i7WEF3EU4pHGEyb65U616ooFW9wgVSF9IL5lCiCTccLByu3Gq/wIpl5MTd/sZNRL3/klOf9JHR6wul0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P6G35EI4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1A87C4CEC5;
+	Mon,  9 Sep 2024 07:49:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725868170;
+	bh=FTuoSXELtLCOh5BnCjC8lJ3uQ2EFiM4zfdhfD7OGYyk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=P6G35EI4u9pRe1w/qM1qhBsFQ5L+4nUO5mxTSi7q8deEABj0BreLIGiRUxCek6yOB
+	 16DLDRpng9/uy7Rc+PlJv+WRJz/bbtzEFMn0FXxubt6I9W++6UM0DBQTttM9c0vXtC
+	 O7V0tmKDmqYvEfS4mt068NW/MxmHVQcifhs/ClyW3+J5KSCDPTZ41WYPyj9EgNrU45
+	 fbtPv1AR/pjFcECOVOkhaz7ufTSehpmE/+IArHLP6TgEKWOWcjfLWWoFuFy8A0GdAF
+	 nE88UgpmQq+qwUzRxfja5RjO+Ej/+Zvx4BfebMol8dc11A6SstD7M6TwI9+F3NVU7e
+	 eCTgVaudPHhvA==
+Message-ID: <91f9c0fc-c9bc-43ac-917c-b1aa86f53f97@kernel.org>
+Date: Mon, 9 Sep 2024 09:49:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/7] dt-bindings: PCI: ti,am65: Extend for use with PVU
+To: Jan Kiszka <jan.kiszka@siemens.com>
+Cc: Nishanth Menon <nm@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-pci@vger.kernel.org, Siddharth Vadapalli <s-vadapalli@ti.com>,
+ Bao Cheng Su <baocheng.su@siemens.com>, Hua Qian Li
+ <huaqian.li@siemens.com>, Diogo Ivo <diogo.ivo@siemens.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Bjorn Helgaas <bhelgaas@google.com>
+References: <cover.1725816753.git.jan.kiszka@siemens.com>
+ <33d08f61fe9bd692da0eceab91209832bf16e804.1725816753.git.jan.kiszka@siemens.com>
+ <n5l36lo6at3yfbexqc5wcxgxop5wwfzldhhm43rwr6qy2epf7a@jq7l6wiyvydc>
+ <0f2c79b5-2aa8-4d4c-b568-e74876fd6ecd@siemens.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <0f2c79b5-2aa8-4d4c-b568-e74876fd6ecd@siemens.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpsz:uniontech.com:qybglogicsvrgz:qybglogicsvrgz8a-1
 
-From: Hal Feng <hal.feng@starfivetech.com>
+On 09/09/2024 08:48, Jan Kiszka wrote:
+> On 09.09.24 08:22, Krzysztof Kozlowski wrote:
+>> On Sun, Sep 08, 2024 at 07:32:28PM +0200, Jan Kiszka wrote:
+>>> From: Jan Kiszka <jan.kiszka@siemens.com>
+>>>
+>>> The PVU on the AM65 SoC is capable of restricting DMA from PCIe devices
+>>> to specific regions of host memory. Add the optional property
+>>> "memory-regions" to point to such regions of memory when PVU is used.
+>>>
+>>> Since the PVU deals with system physical addresses, utilizing the PVU
+>>> with PCIe devices also requires setting up the VMAP registers to map the
+>>> Requester ID of the PCIe device to the CBA Virtual ID, which in turn is
+>>> mapped to the system physical address. Hence, describe the VMAP
+>>> registers which are optional unless the PVU shall be used for PCIe.
+>>>
+>>> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+>>> ---
+>>> CC: Lorenzo Pieralisi <lpieralisi@kernel.org>
+>>> CC: "Krzysztof Wilczyński" <kw@linux.com>
+>>> CC: Bjorn Helgaas <bhelgaas@google.com>
+>>> CC: linux-pci@vger.kernel.org
+>>> ---
+>>>  .../bindings/pci/ti,am65-pci-host.yaml        | 29 +++++++++++++++++--
+>>>  1 file changed, 26 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
+>>> index 0a9d10532cc8..0c297d12173c 100644
+>>> --- a/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
+>>> +++ b/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
+>>> @@ -20,14 +20,18 @@ properties:
+>>>        - ti,keystone-pcie
+>>>  
+>>>    reg:
+>>> -    maxItems: 4
+>>> +    minItems: 4
+>>> +    maxItems: 6
+>>>  
+>>>    reg-names:
+>>> +    minItems: 4
+>>>      items:
+>>>        - const: app
+>>>        - const: dbics
+>>>        - const: config
+>>>        - const: atu
+>>> +      - const: vmap_lp
+>>> +      - const: vmap_hp
+>>>  
+>>>    interrupts:
+>>>      maxItems: 1
+>>> @@ -83,13 +87,30 @@ if:
+>>>      compatible:
+>>>        enum:
+>>>          - ti,am654-pcie-rc
+>>> +
+>>>  then:
+>>> +  properties:
+>>> +    memory-region:
+>>
+>> I think I said it two times already. You must define properties in
+>> top-level. That's how we expect, that's how dtschema works (even if it
+>> works fine otherwise, it's not always that case), that's how almost all
+>> bindings are written.
+> 
+> Look, if you have such rules, also enhance the checker, or people like
+> me will continue to work intuitively. Add reasoning along that as well,
 
-Add PWM-DAC support for StarFive JH7110 SoC.
+That would be ideal, but I also asked to do this twice. It does not
+matter if dtschema  or me tells you this, if you do not implement it.
 
-Reviewed-by: Walker Chen <walker.chen@starfivetech.com>
-Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: WangYuli <wangyuli@uniontech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 49 +++++++++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 13 +++++
- 2 files changed, 62 insertions(+)
+> would help further to reduce your review effort. The current situation
+> with rather fuzzy results from the checker and strange mechanisms inside
+> (see my maxItems finding) is not very helpful IMHO.
+> 
+> I this concrete case, I would add this item top-level, just to set
+> maxItems to 0 for ti,keystone-pcie? Not a pattern I'm finding anywhere.
+> Or do we have to allow memory-regions for all compatibles now?
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index caa59b9b2f19..0e077f2f02d1 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -40,6 +40,33 @@ gpio-restart {
- 		gpios = <&sysgpio 35 GPIO_ACTIVE_HIGH>;
- 		priority = <224>;
- 	};
-+
-+	pwmdac_codec: pwmdac-codec {
-+		compatible = "linux,spdif-dit";
-+		#sound-dai-cells = <0>;
-+	};
-+
-+	sound-pwmdac {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "StarFive-PWMDAC-Sound-Card";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		simple-audio-card,dai-link@0 {
-+			reg = <0>;
-+			format = "left_j";
-+			bitclock-master = <&sndcpu0>;
-+			frame-master = <&sndcpu0>;
-+
-+			sndcpu0: cpu {
-+				sound-dai = <&pwmdac>;
-+			};
-+
-+			codec {
-+				sound-dai = <&pwmdac_codec>;
-+			};
-+		};
-+	};
- };
- 
- &dvp_clk {
-@@ -253,6 +280,12 @@ &mmc1 {
- 	status = "okay";
- };
- 
-+&pwmdac {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwmdac_pins>;
-+	status = "okay";
-+};
-+
- &qspi {
- 	#address-cells = <1>;
- 	#size-cells = <0>;
-@@ -463,6 +496,22 @@ GPOEN_SYS_SDIO1_DATA3,
- 		};
- 	};
- 
-+	pwmdac_pins: pwmdac-0 {
-+		pwmdac-pins {
-+			pinmux = <GPIOMUX(33, GPOUT_SYS_PWMDAC_LEFT,
-+					      GPOEN_ENABLE,
-+					      GPI_NONE)>,
-+				 <GPIOMUX(34, GPOUT_SYS_PWMDAC_RIGHT,
-+					      GPOEN_ENABLE,
-+					      GPI_NONE)>;
-+			bias-disable;
-+			drive-strength = <2>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+	};
-+
- 	spi0_pins: spi0-0 {
- 		mosi-pins {
- 			pinmux = <GPIOMUX(52, GPOUT_SYS_SPI0_TXD,
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index 621b68c02ea8..9f31dec57c0d 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -536,6 +536,19 @@ i2srx: i2s@100e0000 {
- 			status = "disabled";
- 		};
- 
-+		pwmdac: pwmdac@100b0000 {
-+			compatible = "starfive,jh7110-pwmdac";
-+			reg = <0x0 0x100b0000 0x0 0x1000>;
-+			clocks = <&syscrg JH7110_SYSCLK_PWMDAC_APB>,
-+				 <&syscrg JH7110_SYSCLK_PWMDAC_CORE>;
-+			clock-names = "apb", "core";
-+			resets = <&syscrg JH7110_SYSRST_PWMDAC_APB>;
-+			dmas = <&dma 22>;
-+			dma-names = "tx";
-+			#sound-dai-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		usb0: usb@10100000 {
- 			compatible = "starfive,jh7110-usb";
- 			ranges = <0x0 0x0 0x10100000 0x100000>;
--- 
-2.43.4
+Is it really not suitable for all the compatibles? Maybe these are quite
+different devices in such case?
+
+But if it is not really suitable, then you can disallow it for other
+variants with :false. This is also explicitly documented in example-schema:
+https://elixir.bootlin.com/linux/v5.19/source/Documentation/devicetree/bindings/example-schema.yaml#L212
+
+> 
+> Sorry for all these iterations, but you should see from my questions and
+> actions where the problems in the concepts are.
+
+Best regards,
+Krzysztof
 
 
