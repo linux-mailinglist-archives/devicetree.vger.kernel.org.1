@@ -1,89 +1,133 @@
-Return-Path: <devicetree+bounces-101514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8753972280
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 21:23:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 718119722B8
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 21:31:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64DDAB224B9
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 19:23:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A34561C229FC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 19:31:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92ECA189F47;
-	Mon,  9 Sep 2024 19:23:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDDD118A6DC;
+	Mon,  9 Sep 2024 19:31:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="CjU9oRyB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F10B17C7D5;
-	Mon,  9 Sep 2024 19:23:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94133187856;
+	Mon,  9 Sep 2024 19:30:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725909816; cv=none; b=k6j/yrpsWWugltkxg9rR1ZWosfR6Nqp3j8oZG4n0R0jdjh2xAdnnZQk4+4xxjId+Cz+2bDD3oaW9k/55S7PrWAlDCI6Yl1LUnfsAomlFnajJJieUeMuSHiOiAwANYzYMj0NcZcSvq83j+j656Oy4ZgsY2K4Q81x2Kxw71mE0PwM=
+	t=1725910260; cv=none; b=C1fTDK9sOq+KGSR53b8J6f71BRgb6wlTl3oKgglSO8gaiORFEwZw5bXAaG9PNc+AGbi5wfIDMwaBfe5YqHQ1i/YlRLhZvOCYjDZ2kTMtzH7Cxo2yg63zt8grVHCzUg+n/aAhXxBiXWC8Bnlca2KJVfbOsuGVOK1Ju5t1gupXbsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725909816; c=relaxed/simple;
-	bh=u2RN3vQAYk/XvwmBVDV7ioRu8REE5BqsQ8i7L2NZpoo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tuQju5B761Vh1TUtqF9kxls5dq+gQ8Uyi8gnycKQ0gyWnAp+eNtN6ufJUkU+q83sJxKx4K5KpvnDY0ZNQB05gbIHuT7tuRJVA07+qajLgM2XVxQnY3Mwmh0wNkXJpLT2pJC+BHXhL7hVYNXWao0lakknO9Fcafl38hnwuYYwEzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3EDBF106F;
-	Mon,  9 Sep 2024 12:24:02 -0700 (PDT)
-Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 71BF83F73B;
-	Mon,  9 Sep 2024 12:23:29 -0700 (PDT)
-Date: Mon, 9 Sep 2024 20:23:26 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Sam Edwards <cfsworks@gmail.com>
-Cc: bigunclemax@gmail.com, anarsoul@gmail.com, aou@eecs.berkeley.edu,
- conor+dt@kernel.org, contact@jookia.org, cristian.ciocaltea@collabora.com,
- daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
- jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-sunxi@lists.linux.dev, lukasz.luba@arm.com, mkl@pengutronix.de,
- palmer@dabbelt.com, paul.walmsley@sifive.com, rafael@kernel.org,
- robh+dt@kernel.org, rui.zhang@intel.com, samuel@sholland.org,
- tiny.windzz@gmail.com, wens@csie.org
-Subject: Re: [PATCH v6 3/3] riscv: dts: allwinner: d1: Add thermal sensor
-Message-ID: <20240909202326.59927766@minigeek.lan>
-In-Reply-To: <08466bb0-4306-4941-97e1-e62ba07d8ea2@gmail.com>
-References: <20231217210629.131486-4-bigunclemax@gmail.com>
-	<08466bb0-4306-4941-97e1-e62ba07d8ea2@gmail.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+	s=arc-20240116; t=1725910260; c=relaxed/simple;
+	bh=YjTqvMzagJuYOyJovCgcMuy1VZe1LKi1pVIbHww1TFc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=DWlrcAjt05HI9Y9IOQYTnWBzXYMCzdO8F6Z/x+DOYYl7ZCKyGZ82hqsPIauumTL/LWx26WbcKU1EDPccR4y8dxUL9Z99/XRpSmtuH7RbnsT/btrmgNg0qXmBe0LY7Sx6vwEmX2X6N/9zjrpWhknpKTdPv/I3MTgeVTWxlb2roTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=CjU9oRyB; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 0DF3688E22;
+	Mon,  9 Sep 2024 21:30:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1725910253;
+	bh=uh5AN6xDKGE1pzc2KNoilnB4rzgHoJXgd2N+hYXJPcg=;
+	h=From:To:Cc:Subject:Date:From;
+	b=CjU9oRyBgMnnDPUNHce+OXT2tiF+ffA3mGOwE793g72W4CTOrh/aN+5+bCa3Lonfc
+	 D4F65NF2q3wpLsw9jAMnHpKDagujGnZvyUmcTpSt+IpZyOoT1KlOCek2Kj/QlGA26V
+	 jt1tJA2aA9f66sBOvI92nOOHMblPg8DB1xKk+vZfd4LJ530ozj5BLVxhERsdT4UK6b
+	 2elbjnRaF3wHZTa1JWwCDaoy3uwo8jOAQsGay4wTL4nrpwRCTxff9URo++skatbuRB
+	 8f7fNqXbkrKbQf5p6hOa3xMFK1AtZmZBeSZ6TRvWHn/FXZvFLmmIYPIFGic/Pi2PJe
+	 CRx8f6GyNNLpg==
+From: Marek Vasut <marex@denx.de>
+To: linux-wireless@vger.kernel.org
+Cc: Marek Vasut <marex@denx.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Adham Abozaeid <adham.abozaeid@microchip.com>,
+	Ajay Singh <ajay.kathat@microchip.com>,
+	=?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Kalle Valo <kvalo@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: [PATCH v5 1/9] dt-bindings: wireless: wilc1000: Document WILC3000 compatible string
+Date: Mon,  9 Sep 2024 21:29:42 +0200
+Message-ID: <20240909193035.69823-1-marex@denx.de>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Mon, 9 Sep 2024 10:16:56 -0700
-Sam Edwards <cfsworks@gmail.com> wrote:
+Document compatible string for the WILC3000 chip. The chip is similar
+to WILC1000, except that the register layout is slightly different and
+it does not support WPA3/SAE.
 
-Hi,
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Adham Abozaeid <adham.abozaeid@microchip.com>
+Cc: Ajay Singh <ajay.kathat@microchip.com>
+Cc: Alexis Lothoré <alexis.lothore@bootlin.com>
+Cc: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Eric Dumazet <edumazet@google.com>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Kalle Valo <kvalo@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Paolo Abeni <pabeni@redhat.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-wireless@vger.kernel.org
+Cc: netdev@vger.kernel.org
+---
+V2: - Use WILC1000 as fallback compatible string for WILC3000
+V3: - Swap the wilc1000/wilc3000 compatible order
+V4: - Add RB from Krzysztof
+V5: No change
+---
+ .../bindings/net/wireless/microchip,wilc1000.yaml           | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-> Hi Maksim,
-> 
-> Apologies if I have failed to find a v7 of this patch in my searching, 
-> but I'm seeing that patch #3 here was never applied, so Linux still does 
-> not enable the thermal sensor in these chips. I just thought I'd give 
-> you a heads-up in case you weren't aware. :)
-
-There is an unaddressed comment on this patch: to remove the "disabled"
-status line. Sam, feel free to fix this and send the patch again,
-unless Maksim beats you to it.
-
-Cheers,
-Andre
-
-> 
-> Thanks for all your hard work,
-> Sam
-> 
+diff --git a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
+index 2460ccc082371..5d40f22765bb6 100644
+--- a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
+@@ -16,7 +16,11 @@ description:
+ 
+ properties:
+   compatible:
+-    const: microchip,wilc1000
++    oneOf:
++      - items:
++          - const: microchip,wilc3000
++          - const: microchip,wilc1000
++      - const: microchip,wilc1000
+ 
+   reg: true
+ 
+-- 
+2.45.2
 
 
