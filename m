@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-101308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92967971466
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:50:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C17E8971478
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:53:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FC431F23918
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:50:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 771481F238A7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:53:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00C651B2EEF;
-	Mon,  9 Sep 2024 09:50:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A44C1B373F;
+	Mon,  9 Sep 2024 09:52:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="d6Wo3+Dz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rNIymLqN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D0D91B14F3;
-	Mon,  9 Sep 2024 09:50:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F24291B0107;
+	Mon,  9 Sep 2024 09:52:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725875413; cv=none; b=eFiW8SOdkSlrTM7lRVLO+f1qFP/cCbz2aes215su8qojoupvNfXgHENG2Mc/VfggNs6NOeVd07Qw7r1wLdyfEk1QcJeTBYqZ5ffz9rOeJKuIi+rkWYL4sT3AV/AcjrZ9+oYPqbq+IMnZFZ3FsCr8B2V+y84bhBeZeAWkdqwf14s=
+	t=1725875578; cv=none; b=YRQWalqVE1I/nCoFSCB6Qedin4RY9OB9UCHkw5az38NehCDrAg/m/lYrFlJDjHNLGFbQT9LaqOZwkoABEBO8zlRRqha8397hHywfxqoEA32RTnC+7heP7yiDeSD5cJB1rB09YcASXW2xn8WMTgKgxxjidZ6UwjN2sB4mrJr583s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725875413; c=relaxed/simple;
-	bh=gXQyLs4Falod6BhS9AqrAuvVHD5ygStW1u0vafdUDUM=;
+	s=arc-20240116; t=1725875578; c=relaxed/simple;
+	bh=G/JUPv3rEh3rb+RiMrBmN0vvDLmI826vdPTHpi2hYYw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Qb/hroZw8smcTvCsQWcBPqcEg2DaqWul2NjbfPB67ZPGCqm3YPiYplirSSWggYhjt0zFxq8pwt2406LOq4hBvfsFKcm2am3AgMVLbV7vTMKsSp29SC+um1RwUix8CElBQf+8kByG+L2Iaa5FKrBi6ygWNgEHhnoy3jDuepFS950=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=d6Wo3+Dz; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-156-87-48.elisa-laajakaista.fi [91.156.87.48])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id EF2742C6;
-	Mon,  9 Sep 2024 11:48:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1725875334;
-	bh=gXQyLs4Falod6BhS9AqrAuvVHD5ygStW1u0vafdUDUM=;
+	 In-Reply-To:Content-Type; b=G9/GliQ0NeYoUhHpD/lbSHBtSNO01YtSOuGE9OkaEbGwtAONyg2QRUcjZXF/w27lbzH30GZBQ7jK3jUu2mXoZNOrRNFTZPv084eIy6cD/Wk+X7bR89XrqurRYO79+t2d2mgKW8+z7SM6d8pakli6rjVK1hsW8CcH5sgmy/o8Opo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rNIymLqN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6F39C4CEC6;
+	Mon,  9 Sep 2024 09:52:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725875577;
+	bh=G/JUPv3rEh3rb+RiMrBmN0vvDLmI826vdPTHpi2hYYw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=d6Wo3+Dzy3rjRoFaYxBJqW4T5DCoWreSynSohVQfzz4mAMSgyFoJ/mWkZ3RJlhH25
-	 Del03H00/kXAV4Z2RYvW4Gb0kJzfyZ0XIK8ddOLc/9ukOhEfxvGwqxt3emt07p0wZz
-	 hwtmgMxcvJBGAPShVEYbcwMUkOOcsrvlHKsYHMLs=
-Message-ID: <d5f7d7f7-8e85-4aa1-ae27-b14a4e749021@ideasonboard.com>
-Date: Mon, 9 Sep 2024 12:50:05 +0300
+	b=rNIymLqNKfKVrZoWsJf9wcMVH/05uvQFME7JFyTeqZblc7qKv2miGg3FCtcb0AwG7
+	 teyQ3w+Tf7Ue2g0NojT5KYhRu68QJVhnSQNDR8vPQTN1W0LI6GDkbVffdgb01im4dL
+	 HDkJfnlFQNSTf9fAU56OF2q7vQK3MdWbA5ui2hyEag3EN30sYmAoo/dcYgUsQzxkmk
+	 6az7LXElhkpWOsRC3aUGAvpVZJ+ygubBNEACyzs7Rl/AG4p3VBSPDH8aE0Xxz13L9D
+	 vDOBjPZhccLU4MzdicGquhdnKkiEMSUKbte/Ub8diKNAIrCuiy0XIhU3leIxJiFrWZ
+	 9MAzrV7U+Q3Og==
+Message-ID: <a9554e75-a297-4ba1-b3a4-e1b8ed4f887d@kernel.org>
+Date: Mon, 9 Sep 2024 11:52:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,187 +50,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/4] drm/tidss: Add OLDI bridge support
-To: Aradhya Bhatia <aradhya.bhatia@linux.dev>,
- Francesco Dolcini <francesco@dolcini.it>, max.krummenacher@toradex.com
-Cc: Jyri Sarha <jyri.sarha@iki.fi>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- DRI Development List <dri-devel@lists.freedesktop.org>,
- Devicetree List <devicetree@vger.kernel.org>,
- Linux Kernel List <linux-kernel@vger.kernel.org>, Nishanth Menon
- <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
- Alexander Sverdlin <alexander.sverdlin@siemens.com>,
- Randolph Sapp <rs@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
- Jayesh Choudhary <j-choudhary@ti.com>, Jai Luthra <j-luthra@ti.com>
-References: <20240716084248.1393666-1-a-bhatia1@ti.com>
- <20240906114311.GA32916@francesco-nb>
- <c60d518b-ace4-48a8-87e5-35de13bc426a@ideasonboard.com>
- <b8c5d719-5214-4e3a-84c5-b8767cd6ab7e@linux.dev>
+Subject: Re: [PATCH v12 20/38] dt-bindings: ata: Add Cirrus EP93xx
+To: Niklas Cassel <cassel@kernel.org>, "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Nikita Shubin <nikita.shubin@maquefel.me>, linux-kernel@vger.kernel.org,
+ Damien Le Moal <dlemoal@kernel.org>, devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-ide@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
+References: <20240909-ep93xx-v12-0-e86ab2423d4b@maquefel.me>
+ <20240909-ep93xx-v12-20-e86ab2423d4b@maquefel.me>
+ <172587510301.3289247.9336315361343642952.robh@kernel.org>
+ <Zt7ENCkvBfoX3OVn@ryzen.lan>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <b8c5d719-5214-4e3a-84c5-b8767cd6ab7e@linux.dev>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <Zt7ENCkvBfoX3OVn@ryzen.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 09/09/2024 12:31, Aradhya Bhatia wrote:
-> Hi,
-> 
-> Thank you, Francesco and Max, for testing and reporting this!
-> 
-> On 09/09/24 13:45, Tomi Valkeinen wrote:
->> Hi,
+On 09/09/2024 11:47, Niklas Cassel wrote:
+> On Mon, Sep 09, 2024 at 04:45:13AM -0500, Rob Herring (Arm) wrote:
 >>
->> On 06/09/2024 14:43, Francesco Dolcini wrote:
->>> +Max
+>> On Mon, 09 Sep 2024 11:10:45 +0300, Nikita Shubin wrote:
+>>> Add YAML bindings for ep93xx SoC PATA.
 >>>
->>> Hello Aradhya,
+>>> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+>>> Acked-by: Damien Le Moal <dlemoal@kernel.org>
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> ---
+>>>  .../bindings/ata/cirrus,ep9312-pata.yaml           | 42 ++++++++++++++++++++++
+>>>  1 file changed, 42 insertions(+)
 >>>
->>> On Tue, Jul 16, 2024 at 02:12:44PM +0530, Aradhya Bhatia wrote:
->>>> The addition of the 2nd OLDI TX (and a 2nd DSS in AM62Px) creates a need
->>>> for some major changes for a full feature experience.
->>>>
->>>> 1. The OF graph needs to be updated to accurately show the data flow.
->>>> 2. The tidss and OLDI drivers now need to support the dual-link and the
->>>>      cloned single-link OLDI video signals.
->>>> 3. The drivers also need to support the case where 2 OLDI TXes are
->>>>      connected to 2 different VPs - thereby creating 2 independent
->>>> streams
->>>>      of single-link OLDI outputs.
->>>
->>> Have you considered/tested the use case in which only single link is
->>> used?
->>> You do not mention it here and to me this is a relevant use case.
->>>
->>> There is a workaround for this (use option 2, cloned, even if nothing is
->>> connected to the second link), but this seems not correct.
-> 
-> I agree. The whole idea behind the series is to be able to accurately
-> describe the hardware. Putting the devicetree in clone mode in order to
-> get the single-link mode working is far from ideal.
-
-Btw, with the fw_devlink=off hack, and removing the second link from 
-k3-am625-sk-microtips-mf101hie-panel.dtso, is still not enough, as the 
-k3-am62-main.dtsi contains the ti,companion-oldi property which makes 
-the driver think it's a cloning case.
-
-So, I think, either the ti,companion-oldi and ti,secondary-oldi should 
-only be set in the overlay when setting up cloning/dual-link, or the 
-companion-oldi property shouldn't actually make a difference, and the 
-selection between clone and single-link should be done via some other means.
-
->>> We (Max in Cc here) noticed that this specific use case is broken on
->>> your downstream v6.6 TI branch.
-> 
-> Yes, it was been brought to my attention that the single-link usecase is
-> not working over the downstream ti-6.6 kernel. As I have since
-> discovered, it's not working on this series either.
-> 
-> For some reason, the supplier-consumer dependency between the OLDI and
-> the panel devicetree nodes is not getting flagged as `FWLINK_FLAG_CYCLE`
-> in cases of single-link configuration.
-> 
-> This flag allows the panel driver to continue to probe without waiting
-> for the OLDI driver (panel's supplier). Absence of the flag getting set
-> is causing these drivers to keep deferring probe in an endless cycle.
-> 
-> Even with the flag, the OLDI (and tidss) cannot complete probe until the
-> panel driver is probed and ready. That is because the OLDI (and tidss)
-> need the panel to continue with the bridge-chain creation.
-> 
-> However, over with the dual-lvds configuration (and as Francesco has
-> now mentioned the clone configuration as well), the flag gets set by
-> default, and everything works.
-> 
-> This is what the debug has led to, so far.
-
-Yes, I came to the same conclusion with my debug.
-
 >>
->> What if you set "fw_devlink=off" kernel boot parameter?
+>> My bot found errors running 'make dt_binding_check' on your patch:
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>>
+>>
+>> doc reference errors (make refcheckdocs):
+>>
+>> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240909-ep93xx-v12-20-e86ab2423d4b@maquefel.me
+>>
+>> The base for the series is generally the latest rc1. A different dependency
+>> should be noted in *this* patch.
+>>
+>> If you already ran 'make dt_binding_check' and didn't see the above
+>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>> date:
+>>
+>> pip3 install dtschema --upgrade
+>>
+>> Please check and re-submit after running the above command yourself. Note
+>> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+>> your schema. However, it must be unset to test all examples with your schema.
 >>
 > 
-> Yes! I haven't tested it, but it seems that this will bypass the
-> supplier check and let the panel probe continue.
+> Hello Rob,
 > 
-> 
-> Tomi, any idea, why is this issue happening only for single-link in the
-> first place? It seems as if having 2 ports inside the panel devicetree
-> lets the probe mechanism recognize the circular dependency and ignore
-> the supplier OLDIs?
+> The list of warnings/errors is empty,
+> so I believe that you have a bug in your bot/scripts.
 
-I have to say I have no idea...
+Yeah, I think all patches pass test, just something first patch did not
+get applied leading to further issues. Including this a bit weird one -
+empty warnings.
 
-I don't really understand the devlink code here, but I'm guessing that 
-the "cycle" part comes from the fact that with a media graph we have 
-links (remote-endpoint) both ways in the DT data. So it's not possible 
-to say which side is the consumer, which one is the supplier. Thus, it's 
-marked as a cycle and, I think, basically ignored for the probing purpose.
-
-But why not here? I can see the links being created both ways:
-
-/display Linked as a fwnode consumer to 
-/bus@f0000/dss@30200000/oldi-txes/oldi@0
-/bus@f0000/dss@30200000/oldi-txes/oldi@0 Linked as a fwnode consumer to 
-/display
-
-but it's never marked as a cycle.
-
-> This is the function where the difference comes down to, by the way -
-> __fw_devlink_relax_cycles(), per my knowledge. I am still on my way to
-> understand what exactly it is doing and why is it not relaxing the
-> single-link case.
-
-Yep. The answer is probably somewhere there =).
-
-  Tomi
+Best regards,
+Krzysztof
 
 
