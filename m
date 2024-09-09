@@ -1,103 +1,122 @@
-Return-Path: <devicetree+bounces-101478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10591971EE5
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 18:16:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A73C3971EF4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 18:20:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1A132855F4
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 16:16:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2CE71C2271B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 16:20:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF2513A244;
-	Mon,  9 Sep 2024 16:16:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08D0913BC3D;
+	Mon,  9 Sep 2024 16:20:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c1Il1hia"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zm7V0rmx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FF27C156;
-	Mon,  9 Sep 2024 16:16:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD3C313A879;
+	Mon,  9 Sep 2024 16:20:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725898563; cv=none; b=Xh/e5DzdqgF3OMYb09TVefZfDYTvwo/O9MHRKduNtBsU/JCRmgMIuk0sQTrDz5iMuztHr3r0DYakvBo1he7k2Pus+yP1ij2ki7ee/oVQhNckf9V6Xef4MDSsJ2ZO1MSFUpDf2UcjkOXU5MBBw3rkEnzYJYRm0EqlyC4hHlVyANs=
+	t=1725898810; cv=none; b=FbL83yWmjr9hUXaYiuBygtLmwmOGXfUaI9dcESGp2d25W3g5j0ngTG1CUbbuWWbHRIQtYUnb0pfXLL0rT3tCodrM2+OK+ARWrs2Y+KI3jj5cXoN03/kSsCm/dbc0cmcP8GXohLx8ok8NKmco6i29aWOl2dzzTxmN3VjZ0jWsy14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725898563; c=relaxed/simple;
-	bh=Ls7yNYiJTmMO2LUOs5edmUDMG2W06CnY5cBWHeqDVh8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hmGVIzVPU7DXJnwx5UIi+UHFYn5pAPkdGnWrg2AcM/Yg8b4SvMWd8Uh+WOh+8E8Rc+2wD2MPAKsknS9O278j0a+ii/RiXBGP9pP8XR/q9SX+Q3sBiE1b6DwYDHH87elgS1ZFeaaAPwdtXIuaGq65XVW+GnquBlNVyWpn6Xq4Zzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c1Il1hia; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BAABC4CEC5;
-	Mon,  9 Sep 2024 16:15:59 +0000 (UTC)
+	s=arc-20240116; t=1725898810; c=relaxed/simple;
+	bh=TS/pSz1uD3dN1/wXh7XIMM8S8qVOA+/r9H0LYbQw3Mc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qoQqRND9FZET7vuHV7oKKz0PehICs7+gVonw1QWFu3pASy2O0CSYchshyT+9AMLdW8cr2I6JCLcs92SLwcPVtkC2XQCezx+fCg2x59uX8rPVxoqmu1Mg2ht0P8UXN9KanMclm3hQQHcYuIlgeMbAE3boU9AVlm6bLTg3HjWNKR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zm7V0rmx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25BC2C4CEC5;
+	Mon,  9 Sep 2024 16:20:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725898562;
-	bh=Ls7yNYiJTmMO2LUOs5edmUDMG2W06CnY5cBWHeqDVh8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=c1Il1hiaDR85pEccsSxKJx4hwcoizwSgnKS/STKWucygQg3CRqCAoVLH0KGEPT0ot
-	 /k+T8Ed20mV46zrf5iBAm31+kQfMLeaiqFSRz2Rk60P5RYZe7k8djYPSjbLA5XC+0d
-	 LrFVap4Kyrf/avuR0ABliJ4fEI8YZbmrXVJ3u1rav+SY3m5sEstYHZ7al1eWVPw8fV
-	 c50JhN8Or5dtRjg0WVd3TcaANC4hfy8SuWhi4dLSSLM0foi9+jxq6Zrkj2fKbN3R8W
-	 U0jV2L1RBKdlTmXIsRJzFzm5mtWM3VKILKlPJzA0keX7u1sR+X2J/9tQx3iHz9rJl/
-	 s2PPsi2mfaTnw==
-From: Will Deacon <will@kernel.org>
-To: Rob Clark <robdclark@gmail.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Joerg Roedel <joro@8bytes.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=k20201202; t=1725898810;
+	bh=TS/pSz1uD3dN1/wXh7XIMM8S8qVOA+/r9H0LYbQw3Mc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Zm7V0rmxhwjWgkzWrThPJEsFRUDqWvq+1iX2K8gqArj2yYKcaWSZ/iSEzLx+829cf
+	 uSvLFRpjPcofMUYkvhheUgVBHXiJl8cxbl0bBSopOM/WAxzMfBVnnb//ysEw0Ud/Oa
+	 HtLsJy0AxBBHGFqqSQD7sTaGIREmQJ65ZO+SYq9l9zyQSoYpdGM07295TOTNdipeP8
+	 +zRdjXCgCu1I7nnWQJoSds6af8lNvlqPJLGwcF7NRCaO1sJ1tdSM8gkGeOgoLp8fw7
+	 WJo10TsVsiqAJzW19QeQbbLiubZmuOZqvOfaE9Ar8ZNEyPer3gJR2onSpgOpPrYTFk
+	 tWe/WP1baRfoA==
+Date: Mon, 9 Sep 2024 11:20:09 -0500
+From: Rob Herring <robh@kernel.org>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: catalin.marinas@arm.com,
-	kernel-team@android.com,
-	Will Deacon <will@kernel.org>,
-	iommu@lists.linux.dev,
-	linux-arm-msm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	Kalle Valo <kvalo@kernel.org>
-Subject: Re: [PATCH 0/7] arm64: qcom: sda660-ifc6560: enable GPU and WiFi support
-Date: Mon,  9 Sep 2024 17:15:44 +0100
-Message-Id: <172589162139.2623853.11488233830217103643.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
-References: <20240907-sdm660-wifi-v1-0-e316055142f8@linaro.org>
+	Florian Fainelli <f.fainelli@gmail.com>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: ethernet-phy: Add
+ master-slave role property for SPE PHYs
+Message-ID: <20240909162009.GA339652-robh@kernel.org>
+References: <20240909124342.2838263-1-o.rempel@pengutronix.de>
+ <20240909124342.2838263-2-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240909124342.2838263-2-o.rempel@pengutronix.de>
 
-On Sat, 07 Sep 2024 21:48:11 +0300, Dmitry Baryshkov wrote:
-> Follow the MSM8998 example and limit num_context_banks on SDM630 /
-> SDM660 platforms. This allows Linux to make use of the A2NOC and KGSL
-> SMMU, making it possible to enable GPU and WiFi on those platforms, and,
-> in particular, Inforce IFC6560 SBC.
+On Mon, Sep 09, 2024 at 02:43:40PM +0200, Oleksij Rempel wrote:
+> Introduce a new `master-slave` string property in the ethernet-phy
+> binding to specify the link role for Single Pair Ethernet
+> (1000/100/10Base-T1) PHYs. This property supports the values
+> `forced-master` and `forced-slave`, which allow the PHY to operate in a
+> predefined role, necessary when hardware strap pins are unavailable or
+> wrongly set.
 > 
-> Note, while WiFI starts up and can work for a short amount of time, MSS
-> starts crashing with the following message:
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+> changes v2:
+> - use string property instead of multiple flags
+> ---
+>  .../devicetree/bindings/net/ethernet-phy.yaml      | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
-> [...]
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> index d9b62741a2259..025e59f6be6f3 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> @@ -158,6 +158,20 @@ properties:
+>        Mark the corresponding energy efficient ethernet mode as
+>        broken and request the ethernet to stop advertising it.
+>  
+> +  master-slave:
 
-Applied SMMU driver change to will (for-joerg/arm-smmu/updates), thanks!
+Outdated terminology and kind of vague what it is for...
 
-[1/7] iommu/arm-smmu-qcom: apply num_context_bank fixes for SDM630 / SDM660
-      https://git.kernel.org/will/c/19eb465c969f
+The usual transformation to 'controller-device' would not make much
+sense though. I think a better name would be "spe-link-role" or
+"spe-link-mode".
 
-Cheers,
--- 
-Will
-
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum:
+> +      - forced-master
+> +      - forced-slave
+> +    description: |
+> +      Specifies the predefined link role for the PHY in Single Pair Ethernet
+> +      (1000/100/10Base-T1).  This property is required for setups where the link
+> +      role must be assigned by the device tree due to limitations in using
+> +      hardware strap pins.
+> +
+> +      - 'forced-master': The PHY is forced to operate as a master.
+> +      - 'forced-slave': The PHY is forced to operate as a slave.
+> +
+>    pses:
+>      $ref: /schemas/types.yaml#/definitions/phandle-array
+>      maxItems: 1
+> -- 
+> 2.39.2
+> 
 
