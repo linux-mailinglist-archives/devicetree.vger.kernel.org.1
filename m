@@ -1,138 +1,194 @@
-Return-Path: <devicetree+bounces-101424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16E63971B13
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 15:31:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34041971B77
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 15:46:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F4A51F220A7
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 13:31:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 438F31C22B12
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 13:46:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BD361B4C4F;
-	Mon,  9 Sep 2024 13:31:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1A1A1BA297;
+	Mon,  9 Sep 2024 13:45:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j4WOdN7a"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="gukUyOix"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D1261804F;
-	Mon,  9 Sep 2024 13:31:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1745D1BA27C;
+	Mon,  9 Sep 2024 13:45:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725888686; cv=none; b=gJyc9KHgyfMcq0g/UqvGv9VZvCdGXsJXlEkk2Ze3QynztEo4dZFOxq3muMdmi/9VWeRNCq+JE6XmKwGV+24R4hxCDDtW1iW5xj8ZkwMiRXWZyXy0Au/Q1BRfoGoWXfLuhayjQ3HWI/FUE28Gdx6lcttdiGSp36fG74AI+IGK1hE=
+	t=1725889523; cv=none; b=u5fKdIivIBrIeGkaBS6G/e0fq4miLP8onN2APCOrDtmkpQ4CKNF+n+xN4iOpasc3ivOkdIwjUvCPQT/S0Pe0ki6HJ8jWeIe4DPbKRgDFtPvuYIcOKY19EXabjm+mgugp6QrL1d0iaoG2rB+qnH9cOeXF/mQmbEo0VZep81Ecd8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725888686; c=relaxed/simple;
-	bh=U9/6GZgjRgUVPus9DXRmPCbnWZ1XQIE3UYnIYMoBDTM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=DyUGwCfZ5aYzjI/YWHA0lD1tIp7ivpo3cfFjOO0SMSM5hr0frhtNMlUOVYlT5D3WVOZ+xmr6ErbVSBh6UTQMwuj9lSxlcPBSBYw1CRdUDkZluxxu7xIvG7NZ7jhzidF7O0dSfG048mCxwLRMo0oWjgGbdvfR0Qvf7SKzDjrsMkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j4WOdN7a; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-42c7b5b2d01so50877415e9.3;
-        Mon, 09 Sep 2024 06:31:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725888684; x=1726493484; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=qWBnrkC0VHGoKlS5UYwMzz+fd0b7C15beJrEhKUWP6E=;
-        b=j4WOdN7aF8IoiZMv8v/2ZM2cIiLa8XK2Z1za00KN/pCmSXDtF2pny00CKcFtgxW9j+
-         xeVeUiK42Lwpy9Wz4eYzvwpcgz7mFlgf92HpoXG7o7tcNr9BeczJrVj7XpswGbRX15VA
-         vtkO2TgiUW4BuHHYcdV5JBaIxHW4XVlMSDnpC/D0gEce+HGwW6NWJqojnW1X2im7VwIV
-         gHLi0q3FP/8koS/vrNCIbIQBdYPIOESWMT2cC4DJM17V7Q8MjrL6S+3eSIRaRw4HPqvk
-         AZv4u0EHzkcF6aChc5VFS71Yczt12Uu89pd1rYPXaP3D5jsc89+TDAPCPGyRdl1hDX+x
-         BuyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725888684; x=1726493484;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qWBnrkC0VHGoKlS5UYwMzz+fd0b7C15beJrEhKUWP6E=;
-        b=rtKaCm1+i2KXzZFEiEY0p6H0fKe0pyc53gBXtYtQdE7WGsotRf6S4zuuMpuNl4CUox
-         Xz/zn/1opYjVXosPxoFizTcoWYbjg3kqJE5BIw6f+YfpkyFhRmJrbtoUPkEMx1+K3IgH
-         Z14LP57vVCQtUXIESOB5IqTcVkqHTyrZ79UgaUEVffmEMP7YUJlmqaKShH+mxMIv1Bx1
-         V4rEkHLuhHMY7zdnvpR+5AgUlzNb3Tb2GIPi+558vyF2hhfWPKINwHU6lGMw4zOiwZ3y
-         4ydU0fWXT9WW+yWDSZj19XcMJV0hN4hqX7hDqiP3UOtRlYQQorCsp5gAmkiccFRg8uTY
-         GLoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWGZhRjiaPHW39LjEtZ+TqX1pJgwapCV0AlbTaFTjDTdDDB326Bv1KQHxuo745xORdf9iJ0uI9vMt7i@vger.kernel.org, AJvYcCWS8T1ccd9yUFEWrpOT70y6g+6ahBSQ0QrnZ3Kpbn9FrpKuydbxXeQJqODl2BA2Rytf3Bt9DYhCpyGnyFbx@vger.kernel.org, AJvYcCX7sDCMiV5CvZgT0XV7QTfadHNmG8BNzSVZbFOXdDqyKfe0KgkUTdxTwsxMGB002XPXbhPLlFosGVxF@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTF4sn4JoW4+rzszgtO3zsRjuR9dcHW3o3o8OJB+YJJ87ZcmcY
-	tnCUC18yMg36dxdq7Neu+LNmJfFX8rhUc31Wba/QPXF0kmUjfmeu
-X-Google-Smtp-Source: AGHT+IGHWJpfx1MPy9b28rSFKNx5bY99OU/mUzZyWqr6JkzPIFC9m3jv5MaaxqGJxrrtc7/mgf3M5Q==
-X-Received: by 2002:adf:fcca:0:b0:374:c90e:990c with SMTP id ffacd0b85a97d-378922b7aefmr6266546f8f.33.1725888683153;
-        Mon, 09 Sep 2024 06:31:23 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378956d3796sm6041845f8f.80.2024.09.09.06.31.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Sep 2024 06:31:22 -0700 (PDT)
-Message-ID: <345d8b6b1395a0181458e795006bc47748f865b1.camel@gmail.com>
-Subject: Re: [PATCH v2 8/9] iio: dac: ad3552r: add axi platform driver
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
-	adureghello@baylibre.com
-Cc: Michael.Hennerich@analog.com, conor+dt@kernel.org, 
- devicetree@vger.kernel.org, dlechner@baylibre.com, jic23@kernel.org, 
- krzk+dt@kernel.org, lars@metafoo.de, linux-iio@vger.kernel.org, 
- linux-kernel@vger.kernel.org, nuno.sa@analog.com,
- olivier.moysan@foss.st.com,  robh@kernel.org
-Date: Mon, 09 Sep 2024 15:35:31 +0200
-In-Reply-To: <a6be8c40-5aa7-455c-8a15-55bda451ea51@wanadoo.fr>
-References: 
-	<20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-0-87d669674c00@baylibre.com>
-	 <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-8-87d669674c00@baylibre.com>
-	 <a6be8c40-5aa7-455c-8a15-55bda451ea51@wanadoo.fr>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 
+	s=arc-20240116; t=1725889523; c=relaxed/simple;
+	bh=DIgINnfFNQiU0BeYyQfLH/SdoJ0HKoSPauy5k5X5lJI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NEwgRMB5ToB6mDhZqPO3MXt4iV3w6h+1iEuG26+CNZdTjfcAmkRYepchMkKGqWwiUMwiqBkJl2Y1jgTXpecIzDDax8lQPFBHIZyphF+Dm8RQ5peiXKimJqTwogvClTw+cySWp4uWcP/1KxKxGnf+G+Zde7oQ01OpFouMmItDhuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=gukUyOix; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (213-229-8-243.static.upcbusiness.at [213.229.8.243])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 542F95A4;
+	Mon,  9 Sep 2024 15:44:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1725889443;
+	bh=DIgINnfFNQiU0BeYyQfLH/SdoJ0HKoSPauy5k5X5lJI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gukUyOixUwMCQa0c/DYH1Su6z3uDYM0EV12q70+qrExNSRaTa2OSu0LuZgHQIIVB2
+	 PrN55ehOPvvzSOruRl53NJNP00g710Ac0R2a20O4z4w/kPDZH2uT27HO+8ho61CQHU
+	 0NqQFwWWTLZWyUwFHi9ttZfGwn1bsGbbtDhOobkI=
+Date: Mon, 9 Sep 2024 16:45:16 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH v4 3/4] media: raspberrypi: Add support for RP1-CFE
+Message-ID: <20240909134516.GA9448@pendragon.ideasonboard.com>
+References: <20240904-rp1-cfe-v4-3-f1b5b3d69c81@ideasonboard.com>
+ <202409051822.ZzUGw3XQ-lkp@intel.com>
+ <20240905111120.GK16183@pendragon.ideasonboard.com>
+ <40cc1e95-b9fc-4c27-9428-1698d0bf9d25@ideasonboard.com>
+ <763b3147-d7cb-44a7-b73b-8f7f4fd622ab@ideasonboard.com>
+ <yib2r4wisxvk3kgogbjqawrpmfq6lcezfk4xjmftj44jzkbclc@icapodv2ffzk>
+ <d5188c0a-4a52-4378-89b1-48f606e448cc@ideasonboard.com>
+ <ggtlreq5gyhzfdv6yzeuia46y7fxpuyvg236prig52t43xsl2a@crlqks2nhfpe>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ggtlreq5gyhzfdv6yzeuia46y7fxpuyvg236prig52t43xsl2a@crlqks2nhfpe>
 
-On Sun, 2024-09-08 at 18:28 +0200, Christophe JAILLET wrote:
-> Le 05/09/2024 =C3=A0 17:17, Angelo Dureghello a =C3=A9crit=C2=A0:
-> > From: Angelo Dureghello
-> > <adureghello-rdvid1DuHRBWk0Htik3J/w@public.gmane.org>
-> >=20
-> > Add support for ad3552r-axi, where ad3552r has to be controlled
-> > by the custom (fpga-based) ad3552r AXI DAC IP.
->=20
-> ...
->=20
-> > +static int ad3552r_axi_buffer_postenable(struct iio_dev *indio_dev)
-> > +{
-> > +	struct ad3552r_axi_state *st =3D iio_priv(indio_dev);
-> > +	struct iio_backend_data_fmt fmt =3D {
-> > +		.type =3D IIO_BACKEND_DATA_UNSIGNED
-> > +	};
-> > +	int loop_len, val, err;
-> > +
-> > +	/* Inform DAC chip to switch into DDR mode */
-> > +	err =3D axi3552r_qspi_update_reg_bits(st->back,
-> > +					=C2=A0=C2=A0=C2=A0
-> > AD3552R_REG_ADDR_INTERFACE_CONFIG_D,
-> > +					=C2=A0=C2=A0=C2=A0 AD3552R_MASK_SPI_CONFIG_DDR,
-> > +					=C2=A0=C2=A0=C2=A0 AD3552R_MASK_SPI_CONFIG_DDR,
-> > 1);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	/* Inform DAC IP to go for DDR mode from now on */
-> > +	err =3D iio_backend_ddr_enable(st->back);
-> > +	if (err)
-> > +		goto exit_err;
->=20
-> I don't know if it can be an issue, but iio_backend_ddr_disable() is=20
-> called if iio_backend_ddr_enable() fails.
->=20
->=20
+On Mon, Sep 09, 2024 at 03:29:30PM +0200, Jacopo Mondi wrote:
+> On Mon, Sep 09, 2024 at 01:04:35PM GMT, Tomi Valkeinen wrote:
+> > On 09/09/2024 12:13, Jacopo Mondi wrote:
+> > > On Mon, Sep 09, 2024 at 08:22:59AM GMT, Tomi Valkeinen wrote:
+> > > > On 09/09/2024 08:08, Tomi Valkeinen wrote:
+> > > > > On 05/09/2024 14:11, Laurent Pinchart wrote:
+> > > > > > On Thu, Sep 05, 2024 at 06:50:48PM +0800, kernel test robot wrote:
+> > > > > > > Hi Tomi,
+> > > > > > >
+> > > > > > > kernel test robot noticed the following build warnings:
+> > > > > > >
+> > > > > > > [auto build test WARNING on 431c1646e1f86b949fa3685efc50b660a364c2b6]
+> > > > > > >
+> > > > > > > url:    https://github.com/intel-lab-lkp/linux/commits/Tomi-
+> > > > > > > Valkeinen/media-uapi-Add-meta-formats-for-PiSP-FE-config-and-
+> > > > > > > stats/20240904-192729
+> > > > > > > base:   431c1646e1f86b949fa3685efc50b660a364c2b6
+> > > > > > > patch link:    https://lore.kernel.org/r/20240904-rp1-cfe-v4-3-
+> > > > > > > f1b5b3d69c81%40ideasonboard.com
+> > > > > > > patch subject: [PATCH v4 3/4] media: raspberrypi: Add support
+> > > > > > > for RP1-CFE
+> > > > > > > config: m68k-allmodconfig (https://download.01.org/0day-ci/
+> > > > > > > archive/20240905/202409051822.ZzUGw3XQ-lkp@intel.com/config)
+> > > > > > > compiler: m68k-linux-gcc (GCC) 14.1.0
+> > > > > > > reproduce (this is a W=1 build):
+> > > > > > > (https://download.01.org/0day-ci/
+> > > > > > > archive/20240905/202409051822.ZzUGw3XQ-lkp@intel.com/reproduce)
+> > > > > > >
+> > > > > > > If you fix the issue in a separate patch/commit (i.e. not just a
+> > > > > > > new version of
+> > > > > > > the same patch/commit), kindly add following tags
+> > > > > > > | Reported-by: kernel test robot <lkp@intel.com>
+> > > > > > > | Closes: https://lore.kernel.org/oe-kbuild-
+> > > > > > > all/202409051822.ZzUGw3XQ-lkp@intel.com/
+> > > > > > >
+> > > > > > > All warnings (new ones prefixed by >>):
+> > > > > > >
+> > > > > > > > > drivers/media/platform/raspberrypi/rp1-cfe/cfe.c:2445:12:
+> > > > > > > > > warning: 'cfe_runtime_resume' defined but not used
+> > > > > > > > > [-Wunused-function]
+> > > > > > >       2445 | static int cfe_runtime_resume(struct device *dev)
+> > > > > > >            |            ^~~~~~~~~~~~~~~~~~
+> > > > > > > > > drivers/media/platform/raspberrypi/rp1-cfe/cfe.c:2435:12:
+> > > > > > > > > warning: 'cfe_runtime_suspend' defined but not used
+> > > > > > > > > [-Wunused-function]
+> > > > > > >       2435 | static int cfe_runtime_suspend(struct device *dev)
+> > > > > > >            |            ^~~~~~~~~~~~~~~~~~~
+> > > > > > > vim +/cfe_runtime_resume +2445
+> > > > > > > drivers/media/platform/raspberrypi/ rp1-cfe/cfe.c
+> > > > > >
+> > > > > > The recommended way to fix this is to switch from SET_RUNTIME_PM_OPS()
+> > > > > > to RUNTIME_PM_OPS() and use pm_ptr() to set .driver.pm. This being said,
+> > > > > > the driver won't work on a kernel with !CONFIG_PM given how you
+> > > > > > implemented probe() and remove().
+> > > > > >
+> > > > > > The pisp-be driver suffered from the same issue and Jacopo fixed it in
+> > > > > > the last version. You can have a look at implement something similar.
+> > > > >
+> > > > > I can't right away think of any reason to not just depend on CONFIG_PM
+> > > > > and be done with it without any tricks. Do you know if there's a reason?
+> > >
+> > > We had the same discussion, and even if I would be fine depending on
+> > > CONFIG_PM, supporting !CONFIG_PM is not that much work, I kept it as
+> > > an optional dependency (it was suggested during the review as well)
+> > >
+> > > >
+> > > > Also, I don't think pisp-be is correct. It just calls
+> > > > pispbe_runtime_resume() in probe() to wake the IP up (which only enables
+> > > > pisp clock), without telling the runtime PM about it. This means the parent
+> > > > device and the suppliers may not be powered up.
+> > >
+> > > Are you referring to the code currently in the tree or to this patch ?
+> > > https://patchwork.linuxtv.org/project/linux-media/patch/20240904095836.344833-5-jacopo.mondi@ideasonboard.com/
+> >
+> > Ah, I missed that one.
+> >
+> > I don't think it fixes the issue I mentioned. If we have PM enabled, and the
+> > parent device requires powering up for the child device (BE) to be
+> > accessible, the driver will crash when calling pispbe_hw_init(). I think you
+> > should call pm_runtime_set_active() before calling pispbe_runtime_resume().
+> 
+> As discussed, this is not a problem currently for BE, but indeed you
+> have a point.
+> 
+> Sad note: most of all the occurrences of "grep set_active" in
+> drivers/media/platform/ show that set_active() is used as I've done in
+> my patch
+> 
+> > However, you said above that "supporting !CONFIG_PM is not that much work".
+> > Maybe not. But how much work is it to get it right (for both PM and !PM),
+> > and make sure it stays right? =).
+> >
+> > Just my opinion, but if there are zero use cases for the !PM, I would just
+> > go with "depends on PM" to keep the driver simpler, less bug-prone, and
+> > easier to maintain.
 
-I don't think it would be an issue but conceptually it does not really make
-sense. Yeah, it should be fixed...
+I'm fine with that, and for platform drivers, that's my preferred
+option. Sakari ?
 
-- Nuno S=C3=A1
+> I don't see a use case for !PM and we confirmed with RPi they don't
+> need to support it. During the review of a previous version of the BE
+> driver iirc I've been asked to support !PM but I'm not sure I recall
+> the reasons.
+
+I hope it wasn't me :-)
+
+-- 
+Regards,
+
+Laurent Pinchart
 
