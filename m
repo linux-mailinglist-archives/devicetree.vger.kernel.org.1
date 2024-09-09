@@ -1,165 +1,107 @@
-Return-Path: <devicetree+bounces-101293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB7689713D7
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:34:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB929713EC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 11:36:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90E491F26F8A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:34:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45DD31F276AB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 09:36:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1506C1B4C2B;
-	Mon,  9 Sep 2024 09:32:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4230C1B29D9;
+	Mon,  9 Sep 2024 09:35:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="Bl3z97aA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XKUEkF6n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com [91.218.175.186])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E47731B373E
-	for <devicetree@vger.kernel.org>; Mon,  9 Sep 2024 09:31:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.186
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E4B1AE860;
+	Mon,  9 Sep 2024 09:35:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725874322; cv=none; b=vEIaj24juukt6VkzhjtdiYyi49lHaQAM9tvgu2Hb3xmh/BZD1vqcl6bl2trDhAiB2Ftb0T2u+4g2eyaZGkdXLlq45SgwBmMVpVlOEh2+qyVLXcjDmwHYBQWTAqmuW0UwF1vHsJBUM0QAHJepDHKucbALAIgLzGDVytIb72VugoQ=
+	t=1725874520; cv=none; b=sc47RMXTpGS+olgRH63FNmFcrGbZqYFDibghU9vmYmcLjdrMLrqpa3rUbmzmrISF4D3Qx5TBM2wWlr6VGgdNeOKz9OnkIipUXw4ngsTmNFIfiMV8e62IRvU6PoJBkFuiW4wdmsXJeTfrsqzj4X1Fa8dY50yygod38ha+485t4M4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725874322; c=relaxed/simple;
-	bh=TX9ynWFOVXbn4LADvzcfk2e4hhGa3dne2CMfcl/1a4w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iKoUH02dphmWzKPU5/NZ5SpcD1fsG7m8t/YH5uz5tGVx6r4/Yj6fNXi+BtStGY21NcumLUL6TwcXqfI2kBh5qEG6W5pDMWNUOeCtKBouSqiMRnTWaTFkiR1qjKaF5uefj9hWYJ/jbRfgoKLX7OnTxouulkV0nl/NHDFJ/79vxe4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=Bl3z97aA; arc=none smtp.client-ip=91.218.175.186
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <b8c5d719-5214-4e3a-84c5-b8767cd6ab7e@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1725874316;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1FfY+P7ZZq0qErrG/rtogTk8M5gxtrNoLyw/ceH66qw=;
-	b=Bl3z97aA9atJ3P5QPUdShqBtJgMZnc4lBHajMHa31vgnCtkrahWYepsyJRrALVTvajAGaH
-	mepTV60NXDC5wzoMXlMDehU6z/yLF07HTKSGQLMrrd/yh/ZFKGyYE29fmfnuY2Hy2CT9z1
-	b+yZtDtxDMLNKu5VGq9cbTZnsYxxOAs=
-Date: Mon, 9 Sep 2024 15:01:26 +0530
+	s=arc-20240116; t=1725874520; c=relaxed/simple;
+	bh=iIyFNvwIG1Fw7RLDG38tcwNwZ7jG3tyy1/sydkiK+WA=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=kWFyCmL81Z2lpHbZTt+L7eP4SXdW61KrftSvVXJCS0S7ZJZ2dEAy07yahapaMN9uguqNqmzPB7bB6w+jR9D8/OYrQog6TJ3Itcw7doXKiIMFjJshBXC/B7UAeWN2NjhPCqDOHFC/iVagNQaHRX0wnXrZ8aqyiyBTAK6hIunK2FM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XKUEkF6n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CD25C4CEC5;
+	Mon,  9 Sep 2024 09:35:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725874519;
+	bh=iIyFNvwIG1Fw7RLDG38tcwNwZ7jG3tyy1/sydkiK+WA=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=XKUEkF6n6kVkzicmCdmhKOwsRez695tp1Pa+jluYyL6jZMw4TKP8RVR/XimidPvPL
+	 2XBw4ZDmcM8nXwbF/3eG8cMzlLCB/QUO/Z8zDdUl1/G4ZvXQ9KhQY6HbM+xqS6o+Z9
+	 /MHFJjRVf3RS3HE62uUM29pssK8XBkWbz6pb5O6OinRH/trj5uprwEyG2dzk/QNxpa
+	 gSM0x+bgcbngaB+8H5J70Fi6WTD90Tij/7KOjHFE3168R7Rcde3vZQcrPiLoMYO4qn
+	 KBmX8S4zPavEjCjbRPTnCfOyoy39MC+VnQY0rcfPrfHIWSL6Krif89VetMzYSNlEm7
+	 MwUkjgO+29UHw==
+From: Kalle Valo <kvalo@kernel.org>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-wireless@vger.kernel.org,  Ajay Singh <ajay.kathat@microchip.com>,
+  "David S. Miller" <davem@davemloft.net>,  Adham Abozaeid
+ <adham.abozaeid@microchip.com>,  Alexis =?utf-8?Q?Lothor=C3=A9?=
+ <alexis.lothore@bootlin.com>,  Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+  Conor Dooley <conor+dt@kernel.org>,  Eric Dumazet <edumazet@google.com>,
+  Jakub Kicinski <kuba@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  Rob Herring
+ <robh@kernel.org>,  devicetree@vger.kernel.org,  netdev@vger.kernel.org
+Subject: Re: [PATCH v4 5/5] wifi: wilc1000: Add WILC3000 support
+References: <20240829004510.178016-1-marex@denx.de>
+	<20240829004510.178016-5-marex@denx.de>
+Date: Mon, 09 Sep 2024 12:35:14 +0300
+In-Reply-To: <20240829004510.178016-5-marex@denx.de> (Marek Vasut's message of
+	"Thu, 29 Aug 2024 02:45:03 +0200")
+Message-ID: <87ed5tgofh.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 0/4] drm/tidss: Add OLDI bridge support
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Francesco Dolcini <francesco@dolcini.it>, max.krummenacher@toradex.com
-Cc: Jyri Sarha <jyri.sarha@iki.fi>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- DRI Development List <dri-devel@lists.freedesktop.org>,
- Devicetree List <devicetree@vger.kernel.org>,
- Linux Kernel List <linux-kernel@vger.kernel.org>, Nishanth Menon
- <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
- Alexander Sverdlin <alexander.sverdlin@siemens.com>,
- Randolph Sapp <rs@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
- Jayesh Choudhary <j-choudhary@ti.com>, Jai Luthra <j-luthra@ti.com>
-References: <20240716084248.1393666-1-a-bhatia1@ti.com>
- <20240906114311.GA32916@francesco-nb>
- <c60d518b-ace4-48a8-87e5-35de13bc426a@ideasonboard.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Aradhya Bhatia <aradhya.bhatia@linux.dev>
-In-Reply-To: <c60d518b-ace4-48a8-87e5-35de13bc426a@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain
 
-Hi,
+Marek Vasut <marex@denx.de> writes:
 
-Thank you, Francesco and Max, for testing and reporting this!
+> From: Ajay Singh <ajay.kathat@microchip.com>
+>
+> Add support for the WILC3000 chip. The chip is similar to WILC1000,
+> except that the register layout is slightly different and it does
+> not support WPA3/SAE.
+>
+> Signed-off-by: Ajay Singh <ajay.kathat@microchip.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-On 09/09/24 13:45, Tomi Valkeinen wrote:
-> Hi,
-> 
-> On 06/09/2024 14:43, Francesco Dolcini wrote:
->> +Max
->>
->> Hello Aradhya,
->>
->> On Tue, Jul 16, 2024 at 02:12:44PM +0530, Aradhya Bhatia wrote:
->>> The addition of the 2nd OLDI TX (and a 2nd DSS in AM62Px) creates a need
->>> for some major changes for a full feature experience.
->>>
->>> 1. The OF graph needs to be updated to accurately show the data flow.
->>> 2. The tidss and OLDI drivers now need to support the dual-link and the
->>>     cloned single-link OLDI video signals.
->>> 3. The drivers also need to support the case where 2 OLDI TXes are
->>>     connected to 2 different VPs - thereby creating 2 independent
->>> streams
->>>     of single-link OLDI outputs.
->>
->> Have you considered/tested the use case in which only single link is
->> used?
->> You do not mention it here and to me this is a relevant use case.
->>
->> There is a workaround for this (use option 2, cloned, even if nothing is
->> connected to the second link), but this seems not correct.
+[...]
 
-I agree. The whole idea behind the series is to be able to accurately
-describe the hardware. Putting the devicetree in clone mode in order to
-get the single-link mode working is far from ideal.
+> --- a/drivers/net/wireless/microchip/wilc1000/cfg80211.c
+> +++ b/drivers/net/wireless/microchip/wilc1000/cfg80211.c
+> @@ -313,6 +313,13 @@ static int connect(struct wiphy *wiphy, struct net_device *dev,
+>  
+>  	vif->connecting = true;
+>  
+> +	if (sme->auth_type == NL80211_AUTHTYPE_SAE &&
+> +	    is_wilc3000(vif->wilc->chipid)) {
+> +		netdev_err(dev, "WILC3000: WPA3 not supported\n");
+> +		ret = -EOPNOTSUPP;
+> +		goto out_error;
+> +	}
 
->>
->> We (Max in Cc here) noticed that this specific use case is broken on
->> your downstream v6.6 TI branch.
+This looks wrong. If wilc3000 doesn't support SAE you shouldn't
+advertise NL80211_FEATURE_SAE to user space. I think the check for
+wilc3000 should be in wilc_create_wiphy():
 
-Yes, it was been brought to my attention that the single-link usecase is
-not working over the downstream ti-6.6 kernel. As I have since
-discovered, it's not working on this series either.
+if (!is_wilc3000(vif->wilc->chipid))
+	wiphy->features |= NL80211_FEATURE_SAE;
 
-For some reason, the supplier-consumer dependency between the OLDI and
-the panel devicetree nodes is not getting flagged as `FWLINK_FLAG_CYCLE`
-in cases of single-link configuration.
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-This flag allows the panel driver to continue to probe without waiting
-for the OLDI driver (panel's supplier). Absence of the flag getting set
-is causing these drivers to keep deferring probe in an endless cycle.
-
-Even with the flag, the OLDI (and tidss) cannot complete probe until the
-panel driver is probed and ready. That is because the OLDI (and tidss)
-need the panel to continue with the bridge-chain creation.
-
-However, over with the dual-lvds configuration (and as Francesco has
-now mentioned the clone configuration as well), the flag gets set by
-default, and everything works.
-
-This is what the debug has led to, so far.
-
-> 
-> What if you set "fw_devlink=off" kernel boot parameter?
-> 
-
-Yes! I haven't tested it, but it seems that this will bypass the
-supplier check and let the panel probe continue.
-
-
-Tomi, any idea, why is this issue happening only for single-link in the
-first place? It seems as if having 2 ports inside the panel devicetree
-lets the probe mechanism recognize the circular dependency and ignore
-the supplier OLDIs?
-
-This is the function where the difference comes down to, by the way -
-__fw_devlink_relax_cycles(), per my knowledge. I am still on my way to
-understand what exactly it is doing and why is it not relaxing the
-single-link case.
-
-
-Regards
-Aradhya
-
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
