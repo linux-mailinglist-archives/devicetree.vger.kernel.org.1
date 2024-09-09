@@ -1,173 +1,312 @@
-Return-Path: <devicetree+bounces-101406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B0809718FB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:11:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D123971923
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 14:18:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C363D1F22F56
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:11:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF05A2816D5
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2024 12:18:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DCB31B6535;
-	Mon,  9 Sep 2024 12:11:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60FEB1B78ED;
+	Mon,  9 Sep 2024 12:18:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="OCO4iSyF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 371A5172BCE;
-	Mon,  9 Sep 2024 12:11:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02E621B5EC7;
+	Mon,  9 Sep 2024 12:18:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725883881; cv=none; b=Y4hoYkYlEBcVXoiwXP+qNrs8i3a6r+k2OYN39EOq+aI8jzQ4P+oXK+9YCbfuM4f+yik7OKJknxDNwogmq4q9Jojv2fUVPNMqIWahVgsciKuX29nPIvxUAvff6BRRm8RZ9+DWlzBgAUBd9ui2qEyVBZPHcNTXviHTaDZJHrq18H8=
+	t=1725884316; cv=none; b=QFn6Zq/BCh4Gs6oxOBq3F3+507M5eOmUkh5EbLRav8RJ2RV9CHF4V8MNGPW37k3CuV9vHgGhZnF6CLACtt4KB/64AIx+Y3AiaBMfcnu3h4oZpsEWLaaIaa+6CmuLzS8szykaYDsD94OCZhq8ZHuFG9wUmxkofexhHvVbHH4CW8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725883881; c=relaxed/simple;
-	bh=39bHDieju2KDrK1NVgP6S2Lyn0IKtZ3wRK9Z+78eCR0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Jt+3stwVmgsUbJYMN1tFTE1frjmUeyc8/icVIRx38sbSi/e5SgUe6CJD2HVith6NkAvRModiLUDIAVO6eMVaCUroHELAdj79Xc3Oju3+CCX3u4l97BXHQQz3uTsxChb2gT7MEHdqPu3upjuIU2b4h2DLoFKRi1TwQrnqBxQ7TFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6b47ff8a59aso41071177b3.2;
-        Mon, 09 Sep 2024 05:11:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725883877; x=1726488677;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jcqCtl6E7A4OPOryoegwZKV2Sgx5JBQZ+r80cmVrDm8=;
-        b=QmQO2MwaqGQl4QsRSvyujyD401EJ6ohNMTZ3QzytKENK+zD+SK1xVVSfbmSmUmNImF
-         /4YccT+P75hhLNMmfEWWvwOQkz3eDQI82bGQqZHWUgmVSnvrvPy9Mh02mxOilUr8AroB
-         Oujuvxq6Afz6FoG9z6KEDaxnshpUl3Ul8z8yYJjHfuGostc5hFLwrwFNAxKlwTwsU6rp
-         3CPiz6IltiNTsGefFCmWn/C7AAi8D2EkR9gtKIht6u5iBGXbGchV7wXtTBY4ri0nQjPp
-         9mVwuz1u+w2mZrAy9snN+PvYuSn0kfsX0D0G3l6ypvCnI/NaVMoZs1i2BNm9SO4U4/MK
-         VgLA==
-X-Forwarded-Encrypted: i=1; AJvYcCUK/Znbi9GkSPXzXl0Qrpn3VmRmhxES4k/yf/0CswKJ9OybwTZ+81OVQqsJel7K3hkwnX1SF2wZ4levIMo4@vger.kernel.org, AJvYcCViwgLiolWg6S636ujbO4ahzCqGJpqk+ICROgyEgxkHjFuGA+OxE1wi+rTZWW0VhXm9LfnThXEgjtdW@vger.kernel.org, AJvYcCWzg0o022zlujWoyfgCegna9RJALm1kvA3gq/Ne90wUBMhgtUIWcBVe6ICUztFyziRJgdgp/vqaO8fA@vger.kernel.org, AJvYcCXC0bcWGCEOQQ+AXhum9IDlq+IUMVmWLyRlI3QAQ9JlCmu3LQ5NYPcMvDO36aBDcR/KIoNPYUU3E4ucsDqqnoSzFmQ=@vger.kernel.org, AJvYcCXmH8uYRiSM90qaStVnE7PQA2DJRhWGa6d1zZpCSrfnlW16L2iElTIFAxrrOS5KyKAfgFNhSk8CgQmW@vger.kernel.org
-X-Gm-Message-State: AOJu0YzueTovKQ4KIQc5ItMbnBB+NAInvrIc3wpwkRAF2H2T8N7f4xfS
-	R7mww10HS0bZClgP2kla17exA+3FzUIG0Dra5rQ+tRhC3pbCEpawWU2MSoDd
-X-Google-Smtp-Source: AGHT+IGDII4HeTicxTe5FjVMRM0+oi+fdq5O0AyQMHadyK9M/YQm7V1LD1w2OYDOnLADgv4fSM1BGw==
-X-Received: by 2002:a05:690c:b:b0:664:a85d:47c6 with SMTP id 00721157ae682-6db4516c241mr120039097b3.33.1725883876780;
-        Mon, 09 Sep 2024 05:11:16 -0700 (PDT)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6db5c6229c2sm8912217b3.54.2024.09.09.05.11.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Sep 2024 05:11:16 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-690aabe2600so37544547b3.0;
-        Mon, 09 Sep 2024 05:11:16 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU4WC20Txrnk5UsddshTjusolfUINmyqmegAFCwBBgDfUGFYTC6G+hR0ugxjoi3BvndqTW7FRLK0IpR@vger.kernel.org, AJvYcCU8DmxoRTg2TW11bRaxVxpFrFf01zdaYGkzKuRd8/bBX3pRZJjzSAC9dOPFkICNIUaV50Q/+VkQU1J5@vger.kernel.org, AJvYcCVi7aLnIVlHeaUThepCI9jbWZQPhNVkgXKFLXBjdnMUIalAntWONUwFF/FBHG35LBF/z1e04tKLKb+7Hz7wxKw2azY=@vger.kernel.org, AJvYcCWjKgwvnAUHtt1HAKqIe02n6gz7KIXg+LXj81XovDV/8iFsfJYoygTAx9j1iv3ENSQc0KUCp6wq02Uy@vger.kernel.org, AJvYcCXgzB9ac6wgbNEm141XpyhpDXrUl8hHKBJZmegGxHqcVswBsnKjH+LCU1dZNyNimZYOSNXYFo9xoQu2AJAo@vger.kernel.org
-X-Received: by 2002:a05:690c:64c7:b0:6b0:e813:753b with SMTP id
- 00721157ae682-6db45272fd9mr131856427b3.38.1725883875698; Mon, 09 Sep 2024
- 05:11:15 -0700 (PDT)
+	s=arc-20240116; t=1725884316; c=relaxed/simple;
+	bh=9lHlopNyUBYE5/RRriLjsiAwSzIU1+qthOZCQLrQenM=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uvnu+sEjuXl8lKHPAJCEoc/p2RAp8ewR0G9shxcLOYeWzW1QOxgMiPYMPbz0QcoEjFJ7zBsNOp/l4XCcdzOPsQ2kOmZ53vAbJRha25yReamiL/fWOGGsNmVn8bE191EVjLjFN45awUAzhIUU+xSVVuXsJDxJSHSeJ16dPuJEcDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=OCO4iSyF; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1725884314; x=1757420314;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9lHlopNyUBYE5/RRriLjsiAwSzIU1+qthOZCQLrQenM=;
+  b=OCO4iSyFpVg9inrYuogMDb0hBrR9somI4BtKH+yNKrw8cAdSRs2W/9e7
+   drBArAffJYU9HPpwm3Jk2JGiwU9Ww0VkHNrvMx0CcpxAj/bGVZcvjnbnC
+   6ih42CHmFzkcB06nzeEHOlYNk3C19m9TrQno2W8OENN6m1L3+7WBAkqWa
+   7MXOSVV79Q9PvPXa2Xn1tQrO3myplItZ/GApNBg+mpuntEjJsYR48WBTc
+   iin/SM67HtTo2HXY0rJxPqBOcs8kpUE4Hzx0pVBnI81TF+ZgNO9w0PcjD
+   OldhFD0A1pOajIGSycBZAJmjnvqbSEkob+PPrZM8o+hzjgeenko/EH+k8
+   A==;
+X-CSE-ConnectionGUID: g7KiyjGIR6GFWp74rkJR0A==
+X-CSE-MsgGUID: wdZkLXUTT62i3I3tX5YKGw==
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; 
+   d="asc'?scan'208";a="198947431"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 Sep 2024 05:18:32 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 9 Sep 2024 05:18:08 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Mon, 9 Sep 2024 05:18:05 -0700
+Date: Mon, 9 Sep 2024 13:17:33 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Angelo Dureghello <adureghello@baylibre.com>
+CC: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>, Conor Dooley
+	<conor@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+	<Michael.Hennerich@analog.com>, Nuno =?iso-8859-1?Q?S=E1?=
+	<nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <dlechner@baylibre.com>
+Subject: Re: [PATCH RFC 4/8] dt-bindings: iio: dac: add adi axi-dac bus
+ property
+Message-ID: <20240909-humiliate-gravel-adf4966538e0@wendy>
+References: <20240829-wip-bl-ad3552r-axi-v0-v1-0-b6da6015327a@baylibre.com>
+ <20240829-wip-bl-ad3552r-axi-v0-v1-4-b6da6015327a@baylibre.com>
+ <20240829-stopwatch-morality-a933abb4d688@spud>
+ <d4eddc24-9192-4a4a-ac67-4cfbd429a6a9@baylibre.com>
+ <20240830-quilt-appointee-4a7947e84988@spud>
+ <9015bc26-1a3a-49df-8728-12ceb8993035@baylibre.com>
+ <20240906-venomous-candle-8348b00640ca@squawk>
+ <5fd8374285d7dadd68777efabad753b981d29f40.camel@gmail.com>
+ <f60ea1cd-ac24-4640-86be-71d636c1818e@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com>
- <20240830130218.3377060-8-claudiu.beznea.uj@bp.renesas.com>
- <83fac884d749bda0cf0b346e4e869bc8.sboyd@kernel.org> <d8303146-89e0-4229-a3fe-9f3c42434045@tuxon.dev>
- <c744cf7a70a3f97722146215a7620cfb.sboyd@kernel.org> <CAMuHMdX40ROk2vZe9VHoiPDJCvtrjto+swkicv29LFyQ7zoVng@mail.gmail.com>
- <951b5c09c3ca2de3f0a28a078084f7dd.sboyd@kernel.org>
-In-Reply-To: <951b5c09c3ca2de3f0a28a078084f7dd.sboyd@kernel.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 9 Sep 2024 14:11:03 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWBT6AaH2_5qj+j4s8JeeO3qrhYUTCVG=s_J13nSzYPsQ@mail.gmail.com>
-Message-ID: <CAMuHMdWBT6AaH2_5qj+j4s8JeeO3qrhYUTCVG=s_J13nSzYPsQ@mail.gmail.com>
-Subject: Re: [PATCH v3 07/12] arm64: dts: renesas: r9a08g045: Add VBATTB node
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: alexandre.belloni@bootlin.com, claudiu beznea <claudiu.beznea@tuxon.dev>, 
-	conor+dt@kernel.org, krzk+dt@kernel.org, magnus.damm@gmail.com, 
-	mturquette@baylibre.com, p.zabel@pengutronix.de, robh@kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="WHCfdZomYcGBQi5w"
+Content-Disposition: inline
+In-Reply-To: <f60ea1cd-ac24-4640-86be-71d636c1818e@baylibre.com>
+
+--WHCfdZomYcGBQi5w
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Stephen,
-
-On Sat, Sep 7, 2024 at 1:01=E2=80=AFAM Stephen Boyd <sboyd@kernel.org> wrot=
-e:
-> Quoting Geert Uytterhoeven (2024-09-06 00:28:38)
-> > On Thu, Sep 5, 2024 at 8:09=E2=80=AFPM Stephen Boyd <sboyd@kernel.org> =
-wrote:
-> > > Quoting claudiu beznea (2024-09-04 05:17:30)
-> > > > On 03.09.2024 22:48, Stephen Boyd wrote:
-> > > > > The node name should be something like clock-<frequency> but if t=
+On Sat, Sep 07, 2024 at 10:53:07AM +0200, Angelo Dureghello wrote:
+>=20
+> On 06/09/24 1:32 PM, Nuno S=E1 wrote:
+> > On Fri, 2024-09-06 at 10:04 +0100, Conor Dooley wrote:
+> > > On Mon, Sep 02, 2024 at 11:32:37AM +0200, Angelo Dureghello wrote:
+> > > > Hi Conor,
+> > > >=20
+> > > >=20
+> > > > On 30/08/24 5:33 PM, Conor Dooley wrote:
+> > > > > On Fri, Aug 30, 2024 at 10:19:49AM +0200, Angelo Dureghello wrote:
+> > > > > > Hi Conor,
+> > > > > >=20
+> > > > > > On 29/08/24 5:46 PM, Conor Dooley wrote:
+> > > > > > > On Thu, Aug 29, 2024 at 02:32:02PM +0200, Angelo Dureghello w=
+rote:
+> > > > > > > > From: Angelo Dureghello <adureghello@baylibre.com>
+> > > > > > > >=20
+> > > > > > > > Add bus property.
+> > > > > > > RFC it may be, but you do need to explain what this bus-type =
+actually
+> > > > > > > describes for commenting on the suitability of the method to =
+be
+> > > > > > > meaningful.
+> > > > > > thanks for the feedbacks,
+> > > > > >=20
+> > > > > > a "bus" is intended as a generic interface connected to the tar=
+get,
+> > > > > > may be used from a custom IP (fpga) to communicate with the tar=
+get
+> > > > > > device (by read/write(reg and value)) using a special custom in=
+terface.
+> > > > > >=20
+> > > > > > The bus could also be physically the same of some well-known ex=
+isting
+> > > > > > interfaces (as parallel, lvds or other uncommon interfaces), bu=
+t using
+> > > > > > an uncommon/custom protocol over it.
+> > > > > >=20
+> > > > > > In concrete, actually bus-type is added to the backend since the
+> > > > > > ad3552r DAC chip can be connected (for maximum speed) by a 5 la=
+nes DDR
+> > > > > > parallel bus (interface that i named QSPI, but it's not exactly=
+ a QSPI
+> > > > > > as a protocol), so it's a device-specific interface.
+> > > > > >=20
+> > > > > > With additions in this patchset, other frontends, of course not=
+ only
+> > > > > > DACs, will be able to add specific busses and read/wrtie to the=
+ bus
+> > > > > > as needed.
+> > > > > >=20
+> > > > > > > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> > > > > > > > ---
+> > > > > > > >  =A0=A0 Documentation/devicetree/bindings/iio/dac/adi,axi-d=
+ac.yaml | 9
+> > > > > > > > +++++++++
+> > > > > > > >  =A0=A0 1 file changed, 9 insertions(+)
+> > > > > > > >=20
+> > > > > > > > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,=
+axi-dac.yaml
+> > > > > > > > b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
+> > > > > > > > index a55e9bfc66d7..a7ce72e1cd81 100644
+> > > > > > > > --- a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac=
+=2Eyaml
+> > > > > > > > +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac=
+=2Eyaml
+> > > > > > > > @@ -38,6 +38,15 @@ properties:
+> > > > > > > >  =A0=A0=A0=A0 clocks:
+> > > > > > > >  =A0=A0=A0=A0=A0=A0 maxItems: 1
+> > > > > > > You mentioned about new compatible strings, does the one curr=
+ently
+> > > > > > > listed in this binding support both bus types?
+> > > > > You didn't answer this, and there's insufficient explanation of t=
 he
-> > > > > frequency is different per-board then I don't know what should ha=
-ppen
-> > > > > here.
-> > > >
-> > > > The frequency should be always around 32768 Hz but not necessarily =
-exactly
-> > > > 32768 Hz. It depends on what is installed on the board, indeed. RTC=
- can do
-> > > > time error adjustments based on the variations around 32768 Hz.
-> > > >
-> > > > > Can you leave the vbattb_xtal phandle up above and then require
-> > > > > the node to be defined in the board with the proper frequency aft=
-er the
-> > > > > dash?
-> > > >
-> > > > Is it OK for you something like this (applied on top of this series=
-)?
-> > >
-> > > Yes, it's too bad we can't append to a property in DT, or somehow lea=
-ve
-> > > alone certain cells and only modify one of them.
-> >
-> > My main objections are that (1) this approach is different than the one=
- used
-> > for all other external clock inputs on Renesas SoCs, and (2) this requi=
-res
-> > duplicating part of the clocks property in all board DTS files.
->
-> Can 'clock-ranges' be used here? Leave the cell as null in the SoC dtsi
-> file and then fill it in with clocks property at the parent node. I
-> think you'd have to use clock-names for this though.
+> > > > > "hardware" in this RFC, but I found this which is supposedly the
+> > > > > backend:
+> > > > > https://github.com/analogdevicesinc/hdl/tree/main/library/axi_ad3=
+552r
+> > > > > adi,axi-dac.yaml has a single compatible, and that compatible has
+> > > > > nothing to do with "axi_ad3552r" as it is "adi,axi-dac-9.1.b". I =
+would
+> > > > > expect either justification for reuse of the compatible, or a bra=
+nd new
+> > > > > compatible for this backend, even if the driver can mostly be reu=
+sed.
+> > > > >=20
+> > > > > Could you please link to whatever ADI wiki has detailed informati=
+on on
+> > > > > how this stuff works so that I can look at it to better understan=
+d the
+> > > > > axes of configuration here?
+> > > > https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.ht=
+ml
+> > > >=20
+> > > > that has same structure and register set of the generic ADI AXI-DAC=
+ IP:
+> > > > https://wiki.analog.com/resources/fpga/docs/axi_dac_ip
+> > > >=20
+> > > >=20
+> > > > > > > Making the bus type decision based on compatible only really =
+makes sense
+> > > > > > > if they're different versions of the IP, but not if they're d=
+ifferent
+> > > > > > > configuration options for a given version.
+> > > > > > >=20
+> > > > > > > > +=A0 bus-type:
+> > > > > > DAC IP on fpga actually respects same structure and register se=
+t, except
+> > > > > > for a named "custom" register that may use specific bitfields d=
+epending
+> > > > > > on the application of the IP.
+> > > > > To paraphrase:
+> > > > > "The register map is the same, except for the bit that is differe=
+nt".
+> > > > > If ADI is shipping several different configurations of this IP for
+> > > > > different DACs, I'd be expecting different compatibles for each b=
+ackend
+> > > > > to be honest
+> > > > i am still quite new to this fpga-based implementations, at least f=
+or how
+> > > > such IPs are actually interfacing to the linux subsystem, so i may =
+miss
+> > > > some point.
+> > > >=20
+> > > > About the "adi,axi-dac-9.1.b" compatible, the generic DAC IP regist=
+er set
+> > > > is mostly the same structure of this ad3552r IP (links above), exce=
+pt for
+> > > > bitfields in the=A0DAC_CUSTOM_CTRL register.
+> > > >=20
+> > > > My choice for now was to add a bus-type property.
+> > > >=20
+> > > > Not an HDL expert, but i think a different bus means, from an hardw=
+are point
+> > > > of
+> > > > view, a different IP in terms of internal fpga circuitry, even if n=
+ot as a
+> > > > register-set.
+> > >=20
+> > > Depending on whether or not the unmodified driver can be used with th=
+is
+> > > IP (so the QSPI bus stuff would need to be optional) then a fallback
+> > > should be used given the degree of similarity. It, however, seems lik=
+ely
+> > > that is not the case, and without the QSPI bus there'd be no way to
+> > > communicate with the device. Is there any reason to use this IP as a
+> > > backend, without connecting the QSPI bus at all, leaving the ADC/DAC =
+on
+> > > a regular SPI bus?
+> > >=20
+> > Somewhere in my replies, I'm doing the exact same question to myself. W=
+e probably
+> > need to speak with the FPGA folks but I guess (hope) they had a good re=
+ason for this.
+>=20
+> to clarify a bit the custom (fpga-based) QSPI need, i did some checks in =
+the
+> datasheets:
+>=20
+> 1. ADI is actually supporting ad3552r by eval-ad3552r-fmcx eval boards,
+> with specific fmc connector for the ZedBoard (zynq7000). This is the
+> current focused hardware for this job.
 
-"clock-ranges" does not seem to be well-documented...
+"currently focused" being the key words! Since it is FPGA IP, you've got
+no control over where it is being used, so the particular use case you're
+developing for is not really that important.
 
-IUIC, your suggestion is to:
-  1. Add "clock-ranges" to the /soc subnode,
-  2. Completely leave out the "rtx" clock from the clocks property
-     of the vbattb@1005c000 node,
-  3. Add the following to the board DTS:
+> 2. Zynq7000 std non-fpga controller is designed to control flash memories,
+> but can operate in "raw I/O" mode, so it may work with ad3552r, but is not
+> supporting DDR, even if it may reach 100Mhz clock.
+>=20
+> 3. ad3552r accepts a maximum clock of 66Mhz. So for ZedBoard maximum speed
+> of 33MUPS cannot be reached without DDR.
+>=20
+> 4. ad3552r requires DDR only in the data part, and in DDR mode we
+> may also send some "non-loop" reg read/write, so requiring also the
+> address to be sent in SDR. Not sure how many QSPI controllers in the mark=
+et
+> are
+> working this way, even if it seems quite standard, looks like not many are
+> actually
+> supporting DDR. There may be, but not actually in the priority of my
+> customer
+> right now. And in that case, we could extend the generic spi ad3552r.c.
 
-        &soc {
-                clocks =3D <&vbattb_xtal>;
-                clock-names =3D "rtx";
-        };
+I think you need to ignore your use case here, and just consider whether or
+not this IP can be used as a backend without the QSPI feature. That's
+probably an easier thing to determine than whether or not there's another
+controller out there that can satisfy the constraints. The docs say it
+"interfaces", but that's such a generic word that it ultimately means
+close to nothing.. There's the sync ability, but from my reading of the
+github.io page, it doesn't do anything when the axi-dac is not actually
+in the data path.
 
-Then, when resolving "rtx" for the vbattb@1005c000 node,
-of_parse_clkspec() would iterate up and find the proper vbattb_xtal.
-Is that correct? And probably that should be done for other external
-clock inputs as well?
+Cheers,
+Conor.
 
-Still, it looks a bit complicated and un-intuitive. And what about
-e.g. carrier boards with a SoM, where some clocks are provided by
-the SoM, and some by the carrier? In that case you still have to
-override the clock and clock-names properties in the carrier .dts,
-thus duplicating all clocks provided by the SoM.
 
-So I prefer the original approach, like is done for all other external
-SoC clock inputs on Renesas SoCs.
+--WHCfdZomYcGBQi5w
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Gr{oetje,eeting}s,
+-----BEGIN PGP SIGNATURE-----
 
-                        Geert
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZt7nXQAKCRB4tDGHoIJi
+0rZ3AP9KgkjSVLU4/Cy0wspT2P3QWzIeygrFTMcuCVz/UBOrVgEAjyhnxFBtOZUZ
+l9a17ScSFRjsbstzNtgZ7l7OH3BrWw8=
+=08y7
+-----END PGP SIGNATURE-----
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+--WHCfdZomYcGBQi5w--
 
