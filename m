@@ -1,115 +1,126 @@
-Return-Path: <devicetree+bounces-101688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AEAD973227
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 12:19:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0243D973298
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 12:24:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E4631C2093A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:19:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC7BA1F25EFF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:24:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7C161990D7;
-	Tue, 10 Sep 2024 10:14:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83102196DA4;
+	Tue, 10 Sep 2024 10:18:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZuEm+DEL"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="fTy9BUaF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40BD18C03E;
-	Tue, 10 Sep 2024 10:14:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1C16172BAE;
+	Tue, 10 Sep 2024 10:18:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725963260; cv=none; b=CaJpPkWVNoDlSVKvlOVZU5hUzZdrfv28vlaZhhrwoFvMKW4ppJhNvFhxnTdr4YJCgoAGgSRNfy1M/qaRCoDL9s+RQxkE40QbgTWeFa5fkRPfv6tcjeeVBJl0+3ZjAuS8xkiq7Ik45boQjY+wBhElUqlAnp56jHzUkc7n6Vhjiak=
+	t=1725963537; cv=none; b=ip6pFy4OIFH4ftH59ohWC9KynOPvavRprPyWW4DzxwqS04UNZmVz2POgH1HvTXzliB1LTcSWtWasQKfBQEiA7M4oSVPEhH8r3YF/q2lwH8LXhr/wHwKJ8ifo9djSaX7SGJqERQJ1TyOaYYiB047aQN2t0BZAQRreigwQm5wnn3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725963260; c=relaxed/simple;
-	bh=a/hFCgDZqsbnUBYLjL3wvxEJ7t4hBd6dwDs0Oy9yB58=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=X9JCT/9wwtSW8sCic8utRIELrwftN7mPqIPuMXHHNtoKF6QR46el5kBZ0mcHlhs0CZkjmvO1wdgcSdChdJpdapOwnumv2ImMTRpMLHVwtGoQuHjW+kXHf2OjzFhiDy+19NqjqS0Dx/Ult1FXL9RkVSgvtexrfJVNoDNe6FprakA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZuEm+DEL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 8AA0AC4CED1;
-	Tue, 10 Sep 2024 10:14:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725963260;
-	bh=a/hFCgDZqsbnUBYLjL3wvxEJ7t4hBd6dwDs0Oy9yB58=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ZuEm+DELevIWXJ2Zf8m1LccFIPt8g/KDhqEfbaH+OzEr6bqRgsCuTapJhl/oByGpc
-	 QU3QpNcszCVdA0nND8qzfEFYmIMdsL9rbuKNMN0+KmdDJRDTE7En6rVLknMTvmTCEi
-	 Sa7Ef093fWr6xS2hNCaEwmLLu0TSna1E52tSr2oTSNkTIUSLytYtXdMvvuib2Ut7z/
-	 IcOCP1cMqdPqkWVycnExTdgDG/4XXRxOeLKJGiW/4bXza7lhIb6HUf5m5jlJDtqKHn
-	 DAnNz1MVrmeNuPj4PV+3glV/FOl4kHHmh7pXzzc6YQnnMxiEJ4Bp5BcybB9MCDKy4t
-	 iuKHKdJniLeOQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 840F5ECE564;
-	Tue, 10 Sep 2024 10:14:20 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Tue, 10 Sep 2024 18:14:20 +0800
-Subject: [PATCH v3 3/3] MAINTAINERS: Add an entry for Amlogic RTC driver
+	s=arc-20240116; t=1725963537; c=relaxed/simple;
+	bh=aJ1k/F8YDt/bGKW3O/jYwKwGwBrRW2D3DV2RXryYuFg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hfCTtxqvITqxi2BjwBT5xery2PxlwMReEHXrMauUdpHqMuV/hPayszfPnPfzilTYUGn2ryOx7T0YpplFVJq9Fe0EUjYJgYHkj78HwUK0WM3HTlBTXfEucs5GkmuZ40TOvPPMpVTbAWtMBo2iwwby5Cd4FxqsnUb5/ud+wn5qWGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=fTy9BUaF; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (213-229-8-243.static.upcbusiness.at [213.229.8.243])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BEC5263F;
+	Tue, 10 Sep 2024 12:17:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1725963456;
+	bh=aJ1k/F8YDt/bGKW3O/jYwKwGwBrRW2D3DV2RXryYuFg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fTy9BUaF30nyMnIDVlpDx2jbZPXG9aHaa0rcf3zxv7qMOIfDaSJMp8PIW6c5/GtZr
+	 qkVU06IS6fBuR+6Zy8AfG65q3V2tVn3tBYFuCuFnG6eCansEqaf64lp6I3ek8cGGNj
+	 EE8F6HTURmeZsidqHKg6H9TjwitrVA+HRIdWEMqI=
+Date: Tue, 10 Sep 2024 12:18:50 +0200
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, Naushir Patuck <naush@raspberrypi.com>, 
+	Kieran Bingham <kieran.bingham@ideasonboard.com>, kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH v4 3/4] media: raspberrypi: Add support for RP1-CFE
+Message-ID: <csfjh3rdhdieemasmfjmvuy4uaypvbct7y7vm2zogdgmglsc56@u7yzkyrbuthz>
+References: <20240905111120.GK16183@pendragon.ideasonboard.com>
+ <40cc1e95-b9fc-4c27-9428-1698d0bf9d25@ideasonboard.com>
+ <763b3147-d7cb-44a7-b73b-8f7f4fd622ab@ideasonboard.com>
+ <yib2r4wisxvk3kgogbjqawrpmfq6lcezfk4xjmftj44jzkbclc@icapodv2ffzk>
+ <d5188c0a-4a52-4378-89b1-48f606e448cc@ideasonboard.com>
+ <ggtlreq5gyhzfdv6yzeuia46y7fxpuyvg236prig52t43xsl2a@crlqks2nhfpe>
+ <20240909134516.GA9448@pendragon.ideasonboard.com>
+ <Zt8ZysTT5DIZr-J7@kekkonen.localdomain>
+ <jdtjdspf4qyrgn6jmyxeab5ueo53wjd5vuhvlpin3pdiyifwht@dndfcqnmv7sd>
+ <49e375a3-d8e4-4b58-9456-1e6395b02a07@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240910-rtc-v3-3-1fa077a69a20@amlogic.com>
-References: <20240910-rtc-v3-0-1fa077a69a20@amlogic.com>
-In-Reply-To: <20240910-rtc-v3-0-1fa077a69a20@amlogic.com>
-To: Yiting Deng <yiting.deng@amlogic.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1725963258; l=931;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=dltl4Bg5cOWUNAG/8WRhVbXcztZ3rrpVcPR+gcSx/Bg=;
- b=MoifP6YCT9C3dZb9ivv6Aih+92TQ3cZzveLbNoTe8lEriWxZ2A1dOQh8bQFEFlFlAj5pPFVwV
- JabA+WhbHG8AZ2PTY6eI1RzEQcve+obFcYNY4nCd+s5gR5USV5Tdxpy
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <49e375a3-d8e4-4b58-9456-1e6395b02a07@ideasonboard.com>
 
-From: Yiting Deng <yiting.deng@amlogic.com>
+Hi Tomi
 
-Add Amlogic RTC entry to MAINTAINERS to clarify the maintainers.
+On Tue, Sep 10, 2024 at 12:56:38PM GMT, Tomi Valkeinen wrote:
+> On 10/09/2024 12:19, Jacopo Mondi wrote:
+>
+> > However, I think this current patch is correct (assuming the above
+> > reasoning on i2c sensor drivers is correct) and doesn't require
+> > CONFIG_PM, so I would be tempted to keep this version.
+>
+> I think the existence of this discussion alone proves my point that we
+> should only support PM-case, unless !PM is a requirement =).
+>
+> But if you do want to keep !PM:
+>
+> Is there a reason why not mark the device as active with
+> pm_runtime_set_active() after calling pispbe_runtime_resume and before
 
-Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+cargo-cult ?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 42decde38320..f595715eb3e3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1163,6 +1163,14 @@ F:	Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
- F:	drivers/perf/amlogic/
- F:	include/soc/amlogic/
- 
-+AMLOGIC RTC DRIVER
-+M:	Yiting Deng <yiting.deng@amlogic.com>
-+M:	Xianwei Zhao <xianwei.zhao@amlogic.com>
-+L:	linux-amlogic@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/rtc/amlogic,a4-rtc.yaml
-+F:	drivers/rtc/rtc-amlogic-a4.c
-+
- AMPHENOL CHIPCAP 2 HUMIDITY-TEMPERATURE IIO DRIVER
- M:	Javier Carrasco <javier.carrasco.cruz@gmail.com>
- L:	linux-hwmon@vger.kernel.org
+> accessing the device? That feels like the most logical way to use the
+> function, and it would be right regardless whether the core will enable the
+> parents before probe() or not.
 
--- 
-2.37.1
+Possibly more accurate, but there's no guarantee it's correct. The
+peripheral might have requirements on the clock or power rails
+enablement order and some might be managed by the parent. I know we're
+talking hypothesis but my point is that there's not correctness
+guarantee we can enforce unless the parent is powered up when the
+device probes ?
+
+Anyway, I'll defer the call to the group: either keep the patch as it
+is right now on the list, or go full runtime_pm. I understand there is
+no reason to care about !CONFIG_PM but somehow I feel "bad" in listing
+it as a dependency if the peripheral can actually work without it.
+Maybe I should just ignore that feeling ?
 
 
+>
+> And not related to the BE or CFE drivers, but it strikes me odd that to
+> support PM and !PM we need to play with these tricks. I think the core
+> should just do the right thing if the driver does pm_runtime_get_sync() even
+> with !PM (although maybe the time has passed to be able to do that).
+
+I wish that was the case.
+
+>
+>  Tomi
+>
 
