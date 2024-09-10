@@ -1,67 +1,64 @@
-Return-Path: <devicetree+bounces-101779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBDFB973CFF
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 18:09:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12609973D08
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 18:13:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4880BB21798
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 16:08:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56CD1B21790
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 16:13:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 684EF19F480;
-	Tue, 10 Sep 2024 16:08:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7AA11A00C5;
+	Tue, 10 Sep 2024 16:13:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aak9+NUd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MgyNizoF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A03C2AEF1;
-	Tue, 10 Sep 2024 16:08:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ECA92AEF1;
+	Tue, 10 Sep 2024 16:13:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725984534; cv=none; b=CKiX1aywBRsDvdPnAEnaMZ0LT3oELAjkDRM0z17MO7tAZeqnrKXkgrEzQvUw4Us0alL3EnrFlEposCB9R9jtcZzZEISIwbq8YyGJCwxLv0UI54dmsZV1V//iebFv/C3RHTvIecwy+nJUq7Bg2KJTTX/XkpQ8BxRjoUsdIuogbFU=
+	t=1725984828; cv=none; b=KPZ/VzCy3lI5Z6LAlKGasqEcdYeEK0dBO+pntTJDWV3HUa3kf1QEDJ3aoCA1BDo9Wy77gF3NpmfNwW2wjx+Cu0I+xui5RXh6BIJGBOgY5rDiyPJ/+pJfCwPD8jLgadE7no9UjCVWBK3b3s+H0KRiJwVVVFXLxW4pl2+jx3ShuCg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725984534; c=relaxed/simple;
-	bh=Izu951Sl9t2/R5OLHami79GgbINGuYVw9e04vhzirIw=;
+	s=arc-20240116; t=1725984828; c=relaxed/simple;
+	bh=dOdR3AQgsVyZSdcajtpHjcfvmfwJd54PfZ0HuKjzNEc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=piUSUT+wXj01yqui+xfrOjMv3umSkbs1o+O3rCADtaX8YwMyLX14FSzycdjhKilQjYjQyWljHfKubptjxTwhgKJLHss4DkYGRXgup0dmQHYvOtIUEuA+e+tZw3c2FcGSmSYRaMNzU0SGIwjPzrMmpYRi2lLCHXmZEHgIqVHQnbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aak9+NUd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59CF6C4CEC3;
-	Tue, 10 Sep 2024 16:08:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=p8UCQcGPTbL0yH3uf8sVKD3+fek0xvJqOwbSleZZNrncvcryiXIw7YIab6MA4HPvUYwZPdhMYQ4NZpqjoPhjd1EvHyiWyvVHqBJEspY8DirHz2Jt14Q3szgW21qtzHgSqnqqCEZn1O+8Zhwf3tCEVzuCA8xDQW0xIE6OK07JhG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MgyNizoF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97733C4CEC3;
+	Tue, 10 Sep 2024 16:13:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725984533;
-	bh=Izu951Sl9t2/R5OLHami79GgbINGuYVw9e04vhzirIw=;
+	s=k20201202; t=1725984828;
+	bh=dOdR3AQgsVyZSdcajtpHjcfvmfwJd54PfZ0HuKjzNEc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aak9+NUdwOtEelTeAYRYCgqaTI7v898hkuQZ14wneZHbota+fjdl0Z9+E3C1rl2yo
-	 bUviukvri0YZDUzG6ATWCuXLkjGJz9kwFROCzrtU8VNmg5lV5B1f4KDi9IWHIT72TM
-	 s9rQeg9gNAPDN3p16PaEk/W4nemi5/8lERDzLOH9ZzBUuymcTfBplkMvRQIu+uqUF/
-	 mqYycX3ieZpJEyZhfA8ma3xqgrTWRJvj3ZM4o94WHnW21x1MFSYUudlvffO0QZqfEW
-	 ZYiH+Z2WC7dpetwy7ze4pqxBZd5RA3RbBuiT4gC3njhM7kF7VPEB5yG6gyS5CwUekm
-	 kanee57Fk/nwQ==
-Date: Tue, 10 Sep 2024 17:08:48 +0100
+	b=MgyNizoF746o+zqMHs8s646fq8ley9zuXy4EFkWifAD6Cu/lxJbPvvvMPVfJa0/Sa
+	 sTfoEzWXD3D6LH2ClrjDxj4aqvBCe+B+ScS9oIZMj9CPzhkJKmfpj3krvvu8rmbzLu
+	 XWj65OOi7IYzjuz/a2An/EHqGn0qrFaXXVBSajydHd5M2eM5ccindUsfPBUyNinuAp
+	 avgjOH11E5EkKDG0g7vVscCzp+900SR5nfyMK2f4MAryGjeXrrbkNlzLcRoudJRwud
+	 c3bjVEFLmTc6onkATCF/hUEIXOZOA7/ce/Y88AIh3KPJIfkeHFRlsfmONv8he1Z8fM
+	 QCiGe40jd0fpA==
+Date: Tue, 10 Sep 2024 17:13:43 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
-Cc: George Stark <gnstark@salutedevices.com>, Rob Herring <robh@kernel.org>,
-	conor+dt@kernel.org, krzk+dt@kernel.org, neil.armstrong@linaro.org,
-	khilman@baylibre.com, jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com, hkallweit1@gmail.com,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	kernel@salutedevices.com,
-	Dmitry Rokosov <ddrokosov@salutedevices.com>
-Subject: Re: [PATCH v4 2/3] dt-bindings: pwm: amlogic: Add new bindings for
- meson A1 PWM
-Message-ID: <20240910-kerchief-custody-a0741f9a256c@spud>
-References: <20240710234116.2370655-1-gnstark@salutedevices.com>
- <20240710234116.2370655-3-gnstark@salutedevices.com>
- <20240712125219.GA472311-robh@kernel.org>
- <55f73e79-2d21-48ba-8486-26ee168c7bc3@salutedevices.com>
- <20240725-excursion-waving-0e0ad54006d4@spud>
- <ak53ha3kltm24s45n5pczvibtltzocg33inpnro4bjeolu25re@33lae7y7qzvw>
+To: Inochi Amaoto <inochiama@outlook.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Haylen Chu <heylenay@outlook.com>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 0/2] riscv: sophgo: Add pinctrl support for CV1800
+ series SoC
+Message-ID: <20240910-bust-mulled-e45f6f6ef29d@spud>
+References: <IA1PR20MB495374DB8C4208575AAC9675BB972@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <20240909-prowler-renewal-0592d820ccca@spud>
+ <IA1PR20MB4953A0D6A2B73D03BF162671BB992@IA1PR20MB4953.namprd20.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,58 +66,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="GfjYjimy2LOyoHtK"
+	protocol="application/pgp-signature"; boundary="5rQtVXXUCRQ43X6+"
 Content-Disposition: inline
-In-Reply-To: <ak53ha3kltm24s45n5pczvibtltzocg33inpnro4bjeolu25re@33lae7y7qzvw>
+In-Reply-To: <IA1PR20MB4953A0D6A2B73D03BF162671BB992@IA1PR20MB4953.namprd20.prod.outlook.com>
 
 
---GfjYjimy2LOyoHtK
-Content-Type: text/plain; charset=iso-8859-1
+--5rQtVXXUCRQ43X6+
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 10, 2024 at 10:01:39AM +0200, Uwe Kleine-K=F6nig wrote:
-> On Thu, Jul 25, 2024 at 03:08:53PM +0100, Conor Dooley wrote:
-> > On Fri, Jul 12, 2024 at 06:12:26PM +0300, George Stark wrote:
-> > > Hello Rob, Conor
+On Tue, Sep 10, 2024 at 06:24:34AM +0800, Inochi Amaoto wrote:
+> On Mon, Sep 09, 2024 at 03:41:10PM GMT, Conor Dooley wrote:
+> > On Sat, Aug 31, 2024 at 06:38:40AM +0800, Inochi Amaoto wrote:
+> > > Add basic pinctrl driver for Sophgo CV1800 series SoCs.
+> > > This patch series aims to replace the previous patch from Jisheng [1].
+> > > Since the pinctrl of cv1800 has nested mux and its pin definination
+> > > is discrete, it is not suitable to use "pinctrl-single" to cover the
+> > > pinctrl device.
 > > >=20
-> > > On 7/12/24 15:52, Rob Herring wrote:
-> > > > On Thu, Jul 11, 2024 at 02:41:15AM +0300, George Stark wrote:
-> > > > > The chip has 3 dual-channel PWM modules PWM_AB, PWM_CD, PWM_EF.
-> > > > >=20
-> > > > > Signed-off-by: George Stark <gnstark@salutedevices.com>
-> > > > > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> > > >=20
-> > > > Missing ack from Conor. When you submit new versions, it is your
-> > > > responsibility to add tags.
+> > > This patch require another patch [2] that provides standard attribute
+> > > "input-schmitt-microvolt"
 > > >=20
-> > > I had Conor's ack in my mind but his response was related to the
-> > > squashed patch (a1 compatible + power domains) and the current patch =
-was
-> > > a bit different that's why I didn't dare to add the ack.
-> > >=20
-> > > Conor, do you mind if I resend this patch (and may be [PATCH v4 1/3])
-> > > with your ack?
+> > > The v4 version is from [3]
 > >=20
-> > Ye, both are fine :+1:
+> > Which version of this ended up in linux-next? I see a link to v4 in
+> > what's been applied, but this v5 was sent before that code was
+> > committed.
+> >=20
+> > Either way, what's been applied and what's here produce warnings:
+> > cv1812h.dtsi:19.28-24.5: Warning (simple_bus_reg): /soc/pinctrl@3008000=
+: simple-bus unit address format error, expected "3001000"
+> > cv1800b.dtsi:18.28-23.5: Warning (simple_bus_reg): /soc/pinctrl@3008000=
+: simple-bus unit address format error, expected "3001000"
+> >=20
+> > It's just a copy-paste error I would imagine, but please send a fix.
 >=20
-> I interpreted that as an ack for patches 1 and 2 and applied these to
-> https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/fo=
-r-next
-> . I guess that interpretation is fine, please tell me if not.
+> Yes, it is like some copy-paste error, I will fix it.
 
-Yah, I was okaying my ack being added to both patches in a resend.
+I'd rather you had sent some follow-up patches, than rebase your tree at
+this point in the cycle. I assume you hadn't yet sent that stuff in a PR
+to Arnd?
 
---GfjYjimy2LOyoHtK
+Cheers,
+Conor.
+
+--5rQtVXXUCRQ43X6+
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuBvDQAKCRB4tDGHoIJi
-0hgwAP9JpE/xlF+q9oXUlWavKoI1Z11cHC528mE+fTzlDB/QGgEA3kEAQDDGtmlX
-1TMFRdnlnCWQIn11dhQluJFv6qn3nQ4=
-=v7N1
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuBwNwAKCRB4tDGHoIJi
+0t5rAP4upEEdJUW2Gc+Vage29OZ9yngrJUbqENkbK/Ej9TAbRQD+OLDBe2aZ8tIR
+uI1kXbmhKJKXdKpQEDrMWeaxtnPUNA0=
+=+P8k
 -----END PGP SIGNATURE-----
 
---GfjYjimy2LOyoHtK--
+--5rQtVXXUCRQ43X6+--
 
