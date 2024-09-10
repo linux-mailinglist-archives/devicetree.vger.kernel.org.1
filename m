@@ -1,203 +1,127 @@
-Return-Path: <devicetree+bounces-101679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5F15973166
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 12:11:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A94197318F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 12:12:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 832EE289CC9
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:11:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 500821F2862B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:12:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DED30190047;
-	Tue, 10 Sep 2024 10:06:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8BAE1957F9;
+	Tue, 10 Sep 2024 10:08:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="t6MrLWea"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="pRJ/yPSw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37D7418C331;
-	Tue, 10 Sep 2024 10:06:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4959719004B;
+	Tue, 10 Sep 2024 10:08:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725962805; cv=none; b=X0uM0lSXplO28ViVk7DUyR5SpV7vIJtRnvzBCrXq2AUfCdZEg1628qoNW66G9peBDNsLaLwMvmfn0KLtjykxS9A7VDK3Cnm7SRQZvEMlugqqGWRI3YLTa6WCRUeyYN2XBy6MWcGry7pNim0Zdx7WjKyb4M08zW9NqJdspWoIPKk=
+	t=1725962915; cv=none; b=MP5CgEtbr0hP9e3yuQbrpFIVoc2bE1HP+Xt0AJKm/4u0VNSmtNL5lNfNpZWXpLyUudkH2ypbSes9m4Bj5m5POlzSoFrLbNuOYLgUu/GZQDutfU9THsbeP4S2+s+/nFWJq0yE3WhJz1Ayy0+nshWu9dOpTukO6Oabkg+SbEuw+8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725962805; c=relaxed/simple;
-	bh=qRP4ALNKD5dj2TC3hY3hzYkODtfa0xHzrUb9GlW6tMw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=maKKGvb0V8vkhFvzkGkD3OAALeKbsb5ihVQV81cFkMxscr9/TUREOrCX6RWf/iQ7ZePCm0J7dh7HpRH8FfdyKCo+yhuxQ/BFEM34s5PtTVc63ZyNRS/QnWF6v+kHywwXlGjw7e7G6CfKa0BwlAMM5yNbWM9tpGUYh649JEjX9BI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=t6MrLWea; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (213-229-8-243.static.upcbusiness.at [213.229.8.243])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 042433EA;
-	Tue, 10 Sep 2024 12:05:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1725962725;
-	bh=qRP4ALNKD5dj2TC3hY3hzYkODtfa0xHzrUb9GlW6tMw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t6MrLWeaJ8twnv04KN60ubMnSKaq4QwAMx2wMRjVLXkjDgd2DGF5QXnhGdhbTkp8p
-	 ZgR7aY7RLWqVo6z7XvPrKLTRzpS4cXch5Hvtro00qj3sGHh+OU+J8OxjEJHpcoM0GY
-	 qdG/615/JLB3P4z8vKS3VcdTGfbwPRgrrHf3Gwcs=
-Date: Tue, 10 Sep 2024 13:06:08 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v4 3/4] media: raspberrypi: Add support for RP1-CFE
-Message-ID: <20240910100608.GC6996@pendragon.ideasonboard.com>
-References: <763b3147-d7cb-44a7-b73b-8f7f4fd622ab@ideasonboard.com>
- <yib2r4wisxvk3kgogbjqawrpmfq6lcezfk4xjmftj44jzkbclc@icapodv2ffzk>
- <d5188c0a-4a52-4378-89b1-48f606e448cc@ideasonboard.com>
- <ggtlreq5gyhzfdv6yzeuia46y7fxpuyvg236prig52t43xsl2a@crlqks2nhfpe>
- <20240909134516.GA9448@pendragon.ideasonboard.com>
- <Zt8ZysTT5DIZr-J7@kekkonen.localdomain>
- <jdtjdspf4qyrgn6jmyxeab5ueo53wjd5vuhvlpin3pdiyifwht@dndfcqnmv7sd>
- <ZuAQpITcee2SSYKk@kekkonen.localdomain>
- <6u2g4v4ktt543sy5jlp3vonemhzhrwyz2liikg6jb2kx3h7jao@z6s233clqwqk>
- <ZuAXiKjdgMUY1jcV@kekkonen.localdomain>
+	s=arc-20240116; t=1725962915; c=relaxed/simple;
+	bh=MsadThRw8OXCzOuitomaL4tJiz9fo5k0uXDvNjCJyKA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gBWDXtLkFHf0sBTrUqwqawq65mUFj8D3cU02b2yAWD5l+fjCSrva+1Atix7IJNE87MnlPSTI/o7jY5i4YbWYk5XXQhlKYG1bdG57vDBPx0ipc8r5cz0StqQSrZvvv6KGVK4MvL2aXKl32wlLEhYvv144t4CsPcG1Tq9Pi0S/pWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=pRJ/yPSw; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 4F566FF80C;
+	Tue, 10 Sep 2024 10:08:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1725962906;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=F4PgUjTOWwPVIX4EB9xYj1NObgUhDRb+IK1VTWtcj08=;
+	b=pRJ/yPSw6CaewFWDpJPP/Oqf0BN4WrwCcaHuyaereJUCVodYE5M3Pt86Nrxg/ugeZU7LsM
+	jgaIKZbAQuaGzDeledQ2y1FLYi8SAG5u+VBd2lAmva3obxcy0vL8oohMSYPh9POEgLxdn6
+	IK0pJRrtgcK1es0zaMFhUXQvdbAnzhrxRgDXLedCIlsEd5rcwwy9pJ9InrnKG3zG1xld04
+	hFlAPXVvNitrz9GhW1KL05gfSJMLJ/j/ivAdh8KSBvuX8WUcIRgrociBVqTUcjBFKrZM63
+	lIMa8Ut3QF6MPpv/wNF0yz0TuufEq/WE+0z8g0bTfGQI7uOkAyZQW6OusubBRg==
+Message-ID: <769f1405-62fc-4457-a958-b644c706140f@bootlin.com>
+Date: Tue, 10 Sep 2024 12:08:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 8/9] wifi: wilc1000: Register wiphy after reading out
+ chipid
+To: Marek Vasut <marex@denx.de>, linux-wireless@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ Ajay Singh <ajay.kathat@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20240909193035.69823-1-marex@denx.de>
+ <20240909193035.69823-8-marex@denx.de>
+From: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <20240909193035.69823-8-marex@denx.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZuAXiKjdgMUY1jcV@kekkonen.localdomain>
+X-GND-Sasl: alexis.lothore@bootlin.com
 
-On Tue, Sep 10, 2024 at 09:55:20AM +0000, Sakari Ailus wrote:
-> On Tue, Sep 10, 2024 at 11:42:06AM +0200, Jacopo Mondi wrote:
-> > > > > > > > Ah, I missed that one.
-> > > > > > > >
-> > > > > > > > I don't think it fixes the issue I mentioned. If we have PM enabled, and the
-> > > > > > > > parent device requires powering up for the child device (BE) to be
-> > > > > > > > accessible, the driver will crash when calling pispbe_hw_init(). I think you
-> > > > > > > > should call pm_runtime_set_active() before calling pispbe_runtime_resume().
-> > > > > > >
-> > > > > > > As discussed, this is not a problem currently for BE, but indeed you
-> > > > > > > have a point.
-> > > >
-> > > > I admit the runtime_pm intrinsics are obscure to me, but Laurent just
-> > > > made me notice something.
-> > > >
-> > > > Consider the following scenario
-> > > >
-> > > > *) Kernel compiled with CONFIG_PM
-> > > > *) i2c sensor driver that supports both CONFIG_PM and !CONFIG_PM by:
-> > > >   *) Manually power up the sensor during probe
-> > > >   *) Call pm_runtime_enable() and pm_runtime_set_active() at the end
-> > > >      of the probe routine after having accessed the chip over i2c
-> > > >      (like most, if not all the i2c drivers in mainline do including
-> > > >      ccs)
-> > > >
-> > > > All these drivers work, and during the probe routine before accessing
-> > > > the HW, they don't need to power up the parent i2c controller.
-> > >
-> > > This isn't done explicitly by the I²C drivers, indeed but...
-> > >
-> > > >
-> > > > Might it be that during probe() the parent is guaranteed to be enabled ?
-> > >
-> > > ...yes.
-> > >
-> > 
-> > Unrelated, but I am wrong the driver core calls pm_request_idle() on
-> > the just probed device ? Does this mean drivers doesn't have to do
-> > that by themseleves ? (it's not a big deal, as request_idle() doesn't
-> > change the usage counter)
+On 9/9/24 21:29, Marek Vasut wrote:
+> Register wiphy after reading out chipid, so the chipid can be
+> used to determine chip features and not advertise WPA3/SAE
+> support to userspace on WILC3000. Note that wilc_netdev_cleanup()
+> will deregister the wiphy in fail path.
 > 
-> Seems like that. This could be omitted from drivers then.
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-Is that guaranteed, or is it an implementation detail that could change
-at any time ?
+[...]
 
-> > > > I add a look in the driver-core and pm Documentation/ but found
-> > > > nothing.
-> > > >
-> > > > A quick stroll in driver/base/ got me to __device_attach() and it
-> > > > seems parents are powered up before attaching a driver to a device
-> > > > (which in my understanding should be what ends up calling probe()).
-> > > > Clearly I've no real understanding of what I'm talking about when it
-> > > > comes to driver-core, so take this with a grain of salt.
-> > >
-> > > This only works with runtime PM enabled.
-> > 
-> > It's the CONFIG_PM case that was worrying for Tomi
-> > 
-> > > > > > > Sad note: most of all the occurrences of "grep set_active" in
-> > > > > > > drivers/media/platform/ show that set_active() is used as I've done in
-> > > > > > > my patch
-> > > > > > >
-> > > > > > > > However, you said above that "supporting !CONFIG_PM is not that much work".
-> > > > > > > > Maybe not. But how much work is it to get it right (for both PM and !PM),
-> > > > > > > > and make sure it stays right? =).
-> > > > > > > >
-> > > > > > > > Just my opinion, but if there are zero use cases for the !PM, I would just
-> > > > > > > > go with "depends on PM" to keep the driver simpler, less bug-prone, and
-> > > > > > > > easier to maintain.
-> > > > > >
-> > > > > > I'm fine with that, and for platform drivers, that's my preferred
-> > > > > > option. Sakari ?
-> > > > >
-> > > > > I'm concerned with your (?) recent finding that many architectures don't
-> > > > > have support for CONFIG_PM. In this case the device is very unlikely to be
-> > > > > used outside ARM(64) so I guess it's fine.
-> > > > >
-> > > >
-> > > > Also, this IP is RPi specific, and the !CONFIG_PM case is not used or
-> > > > tested on Pi.
-> > > >
-> > > > However, I think this current patch is correct (assuming the above
-> > > > reasoning on i2c sensor drivers is correct) and doesn't require
-> > > > CONFIG_PM, so I would be tempted to keep this version.
-> > >
-> > > I understand the current patch does depend on CONFIG_PM: it requires
-> > > runtime PM to be operational to start the clock, for instance.
-> > 
-> > Where do you see that ?
-> > 
-> > This version still calls pispbe_runtime_resume() to power up the IP,
-> > it doesn't go through runtime_pm:
-> > https://patchwork.linuxtv.org/project/linux-media/patch/20240904095836.344833-5-jacopo.mondi@ideasonboard.com/
-> 
-> cfe_runtime_resume() is only called via runtime PM.
-> 
-> > Thanks!
-> > 
-> > > > > > > I don't see a use case for !PM and we confirmed with RPi they don't
-> > > > > > > need to support it. During the review of a previous version of the BE
-> > > > > > > driver iirc I've been asked to support !PM but I'm not sure I recall
-> > > > > > > the reasons.
-> > > > > >
-> > > > > > I hope it wasn't me :-)
-> > > > >
-> > > > > Me neither. Although it'd be nice: CONFIG_PM isn't a hardware specific
-> > > > > option as such. As one part of the kernel requires !CONFIG_PM and another
-> > > > > CONFIG_PM, we can expect problems, at least in principle.
-> > > > >
-> > > > > Ideally all architectures would support it so CONFIG_PM could be removed
-> > > > > and we could say the problem has been solved. :-)
+> @@ -1804,14 +1803,8 @@ static struct wilc *wilc_create_wiphy(struct device *dev)
+>  				BIT(NL80211_IFTYPE_P2P_GO) |
+>  				BIT(NL80211_IFTYPE_P2P_CLIENT);
+>  	wiphy->flags |= WIPHY_FLAG_HAS_REMAIN_ON_CHANNEL;
+> -	wiphy->features |= NL80211_FEATURE_SAE;
+>  	set_wiphy_dev(wiphy, dev);
+>  	wl->wiphy = wiphy;
+> -	ret = wiphy_register(wiphy);
+> -	if (ret) {
+> -		wiphy_free(wiphy);
+> -		return NULL;
+> -	}
+
+If I am reading the patch correctly, there are still some failure paths in
+wilc_cfg80211_init which try to call wiphy_unregister on the (not registered
+anymore in there) wphy.
+>  	return wl;
+>  }
+>  
+> @@ -1861,6 +1854,14 @@ int wilc_cfg80211_init(struct wilc **wilc, struct device *dev, int io_type,
+>  }
+>  EXPORT_SYMBOL_GPL(wilc_cfg80211_init);
+>  
+> +int wilc_cfg80211_register(struct wilc *wilc)
+> +{
+> +	wilc->wiphy->features |= NL80211_FEATURE_SAE;
+
+Even if I get the general need, it feels weird to have parts of the wphy init
+performed in wilc_create_wiphy, and some parts (the features field) here.
+Wouldn't it work to just move wilc_create_wiphy content here, since wphy will
+not be usable anyway before eventually registering it ?
+
+Alexis
 
 -- 
-Regards,
+Alexis Lothoré, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-Laurent Pinchart
 
