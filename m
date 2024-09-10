@@ -1,137 +1,129 @@
-Return-Path: <devicetree+bounces-101640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C40E972C6F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:45:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5A68972C77
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:48:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A46401F21205
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:44:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3E4F1C24525
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:48:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF78D185959;
-	Tue, 10 Sep 2024 08:44:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46B1E187FE5;
+	Tue, 10 Sep 2024 08:47:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="VLugMxRt"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="fVHXZSPS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31CD414A4C3;
-	Tue, 10 Sep 2024 08:44:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE9E5339AC
+	for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 08:47:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725957894; cv=none; b=Moz/PjvocgUh0zxr0BUcZgzeSDklMnwSctlZoessRHP6ZWOMdKMaJdIZneJkDwl3BuIS7WNjMEisk0Jd9jFRWLUawPG0njX0LgYfciagzeLSuNnie3a0rmaHYl2G98x6e0J8gSYbZUYsEBITv8C736fF1//yZ+nZ55rAp0VLFcY=
+	t=1725958072; cv=none; b=AAYabNK+tYdTDwAcwL3b0kMm7ZlIeufBmJmbILVkKENSHihEtdGyXtEMILsudK2Wa/dnIp1DoSgd2hKCrFM2ZtJdcia7Dm5IwNjGzI3i31w3zyMdq38HwyOjtoMkfB6sB11p1OG9QusFU1Gip7JV13KE47ZE2EH8MkoUQqNYt5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725957894; c=relaxed/simple;
-	bh=sDFBkX7W5EUl3yXu98e2iOyq/FusRtFK34zTdz0riCE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qpO3iSnaRt9I/reT4I6PcQVQK7O7qj6R1iKggHHROy7p6VR+gqsHwqm1FI54MeMpKlYhWBk5s1BKG/AMtHc+2nMS67ezHOjGpRG/BjBtVjPl6A6YMPE+PtMpMJT4CmcCtMmsihH2ZMss2JkDDWhhGbD4bjRc+KKTbmVclDIIa44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=VLugMxRt; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-156-87-48.elisa-laajakaista.fi [91.156.87.48])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B2D4173;
-	Tue, 10 Sep 2024 10:43:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1725957814;
-	bh=sDFBkX7W5EUl3yXu98e2iOyq/FusRtFK34zTdz0riCE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VLugMxRtgMsAzA8R+hSefNW3HOINV4lGe4NsFankTIbeF52twhViUD2bgsx81Hm2V
-	 jfeTvPeYCZQN+t7zVo9GIKrVzTMH6xtPW5Chn5sZ2gBC06hhHHjie0aH/auZpFkPvr
-	 1ksu2rI+ff9f1xtWkXS03ktAqTX3EFj1wZ5D0K7c=
-Message-ID: <2566e769-45d6-4b15-887b-86449181645d@ideasonboard.com>
-Date: Tue, 10 Sep 2024 11:44:47 +0300
+	s=arc-20240116; t=1725958072; c=relaxed/simple;
+	bh=jHA0jeu39KXliSARGIHnAxhwXIadsXhXT0Q+hrmmgng=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=VugVHMxH1LkJlCrKz2pUkfBGwiyXUen5X9YJsFBHgGA3JzbUrAfYNaTCN7NS918nLcRB9yOgY7x1x5Nb+foHz1aWe+f+dq5ZGm26PGzZq6DBX6f/9KPPNEYAqveWJoAGB6bR+x4x1HUpLWtnLE5o2+z8t6qo90VhJ+mK5we3t10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=fVHXZSPS; arc=none smtp.client-ip=209.85.166.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-39f51371baeso2013245ab.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 01:47:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1725958069; x=1726562869; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cBBzknlK+lLnrfwKbcqJfsrQ3C2pRWbeBhTXiYHvZyE=;
+        b=fVHXZSPSFhKYYe3gtyoThElvELUXlaX1nQkqHGOVXkACrwR4sguPB8nX7bkFrZ1bwI
+         a0/2NTx+8zHAwiKS4IPzWLrXklKTSn1f4ShhXq6kLnULbimH5X+ms8tUOWiCBTt/t1W5
+         BPlXCDgN6ppwi0z2R/jaPC/9MgUEBmE+I6TyM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725958069; x=1726562869;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cBBzknlK+lLnrfwKbcqJfsrQ3C2pRWbeBhTXiYHvZyE=;
+        b=scbaiFoNwOI64/MIAl0C/4FDPwJ4uzQVT/5PRYW4i4tjlLpsx+SW9bXIpidO1tZJHr
+         IjoHtf7wT33PdlSgXomIetHw8H797u8YZkxMw+Ka7LU/x/ErqQ/NxszLizJTpmJuSrby
+         z2A6zWQFZZonDclvla9FfPxr9YKJt7Et2k+/gbKRho5IplTB44rBONpRlnTwXjg3o2nT
+         dE3AbrqosDw383Mh7J8YpCCaSG/McjAT+hEPDrHKi6ysAOqpdgUIPvNggBTpti8AE4e2
+         e6TTFWPmeRC7D+WM1vFzAHI1noaLLfP6PqsDNOjmqfB8xtqnY7AVOkq3N2cvy5fkKn+n
+         P+NA==
+X-Gm-Message-State: AOJu0YySL8RE3QHQ+wxUG8nKHpYguyu3qR4ndd7ZRk8dAjcUfK+f/03u
+	XneaMGHNVYAcw9Sz4lHotIfMKcNrGV1M0jpS1zN+Pi75tF6Q9LRSk6skblUrEZZQbsFXjZnoWpg
+	=
+X-Google-Smtp-Source: AGHT+IFOVFWWzyNSgsRLILhNfgn8ya/XNChSnkapjK3BwdkIfk05bwfwygl28fTApbbAe6jPdsd0hQ==
+X-Received: by 2002:a05:6e02:1d82:b0:3a0:4603:70df with SMTP id e9e14a558f8ab-3a04f07e7d9mr156667075ab.7.1725958068990;
+        Tue, 10 Sep 2024 01:47:48 -0700 (PDT)
+Received: from yuanhsinte.c.googlers.com (30.191.80.34.bc.googleusercontent.com. [34.80.191.30])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7d8b0fbffa0sm3931470a12.1.2024.09.10.01.47.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Sep 2024 01:47:48 -0700 (PDT)
+From: Hsin-Te Yuan <yuanhsinte@chromium.org>
+Date: Tue, 10 Sep 2024 08:47:44 +0000
+Subject: [PATCH v2] arm64: dts: mt8183: set DMIC one-wire mode on Damu
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] media: dt-bindings: i2c: ds90ub960: Add DS90UB954
- chip to DS90UB960 bindings
-To: Alexander Shiyan <eagle.alexander923@gmail.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, devicetree@vger.kernel.org,
- linux-media@vger.kernel.org
-References: <20240830070117.9534-1-eagle.alexander923@gmail.com>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20240830070117.9534-1-eagle.alexander923@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20240910-one-wire-v2-1-2bb40d5a3cf8@chromium.org>
+X-B4-Tracking: v=1; b=H4sIAK8H4GYC/23MQQ7CIBCF4as0sxYDWLG68h6mCwrTMosWMyhqG
+ u4udu3yf3n5VkjIhAkuzQqMmRLFpYbeNeCCXSYU5GuDlrqVZyVFXFC8iFFoL8eTUgfvugHq/c4
+ 40nujbn3tQOkR+bPJWf3WP0hWQgmvj21nrBms8VcXOM70nPeRJ+hLKV+4ODgSowAAAA==
+X-Change-ID: 20240910-one-wire-2d0f7113dc8b
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Hsin-Yi Wang <hsinyi@chromium.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Hsin-Te Yuan <yuanhsinte@chromium.org>
+X-Mailer: b4 0.15-dev-7be4f
 
-Hi,
+From: Hsin-Yi Wang <hsinyi@chromium.org>
 
-On 30/08/2024 10:01, Alexander Shiyan wrote:
-> The ds90ub960 driver can now be used for the DS90UB954 chip as it has
-> a similar register set and configuration.
-> Let's add an additional compatibility line to the bindings.
-> 
-> Signed-off-by: Alexander Shiyan <eagle.alexander923@gmail.com>
-> ---
->   Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> index 0b71e6f911a8..86d43d949dd3 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> @@ -19,6 +19,7 @@ allOf:
->   properties:
->     compatible:
->       enum:
-> +      - ti,ds90ub954-q1
->         - ti,ds90ub960-q1
->         - ti,ds90ub9702-q1
->   
+Sets DMIC one-wire mode on Damu.
 
-The binding lists 6 ports as required, but UB954 only has 3 ports.
+Fixes: cabc71b08eb5 ("arm64: dts: mt8183: Add kukui-jacuzzi-damu board")
+Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+---
+Changes in v2:
+- Add fixes tag 
+- Link to v1: https://lore.kernel.org/r/20240910-one-wire-v1-1-d25486a6ba6d@chromium.org
+---
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-  Tomi
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
+index 0b45aee2e29953b6117b462034a00dff2596b9ff..06a689feff52945d141d196d439cba034f25fdf6 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
+@@ -26,6 +26,10 @@ &touchscreen {
+ 	hid-descr-addr = <0x0001>;
+ };
+ 
++&mt6358codec {
++	mediatek,dmic-mode = <1>; /* one-wire */
++};
++
+ &qca_wifi {
+ 	qcom,ath10k-calibration-variant = "GO_DAMU";
+ };
+
+---
+base-commit: da3ea35007d0af457a0afc87e84fddaebc4e0b63
+change-id: 20240910-one-wire-2d0f7113dc8b
+
+Best regards,
+-- 
+Hsin-Te Yuan <yuanhsinte@chromium.org>
 
 
