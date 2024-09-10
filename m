@@ -1,577 +1,719 @@
-Return-Path: <devicetree+bounces-101648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E602972CC4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 11:02:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A632972CE4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 11:08:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A03B7B219DB
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 09:02:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EC5A1C23EE1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 09:08:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF90818953A;
-	Tue, 10 Sep 2024 09:01:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21E01187FE8;
+	Tue, 10 Sep 2024 09:08:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BvDPm/nk";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="d5AJf7Vi"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="etddUsKL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from a7-40.smtp-out.eu-west-1.amazonses.com (a7-40.smtp-out.eu-west-1.amazonses.com [54.240.7.40])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A4B188A3A;
-	Tue, 10 Sep 2024 09:01:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.40
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69C54186E4B
+	for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 09:08:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725958908; cv=none; b=q+xWW5RIoL8Ac185wnIKXKrptSyslE37t4YYKs0s2p5a2xSJejUlzhUfElg5WNjiBU5RG1UE59wSNHj1JQmQXArM3+HCAdcQQOpAHiilde3xdquPCB0usIt0ZY7yillKDELCNWWtkXNI7Ti0CyVJjzonYKKv7/BtACOCY97HhQY=
+	t=1725959284; cv=none; b=ILZY2SahNR/5rye2AhtcCTETn+jrBek2XajRtLNxEgkKVtsJlIKOmWNWg7oGw6tm6XFnHC2RhnzU+BZLKJ9aXKt7zYXpOSaMZRNeWAWZwh/bRcGSeae7ewCMFwZ1UHj68SK5lYKpxGyY2fDcvMLlZnq3V1JAWFdS7Obunnv4nUk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725958908; c=relaxed/simple;
-	bh=JlTyMwnNJF9UR9+enf/QFeetTdghml5+qAzSfXtjZuU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=paycfONRbU82qKYOO3WO9h0NndWW60vNKYcA1+1VIIVGgCs3ewnOHPwGVkgoVoZew4H7F4bhfAOzeJgVhby/Xyx7iMmCd2EK5TrYE/fFMhhyIostgtMklyGKW0J4DPc9+7elihquYpFS5wXMz4LpB2b2N1fm8rs7emsVbYLEWZ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BvDPm/nk; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=d5AJf7Vi; arc=none smtp.client-ip=54.240.7.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazonses.collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1725958904;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding;
-	bh=JlTyMwnNJF9UR9+enf/QFeetTdghml5+qAzSfXtjZuU=;
-	b=BvDPm/nkNIZufZprMYEbLFvw4HDmIbGblOs4u1zOK5NUHojHIr6j3gxu1cvHMNvi
-	DCHgzuIjrPDC9BZh2NmmGFgc+zpT88NBD5pTjIM6mNZJc7CUkKthlfjd5mriSYdcwD8
-	3E/RhYQpQ+IwCu8zjkh9QQJkz5kp0Czaefa+3wEG0wA5g6f31Ss18haT97L3rEtxMjc
-	hB1V2vbak0nPQy4L7Xhh7ZoC7Xb23+mjIV9NPM7EmKONjw3ghOIuljt3q1ND4u4VEmm
-	RFwmphfs6QOo/CrqtawLWOKwCddgZMrIlT0GLJaCZCcss6iThkh7ZP5mdT66ylZK7le
-	p/Y6/ilCAA==
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1725958904;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Feedback-ID;
-	bh=JlTyMwnNJF9UR9+enf/QFeetTdghml5+qAzSfXtjZuU=;
-	b=d5AJf7ViW1jfbrMbsf3MqLm4mLbWQWgK4VEfP/+7c9RgSUkeVod3nBI4RG6ZM3+3
-	XLRz7LVKPNK4xYkEqQov8/rl5eYHqnmxN3GE+LG7gDE932jQMP1d9lD7CUppM8RdbTr
-	KiulsqN5K8ne0jf4rLksYf3z6UNx3n4mS+OLDkzE=
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: chunkuang.hu@kernel.org
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, matthias.bgg@gmail.com, 
-	angelogioacchino.delregno@collabora.com, shawn.sung@mediatek.com, 
-	yu-chang.lee@mediatek.com, ck.hu@mediatek.com, 
-	jitao.shi@mediatek.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-mediatek@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, wenst@chromium.org, 
-	kernel@collabora.com, sui.jingfeng@linux.dev, michael@walle.cc, 
-	sjoerd@collabora.com, Alexandre Mergnat <amergnat@baylibre.com>, 
-	Michael Walle <mwalle@kernel.org>
-Subject: [PATCH v9 3/3] drm/mediatek: Implement OF graphs support for display paths
-Date: Tue, 10 Sep 2024 09:01:44 +0000
-Message-ID: <01020191db2adb7b-522d2ce1-e041-4a09-995d-de799c48406d-000000@eu-west-1.amazonses.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240910090127.78905-1-angelogioacchino.delregno@collabora.com>
-References: <20240910090127.78905-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1725959284; c=relaxed/simple;
+	bh=0JYG8rGJcINjwItYNmfOibI051zMvwpVbXiVIL0I44g=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=tH/eJnK8B0JIzgx+Tou4Inu4iFE/3x0cqn3PYAll7W9X+rsMdyiBIWuLx5IKV81irG0Ag2hwZDvxwjB1LVUYb3LgLkJSl9Gf/rzXFpCrdtKIbQQdCqtB+ohBDhKXrOGR4mJfSfZ7pDnzbPjTcMDnxEo1BIuIUY3PWN8JMRYHkfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=etddUsKL; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-374bfc395a5so3115139f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 02:08:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725959280; x=1726564080; darn=vger.kernel.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=chEFZIl+EQqvgwa+qbbTZDTEpr9/att76/e+0PGeZm8=;
+        b=etddUsKLPF5NMLRmWV/4Fsri9X30cCdOv3YkXydUj6ORovL6G/yv+mIg4Judpc/Jnr
+         7b4kmG0eTtlCKbdEnrbLlnpR6aIORFTaykxlcmijHQuOPvfXz9gn2xNMQo+OyzJJaQWS
+         5xkk7tUkvuUdEZ3nruLnwGdWBYmO55kNLYBqfEP0In94L5TzD+bUTyihuDUa1MqpZX7l
+         AR6dJuUS6thZfRkadWenRQ3rUVjK4EHMuHfM9y81w5T8sZem9wfpb3Il5F9v1zk9Vid5
+         gGmdqJmtA3OpiN13AaPzeRppek/GWtShTxpevowH9M1Hn+/DHBZNrF/1epSQXZMvyg+i
+         Nagw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725959280; x=1726564080;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=chEFZIl+EQqvgwa+qbbTZDTEpr9/att76/e+0PGeZm8=;
+        b=YzHQTLbA+6pTPBuhv6xyGa0Zuq561bh55KUBGD5w4uc/6ieFjf8CxH8Z87fEQUMW28
+         UqgLdx7RAYr0gFgU+v7qB8UzD+C73tvYM51kWTxHNSYGEtMevSzGOnA2HfxPLHoc6YYR
+         iRL4fD8cpCVS5EZfGse3O6T2oiCS8fZGLTdZ9RDce/wHZ8jO2XLHYgnMMUERbrSXiHvE
+         xHL5n9h0YMptQNmfuBQVtdWwZ6fRpwz8EUhJjS5yKufW940ck+v09ZsBUcc/n9UOjMtt
+         CYitefJsL4VvUlCO5EdO9oFT7UouNqQfNcvlxCphungaEUwzgTbNf3Vb/vYCz+qlAttF
+         DQxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVItXu5aGlG6AoLH4qg4IdLI7MrAjXcrg7C4hAqAKdnBUkEe2PUcAMu43oTCdNHqxKY1w//3aCZ4F93@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYjHvJ3tsvMlpan+DD6ECnSjgzk7343+zGP+Jms2iGPgE4inRh
+	3jvzoov4yV1fSQnp8mqxE5fzybxHjZXGbdSf9fhRDd+Ts0n5SlZojJkMqqTLzu0=
+X-Google-Smtp-Source: AGHT+IH8aSumsjfJB/neonJoyJeKlYDd+KRnS47leSaMmubSUuTJu6QuYR0Lv69KwZlmqieFFZJ5WA==
+X-Received: by 2002:a5d:5f46:0:b0:36b:c65c:661e with SMTP id ffacd0b85a97d-378a8a1d30cmr1792604f8f.13.1725959278906;
+        Tue, 10 Sep 2024 02:07:58 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:8ba7:bfe4:fea9:65b])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42cbbc16dd9sm35182555e9.15.2024.09.10.02.07.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Sep 2024 02:07:58 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Jean Delvare <jdelvare@suse.com>,  Rob Herring <robh@kernel.org>,
+  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
+ <conor+dt@kernel.org>,  Jonathan Corbet <corbet@lwn.net>,  Delphine CC
+ Chiu <Delphine_CC_Chiu@Wiwynn.com>,  linux-hwmon@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  linux-doc@vger.kernel.org,  linux-i2c@vger.kernel.org
+Subject: Re: [PATCH 3/3] hwmon: (pmbus/tps25990): add initial support
+In-Reply-To: <d0d53027-8897-47c3-94fb-7e369bff8f18@roeck-us.net> (Guenter
+	Roeck's message of "Mon, 9 Sep 2024 15:52:43 -0700")
+References: <20240909-tps25990-v1-0-39b37e43e795@baylibre.com>
+	<20240909-tps25990-v1-3-39b37e43e795@baylibre.com>
+	<d0d53027-8897-47c3-94fb-7e369bff8f18@roeck-us.net>
+Date: Tue, 10 Sep 2024 11:07:57 +0200
+Message-ID: <1j4j6nub9u.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
-X-SES-Outgoing: 2024.09.10-54.240.7.40
+Content-Type: text/plain
 
-It is impossible to add each and every possible DDP path combination
-for each and every possible combination of SoC and board: right now,
-this driver hardcodes configuration for 10 SoCs and this is going to
-grow larger and larger, and with new hacks like the introduction of
-mtk_drm_route which is anyway not enough for all final routes as the
-DSI cannot be connected to MERGE if it's not a dual-DSI, or enabling
-DSC preventively doesn't work if the display doesn't support it, or
-others.
+On Mon 09 Sep 2024 at 15:52, Guenter Roeck <linux@roeck-us.net> wrote:
 
-Since practically all display IPs in MediaTek SoCs support being
-interconnected with different instances of other, or the same, IPs
-or with different IPs and in different combinations, the final DDP
-pipeline is effectively a board specific configuration.
+[...]
 
-Implement OF graphs support to the mediatek-drm drivers, allowing to
-stop hardcoding the paths, and preventing this driver to get a huge
-amount of arrays for each board and SoC combination, also paving the
-way to share the same mtk_mmsys_driver_data between multiple SoCs,
-making it more straightforward to add support for new chips.
+>> +
+>> +#define TPS25990_DEFAULT_RIMON		910000
+>
+> If this is the default, why would it make sense to even specify the
+> property in milli-ohm ? I mean, sure, the devices can be stacked,
+> but it seems unrealistic to assume that there are hundreds or even
+> dozens of devices in parallel.
 
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
-Tested-by: Alexandre Mergnat <amergnat@baylibre.com>
-Acked-by: Sui Jingfeng <sui.jingfeng@linux.dev>
-Tested-by: Michael Walle <mwalle@kernel.org> # on kontron-sbc-i1200
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/gpu/drm/mediatek/mtk_disp_drv.h       |   1 +
- .../gpu/drm/mediatek/mtk_disp_ovl_adaptor.c   |  40 ++-
- drivers/gpu/drm/mediatek/mtk_dpi.c            |  21 +-
- drivers/gpu/drm/mediatek/mtk_drm_drv.c        | 253 +++++++++++++++++-
- drivers/gpu/drm/mediatek/mtk_drm_drv.h        |   2 +-
- drivers/gpu/drm/mediatek/mtk_dsi.c            |  14 +-
- 6 files changed, 309 insertions(+), 22 deletions(-)
+Indeed not hundreds, I suppose :)
+8 would already land you in a position where milli-Ohms could be useful.
+Is this realistic, I honestly don't know.
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_drv.h b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-index 082ac18fe04a..94843974851f 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-@@ -108,6 +108,7 @@ size_t mtk_ovl_get_num_formats(struct device *dev);
- 
- void mtk_ovl_adaptor_add_comp(struct device *dev, struct mtk_mutex *mutex);
- void mtk_ovl_adaptor_remove_comp(struct device *dev, struct mtk_mutex *mutex);
-+bool mtk_ovl_adaptor_is_comp_present(struct device_node *node);
- void mtk_ovl_adaptor_connect(struct device *dev, struct device *mmsys_dev,
- 			     unsigned int next);
- void mtk_ovl_adaptor_disconnect(struct device *dev, struct device *mmsys_dev,
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c
-index c6768210b08b..e9dc89764495 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c
-@@ -490,6 +490,38 @@ static int compare_of(struct device *dev, void *data)
- 	return dev->of_node == data;
- }
- 
-+static int ovl_adaptor_of_get_ddp_comp_type(struct device_node *node,
-+					    enum mtk_ovl_adaptor_comp_type *ctype)
-+{
-+	const struct of_device_id *of_id = of_match_node(mtk_ovl_adaptor_comp_dt_ids, node);
-+
-+	if (!of_id)
-+		return -EINVAL;
-+
-+	*ctype = (enum mtk_ovl_adaptor_comp_type)((uintptr_t)of_id->data);
-+
-+	return 0;
-+}
-+
-+bool mtk_ovl_adaptor_is_comp_present(struct device_node *node)
-+{
-+	enum mtk_ovl_adaptor_comp_type type;
-+	int ret;
-+
-+	ret = ovl_adaptor_of_get_ddp_comp_type(node, &type);
-+	if (ret)
-+		return false;
-+
-+	if (type >= OVL_ADAPTOR_TYPE_NUM)
-+		return false;
-+
-+	/*
-+	 * ETHDR and Padding are used exclusively in OVL Adaptor: if this
-+	 * component is not one of those, it's likely not an OVL Adaptor path.
-+	 */
-+	return type == OVL_ADAPTOR_TYPE_ETHDR || type == OVL_ADAPTOR_TYPE_PADDING;
-+}
-+
- static int ovl_adaptor_comp_init(struct device *dev, struct component_match **match)
- {
- 	struct mtk_disp_ovl_adaptor *priv = dev_get_drvdata(dev);
-@@ -499,12 +531,11 @@ static int ovl_adaptor_comp_init(struct device *dev, struct component_match **ma
- 	parent = dev->parent->parent->of_node->parent;
- 
- 	for_each_child_of_node_scoped(parent, node) {
--		const struct of_device_id *of_id;
- 		enum mtk_ovl_adaptor_comp_type type;
--		int id;
-+		int id, ret;
- 
--		of_id = of_match_node(mtk_ovl_adaptor_comp_dt_ids, node);
--		if (!of_id)
-+		ret = ovl_adaptor_of_get_ddp_comp_type(node, &type);
-+		if (ret)
- 			continue;
- 
- 		if (!of_device_is_available(node)) {
-@@ -513,7 +544,6 @@ static int ovl_adaptor_comp_init(struct device *dev, struct component_match **ma
- 			continue;
- 		}
- 
--		type = (enum mtk_ovl_adaptor_comp_type)(uintptr_t)of_id->data;
- 		id = ovl_adaptor_comp_get_id(dev, node, type);
- 		if (id < 0) {
- 			dev_warn(dev, "Skipping unknown component %pOF\n",
-diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
-index a08d20654954..20a9d589fd75 100644
---- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-@@ -704,6 +704,20 @@ static int mtk_dpi_bridge_attach(struct drm_bridge *bridge,
- 				 enum drm_bridge_attach_flags flags)
- {
- 	struct mtk_dpi *dpi = bridge_to_dpi(bridge);
-+	int ret;
-+
-+	dpi->next_bridge = devm_drm_of_get_bridge(dpi->dev, dpi->dev->of_node, 1, -1);
-+	if (IS_ERR(dpi->next_bridge)) {
-+		ret = PTR_ERR(dpi->next_bridge);
-+		if (ret == -EPROBE_DEFER)
-+			return ret;
-+
-+		/* Old devicetree has only one endpoint */
-+		dpi->next_bridge = devm_drm_of_get_bridge(dpi->dev, dpi->dev->of_node, 0, 0);
-+		if (IS_ERR(dpi->next_bridge))
-+			return dev_err_probe(dpi->dev, PTR_ERR(dpi->next_bridge),
-+					     "Failed to get bridge\n");
-+	}
- 
- 	return drm_bridge_attach(bridge->encoder, dpi->next_bridge,
- 				 &dpi->bridge, flags);
-@@ -1058,13 +1072,6 @@ static int mtk_dpi_probe(struct platform_device *pdev)
- 	if (dpi->irq < 0)
- 		return dpi->irq;
- 
--	dpi->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 0, 0);
--	if (IS_ERR(dpi->next_bridge))
--		return dev_err_probe(dev, PTR_ERR(dpi->next_bridge),
--				     "Failed to get bridge\n");
--
--	dev_info(dev, "Found bridge node: %pOF\n", dpi->next_bridge->of_node);
--
- 	platform_set_drvdata(pdev, dpi);
- 
- 	dpi->bridge.funcs = &mtk_dpi_bridge_funcs;
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-index 3e807195a0d0..6cff020a1bf8 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-@@ -26,6 +26,7 @@
- 
- #include "mtk_crtc.h"
- #include "mtk_ddp_comp.h"
-+#include "mtk_disp_drv.h"
- #include "mtk_drm_drv.h"
- #include "mtk_gem.h"
- 
-@@ -818,12 +819,235 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
- 	{ }
- };
- 
-+static int mtk_drm_of_get_ddp_comp_type(struct device_node *node, enum mtk_ddp_comp_type *ctype)
-+{
-+	const struct of_device_id *of_id = of_match_node(mtk_ddp_comp_dt_ids, node);
-+
-+	if (!of_id)
-+		return -EINVAL;
-+
-+	*ctype = (enum mtk_ddp_comp_type)((uintptr_t)of_id->data);
-+
-+	return 0;
-+}
-+
-+static int mtk_drm_of_get_ddp_ep_cid(struct device_node *node,
-+				     int output_port, enum mtk_crtc_path crtc_path,
-+				     struct device_node **next, unsigned int *cid)
-+{
-+	struct device_node *ep_dev_node, *ep_out;
-+	enum mtk_ddp_comp_type comp_type;
-+	int ret;
-+
-+	ep_out = of_graph_get_endpoint_by_regs(node, output_port, crtc_path);
-+	if (!ep_out)
-+		return -ENOENT;
-+
-+	ep_dev_node = of_graph_get_remote_port_parent(ep_out);
-+	of_node_put(ep_out);
-+	if (!ep_dev_node)
-+		return -EINVAL;
-+
-+	/*
-+	 * Pass the next node pointer regardless of failures in the later code
-+	 * so that if this function is called in a loop it will walk through all
-+	 * of the subsequent endpoints anyway.
-+	 */
-+	*next = ep_dev_node;
-+
-+	if (!of_device_is_available(ep_dev_node))
-+		return -ENODEV;
-+
-+	ret = mtk_drm_of_get_ddp_comp_type(ep_dev_node, &comp_type);
-+	if (ret) {
-+		if (mtk_ovl_adaptor_is_comp_present(ep_dev_node)) {
-+			*cid = (unsigned int)DDP_COMPONENT_DRM_OVL_ADAPTOR;
-+			return 0;
-+		}
-+		return ret;
-+	}
-+
-+	ret = mtk_ddp_comp_get_id(ep_dev_node, comp_type);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* All ok! Pass the Component ID to the caller. */
-+	*cid = (unsigned int)ret;
-+
-+	return 0;
-+}
-+
-+/**
-+ * mtk_drm_of_ddp_path_build_one - Build a Display HW Pipeline for a CRTC Path
-+ * @dev:          The mediatek-drm device
-+ * @cpath:        CRTC Path relative to a VDO or MMSYS
-+ * @out_path:     Pointer to an array that will contain the new pipeline
-+ * @out_path_len: Number of entries in the pipeline array
-+ *
-+ * MediaTek SoCs can use different DDP hardware pipelines (or paths) depending
-+ * on the board-specific desired display configuration; this function walks
-+ * through all of the output endpoints starting from a VDO or MMSYS hardware
-+ * instance and builds the right pipeline as specified in device trees.
-+ *
-+ * Return:
-+ * * %0       - Display HW Pipeline successfully built and validated
-+ * * %-ENOENT - Display pipeline was not specified in device tree
-+ * * %-EINVAL - Display pipeline built but validation failed
-+ * * %-ENOMEM - Failure to allocate pipeline array to pass to the caller
-+ */
-+static int mtk_drm_of_ddp_path_build_one(struct device *dev, enum mtk_crtc_path cpath,
-+					 const unsigned int **out_path,
-+					 unsigned int *out_path_len)
-+{
-+	struct device_node *next, *prev, *vdo = dev->parent->of_node;
-+	unsigned int temp_path[DDP_COMPONENT_DRM_ID_MAX] = { 0 };
-+	unsigned int *final_ddp_path;
-+	unsigned short int idx = 0;
-+	bool ovl_adaptor_comp_added = false;
-+	int ret;
-+
-+	/* Get the first entry for the temp_path array */
-+	ret = mtk_drm_of_get_ddp_ep_cid(vdo, 0, cpath, &next, &temp_path[idx]);
-+	if (ret) {
-+		if (next && temp_path[idx] == DDP_COMPONENT_DRM_OVL_ADAPTOR) {
-+			dev_dbg(dev, "Adding OVL Adaptor for %pOF\n", next);
-+			ovl_adaptor_comp_added = true;
-+		} else {
-+			if (next)
-+				dev_err(dev, "Invalid component %pOF\n", next);
-+			else
-+				dev_err(dev, "Cannot find first endpoint for path %d\n", cpath);
-+
-+			return ret;
-+		}
-+	}
-+	idx++;
-+
-+	/*
-+	 * Walk through port outputs until we reach the last valid mediatek-drm component.
-+	 * To be valid, this must end with an "invalid" component that is a display node.
-+	 */
-+	do {
-+		prev = next;
-+		ret = mtk_drm_of_get_ddp_ep_cid(next, 1, cpath, &next, &temp_path[idx]);
-+		of_node_put(prev);
-+		if (ret) {
-+			of_node_put(next);
-+			break;
-+		}
-+
-+		/*
-+		 * If this is an OVL adaptor exclusive component and one of those
-+		 * was already added, don't add another instance of the generic
-+		 * DDP_COMPONENT_OVL_ADAPTOR, as this is used only to decide whether
-+		 * to probe that component master driver of which only one instance
-+		 * is needed and possible.
-+		 */
-+		if (temp_path[idx] == DDP_COMPONENT_DRM_OVL_ADAPTOR) {
-+			if (!ovl_adaptor_comp_added)
-+				ovl_adaptor_comp_added = true;
-+			else
-+				idx--;
-+		}
-+	} while (++idx < DDP_COMPONENT_DRM_ID_MAX);
-+
-+	/*
-+	 * The device component might not be enabled: in that case, don't
-+	 * check the last entry and just report that the device is missing.
-+	 */
-+	if (ret == -ENODEV)
-+		return ret;
-+
-+	/* If the last entry is not a final display output, the configuration is wrong */
-+	switch (temp_path[idx - 1]) {
-+	case DDP_COMPONENT_DP_INTF0:
-+	case DDP_COMPONENT_DP_INTF1:
-+	case DDP_COMPONENT_DPI0:
-+	case DDP_COMPONENT_DPI1:
-+	case DDP_COMPONENT_DSI0:
-+	case DDP_COMPONENT_DSI1:
-+	case DDP_COMPONENT_DSI2:
-+	case DDP_COMPONENT_DSI3:
-+		break;
-+	default:
-+		dev_err(dev, "Invalid display hw pipeline. Last component: %d (ret=%d)\n",
-+			temp_path[idx - 1], ret);
-+		return -EINVAL;
-+	}
-+
-+	final_ddp_path = devm_kmemdup(dev, temp_path, idx * sizeof(temp_path[0]), GFP_KERNEL);
-+	if (!final_ddp_path)
-+		return -ENOMEM;
-+
-+	dev_dbg(dev, "Display HW Pipeline built with %d components.\n", idx);
-+
-+	/* Pipeline built! */
-+	*out_path = final_ddp_path;
-+	*out_path_len = idx;
-+
-+	return 0;
-+}
-+
-+static int mtk_drm_of_ddp_path_build(struct device *dev, struct device_node *node,
-+				     struct mtk_mmsys_driver_data *data)
-+{
-+	struct device_node *ep_node;
-+	struct of_endpoint of_ep;
-+	bool output_present[MAX_CRTC] = { false };
-+	int ret;
-+
-+	for_each_endpoint_of_node(node, ep_node) {
-+		ret = of_graph_parse_endpoint(ep_node, &of_ep);
-+		if (ret) {
-+			dev_err_probe(dev, ret, "Cannot parse endpoint\n");
-+			break;
-+		}
-+
-+		if (of_ep.id >= MAX_CRTC) {
-+			ret = dev_err_probe(dev, -EINVAL,
-+					    "Invalid endpoint%u number\n", of_ep.port);
-+			break;
-+		}
-+
-+		output_present[of_ep.id] = true;
-+	}
-+
-+	if (ret) {
-+		of_node_put(ep_node);
-+		return ret;
-+	}
-+
-+	if (output_present[CRTC_MAIN]) {
-+		ret = mtk_drm_of_ddp_path_build_one(dev, CRTC_MAIN,
-+						    &data->main_path, &data->main_len);
-+		if (ret && ret != -ENODEV)
-+			return ret;
-+	}
-+
-+	if (output_present[CRTC_EXT]) {
-+		ret = mtk_drm_of_ddp_path_build_one(dev, CRTC_EXT,
-+						    &data->ext_path, &data->ext_len);
-+		if (ret && ret != -ENODEV)
-+			return ret;
-+	}
-+
-+	if (output_present[CRTC_THIRD]) {
-+		ret = mtk_drm_of_ddp_path_build_one(dev, CRTC_THIRD,
-+						    &data->third_path, &data->third_len);
-+		if (ret && ret != -ENODEV)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static int mtk_drm_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct device_node *phandle = dev->parent->of_node;
- 	const struct of_device_id *of_id;
- 	struct mtk_drm_private *private;
-+	struct mtk_mmsys_driver_data *mtk_drm_data;
- 	struct device_node *node;
- 	struct component_match *match = NULL;
- 	struct platform_device *ovl_adaptor;
-@@ -844,7 +1068,27 @@ static int mtk_drm_probe(struct platform_device *pdev)
- 	if (!of_id)
- 		return -ENODEV;
- 
--	private->data = of_id->data;
-+	mtk_drm_data = (struct mtk_mmsys_driver_data *)of_id->data;
-+	if (!mtk_drm_data)
-+		return -EINVAL;
-+
-+	/* Try to build the display pipeline from devicetree graphs */
-+	if (of_graph_is_present(phandle)) {
-+		dev_dbg(dev, "Building display pipeline for MMSYS %u\n",
-+			mtk_drm_data->mmsys_id);
-+		private->data = devm_kmemdup(dev, mtk_drm_data,
-+					     sizeof(*mtk_drm_data), GFP_KERNEL);
-+		if (!private->data)
-+			return -ENOMEM;
-+
-+		ret = mtk_drm_of_ddp_path_build(dev, phandle, private->data);
-+		if (ret)
-+			return ret;
-+	} else {
-+		/* No devicetree graphs support: go with hardcoded paths if present */
-+		dev_dbg(dev, "Using hardcoded paths for MMSYS %u\n", mtk_drm_data->mmsys_id);
-+		private->data = mtk_drm_data;
-+	};
- 
- 	private->all_drm_private = devm_kmalloc_array(dev, private->data->mmsys_dev_num,
- 						      sizeof(*private->all_drm_private),
-@@ -866,12 +1110,11 @@ static int mtk_drm_probe(struct platform_device *pdev)
- 
- 	/* Iterate over sibling DISP function blocks */
- 	for_each_child_of_node(phandle->parent, node) {
--		const struct of_device_id *of_id;
- 		enum mtk_ddp_comp_type comp_type;
- 		int comp_id;
- 
--		of_id = of_match_node(mtk_ddp_comp_dt_ids, node);
--		if (!of_id)
-+		ret = mtk_drm_of_get_ddp_comp_type(node, &comp_type);
-+		if (ret)
- 			continue;
- 
- 		if (!of_device_is_available(node)) {
-@@ -880,8 +1123,6 @@ static int mtk_drm_probe(struct platform_device *pdev)
- 			continue;
- 		}
- 
--		comp_type = (enum mtk_ddp_comp_type)(uintptr_t)of_id->data;
--
- 		if (comp_type == MTK_DISP_MUTEX) {
- 			int id;
- 
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.h b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-index ce897984de51..675cdc90a440 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-@@ -63,7 +63,7 @@ struct mtk_drm_private {
- 	struct device *mmsys_dev;
- 	struct device_node *comp_node[DDP_COMPONENT_DRM_ID_MAX];
- 	struct mtk_ddp_comp ddp_comp[DDP_COMPONENT_DRM_ID_MAX];
--	const struct mtk_mmsys_driver_data *data;
-+	struct mtk_mmsys_driver_data *data;
- 	struct drm_atomic_state *suspend_state;
- 	unsigned int mbox_index;
- 	struct mtk_drm_private **all_drm_private;
-diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
-index eeec641cab60..33ceeb8d6925 100644
---- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-@@ -988,9 +988,17 @@ static int mtk_dsi_host_attach(struct mipi_dsi_host *host,
- 	dsi->lanes = device->lanes;
- 	dsi->format = device->format;
- 	dsi->mode_flags = device->mode_flags;
--	dsi->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 0, 0);
--	if (IS_ERR(dsi->next_bridge))
--		return PTR_ERR(dsi->next_bridge);
-+	dsi->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
-+	if (IS_ERR(dsi->next_bridge)) {
-+		ret = PTR_ERR(dsi->next_bridge);
-+		if (ret == -EPROBE_DEFER)
-+			return ret;
-+
-+		/* Old devicetree has only one endpoint */
-+		dsi->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 0, 0);
-+		if (IS_ERR(dsi->next_bridge))
-+			return PTR_ERR(dsi->next_bridge);
-+	}
- 
- 	drm_bridge_add(&dsi->bridge);
- 
+More on this below.
+
+>> +
+>> +static int tps25990_mfr_write_protect(struct i2c_client *client, bool protect)
+>> +{
+>> +	return pmbus_write_byte_data(client, -1, TPS25990_MFR_WRITE_PROTECT,
+>> +				     protect ? 0x0 : 0xa2);
+>> +}
+>> +
+>> +static int tps25990_mfr_write_protect_active(struct i2c_client *client)
+>> +{
+>> +	int ret = pmbus_read_byte_data(client, -1, TPS25990_MFR_WRITE_PROTECT);
+>> +
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	return !(ret & TPS25990_UNLOCKED);
+>> +}
+>> +
+>> +#if IS_ENABLED(CONFIG_DEBUG_FS)
+>> +static int tps25990_write_protect_get(void *data, u64 *val)
+>> +{
+>> +	struct i2c_client *client = data;
+>> +
+>> +	return tps25990_mfr_write_protect_active(client);
+>> +}
+>> +
+>> +static int tps25990_write_protect_set(void *data, u64 val)
+>> +{
+>> +	struct i2c_client *client = data;
+>> +
+>> +	if (val > 1)
+>> +		return -EINVAL;
+>> +
+>> +	return tps25990_mfr_write_protect(client, val);
+>> +}
+>> +
+>> +DEFINE_DEBUGFS_ATTRIBUTE(tps25990_write_protect_fops,
+>> +			 tps25990_write_protect_get,
+>> +			 tps25990_write_protect_set,
+>> +			 "%llu\n");
+>> +
+>> +static int tps25990_init_debugfs(struct i2c_client *client)
+>> +{
+>> +	struct dentry *dir;
+>> +
+>> +	dir = pmbus_get_debugfs_dir(client);
+>> +	if (!dir)
+>> +		return -ENOENT;
+>> +
+>> +	debugfs_create_file("write_protect", 0644, dir,
+>> +			    client, &tps25990_write_protect_fops);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +#else
+>> +static inline int tps25990_init_debugfs(struct i2c_client *client)
+>> +{
+>> +	return 0;
+>> +}
+>> +#endif
+>> +
+>
+> In general it is extremely undesirable to overwrite write protection.
+> Many chips support such attributes. If write protection is enabled,
+> it means that the board vendor does not want to have them changed.
+
+According to documentation, it protects against "unintented" writes,
+not 'wrong' or 'malicious'. If one goes in debugfs and write just '0' to
+a file, there is an intent at least.
+
+> Granted, that can be overwritten with direct i2c commands, but that
+> is what it should be. Anyone who really wants to disable write protection
+> should have to dig deeper than just writing into a debugfs or sysfs attribute.
+> Otherwise the protection becomes worthless.
+> If this is, for example, needed
+> for production to write initial settings, the production scripts should
+> disable (or enable) write protection by writing directly into command
+> registers.
+
+As I wrote in the cover letter, the write protection is always active on
+chip startup and it locks down almost everything, including things you may
+need to write past production, in the field. The history reset below is
+an example of such thing.
+
+To 'safely' remove the protection by writing i2c commands from
+userspace:
+ * the device will need be unbinded first,
+ * call i2cset
+ * bind the device again
+
+That seems really cumbersome to do something like an history
+reset. Is this what you are suggesting ?
+
+bind/unbind could be skipped by forcing i2cset but that would add danger
+where we certainly don't want it.
+
+>
+>> +/*
+>> + * TPS25990 has history reset based on MIN/AVG/PEAK instead of per sensor type
+>> + * Emulate the behaviour a pmbus limit_attr would have for consistency
+>> + *  - Read: Do nothing and emit 0
+>> + *  - Write: Check the input is a number and reset
+>> + */
+>> +static ssize_t tps25990_history_reset_show(struct device *dev,
+>> +					   struct device_attribute *devattr,
+>> +					   char *buf)
+>> +{
+>> +	return sysfs_emit(buf, "0\n");
+>> +}
+>> +
+>> +static ssize_t tps25990_history_reset_store(struct device *dev,
+>> +					    struct device_attribute *devattr,
+>> +					    const char *buf, size_t count)
+>> +{
+>> +	struct sensor_device_attribute *attr = to_sensor_dev_attr(devattr);
+>> +	struct i2c_client *client = to_i2c_client(dev->parent);
+>> +	s64 val;
+>> +	int ret;
+>> +
+>> +	if (kstrtos64(buf, 10, &val) < 0)
+>> +		return -EINVAL;
+>> +
+>> +	ret = pmbus_update_byte_data(client, 0, TPS25990_PK_MIN_AVG,
+>> +				     BIT(attr->index), BIT(attr->index));
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	return count;
+>> +}
+>> +
+>> +static SENSOR_DEVICE_ATTR_RW(highest_history_reset, tps25990_history_reset, 7);
+>> +static SENSOR_DEVICE_ATTR_RW(average_history_reset, tps25990_history_reset, 6);
+>> +static SENSOR_DEVICE_ATTR_RW(lowest_history_reset,  tps25990_history_reset, 5);
+>
+> That is not a unique problem, and not a reason to introduce non-standard attributes.
+> Just attach the attribute to the first channel and document that it resets all
+> channels.
+
+Not sure I got this right so I'll rephrase. I should:
+* Pick a channel, say vin
+* Map the virtual reset register to hit the 3 resets above
+* Put in the documentation that it resets the other channels as well
+* Not allow independent resets of min/max/avg, just all 3 together ?
+
+>
+>> +
+>> +static struct attribute *tps25990_attrs[] = {
+>> +	&sensor_dev_attr_highest_history_reset.dev_attr.attr,
+>> +	&sensor_dev_attr_average_history_reset.dev_attr.attr,
+>> +	&sensor_dev_attr_lowest_history_reset.dev_attr.attr,
+>> +	NULL,
+>> +};
+>> +
+>> +ATTRIBUTE_GROUPS(tps25990);
+>> +
+>> +static int tps25990_get_addr(int reg)
+>> +{
+>> +	switch (reg) {
+>> +	case PMBUS_SMBALERT_MASK:
+>> +		/*
+>> +		 * Note: PMBUS_SMBALERT_MASK is not implemented on this chip
+>> +		 * Writing to this address raises CML errors.
+>> +		 * Instead it provides ALERT_MASK which allows to set the mask
+>> +		 * for each of the status registers, but not the specific bits
+>> +		 * in them.
+>> +		 * The default setup assert SMBA# if any bit is set in any of the
+>> +		 * status registers the chip has. This is as close as we can get
+>> +		 * to what pmbus_irq_setup() would set, sooo ... do nothing.
+>> +		 */
+>> +		return -ENXIO;
+>
+> Many chips have that problem. The core code ignores errors, and attempts to write
+> the command are limited to initialization. This is not a reason to overwrite
+> the command like this. If this does cause a real a problem wit hthe chip (other
+> than setting CML errors, which many chips not supporting the command do),
+> we should define a flag in include/linux/pmbus.h and explain its need.
+
+CML is error is the problem. Following pmbus_irq_setup() there is an
+uncleared fault because there is no register check on PMBUS_SMBALERT_MASK.
+
+When pmbus_core then gets here:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/hwmon/pmbus/pmbus_core.c?h=v6.11-rc7#n3386
+
+pmbus_check_block_register() fails because of the uncleared fault and
+the 'mfr_id' property is silently not registered, eventhough the
+register is supported by the chip. This is how I noticed the problem.
+
+So, should I add flag in include/linux/pmbus.h to skip
+PMBUS_SMBALERT_MASK setup ?
+
+Another possibility is to call register_check()
+on it before using PMBUS_SMBALERT_MASK in pmbus_core.
+
+>
+>> +	case PMBUS_IIN_OC_FAULT_LIMIT:
+>> +		/*
+>> +		 * VIREF directly sets the over-current limit at which the eFuse
+>> +		 * will turn the FET off and trigger a fault. Expose it through
+>> +		 * this generic property instead of a manufacturer specific one.
+>> +		 */
+>> +		return TPS25990_VIREF;
+>
+> I don't see the value in this override. See below.
+>
+>> +	case PMBUS_VIRT_READ_VIN_MAX:
+>> +		return TPS25990_READ_VIN_PEAK;
+>> +	case PMBUS_VIRT_READ_VIN_MIN:
+>> +		return TPS25990_READ_VIN_MIN;
+>> +	case PMBUS_VIRT_READ_VIN_AVG:
+>> +		return TPS25990_READ_VIN_AVG;
+>> +	case PMBUS_VIRT_READ_VOUT_MIN:
+>> +		return TPS25990_READ_VOUT_MIN;
+>> +	case PMBUS_VIRT_READ_VOUT_AVG:
+>> +		return TPS25990_READ_VOUT_AVG;
+>> +	case PMBUS_VIRT_READ_IIN_AVG:
+>> +		return TPS25990_READ_IIN_AVG;
+>> +	case PMBUS_VIRT_READ_IIN_MAX:
+>> +		return TPS25990_READ_IIN_PEAK;
+>> +	case PMBUS_VIRT_READ_TEMP_AVG:
+>> +		return TPS25990_READ_TEMP_AVG;
+>> +	case PMBUS_VIRT_READ_TEMP_MAX:
+>> +		return TPS25990_READ_TEMP_PEAK;
+>> +	case PMBUS_VIRT_READ_PIN_AVG:
+>> +		return TPS25990_READ_PIN_AVG;
+>> +	case PMBUS_VIRT_READ_PIN_MAX:
+>> +		return TPS25990_READ_PIN_PEAK;
+>> +	case PMBUS_VIRT_READ_VMON:
+>> +		return TPS25990_READ_VAUX;
+>> +	case PMBUS_VIRT_SAMPLES:
+>> +		return TPS25990_PK_MIN_AVG;
+>
+> default: missing.
+>
+>> +	}
+>> +
+>> +	/* Let the register check do its job */
+>> +	if (reg < PMBUS_VIRT_BASE)
+>> +		return reg;
+>> +
+>> +	return -ENXIO;
+>
+> This needs to be more specific: The code should only return -ENXIO
+> if auto-detection can not handle the case. "Return -ENXIO for all
+> unsupported virtual registers" is unexpected. That situation should
+> be handled by the PMBus core.
+>
+>> +}
+>> +
+>> +/*
+>> + * Some registers use a different scale than the one registered with
+>> + * pmbus_driver_info. An extra conversion step is necessary to adapt
+>> + * the register value to the conversion on the sensor type
+>> + */
+>> +static int tps25990_read_adapt_value(int reg, int val)
+>> +{
+>> +	switch (reg) {
+>> +	case PMBUS_VIN_UV_WARN_LIMIT:
+>> +	case PMBUS_VIN_UV_FAULT_LIMIT:
+>> +	case PMBUS_VIN_OV_WARN_LIMIT:
+>> +	case PMBUS_VOUT_UV_WARN_LIMIT:
+>> +	case PMBUS_IIN_OC_WARN_LIMIT:
+>> +	case PMBUS_OT_WARN_LIMIT:
+>> +	case PMBUS_OT_FAULT_LIMIT:
+>> +	case PMBUS_PIN_OP_WARN_LIMIT:
+>> +	case PMBUS_POWER_GOOD_OFF:
+>> +		/*
+>> +		 * These registers provide an 8 bits value instead of a
+>> +		 * 10bits one. Just shifting twice the register value is
+>> +		 * enough to make the sensor type conversion work, even
+>> +		 * if the datasheet provides different m, b and R for
+>> +		 * those.
+>> +		 */
+>> +		val <<= TPS25990_8B_SHIFT;
+>> +		break;
+>> +
+>> +	case PMBUS_VIN_OV_FAULT_LIMIT:
+>> +		val = DIV_ROUND_CLOSEST(val * TPS25990_VIN_OVF_NUM, TPS25990_VIN_OVF_DIV);
+>> +		val += TPS25990_VIN_OVF_OFF;
+>> +		break;
+>> +
+>> +	case PMBUS_IIN_OC_FAULT_LIMIT:
+>> +		val = DIV_ROUND_CLOSEST(val * TPS25990_IIN_OCF_NUM, TPS25990_IIN_OCF_DIV);
+>> +		val += TPS25990_IIN_OCF_OFF;
+>> +		break;
+>> +
+>> +	case PMBUS_VIRT_SAMPLES:
+>> +		val = 1 << val;
+>> +		break;
+>
+> default case missing.
+>
+>> +	}
+>> +
+>> +	return val;
+>> +}
+>> +
+>> +static int tps25990_read_word(struct i2c_client *client,
+>> +			      int page, int phase, int reg)
+>> +{
+>> +	int ret, addr;
+>> +
+>> +	addr = tps25990_get_addr(reg);
+>> +	if (addr < 0)
+>> +		return addr;
+>> +
+>> +	switch (reg) {
+>> +	case PMBUS_VIRT_SAMPLES:
+>> +		ret = pmbus_read_byte_data(client, page, addr);
+>
+> Mapping the register name in tps25990_get_addr() is unnecessary
+> and misleading. It is well known that TPS25990_PK_MIN_AVG is to be
+> used. Do it here.
+
+My intent was to do the mapping in one place instead of repeating for
+both read and write, not be misleading. I'll change it.
+
+>
+>> +		ret = FIELD_GET(PK_MIN_AVG_AVG_CNT, ret);
+>> +		break;
+>> +
+>> +	case PMBUS_IIN_OC_FAULT_LIMIT:
+>> +		ret = pmbus_read_byte_data(client, page, addr);
+>> +		break;
+>> +
+> Same here.
+>
+>> +	default:
+>> +		ret = pmbus_read_word_data(client, page, -1, addr);
+>
+> This is unexpected for registers not handled locally. Expectation is
+> that -ENODATA is returned for those, to be handled in the core.
+
+Got it. Thanks.
+
+>
+>> +		break;
+>> +	}
+>> +
+>> +	if (ret >= 0)
+>> +		ret = tps25990_read_adapt_value(reg, ret);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int tps25990_write_adapt_value(int reg, int val)
+>> +{
+>> +	switch (reg) {
+>> +	case PMBUS_VIN_UV_WARN_LIMIT:
+>> +	case PMBUS_VIN_UV_FAULT_LIMIT:
+>> +	case PMBUS_VIN_OV_WARN_LIMIT:
+>> +	case PMBUS_VOUT_UV_WARN_LIMIT:
+>> +	case PMBUS_IIN_OC_WARN_LIMIT:
+>> +	case PMBUS_OT_WARN_LIMIT:
+>> +	case PMBUS_OT_FAULT_LIMIT:
+>> +	case PMBUS_PIN_OP_WARN_LIMIT:
+>> +	case PMBUS_POWER_GOOD_OFF:
+>> +		val >>= TPS25990_8B_SHIFT;
+>> +		val = clamp(val, 0, 0xff);
+>
+> Why clamp() here but clamp_val() elsewhere ?
+>
+>> +		break;
+>> +
+>> +	case PMBUS_VIN_OV_FAULT_LIMIT:
+>> +		val -= TPS25990_VIN_OVF_OFF;
+>> +		val = DIV_ROUND_CLOSEST(val * TPS25990_VIN_OVF_DIV, TPS25990_VIN_OVF_NUM);
+>> +		val = clamp_val(val, 0, 0xf);
+>> +		break;
+>> +
+>> +	case PMBUS_IIN_OC_FAULT_LIMIT:
+>> +		val -= TPS25990_IIN_OCF_OFF;
+>> +		val = DIV_ROUND_CLOSEST(val * TPS25990_IIN_OCF_DIV, TPS25990_IIN_OCF_NUM);
+>> +		val = clamp_val(val, 0, 0x3f);
+>> +		break;
+>> +
+>> +	case PMBUS_VIRT_SAMPLES:
+>> +		val = clamp_val(val, 1, 1 << PK_MIN_AVG_AVG_CNT);
+>> +		val = ilog2(val);
+>> +		break;
+>
+> default: missing.
+>
+>> +	}
+>> +
+>> +	return val;
+>> +}
+>> +
+>> +static int tps25990_write_word(struct i2c_client *client,
+>> +			       int page, int reg, u16 value)
+>> +{
+>> +	int addr, ret;
+>> +
+>> +	addr = tps25990_get_addr(reg);
+>> +	if (addr < 0)
+>> +		return addr;
+>> +
+>> +	value = tps25990_write_adapt_value(reg, value);
+>> +
+>> +	switch (reg) {
+>> +	case PMBUS_VIRT_SAMPLES:
+>> +		ret = pmbus_update_byte_data(client, page, addr,
+>> +					     PK_MIN_AVG_AVG_CNT,
+>> +					     FIELD_PREP(PK_MIN_AVG_AVG_CNT, value));
+>> +		break;
+>> +
+>> +	case PMBUS_IIN_OC_FAULT_LIMIT:
+>> +		ret = pmbus_write_byte_data(client, page, addr,
+>> +					    value);
+>> +		break;
+>> +
+>> +	default:
+>> +		ret = pmbus_write_word_data(client, page, addr, value);
+>> +		break;
+>
+> Same comments as for read functions.
+>
+>> +	}
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +#if IS_ENABLED(CONFIG_SENSORS_TPS25990_REGULATOR)
+>> +static const struct regulator_desc tps25990_reg_desc[] = {
+>> +	PMBUS_REGULATOR_ONE("vout"),
+>> +};
+>> +#endif
+>> +
+>> +static const struct pmbus_driver_info tps25990_base_info = {
+>> +	.pages = 1,
+>> +	.format[PSC_VOLTAGE_IN] = direct,
+>> +	.m[PSC_VOLTAGE_IN] = 5251,
+>> +	.b[PSC_VOLTAGE_IN] = 0,
+>> +	.R[PSC_VOLTAGE_IN] = -2,
+>> +	.format[PSC_VOLTAGE_OUT] = direct,
+>> +	.m[PSC_VOLTAGE_OUT] = 5251,
+>> +	.b[PSC_VOLTAGE_OUT] = 0,
+>> +	.R[PSC_VOLTAGE_OUT] = -2,
+>> +	.format[PSC_TEMPERATURE] = direct,
+>> +	.m[PSC_TEMPERATURE] = 140,
+>> +	.b[PSC_TEMPERATURE] = 32100,
+>> +	.R[PSC_TEMPERATURE] = -2,
+>> +	/*
+>> +	 * Current and Power measurement depends on the ohm value
+>> +	 * of Rimon. m is multiplied by 1000 below to have an integer
+>> +	 * and -3 is added to R to compensate.
+>> +	 */
+>> +	.format[PSC_CURRENT_IN] = direct,
+>> +	.m[PSC_CURRENT_IN] = 9538,
+>> +	.b[PSC_CURRENT_IN] = 0,
+>> +	.R[PSC_CURRENT_IN] = -6,
+>> +	.format[PSC_POWER] = direct,
+>> +	.m[PSC_POWER] = 4901,
+>> +	.b[PSC_POWER] = 0,
+>> +	.R[PSC_POWER] = -7,
+>> +	.func[0] = (PMBUS_HAVE_VIN |
+>> +		    PMBUS_HAVE_VOUT |
+>> +		    PMBUS_HAVE_VMON |
+>> +		    PMBUS_HAVE_IIN |
+>> +		    PMBUS_HAVE_PIN |
+>> +		    PMBUS_HAVE_TEMP |
+>> +		    PMBUS_HAVE_STATUS_VOUT |
+>> +		    PMBUS_HAVE_STATUS_IOUT |
+>> +		    PMBUS_HAVE_STATUS_INPUT |
+>> +		    PMBUS_HAVE_STATUS_TEMP |
+>> +		    PMBUS_HAVE_SAMPLES),
+>> +	.read_word_data = tps25990_read_word,
+>> +	.write_word_data = tps25990_write_word,
+>> +	.groups = tps25990_groups,
+>> +
+>> +#if IS_ENABLED(CONFIG_SENSORS_TPS25990_REGULATOR)
+>> +	.reg_desc = tps25990_reg_desc,
+>> +	.num_regulators = ARRAY_SIZE(tps25990_reg_desc),
+>> +#endif
+>> +};
+>> +
+>> +static const struct i2c_device_id tps25990_i2c_id[] = {
+>> +	{ "tps25990" },
+>> +	{}
+>> +};
+>> +MODULE_DEVICE_TABLE(i2c, tps25990_i2c_id);
+>> +
+>> +static const struct of_device_id tps25990_of_match[] = {
+>> +	{ .compatible = "ti,tps25990" },
+>> +	{}
+>> +};
+>> +MODULE_DEVICE_TABLE(of, tps25990_of_match);
+>> +
+>> +static int tps25990_probe(struct i2c_client *client)
+>> +{
+>> +	struct device *dev = &client->dev;
+>> +	struct pmbus_driver_info *info;
+>> +	u32 rimon = TPS25990_DEFAULT_RIMON;
+>> +	int ret;
+>> +
+>> +	ret = device_property_read_u32(dev, "ti,rimon-milli-ohms", &rimon);
+>> +	if (ret == -EINVAL) {
+>> +		dev_warn(dev,
+>> +			 "using default rimon: current and power scale possibly wrong\n");
+>
+> This is not an appropriate warning. It is perfectly fine to load the driver
+> if there is no ti,rimon-milli-ohms property.
+
+I should have commented more on the default value. It is meant for the
+case where the device is instanciated through i2c sys 'new_device',
+which is meant for debugging purpose. In that particular case, it does
+not really matter if the current and power scale are wrong.
+
+There is no way to pass device properties when instanciating device
+through that interface, as far as I know. 
+
+In every other cases, a correct Rimon value is expected.
+I could turn the above to an error. It means loading through i2c sys
+would not possible for this driver.
+
+Would it be better ?
+
+>
+>> +	} else if (ret < 0) {
+>> +		return dev_err_probe(dev, ret, "failed get rimon\n");
+>> +	}
+>> +
+>> +	/*
+>> +	 * TPS25990 may be stacked with several TPS25895, allowing a higher
+>> +	 * current. The higher the allowed current is, the lower rimon
+>> +	 * will be. How low it can realistically get is unknown.
+>> +	 * To avoid problems with precision later on, rimon is provided in
+>> +	 * milli Ohms. This is a precaution to keep a stable ABI.
+>> +	 * At the moment, doing the calculation with rimon in milli Ohms
+>> +	 * would overflow the s32 'm' in the direct conversion. Convert it
+>> +	 * back to Ohms until greater precision is actually needed.
+>> +	 */
+>> +	rimon /= 1000;
+>> +
+>
+> Seems to me it would make more sense to limit the valid range of ti,rimon-milli-ohms
+> to avoid the overflow. But then I really don't understand the reasoning to provide
+> the property in milli-ohm, given the default value of 910 Ohm. What is a realistic
+> lowest value that would make sense ?
+
+The highest value I've seen, when the tps25990 is alone, is 1370
+Ohms. That means a 30A overcurrent fault limit.
+
+With one TPS25895, I've seen 608 Ohms (110A limit)
+
+I have no idea what the realistic low limit is. To get to ~100 Ohms, you'd
+need 8 devices (not hundreds ;) ) If one gets there, it might be
+desirable to have 3 digits to play with, and not be limited by the unit.
+
+The DT folks really don't like when a property changes. Going with
+milli-Ohms is way to anticipate the problem.
+
+The other way could be to use Ohms now, and if we ever get to point
+where milli-Ohms precision is needed, add it then. The downside is that
+the driver will need to support both properties.
+
+Would you prefer this ?
+
+
+> But even if it is less than 1 Ohm I don't
+> understand why it would make sense to completely ignore it.
+
+It would not make sense to ignore it.
+
+>
+>> +	info = devm_kmemdup(dev, &tps25990_base_info, sizeof(*info), GFP_KERNEL);
+>> +	if (!info)
+>> +		return -ENOMEM;
+>> +
+>> +	/* Adapt the current and power scale for each instance */
+>> +	info->m[PSC_CURRENT_IN] *= rimon;
+>> +	info->m[PSC_POWER] *= rimon;
+>
+> Any rimon value < 1000 mOhm will result in m values of 0.
+
+Indeed. Such Rimon value would mean an over current limit > 50kA. I admit
+I did really think much about such value.
+
+The idea was more keep some precision if we get somewhere near a 100 Ohms.
+
+>
+>> +
+>> +	ret = pmbus_do_probe(client, info);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	return tps25990_init_debugfs(client);
+>
+> debugfs initialization is not expected to fail.
+>
+>> +}
+>> +
+>> +static struct i2c_driver tps25990_driver = {
+>> +	.driver = {
+>> +		.name = "tps25990",
+>> +		.of_match_table = tps25990_of_match,
+>> +	},
+>> +	.probe = tps25990_probe,
+>> +	.id_table = tps25990_i2c_id,
+>> +};
+>> +module_i2c_driver(tps25990_driver);
+>> +
+>> +MODULE_AUTHOR("Jerome Brunet <jbrunet@baylibre.com>");
+>> +MODULE_DESCRIPTION("PMBUS driver for TPS25990 eFuse");
+>> +MODULE_LICENSE("GPL");
+>> +MODULE_IMPORT_NS(PMBUS);
+>> 
+
 -- 
-2.46.0
-
+Jerome
 
