@@ -1,60 +1,56 @@
-Return-Path: <devicetree+bounces-101852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACF81974677
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 01:44:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F4A97467A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 01:44:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BE64287901
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 23:44:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA1E81C25973
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 23:44:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE5FC1AB534;
-	Tue, 10 Sep 2024 23:44:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CB871AC440;
+	Tue, 10 Sep 2024 23:44:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lGfW+LQd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K+hYP9V8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B001A1A4AC6;
-	Tue, 10 Sep 2024 23:44:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417B21AB534;
+	Tue, 10 Sep 2024 23:44:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726011858; cv=none; b=uha6CCLp9z9H8IHYzox2UwsOFXo+rpa5V2ZxgjqoJO80SBGWmF2vTfNB02MUIEuxM1wJDV9+m1o0ZbTeI+tRFxSkdbGMrp1ILv/tMy6MCavaDfTOAAljBrkhnmFi57FHT2cnGu71K1t+LFE4aCgyey4/HTJE0hm37m2+4G2qvvo=
+	t=1726011868; cv=none; b=FMfpr88eXbZ1R8VnXXAsxT2iArF8iD3hQTHCzlzrWH3QaGjO80/LAEY5NQHm7RO7pQE6PO3SW7cIUZtthNWV87KPT/+I6HqSGUbeNPQM3xBI0Izj1chyO3IYyoRj30eLcM1kV3BYf4ar4HzaMYWW++/JgC07sFScA03f1NEQ2Is=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726011858; c=relaxed/simple;
-	bh=52dbOaQAtE+QBJjRy/7NqFe/CweE7AfpiSDKiTqjnSc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Qrqe18Lju+m70/6idHMOOB0U4eeqoJCH8v5zy230Doer+9r7jP3M+C56lZCvBFSq7Ya5J5DL1Y3ns34xymOioooHEz9LU11OhAhdC7FheXUZfDEKdILygnwHRQnyXeYNIeQj9nKwoJeSd4O0AfosAysTyL1lwPUXxndwxu/t3GI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lGfW+LQd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06D33C4CEC3;
-	Tue, 10 Sep 2024 23:44:17 +0000 (UTC)
+	s=arc-20240116; t=1726011868; c=relaxed/simple;
+	bh=K0LaUYF1SwsKZiGP09g/LWGz/cecN4xLr1fBYM3V/gw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=I7ZP0VdI98hMjgzT+KdH0iVOUvTvLmY7m7LlnkIrmOCk4YsshtkC214XDfCUit3p3soP3qpH9GUfwN/IWF2qJVFzdsg6PGYUER2ScQIbkDT2+aGp1QlOMDHsRBtKplTaCf1Ovw56x70h44wO7BADPROdFRNYDzJ02qft+ijht00=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K+hYP9V8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01273C4CEC3;
+	Tue, 10 Sep 2024 23:44:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726011858;
-	bh=52dbOaQAtE+QBJjRy/7NqFe/CweE7AfpiSDKiTqjnSc=;
+	s=k20201202; t=1726011868;
+	bh=K0LaUYF1SwsKZiGP09g/LWGz/cecN4xLr1fBYM3V/gw=;
 	h=From:To:Cc:Subject:Date:From;
-	b=lGfW+LQdt7Hvg6FWWW4JPKtvNm9rou75N0NKO51O5If8V8GEQuEzECS7fs+M0Uonl
-	 cRzvGS8Sz92Cs2kpZ5ZFCE2xXvaWQ7MHzdgxjxchGlB3vJZfN85WFvRwDNUyX5sNi5
-	 EhyXjLXGUQx8ZnNxcdYsWFxUTh80NhM86WTj3d6JvAax2Ni9OkYuNt2sV11aAWfAdf
-	 e5a+rICnZ00EwzhbKE5MH066caMpTYGjWeuqNvB1b0QThx4N0vvPzZ93UDUuQQWmU0
-	 am8J79XYsiueJyXSC3K8hWByRmW0feoHKN5cxclswiZAjVaHkeSRaL3S5LswD/C1go
-	 qr0wQwj+E02ww==
+	b=K+hYP9V8+vDjNgJhT/PXAOeQQVXJIiklCRJMx30tfeR+R2319+N+PY58oZfsKEbNT
+	 UNUXstjvCCs8aZRQojyT9rN1qW1/UOa9bK7UP7QmBlFP+mXVcfamX4UFZvrB9+L/is
+	 W/Iz9YK0cjl6A2wg13cqtwSIA4E2cCkp3xFXj2/6E82t2Uj/DPzNf490ki0fhksQ63
+	 qCRPepKmoh4QLoq52PhbBw+89poB6dIVRsyojo2NASibwhHZc1z5ZipzG2ZaD70f3Z
+	 Zg0LReolWj9M0xNYsxyF9O7HzRtmHdWcHCp0f+OIEisBAci3g/e5XAbe0Cv0lVf9EN
+	 EWivpwuVgtxjw==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH] dt-bindings: clock: mediatek: Drop duplicate mediatek,mt6795-sys-clock.yaml
-Date: Tue, 10 Sep 2024 18:42:37 -0500
-Message-ID: <20240910234238.1028422-1-robh@kernel.org>
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>
+Cc: devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: cpu: Drop duplicate nvidia,tegra186-ccplex-cluster.yaml
+Date: Tue, 10 Sep 2024 18:44:21 -0500
+Message-ID: <20240910234422.1042486-1-robh@kernel.org>
 X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -64,82 +60,58 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The compatible strings for mt6795 clocks are also documented in other
-schemas:
-
-"mediatek,mt6795-apmixedsys" in clock/mediatek,apmixedsys.yaml
-"mediatek,mt6795-topckgen" in clock/mediatek,topckgen.yaml
-"mediatek,mt6795-pericfg" in clock/mediatek,pericfg.yaml
-"mediatek,mt6795-infracfg" in clock/mediatek,infracfg.yaml
-
-The only difference is #reset-cells is not allowed in some of these,
-but that aligns with actual users in .dts files.
+"nvidia,tegra186-ccplex-cluster" is also documented in
+arm/tegra/nvidia,tegra-ccplex-cluster.yaml. As it covers Tegra234 as
+well, drop nvidia,tegra186-ccplex-cluster.yaml.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../clock/mediatek,mt6795-sys-clock.yaml      | 54 -------------------
- 1 file changed, 54 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.yaml
+ .../cpu/nvidia,tegra186-ccplex-cluster.yaml   | 37 -------------------
+ 1 file changed, 37 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/cpu/nvidia,tegra186-ccplex-cluster.yaml
 
-diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.yaml
+diff --git a/Documentation/devicetree/bindings/cpu/nvidia,tegra186-ccplex-cluster.yaml b/Documentation/devicetree/bindings/cpu/nvidia,tegra186-ccplex-cluster.yaml
 deleted file mode 100644
-index 378b761237d3..000000000000
---- a/Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.yaml
+index 16a448974561..000000000000
+--- a/Documentation/devicetree/bindings/cpu/nvidia,tegra186-ccplex-cluster.yaml
 +++ /dev/null
-@@ -1,54 +0,0 @@
--# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+@@ -1,37 +0,0 @@
+-# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 -%YAML 1.2
 ----
--$id: http://devicetree.org/schemas/clock/mediatek,mt6795-sys-clock.yaml#
+-$id: http://devicetree.org/schemas/cpu/nvidia,tegra186-ccplex-cluster.yaml#
 -$schema: http://devicetree.org/meta-schemas/core.yaml#
 -
--title: MediaTek System Clock Controller for MT6795
+-title: NVIDIA Tegra186 CCPLEX Cluster
 -
 -maintainers:
--  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
--  - Chun-Jie Chen <chun-jie.chen@mediatek.com>
--
--description:
--  The Mediatek system clock controller provides various clocks and system
--  configuration like reset and bus protection on MT6795.
+-  - Thierry Reding <thierry.reding@gmail.com>
+-  - Jon Hunter <jonathanh@nvidia.com>
 -
 -properties:
 -  compatible:
--    items:
--      - enum:
--          - mediatek,mt6795-apmixedsys
--          - mediatek,mt6795-infracfg
--          - mediatek,mt6795-pericfg
--          - mediatek,mt6795-topckgen
--      - const: syscon
+-    const: nvidia,tegra186-ccplex-cluster
 -
 -  reg:
 -    maxItems: 1
 -
--  '#clock-cells':
--    const: 1
+-  nvidia,bpmp:
+-    description: phandle to the BPMP used to query CPU frequency tables
+-    $ref: /schemas/types.yaml#/definitions/phandle
 -
--  '#reset-cells':
--    const: 1
+-additionalProperties: false
 -
 -required:
 -  - compatible
 -  - reg
--  - '#clock-cells'
--
--additionalProperties: false
+-  - nvidia,bpmp
 -
 -examples:
 -  - |
--    soc {
--        #address-cells = <2>;
--        #size-cells = <2>;
--
--        topckgen: clock-controller@10000000 {
--            compatible = "mediatek,mt6795-topckgen", "syscon";
--            reg = <0 0x10000000 0 0x1000>;
--            #clock-cells = <1>;
--        };
+-    ccplex@e000000 {
+-        compatible = "nvidia,tegra186-ccplex-cluster";
+-        reg = <0x0e000000 0x400000>;
+-        nvidia,bpmp = <&bpmp>;
 -    };
 -- 
 2.45.2
