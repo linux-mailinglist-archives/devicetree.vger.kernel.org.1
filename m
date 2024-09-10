@@ -1,120 +1,146 @@
-Return-Path: <devicetree+bounces-101776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AA1F973CC5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 17:55:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94B70973CCE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 17:58:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 000E6285335
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 15:55:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B69F1F24A44
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 15:58:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B10319DFAE;
-	Tue, 10 Sep 2024 15:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F15A119DFAE;
+	Tue, 10 Sep 2024 15:58:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="iNnhWeW3"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="3YvGKIku";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="nOXDYXyK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.4])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2337A14F12C;
-	Tue, 10 Sep 2024 15:55:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DB49191F97;
+	Tue, 10 Sep 2024 15:58:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725983750; cv=none; b=Jp52yh2jV996VxWUP5VrthFAbKmKCdAWtzZzulHK9EgpWfN14NL9L7kOiIuy+Gwr42OUEcZV/r2qsZPi7orDQS+If8soFYS8toz/neTE1Z/HbCdKIJ0Q03LfEN7VXTQ+srKxRIvJMXLzocxWC8+UX+3fBh4qL/XrHIcMnPyScy4=
+	t=1725983899; cv=none; b=pPDdm6xx7b1BD3LxA92pfQf30Ngf/23y7adXOX+Va+AhaUkVbnakh8Ywv0teobNdaMi86LyhjAukJoP4iyk8cI7cOP7EUh9EQ5cbmq1qfrm3HWOnETph6TXshtkoa49C6rxSURHQPZ4deps+AFEvz+b4rOXME2NQKe+zI9Z5mM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725983750; c=relaxed/simple;
-	bh=LwPewJzw4V4WuTKlqB1K5tYOXWB1kJNCFgItpQi5tGA=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=BLbX7CQTJa4Vu20+3UOBmZzk4kGmkGwsgyCMcYVE+hIkU1f1DvwF9Z9+/O1tgZimrbyQERNy1Qt2EloMqXOjanNvovLjaGr7kSDrZwhFXgHwmq2hNncZzukzi1pHqEdjtcXfJEX1IwV+qlNSPEusSLxvjth4fs9a/FKXTIUHcB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=iNnhWeW3; arc=none smtp.client-ip=212.227.15.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1725983715; x=1726588515; i=markus.elfring@web.de;
-	bh=LwPewJzw4V4WuTKlqB1K5tYOXWB1kJNCFgItpQi5tGA=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=iNnhWeW3g+hAODGfDoNqaFNmgaqEIFIxBYn1ZoP8hSe3x+BD1sV4B325L2GnuTw+
-	 rS5hC4/0u5R9vMk6U6UONrI/LkdfzeoCsQD1AIzg7Tdi/LuH1fqugv67ZSHvtDbET
-	 HJ9a8cYpiZLslSqJwZ1fK/Hn5lFR5UCt3+WqWud4qhwzKSVUF84iQ6KGvEbmFBprA
-	 up6ONxaeOGoIOqGRvij8NW5BAV+mKVF8u8nWEH66WZx4XM7m9GQDdskq9x0DLM/MP
-	 22qsnFjSI3lDJy7K7XL4M9//MLnEse9PHKT5aeCeAfVywoKfbktkSMz1VPqyZAbMM
-	 wAuWVvadLOnXO+PB6g==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.91.95]) by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1My6lX-1s5r9Z3SZD-010uBy; Tue, 10
- Sep 2024 17:55:14 +0200
-Message-ID: <aa9efb22-9ff1-412a-a949-bd727350532f@web.de>
-Date: Tue, 10 Sep 2024 17:55:12 +0200
+	s=arc-20240116; t=1725983899; c=relaxed/simple;
+	bh=BcDQ0tP+lMxKgQtrtnU7NkgYviUPvUeZT8xDP42dGxY=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=HrnNlZLl0c4Kw5VakIEZXCyM3Z7hNdjxBKSFxmNjzKricO391SA9Qe/YjWk+UMR/OVuEhnNujNyQVgkHMAVEYdYxeqU87Jgs+PJWGaDUZ0oo6JxxkuUxGdFUoHk72X9CFQGCEIguWuqENYl9w5NOaQQcMuoUDP7qi5SU03VbkrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=3YvGKIku; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=nOXDYXyK; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1725983896;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=bYuy0gE/Csnq6CPjPynB+thwHl+NK+QDx3CCg79tANw=;
+	b=3YvGKIkulMjWSxMFtwlNIAzmYpBeHw1URc4C+ycSUDYGdD7pxLEXc2TowKAXLwT5dEjtNa
+	BxO24vkHV9ZJ3ucu78nX1lVOgRX/F8a5bbW+3kykcbckVInhZ45OmFFv2CWKJwnMXGxg3i
+	YWKNX2ZprZdXQD1B+hreQXeebltGuXPo/mMusaHNZu1RbA2KpuXnaKbs6Q9UrVZ7a7H10G
+	SDWTc2wM7i1QWGTW+Gftr/SQujQNlUSYzBDX9dsaPJclyKdaCGPDDoyPurjD70hUfYbZPv
+	6sGlVTfnhOANxZxdP+n2f9Am6kHPAjEnTANBJPU0WLft8WIHS5OMApmbjXupnQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1725983896;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=bYuy0gE/Csnq6CPjPynB+thwHl+NK+QDx3CCg79tANw=;
+	b=nOXDYXyK81ou96bJppft20Co7EtkQ9rWp78zV/nliuCMzMamIfannFVkrWzA+tpOrsUzs3
+	WgA9TSp9xOC4dICg==
+To: Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org, Broadcom
+ internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli
+ <florian.fainelli@broadcom.com>, Jim Quinlan <jim2101024@gmail.com>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>, Bjorn Helgaas
+ <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ kw@linux.com, Philipp Zabel <p.zabel@pengutronix.de>, Andrea della Porta
+ <andrea.porta@suse.com>, Phil Elwell <phil@raspberrypi.com>, Jonathan Bell
+ <jonathan@raspberrypi.com>, Stanimir Varbanov <svarbanov@suse.de>
+Subject: Re: [PATCH v2 -next 03/11] irqchip: mip: Add Broadcom bcm2712 MSI-X
+ interrupt controller
+In-Reply-To: <20240910151845.17308-4-svarbanov@suse.de>
+References: <20240910151845.17308-1-svarbanov@suse.de>
+ <20240910151845.17308-4-svarbanov@suse.de>
+Date: Tue, 10 Sep 2024 17:58:16 +0200
+Message-ID: <87o74va4br.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- David Airlie <airlied@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Liam Girdwood <lgirdwood@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Mark Brown <broonie@kernel.org>, Maxime Ripard <mripard@kernel.org>,
- Michal Simek <michal.simek@amd.com>, Rob Herring <robh+dt@kernel.org>,
- Takashi Iwai <tiwai@suse.com>, Thomas Zimmermann <tzimmermann@suse.de>
-Cc: LKML <linux-kernel@vger.kernel.org>,
- Anatoliy Klymenko <anatoliy.klymenko@amd.com>,
- =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
- Vishal Sagar <vishal.sagar@amd.com>
-References: <20240910-xilinx-dp-audio-v3-3-75560793f4d0@ideasonboard.com>
-Subject: Re: [PATCH v3 3/3] drm: xlnx: zynqmp_dpsub: Add DP audio support
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20240910-xilinx-dp-audio-v3-3-75560793f4d0@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:dUTuMxY+RIMsMYSPo9z08ag0Ve3CqYJZF0sCAewlSlRgL/pPk2w
- Bh98DzjKfd4e9R76Fd1HDYqZURqHHYgrJRckEUrNxqB3X6bXg9R/DkqHB1XHiqgsndIDFUc
- QThopc9jqRyEGyURUeg8lLZe3q55FgeDAcDsCAKTqYoSR3CmmVqngB4aTA1Ff03bCxpT5yT
- tMQk16/syJxIlSKpUCuiQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:Y7xr2WFazI4=;iydN9FdWvdIe7qftthK9MZ1odcD
- nAoXuuHvB4+sRQ1usDd7/6WSBME0otRiam/ITa91XIkTcbFqZm75z/vJ58h/mlTj4cr5YzzhX
- tE5pxnpILRxoSefbCbwx0BS/2HFfu2ITXG0I5WdX/tcBTtklPHUqNLQ2JnJVUyFxp6SyoAeN8
- x2RRB3L070cQ5ugwsv8t/AC67zu308FVzXtj57unFrwZrkSrfUwaXSx/tWy8oIeEPla8NZgTV
- o7rJXO/2E9Zt2GqPir5MEfrOsmUXT9JJTZZ1VSwzmDTwXENJStPO18x/bgzKRWyIuQGwagTeI
- L7l2RR7KdS1tfiSb7B8WBHWieKbYczY3HZwcy6MfaBvwdHRGhHDdJLCht0qmNjyimuGL0Fgns
- gEFDQkL4sEUCPwfCxzbm4S8HFo9gn7GJGLalPnc0h99/6fVf0v3bOVzvfIwUDII/lOzvVRCgE
- 0at1gKa4Iq6fd7EHbpKV7OnhsRthI/EXBJ5iVyJEWX0qqVqutSuYyWuFKlE46z2n9+wSUtnEb
- 1mC8TU+/7T730+T18HM5l7kLpoY2bxknMOzkBQBN58vUnVuR9m1fKCC3ODocmUfpYIdk6lNz8
- C1iJquV191W0yVWbXussHkVDB3RESzvkiqETiPxXezxnjQLCsW8nhDYWjMMUUX1p9l4TUC/2+
- 8qA3ajwJ1tl44IiJfNyo927sXUobOpsM5UQwpwwF2eSQdOdQw5nzrcPurVZ+0deO0Gxc4KQVn
- rWIe6YtiLFhMxb9Xv4SO+xOEH+LOJ7GpznOwoGvlYXQHql9xJWiRE8f8qAyNKkd9QYYNNR4RZ
- dOi80qkX9EC2hU09JSLseCkg==
+Content-Type: text/plain
 
-=E2=80=A6
-> +++ b/drivers/gpu/drm/xlnx/zynqmp_dp_audio.c
-> @@ -0,0 +1,461 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * ZynqMP DisplayPort Subsystem Driver - Audio support
-> + *
-> + * Copyright (C) 2015 - 2023 Xilinx, Inc.
-> + *
-> + * Authors:
-=E2=80=A6
+On Tue, Sep 10 2024 at 18:18, Stanimir Varbanov wrote:
+> +
+> +struct mip_priv {
+> +	/* used to protect bitmap alloc/free */
+> +	spinlock_t lock;
+> +	void __iomem *base;
+> +	u64 msg_addr;
+> +	u32 msi_base;
+> +	u32 num_msis;
+> +	unsigned long *bitmap;
+> +	struct irq_domain *parent;
 
-Would such information need another adjustment (according to the current y=
-ear)?
+https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#struct-declarations-and-initializers
 
-Regards,
-Markus
+And please read the rest of the document too.
+
+> +};
+> +
+> +static void mip_mask_msi_irq(struct irq_data *d)
+> +{
+> +	pci_msi_mask_irq(d);
+> +	irq_chip_mask_parent(d);
+> +}
+> +
+> +static void mip_unmask_msi_irq(struct irq_data *d)
+> +{
+> +	pci_msi_unmask_irq(d);
+> +	irq_chip_unmask_parent(d);
+
+This is asymmetric vs. mask(), but that's just the usual copy & pasta
+problem.
+
+> +}
+> +static int mip_init_domains(struct mip_priv *priv, struct device_node *np)
+> +{
+> +	struct irq_domain *middle_domain, *msi_domain;
+> +
+> +	middle_domain = irq_domain_add_hierarchy(priv->parent, 0,
+> +						 priv->num_msis, np,
+> +						 &mip_middle_domain_ops,
+> +						 priv);
+> +	if (!middle_domain)
+> +		return -ENOMEM;
+> +
+> +	msi_domain = pci_msi_create_irq_domain(of_node_to_fwnode(np),
+> +					       &mip_msi_domain_info,
+> +					       middle_domain);
+> +	if (!msi_domain) {
+> +		irq_domain_remove(middle_domain);
+> +		return -ENOMEM;
+> +	}
+
+This is not much different. Please convert this to a proper MSI parent
+domain and let the PCI/MSI core handle the PCI/MSI part.
+
+See
+
+https://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git/log/?h=irq-msi-2024-07-22
+
+for reference.
+
+Thanks,
+
+        tglx
 
