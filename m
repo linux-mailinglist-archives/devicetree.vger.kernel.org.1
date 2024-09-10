@@ -1,225 +1,180 @@
-Return-Path: <devicetree+bounces-101577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1186A9728D0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 07:13:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1A379728D5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 07:14:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4378CB23F83
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 05:13:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 36B5FB2439A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 05:14:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C08BC170A2B;
-	Tue, 10 Sep 2024 05:13:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF38D16DEA9;
+	Tue, 10 Sep 2024 05:14:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="duYAoF8M"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="lmxYR9IE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2058.outbound.protection.outlook.com [40.107.255.58])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A00745F2;
-	Tue, 10 Sep 2024 05:13:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725945215; cv=none; b=BIk2ZhRZ5N0onMpu7iTCnASc56Bq0c3DlWXUgOP+0I+ikhU+aO37pmmpjimltW9ITsaFz3bj0Mqcj76WSBju4XTSz4g5lKW5EkVpqiIT4wpvyQg9S3UVBMlb6hvOVujQEqq2wVlvT5KteHIIkZACTD++Hbu2wM04bZXZtjIEd3U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725945215; c=relaxed/simple;
-	bh=x8lzG1xg2DPDKAaQNoyJUvlH5EiQ8sXURqDeNwwN7dM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RZwkhbJx3IDR+q+9f1R47aoEF9x3xa+FyHuJOxFvz7nWiQpWVluGSVXfXslWeMsQa05yYWa6qMeNVxiwovi8pqZ9ujH7/ZOBheqpm76beQAKnaxL8f0/ZTreHNENAY1L8PaG0SjGIrS/BCXDKp3uy9HmWe95JcvQgkXikI+pPwo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=duYAoF8M; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725945214; x=1757481214;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=x8lzG1xg2DPDKAaQNoyJUvlH5EiQ8sXURqDeNwwN7dM=;
-  b=duYAoF8MQ0X9oxHf7gN322wi5IODfUv5xHP1k7aH0fn3YChjeXv3pgY5
-   pWsFeixd6hRBI1pmfanwkTSq6+pwPL+TtrxHy+YV0XDxwvYjRro/CyHks
-   Gq9SYLCNBcnij8Fg/7kZOvFaW5OPqLG+SKU/v5JPvWN2i8d2iOV3jglS0
-   NNY1J+8ewBKy2Swr2Biw66p7dR1ZI2CG+bAPCgp9K+6Fq18cXClfjK2iY
-   9vQcJN8RumdfagXh9pxkgf7A62kCg5IGFvtv4n8g8lPlopldpGuBIu3vg
-   vm3VBRZPwFuHV49Lj/jHv+zxfbVeAx6j5tqlxxnQpQu+x6/Pcgj63Kafh
-   A==;
-X-CSE-ConnectionGUID: jBzbH/UfRPaRmOphuyu9kw==
-X-CSE-MsgGUID: iRAaWR81RHeRXOjDpu6sYw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="42187700"
-X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; 
-   d="scan'208";a="42187700"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2024 22:13:33 -0700
-X-CSE-ConnectionGUID: U/Q9vasDTWyGZwDUvBIWoQ==
-X-CSE-MsgGUID: QML0+yufQ2CNXvcimLQrKw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; 
-   d="scan'208";a="66530313"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 09 Sep 2024 22:13:29 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sntBu-000065-2A;
-	Tue, 10 Sep 2024 05:13:26 +0000
-Date: Tue, 10 Sep 2024 13:12:28 +0800
-From: kernel test robot <lkp@intel.com>
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
-	Carsten =?iso-8859-1?Q?Spie=DF?= <mail@carsten-spiess.de>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>
-Cc: oe-kbuild-all@lists.linux.dev,
-	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28AED13FD72;
+	Tue, 10 Sep 2024 05:13:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.58
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725945240; cv=fail; b=i780D0QPRn2PpOHrw6epPFipgq56r/MypbSjmpuR+QiinFoMAi4VvKSbQE7aCVtdlCEcqBhAwwQRhLMMiOmxiDhWJc3M6pnbBtcmAIgSj+xddTcd/ZxM66w/nTsXhwA4TSS269jJ+vsxIivm9zjUoemdZE+XfkpL4MEK6+NyzIc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725945240; c=relaxed/simple;
+	bh=MLsRhp8BSLDG7AxBR2//RavxGSTiaHDcOBi3GZbGwpc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=Z8EeLU8WrjEX52PjTxHnoJm8DlNnwEeGO2mtDedz8Ol0Qi2AVoxHFaBkCGP6q0gs5Ry3Qv07Ejdf4EpOrX2aOZBiiGUoUQ6ZKEM8RuVUtGKUD6gotCeG0zA7CVIvstXyt0h3ks3YuXvGju+u6HVyM9rDNvU8+dTxa6I65OBgIs4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=lmxYR9IE; arc=fail smtp.client-ip=40.107.255.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FP55PAllpecj/ajKIBDS+A+cha5SS5Mnj5IrQ2FMZw1qsUY0upuaOcrlGcg3h7GekOlmv7SdvGe2guyG8/X21uPee5YpK5JjbPbHY1cqmktaJmyjzomFk1dj0kSS8DyHGcOuppsB6wQE5hldTjk/kKhYYk6bCLpi97miBuzf+0ArcNG+TPDt3TeeKA3RkloFLj8RtOe8Jd5YDn4WKAqM5T/BVMK+9iIEtqD/FXGruyRmW2yQQsuioRGIyqk3cg37unNgPxlPnoDFYwU6PVm7ya4sg9aTeyGHO8vTTpRkTmRvjVKlUpOOhQrQoxbqT2ArzrbTUIKgZHkGr8hwFc3ngQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oY/TWRr07SZO2pez9pWuWd/uW1vFIoQquPFI2Sx+KlY=;
+ b=JK6zKwOil8gxSEFbLwu+WZsKuD7x2CJ2Wtf5ExveDx1k6GE2jq2nb9ymEYtTcJzKgbNjtAwhf6spXrZPKCsXQ5nYVQ0h95mHa3/zd3AdYHfhTMmjOm19sbk/tVimj2WsF8xRr9K8g916er9U4OCq40Ar5Q0U6Q2O4AHyax521TK6TwNkpdPaM8S1q+8y5736KHUyex6xRY1D22j9TkkrWBpEqqsHAbPrXYC0wGyvG99BJFD9v0OdZlgN8W/sV86zKR0w7ZKnKacDLxHW+4AS6QHGqHX+VmYsIyPhStSj8/8ieSXEoy+A4N8AT86DsPCdcFVYE5w+mbSjmMHmNeSQmA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oY/TWRr07SZO2pez9pWuWd/uW1vFIoQquPFI2Sx+KlY=;
+ b=lmxYR9IEEDOSRPCNo6QVUAQDQwiT3kuUBjgwZCJsMdrIwjvA5ns/+SLSZKFyx7aLQ2pCYkRFxsZ2aDDYwQh2rb1LuqckcWNxwiM+IwC+Cw0NV2bAjffU+kbNa4M1/IgkmDO+GqgPiaAt9+n9Ck015138cNAbUnNa79IUUmITnMZkGrs/e1uv6dvQxSY2rzm0fAWBhHWl3kHGfSSW8Y3il1axmAXy774TajERNISZayd8EAGhjZDR44+gCu6GCiAb/wujF1aOsz7z/c9e2pkQjOJqrrVRsMUMmFTR+auhsDOQtUxf+UgQOxIPEkMQ2H8oyT0KpWI01DbA7y3SZ8Uv+A==
+Received: from PUZP153CA0003.APCP153.PROD.OUTLOOK.COM (2603:1096:301:c2::9) by
+ OSQPR04MB7990.apcprd04.prod.outlook.com (2603:1096:604:298::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.23; Tue, 10 Sep
+ 2024 05:13:52 +0000
+Received: from HK2PEPF00006FB5.apcprd02.prod.outlook.com
+ (2603:1096:301:c2:cafe::f4) by PUZP153CA0003.outlook.office365.com
+ (2603:1096:301:c2::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.5 via Frontend
+ Transport; Tue, 10 Sep 2024 05:13:52 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK2PEPF00006FB5.mail.protection.outlook.com (10.167.8.11) with Microsoft SMTP
+ Server id 15.20.7918.13 via Frontend Transport; Tue, 10 Sep 2024 05:13:51
+ +0000
+From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+To: patrick@stwcx.xyz,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v6 3/3] hwmon: (isl28022) support shunt voltage for
- ISL28022 power monitor
-Message-ID: <202409101229.6mTYs5Rf-lkp@intel.com>
-References: <20240906061421.9392-4-Delphine_CC_Chiu@wiwynn.com>
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>,
+	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] ARM: dts: aspeed: yosemite4: Revise quad mode to dual mode
+Date: Tue, 10 Sep 2024 13:13:49 +0800
+Message-Id: <20240910051350.2580971-1-Delphine_CC_Chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240906061421.9392-4-Delphine_CC_Chiu@wiwynn.com>
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK2PEPF00006FB5:EE_|OSQPR04MB7990:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 72943a29-e0da-4183-c8ff-08dcd1575c4f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|7416014|376014|36860700013|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?jUXa/b8f6HToZuj/RQhq5vKiTr0ni+xrwEu5R7WbwqJct3EIHq7BKI8SXvRk?=
+ =?us-ascii?Q?n3+8583ML/4iQBWa0g1KeuEF9ktYiCqKmC7gCoaD8IjRbGziYXn4LUGM/NfW?=
+ =?us-ascii?Q?yr36pUvf4inOd1RDH7qzxlE/FIC83bodACCCK1EO0D6Yi9blMqOIJfT9y8Oo?=
+ =?us-ascii?Q?mvbreVKEfBLGmrrmH/ZnNr83so7HkHMO4iSK7Ssg342iZK47ZYifHCatVeAf?=
+ =?us-ascii?Q?E9yXNIu0Bhg6N1FnQPDKDa4FOkgeOeCTxpdrPUT6tqLRQav9gE9SMk9wlCJ/?=
+ =?us-ascii?Q?wR4f2hs2/8Dy+UIjutZhzs6fKeQNGIT8k/aV4kTnRpGBE+dXu+ozFYZ7eqeJ?=
+ =?us-ascii?Q?GnPA9oYhE818jwY9r1M/4UoZYtIlGeHX8vuROd6sy0sP/lgxHfMYtSba7duT?=
+ =?us-ascii?Q?04VN9AWRfLZhJBn31IPxtKHzwQbuixcgeB19B+Cm7aJSd3X7xN1KiQp9qrYG?=
+ =?us-ascii?Q?lZAItma+OCwPF8h2BdcvpBMWm+1ZS5YG2BG45u/rj1xiuVlQMjy9hKpedVS/?=
+ =?us-ascii?Q?GBufeiguuShk+/8c4p1Z/dFk23tWj9OZMtPYEv22Re9QfPXamZKmJvaJiXIx?=
+ =?us-ascii?Q?FLqvmlH/FCpvoEYfSP97R99LQ9ZM/+IfvO8mQblg8rX7EVumAGiuaai5/SXU?=
+ =?us-ascii?Q?iknda3NKVEEMuoBl3rc6zJDkwy4jz7w8u5XlLJlIl0maq49Hba2hv+agZNe9?=
+ =?us-ascii?Q?Fl2vjDf0H8BH9tBMvmKWsjeDlxaSOqF8fDSzs9KlyoTxjV/bVx2ZcwlEml07?=
+ =?us-ascii?Q?r0EcrqIhb25JaZfR9siEWLT1IpqHHi8uAVtwHmFQYv/jq50mq43Uof+qr7HC?=
+ =?us-ascii?Q?w94nVYwHAZ1HPVFcjqwGbaRbjDcxhP0QgcI1vHD0cjyzubanzhgAf4U3PMFl?=
+ =?us-ascii?Q?H7bN9L3G0cnSvyiaxxf6GFfbyIshd6lqRU1AUA0106LhggtVQv7jSCdbjoDN?=
+ =?us-ascii?Q?fs73wefjLJj/sWKmsq1lxRzqmmO+8fb3De/aqrbVxb8O3SVFzq885Zyv+O3m?=
+ =?us-ascii?Q?hKBRXcso8Jg7GjmkdkPvykbhZ9mBmGfr34Qcuxzc8iDJ7X4BPbsO5qve65CE?=
+ =?us-ascii?Q?kCXq+YjLjoQlFjVW65UxaA1u2UClFyLlFG9SQD06br7RfFjBYZC3QxR9ZsFl?=
+ =?us-ascii?Q?RH9gHeGGA1bjqaLRAaHb8U1uZieNthYA3LGQs2W6RkQtZ6jjAEsvbUDygjhd?=
+ =?us-ascii?Q?6NcJo0+fnezmy1Oe6EbhAfRekWnhpjb8QfhttTYfcUX1Y0jl46YSOTn51Mzj?=
+ =?us-ascii?Q?pEAGDZG2D0yTLVaxDkuFOYpNiCZFTLbzPikMAeGmEhO1ixOlkSbH3gFdNGmm?=
+ =?us-ascii?Q?51MY3DigWGt88Z0BsGjTKvJ/NRwDTReQM17Fs2MK0VsmTA2qSDBSYpsp6OX2?=
+ =?us-ascii?Q?EVPfsqcFR/rx0E3qARBv8bjrjBCm17jcB9pKjDlhaM98nDhUuB6gPDP5T3+4?=
+ =?us-ascii?Q?jV6TyC/u5w0o/51gICQPzsGZ3K0k46uj?=
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(36860700013)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2024 05:13:51.8516
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 72943a29-e0da-4183-c8ff-08dcd1575c4f
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	HK2PEPF00006FB5.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSQPR04MB7990
 
-Hi Delphine,
+From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
 
-kernel test robot noticed the following build warnings:
+Revise quad mode to dual mode to avoid WP pin influnece the SPI.
 
-[auto build test WARNING on groeck-staging/hwmon-next]
-[also build test WARNING on linus/master v6.11-rc7 next-20240909]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+---
+ .../arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Delphine-CC-Chiu/hwmon-isl28022-new-driver-for-ISL28022-power-monitor/20240906-141717
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20240906061421.9392-4-Delphine_CC_Chiu%40wiwynn.com
-patch subject: [PATCH v6 3/3] hwmon: (isl28022) support shunt voltage for ISL28022 power monitor
-config: microblaze-randconfig-r073-20240909 (https://download.01.org/0day-ci/archive/20240910/202409101229.6mTYs5Rf-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 14.1.0
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409101229.6mTYs5Rf-lkp@intel.com/
-
-smatch warnings:
-drivers/hwmon/isl28022.c:122 isl28022_read() warn: inconsistent indenting
-
-vim +122 drivers/hwmon/isl28022.c
-
-    89	
-    90	static int isl28022_read(struct device *dev, enum hwmon_sensor_types type,
-    91				 u32 attr, int channel, long *val)
-    92	{
-    93		struct isl28022_data *data = dev_get_drvdata(dev);
-    94		unsigned int regval;
-    95		int err;
-    96		u16 sign_bit;
-    97	
-    98		switch (type) {
-    99		case hwmon_in:
-   100			switch (channel) {
-   101			case 0:
-   102				switch (attr) {
-   103				case hwmon_in_input:
-   104					err = regmap_read(data->regmap,
-   105							  ISL28022_REG_BUS, &regval);
-   106					if (err < 0)
-   107						return err;
-   108					/* driver supports only 60V mode (BRNG 11) */
-   109					*val = (long)(((u16)regval) & 0xFFFC);
-   110					break;
-   111				default:
-   112					return -EOPNOTSUPP;
-   113				}
-   114				break;
-   115			case 1:
-   116				switch (attr) {
-   117				case hwmon_in_input:
-   118					err = regmap_read(data->regmap,
-   119							  ISL28022_REG_SHUNT, &regval);
-   120					if (err < 0)
-   121						return err;
- > 122				switch (data->gain) {
-   123				case 8:
-   124					sign_bit = (regval >> 15) & 0x01;
-   125					*val = (long)((((u16)regval) & 0x7FFF) -
-   126						   (sign_bit * 32768)) / 100;
-   127					break;
-   128				case 4:
-   129					sign_bit = (regval >> 14) & 0x01;
-   130					*val = (long)((((u16)regval) & 0x3FFF) -
-   131						   (sign_bit * 16384)) / 100;
-   132					break;
-   133				case 2:
-   134					sign_bit = (regval >> 13) & 0x01;
-   135					*val = (long)((((u16)regval) & 0x1FFF) -
-   136						   (sign_bit * 8192)) / 100;
-   137					break;
-   138				case 1:
-   139					sign_bit = (regval >> 12) & 0x01;
-   140					*val = (long)((((u16)regval) & 0x0FFF) -
-   141						   (sign_bit * 4096)) / 100;
-   142					break;
-   143				}
-   144				break;
-   145				default:
-   146					return -EOPNOTSUPP;
-   147				}
-   148				break;
-   149			default:
-   150				return -EOPNOTSUPP;
-   151			}
-   152			break;
-   153		case hwmon_curr:
-   154			switch (attr) {
-   155			case hwmon_curr_input:
-   156				err = regmap_read(data->regmap,
-   157						  ISL28022_REG_CURRENT, &regval);
-   158				if (err < 0)
-   159					return err;
-   160				*val = ((long)regval * 1250L * (long)data->gain) /
-   161					(long)data->shunt;
-   162				break;
-   163			default:
-   164				return -EOPNOTSUPP;
-   165			}
-   166			break;
-   167		case hwmon_power:
-   168			switch (attr) {
-   169			case hwmon_power_input:
-   170				err = regmap_read(data->regmap,
-   171						  ISL28022_REG_POWER, &regval);
-   172				if (err < 0)
-   173					return err;
-   174				*val = ((51200000L * ((long)data->gain)) /
-   175					(long)data->shunt) * (long)regval;
-   176				break;
-   177			default:
-   178				return -EOPNOTSUPP;
-   179			}
-   180			break;
-   181		default:
-   182			return -EOPNOTSUPP;
-   183		}
-   184	
-   185		return 0;
-   186	}
-   187	
-
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+index 98477792aa00..3073ade6d77c 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+@@ -105,15 +105,17 @@ flash@0 {
+ 		status = "okay";
+ 		m25p,fast-read;
+ 		label = "bmc";
+-		spi-rx-bus-width = <4>;
++		spi-tx-bus-width = <2>;
++		spi-rx-bus-width = <2>;
+ 		spi-max-frequency = <50000000>;
+-#include "openbmc-flash-layout-64.dtsi"
++#include "openbmc-flash-layout-128.dtsi"
+ 	};
+ 	flash@1 {
+ 		status = "okay";
+ 		m25p,fast-read;
+ 		label = "bmc2";
+-		spi-rx-bus-width = <4>;
++		spi-tx-bus-width = <2>;
++		spi-rx-bus-width = <2>;
+ 		spi-max-frequency = <50000000>;
+ 	};
+ };
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
 
