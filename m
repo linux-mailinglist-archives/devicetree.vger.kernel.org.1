@@ -1,140 +1,210 @@
-Return-Path: <devicetree+bounces-101786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F20C1973DC0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 18:50:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26151973DCE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 18:54:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6458287F3D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 16:50:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5EC76B24649
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 16:54:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 576431A2548;
-	Tue, 10 Sep 2024 16:50:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D2591A0734;
+	Tue, 10 Sep 2024 16:54:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FRadL2fu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qr6Uwk9t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9F11A0729;
-	Tue, 10 Sep 2024 16:50:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01240156F2B;
+	Tue, 10 Sep 2024 16:54:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725987049; cv=none; b=dEBgvbgF9effUTyJCQfJvPw47i6w69n4ydA9xM5IFub62dg/48A2Euj6h0jkB15e6vYnDqOkhaaB0J5lymwzEJqBQgyUM6QzrAUZyXha90BD9QuMXzdRdhaU4x0aORgk30RDvrB3FzibzZeCNvp7EUlV9a7k2Vl4+shDlBjtGzU=
+	t=1725987260; cv=none; b=K3ozfkOx4Oxovg+m9OsbnU9tDwFxRogtVDHuC3b1zl9em3CqTov90bc5L0fcQPRoBjWU8l8WV49TL+rOJ5T+3Lbi63wh1DWpqV0A/PRYpIJyLHNWB86dtYj3Ms0I9w3UH2hie0n4VWYobEEqaOPDZutMj5r45j1OWf1czqEM3hc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725987049; c=relaxed/simple;
-	bh=hn32+nLIPsJdBZLDtjJUW1S+s9pXJdgyRmyAbrJ3xvA=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VbnN9SLMDMQC3UPtEiQkOf7w0pM5F2+DuDIUUcq82G/WbqBY6EfG+d3UWvi+PoyFOmlWdcpj/z57wa/Xs4v32h1NxvUs70l9Nzd4VIA9Uj2SKQyNF0mVdznbwTGiPx5eY0mhVOo8Z+8iDHrUegHbJeJ45MNWV7pvwK3jSfTC4Kg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FRadL2fu; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48AEV8oC000514;
-	Tue, 10 Sep 2024 16:50:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=wSySHV0OBt861k7egZN9XT
-	ajNDWSLjiqaFWg2xR1lp8=; b=FRadL2furQ7V+akIQc32T0Pb8Y5aANAHiRfk2G
-	kmbuMPCyNcKE5KtJ+AnzwzXE97MPKulmycbPgzCyhsw70vzVEmu+Mc0D+lknCNqA
-	aBBwXrdiBfi0pVdiDE/RJCDLckdiYJbWzA8oTsZC6t1V2pAcaIVU2xJd9g8rsuCn
-	CgPE9KmCim0e/f8n/edJHFoA+Uh3DnW8oaJMAdF0xP3S6YLF5yDc/P9FgZx11se7
-	7qt6Hqxiae43dgTwNDP82IPn74sC17oEtY418O4/yZ4CYntqkQEZg3q2OnxJ6+CQ
-	qmZCLawWKrbfAhQwlEPvvufVEaEL775LQRYHz12yVkppWwCw==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy516nve-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Sep 2024 16:50:42 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48AGofkV013112
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Sep 2024 16:50:41 GMT
-Received: from hu-nkela-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 10 Sep 2024 09:50:38 -0700
-From: Nikunj Kela <quic_nkela@quicinc.com>
-To: <andersson@kernel.org>, <linus.walleij@linaro.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>, <quic_psodagud@quicinc.com>,
-        Nikunj Kela
-	<quic_nkela@quicinc.com>
-Subject: [PATCH v4] dt-bindings: pinctrl: Add SA8255p TLMM
-Date: Tue, 10 Sep 2024 09:50:26 -0700
-Message-ID: <20240910165026.2406338-1-quic_nkela@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1725987260; c=relaxed/simple;
+	bh=5Bezvc0CAkEXgnJXcBMaGNMUz7wLbTT6fuMXocnKg+w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nZi8/hV6ZnRvNg75D9sxjaBhoJYVNbm97Zzk036gZAn7kO/1XWdYrtdOLgpv7Gk37PdFkoh5gx+KwS4hE42eZo7dmYE8XDpKVWxHyTgTGc/OIS1DWDMOu4/mvwKcJao4yOI3BcDeJtqQByGi26jrapM+qZzTwBylFNuW/zmmLEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qr6Uwk9t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80B04C4AF09;
+	Tue, 10 Sep 2024 16:54:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725987259;
+	bh=5Bezvc0CAkEXgnJXcBMaGNMUz7wLbTT6fuMXocnKg+w=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=qr6Uwk9tGN08+5H/A7XQrI/FGgZLbT6QXhhRJFfJ1z6MqTAzrNwhcx0mRl5a+sW+C
+	 diDN0hCvBRGZClK0bkkQWw1sftp7u7GlxuQvOw1oeo9Pz7NWe/e7LZYaU3X9RUZLtB
+	 xm/s+2GT3ZB9OiWVlkSn359R2zuOVO2ezDRI/TdMBIQWGb0b6DbCkuInAlHDObWT+t
+	 DGAZl628U9LQXQejmoFlGdqbCZlq6XBj7jKpc2q+jqx8khIhVjBhqEHV0m96Z27JwX
+	 hKLTUW0gzf57qfc+mjHWKtKS5VMBbepP8P773m/3BFL6smx22Z95pCU/3y+E+2vQbC
+	 wNq5ofwMkAXKQ==
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-53661a131b4so4010403e87.1;
+        Tue, 10 Sep 2024 09:54:19 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV+0V4ubk2gsfk2Q+wzikJs7Kq8g7gvS7/N4jKOcHCVV8j4U9CfEIediUf7wCgLrFUS/+CAXka9@vger.kernel.org, AJvYcCVVoMhzvEUBILy5/vCOohhTHXgaz0AB94sClGjgqcq42D2D9+vPRYArvnp8xGI0nvyPHKlggdPSO7SuYMCD@vger.kernel.org, AJvYcCXlKNuPqoGHclz6B2ZTQ1L+kAD+wiFOUBzBUgPOYW7n3nYIV0O1EiO62CDRircGSwnNPM+cW2mpvl4i@vger.kernel.org
+X-Gm-Message-State: AOJu0YywcjZER/0fRyXdcT54/41KSoTJe5j4iufb+Q/9lagxT7VAcwlz
+	WQGZCW7RT13fRQWTSbZIlWtt4q/73SO1H6BUDR0cja+TXVmHAxwNNQD6RrwtclwdiDEve0Ox/gJ
+	iXoT7AV4Cg4oDndIj1FUc9WJvIg==
+X-Google-Smtp-Source: AGHT+IEECbxdAEfk6uHdwgpcFSE+K8gp5bBA32EPrllIwSafIrwdYm0qGuCfk0dhQ8umoMikZ1gfk6FPDr59dwNetR4=
+X-Received: by 2002:a05:6512:1593:b0:52c:f2e0:db23 with SMTP id
+ 2adb3069b0e04-536587fc7d2mr11113032e87.40.1725987257812; Tue, 10 Sep 2024
+ 09:54:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: wqvEGwXEne_Gy9-MOaI775I1m-Nm1CMQ
-X-Proofpoint-GUID: wqvEGwXEne_Gy9-MOaI775I1m-Nm1CMQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
- mlxscore=0 bulkscore=0 mlxlogscore=999 priorityscore=1501
- lowpriorityscore=0 malwarescore=0 clxscore=1015 phishscore=0
- suspectscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2408220000 definitions=main-2409100125
+References: <20240909124342.2838263-1-o.rempel@pengutronix.de>
+ <20240909124342.2838263-2-o.rempel@pengutronix.de> <20240909162009.GA339652-robh@kernel.org>
+ <c2e4539f-34ba-4fcf-a319-8fb006ee0974@lunn.ch>
+In-Reply-To: <c2e4539f-34ba-4fcf-a319-8fb006ee0974@lunn.ch>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 10 Sep 2024 11:54:04 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+qJStck1OTiXg0jPR3EPEpLsu-or0pNqNh0orFjf+0uA@mail.gmail.com>
+Message-ID: <CAL_Jsq+qJStck1OTiXg0jPR3EPEpLsu-or0pNqNh0orFjf+0uA@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: ethernet-phy: Add
+ master-slave role property for SPE PHYs
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <f.fainelli@gmail.com>, kernel@pengutronix.de, linux-kernel@vger.kernel.org, 
+	netdev@vger.kernel.org, Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add compatible for TLMM block representing support on SA8255p.
+On Mon, Sep 9, 2024 at 12:00=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Mon, Sep 09, 2024 at 11:20:09AM -0500, Rob Herring wrote:
+> > On Mon, Sep 09, 2024 at 02:43:40PM +0200, Oleksij Rempel wrote:
+> > > Introduce a new `master-slave` string property in the ethernet-phy
+> > > binding to specify the link role for Single Pair Ethernet
+> > > (1000/100/10Base-T1) PHYs. This property supports the values
+> > > `forced-master` and `forced-slave`, which allow the PHY to operate in=
+ a
+> > > predefined role, necessary when hardware strap pins are unavailable o=
+r
+> > > wrongly set.
+> > >
+> > > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > > ---
+> > > changes v2:
+> > > - use string property instead of multiple flags
+> > > ---
+> > >  .../devicetree/bindings/net/ethernet-phy.yaml      | 14 ++++++++++++=
+++
+> > >  1 file changed, 14 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml =
+b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > > index d9b62741a2259..025e59f6be6f3 100644
+> > > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > > @@ -158,6 +158,20 @@ properties:
+> > >        Mark the corresponding energy efficient ethernet mode as
+> > >        broken and request the ethernet to stop advertising it.
+> > >
+> > > +  master-slave:
+> >
+> > Outdated terminology and kind of vague what it is for...
+> >
+> > The usual transformation to 'controller-device' would not make much
+> > sense though. I think a better name would be "spe-link-role" or
+> > "spe-link-mode".
+>
+> This applies to more than Single Pair Ethernet. This property could
+> also be used for 2 and 4 pair cables. So spe-link-mode would be wrong.
 
-SA8255p uses the same TLMM block as SA8775p however the ownership
-of pins are split between Firmware VM and Linux VM on SA8255p. For
-example, pins used by UART are owned and configured by Firmware VM
-while pins used by ethernet are owned and configured by Linux VM.
-Therefore, adding a sa8255p specific compatible to mark the difference.
+I kind of figured that... Propose something that's not just
+duplicating possible values.
 
-Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
----
+>
+> Also:
+>
+> https://grouper.ieee.org/groups/802/3/dc/comments/P8023_D2p0_comments_fin=
+al_by_cls.pdf
+>
+> On 3 December 2020, the IEEE SA Standard Board passed the following resol=
+ution. (See
+> <https://standards.ieee.org/about/sasb/resolutions.html>.)
+>
+>   "IEEE standards (including recommended practices and guides) shall
+>   be written in such a way as to unambiguously communicate the
+>   technical necessities, preferences, and options of the standard to
+>   best enable market adoption, conformity assessment,
+>   interoperability, and other technical aspirations of the developing
+>   standards committee. IEEE standards should be written in such a way
+>   as to avoid non-inclusive and insensitive terminology (see IEEE
+>   Policy 9.27) and other deprecated terminology (see clause 10 of the
+>   IEEE SA Style Manual) except when required by safety, legal,
+>   regulatory, and other similar considerations.  Terms such as
+>   master/slave, blacklist, and whitelist should be avoided."
+>
+>   In IEEE Std 802.3, 1000BASE-T, 10BASE-T1L, 100BASE-T1, 1000BASE-T1,
+>   and MultiGBASE-T PHYs use the terms "master" and "slave" to indicate
+>   whether the clock is derived from an external source or from the
+>   received signal. In these cases, the terms appear in the text,
+>   figures, state names, variable names, register/bit names, etc. A
+>   direct substitution of terms will create disconnects between the
+>   standard and the documentation for devices in the field (e.g., the
+>   register interface) and also risks the introduction of technical
+>   errors. Note that "master" and "slave" are also occasionally used to
+>   describe the relationship between an ONT and an ONU for EPON and
+>   between a CNT and a CNU for EPoC.
+>
+>   The approach that other IEEE standards are taking to address this
+>   issue have been considered. For example, IEEE P1588g proposes to
+>   define "optional alternative suitable and inclusive terminology" but
+>   not replace the original terms. (See
+>   <https://development.standards.ieee.org/myproject-web/public/view.html#=
+pardetail/8858>.)
+>   It is understood that an annex to the IEEE 1588 standard has been
+>   proposed that defines the inclusive terminology. It is also
+>   understood that the inclusive terminology has been chosen to be
+>   "leader" and "follower".
+>
+>   The IEEE P802.1ASdr project proposes to align to the IEEE P1588g
+>   inclusive terminology.  (See
+>   <https://development.standards.ieee.org/myprojectweb/public/view.html#p=
+ardetail/9009>.)
+>   Based on this, it seems reasonable to include an annex that defines
+>   optional alternative inclusive terminology and, for consistency, to
+>   use the terms "leader" and "follower" as the inclusive terminology
+>
+> The 2022 revision of 802.3 still has master/slave when describing the
+> registers, but it does have Annex K as described above saying "leader"
+> and "follower" are optional substitutions.
+>
+> The Linux code has not changed, and the uAPI has not changed. It seems
+> like the best compromise would be to allow both 'force-master' and
+> 'force-leader', as well as 'force-slave' and 'force-follower', and a
+> reference to 802.3 Annex K.
 
-Changes in v4:
-	- Removed items tag
+It seems silly to maintain both forever. I'd rather have one or the
+other than both.
 
-Changes in v3:
-        - Removed the patch from original series[1]
-        - Fixed mising spaces schema errors
+> As to you comment about it being unclear what it means i would suggest
+> a reference to 802.3 section 1.4.389:
+>
+>   1.4.389 master Physical Layer device (PHY): Within IEEE 802.3, in a
+>   100BASE-T2, 1000BASE-T, 10BASE-T1L, 100BASE-T1, 1000BASE-T1, or any
+>   MultiGBASE-T link containing a pair of PHYs, the PHY that uses an
+>   external clock for generating its clock signals to determine the
+>   timing of transmitter and receiver operations. It also uses the
+>   master transmit scrambler generator polynomial for side-stream
+>   scrambling. Master and slave PHY status is determined during the
+>   Auto-Negotiation process that takes place prior to establishing the
+>   transmission link, or in the case of a PHY where Auto-Negotiation is
+>   optional and not used, master and slave PHY status
 
-Changes in v2:
-        - Modified subject line
-        - Fixed schema to include fallback
+phy-status? Shrug.
 
-[1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
----
- .../devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml     | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+Another thought. Is it possible that h/w strapping disables auto-neg,
+but you actually want to override that and force auto-neg?
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml
-index e9abbf2c0689..2520ae8b965d 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml
-@@ -17,7 +17,12 @@ allOf:
- 
- properties:
-   compatible:
--    const: qcom,sa8775p-tlmm
-+    oneOf:
-+      - items:
-+          - enum:
-+              - qcom,sa8255p-tlmm
-+          - const: qcom,sa8775p-tlmm
-+      - const: qcom,sa8775p-tlmm
- 
-   reg:
-     maxItems: 1
--- 
-2.34.1
-
+Rob
 
