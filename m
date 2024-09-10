@@ -1,193 +1,139 @@
-Return-Path: <devicetree+bounces-101587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 033F197294F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:13:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5644497296E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:21:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53CA31F23316
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 06:13:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DAB3CB23E99
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 06:21:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE690170A26;
-	Tue, 10 Sep 2024 06:13:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 174C4176FA5;
+	Tue, 10 Sep 2024 06:21:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="liThnj3C"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="FLXHgQnQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E82B91CD1F;
-	Tue, 10 Sep 2024 06:13:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25035144D0C
+	for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 06:20:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725948806; cv=none; b=A3lW/2KqaST98xNXn5xKeClUoJFPC3W2l2l/0vD73NtzOOBAzhfsESgVwJUOMga+w4RRuboW8mam5R3az4r+2rjC3kBcf62yOh3aNqTq8Ct6T+yOo1xv28WXuKfhtl+ZLqE0ieNYKeXOWpEJH+fVLJUtDh3phXWHt6Q3O1bvCmM=
+	t=1725949263; cv=none; b=gIdPZYU86Xn9Kis2p5kfqrgiYb3XTVIu4uW8PGLjYKn99vUn5gyClkgcSPjDmgEUovAnmuMan30oDaod/Vxiv/2gWbVk8ublrOgjupV3VQw654VHjh4nXGZJqtT9YVzXVqFzFZn7ZyOg7cPcCWbx7TxXRKqLUsTplVeBy57EHBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725948806; c=relaxed/simple;
-	bh=nP3dbTmnW9Jo6LEMnVuvysQouJEbu7BMzkCTla3SEwI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eQD2yXz5qr9XACK9TXRJtha0C8l3ZprpE4vu98Vob13/BByF4peQvWpKqSlbcKwYrsmbPjtudlIX2JpsLdVMrTok0G16mbWnr+HPNvEVX9S7PFdbWyF/2Vwqc9P1qFwJY0NxIznevko8ers4lFd0FsEGekv6BHc4Ojj7de1ZuBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=liThnj3C; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725948805; x=1757484805;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=nP3dbTmnW9Jo6LEMnVuvysQouJEbu7BMzkCTla3SEwI=;
-  b=liThnj3CKO1fkwsn4mjU+0buMsB5WUKqjYJB+yt8PeS4IvOX8kX9+KGT
-   mHqaQI+Z0WRjsdPmcD1GvrGoVlUEDEq2s1Zl4p3iHXXuPa49D3WwkCzCq
-   KFn4sKqKCzlFaPaH3PW2FFNM4JIWBgvDvBd9adiDynieNUw4u7mgEwMbF
-   ETpYDWXLLy0/6O32Cy6lBnWWVWPXLLMRDxiBvK6UgyR0w/CWCbci2QI67
-   avjXwEEcaarntcci4zvaZhPJf3upVf+zY0IvhSjMR9Fhev5zY9BKp49wC
-   G8S+kRh9sLUYzNPZqXTpKZ6fSvhuar/NBUxUNGLWp+99ca7Tr9qlxvLe9
-   Q==;
-X-CSE-ConnectionGUID: G1y3zHakTGqWWEJOFdCyWw==
-X-CSE-MsgGUID: ohNcfbgISaK7IXoWVniJYg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="24177058"
-X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; 
-   d="scan'208";a="24177058"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2024 23:13:24 -0700
-X-CSE-ConnectionGUID: 6QGfVu/6SPqrHGcD0SFmag==
-X-CSE-MsgGUID: oLfrut1BSaKLrNGDsdP8bg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; 
-   d="scan'208";a="104378886"
-Received: from yjiang5-mobl.amr.corp.intel.com (HELO localhost) ([10.124.87.56])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2024 23:13:22 -0700
-Date: Mon, 9 Sep 2024 23:13:21 -0700
-From: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: tglx@linutronix.de, mingo@redhat.com, bp@alien8.de,
-	dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
-	decui@microsoft.com, rafael@kernel.org, lenb@kernel.org,
-	kirill.shutemov@linux.intel.com, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-hyperv@vger.kernel.org,
-	linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v2 2/9] dt-bindings: x86: Add a binding for x86 wakeup
- mailbox
-Message-ID: <20240910061227.GA76@yjiang5-mobl.amr.corp.intel.com>
-References: <20240823232327.2408869-1-yunhong.jiang@linux.intel.com>
- <20240823232327.2408869-3-yunhong.jiang@linux.intel.com>
- <ujfqrllrii6iijlhbwx3bltpjogiosw4xx5pqbcddgpxjobrzh@xqqrfxi5lv3i>
- <20240827204549.GA4545@yjiang5-mobl.amr.corp.intel.com>
+	s=arc-20240116; t=1725949263; c=relaxed/simple;
+	bh=hFD+h+g3Qn5O1IluP2Jlz3i4TTvagOIPayb1NIcvVfY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=YEqgeMEuOpcRDoCt9WvKULLg6eIu7HfhqfATfW3jFWJWsYNTd7MJLboHAexd3WJJ/Jjh4n+UMsiD6ZXpPDqCMpwysV4xQbIi3PBA563UQZcRJD8HqpWTQzVHoJ4iaD1DnoBF69QiazjQ02JyaT1Rn418io5z1/lvY2YOxL2Vnb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=FLXHgQnQ; arc=none smtp.client-ip=209.85.215.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-6e7b121be30so3311424a12.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Sep 2024 23:20:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1725949259; x=1726554059; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9NAqLSzfiTKu9/ujNb6PjoEVWXdaDlFqYoM8Sol5284=;
+        b=FLXHgQnQ2uxLU6zrU32LP9vKQLwytBFZKxW2UDpnnngF6lU0qDdTtdHQQiHdMl1ps2
+         aystXOe3pu88NpMqpIH0+U0QUiK+Cw6Kq5oT+N6MK8xg4MSy4KpBJroK4+2QL6tQ7ESI
+         MpNVQKC8ceM0oxPMnG5ronvYj/tox4rU3P5OU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725949259; x=1726554059;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9NAqLSzfiTKu9/ujNb6PjoEVWXdaDlFqYoM8Sol5284=;
+        b=ksQGr9xlQIj+9X+yN3Q6s0vZ1hQzowmWwSA0btWWHWgbwsL9t5ekOY5DI/QuWKBWcr
+         InCVivwdLRtB78S3lGAhG4x77qJ3Ad+ns8IKo+xtHtXyiDGjSZ2gOjMqrVDLY28UQh4p
+         hO+3WJudqIjNP3Ul2vPZpVi7nmHbpXpXyYiFHmi+pXCuwv0sKqjIfi8vHGhFOzu1OVn5
+         slAr79BPbZmkz7FgZexkekxcSnOiDCUMO6/XsMTezCD9zzkSwxQ0f+RhOIi/pWSphSN0
+         EWHh71CEGUaywi5JZ2T6LgY88CYykkS1VM4FMOE0kKYSVQlLefRFR5h6sPy+Xf14SskG
+         dhDw==
+X-Gm-Message-State: AOJu0YwqP3OlHXgW6TXHt0jo/FHBXmkKrLj6M4SCdvHVMlCo165XOi7+
+	Ss94VBW2tbju0VjNFwPilvX8LcOhIljQupcZgdCmgp2shwtjgtVcrC+7j2/cqg==
+X-Google-Smtp-Source: AGHT+IEbJWi/XiTXkjvEqBmFZgc8Mp05CZ7p6lurFZhANudU33VAWtc+4cYuapG1rcW6R1YeF9lrEg==
+X-Received: by 2002:a05:6a20:6f08:b0:1c4:9ef6:499b with SMTP id adf61e73a8af0-1cf1d13337amr13713739637.29.1725949259296;
+        Mon, 09 Sep 2024 23:20:59 -0700 (PDT)
+Received: from yuanhsinte.c.googlers.com (30.191.80.34.bc.googleusercontent.com. [34.80.191.30])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-719090b0397sm675188b3a.154.2024.09.09.23.20.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Sep 2024 23:20:58 -0700 (PDT)
+From: Hsin-Te Yuan <yuanhsinte@chromium.org>
+Date: Tue, 10 Sep 2024 06:20:55 +0000
+Subject: [PATCH] arm64: dts: mt8183: Add encoder node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240827204549.GA4545@yjiang5-mobl.amr.corp.intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240910-venc-v1-1-d17dfd931dc8@chromium.org>
+X-B4-Tracking: v=1; b=H4sIAEbl32YC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDSwNL3bLUvGRdE3MD02TztLQ00xQzJaDSgqLUtMwKsDHRsbW1AAWLZWl
+ WAAAA
+X-Change-ID: 20240909-venc-4705c7fff5d6
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Hsin-Te Yuan <yuanhsinte@chromium.org>
+X-Mailer: b4 0.15-dev-7be4f
 
-On Tue, Aug 27, 2024 at 01:45:49PM -0700, Yunhong Jiang wrote:
-> On Sun, Aug 25, 2024 at 09:10:01AM +0200, Krzysztof Kozlowski wrote:
-> > On Fri, Aug 23, 2024 at 04:23:20PM -0700, Yunhong Jiang wrote:
-> > > Add the binding to use mailbox wakeup mechanism to bringup APs.
-> > > 
-> > > Signed-off-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-> > > ---
-> > >  .../devicetree/bindings/x86/wakeup.yaml       | 64 +++++++++++++++++++
-> > >  1 file changed, 64 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/x86/wakeup.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/x86/wakeup.yaml b/Documentation/devicetree/bindings/x86/wakeup.yaml
-> > > new file mode 100644
-> > > index 000000000000..cb84e2756bca
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/x86/wakeup.yaml
-> > > @@ -0,0 +1,64 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +# Copyright (C) 2024 Intel Corporation
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/x86/wakeup.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: x86 mailbox wakeup
-> > > +maintainers:
-> > > +  - Yunhong Jiang <yunhong.jiang@linux.intel.com>
-> > > +
-> > > +description: |
-> > > +  The x86 mailbox wakeup mechanism defines a mechanism to let the bootstrap
-> > > +  processor (BSP) to wake up application processors (APs) through a wakeup
-> > > +  mailbox.
-> > > +
-> > > +  The "wakeup-mailbox-addr" property specifies the wakeup mailbox address. The
-> > > +  wakeup mailbox is a 4K-aligned 4K-size memory block allocated in the reserved
-> > > +  memory.
-> > > +
-> > > +  The wakeup mailbox structure is defined as follows.
-> > > +
-> > > +    uint16_t command;
-> > > +    uint16_t reserved;
-> > > +    uint32_t apic_id;
-> > > +    uint64_t wakeup_vector;
-> > > +    uint8_t  reservedForOs[2032];
-> > > +
-> > > +  The memory after reservedForOs field is reserved and OS should not touch it.
-> > > +
-> > > +  To wakes up a AP, the BSP prepares the wakeup routine, fills the wakeup
-> > > +  routine's address into the wakeup_vector field, fill the apic_id field with
-> > > +  the target AP's APIC_ID, and write 1 to the command field. After receiving the
-> > > +  wakeup command, the target AP will jump to the wakeup routine.
-> > > +
-> > > +  For each AP, the mailbox can be used only once for the wakeup command. After
-> > > +  the AP jumps to the wakeup routine, the mailbox will no longer be checked by
-> > > +  this AP.
-> > > +
-> > > +  The wakeup mailbox structure and the wakeup process is the same as
-> > > +  the Multiprocessor Wakeup Mailbox Structure defined in ACPI spec version 6.5,
-> > > +  section 5.2.12.19 [1].
-> > > +
-> > > +  References:
-> > > +
-> > > +  [1] https://uefi.org/specs/ACPI/6.5/05_ACPI_Software_Programming_Model.html
-> > > +
-> > > +select: false
-> > 
-> > This schema is still a no-op because of this false.
-> > 
-> > What is the point of defining one property if it is not placed anywhere?
-> > Every device node can have it? Seems wrong...
-> > 
-> > You need to come with proper schema. Lack of an example is another thing
-> > - this cannot be even validated by the tools. 
-> > 
-> > Best regards,
-> > Krzysztof
+Add encoder node.
 
-Hi, Krzysztof, I'm working to address your comments and have some questions.
-Hope to get help/guide from your side.
+Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+---
+According to
+https://lore.kernel.org/all/184d895c-239e-3f23-970e-6a9563235cd9@gmail.com/,
+the encoder node of MT8183 should be added only after its dependency has
+been accepted. Add the encoder node in this patch.
+---
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-For the select, the writing-schema.rst describes it as "A json-schema used to
-match nodes for applying the schema" but I'm a bit confused. In my case, should
-it be "cpus" node? Is there any code/tools that uses this property, so that I
-can have a better understanding?
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index fbf145639b8c90b2c69da1cb4bac4f61ca7a1c9e..d24c89e4e13b0c74f549e638e97e0729052909a7 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -1965,6 +1965,24 @@ larb4: larb@17010000 {
+ 			power-domains = <&spm MT8183_POWER_DOMAIN_VENC>;
+ 		};
+ 
++		vcodec_enc: vcodec@17020000 {
++			compatible = "mediatek,mt8183-vcodec-enc";
++			reg = <0 0x17020000 0 0x1000>,
++			interrupts = <GIC_SPI 247 IRQ_TYPE_LEVEL_LOW>;
++			mediatek,larb = <&larb4>;
++			iommus = <&iommu M4U_PORT_VENC_REC>,
++				 <&iommu M4U_PORT_VENC_BSDMA>,
++				 <&iommu M4U_PORT_VENC_RD_COMV>,
++				 <&iommu M4U_PORT_VENC_CUR_LUMA>,
++				 <&iommu M4U_PORT_VENC_CUR_CHROMA>,
++				 <&iommu M4U_PORT_VENC_REF_LUMA>,
++				 <&iommu M4U_PORT_VENC_REF_CHROMA>;
++			mediatek,scp = <&scp>;
++			power-domains = <&spm MT8183_POWER_DOMAIN_VENC>;
++			clocks = <&vencsys CLK_VENC_VENC>;
++			clock-names = "MT_CG_VENC";
++		};
++
+ 		venc_jpg: jpeg-encoder@17030000 {
+ 			compatible = "mediatek,mt8183-jpgenc", "mediatek,mtk-jpgenc";
+ 			reg = <0 0x17030000 0 0x1000>;
 
-For your "validated by the tools", can you please share the tools you used to
-validate the schema? I used "make dt_binding_check" per the
-submitting-patches.rst but I think your comments is about another tool.
+---
+base-commit: da3ea35007d0af457a0afc87e84fddaebc4e0b63
+change-id: 20240909-venc-4705c7fff5d6
 
-Sorry for the bothering. I read the DT spec and the
-Documentation/devicetree/bindings documents and still not sure.
+Best regards,
+-- 
+Hsin-Te Yuan <yuanhsinte@chromium.org>
 
-Than you
---jyh
-
-> 
-> Thank you for the feedback. Will update the schema file on next round
-> submission.
-> 
-> Thanks
-> --jyh
-> 
-> > 
-> 
 
