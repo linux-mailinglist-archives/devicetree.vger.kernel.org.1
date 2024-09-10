@@ -1,172 +1,120 @@
-Return-Path: <devicetree+bounces-101762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 050E1973B8C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 17:22:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFA48973BA6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 17:24:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C9151F264C1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 15:22:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85B371F2518B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 15:24:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7EAD19ADB6;
-	Tue, 10 Sep 2024 15:19:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 059A21A08CA;
+	Tue, 10 Sep 2024 15:23:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="bQZuqxW3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nkfjqUH8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCFC581205;
-	Tue, 10 Sep 2024 15:19:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 473A9199FDE;
+	Tue, 10 Sep 2024 15:22:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725981573; cv=none; b=opDIz4tN7KktqWN7HkiHB//FGq/kp+E3A3P6JIF+m5dn8b9RZ/lCAe46pH4hnNMyhr33FFfgO/44k9NwibkmXwvAmJuwjdY4FUqeznoIyBd6Xw0BnSWJ+n3D4juRJU1X1fSfzZXTH+GVTVpkKGUKB/KUHdaSYLxpNfIRXdF8SBU=
+	t=1725981780; cv=none; b=sFoir1S4AzWmWCBIVOSVC1hDJ2cJXSit6mv7VmDLNd3F8uIMs1Hl7uPMjb0Oh/f48MpmhBQaQymY3WO72uS2MaX871UtqS6xDHganfNfsd9tj1WMUGCm/uFxL5TylLAIdBSCN3fUUlFufyOvFioh5k+aL4otyVIbWUc5vY8PJu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725981573; c=relaxed/simple;
-	bh=nviXM2aYMDrYl4A43vMvdw85c6Uajxuf2z9ZuwcObaM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DKorSkxc9TmzMq/48RQ3DjLKgq4qEjhDZ32JBc/n9YMkNIead4KIQWyg16ViYq23hoEBBIWMV1XwW8BIPgtfSI2TBePbMbZn3sAz/Tn9W44XsiM+JWkLkJx9FOSsrQLV0yohSUmokQwNV9w4p3ReGrGRhGB217qCYkMugQIKV+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=bQZuqxW3; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=OHTaPFU7IxdysyuX/tN5EzMTydhIoay+K+w5Wew1vlA=; b=bQZuqxW3egMUmeGk2K3dn2mgUk
-	q3z7m1ypz51hUzQgzkUHrTUpWt87uhkuU1OnJJ7etrwMpzri+/kULWEqoqwUKNHEBk/0d1ZzUxcDT
-	wqXjn/kTM8kryz9l14qJmPu8l9DG5I6szJnMuyZATk0cP364QUbVXTlznzOJ6O/77yNSkhGFpuEpq
-	VZj0zVumkA2nWca9W34f8xR0Y09m3uAE6zg5VpxqlfWG4DesKKmrheyYiupz9rHdoe5CZU/ex1nve
-	ybZzNk2gc+4B19S2EeNAA2WN420714viUaqfPd4MKyZoEezfjNxYiVTLjOQ/oIRJO1Zi8oy8ixKgd
-	hHEo5Fsw==;
-Received: from i53875a02.versanet.de ([83.135.90.2] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1so2dx-0005bU-1b; Tue, 10 Sep 2024 17:19:01 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, kernel@collabora.com,
- Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>,
- Algea Cao <algea.cao@rock-chips.com>
-Subject: Re: [PATCH v6 3/3] drm/rockchip: Add basic RK3588 HDMI output support
-Date: Tue, 10 Sep 2024 17:21:27 +0200
-Message-ID: <1899262.u6TykanW85@diego>
-In-Reply-To: <1785617.Ii9rTq9gLj@diego>
-References:
- <20240906-b4-rk3588-bridge-upstream-v6-0-a3128fb103eb@collabora.com>
- <20240906-b4-rk3588-bridge-upstream-v6-3-a3128fb103eb@collabora.com>
- <1785617.Ii9rTq9gLj@diego>
+	s=arc-20240116; t=1725981780; c=relaxed/simple;
+	bh=QCNv+Ivh+r5cFkYNhMjifgcULHicF4W+VJSKk2jP/30=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HKALi17kEbkoAXnAtrHmgviD9XqdwKU+cV7PwniVt3Q1vnE58ug291vJqtX9QBv1N2hqXDEWSaQ3YGGcoY9yElqIwVJ4jyQlvRxq+mTQ6WrC6FcJdbr3nutP0qjaRq7p35qP7020RvIjbeSJkT9bYtHuo3X5ZxNvI7oS03hFkKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nkfjqUH8; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-374c962e5adso3217742f8f.1;
+        Tue, 10 Sep 2024 08:22:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725981777; x=1726586577; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3luWvTJh/XF/9n4++BBfuuXH5dXLi+NDmtvvmGXKaNU=;
+        b=nkfjqUH8twg4D0xVo8kON4g3Hw5eOWvDhOjaBPLP8MF5VFSfV7B4VUSCBwIaznxVty
+         YQDkAhvYcRigZ53A4JG0J+faBipnkDa8WV72qcRzGl5xijKhLTcTSa32tzIaz9Ns4SQX
+         rUcCCHEzFAXWeD+N0EU6uGU374S42ISC3TO/hMhgFZCtuhC1rGqjFnjZqdfo/YH48AUz
+         Q210GhUo1EmW595UEDAZ8tXE3F1OmnewsKtPTRxkd2MYRjA8ilqZ3BCJUzguJyMn46je
+         k4MUTZToJjVf3SI6NQqrvxHd7tSaYui69GLFX/EUjoSTRIvoUX6+tRhp6gvi+YKSYT4a
+         ztIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725981777; x=1726586577;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3luWvTJh/XF/9n4++BBfuuXH5dXLi+NDmtvvmGXKaNU=;
+        b=w0LR0aGuBbRmDNXVqNKZ8j3t82zz2KLjhNBTKfNvxEdmkV4wWsKOQ/Qqxq3el5JwwT
+         p38l51sLkWqnDPgwHjIKq6lPVE1hju1OSwvMM5dUkMPRLGEsz85cKg4wfRZUt+ojb2tq
+         cYaUUOW2FqP/G4i975lPoaYs7YDsQxPwIIvdfoUmPPXhzCHuEOdN65UsLsehyEeDPy/Z
+         pysmUTdxVjHwk8YU6exstKMGW7g52nI1AtKThD8+GLl/MZV+UYI4QL/ykzlyGTDxC4HD
+         7KWdLRk+xzbc8YVFnQpJrH1+/l+cesQ2L+mAVKq2nfeaRS1zlBX9Nxgua7Yrw9ZunRxm
+         CdDA==
+X-Forwarded-Encrypted: i=1; AJvYcCUz/w0RpsB+ONoBEBOcLfTMFkb7cEr5/33JA/TlcS7+hKMRyt4Q1Vngv+dLLuvCb4hVZS3deSvKUDW/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvtUHTr6iFX//MUCA5rp1BTERHgci7z3AY6fk4JRBGLWSSKteS
+	v80oTZadA66gNS/K7deWqaZACMnQWhjiH0Z0wKOSbqD6pw5WEvWBYnyFCgQN
+X-Google-Smtp-Source: AGHT+IG98HAfB37x0b1vUt+J47mxLsvmOXeg/xNg0KJXFGspW0NVigKyYRNsD9gWlliA3hO1dCZSyQ==
+X-Received: by 2002:a5d:5f87:0:b0:374:c400:8556 with SMTP id ffacd0b85a97d-378a8a1b6a6mr2726122f8f.11.1725981776283;
+        Tue, 10 Sep 2024 08:22:56 -0700 (PDT)
+Received: from emanuele-nb.int.toradex.com ([2001:b07:aac:705d:868b:2b2:ee81:5749])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378956d372dsm9239225f8f.73.2024.09.10.08.22.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Sep 2024 08:22:55 -0700 (PDT)
+From: Emanuele Ghidoli <ghidoliemanuele@gmail.com>
+To: linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Cc: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: [PATCH v1] arm64: dts: colibri-imx8x: Add ad7879_ts label to touchscreen controller
+Date: Tue, 10 Sep 2024 17:22:12 +0200
+Message-Id: <20240910152213.2072743-1-ghidoliemanuele@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 8bit
 
-Am Dienstag, 10. September 2024, 17:07:57 CEST schrieb Heiko St=FCbner:
-> Am Freitag, 6. September 2024, 03:17:42 CEST schrieb Cristian Ciocaltea:
-> > The RK3588 SoC family integrates the newer Synopsys DesignWare HDMI 2.1
-> > Quad-Pixel (QP) TX controller IP and a HDMI/eDP TX Combo PHY based on a
-> > Samsung IP block.
-> >=20
-> > Add just the basic support for now, i.e. RGB output up to 4K@60Hz,
-> > without audio, CEC or any of the HDMI 2.1 specific features.
-> >=20
-> > Co-developed-by: Algea Cao <algea.cao@rock-chips.com>
-> > Signed-off-by: Algea Cao <algea.cao@rock-chips.com>
-> > Tested-by: Heiko Stuebner <heiko@sntech.de>
-> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->=20
-> I had switched from the v3 to this v6 in my playground-kernel today,
-> with v3 I've never seen those, but now with v6 I have gotten multiple
-> times:
->=20
-> [  805.730608] Internal error: synchronous external abort: 00000000960000=
-10 [#1] PREEMPT SMP
-> [  805.739764] Modules linked in: snd_soc_simple_card crct10dif_ce snd_so=
-c_simple_card_utils panthor drm_gpuvm drm_exec fuse
-> [  805.752031] CPU: 3 UID: 0 PID: 775 Comm: Xorg Not tainted 6.11.0-rc7-0=
-0099-g459302f1f908-dirty #934
-> [  805.762143] Hardware name: Theobroma Systems RK3588-Q7 SoM on Haikou d=
-evkit (DT)
-> [  805.770407] pstate: 204000c9 (nzCv daIF +PAN -UAO -TCO -DIT -SSBS BTYP=
-E=3D--)
-> [  805.778186] pc : regmap_mmio_read32le+0x8/0x20
-> [  805.783155] lr : regmap_mmio_read+0x44/0x70
-> [  805.787828] sp : ffff80008293b830
-> [  805.791516] x29: ffff80008293b830 x28: ffff80008293bce8 x27: ffff0001f=
-20ab080
-> [  805.799495] x26: ffff800081139500 x25: 0000000000000000 x24: 000000000=
-0000010
-> [  805.807472] x23: 0000000000000000 x22: ffff0001f5a4b400 x21: ffff80008=
-293b8c4
-> [  805.815450] x20: 0000000000000968 x19: ffff0001f5a27a80 x18: 000000000=
-0000070
-> [  805.823428] x17: 0002441400000005 x16: 000004650441043c x15: 043800000=
-8980804
-> [  805.831406] x14: 07d8089807800780 x13: 0438000008980804 x12: ffff80008=
-1133630
-> [  805.839384] x11: 0002441400000005 x10: 000004650441043c x9 : ffff80008=
-1a59000
-> [  805.847361] x8 : 07d8089807800780 x7 : 0000000000000000 x6 : ffff0001f=
-5b453c0
-> [  805.855339] x5 : ffff800080750dc0 x4 : 0000000000000968 x3 : 000000000=
-0000968
-> [  805.863316] x2 : ffff800080751520 x1 : 0000000000000968 x0 : ffff80008=
-3b20968
-> [  805.871294] Call trace:
-> [  805.874012]  regmap_mmio_read32le+0x8/0x20
-> [  805.878588]  _regmap_bus_reg_read+0x6c/0xac
-> [  805.883262]  _regmap_read+0x60/0xd8
-> [  805.887159]  _regmap_update_bits+0xf4/0x140
-> [  805.891832]  regmap_update_bits_base+0x64/0xa0
-> [  805.896797]  dw_hdmi_qp_bridge_atomic_enable+0x134/0x220
-> [  805.902734]  drm_atomic_bridge_chain_enable+0x54/0xc8
-> [  805.908380]  drm_atomic_helper_commit_modeset_enables+0x194/0x280
-> [  805.915190]  drm_atomic_helper_commit_tail_rpm+0x50/0xa0
-> [  805.921125]  commit_tail+0xa0/0x1a0
-> [  805.925021]  drm_atomic_helper_commit+0x17c/0x1b0
-> [  805.930276]  drm_atomic_commit+0xb8/0x100
-> [  805.934754]  drm_atomic_connector_commit_dpms+0xe0/0x110
-> [  805.940690]  drm_mode_obj_set_property_ioctl+0x1c0/0x420
-> [  805.946626]  drm_connector_property_set_ioctl+0x3c/0x68
-> [  805.952465]  drm_ioctl_kernel+0xc0/0x130
-> [  805.956846]  drm_ioctl+0x214/0x4a0
-> [  805.960643]  __arm64_sys_ioctl+0xac/0xf8
-> [  805.965025]  invoke_syscall+0x48/0x104
-> [  805.969214]  el0_svc_common.constprop.0+0x40/0xe0
-> [  805.974470]  do_el0_svc+0x1c/0x28
-> [  805.978171]  el0_svc+0x34/0xe0
-> [  805.981582]  el0t_64_sync_handler+0x120/0x12c
-> [  805.986449]  el0t_64_sync+0x190/0x194
-> [  805.990540] Code: d503201f d503201f f9400000 8b214000 (b9400000)
->=20
-> I guess that might be some clocking issue?
+From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
 
-=46orgot to add, this happens when the display has blanked and then is
-supposed to unblank again.
+The device tree defines the touchscreen controller, but it cannot be
+enabled because it lacks a reference label.
+This commit adds a label to allow it to be referenced and enabled.
 
-Heiko
+Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+---
+ arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
+index edba5b582414..4ea47a576b1c 100644
+--- a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
+@@ -166,7 +166,7 @@ sgtl5000_a: audio-codec@a {
+ 	};
+ 
+ 	/* Touch controller */
+-	touchscreen@2c {
++	ad7879_ts: touchscreen@2c {
+ 		compatible = "adi,ad7879-1";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_ad7879_int>;
+-- 
+2.34.1
 
 
