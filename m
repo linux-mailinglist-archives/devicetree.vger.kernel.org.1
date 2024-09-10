@@ -1,199 +1,129 @@
-Return-Path: <devicetree+bounces-101619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF0DF972B6D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:03:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF182972B8F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:09:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56F441F2584E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:03:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7FD87B25878
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:09:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E1AD187FE2;
-	Tue, 10 Sep 2024 08:02:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04C48185950;
+	Tue, 10 Sep 2024 08:07:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QFVzPDGj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D1CF174EFC;
-	Tue, 10 Sep 2024 08:02:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 428D814EC64;
+	Tue, 10 Sep 2024 08:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725955363; cv=none; b=uSNvHt7BQbjC5S0BUfGyjUJkjTYa1bq6/dCc6bfTXCGRwDP5u9OnpIytAaDbzGx8wX8bEotiIBXnnnWtilA//DQx6uITs7lpv71/UeEATU0FXTrjihGZYA3DNDR2IQ8GVVbGnuFVgX9dAbgg+MgFLUlEpQW9amW+f3wKdWm2Cmc=
+	t=1725955623; cv=none; b=cj2B7Oh2UjWUbXH7Fw9FIWdIAf5XEBT+u4fAt5vM87L87r5QPmGFzDvddquNrrx0o5b8obyTE5fK3MsPu11LHgDPlkuro0IEBtSeTSsUzgAej3g3uytqaL488+xAMgXYsuj2JuLU5jTI7kUatKwTMr//GpanBRKvHvR0HCnhhVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725955363; c=relaxed/simple;
-	bh=bZQ56TI9jacC06ucCOzxlRB8MZhqw4u3oVbjFPOEG04=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OhohNAwFjzeYZPwm6uvID8OYbZPCVysGghyfko6ZAyzHqL1XnFt8MXnhwLsi3CSCLkyjnjD50+HRlACJTRbRA1/NwCMDJgvqGRcCt1Ff4Mr8CpFTkS6vODY6LBmhHzAx6/tozjtuKu4qVgPmvBFwnWfQzRea+uLQOTbycbSa0TI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1725955623; c=relaxed/simple;
+	bh=1ltcXmceTLZy9QqnQ13U4oGqvK2CTpI93pBXiQ17Hvo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ut4IeTt/02IbW8p/hKmqLL3QjRch2h+16nb6Ct3367ubHW7Cmwb9HSToSg35KvfQT0XFHrVMDqSd6WquiSlgRK5fvcVt6raGHRTZViCT/obngf3IIhbw6En4c8ZeXZpUMn7I03rD7ek64UaWGZi0d2T+iLZYIgXELjGfp0BgjNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QFVzPDGj; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-6b6b9867f81so2801497b3.1;
-        Tue, 10 Sep 2024 01:02:40 -0700 (PDT)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-53653ff0251so6181360e87.0;
+        Tue, 10 Sep 2024 01:07:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725955620; x=1726560420; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xz5CIdHVHvkHtiNrFTW/30ci7obg66dA0as2KpLkByU=;
+        b=QFVzPDGj6u3LNmx+cwLDXp+5UaI0Ol4hr0RvZopWfOym7EI+xGn9NxZzxDcskmRBdF
+         pElmDJFBhijdu+SYxYwqaW4PCYZs/XJqeCSNtUJK/Wgq7Jm4LWr0Lcw9l+AGeCAy3zYS
+         R/Xq4i0tHS/sx0Ghm8MTmV2oDdIY7FLD6+rNVU1sbsAEhq21w2NXkxpHFVtlY/W8MhL9
+         4KktQGJdrz1UgcnhT6lq5DT8rHYCHZ3zWatUtaWSKbZl3TmT7q//N09MPIZgCOnVJYyt
+         RQUSLFxwZn1mLMAFe1Fy5rTnoXNi1AfzPUteMqBT5UMC+Jj7rmh+1mMQnDNIuVUi9/q+
+         PleQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725955358; x=1726560158;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fzRdJw3jGdTpaaxC4oTRsBtst8mfyJSId4rDFBKOHV0=;
-        b=hf/5DvQXc07ReeqJOh/x7w7aAifKsvC+Cdnd9Vr04mivTQCwXxg7QaHx0Dif6dvIYc
-         LGgsuhkAhSpOhpqh/aQevJ5D+AfHqdNZVyHkErX612V9q0P4btxSZHX6gVpy6aSd8UF6
-         nP+g553BD0iahWe7YGE6xY7wa8m3du/x1hu3GyHmp3bmEeFtvQS3Vl4ixTSWTfqQvCa7
-         dFy7y5iBIkvWZjDQvGFMqRkOZOh0xJl+lgxCAI1woEsDYtIUHtPe8vCyaEnVLZW8rylT
-         du1metny8dI9UDXW4XhgPTg6g/dgoK8vtfT0lAsZUecLtL7NihvvTBG436RoRQTSTwKr
-         iMdA==
-X-Forwarded-Encrypted: i=1; AJvYcCWOyNIeWSeKkHGVQzhTDNO2brNBi+Et8GUEiS4SLEqVPaSRiN79tCywtrTl9NHRhtfdYPEu8LWC0PMx505s64p1v2s=@vger.kernel.org, AJvYcCX+dPA3oZ2Pn8158a51PHSXdHzIlKdXtu09Xa8al0Ho02AL/nHlzY1JJbYp60rsXanZCYoZGGdQnBHs9IqI@vger.kernel.org, AJvYcCX/+ZcBEOcubMzYUh32DZw/oafIKJJ+lLZORGDr2f4XV8N8fd8p2kdjgW5UhG0iFCx6/T4NDp9a5iYn@vger.kernel.org, AJvYcCXod0PX0RBMUS32LY2LT4HyPu6jvbxcFRnVNJDvEj6mkfIpfwdvUlZwm0YlNCO+yipTHIYjO+m8C5Y/@vger.kernel.org, AJvYcCXqiMs1rEYsm1nBlJIj9A3+jU5cXD94zJo/w0G5/pHGmT8rVkLl9Z2pc4R4BLnZX/9bMpfj6p7YT1Am@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzehQ3ga3o16Hyvn7mkuxXvqR0QqTj5bdQxV0AKK5YpGiLSTY2
-	qdWugiMRgn7subZUHxEwsnAdWAHMe6YKFpnf6VJHlzP0sPW0gadtQjbIF0Bi
-X-Google-Smtp-Source: AGHT+IEDzeFJg++83VtrB6IWJnIkEpcY+S8zu/4dF6JnBPmVZ02H8azk96uClHp01u5ASpF5vIUQ+g==
-X-Received: by 2002:a05:690c:dc5:b0:65f:d27d:3f6a with SMTP id 00721157ae682-6db44d61d1dmr158085997b3.7.1725955358109;
-        Tue, 10 Sep 2024 01:02:38 -0700 (PDT)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6db9648d551sm2189837b3.63.2024.09.10.01.02.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Sep 2024 01:02:37 -0700 (PDT)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6b6b9867f81so2801127b3.1;
-        Tue, 10 Sep 2024 01:02:37 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV8EYR7jgyebhDZo2pAtd6e2eyhG3O2VUVw36sfXiUMPUnKbZN+yPb5CSD9j3fWUmbBK5n/yWP9Y454@vger.kernel.org, AJvYcCVO7uZSVziTLVhbZa/jj0dMctzRtiUoRktz1ONYwhUdH5vLilM5XIW7UCRHLFwr+lFASGdr/52VebTy@vger.kernel.org, AJvYcCWWFJS1hxlG1k45ou7p/89Y8U83wb8ut4tP7weBIgj6DL5lpnPEugFTN9S5zKCbnCl50w0waXmC7enBJxeAofesENU=@vger.kernel.org, AJvYcCXelkVbxMta2r+SPTIgeNe2QU/E4uMe/Gr9jy3t1Ej6LjV35xRzGw2QqGAR21vgHmVrB9hoBGzFH0omN2wm@vger.kernel.org, AJvYcCXzkTYygK8Xt7wG684wXki9BGuOsZF82qRMlOxUQLHHX1/UnC6q/wgvx9uJNbqlPIomwrsC9kcvZc9h@vger.kernel.org
-X-Received: by 2002:a05:690c:d18:b0:6af:eaaf:2527 with SMTP id
- 00721157ae682-6db44dfed1amr147937807b3.18.1725955356625; Tue, 10 Sep 2024
- 01:02:36 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1725955620; x=1726560420;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Xz5CIdHVHvkHtiNrFTW/30ci7obg66dA0as2KpLkByU=;
+        b=WdXxxkKkzxwyFsI/sZhjdLP7rgWKgTg600LNVijd9sqhLnaC8f6A0Ch/T5FLwILQwh
+         l6J1VAG9dHaYrBx4jhpjEoPUiVPniYajU8Z5VKdeisOlPex1HgP1zHhf9BD7gN0RGOgH
+         Q4QCAestW6OTOXszAF5UnR7IEThqH/wQyx1FlvXEhi53Uv7h1oxpbtv0eLSup11o+EYb
+         UsDsH1TxGX1rGRlaDrAbnNtFzB1zkMzf645if82BkUVY2AZ05gfNXg43WuT98wKu/G+r
+         ZrGfqFW7sSHgigZP6VWTQ200kUQ+lXB4NfiEFkCTmP4J0T0+5SqtOXDXeet//ZQiKlbT
+         vBtA==
+X-Forwarded-Encrypted: i=1; AJvYcCVRYXsPhL3Q+kdf2Q3lyxDzK7zLx3/LnA02gkIhsNaZNmbMmu/uJQcFVyEhHgVP1xIgmlT2Cl1+5ZJg@vger.kernel.org, AJvYcCW4fYVblyq2RLo+840rA7f2ZTfw9TMewxf+oqq3LSEdVjSda5toP1c/rynTU4jaZHJhyFdvRr8ozc46xw==@vger.kernel.org, AJvYcCWDhXK/PmAaqbJcO/yDmdEXgbjxhRJ7m4uP7I4gylySOLH4k0Y1W3XKN3HeBCXzN33kepBhGNnmWQzeZpow@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4clOoHPW/ZBSbCUUcVChSNhEEN2JCFA87vEPsTdxmODH2AuZx
+	zTRp6RwM84vAi69KL9KvzF/HFYMyYBi3Ex8Jf64NwXXl6Ual/EcV
+X-Google-Smtp-Source: AGHT+IH1aZC32vo+iln8qSrTi4KRxrtdkgJniacmqzDUfBPShm6QxI6FHwLAlx4LAs4kuShuES66Yg==
+X-Received: by 2002:a05:6512:31c5:b0:52c:e07d:229c with SMTP id 2adb3069b0e04-536587b06e0mr10247610e87.22.1725955619305;
+        Tue, 10 Sep 2024 01:06:59 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5365f8cacf8sm1020961e87.131.2024.09.10.01.06.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Sep 2024 01:06:58 -0700 (PDT)
+Date: Tue, 10 Sep 2024 11:06:56 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Jiaxun Yang <jiaxun.yang@flygoat.com>, 
+	Paul Burton <paulburton@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/6] MIPS: cm: Probe GCR address from devicetree
+Message-ID: <tyjojeubipma56cnldy3yabbiakca7bnt4efei7i4r5xme7gpq@ecz5rqwwyg5n>
+References: <20240612-cm_probe-v2-0-a5b55440563c@flygoat.com>
+ <3wemwdkev7pafyfu3yxhpvvpqaplhlejbzxtmahcarrnoeelzr@747sgyl63kwj>
+ <Zt745ZtuZmVH61uA@alpha.franken.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com>
- <20240830130218.3377060-8-claudiu.beznea.uj@bp.renesas.com>
- <83fac884d749bda0cf0b346e4e869bc8.sboyd@kernel.org> <d8303146-89e0-4229-a3fe-9f3c42434045@tuxon.dev>
- <c744cf7a70a3f97722146215a7620cfb.sboyd@kernel.org> <CAMuHMdX40ROk2vZe9VHoiPDJCvtrjto+swkicv29LFyQ7zoVng@mail.gmail.com>
- <951b5c09c3ca2de3f0a28a078084f7dd.sboyd@kernel.org> <CAMuHMdWBT6AaH2_5qj+j4s8JeeO3qrhYUTCVG=s_J13nSzYPsQ@mail.gmail.com>
- <8fa43530daa941b059b2de1e15dd7773.sboyd@kernel.org>
-In-Reply-To: <8fa43530daa941b059b2de1e15dd7773.sboyd@kernel.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 10 Sep 2024 10:02:24 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdW12EO=U2b93C=hkL3Z-ncf85X0-9KB4Ds9d5+b5MhLMw@mail.gmail.com>
-Message-ID: <CAMuHMdW12EO=U2b93C=hkL3Z-ncf85X0-9KB4Ds9d5+b5MhLMw@mail.gmail.com>
-Subject: Re: [PATCH v3 07/12] arm64: dts: renesas: r9a08g045: Add VBATTB node
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: alexandre.belloni@bootlin.com, claudiu beznea <claudiu.beznea@tuxon.dev>, 
-	conor+dt@kernel.org, krzk+dt@kernel.org, magnus.damm@gmail.com, 
-	mturquette@baylibre.com, p.zabel@pengutronix.de, robh@kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zt745ZtuZmVH61uA@alpha.franken.de>
 
-Hi Stephen,
+Hi Thomas
 
-On Mon, Sep 9, 2024 at 11:18=E2=80=AFPM Stephen Boyd <sboyd@kernel.org> wro=
-te:
-> Quoting Geert Uytterhoeven (2024-09-09 05:11:03)
-> > On Sat, Sep 7, 2024 at 1:01=E2=80=AFAM Stephen Boyd <sboyd@kernel.org> =
-wrote:
-> > > Quoting Geert Uytterhoeven (2024-09-06 00:28:38)
-> > > >
-> > > > My main objections are that (1) this approach is different than the=
- one used
-> > > > for all other external clock inputs on Renesas SoCs, and (2) this r=
-equires
-> > > > duplicating part of the clocks property in all board DTS files.
-> > >
-> > > Can 'clock-ranges' be used here? Leave the cell as null in the SoC dt=
-si
-> > > file and then fill it in with clocks property at the parent node. I
-> > > think you'd have to use clock-names for this though.
-> >
-> > "clock-ranges" does not seem to be well-documented...
->
-> Yeah, I wasn't aware of it for years!
->
-> > IUIC, your suggestion is to:
-> >   1. Add "clock-ranges" to the /soc subnode,
-> >   2. Completely leave out the "rtx" clock from the clocks property
-> >      of the vbattb@1005c000 node,
-> >   3. Add the following to the board DTS:
-> >
-> >         &soc {
-> >                 clocks =3D <&vbattb_xtal>;
-> >                 clock-names =3D "rtx";
-> >         };
-> >
-> > Then, when resolving "rtx" for the vbattb@1005c000 node,
-> > of_parse_clkspec() would iterate up and find the proper vbattb_xtal.
-> > Is that correct? And probably that should be done for other external
-> > clock inputs as well?
->
-> Sounds about right.
->
-> > Still, it looks a bit complicated and un-intuitive. And what about
-> > e.g. carrier boards with a SoM, where some clocks are provided by
-> > the SoM, and some by the carrier? In that case you still have to
-> > override the clock and clock-names properties in the carrier .dts,
-> > thus duplicating all clocks provided by the SoM.
->
-> This is the same case as the board wanting to override the soc node?
+On Mon, Sep 09, 2024 at 03:32:21PM +0200, Thomas Bogendoerfer wrote:
+> On Tue, Aug 06, 2024 at 10:49:52PM +0300, Serge Semin wrote:
+> > Hi Jiaxun
+> > 
+> > On Wed, Jun 12, 2024 at 11:08:52AM +0100, Jiaxun Yang wrote:
+> > > Hi all,
+> > > 
+> > > This series enabled mips-cm code to probe GCR address from devicetree.
+> > > 
+> > > This feature has been implemented in MIPS's out-of-tree kernel for
+> > > a while, and MIPS's u-boot fork on boston will generate required
+> > > "mti,mips-cm" node as well.
+> > > 
+> > > Please review.
+> > > Thanks
+> > 
+> > Got this tested on my P5600-based SoC implemented as non-generic
+> > platform. Alas the system hangs up on the early boot-up stage with no
+> > even a single char printed to the console. I'll be able to get back to
+> > the problem debugging on the next week.
+> 
+> any news about that ?
 
-Yes, but more complicated,
+Oops. This patch set has absolutely slipped out of my mind. I am
+getting back to it immediately and will submit the debug status
+shortly after I dig out the reason of the hanging up. Sorry for the
+inconvenience.
 
-> When it's a SoM is there a node for the SoM? Is the clock on the SoM?
-> Does this case exist? Hopefully this isn't a straw man.
+-Serge(y)
 
-E.g. the White Hawk CPU board[1] contains extal_clk, extalr_clk, and
-scif_clk, so it would need something like:
-
-    &soc {
-            clocks =3D <&extal_clk>, <&extalr_clk>, <&scif_clk>;
-            clocks-names =3D "extal", "extalr", "scif";
-    };
-
-The White Hawk Break-Out board[2] contains can_clk, so it would
-need to append that, by overriding (duplicate + append):
-
-    &soc {
-            clocks =3D <&extal_clk>, <&extalr_clk>, <&scif_clk>, <&can_clk>=
-;
-            clocks-names =3D "extal", "extalr", "scif", "can";
-    };
-
-Currently, [1] does:
-
-    &extal_clk {
-            clock-frequency =3D <16666666>;
-    };
-
-    &extalr_clk {
-            clock-frequency =3D <32768>;
-    };
-
-    &scif_clk {
-            clock-frequency =3D <24000000>;
-    };
-
-And [2] does:
-
-    &can_clk {
-            clock-frequency =3D <40000000>;
-    };
-
-[1] arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi:
-[2] arch/arm64/boot/dts/renesas/white-hawk-common.dtsi
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> 
+> Thomas.
+> 
+> -- 
+> Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+> good idea.                                                [ RFC1925, 2.3 ]
 
