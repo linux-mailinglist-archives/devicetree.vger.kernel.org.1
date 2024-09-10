@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-101789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8837D973DE5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 18:59:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D697973DE8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 18:59:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC9051C251C6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 16:59:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9557D1F2713B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 16:59:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3340B1A2851;
-	Tue, 10 Sep 2024 16:59:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7E5A1A2853;
+	Tue, 10 Sep 2024 16:59:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="bRKgqCG2"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="JHEB+Ngm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54DC819E7E0
-	for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 16:59:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E5401A01C3
+	for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 16:59:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725987551; cv=none; b=pJ1nh9NKW2oxTuLCWeTlBwtwdgzC7BUyp8VOAdkcfGRzVI3XsonoOcE1J/TTAHx3BSvoubsf8Se9DnGMQi5CWaU/ialFxv/Bi3ZrAw6Kd2/d/WNlV0o6ldHX4ilyz3f7eTP2Q7WT/MbHS2QuZpnZwbv0sf4uU1k1fpSOf1SUG04=
+	t=1725987571; cv=none; b=izEuTOiofrY9uSZn3YfIwFHTS5fp8OJt3IxYT3NoedLIBcHFXCD3XY/4asSPs9YtPc0s4+tBdPwGyYJEunR2g5eAWER1t4zBslvLYm6Q/kCqJfoNS9lyJfkB9V2LZx3fogSynr2rqDGiPtVS2ROfyOSzQn0Khi/r6hXGZCQ4llE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725987551; c=relaxed/simple;
-	bh=RW1eI4WH97AVHNceo5Dd+h9Umw6YB52bFVfNmq1IMKE=;
+	s=arc-20240116; t=1725987571; c=relaxed/simple;
+	bh=CV/+Xsvud6NgAwF9/16qZCiWRnmYLavG4/G69hQhyac=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dz3h/ihDZUGPXwrnuSEMGu2Vy4HyMn8z8VY0DIXQcHCUvGC23RzHSo3WrRQkFTculK1y4/CwyuptRDu5GHyJGxqPDYDMP6/NIxwFEcwBo7OtfCJq9q11dTxAzZJtiqjVj5yfUjMIyJSoBF1sdgOIvZdNhFWe0xDsYayygsHJ9HM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=bRKgqCG2; arc=none smtp.client-ip=209.85.210.42
+	 In-Reply-To:Content-Type; b=N/D7vauGOC5NWRx0e6xlc1l/xEqw4k3XOLJP4iZ3MitOOHUwSFPHLPKFDI4wml8HJyGGJw3kZIgSspCkhhr//no8AyukPLZrTXTeiIxuJjSxbFSFoAYRYzk0lf2VHj58t6tXmqb77eNbhkqLmtAJ2IhiPRQG6xjizSScgb6kjv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=JHEB+Ngm; arc=none smtp.client-ip=209.85.128.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-710f0415ac8so556726a34.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 09:59:08 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6db9e47ee79so6400047b3.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 09:59:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1725987547; x=1726592347; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1725987568; x=1726592368; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=eCkek4KqfJ7+ma6RA0o7oNBgXitXrG2DwQzBsm7A4kw=;
-        b=bRKgqCG2gdtO8x4Ly3NcHUs9R/Ampa+XDyyjmslI6PU38sDcwxDSDxm12XGYv+xpZs
-         svkrp4BwRPNJ141q12/RrN7UyxfjAuj5P/Kcpncd88cDm9jRcILn6u9EsKr6jrk/Pa2N
-         jUVVCZY8/mTGhxCCXAIo3ST+qf+5MT+5HoAyY=
+        bh=U/6PuAoHVqwJAn9H3E/ApoOgwWszRBjm1/LVCy6+Tvk=;
+        b=JHEB+Ngm8k0inM/GRD81oVFuzlyPPlH6DdefJYEDSKJcsEFxMJPFW5a95cXg7FGNA8
+         1siubzLEqiz+PhCzCncWpR3Ofx07hdXqSI3yrvHC9X/NHR+JA/dgvuMluoZK6LapCq37
+         nfA3gr3QZ9bJVTGiaXJSw3K2uQ0Ziu6ooFWqQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725987547; x=1726592347;
+        d=1e100.net; s=20230601; t=1725987568; x=1726592368;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=eCkek4KqfJ7+ma6RA0o7oNBgXitXrG2DwQzBsm7A4kw=;
-        b=HvnkHLt+iSZHd5mHX0swA+2ALrc4VIsxRAlqXZJ9RsI+05kN1olsDhZz4tWDAikwX7
-         P8vp4gL6SvZ/KeEJvslEiBQiZqt/M3j7xpqTN1/hgXA7V+dlF6h1dDUg46pH11g7e7Dp
-         WnnQHKWWQ4FqOVtmWFddVVizy7g08Zv04INuSSyx12lmB1Qf9eytE+lFX2M/5CHVeZnK
-         sWpKIYB2HWalnknvr6LudFxlP+E053pfaOIkvMrdrnaK83FlWgBerg9ZBxa2NLUD+lJa
-         HaRdBEMU1jw9RuUJxV1USLUDo6JWR/nuJKp33vwvAWk5uEJxbyl+hvH34iM/rkk+aZGS
-         jsfw==
-X-Forwarded-Encrypted: i=1; AJvYcCXOAOMCX29MUIL6trdGLYVcZeVyXjJjQcCF+2plegJ+wY7DoNIJBZWim2ARSKyMnaVmnSgKWHU55Bu5@vger.kernel.org
-X-Gm-Message-State: AOJu0YxF2NLwEBuhjqrkSm4xYiufEeqNFZyaeeZqxZXOP9ZZoPqD314p
-	Py/GY0r2DdaqiGnieJcVjwHarDi0Q92ZPd57A4gkVP8HWBlnB2KiDl5zKfx0DQ==
-X-Google-Smtp-Source: AGHT+IGej3qRTb2QuzwjYF/jIkXANQkPCRyf9bXvbHm7nO/rRLTZOmR2OR4C30AR5PoMxn5parY2uQ==
-X-Received: by 2002:a05:6358:720a:b0:1ba:455d:e5a1 with SMTP id e5c5f4694b2df-1ba4916d9demr25518555d.22.1725987547270;
-        Tue, 10 Sep 2024 09:59:07 -0700 (PDT)
+        bh=U/6PuAoHVqwJAn9H3E/ApoOgwWszRBjm1/LVCy6+Tvk=;
+        b=JUepxxLcXTaq9LB0iotjHRVqYEn10m8eZzRT+/dqFeF3AwTgyxTnFz1jIv9fRIir5E
+         GYsfuhBEXBDNQZf/sQmmwrla4M+/KvEklCpklBPbXsUDAgTyyLUUqmQP6ujijO8ZG2yk
+         IY4eSkdksNoHdaPb/7kJ9i1f6PjQIm6IruIeNGuEDy8mo+CTZ9hLWVKCc3nB/H6SAKaj
+         rPICY+kLKA29/jt2y7c+qy1N/TxM/5LLlR+v6gr5hzLbHXLD4oj8ifBxvulxPLAJyO55
+         UW+feXCzJFkUILc6efXDj1xjgupcSrnxw6qCVORMFJN239Vpbc2jZnFJSdu6IYfoqW3S
+         Hfug==
+X-Forwarded-Encrypted: i=1; AJvYcCUzsZSDNsX6DorT0cA2tBJ68bOjRqR5w51t/8kGrJ40OFWhjtYYi4QqFzg+aBc+mCZz3gaqVyDZE3e9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbfrZ+SbmuLL/gWPPC8Sv6zso10TiQQ84sb9SFHI0CEwT6ugIV
+	a6sC0jQ9PKGteyzKIctDSQVhaSPoyxmHVcu6MV+rA2E3w5B7ylmW8XV/wXj+OQ==
+X-Google-Smtp-Source: AGHT+IFvOdcW30wX0d70oj+1ll0GHS5mjd10vuBsPBd87hScoQyIYWMaCVt44EOZ8QoHtMQsNNIIPQ==
+X-Received: by 2002:a05:690c:4982:b0:6db:2d71:916 with SMTP id 00721157ae682-6db44df3824mr193377797b3.14.1725987568340;
+        Tue, 10 Sep 2024 09:59:28 -0700 (PDT)
 Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a9a79972e3sm324840685a.68.2024.09.10.09.59.02
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6c53474d6a2sm31678716d6.90.2024.09.10.09.59.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Sep 2024 09:59:04 -0700 (PDT)
-Message-ID: <1bc838ab-509a-4501-a141-35c1000f5f49@broadcom.com>
-Date: Tue, 10 Sep 2024 09:59:01 -0700
+        Tue, 10 Sep 2024 09:59:27 -0700 (PDT)
+Message-ID: <9de505c5-d9a2-44b7-8db1-0686c61a0fb4@broadcom.com>
+Date: Tue, 10 Sep 2024 09:59:23 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,8 +74,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 -next 04/11] PCI: brcmstb: Expand inbound size
- calculation helper
+Subject: Re: [PATCH v2 -next 05/11] PCI: brcmstb: Restore CRS in RootCtl after
+ prstn_n
 To: Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
@@ -90,7 +90,7 @@ Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
  Andrea della Porta <andrea.porta@suse.com>,
  Phil Elwell <phil@raspberrypi.com>, Jonathan Bell <jonathan@raspberrypi.com>
 References: <20240910151845.17308-1-svarbanov@suse.de>
- <20240910151845.17308-5-svarbanov@suse.de>
+ <20240910151845.17308-6-svarbanov@suse.de>
 Content-Language: en-US
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
@@ -125,18 +125,18 @@ Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
  7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
  95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20240910151845.17308-5-svarbanov@suse.de>
+In-Reply-To: <20240910151845.17308-6-svarbanov@suse.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 9/10/24 08:18, Stanimir Varbanov wrote:
-> Expand the inbound size calculation in helper function
-> up to 64GB.
+> RootCtl bits might reset by perst_n during probe, re-enable
+> CRS SVE here in pcie_start_link.
+> 
+> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
 
-Nit, we could explain why, which is that BCM2712's memory map supports 
-up to 64GB of DRAM. With that:
-
-Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+This looks like a bug fix, and we should explain what is the user 
+visible effect of that, if any.
 -- 
 Florian
 
