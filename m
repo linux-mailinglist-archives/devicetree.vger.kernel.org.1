@@ -1,149 +1,331 @@
-Return-Path: <devicetree+bounces-101626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAA2D972BAD
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:12:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9032A972BE9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:17:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 625CD28A62D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:12:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B46E41C24593
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:17:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BC4918D640;
-	Tue, 10 Sep 2024 08:08:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A01B9183CC6;
+	Tue, 10 Sep 2024 08:15:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="izI6WbZk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="boifW1tx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE1CA174EFC;
-	Tue, 10 Sep 2024 08:08:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D008617BEBF;
+	Tue, 10 Sep 2024 08:15:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725955712; cv=none; b=kAuoGPAntSYjUQDbus6L+OXFkZQ7ws1wf/6d09JO6ARAxtKKBg5BpPlvsd1kv6oeJBK6ZHNdHQeJB3acmTPXhcQUC8SgK8/V927JKwt/L2w7xGG86IxhZTScFjm7CObp4pmcKsB2pPlDIbUM9MsOv1jy7jf6Nn+qe3Fa6fIcnPw=
+	t=1725956124; cv=none; b=brblv0iYyt7y/116MZHtKdf26EmFiDL6/oP07G/sr29fcjWdqB4S2fDOWrnZqhgG/VFK68yHncM/OtXxBJxtYmH7DwM1CPLCRLYjduleS1Goj/V6WzD8PSYEM9kqjHcYklQzfQv2+j50qPnt1TTBb2GB3DyDcgpkQUGygMZyK9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725955712; c=relaxed/simple;
-	bh=ouoonEplLPwSxZkoSj2E1PtZlp2iv3h/AHqc/FfODxk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=J8HcQzae4sd8CJyiUeuz1ebjFrMya/zcPr7iXdVtZnxPQwDhfCH7NgjAeLAqWhSvc/TK9sbxcda8Ci/b6Z3l4AZM1qMbYkq9DklwdOC4vDu4oMNQrWR2ufzL3sEqUszYIu+O2Rw6yHntFOz0uUWvKULhrvTsAUltNAw4ljFDqOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=izI6WbZk; arc=none smtp.client-ip=209.85.128.49
+	s=arc-20240116; t=1725956124; c=relaxed/simple;
+	bh=et3dYxQgsfg5PySGS6DCig0jQ0gmUdydE5KkYVWjHsw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Pp1wYw806Wg0GvRpa/j7TgaXeJW346jH/4MTd5gmpr0s+FyZU1k/xJ/u6U721/yyZ3Gsx0fqSZXcgRD2l2Zf1/iEMcvPckx6lyb+lDDfRb6GodvLZNzpSId5UaUpodbUoBqXNL9Q7y8lNsjKg3TLQFDNW0IlmWYU1SBpIGhoogE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=boifW1tx; arc=none smtp.client-ip=209.85.160.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-42cae6bb895so28469345e9.1;
-        Tue, 10 Sep 2024 01:08:30 -0700 (PDT)
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-4581d15c3e3so22607171cf.0;
+        Tue, 10 Sep 2024 01:15:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725955708; x=1726560508; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ouoonEplLPwSxZkoSj2E1PtZlp2iv3h/AHqc/FfODxk=;
-        b=izI6WbZkE5oXc+Xoo9ljSOXgjO8NtkvExAoj1ta2ArIgHdul7Kk5q/i+7mWcW0kvzV
-         wce7yBKysIH/YpHlq3I0+jvGtBjDP6sF6iuZ/kxdzXWgqVMt1EMNkRMb1yHzu/0gFd2g
-         92QXIjnh9tvz1NMSQF9w2WpzgQxw1JKUcgSy9ma4mwDc78mdHg4DEyWDMmaQm31Z/bQn
-         KknM31KMZL9WeN/W6PqqFOl088GxStvd2OZaXmPx8Q/uOfq6IbAFnCCV5bZHruBe28EA
-         tbOsg6CZ7J0hldNaRtjk1qXxvt10ArEUaUOm/lcKTE8h4tKVtXbmgfBzJOrXA5cgejiQ
-         nKFw==
+        d=gmail.com; s=20230601; t=1725956122; x=1726560922; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EPH3kBIxJYHEyTOz3p0DMAY4Ngb5KzT9ROJM3lAS0nI=;
+        b=boifW1txVaVmvCxbJqN6rwL2jzSDq4ZpwneTKa4XBEGr3WsFRTrlF3gQ30gFpQrfpT
+         zM2rBKFgJfB+D98/99/3Um4a76cU+DBgH/I/KHuPZEBH/dj76QR/X3fnEJMGBXbPKM7A
+         NzKqFfFS+ID1gqVPt1bchkVWIbNOl8D9G7nFsndI7p3pn9/bybMVOKwHorEvSobVl8ym
+         EZLjuOvNLG7+q83WRPARrPj75rHtmP8RILg7kJIOmXCQtXcQDqoYczrGCPMto2ktwj8L
+         /IzJR50fJbgtFL/RJXvNEyWn49c8dQP2KypTPu3NbypES4trEzyk3W6UfmxbZGQHZAVc
+         sSQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725955708; x=1726560508;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ouoonEplLPwSxZkoSj2E1PtZlp2iv3h/AHqc/FfODxk=;
-        b=r13B9AKtV3pCIuz9tij9EDKFrITW6x4vvx0lPaXDEj/Kh2SDAVBeb9bx8JJdbcZgNg
-         Ko1t2LP/znIk8L0JjeXoOTCskqYXPkG8UNPc3KPFlaceMXMFA6eHdM5bbCcKvxzHhzMB
-         Vmb7y6TZW2BK9QtzgnmlCps9Hum724sKm7k7zEJgQNHzWEkkJWO2n/g7pBqqeTbAuMd4
-         QABBaHiMed8HH2ic1WokkEoz21hSTZCHP+uBST2imJe5pv909sTrqbmEG1LUdvo4tq80
-         GO/ZRxn2tdon8rQxKTuySR9ZQ2pq2xDTwHQHKD8MBo+h959uFPlqUTfP+Rv0EQedLi5M
-         QuLg==
-X-Forwarded-Encrypted: i=1; AJvYcCVEBHc8dOo4OGSQS4PDzTiUr/vnhFhD598BpO8DsgVFuT+ECuEVUGD2erhbVUMhGLDmtBiXOuo0DVQV@vger.kernel.org, AJvYcCWIVYSIC8+uxlp0s2E5hL9h411VJpXWkg2TH+Xo/jKe6OFt6Dq7bPZyJfRWn7zHcdspqJbzUSSJWmZrdp7q@vger.kernel.org, AJvYcCXANhpZv8qoEJd1b6SH4+tKKL5pvi8oP1jqPQE/Ln4lkBK/wsvEaliKzYs38y5MeWx8eWuAW+JsyCO4@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywg0mz/gAn900g9z28cJhk7A1IO68TtZGrCjGA0Qlh7KabtwPOX
-	DRC7OuOpR83RTPe6yzuu4euhryyn2o2KOlPqc5ZJrAKyr4eMuZ3w
-X-Google-Smtp-Source: AGHT+IEq7FcjLR1iTKF/2cTQ3RHcIyuxu8ctxoMnjHU+K6yWQHO77ht4wSQcI4OvfrH0BvTy6RUXaA==
-X-Received: by 2002:a5d:58f8:0:b0:371:8319:4dbd with SMTP id ffacd0b85a97d-378895c9c3emr8635840f8f.17.1725955708372;
-        Tue, 10 Sep 2024 01:08:28 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:994e:fbde:478:1ce1? (p200300f6ef1cc500994efbde04781ce1.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:994e:fbde:478:1ce1])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42caf33e9b2sm102001305e9.14.2024.09.10.01.08.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Sep 2024 01:08:28 -0700 (PDT)
-Message-ID: <a8941a316a96be620a058be853b55923ab51fb5b.camel@gmail.com>
-Subject: Re: [PATCH v2 1/9] dt-bindings: iio: dac: ad3552r: add io-backend
- property
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, Jonathan Cameron
- <jic23@kernel.org>, Angelo Dureghello <adureghello@baylibre.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno =?ISO-8859-1?Q?S=E1?=
- <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Olivier Moysan
- <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, David Lechner
- <dlechner@baylibre.com>
-Date: Tue, 10 Sep 2024 10:12:36 +0200
-In-Reply-To: <20240909-retrieval-guide-da2a35e571a5@spud>
-References: 
-	<20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-0-87d669674c00@baylibre.com>
-	 <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-1-87d669674c00@baylibre.com>
-	 <20240908132925.331c5175@jic23-huawei>
-	 <20240909-dwelled-specimen-949f44c8d04d@wendy>
-	 <1dca9ce52e7c701c7fb6cbbc723e9dff5d0ace8b.camel@gmail.com>
-	 <20240909-retrieval-guide-da2a35e571a5@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 
+        d=1e100.net; s=20230601; t=1725956122; x=1726560922;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EPH3kBIxJYHEyTOz3p0DMAY4Ngb5KzT9ROJM3lAS0nI=;
+        b=Bc8Kn2UAOCfv/WFVeJVPSiFCjoVQ1BBGhinf+g6yG7/b0btYvl99DvaXPgYgQ4Bhqf
+         6hf0BIgazioLvXmA8loKnmrpt1TT6inE6f9nCoqwqFfT50gyvz8P5Lsa2hC5v6nVa3on
+         EOtAdPPrIpvL2sTtQPnojTDHzKRUd/WHu64zHaLZKgIEktlU/c5rLXY1Vn2TQJRQC6qD
+         z/jq/BD9pq5A4NKsAV8LFMHbOmGHHVjOgs4ne1WSz0SYN2cs+zsBPodHsso+nzEaWxw9
+         bdFVI8CjJiA+Ri6yqrfbxO2rowBIqx1ZqoyOtjX0j+N6VvXbmKwogUtyFajVLseNWKWm
+         o39g==
+X-Forwarded-Encrypted: i=1; AJvYcCWMkaDciVjUiITX/iPEOzUveIVN1AUrxUUYiJ1SQfVkFyLSKMa4fP2MKfVtYM/iXAqywMrNXMRKAOhFdBWY@vger.kernel.org, AJvYcCX9hN0WZztfawvZ4/fZ96ZcQiAWGdEzJdLeOyUrw/8lurTAL3FZJWi0Sv7IAC7/NLzL8wLwSC9wffFQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyVnKFWRMT0TOmDItux19ygVGsZQINsVXlmrdjlXd7H4CSrjrJu
+	oryLVZDi3j7YrKO3nK72PVAcwdDIWd0U2iuqFoDkjU4bZZtJD8AjLRUQX/4Gq//jwoEOgf/kC28
+	yfENqWBiMRnAQwE47HuB/CKvG58M=
+X-Google-Smtp-Source: AGHT+IGG8v+t1ox84vNDpIPMpKr7+kqzhm0kEvCpg1x+AuL9rGZb8R/FC6FEGlWADEqUViGH0udX1S86tKQmCZ752hM=
+X-Received: by 2002:ac8:7f88:0:b0:457:d461:73ed with SMTP id
+ d75a77b69052e-4580c6dcfffmr188194671cf.32.1725956121527; Tue, 10 Sep 2024
+ 01:15:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240910030951.3670653-1-damon.ding@rock-chips.com> <20240910030951.3670653-3-damon.ding@rock-chips.com>
+In-Reply-To: <20240910030951.3670653-3-damon.ding@rock-chips.com>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Tue, 10 Sep 2024 12:15:10 +0400
+Message-ID: <CABjd4YwEGR-bdT6VSJYcC_WcesCrPq1=maKmdP7=Y_fesc3oow@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] arm64: dts: rockchip: Add support for rk3588s evb1 board
+To: Damon Ding <damon.ding@rock-chips.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	macromorgan@hotmail.com, jonas@kwiboo.se, tim@feathertop.org, 
+	knaerzche@gmail.com, efectn@protonmail.com, andyshrk@163.com, 
+	jagan@edgeble.ai, dsimic@manjaro.org, megi@xff.cz, 
+	sebastian.reichel@collabora.com, boris.brezillon@collabora.com, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 2024-09-09 at 17:06 +0100, Conor Dooley wrote:
-> On Mon, Sep 09, 2024 at 04:03:17PM +0200, Nuno S=C3=A1 wrote:
-> > On Mon, 2024-09-09 at 13:46 +0100, Conor Dooley wrote:
-> > > On Sun, Sep 08, 2024 at 01:29:25PM +0100, Jonathan Cameron wrote:
->=20
-> > > I'd also really like to know how this fits in with spi-offloads. It
-> > > /feels/, and I'd like to reiterate the word feels, like a rather simi=
-lar
-> > > idea just applied to a DAC instead of an ADC.
-> >=20
-> > The offload main principle is to replay a spi transfer periodically giv=
-en an
-> > input trigger. I'm not so sure we have that same principle in here. In =
-here
-> > I
-> > guess we stream data over the qspi interface based on SCLK which can lo=
-ok
-> > similar. The difference is that this IP does not need any trigger for a=
-ny
-> > spi
-> > transfer replay (I think).=20
->=20
-> Right, if the trigger part is what decides it for you then I'm wildin
-> here.
+Hi Damon,
 
-I mean, not only the trigger. These IPs (axi-dac/adc) are meant to deal wit=
-h
-data while in theory the spi offload principle is about replaying any spi
-transfers. But yeah, the above reasoning does not make sense as a data tran=
-sfer
-is still a transfer.
+On Tue, Sep 10, 2024 at 7:11=E2=80=AFAM Damon Ding <damon.ding@rock-chips.c=
+om> wrote:
+>
+> Specification:
+> - Rockchip RK3588S
+> - RK806-2x2pcs + DiscretePower
+> - eMMC5.1 + SPI Flash
+> - Micro SD Card3.0
+> - 1 x Typec3.0 + 2 x USB2 HOST
+> - 1 x 1Lane PCIE2.0 Connector(RC Mode)
+> - Headphone output
+> - Array Key(MENU/VOL+/VOP-/ESC), Reset, Power on/off Key
+> - 6 x SARADC
+>
+> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile         |    1 +
+>  .../boot/dts/rockchip/rk3588s-evb1-v10.dts    | 1120 +++++++++++++++++
+>  2 files changed, 1121 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dts
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/=
+rockchip/Makefile
+> index fda1b980eb4b..f2992da01ada 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -139,6 +139,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-tiger-haikou.=
+dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-toybrick-x0.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-turing-rk1.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-coolpi-4b.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-evb1-v10.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-indiedroid-nova.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-khadas-edge2.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-nanopi-r6s.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dts b/arch/arm=
+64/boot/dts/rockchip/rk3588s-evb1-v10.dts
+> new file mode 100644
+> index 000000000000..83128d2d8cdd
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dts
+> @@ -0,0 +1,1120 @@
 
-FWIW, these IPs are inherently offload HW as their goal is really to stream=
- data
-without any SW intervention (so called HW_BUFFERING in IIO world). Just tha=
-t
-typically you have LVDS/CMOS data interfaces and now we have a qspi interfa=
-ce
-and a spi-offload concept already introduced.=C2=A0
+<...>
 
-So, yeah, as we want to have spi-offloads documented in the bindings, we ca=
-n
-also document this setup with the same bindings.
+> +       pmic@1 {
+> +               compatible =3D "rockchip,rk806";
+> +               reg =3D <0x01>;
+> +               #gpio-cells =3D <2>;
+> +               gpio-controller;
+> +               interrupt-parent =3D <&gpio0>;
+> +               interrupts =3D <7 IRQ_TYPE_LEVEL_LOW>;
+> +               pinctrl-0 =3D <&rk806_slave_dvs1_null>, <&rk806_slave_dvs=
+2_null>,
+> +                           <&rk806_slave_dvs3_null>;
+> +               pinctrl-names =3D "default";
+> +               spi-max-frequency =3D <1000000>;
+> +
+> +               vcc1-supply =3D <&vcc5v0_sys>;
+> +               vcc2-supply =3D <&vcc5v0_sys>;
+> +               vcc3-supply =3D <&vcc5v0_sys>;
+> +               vcc4-supply =3D <&vcc5v0_sys>;
+> +               vcc5-supply =3D <&vcc5v0_sys>;
+> +               vcc6-supply =3D <&vcc5v0_sys>;
+> +               vcc7-supply =3D <&vcc5v0_sys>;
+> +               vcc8-supply =3D <&vcc5v0_sys>;
+> +               vcc9-supply =3D <&vcc5v0_sys>;
+> +               vcc10-supply =3D <&vcc5v0_sys>;
+> +               vcc11-supply =3D <&vcc_2v0_pldo_s3>;
+> +               vcc12-supply =3D <&vcc5v0_sys>;
+> +               vcc13-supply =3D <&vcc_1v1_nldo_s3>;
+> +               vcc14-supply =3D <&vcc_2v0_pldo_s3>;
+> +               vcca-supply =3D <&vcc5v0_sys>;
+> +
+> +               rk806_slave_dvs1_null: dvs1-null-pins {
+> +                       pins =3D "gpio_pwrctrl1";
+> +                       function =3D "pin_fun0";
+> +               };
+> +
+> +               rk806_slave_dvs2_null: dvs2-null-pins {
+> +                       pins =3D "gpio_pwrctrl2";
+> +                       function =3D "pin_fun0";
+> +               };
+> +
+> +               rk806_slave_dvs3_null: dvs3-null-pins {
+> +                       pins =3D "gpio_pwrctrl3";
+> +                       function =3D "pin_fun0";
+> +               };
+> +
+> +               regulators {
+> +                       vdd_cpu_big1_s0: dcdc-reg1 {
+> +                               regulator-always-on;
+> +                               regulator-boot-on;
 
-- Nuno S=C3=A1
+You may want to introduce regulator coupling between CPU supplies and
+their respective SRAM supplies, as they are driven by separate
+physical regulators and will go out of sync when cpufreq tries to
+adjust frequency and voltage of the CPU cluster under load. See [1].
+So perhaps:
 
++                               regulator-coupled-with =3D <&vdd_cpu_big1_m=
+em_s0>;
++                               regulator-coupled-max-spread =3D <10000>;
+
+> +                               regulator-init-microvolt =3D <800000>;
+> +                               regulator-min-microvolt =3D <550000>;
+> +                               regulator-max-microvolt =3D <1050000>;
+> +                               regulator-ramp-delay =3D <12500>;
+> +                               regulator-name =3D "vdd_cpu_big1_s0";
+> +                               regulator-state-mem {
+> +                                       regulator-off-in-suspend;
+> +                               };
+> +                       };
+> +
+> +                       vdd_cpu_big0_s0: dcdc-reg2 {
+> +                               regulator-always-on;
+> +                               regulator-boot-on;
+
++                               regulator-coupled-with =3D <&vdd_cpu_big0_m=
+em_s0>;
++                               regulator-coupled-max-spread =3D <10000>;
+
+> +                               regulator-init-microvolt =3D <800000>;
+> +                               regulator-min-microvolt =3D <550000>;
+> +                               regulator-max-microvolt =3D <1050000>;
+> +                               regulator-ramp-delay =3D <12500>;
+> +                               regulator-name =3D "vdd_cpu_big0_s0";
+> +                               regulator-state-mem {
+> +                                       regulator-off-in-suspend;
+> +                               };
+> +                       };
+> +
+> +                       vdd_cpu_lit_s0: dcdc-reg3 {
+> +                               regulator-always-on;
+> +                               regulator-boot-on;
+
++                               regulator-coupled-with =3D <&vdd_cpu_lit_me=
+m_s0>;
++                               regulator-coupled-max-spread =3D <10000>;
+
+> +                               regulator-init-microvolt =3D <800000>;
+> +                               regulator-min-microvolt =3D <550000>;
+> +                               regulator-max-microvolt =3D <950000>;
+> +                               regulator-ramp-delay =3D <12500>;
+> +                               regulator-name =3D "vdd_cpu_lit_s0";
+> +                               regulator-state-mem {
+> +                                       regulator-off-in-suspend;
+> +                               };
+> +                       };
+> +
+> +                       vcc_3v3_s3: dcdc-reg4 {
+> +                               regulator-always-on;
+> +                               regulator-boot-on;
+> +                               regulator-min-microvolt =3D <3300000>;
+> +                               regulator-max-microvolt =3D <3300000>;
+> +                               regulator-ramp-delay =3D <12500>;
+> +                               regulator-name =3D "vcc_3v3_s3";
+> +                               regulator-state-mem {
+> +                                       regulator-on-in-suspend;
+> +                                       regulator-suspend-microvolt =3D <=
+3300000>;
+> +                               };
+> +                       };
+> +
+> +                       vdd_cpu_big1_mem_s0: dcdc-reg5 {
+> +                               regulator-always-on;
+> +                               regulator-boot-on;
+
++                               regulator-coupled-with =3D <&vdd_cpu_big1_s=
+0>;
++                               regulator-coupled-max-spread =3D <10000>;
+
+> +                               regulator-init-microvolt =3D <800000>;
+> +                               regulator-min-microvolt =3D <675000>;
+> +                               regulator-max-microvolt =3D <1050000>;
+> +                               regulator-ramp-delay =3D <12500>;
+> +                               regulator-name =3D "vdd_cpu_big1_mem_s0";
+> +                               regulator-state-mem {
+> +                                       regulator-off-in-suspend;
+> +                               };
+> +                       };
+> +
+> +
+> +                       vdd_cpu_big0_mem_s0: dcdc-reg6 {
+> +                               regulator-always-on;
+> +                               regulator-boot-on;
+
++                               regulator-coupled-with =3D <&vdd_cpu_big0_s=
+0>;
++                               regulator-coupled-max-spread =3D <10000>;
+
+> +                               regulator-init-microvolt =3D <800000>;
+> +                               regulator-min-microvolt =3D <675000>;
+> +                               regulator-max-microvolt =3D <1050000>;
+> +                               regulator-ramp-delay =3D <12500>;
+> +                               regulator-name =3D "vdd_cpu_big0_mem_s0";
+> +                               regulator-state-mem {
+> +                                       regulator-off-in-suspend;
+> +                               };
+> +                       };
+> +
+> +                       vcc_1v8_s0: dcdc-reg7 {
+> +                               regulator-always-on;
+> +                               regulator-boot-on;
+> +                               regulator-min-microvolt =3D <1800000>;
+> +                               regulator-max-microvolt =3D <1800000>;
+> +                               regulator-ramp-delay =3D <12500>;
+> +                               regulator-name =3D "vcc_1v8_s0";
+> +                               regulator-state-mem {
+> +                                       regulator-off-in-suspend;
+> +                               };
+> +                       };
+> +
+> +                       vdd_cpu_lit_mem_s0: dcdc-reg8 {
+> +                               regulator-always-on;
+> +                               regulator-boot-on;
+
++                               regulator-coupled-with =3D <&vdd_cpu_lit_s0=
+>;
++                               regulator-coupled-max-spread =3D <10000>;
+
+> +                               regulator-init-microvolt =3D <800000>;
+> +                               regulator-min-microvolt =3D <675000>;
+> +                               regulator-max-microvolt =3D <950000>;
+> +                               regulator-ramp-delay =3D <12500>;
+> +                               regulator-name =3D "vdd_cpu_lit_mem_s0";
+> +                               regulator-state-mem {
+> +                                       regulator-off-in-suspend;
+> +                               };
+> +                       };
+
+<...>
+
+[1] https://github.com/torvalds/linux/commit/0ba0560982bc8d0c3fb3ca209fd0ed=
+29f81402ac
+
+Best regards,
+Alexey
 
