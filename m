@@ -1,255 +1,280 @@
-Return-Path: <devicetree+bounces-101662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41B96972E33
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 11:40:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB02B972E72
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 11:43:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1BBA1F226F3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 09:40:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9864328823E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 09:43:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DB9E18BC3F;
-	Tue, 10 Sep 2024 09:40:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8250C19068E;
+	Tue, 10 Sep 2024 09:42:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="C6ng2Oyn"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Rwl388uz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E0B718B477
-	for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 09:40:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8008E18CBE6;
+	Tue, 10 Sep 2024 09:42:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725961215; cv=none; b=Cs72LFH2D9qu2cHjACHywk3waUpCn5SlZAmNRFU95sIkJI9NLEFCEm5W2V03btl42H4vR91HR1YWhM7Ikv1vdl6EcJjNoDAnRXgJTvo2jfpra38MKfVqkjoFRsV9d4gms7nyP/yYg2B7X9Rwv3VZns273kmfNYRkSV1VgAgVgQw=
+	t=1725961335; cv=none; b=e3g+RCHj0e5si/Oz4ME9F3qC4ICyIn595bnNdc2j7j7uf7+pz31zihkAxitbz9roiu67wXu8hDWIL6yiwkK1gT53UK9Y3ZDGrEUTJnJq0/fQVXK/QW9wxwK9AyIfV5O9KwPCzo9zxGHRNX5M8gkmVSQ0mwJMvmLT3jNmJhxtOf0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725961215; c=relaxed/simple;
-	bh=sAnLe2PjUL4RFxQp9WeBVIf7OFTMARCb205Ut4q8ukY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hiTBZbFLFRiWxNTz1izyc/URhPGHGIr2L/MijChYJLBIYIuSMA1rFKdVa2oElYs5hUld24nOnfUWgoepTLNB1x01p8SsZVW25VlGofpAsRyJ82FBV99746iF2r62QvYnsgCSICYwSsF/tyXUxtTPWRN3pZMj4bQcwuIC5XfJhCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=C6ng2Oyn; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2f75428b9f8so44323801fa.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 02:40:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1725961211; x=1726566011; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LiMIK8K+tyHKozmztV2/CvAPF0ELMWXt09xgTQVIEVU=;
-        b=C6ng2OynyREdc2Y+HRzOz+HAn55EhEmTHWWZ4iYafLtiizT8ZJiSj8Lo2/tTxJA8Ov
-         Rf7V1UW3VaiTCn+LerGMxc419+zX18aHJwEwpMdjIMmOitr4qApVEyPvEF85cfM4tIej
-         eRPt/F3Cw3hxsOuj71d4UVe0wajd+FWRtDpTQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725961211; x=1726566011;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LiMIK8K+tyHKozmztV2/CvAPF0ELMWXt09xgTQVIEVU=;
-        b=eIojTajxQWLqfb/AGHNwSjNh+Wn9Ql8pD3q5ErECU6xbFrT46kGWzHqLakPmsilHpI
-         eeWODHtQR4rkG6sE7vdV5wQEx0R8hwGV9WKw5RdL3IWOWZoLhssrhkcjvMFkakfCvq7S
-         GSVHiX0Nf4UVjOGOgWJwVKzzP8fB8VPbR7ItEc3+6okMkTJz6qyQ8PD3/PlX5FEqLKSw
-         8X4H9ltAVSNfXt/4RV2GMc31DEfe0jK5/7o9h0rchSoNnl0xkJ1LSQpsLpn/idySbIQf
-         0CWnudCJN7rHEw+NJGJ2YNCoJ+PEFQbHepEUL2ZsYi29JeWhX8X8vwcpIRHGUhBnA5uP
-         35ow==
-X-Forwarded-Encrypted: i=1; AJvYcCWl5Vj8qpsOvRnnkNk7qHVhcrKhSxFeq87kBUgaRB4uwykcZdoMkIJjWRaoqGEadp9y06U2Ieto6k6/@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywdkzy29IzGTxdv5MGPm2DaLBC/eLm7qTiRcm0UI8b3yXZtlbn6
-	dnjqRRKI3boXa5B4YEoLOs/3iib+DtMpSrM1700yXsFxDlTf+rhDAd1cRgCEFh7n1wAaPNJzUPJ
-	XohH/a60uVrPdspMVHGC+z1oDWHWoomDopWfH
-X-Google-Smtp-Source: AGHT+IFVWniz1szQqlEAvk8g6KrRou2Nr2F1RqJkqQy9ONZmeOXzv2coEQAazzrYAJ3S9J3p1AzhEH1YxuZKWYYev7I=
-X-Received: by 2002:a05:6512:3ca2:b0:533:45c9:67fe with SMTP id
- 2adb3069b0e04-5365880bbbemr13331488e87.48.1725961210575; Tue, 10 Sep 2024
- 02:40:10 -0700 (PDT)
+	s=arc-20240116; t=1725961335; c=relaxed/simple;
+	bh=zCVK67224uN8G1XBgZMq/Fv5qZTZHhFOEbvlZ/ol7rU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Rqk82V82xZ0jPtNuo2gN4eQmUNO9gX5sjpCgTHPDR/Tc1l3r5NyO2BIgEwz60ZykMkfjliDmUQkEOmE465UVoeEWxoAUq77LWdhnHvwLm/mN6nEGxUC+1Ij5rEPQVt/PkW4oaz+i4RL5YSx4sbugK8we/BekEc0ojGFSQh03bjc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Rwl388uz; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (213-229-8-243.static.upcbusiness.at [213.229.8.243])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7566CC8A;
+	Tue, 10 Sep 2024 11:40:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1725961253;
+	bh=zCVK67224uN8G1XBgZMq/Fv5qZTZHhFOEbvlZ/ol7rU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Rwl388uznbKu58v9QXfYE0FDbWsekMiaqx722l6ig7pBNCJkvRGeo08nIRjxoOVlx
+	 wEsVa+O0x6yl1IUdeTpaxpkBW9NEHsYBUndIVS03SH7D2fHdcPiqJ/qtTJOpM4Kog8
+	 RaDT2d38A0E9IwyuOZq4btUeGaNBUSgNX26b73VE=
+Date: Tue, 10 Sep 2024 11:42:06 +0200
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, Naushir Patuck <naush@raspberrypi.com>, 
+	Kieran Bingham <kieran.bingham@ideasonboard.com>, kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH v4 3/4] media: raspberrypi: Add support for RP1-CFE
+Message-ID: <6u2g4v4ktt543sy5jlp3vonemhzhrwyz2liikg6jb2kx3h7jao@z6s233clqwqk>
+References: <20240905111120.GK16183@pendragon.ideasonboard.com>
+ <40cc1e95-b9fc-4c27-9428-1698d0bf9d25@ideasonboard.com>
+ <763b3147-d7cb-44a7-b73b-8f7f4fd622ab@ideasonboard.com>
+ <yib2r4wisxvk3kgogbjqawrpmfq6lcezfk4xjmftj44jzkbclc@icapodv2ffzk>
+ <d5188c0a-4a52-4378-89b1-48f606e448cc@ideasonboard.com>
+ <ggtlreq5gyhzfdv6yzeuia46y7fxpuyvg236prig52t43xsl2a@crlqks2nhfpe>
+ <20240909134516.GA9448@pendragon.ideasonboard.com>
+ <Zt8ZysTT5DIZr-J7@kekkonen.localdomain>
+ <jdtjdspf4qyrgn6jmyxeab5ueo53wjd5vuhvlpin3pdiyifwht@dndfcqnmv7sd>
+ <ZuAQpITcee2SSYKk@kekkonen.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <01020191db2ac439-4e2dc95a-6323-4f0f-b9fc-c482948018a8-000000@eu-west-1.amazonses.com>
-In-Reply-To: <01020191db2ac439-4e2dc95a-6323-4f0f-b9fc-c482948018a8-000000@eu-west-1.amazonses.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 10 Sep 2024 17:39:59 +0800
-Message-ID: <CAGXv+5Ff4+HS5_DSTX2U7SaCnZhWMWTN44wr+4_vYNrQQm_mDA@mail.gmail.com>
-Subject: Re: [PATCH v9 0/3] drm/mediatek: Add support for OF graphs
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunkuang.hu@kernel.org, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
-	matthias.bgg@gmail.com, shawn.sung@mediatek.com, yu-chang.lee@mediatek.com, 
-	ck.hu@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	kernel@collabora.com, sui.jingfeng@linux.dev, michael@walle.cc, 
-	sjoerd@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZuAQpITcee2SSYKk@kekkonen.localdomain>
 
-On Tue, Sep 10, 2024 at 5:01=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Changes in v9:
->  - Rebased on next-20240910
->  - Removed redundant assignment and changed a print to dev_err()
->  - Dropped if branch to switch conversion as requested; this will
->    be sent as a separate commit out of this series.
->
-> Changes in v8:
->  - Rebased on next-20240617
->  - Changed to allow probing a VDO with no available display outputs
->
-> Changes in v7:
->  - Fix typo in patch 3/3
->
-> Changes in v6:
->  - Added EPROBE_DEFER check to fix dsi/dpi false positive DT fallback cas=
-e
->  - Dropped refcount of ep_out in mtk_drm_of_get_ddp_ep_cid()
->  - Fixed double refcount drop during path building
->  - Removed failure upon finding a DT-disabled path as requested
->  - Tested again on MT8195, MT8395 boards
->
-> Changes in v5:
->  - Fixed commit [2/3], changed allOf -> anyOf to get the
->    intended allowance in the binding
->
-> Changes in v4:
->  - Fixed a typo that caused pure OF graphs pipelines multiple
->    concurrent outputs to not get correctly parsed (port->id);
->  - Added OVL_ADAPTOR support for OF graph specified pipelines;
->  - Now tested with fully OF Graph specified pipelines on MT8195
->    Chromebooks and MT8395 boards;
->  - Rebased on next-20240516
->
-> Changes in v3:
->  - Rebased on next-20240502 because of renames in mediatek-drm
->
-> Changes in v2:
->  - Fixed wrong `required` block indentation in commit [2/3]
->
->
-> The display IPs in MediaTek SoCs are *VERY* flexible and those support
-> being interconnected with different instances of DDP IPs (for example,
-> merge0 or merge1) and/or with different DDP IPs (for example, rdma can
-> be connected with either color, dpi, dsi, merge, etc), forming a full
-> Display Data Path that ends with an actual display.
->
-> This series was born because of an issue that I've found while enabling
-> support for MT8195/MT8395 boards with DSI output as main display: the
-> current mtk_drm_route variations would not work as currently, the driver
-> hardcodes a display path for Chromebooks, which have a DisplayPort panel
-> with DSC support, instead of a DSI panel without DSC support.
->
-> There are other reasons for which I wrote this series, and I find that
-> hardcoding those paths - when a HW path is clearly board-specific - is
-> highly suboptimal. Also, let's not forget about keeping this driver from
-> becoming a huge list of paths for each combination of SoC->board->disp
-> and... this and that.
->
-> For more information, please look at the commit description for each of
-> the commits included in this series.
->
-> This series is essential to enable support for the MT8195/MT8395 EVK,
-> Kontron i1200, Radxa NIO-12L and, mainly, for non-Chromebook boards
-> and Chromebooks to co-exist without conflicts.
->
-> Besides, this is also a valid option for MT8188 Chromebooks which might
-> have different DSI-or-eDP displays depending on the model (as far as I
-> can see from the mtk_drm_route attempt for this SoC that is already
-> present in this driver).
->
-> This series was tested on MT8195 Cherry Tomato and on MT8395 Radxa
-> NIO-12L with both hardcoded paths, OF graph support and partially
-> hardcoded paths, and pure OF graph support including pipelines that
-> require OVL_ADAPTOR support.
->
-> AngeloGioacchino Del Regno (3):
->   dt-bindings: display: mediatek: Add OF graph support for board path
->   dt-bindings: arm: mediatek: mmsys: Add OF graph support for board path
->   drm/mediatek: Implement OF graphs support for display paths
->
->  .../bindings/arm/mediatek/mediatek,mmsys.yaml |  28 ++
->  .../arm/mediatek/mediatek,mmsys.yaml.orig     | 140 ++++++++++
->  .../display/mediatek/mediatek,aal.yaml        |  40 +++
->  .../display/mediatek/mediatek,aal.yaml.orig   |  93 +++++++
->  .../display/mediatek/mediatek,ccorr.yaml      |  21 ++
->  .../display/mediatek/mediatek,ccorr.yaml.orig |  88 ++++++
->  .../display/mediatek/mediatek,color.yaml      |  22 ++
->  .../display/mediatek/mediatek,color.yaml.orig |  96 +++++++
->  .../display/mediatek/mediatek,dither.yaml     |  22 ++
->  .../mediatek/mediatek,dither.yaml.orig        |  87 ++++++
->  .../display/mediatek/mediatek,dpi.yaml        |  25 +-
->  .../display/mediatek/mediatek,dpi.yaml.orig   | 122 +++++++++
->  .../display/mediatek/mediatek,dsc.yaml        |  24 ++
->  .../display/mediatek/mediatek,dsi.yaml        |  27 +-
->  .../display/mediatek/mediatek,dsi.yaml.orig   | 126 +++++++++
->  .../display/mediatek/mediatek,ethdr.yaml      |  22 ++
->  .../display/mediatek/mediatek,gamma.yaml      |  19 ++
->  .../display/mediatek/mediatek,gamma.yaml.orig |  96 +++++++
->  .../display/mediatek/mediatek,merge.yaml      |  23 ++
->  .../display/mediatek/mediatek,merge.yaml.orig | 110 ++++++++
->  .../display/mediatek/mediatek,od.yaml         |  22 ++
->  .../display/mediatek/mediatek,ovl-2l.yaml     |  22 ++
->  .../mediatek/mediatek,ovl-2l.yaml.orig        |  78 ++++++
->  .../display/mediatek/mediatek,ovl.yaml        |  22 ++
->  .../display/mediatek/mediatek,ovl.yaml.orig   | 109 ++++++++
->  .../display/mediatek/mediatek,postmask.yaml   |  21 ++
->  .../display/mediatek/mediatek,rdma.yaml       |  22 ++
->  .../display/mediatek/mediatek,rdma.yaml.orig  | 122 +++++++++
->  .../display/mediatek/mediatek,ufoe.yaml       |  21 ++
->  .../display/mediatek/mediatek,wdma.yaml.orig  |  76 ++++++
->  .../bindings/gpu/arm,mali-bifrost.yaml.orig   | 250 +++++++++++++++++
->  .../bindings/leds/leds-mt6323.txt.orig        |  60 +++++
->  .../bindings/ufs/mediatek,ufs.yaml.orig       |  71 +++++
->  drivers/gpu/drm/mediatek/mtk_disp_drv.h       |   1 +
->  .../gpu/drm/mediatek/mtk_disp_ovl_adaptor.c   |  40 ++-
->  drivers/gpu/drm/mediatek/mtk_dpi.c            |  21 +-
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c        | 253 +++++++++++++++++-
->  drivers/gpu/drm/mediatek/mtk_drm_drv.h        |   2 +-
->  drivers/gpu/drm/mediatek/mtk_dsi.c            |  14 +-
->  39 files changed, 2433 insertions(+), 25 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediat=
-ek,mmsys.yaml.orig
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
-diatek,aal.yaml.orig
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
-diatek,ccorr.yaml.orig
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
-diatek,color.yaml.orig
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
-diatek,dither.yaml.orig
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
-diatek,dpi.yaml.orig
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
-diatek,dsi.yaml.orig
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
-diatek,gamma.yaml.orig
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
-diatek,merge.yaml.orig
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
-diatek,ovl-2l.yaml.orig
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
-diatek,ovl.yaml.orig
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
-diatek,rdma.yaml.orig
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
-diatek,wdma.yaml.orig
->  create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-bifros=
-t.yaml.orig
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-mt6323.tx=
-t.orig
->  create mode 100644 Documentation/devicetree/bindings/ufs/mediatek,ufs.ya=
-ml.orig
+Hi Sakari
 
-It looks like you accidentally imported a bunch of files from Git.
+On Tue, Sep 10, 2024 at 09:25:56AM GMT, Sakari Ailus wrote:
+> Hi Jacopo,
+>
+> On Tue, Sep 10, 2024 at 11:19:57AM +0200, Jacopo Mondi wrote:
+> > Hi Sakari, Tomi
+> >
+> > On Mon, Sep 09, 2024 at 03:52:42PM GMT, Sakari Ailus wrote:
+> > > Hi Laurent,
+> > >
+> > > On Mon, Sep 09, 2024 at 04:45:16PM +0300, Laurent Pinchart wrote:
+> > > > On Mon, Sep 09, 2024 at 03:29:30PM +0200, Jacopo Mondi wrote:
+> > > > > On Mon, Sep 09, 2024 at 01:04:35PM GMT, Tomi Valkeinen wrote:
+> > > > > > On 09/09/2024 12:13, Jacopo Mondi wrote:
+> > > > > > > On Mon, Sep 09, 2024 at 08:22:59AM GMT, Tomi Valkeinen wrote:
+> > > > > > > > On 09/09/2024 08:08, Tomi Valkeinen wrote:
+> > > > > > > > > On 05/09/2024 14:11, Laurent Pinchart wrote:
+> > > > > > > > > > On Thu, Sep 05, 2024 at 06:50:48PM +0800, kernel test robot wrote:
+> > > > > > > > > > > Hi Tomi,
+> > > > > > > > > > >
+> > > > > > > > > > > kernel test robot noticed the following build warnings:
+> > > > > > > > > > >
+> > > > > > > > > > > [auto build test WARNING on 431c1646e1f86b949fa3685efc50b660a364c2b6]
+> > > > > > > > > > >
+> > > > > > > > > > > url:    https://github.com/intel-lab-lkp/linux/commits/Tomi-
+> > > > > > > > > > > Valkeinen/media-uapi-Add-meta-formats-for-PiSP-FE-config-and-
+> > > > > > > > > > > stats/20240904-192729
+> > > > > > > > > > > base:   431c1646e1f86b949fa3685efc50b660a364c2b6
+> > > > > > > > > > > patch link:    https://lore.kernel.org/r/20240904-rp1-cfe-v4-3-
+> > > > > > > > > > > f1b5b3d69c81%40ideasonboard.com
+> > > > > > > > > > > patch subject: [PATCH v4 3/4] media: raspberrypi: Add support
+> > > > > > > > > > > for RP1-CFE
+> > > > > > > > > > > config: m68k-allmodconfig (https://download.01.org/0day-ci/
+> > > > > > > > > > > archive/20240905/202409051822.ZzUGw3XQ-lkp@intel.com/config)
+> > > > > > > > > > > compiler: m68k-linux-gcc (GCC) 14.1.0
+> > > > > > > > > > > reproduce (this is a W=1 build):
+> > > > > > > > > > > (https://download.01.org/0day-ci/
+> > > > > > > > > > > archive/20240905/202409051822.ZzUGw3XQ-lkp@intel.com/reproduce)
+> > > > > > > > > > >
+> > > > > > > > > > > If you fix the issue in a separate patch/commit (i.e. not just a
+> > > > > > > > > > > new version of
+> > > > > > > > > > > the same patch/commit), kindly add following tags
+> > > > > > > > > > > | Reported-by: kernel test robot <lkp@intel.com>
+> > > > > > > > > > > | Closes: https://lore.kernel.org/oe-kbuild-
+> > > > > > > > > > > all/202409051822.ZzUGw3XQ-lkp@intel.com/
+> > > > > > > > > > >
+> > > > > > > > > > > All warnings (new ones prefixed by >>):
+> > > > > > > > > > >
+> > > > > > > > > > > > > drivers/media/platform/raspberrypi/rp1-cfe/cfe.c:2445:12:
+> > > > > > > > > > > > > warning: 'cfe_runtime_resume' defined but not used
+> > > > > > > > > > > > > [-Wunused-function]
+> > > > > > > > > > >       2445 | static int cfe_runtime_resume(struct device *dev)
+> > > > > > > > > > >            |            ^~~~~~~~~~~~~~~~~~
+> > > > > > > > > > > > > drivers/media/platform/raspberrypi/rp1-cfe/cfe.c:2435:12:
+> > > > > > > > > > > > > warning: 'cfe_runtime_suspend' defined but not used
+> > > > > > > > > > > > > [-Wunused-function]
+> > > > > > > > > > >       2435 | static int cfe_runtime_suspend(struct device *dev)
+> > > > > > > > > > >            |            ^~~~~~~~~~~~~~~~~~~
+> > > > > > > > > > > vim +/cfe_runtime_resume +2445
+> > > > > > > > > > > drivers/media/platform/raspberrypi/ rp1-cfe/cfe.c
+> > > > > > > > > >
+> > > > > > > > > > The recommended way to fix this is to switch from SET_RUNTIME_PM_OPS()
+> > > > > > > > > > to RUNTIME_PM_OPS() and use pm_ptr() to set .driver.pm. This being said,
+> > > > > > > > > > the driver won't work on a kernel with !CONFIG_PM given how you
+> > > > > > > > > > implemented probe() and remove().
+> > > > > > > > > >
+> > > > > > > > > > The pisp-be driver suffered from the same issue and Jacopo fixed it in
+> > > > > > > > > > the last version. You can have a look at implement something similar.
+> > > > > > > > >
+> > > > > > > > > I can't right away think of any reason to not just depend on CONFIG_PM
+> > > > > > > > > and be done with it without any tricks. Do you know if there's a reason?
+> > > > > > >
+> > > > > > > We had the same discussion, and even if I would be fine depending on
+> > > > > > > CONFIG_PM, supporting !CONFIG_PM is not that much work, I kept it as
+> > > > > > > an optional dependency (it was suggested during the review as well)
+> > > > > > >
+> > > > > > > >
+> > > > > > > > Also, I don't think pisp-be is correct. It just calls
+> > > > > > > > pispbe_runtime_resume() in probe() to wake the IP up (which only enables
+> > > > > > > > pisp clock), without telling the runtime PM about it. This means the parent
+> > > > > > > > device and the suppliers may not be powered up.
+> > > > > > >
+> > > > > > > Are you referring to the code currently in the tree or to this patch ?
+> > > > > > > https://patchwork.linuxtv.org/project/linux-media/patch/20240904095836.344833-5-jacopo.mondi@ideasonboard.com/
+> > > > > >
+> > > > > > Ah, I missed that one.
+> > > > > >
+> > > > > > I don't think it fixes the issue I mentioned. If we have PM enabled, and the
+> > > > > > parent device requires powering up for the child device (BE) to be
+> > > > > > accessible, the driver will crash when calling pispbe_hw_init(). I think you
+> > > > > > should call pm_runtime_set_active() before calling pispbe_runtime_resume().
+> > > > >
+> > > > > As discussed, this is not a problem currently for BE, but indeed you
+> > > > > have a point.
+> >
+> > I admit the runtime_pm intrinsics are obscure to me, but Laurent just
+> > made me notice something.
+> >
+> > Consider the following scenario
+> >
+> > *) Kernel compiled with CONFIG_PM
+> > *) i2c sensor driver that supports both CONFIG_PM and !CONFIG_PM by:
+> >   *) Manually power up the sensor during probe
+> >   *) Call pm_runtime_enable() and pm_runtime_set_active() at the end
+> >      of the probe routine after having accessed the chip over i2c
+> >      (like most, if not all the i2c drivers in mainline do including
+> >      ccs)
+> >
+> > All these drivers work, and during the probe routine before accessing
+> > the HW, they don't need to power up the parent i2c controller.
+>
+> This isn't done explicitly by the I²C drivers, indeed but...
+>
+> >
+> > Might it be that during probe() the parent is guaranteed to be enabled ?
+>
+> ...yes.
+>
 
-ChenYu
+Unrelated, but I am wrong the driver core calls pm_request_idle() on
+the just probed device ? Does this mean drivers doesn't have to do
+that by themseleves ? (it's not a big deal, as request_idle() doesn't
+change the usage counter)
 
+> >
+> > I add a look in the driver-core and pm Documentation/ but found
+> > nothing.
+> >
+> > A quick stroll in driver/base/ got me to __device_attach() and it
+> > seems parents are powered up before attaching a driver to a device
+> > (which in my understanding should be what ends up calling probe()).
+> > Clearly I've no real understanding of what I'm talking about when it
+> > comes to driver-core, so take this with a grain of salt.
+>
+> This only works with runtime PM enabled.
+>
+
+It's the CONFIG_PM case that was worrying for Tomi
+
+> >
+> > > > >
+> > > > > Sad note: most of all the occurrences of "grep set_active" in
+> > > > > drivers/media/platform/ show that set_active() is used as I've done in
+> > > > > my patch
+> > > > >
+> > > > > > However, you said above that "supporting !CONFIG_PM is not that much work".
+> > > > > > Maybe not. But how much work is it to get it right (for both PM and !PM),
+> > > > > > and make sure it stays right? =).
+> > > > > >
+> > > > > > Just my opinion, but if there are zero use cases for the !PM, I would just
+> > > > > > go with "depends on PM" to keep the driver simpler, less bug-prone, and
+> > > > > > easier to maintain.
+> > > >
+> > > > I'm fine with that, and for platform drivers, that's my preferred
+> > > > option. Sakari ?
+> > >
+> > > I'm concerned with your (?) recent finding that many architectures don't
+> > > have support for CONFIG_PM. In this case the device is very unlikely to be
+> > > used outside ARM(64) so I guess it's fine.
+> > >
+> >
+> > Also, this IP is RPi specific, and the !CONFIG_PM case is not used or
+> > tested on Pi.
+> >
+> > However, I think this current patch is correct (assuming the above
+> > reasoning on i2c sensor drivers is correct) and doesn't require
+> > CONFIG_PM, so I would be tempted to keep this version.
+>
+> I understand the current patch does depend on CONFIG_PM: it requires
+> runtime PM to be operational to start the clock, for instance.
+>
+
+Where do you see that ?
+
+This version still calls pispbe_runtime_resume() to power up the IP,
+it doesn't go through runtime_pm:
+https://patchwork.linuxtv.org/project/linux-media/patch/20240904095836.344833-5-jacopo.mondi@ideasonboard.com/
+
+Thanks!
+
+> >
+> > > >
+> > > > > I don't see a use case for !PM and we confirmed with RPi they don't
+> > > > > need to support it. During the review of a previous version of the BE
+> > > > > driver iirc I've been asked to support !PM but I'm not sure I recall
+> > > > > the reasons.
+> > > >
+> > > > I hope it wasn't me :-)
+> > >
+> > > Me neither. Although it'd be nice: CONFIG_PM isn't a hardware specific
+> > > option as such. As one part of the kernel requires !CONFIG_PM and another
+> > > CONFIG_PM, we can expect problems, at least in principle.
+> > >
+> > > Ideally all architectures would support it so CONFIG_PM could be removed
+> > > and we could say the problem has been solved. :-)
 >
 > --
-> 2.46.0
+> Kidnregards,
 >
+> Sakari Ailus
 
