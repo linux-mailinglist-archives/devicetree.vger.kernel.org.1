@@ -1,191 +1,140 @@
-Return-Path: <devicetree+bounces-101785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47688973D7C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 18:40:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F20C1973DC0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 18:50:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9C76AB2792B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 16:40:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6458287F3D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 16:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CDBB1A38D3;
-	Tue, 10 Sep 2024 16:37:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 576431A2548;
+	Tue, 10 Sep 2024 16:50:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Xo9nJXF7"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FRadL2fu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02DFB1A2557;
-	Tue, 10 Sep 2024 16:37:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9F11A0729;
+	Tue, 10 Sep 2024 16:50:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725986277; cv=none; b=jNZg39oswFjj5NCjwiKGTD99/dAxJV4PlLwk8jBLm9KYbmeWSn7hftxbeeZbw2ZLm8G93H6Hd+KfPFCEah3QqhGZbscnjepsl/zAzBenPXCfdxYDGZIATG9rjeHXj95lsPVxUcMh/r4PZGsV+LqoDCbDJMtQZ+J+xCDJGuffGE8=
+	t=1725987049; cv=none; b=dEBgvbgF9effUTyJCQfJvPw47i6w69n4ydA9xM5IFub62dg/48A2Euj6h0jkB15e6vYnDqOkhaaB0J5lymwzEJqBQgyUM6QzrAUZyXha90BD9QuMXzdRdhaU4x0aORgk30RDvrB3FzibzZeCNvp7EUlV9a7k2Vl4+shDlBjtGzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725986277; c=relaxed/simple;
-	bh=6leur/mzs3s3WJIlP8d5cy4uPS0xfRucHIBEihhS4FA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=saP4mRhyjCWmN099hjUuLoivLczv7HuXtVN6xxwtRIgoFQKZRCs75kuxkmcIz7IuhHoch4swpavJrZUiHcugoxx30pQu8MhsIEdDYcJ5+wD2BV0ZtfR96h0qtHv1BTvz62/rDEI41R45xbMrGf4M0Zf7mAf8z4H7WIM+tW9tCRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Xo9nJXF7; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=yUa3TLnRUIgVIBOiAVf2d1Rp6JcumIEXWfBSjgDQ8Oo=; b=Xo9nJXF74V8gMBzUmSZ96XzpCK
-	V0luRgiAHN4MhSDj3P4e1VklMl3LrZbtIMcu9GaUgOTfoAPWDwM6qi1drgoaGCHQ4cA+J8+k5laru
-	x9YzXc4fUUgUxklnMScdN8rOnwpO71QhSLcVmJFN1abK/+s1J3P07CmnCPOonerecZmgp2F8DnHrs
-	7hxEKSbGdolTzLgxa3tIva67RUfXrKNEMv1g00kvM/rWbIw1VbVpES0GYLcMnBkj7zykPD7Dgo7F3
-	QHwzx9Nn/bb3N7LMdoqin1ExRbaWTCvISmQ78ddHn3zgiIs9HsQzzdbsCxJhITo86Xq78ZaIRjb9c
-	gpRUd6zA==;
-Received: from i53875a02.versanet.de ([83.135.90.2] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1so3rr-0006Fs-F9; Tue, 10 Sep 2024 18:37:27 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, kernel@collabora.com,
- Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>,
- Algea Cao <algea.cao@rock-chips.com>
-Subject: Re: [PATCH v6 3/3] drm/rockchip: Add basic RK3588 HDMI output support
-Date: Tue, 10 Sep 2024 18:39:54 +0200
-Message-ID: <1796743.esFFXGZ24q@diego>
-In-Reply-To: <324b12ea-805a-499c-909d-3723f0bca7cb@collabora.com>
-References:
- <20240906-b4-rk3588-bridge-upstream-v6-0-a3128fb103eb@collabora.com>
- <1899262.u6TykanW85@diego>
- <324b12ea-805a-499c-909d-3723f0bca7cb@collabora.com>
+	s=arc-20240116; t=1725987049; c=relaxed/simple;
+	bh=hn32+nLIPsJdBZLDtjJUW1S+s9pXJdgyRmyAbrJ3xvA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VbnN9SLMDMQC3UPtEiQkOf7w0pM5F2+DuDIUUcq82G/WbqBY6EfG+d3UWvi+PoyFOmlWdcpj/z57wa/Xs4v32h1NxvUs70l9Nzd4VIA9Uj2SKQyNF0mVdznbwTGiPx5eY0mhVOo8Z+8iDHrUegHbJeJ45MNWV7pvwK3jSfTC4Kg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FRadL2fu; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48AEV8oC000514;
+	Tue, 10 Sep 2024 16:50:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=wSySHV0OBt861k7egZN9XT
+	ajNDWSLjiqaFWg2xR1lp8=; b=FRadL2furQ7V+akIQc32T0Pb8Y5aANAHiRfk2G
+	kmbuMPCyNcKE5KtJ+AnzwzXE97MPKulmycbPgzCyhsw70vzVEmu+Mc0D+lknCNqA
+	aBBwXrdiBfi0pVdiDE/RJCDLckdiYJbWzA8oTsZC6t1V2pAcaIVU2xJd9g8rsuCn
+	CgPE9KmCim0e/f8n/edJHFoA+Uh3DnW8oaJMAdF0xP3S6YLF5yDc/P9FgZx11se7
+	7qt6Hqxiae43dgTwNDP82IPn74sC17oEtY418O4/yZ4CYntqkQEZg3q2OnxJ6+CQ
+	qmZCLawWKrbfAhQwlEPvvufVEaEL775LQRYHz12yVkppWwCw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy516nve-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Sep 2024 16:50:42 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48AGofkV013112
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Sep 2024 16:50:41 GMT
+Received: from hu-nkela-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 10 Sep 2024 09:50:38 -0700
+From: Nikunj Kela <quic_nkela@quicinc.com>
+To: <andersson@kernel.org>, <linus.walleij@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>, <quic_psodagud@quicinc.com>,
+        Nikunj Kela
+	<quic_nkela@quicinc.com>
+Subject: [PATCH v4] dt-bindings: pinctrl: Add SA8255p TLMM
+Date: Tue, 10 Sep 2024 09:50:26 -0700
+Message-ID: <20240910165026.2406338-1-quic_nkela@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: wqvEGwXEne_Gy9-MOaI775I1m-Nm1CMQ
+X-Proofpoint-GUID: wqvEGwXEne_Gy9-MOaI775I1m-Nm1CMQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
+ mlxscore=0 bulkscore=0 mlxlogscore=999 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 clxscore=1015 phishscore=0
+ suspectscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2408220000 definitions=main-2409100125
 
-Am Dienstag, 10. September 2024, 17:41:42 CEST schrieb Cristian Ciocaltea:
-> On 9/10/24 6:21 PM, Heiko St=FCbner wrote:
-> > Am Dienstag, 10. September 2024, 17:07:57 CEST schrieb Heiko St=FCbner:
-> >> Am Freitag, 6. September 2024, 03:17:42 CEST schrieb Cristian Ciocalte=
-a:
-> >>> The RK3588 SoC family integrates the newer Synopsys DesignWare HDMI 2=
-=2E1
-> >>> Quad-Pixel (QP) TX controller IP and a HDMI/eDP TX Combo PHY based on=
- a
-> >>> Samsung IP block.
-> >>>
-> >>> Add just the basic support for now, i.e. RGB output up to 4K@60Hz,
-> >>> without audio, CEC or any of the HDMI 2.1 specific features.
-> >>>
-> >>> Co-developed-by: Algea Cao <algea.cao@rock-chips.com>
-> >>> Signed-off-by: Algea Cao <algea.cao@rock-chips.com>
-> >>> Tested-by: Heiko Stuebner <heiko@sntech.de>
-> >>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> >>
-> >> I had switched from the v3 to this v6 in my playground-kernel today,
-> >> with v3 I've never seen those, but now with v6 I have gotten multiple
-> >> times:
-> >>
-> >> [  805.730608] Internal error: synchronous external abort: 00000000960=
-00010 [#1] PREEMPT SMP
-> >> [  805.739764] Modules linked in: snd_soc_simple_card crct10dif_ce snd=
-_soc_simple_card_utils panthor drm_gpuvm drm_exec fuse
-> >> [  805.752031] CPU: 3 UID: 0 PID: 775 Comm: Xorg Not tainted 6.11.0-rc=
-7-00099-g459302f1f908-dirty #934
-> >> [  805.762143] Hardware name: Theobroma Systems RK3588-Q7 SoM on Haiko=
-u devkit (DT)
-> >> [  805.770407] pstate: 204000c9 (nzCv daIF +PAN -UAO -TCO -DIT -SSBS B=
-TYPE=3D--)
-> >> [  805.778186] pc : regmap_mmio_read32le+0x8/0x20
-> >> [  805.783155] lr : regmap_mmio_read+0x44/0x70
-> >> [  805.787828] sp : ffff80008293b830
-> >> [  805.791516] x29: ffff80008293b830 x28: ffff80008293bce8 x27: ffff00=
-01f20ab080
-> >> [  805.799495] x26: ffff800081139500 x25: 0000000000000000 x24: 000000=
-0000000010
-> >> [  805.807472] x23: 0000000000000000 x22: ffff0001f5a4b400 x21: ffff80=
-008293b8c4
-> >> [  805.815450] x20: 0000000000000968 x19: ffff0001f5a27a80 x18: 000000=
-0000000070
-> >> [  805.823428] x17: 0002441400000005 x16: 000004650441043c x15: 043800=
-0008980804
-> >> [  805.831406] x14: 07d8089807800780 x13: 0438000008980804 x12: ffff80=
-0081133630
-> >> [  805.839384] x11: 0002441400000005 x10: 000004650441043c x9 : ffff80=
-0081a59000
-> >> [  805.847361] x8 : 07d8089807800780 x7 : 0000000000000000 x6 : ffff00=
-01f5b453c0
-> >> [  805.855339] x5 : ffff800080750dc0 x4 : 0000000000000968 x3 : 000000=
-0000000968
-> >> [  805.863316] x2 : ffff800080751520 x1 : 0000000000000968 x0 : ffff80=
-0083b20968
-> >> [  805.871294] Call trace:
-> >> [  805.874012]  regmap_mmio_read32le+0x8/0x20
-> >> [  805.878588]  _regmap_bus_reg_read+0x6c/0xac
-> >> [  805.883262]  _regmap_read+0x60/0xd8
-> >> [  805.887159]  _regmap_update_bits+0xf4/0x140
-> >> [  805.891832]  regmap_update_bits_base+0x64/0xa0
-> >> [  805.896797]  dw_hdmi_qp_bridge_atomic_enable+0x134/0x220
-> >> [  805.902734]  drm_atomic_bridge_chain_enable+0x54/0xc8
-> >> [  805.908380]  drm_atomic_helper_commit_modeset_enables+0x194/0x280
-> >> [  805.915190]  drm_atomic_helper_commit_tail_rpm+0x50/0xa0
-> >> [  805.921125]  commit_tail+0xa0/0x1a0
-> >> [  805.925021]  drm_atomic_helper_commit+0x17c/0x1b0
-> >> [  805.930276]  drm_atomic_commit+0xb8/0x100
-> >> [  805.934754]  drm_atomic_connector_commit_dpms+0xe0/0x110
-> >> [  805.940690]  drm_mode_obj_set_property_ioctl+0x1c0/0x420
-> >> [  805.946626]  drm_connector_property_set_ioctl+0x3c/0x68
-> >> [  805.952465]  drm_ioctl_kernel+0xc0/0x130
-> >> [  805.956846]  drm_ioctl+0x214/0x4a0
-> >> [  805.960643]  __arm64_sys_ioctl+0xac/0xf8
-> >> [  805.965025]  invoke_syscall+0x48/0x104
-> >> [  805.969214]  el0_svc_common.constprop.0+0x40/0xe0
-> >> [  805.974470]  do_el0_svc+0x1c/0x28
-> >> [  805.978171]  el0_svc+0x34/0xe0
-> >> [  805.981582]  el0t_64_sync_handler+0x120/0x12c
-> >> [  805.986449]  el0t_64_sync+0x190/0x194
-> >> [  805.990540] Code: d503201f d503201f f9400000 8b214000 (b9400000)
-> >>
-> >> I guess that might be some clocking issue?
-> >=20
-> > Forgot to add, this happens when the display has blanked and then is
-> > supposed to unblank again.
->=20
-> Hmm, I've never encountered this while testing with my v6.11-rc1 based
-> tree.  What is your current kernel base?  Did you change it while
-> switching from v3 to v6?
->=20
-> I'll rebase my tree onto latest linux-next and see if I can reproduce.
+Add compatible for TLMM block representing support on SA8255p.
 
-The setup is 6.11-rc7 with your hdmi series + my wip dsi + X11 running
-on top.
+SA8255p uses the same TLMM block as SA8775p however the ownership
+of pins are split between Firmware VM and Linux VM on SA8255p. For
+example, pins used by UART are owned and configured by Firmware VM
+while pins used by ethernet are owned and configured by Linux VM.
+Therefore, adding a sa8255p specific compatible to mark the difference.
 
-At some point after being idle a while this blanks the display, which will
-probably turn off clocks and such. After moving the mouse or just
-doing anything else that unblanks the display, that splat happens.
+Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+---
 
-Apart from updating mesa from 24.2.0 to 24.2.2 I haven't changed
-anything in my test-setup so far.
+Changes in v4:
+	- Removed items tag
 
+Changes in v3:
+        - Removed the patch from original series[1]
+        - Fixed mising spaces schema errors
+
+Changes in v2:
+        - Modified subject line
+        - Fixed schema to include fallback
+
+[1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
+---
+ .../devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml     | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml
+index e9abbf2c0689..2520ae8b965d 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-tlmm.yaml
+@@ -17,7 +17,12 @@ allOf:
+ 
+ properties:
+   compatible:
+-    const: qcom,sa8775p-tlmm
++    oneOf:
++      - items:
++          - enum:
++              - qcom,sa8255p-tlmm
++          - const: qcom,sa8775p-tlmm
++      - const: qcom,sa8775p-tlmm
+ 
+   reg:
+     maxItems: 1
+-- 
+2.34.1
 
 
