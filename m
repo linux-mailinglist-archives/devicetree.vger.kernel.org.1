@@ -1,225 +1,184 @@
-Return-Path: <devicetree+bounces-101734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79DAF9738FD
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 15:46:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4851D973918
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 15:51:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 316B4288341
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 13:46:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 053F4288719
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 13:51:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84D071917E4;
-	Tue, 10 Sep 2024 13:45:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4A6A191F94;
+	Tue, 10 Sep 2024 13:50:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="b+d1icVl"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="eaGPx47v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A321118E11;
-	Tue, 10 Sep 2024 13:45:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D1F718E11;
+	Tue, 10 Sep 2024 13:50:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.240
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725975910; cv=none; b=H5xaqmy7EZerwFn56hJZF08etqXmSB6dGXcKYdh7hpkepGLnoJ6joSQUJo/9x8edsmtlJlfcYZT5ID9t9ruWn4PCdlYWpgMbm/gMLiTB11yrkYKyukEGpN/Nf32/Md+jc0mk4J2QhuYgW3tq9g43xDj+BqdIftxtjCHRoE14bi0=
+	t=1725976256; cv=none; b=FgWu4JHOcvQU12bJOhpmnaV4NoLFS86+JleCFDuNMm3sfkVrMmNQU2Cg24+Aj97wzo9kCQ+3TtMfXJN16FoviWNXLb+zM8uqhwqnf1KAfHt0K8RBxw6yKtJNxuU2uIt17k0ffDcO89tn1fjRKJl2SzZxzeBsJYW4EsHAm6ICgJ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725975910; c=relaxed/simple;
-	bh=KJo3SHcB/JwI8XPTyZK5sX97uZlDx18H5V9wO6Eg61A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=H0vaDkSdcM3aYSFgHCqTIYwqCwT91L66X0/enmExPGyN/J0JoxPXU/OkaePhnqXrtbxZA4VCdzW1yiaiC4W3hVXDukedkxbOE+8znKXrSdCOSrzLBOZtrkWL+rM8Dr0cBoW5S7V95oRIZWml5ELLIRDtosG9UDgDsTyoNe54pSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=b+d1icVl; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48A3LTjN019858;
-	Tue, 10 Sep 2024 13:44:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	6fHP3hn5ddtDR1x6bqZmZhDSfhty386BUBD7qVrE4us=; b=b+d1icVlMwst0jkS
-	4CXuf8KctYXFuxz9WKYfGoeSHC87DhX7rgEIlXHWezIY3kZjY6ersa5LciG9QJPr
-	TzS8h/Bk9xjI0/DDXGAEl9Mu9L0SJB/DsoKO0OO2jo5MZPXYxrXSOUtxkQinFz+e
-	yTq2IaicHpnnBh7lU1JnP/vVPzr3pmuxgv6N6d+ClTr/4dwV/F02+xi60HCShsG4
-	GfkPOvGPoC2+Dmt1Z/H7B7u6PQZzimvettm0I/XGRSiYWxCg8d/0dbuMo9j4NKQ8
-	VpZJ1kAJSyXm7Ne+g8r6zgbDGexMhldlwva2+5jLw6gQhRLwb1d0ezjvEghkV3hL
-	pHQHfw==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy59x3yn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Sep 2024 13:44:59 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48ADiwM5017321
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Sep 2024 13:44:58 GMT
-Received: from [10.217.219.207] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 10 Sep
- 2024 06:44:53 -0700
-Message-ID: <96eb669b-a6bb-497d-ad57-19abda17f704@quicinc.com>
-Date: Tue, 10 Sep 2024 19:14:50 +0530
+	s=arc-20240116; t=1725976256; c=relaxed/simple;
+	bh=dYhzfGqHXYEOx8MS6KvaDFYNnbAbgP5YUojlUAiEMAk=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=QNBsbn6fTD4eKAvIAuYrf5ar7XPNckjxoUXNWdd/YtCUbwxgOIyuT+y5AYEd0EtqByFMwF7rpVjEuvcjjNciF8H1doiB0aTUayZDKvTDpZB/sXXGyvIgyOXMMaloUM7bCTzVqFQ8ZelgnpJBpMrb+SVleUhP01dAHSxQuOVqciU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=eaGPx47v; arc=none smtp.client-ip=217.70.178.240
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from relay6-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::226])
+	by mslow1.mail.gandi.net (Postfix) with ESMTP id D6931C2497;
+	Tue, 10 Sep 2024 13:50:45 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 4D6B7C000D;
+	Tue, 10 Sep 2024 13:50:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1725976238;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FKaZoEWr8UWtqcWAfis4JtnDRQPZMMSkWUHYpeNsgqY=;
+	b=eaGPx47vgkkjXWUCMPhevbzMVrQx+6xiGAlWW1jjipJdpQiNhIsAiuyDC7TDz/BFoQFJSH
+	5FbcGgVYB41zBYzcUmIxkZGyrp2FqyVK0tDTCtDBbCDAjYLpg2Ps1+zkVOAFEhNrPNpK9a
+	knMtt3c6Emm6LpuHYQf0/QGK9NFH3Wlq52sL8/lmQcQbckzrh8F6/GPa/Xm6B0gff9i5AT
+	Mbyt4rbAEzoyCHsCipRVb0jWL1KJvId5qvMHc1228PvJXjkN42P6o0VBwuywXW5Naq6D+X
+	fJUQMEwVlEg38PNdi0PxJ8jCSHcDLiTY0LPBO76k2yZOlD0t39bv78NPLKdghA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
- flag
-To: Krzysztof Kozlowski <krzk@kernel.org>, <konrad.dybcio@linaro.org>,
-        <andersson@kernel.org>, <andi.shyti@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
-        <conor+dt@kernel.org>, <agross@kernel.org>,
-        <devicetree@vger.kernel.org>, <vkoul@kernel.org>, <linux@treblig.org>,
-        <dan.carpenter@linaro.org>, <Frank.Li@nxp.com>,
-        <konradybcio@kernel.org>
-CC: <quic_vdadhani@quicinc.com>
-References: <20240906191438.4104329-1-quic_msavaliy@quicinc.com>
- <20240906191438.4104329-2-quic_msavaliy@quicinc.com>
- <6a6fc102-a18c-4ae3-9104-59eb3172f407@kernel.org>
- <9cc7d427-34c6-45c2-a747-f71112833773@quicinc.com>
- <bb9e6ba2-4aeb-40ee-b123-9c59a0efa098@kernel.org>
-Content-Language: en-US
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-In-Reply-To: <bb9e6ba2-4aeb-40ee-b123-9c59a0efa098@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: QWbNuQqFRCRtlN2lFRIoKIcvZnh2jnQ5
-X-Proofpoint-ORIG-GUID: QWbNuQqFRCRtlN2lFRIoKIcvZnh2jnQ5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- bulkscore=0 mlxlogscore=999 phishscore=0 impostorscore=0 mlxscore=0
- priorityscore=1501 clxscore=1015 adultscore=0 lowpriorityscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409100102
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 10 Sep 2024 15:50:37 +0200
+Message-Id: <D42NIH63EHZG.KKWZR2WZB68L@bootlin.com>
+Subject: Re: [PATCH v5 09/12] xhci: introduce xhci->lost_power flag
+Cc: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ "Kevin Hilman" <khilman@kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>
+To: "Roger Quadros" <rogerq@kernel.org>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Peter Chen" <peter.chen@kernel.org>, "Pawel Laszczak"
+ <pawell@cadence.com>, "Mathias Nyman" <mathias.nyman@intel.com>, "Nishanth
+ Menon" <nm@ti.com>, "Vignesh Raghavendra" <vigneshr@ti.com>, "Tero Kristo"
+ <kristo@kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20240726-s2r-cdns-v5-0-8664bfb032ac@bootlin.com>
+ <20240726-s2r-cdns-v5-9-8664bfb032ac@bootlin.com>
+ <1cd45625-84e4-43aa-ae2b-a59f10add898@kernel.org>
+In-Reply-To: <1cd45625-84e4-43aa-ae2b-a59f10add898@kernel.org>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-Thanks For your reviews,
+On Mon Aug 5, 2024 at 3:41 PM CEST, Roger Quadros wrote:
+> On 26/07/2024 21:17, Th=C3=A9o Lebrun wrote:
+> > The XHCI_RESET_ON_RESUME quirk allows wrappers to signal that they
+> > expect a reset after resume. It is also used by some to enforce a XHCI
+> > reset on resume (see needs-reset-on-resume DT prop).
+> >=20
+> > Some wrappers are unsure beforehands if they will reset. Add a mechanis=
+m
+> > to signal *at resume* if power has been lost. Parent devices can set
+> > this flag, that defaults to the XHCI_RESET_ON_RESUME value.
+> >=20
+> > The XHCI_RESET_ON_RESUME quirk still triggers a runtime_pm_get() on the
+> > controller. This is required as we do not know if a suspend will
+> > trigger a reset, so the best guess is to avoid runtime PM.
+> >=20
+> > Reset the xhci->lost_power value each time in xhci_resume(), making it
+> > safe for devices to only set lost_power on some resumes.
+> >=20
+> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> > ---
+> >  drivers/usb/host/xhci.c | 8 +++++++-
+> >  drivers/usb/host/xhci.h | 6 ++++++
+> >  2 files changed, 13 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/usb/host/xhci.c b/drivers/usb/host/xhci.c
+> > index 0a8cf6c17f82..2c9b32d339f9 100644
+> > --- a/drivers/usb/host/xhci.c
+> > +++ b/drivers/usb/host/xhci.c
+> > @@ -1029,9 +1029,12 @@ int xhci_resume(struct xhci_hcd *xhci, pm_messag=
+e_t msg)
+> > =20
+> >  	spin_lock_irq(&xhci->lock);
+> > =20
+> > -	if (hibernated || xhci->quirks & XHCI_RESET_ON_RESUME || xhci->broken=
+_suspend)
+> > +	if (hibernated || xhci->lost_power || xhci->broken_suspend)
+>
+> Why not treat xhci->lost_power and xhci->quriks & XHCI_RESET_ON_RESUME in=
+dependently?
+>
+> XHCI_RESET_ON_RESUME is sued by devices that know they always need to be =
+reset on resume.
+>
+> xhci->lost_power is used by devices that don't have consistent behavior.
 
-On 9/10/2024 3:24 PM, Krzysztof Kozlowski wrote:
-> On 10/09/2024 11:09, Mukesh Kumar Savaliya wrote:
->> Thanks Krzysztof.
->>
->> On 9/7/2024 2:34 PM, Krzysztof Kozlowski wrote:
->>> On 06/09/2024 21:14, Mukesh Kumar Savaliya wrote:
->>>> Adds qcom,shared-se flag usage. Use this when particular I2C serial
->>>> controller needs to be shared between two subsystems.
->>>
->>> <form letter>
->>> Please use scripts/get_maintainers.pl to get a list of necessary people
->>> and lists to CC (and consider --no-git-fallback argument). It might
->>> happen, that command when run on an older kernel, gives you outdated
->>> entries. Therefore please be sure you base your patches on recent Linux
->>> kernel.
->>>
->>> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
->>> people, so fix your workflow. Tools might also fail if you work on some
->>> ancient tree (don't, instead use mainline) or work on fork of kernel
->>> (don't, instead use mainline). Just use b4 and everything should be
->>> fine, although remember about `b4 prep --auto-to-cc` if you added new
->>> patches to the patchset.
->>> </form letter>
->>>
->>> You already got this comment, so how many times it has to be repeated?
->>> Your process is just wrong if you do not use the tools for this.
->>>
->> Sorry, I was already using scripts/get_maintainer.pl but i kept everyone
->> into To list (That's my mistake here). I shall keep maintainers in TO
->> list and rest in CC list.
-> 
-> No, To or Cc does not matter. Your list is just incomplete.
-> 
-Got it, sorry for the trouble. It seems i missed below 3 names adding 
-into reviewers by copy paste mistake. I hope this makes it complete now 
-and will add them in V3.
+The goal is to avoid almost-duplicate functionality. I feel like:
 
-Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
-Krzysztof Kozlowski <krzk+dt@kernel.org>
-Rob Herring <robh@kernel.org>
->>
->> Question: With <Form Letter> , are you asking to add letter in this
->> first patch ? I have cover letter, but it will get removed when patch
->> gets merged. Please help suggest and clarify.
-> 
-> No, it's just template. Form letter... I am just bored to repeat the
-> same comment.
-> 
-Sorry for that. I hope i could catch now as per above missing list.
->>>
->>>>
->>>> SE = Serial Engine, meant for I2C controller here.
->>>> TRE = Transfer Ring Element, refers to Queued Descriptor.
->>>>
->>>> Example :
->>>> Two clients from different SS can share an I2C SE for same slave device
->>>
->>> What is SS?
->>>
->> SS = Subsystem (EE - Execution Environment, can be Apps
->> processor/TZ/Modem/ADSP etc). Let me add this too in next patch.
-> 
-> Yes, please explain in the binding itself.
-> 
-ok, Sure.
->>>> OR their owned slave devices.
->>>> Assume I2C Slave EEPROM device connected with I2C controller.
->>>> Each client from ADSP SS and APPS Linux SS can perform i2c transactions.
->>>> This gets serialized by lock TRE + DMA Transfers + Unlock TRE at HW level.
->>>>
->>>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
->>>> ---
->>>>    Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml | 4 ++++
->>>>    1 file changed, 4 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
->>>> index 9f66a3bb1f80..ae423127f736 100644
->>>> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
->>>> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
->>>> @@ -60,6 +60,10 @@ properties:
->>>>      power-domains:
->>>>        maxItems: 1
->>>>    
->>>> +  qcom,shared-se:
->>>> +    description: True if I2C needs to be shared between two or more subsystems.
->>>
->>> What is a subsystem? With commit msg I still do not understand this.
->> SS = Subsystem (EE - Execution Environment, can be Apps
->> processor/TZ/Modem/ADSP etc). Let me add EE too with full form.
->>> Maybe presence of hwlock defines it anyway, so this is redundant?
->> No, this flag is required. As hwlock comes into picture if this flag is
-> 
-> Flag is required? By what? Sorry, you push your downstream solution to us.
-> 
-Let me explain, Using this flag to take hwlock via TRE @ [PATCH v2 2/4]
-We need this to lock SE protecting from other SS transfers until 
-unlocked. Hence shared-se flag becomes a decision marker.
-drivers/dma/qcom/gpi.c => gpi_create_i2c_tre()
-+	/* create lock tre for first tranfser */
-+	if (i2c->shared_se && i2c->first_msg) {
+    XHCI_RESET_ON_RESUME is the default value of xhci->lost_power,
+    which might be modified at resume.
 
-Question: what exactly you mean "Maybe presence of hwlock defines it 
-anyway" ?
-I am open to consider all upstream solutions, trying to understand your 
-suggestions and comments.
->> defined. So flag is acting as a condition to take hwlock TRE
->> descriptor(transfer ring element). Hope i could answer your query.
-> 
-> Hm, not sure, maybe indeed hwlock would not be enough. However I think
-> existing binding misses hwlock property.
-> 
-Let me clarify, you may help suggest further.
-hwlock is a descriptor bit(TRE_I2C_LOCK).
-"However I think  existing binding misses hwlock property"
-Where shall i keep this hwlock property? what's the usage ?
+Is a more straight forward solution than:
 
-> Best regards,
-> Krzysztof
-> 
+    Both XHCI_RESET_ON_RESUME and xhci->lost_power define if power was
+    lost at resume. First must be statically known, second can be
+    updated during runtime. If second is used, first one must NOT be
+    set.
+
+Indeed, the first solution brings two additional lines of code as you
+commented below. I'd argue the easier-to-wrap-your-head-around logic is
+more important.
+
+Tell me if you are convinced the second approach is better.
+
+>
+>
+> >  		reinit_xhc =3D true;
+> > =20
+> > +	/* Reset to default value, parent devices might correct it at next re=
+sume. */
+> > +	xhci->lost_power =3D !!(xhci->quirks & XHCI_RESET_ON_RESUME);
+> > +
+>
+> then you don't need to do this.
+
+To be honest, I added this line out of rigor. We could remove it and say
+that any device that modifies xhci->lost_power once at resume must set
+it at each later resume.
+
+The above line felt like a small safety net to avoid logic mistakes.
+
+>
+> >  	if (!reinit_xhc) {
+> >  		/*
+> >  		 * Some controllers might lose power during suspend, so wait
+> > @@ -5228,6 +5231,9 @@ int xhci_gen_setup(struct usb_hcd *hcd, xhci_get_=
+quirks_t get_quirks)
+> >  	if (get_quirks)
+> >  		get_quirks(dev, xhci);
+> > =20
+> > +	/* Default value, that can be corrected at resume. */
+> > +	xhci->lost_power =3D !!(xhci->quirks & XHCI_RESET_ON_RESUME);
+> > +=20
+>
+> nor this.
+
+Regards,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
