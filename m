@@ -1,139 +1,133 @@
-Return-Path: <devicetree+bounces-101842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A59D6974562
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 00:09:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D0A9974576
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 00:14:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4379A1F2648D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 22:09:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D164F28BE37
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 22:14:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 392D31AB507;
-	Tue, 10 Sep 2024 22:09:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D15F1ABEA5;
+	Tue, 10 Sep 2024 22:14:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ET9KAz/n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kKPGahNg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8760817A924;
-	Tue, 10 Sep 2024 22:09:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6234C17A924;
+	Tue, 10 Sep 2024 22:14:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726006157; cv=none; b=MMEaAb0H/q0ny3WFDtQn8PljCjAVyMcoX3ufcpcIvCqGhhRka3Kzqtqi0h5xEf7/FV4lsGQ7T9IVKQLyfKFBgvnMRIn2V56fmuAYc8ZzxjpgFfMr5X5p0PU0z8PGjE/K1+psx7iu0sQDiish8moXIhqhiRzAhd0QbB4+T1Bq//4=
+	t=1726006450; cv=none; b=g1RvLtfmx1XBElJfovP2aBfRHHXBw1o1IVL5vEB2yCNf+dvofKdtgba0dZC0W3afIDxMbPT0fzI333NxvEbWzCb9g9pLp3RrI/FR2+bBssWFHLfJP7IuxZO/Ao2qO/c4s/Oce0wSICR5VeTwBYSS69qMYzTdbx2XkMZAbThe6HE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726006157; c=relaxed/simple;
-	bh=THfCkVjJW9VCRbiInylPfB9Z6qvnDL50FgYhdIz+MKo=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OJsbCrgrI39UjZEa0Ae9coT3WoxHI7sKvUGr/98X5D8zPwTwLkMb/mYyjc3I9l20R7JGHmoy837HC1NvmYAZ3sBzUMZatlxku4REYkLTtHGugrdQyTDFu+tWE1beHh4EvC36VxOfJ9RRKzBJBz2wcOZ5eUBP82GaFTfPYSO3Nmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ET9KAz/n; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5c24c92f699so6609671a12.2;
-        Tue, 10 Sep 2024 15:09:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726006154; x=1726610954; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8m6bnlMnlzD0BX4BUZPfd8GP2Hrc2VovL7bSABmNRQ0=;
-        b=ET9KAz/nxs2b9WKUiq9ZO8+9IzRohUSw8TIh/OZaqvbPZzNOYWg9FyywZRp/3B8cIe
-         cnC9g9juSV6mjyZ3VjJmWKBoZrqKdEDUSmBOtW6wVz5zMOxdJWebK6Bhc9iJ1APpRcVU
-         BwMu2iabKI9hKTWIWsKfFBGwm5zmmutZqpL+XhBV/oI2RAsxYc4cbUxqwgv9mX1eqbAG
-         gJTF56ltWn+1rFmYtJ9hrk88+FZJdEDvAZVfn6IjoOElccvPBAojRGarA0avwZiVSXKk
-         yTHAhOUi7N0KAJl4d5S/2D5x8BFpgdhVhNsxbfmny9u5F0P51bswXfG4vNXvYlbfNVRi
-         jBIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726006154; x=1726610954;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8m6bnlMnlzD0BX4BUZPfd8GP2Hrc2VovL7bSABmNRQ0=;
-        b=mKIJHeTB9q3Bv1WUP5UeVnS1btwqSbaDFe7jaFwH0oLVbBGJ10SOzMQMq/fWGoq7X2
-         KXsAHfbFJhjSDAmimgKqNS4ujBmimQaMnFQwPyxKKgD6xurjg7tggrlHeLSawuWjGFeK
-         HeCQH166Sq60wwGkRjTOg8ccH0suCZHKJfoa/F6GQTcNtGyu8zeExwHXEz7HcOmzJ6j+
-         h3I52ZfFowNxADdh3Xoc5UF394KciKTEfoCN60R6QGEzgSxow2dNEtXv+kIKZsgx8Emx
-         SjPDzWhMwf67SLTXBNdY0YL976HyUNcitp6aHceB+6D/rcU0mpURPinwIkQmm2T0QDSq
-         PJjA==
-X-Forwarded-Encrypted: i=1; AJvYcCUHRBspezBp4g71iLJtDRoCQMRK0j49+7KDfYX3Ux7TRneFzUibISVYsUq/C9NQV6FS8e2YWn55FzO4xxYp@vger.kernel.org, AJvYcCUhg1TDsmnahuWi50iS3CQAUnH22uX691Ke0qyKgnT1N+bfuKei5D7W3fORg6S2D5RFj1TPCLdaYiJf@vger.kernel.org, AJvYcCUs8ZZI4upuuizFvenF+w/7i+DTTLoz/fiWhqDO5iJvOe/IhoIPRRfFWYvG7TikDhAd6oGbrI9+xo0S@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzhh2O2augmeKP5ZmHwnFHztfBkuVzBTrWOEtOtoi9Yy40YOzNK
-	sFT/NMuUFZYDPlaNHFWHHtWfySxLUa5ubAs05sfYEwDfa4Nx9lQxMU12/GFNynY=
-X-Google-Smtp-Source: AGHT+IExLnZkW4n6uQ3v1XshfECw4H8j9s1Y2UUYFGwAoO73BhinW48PmUl2XGGDcGj1LWWxbUbpMw==
-X-Received: by 2002:a05:6402:5409:b0:5c3:3f6a:9767 with SMTP id 4fb4d7f45d1cf-5c3dc7904d8mr13333574a12.9.1726006152945;
-        Tue, 10 Sep 2024 15:09:12 -0700 (PDT)
-Received: from vamoiridPC ([2a04:ee41:82:7577:5d47:19e4:3e71:414c])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c3ebd8cdf7sm4697681a12.92.2024.09.10.15.09.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Sep 2024 15:09:12 -0700 (PDT)
-From: Vasileios Amoiridis <vassilisamir@gmail.com>
-X-Google-Original-From: Vasileios Amoiridis <vamoirid@vamoiridPC>
-Date: Wed, 11 Sep 2024 00:09:10 +0200
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Vasileios Amoiridis <vassilisamir@gmail.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ang.iglesiasg@gmail.com,
-	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
-	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
-	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	christophe.jaillet@wanadoo.fr
-Subject: Re: [PATCH v5 0/7] pressure: bmp280: Minor cleanup and interrupt
- support
-Message-ID: <20240910220910.GA13457@vamoiridPC>
-References: <20240902184222.24874-1-vassilisamir@gmail.com>
- <ZtcfCVcV_1hCVp7N@smile.fi.intel.com>
- <20240904102955.GD44250@vamoiridPC>
- <20240907173537.632e8484@jic23-huawei>
+	s=arc-20240116; t=1726006450; c=relaxed/simple;
+	bh=xyezT7y9nlpRVIh3UdeyEg44+ekoYFwDDBaq+ZQAm04=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tISS5bcTuLDE4cLkQ8KXdb7go0rlNAK76URe4t383XDJ3KzNasjyoFzYu4T9ilGGATvl6bNA0QTFk0hfYrGu6bLR5jzJvuL9tH0sIDcethFOutfTfAqbU4XqfpgpNS9KS8SFJarO5QGVTRf2MF9ybCP5JETiuCukIUij1PcksXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kKPGahNg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04846C4AF09;
+	Tue, 10 Sep 2024 22:14:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726006450;
+	bh=xyezT7y9nlpRVIh3UdeyEg44+ekoYFwDDBaq+ZQAm04=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=kKPGahNgIGtIg5pl86yKS59mIlGoLqKIynmh13xXvhH4GdM4AV0WvZqIBSspD4cOm
+	 RwQUwnpSBEoHKBWJZdBvbUWDQgiXv2gOFfJzBBekj9r9XszFsumQtQKmCvieLSKSc1
+	 nw5fzPjRR4+eKbzPz0eCsPWV/Fq6BlqElkvoBYJF/WJnT0ByZM0LNIz4dXr8TnLxgE
+	 NbPRdeaa2jGy+M9pWs1QvD4zq5LmEiZO2o9kg4NL2ICujm2LhU/o3FrYBsATauQsDS
+	 I5R1IhuukAAW1G8/01R7AY/bkw6PS71UnfdvmodsnE98iqtHS7wYdSRRwYEcvb4lfo
+	 BW41/DiA5Rsog==
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5356ab89665so7317973e87.1;
+        Tue, 10 Sep 2024 15:14:09 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU3xQ2CbC1L292nJtH95DqiHcVH2vBNyPwUeRLLIs5uuiKKYFT4x3R61twnqEZPyW9dNoI3Hu/v3q74@vger.kernel.org, AJvYcCVOQzV2wZbYPfSe74OCNZpJxReLhVuvzq3DLsT2yDukWSKXwee1E+X6Ju7qVa/gaZ8SVlN0BpOz/jmBXRnVhj05Bw==@vger.kernel.org, AJvYcCVf99oAoBJkaBE8hjs5ARVCb/q+naFeeO/FFTNbz9X93jDePeZ1W0KOvpjDjDQfM4JQe731XjR4Kmh4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMJAgRy2GTmsDf4jRNHTQfztkjLLpcLIWAJCuRt5fRlbT7umP+
+	iiZjSg6MV7pbWmfs97WUwkvA8FqbyWhbNCKxXo2Fi2mqNpsQBhtQlqWVCk8zOqn7ps/fEp4KY9s
+	yyAEwXZ+ffNjp7TmmHu2abCHwWQ==
+X-Google-Smtp-Source: AGHT+IFvPwRo9z8FDy14Dyiyj2bqiWCSBUDLoZl0L9lIKeqEOJF2/YwFUfDJk9k3Sw4ubOOvQVmvh6ABToN9DxjE2iw=
+X-Received: by 2002:a05:6512:10c3:b0:533:3223:df91 with SMTP id
+ 2adb3069b0e04-536587b9933mr10183673e87.24.1726006448185; Tue, 10 Sep 2024
+ 15:14:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240907173537.632e8484@jic23-huawei>
+References: <68037ad181991fe0b792f6d003e3e9e538d5ffd7.1673452118.git.geert+renesas@glider.be>
+ <5da02a9b-3d42-a26f-0d18-29a6b5b181e5@seco.com> <20230124091236.1bf8c6da@booty>
+ <CAMuHMdV8_+dF03VD6mST2zMDQ68cgsLLRQi6UeXK2jH-eWqWZg@mail.gmail.com>
+ <232f59aa-704b-a374-6a78-469156ccdbea@seco.com> <83f4f33ebd3706ec7d35acd807b1e44b.sboyd@kernel.org>
+ <20230322093918.33690db3@booty>
+In-Reply-To: <20230322093918.33690db3@booty>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Tue, 10 Sep 2024 17:13:55 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKj6A=GvgaZCd9jiF71YPGuQSKJ9Ob6erHT45q8vRR13w@mail.gmail.com>
+Message-ID: <CAL_JsqKj6A=GvgaZCd9jiF71YPGuQSKJ9Ob6erHT45q8vRR13w@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: clk: vc5: Make SD/OE pin configuration
+ properties not required
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>, Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Stephen Boyd <sboyd@kernel.org>, Sean Anderson <sean.anderson@seco.com>, 
+	Michael Turquette <mturquette@baylibre.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Marek Vasut <marek.vasut@gmail.com>, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-reneas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Sep 07, 2024 at 05:35:37PM +0100, Jonathan Cameron wrote:
-> On Wed, 4 Sep 2024 12:29:55 +0200
-> Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
-> 
-> > On Tue, Sep 03, 2024 at 05:36:57PM +0300, Andy Shevchenko wrote:
-> > > On Mon, Sep 02, 2024 at 08:42:15PM +0200, Vasileios Amoiridis wrote:  
-> > > > Depends on this: https://lore.kernel.org/linux-iio/20240823172017.9028-1-vassilisamir@gmail.com  
-> > > 
-> > > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > > 
-> > > for the patches 1,2, and 3.
-> > > 
-> > > -- 
-> > > With Best Regards,
-> > > Andy Shevchenko
-> > > 
-> > >   
-> > 
-> > Thank you very much for the reviews Andy.
-> 
-> Too many patches floating around at the moment (not yours!) so I'm going
-> to reduce that number where I can just to make it easier to keep track
-> of what needs more focus.
-> 
-> So picked up patches 1-3 on the togreg branch of iio.git and pushed
-> out as testing. Note these are probably 6.13 material now.
-> 
-> Jonathan
-> 
-> > 
-> > Cheers,
-> > Vasilis
-> 
+On Wed, Mar 22, 2023 at 3:39=E2=80=AFAM Luca Ceresoli <luca.ceresoli@bootli=
+n.com> wrote:
+>
+> Hello Stephen,
+>
+> On Mon, 20 Mar 2023 14:27:56 -0700
+> Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> > Quoting Sean Anderson (2023-01-24 08:23:45)
+> > > On 1/24/23 03:28, Geert Uytterhoeven wrote:
+> > > > Hi Luca,
+> > > >
+> > > > On Tue, Jan 24, 2023 at 9:12 AM Luca Ceresoli <luca.ceresoli@bootli=
+n.com> wrote:
+> > > >> On Thu, 19 Jan 2023 14:27:43 -0500
+> > > >> Sean Anderson <sean.anderson@seco.com> wrote:
+> > > >> > On 1/11/23 10:55, Geert Uytterhoeven wrote:
+> > > >
+> > > >> I'm wondering whether Geert has a practical example of a situation
+> > > >> where it is better to have these properties optional.
+> > > >
+> > > > My issue was that these properties were introduced long after the
+> > > > initial bindings, hence pre-existing DTS does not have them.
+> > > > Yes, we can add them, but then we have to read out the OTP-programm=
+ed
+> > > > settings first. If that's the way to go, I can look into that, thou=
+gh...
+> > >
+> > > FWIW I think there's no need to update existing bindings which don't
+> > > have this property. The required aspect is mainly a reminder for new
+> > > device trees.
+> > >
+> >
+> > Is there any resolution on this thread? I'm dropping this patch from my
+> > queue.
+>
+> IIRC Geert kind of accepted the idea that these properties should stay
+> required. Which is a bit annoying but it's the safest option, so unless
+> there are new complaints with solid use cases for making them optionalm,
+> I think it's OK to drop the patch.
 
-Hi Jonathan,
+The warnings related to this are now at the top of the list (by number
+of occurrences):
 
-Thank you very much for the continuous effort!
+     50 clock-generator@6a: 'idt,shutdown' is a required property
+     50 clock-generator@6a: 'idt,output-enable-active' is a required proper=
+ty
 
-Cheers,
-Vasilis
+IMO, if these properties haven't been needed for years, then they
+obviously aren't really required.
+
+Rob
 
