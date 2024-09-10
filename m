@@ -1,229 +1,213 @@
-Return-Path: <devicetree+bounces-101593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1C5F9729C8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:50:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 612309729F5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 09:01:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 713771F24216
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 06:50:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A46EDB248C3
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 07:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEB9017965E;
-	Tue, 10 Sep 2024 06:50:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA12117BB1A;
+	Tue, 10 Sep 2024 07:00:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mysnt.onmicrosoft.com header.i=@mysnt.onmicrosoft.com header.b="g5TkMsTn"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XYJKxpmn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2129.outbound.protection.outlook.com [40.107.22.129])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A465516DEA7;
-	Tue, 10 Sep 2024 06:50:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.129
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725951014; cv=fail; b=Lr4jos+5b0ts3TL5UVFHZ34WNA1XMiX8EPgzssh5KwIuDpi+vUZ1cCRQxv4om2693DTDpFEBo9BcUVoXLOw6UxH74uVRVEZTgPt7SyLTbcveWwk4MTpTzP/Oq7FUsBw+FH+2zSMZ1lPW9Zn3xOiKuGD2lwhWaPI9dryxUI/ATo0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725951014; c=relaxed/simple;
-	bh=YVM3DZ7fgaoo8AFh+M3YkPej1hFJg8F+BScixOg8fGs=;
-	h=Message-ID:Date:Subject:To:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=uQbC1JCkRU/nr38bEIC0Y9Ap3WYE5qvzrvz0RE77u/99hJmB9q0/3w7Bbl1Ox4upvKVP6whFVd876q7IjlYch0d5g7tfeKlunwQDs4LNHrtl4iG4CUrXC3jf65I1aSMJxlazvIg5D6dNdo5z9fmyQk5IrWrtB1cjcUH3cgeqmM4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de; spf=pass smtp.mailfrom=kontron.de; dkim=pass (1024-bit key) header.d=mysnt.onmicrosoft.com header.i=@mysnt.onmicrosoft.com header.b=g5TkMsTn; arc=fail smtp.client-ip=40.107.22.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kontron.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nGilCikrkQu4OKodnItzEDaoxGinwUkp8bKm0+VoZs0a3t5/iy2q1jNOo07OOO9+B4I4JsL5ugKi15aOzR4/sOKj+UCeu2/LeTluT27jtRwGdF8dhvRBsvrSkScip7ohqBmaMCwoSxqi/hscJfj6sDMeuED5Ci4qhcG+IS1FgfSFEZXaRl4+urryh1rPQN5hoNiTHGh6mLypVkZFloWidJxNwzskne/8wo+iO+um1Mb49/ZLrIaP7qvP47XtzQqLhzWm0zkDOmw6r+IUU4UtElwera8FlvfhsXbmI/XkwpHfrwSzv0TkIuLByX0OldnCPhRU+gHi7Mw0nKOi6zw3TQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=v92r3FTUai8Ga057ufLrC5WY0BB4bHr/sq0UNPy2Lro=;
- b=n6FK8uTohVZxxBfDgB00o8orfDc/Fx87tY41YV7C8uEcoFj+5tYDCrioWSmU72oB6CEt2yPhBNs9Sr7CNIJsuZqcnaZZPQquPtYQFi8x6O8cqBIGfdAdZZfKi9n0bNz0dsfEv5eCxR7QNm6M7K/JIMxxWhEjdwLN9Rw28oVK9qJjT1SpLwdYWtjzU2dIvQJ7DvQMu3BIRM+pOiBg/IYmmW5KxVrcFzVMlHrOB8mk4tN9EBgI+TJsaGdRdQN82VQfAvccJeiXHcGFoD9faPfEJTDaOA86CAssbzryE/oFVQh7aJKw3WeKMTk/JMP+bXvJY3p/9dxBRgpfnui1T2fdPA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
- dkim=pass header.d=kontron.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
- s=selector2-mysnt-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=v92r3FTUai8Ga057ufLrC5WY0BB4bHr/sq0UNPy2Lro=;
- b=g5TkMsTn6Vm/9/58bw9jqksbOUVKA34Es4zhIuS6cxZXmMPDBN1bXE0mwJ8SRdhB8Ielozgy13so/p0B3Yk+/LhWXFWLlJzo5b+oUYelwkjrMoiMed/kYsce5V8Q6vjNcZtvOl45Fu2GCswfIAQePpJCKUSLzrYFLKplTD7GmGY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=kontron.de;
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:263::10)
- by AS4PR10MB5497.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:4fb::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.17; Tue, 10 Sep
- 2024 06:50:07 +0000
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::b854:7611:1533:2a19]) by PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::b854:7611:1533:2a19%4]) with mapi id 15.20.7939.022; Tue, 10 Sep 2024
- 06:50:07 +0000
-Message-ID: <ef218f6b-7c24-41f2-a3a3-fcd97c29886d@kontron.de>
-Date: Tue, 10 Sep 2024 08:50:04 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: imx8mp-venice*: enable NPU support
-To: Tim Harvey <tharvey@gateworks.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Li Yang <leoyang.li@nxp.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20240909215359.780561-1-tharvey@gateworks.com>
-Content-Language: en-US, de-DE
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
-In-Reply-To: <20240909215359.780561-1-tharvey@gateworks.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0144.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:b8::20) To PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:102:263::10)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C143917B506
+	for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 07:00:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725951652; cv=none; b=LHZCwVmc/1F9PpnqjzPl8VR/KTIim/mHn1uDUGsA64+1YhjU5CzTV3LNWcWqAT3C0y6rF/Sgz5pKb55NMFqpTjHrErX2iCz6F4BiOni7++qHQvqYC/GYSOcfD9r/TTTBuoqqETWCNNNi6Leib5x5umvHxHxoV/sJlDi6ztX9DU0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725951652; c=relaxed/simple;
+	bh=fKFDtJX6H4J4ft9KA8cVnAC7FeDdliRD0lLCvf/mcpo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ExCiaUpsGOh3yyXOf4rilL4COnDQEnS+bqKrFvcQrM5ygwysvh/uBfE45S+X8wGGlPNEQy1/nn2daXlaOmKLw9r0Sa2IHXQugTOou/+4Vj9BmK7aoSWFsNrEnLwDv4NeoB3LFm9hgBTGFDGikCtA/qgUuJOKRNxuZYzkwMwqA5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XYJKxpmn; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-42cae6bb895so27832455e9.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 00:00:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725951649; x=1726556449; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=MLdy1HqCe/P/wfI/U0dXpj5UGtLrwYaUul2f80rYcsE=;
+        b=XYJKxpmnnOlzpt59dijL2fSvScQP+PIffRUVNjurB+e/veLl86ujt5D17ZuIgvZuF5
+         xutAbiGSFgSDd3b9oIbhSbswIrXh6CMgP9+FscydkTpsOp7qpGGIHNHMbflVHllK/sT/
+         VwxmcUJ6VjdPQs2qnh2r2Jlrabl1Xi13EFsc6XnIKk5VDSNc2XcQNSG+7WUCP5qebxIm
+         65fpFo1xeS58zuI55FM/RtnDJNxA7oJJZrHUNYKcp8+iIwi6dQhBL4wY8TclDuRbBu7a
+         DslcjL17qRaG/Fe+baQDF8PGHBpO96rA9mPL6R3RRZk2+X4Us4ntsdVSV+PDmrSIqZLG
+         FkyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725951649; x=1726556449;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MLdy1HqCe/P/wfI/U0dXpj5UGtLrwYaUul2f80rYcsE=;
+        b=E9M1VLlWCXYj0bYMiR3+d0xe/UNa5lLAawxqYl7hvf1t/HZ7HixsaLQXIdmZME4cik
+         4hkAoQTqshuoCLfS/bUOGVep2nqRXhiSgHghVgzLnnl3UKXE9rc1ygoIA20Le6/2TKCE
+         xJFA0/NSsJFftxccolS8LiCZa4CrUDCc0dgOBt20KVFJwFUYeKlMsf/bgmDhhyONf9GC
+         1dkPQnZGXZlJ8YWvXp50M0714g/GgM646IILJGwU2WMf60zZxkW39m+kMIb5hcauRehe
+         c2bFjpVo5HDGPDaJjIkH9SYN3OBTTrbJK6RWSC2cytFOPtTCXQrXR09wy+VhnzTXdXVP
+         VV1A==
+X-Forwarded-Encrypted: i=1; AJvYcCXC0CCRxCJwo+H5TdZBz3tCqxsVrSkfuEYVn568d9L5k+n14mFAMy9jw71KVXcUHGDFnEUgZKpIFxeO@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDdcZXggloD32qCoeDR6u1Am/vzl2D9FfaXKaJ0npcxGvpi7vf
+	rYHAFs6VcVWuAL7pnaI4e4+KsHPuigQ8I83uMO1qK5jITjOEyzJThCSwZL8RRzM=
+X-Google-Smtp-Source: AGHT+IGSpgZGxNJQq/Qo4D8JhGcF7UkYtWKkqi99YliN+/1ihfgtjS4RGuaumEGAlmzP201Le1guqQ==
+X-Received: by 2002:a5d:4386:0:b0:374:bb2b:e7c4 with SMTP id ffacd0b85a97d-378896b1c82mr8978817f8f.57.1725951648885;
+        Tue, 10 Sep 2024 00:00:48 -0700 (PDT)
+Received: from localhost (p5dc68d3d.dip0.t-ipconnect.de. [93.198.141.61])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42caeb8b2f4sm100972925e9.45.2024.09.10.00.00.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Sep 2024 00:00:48 -0700 (PDT)
+Date: Tue, 10 Sep 2024 09:00:46 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, 
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Juxin Gao <gaojuxin@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+Subject: Re: [PATCH v5 2/2] pwm: Add Loongson PWM controller support
+Message-ID: <awru62rcjkkb6n4sa2abmilzmu5ddxiv5s52tnkm2jcwi4isnt@djpzrj6asxok>
+References: <cover.1720516327.git.zhoubinbin@loongson.cn>
+ <63a540e93147eff5e7c942133c462530689f707c.1720516327.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR10MB5681:EE_|AS4PR10MB5497:EE_
-X-MS-Office365-Filtering-Correlation-Id: d9f39afa-40de-4dec-cff3-08dcd164ce54
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|7416014|366016|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?RnlRWGcvL3VPaFA0SWswZE5hTUhNYXl4M1lTa0VUbDQ3ZzVCZTRFbk5nOUh5?=
- =?utf-8?B?S0o1SXJOSnF2L21OdlYweE0ydFE4RkJmaDZTMjNFTzkwVzNYT0R1STljQURl?=
- =?utf-8?B?TzdkM2dCemc3Q2NESlF5WFVTaEl5NWFtQnhhVXpKVVJKZE01K01BZEFsQUp4?=
- =?utf-8?B?RmdldkNlQ2lqMDdpclhhak1EMUJrN0xxa1pYWVRNeXk2U3c3dnZDQWZST2hJ?=
- =?utf-8?B?MWhkRnZrVk5CeGNQNDUzdXlzako4NHdsd0lIVVk1dWxiTUdvMGc4WkZ5ay9s?=
- =?utf-8?B?eEhOb1VHU1p4WFdKd3JFQnFHdmZycVZqYWdUOFBKSlF5ang5K3R0dHlrcDJF?=
- =?utf-8?B?VkxEKzEzVkNoUjAxejhNMm1JK2RpZSs4OEZRU2x0VGdhOXd0aHg0V2dwV3Zh?=
- =?utf-8?B?SXp6RXJVY1ZlSnF1bjZsendYcGRaaEc2TUY2ZG5XT1JGc3hKd05LTVEwc0xz?=
- =?utf-8?B?V2R2S3B4N1RvVDM4NEF2ZlUzbmtaUGI2RkY4dFhRYWZNekEvczFUQ0RoTWpL?=
- =?utf-8?B?RnRIQ25kaEZDNTdNQnNYVWk3S29vZzBsTU1uQ2FFR25QcFF1RjBkRmtmMGtO?=
- =?utf-8?B?Y1JCVytmdVR2MktpU2tJSFpRWjdZMHZUMmtnNkl0b3FRam1OdkQ4SXAwL0ZT?=
- =?utf-8?B?bERXczVkaVFXZ3oyY3RSaEl4OE5jeFVxTDR5Q3RnQnUya0szdXhQRmVTeWpz?=
- =?utf-8?B?Sy9VR0RmZnJaem5INzAxSEFZUTQ5NFUvVktDRkZkNzVtOVRwT0Rxd1h3azBn?=
- =?utf-8?B?bFgxa1NzQVh5cUphTlB1K0d1d1JibVRSNVcveUdyTTNqYnkxWmJFZXB0MTZO?=
- =?utf-8?B?bjdBTzFXdlhBS24yTWhSb0xrL1NKV1pGb1BHR1V5cUJzZzJzV0JRV2FZWUVj?=
- =?utf-8?B?dXJZNXRSbE1pa1dGai9hVzUrT3FTelppQ0JEZ3ZHUEptT0VYZ1lnRkQ4MWxy?=
- =?utf-8?B?SWRKdVJoVkhzMXZMSHhGTFkwdGhQdTFhdW5LZFhyZ2pUMDB0T0ZrZjhxQVUx?=
- =?utf-8?B?VXgzS3pNeUw4T2s4aVRoM0xINXRRSDFPS3dNWkNSSzJRdXJ6OEVqQlE3RXht?=
- =?utf-8?B?MzhKZ3duSGZLOG8wMHdqdUpka0gzSDFySjVCaXNqNlc1SWFUaHZvL2ZBL3Ns?=
- =?utf-8?B?bXV5ZHhVUHNxT3ZReVhzd3BxTEFPYks3VUdsaFI5WmpkaWc3WkxFUVlzUUxX?=
- =?utf-8?B?QldrNnQwRWNGOUpGYVFjOW9Wem55NHU5ZG5BUUV1ckZ6Z0Z1NWZwYjJYeVhy?=
- =?utf-8?B?TWdpOWJLekNVQ0Z4RU5DbGFKanBhS0xiUFZMYUxrNnUybEJMZFFkb2IwS3NP?=
- =?utf-8?B?R3ZZUmo0Zmg2UVpKQXVkaS9tQy9oSkZwOXR1cTZzcVFkRHR1RG5mUzNnVDc5?=
- =?utf-8?B?d2xxMjlGdVpTZE1vUW54N2hGL09PQlhRZjlqSEc4NGMrcWNQWDdhRHgyZEF2?=
- =?utf-8?B?K1AwMHc3T3dxOExuRFVHSGtlV011a05ZWTZ0bnpGb1hhdEVycnJNMjE1T0ll?=
- =?utf-8?B?bWh6cno4Y1JrRjhZMW11QmwvTGxreDNZay9nckh2VTljbXZYNW5hN2VVYjNx?=
- =?utf-8?B?emV0RmY0ZVQzd2xKeFdZcmpoNFh4a2J3QzRKNFFrRER6aUdoYUhMVFhLV3ps?=
- =?utf-8?B?aWxNMkJWcU9nSG9jZ053dWVrOGUzVmFTREdFU2tmeG40YzJPSzMvdHRiZDdG?=
- =?utf-8?B?NHA0bitReFpFWWE0RmpMeDkrcW40RFNLdkh4bnd2MHQ0TGdXYmxCNnFLMnR5?=
- =?utf-8?B?d1B4S1FoTFdqcWNsVHNvTU5Kc3JzMGJUNit6RFNHREpNOTBaUzg2ZzFuV0Fh?=
- =?utf-8?B?WnVHY0tEYnBTcE5FY2psb2dsVG5Ha0lLcmhFbUpGVzJCd1JXazBsS1JkSXRP?=
- =?utf-8?Q?KPXUrUs6UoTGE?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?TGE1WjBGeHNvT0Q5VkhpYXgzVVNxM3JDcnR6RWVuL0Y3QlFobERXR0tOUG5I?=
- =?utf-8?B?K2pPTDM4NVhwU2RBTWZBTVlsNTJXTTYvK1VSVUdPaUZ6MVY0SnNLelRGbUlo?=
- =?utf-8?B?L2tuQ3AvMkpqOG5lUU1IWlNoNUVrc2RSR1BoVlBnc0NOT2gwWk5qNHJlbk05?=
- =?utf-8?B?RUducWhCZ0VhMWpnbVZZQlZ1SHhKRkwrdWFTQTQ4OEF5bVFRRVRaWGFKSmxa?=
- =?utf-8?B?amZSZlJjSHVlNDN5bGY4V0RxSHhpenpUMGNvcmVuN0xZV2o1bDFxM1ZQUVlz?=
- =?utf-8?B?Yk1jblRLT25wWXIwM1hqeE5xWUhIL3M4cXZTTVZGZ2FZQk1VTmU2bk82Rmx4?=
- =?utf-8?B?QjFNbnNhYUdqSjRGNVBjYTkrNjFHMCt1Rmx4SjhEQmNXNGxsdm9NYm5IRXlL?=
- =?utf-8?B?a1NiMVdsazlMVnpqNkt3RXNRSkkvOEQ5VkZzVHpIUG1ncysrTHJtYjkyQkN0?=
- =?utf-8?B?UHlmRHFjWGp3VTM0NStrM1NEOWxCNEM0MzFhZ3I3RXpuNmVseHlTanVCL1Yw?=
- =?utf-8?B?eGFsRDRYRDk3QXd5bHh2a0cxQ214N0M0c1lja3lHSkQ0NDEyUGxXeEtiSFJR?=
- =?utf-8?B?cjNJYVB3NUE1YnhCczhEY0tXUWg0aVgzQWh4RWpaRXQzejBhRy9oT1ZvOXlV?=
- =?utf-8?B?d21aenRtUE5UbHNyVHpwdmFRZ0xZZkJySFJwVVpvc0VkN1dqbWVTaENWdDhT?=
- =?utf-8?B?ODVXbExBT0d3bWdhV21NcUpIMGlvcW9xZ2xiVG1iUlZYUE9yOVF4R2trZEZa?=
- =?utf-8?B?VlZrUTBCUHl4cjJZSmZXaStGNWdoOHZBaCtua2lSS25jMUl1NjZSY0VXWjJK?=
- =?utf-8?B?MUZYanpuWndDb1ZnU0ZzN3kzUXQvRy9KNW8zaTlQbDFQdGk5THM3YTB1YVBM?=
- =?utf-8?B?V2pTODZwZGF3MGovOEcwZmdUamc0anJRUWNiZkFJeFlDNUo1b0RWTzNveWhs?=
- =?utf-8?B?ZWZJL0tySWswYnRYaTdMQlpZcFkyZ0xDUTZVU3djQUdPYlV0Nk9VQ09CVWJa?=
- =?utf-8?B?NHc1OVJrM0FtMTdIK0NTTjFiTy9yT21XcVNOR1pNQ3RKem9ucy9EckxZOTg5?=
- =?utf-8?B?NTF5Lzl5V2lUOWxZZkZ2Uk8vamhXd0dsZFZXdFVlVW5EZkZyYnJjRXFxTzZ4?=
- =?utf-8?B?TXBQOXF3My9ob21EaS84OEV0dy9pTGtWbGt0Y2NlcVY3SCtxbTM4MlBFOWRU?=
- =?utf-8?B?aHMwWERXaURuKzBDSVR3TXU0VTdMcFZzRU5UMGJaLzZFNXdjQmZ0TW5WZmN4?=
- =?utf-8?B?bGp3WVJSWitYc1NxRUJvS2phcEd5Y3ROWGlITVUvbGIwY2pVUU1MQlFPRk94?=
- =?utf-8?B?RkJQeEF5TXl0UmpFcDVIbXd4Ull3aStncUFQV1ZoYnZJWXFWQlZJUnlzN3dh?=
- =?utf-8?B?K1F1dFpJQzNsSFdGd1k5TGJJc0lMOXltdERXUm52ZWMxVEYxbSt6TDVjVlRL?=
- =?utf-8?B?eHhLQ3UzSE1weE96MVVTdVorVGRoY01TalNkRFJob0ZGd0dUTGdHeWRaVzZ2?=
- =?utf-8?B?RitreWl0aUc4U3k2WTB0Q3RWMU1rM2tuWlZqN3duUEVGYVVBUnVoTm80Qmdm?=
- =?utf-8?B?anJzS08rdm5XZ3dtMGExWVdRcnM0dU5EOHZTbU1QSWtxK1RuRVlhLzJpbjRW?=
- =?utf-8?B?MVNBMkU2RUpDSEljT0N1VXRRTXBvcjhtMm5LT015SGtZUW9aanpsL2VoaUhQ?=
- =?utf-8?B?ekg1cWd0MkFocVdOQ3h2SElnaldUUUFrTmZtV2krSlpBSnNsMTNjOFMrWFhj?=
- =?utf-8?B?V1dDMjZ2YUtaQVZMYkY1dFZ3MHA3Q2g1WjhVOU1mSDRZcm5JQ2NBSDhvZDZE?=
- =?utf-8?B?MDUvczl3UjFLcG9wR3Vud2Vpb0tXR0hZUHVGNmxmUFFMZ05ja3p6U3IvRm1M?=
- =?utf-8?B?T3JKTy80VDRBUkZvRkozbDBnUzR2Y0pXQnY0cThqS2pka3hienpDU2xFOE9C?=
- =?utf-8?B?WTQvV2NOWnBiU2I5OGNYbWpLKzJtVzhUbnRZWDYyWGRhODBQdUlyWXhqV3Zv?=
- =?utf-8?B?NjVvSWJZS1hTR0QwWjBZTVZmNkF2RU9nYVprUklJNDBHbXdvUEsxS1BwVmly?=
- =?utf-8?B?aTBRdG0zSXZyWlU3OXZ4dzUzcDlZNnVWTFpuU3FUdUFpV2dzcWxzdEJNMmtV?=
- =?utf-8?B?N3RFdytQaWpPbDVnMU9lbmRhMlAyVXBMM2RwN0RFbEdKSWEzeU9oWm5oVWdO?=
- =?utf-8?B?Q2c9PQ==?=
-X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: d9f39afa-40de-4dec-cff3-08dcd164ce54
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2024 06:50:07.0287
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rwd0WQqaGS2d8CoOaGE7vV3XEDtvNaltlxA4NxzyhlrGxkyGHUet4LxLtQFFTNo4tjRhyoO0Sl144WCPf9/m2gMiPv5s2DcJN1MVMZ9JW5A=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR10MB5497
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="w4t66meuz2x6g6x5"
+Content-Disposition: inline
+In-Reply-To: <63a540e93147eff5e7c942133c462530689f707c.1720516327.git.zhoubinbin@loongson.cn>
 
-Hi Tim,
 
-On 09.09.24 11:53 PM, Tim Harvey wrote:
-> The IMX8MP has a VeriSilicon (Vivante VIP8000) NPU which
-> is supported by the etnaviv driver. Enable it.
-> 
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi | 4 ++++
->  arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts  | 4 ++++
->  2 files changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
-> index 6c75a5ecf56b..f0211a96855b 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
-> @@ -393,6 +393,10 @@ &i2c3 {
->  	status = "okay";
->  };
->  
-> +&npu {
-> +	status = "okay";
-> +};
+--w4t66meuz2x6g6x5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hello,
+
+On Wed, Jul 10, 2024 at 10:04:07AM +0800, Binbin Zhou wrote:
+> diff --git a/drivers/pwm/pwm-loongson.c b/drivers/pwm/pwm-loongson.c
+> new file mode 100644
+> index 000000000000..17ab2a2f48ad
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-loongson.c
+> @@ -0,0 +1,285 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Loongson PWM driver
+> + *
+> + * Author: Juxin Gao <gaojuxin@loongson.cn>
+> + * Further cleanup and restructuring by:
+> + *         Binbin Zhou <zhoubinbin@loongson.cn>
+> + *
+> + * Copyright (C) 2017-2024 Loongson Technology Corporation Limited.
+> + *
+> + * Limitations:
+> + * - The buffer register value should be written before the CTRL register.
+> + * - When disabled the output is driven to 0 independent of the configured
+> + *   polarity.
+
+An info about possible glitches and if a period is completed on
+reconfiguration or when the PWM is disabled would be great.
+
+Also if there is a publically available manual, please add a link here.
+
+> + */
 > +
->  /* off-board header */
->  &uart1 {
->  	pinctrl-names = "default";
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> index 9885948952b4..8a04b66a4afc 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> @@ -666,6 +666,10 @@ &i2c4 {
->  	status = "okay";
->  };
->  
-> +&npu {
-> +	status = "okay";
-> +};
+> [...]
+> +static int pwm_loongson_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> +			      const struct pwm_state *state)
+> +{
+> +	int ret;
+> +	u64 period, duty_cycle;
+> +	bool enabled = pwm->state.enabled;
 > +
->  &pcie_phy {
->  	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
->  	fsl,clkreq-unsupported;
+> +	if (enabled && !state->enabled) {
+> +		pwm_loongson_disable(chip, pwm);
+> +		return 0;
+> +	}
 
-I think there is no need for this patch as the NPU is already enabled by
-default in imx8mp.dtsi (same as the GPUs). Or do you disable it in some
-intermediate devicetree include file?
+You can also shortcut if !pwm->state.enabled. Something like:
 
-Thanks
-Frieder
+	if (!state->enabled) {
+		if (enabled)
+			pwm_loongson_disable(chip, pwm);
+		return 0;
+	}
+
+> +	if (state->polarity != pwm->state.polarity) {
+> +		ret = pwm_loongson_set_polarity(chip, pwm, state->polarity);
+> +		if (ret)
+> +			return ret;
+> +	}
+
+Together with the shortcut above this is buggy. Consider:
+
+	pwm_apply_might_sleep(mypwm, &(struct pwm_state){
+			.period = A,
+			.duty_cycle = B,
+			.polarity = PWM_POLARITY_NORMAL,
+			.enabled = true});
+	pwm_apply_might_sleep(mypwm, &(struct pwm_state){
+			.period = A,
+			.duty_cycle = B,
+			.polarity = PWM_POLARITY_INVERSED,
+			.enabled = false});
+	pwm_apply_might_sleep(mypwm, &(struct pwm_state){
+			.period = A,
+			.duty_cycle = B,
+			.polarity = PWM_POLARITY_INVERSED,
+			.enabled = true});
+
+After the 2nd call you left pwm_loongson_apply() early without writing
+the inversed polarity to the register space. In the 3rd call you have
+state->polarity == pwm->state.polarity and so skip configuring the
+polarity again.
+
+I suggest to just do pwm_loongson_set_polarity() unconditionally if
+state->enabled = true.
+
+> +	period = min(state->period, NANOHZ_PER_HZ);
+> +	duty_cycle = min(state->duty_cycle, NANOHZ_PER_HZ);
+> +
+> +	ret = pwm_loongson_config(chip, pwm, duty_cycle, period);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!enabled && state->enabled)
+> +		ret = pwm_loongson_enable(chip, pwm);
+> +
+> +	return ret;
+> +}
+
+Best regards
+Uwe
+
+--w4t66meuz2x6g6x5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmbf7pMACgkQj4D7WH0S
+/k5t/QgAofx2pNsRH3IuK4/XzJXnm6mE1nKFc6tbO+Z+q4IJ6d74I4YvT2+XoYBp
+efq6UR+1TTL2e0kkaoKhqIEfhA2ol371vVbsK9GXbFcnb4hfJFF4K9XD62oynakN
+FgdMByd4DxiLTY2m5HJiLFNgUHHWQ23o6QPJ3GrLfA4nHXTpNHiBRSPiXHfMSqSH
+TtqZELnnIadnGXE8DZbmxKims3D/Lg/nJoPggcYRtjXpJ0cY5PVaB2JULjb9Ul87
+fGC7GdAEYYnRMly5inlY/1UqPUw9aWirjsp1/7vaxorgoe+Rc9l4z1V0BdT/q1tp
+bOJo74ocmKhmUdMIJx5XraMrtFYcKw==
+=rDRR
+-----END PGP SIGNATURE-----
+
+--w4t66meuz2x6g6x5--
 
