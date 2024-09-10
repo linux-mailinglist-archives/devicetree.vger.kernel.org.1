@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-101601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDF32972A9D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 09:26:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11479972ABF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 09:30:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 065111C23DCA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 07:26:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 183D4281DA4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 07:30:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D9E717C235;
-	Tue, 10 Sep 2024 07:26:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ED841684A6;
+	Tue, 10 Sep 2024 07:30:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WL1ObNIm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RqVRh4wk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CF5D335A7;
-	Tue, 10 Sep 2024 07:26:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 071011BC44;
+	Tue, 10 Sep 2024 07:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725953200; cv=none; b=pD5BenN4KrzJYEjE+1zWeZSSk4KWO8hDIv3C2WKRPPCPFeZH9VLnHfU7ynE8PgUKDg4pzP0NKJYEBlfF22TlZsnIks/dlrKDMiDSrm+0Z2b805kssBukwEZSs7mTSYWP15BYCcINpleVB5N2AA/0fEajY50gr0e8ZjuKp0jGNIo=
+	t=1725953441; cv=none; b=cNjgdNMUnxiD9J1FgXxevP0V/RZ7uyW2dJ26iI9m5WQ0RTHaf1PrT7ZpPY9HakUsTGytw3PKvRGc1APu/Bm1llVOcwy9MmG6ORFz7W8OUDNoKrAGGzeRAoa7/ek+oa/va9tg/JUB4reUP/b1fGbA8c6eyVTVVxS7kvKo73SzhA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725953200; c=relaxed/simple;
-	bh=c7SEPg78L7aXvA8zp/wEXCqRIxwD84K8s9j7Fcayr90=;
+	s=arc-20240116; t=1725953441; c=relaxed/simple;
+	bh=DWeb2u4Z6SDehPCeRiQ6fmChDzwAnQMJkcZGouUglyU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=POZLaN2IR0hEwz9IrX2mEYi8RuOifq5OQzB0X5wDFFvcEbNqJg+0Od5YU7ugQ0q7WgW6P88ZvIvOphrXx+bAbajsuWcKLPouN7x8Kz7lZioMOEtnjeV12e6pdT6Mq9sPuZyS/rW9aZm6JlTI1dM4uXGPS37ob7JFkdNVgdU5Ipg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WL1ObNIm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B72BC4CEC3;
-	Tue, 10 Sep 2024 07:26:35 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=u9Z3zECPcoTBnbtKGI9FfsYvJzTeSWzBMuKJbYLptGcCUW8p/rcJHmAaQ8HsMmyKMQtlOOz0cxk3FwnDXrsy6m7S55NJVqGJZxv5GE9cXbobBKHdSdMH32lh+XTj7ROCoVmEOV+5qElB/lLZrs4BWSFqqllPbDpHDtKnuUT07Bs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RqVRh4wk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5528C4CEC3;
+	Tue, 10 Sep 2024 07:30:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725953199;
-	bh=c7SEPg78L7aXvA8zp/wEXCqRIxwD84K8s9j7Fcayr90=;
+	s=k20201202; t=1725953440;
+	bh=DWeb2u4Z6SDehPCeRiQ6fmChDzwAnQMJkcZGouUglyU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WL1ObNImc6XB/G6SMInxizHHTBX09O1Ae6dE1z6rvaxGYqTdK//1PyRDBj8gbumJd
-	 7s9wh7O8HU8YLfviOdpznKSj2RFypGRyI7WhLvvwfMzYAyh270bj7xKlOD9oDcYeQ1
-	 rzcf0fJM/450VcicxYPzp8ODdQio6Z8MO+JQfRODaHgzA11kLULEbsrAwZtW5Zf+Ss
-	 TW7HhnB2m4a/G7tFUmEjASLeNQI83rY7bhq7zuSY1aLrrwOP5bSSum3DoAK8z9gJTd
-	 oP9ifSN2tIVrV+A2eKRsy3KMosu4Qldf4DM16PZZH9YJu0wVfnugzmhi7JjcTkA7ds
-	 BxZO0xdUwOq9g==
-Message-ID: <469efcd0-148c-4a71-b315-043ac59df838@kernel.org>
-Date: Tue, 10 Sep 2024 09:26:33 +0200
+	b=RqVRh4wkofQwIom3XZ1/js7JGaTUtcE5imLSSah8X1EjKIU+otl98tWL8nx1w5R0I
+	 1F2mDN3UYszyV3/5ZPFqFlGdnbaSxZbnIuibT8sLYYfhSm5yZ4dgbaePSZGOZSXJec
+	 lI3f0Ma8tVQPx777FoMIVywJ2flJlCH6KH4KzzSQVVOPApC68M0PfECzQgJdYS0i1L
+	 bCNE73fLgsNASd1OV2ZeDWD5nSlEQud7br9FiRa9gHZKx5g2KEmGvn9U7RqkE0Dv8h
+	 NOqd5hNjmWBvlNeu2cy4JNkEsqfAvWK3Yf1Xfu3dblm5qNmKNhjQ9vBXX6q8vIxhR6
+	 WjJeYziNyGybA==
+Message-ID: <42049344-fafb-4aee-8423-fe09a1a977f2@kernel.org>
+Date: Tue, 10 Sep 2024 09:30:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add Realtek switch
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- tsbogend@alpha.franken.de, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-References: <20240909014707.2003091-1-chris.packham@alliedtelesis.co.nz>
- <20240909014707.2003091-2-chris.packham@alliedtelesis.co.nz>
- <63sbuzij27crjxv6d6qjblv55al5zk4ivsah4ji2kvddhbua57@xo4vt2tqs5cn>
- <01656780-0a90-4c7b-bedf-2e45992cd16c@alliedtelesis.co.nz>
+Subject: Re: [PATCH v1] ARM: dts: aspeed: yosemite4: Enable interrupt setting
+ for pca9555
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20240910063952.3006665-1-Delphine_CC_Chiu@wiwynn.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,99 +105,44 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <01656780-0a90-4c7b-bedf-2e45992cd16c@alliedtelesis.co.nz>
+In-Reply-To: <20240910063952.3006665-1-Delphine_CC_Chiu@wiwynn.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/09/2024 22:36, Chris Packham wrote:
-> Hi Krzysztof,
+On 10/09/2024 08:39, Delphine CC Chiu wrote:
+> From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
 > 
-> On 9/09/24 18:38, Krzysztof Kozlowski wrote:
->> On Mon, Sep 09, 2024 at 01:47:06PM +1200, Chris Packham wrote:
->>> Add device tree schema for the Realtek switch. Currently the only
->>> supported feature is the syscon-reboot which is needed to be able to
->>> reboot the board.
->>>
->>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
->>> ---
->>>   .../bindings/mfd/realtek,switch.yaml          | 50 +++++++++++++++++++
->>>   1 file changed, 50 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/mfd/realtek,switch.yaml
->> Use compatible as filename.
+> Enable interrupt setting and add GPIO line name for pca9555 for the I/O
+> expanders on Medusa board.
 > 
-> My hope was eventually that this would support multiple Realtek 
-> switches. But sure for now at least I can name it after the one in front 
-> of me.
-
-This might never happen, so unless you document more models now, I
-strongly suggest using compatible as filename.
-
+> Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> ---
+>  .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 52 +++++++++++++++++--
+>  1 file changed, 48 insertions(+), 4 deletions(-)
 > 
->>
->>> diff --git a/Documentation/devicetree/bindings/mfd/realtek,switch.yaml b/Documentation/devicetree/bindings/mfd/realtek,switch.yaml
->>> new file mode 100644
->>> index 000000000000..84b57f87bd3a
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/mfd/realtek,switch.yaml
->>> @@ -0,0 +1,50 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://scanmail.trustwave.com/?c=20988&d=55fe5gyquxahZ_dJqiHMxmkDG8M1MWjoNtZN70yrng&u=http%3a%2f%2fdevicetree%2eorg%2fschemas%2fmfd%2frealtek%2cswitch%2eyaml%23
->>> +$schema: http://scanmail.trustwave.com/?c=20988&d=55fe5gyquxahZ_dJqiHMxmkDG8M1MWjoNoNFvkz8nA&u=http%3a%2f%2fdevicetree%2eorg%2fmeta-schemas%2fcore%2eyaml%23
->>> +
->>> +title: Realtek Switch with Internal CPU
->> What sort of Switch? Like network switch? Then this should be placed in
->> respective net (or deeper, e.g. net/dsa/) directory.
-> Yes network switch. But this is one of those all in one chips that has a 
-> CPU, network switch and various peripherals. MFD seemed appropriate.
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> index 98477792aa00..cb2436031181 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> @@ -295,30 +295,74 @@ power-sensor@12 {
+>  
+>  	gpio@20 {
+>  		compatible = "nxp,pca9555";
+> -		reg = <0x20>;
+>  		gpio-controller;
+>  		#gpio-cells = <2>;
+> +		reg = <0x20>;
 
-There is no such device as MFD. MFD is a Linux framework.
+Hm? Why? The placement is after compatible.
 
->>
->> Maintainers go here. See example-schema.
-> 
-> Ack.
-> 
->>> +
->>> +description:
->>> +  The RTL9302 ethernet switch has an internal CPU. The switch is a multi-port
->>> +  networking switch that supports many interfaces. Additionally, the device can
->>> +  support MDIO, SPI and I2C busses.
->> I don't get why syscon node is called switch. This looks incomplete or
->> you used description from some other device.
-> 
-> Yes I did take a lot of inspiration from the mscc,ocelot. I am working 
-> on more support for the switch and some of the other peripherals so I 
-> figured I'd word it towards that end goal. If you prefer I could word 
-> this more towards the one function (reboot) that is supported right now.
+> +		interrupt-parent = <&gpio0>;
+> +		interrupts = <98 IRQ_TYPE_LEVEL_LOW>;
+> +		gpio-line-names =
+> +		"P48V_OCP_GPIO1","P48V_OCP_GPIO2",
 
-Your commit msg is not explaining here much. And "Currently the only
-supported" feels like a driver description. We expect bindings to be
-complete. It's fine to bring partial description of hardware, but this
-should be explained in the commit msg and entire binding should be still
-created to accommodate that full description.
-
-However such complex devices like Ocelot should be described fully so we
-can easily see how you organize entire binding.
-
-> 
->> But if this is DSA, then you miss dsa ref and dsa-related properties.
-> 
-> So far I'm resisting DSA. The usage of the RTL9300 as a SoC+Switch 
-> doesn't really lend itself to the DSA architecture (there is a external 
-> CPU mode that would). I think eventually we'd end up with something like 
-> the mscc,oscelot where both switchdev and DSA usage is supported. There 
-> would be some properties (e.g. port/phy arrangement) that apply to both 
-> uses.
-
-This feels ok, although you really should create complete binding here.
-
-> 
-> I have got a (kind of) working proof of concept switchdev driver which 
-> has some of the support you've mentioned. It's not really ready so I 
-> didn't include the dt-binding for that stuff in this patch.
-
+Nothing improved here. I already commented about above and this.
+Implement feedback for all your patches, not only one.
 
 Best regards,
 Krzysztof
