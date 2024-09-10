@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-101736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 774BA97392D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 15:57:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 798A297394C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 16:04:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1DC021F26216
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 13:57:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC8C71C24387
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 14:04:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83911192D71;
-	Tue, 10 Sep 2024 13:57:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E350A1940B2;
+	Tue, 10 Sep 2024 14:04:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gQFhDQHZ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DRd8C1mA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94AED192D60;
-	Tue, 10 Sep 2024 13:57:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51E6128389;
+	Tue, 10 Sep 2024 14:04:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725976672; cv=none; b=Up7wQALEzcN4/rb91GThktwk3Y3nyqxMYxns31CiooZqAGXNK2u3KiBVhw/e5F5wBOog70zx3CzFHNGFeQDmbqctb8wbCgZqfWfMKbpMQU0WZCdtlfqsSVvoozwcOpgjVnpaaRVl5wAehZGJIPGVe6mQvotUAa54iowJTUv7BR0=
+	t=1725977062; cv=none; b=ad5TSQYmPKH8WcYPY20eE8Jc0Frxve97wmvHG/plwnyYuhJsRRhi7nyHdZSXb8xCsrGRKWem3SyS9k025KjA15rJlns4jrFFhutRkev9Yz0Hsq4/IXqYHPNeUKhcBII2q0n6gMpbPc2fsJF+h4s1f1LLdtM9vYmzG0HpO2RsjRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725976672; c=relaxed/simple;
-	bh=zZfcjLht3SGpqV3G2JGMBDdZB66dQC2a1hDt+03nhmg=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=o+HxFCF05s5/Orm3AIMMg8YioDZaCPu+ee2joxEFJrA4Bfd2F6W8umPLSbGAC0NBQbHKPTG8q/oki+lXWyh82/td1ietR1nfL5eGm6y8n2SpO+qdTQt1qR08HzQJLok0jLbsjOFgkjvcEHiItVz8DHKgHXEduF/c6tOPfrqgVMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gQFhDQHZ; arc=none smtp.client-ip=217.70.183.197
+	s=arc-20240116; t=1725977062; c=relaxed/simple;
+	bh=HO9jMzugqdGriCjZTDUoRxmWP1kjr0j4Rz0Nt3ecBGw=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
+	 References:In-Reply-To; b=ZdkbUsyEeHWqzjAjGeMWFeaaIMiNqm2Ju9d1LUG0CPGvl8HFnOHJ22dLjNeRI197P91/C+P+uopjyITUcocmjqVhgP3N+BVolyJQkz+sLzSHL/18m2ONPJEudu+53niLQ+UeUAPgmoAqkGIa/wXQVqPyyJkT0Ge1V4QHo9lqats=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DRd8C1mA; arc=none smtp.client-ip=217.70.183.197
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 64B7A1C0002;
-	Tue, 10 Sep 2024 13:57:40 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 03BD91C000D;
+	Tue, 10 Sep 2024 14:04:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1725976661;
+	t=1725977058;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=+5qKRpXx/yX0uSjdpqTnr+3shh0+e1DrLOHMnv76MDo=;
-	b=gQFhDQHZXhP2exQYhIS1YAURc1OirprONZJMYY64MBwxflZ6URRSq1uOlymHPWgauSd778
-	PbJhbKbjfLdvxTZh5HLxTpf73lK/p5NLb8Cz8PuvF4qekNIEt8z64EmHvXnJ6RhF4aT10x
-	KSzbElzWG+QIqFXgXegY1c8xHumzrShzzllQrDnvgH3/+5Z5ZruzmbPrQdz3MRGclyWVuZ
-	kE9RyApX2I4zVX9YRGluH+XhS2rYXlw8E9BfoEC07OBdRx9kHURtZKJEjliA6r6b0+WYed
-	UkicjFEWmCqsxNKv93rR9kZtCXMUNdVP7Y255EtzRHuSMK7nG9+ABDttIXSMmQ==
+	bh=cbvz3JQ6Dzafg8NgXNOuBniHfq+3yKtYClfjYxdImOM=;
+	b=DRd8C1mAQDBaTQOrfuyjMKW5d7pmqbS8bcV6C60uk/1Q179nX5Ynppjikh9xA5ewgkHzo5
+	E6Xjsco+6DLttCCCXyP00KjhoMMKwXmMPS3Q/Q7nv2ekxcZdGzpb62Zm6DNdwETyHJ2ckk
+	+PNf14dUjc4mCWW4KOhKTr50mj11WNObCtKvMbaYTmWfhz2kWo+m+jbREPwklbnpr3B29U
+	SB/uSJoYjYcJWa2/6B/EijKgto+Ci8glIkhFCorL4wLuKUUV1LCotxK0SA8+hTZN9XJK+E
+	/OiFRpyvwph2mjVEEctN4XUq9uE5zGKotvLL+gNZBc1ubLbpb22QoKm3jSEw+Q==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,74 +53,89 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Tue, 10 Sep 2024 15:57:40 +0200
-Message-Id: <D42NNVGT7JLU.2CFGBTBNAP0E7@bootlin.com>
-Cc: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- "Kevin Hilman" <khilman@kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>
-To: "Roger Quadros" <rogerq@kernel.org>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Peter Chen" <peter.chen@kernel.org>, "Pawel Laszczak"
- <pawell@cadence.com>, "Mathias Nyman" <mathias.nyman@intel.com>, "Nishanth
- Menon" <nm@ti.com>, "Vignesh Raghavendra" <vigneshr@ti.com>, "Tero Kristo"
- <kristo@kernel.org>
+Date: Tue, 10 Sep 2024 16:04:17 +0200
+Message-Id: <D42NSY6SFTBG.2EEB1S4CB54QN@bootlin.com>
+To: "Peter Chen" <peter.chen@kernel.org>
 From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v5 07/12] usb: cdns3-ti: add J7200 support with
- reset-on-resume behavior
+Subject: Re: [PATCH v5 00/12] Fix USB suspend on TI J7200 (cdns3-ti, cdns3,
+ xhci)
+Cc: "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Roger Quadros" <rogerq@kernel.org>, "Pawel
+ Laszczak" <pawell@cadence.com>, "Mathias Nyman" <mathias.nyman@intel.com>,
+ "Nishanth Menon" <nm@ti.com>, "Vignesh Raghavendra" <vigneshr@ti.com>,
+ "Tero Kristo" <kristo@kernel.org>, <linux-usb@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, "Kevin Hilman"
+ <khilman@kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Conor Dooley" <conor.dooley@microchip.com>
 X-Mailer: aerc 0.18.2-0-ge037c095a049
 References: <20240726-s2r-cdns-v5-0-8664bfb032ac@bootlin.com>
- <20240726-s2r-cdns-v5-7-8664bfb032ac@bootlin.com>
- <0a634553-023c-4a46-8743-28357021c689@kernel.org>
-In-Reply-To: <0a634553-023c-4a46-8743-28357021c689@kernel.org>
+ <20240809011921.GA2673490@nchen-desktop>
+In-Reply-To: <20240809011921.GA2673490@nchen-desktop>
 X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Mon Aug 5, 2024 at 3:54 PM CEST, Roger Quadros wrote:
-> On 26/07/2024 21:17, Th=C3=A9o Lebrun wrote:
-> > Add ti,j7200-usb compatible. Match data indicates the controller resets
-> > on resume which tells that to the cdns3 core. This in turn silences a
-> > xHCI warning visible in cases of unexpected resets.
+Hello Peter,
+
+On Fri Aug 9, 2024 at 3:19 AM CEST, Peter Chen wrote:
+> On 24-07-26 20:17:48, Th=C3=A9o Lebrun wrote:
+> > Currently, system-wide suspend is broken on J7200 because of a
+> > controller reset. The TI wrapper does not get re-initialised at resume
+> > and the first register access from cdns core fails.
 > >=20
-> > We also inherit the errata quirk CDNS3_DRD_SUSPEND_RESIDENCY_ENABLE fro=
-m
-> > the default `cdns_ti_auxdata` configuration.
+> > We address that in a few ways:
+> >  - In cdns3-ti, if a reset has occured at resume, we reconfigure the HW=
+.
+> >  - We pass the XHCI_RESET_ON_RESUME quirk, meaning the XHCI core expect=
+s
+> >    a resume.
+> >  - We add a xhci->lost_power flag.
 > >=20
-> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> > ---
-> >  drivers/usb/cdns3/cdns3-ti.c | 14 ++++++++++++++
-> >  1 file changed, 14 insertions(+)
+> > The previous revision had one big issue: we had to know if
+> > reset-on-resume was true, at probe-time. This is where the main
+> > difference with previous revisions is. We now pass the information from
+> > wrapper devices back up into XHCI. The xhci->lost_power flag gets its
+> > default value from the XHCI_RESET_ON_RESUME quirk. It however allows
+> > wrappers to signal *at resume* if they still expect a reset.
 > >=20
-> > diff --git a/drivers/usb/cdns3/cdns3-ti.c b/drivers/usb/cdns3/cdns3-ti.=
-c
-> > index 159814dfc856..65b8b6f4c654 100644
-> > --- a/drivers/usb/cdns3/cdns3-ti.c
-> > +++ b/drivers/usb/cdns3/cdns3-ti.c
-> > @@ -258,7 +258,21 @@ static const struct of_dev_auxdata cdns_ti_auxdata=
-[] =3D {
-> >  	{},
-> >  };
-> > =20
-> > +static struct cdns3_platform_data cdns_ti_j7200_pdata =3D {
-> > +	.quirks =3D CDNS3_RESET_ON_RESUME |
+> > That means wrappers that are unsure if they will reset should:
+> >  - (1) set the quirk at probe and,
+> >  - (2) potentially set xhci->lost_power to false at resume.
 >
-> But you mentioned that the behavior can be different based on which
-> idle state the system went into.
-> Setting this flag will means Reset is required on every resume.
+> Judge if controller is power lost has implemented at cdns_power_is_lost
+> Please check if you could use that.
 
-No, this flag's only behavior is to enable XHCI_RESET_ON_RESUME in the
-lower xHCI stack. Code is in __cdns_host_init():
+That function is being used! Its return value is passed as second
+argument to the resume() callback in struct cdns_role_driver. We set
+xhci->lost_power using that exact value.
 
-	if (cdns->pdata && (cdns->pdata->quirks & CDNS3_RESET_ON_RESUME))
-		cdns->xhci_plat_data->quirks |=3D XHCI_RESET_ON_RESUME;
+My cover letter explanation was slightly off, as it is not wrappers that
+set xhci->lost_power, but instead role drivers. Wrappers don't have any
+reason to touch the xhci struct directly, they are one layer above.
 
-> Instead, you just need to rely on the runtime check and set the xhci->los=
-t_power flag at resume.
+Related: [PATCH v5 08/15] commit message looks like this:
 
-I argued about my view of the XHCI_RESET_ON_RESUME quirk under
-[PATCH v5 09/12].
-https://lore.kernel.org/lkml/D42NIH63EHZG.KKWZR2WZB68L@bootlin.com/
+------------------------------------------------------------------------
+
+The cdns_role_driver->resume() callback takes a second boolean argument
+named `hibernated` in its implementations. This is mistaken; the only
+potential caller is:
+
+int cdns_resume(struct cdns *cdns)
+{
+	/* ... */
+
+	if (cdns->roles[cdns->role]->resume)
+		cdns->roles[cdns->role]->resume(cdns, cdns_power_is_lost(cdns));
+
+	return 0;
+}
+
+The argument can be true in cases outside of return from hibernation.
+Reflect the true meaning by renaming both arguments to `lost_power`.
+
+------------------------------------------------------------------------
 
 Regards,
 
