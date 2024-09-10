@@ -1,168 +1,137 @@
-Return-Path: <devicetree+bounces-101639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDFE3972C62
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:41:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C40E972C6F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:45:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D2851C24672
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:41:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A46401F21205
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:44:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31C94186615;
-	Tue, 10 Sep 2024 08:41:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF78D185959;
+	Tue, 10 Sep 2024 08:44:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="TeykFZUH"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="VLugMxRt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2052.outbound.protection.outlook.com [40.107.215.52])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8074514A4C3;
-	Tue, 10 Sep 2024 08:41:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725957680; cv=fail; b=jOdgCAdsHVTbMP17zC2+xHZvy7ehZ83I3W68Cb7DHSxz+/rL2dbqcipkRAb3Q6Up012hiO1Ea+OsB3i/zQy2PySC2zrklWaZ7Bv+s+bjoZtx6h4/mR9hjOLCyZ/3I4zse9lS105TFmNPfMrtvNHwgpLdleq8vssqbo4zyAkx1nY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725957680; c=relaxed/simple;
-	bh=GCm9PrtosBiGPC8B3WGTcnyeJ+2oRvFD9J9NpUbVMWE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=mN6ZiTApR3PSOyAKQCKTT5CT6Mmx0DNFIPubweFunV4tKskCA2v21ARG1715oHUZ4QPKIyg6u4qTfwxioAy8o0GkIkk6tpSF08Zo+zfJKl8ib9m00a2IFkRtQBfUHd4/UF5XdgQLutxtRZP69M1bRiqxAE55Yknd8v2LE6R7VS0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=TeykFZUH; arc=fail smtp.client-ip=40.107.215.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Hd8jaIHX7/6oretVxZKt4K3+TJ/1koqEm62gDiD4iGybSUw/NbNVvG4+9Douffav1mfv2acRrAOxocNN9QXTi5EiS+pJTsXkguiWeAgeoVGq6VZFxbwSc0pES/9SWfTrEbpNYJ7/tvy3suaEkVAYlxq7XPO+kqH6UIvZo96Epq1notL1dSAinSkWvl6HE1fTmr1dWsI8bOVOTK0+JKtmHuVuWNJU85XwDHAUFoMylCC4LRh+JRHf7Q1zNNMSuOY59x0xliOB0QfKhRLpe8DKjo+pqGrq6lHsFhCGhm624Yjvg1oi8B2bkMqOC4iQ0KUKGE4Hmv7yADRfEYz56FKSsg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NZ2MMSRPMIp7S0T5v6dauvcCf9kw2fsivDjeJnxpNI4=;
- b=uSFNzE/+U8ZjVuooX+DLhDRc3rHu46jzosL6WmdGZ/pf3GzKMXsNjYLfMbYCFQFHsBC9opxgCwSvrnq55j/0QurG4Gal7aOp95nU6W7rAVxAQZttrxcCY+UhGMGAI3h/B8v4h7ChLPhLEQno3b/OUEF1/m86fuWsVTTuYpP75X/TcQlL5HxdphGDql2vKLS9i8sA4DO0sclAw8VJ9SR9GbmL57fgbl/zrjp5Ke3lU5FLEGjGzQpPA+QvV9jD9A/864zVFySjVia0GcTP1Sy7vl1lIMFf+NuZoznBor6zdaQgZTughm9Mc67TZsAm9MVAgr/fnN8mFcfThlL01JwSVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
- (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NZ2MMSRPMIp7S0T5v6dauvcCf9kw2fsivDjeJnxpNI4=;
- b=TeykFZUHe4X8vHQCNynSwxYZVNRUZcAeiF1OR60mjK8udPYdszrSzB4ILsAbWgcuvFufZtJjz+fKxd09JyCOsiQv+KpmcbuJMkd+Wmvw8X70psfs483qvBzxTtZCxcaoHIL8ofvhG2OGkPIoG+skpu4mFaKULc6/tlCcs8UOTJ64BdI+L5HeFMnKE1jOpRvSnorVuHoSjtvP+4CYyTjLhSOp994IpFaZ9M8VuUdHq3P+dTVrOKh6TECdKuuAihAXNIY484nN0Wt5sMUovQZxK4zlgrWVoUWv0k2/tHy8tzIJLCrhA7Y+UwhYydABtrJrV6w2RFjSfqiPO+voGyudFw==
-Received: from PU1PR01CA0010.apcprd01.prod.exchangelabs.com
- (2603:1096:803:15::22) by TYUPR04MB6763.apcprd04.prod.outlook.com
- (2603:1096:400:350::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24; Tue, 10 Sep
- 2024 08:41:12 +0000
-Received: from HK3PEPF0000021F.apcprd03.prod.outlook.com
- (2603:1096:803:15:cafe::33) by PU1PR01CA0010.outlook.office365.com
- (2603:1096:803:15::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24 via Frontend
- Transport; Tue, 10 Sep 2024 08:41:12 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
- smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
-Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
- designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
- client-ip=211.20.1.79; helo=localhost.localdomain;
-Received: from localhost.localdomain (211.20.1.79) by
- HK3PEPF0000021F.mail.protection.outlook.com (10.167.8.41) with Microsoft SMTP
- Server id 15.20.7918.13 via Frontend Transport; Tue, 10 Sep 2024 08:41:11
- +0000
-From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-To: patrick@stwcx.xyz,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>,
-	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] ARM: dts: aspeed: yosemite4: Change eeprom for Medusa Board
-Date: Tue, 10 Sep 2024 16:41:09 +0800
-Message-Id: <20240910084109.3585923-1-Delphine_CC_Chiu@wiwynn.com>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31CD414A4C3;
+	Tue, 10 Sep 2024 08:44:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725957894; cv=none; b=Moz/PjvocgUh0zxr0BUcZgzeSDklMnwSctlZoessRHP6ZWOMdKMaJdIZneJkDwl3BuIS7WNjMEisk0Jd9jFRWLUawPG0njX0LgYfciagzeLSuNnie3a0rmaHYl2G98x6e0J8gSYbZUYsEBITv8C736fF1//yZ+nZ55rAp0VLFcY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725957894; c=relaxed/simple;
+	bh=sDFBkX7W5EUl3yXu98e2iOyq/FusRtFK34zTdz0riCE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qpO3iSnaRt9I/reT4I6PcQVQK7O7qj6R1iKggHHROy7p6VR+gqsHwqm1FI54MeMpKlYhWBk5s1BKG/AMtHc+2nMS67ezHOjGpRG/BjBtVjPl6A6YMPE+PtMpMJT4CmcCtMmsihH2ZMss2JkDDWhhGbD4bjRc+KKTbmVclDIIa44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=VLugMxRt; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-156-87-48.elisa-laajakaista.fi [91.156.87.48])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B2D4173;
+	Tue, 10 Sep 2024 10:43:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1725957814;
+	bh=sDFBkX7W5EUl3yXu98e2iOyq/FusRtFK34zTdz0riCE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VLugMxRtgMsAzA8R+hSefNW3HOINV4lGe4NsFankTIbeF52twhViUD2bgsx81Hm2V
+	 jfeTvPeYCZQN+t7zVo9GIKrVzTMH6xtPW5Chn5sZ2gBC06hhHHjie0aH/auZpFkPvr
+	 1ksu2rI+ff9f1xtWkXS03ktAqTX3EFj1wZ5D0K7c=
+Message-ID: <2566e769-45d6-4b15-887b-86449181645d@ideasonboard.com>
+Date: Tue, 10 Sep 2024 11:44:47 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: HK3PEPF0000021F:EE_|TYUPR04MB6763:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 66952d2c-12a6-44b2-0c0f-08dcd17452c5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|7416014|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?bz8ix8r0ELABTMVtHC5ZRVv8RX/weueCHfwawWupsjcmZI8IoJoWlrcWUD0P?=
- =?us-ascii?Q?qzNhPAOgpSFCjf3qJNN/tUht1vS/IBkFYMjYqL7EVnm3c3eaJspj4d2z2WZh?=
- =?us-ascii?Q?MAcWqkNpsnHQ6t8AbS6sJ8y3mJ7KhCQcAtvbExYTS2pB2iWcUhKlvfVQSBt4?=
- =?us-ascii?Q?GiOgZA1LBb1AszfG6W6IswlYbFp2xpi1rbJIpzO2smkQz+z5Tg560zXtfghY?=
- =?us-ascii?Q?ld+NG4HT9jiCY73c5jCoZ7NfXEGL6B8dAvAKUwzBuDhsySbQiJ3vwIZQWxgB?=
- =?us-ascii?Q?fGZSmSsbYC62Ss0c16tQ9XSx+5lb9AjEVKydui9zdXqx0VnkMMdBmyTP3zuG?=
- =?us-ascii?Q?aXpnlRrqYYFUUvk9Bit0LAwI7kErk8eLG5CVcDPMQ/B44xbkd83l3upObfFm?=
- =?us-ascii?Q?2kLD1FccE3tTWMF5+d8/Q190TlzZ5vovSXRcWPVSpkHoubyyE07fRp5FNidH?=
- =?us-ascii?Q?jiuxglQAgEPcFTkdwCVoJpVfBDB9GooSrdBuxHl63QifsjPhTLQ0PaVZhIuF?=
- =?us-ascii?Q?4+jSKcQuD1LE7oc9oDb/XnyjFoO3VsHnFDtX+qPKi/mq6Ku9nwaQJCZFyUV1?=
- =?us-ascii?Q?WzZYUcIm5VEnp0W+HkjtQMV7WhtqYNlp6NH62i4yRyBJR9Tr8Qy9bIlDOHTL?=
- =?us-ascii?Q?n6l3NyA/IFjGbN6oGaLI06enYsQkfEHXVa+w8qAOSCaTumNt9DyAhJHdmcnk?=
- =?us-ascii?Q?c5zQIWwONCoZhLZuEQ90QtY/OXH0a7DG6Z5qy714UuVgGidLNaPfn7piRrZ8?=
- =?us-ascii?Q?tG34aewVfbJBV2CKXwth8nzww8d60NYO2UR4w06Qpx9wyBEQ4H/N5so6BbjQ?=
- =?us-ascii?Q?v+YRzsUbG+mD8RSsVj7E01mgP8W6JQsEVYa4oAVcalNeP4E2Sxx5aTE9QHly?=
- =?us-ascii?Q?1z9FyN1q46JE8I0a6tRpHN6NG319RUrvJSkgRIRRZo3JgF8og5D9ROAZza3M?=
- =?us-ascii?Q?yV87u6/vayg8bykaXnPIrX14axbSDe4Ao003Rgrj/KahcHyy08Yd+EmvhjFS?=
- =?us-ascii?Q?Qou3PlefIfx89cWhQVW8NL3CHrVeoff37jJcMTG9FKrf/SbYoJMc+evMR9jB?=
- =?us-ascii?Q?OvwZtJGN/MxlAf3WmCCjGtbcSaLlPksWtgNZrpYY+Og+Q2WmxJwSJTPNrC2m?=
- =?us-ascii?Q?b6jm4B3HyxBAhGPGZWJpAge3TgYr+XLDkbdyNfTRhaM/VJ456H3HrqcH6AYK?=
- =?us-ascii?Q?5ptqQ4Mnux5PP4ID6dt1gOWNK3Ku5RyMqfV2WZViwMJvyaYgYFZenP0vnN1h?=
- =?us-ascii?Q?roAYKpIx3gWSvZ+VvGqDkcqk4HoPfM0VFzQxKKtRySh5r6o3IGZOSXPtVnTi?=
- =?us-ascii?Q?sGa8wmLeV6a+YJZWWCx6qy8wsrMMGwxk+1VLXi932umLLt/6NYyIqguYcnVq?=
- =?us-ascii?Q?r5UGSM/rv1Btl1ifqs+O7ULPZkdh3e3cOCZ2605JOGRwdQEX3i2RImWfXxYU?=
- =?us-ascii?Q?rQ+iKDstRNbGytsjBhCtzOPMsatz4Uwp?=
-X-Forefront-Antispam-Report:
-	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(7416014)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: wiwynn.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2024 08:41:11.2480
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 66952d2c-12a6-44b2-0c0f-08dcd17452c5
-X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
-X-MS-Exchange-CrossTenant-AuthSource:
-	HK3PEPF0000021F.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYUPR04MB6763
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] media: dt-bindings: i2c: ds90ub960: Add DS90UB954
+ chip to DS90UB960 bindings
+To: Alexander Shiyan <eagle.alexander923@gmail.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, devicetree@vger.kernel.org,
+ linux-media@vger.kernel.org
+References: <20240830070117.9534-1-eagle.alexander923@gmail.com>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20240830070117.9534-1-eagle.alexander923@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+Hi,
 
-Change eeprom on Medusa Board to AT24C128 according to hardware change.
+On 30/08/2024 10:01, Alexander Shiyan wrote:
+> The ds90ub960 driver can now be used for the DS90UB954 chip as it has
+> a similar register set and configuration.
+> Let's add an additional compatibility line to the bindings.
+> 
+> Signed-off-by: Alexander Shiyan <eagle.alexander923@gmail.com>
+> ---
+>   Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> index 0b71e6f911a8..86d43d949dd3 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> @@ -19,6 +19,7 @@ allOf:
+>   properties:
+>     compatible:
+>       enum:
+> +      - ti,ds90ub954-q1
+>         - ti,ds90ub960-q1
+>         - ti,ds90ub9702-q1
+>   
 
-Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
-Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The binding lists 6 ports as required, but UB954 only has 3 ports.
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-index 98477792aa00..398ffca58135 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-@@ -342,7 +342,7 @@ temperature-sensor@4b {
- 	};
- 
- 	eeprom@54 {
--		compatible = "atmel,24c256";
-+		compatible = "atmel,24c128";
- 		reg = <0x54>;
- 	};
- };
--- 
-2.25.1
+  Tomi
 
 
