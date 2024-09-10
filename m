@@ -1,237 +1,225 @@
-Return-Path: <devicetree+bounces-101624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BED40972B9F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:11:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87D09972BB3
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:12:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2CEE2B25F58
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:11:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4597D28AC14
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:12:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C65221917F6;
-	Tue, 10 Sep 2024 08:07:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F34E418F2F1;
+	Tue, 10 Sep 2024 08:09:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="r/yveOD/"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cqX6uCHF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EB761917DD;
-	Tue, 10 Sep 2024 08:07:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FE68183CC7;
+	Tue, 10 Sep 2024 08:09:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725955661; cv=none; b=kHlGT/azx1e4zdHa5ZAZVu2RDObG/j5MFqATaMXKEYZOkzHt/6t4ctAB52JwqwSqGMITDtTtOH3Nor8nrWrSyPLtK8HCdtWWTgJo0megIepjYPOiHpQue1qQqMiSC2W4cG9L10b2S1md+Ijb9ges3KAS5fINfZTS7YCYoPeOFyw=
+	t=1725955747; cv=none; b=DnmsaXXr8e5unhmN2JnqGmRz4JYO5C/jZaBxfxWukYA3GeKnlLKsK4JWLh7Nr1/GASipXWet/C3lr3ubcC4TCq/YaVtt8BwvjTdB0njD4K3fLSYv0cHaTsRFzfE+xR2lPRcCmi5kT0Sg43UBaeKK/CYL9b5UkqwRL4vJm/+pzak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725955661; c=relaxed/simple;
-	bh=ldQ0outL4QKLwryuC/LIt5eVxQJHAdWhRM3fm421H80=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=IXgwyVBZwI4ZeOP/2TXWLVkztMYljNDayqX5LmPLr2DcKtDLbjn0c+cZ76fmgBA5baJZD11TMNCsFoqZq6efrvDCuQkwomPtiJjm5aukSNYD2zx8gNvyr6GmvzHorDEary6Lcq1sSNaSe/DCuivKrykfJyTVlUm+uMuVUM0zET8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=r/yveOD/; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [127.0.1.1] (91-156-87-48.elisa-laajakaista.fi [91.156.87.48])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A12301A60;
-	Tue, 10 Sep 2024 10:06:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1725955578;
-	bh=ldQ0outL4QKLwryuC/LIt5eVxQJHAdWhRM3fm421H80=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=r/yveOD/QBWvCrKsa2ZyEMHRSdg105C+L4vqPB/LcEmNha7dOrOwls6/O98S5QEQ2
-	 k73qCZx3DuNnTZUqK/2Ye+5iwAfebwz4ABJWoEg2g7p8y0gNbM5PazuFDDNNwjSU6u
-	 s4f4nVLzZae4wfGZhFRRfK+P3efXctmYBFwUgkzQ=
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Date: Tue, 10 Sep 2024 11:07:09 +0300
-Subject: [PATCH v5 4/4] media: admin-guide: Document the Raspberry Pi CFE
- (rp1-cfe)
+	s=arc-20240116; t=1725955747; c=relaxed/simple;
+	bh=CbhqKnSgFyeafE5ynffMFbxesySdvJj911eauV3Hiag=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tdADuoiIQYVeiejRRQesPztx+y7KSZ2tUpjVkB/nteXOtGqB6x5vfTU0lgaigO5m28U8IasELLs5mAQ0ly3A5e9tfL6g4faLLmNoigJKmJvZvjOUnZ4AShX4uOpQNjb6kwqFvoGseGNZUekxWpnt5eAJrOdAAq9BOhgRkd2VHK4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cqX6uCHF; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1725955746; x=1757491746;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=CbhqKnSgFyeafE5ynffMFbxesySdvJj911eauV3Hiag=;
+  b=cqX6uCHFwjbOXDIQMHxmp7bSfpW7ZlHGLPkccFiufDYcUslYlgW1SM9T
+   OkePCfXpAmKivPY7aQE7dGVr3f/fRdYU32z0GWPPBEZBZJWxJE1CbNPKG
+   Wy9g4MxEIEC13J/P30osgOM7cf4M3zZT8CmEVULAWInXqDvkGZxPMjsQR
+   my4ceIIjNCYthdiOE3PjZDpRZoqodBmVGcMDjCrBjqKnpmC1YOrJ5VnSE
+   r60HMFe5oPijHw0AYtwDDToxEkibG4S34fdbd0PEwfjE3OPVHUnfFWlWS
+   bJJ3x163kWvmSuJeaVLwbll6khcxm615DjUlZXVcHCiLEu+IpjZ3i1DV8
+   A==;
+X-CSE-ConnectionGUID: aQPbH1+HQki0C2kAMMzmbA==
+X-CSE-MsgGUID: 7XNj/sBTQvuWcJqcOxb8ow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="28466396"
+X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; 
+   d="scan'208";a="28466396"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Sep 2024 01:09:02 -0700
+X-CSE-ConnectionGUID: MM1uZ7wBTqatJjnpG6ldaA==
+X-CSE-MsgGUID: XnXP7mZjTj6X9ne0+UzxVQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; 
+   d="scan'208";a="71069793"
+Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
+  by fmviesa003.fm.intel.com with ESMTP; 10 Sep 2024 01:08:59 -0700
+Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1snvvk-0000GQ-2r;
+	Tue, 10 Sep 2024 08:08:56 +0000
+Date: Tue, 10 Sep 2024 16:08:16 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jerome Brunet <jbrunet@baylibre.com>, Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-i2c@vger.kernel.org
+Subject: Re: [PATCH 3/3] hwmon: (pmbus/tps25990): add initial support
+Message-ID: <202409101522.ZoP360wM-lkp@intel.com>
+References: <20240909-tps25990-v1-3-39b37e43e795@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240910-rp1-cfe-v5-4-9ab4c4c8eace@ideasonboard.com>
-References: <20240910-rp1-cfe-v5-0-9ab4c4c8eace@ideasonboard.com>
-In-Reply-To: <20240910-rp1-cfe-v5-0-9ab4c4c8eace@ideasonboard.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, 
- Naushir Patuck <naush@raspberrypi.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
- Kieran Bingham <kieran.bingham@ideasonboard.com>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6375;
- i=tomi.valkeinen@ideasonboard.com; h=from:subject:message-id;
- bh=ldQ0outL4QKLwryuC/LIt5eVxQJHAdWhRM3fm421H80=;
- b=owEBbQKS/ZANAwAIAfo9qoy8lh71AcsmYgBm3/5BqQ9yMYwo1Yar/vRA3IGB/2qZTLd5iW9CX
- 1aEDGSMJLGJAjMEAAEIAB0WIQTEOAw+ll79gQef86f6PaqMvJYe9QUCZt/+QQAKCRD6PaqMvJYe
- 9V1eD/9J5jhFiLHKyDfWf/5IC1O6eTUyCPP0UNHr2qh/Asjy2aLZSe4ToaZnolsKM44S+NXYXgd
- fzwm+XRzU1VbcMxHsll2BT7sEmYqkoU5STPHZ1El3Y3gQEE+UEwb7ciEMDscLg0f5k9cAm+xsAq
- 6gqltEvMUZjtqEcxjI1tR63GudWYVfqlMzHI/EYtHcVEFPyRvNBHgjXMTc9zTifWDhs7YN+HkNB
- 0t/18gdC4O/8F8oytoy6KUGIyfRO8bAbcK0VlAqqfPjys4kkuQMy0CXYkcVzVKlLjLbVrfvovzb
- 0IGdqq+w22tHC2TsDAAibc+OpPVQTrJQDfAyE9YDSzNvvEjA79ftqpLxwzaZTgnEavAoCeE6+cc
- lpfNUzZ6B5S6QOZU183H0np/y0nNJQe1fM61hOsr6STPKOfGPcXyspwLWAxC5dRwRBLImvQvjXH
- ICS/7a3WdRJFUAG5DJAEvMAIHpjN0H/K463xmxnE3voeyQB/UDPulRdLgRzST9Jyo+NctbcMEa0
- sujX0yLU5QYr09H+XqRw/7luXjTESMjQbCIu2l0D/vgJqpXV5XDoyLWGBk91P+0qadXaEyvBLBT
- bPnb7YvmeRb0lyKH4MdQkm4ZXwkKYI4phcM8U1rz/mVLhDgXLIf7eepXOZCcouh+YXz+oCDsIXM
- Z+bm4XYrR86ZHDg==
-X-Developer-Key: i=tomi.valkeinen@ideasonboard.com; a=openpgp;
- fpr=C4380C3E965EFD81079FF3A7FA3DAA8CBC961EF5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240909-tps25990-v1-3-39b37e43e795@baylibre.com>
 
-Add documentation for rp1-cfe driver.
+Hi Jerome,
 
-Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
----
- .../admin-guide/media/raspberrypi-rp1-cfe.dot      | 27 ++++++++
- .../admin-guide/media/raspberrypi-rp1-cfe.rst      | 78 ++++++++++++++++++++++
- Documentation/admin-guide/media/v4l-drivers.rst    |  1 +
- 3 files changed, 106 insertions(+)
+kernel test robot noticed the following build errors:
 
-diff --git a/Documentation/admin-guide/media/raspberrypi-rp1-cfe.dot b/Documentation/admin-guide/media/raspberrypi-rp1-cfe.dot
-new file mode 100644
-index 000000000000..7717f2291049
---- /dev/null
-+++ b/Documentation/admin-guide/media/raspberrypi-rp1-cfe.dot
-@@ -0,0 +1,27 @@
-+digraph board {
-+	rankdir=TB
-+	n00000001 [label="{{<port0> 0} | csi2\n/dev/v4l-subdev0 | {<port1> 1 | <port2> 2 | <port3> 3 | <port4> 4}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n00000001:port1 -> n00000011 [style=dashed]
-+	n00000001:port1 -> n00000007:port0
-+	n00000001:port2 -> n00000015
-+	n00000001:port2 -> n00000007:port0 [style=dashed]
-+	n00000001:port3 -> n00000019 [style=dashed]
-+	n00000001:port3 -> n00000007:port0 [style=dashed]
-+	n00000001:port4 -> n0000001d [style=dashed]
-+	n00000001:port4 -> n00000007:port0 [style=dashed]
-+	n00000007 [label="{{<port0> 0 | <port1> 1} | pisp-fe\n/dev/v4l-subdev1 | {<port2> 2 | <port3> 3 | <port4> 4}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n00000007:port2 -> n00000021
-+	n00000007:port3 -> n00000025 [style=dashed]
-+	n00000007:port4 -> n00000029
-+	n0000000d [label="{imx219 6-0010\n/dev/v4l-subdev2 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n0000000d:port0 -> n00000001:port0 [style=bold]
-+	n00000011 [label="rp1-cfe-csi2-ch0\n/dev/video0", shape=box, style=filled, fillcolor=yellow]
-+	n00000015 [label="rp1-cfe-csi2-ch1\n/dev/video1", shape=box, style=filled, fillcolor=yellow]
-+	n00000019 [label="rp1-cfe-csi2-ch2\n/dev/video2", shape=box, style=filled, fillcolor=yellow]
-+	n0000001d [label="rp1-cfe-csi2-ch3\n/dev/video3", shape=box, style=filled, fillcolor=yellow]
-+	n00000021 [label="rp1-cfe-fe-image0\n/dev/video4", shape=box, style=filled, fillcolor=yellow]
-+	n00000025 [label="rp1-cfe-fe-image1\n/dev/video5", shape=box, style=filled, fillcolor=yellow]
-+	n00000029 [label="rp1-cfe-fe-stats\n/dev/video6", shape=box, style=filled, fillcolor=yellow]
-+	n0000002d [label="rp1-cfe-fe-config\n/dev/video7", shape=box, style=filled, fillcolor=yellow]
-+	n0000002d -> n00000007:port1
-+}
-diff --git a/Documentation/admin-guide/media/raspberrypi-rp1-cfe.rst b/Documentation/admin-guide/media/raspberrypi-rp1-cfe.rst
-new file mode 100644
-index 000000000000..668d978a9875
---- /dev/null
-+++ b/Documentation/admin-guide/media/raspberrypi-rp1-cfe.rst
-@@ -0,0 +1,78 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+============================================
-+Raspberry Pi PiSP Camera Front End (rp1-cfe)
-+============================================
-+
-+The PiSP Camera Front End
-+=========================
-+
-+The PiSP Camera Front End (CFE) is a module which combines a CSI-2 receiver with
-+a simple ISP, called the Front End (FE).
-+
-+The CFE has four DMA engines and can write frames from four separate streams
-+received from the CSI-2 to the memory. One of those streams can also be routed
-+directly to the FE, which can do minimal image processing, write two versions
-+(e.g. non-scaled and downscaled versions) of the received frames to memory and
-+provide statistics of the received frames.
-+
-+The FE registers are documented in the `Raspberry Pi Image Signal Processor
-+(ISP) Specification document
-+<https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf>`_,
-+and example code for FE can be found in `libpisp
-+<https://github.com/raspberrypi/libpisp>`_.
-+
-+The rp1-cfe driver
-+==================
-+
-+The Raspberry Pi PiSP Camera Front End (rp1-cfe) driver is located under
-+drivers/media/platform/raspberrypi/rp1-cfe. It uses the `V4L2 API` to register
-+a number of video capture and output devices, the `V4L2 subdev API` to register
-+subdevices for the CSI-2 received and the FE that connects the video devices in
-+a single media graph realized using the `Media Controller (MC) API`.
-+
-+The media topology registered by the `rp1-cfe` driver, in this particular
-+example connected to an imx219 sensor, is the following one:
-+
-+.. _rp1-cfe-topology:
-+
-+.. kernel-figure:: raspberrypi-rp1-cfe.dot
-+    :alt:   Diagram of an example media pipeline topology
-+    :align: center
-+
-+The media graph contains the following video device nodes:
-+
-+- rp1-cfe-csi2-ch0: capture device for the first CSI-2 stream
-+- rp1-cfe-csi2-ch1: capture device for the second CSI-2 stream
-+- rp1-cfe-csi2-ch2: capture device for the third CSI-2 stream
-+- rp1-cfe-csi2-ch3: capture device for the fourth CSI-2 stream
-+- rp1-cfe-fe-image0: capture device for the first FE output
-+- rp1-cfe-fe-image1: capture device for the second FE output
-+- rp1-cfe-fe-stats: capture device for the FE statistics
-+- rp1-cfe-fe-config: output device for FE configuration
-+
-+rp1-cfe-csi2-chX
-+----------------
-+
-+The rp1-cfe-csi2-chX capture devices are normal V4L2 capture devices which
-+can be used to capture video frames or metadata received from the CSI-2.
-+
-+rp1-cfe-fe-image0, rp1-cfe-fe-image1
-+------------------------------------
-+
-+The rp1-cfe-fe-image0 and rp1-cfe-fe-image1 capture devices are used to write
-+the processed frames to memory.
-+
-+rp1-cfe-fe-stats
-+----------------
-+
-+The format of the FE statistics buffer is defined by
-+:c:type:`pisp_statistics` C structure and the meaning of each parameter is
-+described in the `PiSP specification` document.
-+
-+rp1-cfe-fe-config
-+-----------------
-+
-+The format of the FE configuration buffer is defined by
-+:c:type:`pisp_fe_config` C structure and the meaning of each parameter is
-+described in the `PiSP specification` document.
-diff --git a/Documentation/admin-guide/media/v4l-drivers.rst b/Documentation/admin-guide/media/v4l-drivers.rst
-index b6af448b9fe9..61da154e079a 100644
---- a/Documentation/admin-guide/media/v4l-drivers.rst
-+++ b/Documentation/admin-guide/media/v4l-drivers.rst
-@@ -26,6 +26,7 @@ Video4Linux (V4L) driver-specific documentation
- 	raspberrypi-pisp-be
- 	rcar-fdp1
- 	rkisp1
-+	raspberrypi-rp1-cfe
- 	saa7134
- 	si470x
- 	si4713
+[auto build test ERROR on d22bd451d5606411895ef55cb105277e4f4f6e54]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Jerome-Brunet/dt-bindings-hwmon-pmbus-add-ti-tps25990-documentation/20240909-234152
+base:   d22bd451d5606411895ef55cb105277e4f4f6e54
+patch link:    https://lore.kernel.org/r/20240909-tps25990-v1-3-39b37e43e795%40baylibre.com
+patch subject: [PATCH 3/3] hwmon: (pmbus/tps25990): add initial support
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20240910/202409101522.ZoP360wM-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240910/202409101522.ZoP360wM-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409101522.ZoP360wM-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/hwmon/pmbus/tps25990.c: In function 'tps25990_read_word':
+>> drivers/hwmon/pmbus/tps25990.c:267:23: error: implicit declaration of function 'FIELD_GET' [-Wimplicit-function-declaration]
+     267 |                 ret = FIELD_GET(PK_MIN_AVG_AVG_CNT, ret);
+         |                       ^~~~~~~~~
+   drivers/hwmon/pmbus/tps25990.c: In function 'tps25990_write_word':
+>> drivers/hwmon/pmbus/tps25990.c:337:46: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
+     337 |                                              FIELD_PREP(PK_MIN_AVG_AVG_CNT, value));
+         |                                              ^~~~~~~~~~
+
+
+vim +/FIELD_GET +267 drivers/hwmon/pmbus/tps25990.c
+
+   254	
+   255	static int tps25990_read_word(struct i2c_client *client,
+   256				      int page, int phase, int reg)
+   257	{
+   258		int ret, addr;
+   259	
+   260		addr = tps25990_get_addr(reg);
+   261		if (addr < 0)
+   262			return addr;
+   263	
+   264		switch (reg) {
+   265		case PMBUS_VIRT_SAMPLES:
+   266			ret = pmbus_read_byte_data(client, page, addr);
+ > 267			ret = FIELD_GET(PK_MIN_AVG_AVG_CNT, ret);
+   268			break;
+   269	
+   270		case PMBUS_IIN_OC_FAULT_LIMIT:
+   271			ret = pmbus_read_byte_data(client, page, addr);
+   272			break;
+   273	
+   274		default:
+   275			ret = pmbus_read_word_data(client, page, -1, addr);
+   276			break;
+   277		}
+   278	
+   279		if (ret >= 0)
+   280			ret = tps25990_read_adapt_value(reg, ret);
+   281	
+   282		return ret;
+   283	}
+   284	
+   285	static int tps25990_write_adapt_value(int reg, int val)
+   286	{
+   287		switch (reg) {
+   288		case PMBUS_VIN_UV_WARN_LIMIT:
+   289		case PMBUS_VIN_UV_FAULT_LIMIT:
+   290		case PMBUS_VIN_OV_WARN_LIMIT:
+   291		case PMBUS_VOUT_UV_WARN_LIMIT:
+   292		case PMBUS_IIN_OC_WARN_LIMIT:
+   293		case PMBUS_OT_WARN_LIMIT:
+   294		case PMBUS_OT_FAULT_LIMIT:
+   295		case PMBUS_PIN_OP_WARN_LIMIT:
+   296		case PMBUS_POWER_GOOD_OFF:
+   297			val >>= TPS25990_8B_SHIFT;
+   298			val = clamp(val, 0, 0xff);
+   299			break;
+   300	
+   301		case PMBUS_VIN_OV_FAULT_LIMIT:
+   302			val -= TPS25990_VIN_OVF_OFF;
+   303			val = DIV_ROUND_CLOSEST(val * TPS25990_VIN_OVF_DIV, TPS25990_VIN_OVF_NUM);
+   304			val = clamp_val(val, 0, 0xf);
+   305			break;
+   306	
+   307		case PMBUS_IIN_OC_FAULT_LIMIT:
+   308			val -= TPS25990_IIN_OCF_OFF;
+   309			val = DIV_ROUND_CLOSEST(val * TPS25990_IIN_OCF_DIV, TPS25990_IIN_OCF_NUM);
+   310			val = clamp_val(val, 0, 0x3f);
+   311			break;
+   312	
+   313		case PMBUS_VIRT_SAMPLES:
+   314			val = clamp_val(val, 1, 1 << PK_MIN_AVG_AVG_CNT);
+   315			val = ilog2(val);
+   316			break;
+   317		}
+   318	
+   319		return val;
+   320	}
+   321	
+   322	static int tps25990_write_word(struct i2c_client *client,
+   323				       int page, int reg, u16 value)
+   324	{
+   325		int addr, ret;
+   326	
+   327		addr = tps25990_get_addr(reg);
+   328		if (addr < 0)
+   329			return addr;
+   330	
+   331		value = tps25990_write_adapt_value(reg, value);
+   332	
+   333		switch (reg) {
+   334		case PMBUS_VIRT_SAMPLES:
+   335			ret = pmbus_update_byte_data(client, page, addr,
+   336						     PK_MIN_AVG_AVG_CNT,
+ > 337						     FIELD_PREP(PK_MIN_AVG_AVG_CNT, value));
+   338			break;
+   339	
+   340		case PMBUS_IIN_OC_FAULT_LIMIT:
+   341			ret = pmbus_write_byte_data(client, page, addr,
+   342						    value);
+   343			break;
+   344	
+   345		default:
+   346			ret = pmbus_write_word_data(client, page, addr, value);
+   347			break;
+   348		}
+   349	
+   350		return ret;
+   351	}
+   352	
 
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
