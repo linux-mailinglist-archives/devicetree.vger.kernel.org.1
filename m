@@ -1,56 +1,54 @@
-Return-Path: <devicetree+bounces-101705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D513597358D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 12:52:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE27E9735DD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 13:03:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98CEE28CC94
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:52:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 340ACB263A8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:55:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DDD7178367;
-	Tue, 10 Sep 2024 10:52:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0207B18C025;
+	Tue, 10 Sep 2024 10:54:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Uw/UQxB7";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="UPYXPqCN"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="sQtFE6T6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from a7-33.smtp-out.eu-west-1.amazonses.com (a7-33.smtp-out.eu-west-1.amazonses.com [54.240.7.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B674F23A6;
-	Tue, 10 Sep 2024 10:52:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30D84178367;
+	Tue, 10 Sep 2024 10:54:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725965544; cv=none; b=Kj8nvWAELx/HzQsOJloVViV+bEWlmNIhS0f2eJqm0jQSEdu3tpbyvuzXqvll+Z8ZlqHAHTh23fKmBTDvt5BTqPaU9poLw7/PSC0orcDpiJArF1V97gAZ/woFCOfmd5vxval3nf8bCNJlgYHMlE8d2naz9ndTDXZNkufLbOhEw0M=
+	t=1725965694; cv=none; b=dyGM5LcOTwxyLpxHcq9bVbfptF+vljNXbMAeHDDaX7Qob5RkmM4W83lsGbwZUuZOaz/1OtD0l+Fvrj06i5G9oDva8Ip4v/FHLnSi3ZtLEdrkrUgSPraZbwE//O/I3+up6Qjehj09H9Zib1/JUF0Uk640bVQiVql4NH3hXg1RVSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725965544; c=relaxed/simple;
-	bh=oHfNoX1WgFE0WfNPPoO6VH/fExk0MByWcc4Y41dOXFE=;
+	s=arc-20240116; t=1725965694; c=relaxed/simple;
+	bh=nTshTYXDuoRsJjBDBn9k4Vfdcx08sJyuyY/rUgJxXAM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ndbBpdSYhCdkekK5NcWaXI6KzCuLsZragqmi7aYrhtIooKZ4+c9M1+gkODRhIuOd6YhSiQGlyVxF7hkmKDocrrW5/8AaoMf/NeXL8x4ufbvYJBlNBgZ/b0Nunru7GcqKnp0TRsobmJUGAQfuSnOzSrYsTVT5GKA7NDz4gjMMbZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Uw/UQxB7; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=UPYXPqCN; arc=none smtp.client-ip=54.240.7.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazonses.collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1725965541;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding;
-	bh=oHfNoX1WgFE0WfNPPoO6VH/fExk0MByWcc4Y41dOXFE=;
-	b=Uw/UQxB7kRwtua6Visa5NFKMeD+6bCDjCwgfCNgLkWIkBtiV6gkQdOIG4GJfZMy5
-	yDNoR3jK1A8lV+Dl+UdpwVN+8OXYMY8D8LeRb89Vz9wkKxMBNMU0EVCL/VKDNGw8AH7
-	MXvHiQYhYg03UfUG4uAqp0s7aeMqhP56HZd/KJX6ivq4gp1URC8uuEnpU17TpUXj8SU
-	+V5Z0oqHmFDiLKcSVc7FXAXCVvnznuA8HfT1WEAzKSyY0aLmig5M+q9KrVjYZVzsn4x
-	8KJC1NgnF+uRu5MVVY7aSWN+cXrMrJsM7Iy5YbW+Hluk7P5GiF/lnXvjMzNzVfExvST
-	RtTjpe8uGA==
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1725965541;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID;
-	bh=oHfNoX1WgFE0WfNPPoO6VH/fExk0MByWcc4Y41dOXFE=;
-	b=UPYXPqCN4IynNJClUxeQu234nL9lBI2mlOwsU3Xrzflyncz9XUEJL1uHJsBvkHrB
-	BkkThpsCUP1J4CyvCKAh8KIuwkUqcFZRDs1k3bagj5AoqMJGwtSG4A8VgvwJ+FE/2ax
-	j4rscSNQnIs42MAhpnb2EErzqwUkNZn+ErZjRdVY=
-Message-ID: <01020191db901d32-5c318445-b8f4-4f4d-86db-316dc0db04ec-000000@eu-west-1.amazonses.com>
-Date: Tue, 10 Sep 2024 10:52:20 +0000
+	 In-Reply-To:Content-Type; b=br5QOJy/LjyMKKQHOKNsyRzUOV/dGER1ZEpW9C+ha8J5VMp90nlgdV9dgAlKDsAHRMlFPRD7ah1KV9jX69FmpiUC3fwr+kpStuOev0p0DayHfHj4SbCQ90tRmg1AtnjzKu+Y9XC83mGubxSSI7Cr1QL9qBESId41dsSLmq+y/Os=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=sQtFE6T6; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 56C5189038;
+	Tue, 10 Sep 2024 12:54:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1725965691;
+	bh=H9Pt/1b3LY4StMRpPEsQErPs1e6om5K3JEvYE7BLC0g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=sQtFE6T6oTdvf2r1z42sRsmVIj6a2PjCBkQfolqg3JrFdzWxEaahaHErOy0zUbsot
+	 8LqE5TrYZjF8Dt4uLBlbadjJtgejjuurB4I8C5ko3atLJ/gzjLGDg1UAnKSMPhekFh
+	 a9IsBfG9zeo40vXRaP3GeNEpKMGI1nCFiUH7zP1Il1FPTYf1X9L6E9kfTe6jm53tj0
+	 EAJ0Yrcm1U3z9WKMBuXDVdsEp/kKUaX/5toEHqNc9XUYC0RWWjoqylXawFoBabswpP
+	 rL9ML6v2XC3YuWxG5PzzSmepa7eowe0GaR5xa5CPYs0L1QRAX9skmyE36fZuVOY85z
+	 s9hraZCaMxwLQ==
+Message-ID: <7a938ca9-8099-4901-9f05-c3347c38fc53@denx.de>
+Date: Tue, 10 Sep 2024 12:53:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,33 +56,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: mt8183: set DMIC one-wire mode on Damu
-To: Hsin-Te Yuan <yuanhsinte@chromium.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	Hsin-Yi Wang <hsinyi@chromium.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-References: <20240910-one-wire-v2-1-2bb40d5a3cf8@chromium.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v5 8/9] wifi: wilc1000: Register wiphy after reading out
+ chipid
+To: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+ linux-wireless@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ Ajay Singh <ajay.kathat@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20240909193035.69823-1-marex@denx.de>
+ <20240909193035.69823-8-marex@denx.de>
+ <769f1405-62fc-4457-a958-b644c706140f@bootlin.com>
 Content-Language: en-US
-In-Reply-To: <20240910-one-wire-v2-1-2bb40d5a3cf8@chromium.org>
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <769f1405-62fc-4457-a958-b644c706140f@bootlin.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
-X-SES-Outgoing: 2024.09.10-54.240.7.33
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Il 10/09/24 10:47, Hsin-Te Yuan ha scritto:
-> From: Hsin-Yi Wang <hsinyi@chromium.org>
+On 9/10/24 12:08 PM, Alexis Lothoré wrote:
+> On 9/9/24 21:29, Marek Vasut wrote:
+>> Register wiphy after reading out chipid, so the chipid can be
+>> used to determine chip features and not advertise WPA3/SAE
+>> support to userspace on WILC3000. Note that wilc_netdev_cleanup()
+>> will deregister the wiphy in fail path.
+>>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
 > 
-> Sets DMIC one-wire mode on Damu.
+> [...]
 > 
-> Fixes: cabc71b08eb5 ("arm64: dts: mt8183: Add kukui-jacuzzi-damu board")
-> Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+>> @@ -1804,14 +1803,8 @@ static struct wilc *wilc_create_wiphy(struct device *dev)
+>>   				BIT(NL80211_IFTYPE_P2P_GO) |
+>>   				BIT(NL80211_IFTYPE_P2P_CLIENT);
+>>   	wiphy->flags |= WIPHY_FLAG_HAS_REMAIN_ON_CHANNEL;
+>> -	wiphy->features |= NL80211_FEATURE_SAE;
+>>   	set_wiphy_dev(wiphy, dev);
+>>   	wl->wiphy = wiphy;
+>> -	ret = wiphy_register(wiphy);
+>> -	if (ret) {
+>> -		wiphy_free(wiphy);
+>> -		return NULL;
+>> -	}
+> 
+> If I am reading the patch correctly, there are still some failure paths in
+> wilc_cfg80211_init which try to call wiphy_unregister on the (not registered
+> anymore in there) wphy.
+>>   	return wl;
+>>   }
+>>   
+>> @@ -1861,6 +1854,14 @@ int wilc_cfg80211_init(struct wilc **wilc, struct device *dev, int io_type,
+>>   }
+>>   EXPORT_SYMBOL_GPL(wilc_cfg80211_init);
+>>   
+>> +int wilc_cfg80211_register(struct wilc *wilc)
+>> +{
+>> +	wilc->wiphy->features |= NL80211_FEATURE_SAE;
+> 
+> Even if I get the general need, it feels weird to have parts of the wphy init
+> performed in wilc_create_wiphy, and some parts (the features field) here.
+> Wouldn't it work to just move wilc_create_wiphy content here, since wphy will
+> not be usable anyway before eventually registering it ?
+That's what I thought initially too, but look closely at 
+wilc_create_wiphy():
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+struct wilc *wilc_create_wiphy(struct device *dev)
+{
+...
+struct wiphy *wiphy;
+struct wilc *wl;
+...
+wiphy = wiphy_new(&wilc_cfg80211_ops, sizeof(*wl));
+...
+wl = wiphy_priv(wiphy); // <----------- HERE , *wl is struct wilc
+...
+return wl;
+}
 
-
+That 'struct wilc' is allocated as part of wiphy_new() and used all 
+around the place before we reach wiphy_register() much later on.
 
