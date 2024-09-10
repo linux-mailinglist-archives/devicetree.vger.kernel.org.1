@@ -1,129 +1,97 @@
-Return-Path: <devicetree+bounces-101678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F38DE9730F5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 12:05:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12247973291
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 12:24:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 58C43B257E9
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:05:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 449311C243E1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:24:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B013E1917E1;
-	Tue, 10 Sep 2024 10:03:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09EC219415E;
+	Tue, 10 Sep 2024 10:18:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="geiVBppQ"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="r84AtY2E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5D661917D6;
-	Tue, 10 Sep 2024 10:03:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75C6A1922F1;
+	Tue, 10 Sep 2024 10:18:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725962627; cv=none; b=OsyKoJqzyOgLTwjWAUZsXFvv79MNyA7Kz1o0r/J1xh7wzsSiVDLKQ+NTkrJbpnpBi2DtoozrJgLRL7DTXJ6lefD+FH9N+iVFc3FMAAu6U84vACuUuDp9XWH84jXT0BTeWwHqJEHpIdY815OjnRAVfsgckH3mVzhv7RCihoSlsrU=
+	t=1725963520; cv=none; b=p5JGP7+irwLf98fRKaiQRUZG+SIh6uYfvGjxUvkPFfoHoooqjRmfION0KwfAVAKraJx2t8ikZAIm4lVVESaw5jKra6kwC3LvtNfg9DXKXrc9Dq/ze357vGvQvSxL91Z55iA6RlNoShv8FwHf4kk0db8sM82Txi74T4sIrlHOxF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725962627; c=relaxed/simple;
-	bh=W64MFvFVpIvTxWzm0aAbmkcRhJVLUdYZqRBC9+A2u+E=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
-	 References:In-Reply-To; b=AgrCcDLkmzpk27fndR+oX0GqYpMjGwrjvfSG/68QFe17bPjh8V6IzoqTr2d1VAmJkLenk7OeXpkz64rq3hdVGaZe8nq9hZfJ4506VZr+JcN+OW7sMm1MlutotH7G36YqLHxPcIutFbQkOfTSr3TgElRiT1j8NdSDWLD1cl71/bc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=geiVBppQ; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 00348240008;
-	Tue, 10 Sep 2024 10:03:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1725962617;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=t1Un8sAVYGgks6pYsecrKnYuyHFKooLsXNJOWsSFhmI=;
-	b=geiVBppQsTTU2/i/dssl1ET33GdvY1dSOyrplSTQuyTNCWXJFmG2RJ92d4RxEjdlc19GLQ
-	jxkKFCMr3ZkGwKro92VR4lgklTYEHLJkK92NFmqTFDYqGKCD+I/X6YpZml50lI8C2fD6xE
-	VVlnnNFjWmJAzqzFmOEFWNNCcVYVbRDx6Gdj62H5zZQuZjEcC1Xk2P33BH8PHnsIEIY9NA
-	q+k9IMis1Bdt3geooQ5BcU9fNWFmgG+3PxASPyqy1PWPXrhVOZ72u/mE7u4k/1dbs2AR7J
-	B4GWxoiSnAL8Q33N40V8D2bSDeQ8YS4BbyhY722YnL4sdqpl8/ixQRhdObryGg==
+	s=arc-20240116; t=1725963520; c=relaxed/simple;
+	bh=BytnPY46mnPRDlB8ROZftu1Csx92PsKunJhrjNZ8cYk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qoPd3YkyENJ5N5VRCIIde2atoArRvk8S7XFpZ79Q53phqKu08AgVMC/h7S+ieU4brxD/2mUXhjDCAU6w6IRka0GWLndIKjgUKyZ80L0nm7h3UfmkJYNh1Fb/L68Pso407Ve7+8FgEBHbnPH7/YAAHl3ccuAxVLzAL6m9kMV2s0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=r84AtY2E; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 0468E88F5F;
+	Tue, 10 Sep 2024 12:18:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1725963512;
+	bh=ziKQobiBowH8lBD7d0jJWzB9mGazXQuMiiUtscv86V4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=r84AtY2EzH6Et5nkj+QJ8IikvqlGOCB7SLOFRg+dfCrFZQYyrMCRrtgU5uEcVTIxz
+	 dkdePWg97mUE9VunxI65jprc6i9CLaNyxa/AlqLC0o9LA99pw9EELOEFvUvbuQJyzM
+	 CAuvuCigb68XubUhGtYz4A2WQIHgVc2WtXskdSq9HfeFiINoQYjrkibbUVpserFoxc
+	 lFTns48qX1JloYXOWjiW2EcbYBd8hMGh5nJaN33Jx9G9yRHn27oc2f39ajE8ynzr60
+	 9/zBk/oPuEDbKbkS5mWOaKrKzK/jlDSjMvtxrtSldrl6JRUegQ6WwIdym3YZEQ3nj8
+	 bEaQPq+WDeLYw==
+Message-ID: <3f576f28-2ef4-4f00-9c01-38837ee6b3d6@denx.de>
+Date: Tue, 10 Sep 2024 11:45:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 10 Sep 2024 12:03:35 +0200
-Message-Id: <D42IONMJMLQS.37KAIQ5GKLRTU@bootlin.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v5 02/12] dt-bindings: usb: ti,j721e-usb: add
- ti,j7200-usb compatible
-Cc: "Mathias Nyman" <mathias.nyman@intel.com>, <linux-usb@vger.kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Kevin Hilman"
- <khilman@kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, <devicetree@vger.kernel.org>, "Tero Kristo"
- <kristo@kernel.org>, <linux-kernel@vger.kernel.org>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, <linux-arm-kernel@lists.infradead.org>,
- "Nishanth Menon" <nm@ti.com>, "Vignesh Raghavendra" <vigneshr@ti.com>,
- "Pawel Laszczak" <pawell@cadence.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Roger Quadros" <rogerq@kernel.org>, "Peter
- Chen" <peter.chen@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20240726-s2r-cdns-v5-0-8664bfb032ac@bootlin.com>
- <20240726-s2r-cdns-v5-2-8664bfb032ac@bootlin.com>
- <172202197161.1924212.4114467370508864411.robh@kernel.org>
-In-Reply-To: <172202197161.1924212.4114467370508864411.robh@kernel.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/9] wifi: wilc1000: Fill in missing error handling
+To: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+ linux-wireless@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ Ajay Singh <ajay.kathat@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20240909193035.69823-1-marex@denx.de>
+ <20240909193035.69823-4-marex@denx.de>
+ <5ae8121f-8ead-4d7e-9fbd-417c273474e5@bootlin.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <5ae8121f-8ead-4d7e-9fbd-417c273474e5@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Fri Jul 26, 2024 at 9:26 PM CEST, Rob Herring (Arm) wrote:
-> On Fri, 26 Jul 2024 20:17:50 +0200, Th=C3=A9o Lebrun wrote:
-> > On J7200, the controller & its wrapper are reset on resume. It has the
-> > same behavior as ti,j721e-usb with a different SoC integration.
-> >=20
-> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> > ---
-> >  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 4 +++-
-> >  1 file changed, 3 insertions(+), 1 deletion(-)
-> >=20
->
-> My bot found errors running 'make dt_binding_check' on your patch:
+On 9/10/24 11:13 AM, Alexis Lothoré wrote:
+> On 9/9/24 21:29, Marek Vasut wrote:
+>> Add error handling to chip_wakeup() and propagate the errors throughout
+>> the entire driver. Add error handling to acquire_bus()/release_bus() and
+>> host_sleep_notify()/host_wakeup_notify() functions as a result as well.
+>> Fill the error handling to all call sites.
+> 
+> Out of curiosity, what tree/branch are you using as a base for this series ? I
+> wanted to pull it locally to also test it on wilc1000, but it fails to apply
+> this patch, and the failure points to a conflict with one of my patch which has
+> been merged quite some time ago in wireless-next:
+> https://lore.kernel.org/all/20240613-wilc_suspend-v1-4-c2f766d0988c@bootlin.com/
+next-20240909 with this extra patch:
 
-Clearly this patch was wrong.
-Past me trusted future me to verify and future me trusted past me.
-Sorry!
-
-For reference, new patch content will look like below.
-This doesn't trigger a warning on:
-
-    make dt_binding_check DT_SCHEMA_FILES=3Dti,j721e-usb
-
-------------------------------------------------------------------------
-
-diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml b/Docu=
-mentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-index 653a89586f4e..d14c18b64086 100644
---- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-+++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-@@ -14,7 +14,9 @@ properties:
-     oneOf:
-       - const: ti,j721e-usb
-       - items:
--          - const: ti,am64-usb
-+          - enum:
-+              - ti,am64-usb
-+              - ti,j7200-usb
-           - const: ti,j721e-usb
-
-   reg:
-
-------------------------------------------------------------------------
-
-Regards,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+wifi: wilc1000: Keep slot powered on during suspend/resume
 
