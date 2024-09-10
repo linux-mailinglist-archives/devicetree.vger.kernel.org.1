@@ -1,146 +1,122 @@
-Return-Path: <devicetree+bounces-101777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94B70973CCE
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 17:58:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0388E973CE8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 18:04:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B69F1F24A44
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 15:58:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A9A41F24DA9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 16:04:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F15A119DFAE;
-	Tue, 10 Sep 2024 15:58:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2643619EEB7;
+	Tue, 10 Sep 2024 16:04:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="3YvGKIku";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="nOXDYXyK"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="zukOn88a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DB49191F97;
-	Tue, 10 Sep 2024 15:58:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A812198824;
+	Tue, 10 Sep 2024 16:04:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725983899; cv=none; b=pPDdm6xx7b1BD3LxA92pfQf30Ngf/23y7adXOX+Va+AhaUkVbnakh8Ywv0teobNdaMi86LyhjAukJoP4iyk8cI7cOP7EUh9EQ5cbmq1qfrm3HWOnETph6TXshtkoa49C6rxSURHQPZ4deps+AFEvz+b4rOXME2NQKe+zI9Z5mM4=
+	t=1725984263; cv=none; b=SGh4wSjx460wDXpjmv50JdrVyJq/ldytcjpRy7aCtxXVJMtR41cwIV+x/OGG6AUiYKLeOx/qXwIYHgqscgGXvNpAhMAas+MWwGfVpTnbgLJJeVqxkBUVj9xY0byPJs0831urQzRDaoq+9C3yZBbvxsbZAd+DDPCcgs5v/wUY/Qw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725983899; c=relaxed/simple;
-	bh=BcDQ0tP+lMxKgQtrtnU7NkgYviUPvUeZT8xDP42dGxY=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=HrnNlZLl0c4Kw5VakIEZXCyM3Z7hNdjxBKSFxmNjzKricO391SA9Qe/YjWk+UMR/OVuEhnNujNyQVgkHMAVEYdYxeqU87Jgs+PJWGaDUZ0oo6JxxkuUxGdFUoHk72X9CFQGCEIguWuqENYl9w5NOaQQcMuoUDP7qi5SU03VbkrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=3YvGKIku; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=nOXDYXyK; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1725983896;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=bYuy0gE/Csnq6CPjPynB+thwHl+NK+QDx3CCg79tANw=;
-	b=3YvGKIkulMjWSxMFtwlNIAzmYpBeHw1URc4C+ycSUDYGdD7pxLEXc2TowKAXLwT5dEjtNa
-	BxO24vkHV9ZJ3ucu78nX1lVOgRX/F8a5bbW+3kykcbckVInhZ45OmFFv2CWKJwnMXGxg3i
-	YWKNX2ZprZdXQD1B+hreQXeebltGuXPo/mMusaHNZu1RbA2KpuXnaKbs6Q9UrVZ7a7H10G
-	SDWTc2wM7i1QWGTW+Gftr/SQujQNlUSYzBDX9dsaPJclyKdaCGPDDoyPurjD70hUfYbZPv
-	6sGlVTfnhOANxZxdP+n2f9Am6kHPAjEnTANBJPU0WLft8WIHS5OMApmbjXupnQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1725983896;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=bYuy0gE/Csnq6CPjPynB+thwHl+NK+QDx3CCg79tANw=;
-	b=nOXDYXyK81ou96bJppft20Co7EtkQ9rWp78zV/nliuCMzMamIfannFVkrWzA+tpOrsUzs3
-	WgA9TSp9xOC4dICg==
-To: Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org, Broadcom
- internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Florian Fainelli
- <florian.fainelli@broadcom.com>, Jim Quinlan <jim2101024@gmail.com>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>, Bjorn Helgaas
- <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- kw@linux.com, Philipp Zabel <p.zabel@pengutronix.de>, Andrea della Porta
- <andrea.porta@suse.com>, Phil Elwell <phil@raspberrypi.com>, Jonathan Bell
- <jonathan@raspberrypi.com>, Stanimir Varbanov <svarbanov@suse.de>
-Subject: Re: [PATCH v2 -next 03/11] irqchip: mip: Add Broadcom bcm2712 MSI-X
- interrupt controller
-In-Reply-To: <20240910151845.17308-4-svarbanov@suse.de>
-References: <20240910151845.17308-1-svarbanov@suse.de>
- <20240910151845.17308-4-svarbanov@suse.de>
-Date: Tue, 10 Sep 2024 17:58:16 +0200
-Message-ID: <87o74va4br.ffs@tglx>
+	s=arc-20240116; t=1725984263; c=relaxed/simple;
+	bh=lyEi07OYy0HDwQcI/tVSb6icCUDckoGveROhmrvlc/o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WNQshbJpOrJgKKUJ8IOfiLPmTOKLrMDzC2m5U/nd4kck35FL47/e1rJYfRUsIjE98lFztNm87w56D86EwW983MVNw6x4ft1DmUEEEMY5bOmOrYXXrfetGEmWlOI08dD0L/7yWhNQ5g3Xj3MSq95kFf3nGhGtYDtScSHE/qn6nac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=zukOn88a; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=0q5V/HDrRh41vRS9Fz5fpK96NnFQDgfsGbq54/gK0tY=; b=zukOn88ac0n/yjjixjNa40s1sv
+	llWM2qRl4mMc7Pt+CvyOs+4A69pme6vbBNYLQIwmPi6z30w7pltfk3vgXyypj59QFxu/A1OPmheEI
+	36XfzYEZitalx1+rI9X5TDGBB6Bkj1NjOPFfWvmcIo+G9qYrMBcT3oj3k2MQsRPxMnGw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1so3LY-0077mS-Af; Tue, 10 Sep 2024 18:04:04 +0200
+Date: Tue, 10 Sep 2024 18:04:04 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Suraj Jaiswal <jsuraj@qti.qualcomm.com>
+Cc: Andrew Halaney <ahalaney@redhat.com>,
+	"Suraj Jaiswal (QUIC)" <quic_jsuraj@quicinc.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	"bhupesh.sharma@linaro.org" <bhupesh.sharma@linaro.org>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-stm32@st-md-mailman.stormreply.com" <linux-stm32@st-md-mailman.stormreply.com>,
+	Prasad Sodagudi <psodagud@quicinc.com>,
+	Rob Herring <robh@kernel.org>, kernel <kernel@quicinc.com>
+Subject: Re: [PATCH net] net: stmmac: Stop using a single dma_map() for
+ multiple descriptors
+Message-ID: <417420b8-3010-4223-a683-55a0daf3b962@lunn.ch>
+References: <20240902095436.3756093-1-quic_jsuraj@quicinc.com>
+ <yy2prsz3tjqwjwxgsrumt3qt2d62gdvjwqsti3favtfmf7m5qs@eychxx5qz25f>
+ <CYYPR02MB9788D9D0D2424B4F8361A736E79A2@CYYPR02MB9788.namprd02.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CYYPR02MB9788D9D0D2424B4F8361A736E79A2@CYYPR02MB9788.namprd02.prod.outlook.com>
 
-On Tue, Sep 10 2024 at 18:18, Stanimir Varbanov wrote:
-> +
-> +struct mip_priv {
-> +	/* used to protect bitmap alloc/free */
-> +	spinlock_t lock;
-> +	void __iomem *base;
-> +	u64 msg_addr;
-> +	u32 msi_base;
-> +	u32 num_msis;
-> +	unsigned long *bitmap;
-> +	struct irq_domain *parent;
+> On Mon, Sep 02, 2024 at 03:24:36PM GMT, Suraj Jaiswal wrote:
+> > Currently same page address is shared
+> > between multiple buffer addresses and causing smmu fault for other 
+> > descriptor if address hold by one descriptor got cleaned.
+> > Allocate separate buffer address for each descriptor for TSO path so 
+> > that if one descriptor cleared it should not clean other descriptor 
+> > address.
+> 
+> I think maybe you mean something like:
+> 
+>     Currently in the TSO case a page is mapped with dma_map_single(), and then
+>     the resulting dma address is referenced (and offset) by multiple
+>     descriptors until the whole region is programmed into the descriptors.
+> 
+>     This makes it possible for stmmac_tx_clean() to dma_unmap() the first of the
+>     already processed descriptors, while the rest are still being processed
+>     by the DMA engine. This leads to an iommu fault due to the DMA engine using
+>     unmapped memory as seen below:
+> 
+>     <insert splat>
+> 
+>     You can reproduce this easily by <reproduction steps>.
+> 
+>     To fix this, let's map each descriptor's memory reference individually.
+>     This way there's no risk of unmapping a region that's still being
+>     referenced by the DMA engine in a later descriptor.
+> 
+> That's a bit nitpicky wording wise, but your first sentence is hard for me to follow (buffer addresses seems to mean descriptor?). I think showing a splat and mentioning how to reproduce is always a bonus as well.
 
-https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#struct-declarations-and-initializers
+What might also be interesting is some benchmark
+numbers. dma_map_single() is not always cheap, since it has to flush
+the cache. I've no idea if only the first call is expensive, and all
+the subsequent calls are cheap? Depending on how expensive it is, some
+sort of refcounting might be cheaper?
 
-And please read the rest of the document too.
-
-> +};
-> +
-> +static void mip_mask_msi_irq(struct irq_data *d)
-> +{
-> +	pci_msi_mask_irq(d);
-> +	irq_chip_mask_parent(d);
-> +}
-> +
-> +static void mip_unmask_msi_irq(struct irq_data *d)
-> +{
-> +	pci_msi_unmask_irq(d);
-> +	irq_chip_unmask_parent(d);
-
-This is asymmetric vs. mask(), but that's just the usual copy & pasta
-problem.
-
-> +}
-> +static int mip_init_domains(struct mip_priv *priv, struct device_node *np)
-> +{
-> +	struct irq_domain *middle_domain, *msi_domain;
-> +
-> +	middle_domain = irq_domain_add_hierarchy(priv->parent, 0,
-> +						 priv->num_msis, np,
-> +						 &mip_middle_domain_ops,
-> +						 priv);
-> +	if (!middle_domain)
-> +		return -ENOMEM;
-> +
-> +	msi_domain = pci_msi_create_irq_domain(of_node_to_fwnode(np),
-> +					       &mip_msi_domain_info,
-> +					       middle_domain);
-> +	if (!msi_domain) {
-> +		irq_domain_remove(middle_domain);
-> +		return -ENOMEM;
-> +	}
-
-This is not much different. Please convert this to a proper MSI parent
-domain and let the PCI/MSI core handle the PCI/MSI part.
-
-See
-
-https://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git/log/?h=irq-msi-2024-07-22
-
-for reference.
-
-Thanks,
-
-        tglx
+     Andrew
 
