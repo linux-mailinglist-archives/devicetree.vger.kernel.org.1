@@ -1,266 +1,243 @@
-Return-Path: <devicetree+bounces-101655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9A55972D36
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 11:15:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7D9B972D4B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 11:20:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74A88284D2B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 09:15:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB9571C2170B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 09:20:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BECB187857;
-	Tue, 10 Sep 2024 09:15:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6B4B1885A6;
+	Tue, 10 Sep 2024 09:20:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JVGDZc7C"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="sz/n1MBa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A21171671;
-	Tue, 10 Sep 2024 09:15:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31E20188000;
+	Tue, 10 Sep 2024 09:20:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725959732; cv=none; b=Nlnu0BSAm7LWkVIXuQf+EOKJj2X9hXZ8eKKztl3cypn860dNYLDwS5ogG4F3vi1BOH2eSp7iWaDy0EiH1OU8jvf6qDrRTD61+BfhriAk5N95WRotSQ5iHejvtQjMV6XWaUsxoSxvV86bg2beGJ57UbSdMh8+ZtEKcqVcoCLhoYg=
+	t=1725960006; cv=none; b=k2uDqjDIaWqzbPPGjHyX6Zdbm18ts2EEcrCU6PaJgUob3EPgHAWG7GNytuvl+BuX99l5fqCOFMCcVTMmobhNqZSJLonHiy99ZfdXgpnpzPmiILWTx68iM4QHGqAlE+2xuWm7NO+AEvXVMwgxQ0mU8IQrK0LgJRnM61p4MwGKNCM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725959732; c=relaxed/simple;
-	bh=hzh+J6/Xpo/8eBZY2lc5T4MswvsUoOpgSkJML+t7I6A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=WVBte+Ou3lOq08doAP+OeVQvyK408ee+nO8kgqXs91toIe9PYEu2kIYP50mlV2ZL8uptdSdwj1809B6rJpdGvckCf30gWSuHx/cfJD3Po1Q2TdmEL/ZObg++byUeWM5wpTZeq8jcqrWMi31TegtAZSFvYZU8YhHzAgT7k4iP0pk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JVGDZc7C; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48A57eDu021294;
-	Tue, 10 Sep 2024 09:15:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Ti5eEUzUoscS5gULG+Nev2Yltim4D2dB65KfWC7XflU=; b=JVGDZc7Cfs+fRh2/
-	/N7mrjTR0a8TmxwsDwQfHe22IpykeW+Dcm7I1NHHtT9K+LTYwIjjVIk81VyBWpoD
-	Wn4fv8MXtYyry79VEYQUYY1JF9Ac6ukliONWxBtA3eJs7QUKADA3Aae+7Ln/AVrh
-	jB6cg6ewZF1H7U+ztnpHoe4CK8g8xEUh60p7NXvn4AdEAw3H9AF+3s082L0Wk4DK
-	Q/cjeQfrzpS4EueaqEczPjCf5c8wegOwK68tkWy9WoubcfR6p7DKI115ETc6acNU
-	8Ap7lD9EhnMuuYvVy4L989TZ4ZB81N5g4vbCCv6+wftWTUili9gSZDNQEiZw/7EL
-	fSwkUA==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gybpncdm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Sep 2024 09:15:22 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48A9FMvd005215
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Sep 2024 09:15:22 GMT
-Received: from [10.218.13.83] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 10 Sep
- 2024 02:15:16 -0700
-Message-ID: <687db538-1a41-4353-89fd-d1869d960a12@quicinc.com>
-Date: Tue, 10 Sep 2024 14:45:13 +0530
+	s=arc-20240116; t=1725960006; c=relaxed/simple;
+	bh=uWl48R8ff+pv/4REvISIbQgoAX1QsXJSsRp5hLHUmqw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T/tJM/v70yrRvp+CTevVygpyxadI3ib3Yvrps6vSLKZJvAbagiuTUadwCrKUpSIQsI4KxdwEd5QvGB3DOug+o1eMhrhWb7DbxH8TE2gOzh2dqZUGuTB14Q0C8/OK2U5TdBc9K3TUy9GFMXnnLOMHBY2rDo3mxILBjoqDSuGnwdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=sz/n1MBa; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (213-229-8-243.static.upcbusiness.at [213.229.8.243])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 53E06C8A;
+	Tue, 10 Sep 2024 11:18:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1725959924;
+	bh=uWl48R8ff+pv/4REvISIbQgoAX1QsXJSsRp5hLHUmqw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sz/n1MBazVOmv1d/pouy/rRn6isDcArxQOFvTwxZRout1a+5OR1+Rn24SrrrAiqDx
+	 T+itHotH23y38uC6PRnY8b6KMkX3Aa1DthE7PNVbXfrLgvkBA4cEMClj00mJT08h7n
+	 J/+TdXh9fx4CyL5iP2bvHzea+fI75R5jHhVy3hto=
+Date: Tue, 10 Sep 2024 11:19:57 +0200
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, Naushir Patuck <naush@raspberrypi.com>, 
+	Kieran Bingham <kieran.bingham@ideasonboard.com>, kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH v4 3/4] media: raspberrypi: Add support for RP1-CFE
+Message-ID: <jdtjdspf4qyrgn6jmyxeab5ueo53wjd5vuhvlpin3pdiyifwht@dndfcqnmv7sd>
+References: <20240904-rp1-cfe-v4-3-f1b5b3d69c81@ideasonboard.com>
+ <202409051822.ZzUGw3XQ-lkp@intel.com>
+ <20240905111120.GK16183@pendragon.ideasonboard.com>
+ <40cc1e95-b9fc-4c27-9428-1698d0bf9d25@ideasonboard.com>
+ <763b3147-d7cb-44a7-b73b-8f7f4fd622ab@ideasonboard.com>
+ <yib2r4wisxvk3kgogbjqawrpmfq6lcezfk4xjmftj44jzkbclc@icapodv2ffzk>
+ <d5188c0a-4a52-4378-89b1-48f606e448cc@ideasonboard.com>
+ <ggtlreq5gyhzfdv6yzeuia46y7fxpuyvg236prig52t43xsl2a@crlqks2nhfpe>
+ <20240909134516.GA9448@pendragon.ideasonboard.com>
+ <Zt8ZysTT5DIZr-J7@kekkonen.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] i2c: i2c-qcom-geni: Enable i2c controller sharing
- between two subsystems
-To: <neil.armstrong@linaro.org>, <konrad.dybcio@linaro.org>,
-        <andersson@kernel.org>, <andi.shyti@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
-        <conor+dt@kernel.org>, <agross@kernel.org>,
-        <devicetree@vger.kernel.org>, <vkoul@kernel.org>, <linux@treblig.org>,
-        <dan.carpenter@linaro.org>, <Frank.Li@nxp.com>,
-        <konradybcio@kernel.org>
-CC: <quic_vdadhani@quicinc.com>
-References: <20240906191438.4104329-1-quic_msavaliy@quicinc.com>
- <20240906191438.4104329-5-quic_msavaliy@quicinc.com>
- <b3a5dd54-90ba-4d75-9650-efbff12cddeb@linaro.org>
- <3bd27b6d-74b8-4f7b-b3eb-64682442bbda@quicinc.com>
- <3dddd226-c726-434e-8828-c12f76a71752@linaro.org>
-Content-Language: en-US
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-In-Reply-To: <3dddd226-c726-434e-8828-c12f76a71752@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: LPWdNrYVz1yK5lL6_Dbzj4GOWfWbbaEO
-X-Proofpoint-GUID: LPWdNrYVz1yK5lL6_Dbzj4GOWfWbbaEO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=0 phishscore=0 spamscore=0 adultscore=0
- lowpriorityscore=0 mlxlogscore=999 clxscore=1015 bulkscore=0
- impostorscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409100070
+In-Reply-To: <Zt8ZysTT5DIZr-J7@kekkonen.localdomain>
 
-Hi Neil,
+Hi Sakari, Tomi
 
-On 9/9/2024 6:34 PM, neil.armstrong@linaro.org wrote:
-> On 09/09/2024 11:18, Mukesh Kumar Savaliya wrote:
->> Hi Neil,
->>
->> On 9/9/2024 2:24 PM, neil.armstrong@linaro.org wrote:
->>> Hi,
->>>
->>> On 06/09/2024 21:14, Mukesh Kumar Savaliya wrote:
->>>> Add support to share I2C SE by two Subsystems in a mutually 
->>>> exclusive way.
->>>> Use  "qcom,shared-se" flag in a particular i2c instance node if the
->>>> usecase requires i2c controller to be shared.
->>>>
->>>> I2C driver just need to mark first_msg and last_msg flag to help 
->>>> indicate
->>>> GPI driver to  take lock and unlock TRE there by protecting from 
->>>> concurrent
->>>> access from other EE or Subsystem.
->>>>
->>>> gpi_create_i2c_tre() function at gpi.c will take care of adding Lock 
->>>> and
->>>> Unlock TRE for the respective transfer operations.
->>>>
->>>> Since the GPIOs are also shared for the i2c bus between two SS, do not
->>>> touch GPIO configuration during runtime suspend and only turn off the
->>>> clocks. This will allow other SS to continue to transfer the data
->>>> without any disturbance over the IO lines.
->>>
->>> This doesn't answer my question about what would be the behavior if one
->>> use uses, for example, GPI DMA, and the Linux kernel FIFO mode or SE 
->>> DMA ?
->>>
->> Shared usecase is not supported for non GSI mode (FIFO and DMA), it 
->> should be static usecase. Dynamic sharing from two clients of two 
->> subsystems is only for GSI mode. Hope this helps ?
-> 
-> Sure, this is why I proposed on v1 cover letter reply to add:
-Sure, i will add in cover letter and code check combining with 
-fifo_disable check.
-> ==============><=====================================================================
-> diff --git a/drivers/i2c/busses/i2c-qcom-geni.c 
-> b/drivers/i2c/busses/i2c-qcom-geni.c
-> index ee2e431601a6..a15825ea56de 100644
-> --- a/drivers/i2c/busses/i2c-qcom-geni.c
-> +++ b/drivers/i2c/busses/i2c-qcom-geni.c
-> @@ -885,7 +885,7 @@ static int geni_i2c_probe(struct platform_device *pdev)
->           else
->                   fifo_disable = readl_relaxed(gi2c->se.base + 
-> GENI_IF_DISABLE_RO) & FIFO_IF_DISABLE;
-> 
-> -       if (fifo_disable) {
-> +       if (gi2c->is_shared || fifo_disable) {
-  Should be ANDING logically, as we need to combine both check. Shared
-  usecase possible only for fifo_disable.
+On Mon, Sep 09, 2024 at 03:52:42PM GMT, Sakari Ailus wrote:
+> Hi Laurent,
+>
+> On Mon, Sep 09, 2024 at 04:45:16PM +0300, Laurent Pinchart wrote:
+> > On Mon, Sep 09, 2024 at 03:29:30PM +0200, Jacopo Mondi wrote:
+> > > On Mon, Sep 09, 2024 at 01:04:35PM GMT, Tomi Valkeinen wrote:
+> > > > On 09/09/2024 12:13, Jacopo Mondi wrote:
+> > > > > On Mon, Sep 09, 2024 at 08:22:59AM GMT, Tomi Valkeinen wrote:
+> > > > > > On 09/09/2024 08:08, Tomi Valkeinen wrote:
+> > > > > > > On 05/09/2024 14:11, Laurent Pinchart wrote:
+> > > > > > > > On Thu, Sep 05, 2024 at 06:50:48PM +0800, kernel test robot wrote:
+> > > > > > > > > Hi Tomi,
+> > > > > > > > >
+> > > > > > > > > kernel test robot noticed the following build warnings:
+> > > > > > > > >
+> > > > > > > > > [auto build test WARNING on 431c1646e1f86b949fa3685efc50b660a364c2b6]
+> > > > > > > > >
+> > > > > > > > > url:    https://github.com/intel-lab-lkp/linux/commits/Tomi-
+> > > > > > > > > Valkeinen/media-uapi-Add-meta-formats-for-PiSP-FE-config-and-
+> > > > > > > > > stats/20240904-192729
+> > > > > > > > > base:   431c1646e1f86b949fa3685efc50b660a364c2b6
+> > > > > > > > > patch link:    https://lore.kernel.org/r/20240904-rp1-cfe-v4-3-
+> > > > > > > > > f1b5b3d69c81%40ideasonboard.com
+> > > > > > > > > patch subject: [PATCH v4 3/4] media: raspberrypi: Add support
+> > > > > > > > > for RP1-CFE
+> > > > > > > > > config: m68k-allmodconfig (https://download.01.org/0day-ci/
+> > > > > > > > > archive/20240905/202409051822.ZzUGw3XQ-lkp@intel.com/config)
+> > > > > > > > > compiler: m68k-linux-gcc (GCC) 14.1.0
+> > > > > > > > > reproduce (this is a W=1 build):
+> > > > > > > > > (https://download.01.org/0day-ci/
+> > > > > > > > > archive/20240905/202409051822.ZzUGw3XQ-lkp@intel.com/reproduce)
+> > > > > > > > >
+> > > > > > > > > If you fix the issue in a separate patch/commit (i.e. not just a
+> > > > > > > > > new version of
+> > > > > > > > > the same patch/commit), kindly add following tags
+> > > > > > > > > | Reported-by: kernel test robot <lkp@intel.com>
+> > > > > > > > > | Closes: https://lore.kernel.org/oe-kbuild-
+> > > > > > > > > all/202409051822.ZzUGw3XQ-lkp@intel.com/
+> > > > > > > > >
+> > > > > > > > > All warnings (new ones prefixed by >>):
+> > > > > > > > >
+> > > > > > > > > > > drivers/media/platform/raspberrypi/rp1-cfe/cfe.c:2445:12:
+> > > > > > > > > > > warning: 'cfe_runtime_resume' defined but not used
+> > > > > > > > > > > [-Wunused-function]
+> > > > > > > > >       2445 | static int cfe_runtime_resume(struct device *dev)
+> > > > > > > > >            |            ^~~~~~~~~~~~~~~~~~
+> > > > > > > > > > > drivers/media/platform/raspberrypi/rp1-cfe/cfe.c:2435:12:
+> > > > > > > > > > > warning: 'cfe_runtime_suspend' defined but not used
+> > > > > > > > > > > [-Wunused-function]
+> > > > > > > > >       2435 | static int cfe_runtime_suspend(struct device *dev)
+> > > > > > > > >            |            ^~~~~~~~~~~~~~~~~~~
+> > > > > > > > > vim +/cfe_runtime_resume +2445
+> > > > > > > > > drivers/media/platform/raspberrypi/ rp1-cfe/cfe.c
+> > > > > > > >
+> > > > > > > > The recommended way to fix this is to switch from SET_RUNTIME_PM_OPS()
+> > > > > > > > to RUNTIME_PM_OPS() and use pm_ptr() to set .driver.pm. This being said,
+> > > > > > > > the driver won't work on a kernel with !CONFIG_PM given how you
+> > > > > > > > implemented probe() and remove().
+> > > > > > > >
+> > > > > > > > The pisp-be driver suffered from the same issue and Jacopo fixed it in
+> > > > > > > > the last version. You can have a look at implement something similar.
+> > > > > > >
+> > > > > > > I can't right away think of any reason to not just depend on CONFIG_PM
+> > > > > > > and be done with it without any tricks. Do you know if there's a reason?
+> > > > >
+> > > > > We had the same discussion, and even if I would be fine depending on
+> > > > > CONFIG_PM, supporting !CONFIG_PM is not that much work, I kept it as
+> > > > > an optional dependency (it was suggested during the review as well)
+> > > > >
+> > > > > >
+> > > > > > Also, I don't think pisp-be is correct. It just calls
+> > > > > > pispbe_runtime_resume() in probe() to wake the IP up (which only enables
+> > > > > > pisp clock), without telling the runtime PM about it. This means the parent
+> > > > > > device and the suppliers may not be powered up.
+> > > > >
+> > > > > Are you referring to the code currently in the tree or to this patch ?
+> > > > > https://patchwork.linuxtv.org/project/linux-media/patch/20240904095836.344833-5-jacopo.mondi@ideasonboard.com/
+> > > >
+> > > > Ah, I missed that one.
+> > > >
+> > > > I don't think it fixes the issue I mentioned. If we have PM enabled, and the
+> > > > parent device requires powering up for the child device (BE) to be
+> > > > accessible, the driver will crash when calling pispbe_hw_init(). I think you
+> > > > should call pm_runtime_set_active() before calling pispbe_runtime_resume().
+> > >
+> > > As discussed, this is not a problem currently for BE, but indeed you
+> > > have a point.
 
-  if(gi2c->is_shared && fifo_disable) {
->                   /* FIFO is disabled, so we can only use GPI DMA */
->                   gi2c->gpi_mode = true;
->                   ret = setup_gpi_dma(gi2c);
-> ==============><=====================================================================
-> 
-> Thanks,
-> Neil
-> 
->>> Because it seems to "fix" only the GPI DMA shared case.
->>>
->>> Neil
->>>
->>>>
->>>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
->>>> ---
->>>>   drivers/i2c/busses/i2c-qcom-geni.c | 29 ++++++++++++++++++++++-------
->>>>   1 file changed, 22 insertions(+), 7 deletions(-)
->>>>
->>>> diff --git a/drivers/i2c/busses/i2c-qcom-geni.c 
->>>> b/drivers/i2c/busses/i2c-qcom-geni.c
->>>> index eebb0cbb6ca4..ee2e431601a6 100644
->>>> --- a/drivers/i2c/busses/i2c-qcom-geni.c
->>>> +++ b/drivers/i2c/busses/i2c-qcom-geni.c
->>>> @@ -1,5 +1,6 @@
->>>>   // SPDX-License-Identifier: GPL-2.0
->>>>   // Copyright (c) 2017-2018, The Linux Foundation. All rights 
->>>> reserved.
->>>> +// Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights 
->>>> reserved.
->>>>   #include <linux/acpi.h>
->>>>   #include <linux/clk.h>
->>>> @@ -99,6 +100,7 @@ struct geni_i2c_dev {
->>>>       struct dma_chan *rx_c;
->>>>       bool gpi_mode;
->>>>       bool abort_done;
->>>> +    bool is_shared;
->>>>   };
->>>>   struct geni_i2c_desc {
->>>> @@ -602,6 +604,7 @@ static int geni_i2c_gpi_xfer(struct geni_i2c_dev 
->>>> *gi2c, struct i2c_msg msgs[], i
->>>>       peripheral.clk_div = itr->clk_div;
->>>>       peripheral.set_config = 1;
->>>>       peripheral.multi_msg = false;
->>>> +    peripheral.shared_se = gi2c->is_shared;
->>>>       for (i = 0; i < num; i++) {
->>>>           gi2c->cur = &msgs[i];
->>>> @@ -612,6 +615,8 @@ static int geni_i2c_gpi_xfer(struct geni_i2c_dev 
->>>> *gi2c, struct i2c_msg msgs[], i
->>>>           if (i < num - 1)
->>>>               peripheral.stretch = 1;
->>>> +        peripheral.first_msg = (i == 0);
->>>> +        peripheral.last_msg = (i == num - 1);
->>>>           peripheral.addr = msgs[i].addr;
->>>>           ret =  geni_i2c_gpi(gi2c, &msgs[i], &config,
->>>> @@ -631,8 +636,11 @@ static int geni_i2c_gpi_xfer(struct 
->>>> geni_i2c_dev *gi2c, struct i2c_msg msgs[], i
->>>>           dma_async_issue_pending(gi2c->tx_c);
->>>>           time_left = wait_for_completion_timeout(&gi2c->done, 
->>>> XFER_TIMEOUT);
->>>> -        if (!time_left)
->>>> +        if (!time_left) {
->>>> +            dev_err(gi2c->se.dev, "I2C timeout gpi flags:%d 
->>>> addr:0x%x\n",
->>>> +                        gi2c->cur->flags, gi2c->cur->addr);
->>>>               gi2c->err = -ETIMEDOUT;
->>>> +        }
->>>>           if (gi2c->err) {
->>>>               ret = gi2c->err;
->>>> @@ -800,6 +808,11 @@ static int geni_i2c_probe(struct 
->>>> platform_device *pdev)
->>>>           gi2c->clk_freq_out = KHZ(100);
->>>>       }
->>>> +    if (of_property_read_bool(pdev->dev.of_node, "qcom,shared-se")) {
->>>> +        gi2c->is_shared = true;
->>>> +        dev_dbg(&pdev->dev, "Shared SE Usecase\n");
->>>> +    }
->>>> +
->>>>       if (has_acpi_companion(dev))
->>>>           ACPI_COMPANION_SET(&gi2c->adap.dev, ACPI_COMPANION(dev));
->>>> @@ -962,14 +975,16 @@ static int __maybe_unused 
->>>> geni_i2c_runtime_suspend(struct device *dev)
->>>>       struct geni_i2c_dev *gi2c = dev_get_drvdata(dev);
->>>>       disable_irq(gi2c->irq);
->>>> -    ret = geni_se_resources_off(&gi2c->se);
->>>> -    if (ret) {
->>>> -        enable_irq(gi2c->irq);
->>>> -        return ret;
->>>> -
->>>> +    if (gi2c->is_shared) {
->>>> +        geni_se_clks_off(&gi2c->se);
->>>>       } else {
->>>> -        gi2c->suspended = 1;
->>>> +        ret = geni_se_resources_off(&gi2c->se);
->>>> +        if (ret) {
->>>> +            enable_irq(gi2c->irq);
->>>> +            return ret;
->>>> +        }
->>>>       }
->>>> +    gi2c->suspended = 1;
->>>>       clk_disable_unprepare(gi2c->core_clk);
->>>
->>>
-> 
-> 
+I admit the runtime_pm intrinsics are obscure to me, but Laurent just
+made me notice something.
+
+Consider the following scenario
+
+*) Kernel compiled with CONFIG_PM
+*) i2c sensor driver that supports both CONFIG_PM and !CONFIG_PM by:
+  *) Manually power up the sensor during probe
+  *) Call pm_runtime_enable() and pm_runtime_set_active() at the end
+     of the probe routine after having accessed the chip over i2c
+     (like most, if not all the i2c drivers in mainline do including
+     ccs)
+
+All these drivers work, and during the probe routine before accessing
+the HW, they don't need to power up the parent i2c controller.
+
+Might it be that during probe() the parent is guaranteed to be enabled ?
+
+I add a look in the driver-core and pm Documentation/ but found
+nothing.
+
+A quick stroll in driver/base/ got me to __device_attach() and it
+seems parents are powered up before attaching a driver to a device
+(which in my understanding should be what ends up calling probe()).
+Clearly I've no real understanding of what I'm talking about when it
+comes to driver-core, so take this with a grain of salt.
+
+> > >
+> > > Sad note: most of all the occurrences of "grep set_active" in
+> > > drivers/media/platform/ show that set_active() is used as I've done in
+> > > my patch
+> > >
+> > > > However, you said above that "supporting !CONFIG_PM is not that much work".
+> > > > Maybe not. But how much work is it to get it right (for both PM and !PM),
+> > > > and make sure it stays right? =).
+> > > >
+> > > > Just my opinion, but if there are zero use cases for the !PM, I would just
+> > > > go with "depends on PM" to keep the driver simpler, less bug-prone, and
+> > > > easier to maintain.
+> >
+> > I'm fine with that, and for platform drivers, that's my preferred
+> > option. Sakari ?
+>
+> I'm concerned with your (?) recent finding that many architectures don't
+> have support for CONFIG_PM. In this case the device is very unlikely to be
+> used outside ARM(64) so I guess it's fine.
+>
+
+Also, this IP is RPi specific, and the !CONFIG_PM case is not used or
+tested on Pi.
+
+However, I think this current patch is correct (assuming the above
+reasoning on i2c sensor drivers is correct) and doesn't require
+CONFIG_PM, so I would be tempted to keep this version.
+
+> >
+> > > I don't see a use case for !PM and we confirmed with RPi they don't
+> > > need to support it. During the review of a previous version of the BE
+> > > driver iirc I've been asked to support !PM but I'm not sure I recall
+> > > the reasons.
+> >
+> > I hope it wasn't me :-)
+>
+> Me neither. Although it'd be nice: CONFIG_PM isn't a hardware specific
+> option as such. As one part of the kernel requires !CONFIG_PM and another
+> CONFIG_PM, we can expect problems, at least in principle.
+>
+> Ideally all architectures would support it so CONFIG_PM could be removed
+> and we could say the problem has been solved. :-)
+>
+> --
+> Regards,
+>
+> Sakari Ailus
 
