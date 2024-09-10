@@ -1,171 +1,181 @@
-Return-Path: <devicetree+bounces-101571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1629897278B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 05:14:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCED497279B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 05:22:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C23B4283F3E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 03:14:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DD881F249E3
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 03:22:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DF0216B3B7;
-	Tue, 10 Sep 2024 03:14:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC28114D719;
+	Tue, 10 Sep 2024 03:22:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="s95YbUGs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YKtP3pIq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from HK3PR03CU002.outbound.protection.outlook.com (mail-eastasiaazon11011005.outbound.protection.outlook.com [52.101.129.5])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E48B7157465;
-	Tue, 10 Sep 2024 03:14:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.129.5
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725938071; cv=fail; b=C3lDZRe5t4RpQvz0rJJjZj2Xiu1/HAYiA+/zIMEFaLrLmBW4bK/+sX42m0xa1rnLCf+PK3xlEIz26pK4DsgdOVV1IBy9xeIWrsAkImdnJKiQqP00zUPqupQy3hpuvjKg/O14TWtwbNnLZrA2NXeMMcpyj7pFd7Y+XRXh42bnejo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725938071; c=relaxed/simple;
-	bh=TNYN1HDGvLfrIZhzJ6os82zN60iYSRtSlRyjuUv2BB4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=Uzbk2CMa9DGfAv/Xg390FOLu7JXECf8pZY4cLqcy8t17S/Tv9Tf2HdLgLj18VgParTepy9yjTNbes1QUtnX9H23gJ8WdDRjDE73jnHFp/1tVASKkdjJSUMGN2kOKVPozL2n0iNYNJGN+CojytlzqPQL9Z3+FSNWfLmmzYpU5xnQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=s95YbUGs; arc=fail smtp.client-ip=52.101.129.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XgNLmhlC4DhuW4PQf9weE6ksxJOBx8IDsrqSyisk41T83OR4U4ZTlBJaoAFqq7byfSbEwKfiaJUy3En1c7RWeK5eb6kmdCtzpYmBVOgkpKggDNBuBBlribdNCNTOCmLwU3cpoJxoW5460dfZ1SMBkltXh7cMbSfTpJbXOnpATfZgZqRUdAtSVvKvTNKnIlmbmyGpAGmX2gTNJG9jvJU0/z67GyPXJgNRLMul+5sX+uhLe9p9ixu/cdxHS+S8iZ9DHd/XRZwfIgGkdMMQTZcbCPfK30mRIGzAjK9tLr4XjcDZL4sGiWuUfdWH+JIZeogNLq1K9LvmCichHHslBViS3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8eLOfRy1O9CIq8PXazbJE5wEMn2JL0rsvV6UeIi0NRo=;
- b=o4xMxdF9ovQP5MmmsC+hMne9ptcSl5RMtwzx1D4V/dBlEIpJTv/iP96zapO8sIu0EiLeDb2UP2zdDadCt8qsTRI9kszjGgR/4XPESa6kkawC9K7bPKxE7ukrki27W+SVU7ma+Szqo1t+F0qBUbNHFyUfIKjImatW34loePwWJg5qAiv5CUnFb0ykX3WsC88BHMpQojVltp4N5lIgXHVVT06UODVsLUZTMtMqeJK23L6/c5Io3YrMdHjG0wYeV/ISlw9yjriTycQYfWabBQ2hWlvuyFeawkmiqg/JrdvCVidbboRsHOGgefPqWmice+W51Wduf0KSILqnXWGns37Zdg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
- (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8eLOfRy1O9CIq8PXazbJE5wEMn2JL0rsvV6UeIi0NRo=;
- b=s95YbUGsq15pWo9NSNILEZ9UaWium8SReAvWi+pL0gD3i10ysyILIB5s1Lv1jams2IBn8now1s94pzxJ/oPIWXznFqOauv69//MBHpEm2/ic+RVReOYdJfGL2rYBhJHo517fJXqwcz5miQ62YH328Ddh86/u4hZnUThNXNXG0dLHVCd7/g7F/IfE4cp1gR9gOB6b1p8wC13zfknhdeP+FPELr9icuIwVyF+VzXzWZo5ynl10bG6FEB2oQJwvajIdABit9zQcl+d6qq1TR6Cq3chZgoifmkIJ1UQKvXbYJn4B3uO6l2df37/yye8c/oN6DbYhwvkcjuBeAcejyml4Hw==
-Received: from SI1PR02CA0029.apcprd02.prod.outlook.com (2603:1096:4:1f4::20)
- by KL1PR04MB6852.apcprd04.prod.outlook.com (2603:1096:820:d7::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.27; Tue, 10 Sep
- 2024 03:14:23 +0000
-Received: from HK3PEPF0000021B.apcprd03.prod.outlook.com
- (2603:1096:4:1f4:cafe::97) by SI1PR02CA0029.outlook.office365.com
- (2603:1096:4:1f4::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24 via Frontend
- Transport; Tue, 10 Sep 2024 03:14:23 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
- smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
-Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
- designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
- client-ip=211.20.1.79; helo=localhost.localdomain;
-Received: from localhost.localdomain (211.20.1.79) by
- HK3PEPF0000021B.mail.protection.outlook.com (10.167.8.37) with Microsoft SMTP
- Server id 15.20.7918.13 via Frontend Transport; Tue, 10 Sep 2024 03:14:21
- +0000
-From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-To: patrick@stwcx.xyz,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] ARM: dts: aspeed: yosemite4: Enable watchdog2
-Date: Tue, 10 Sep 2024 11:14:19 +0800
-Message-Id: <20240910031420.2295727-1-Delphine_CC_Chiu@wiwynn.com>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ED9A13634A;
+	Tue, 10 Sep 2024 03:22:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725938527; cv=none; b=td8oXwxOAZRlSxpreRuP/5IJD5CHFdFd5DLjUKWnvXk7kMlH6WKMa8qSh97IbDy24ZjYBVilavim/wb4RbxBvGdxyD8YsfiboRwTF7LsykLdAbBaOtj5vOS8836dkWU48VYp08EyAhnV9621pMq5QQUjw8yZcdMXoqV7owEXPDo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725938527; c=relaxed/simple;
+	bh=8cxRyHSeBpjU1pXWRi18M5b41/aLzXrHgO1SZO7hLwY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MXqAqV3iTZQh5F0cvf+r+Qz2aj2vlmjGDYwfh+aHGwmzX8vsJkv5Bmjm1yvWpe/NfkfiJgOCQojXiCuE4yaXgj1+D4Ticjg46txLQ/bVbkqo9zWsEgjIISZFzbzt/mkaUvMMLDLYihb21dSypViY7pKOn2lNksPdk4eC162qI5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YKtP3pIq; arc=none smtp.client-ip=209.85.222.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7a99fd0535bso235664385a.3;
+        Mon, 09 Sep 2024 20:22:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725938525; x=1726543325; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=I8bdJGOdx2d1IizNCB9ViMz9g0V5IvdFfVu8Im0IDPA=;
+        b=YKtP3pIq3kgUmLHPsql9IWW1iFX+uDczJthccz7dZHTLhKYfJqUnNAOiRno4UUC1lV
+         eOqCTnurmHC5CccwCMROI8AgsBhw6bReqYM4aIKsk7eH4VRTubPRs7oO6G4NsrAyaU2y
+         F0aZdBe2cKiMYuxZi4FVXx6dEsT9zzdyNdbNUL3orbQT1e41FAEv1J2SD1GP2js+q71Z
+         Po1FyUPRQh1BAtVRR1nMjDSfvyWpX2zW1Ekfpkem/m3sLLQFQxTPRwdx13O2jhMgRvHH
+         uWgwARclQHD99Rb3XkBcWRv+VWwV1yxfKWyWs7UNHW+qWACe0YFTP2TC2xvChd8C7qJg
+         ly7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725938525; x=1726543325;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=I8bdJGOdx2d1IizNCB9ViMz9g0V5IvdFfVu8Im0IDPA=;
+        b=WrmEv98Px7DJY8q7J8RebEJQMoHZy6Hw4lrEZMWc5S/iU92RbQG8bRFTpZSasECuOh
+         mEWNB7KFGBTqmQflbrj/8jyMh3p5o2EBSylHNqNMrJr2K9AmBzQIB3j3Vern44lQKjgD
+         mrOmXngIuTijyuTkqDLXQJgEUIvCXC2gTWogYbr80YD7aK2uqpwBdPgAZ5MVP3D3XQEk
+         ZpL4S2zD7Q+VTMcCXyDzbtn3w07/hamv+6RiByymv5iTgv9q77UNWYyJo/Srmjs3Ng4F
+         o3iY9nPgjaEfE6L0j8C6r2xDtgroPrUuxp57hbVwGr/bOb+qlPZxq5+ueZdIGngjrlrc
+         1WMg==
+X-Forwarded-Encrypted: i=1; AJvYcCVh9cAZhzkaONbfV3EHC3xRY2/lWnduhkgBvVby8qx5DtbCCnVt0Js5Yayfpp1qWHzNNpzCZG76wsUc@vger.kernel.org, AJvYcCW6ohAKeKlGYboyrbekPjAWsAWmv0sdJg5P2G5Ct+7J/9F5PE9WHPXQwO+mPFHGXy0OILS/N9FUvfm6apNS@vger.kernel.org, AJvYcCWHiT7JZvSPE76dEmgER+vlBzfAXTc22BZ37WHCQ5S0MdpXYXMNQtIVoljqj+w7dyjQfzgiiM2658gB@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhmHnV6YDBdGEKyfE4X97TOWqAf8fbAODVcpER2LpsoRxsLLcQ
+	wW51OWmDWWp4y1aj1rE6dIeeNGQ1HX4wfm7IVrAzvzn9vFnT94FW
+X-Google-Smtp-Source: AGHT+IGoym0OdCqi+QXcbZia8VxoxQUUvP6XMZdznCQMrLzyxpiZjWOxh5VQEvZ/SkJ3Lz/m2dUQfQ==
+X-Received: by 2002:a05:620a:430c:b0:7a2:32e:3c47 with SMTP id af79cd13be357-7a997340133mr1697968185a.34.1725938524890;
+        Mon, 09 Sep 2024 20:22:04 -0700 (PDT)
+Received: from VM-Arch (ool-1826d901.dyn.optonline.net. [24.38.217.1])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a9a7a1e3a8sm272236385a.117.2024.09.09.20.21.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Sep 2024 20:21:55 -0700 (PDT)
+Date: Mon, 9 Sep 2024 23:21:52 -0400
+From: Alex Lanzano <lanzano.alex@gmail.com>
+To: kernel test robot <lkp@intel.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jagath Jog J <jagathjog1996@gmail.com>, Ramona Gradinariu <ramona.bolboaca13@gmail.com>, 
+	Nuno Sa <nuno.sa@analog.com>, oe-kbuild-all@lists.linux.dev, skhan@linuxfoundation.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] iio: imu: Add i2c driver for bmi270 imu
+Message-ID: <f5zruqfmohoaohr2qwqug33dsar5q3fubhspbwuisxxblni6h4@paioiqyjzeg5>
+References: <20240909043254.611589-3-lanzano.alex@gmail.com>
+ <202409100026.17N3K11W-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: HK3PEPF0000021B:EE_|KL1PR04MB6852:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 623474df-3c40-4201-68ba-08dcd146ab14
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|36860700013|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?u+pvcp2Y01QwH+/jR6daL+8c+3k3gkLdcsiNeXoVyzN9cuC2/CgRKndRoQqf?=
- =?us-ascii?Q?MkZQBLQl3e9TlHQbV3m+P3Cz48xxMYe50gc7Fmkt7b6vhrxve1vruPOB2ooZ?=
- =?us-ascii?Q?LyesShapuBr/PKTtpMZfB+ZPy99qx0LEcy/k++duA8LRHiXxtwSULTtZDrPk?=
- =?us-ascii?Q?Zqf5Ib9NH7ceqIRabhiC4sotfREXKNIA78Y8tyNmZ802gZAAKuXO651oCEu4?=
- =?us-ascii?Q?wmwXmWzNHqYZ+1adrLtfHXGhUqS96sAf+sTXATlQ7WAxCy8VcAGyoFNQ3IHz?=
- =?us-ascii?Q?VBoMnvJ6aKTQvIdhW6svYJt3udogh6REnoxx4rGYQID1rmYYL+R7tOUBnDIE?=
- =?us-ascii?Q?goDt2QtCxvAK2CUfOtoGW92S9WrYmy3V4JQgljwBugpgjr2B2JdNW0Q73hPd?=
- =?us-ascii?Q?TJsay81G5AdAYbcx9IKSY5URsdTsYA68KRjJ6Xe2boAMShXPEUUdCBzq4vNF?=
- =?us-ascii?Q?rmXz8WRwxSHGzWVTQ/Yxz5lz7//fe74NcGxO3a9kH9Pq9pT3uAJR23czsouj?=
- =?us-ascii?Q?1fM6mTDSLMYHa+HoB1I8BRc1Dp7aEd/0feqKOgGMlYIHZuRgc3bH56f+qWjj?=
- =?us-ascii?Q?btpl32LVEmoJRnl1d6OL6lq9F+1FckVANk0hDi3TNDpdVhP9LA9qXLi8HP7n?=
- =?us-ascii?Q?s7w/2wikvEFYCm7EhKn2mk5+3D90so7WCsR41PSNjhG17ubAS5Ek68z9nJWa?=
- =?us-ascii?Q?KqHhLEAoWVTQpmgzcv5tjRQGYXTClBmZGCUsGPpdypflDw2N4AI/UYm6vJjk?=
- =?us-ascii?Q?1dGiyc32N7dXN/MYy6S8eNUdHQJDzjxn3l9DxHKyxKilgmB4PfXaweKjfKwN?=
- =?us-ascii?Q?8N8f+tIm4/lWJ/+IyXoElnC+UweEohM8A4n8aUihpIDB8YaOEOmrfrXWDmXQ?=
- =?us-ascii?Q?NNpdd/wNSRNUUuPayfOTSNEI+4kF0dSlOdqI3jtu4Ms9Qi35jcXGZmWaaMrA?=
- =?us-ascii?Q?ejC0mu6i0oXVCoD2aH6AZaRCF9wA54PfI6PZ+emXwqZwAo5fCVoW6PkcYxcs?=
- =?us-ascii?Q?WCoudp9t5yW9O+aemuMt003NWZc7I08pXPynsoQS6dyiRLwCvwpUFDWXm/EJ?=
- =?us-ascii?Q?sKkdaIeh982gFCsjLURQSYjPaFfRDPjYoJVG8dyZvN+RK409Cz1dmxnu0Y4G?=
- =?us-ascii?Q?z/RfGFH2tBlGvb20gZ/nnXxFQWvvAtv3rLPEivF15TrJk3Vn4F8Qgf/zn+ko?=
- =?us-ascii?Q?YeEwSbAnOt5ULGiClW7jItiERXROJVSbxGdIxzTmwUxF7Y74Wf2CrYMn2yAc?=
- =?us-ascii?Q?QN3dM+UJE1T3/Fy94YHLo2eA86MYWEcaovk+dzmQB2QsUX2MjhuY22QdRIEQ?=
- =?us-ascii?Q?+TeB2gNYpNx0nrsq7ZO6VBi6PQEmOCWTtm3oniywN8PSFiRyDOy1hwgSeUYm?=
- =?us-ascii?Q?f5oumiBK73PAch1WlzgjwJ2sVjA3fBSSLTMWBvT465S4VDAw7HDx1ylNyCU1?=
- =?us-ascii?Q?hEwhVuXipVJST8GMu2FOsNrb9E3gNtOi?=
-X-Forefront-Antispam-Report:
-	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(7416014)(376014)(36860700013)(1800799024)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: wiwynn.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2024 03:14:21.4800
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 623474df-3c40-4201-68ba-08dcd146ab14
-X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
-X-MS-Exchange-CrossTenant-AuthSource:
-	HK3PEPF0000021B.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR04MB6852
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <202409100026.17N3K11W-lkp@intel.com>
 
-From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+On Tue, Sep 10, 2024 at 01:03:04AM GMT, kernel test robot wrote:
+> Hi Alex,
+> 
+> kernel test robot noticed the following build errors:
+> 
+> [auto build test ERROR on jic23-iio/togreg]
+> [also build test ERROR on robh/for-next linus/master v6.11-rc7 next-20240909]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+> url:    https://github.com/intel-lab-lkp/linux/commits/Alex-Lanzano/dt-bindings-iio-imu-add-bmi270-bindings/20240909-123509
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+> patch link:    https://lore.kernel.org/r/20240909043254.611589-3-lanzano.alex%40gmail.com
+> patch subject: [PATCH v3 2/2] iio: imu: Add i2c driver for bmi270 imu
+> config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20240910/202409100026.17N3K11W-lkp@intel.com/config)
+> compiler: m68k-linux-gcc (GCC) 14.1.0
+> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240910/202409100026.17N3K11W-lkp@intel.com/reproduce)
+> 
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202409100026.17N3K11W-lkp@intel.com/
+> 
+> All errors (new ones prefixed by >>):
+> 
+>    drivers/iio/imu/bmi270/bmi270_core.c: In function 'bmi270_configure_imu':
+> >> drivers/iio/imu/bmi270/bmi270_core.c:180:31: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
+>      180 |                               FIELD_PREP(BMI270_ACC_CONF_ODR_MSK,
+>          |                               ^~~~~~~~~~
+> 
+> 
+> vim +/FIELD_PREP +180 drivers/iio/imu/bmi270/bmi270_core.c
+> 
+>    165	
+>    166	static int bmi270_configure_imu(struct bmi270_data *bmi270_device)
+>    167	{
+>    168		int ret;
+>    169		struct device *dev = bmi270_device->dev;
+>    170		struct regmap *regmap = bmi270_device->regmap;
+>    171	
+>    172		ret = regmap_set_bits(regmap, BMI270_PWR_CTRL_REG,
+>    173				      BMI270_PWR_CTRL_AUX_EN_MSK |
+>    174				      BMI270_PWR_CTRL_GYR_EN_MSK |
+>    175				      BMI270_PWR_CTRL_ACCEL_EN_MSK);
+>    176		if (ret)
+>    177			return dev_err_probe(dev, ret, "Failed to enable accelerometer and gyroscope");
+>    178	
+>    179		ret = regmap_set_bits(regmap, BMI270_ACC_CONF_REG,
+>  > 180				      FIELD_PREP(BMI270_ACC_CONF_ODR_MSK,
+>    181						 BMI270_ACC_CONF_ODR_100HZ) |
+>    182				      FIELD_PREP(BMI270_ACC_CONF_BWP_MSK,
+>    183						 BMI270_ACC_CONF_BWP_NORMAL_MODE) |
+>    184				      BMI270_PWR_CONF_ADV_PWR_SAVE_MSK);
+>    185		if (ret)
+>    186			return dev_err_probe(dev, ret, "Failed to configure accelerometer");
+>    187	
+>    188		ret = regmap_set_bits(regmap, BMI270_GYR_CONF_REG,
+>    189				      FIELD_PREP(BMI270_GYR_CONF_ODR_MSK,
+>    190						 BMI270_GYR_CONF_ODR_200HZ) |
+>    191				      FIELD_PREP(BMI270_GYR_CONF_BWP_MSK,
+>    192						 BMI270_GYR_CONF_BWP_NORMAL_MODE) |
+>    193				      BMI270_PWR_CONF_ADV_PWR_SAVE_MSK);
+>    194		if (ret)
+>    195			return dev_err_probe(dev, ret, "Failed to configure gyroscope");
+>    196	
+>    197		/* Enable FIFO_WKUP, Disable ADV_PWR_SAVE and FUP_EN */
+>    198		ret = regmap_write(regmap, BMI270_PWR_CONF_REG,
+>    199				   BMI270_PWR_CONF_FIFO_WKUP_MSK);
+>    200		if (ret)
+>    201			return dev_err_probe(dev, ret, "Failed to set power configuration");
+>    202	
+>    203		return 0;
+>    204	}
+>    205	
+> 
+> -- 
+> 0-DAY CI Kernel Test Service
+> https://github.com/intel/lkp-tests/wiki
 
-Enable watchdog2 setting for yosemite4 system.
+I am having trouble reproducing this build error on both jic23-iio/togreg and
+linus/master v6.11.rc7 on an aarch64 box with the same compiler version.
+Maybe a config option is causing this?
 
-Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
+However, I will add #include <linux/bitfield.h> to remedy this issue if
+some edge case is being hit.
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-index 98477792aa00..c2dd17e0c5fd 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-@@ -83,6 +83,13 @@ &wdt1 {
- 	aspeed,ext-pulse-duration = <256>;
- };
- 
-+&wdt2 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdtrst2_default>;
-+	aspeed,reset-type = "system";
-+};
-+
- &mac2 {
- 	status = "okay";
- 	pinctrl-names = "default";
--- 
-2.25.1
-
+Best regards,
+Alex
 
