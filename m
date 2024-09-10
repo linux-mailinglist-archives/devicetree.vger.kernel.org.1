@@ -1,127 +1,106 @@
-Return-Path: <devicetree+bounces-101844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92CD5974589
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 00:17:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 343E79745CA
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 00:21:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 038BDB24A9A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 22:17:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE1691F23838
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 22:21:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09991AC429;
-	Tue, 10 Sep 2024 22:16:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A92971AC448;
+	Tue, 10 Sep 2024 22:20:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i3V39Y7X"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bXvC/AMd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 628861AC421;
-	Tue, 10 Sep 2024 22:16:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E1C41AC441;
+	Tue, 10 Sep 2024 22:20:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726006589; cv=none; b=Yn98ULtLpn7bGqf0yjCU9JKRBq2QQGjEHQhATdUFTNgdY4ZTEKHrY8OvRQLtoK9ApwNwjz2VXl1m0RfsxGeWDF/0/148Qv1scgOf5xrBoAVweBmlVEXr0Dgoso0psLObNszEVJkHRXi4uM5msv92GwdrCVkgETUdPl3jRQhnPCY=
+	t=1726006809; cv=none; b=WGr+SDJ7nEAuDMb5/1rxGhU1HWwqszL/XcTfg2wVlTRJxfbcCjlfRQ64K8VASt2UofKhaoTeiDOwu+Q7IDmHMaJp7TD4dKvnfTIHkd2Lla5Ze5gyJI6FVqdH99d8MbrEtxOn44UlKJpaDg+LT5ki8FXN3EUrSo4VMYPC6ENJTJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726006589; c=relaxed/simple;
-	bh=QSttr2JhMVXlGbE1Qo9deB59dtCrXed0BMMThrUfqGo=;
+	s=arc-20240116; t=1726006809; c=relaxed/simple;
+	bh=48YI4pbgmYlCiPT43kBVwkkPa58PT2DK2GN26WL06Zs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TEqBHhh4YAh9sUFQCRDJKwI54vYVPXf/Xs/go467WPC7PgBe4bs7/6Dfs6Q9MLVQIUL3w7ZqvjeWmhHIS9ti4hWYarT9zxwAOYuzoSuV54PZEwAwizx6U2tlkIspuhA18QEb5u8doU5nHw5U5u/MoYKSsSdFViCghTlQjy6pDgA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i3V39Y7X; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5365c512b00so1674166e87.3;
-        Tue, 10 Sep 2024 15:16:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726006586; x=1726611386; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=pdYjqVV7NoPt38X5VJbQiOeKKRdU/zmfKbbwAgjGMD4=;
-        b=i3V39Y7Xlb6vVqHaR3TiMtTT3WLmhzbwFQisYNwtTbyvPFdErUaLgsGAwgKhXzasKk
-         3/KBLLmtxSDUHU0i7wRKnlchB5CZ6TwFU8n4ySXH0bKncksWvvS/OWAa7MgBtgMSM4+h
-         zCm6PekK4WKEH0bwjsoNBdul2bGJriMwVn9MPeZoRK/voYkH70Y2NTC0D/+W9VBi94cU
-         DglN9NwxDZ9DukXzM1BpG9o9UOpkCfF/BFcfAcFQlH0NK5kr27kucADh+SG42Uae22ll
-         Uvl+0kj3tpVq9SwWWpzYdblYtKqSFrZXuHI2B0uCsE3SdByhfh/r5VjZOATO7ST1Orjz
-         9MCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726006586; x=1726611386;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pdYjqVV7NoPt38X5VJbQiOeKKRdU/zmfKbbwAgjGMD4=;
-        b=IOZMDp/Wc7gIzw6C7dmHfn4+D6oznFeN4PcUufSN06QqNz7Mo/9mNmiw/GAdcGSJ54
-         EaiTFJv+dih8NWhItdMQgaToT2UJtpfzT3SZGD2n23JMNJq8wEOmzP5Nh7i51AEdLw8T
-         oo2nNm3rxwrJ8qOZLI3G6FIHjg9uduZFfiAXWQagUxBDGnZayVJS6+VpRT6fUQDc7XKk
-         R2FuLsg7gMbMZksQPxSS1gAk7pPtCWKUgoBUD5COY+vcTc5PXUscsq0BJnOGlqvN/hv9
-         uEecwbzafpbOn1qvKc2bTBqHFyyzJrpfSdjUj5ZeI6ps+ZiBFpHj3TtCgKuA6mwOkdQx
-         iYqA==
-X-Forwarded-Encrypted: i=1; AJvYcCUfQN4o4h5k8wK+VW9FioGd2L/zVLsQV+JSVMYwuVOgTVUbAo4Wf3qFLP33KghWpDbrGrMxNEb76jud+g==@vger.kernel.org, AJvYcCUuQewCOWh0xUIzO/6+tBxeY1lNX1LpDlqR+ed21SdQEw+qjOJWWE3fRyck55pJtTS7PHCXG70bG0mU@vger.kernel.org, AJvYcCXi5bCLG9PCDfmCw1MXOUNeX5tTDW2/nMMW8q5GTZEpbH9pBsld+yZPwBL9VzNKN6umJ6AjgSYCfGN+3JRK@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmEz5yoahsxSe6PFfclXGbhHOr7R+yDIvMshkeZnegsdvomqSH
-	vZ+PtGK/U8GvJw3kZa3OZoUTqzOd1gkeaLwWeeGsF+p1EtZPCd6uFEpvhg==
-X-Google-Smtp-Source: AGHT+IFi8j9h2IbdF01Mf3JPAdHvgT6Od37WiOHHGnHsZL6o612hM2YVY1L0w1nCJu/s9yHUJTuYBQ==
-X-Received: by 2002:a05:6512:ba8:b0:52f:cffd:39f9 with SMTP id 2adb3069b0e04-53673b5f86bmr663836e87.24.1726006585737;
-        Tue, 10 Sep 2024 15:16:25 -0700 (PDT)
-Received: from mobilestation ([95.79.225.241])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5365f870ae3sm1371572e87.106.2024.09.10.15.16.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Sep 2024 15:16:25 -0700 (PDT)
-Date: Wed, 11 Sep 2024 01:16:23 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	"paulburton@kernel.org" <paulburton@kernel.org>, "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 6/6] MIPS: cm: Probe GCR address from DeviceTree
-Message-ID: <6oouxspgntbmn5upinbp63x5x52wluk4vg4s3oe3m7wgtk3le5@ua7dup5lkeaa>
-References: <20240612-cm_probe-v2-0-a5b55440563c@flygoat.com>
- <20240612-cm_probe-v2-6-a5b55440563c@flygoat.com>
- <ekvyyq3vzdbyi5suf4irfixyprvtko7rpkffwpc267kiex4ex2@lpu3ctysuviw>
- <79acb1b1-9c1c-4a58-91a5-5dbb286717ec@app.fastmail.com>
- <7j6cc5i4z4nwg73fowjz756eblnesglqm72jveygqfxngw26mc@sdy6xxomo3qe>
- <b4d57581-bad7-4f6f-8d6f-733f1a5d33ba@app.fastmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=W5J6Fxxy6VkoR4QujUyqUBtynYNfaL/N5k3jFm5J3aS8/07jaA3LJo16JyJoFHAJgjGONwzV5OGJEkT1MV+VHPW2jneUy1/fBaCvqplPhmbiK8dADnl8QPvhb9orcCvlW+gFKIUjH+BV92+iMJS0+wLhD9SbGNlFK0+sfTC+/VU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bXvC/AMd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA255C4CEC3;
+	Tue, 10 Sep 2024 22:20:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726006808;
+	bh=48YI4pbgmYlCiPT43kBVwkkPa58PT2DK2GN26WL06Zs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bXvC/AMdALgzeciEYcNb3c7MPlwl1Ldpk8m3EmiuiaLfyLLWLC4BnWS4SIe+MdZa6
+	 6mZMlroCrRgIPDG8EyJyzVb39LE+5OAes1gED325p1M9hGm7e8hNTrWk1oAxCuxmy9
+	 iEVZo/7+4ouPBj6jySGz6RzsogWcFaGmQrpjVQchYuIJoCEY5cSdDgGO/udItb1/3t
+	 MqPWOsC7+j7ZUEm8A9BmF0Es+nKRaVpzowcRgRqJMhsA0rYSK6BUJoTclK4mXQN8iV
+	 dPdtSGzTqhto6BkXQMoVkYE3eQs122rcEq6o1b5I1D5+KbbY3Ry5QIsFY3f/9nVqAJ
+	 /zH+eyi3rKtdA==
+Date: Tue, 10 Sep 2024 17:20:07 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	Li Zetao <lizetao1@huawei.com>, linux-clk@vger.kernel.org,
+	dmaengine@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Yangtao Li <frank.li@vivo.com>, alsa-devel@alsa-project.org,
+	Andi Shyti <andi.shyti@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Chancel Liu <chancel.liu@nxp.com>,
+	Russell King <linux@armlinux.org.uk>, linux-sound@vger.kernel.org,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	Corentin Labbe <clabbe@baylibre.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	"J.M.B. Downing" <jonathan.downing@nautel.com>,
+	Takashi Iwai <tiwai@suse.com>, devicetree@vger.kernel.org,
+	linux-mtd@lists.infradead.org,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	Richard Weinberger <richard@nod.at>, Arnd Bergmann <arnd@arndb.de>,
+	Vinod Koul <vkoul@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [Patch v5 02/12] dt-bindings: dma: Add lpc32xx DMA mux binding
+Message-ID: <172600677256.860315.3249804427139743181.robh@kernel.org>
+References: <20240627150046.258795-1-piotr.wojtaszczyk@timesys.com>
+ <20240627150046.258795-3-piotr.wojtaszczyk@timesys.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b4d57581-bad7-4f6f-8d6f-733f1a5d33ba@app.fastmail.com>
+In-Reply-To: <20240627150046.258795-3-piotr.wojtaszczyk@timesys.com>
 
-On Tue, Sep 10, 2024 at 09:48:10PM +0100, Jiaxun Yang wrote:
+On Thu, 27 Jun 2024 17:00:20 +0200, Piotr Wojtaszczyk wrote:
+> LPC32XX SoCs use pl080 dma controller which have few request signals
+> multiplexed between peripherals. This binding describes how devices can
+> use the multiplexed request signals.
 > 
+> Signed-off-by: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
+> ---
+> Changes for v5:
+> - Corrected property order
+> - Added maxItems to properties
+> - Fixed example
+> - Removed "N:: from the MAINTAINERS entry
+> - Added Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com> to LPC32XX maintainers
 > 
-> 在2024年9月10日九月 下午9:07，Serge Semin写道：
-> [...]
-> > Both MIPS P5600 and P6600 databooks define the GCR_BASE field as
-> > optionally R/W:
-> >
-> > GCR_BASE 31:15 This field sets the base address of the 32KB          R or R/W
-> >                GCR block of the P5600 MPS.                           (IP Config-
-> >                This register has a fixed value after reset if         uration)
-> >                configured as Read-Only (an IP Configuration Option).
-> >
+> Changes for v4:
+> - This patch is new in v4
+> 
+>  .../bindings/dma/nxp,lpc3220-dmamux.yaml      | 49 +++++++++++++++++++
+>  MAINTAINERS                                   |  9 ++++
+>  2 files changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/nxp,lpc3220-dmamux.yaml
 > 
 
-> Thanks for the pointer, I traced code history and it seems like MIPS decided
-> to not expose this functionality at some point, but documents were not updated.
-
-Got it. Thanks for clarification.
-
-> 
-> Maybe I should add a read back check here.
-
-The check is already implemented in the mips_cm_probe() method. Just
-10 lines below the mips_cm_phys_base() method call.
-
--Serge(y)
-
-> 
-> Thanks
-> -- 
-> - Jiaxun
+Applied, thanks!
 
