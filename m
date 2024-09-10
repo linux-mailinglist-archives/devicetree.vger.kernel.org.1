@@ -1,125 +1,138 @@
-Return-Path: <devicetree+bounces-101742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD61D9739BC
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 16:20:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A38319739C9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 16:25:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6485FB25021
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 14:20:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E2EA28850C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 14:25:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7FAC1922DC;
-	Tue, 10 Sep 2024 14:20:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52CF9193439;
+	Tue, 10 Sep 2024 14:24:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aNtgNXN2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mXpV8isa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF01B18FDBD;
-	Tue, 10 Sep 2024 14:20:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93ED81940B3;
+	Tue, 10 Sep 2024 14:24:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725978032; cv=none; b=VT/AOjdajHTMHMePw76ldfzgFXDM+wDmy/e+QAQjP5NUO8LCHF4vJLE8bMKcMNb5T5aWZLo0O19fz4U2dEFc/c8IYhXlTzFHDREXZbzuExJrXMbNive63BMY7fHFRPb5puamBj76rCbRtjbwuYWHcIOAF7PLIXXiM+lPmdTwClY=
+	t=1725978298; cv=none; b=cf0HF4mXqp0S3Jhk9430L1UGCEqRVl7tmWOkAySv+uwO1uLmfBOPpgPQpvQLjTSQ7djgOL+kHCzdnXKCPEjM6gN9yhVOHjmYxGWuWi67aIlNaaC5jNG2c725FwlmFc7HTRQgnAfQ7F2jc4LYsWegzg0bg2gMGWsWS1rdojq2bCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725978032; c=relaxed/simple;
-	bh=4KDF1e8TVKxPgvhlss3fyOwBw5vqSdkC+rz2EjSllDs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CjVnD96TMyXaCoFTFdhItLL7YY5q4h9+9hECO7c20bVzirHmBoDWkemjG1PV9/rnLYAb5RwQndgZucNyoXeqkA3xDMoWjRgxyBMQg9fq5vr0w1EfVj9Zu80v5ilWjBDEM0+jY+MabWP+TCUTp3ltiD+KGhtR8N2BPS06mg2L/mE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aNtgNXN2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DAB7C4CED7;
-	Tue, 10 Sep 2024 14:20:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725978032;
-	bh=4KDF1e8TVKxPgvhlss3fyOwBw5vqSdkC+rz2EjSllDs=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=aNtgNXN2M0+bC9YBAM4MoB3fsY0CFKsVYezVrX1QptCfBsjHU4Txb1bR7p7eIY8wj
-	 JrxjCsu93ObAPCngSiJOEDp9fTaV8GvcFIxtvOm/A6X6vK85U1UtyIvcC5soVAZLIX
-	 VQ6gKYIAwUCprXwzY7hFPSn8VUtQKzLl9FBfe6Hf8k3Xba9aHWNyOXl0wdSDkJK3S6
-	 xRNpDG6H5h6933g7rUEjs86uMWqfuH33vvg5Tq/fN6crdX+IJZSSwNjcaiXBDgVA72
-	 rBTiHV+4yXdG2BJhAQlnm4qWXgpuRwUe7VcFoi4SNZUKIAt/hmsRxe5CKjjIMLGHYj
-	 HVVH3DmOsl2FQ==
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5366fd6fdf1so973655e87.0;
-        Tue, 10 Sep 2024 07:20:32 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWr0ZlHy9V3EaduKU+2hCZKgv1z4Gf8zZGgvN5G5qeTOqDxTREkP2Wd9jXuQklpi7S3SxQLFvqXvhYu@vger.kernel.org, AJvYcCWxUqq0OVmOUr6uzu5djUDX3UthAVH+Mee1gqVrsPF4e1J2vuqlCuSX4TtxtrHV3f2wWNGuMnCPDTQN/eRc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwqPBWdv6SSJ/7l+tHLny2UXOmKTd2Qfx3PCrEuv9WY0+RR70bm
-	qsBYm2YErwi7EnacEzPE5VLcNHM0D6hRmgRzsdt2GwGitZLcpvFXDYYcYof4WXt63q3LnEBZqz3
-	l/PNXZoX2Z6Cs8cQy99UUK8X+vQ==
-X-Google-Smtp-Source: AGHT+IFRvPc0UNJ2YwfVBz4VuqnSdznayKEw+oCjGom392hIonmpBTgsOkxTdF2NiiPAiOAo97MJcTXUNCSpMShrVB4=
-X-Received: by 2002:a05:6512:ac8:b0:52e:f9f1:c13a with SMTP id
- 2adb3069b0e04-536587a5831mr9910684e87.12.1725978030716; Tue, 10 Sep 2024
- 07:20:30 -0700 (PDT)
+	s=arc-20240116; t=1725978298; c=relaxed/simple;
+	bh=iblGsesf+qatfMugpTsnZooHEzQube0q6SuU9idT9dw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=LStdODB06CXwcVj9z72Pfe8h0C7Jh4XXZsFJGlDT+aPthX66esnKJAhqavbckuEoL/HseJhQ80G3I4zGvf047ldTkFQdXTskr02sI0GxVNA+Hy9Z4iP+ChitSzxqU44qfrVsgykUShhd0HCqyPa8dL1MtTQCCRg5O11Ap6VTnfY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mXpV8isa; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5c24ebaa427so10156021a12.1;
+        Tue, 10 Sep 2024 07:24:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725978295; x=1726583095; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4vmBAKC5QXfQz0rRIf9Z2p4jESxpl6Ko8ovtsj9BxU4=;
+        b=mXpV8isaRb4K3b7uyDEoBlS/7ODxGPQjH2vMbwjS9yVXyQ1PxxJMTtos3evcOz15H3
+         9AKXmTk9rIMOWYQNmsSTa58ORCGM9a/5jhkJf/P+hvKNwOQAonUHl98H4DNj9D4ArFsi
+         GhY9Z9LYYH46uzVCbeujlYQM5KiaVoWFUFBa9iZPmD/C7YxeUj7db9cWYF7JV1e3teBj
+         WcDSSFFRtxy3wIxw+S+Fqs6EZq2fz3tijL0qi4vP+8XyBs1zYOf3iyA0sf0A8G2+WHy8
+         2SvLuPvS105Cz52BhlmAaYfRuWWhgRmk33wey40xuXkOGyo2JmNp2eoLqHKXGckiWqRL
+         ngOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725978295; x=1726583095;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4vmBAKC5QXfQz0rRIf9Z2p4jESxpl6Ko8ovtsj9BxU4=;
+        b=sWDwumrOrTfkY60tQ9YV43r+upGlr19eH37Q9R9R0Yvu9ayCfuKllzp5B1boGuxWND
+         a2sUwf3LKI1jqghw9zmyL2VI9GX0k9DCnsAG+G6oidUzYx9m+YcR4KbWzqrdXTXLLD2J
+         uBMGFsSidY19irTw7QcnpMNkdgmedgeZv/oabzJvlqALrm+q+S5QcvgxSzUACBYOxVkp
+         6clUKzzA0Z8qfi8Z9wh0RYYf/5ZFvHV1Rp5pCjYgkaRU70/VKti75ATPXWBJxLBKy8s0
+         cCcGnA13yRi6horkSgFi0BU87b4JGfFmksHypHtRDZRawm82ExlEQVp8SYHo6jVKxJuY
+         iRlA==
+X-Forwarded-Encrypted: i=1; AJvYcCVnWOUnq/NObr9kzCQlVmraASTBpki1DcBhRJ8bUhXlgNEutyfaOJn22TZT+fLSStVNifW2f8xMyrxC@vger.kernel.org, AJvYcCWcl8PBo9LZG+/V8TNS4PyniBYwFBHrAzP1iS5Do1YJu+jADWmpj7rVrmuEdOS8btNpuNSDMCxkSfsHxHuL@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKahrpgT+LOj9lzAGX2LWHFe4CJyKzTLcYQGrJflczXUyxsMPw
+	wDhrPekB4yj94F0eFtcmECWNOtp8xnH4K15cLGd6ShHzSstQsSKz
+X-Google-Smtp-Source: AGHT+IE324M2oz7wNOu0HvJ0/xO0r1nHr257GxZAcmeyxJSKjssmUPoRJvcXfRI024UG/6LuqMFwuQ==
+X-Received: by 2002:a05:6402:51d3:b0:5c2:1014:295a with SMTP id 4fb4d7f45d1cf-5c4015cc7b8mr3899021a12.2.1725978294468;
+        Tue, 10 Sep 2024 07:24:54 -0700 (PDT)
+Received: from localhost.localdomain ([37.72.3.43])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c3ebd466dcsm4332012a12.24.2024.09.10.07.24.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Sep 2024 07:24:54 -0700 (PDT)
+From: =?UTF-8?q?Miquel=20Sabat=C3=A9=20Sol=C3=A0?= <mikisabate@gmail.com>
+To: robh@kernel.org
+Cc: saravanak@google.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Miquel=20Sabat=C3=A9=20Sol=C3=A0?= <mikisabate@gmail.com>
+Subject: [PATCH] drivers/of: Improve documentation on match string
+Date: Tue, 10 Sep 2024 16:24:22 +0200
+Message-ID: <20240910142422.341672-1-mikisabate@gmail.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240910102326.927544-1-lukma@denx.de>
-In-Reply-To: <20240910102326.927544-1-lukma@denx.de>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 10 Sep 2024 09:20:17 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKDo662kF2QDFOQZoGg+ox3=N1vWZOAiB=R+FBY2gTFKg@mail.gmail.com>
-Message-ID: <CAL_JsqKDo662kF2QDFOQZoGg+ox3=N1vWZOAiB=R+FBY2gTFKg@mail.gmail.com>
-Subject: Re: [PATCH v5] dts: nxp: mxs: Add descriptions for imx287 based
- btt3-[012] devices
-To: Lukasz Majewski <lukma@denx.de>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Sep 10, 2024 at 5:23=E2=80=AFAM Lukasz Majewski <lukma@denx.de> wro=
-te:
->
-> The btt3 device' HW revisions from 0 to 2 use imx287 SoC and are to
-> some extend similar to already upstreamed XEA devices, hence are
-> using common imx28-lwe.dtsi file.
->
-> New, imx28-btt3.dtsi file has been added to embrace common DTS
-> properties for different HW revisions for this device.
->
-> As a result - changes introduced in imx28-btt3-[012].dts are
-> minimal.
->
-> This patch also adds entry to fsl.yaml for btt3 board.
->
-> Signed-off-by: Lukasz Majewski <lukma@denx.de>
->
-> ---
-> Changes for v2:
-> - Rename dts file from btt3-[012] to imx28-btt3-[012] to match current
->   linux kernel naming convention
-> - Remove 'wlf,wm8974' from compatible for codec@1a
->
-> Changes for v3:
-> - Keep alphabethical order for Makefile entries
->
-> Changes for v4:
-> - Change compatible for btt3 board (to 'lwn,imx28-btt3')
->
-> Changes for v5:
-> - Combine patch, which adds btt3-[012] with one adding board entry to
->   fsl.yaml
-> ---
->  .../devicetree/bindings/arm/fsl.yaml          |   1 +
+The description of the function now explicitly states that it's
+an *exact* match for the given string (i.e. not a submatch). It also
+better states all the possible return values.
 
-I said 1 series, not 1 patch. checkpatch.pl will also tell you
-bindings should be a separate patch.
+Moreover, this commit also makes sure that -ENODATA is returned if
+prop->length is zero, just like it's done in other functions such as
+'of_property_read_string'.
 
->  arch/arm/boot/dts/nxp/mxs/Makefile            |   3 +
->  arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts    |  12 +
->  arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts    |   8 +
->  arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts    |  12 +
->  arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi     | 320 ++++++++++++++++++
->  6 files changed, 356 insertions(+)
->  create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts
->  create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts
->  create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts
->  create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi
+Signed-off-by: Miquel Sabaté Solà <mikisabate@gmail.com>
+---
+ drivers/of/property.c | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index 164d77cb9445..1ff51d93178f 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -452,12 +452,17 @@ EXPORT_SYMBOL_GPL(of_property_read_string);
+
+ /**
+  * of_property_match_string() - Find string in a list and return index
+- * @np: pointer to node containing string list property
++ * @np: pointer to the node containing the string list property
+  * @propname: string list property name
+- * @string: pointer to string to search for in string list
++ * @string: pointer to the string to search for in the string list
+  *
+- * This function searches a string list property and returns the index
+- * of a specific string value.
++ * Search for an exact match of string in a device node property which is a
++ * list of strings.
++ *
++ * Return: the index of the first occurrence of the string on success, -EINVAL
++ * if the property does not exist, -ENODATA if the property does not have a
++ * value, and -EILSEQ if the string is not null-terminated within the length of
++ * the property data.
+  */
+ int of_property_match_string(const struct device_node *np, const char *propname,
+ 			     const char *string)
+@@ -469,7 +474,7 @@ int of_property_match_string(const struct device_node *np, const char *propname,
+
+ 	if (!prop)
+ 		return -EINVAL;
+-	if (!prop->value)
++	if (!prop->value || !prop->length)
+ 		return -ENODATA;
+
+ 	p = prop->value;
+--
+2.46.0
+
 
