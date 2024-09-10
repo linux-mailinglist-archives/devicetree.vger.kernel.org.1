@@ -1,238 +1,182 @@
-Return-Path: <devicetree+bounces-101591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 660D49729A8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:40:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D9CB9729B8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:43:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75AD61C23A73
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 06:40:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC213285D85
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 06:43:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B463171088;
-	Tue, 10 Sep 2024 06:40:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C452F17A5A1;
+	Tue, 10 Sep 2024 06:43:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="ngZ+PZ08"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="bzYO1fCz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2051.outbound.protection.outlook.com [40.107.255.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8680208A5;
-	Tue, 10 Sep 2024 06:40:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.51
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725950405; cv=fail; b=Vuej01SppTf3YHMYi4rKUqQfAAahFeHk8hmICfY7WbTrWP5S78GZE+SQAjx3sPPYStlJEmG39o2gINRL5mB2mNzsA+HICPiTSUNABGEtf6zDn3s/KbkTS/egc2HUCol1l2KfeAsS7eU+BhuWapJjJuLSAuBnggGhouyRZdB2xSQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725950405; c=relaxed/simple;
-	bh=+SfW16ZtYSvCwsYVELcQ012gqnBbk3Jsi1fuDhnQqAE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=ZrGSYYX/eZNWEtzYByPCgO/l5Aq8g7/WHY06FVv2Rs/Ram/pxMEbBoic8CDOCYNk9eIkARFllm3JQjuZQWPvQPtQasHBtwNdDwOiMvdbB5aRCh3QS1Z4TXeLwSeU1OcyPlHTJqbnlreyPDO2pRx+sSz39M80CA1te8UNiKd19yI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=ngZ+PZ08; arc=fail smtp.client-ip=40.107.255.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=o8I/uIiEWL5Je/VX5BjSGjhDy1ccOk1x5M9bFdq+y8g9sKYcaNjqvdmkviL0lkyw/0g0O1zKQiKWq0/mzl13aml+RuE/ytWViLl+VCJ++y7x4+B9+OQ4dPjBuZPLBbzEBcxAmINElceGlrN2HGcPioow1lXOxuVpd323HAjvbrP1cvwAbG+pwknToaovulobkxVWS4dSwtXn+OHTWQa1kfd+clYlyu0fuD+hvQxs8Eb74IGAniQeOmIYNshv/xxTWlQCDaTZmNJgveVTjYpTYkvMTe+rfA2DUjbDK7yc6ll9RfQFLZwi2UKZNIHfWOQ+OElN6ClvlHKCGZHbOPvizA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=osuM7RYcT79/L9v4a9AqlEhxPIt29mwan6goSZIdUTw=;
- b=u7+zzb4xA1moPbP7faQdcc3wRaT2OOpbNplVxSXJR186xXa0Is2H+n6QEeREhDSeSC2kFgKlKx0+jedCxMX1/8mTqpd54ve4ScGXFpdkA+vj82zUPWl/JZN4+2oxyhT3v5TnLaagh11P3sgXvyiFiaQLtwio82NzxcNbOa2B73GtoM5FwBWCfLox1JiSsaginRIQ38buOfqqnrA1W9lYf0Ayp15j7mnaHB6P+2FBfMRDMIP1r7YxmIY2IN+W24WY2R8wwGnPH5Przr3ZbSuk0ziQFdrj/7k7tMd9eZt4Q6ANowT/HeCYfkHUOIjdw+4N9pvkZw98hOjIyR5ZTXZ7Mg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
- (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=osuM7RYcT79/L9v4a9AqlEhxPIt29mwan6goSZIdUTw=;
- b=ngZ+PZ08MRsXCWpc/vSWTdbYVA7iYoygJLNnXwMA7qR5XS1K1dHI1TNimWGX6WpGf2J0Yfy7hON5JavjDfo4pyBOJcbtqqdlQBdvfIoDoG8zMZwpx+Byu+PyH7MqokCBzzBKGqIVLM0cOM8d+q0J3q7VlGUcE9T1Fvzz4LunnNY1aaf3oTrYURIuphNqtrXS/uXaSpvBgAmXLuKlPJ6HhINkVJvyycEZitvzPBi/QD2WZmChDsKR4JT1mxIDGC+xGzoicpn2etbMgZBhSnvtAi/i6zLfVVGmCvDJVLcjriwcwi5B1vihs0vsftTwGsUSh9xCdfnzZU9U+yoa2jET/Q==
-Received: from SG2P153CA0009.APCP153.PROD.OUTLOOK.COM (2603:1096::19) by
- SEZPR04MB6501.apcprd04.prod.outlook.com (2603:1096:101:9d::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7939.24; Tue, 10 Sep 2024 06:39:54 +0000
-Received: from SG1PEPF000082E7.apcprd02.prod.outlook.com
- (2603:1096::cafe:0:0:19) by SG2P153CA0009.outlook.office365.com
- (2603:1096::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.6 via Frontend
- Transport; Tue, 10 Sep 2024 06:39:54 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
- smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
-Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
- designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
- client-ip=211.20.1.79; helo=localhost.localdomain;
-Received: from localhost.localdomain (211.20.1.79) by
- SG1PEPF000082E7.mail.protection.outlook.com (10.167.240.10) with Microsoft
- SMTP Server id 15.20.7918.13 via Frontend Transport; Tue, 10 Sep 2024
- 06:39:53 +0000
-From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-To: patrick@stwcx.xyz,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>,
-	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] ARM: dts: aspeed: yosemite4: Enable interrupt setting for pca9555
-Date: Tue, 10 Sep 2024 14:39:51 +0800
-Message-Id: <20240910063952.3006665-1-Delphine_CC_Chiu@wiwynn.com>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3CCA175D50
+	for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 06:43:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725950602; cv=none; b=t+jjSMfPHD8kCgZEQSjD/+EIR56CQnExfaANI+M4xMgIkogW2+wDlRB2XTe4nG2uzDP+uIb+JiZ/t3iEI8KqtjLlP7++/osejo0HwodgMuyuDsyP1ytIcIrBgzM8JfsfN/W2S4eLq5pDXalwYjLUifBYDM/pglWw4lSNGM5V7fY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725950602; c=relaxed/simple;
+	bh=na/rRKAm0dtxvPFcGIyuBVMyz7/vq21KrFg6CQhI+Jg=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=kXWtxSwZ2tlDYlRd1v72uE9d9VthbfKuutNXITUpLIcf/CMV9e+6Wj160/TLRQLQYweTm5whhroFMrcCHQRiVNN1UY55yXvQIIXLf75kRajTqJZ76LA3r15EZT6RD4ynplWCzElv5FOEarZ5mNr9wS+0ERhj3hNHZmzkcrrerUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=bzYO1fCz; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-42bb7298bdeso61466895e9.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Sep 2024 23:43:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725950598; x=1726555398; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:references
+         :in-reply-to:subject:cc:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YHIjfVpopAQsFYDysnM68orgUpUrGZh7owWOhiV6j1E=;
+        b=bzYO1fCzYrmv5YPWOEB9bycB8uZjylGJeE3W/gthNYYr9OcE5qvRx24/QUaAmZdovt
+         YH216OrZFnaMNIo1QWI207ywRnn7gjdwJbSiXmiDdyQyHyCYEwYYYhrhq9Oc7VYOrxxY
+         /CXygSFXaAwbybAyl4j9MS8y2ROQwrJwLgwWeY3XXXbhmZvtZ6KdRFpRsUp3olXjDzTD
+         MlCdfXyhp8+4FPM46z4/NXJEV5dn0rD8skOVTd2asQ+tyYtXp1powov1cJSFpU08WvDQ
+         9qjbguqFVdcRoAQWoif8PNahiyPRbSR0OCGgOfPmGj3/iG0hC6Z3pEU3DaYgJg8WX9TH
+         LuIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725950598; x=1726555398;
+        h=content-transfer-encoding:mime-version:message-id:date:references
+         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YHIjfVpopAQsFYDysnM68orgUpUrGZh7owWOhiV6j1E=;
+        b=NyYn0B5Kk0OixTqWx5tGL0D+6u+y/HYFEZVGVwGk9gQXW25nzeHTeChApvxpsDdgdF
+         1nZKkm+SaYIEOwrmXkMwpK0h/HXMT9gpG6lRxj1fmJ14Rad47MTJPvoeGYt8QibL0FXm
+         EqBlT70eGZjfFuOdZWFa2qlLKIKse5gxHHn8EKK3HMUtfoX1pX7nfJYtAp6RQ+cpDXdk
+         sj/w4DB2qcjooXFmIWijv2TOal1duwKw3B7B972rEs8ZqteGFgOgtnLIimd7ZFLNXLOS
+         bt95ZAHqmdww3JqnGzgsqvsmLI39jeSjpLWUCoMA5+geSs4uswgBkUVF+sI2N7xnOqdd
+         i46w==
+X-Forwarded-Encrypted: i=1; AJvYcCWMPgV5wiYTI/dKvn2PP4Ez/966Mh34V8cYmXdYHA2c3DDkgGoglnrW4OdWzKtN1Se96vNsJegJo11L@vger.kernel.org
+X-Gm-Message-State: AOJu0YwimgAWHwjDKtUW1TmCGTUm8+cMtV0QQiCpcpAiT92CHh+sy4Gb
+	Bac12citsdwTGZRueV7dO2+sU+ekMg9HWAZPeh+hohKhWvyOg3ZBpFbqHWH8tATxyrLpt8HFZUI
+	Q
+X-Google-Smtp-Source: AGHT+IEGTUNHbTSsmZjzta3HrF24ou/pG5zqXuiZFFF8PEDIjWSL6u1zq98mgz76KtjH/M2c0b8JiQ==
+X-Received: by 2002:a05:600c:1d9f:b0:42c:b220:4769 with SMTP id 5b1f17b1804b1-42cb2204a93mr73976985e9.32.1725950597453;
+        Mon, 09 Sep 2024 23:43:17 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:8ba7:bfe4:fea9:65b])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378956d375asm7872010f8f.66.2024.09.09.23.43.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Sep 2024 23:43:16 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Jean Delvare <jdelvare@suse.com>,  Rob Herring <robh@kernel.org>,
+  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
+ <conor+dt@kernel.org>,  Jonathan Corbet <corbet@lwn.net>,  Delphine CC
+ Chiu <Delphine_CC_Chiu@Wiwynn.com>,  linux-hwmon@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  linux-doc@vger.kernel.org,  linux-i2c@vger.kernel.org
+Subject: Re: [PATCH 2/3] hwmon: (pmbus/core) add POWER_GOOD signal limits
+ support
+In-Reply-To: <d76290e0-f5e7-4192-92b8-94f260270fe3@roeck-us.net> (Guenter
+	Roeck's message of "Mon, 9 Sep 2024 11:16:41 -0700")
+References: <20240909-tps25990-v1-0-39b37e43e795@baylibre.com>
+	<20240909-tps25990-v1-2-39b37e43e795@baylibre.com>
+	<d76290e0-f5e7-4192-92b8-94f260270fe3@roeck-us.net>
+Date: Tue, 10 Sep 2024 08:43:16 +0200
+Message-ID: <1j8qw0t3ej.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG1PEPF000082E7:EE_|SEZPR04MB6501:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 0483e709-8e14-4288-103a-08dcd1636154
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|376014|7416014|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?56lczstpbokUphtQQ9kDM3LsqHs0XgYj/W54LQ8INrs7xt/pM9Sc+/0j66xp?=
- =?us-ascii?Q?KGwK7M/r81Xlr9UXDdy+QnHVdF4QVweFWAV1PVfCog1530ZWJjP+YqxRQbfB?=
- =?us-ascii?Q?+2vvvilnLadPf/bLNiMKyciMafQPGIxB/xUk5LK+jLplxpXhlb4OAVAZImOE?=
- =?us-ascii?Q?KaxCSyaj2AObqgvn9HcsKUHBQ9qPHMDKQnCoHhjyGKaNRt0qVb0/WUWq5e07?=
- =?us-ascii?Q?CD54i/byOHeDrMpbuvh08ukZjt5/PIXlhkUUTJYRH8aAOXMPCEPnHu1OuMZi?=
- =?us-ascii?Q?rb8hqhMx/YAAlbJ13xAuK1cd4UmqPB9ugyjWnVeXkXO0meM+ShWnAhEwziR4?=
- =?us-ascii?Q?829TKAgTpUm4ca83nCaJaBjZi+hXceN1sHIiyxoWx4B4IfqA33MPOG2fmZhu?=
- =?us-ascii?Q?TjybK9U7MiBtr/Mo5OWLHMf1BaeZeUsdz7huox4l2E1MhJunDo8t9BDrKqG8?=
- =?us-ascii?Q?6hHpRoDBfrSIu1PXP1EIK54QH/xeCiWNY6brjaVCFJFbU7YDO2jgNqUadNHA?=
- =?us-ascii?Q?oXc0sPoG28jdPpaaU13nlIKxnn7uUWALW/WQQy4sJv1wxh3oRL+5xhQ6Ti06?=
- =?us-ascii?Q?laZFae1NcLMnJfDjaWGXg5wBh6nhldowJOhRA0IHGFZoIszW1nOJKSqPVNCO?=
- =?us-ascii?Q?d6nDvAmd7n5QLQVwfX62PZJIjEbY09FSkyERl+4HluS+Q6pUAM/nBWTH4Duv?=
- =?us-ascii?Q?cuU2vIkXkiW0egMucB36qHrTrGb9QXPwm6JPoGuHQsZuUhmWUyJnMvDTLpD5?=
- =?us-ascii?Q?vscV8kz5ZZQmQWCDSMj7w9CvZOZlFJjn1aD8hk8ECQqa9PuMw6phOeZLMXTu?=
- =?us-ascii?Q?wzElfJcv6P83xfgEPbI7PH29a2E5NYtY3pXUevF5/DXyIkTtzlqLrK9NICxm?=
- =?us-ascii?Q?PoylGq/My0rHh4Wt2dlY6dyNOd+ioameCQ9XFKNSJSjaX76XTUpwrf0ocnyS?=
- =?us-ascii?Q?cuG3ZGAFgxnCLsJ3bNUPEfJAqql8ZVBx+2lgRm9UX/BAGiOJNQmmCpKXmJ9e?=
- =?us-ascii?Q?GBaMrZCtiH37XDGL+cKORIVs84IjsNC5tk2EqPBDg8vxgiAwMu6gKVa5QsAX?=
- =?us-ascii?Q?lbkHUhhx7zWzU8cAVtN+hkAD2cG5E4eog4ur7gOFAEkjGfTHtkxZIg25EDkk?=
- =?us-ascii?Q?irEfNIKwS1acClVGmiCv9qD6rIkaAI5MqbyXOw4Bm1uSQ74W0Hgrlrf5H361?=
- =?us-ascii?Q?2TKKv+dxy39nuZx5o4cIEShqR7dWeL4KlA8+gREYQWiMdZaikc7++k/Aq/AK?=
- =?us-ascii?Q?Ph6CyqbuILcDoqkX5xgkVEHV+dApstkehBKgfBws5fl3ZtoFwa6FVJ9e8gPG?=
- =?us-ascii?Q?92GtewytvIYJPniJorhvxuoAsbh95HcTSV4yz1IGaF+83GHuXRURsRIs8yWq?=
- =?us-ascii?Q?5EcK5llMUlnfkV9xwMr2Djv/lvOTTuwmx5xEjYU9CC2ER9fiQWHL2MRG2dyD?=
- =?us-ascii?Q?RZpq6T9hCqx3s13mAhCpXuRiC3d7hhMR?=
-X-Forefront-Antispam-Report:
-	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(36860700013)(376014)(7416014)(1800799024)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: wiwynn.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2024 06:39:53.7915
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0483e709-8e14-4288-103a-08dcd1636154
-X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG1PEPF000082E7.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR04MB6501
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+On Mon 09 Sep 2024 at 11:16, Guenter Roeck <linux@roeck-us.net> wrote:
 
-Enable interrupt setting and add GPIO line name for pca9555 for the I/O
-expanders on Medusa board.
+> On 9/9/24 08:39, Jerome Brunet wrote:
+>> Add support for POWER_GOOD_ON and POWER_GOOD_OFF standard PMBus commands.
+>> For PMBus devices that offer a POWER_GOOD signal, these commands are used
+>> for setting the output voltage at which a power good signal should be
+>> asserted and negated.
+>> Power Good signals are device and manufacturer specific. Many factors
+>> other
+>> than output voltage may be used to determine whether or not the POWER_GO=
+OD
+>> signal is to be asserted. PMBus device users are instructed to consult t=
+he
+>> device manufacturer=E2=80=99s product literature for the specifics of th=
+e device
+>> they are using.
+>> Note that depending on the choice of the device manufacturer that a
+>> device
+>> may drive a POWER_GOOD signal high or low to indicate that the signal is
+>> asserted.
+>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>> ---
+>>   drivers/hwmon/pmbus/pmbus.h      | 3 +++
+>>   drivers/hwmon/pmbus/pmbus_core.c | 6 ++++++
+>>   2 files changed, 9 insertions(+)
+>> diff --git a/drivers/hwmon/pmbus/pmbus.h b/drivers/hwmon/pmbus/pmbus.h
+>> index 5d5dc774187b..e322d2dd9fb7 100644
+>> --- a/drivers/hwmon/pmbus/pmbus.h
+>> +++ b/drivers/hwmon/pmbus/pmbus.h
+>> @@ -78,6 +78,9 @@ enum pmbus_regs {
+>>   	PMBUS_IIN_OC_FAULT_LIMIT	=3D 0x5B,
+>>   	PMBUS_IIN_OC_WARN_LIMIT		=3D 0x5D,
+>>   +	PMBUS_POWER_GOOD_ON		=3D 0x5E,
+>> +	PMBUS_POWER_GOOD_OFF		=3D 0x5F,
+>> +
+>>   	PMBUS_POUT_OP_FAULT_LIMIT	=3D 0x68,
+>>   	PMBUS_POUT_OP_WARN_LIMIT	=3D 0x6A,
+>>   	PMBUS_PIN_OP_WARN_LIMIT		=3D 0x6B,
+>> diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbu=
+s_core.c
+>> index 0ea6fe7eb17c..94ddf0166770 100644
+>> --- a/drivers/hwmon/pmbus/pmbus_core.c
+>> +++ b/drivers/hwmon/pmbus/pmbus_core.c
+>> @@ -1768,6 +1768,12 @@ static const struct pmbus_limit_attr vout_limit_a=
+ttrs[] =3D {
+>>   		.attr =3D "crit",
+>>   		.alarm =3D "crit_alarm",
+>>   		.sbit =3D PB_VOLTAGE_OV_FAULT,
+>> +	}, {
+>> +		.reg =3D PMBUS_POWER_GOOD_ON,
+>> +		.attr =3D "good_on",
+>> +	}, {
+>> +		.reg =3D PMBUS_POWER_GOOD_OFF,
+>> +		.attr =3D "good_off",
+>>   	}, {
+>>   		.reg =3D PMBUS_VIRT_READ_VOUT_AVG,
+>>   		.update =3D true,
+>>=20
+>
+> Those attributes are not hardware monitoring attributes and therefore not
+> acceptable. In general I am not sure if they should be configurable in the
+> first place, but definitely not from the hardware monitoring subsystem.
+> Maybe the regulator subsystem callbacks set_over_voltage_protection and
+> set_under_voltage_protection would be appropriate (with severity
+> REGULATOR_SEVERITY_PROT), but that should be discussed with regulator
+> subsystem maintainers.
 
-Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
-Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
----
- .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 52 +++++++++++++++++--
- 1 file changed, 48 insertions(+), 4 deletions(-)
+According to PMBUS spec, there is no protection associated with that
+command. It just tells when the output voltage is considered good, when
+it is not. What it does after that really depends the device, it may
+drive a pin for example (or an LED indicator in my case).
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-index 98477792aa00..cb2436031181 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-@@ -295,30 +295,74 @@ power-sensor@12 {
- 
- 	gpio@20 {
- 		compatible = "nxp,pca9555";
--		reg = <0x20>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		reg = <0x20>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <98 IRQ_TYPE_LEVEL_LOW>;
-+		gpio-line-names =
-+		"P48V_OCP_GPIO1","P48V_OCP_GPIO2",
-+		"P48V_OCP_GPIO3","FAN_BOARD_0_REVISION_0_R",
-+		"FAN_BOARD_0_REVISION_1_R","FAN_BOARD_1_REVISION_0_R",
-+		"FAN_BOARD_1_REVISION_1_R","RST_MUX_R_N",
-+		"RST_LED_CONTROL_FAN_BOARD_0_N","RST_LED_CONTROL_FAN_BOARD_1_N",
-+		"RST_IOEXP_FAN_BOARD_0_N","RST_IOEXP_FAN_BOARD_1_N",
-+		"PWRGD_LOAD_SWITCH_FAN_BOARD_0_R","PWRGD_LOAD_SWITCH_FAN_BOARD_1_R",
-+		"","";
- 	};
- 
- 	gpio@21 {
- 		compatible = "nxp,pca9555";
--		reg = <0x21>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		reg = <0x21>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <98 IRQ_TYPE_LEVEL_LOW>;
-+		gpio-line-names =
-+		"HSC_OCP_SLOT_ODD_GPIO1","HSC_OCP_SLOT_ODD_GPIO2",
-+		"HSC_OCP_SLOT_ODD_GPIO3","HSC_OCP_SLOT_EVEN_GPIO1",
-+		"HSC_OCP_SLOT_EVEN_GPIO2","HSC_OCP_SLOT_EVEN_GPIO3",
-+		"ADC_TYPE_0_R","ADC_TYPE_1_R",
-+		"MEDUSA_BOARD_REV_0","MEDUSA_BOARD_REV_1",
-+		"MEDUSA_BOARD_REV_2","MEDUSA_BOARD_TYPE",
-+		"DELTA_MODULE_TYPE","P12V_HSC_TYPE",
-+		"","";
- 	};
- 
- 	gpio@22 {
- 		compatible = "nxp,pca9555";
--		reg = <0x22>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <98 IRQ_TYPE_LEVEL_LOW>;
-+		gpio-line-names =
-+		"CARD_TYPE_SLOT1","CARD_TYPE_SLOT2",
-+		"CARD_TYPE_SLOT3","CARD_TYPE_SLOT4",
-+		"CARD_TYPE_SLOT5","CARD_TYPE_SLOT6",
-+		"CARD_TYPE_SLOT7","CARD_TYPE_SLOT8",
-+		"OC_P48V_HSC_0_N","FLT_P48V_HSC_0_N",
-+		"OC_P48V_HSC_1_N","FLT_P48V_HSC_1_N",
-+		"EN_P48V_AUX_0","EN_P48V_AUX_1",
-+		"PWRGD_P12V_AUX_0","PWRGD_P12V_AUX_1";
- 	};
- 
- 	gpio@23 {
- 		compatible = "nxp,pca9555";
--		reg = <0x23>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		reg = <0x23>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <98 IRQ_TYPE_LEVEL_LOW>;
-+		gpio-line-names =
-+		"HSC1_ALERT1_R_N","HSC2_ALERT1_R_N",
-+		"HSC3_ALERT1_R_N","HSC4_ALERT1_R_N",
-+		"HSC5_ALERT1_R_N","HSC6_ALERT1_R_N",
-+		"HSC7_ALERT1_R_N","HSC8_ALERT1_R_N",
-+		"HSC1_ALERT2_R_N","HSC2_ALERT2_R_N",
-+		"HSC3_ALERT2_R_N","HSC4_ALERT2_R_N",
-+		"HSC5_ALERT2_R_N","HSC6_ALERT2_R_N",
-+		"HSC7_ALERT2_R_N","HSC8_ALERT2_R_N";
- 	};
- 
- 	temperature-sensor@48 {
--- 
-2.25.1
+It is very similar to 'crit' or other limits in that sense,
+I think. I don't really get why such property is not OK in hwmon then
+and why it should not be configurable, if the other limits are ?
 
+I don't mind dropping that completly, that change is not critical to me.
+The intent was to contribute something to overall pmbus support.
+
+>
+> Thanks,
+> Guenter
+
+--=20
+Jerome
 
