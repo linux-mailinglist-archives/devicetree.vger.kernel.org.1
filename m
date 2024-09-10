@@ -1,174 +1,156 @@
-Return-Path: <devicetree+bounces-101580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BAD89728DB
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 07:18:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 756529728FA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 07:48:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5748F1C23DF7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 05:18:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EBAC1C22441
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 05:48:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9970114AD38;
-	Tue, 10 Sep 2024 05:18:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C95BC1474D3;
+	Tue, 10 Sep 2024 05:48:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="r47X2Z2M"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="SjY6yZYY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2042.outbound.protection.outlook.com [40.107.255.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBF9344C7C;
-	Tue, 10 Sep 2024 05:18:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725945486; cv=none; b=jXkZNj4khiHrhqFbVcd0AGLePK+6LrtOBAMplrfF5cYiDe8jgAXpPxdHf+JsArqKl9HR/D1KIoT3PVGJHnX3vTgOcPlx7+TR7c8yE7ZDEO0rgnYKwDuGt+IpfOBMwZWcDF9gPKBdJUE7uOGGNjJ8qF6LPHdXyCIUp7pTKdkAzMA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725945486; c=relaxed/simple;
-	bh=hAhZ364znAxgZljeJw5JgixjqcAtcGqnXZpvX0S0/bM=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=eE+fuiKkeEb6Z7iLZDF/iEmZMo8X56uZWMl+BziImvqH2C35bSy8bWb10lk7gB9CiQ6SPd1EQT7Z8FukrayU/90PGbhvnm01kh05V8SLnH8Mym4SLp3T29eV1Nl5XxK0R0KrMjICcdyMXT5NS9OHq1An/+ct3/0gFjX+FlE+d+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=r47X2Z2M; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E9A8BA42;
+	Tue, 10 Sep 2024 05:48:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725947285; cv=fail; b=P85e41zsZMQk9tCy5CWiteD22xIg8ke890GdOcWQFofFRpT05/0k7PiZgdepefJFbNOpS5vkGBvi0nOjWiLV+2Lnv2z1rcmr0u4S1Kojew+FhJzN6yT0iAIO1MKQ1WJgpn8enioI0/1csnx/xfFLvErUzivi7Z/RxmzqfaOZBFw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725947285; c=relaxed/simple;
+	bh=eaD/K34T9n8TxAG4r+PoRQ38CiDNHOHERl+p/CeyeEQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=OHjEznSkJo91RTgG5vhjOh8PE/47kAOz4MBgduqFpIT+nZIqQq4nx+Ay/xgcM1LPnAfkiJwfRuETwt/O/jt1mi6XrcQjpfGL4aIVIyG1UfIc3b1h4C1Tna6oC3wY+TSTyNgWKUW0RlTnVyHdB+i/JkpNWeMJCqwFJFIgFqcGhag=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=SjY6yZYY; arc=fail smtp.client-ip=40.107.255.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QhKrGWvAExacYImlC8kZ8gBLRY36Rlu/NxajgyILLBz2sRVW+oUGk1GwbxzIhxYAqHGeYjuUo/la/SI77WobkZAFgw+5T5vtIUuruuofT0H3R759dVWGaHpllvg5+vFjRxPsIy9VkfknuB1DtdVA+2GmBJE81IDr2/oaKWuTCq43rZYDa3ZohmT3Za+LXxMpujCveQYUubC88Sgczz2gi9nUQ67NjYp+dBZ3KScXQ8N+xMm3TGaKhH0bQAQwXW+q8/1n3nr54POXJwUCrJUoTtj8C7UGjx4Syuxk/OOQiaEQJlYsuaLhgcSjt3ff+aLkIHuwdPmFC3Fcp/eIlCl5hA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iDLbwJxcVO6qXb84Bz9khN14NF7j0sVNm4T4YFM2eMs=;
+ b=lH9eIY+5w2NOwcTz7LKiRxfWNzyW5g70rI2uxBTr4cOUZc7nlqNbhYLHqQZ97iZBF5r8zIKGVKsi9vzPmmRPeKxBJmL5lM2UMUtBd3tnqqUQpCESTf/qEqbCgAnfHvZtk/XZt2QtvM7pRQmjW1Pvd3EOlRw2ie2XQunqRaE4cUPhauBf+8y/jyihYSJeKIo44BZ6js5hnJOEEiJxonVnAJrIT3RvRry4kadbZMBHMjcTh+sn5upTFE+nuPupqW2yX6O7M2+kpLNE6Ia0XhOjvG51nmfoGx+oviRS0SMAraL3MRekEhVGiA5VIo4ItxBEIouh4rQIPp5yH8tno/xSUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iDLbwJxcVO6qXb84Bz9khN14NF7j0sVNm4T4YFM2eMs=;
+ b=SjY6yZYYJL4ZyYMEJqrEdqNr8B3CsKIu216VWCEqK3POD3BNXAlW9KFAXaFRSEievn8f16Zs45nJGQkA6rNH753wDltrhD7nBapmJJR1fDXRXyv/Efyxp2NmmKFvkkh3US4qAlw91Kb550GLs5Fdxjl6LwbTIT/QQ2PZEpyq4vW3EbirM/s0gfsVYvFmeo6YOO3127fk9tiogJNqiAczqbb4DP5xT6vdCQ690uJhhqdZeDkp3g6MiSfuIAdKa7QnMLtlhiwJrEW2wcKs3VLNt9HIhb4zNmbXBSV97AnGTsvuzttD0pJJcIryK2Pe/u9RDCq9Zf7C+cTS9oq/pii7Rg==
+Received: from SG2PR02CA0136.apcprd02.prod.outlook.com (2603:1096:4:188::16)
+ by SEZPR04MB5707.apcprd04.prod.outlook.com (2603:1096:101:72::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24; Tue, 10 Sep
+ 2024 05:47:55 +0000
+Received: from SG1PEPF000082E5.apcprd02.prod.outlook.com
+ (2603:1096:4:188:cafe::d1) by SG2PR02CA0136.outlook.office365.com
+ (2603:1096:4:188::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24 via Frontend
+ Transport; Tue, 10 Sep 2024 05:47:55 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ SG1PEPF000082E5.mail.protection.outlook.com (10.167.240.8) with Microsoft
+ SMTP Server id 15.20.7918.13 via Frontend Transport; Tue, 10 Sep 2024
+ 05:47:53 +0000
+From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+To: patrick@stwcx.xyz
+Cc: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] Yosemite4: Add devices on I2C buses to server boards
+Date: Tue, 10 Sep 2024 13:47:49 +0800
+Message-Id: <20240910054751.2943217-1-Delphine_CC_Chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1725945475;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=fstbatTWWnEJ/CPU36BeADiwbLC59NJU+ju1hfFIVHI=;
-	b=r47X2Z2MMM1xhMaCrEtYPgpc8/OcQV9kKz7r6HsZdO9e5QaSwEuq8CMsipUK+XW/iL+seF
-	vixilZs1VMO9MF2aWH5CgXsO3wFzYyj6HEqMQ6tdEvo+8quK8s/m9IT3fJsqhDOWP6nRSw
-	C4c+Ftg6UjqmMM1pQkMVBsdp8vn9W1XGOvEFQ+aP4g5oXIzrLQXUZGG/T/wdSSUq+5UbeY
-	I/g3A8SlApHx5OlYi6YRCSdsWdTKjYK+2EuKRahnnUPuCxcadIRG9V9c2gaWwLp3MSLIRt
-	o2wMnBTSvkFBaN/p/Zw+I9qOA1Bg/A0AdRlC6D8lDHDbs5kHdD4Wi56ZPEQR9w==
-Date: Tue, 10 Sep 2024 07:17:55 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Chen-Yu Tsai <wens@csie.org>, linux-sunxi@lists.linux.dev,
- jernej.skrabec@gmail.com, samuel@sholland.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: allwinner: a64: Move CPU OPPs to the SoC dtsi
- file
-In-Reply-To: <20240905142054.58194beb@donnerap.manchester.arm.com>
-References: <92ebc9cba6eb669df73efd478e4f5745056a4ce5.1723614345.git.dsimic@manjaro.org>
- <CAGb2v678Z8TMKZmBmmd5hW9XBdKw9KD+JgrsMm5e8sSoYOq3wA@mail.gmail.com>
- <21d6e75bc33ef2b7f27932fee1b8de05@manjaro.org>
- <20240815181508.6800e205@donnerap.manchester.arm.com>
- <06cec3fc98e930bedc8ea5bfde776b3d@manjaro.org>
- <0fc37f3074a3e99c15a2f441194b7032@manjaro.org>
- <CAGb2v65h8zaxoEKeqdT8BZD9t=4gf0QM7zBnhuDoiEhHQLKduw@mail.gmail.com>
- <20240905133412.6ba050de@donnerap.manchester.arm.com>
- <b07f1365a6f942297f7a3308fa628187@manjaro.org>
- <20240905134254.6e15a1e5@donnerap.manchester.arm.com>
- <8a80465aaa4b7dc4c8c15d7a73944cfd@manjaro.org>
- <20240905142054.58194beb@donnerap.manchester.arm.com>
-Message-ID: <df8b774e10a0dbe5c01dc39d3cbd92fd@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG1PEPF000082E5:EE_|SEZPR04MB5707:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: c4935c1b-99ad-4b86-8943-08dcd15c1dca
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|36860700013|82310400026|376014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?cBH6avbHty3OJe5OLHsTbSOCYrOG9RT/1tuiMDrezmk+drNEIoTZzg0ekvtw?=
+ =?us-ascii?Q?iFDt9dFPt8UZD1JYRX+l+j6OeK4YpUnoKrN20IJRQRkSJbMtoc2qk0ZAjsQJ?=
+ =?us-ascii?Q?IL1zMgrUROjEitZZhoFIld6kLh7iOq0w2qVu4sv+XKVYFEd/RzjMPFdRaCEU?=
+ =?us-ascii?Q?u/EtP15cn/WIsLfD6uQPTj9oBtq4D2Dtb/vbYtAs+mCUNeiObHcdTaXa+oWF?=
+ =?us-ascii?Q?Ts17LuDTSbihCIB8W5jI7s2B59yF5eliY1Ec1Ndgh5d+eNbxv9YFDyhdD8xP?=
+ =?us-ascii?Q?/VX4x4ajI9r1vc0VeRhDmXV1RUc375M9bxXzSxZo3oG7nlFlBLNG0FsUklRF?=
+ =?us-ascii?Q?NXWYVrUAMyiBjwLZRM5c9OeDHS87Yt2mT+Hqq2Sv81pchXfeljyk04ekaNha?=
+ =?us-ascii?Q?H/5UB+AHDf3IYjBB+GZzvBt0wkid/Gfh96Gj9rySD1y2DWpHVJDM8IhHCjPc?=
+ =?us-ascii?Q?8GYYHJLn/hQJall0FAacJ15Ypa65cqPRhzylSGAXdkmP4cHOlO/RCprwhSVL?=
+ =?us-ascii?Q?mcgSWO/WoxX6dxBAM53lWttnKuaykf0duV4WMa5aojY0pyCOpa/Rl126P3kQ?=
+ =?us-ascii?Q?mLygDfceOzUDsxwgxRfMUZwKLSTTecvI/ShtmQlUW1YovGmeIFEbduyoTgU6?=
+ =?us-ascii?Q?HivQ9wW9+6lS5aLXRIqG1Gi/ZRAliO/kIMBxrPKVUPGQ4IgzHUM8ED+x6PKo?=
+ =?us-ascii?Q?2w91jKoOmPwOOabY/7EReQP63ajym9nPlv67VTL0Lh1un/Ldzus8RKBq95lL?=
+ =?us-ascii?Q?/8g+RS1jcm7F370zUZUnFYrN02sjzZtLloEuj+fhZQAzlG++8lFibGsLn15g?=
+ =?us-ascii?Q?LHtMRgUxKWtUHyLKpcD+9gi92G730fhCnB5qS6EZeCaPe9aciX/WvhI9R5IG?=
+ =?us-ascii?Q?6dLJ85vzrS98kBVaMct58fTbJdkYI+KAQcsAj4ZqLoT0mvaXBYNm37b8hdem?=
+ =?us-ascii?Q?KV5F0x5rmeR0t438YhaiTfQ4MYXJTdbjCaDXcQ4NWBJFI+h19BhcOSCH1EuY?=
+ =?us-ascii?Q?bmrnEjZY8rhQSCyzgXzn9coTIUBzRVFlf5Y1im6Y/ewUGiuS2IFncqDUEACF?=
+ =?us-ascii?Q?zcWqGEcSoqDbSQITFOTc8qbxPiCaTDlnlRxJyoodPU+1xwSNFERLSE3cYCuF?=
+ =?us-ascii?Q?tcuifR7AUSQZ+28IX75xSi6iZIrtUm/hUIq1st+KrO79G8VHWi9M6mM2UsF+?=
+ =?us-ascii?Q?LXASeqEKdqU7x0wnoO6t+Bko2+kB6brcaUHY02PxV/gLXMrt1/7wIDR74iz9?=
+ =?us-ascii?Q?xydbd+gJYuPYXeZ6idDjAi1FgPtQnFGTz679Y94sjhgQCrxbnqM21eZxTjF+?=
+ =?us-ascii?Q?IldATg05v7RxmCrbUn29XxyjWpG9prPX1CiZSF+pnphxEW8RZDcGTNhkNAw2?=
+ =?us-ascii?Q?NN2PdSV1Z8ObSsfBsUC50axysU8DVmzoUKPn8hVzpAoVTYCza1Sn04Vi5sl3?=
+ =?us-ascii?Q?Z2v6vI+Y6xBPXpWq32T/GTpZ/fH9Cgih?=
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(7416014)(36860700013)(82310400026)(376014)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2024 05:47:53.9901
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c4935c1b-99ad-4b86-8943-08dcd15c1dca
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG1PEPF000082E5.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR04MB5707
 
-Hello Andre,
+Changelog:
+  - v1
+    - Revise to use adm1281 on Medusa board.
+    - Add gpio pca9506 for CPLD I/O expander.
 
-On 2024-09-05 15:20, Andre Przywara wrote:
-> On Thu, 05 Sep 2024 14:54:03 +0200 Dragan Simic <dsimic@manjaro.org> 
-> wrote:
->> On 2024-09-05 14:42, Andre Przywara wrote:
->> > On Thu, 05 Sep 2024 14:38:53 +0200
->> > Dragan Simic <dsimic@manjaro.org> wrote:
->> >> On 2024-09-05 14:34, Andre Przywara wrote:
->> >> > On Thu, 5 Sep 2024 20:26:15 +0800
->> >> > Chen-Yu Tsai <wens@csie.org> wrote:
->> >> >> On Thu, Sep 5, 2024 at 8:17 PM Dragan Simic <dsimic@manjaro.org>
->> >> >> wrote:
->> >> >> > Just checking, any further thoughts about this patch?
->> >> >>
->> >> >> Sorry, but I feel like it's not really worth the churn. There's not
->> >> >> really a problem to be solved here. What you are arguing for is more
->> >> >> about aesthetics, and we could argue that having them separate makes
->> >> >> it easier to read and turn on/off.
->> >> >
->> >> > Yeah, I agree. If a board wants to support OPPs, they just have to
->> >> > include
->> >> > a single file and define the CPU regulator, and that's a nice opt-in,
->> >> > IMHO.
->> >> > But having this patch would make it quite hard to opt out, I believe.
->> >> > For
->> >> > Linux there are probably ways to disable DVFS nevertheless, but I am
->> >> > not
->> >> > sure this is true in an OS agnostic pure-DT-only way.
->> >>
->> >> Thanks for your response.  The only thing that still makes me wonder
->> >> is why would a board want to opt out of DVFS?  Frankly, I'd consider
->> >> the design of the boards that must keep DVFS disabled broken.
->> >
->> > Yes! Among the boards using Allwinner SoCs there are some, say
->> > less-optimal designs ;-)
->> 
->> I see, but such boards could simply disable the "cpu0_opp_table"
->> node in their dts(i) files, for the encapsulated CPU OPPs scenario,
->> and everything would still work and be defined in a clean(er) way.
-> 
-> I agree, and I was already about to suggest this as a reply to your 
-> initial
-> post, but I think I tried that, and IIRC this doesn't work: the 
-> "status"
-> property is not honoured for this node.
-> But please double check that.
+Ricky CX Wu (2):
+  ARM: dts: aspeed: yosemite4: Revise to use adm1281 on Medusa board
+  ARM: dts: aspeed: yosemite4: Add gpio pca9506 for CPLD IOE
 
-I apologize for my delayed response.
+ .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 276 +++++++++++++++++-
+ 1 file changed, 268 insertions(+), 8 deletions(-)
 
-Perhaps a safer approach could be to introduce a new dtsi file, named
-sun50i-a64-cpu-opps-disabled.dtsi, with the following contents:
+-- 
+2.25.1
 
-/delete-node/ &cpu0_opp_table;
-
-&cpu0 {
-	/delete-property/ operating-points-v2;
-};
-
-&cpu1 {
-	/delete-property/ operating-points-v2;
-};
-
-&cpu2 {
-	/delete-property/ operating-points-v2;
-};
-
-&cpu3 {
-	/delete-property/ operating-points-v2;
-};
-
-The purpose of this new file would be to delete the CPU OPPs for the
-suboptimally designed boards, when included into their dts(i) files,
-while the CPU OPPs would be "encapsulated" into the SoC dtsi.
-
-Though, I'm not sure how much cleaner this approach would be, but
-I think it would fit rather well with the suggested approach of having
-such suboptimal board designs treated as an exception that would be
-handled in some special way.  As a bonus, it would also make locating
-dts(i) files for such suboptimal designs a bit simpler, by grepping
-for "cpu-opps-disabled".
-
->> I mean, if there are some suboptimal designs, perhaps the defaults
->> should be tailored towards the good designs, and the suboptimal
->> designs should be some kind of exceptions.
->> 
->> >> > This could probably be solved, but same as Chen-Yu I don't see any good
->> >> > enough reason for this patch in the first place.
->> >> >
->> >> >> And even though the GPU OPPs are in the dtsi, it's just one OPP acting
->> >> >> as a default clock rate.
 
