@@ -1,209 +1,209 @@
-Return-Path: <devicetree+bounces-101660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE378972DA4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 11:31:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 203C1972DC1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 11:35:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5CAF28714B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 09:31:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE29028526C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 09:35:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F01E188CDC;
-	Tue, 10 Sep 2024 09:31:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C485E1891A1;
+	Tue, 10 Sep 2024 09:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="i/9hIIwP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AAIFUnbk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5535C188CAD
-	for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 09:31:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81EAD188CB3;
+	Tue, 10 Sep 2024 09:35:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725960683; cv=none; b=sHDgAtIQlIJi4kwESAjei94haRn1HQsK24AtSuGZxx2OKg3nqt4YlDSRyrinRcvnJrYOrGzQxY8vOkAGy5nvSDHIrQMky8387LtrhgjwUrgPm5WMHozLJwLKsrHmEDwvyIlgsBj3GPPhQMspkFBLEuJWFh7I6x0uniob+M7/bT8=
+	t=1725960945; cv=none; b=rMpLiTimLmC27XYZC/7yZQfh3MvAU6lWQ7eRzMncxhBQ5T5vQjuZTi29Qwpa6bxXstm09azv8FKgj+SVdVlq1NTdFRoERglQbXFBGI6qQ8UXeoTUH/E9fNflLTYWsh/6pnrcYDRkYhRdCTASQpaeAn7FxZsiUqTEUl8wQ3N/IUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725960683; c=relaxed/simple;
-	bh=/yBirLlbsXe5irgaHtC/VRx4dXEPb1T0JzXJA9JBoD8=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=e6z9EzeEVeqX5OADWC0HxDVYxSmjnlZeL7X9+voPFPILKgndZcC7MORt2A9frumjoLJE6/cIz+54eqS3cwQKNIhywIdhtvGatGlLALo5kxKJSuQtyM2KfpQnB2fS1dOe1n6pn6ifumwkFqO8YnhgEDBfEW1vfufD5lfe91ozxIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=i/9hIIwP; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-374c1120a32so375342f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 02:31:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725960680; x=1726565480; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=NuS9MAxsmvjSgFrYtBO34391Uw04VZwdaHe4kRwnHIs=;
-        b=i/9hIIwPb26ABV+w+ANhRNtPKPtpsEqV90b14y07k1blmy2dTwqgXybA4D06hQO/9C
-         EBjfxlcS+88hXD2DOZMlE9jyFS3N0detA8wupak4v2FOHed1pbcydCKSyObHLwlhWu3M
-         P11AFZeCBpj4sMlavcT4p13OmjPwwyKgsqC2GeN+PST4Yz1HW9PdWMhIypj3P6qFw8ht
-         FecDX5zK2Od4xQATCS3xdxIFf6AOO/bKxyNsDv8H8GV0xzUtmZDpVVb+wLa8FZKIUgHX
-         JbEXeAH7WURAoXARISxbycymvzYB0Y/43F5yyPMX0tJ5X82Ds3Cbz5/mB8Aa0ai33jQ6
-         Frwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725960680; x=1726565480;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NuS9MAxsmvjSgFrYtBO34391Uw04VZwdaHe4kRwnHIs=;
-        b=F30qPn4Ots6xs8ENKSni9texOtfTYoAt7JYSB2CaFNo742dp/KcflQ4RQHYBK0a1rr
-         3fI4wOSrgsIV2i611fztKzSulgcT3ww46YQ1JPEbefNsI/vbBxKZsz9/BGyjB0yufLtc
-         Z+WIGDQXzaCqcA5NpwLtqsbgsBclWFfamwGYnW4TZIWOc4bEA+FSkJEjd8diqIN4ocm+
-         xUgfjqhxBDAOojFz7hpCLl0vgSUXFaKn5ywGxO2vTbw1A7yAPEKv1BeDvqjpSIdKYmb8
-         cf1h3TX/uRbxW6kwCWZmvjJKR8mAGQo9YOec9o+bA8uZIyaG/chk2zqunCbsjG5AGYEM
-         orVg==
-X-Forwarded-Encrypted: i=1; AJvYcCVKUIjmXMMb/uJPAx+ewHGTTa0sLmv1Qww6jdotMDDK1/nCz3GEYIvwJaFaXNuugFtXALorLjqdMauW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+/WS7liV7U1CSa0ElGTjd0mubpSuOv7JlTItaLMyyhItXLewP
-	QXoNdJPK8390hLXr109mu/Rh4b5eSM5cphV6tk618r5d8Ki7pWOB6zzmwZtKguU=
-X-Google-Smtp-Source: AGHT+IHWU9Nsx/+0aSjXLCuH8M7pxPwtBJFXd4QA9DnNUUZvDz4yyjRr1z1CDQ306/ZYKfm0hlNraQ==
-X-Received: by 2002:a5d:54c2:0:b0:374:bb00:31eb with SMTP id ffacd0b85a97d-378895c5c5amr7565976f8f.6.1725960679056;
-        Tue, 10 Sep 2024 02:31:19 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:8ba7:bfe4:fea9:65b])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3789564aef9sm8353891f8f.5.2024.09.10.02.31.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Sep 2024 02:31:18 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jean Delvare <jdelvare@suse.com>,  Guenter Roeck <linux@roeck-us.net>,
-  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>,  Jonathan Corbet <corbet@lwn.net>,
-  Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
-  linux-hwmon@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  linux-doc@vger.kernel.org,
-  linux-i2c@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: hwmon: pmbus: add ti tps25990
- documentation
-In-Reply-To: <3efbzcys4762rhx2h2cbhqvi6dgik7pfrxcziccdko34pb5z54@joodcym6c3s4>
-	(Krzysztof Kozlowski's message of "Tue, 10 Sep 2024 09:48:34 +0200")
-References: <20240909-tps25990-v1-0-39b37e43e795@baylibre.com>
-	<20240909-tps25990-v1-1-39b37e43e795@baylibre.com>
-	<3efbzcys4762rhx2h2cbhqvi6dgik7pfrxcziccdko34pb5z54@joodcym6c3s4>
-Date: Tue, 10 Sep 2024 11:31:18 +0200
-Message-ID: <1jzfofsvmh.fsf@starbuckisacylon.baylibre.com>
+	s=arc-20240116; t=1725960945; c=relaxed/simple;
+	bh=TBCYlvMv+CXUZRevJVyM0lQA/IZ4ZH4AmMprMHtYvlw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CE/zUfMdhbvyJbO4z1aam/++cpBpVnOSixAaDyxdwcxsi6peIR3IzHQBNgK54UK0pYRvnqDghDSdx4kIJl6kbUIxhIvAUmFOR0B8KQ9c/GwMJBTaaXbWt2AvIrM86zgcKEAIbunU7icrt6OjtyflsnasGi3+9jNT0JWYhg7Xiv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AAIFUnbk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25545C4CECF;
+	Tue, 10 Sep 2024 09:35:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725960945;
+	bh=TBCYlvMv+CXUZRevJVyM0lQA/IZ4ZH4AmMprMHtYvlw=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=AAIFUnbkEFTcQpSLieFiYjCtb2IxBMyXzOXGIdn9U2FRcJ8A+jQnl9/HvcZopeLrR
+	 DYMRztJ3Gagf/QFSeAEGf1H6ytJhBqy8Cc+w8ioxpjas2VLD6v6a6StyiUQN6+ymaU
+	 gACQTT5dM2T+6ejfsvw8ock+PQ4FueCsXFekx8kvxEN5ckO6VNrkYK4v4jT9PwQuYu
+	 zAlwi4uBBYFi21BYgVSAkWFJQdhfgWpcvsL0/yYcfD0lGpru8VgYIplUM6mAFnB/Nu
+	 CJPV2gtm35Uf3GxiJ2bNnSURUzKjpxH42jrbsmwLKTbjXx5qM4RPMebcz7djbUvYEu
+	 FmjohxuyEBxjg==
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-53653ff0251so6283157e87.0;
+        Tue, 10 Sep 2024 02:35:45 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUpFodMlvYbrkbjCsJEwE7uImN746D4JfWAC3Hvempel1nPXnHEoJMuL+ae/O9190InGuQvImZ6pKlbvg==@vger.kernel.org, AJvYcCVuQP/FjPkOXPUi7bL2PEO0AYfKcTayy8+ZIKJa/2DpFgNlBeop4k+Bqg0F/RR2wAm+/9t5nJDq0OYW22aKskY=@vger.kernel.org, AJvYcCVwOrrvSXV2WgJ1qmrJtpAaXMNxKkejKMAVI2V8+4U9tJE/0Z+HiTLozLcs2+1RpA2sdN85NUROaRJx7w==@vger.kernel.org, AJvYcCVx+j71HJyeo5+E11gVBsCTG5h4JQWYopvl0IoxjkZWZcbnyYDp8EI6lIeBiOSpPSNXLvKX0g+0/nIGGqr8@vger.kernel.org, AJvYcCXtVeZWB1XCUuOLjoY5Egvmyf2JBL6n1AQCUGNF/jrpuVum0fVGVO1Z68OrH04TvMgVRn207iLAIIum@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6unjGZm4smkjzkkkWFr0bSRpx84Oa2aVcqTbXlhluxSc5I7NQ
+	T4GtzaBimwUrcGuTzeWdA+I+CoiKjt+mFENldjOijLEdPmXjCIAL3brzEqabMjvs0ytMdCvi22r
+	seWFLPv3DVO8aq9RZPEP9t40vThY=
+X-Google-Smtp-Source: AGHT+IENtsmQg68T2Ng35CvFqHD8v1uFN5MIvWFG7psrbL/gymy/jagJsarSBmqhnENe7SHnrN02zL4FzfCwY+63Hyw=
+X-Received: by 2002:a05:6512:2514:b0:536:5827:8778 with SMTP id
+ 2adb3069b0e04-536588130d9mr9715058e87.53.1725960943742; Tue, 10 Sep 2024
+ 02:35:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20240904234803.698424-1-masahiroy@kernel.org> <20240904234803.698424-5-masahiroy@kernel.org>
+ <20240905141723.GC1517132-robh@kernel.org>
+In-Reply-To: <20240905141723.GC1517132-robh@kernel.org>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Tue, 10 Sep 2024 18:35:06 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAQnMn5fUbREnDx4XKVy9ssxVEaaZQsMtCb2a2KPZP=y=g@mail.gmail.com>
+Message-ID: <CAK7LNAQnMn5fUbREnDx4XKVy9ssxVEaaZQsMtCb2a2KPZP=y=g@mail.gmail.com>
+Subject: Re: [PATCH 04/15] kbuild: add generic support for built-in boot DTBs
+To: Rob Herring <robh@kernel.org>
+Cc: linux-kbuild@vger.kernel.org, linux-arch@vger.kernel.org, 
+	linux-snps-arc@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Michal Simek <monstr@monstr.eu>, devicetree@vger.kernel.org, linux-mips@vger.kernel.org, 
+	linux-openrisc@vger.kernel.org, Dinh Nguyen <dinguyen@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue 10 Sep 2024 at 09:48, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-
-> On Mon, Sep 09, 2024 at 05:39:03PM +0200, Jerome Brunet wrote:
->> Add DT binding documentation for the Texas Instruments TPS25990 eFuse
->> 
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> ---
->>  .../bindings/hwmon/pmbus/ti,tps25990.yaml          | 73 ++++++++++++++++++++++
->>  1 file changed, 73 insertions(+)
->>
+On Thu, Sep 5, 2024 at 11:17=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
 >
-> A nit, subject: drop second/last, redundant "documentation". The
-> "dt-bindings" prefix is already stating that these are bindings/docs.
-> See also:
-> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+> On Thu, Sep 05, 2024 at 08:47:40AM +0900, Masahiro Yamada wrote:
+> > Some architectures embed boot DTBs in vmlinux. A potential issue for
+> > these architectures is a race condition during parallel builds because
+> > Kbuild descends into arch/*/boot/dts/ twice.
+> >
+> > One build thread is initiated by the 'dtbs' target, which is a
+> > prerequisite of the 'all' target in the top-level Makefile:
+> >
+> >   ifdef CONFIG_OF_EARLY_FLATTREE
+> >   all: dtbs
+> >   endif
+> >
+> > For architectures that support the embedded boot dtb, arch/*/boot/dts/
+> > is visited also during the ordinary directory traversal in order to
+> > build obj-y objects that wrap DTBs.
+> >
+> > Since these build threads are unaware of each other, they can run
+> > simultaneously during parallel builds.
+> >
+> > This commit introduces a generic build rule to scripts/Makefile.vmlinux
+> > to support embedded boot DTBs in a race-free way. Architectures that
+> > want to use this rule need to select CONFIG_GENERIC_BUILTIN_DTB.
+> >
+> > After the migration, Makefiles under arch/*/boot/dts/ will be visited
+> > only once to build only *.dtb files.
+> >
+> > This change also aims to unify the CONFIG options used for embedded DTB=
+s
+> > support. Currently, different architectures use different CONFIG option=
+s
+> > for the same purposes.
+> >
+> > The CONFIG options are unified as follows:
+> >
+> >  - CONFIG_GENERIC_BUILTIN_DTB
+> >
+> >    This enables the generic rule for embedded boot DTBs. This will be
+> >    renamed to CONFIG_BUILTIN_DTB after all architectures migrate to the
+> >    generic rule.
+> >
+> >  - CONFIG_BUILTIN_DTB_NAME
+> >
+> >    This specifies the path to the embedded DTB.
+> >    (relative to arch/*/boot/dts/)
+> >
+> >  - CONFIG_BUILTIN_DTB_ALL
+> >
+> >    If this is enabled, all DTB files compiled under arch/*/boot/dts/ ar=
+e
+> >    embedded into vmlinux. Only used by MIPS.
 >
->> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/ti,tps25990.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/ti,tps25990.yaml
->> new file mode 100644
->> index 000000000000..e717942b3598
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/ti,tps25990.yaml
->> @@ -0,0 +1,73 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +
+> I started to do this a long time ago, but then decided we didn't want to
+> encourage this feature. IMO it should only be for legacy bootloaders or
+> development/debug. And really, appended DTB is more flexible for the
+> legacy bootloader case.
 >
-> Drop blank line.
+> In hindsight, a common config would have been easier to limit new
+> arches...
 >
->> +$id: http://devicetree.org/schemas/hwmon/pmbus/ti,tps25990.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Texas Instruments TPS25990 Stackable eFuse
->> +
->> +maintainers:
->> +  - Jerome Brunet <jbrunet@baylibre.com>
->> +
->> +description: |
+> >
+> > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> > ---
+> >
+> >  Makefile                 |  7 ++++++-
+> >  drivers/of/Kconfig       |  6 ++++++
+> >  scripts/Makefile.vmlinux | 44 ++++++++++++++++++++++++++++++++++++++++
+> >  scripts/link-vmlinux.sh  |  4 ++++
+> >  4 files changed, 60 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Makefile b/Makefile
+> > index 145112bf281a..1c765c12ab9e 100644
+> > --- a/Makefile
+> > +++ b/Makefile
+> > @@ -1417,6 +1417,10 @@ ifdef CONFIG_OF_EARLY_FLATTREE
+> >  all: dtbs
+> >  endif
+> >
+> > +ifdef CONFIG_GENERIC_BUILTIN_DTB
+> > +vmlinux: dtbs
+> > +endif
+> > +
+> >  endif
+> >
+> >  PHONY +=3D scripts_dtc
+> > @@ -1483,7 +1487,8 @@ endif # CONFIG_MODULES
+> >  CLEAN_FILES +=3D vmlinux.symvers modules-only.symvers \
+> >              modules.builtin modules.builtin.modinfo modules.nsdeps \
+> >              compile_commands.json rust/test \
+> > -            rust-project.json .vmlinux.objs .vmlinux.export.c
+> > +            rust-project.json .vmlinux.objs .vmlinux.export.c \
+> > +               .builtin-dtbs-list .builtin-dtb.S
+> >
+> >  # Directories & files removed with 'make mrproper'
+> >  MRPROPER_FILES +=3D include/config include/generated          \
+> > diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
+> > index dd726c7056bf..5142e7d7fef8 100644
+> > --- a/drivers/of/Kconfig
+> > +++ b/drivers/of/Kconfig
+> > @@ -2,6 +2,12 @@
+> >  config DTC
+> >       bool
+> >
+> > +config GENERIC_BUILTIN_DTB
+> > +     bool
 >
-> Do not need '|' unless you need to preserve formatting.
+> So that we don't add new architectures to this, I would like something
+> like:
 >
->> +  The TI TPS25990 is an integrated, high-current circuit
->> +  protection and power management device with PMBUS interface
->> +
->> +properties:
->> +  compatible:
->> +    const: ti,tps25990
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  ti,rimon-milli-ohms:
->> +    description:
->> +      milli Ohms value of the resistance installed between the Imon pin
->> +      and the ground reference.
->
-> Ohms is not enough? We don't have mOhm in property units.
-> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
->
+> # Do not add new architectures to this list
+> depends on MIPS || RISCV || MICROBLAZE ...
 
-Same discussion as we've had on the driver change.
-At the moment Ohms is enough for the cases I've seen.
 
-Will it be, not sure.
-Using mOhms is' way to avoid "S**t, R is 80.2 Ohms, I
-need another digit to not loose precision " kind of situation and
-introduce a second property just for that.
+This will not work after 14/15 is applied.
 
-No idea if Rimon will get that low. Probably not.
 
-I'll switch to Ohms.
+For example, if arch/arm/Kconfig has
 
->> +
->> +  interrupts:
->> +    description: PMBUS SMB Alert Interrupt.
->> +    maxItems: 1
->> +
->> +  regulators:
->> +    type: object
->> +    description:
->> +      list of regulators provided by this controller.
->
-> You have just one regulator, so drop "regulators" node and use directly
-> vout here.
 
-Just took the example the other pmbus device and did the same for
-consistency.
+config BUILTIN_DTB
+      bool "enable BUILTIN_DTB"
 
-In that case, there other (possible) regulator called gpdac1 and gpdac2.
-I haven't even tried to implement the support for those.
 
-Since it would not break old DTs to add that later, I thought it would be OK
-to add them later. Should I add them now ?
+No warning is displayed.
 
->
->> +
->> +    properties:
->> +      vout:
->> +        $ref: /schemas/regulator/regulator.yaml#
->> +        type: object
->> +        unevaluatedProperties: false
->> +    additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - ti,rimon-milli-ohms
->> +
->> +additionalProperties: false
->
-> Best regards,
-> Krzysztof
 
--- 
-Jerome
+
+
+--=20
+Best Regards
+Masahiro Yamada
 
