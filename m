@@ -1,249 +1,221 @@
-Return-Path: <devicetree+bounces-101585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53834972927
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 07:59:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8586972948
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:07:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78DFC1C23E83
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 05:59:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37AE51F262B0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 06:07:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3D6017622D;
-	Tue, 10 Sep 2024 05:58:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A695178372;
+	Tue, 10 Sep 2024 06:07:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="os7xTXYT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CBzntBuK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2055.outbound.protection.outlook.com [40.107.237.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB09B172BD0;
-	Tue, 10 Sep 2024 05:58:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.55
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725947903; cv=fail; b=F474xa/gfNqs0OFT7yPxNKk7/tOVwTyhNWgpyiHCeB/Pju2Jqr1rEQCCXngyY8fI46DXLzBgZntvsEbzyYe0kXX3JpN7FJ1qlIrJ1igumS/BxW6RtkI9baPkd1BYvrSNsIU16bEGRo9ejyziSY1qps0whv9Ftxdi8z5XEScEXoM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725947903; c=relaxed/simple;
-	bh=iaOuXS+fVSsHhv9j6s6liTK03IUdLk0SOY0hSlnMm+M=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=alPIT0EPan8rUIZWapuqCb/pBwP4GS49WSxf76eG2X5R5D6lM2Pf4aIw+5TqdmfKZAsn7a6tvRtdkE8yoyc31L3P7KhDn/DcaoGHNnhV3RT2cuXX/SRskBaXnKsMad1EYA5lzKPde1E1mjsqYom7xpXpryvGzsnY3Fjsfv1SFXk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=os7xTXYT; arc=fail smtp.client-ip=40.107.237.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=y8nOFw+FAsmGT4GklApFKcKd9oigRbpUlJHVTrqF63Uy0yZbD226koAVlHpfawEvmFi1bpoEYM6YmoASXxi2GvyHKn2mIy7qtsQnwhSj9aqTrduNNj9sgekl++xnn2qu2HpJ5sVk/xKdcEIKdkf6K9gXc7zbVEoWmSBKERmyQWyFoPUBpnQxrvUdIaFZRiec2IKQ5Ze7cGsky+tTruYNn0SoRMGhoQwE/7ojpD97fZlkKFgzFxN18S8EGY36S+bPLk+kpuHB4B0OdsT7wwoK5zuESIT8EHNepfz4Pvlj05OEfLkevyt9z7sDMJic814ZMqdBRzCF8xtSvFQJwLPvpQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AwBdpCbly9MCgfExB4X6EyfILp4tCZsXf2umR7ruAQI=;
- b=QAV/tUyoaTECb0u8KbwA2+tpVaayQq4D4XGKvaPgAhvZxQvszWvDxEvKESAub1unC9xbBbCWO3PtTYGvEWzsA1R92PZddV6ezeHL/S8mfliQmx558zXkNyeZ9arXmacSW/wad7kN55Riw42MDO/dr1psvtKWkxG/Ho0pK+m6lT3KktumBaW4zgnFHrocJDV1cdvqVKCts+xh7aqRBvwjLWLj30ADRDYyUOtL5zFYwD2RAPbCZ79LFVze3PEmeZaN86XLl3qEUdjv0HQm8DkP2gBlivH/isL+Z+5CA+5XmWs4e2Bp774EAjGN3lps5V1yvOtZTRVsMzrDQiW2UYNCEg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AwBdpCbly9MCgfExB4X6EyfILp4tCZsXf2umR7ruAQI=;
- b=os7xTXYTJCMfFgAXC759bjWdORygCTDPACUI8FIWj6ED+1N0GJ0qUHCBesL8UAP3J4XtyhdVk0m8CsSehMg+tgDVJIFVxO1OeJ+0/Dslr32y7iNQPmhMhLbUCD88LW+VMfpipMPNwS+nj8iUrv8zXtN7TujS12vf77DzISrsH7o=
-Received: from BY5PR12MB4258.namprd12.prod.outlook.com (2603:10b6:a03:20d::10)
- by SN7PR12MB7297.namprd12.prod.outlook.com (2603:10b6:806:2ad::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.27; Tue, 10 Sep
- 2024 05:58:18 +0000
-Received: from BY5PR12MB4258.namprd12.prod.outlook.com
- ([fe80::3228:a925:2191:98b3]) by BY5PR12MB4258.namprd12.prod.outlook.com
- ([fe80::3228:a925:2191:98b3%3]) with mapi id 15.20.7939.022; Tue, 10 Sep 2024
- 05:58:17 +0000
-From: "Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>
-To: "Thangaraj, Senthil Nathan" <SenthilNathan.Thangaraj@amd.com>, Linus
- Walleij <linus.walleij@linaro.org>, "Simek, Michal" <michal.simek@amd.com>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, "Buddhabhatti, Jay"
-	<jay.buddhabhatti@amd.com>, "Kundanala, Praveen Teja"
-	<praveen.teja.kundanala@amd.com>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>
-CC: "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-gpio@vger.kernel.org"
-	<linux-gpio@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "saikrishna12468@gmail.com"
-	<saikrishna12468@gmail.com>, "git (AMD-Xilinx)" <git@amd.com>
-Subject: RE: [PATCH v5 2/3] firmware: xilinx: Add Pinctrl Get Attribute ID
-Thread-Topic: [PATCH v5 2/3] firmware: xilinx: Add Pinctrl Get Attribute ID
-Thread-Index: AQHbAEwmSfoYnoTrIkarfEtwQpYksLJPs7MAgADVZYA=
-Date: Tue, 10 Sep 2024 05:58:17 +0000
-Message-ID:
- <BY5PR12MB42583098D3C9B0879596D571DB9A2@BY5PR12MB4258.namprd12.prod.outlook.com>
-References: <20240906110113.3154327-1-sai.krishna.potthuri@amd.com>
- <20240906110113.3154327-3-sai.krishna.potthuri@amd.com>
- <LV3PR12MB92605EC32BE4F5AFA2949359E2992@LV3PR12MB9260.namprd12.prod.outlook.com>
-In-Reply-To:
- <LV3PR12MB92605EC32BE4F5AFA2949359E2992@LV3PR12MB9260.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BY5PR12MB4258:EE_|SN7PR12MB7297:EE_
-x-ms-office365-filtering-correlation-id: ff0315d9-0437-4dc3-9b67-08dcd15d9148
-x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|1800799024|7416014|366016|38070700018|921020;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?KimlCeE3X381mrgWy46B5NgfHT0yuj4bv/L4aK8DcVDWJHqroq6eVn4eR1Af?=
- =?us-ascii?Q?1WsOTxJ5uTdE5IHFuBy0gV6FTOUcSyWOwDBRwHB+W5s98n8L5Fm2Jlk4fcb/?=
- =?us-ascii?Q?NwUhdn8tDTdZb3jMlWuHNc7Ljdu2TRI/+v6pQ+AaDBQ+urojg/Zg9MFZB1RX?=
- =?us-ascii?Q?3OdtSVL9OTIUbHxnQeFRMi95w51s2l5XhClIYPKwQlgRyWTrXWt7bMs+bAKp?=
- =?us-ascii?Q?CcWKm3VJ1SahV1AmJg/QA8P8Gf+si6gdTH20lFgl9ezpWeTpLaxxqv38bR9N?=
- =?us-ascii?Q?Wid+iKbhSuNotYiAWozep9nsIOVEpf4z4R9w5Cz6B+cdK2FV0csetDdktfjx?=
- =?us-ascii?Q?+6cPVZk5l89BHZGTksBH2u7COQgYdxqPpVn3PRnQZf+tQjX7dMxKH+rCLy1m?=
- =?us-ascii?Q?0EIKy7isb2In7vaouYTDHO9frPHi0YFUCBKV3uW5flDyZZ+XVQoYtpCs06V9?=
- =?us-ascii?Q?qaIJs2RJAUau6NG5x8uSO2zd1L3bSm2WwEf3aX5kW63AcsF1ToJsf4rwHmi4?=
- =?us-ascii?Q?88wZmK2xG2L+oC+72JdioEeXHZlyNb0x7R+4XZMkb72wy8rgXCn506gpkNN3?=
- =?us-ascii?Q?mSw4opP5KhDSCdHbC5ujwNFW+1TpPkGm6lYWgyE86GVpDnXKMZCuWU1mAy5X?=
- =?us-ascii?Q?BhZPUyHaDifTWqrmcVUeFMyDzXIb3qP1loRQWWJQYQ2li8G1bNEcMrsPSsR2?=
- =?us-ascii?Q?uC/qfAzI2kYf1Qs6XenK7REPErQYHOFtMRW+IMSG06FwS3ib8oAgRriH/ZwA?=
- =?us-ascii?Q?srCVpSW2V5twpFIGeoXLH1WpZk1ARWV1D93rxNDSOU60m1EjYfeOj6aTLlJC?=
- =?us-ascii?Q?KpZ4LxkDodqXjz00vs2tfiHmIEqFKkM5EsEC4XLCbwBhYhCtrvnxU96MkHzz?=
- =?us-ascii?Q?7oumwVlHfsEpakIuyFXev/5uniVAChR57WMJdRc8JqdL7zjdYJ4Jt3HZDBJp?=
- =?us-ascii?Q?WnSJoLi40vPiQKSz/PS8f6JQhbFRqQBdYwLYiLNe4hgTtCKKEPg5uNUegi4L?=
- =?us-ascii?Q?/liiditWll+nFFfjTVniyQRJy4OZFYcHHVkDR6vmROeUZwoxx4zTXVIDcfkm?=
- =?us-ascii?Q?Tv5Y6c4js/40LWQ3SUmDHFgTQ4kBkcERsmjssxGzF77Bg9gjkuJTCZx55bmV?=
- =?us-ascii?Q?uu0AZQX7GRRWddNefRjTIEOKKFIot9DFp8VwNGWLIWUzLMTHtKSxb4QItcPz?=
- =?us-ascii?Q?CN+V7de2JgynQcnqPNMa9vWN+hxPXb+zY8AlfUux2Sj8hFIdhj1i8ZF987W/?=
- =?us-ascii?Q?uVmz5roFek39h9UFjI5T0YnWX+a4FUW4ggC3cwtA6numoF5xr9FjjXMim0Ki?=
- =?us-ascii?Q?tx59jhvNQUS8X1iiXQAqSoIdMz38d/Ins8qtl4EE9S0LG/c4g2BXNvRG52Ku?=
- =?us-ascii?Q?+Nbmv5Ds8gctikK/pF5WlHLkllBMri3VnukwjDG33dcJJ0/CnhHmnyde6pWk?=
- =?us-ascii?Q?dYZRmX9BZMs=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR12MB4258.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(7416014)(366016)(38070700018)(921020);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?AqAenZtdBXYtgU3fkHA+By79Ny20h3KMmpdyuoXLNMh/HIr0378Sro5PakeF?=
- =?us-ascii?Q?IHfy/T/ZzuN+b2DOyeKsJjGFNuFl626FlxRp+u64inUCXm2v8hWBkmLuzLhp?=
- =?us-ascii?Q?S+RiewxzlmeJVNfa4BMsOt+HDJ8O7HiV1YQRblg2OtyopLvcWsC7rZMTJB8+?=
- =?us-ascii?Q?FSVvRT38luIQHPZDpDMLRCbHQqCU7cUcPQVJC2IJKCBpkaPtWqZiceb8gR1X?=
- =?us-ascii?Q?SuDYb3fgjo5Jcw1S86LBEc6+7wMUNZUgyCUu//OXf8cpqvD3c1OLsRW3tGQc?=
- =?us-ascii?Q?nkfnUF4RReKinpEwQCVOpa/CsCe3EJTjmwcsWrflElOfkxDXxby0lmW4cRaO?=
- =?us-ascii?Q?biyOTp0XQjZ0RjI8GAtUyl7+yOtqaQdsHG0n92EGYZJLs5pehe9/foYF7als?=
- =?us-ascii?Q?v24bg9/Bve3FO2zffnpSANI2x8ZvHy0qKM7tctgHydmC8Qn/X+XU5QTE/p2Y?=
- =?us-ascii?Q?EROKZEdb2/pbvTShn7kS33mJUiEa6YMdDw1AE1yo+OeSIwEVBsaqBlqkIHal?=
- =?us-ascii?Q?o7pwxCS2RLvHwHmsKeCDrxa2IySwXZvmrHdBCf6wz0aR7Z4HpVl1mVm+oAgW?=
- =?us-ascii?Q?ENBBhJSPGnzzU0l0VbxJV2hZNmd0H2SK5R0+Lrj9Ly/DjPDITh3ShhjtOX4G?=
- =?us-ascii?Q?YzCgaia0tBg/mJZWxe3qi4pS0XH84AQ+MAIteu0zNopCgErTCYfi0hskQTkT?=
- =?us-ascii?Q?EdRB+edNvQtYxARADhj6XYEq4l0hgDnmx29PmOsU2i6QnZ8l8R60zZ8OGqHj?=
- =?us-ascii?Q?025pgO8ZeDKWSp/Vx3XwABHPxE5xeu9ZaYVKHJRaD12JQtdEX0sdSUkQAMPK?=
- =?us-ascii?Q?21u5zmU29FGY5gPiSMGpvFg/BOOYteZsoAnYwsCQhhDWleHpps15i5j1Sw8R?=
- =?us-ascii?Q?DGJp8QBK0H6KPLt6SJV343rZpVRvXBQHrbIJYNflHXy+fq4ZlYDfpdREUD+q?=
- =?us-ascii?Q?lS9DceO4zc0eq8carT75bRQzYOmJ6+ln9OiyUhWZD4VkfFiNA11EuOoS7E39?=
- =?us-ascii?Q?AAoDiAK5ijJ2w/JbAbbpcl2dKnro/EVUxco9M31yKdGGk3g3jna33QWCE3Jo?=
- =?us-ascii?Q?Y0f/R0I7ENMEiD0EGTAdVUTC1xU1V/m7lXTa30ZuXUa7ga0Ng/XJbpBZ0dkB?=
- =?us-ascii?Q?3QXWrcx1pdJrzryklWUP04M4pJL00xdF5QRwabQzVd3KFGDmCENgYLcEJc3w?=
- =?us-ascii?Q?faABRtwwRy6j1xMDLlhHsCTRYk2/eIpLeOAImQjYJ49bK11gCyAQMoHL5pmG?=
- =?us-ascii?Q?P+jTq+x0PrdVdtqoXs2hRTZY6UIrLX8PbE2arY1Y0L9VuTbn1Roeme8UCqY0?=
- =?us-ascii?Q?u42ak0LLuGqHVCQKdSCw2ebZ76J21gGQ4YYjHFmddQ6/67rnfKgmjwTq/Pib?=
- =?us-ascii?Q?CzIjJ++unBjfEzwIS2Q+Z+3vryupXSJfCUW9JjD6GsfEzkXY/SaTyCquION1?=
- =?us-ascii?Q?eAA00Stp1DVRvOBwXZFM/dS7IiWqtmJ2V70REDtUoorxVHSmcL5GpBAAWUWa?=
- =?us-ascii?Q?+sfSdpL+AHFvZ6ge8X/2Hw5foaHhhqO0VOOhXjrI8PfJcHrhI4erNa1cIlQX?=
- =?us-ascii?Q?qMym3OqOqJsfZGKaYnc=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D34613AD09
+	for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 06:06:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725948421; cv=none; b=MuFjIgelO6aTByK8UuG3aZRrv8sJMgClA+/khuuDLbmr2GEK/fN8qELhiS8pVlAyBWhfhYBYnOzgFeZpEexppcpxHJjfTUv58GJ8lTGMU1OWcGLLwsDZ9rP7xfvm0ArHFE6UCbvMOrXNEB09yHqpJ/9vVgGUEveF8ePWPx586LQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725948421; c=relaxed/simple;
+	bh=Y4IUApUSHTsnmcu4wF4wE4pQLfT7M//t+j035MFadwE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tqN5NockWrGwP+JjdsFAyRZLiXYRMuUkskGPzrVc02xXNMPHg8gpfGTx6njMmmit2rbah4zgHrtGlx1SQh9tdvGjMH9xkgQMAQlZ7hZoLieTleoWQKlz31VPNFvXelIMt4GgARDdH5JtSsut0JHwfwj8RYeNAhVY1OkoohGqxE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CBzntBuK; arc=none smtp.client-ip=209.85.160.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-27b55c4b35eso2429492fac.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Sep 2024 23:06:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725948418; x=1726553218; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=z9MHdiQIKbQZ7sHVzFN+NNCUWOQwDHp5p4yZrC2v9dg=;
+        b=CBzntBuK2A80ovZYB1HZeo1BQcV1R3JOEpzWXtSSPd97UEQgaaQ/giTYolQiIlr+L0
+         h8PwVtwiwPLypvtN/15CnRw1nWQWh9v47565FNPzLypO8K9hzscNCsxmp+q3g5u0Heyw
+         iTEVkuW8Na+SOpW2LzN7YMOKjwAqPKOTvuvnj+hkqo/QEM/W1w7iufVPCGlwcbWyUxKo
+         L+Oa6hURcTi9CrPmrEe/ep93cCXFh/K39VS9lgOkpgXOngus3Kc8EmxaNJDPbwnnhxt1
+         UreKI9e7FOGBDmO/wFWkv5kpE27cFx9CeeM5PRWF8FhPMjvhbF7GIv2uRsStrbuIsvez
+         CRbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725948418; x=1726553218;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=z9MHdiQIKbQZ7sHVzFN+NNCUWOQwDHp5p4yZrC2v9dg=;
+        b=lMsSPORYE1s0mbPVDgJE9iavqEaxcWGWrP+qs7bgm2uoE4Fe00exIsOvXxlQzSuclu
+         IXj0BBlRonFnYQefwu2+4RNPLOSuDBS1x1NiwRLn4hZS/35gycZ4SFml4jZn8LUkMG/J
+         JHBFLKSI/RYOrJbNmac/W/d+AH8zWUapuehCUzW7TEsEp3qQRMwS0UP71wgtHQ57DR7m
+         LY63C2Lccvbh45K8FlYWZA8wLl+Tb60nKowqI2VDoY0DaqWEfc+7U6qHuZaMjWQrykH2
+         yFGY2Aqm2MUdAZ53Lo7rnvSoKO6vMF8PWzDl+Agb+SrMAFpvPB2Mgs6zoa2FuJFlzUEn
+         oS4g==
+X-Forwarded-Encrypted: i=1; AJvYcCU8zATmiIR4Y/WhVZ8YcpzFD82lyuD9f09Xk0g7jHuA56VMIF8J+AXd+yrJjGz2RW9pI0U9M4HduCT1@vger.kernel.org
+X-Gm-Message-State: AOJu0YyF2LRu01JB76ortr7CMTIZ9HA+B6AMVNd4NRv0XChVTb/1GGrh
+	l4C8X85jlDNIlWaMz3uDx5P6bWz2wI7V62XS7Iw5UKmY6x03hDZBJdyzllGvTF7cAUQHDmbSPYu
+	XGlu4/h078Vt6jm55O/dWv3SPL86D6AfgFg08TQ==
+X-Google-Smtp-Source: AGHT+IEICe98dkZbn2Ns9nln8TerGdgfmay8kae6nOnNQUjTdvKEr1T8PPGslpKcLz8r5N2w/0aeGsRv9D3S4R0GNlg=
+X-Received: by 2002:a05:6870:9122:b0:278:22d3:53 with SMTP id
+ 586e51a60fabf-27b82e076cdmr13465979fac.12.1725948418296; Mon, 09 Sep 2024
+ 23:06:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB4258.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ff0315d9-0437-4dc3-9b67-08dcd15d9148
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Sep 2024 05:58:17.8785
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RvASCdbH3Q1XCLqwnuN+FWhoaAXVaOlsA0kPcbq7NJRV1myr0L+NM65PBXx1QlTb3IOKm3riQqjFpCRCgr7g/Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7297
+References: <20240830070351.2855919-1-jens.wiklander@linaro.org>
+ <20240830070351.2855919-5-jens.wiklander@linaro.org> <CABdmKX2KzswmiDY4oWw69_rPWs8d_Cqp7OXouSeMQaYX1SDSmw@mail.gmail.com>
+ <CAHUa44FYYFVQWf0DGUXNHoOVQEC0-HRyYa0386dHNjo4y1qSiQ@mail.gmail.com> <CABdmKX0qd0RoTn2TBQTs9zdf=_JP8pW8hFRUR_7n_t-sfxsGdg@mail.gmail.com>
+In-Reply-To: <CABdmKX0qd0RoTn2TBQTs9zdf=_JP8pW8hFRUR_7n_t-sfxsGdg@mail.gmail.com>
+From: Jens Wiklander <jens.wiklander@linaro.org>
+Date: Tue, 10 Sep 2024 08:06:46 +0200
+Message-ID: <CAHUa44E-7UMseWSEeneYYnAPyhH___=a1YYR6uaOVTNZytzg7g@mail.gmail.com>
+Subject: Re: [RFC PATCH 4/4] dma-buf: heaps: add Linaro restricted dmabuf heap support
+To: "T.J. Mercier" <tjmercier@google.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linaro-mm-sig@lists.linaro.org, op-tee@lists.trustedfirmware.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	Olivier Masse <olivier.masse@nxp.com>, Thierry Reding <thierry.reding@gmail.com>, 
+	Yong Wu <yong.wu@mediatek.com>, Sumit Semwal <sumit.semwal@linaro.org>, 
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
+	John Stultz <jstultz@google.com>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+	Sumit Garg <sumit.garg@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Senthil,
+On Wed, Sep 4, 2024 at 11:42=E2=80=AFPM T.J. Mercier <tjmercier@google.com>=
+ wrote:
+>
+> On Wed, Sep 4, 2024 at 2:44=E2=80=AFAM Jens Wiklander <jens.wiklander@lin=
+aro.org> wrote:
+> >
+> > On Tue, Sep 3, 2024 at 7:50=E2=80=AFPM T.J. Mercier <tjmercier@google.c=
+om> wrote:
+> > >
+> > > On Fri, Aug 30, 2024 at 12:04=E2=80=AFAM Jens Wiklander
+> > > <jens.wiklander@linaro.org> wrote:
+> > > >
+> > > > Add a Linaro restricted heap using the linaro,restricted-heap bindi=
+ngs
+> > > > implemented based on the generic restricted heap.
+> > > >
+> > > > The bindings defines a range of physical restricted memory. The hea=
+p
+> > > > manages this address range using genalloc. The allocated dma-buf fi=
+le
+> > > > descriptor can later be registered with the TEE subsystem for later=
+ use
+> > > > via Trusted Applications in the secure world.
+> > > >
+> > > > Co-developed-by: Olivier Masse <olivier.masse@nxp.com>
+> > > > Signed-off-by: Olivier Masse <olivier.masse@nxp.com>
+> > > > Signed-off-by: Jens Wiklander <jens.wiklander@linaro.org>
+> > > > ---
+> > > >  drivers/dma-buf/heaps/Kconfig                 |  10 ++
+> > > >  drivers/dma-buf/heaps/Makefile                |   1 +
+> > > >  .../dma-buf/heaps/restricted_heap_linaro.c    | 165 ++++++++++++++=
+++++
+> > > >  3 files changed, 176 insertions(+)
+> > > >  create mode 100644 drivers/dma-buf/heaps/restricted_heap_linaro.c
+> > > >
+> > > > diff --git a/drivers/dma-buf/heaps/Kconfig b/drivers/dma-buf/heaps/=
+Kconfig
+> > > > index 58903bc62ac8..82e2c5d09242 100644
+> > > > --- a/drivers/dma-buf/heaps/Kconfig
+> > > > +++ b/drivers/dma-buf/heaps/Kconfig
+> > > > @@ -28,3 +28,13 @@ config DMABUF_HEAPS_RESTRICTED_MTK
+> > > >         help
+> > > >           Enable restricted dma-buf heaps for MediaTek platform. Th=
+is heap is backed by
+> > > >           TEE client interfaces. If in doubt, say N.
+> > > > +
+> > > > +config DMABUF_HEAPS_RESTRICTED_LINARO
+> > > > +       bool "Linaro DMA-BUF Restricted Heap"
+> > > > +       depends on DMABUF_HEAPS_RESTRICTED
+> > > > +       help
+> > > > +         Choose this option to enable the Linaro restricted dma-bu=
+f heap.
+> > > > +         The restricted heap pools are defined according to the DT=
+. Heaps
+> > > > +         are allocated in the pools using gen allocater.
+> > > > +         If in doubt, say N.
+> > > > +
+> > > > diff --git a/drivers/dma-buf/heaps/Makefile b/drivers/dma-buf/heaps=
+/Makefile
+> > > > index 0028aa9d875f..66b2f67c47b5 100644
+> > > > --- a/drivers/dma-buf/heaps/Makefile
+> > > > +++ b/drivers/dma-buf/heaps/Makefile
+> > > > @@ -2,4 +2,5 @@
+> > > >  obj-$(CONFIG_DMABUF_HEAPS_CMA)         +=3D cma_heap.o
+> > > >  obj-$(CONFIG_DMABUF_HEAPS_RESTRICTED)  +=3D restricted_heap.o
+> > > >  obj-$(CONFIG_DMABUF_HEAPS_RESTRICTED_MTK)      +=3D restricted_hea=
+p_mtk.o
+> > > > +obj-$(CONFIG_DMABUF_HEAPS_RESTRICTED_LINARO)   +=3D restricted_hea=
+p_linaro.o
+> > > >  obj-$(CONFIG_DMABUF_HEAPS_SYSTEM)      +=3D system_heap.o
+> > > > diff --git a/drivers/dma-buf/heaps/restricted_heap_linaro.c b/drive=
+rs/dma-buf/heaps/restricted_heap_linaro.c
+> > > > new file mode 100644
+> > > > index 000000000000..4b08ed514023
+> > > > --- /dev/null
+> > > > +++ b/drivers/dma-buf/heaps/restricted_heap_linaro.c
+> > > > @@ -0,0 +1,165 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0
+> > > > +/*
+> > > > + * DMABUF secure heap exporter
+> > > > + *
+> > > > + * Copyright 2021 NXP.
+> > > > + * Copyright 2024 Linaro Limited.
+> > > > + */
+> > > > +
+> > > > +#define pr_fmt(fmt)     "rheap_linaro: " fmt
+> > > > +
+> > > > +#include <linux/dma-buf.h>
+> > > > +#include <linux/err.h>
+> > > > +#include <linux/genalloc.h>
+> > > > +#include <linux/module.h>
+> > > > +#include <linux/of.h>
+> > > > +#include <linux/of_fdt.h>
+> > > > +#include <linux/of_reserved_mem.h>
+> > > > +#include <linux/scatterlist.h>
+> > > > +#include <linux/slab.h>
+> > > > +
+> > > > +#include "restricted_heap.h"
+> > > > +
+> > > > +#define MAX_HEAP_COUNT 2
+> > >
+> > > Are multiple supported because of what Cyrille mentioned here about p=
+ermissions?
+> > > https://lore.kernel.org/lkml/DBBPR04MB7514E006455AEA407041E4F788709@D=
+BBPR04MB7514.eurprd04.prod.outlook.com/
+> >
+> > Yes, I kept that as is.
+>
+> Ok thanks.
+>
+> > > So this is just some arbitrary limit? I'd prefer to have some sort of
+> > > documentation about this.
+> >
+> > How about removing the limit and using dynamic allocation instead?
+>
+> That works too!
 
-> -----Original Message-----
-> From: Thangaraj, Senthil Nathan <SenthilNathan.Thangaraj@amd.com>
-> Sent: Monday, September 9, 2024 10:33 PM
-> To: Potthuri, Sai Krishna <sai.krishna.potthuri@amd.com>; Linus Walleij
-> <linus.walleij@linaro.org>; Simek, Michal <michal.simek@amd.com>; Rob
-> Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>;
-> Conor Dooley <conor+dt@kernel.org>; Buddhabhatti, Jay
-> <jay.buddhabhatti@amd.com>; Kundanala, Praveen Teja
-> <praveen.teja.kundanala@amd.com>; Greg Kroah-Hartman
-> <gregkh@linuxfoundation.org>
-> Cc: linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
-> linux-gpio@vger.kernel.org; devicetree@vger.kernel.org;
-> saikrishna12468@gmail.com; git (AMD-Xilinx) <git@amd.com>; Potthuri, Sai
-> Krishna <sai.krishna.potthuri@amd.com>
-> Subject: RE: [PATCH v5 2/3] firmware: xilinx: Add Pinctrl Get Attribute I=
-D
->=20
-> Hi Sai Krishna,
->=20
-> Please find my review below.
->=20
-> Thanks,
-> Senthil
->=20
-> > -----Original Message-----
-> > From: linux-arm-kernel <linux-arm-kernel-bounces@lists.infradead.org>
-> > On Behalf Of Sai Krishna Potthuri
-> > Sent: Friday, September 6, 2024 4:01 AM
-> > To: Linus Walleij <linus.walleij@linaro.org>; Simek, Michal
-> > <michal.simek@amd.com>; Rob Herring <robh@kernel.org>; Krzysztof
-> > Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
-> > Buddhabhatti, Jay <jay.buddhabhatti@amd.com>; Kundanala, Praveen Teja
-> > <praveen.teja.kundanala@amd.com>; Greg Kroah-Hartman
-> > <gregkh@linuxfoundation.org>
-> > Cc: linux-arm-kernel@lists.infradead.org;
-> > linux-kernel@vger.kernel.org; linux- gpio@vger.kernel.org;
-> > devicetree@vger.kernel.org; saikrishna12468@gmail.com; git
-> > (AMD-Xilinx) <git@amd.com>; Potthuri, Sai Krishna
-> > <sai.krishna.potthuri@amd.com>
-> > Subject: [PATCH v5 2/3] firmware: xilinx: Add Pinctrl Get Attribute ID
-> >
-> > Caution: This message originated from an External Source. Use proper
-> > caution when opening attachments, clicking links, or responding.
-> >
-> >
-> > Add Pinctrl Get Attribute ID to the query ids list.
-> >
-> > Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-> > ---
-> >  include/linux/firmware/xlnx-zynqmp.h | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/include/linux/firmware/xlnx-zynqmp.h
-> > b/include/linux/firmware/xlnx-zynqmp.h
-> > index d7d07afc0532..3b4ce4ec5d3f 100644
-> > --- a/include/linux/firmware/xlnx-zynqmp.h
-> > +++ b/include/linux/firmware/xlnx-zynqmp.h
-> > @@ -238,6 +238,7 @@ enum pm_query_id {
-> >         PM_QID_PINCTRL_GET_PIN_GROUPS =3D 11,
-> >         PM_QID_CLOCK_GET_NUM_CLOCKS =3D 12,
-> >         PM_QID_CLOCK_GET_MAX_DIVISOR =3D 13,
-> > +       PM_QID_PINCTRL_GET_ATTRIBUTES =3D 15,
->=20
-> Any reason why do you need to skip 14 and use 15 here ?
-This is based on the ID defined in the Xilinx Platform Management Firmware.
-Whatever the ID defined by the Xilinx firmware to handle this functionality=
-,
-the same ID is used here. ID 14 might be used for another query function bu=
-t
-Linux use cases might not be using it.
+It turns out that was easier said than done. The limit is hardcoded
+because dynamic memory allocation isn't available at that stage during
+boot. We have a short description of this heap in Kconfig. I'll add
+something about the limit there if that makes sense.
 
-Regards
-Sai Krishna
-
+Thanks,
+Jens
 
