@@ -1,133 +1,111 @@
-Return-Path: <devicetree+bounces-101714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36C5A97362B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 13:26:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85302973650
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 13:35:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E13361F26251
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 11:26:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2878B27183
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 11:35:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 106EB18DF69;
-	Tue, 10 Sep 2024 11:26:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F2BC18DF99;
+	Tue, 10 Sep 2024 11:35:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="m/cWkn4Q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fKZsUSVr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C20F18CBE6;
-	Tue, 10 Sep 2024 11:26:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5EA017BB08;
+	Tue, 10 Sep 2024 11:35:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725967563; cv=none; b=noevJV3dbMVck+IqQzUu4meqCwBgZnGklccCugW5Jl1I6SVnpMdrS98byhu+SoAKFA4PHr21GNXdci3UY+e2aHdZpa2NqUKFsjakElOesjXkIzvIb3/EQhjL9pdl0WKQwuUV1AnUpR8ANzLIJdDCKPXZvqJ8oDPVfkFdkROwPNo=
+	t=1725968105; cv=none; b=JE+hNzgQpjCQyjYj1UNvJi9wQWo63xm0RGowuO8STrevDoM8ljuTWW8WBDX80pg+pv1WGOVKsyiGebkp+R0XWNJAxXgZYfsLUtNKCIIC73EJc/9cOXVpWtqpDbU2xL41pymXl8RrJrsz+UxhAJOjieL0C5mQgFp2AQyWZqcaBls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725967563; c=relaxed/simple;
-	bh=hFdk9WHZKkb7brrYOpROvJMjjtWhnOk6pCybUleva7A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XvUnBxIt08JUfcdDKob1v3lVGAFmJBLCnA4ujjLVumD1NDq64nGXCRDOKqoUgHwBR0RJ4fwGPPgfA287oskrfeY3HT927qeQe5flpYI1G5WPbVHkZ1Hc4M7T5pvpTWWS0VyInE5LlR59C25SPTUhzPvV1l9mH9gh/EgRNRvbG94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=m/cWkn4Q; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=5MZ5qUsrQbYBTuxNJH396q5UDPw8fUqYp6k8thzROZU=; b=m/cWkn4QRKnpq56MnnOY90KttL
-	Ue+C5SdcJp7eKa2lBJhuTyNorlc9n8sNRbr7sp5OJnHEfktxlqVO+ehAfQugjFrVz40AsujOwRjAG
-	r2mWiLy1PYkaFDAl88e5hPu/ZI0aa0Tf7hTCSP6ELqoxbC9Pt+pu4M2LgK9GiOrh90RiCkChZasPA
-	089JWzbIPHN4ouf+GfJs/iUkK/d7hM2STFwHrNzEeRVTeoKytZnGiMIE4YlgU4t2vugI9WHp/Voya
-	bJSEgOgrvKFTo2VChdWbfuX2Yfyl2D34IqmAksSsOiEg7rCmTg5E0UTwpC+q54uy5lgT4o3QxYhkW
-	AVCd7vOQ==;
-Received: from i53875a02.versanet.de ([83.135.90.2] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1snyzw-0003qW-Hw; Tue, 10 Sep 2024 13:25:28 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, kernel@collabora.com,
- Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>,
- Algea Cao <algea.cao@rock-chips.com>
-Subject: Re: [PATCH v6 3/3] drm/rockchip: Add basic RK3588 HDMI output support
-Date: Tue, 10 Sep 2024 13:27:52 +0200
-Message-ID: <2241188.nHSHbJBgIm@diego>
-In-Reply-To:
- <20240906-b4-rk3588-bridge-upstream-v6-3-a3128fb103eb@collabora.com>
-References:
- <20240906-b4-rk3588-bridge-upstream-v6-0-a3128fb103eb@collabora.com>
- <20240906-b4-rk3588-bridge-upstream-v6-3-a3128fb103eb@collabora.com>
+	s=arc-20240116; t=1725968105; c=relaxed/simple;
+	bh=Rg5PN2PkV2Um3WGF1tS0FkDKm4Jao3qaAGmi5tBMgY0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jQgZHx3i80Gvvuhiz4dcfJNnzNdiN8DCrwgtrMDkaY1CNE78iLTANLRpR2u4Z+jnxG0Nz88/XcCKC9dvY3cEgY8IqG4CxBSeAH+m3clWDhSnXDCrVvA21t34nvRj9E7Y1Lw39UBTlIjkpAoeelP2KT5aPtDn65LA+qx/Wg39+tk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fKZsUSVr; arc=none smtp.client-ip=209.85.160.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-45832b2784bso5973201cf.3;
+        Tue, 10 Sep 2024 04:35:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725968103; x=1726572903; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=m4SZ8rld03euXTwsLUYIcEQpPdlukkUlkqr7Bv4R1+s=;
+        b=fKZsUSVr9i1uLAwuxne4EvRX49jPt3ZAe/ckca/Q07YKfZgQb0dHnqpGwoHQgBGcq6
+         A8cqGgmBCSPbxjVD99mTX4htZk/A8tA3bbkRSxghcdacPsyDeyLJeG/6xIngUuYrBSFj
+         /ex/8oVONFkn0Ot2JHJz2RJOMTAUguxzyatStBKR4Mis7IVwcCPYu19DYU1pgmCzF/5s
+         WOEp/KWPGBM24TkrgDha2xR/wgp/JckF8koH1GpjZq55kYb3dnKvBnVE5KcXZuI1i7Qk
+         VfnEO9UZq45HJrE9QyMe/27et6eGosd3HGp9drUrxfm9nIo9RSyuJSb1n+w4pp51M7ZA
+         1P1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725968103; x=1726572903;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=m4SZ8rld03euXTwsLUYIcEQpPdlukkUlkqr7Bv4R1+s=;
+        b=IR0CRGdGdfFpvJJdRSj09nEYKs3llBoDxmzJtCi7J3xnHYc4Kh621rRdOXmjCsSdG+
+         UjuUBlRtUIaXO/E6n+rkrN5mpCcYY4Fhk075/b2Uwn3YmXBKVixKDSHjg8/lTts5nsLm
+         XtAQqInY3dEatxX2I0rkfyo1bnP18UFZorwbMv5KhJ/NUvDI2CkLvMPhpD4D85YYNHYw
+         FxdRAKeIIEBh/qDfn6/jSOE9g8e/p7UZofiDkGHhx457ipxbKNI+pxr+HCAdFVFUWfWA
+         hAU9ksNSKsmBKrf1YTdlKa5hNi+kG5DTuIO0msDNE6nZekRcTSfHUTcnN6Vk3ekO0TT4
+         9P6w==
+X-Forwarded-Encrypted: i=1; AJvYcCW57SMWc7xHzMpgyFRtpy8/v+apEzOLHx8Qtq8Nktbu9CTQ1Lyy6iNJbanoIYyHG4a9ImU62mlsAJFXN2k=@vger.kernel.org, AJvYcCWGZ9eTrAzuUzvd0tDsdyQUwXclLNeelFOsMbQxZhHp6sLQVew/DBakPkWSqi2TJsGvvkv6lIYt2lL3@vger.kernel.org, AJvYcCWgbgToYBHAlcR30vzDcChSES0QYCAOarfbHMeS6eJtUgRQAh96cddglnOJ/s8o1Q0cfrxpJcfIaocdFDnb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3lreQimU/9tjrS3TyH7RaetMMSYCEJL+gVrUJMYDi8WinAXTw
+	PTA6uC8GsQnb+pyIHFV5hvZkuVopEpGdSLq+0YPpibZlvpLcohqBk4OqFhDKDBLct6Z8uXm3lUj
+	4eC/TrT1Ldr6g+URViWte1hZ5IJY=
+X-Google-Smtp-Source: AGHT+IHWVIW11vGept4eUOpnLCpX6Ts6tf++sRjP2wV6wU9eTwvRnbvwKXwKawRbLo4KHZrBWFC0ZynTgBiV1Om/KXU=
+X-Received: by 2002:a05:622a:6f0f:b0:458:23e5:1342 with SMTP id
+ d75a77b69052e-45823e5172bmr110385861cf.56.1725968102360; Tue, 10 Sep 2024
+ 04:35:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20240908113027.69471-1-kuzhylol@gmail.com> <dcbpkytpp56vqewjjqagdj7zful7l4kprhc5bjnu656pwgy4bn@3op2dcj6o3e3>
+In-Reply-To: <dcbpkytpp56vqewjjqagdj7zful7l4kprhc5bjnu656pwgy4bn@3op2dcj6o3e3>
+From: Oleh Kuzhylnyi <kuzhylol@gmail.com>
+Date: Tue, 10 Sep 2024 13:34:52 +0200
+Message-ID: <CA+4v9GtB9_fnLXFcSUmpPdiSZOYfZB3OXq=ai6nUuwqmgw3FzA@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: input: touchscreen: add Hynitron CST816X
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Conor Dooley <conor.dooley@microchip.com>, igor.opaniuk@gmail.com, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jeff LaBundy <jeff@labundy.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Am Freitag, 6. September 2024, 03:17:42 CEST schrieb Cristian Ciocaltea:
-> The RK3588 SoC family integrates the newer Synopsys DesignWare HDMI 2.1
-> Quad-Pixel (QP) TX controller IP and a HDMI/eDP TX Combo PHY based on a
-> Samsung IP block.
-> 
-> Add just the basic support for now, i.e. RGB output up to 4K@60Hz,
-> without audio, CEC or any of the HDMI 2.1 specific features.
-> 
-> Co-developed-by: Algea Cao <algea.cao@rock-chips.com>
-> Signed-off-by: Algea Cao <algea.cao@rock-chips.com>
-> Tested-by: Heiko Stuebner <heiko@sntech.de>
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> ---
->  drivers/gpu/drm/rockchip/Kconfig               |   8 +
->  drivers/gpu/drm/rockchip/Makefile              |   1 +
->  drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c | 437 +++++++++++++++++++++++++
->  drivers/gpu/drm/rockchip/rockchip_drm_drv.c    |   2 +
->  drivers/gpu/drm/rockchip/rockchip_drm_drv.h    |   1 +
->  5 files changed, 449 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
-> index 7df875e38517..4da7cef24f57 100644
-> --- a/drivers/gpu/drm/rockchip/Kconfig
-> +++ b/drivers/gpu/drm/rockchip/Kconfig
-> @@ -8,6 +8,7 @@ config DRM_ROCKCHIP
->  	select VIDEOMODE_HELPERS
->  	select DRM_ANALOGIX_DP if ROCKCHIP_ANALOGIX_DP
->  	select DRM_DW_HDMI if ROCKCHIP_DW_HDMI
-> +	select DRM_DW_HDMI_QP if ROCKCHIP_DW_HDMI_QP
->  	select DRM_DW_MIPI_DSI if ROCKCHIP_DW_MIPI_DSI
->  	select GENERIC_PHY if ROCKCHIP_DW_MIPI_DSI
->  	select GENERIC_PHY_MIPI_DPHY if ROCKCHIP_DW_MIPI_DSI
-> @@ -63,6 +64,13 @@ config ROCKCHIP_DW_HDMI
->  	  enable HDMI on RK3288 or RK3399 based SoC, you should select
->  	  this option.
->  
-> +config ROCKCHIP_DW_HDMI_QP
-> +	bool "Rockchip specific extensions for Synopsys DW HDMI QP"
-
-this needs a
-+       select DRM_BRIDGE_CONNECTOR
-
-now, otherwise it can't link the drm_bridge_connector_init function
-
-
-
-
+On Mon, Sep 9, 2024 at 8:25=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+>
+> On Sun, Sep 08, 2024 at 01:30:26PM +0200, Oleh Kuzhylnyi wrote:
+> > Add documentation for the Hynitron CST816X touchscreen bindings.
+> >
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > Signed-off-by: Oleh Kuzhylnyi <kuzhylol@gmail.com>
+> > ---
+> >  .../input/touchscreen/hynitron,cst816s.yaml   | 57 +++++++++++++++++++
+> >  1 file changed, 57 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/input/touchscreen=
+/hynitron,cst816s.yaml
+> >
+>
+> I asked to do some minor tweak if new version was going to be send...
+> eh...
+Wow, I just saw that. Thank you for bringing it to my attention.
+>
+> Best regards,
+> Krzysztof
+>
 
