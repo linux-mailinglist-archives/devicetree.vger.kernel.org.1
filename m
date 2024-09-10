@@ -1,158 +1,173 @@
-Return-Path: <devicetree+bounces-101709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 824979735EB
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 13:07:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 916C0973618
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 13:19:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A76121C243CC
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 11:07:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20B522846C3
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 11:19:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BC6B18C32E;
-	Tue, 10 Sep 2024 11:07:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B17C018C925;
+	Tue, 10 Sep 2024 11:19:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Flu6vzaT"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="wAZgJ9Dw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB39618C327
-	for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 11:07:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE074171671;
+	Tue, 10 Sep 2024 11:19:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725966445; cv=none; b=rv2ljbLqmDAH5i+tFh8UlNqOCmWdgGZkav4mrNFVV34u86+RX16qvx9tjXWOLpgCt5wiLNjGDkROdnzJ0TfVpMaHq89mpwrCmr2yCL/uA7j1y7ebKRM2DIFNt/ZqQRU9BzW2ww0RHCgvA+0Bkt4PDadmNs5XuAAXu4kQGhwGFXI=
+	t=1725967185; cv=none; b=DXJq/4WixY2jEeUiqbGFAzoZFC8/gfwWotEPxeC/MTJ9c+c8tUPbx9JPg/vWGt3N0EeZVD3pI4fcJVGRZ371oXabxG18f8N1ipgEI1E0K7fSZ67gYpPFeTvNb24HMInm9nzF9TyZNMk1aR0w2EYMRyzAJn2rNFj+C4LHe86qfSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725966445; c=relaxed/simple;
-	bh=eK4uMeRBoxgv1rnMmJ+cfL9Tu7lz3Cz/AV8ulzpHM8U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RSLNId1qbONItZNX6xDY/h55sYUBCA33zA0qlHw3dL8G8nD4stILNhARV7Dx4mVMyTsGXJWNbY7mFGolBEbHfqHT66RsKA3zBFbMGJZkfoLaX7PUzy2epZOF1Juma49DqqhPcpzt6X+jwDQVJqDNj5jBkoM1fGpmpnfvKfRAJJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Flu6vzaT; arc=none smtp.client-ip=209.85.160.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-26ff21d82e4so2448367fac.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 04:07:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1725966442; x=1726571242; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W9FpI4bl+ZGfp9SIboAslOt3vHYJy01BUP4KB+ndZUo=;
-        b=Flu6vzaTaCSheOOpMFHFOPQBnUrcyhbxxLLCXEjjBUyqBScy83w3qBCY4hO4xhjLRb
-         uu+cepq4VtlreTQRFOcHtpbreOPJ7EJEhzNl9tCIze19tkT1NYi32BhHm5azeROHrhO6
-         Mu2s8FVkHH3qdx+vxJcUDSlLCbWwYiC54CGr4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725966442; x=1726571242;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=W9FpI4bl+ZGfp9SIboAslOt3vHYJy01BUP4KB+ndZUo=;
-        b=S97CvPx3e6HHVWd82Dtb3ERyh+PJw5BPislbRDaotZsqQcTBB1+mTIwr41JNsyxAJM
-         zu+/EcI5e150gp7z8+3dQlrNsO0lBLKg/gZhEgRk97LPV1pGLgzzpGhke06PLef/TwSD
-         odSi1YVJQ21RYDT0Mviwru/gK46rsMJB0cBsGzVWM+bWxBeaJg/hiwFChKt4tTUv4KYT
-         6XqnqQsHrGJEcggDCsNwzeqP+zI+tKgUuvslp78eRVYcdvEEBJ4N7YgIKN2CBkaQ7kyI
-         UvVrxIB36pdL7LOPiC4nyBQMMAfxOCn1v+U9b27hGDS+ZUtUYzep2qVUOMKLM9K/H00v
-         EJAA==
-X-Forwarded-Encrypted: i=1; AJvYcCX29fqoYcIGSU2Ib8V1UjPTUuLv4CYszcz656ry38Zll3s+U5OuRyZX2FhrAX2keYjgkqHPuYDxU9GW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3RUQcxwCH1jSBRNb0noLZT4IP2ovEpQ7NnqeNVClPuLSEOkM4
-	2yyjLTUFvH8M/SU6nWXgFlYIQDUQ+Q2qMlzcgYkV6ph9d/EieO1XPBOqri9uDgMi21OTGrVjjk6
-	ExQ==
-X-Google-Smtp-Source: AGHT+IFY8DRc+KbGSZ5w1VsU36K0wHZF1d9rqXvfdlRdcVD9foDdIl1W4wW949sCFpCgC1D4CBEDnQ==
-X-Received: by 2002:a05:6871:378e:b0:278:50:89fd with SMTP id 586e51a60fabf-27b9d98b82dmr7006898fac.13.1725966441916;
-        Tue, 10 Sep 2024 04:07:21 -0700 (PDT)
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com. [209.85.167.178])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-27ba3f3f3b8sm1984807fac.26.2024.09.10.04.07.20
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Sep 2024 04:07:20 -0700 (PDT)
-Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3e05a5f21afso163328b6e.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 04:07:20 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXsA71oBPJseaPheioHDmFHQGrTOfVcUDORkRp6ohlAhlGGyyTzfZsew2GVRIo1u6GjS1DeZi7fUTe8@vger.kernel.org
-X-Received: by 2002:a05:6808:2dce:b0:3e0:3ead:2480 with SMTP id
- 5614622812f47-3e03ead28efmr7407710b6e.12.1725966440393; Tue, 10 Sep 2024
- 04:07:20 -0700 (PDT)
+	s=arc-20240116; t=1725967185; c=relaxed/simple;
+	bh=NITUG13tg6OeRjUeeRV7q4yVc5SHqZar4SuO8+29cuA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CsEUDMpjXbEHJdTREdNIcKMA8+AocpRVd8zZCgGuqOnBQXa+xROAnG+/RBdeaRocXgQLikkI0H6Hr4AZUesc7virHSLpdUQ/XHk7mVc34uzavNPnmi0q5OjmULnY8q/1oRoI+RKb5RIZ/0sESsHCFwKyNmEO52R65wSGmbD/Dcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=wAZgJ9Dw; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [127.0.1.1] (91-156-87-48.elisa-laajakaista.fi [91.156.87.48])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2BBABC8A;
+	Tue, 10 Sep 2024 13:18:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1725967104;
+	bh=NITUG13tg6OeRjUeeRV7q4yVc5SHqZar4SuO8+29cuA=;
+	h=From:Subject:Date:To:Cc:From;
+	b=wAZgJ9Dwzdy0Cy+BVVn5PYr7PFtBpzLdqbkdrdKJQzvzuIJMUSUkBJLjYAwUbDFYC
+	 vVUGAbxYZFVmcpGoKvthtIWHC/WIbsD2w3kPyOgL/xeYGD5MJgQZLrDfZWX4omnYEl
+	 d8UckE94fKz9ZYFpWYejNYBEGTlmdou1Afcw/3co=
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Subject: [PATCH v3 0/3] drm: xlnx: zynqmp: Add DP audio support
+Date: Tue, 10 Sep 2024 14:19:18 +0300
+Message-Id: <20240910-xilinx-dp-audio-v3-0-75560793f4d0@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240909111535.528624-1-fshao@chromium.org> <20240909111535.528624-7-fshao@chromium.org>
- <11bc2522-bc10-4dcf-8142-708b57d181cf@kernel.org> <CAC=S1nhiJ=7yAucJsaYKUUBrwrxOVBMB2CF=bFwyLa2o-5RmWw@mail.gmail.com>
- <64cc35c8-30df-4882-a933-f42119270f48@kernel.org>
-In-Reply-To: <64cc35c8-30df-4882-a933-f42119270f48@kernel.org>
-From: Fei Shao <fshao@chromium.org>
-Date: Tue, 10 Sep 2024 19:06:43 +0800
-X-Gmail-Original-Message-ID: <CAC=S1ni+pJJZhbjvVqhba5u1JqGv=dZTv8+KH4xburea2AG4Qg@mail.gmail.com>
-Message-ID: <CAC=S1ni+pJJZhbjvVqhba5u1JqGv=dZTv8+KH4xburea2AG4Qg@mail.gmail.com>
-Subject: Re: [PATCH 06/13] arm64: dts: mediatek: mt8188: Update VPPSYS node
- name and compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIADcr4GYC/3XNQQ7CIBCF4as0rMUU2lBx5T2MiykDdhKFBpTUN
+ L27tCsTdfm/ZL6ZWbKRbGLHambRZkoUfIlmVzEzgL9aTliayVq2dSMkn+hGfuI4cngiBd6qA6C
+ QTjvVsnI1Ruto2sTzpfRA6RHia3uQxbr+t7LgNVdamU47MH2vT4QWUvB9gIh7E+5sJbP8ZPQ3I
+ wujJSpsoDPQ2R/Msixv8Z7ofvwAAAA=
+To: Lars-Peter Clausen <lars@metafoo.de>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Vishal Sagar <vishal.sagar@amd.com>, 
+ Anatoliy Klymenko <anatoliy.klymenko@amd.com>, 
+ =?utf-8?q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>, 
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3325;
+ i=tomi.valkeinen@ideasonboard.com; h=from:subject:message-id;
+ bh=NITUG13tg6OeRjUeeRV7q4yVc5SHqZar4SuO8+29cuA=;
+ b=owEBbQKS/ZANAwAIAfo9qoy8lh71AcsmYgBm4CtFkj2OEzt5vjCDAw7ixveNwniJGPXDDCDjG
+ 3q9ejfqVZyJAjMEAAEIAB0WIQTEOAw+ll79gQef86f6PaqMvJYe9QUCZuArRQAKCRD6PaqMvJYe
+ 9cOBEACK/WWJMncR8gV/veFBv7cUYc7po2u4ALuJ/rDNhCEQjnerX31CWZOFsBTiRQpIKzWSFYP
+ vGZCwxwunaszhccgL05hhkYN8v7dKgpuLgFJicmjLq/OpE3KJoyDSIwwtcyptzMPPAuV7nz3976
+ WamvaCeWoB/J9B1cFqan2GK09+XCW8XY2+DCFLEYStNoYm/4ZyzMMbH1b1AIrtn8nfEfwd3A2AO
+ 0TL4YHSMJcuyOwXqf51pu47u/vrg0FESIO9SXowYExsaM4sfOZICfPVgVnQfpZk9MDCZwPubmUS
+ yGXQcRrHADZcKop3zIATQszwQtgBxuQiXRkDSplVhB7pISQLa1okZkWQYKyJ5nnsC7nvFQsqDTY
+ 1f2nG0Q5TNoXTgzzHaxUlrCuqG0NIJavKf8jmt5r+e35c62Pj0w1Hj1Bg7yVS9ZOwTzhPRylJqJ
+ v15kk+z8IT0ES9nSzSXTSOSTlR9S/CIEyl+K4yNyIn1vNJLmrPQgt7DjZZ2TyYEmgFtjtwMIato
+ HVgcOF+sQ/qv8a+9Qgr0+bf6OnU24eC7FUK3oC6EvxONdvRuBUgsqyonWH589Cgnp+O5NCaAI2I
+ OObfIKVT0fHCtVrj8DyIIOm5oESeONwDRenPvW0XLF6XYnAtsoKN3bi2JRLWqvLKd1BAepeYRdj
+ Bf9RdgmrHaZbaHA==
+X-Developer-Key: i=tomi.valkeinen@ideasonboard.com; a=openpgp;
+ fpr=C4380C3E965EFD81079FF3A7FA3DAA8CBC961EF5
 
-On Tue, Sep 10, 2024 at 3:19=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 10/09/2024 07:12, Fei Shao wrote:
-> > On Mon, Sep 9, 2024 at 7:41=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel=
-.org> wrote:
-> >>
-> >> On 09/09/2024 13:14, Fei Shao wrote:
-> >>> Use and add "syscon" in VPPSYS node names and compatible to fix error=
-s
-> >>> from `make CHECK_DTBS=3Dy mediatek/mt8188-evb.dtb`.
-> >>>
-> >>> Signed-off-by: Fei Shao <fshao@chromium.org>
-> >>> ---
-> >>>
-> >>>  arch/arm64/boot/dts/mediatek/mt8188.dtsi | 8 ++++----
-> >>>  1 file changed, 4 insertions(+), 4 deletions(-)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/bo=
-ot/dts/mediatek/mt8188.dtsi
-> >>> index 2900d78b7ceb..14e51a11f688 100644
-> >>> --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-> >>> +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-> >>> @@ -1799,8 +1799,8 @@ mfgcfg: clock-controller@13fbf000 {
-> >>>                       #clock-cells =3D <1>;
-> >>>               };
-> >>>
-> >>> -             vppsys0: clock-controller@14000000 {
-> >>> -                     compatible =3D "mediatek,mt8188-vppsys0";
-> >>> +             vppsys0: syscon@14000000 {
-> >>> +                     compatible =3D "mediatek,mt8188-vppsys0", "sysc=
-on";
-> >>
-> >> If this was working before, it looks like this is not a syscon and
-> >> bindings need to be fixed.
-> >
-> > I guess it's because the binding was later updated in commit
-> > 26bcd8a53098 ("dt-bindings: arm: mediatek: mmsys: Add VPPSYS
-> > compatible for MT8188"), and the corresponding DT update was unnoticed
-> > at the time.
-> > If that makes sense then this should be a valid fix.
->
-> Not necessarily. Why not fixing bindings? Prove that bindings are
-> correct, not DTS, first.
+Add DisplayPort audio support for Xilinx ZynqMP platforms.
 
-MediaTek's mmsys doesn't merely control clocks, it also provides
-display pipeline routing control and other misc control registers, so
-it's appropriate to categorize it as a system controller over a clock
-controller.
-As for vdosys and vppsys, they are likely variants or aliases of mmsys
-introduced in their newer SoCs.
+This depends on patch adding cyclic DMA mode for DPDMA driver:
 
-That description was updated in commit 1a680aa888d6 ("dt-bindings:
-mediatek: Update mmsys binding to reflect it is a system controller"),
-so I just assumed it's correct without thinking much...
+https://lore.kernel.org/all/20240228042124.3074044-3-vishal.sagar@amd.com/
 
-Regards,
-Fei
+If that patch is missing, starting an audio playback will fail with an
+ASoC error. The cyclic DMA patch has recently been accepted to the DMA
+tree.
+
+The current DT is, for some reason, missing the DMA channels for the
+audio. This series adds that to the bindings and the dts file, but to
+support older dtb files without the audio DMA, the driver will not fail
+if the audio DMA is missing, but will just mark the audio support as
+disabled.
+
+To: Lars-Peter Clausen <lars@metafoo.de>
+To: Jaroslav Kysela <perex@perex.cz>
+To: Takashi Iwai <tiwai@suse.com>
+To: Liam Girdwood <lgirdwood@gmail.com>
+To: Mark Brown <broonie@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: David Airlie <airlied@gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Michal Simek <michal.simek@amd.com>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-sound@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: Vishal Sagar <vishal.sagar@amd.com>
+Cc: Anatoliy Klymenko <anatoliy.klymenko@amd.com>
+Cc: Péter Ujfalusi <peter.ujfalusi@gmail.com>
+Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+
+Changes in v3:
+- Expand the description in "dt-bindings: display/xlnx/zynqmp-dpsub: Add
+  audio DMAs" to be more clear about the DT binding change.
+- Rebased on top of current upstream
+- Link to v2: https://lore.kernel.org/r/20240319-xilinx-dp-audio-v2-0-92d6d3a7ca7e@ideasonboard.com
+
+Changes in v2:
+- Fix a missing double-quote in the DT binding
+- Link to v1: https://lore.kernel.org/r/20240312-xilinx-dp-audio-v1-0-696c79facbb9@ideasonboard.com
+
+---
+Tomi Valkeinen (3):
+      dt-bindings: display/xlnx/zynqmp-dpsub: Add audio DMAs
+      arm64: dts: zynqmp: Add DMA for DP audio
+      drm: xlnx: zynqmp_dpsub: Add DP audio support
+
+ .../bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml   |  10 +-
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi             |   7 +-
+ drivers/gpu/drm/xlnx/Kconfig                       |   9 +
+ drivers/gpu/drm/xlnx/Makefile                      |   1 +
+ drivers/gpu/drm/xlnx/zynqmp_disp.c                 |  48 ---
+ drivers/gpu/drm/xlnx/zynqmp_disp_regs.h            |   7 +-
+ drivers/gpu/drm/xlnx/zynqmp_dp.c                   |  54 ++-
+ drivers/gpu/drm/xlnx/zynqmp_dp.h                   |   7 +
+ drivers/gpu/drm/xlnx/zynqmp_dp_audio.c             | 461 +++++++++++++++++++++
+ drivers/gpu/drm/xlnx/zynqmp_dpsub.c                |  39 +-
+ drivers/gpu/drm/xlnx/zynqmp_dpsub.h                |  15 +-
+ 11 files changed, 553 insertions(+), 105 deletions(-)
+---
+base-commit: 431c1646e1f86b949fa3685efc50b660a364c2b6
+change-id: 20240312-xilinx-dp-audio-468ad12f9f64
+
+Best regards,
+-- 
+Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+
 
