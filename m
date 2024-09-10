@@ -1,445 +1,168 @@
-Return-Path: <devicetree+bounces-101638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0704972C50
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:38:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDFE3972C62
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 10:41:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66997281774
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:38:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D2851C24672
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 08:41:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85EC2186619;
-	Tue, 10 Sep 2024 08:38:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31C94186615;
+	Tue, 10 Sep 2024 08:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BSQ+svfI";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="P+rChaA+"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="TeykFZUH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from a7-44.smtp-out.eu-west-1.amazonses.com (a7-44.smtp-out.eu-west-1.amazonses.com [54.240.7.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2052.outbound.protection.outlook.com [40.107.215.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37D2C18593C;
-	Tue, 10 Sep 2024 08:38:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725957509; cv=none; b=hGsW+h+7WVNWun2O8DGlyK14jqSj9EVxRfB98MfgZYCaN+zJlgmmRKwZIr7ajDLww1Hl9q2aDPJ9YcYoKMyiIQendBfaoGpPrLqCxMkuR+f6eNLjSzuBtWPIjaVsSzZre6f5KVqqibviPuvDVD2qsi64dvh7xnqRc5lFfqgVFTU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725957509; c=relaxed/simple;
-	bh=5r0O453WBmztErQtUlLR0a1dpPzv1lXgS4sYoMKCPcg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DiYnc7mxg3kJf4frGPnKyNtunzhGlEmVXAICQRM6stS13q94kDVFk8lVrEB9/AZhzrc1NNVpsDhWzegokjRbFCyM4om2vWsQTk5yYUpC/NIOhiL9Z4+bhVlhZeLJO0xLJX9NyWr1bf9I1i7TzCcfhPp1aIEebO59UEj+U9PHMe0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BSQ+svfI; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=P+rChaA+; arc=none smtp.client-ip=54.240.7.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazonses.collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1725957504;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding;
-	bh=5r0O453WBmztErQtUlLR0a1dpPzv1lXgS4sYoMKCPcg=;
-	b=BSQ+svfIm3CD9z6iunpSP9NPxattYd2Hp3mfh52GBWzezh1RjbQfm7zfbG9Mjx+J
-	+okvrk5LkppiBQVonu1+hoWUVOLCxNCsqoomipijXOQmxqM+vQSYUtFBJoTuKrBX+/0
-	m620wjlii4sk4zVW6Upo01Q+C/uc0zLeWp5r2M0S2IjV7izaTqxq+kWBzqx/q54RNwq
-	TDJaI1v6KcHVyMK5zpWxH/301z7iMMgFdmQCjJKthOUAEKzlfytVAvXQwLSGe+XGWjS
-	0FA70qVcOtsr7mT4m3c6hiDwcZ4AMwJVfErMezhnDsd9fkRqHt41kZ8alHqcLfqRtBF
-	fhu95KwaQQ==
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1725957504;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID;
-	bh=5r0O453WBmztErQtUlLR0a1dpPzv1lXgS4sYoMKCPcg=;
-	b=P+rChaA+FT24fTpFt3ba+88su2Kd97jw+JdL1LwHKMEovHZmcxzEsT5oJPTj99Q4
-	UtNtGg3L4HxnqUYj/BpENrwiI/Z4/v8qDgEkh46bqh2QXIDjMcQKrgCqrwZuuf2rA/P
-	FgflllaWgJiW1iv4hAY/2Ecka4InuciUooQ4UsRw=
-Message-ID: <01020191db157c68-71e1f1a2-46c3-4c9f-a561-132319742e69-000000@eu-west-1.amazonses.com>
-Date: Tue, 10 Sep 2024 08:38:24 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8074514A4C3;
+	Tue, 10 Sep 2024 08:41:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.52
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1725957680; cv=fail; b=jOdgCAdsHVTbMP17zC2+xHZvy7ehZ83I3W68Cb7DHSxz+/rL2dbqcipkRAb3Q6Up012hiO1Ea+OsB3i/zQy2PySC2zrklWaZ7Bv+s+bjoZtx6h4/mR9hjOLCyZ/3I4zse9lS105TFmNPfMrtvNHwgpLdleq8vssqbo4zyAkx1nY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1725957680; c=relaxed/simple;
+	bh=GCm9PrtosBiGPC8B3WGTcnyeJ+2oRvFD9J9NpUbVMWE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=mN6ZiTApR3PSOyAKQCKTT5CT6Mmx0DNFIPubweFunV4tKskCA2v21ARG1715oHUZ4QPKIyg6u4qTfwxioAy8o0GkIkk6tpSF08Zo+zfJKl8ib9m00a2IFkRtQBfUHd4/UF5XdgQLutxtRZP69M1bRiqxAE55Yknd8v2LE6R7VS0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=TeykFZUH; arc=fail smtp.client-ip=40.107.215.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Hd8jaIHX7/6oretVxZKt4K3+TJ/1koqEm62gDiD4iGybSUw/NbNVvG4+9Douffav1mfv2acRrAOxocNN9QXTi5EiS+pJTsXkguiWeAgeoVGq6VZFxbwSc0pES/9SWfTrEbpNYJ7/tvy3suaEkVAYlxq7XPO+kqH6UIvZo96Epq1notL1dSAinSkWvl6HE1fTmr1dWsI8bOVOTK0+JKtmHuVuWNJU85XwDHAUFoMylCC4LRh+JRHf7Q1zNNMSuOY59x0xliOB0QfKhRLpe8DKjo+pqGrq6lHsFhCGhm624Yjvg1oi8B2bkMqOC4iQ0KUKGE4Hmv7yADRfEYz56FKSsg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NZ2MMSRPMIp7S0T5v6dauvcCf9kw2fsivDjeJnxpNI4=;
+ b=uSFNzE/+U8ZjVuooX+DLhDRc3rHu46jzosL6WmdGZ/pf3GzKMXsNjYLfMbYCFQFHsBC9opxgCwSvrnq55j/0QurG4Gal7aOp95nU6W7rAVxAQZttrxcCY+UhGMGAI3h/B8v4h7ChLPhLEQno3b/OUEF1/m86fuWsVTTuYpP75X/TcQlL5HxdphGDql2vKLS9i8sA4DO0sclAw8VJ9SR9GbmL57fgbl/zrjp5Ke3lU5FLEGjGzQpPA+QvV9jD9A/864zVFySjVia0GcTP1Sy7vl1lIMFf+NuZoznBor6zdaQgZTughm9Mc67TZsAm9MVAgr/fnN8mFcfThlL01JwSVA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NZ2MMSRPMIp7S0T5v6dauvcCf9kw2fsivDjeJnxpNI4=;
+ b=TeykFZUHe4X8vHQCNynSwxYZVNRUZcAeiF1OR60mjK8udPYdszrSzB4ILsAbWgcuvFufZtJjz+fKxd09JyCOsiQv+KpmcbuJMkd+Wmvw8X70psfs483qvBzxTtZCxcaoHIL8ofvhG2OGkPIoG+skpu4mFaKULc6/tlCcs8UOTJ64BdI+L5HeFMnKE1jOpRvSnorVuHoSjtvP+4CYyTjLhSOp994IpFaZ9M8VuUdHq3P+dTVrOKh6TECdKuuAihAXNIY484nN0Wt5sMUovQZxK4zlgrWVoUWv0k2/tHy8tzIJLCrhA7Y+UwhYydABtrJrV6w2RFjSfqiPO+voGyudFw==
+Received: from PU1PR01CA0010.apcprd01.prod.exchangelabs.com
+ (2603:1096:803:15::22) by TYUPR04MB6763.apcprd04.prod.outlook.com
+ (2603:1096:400:350::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24; Tue, 10 Sep
+ 2024 08:41:12 +0000
+Received: from HK3PEPF0000021F.apcprd03.prod.outlook.com
+ (2603:1096:803:15:cafe::33) by PU1PR01CA0010.outlook.office365.com
+ (2603:1096:803:15::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24 via Frontend
+ Transport; Tue, 10 Sep 2024 08:41:12 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK3PEPF0000021F.mail.protection.outlook.com (10.167.8.41) with Microsoft SMTP
+ Server id 15.20.7918.13 via Frontend Transport; Tue, 10 Sep 2024 08:41:11
+ +0000
+From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+To: patrick@stwcx.xyz,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>,
+	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] ARM: dts: aspeed: yosemite4: Change eeprom for Medusa Board
+Date: Tue, 10 Sep 2024 16:41:09 +0800
+Message-Id: <20240910084109.3585923-1-Delphine_CC_Chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 3/3] drm/mediatek: Implement OF graphs support for
- display paths
-To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>, 
-	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
-	"sui.jingfeng@linux.dev" <sui.jingfeng@linux.dev>, 
-	"wenst@chromium.org" <wenst@chromium.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"tzimmermann@suse.de" <tzimmermann@suse.de>, 
-	=?UTF-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= <Shawn.Sung@mediatek.com>, 
-	"mripard@kernel.org" <mripard@kernel.org>, 
-	=?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?= <jitao.shi@mediatek.com>, 
-	"michael@walle.cc" <michael@walle.cc>, 
-	"daniel@ffwll.ch" <daniel@ffwll.ch>, 
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, 
-	"robh@kernel.org" <robh@kernel.org>, 
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
-	"airlied@gmail.com" <airlied@gmail.com>, 
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
-	"kernel@collabora.com" <kernel@collabora.com>, 
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
-	=?UTF-8?B?WXUtY2hhbmcgTGVlICjmnY7nprnnkosp?= <Yu-chang.Lee@mediatek.com>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"amergnat@baylibre.com" <amergnat@baylibre.com>
-References: <20240618101726.110416-1-angelogioacchino.delregno@collabora.com>
- <20240618101726.110416-4-angelogioacchino.delregno@collabora.com>
- <1e1b0ff224dfa99041b54408c16633d5885efda9.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <1e1b0ff224dfa99041b54408c16633d5885efda9.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
-X-SES-Outgoing: 2024.09.10-54.240.7.44
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK3PEPF0000021F:EE_|TYUPR04MB6763:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 66952d2c-12a6-44b2-0c0f-08dcd17452c5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?bz8ix8r0ELABTMVtHC5ZRVv8RX/weueCHfwawWupsjcmZI8IoJoWlrcWUD0P?=
+ =?us-ascii?Q?qzNhPAOgpSFCjf3qJNN/tUht1vS/IBkFYMjYqL7EVnm3c3eaJspj4d2z2WZh?=
+ =?us-ascii?Q?MAcWqkNpsnHQ6t8AbS6sJ8y3mJ7KhCQcAtvbExYTS2pB2iWcUhKlvfVQSBt4?=
+ =?us-ascii?Q?GiOgZA1LBb1AszfG6W6IswlYbFp2xpi1rbJIpzO2smkQz+z5Tg560zXtfghY?=
+ =?us-ascii?Q?ld+NG4HT9jiCY73c5jCoZ7NfXEGL6B8dAvAKUwzBuDhsySbQiJ3vwIZQWxgB?=
+ =?us-ascii?Q?fGZSmSsbYC62Ss0c16tQ9XSx+5lb9AjEVKydui9zdXqx0VnkMMdBmyTP3zuG?=
+ =?us-ascii?Q?aXpnlRrqYYFUUvk9Bit0LAwI7kErk8eLG5CVcDPMQ/B44xbkd83l3upObfFm?=
+ =?us-ascii?Q?2kLD1FccE3tTWMF5+d8/Q190TlzZ5vovSXRcWPVSpkHoubyyE07fRp5FNidH?=
+ =?us-ascii?Q?jiuxglQAgEPcFTkdwCVoJpVfBDB9GooSrdBuxHl63QifsjPhTLQ0PaVZhIuF?=
+ =?us-ascii?Q?4+jSKcQuD1LE7oc9oDb/XnyjFoO3VsHnFDtX+qPKi/mq6Ku9nwaQJCZFyUV1?=
+ =?us-ascii?Q?WzZYUcIm5VEnp0W+HkjtQMV7WhtqYNlp6NH62i4yRyBJR9Tr8Qy9bIlDOHTL?=
+ =?us-ascii?Q?n6l3NyA/IFjGbN6oGaLI06enYsQkfEHXVa+w8qAOSCaTumNt9DyAhJHdmcnk?=
+ =?us-ascii?Q?c5zQIWwONCoZhLZuEQ90QtY/OXH0a7DG6Z5qy714UuVgGidLNaPfn7piRrZ8?=
+ =?us-ascii?Q?tG34aewVfbJBV2CKXwth8nzww8d60NYO2UR4w06Qpx9wyBEQ4H/N5so6BbjQ?=
+ =?us-ascii?Q?v+YRzsUbG+mD8RSsVj7E01mgP8W6JQsEVYa4oAVcalNeP4E2Sxx5aTE9QHly?=
+ =?us-ascii?Q?1z9FyN1q46JE8I0a6tRpHN6NG319RUrvJSkgRIRRZo3JgF8og5D9ROAZza3M?=
+ =?us-ascii?Q?yV87u6/vayg8bykaXnPIrX14axbSDe4Ao003Rgrj/KahcHyy08Yd+EmvhjFS?=
+ =?us-ascii?Q?Qou3PlefIfx89cWhQVW8NL3CHrVeoff37jJcMTG9FKrf/SbYoJMc+evMR9jB?=
+ =?us-ascii?Q?OvwZtJGN/MxlAf3WmCCjGtbcSaLlPksWtgNZrpYY+Og+Q2WmxJwSJTPNrC2m?=
+ =?us-ascii?Q?b6jm4B3HyxBAhGPGZWJpAge3TgYr+XLDkbdyNfTRhaM/VJ456H3HrqcH6AYK?=
+ =?us-ascii?Q?5ptqQ4Mnux5PP4ID6dt1gOWNK3Ku5RyMqfV2WZViwMJvyaYgYFZenP0vnN1h?=
+ =?us-ascii?Q?roAYKpIx3gWSvZ+VvGqDkcqk4HoPfM0VFzQxKKtRySh5r6o3IGZOSXPtVnTi?=
+ =?us-ascii?Q?sGa8wmLeV6a+YJZWWCx6qy8wsrMMGwxk+1VLXi932umLLt/6NYyIqguYcnVq?=
+ =?us-ascii?Q?r5UGSM/rv1Btl1ifqs+O7ULPZkdh3e3cOCZ2605JOGRwdQEX3i2RImWfXxYU?=
+ =?us-ascii?Q?rQ+iKDstRNbGytsjBhCtzOPMsatz4Uwp?=
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(7416014)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2024 08:41:11.2480
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 66952d2c-12a6-44b2-0c0f-08dcd17452c5
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	HK3PEPF0000021F.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYUPR04MB6763
 
-Il 08/08/24 05:48, CK Hu (胡俊光) ha scritto:
-> Hi, Angelo:
-> 
-> On Tue, 2024-06-18 at 12:17 +0200, AngeloGioacchino Del Regno wrote:
->> It is impossible to add each and every possible DDP path combination
->> for each and every possible combination of SoC and board: right now,
->> this driver hardcodes configuration for 10 SoCs and this is going to
->> grow larger and larger, and with new hacks like the introduction of
->> mtk_drm_route which is anyway not enough for all final routes as the
->> DSI cannot be connected to MERGE if it's not a dual-DSI, or enabling
->> DSC preventively doesn't work if the display doesn't support it, or
->> others.
->>
->> Since practically all display IPs in MediaTek SoCs support being
->> interconnected with different instances of other, or the same, IPs
->> or with different IPs and in different combinations, the final DDP
->> pipeline is effectively a board specific configuration.
->>
->> Implement OF graphs support to the mediatek-drm drivers, allowing to
->> stop hardcoding the paths, and preventing this driver to get a huge
->> amount of arrays for each board and SoC combination, also paving the
->> way to share the same mtk_mmsys_driver_data between multiple SoCs,
->> making it more straightforward to add support for new chips.
->>
->> Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
->> Tested-by: Alexandre Mergnat <amergnat@baylibre.com>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
-> 
-> [snip]
-> 
->> +static int mtk_drm_of_ddp_path_build_one(struct device *dev, enum mtk_crtc_path cpath,
->> +					 const unsigned int **out_path,
->> +					 unsigned int *out_path_len)
->> +{
->> +	struct device_node *next, *prev, *vdo = dev->parent->of_node;
->> +	unsigned int temp_path[DDP_COMPONENT_DRM_ID_MAX] = { 0 };
->> +	unsigned int *final_ddp_path;
->> +	unsigned short int idx = 0;
->> +	bool ovl_adaptor_comp_added = false;
->> +	int ret;
->> +
->> +	/* Get the first entry for the temp_path array */
->> +	ret = mtk_drm_of_get_ddp_ep_cid(vdo, 0, cpath, &next, &temp_path[idx]);
->> +	if (ret) {
->> +		if (next && temp_path[idx] == DDP_COMPONENT_DRM_OVL_ADAPTOR) {
->> +			dev_err(dev, "Adding OVL Adaptor for %pOF\n", next);
-> 
-> This looks not an error.
-> 
+From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
 
-Thanks for catching that, I used that line for debugging and forgot to change it
-back to dev_dbg(). Will fix.
+Change eeprom on Medusa Board to AT24C128 according to hardware change.
 
->> +			ovl_adaptor_comp_added = true;
->> +		} else {
->> +			if (next)
->> +				dev_err(dev, "Invalid component %pOF\n", next);
->> +			else
->> +				dev_err(dev, "Cannot find first endpoint for path %d\n", cpath);
->> +
->> +			return ret;
->> +		}
->> +	}
->> +	idx++;
->> +
->> +	/*
->> +	 * Walk through port outputs until we reach the last valid mediatek-drm component.
->> +	 * To be valid, this must end with an "invalid" component that is a display node.
->> +	 */
->> +	do {
->> +		prev = next;
->> +		ret = mtk_drm_of_get_ddp_ep_cid(next, 1, cpath, &next, &temp_path[idx]);
->> +		of_node_put(prev);
->> +		if (ret) {
->> +			of_node_put(next);
->> +			break;
->> +		}
->> +
->> +		/*
->> +		 * If this is an OVL adaptor exclusive component and one of those
->> +		 * was already added, don't add another instance of the generic
->> +		 * DDP_COMPONENT_OVL_ADAPTOR, as this is used only to decide whether
->> +		 * to probe that component master driver of which only one instance
->> +		 * is needed and possible.
->> +		 */
->> +		if (temp_path[idx] == DDP_COMPONENT_DRM_OVL_ADAPTOR) {
->> +			if (!ovl_adaptor_comp_added)
->> +				ovl_adaptor_comp_added = true;
->> +			else
->> +				idx--;
->> +		}
->> +	} while (++idx < DDP_COMPONENT_DRM_ID_MAX);
->> +
->> +	/*
->> +	 * The device component might not be enabled: in that case, don't
->> +	 * check the last entry and just report that the device is missing.
->> +	 */
->> +	if (ret == -ENODEV)
->> +		return ret;
->> +
->> +	/* If the last entry is not a final display output, the configuration is wrong */
->> +	switch (temp_path[idx - 1]) {
->> +	case DDP_COMPONENT_DP_INTF0:
->> +	case DDP_COMPONENT_DP_INTF1:
->> +	case DDP_COMPONENT_DPI0:
->> +	case DDP_COMPONENT_DPI1:
->> +	case DDP_COMPONENT_DSI0:
->> +	case DDP_COMPONENT_DSI1:
->> +	case DDP_COMPONENT_DSI2:
->> +	case DDP_COMPONENT_DSI3:
->> +		break;
->> +	default:
->> +		dev_err(dev, "Invalid display hw pipeline. Last component: %d (ret=%d)\n",
->> +			temp_path[idx - 1], ret);
->> +		return -EINVAL;
->> +	}
->> +
->> +	final_ddp_path = devm_kmemdup(dev, temp_path, idx * sizeof(temp_path[0]), GFP_KERNEL);
->> +	if (!final_ddp_path)
->> +		return -ENOMEM;
->> +
->> +	dev_dbg(dev, "Display HW Pipeline built with %d components.\n", idx);
->> +
->> +	/* Pipeline built! */
->> +	*out_path = final_ddp_path;
->> +	*out_path_len = idx;
->> +
->> +	return 0;
->> +}
->> +
->> +static int mtk_drm_of_ddp_path_build(struct device *dev, struct device_node *node,
->> +				     struct mtk_mmsys_driver_data *data)
->> +{
->> +	struct device_node *ep_node;
->> +	struct of_endpoint of_ep;
->> +	bool output_present[MAX_CRTC] = { false };
->> +	int ret;
->> +
->> +	for_each_endpoint_of_node(node, ep_node) {
->> +		ret = of_graph_parse_endpoint(ep_node, &of_ep);
->> +		if (ret) {
->> +			dev_err_probe(dev, ret, "Cannot parse endpoint\n");
->> +			break;
->> +		}
->> +
->> +		if (of_ep.id >= MAX_CRTC) {
->> +			ret = dev_err_probe(dev, -EINVAL,
->> +					    "Invalid endpoint%u number\n", of_ep.port);
->> +			break;
->> +		}
->> +
->> +		output_present[of_ep.id] = true;
->> +	}
->> +
->> +	if (ret) {
->> +		of_node_put(ep_node);
->> +		return ret;
->> +	}
->> +
->> +	if (output_present[CRTC_MAIN]) {
->> +		ret = mtk_drm_of_ddp_path_build_one(dev, CRTC_MAIN,
->> +						    &data->main_path, &data->main_len);
->> +		if (ret && ret != -ENODEV)
->> +			return ret;
->> +	}
->> +
->> +	if (output_present[CRTC_EXT]) {
->> +		ret = mtk_drm_of_ddp_path_build_one(dev, CRTC_EXT,
->> +						    &data->ext_path, &data->ext_len);
->> +		if (ret && ret != -ENODEV)
->> +			return ret;
->> +	}
->> +
->> +	if (output_present[CRTC_THIRD]) {
->> +		ret = mtk_drm_of_ddp_path_build_one(dev, CRTC_THIRD,
->> +						    &data->third_path, &data->third_len);
->> +		if (ret && ret != -ENODEV)
->> +			return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->>   static int mtk_drm_probe(struct platform_device *pdev)
->>   {
->>   	struct device *dev = &pdev->dev;
->>   	struct device_node *phandle = dev->parent->of_node;
->>   	const struct of_device_id *of_id;
->>   	struct mtk_drm_private *private;
->> +	struct mtk_mmsys_driver_data *mtk_drm_data;
->>   	struct device_node *node;
->>   	struct component_match *match = NULL;
->>   	struct platform_device *ovl_adaptor;
->> @@ -824,7 +1048,31 @@ static int mtk_drm_probe(struct platform_device *pdev)
->>   	if (!of_id)
->>   		return -ENODEV;
->>   
->> -	private->data = of_id->data;
->> +	mtk_drm_data = (struct mtk_mmsys_driver_data *)of_id->data;
->> +	if (!mtk_drm_data)
->> +		return -EINVAL;
->> +
->> +	private->data = kmemdup(mtk_drm_data, sizeof(*mtk_drm_data), GFP_KERNEL);
-> 
-> This is redundant. You would assign private->data below.
-> 
+Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+---
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Right. Will remove.
-
->> +	if (!private->data)
->> +		return -ENOMEM;
->> +
->> +	/* Try to build the display pipeline from devicetree graphs */
->> +	if (of_graph_is_present(phandle)) {
->> +		dev_dbg(dev, "Building display pipeline for MMSYS %u\n",
->> +			mtk_drm_data->mmsys_id);
->> +		private->data = devm_kmemdup(dev, mtk_drm_data,
->> +					     sizeof(*mtk_drm_data), GFP_KERNEL);
->> +		if (!private->data)
->> +			return -ENOMEM;
->> +
->> +		ret = mtk_drm_of_ddp_path_build(dev, phandle, private->data);
->> +		if (ret)
->> +			return ret;
->> +	} else {
->> +		/* No devicetree graphs support: go with hardcoded paths if present */
->> +		dev_dbg(dev, "Using hardcoded paths for MMSYS %u\n", mtk_drm_data->mmsys_id);
->> +		private->data = mtk_drm_data;
->> +	};
->>   
->>   	private->all_drm_private = devm_kmalloc_array(dev, private->data->mmsys_dev_num,
->>   						      sizeof(*private->all_drm_private),
->> @@ -846,12 +1094,11 @@ static int mtk_drm_probe(struct platform_device *pdev)
->>   
->>   	/* Iterate over sibling DISP function blocks */
->>   	for_each_child_of_node(phandle->parent, node) {
->> -		const struct of_device_id *of_id;
->>   		enum mtk_ddp_comp_type comp_type;
->>   		int comp_id;
->>   
->> -		of_id = of_match_node(mtk_ddp_comp_dt_ids, node);
->> -		if (!of_id)
->> +		ret = mtk_drm_of_get_ddp_comp_type(node, &comp_type);
->> +		if (ret)
->>   			continue;
->>   
->>   		if (!of_device_is_available(node)) {
->> @@ -860,8 +1107,6 @@ static int mtk_drm_probe(struct platform_device *pdev)
->>   			continue;
->>   		}
->>   
->> -		comp_type = (enum mtk_ddp_comp_type)(uintptr_t)of_id->data;
->> -
->>   		if (comp_type == MTK_DISP_MUTEX) {
->>   			int id;
->>   
->> @@ -890,22 +1135,24 @@ static int mtk_drm_probe(struct platform_device *pdev)
->>   		 * blocks have separate component platform drivers and initialize their own
->>   		 * DDP component structure. The others are initialized here.
->>   		 */
->> -		if (comp_type == MTK_DISP_AAL ||
->> -		    comp_type == MTK_DISP_CCORR ||
->> -		    comp_type == MTK_DISP_COLOR ||
->> -		    comp_type == MTK_DISP_GAMMA ||
->> -		    comp_type == MTK_DISP_MERGE ||
->> -		    comp_type == MTK_DISP_OVL ||
->> -		    comp_type == MTK_DISP_OVL_2L ||
->> -		    comp_type == MTK_DISP_OVL_ADAPTOR ||
->> -		    comp_type == MTK_DISP_RDMA ||
->> -		    comp_type == MTK_DP_INTF ||
->> -		    comp_type == MTK_DPI ||
->> -		    comp_type == MTK_DSI) {
->> -			dev_info(dev, "Adding component match for %pOF\n",
->> -				 node);
->> -			drm_of_component_match_add(dev, &match, component_compare_of,
->> -						   node);
->> +		switch (comp_type) {
->> +		default:
->> +			break;
->> +		case MTK_DISP_AAL:
->> +		case MTK_DISP_CCORR:
->> +		case MTK_DISP_COLOR:
->> +		case MTK_DISP_GAMMA:
->> +		case MTK_DISP_MERGE:
->> +		case MTK_DISP_OVL:
->> +		case MTK_DISP_OVL_2L:
->> +		case MTK_DISP_OVL_ADAPTOR:
->> +		case MTK_DISP_RDMA:
->> +		case MTK_DP_INTF:
->> +		case MTK_DPI:
->> +		case MTK_DSI:
->> +			dev_info(dev, "Adding component match for %pOF\n", node);
->> +			drm_of_component_match_add(dev, &match, component_compare_of, node);
->> +			break;
-> 
-> This modification seems not related to OF graphs support. If you need this, separate this to another patch.
-> 
-
-Will do for v9.
-
-Thanks,
-Angelo
-
->>   		}
->>   
->>   		ret = mtk_ddp_comp_init(node, &private->ddp_comp[comp_id], comp_id);
->> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.h b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
->> index 78d698ede1bf..7e54d86e25a3 100644
->> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.h
->> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
->> @@ -59,7 +59,7 @@ struct mtk_drm_private {
->>   	struct device *mmsys_dev;
->>   	struct device_node *comp_node[DDP_COMPONENT_DRM_ID_MAX];
->>   	struct mtk_ddp_comp ddp_comp[DDP_COMPONENT_DRM_ID_MAX];
->> -	const struct mtk_mmsys_driver_data *data;
->> +	struct mtk_mmsys_driver_data *data;
->>   	struct drm_atomic_state *suspend_state;
->>   	unsigned int mbox_index;
->>   	struct mtk_drm_private **all_drm_private;
->> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
->> index c255559cc56e..880ea37937da 100644
->> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
->> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
->> @@ -904,9 +904,17 @@ static int mtk_dsi_host_attach(struct mipi_dsi_host *host,
->>   	dsi->lanes = device->lanes;
->>   	dsi->format = device->format;
->>   	dsi->mode_flags = device->mode_flags;
->> -	dsi->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 0, 0);
->> -	if (IS_ERR(dsi->next_bridge))
->> -		return PTR_ERR(dsi->next_bridge);
->> +	dsi->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
->> +	if (IS_ERR(dsi->next_bridge)) {
->> +		ret = PTR_ERR(dsi->next_bridge);
->> +		if (ret == -EPROBE_DEFER)
->> +			return ret;
->> +
->> +		/* Old devicetree has only one endpoint */
->> +		dsi->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 0, 0);
->> +		if (IS_ERR(dsi->next_bridge))
->> +			return PTR_ERR(dsi->next_bridge);
->> +	}
->>   
->>   	drm_bridge_add(&dsi->bridge);
->>   
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+index 98477792aa00..398ffca58135 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+@@ -342,7 +342,7 @@ temperature-sensor@4b {
+ 	};
+ 
+ 	eeprom@54 {
+-		compatible = "atmel,24c256";
++		compatible = "atmel,24c128";
+ 		reg = <0x54>;
+ 	};
+ };
+-- 
+2.25.1
 
 
