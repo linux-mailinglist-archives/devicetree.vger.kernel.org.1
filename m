@@ -1,163 +1,153 @@
-Return-Path: <devicetree+bounces-101827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61C979743E2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 22:07:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0485F9743EE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 22:14:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 826FD1C2520E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 20:07:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 366C91C2541D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 20:14:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74F9F1A4E93;
-	Tue, 10 Sep 2024 20:07:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63B331A4F10;
+	Tue, 10 Sep 2024 20:14:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EhFFQJQS"
+	dkim=pass (2048-bit key) header.d=gateworks.com header.i=@gateworks.com header.b="qOu+N3eJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE97B176252;
-	Tue, 10 Sep 2024 20:07:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D5AF192B61
+	for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 20:14:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725998865; cv=none; b=LfN5qmJeajTwTJ+dYUVmciRrHbJyy1NzUjIP/Xk712wauQWdnu0jpWAESoF2IWA825rGq1qzGMKtOm8lcOt35Rh77gxBByiahIlcjXwSelUO6mGnDYDw/HOpu/axWiGQskExY3A7R3dZY0347ykeKXvGuTc2lZBxtdENyPdGFEo=
+	t=1725999291; cv=none; b=Qh/Ui27UnqK0znyha2LW24SsFpJo69ALiWV0/AmAqgtwOcTWn4Ht/WGuv5cqyXzTB/omHTw6oVOKeoJau/gFqFTrEtzwoLZnYPYllSR/dCMZ743v6uJtkTH5D/XOW2WlLx2/RkQHXMeyT66lH9JkCmDQ3o+HhNC3tfaY/pR2WKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725998865; c=relaxed/simple;
-	bh=b+THmAwcAom/Qv4imatSq2nSA9VS+JPd6/u3vlwm+/I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RfT8OBZoZ8JjpvPpqj8Ojq8GEEGigLB4pEW+RndiHHyS/IBPxsux9vCDluMxhW/mipwJvEtuHfJ6WXl/u1D0+sJsu0flHnF32jDd5p7FwDU+gSxUZHKMV2cFXspSdiOqW9DOHJhbLysiFNZnEm2ZzUzTTvtgm7KrDOd19MjoGc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EhFFQJQS; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2f762de00e5so38812881fa.3;
-        Tue, 10 Sep 2024 13:07:43 -0700 (PDT)
+	s=arc-20240116; t=1725999291; c=relaxed/simple;
+	bh=uLqkbtaF/lYOCg5L7+7mzBordSwyiyem7pG6ozNXv6U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OgY77UnCeJolBd6PtWcOf9dkewCPskQ00yiPnUBsS3fGgTN2aV5o3sYPz/O02pg6b6+KospryYi//GCk17TbgJHYuJMWszP/bBp0QA+fOUd9as8Ka7BAN35p1P2G/RHraHV0vbNpIqoyBg8ft6lv7p/Zy7tUlSSFLKKX4gLrUJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; dkim=pass (2048-bit key) header.d=gateworks.com header.i=@gateworks.com header.b=qOu+N3eJ; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a8d0d0aea3cso582438666b.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 13:14:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725998861; x=1726603661; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=LyVrAiITGfV7pYArU+Q+t8KwJ+D0u4APPVYawY8r7+Q=;
-        b=EhFFQJQSU6832dHtvmmINLg1JMDD4Rqc9nY5WAW6fUMzxdk9EOoRLI7X3y6/pHyGVL
-         5NJwfClGF6FDUOIh2a3airOpIQw52FFEldL2iTLTG8eCAkJkY4saNPs2jmMNUfQtO6rj
-         CVt07wcbF57p5I4gS2GNoOvSan6zojNyhfi6DIYUNby95eoF26M6zRKJvH+qfBM0qe/H
-         ezx3RTjEIieaE9La+bMO8VHs/cSeWNAVDg6ZP7J13SwDHDe9YNtBVQSwd58ON6De/bPw
-         5Z92YJJ1/LttDN5RkokaG/1YXe+M/eGTqgiuu8np3OTkxK20RkvOfVP3SZ2amP+TBgY5
-         +WKA==
+        d=gateworks.com; s=google; t=1725999287; x=1726604087; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=re/RvoGbxwdzYBSMy04B2Az3HNgONOU/qvSCSe57sDc=;
+        b=qOu+N3eJTxVHbmcOMlTab09ztE/iX3G95RqCy1Xi8dZUEIJmaGGIC2i9RZ1qbNP1tl
+         oNxZp4Qt+TrNJ2r9RR2Z19/qAaOQZwRwAkUGxLfiSV1jty3s1d61Ztb/LSNZs81bNPE8
+         rM0HzQNyy5rG/BFxWRcnrgn53svZejmvKYxCJmhtbxbA5cr/uFTAN17GX60i1hVahzPY
+         KScIGmv/d4vnLUW/qMQeandTkJn5mJ3OMaxXx4v33Nfud4OUq7YQZOSSFeDkKDvcbzEI
+         NpfjHYIhjaO+RWGozZh9N6phVAgEXvzt9iyrWBiN69vz6lXgKjrriyKdsZPyu5TCkZji
+         4Rlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725998861; x=1726603661;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LyVrAiITGfV7pYArU+Q+t8KwJ+D0u4APPVYawY8r7+Q=;
-        b=qX3cV9lvDqaj3bbHqMjh61vhqkahol+sOotQ/x3fS1G4G8GULIlRLqFNdDIZSzr8MD
-         1A5M0LdHhOxzL/D689cVD8tLVFZz3k2ZR3pAWQId1gSLIHi7P02KQmzPFP9IWioYHf1j
-         pyedgKgzDraQSEDDc4j2LPmF7wHViCkyo7RFVX8kIisCmIBbQDVwBTwWGwApFKdwk2aA
-         u0HS5z89RyLekgnvjRhhIDlZBgXFvMz7O3AGds/cI2jK6PzLL5VuM1GgjoeppOQ43LgS
-         ClJVJz1xZGg/K5fvt7mjkKA+6ZjlEHMrwur6LivPTqWBDLAjvltmjNCS7HC9Dr67txCQ
-         Q1lQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU/DU3Dnsl2PQpaShem864k70DAcfVWb1TYR65HvSEMhUJJ1pSe56agQwI+fSc8SonLYYPetPNXMdN5@vger.kernel.org, AJvYcCUlGTrrUhF01e2ghognJ9QksJWPzRY5Fax+GEfG2NvXU96/SegOTx80xVgM8/zTaMW/g5cA4y05EKsRfA==@vger.kernel.org, AJvYcCUmseWNvmcUQ0VrOzdcDw2gTBief5WcOX/L/h9cOl3eAwiv2b+7pOwmkwAw7FazelQ6UpQeMMCJl+gqZhJ9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxdeXJGx4Z8YbdOVcYC1PTrAVi8qpRhGzemNWya8gCf0p7WDdnl
-	ifL+ygRdocBLKexk1XVXn9ybazoc0K450ZC2GevzvWLutkCekJP4
-X-Google-Smtp-Source: AGHT+IFl0skS8bBYnEazfcnNMfaQP0989xihv8X3HDPU2apuy0G0hLs0tfMf6983l9Jzl//58Y2rNw==
-X-Received: by 2002:a05:651c:1507:b0:2f7:6664:f295 with SMTP id 38308e7fff4ca-2f76664f61dmr68652641fa.27.1725998861091;
-        Tue, 10 Sep 2024 13:07:41 -0700 (PDT)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f75c098b77sm12512371fa.105.2024.09.10.13.07.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Sep 2024 13:07:40 -0700 (PDT)
-Date: Tue, 10 Sep 2024 23:07:37 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	"paulburton@kernel.org" <paulburton@kernel.org>, "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 6/6] MIPS: cm: Probe GCR address from DeviceTree
-Message-ID: <7j6cc5i4z4nwg73fowjz756eblnesglqm72jveygqfxngw26mc@sdy6xxomo3qe>
-References: <20240612-cm_probe-v2-0-a5b55440563c@flygoat.com>
- <20240612-cm_probe-v2-6-a5b55440563c@flygoat.com>
- <ekvyyq3vzdbyi5suf4irfixyprvtko7rpkffwpc267kiex4ex2@lpu3ctysuviw>
- <79acb1b1-9c1c-4a58-91a5-5dbb286717ec@app.fastmail.com>
+        d=1e100.net; s=20230601; t=1725999287; x=1726604087;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=re/RvoGbxwdzYBSMy04B2Az3HNgONOU/qvSCSe57sDc=;
+        b=J/EdmOIL0ZvjbcM4gJWix59WIokeW1HGMHUePXd1KX2kEpAmNym1hnEd9g3IKjqETK
+         pwq4yrsDs7T+9pcFgCxG+DiSzNLvR6+TFjdUj4tZ21zpqX8ZHPYbdLhE9lJX+cRzA7X0
+         fDelptkgnMC5RBCQfDTErZzVKy0SGR74azjZmwDSmMoANj1r5uH/TNJNrMhvh0dgLODI
+         XG7O+x9RvYIEY0e3M534uLabrgG+QRA+73aVgWTDU429EGyARym2ant0eTxxfLbbZVlM
+         IHSh8+bpjzWMh2GnN4HCsS/7XZOJThYPdL0c7YAWCXAxV3UzeEQXi48oamm+s+gjSmZZ
+         WC1g==
+X-Forwarded-Encrypted: i=1; AJvYcCVMk81AT6sscBuOTT4Jv92hqlT2Tup7DRF85WGtlrPjLsiKyKNz3SyBclK/6U++fA90CnlXqe0S5x9x@vger.kernel.org
+X-Gm-Message-State: AOJu0YzP85me3u21DN9IMWT+pEhIoMS6idkHKvujp9MfRjzF2V4ro9ON
+	jAqxxLd0B3CqIiksTZVFIjDmsLY8HR+obFJpFk4fIuKJuY5aK+68SL8BY+nhaS4sROWnt9f+yWK
+	jygqB6KhMmeuTvCH+8Z9A4pfw9qeWDaIvTBnbDQ==
+X-Google-Smtp-Source: AGHT+IFSy3754qdsgn+YFAz1meLOVeKD2q6UuOoxvRh0g802fr0oiEfcIphQGK8utwSUQpeBElrdfh5jrqHgOaz8vc0=
+X-Received: by 2002:a17:907:94d5:b0:a8d:3705:4101 with SMTP id
+ a640c23a62f3a-a8ffab78b54mr175294266b.39.1725999286224; Tue, 10 Sep 2024
+ 13:14:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <79acb1b1-9c1c-4a58-91a5-5dbb286717ec@app.fastmail.com>
+References: <20240909215359.780561-1-tharvey@gateworks.com> <ef218f6b-7c24-41f2-a3a3-fcd97c29886d@kontron.de>
+In-Reply-To: <ef218f6b-7c24-41f2-a3a3-fcd97c29886d@kontron.de>
+From: Tim Harvey <tharvey@gateworks.com>
+Date: Tue, 10 Sep 2024 13:14:34 -0700
+Message-ID: <CAJ+vNU0zZMcg3fFqZinx5cs0WGV4LGVByj=XEqn3mGt-Qa=xrg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp-venice*: enable NPU support
+To: Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Li Yang <leoyang.li@nxp.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 10, 2024 at 08:23:25PM +0100, Jiaxun Yang wrote:
-> 
-> 
-> 在2024年9月10日九月 下午1:36，Serge Semin写道：
-> [...]
+On Mon, Sep 9, 2024 at 11:50=E2=80=AFPM Frieder Schrempf
+<frieder.schrempf@kontron.de> wrote:
+>
+> Hi Tim,
+>
+> On 09.09.24 11:53 PM, Tim Harvey wrote:
+> > The IMX8MP has a VeriSilicon (Vivante VIP8000) NPU which
+> > is supported by the etnaviv driver. Enable it.
 > >
-> > This causes the kernel boot-up procedure to crash/hang-up because the
-> > CM GCR base address is supposed to be redefined by means of the
-> > already mapped CM GCR address space by accessing the
-> > CM_GCR_BASE_GCRBASE register:
-> > change_gcr_base()
-> > +-> read_gcr_base()
-> >     +-> addr_gcr_base()
-> >         +-> return mips_gcr_base + CM_GCR_BASE_GCRBASE
+> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi | 4 ++++
+> >  arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts  | 4 ++++
+> >  2 files changed, 8 insertions(+)
 > >
-> > By the time of the change_gcr_base() call in mips_cm_phys_base(), the
-> > mips_gcr_base variable hasn't been defined. So the IO operations
-> > performed in the change_gcr_base() method would be accessing the
-> > NULL-based memory space. That's why the kernel crash/hanging-up.
-> 
-> Thanks for the analysis!
-> This path was not taken on my audience hardware, so I didn't catch this,
-> will fix in next version.
-> 
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi b/=
+arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
+> > index 6c75a5ecf56b..f0211a96855b 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
+> > @@ -393,6 +393,10 @@ &i2c3 {
+> >       status =3D "okay";
+> >  };
 > >
-> > In order to fix this we have to first map the CM GCR block at the
-> > default base-address, then update the CM GCR-base CSR and after that
-> > remap the CM GCR-space.
+> > +&npu {
+> > +     status =3D "okay";
+> > +};
+> > +
+> >  /* off-board header */
+> >  &uart1 {
+> >       pinctrl-names =3D "default";
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/a=
+rch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> > index 9885948952b4..8a04b66a4afc 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> > @@ -666,6 +666,10 @@ &i2c4 {
+> >       status =3D "okay";
+> >  };
 > >
-> > Please also note, the GCR_BASE field might be RO. It depends on the
-> > IP-core configuration. So it's possible that the CM_GCR_BASE_GCRBASE
-> > field update won't work. Although that will be detected a bit later in
-> > the mips_cm_probe() method by comparing the address returned from
-> > mips_cm_phys_base() and retrieved from the CM GCR-base CSR.
-> 
+> > +&npu {
+> > +     status =3D "okay";
+> > +};
+> > +
+> >  &pcie_phy {
+> >       fsl,refclk-pad-mode =3D <IMX8_PCIE_REFCLK_PAD_INPUT>;
+> >       fsl,clkreq-unsupported;
+>
+> I think there is no need for this patch as the NPU is already enabled by
+> default in imx8mp.dtsi (same as the GPUs). Or do you disable it in some
+> intermediate devicetree include file?
+>
 
-> Hmm, I just checked RTL and RDL for CM2 and CM3 and I didn't see it as a
-> configurable option. It's possible to change hardware reset value but not make it RO.
+Frieder,
 
-Both MIPS P5600 and P6600 databooks define the GCR_BASE field as
-optionally R/W:
+Thanks for pointing this out... you are correct. I'm not sure why I
+thought it needed to be explicitly enabled.
 
-GCR_BASE 31:15 This field sets the base address of the 32KB          R or R/W
-               GCR block of the P5600 MPS.                           (IP Config-
-               This register has a fixed value after reset if         uration)
-               configured as Read-Only (an IP Configuration Option).
+Please ignore this patch.
 
-> 
-> Maybe it was possible on earlier IP release,
+Best Regards,
 
-I found the text above in the latest MIPS Warrior P-class software
-manuals downloaded from the ImagTech site. Not sure why your RTL code
-doesn't have such configs.
-
-> in this case it's always
-> user's responsibility to write correct address in DeviceTree :-)
-
-Right. The system just won't work if the CM GCR base address couldn't
-be updated.
-
--Serge(y)
-
-> 
-> Thanks
-> 
-> >
-> > -Serge(y)
-> 
-> -- 
-> - Jiaxun
+Tim
 
