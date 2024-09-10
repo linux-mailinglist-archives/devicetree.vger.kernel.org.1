@@ -1,208 +1,120 @@
-Return-Path: <devicetree+bounces-101830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E333974442
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 22:47:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6E8E974492
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 23:10:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C518D1F2572A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 20:47:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7058EB22047
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 21:10:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DE781A4E93;
-	Tue, 10 Sep 2024 20:47:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 971511A7051;
+	Tue, 10 Sep 2024 21:10:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="zZBH1J/t"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jYh0yjiW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E89117622D;
-	Tue, 10 Sep 2024 20:47:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF4541F951;
+	Tue, 10 Sep 2024 21:10:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726001233; cv=none; b=NVwQ4z/zX/e4/dZaXo61lnY3vDvJj62lbmht6q2KXRb/prD5qX259ygCNcil4zOKgPOUQMk3u46zKbO2fcxawkT6VHjdYItYM8jQPmHIol1+NqsDPvf/6HE+zAi060RffvmUFMYRPQ6s2sgye5I+xGnWlbgP0qLPBi1ynZhsHps=
+	t=1726002617; cv=none; b=RBUZUDVLuZiZ5WTgrIJvHFTlLBDumr2XH/5kKRYFbNtsSNY4P3fdwhLJw56+Q89hXGGd8tyRLNdWNG7+Pja0vbP0AEwKbRiUl0wKYX7pi3RFeWJPR3bBPXuVR2RBys1uTLMgDbS+YE5B6yqZzLaZG73xllRdM9L9gmIQBK1BTU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726001233; c=relaxed/simple;
-	bh=dy8jTnTM+SvAJ0Z/QrreJvOE7m/ODddATQSKqABlB9M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=S2JXiI2MSWLMfaKkT+UPvbLmmH5vXBiov+UotcNB89DtW5JXeiTM4CJ+Ke9kYqjsDYFlNGKCFfybnzA8hUFK8DgpHbSLtZmtICDwDopUVVEa3EiOKK9kHu0nrG518tk1NRaY3uvRkE/flFbOlrfopbp25F4MXRf4AMW80AtR1wE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=zZBH1J/t; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=4IUESHg9VSQTyLHvh/dHsE6E0uVA9BycG+I/FS++rd0=; b=zZBH1J/tBMuY5ZXPwORRtkAvGr
-	oEbkSD6neigw9qAJRHSWNx/gYavOcn28UNrJb5EJy+Q8dpa8fnNnzgf3kxXkeDQ/IfbCNYMZi/vdE
-	xzh25TRX73SmY0HCpeGD7DB5vKR/Mvt83tSVAlDgXBA52GoiV3wBujXUPyD4Sjo3ig0kX6cOXuqKt
-	y8RqBU8AOMInhEnR8CouEfpEK0HLKUqGRQzS/5Ph7kIiFAJjy9mzg0E8IvzxIyteMshV6k+t4Il/K
-	NuW9cdGDI4VLkuKRbgrqKmRC59HqnrjI4w22IxaIcRWaIg0wNNB37mkN0a6Vpyz16BRaKVvxC/3sB
-	75HiS6gA==;
-Received: from i53875a02.versanet.de ([83.135.90.2] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1so7ky-00009S-MO; Tue, 10 Sep 2024 22:46:36 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, kernel@collabora.com,
- Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>,
- Algea Cao <algea.cao@rock-chips.com>
-Subject: Re: [PATCH v6 3/3] drm/rockchip: Add basic RK3588 HDMI output support
-Date: Tue, 10 Sep 2024 22:49:05 +0200
-Message-ID: <26154114.p16igRAIYV@diego>
-In-Reply-To: <1796743.esFFXGZ24q@diego>
-References:
- <20240906-b4-rk3588-bridge-upstream-v6-0-a3128fb103eb@collabora.com>
- <324b12ea-805a-499c-909d-3723f0bca7cb@collabora.com>
- <1796743.esFFXGZ24q@diego>
+	s=arc-20240116; t=1726002617; c=relaxed/simple;
+	bh=RnYiSNi48onRY1d57mi9g9ODgXMQaczSLfQujFR20PI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VLipIuOvjPzUWusG7WynwP4kZxO9AJzAKXZ+RiqO8V+KkQYNHylnTnJRQ0BOh9MOnbP5EmooiSeH3aVaXJq6HtfutUXuL/8S4LdV9+pqlXvVlD4OY7X7aNEhk2WRS+zmsyWYKnTxMjYq2eVR1T4CxfVHhy6FtgTW58+UYkQSHRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jYh0yjiW; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a8d29b7edc2so499853366b.1;
+        Tue, 10 Sep 2024 14:10:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726002614; x=1726607414; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sUV8lPvIGwQMATrl/uVvnHpcqJh+pYJIVIWAS/5H65E=;
+        b=jYh0yjiWkoQPTaW3m1TnjycBsPt1LKlePLuEexg8+fRlt03lRByDJ5Xk/AzjUVW6vS
+         e6OXhyUdLXDK+oystLSUHim66OpwdcCtj2ccLAuPxAXUrvT66vJwSVPHqQRzU8ZrgcLv
+         rd9gSCgMoX3jPtK9hr0W4ZHCKIX0zT6cil+/ZMAVackAE0YSPB9I0z26w3hRKurPTQf1
+         zj6YFc/wtom8wBVthnn191Jhi8Zv9waTnoJjHiqVJW3/lkyWNgAUIgWNGEL0AJQqxUzy
+         Hbsoctd/Zb0PtG35Ld0spQqh0tMzw3QdOfBlyU+v+YATKESfMfnZ5X8a9LlngtZEdTQq
+         b3Xw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726002614; x=1726607414;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sUV8lPvIGwQMATrl/uVvnHpcqJh+pYJIVIWAS/5H65E=;
+        b=Si2mXTUBn3aOdk541pZwICHEo1nVZESJ6fpSN4EVZHthHLTU3ZVoa5PoAdjV7MjXIz
+         ZK5OC6LaLqMODDg7TxPwzWF8Aa5zfutaSqnRfDQfESxj0bIRWUf6Jn31ktWN9NPXs8Gy
+         tDEE0K0Yg/qa237j5hI01cyu8IGRGnDwAjrZ+18xB4twm5P8FPAKkyHeVlONtO1P4oTG
+         yuGswuf+iR/kZZ8cHypfCv9trm53IcsjP82bzWlnZC63ovJtzWa8gHwUKFr12cjgPZrP
+         vHidA64XBhUF/iMCNFcikYhociWhQemccmYpjA1SY1x22B+jTOJLtE/a9KVsdi8ongdQ
+         Ihmg==
+X-Forwarded-Encrypted: i=1; AJvYcCW4ge4aKIqA/X5JJDznsPvl8lX5ZYrkW5AhCKmq1w+IHdNQrd0Pj0qVljpkHHdhef8Xm+fJNrFusUc6hGpD@vger.kernel.org, AJvYcCWWU6bKHb2MNNaWCc50nQooiGoIQ1DD+Ycfm+NzpoaAbmWw+7Dmt3dKdLxHBxsFMfC6NJte+q00SQf/@vger.kernel.org, AJvYcCX30bShjNBWZZpqyZAB3+JJLXldmfBKqXf8MK0bRCN2pjx2BbpCLh1lpmtoeeOgoF+2niBwMLFl+ynUJym/aQ==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz19sCogC5QseRrrljX5+vImhkafVeoNTKJce3ALQXBK348fTlp
+	ONMyYNYv16ujO/3PAHhrLKr9mg2p93ZYT6e4EtsfpBOVX0HcVj/FqdLkgw==
+X-Google-Smtp-Source: AGHT+IEXe5RCMC0ZBnUd+NpnXEOztMAqqrv+pM6W0ALhbBb90RpBZ6M8Tq6/4vexqUdjagYG2s5LOA==
+X-Received: by 2002:a17:907:7f29:b0:a7a:ba59:3164 with SMTP id a640c23a62f3a-a8ffae0b899mr192539366b.53.1726002613666;
+        Tue, 10 Sep 2024 14:10:13 -0700 (PDT)
+Received: from ?IPV6:2a02:8071:b783:140:927c:82ba:d32d:99c1? ([2a02:8071:b783:140:927c:82ba:d32d:99c1])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8d258317e1sm529386666b.37.2024.09.10.14.10.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Sep 2024 14:10:13 -0700 (PDT)
+Message-ID: <85eae93c-3533-4494-9277-43fd836112ce@gmail.com>
+Date: Tue, 10 Sep 2024 23:10:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/5] firmware: qcom: scm: Allow QSEECOM on Microsoft
+ Surface Pro 9 5G
+To: =?UTF-8?Q?J=C3=A9r=C3=B4me_de_Bretagne?= <jerome.debretagne@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240908223505.21011-1-jerome.debretagne@gmail.com>
+ <20240908223505.21011-3-jerome.debretagne@gmail.com>
+Content-Language: en-US
+From: Maximilian Luz <luzmaximilian@gmail.com>
+In-Reply-To: <20240908223505.21011-3-jerome.debretagne@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Am Dienstag, 10. September 2024, 18:39:54 CEST schrieb Heiko St=FCbner:
-> Am Dienstag, 10. September 2024, 17:41:42 CEST schrieb Cristian Ciocaltea:
-> > On 9/10/24 6:21 PM, Heiko St=FCbner wrote:
-> > > Am Dienstag, 10. September 2024, 17:07:57 CEST schrieb Heiko St=FCbne=
-r:
-> > >> Am Freitag, 6. September 2024, 03:17:42 CEST schrieb Cristian Ciocal=
-tea:
-> > >>> The RK3588 SoC family integrates the newer Synopsys DesignWare HDMI=
- 2.1
-> > >>> Quad-Pixel (QP) TX controller IP and a HDMI/eDP TX Combo PHY based =
-on a
-> > >>> Samsung IP block.
-> > >>>
-> > >>> Add just the basic support for now, i.e. RGB output up to 4K@60Hz,
-> > >>> without audio, CEC or any of the HDMI 2.1 specific features.
-> > >>>
-> > >>> Co-developed-by: Algea Cao <algea.cao@rock-chips.com>
-> > >>> Signed-off-by: Algea Cao <algea.cao@rock-chips.com>
-> > >>> Tested-by: Heiko Stuebner <heiko@sntech.de>
-> > >>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> > >>
-> > >> I had switched from the v3 to this v6 in my playground-kernel today,
-> > >> with v3 I've never seen those, but now with v6 I have gotten multiple
-> > >> times:
-> > >>
-> > >> [  805.730608] Internal error: synchronous external abort: 000000009=
-6000010 [#1] PREEMPT SMP
-> > >> [  805.739764] Modules linked in: snd_soc_simple_card crct10dif_ce s=
-nd_soc_simple_card_utils panthor drm_gpuvm drm_exec fuse
-> > >> [  805.752031] CPU: 3 UID: 0 PID: 775 Comm: Xorg Not tainted 6.11.0-=
-rc7-00099-g459302f1f908-dirty #934
-> > >> [  805.762143] Hardware name: Theobroma Systems RK3588-Q7 SoM on Hai=
-kou devkit (DT)
-> > >> [  805.770407] pstate: 204000c9 (nzCv daIF +PAN -UAO -TCO -DIT -SSBS=
- BTYPE=3D--)
-> > >> [  805.778186] pc : regmap_mmio_read32le+0x8/0x20
-> > >> [  805.783155] lr : regmap_mmio_read+0x44/0x70
-> > >> [  805.787828] sp : ffff80008293b830
-> > >> [  805.791516] x29: ffff80008293b830 x28: ffff80008293bce8 x27: ffff=
-0001f20ab080
-> > >> [  805.799495] x26: ffff800081139500 x25: 0000000000000000 x24: 0000=
-000000000010
-> > >> [  805.807472] x23: 0000000000000000 x22: ffff0001f5a4b400 x21: ffff=
-80008293b8c4
-> > >> [  805.815450] x20: 0000000000000968 x19: ffff0001f5a27a80 x18: 0000=
-000000000070
-> > >> [  805.823428] x17: 0002441400000005 x16: 000004650441043c x15: 0438=
-000008980804
-> > >> [  805.831406] x14: 07d8089807800780 x13: 0438000008980804 x12: ffff=
-800081133630
-> > >> [  805.839384] x11: 0002441400000005 x10: 000004650441043c x9 : ffff=
-800081a59000
-> > >> [  805.847361] x8 : 07d8089807800780 x7 : 0000000000000000 x6 : ffff=
-0001f5b453c0
-> > >> [  805.855339] x5 : ffff800080750dc0 x4 : 0000000000000968 x3 : 0000=
-000000000968
-> > >> [  805.863316] x2 : ffff800080751520 x1 : 0000000000000968 x0 : ffff=
-800083b20968
-> > >> [  805.871294] Call trace:
-> > >> [  805.874012]  regmap_mmio_read32le+0x8/0x20
-> > >> [  805.878588]  _regmap_bus_reg_read+0x6c/0xac
-> > >> [  805.883262]  _regmap_read+0x60/0xd8
-> > >> [  805.887159]  _regmap_update_bits+0xf4/0x140
-> > >> [  805.891832]  regmap_update_bits_base+0x64/0xa0
-> > >> [  805.896797]  dw_hdmi_qp_bridge_atomic_enable+0x134/0x220
-> > >> [  805.902734]  drm_atomic_bridge_chain_enable+0x54/0xc8
-> > >> [  805.908380]  drm_atomic_helper_commit_modeset_enables+0x194/0x280
-> > >> [  805.915190]  drm_atomic_helper_commit_tail_rpm+0x50/0xa0
-> > >> [  805.921125]  commit_tail+0xa0/0x1a0
-> > >> [  805.925021]  drm_atomic_helper_commit+0x17c/0x1b0
-> > >> [  805.930276]  drm_atomic_commit+0xb8/0x100
-> > >> [  805.934754]  drm_atomic_connector_commit_dpms+0xe0/0x110
-> > >> [  805.940690]  drm_mode_obj_set_property_ioctl+0x1c0/0x420
-> > >> [  805.946626]  drm_connector_property_set_ioctl+0x3c/0x68
-> > >> [  805.952465]  drm_ioctl_kernel+0xc0/0x130
-> > >> [  805.956846]  drm_ioctl+0x214/0x4a0
-> > >> [  805.960643]  __arm64_sys_ioctl+0xac/0xf8
-> > >> [  805.965025]  invoke_syscall+0x48/0x104
-> > >> [  805.969214]  el0_svc_common.constprop.0+0x40/0xe0
-> > >> [  805.974470]  do_el0_svc+0x1c/0x28
-> > >> [  805.978171]  el0_svc+0x34/0xe0
-> > >> [  805.981582]  el0t_64_sync_handler+0x120/0x12c
-> > >> [  805.986449]  el0t_64_sync+0x190/0x194
-> > >> [  805.990540] Code: d503201f d503201f f9400000 8b214000 (b9400000)
-> > >>
-> > >> I guess that might be some clocking issue?
-> > >=20
-> > > Forgot to add, this happens when the display has blanked and then is
-> > > supposed to unblank again.
-> >=20
-> > Hmm, I've never encountered this while testing with my v6.11-rc1 based
-> > tree.  What is your current kernel base?  Did you change it while
-> > switching from v3 to v6?
-> >=20
-> > I'll rebase my tree onto latest linux-next and see if I can reproduce.
->=20
-> The setup is 6.11-rc7 with your hdmi series + my wip dsi + X11 running
-> on top.
->=20
-> At some point after being idle a while this blanks the display, which will
-> probably turn off clocks and such. After moving the mouse or just
-> doing anything else that unblanks the display, that splat happens.
->=20
-> Apart from updating mesa from 24.2.0 to 24.2.2 I haven't changed
-> anything in my test-setup so far.
+On 9/9/24 12:35 AM, Jérôme de Bretagne wrote:
+> Add the SC8280XP-based Microsoft Surface Pro 9 5G to the allowlist.
+> 
+> Reviewed-by: Konrad Dybcio <konradybcio@kernel.org>
+> Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+> ---
+>   drivers/firmware/qcom/qcom_scm.c | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
+> index 00c379a3cceb..5c8d8d75fb0a 100644
+> --- a/drivers/firmware/qcom/qcom_scm.c
+> +++ b/drivers/firmware/qcom/qcom_scm.c
+> @@ -1725,6 +1725,7 @@ EXPORT_SYMBOL_GPL(qcom_scm_qseecom_app_send);
+>   static const struct of_device_id qcom_scm_qseecom_allowlist[] __maybe_unused = {
+>   	{ .compatible = "lenovo,flex-5g" },
+>   	{ .compatible = "lenovo,thinkpad-x13s", },
+> +	{ .compatible = "microsoft,arcata", },
+>   	{ .compatible = "qcom,sc8180x-primus" },
+>   	{ .compatible = "qcom,x1e80100-crd" },
+>   	{ .compatible = "qcom,x1e80100-qcp" },
 
-So now I've re-tested all :-) ... test scenario was that I reverted the v6
-patches and then applied the older versions (and fixed up the dts if
-needed wrt the vo{1}-grf thing). So now really only the hdmi driver
-changed. So I booted, waited for the display to blank and hit reboot
-on the serial console:
+Looks good to me.
 
-=2D v3 console output turned back on and rebooted fine
-=2D v4 console output turned back on and rebooted fine
-=2D v5 hit the error from above
-=2D v6 hit the error from above
-
-So something between v4 and v5 seems to cause the hickup.
-
-
-
-
+Reviewed-by: Maximilian Luz <luzmaximilian@gmail.com>
 
