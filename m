@@ -1,122 +1,126 @@
-Return-Path: <devicetree+bounces-101778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0388E973CE8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 18:04:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBDFB973CFF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 18:09:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A9A41F24DA9
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 16:04:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4880BB21798
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2024 16:08:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2643619EEB7;
-	Tue, 10 Sep 2024 16:04:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 684EF19F480;
+	Tue, 10 Sep 2024 16:08:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="zukOn88a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aak9+NUd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A812198824;
-	Tue, 10 Sep 2024 16:04:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A03C2AEF1;
+	Tue, 10 Sep 2024 16:08:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1725984263; cv=none; b=SGh4wSjx460wDXpjmv50JdrVyJq/ldytcjpRy7aCtxXVJMtR41cwIV+x/OGG6AUiYKLeOx/qXwIYHgqscgGXvNpAhMAas+MWwGfVpTnbgLJJeVqxkBUVj9xY0byPJs0831urQzRDaoq+9C3yZBbvxsbZAd+DDPCcgs5v/wUY/Qw=
+	t=1725984534; cv=none; b=CKiX1aywBRsDvdPnAEnaMZ0LT3oELAjkDRM0z17MO7tAZeqnrKXkgrEzQvUw4Us0alL3EnrFlEposCB9R9jtcZzZEISIwbq8YyGJCwxLv0UI54dmsZV1V//iebFv/C3RHTvIecwy+nJUq7Bg2KJTTX/XkpQ8BxRjoUsdIuogbFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1725984263; c=relaxed/simple;
-	bh=lyEi07OYy0HDwQcI/tVSb6icCUDckoGveROhmrvlc/o=;
+	s=arc-20240116; t=1725984534; c=relaxed/simple;
+	bh=Izu951Sl9t2/R5OLHami79GgbINGuYVw9e04vhzirIw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WNQshbJpOrJgKKUJ8IOfiLPmTOKLrMDzC2m5U/nd4kck35FL47/e1rJYfRUsIjE98lFztNm87w56D86EwW983MVNw6x4ft1DmUEEEMY5bOmOrYXXrfetGEmWlOI08dD0L/7yWhNQ5g3Xj3MSq95kFf3nGhGtYDtScSHE/qn6nac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=zukOn88a; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=0q5V/HDrRh41vRS9Fz5fpK96NnFQDgfsGbq54/gK0tY=; b=zukOn88ac0n/yjjixjNa40s1sv
-	llWM2qRl4mMc7Pt+CvyOs+4A69pme6vbBNYLQIwmPi6z30w7pltfk3vgXyypj59QFxu/A1OPmheEI
-	36XfzYEZitalx1+rI9X5TDGBB6Bkj1NjOPFfWvmcIo+G9qYrMBcT3oj3k2MQsRPxMnGw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1so3LY-0077mS-Af; Tue, 10 Sep 2024 18:04:04 +0200
-Date: Tue, 10 Sep 2024 18:04:04 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Suraj Jaiswal <jsuraj@qti.qualcomm.com>
-Cc: Andrew Halaney <ahalaney@redhat.com>,
-	"Suraj Jaiswal (QUIC)" <quic_jsuraj@quicinc.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	"bhupesh.sharma@linaro.org" <bhupesh.sharma@linaro.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-stm32@st-md-mailman.stormreply.com" <linux-stm32@st-md-mailman.stormreply.com>,
-	Prasad Sodagudi <psodagud@quicinc.com>,
-	Rob Herring <robh@kernel.org>, kernel <kernel@quicinc.com>
-Subject: Re: [PATCH net] net: stmmac: Stop using a single dma_map() for
- multiple descriptors
-Message-ID: <417420b8-3010-4223-a683-55a0daf3b962@lunn.ch>
-References: <20240902095436.3756093-1-quic_jsuraj@quicinc.com>
- <yy2prsz3tjqwjwxgsrumt3qt2d62gdvjwqsti3favtfmf7m5qs@eychxx5qz25f>
- <CYYPR02MB9788D9D0D2424B4F8361A736E79A2@CYYPR02MB9788.namprd02.prod.outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=piUSUT+wXj01yqui+xfrOjMv3umSkbs1o+O3rCADtaX8YwMyLX14FSzycdjhKilQjYjQyWljHfKubptjxTwhgKJLHss4DkYGRXgup0dmQHYvOtIUEuA+e+tZw3c2FcGSmSYRaMNzU0SGIwjPzrMmpYRi2lLCHXmZEHgIqVHQnbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aak9+NUd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59CF6C4CEC3;
+	Tue, 10 Sep 2024 16:08:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725984533;
+	bh=Izu951Sl9t2/R5OLHami79GgbINGuYVw9e04vhzirIw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aak9+NUdwOtEelTeAYRYCgqaTI7v898hkuQZ14wneZHbota+fjdl0Z9+E3C1rl2yo
+	 bUviukvri0YZDUzG6ATWCuXLkjGJz9kwFROCzrtU8VNmg5lV5B1f4KDi9IWHIT72TM
+	 s9rQeg9gNAPDN3p16PaEk/W4nemi5/8lERDzLOH9ZzBUuymcTfBplkMvRQIu+uqUF/
+	 mqYycX3ieZpJEyZhfA8ma3xqgrTWRJvj3ZM4o94WHnW21x1MFSYUudlvffO0QZqfEW
+	 ZYiH+Z2WC7dpetwy7ze4pqxBZd5RA3RbBuiT4gC3njhM7kF7VPEB5yG6gyS5CwUekm
+	 kanee57Fk/nwQ==
+Date: Tue, 10 Sep 2024 17:08:48 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
+Cc: George Stark <gnstark@salutedevices.com>, Rob Herring <robh@kernel.org>,
+	conor+dt@kernel.org, krzk+dt@kernel.org, neil.armstrong@linaro.org,
+	khilman@baylibre.com, jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com, hkallweit1@gmail.com,
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	kernel@salutedevices.com,
+	Dmitry Rokosov <ddrokosov@salutedevices.com>
+Subject: Re: [PATCH v4 2/3] dt-bindings: pwm: amlogic: Add new bindings for
+ meson A1 PWM
+Message-ID: <20240910-kerchief-custody-a0741f9a256c@spud>
+References: <20240710234116.2370655-1-gnstark@salutedevices.com>
+ <20240710234116.2370655-3-gnstark@salutedevices.com>
+ <20240712125219.GA472311-robh@kernel.org>
+ <55f73e79-2d21-48ba-8486-26ee168c7bc3@salutedevices.com>
+ <20240725-excursion-waving-0e0ad54006d4@spud>
+ <ak53ha3kltm24s45n5pczvibtltzocg33inpnro4bjeolu25re@33lae7y7qzvw>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="GfjYjimy2LOyoHtK"
 Content-Disposition: inline
-In-Reply-To: <CYYPR02MB9788D9D0D2424B4F8361A736E79A2@CYYPR02MB9788.namprd02.prod.outlook.com>
+In-Reply-To: <ak53ha3kltm24s45n5pczvibtltzocg33inpnro4bjeolu25re@33lae7y7qzvw>
 
-> On Mon, Sep 02, 2024 at 03:24:36PM GMT, Suraj Jaiswal wrote:
-> > Currently same page address is shared
-> > between multiple buffer addresses and causing smmu fault for other 
-> > descriptor if address hold by one descriptor got cleaned.
-> > Allocate separate buffer address for each descriptor for TSO path so 
-> > that if one descriptor cleared it should not clean other descriptor 
-> > address.
-> 
-> I think maybe you mean something like:
-> 
->     Currently in the TSO case a page is mapped with dma_map_single(), and then
->     the resulting dma address is referenced (and offset) by multiple
->     descriptors until the whole region is programmed into the descriptors.
-> 
->     This makes it possible for stmmac_tx_clean() to dma_unmap() the first of the
->     already processed descriptors, while the rest are still being processed
->     by the DMA engine. This leads to an iommu fault due to the DMA engine using
->     unmapped memory as seen below:
-> 
->     <insert splat>
-> 
->     You can reproduce this easily by <reproduction steps>.
-> 
->     To fix this, let's map each descriptor's memory reference individually.
->     This way there's no risk of unmapping a region that's still being
->     referenced by the DMA engine in a later descriptor.
-> 
-> That's a bit nitpicky wording wise, but your first sentence is hard for me to follow (buffer addresses seems to mean descriptor?). I think showing a splat and mentioning how to reproduce is always a bonus as well.
 
-What might also be interesting is some benchmark
-numbers. dma_map_single() is not always cheap, since it has to flush
-the cache. I've no idea if only the first call is expensive, and all
-the subsequent calls are cheap? Depending on how expensive it is, some
-sort of refcounting might be cheaper?
+--GfjYjimy2LOyoHtK
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-     Andrew
+On Tue, Sep 10, 2024 at 10:01:39AM +0200, Uwe Kleine-K=F6nig wrote:
+> On Thu, Jul 25, 2024 at 03:08:53PM +0100, Conor Dooley wrote:
+> > On Fri, Jul 12, 2024 at 06:12:26PM +0300, George Stark wrote:
+> > > Hello Rob, Conor
+> > >=20
+> > > On 7/12/24 15:52, Rob Herring wrote:
+> > > > On Thu, Jul 11, 2024 at 02:41:15AM +0300, George Stark wrote:
+> > > > > The chip has 3 dual-channel PWM modules PWM_AB, PWM_CD, PWM_EF.
+> > > > >=20
+> > > > > Signed-off-by: George Stark <gnstark@salutedevices.com>
+> > > > > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> > > >=20
+> > > > Missing ack from Conor. When you submit new versions, it is your
+> > > > responsibility to add tags.
+> > >=20
+> > > I had Conor's ack in my mind but his response was related to the
+> > > squashed patch (a1 compatible + power domains) and the current patch =
+was
+> > > a bit different that's why I didn't dare to add the ack.
+> > >=20
+> > > Conor, do you mind if I resend this patch (and may be [PATCH v4 1/3])
+> > > with your ack?
+> >=20
+> > Ye, both are fine :+1:
+>=20
+> I interpreted that as an ack for patches 1 and 2 and applied these to
+> https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/fo=
+r-next
+> . I guess that interpretation is fine, please tell me if not.
+
+Yah, I was okaying my ack being added to both patches in a resend.
+
+--GfjYjimy2LOyoHtK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuBvDQAKCRB4tDGHoIJi
+0hgwAP9JpE/xlF+q9oXUlWavKoI1Z11cHC528mE+fTzlDB/QGgEA3kEAQDDGtmlX
+1TMFRdnlnCWQIn11dhQluJFv6qn3nQ4=
+=v7N1
+-----END PGP SIGNATURE-----
+
+--GfjYjimy2LOyoHtK--
 
