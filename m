@@ -1,149 +1,100 @@
-Return-Path: <devicetree+bounces-102069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BAAD9755BD
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:40:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F2F59755C2
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:41:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA03C1F21811
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 14:40:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2490728B61F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 14:41:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1996F1A3AAF;
-	Wed, 11 Sep 2024 14:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 250231A305F;
+	Wed, 11 Sep 2024 14:39:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RGIRZf7F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pfRI8rZk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7756319F126;
-	Wed, 11 Sep 2024 14:38:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9EAC19FA86;
+	Wed, 11 Sep 2024 14:39:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726065513; cv=none; b=EWv7we2gjT0nTncLYyHi+Ii5S/Edq4hC+aJ6OIb0mCdywXoHjhg1Zec58HhoJYcv2MK7cs7903nCxFbRpxJAdFkiRiuLS6PA2p9eP2qCRchCYX3W+R4UfxGTbPWXfS7OchlZtP/o3PI1jRQWLPla/F1U60tMGCrxoEikfJA7Gj0=
+	t=1726065557; cv=none; b=DwA/yAFTH0MuyzNs2OyaBeZKLm5wefwWbJ4Exdq9mQ6MkzoYlm2SR3a7144EpUXJshGQOteKvkFb07KvZ4VYciAG8RNKIM/WhU5b9aq5tgPH/tLRH5OLeM4zym1B6g7NG9xKpLiZm3w7awAnwR9FkXc7T/lD2HznYjMsR45KJ8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726065513; c=relaxed/simple;
-	bh=Ldou9neFantEFPxbcntEHkUQuwTXsLxrT82B9jmiQRQ=;
+	s=arc-20240116; t=1726065557; c=relaxed/simple;
+	bh=RIl2vqs1rYnlBT7Pma3eLUwMyWxA2WhBMmHCl3yi23w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qr4uDn76WhpWzTbuSbRu6+e6Lzbb3Kmb4bfwadngylcN2SCsNQOuG3KceB1EtAO8qruddDnN1Pcw6jPWXDoHquX079IdrvFI246qKVfA5sdUD1fS9MXSKCddOXxyb7aeteZ+YA/u80biXfHKDA/7H07hnUuWGbxVQWwzbva5Ws0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RGIRZf7F; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1726065511; x=1757601511;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=Ldou9neFantEFPxbcntEHkUQuwTXsLxrT82B9jmiQRQ=;
-  b=RGIRZf7FPJsRGYt8y7hEW1mAzCejgfu2O1gpp0gmBZBul8JWGkyy+4mo
-   uzUkWTtiymrn409vxKXhXXxBcdtbHoHB2OL9IliGyAu9W3gvA7yq1AbyL
-   7MLghI9dFlduivQ5uQMJsZtI0cWZuiNwxbmzLPe7Tn50I7o1hqCstNikR
-   8RlqULT/Bu8hUgJ8bVAWJQYLMurM5zLYjg/eUBMKzFn9cp0K0o1HuDz9x
-   EDdSd1CkYTJXec6nku8qt1XqLndpecx6ZJpLXxrYHcMv5xEFIBQfzV+gG
-   Sn8e+OhGn8GdPhPFV51dTtJhm3B8oTNGDTmqjA4YCyWQgRM11YpTNFYGU
-   A==;
-X-CSE-ConnectionGUID: b/rtNYkoSWmNcJWfh2wRrg==
-X-CSE-MsgGUID: zYsPhbyvScq57/IJsLAtOQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="13471813"
-X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; 
-   d="scan'208";a="13471813"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Sep 2024 07:38:31 -0700
-X-CSE-ConnectionGUID: 7GtiYkmyQSWRX5R/5DaXQg==
-X-CSE-MsgGUID: 163BAyl5TAGhVuMw3BSEKg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; 
-   d="scan'208";a="67230388"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Sep 2024 07:38:27 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1soOUB-00000007aR0-3IeT;
-	Wed, 11 Sep 2024 17:38:23 +0300
-Date: Wed, 11 Sep 2024 17:38:23 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Doug Anderson <dianders@chromium.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=qa56kvUYDTk5tFtGkUJ2FZ6eLCRbdt/MaopCB8rxglh6EYrUloTelPpzdzkXwMbwNjriAkxTvOn3wZ/jpkUvcd9TZp0N8GgwpZJW6OHFDfoOXEemStgb5LEXbfaM3u5XByPjxY7gDbhG7z4lXLiUUOsGYRmGLvXl43hS3F8hnXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pfRI8rZk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DAF5C4CEC0;
+	Wed, 11 Sep 2024 14:39:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726065556;
+	bh=RIl2vqs1rYnlBT7Pma3eLUwMyWxA2WhBMmHCl3yi23w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pfRI8rZkJxendEAuv296Bmdk4n5+LS0TrKnAdyRfGNFbRry3Cc8V9v5w+OCkGJquL
+	 Hb546cSEeEqrKuwYHwWehHT2yTVW98jjqaDMA2oxWTAzXZj2dTJQ4VNRLRWKlGd/IR
+	 OWAaxEZubpLkhCWdAa+cNhOrTYIRCu9bKeg6dZHw059FTJ/DSq5YRTPASqFenV9eeM
+	 4S9PsqZCziq4X2OTpXMXrT/JP4OJmtNUPuIhfExVz26KcvEUBsLz7VU7QleKH9r7jZ
+	 RNEj2iKswTHfK4auCiezX/d9k3TPpLeStgf4y139By85RbAPGzkLlstoIn7TI6aFLL
+	 QQM3q9B00ajcw==
+Date: Wed, 11 Sep 2024 09:39:15 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Jie Gan <quic_jiegan@quicinc.com>
+Cc: Tingwei Zhang <quic_tingweiz@quicinc.com>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v6 09/12] i2c: of-prober: Add regulator support
-Message-ID: <ZuGrX67LzMe9S6ce@smile.fi.intel.com>
-References: <20240904090016.2841572-1-wenst@chromium.org>
- <20240904090016.2841572-10-wenst@chromium.org>
- <CAD=FV=UGOz3Xzg7reJKP=tA1LqTxszv5w-CL9krmoXQtXdJLaQ@mail.gmail.com>
- <CAGXv+5F27K76t=ht5v75jKsNF-J+C0r5+m=czHz6PtV3t5DxcQ@mail.gmail.com>
- <CAD=FV=XVrAdQN8p9QJtt3Ah_YQAG7Y-D4wDx8_+qb1EGN7+Uig@mail.gmail.com>
- <CAGXv+5HO=POHNL_tQHCsy+8=a0gPLMDVHcWMguferahVU+BnZA@mail.gmail.com>
- <CAD=FV=U2yDGv74GQWRQuHN9sjdY5iThqpH-br-jYXMkV1cujEg@mail.gmail.com>
+	Tao Zhang <quic_taozha@quicinc.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Song Chai <quic_songchai@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>, coresight@lists.linaro.org,
+	James Clark <james.clark@linaro.org>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	linux-arm-msm@vger.kernel.org,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Jinlong Mao <quic_jinlmao@quicinc.com>,
+	Mike Leach <mike.leach@linaro.org>
+Subject: Re: [PATCH v5 3/5] dt-bindings: arm: Add Coresight TMC Control Unit
+ hardware
+Message-ID: <172606555436.153197.17103030569267503329.robh@kernel.org>
+References: <20240909033458.3118238-1-quic_jiegan@quicinc.com>
+ <20240909033458.3118238-4-quic_jiegan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=U2yDGv74GQWRQuHN9sjdY5iThqpH-br-jYXMkV1cujEg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20240909033458.3118238-4-quic_jiegan@quicinc.com>
 
-On Tue, Sep 10, 2024 at 05:30:07PM -0700, Doug Anderson wrote:
-> On Thu, Sep 5, 2024 at 8:45 PM Chen-Yu Tsai <wenst@chromium.org> wrote:
 
-...
-
-> > At least for the stuff that we have (touchscreens and trackpads) such
-> > registers typically don't exist, unless it's an HID-over-I2C device,
-> > in which case there's the standard HID descriptor at some address.
-> > But, yeah, reading the HID descriptor was the use case I had in mind.
-> >
-> > At least for one Chromebooks it's a bit more tricky because that one
-> > HID-over-I2C component shares the same address as a non-HID one. We
-> > currently have different SKU IDs and thus different device trees for
-> > them, but we could make the prober work with this. It just has be able
-> > to tell if the component it's currently probing needs the special
-> > prober and is it responding correctly. This bit I need to think about.
+On Mon, 09 Sep 2024 11:34:56 +0800, Jie Gan wrote:
+> Add binding file to specify how to define a Coresight TMC
+> Control Unit device in device tree.
 > 
-> I guess Mark Brown also thought that there wouldn't be some magic
-> register, but my gut still tells me that most i2c devices have some
-> way to confirm that they are what you expect even if it's not an
-> official "vendor" or "version" register. Some type of predictable
-> register at a predictable location that you could use, at least if you
-> knew all of the options that someone might stuff.
-
-"most" is way too optimistic to say, I believe that not even close to majority
-of I²C target devices they are not reliably discoverable.
-
-That's the downside of non-discoverable busses like I²C. Maybe I³C has
-a mechanism for that, but I am not an expert, just wondering.
-
-> For instance, in elan trackpads you can see elan_i2c_get_product_id().
-> That just reads a location (ETP_I2C_UNIQUEID_CMD = 0x0101) that could
-> theoretically be used to figure out (maybe in conjunction with other
-> registers) that it's an elan trackpad instead of an i2c-hid one. You'd
-> have to (of course) confirm that an i2c-hid device wouldn't somehow
-> return back data from this read that made it look like an elan
-> trackpad, but it feels like there ought to be some way to figure it
-> out with a few i2c register reads.
+> It is responsible for controlling the data filter function
+> based on the source device's Trace ID for TMC ETR device.
+> The trace data with that Trace id can get into ETR's buffer
+> while other trace data gets ignored.
 > 
-> ...that being said, I guess my original assertion that you might be
-> able to figure out with a simple register read was naive and you'd
-> actually need a function (maybe as a callback) to figure this out.
+> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+> ---
+>  .../bindings/arm/qcom,coresight-ctcu.yaml     | 84 +++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
+> 
 
--- 
-With Best Regards,
-Andy Shevchenko
-
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
