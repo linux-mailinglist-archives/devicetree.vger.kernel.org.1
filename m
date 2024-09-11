@@ -1,378 +1,127 @@
-Return-Path: <devicetree+bounces-102097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ADA9975736
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 17:34:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2436897576E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 17:45:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 601791C2284E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 15:34:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08685B25012
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 15:45:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3435C1AC881;
-	Wed, 11 Sep 2024 15:34:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35C8F1ABEC8;
+	Wed, 11 Sep 2024 15:45:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YPURXsx4"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OqyltwHZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B39D419C548
-	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 15:34:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A50E71779AE;
+	Wed, 11 Sep 2024 15:44:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726068849; cv=none; b=qFp6G5HN3wIRAcunOf9M7ldSdeUniym3W6x5dkMZBkrZcPyR5hnDpoUCHG49/qC+AM90jzoi3OIFlho851TwkiAgY4pmhM+tkIZDLkyB96cH0uSsdbJrNByTVxUM7pLf5FEGG3K8hwOkgh5BKHMiAGQLLDhuKH/yz/nkZ/2P1P4=
+	t=1726069501; cv=none; b=HeczhE7vCfwK8m5PwsV5xcYAjsSR9YsY8Pmdz4HzpVcnBrp4yUKKZQNY4b0YDBgwOZobxjxED2KPwRMW2EjC/NicGtQZ+k8nt68QahCdrWxGV9x4NbmVqJ1XlP7tCd2Y2SaRp+/kGEF19cLy/s9OBG4Dev7dYR4Lq6LaVciz2c4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726068849; c=relaxed/simple;
-	bh=wa8vIJqABRqeYvov1oXOL1h0K0Mf6fdI3W7xfzVIewU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=EO7aKpYeYzDEQZ0XXb6sSF7yUb/T7lzqGdcv3ueh/rO6/owjJk3EIK9Rxjl7El/XqsR6YMfhuUqyFvSdVlEsp76VIT6BByCXk+5xYvbmN1LNzViswOKoLbuxY9pFonIz2q6oS4iX9ltiU8mrUGZOp5FhprLMJhI1sF7aAmi9BFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YPURXsx4; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3780c8d689aso3326f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 08:34:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726068844; x=1726673644; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=uHcFmu5XbrOYTeHNU+qTmvTnV5L1RX1cOMxqeSCBcSw=;
-        b=YPURXsx401nau0UPDSQTxA6pGvnNpT4gTbOQS/C+1Yw/4fJLlvR6qwZZkvRAyLYhjs
-         hP/yM798raf/A3rB2ZOmCjFK9BgqTyCxhfdpggggyA89WLtJGeeQ4s9if+CRj6VaD/sZ
-         8w7OJPbXEb/uvB8g8u/WrvL9xmmY4VJiU/VX99NEq1wt/kJg1oS14xU3hCTaJW2p5/1W
-         rdDjS+VT1CDOJE1GVdxLzHYwk70409ajeD0ppDY2qbAMMJy6Bw1H9sS2cFkUAJcUkgxA
-         kFLe7g2qgeFpMLxwgX6Vvt+Tn+NYOBU+akYE7vt7gAS5QjmjqyHNySMEAGIWco6f2kQ6
-         R1tQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726068844; x=1726673644;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uHcFmu5XbrOYTeHNU+qTmvTnV5L1RX1cOMxqeSCBcSw=;
-        b=VRntqZfoZbpIQa7sSBh7eFoI5fxcN8ZerXkAABDhKYXCnjF5GUIsX+H2zwRW8/cXWd
-         zJStR/7qwVDgFvkASyvbZ80WGYSFI6FJvueQwBg4prhfvi4Gk3GpusmZmpfHZx8gaqie
-         0Eh+I149WSjFqS16pLVMFMjCIWfYgsIqPEleo7QPMRlxEpq0sAsXth8TYS+u4AC1wn0V
-         I2lOSIT7Tsovd/FhfOIN0g01D4Ts+8lMPQQGCnD6TSM9jAq1lwBmRr7b1vp5wpztFsP7
-         bPEn4CNeKNcLKS17PIZRKwdIW57+XloXExP1zU5tLUrRW8lpTjQ57oEwH68zv7DStpJk
-         PVTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVcgt7Nh/c7WfPp89dpuNWAXMflCPq2hSt/JCHpd/V0JnS5Aj+ukHJpe2JtpY68avqKP6MOnFexjWSo@vger.kernel.org
-X-Gm-Message-State: AOJu0YyvefKAH6SN3vnnF2B7dIZc2J/XSs/lox9d/Ou6TCSK61eI4JGW
-	jiplc1GXd2SoMacwZvIc2aeXQAHuytYxqXlMhVxVXRDBo4GXNUnPyue+XPQog84=
-X-Google-Smtp-Source: AGHT+IFWFyQkBhATnw+IJVi8otW3rrwr9Qz3fq8KG3RdNbP1RXsP2ig7w61/5F0VZz7KI2H1NqfR2g==
-X-Received: by 2002:a5d:460c:0:b0:374:c35e:de72 with SMTP id ffacd0b85a97d-378895c53e2mr11196727f8f.2.1726068843744;
-        Wed, 11 Sep 2024 08:34:03 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3789564a52csm11917360f8f.11.2024.09.11.08.34.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Sep 2024 08:34:03 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 11 Sep 2024 17:34:01 +0200
-Subject: [PATCH] ASoC: dt-bindings: realtek,rt5640: Convert to dtschema
+	s=arc-20240116; t=1726069501; c=relaxed/simple;
+	bh=z7gdWOnnIaBdb5pN5l9/fYMFqpIEyMtePLS53Ejt4hU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=R7RWfqC45gR9VUuK4CNLkxxPjoqXcFZvgZSOKSapU9Lw4+IkdRb8vX3UtIa9YNnnWk3QV+Ityz/AM+0PyPG7kQMH8bWMMx9xPcob/RdQiX5GUUnpAwK8a7xHFZgJ44bShpJeD79T7FcX1qLoLj3DV+T6xQQPZhCCOHnnHRzxZok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OqyltwHZ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48BEmiYc011927;
+	Wed, 11 Sep 2024 15:44:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	oJYh1r3IYXHSBmoqWsyfTxf514/ZwKXYpOzRhzGuJW0=; b=OqyltwHZpPBbIPIT
+	kcaYP6FQbP71/pfaGiSPMb6dlytozzW5NFxc/3ly3xgdvHb7+3FIMe0Z5wtc/9RQ
+	NGOCni3khY3zlUgQsIbdCOWGGOeFUjkTNNeJWi9VzUaGMep1g6iqmo41Y4ruvNUJ
+	od4YCCbyaXQv7JcEfTSAbWRc8n/yCNxlMlUY8u4KVa2IACtbmrPNlGjnSsIaZrkH
+	KBEOMHKp626YNwmHgOc0ylnJDgjufjAjCC3M+Ml4lh4XJfQ8FdDiKWLyzQxtyJnf
+	eR+cOXOnwuwJZ+U+ylv86gh3MCIxZU2HrkNWWiisXI//FMwV6fcDPKwsYXMirf8u
+	7fHVUg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy51a1r0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Sep 2024 15:44:55 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48BFisut015094
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Sep 2024 15:44:54 GMT
+Received: from [10.111.181.177] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 11 Sep
+ 2024 08:44:53 -0700
+Message-ID: <6a7b60c4-379c-4251-a158-5d9986f37797@quicinc.com>
+Date: Wed, 11 Sep 2024 08:44:53 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-covert-realtek-rt5640-v1-1-6b3745e34540@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAGi44WYC/x2NywrCMBBFf6Vk7UAS26D+inSRJmMcbB5MYhFK/
- 93o6nK4B84uKjJhFbdhF4wbVcqpgzoNwj1tCgjkOwst9SivSkHLhRzYuObwW45nDe9SG6ONsFD
- ylEKFB32wgssbcoN+rQ1fwG0yo4TFGy/RWDn5i+idwvjXe+Y+H8cXGXwDbpMAAAA=
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7375;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=wa8vIJqABRqeYvov1oXOL1h0K0Mf6fdI3W7xfzVIewU=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBm4bhqZ6tBAue+5W+zN4ajyn7xX6dg4E6C9Wy/wFS1
- 1Lps1u6JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZuG4agAKCRB33NvayMhJ0a1FD/
- 9q2k+xWfrTu9IMmwNaQ6KrHn8r1c+e7LboQGmGEKIk21JmyUN3TL3TGCGRHgLpT3K15cDo9NVFPZBI
- Oet5u5eXXClmV094ENoqQtpSSngZOjCOWu2wM5VYfNauC4+wCTZRtRk/NrCBmlCUAzTJrZoQX/hfpA
- U0Gy1UGIwgyCJnch3ZVz2uNPuESSW/TcUoRJn2U2HqQhaPycJuuv9UikbfJeMQAZ/p1eDLsgD+7MyP
- /NeQpmTxCjghyNTXiUvLskzIiXow11To4wKcSV6/4I6GrTbAxRc6D7l47sEhw8L9FpwK5GjM0E71Yn
- 3RuA36Dcog5FEev0fGXZXqV8vqnrQhB9FJeWcU3+YgEdyJsHS9RbyclsvyR3TwutIMivefirkEknvb
- oXOEzky7t9iQYXPzTs3a+iFo1Rh7x7zjO4vymVaLsIR4XIzAhT7wNZBDzcOaynIeyRtfJB0jt6UuoU
- tfszkG3byiTS3llycnh/6QbKGA+XcNiTjySKF98osU6qHrjue0LXWnH0qUQb9YItPD4lQvoO5KWbgG
- 9Z8BzI7iQh1FZK0jv0ZpEnKCt00mTew2M9sWhNxaNQxDloUCFLOtI65R9Q6goFqDVVSMZPXograFUb
- jKJ/mR2Ptkga2V00ugW6KaIRAaI6MYTeN6lGtxP80SPYcpPcWhsyL5akU0iw==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Add Snapdragon Devkit for
+ Windows
+To: Sibi Sankar <quic_sibis@quicinc.com>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <krzk+dt@kernel.org>, <robh+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <conor+dt@kernel.org>,
+        <abel.vesa@linaro.org>, <srinivas.kandagatla@linaro.org>
+References: <20240911073337.90577-1-quic_sibis@quicinc.com>
+ <20240911073337.90577-2-quic_sibis@quicinc.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <20240911073337.90577-2-quic_sibis@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: QSfRdezNqAmv0dWTRDqbsfhg0VPqgaBW
+X-Proofpoint-GUID: QSfRdezNqAmv0dWTRDqbsfhg0VPqgaBW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
+ mlxscore=0 bulkscore=0 mlxlogscore=999 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 clxscore=1011 phishscore=0
+ suspectscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2408220000 definitions=main-2409110119
 
-Convert the RT5640/RT5639 audio CODEC bindings to DT schema.
+On 9/11/2024 12:33 AM, Sibi Sankar wrote:
+> X1E001DE is the speed binned variant of X1E80100 that supports turbo
+> boost up to 4.3 Ghz.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- .../devicetree/bindings/sound/realtek,rt5640.yaml  | 146 +++++++++++++++++++++
- Documentation/devicetree/bindings/sound/rt5640.txt |  97 --------------
- 2 files changed, 146 insertions(+), 97 deletions(-)
+if you respin, s/Ghz/GHz/
 
-diff --git a/Documentation/devicetree/bindings/sound/realtek,rt5640.yaml b/Documentation/devicetree/bindings/sound/realtek,rt5640.yaml
-new file mode 100644
-index 000000000000..3f4f59287c1c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/realtek,rt5640.yaml
-@@ -0,0 +1,146 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/realtek,rt5640.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: RT5640/RT5639 audio CODEC
-+
-+maintainers:
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-+
-+description: |
-+  This device supports I2C only.
-+
-+  Pins on the device (for linking into audio routes) for RT5639/RT5640:
-+    * DMIC1
-+    * DMIC2
-+    * MICBIAS1
-+    * IN1P
-+    * IN1N
-+    * IN2P
-+    * IN2N
-+    * IN3P
-+    * IN3N
-+    * HPOL
-+    * HPOR
-+    * LOUTL
-+    * LOUTR
-+    * SPOLP
-+    * SPOLN
-+    * SPORP
-+    * SPORN
-+
-+  Additional pins on the device for RT5640:
-+    * MONOP
-+    * MONON
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - realtek,rt5640
-+      - realtek,rt5639
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+    description: The CODEC's interrupt output.
-+
-+  realtek,in1-differential:
-+    description:
-+      Indicate MIC1 input is differential, rather than single-ended.
-+    type: boolean
-+
-+  realtek,in2-differential:
-+    description:
-+      Indicate MIC2 input is differential, rather than single-ended.
-+    type: boolean
-+
-+  realtek,in3-differential:
-+    description:
-+      Indicate MIC3 input is differential, rather than single-ended.
-+    type: boolean
-+
-+  realtek,lout-differential:
-+    description:
-+      Indicate LOUT output is differential, rather than single-ended.
-+    type: boolean
-+
-+  realtek,dmic1-data-pin:
-+    description: Specify which pin to be used as DMIC1 data pin.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # dmic1 is not used
-+      - 1 # using IN2P pin as dmic1 data pin
-+      - 2 # using GPIO3 pin as dmic1 data pin
-+
-+  realtek,dmic2-data-pin:
-+    description: Specify which pin to be used as DMIC2 data pin.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # dmic2 is not used
-+      - 1 # using IN2N pin as dmic2 data pin
-+      - 2 # using GPIO4 pin as dmic2 data pin
-+
-+  realtek,jack-detect-source:
-+    description: The Jack Detect source.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # Jack Detect function is not used
-+      - 1 # Use GPIO1 for jack-detect
-+      - 2 # Use JD1_IN4P for jack-detect
-+      - 3 # Use JD2_IN4N for jack-detect
-+      - 4 # Use GPIO2 for jack-detect
-+      - 5 # Use GPIO3 for jack-detect
-+      - 6 # Use GPIO4 for jack-detect
-+
-+  realtek,jack-detect-not-inverted:
-+    description:
-+      Normal jack-detect switches give an inverted signal, set this bool
-+      in the rare case you've a jack-detect switch which is not inverted.
-+    type: boolean
-+
-+  realtek,over-current-threshold-microamp:
-+    description: micbias over-current detection threshold in µA
-+    enum:
-+      - 600
-+      - 1500
-+      - 2000
-+
-+  realtek,over-current-scale-factor:
-+    description: micbias over-current detection scale-factor
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # Scale current by 0.5
-+      - 1 # Scale current by 0.75
-+      - 2 # Scale current by 1.0
-+      - 3 # Scale current by 1.5
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        codec@1a {
-+            compatible = "realtek,rt5640";
-+            reg = <0x1a>;
-+            interrupt-parent = <&gpio>;
-+            interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/rt5640.txt b/Documentation/devicetree/bindings/sound/rt5640.txt
-deleted file mode 100644
-index 0c398581d52b..000000000000
---- a/Documentation/devicetree/bindings/sound/rt5640.txt
-+++ /dev/null
-@@ -1,97 +0,0 @@
--RT5640/RT5639 audio CODEC
--
--This device supports I2C only.
--
--Required properties:
--
--- compatible : One of "realtek,rt5640" or "realtek,rt5639".
--
--- reg : The I2C address of the device.
--
--- interrupts : The CODEC's interrupt output.
--
--Optional properties:
--
--- clocks: The phandle of the master clock to the CODEC
--- clock-names: Should be "mclk"
--
--- realtek,in1-differential
--- realtek,in2-differential
--- realtek,in3-differential
--  Boolean. Indicate MIC1/2/3 input are differential, rather than single-ended.
--
--- realtek,lout-differential
--  Boolean. Indicate LOUT output is differential, rather than stereo.
--
--- realtek,ldo1-en-gpios : The GPIO that controls the CODEC's LDO1_EN pin.
--
--- realtek,dmic1-data-pin
--  0: dmic1 is not used
--  1: using IN1P pin as dmic1 data pin
--  2: using GPIO3 pin as dmic1 data pin
--
--- realtek,dmic2-data-pin
--  0: dmic2 is not used
--  1: using IN1N pin as dmic2 data pin
--  2: using GPIO4 pin as dmic2 data pin
--
--- realtek,jack-detect-source
--  u32. Valid values:
--  0: jack-detect is not used
--  1: Use GPIO1 for jack-detect
--  2: Use JD1_IN4P for jack-detect
--  3: Use JD2_IN4N for jack-detect
--  4: Use GPIO2 for jack-detect
--  5: Use GPIO3 for jack-detect
--  6: Use GPIO4 for jack-detect
--
--- realtek,jack-detect-not-inverted
--  bool. Normal jack-detect switches give an inverted signal, set this bool
--  in the rare case you've a jack-detect switch which is not inverted.
--
--- realtek,over-current-threshold-microamp
--  u32, micbias over-current detection threshold in µA, valid values are
--  600, 1500 and 2000µA.
--
--- realtek,over-current-scale-factor
--  u32, micbias over-current detection scale-factor, valid values are:
--  0: Scale current by 0.5
--  1: Scale current by 0.75
--  2: Scale current by 1.0
--  3: Scale current by 1.5
--
--Pins on the device (for linking into audio routes) for RT5639/RT5640:
--
--  * DMIC1
--  * DMIC2
--  * MICBIAS1
--  * IN1P
--  * IN1N
--  * IN2P
--  * IN2N
--  * IN3P
--  * IN3N
--  * HPOL
--  * HPOR
--  * LOUTL
--  * LOUTR
--  * SPOLP
--  * SPOLN
--  * SPORP
--  * SPORN
--
--Additional pins on the device for RT5640:
--
--  * MONOP
--  * MONON
--
--Example:
--
--rt5640 {
--	compatible = "realtek,rt5640";
--	reg = <0x1c>;
--	interrupt-parent = <&gpio>;
--	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
--	realtek,ldo1-en-gpios =
--		<&gpio TEGRA_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
--};
-
----
-base-commit: 47ac09b91befbb6a235ab620c32af719f8208399
-change-id: 20240911-topic-amlogic-arm32-upstream-bindings-fixes-covert-realtek-rt5640-bd6d0e6a05d8
-
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
+> 
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 5cb54d69af0b..6a8fc031e51f 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -1049,6 +1049,12 @@ properties:
+>                - qcom,sm8650-qrd
+>            - const: qcom,sm8650
+>  
+> +      - items:
+> +          - enum:
+> +              - qcom,x1e001de-devkit
+> +          - const: qcom,x1e001de
+> +          - const: qcom,x1e80100
+> +
+>        - items:
+>            - enum:
+>                - lenovo,thinkpad-t14s
 
 
