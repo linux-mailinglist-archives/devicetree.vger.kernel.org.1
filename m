@@ -1,119 +1,208 @@
-Return-Path: <devicetree+bounces-101999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D360197504A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 12:57:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 769DB97505D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 13:03:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C4E81C22647
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 10:57:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E9B728CEFC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 11:03:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0005185B6F;
-	Wed, 11 Sep 2024 10:56:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4805183CD1;
+	Wed, 11 Sep 2024 11:03:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="esdDKz+F"
+	dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b="ngualw4h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com [209.85.221.170])
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17FDA153BC7
-	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 10:56:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B89DB155346
+	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 11:03:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726052213; cv=none; b=Zf8YqlL3Foe1RdFL+hYg7Eb0m6IzK0aFGY1nmQ2vwHiIQpRf4xuVXq8gMuGss4E7WXtt295GKPE93SxOIPJnv/3SVNMHUD/M9fxezl35QOLE1MGYX1r8QDLQwF2oD6OuIZ9nnNoYcPxfJH6BQR85A/ZKtcHJbl+m8KTTwje+RAw=
+	t=1726052615; cv=none; b=Y/5FRt/wetzeeRbI76InIIO+dw+fjS44m8Ho2DGPLVOcgzpgbE9EJwicnSNVGvGdB7KmqdNodI5wwu34SO6SgiZhcYoi/9T83vcux7thxLojAAppcSP3ZGhmnpga2PsME6AJUvGnhKQEpY1E5S3QPJP3wzvIqWit3D+aGlcI/KY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726052213; c=relaxed/simple;
-	bh=yMM35HUT7miV6QtJLuFsWwf5iXiMbNclaktulBrMxBI=;
+	s=arc-20240116; t=1726052615; c=relaxed/simple;
+	bh=ORjVOdeptDBmaHaEY2r7GosRGBJcUlHe/3hAQlnOrz4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ehC9v0Re7H1qJvr7rsfwnQ8usm59qzsuUUGyvpQCWjNqx8IiSfVkLRdh+G6Dsbp0lmrcMtVpmyW6484B7qZ9yYe7uFxlJMoDn3299ReCEZvWnDGgvdwfwyNM/hT7lvcuvckPCZopet3cPqPJteRYNMR3hCUdk5lWHKB3QEDapIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=esdDKz+F; arc=none smtp.client-ip=209.85.221.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-vk1-f170.google.com with SMTP id 71dfb90a1353d-5012813249cso1345928e0c.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 03:56:51 -0700 (PDT)
+	 To:Cc:Content-Type; b=NqSkROfcS50P1SwOqWBqKAJ5tHMXsNvcmLqxhPNdOXTnEtwP//dcaUL1HLsMein8PfcCpEvIHCLzCCHZ2ZOdqPMDZa9ByKS9RW1In2hFcakVPWPIRmOYesW6z47k/ndupWjEnf7YDesGoAufG40z/7Y+844Px8w/RvlxJ4dved4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=tomeuvizoso.net; dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b=ngualw4h; arc=none smtp.client-ip=209.85.128.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tomeuvizoso.net
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-6db836c6bd7so30603527b3.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 04:03:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1726052210; x=1726657010; darn=vger.kernel.org;
+        d=tomeuvizoso-net.20230601.gappssmtp.com; s=20230601; t=1726052611; x=1726657411; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=yMM35HUT7miV6QtJLuFsWwf5iXiMbNclaktulBrMxBI=;
-        b=esdDKz+FLLnnv+74bU0OZyTntKH9JmUujHJVdGmj8eiIGqnzdJXUZ/GIi6wzTRdLX3
-         rPPBIY0TqziqyApGiPLVnJIzc3aPYvkpBAhYb+P2bgAcLMyWhzfh865WKA310ZQs4/fc
-         T7/m82ZXTIV6pmkmxdbFDq4cgl+3u0Fqb3aDs=
+        bh=AxDPM9JMquUGtRkhciAkGUBMtgFCHGxBT/7mvWlerhM=;
+        b=ngualw4hRVF5ZCmEB3N3M78txTOX1Bo9ezNLhw422P3AxqnpuyNRSoYu0ieVmcjvbC
+         xIbE9Q4M9t8OYJZ/N8jqgKmTb7yU6DT4KEWIExqsiSBeCHYtAIH46HDBmtBLfi4n/+dt
+         1gt5CPm4nQDX75VaXsi2wh2FPyXHN2rsubJ6d7ctLumCK0Y7erBLRZ3uVSLFtn5FSjlb
+         TSwBLJAOoLqecXUDCrrhQuyqJjOXjBfY1VBKONUqQzBDh+2hz57NbvaKLhhpHDjVzpoY
+         ag57Xr+7eBS+2HDSyAlbMdDsMJ6+0mCwU8Pyc+AYLUFeWpyWtQfdYOytBNPKC+Lk7QRW
+         4O5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726052210; x=1726657010;
+        d=1e100.net; s=20230601; t=1726052611; x=1726657411;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=yMM35HUT7miV6QtJLuFsWwf5iXiMbNclaktulBrMxBI=;
-        b=RL5+EGFXqiYwrm6ogcvz7Ex2obFlSLq9xVPcki7Nf4RP2U93or+FuFAumrt2P+Gsav
-         QRcYNtsNYpasx1c/ulCad+L5T1OjuFF7UEH3XX2wT9VUG7lTvj30wzp7tCM0OJYjwCTp
-         tnnwzWv20+rUsy0XXBp7O/eyck/4dDx9efEI9TqeDfVQ3Anpiw1H4vMXFgZW1dxS+qxA
-         SJ+bKxDAim9dDD9Cd9Kv770WojH8KKu58s5x4OIbdpvWZ4rhoOB+Sez2tQyJtLMrnaHK
-         VwgOJDRQ4cOwsHnoabFKbcnMYQ/QUgDDNCj3SlkRiZp2leJTQERepG0E0cczdwPif0Dz
-         XKiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX9+ZRdgpzlWMq4Yt/oSNssL3HBTj+Jgb79JD4yFSJGKdP8S37XLB98y1OiIopxclul2D5ksfRNhM8e@vger.kernel.org
-X-Gm-Message-State: AOJu0YypIkrXOMRMWzERxZHJ+qU9wtBebfhFfKT46oQ3RmWEQFhiVZDm
-	uuZpYHwjJSnHIdNrAABm1MJ9e4jsHBOVBQmWOndpUYrGNpA8syZ4klmMIanNeoeRWsUw6UjSsTQ
-	p1w==
-X-Google-Smtp-Source: AGHT+IFOqkuaeF+gK3RTLkXLV/a6daV161Ytbugs4rgCxX7K3xiSgqVmjD0M2MAO0sNADbajjkYFZA==
-X-Received: by 2002:a05:6122:1e13:b0:4f6:b610:61bf with SMTP id 71dfb90a1353d-502142358d4mr14469532e0c.8.1726052210146;
-        Wed, 11 Sep 2024 03:56:50 -0700 (PDT)
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-502f9b1b6dcsm425048e0c.43.2024.09.11.03.56.49
-        for <devicetree@vger.kernel.org>
+        bh=AxDPM9JMquUGtRkhciAkGUBMtgFCHGxBT/7mvWlerhM=;
+        b=plAVR61KatD5xikZ8sISz9EzU71qh8rWhTslX7MAyosM1thRzURh79wMIhXnA8rbb4
+         v92P1SmeQlYe2jYJu8j9goF5zmixtyhGf5GwHkKcCcjEgdGQnpGNMc7U/g4dxC6erLJl
+         5PHMmTT7BIapVhgX42wagukzJUljtyi2jFf8sG1xldmGp1X6ymGVKlnRCdyUUaW559oY
+         XFU42KP1Xk6D84ixB61YUe5wTIdRufgSipz6XTPuI2AFRrT/qdk6ezz5eh/B1q0SMOss
+         il7Qou3ODa0+l7h9hO/TWGYkFFKmGop8tYxcGyqTC6qLi359DsK9GL4CaN0vYoRlz9FC
+         2MBw==
+X-Forwarded-Encrypted: i=1; AJvYcCXohjxs3LPSYDtKFm68upPrfhSbXoZ3+jAoaU1dIhzMT7aNoWKu9hOy+4bl9HzLydDyI15X4MP/xIFw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxx2iQhiIm6wIvyfkupdtCx0Yp6ZJiyk8oIqS9jlZu+1evVFHwK
+	gv8nQH+lY55Q2qUR56wbg/tNT6Tjuxr1c1ipyNDFHvW3ffw13EhG7Oje5D0Yxvo=
+X-Google-Smtp-Source: AGHT+IEksBAtqNIVyEeMs9l3E8i8FNYnoZY0XPPufsecc+4JGJPiqW+9JP8Cs7vP2yaYj7j9QgBnUA==
+X-Received: by 2002:a05:690c:4445:b0:6b1:2825:a3e2 with SMTP id 00721157ae682-6db451667e9mr179156077b3.44.1726052611525;
+        Wed, 11 Sep 2024 04:03:31 -0700 (PDT)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6db96501f0bsm6580827b3.80.2024.09.11.04.03.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Sep 2024 03:56:49 -0700 (PDT)
-Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-49bd27b3507so1845577137.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 03:56:49 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXdnuSQBnOm0kP+4Lri81eTI9ptz7AlZoYXO56/rHLPVhg/SPEEEY6p+ltqRzcYSnWF4jPCXEwrGMnJ@vger.kernel.org
-X-Received: by 2002:a67:ff82:0:b0:49b:f255:1779 with SMTP id
- ada2fe7eead31-49bf2551aa2mr6702532137.12.1726052208866; Wed, 11 Sep 2024
- 03:56:48 -0700 (PDT)
+        Wed, 11 Sep 2024 04:03:31 -0700 (PDT)
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e1a9e4fa5aaso6439874276.2;
+        Wed, 11 Sep 2024 04:03:30 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVRTbL+SfiiK/1yRyb+nuP5z57TWL+k7TH9KropMU5FwMfOggMIxWTHIbLKhuTfp/T2QrejL+iPASGnLk/o@vger.kernel.org, AJvYcCVU41OMxDOdEWr13nu0a6vPTYznnyCMvLqC8B+GXadVACcgafLNrds8vzYfV/JiaoNyLd8jP7zs15PM@vger.kernel.org, AJvYcCWff63YrzReDk33mnnQnh+pRwPqlaM7cIJyniuqy4Qd5GOkR2nEjYu+fadtGbXf2ZJ0CPU/SpYbGMoRY3c=@vger.kernel.org
+X-Received: by 2002:a05:6902:2e11:b0:e11:698f:8843 with SMTP id
+ 3f1490d57ef6-e1d349cf097mr17492302276.44.1726052610124; Wed, 11 Sep 2024
+ 04:03:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240909111535.528624-1-fshao@chromium.org> <20240909111535.528624-6-fshao@chromium.org>
- <01020191e0b103c3-00fad6e7-f81f-4a76-a75f-1420574f71df-000000@eu-west-1.amazonses.com>
-In-Reply-To: <01020191e0b103c3-00fad6e7-f81f-4a76-a75f-1420574f71df-000000@eu-west-1.amazonses.com>
-From: Fei Shao <fshao@chromium.org>
-Date: Wed, 11 Sep 2024 18:56:11 +0800
-X-Gmail-Original-Message-ID: <CAC=S1ng5+K5Rn7b6XVfm6rcJnBH4Ggm8vybSSeRgDX2tdv-VDw@mail.gmail.com>
-Message-ID: <CAC=S1ng5+K5Rn7b6XVfm6rcJnBH4Ggm8vybSSeRgDX2tdv-VDw@mail.gmail.com>
-Subject: Re: [PATCH 05/13] arm64: dts: mediatek: mt8188: Add missing GCE clock names
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org
+References: <20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net>
+ <20240612-6-10-rocket-v1-2-060e48eea250@tomeuvizoso.net> <ffviz6ak6qsn2reg5y35aerzy7wxfx6fzix6xjyminbhfcguus@clszdjakdcjd>
+ <CAAObsKCx+r5UuESnrPem1Rb1-BF4i8FVwu6uozWhABOWoq+M4Q@mail.gmail.com>
+ <CAAObsKChaBZ2C5ezWsiZ_LoN6R2HFhFA9=UNSRYB6cyeo-jreg@mail.gmail.com> <vmgk4wmlxbsb7lphq2ep3xnxx3mbv6e6lecihtftxoyp5lidvy@mectcwirrlek>
+In-Reply-To: <vmgk4wmlxbsb7lphq2ep3xnxx3mbv6e6lecihtftxoyp5lidvy@mectcwirrlek>
+From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Date: Wed, 11 Sep 2024 13:03:18 +0200
+X-Gmail-Original-Message-ID: <CAAObsKAigVVFWuoATTBWbCEfwg0RRHXa=Ehw2OQJyug6EdCDnA@mail.gmail.com>
+Message-ID: <CAAObsKAigVVFWuoATTBWbCEfwg0RRHXa=Ehw2OQJyug6EdCDnA@mail.gmail.com>
+Subject: Re: [PATCH 2/9] iommu/rockchip: Attach multiple power domains
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Oded Gabbay <ogabbay@kernel.org>, Tomeu Vizoso <tomeu.vizoso@tomeuvizoso.net>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 11, 2024 at 6:46=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
+On Thu, Jun 13, 2024 at 11:38=E2=80=AFPM Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
 >
-> Il 09/09/24 13:14, Fei Shao ha scritto:
-> > Add the missing clock-names property for GCE nodes to fix errors from
-> > `make CHECK_DTBS=3Dy mediatek/mt8188-evb.dtb`.
+> Hi,
 >
-> I've sent a patch [1] relaxing the requirement for clock-names in the bin=
-ding.
-> There's no reason to make clock-names mandatory, as there is and there al=
-ways
-> will be one single clock for each GCE mailbox - and also the driver is no=
-t
-> trying to get the clock by name, but rather gets the clock at index 0 any=
-way.
+> On Thu, Jun 13, 2024 at 11:34:02AM GMT, Tomeu Vizoso wrote:
+> > On Thu, Jun 13, 2024 at 11:24=E2=80=AFAM Tomeu Vizoso <tomeu@tomeuvizos=
+o.net> wrote:
+> > > On Thu, Jun 13, 2024 at 2:05=E2=80=AFAM Sebastian Reichel
+> > > <sebastian.reichel@collabora.com> wrote:
+> > > > On Wed, Jun 12, 2024 at 03:52:55PM GMT, Tomeu Vizoso wrote:
+> > > > > IOMMUs with multiple base addresses can also have multiple power
+> > > > > domains.
+> > > > >
+> > > > > The base framework only takes care of a single power domain, as s=
+ome
+> > > > > devices will need for these power domains to be powered on in a s=
+pecific
+> > > > > order.
+> > > > >
+> > > > > Use a helper function to stablish links in the order in which the=
+y are
+> > > > > in the DT.
+> > > > >
+> > > > > This is needed by the IOMMU used by the NPU in the RK3588.
+> > > > >
+> > > > > Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> > > > > ---
+> > > >
+> > > > To me it looks like this is multiple IOMMUs, which should each get
+> > > > their own node. I don't see a good reason for merging these
+> > > > together.
+> > >
+> > > I have made quite a few attempts at splitting the IOMMUs and also the
+> > > cores, but I wasn't able to get things working stably. The TRM is
+> > > really scant about how the 4 IOMMU instances relate to each other, an=
+d
+> > > what the fourth one is for.
+> > >
+> > > Given that the vendor driver treats them as a single IOMMU with four
+> > > instances and we don't have any information on them, I resigned mysel=
+f
+> > > to just have them as a single device.
+> > >
+> > > I would love to be proved wrong though and find a way fo getting
+> > > things stably as different devices so they can be powered on and off
+> > > as needed. We could save quite some code as well.
+> >
+> > FWIW, here a few ways how I tried to structure the DT nodes, none of
+> > these worked reliably:
+> >
+> > https://gitlab.freedesktop.org/tomeu/linux/-/blob/6.10-rocket-multiple-=
+devices-power/arch/arm64/boot/dts/rockchip/rk3588s.dtsi?ref_type=3Dheads#L1=
+163
+> > https://gitlab.freedesktop.org/tomeu/linux/-/blob/6.10-rocket-schema-su=
+bnodes//arch/arm64/boot/dts/rockchip/rk3588s.dtsi?ref_type=3Dheads#L1162
+> > https://gitlab.freedesktop.org/tomeu/linux/-/blob/6.10-rocket-multiple-=
+devices//arch/arm64/boot/dts/rockchip/rk3588s.dtsi?ref_type=3Dheads#L1163
+> > https://gitlab.freedesktop.org/tomeu/linux/-/blob/6.10-rocket-multiple-=
+iommus//arch/arm64/boot/dts/rockchip/rk3588s.dtsi?ref_type=3Dheads#L2669
+> >
+> > I can very well imagine I missed some way of getting this to work, but
+> > for every attempt, the domains, iommus and cores were resumed in
+> > different orders that presumably caused problems during concurrent
+> > execution fo workloads.
+> >
+> > So I fell back to what the vendor driver does, which works reliably
+> > (but all cores have to be powered on at the same time).
 >
-> Please drop this patch.
+> Mh. The "6.10-rocket-multiple-iommus" branch seems wrong. There is
+> only one iommu node in that. I would have expected a test with
+>
+> rknn {
+>     // combined device
+>
+>     iommus =3D <&iommu1>, <&iommu2>, ...;
+> };
 
-Acknowledged. I'll drop this in the next revision.
+You are right, I'm afraid I lost those changes...
+
+> Otherwise I think I would go with the schema-subnodes variant. The
+> driver can initially walk through the sub-nodes and collect the
+> resources into the main device, so on the driver side nothing would
+> really change. But that has a couple of advantages:
+>
+> 1. DT and DT binding are easier to read
+> 2. It's similar to e.g. CPU cores each having their own node
+> 3. Easy to extend to more cores in the future
+> 4. The kernel can easily switch to proper per-core device model when
+>    the problem has been identified
+
+You mean having subnodes containing the different resources that a
+core uses such as clocks, memory resources, power domain, etc? The
+problem with that is that the existing code in the kernel assumes that
+those resources are directly within a device node. Or do you suggest
+something else?
 
 Thanks,
-Fei
+
+Tomeu
 
