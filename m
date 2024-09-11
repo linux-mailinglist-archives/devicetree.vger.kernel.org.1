@@ -1,118 +1,150 @@
-Return-Path: <devicetree+bounces-102106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED8E69757E1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 18:03:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41BAB9757FA
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 18:10:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6579281665
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:03:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 006C6B2444D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:10:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4BEA1A7AD2;
-	Wed, 11 Sep 2024 16:03:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42D0C1AC8BB;
+	Wed, 11 Sep 2024 16:10:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VjSOpDh6"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="hx3SbFYp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com [209.85.214.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05A021AE039;
-	Wed, 11 Sep 2024 16:03:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07DF41A3033
+	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 16:10:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726070598; cv=none; b=ZazKP7Z4TBzgMb0QKn+u3wspc9Hy8277wa7WPGAZgXCp5lKmUc2ABtPKs5UCVhGznS8y+b4gIgNG6Z4jRArkzZIY15ksCBeyE49Ri6gbYShyS+AOoKA+EgrQbgL/jCBFuoPAqEV9WA1Ynz4lB4rBhI2mfot/eCwjBOFJiofLhgA=
+	t=1726071006; cv=none; b=Rxpshi6vGKumNrCSiVh2NgXuPqSJ0I1RAM86tAFLqVlqZj/hKVHd5j4GizUty0Mc3zxY094aF4GoMMD8nz0IhFflAkXKjvdTL2j2AbkGINA5yYxiw+jNtFrbRGv0iTjmiEUJ4+hXVcoefmTDhwYdQIXp3KtKFW9fO/5OALt5oLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726070598; c=relaxed/simple;
-	bh=6iTMa7L1Y3mYgrQhyvUF/e12dXDdZo/h9tFzArNqF0U=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=F6xkPb9xL9UVfPz121vItZ00U/VXrImMw7JtWQ/+FwpwvM8zy3SrBWXXY7LwNDLpma2ilvNjP+/A7yloZWn4TDUnvDC1UEOb+nqaShSLI+Lwf5qHCR3cfxqU/dAIPrXY4I35EqhlXwBkHKdLNPpEV/SxkbV3+usx63jTUy8gqTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VjSOpDh6; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a8d64b27c45so493502766b.3;
-        Wed, 11 Sep 2024 09:03:16 -0700 (PDT)
+	s=arc-20240116; t=1726071006; c=relaxed/simple;
+	bh=EyC1asarizN+wlHGUbEl5egryrMctUQ9CjTYigbQumg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JyjaaJn34sul4nwkUYB7ipkGhaOWgi23MpWEwnGdcwnC3pvMZNYLx43SROdGM8yFSv068SonM2M1xqRMARiOPXYcS1TLIZ3AfQHd5q6Nl9lL5qQNFWN7xdfpDAas1qvnWLyWKuxm+7ALOVm7iZrrgimaAEWZmWXPN0rPdq+mSVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=hx3SbFYp; arc=none smtp.client-ip=209.85.214.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-pl1-f196.google.com with SMTP id d9443c01a7336-206bd1c6ccdso287705ad.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 09:10:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726070595; x=1726675395; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Zsfn69703GEXpjpUIVNTmvpMXLyqrldpw15ngGkOQeY=;
-        b=VjSOpDh6ezDbiM7hr+Q24Qh3S8uUjVrywPuUBewzZ5qkXQlAzDavgQZS+4HxhioDq2
-         Y9KEFUHPptOBppEKPG4Hpcfyqttj40gDf/ndBQ/uiEHl/LN/cRMfFF9wA9QyFmbiS3dV
-         JSOv/KAZ0Y9j+FrkzL8oMq6hhjCmjHROKpORp1+0h9mpPJ9b6W943+8quvfBkiH4i3Wa
-         /njmt1uj5GtQD6f9Eisw1/9GfXKstC/cdo3wl3DhTNiwow1JiP3wAP6G9kMB9OiSzO68
-         dymDIx5NokEV3baqGD/v3KhpnJYC+V0U2i5+t39e+TP0hW8tex/2QVsYZa70GhGyhw3Z
-         lebg==
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1726071003; x=1726675803; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=K7UT67gV1cwJybIxBArzSTyhlTWk6LFWkBtDrmyARac=;
+        b=hx3SbFYpKbxVhdF7hZdOkiAzeCAYdMtfQheuJ/LRRFWCQUa+9mTAVrp7tH+rnCGt0k
+         dsqnuhVwotmn+YP7sayfa7aJ7RBFV0RuaT9cuGh+8WKMbCQ+n4+eGg7xVBbcwjvjuHin
+         5FIA5nLt2xK+Ft5OQ9p+mjYWmeqOtCDw6EI+rZFrKvbVMLrhWwrryQAeUi3jpU0qq//q
+         HN/UYaTw0iiB2cvw6baNv7Ic7Pl1sMrvJ7RQpdUwotjdWjZkuWDEeHj8BpoHyXi+c/Gl
+         qPQrRFC7N8GjAJvGAdyJC820dEjakrIZwj3qSwHo1eFBOE6HuXv2hDjZZM4J9eYV4mlq
+         /XLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726070595; x=1726675395;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Zsfn69703GEXpjpUIVNTmvpMXLyqrldpw15ngGkOQeY=;
-        b=KU8Zl9Wx+TCWUAe4hf5yvY0AZXxrpdxkk6+ODF7yjMT5M6WeLjpv57/jw4YGsSd9en
-         4xI97iYz2hqax913UTdukOyTH27cmZiTu0G4wxtj3eMGF7NLYGGqyHCAsmtPZXZvTQR/
-         krZk0T4z2rEIY1u4qOL0OBCn30gfa5nB8hQdUFp213n73ehkv/WU1z1uKTweaeqvBbnt
-         f4U67wPj7nvgRHVdoxVFv0zMd5fJwfGlmcZNFSjKSY/qs5Lqfsyuv/3ZTPBHBZb7vRAK
-         BawafgDCSq7Gx3Fz6yEvW3Cdqbny8PWCvjcA65vl3DE3OLm9nAgzK7It/1evky9dvGYX
-         /Yew==
-X-Forwarded-Encrypted: i=1; AJvYcCVk9YYp+wOhAm+bvLu912GheA693hnV+zDjrVzPMEuFDTQbHY62boVUzRBiaV1swexELHBUmD2kgiTa@vger.kernel.org, AJvYcCXZd7TfnMGITyMSvJP/oM9USw0lHdeL4zJzDjUx/hyaYvOSRPDKeRl68BXHY0Mwo9/+o64xbEa24mcb5eO9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0EJKREo/aZC8J6Dp3Tv4UB+ZictqDtwY1Ttmhtq9YEaWl84vz
-	XadNjqCdAdJkCM30m8dt6Gve3M4UYVwjQZmz16tdM4lkNNvx9g+P
-X-Google-Smtp-Source: AGHT+IH/LLf4PrwkHLESTCBOzTFR+MsO1r1IfLokqGJPLcPt2sFlASgGyRhdbZyBM3JbIzEIjHLnew==
-X-Received: by 2002:a17:907:72c2:b0:a8d:1774:eb59 with SMTP id a640c23a62f3a-a8ffae1db80mr530008866b.54.1726070594162;
-        Wed, 11 Sep 2024 09:03:14 -0700 (PDT)
-Received: from localhost.localdomain ([2a04:ee41:82:7577:797a:1b45:332e:77c1])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8d25d64880sm621635466b.219.2024.09.11.09.03.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Sep 2024 09:03:13 -0700 (PDT)
-From: Vasileios Amoiridis <vassilisamir@gmail.com>
-To: robh@kernel.org,
-	saravanak@google.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: andriy.shevchenko@linux.intel.com,
-	Vasileios Amoiridis <vassilisamir@gmail.com>
-Subject: [PATCH v3 2/2] of/irq: Use helper to define resources
-Date: Wed, 11 Sep 2024 18:02:53 +0200
-Message-Id: <20240911160253.37221-3-vassilisamir@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240911160253.37221-1-vassilisamir@gmail.com>
-References: <20240911160253.37221-1-vassilisamir@gmail.com>
+        d=1e100.net; s=20230601; t=1726071003; x=1726675803;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=K7UT67gV1cwJybIxBArzSTyhlTWk6LFWkBtDrmyARac=;
+        b=lzbACOfexMVKQoDQNFDBldo7j109mNySYDDoQCtcgZMKXHpdsigH7aWb3KuKkO6iPB
+         A3eCREzhuJ0GWKVoOozjZjVNNTYSK0s1cYiPWrmAxcndVsMOIyu59Hup4TBfR/TMrGRt
+         8gT/2oi5vta89ntOvA4tdPCa6UIBcIvo4ZorM4hAfG8//U+oBNvPsILBmFsBB3iBUowM
+         MqpzjwE7tYGpbEAXP3xIP/QLKty4VdkTvsdhUg9b9LBQ1m+5v+2VccDzVUpmKLQaNzCm
+         6/EYlo4EyONWBNCFTmBH2RYY6JAGow6jHZTHgPtfK/c21nJNBvyt4AwEcqmT3AMsbI46
+         2LUg==
+X-Forwarded-Encrypted: i=1; AJvYcCVQ42JznUliCbTkirT2uMzCT9hWj440EM0rLpKpEP3DhKepMVOTzymJ5dO0u80WlDyYWRRfOwIK9l60@vger.kernel.org
+X-Gm-Message-State: AOJu0YwDsOVYyuIjKLD/lnnb+Lpx5+u+2RjPdNvzysea8soD2UM2DKfU
+	1eXwQ9iABEqw4XRKwLLqEfcaXlm+WH8/+/yfrde9pztWDsWglB5XPuuD5BXdOg==
+X-Google-Smtp-Source: AGHT+IHxqgzZVxYEvY9qL7CLZSUAdKuf7UAGYqozKhceMgYQsh8xQE8qJwCqlU3Otnp7XWn00TTRiw==
+X-Received: by 2002:a17:902:e546:b0:1fb:90e1:c8c5 with SMTP id d9443c01a7336-2074c643e20mr54026305ad.33.1726071003325;
+        Wed, 11 Sep 2024 09:10:03 -0700 (PDT)
+Received: from [172.16.118.100] ([103.15.228.94])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2076ae3fe19sm1602505ad.0.2024.09.11.09.09.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Sep 2024 09:10:03 -0700 (PDT)
+Message-ID: <ef948bc7-aa2b-4b45-8e6f-32c28b7d6684@beagleboard.org>
+Date: Wed, 11 Sep 2024 21:39:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/8] addon_boards: Add addon_boards plumbing
+Content-Language: en-US
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: fabien.parent@linaro.org, d-gole@ti.com, lorforlinux@beagleboard.org,
+ jkridner@beagleboard.org, robertcnelson@beagleboard.org,
+ Andrew Davis <afd@ti.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Benno Lossin <benno.lossin@proton.me>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>,
+ Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240911-mikrobus-dt-v1-0-3ded4dc879e7@beagleboard.org>
+ <20240911-mikrobus-dt-v1-6-3ded4dc879e7@beagleboard.org>
+ <2024091147-graveness-manmade-d070@gregkh>
+From: Ayush Singh <ayush@beagleboard.org>
+In-Reply-To: <2024091147-graveness-manmade-d070@gregkh>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Resources definition can become simpler and more organised by using the
-dedicated helpers.
+On 9/11/24 20:30, Greg Kroah-Hartman wrote:
 
-Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
----
- drivers/of/irq.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+> On Wed, Sep 11, 2024 at 07:57:23PM +0530, Ayush Singh wrote:
+>> A directory to store and build addon_board overlays like mikroBUS,
+>> Groove, etc. The overlays present here should be completely independent
+>> of the underlying connector.
+>>
+>> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
+>> ---
+>>   Kbuild                         |  1 +
+>>   Kconfig                        |  2 ++
+>>   MAINTAINERS                    |  1 +
+>>   addon_boards/Kconfig           | 16 ++++++++++++++++
+>>   addon_boards/Makefile          |  3 +++
+>>   addon_boards/mikrobus/Makefile |  1 +
+>>   6 files changed, 24 insertions(+)
+> Ah, here's where you add this.
+>
+> It should be below drivers/ right?  But what's wrong with drivers/soc/?
+> Why is this so special?  Why not just under
+> drivers/microbus/addon_boards/ ?  Why is this tiny bus/device so
+> different from everything else out there?
+>
+> thanks,
+>
+> greg k-h
 
-diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-index 5d27b20634d3..64639f9da9fb 100644
---- a/drivers/of/irq.c
-+++ b/drivers/of/irq.c
-@@ -429,9 +429,8 @@ int of_irq_to_resource(struct device_node *dev, int index, struct resource *r)
- 		of_property_read_string_index(dev, "interrupt-names", index,
- 					      &name);
- 
--		r->start = r->end = irq;
--		r->flags = IORESOURCE_IRQ | irq_get_trigger_type(irq);
--		r->name = name ? name : of_node_full_name(dev);
-+		*r = DEFINE_RES_IRQ_NAMED(irq, name ? name : of_node_full_name(dev));
-+		r->flags |= irq_get_trigger_type(irq);
- 	}
- 
- 	return irq;
--- 
-2.25.1
+
+Well, it can go under drivers for mikrobus, but there will be other 
+addon board connectors which will not need any kind of driver. In fact, 
+the original patch series this is based on [0] did not have any driver 
+for the connector.
+
+
+As for bus, see my reply to the other patch in the series [1]. 
+Basically, while the name of the standard itself is "mikroBUS", it is 
+not really a "bus" in Linux sense.
+
+
+[0]: 
+https://lore.kernel.org/linux-arm-kernel/20240702164403.29067-1-afd@ti.com/
+
+[1]: 
+https://lore.kernel.org/all/ecd1fff8-9c15-496a-982f-36e6c58e906a@gmail.com/
 
 
