@@ -1,195 +1,139 @@
-Return-Path: <devicetree+bounces-101881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 012AB974ABA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 08:57:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C099974ADF
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 09:02:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33C7D1C21CAA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 06:57:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07010288E33
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 07:02:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADA9413D50B;
-	Wed, 11 Sep 2024 06:56:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GC4mXxVf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80B64130A54;
+	Wed, 11 Sep 2024 07:00:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E71A613AA3E;
-	Wed, 11 Sep 2024 06:56:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABD1C13AA3F
+	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 07:00:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726037813; cv=none; b=EuIhVP9e7FDtAye8yEFu52CmgvkczKQAtGQjZhy9b0cvK/lKcy86jrwPF1+QsduTr8y1O89VjYAJKAR8E07/80yl2tuHfLcVNUp7FDZlwEDn+9X97RPdb96/Xqg6PJ+UWdM2JjTj4KHiHf0OlrzVVR/O/qzR4U1OLJuHa8hPDCs=
+	t=1726038058; cv=none; b=YkSDegMBtNAwpY+JwcaCocuxgxsYZb7+AOANw6/pOPE0Q9M8YkT6W+sHcSnK14UE7cNqpyBpC7ww9UMlgvZF9OuZqat7uoFrkssf6ydNBqQcH/vpcx2tbu1rwMO8Eb1pmxwBzOE9fazX4Nu7Phvg9HXnsoYGc74S1LxYmDMD4PY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726037813; c=relaxed/simple;
-	bh=5XHmeOafFEPb+83jR1scQUngvM06Zf6uSKB+LBJsZGc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=dNjE2kDu1gmvkgLKINp4bQJcLEDWcYE+166cL1MztVJWqGBpGokMmIJRR9/Royvtn1kPaFMqc+8n+L5KVAkVbT829EM74HvC+3mdjUKuqMdC9LCqVA7l4or8HISIkfLVxKGfamP6ajKTBhQdVFHD3aacBKnv6iKwKxERaP9xIf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GC4mXxVf; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48B2UPkv025595;
-	Wed, 11 Sep 2024 06:56:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=6/bkBr9Tx3/7BDAHIB2V2G
-	Gy6nmTSJTP79H8ggFV2lc=; b=GC4mXxVfznlM2BRJxBRa7ER9vp/dd5PtM4jkD0
-	JYNFwXL5huOWcBYhKTyoQ1QwumqmNfXxoiVsOhif/ZcAaOM34At81oqbMfEpMJZF
-	BahTgUyGo7EDluj3jeQXCS+4ZCfg3Xhnjxm/WLUsgDyP1PTSTJ7lx0GHPOyWrWJ8
-	aZmEegOamhm3aRfNsoPV2uZZs0ewf/qqSIp7VyXA+46e9wfEKA895pSua0py2EVm
-	agvYEuEmL9ncu7nBU7ypwPHMTOowhTum96r6rlK361PnVjSg0yMFg3Hi7u1Aqcai
-	dr7VeE44QG42iASOopkoeTy4y+7NQzYAHz04SISbiQ7zUMGA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy730nwe-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Sep 2024 06:56:43 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48B6ufiI007829
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Sep 2024 06:56:41 GMT
-Received: from jingyw-gv.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 10 Sep 2024 23:56:38 -0700
-From: Jingyi Wang <quic_jingyw@quicinc.com>
-Date: Wed, 11 Sep 2024 14:56:16 +0800
-Subject: [PATCH v2] dt-bindings: phy: Add QMP UFS PHY comptible for QCS8300
+	s=arc-20240116; t=1726038058; c=relaxed/simple;
+	bh=haGjOs6Ls3rcFJQz1O4SXqDm7eC9DDi3NlIAUroJ10U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MDwfcoW0AY/S1y/JWZjtgRAUfrVsFdEoUBavPL6Ltr8HUbi3hUd7rp+dxZSh49JOreeuSKx72ljF4y5JKQVwFoSvQRo+0MCmFefSdw7Cnv4iOv84iNo00Q/R8jZLhNt3iCHcnlBEmYQytzRs0pOYgTq3x7Q9VEjumUyrpwmbkbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1soHKt-0000rM-6F; Wed, 11 Sep 2024 09:00:19 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1soHKr-0074hk-Pm; Wed, 11 Sep 2024 09:00:17 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1soHKr-001pNS-2C;
+	Wed, 11 Sep 2024 09:00:17 +0200
+Date: Wed, 11 Sep 2024 09:00:17 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Rob Herring <robh@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <f.fainelli@gmail.com>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: ethernet-phy: Add
+ master-slave role property for SPE PHYs
+Message-ID: <ZuFAAVBGw7ApUk6S@pengutronix.de>
+References: <20240909124342.2838263-1-o.rempel@pengutronix.de>
+ <20240909124342.2838263-2-o.rempel@pengutronix.de>
+ <20240909162009.GA339652-robh@kernel.org>
+ <c2e4539f-34ba-4fcf-a319-8fb006ee0974@lunn.ch>
+ <CAL_Jsq+qJStck1OTiXg0jPR3EPEpLsu-or0pNqNh0orFjf+0uA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240911-qcs8300_ufs_phy_binding-v2-1-c801a2d27a84@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAA8/4WYC/z2NwQqDMBAFf0VybspGQ9We/I8iISarLrRRE5WK+
- O9NpfQ4A2/ezgJ6wsDuyc48rhRocBHSS8JMr12HnGxklkIqoRSCTyYUGYBa2qDGflMNOUuu44W
- 8ScAM86bJWVyPHlt6n+VHHbmnMA9+O49W8bW/Jsh/kxzNpJ/KzoH4KjhwC6hL3VoDkFfTQoacu
- ZrhxerjOD7KenfqvQAAAA==
-To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_jingyw@quicinc.com>, Xin Liu <quic_liuxin@quicinc.com>
-X-Mailer: b4 0.15-dev-99b12
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1726037798; l=3160;
- i=quic_jingyw@quicinc.com; s=20240910; h=from:subject:message-id;
- bh=6E11ti2Lz75Yu9od4zrxe9UYQq4yP0zh1Q49HV1v+aQ=;
- b=SygEXo0n/hX7lHirmFjyKpA/ieT1v9RmC8rvld7rmFyqr6VeI9VtbQ9H7h/FMub/KW3s6mMPh
- jyU4Kyb6LXNDFlkcd3FdelmjZMP4+Wkanw5uDEJZ9NKFjWt8JiOUsvI
-X-Developer-Key: i=quic_jingyw@quicinc.com; a=ed25519;
- pk=ZRP1KgWMhlXXWlSYLoO7TSfwKgt6ke8hw5xWcSY+wLQ=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: s3Nw7gUB9wv-FHyVVux_JP7QHa3fA3pb
-X-Proofpoint-GUID: s3Nw7gUB9wv-FHyVVux_JP7QHa3fA3pb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- impostorscore=0 lowpriorityscore=0 clxscore=1015 bulkscore=0
- malwarescore=0 adultscore=0 mlxlogscore=999 suspectscore=0
- priorityscore=1501 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2408220000 definitions=main-2409110051
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_Jsq+qJStck1OTiXg0jPR3EPEpLsu-or0pNqNh0orFjf+0uA@mail.gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-From: Xin Liu <quic_liuxin@quicinc.com>
+On Tue, Sep 10, 2024 at 11:54:04AM -0500, Rob Herring wrote:
+> On Mon, Sep 9, 2024 at 12:00 PM Andrew Lunn <andrew@lunn.ch> wrote:
+....
+> > The 2022 revision of 802.3 still has master/slave when describing the
+> > registers, but it does have Annex K as described above saying "leader"
+> > and "follower" are optional substitutions.
+> >
+> > The Linux code has not changed, and the uAPI has not changed. It seems
+> > like the best compromise would be to allow both 'force-master' and
+> > 'force-leader', as well as 'force-slave' and 'force-follower', and a
+> > reference to 802.3 Annex K.
+> 
+> It seems silly to maintain both forever. I'd rather have one or the
+> other than both.
 
-Document the QMP UFS PHY compatible for Qualcomm QCS8300 to support
-physical layer functionality for UFS found on the SoC. Use fallback to
-indicate the compatibility of the QMP UFS PHY on the QCS8300 with that
-on the SA8775P.
+I'll accept what ever will be decided. Even if we will decide to use
+words 'leader' and 'follower' for the properties, we still need to
+document that they correspond to 'master' and 'slave' in the IEEE
+specification and in the kernel UAPI.
 
-Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
-Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
----
-Changes in v2:
-- decoupled from the original series.
-- Use fallback to indicate compatibility with SA8775P.
-- typo fixup
-- Link to v1: https://lore.kernel.org/r/20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com
----
- .../bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml    | 46 ++++++++++++----------
- 1 file changed, 26 insertions(+), 20 deletions(-)
+I can imagine a mdi-link-clock-role = 'leader' or 'follower'
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-index f9cfbd0b2de6..626a2039e177 100644
---- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-@@ -15,26 +15,31 @@ description:
- 
- properties:
-   compatible:
--    enum:
--      - qcom,msm8996-qmp-ufs-phy
--      - qcom,msm8998-qmp-ufs-phy
--      - qcom,sa8775p-qmp-ufs-phy
--      - qcom,sc7180-qmp-ufs-phy
--      - qcom,sc7280-qmp-ufs-phy
--      - qcom,sc8180x-qmp-ufs-phy
--      - qcom,sc8280xp-qmp-ufs-phy
--      - qcom,sdm845-qmp-ufs-phy
--      - qcom,sm6115-qmp-ufs-phy
--      - qcom,sm6125-qmp-ufs-phy
--      - qcom,sm6350-qmp-ufs-phy
--      - qcom,sm7150-qmp-ufs-phy
--      - qcom,sm8150-qmp-ufs-phy
--      - qcom,sm8250-qmp-ufs-phy
--      - qcom,sm8350-qmp-ufs-phy
--      - qcom,sm8450-qmp-ufs-phy
--      - qcom,sm8475-qmp-ufs-phy
--      - qcom,sm8550-qmp-ufs-phy
--      - qcom,sm8650-qmp-ufs-phy
-+    oneOf:
-+      - items:
-+          - enum:
-+              - qcom,qcs8300-qmp-ufs-phy
-+          - const: qcom,sa8775p-qmp-ufs-phy
-+      - enum:
-+          - qcom,msm8996-qmp-ufs-phy
-+          - qcom,msm8998-qmp-ufs-phy
-+          - qcom,sa8775p-qmp-ufs-phy
-+          - qcom,sc7180-qmp-ufs-phy
-+          - qcom,sc7280-qmp-ufs-phy
-+          - qcom,sc8180x-qmp-ufs-phy
-+          - qcom,sc8280xp-qmp-ufs-phy
-+          - qcom,sdm845-qmp-ufs-phy
-+          - qcom,sm6115-qmp-ufs-phy
-+          - qcom,sm6125-qmp-ufs-phy
-+          - qcom,sm6350-qmp-ufs-phy
-+          - qcom,sm7150-qmp-ufs-phy
-+          - qcom,sm8150-qmp-ufs-phy
-+          - qcom,sm8250-qmp-ufs-phy
-+          - qcom,sm8350-qmp-ufs-phy
-+          - qcom,sm8450-qmp-ufs-phy
-+          - qcom,sm8475-qmp-ufs-phy
-+          - qcom,sm8550-qmp-ufs-phy
-+          - qcom,sm8650-qmp-ufs-phy
- 
-   reg:
-     maxItems: 1
-@@ -85,6 +90,7 @@ allOf:
-           contains:
-             enum:
-               - qcom,msm8998-qmp-ufs-phy
-+              - qcom,qcs8300-qmp-ufs-phy
-               - qcom,sa8775p-qmp-ufs-phy
-               - qcom,sc7180-qmp-ufs-phy
-               - qcom,sc7280-qmp-ufs-phy
+> > As to you comment about it being unclear what it means i would suggest
+> > a reference to 802.3 section 1.4.389:
+> >
+> >   1.4.389 master Physical Layer device (PHY): Within IEEE 802.3, in a
+> >   100BASE-T2, 1000BASE-T, 10BASE-T1L, 100BASE-T1, 1000BASE-T1, or any
+> >   MultiGBASE-T link containing a pair of PHYs, the PHY that uses an
+> >   external clock for generating its clock signals to determine the
+> >   timing of transmitter and receiver operations. It also uses the
+> >   master transmit scrambler generator polynomial for side-stream
+> >   scrambling. Master and slave PHY status is determined during the
+> >   Auto-Negotiation process that takes place prior to establishing the
+> >   transmission link, or in the case of a PHY where Auto-Negotiation is
+> >   optional and not used, master and slave PHY status
+> 
+> phy-status? Shrug.
 
----
-base-commit: 100cc857359b5d731407d1038f7e76cd0e871d94
-change-id: 20240911-qcs8300_ufs_phy_binding-84640e3e7bb7
+In my understanding, the 'status' is result not actual configuration
+request.
 
-Best regards,
+> Another thought. Is it possible that h/w strapping disables auto-neg,
+> but you actually want to override that and force auto-neg?
+
+Yes. If I would need it, I would recommend to have a different override
+property, something like: autoneg-default = 'on' or 'off'
+
+Regards,
+Oleksij
 -- 
-Jingyi Wang <quic_jingyw@quicinc.com>
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
