@@ -1,265 +1,378 @@
-Return-Path: <devicetree+bounces-102096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C75CE97572E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 17:32:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ADA9975736
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 17:34:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5528A1F24033
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 15:32:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 601791C2284E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 15:34:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30571A3AB8;
-	Wed, 11 Sep 2024 15:32:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3435C1AC881;
+	Wed, 11 Sep 2024 15:34:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TLuxYG2o"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YPURXsx4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6660A7E583
-	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 15:32:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B39D419C548
+	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 15:34:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726068761; cv=none; b=RpgBMne4puWz2n1qG+8yVsAYih3NhU7kmZFSQ2BvhrvSi6TMy1x2id4+TXWzpbANga6cU786CjGxiKSvDIEs0uvrp4lZruVxYSOXQySk2J/0z8EnKpVc69aoxgC3OKlfhrM0h4f8w2k3qDUZpsX5E9EgAA/wsL1PPASBF4sTWMY=
+	t=1726068849; cv=none; b=qFp6G5HN3wIRAcunOf9M7ldSdeUniym3W6x5dkMZBkrZcPyR5hnDpoUCHG49/qC+AM90jzoi3OIFlho851TwkiAgY4pmhM+tkIZDLkyB96cH0uSsdbJrNByTVxUM7pLf5FEGG3K8hwOkgh5BKHMiAGQLLDhuKH/yz/nkZ/2P1P4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726068761; c=relaxed/simple;
-	bh=n/THAopzoKNb9ho6jlx1u+EKvseKQuYpJqcPQgFMlqA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dfYTnO1P3j7dGTftYOQwF1qknkSisrCNuqkAdUqWhC0YrkxeR1QlO2PFBHwcOBbp0NcKft3ZDySUC+EcMbUG1hNrTIcalogR9RVFstRLoHoSP7etkNbEXTLTjO6BH0xHftWEiqnBXLDkrV7QEXzPeLlIO4dXEZb+rUSzt8nuWsw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TLuxYG2o; arc=none smtp.client-ip=209.85.210.170
+	s=arc-20240116; t=1726068849; c=relaxed/simple;
+	bh=wa8vIJqABRqeYvov1oXOL1h0K0Mf6fdI3W7xfzVIewU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=EO7aKpYeYzDEQZ0XXb6sSF7yUb/T7lzqGdcv3ueh/rO6/owjJk3EIK9Rxjl7El/XqsR6YMfhuUqyFvSdVlEsp76VIT6BByCXk+5xYvbmN1LNzViswOKoLbuxY9pFonIz2q6oS4iX9ltiU8mrUGZOp5FhprLMJhI1sF7aAmi9BFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YPURXsx4; arc=none smtp.client-ip=209.85.221.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-718d8d6af8fso4551023b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 08:32:39 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3780c8d689aso3326f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 08:34:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726068759; x=1726673559; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=JUnLTmnkKuTjduDvDakmnEv59zQ17ggV64w/1jebL68=;
-        b=TLuxYG2o17aScjBLybw279ioBxR58blaPAE4nIApf+9a9PaFvqMsxOQat190ivSi8v
-         jD4fkfx0tFXfTEbM2/2K3x4Nob2Kymauq4QdP4f6lXfgwarMubQKd/4yKbNeVO+/zfIu
-         VExs1w+kS0bOVwSvjcSNWBD1d3RJxgqgcu3VvRTen+cnLjtjnsCV4ELJxCRVPGseKNh7
-         c1pDkFcTFDcjfr0LpyPJCVupp1NACHgEZHRg8o1uhN0JwLnh2X4S1qMI8y8qkjCFCDW8
-         a2z7sF3ruBXWYnC3TJyJSY4n+CzhlPgVGnvS5ByCIv0ogdwfrfnA4z48YOp/TXFaXP8g
-         EnwA==
+        d=linaro.org; s=google; t=1726068844; x=1726673644; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uHcFmu5XbrOYTeHNU+qTmvTnV5L1RX1cOMxqeSCBcSw=;
+        b=YPURXsx401nau0UPDSQTxA6pGvnNpT4gTbOQS/C+1Yw/4fJLlvR6qwZZkvRAyLYhjs
+         hP/yM798raf/A3rB2ZOmCjFK9BgqTyCxhfdpggggyA89WLtJGeeQ4s9if+CRj6VaD/sZ
+         8w7OJPbXEb/uvB8g8u/WrvL9xmmY4VJiU/VX99NEq1wt/kJg1oS14xU3hCTaJW2p5/1W
+         rdDjS+VT1CDOJE1GVdxLzHYwk70409ajeD0ppDY2qbAMMJy6Bw1H9sS2cFkUAJcUkgxA
+         kFLe7g2qgeFpMLxwgX6Vvt+Tn+NYOBU+akYE7vt7gAS5QjmjqyHNySMEAGIWco6f2kQ6
+         R1tQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726068759; x=1726673559;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JUnLTmnkKuTjduDvDakmnEv59zQ17ggV64w/1jebL68=;
-        b=Ts69RaTMWKYMzKODGrf4OS01s7mYxXEdRT9EQPm4ERHeLhqgjEBezu4nW2mbJIC+6T
-         JzFRmf/OSuW09xTsgEinXUgkccT+tZAiEYK7DlFvO3EMHIratD9U5eyKqu+Hx6RkOiGy
-         X9J7xkNMs3NvDzzubpe419/PtpvQ35Ovvmcu0ldoJfbq/wkLaO2a7VF/rSeYZ8qCd+6u
-         68N8p7t7+flVTOsMu9tZssXbxVmzmO9fvpznSFUE0v124+b3Hquxe069UaFHlVJLTIei
-         DftnCYb6d0IqTucfTnliqVJHq7zxx4oeLO2NBmeB1U6h2LNbDoaJ4TC+XgKljR9XHPfO
-         QIHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWDn6+O6Bpd8rfLpGEHeSO51Tzqjx+84E8roas1jSi9NUco85CjdgrPFUmdCYBMzNxnnwItNJirF8BC@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCMf995jSbFOwNjv8xbPTEHHa0ruJ5LF0X48fA5EQ+uLdw6Gh1
-	+dXz3Kpg4qskPu7b2SwtMi3dQXh3zLGKoHpv7iHcE3bM5r+2fqhOakwgvbrHHw==
-X-Google-Smtp-Source: AGHT+IEgOgO8muSou4mMHOAUIftNXmTF9h5ug/uQEGPL0Bqkvr313ObMh3MqMwuRezxyzZzkjOshzA==
-X-Received: by 2002:a05:6a00:4fc3:b0:717:fd98:4a6 with SMTP id d2e1a72fcca58-718e3fc0534mr21290930b3a.11.1726068758507;
-        Wed, 11 Sep 2024 08:32:38 -0700 (PDT)
-Received: from thinkpad ([120.60.130.207])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7db1fdf67b0sm108896a12.79.2024.09.11.08.32.32
+        d=1e100.net; s=20230601; t=1726068844; x=1726673644;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uHcFmu5XbrOYTeHNU+qTmvTnV5L1RX1cOMxqeSCBcSw=;
+        b=VRntqZfoZbpIQa7sSBh7eFoI5fxcN8ZerXkAABDhKYXCnjF5GUIsX+H2zwRW8/cXWd
+         zJStR/7qwVDgFvkASyvbZ80WGYSFI6FJvueQwBg4prhfvi4Gk3GpusmZmpfHZx8gaqie
+         0Eh+I149WSjFqS16pLVMFMjCIWfYgsIqPEleo7QPMRlxEpq0sAsXth8TYS+u4AC1wn0V
+         I2lOSIT7Tsovd/FhfOIN0g01D4Ts+8lMPQQGCnD6TSM9jAq1lwBmRr7b1vp5wpztFsP7
+         bPEn4CNeKNcLKS17PIZRKwdIW57+XloXExP1zU5tLUrRW8lpTjQ57oEwH68zv7DStpJk
+         PVTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVcgt7Nh/c7WfPp89dpuNWAXMflCPq2hSt/JCHpd/V0JnS5Aj+ukHJpe2JtpY68avqKP6MOnFexjWSo@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvefKAH6SN3vnnF2B7dIZc2J/XSs/lox9d/Ou6TCSK61eI4JGW
+	jiplc1GXd2SoMacwZvIc2aeXQAHuytYxqXlMhVxVXRDBo4GXNUnPyue+XPQog84=
+X-Google-Smtp-Source: AGHT+IFWFyQkBhATnw+IJVi8otW3rrwr9Qz3fq8KG3RdNbP1RXsP2ig7w61/5F0VZz7KI2H1NqfR2g==
+X-Received: by 2002:a5d:460c:0:b0:374:c35e:de72 with SMTP id ffacd0b85a97d-378895c53e2mr11196727f8f.2.1726068843744;
+        Wed, 11 Sep 2024 08:34:03 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3789564a52csm11917360f8f.11.2024.09.11.08.34.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Sep 2024 08:32:38 -0700 (PDT)
-Date: Wed, 11 Sep 2024 21:02:28 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Qiang Yu <quic_qianyu@quicinc.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, vkoul@kernel.org,
-	kishon@kernel.org, robh@kernel.org, andersson@kernel.org,
-	konradybcio@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	mturquette@baylibre.com, sboyd@kernel.org, abel.vesa@linaro.org,
-	quic_msarkar@quicinc.com, quic_devipriy@quicinc.com, kw@linux.com,
-	lpieralisi@kernel.org, neil.armstrong@linaro.org,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 8/8] PCI: qcom: Add support to PCIe slot power supplies
-Message-ID: <20240911153228.7ajcqicxnu2afhbp@thinkpad>
-References: <20240827063631.3932971-1-quic_qianyu@quicinc.com>
- <20240827063631.3932971-9-quic_qianyu@quicinc.com>
- <CAA8EJpq5KergZ8czg4F=EYMLANoOeBsiSVoO-zAgfG0ezQrKCQ@mail.gmail.com>
- <20240827165826.moe6cnemeheos6jn@thinkpad>
- <26f2845f-2e29-4887-9f33-0b5b2a06adb6@quicinc.com>
+        Wed, 11 Sep 2024 08:34:03 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Wed, 11 Sep 2024 17:34:01 +0200
+Subject: [PATCH] ASoC: dt-bindings: realtek,rt5640: Convert to dtschema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <26f2845f-2e29-4887-9f33-0b5b2a06adb6@quicinc.com>
+Message-Id: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-covert-realtek-rt5640-v1-1-6b3745e34540@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAGi44WYC/x2NywrCMBBFf6Vk7UAS26D+inSRJmMcbB5MYhFK/
+ 93o6nK4B84uKjJhFbdhF4wbVcqpgzoNwj1tCgjkOwst9SivSkHLhRzYuObwW45nDe9SG6ONsFD
+ ylEKFB32wgssbcoN+rQ1fwG0yo4TFGy/RWDn5i+idwvjXe+Y+H8cXGXwDbpMAAAA=
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7375;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=wa8vIJqABRqeYvov1oXOL1h0K0Mf6fdI3W7xfzVIewU=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBm4bhqZ6tBAue+5W+zN4ajyn7xX6dg4E6C9Wy/wFS1
+ 1Lps1u6JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZuG4agAKCRB33NvayMhJ0a1FD/
+ 9q2k+xWfrTu9IMmwNaQ6KrHn8r1c+e7LboQGmGEKIk21JmyUN3TL3TGCGRHgLpT3K15cDo9NVFPZBI
+ Oet5u5eXXClmV094ENoqQtpSSngZOjCOWu2wM5VYfNauC4+wCTZRtRk/NrCBmlCUAzTJrZoQX/hfpA
+ U0Gy1UGIwgyCJnch3ZVz2uNPuESSW/TcUoRJn2U2HqQhaPycJuuv9UikbfJeMQAZ/p1eDLsgD+7MyP
+ /NeQpmTxCjghyNTXiUvLskzIiXow11To4wKcSV6/4I6GrTbAxRc6D7l47sEhw8L9FpwK5GjM0E71Yn
+ 3RuA36Dcog5FEev0fGXZXqV8vqnrQhB9FJeWcU3+YgEdyJsHS9RbyclsvyR3TwutIMivefirkEknvb
+ oXOEzky7t9iQYXPzTs3a+iFo1Rh7x7zjO4vymVaLsIR4XIzAhT7wNZBDzcOaynIeyRtfJB0jt6UuoU
+ tfszkG3byiTS3llycnh/6QbKGA+XcNiTjySKF98osU6qHrjue0LXWnH0qUQb9YItPD4lQvoO5KWbgG
+ 9Z8BzI7iQh1FZK0jv0ZpEnKCt00mTew2M9sWhNxaNQxDloUCFLOtI65R9Q6goFqDVVSMZPXograFUb
+ jKJ/mR2Ptkga2V00ugW6KaIRAaI6MYTeN6lGtxP80SPYcpPcWhsyL5akU0iw==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On Wed, Sep 11, 2024 at 04:17:41PM +0800, Qiang Yu wrote:
-> 
-> On 8/28/2024 12:58 AM, Manivannan Sadhasivam wrote:
-> > On Tue, Aug 27, 2024 at 02:44:09PM +0300, Dmitry Baryshkov wrote:
-> > > On Tue, 27 Aug 2024 at 09:36, Qiang Yu <quic_qianyu@quicinc.com> wrote:
-> > > > On platform x1e80100 QCP, PCIe3 is a standard x8 form factor. Hence, add
-> > > > support to use 3.3v, 3.3v aux and 12v regulators.
-> > > First of all, I don't see corresponding bindings change.
-> > > 
-> > > Second, these supplies power up the slot, not the host controller
-> > > itself. As such these supplies do not belong to the host controller
-> > > entry. Please consider using the pwrseq framework instead.
-> > > 
-> > Indeed. For legacy reasons, slot power supplies were populated in the host
-> > bridge node itself until recently Rob started objecting it [1]. And it makes
-> > real sense to put these supplies in the root port node and handle them in the
-> > relevant driver.
-> > 
-> > I'm still evaluating whether the handling should be done in the portdrv or
-> > pwrctl driver, but haven't reached the conclusion. Pwrctl seems to be the ideal
-> > choice, but I see a few issues related to handling the OF node for the root
-> > port.
-> > 
-> > Hope I'll come to a conclusion in the next few days and will update this thread.
-> > 
-> > - Mani
-> > 
-> > [1] https://lore.kernel.org/lkml/20240604235806.GA1903493-robh@kernel.org/
-> Hi Mani, do you have any updates?
-> 
+Convert the RT5640/RT5639 audio CODEC bindings to DT schema.
 
-I'm working with Bartosz to add a new pwrctl driver for rootports. And we are
-debugging an issue currently. Unfortunately, the progress is very slow as I'm on
-vacation still.
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ .../devicetree/bindings/sound/realtek,rt5640.yaml  | 146 +++++++++++++++++++++
+ Documentation/devicetree/bindings/sound/rt5640.txt |  97 --------------
+ 2 files changed, 146 insertions(+), 97 deletions(-)
 
-Will post the patches once it got resolved.
+diff --git a/Documentation/devicetree/bindings/sound/realtek,rt5640.yaml b/Documentation/devicetree/bindings/sound/realtek,rt5640.yaml
+new file mode 100644
+index 000000000000..3f4f59287c1c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/realtek,rt5640.yaml
+@@ -0,0 +1,146 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/realtek,rt5640.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: RT5640/RT5639 audio CODEC
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++description: |
++  This device supports I2C only.
++
++  Pins on the device (for linking into audio routes) for RT5639/RT5640:
++    * DMIC1
++    * DMIC2
++    * MICBIAS1
++    * IN1P
++    * IN1N
++    * IN2P
++    * IN2N
++    * IN3P
++    * IN3N
++    * HPOL
++    * HPOR
++    * LOUTL
++    * LOUTR
++    * SPOLP
++    * SPOLN
++    * SPORP
++    * SPORN
++
++  Additional pins on the device for RT5640:
++    * MONOP
++    * MONON
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - realtek,rt5640
++      - realtek,rt5639
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++    description: The CODEC's interrupt output.
++
++  realtek,in1-differential:
++    description:
++      Indicate MIC1 input is differential, rather than single-ended.
++    type: boolean
++
++  realtek,in2-differential:
++    description:
++      Indicate MIC2 input is differential, rather than single-ended.
++    type: boolean
++
++  realtek,in3-differential:
++    description:
++      Indicate MIC3 input is differential, rather than single-ended.
++    type: boolean
++
++  realtek,lout-differential:
++    description:
++      Indicate LOUT output is differential, rather than single-ended.
++    type: boolean
++
++  realtek,dmic1-data-pin:
++    description: Specify which pin to be used as DMIC1 data pin.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # dmic1 is not used
++      - 1 # using IN2P pin as dmic1 data pin
++      - 2 # using GPIO3 pin as dmic1 data pin
++
++  realtek,dmic2-data-pin:
++    description: Specify which pin to be used as DMIC2 data pin.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # dmic2 is not used
++      - 1 # using IN2N pin as dmic2 data pin
++      - 2 # using GPIO4 pin as dmic2 data pin
++
++  realtek,jack-detect-source:
++    description: The Jack Detect source.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # Jack Detect function is not used
++      - 1 # Use GPIO1 for jack-detect
++      - 2 # Use JD1_IN4P for jack-detect
++      - 3 # Use JD2_IN4N for jack-detect
++      - 4 # Use GPIO2 for jack-detect
++      - 5 # Use GPIO3 for jack-detect
++      - 6 # Use GPIO4 for jack-detect
++
++  realtek,jack-detect-not-inverted:
++    description:
++      Normal jack-detect switches give an inverted signal, set this bool
++      in the rare case you've a jack-detect switch which is not inverted.
++    type: boolean
++
++  realtek,over-current-threshold-microamp:
++    description: micbias over-current detection threshold in µA
++    enum:
++      - 600
++      - 1500
++      - 2000
++
++  realtek,over-current-scale-factor:
++    description: micbias over-current detection scale-factor
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # Scale current by 0.5
++      - 1 # Scale current by 0.75
++      - 2 # Scale current by 1.0
++      - 3 # Scale current by 1.5
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        codec@1a {
++            compatible = "realtek,rt5640";
++            reg = <0x1a>;
++            interrupt-parent = <&gpio>;
++            interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/sound/rt5640.txt b/Documentation/devicetree/bindings/sound/rt5640.txt
+deleted file mode 100644
+index 0c398581d52b..000000000000
+--- a/Documentation/devicetree/bindings/sound/rt5640.txt
++++ /dev/null
+@@ -1,97 +0,0 @@
+-RT5640/RT5639 audio CODEC
+-
+-This device supports I2C only.
+-
+-Required properties:
+-
+-- compatible : One of "realtek,rt5640" or "realtek,rt5639".
+-
+-- reg : The I2C address of the device.
+-
+-- interrupts : The CODEC's interrupt output.
+-
+-Optional properties:
+-
+-- clocks: The phandle of the master clock to the CODEC
+-- clock-names: Should be "mclk"
+-
+-- realtek,in1-differential
+-- realtek,in2-differential
+-- realtek,in3-differential
+-  Boolean. Indicate MIC1/2/3 input are differential, rather than single-ended.
+-
+-- realtek,lout-differential
+-  Boolean. Indicate LOUT output is differential, rather than stereo.
+-
+-- realtek,ldo1-en-gpios : The GPIO that controls the CODEC's LDO1_EN pin.
+-
+-- realtek,dmic1-data-pin
+-  0: dmic1 is not used
+-  1: using IN1P pin as dmic1 data pin
+-  2: using GPIO3 pin as dmic1 data pin
+-
+-- realtek,dmic2-data-pin
+-  0: dmic2 is not used
+-  1: using IN1N pin as dmic2 data pin
+-  2: using GPIO4 pin as dmic2 data pin
+-
+-- realtek,jack-detect-source
+-  u32. Valid values:
+-  0: jack-detect is not used
+-  1: Use GPIO1 for jack-detect
+-  2: Use JD1_IN4P for jack-detect
+-  3: Use JD2_IN4N for jack-detect
+-  4: Use GPIO2 for jack-detect
+-  5: Use GPIO3 for jack-detect
+-  6: Use GPIO4 for jack-detect
+-
+-- realtek,jack-detect-not-inverted
+-  bool. Normal jack-detect switches give an inverted signal, set this bool
+-  in the rare case you've a jack-detect switch which is not inverted.
+-
+-- realtek,over-current-threshold-microamp
+-  u32, micbias over-current detection threshold in µA, valid values are
+-  600, 1500 and 2000µA.
+-
+-- realtek,over-current-scale-factor
+-  u32, micbias over-current detection scale-factor, valid values are:
+-  0: Scale current by 0.5
+-  1: Scale current by 0.75
+-  2: Scale current by 1.0
+-  3: Scale current by 1.5
+-
+-Pins on the device (for linking into audio routes) for RT5639/RT5640:
+-
+-  * DMIC1
+-  * DMIC2
+-  * MICBIAS1
+-  * IN1P
+-  * IN1N
+-  * IN2P
+-  * IN2N
+-  * IN3P
+-  * IN3N
+-  * HPOL
+-  * HPOR
+-  * LOUTL
+-  * LOUTR
+-  * SPOLP
+-  * SPOLN
+-  * SPORP
+-  * SPORN
+-
+-Additional pins on the device for RT5640:
+-
+-  * MONOP
+-  * MONON
+-
+-Example:
+-
+-rt5640 {
+-	compatible = "realtek,rt5640";
+-	reg = <0x1c>;
+-	interrupt-parent = <&gpio>;
+-	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
+-	realtek,ldo1-en-gpios =
+-		<&gpio TEGRA_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
+-};
 
-- Mani
+---
+base-commit: 47ac09b91befbb6a235ab620c32af719f8208399
+change-id: 20240911-topic-amlogic-arm32-upstream-bindings-fixes-covert-realtek-rt5640-bd6d0e6a05d8
 
-> Thanks,
-> Qiang
-> > 
-> > > > Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
-> > > > ---
-> > > >   drivers/pci/controller/dwc/pcie-qcom.c | 52 +++++++++++++++++++++++++-
-> > > >   1 file changed, 50 insertions(+), 2 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> > > > index 6f953e32d990..59fb415dfeeb 100644
-> > > > --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> > > > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> > > > @@ -248,6 +248,8 @@ struct qcom_pcie_cfg {
-> > > >          bool no_l0s;
-> > > >   };
-> > > > 
-> > > > +#define QCOM_PCIE_SLOT_MAX_SUPPLIES                    3
-> > > > +
-> > > >   struct qcom_pcie {
-> > > >          struct dw_pcie *pci;
-> > > >          void __iomem *parf;                     /* DT parf */
-> > > > @@ -260,6 +262,7 @@ struct qcom_pcie {
-> > > >          struct icc_path *icc_cpu;
-> > > >          const struct qcom_pcie_cfg *cfg;
-> > > >          struct dentry *debugfs;
-> > > > +       struct regulator_bulk_data slot_supplies[QCOM_PCIE_SLOT_MAX_SUPPLIES];
-> > > >          bool suspended;
-> > > >          bool use_pm_opp;
-> > > >   };
-> > > > @@ -1174,6 +1177,41 @@ static int qcom_pcie_link_up(struct dw_pcie *pci)
-> > > >          return !!(val & PCI_EXP_LNKSTA_DLLLA);
-> > > >   }
-> > > > 
-> > > > +static int qcom_pcie_enable_slot_supplies(struct qcom_pcie *pcie)
-> > > > +{
-> > > > +       struct dw_pcie *pci = pcie->pci;
-> > > > +       int ret;
-> > > > +
-> > > > +       ret = regulator_bulk_enable(ARRAY_SIZE(pcie->slot_supplies),
-> > > > +                                   pcie->slot_supplies);
-> > > > +       if (ret < 0)
-> > > > +               dev_err(pci->dev, "Failed to enable slot regulators\n");
-> > > > +
-> > > > +       return ret;
-> > > > +}
-> > > > +
-> > > > +static void qcom_pcie_disable_slot_supplies(struct qcom_pcie *pcie)
-> > > > +{
-> > > > +       regulator_bulk_disable(ARRAY_SIZE(pcie->slot_supplies),
-> > > > +                              pcie->slot_supplies);
-> > > > +}
-> > > > +
-> > > > +static int qcom_pcie_get_slot_supplies(struct qcom_pcie *pcie)
-> > > > +{
-> > > > +       struct dw_pcie *pci = pcie->pci;
-> > > > +       int ret;
-> > > > +
-> > > > +       pcie->slot_supplies[0].supply = "vpcie12v";
-> > > > +       pcie->slot_supplies[1].supply = "vpcie3v3";
-> > > > +       pcie->slot_supplies[2].supply = "vpcie3v3aux";
-> > > > +       ret = devm_regulator_bulk_get(pci->dev, ARRAY_SIZE(pcie->slot_supplies),
-> > > > +                                     pcie->slot_supplies);
-> > > > +       if (ret < 0)
-> > > > +               dev_err(pci->dev, "Failed to get slot regulators\n");
-> > > > +
-> > > > +       return ret;
-> > > > +}
-> > > > +
-> > > >   static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
-> > > >   {
-> > > >          struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > > @@ -1182,10 +1220,14 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
-> > > > 
-> > > >          qcom_ep_reset_assert(pcie);
-> > > > 
-> > > > -       ret = pcie->cfg->ops->init(pcie);
-> > > > +       ret = qcom_pcie_enable_slot_supplies(pcie);
-> > > >          if (ret)
-> > > >                  return ret;
-> > > > 
-> > > > +       ret = pcie->cfg->ops->init(pcie);
-> > > > +       if (ret)
-> > > > +               goto err_disable_slot;
-> > > > +
-> > > >          ret = phy_set_mode_ext(pcie->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
-> > > >          if (ret)
-> > > >                  goto err_deinit;
-> > > > @@ -1216,7 +1258,8 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
-> > > >          phy_power_off(pcie->phy);
-> > > >   err_deinit:
-> > > >          pcie->cfg->ops->deinit(pcie);
-> > > > -
-> > > > +err_disable_slot:
-> > > > +       qcom_pcie_disable_slot_supplies(pcie);
-> > > >          return ret;
-> > > >   }
-> > > > 
-> > > > @@ -1228,6 +1271,7 @@ static void qcom_pcie_host_deinit(struct dw_pcie_rp *pp)
-> > > >          qcom_ep_reset_assert(pcie);
-> > > >          phy_power_off(pcie->phy);
-> > > >          pcie->cfg->ops->deinit(pcie);
-> > > > +       qcom_pcie_disable_slot_supplies(pcie);
-> > > >   }
-> > > > 
-> > > >   static void qcom_pcie_host_post_init(struct dw_pcie_rp *pp)
-> > > > @@ -1602,6 +1646,10 @@ static int qcom_pcie_probe(struct platform_device *pdev)
-> > > >                          goto err_pm_runtime_put;
-> > > >          }
-> > > > 
-> > > > +       ret = qcom_pcie_get_slot_supplies(pcie);
-> > > > +       if (ret)
-> > > > +               goto err_pm_runtime_put;
-> > > > +
-> > > >          ret = pcie->cfg->ops->get_resources(pcie);
-> > > >          if (ret)
-> > > >                  goto err_pm_runtime_put;
-> > > > --
-> > > > 2.34.1
-> > > > 
-> > > 
-> > > -- 
-> > > With best wishes
-> > > Dmitry
-
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
