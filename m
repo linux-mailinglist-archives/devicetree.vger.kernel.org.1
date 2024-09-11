@@ -1,570 +1,305 @@
-Return-Path: <devicetree+bounces-102078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD12B975631
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:57:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6118B97553F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:27:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90CC92850C9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 14:57:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8599F1C224B9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 14:27:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B17401A3AB7;
-	Wed, 11 Sep 2024 14:57:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB6E319E96A;
+	Wed, 11 Sep 2024 14:27:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sony.com header.i=@sony.com header.b="VtJbLr+3"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="Qiq1bK0b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-001d1705.pphosted.com (mx08-001d1705.pphosted.com [185.183.30.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f68.google.com (mail-pj1-f68.google.com [209.85.216.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6902C1A2C21;
-	Wed, 11 Sep 2024 14:57:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.183.30.70
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726066638; cv=fail; b=AS1PrIozV50DpbDXGertdgAqIvO95KXd8R/CIAqftrhRV3QqSbFA8CXqZtzrOyaS4bd8U1zFEwKqgMWrMIrPkeSG2IFRnlcf9jA0B7fTI9ijK3fRXPAyp+6L55xujwGFB+5v0JQZrJs8U2MUcb5ABlUmukh//9ygU8pElJ6yHAs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726066638; c=relaxed/simple;
-	bh=kPcCtiXdC4Hqs2i+EGoAUBlRdl6TaHyF9Z0e3tlETIM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cUfNke76kV0gc0k5dqQhcIjzISw29HuHqwCwK5KvNph9xinazrqkDkI3J9WpnQcze1wHAkgjHETRQUdcfOcrXrPGrOGFtxsRm0ERt6Ew8kbzDqWb0t6lz+1j/mZKcN9f3zJDOLkE/0niqGWYkrhMbQcn724EIwANU6U3JIjx7A8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sony.com; spf=pass smtp.mailfrom=sony.com; dkim=pass (2048-bit key) header.d=sony.com header.i=@sony.com header.b=VtJbLr+3; arc=fail smtp.client-ip=185.183.30.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sony.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sony.com
-Received: from pps.filterd (m0209318.ppops.net [127.0.0.1])
-	by mx08-001d1705.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48BDpCMF006872;
-	Wed, 11 Sep 2024 13:58:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sony.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=S1; bh=okXKix+
-	wMsPjGad5wRbAqTaDqhk0dwlt53c5jOo+FQs=; b=VtJbLr+3EI94iR8kH1Fq0tV
-	O59w1Q7OCsxQ3BumSjc9lDJajtzP8LFxoTaC/fi2ZKozI/grGCWVUiLyRfzzLcMf
-	73iRLGgONGef8+AwTf8jwKT5gLa44K09763P1yc5TL93viQLFB3HWHRvvihR+4I+
-	1hlkbgyrXAei/rdQ61p0ucjsII9mJBCZshobnl5F7txKcrydswmDLoBlx7K4M8GE
-	H684hAorZo17jez4Vm9v3HE6QhrVOtrKQRO7GF4uaIvNjeC4+C6qDBFd8KdK2eTg
-	ktDk9M2amy+S4NisWVt0rBIJNRJddKPNbxDaFPjdTa2Z+R6tgumZ9+iLIrUogqg=
-	=
-Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2100.outbound.protection.outlook.com [104.47.58.100])
-	by mx08-001d1705.pphosted.com (PPS) with ESMTPS id 41jv568rh3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 11 Sep 2024 13:58:15 +0000 (GMT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=e63Me4nAIkxn+8C9IIscO5MkClXsXXpuqm1YWYHtBU8jxq5V5mzPBl9nkhxmypPfGMPUi8F5N8KOKPwO1Pr79SgGNN4xtjOoZyVzUPDmAx10K9LgnVsAVSkG7vB+k1e4O+o3O75zjXao7XbRW/WJH14Hm/W0iJQvZ0iS7ws/x79WNvX25LpeC3ODpbRBo3TsS3aIA1iRqtW+Bh9//R8oW+ffIZT0eI8HEZXCoA/yqK1GJfCyB4kmuNCUPbzrw8YxyhqV0pnpI7eGh4vyg9dnTJZkDKssRonNIfUsJ2tSqVjaCiHZQ/Ih3j/vyzwU72+ugVmoLvUk+BJR3hVruvxCfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=okXKix+wMsPjGad5wRbAqTaDqhk0dwlt53c5jOo+FQs=;
- b=AQGqfIQ0bsQrgphhNrQxoYyYSF0dLPQzzlIrKAx0kuVVnxvhPtwUzzhnPFypMNUDM2ft8u33vcKv+9oXEHGm21Jnm/IN+dqBMqg+Tdwgw4srFYShD2+FYkTx7SyZQhZ1E0Ok/H4a45p9s9w2LoSirUQsZE7TOBrBhddwIbgEJlglrLhpSWFQcba6JBszQNXQ9t1qyVeGPR/rcqNoOTeCdyervXY7j1DmAN3GSuXh2x+hiR/ci2mTK/InoO5nbAW7JHyJVRW7mzB9Q0pYw9RRe4/OOKE2CO2Mr6WCen+sNQkoxkkqMTeG07YRnjU42T1XAqWIYZvlrUyz/adbri+FHg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 121.100.38.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=sony.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=sony.com;
- dkim=none (message not signed); arc=none (0)
-Received: from BN8PR15CA0057.namprd15.prod.outlook.com (2603:10b6:408:80::34)
- by IA3PR13MB6951.namprd13.prod.outlook.com (2603:10b6:208:533::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.17; Wed, 11 Sep
- 2024 13:58:10 +0000
-Received: from BN1PEPF00004685.namprd03.prod.outlook.com
- (2603:10b6:408:80:cafe::de) by BN8PR15CA0057.outlook.office365.com
- (2603:10b6:408:80::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24 via Frontend
- Transport; Wed, 11 Sep 2024 13:58:10 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 121.100.38.198)
- smtp.mailfrom=sony.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=sony.com;
-Received-SPF: Fail (protection.outlook.com: domain of sony.com does not
- designate 121.100.38.198 as permitted sender)
- receiver=protection.outlook.com; client-ip=121.100.38.198;
- helo=gepdcl09.sg.gdce.sony.com.sg;
-Received: from gepdcl09.sg.gdce.sony.com.sg (121.100.38.198) by
- BN1PEPF00004685.mail.protection.outlook.com (10.167.243.86) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7918.13 via Frontend Transport; Wed, 11 Sep 2024 13:58:07 +0000
-Received: from gepdcl04.s.gdce.sony.com.sg (SGGDCSE1NS08.sony.com.sg [146.215.123.198])
-	by gepdcl09.sg.gdce.sony.com.sg (8.14.7/8.14.4) with ESMTP id 48BDw5K3007895;
-	Wed, 11 Sep 2024 21:58:06 +0800
-Received: from NAB-HP-ProDesk-600.. ([43.88.80.182])
-	by gepdcl04.s.gdce.sony.com.sg (8.14.7/8.14.4) with ESMTP id 48BDukkp028151;
-	Wed, 11 Sep 2024 21:58:04 +0800
-From: Nayeemahmed Badebade <nayeemahmed.badebade@sony.com>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        gregkh@linuxfoundation.org, rafael@kernel.org
-Cc: yoshihiro.toyama@sony.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Nayeemahmed Badebade <nayeemahmed.badebade@sony.com>
-Subject: [PATCH 2/2] driver: core: add probe control driver
-Date: Wed, 11 Sep 2024 19:53:19 +0530
-Message-Id: <20240911142319.3435746-3-nayeemahmed.badebade@sony.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240911142319.3435746-1-nayeemahmed.badebade@sony.com>
-References: <20240911142319.3435746-1-nayeemahmed.badebade@sony.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67004185606
+	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 14:27:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.68
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726064867; cv=none; b=FbRJzs0zNqUXHBEKfOWq6WSPIVjsJU+iYVGDOOv6DpFVYlpRcuwjOHh04Z2Axh4uN1iXmy5zWiFGuES9/P8nzmS5MMCF5xd4Rc5opmZuY29ooovzvQ8A1mqmu8zm+WP/sf7SZlqaDvwWmc448ucsynJVEpBaZfWtgnzHYGZlqwg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726064867; c=relaxed/simple;
+	bh=XuUJVYFaL7KrJnI1SIfCWtxVEkhCeaGGZWCG4EnXi4A=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FyFcqbN83VKZxMmql8Nu78L0wbGxwT1uGcYGuilWFOY/RdEjzGDp+S3NruoEmn4UBRqAT81z0TnSztL5c8TfCibOdRQkJuxfYCI1P7HKUjEOy1Ra79mvrvPV+BKLnj7mrYdyEI6FALB9JMOHVYG8UIGrGGitysseCVuLTtukIcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=Qiq1bK0b; arc=none smtp.client-ip=209.85.216.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-pj1-f68.google.com with SMTP id 98e67ed59e1d1-2d86f713557so4464034a91.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 07:27:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1726064865; x=1726669665; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6/WzskX9Go8nWXOifWB23WvB1MNJZrDHBqH1eKR21ek=;
+        b=Qiq1bK0bDw7yRWMBATssev1875nXEK1cn7lRTB/nOS+9NGbgjO+cLpruQojQhI9kRQ
+         1NQILmNHyeKOG/KHHlC+IvBTox9d/x+h/3Rsh1GnXgBeACLdFc/8C07t4QbwcgRLCYdD
+         ApWT2oI2gX8YCYg3HnpQ0TNA4tNDEsZfk3W3tGCdqlhA90Ianem3A1vVdSllDCxzQgzs
+         oSQH/YogwLo4zGcrpSC6tMHIXW1FQ5jDKGFV+jfGRex3JBGYhm/r/MsaVczpCtVc3FLH
+         E07II4A+rXrnVZ5YSZdVALS4Nf44mWFUDMtHs8Myman3sn6N/WJHxNQTXSTzay/uijGC
+         dYsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726064865; x=1726669665;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6/WzskX9Go8nWXOifWB23WvB1MNJZrDHBqH1eKR21ek=;
+        b=kj5ETQYHvblfNdVVsQUig2hXBao4kY7ZQHmWkh14me/AMCXsB/ec+f1ibxR6LjRc0L
+         aa+7j2XU7GvWIb/5OsmEoMyg9RgulqM9ioW2cMvxK62q/89hXojk3e41EHGakZHiz6TL
+         rhKeSXtf1RqHBr5gSVSYYyo4gIc4VBX8EYq3IoTkdTQzCZ562VLuIs47jH4MiaNaGfIS
+         Wz7uxoIdMfnAfkn9TEWYwwTeA26mazl0/3EPsUr0cjwArxz0FgyEZLebyPz31wMzHCkV
+         cogIcZZ7kO3PH3lVmACuB28Wr32uFmd+Dn8kZaQ9OvXAE7ryggPGgpQfZtm4glukuHvE
+         uJKg==
+X-Forwarded-Encrypted: i=1; AJvYcCXmpWaPdXx6aGo5ONNZmIC2e6dGf9hmo56cT7XhBduhgMvZXhGnYr2ljhWvlzedz3RgwtvzqK7RsldU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9UdUD4BJtKU/keqtKNux0EJBJqOEpgyaUOXtvbi1tWreV3yRH
+	eWtGRr94Kqrsj/OXqKUGwXhS3V1BrY1oCnDVRujAvm+DfsRGRO8egSHWphieXw==
+X-Google-Smtp-Source: AGHT+IE5BKt2yDajA1Yc3kmCBvgh9rPRVNNylDSz69umvGgfJdK38l9Sjwoe7Yv6xKP5opGpv/aOBg==
+X-Received: by 2002:a17:90a:510b:b0:2c9:a3ca:cc98 with SMTP id 98e67ed59e1d1-2dad4de137fmr20670675a91.7.1726064864449;
+        Wed, 11 Sep 2024 07:27:44 -0700 (PDT)
+Received: from [172.16.118.100] ([103.15.228.94])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2dadbfe46c9sm10639116a91.11.2024.09.11.07.27.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Sep 2024 07:27:44 -0700 (PDT)
+From: Ayush Singh <ayush@beagleboard.org>
+Subject: [PATCH 0/8] Add generic overlay for MikroBUS addon boards
+Date: Wed, 11 Sep 2024 19:57:17 +0530
+Message-Id: <20240911-mikrobus-dt-v1-0-3ded4dc879e7@beagleboard.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF00004685:EE_|IA3PR13MB6951:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: e3c6af91-ad92-4ce6-d976-08dcd269c459
-x-proofpoint-id: d8690225-876f-412f-87c6-a7cb45557a4c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|376014|1800799024|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?WYnPQL/kLcN/MuPpiy+TKY4S5q94K7Jfp5v/cQPJYDQwHST4OoIxwvXdsLGA?=
- =?us-ascii?Q?TXKHJJdCYYTsGAFqLq9ZH9Vtu+TJvPHSZY+oJXq4ZacXibqvSAcIzH7d2n8v?=
- =?us-ascii?Q?tfTX5h1mF84SEo/Ip/fzNSeI8tPfmIqx1eesN0x6mnrmb1WSiebg2DHaWG6y?=
- =?us-ascii?Q?YHhaxdLZV3GRN+PSajieEV3mBZYi2NJ2i0AhcI3AWw7YZRuSKmp4mUR1R8dk?=
- =?us-ascii?Q?OMwWEfVyOJ0uKPAtdQ6yPSeCRX6ES6G+YdcpiR5aQRLHIRxKjcD+64e12bzG?=
- =?us-ascii?Q?UyMg2bE/FETILa8zVfumPXbzoEjHGI4V0uzzpCywZXHaxpg2ayekNb+RYhCy?=
- =?us-ascii?Q?3p1C2IucRW4cFc3hTdVrUE9DVuWIZnqoPgTxYaJM5bLDf66LMIFZGGPGQgpf?=
- =?us-ascii?Q?2O/U0Ohc1oZp9UIh0B/OAgibeBNbZ61wzYwQSYp5jhiPOie8jfrA+PUz6jbk?=
- =?us-ascii?Q?V8jyHN9BGJC/ldIQmZNymPUeeMisesQV+wNS5cf7/fWEhYAlTSNwIPD6MMI1?=
- =?us-ascii?Q?/PXg1iayxYej3fCezylsblT0npncqH6NvWT4RD/Mb9eLY1er7Dgh/zinCqNG?=
- =?us-ascii?Q?roNEG0hUH5R/IFn5nImZaRP4tgb7k87npkG64T+B7vfQG/H29Q0MqKbUZJb7?=
- =?us-ascii?Q?X0cWz9F1hRlxAV0f8R6A+ut2Tyhb1VS1LA9sRo14YGkP5RkLhctsjTBypX5+?=
- =?us-ascii?Q?FlFI18s0U2t1wAJ08BzOzYCke7yc6U7iTgY1OyUJ6s8XFmIGaL555iivocg/?=
- =?us-ascii?Q?+ZDQIWd72pSFj/do2WwSpzZtWm0Wk+s9WVlbfgFzNqeL4h3Cioy39TZTIPPk?=
- =?us-ascii?Q?/ThMNoBZ9bTz9JXlPRLOFgS+MRsw4YDt6bYYWWJ438QHw7QXIF4Ecsrr8wVP?=
- =?us-ascii?Q?1KrUGkgfKY0i9+QmRnzEJEZqhe3musojJMNrcFT/eYK7MU4QsJjCj0nIe1tE?=
- =?us-ascii?Q?vQReBc91GbNMXaZL0FAs+of8JDSLvffEp27r0oYo6l96Y+EyZIsQPDFKf9mW?=
- =?us-ascii?Q?d1aX9VElh00nD8CHIEZ4yu7y3DcFgVg4UbADSoWpXWZUqsPM10wXyltqjq0n?=
- =?us-ascii?Q?VOg6c60UjWVQMDOznSO7dLZk5N6XQd2T/g1q4YdbibyD7Ax8YTsJ1U+4UXcq?=
- =?us-ascii?Q?qwFoergmKgmzldWzNn/aeap7zFwMZtU07NtgocJ5sG8jmhrXOoFuAeI3vwoW?=
- =?us-ascii?Q?h6ZL9HDVpjFID+RNlc3Amdx1DQznPzPFIX1MgcJslG8tz24G1N/t1zL4n4Kv?=
- =?us-ascii?Q?NmDn+op6s5PSFh04E88lblAsAIyN6qogBFm7twoTuAo01cQ08ZnedIjfWiTH?=
- =?us-ascii?Q?+pZDOVYTorZORzfqXb0fuZIhTdUZCnnsumCbsf0RgN0YdLpOyI8PLM7XM5GN?=
- =?us-ascii?Q?ZfVoXIsdwZgIDEwmGBNBqzQr3EbtosG1F0Dbjd4p+kbW+kUxtNhKuA8f5Hl6?=
- =?us-ascii?Q?hGMsW9WkDl/L0VXJm6rDUgpB9HvXZyFR?=
-X-Forefront-Antispam-Report:
-	CIP:121.100.38.198;CTRY:SG;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:gepdcl09.sg.gdce.sony.com.sg;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
-	/qY6h3a9Hky3yqE+IIhm/r9mODd4n5hZ1Ng52V3FFuXTtFfqO8DBj4oVC3s2frc97ewgRdRtrxpM50l+RQ1XgT98zVUFWiM8DXHl3Zb9BUJoSl22GDDEqSYLZmT2zS3DJo1TW3omQS4H52LptjHi28qCkYg8kzEg5mPn4cX2kABHis2Uoj35HciSzrbUHlwHN9D/nnaF3Jt6DHi1Xvdifo0MX9zulSYGSCIcYnxTMCDMzsarNk7ZFccEuLBPGPul+r172wcU7+qN9jHYAusu9qbXkcQLEQvW3jFsRM187eRetZSILu1tDWt0teUeMddzju/QXt/dmimsaoVyInw+oSwYCUvgN1ChizfPiT/8tAHL4meucfaYIM+F2LrGj7jIh1ad+PE2GgvGb88ju/20m18Woj6n6Neoa7+AfS0oa/7ZTabR73RO8kLXy6r3jsh4JU7uU5KstIWdyrYNQBZTLyKqQj0oFw5pgVYjOsLJMjw0L203nzIRQj+TD++H3VVUuocmVwBWRcwFCMB/Tl1b6lcoSCqewUV1PxobySVrlAMqsmNdk19/trwSY+wyTryK51QY4nXrfcxQsKaN6FiraRct5fhou24OfIkcS5QaNqR7sHBpQyW9EZfZvgqK6MwB
-X-OriginatorOrg: sony.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2024 13:58:07.9889
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e3c6af91-ad92-4ce6-d976-08dcd269c459
-X-MS-Exchange-CrossTenant-Id: 66c65d8a-9158-4521-a2d8-664963db48e4
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=66c65d8a-9158-4521-a2d8-664963db48e4;Ip=[121.100.38.198];Helo=[gepdcl09.sg.gdce.sony.com.sg]
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-BN1PEPF00004685.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR13MB6951
-X-Proofpoint-GUID: pYYv0bKABVrK1drdbmq9PnLPkEu0CeLV
-X-Proofpoint-ORIG-GUID: pYYv0bKABVrK1drdbmq9PnLPkEu0CeLV
-X-Sony-Outbound-GUID: pYYv0bKABVrK1drdbmq9PnLPkEu0CeLV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-10_12,2024-09-09_02,2024-09-02_01
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMao4WYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDCyMz3dzM7KL8pNJi3ZQSXVOj1MTExJQUgyTDNCWgjoKi1LTMCrBp0bG
+ 1tQDBRQBAXQAAAA==
+To: fabien.parent@linaro.org, d-gole@ti.com, lorforlinux@beagleboard.org, 
+ jkridner@beagleboard.org, robertcnelson@beagleboard.org, 
+ Andrew Davis <afd@ti.com>, Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>, 
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <benno.lossin@proton.me>, 
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+ Trevor Gross <tmgross@umich.edu>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>, 
+ Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Nishanth Menon <nm@ti.com>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
+Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Ayush Singh <ayush@beagleboard.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7197; i=ayush@beagleboard.org;
+ h=from:subject:message-id; bh=XuUJVYFaL7KrJnI1SIfCWtxVEkhCeaGGZWCG4EnXi4A=;
+ b=owEBbQKS/ZANAwAIAQXO9ceJ5Vp0AcsmYgBm4ajUEQDU7T96PVlwx8Pj9jyhhfKN/Ay4+kwOx
+ MNUs9SoSX6JAjMEAAEIAB0WIQTfzBMe8k8tZW+lBNYFzvXHieVadAUCZuGo1AAKCRAFzvXHieVa
+ dGsvD/0UlJ0UfQxA8ZCx5fm8/039nBk+VNJ0fh5bOpLVq06oTO3kr8fvZrJ7tDdBJ8LmS3QPaPx
+ Pq3SIY+GZ2p2cYzDBPff8hxhyDzcsxtF2LGCIKG+XrLx1YXcyrqn3GnOxulXVhcH+XVKf6O9rcK
+ xYoLUiGCelS528QMcxL2BH6seKuNj7XrYy+g0jze6k1MtfnmaJ1nOq08cw6M+7M6EDkRzE9QHdI
+ 5Qa1eH3iStuTxyxhbwFkPrqQZ9E98+rs/Pkkk6jch0Ao5Yf/CVBJbN8Aeksazsy908tJf2wEmjy
+ aXRHp3IPKlIosFRFlU6rEOSQxN3jgsLVWE0RDCEyxVTLVrE1XqNypdZ9HPQCmP7j9BGALFRofJf
+ EbXdRg/PwBhVqrnTpIfgrE5/Wpo7sz/CJpga/axW93WZvbRRLCCw1cbHIaq4WaRH0yUziQkrrhP
+ Aco4o1OaGdc/jVgBYurwGrTj9RTJI6nyHK0vDDoLkoqTD3+XDtSWpK6WqucuzDzC93iaUDVA7St
+ +fuyckAO4skO+HQ1uzj2110MSNfM6X9i2/P+oEFZCxZOe0mjT/PbbCpbQQA75bt5vp90r2OktuG
+ W4X1Bl15iCoMnvxBDIdKw5BMcmIzw2C4lhiSvxBbyhxsGRM0idCVzIEdNcRDl1RGN1D8fBQjxpz
+ 7wydyANLwKvev6Q==
+X-Developer-Key: i=ayush@beagleboard.org; a=openpgp;
+ fpr=DFCC131EF24F2D656FA504D605CEF5C789E55A74
 
-Probe control driver framework allows deferring the probes of a group of
-devices to an arbitrary time, giving the user control to trigger the probes
-after boot. This is useful for deferring probes from builtin drivers that
-are not required during boot and probe when user wants after boot.
+Hello all,
 
-This is achieved by adding a dummy device aka probe control device node
-as provider to a group of devices(consumer nodes) in platform's device
-tree. Consumers are the devices we want to probe after boot.
+This is an attempt to add MikroBUS addon support using the approach
+described by Grove connector patch series [0].
 
-To establish control over consumer device probes, each consumer device node
-need to refer the probe control provider node by the phandle.
-'probe-control-supply' property is used for this.
+The patch series tests out 2 addon boards + pwm and GPIO on the MikroBUS
+connector. The boards used are GPS3 Click (for UART) [1] and Weather
+Click (for I2C) [2]. Additionally, I have tested relative GPIO numbering
+using devicetree nexus nodes [3].
 
-Example:
-    // The node below defines a probe control device/provider node
-    prb_ctrl_dev_0: prb_ctrl_dev_0 {
-        compatible = "linux,probe-control";
-    };
+The patch series does not attempt to do any dynamic discovery for 1-wire
+eeprom MikroBUS addon boards, nor does it provide any sysfs entry for
+board addition/removal. The connector driver might include them after
+the basic support is ironed out, but the existing patches for dynamic
+overlays work fine.
 
-    // The node below is the consumer device node that refers to provider
-    // node by its phandle and a result will not be probed until provider
-    // node is probed.
-    pcie@1ffc000 {
-        reg = <0x01ffc000 0x04000>, <0x01f00000 0x80000>;
-        #address-cells = <3>;
-        #size-cells = <2>;
-        device_type = "pci";
-        ranges = <0x81000000 0 0          0x01f80000 0 0x00010000>,
-                 <0x82000000 0 0x01000000 0x01000000 0 0x00f00000>;
+The patch series has been tested on BeaglePlay [4].
 
-        probe-control-supply = <&prb_ctrl_dev_0>;
-    };
+I will now go over individual parts of the patch series, but for a
+better picture of the approach, it would be best to checkout [0] first.
 
-fw_devlink ensures consumers are not probed until provider is probed
-successfully. The provider probe during boot returns -ENXIO and is not
-re-probed again.
+MikroBUS connector driver
+-------------------------
 
-The driver provides debug interface /sys/kernel/debug/probe_control_status
-for checking probe control status of registered probe control devices.
- # cat /sys/kernel/debug/probe_control_status
- prb_ctrl_dev_0: [not triggered]
-  Consumers: 1ffc000.pcie
+Just a stub platform driver for now. Will be extended in the future for
+dynamic board discovery using 1-wire eeprom present in some MikroBUS
+addon boards.
 
-Interface /sys/kernel/probe_control/trigger is provided for triggering
-probes of the probe control devices. User can write to this interface to
-trigger specific or all device probes managed by this driver.
-Once the probe is triggered by user, provider probe control device is added
-to deferred_probe_pending_list and driver_deferred_probe_trigger() is
-triggered. This time the probe of probe control device will be
-successful and its consumers will then be probed.
+While it is a stub driver, disabling it will make the GPIO connector
+nexus node unreachable (any driver attempting to use it will enter
+differed probing). So it is required.
 
-To trigger specific provider probe:
-  # echo prb_ctrl_dev_0 > /sys/kernel/probe_control/trigger
+MikroBUS connector Devicetree
+------------------------------
 
-To trigger all registered provider probes
-  # echo all > /sys/kernel/probe_control/trigger
+The connector devicetree defines the MikroBUS GPIO nexus node. This
+allows using pin numbering relative to MikroBUS connector pins in the
+addon boards overlay. Currently, the patch uses a clockwise numbering:
 
-Signed-off-by: Toyama Yoshihiro <yoshihiro.toyama@sony.com>
-Signed-off-by: Nayeemahmed Badebade <nayeemahmed.badebade@sony.com>
+  0: PWM
+  1: INT
+  2: RX
+  3: TX
+  4: SCL
+  5: SDA
+  6: MOSI
+  7: MISO
+  8: SCK
+  9: CS
+  10: RST
+  11: AN
+
+Additionally, in case PWM pin is not using channel 0, a nexus node for pwm
+should also be used and go in the connector devicetree.
+
+MikroBUS connector symbols overlay
+----------------------------------
+
+To make an overlay generic we need a standard name scheme which we
+use across base boards. For the connector pins the pinmux phandle
+shall be:
+
+<connector-name>_<pin-name>_mux_<pin-function>
+
+For the parent provider phandle, we use a similar naming scheme:
+
+<connector-name>_<pin-name>_<pin-function>
+
+For GPIO controller, I am using `MIKROBUS_GPIO` name since with nexus
+nodes, we do not need to define individual pin gpio controllers.
+
+The string symbols can be replaced with phandles once [5] is accepted.
+That will make connector stacking much simpler.
+
+MikroBUS addon board overlay
+----------------------------
+
+The patch puts the addon board overlays in their own directory. I am
+using the following naming scheme for MikroBUS addon boards:
+
+<vendor>-<product_id>.dtso
+
+Mikroe [6] lists this for all boards in their website, but I am not sure
+if other vendors have a product_id.
+
+This naming also makes future dynamic discovery easier, since click id
+spec [7] contains vendor_id and product_id in the header.
+
+Usage
+-----
+
+So what does this all look like? Let's take an example of a BeaglePlay
+with one MikroBUS connectors for which we have physically attached a
+Wather click module to the first connector. Doing ahead of time
+command-line DT overlay application:
+
+./fdtoverlay \
+	-o output.dtb \
+	-i k3-am625-beagleplay.dtb \
+		k3-am625-beagleplay-mikrobus-connector0.dtbo mikroe-5761.dtbo
+
+Open Items
+----------
+
+- SPI Support: 
+  Currently SPI dt requires `reg` property to specify the
+  chipselect to use. This, makes the SPI device overlay dependent on the
+  SPI controller. Thus for SPI support, we need a way to allow defining
+  SPI chipselect relative to MikroBUS pins, and not the actual device
+  controller.
+
+  One possible solution is to introduce something like `named-reg` and
+  allow selecting the chipselect by string array. But this probably
+  requires more discussion so I have left out SPI support for now.
+
+  NOTE: pins other than the CS MikroBUS pin can be used as chipselect.
+  See [8].
+
+- Controller symbol duplication
+  The current symbol scheme has multiple symbols for the same underlying
+  controller (Eg: MIKROBUS_SCL_MUX_I2C_SCL and MIKROBUS_SDA_MUX_I2C_SDA)
+  point to the same i2c controller.
+
+  I think both of them will always use the same i2c controller, but
+  maybe there are some exceptions? So I have left it as it is for this
+  patch series. The same thing also applies to UART and SPI.
+
+  NOTE: with the use of nexus node for GPIO, the GPIO controller symbol
+  will be the same for all pins.
+
+- Nexus node dt-bindings
+  I am not quite sure how to deal with the nexus node properties
+  (#gpio-cells, gpio-map, gpio-map-mask, gpio-map-pass-thru) since they
+  seem to conflict with upstream gpio schema (gpio-controller is a
+  dependency of #gpio-cells).
+
+[0]: https://lore.kernel.org/linux-arm-kernel/20240702164403.29067-1-afd@ti.com/
+[1]: https://www.mikroe.com/gps-3-click
+[2]: https://www.mikroe.com/weather-click
+[3]: https://devicetree-specification.readthedocs.io/en/v0.3/devicetree-basics.html#nexus-nodes-and-specifier-mapping
+[4]: https://www.beagleboard.org/boards/beagleplay
+[5]: https://lore.kernel.org/r/20240902-symbol-phandle-v1-0-683efb2a944b@beagleboard.org
+[6]: https://www.mikroe.com/
+[7]: https://github.com/MikroElektronika/click_id
+[8]: https://www.mikroe.com/spi-extend-click
+
+Signed-off-by: Ayush Singh <ayush@beagleboard.org>
 ---
- .../ABI/testing/debugfs-probe-control         |  14 +
- .../ABI/testing/sysfs-kernel-probe-control    |  13 +
- drivers/base/Makefile                         |   1 +
- drivers/base/probe_control.c                  | 275 ++++++++++++++++++
- 4 files changed, 303 insertions(+)
- create mode 100644 Documentation/ABI/testing/debugfs-probe-control
- create mode 100644 Documentation/ABI/testing/sysfs-kernel-probe-control
- create mode 100644 drivers/base/probe_control.c
+Ayush Singh (7):
+      dt-bindings: connector: Add MikorBUS connector
+      mikrobus: Add mikrobus driver
+      dts: ti: k3-am625-beagleplay: Enable mikroBUS connector
+      dts: ti: beagleplay: Add mikrobus connector symbols
+      addon_boards: Add addon_boards plumbing
+      addon_boards: mikrobus: Add Weather Click
+      addon_boards: mikrobus: Add GPS3 Click
 
-diff --git a/Documentation/ABI/testing/debugfs-probe-control b/Documentation/ABI/testing/debugfs-probe-control
-new file mode 100644
-index 000000000000..3cd08906031a
---- /dev/null
-+++ b/Documentation/ABI/testing/debugfs-probe-control
-@@ -0,0 +1,14 @@
-+What:		/sys/kernel/debug/probe_control_status
-+Date:		September 2024
-+KernelVersion:	6.11.0
-+Contact:	Nayeemahmed Badebade <nayeemahmed.badebade@sony.com>
-+		Toyama Yoshihiro <yoshihiro.toyama@sony.com>
-+Description:
-+		Probe control driver debug interface, that shows registered
-+		probe control devices which were defined in platform's device
-+		tree, their probe status and respective consumer devices.
-+		Sample output::
-+
-+		    # cat /sys/kernel/debug/probe_control_status
-+		    prb_ctrl_dev_0: [not triggered]
-+		     Consumers: 1ffc000.pcie
-diff --git a/Documentation/ABI/testing/sysfs-kernel-probe-control b/Documentation/ABI/testing/sysfs-kernel-probe-control
-new file mode 100644
-index 000000000000..4602f41aa025
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-kernel-probe-control
-@@ -0,0 +1,13 @@
-+What:		/sys/kernel/probe_control/trigger
-+Date:		September 2024
-+KernelVersion:	6.11.0
-+Contact:	Nayeemahmed Badebade <nayeemahmed.badebade@sony.com>
-+		Toyama Yoshihiro <yoshihiro.toyama@sony.com>
-+Description:
-+		Write-only attribute that allows user to trigger probing of
-+		probe control devices.
-+		Write specific probe control device name to trigger probing
-+		of only that device or write 'all' to trigger probing of all
-+		probe control devices.
-+		Writing a probe control device name that is already probed,
-+		will result in an error.
-diff --git a/drivers/base/Makefile b/drivers/base/Makefile
-index 7fb21768ca36..4e2b115ea929 100644
---- a/drivers/base/Makefile
-+++ b/drivers/base/Makefile
-@@ -7,6 +7,7 @@ obj-y			:= component.o core.o bus.o dd.o syscore.o \
- 			   attribute_container.o transport_class.o \
- 			   topology.o container.o property.o cacheinfo.o \
- 			   swnode.o
-+obj-$(CONFIG_OF) += probe_control.o
- obj-$(CONFIG_AUXILIARY_BUS) += auxiliary.o
- obj-$(CONFIG_DEVTMPFS)	+= devtmpfs.o
- obj-y			+= power/
-diff --git a/drivers/base/probe_control.c b/drivers/base/probe_control.c
-new file mode 100644
-index 000000000000..6cfc03df6c33
---- /dev/null
-+++ b/drivers/base/probe_control.c
-@@ -0,0 +1,275 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * probe_control.c - Probe control driver
-+ *
-+ * Copyright (c) 2024 Sony Group Corporation
-+ */
-+
-+#include <linux/init.h>
-+#include <linux/device.h>
-+#include <linux/slab.h>
-+#include <linux/list.h>
-+#include <linux/mutex.h>
-+#include <linux/sysfs.h>
-+#include <linux/kobject.h>
-+#include <linux/debugfs.h>
-+#include <linux/module.h>
-+#include <linux/string.h>
-+#include <linux/seq_file.h>
-+#include <linux/device/driver.h>
-+#include <linux/platform_device.h>
-+#include <linux/mod_devicetable.h>
-+
-+#include "base.h"
-+
-+/*
-+ * Overview
-+ *
-+ * Probe control driver framework allows deferring the probes of a group of
-+ * devices to an arbitrary time, giving the user control to trigger the probes
-+ * after boot. This is useful for deferring probes from builtin drivers that
-+ * are not required during boot and probe when user wants after boot.
-+ *
-+ * This is achieved by adding a dummy device aka probe control device node
-+ * as provider to a group of devices(consumer nodes) in platform's device tree.
-+ * Consumers are the devices we want to probe after boot.
-+ * fw_devlink ensures consumers are not probed until provider is probed
-+ * successfully. The provider probe during boot returns -ENXIO and is not
-+ * re-probed again.
-+ *
-+ * The driver provides debug interface /sys/kernel/debug/probe_control_status
-+ * for checking probe control status of registered probe control devices.
-+ *  # cat /sys/kernel/debug/probe_control_status
-+ *  prb_ctrl_dev_0: [not triggered]
-+ *   Consumers: 1ffc000.pcie
-+ *
-+ * Interface /sys/kernel/probe_control/trigger is provided for triggering
-+ * probes of the probe control devices. User can write to this interface to
-+ * trigger specific or all device probes managed by this driver.
-+ * Once the probe is triggered by user, provider probe control device is added
-+ * to deferred_probe_pending_list and driver_deferred_probe_trigger() is
-+ * triggered. This time provider probe will return successfully and consumer
-+ * devices will then be probed.
-+ * To trigger specific provider probe:
-+ *   # echo prb_ctrl_dev_0 > /sys/kernel/probe_control/trigger
-+ *
-+ * To trigger all registered provider probes
-+ *   # echo all > /sys/kernel/probe_control/trigger
-+ *
-+ * For details on configuring probe control devices in platform device tree,
-+ * refer:
-+ *  Documentation/devicetree/bindings/probe-control/linux,probe-controller.yaml
-+ *
-+ */
-+
-+#define MAX_PROBE_CTRL_DEVS 50
-+
-+struct probe_ctrl_dev_data {
-+	struct device *dev;
-+	bool probe;
-+	struct list_head list;
-+};
-+
-+static LIST_HEAD(probe_ctrl_dev_list);
-+static DEFINE_MUTEX(probe_ctrl_dev_list_mutex);
-+static atomic_t probes_pending = ATOMIC_INIT(0);
-+static struct kobject *probe_ctrl_kobj;
-+
-+static int probe_ctrl_status_show(struct seq_file *s, void *v)
-+{
-+	struct probe_ctrl_dev_data *data;
-+	struct device_link *link;
-+
-+	mutex_lock(&probe_ctrl_dev_list_mutex);
-+	list_for_each_entry(data, &probe_ctrl_dev_list, list) {
-+		seq_printf(s, "%s: [%s]\n", dev_name(data->dev),
-+			data->probe ? "triggered" : "not triggered");
-+		seq_puts(s, " Consumers:");
-+		if (list_empty(&data->dev->links.consumers)) {
-+			seq_puts(s, " None\n");
-+			continue;
-+		}
-+		list_for_each_entry(link, &data->dev->links.consumers, s_node) {
-+			seq_printf(s, " %s", dev_name(link->consumer));
-+		}
-+		seq_puts(s, "\n");
-+	}
-+	mutex_unlock(&probe_ctrl_dev_list_mutex);
-+
-+	return 0;
-+}
-+DEFINE_SHOW_ATTRIBUTE(probe_ctrl_status);
-+
-+static void enable_probe(struct probe_ctrl_dev_data *data)
-+{
-+	/*
-+	 * add the device to deferred_probe_pending_list
-+	 */
-+	driver_deferred_probe_add(data->dev);
-+	data->probe = true;
-+	atomic_dec(&probes_pending);
-+	dev_dbg(data->dev, "enabled probe\n");
-+}
-+
-+static ssize_t probe_ctrl_trigger_store(struct kobject *kobj,
-+					struct kobj_attribute *attr,
-+					const char *buf, size_t count)
-+{
-+	struct probe_ctrl_dev_data *data;
-+	int probes_pending_l;
-+	int ret;
-+
-+	probes_pending_l = atomic_read(&probes_pending);
-+	if (probes_pending_l == 0)
-+		return -EINVAL;
-+
-+	mutex_lock(&probe_ctrl_dev_list_mutex);
-+	if (sysfs_streq(buf, "all")) {
-+		list_for_each_entry(data, &probe_ctrl_dev_list, list) {
-+			if (!data->probe)
-+				enable_probe(data);
-+		}
-+	} else {
-+		list_for_each_entry(data, &probe_ctrl_dev_list, list) {
-+			if (sysfs_streq(dev_name(data->dev), buf)) {
-+				if (!data->probe)
-+					enable_probe(data);
-+				break;
-+			}
-+		}
-+	}
-+	mutex_unlock(&probe_ctrl_dev_list_mutex);
-+
-+	if (probes_pending_l == atomic_read(&probes_pending)) {
-+		ret = -EINVAL;
-+		goto out;
-+	}
-+	/*
-+	 * Re-probe deferred devices and
-+	 * wait for device probing to be completed
-+	 */
-+	driver_deferred_probe_trigger();
-+	wait_for_device_probe();
-+	ret = count;
-+
-+out:
-+	return ret;
-+}
-+
-+static struct kobj_attribute probe_ctrl_attribute =
-+	__ATTR(trigger, 0200, NULL, probe_ctrl_trigger_store);
-+
-+static struct attribute *attrs[] = {
-+	&probe_ctrl_attribute.attr,
-+	NULL,
-+};
-+
-+static struct attribute_group attr_group = {
-+	.attrs = attrs,
-+};
-+
-+static int probe_control_dev_probe(struct platform_device *pdev)
-+{
-+	struct probe_ctrl_dev_data *data;
-+	int ret;
-+
-+	if (!pdev->dev.of_node) {
-+		dev_err(&pdev->dev,
-+			"driver only supports devices from device tree\n");
-+		return -EINVAL;
-+	}
-+
-+	mutex_lock(&probe_ctrl_dev_list_mutex);
-+	list_for_each_entry(data, &probe_ctrl_dev_list, list) {
-+		if (&pdev->dev == data->dev) {
-+			ret = data->probe ? 0 : -ENXIO;
-+			mutex_unlock(&probe_ctrl_dev_list_mutex);
-+			dev_dbg(data->dev, "probe return: %d\n", ret);
-+			return ret;
-+		}
-+	}
-+	mutex_unlock(&probe_ctrl_dev_list_mutex);
-+
-+	if (atomic_read(&probes_pending) == MAX_PROBE_CTRL_DEVS) {
-+		dev_dbg(&pdev->dev,
-+			"Probe control device limit exceeded, probing now\n");
-+		return 0;
-+	}
-+
-+	data = kzalloc(sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	data->dev = &pdev->dev;
-+	data->probe = false;
-+
-+	mutex_lock(&probe_ctrl_dev_list_mutex);
-+	list_add_tail(&data->list, &probe_ctrl_dev_list);
-+	atomic_inc(&probes_pending);
-+	mutex_unlock(&probe_ctrl_dev_list_mutex);
-+
-+	dev_dbg(data->dev, "Added dev to probe control list\n");
-+
-+	return -ENXIO;
-+}
-+
-+static const struct of_device_id probe_ctrl_of_match[] = {
-+	{ .compatible = "linux,probe-control" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, probe_ctrl_of_match);
-+
-+static struct platform_driver probe_control_driver = {
-+	.probe          = probe_control_dev_probe,
-+	.driver = {
-+		.name	= "probe-control",
-+		.of_match_table = probe_ctrl_of_match,
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-+	},
-+};
-+
-+static int __init probe_control_init(void)
-+{
-+	int ret;
-+
-+	probe_ctrl_kobj = kobject_create_and_add("probe_control", kernel_kobj);
-+	if (!probe_ctrl_kobj)
-+		return -ENOMEM;
-+
-+	ret = sysfs_create_group(probe_ctrl_kobj, &attr_group);
-+	if (ret)
-+		goto out_err;
-+
-+	ret = platform_driver_register(&probe_control_driver);
-+	if (ret)
-+		goto out_err;
-+
-+	debugfs_create_file("probe_control_status", 0444, NULL, NULL,
-+			    &probe_ctrl_status_fops);
-+	return ret;
-+
-+out_err:
-+	kobject_put(probe_ctrl_kobj);
-+	return ret;
-+}
-+
-+late_initcall(probe_control_init);
-+
-+static void __exit probe_control_exit(void)
-+{
-+	struct probe_ctrl_dev_data *data, *tmp_data;
-+
-+	kobject_put(probe_ctrl_kobj);
-+	debugfs_lookup_and_remove("probe_control_status", NULL);
-+
-+	mutex_lock(&probe_ctrl_dev_list_mutex);
-+	list_for_each_entry_safe(data, tmp_data, &probe_ctrl_dev_list, list) {
-+		list_del(&data->list);
-+		kfree(data);
-+	}
-+	mutex_unlock(&probe_ctrl_dev_list_mutex);
-+
-+	platform_driver_unregister(&probe_control_driver);
-+}
-+
-+__exitcall(probe_control_exit);
+Fabien Parent (1):
+      rust: kernel: Add Platform device and driver abstractions
+
+ .../bindings/connector/mikrobus-connector.yaml     |  40 +++
+ Kbuild                                             |   1 +
+ Kconfig                                            |   2 +
+ MAINTAINERS                                        |   8 +
+ addon_boards/Kconfig                               |  16 +
+ addon_boards/Makefile                              |   3 +
+ addon_boards/mikrobus/Makefile                     |   4 +
+ addon_boards/mikrobus/mikroe-1714.dtso             |  28 ++
+ addon_boards/mikrobus/mikroe-5761-i2c.dtso         |  28 ++
+ arch/arm64/boot/dts/ti/Makefile                    |   1 +
+ .../k3-am625-beagleplay-mikrobus-connector0.dtso   |  49 +++
+ arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts     |  53 ++-
+ drivers/misc/Kconfig                               |  17 +
+ drivers/misc/Makefile                              |   1 +
+ drivers/misc/mikrobus.rs                           |  32 ++
+ rust/bindings/bindings_helper.h                    |   1 +
+ rust/kernel/lib.rs                                 |   1 +
+ rust/kernel/platform.rs                            | 380 +++++++++++++++++++++
+ 18 files changed, 659 insertions(+), 6 deletions(-)
+---
+base-commit: 9aaeb87ce1e966169a57f53a02ba05b30880ffb8
+change-id: 20240826-mikrobus-dt-52eaaadd0b1f
+
+Best regards,
 -- 
-2.34.1
+Ayush Singh <ayush@beagleboard.org>
 
 
