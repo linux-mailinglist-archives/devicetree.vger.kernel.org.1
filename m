@@ -1,136 +1,124 @@
-Return-Path: <devicetree+bounces-101981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 054AD974FFB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 12:44:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7728D975004
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 12:46:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3919D1C223B7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 10:44:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33FBA28D5AE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 10:46:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77129185B74;
-	Wed, 11 Sep 2024 10:43:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C7FA184548;
+	Wed, 11 Sep 2024 10:46:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zY0EqP5S"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gdCzt6ct";
+	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="Mrwby2Xn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from a7-45.smtp-out.eu-west-1.amazonses.com (a7-45.smtp-out.eu-west-1.amazonses.com [54.240.7.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC84F153820
-	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 10:43:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8962439FE5;
+	Wed, 11 Sep 2024 10:46:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726051438; cv=none; b=L7dBYyg1YiovK4tlLLThcfsebNFVVCpAppTi+l0ZsLNpWgpSE9VJS77R2sxAOIrFso3RvhEspOzw+wvgOqmDS6HLSAVNLTXPB6a6/qzsNc9sXzZXFiD0cMd4oMRPwagHyGGoSxawdFLK4mXmh88aYuex+6QqdIQUaFcs7OsKLSY=
+	t=1726051586; cv=none; b=qso9PhDV7hofJEJYpTj/mG6jh+1ox/O/LbGIz00aSmCycubUytzeSnYDlHMs0yEUaTIAF7CwFPldZyE3kMkWPJh35JqgPsnae41YnsbjgoomV7/xi5hr8LTfeHWYVC0GxtI7rdYkMec7gI0ztvSSTx9periiN69tI9+T2P9WqaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726051438; c=relaxed/simple;
-	bh=h/LBrWSpUs8DPI9U1+af2i3m6dozVC63fYk7NBtw7Tc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tgfXpzpYq6C7QsxEbVzHSR8jcoYy+IQWh8z8ksDZ+E0wogVjYQGE8m2Zg9CmbmlF70YszflGiLsUXEjNzejiRkfJ9hnafvA3lN5sqzmJXwA0UKmQ/tpjeOq2p7WlS9LnbxN58nmmRXTXQe+RaVLTkPKum2ZHe6KDSUDyLxGuBYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zY0EqP5S; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2f75f116d11so48702811fa.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 03:43:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726051435; x=1726656235; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yEmg0mv3aZiw4epk0S/D8wOQJkCJdi8IprxOeJvP7ug=;
-        b=zY0EqP5S6SX3+wBo+e/hQFGJWZlDvJAuXMh6/WVH4CvjO6w3nXiP8ElqFXsZ71XiKE
-         d0NUCFbRCJZ6+JLRwwwuS3tszGBJWOfvA23YrtD/cFLOAgrImnbVzXR8fTE8GzuOHA7Q
-         WsKBilNJpLU9KpdYez8v9JKWFhpFmoUXsoWafI8sh1MH59cK1PPglRD3btbafmK+Lyhv
-         1inidNZ3Z2e71pz/H35eSewK3NBdbWpdvA8Hwknp3CO+LadYDv0A3XHck702SsWl90RF
-         dvUEjnS2YjtmtpgKbUIF24arxeK6SL6SDk6d5emKJ64dJvehGi1Mq87PE9BjikljXN2g
-         5+vw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726051435; x=1726656235;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yEmg0mv3aZiw4epk0S/D8wOQJkCJdi8IprxOeJvP7ug=;
-        b=fWMLe21Y9WAxxLoN1Qj/nDAXApcpt42mK0wkc5WQdXTWEX2cyA7sS0MQvx3NTPzOsr
-         2pSazoWmgA3viNlgJF6egfzrat4YwPSiDCt3fMlugyEntICb3dEWFCyiArJ2nrXIrMi8
-         OFo59LJguB6P2VjbeeAdzJ3iW56B19+NLbqJUJHMx7N6o1XGOOzAThHu2dmih9glvgJ0
-         elpE1WbXc/mxQwW8LbDXQvfz/RB2FD1dz4B69CFl+BfzRNoqANKMe2bOR+tO9nnSc6eE
-         2129HNGvbelu5+12/svraaCaOi9eISCrMHOOorx5uOw+BCS+HMoNgiigQo/29nCi1qYq
-         06Hg==
-X-Forwarded-Encrypted: i=1; AJvYcCVGktxP9cYOmuLvb2PJLecKbsN2ZEn9RQ8vQ1gMS7UYf46WdmfvVsLeyxsa7iaViICiKQWaphZO2F8Z@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1lB8xEbYaB3LjTCi/qeN3uCgOfAaHOrqXLy5B6Wj4iW9fopNS
-	OmGGhiSLo26AXej2CFFtbq8jKELLEK2SuBwHimBKx+MxWs8Nblhi4I/wyuPaWq8=
-X-Google-Smtp-Source: AGHT+IHlGG8lUNXquAJHd6tZISj+TQ2YsszM2ZdBtl/KjJ9veSTZvzSOCuVd6OHtGTOCf+LGCgfwiw==
-X-Received: by 2002:a05:651c:50b:b0:2f7:6129:5804 with SMTP id 38308e7fff4ca-2f761295a15mr75354701fa.15.1726051434260;
-        Wed, 11 Sep 2024 03:43:54 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f75c07c5bcsm15188951fa.96.2024.09.11.03.43.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Sep 2024 03:43:53 -0700 (PDT)
-Date: Wed, 11 Sep 2024 13:43:52 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Nikunj Kela <quic_nkela@quicinc.com>
-Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	kernel@quicinc.com, quic_psodagud@quicinc.com, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4] dt-bindings: watchdog: qcom-wdt: document support on
- SA8255p
-Message-ID: <j4yhwags7refg2qxc2ykkykxjv5sue3yghucsiykoyuvzmk4zj@zvh3fd6avmgi>
-References: <20240910165926.2408630-1-quic_nkela@quicinc.com>
+	s=arc-20240116; t=1726051586; c=relaxed/simple;
+	bh=zaEEDAHRbtRTZKTSPKKof3QCdZ3ptIytzTpSz+i25aw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=J9lEQe8ku8dQtol9S1n/bng+y5niknw2omtfs3ZDBmpwfpeNw958LdZGqOZ6uZC8bJU/LFMCn6FY5lm/ormH6LwNSpU8HyPjv9QpyVxbnOHV+F8YT3Ats9SndDhtDy32F8+0QlH5LkwCHVThA+v52ejMzTtjsNMbRQXTbqqFRP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gdCzt6ct; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=Mrwby2Xn; arc=none smtp.client-ip=54.240.7.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazonses.collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1726051583;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding;
+	bh=zaEEDAHRbtRTZKTSPKKof3QCdZ3ptIytzTpSz+i25aw=;
+	b=gdCzt6ctTxu1pBI6S44bZ+GPVF5BgnhIDWemAvKqe358hnJLPrNv5nWoCq1K6PNJ
+	zBWZPUDM+bivqP91mI6HG33QhjRWmqkUJt6ySJXZwWJAr2I1ecbqttsDxTbwSphk96W
+	x9lcsOIDHBFD2nHsdwMIDmX55bN0MY26xoykm4lvK8cswTnzFwzAnxTVJJPdS4U09c8
+	KyBNA448Xsojnt4aTG3cK5uH2ZcXz6IoJfeOPKII48njqpW7CZYQBf1o9zFn79TnVkX
+	DKNQwucLe2p8k4E/38BXf/CyJO21SzkSFP9hT4OivOhjZiw4MLetKQq35O7gPO08fKh
+	mpLu1RDawQ==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1726051583;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID;
+	bh=zaEEDAHRbtRTZKTSPKKof3QCdZ3ptIytzTpSz+i25aw=;
+	b=Mrwby2XnraJoo6GZb4q0tGVgPI1+fNDZSNK44heftrf/pDZgV4Htmt8mdWWeqEwH
+	3nRxpoTRKi+eccLvjAVtfLHiPwKH5ps8RSsW3QW9baW8OBStZq4yYOLlDh2N9Qyg3Av
+	G8ea7L34EhDzTk2wMciEumTluSlKdEU97xFbK+qQ=
+Message-ID: <01020191e0b103c3-00fad6e7-f81f-4a76-a75f-1420574f71df-000000@eu-west-1.amazonses.com>
+Date: Wed, 11 Sep 2024 10:46:22 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240910165926.2408630-1-quic_nkela@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 05/13] arm64: dts: mediatek: mt8188: Add missing GCE clock
+ names
+To: Fei Shao <fshao@chromium.org>, Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org
+References: <20240909111535.528624-1-fshao@chromium.org>
+ <20240909111535.528624-6-fshao@chromium.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240909111535.528624-6-fshao@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
+X-SES-Outgoing: 2024.09.11-54.240.7.45
 
-On Tue, Sep 10, 2024 at 09:59:26AM GMT, Nikunj Kela wrote:
-> Add a compatible for the SA8255p platform's KPSS watchdog.
+Il 09/09/24 13:14, Fei Shao ha scritto:
+> Add the missing clock-names property for GCE nodes to fix errors from
+> `make CHECK_DTBS=y mediatek/mt8188-evb.dtb`.
+
+I've sent a patch [1] relaxing the requirement for clock-names in the binding.
+There's no reason to make clock-names mandatory, as there is and there always
+will be one single clock for each GCE mailbox - and also the driver is not
+trying to get the clock by name, but rather gets the clock at index 0 anyway.
+
+Please drop this patch.
+
+Cheers,
+Angelo
+
+[1]: 
+https://lore.kernel.org/all/20240911104327.123602-1-angelogioacchino.delregno@collabora.com/
+
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+> Signed-off-by: Fei Shao <fshao@chromium.org>
 > ---
 > 
-> Changes in v4:
->         - Added Reviewed-by tag
+>   arch/arm64/boot/dts/mediatek/mt8188.dtsi | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> index 445d30eee2a1..2900d78b7ceb 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> @@ -1316,6 +1316,7 @@ gce0: mailbox@10320000 {
+>   			interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH 0>;
+>   			#mbox-cells = <2>;
+>   			clocks = <&infracfg_ao CLK_INFRA_AO_GCE>;
+> +			clock-names = "gce";
+>   		};
+>   
+>   		gce1: mailbox@10330000 {
+> @@ -1324,6 +1325,7 @@ gce1: mailbox@10330000 {
+>   			interrupts = <GIC_SPI 228 IRQ_TYPE_LEVEL_HIGH 0>;
+>   			#mbox-cells = <2>;
+>   			clocks = <&infracfg_ao CLK_INFRA_AO_GCE2>;
+> +			clock-names = "gce";
+>   		};
+>   
+>   		scp: scp@10500000 {
 
-If this is the only change, there is no need to post it as a new
-iteration.
-
-> 
-> Changes in v3:
->         - Removed the patch from original series[1]
-> 
-> Changes in v2:
->         - Added Reviewed-by tag
-> 
-> [1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
-> ---
->  Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-> index 47587971fb0b..932393f8c649 100644
-> --- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-> @@ -26,6 +26,7 @@ properties:
->                - qcom,apss-wdt-msm8994
->                - qcom,apss-wdt-qcm2290
->                - qcom,apss-wdt-qcs404
-> +              - qcom,apss-wdt-sa8255p
->                - qcom,apss-wdt-sa8775p
->                - qcom,apss-wdt-sc7180
->                - qcom,apss-wdt-sc7280
-> -- 
-> 2.34.1
-> 
-
--- 
-With best wishes
-Dmitry
 
