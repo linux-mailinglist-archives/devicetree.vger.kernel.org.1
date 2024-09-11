@@ -1,169 +1,212 @@
-Return-Path: <devicetree+bounces-101971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DE9A974F8A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 12:21:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20933974FC1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 12:35:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F49D1F24B89
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 10:21:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2357E1C21674
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 10:35:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 333D8187FFF;
-	Wed, 11 Sep 2024 10:20:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB15B17C7C4;
+	Wed, 11 Sep 2024 10:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pxupbzly"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mvwpxDgk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54229186E42
-	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 10:19:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED278156242
+	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 10:35:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726050000; cv=none; b=OmRMgEAPOE/Kg/mV72PaUU2ngeM+u9dMs+dUkNIKnLrgakZkbhpWmGKTC5LFPOlhsDVvZ6hXQocl/RY/UzOm7E7gCtPjt9botYgWz0cjOvwKCWSySp37Nwa0Ub4XCqrZaG3dUHN4aKOKQILKNch55v8po5ir1+hzsLxkQPaMwYE=
+	t=1726050907; cv=none; b=OtpMENMMeI8gzAeUfOfzuTUcr/HkNcdrgvc7NleJ0moldE9FCXaXH2KdjGWIB96gCtkIvATelw2MDPPSjNW2yGfhvjwDhXjoc7q96D/0jNVjak2yFPsWEeOjTaFn66LoJrdidIQq4STpmZxv6qwO2/Lkp7Vk32CHrlKbfDf/xDE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726050000; c=relaxed/simple;
-	bh=6HkGIahaPO/Fnz6tpDmCQ5Zn0iibPrrjjojrxJR/2DI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ktkJ9nMDBH3SIRdOTx5W6w+x52tdYIAX4jovRK0zTpxgDGzcTKQt8WTKSNv8yUQ7tQRbOob5N4orXvZDaA7KlpBSaSiquWtnExg2BKQCgAIEpgBKcAD5aPh0O0MQywPfTAEtONKbSE4tswtaQK9nkyupgd5+QNUQWp0KiX4t6wU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pxupbzly; arc=none smtp.client-ip=209.85.128.53
+	s=arc-20240116; t=1726050907; c=relaxed/simple;
+	bh=4WFqUAa5CvltBYPVoHBvpobWnjtHZ/LE2o9XMkPycYY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=t4OHGUVDZcqzleoCReaEdnXuSMMl1jXBqxQO3bgIWNzBp8pT9ok2ED/3S5ktiVQ7bOhcrVBsnTkDPM7CWLYZLY7dqXroi9oD4otvopS+qKXZLvTn/RW1tWUVt8liT4irUsgsYirZkFDiKfZEgNO5Zhs9EK+oE0yqjYog5Aa8bu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mvwpxDgk; arc=none smtp.client-ip=209.85.128.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-42cbface8d6so22852725e9.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 03:19:58 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-6d9f65f9e3eso62089447b3.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 03:35:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726049997; x=1726654797; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=me22hCQ23h1Om/oU6Sm/hsVv2MUbHKFNehPhgvHyaEM=;
-        b=pxupbzlyUllXrrDb1cdo1bRK/yJZ+LlvP7/pkgZWanK3Sr8vAA5Csn1z3pN352DdCn
-         EjkCS/S2aP8HZ5U1XVHCEVlJB7AOSvBpjukJk7Fy2W81x5lKf/kn8OyHDc0I3jtiKEM0
-         YShS1Y08qPXym6PeUvdH6zxy3Zlfa/orKBDgnFepeKQXlNIMKsSygqP6npC/ri6XEHfX
-         vx17PYj/EWMPgxjjaD/EjAmNonNiwCQ7loueqK3fZFxzWv9tAOeKxX4dMrfTHan9tpey
-         ke5Z5vEAoiuJeGhAsxV3SYt5vYqc9TBIVtEoZ0+vnfe1jOgucppd/yq9QgRt1E0My+/T
-         W1iw==
+        d=linaro.org; s=google; t=1726050905; x=1726655705; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=pguXKho2iGtNY7bbPN64vthkTwD/qntrSgD7BpHG+7Y=;
+        b=mvwpxDgkWSg+cB2T/7v8934NAQIvTPBi2EvrlblykI7Dfa7Vm0v4KyboZVdogsS8or
+         AQevaMT7WlyxxW9Gyy64RbQfnJG0kifrBFihXei+k9blPREkUM9oCM1b50k8MLPJCLtJ
+         4nBu7hIDF8Eqmi1lDwcvyoeXukV9tmlqsc4v58064Wc2RdY1d/FpbMP/l49cl6xMubg0
+         /1hRb2YEmE8eT1zGjBoN/xvkU06ilNkO6ytF+JxwNfj5+CtxpvERpZK+YVaGGUw8Alld
+         OzjhYSt5JZMz5U7iY8hy00E2jLbIHRTuDUsL2qo+ggR124jb+cNzWrqKYCnDzBM+yFKH
+         DRvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726049997; x=1726654797;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=me22hCQ23h1Om/oU6Sm/hsVv2MUbHKFNehPhgvHyaEM=;
-        b=vKht10nbGeFi0qQb/UIkvqc0GevLaya01N0kWIamaQBHwYFnt85YIw5z3I9ZCBABHH
-         0ECiAyfVp4wxvjcy/Urp3LQgovXmgj0LAt37xDbSVi4UpjSbhHFZOYk9lUMCTsdwICug
-         EuqbN8nJmmT0GC0HLs8m5F8w/lry+VwH/J0BeFbd6KIGLL3eKuQkT8AqFldAJylRRPat
-         z0Tcslu6iflUSCv9cc9YgRfFq55q9DBPX9yWmQEHoq76IIwGONYkHYH23EZyXCCCnWhj
-         0z01jbvki4knN4HgKjDEpIKgav0NG2lqz/XsVJX2ywZiE6OnbQiYJgQQW8KMAAGmOXEv
-         l+sg==
-X-Gm-Message-State: AOJu0YyWIyeJz3N0zumFENpZS9ptcEF1XEF8sDz9a1z7/zjXfpPy6s6y
-	B+GxNMdHzuOHQcuiszJc3BBnn6BhtETTCJRbUJjD6pl0XjXWh4JjwVafH3gzH27Pr+Dx5knBs+J
-	K
-X-Google-Smtp-Source: AGHT+IH3Axor/ewUeeQs3SMNMrWCuLhgitgofIh8meuT+E2IsdocHE5ZLv5ZZVbVTp0xIAzPAGsGBQ==
-X-Received: by 2002:a05:600c:1c18:b0:42c:b74c:d8c4 with SMTP id 5b1f17b1804b1-42cb74cdbc5mr99981265e9.31.1726049996492;
-        Wed, 11 Sep 2024 03:19:56 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42caeb21a4esm139349125e9.7.2024.09.11.03.19.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Sep 2024 03:19:55 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 11 Sep 2024 12:19:46 +0200
-Subject: [PATCH 7/7] ARM: dts: amlogic: meson8: use correct pinctrl bank
- node name
+        d=1e100.net; s=20230601; t=1726050905; x=1726655705;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pguXKho2iGtNY7bbPN64vthkTwD/qntrSgD7BpHG+7Y=;
+        b=FgDqUOPvomRpbZPVRZP0J+rh7W9dh6idY2JNCCvcG+1y0uB9inKTtlAig7k1F2u/NZ
+         49BeyKIR1W57ONwZ+mdadsI+yo1uR3WwRpb3E7QAYvHzVxKNThdnO2bZQBQABtdQ3z+h
+         Bd0p0AQ1mi06Qe9kXZ6sBzptV63L9x35G0kHDzGzjXw458b4R8sBMc3OhGIKAqz9j2OQ
+         uxjlexrWlWcdxbJlEUjQCiSuk4ze+R3FxIac9fWXRLpbLFREPr6CevwOlI13S1c5RmdY
+         JGi896M+aO6liAeuW/by4JceNxbMNvZ+yAZ2AVhL81m37YHu2kKNU74iAXsxMDhs2KkS
+         7YjA==
+X-Forwarded-Encrypted: i=1; AJvYcCUrZBg7vMI661Emz14Q55P+i5dID0168NlcrM5fgzqGi6rwNr7F7fyVEHUmM0U1tN8COxNUEkbVXQ1I@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQSYKUivZsHFJ+2NDqgnzmjHjf4Co+SU5AQI8Xufi4aodfoQ2k
+	1uAtg37o6uZHP6cNTK1hgeBc3J97gITZtxJ7+eOS1XOasUvu3vGyRADB2QcZbbJLBBYiGGnShsD
+	wUwo+/dM6Iv6bbp4raAddN1ABFk89NiITNSIkYg==
+X-Google-Smtp-Source: AGHT+IEXGUo8iYr83kd7B9iECVwc8bdMpc/xy3+lDcZrAKDkVX5G5H8kLtfBabKLQx3cToAQvvvkY6Dr2nHmCs148Lw=
+X-Received: by 2002:a05:690c:2889:b0:65f:8209:3ede with SMTP id
+ 00721157ae682-6db452740b1mr148903587b3.44.1726050904691; Wed, 11 Sep 2024
+ 03:35:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-7-feaabb45916b@linaro.org>
-References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-0-feaabb45916b@linaro.org>
-In-Reply-To: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-0-feaabb45916b@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2234;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=6HkGIahaPO/Fnz6tpDmCQ5Zn0iibPrrjjojrxJR/2DI=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBm4W7EGXUc0rkBN+Y856SSdLNy9Fnz93ZB9YaS5kBE
- zfGkRcOJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZuFuxAAKCRB33NvayMhJ0d0+D/
- 996Kgc1GvUGEptpp95mKwZaptGWH7QYeyM5Dq77T7oDfUpiyRsBS6tQWCod/Xl6i1rb+A9tOa6uppO
- /MgvXmSQF8OYFtxEv51h4eEMYUGKdOb+iUQ12c+yE6VJSKxgTw30HEhs/JmnFUFcBt4LJHkmTCGmhC
- 5tSjCFKfRpNxkXXGfi92y3H/dc60HzEdYgtI+jyJG9Xje9OKtxPKG416yqOgjIfXpQa+q1c3y2pjVQ
- 1H18TopuREjlGrs9Vec618BIqcRwBxwQ5t4yf+n5HDMtv1ijOLgU8S+vlex4wUMdY2J4kDZsAkt4Pe
- Z1zEUtac6kr/TLBnsdanxD4x73FzBU/tbv6c+9GNDHCSAV53cUMm2GGZfpmnpXSg5gBE42FBD3XZe4
- LSUzxXJQbEPJgAgwR+1FJfGHvlXULV+H7a7ILCAh72UU6tWV3gX1TbzIKPwDeKu0xAmK5Cpcu1ak0x
- +4ZN/b8ZxzPGI037olsW+vy8T6phi2j3YYZCc3/CUR+oHF4SQgqUo8U5OBgErZ0bENVCS4E4sxf1W5
- LWLBttHbsMBaa6lhSDvCiHYJ3HEhVtDue6pOfZz21fHBodOi/Wjn93DtKUVOubIeqoiFlNrreFHkhz
- t9xIyEfZbD74sAx5XsuqYMro35+IU8uzGpnS3TtBrwRXV/yHrjbjvBUT0sUw==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+References: <20240911100813.338-1-quic_mukhopad@quicinc.com> <20240911100813.338-3-quic_mukhopad@quicinc.com>
+In-Reply-To: <20240911100813.338-3-quic_mukhopad@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 11 Sep 2024 13:34:53 +0300
+Message-ID: <CAA8EJppLFWpf0QSmzAo5nqu=iMALyKzxEvy7sD5R0LDYSbA_7w@mail.gmail.com>
+Subject: Re: [PATCH 2/5] phy: qcom: edp: Introduce aux_cfg array for version
+ specific aux settings
+To: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, konradybcio@kernel.org, 
+	andersson@kernel.org, simona@ffwll.ch, abel.vesa@linaro.org, 
+	robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run, 
+	marijn.suijten@somainline.org, airlied@gmail.com, daniel@ffwll.ch, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	quic_khsieh@quicinc.com, konrad.dybcio@linaro.org, quic_parellan@quicinc.com, 
+	quic_bjorande@quicinc.com, linux-arm-msm@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, quic_riteshk@quicinc.com, 
+	quic_vproddut@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
-Use the proper name for the pinctrl bank subnode, fixing:
-pinctrl@9880: Unevaluated properties are not allowed ('banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'reg', 'reg' were unexpected)
-	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-cbus.yaml#
-pinctrl@84: Unevaluated properties are not allowed ('ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'reg', 'reg' were unexpected)
+On Wed, 11 Sept 2024 at 13:08, Soutrik Mukhopadhyay
+<quic_mukhopad@quicinc.com> wrote:
+>
+> In order to support different HW versions, introduce aux_cfg array
+> to move v4 specific aux configuration settings.
+>
+> Signed-off-by: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-edp.c | 34 +++++++++++++++++------------
+>  1 file changed, 20 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/phy/qualcomm/phy-qcom-edp.c b/drivers/phy/qualcomm/phy-qcom-edp.c
+> index da2b32fb5b45..0f860a807d1b 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-edp.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-edp.c
+> @@ -90,6 +90,7 @@ struct phy_ver_ops {
+>
+>  struct qcom_edp_phy_cfg {
+>         bool is_edp;
+> +       u8 *aux_cfg;
+>         const struct qcom_edp_swing_pre_emph_cfg *swing_pre_emph_cfg;
+>         const struct phy_ver_ops *ver_ops;
+>  };
+> @@ -186,11 +187,14 @@ static const struct qcom_edp_swing_pre_emph_cfg edp_phy_swing_pre_emph_cfg = {
+>         .pre_emphasis_hbr3_hbr2 = &edp_pre_emp_hbr2_hbr3,
+>  };
+>
+> +static u8 edp_phy_aux_cfg_v4[10] = {
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm/boot/dts/amlogic/meson8.dtsi  | 4 ++--
- arch/arm/boot/dts/amlogic/meson8b.dtsi | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+static const u8, please.
 
-diff --git a/arch/arm/boot/dts/amlogic/meson8.dtsi b/arch/arm/boot/dts/amlogic/meson8.dtsi
-index 1023ff0a4f9f..6c7596c8b96b 100644
---- a/arch/arm/boot/dts/amlogic/meson8.dtsi
-+++ b/arch/arm/boot/dts/amlogic/meson8.dtsi
-@@ -353,7 +353,7 @@ pinctrl_aobus: pinctrl@84 {
- 		#size-cells = <1>;
- 		ranges;
- 
--		gpio_ao: ao-bank@14 {
-+		gpio_ao: bank@14 {
- 			reg = <0x14 0x4>,
- 			      <0x2c 0x4>,
- 			      <0x24 0x8>;
-@@ -468,7 +468,7 @@ pinctrl_cbus: pinctrl@9880 {
- 		#size-cells = <1>;
- 		ranges;
- 
--		gpio: banks@80b0 {
-+		gpio: bank@80b0 {
- 			reg = <0x80b0 0x28>,
- 			      <0x80e8 0x18>,
- 			      <0x8120 0x18>,
-diff --git a/arch/arm/boot/dts/amlogic/meson8b.dtsi b/arch/arm/boot/dts/amlogic/meson8b.dtsi
-index 641cd60781a3..c8fbeede7e38 100644
---- a/arch/arm/boot/dts/amlogic/meson8b.dtsi
-+++ b/arch/arm/boot/dts/amlogic/meson8b.dtsi
-@@ -315,7 +315,7 @@ pinctrl_aobus: pinctrl@84 {
- 		#size-cells = <1>;
- 		ranges;
- 
--		gpio_ao: ao-bank@14 {
-+		gpio_ao: bank@14 {
- 			reg = <0x14 0x4>,
- 				<0x2c 0x4>,
- 				<0x24 0x8>;
-@@ -422,7 +422,7 @@ pinctrl_cbus: pinctrl@9880 {
- 		#size-cells = <1>;
- 		ranges;
- 
--		gpio: banks@80b0 {
-+		gpio: bank@80b0 {
- 			reg = <0x80b0 0x28>,
- 				<0x80e8 0x18>,
- 				<0x8120 0x18>,
 
--- 
-2.34.1
+> +       0x00, 0x13, 0x24, 0x00, 0x0a, 0x26, 0x0a, 0x03, 0x37, 0x03
+> +};
+> +
+>  static int qcom_edp_phy_init(struct phy *phy)
+>  {
+>         struct qcom_edp *edp = phy_get_drvdata(phy);
+>         int ret;
+> -       u8 cfg8;
+>
+>         ret = regulator_bulk_enable(ARRAY_SIZE(edp->supplies), edp->supplies);
+>         if (ret)
+> @@ -222,22 +226,20 @@ static int qcom_edp_phy_init(struct phy *phy)
+>          * even needed.
+>          */
+>         if (edp->cfg->swing_pre_emph_cfg && !edp->is_edp)
+> -               cfg8 = 0xb7;
+> -       else
+> -               cfg8 = 0x37;
+> +               edp->cfg->aux_cfg[8] = 0xb7;
+>
+>         writel(0xfc, edp->edp + DP_PHY_MODE);
+>
+> -       writel(0x00, edp->edp + DP_PHY_AUX_CFG0);
+> -       writel(0x13, edp->edp + DP_PHY_AUX_CFG1);
+> -       writel(0x24, edp->edp + DP_PHY_AUX_CFG2);
+> -       writel(0x00, edp->edp + DP_PHY_AUX_CFG3);
+> -       writel(0x0a, edp->edp + DP_PHY_AUX_CFG4);
+> -       writel(0x26, edp->edp + DP_PHY_AUX_CFG5);
+> -       writel(0x0a, edp->edp + DP_PHY_AUX_CFG6);
+> -       writel(0x03, edp->edp + DP_PHY_AUX_CFG7);
+> -       writel(cfg8, edp->edp + DP_PHY_AUX_CFG8);
+> -       writel(0x03, edp->edp + DP_PHY_AUX_CFG9);
+> +       writel(edp->cfg->aux_cfg[0], edp->edp + DP_PHY_AUX_CFG0);
+> +       writel(edp->cfg->aux_cfg[1], edp->edp + DP_PHY_AUX_CFG1);
+> +       writel(edp->cfg->aux_cfg[2], edp->edp + DP_PHY_AUX_CFG2);
+> +       writel(edp->cfg->aux_cfg[3], edp->edp + DP_PHY_AUX_CFG3);
+> +       writel(edp->cfg->aux_cfg[4], edp->edp + DP_PHY_AUX_CFG4);
+> +       writel(edp->cfg->aux_cfg[5], edp->edp + DP_PHY_AUX_CFG5);
+> +       writel(edp->cfg->aux_cfg[6], edp->edp + DP_PHY_AUX_CFG6);
+> +       writel(edp->cfg->aux_cfg[7], edp->edp + DP_PHY_AUX_CFG7);
+> +       writel(edp->cfg->aux_cfg[8], edp->edp + DP_PHY_AUX_CFG8);
+> +       writel(edp->cfg->aux_cfg[9], edp->edp + DP_PHY_AUX_CFG9);
+>
+>         writel(PHY_AUX_STOP_ERR_MASK | PHY_AUX_DEC_ERR_MASK |
+>                PHY_AUX_SYNC_ERR_MASK | PHY_AUX_ALIGN_ERR_MASK |
+> @@ -519,16 +521,19 @@ static const struct phy_ver_ops qcom_edp_phy_ops_v4 = {
+>  };
+>
+>  static const struct qcom_edp_phy_cfg sc7280_dp_phy_cfg = {
+> +       .aux_cfg = edp_phy_aux_cfg_v4,
+>         .ver_ops = &qcom_edp_phy_ops_v4,
+>  };
+>
+>  static const struct qcom_edp_phy_cfg sc8280xp_dp_phy_cfg = {
+> +       .aux_cfg = edp_phy_aux_cfg_v4,
+>         .swing_pre_emph_cfg = &dp_phy_swing_pre_emph_cfg,
+>         .ver_ops = &qcom_edp_phy_ops_v4,
+>  };
+>
+>  static const struct qcom_edp_phy_cfg sc8280xp_edp_phy_cfg = {
+>         .is_edp = true,
+> +       .aux_cfg = edp_phy_aux_cfg_v4,
+>         .swing_pre_emph_cfg = &edp_phy_swing_pre_emph_cfg,
+>         .ver_ops = &qcom_edp_phy_ops_v4,
+>  };
+> @@ -707,6 +712,7 @@ static const struct phy_ver_ops qcom_edp_phy_ops_v6 = {
+>  };
+>
+>  static struct qcom_edp_phy_cfg x1e80100_phy_cfg = {
+> +       .aux_cfg = edp_phy_aux_cfg_v4,
 
+Is this correct? Judging by ver_ops, X Elite uses v6 of the PHY, so
+maybe it should also use v5 AUX tables?
+
+>         .swing_pre_emph_cfg = &dp_phy_swing_pre_emph_cfg,
+>         .ver_ops = &qcom_edp_phy_ops_v6,
+>  };
+> --
+> 2.17.1
+>
+
+
+--
+With best wishes
+Dmitry
 
