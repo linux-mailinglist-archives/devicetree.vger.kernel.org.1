@@ -1,165 +1,214 @@
-Return-Path: <devicetree+bounces-102102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E16719757B7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 17:57:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 046829757D3
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 18:02:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FE141F26EA3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 15:57:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1306F1C21088
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:02:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A59C01AC451;
-	Wed, 11 Sep 2024 15:56:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D70701AB52C;
+	Wed, 11 Sep 2024 16:02:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eT5ICDWd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XQ+dVKZz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EBDC1AC435
-	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 15:56:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D573EA76;
+	Wed, 11 Sep 2024 16:02:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726070198; cv=none; b=dg5JKHTCJ6KpJhaBNLsNJnbLlg2KWZ0vd4rwS0Ml5Mxri7U9kxif5krYrdQdFpcCMNAeOHGDPSx3ipZxiUJvmFqEhoMweAkyjoFHFUh7GDEFAl/DS+a3rQBps+3nAt/q3aJ4hbxBGcxOXVkoQVHM3taiZLinoAFAF5iny2Tev6I=
+	t=1726070557; cv=none; b=eUVJnCu2vc4ySmkfdAEkMhWz7anijKrFNbL/u/wfg4jyBlIKD18g3Pcr2U/JYkhQ9hivEMJ1MOmTswn+7ao10dNnAZR7/n7VdAfirsn75GRAbfOh6B8a8bpphJFuzAI3BO39xW8lv/46fKO7yIzed3O3LNfuRPDX1DhGnF7gY14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726070198; c=relaxed/simple;
-	bh=36KlrzfsV2g215KHFOOz45t4T5Bn2rd6NGxHlDdOsuI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KzLLixy5HR4d5FGgjSejOCQdqop2pAHy5jP21W2vxUCF5GekUBh3NwnTHJbdF1GUhnnW5uzKjnTJzhe6wSx3JNJhG2EULrFEgh6jKBtzHHDGImXw9xaihDQn0hz1rnxzqRB/JXVr1u10Z3RYkYDPzs6xe8p+y7W9i0Dwc84zCQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eT5ICDWd; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-20551eeba95so108885ad.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 08:56:36 -0700 (PDT)
+	s=arc-20240116; t=1726070557; c=relaxed/simple;
+	bh=r6QvD9FhdepOvEr/WYVOCreI6UHgbVKov3rOcox8K/w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Pv7ce8524yQqViuZBZLCuonD3A3Ny/3QmBGvnkuSVuHMd2ojocQljAc/+RaNAsGlngPYPyWSG1t//Xl7TDtBlh7k0FUB+xA7V1Ozyc0SGE85xPk87FfMqUC/skGbWvtUr/40YmacM6WSAUmPXhp4Yq0ATiTdRg+POiIxxeh+4Ag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XQ+dVKZz; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-20551e2f1f8so185635ad.2;
+        Wed, 11 Sep 2024 09:02:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726070196; x=1726674996; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=qyEYdmmCtjL2ZglMclaQOmpZZ8FR1iFPca3qPYCy9w4=;
-        b=eT5ICDWdox3B3cWNDHzc0VhPMARpfWmOpUbkivGYSls4AJ2ep8Z8GAyFdRZVQRXua1
-         PUQ1YQtEAQ1McvpSvRXcBC+qWkiysPnMZt5IVUTfdxpA5PMOD7pQQ2xymudjFk9gnqAz
-         MVET/XUgZ/HDnawZXGFzwgkFw+MCdeYa9i9CvPk77tuZ9JYEAeRmcaesM4uJpacQk7fb
-         wIIMC+h6RHO4nHTffgGR0mIF6PQj0HTDEM8eAMFHuiXyEMFKMVEbjVmgTKYliR7Ek8jh
-         hakzrcAeF9HYQKF08+EqfKH2OCFvThhUDd8pCeESZH4Qbd0hOWrmw0tob+NruXOJJArv
-         Z0Lg==
+        d=gmail.com; s=20230601; t=1726070555; x=1726675355; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8Z0fJcZaNKVfL/yQSd38wTgSdKg5EJ3kwsSWPUkjqWI=;
+        b=XQ+dVKZzN6WXgMnPrIJQn90OkDcK9TFJS7Ydbk40/RUSTdZgaksqZSSSmHmz+c4m7P
+         Zol++4QypuKKl++CpNCunQQ9Xh3ExmKaFuGHj6bdB42Z5lAmIKeBdO38W7l95+i3JsDh
+         yJHhqRH0ZreyG4rB/fyzwXumb3YdjBTbHtKV8+rCOszv4nmc4cmM2IIv7+czvGbpKTI8
+         6ONDQp9ylbVx0hNf/NcmnhTa1OrztY9toHtieJ7QtsMgmbDa9rPeLa3O8ByNuPqNfSzU
+         OubuTs3KKX3mYinmMvhfFZ81PNZDPAMXDAM/K6RaMHH4ip44FquqI5Aswb6tehoakIGW
+         67Pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726070196; x=1726674996;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qyEYdmmCtjL2ZglMclaQOmpZZ8FR1iFPca3qPYCy9w4=;
-        b=Is2zojv+rMvLET1TnG2KmUIPRs0ZblODNbDad6kIFm2iyc6Y5KT8R8AnIm5zvoY3SW
-         XqvHBH6YXO7KjiBhaRu1tqp8ZXX8CiM3tzLXbU05IhZNwRO+gLOmVvECsYtULXMBhsVf
-         8kmMkTs4qtPUYM9AQyp+EANYMWBtdwa7bx288Yz+5LJ045c0z/8qPKZfaKtpzNp/s4FI
-         bzSIIjzSomIV/h4CodZd40hi30BEx6Ob4ncqVVWF+l5kAyQVo/0uQ1OfLE/pyM9ewoP+
-         le3qfbAfOgi3Ao6Aw5iwg/L2B8MWtQ6pbaj9YO2YaqvWQwPO12AKNd0foKL0hnAa4ZQp
-         +y9w==
-X-Forwarded-Encrypted: i=1; AJvYcCUqu8cnjJfjhQeUZj3ip4OMMSF9Syqw/ctKb3s3WX7ItGXr9bLhBoftU8rAR3CatSiPWLG9GK8xS7vW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxjj+KEFyDUKVBnhLu1YT0gF6EQbRG08ELPp9EtKkylgHta31hG
-	NDU4LVAZUPsxJMRrMqVy1FHvUX2J41vxz48fWHAOPrl/WSFq+sh9rCVYkbFQAQs=
-X-Google-Smtp-Source: AGHT+IGa4wRKlJxrETW0qCu5ZTTQ3xb8Do/wPK2e8jasfbzAeq1gxfAE2Mk/Fx9F2dJ/V92m0elHfA==
-X-Received: by 2002:a17:902:d4cc:b0:207:3a46:345 with SMTP id d9443c01a7336-2074c761a4dmr58970435ad.51.1726070196194;
-        Wed, 11 Sep 2024 08:56:36 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:cc9a:9892:2799:3634])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2076afe9cb9sm1159555ad.193.2024.09.11.08.56.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Sep 2024 08:56:35 -0700 (PDT)
-Date: Wed, 11 Sep 2024 09:56:32 -0600
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Jens Wiklander <jens.wiklander@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v9 4/7] remoteproc: core: Add TEE interface support for
- firmware release
-Message-ID: <ZuG9sOI+xX93NCQc@p14s>
-References: <20240830095147.3538047-1-arnaud.pouliquen@foss.st.com>
- <20240830095147.3538047-5-arnaud.pouliquen@foss.st.com>
+        d=1e100.net; s=20230601; t=1726070555; x=1726675355;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8Z0fJcZaNKVfL/yQSd38wTgSdKg5EJ3kwsSWPUkjqWI=;
+        b=HymMC9j56KeRO+l1zEgTIo/20cTILGGKe6g6Z7mVWW2fWMDzNYhAQ3/HTV2XBTZ/g8
+         L5ZAu3faa4r2QDkroRCbWTiEP8zPH9yBG/BFw926PRLKR3KvRW86XUphhfGBhDRPnqnr
+         lxOOXlWItQyCZIgvVmYh6o58P27IBj47z0/lEaBwN3yVl8mMELgHJbsgGlESFnKXDuoY
+         rpTvhQ/O4PKEOn7bFOfOjGxY4XooSplcWSG2h6/3MJJtvuKxYoDDbQt8SVG4EG6Y86Cm
+         bO+ajxKoqy6h31nGC23ygorPHxPW03A2OdfSGdtaKTYXmPR+Ht0j7+3LnKtdv/E0JxYP
+         Nbyg==
+X-Forwarded-Encrypted: i=1; AJvYcCUH/6Ay0z/TH/5rOrobLSVS/JhrrZ0Xk9oXYrrOwgaJJTGP7Qr4t9/sV0XOV8cBhsxH9CMCW39SLsp6Zsmo@vger.kernel.org, AJvYcCXWMUbPKTry2HnQhx3JaU6Oraab3vXxSAuVDJjuk5GSdIMPvTuieEBmzzHPdUenRR9HNrrbIJbJ0aPtak11IOE=@vger.kernel.org, AJvYcCXYXcMkN5Ne0ou/+yb9YeDWVsUbbyWecGpy1IgxhkZ8DVr2GMNqrWHrH6ayYUyvW9m+vbjgOYSfL7jz@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywfj9wIox5BFLKOgoP5Z6uK8/Fg9PeZLguGorY7uzEYzC/6uZR4
+	xVjsJYaNBVCMOto6qX20C/FvE4qoLwFGFBMOZwk1eg87p9d8FvOP
+X-Google-Smtp-Source: AGHT+IGZA2nrfaml+dTZzjUl09CuZgnx91GaM4wHlkcWfHL3Y2AjUxvNpFV+qA7OepeOAbrY+ZUjvQ==
+X-Received: by 2002:a17:902:c946:b0:205:7f87:ba3e with SMTP id d9443c01a7336-2074c5e4cf2mr73320825ad.13.1726070554257;
+        Wed, 11 Sep 2024 09:02:34 -0700 (PDT)
+Received: from [172.16.118.100] ([103.15.228.94])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2076af252e2sm1398935ad.6.2024.09.11.09.02.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Sep 2024 09:02:33 -0700 (PDT)
+Message-ID: <ecd1fff8-9c15-496a-982f-36e6c58e906a@gmail.com>
+Date: Wed, 11 Sep 2024 21:32:21 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240830095147.3538047-5-arnaud.pouliquen@foss.st.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/8] mikrobus: Add mikrobus driver
+Content-Language: en-US
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Ayush Singh <ayush@beagleboard.org>
+Cc: fabien.parent@linaro.org, d-gole@ti.com, lorforlinux@beagleboard.org,
+ jkridner@beagleboard.org, robertcnelson@beagleboard.org,
+ Andrew Davis <afd@ti.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Benno Lossin <benno.lossin@proton.me>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>,
+ Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240911-mikrobus-dt-v1-0-3ded4dc879e7@beagleboard.org>
+ <20240911-mikrobus-dt-v1-3-3ded4dc879e7@beagleboard.org>
+ <2024091144-glitzy-kindly-fa74@gregkh>
+From: Ayush Singh <ayushdevel1325@gmail.com>
+In-Reply-To: <2024091144-glitzy-kindly-fa74@gregkh>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Aug 30, 2024 at 11:51:44AM +0200, Arnaud Pouliquen wrote:
-> Add support for releasing remote processor firmware through
-> the Trusted Execution Environment (TEE) interface.
-> 
-> The tee_rproc_release_fw() function is called in the following cases:
-> 
-> - An error occurs in rproc_start() between the loading of the segments and
->   the start of the remote processor.
-> - When rproc_release_fw is called on error or after stopping the remote
->   processor.
-> 
-> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-> ---
->  drivers/remoteproc/remoteproc_core.c | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
-> index 7694817f25d4..32052dedc149 100644
-> --- a/drivers/remoteproc/remoteproc_core.c
-> +++ b/drivers/remoteproc/remoteproc_core.c
-> @@ -29,6 +29,7 @@
->  #include <linux/debugfs.h>
->  #include <linux/rculist.h>
->  #include <linux/remoteproc.h>
-> +#include <linux/remoteproc_tee.h>
->  #include <linux/iommu.h>
->  #include <linux/idr.h>
->  #include <linux/elf.h>
-> @@ -1258,6 +1259,9 @@ static int rproc_alloc_registered_carveouts(struct rproc *rproc)
->  
->  static void rproc_release_fw(struct rproc *rproc)
->  {
-> +	if (rproc->state == RPROC_OFFLINE && rproc->tee_interface)
-> +		tee_rproc_release_fw(rproc);
-> +
+On 9/11/24 20:27, Greg Kroah-Hartman wrote:
 
-If I understand correctly, the first condition is there because the
-attach/detach scenario does not yet support management by the TEE.  I would
-simply move the check to tee_rproc_release_fw() with a comment to that effect.
+> On Wed, Sep 11, 2024 at 07:57:20PM +0530, Ayush Singh wrote:
+>> A simple platform driver for now that does nothing. This is required
+>> because without a platform driver, the mikrobus_gpio0 nexus node cannot
+>> be used.
+>>
+>> In future, this driver will also allow for dynamic board detection using
+>> 1-wire eeprom in new mikrobus boards.
+>>
+>> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
+>> ---
+>>   MAINTAINERS              |  1 +
+>>   drivers/misc/Kconfig     | 17 +++++++++++++++++
+>>   drivers/misc/Makefile    |  1 +
+>>   drivers/misc/mikrobus.rs | 32 ++++++++++++++++++++++++++++++++
+>>   4 files changed, 51 insertions(+)
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 0cc27446b18a..d0c18bd7b558 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -15433,6 +15433,7 @@ MIKROBUS CONNECTOR
+>>   M:	Ayush Singh <ayush@beagleboard.org>
+>>   S:	Maintained
+>>   F:	Documentation/devicetree/bindings/connector/mikrobus-connector.yaml
+>> +F:	drivers/misc/mikrobus.rs
+>>   
+>>   MIKROTIK CRS3XX 98DX3236 BOARD SUPPORT
+>>   M:	Luka Kovacic <luka.kovacic@sartura.hr>
+>> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+>> index 3fe7e2a9bd29..30defb522e98 100644
+>> --- a/drivers/misc/Kconfig
+>> +++ b/drivers/misc/Kconfig
+>> @@ -610,6 +610,23 @@ config MARVELL_CN10K_DPI
+>>   	  To compile this driver as a module, choose M here: the module
+>>   	  will be called mrvl_cn10k_dpi.
+>>   
+>> +menuconfig MIKROBUS
+>> +	tristate "Module for instantiating devices on mikroBUS ports"
+>> +	help
+>> +	  This option enables the mikroBUS driver. mikroBUS is an add-on
+>> +	  board socket standard that offers maximum expandability with
+>> +	  the smallest number of pins. The mikroBUS driver instantiates
+>> +	  devices on a mikroBUS port described by identifying data present
+>> +	  in an add-on board resident EEPROM, more details on the mikroBUS
+>> +	  driver support and discussion can be found in this eLinux wiki :
+>> +	  elinux.org/Mikrobus
+> So you want to be a bus?  Or just a single driver?  I'm confused, what
+> exactly is this supposed to do?
+>
+> If a bus, great, let's tie into the proper driver core bus code, don't
+> "open code" all of that, as that's just going to make things messier and
+> harder to work overall in the end.
+>
+> If a single driver, why is it called "bus"?  :)
+>
+> thanks,
+>
+> greg k-h
 
->  	/* Free the copy of the resource table */
->  	kfree(rproc->cached_table);
->  	rproc->cached_table = NULL;
-> @@ -1348,7 +1352,7 @@ static int rproc_start(struct rproc *rproc, const struct firmware *fw)
->  	if (ret) {
->  		dev_err(dev, "failed to prepare subdevices for %s: %d\n",
->  			rproc->name, ret);
-> -		goto reset_table_ptr;
-> +		goto release_fw;
->  	}
->  
->  	/* power up the remote processor */
-> @@ -1376,7 +1380,9 @@ static int rproc_start(struct rproc *rproc, const struct firmware *fw)
->  	rproc->ops->stop(rproc);
->  unprepare_subdevices:
->  	rproc_unprepare_subdevices(rproc);
-> -reset_table_ptr:
-> +release_fw:
 
-I would have kept the old label.
+Well, mikroBUS [0] is the name of the socket standard. It is basically a 
+group of following pins:
 
-> +	if (rproc->tee_interface)
-> +		tee_rproc_release_fw(rproc);
->  	rproc->table_ptr = rproc->cached_table;
->  
->  	return ret;
-> -- 
-> 2.25.1
-> 
+Analog - AN
+Reset - RST
+SPI Chip Select - CS
+SPI Clock - SCK
+SPI Master Input Slave Output - MISO
+SPI Master Output Slave Input - MOSI
+VCC-3.3V power - +3.3V
+Reference Ground - GND
+PWM - PWM output
+INT - Hardware Interrupt
+RX - UART Receive
+TX - UART Transmit
+SCL - I2C Clock
+SDA - I2C Data
++5V - VCC-5V power
+GND - Reference Ground
+
+
+I do not think it would qualify as as a "bus" in the Linux driver sense. 
+Especially with the devicetree based approach here which applies overlay 
+directly to the actual uart/i2c/spi controllers and basically not 
+interact with the mikroBUS node much.
+
+
+The driver is here to enable the following:
+
+1. Enable dynamic board detection using 1-wire eeprom on some addon boards.
+
+2. Provide sysfs entry for runtime board adding/removal
+
+3. Enable using mikrobus connector node as nexus node for GPIO (not 
+having a platform driver makes any driver trying to use the connector as 
+nexus node go into deffered probing state).
+
+
+For this patch series, the driver is mostly here due to point 3. 
+Basically a stub.
+
+
+[0]: https://www.mikroe.com/mikrobus
+
+Ayush Singh
+
 
