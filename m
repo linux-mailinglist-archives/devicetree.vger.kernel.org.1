@@ -1,219 +1,143 @@
-Return-Path: <devicetree+bounces-102001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1615975070
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 13:07:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0A90975080
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 13:11:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D64471C22522
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 11:07:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E1BA1C20B72
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 11:11:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE448185B48;
-	Wed, 11 Sep 2024 11:07:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B1D1185B6F;
+	Wed, 11 Sep 2024 11:11:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b="ZIdIDwgU"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RePk/WTU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25BF248CDD
-	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 11:07:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7597C48CDD;
+	Wed, 11 Sep 2024 11:11:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726052849; cv=none; b=Hfrcidk3aA/vkVSELk2YgMwkPzlnpI5bwE0Nbzw64YI+ASSoNvYu1Zz0ht5Mv9IFK+8BR+u0grCSJlZY7tkgeL5Sczn5Z3z6waM9JE3VIzqjE5Ih2UNb0vq60+OvF5MUAicAOweyVgO+ejWS8qF62FLBIDiZrGfU+zRkLoahvBc=
+	t=1726053079; cv=none; b=GLjeX9QUG4kAvr6je4fT837wuGs0qWLM3RB7XimGVCgFOF0AI+0fD4/ellMKJzpQFKjYJZCEy9O3Nv5X0CG/eo9SyVwYD4pjNBLdDlJaWO9e34LqYU49zhDXOc2Z8GRFq3Xokqf7v89h9issNzUz9gQDgVaWdPsTCWsSrGZqS+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726052849; c=relaxed/simple;
-	bh=BP4GHUP1ZwTseeoJTLMOIx06gueTKby1CtIKw/ccRWA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iSkpY8EPQBclckRRM12vFgibjDEbmcTMbaf6xtwgcRSeTXI26C1KLVFRmLCAACiIkHDJXMJ3knnbniDz+MqozsyAlvFg+AUuA0uLc6t18BeU14yTxOV8aCviauoylinRN29OaK5YeAjfG3bmZE4gOgJIfqpy+1uxL/JgOVjTH7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=tomeuvizoso.net; dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b=ZIdIDwgU; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tomeuvizoso.net
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e1d2cf4cbf1so6716265276.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 04:07:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tomeuvizoso-net.20230601.gappssmtp.com; s=20230601; t=1726052847; x=1726657647; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BfKqpT6gMHu6yKs0bohCo1aZwLC/RRj8ZGqLiNhs4jw=;
-        b=ZIdIDwgUYn6IROGGU81jsyn99iuPK7wxJAhcxJS9nRt9fc8YgdsBGVF4hSNFLk9FdD
-         2P0UN3+FNGzyXz9BzOHJ/ajL7jax0H761m6dgAhW2xHI6aTXaQ29aNXCQi4vc6ALxbE/
-         yVYRMS7wJJtAmQ2dJLHHNmDqgZVRgB/92b0NRgnFw8tYPC6wVpDJWrO0F/S+KMRY33KA
-         ZZZSLNP7E1RECpzeR416jHvxjZ2TmoJxRYct6TU7UZM8b/Goc5mzuFchzqEtQtVWnBaT
-         EiLSachOov2q2hgFndBnQQcnaEmYM1Jo2grQH7ADeB6Y+yEqz1rS1+HQJhu7cVx9uvbq
-         mBPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726052847; x=1726657647;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BfKqpT6gMHu6yKs0bohCo1aZwLC/RRj8ZGqLiNhs4jw=;
-        b=C2OXoTqY/W0IbLpIVTdn14/6STJkx/f2Wdocw9KfxMTBKmeA+DFPSWDsXxJwpoPSGc
-         JUeX1rkSpqLtYDtVERMaNXmLzKU5H1R8tr0rmYYkNiHYB930KDUH2ABRDJYisH2M9HHF
-         FnSiL+pdiur7f8Xzr5kD5XmMpPZgCzuSwJq2rU1SGqefBj1pNd7d2OBd7dPMXPFQhP2V
-         EexWcjdB28i0NN//PML4kxrbkLB0q6ZWZUCpbo3eBIz/DC3/u2YEnEdp5nw/kAn3Hy0y
-         qj4k66+NRnYt+FNlT92XR1eup32Zl03akZE6MuUzg4LltmZnJXhLB0UYWQnFLFtSc0IF
-         8yTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXjp6m9OcpEQwHqk0kQGvem4xUUV4xOQXAoKa/oHjwAbXK0vTg8qpL/9XRqDxUfEP7HQmZbgRk5ZxA+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGf+yE4uBKGUsaW9uMDaT3it5OB3vmORnOJj3oqEV+bHsxa75Z
-	WNhuCE9IlrYhuy0cwtUp1oaVu4yAEagvbdCEVb39ljb/G2/LQClP5C5qHIsuRwg=
-X-Google-Smtp-Source: AGHT+IEHR9fPcrUUzIhZfM3NH6WRfny6ubS180Lnq2f7J2YlJ8wPZyA1Nxs60VlAUlEXlEDCKSC0gQ==
-X-Received: by 2002:a05:690c:82:b0:6db:4536:8591 with SMTP id 00721157ae682-6db45368846mr197265367b3.28.1726052847030;
-        Wed, 11 Sep 2024 04:07:27 -0700 (PDT)
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6db96501ca3sm6552417b3.87.2024.09.11.04.07.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Sep 2024 04:07:26 -0700 (PDT)
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-e1a8e305da0so6794131276.3;
-        Wed, 11 Sep 2024 04:07:25 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVNHnG82gjPFKM3ztsO3d9Nm9KqTU3Ip2Y+WZMZZGZhRfDXCYcB3YEutiZRSvGsQmwzx//de+B6jHNC@vger.kernel.org, AJvYcCVOlEyT62i6hKa+54o20WHwcSkkSPNjmuCUdsrXgEz4a6UnoLd5YDkACvaq25e5g+ZqItXV7PFJ66qFauI=@vger.kernel.org, AJvYcCWe3gTSY96dNqphkBM0mHtQaLRSUaq/Lz/gBxLrrhb497g9Mbhnf4Kcei0iyeLaW2tHNNOaPBBUQ9azNzU2@vger.kernel.org
-X-Received: by 2002:a05:6902:2004:b0:e1a:4082:e8f2 with SMTP id
- 3f1490d57ef6-e1d348a15d7mr19851736276.4.1726052845474; Wed, 11 Sep 2024
- 04:07:25 -0700 (PDT)
+	s=arc-20240116; t=1726053079; c=relaxed/simple;
+	bh=J0gev3CYKRztCisnV506oU4MaW4EbCTK6q8A47W8BUA=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=qB3vdMyE8Vjm2tfEqAwh1cNiYxVLve1lmW3zRbRf/LMDy0Md/0jQXyc+YX6QrioYKFjXyZUJ6NsI3q3yyKJgQbQsoNjLR4GpOjms2FyyR0O7gpomtjINY2XSKXjoVqpDJE88VffNrpyg2XaSll/xnI+qaAMpTAm2RNIGACHovis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RePk/WTU; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48B3sQ2f000751;
+	Wed, 11 Sep 2024 11:11:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=b1YT7DCV9sq4+ABCae2mH7
+	YH6JeNm2pa2lC8q3O5VOU=; b=RePk/WTUDdZACNblcYsNSObcrV0R/fWDeVMP6c
+	U40rzh39Z874GiUhNVMDXbsCAoHBSKmQMdUjvMaRM+htIVpKglp9xqGwIB5R0G4l
+	ZpFYKNwOFidQJIltej9DTsohkvLMDri9njcQoO8+lmU0gOnoIoTfgFAARCjZP4cj
+	C6Y68eN3LqPXnG0x+hbsm8COLemrPhsVq5kYX1Ej5Nap/rr/NDuPmSwbp2PwcxzH
+	JSjhxa75F5I9pZyX7zu6go/DEW/LkT/7w6NOSluPaRw7ZIpcSMc3n8ZJZiiFmX8U
+	/TxoVEEonknoE033c/BzipLpHeUEVgnK9SaRvW7PmZ21mdww==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy5197sb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Sep 2024 11:11:13 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48BBBBdC017523
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Sep 2024 11:11:11 GMT
+Received: from tengfan-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 11 Sep 2024 04:11:06 -0700
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+Subject: [PATCH v2 0/4] arm64: dts: qcom: Add support for the QCS9100 SoC
+ and board
+Date: Wed, 11 Sep 2024 19:10:54 +0800
+Message-ID: <20240911-add_qcs9100_support-v2-0-e43a71ceb017@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net>
- <20240612-6-10-rocket-v1-2-060e48eea250@tomeuvizoso.net> <ffviz6ak6qsn2reg5y35aerzy7wxfx6fzix6xjyminbhfcguus@clszdjakdcjd>
- <CAAObsKCx+r5UuESnrPem1Rb1-BF4i8FVwu6uozWhABOWoq+M4Q@mail.gmail.com>
- <CAAObsKChaBZ2C5ezWsiZ_LoN6R2HFhFA9=UNSRYB6cyeo-jreg@mail.gmail.com>
- <vmgk4wmlxbsb7lphq2ep3xnxx3mbv6e6lecihtftxoyp5lidvy@mectcwirrlek> <3516994c-7b06-4409-b9a9-975b9f7a60eb@arm.com>
-In-Reply-To: <3516994c-7b06-4409-b9a9-975b9f7a60eb@arm.com>
-From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Date: Wed, 11 Sep 2024 13:07:14 +0200
-X-Gmail-Original-Message-ID: <CAAObsKCGr8EUB747RN_w2BpTqLzGee+Bwm7HWB=xRbSBE2huUg@mail.gmail.com>
-Message-ID: <CAAObsKCGr8EUB747RN_w2BpTqLzGee+Bwm7HWB=xRbSBE2huUg@mail.gmail.com>
-Subject: Re: [PATCH 2/9] iommu/rockchip: Attach multiple power domains
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Sebastian Reichel <sebastian.reichel@collabora.com>, Joerg Roedel <joro@8bytes.org>, 
-	Will Deacon <will@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Oded Gabbay <ogabbay@kernel.org>, Tomeu Vizoso <tomeu.vizoso@tomeuvizoso.net>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
-	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAL964WYC/1WNwQ6CMBBEf8Xs2ZrdWhU8+R+GEOgW2YMUWiAaw
+ r9b8eTxTWbeLBBdEBfhulsguFmi+C6B3u/AtlX3cEo4MWjUBnMiVTGXg405IZZx6nsfRsV1rTV
+ zVpvLCdKyD66R12a9F4lbiaMP7+1kpm/682V4/vd5WwqrmRQqNEypQc0RzW2YxEpnD9Y/oVjX9
+ QNsKwXltwAAAA==
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Tengfei Fan
+	<quic_tengfan@quicinc.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.15-dev-a66ce
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1726053065; l=1348;
+ i=quic_tengfan@quicinc.com; s=20240709; h=from:subject:message-id;
+ bh=J0gev3CYKRztCisnV506oU4MaW4EbCTK6q8A47W8BUA=;
+ b=610Iy+LSY3UYrA4NE1luZjxIA6PdGwpzr710izynEwMm8PwyUTyUKKCOJ42mNYwxpV3LWAOcq
+ qmErOV/QyPqBOtmSKAg6DDUPZHGXpPCDOCddOgaP4llbsb0gQmItX06
+X-Developer-Key: i=quic_tengfan@quicinc.com; a=ed25519;
+ pk=4VjoTogHXJhZUM9XlxbCAcZ4zmrLeuep4dfOeKqQD0c=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 6bpOXd7TsM0HxjzUWR0tLIAhvbFPpqQ_
+X-Proofpoint-GUID: 6bpOXd7TsM0HxjzUWR0tLIAhvbFPpqQ_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
+ mlxscore=0 bulkscore=0 mlxlogscore=733 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 clxscore=1011 phishscore=0
+ suspectscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2408220000 definitions=main-2409110083
 
-On Fri, Jun 14, 2024 at 2:07=E2=80=AFPM Robin Murphy <robin.murphy@arm.com>=
- wrote:
->
-> On 2024-06-13 10:38 pm, Sebastian Reichel wrote:
-> > Hi,
-> >
-> > On Thu, Jun 13, 2024 at 11:34:02AM GMT, Tomeu Vizoso wrote:
-> >> On Thu, Jun 13, 2024 at 11:24=E2=80=AFAM Tomeu Vizoso <tomeu@tomeuvizo=
-so.net> wrote:
-> >>> On Thu, Jun 13, 2024 at 2:05=E2=80=AFAM Sebastian Reichel
-> >>> <sebastian.reichel@collabora.com> wrote:
-> >>>> On Wed, Jun 12, 2024 at 03:52:55PM GMT, Tomeu Vizoso wrote:
-> >>>>> IOMMUs with multiple base addresses can also have multiple power
-> >>>>> domains.
-> >>>>>
-> >>>>> The base framework only takes care of a single power domain, as som=
-e
-> >>>>> devices will need for these power domains to be powered on in a spe=
-cific
-> >>>>> order.
-> >>>>>
-> >>>>> Use a helper function to stablish links in the order in which they =
-are
-> >>>>> in the DT.
-> >>>>>
-> >>>>> This is needed by the IOMMU used by the NPU in the RK3588.
-> >>>>>
-> >>>>> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-> >>>>> ---
-> >>>>
-> >>>> To me it looks like this is multiple IOMMUs, which should each get
-> >>>> their own node. I don't see a good reason for merging these
-> >>>> together.
-> >>>
-> >>> I have made quite a few attempts at splitting the IOMMUs and also the
-> >>> cores, but I wasn't able to get things working stably. The TRM is
-> >>> really scant about how the 4 IOMMU instances relate to each other, an=
-d
-> >>> what the fourth one is for.
-> >>>
-> >>> Given that the vendor driver treats them as a single IOMMU with four
-> >>> instances and we don't have any information on them, I resigned mysel=
-f
-> >>> to just have them as a single device.
-> >>>
-> >>> I would love to be proved wrong though and find a way fo getting
-> >>> things stably as different devices so they can be powered on and off
-> >>> as needed. We could save quite some code as well.
-> >>
-> >> FWIW, here a few ways how I tried to structure the DT nodes, none of
-> >> these worked reliably:
-> >>
-> >> https://gitlab.freedesktop.org/tomeu/linux/-/blob/6.10-rocket-multiple=
--devices-power/arch/arm64/boot/dts/rockchip/rk3588s.dtsi?ref_type=3Dheads#L=
-1163
-> >> https://gitlab.freedesktop.org/tomeu/linux/-/blob/6.10-rocket-schema-s=
-ubnodes//arch/arm64/boot/dts/rockchip/rk3588s.dtsi?ref_type=3Dheads#L1162
-> >> https://gitlab.freedesktop.org/tomeu/linux/-/blob/6.10-rocket-multiple=
--devices//arch/arm64/boot/dts/rockchip/rk3588s.dtsi?ref_type=3Dheads#L1163
-> >> https://gitlab.freedesktop.org/tomeu/linux/-/blob/6.10-rocket-multiple=
--iommus//arch/arm64/boot/dts/rockchip/rk3588s.dtsi?ref_type=3Dheads#L2669
-> >>
-> >> I can very well imagine I missed some way of getting this to work, but
-> >> for every attempt, the domains, iommus and cores were resumed in
-> >> different orders that presumably caused problems during concurrent
-> >> execution fo workloads.
-> >>
-> >> So I fell back to what the vendor driver does, which works reliably
-> >> (but all cores have to be powered on at the same time).
-> >
-> > Mh. The "6.10-rocket-multiple-iommus" branch seems wrong. There is
-> > only one iommu node in that. I would have expected a test with
-> >
-> > rknn {
-> >      // combined device
-> >
-> >      iommus =3D <&iommu1>, <&iommu2>, ...;
-> > };
-> >
-> > Otherwise I think I would go with the schema-subnodes variant. The
-> > driver can initially walk through the sub-nodes and collect the
-> > resources into the main device, so on the driver side nothing would
-> > really change. But that has a couple of advantages:
-> >
-> > 1. DT and DT binding are easier to read
-> > 2. It's similar to e.g. CPU cores each having their own node
-> > 3. Easy to extend to more cores in the future
-> > 4. The kernel can easily switch to proper per-core device model when
-> >     the problem has been identified
->
-> It also would seem to permit describing and associating the per-core
-> IOMMUs individually - apart from core 0's apparent coupling to whatever
-> shared "uncore" stuff exists for the whole thing, from the distinct
-> clocks, interrupts, power domains etc. lining up with each core I'd
-> guess those IOMMUs are not interrelated the same way the ISP's
-> read/write IOMMUs are (which was the main justification for adopting the
-> multiple-reg design originally vs. distinct DT nodes like Exynos does).
-> However, practically that would require the driver to at least populate
-> per-core child devices to make DMA API or IOMMU API mappings with, since
-> we couldn't spread the "collect the resources" trick into those
-> subsystems as well.
+Add QCS9100 SoC ID and board device trees support.
+QCS9100 is a variant of SA8775p, and they are fully compatible with each
+other.
 
-They seem to be interrelated in some way, because I need to program
-the mappings in all three iommus for things to work, which is also
-what the downstream driver does. Unfortunately, the TRM has zero
-references to the MMU in the NPU section...
+Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+---
+Changes in v2:
+- Add SoC binding for add QCS9100 Ride and QCS9100 Ride Rev3
+- Update SoC binding patch commit message
+- Add QCS9100 Ride and Ride Rev3 board device tree patches
+- Link to v1: https://lore.kernel.org/r/20240806-add_qcs9100_soc_id-v1-0-04d14081f304@quicinc.com
 
-Regards,
+---
+Tengfei Fan (4):
+      dt-bindings: arm: qcom,ids: add SoC ID for QCS9100
+      soc: qcom: socinfo: add QCS9100 ID
+      dt-bindings: arm: qcom: Document qcs9100-ride and qcs9100-ride Rev3
+      arm64: dts: qcom: qcs9100: Add support for the QCS9100 Ride and Ride Rev3 boards
 
-Tomeu
+ Documentation/devicetree/bindings/arm/qcom.yaml |  8 ++++++++
+ arch/arm64/boot/dts/qcom/Makefile               |  2 ++
+ arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dts    | 11 +++++++++++
+ arch/arm64/boot/dts/qcom/qcs9100-ride.dts       | 11 +++++++++++
+ drivers/soc/qcom/socinfo.c                      |  1 +
+ include/dt-bindings/arm/qcom,ids.h              |  1 +
+ 6 files changed, 34 insertions(+)
+---
+base-commit: 6708132e80a2ced620bde9b9c36e426183544a23
+change-id: 20240911-add_qcs9100_support-dbb22dd8b475
+
+Best regards,
+-- 
+Tengfei Fan <quic_tengfan@quicinc.com>
+
 
