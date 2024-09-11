@@ -1,142 +1,123 @@
-Return-Path: <devicetree+bounces-102111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BBDB97587A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 18:34:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80DE69758A6
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 18:43:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25E191F25011
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:34:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED9C4B2673B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:43:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C63021AC8AA;
-	Wed, 11 Sep 2024 16:33:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED7601AE86D;
+	Wed, 11 Sep 2024 16:43:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cke0NNEi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MOXF8KE/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D7901A3AB8;
-	Wed, 11 Sep 2024 16:33:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4589383B1;
+	Wed, 11 Sep 2024 16:43:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726072439; cv=none; b=QfszJNOkGr1b7pAiK1fg8BOGMhDqxs8V6NAH8W8JaM4PQB19KsEDbJEpo/1u+tHWAXYK834zqzDGaJFq2fiWDdc2dvPoa7iOO0kdGplmmIw/DKAvmKowcdWNqUJJB3oPT9mD4T5ypWCv9WnwRjDaCPIIDvcTj+9nUCBsbDgxU40=
+	t=1726072992; cv=none; b=E6bHSmGi/Ovo1pTEkKKjD/T/EshZcdyx/f9UCXMe+Oq1t6mKE/wCHQ6gRqk1Yg6MeeB0hQ7NoMVfUDwQZ6V6GUeisaDUs+TMkyOC533sCLenlgtgv5KToBAVa0assIA4SegRhDd3TxGSbWUxlqKNUVB/XwWhdGim49Tn4oD5nh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726072439; c=relaxed/simple;
-	bh=me2IwCdr0YPbwk7LPVsZk6xYX4lHvRc5w/WlwEq5Ot0=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=LUHNmTXVZX+PjYJC00IFNHFVdNqsUj7ROHp2ldUqZLJVZWTD++JAkHCOqU2gXIJcmc4TD9ulJ9K2gm1ikDKlXi6yVzagVkHeH8QbR0j7sb1pQR18zYTCH+zlnCdNrahG/Adtriou0JdDe1iP2mWrY5P7E5Ap5UDYIrv4S0c3reI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cke0NNEi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C99A8C4CEC0;
-	Wed, 11 Sep 2024 16:33:58 +0000 (UTC)
+	s=arc-20240116; t=1726072992; c=relaxed/simple;
+	bh=yTKnHqS1TKRvdn3M9rhyopTwDU3fOvUVzJwOO+EdAtc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SuwbcpvqCdROaPcZM7V8T25bH0MBMGNopElcdQb64sJ8kiisdY8QAS4hW4/ua53ZKHejZCsnZxwLHTvSzmsQQqFDZzN0vwcLkYORdk/4DFeaVmZb3iEgQGd13owjj8DzK20rN0XUSTDwuk+zdfZnVTyk2C9KLb7r81xNCKv/BEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MOXF8KE/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40056C4CEC0;
+	Wed, 11 Sep 2024 16:43:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726072439;
-	bh=me2IwCdr0YPbwk7LPVsZk6xYX4lHvRc5w/WlwEq5Ot0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=Cke0NNEiY/Ntdi9DzOQWVIx2io2HmhtOE9Tfn/DtPR7XxhJ2nNd/qGrWUEHNo0Hu7
-	 jtXTkS39wkSgMp5MdfGtAdXasMqWFKucOTqwcKosQ2zT355Tkz1r45LHx34oa7hkMk
-	 PFYXqcEQJnAV98EKJ1fw8P67GORnJ/TU3U6pBOKSv42z/bTShuyl5xPhDFjVxyN9fQ
-	 3ZH2P8eMrByP8jTwXRBuAAT/mdCh4dEwC15fTixvA8LXqKJ/yDKBmitZw+BBY/475u
-	 M9thXb3k+g7hf2aRQkbAExivGG3g//uIsLFPSQ3l2XLhQkkGqPbGlheoEpDTYSCfcE
-	 xxQja9Fio1UyQ==
-Date: Wed, 11 Sep 2024 11:33:56 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
-	devicetree@vger.kernel.org, Qianqiang Liu <qianqiang.liu@163.com>
-Subject: Re: [PATCH v8 11/11] PCI: imx6: Add i.MX8Q PCIe root complex (RC)
- support
-Message-ID: <20240911163356.GA643833@bhelgaas>
+	s=k20201202; t=1726072992;
+	bh=yTKnHqS1TKRvdn3M9rhyopTwDU3fOvUVzJwOO+EdAtc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MOXF8KE/pKP7RXSarojs2m5au1NmcyVwVZ10aZAdoDnuhx73kL+agBCqsbt70vWqy
+	 FxnILXCWb6lFjORI0Tajl5TxMjjJlZ+JccS/7ZMW537o0oaxSkUq03GPde2j7aSrjX
+	 O299goJCyjLDVhEIDy7DkhQc3H/lHW5xecAxcFm8oFgGutPIk16SLMpGpnV7/Aljhu
+	 x8HZc8Dii8YDIkHj9WPiEzC0+ighozBN9VvCkg3P3Z33BpKfgaG2uMHnBwqK7Ao7JT
+	 VfWa+07yNJTYH5yYGESB7CA0RPl467enwJ0ZjPlI6hGMzcmtF3cHE6dTZdQ9M7o84J
+	 ZriUEyZ5CwcVQ==
+Date: Wed, 11 Sep 2024 11:43:11 -0500
+From: Rob Herring <robh@kernel.org>
+To: Miquel =?iso-8859-1?Q?Sabat=E9_Sol=E0?= <mikisabate@gmail.com>
+Cc: saravanak@google.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drivers/of: Improve documentation on match string
+Message-ID: <20240911164311.GA775781-robh@kernel.org>
+References: <20240910142422.341672-1-mikisabate@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <ZuG1BfhQpd9GajNH@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240910142422.341672-1-mikisabate@gmail.com>
 
-On Wed, Sep 11, 2024 at 11:19:33AM -0400, Frank Li wrote:
-> On Wed, Sep 11, 2024 at 09:07:21AM -0500, Bjorn Helgaas wrote:
-> > [+cc Qianqiang]
-> >
-> > On Mon, Jul 29, 2024 at 04:18:18PM -0400, Frank Li wrote:
-> > > From: Richard Zhu <hongxing.zhu@nxp.com>
-> > >
-> > > Implement i.MX8Q (i.MX8QM, i.MX8QXP, and i.MX8DXL) PCIe RC support. While
-> > > the controller resembles that of iMX8MP, the PHY differs significantly.
-> > > Notably, there's a distinction between PCI bus addresses and CPU addresses.
-> > >
-> > > Introduce IMX_PCIE_FLAG_CPU_ADDR_FIXUP in drvdata::flags to indicate driver
-> > > need the cpu_addr_fixup() callback to facilitate CPU address to PCI bus
-> > > address conversion according to "ranges" property.
-> >
-> > > +static u64 imx_pcie_cpu_addr_fixup(struct dw_pcie *pcie, u64 cpu_addr)
-> > > +{
-> > > +	struct imx_pcie *imx_pcie = to_imx_pcie(pcie);
-> > > +	struct dw_pcie_rp *pp = &pcie->pp;
-> > > +	struct resource_entry *entry;
-> > > +	unsigned int offset;
-> > > +
-> > > +	if (!(imx_pcie->drvdata->flags & IMX_PCIE_FLAG_CPU_ADDR_FIXUP))
-> > > +		return cpu_addr;
-> > > +
-> > > +	entry = resource_list_first_type(&pp->bridge->windows, IORESOURCE_MEM);
-> > > +	offset = entry->offset;
-> > > +	return (cpu_addr - offset);
-> > > +}
-> >
-> > I'm sure that with enough effort, we could prove "entry" cannot be
-> > NULL here, but I'm not sure I want to spend the effort, and we're
-> > going to end up with more patches like this:
-> >
-> >   https://lore.kernel.org/r/20240911125055.58555-1-qianqiang.liu@163.com
-> >
-> > I propose this minor change:
-> >
-> >   entry = resource_list_first_type(&pp->bridge->windows, IORESOURCE_MEM);
-> >   if (!entry)
-> >     return cpu_addr;
-> >
-> >   return cpu_addr - entry->offset;
-> >
-> > I still think we should get rid of the .cpu_addr_fixup() callback if
-> > possible.  But that's a discussion for another day.
+On Tue, Sep 10, 2024 at 04:24:22PM +0200, Miquel Sabaté Solà wrote:
+> The description of the function now explicitly states that it's
+> an *exact* match for the given string (i.e. not a submatch). It also
+> better states all the possible return values.
 > 
-> Stop these fake alarm from some tools's scan. entry never be NULL here.
-> I am working on EP side by involve a "ranges" support like RC side.
+> Moreover, this commit also makes sure that -ENODATA is returned if
+> prop->length is zero, just like it's done in other functions such as
+> 'of_property_read_string'.
+
+'also' in a commit message is a sign this should be 2 commits. However, 
+more below.
+
 > 
-> Or just omit this kinds of patches.
+> Signed-off-by: Miquel Sabaté Solà <mikisabate@gmail.com>
+> ---
+>  drivers/of/property.c | 15 ++++++++++-----
+>  1 file changed, 10 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 164d77cb9445..1ff51d93178f 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -452,12 +452,17 @@ EXPORT_SYMBOL_GPL(of_property_read_string);
+> 
+>  /**
+>   * of_property_match_string() - Find string in a list and return index
+> - * @np: pointer to node containing string list property
+> + * @np: pointer to the node containing the string list property
+>   * @propname: string list property name
+> - * @string: pointer to string to search for in string list
+> + * @string: pointer to the string to search for in the string list
+>   *
+> - * This function searches a string list property and returns the index
+> - * of a specific string value.
+> + * Search for an exact match of string in a device node property which is a
+> + * list of strings.
+> + *
+> + * Return: the index of the first occurrence of the string on success, -EINVAL
+> + * if the property does not exist, -ENODATA if the property does not have a
+> + * value, and -EILSEQ if the string is not null-terminated within the length of
+> + * the property data.
+>   */
+>  int of_property_match_string(const struct device_node *np, const char *propname,
+>  			     const char *string)
+> @@ -469,7 +474,7 @@ int of_property_match_string(const struct device_node *np, const char *propname,
+> 
+>  	if (!prop)
+>  		return -EINVAL;
+> -	if (!prop->value)
+> +	if (!prop->value || !prop->length)
 
-As I said initially, we probably *could* prove that "entry" can never
-be NULL here, but why should I have to spend the effort to do that?
-The "windows" list is not even built in this file, so it's not
-trivial.  And even if "entry" can't be NULL now, what's to prevent
-that assumption from breaking in the future?
+This is redundant. If length is 0, then 'end' will be equal to p and 
+we'll return -ENODATA.
 
-I don't think there's anything wrong with checking for NULL here, and
-it avoids copy/pasting this somewhere where it *does* matter.  So I'm
-in favor of this kind of patch.
-
-Bjorn
+>  		return -ENODATA;
+> 
+>  	p = prop->value;
+> --
+> 2.46.0
+> 
 
