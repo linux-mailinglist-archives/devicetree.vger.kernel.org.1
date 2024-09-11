@@ -1,75 +1,55 @@
-Return-Path: <devicetree+bounces-102129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9D30975983
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 19:35:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88C41975988
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 19:36:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A240D2831A9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 17:35:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33A761F23119
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 17:36:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA521B3B2F;
-	Wed, 11 Sep 2024 17:35:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB9511B4C23;
+	Wed, 11 Sep 2024 17:35:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="miLmdgGo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NmXgss2E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EA2E1AE852;
-	Wed, 11 Sep 2024 17:35:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C49831B3F36;
+	Wed, 11 Sep 2024 17:35:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726076144; cv=none; b=XtvlNr2FJbhlzGR7vUKSPMOlRp8tFYqzQRc0enfspGmpHFPhWdumr2kiyk4P3wiXudLSBprNqACx6LNeBkL00/+1aVtIUtnRUH9pJNyTy5Wo4YO2IqZV4p1zCfa8ZXRd+RpcZgixcmiYZG8Vmu860hhKgY2xehS9W7olRnIrw0c=
+	t=1726076159; cv=none; b=QgXRa3tRj2MGjRUc/TzU2Z93NaHmAO4werBF8qPWujrPLmr+jkTLrafb8yzSInDzayIg0N0fj/uNV+RISlhZl1k6GABP3GrIBH6Id6yNucUvnZfOT4/6NaONkrqwOle1xnxiLovvmsO/eWO46uZt1KUhC6hMIT+h7ZTMEktPZ40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726076144; c=relaxed/simple;
-	bh=YbkFZVRnO7z0xDZitZm29si1xpSBine6L+hGh61wN1U=;
+	s=arc-20240116; t=1726076159; c=relaxed/simple;
+	bh=B+8kHFG6GDk8TMxMonyWxF+9E4kM8Ko6DZ6+TCyxbDk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Rgg2N+y1g0KC9V24EXWMfslTmL/6cKHCqhA/5/a9BSGbKqMcOHP711XDQ1uwBLsY8bmXxezlrgEqYS7zh4uX9jnikVbIBRqpZjp76I4uZO1BDnNJ01lIEEUybrf7c9RLlLBTtaGamiDYyiOxYfNmEiqsSQRN0xHMBw+U5BC/YqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=miLmdgGo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 195EAC4CEC0;
-	Wed, 11 Sep 2024 17:35:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lR/RwxMjudq+zF9vXSI8gMzAp7W3E7WhKyYFf2g2l10zTVml14wf+jZ3pbANNt1AkUYTOlz3ghulUblV85M8D5c5yLjUtCQEUMwkrY/GZtex9Ax7Gj9DrXO+/24dgO4bAxNJZH9zhG3D/BvMKcTDHxyIVu3EW4E+tPKbpRuPKCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NmXgss2E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 233EDC4CEC0;
+	Wed, 11 Sep 2024 17:35:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726076143;
-	bh=YbkFZVRnO7z0xDZitZm29si1xpSBine6L+hGh61wN1U=;
+	s=k20201202; t=1726076158;
+	bh=B+8kHFG6GDk8TMxMonyWxF+9E4kM8Ko6DZ6+TCyxbDk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=miLmdgGorlsJh0FQ94RmjTjwSf0/zRABbJ94KLqEmEDIjjdPPXJ34x69OvXCpI9nx
-	 Yxf0CufuinCFr8VaPmOMhDerDsA8hp49UbpnvvfTAUO0R/mssnjDuPOnfVPMsHdwkZ
-	 dmZzUnDLnYY54Wh9WNmYqdfFXYkSkwYzpYoj4W3xgZjzJx/RJjVKlhhbmnaDvQJRzU
-	 PhAPSO4s0fMSwLMAC5lFT22m3syGPJVsOVCuRr41760TEVausfkYOezblo9RkM0xHz
-	 E9v9kAHilNC13DoR/thFVknR2PQsN7/Os4jOIpTQbQECNMdmjxxaKZTPRv47DUpjmM
-	 Ii9Du3WxbVnaw==
-Date: Wed, 11 Sep 2024 19:35:35 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Ayush Singh <ayush@beagleboard.org>, fabien.parent@linaro.org,
-	d-gole@ti.com, lorforlinux@beagleboard.org,
-	jkridner@beagleboard.org, robertcnelson@beagleboard.org,
-	Andrew Davis <afd@ti.com>, Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, linux-kernel@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/8] rust: kernel: Add Platform device and driver
- abstractions
-Message-ID: <ZuHU5yrJUOKnJGrB@pollux>
-References: <20240911-mikrobus-dt-v1-0-3ded4dc879e7@beagleboard.org>
- <20240911-mikrobus-dt-v1-1-3ded4dc879e7@beagleboard.org>
- <2024091106-scouring-smitten-e740@gregkh>
+	b=NmXgss2Eq1ibmvIciA1UjdxO9JsxoRmXSEHlh51D2P7Ma6ITV5C4wN4xG4j3dbRUK
+	 RHPtwgQ+5Y358eiO47EpQObxkh9QJiN8DO3YXHMQZFYn35tDeikwYmjAykyd9Bluu/
+	 drzTt1c2AEP/D5Hid5ZXpA/2H6z6gGvlT0xvGUIyAgXpDv2LphqpZ6gfsGJhxDMmle
+	 Br+geBfJgWbi1P5vJHqAtiUwaSdF4InPNljKGxfZnKeNksMdRWtJVUICNNWS/vdZ77
+	 JhgqfocVW7NE7jdRIO6A43o1dy6pqYVhXJhsphONfcJXT8qEp7vbs3WMvoGAZqjzMd
+	 /1ZNZtkLsDOWA==
+Date: Wed, 11 Sep 2024 12:35:57 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Nikunj Kela <quic_nkela@quicinc.com>
+Cc: conor+dt@kernel.org, quic_psodagud@quicinc.com, krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org, kernel@quicinc.com,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4] dt-bindings: arm: GIC: add ESPI and EPPI specifiers
+Message-ID: <172607614907.1010907.12404098016116967831.robh@kernel.org>
+References: <20240910162637.2382656-1-quic_nkela@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,47 +58,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2024091106-scouring-smitten-e740@gregkh>
+In-Reply-To: <20240910162637.2382656-1-quic_nkela@quicinc.com>
 
-On Wed, Sep 11, 2024 at 04:56:14PM +0200, Greg Kroah-Hartman wrote:
-> On Wed, Sep 11, 2024 at 07:57:18PM +0530, Ayush Singh wrote:
-> > +/// An identifier for Platform devices.
-> > +///
-> > +/// Represents the kernel's [`struct of_device_id`]. This is used to find an appropriate
-> > +/// Platform driver.
-> > +///
-> > +/// [`struct of_device_id`]: srctree/include/linux/mod_devicetable.h
-> > +pub struct DeviceId(&'static CStr);
-> > +
-> > +impl DeviceId {
-> 
-> <snip>
-> 
-> I appreciate posting this, but this really should go on top of the
-> device driver work Danilo Krummrich has been doing.
 
-If everyone agrees, I'd offer to just provide platform device / driver
-abstractions with my next patch series. This way you don't need to worry
-about aligning things with the rest of the abstractions yourself and throughout
-potential further versions of the series.
+On Tue, 10 Sep 2024 09:26:37 -0700, Nikunj Kela wrote:
+> Extended SPI and extended PPI interrupts are in the range [0-1023] and
+> [0-127] respectively, supported by GICv3.1.
+> 
+> Qualcomm SA8255p platform uses extended SPI for SCMI 'a2p' doorbells.
+> 
+> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+> ---
+> 
+> Changes in v4:
+>         - Included interrupts ranges in description
+> 
+> Changes in v3:
+>         - Removed the patch from original series[1]
+> 
+> Changes in v2:
+>         - Modified subject line and description
+>         - Added EPPI macro
+> 
+> [1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
+> ---
+>  include/dt-bindings/interrupt-controller/arm-gic.h | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-Just be aware that I probably won't get to work on it until after LPC.
+Applied, thanks!
 
-> He and I spent a
-> lot of time working through this this past weekend (well, him talking
-> and explaining, and me asking too many stupid questions...)
-> 
-> I think what he has will make the platform driver/device work simpler
-> here, and I'll be glad to take it based on that, this "independent" code
-> that doesn't interact with that isn't the best idea overall.
-> 
-> It also will properly handle the "Driver" interaction as well, which we
-> need to get right, not a one-off like this for a platform driver.
-> Hopefully that will not cause much, if any, changes for your use of this
-> in your driver, but let's see.
-> 
-> thanks,
-> 
-> greg k-h
-> 
 
