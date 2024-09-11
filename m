@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-102012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFF1F9750B6
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 13:25:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9041B9750B8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 13:25:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A6001F23466
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 11:25:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51A0B2887C8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 11:25:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5287D185B7A;
-	Wed, 11 Sep 2024 11:25:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C49C8185B7A;
+	Wed, 11 Sep 2024 11:25:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NC4kYUPC";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="F+LbNxgl"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ODdPJDx/";
+	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="k16cWy3X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from a7-45.smtp-out.eu-west-1.amazonses.com (a7-45.smtp-out.eu-west-1.amazonses.com [54.240.7.45])
+Received: from a7-33.smtp-out.eu-west-1.amazonses.com (a7-33.smtp-out.eu-west-1.amazonses.com [54.240.7.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB19186E52;
-	Wed, 11 Sep 2024 11:24:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B02F17C21B;
+	Wed, 11 Sep 2024 11:25:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726053902; cv=none; b=o2aO7KPJubURtZoDhTHhC6eNYJ480j0bPwK63SpmaO6aKkGw8YUEJSfzkNHJKqkAIe705q7TwNaU5u5FvnGLASNj2fiHTc9Uv+0oGBE24BHqU3xTWnW/bn+mW9cOyezdfKzUhOPnil1IqV/+AnL2i3GAcfsRwNECHOFNwN5PKvY=
+	t=1726053946; cv=none; b=NuL4YSeLrZOa4HDX2v4AVCDHysDxv1tIZ2mkYxKeY4Uuupf5kojdj8j0gFH6e8wYAixC6mQnee31nS2aPY/9+zCH4UZYds40haRJNOI8qCmQka0OorCDDqj8cfQOIBIuhEJxczLu7Mz/XFSuog4kV04bimKdpwHhiIEL875Dgl0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726053902; c=relaxed/simple;
-	bh=0OC+2f4WWQUaEAQekYa+3Ctje3AZxE3EHaRKKI/Ddfg=;
+	s=arc-20240116; t=1726053946; c=relaxed/simple;
+	bh=ClJQQmMllX6exPeX1+6DYsZvUq0xm7fA8sKPr1Vr3Nc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hbhPPMCGJsVCKYYxXct2LZVF61U8jRqvSaeSbvS/V4om0at8XGX7dmjPBsJDrEAx3HuOGDSwzasNcgf/57G6hF+YnS+chllbwQX4NSfFXfgTzKLXxxCrvBdjB562od93GwRom1/xZkfqnEecDwjqlSepkjkidowJYkFsQVzvfIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NC4kYUPC; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=F+LbNxgl; arc=none smtp.client-ip=54.240.7.45
+	 In-Reply-To:Content-Type; b=aHE+AH3EBCwBZ7uL0Lf7iIxa8KJISTL3SS5ozTO866BWbCZ/h7zmQ/pbgqMEoF7Sxa/19YOx4OruhqWQtRDhHEcJewtp00oASC5KS3KgdBcsVgG8qwcHj8KCqLDXFnAH69079JZAFlXkwNnNqNckqfX9/Y5Hzs9R3YodD8T4X+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ODdPJDx/; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=k16cWy3X; arc=none smtp.client-ip=54.240.7.33
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazonses.collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1726053898;
+	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1726053943;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding;
-	bh=0OC+2f4WWQUaEAQekYa+3Ctje3AZxE3EHaRKKI/Ddfg=;
-	b=NC4kYUPCo/weRsJso17p/pDwyMJ6kGym9YUyk1miZC4vUaGcRpQTflLBSUG48O10
-	27lodhusyHxd4MWVOKr/0nB0iEVS7k/zh6VzNv8D9sdasrCuae1I3gVEeyi3FtJQtE3
-	gq7hlF2OcxUs2i6R2vYszPqPlbrMw/bxzFw0mZlRamrNR13iTellRCbWuwnT0rh8nDT
-	cIyG4o7b8Di0q6xIecjGTpTq36Pu+YBBKjnuXWE2ckW4Sn66u7tHhArqtaZ/kKgcSI4
-	TAjbG8/LN2LA9w2NCk6JWcroMQytcANmvxg1v4y/cA4Qaz5dN0yfH9e3ddSRVWbSMN4
-	jWkq+FpxOA==
+	bh=ClJQQmMllX6exPeX1+6DYsZvUq0xm7fA8sKPr1Vr3Nc=;
+	b=ODdPJDx/jLT17tOcmTCDctsItStRbKWp8X3MSQU7oVrdu7YFJ7prdqiVu7WAId1b
+	xVtH+o4qIjOb/c67yc2G/aSvF+7nZIQcIE+Koc8n7boutJUqpzyDhNLNsJprKleQuVs
+	DVQ9Pxy6/FUv4CpZ+spFIi/H22qlhrsKfCa7XTjRWFYq7dQRugRPYpQFPX0oBA8owYN
+	Aaj2Oj5gXArb4fYtjykCFcksA9sZpEb95lCXI/4kMxk3ocRjuzuVq6bX+Fzq5gOzLY0
+	fZJxj0j0ITXZ9xKCzMts7d9qMXepO2xhNJkKw5zFk28VxsiCkuVZBRIPFd2+HjUwjQT
+	ul/1oabzOg==
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1726053898;
+	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1726053943;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID;
-	bh=0OC+2f4WWQUaEAQekYa+3Ctje3AZxE3EHaRKKI/Ddfg=;
-	b=F+LbNxgli/3i8+Mjnnavv3bhnZDNlPAYplFiCntaHPYtOHrYuMeBoRLP5In7gH97
-	JKqqRNpsmqIV0fNU0+y2hPmUq/CpFkT59mc1JTYyomsvi3XUkdaayGJcCisCgRCgB2x
-	efRqmRE8iG18hI30aTkCBHNCO1by1ylyu/qYKTw0=
-Message-ID: <01020191e0d4570b-2178f43c-6912-4722-a0c4-41560dd73643-000000@eu-west-1.amazonses.com>
-Date: Wed, 11 Sep 2024 11:24:58 +0000
+	bh=ClJQQmMllX6exPeX1+6DYsZvUq0xm7fA8sKPr1Vr3Nc=;
+	b=k16cWy3X0L74jRDviwtgOVzvQsoPOP/SaGOHvWUu5MalRuJIoWjykKtaRJWPas0z
+	4P9KBjl4JPNaNIVbs4tI9zpqB8WUgc2IraFXjIvyramjpddD1zLIFwscREfE3g5gQxE
+	LVZat2W0hO5XuksMn6raClR2wZtZtIol3A7V77WI=
+Message-ID: <01020191e0d508d9-18f9aef4-fecc-4486-a8c8-f41bd4784e13-000000@eu-west-1.amazonses.com>
+Date: Wed, 11 Sep 2024 11:25:43 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,34 +58,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/8] dt-bindings: mailbox: mtk,adsp-mbox: Add
- compatible for MT8188
+Subject: Re: [PATCH v2 8/8] arm64: dts: mediatek: mt8188: Add socinfo nodes
 To: Fei Shao <fshao@chromium.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, 
-	Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
 	linux-mediatek@lists.infradead.org
 References: <20240911105131.4094027-1-fshao@chromium.org>
- <20240911105131.4094027-3-fshao@chromium.org>
+ <20240911105131.4094027-9-fshao@chromium.org>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20240911105131.4094027-3-fshao@chromium.org>
+In-Reply-To: <20240911105131.4094027-9-fshao@chromium.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
-X-SES-Outgoing: 2024.09.11-54.240.7.45
+X-SES-Outgoing: 2024.09.11-54.240.7.33
 
 Il 11/09/24 12:51, Fei Shao ha scritto:
-> Add compatible string for ADSP mailbox on MT8188 SoC, which is
-> compatible with the one used on MT8186.
+> Add two socinfo efuse data nodes for the SoC information probing on
+> MT8188.
 > 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
 > Signed-off-by: Fei Shao <fshao@chromium.org>
 
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
 
 
