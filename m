@@ -1,125 +1,116 @@
-Return-Path: <devicetree+bounces-102048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ABC59754F5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:07:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58614975506
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:10:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB6B4285F00
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 14:07:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83ED71C22C4D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 14:10:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AB7A41C92;
-	Wed, 11 Sep 2024 14:07:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1672518593F;
+	Wed, 11 Sep 2024 14:10:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ui2yWa6X"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ISqFutuI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E81F83FB30;
-	Wed, 11 Sep 2024 14:07:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD2B7188A05;
+	Wed, 11 Sep 2024 14:10:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726063645; cv=none; b=E/XDH7Fod9M3nH1svMa4mSxz6AXDsApXEcVh4ImeGw4v0jtSLhtWsCH9mdFxXlk752XCIi/7p6Gk1KFiF/rRm1zgEb6auRgBkhI3gBG6bUwCCsFIha47x245/ltACHSHy1YrTjsjwQmZeHIOSOpxlk5KmF3hnEWyJwsea3icQBg=
+	t=1726063851; cv=none; b=cDq4C5I58DZCfUffVGYyji9rNfNG21ArurAhxoLisqvEm5iA0g1e8tb1APROOtVXPiqMeTUWkcEIG5qYeObd5y25SQ+VW8bYGJBW9LKJ99eE86FnGtY88iXvkNoMOVnyx11Fl1EUdP/lpqN5thdOfkMmfuDkaSJVYLUWrueitgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726063645; c=relaxed/simple;
-	bh=r0VvpXAuRXJx3vp8kOdxd9EfYvbZyCGak9YTxgXyHb8=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=TFlmKhu9N5v3SGTbHFQs/NY2ibxnbOJ5g3Ji1L2idV5S+FJ9lDh+8gLWXz7MRFsnp+X/KARJoDaavmj4WeEgurKZoeC6pYculpjQITgR9hpYrkzmLS+gTwIB/TcjTE0K5JwI0eMS2SmpvuMPichnqEPvZVRPHlVVT/GW7SOoO00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ui2yWa6X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AF78C4CEC0;
-	Wed, 11 Sep 2024 14:07:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726063644;
-	bh=r0VvpXAuRXJx3vp8kOdxd9EfYvbZyCGak9YTxgXyHb8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=Ui2yWa6X7iHBcYX32/ca4LD22AvNygh2Ug4YOmwLYA9yyXx6mvGowmxulmtdIU2HZ
-	 W+eIT5oLdMpjIRTHHDNABHENAX4LrY3RvFufefCYRfDH8UKXZ0JmeI3PodOXZ4fu+r
-	 QIWBke5DZvVffSmhdVEaUwJmdixtmqDoRNoeWAiPv4ZgtS8AG/GjkL/sgWWoXLWBep
-	 foHnfwi4hoHXJOgofT1LDz+ndLl3HX4N/RRQW15jECNO8X/8vPLvxU+tFh+/Ac7MgK
-	 2oJU9c8wORLWW0N7a/mm88UM2faha4DMEe2cuF3WTLsD4OSUlCsaM4rVX3pZijbx3R
-	 c/iR8ZWcJNT/A==
-Date: Wed, 11 Sep 2024 09:07:21 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
-	devicetree@vger.kernel.org, Qianqiang Liu <qianqiang.liu@163.com>
-Subject: Re: [PATCH v8 11/11] PCI: imx6: Add i.MX8Q PCIe root complex (RC)
- support
-Message-ID: <20240911140721.GA630378@bhelgaas>
+	s=arc-20240116; t=1726063851; c=relaxed/simple;
+	bh=ZK2+IxRNVqlt2+SM3hV6kWAM5192f+KQT98Sa8nIYdo=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=B64jba/TOW0i7cCFdOyVYwr5/DpiRZEzdUTqWh5ad+ralNI0x9MRmaIs8FCexCmeun0OP08Sq+7MU05KtcyHqVXbcj3d7AhMXgls5CGQuLqNdz5dA4EcIvj+53irCSCB5FkTF3bw4EsEWWUMgbcea6fpOG0mTZJH4AQEwny75wk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ISqFutuI; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2054feabfc3so60235805ad.1;
+        Wed, 11 Sep 2024 07:10:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726063849; x=1726668649; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=UHmfW921nMYPHNEVvSEZf5hsK+I8JZQzxqbgs7+8dbY=;
+        b=ISqFutuIGEKxMPoSb/7j5LbXYonXaAH5TnzuWZk6+8ALBVItGHO4hug0TVl+V4U67/
+         GH2XDpWCX0wDdGrOwRwdwr6LA/ynl3olX2wxiSWZUpmE8MVAYSOuwSt56msb1jK0Xdyf
+         zMD2nJcJKdVpE2pTWNEULDMo3+6NK/6KIZhpYrMPZuIZ2GOYTbOT7MbpYq9ecGhqOpw9
+         NNiEL9DhDothlcr24TT32bkwtZxGFY3TcXQbquxqE1cNXZZZ25l4Ozh/VwaOhwHDw0Wk
+         GbKtOFesD7nD95d9KxG6G9xCoVJyVUDde5INYyLjLgQ5EBhUkC5nvnNGUG4OnYBJhnVM
+         cS6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726063849; x=1726668649;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UHmfW921nMYPHNEVvSEZf5hsK+I8JZQzxqbgs7+8dbY=;
+        b=US7SdHAJXPV0O3cUG+DZnVzxcD2UFtZx9zV7cd6JAQEXPybrhdd4mmTXAsqk5QQPK/
+         9UsYZHpxlygyx8P5PTwYx/j9JVVVl5aGkORMdz4VyabJIOKeUBkUCbBMAs/UZHYCrFv3
+         SyheAxcGjHnKcvaHcdfk7KSQTF1hb3C6GNB5OPMX88h2pWbyV9uhgcCSamYOS8CDuDvR
+         OGp6uwi3bj6fqcVmKrMwq32uSdGsLZr8FjHYkWwqJea62rRxDdJ4v4Dy8o8eAkC26ZxR
+         Z+d8O9AIYU0awtgQRlx0dzah3MAZt4wt9Wv8xEK/aOpqXO8z8MRWnJz7vDEQ3aXt0O6D
+         eTgg==
+X-Forwarded-Encrypted: i=1; AJvYcCV4+DMyzeW/9L1MYjTbG2kdMSd0jsyAf5PoT/3ow545xzHBx7CBz8Vfc2V7Er/iz9ZFCa45CBplXQOlCFF5@vger.kernel.org, AJvYcCVSxhdGoWaT0scIQJivPwRr0bevMEC5h97ALnMOyo3DKZMvRbuqMH4DpwXVYlOICy0J2J4kr1XXJJa5D3YpW6M=@vger.kernel.org, AJvYcCWGY2IQklM8QFEVMamW7kEStghM8yG0/tzcCEszh2KqRqfprKnHMhKy2Voovk7u9koL8ntTKVn9WgLE7w==@vger.kernel.org, AJvYcCXC2OYAOAz2gOWijINiQXRbZl3fPOAZhRs0wKASlA/+PWk8XXz7dn+2pHLdvd7EumVLD+cq0cig99zw@vger.kernel.org, AJvYcCXL1XIGLqxJBHpmRZW6n1G5JQi1kfEMmtW3mcXW/L8JkBagtH7h7v/+umsp2m6seWF2F1guLpitCxo=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGmq6H7tj+xNGK420MeSaw5NeSdnHcluSo22RisTS5T1sWEbLG
+	0K0myj8V8LCFeBf2uzahjANw/eSg1mBd91MSjV10GihmWjqY1Xrp
+X-Google-Smtp-Source: AGHT+IGrJBh462kHYswwLIVvVm5LhvRtm2F/elyjLvrWN1VG/mzjIm1UzoZqu6qi8hy8Ub1yQ5B1YQ==
+X-Received: by 2002:a17:902:f646:b0:206:c675:66cc with SMTP id d9443c01a7336-2074c5de235mr57743545ad.17.1726063848732;
+        Wed, 11 Sep 2024 07:10:48 -0700 (PDT)
+Received: from [192.168.0.122] ([59.188.211.160])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2076b01a896sm7975ad.298.2024.09.11.07.10.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Sep 2024 07:10:48 -0700 (PDT)
+Message-ID: <587a431c-c62a-4c29-9c69-8a256a4b84a0@gmail.com>
+Date: Wed, 11 Sep 2024 22:10:43 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240729-pci2_upstream-v8-11-b68ee5ef2b4d@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/22] Initial device trees for A7-A11 based Apple devices
+From: Nick Chan <towinchenmi@gmail.com>
+To: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Mark Kettenis <kettenis@openbsd.org>, asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org
+Cc: Konrad Dybcio <konradybcio@kernel.org>,
+ Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+References: <20240911084353.28888-2-towinchenmi@gmail.com>
+ <369a32dc-330e-4827-a61f-5686f7d90a07@gmail.com>
+Content-Language: en-MW
+In-Reply-To: <369a32dc-330e-4827-a61f-5686f7d90a07@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-[+cc Qianqiang]
 
-On Mon, Jul 29, 2024 at 04:18:18PM -0400, Frank Li wrote:
-> From: Richard Zhu <hongxing.zhu@nxp.com>
+
+On 11/9/2024 20:13, Nick Chan wrote:
+> The Home Button probably should be assigned KEY_MENU instead of
+> KEY_LEFTMETA.
+So this is a bit confusing, there is KEY_HOME, KEY_MENU and KEY_HOMEPAGE,
+other phones like arch/arm64/boot/dts/qcom/msm8939-samsung-a7.dts seems
+to be using KEY_HOMEPAGE, so I think I will stick with KEY_HOMEPAGE
+
 > 
-> Implement i.MX8Q (i.MX8QM, i.MX8QXP, and i.MX8DXL) PCIe RC support. While
-> the controller resembles that of iMX8MP, the PHY differs significantly.
-> Notably, there's a distinction between PCI bus addresses and CPU addresses.
-> 
-> Introduce IMX_PCIE_FLAG_CPU_ADDR_FIXUP in drvdata::flags to indicate driver
-> need the cpu_addr_fixup() callback to facilitate CPU address to PCI bus
-> address conversion according to "ranges" property.
+> Nick Chan
 
-> +static u64 imx_pcie_cpu_addr_fixup(struct dw_pcie *pcie, u64 cpu_addr)
-> +{
-> +	struct imx_pcie *imx_pcie = to_imx_pcie(pcie);
-> +	struct dw_pcie_rp *pp = &pcie->pp;
-> +	struct resource_entry *entry;
-> +	unsigned int offset;
-> +
-> +	if (!(imx_pcie->drvdata->flags & IMX_PCIE_FLAG_CPU_ADDR_FIXUP))
-> +		return cpu_addr;
-> +
-> +	entry = resource_list_first_type(&pp->bridge->windows, IORESOURCE_MEM);
-> +	offset = entry->offset;
-> +	return (cpu_addr - offset);
-> +}
-
-I'm sure that with enough effort, we could prove "entry" cannot be
-NULL here, but I'm not sure I want to spend the effort, and we're
-going to end up with more patches like this:
-
-  https://lore.kernel.org/r/20240911125055.58555-1-qianqiang.liu@163.com
-
-I propose this minor change:
-
-  entry = resource_list_first_type(&pp->bridge->windows, IORESOURCE_MEM);
-  if (!entry)
-    return cpu_addr;
-
-  return cpu_addr - entry->offset;
-
-I still think we should get rid of the .cpu_addr_fixup() callback if
-possible.  But that's a discussion for another day.
-
-Bjorn
+Nick Chan
 
