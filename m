@@ -1,50 +1,68 @@
-Return-Path: <devicetree+bounces-101863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B27E297480D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 04:10:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3709F97483B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 04:38:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC7971C25708
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 02:10:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A4091C2571A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 02:38:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C7912770B;
-	Wed, 11 Sep 2024 02:10:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E4EB29CEB;
+	Wed, 11 Sep 2024 02:38:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MJhxmXY5"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="hgIy5hX1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m3297.qiye.163.com (mail-m3297.qiye.163.com [220.197.32.97])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64A6425745;
-	Wed, 11 Sep 2024 02:10:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD5351E87B;
+	Wed, 11 Sep 2024 02:38:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.97
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726020633; cv=none; b=I1xjFN8pieypynNNEXE/foWGT2jPkcchafIex2GyZ7riNZrcSiTVn890qbihi3kwkBXKM1H2Q4AEsWM7yIhoRXECMgrfwaurXdpqGKziv4IGDquni4AOw+YpsT0Pi4wk0oAP7bf7C98z2Fe7m2N2FL3ueBsLpFpkPPrEMoYa6sQ=
+	t=1726022287; cv=none; b=jmsikcU2HjfkWMrvdx6Et+yao1Qs2VH86a4jt4TUdn2w5O/0uMibvqhODXXHa9GlB50+p2DurGKBa9a/84MEwxRMhi3gar4Br+Flt6+56KKR4EkJwL1by2XaYSy1FYEgr1tLbj32PU9LfDVBTiF26bP9r0iSkyuttDBqf0vW+vo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726020633; c=relaxed/simple;
-	bh=Ukvdmk6V9AkDsXn18d1wcBFwVU2wInYSavYgNP9N5v4=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=kGZbjas9jd6sq0eGZgVs2qIBmy7JTA1S94BA4tORvxf02ZxmzIgbLO/Y0F2foAzBwKmJ7MH7YhETkm+rk7RY5NJklzEZGn8HOR2027352npuLmeE6zL7BN9ebPwzHXUUxtk+p3eMq7Fp0KEIyg4RyogQ/nCRNiokXCGw8CkQ75c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MJhxmXY5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF6CFC4CEC4;
-	Wed, 11 Sep 2024 02:10:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726020632;
-	bh=Ukvdmk6V9AkDsXn18d1wcBFwVU2wInYSavYgNP9N5v4=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=MJhxmXY5ACfTu9lK2dO6lJ12cvkv49jnbviNSg4Y/wPAJxz0MT9j7dHnp8KY4p0D1
-	 wsJtvXAeupdL21TRCMVgaIPiKQQ72pMuw5b0vklKdaALjcVnskZveAbmp0+P9QVcMk
-	 eYgyNOXFknJr02WbWl0RzEYwlaTWe5gJAoKqjfhlZofNMaQ/N5Bkedg2igpqnCvtvW
-	 PFt7KNjONwxKHWl2iSybhQ5GQBmgns/GoNp6oKgKesTdN9YZUfVYiGGVh9jeCDY0ow
-	 UzSt8tdLxIToQcPrgaAKFjFvMCFTb0lSgdw/dfdS1TqXhiDlS7fe+RysJmBgky9IPH
-	 d5oy4avdJNCTg==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EBB5A3822FA4;
-	Wed, 11 Sep 2024 02:10:34 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1726022287; c=relaxed/simple;
+	bh=s3cJgyb2nuC1pWJK7e3fIc3jroOCt8bHsilc0UAfW6c=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NizGh3YeESdpssLbWjXh4iUuc6ODyQklzzIVgPmfzeEoNtH30HwPf3pE3cGDItPyzsC4DkcMawpb/p+fHU4TaUPrEzWlVVS2R9Z3xVLhvo4ypgM+GGf23PsHRPlmWzfAtD7IIq7w3giPGiVqMIHcMfdy24UcwOpGHin8VcF6EnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=hgIy5hX1; arc=none smtp.client-ip=220.197.32.97
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+DKIM-Signature: a=rsa-sha256;
+	b=hgIy5hX1cLaUzpdGFppKGrpJJF3aqJuNw1PpMySyqiHufSVZr447MLbgxHCyd8jSMeZJD4Xl0M9M9g17y/X7LYjKsR7hpvjiRJepzMxclBXFebqojWZl7yJhEFEL9vOZF6OGxdJqk3qvCGdX1anfc2ELAJmXu/I8VsTO7q+x8vE=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=8drECosThzypqtWFQdJAkNqGx+OpVPS3ibKHmyglYTY=;
+	h=date:mime-version:subject:message-id:from;
+Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id B7F42100271;
+	Wed, 11 Sep 2024 10:31:09 +0800 (CST)
+From: Damon Ding <damon.ding@rock-chips.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	macromorgan@hotmail.com,
+	jonas@kwiboo.se,
+	tim@feathertop.org,
+	knaerzche@gmail.com,
+	efectn@protonmail.com,
+	andyshrk@163.com,
+	jagan@edgeble.ai,
+	dsimic@manjaro.org,
+	megi@xff.cz,
+	sebastian.reichel@collabora.com,
+	alchark@gmail.com,
+	boris.brezillon@collabora.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Damon Ding <damon.ding@rock-chips.com>
+Subject: [PATCH v3 0/2] 
+Date: Wed, 11 Sep 2024 10:29:28 +0800
+Message-Id: <20240911022930.4022802-1-damon.ding@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,45 +70,52 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next] net: amlogic,meson-dwmac: Fix "amlogic,tx-delay-ns"
- schema
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <172602063377.461532.17295023219958087443.git-patchwork-notify@kernel.org>
-Date: Wed, 11 Sep 2024 02:10:33 +0000
-References: <20240909172342.487675-2-robh@kernel.org>
-In-Reply-To: <20240909172342.487675-2-robh@kernel.org>
-To: Rob Herring (Arm) <robh@kernel.org>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, krzk+dt@kernel.org, conor+dt@kernel.org,
- neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ08fHlZCGR9JGUJMSElIGk9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCS0
+	NVSktLVUpCWQY+
+X-HM-Tid: 0a91deeba54203a7kunmb7f42100271
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6ORQ6Sio6FDI3SikUPDUZKy4t
+	HzNPCitVSlVKTElNS0lKQ0xKT0xCVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFJTEtINwY+
 
-Hello:
+Specification:
+- Rockchip RK3588S
+- RK806-2x2pcs + DiscretePower
+- eMMC5.1 + SPI Flash
+- Micro SD Card3.0
+- 1 x Typec3.0 + 2 x USB2 HOST
+- 1 x 1Lane PCIE2.0 Connector(RC Mode)
+- Headphone output
+- Array Key(MENU/VOL+/VOL-/ESC), Reset, Power on/off Key
+- 6 x SARADC
 
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+Damon Ding (2):
+  dt-bindings: arm: rockchip: Add rk3588s evb1 board
+  arm64: dts: rockchip: Add support for rk3588s evb1 board
 
-On Mon,  9 Sep 2024 12:23:42 -0500 you wrote:
-> The "amlogic,tx-delay-ns" property schema has unnecessary type reference
-> as it's a standard unit suffix, and the constraints are in freeform
-> text rather than schema.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../bindings/net/amlogic,meson-dwmac.yaml     | 22 +++++++++----------
->  1 file changed, 11 insertions(+), 11 deletions(-)
+Changes in v2:
+- rename amplifier nodes to amplifier-headphone and amplifier-speaker
+- sort audio and backlight nodes by node name
+- format names of regulator nodes to regulator-*
+- add CPU/memory regulator coupling
+- fix "VOP-" to "VOL-" in commit message
+- remove bootargs property in chosen node
 
-Here is the summary with links:
-  - [net-next] net: amlogic,meson-dwmac: Fix "amlogic,tx-delay-ns" schema
-    https://git.kernel.org/netdev/net-next/c/955f5b150862
+Changes in v3:
+- remove unevaluated properties:
+    pcie@fe190000: 'rockchip,skip-scan-in-resume'
+    pmic@1: regulators: dcdc-reg*: 'regulator-init-microvolt'
+    phy@fed80000: 'svid'
 
-You are awesome, thank you!
+ .../devicetree/bindings/arm/rockchip.yaml     |    5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |    1 +
+ .../boot/dts/rockchip/rk3588s-evb1-v10.dts    | 1125 +++++++++++++++++
+ 3 files changed, 1131 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dts
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.34.1
 
 
