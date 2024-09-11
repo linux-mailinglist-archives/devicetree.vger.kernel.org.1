@@ -1,140 +1,160 @@
-Return-Path: <devicetree+bounces-101909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CB94974B81
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 09:35:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 895EF974B90
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 09:37:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F6CD1C25C46
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 07:35:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5725C28C91E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 07:37:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A26313D50B;
-	Wed, 11 Sep 2024 07:34:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D8F8139CEC;
+	Wed, 11 Sep 2024 07:37:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="S5ncbsKY"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="WqUxhFuV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0587127E18;
-	Wed, 11 Sep 2024 07:34:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 537188494
+	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 07:37:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726040095; cv=none; b=ZkzzImRxroZTROSgs79MLzeOjYkJT10zOtTCzgqgUga21Zv00ZeB+5b+rC9aMoImUXh7myKDaKdDVcHotd8xhW1sermEycHpwVNKAKKj5Y5CGvYSTOfH3uY7R+bZtXNQ+SjCquMs7TOM5OdZI5hWZEG6ytbKE4xRx/04j/nz5dA=
+	t=1726040270; cv=none; b=jEfilAoa5lOIcpXPYEWMOArMDCqiaABiiPleNVo/RNAuroLFLqXis3tKoyOEcU82HGg7TzyNOf+LUmolZlJ2L8+UjbRG2f5cpKYfAdItlmpoXtJa7Wf78Lr6vpDLpat/0JlGZLWu194e2RyHDOLUyF3gXh9LJT6qoIcF17OP9sQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726040095; c=relaxed/simple;
-	bh=lpEKEg/lxND+dIm4tWPsyltC6bYOxkCcnbu8PisjEfo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=KUZeO7aX+oY+1ogZnlbYw4I7jKImk8YNEz48pjpJ3kpigMXE/qGV9gRUQekLJeIvAd7BmtV/jL0hztM52MIHKJqa8yHwJCTFv2T+GcVFPHvbd7X9595q7eMIjYV5apkUlJNzs7DxlnavvTE1pH4B1n66SDm+zRisOYzFO6NDcSU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=S5ncbsKY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48B3N1Rh024795;
-	Wed, 11 Sep 2024 07:34:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=txI5nFzil8u6z/VyvEjwqN
-	Fh460nNjYFGuyzh8X79jY=; b=S5ncbsKYKcJUOQMxGbnBJLbVNhOwBH4fX74V0D
-	bDyk7zweLf+RNUp+9f8Tml18fM+7dpCvpmXPEHoalE1NxC2EKmpkjWF7NgG1ZyHF
-	JnFumRCw8wk7ObYzMw7s0RhUI1bEh//i3YRXIkQOouXO9Z2YMFeL0VplkA3Bwcr6
-	gT5QCRVn3hI3eA6jtNTo/Mrtq5z/l3WScYhvH3ICkMEVgljD1XDZqOs6j1t/gxbn
-	zDkecaih5ORUXGdPqowmC9PlZTpU8UtTkDyNXnhd3YXMc6dK7nqY719uCFNJy7C8
-	DvzsWgYPzn0hMRVT87L7SDYaYGekF4t0osPEgub+abF/Br/Q==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy5rgp66-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Sep 2024 07:34:50 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48B7YmBD007258
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Sep 2024 07:34:48 GMT
-Received: from jingyw-gv.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 11 Sep 2024 00:34:45 -0700
-From: Jingyi Wang <quic_jingyw@quicinc.com>
-Date: Wed, 11 Sep 2024 15:34:33 +0800
-Subject: [PATCH v2] dt-bindings: nvmem: qfprom: Add compatible for QCS8300
+	s=arc-20240116; t=1726040270; c=relaxed/simple;
+	bh=OJiD0dE4D2l6iH8UbnBaYGFLq+atL+gXbKu7MBslUAo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WHTG1B6kWwhwCy/LBIMvb8JSqjm+lg+4s4Ci/gZ9jaa07r/KAxBK6ARWRhTLlgmM+rundRErckEKa67jIrGPO5JJA2/XH9k8Xgmsp+H1P/K7mCy2ax7stom2EudgFlgqpEpI6Yum3GDaIsDpj8pnkKUOTDvxS0lx7Mjj/S4MYdc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=WqUxhFuV; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-53653682246so2125964e87.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 00:37:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1726040266; x=1726645066; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0LtJuWg5rZzkpKKkENXUM608sDYwm9QANqJ5OTuJVDE=;
+        b=WqUxhFuVufJcpgwK15dyx02jG6BG70LedEXCT1v8ha0krIhzSxKpPVCNcEum6aO/EF
+         V2Txh/7lmD78OmUDCEgEvy/lF7EynwfGEUpQWAJTpNd+0ZxOS+A9N4o3XW2lHfZF9Qvq
+         Vx9o01uEBVIB9tisGWwJfvIxMrFqCsIQEeAGE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726040266; x=1726645066;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0LtJuWg5rZzkpKKkENXUM608sDYwm9QANqJ5OTuJVDE=;
+        b=R0DNfyEF+HrTrzrryEqHjfgsU4/yUYFVow24ZXAj30QPtaJMAUHBG/q2YCXtRjEo3R
+         xSg9C3oh5uk77LlbGlK/L2AFLJRMbb7t9x3Lk+o9dM69u1hutFattbmdF1/V6P1VFCB9
+         4RHKVPgoi2fy5v5hWuv9IKYUeuLopfP1AfKNc0cN9sbVAyOH4DrhTeAHos4q48FTki0F
+         uwkhSVGEeeCBDM3cIIC42RfANRELxa0ery1A5fZt9Qgrx66nXnI2+huvE4+cuA/8Emj6
+         kf2u2fghiRMWAEr6r8Km6lrikus8Y3KjRz/Js4M7TYfSxx6vkd0Hg5kv9jyA16R80Lds
+         Ko4A==
+X-Forwarded-Encrypted: i=1; AJvYcCW+QE+eB/zXjmGb9hihJJrErpj7zT4iQ/WuoCJAd3BEw1O8iISBN0Jn9lj1NhFldRJ03Rf9cyUjjhVn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyf+2dSX+GLnvC63b/9TS4itJ8C0pB9c0YvTsBg5ylvgNfkQkVx
+	cOQZJjkziir6AfkW6OCfWUSGX0q//0JG7uCXyyZWWLFJw4JgzdFGjxvhBBEm5tni6cfZOzeWNta
+	RbWe1NVuLB4res6PIfwADBH9t8XVLyYj4jE5F
+X-Google-Smtp-Source: AGHT+IEd4894jUMhTj+lpuZUCwhAQoDemTfiQND7C5Rfboo0QkW+QbXwdarpgS+S2rznD6UFho/GB5hhLLZk1Dxbtzw=
+X-Received: by 2002:a05:6512:b23:b0:52e:74d5:89ae with SMTP id
+ 2adb3069b0e04-53673c95c1fmr1178265e87.39.1726040266114; Wed, 11 Sep 2024
+ 00:37:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240911-qcs8300_qfprom_binding-v2-1-d39226887493@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAAlI4WYC/z2NWw6CMBQFt0LutzW3gKn1y30YQkofcBNtoUWiI
- ezdSoyfM8mZs0KykWyCS7FCtAslCj5DeShAD8r3lpHJDCWWNUrO2aTTuUJsJzfG8Gg78oZ8z9R
- JCdnZygkpII/HaB299vCtyTxQmkN87z8L/9pfEut/kjzNpO6tmROxhTNkBq2SyhmNKK7TkzR5f
- dThAc22bR/hJ7h3vAAAAA==
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <quic_tengfan@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_tingweiz@quicinc.com>, <quic_aiquny@quicinc.com>,
-        Jingyi Wang
-	<quic_jingyw@quicinc.com>
-X-Mailer: b4 0.15-dev-99b12
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1726040085; l=1208;
- i=quic_jingyw@quicinc.com; s=20240910; h=from:subject:message-id;
- bh=lpEKEg/lxND+dIm4tWPsyltC6bYOxkCcnbu8PisjEfo=;
- b=VvV9pQcnAtp54NLSKKDHtBQoioMN8eSJisaxRlgZ58HervPvCvfSY8wMZx+zaWZ0BxWr2bbAO
- BmYFHUvXuSyBspyzWv+9jhZCnxg3FS66MEsNZgfm4DUeaqpABW5dJZ2
-X-Developer-Key: i=quic_jingyw@quicinc.com; a=ed25519;
- pk=ZRP1KgWMhlXXWlSYLoO7TSfwKgt6ke8hw5xWcSY+wLQ=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: SHz_W7_l6xZYn3wopzuCimqMHmE_0vnW
-X-Proofpoint-ORIG-GUID: SHz_W7_l6xZYn3wopzuCimqMHmE_0vnW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- clxscore=1015 malwarescore=0 bulkscore=0 lowpriorityscore=0 adultscore=0
- mlxscore=0 impostorscore=0 priorityscore=1501 mlxlogscore=761 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2408220000
- definitions=main-2409110056
+References: <20240904090016.2841572-1-wenst@chromium.org> <20240904090016.2841572-7-wenst@chromium.org>
+ <ZthjSK9N9z11YXi2@smile.fi.intel.com> <CAGXv+5GrW0EZZw6HVY7ALvm0dBj5Wwrvp02vtTPZYwqxxiZQyg@mail.gmail.com>
+In-Reply-To: <CAGXv+5GrW0EZZw6HVY7ALvm0dBj5Wwrvp02vtTPZYwqxxiZQyg@mail.gmail.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Wed, 11 Sep 2024 15:37:35 +0800
+Message-ID: <CAGXv+5Hrz2rA1_eAY8S96ankeWS4wr9EX-hr1LUY5JGx=FoNPQ@mail.gmail.com>
+Subject: Re: [PATCH v6 06/12] gpiolib: Add gpio_get_property_name_length()
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
+	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Douglas Anderson <dianders@chromium.org>, 
+	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>, linux-i2c@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Document QFPROM compatible for Qualcomm QCS8300. It provides access
-functions for QFPROM data to rest of the drivers via nvmem interface.
+On Mon, Sep 9, 2024 at 10:45=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.org> w=
+rote:
+>
+> On Wed, Sep 4, 2024 at 9:40=E2=80=AFPM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> >
+> > On Wed, Sep 04, 2024 at 05:00:08PM +0800, Chen-Yu Tsai wrote:
+> > > The I2C device tree component prober needs to get and toggle GPIO lin=
+es
+> > > for the components it intends to probe. These components may not use =
+the
+> > > same name for their GPIO lines, so the prober must go through the dev=
+ice
+> > > tree, check each property to see it is a GPIO property, and get the G=
+PIO
+> > > line.
+> > >
+> > > Instead of duplicating the GPIO suffixes, or exporting them to the
+> > > prober to do pattern matching, simply add and export a new function t=
+hat
+> > > does the pattern matching and returns the length of the GPIO name. Th=
+e
+> > > caller can then use that to copy out the name if it needs to.
+> >
+> > > Andy suggested a much shorter implementation.
+> >
+> > No need to have this sentence in the commit message, changelog area is =
+fine.
+> > But if you wish... :-)
+>
+> It does seem out of place without any context. I'll move it to the
+> changelog area. :D
+>
+> > > Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> >
+> > ...
+> >
+> > > +/**
+> > > + * gpio_get_property_name_length - Returns the GPIO name length from=
+ a property name
+> > > + * @propname:        name of the property to check
+> > > + *
+> > > + * This function checks if the given property name matches the GPIO =
+property
+> > > + * patterns, and returns the length of the name of the GPIO. The pat=
+tern is
+> > > + * "*-<GPIO suffix>" or just "<GPIO suffix>".
+> > > + *
+> > > + * Returns:
+> > > + * The length of the string before '-<GPIO suffix>' if it matches
+> > > + * "*-<GPIO suffix>", or 0 if no name part, just the suffix, or
+> > > + * -EINVAL if the string doesn't match the pattern.
+> >
+> > Should be %-EINVAL as we agreed with Bart when I updated GPIOLIB kernel=
+-doc.
+>
+> Ack.
+>
+> In the regulator cleanups I did, I used -%EINVAL instead. But then I
+> realized that constants aren't really cross-referenced. I probably
+> have to go through all of them to fix those up.
 
-Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
----
-Changes in v2:
-- decoupled from the original series.
-- Link to v1: https://lore.kernel.org/r/20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com
----
- Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
- 1 file changed, 1 insertion(+)
+FTR this patch ended up getting dropped from the series as it was no
+longer needed. However if folks think there is still value in this patch,
+I can still send a new version.
 
-diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-index 80845c722ae4..fcd71f023808 100644
---- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-@@ -32,6 +32,7 @@ properties:
-           - qcom,msm8998-qfprom
-           - qcom,qcm2290-qfprom
-           - qcom,qcs404-qfprom
-+          - qcom,qcs8300-qfprom
-           - qcom,sc7180-qfprom
-           - qcom,sc7280-qfprom
-           - qcom,sc8280xp-qfprom
 
----
-base-commit: 100cc857359b5d731407d1038f7e76cd0e871d94
-change-id: 20240911-qcs8300_qfprom_binding-a5a79be3f797
-
-Best regards,
--- 
-Jingyi Wang <quic_jingyw@quicinc.com>
-
+ChenYu
 
