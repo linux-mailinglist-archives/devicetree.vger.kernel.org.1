@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-102040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7149197547E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 15:50:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5652297548C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 15:51:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30B87283143
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 13:50:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D75721F277C5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 13:51:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5B4619E970;
-	Wed, 11 Sep 2024 13:50:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00C5219F118;
+	Wed, 11 Sep 2024 13:50:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oUYHNgHy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C9mLSEnF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE77419E963;
-	Wed, 11 Sep 2024 13:50:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C984819F10A;
+	Wed, 11 Sep 2024 13:50:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726062612; cv=none; b=YYlCpIEFSUnQ8BqdJpbUtb/cPIKrbpPacV522L6isgOalatdVUva/GfyxzkR2PCJJ93zOhQStNspCipT2ZMGY/eZZ6ez8FDrQZTe4Qf+reUttKMK5gRVL6i2rF8vBXg/OgB460Gfcfov9WlFGX5h6Q2Gco7geaXOsaxh4eS/BBE=
+	t=1726062613; cv=none; b=fDEqzC8EZ4LD/JRrkn4ibJSO7vXnuQRkHuhqocr3nqvFrCRflvmy1bRClmPtEAscMvT2tPE3IVb/1fRc/sh35FlBdg3nVeuKktWJQzNiZ67hxbWpvnsNcL+aHOUrM4rwlyl5nPBAivBOwvq+CLWIJPvMdtOx3oOnXkaVGOhIcGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726062612; c=relaxed/simple;
-	bh=21HFruj9izzHUrFvhKMjGFBM1aMTp37x1C3yOXzfRVk=;
+	s=arc-20240116; t=1726062613; c=relaxed/simple;
+	bh=wYsdocLzsrX8Sgm48gaz7cTnSul0At+itod/zabIoOU=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=D3qfe0LpoQBJVRpqVQM08M8bWfh1XZbXCXuyxawPaTr/tzixl0r1/ez/y9/ttK1d3PiNrlLaSGtlcjqAEW/DM8oXraGD+tO9hJJHZOmlYZB7EB6wtah4EFReg5x3mUOFbfuv9wb7WC6yvjff7OD8bS9+DBSq/Z6b06YtOrK4+HM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oUYHNgHy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22315C4CED0;
-	Wed, 11 Sep 2024 13:50:12 +0000 (UTC)
+	 Message-Id:Subject; b=aBU9nf/9tzNwPwwxrSPC8ZUHPWq1i+XzTcZz9gVg1q/W2zL18ndg5i8G3+mR9iEWJ5Qqif6vPFrUmE7Ix+XPM/cgRk13+J69UsHugYeOqNd9jIsFKJjFruWs7Ae0UOmpaNO1o8KqN/D+3ruS186O+JJC4NBjlm5kInqlpDQ5MgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C9mLSEnF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85B63C4CECE;
+	Wed, 11 Sep 2024 13:50:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726062612;
-	bh=21HFruj9izzHUrFvhKMjGFBM1aMTp37x1C3yOXzfRVk=;
+	s=k20201202; t=1726062613;
+	bh=wYsdocLzsrX8Sgm48gaz7cTnSul0At+itod/zabIoOU=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=oUYHNgHy6/sMNVfGc8+368rfOLenOQrami0cuO7ASPBVRrOH5oO/buyNPBvsiYWfG
-	 9j91xVYqzx09YbFcAqVoAPhqPX3WT6ZomXvO3EI3lgJPJYh1GO3K3B9UodvsHp6Y/H
-	 QdoPrYxVB+w+LjjLjRifBFJ0Yz4NN33W8H4VfbNWDgMucTU6MESzobGwUYYsRwIXPJ
-	 WgfH8F2MY7mIgH3r9zN+dOkcX6XldOU/Yj0t/nwjVNi0AS7tZf6Rth+pJNB10hCkFe
-	 d9Qs3cYcZVwIRiY5P9205eT0JO/wFuc/BVPfW/MQVADr2aPpCEAWx6S9AUPrBmRfqN
-	 g+PXW3TYiZk4g==
-Date: Wed, 11 Sep 2024 08:50:11 -0500
+	b=C9mLSEnFhr+nx8dP8a7N7jr4B5FWnpm1pNgKZbvRR/SAVMO5WwJhZagTfehif0eSW
+	 YdaOYbeguafk5SJQxOMB2uOmnPCMPLN1c1KC51RXMlJgBzYbRYDcAhZ9C19Na7B88H
+	 h0w/v5Q5iffhYd44cmR+3Vhczin2G/aLrnGh6XH3NldK97dywbEFp/dOroq5aPR25N
+	 Fnf0usfOFELuqbMvbbRyUGZAZQjrw1T4tRlBV5oLmgDXV6NCtSgEGGHLYt0G0pFxMf
+	 YBB2AyQoVWGCNd9naFhCBl4SQUQvNmgrHrsPCP3+904UONphV2x6VO7pyoSeBXs6ZH
+	 u/WTtJIdCVYVg==
+Date: Wed, 11 Sep 2024 08:50:12 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,61 +51,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Junhao Xie <bigfoot@classfun.cn>
-Cc: Chukun Pan <amadeus@jmu.edu.cn>, linux-kernel@vger.kernel.org, 
- Heiko Stuebner <heiko@sntech.de>, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
- linux-arm-kernel@lists.infradead.org, Dragan Simic <dsimic@manjaro.org>, 
- devicetree@vger.kernel.org, FUKAUMI Naoki <naoki@radxa.com>, 
- linux-rockchip@lists.infradead.org
-In-Reply-To: <20240911122809.1789778-2-bigfoot@classfun.cn>
-References: <20240911122809.1789778-2-bigfoot@classfun.cn>
-Message-Id: <172606224388.90730.44787008983831368.robh@kernel.org>
-Subject: Re: [PATCH v3 0/3] Add support for Ariaboard Photonicat RK3568
+To: Tengfei Fan <quic_tengfan@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, linux-kernel@vger.kernel.org, 
+ kernel@quicinc.com, Konrad Dybcio <konradybcio@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20240911-add_qcs9100_support-v2-0-e43a71ceb017@quicinc.com>
+References: <20240911-add_qcs9100_support-v2-0-e43a71ceb017@quicinc.com>
+Message-Id: <172606224532.90794.3646639531528428689.robh@kernel.org>
+Subject: Re: [PATCH v2 0/4] arm64: dts: qcom: Add support for the QCS9100
+ SoC and board
 
 
-On Wed, 11 Sep 2024 20:28:07 +0800, Junhao Xie wrote:
-> Add dts for Ariaboard Photonicat RK3568.
+On Wed, 11 Sep 2024 19:10:54 +0800, Tengfei Fan wrote:
+> Add QCS9100 SoC ID and board device trees support.
+> QCS9100 is a variant of SA8775p, and they are fully compatible with each
+> other.
 > 
-> This series bring support for:
-> * Debug UART
-> * SDIO QCA9377 WiFi and Bluetooth
-> * M.2 E-Key PCIe WiFi and Bluetooth
-> * M.2 B-Key USB Modem WWAN
-> * Ethernet WAN Port
-> * MicroSD Card slot
-> * eMMC
-> * HDMI Output
-> * Mali GPU
-> * USB Type-A
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> ---
+> Changes in v2:
+> - Add SoC binding for add QCS9100 Ride and QCS9100 Ride Rev3
+> - Update SoC binding patch commit message
+> - Add QCS9100 Ride and Ride Rev3 board device tree patches
+> - Link to v1: https://lore.kernel.org/r/20240806-add_qcs9100_soc_id-v1-0-04d14081f304@quicinc.com
 > 
-> Changed from v1:
-> - move some general nodes (firmware, ramoops, reboot-mode) to rk356x.dtsi
-> - gmac1 change to phy-mode rgmii-id
-> - corrected some regulator to be closer to schematics
-> - rename rk3568-ariaboard-photonicat.dts to rk3568-photonicat.dts
-> https://lore.kernel.org/lkml/20240904111456.87089-1-bigfoot@classfun.cn/
+> ---
+> Tengfei Fan (4):
+>       dt-bindings: arm: qcom,ids: add SoC ID for QCS9100
+>       soc: qcom: socinfo: add QCS9100 ID
+>       dt-bindings: arm: qcom: Document qcs9100-ride and qcs9100-ride Rev3
+>       arm64: dts: qcom: qcs9100: Add support for the QCS9100 Ride and Ride Rev3 boards
 > 
-> Changed from v2:
-> - remove unused headers
-> - corrected some regulator to be closer to schematics
-> - remove usb_host1_ohci, usb_host1_ehci, usb2phy1_host that have no connection
-> https://lore.kernel.org/lkml/20240906045706.1004813-1-bigfoot@classfun.cn/
+>  Documentation/devicetree/bindings/arm/qcom.yaml |  8 ++++++++
+>  arch/arm64/boot/dts/qcom/Makefile               |  2 ++
+>  arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dts    | 11 +++++++++++
+>  arch/arm64/boot/dts/qcom/qcs9100-ride.dts       | 11 +++++++++++
+>  drivers/soc/qcom/socinfo.c                      |  1 +
+>  include/dt-bindings/arm/qcom,ids.h              |  1 +
+>  6 files changed, 34 insertions(+)
+> ---
+> base-commit: 6708132e80a2ced620bde9b9c36e426183544a23
+> change-id: 20240911-add_qcs9100_support-dbb22dd8b475
 > 
-> Junhao Xie (3):
->   dt-bindings: vendor-prefixes: Add prefix for Ariaboard
->   dt-bindings: arm: rockchip: Add Ariaboard Photonicat RK3568
->   arm64: dts: rockchip: add dts for Ariaboard Photonicat RK3568
-> 
->  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../boot/dts/rockchip/rk3568-photonicat.dts   | 586 ++++++++++++++++++
->  4 files changed, 594 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-photonicat.dts
-> 
+> Best regards,
 > --
-> 2.46.0
+> Tengfei Fan <quic_tengfan@quicinc.com>
 > 
 > 
 > 
@@ -125,14 +118,32 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y rockchip/rk3568-photonicat.dtb' for 20240911122809.1789778-2-bigfoot@classfun.cn:
+New warnings running 'make CHECK_DTBS=y qcom/qcs9100-ride-r3.dtb qcom/qcs9100-ride.dtb' for 20240911-add_qcs9100_support-v2-0-e43a71ceb017@quicinc.com:
 
-arch/arm64/boot/dts/rockchip/rk3568-photonicat.dtb: bluetooth: 'clock-names' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/rockchip/rk3568-photonicat.dtb: phy@fe8c0000: 'phy-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,pcie3-phy.yaml#
-arch/arm64/boot/dts/rockchip/rk3568-photonicat.dtb: rfkill-modem: 'reset-gpios' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/rfkill-gpio.yaml#
+arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: usb@a4f8800: interrupt-names: ['pwr_event', 'hs_phy_irq', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: usb@a4f8800: interrupt-names: ['pwr_event', 'hs_phy_irq', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: rsc@18200000: 'power-domains' is a required property
+	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
+arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: rsc@18200000: 'power-domains' is a required property
+	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
+arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: ethernet@23000000: tx-queues-config: 'snps,tx-sched-sp' does not match any of the regexes: '^queue[0-9]$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
+arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: ethernet@23000000: Unevaluated properties are not allowed ('interconnect-names', 'interconnects', 'phy-handle', 'phy-mode', 'power-domains', 'rx-fifo-depth', 'rx-queues-config', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,pbl', 'snps,ps-speed', 'snps,tso', 'tx-fifo-depth', 'tx-queues-config' were unexpected)
+	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
+arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: ethernet@23000000: tx-queues-config: 'snps,tx-sched-sp' does not match any of the regexes: '^queue[0-9]$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
+arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: ethernet@23000000: Unevaluated properties are not allowed ('interconnect-names', 'interconnects', 'phy-handle', 'phy-mode', 'power-domains', 'rx-fifo-depth', 'rx-queues-config', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,pbl', 'snps,ps-speed', 'snps,tso', 'tx-fifo-depth', 'tx-queues-config' were unexpected)
+	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
+arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: ethernet@23040000: tx-queues-config: 'snps,tx-sched-sp' does not match any of the regexes: '^queue[0-9]$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
+arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: ethernet@23040000: Unevaluated properties are not allowed ('interconnect-names', 'interconnects', 'mdio', 'phy-handle', 'phy-mode', 'power-domains', 'rx-fifo-depth', 'rx-queues-config', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,pbl', 'snps,ps-speed', 'snps,tso', 'tx-fifo-depth', 'tx-queues-config' were unexpected)
+	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
+arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: ethernet@23040000: tx-queues-config: 'snps,tx-sched-sp' does not match any of the regexes: '^queue[0-9]$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
+arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: ethernet@23040000: Unevaluated properties are not allowed ('interconnect-names', 'interconnects', 'mdio', 'phy-handle', 'phy-mode', 'power-domains', 'rx-fifo-depth', 'rx-queues-config', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,pbl', 'snps,ps-speed', 'snps,tso', 'tx-fifo-depth', 'tx-queues-config' were unexpected)
+	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
 
 
 
