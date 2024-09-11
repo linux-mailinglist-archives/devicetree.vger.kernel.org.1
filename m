@@ -1,59 +1,70 @@
-Return-Path: <devicetree+bounces-102076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8139497560B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:51:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE230975622
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:56:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3EE61C22DF5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 14:51:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7712128B0D5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 14:56:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB0F11A3059;
-	Wed, 11 Sep 2024 14:50:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 878F41AB519;
+	Wed, 11 Sep 2024 14:56:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eEpM6Mpw"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="tDmogz9l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D06D15C13F;
-	Wed, 11 Sep 2024 14:50:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 374DB1AAE37;
+	Wed, 11 Sep 2024 14:56:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726066255; cv=none; b=hb8TlzBKoezUrELQkrlTYUCG9DyrxbzJWFTlCS7uMR5+C+0YBTcFnLahI8kHWJoj5fL4aqL+XMP/vYGK7ImSVyMS/uoUV9f8IWxw1RvZJs08h4HKEEoWVynpw3jnvfBLl3sUJ6f1Zi5UBGWWRFb7r1JnxQK3Jz4SX5ffXF87lfw=
+	t=1726066578; cv=none; b=W5xCKmDvjuwnyAxqUbl9oGYud3ROXkbzHOqndumPm7Z9Vn/Nzrdd2kiaFrOgKUhtTMoiimd8gyKaYu0RzfCqSpcVZpVxJ5mDqsH/HgnvP7PzfuKPEuOymZjA5P/bivae2TDy1gxdO2deyjiG3mAacu1dbglkWFDUDq5GctQQX+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726066255; c=relaxed/simple;
-	bh=xJGwEM8YdZSxNYttVYLxVUocEygY6JMFJPPwCIRo8DU=;
+	s=arc-20240116; t=1726066578; c=relaxed/simple;
+	bh=OPBj4Qudavihi4KmrNd2ipOv17IedhIybARx9D2kEns=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=crqPb0EFD3pck2fpQMaY25vBen85sAifxF2Xma33S/wCH8cTutYJgaldwWJ9FQuJySlSYL+PckBjsVQPLDNEKq6aI3zVA4xz/Sr+wnkiKiM6aoAB9XTjqo7+IHg0JoitgoEBk5zHqKZNzs016ge3yXJh5H4D8dRHCeeLnmZdpyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eEpM6Mpw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03406C4CEC0;
-	Wed, 11 Sep 2024 14:50:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726066255;
-	bh=xJGwEM8YdZSxNYttVYLxVUocEygY6JMFJPPwCIRo8DU=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=XXR0B4m9ITpeXZoQ23cDbm/nfdyHt655aJ8nucyx/TO5VoV5ohoVybjUMyxs9Iwnf8+CznUya7FEYwjBRNCOikrDg3mYVtuw6c4oEr+sF+51+vQCEHMkEEKgcdXt8xnSpuYje/sblpoOMB+QFkdtR1IcuzXYrFujjueDwlERpzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=tDmogz9l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39136C4CECF;
+	Wed, 11 Sep 2024 14:56:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1726066577;
+	bh=OPBj4Qudavihi4KmrNd2ipOv17IedhIybARx9D2kEns=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eEpM6Mpwr4cju+H4p1MJKbRpXjj2puIuuNAo4TVcg73PaInpxIfH7sWewcyZ5HY9C
-	 Dv8pQajLgmlz5gOouiSqBb5UjJlwTYWbPry4Aut1MCI5NmnDSS1YU7l4mqTccYjUtb
-	 UWaq28WJebHaJkUtFUp+5Yo9vh94hS6ryKKIz4nSj0EuRu4kibwjxCUbAMZImd8KkC
-	 FD8j0KxpDwEq8Wj6Ua5kUsxWcefkdu/I5tMsVPToJoPwTQhjnubH0pTFtqQxL6kEw0
-	 Y2tfgZ7ulY1UWskVyshEn72d5KRrTLhUVBCXWyvAeDgBSmGM2W2x2zqaWrwkOf9lMX
-	 l18ZaLm+tlHRQ==
-Date: Wed, 11 Sep 2024 09:50:54 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Andrei Simion <andrei.simion@microchip.com>
-Cc: lgirdwood@gmail.com, linux-kernel@vger.kernel.org, krzk+dt@kernel.org,
-	claudiu.beznea@tuxon.dev, alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org, nicolas.ferre@microchip.com,
-	conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, broonie@kernel.org,
-	codrin.ciubotariu@microchip.com
-Subject: Re: [PATCH] ASoC: dt-bindings: microchip,sama7g5-spdifrx: Add common
- DAI reference
-Message-ID: <172606625336.165976.15010375858914287805.robh@kernel.org>
-References: <20240910082202.45972-1-andrei.simion@microchip.com>
+	b=tDmogz9lkBqz3punQT2C12MDWaqNTFOGfwXmIgAy/y537o7njVPpicrO0C4hAHN7m
+	 wIOp7FWkPKgfmLXbTQ9ConR/swll0oAhX0nprTmCkoezdXiyL1/F/MsAW0TGHm3rYd
+	 zj4e6iluo33WS4ybOYFEMGlZni4xCw/mAjLx9qp8=
+Date: Wed, 11 Sep 2024 16:56:14 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: fabien.parent@linaro.org, d-gole@ti.com, lorforlinux@beagleboard.org,
+	jkridner@beagleboard.org, robertcnelson@beagleboard.org,
+	Andrew Davis <afd@ti.com>, Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>, Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, linux-kernel@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/8] rust: kernel: Add Platform device and driver
+ abstractions
+Message-ID: <2024091106-scouring-smitten-e740@gregkh>
+References: <20240911-mikrobus-dt-v1-0-3ded4dc879e7@beagleboard.org>
+ <20240911-mikrobus-dt-v1-1-3ded4dc879e7@beagleboard.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +73,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240910082202.45972-1-andrei.simion@microchip.com>
+In-Reply-To: <20240911-mikrobus-dt-v1-1-3ded4dc879e7@beagleboard.org>
 
+On Wed, Sep 11, 2024 at 07:57:18PM +0530, Ayush Singh wrote:
+> +/// An identifier for Platform devices.
+> +///
+> +/// Represents the kernel's [`struct of_device_id`]. This is used to find an appropriate
+> +/// Platform driver.
+> +///
+> +/// [`struct of_device_id`]: srctree/include/linux/mod_devicetable.h
+> +pub struct DeviceId(&'static CStr);
+> +
+> +impl DeviceId {
 
-On Tue, 10 Sep 2024 11:22:03 +0300, Andrei Simion wrote:
-> Update the spdifrx yaml file to reference the dai-common.yaml schema,
-> enabling the use of the 'sound-name-prefix' property
-> 
-> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
-> ---
->  .../devicetree/bindings/sound/microchip,sama7g5-spdifrx.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
+<snip>
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+I appreciate posting this, but this really should go on top of the
+device driver work Danilo Krummrich has been doing.  He and I spent a
+lot of time working through this this past weekend (well, him talking
+and explaining, and me asking too many stupid questions...)
 
+I think what he has will make the platform driver/device work simpler
+here, and I'll be glad to take it based on that, this "independent" code
+that doesn't interact with that isn't the best idea overall.
+
+It also will properly handle the "Driver" interaction as well, which we
+need to get right, not a one-off like this for a platform driver.
+Hopefully that will not cause much, if any, changes for your use of this
+in your driver, but let's see.
+
+thanks,
+
+greg k-h
 
