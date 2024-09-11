@@ -1,98 +1,134 @@
-Return-Path: <devicetree+bounces-101921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F366C974C8C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 10:24:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D9D2974CA0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 10:28:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD9BF285157
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 08:24:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 977E0B22319
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 08:28:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 488C413D510;
-	Wed, 11 Sep 2024 08:24:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 750F614F136;
+	Wed, 11 Sep 2024 08:28:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="adGKKc5N";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="U9Qi49xi"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="jjJIJoju"
 X-Original-To: devicetree@vger.kernel.org
-Received: from a7-48.smtp-out.eu-west-1.amazonses.com (a7-48.smtp-out.eu-west-1.amazonses.com [54.240.7.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FFE3AD24;
-	Wed, 11 Sep 2024 08:24:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79873153820;
+	Wed, 11 Sep 2024 08:28:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726043071; cv=none; b=BPzQUp38Aw4R+c4xiT8vxlK1Le4N8iXiA0Do4H5Mn3cHE59wPbR3zyx7VcJ5pKx91xV3DeD5Cg/p+IGOjj8yijYYj+Jt03+TpgU1Wu/mySCmzYTq3BlotO29yMUqIZ4OHKrAha50ijLgqk/JSGSaIHxFnXFMytKkJu8Oczr/ET4=
+	t=1726043291; cv=none; b=aqvQVbG44DCy+plxgUTdvyqFmxZznQB4stKd7Saru3H9+LP79dXzFz+eZwRynvyeBlnfDpMNitiVTz/SofLlZdOS3eUGSd8afrY6yB1BU1KDn+tlRqBkOwSXhvclfi7F8eosaodlQ3ji71hTPDVT6RUfHDegW0AhySEaz/hCyqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726043071; c=relaxed/simple;
-	bh=698wQpzFq84To+s/WCVIOmpSbbSmg4VSicihqf9qw34=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NTDJY3Jry3gJ1ZX1yDtXr5d5Frr5wXq+mPKQgnNpjqAUz70scZzprNKxmCfCg5g3nCmWYQHbHlAEF3lPrE6eGDxVTLbdWoM6h7jpbpmfX91IjIldBV9tFKKzjG6FgrTWDf/TmoC5qyK+Z2IThBNzgYwUin1/sVLP7+tmQCN/x/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=adGKKc5N; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=U9Qi49xi; arc=none smtp.client-ip=54.240.7.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazonses.collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1726043067;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding;
-	bh=698wQpzFq84To+s/WCVIOmpSbbSmg4VSicihqf9qw34=;
-	b=adGKKc5NT2ZFSl95Fm2PZ6Z+//DbP/dttZO00kj4pks97lOTKrjysIAfeVjB0z/h
-	nys7hYP1QKJeIcJXZIPtyA825I4f36sC3Rzmg6S+8cZnmd/gbiejjPRABEs7amxUoSC
-	7cUrYC+dHyTFgIDHPnHmL7gt6BgThMdCapdaRKizjD92YeOpfeQump11KKcWh9DUZqi
-	bSRDSvHJ+RHxIycBUyPpVtHbb+iX2PBGWG2+HbaDxI2O5NtEoe3rvFz9nUr0dQO5mNH
-	shZcEDzJ0Smxa0DgKcLHNTjyRyokFp7lbltK25Bm/uoH01DRwFoG02p2jGP1gObbr50
-	WIVAS5L32g==
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1726043067;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID;
-	bh=698wQpzFq84To+s/WCVIOmpSbbSmg4VSicihqf9qw34=;
-	b=U9Qi49xifLwDGMtHMpHh2nQqpgp5SGgpN7gJmQ8YVGnWUcEoKm1ZpGPrQYfbgWYy
-	eUQ37fgpjVj6Xg+k/agsrJXYVvIphsuPGMQiyPYJxOnEFYj004w0aGIaRp271uLAAD7
-	/QLaO3RjCZ4qLnu6VrXrVHkY4lGTZJOUnGQHH4TM=
-Message-ID: <01020191e02f1538-47c02c52-c508-4cf3-ba84-fc339b55047c-000000@eu-west-1.amazonses.com>
-Date: Wed, 11 Sep 2024 08:24:27 +0000
+	s=arc-20240116; t=1726043291; c=relaxed/simple;
+	bh=VEczNf8lCxJqJRTmPxpux4ZDqSmawJA/URoI87nK4oU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=pAS6IMPRG9KV0CqoEyHHug1J8B6mpn5TWo3SmWw1Amkv0k0Mx/jGvlIiUndQoh5tJixylAAH+mtQOtPpGpog8CoLej9nuwai/7X/tfB9Ag862TRTfFchnfqW0gef24yl4qksjxuiO+mYbaSWeAPzN+9eK3cb7piPOXd6QL+NC6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=jjJIJoju; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48B6VeNE022718;
+	Wed, 11 Sep 2024 10:27:46 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=1+gz/YBGxCwgKsUIIo9U0U
+	b75ATLDM7rfR2LQglnJLY=; b=jjJIJojuj9GzA3oTCOxjfA0pylco4j1hCaYO5Y
+	k8biPyky1lrVhgHgptJJ9ce12d/xxXNuoPLfLrn3cz4RvkNABFQWBgfRGwu5krwR
+	UMv7e+3wFUotifvocjfvT9QJ2lO0+KX+TLH69dzd2FhpGdUXhSuKZPj4hw/jqIG9
+	ZDhUuHdgUGCQZJUDeefgkCYMQSX129V9J1tTEo/K9yP1ahr5rSiYNgfItbGfqefc
+	+I7eadeKz/lxqdnjypE+nj/H2luL/5aBsBkUFUah5O3Aj1TzfBFhVfIoa5+FIh7A
+	eIx4BNtFWD5Bb1eUfM86W4RFnpldRm1SPxAxUhKofsehn+7A==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41gyauwj2u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Sep 2024 10:27:46 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 117B940044;
+	Wed, 11 Sep 2024 10:26:41 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E1D662535F9;
+	Wed, 11 Sep 2024 10:25:50 +0200 (CEST)
+Received: from localhost (10.129.178.212) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 11 Sep
+ 2024 10:25:50 +0200
+From: Christian Bruel <christian.bruel@foss.st.com>
+To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>
+CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <fabrice.gasnier@foss.st.com>,
+        Christian Bruel <christian.bruel@foss.st.com>
+Subject: [PATCH v6 0/5] Add STM32MP25 USB3/PCIE COMBOPHY driver 
+Date: Wed, 11 Sep 2024 10:25:25 +0200
+Message-ID: <20240911082530.2978336-1-christian.bruel@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: clock: mediatek: Drop duplicate
- mediatek,mt6795-sys-clock.yaml
-To: "Rob Herring (Arm)" <robh@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-References: <20240910234238.1028422-1-robh@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240910234238.1028422-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
-X-SES-Outgoing: 2024.09.11-54.240.7.48
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-Il 11/09/24 01:42, Rob Herring (Arm) ha scritto:
-> The compatible strings for mt6795 clocks are also documented in other
-> schemas:
-> 
-> "mediatek,mt6795-apmixedsys" in clock/mediatek,apmixedsys.yaml
-> "mediatek,mt6795-topckgen" in clock/mediatek,topckgen.yaml
-> "mediatek,mt6795-pericfg" in clock/mediatek,pericfg.yaml
-> "mediatek,mt6795-infracfg" in clock/mediatek,infracfg.yaml
-> 
-> The only difference is #reset-cells is not allowed in some of these,
-> but that aligns with actual users in .dts files.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Changes in v6:
+   - stm32_combophy_pll_init: merge combophy_cr1 accesses and error path.
+   - Use devm_reset_control_get_exclusive
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Changes in v5:
+   - Drop syscfg phandle and change driver to use lookup_by_compatible
+   - Use clk_bulk API and drop stm32_combophy_enable/disable_clocks
+   - Reorder required: list.
+   - Fix access-controllers maxItems
+   
+Changes in v4:
+   - "#phy-cells": Drop type item description since it is specified
+     by user node phandle.
+   - Rename stm32-combophy.yaml to match compatible
+   - Drop wakeup-source from bindings (should be generic)
+   - Alphabetically reorder required: list.
+   - Drop "Reviewed-by" since those previous changes
 
+Changes in v3:
+   - Reorder MAINTAINERS patch
+
+Changes in v2:
+   - Reorder entries
+   - Rename clock_names and reset_names bindings
+   - Rename and clarify rx-equalizer binding 
+
+Christian Bruel (5):
+  dt-bindings: phy: Add STM32MP25 COMBOPHY bindings
+  phy: stm32: Add support for STM32MP25 COMBOPHY.
+  MAINTAINERS: add entry for ST STM32MP25 COMBOPHY driver
+  arm64: dts: st: Add combophy node on stm32mp251
+  arm64: dts: st: Enable COMBOPHY on the stm32mp257f-ev1 board
+
+ .../bindings/phy/st,stm32mp25-combophy.yaml   | 119 ++++
+ MAINTAINERS                                   |   6 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |  16 +
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  14 +
+ drivers/phy/st/Kconfig                        |  11 +
+ drivers/phy/st/Makefile                       |   1 +
+ drivers/phy/st/phy-stm32-combophy.c           | 596 ++++++++++++++++++
+ 7 files changed, 763 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/st,stm32mp25-combophy.yaml
+ create mode 100644 drivers/phy/st/phy-stm32-combophy.c
+
+-- 
+2.34.1
 
 
