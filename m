@@ -1,127 +1,98 @@
-Return-Path: <devicetree+bounces-102098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2436897576E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 17:45:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 832DE975795
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 17:52:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08685B25012
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 15:45:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5AE61C26151
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 15:52:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35C8F1ABEC8;
-	Wed, 11 Sep 2024 15:45:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2890D1AC8AA;
+	Wed, 11 Sep 2024 15:49:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OqyltwHZ"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Wuc/sGyS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A50E71779AE;
-	Wed, 11 Sep 2024 15:44:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F75C185954;
+	Wed, 11 Sep 2024 15:49:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726069501; cv=none; b=HeczhE7vCfwK8m5PwsV5xcYAjsSR9YsY8Pmdz4HzpVcnBrp4yUKKZQNY4b0YDBgwOZobxjxED2KPwRMW2EjC/NicGtQZ+k8nt68QahCdrWxGV9x4NbmVqJ1XlP7tCd2Y2SaRp+/kGEF19cLy/s9OBG4Dev7dYR4Lq6LaVciz2c4=
+	t=1726069758; cv=none; b=d5cF4oEsk3gY/Dt1nrUqIME3kR1RaKPPsfvlaw0phczMH2VInfr9n99xBeglKTSc0eiPi6Gf7GJm+kMHKs7YUyExXuPXvseSfRmhmGzH339zV902p3taYzLiQqbT4k510IxTwKMfJcJme9/QFRzuiklefX/AlCTQqbxT8aRCx/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726069501; c=relaxed/simple;
-	bh=z7gdWOnnIaBdb5pN5l9/fYMFqpIEyMtePLS53Ejt4hU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=R7RWfqC45gR9VUuK4CNLkxxPjoqXcFZvgZSOKSapU9Lw4+IkdRb8vX3UtIa9YNnnWk3QV+Ityz/AM+0PyPG7kQMH8bWMMx9xPcob/RdQiX5GUUnpAwK8a7xHFZgJ44bShpJeD79T7FcX1qLoLj3DV+T6xQQPZhCCOHnnHRzxZok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OqyltwHZ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48BEmiYc011927;
-	Wed, 11 Sep 2024 15:44:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	oJYh1r3IYXHSBmoqWsyfTxf514/ZwKXYpOzRhzGuJW0=; b=OqyltwHZpPBbIPIT
-	kcaYP6FQbP71/pfaGiSPMb6dlytozzW5NFxc/3ly3xgdvHb7+3FIMe0Z5wtc/9RQ
-	NGOCni3khY3zlUgQsIbdCOWGGOeFUjkTNNeJWi9VzUaGMep1g6iqmo41Y4ruvNUJ
-	od4YCCbyaXQv7JcEfTSAbWRc8n/yCNxlMlUY8u4KVa2IACtbmrPNlGjnSsIaZrkH
-	KBEOMHKp626YNwmHgOc0ylnJDgjufjAjCC3M+Ml4lh4XJfQ8FdDiKWLyzQxtyJnf
-	eR+cOXOnwuwJZ+U+ylv86gh3MCIxZU2HrkNWWiisXI//FMwV6fcDPKwsYXMirf8u
-	7fHVUg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy51a1r0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Sep 2024 15:44:55 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48BFisut015094
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Sep 2024 15:44:54 GMT
-Received: from [10.111.181.177] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 11 Sep
- 2024 08:44:53 -0700
-Message-ID: <6a7b60c4-379c-4251-a158-5d9986f37797@quicinc.com>
-Date: Wed, 11 Sep 2024 08:44:53 -0700
+	s=arc-20240116; t=1726069758; c=relaxed/simple;
+	bh=jvJrBcnk+D8yfH+0FQrinizcg59VFH4KplTPztnryN4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kxeVznSjZOWVt24BCtzBjMsu1Uv/FckEASRW7+SQzy3aVjnKuwYOTb5MqK2+aeiaF8dm0OtXMUvlW2b3Z4M4C63Qk8AMfmc4XUgRYBK61NHHCzeQImhitPyRbNQcx5iuC7OEjhLfzYHBNuE4pUAk+xBhcJoBxaOCJCkwl3cx4ok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Wuc/sGyS; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=t6UG7PLdbkoosunbZul9Kx6uV/hzSw/RTZj0KodJ6ls=; b=Wuc/sGySYMF45bcq3U9BoGJBhg
+	udLHtgMRTDcvtuEAtsLTSvF9hsBCKouVn6Q6JbA2IDlDcRjw1u3NHuPCsCGn9NQiQXDnzrUhCIFf0
+	f0dF9JkCMoeDZ6tn+UAq6FnjDI7HLZvB/alVkHI8L0hBkWCdtbwTd8KP+bWjHJG/mC2c=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1soPaP-007E9Y-JU; Wed, 11 Sep 2024 17:48:53 +0200
+Date: Wed, 11 Sep 2024 17:48:53 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: fabien.parent@linaro.org, d-gole@ti.com, lorforlinux@beagleboard.org,
+	jkridner@beagleboard.org, robertcnelson@beagleboard.org,
+	Andrew Davis <afd@ti.com>, Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, linux-kernel@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/8] mikrobus: Add mikrobus driver
+Message-ID: <2a1155b4-f158-4cdd-ad3b-82d4a1841245@lunn.ch>
+References: <20240911-mikrobus-dt-v1-0-3ded4dc879e7@beagleboard.org>
+ <20240911-mikrobus-dt-v1-3-3ded4dc879e7@beagleboard.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Add Snapdragon Devkit for
- Windows
-To: Sibi Sankar <quic_sibis@quicinc.com>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <krzk+dt@kernel.org>, <robh+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <conor+dt@kernel.org>,
-        <abel.vesa@linaro.org>, <srinivas.kandagatla@linaro.org>
-References: <20240911073337.90577-1-quic_sibis@quicinc.com>
- <20240911073337.90577-2-quic_sibis@quicinc.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <20240911073337.90577-2-quic_sibis@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: QSfRdezNqAmv0dWTRDqbsfhg0VPqgaBW
-X-Proofpoint-GUID: QSfRdezNqAmv0dWTRDqbsfhg0VPqgaBW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
- mlxscore=0 bulkscore=0 mlxlogscore=999 priorityscore=1501
- lowpriorityscore=0 malwarescore=0 clxscore=1011 phishscore=0
- suspectscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2408220000 definitions=main-2409110119
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240911-mikrobus-dt-v1-3-3ded4dc879e7@beagleboard.org>
 
-On 9/11/2024 12:33 AM, Sibi Sankar wrote:
-> X1E001DE is the speed binned variant of X1E80100 that supports turbo
-> boost up to 4.3 Ghz.
-
-if you respin, s/Ghz/GHz/
-
-> 
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 5cb54d69af0b..6a8fc031e51f 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -1049,6 +1049,12 @@ properties:
->                - qcom,sm8650-qrd
->            - const: qcom,sm8650
+> --- a/drivers/misc/Kconfig
+> +++ b/drivers/misc/Kconfig
+> @@ -610,6 +610,23 @@ config MARVELL_CN10K_DPI
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called mrvl_cn10k_dpi.
 >  
-> +      - items:
-> +          - enum:
-> +              - qcom,x1e001de-devkit
-> +          - const: qcom,x1e001de
-> +          - const: qcom,x1e80100
-> +
->        - items:
->            - enum:
->                - lenovo,thinkpad-t14s
+> +menuconfig MIKROBUS
+> +	tristate "Module for instantiating devices on mikroBUS ports"
+> +	help
+> +	  This option enables the mikroBUS driver. mikroBUS is an add-on
 
+You are missing
+
+        depends on RUST
+
+	Andrew
 
