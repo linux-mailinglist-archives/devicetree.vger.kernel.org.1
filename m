@@ -1,139 +1,196 @@
-Return-Path: <devicetree+bounces-101979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D81D5974FEF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 12:41:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 592C3974FDA
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 12:40:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FE081F251BE
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 10:41:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D79F31F2391E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 10:40:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDA85185B7F;
-	Wed, 11 Sep 2024 10:41:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA52017C7C4;
+	Wed, 11 Sep 2024 10:40:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="iFy3VlOI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="im7aiyM3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36A3A183090;
-	Wed, 11 Sep 2024 10:41:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A74313C80A
+	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 10:40:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726051306; cv=none; b=Q5ncI7z3DAZxCfL9by1vfqJgB2sC/G/D8u5LXsVxzo6Fl5JqDJ+MbxCfOZ6xuwrepnuFaW8a3zrPQ8r8pKv/4N4PzsQu5+fqucrK3swAqIPmZQpYIqNnEkzHFWMEcUFLTuhrkr6gzCQSqPAs7Ov5S4JIdkw97Y93/cdfjXKBlPU=
+	t=1726051215; cv=none; b=u/XZotMpoT8PGX7ZsURr5Rhjl1kGQ+3LIShB0BEDmTEPdMm0BjsWNKgk4JWsPIz9Uv4MqCkInOLlbhsJhMRW8LaXTrCez+LvJFjniZrS+i8V05uWB0t8711Dp3OmUwkyhCJPBWG3QL9hxCoSVDZBmMms0yhcj7g6OkP4MjAsNIM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726051306; c=relaxed/simple;
-	bh=I20UKD7TQvAFU5EVSACkB6b8Z2rW1py26Q1UcKXaY+I=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=K7s6B/v1iFzNVZ5B4lD4V1FNgc+sFasT7xPw0D+raizIUzdb3lATSLkn3K4aPLxcmPf20KqI3gOMUnM5ZZfqT3zm4Fj/cbSS/BT+98oVRTr6u82i+M/AIu46XyYEJ51G4aGafqRAM6CeQ71hXK8t2Y+IMnI9Qsk2hBr4U7rqZR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=iFy3VlOI; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48B7nWjM005470;
-	Wed, 11 Sep 2024 12:41:29 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	4fv1sQ8oNVXZbR6VQwj242LUMa622njNgXPkguclEbo=; b=iFy3VlOIok70Wf1D
-	XUBfK0zXFXtae8gE8k6iHXkrjbNnU83Iipeq1g//KG6xywr3vsQcZ0BUpoNtzTeq
-	0v3MgtPMhrMudblbrx9/TOkY9aY9NoZJXeHXNX/bLla2kX6p2fxPt/3Kyph65Ftm
-	4bYJyZe2y87ORsYfgAweJUiD7v0Xd57bVtMyqHohpkJYw+3/W5nqNFqQ4rKYjhqq
-	8yflMO5mcmi0PKad8ua33DF+7qW+07cuIBaezpXYA5EnLcg3riBp3SbMCFMpdKos
-	lR6sOSdeocg5hsh8nQYUdiHvmlE/B9MJ/QRdplN7OU74/zE5HCkrMqbxNlr/0oKx
-	Nu4Icw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41gyeh6fkr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Sep 2024 12:41:29 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id EB711400B9;
-	Wed, 11 Sep 2024 12:40:15 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3043F265097;
-	Wed, 11 Sep 2024 12:37:42 +0200 (CEST)
-Received: from localhost (10.129.178.212) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 11 Sep
- 2024 12:37:41 +0200
-From: Christian Bruel <christian.bruel@foss.st.com>
-To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <p.zabel@pengutronix.de>
-CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <fabrice.gasnier@foss.st.com>,
-        Christian Bruel <christian.bruel@foss.st.com>
-Subject: [PATCH v7 4/5] arm64: dts: st: Add combophy node on stm32mp251
-Date: Wed, 11 Sep 2024 12:37:28 +0200
-Message-ID: <20240911103729.2980431-5-christian.bruel@foss.st.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240911103729.2980431-1-christian.bruel@foss.st.com>
-References: <20240911103729.2980431-1-christian.bruel@foss.st.com>
+	s=arc-20240116; t=1726051215; c=relaxed/simple;
+	bh=ACqmaWkvoJ+Yg46mKlFoEKUQQ4W0bPcPgkKYG+6tEiA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=E4hkm4SGY78NuYBSN9uOIg27EFXtVimz5p8x/MeijIQdAx0WMBY5TePjbrA0soKbpv7PcgARrfLP2IlGDophNR5olMON/GcvZpyYrDjzdKzlk4JompP49caBl0uejgC5Pq+1jXx8kbqE6lCEiVS5U7KC365DBRtNMXGB+//b+nU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=im7aiyM3; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-68518bc1407so70902407b3.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 03:40:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1726051213; x=1726656013; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=quaLdCg89/Q3ErVCYpGz/S7qzPrQHkWX+pHMVVZKZIc=;
+        b=im7aiyM3n+XFZzAUfgVWhj2s+l8tdgTxtI0Yxc8ArewJhvfYYSbWzwSU8c15aX1zMI
+         1eNAzHMGNqU0Sd+nHkhQLFOlW4413WJSmgE/plLTwCBfF4fA6Y2VJ0bZRhejT3Z4WPYC
+         UoLuo7McovI/QEUAy7X8SgGh+VmRDMRrFP6AYnqFM21sUrezJHndxTt7J8GLkkXWHbOl
+         eOOnPaqePR8A7wGkujoUsYupIw72RxS1aliHLm0xLNzmNiiRV6goH+4osrsZNLexI3zN
+         zoGM65T0uTCs/gso5UkvCDFKD+7OaHN372tPuTtvhiNHv9XvhLAanyCEq/bNWvrDo/D9
+         fliQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726051213; x=1726656013;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=quaLdCg89/Q3ErVCYpGz/S7qzPrQHkWX+pHMVVZKZIc=;
+        b=IxUDoyKrH5twAjEJGOsBRg3m+VVUe57sIANW6FB8Q/fGociNVGlPVS2p6J9ZpOkk9F
+         PhFxT4CY8dcKVj94nGwrIha4Oxk3CBJ/K636vWMKLEU9eXTCJIybp9yD0feUB5taYuYk
+         Cg0p8JsoBT9+ir/2mek2O9kZkyxeH/nHs5OOd0wdLsoVQyOYTDOqgv4PSWSoswVlwuFB
+         uPoXINgn67RKuc3x+UjHcI/5Ck0kkpQkTpX/dS65G4iNFY1PtwQm63qg/0lYMrh2xFGQ
+         qIB1G5Qacukiz60uDR+v7soTweQjzl86sDszojgq7jzi5UntLV4XDVfFsp8MbX/H0SdR
+         W0Kg==
+X-Forwarded-Encrypted: i=1; AJvYcCXpBKNpBxng6zeaUDbqOjdKSfXVK+0WSMxqXdKs6sSDf/9ZRwvb6GWHZMLN6MVjaySms/eQHhfoirdu@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPgkqULjtkmyQjS4gccS3EFkcJsdnQ43vsmac5THrqP1nnWNnN
+	kmTa+JTuSjQ1iXOk/RNCLj72q/vUluxs9WUdDJzyU2I9ONMXAQ6HqfizhLP827ldlVwC6+eUBpB
+	eBICdPhtsiZJmYNqIY6XwT5v/diSI8PDZLybPFg==
+X-Google-Smtp-Source: AGHT+IFBbb4wmETvjaXqgLn/MDWKCHL6pj57SkqVhM0/cPEdnbQlphBpHqZfas0PwZIxjI6E5z9qO73trRYEsWxee9I=
+X-Received: by 2002:a05:690c:660e:b0:6b3:a6ff:768e with SMTP id
+ 00721157ae682-6db44a63f29mr197379867b3.0.1726051212892; Wed, 11 Sep 2024
+ 03:40:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+References: <20240911100813.338-1-quic_mukhopad@quicinc.com> <20240911100813.338-4-quic_mukhopad@quicinc.com>
+In-Reply-To: <20240911100813.338-4-quic_mukhopad@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 11 Sep 2024 13:40:02 +0300
+Message-ID: <CAA8EJpqurbPKjmRH8zdqPkMuze4zwJVu+=W0nP=Ldc6o_4Tu4w@mail.gmail.com>
+Subject: Re: [PATCH 3/5] phy: qcom: edp: Add support for eDP PHY on SA8775P
+To: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, konradybcio@kernel.org, 
+	andersson@kernel.org, simona@ffwll.ch, abel.vesa@linaro.org, 
+	robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run, 
+	marijn.suijten@somainline.org, airlied@gmail.com, daniel@ffwll.ch, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	quic_khsieh@quicinc.com, konrad.dybcio@linaro.org, quic_parellan@quicinc.com, 
+	quic_bjorande@quicinc.com, linux-arm-msm@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, quic_riteshk@quicinc.com, 
+	quic_vproddut@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
-Add support for COMBOPHY which is used either by the USB3 and PCIe
-controller.
-USB3 or PCIe mode is done with phy_set_mode().
-PCIe internal reference clock can be generated from the internal clock
-source or optionnaly from an external 100Mhz pad.
+On Wed, 11 Sept 2024 at 13:08, Soutrik Mukhopadhyay
+<quic_mukhopad@quicinc.com> wrote:
+>
+> Add support for eDP PHY v5 found on the Qualcomm SA8775P platform.
+>
+> Signed-off-by: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-edp.c | 47 +++++++++++++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>
+> diff --git a/drivers/phy/qualcomm/phy-qcom-edp.c b/drivers/phy/qualcomm/phy-qcom-edp.c
+> index 0f860a807d1b..34a47cd2919d 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-edp.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-edp.c
+> @@ -191,6 +191,45 @@ static u8 edp_phy_aux_cfg_v4[10] = {
+>         0x00, 0x13, 0x24, 0x00, 0x0a, 0x26, 0x0a, 0x03, 0x37, 0x03
+>  };
+>
+> +static const u8 edp_swing_hbr_rbr_v5[4][4] = {
+> +       { 0x07, 0x0f, 0x16, 0x1f },
+> +       { 0x0d, 0x16, 0x1e, 0xff },
+> +       { 0x11, 0x1b, 0xff, 0xff },
+> +       { 0x16, 0xff, 0xff, 0xff }
+> +};
 
-Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp251.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Same as v4
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index 1167cf63d7e8..b596afec1b6e 100644
---- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -7,6 +7,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/reset/st,stm32mp25-rcc.h>
- #include <dt-bindings/regulator/st,stm32mp25-regulator.h>
-+#include <dt-bindings/phy/phy.h>
- 
- / {
- 	#address-cells = <2>;
-@@ -518,6 +519,21 @@ i2c8: i2c@46040000 {
- 				status = "disabled";
- 			};
- 
-+			combophy: phy@480c0000 {
-+				compatible = "st,stm32mp25-combophy";
-+				reg = <0x480c0000 0x1000>;
-+				#phy-cells = <1>;
-+				clocks = <&rcc CK_BUS_USB3PCIEPHY>, <&rcc CK_KER_USB3PCIEPHY>;
-+				clock-names = "apb", "ker";
-+				resets = <&rcc USB3PCIEPHY_R>;
-+				reset-names = "phy";
-+				access-controllers = <&rifsc 67>;
-+				power-domains = <&CLUSTER_PD>;
-+				wakeup-source;
-+				interrupts-extended = <&exti1 45 IRQ_TYPE_EDGE_FALLING>;
-+				status = "disabled";
-+			};
-+
- 			sdmmc1: mmc@48220000 {
- 				compatible = "st,stm32mp25-sdmmc2", "arm,pl18x", "arm,primecell";
- 				arm,primecell-periphid = <0x00353180>;
+> +
+> +static const u8 edp_pre_emp_hbr_rbr_v5[4][4] = {
+> +       { 0x05, 0x11, 0x17, 0x1d },
+> +       { 0x05, 0x11, 0x18, 0xff },
+> +       { 0x06, 0x11, 0xff, 0xff },
+> +       { 0x00, 0xff, 0xff, 0xff }
+> +};
+
+Could you please confirm that there is a single value difference?
+
+> +
+> +static const u8 edp_swing_hbr2_hbr3_v5[4][4] = {
+> +       { 0x0b, 0x11, 0x17, 0x1c },
+> +       { 0x10, 0x19, 0x1f, 0xff },
+> +       { 0x19, 0x1f, 0xff, 0xff },
+> +       { 0x1f, 0xff, 0xff, 0xff }
+> +};
+
+Same as v4
+
+> +
+> +static const u8 edp_pre_emp_hbr2_hbr3_v5[4][4] = {
+> +       { 0x0c, 0x15, 0x19, 0x1e },
+> +       { 0x0b, 0x15, 0x19, 0xff },
+> +       { 0x0e, 0x14, 0xff, 0xff },
+> +       { 0x0d, 0xff, 0xff, 0xff }
+> +};
+
+This one looks fine
+
+> +
+> +static const struct qcom_edp_swing_pre_emph_cfg edp_phy_swing_pre_emph_cfg_v5 = {
+> +       .swing_hbr_rbr = &edp_swing_hbr_rbr_v5,
+> +       .swing_hbr3_hbr2 = &edp_swing_hbr2_hbr3_v5,
+> +       .pre_emphasis_hbr_rbr = &edp_pre_emp_hbr_rbr_v5,
+> +       .pre_emphasis_hbr3_hbr2 = &edp_pre_emp_hbr2_hbr3_v5,
+> +};
+> +
+> +static u8 edp_phy_aux_cfg_v5[10] = {
+> +       0x00, 0x13, 0xa4, 0x00, 0x0a, 0x26, 0x0a, 0x03, 0x37, 0x03
+> +};
+> +
+>  static int qcom_edp_phy_init(struct phy *phy)
+>  {
+>         struct qcom_edp *edp = phy_get_drvdata(phy);
+> @@ -520,6 +559,13 @@ static const struct phy_ver_ops qcom_edp_phy_ops_v4 = {
+>         .com_configure_ssc      = qcom_edp_com_configure_ssc_v4,
+>  };
+>
+> +static const struct qcom_edp_phy_cfg sa8775p_dp_phy_cfg = {
+> +       .is_edp = false,
+> +       .aux_cfg = edp_phy_aux_cfg_v5,
+> +       .swing_pre_emph_cfg = &edp_phy_swing_pre_emph_cfg_v5,
+> +       .ver_ops = &qcom_edp_phy_ops_v4,
+> +};
+> +
+>  static const struct qcom_edp_phy_cfg sc7280_dp_phy_cfg = {
+>         .aux_cfg = edp_phy_aux_cfg_v4,
+>         .ver_ops = &qcom_edp_phy_ops_v4,
+> @@ -1114,6 +1160,7 @@ static int qcom_edp_phy_probe(struct platform_device *pdev)
+>  }
+>
+>  static const struct of_device_id qcom_edp_phy_match_table[] = {
+> +       { .compatible = "qcom,sa8775p-edp-phy", .data = &sa8775p_dp_phy_cfg, },
+>         { .compatible = "qcom,sc7280-edp-phy", .data = &sc7280_dp_phy_cfg, },
+>         { .compatible = "qcom,sc8180x-edp-phy", .data = &sc7280_dp_phy_cfg, },
+>         { .compatible = "qcom,sc8280xp-dp-phy", .data = &sc8280xp_dp_phy_cfg, },
+> --
+> 2.17.1
+>
+
+
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
