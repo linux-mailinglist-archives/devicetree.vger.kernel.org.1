@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-102067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01DE49755A8
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:37:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 496719755AA
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:37:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64AFCB28D49
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 14:37:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E73FB1F231E4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 14:37:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 861FA1AB6F8;
-	Wed, 11 Sep 2024 14:35:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF2131ABEB8;
+	Wed, 11 Sep 2024 14:35:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="co0Ulp5A"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="hoNaWoKp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB10F1A7AF5
-	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 14:35:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62C48185954
+	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 14:35:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726065330; cv=none; b=GWMLlqjGxQGW9TK0QIagxrpk2lo3q69oYWW9+b/4mqyJyukYVk/zAAFxWLhUP7ukHfITqiBSNjGWuYTgnxFPWuE1lXs86Dbr0At8cg13zDq33jOp8PLk7BYq03gUX8q7CamZj4jlb4dxLahB1gziF+YYq9fC8qtTtA33E7rvf5o=
+	t=1726065332; cv=none; b=J6kRkXv8u/U016XKzJeLOlma9JKd93hPxOV6hWIQbmpTYxg4oEv4sbEywTp2j1X1f9kuy/Dh6ifVv5px6nAG9tLBlK1gMo85m3ws/K48Hpf3lL6G+W8mKDTMc7wk2t4UrK439fhxugcIZyI4NfbiZo52iv62A8svGe/qcTdrGPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726065330; c=relaxed/simple;
-	bh=AjMlsJy9+TPD7Xb3eSta7m5LxVV8cDiIB0vj6OtI2xI=;
+	s=arc-20240116; t=1726065332; c=relaxed/simple;
+	bh=Mdf/C8H31e0A17oTlgLfRigSnR8yQty9jPtcPTYT7pE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=m+MD+AmZbCRIIuS2jO28Tl+WbhRXPTlyq6CWybyS2muYvSOtYFYU7iVuxyUvvT02dl0y91Xt4r+SZZBSkpjvq5f5bS7VVnucnVnMWyxyVHLOvD7I5ehrwa7fghg7XMrrGpSNrQsCDYDmU8KZUrbfPtAzrRreqZIYcW/Ii1DFyvo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=co0Ulp5A; arc=none smtp.client-ip=209.85.167.169
+	 MIME-Version; b=s9d2i4iIkrc0/TrdAA1l7s4CI8lNkUl1dKdtQBKMNmOtgrN0JxfKAh61Ok0TH304v64mN3HpuigPN7GGu7YlB6A0zdyImgrtorhZ9wE1XTSFZkMCD2gidDNnSNoQdPMoDLq372rkKt9VDhXnDxyWY8XZjHATSv86HR+r4ayRY7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=hoNaWoKp; arc=none smtp.client-ip=209.85.167.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3df02c407c4so3853920b6e.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 07:35:28 -0700 (PDT)
+Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3e04552579cso1581516b6e.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 07:35:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1726065328; x=1726670128; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1726065330; x=1726670130; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RMA2TvApaDTXXGS5nmqA51iitinMolQ+6wWJX3y5BMY=;
-        b=co0Ulp5AgBxA0IaQrTinvWKzgn6MGiJmfR6O1Uyw1lyfbhuUrnXJD+wcmp7segIwCy
-         6guwmDXtNavRt6hRjJQPno2JJBdk2OCRcYqkYulMbE2vWGyWUokmHe7G6UvtMJf7Gwcn
-         J53SvZYpmLhp45RXz7js6lkUM4CfWHjCusEms=
+        bh=5leCC+xnoiSa3zCuz8WQhl2vdhzFBVOxY/5F24dS42M=;
+        b=hoNaWoKpbcTj6wsW3ixSDFOVz2BctcfvGorVKQKOMJIi3Oqb+PAX5PymPXqT6qAMn2
+         G5U1ZtPNOm7xJ7NUYdaiEw7nZVTm01uQD/Vzi0e/UO7C0/SL+GJL/HgDabNvZRhrFoHT
+         BBuKY3JAme1U89hqrAjIflyMdq4WzqoZ9Ac68=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726065328; x=1726670128;
+        d=1e100.net; s=20230601; t=1726065330; x=1726670130;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RMA2TvApaDTXXGS5nmqA51iitinMolQ+6wWJX3y5BMY=;
-        b=CBm5NZffmAVclUwJyJ8d7EWXOq3ChMrwMri8CFdlRge4zgMYl6e1D/LYC6IUhSWKN6
-         0purCRvq62k9RnpaOWwWoLT/LvwbMuKtB0gLJ9jnpbWGk/jNwMbxQ9kwRoEyTS44o9/p
-         s/q31oi6ZkxoltlBN0AY2cVJNA2eQ8Wj4TmO/6zaUoEruknqA8LL/Za3s+fN+ssqeDXK
-         cV/vx+C8mivoM8TeOL4iJCdFD/geppeiCirne9sTWGwpW6rzRl55+FLa9/mQtm0z+eQI
-         WDke5DTpF6WOXqKkNMve0YBdC8E65Una5JXsUVXeBuGvRhNK+kSLalm0O7FYANvm0bWi
-         GXew==
-X-Forwarded-Encrypted: i=1; AJvYcCWjfxEWzEbzNWZGUuekl3WAe360GXvNMWEgqAriWOYJ71iHU7cLQf/AR1roFBV3TVtTqsyFBsEBzfWC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwrZFh4hwoQY5diq+6CgGs5owjujzpp2GHARcueBOQfHUjQJ8Uu
-	7A+rrNzPjvU0pJP8aU5RBJopZoFos9ZPhy8NvbWHQAUFWfI6/A87uolGnBsAzQ==
-X-Google-Smtp-Source: AGHT+IGh2PWgPSU6BdEEz5hfgfCNNula9mOJg1NHDihIHWnwxKEijWaa+jCqU93yQyerjX21e/lgUg==
-X-Received: by 2002:a05:6870:4723:b0:277:c28c:147e with SMTP id 586e51a60fabf-27b82ed0f49mr16843837fac.21.1726065328099;
-        Wed, 11 Sep 2024 07:35:28 -0700 (PDT)
+        bh=5leCC+xnoiSa3zCuz8WQhl2vdhzFBVOxY/5F24dS42M=;
+        b=OV26r9VabigyrNP9U7uLjEmvVS5lTDOMT92O+RjublAK6duvzESKwB+UgeRQoN6Eah
+         plhsSQNNruSj+RuPUDo/Af6CsdtTBRujSWQDVZ5m5L9znFm9szYon4h2CHFnb/jSoQYK
+         3Y0bk3+tvIf8o1nbyXItlQa1vkalM8sZZ3tzXpFAD0dPi2ZASAHFn3Ormyt4Um5NrJkA
+         EO8/4q8Fgw06hUajV4rpKhItVTX6tgw0lSyG3aT1+D+NvDohphtILHq05cv5UGNbmTox
+         VSRjKlVEwlDItpKlpt/VOZ4e3pUfGBi91VixDSGK71WQSIhB8s8CHe0bjxTo30vhcD2R
+         A31A==
+X-Forwarded-Encrypted: i=1; AJvYcCVGUZh7pVN6KBqrMLL3GItIIkkUeMjw/0cQFASrUQD/5iVxzuocOPuUg1Xz2h1/eJ8Qe0jr+t12uXR3@vger.kernel.org
+X-Gm-Message-State: AOJu0YySI5MVsLDxkw0kolk1Hr9ktJUcMbB6uzrNBark+FvlFS5k9eEF
+	5mw1Dh6gZZpBeimtDVAEr6Dw0uZKfz9IhSKkSXODzShqnJN/77rMZTEY2VMcXA==
+X-Google-Smtp-Source: AGHT+IH+J+C6d8gNDzhINHwohdN90QAPrsAQWdc7FOUHpN8LW5zv/B/GqRWKq88yB99+d8bvpAIm1g==
+X-Received: by 2002:a05:6808:2f16:b0:3e0:486e:366f with SMTP id 5614622812f47-3e0486e38cbmr7154413b6e.5.1726065330530;
+        Wed, 11 Sep 2024 07:35:30 -0700 (PDT)
 Received: from fshao-p620.tpe.corp.google.com ([2401:fa00:1:10:102f:d738:6069:fd4b])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7db1fbb5901sm46620a12.24.2024.09.11.07.35.26
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7db1fbb5901sm46620a12.24.2024.09.11.07.35.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Sep 2024 07:35:27 -0700 (PDT)
+        Wed, 11 Sep 2024 07:35:30 -0700 (PDT)
 From: Fei Shao <fshao@chromium.org>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Matthias Brugger <matthias.bgg@gmail.com>
@@ -75,9 +75,9 @@ Cc: Fei Shao <fshao@chromium.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH v3 7/8] arm64: dts: mediatek: mt8188: Add audio support
-Date: Wed, 11 Sep 2024 22:34:00 +0800
-Message-ID: <20240911143429.850071-8-fshao@chromium.org>
+Subject: [PATCH v3 8/8] arm64: dts: mediatek: mt8188: Add socinfo nodes
+Date: Wed, 11 Sep 2024 22:34:01 +0800
+Message-ID: <20240911143429.850071-9-fshao@chromium.org>
 X-Mailer: git-send-email 2.46.0.598.g6f2099f65c-goog
 In-Reply-To: <20240911143429.850071-1-fshao@chromium.org>
 References: <20240911143429.850071-1-fshao@chromium.org>
@@ -89,136 +89,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add following nodes to support audio enablement on MT8188 SoC:
-- sound card
-- audio controller (AFE)
-- audio DSP and its associated mailboxes
+Add two socinfo efuse data nodes for the SoC information probing on
+MT8188.
 
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Signed-off-by: Fei Shao <fshao@chromium.org>
 ---
 
 (no changes since v2)
 
 Changes in v2:
-- Replace hardcoded AFE reset ID with correct definition
+- Added socinfo nodes in v2
 
- arch/arm64/boot/dts/mediatek/mt8188.dtsi | 96 ++++++++++++++++++++++++
- 1 file changed, 96 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-index a826ca4d10e3..6327e1006de8 100644
+index 6327e1006de8..bf15ac9901da 100644
 --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
 +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-@@ -429,6 +429,11 @@ psci {
- 		method = "smc";
- 	};
- 
-+	sound: sound {
-+		mediatek,platform = <&afe>;
-+		status = "disabled";
-+	};
+@@ -1904,6 +1904,14 @@ efuse: efuse@11f20000 {
+ 			lvts_efuse_data1: lvts1-calib@1ac {
+ 				reg = <0x1ac 0x40>;
+ 			};
 +
- 	thermal_zones: thermal-zones {
- 		cpu-little0-thermal {
- 			polling-delay = <1000>;
-@@ -1349,6 +1354,97 @@ scp: scp@10500000 {
- 			interrupts = <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH 0>;
++			socinfo-data1@7a0 {
++				reg = <0x7a0 0x4>;
++			};
++
++			socinfo-data2@7e0 {
++				reg = <0x7e0 0x4>;
++			};
  		};
  
-+		afe: audio-controller@10b10000 {
-+			compatible = "mediatek,mt8188-afe";
-+			reg = <0 0x10b10000 0 0x10000>;
-+			assigned-clocks = <&topckgen CLK_TOP_A1SYS_HP>;
-+			assigned-clock-parents =  <&clk26m>;
-+			clocks = <&clk26m>,
-+				 <&apmixedsys CLK_APMIXED_APLL1>,
-+				 <&apmixedsys CLK_APMIXED_APLL2>,
-+				 <&topckgen CLK_TOP_APLL12_CK_DIV0>,
-+				 <&topckgen CLK_TOP_APLL12_CK_DIV1>,
-+				 <&topckgen CLK_TOP_APLL12_CK_DIV2>,
-+				 <&topckgen CLK_TOP_APLL12_CK_DIV3>,
-+				 <&topckgen CLK_TOP_APLL12_CK_DIV9>,
-+				 <&topckgen CLK_TOP_A1SYS_HP>,
-+				 <&topckgen CLK_TOP_AUD_INTBUS>,
-+				 <&topckgen CLK_TOP_AUDIO_H>,
-+				 <&topckgen CLK_TOP_AUDIO_LOCAL_BUS>,
-+				 <&topckgen CLK_TOP_DPTX>,
-+				 <&topckgen CLK_TOP_I2SO1>,
-+				 <&topckgen CLK_TOP_I2SO2>,
-+				 <&topckgen CLK_TOP_I2SI1>,
-+				 <&topckgen CLK_TOP_I2SI2>,
-+				 <&adsp_audio26m CLK_AUDIODSP_AUDIO26M>,
-+				 <&topckgen CLK_TOP_APLL1_D4>,
-+				 <&topckgen CLK_TOP_APLL2_D4>,
-+				 <&topckgen CLK_TOP_APLL12_CK_DIV4>,
-+				 <&topckgen CLK_TOP_A2SYS>,
-+				 <&topckgen CLK_TOP_AUD_IEC>;
-+			clock-names = "clk26m",
-+				      "apll1",
-+				      "apll2",
-+				      "apll12_div0",
-+				      "apll12_div1",
-+				      "apll12_div2",
-+				      "apll12_div3",
-+				      "apll12_div9",
-+				      "top_a1sys_hp",
-+				      "top_aud_intbus",
-+				      "top_audio_h",
-+				      "top_audio_local_bus",
-+				      "top_dptx",
-+				      "top_i2so1",
-+				      "top_i2so2",
-+				      "top_i2si1",
-+				      "top_i2si2",
-+				      "adsp_audio_26m",
-+				      "apll1_d4",
-+				      "apll2_d4",
-+				      "apll12_div4",
-+				      "top_a2sys",
-+				      "top_aud_iec";
-+			interrupts = <GIC_SPI 822 IRQ_TYPE_LEVEL_HIGH 0>;
-+			power-domains = <&spm MT8188_POWER_DOMAIN_AUDIO>;
-+			resets = <&watchdog MT8188_TOPRGU_AUDIO_SW_RST>;
-+			reset-names = "audiosys";
-+			mediatek,infracfg = <&infracfg_ao>;
-+			mediatek,topckgen = <&topckgen>;
-+			status = "disabled";
-+		};
-+
-+		adsp: adsp@10b80000 {
-+			compatible = "mediatek,mt8188-dsp";
-+			reg = <0 0x10b80000 0 0x2000>,
-+			      <0 0x10d00000 0 0x80000>,
-+			      <0 0x10b8b000 0 0x100>,
-+			      <0 0x10b8f000 0 0x1000>;
-+			reg-names = "cfg", "sram", "sec", "bus";
-+			assigned-clocks = <&topckgen CLK_TOP_ADSP>;
-+			clocks = <&topckgen CLK_TOP_ADSP>,
-+				 <&topckgen CLK_TOP_AUDIO_LOCAL_BUS>;
-+			clock-names = "audiodsp", "adsp_bus";
-+			mboxes = <&adsp_mailbox0>, <&adsp_mailbox1>;
-+			mbox-names = "rx", "tx";
-+			power-domains = <&spm MT8188_POWER_DOMAIN_ADSP>;
-+			status = "disabled";
-+		};
-+
-+		adsp_mailbox0: mailbox@10b86000 {
-+			compatible = "mediatek,mt8188-adsp-mbox", "mediatek,mt8186-adsp-mbox";
-+			reg = <0 0x10b86100 0 0x1000>;
-+			interrupts = <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH 0>;
-+			#mbox-cells = <0>;
-+		};
-+
-+		adsp_mailbox1: mailbox@10b87000 {
-+			compatible = "mediatek,mt8188-adsp-mbox", "mediatek,mt8186-adsp-mbox";
-+			reg = <0 0x10b87100 0 0x1000>;
-+			interrupts = <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH 0>;
-+			#mbox-cells = <0>;
-+		};
-+
- 		adsp_audio26m: clock-controller@10b91100 {
- 			compatible = "mediatek,mt8188-adsp-audio26m";
- 			reg = <0 0x10b91100 0 0x100>;
+ 		gpu: gpu@13000000 {
 -- 
 2.46.0.598.g6f2099f65c-goog
 
