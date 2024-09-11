@@ -1,136 +1,236 @@
-Return-Path: <devicetree+bounces-101951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8F0D974D77
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 10:53:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23BC3974D03
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 10:47:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7322288B80
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 08:53:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7C10288407
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 08:47:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C46219EEB4;
-	Wed, 11 Sep 2024 08:48:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DA7B1714C7;
+	Wed, 11 Sep 2024 08:46:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SELzJjzQ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="oVxEF3mn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 218F519E996;
-	Wed, 11 Sep 2024 08:48:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E477616EB54
+	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 08:46:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726044518; cv=none; b=oClQ0scTJI8PtfMbPaoZacaxUw3Ia5iqmDZidFfIJ4deI57RAX8WfipK6B8gkMFggjRHUJCWVH2Gx/yu5O5qqxe4RP2c81jJsjw/LdvL7d6KT15izX6P/iFheJw/urD8grVkOVL6zxyjeSYBVK2/V+TrJpE1JuJtL9OR44M5LWM=
+	t=1726044406; cv=none; b=Ie+42tISh7vEIoYlBGQhKj9zf68VolO5y3537s92wQKAlpmpaQeLC8brXaPbF0miQ1hEHwjx+Y8yZ+G1KkfEhUZcD/EQlKn7mzErF5USESJV7MGFAmuhfL/dacjUaEH6rG4kdgrALrSgywRHHlMUbZyDRHqMjPjasgKJRmE/OHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726044518; c=relaxed/simple;
-	bh=IlwfpKeYG1A6lmRpl2J8Js+0dUrkM33rNMIVVPeLcso=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Iukc8IvS0Q/VEz+PMWfmY18yGk3wBhC92wlKjB3D7monpaqL1VK8Vh+/Hd8FmyB2IQ4epb4TAhMfsQJY2DCyDMiNBd3uFO0u4TKbY3TonOhMUJnr4E2fMzsaGWxCgcXEk3n/HK3Ua7GRRsZ0YzjUIguhX84nhpiGEbozt99i8Lg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SELzJjzQ; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-71781f42f75so5188059b3a.1;
-        Wed, 11 Sep 2024 01:48:36 -0700 (PDT)
+	s=arc-20240116; t=1726044406; c=relaxed/simple;
+	bh=VsJ9AHTmARvYlzSXySTeo7ymug5ss/CGxuO45BanAJY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WnbVqzXs7+z1ScTtfVo5YLRhvWUYl0qzppAzI9kciRdVLpMxdOHqG5JhTkpp8zqLmUwHbbpsI0D56EUnwIe1dyvs37oMmcggfaa8VifAoqkpFVxq2soDNsZzuh+H0uvWpJjj0mL6m85YFaSzBoawOQGfLnpH1nJbNKzdhUFB2Bk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=oVxEF3mn; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-374c5bab490so373788f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 01:46:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726044516; x=1726649316; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Zy0C2tn+S+ad9UGMaUozuLH5nIPIOY9VH2lYfYG3DPM=;
-        b=SELzJjzQRJIJxRVXaRARykQkhwroJK283xwl4eIwbQUTffdcYb0/l0GAl4hnYzMjFt
-         y5KwXDeq7WnpnSHdSTGqqMkvFXMI5C/oWk/lcKwdX6hPf6XREZWRc8y9Abd4mU+7i71D
-         ild4sZbaikqvOKg4Kz+VN9+CTKZFyiDTAQYhbiyWtn0ANi5pjuHeR3sumcbg8AlyE22y
-         WeIX4STn3DYZ0QpGmxEFK7qa7RHhyJZljSVpfCd3h2S672IPxefpFWm/r7fKA+jc1Gz5
-         /xz/wBkr+6sBCIPbNByEoCM/hYb9Rlb/cSUpKiC6PS6x3IQ8tdI957odc36CBomlTnbT
-         HoYw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1726044401; x=1726649201; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+eQgNaVzjnox2dQ7aNQ/KQoNn0cQNVbxER3t17wy2HM=;
+        b=oVxEF3mnDVOr42N2WsSf49jm/6cKclAN1wEgxoeLHrFJLMKVmv5SlA1jecjt7+tofC
+         KwAatPxw/Bmn/jw8Z5JqoKjD33ROgFEMSqGauZFcCr7hRrCvMSuS4s0rJoh7yWFLhLZg
+         SetHm6xGaZ2eE+cNSgp/ym60scDd0ySF4wNFfSSB3aR0TQzBn28VhXM1LwS/jJb7eur2
+         jqqI2KPPyG85Ae/n1wjM6lsXzzhAzjWaT2Q7DGHdxGvMIf6fsNkV8TY5oUs4RI09kknm
+         SDjsvCMSlcuTTola2fHxJ2gcRhDK4GHDBpaYwcqcQIDhLEjURJ9EhUsiZFZnanzlSsdd
+         JS4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726044516; x=1726649316;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Zy0C2tn+S+ad9UGMaUozuLH5nIPIOY9VH2lYfYG3DPM=;
-        b=V3DyqsjOzUUCruUM0hgWKPp+tV0nIM+FnF0gbF3PdJcIUYacHg7zn4zL2+KW1W8pcg
-         4Nevid9rpqUITt47c2yu086KBGiNkf1n2NIi6SmSlpq37S3l/1KHZf/69/S8Zlt9BNzJ
-         1ZUdKmBrNIiTHVr0DmSTb401KFiZMLhHdBSiKeugKok/yFMJvePGHpkY1cPh/shqFlXP
-         2YdMFQOwEa8MpqJFCYyRxL+fFfe5/RYS50FRQF7dsrAJWVbXuVNh4x+OwwEEQPekBpyJ
-         awl+mInZ2q3MBqrABe/WNHqwLkV3aXKjeB3Gj6nLIFONhFZ60JqGD+fihqt2Fb+6SbGx
-         jl4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU49cM36hX0Bpg7SFnHlDCnTmSXbs0/vv/wYnvvm6YX1AuVWC7AO2QgcS++EPrp5n/AMud8cN/tuJtULOvvZiM=@vger.kernel.org, AJvYcCUSEmsgRY+hvnFoLQ08GdYTYTaYjXDF9y31lvaKb00cqgyqa++EbM9KRrBSGfaClSbcL87Sc9mBmRWL1A==@vger.kernel.org, AJvYcCUe5m4b3qmfzfxT/M/D9F9ei5nxzIOITtrw8L7dXSeX9Dzmd6724QAhwrWbUOX72FxiSxm17yYX3jE1EiK0@vger.kernel.org, AJvYcCWCYGZ6hzE2OMawugdksF1jG1od/1oZtHS4LNzqn+k4BW7XkTV95X/4p0O6UNV00mkz07KsdbxnkhY2@vger.kernel.org, AJvYcCWS1bkMbSPWEkcM0KVksC6Z0Fk1fcITs2LNNlsHVtLPzxF32zAJxi1neUV+7oMe9cXDuckL77QWbIw=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwrEnrUOHif1ImnThTjsX9BDYbdbO9DsGlhKxcCD/VR5+L6CKa2
-	sXLEgzVhEkSL9GasCL+Bef0DPx1fSRbLSgJ4rJCxPOWQUCMOXeAq
-X-Google-Smtp-Source: AGHT+IEIz5d//17WPnMDgMVDUYvH7+sxfpmlvAoBsrI8xaC6pMBmCRrAzLDUicf2j5d88qL+NqMcTg==
-X-Received: by 2002:a05:6a00:886:b0:70d:22b5:5420 with SMTP id d2e1a72fcca58-718d5e5476fmr26897235b3a.15.1726044516437;
-        Wed, 11 Sep 2024 01:48:36 -0700 (PDT)
-Received: from nick-mbp.ust.hk (wf121-022.ust.hk. [175.159.121.22])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-71909095177sm2530125b3a.112.2024.09.11.01.48.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Sep 2024 01:48:35 -0700 (PDT)
-From: Nick Chan <towinchenmi@gmail.com>
-To: Hector Martin <marcan@marcan.st>,
-	Sven Peter <sven@svenpeter.dev>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Mark Kettenis <kettenis@openbsd.org>,
-	asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-watchdog@vger.kernel.org
-Cc: Konrad Dybcio <konradybcio@kernel.org>,
-	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
-	Nick Chan <towinchenmi@gmail.com>
-Subject: [PATCH 22/22] arm64: Kconfig: Update help text for CONFIG_ARCH_APPLE
-Date: Wed, 11 Sep 2024 16:41:12 +0800
-Message-ID: <20240911084353.28888-24-towinchenmi@gmail.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240911084353.28888-2-towinchenmi@gmail.com>
-References: <20240911084353.28888-2-towinchenmi@gmail.com>
+        d=1e100.net; s=20230601; t=1726044401; x=1726649201;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+eQgNaVzjnox2dQ7aNQ/KQoNn0cQNVbxER3t17wy2HM=;
+        b=ZUJ5ZZtafeT5qsk01qUSn/eikkbwFfwVAdRuIFw8UdWVaII41TndXA7sC40tZcnWGH
+         fC+S0Z7TOWk/TWHWtS6W3ibsbYiYH4WE9aYVns6kkudhtI8Hj1PANwqSPhSBIk9gg+Qm
+         2CA1rY1f7en3VxfKy1/bVuDo5mZRRLy8aygkqznmB9ohb3P9A2lWqAsltqLiEtUyIplS
+         crgLfRXocMLVphoTUZEnBvJ3jLFIG5lY8ZqwD8acw/DGU1yB69liIbLMHX+AnRcQk8gS
+         B1GTOx91KbEC5xw18q6ofZMHj1Os10+Y5jhLVJkwO1OK0qdpDEZ7+S/0asnz6QsfZhhk
+         nNew==
+X-Forwarded-Encrypted: i=1; AJvYcCXGezxXDRPTsvwtHdoQiCMTIXvgwV0hlx9FD61DoSdQPcGAtKBbgqons86bXa2WKXEzxvF6/ed+Vi6q@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywm4OIUPcGbf72V16mVvDu1Jncd6FpAUlUkl5O5/Dk+OaNtuzAG
+	j7i8p6udABc/HzDZ55hYSYyHCYehE1KY5mqe57h8FtrVnXLHcpkZwK295VmFZas=
+X-Google-Smtp-Source: AGHT+IGeeBURNIMwTcUQkDjdbYySnc2dsPBnkxWzH4v5PoGgCqR3Ffw7WTvhM/YEBSafmRXnqy4+dw==
+X-Received: by 2002:a5d:4ec9:0:b0:374:c4c2:5ad5 with SMTP id ffacd0b85a97d-378a8a792fcmr3709547f8f.27.1726044400255;
+        Wed, 11 Sep 2024 01:46:40 -0700 (PDT)
+Received: from [192.168.0.2] (host-79-54-235-146.retail.telecomitalia.it. [79.54.235.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3789556aa7dsm11278134f8f.0.2024.09.11.01.46.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Sep 2024 01:46:39 -0700 (PDT)
+Message-ID: <a30d4887-c118-4997-8e84-4a269b58b371@baylibre.com>
+Date: Wed, 11 Sep 2024 10:45:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/9] dt-bindings: iio: dac: ad3552r: add io-backend
+ property
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+ David Lechner <dlechner@baylibre.com>,
+ Conor Dooley <conor.dooley@microchip.com>,
+ Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-0-87d669674c00@baylibre.com>
+ <20240905-wip-bl-ad3552r-axi-v0-iio-testing-v2-1-87d669674c00@baylibre.com>
+ <20240908132925.331c5175@jic23-huawei>
+ <20240909-dwelled-specimen-949f44c8d04d@wendy>
+ <1dca9ce52e7c701c7fb6cbbc723e9dff5d0ace8b.camel@gmail.com>
+ <66090d3e-bf6c-43ee-9dc8-7bca449d448f@baylibre.com>
+ <f54646877c2a68d01e15db31ae21224053f87439.camel@gmail.com>
+Content-Language: en-US
+From: Angelo Dureghello <adureghello@baylibre.com>
+In-Reply-To: <f54646877c2a68d01e15db31ae21224053f87439.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Apple's A7-A11 SoC is now supported, so the original help text is no longer
-accurate.
 
-Signed-off-by: Nick Chan <towinchenmi@gmail.com>
----
- arch/arm64/Kconfig.platforms | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On 10/09/24 10:16 AM, Nuno Sá wrote:
+> On Mon, 2024-09-09 at 12:19 -0500, David Lechner wrote:
+>> On 9/9/24 9:03 AM, Nuno Sá wrote:
+>>> On Mon, 2024-09-09 at 13:46 +0100, Conor Dooley wrote:
+>>>> On Sun, Sep 08, 2024 at 01:29:25PM +0100, Jonathan Cameron wrote:
+>>>>> On Thu, 05 Sep 2024 17:17:31 +0200
+>>>>> Angelo Dureghello <adureghello@baylibre.com> wrote:
+>>>>>
+>>>>>> From: Angelo Dureghello <adureghello@baylibre.com>
+>>>>>>
+>>>>>> There is a version AXI DAC IP block (for FPGAs) that provides
+>>>>>> a physical bus for AD3552R and similar chips. This can be used
+>>>>>> instead of a typical SPI controller to be able to use the chip
+>>>>>> in ways that typical SPI controllers are not capable of.
+>>>>>>
+>>>>>> The binding is modified so that either the device is a SPI
+>>>>>> peripheral or it uses an io-backend.
+>>>>>>
+>>>>>> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+>>>>>>   
+>>>>>>   required:
+>>>>>>     - compatible
+>>>>>> -  - reg
+>>>>>> -  - spi-max-frequency
+>>>>> Sort of feels like both reg and spi-max-frequency
+>>>>> are valid things to specify.
+>>>>>
+>>>>> Maybe we have an excellent IP and dodgy wiring so want
+>>>>> to clamp the frequency (long term - don't need to support
+>>>>> in the driver today).
+>>>>>
+>>>>> Maybe we have an axi_dac IP that supports multiple
+>>>>> front end devices?  So maybe just keep reg?
+>>>> I'd like to be convinced that this incarnation of the AXI DAC IP is not
+>>>> a spi controller and that a ref to spi-controller.yaml is not out of
+>>>> place here. It may not be something that you'd ever use generally, given
+>>>> the "weird" interface to it, but it does seem to be one regardless.
+>>>>
+>>> Agreed.. As weird as it get's, it's acting as a spi controller.
+>>>
+>>>> I'd also really like to know how this fits in with spi-offloads. It
+>>>> /feels/, and I'd like to reiterate the word feels, like a rather similar
+>>>> idea just applied to a DAC instead of an ADC.
+>>> The offload main principle is to replay a spi transfer periodically given an
+>>> input trigger. I'm not so sure we have that same principle in here. In here
+>>> I
+>>> guess we stream data over the qspi interface based on SCLK which can look
+>>> similar. The difference is that this IP does not need any trigger for any
+>>> spi
+>>> transfer replay (I think).
+>>>
+>> Looking at the AD3552R from a SPI offload perspective of triggered SPI
+>> messages, I think it still works.
+>>
+>> The trigger doesn't have to be a clock/PWM. In this case, the trigger would
+>> be whenever the IIO buffer is full and ready to send a burst of data (not
+>> sure if this would be a hardware or software trigger - but it works either
+>> way).
+>>
+> Right... That's what we already have for DACs with HW buffering.
+>
+>> Also, the DAC_CUSTOM_CTRL::ADDRESS register field in the AXI DAC IP core
+>> acts as an offload to record and play back a SPI write transfer.
+>>
+>> If we were using the AXI SPI Engine, this would be one SPI message with
+>> two xfers, one for the address write followed by one for the data write.
+> Just a nipick comment. At least from the current implementation the address is
+> only writen once before starting to stream. So I guess we would not want to
+> replay that xfer for every sample.
+>
+>> The size of the data write would be the size of the IIO buffer - or in
+>> the case of a cyclic DMA, the size of the write data would be channel
+>> data size * num channels and the xfer would have a special cyclic offload
+>> flag set.
+>>
+>> So I think we could make a single binding that works for the the AXI DAC
+>> backend/offload and the AXI SPI Engine offload. (I don't think it would
+>> be so easy to integrate the AXI DAC into the SPI framework on the driver
+>> side - and hopefully we won't have to, but the DT still could use the
+>> proposed SPI offload bindings.)
+>>
+> Hopefully not...
 
-diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-index 6c6d11536b42..370a9d2b6919 100644
---- a/arch/arm64/Kconfig.platforms
-+++ b/arch/arm64/Kconfig.platforms
-@@ -37,8 +37,8 @@ config ARCH_APPLE
- 	bool "Apple Silicon SoC family"
- 	select APPLE_AIC
- 	help
--	  This enables support for Apple's in-house ARM SoC family, starting
--	  with the Apple M1.
-+	  This enables support for Apple's in-house ARM SoC family, such
-+	  as the Apple M1.
- 
- menuconfig ARCH_BCM
- 	bool "Broadcom SoC Support"
+As of now, i am proposing to stay in the simpler node as possible for the
+current case, like:
+
+
+     axi_dac: spi@44a70000 {
+         compatible = "adi,axi-ad3552r";
+         reg = <0x44a70000 0x1000>;
+         dmas = <&dac_tx_dma 0>;
+         dma-names = "tx";
+         #io-backend-cells = <0>;
+         clocks = <&ref_clk>;
+
+         #address-cells = <1>;
+         #size-cells = <0>;
+
+         dac@0 {
+             reg = <0>;
+             compatible = "adi,ad3552r";
+             reset-gpios = <&gpio0 92 GPIO_ACTIVE_HIGH>;
+             io-backends = <&axi_dac>;
+
+             #address-cells = <1>;
+             #size-cells = <0>;
+
+             channel@0 {
+                 reg = <0>;
+                 adi,output-range-microvolt = <(-10000000) (10000000)>;
+             };
+         };
+     };
+
+
+and extend things later on, in case.
+SPI lines and other info are all obtained from the compatible.
+
+What do you think ?
+
+
+>
+> - Nuno Sá
+
 -- 
-2.46.0
+  ,,,      Angelo Dureghello
+:: :.     BayLibre -runtime team- Developer
+:`___:
+  `____:
 
 
