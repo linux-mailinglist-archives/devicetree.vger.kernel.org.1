@@ -1,167 +1,145 @@
-Return-Path: <devicetree+bounces-101954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24404974DAD
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 10:57:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F5F1974DED
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 11:07:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C280C1F274AA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 08:57:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9F207B23CEF
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 09:07:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 253801547DB;
-	Wed, 11 Sep 2024 08:57:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C619317C230;
+	Wed, 11 Sep 2024 09:07:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="GKZiL4Ky";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="KqlpHbP/"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="mLVOyi+Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from a7-45.smtp-out.eu-west-1.amazonses.com (a7-45.smtp-out.eu-west-1.amazonses.com [54.240.7.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 092E81552F6;
-	Wed, 11 Sep 2024 08:57:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EF8D153BE8
+	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 09:07:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726045049; cv=none; b=Iw9+2CxEvAUG7c52aogwIqiAuyg3qDy2uaEE5F6x4ysF4v6JoBj8dAtPXcCwpsRl2eYdN8EifQH+wExWeyNwJgmin4lr4srfessgdAiNhyAiChcwa17IDb9arbNZUB8hHhS9O1qwmQYsavYQ2jn0/ODpRzwjVA6UAO0hD3xwQGU=
+	t=1726045631; cv=none; b=u3jY3WEvBDMplA+ppKTaYxYdg/MH4BGnF9HNA95Z6/qj8BbegYrDBRR8BE3gvqVkWrU+R6mntUFRiNjH9ldNs6HU8uJCa+D6fwOVvyaO9SG2ZqgH2clNuqlNs6vJuAIH1hv3qoW0cJn8GBeE7+VXWTvUESjWpX7oKwh03WXVtcw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726045049; c=relaxed/simple;
-	bh=vUvKnbq/uwwFGfQegRdJ5dmxcL0H9quwOS+8xA7iEFY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QhPMMP/P/2avCM/w3Zl2QszXSr+K8BxKRue+77Czr81x7epVai1A7OwuvxmJg8zpSvhwTT6DAxyfp74C9c9BoiZv/X11rftLCaKu1PYC3h0wRbQzrb/J/AaDhVgN0MGkeQZ4N2lP8rOdq5zlbqGx0OqfOtgWdLrKVPZzZrq/Eis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=GKZiL4Ky; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=KqlpHbP/; arc=none smtp.client-ip=54.240.7.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazonses.collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1726045045;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding;
-	bh=vUvKnbq/uwwFGfQegRdJ5dmxcL0H9quwOS+8xA7iEFY=;
-	b=GKZiL4KyR58cJt4OY+aZDZOLi65aOmKRZvOAG3xMT3ATB5DEDXIWmUy+1g3+Ksdf
-	98DT5E0Of/U2ImWQvw6iY9kBCtyVl3vdXgvaFG8yqo4rTpVUFIP7nmbch6JKaYhKoMj
-	XEl5blNzzjzGV/fnH1LQgf+Wl2/sbwrUyj2AQlYgKFIRmw5MUSEWc6h8+AbW69Gb1DP
-	yq3utQvp9NmrcWVAOfq7hynkAjPhsLXG8gXDOjzsQYdFydRSV+r0M+5Jp64gKng7Trz
-	O1CE7dpBJTu5hBoLPbx/DJsGxGTbWUvIrSMF7otdVOOrqW/3ZLwO7/FEenBlYabNVq0
-	nWdE51ULGQ==
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1726045045;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID;
-	bh=vUvKnbq/uwwFGfQegRdJ5dmxcL0H9quwOS+8xA7iEFY=;
-	b=KqlpHbP/rdRsMMbXy8JfQzgiNCwzQ1fOPsccG3WEIOos+ICBS8IKxeC2DT8kvgir
-	6n/jghADEdbJNp4neaLu+f16flvIMRehDAa/ps+yjgEEviCLA0ZJqanL4pipewwIlKD
-	Haf7MlcWKpG8C5R17b5cm/TtxqLwSZsTdVbWhj38=
-Message-ID: <01020191e04d4237-204596e1-6cc1-491c-a60f-de3917af7d42-000000@eu-west-1.amazonses.com>
-Date: Wed, 11 Sep 2024 08:57:25 +0000
+	s=arc-20240116; t=1726045631; c=relaxed/simple;
+	bh=g9teW8e2aWqsDywkQoHu+NGEG3Q+tuV4lpr44qK8yGM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=IJfvPvaBathEy+WkryQYqXPWQ2bRPh61CdeLq6YcUwCI9mXsHc1vD6wARpglyFePcuvp1FNcPao4UKUOMYu20QfgyEehRSu6yOd1x2QXIBVMDBKJxU1HVZpsOj5SmTt/+kQRlsUrp379Qnearl2JvGDXohBXA6zHaXhzSqcxGwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=mLVOyi+Q; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-206aee4073cso66938265ad.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 02:07:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1726045629; x=1726650429; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LHQzU6voJbzXuiTDRaTgUllQ8sZpGhRSONHnUPaSmxM=;
+        b=mLVOyi+Q/ULvhuh+/D4U8gqIdUssM63VTXSaMMVKGRHCFcEbetWsXIpGOaZ/QwyZvP
+         qlpu9WqyrYhXIcpIK0ML703+/67LTRTIPo56o48b7DwEB4QIKjsLtULjCP9Qo6Alb/Oi
+         Lhnnk/L2iR7a3NQKMIcrstjQdkEHOGkzBStjU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726045629; x=1726650429;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LHQzU6voJbzXuiTDRaTgUllQ8sZpGhRSONHnUPaSmxM=;
+        b=tZu0N9vu9LiN40pbboJY6KQ2Jh9udFps7UyRC16H7+EZRDw7kBDEMjQb72vqeKF0a1
+         IKgNKua13aQiHvaLoL4IrsWEJt2wqmt8V3D6S3gautPUEhyeGfAPrJ27xpzy+GNkCeqh
+         8INBmMVLTGWHWeM5qAisO0L0v6Q+8sVLJbjkr7gui0SELsXolgaQ937lUB0s8+xVx7JE
+         wuG7pSupCsEDHnRPBJgbdkl6NcPY+i8h82vfgsByoZnvJhhV58zhDVwRTKfYfyBNwDeM
+         IKahF6c79AEfmpYch8n3FeFU/d7+hD6YHBWmM5TSwi0ZJQu386HbPg6wYHXIyHA3zYME
+         P3Jw==
+X-Gm-Message-State: AOJu0Yw5xjlwxWwOgQ4X4otuym+iBtkxynnVGk880qa7bYeLUlvDXYNI
+	hvvYaybj/JFVYhTz0q1TwkVhMPOe0Xca7Pi4DaWd4gFneQUibNq6i+Lnv44T+1xoA9VlEl+v8L4
+	=
+X-Google-Smtp-Source: AGHT+IGAqhBnf0SV+Z4g8R5aeEMdIP4KrSDUmh2/nEUjwoIAX+w20TRCdHvWil8SF4ixwWnbOny16Q==
+X-Received: by 2002:a17:903:2406:b0:206:b04e:71b3 with SMTP id d9443c01a7336-2074c6e1110mr61414455ad.51.1726045628992;
+        Wed, 11 Sep 2024 02:07:08 -0700 (PDT)
+Received: from yuanhsinte.c.googlers.com (30.191.80.34.bc.googleusercontent.com. [34.80.191.30])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20710eeb39asm59572495ad.154.2024.09.11.02.07.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Sep 2024 02:07:08 -0700 (PDT)
+From: Hsin-Te Yuan <yuanhsinte@chromium.org>
+Date: Wed, 11 Sep 2024 09:07:03 +0000
+Subject: [PATCH v2] arm64: dts: mt8183: Add encoder node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8395-genio-1200-evk: Enable GPU
-To: Pablo Sun <pablo.sun@mediatek.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-References: <20240910143245.5282-1-pablo.sun@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240910143245.5282-1-pablo.sun@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
-X-SES-Outgoing: 2024.09.11-54.240.7.45
+Message-Id: <20240911-venc-v2-1-5566c07756fd@chromium.org>
+X-B4-Tracking: v=1; b=H4sIALZd4WYC/y3Myw7CIBCF4VdpZi2GwVasK9/DdGG4lFkUzKBE0
+ /DuYnX5n5x8K2TH5DKcuxXYFcqUYgu168CEW5ydINsalFS9HOUoiotG9FoORnvvB3uEdr2z8/T
+ amOvUOlB+JH5vasHv+gdQ/oCCAoVFbb0dD2jN6WICp4Weyz7xDFOt9QPFUVXEmwAAAA==
+X-Change-ID: 20240909-venc-4705c7fff5d6
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Hsin-Te Yuan <yuanhsinte@chromium.org>
+X-Mailer: b4 0.15-dev-7be4f
 
-Il 10/09/24 16:32, Pablo Sun ha scritto:
-> Enable the Mali Valhall GPU on Genio 1200 EVK by providing regulator
-> supply settings and enable the GPU node.
-> 
-> In addition, set the GPU related regulator voltage range:
-> 
-> 1. Set the recommended input voltage range of DVDD_GPU to (0.546V-0.787V),
->     based on Table 5-3 of MT8395 Application Processor Datasheet.
->     The regulator mt6315_7_vbuck1("Vgpu") connects to the DVDD_GPU input.
-> 2. Set the input voltage of DVDD_SRAM_GPU, supplied by
->     mt6359_vsram_others_ldo_reg, to 0.75V and set it always on for GPU SRAM.
-> 
-> This patch is tested by enabling CONFIG_DRM_PANFROST and
-> on Genio 1200 EVK it probed with following dmesg:
-> 
-> ```
-> panfrost 13000000.gpu: clock rate = 700000092
-> panfrost 13000000.gpu: mali-g57 id 0x9093 major 0x0 minor 0x1 status 0x0
-> panfrost 13000000.gpu: features: 00000000,000019f7,
-> 	               issues: 00000001,80000400
-> panfrost 13000000.gpu: Features: L2:0x07120206 Shader:0x00000000
->                         Tiler:0x00000809 Mem:0x301
-> 		       MMU:0x00002830 AS:0xff JS:0x7
-> panfrost 13000000.gpu: shader_present=0x50045 l2_present=0x1
-> [drm] Initialized panfrost 1.2.0 for 13000000.gpu on minor 0
-> ```
-> 
-> Signed-off-by: Pablo Sun <pablo.sun@mediatek.com>
-> ---
->   .../boot/dts/mediatek/mt8395-genio-1200-evk.dts  | 16 ++++++++++++++--
->   1 file changed, 14 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-> index a06610fff8ad..9b7850b0b9b4 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-> @@ -194,6 +194,11 @@ eth_phy0: eth-phy0@1 {
->   	};
->   };
->   
-> +&gpu {
-> +	mali-supply = <&mt6315_7_vbuck1>;
-> +	status = "okay";
-> +};
-> +
->   &i2c0 {
->   	clock-frequency = <400000>;
->   	pinctrl-0 = <&i2c0_pins>;
-> @@ -407,6 +412,13 @@ &mt6359_vrf12_ldo_reg {
->   	regulator-always-on;
->   };
->   
-> +/* for GPU SRAM */
-> +&mt6359_vsram_others_ldo_reg {
-> +	regulator-always-on;
+Add encoder node.
 
-No, that's not good. Like that, the GPU VSRAM will be subject to current leakage.
+Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+---
+According to
+https://lore.kernel.org/all/184d895c-239e-3f23-970e-6a9563235cd9@gmail.com/,
+the encoder node of MT8183 should be added only after its dependency has
+been accepted. Add the encoder node in this patch.
+---
+Changes in v2:
+- Fix typo in dts 
+- Rename clock-names to venc_sel to match dt-bindings
+- Remove deprecated property: mediatek,larb
+- Link to v1: https://lore.kernel.org/r/20240910-venc-v1-1-d17dfd931dc8@chromium.org
+---
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-Remove the regulator-always-on property.
-The right way of doing that is to add the vgpu to the mfg0's domain supply and
-vsram to mfg1; that way all of the GPU regulators will be off at PM suspend time.
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index fbf145639b8c90b2c69da1cb4bac4f61ca7a1c9e..d33c0e4fdfc1132463c1d8f058a791fb2b06579c 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -1965,6 +1965,23 @@ larb4: larb@17010000 {
+ 			power-domains = <&spm MT8183_POWER_DOMAIN_VENC>;
+ 		};
+ 
++		vcodec_enc: vcodec@17020000 {
++			compatible = "mediatek,mt8183-vcodec-enc";
++			reg = <0 0x17020000 0 0x1000>;
++			interrupts = <GIC_SPI 247 IRQ_TYPE_LEVEL_LOW>;
++			iommus = <&iommu M4U_PORT_VENC_REC>,
++				 <&iommu M4U_PORT_VENC_BSDMA>,
++				 <&iommu M4U_PORT_VENC_RD_COMV>,
++				 <&iommu M4U_PORT_VENC_CUR_LUMA>,
++				 <&iommu M4U_PORT_VENC_CUR_CHROMA>,
++				 <&iommu M4U_PORT_VENC_REF_LUMA>,
++				 <&iommu M4U_PORT_VENC_REF_CHROMA>;
++			mediatek,scp = <&scp>;
++			power-domains = <&spm MT8183_POWER_DOMAIN_VENC>;
++			clocks = <&vencsys CLK_VENC_VENC>;
++			clock-names = "venc_sel";
++		};
++
+ 		venc_jpg: jpeg-encoder@17030000 {
+ 			compatible = "mediatek,mt8183-jpgenc", "mediatek,mtk-jpgenc";
+ 			reg = <0 0x17030000 0 0x1000>;
 
-> +	regulator-min-microvolt = <750000>;
-> +	regulator-max-microvolt = <750000>;
-> +};
-> +
->   &mt6359codec {
->   	mediatek,mic-type-0 = <1>; /* ACC */
->   	mediatek,mic-type-1 = <3>; /* DCC */
-> @@ -839,8 +851,8 @@ regulators {
->   			mt6315_7_vbuck1: vbuck1 {
->   				regulator-compatible = "vbuck1";
->   				regulator-name = "Vgpu";
-> -				regulator-min-microvolt = <300000>;
-> -				regulator-max-microvolt = <1193750>;
-> +				regulator-min-microvolt = <546000>;
+---
+base-commit: da3ea35007d0af457a0afc87e84fddaebc4e0b63
+change-id: 20240909-venc-4705c7fff5d6
 
-I'm okay with this constraint but are you sure that MTK-SVS won't go any lower
-than 0.546V?
-
-Cheers,
-Angelo
-
-> +				regulator-max-microvolt = <787000>;
->   				regulator-enable-ramp-delay = <256>;
->   				regulator-allowed-modes = <0 1 2>;
->   			};
-
+Best regards,
+-- 
+Hsin-Te Yuan <yuanhsinte@chromium.org>
 
 
