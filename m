@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-102064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06F9797559D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:36:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 725249755A3
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:36:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88CC91F23DB6
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 14:36:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CAAC1F23DB6
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 14:36:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D2611A76C9;
-	Wed, 11 Sep 2024 14:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1D741A3030;
+	Wed, 11 Sep 2024 14:35:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ASekE4+a"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="m2uiY/we"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 526C41A705F
-	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 14:35:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 299C51A7AF1
+	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 14:35:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726065321; cv=none; b=p9meSvWSpjg8SSum5PznRjX/H1/GdSCt6dF6tkMrO32lF5RQfSk8+AvtcC8TnsYxj6owh0uggTSHlRqFkonbw3K6wMaKtP2vmBotIwK+CuWZMSW2A0AOdzYfsWlv/X8MHU/zztAcC3K2f6FSZv+01lQ0MMO3oJ5PznJejPIJgFU=
+	t=1726065324; cv=none; b=Pf9lfVdMlvVofSTAqlxnGuGAtejs9c9ZyrcEW5Y2+4hI2xlD730JLRGxAAELSg/6EgapFLhubzkPWTiR/MqpOSbMAYjadstKNwBDRgNOY4nCYWnHOFqppWcWqAsTfOuoW6oKSFwAi7SgyDdkX3M9n9WZ7rTIpcfl05jhRzZWVU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726065321; c=relaxed/simple;
-	bh=S6WFy6AHaUquyuINcrIMSHqJU48hl1BfP0n0UBsL/q4=;
+	s=arc-20240116; t=1726065324; c=relaxed/simple;
+	bh=mAs/mfkaY9YLmO0UTj7/fb0KstDo6E6P+uaBJ+XjPSE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YvVlnPi6Fx4OO6SQw+UxZWr2DSDydDIpRtEJeqMHTWj9UbKEkoMOIVShfzegVpeeeqV5f71BTX7o3thr6LWh8LIKz6+aRvMSgifoLD27XR9DRGexpQfvxqYIcMteBfOva/xuhUU+yK+TaE4o+trvbC0c2u/RSPy73ngfJzcgFpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ASekE4+a; arc=none smtp.client-ip=209.85.215.175
+	 MIME-Version; b=hpfkXoRID724BKXpkViQibL3du4n64QVo1RCoIHU+ANMal/AlqmxQZ1wtdWgG2KQB1p9KraWOvUlCJM8qBJrxyBDwwptBvRy7GvKYegxbyFkMXKMwPqOCqavYv/5paIWbprGW+cYuhDZH8dc9OHUNb2ItGR3UpHwv2kR9SvxObM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=m2uiY/we; arc=none smtp.client-ip=209.85.160.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-7cd8803fe0aso4854451a12.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 07:35:20 -0700 (PDT)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-27b88b8a24aso2593686fac.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 07:35:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1726065319; x=1726670119; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1726065322; x=1726670122; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=u3C8P2/ShZAyxq+RU0fcUwIOZvUAQXLkIBcEAMfkacE=;
-        b=ASekE4+aDGYmorf3b/+nn+KOAXnueQ5Q8X/p0zY3kKAiEF0tmmgnaMZvaDy1SWTT47
-         iTrHbQq1GodSCZr8dg1iRh3MhfPjgaGUf9IM35mGeou/A4ox/3BceSXcQRiQbl83pXvw
-         J8lkzF1BWIKKgQ0NUu3qptjwx9EFsfxDHRjdM=
+        bh=zcMX/bqTdupL750gbpR+dTL3DKvin6dl5vwknoD/GKo=;
+        b=m2uiY/weOJe/Q6OAu3Im9LgKnhi9luFI6tRrllrUS7OxIZy9PGktEweu6KH5uLLUbk
+         xcjW8ytVvhckPBdTHXVVObJUnJtR8HZpnwp0U4BZ8AzarxpPM7MnynQR0Z2cP8Mp+TB3
+         rbaWJ+bZT8KsjzEfbijAiX9hRZEsGvZFViA7g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726065319; x=1726670119;
+        d=1e100.net; s=20230601; t=1726065322; x=1726670122;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=u3C8P2/ShZAyxq+RU0fcUwIOZvUAQXLkIBcEAMfkacE=;
-        b=lEQBzz2vOhQQEfpbLbnsQA1AwUfOGrp0f8FtA6HopCU3NLU5OdngrLiBNrmknvy9Mq
-         qmFBZ6goYpzYrmVYcMuhvN/NqxdOgBvarYVK5kE/tviyD0Nt2wwqrnbe1M5Wehn0l5iW
-         QMBIHOkTe04my+g+YyGjwv0IUPxsqc/tYJG10I25goYZDnYsUOfN3JRNoe7I6/EFEXAH
-         3QCPHHcSeTnkkNOe7btn2/t5RlWswv0cutWCLbRcpPBLc3BalYJhsUlWERFdCxWZzWFD
-         CD82alhNn6e92Jz948c7NPxwpLLKp3+T3KX3Gb52dABj11jIf23Ya55XUlo/2d27Xlzu
-         rK6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWGYjO25SWhd36nKMZNWOnKu8DVmIRLNxZ8MS8u6++ARNf4RGlDbgQ0R25B/OxN0qegtTPSlxKT2asV@vger.kernel.org
-X-Gm-Message-State: AOJu0YxL51RMAL29aalIalZTj4kMgyCMJkhwFrFAqfxYmDVx5vorsNhc
-	VZ0UWFZFoHZONFgIgBQK1uRA+ypKTOr8t6vsXVktpaTJmoMogJDL3shZb6GC9A==
-X-Google-Smtp-Source: AGHT+IEWs+Nl1DTwsrFm62j+iMmwxKQIEd1M5v7OwN+K77hrCUFGyxVAB8wJQvjcW3hhfCNxEHJDsQ==
-X-Received: by 2002:a05:6a21:168c:b0:1cc:e969:a783 with SMTP id adf61e73a8af0-1cf5e0f481amr5731240637.20.1726065319204;
-        Wed, 11 Sep 2024 07:35:19 -0700 (PDT)
+        bh=zcMX/bqTdupL750gbpR+dTL3DKvin6dl5vwknoD/GKo=;
+        b=viqX5PSQjFcDRhfLTXVn5fkNehDMA2i/zJmI83YVjwuBhYl+7jpgiZFAl3TKTfpi9P
+         qFwc9E0DluJRhBMXxZAzOafW95jVqIqlpiFAlKiXDP7bvz11LlUAYKR5G0eUhwGCoi3g
+         EiU/oEy69z+pXZDL/I7NJ2JYbIWEfNbAMuRvylwa+PW46xrlETI4yPPQC1uNl8LOUNzw
+         Do62vOAaXS+kZb5m4uzDKBSfJiZM910HOxDJwHjgqRPobTr65u35h8eFjDR+fXWORep/
+         4BCk8jXpQoV3UBSEixhk/hWN8SBaJ2QSCpDvBpQSW0D64Lele5uuDpm0dkm5Fn3PKYf8
+         fvCg==
+X-Forwarded-Encrypted: i=1; AJvYcCWQjWY7a5/1ppn+jNCTrqjQQd/lb3DmE/PqFRgPvUmRLtYJV+6DWYa2E0OQTdeA27avjE30WI4vvIbl@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDPCBt4wolxx5JzR94Q3EN+HIfbijmTYDIbRfZLYniHTeL4ZYM
+	qBzPbHeJEK/0Z/dTixiU4mdt4S63cAHx5Z4IqR6jw5QHnBvZDlFo9m/VxNf90A==
+X-Google-Smtp-Source: AGHT+IHDFd+1Qao0x/djh7BnAl9fxiCea616EBUFpEIvtWPidor0dGilr+S0MNN3z9ITAlHbdxzKew==
+X-Received: by 2002:a05:6870:b28c:b0:278:1c68:9c0b with SMTP id 586e51a60fabf-27b9db07830mr10994291fac.22.1726065321905;
+        Wed, 11 Sep 2024 07:35:21 -0700 (PDT)
 Received: from fshao-p620.tpe.corp.google.com ([2401:fa00:1:10:102f:d738:6069:fd4b])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7db1fbb5901sm46620a12.24.2024.09.11.07.35.17
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7db1fbb5901sm46620a12.24.2024.09.11.07.35.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Sep 2024 07:35:18 -0700 (PDT)
+        Wed, 11 Sep 2024 07:35:21 -0700 (PDT)
 From: Fei Shao <fshao@chromium.org>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Matthias Brugger <matthias.bgg@gmail.com>
@@ -75,9 +75,9 @@ Cc: Fei Shao <fshao@chromium.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH v3 4/8] arm64: dts: mediatek: mt8188: Add SMI/LARB/IOMMU support
-Date: Wed, 11 Sep 2024 22:33:57 +0800
-Message-ID: <20240911143429.850071-5-fshao@chromium.org>
+Subject: [PATCH v3 5/8] arm64: dts: mediatek: mt8188: Add PWM nodes for display backlight
+Date: Wed, 11 Sep 2024 22:33:58 +0800
+Message-ID: <20240911143429.850071-6-fshao@chromium.org>
 X-Mailer: git-send-email 2.46.0.598.g6f2099f65c-goog
 In-Reply-To: <20240911143429.850071-1-fshao@chromium.org>
 References: <20240911143429.850071-1-fshao@chromium.org>
@@ -89,262 +89,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Local Arbiter (LARB) is a component of Smart Multimedia Interface (SMI)
-that supports IOMMU on the MediaTek SoCs.
+Add two hardware PWM nodes for display backlight usage on MT8188 SoC,
+and mark them as disabled by default.
+Boards can enable the necessary PWM node as needed.
 
-Add the following nodes for memory management support on MT8188 SoC:
-- one Infra IOMMU
-- two Multimedia (MM) IOMMUs of VDO and VPP
-- corresponding SMI common and LARB nodes of the MM IOMMUs
-
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Signed-off-by: Fei Shao <fshao@chromium.org>
 ---
 
 (no changes since v1)
 
- arch/arm64/boot/dts/mediatek/mt8188.dtsi | 169 +++++++++++++++++++++++
- 1 file changed, 169 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-index cdd2fe14effa..f746b89c1ec6 100644
+index f746b89c1ec6..61530f8c5599 100644
 --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
 +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/mailbox/mediatek,mt8188-gce.h>
-+#include <dt-bindings/memory/mediatek,mt8188-memory-port.h>
- #include <dt-bindings/phy/phy.h>
- #include <dt-bindings/pinctrl/mediatek,mt8188-pinfunc.h>
- #include <dt-bindings/power/mediatek,mt8188-power.h>
-@@ -1305,6 +1306,13 @@ pwrap: pwrap@10024000 {
- 			clock-names = "spi", "wrap";
+@@ -1418,6 +1418,28 @@ lvts_ap: thermal-sensor@1100b000 {
+ 			#thermal-sensor-cells = <1>;
  		};
  
-+		infra_iommu: iommu@10315000 {
-+			compatible = "mediatek,mt8188-iommu-infra";
-+			reg = <0 0x10315000 0 0x1000>;
-+			interrupts = <GIC_SPI 795 IRQ_TYPE_LEVEL_HIGH 0>;
-+			#iommu-cells = <1>;
++		disp_pwm0: pwm@1100e000 {
++			compatible = "mediatek,mt8188-disp-pwm", "mediatek,mt8183-disp-pwm";
++			reg = <0 0x1100e000 0 0x1000>;
++			clocks = <&topckgen CLK_TOP_DISP_PWM0>,
++				 <&infracfg_ao CLK_INFRA_AO_DISP_PWM>;
++			clock-names = "main", "mm";
++			interrupts = <GIC_SPI 203 IRQ_TYPE_LEVEL_HIGH 0>;
++			#pwm-cells = <2>;
++			status = "disabled";
 +		};
 +
- 		gce0: mailbox@10320000 {
- 			compatible = "mediatek,mt8188-gce";
- 			reg = <0 0x10320000 0 0x4000>;
-@@ -1798,6 +1806,37 @@ vppsys0: clock-controller@14000000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		vpp_smi_common: smi@14012000 {
-+			compatible = "mediatek,mt8188-smi-common-vpp";
-+			reg = <0 0x14012000 0 0x1000>;
-+			clocks = <&vppsys0 CLK_VPP0_SMI_COMMON_LARB4>,
-+				 <&vppsys0 CLK_VPP0_SMI_SUB_COMMON_REORDER>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8188_POWER_DOMAIN_VPPSYS0>;
++		disp_pwm1: pwm@1100f000 {
++			compatible = "mediatek,mt8188-disp-pwm", "mediatek,mt8183-disp-pwm";
++			reg = <0 0x1100f000 0 0x1000>;
++			clocks = <&topckgen CLK_TOP_DISP_PWM1>,
++				 <&infracfg_ao CLK_INFRA_AO_DISP_PWM1>;
++			clock-names = "main", "mm";
++			interrupts = <GIC_SPI 793 IRQ_TYPE_LEVEL_HIGH 0>;
++			#pwm-cells = <2>;
++			status = "disabled";
 +		};
 +
-+		larb4: smi@14013000 {
-+			compatible = "mediatek,mt8188-smi-larb";
-+			reg = <0 0x14013000 0 0x1000>;
-+			clocks = <&vppsys0 CLK_VPP0_SMI_COMMON_LARB4>,
-+				 <&vppsys0 CLK_VPP0_SMI_COMMON_LARB4>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8188_POWER_DOMAIN_VPPSYS0>;
-+			mediatek,larb-id = <SMI_L4_ID>;
-+			mediatek,smi = <&vpp_smi_common>;
-+		};
-+
-+		vpp_iommu: iommu@14018000 {
-+			compatible = "mediatek,mt8188-iommu-vpp";
-+			reg = <0 0x14018000 0 0x5000>;
-+			clocks = <&vppsys0 CLK_VPP0_SMI_IOMMU>;
-+			clock-names = "bclk";
-+			interrupts = <GIC_SPI 594 IRQ_TYPE_LEVEL_HIGH 0>;
-+			power-domains = <&spm MT8188_POWER_DOMAIN_VPPSYS0>;
-+			#iommu-cells = <1>;
-+			mediatek,larbs = <&larb1 &larb3 &larb4 &larb6 &larb7 &larb23>;
-+		};
-+
- 		wpesys: clock-controller@14e00000 {
- 			compatible = "mediatek,mt8188-wpesys";
- 			reg = <0 0x14e00000 0 0x1000>;
-@@ -1810,12 +1849,45 @@ wpesys_vpp0: clock-controller@14e02000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		larb7: smi@14e04000 {
-+			compatible = "mediatek,mt8188-smi-larb";
-+			reg = <0 0x14e04000 0 0x1000>;
-+			clocks = <&wpesys CLK_WPE_TOP_SMI_LARB7>,
-+				 <&wpesys CLK_WPE_TOP_SMI_LARB7>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8188_POWER_DOMAIN_WPE>;
-+			mediatek,larb-id = <SMI_L7_ID>;
-+			mediatek,smi = <&vpp_smi_common>;
-+		};
-+
- 		vppsys1: clock-controller@14f00000 {
- 			compatible = "mediatek,mt8188-vppsys1";
- 			reg = <0 0x14f00000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb5: smi@14f02000 {
-+			compatible = "mediatek,mt8188-smi-larb";
-+			reg = <0 0x14f02000 0 0x1000>;
-+			clocks = <&vppsys1 CLK_VPP1_GALS5>,
-+				 <&vppsys1 CLK_VPP1_LARB5>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8188_POWER_DOMAIN_VPPSYS1>;
-+			mediatek,larb-id = <SMI_L5_ID>;
-+			mediatek,smi = <&vdo_smi_common>;
-+		};
-+
-+		larb6: smi@14f03000 {
-+			compatible = "mediatek,mt8188-smi-larb";
-+			reg = <0 0x14f03000 0 0x1000>;
-+			clocks = <&vppsys1 CLK_VPP1_GALS6>,
-+				 <&vppsys1 CLK_VPP1_LARB6>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8188_POWER_DOMAIN_VPPSYS1>;
-+			mediatek,larb-id = <SMI_L6_ID>;
-+			mediatek,smi = <&vpp_smi_common>;
-+		};
-+
- 		imgsys: clock-controller@15000000 {
- 			compatible = "mediatek,mt8188-imgsys";
- 			reg = <0 0x15000000 0 0x1000>;
-@@ -1894,12 +1966,34 @@ ccusys: clock-controller@17200000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		larb23: smi@1800d000 {
-+			compatible = "mediatek,mt8188-smi-larb";
-+			reg = <0 0x1800d000 0 0x1000>;
-+			clocks = <&vdecsys_soc CLK_VDEC1_SOC_LARB1>,
-+				 <&vdecsys_soc CLK_VDEC1_SOC_LARB1>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8188_POWER_DOMAIN_VDEC0>;
-+			mediatek,larb-id = <SMI_L23_ID>;
-+			mediatek,smi = <&vpp_smi_common>;
-+		};
-+
- 		vdecsys_soc: clock-controller@1800f000 {
- 			compatible = "mediatek,mt8188-vdecsys-soc";
- 			reg = <0 0x1800f000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb21: smi@1802e000 {
-+			compatible = "mediatek,mt8188-smi-larb";
-+			reg = <0 0x1802e000 0 0x1000>;
-+			clocks = <&vdecsys CLK_VDEC2_LARB1>,
-+				 <&vdecsys CLK_VDEC2_LARB1>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8188_POWER_DOMAIN_VDEC1>;
-+			mediatek,larb-id = <SMI_L21_ID>;
-+			mediatek,smi = <&vdo_smi_common>;
-+		};
-+
- 		vdecsys: clock-controller@1802f000 {
- 			compatible = "mediatek,mt8188-vdecsys";
- 			reg = <0 0x1802f000 0 0x1000>;
-@@ -1912,6 +2006,17 @@ vencsys: clock-controller@1a000000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		larb19: smi@1a010000 {
-+			compatible = "mediatek,mt8188-smi-larb";
-+			reg = <0 0x1a010000 0 0x1000>;
-+			clocks = <&vencsys CLK_VENC1_VENC>,
-+				 <&vencsys CLK_VENC1_VENC>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8188_POWER_DOMAIN_VENC>;
-+			mediatek,larb-id = <SMI_L19_ID>;
-+			mediatek,smi = <&vdo_smi_common>;
-+		};
-+
- 		vdosys0: syscon@1c01d000 {
- 			compatible = "mediatek,mt8188-vdosys0", "syscon";
- 			reg = <0 0x1c01d000 0 0x1000>;
-@@ -1920,6 +2025,48 @@ vdosys0: syscon@1c01d000 {
- 			mediatek,gce-client-reg = <&gce0 SUBSYS_1c01XXXX 0xd000 0x1000>;
- 		};
- 
-+		larb0: smi@1c022000 {
-+			compatible = "mediatek,mt8188-smi-larb";
-+			reg = <0 0x1c022000 0 0x1000>;
-+			clocks = <&vdosys0 CLK_VDO0_SMI_LARB>,
-+				 <&vdosys0 CLK_VDO0_SMI_LARB>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8188_POWER_DOMAIN_VDOSYS0>;
-+			mediatek,larb-id = <SMI_L0_ID>;
-+			mediatek,smi = <&vdo_smi_common>;
-+		};
-+
-+		larb1: smi@1c023000 {
-+			compatible = "mediatek,mt8188-smi-larb";
-+			reg = <0 0x1c023000 0 0x1000>;
-+			clocks = <&vdosys0 CLK_VDO0_SMI_LARB>,
-+				 <&vdosys0 CLK_VDO0_SMI_LARB>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8188_POWER_DOMAIN_VDOSYS0>;
-+			mediatek,larb-id = <SMI_L1_ID>;
-+			mediatek,smi = <&vpp_smi_common>;
-+		};
-+
-+		vdo_smi_common: smi@1c024000 {
-+			compatible = "mediatek,mt8188-smi-common-vdo";
-+			reg = <0 0x1c024000 0 0x1000>;
-+			clocks = <&vdosys0 CLK_VDO0_SMI_COMMON>,
-+				 <&vdosys0 CLK_VDO0_SMI_GALS>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8188_POWER_DOMAIN_VDOSYS0>;
-+		};
-+
-+		vdo_iommu: iommu@1c028000 {
-+			compatible = "mediatek,mt8188-iommu-vdo";
-+			reg = <0 0x1c028000 0 0x5000>;
-+			clocks = <&vdosys0 CLK_VDO0_SMI_IOMMU>;
-+			clock-names = "bclk";
-+			interrupts = <GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH 0>;
-+			power-domains = <&spm MT8188_POWER_DOMAIN_VDOSYS0>;
-+			#iommu-cells = <1>;
-+			mediatek,larbs = <&larb0 &larb2 &larb5 &larb19 &larb21>;
-+		};
-+
- 		vdosys1: syscon@1c100000 {
- 			compatible = "mediatek,mt8188-vdosys1", "syscon";
- 			reg = <0 0x1c100000 0 0x1000>;
-@@ -1928,5 +2075,27 @@ vdosys1: syscon@1c100000 {
- 			mboxes = <&gce0 1 CMDQ_THR_PRIO_4>;
- 			mediatek,gce-client-reg = <&gce0 SUBSYS_1c10XXXX 0 0x1000>;
- 		};
-+
-+		larb2: smi@1c102000 {
-+			compatible = "mediatek,mt8188-smi-larb";
-+			reg = <0 0x1c102000 0 0x1000>;
-+			clocks = <&vdosys1 CLK_VDO1_SMI_LARB2>,
-+				 <&vdosys1 CLK_VDO1_SMI_LARB2>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8188_POWER_DOMAIN_VDOSYS1>;
-+			mediatek,larb-id = <SMI_L2_ID>;
-+			mediatek,smi = <&vdo_smi_common>;
-+		};
-+
-+		larb3: smi@1c103000 {
-+			compatible = "mediatek,mt8188-smi-larb";
-+			reg = <0 0x1c103000 0 0x1000>;
-+			clocks = <&vdosys1 CLK_VDO1_SMI_LARB3>,
-+				 <&vdosys1 CLK_VDO1_SMI_LARB3>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8188_POWER_DOMAIN_VDOSYS1>;
-+			mediatek,larb-id = <SMI_L3_ID>;
-+			mediatek,smi = <&vpp_smi_common>;
-+		};
- 	};
- };
+ 		spi1: spi@11010000 {
+ 			compatible = "mediatek,mt8188-spi-ipm", "mediatek,spi-ipm";
+ 			#address-cells = <1>;
 -- 
 2.46.0.598.g6f2099f65c-goog
 
