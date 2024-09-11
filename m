@@ -1,549 +1,213 @@
-Return-Path: <devicetree+bounces-101956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE3B8974EC3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 11:38:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4555F974EEE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 11:45:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8867928B12C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 09:38:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 667A81C21745
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 09:45:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83D18181310;
-	Wed, 11 Sep 2024 09:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63F9C17BB0D;
+	Wed, 11 Sep 2024 09:44:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Pvv8xoxS"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="0V366jw6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A26F117C228
-	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 09:37:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A680A45C18;
+	Wed, 11 Sep 2024 09:44:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726047481; cv=none; b=gfv4jds+DsN60WkJoV037pN0oXoiQ9Uw1e78eRtJOHQCfDKeJM9eMSHsilp+HHxHiZErYT5FxVWzOjGYKH0df1ulV4edBDYflmMB8AUbj62YzU4UiEGqytWXXUWOioUnJJpQACVKcsSOryUXUZeiXnxPRhbypH6xgBm5MLbPC/4=
+	t=1726047895; cv=none; b=TLAeSle55dCtqwO7RfSnDbEtV6xgA1MuVuom2OjSE6MZMlwhS+5yOqeeRADhf5iKeMYzGuaH4qe8RZBZ9GqLRkT82Zg21ABB7lrBJP5u/VDE0DCJ4G/b9l67MEvSbkG4Uka3UegV/h9Z88v56r8Zd1JdC+cVdvfTXkMVllIjAJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726047481; c=relaxed/simple;
-	bh=juNLBnH+vojpxTE0lbJHf6ETP1gO1BwGdmvR3z3rqyY=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=o5WZhJ1X8NMc3aQp20qJ6omvueNtR24zlV5vhCQe1UmzVchWKINZC91eVhJQLZ88+TrZ7dPSywPVCQrpBmhybMQ8aynoRaOU3AFEX+UL/mYRbsF7Jy3i47WgbWKqUxXsCsMx6tfzSeb2WJygdUwICe6z1l32SPnsR1+KGEKQz/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Pvv8xoxS; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-42cafda818aso40296815e9.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 02:37:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1726047477; x=1726652277; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=d9VWmFYnIHEELfiTATB7zav9tGqQEMCyUPBjKEuNY0U=;
-        b=Pvv8xoxSTRxOZttHOUlE7Vo7HBEQbkkyNM6XGyCPtkxhtpeUigOGoq5IWPZnMFQCIS
-         XIaAVBV3IAc6rOkC33m8+2ydudq3uFbZMvyvaoXkahTf0GL2vL14PHaaRMhrInahALDE
-         GPtPfvup7ANqGuiCIz1fFGxSnD+fgtRPa+khLw2R2ymvNVhV9pprGQasJNNWZk2Q2D7T
-         TJiNx27xXqqXtdKlIPiMxEga4NpgrL8SrhXdQAKJiKLtFYvIjwXODkyTrn0Jp3in5gOq
-         hizBjkzydE8LRCE9wyEOc3k8bYwSRimmAvTYGdPxmSyzfNRxV6vKg5qX+MQmxhkLcpRo
-         aEKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726047477; x=1726652277;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d9VWmFYnIHEELfiTATB7zav9tGqQEMCyUPBjKEuNY0U=;
-        b=EMFgqUqEdnzst8tc8PqP7Ri66UkE2+yC30yPF7MqR771y9byLeyD3VZ7C5ByuTo7ge
-         7tWbP4sXpmwIvmcE0VBGoPm5WVoVSulP+Sm/aS8XOG2Qk8M9TzAvskIZPTNpVBxdLGM/
-         yIAnqX5mewPc23PS5azQrP02mrTPKLKb/ec30N27OjQ3Xz33nGHMi9LTLLBaqBPRspO2
-         B3kKtoztkRZZ3Xx0sG0eid+I6P7enDoTSq8wloXVh6MCOblmGL/DOxRP1gHkymH8YgJZ
-         CHB8aMl1wiiRif0STj6EkV2eG7pomLxOisToHRba444MdImx/1UIhRZ1JRO8slfQP8IV
-         MThQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXPyFQttxKQr2TZG1s14t6guMUEfTQ5njr4ThjTCTgcmqm0Rge+zIl4WuzkkjOh37SmfAy/4GyQoo/g@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+hnvl4G9HH8XaQZVe+C/xVOl1XAvbp1w95zSvxLKW9Bvu9fHN
-	oByGNBrcjXt3oAxxE1dewyDYv37yp4qZNzcG3+mD60ykVQ/aD3V5d6G4u0Jx8hE=
-X-Google-Smtp-Source: AGHT+IF6Q/aPF2dK+Bp1/HGyTi713o7/34kK9RVIiRTwXA9n0kxv96+6JlseZcAVuEDQisz4z/m74Q==
-X-Received: by 2002:a05:600c:1e04:b0:42c:b8da:c791 with SMTP id 5b1f17b1804b1-42cb8daca53mr77038695e9.1.1726047476116;
-        Wed, 11 Sep 2024 02:37:56 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:7388:2adc:a5d5:ff63])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37895675c11sm11007769f8f.55.2024.09.11.02.37.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Sep 2024 02:37:55 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Jean Delvare <jdelvare@suse.com>,  Rob Herring <robh@kernel.org>,
-  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
- <conor+dt@kernel.org>,  Jonathan Corbet <corbet@lwn.net>,  Delphine CC
- Chiu <Delphine_CC_Chiu@wiwynn.com>,  linux-hwmon@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  linux-doc@vger.kernel.org,  linux-i2c@vger.kernel.org
-Subject: Re: [PATCH 3/3] hwmon: (pmbus/tps25990): add initial support
-In-Reply-To: <dde186e0-829b-4408-9f7d-d1ce079cf963@roeck-us.net> (Guenter
-	Roeck's message of "Tue, 10 Sep 2024 10:07:33 -0700")
-References: <20240909-tps25990-v1-0-39b37e43e795@baylibre.com>
-	<20240909-tps25990-v1-3-39b37e43e795@baylibre.com>
-	<d0d53027-8897-47c3-94fb-7e369bff8f18@roeck-us.net>
-	<1j4j6nub9u.fsf@starbuckisacylon.baylibre.com>
-	<dde186e0-829b-4408-9f7d-d1ce079cf963@roeck-us.net>
-Date: Wed, 11 Sep 2024 11:37:54 +0200
-Message-ID: <1jmskesf7x.fsf@starbuckisacylon.baylibre.com>
+	s=arc-20240116; t=1726047895; c=relaxed/simple;
+	bh=qhj7KM8Of8EZEkH4d38oeP6Xh2Sr8VhoFo22LcaMxGM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=edm6mjs/5C1z8KzFLYpjC3gM5v9C/mYGOafmqt1VFescI1KqTSxaDQ6z0GEICJLplx0A+Y3BgKorUa5/au32h5DUGdT/qTXC75SRN7Jwh33gt+1eqPwXkpM28pb8eppf68DoIKV8naKrv84LnV6JkYLhEI96UiqaT60grT5k3Ak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=0V366jw6; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=nNb8FNqNc1pyiluz5XbOkdKPgdGwdFZnKD4YbayYcKs=; b=0V366jw6uETJ6sjPeanMRDucm+
+	KrBb5CGgRh9DKb3D32v1lzPu7ijmHE0reQ/aCu7F7N7qHMySUIWoGnKl2ATRnBNcI5lHIa9uZICYR
+	7fsDvCepVe12TFIMtdmvoZxlOAq4toPvNzNjainKXSAQf8B01wtHuNL214MmPrjN+yL261N13HXkn
+	kj7bmqygquwI+rKjI/jzEinxLorz7gbatnySNjIzbz97p1hDS7CUrHRONpJ9IPLg8y8/ntYgbJlfN
+	/mHdB9GKw3yBBqEq8GU5kbAFWSJgJh/harGnIdSFfz2DJM/41t5/qApYNveETrxf65zZltPzvTW/l
+	eB0ODdKg==;
+Received: from i53875a03.versanet.de ([83.135.90.3] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1soJtk-0007oi-Kw; Wed, 11 Sep 2024 11:44:28 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Elaine Zhang <zhangqing@rock-chips.com>,
+ =?ISO-8859-1?Q?Adri=E1n_Mart=EDnez?= Larumbe <adrian.larumbe@collabora.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org,
+ Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com,
+ Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: [PATCH v1 5/6] pmdomain: rockchip: add regulator support
+Date: Wed, 11 Sep 2024 11:46:58 +0200
+Message-ID: <2224005.vXnMlVU4IS@diego>
+In-Reply-To: <20240910180530.47194-6-sebastian.reichel@collabora.com>
+References:
+ <20240910180530.47194-1-sebastian.reichel@collabora.com>
+ <20240910180530.47194-6-sebastian.reichel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Tue 10 Sep 2024 at 10:07, Guenter Roeck <linux@roeck-us.net> wrote:
+Am Dienstag, 10. September 2024, 19:57:14 CEST schrieb Sebastian Reichel:
+> Some power domains require extra voltages to be applied. For example
+> trying to enable the GPU domain on RK3588 fails when the SoC does not
+> have VDD GPU enabled.
+> 
+> The solution to temporarily change the device's device tree node has
+> been taken over from the Mediatek power domain driver.
+> 
+> The regulator is not acquired at probe time, since that creates circular
+> dependencies. The power domain driver must be probed early, since SoC
+> peripherals need it. Regulators on the other hand depend on SoC
+> peripherals like SPI, I2C or GPIO.
+> 
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-> On Tue, Sep 10, 2024 at 11:07:57AM +0200, Jerome Brunet wrote:
->> On Mon 09 Sep 2024 at 15:52, Guenter Roeck <linux@roeck-us.net> wrote:
->> 
->> [...]
->> 
-> Unrelated to the other comments:
->
->  Documentation/hwmon/tps25990.rst | 141 ++++++++++++
->
-> Needs to be added to Documentation/hwmon/index.rst.
->
-> +config SENSORS_TPS25990_REGULATOR
-> +	bool "Regulator support for TPS25990 and compatibles"
-> +	depends on SENSORS_TPS25990 && REGULATOR
-> +	default SENSORS_TPS2599
->                 ^^^^^^^^^^^^^^^ TPS2599 ???
->
->> >> +
->> >> +#define TPS25990_DEFAULT_RIMON		910000
->
-> Where does the default come from anyway ? I don't immediately see the number
-> in the datasheet.
+It does look like Chen-Yu Tsai is working on a similar problem [0].
 
-It is Rimon value for the  maximum current supported when the TPS25990
-is alone (60A) with Viref on its default value: 1V - Section 8.3.4.2.
+I.e. this really is a hack, so I started looking around the regulator API
+and found of_regulator_bulk_get existing but unused that already
+operates on a of-node.
 
-There is no reason for it beside that. 
+Googling further I stumbled upon the linked patch from some days
+ago ;-) . So maybe that could be a cleaner way forward?
 
->
->> >> +static int tps25990_write_protect_get(void *data, u64 *val)
->> >> +{
->> >> +	struct i2c_client *client = data;
->> >> +
->> >> +	return tps25990_mfr_write_protect_active(client);
->> >> +}
->> >> +
->> >> +static int tps25990_write_protect_set(void *data, u64 val)
->> >> +{
->> >> +	struct i2c_client *client = data;
->> >> +
->> >> +	if (val > 1)
->> >> +		return -EINVAL;
->> >> +
->> >> +	return tps25990_mfr_write_protect(client, val);
->> >> +}
->> >> +
->> >> +DEFINE_DEBUGFS_ATTRIBUTE(tps25990_write_protect_fops,
->> >> +			 tps25990_write_protect_get,
->> >> +			 tps25990_write_protect_set,
->> >> +			 "%llu\n");
->> >> +
->> >> +static int tps25990_init_debugfs(struct i2c_client *client)
->> >> +{
->> >> +	struct dentry *dir;
->> >> +
->> >> +	dir = pmbus_get_debugfs_dir(client);
->> >> +	if (!dir)
->> >> +		return -ENOENT;
->> >> +
->> >> +	debugfs_create_file("write_protect", 0644, dir,
->> >> +			    client, &tps25990_write_protect_fops);
->> >> +
->> >> +	return 0;
->> >> +}
->> >> +
->> >> +#else
->> >> +static inline int tps25990_init_debugfs(struct i2c_client *client)
->> >> +{
->> >> +	return 0;
->> >> +}
->> >> +#endif
->> >> +
->> >
->> > In general it is extremely undesirable to overwrite write protection.
->> > Many chips support such attributes. If write protection is enabled,
->> > it means that the board vendor does not want to have them changed.
->> 
->> According to documentation, it protects against "unintented" writes,
->> not 'wrong' or 'malicious'. If one goes in debugfs and write just '0' to
->> a file, there is an intent at least.
->> 
->> > Granted, that can be overwritten with direct i2c commands, but that
->> > is what it should be. Anyone who really wants to disable write protection
->> > should have to dig deeper than just writing into a debugfs or sysfs attribute.
->> > Otherwise the protection becomes worthless.
->> > If this is, for example, needed
->> > for production to write initial settings, the production scripts should
->> > disable (or enable) write protection by writing directly into command
->> > registers.
->> 
->> As I wrote in the cover letter, the write protection is always active on
->> chip startup and it locks down almost everything, including things you may
->> need to write past production, in the field. The history reset below is
->> an example of such thing.
->> 
->> To 'safely' remove the protection by writing i2c commands from
->> userspace:
->>  * the device will need be unbinded first,
->>  * call i2cset
->>  * bind the device again
->> 
->> That seems really cumbersome to do something like an history
->> reset. Is this what you are suggesting ?
->> 
->> bind/unbind could be skipped by forcing i2cset but that would add danger
->> where we certainly don't want it.
->> 
->
-> Not sure I understand the "danger" part. Either case, the problem is
-> deeper.
 
-If the driver is bound, i2cset will require the '-f' flag. Man page says
-it is dangerous do so, if 2 i2c commands happens at the same time I suppose.
+[0] https://patchwork.kernel.org/project/linux-mediatek/patch/20240904090016.2841572-6-wenst@chromium.org/
 
-> The driver enables regulator support, which includes enabling and disabling
-> the output voltage. But that doesn't work unles write protect is disabled.
-> debugfs doesn't help there; that is way too late.
+> ---
+>  drivers/pmdomain/rockchip/pm-domains.c | 57 +++++++++++++++++++++++++-
+>  1 file changed, 55 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/pmdomain/rockchip/pm-domains.c
+> index 663d390faaeb..ae6990897928 100644
+> --- a/drivers/pmdomain/rockchip/pm-domains.c
+> +++ b/drivers/pmdomain/rockchip/pm-domains.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/of_clk.h>
+>  #include <linux/clk.h>
+>  #include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+>  #include <linux/mfd/syscon.h>
+>  #include <soc/rockchip/pm_domains.h>
+>  #include <dt-bindings/power/px30-power.h>
+> @@ -89,6 +90,8 @@ struct rockchip_pm_domain {
+>  	u32 *qos_save_regs[MAX_QOS_REGS_NUM];
+>  	int num_clks;
+>  	struct clk_bulk_data *clks;
+> +	struct device_node *node;
+> +	struct regulator *supply;
+>  };
+>  
+>  struct rockchip_pmu {
+> @@ -571,18 +574,67 @@ static int rockchip_pd_power(struct rockchip_pm_domain *pd, bool power_on)
+>  	return 0;
+>  }
+>  
+> +static int rockchip_pd_regulator_disable(struct rockchip_pm_domain *pd)
+> +{
+> +	return pd->supply ? regulator_disable(pd->supply) : 0;
+> +}
+> +
+> +
+> +static int rockchip_pd_regulator_enable(struct rockchip_pm_domain *pd)
+> +{
+> +	struct rockchip_pmu *pmu = pd->pmu;
+> +	struct device_node *main_node;
+> +
+> +	if (!pd->supply) {
+> +		/*
+> +		 * Find regulator in current power domain node.
+> +		 * devm_regulator_get() finds regulator in a node and its child
+> +		 * node, so set of_node to current power domain node then change
+> +		 * back to original node after regulator is found for current
+> +		 * power domain node.
+> +		 */
+> +		main_node = pmu->dev->of_node;
+> +		pmu->dev->of_node = pd->node;
+> +		pd->supply = devm_regulator_get(pmu->dev, "domain");
+> +		pmu->dev->of_node = main_node;
+> +		if (IS_ERR(pd->supply)) {
+> +			pd->supply = NULL;
+> +			return 0;
+> +		}
+> +	}
+> +
+> +	return regulator_enable(pd->supply);
+> +}
+> +
+>  static int rockchip_pd_power_on(struct generic_pm_domain *domain)
+>  {
+>  	struct rockchip_pm_domain *pd = to_rockchip_pd(domain);
+> +	int ret;
+> +
+> +	ret = rockchip_pd_regulator_enable(pd);
+> +	if (ret) {
+> +		dev_err(pd->pmu->dev, "Failed to enable supply: %d\n", ret);
+> +		return ret;
+> +	}
+>  
+> -	return rockchip_pd_power(pd, true);
+> +	ret = rockchip_pd_power(pd, true);
+> +	if (ret)
+> +		rockchip_pd_regulator_disable(pd);
+> +
+> +	return ret;
+>  }
+>  
+>  static int rockchip_pd_power_off(struct generic_pm_domain *domain)
+>  {
+>  	struct rockchip_pm_domain *pd = to_rockchip_pd(domain);
+> +	int ret;
+>  
+> -	return rockchip_pd_power(pd, false);
+> +	ret = rockchip_pd_power(pd, false);
+> +	if (ret)
+> +		return ret;
+> +
+> +	rockchip_pd_regulator_disable(pd);
+> +	return ret;
+>  }
+>  
+>  static int rockchip_pd_attach_dev(struct generic_pm_domain *genpd,
+> @@ -663,6 +715,7 @@ static int rockchip_pm_add_one_domain(struct rockchip_pmu *pmu,
+>  
+>  	pd->info = pd_info;
+>  	pd->pmu = pmu;
+> +	pd->node = node;
+>  
+>  	pd->num_clks = of_clk_get_parent_count(node);
+>  	if (pd->num_clks > 0) {
+> 
 
-Indeed OPERATION command is locked as well, I missed that.
-I'll drop that from the initial submission.
 
-The fact that is comes too late is also why I did not add extra features
-yet, things like GPIO support, GPDAC regulators, NVMEM blackbox, etc...
 
-I know we are not supposed to (and never will) support all the shiny
-features HW designers can think of, but it would be nice to unlock some
-of its potential. 
 
-Do you have an idea ? (for later I mean)
-A module parm to do the unlock might work but seems a bit extreme.
-
->
->> >
->> >> +/*
->> >> + * TPS25990 has history reset based on MIN/AVG/PEAK instead of per sensor type
->> >> + * Emulate the behaviour a pmbus limit_attr would have for consistency
->> >> + *  - Read: Do nothing and emit 0
->> >> + *  - Write: Check the input is a number and reset
->> >> + */
->> >> +static ssize_t tps25990_history_reset_show(struct device *dev,
->> >> +					   struct device_attribute *devattr,
->> >> +					   char *buf)
->> >> +{
->> >> +	return sysfs_emit(buf, "0\n");
->> >> +}
->> >> +
->> >> +static ssize_t tps25990_history_reset_store(struct device *dev,
->> >> +					    struct device_attribute *devattr,
->> >> +					    const char *buf, size_t count)
->> >> +{
->> >> +	struct sensor_device_attribute *attr = to_sensor_dev_attr(devattr);
->> >> +	struct i2c_client *client = to_i2c_client(dev->parent);
->> >> +	s64 val;
->> >> +	int ret;
->> >> +
->> >> +	if (kstrtos64(buf, 10, &val) < 0)
->> >> +		return -EINVAL;
->> >> +
->> >> +	ret = pmbus_update_byte_data(client, 0, TPS25990_PK_MIN_AVG,
->> >> +				     BIT(attr->index), BIT(attr->index));
->> >> +	if (ret < 0)
->> >> +		return ret;
->> >> +
->> >> +	return count;
->> >> +}
->> >> +
->> >> +static SENSOR_DEVICE_ATTR_RW(highest_history_reset, tps25990_history_reset, 7);
->> >> +static SENSOR_DEVICE_ATTR_RW(average_history_reset, tps25990_history_reset, 6);
->> >> +static SENSOR_DEVICE_ATTR_RW(lowest_history_reset,  tps25990_history_reset, 5);
->> >
->> > That is not a unique problem, and not a reason to introduce non-standard attributes.
->> > Just attach the attribute to the first channel and document that it resets all
->> > channels.
->> 
->> Not sure I got this right so I'll rephrase. I should:
->> * Pick a channel, say vin
->> * Map the virtual reset register to hit the 3 resets above
->> * Put in the documentation that it resets the other channels as well
->> * Not allow independent resets of min/max/avg, just all 3 together ?
->> 
-> Correct. It is amazing what hardware designers come up with (here:
-> resetting history based on min/max/average instead of the sensor type
-> is novel), but I really don't want to introduce new attributes to
-> accommodate each variant.
-
-Sure. Make sense
-
-> I'd be open to introducing a global
-> PMBUS_VIRT_RESET_HISTORY virtual register and reset_history attribute
-> if you want to go there, but that would have to be in the PMBus core.
-
-Both solutions are fine by me.
-Do you have a preference ?
-
->
->> >
->> >> +
->> >> +static struct attribute *tps25990_attrs[] = {
->> >> +	&sensor_dev_attr_highest_history_reset.dev_attr.attr,
->> >> +	&sensor_dev_attr_average_history_reset.dev_attr.attr,
->> >> +	&sensor_dev_attr_lowest_history_reset.dev_attr.attr,
->> >> +	NULL,
->> >> +};
->> >> +
->> >> +ATTRIBUTE_GROUPS(tps25990);
->> >> +
->> >> +static int tps25990_get_addr(int reg)
->> >> +{
->> >> +	switch (reg) {
->> >> +	case PMBUS_SMBALERT_MASK:
->> >> +		/*
->> >> +		 * Note: PMBUS_SMBALERT_MASK is not implemented on this chip
->> >> +		 * Writing to this address raises CML errors.
->> >> +		 * Instead it provides ALERT_MASK which allows to set the mask
->> >> +		 * for each of the status registers, but not the specific bits
->> >> +		 * in them.
->> >> +		 * The default setup assert SMBA# if any bit is set in any of the
->> >> +		 * status registers the chip has. This is as close as we can get
->> >> +		 * to what pmbus_irq_setup() would set, sooo ... do nothing.
->> >> +		 */
->> >> +		return -ENXIO;
->> >
->> > Many chips have that problem. The core code ignores errors, and attempts to write
->> > the command are limited to initialization. This is not a reason to overwrite
->> > the command like this. If this does cause a real a problem wit hthe chip (other
->> > than setting CML errors, which many chips not supporting the command do),
->> > we should define a flag in include/linux/pmbus.h and explain its need.
->> 
->> CML is error is the problem. Following pmbus_irq_setup() there is an
->> uncleared fault because there is no register check on PMBUS_SMBALERT_MASK.
->> 
->> When pmbus_core then gets here:
->> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/hwmon/pmbus/pmbus_core.c?h=v6.11-rc7#n3386
->> 
->> pmbus_check_block_register() fails because of the uncleared fault and
->> the 'mfr_id' property is silently not registered, eventhough the
->> register is supported by the chip. This is how I noticed the problem.
->> 
->> So, should I add flag in include/linux/pmbus.h to skip
->> PMBUS_SMBALERT_MASK setup ?
->> 
->> Another possibility is to call register_check()
->> on it before using PMBUS_SMBALERT_MASK in pmbus_core.
->> 
->
-> The problem, as you point out, is in pmbus_irq_setup(). Since the function
-> explicitly ignores errors from accessing PMBUS_SMBALERT_MASK, it should
-> either clear faults after it is done. I don't think we can rely on
-> register_check() because the register might exist but be read-only.
->
-
-Noted. I'll add the fault clearing.
-
->> >
->> >> +	case PMBUS_IIN_OC_FAULT_LIMIT:
-
-[...]
-
->> >> +static int tps25990_probe(struct i2c_client *client)
->> >> +{
->> >> +	struct device *dev = &client->dev;
->> >> +	struct pmbus_driver_info *info;
->> >> +	u32 rimon = TPS25990_DEFAULT_RIMON;
->> >> +	int ret;
->> >> +
->> >> +	ret = device_property_read_u32(dev, "ti,rimon-milli-ohms", &rimon);
->> >> +	if (ret == -EINVAL) {
->> >> +		dev_warn(dev,
->> >> +			 "using default rimon: current and power scale possibly wrong\n");
->> >
->> > This is not an appropriate warning. It is perfectly fine to load the driver
->> > if there is no ti,rimon-milli-ohms property.
->> 
->> I should have commented more on the default value. It is meant for the
->> case where the device is instanciated through i2c sys 'new_device',
->> which is meant for debugging purpose. In that particular case, it does
->> not really matter if the current and power scale are wrong.
->> 
->> There is no way to pass device properties when instanciating device
->> through that interface, as far as I know. 
->> 
->> In every other cases, a correct Rimon value is expected.
->> I could turn the above to an error. It means loading through i2c sys
->> would not possible for this driver.
->> 
->> Would it be better ?
->> 
->
-> We use default values for pretty much all drivers, so I don't see why
-> this one should be different. The driver should still be usable on a
-> system without devicetree support. There is a reason for the sensors
-> configuration file.
->
-
-Supporting more than DT is a concern. That is why I did not use the DT
-specific API. In theory, the one used should support other sources, such
-as ACPI, I think.
-
-Thanks for pointing out the sensor configuration file. I did not know
-calculation were possible, and acceptable, at that stage.
-
-So, IIUC, I could just drop the device property, then the device would
-be used in the same way on all the platform, DT or not ?
-I like that a lot.
-
-All I would have to do is add something in the documentation about it, I
-guess. With default value of 1000, instead 910, the range would still be
-good in sysfs and calculation simple in userspace.
-
-That would solve the unit discussion as well, a nice bonus ;)
-
->> >
->> >> +	} else if (ret < 0) {
->> >> +		return dev_err_probe(dev, ret, "failed get rimon\n");
->> >> +	}
->> >> +
->> >> +	/*
->> >> +	 * TPS25990 may be stacked with several TPS25895, allowing a higher
->> >> +	 * current. The higher the allowed current is, the lower rimon
->> >> +	 * will be. How low it can realistically get is unknown.
->> >> +	 * To avoid problems with precision later on, rimon is provided in
->> >> +	 * milli Ohms. This is a precaution to keep a stable ABI.
->> >> +	 * At the moment, doing the calculation with rimon in milli Ohms
->> >> +	 * would overflow the s32 'm' in the direct conversion. Convert it
->> >> +	 * back to Ohms until greater precision is actually needed.
->> >> +	 */
->> >> +	rimon /= 1000;
->> >> +
->> >
->> > Seems to me it would make more sense to limit the valid range of ti,rimon-milli-ohms
->> > to avoid the overflow. But then I really don't understand the reasoning to provide
->> > the property in milli-ohm, given the default value of 910 Ohm. What is a realistic
->> > lowest value that would make sense ?
->> 
->> The highest value I've seen, when the tps25990 is alone, is 1370
->> Ohms. That means a 30A overcurrent fault limit.
->> 
->> With one TPS25895, I've seen 608 Ohms (110A limit)
->> 
->> I have no idea what the realistic low limit is. To get to ~100 Ohms, you'd
->> need 8 devices (not hundreds ;) ) If one gets there, it might be
->> desirable to have 3 digits to play with, and not be limited by the unit.
->> 
->> The DT folks really don't like when a property changes. Going with
->> milli-Ohms is way to anticipate the problem.
->> 
->> The other way could be to use Ohms now, and if we ever get to point
->> where milli-Ohms precision is needed, add it then. The downside is that
->> the driver will need to support both properties.
->> 
->> Would you prefer this ?
->> 
->
-> In practice the driver, as submitted, does _not_ support milli-Ohms
-> to start with. It only supports Ohms. Worse, it doesn't range check the
-> value, causing bad behavior (everything will be reported 0) if a value
-> below 1,000 is provided, and still overflows if the value gets close to
-> UINT_MAX.
-
-Yes I relied on the value being sane-ish. 4 MOhms (or even 2) is not. 
-
->
->> 
->> > But even if it is less than 1 Ohm I don't
->> > understand why it would make sense to completely ignore it.
->> 
->> It would not make sense to ignore it.
->> 
-> But you do ... by setting m to 0 in that case.
-
-I did not intentionally set 0. Let's just call it for what it is: a
-bug that needs fixing, if the property stays.
-
->
->> >
->> >> +	info = devm_kmemdup(dev, &tps25990_base_info, sizeof(*info), GFP_KERNEL);
->> >> +	if (!info)
->> >> +		return -ENOMEM;
->> >> +
->> >> +	/* Adapt the current and power scale for each instance */
->> >> +	info->m[PSC_CURRENT_IN] *= rimon;
->> >> +	info->m[PSC_POWER] *= rimon;
->> >
->> > Any rimon value < 1000 mOhm will result in m values of 0.
->> 
->> Indeed. Such Rimon value would mean an over current limit > 50kA. I admit
->> I did really think much about such value.
->> 
->> The idea was more keep some precision if we get somewhere near a 100 Ohms.
->> 
->
-> It doesn't, though, since the provided milli-Ohm value is divided by 1,000
-> (and the division doesn't even use DIV_ROUND_CLOSEST). Even though certain
-> values don't make sense, there still needs to be a range check. And that
-> missing range check triggers the next question: Why not just limit the upper
-> range instead of ignoring the milli-part of the value ?
-
-If there was an actual range in the documentation, I'd be happy to check
-it, but there is not one. I don't think I should make a range out of
-thin air.
-
-That being said, we are not going get into Mega-Ohms or Micro-Ohms
-territory with this chip, that's for sure. I was trying to strike a
-balance in between.
-
-The upper limit of Rimon would be set by what you consider the lower
-acceptable limit for over current protection (Iocp). Isn't 10A ? or 5A
-or even 1A ? I don't know. I'm not sure the driver should disallow any
-sane value if the HW can do it.
-
-What is sane then ...
-
->
-> Note that you might have used micro-Ohm (which is a standard devicetree
-> resolution) and divide it by 1,000.
-
-Take Rimon = 1370 Ohms, which provide an Iocp of 30A.
-Micro-Ohms divided by 1000: 13700000000 / 1000 = 1370000.
-For current: m = 9538 * 1370000 = 13067060000
-
-This will overflow m on 32bits systems for struct pmbus_driver_info.
-In pmbus_reg2data_direct, m is an s32 so it would overflow there as
-well regardless of the arch.
-
-Micro or milli-Ohms, the matter is the same. Solution might simply be to
-do m calculation over 64bits then divide result so it fits the 32bits
-type used in pmbus_core.
-
-> That would have been perfectly fine.
-> It would result in an upper resistor limit of 4,294 Ohm, which I'd assume
-> should be acceptable.
-
-Means the driver will not allow a Iocp lower that 234mA.
-It is probably realistic.
-
-> Overflows due to large values of m could have been
-> avoided by adjusting .R if .m gets otherwise too large.
-
-I think we are down 2 solutions then:
-1) Drop the device property completely, use a sane default and rely on
-   libsensor for the final calculation.
-2) Property in micro-ohms, with some calculation to fit m in 32bits.
-   Probably need to expose Rimon in debugfs too, so the users may check
-   the value used and revert back to lib-sensor calc if necessary.
-
-I tend to prefer 1) for its simplicity and lack of added constraints.
-Is it Ok with you ?
-
->
-> Guenter
-
--- 
-Jerome
 
