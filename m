@@ -1,98 +1,204 @@
-Return-Path: <devicetree+bounces-102137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E2C99759CF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 19:54:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC0589759D8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 20:00:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BFF44B243C1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 17:54:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94E1A1F240DC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 18:00:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D76C1B78F3;
-	Wed, 11 Sep 2024 17:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16F241B9B2A;
+	Wed, 11 Sep 2024 18:00:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WfMvKnEt"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="muBJwXlh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com [209.85.214.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74EFD1B3F17
-	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 17:53:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F99B1B791B
+	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 18:00:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726077209; cv=none; b=lQelcRlRhklKN881UHnjvGC9EO+QzcKrzDfNvPSopJTQ0IF/QtE3snm6unlbE1O6WkdQ/lUcjEUf2D5HKrnMxQK6KyXBCpsKQCjTACWXOEHHOMgCv+Mn3MuQWinq1F4Y4A3NjaNCX3YAsL0dt5walT1a5wFupZTfZAuR5us9Vw0=
+	t=1726077617; cv=none; b=sFLGS7BinOkth1sCyPxkeVcaJhJ3g4EONm0f0vBzLWG5dmSkVPMHOaDJkQUDdYmDZbr2Q1Vpkt8UqOguJxvZqVQjfzQzgsW02fsqlcH0GOc3RAQbaSILvqb1yKJhPGc1Gr94cTkEztrkjO5d2aN3zxQAOkbTcMJPdwr8sqaw9nY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726077209; c=relaxed/simple;
-	bh=VgNduxwzmGgTFYBdPhiKbYYvurGifJW2D1mFzinBT2g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lokqCCzDP+ub/7IRXTgqC9xy/aLhlMg01gcD1dR/6wfKZol9GuMERfvM1htpt2RvGsgJTyJUubkXUPlAO+OlPH3wQMhD/G/+eEkxiwHeSOL8mHch3XHMA3Wl4TTVkxBWAMJJUn7/EFxvBW3YHti3YiTS5P/ScbAchZjuz+1h/xY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WfMvKnEt; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2f75d044201so630331fa.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 10:53:27 -0700 (PDT)
+	s=arc-20240116; t=1726077617; c=relaxed/simple;
+	bh=WNpg1zAsY1hWYJWrTK0CWSeHviozREIE1okw8+oxAQI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=N4Te1yEIGzPFZzNVNmXRbd5DeI902SyfCzmICY4fqAc3sFOlwDc9XphImcHT+32KXYoyPtwCv/Ah+cOg/EFRlStgr6+2jfNPWsz+QbSYLt6dZa6uIgvgrCN+mlVNEPBKmsn2a131PDEGREyMg7d/FdDA+DbE8Yy/6DiCnEyqFPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=muBJwXlh; arc=none smtp.client-ip=209.85.214.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-pl1-f193.google.com with SMTP id d9443c01a7336-20570b42f24so1667215ad.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 11:00:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726077205; x=1726682005; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VgNduxwzmGgTFYBdPhiKbYYvurGifJW2D1mFzinBT2g=;
-        b=WfMvKnEtpWZCJgKLGrf7HS+/fLgMvHBzB1j3VQ1PoT9O+N0KF0cd+XzuGLz9PTt7oD
-         71p3tEuXmqz+bZ9ghpw3yLN63MhrKYksZ9Do4uyX7Qbg5ecuRFMuIPp4nMVgj24ZJu+R
-         pWzGfH6mFgdtGZbr9Zxn9zncx+IMjTXD8BO51rjmbBbu04EXnna5sz8nWzZ9oKJY9cb1
-         HTOrqj5fi8+lCCQvh8VeXRvwLiom329kOOMF/J5oK/o+XNE3gCbT10L+N5GOUCT/T1Xr
-         D5xv9t4UVSFdE09twTmrSX4rtw1+QlPqzSECiVLFAOMNjdTxOKWiw9kTH0sEcJwyaA/K
-         OlTQ==
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1726077613; x=1726682413; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oi1ycBl7Zo/pcrvjxctEWR3H8TSj6fTGuiJIc535U80=;
+        b=muBJwXlhtQE5JCbuSckZ9FC9J3ufvxylQzBme8UcBKwPaLmdIFnoSddqJ5V6AjN+jv
+         eep2BIZ23KPav/7IUBVLdP+TQ+5hCHvJTta515ofPn/1IwcAhrEd8hR9ijHdqo1GVSuZ
+         qWmrdIfarysNcBYPJmxuS3G480xFcq4YTMsgnunyvOu0dGJPXQA8gWdnZssrcEeg1OB/
+         6VAc6DKsLvn8vBInnLsWo5ZcSYdLLhR/kVxH7KOedvYGvs5u2XqlgKg6AK5XtLDu+uwS
+         8+lSwpRhn4/posiwIghgIPAz8lCwPvhs15efhZEPr6YyH0qRc0q7XEG3j/EIfvTIUCs7
+         mG2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726077205; x=1726682005;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VgNduxwzmGgTFYBdPhiKbYYvurGifJW2D1mFzinBT2g=;
-        b=KyoVNNa7q2+UdHrkN56Vjns8n5PMTMwhYmXMK2bnvZ5OHkQPbIfTNaS2hKqxGyUZTH
-         BZ4XTKeCzR0OIGNDJKPuDh+jKuoMI2UR62nLj6LPP8kV1Ckwwg5LzgkOHFHzvDdP+/eT
-         t+rZeMEdyl07Q8heBMKFIAKHLDg/bioETwwhN2JSMYlD7OPsDjYabVSWsQsG5GU/CXFM
-         EwGEsHXxdm0Xncc8cGdxX3p2Ksit9nqGiy92G70Z8OSwKMPIzG6ppUL0J6kFk+gQj73y
-         0ZO3UBpW1mOjWwtXC5Q1SRU02jCJhsR+VCxU1iGmw8mecEdb5wAB4kGd0lG0oNM6Jvd7
-         wwIA==
-X-Forwarded-Encrypted: i=1; AJvYcCXeeiFYmCm36NGbV+OhayqDrAzMJ0uZBhDzGrYiQK/h339ZrtWoi6NHDvfqupwfOPANp5pa7IsBJ+61@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxo61ZpMXoKSqznil+YWZDLBR7BJY/wC2vC2TLDOSctSyaKm6/t
-	MxcMhe1UB1qZUcNx5RpNeESZ1rF4iTmnWox1NiMbDOxs+frnKG3Dc9+7eydB105Q0VLx5kUBAxP
-	K05dSTqbtzF6C6YHesnNAs24j7qI=
-X-Google-Smtp-Source: AGHT+IH1vgXJ9WExRbN2vAK6l2+rY/g4HWgUJfWpp9ZGP0vrln/VrMc+A7zRPHlOgBf9jHeSwJMsFC3fzu8WihhoV5E=
-X-Received: by 2002:a05:651c:2227:b0:2ef:1c05:6907 with SMTP id
- 38308e7fff4ca-2f787c1ae70mr554271fa.5.1726077204925; Wed, 11 Sep 2024
- 10:53:24 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1726077613; x=1726682413;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oi1ycBl7Zo/pcrvjxctEWR3H8TSj6fTGuiJIc535U80=;
+        b=IVu4/j/AcuL86idyHcEMByfjWXOlQniZv5pRklha+vS/KsK5QPMNdJ52f6Trkjpb98
+         2x73vx0qVAR/WCmMyWsG3r6OX2ez5EnY/92Vu2BXbJ33WtclHAo2vAh3ZnKyrFH5gVjh
+         Jo7tuptsTH1eKUW/RbVh9ptOHA11y6QAQfJAUXt2XSAaqiisIwxsUaCOsFh9V59a8XUC
+         SyDD9XujObBVZ5wvLyRc2iNeecwdYHeE1qNOESEZy7J/b+g29VKdJW5aT/UOHip/abIJ
+         sNoBTp0aPXaSRejRsM0niErYjfuazf0FfwXBkxDXRkN4tzgknhcgqgrAi6h1eMd2xQis
+         J1cA==
+X-Forwarded-Encrypted: i=1; AJvYcCUbMOcb5iYp4+6VPlSPumy6EAr04ZIDhOTuYb+I4sMg4qQfaLw4jwZAzh0jYhOmcLpgZkDpjZeRhBoc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPxiUXFMHujKX0RP3jC5osG+Mf19L1RA3t/MjYPMaajCIE8d6/
+	oNRZy2E7Y8uCghiftGNTYVP9LqjBZBwhPQqtIh+0+K0smOYeREILfzkurzKRQg==
+X-Google-Smtp-Source: AGHT+IGHMbSQUJFzu4dp7JtqdcyOhvxEYRG1Urbc0wxUZecfk89IK2jJJvDZYYh7dccxukx7Xnx2Jg==
+X-Received: by 2002:a17:903:41c3:b0:207:1de9:1014 with SMTP id d9443c01a7336-2076e38f304mr3245735ad.34.1726077611683;
+        Wed, 11 Sep 2024 11:00:11 -0700 (PDT)
+Received: from [172.16.118.100] ([103.15.228.94])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2076afec4fdsm2268195ad.228.2024.09.11.11.00.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Sep 2024 11:00:11 -0700 (PDT)
+Message-ID: <45b1894b-0a15-4efc-95a0-596aa6728fd7@beagleboard.org>
+Date: Wed, 11 Sep 2024 23:30:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240910213056.963998-1-festevam@gmail.com> <20240911174430.GA1015067-robh@kernel.org>
-In-Reply-To: <20240911174430.GA1015067-robh@kernel.org>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Wed, 11 Sep 2024 14:53:13 -0300
-Message-ID: <CAOMZO5Bah=osAWnG4adrfqqv6OZXu+r07EEuJ8Z_8RUtzKtiAg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: display: elgin,jg10309-01: Add own binding
-To: Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	otavio@ossystems.com.br
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/8] dt-bindings: connector: Add MikorBUS connector
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+Cc: fabien.parent@linaro.org, d-gole@ti.com, lorforlinux@beagleboard.org,
+ jkridner@beagleboard.org, robertcnelson@beagleboard.org,
+ Andrew Davis <afd@ti.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Benno Lossin <benno.lossin@proton.me>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>,
+ Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240911-mikrobus-dt-v1-0-3ded4dc879e7@beagleboard.org>
+ <20240911-mikrobus-dt-v1-2-3ded4dc879e7@beagleboard.org>
+ <20240911172626.GB915638-robh@kernel.org>
+From: Ayush Singh <ayush@beagleboard.org>
+In-Reply-To: <20240911172626.GB915638-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Sep 11, 2024 at 2:44=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Tue, Sep 10, 2024 at 06:30:56PM -0300, Fabio Estevam wrote:
-> > Currently, the compatible 'elgin,jg10309-01' is documented inside
-> > trivial-devices.yaml, but it does not fit well there as it requires
-> > extra properties such as spi-max-frequency, spi-cpha, and spi-cpol.
->
-> Looks good, but it will have to go to Mark or wait til 6.12-rc1 for me
-> to take it.
+On 9/11/24 22:56, Rob Herring wrote:
 
-Ok, I will send it to Mark then.
+> On Wed, Sep 11, 2024 at 07:57:19PM +0530, Ayush Singh wrote:
+>> Add DT bindings for mikroBUS interface. MikroBUS [0] is an open standard
+>> developed by MikroElektronika for connecting add-on boards to
+>> microcontrollers or microprocessors.
+> Typo in the subject...
+>
+> Isn't this v6? Where's the revision history?
+
+Well, at this point, it almost has nothing in common with [0] (the 
+previous patch series was about making mikroBUS a Linux bus) and is more 
+of a continuation of [1]. So I thought it would be better to treat it as 
+a new patch series.
+
+>> MikroBUS connector node will optionally act as nexus nodes for routing
+>> GPIOs and PWM.
+>>
+>> For GPIOs, the following pin numbering should be followed:
+>>
+>>    0: PWM
+>>    1: INT
+>>    2: RX
+>>    3: TX
+>>    4: SCL
+>>    5: SDA
+>>    6: MOSI
+>>    7: MISO
+>>    8: SCK
+>>    9: CS
+>>    10: RST
+>>    11: AN
+>>
+>> For PWM, the PWM pin should be on channel 0.
+>>
+>> I am not quite sure how to deal with the nexus node properties
+>> (#gpio-cells, gpio-map, gpio-map-mask, gpio-map-pass-thru) since they
+>> seem to conflict with upstream gpio schema (gpio-controller is a
+>> dependency of #gpio-cells).
+>>
+>> [0]: https://www.mikroe.com/
+>>
+>> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
+>> ---
+>>   .../bindings/connector/mikrobus-connector.yaml     | 40 ++++++++++++++++++++++
+>>   MAINTAINERS                                        |  5 +++
+>>   2 files changed, 45 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/connector/mikrobus-connector.yaml b/Documentation/devicetree/bindings/connector/mikrobus-connector.yaml
+>> new file mode 100644
+>> index 000000000000..603e4627076c
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/connector/mikrobus-connector.yaml
+>> @@ -0,0 +1,40 @@
+>> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+>> +#
+>> +# Copyright (c) Ayush Singh <ayush@beagleboard.org>
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/connector/mikrobus-connector.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: mikroBUS add-on board socket
+>> +
+>> +maintainers:
+>> +  - Ayush Singh <ayush@beagleboard.org>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: mikrobus-connector
+>> +
+>> +required:
+>> +  - compatible
+>> +
+>> +additionalProperties: true
+> Cannot be true. You're schema must be complete. I don't understand what
+> happened to everything else in the binding.
+
+
+So the current dtschema makes `gpio-controller` dependency of 
+`#gpio-cells` which should not hold true for nexus node [2]. I also 
+wanted to understand if the nexus node schema should go in upstream 
+dtschema or be in kernel tree.
+
+I will try to figure out how nexus node properties should look by taking 
+interrupt nexus node bindings as a starting point.
+
+
+[0]: 
+https://lore.kernel.org/linux-arm-kernel/20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org/
+
+[1]: 
+https://lore.kernel.org/linux-arm-kernel/20240702164403.29067-1-afd@ti.com/
+
+[2]: 
+https://devicetree-specification.readthedocs.io/en/v0.3/devicetree-basics.html#nexus-nodes-and-specifier-mapping
+
+
+Ayush Singh
+
 
