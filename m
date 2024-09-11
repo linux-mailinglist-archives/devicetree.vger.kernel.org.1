@@ -1,55 +1,63 @@
-Return-Path: <devicetree+bounces-102130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88C41975988
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 19:36:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3692297599A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 19:39:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33A761F23119
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 17:36:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 017E4284A1F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 17:39:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB9511B4C23;
-	Wed, 11 Sep 2024 17:35:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 405741B5831;
+	Wed, 11 Sep 2024 17:38:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NmXgss2E"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iSAsUVEB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C49831B3F36;
-	Wed, 11 Sep 2024 17:35:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F1A81B5823;
+	Wed, 11 Sep 2024 17:38:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726076159; cv=none; b=QgXRa3tRj2MGjRUc/TzU2Z93NaHmAO4werBF8qPWujrPLmr+jkTLrafb8yzSInDzayIg0N0fj/uNV+RISlhZl1k6GABP3GrIBH6Id6yNucUvnZfOT4/6NaONkrqwOle1xnxiLovvmsO/eWO46uZt1KUhC6hMIT+h7ZTMEktPZ40=
+	t=1726076329; cv=none; b=O733pjBRJSM9OsbbFB/wj15MUbpbRASfIkeD0nwGiQlYvvsQdqjuyiCTMhWXnWQcubcdq180U0WvTdIowWtYHmGYVVdg1Q295fXZE7su0MhguIXOaZm6ABfu/YygRr/KKJga50XWbGDs3Tl7ayXLbey7mjFgOcQmPEx4OHzHBQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726076159; c=relaxed/simple;
-	bh=B+8kHFG6GDk8TMxMonyWxF+9E4kM8Ko6DZ6+TCyxbDk=;
+	s=arc-20240116; t=1726076329; c=relaxed/simple;
+	bh=bOVwNWUV6Ukmuh2XCEvIpMUl1EkoGDu5P5d6lc+GSi4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lR/RwxMjudq+zF9vXSI8gMzAp7W3E7WhKyYFf2g2l10zTVml14wf+jZ3pbANNt1AkUYTOlz3ghulUblV85M8D5c5yLjUtCQEUMwkrY/GZtex9Ax7Gj9DrXO+/24dgO4bAxNJZH9zhG3D/BvMKcTDHxyIVu3EW4E+tPKbpRuPKCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NmXgss2E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 233EDC4CEC0;
-	Wed, 11 Sep 2024 17:35:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=e1hCi0jm/xyAwvSdj0e1qskyrihhoC9xfIpiGU419fOcTTlV/UH/EKXN6+c8UAUhfPJs6w5rT0BQMFtLBxQHfNaxcd+R+3TvXqN3rc8qGcpaFfn8xMJ2bfgTwWDhYNqC3BtMd6+DP/Ly5i85se6VaRM3oXd3tbcBHOzkXbMcXIU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iSAsUVEB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51B99C4CECC;
+	Wed, 11 Sep 2024 17:38:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726076158;
-	bh=B+8kHFG6GDk8TMxMonyWxF+9E4kM8Ko6DZ6+TCyxbDk=;
+	s=k20201202; t=1726076328;
+	bh=bOVwNWUV6Ukmuh2XCEvIpMUl1EkoGDu5P5d6lc+GSi4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NmXgss2Eq1ibmvIciA1UjdxO9JsxoRmXSEHlh51D2P7Ma6ITV5C4wN4xG4j3dbRUK
-	 RHPtwgQ+5Y358eiO47EpQObxkh9QJiN8DO3YXHMQZFYn35tDeikwYmjAykyd9Bluu/
-	 drzTt1c2AEP/D5Hid5ZXpA/2H6z6gGvlT0xvGUIyAgXpDv2LphqpZ6gfsGJhxDMmle
-	 Br+geBfJgWbi1P5vJHqAtiUwaSdF4InPNljKGxfZnKeNksMdRWtJVUICNNWS/vdZ77
-	 JhgqfocVW7NE7jdRIO6A43o1dy6pqYVhXJhsphONfcJXT8qEp7vbs3WMvoGAZqjzMd
-	 /1ZNZtkLsDOWA==
-Date: Wed, 11 Sep 2024 12:35:57 -0500
+	b=iSAsUVEB/FtCTvh8oZWwuq9IHYV+v8w9YXmHFL7+Z1yj/38tAemh5FxZ3zVH1JC1z
+	 NOsFbLt4gKxNy9JCjlzD6RPm5h+BCYlLySxQnEjp3a9qTNpq6snM4nDlHPpIRvG01f
+	 31f9vQcoW4JNH5EAENDqrxkKEiZI3JqJO/KQE3eheZbu/F7fTopvVTpdgplahbOeq0
+	 pm04IG23jmLmOiJIxIWl3VFppsyXQGRiio3wTOXsYKQaDGYggLF6SiGk1jlhO2crlU
+	 nPl0Oqkp4b2Wzh0C6AWf9m476amsnhd1FPJnzWyr8Broyo6dmUq0Wq/vRx/OPckkIK
+	 vnohLuSoUk5/g==
+Date: Wed, 11 Sep 2024 12:38:47 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Nikunj Kela <quic_nkela@quicinc.com>
-Cc: conor+dt@kernel.org, quic_psodagud@quicinc.com, krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org, kernel@quicinc.com,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4] dt-bindings: arm: GIC: add ESPI and EPPI specifiers
-Message-ID: <172607614907.1010907.12404098016116967831.robh@kernel.org>
-References: <20240910162637.2382656-1-quic_nkela@quicinc.com>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, devicetree@vger.kernel.org,
+	Heiko Stuebner <heiko@sntech.de>,
+	=?iso-8859-1?Q?Adri=E1n_Mart=EDnez?= Larumbe <adrian.larumbe@collabora.com>,
+	kernel@collabora.com, Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-rockchip@lists.infradead.org, linux-pm@vger.kernel.org,
+	Elaine Zhang <zhangqing@rock-chips.com>
+Subject: Re: [PATCH v1 4/6] dt-bindings: power: rockchip: add regulator
+ support
+Message-ID: <172607632666.1014488.15274638720541628232.robh@kernel.org>
+References: <20240910180530.47194-1-sebastian.reichel@collabora.com>
+ <20240910180530.47194-5-sebastian.reichel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,34 +66,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240910162637.2382656-1-quic_nkela@quicinc.com>
+In-Reply-To: <20240910180530.47194-5-sebastian.reichel@collabora.com>
 
 
-On Tue, 10 Sep 2024 09:26:37 -0700, Nikunj Kela wrote:
-> Extended SPI and extended PPI interrupts are in the range [0-1023] and
-> [0-127] respectively, supported by GICv3.1.
+On Tue, 10 Sep 2024 19:57:13 +0200, Sebastian Reichel wrote:
+> Add optional support for a voltage supply required to enable a
+> power domain. The binding follows the way it is handled by the
+> Mediatek binding to keep things consistent.
 > 
-> Qualcomm SA8255p platform uses extended SPI for SCMI 'a2p' doorbells.
+> This will initially be used by the RK3588 GPU power domain, which
+> fails to be enabled when the GPU regulator is not enabled.
 > 
-> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
-> 
-> Changes in v4:
->         - Included interrupts ranges in description
-> 
-> Changes in v3:
->         - Removed the patch from original series[1]
-> 
-> Changes in v2:
->         - Modified subject line and description
->         - Added EPPI macro
-> 
-> [1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
-> ---
->  include/dt-bindings/interrupt-controller/arm-gic.h | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../devicetree/bindings/power/rockchip,power-controller.yaml   | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
-Applied, thanks!
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
