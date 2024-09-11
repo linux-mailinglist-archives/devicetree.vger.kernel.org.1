@@ -1,91 +1,111 @@
-Return-Path: <devicetree+bounces-102027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B8CD975204
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 14:26:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 262D797521F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 14:28:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3F7C28606C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 12:26:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C51701F22DB7
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 12:28:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 021531885B8;
-	Wed, 11 Sep 2024 12:26:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C52D1891A9;
+	Wed, 11 Sep 2024 12:28:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="eH8YtZ4Z"
+	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="Svz5UkDh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C18161E50B;
-	Wed, 11 Sep 2024 12:26:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
+Received: from classfun.cn (unknown [129.204.178.38])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10F7751C4A;
+	Wed, 11 Sep 2024 12:28:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726057587; cv=none; b=FIN4ck+8bvE3tuwHXsKd6pqHARFUyUNJInMlBS6fEOmJQVlPNMfPewpQxyjSNOKYWmdgppRlkrwSpiN7Xs98ecL0zJOv7pF7PiceVziFMZ/ep/emVGPfkrIz35AEA1FjI658VkeC8cTR2gYl8egI+UnxtsYyZJhhvIdGUA3kty0=
+	t=1726057730; cv=none; b=RdABEJL5Io0/3ZxIGvzqJ/bq+Kw4ainl1hownhrul/vUyXpYwesunRxGqh/1wNgY2ryRZZw2mNI6nU4N6cRf3fnv26lni0Q2fEItEKk+uvhql/t9AT6gi3PMalvFPfMtNqbQ2h7RPYq+fiZvB/5r4Eu9EV9OZb+C6goklH+2H2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726057587; c=relaxed/simple;
-	bh=CCF36q2SdqMmoqLpIug7/RD5Zcpp7cgkuZs//0709JM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=Fs6Ilb/qgYoEBXkbf1ZZZtLPj3Ek9NWMaWEg85iy8k8dBFsQHRr3deoG/YmQuQjIiASt6sS+7DE90nHdpk/Ucdj04WhM7+muvyRmrerBEOEjvJdhGq+785ALunocELcEAIJli4aLU1iWjYBG8MLEpQ7OXGFbakrL6DIrUQQQtJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=eH8YtZ4Z; arc=none smtp.client-ip=117.135.210.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-Id; bh=VIdwaVN4f8RG9byl7M
-	H0HVoJuWCYEmfT9jRFzeAU+xo=; b=eH8YtZ4ZLURg53kFk6Cda2hiJG2O7tsnjP
-	HErByxSLMxZb0HkITwituH4owqj6jIPE+iDn6X96lq5YJsxLMh3fdazotcBvGuTf
-	YBF6briRcKjhoeFsCCFutI5sTGUWuVTOt9QM0X40OlFACfRcqoK79BRFplRw9RQk
-	EjUw41my0=
-Received: from 100ask.localdomain (unknown [36.23.125.181])
-	by gzsmtp1 (Coremail) with SMTP id sCgvCgBXdnYyjOFmHo+DBQ--.2634S3;
-	Wed, 11 Sep 2024 20:25:28 +0800 (CST)
-From: Wenliang <wenliang202407@163.com>
-To: linux@roeck-us.net
-Cc: Wenliang <wenliang202407@163.com>,
-	jdelvare@suse.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	s=arc-20240116; t=1726057730; c=relaxed/simple;
+	bh=5Jr/ZMMR4Lqqr8IqNaSbYFH3ltNNkjiFdDGhsaK2DoI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YMhlcOcV6WT4H7KsBVUGUJfPPoXUZ9kNeabGw9xdPqppmNqdNeeaXG4UCUvFu6RqaB2aVo+jfpPWyRBmJVASVS0NTQ2aryrqdlj0wC4vyJrJPkGCXysorrr4dkn+EsgppyxW91HE+EHgmgQidls50CQ7LmSof+n+ZAvrPIPSdgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=Svz5UkDh; arc=none smtp.client-ip=129.204.178.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
+Received: from bigfoot-server-storage.classfun.cn (unknown [124.72.163.173])
+	(Authenticated sender: bigfoot)
+	by classfun.cn (Postfix) with ESMTPSA id D806678906;
+	Wed, 11 Sep 2024 20:28:37 +0800 (CST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn D806678906
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
+	s=default; t=1726057722;
+	bh=84RhzK7ckLC2VZH9E5EktRcm76BXvzf4lS+tQumGGhY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Svz5UkDhInjSesuI1QpGpTdb90UvxkZhY9KLpoL1u4PyeroG1IfbVM/wX2sJnO+0F
+	 vPTK6mQqo4OpBrbalaF1aP/3bvRqsmXrcmNxCsCXXE5afLGXwFo4+DrWdZy40adLlb
+	 DVwA9sVmVzieEr1Zh4w5H5MAmuU4KSrzvB/yQraw=
+From: Junhao Xie <bigfoot@classfun.cn>
+To: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	Junhao Xie <bigfoot@classfun.cn>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH linux dev-6.11 2/2] dt-bindings: modified ina2xx to match SY24655(SQ52205)
-Date: Wed, 11 Sep 2024 08:25:18 -0400
-Message-Id: <20240911122518.41393-2-wenliang202407@163.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240911122518.41393-1-wenliang202407@163.com>
-References: <7c155638-8c33-4873-9534-17a9454c83e6@roeck-us.net>
- <20240911122518.41393-1-wenliang202407@163.com>
-X-CM-TRANSID:sCgvCgBXdnYyjOFmHo+DBQ--.2634S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWrZFyfGr1fGw4UXr4DKFy8Krg_yoWxCwbEgF
-	4xXw4UXr95XFyYgr1DAayvqr1ftw1akF4kCw1UCrZ5AwsrZrZ0ga4kJ3sxCr1Uuay3uF1r
-	uan5JrWqqrsrKjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7sREEfO7UUUUU==
-X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/1tbiGRlX02XAk-i8rgAAsY
+Subject: [PATCH v3 0/3] Add support for Ariaboard Photonicat RK3568
+Date: Wed, 11 Sep 2024 20:28:07 +0800
+Message-ID: <20240911122809.1789778-2-bigfoot@classfun.cn>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Modified the binding of ina2xx to make it compatible with SY24655. 
+Add dts for Ariaboard Photonicat RK3568.
 
-Signed-off-by: Wenliang <wenliang202407@163.com>
----
- Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 1 +
- 1 file changed, 1 insertion(+)
+This series bring support for:
+* Debug UART
+* SDIO QCA9377 WiFi and Bluetooth
+* M.2 E-Key PCIe WiFi and Bluetooth
+* M.2 B-Key USB Modem WWAN
+* Ethernet WAN Port
+* MicroSD Card slot
+* eMMC
+* HDMI Output
+* Mali GPU
+* USB Type-A
 
-diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-index 6ae961732e6b..400e7cefad17 100644
---- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-@@ -29,6 +29,7 @@ properties:
-       - ti,ina237
-       - ti,ina238
-       - ti,ina260
-+      - silergy,sy24655
- 
-   reg:
-     maxItems: 1
+Changed from v1:
+- move some general nodes (firmware, ramoops, reboot-mode) to rk356x.dtsi
+- gmac1 change to phy-mode rgmii-id
+- corrected some regulator to be closer to schematics
+- rename rk3568-ariaboard-photonicat.dts to rk3568-photonicat.dts
+https://lore.kernel.org/lkml/20240904111456.87089-1-bigfoot@classfun.cn/
+
+Changed from v2:
+- remove unused headers
+- corrected some regulator to be closer to schematics
+- remove usb_host1_ohci, usb_host1_ehci, usb2phy1_host that have no connection
+https://lore.kernel.org/lkml/20240906045706.1004813-1-bigfoot@classfun.cn/
+
+Junhao Xie (3):
+  dt-bindings: vendor-prefixes: Add prefix for Ariaboard
+  dt-bindings: arm: rockchip: Add Ariaboard Photonicat RK3568
+  arm64: dts: rockchip: add dts for Ariaboard Photonicat RK3568
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3568-photonicat.dts   | 586 ++++++++++++++++++
+ 4 files changed, 594 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-photonicat.dts
+
 -- 
-2.17.1
+2.46.0
 
 
