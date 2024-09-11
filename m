@@ -1,165 +1,121 @@
-Return-Path: <devicetree+bounces-102133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4CA89759A8
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 19:44:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 077AE9759B1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 19:49:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CEBA1F21E76
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 17:44:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4794284FF4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 17:49:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 686871ABEC8;
-	Wed, 11 Sep 2024 17:44:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81B891AED47;
+	Wed, 11 Sep 2024 17:49:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dhVH8Pzs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i2zoE6Cg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 421AA383B1
-	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 17:44:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 528BC58AC4;
+	Wed, 11 Sep 2024 17:49:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726076672; cv=none; b=XjzEkhHEJCIyMLtj5e/w4bhbtskWSVGaCptFlZJgUfsu+Z57eq+mw9lFkE3Q9GTVv//EHDNCwTUObokDhkP5SojRPFXRUAqSlsyZF5rA8KXWg8fm4YQTrQV9TpqbQ00/LJLk7Q5uk8o+m5CeRAVJrCF13NgYpRD8Lv90XleGEfw=
+	t=1726076983; cv=none; b=SlhgR3lhNyZpJ/6MLVKlwRgMrk5xmi5bMThOR8t90yExJWl29ncAsD6f7Ld6+WXnrJF3//jqIsw7web2lCB5cxTORDOb7IwyB5BgP2ArXRBQ8x394qJ1eyNlKjbxFcF0SVl7/xNC7aNxwWxBm4+xxCnfNxIwq9+nN5+RZznH5mo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726076672; c=relaxed/simple;
-	bh=PYHDj9PHXmGoAynvAB3hcWX/j6pVw4Y64LU8i3lQQwI=;
+	s=arc-20240116; t=1726076983; c=relaxed/simple;
+	bh=/9ChfMA1SO1yWJHYGfyEXzQpQd1aikzo9DAVFgDxrEs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V2kxqNgIw9R+bibgl858UIgWn1K7cs6NrIELtbEdNZx945g1hvcp4eDkC/tySoM7K/0liO0lLrf9fg9JGFDajbl/JE/lphsvVELgsX61JBRI+sCI+DrYUMqvLAXMhcnOjobVmpmN3vRohTM+S19WvHW0N+QW3D6b7GoeVM1SgH8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dhVH8Pzs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CACDFC4CEC0;
-	Wed, 11 Sep 2024 17:44:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=a6KGqnGIVOeSVVfftQVTUwTqLGvfM13H8gDbeGEdhHgNK4b71KHwV5wfzBmqFrsScZdWQuIBrzjUdq8ngwkppRjjIUj26n8AiD7yJ5osBSmkUeudem1/NHTCkL3BdJ2OMFYlQd53ROjI7lWe4vtqZE3StUrNQcNIwLxkve2AnL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i2zoE6Cg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4EB4C4CEC0;
+	Wed, 11 Sep 2024 17:49:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726076672;
-	bh=PYHDj9PHXmGoAynvAB3hcWX/j6pVw4Y64LU8i3lQQwI=;
+	s=k20201202; t=1726076982;
+	bh=/9ChfMA1SO1yWJHYGfyEXzQpQd1aikzo9DAVFgDxrEs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dhVH8PzsSbt++iTjyC/YPIR5DAEuz5lhkcGJEWPypkLCMxL32yjC9gl0cXzI5RnHJ
-	 Wxp3uJaFY2frJfL132ZLz+8bB77gy19/oVTRGsSs7bE7lUSw7hU/hoDasIT7x15ixr
-	 EmwsCxmZR+LzNa1PdCTxMQ9q50H9COw/yFyMKl3X7vZB91rqLvmJOaf0qC64Oyk8CY
-	 tl/xOiVjLxt52fEdh0p0nmioomGWDNvVpMeAFnAK4mXN7Aez17dKYQSpR02zW8fQWm
-	 pfY1UhVyl6O+ORMGONRaEzs9PKsjm8yTV7Tf2qICNjOP9J5m5Lv5s7iMB+TAR6x0+g
-	 JMvSresJ+QgzA==
-Date: Wed, 11 Sep 2024 12:44:30 -0500
-From: Rob Herring <robh@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	otavio@ossystems.com.br
-Subject: Re: [PATCH] dt-bindings: display: elgin,jg10309-01: Add own binding
-Message-ID: <20240911174430.GA1015067-robh@kernel.org>
-References: <20240910213056.963998-1-festevam@gmail.com>
+	b=i2zoE6CgwbP2RAA1IbuD22Qd1K831zRgrr73NafzYAdc+cBvgSzWwYVeUCbkF2jr1
+	 gGtWAd2KZhDjnkKFFw/HG1ft0lsrvEQYMeB/QJeKEEEOTkSb6D/+ISbCrxb81k8KuC
+	 qLdCO+KXV3WthKxaETIPJxrycB6K+NdkhUBaJTJ3k3lWkHJLUZRMjcUtLKVfJHdi+U
+	 r1Jk4E5Z3zU2JUi/okVq4XlavE3NAbf0P9uSqIfkSaPrGD3YbCzeuPZK9efYCVRmDT
+	 11SmI40Luxwkez92Evk5FH95qFXmGYrpirHQmJibilBMNeEVIj+qF7Z7yQeAs474Zo
+	 A8zkCzM6Ol4+w==
+Date: Wed, 11 Sep 2024 18:49:38 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Wenliang <wenliang202407@163.com>
+Cc: linux@roeck-us.net, jdelvare@suse.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH linux dev-6.11 2/2] dt-bindings: modified ina2xx to match
+ SY24655(SQ52205)
+Message-ID: <20240911-cahoots-wildland-0ea4d25d8cd8@spud>
+References: <7c155638-8c33-4873-9534-17a9454c83e6@roeck-us.net>
+ <20240911122518.41393-1-wenliang202407@163.com>
+ <20240911122518.41393-2-wenliang202407@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="YCpv4siRb1PX7K11"
+Content-Disposition: inline
+In-Reply-To: <20240911122518.41393-2-wenliang202407@163.com>
+
+
+--YCpv4siRb1PX7K11
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240910213056.963998-1-festevam@gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 10, 2024 at 06:30:56PM -0300, Fabio Estevam wrote:
-> Currently, the compatible 'elgin,jg10309-01' is documented inside
-> trivial-devices.yaml, but it does not fit well there as it requires
-> extra properties such as spi-max-frequency, spi-cpha, and spi-cpol.
+On Wed, Sep 11, 2024 at 08:25:18AM -0400, Wenliang wrote:
+> Modified the binding of ina2xx to make it compatible with SY24655.=20
 
-Looks good, but it will have to go to Mark or wait til 6.12-rc1 for me 
-to take it.
+Rather, you should explain why the sy24655 is compatible with the ina2xx
+devices.
 
-> 
-> This causes the following dt-schema warnings:
-> 
-> make CHECK_DTBS=y rockchip/rv1108-elgin-r1.dtb -j12
-> 
->   DTC [C] arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb
-> rv1108-elgin-r1.dtb:display@0: 'spi-cpha', 'spi-cpol' do not match any of the regexes:
-> ...
-> 
-> Fix this problem by introducing a specific binding for the Elgin
-> JG10309-01 SPI-controlled display.
-> 
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+>=20
+> Signed-off-by: Wenliang <wenliang202407@163.com>
 > ---
->  .../bindings/display/elgin,jg10309-01.yaml    | 54 +++++++++++++++++++
->  .../devicetree/bindings/trivial-devices.yaml  |  2 -
->  2 files changed, 54 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/elgin,jg10309-01.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/elgin,jg10309-01.yaml b/Documentation/devicetree/bindings/display/elgin,jg10309-01.yaml
-> new file mode 100644
-> index 000000000000..faca0cb3f154
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/elgin,jg10309-01.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/elgin,jg10309-01.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Elgin JG10309-01 SPI-controlled display
-> +
-> +maintainers:
-> +  - Fabio Estevam <festevam@gmail.com>
-> +
-> +description: |
-> +  The Elgin JG10309-01 SPI-controlled display is used on the RV1108-Elgin-r1
-> +  board and is a custom display.
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: elgin,jg10309-01
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 24000000
-> +
-> +  spi-cpha: true
-> +
-> +  spi-cpol: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - spi-cpha
-> +  - spi-cpol
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        display@0 {
-> +            compatible = "elgin,jg10309-01";
-> +            reg = <0>;
-> +            spi-max-frequency = <24000000>;
-> +            spi-cpha;
-> +            spi-cpol;
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index 75a5fad08c44..2b675e97be3d 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -106,8 +106,6 @@ properties:
->            - domintech,dmard09
->              # DMARD10: 3-axis Accelerometer
->            - domintech,dmard10
-> -            # Elgin SPI-controlled LCD
-> -          - elgin,jg10309-01
->              # MMA7660FC: 3-Axis Orientation/Motion Detection Sensor
->            - fsl,mma7660
->              # MMA8450Q: Xtrinsic Low-power, 3-axis Xtrinsic Accelerometer
-> -- 
-> 2.34.1
-> 
+>  Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Doc=
+umentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+> index 6ae961732e6b..400e7cefad17 100644
+> --- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+> @@ -29,6 +29,7 @@ properties:
+>        - ti,ina237
+>        - ti,ina238
+>        - ti,ina260
+> +      - silergy,sy24655
+
+Please add this in alphabetical order.
+
+Thanks,
+Conor.
+
+> =20
+>    reg:
+>      maxItems: 1
+> --=20
+> 2.17.1
+>=20
+
+--YCpv4siRb1PX7K11
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuHYMgAKCRB4tDGHoIJi
+0ojzAP9ZB54cojpOzmxdCNv2AgwwS6Big26XvntWZeg+qbVtnAD8Cv1wpB8fk1Nr
+7+f1bA99/dyzp2eZvL0+hbTgxmmGlQg=
+=VLSt
+-----END PGP SIGNATURE-----
+
+--YCpv4siRb1PX7K11--
 
