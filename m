@@ -1,116 +1,257 @@
-Return-Path: <devicetree+bounces-101918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BA47974C2D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 10:07:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B340974C67
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 10:20:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC9E92860B8
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 08:07:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 071B11F266BC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 08:20:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 099B413D635;
-	Wed, 11 Sep 2024 08:07:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9503161310;
+	Wed, 11 Sep 2024 08:18:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YVJeeQTG"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MzT0Zbnh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E77AA14D449;
-	Wed, 11 Sep 2024 08:07:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2F8814EC56;
+	Wed, 11 Sep 2024 08:18:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726042064; cv=none; b=Sd1p90aR1eELjE6eZgp1OEPa43T6ltAbLU91jCf8eI2Wdz3/zsxXWaCpo5HCL22k+hdbAXVxBWrxZhNYCkHfJbsyWJh4LlGIFerrrK+mNkZdwYA0WrR4CJn1K/kzpNC6lTB0QC6lkxNvbw8+s5XGfk88zkVgPX43vDKsOJxreIA=
+	t=1726042682; cv=none; b=PwiQ7V691Xq0wRdm8B540aQHz4sOSuxv6dACQMsNLbxDfxiU0lIpzshwb3bp6wdfhXOg2TJw8hDVVNfSwQiUKBh02VV2l2gWcfCH1Eo+JwC91fa5OLM97MQVVAmiVM8mJvhyksugUvQ6TGqWaTxWbo0zb+1hKna2seO0RIghJ8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726042064; c=relaxed/simple;
-	bh=EKZEIu89oRth7yodb/7PPbffl+lMha21+1Do9ttFjVI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C+VENxJbMas8mgWoR+7DuyywvMXs9yx8ffxxOV4Kfd2eVhWzbeVowp2Hj1mH8EliLPvY6SUhf5afi6aLSauSwOXU0kWf/7wYir2bh7TIczozUhE/Un42rkqyRLzr4BdPype0oixdOxg959UiLyjvlEPEoJ9v4P1kDme2XkQZ8Yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YVJeeQTG; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1726042064; x=1757578064;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EKZEIu89oRth7yodb/7PPbffl+lMha21+1Do9ttFjVI=;
-  b=YVJeeQTG5cciGWe2NJQkxl02CpwzbzvEL5nNYXLw9fqSxnnrLiEX1uTc
-   5xIEaEzce6F+pLbUlvWArrdS6udu+Zq2kDX1kV6kpYX914ZD1uOzDtBn+
-   neDahxaUatvRMNci6R4Ma8bHtH3HZImrSP3sMzKKjPvDB5pFzrMHRMo/H
-   lJG9qCCmrwOyxD6V3r2KSp3zNex5N4eZ3bEga5OBsjB52A0Mm/tyxWaNG
-   cg8jHUJvLSx0nau0CcOcNUSfhMRhKPkFGiIslwDYA32vs00aD5z1wqWaV
-   tUTrNzMa8LHqI8Q1N5FjlzuasDaEbKh580me63lhNk2tSiMIsXQPEFDOA
-   w==;
-X-CSE-ConnectionGUID: XG+O25I4Rtyya2c5EnTNyQ==
-X-CSE-MsgGUID: 685+qW65SimdLrbKocEW3A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="24321857"
-X-IronPort-AV: E=Sophos;i="6.10,219,1719903600"; 
-   d="scan'208";a="24321857"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Sep 2024 01:07:42 -0700
-X-CSE-ConnectionGUID: KEWhRgfHSIS3VTcnfiBibQ==
-X-CSE-MsgGUID: BUYId16kREuvLRI0XGNutQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,219,1719903600"; 
-   d="scan'208";a="67127393"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 11 Sep 2024 01:07:39 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1soIO0-0003DY-2v;
-	Wed, 11 Sep 2024 08:07:36 +0000
-Date: Wed, 11 Sep 2024 16:06:55 +0800
-From: kernel test robot <lkp@intel.com>
-To: Hsin-Te Yuan <yuanhsinte@chromium.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Hsin-Te Yuan <yuanhsinte@chromium.org>
-Subject: Re: [PATCH] arm64: dts: mt8183: Add encoder node
-Message-ID: <202409111520.z5LrGscP-lkp@intel.com>
-References: <20240910-venc-v1-1-d17dfd931dc8@chromium.org>
+	s=arc-20240116; t=1726042682; c=relaxed/simple;
+	bh=+lKWuuq9BeYQI/ZzHVoEooPClCjm//jxv9aWZgaxH3c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=d0mykjVmUngCy5WxiWS6YOXBfsVptEEl1kZO2m5514hpQnJAU1q5TiO4XaW55VxqZBAUFf+Z8D8cHGV3PdFxe24FLUGFu1x115gehTBoJNLipMsAfD2e1/pgWMoA9KriV+EKXPbfsIYMRXJTQOv5pIdtCdvo4m3Lav1JucOpEbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MzT0Zbnh; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48B3bYgc026723;
+	Wed, 11 Sep 2024 08:17:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	xtFklBpz11AJvrufQKKYnZ86yF9hL02EOkaQvIZNkDI=; b=MzT0ZbnhVh/LK44U
+	OfZDGJj9x6cEO/YPwqOV+4NT/0FqXKKp5Neq3jVRdE/mxpZWFCUr8JeF43APYN4I
+	URDv9hZ+dMGlKedGgzB4GZsvvlv+xFTowBqdugryjQ5uJmyQ/aW7K6RhbTatf/WH
+	6ho+L13takL+YwucGQhifc02DKec2urp01n0UixHWd/aOFQDwZH1xKRT74RsUXPt
+	UdhxFXAG0E9njTUDQz77TZwM9NlRuEgtTnxGQwFg/oX+M0HQs0Jd5e02DiaSj5Ny
+	Lek9DB6gFqb8jsO49TGVprAtDIHknccXv/i30n362lr91OWxBsYDKyOvGV4N+9FT
+	vYY2Yg==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy6e8sh4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Sep 2024 08:17:49 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48B8HmhF021058
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Sep 2024 08:17:48 GMT
+Received: from [10.239.29.179] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 11 Sep
+ 2024 01:17:43 -0700
+Message-ID: <26f2845f-2e29-4887-9f33-0b5b2a06adb6@quicinc.com>
+Date: Wed, 11 Sep 2024 16:17:41 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240910-venc-v1-1-d17dfd931dc8@chromium.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 8/8] PCI: qcom: Add support to PCIe slot power supplies
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>
+CC: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <abel.vesa@linaro.org>, <quic_msarkar@quicinc.com>,
+        <quic_devipriy@quicinc.com>, <kw@linux.com>, <lpieralisi@kernel.org>,
+        <neil.armstrong@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+References: <20240827063631.3932971-1-quic_qianyu@quicinc.com>
+ <20240827063631.3932971-9-quic_qianyu@quicinc.com>
+ <CAA8EJpq5KergZ8czg4F=EYMLANoOeBsiSVoO-zAgfG0ezQrKCQ@mail.gmail.com>
+ <20240827165826.moe6cnemeheos6jn@thinkpad>
+Content-Language: en-US
+From: Qiang Yu <quic_qianyu@quicinc.com>
+In-Reply-To: <20240827165826.moe6cnemeheos6jn@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ijbW-f1D4liPaX-mPUGTaLhfU_ebnCX2
+X-Proofpoint-ORIG-GUID: ijbW-f1D4liPaX-mPUGTaLhfU_ebnCX2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
+ bulkscore=0 clxscore=1011 mlxscore=0 lowpriorityscore=0 impostorscore=0
+ mlxlogscore=999 spamscore=0 adultscore=0 priorityscore=1501 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2408220000
+ definitions=main-2409110062
 
-Hi Hsin-Te,
 
-kernel test robot noticed the following build errors:
+On 8/28/2024 12:58 AM, Manivannan Sadhasivam wrote:
+> On Tue, Aug 27, 2024 at 02:44:09PM +0300, Dmitry Baryshkov wrote:
+>> On Tue, 27 Aug 2024 at 09:36, Qiang Yu <quic_qianyu@quicinc.com> wrote:
+>>> On platform x1e80100 QCP, PCIe3 is a standard x8 form factor. Hence, add
+>>> support to use 3.3v, 3.3v aux and 12v regulators.
+>> First of all, I don't see corresponding bindings change.
+>>
+>> Second, these supplies power up the slot, not the host controller
+>> itself. As such these supplies do not belong to the host controller
+>> entry. Please consider using the pwrseq framework instead.
+>>
+> Indeed. For legacy reasons, slot power supplies were populated in the host
+> bridge node itself until recently Rob started objecting it [1]. And it makes
+> real sense to put these supplies in the root port node and handle them in the
+> relevant driver.
+>
+> I'm still evaluating whether the handling should be done in the portdrv or
+> pwrctl driver, but haven't reached the conclusion. Pwrctl seems to be the ideal
+> choice, but I see a few issues related to handling the OF node for the root
+> port.
+>
+> Hope I'll come to a conclusion in the next few days and will update this thread.
+>
+> - Mani
+>
+> [1] https://lore.kernel.org/lkml/20240604235806.GA1903493-robh@kernel.org/
+Hi Mani, do you have any updates?
 
-[auto build test ERROR on da3ea35007d0af457a0afc87e84fddaebc4e0b63]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Hsin-Te-Yuan/arm64-dts-mt8183-Add-encoder-node/20240910-142236
-base:   da3ea35007d0af457a0afc87e84fddaebc4e0b63
-patch link:    https://lore.kernel.org/r/20240910-venc-v1-1-d17dfd931dc8%40chromium.org
-patch subject: [PATCH] arm64: dts: mt8183: Add encoder node
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20240911/202409111520.z5LrGscP-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240911/202409111520.z5LrGscP-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409111520.z5LrGscP-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm64/boot/dts/mediatek/mt8183.dtsi:1971.4-5 syntax error
-   FATAL ERROR: Unable to parse input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks,
+Qiang
+>
+>>> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
+>>> ---
+>>>   drivers/pci/controller/dwc/pcie-qcom.c | 52 +++++++++++++++++++++++++-
+>>>   1 file changed, 50 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+>>> index 6f953e32d990..59fb415dfeeb 100644
+>>> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+>>> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+>>> @@ -248,6 +248,8 @@ struct qcom_pcie_cfg {
+>>>          bool no_l0s;
+>>>   };
+>>>
+>>> +#define QCOM_PCIE_SLOT_MAX_SUPPLIES                    3
+>>> +
+>>>   struct qcom_pcie {
+>>>          struct dw_pcie *pci;
+>>>          void __iomem *parf;                     /* DT parf */
+>>> @@ -260,6 +262,7 @@ struct qcom_pcie {
+>>>          struct icc_path *icc_cpu;
+>>>          const struct qcom_pcie_cfg *cfg;
+>>>          struct dentry *debugfs;
+>>> +       struct regulator_bulk_data slot_supplies[QCOM_PCIE_SLOT_MAX_SUPPLIES];
+>>>          bool suspended;
+>>>          bool use_pm_opp;
+>>>   };
+>>> @@ -1174,6 +1177,41 @@ static int qcom_pcie_link_up(struct dw_pcie *pci)
+>>>          return !!(val & PCI_EXP_LNKSTA_DLLLA);
+>>>   }
+>>>
+>>> +static int qcom_pcie_enable_slot_supplies(struct qcom_pcie *pcie)
+>>> +{
+>>> +       struct dw_pcie *pci = pcie->pci;
+>>> +       int ret;
+>>> +
+>>> +       ret = regulator_bulk_enable(ARRAY_SIZE(pcie->slot_supplies),
+>>> +                                   pcie->slot_supplies);
+>>> +       if (ret < 0)
+>>> +               dev_err(pci->dev, "Failed to enable slot regulators\n");
+>>> +
+>>> +       return ret;
+>>> +}
+>>> +
+>>> +static void qcom_pcie_disable_slot_supplies(struct qcom_pcie *pcie)
+>>> +{
+>>> +       regulator_bulk_disable(ARRAY_SIZE(pcie->slot_supplies),
+>>> +                              pcie->slot_supplies);
+>>> +}
+>>> +
+>>> +static int qcom_pcie_get_slot_supplies(struct qcom_pcie *pcie)
+>>> +{
+>>> +       struct dw_pcie *pci = pcie->pci;
+>>> +       int ret;
+>>> +
+>>> +       pcie->slot_supplies[0].supply = "vpcie12v";
+>>> +       pcie->slot_supplies[1].supply = "vpcie3v3";
+>>> +       pcie->slot_supplies[2].supply = "vpcie3v3aux";
+>>> +       ret = devm_regulator_bulk_get(pci->dev, ARRAY_SIZE(pcie->slot_supplies),
+>>> +                                     pcie->slot_supplies);
+>>> +       if (ret < 0)
+>>> +               dev_err(pci->dev, "Failed to get slot regulators\n");
+>>> +
+>>> +       return ret;
+>>> +}
+>>> +
+>>>   static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+>>>   {
+>>>          struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>>> @@ -1182,10 +1220,14 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+>>>
+>>>          qcom_ep_reset_assert(pcie);
+>>>
+>>> -       ret = pcie->cfg->ops->init(pcie);
+>>> +       ret = qcom_pcie_enable_slot_supplies(pcie);
+>>>          if (ret)
+>>>                  return ret;
+>>>
+>>> +       ret = pcie->cfg->ops->init(pcie);
+>>> +       if (ret)
+>>> +               goto err_disable_slot;
+>>> +
+>>>          ret = phy_set_mode_ext(pcie->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
+>>>          if (ret)
+>>>                  goto err_deinit;
+>>> @@ -1216,7 +1258,8 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+>>>          phy_power_off(pcie->phy);
+>>>   err_deinit:
+>>>          pcie->cfg->ops->deinit(pcie);
+>>> -
+>>> +err_disable_slot:
+>>> +       qcom_pcie_disable_slot_supplies(pcie);
+>>>          return ret;
+>>>   }
+>>>
+>>> @@ -1228,6 +1271,7 @@ static void qcom_pcie_host_deinit(struct dw_pcie_rp *pp)
+>>>          qcom_ep_reset_assert(pcie);
+>>>          phy_power_off(pcie->phy);
+>>>          pcie->cfg->ops->deinit(pcie);
+>>> +       qcom_pcie_disable_slot_supplies(pcie);
+>>>   }
+>>>
+>>>   static void qcom_pcie_host_post_init(struct dw_pcie_rp *pp)
+>>> @@ -1602,6 +1646,10 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>>>                          goto err_pm_runtime_put;
+>>>          }
+>>>
+>>> +       ret = qcom_pcie_get_slot_supplies(pcie);
+>>> +       if (ret)
+>>> +               goto err_pm_runtime_put;
+>>> +
+>>>          ret = pcie->cfg->ops->get_resources(pcie);
+>>>          if (ret)
+>>>                  goto err_pm_runtime_put;
+>>> --
+>>> 2.34.1
+>>>
+>>
+>> -- 
+>> With best wishes
+>> Dmitry
 
