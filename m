@@ -1,189 +1,135 @@
-Return-Path: <devicetree+bounces-102139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A76149759D9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 20:00:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 503389759E7
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 20:06:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B75B1F23C2E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 18:00:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11C432890F4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 18:06:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A71291B9B57;
-	Wed, 11 Sep 2024 18:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 644971B532B;
+	Wed, 11 Sep 2024 18:05:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YD7ABZYy"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="FhIx/nO1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com [209.85.210.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 279E21B9B36
-	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 18:00:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A11F187322
+	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 18:05:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726077617; cv=none; b=uePXaYRDjMuAt+cqtY6arvtCARJbFzWQ68slvtTWomYc/Z1CHhUCxl0mx0X56xKe8ik44aUW651t6zItPjSgWcztrL8tbDpZx7t3Bcmrw3sY68WsGveCAyt6f9nqeP+H2NoMcFsLFIE08nrJ4bx2wUCMosnT0Go/eZ+oHrHbW9o=
+	t=1726077957; cv=none; b=E4ta+gU0f41HmkuS89BuIxKt/8+x+4Q1rLYDsDtfYZoybi1pQq+0EENe7J+zVj7FxQaw0c2QO3mU5C4eI+cfn5gCUrf+z/zwjhdzU6BfqKyoTtR1I81x5iiGCXWCez2xv5QIfvsuoGukZJIsyPum6HrCH+m1ZkYK+wLOz96vGtE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726077617; c=relaxed/simple;
-	bh=u59aTK6AMusYiuToR8Q3aVwIPtYvcw/WTkvTcLGceOE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=L81AxDnbQt3PJIuwGCLpTMjXa5Dy9Wf/FAWUbrjYkgbNKF0gaPnv12YYFwEQKikhN3syVk9cgZ0heR+07F+xxWmb19HrIfIaDFSYI3lmf13HEAGP3/0VILuYpJnVwcElfEwaSFrDsEX56cDtp2bbBTPPPRvFl2bIjvYh2c8sphQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YD7ABZYy; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2053525bd90so1760085ad.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 11:00:15 -0700 (PDT)
+	s=arc-20240116; t=1726077957; c=relaxed/simple;
+	bh=78931USUkSOlqGnmgmQGJYTIhjGkoMBJ0hWB/dF0QEA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DwCVA9bBOsncez+umohrcwEKIIVBE4jUfmUP7r7WZVxiQCblnOHAugGCIiMUA8siL/1c2TZFXoHh15QrgeHLIpObXU68H8bg0wP4Okysn9j10fytPTjUze0SXa8pTT7sX+1kuvlnhUcvfvGoBi+WpM0cVfFau438a/B5mcO1yPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=FhIx/nO1; arc=none smtp.client-ip=209.85.210.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-pf1-f195.google.com with SMTP id d2e1a72fcca58-718d8d6af8fso39184b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 11:05:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726077615; x=1726682415; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=L11MwT7ZYQa5gHaEqtAXjBQAWdBr4x1891aZM/LplhM=;
-        b=YD7ABZYySQg9/ZDJQT9bPZ8RjHGW5vNvf6+zzH2d2aPOvS7wbN658+P2pTkIfn4aR6
-         2eAI4Hx71ANgjyPItJBBTZJEQ6cNcELJiFC2CunJYDGQ+RQEeA+epBwatumGalemi2CJ
-         rdjL1J5rwGfxG70gVopx7T/ETocuy+83t4mgIG+Vyn7q1z0ThCGpJ0touRc6717ZvBn5
-         XpKiK47tEkstkDszacW7GftAPCcRAAApg+eUSfN0UTDF+MjCTHhSba2jIRnGM3V6/c5I
-         cK0C2jPnscZdLZHl/FT4USfuDfSU88zJtESdrNz545ygNVBmHeIIHdVqrxg01NpSPB7a
-         Ixww==
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1726077954; x=1726682754; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JPdsxUdu3ZLqIS+/4uXoHqqeUOuJq80zG19Uh2siaVM=;
+        b=FhIx/nO1qbChPP4IiBJ8eNHfmB7nKkmkA6UYhGFgb3RRLdMC8rLK+h10qjZcGuHScI
+         d6S51d4APmlVquIUPl4EXrk2EjnxFkmPogyjZ22iDAsxHgSNVGGNmALpZOZQN/MFqucL
+         bBifN7FP8KY0MnOZSw+pMqsbFQOep66IxPFYDZNPcB1PDqz8n2Kdn7I8EfxHWUidC5rI
+         mZiRMJfcVF4SiM7f4RS/CgwA+TJZsVRtjOjIV5neEg9qAvfQBaVziJqmklYczkfQr8ZY
+         pxgqcjSYJsWUKmSDMDlSRE9EOt/lGyH+InItmkBsf+eQhab4lkGNOCrAfAyZ45M62SeG
+         Z9mA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726077615; x=1726682415;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=L11MwT7ZYQa5gHaEqtAXjBQAWdBr4x1891aZM/LplhM=;
-        b=rwmEAMsUXRncLbMxxuJ5unWIpWAKf+l6KX/pnXiDp4IgWSTiMalZHzuBhDFLwlI9uh
-         AZKDE14sPuEk/cyJ8HJd/zB49U2I/zwUF59WZ6+rlOHgG+mr2yVuLP/d9FCBqe4SQJM3
-         d+h20B3rKlzUb7wHpSpyv4x1WIQA1dsWLz7cIBMq5L3OEcf1YRamq5X2VPAPtaAbAanZ
-         lmidUGthH2gTU4s+iJIo5dFwZ8R9n109N2qtoaUhWZSxAIrCo4g2DlWBblJwPt24gcRY
-         D+ouzTYQig5YQGPEa9zci4tGdEL67Xi0t3wNJFOEOYZQ+qplV/OvHWnfPY1il42RLtkE
-         m28g==
-X-Forwarded-Encrypted: i=1; AJvYcCWO4JyS/5SWVwNvWWZfSC+/So+7h8jWnMfLno4zeH+q2PIkfD4U0uo0ZKU3FvCWq9MjUfzhE159+ReA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzn1+KmfLj+X8JYkbCZD4by04Bxn0mCd3WMR9GG+21N/rFwo8tm
-	VOQYDDP9zD1OxZplE2o+C9M4v0Zrwk6wFxpY8pEGeXU3nVD202iQSdiWNw==
-X-Google-Smtp-Source: AGHT+IGbQ3HQE2eG2fLH3fCgJfSyOuR1iICf0jr7wWcLKLkUD5VgHP86LaRhp1Lk0444dz0rHzEX7Q==
-X-Received: by 2002:a17:90a:43e2:b0:2d3:de40:d767 with SMTP id 98e67ed59e1d1-2db9ffee038mr40425a91.24.1726077615209;
-        Wed, 11 Sep 2024 11:00:15 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:3d06:bc1a:52fe:9519])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2dadbffd992sm10908999a91.14.2024.09.11.11.00.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Sep 2024 11:00:14 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: broonie@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	otavio@ossystems.com.br,
-	Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH v2] dt-bindings: display: elgin,jg10309-01: Add own binding
-Date: Wed, 11 Sep 2024 15:00:04 -0300
-Message-Id: <20240911180004.1080029-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1726077954; x=1726682754;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JPdsxUdu3ZLqIS+/4uXoHqqeUOuJq80zG19Uh2siaVM=;
+        b=Y/9S36X1DoVPu/e2Cq3juTvOrrfZ8IbM1AVbknlN+Z8M4VXWqw8z9Tz+lmT5RtreN/
+         0ZHPvYvbPAKMtRDWsG91YnuumHwr6ML7kiFKve/PHQN6ko/Xh1nRX8RDwhVFFaoVLeLX
+         2cFLwy9uX2NX8gPbJoW0VuTk6MbfJAsydI3pSwf1cXLG7jY3XuIBjTzetugLzBjIQ1e5
+         RblLMd9ULMaXsjeECDOA5r13QHAU31X2/y6sOJoQQpCG/JtBlmSY6OZLubGItHBctjuX
+         Wcn+J3X306DoOHE+/OIhCTNZYXz4PwvyVWmP9Y+5xFgs8t8jIYG512Kt0U2FSqEj4xEO
+         m5pA==
+X-Forwarded-Encrypted: i=1; AJvYcCWw9nOk8vZFFm0twQbkWr+S2jQPIae9edYZ7K07UDO3INOWdbndvMWSXfer9+mqK/8ljc9/k4TtQNtv@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQgQCIF7h3hIP7Itiu33epWtOB1ztzsjaKJYvTIqM7nl4uD7L5
+	K1Rha1Q/+lZxiCKbsrbvk0LVM9ARXOtKhTgZASaoUeaWjfc/RmnyeesQ3EAPDg==
+X-Google-Smtp-Source: AGHT+IHJfl0jqiL9U3myZiASEiYJyc6sHjUAZZiTehS6OzcD8jJ66gAgSfHPxeYKVEGFaegklSLYhQ==
+X-Received: by 2002:a05:6a21:3982:b0:1cf:2438:c9e3 with SMTP id adf61e73a8af0-1cf75ec5c7cmr151962637.16.1726077954392;
+        Wed, 11 Sep 2024 11:05:54 -0700 (PDT)
+Received: from [172.16.118.100] ([103.15.228.94])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-719090c37efsm3247602b3a.187.2024.09.11.11.05.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Sep 2024 11:05:54 -0700 (PDT)
+Message-ID: <ba9a5ae8-c5af-4045-9e22-28363dc94d42@beagleboard.org>
+Date: Wed, 11 Sep 2024 23:35:43 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/8] rust: kernel: Add Platform device and driver
+ abstractions
+Content-Language: en-US
+To: Danilo Krummrich <dakr@kernel.org>, Ayush Singh <ayushdevel1325@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ fabien.parent@linaro.org, d-gole@ti.com, lorforlinux@beagleboard.org,
+ jkridner@beagleboard.org, robertcnelson@beagleboard.org,
+ Andrew Davis <afd@ti.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Benno Lossin <benno.lossin@proton.me>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>,
+ Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240911-mikrobus-dt-v1-0-3ded4dc879e7@beagleboard.org>
+ <20240911-mikrobus-dt-v1-1-3ded4dc879e7@beagleboard.org>
+ <2024091106-scouring-smitten-e740@gregkh>
+ <bd542178-af1c-439d-bde4-9865cf6c853c@gmail.com>
+ <16d70285-cbec-4378-98eb-b522a0efbbe6@kernel.org>
+From: Ayush Singh <ayush@beagleboard.org>
+In-Reply-To: <16d70285-cbec-4378-98eb-b522a0efbbe6@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Currently, the compatible 'elgin,jg10309-01' is documented inside
-trivial-devices.yaml, but it does not fit well there as it requires
-extra properties such as spi-max-frequency, spi-cpha, and spi-cpol.
+On 9/11/24 23:09, Danilo Krummrich wrote:
 
-This causes the following dt-schema warnings:
+> On 9/11/24 5:52 PM, Ayush Singh wrote:
+>> Sure, can you provide me a link to patches or maybe the branch 
+>> containing that work? I also think it would be good to have the link 
+>> in Zulip discussion for Platform Device and Driver.
+>
+> Sure, please see [1]. But please be aware that I plan to rework some 
+> parts
+> before sending out the next version.
+>
+> [1] https://github.com/Rust-for-Linux/linux/tree/staging/rust-device
 
-make CHECK_DTBS=y rockchip/rv1108-elgin-r1.dtb -j12
 
-  DTC [C] arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb
-rv1108-elgin-r1.dtb:display@0: 'spi-cpha', 'spi-cpol' do not match any of the regexes:
-...
+Maybe the branch is just out of date? It still contains the generic 
+structures for IdArray, IdTable and RawDeviceId.
 
-Fix this problem by introducing a specific binding for the Elgin
-JG10309-01 SPI-controlled display.
+Has something changed since the discussion here [0]?
 
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
----
-Changes since v1:
-- None. Sent it to Mark as per Rob's suggestion.
 
- .../bindings/display/elgin,jg10309-01.yaml    | 54 +++++++++++++++++++
- .../devicetree/bindings/trivial-devices.yaml  |  2 -
- 2 files changed, 54 insertions(+), 2 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/elgin,jg10309-01.yaml
+[0]: 
+https://lore.kernel.org/rust-for-linux/2024062031-untracked-opt-3ff1@gregkh/
 
-diff --git a/Documentation/devicetree/bindings/display/elgin,jg10309-01.yaml b/Documentation/devicetree/bindings/display/elgin,jg10309-01.yaml
-new file mode 100644
-index 000000000000..faca0cb3f154
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/elgin,jg10309-01.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/elgin,jg10309-01.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Elgin JG10309-01 SPI-controlled display
-+
-+maintainers:
-+  - Fabio Estevam <festevam@gmail.com>
-+
-+description: |
-+  The Elgin JG10309-01 SPI-controlled display is used on the RV1108-Elgin-r1
-+  board and is a custom display.
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+properties:
-+  compatible:
-+    const: elgin,jg10309-01
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    maximum: 24000000
-+
-+  spi-cpha: true
-+
-+  spi-cpol: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - spi-cpha
-+  - spi-cpol
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        display@0 {
-+            compatible = "elgin,jg10309-01";
-+            reg = <0>;
-+            spi-max-frequency = <24000000>;
-+            spi-cpha;
-+            spi-cpol;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 75a5fad08c44..2b675e97be3d 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -106,8 +106,6 @@ properties:
-           - domintech,dmard09
-             # DMARD10: 3-axis Accelerometer
-           - domintech,dmard10
--            # Elgin SPI-controlled LCD
--          - elgin,jg10309-01
-             # MMA7660FC: 3-Axis Orientation/Motion Detection Sensor
-           - fsl,mma7660
-             # MMA8450Q: Xtrinsic Low-power, 3-axis Xtrinsic Accelerometer
--- 
-2.34.1
+
+Ayush Singh
 
 
