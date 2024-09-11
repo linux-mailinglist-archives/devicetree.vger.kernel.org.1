@@ -1,118 +1,133 @@
-Return-Path: <devicetree+bounces-101983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 041A497500B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 12:48:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8312497502E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 12:53:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B71D6283C41
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 10:48:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28C921F27766
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 10:53:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61E0F18660D;
-	Wed, 11 Sep 2024 10:48:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF818186E3B;
+	Wed, 11 Sep 2024 10:52:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kmbDiOe9"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="kI4n3q5H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2821A1537C9
-	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 10:48:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D2B7186E38
+	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 10:52:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726051724; cv=none; b=HNTRvmHEE26ERpBGLzxi17e/vL6/Jq8XDL7Fjlm5BwnyRbWu+yQXmSg7qFTNuoFpiOgL6FYxnVhkPkUwYEai3WLCcdhmd+77pQF//HC+W9xQb8TdVfGALdp7h9anrGwNrn+THFC3BErzgoxwKDEJXC3bAHsQ/iNX3nBpsky7rII=
+	t=1726051924; cv=none; b=oKNLY3vbcd5m6KChtJIbvKo69WC8xsKzfEK5You3v3be13vsAsMch66f/Lsf1jkEWz7evD/dN0+WCH1jsjMwePM4U+aaM+c3AQYJQ0EOydh0IYVdYYgUhJh640/rEK3haZcqi1e1WqUdEg7+YlUCeHmdag0Nk8ltixaOF0qj4uw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726051724; c=relaxed/simple;
-	bh=DaYoPeJg9shuCtx4J1jS+goJUrZrFxkVlSXl6dreLv0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n2dwrvySo61draEpVh995DxRfT9lVIN2zMP57Bi4eEAWMFC0DnsV3itri8qwouC3CHsoAWopVT499WcfH+v/BkVgk67DU0+4ADTOipo9TPAXq2OrGgx/zbmiQmUWx3PfMZkgVLDDq51ieevuU8t5Sc3FQ7enecg9VNhvtMAzEkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kmbDiOe9; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52f01b8738dso1563688e87.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 03:48:40 -0700 (PDT)
+	s=arc-20240116; t=1726051924; c=relaxed/simple;
+	bh=65thc9tzDm6H7x+WM+O90px7JCOHuD7dDIpYweu1nhc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Z7PyZ+Vi/Br4UVSEoQ5MV3I71ZVljGhk9861NJGYlnUhet/jPEFdVEmHuFYSGjf1DjenYTMwJ3f8aR+zU3cJdsGxQYL1NufetYUBijoaXJ4+vXz96YBkWDWqdu023Aq+fhco0yt3nRmvKRr2vmEPP5tcuf+k2rHM44yrkWgHYWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=kI4n3q5H; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-718e11e4186so1731414b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 03:52:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726051719; x=1726656519; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=xfOyw78Q7NNMTmln4lOFjsc2BJzJJyhZKXZ24axVdKQ=;
-        b=kmbDiOe9yuyvgoiqx/32ejPtvqGWjZURAKk6YLMJe2daVekcyqVMOXpN5MFA2mzKLb
-         4dWwgsEiXKy0spk6c3pNMLDb7Z7a+HMrX7cmf6PxI+hzhAQbyZlUCrNH8XvFl22Ons9B
-         rl83cQPlu6fFE/zPtUFKlLOupfaz6AADsDiSx0HTpyK0k4MoTLyn7XiSMaCaN7yWW/HT
-         w2cBj1RKz4GLwjeCt+dhJZXA0fiktrYdsS76rxFl3PTnFQgds3IcNwnyEStyPo8wG96s
-         KdZPgpAn86cwn2aEMVTeQP7iywE1c6bvC/ooHwY3a6d4sSuEsmpQC4FT5M6WwiRoFpTh
-         jcvw==
+        d=chromium.org; s=google; t=1726051922; x=1726656722; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bntFV8pZ39/vd/ElxPtsnTHwc8+5+H7FcNeX9IYOSIo=;
+        b=kI4n3q5HtCu9s1kGTEqUoqH8qr+eZ1mBAfbk4ThueJ5DIWYHWwxjn7zB8aw1TbJ3W2
+         aUYXBIWqtzBHywfgy6wV9guQbVDxwh0ukA0f1MWOnxpjTZ/ZqZS5LLfu4L7fQxYXnb0b
+         kUb/rBbApv1SiDAh4mj5537QVTt2Fh3wQu/l0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726051719; x=1726656519;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xfOyw78Q7NNMTmln4lOFjsc2BJzJJyhZKXZ24axVdKQ=;
-        b=Yz7ekx0ahYlP689byrBKu8/U0OrAi677SZiIeoVhpZXIqsBPDEg7GFYMQj6yKHSt9f
-         bYATNEVzTiSj71HHyM+AS39FTnmt2qYoKqiQsC8z+9X48WH2C8aDoeqVyXvMe3DfiU3Y
-         zxw8BJ7YduDMNDRV2OXswScfChmZz4R561swUT8gp+DUgvZdt8MCwj3O3uYdM7wWTwdd
-         ZC66wL6C9odPVvw+Y34vI0jw6Zav3oa0mFTdaiJvgENDfhTh66SfEpq2oPfy6qSnKoLz
-         h7L+NOaFAxUhHCp0CJGEE7rVCdFK4hX23Z9IWIkoq7h3oO/sbxtLwKRKy9b6TbmWdzhd
-         6gfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXpkzfm1u8/j6DiJCfZm23motnxRXnerevSAzycyOPYYqvbe6L7AClxcP0Kt3VkPuSuRs8ZZZRjtfDP@vger.kernel.org
-X-Gm-Message-State: AOJu0YwLRmxNnQjn+pPQhw8iO+1czNzEJq+GCmPK3d0RR+Xo/KUvIWB6
-	5AAlEkLz8thNlCMDn4w8La86zWHoCOPPrUM7ROWCvYX1nDZn1uoYOb2krWYVI8k=
-X-Google-Smtp-Source: AGHT+IFmPMxpL0sfW2aEQVWqW2rvHHyXYZsNZluRoWH8pk2J0ZkdsSyNGv+Nxad6h/EbFiV9iGvsOg==
-X-Received: by 2002:a05:6512:1107:b0:52e:be84:225c with SMTP id 2adb3069b0e04-53673b6b445mr1852457e87.33.1726051718895;
-        Wed, 11 Sep 2024 03:48:38 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5365f870baasm1520467e87.96.2024.09.11.03.48.38
+        d=1e100.net; s=20230601; t=1726051922; x=1726656722;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bntFV8pZ39/vd/ElxPtsnTHwc8+5+H7FcNeX9IYOSIo=;
+        b=JCasYnLyUGpz+pc4ep2psmgBzrwT//NbLs+e2B6ZYOr6UNHm3RREQ/QpjoPTw3qoHo
+         ojadz7wBsfZCwirLM2f6LPwuTK6e7soOJcJhZbU6AT+JS1+5+fECx8+/M4q67aT83tBJ
+         osMLBPVoiti+zhffhoGYva67tHIdv6hiCALPLIKNDM5JKqr9UZ8W9ip6XYGUN0v2bzP3
+         P5ZIF4TQ7OWOTGXxSMmP4sQCvJ9fzIGHsvwBmzbUQ3G8q7G3C/zPY68t/6hSmij92Gv2
+         PNtLyPCNAFZV6kCShTAXa0JPk81MHgd12p6sQ8x7NkTzZlCmPYyocv7yjEMA6JdJJ3po
+         4ZTA==
+X-Forwarded-Encrypted: i=1; AJvYcCWw4Sze1jMbBwFWjzP+8CM2js8FO42AfXw/4FPG0Rg8DowjpytKGsQatjR9LXojVSvvT1QaEX7ukuq6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwF774V7YVJ+u2SB8IF04VkGoBioUgPvYMSjxYhJIXwRhmbO7zV
+	2ZJQVFykr0jKUX934LsOs1PbCs/qSXATDXCP5fejXgEYFx1sKKFwe5E3fo6tbA==
+X-Google-Smtp-Source: AGHT+IF0o/eQIkWaTGkC08fE/boVNtrfPBZgXbaJDeqLRKBeyA2VebJ72Ic2BKlFFjweXCqeEJZ52A==
+X-Received: by 2002:a05:6a00:9484:b0:718:d7de:3be2 with SMTP id d2e1a72fcca58-71916df1f89mr3252259b3a.14.1726051922429;
+        Wed, 11 Sep 2024 03:52:02 -0700 (PDT)
+Received: from fshao-p620.tpe.corp.google.com ([2401:fa00:1:10:102f:d738:6069:fd4b])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7d8242b3d13sm7147352a12.52.2024.09.11.03.51.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Sep 2024 03:48:38 -0700 (PDT)
-Date: Wed, 11 Sep 2024 13:48:36 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Stephan Gerhold <stephan.gerhold@kernkonzept.com>, Danila Tikhonov <danila@jiaxyga.com>, 
-	Adam Skladowski <a39.skl@gmail.com>, Vladimir Lypak <vladimir.lypak@gmail.com>, 
-	Andrew Halaney <ahalaney@redhat.com>, Odelu Kukatla <quic_okukatla@quicinc.com>, 
-	Mike Tipton <quic_mdtipton@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V3 2/2] interconnect: qcom: add QCS8300 interconnect
- provider driver
-Message-ID: <3xjvx2kwrlruhhxw4aald26qjf5fzikay2ypzr3mwv75mlmf5q@lmn2o64npfg2>
-References: <20240910101013.3020-1-quic_rlaggysh@quicinc.com>
- <20240910101013.3020-3-quic_rlaggysh@quicinc.com>
+        Wed, 11 Sep 2024 03:52:01 -0700 (PDT)
+From: Fei Shao <fshao@chromium.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Fei Shao <fshao@chromium.org>,
+	Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v2 0/8] Add platform supports to MediaTek MT8188 SoC
+Date: Wed, 11 Sep 2024 18:51:05 +0800
+Message-ID: <20240911105131.4094027-1-fshao@chromium.org>
+X-Mailer: git-send-email 2.46.0.598.g6f2099f65c-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240910101013.3020-3-quic_rlaggysh@quicinc.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Sep 10, 2024 at 10:10:13AM GMT, Raviteja Laggyshetty wrote:
-> Add driver for the Qualcomm interconnect buses found in QCS8300
-> based platforms. The topology consists of several NoCs that are
-> controlled by a remote processor that collects the aggregated
-> bandwidth for each master-slave pairs.
-> 
-> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-> ---
->  drivers/interconnect/qcom/Kconfig   |   11 +
->  drivers/interconnect/qcom/Makefile  |    2 +
->  drivers/interconnect/qcom/qcs8300.c | 2088 +++++++++++++++++++++++++++
->  drivers/interconnect/qcom/qcs8300.h |  177 +++
->  4 files changed, 2278 insertions(+)
->  create mode 100644 drivers/interconnect/qcom/qcs8300.c
->  create mode 100644 drivers/interconnect/qcom/qcs8300.h
+Hi all,
 
-The driver looks pretty close to sa8775p one. Would it make sense to
-have a single driver instead? Or would it complicate things
-significantly?
+This series is a subset of the previous series[1], focusing on enabling few
+platform functionalities on MediaTek MT8188 SoC, including:
+- CPU performance controller
+- IOMMU / SMI / LARB
+- PWM for display backlight
+- SPMI for PMIC control
+- audio
+- socinfo
+
+along with the corresponding binding changes (acked in the previous series).
+
+[1]: https://lore.kernel.org/all/20240909111535.528624-1-fshao@chromium.org/
+
+Regards,
+Fei
+
+Changes in v2:
+- Replace hardcoded AFE reset ID with correct definition
+- Added socinfo nodes in v2
+
+Fei Shao (8):
+  dt-bindings: spmi: spmi-mtk-pmif: Add compatible for MT8188
+  dt-bindings: mailbox: mtk,adsp-mbox: Add compatible for MT8188
+  arm64: dts: mediatek: mt8188: Add CPU performance controller for
+    CPUFreq
+  arm64: dts: mediatek: mt8188: Add SMI/LARB/IOMMU support
+  arm64: dts: mediatek: mt8188: Add PWM nodes for display backlight
+  arm64: dts: mediatek: mt8188: Add SPMI support for PMIC control
+  arm64: dts: mediatek: mt8188: Add audio support
+  arm64: dts: mediatek: mt8188: Add socinfo nodes
+
+ .../bindings/mailbox/mtk,adsp-mbox.yaml       |  12 +-
+ .../bindings/spmi/mtk,spmi-mtk-pmif.yaml      |   1 +
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi      | 321 ++++++++++++++++++
+ 3 files changed, 331 insertions(+), 3 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.46.0.598.g6f2099f65c-goog
+
 
