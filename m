@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-102057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DDAF975556
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:29:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39E5B97555E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 16:30:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8EC01F2723A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 14:29:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB4CC1F279A7
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 14:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 235C81A2631;
-	Wed, 11 Sep 2024 14:28:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA5FA1A3A8E;
+	Wed, 11 Sep 2024 14:28:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="XDETgUYE"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="j8yIS7IQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f68.google.com (mail-pj1-f68.google.com [209.85.216.68])
+Received: from mail-pj1-f65.google.com (mail-pj1-f65.google.com [209.85.216.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9862719F12C
-	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 14:28:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F2E41A38F4
+	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 14:28:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726064925; cv=none; b=cp1qSmOseovkym8JNrbSxFRlYWI6eVz+RByws6Sxf99sH0zOfX+Ap76Yg1/eWFo5VAMrxDa7XOgCbO69huHDQ2rTEpnejnLNs5rvvFV6sa7ht7b42CwPuNiVvzaPGazE0b0csYhpibz/Z42A6CHrw4Anq/D2KXQqCWDV2tLohgM=
+	t=1726064934; cv=none; b=eoBnL21hBqwzWfAPH/HPZU1Em53lKEvqDmG5kl3UIOfD8aod68fG3a6H3XSlfvWRBdzwZpOqy75FNwBroXIqaZ2TxzSnNiJFJ++2kr6nY/Wq+tpb2Yik/Ayi9ykl8CDdv94l14ClFKpG4Ka4cVVEMz9WtbUS66Qpavf8T2AAanw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726064925; c=relaxed/simple;
-	bh=fvn5dpE2XyvTj0U03uUcIoDMSvkgRzCWJgdVKHBGt+M=;
+	s=arc-20240116; t=1726064934; c=relaxed/simple;
+	bh=6ykOJfpeTHedYDARjIqLwnX8MngyM5nQD4/lHx8a04o=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ChyOxQDyGtRbpj8IX5LkNxkwaqjp7lF7UxP7B9tyaeBXMm8s6Z5dV8ugoh10QEOLEUStXKobdbY/rkQx7wFkHQNn7NGso8w0guvoXdcFVkynR8lyZK+YMPseH7y4phUPDrGtNAIJxbrSrVZxKCIDtJ47IeQJw2JjlD6rMGi6DJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=XDETgUYE; arc=none smtp.client-ip=209.85.216.68
+	 In-Reply-To:To:Cc; b=PUCLkWKNHS8xPgarYbOHj6x5SLPfNuHVLW3MrH2A6qcBaKeX32QSwhjT00dRSBqYkym9jWowI29+pknpJIYf03Ejn11pCxw6zH42ylAf0xaFKIeyqtclGeVmsl/elCMDtHhsd2ID2gp0r+AcybvWNtCqYXE+FWFevo507bUOgcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=j8yIS7IQ; arc=none smtp.client-ip=209.85.216.65
 Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pj1-f68.google.com with SMTP id 98e67ed59e1d1-2db928dbd53so419149a91.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 07:28:43 -0700 (PDT)
+Received: by mail-pj1-f65.google.com with SMTP id 98e67ed59e1d1-2da4ea59658so5010535a91.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 07:28:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1726064923; x=1726669723; darn=vger.kernel.org;
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1726064932; x=1726669732; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=OTZXIs4uk1Xc7bmq3sRcTypL0+dX/QazKSXr67dxE0M=;
-        b=XDETgUYEHXcYpoWVkeummhH3hmtGzz/b5qNY1y62RnPqzHCTQhHQGelTLOT7zgXNN5
-         gyVdfkcoa+A11xpfX8rSHmzpOhusFrsBZ2FHBhW0Ib1FkH4pkjwjyoyZ7QwwpNUzmgcC
-         XKAJ2Uvm60WbBHC8lc1B7HyImskkZ1e+056kQbprQjMzlV7VCVEcELVWOS7ROQLofJi+
-         9qO6+m2q5MIQy5XfSvlXl3zKEi3bpFfYExWPNocx+eOHiuoh6D4t2SmnVDfaEGrIGXMW
-         7DZ29BVEd/YqCJx/FPR7uaKCDRxfC5mly6mMQBu5AvSiW1UjO3Vg/KF8cfDygrUFNML8
-         2RPg==
+        bh=bUJux209baesVSAFFfQq0X1RKUEyIgNPRXttfQkrVp4=;
+        b=j8yIS7IQ0toma1FJP9a/+UsYGF4x2LHB2tK2jz/KFTkvI+KjynPkaQeIRoUEyeHoTE
+         m5EsDWffw4HhCuyQKWttqy2q+mmNYaR+wONzkSfeE5r/OuqmXkUaPBud3Ns4UpddFI8d
+         kpM0HL2in+/+CTOo1lL8mCSD3VBCfCT7/dQifl1eOW7bfrJ4A9DQEYsER3LnKOyCsHEE
+         CS4hY/ctO3APP25Dn0bm1i7lsH6Yaj0kfbjPp3PHklmxpWTTdgXczZ4Y+geM9y+9wnIr
+         3eDX5oUpRppN936DPbSARxT/V3tBJkJEmjj4qNYhq2DpDqm3DKNvGDrUSh7CfF0S0a4c
+         IxjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726064923; x=1726669723;
+        d=1e100.net; s=20230601; t=1726064932; x=1726669732;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OTZXIs4uk1Xc7bmq3sRcTypL0+dX/QazKSXr67dxE0M=;
-        b=dftqQhsCX9CRIY5H+oqv+XKdwRWyEg4O4EuOIZ8WtqYH/LAThVg+b9Va2PtDELhuKl
-         e0FaWNCHPD4Db6vIr3jA4cFOBxm3idnm4d8ChYW6ls1d2O/wrLx3jlphSmGicama6gvp
-         EbA2qcbAengW/uQ7PhcrxdyUdGB5kEOPNLzYQQInPMGFO/vYitbQGRZDy7eP3d2A2x6z
-         gWbP3qQI+Z143Rm3XRUx5ighK5dkR1eclimKrwakgtyReTutuQmts1U7I/Azl8oju8fS
-         LakgElGLAutViKig6yQgA8EI0XYq/tOLRsUkHfbkK9hYjZIYr89Th1wfFWOAR0oodcR6
-         lCNA==
-X-Forwarded-Encrypted: i=1; AJvYcCV/wRoBpC5bjAPZdJ7+bYn7I143bDHvKAcXON/ajIWe0mlB4gngeBK/Ic+AA6cLpyJPYFkOJOzxm1wK@vger.kernel.org
-X-Gm-Message-State: AOJu0YwqS1IHfOBM/des+smzO5gKhIOMYXLqB0zZiGLrMvBrbEDgWWGx
-	nLxBwzHXtw4dgYr8Yh+FWmcavKo9ph5X+Anpobp74kiKCiHjI8J45qZoLeqnrg==
-X-Google-Smtp-Source: AGHT+IF++BogjcP4oyy+DBrKCYr5bb8gz+HUGRerT0bhZx+7Lc/6JJaHgIpOtNWMJNsPpzmw/R8LWA==
-X-Received: by 2002:a17:90b:1e4c:b0:2d8:d098:4f31 with SMTP id 98e67ed59e1d1-2db82fe9fd4mr3821301a91.17.1726064922953;
-        Wed, 11 Sep 2024 07:28:42 -0700 (PDT)
+        bh=bUJux209baesVSAFFfQq0X1RKUEyIgNPRXttfQkrVp4=;
+        b=P4dQLcJblph7ResdjRGLnK/nUZUH9t0Uv22a8f30RCsPjKzN5ZIKzeZPbLqeyFl6MH
+         a7bcC+2m8DpLbdijTPQnaQ98YvHI4U4XC06MYMy5bbVw9FU7mmnyR0YcUpHJ7bhxFe8O
+         Z/2AuEvm1UHHsg/PjhEcpZ7/Uq33OhY32/ccUg5WqM/lipENxoSy95deXpnKq5DR+l9r
+         wIidkSio0Vm+wfNoFHuIfaBC0oS1UgV7+S3e4Z+QwFqlRGl0RU3lpddgpRNmXQp+kovH
+         hHJhhN/AMDrqe5yuvk8/v4mipKV9ZQFpLyZmLbC6e60mMH58LvOEpWEvRUpReX7pLA3R
+         LlaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVFURFKmHZNu5a8ASu1P8NmYqOEho5r9Ru0B/kFXoWdEB36TzrY4sYn+mN3/FjcR9qCoPRYlRuEpigK@vger.kernel.org
+X-Gm-Message-State: AOJu0YwCtMdB1qAV23pl1sz126uVBbANtEjXpzI8IE6A31dxRHRhfJXq
+	WeTm5+w8YmsK3rx9TEnYe6u3n/jwW+DHh3fffi71rn4DRy2sEbD0yN/B5iNrWA==
+X-Google-Smtp-Source: AGHT+IFVqR77ZETMOL3Ycph5fasQwi8N19Yt6tsRUByhDMgLOhcuLftvCvaT9AZPOu3f6sAF/CSzHQ==
+X-Received: by 2002:a17:90a:ee91:b0:2d8:7182:8704 with SMTP id 98e67ed59e1d1-2dad50cb7e9mr19402868a91.31.1726064932543;
+        Wed, 11 Sep 2024 07:28:52 -0700 (PDT)
 Received: from [172.16.118.100] ([103.15.228.94])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2dadbfe46c9sm10639116a91.11.2024.09.11.07.28.33
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2dadbfe46c9sm10639116a91.11.2024.09.11.07.28.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Sep 2024 07:28:42 -0700 (PDT)
+        Wed, 11 Sep 2024 07:28:52 -0700 (PDT)
 From: Ayush Singh <ayush@beagleboard.org>
-Date: Wed, 11 Sep 2024 19:57:23 +0530
-Subject: [PATCH 6/8] addon_boards: Add addon_boards plumbing
+Date: Wed, 11 Sep 2024 19:57:24 +0530
+Subject: [PATCH 7/8] addon_boards: mikrobus: Add Weather Click
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,7 +78,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240911-mikrobus-dt-v1-6-3ded4dc879e7@beagleboard.org>
+Message-Id: <20240911-mikrobus-dt-v1-7-3ded4dc879e7@beagleboard.org>
 References: <20240911-mikrobus-dt-v1-0-3ded4dc879e7@beagleboard.org>
 In-Reply-To: <20240911-mikrobus-dt-v1-0-3ded4dc879e7@beagleboard.org>
 To: fabien.parent@linaro.org, d-gole@ti.com, lorforlinux@beagleboard.org, 
@@ -99,106 +99,77 @@ Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  Ayush Singh <ayush@beagleboard.org>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2645; i=ayush@beagleboard.org;
- h=from:subject:message-id; bh=fvn5dpE2XyvTj0U03uUcIoDMSvkgRzCWJgdVKHBGt+M=;
- b=owEBbQKS/ZANAwAIAQXO9ceJ5Vp0AcsmYgBm4ajW3lj4TagmQ2l11Yz9eXm8I+My2lBntIytD
- qsFIZFBHp+JAjMEAAEIAB0WIQTfzBMe8k8tZW+lBNYFzvXHieVadAUCZuGo1gAKCRAFzvXHieVa
- dD7hD/9Dh5cX/zgWb0ImhB3R//a2DVBC9/xamAtVS4AbOSg5czQb4pQ71uEpoYwkMLI/76nQAwo
- IznhuYiB1NivpVD/r6xayr9afiar7AoVfMGwXxOL4qdxx1UvWeuhMu7RE1rW8su3VtxVqN162fS
- c0em/ySb2wnxpKh0Ku7yyDfZwk7tuQ0XIBA0ysPbyEuKZxXxcCmdVdITr5WPXhsuUmY88ISzjkX
- CZejxuAMldlcHCYX2MBKgHPJhsjMX5CCAYKjANMIhsRyYCC1FQRva3ZkzKJmt7Eo050MW7DEfgP
- 21m/nGriy3Ps0ru8+AQlcx+zcfytxjVyPRcS5Fn4Tk+6h94CdDEHG4ug6+enMWWYe4t7fCuZeqA
- 2NodmWtzcivV1QShnpfXjXUL8YgEvUjiDEm9qHRwar0hno3NQp2GjTZYha96Q2uFJPeRbOwnLv7
- ze5KWxyoWD6kN9+kKnNWbrIQusdm1f8moFEEt7NGLd6VjqytwYf4yQgCuEcMiQqX33zxgfB54Ve
- YX4UelJTyCRCLp2C5uNWDyermCLf4HN0GgJgZayTIedZjWsqEBfYd8qg4SynbR+G8JkKasqS0N7
- Cuf09oC6oJNSL/HoG0XHANtLJfpu24X2RxKwgIccIhYtel+ME1FZO1/mB5L3iKh/W32xgVXm96V
- I1eRlTEYdHwR6RA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1489; i=ayush@beagleboard.org;
+ h=from:subject:message-id; bh=6ykOJfpeTHedYDARjIqLwnX8MngyM5nQD4/lHx8a04o=;
+ b=owEBbQKS/ZANAwAIAQXO9ceJ5Vp0AcsmYgBm4ajWFp0VSRIR7zV/zdAtrA/0zb8cZC/VMz1D0
+ h+qmzLqTbSJAjMEAAEIAB0WIQTfzBMe8k8tZW+lBNYFzvXHieVadAUCZuGo1gAKCRAFzvXHieVa
+ dHc+EADEx6fwsxyM8cZ/VtliN6O/gG4ACga6aqpNaebLkblrTWKjIQogsAXkI6nxDlnn7AjYw4R
+ cSTPGP+e2cK+Lv7lkIEK43rZVjkUOlk5UM4cBNm6bX7MtX2JurOi8piKbuu0Nw84H85RwheosaU
+ OS+PP1wSvk4idx7eFwY8Jot5gBEhpdJTNbpnrtQpRUb2z/j7MDa6Z7sVv5uiCPjvZolD9BUXhp/
+ mnWagHJGD1nYN9pQRARaZ2orDnEJmuXKgMahZLZec64kSfir9cVj2WbkEMdhgChs4Ii6syY3XdX
+ KYcGu8jIhmeKtURXqIt8iI0sPggjGpwRdmXLAfW1O95wNYwITRmwZBA5oTMgrobnaJ1GXiNFg16
+ 9SHsQEEqerVxJ1z2A7mvVDbBR/F6ewD37goj/kqn90Rx0tSF75nGzYY+9X9TBue6nn/O/GnYRQw
+ xb4Iaat/s4YFTcEKSAkvN2o5bdy/AZkHnkF2AfvVFfpVbJPV0hKRmzPtms4J+I/F08c/yoVdxP1
+ besqOz7JBuWVAhwxEBZKi9iy2RgJSuSGwntPKsd7Ve1t/VI3cQ07DEMMFi8FbL8GTLvVmlggbXP
+ wKXrDc8Xm9L8fq7EuABI7Ddk39zEowS9RBeKzUJvERkw3E49oUo5eGksxwXmh7SFOy26WvTHeqS
+ QJ7SBrMKwv1vQjw==
 X-Developer-Key: i=ayush@beagleboard.org; a=openpgp;
  fpr=DFCC131EF24F2D656FA504D605CEF5C789E55A74
 
-A directory to store and build addon_board overlays like mikroBUS,
-Groove, etc. The overlays present here should be completely independent
-of the underlying connector.
+An I2C MikroBUS addon board containing BME280 sensor.
+
+The same board also optionally supports SPI. Hence the i2c suffix.
+
+Link: https://www.mikroe.com/weather-click Weather Click
 
 Signed-off-by: Ayush Singh <ayush@beagleboard.org>
 ---
- Kbuild                         |  1 +
- Kconfig                        |  2 ++
- MAINTAINERS                    |  1 +
- addon_boards/Kconfig           | 16 ++++++++++++++++
- addon_boards/Makefile          |  3 +++
- addon_boards/mikrobus/Makefile |  1 +
- 6 files changed, 24 insertions(+)
+ addon_boards/mikrobus/Makefile             |  2 ++
+ addon_boards/mikrobus/mikroe-5761-i2c.dtso | 28 ++++++++++++++++++++++++++++
+ 2 files changed, 30 insertions(+)
 
-diff --git a/Kbuild b/Kbuild
-index 464b34a08f51..9c897397f55f 100644
---- a/Kbuild
-+++ b/Kbuild
-@@ -97,3 +97,4 @@ obj-$(CONFIG_SAMPLES)	+= samples/
- obj-$(CONFIG_NET)	+= net/
- obj-y			+= virt/
- obj-y			+= $(ARCH_DRIVERS)
-+obj-y			+= addon_boards/
-diff --git a/Kconfig b/Kconfig
-index 745bc773f567..49880d4e91e9 100644
---- a/Kconfig
-+++ b/Kconfig
-@@ -30,3 +30,5 @@ source "lib/Kconfig"
- source "lib/Kconfig.debug"
- 
- source "Documentation/Kconfig"
-+
-+source "addon_boards/Kconfig"
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 95f228c85a40..8e2e0f8d16be 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15432,6 +15432,7 @@ F:	drivers/usb/image/microtek.*
- MIKROBUS CONNECTOR
- M:	Ayush Singh <ayush@beagleboard.org>
- S:	Maintained
-+F:	addon_boards/mikrobus/*.dtso
- F:	arch/arm64/boot/dts/ti/k3-am625-beagleplay-mikrobus-connector0.dtso
- F:	Documentation/devicetree/bindings/connector/mikrobus-connector.yaml
- F:	drivers/misc/mikrobus.rs
-diff --git a/addon_boards/Kconfig b/addon_boards/Kconfig
-new file mode 100644
-index 000000000000..01766ab28848
---- /dev/null
-+++ b/addon_boards/Kconfig
-@@ -0,0 +1,16 @@
-+# SPDX-License-Identifier: GPL-2.0
-+
-+menu "Addon Board Overlays"
-+
-+config MIKROBUS_BOARD_OVERLAYS
-+	bool "mikroBUS board overlays"
-+	depends on OF_OVERLAY
-+	depends on MIKROBUS
-+	help
-+	  This option enables the mikroBUS addon board overlays. mikroBUS is an
-+	  add-on board socket standard that offers maximum expandability with
-+	  the smallest number of pins.
-+
-+	  Say Y here to enable overlays for MikroBUS addon boards.
-+
-+endmenu
-diff --git a/addon_boards/Makefile b/addon_boards/Makefile
-new file mode 100644
-index 000000000000..38275c3ff4c1
---- /dev/null
-+++ b/addon_boards/Makefile
-@@ -0,0 +1,3 @@
-+# SPDX-License-Identifier: GPL-2.0
-+
-+subdir-$(CONFIG_MIKROBUS_BOARD_OVERLAYS) += mikrobus
 diff --git a/addon_boards/mikrobus/Makefile b/addon_boards/mikrobus/Makefile
-new file mode 100644
-index 000000000000..f66554cd5c45
---- /dev/null
+index f66554cd5c45..4c7a68ea9504 100644
+--- a/addon_boards/mikrobus/Makefile
 +++ b/addon_boards/mikrobus/Makefile
-@@ -0,0 +1 @@
-+# SPDX-License-Identifier: GPL-2.0
+@@ -1 +1,3 @@
+ # SPDX-License-Identifier: GPL-2.0
++
++dtb-y += mikroe-5761-i2c.dtbo
+diff --git a/addon_boards/mikrobus/mikroe-5761-i2c.dtso b/addon_boards/mikrobus/mikroe-5761-i2c.dtso
+new file mode 100644
+index 000000000000..1111d3f7147f
+--- /dev/null
++++ b/addon_boards/mikrobus/mikroe-5761-i2c.dtso
+@@ -0,0 +1,28 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++/**
++ * MikroBUS - Weather Click I2C
++ *
++ * https://www.mikroe.com/weather-click
++ *
++ * Copyright (C) 2024 Ayush Singh <ayush@beagleboard.org>
++ */
++
++/dts-v1/;
++/plugin/;
++
++&MIKROBUS_CONNECTOR {
++	status = "okay";
++};
++
++&MIKROBUS_SCL_I2C {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&MIKROBUS_SDA_MUX_I2C_SDA>;
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	bme280@76 {
++		compatible = "bosch,bme280";
++		reg = <0x76>;
++	};
++};
 
 -- 
 2.46.0
