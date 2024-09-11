@@ -1,50 +1,79 @@
-Return-Path: <devicetree+bounces-101859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45BCD974766
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 02:31:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B1939747B7
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 03:23:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7755F1C25C34
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 00:31:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39FAC1F26A94
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 01:23:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5028E3C30;
-	Wed, 11 Sep 2024 00:31:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0A117578;
+	Wed, 11 Sep 2024 01:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ON8K0b48"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dWeyKDWx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EB5D182D2;
-	Wed, 11 Sep 2024 00:31:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0DF322066;
+	Wed, 11 Sep 2024 01:23:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726014666; cv=none; b=QslJCLHviJI3yMFqYWNhw2aon1nu5M8Fx6VsQl0lDP2oZza2cZ3TxcaCSzoSb3p8NEIZzpj09O0BflYeBH22k4hBIBTa0CE3AYkPULMYzaZoF2lMC35CJIZkYfh/e2ex2m9QD95rv6qFiHoYwm/n/0RMJWOhMtnTbhkZOBeZGs4=
+	t=1726017803; cv=none; b=KLpqeXwix6IKdi+H5s4fIp5z4NB5vxQzxtZssmkK8y2U3DB9TCXzLTJ0UOcwiGGjI7lstSUnwksz2JtaziyFSxsrkTad9KgklMWIY/axpOpeKkZmmfodOHiUGy73MTcx1CApXA7LnmL6qOIvzMxG8CHJdPFtXNM9cQpCTG6a6rU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726014666; c=relaxed/simple;
-	bh=3kW1RB4QEC2GKwjIBHKcaFVhGmcWAsqzYdeAByh20BU=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=dOOrZNDgIGex7UNEWvR3LCDgf1OkenRBrOJM21DfnBAf50LPASO6jG2X8u+MhPgxBF0BbR62F0ofDDDR+SgPH+FOvJ0GvK8p2achw8y8E0qmfuuXPAMeaPYc7qWF5gUil1zhJvSVdtxVFMhsVmO+1jtQwmdP5G/pG5s6OLGuI1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ON8K0b48; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5914C4CECC;
-	Wed, 11 Sep 2024 00:31:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726014665;
-	bh=3kW1RB4QEC2GKwjIBHKcaFVhGmcWAsqzYdeAByh20BU=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=ON8K0b48Q34PsbhEeiBYmky2O5j8KG4JSP3PTxoFvTHlGEYVuhSymcE2oPzLZrLkd
-	 ZbNLlH4bgcj8EPPCQ34rfbCa6hdu2KpsVX+1QxaicEIjXxXJtwqyqdcsDfyoJVJTmK
-	 YZM0/PdhND1fIKmunpnOHTBkkXAgKC5Kc8llC2eEVKwO/NZ3N9BB4EoI039EIVPIwP
-	 b8ayn58ZKRdqgSMDXWAUb18Ca6MjYn1d1KkbcRFW6Ryc58oHh//8e4WDOPXDXDL+Uc
-	 3qcpaPZh4VUNXLmVBfZLg7DVkAzhYg/Xgp/5mmeNg9/aCfKi9bpdq8uhh9QWky4Fqh
-	 n2Rj4OFq1puwA==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 33E533822FA4;
-	Wed, 11 Sep 2024 00:31:08 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1726017803; c=relaxed/simple;
+	bh=GWr1APE3OKHNDJ8KWun788EsfhIPmqbACTws0TsCJ6w=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=LsbefkR4vlJPRgzp7yoMDerzU6A0BHfuJkGRmJz5o1U2A3dnP0Z4jqsGDklZSB5GvoGeVyZyAw87i4H0Dm+7OlIxuXCubxntnqUl7KW7kfbE6y5aiaKZJj+4+OJk1CDKRKAQ1H/AYuAtQ64A/zwJno6NIHtP9JOz9wnG8nDunaY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dWeyKDWx; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48AEwfEd031364;
+	Wed, 11 Sep 2024 01:23:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=FBe+iw4+aUVovaCbM6zF6r
+	crhWc3B9d03B5Xg5mwDBk=; b=dWeyKDWx4m7S80899UdjSXID0jIk6rNmuaD51s
+	zDkr97KZCjvuuGs2AG/ESyCEIO+9zZ+Rk0AMhunovvr1v3m8j3aywriVuTlLpgZ9
+	5eSbjZi32DWSIulxMhDhpYKS7JuxXm+m63MzuYF6f2ZU7CE3tnTXMa18LIE9jQpE
+	tRet0VtqlS0gB3R5CajmN7/8jofxRgnnfrCb8hfpgsHm6KxmepNcJ8FnyBUdr9E7
+	YPlzAcWXUHqSPs+FAXgnI5wcvw5Ca1MpBO+S6El14aaaK6fAoAPz/2NQPP+i4pM5
+	pr8JPEq0DRedxXuR/2ebjfu5sj0Gan4qOJJ0GxasgCe71ZwQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy517s2a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Sep 2024 01:23:17 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48B1NGkw012848
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Sep 2024 01:23:16 GMT
+Received: from jiegan-gv.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 10 Sep 2024 18:23:12 -0700
+From: Jie Gan <quic_jiegan@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Song Chai
+	<quic_songchai@quicinc.com>,
+        Yushan Li <quic_yushli@quicinc.com>
+Subject: [PATCH v4 0/1] arm64: dts: qcom: Add coresight components for x1e80100
+Date: Wed, 11 Sep 2024 09:22:53 +0800
+Message-ID: <20240911012254.2198067-1-quic_jiegan@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,43 +81,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2 net] dt-bindings: net: tja11xx: fix the broken binding
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <172601466675.440312.6346971513083505539.git-patchwork-notify@kernel.org>
-Date: Wed, 11 Sep 2024 00:31:06 +0000
-References: <20240909012152.431647-1-wei.fang@nxp.com>
-In-Reply-To: <20240909012152.431647-1-wei.fang@nxp.com>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: davem@davemloft.net, pabeni@redhat.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, andrew@lunn.ch,
- f.fainelli@gmail.com, hkallweit1@gmail.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ztFUuv6KZJQxhynGH061Ov0nQHSyN3uZ
+X-Proofpoint-GUID: ztFUuv6KZJQxhynGH061Ov0nQHSyN3uZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
+ mlxscore=0 bulkscore=0 mlxlogscore=579 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 clxscore=1015 phishscore=0
+ suspectscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2408220000 definitions=main-2409110009
 
-Hello:
+Add coresight components for x1e80100. This change includes CTI,
+dummy sink, dynamic Funnel, Replicator, STM, TPDM, TPDA and TMC ETF.
 
-This patch was applied to netdev/net.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+Change in V2:
+Check the dtb with dtbs_check W=1, and fix the warnings for
+the change.
 
-On Mon,  9 Sep 2024 09:21:52 +0800 you wrote:
-> As Rob pointed in another mail thread [1], the binding of tja11xx PHY
-> is completely broken, the schema cannot catch the error in the DTS. A
-> compatiable string must be needed if we want to add a custom propety.
-> So extract known PHY IDs from the tja11xx PHY drivers and convert them
-> into supported compatible string list to fix the broken binding issue.
-> 
-> [1]: https://lore.kernel.org/netdev/31058f49-bac5-49a9-a422-c43b121bf049@kernel.org/T/
-> 
-> [...]
+https://lore.kernel.org/linux-arm-msm/20240827072724.2585859-1-quic_jiegan@quicinc.com/
 
-Here is the summary with links:
-  - [v2,net] dt-bindings: net: tja11xx: fix the broken binding
-    https://git.kernel.org/netdev/net/c/2f9caba9b2f6
+Change in V3:
+Disable two TPDM devices, that will break the booting of the secure device.
+Tested with commercial product.
 
-You are awesome, thank you!
+https://lore.kernel.org/linux-arm-msm/20240905103825.2154633-1-quic_jiegan@quicinc.com/
+
+Changes in V4:
+1. Sort the properties with alphabet order.
+2. Fix format issue(add a new line between last property and the
+following subnode).
+
+Jie Gan (1):
+  arm64: dts: qcom: Add coresight nodes for x1e80100
+
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 1456 ++++++++++++++++++++++++
+ 1 file changed, 1456 insertions(+)
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.34.1
 
 
