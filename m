@@ -1,167 +1,115 @@
-Return-Path: <devicetree+bounces-102015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB4B39750E1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 13:33:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37F26975167
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 14:04:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89A7C283F92
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 11:33:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D2B92B28081
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 12:04:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF800187337;
-	Wed, 11 Sep 2024 11:33:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81FCB188019;
+	Wed, 11 Sep 2024 12:03:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WFkpp55J"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="Hco7YKrU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.web.de (mout.web.de [212.227.15.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 482CB155753
-	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 11:33:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8D9613AA3E;
+	Wed, 11 Sep 2024 12:03:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726054406; cv=none; b=JFHZj3qgPI5IQFWJ7aJq39OPSvyxo+NloGOVgCdHgDS9SbfSIvcFxO3iwzs+8L+D+Mi4OR4vF3S1nm3kuSdphLg0lHPLb/2ObaCTx8plPwtXfC/yce65mX50evK7ZMzlx46mO5TjV2Nydqq4V8H0Fazn3ZwkiKzH3EF0l7KRsfk=
+	t=1726056212; cv=none; b=i299KGUj19Sv7m4yOkZO3T3kY5+1PZIMrQPaJMUcMdkrFIi/H1uMcWRZhmfqLZlIc8Zrp5gYaBX2KGI/j+fW4fR4VMO6rXls8v0Qh0T/LCyQ60jCgBDItW5aIQM5xR14QIZS8Z2L9NCgQj+wIJD9BX+7TMhFllTA29bmaHBDmLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726054406; c=relaxed/simple;
-	bh=cM9An+lJrKf5fchTezFQIl5Mxbf04kjvGjWZErkcecY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lNzXnaqHCsblSf9b7gicSYQgIQJUWvRNEvrgWFhSX8ks+s5tRJW7d86HkVM9cICMvRnVnUdtTVy9LXS1Y0R4RP9iS2dy8H+OIvxjQpbzC7v10Nx6SxzxDW2xVnX4nEobZYmhvwUQkA797Tk9kKdWGe4710v5gXSBDjXo8KA/qEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WFkpp55J; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5344ab30508so728859e87.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 04:33:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726054402; x=1726659202; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=K0GzAnTjhxYZKHt72GpqMtlHwxT7ETsaEqcjwqFxbdI=;
-        b=WFkpp55JtRzZOjAB/GYZzI/AAXoxYIdt5n7QKwndZHxWfIeb1swPv2Kx2JZzXojZSz
-         kuCDx+aZXjS5MdCh7FOKdRJGjoPH2CS6RoEk0UHhiKXhkhdAdIp6jGTv484CasUdkxsu
-         zC7jq+BNtr1pzEU9N71x1bdyICea94x//A92vVP4TI/hOxeA+3gDTziTPeWkNcKdSlBj
-         UuTF+7X9zO7fw55Fj7n157U35txDj2tP+4MfbapIbTqe1R+Qdo+Ol6bzwg4vK7zDMTLA
-         n96pt15m4K1eV0UDIs3GICG3TO/TKsW2BTCyDNsQpd+eCe7wciEAewHtTCoVEGstfwlP
-         QWMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726054402; x=1726659202;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K0GzAnTjhxYZKHt72GpqMtlHwxT7ETsaEqcjwqFxbdI=;
-        b=dRLg/AbA81krKSQ/KrgQ2usXs8JEmw+tiiL7qET/sneWhs2sN45v/ysJX+1I7JcZIg
-         Yx/mIqh9VPPtRT2cFzEzi7B3mklmAqksIEUGFxYaRcvyeOtzMbC2lLYu0kKIxIiOcS/k
-         Hji4qpflWVPyoXmEfGKb5iaalVGF0vmlrF8N+sSonkvMEL6K7sFhP2RjWe4LVdVKHD5W
-         6mGdTrmFs0V+qjH1o/W+anqOXmyC7PbAtgDgWpQ7kBoZIXcXLQeJHOqHtiEaOrhzaGfZ
-         Q47A59roRLGVP9EPWgG2pldrvg+hmHnwHfjtepII7Z/JOFJBm0A8nVzBTHJICAAdzfEt
-         HhUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW1jvnW0JsqpE1m+IUyqjiVRKWbSC3GPkz2IE+HVqar2bjepwOHXT7z64Emyxps5BRHUQq8vw+lVWae@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzy8LiadmJ1jgj5OdSeMGlXPEjQkohTRpeZVnO0GtiZAfUuG5cv
-	kxFAY1ikqKUKe3EpEIr+Sxf5WH/LyQhXxXXs7B+3yv5w1F4JIPgk3lciP9xtYQM=
-X-Google-Smtp-Source: AGHT+IGJTJ4gfvXWiLZYGJnjq1U6O/nKro6eMFZ5KwjhG3ZDqLoxi5tKw42KVzSzIJdS3EXUUs0o+g==
-X-Received: by 2002:a05:6512:2250:b0:52f:cf2d:a1a0 with SMTP id 2adb3069b0e04-5366bb48a71mr2373288e87.26.1726054402046;
-        Wed, 11 Sep 2024 04:33:22 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5365f8cad44sm1548242e87.150.2024.09.11.04.33.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Sep 2024 04:33:21 -0700 (PDT)
-Date: Wed, 11 Sep 2024 14:33:19 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Bard Liao <yung-chuan.liao@linux.intel.com>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>, Sanyog Kale <sanyog.r.kale@intel.com>, 
-	linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com, 
-	kernel@quicinc.com, quic_pkumpatl@quicinc.com
-Subject: Re: [PATCH v1 1/4] ASoC: dt-bindings: wcd938x-sdw: Add static
- channel mapping support
-Message-ID: <iv2ajlr4qe7lcfwd7vwqsghxprpqz6r2nrvgmqmg6ryscgslqs@zb5nsyavuzej>
-References: <20240909105547.2691015-1-quic_mohs@quicinc.com>
- <20240909105547.2691015-2-quic_mohs@quicinc.com>
+	s=arc-20240116; t=1726056212; c=relaxed/simple;
+	bh=to/dI+U8c82M6OElNphf9TFg4NuIv4FJo3rnED38GM0=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=qyo6R6X+0OrSonWS/Zz/d5FwTsrO2hwVNIC3KZvoI1aJx3d1VpAr6HxcObhAefsxD5YDL8RPtGgTkKUx4NRU0njWLWmMw7OgNmjtalwp8tyuC7Rw8ROdSHzUtXJp6bOMt/+l7DASv2+ohPk1OpqRNcUlRP7NapiFOFidYEHOnzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=Hco7YKrU; arc=none smtp.client-ip=212.227.15.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1726056179; x=1726660979; i=markus.elfring@web.de;
+	bh=to/dI+U8c82M6OElNphf9TFg4NuIv4FJo3rnED38GM0=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=Hco7YKrUwUPLHLTI+twaLWbzmwXkV0mINsS6UdWH0Ao4XcME4uYbNUftJ3kU1pHV
+	 3TnV+338SIWsnrYLfBGOePElSld13/qNvlJzwiGtQ3iGlpC+H7hbOvZM7TyhO7fll
+	 j6Igv1gKAJbFpN3QKa0DoYV8pdLnS8gvG7G0jL1s1BVle1excKCC5rDKt/mV5bfOz
+	 uvSA1U51+g6XacpRV91OjjW5OTJibj9W/f6N4h3/N6zkoGazT0xycNsGIfmfsW0ZA
+	 q7TFkNuWXMuarFC58jEqaiUmN3y9MLvljDU9RCR47gd9+K6X1cWrd2Up2l+TQ8H9R
+	 y8sK5w41dgaVC01TgA==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.86.95]) by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1Mq182-1sBDbl0Two-00cfwJ; Wed, 11
+ Sep 2024 14:02:59 +0200
+Message-ID: <ba285b99-96a6-4fbf-b72e-b264a300ce6f@web.de>
+Date: Wed, 11 Sep 2024 14:02:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240909105547.2691015-2-quic_mohs@quicinc.com>
+User-Agent: Mozilla Thunderbird
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ iommu@lists.linux.dev, linaro-mm-sig@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@gmail.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, =?UTF-8?B?SsO2cmcgUsO2ZGVs?= <joro@8bytes.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Oded Gabbay <ogabbay@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Will Deacon <will@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>
+References: <20240612-6-10-rocket-v1-8-060e48eea250@tomeuvizoso.net>
+Subject: Re: [PATCH 8/9] accel/rocket: Add job submission IOCTL
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20240612-6-10-rocket-v1-8-060e48eea250@tomeuvizoso.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:gBOc2VelSGYN7vMulw3gUfHiDfi7Fce6hUGRA3ig0e7CkPk7ctW
+ 02fliq1YqKL5NKGvp3rgm2vGCmn6B7aS1N/nr+h0YbeeRcbBWnwr7+rO2Hwhq057gL31eNi
+ LR1cvkK0e+qFvnrh0GnTB7rpMSh2/emhZOdJ2z2xi7Ae1r7gPW55kJ+Yp8MMxUhxUlDXyUk
+ vYuXx5zKe7w6f1ZlWKmSg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:kwUCKjmSRow=;GXfTPl9KFQxzuxjHbnw0svEf0G3
+ Uctcq9Kr/ho6Y0LyjZNPPDYlzYjtlry3asr8W82jx14bpGu3jCx2WlCJNwLO0/RybxYvHtqyt
+ 0eJR2xvpk1mD3BfD6ES4G4nPghEA0Xe0VmyS/bOP3h7e5ccgwFG6rh5+NcRay3ifHOEpc2dJq
+ 3lz97Wz4Jwb+bX9qUxV2p21EKo0fk/MGTTw+ic/kF7yL3Hj0qMX55emMFpldoG2w1wb3XZSas
+ NTbXmQfGKosykNVgoNLaRCy92S00vVSewSAIGc7NLaQksiPebe2x0I0CrEBOSyFKCiJ1lRKHs
+ sXoJDShFfVErAk+ftvVPr/5f+uwSALx5Rn4ga/tYXitIuOicPsv9lctt2RJvUUeu7CopQY/J7
+ x3Gm3cmwjHVs4GpfTV5F3yUxpiX6gHTwl420nPg98AEQKnlw+9G56/eEv/UOYcHYRq3Plq8xo
+ 3BzcllAiZYFg/2VEUN85RXJ8nvHYIV6O2UPR0dIeVS97RQfqr5ZDQ58q/KjOl2l2TTgvLYDwo
+ 9z08q7kvWwjdKsZp7dfTFcdDRsL54w4z7bFZ9Pri6T9YrKUSbIdKGaElp2z7CW+1e4YP0L3Zz
+ RkpV3P0IioN2RRARyS9Q4KgwspVFg+nS7lYw/QAgc2hYLa4ve7+kGrWH+XeYK99OXePLIThWj
+ oIhQy4AkUaIfiAw2vIr5HWObE/R3WDhulqPh2xWizhETqAPkKZJbRPr6v/yopUUdtUnQB9Kwg
+ 3id6Oi229ubAiXjr8QtfEw3lsksciZSnl8UuBNhEEOYXyXsNd/B84HnV1Z6/QUqaoKJRztkHQ
+ Al0RJc+9fpFxCgs5ckOfnE1w==
 
-On Mon, Sep 09, 2024 at 04:25:44PM GMT, Mohammad Rafi Shaik wrote:
-> Add static channel mapping between master and slave rx/tx ports.
-> 
-> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-> ---
->  .../bindings/sound/qcom,wcd937x-sdw.yaml      | 28 +++++++++++++++++++
->  1 file changed, 28 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
-> index d3cf8f59cb23..1db3c001ce98 100644
-> --- a/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
-> +++ b/Documentation/devicetree/bindings/sound/qcom,wcd937x-sdw.yaml
-> @@ -58,6 +58,30 @@ properties:
->      items:
->        enum: [1, 2, 3, 4, 5]
->  
-> +  qcom,tx-channel-mapping:
-> +    description: |
-> +      Specifies static channel mapping between slave and master tx port
-> +      channels.
-> +      In the order of slave port channels which is adc1, adc2, adc3, adc4,
-> +      dmic0, dmic1, mbhc, dmic2, dmic3, dmci4, dmic5, dmic6, dmic7.
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +    minItems: 8
-> +    maxItems: 13
-> +    items:
-> +      enum: [1, 2, 4, 8]
-> +
-> +  qcom,rx-channel-mapping:
-> +    description: |
-> +      Specifies static channels mapping between slave and master rx port
-> +      channels.
-> +      In the order of slave port channels, which is
-> +      hph_l, hph_r, clsh, comp_l, comp_r, lo, dsd_r, dsd_l.
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +    minItems: 8
-> +    maxItems: 8
-> +    items:
-> +      enum: [1, 2, 4, 8]
+=E2=80=A6
+> +++ b/drivers/accel/rocket/rocket_job.h
+> @@ -0,0 +1,49 @@
+=E2=80=A6
+> +#ifndef __ROCKET_JOB_H__
+> +#define __ROCKET_JOB_H__
+=E2=80=A6
 
-Can we please use sensible strings instead of a randomly-looking numbers?
+I suggest to omit leading underscores from such identifiers.
+https://wiki.sei.cmu.edu/confluence/display/c/DCL37-C.+Do+not+declare+or+d=
+efine+a+reserved+identifier
 
-> +
->  required:
->    - compatible
->    - reg
-> @@ -74,6 +98,8 @@ examples:
->              compatible = "sdw20217010a00";
->              reg = <0 4>;
->              qcom,rx-port-mapping = <1 2 3 4 5>;
-> +            qcom,rx-channel-mapping =  /bits/ 8 <0x01 0x02 0x01 0x01 0x02
-> +                                                 0x01 0x01 0x02>;
->          };
->      };
->  
-> @@ -85,6 +111,8 @@ examples:
->              compatible = "sdw20217010a00";
->              reg = <0 3>;
->              qcom,tx-port-mapping = <2 2 3 4>;
-> +            qcom,tx-channel-mapping = /bits/ 8 <0x01 0x02 0x01 0x01 0x02 0x04
-> +                                                0x04 0x08 0x01 0x02 0x04 0x8>;
->          };
->      };
->  
-> -- 
-> 2.25.1
-> 
-
--- 
-With best wishes
-Dmitry
+Regards,
+Markus
 
