@@ -1,365 +1,270 @@
-Return-Path: <devicetree+bounces-101857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-101858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B13797471E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 02:08:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5B11974761
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 02:30:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3806D289434
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 00:08:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67A95287845
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 00:30:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9669FA47;
-	Wed, 11 Sep 2024 00:08:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42266BA20;
+	Wed, 11 Sep 2024 00:30:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="G3E0PZr3"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="oEmmr0+X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f201.google.com (mail-yb1-f201.google.com [209.85.219.201])
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1CE3A936
-	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 00:08:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65FC93D7A
+	for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 00:30:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726013292; cv=none; b=avaRYO6yYNtF71/otVLjUoJtaRGPNOyzrVImXtzQvKdYeB4QzOO3BjEqK9M7rlA+0k/cYv0V5wpIXjDm4somjm/RFEpfBGTD4fwh0EY2ViAQw5EsMz5h5EIG0Yd5sxuMrt48ItHy//WHp2jDhwb4zIBuN56vs6Gbm4uUeoqH5Ms=
+	t=1726014623; cv=none; b=QsRLIJVJ1isYK+U3kPFipBRgtsXWN69R/lzJnGGsysUoJLyq1KAaM2aCRoHtV8hIknyZHcy6+JG7rCDI+hka4Y8xL/fn3ioI1qQKGNIQ9y+IZCsyMRifuy/fkApV+nXG5ZO8dUiU1+LIC02BqdnQUFKVWmCmOY/8L89mkobhWwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726013292; c=relaxed/simple;
-	bh=p79RmnNeFZRiI1qyJp0oe5UH7x2O20vRmHYB8e1pjnU=;
-	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
-	 To:Cc:Content-Type; b=m5LaV8meNQnazWPuV3sNiiBAIfQFMW97JoK+Eo8F7K4WYPpzXCSy34HCz/KgAjEwOv/eT/sj6v3OcwgnfxJYT7k9wOWHpdDDT879bpj9TnwlOa2mxbIQRXsFvtQpxmVWYB3+XZTd9sjxk/KHc+tf7KMGpS4/Es5pMokkMYL7Zdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--amitsd.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=G3E0PZr3; arc=none smtp.client-ip=209.85.219.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--amitsd.bounces.google.com
-Received: by mail-yb1-f201.google.com with SMTP id 3f1490d57ef6-e02fff66a83so2715549276.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 17:08:10 -0700 (PDT)
+	s=arc-20240116; t=1726014623; c=relaxed/simple;
+	bh=CWQ3FKYSH0+6wrCe/fWknwQLJk3iFkVwYWj/rMRRcdI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=N1x8kzxarZNtCCOuQRpzn/p4Pk33yJy+r0H7HQG13Cyst6KLkMQlJB465Vxw8oUj2cW9ERRMcCCC9nqwR94V69QDoRL3dDFl4Vo/XxEFFuvbJ/Qz1RvAOC2sVgoIa3ckVVDRBWWoqwbdTFzAfzJmq0cJNslUlRWgJM6/JCCVwJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=oEmmr0+X; arc=none smtp.client-ip=209.85.219.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-6bf92f96f83so38476696d6.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 17:30:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1726013290; x=1726618090; darn=vger.kernel.org;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zSuZrkmmWtMnows6Vqiwj1CrlHfoTWnGKJn8p+iwjqk=;
-        b=G3E0PZr3jvZ46JvdIf/bM3AoppGphJgPI7oscHs47zWsAHiTl1MqYeqlhYm0s2YpII
-         +ABhOu+NO++geDm+WZnggxcbifWH/akgKbIDJIUqmVqVhRbOvUE/FbXMYGth3l+3l/mz
-         Zt4p7BBp63TcI57mKPhtvErwZGTLpYf8vVZe3Chy0m7Q3NjsQjjlkb9ekZ0h9mCLRtVU
-         2rBf8Dg2y+PzrjtgSoBRQYY1C0DtFCDrjzYf1fwwyqbBwvRq/aeffPBIHkUKBplDR1q1
-         hD91rBH4O8mR2DcePUiAUb/NQV7cRMUae0I8EjRRon6wdGhkUnMQUa9a3vVJwgSAJjTB
-         t87A==
+        d=chromium.org; s=google; t=1726014620; x=1726619420; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XXQuFZTJ8lIqW5Ag+qwYyd702ndWzlmLQdZRxiEWDFg=;
+        b=oEmmr0+XkrS3VojqjVzjUqykS7OIBxZomFPDbhJRmwtaeAjda5biohnMowxQCrTuez
+         nNJn2UtWFTJZLR6IDyubAFKBKZgjnqeM9+C8U8A/f73ilzcw0FTxc8jJ0WXxhkunR84P
+         L2z2SskkjPOx8m5v7PzRPPsyrLK/uSlc52uNk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726013290; x=1726618090;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zSuZrkmmWtMnows6Vqiwj1CrlHfoTWnGKJn8p+iwjqk=;
-        b=ELD/YwBd044pz0NqclS2FN8NgNsSMh1LfLv2duDfX2GsuFuKWdjEt72gKnG+Fl7iPf
-         BnpOM9OaKO+KKxUjV4lG9ztMHqIGT76gfu0MHT142jVZ3zp/e3ioy6qc6j0Dp1qd5/vm
-         9OvF/jSCd+I+Atscvnai91OMhGjawnIkJPvYNbqwrjZWHitjuXIVZ1UXUta534dkFo0t
-         mUICOB8XXVHnkoIhSlhkEcuorf9NkyJljTRmqCY+QVn9AlQhRuXfJRUDbfOBw12t4rTY
-         dt0Rxr2jyg6sjMRwMwu9ecEnFfwRGyUGv/VVl/mGgYb1Ev71mPU+jwfn3KGoejd4YyCN
-         Fsjg==
-X-Forwarded-Encrypted: i=1; AJvYcCUvXyzbX5B8Srz3b21sC+hvytys4SI+IXVIhMwxhpyzMO6F5bKQPwidC3Y5SL8KjfxnHVyDQJME+sw6@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTcXDJ9k+xyAFSVKePZxlq96MJWFOrmR0sQMJpmRa+i8FU7Dxj
-	MqEvkvoLu53GJfxwK8OadwSt93V1JrAn1c7lSI5cwnV9/Zc/KxXFmJVT3DQAG/zY870jwfFsPRf
-	5aw==
-X-Google-Smtp-Source: AGHT+IHOqIdoAg2rmgyqW9sBWtxtlOruH3pbEyFufuku6W/fDinOxjHZ62GG721mGzE+Hp6WvzdAchgSRiU=
-X-Received: from amitsd-gti.c.googlers.com ([fda3:e722:ac3:cc00:20:ed76:c0a8:827])
- (user=amitsd job=sendgmr) by 2002:a5b:648:0:b0:e0e:4350:d7de with SMTP id
- 3f1490d57ef6-e1d8c539e89mr1680276.9.1726013289313; Tue, 10 Sep 2024 17:08:09
- -0700 (PDT)
-Date: Tue, 10 Sep 2024 17:07:06 -0700
-In-Reply-To: <20240911000715.554184-1-amitsd@google.com>
+        d=1e100.net; s=20230601; t=1726014620; x=1726619420;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XXQuFZTJ8lIqW5Ag+qwYyd702ndWzlmLQdZRxiEWDFg=;
+        b=XhQJZr+QTnvlKUoXy5Ol0XPt3NkjycQvBsbQyVuhFDDhQEp7pQRZp4A3DoO+vfTdb9
+         t3f47bqpduHSWp6m5f2tDoTNjCqMp4ZWxSQY4IUTrwrEt5g8xk8PFX9RcqqGBFez9pDT
+         zXeF9CGWlhYQ3c+ZtVygRnPq54WqQnAFzfOkm1BS1D50/wTNgG3ZHJ/WqE4KA1hmxVN0
+         CsKL3VbcPzWN7p1/0bozPMm5qs6kXvUzVMyphuXsp1PS9qPdn2nd4a6cfZ0D040Sq7Mf
+         UvpOqW84bglIsKCN371+4Vj1BlUyaZQIy31JvscQmFfu2oQVi4gvko0CmQptyJ88yxse
+         LgcA==
+X-Forwarded-Encrypted: i=1; AJvYcCXkh43mN2Za7uYdjLOfSnMP0nTCT5q8ttdvxO52LD7LqlNfj1GB/WzTfayc90FGOCFo98U2X/UfZ+qX@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMxsxbF9xpaTJLb2ni/qmT/eKICEe+1UW/6j93cyJIUx0EBhAt
+	aFouW7fYSOW7b+4dQtNS4I0AgINsfKk1wVJU5HDEB7BtVB+dsLuMkWaXe4dTPKSFcZv01pra1Yk
+	=
+X-Google-Smtp-Source: AGHT+IGQ0+v+MBGDiOksNQxo9S0Q97DYExgOkv+tvWVpOS4PE2466Bbxu+VdEXfTeQmOAIZAhApvOQ==
+X-Received: by 2002:a05:6214:5f05:b0:6c5:6752:f66e with SMTP id 6a1803df08f44-6c56752f84cmr830666d6.28.1726014620222;
+        Tue, 10 Sep 2024 17:30:20 -0700 (PDT)
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com. [209.85.219.43])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6c5343470a6sm34892156d6.62.2024.09.10.17.30.19
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Sep 2024 17:30:20 -0700 (PDT)
+Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-6c53bc6f9faso22056906d6.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2024 17:30:19 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW5/cICbWaA1gwx5+++kLqbVFhEgf4lpZWAmG6TX/6Ac9Ie+WZ2KQg0+q/p0qTKxYxDc1sZScuIrRSc@vger.kernel.org
+X-Received: by 2002:a05:6214:5b06:b0:6c5:52d5:bbd0 with SMTP id
+ 6a1803df08f44-6c552d5bbf8mr80721586d6.32.1726014619235; Tue, 10 Sep 2024
+ 17:30:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-References: <20240911000715.554184-1-amitsd@google.com>
-X-Mailer: git-send-email 2.46.0.598.g6f2099f65c-goog
-Message-ID: <20240911000715.554184-3-amitsd@google.com>
-Subject: [RFC 2/2] usb: typec: tcpm: Add support for pd-timers DT property
-From: Amit Sunil Dhamne <amitsd@google.com>
-To: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org
-Cc: linux-kernel@vger.kernel.org, kyletso@google.com, rdbabiera@google.com, 
-	Amit Sunil Dhamne <amitsd@google.com>, Badhri Jagan Sridharan <badhri@google.com>, linux-usb@vger.kernel.org, 
-	devicetree@vger.kernel.org
+MIME-Version: 1.0
+References: <20240904090016.2841572-1-wenst@chromium.org> <20240904090016.2841572-10-wenst@chromium.org>
+ <CAD=FV=UGOz3Xzg7reJKP=tA1LqTxszv5w-CL9krmoXQtXdJLaQ@mail.gmail.com>
+ <CAGXv+5F27K76t=ht5v75jKsNF-J+C0r5+m=czHz6PtV3t5DxcQ@mail.gmail.com>
+ <CAD=FV=XVrAdQN8p9QJtt3Ah_YQAG7Y-D4wDx8_+qb1EGN7+Uig@mail.gmail.com> <CAGXv+5HO=POHNL_tQHCsy+8=a0gPLMDVHcWMguferahVU+BnZA@mail.gmail.com>
+In-Reply-To: <CAGXv+5HO=POHNL_tQHCsy+8=a0gPLMDVHcWMguferahVU+BnZA@mail.gmail.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Tue, 10 Sep 2024 17:30:07 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=U2yDGv74GQWRQuHN9sjdY5iThqpH-br-jYXMkV1cujEg@mail.gmail.com>
+Message-ID: <CAD=FV=U2yDGv74GQWRQuHN9sjdY5iThqpH-br-jYXMkV1cujEg@mail.gmail.com>
+Subject: Re: [PATCH v6 09/12] i2c: of-prober: Add regulator support
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
+	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
+	Jiri Kosina <jikos@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	linux-i2c@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add support for DT property "pd-timers" to allow users to define
-platform specific values. For values that have not been explicitly
-defined in DT using this attribute, default values will be set.
-Therefore making this change backward compatible.
+Hi,
 
-Cc: Badhri Jagan Sridharan <badhri@google.com>
-Cc: linux-usb@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
----
- drivers/usb/typec/tcpm/tcpm.c | 110 ++++++++++++++++++++++++++++------
- 1 file changed, 92 insertions(+), 18 deletions(-)
+On Thu, Sep 5, 2024 at 8:45=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> wr=
+ote:
+>
+> > > IIUC we could have the "options" data structure have much more board
+> > > specific information:
+> > >
+> > >   - name of node to fetch resources (regulator supplies and GPIOs) fr=
+om
+> > >   - names of the resources for the node given from the previous item
+> > >   - delay time after each resource is toggled
+> > >   - polarity in the case of GPIOs
+> > >   - prober callback to do power sequencing
+> > >
+> > > The "resource collection" step would use the first two items to retri=
+eve
+> > > the regulator supplies and GPIOS instead of the bulk APIs used right =
+now.
+> > >
+> > > The power sequencing callback would use the resources combined with t=
+he
+> > > given delays to enable the supplies and toggle the GPIOs.
+> > >
+> > > For now I would probably only implement a generic one regulator suppl=
+y
+> > > plus one GPIO helper. That is the common case for touchscreens and
+> > > trackpads connected over a ribbon cable.
+> > >
+> > > Does that sound like what you have in mind?
+> >
+> > I guess I'd have to see how the code looks to know for sure, but if I
+> > understand it sounds a little awkward. Specifically, the "options"
+> > sound like they might become complicated enough that you're inventing
+> > your own little programming language (with delays, abilities to drive
+> > pins low and high, abilities to turn on/off clocks, and abilities to
+> > turn off/on regulators) and then probers need to code up their
+> > programs in this language. You also need to handle undoing things
+> > properly if there is a failure in the middle. Like your "program"
+> > would look like this (obviously you'd have to play with enums more,
+> > but you get the idea):
+> >
+> > {
+> >    { OPCODE_TURN_REGULATOR_ON, "vdd" },
+> >    { OPCODE_DELAY, 10 },
+> >    { OPCODE_GPIO_ASSERT, "reset" },
+> >    { OPCODE_DELAY, 5 },
+> >    { OPCODE_GPIO_DEASSERT "reset" },
+> >    { OPCODE_DELAY, 100 },
+> >    { OPCODE_TURN_REGULATOR_ON, "vddIO" },
+> > }
+> >
+> > Why not just expect the board probers to write C code to turn things
+> > on before looking for i2c devices, then provide helpers to the C code?
+> >
+> > So there wouldn't be some generic "resource collection" API, but you'd
+> > provide a helper to make it easy to grab regulators from one of the
+> > nodes by name. If you think bulk enabling regulators is common then
+> > you could make a helper that grabs all of the regulators from a node
+> > in a way that is consistent with the bulk APIs, but I wouldn't expect
+> > every driver to use that since devices I've seen expect regulators to
+> > be enabled in a very specific order even if they don't need a delay
+> > between them.
+> >
+> > I wouldn't expect a "collect all GPIOs" API because it seems really
+> > weird to me that we'd ever want to jam multiple GPIOs in a state
+> > without knowing exactly which GPIO was what and asserting them in the
+> > right sequence.
+>
+> So I'm slightly confused, as it sounds like at this point the i2c prober
+> would be litter more than just a framework, and the heavy lifting is to
+> be all done by callbacks provided by the board-specific driver?
+>
+> So the framework becomes something like:
+>
+> 1. find i2c bus node
+> 2. call provided callback with i2c bus node to gather resources;
+>    let callback handle specifics
+> 3. call provided callback to enable resources
+> 4. for each i2c component, call provided callback to probe
 
-diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-index 4b02d6474259..596d19ff85ac 100644
---- a/drivers/usb/typec/tcpm/tcpm.c
-+++ b/drivers/usb/typec/tcpm/tcpm.c
-@@ -574,6 +574,31 @@ static const char * const pd_rev[] = {
- 	[PD_REV30]		= "rev3",
- };
- 
-+/*
-+ * Though "pd-timers" is a 1D array, it can be imagined as a table with 2
-+ * columns, key at even index (that represents timer definition) & value
-+ * at odd index (that represents timer values in ms).
-+ */
-+#define NUM_TIMER_TABLE_COLS		2
-+
-+/*
-+ * PD Timer definitions for timers that can be tuned based on platform/board via DT.
-+ * The timer definition value should always match that of macros defined in
-+ * dt-bindings/usb/pd.h.
-+ */
-+enum pd_timer {
-+	PD_TIMER_SINK_WAIT_CAP,
-+	PD_TIMER_PS_SOURCE_OFF,
-+	PD_TIMER_CC_DEBOUNCE,
-+	PD_NUM_TIMERS
-+};
-+
-+static u32 pd_timers[PD_NUM_TIMERS] = {
-+	[PD_TIMER_SINK_WAIT_CAP] = PD_T_SINK_WAIT_CAP,
-+	[PD_TIMER_PS_SOURCE_OFF] = PD_T_PS_SOURCE_OFF,
-+	[PD_TIMER_CC_DEBOUNCE] = PD_T_CC_DEBOUNCE,
-+};
-+
- #define tcpm_cc_is_sink(cc) \
- 	((cc) == TYPEC_CC_RP_DEF || (cc) == TYPEC_CC_RP_1_5 || \
- 	 (cc) == TYPEC_CC_RP_3_0)
-@@ -4601,7 +4626,7 @@ static void run_state_machine(struct tcpm_port *port)
- {
- 	int ret;
- 	enum typec_pwr_opmode opmode;
--	unsigned int msecs;
-+	unsigned int msecs, timer_val_msecs;
- 	enum tcpm_state upcoming_state;
- 
- 	if (port->tcpc->check_contaminant && port->state != CHECK_CONTAMINANT)
-@@ -4637,17 +4662,18 @@ static void run_state_machine(struct tcpm_port *port)
- 			tcpm_set_state(port, SNK_UNATTACHED, PD_T_DRP_SNK);
- 		break;
- 	case SRC_ATTACH_WAIT:
-+		timer_val_msecs = pd_timers[PD_TIMER_CC_DEBOUNCE];
- 		if (tcpm_port_is_debug(port))
- 			tcpm_set_state(port, DEBUG_ACC_ATTACHED,
--				       PD_T_CC_DEBOUNCE);
-+				       timer_val_msecs);
- 		else if (tcpm_port_is_audio(port))
- 			tcpm_set_state(port, AUDIO_ACC_ATTACHED,
--				       PD_T_CC_DEBOUNCE);
-+				       timer_val_msecs);
- 		else if (tcpm_port_is_source(port) && port->vbus_vsafe0v)
- 			tcpm_set_state(port,
- 				       tcpm_try_snk(port) ? SNK_TRY
- 							  : SRC_ATTACHED,
--				       PD_T_CC_DEBOUNCE);
-+				       timer_val_msecs);
- 		break;
- 
- 	case SNK_TRY:
-@@ -4698,7 +4724,7 @@ static void run_state_machine(struct tcpm_port *port)
- 		}
- 		break;
- 	case SRC_TRYWAIT_DEBOUNCE:
--		tcpm_set_state(port, SRC_ATTACHED, PD_T_CC_DEBOUNCE);
-+		tcpm_set_state(port, SRC_ATTACHED, pd_timers[PD_TIMER_CC_DEBOUNCE]);
- 		break;
- 	case SRC_TRYWAIT_UNATTACHED:
- 		tcpm_set_state(port, SNK_UNATTACHED, 0);
-@@ -4896,12 +4922,13 @@ static void run_state_machine(struct tcpm_port *port)
- 			tcpm_set_state(port, SRC_UNATTACHED, PD_T_DRP_SRC);
- 		break;
- 	case SNK_ATTACH_WAIT:
-+		timer_val_msecs = pd_timers[PD_TIMER_CC_DEBOUNCE];
- 		if ((port->cc1 == TYPEC_CC_OPEN &&
- 		     port->cc2 != TYPEC_CC_OPEN) ||
- 		    (port->cc1 != TYPEC_CC_OPEN &&
- 		     port->cc2 == TYPEC_CC_OPEN))
- 			tcpm_set_state(port, SNK_DEBOUNCED,
--				       PD_T_CC_DEBOUNCE);
-+				       timer_val_msecs);
- 		else if (tcpm_port_is_disconnected(port))
- 			tcpm_set_state(port, SNK_UNATTACHED,
- 				       PD_T_PD_DEBOUNCE);
-@@ -4941,7 +4968,7 @@ static void run_state_machine(struct tcpm_port *port)
- 		break;
- 	case SNK_TRYWAIT:
- 		tcpm_set_cc(port, TYPEC_CC_RD);
--		tcpm_set_state(port, SNK_TRYWAIT_VBUS, PD_T_CC_DEBOUNCE);
-+		tcpm_set_state(port, SNK_TRYWAIT_VBUS, pd_timers[PD_TIMER_CC_DEBOUNCE]);
- 		break;
- 	case SNK_TRYWAIT_VBUS:
- 		/*
-@@ -5014,7 +5041,7 @@ static void run_state_machine(struct tcpm_port *port)
- 		break;
- 	case SNK_DISCOVERY_DEBOUNCE:
- 		tcpm_set_state(port, SNK_DISCOVERY_DEBOUNCE_DONE,
--			       PD_T_CC_DEBOUNCE);
-+			       pd_timers[PD_TIMER_CC_DEBOUNCE]);
- 		break;
- 	case SNK_DISCOVERY_DEBOUNCE_DONE:
- 		if (!tcpm_port_is_disconnected(port) &&
-@@ -5032,6 +5059,7 @@ static void run_state_machine(struct tcpm_port *port)
- 			tcpm_set_state(port, SNK_READY, 0);
- 			break;
- 		}
-+		timer_val_msecs = pd_timers[PD_TIMER_SINK_WAIT_CAP];
- 		/*
- 		 * If VBUS has never been low, and we time out waiting
- 		 * for source cap, try a soft reset first, in case we
-@@ -5041,10 +5069,10 @@ static void run_state_machine(struct tcpm_port *port)
- 		if (port->vbus_never_low) {
- 			port->vbus_never_low = false;
- 			tcpm_set_state(port, SNK_SOFT_RESET,
--				       PD_T_SINK_WAIT_CAP);
-+				       timer_val_msecs);
- 		} else {
- 			tcpm_set_state(port, SNK_WAIT_CAPABILITIES_TIMEOUT,
--				       PD_T_SINK_WAIT_CAP);
-+				       timer_val_msecs);
- 		}
- 		break;
- 	case SNK_WAIT_CAPABILITIES_TIMEOUT:
-@@ -5054,7 +5082,7 @@ static void run_state_machine(struct tcpm_port *port)
- 		 * sending Source Capability messages after a soft reset. The
- 		 * specification suggests to do a hard reset when no Source
- 		 * capability message is received within PD_T_SINK_WAIT_CAP,
--		 * but that might effectively kil the machine's power source.
-+		 * but that might effectively kill the machine's power source.
- 		 *
- 		 * This slightly diverges from the specification and tries to
- 		 * recover from this by explicitly asking for the capabilities
-@@ -5066,7 +5094,8 @@ static void run_state_machine(struct tcpm_port *port)
- 		if (tcpm_pd_send_control(port, PD_CTRL_GET_SOURCE_CAP, TCPC_TX_SOP))
- 			tcpm_set_state_cond(port, hard_reset_state(port), 0);
- 		else
--			tcpm_set_state(port, hard_reset_state(port), PD_T_SINK_WAIT_CAP);
-+			tcpm_set_state(port, hard_reset_state(port),
-+				       pd_timers[PD_TIMER_SINK_WAIT_CAP]);
- 		break;
- 	case SNK_NEGOTIATE_CAPABILITIES:
- 		port->pd_capable = true;
-@@ -5203,7 +5232,7 @@ static void run_state_machine(struct tcpm_port *port)
- 			tcpm_set_state(port, ACC_UNATTACHED, 0);
- 		break;
- 	case AUDIO_ACC_DEBOUNCE:
--		tcpm_set_state(port, ACC_UNATTACHED, PD_T_CC_DEBOUNCE);
-+		tcpm_set_state(port, ACC_UNATTACHED, pd_timers[PD_TIMER_CC_DEBOUNCE]);
- 		break;
- 
- 	/* Hard_Reset states */
-@@ -5420,7 +5449,7 @@ static void run_state_machine(struct tcpm_port *port)
- 		tcpm_set_state(port, ERROR_RECOVERY, 0);
- 		break;
- 	case FR_SWAP_SNK_SRC_TRANSITION_TO_OFF:
--		tcpm_set_state(port, ERROR_RECOVERY, PD_T_PS_SOURCE_OFF);
-+		tcpm_set_state(port, ERROR_RECOVERY, pd_timers[PD_TIMER_PS_SOURCE_OFF]);
- 		break;
- 	case FR_SWAP_SNK_SRC_NEW_SINK_READY:
- 		if (port->vbus_source)
-@@ -5475,7 +5504,7 @@ static void run_state_machine(struct tcpm_port *port)
- 		tcpm_set_cc(port, TYPEC_CC_RD);
- 		/* allow CC debounce */
- 		tcpm_set_state(port, PR_SWAP_SRC_SNK_SOURCE_OFF_CC_DEBOUNCED,
--			       PD_T_CC_DEBOUNCE);
-+			       pd_timers[PD_TIMER_CC_DEBOUNCE]);
- 		break;
- 	case PR_SWAP_SRC_SNK_SOURCE_OFF_CC_DEBOUNCED:
- 		/*
-@@ -5510,7 +5539,7 @@ static void run_state_machine(struct tcpm_port *port)
- 						       port->pps_data.active, 0);
- 		tcpm_set_charge(port, false);
- 		tcpm_set_state(port, hard_reset_state(port),
--			       PD_T_PS_SOURCE_OFF);
-+			       pd_timers[PD_TIMER_PS_SOURCE_OFF]);
- 		break;
- 	case PR_SWAP_SNK_SRC_SOURCE_ON:
- 		tcpm_enable_auto_vbus_discharge(port, true);
-@@ -5666,7 +5695,7 @@ static void run_state_machine(struct tcpm_port *port)
- 	case PORT_RESET_WAIT_OFF:
- 		tcpm_set_state(port,
- 			       tcpm_default_state(port),
--			       port->vbus_present ? PD_T_PS_SOURCE_OFF : 0);
-+			       port->vbus_present ? pd_timers[PD_TIMER_PS_SOURCE_OFF] : 0);
- 		break;
- 
- 	/* AMS intermediate state */
-@@ -6157,7 +6186,7 @@ static void _tcpm_pd_vbus_vsafe0v(struct tcpm_port *port)
- 	case SRC_ATTACH_WAIT:
- 		if (tcpm_port_is_source(port))
- 			tcpm_set_state(port, tcpm_try_snk(port) ? SNK_TRY : SRC_ATTACHED,
--				       PD_T_CC_DEBOUNCE);
-+				       pd_timers[PD_TIMER_CC_DEBOUNCE]);
- 		break;
- 	case SRC_STARTUP:
- 	case SRC_SEND_CAPABILITIES:
-@@ -7273,6 +7302,47 @@ static int tcpm_fw_get_snk_vdos(struct tcpm_port *port, struct fwnode_handle *fw
- 	return 0;
- }
- 
-+static int tcpm_fw_get_pd_timers(struct tcpm_port *port, struct fwnode_handle *fwnode)
-+{
-+	int ret, i, len;
-+	u32 *buf;
-+
-+	/* pd-timers is an optional property */
-+	ret = fwnode_property_count_u32(fwnode, "pd-timers");
-+	if (ret < 0) {
-+		tcpm_log(port, "Unable to locate 'pd-timers' connector property (%d)", ret);
-+		return 0;
-+	}
-+
-+	if (ret % NUM_TIMER_TABLE_COLS || ret == 0) {
-+		tcpm_log(port, "Incorrect 'pd-timers' value. Found %d u32 elements in array", ret);
-+		return 0;
-+	}
-+
-+	len = min(ret, PD_NUM_TIMERS * NUM_TIMER_TABLE_COLS);
-+
-+	buf = kcalloc(len, sizeof(*buf), GFP_KERNEL);
-+	if (!buf)
-+		return -ENOMEM;
-+
-+	ret = fwnode_property_read_u32_array(fwnode, "pd-timers", buf, len);
-+	if (ret) {
-+		dev_err(port->dev, "Unable to read pd-timers property (%d)", ret);
-+		goto done;
-+	}
-+
-+	for (i = 0; i < len - 1; i += NUM_TIMER_TABLE_COLS) {
-+		if (buf[i] >= PD_NUM_TIMERS)
-+			tcpm_log(port, "Unable to find timer index %d, skipping.", buf[i]);
-+		else
-+			pd_timers[buf[i]] = buf[i + 1];
-+	}
-+
-+done:
-+	kfree(buf);
-+	return ret;
-+}
-+
- /* Power Supply access to expose source power information */
- enum tcpm_psy_online_states {
- 	TCPM_PSY_OFFLINE = 0,
-@@ -7608,6 +7678,10 @@ struct tcpm_port *tcpm_register_port(struct device *dev, struct tcpc_dev *tcpc)
- 	init_completion(&port->pps_complete);
- 	tcpm_debugfs_init(port);
- 
-+	err = tcpm_fw_get_pd_timers(port, tcpc->fwnode);
-+	if (err)
-+		goto out_destroy_wq;
-+
- 	err = tcpm_fw_get_caps(port, tcpc->fwnode);
- 	if (err < 0)
- 		goto out_destroy_wq;
--- 
-2.46.0.598.g6f2099f65c-goog
+I don't think I'd do it as callbacks but just have the HW prober call
+the functions directly. AKA, instead of doing:
 
+  i2c_of_probe_component(dev, "touchscreen", ts_opts, ts_callbacks);
+
+Do:
+
+  grab_touchscreen_resources(...);
+  power_on_touchscreens(...);
+  i2c_of_probe_component(...);
+  power_off_touchscreen(...);
+  release_touchscreen_resources(...);
+
+Obviously I'm spitballing here, though. Without writing the code it's
+hard for me to know that my proposal would be better, but my gut tells
+me that trying to write something overly generic with lots of options
+/ callbacks would be more confusing.
+
+
+>   If the probe succeeded:
+>
+>     5. call provided callback for early release of resources (GPIOs)
+>     6. set "status" to "okay"
+>     7. call provided callback for late release of resources (regulators)
+>
+>   Otherwise at the end of the loop
+>
+> 8. release resources
+>
+> The current code can be reworked into helpers for steps 2, 3, 5, 7 for
+> the single regulator single GPIO case.
+>
+> > > This next item would be a later enhancement (which isn't implemented =
+in
+> > > this series anyway):
+> > >
+> > >   - optional prober callback that does actual probing
+> > >
+> > > In our case it would only be used for cases where an HID-over-I2C
+> > > component shares the same address as a non-HID one, and some extra
+> > > work is needed to determine which type it is. I still need to think
+> > > about the structure of this.
+> >
+> > IMO _that_ would be a great option to the i2c prober. It feels like
+> > you could have an optional register read that needs to match to have
+> > the i2c prober succeed. Most people would leave it blank (just the i2c
+> > device existing is enough) but probably a single register read would
+> > be enough to confirm you got the right device. Most i2c devices have
+> > some sort of "version" / "vendor" / "id" type register somewhere.
+>
+> At least for the stuff that we have (touchscreens and trackpads) such
+> registers typically don't exist, unless it's an HID-over-I2C device,
+> in which case there's the standard HID descriptor at some address.
+> But, yeah, reading the HID descriptor was the use case I had in mind.
+>
+> At least for one Chromebooks it's a bit more tricky because that one
+> HID-over-I2C component shares the same address as a non-HID one. We
+> currently have different SKU IDs and thus different device trees for
+> them, but we could make the prober work with this. It just has be able
+> to tell if the component it's currently probing needs the special
+> prober and is it responding correctly. This bit I need to think about.
+
+I guess Mark Brown also thought that there wouldn't be some magic
+register, but my gut still tells me that most i2c devices have some
+way to confirm that they are what you expect even if it's not an
+official "vendor" or "version" register. Some type of predictable
+register at a predictable location that you could use, at least if you
+knew all of the options that someone might stuff.
+
+For instance, in elan trackpads you can see elan_i2c_get_product_id().
+That just reads a location (ETP_I2C_UNIQUEID_CMD =3D 0x0101) that could
+theoretically be used to figure out (maybe in conjunction with other
+registers) that it's an elan trackpad instead of an i2c-hid one. You'd
+have to (of course) confirm that an i2c-hid device wouldn't somehow
+return back data from this read that made it look like an elan
+trackpad, but it feels like there ought to be some way to figure it
+out with a few i2c register reads.
+
+...that being said, I guess my original assertion that you might be
+able to figure out with a simple register read was naive and you'd
+actually need a function (maybe as a callback) to figure this out.
+
+
+-Doug
 
