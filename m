@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-102036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBB84975472
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 15:50:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66CBB975475
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 15:50:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F249E1C22A6D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 13:50:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7D311F23E9F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2024 13:50:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 581E041C92;
-	Wed, 11 Sep 2024 13:50:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC571191F96;
+	Wed, 11 Sep 2024 13:50:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qN1c6w+6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="liJADfRF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 299CB2F860;
-	Wed, 11 Sep 2024 13:50:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2CA618DF97;
+	Wed, 11 Sep 2024 13:50:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726062607; cv=none; b=iBBAI/2aK3Hk6byWkIBu0wSX5L+nwNRhrN3Jb3yl8O+waz2iF1RnfOsuwKFba/FnmV9YAyn9GtDTQ6GFfVVZHMLjzWb8iDsLi4qpzT2ovkZwryk495VBM/2zt27k+LW8+GthY96zaqRMoFKjArLRAq1MegWdPi6w4LnrFdfkaes=
+	t=1726062608; cv=none; b=WeUX+H4QCDT4DDNbvlS+OsNqifzCelsKvwwCcFlnUbYx9PevHO5JBF6BpZoHswqT7R3spK80KSRg5LMcodIBFQWoQQJzt+Is2OSgJLXU+tHvSJQp7WvIXyBaqTVUNfdjQcV4Mr9F0t0an4nDSV3YmNCRiOR0QYMZMlkKhyvGc9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726062607; c=relaxed/simple;
-	bh=QocAosqKnmkPLqtvpXWONpcmXFjowZ3ECi7H4X+j2oE=;
+	s=arc-20240116; t=1726062608; c=relaxed/simple;
+	bh=dh4cGCxC59QCCjMzBpLS0kceIXEhuBTk994gfi+eahM=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=AHdh/28eGdYNXrr+GhBWg3v2OD7tBM+Xov1wNm8HtUuwRtgMu9sG6ehCp3sixa/6FjETHYZtE7FRYtBrqN5eQwagam8BFWnGtft9NX37Qg6nIU6iB4aH7anhrSlfB05zIpRhBOm6/tNr3RN5qoiEb4hZ8D5hBSf78NRdEDPv0rU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qN1c6w+6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8347CC4CEC0;
-	Wed, 11 Sep 2024 13:50:06 +0000 (UTC)
+	 Message-Id:Subject; b=cXLqc00U+EbKX9rw+VbYE4J5lv+HGjkA4UsFjt0sMF1hK9RWOMej25JNp0a9BMltwl31ACy+uxo9jmVV1oTfHExZFXNDzey3k2lqIbSbeObu7elAPLlmpldKfkbeHZG8/kZbPAYQD59GbH3meebptvauWUX3a83oWehyPAPXQfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=liJADfRF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE010C4CEC7;
+	Wed, 11 Sep 2024 13:50:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726062606;
-	bh=QocAosqKnmkPLqtvpXWONpcmXFjowZ3ECi7H4X+j2oE=;
+	s=k20201202; t=1726062608;
+	bh=dh4cGCxC59QCCjMzBpLS0kceIXEhuBTk994gfi+eahM=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=qN1c6w+6LSrhU0Qcz5h0tDXZ4qVm20XUSbvnG15YiOJjuOBX/NgfBRtZILRZ4Tp0J
-	 2PdmOcMchraPgsend/Mpf8ZAPThX5oLMN8Z35DQ0qxMwxHRijwQWGHB3kcYQPeIydi
-	 KIRo8cr4RqYmrubz9WpBMrCzxAxlENwTFilyq6Q9ChY1xiIs7Psot7pkVVgR6GIOjM
-	 l/7shRlPjvy2tVtcJGqaxnL9t35BEHXm0XGdf//PPa1qzcWDgwYJqsM3ZWn0TkNCK7
-	 jEe0OcD2TyEAnLHz1GQteOVpULqgQ5DFKI2eH0JXX0nKmiJ4lGqf5WgTTa12FIrdWy
-	 G+9WLeATP0eZQ==
-Date: Wed, 11 Sep 2024 08:50:05 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	b=liJADfRFj5YDkEI32IGlCwgzxCK/qPkkovcKfizqdQTqO9vpt7bwKvriZQqWTSSJW
+	 OcFQU0AC7N0+ohZTo4VdDmOh37UsREe5QThijkzvt0ux/+VVlx+5AbXv1J7oWSbNvf
+	 IHeWqRUbaUhKewmgU1YxYzxtN7WXvtMZT0XXmf1Z38uwpGbRl9uF/3eox1QogFW8i3
+	 I2BLA8R+1RoNMpP56t0NZ1BadIEwhjrOEZfbxLqH08hWgVQ1g6RuomkSZpbeeUYyF1
+	 xhr8hKIs7YC2a3WIzDvPhBWcCgSUuiXDjjYNW8FzN+AgWGDrNDerIUAU5uXDMeMbFN
+	 50irV7NWDnzew==
+Date: Wed, 11 Sep 2024 08:50:06 -0500
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,83 +51,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Stanimir Varbanov <svarbanov@suse.de>
-Cc: linux-rpi-kernel@lists.infradead.org, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, linux-kernel@vger.kernel.org, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Jonathan Bell <jonathan@raspberrypi.com>, 
- Nicolas Saenz Julienne <nsaenz@kernel.org>, 
- Thomas Gleixner <tglx@linutronix.de>, Conor Dooley <conor+dt@kernel.org>, 
- Jim Quinlan <jim2101024@gmail.com>, linux-pci@vger.kernel.org, 
- Phil Elwell <phil@raspberrypi.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- kw@linux.com, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Andrea della Porta <andrea.porta@suse.com>
-In-Reply-To: <20240910151845.17308-1-svarbanov@suse.de>
-References: <20240910151845.17308-1-svarbanov@suse.de>
-Message-Id: <172606223862.90488.9381766906097869924.robh@kernel.org>
-Subject: Re: [PATCH v2 -next 00/11] Add PCIe support for bcm2712
+To: Dara Stotland <dstotland@nvidia.com>
+Cc: devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Brad Griffis <bgriffis@nvidia.com>, linux-tegra@vger.kernel.org, 
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20240910190457.2154367-1-dstotland@nvidia.com>
+References: <20240910190457.2154367-1-dstotland@nvidia.com>
+Message-Id: <172606223949.90537.11066452244485484767.robh@kernel.org>
+Subject: Re: [PATCH 0/2] Tegra234: Add AGX Orin SKU8 support
 
 
-On Tue, 10 Sep 2024 18:18:34 +0300, Stanimir Varbanov wrote:
-> Hello,
+On Tue, 10 Sep 2024 19:04:55 +0000, Dara Stotland wrote:
+> This patchset adds support for the AGX Orin Industrial Module (SKU8)
+> in the AGX Orin Developer Kit.
 > 
-> Here is a v2 of adding PCIe support for bcm2712 (RPi5), the fisrt
-> version can be found at [1].
+> Dara Stotland (2):
+>   dt-bindings: arm: Tegra234 Industrial Module
+>   arm64: tegra: Create SKU8 AGX Orin board file
 > 
-> v2 is based on linux-next plus latest changes in pcie-brcmstb driver
-> [2]. The changes recently made by Jim leaded to a simplified patchset
-> for bcm2712 enablement coparing with previous version of this series.
-> 
-> Noticeable changes are:
-> 
->  - Use of msi-range property in the MIP MSI-X controller and DT which
->  make possible to avoid few private DT properties. The other noticeable
->  change is moving of msi-pci-addr private property to a second 'reg'
->  region. I'll appreciate comments on this.
-> 
->  - Now the PCIe DT nodes are on separate axi{} simple-bus because adding
->  it on soc{} adds too much churn in the node (Florian).
-> 
->  - Added 'quirks' field in pcie_cfg_data to work around an issue (hw bug?)
->  with bridge_reset on bcm2712 SoC.
-> 
-> regards,
-> ~Stan
-> 
-> [1] https://patchwork.kernel.org/project/linux-pci/cover/20240626104544.14233-1-svarbanov@suse.de/
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/log/?h=controller/brcmstb
-> 
-> Stanimir Varbanov (11):
->   dt-bindings: interrupt-controller: Add bcm2712 MSI-X DT bindings
->   dt-bindings: PCI: brcmstb: Update bindings for PCIe on bcm2712
->   irqchip: mip: Add Broadcom bcm2712 MSI-X interrupt controller
->   PCI: brcmstb: Expand inbound size calculation helper
->   PCI: brcmstb: Restore CRS in RootCtl after prstn_n
->   PCI: brcmstb: Enable external MSI-X if available
->   PCI: brcmstb: Avoid turn off of bridge reset
->   PCI: brcmstb: Add bcm2712 support
->   PCI: brcmstb: Reuse config structure
->   arm64: dts: broadcom: bcm2712: Add PCIe DT nodes
->   arm64: dts: broadcom: bcm2712-rpi-5-b: Enable PCIe DT nodes
-> 
->  .../brcm,bcm2712-msix.yaml                    |  69 ++++
->  .../bindings/pci/brcm,stb-pcie.yaml           |   5 +-
->  .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     |   8 +
->  arch/arm64/boot/dts/broadcom/bcm2712.dtsi     | 166 ++++++++++
->  drivers/irqchip/Kconfig                       |  12 +
->  drivers/irqchip/Makefile                      |   1 +
->  drivers/irqchip/irq-bcm2712-mip.c             | 310 ++++++++++++++++++
->  drivers/pci/controller/pcie-brcmstb.c         | 172 +++++++---
->  8 files changed, 694 insertions(+), 49 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
->  create mode 100644 drivers/irqchip/irq-bcm2712-mip.c
+>  .../devicetree/bindings/arm/tegra.yaml        |   5 +
+>  arch/arm64/boot/dts/nvidia/Makefile           |   1 +
+>  .../nvidia/tegra234-p3737-0000+p3701-0000.dts | 544 +----------------
+>  .../nvidia/tegra234-p3737-0000+p3701-0008.dts |  11 +
+>  .../dts/nvidia/tegra234-p3737-0000+p3701.dtsi | 547 ++++++++++++++++++
+>  5 files changed, 566 insertions(+), 542 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dts
+>  create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701.dtsi
 > 
 > --
-> 2.35.3
+> 2.17.1
 > 
 > 
 > 
@@ -147,36 +102,45 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y broadcom/bcm2712-rpi-5-b.dtb' for 20240910151845.17308-1-svarbanov@suse.de:
+New warnings running 'make CHECK_DTBS=y nvidia/tegra234-p3737-0000+p3701-0000.dtb nvidia/tegra234-p3737-0000+p3701-0008.dtb' for 20240910190457.2154367-1-dstotland@nvidia.com:
 
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@100000: resets: [[12, 42], [13]] is too short
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@100000: reset-names:0: 'rescal' was expected
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@100000: reset-names:1: 'bridge' was expected
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@100000: reset-names: ['bridge', 'rescal'] is too short
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@110000: 'msi-controller' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@110000: resets: [[12, 43], [13]] is too short
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@110000: reset-names:0: 'rescal' was expected
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@110000: reset-names:1: 'bridge' was expected
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@110000: reset-names: ['bridge', 'rescal'] is too short
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@120000: 'msi-controller' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@120000: resets: [[12, 44], [13]] is too short
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@120000: reset-names:0: 'rescal' was expected
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@120000: reset-names:1: 'bridge' was expected
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@120000: reset-names: ['bridge', 'rescal'] is too short
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: gpio@2200000: 'gpio-ranges' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/gpio/nvidia,tegra186-gpio.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: ahub@2900800: admaif@290f000: 'interconnect-names', 'interconnects', 'iommus' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/sound/nvidia,tegra210-ahub.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: admaif@290f000: 'interconnect-names', 'interconnects', 'iommus' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/sound/nvidia,tegra210-admaif.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: /bus@0/serial@31d0000: failed to match any schema with compatible: ['arm,sbsa-uart']
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: /bus@0/i2c@31e0000/audio-codec@1c: failed to match any schema with compatible: ['realtek,rt5640']
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: hda@3510000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['nvidia,tegra234-hda'] is too short
+	'nvidia,tegra30-hda' was expected
+	'nvidia,tegra132-hda' was expected
+	from schema $id: http://devicetree.org/schemas/sound/nvidia,tegra30-hda.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: hda@3510000: clock-names:1: 'hda2hdmi' was expected
+	from schema $id: http://devicetree.org/schemas/sound/nvidia,tegra30-hda.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: hda@3510000: reset-names:1: 'hda2hdmi' was expected
+	from schema $id: http://devicetree.org/schemas/sound/nvidia,tegra30-hda.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: padctl@3520000: ports:usb2-0: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: padctl@3520000: ports:usb2-0: 'connector' is a dependency of 'usb-role-switch'
+	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: padctl@3520000: ports:usb2-1: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: padctl@3520000: ports:usb3-0: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: padctl@3520000: ports:usb3-1: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra194-xusb-padctl.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: ethernet@6800000: phy-mode: ['10gbase-r'] does not contain items matching the given schema
+	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: ethernet@6800000: 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: ethernet@6900000: 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: ethernet@6a00000: 'snps,axi-config', 'stmmac-axi-config' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: gpio@c2f0000: 'gpio-ranges' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/gpio/nvidia,tegra186-gpio.yaml#
 
 
 
