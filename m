@@ -1,109 +1,196 @@
-Return-Path: <devicetree+bounces-102328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9653A9767DA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 13:28:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC10D9767E7
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 13:29:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 593372829F2
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 11:28:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FE451F24BE3
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 11:29:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D06961A4E68;
-	Thu, 12 Sep 2024 11:23:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 791E71A0BC8;
+	Thu, 12 Sep 2024 11:28:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LYypDVPT"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="0MMyeIV3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A93051A42D0;
-	Thu, 12 Sep 2024 11:23:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9514F13174B;
+	Thu, 12 Sep 2024 11:28:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726140190; cv=none; b=WOA9i5G0Q7ZIPFslBjyjZvdun7SU1GLvRYVFhMEbkXj1qyfIUWZ3mNQr4H7lPS6TTkmtolpsSgOxQLBLyL98GlJMhLHPBbF7SaSJBrMb4RNyzFLNs4zSpea3G+C81sHzvksC60wvohfSOz12m+RTGFlmMu6Pz5jV5gy2MRtbfG0=
+	t=1726140489; cv=none; b=cezw79w5g1rG7eWtNup1nkoSvbIDI0FWHJuuh8YrYHXCTIoxsXWlEU93zhtyfIFPYMaUNF2rLfaRrhNWEf7gzQqkmaepgtERUKdiyUV9ezdj88UZwuchH2/C8Ewnbg+k96ijFy4qrBuyeKSrvlh0FWXrNe/NoesOy7lXM3UnGv4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726140190; c=relaxed/simple;
-	bh=wi4eh6Bhf9065g9IPgV5aYCLO5OYDMz5Y4IF0FbnzQM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k3YRxPEIiA5ysOe1eKobywKm+A7RuPKyR01QQ8ZUCx14cTVqVp2n3GsGncq9iOuMTWBceOOjBI7RPmUsdGYUWGS7sNOg2Fedp4XEzAx0JIcS/6HSb0qjrbU1pmmFDfzuvc8hkOwPTDvCKyS0r3h3sNNHmYsCWdXpeWBssKoK8Tk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LYypDVPT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6ED17C4CEC3;
-	Thu, 12 Sep 2024 11:23:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726140190;
-	bh=wi4eh6Bhf9065g9IPgV5aYCLO5OYDMz5Y4IF0FbnzQM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LYypDVPT/2O7zA+CCnkJJI/4Q7dXlEtC2dhiM+Rt92Ia/bpG9WzM9uZNT5tvAGl0g
-	 zq8dhAIlzsM1ewm8TpYnGXK6uZ8kUC3baxoy/Tou8ZTlcFdeLqwYSxrqf964KMOhJJ
-	 LhFmZcfrTglZfOJY1522QVD6F9zNsynbB9BgBxf9o/+HmGdpQjOMaACLLli//2IVdO
-	 1K7kfjz5ArCKl1tflR6Xn1WCqOXx+WpjMEK4Kq7fMK3P0SRSjU7J5bqywXR/WaptEr
-	 torRixbRVxncJa7DlZVz/SBpkXoLg4ma7GoEMM8paT0J7IxFnH2A1XesgYLHuWPADc
-	 Cmq4cbc5xxuKg==
-Date: Thu, 12 Sep 2024 12:23:02 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Ki-Seok Jo <kiseok.jo@irondevice.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Application <application@irondevice.com>
-Subject: Re: [PATCH v2 1/3] ASoC: sma1307: Add driver for Iron Device SMA1307
-Message-ID: <9c672897-3470-4994-8f22-3e1911ef3c36@sirena.org.uk>
-References: <20240903054435.2659-1-kiseok.jo@irondevice.com>
- <20240903054435.2659-2-kiseok.jo@irondevice.com>
- <51e05109-049f-4efa-b923-60943fe82777@sirena.org.uk>
- <SL2P216MB23371B88485C16DF14A274058C642@SL2P216MB2337.KORP216.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1726140489; c=relaxed/simple;
+	bh=nDn6unH5tAhXWtRRLOGA+5Nl2pWg7WAtVYRbNLHpai8=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L7EpOKZXzByt8ZX508zH1W03UuI92QQj5NcHIFGKZs5qtA8j0aa7IW5qPrdK7MM5IPJI9A++pfDUng+Lly3nDEiHgU8UO8syJRIpLN5ev/7+GDgzpPuOfQqt96nlO8ERTXSNEawkayQm7uAOBlJfggg02c2/hvZm+oCay9snruI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=0MMyeIV3; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1726140488; x=1757676488;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=nDn6unH5tAhXWtRRLOGA+5Nl2pWg7WAtVYRbNLHpai8=;
+  b=0MMyeIV3aSLOm6gutOxnKP/qPPvGUEhSYEcA8xkyM8ZAcajwfj+0ZiFx
+   iojvAcoAMZY4qhbsacg8w887PiOGzBFrR1xoVcaB7xkEGph5Jd10F7VUV
+   rC2meF9NI321Mohg324Px3G1qMVEk5LJ1HDSHC2uYRyHi+SqkeO35wltH
+   +MUS+1GQG6Qb1t4PSHOoLiEP44AKh7X6BO3VTZNrS+N7SsPMxCxQQxik4
+   oQ84g52p4HKjWlP0d4dYg+xnSWldPD9mlMxYkx5Bg9RPa68JvaT1JEyQr
+   IAUayAAqxWed4zfw0ugM6hg6d/Bl/9ywhOivgBUXewoeJsIcV6F256nZF
+   w==;
+X-CSE-ConnectionGUID: Ho+Go28UQ22rTQtj8F2tvQ==
+X-CSE-MsgGUID: 42eUs+DHSTujsgDfYWh4nw==
+X-IronPort-AV: E=Sophos;i="6.10,222,1719903600"; 
+   d="asc'?scan'208";a="262681680"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Sep 2024 04:28:06 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 12 Sep 2024 04:27:57 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Thu, 12 Sep 2024 04:27:55 -0700
+Date: Thu, 12 Sep 2024 12:27:22 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+CC: Conor Dooley <conor@kernel.org>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Catalin
+ Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+	<linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, NXP
+ S32 Linux Team <s32@nxp.com>, Bogdan-Gabriel Roman
+	<bogdan-gabriel.roman@nxp.com>, Ghennadi Procopciuc
+	<ghennadi.procopciuc@nxp.com>
+Subject: Re: [PATCH 1/4] dt-bindings: rtc: add schema for NXP S32G2/S32G3 SoCs
+Message-ID: <20240912-immersion-obvious-81a2a0c7a9cb@wendy>
+References: <20240911070028.127659-1-ciprianmarian.costea@oss.nxp.com>
+ <20240911070028.127659-2-ciprianmarian.costea@oss.nxp.com>
+ <20240911-racism-playmaker-71cb87d1260f@spud>
+ <62ba70ca-429e-476c-bb7b-78f743574a68@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wUoJipqS0jGmv+Ga"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="2CwcanIC+v5LIFSS"
 Content-Disposition: inline
-In-Reply-To: <SL2P216MB23371B88485C16DF14A274058C642@SL2P216MB2337.KORP216.PROD.OUTLOOK.COM>
-X-Cookie: Happiness is the greatest good.
+In-Reply-To: <62ba70ca-429e-476c-bb7b-78f743574a68@oss.nxp.com>
 
-
---wUoJipqS0jGmv+Ga
+--2CwcanIC+v5LIFSS
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 12, 2024 at 08:35:05AM +0000, Ki-Seok Jo wrote:
+On Thu, Sep 12, 2024 at 01:50:25PM +0300, Ciprian Marian Costea wrote:
+> On 9/11/2024 9:21 PM, Conor Dooley wrote:
+> > On Wed, Sep 11, 2024 at 10:00:25AM +0300, Ciprian Costea wrote:
+> > > From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 
-> > > +static DEVICE_ATTR_RW(check_fault_period);
+> > > +  nxp,clksel:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description:
+> > > +      Input clock selector. Choose between 0-SIRC and 2-FIRC.
+> > > +      The reason for these IDs not being consecutive is because
+> > > +      they are hardware coupled.
+> > > +    enum:
+> > > +      - 0  # SIRC
+> > > +      - 2  # FIRC
+> >=20
+> > Could you please explain why, given both clocks must be provided by
+> > the hardware for there to be a choice, why choosing between them is a
+> > property of the hardware?
+> >=20
+>=20
+>=20
+> According to RTC module's clocking scheme for S32G2/S32G3 SoCs, it has th=
+ree
+> potential clock sources to select between:
+>   1. FIRC:
+>     - fast clock - ~48 MHz output
+>     - chosen by default because it is proven to be more reliable (e.g:
+> temperature drift).
+>   2. SIRC:
+>     - slow clock - ~32 kHz output
+>     - When in Standby mode, SIRC_CLK is the only available clock for RTC.
+> This is important because RTC module is used as a wakeup source from Susp=
+end
+> to RAM on S32G2/S32G3 SoC. Therefore, a temporary switch to SIRC clock is
+> performed when entering Suspend to RAM.
+>=20
+>   3. EXT_CLK:
+>     - has not been tested/validated for those SoCs within NXP's downstream
+> Linux. Therefore, I did not treat it, nor mention it, for the moment.
+>=20
+> Now to answer your question, all above clocks are entering a RTCC[CLKSEL]
+> (RTCC - RTC Control Register) mux. Therefore, a selection can be made,
+> according to one's needs.
 
-> > Any reason the fault stuff isn't an ALSA control?
+Given both clocks must be provided, what is the benefit of using the
+slow clock outside of standby mode? Why would someone not just always
+use the fast clock outside of standby and slow in standby?
 
-> I'm planning to change it to ALSA control as per the feedback.
-> Could you please let me know how to set the default value for a control?
-> For example, I would like to set it to a value of 60.
-> (For controls with a boolean value, I would like to initialize it with a true value.)
+> I will add a shorter version of above information in the bindings
+> documentation in the V2 of this patchset.
+>=20
+> > > +
+> > > +  nxp,dividers:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > +    description:
+> > > +      An array of two u32 elements, the former encoding DIV512,
+> > > +      the latter encoding DIV32. These are dividers that can be enab=
+led
+> > > +      individually, or cascaded. Use 0 to disable the respective div=
+ider,
+> > > +      and 1 to enable it.
+> >=20
+> > Please explain to me what makes this a property of the hardware and how
+> > someone would go about choosing the divider settings for their hardware.
+> >=20
+>=20
+> As per hardware RTC module clocking scheme, the output of the clock mux c=
+an
+> be optionally divided by a combination of 512 and 32 (via other two input
+> cascaded muxes) to give various count periods for different clock sources.
+>=20
+> With respect to choosing the divider settings for custom hardware, it
 
-For something like this which isn't coming from the register map you can
-just pick a value and set wherever the data is stored during the CODEC
-init function.
+What do you mean by "custom" hardware? I assume that you mean on a per
+board basis?
 
---wUoJipqS0jGmv+Ga
+> depends on the clock source being selected and the desired rollover time.
+> For example, on S32G2 or S32G3 SoC based boards, using FIRC (~48-51 MHz)
+> with DIV512 enabled results in a rollover time of aprox. 13 hours.
+
+So a different user of the same board might want a different rollover
+time? If so, this doesn't really seem like something that should be
+controlled from devicetree.
+
+Cheers,
+Conor.
+
+--2CwcanIC+v5LIFSS
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbizxUACgkQJNaLcl1U
-h9BTLgf/Ua7Ov5hjGscJFUzYbRL9HCfAEC0w6vw+uu7adii69RTeDHc70LFCy/zq
-gFNQ3oXSfwTCwFMiTBdEibyni2fbNWeAvQIT0ouGOcx5q2UOIko5tPMRexboNcQN
-5OCDh+8AMjcgrk4btDzwhGCZPbU0/XatSVGFZheCbXkfp4rsERSfemTEE4zRz0B0
-eexOHmpqLOM0Mp480ZhgEXdd7WffkZtfHWF8iStuIJquqlnON+CF5Ie+U2e8B/bs
-WTae7DVRD0R+gm3jgn2RpcTdooqY460vicDEU1AhbQRG3FJ+ThRJIRFsxR+xwBJd
-d+o632wkwU7kga9nFeME0oZCw2PiFQ==
-=rA+w
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuLQGgAKCRB4tDGHoIJi
+0tEgAP99+nRC38H0f8hEmTD3u+9C+yaZTnWDwwyh7e4qtBLr+gD9EZom/+kmjZsN
+6vIDaHsEjiJnlxxws/NntJUiMyrv6gY=
+=vCvM
 -----END PGP SIGNATURE-----
 
---wUoJipqS0jGmv+Ga--
+--2CwcanIC+v5LIFSS--
 
