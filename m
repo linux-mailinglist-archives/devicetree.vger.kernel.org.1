@@ -1,205 +1,107 @@
-Return-Path: <devicetree+bounces-102471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD54C97727A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 21:53:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B42E797727D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 21:58:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BA931C23AF4
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 19:53:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6FD51C22A2D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 19:57:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 017D21BFDF6;
-	Thu, 12 Sep 2024 19:53:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C24931BF7FC;
+	Thu, 12 Sep 2024 19:57:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="TbFaotKV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nXov8ImP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1002313D530
-	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 19:53:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9944413D530;
+	Thu, 12 Sep 2024 19:57:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726170824; cv=none; b=qC3Y1vEUqd0z5XMqEVHGdRkEajJqkgtYjdRvvsmVqdfAKcq+QR7N70e80ReACVSjuOO6zL2r/zrKtRDSh+ne04uFV+18/EvKQOmsQv8lvslh0pONQJyIOhm5KIWZRM3P1wtTh+fegBCcOkxI+K83kad8vXb9qkPees5nNeLSknI=
+	t=1726171075; cv=none; b=lSWFwL852Z+zuHp/VvpwMeFjVdIk3A9v8FO/tY1HxywL5ZwvjWk307462NqVoTvuMZvNs1onpBRZSY5TGPFSEIqW1DrBCSoOrPRVwX+XBpyG6fRn75mNtyM8IO+DESAQ1Ps8X453IR0Lkv52GJKY+c5sB6SLx1YBkkF0qtnQkA8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726170824; c=relaxed/simple;
-	bh=gPwCkTrHQdbsIlO87NzXTZsyvl2I+63Uc/+HMghrN1w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g+6EfKGiaq48Esm+ydFbFRsyGdILt+Lv3BVgZhdjjc2GQTxv3YRGgjA2JA+x18A8vN6H+lUGLKp7oC3JLBuqth5HyHd7/GPP5vQ/ZXGMO8hskr7FGMWfzrnZlYOO6kcWVAOvYMhmgRlM0ohfSt7W49ke1J/z8RXS0tMmxBMl394=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=TbFaotKV; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1726170804;
- bh=r1OmUvvXBK2m/ZTQhR2+stgE0XRSFyk2GHzUddZ5Wps=;
- b=TbFaotKVrsa0TchV4o5DR4L2n6rXDXyvQK76MFEZFrYNEi0a8utv/ifedW1G/GJvlgMIleVGj
- lhVdLdXzYvLBUziOOaJAfy+3tEPkIbZhsDFwcA5rNSnry1mvHoOL1N5cBiFj2MhWEDzZZ9el7wJ
- INTl4xfiZH8k+pmtK5UT81YBVhn5ivCVGj/2lKQoKohY+UypgLO0PBuGSrHVDPt7ZF3g+lFCAfq
- ZgqqZAmLNtgmuK4AbtsAqLhFlj6LffaPVTlgUnnmwHzCyrdAZDCi9bKciGPyEb+kGc5hhAKeB+9
- 32omUelNuR+l14xaLCVbpASlpV45ap8CRwoRfSbxJuQA==
-Message-ID: <ed4b6913-f19b-4280-b3b2-f5bb1e7f47eb@kwiboo.se>
-Date: Thu, 12 Sep 2024 21:53:16 +0200
+	s=arc-20240116; t=1726171075; c=relaxed/simple;
+	bh=RkWoI/SZq21kLXJf2EVrauT+m9UWfqNmPlRimV1ezzE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iT4x0CNiy/yb7h8bE6I4v6IdsBjl5bHx8L9u4KLiwWFiS0Q7ye7FuWsjC+vHgVs4Oq9rIOr01Yz2vfMlFkAXv/rC9OzQUXVUsbl2YIplhEWccJmEu8sF9eWrlTwb/tbcHGu+PMHe9wKP2HBXKJnozpC739w5+7DAWmwuoJng9y8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nXov8ImP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05E1DC4CEC3;
+	Thu, 12 Sep 2024 19:57:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726171075;
+	bh=RkWoI/SZq21kLXJf2EVrauT+m9UWfqNmPlRimV1ezzE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nXov8ImPFzo59RqnVIIl8zmbJsYop1wnJ5/qII/nwnNKmSmgMteRBK9HPc3K7vImt
+	 zI3PLpJj/1TgrpU8fLn8ZvIm3hhtZMUeL7pgVa46bpTlqLjujppT9jSm/FAb5fLXiw
+	 D0ksFHuly11cyayesqk6I1vEMPVhBBEdMR9ApZ9s9VOM/A4IOijQbKmwS+XT2cQxKO
+	 jVxOP0twQrSrnxH1aJdStTl3/yTutEGiNiiU8zAlQ3oSTc2Vdds4+bsvwuAzd/Ujtr
+	 2cBZC8f5j7p9/1bBuSXjnbw6g86CiXhjB9sXlWVzoWy/GuneTlxA021X6xbzFwS+tf
+	 SfhhUnCmyrX3Q==
+Date: Thu, 12 Sep 2024 14:57:53 -0500
+From: Rob Herring <robh@kernel.org>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	saravanak@google.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] of/irq: Use helper to define resources
+Message-ID: <20240912195753.GA555349-robh@kernel.org>
+References: <20240911160253.37221-1-vassilisamir@gmail.com>
+ <20240911160253.37221-3-vassilisamir@gmail.com>
+ <ZuHCJcTyQvfPl7ai@smile.fi.intel.com>
+ <20240911173438.GA5015@vamoiridPC>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] arm64: dts: rockchip: Enable all 3 USBs on Turing RK1
-To: Sam Edwards <cfsworks@gmail.com>, Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ondrej Jirman <megi@xff.cz>,
- Chris Morgan <macromorgan@hotmail.com>, Alex Zhao <zzc@rock-chips.com>,
- Dragan Simic <dsimic@manjaro.org>, FUKAUMI Naoki <naoki@radxa.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Jing Luo <jing@jing.rocks>, Kever Yang <kever.yang@rock-chips.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- =?UTF-8?Q?Daniel_Kukie=C5=82a?= <daniel@kukiela.pl>,
- Joshua Riek <jjriek@verizon.net>
-References: <20240912025034.180233-1-CFSworks@gmail.com>
- <20240912025034.180233-5-CFSworks@gmail.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20240912025034.180233-5-CFSworks@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-ForwardEmail-ID: 66e346b3fcb6c7d83e7b8dc6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240911173438.GA5015@vamoiridPC>
 
-Hi Sam,
-
-On 2024-09-12 04:50, Sam Edwards wrote:
-> The Turing RK1 contains 3 different USBs:
-> - USB0: USB 2.0, OTG
-> - USB1: USB 3.0, host
-> - USB2: USB 2.0, host
+On Wed, Sep 11, 2024 at 07:34:38PM +0200, Vasileios Amoiridis wrote:
+> On Wed, Sep 11, 2024 at 07:15:33PM +0300, Andy Shevchenko wrote:
+> > On Wed, Sep 11, 2024 at 06:02:53PM +0200, Vasileios Amoiridis wrote:
+> > > Resources definition can become simpler and more organised by using the
+> > > dedicated helpers.
+> > 
+> > ...
+> > 
+> > > -		r->start = r->end = irq;
+> > > -		r->flags = IORESOURCE_IRQ | irq_get_trigger_type(irq);
+> > > -		r->name = name ? name : of_node_full_name(dev);
+> > > +		*r = DEFINE_RES_IRQ_NAMED(irq, name ? name : of_node_full_name(dev));
+> > 
+> > Hmm... It seems you haven't replied to me why you avoid using Elvis here,
+> > while at it.
+> > 
+> > Also for both patches you probably want
+> > Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > 
+> > > +		r->flags |= irq_get_trigger_type(irq);
+> > 
+> > -- 
+> > With Best Regards,
+> > Andy Shevchenko
+> > 
+> > 
 > 
-> This patch activates the necessary DT nodes to enable all 3 buses.
 > 
-> Future work will be needed on USB0: it is not USB 3.0, but Linux creates
-> an unused USB 3.0 root hub and the controller also requires that USBDP0
-> be powered up. However, it is possible to remove this dependency. By
-> either patching the xHCI driver to ignore the enumerated USB 3.0 port or
-> setting usb3otg0_host_num_u3_port=0 in the GRF to stop the controller
-> from enumerating a USB 3.0 port in the first place, neither Linux nor
-> the controller will expect USB 3.0 capability, and USBDP0 can then
-> safely be removed from the `phys` property.
+> Hi Andy,
 > 
-> Signed-off-by: Sam Edwards <CFSworks@gmail.com>
-> ---
->  .../boot/dts/rockchip/rk3588-turing-rk1.dtsi  | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
+> Thanks for your message once again!!
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
-> index f6a12fe12d45..6036c4fe6727 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
-> @@ -666,3 +666,67 @@ &uart9 {
->  	pinctrl-0 = <&uart9m0_xfer>;
->  	status = "okay";
->  };
-> +
-> +/* USB 0: USB 2.0 only, OTG-capable */
-> +&u2phy0 {
-> +	status = "okay";
-> +};
-> +
-> +&u2phy0_otg {
-> +	status = "okay";
-> +};
-> +
-> +&usbdp_phy0 {
-> +	/*
-> +	 * TODO: On the RK1, USBDP0 drives the DisplayPort pins, and is not
-> +	 * involved in this USB2-only bus.  However, if the USB3 port is
-> +	 * enabled in the xHCI below, the controller will expect this PHY to be
-> +	 * powered up and holding RX_STATUS idle, or else it will generate an
-> +	 * endless stream of CSC events whenever a device is plugged in.  Until
-> +	 * there is a way to communicate to usb_host0_xhci that it doesn't have
-> +	 * a USB3 port, we have no choice but to power up USBDP0.
-> +	 */
+> I honestly didn't know this operator, I just found out about it.
+> Looks like it fits here, I can definitely use it.
+> 
+> I am going to leave it for a while to see if Krzysztof or Rob have
+> any other comments and then I can send as you proposed.
 
-Sounds like this may be missing
+No comments from me, please send with the updates.
 
-	rockchip,dp-lane-mux = <0 1 2 3>;
-
-or
-
-	rockchip,dp-lane-mux = <3 2 1 0>;
-
-if all lanes are used for DP and none are used for USB.
-
-It should help describe the hw and also help the driver set mode to
-UDPHY_MODE_DP and that should disable the u3 port, or there may be an
-issue to fix in the phy driver.
-
-> +	status = "okay";
-> +};
-> +
-> +&usb_host0_xhci {
-> +	extcon = <&u2phy0>;
-> +	maximum-speed = "high-speed";
-
-If this only use the USB2 phy, this should probably also override the
-default phys and phy-names props with:
-
-	phys = <&u2phy0_otg>;
-	phy-names = "usb2-phy";
-
-Regards,
-Jonas
-
-> +	status = "okay";
-> +};
-> +
-> +/* USB 1: USB 3.0, host only */
-> +&u2phy1 {
-> +	status = "okay";
-> +};
-> +
-> +&u2phy1_otg {
-> +	status = "okay";
-> +};
-> +
-> +&usbdp_phy1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_host1_xhci {
-> +	extcon = <&u2phy1>;
-> +	dr_mode = "host";
-> +	status = "okay";
-> +};
-> +
-> +/* USB 2: USB 2.0, host only */
-> +&u2phy2 {
-> +	status = "okay";
-> +};
-> +
-> +&u2phy2_host {
-> +	status = "okay";
-> +};
-> +
-> +&usb_host0_ehci {
-> +	status = "okay";
-> +};
-> +
-> +&usb_host0_ohci {
-> +	status = "okay";
-> +};
-
+Rob
 
