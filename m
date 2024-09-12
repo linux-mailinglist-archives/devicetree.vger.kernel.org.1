@@ -1,158 +1,117 @@
-Return-Path: <devicetree+bounces-102211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C621C975EEF
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 04:34:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 428AD975EF8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 04:38:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A82E284F22
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 02:34:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 649A1B215DC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 02:38:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83C2A374CC;
-	Thu, 12 Sep 2024 02:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D27BB374CC;
+	Thu, 12 Sep 2024 02:38:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="G1c8nAHP"
+	dkim=pass (1024-bit key) header.d=uniontech.com header.i=@uniontech.com header.b="XTczgsIE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D47C2250EC;
-	Thu, 12 Sep 2024 02:34:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45547250EC;
+	Thu, 12 Sep 2024 02:38:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726108446; cv=none; b=QhhmNwewvZ2/ZLQJOIY1drogiPBBYEzx0KQzx12IAfXIkC3UW7cJK0jFdSecMQjkmN0RdPVKt42egmV3ekUEB65Si/VCAhwNn9foC65DaA35pdc7hdBHpfjfxz6/+nTp7kWQmZOwqGa+kmm1rFvi4OZ4i1UmDtod1sSsk0EbRyg=
+	t=1726108712; cv=none; b=FwI9kNDPgvcrmjnCS5LyHuyap5FU6yX3ejbeuzYUXzM0pu9GqojSm4STy1r1CUTyhcw8k5/UA/hCjvmoJg6yNLKiWYkbmr7SxHuh87oIWZ7y+9Fm4EV5hpIckmfPy3XH1sT9mrGjsVyBMNHO+xdS3PJG7Hz0AnQQhjvJ4gtC9Ws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726108446; c=relaxed/simple;
-	bh=kzdpGYHpR8t+EWCDLyPinUUmiIWAsZAqeNVqny4dfw4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ZfPixh4udoa8M15CHJtvYcoscu1oeTF1JKiftXvrULN9bKW8JlyDjy8e/T8ynz0UPhRCONxxI0fncyklsL8kNsit9DnYZYBXHMdce6dCIR/UDg1SX/ZDVcMpNOWqHyeNXl0IQ3kyjzk+6d0qtrEdGF91UCVnuDkr9jAR5liDf6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=G1c8nAHP; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1726108442;
-	bh=7YUclhj44Kyj9d/lxkh3kctrbYaslwM23zCN0mCChZM=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=G1c8nAHP2+fWZgBrge/Lwz4XFo2Gch36lC54YlL0QKvRBbPfHBnG683b6H+gdN/5f
-	 jL8OaGge60Bt9Bns2329yAR2KG2IwmvYNKVqD8CF6m9R0QOk2f+GIaNb6QvvHIyYs8
-	 0KhJ4fSoKajZX8HISAuoncmrDA7xh+XjxNA24T+nZsPq8Th//cV450FS5QT8lr/fM4
-	 MrdemVOky131UXBHUA1KID5dRASIAvnCHGSZATdqcNXAAWw0f4kacX9bsp1coLSJ24
-	 ZwjX3UaSKqp0wEkchahAGOoklBKRF27+NCKh2GmKiITFxAQzXZkD379L4zUMFG1dfo
-	 N1XhNR6Yid/VQ==
-Received: from [192.168.68.112] (ppp118-210-89-8.adl-adc-lon-bras32.tpg.internode.on.net [118.210.89.8])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 177FB650D6;
-	Thu, 12 Sep 2024 10:34:02 +0800 (AWST)
-Message-ID: <39630cb9cf923eec6d8e229aea4e6fc5980aa73e.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v18 0/3] Add i2c-mux and eeprom devices for Meta
- Yosemite4
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, Ricky CX Wu
-	 <ricky.cx.wu.wiwynn@gmail.com>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, devicetree@vger.kernel.org, Joel
- Stanley <joel@jms.id.au>, Conor Dooley <conor+dt@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, linux-aspeed@lists.ozlabs.org, 
- linux-arm-kernel@lists.infradead.org, patrick@stwcx.xyz, 
- linux-kernel@vger.kernel.org
-Date: Thu, 12 Sep 2024 12:04:01 +0930
-In-Reply-To: <172589661042.199175.14634437656639420015.robh@kernel.org>
-References: <20240909105420.441607-1-Delphine_CC_Chiu@wiwynn.com>
-	 <172589661042.199175.14634437656639420015.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1726108712; c=relaxed/simple;
+	bh=U1oQ8yV2876PbJ1l87fAYYB5li3P/vajQPSAI368Zec=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sO1i7bdNWvUD/u4pYDJ7G/MMohQpRUjn/eh4xEmLdcVBsBBTQAmRWe86IJWWsknZ1B9FzeLF7nD+YNbKA8c8IAtntnWsp1OzkcRZQLDrHtYcsWBvP+vRsRBAFikaxq/JQp+3BzJnoiLobWdCwk36K53DBhoDiLos42xM1m4ETCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=uniontech.com; spf=pass smtp.mailfrom=uniontech.com; dkim=pass (1024-bit key) header.d=uniontech.com header.i=@uniontech.com header.b=XTczgsIE; arc=none smtp.client-ip=54.92.39.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=uniontech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=uniontech.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
+	s=onoh2408; t=1726108706;
+	bh=+pRg9X4n7TVLk4pJltxMi594tN+w+P/Lvm16g3XG4LU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=XTczgsIESkLqCDl6+PXig9KDrrVBh6568anOox/JcvGJ74DOi97qJDxuxSZ71ELtG
+	 GwNZpvqgAaBadgn2EkFRnvBo0z6+0ySbrfUvJlLBrm+iZYKfP7M9Stw3TtSYo4/jOf
+	 RDlG4Ji3lbwIDHybKtptTaM/TKq8CxSg+/toLZQE=
+X-QQ-mid: bizesmtp90t1726108703t4wrs7qk
+X-QQ-Originating-IP: WA3jwlK+hZurhA4Tg3wzuZx/vI63xq+b6Mf+xnbk/es=
+Received: from [10.20.53.89] ( [113.57.152.160])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 12 Sep 2024 10:38:21 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 1
+X-BIZMAIL-ID: 15563347605386470238
+Message-ID: <DBEFAD22C49AAFC6+58debc20-5281-4ae7-a418-a4b232be9458@uniontech.com>
+Date: Thu, 12 Sep 2024 10:38:20 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6.6 1/4] riscv: dts: starfive: add assigned-clock* to
+ limit frquency
+To: Conor Dooley <conor.dooley@microchip.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: stable@vger.kernel.org, gregkh@linuxfoundation.org, sashal@kernel.org,
+ william.qiu@starfivetech.com, emil.renner.berthing@canonical.com,
+ xingyu.wu@starfivetech.com, walker.chen@starfivetech.com, robh@kernel.org,
+ hal.feng@starfivetech.com, kernel@esmil.dk, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org, richardcochran@gmail.com,
+ netdev@vger.kernel.org
+References: <D200DC520B462771+20240909074645.1161554-1-wangyuli@uniontech.com>
+ <20240909-fidgeting-baggage-e9ef9fab9ca4@wendy>
+ <ac72665f-0138-4951-aa90-d1defebac9ca@linaro.org>
+ <20240909-wrath-sway-0fe29ff06a22@wendy>
+From: WangYuli <wangyuli@uniontech.com>
+Autocrypt: addr=wangyuli@uniontech.com; keydata=
+ xjMEZoEsiBYJKwYBBAHaRw8BAQdAyDPzcbPnchbIhweThfNK1tg1imM+5kgDBJSKP+nX39DN
+ IVdhbmdZdWxpIDx3YW5neXVsaUB1bmlvbnRlY2guY29tPsKJBBMWCAAxFiEEa1GMzYeuKPkg
+ qDuvxdofMEb0C+4FAmaBLIgCGwMECwkIBwUVCAkKCwUWAgMBAAAKCRDF2h8wRvQL7g0UAQCH
+ 3mrGM0HzOaARhBeA/Q3AIVfhS010a0MZmPTRGVfPbwD/SrncJwwPAL4GiLPEC4XssV6FPUAY
+ 0rA68eNNI9cJLArOOARmgSyJEgorBgEEAZdVAQUBAQdA88W4CTLDD9fKwW9PB5yurCNdWNS7
+ VTL0dvPDofBTjFYDAQgHwngEGBYIACAWIQRrUYzNh64o+SCoO6/F2h8wRvQL7gUCZoEsiQIb
+ DAAKCRDF2h8wRvQL7sKvAP4mBvm7Zn1OUjFViwkma8IGRGosXAvMUFyOHVcl1RTgFQEAuJkU
+ o9ERi7qS/hbUdUgtitI89efbY0TVetgDsyeQiwU=
+In-Reply-To: <20240909-wrath-sway-0fe29ff06a22@wendy>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:uniontech.com:qybglogicsvrgz:qybglogicsvrgz8a-1
 
-Hi Ricky,
 
-On Mon, 2024-09-09 at 10:45 -0500, Rob Herring (Arm) wrote:
-> On Mon, 09 Sep 2024 18:54:15 +0800, Delphine CC Chiu wrote:
-> > From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
-> >=20
-...
-> >=20
-> > Ricky CX Wu (3):
-> >   ARM: dts: aspeed: yosemite4: Revise i2c-mux devices
-> >   ARM: dts: aspeed: yosemite4: add mctp config and sensors for NIC
-> >   ARM: dts: aspeed: yosemite4: add fan led config
-> >=20
-> >  .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 706 ++++++++++++++++--
-> >  1 file changed, 660 insertions(+), 46 deletions(-)
-> >=20
-> > --
-> > 2.25.1
->=20
->=20
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
->=20
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
->=20
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
->=20
->   pip3 install dtschema --upgrade
->=20
->=20
-> New warnings running 'make CHECK_DTBS=3Dy aspeed/aspeed-bmc-facebook-yose=
-mite4.dtb' for 20240909105420.441607-1-Delphine_CC_Chiu@wiwynn.com:
->=20
-> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dtb: pwm@20: '#add=
-ress-cells', '#size-cells' do not match any of the regexes: '^fan-[0-9]+$',=
- 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml
-> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dtb: pwm@2f: '#add=
-ress-cells', '#size-cells' do not match any of the regexes: '^fan-[0-9]+$',=
- 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml
-> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dtb: /ahb/apb/bus@=
-1e78a000/i2c@780/i2c-mux@74/i2c@0/gpio@61: failed to match any schema with =
-compatible: ['nxp,pca9552']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dtb: pwm@20: '#add=
-ress-cells', '#size-cells' do not match any of the regexes: '^fan-[0-9]+$',=
- 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml
-> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dtb: pwm@2f: '#add=
-ress-cells', '#size-cells' do not match any of the regexes: '^fan-[0-9]+$',=
- 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml
-> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dtb: /ahb/apb/bus@=
-1e78a000/i2c@780/i2c-mux@74/i2c@1/gpio@61: failed to match any schema with =
-compatible: ['nxp,pca9552']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dtb: /ahb/apb/bus@=
-1e78a000/i2c@800/i2c-mux@72/i2c@0/temperature-sensor@3c: failed to match an=
-y schema with compatible: ['smsc,emc1403']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dtb: /ahb/apb/bus@=
-1e78a000/i2c@800/i2c-mux@72/i2c@1/temperature-sensor@3c: failed to match an=
-y schema with compatible: ['smsc,emc1403']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dtb: /ahb/apb/bus@=
-1e78a000/i2c@800/i2c-mux@72/i2c@2/temperature-sensor@3c: failed to match an=
-y schema with compatible: ['smsc,emc1403']
-> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dtb: /ahb/apb/bus@=
-1e78a000/i2c@800/i2c-mux@72/i2c@3/temperature-sensor@3c: failed to match an=
-y schema with compatible: ['smsc,emc1403']
->=20
+On 2024/9/9 19:17, Conor Dooley wrote:
+> [6.6] in the subject and Sasha/Greg/stable list on CC, so I figure it is
+> for stable, yeah. Only one of these patches is a "fix", and not really a
+> functional one, so I would like to know why this stuff is being
+> backported. I think under some definition of "new device IDs and quirks"
+> it could be suitable, but it'd be a looser definition than I personally
+> agree with!
+These submissions will help to ensure a more stable behavior for the 
+RISC-V devices involved on the Linux-6.6.y kernel,and as far as I can 
+tell,they won't introduce any new issues (please correct me if I'm wrong).
+> Oh, and also, the 4 patches aren't threaded - you should fix that
 
-Please either:
+I apologize for my ignorance about the correct procedure...
 
-1. Remove the offending nodes from your series so we don't add yet more
-warnings, or
-2. Write appropriate bindings and send them as part of the series
+For instance,for these four commits,I first used 'git format-patch -4' 
+to create four consecutive .patch files,and then used 'git send-email 
+--annotate --cover-letter --thread ./*.patch' to send them,but the 
+result wasn't as expected...
 
-Regarding 1, you can always update the devicetree to add the nodes
-after someone else has got the bindings merged. However, if you must
-have the nodes, then you need to do 2.
+I'm not sure where the problem lies...
 
-Thanks,
-
-Andrew
+> WangYuli.
+QAQ
+-- 
+WangYuli
 
