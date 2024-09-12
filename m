@@ -1,592 +1,244 @@
-Return-Path: <devicetree+bounces-102486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BF3597735C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 23:08:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 581B897738C
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 23:23:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FAE6283B75
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 21:08:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA1FE1F21EEA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 21:23:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8B8C1C2322;
-	Thu, 12 Sep 2024 21:08:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEAE11C1AC6;
+	Thu, 12 Sep 2024 21:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XouL1JKa"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="cMWdsA1K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D147B1C230B;
-	Thu, 12 Sep 2024 21:08:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE2A1BDA92
+	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 21:23:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726175316; cv=none; b=lFDgp0cOd+n/0I0R+KBu0RmhU2hxBVx7ShTDZ8sGmxap6Cq0Icy3PooPxKjOZCXsut6sjb3jD9fPAJ8lb0OHD/DspfA+aitanD5oru9dCa2UVGe2uBc+wpY4ngG7lpX09PfVuvBDn+TfWLnspB3UVFcWmkHQSA1GaatBPmR1Ot8=
+	t=1726176229; cv=none; b=XhcNb2L73iJkly97X9X9xIGGNsCb13LHmTcWirFM8Z2BLRmCsI2+o6wiML85F14xGbJay9bgQmlquDSbEcRq5x8pWNu+n6gC3riRMlgCJmDyva8atFXD1SWgiF0vV3WLTQw4yyQEhLQMTUSKNqPwdl0p8YZc3fv/2VeTuLLOO2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726175316; c=relaxed/simple;
-	bh=ieHwLUC9d6q8xQr5disSuxjgKgTbTb+ZKNlT5Ay+g3U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=sER1bsZ3gabilJq5wudaKMIBjPgpwKYmuJEbT/SmsJ6zmbJI7uthJspm9dbsaRIqrDGxLZNAt7wT3A63SJMrLj9xIbfQl5EJe4PIEqje5iCIcYATFfE/58IcFFQz/NM+0OjscAT1I0nNBOHVD0BxTpnKIqxNpITZ6nVL47UOAVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XouL1JKa; arc=none smtp.client-ip=209.85.160.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-458366791aaso7535871cf.1;
-        Thu, 12 Sep 2024 14:08:34 -0700 (PDT)
+	s=arc-20240116; t=1726176229; c=relaxed/simple;
+	bh=k7Aa77smeh+Klqcv5HZk8DhYqOhjrnHLWwk6+Zw9j8Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YtKBWHsJN2Ycu1bqi7/Wxj0kePKbHo4whltfDQzOWo7LXuzypbr3Ki8AgJfyF++4KPQiCsy7iaf7zt/eIMyEVlEFcLi1+vICRW0LinkV8IAIG8p53nCjsXwC5IIRmU9qyPcrNfG5EOxh64xkn0daV9Vy82vq/EMtIKtofXMiNG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=cMWdsA1K; arc=none smtp.client-ip=209.85.166.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-39f37a5a091so1220125ab.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 14:23:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726175313; x=1726780113; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tWGcVBwkznJABkAETYE0dHWkQaBh3wiEtxDU0kr5FCg=;
-        b=XouL1JKatVpY/M1h8f1d4yRrrL2zJZSVNweyR+mVE7EeMqZEf2q4c56VN6IYaCYE7Y
-         p0ThDr+6GUz56wQlyiXazXV5Ur6Ya1njrfbR2Qy0f84fUARlHSfS4pxaZlbtylT4D+lV
-         Sn+rP+t2ba+PpS9yaBEd5wwZs0VIrCWGuigALM+tEnZeJHOuNPzReMfsOapm5U5dI7pJ
-         /knunJrLZguciFnC9OkWHV5K6g9scWJ+7WGaIdliklqNX63uhBi2Uu0hHtaAWuzna8CO
-         OuQl9oO+RpQIHANWKspEh4QPhywZ2/QGTxw4hrYmbqOgMQGYAFbEoXXWL7cfEOg+IDqd
-         7+qQ==
+        d=sifive.com; s=google; t=1726176227; x=1726781027; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cRBGtOuc/d2snZdpwSiAnIV7rHRa11MPF2f8u+9dU+0=;
+        b=cMWdsA1KCPDE7CS45Aw3pQx6snGbih8YnPJNM/ao37lhA198hYUoLXmjPHHlAlsUpf
+         XDex3Ikl9dFKGohqd6Wytef3G6eGZI50xcDuWkDgeyy4QknHZ9MBWdariGtR4d2WZvGk
+         8Ug6gtDSYd/3xgbjS0SDZlwc135iyHibJsAXRnZSL84uhQ4h7uG76g3Qk+mljz1Y3TBJ
+         HJdhT+vRo9tKWy7lJUYcOKwtqiLMKbJkoVJdrmOu+XvXv3z7wF1HN+2LMe7LhEOB7M9M
+         GdQxJpQBQKBfAdqvJDNnwFjf0rEX+A2AhM8N3qhquJedPn2dv3uRjojuMEXJzf6kiDOv
+         uvKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726175313; x=1726780113;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tWGcVBwkznJABkAETYE0dHWkQaBh3wiEtxDU0kr5FCg=;
-        b=e0omqUWlInAKH1t+nGxKyDpeYlHaa1QW371ZN/IWpTZjT/qfOxCYLg2qYYcFYZqLUQ
-         KhK5Kg96YSaK1VIoB/bWqq4mcvtjB6YgVaNniVm1cV/ZsHjHE+PntGAuAMuWHttD0Ic4
-         Y1QTRcXyHlifYdMAQ6uTDPzaqYf/Thqch6AUtbzkmIuOi8asmBS0jBRFvyiElfvbCKK0
-         KtDjrG6Giw2bFkTpYDBSsmR75ItWd3pv+SU6BHHXmn78AhcAXKqGyedVAsWZi6K32MRK
-         1bNZdSnXkGO/Kmc+PX8fUtb2RwMtqxmUMX3pUL18l4OtKnT3PPU7LcrZ/m/J07cDIf76
-         Qx2A==
-X-Forwarded-Encrypted: i=1; AJvYcCUKtiv4arelSxEBruFLE/x4ltYys25YS0luX7x9jScPtnmwncFz+o5wXrV9hV6SATftj+fr7qRUHLi3t2uW@vger.kernel.org, AJvYcCXAc0VeE7BSVQUGCzxSx/bePWnSbyp91JA5KhU8CYJFrsmBEuwlnln9A7fylpbVibVOz7UavGBuD9B1@vger.kernel.org, AJvYcCXl0N2aL8jim3t0ApptMw/0okKdcpXMPzacLWMXAqywAEgtqqIZqgJvjgtu/W6pBUGU3+G1eJGUafgz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz63Y/k8tUdbBu3Iy/Z8L1LLKTlkaidHOEletyP3g50NVKuEZ2G
-	scuY9PlvJrYvnRKfSE1WlvN5/R5XXVf8GiGWRNzpFVVkmrk39Q08
-X-Google-Smtp-Source: AGHT+IEyx7DLcAZYCVxmvINhsoaNuLuBoEO1wBAvMi1ptSILKdKqi9Npz8PHOAXOigv0gPPMhp9fSQ==
-X-Received: by 2002:a05:622a:2997:b0:458:441c:7d4b with SMTP id d75a77b69052e-458603cbf32mr52000061cf.46.1726175313390;
-        Thu, 12 Sep 2024 14:08:33 -0700 (PDT)
-Received: from localhost.localdomain (117.sub-174-193-5.myvzw.com. [174.193.5.117])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-45822e613eesm56959721cf.12.2024.09.12.14.08.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Sep 2024 14:08:32 -0700 (PDT)
-From: Alex Lanzano <lanzano.alex@gmail.com>
-To: Alex Lanzano <lanzano.alex@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jagath Jog J <jagathjog1996@gmail.com>,
-	Ramona Gradinariu <ramona.bolboaca13@gmail.com>,
-	Nuno Sa <nuno.sa@analog.com>
-Cc: linux-kernel-mentees@lists.linuxfoundation.org,
-	skhan@linuxfoundation.org,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] iio: imu: Add i2c driver for bmi270 imu
-Date: Thu, 12 Sep 2024 17:07:19 -0400
-Message-ID: <20240912210749.3080157-3-lanzano.alex@gmail.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240912210749.3080157-1-lanzano.alex@gmail.com>
-References: <20240912210749.3080157-1-lanzano.alex@gmail.com>
+        d=1e100.net; s=20230601; t=1726176227; x=1726781027;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cRBGtOuc/d2snZdpwSiAnIV7rHRa11MPF2f8u+9dU+0=;
+        b=uvhXZhpV+2v3aZX6zGKK0IaX1VpC2k5aX3WJtIDtY248G7j7CqvYLx3yhKrohDtICe
+         vn6TJDz3s5ZEV2/4hopRr9+AeUVhO6RhlXIHcOhQpIKtucuOsZOWGIsX/UBLxl7qWvdz
+         jb2byggbdXa6Pe8k4f33GHBJVjkB97uC7ZTvGziarBJ+bpwja8dLY3bBj1seddNOiBGa
+         GmyL+6aiW99rnI+as6k3jUWmoHxeAxiSx74X/MBNyA+bK8gVBFdBC5OskOv/xsgMMXkd
+         ojZ0kYalOiCPOfMiVpMN7iiUDpmkaSudzjIpiDIvpB+0vqc0ns9tDGsP/U4WT/mCq11Q
+         xnyA==
+X-Forwarded-Encrypted: i=1; AJvYcCW/SKPkF59yAVZZ5lMbxpQ2/pXsWE+wjsjsS6OyhSvscAqizdNElW4x/tWAMJaNG/chTdWGp1kHclFQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwoBZTBD1Ti6hqBD5JOnNNDxzc+gR2akrFipJHye6++inZKPrP0
+	kiL0QFuRCFlrfo8J1IJgdb7rJgsACB8fgzamIY/GdFV+B0orL1le33bK3bhG22w=
+X-Google-Smtp-Source: AGHT+IFaS4zkwnkNa1ce/QUNVKsECyunuGyCa52gZYcGRtm6HZ4hFf3rIXLzwBxv9bvQwEqPk/66pQ==
+X-Received: by 2002:a05:6e02:1a81:b0:39d:637f:97bc with SMTP id e9e14a558f8ab-3a08b66273amr7178575ab.0.1726176227093;
+        Thu, 12 Sep 2024 14:23:47 -0700 (PDT)
+Received: from [100.64.0.1] ([147.124.94.167])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4d35f89137bsm814719173.104.2024.09.12.14.23.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Sep 2024 14:23:46 -0700 (PDT)
+Message-ID: <b4acc0a7-b7da-4947-904d-8406aa5ba95b@sifive.com>
+Date: Thu, 12 Sep 2024 16:23:44 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/5] dt-bindings: mailbox: add binding for Microchip
+ IPC mailbox driver
+To: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
+Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ peterlin@andestech.com, dminus@andestech.com, ycliang@andestech.com,
+ jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+ andersson@kernel.org, mathieu.poirier@linaro.org, conor+dt@kernel.org,
+ conor.dooley@microchip.com
+References: <20240912170025.455167-1-valentina.fernandezalanis@microchip.com>
+ <20240912170025.455167-3-valentina.fernandezalanis@microchip.com>
+From: Samuel Holland <samuel.holland@sifive.com>
+Content-Language: en-US
+In-Reply-To: <20240912170025.455167-3-valentina.fernandezalanis@microchip.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Add initial i2c support for the Bosch BMI270 6-axis IMU.
-Provides raw read access to acceleration and angle velocity measurements
-via iio channels. Device configuration requires firmware provided by
-Bosch and is requested and load from userspace.
+Hi Valentina,
 
-Signed-off-by: Alex Lanzano <lanzano.alex@gmail.com>
----
- MAINTAINERS                          |   7 +
- drivers/iio/imu/Kconfig              |   1 +
- drivers/iio/imu/Makefile             |   1 +
- drivers/iio/imu/bmi270/Kconfig       |  21 +++
- drivers/iio/imu/bmi270/Makefile      |   6 +
- drivers/iio/imu/bmi270/bmi270.h      |  62 +++++++
- drivers/iio/imu/bmi270/bmi270_core.c | 258 +++++++++++++++++++++++++++
- drivers/iio/imu/bmi270/bmi270_i2c.c  |  48 +++++
- 8 files changed, 404 insertions(+)
- create mode 100644 drivers/iio/imu/bmi270/Kconfig
- create mode 100644 drivers/iio/imu/bmi270/Makefile
- create mode 100644 drivers/iio/imu/bmi270/bmi270.h
- create mode 100644 drivers/iio/imu/bmi270/bmi270_core.c
- create mode 100644 drivers/iio/imu/bmi270/bmi270_i2c.c
+On 2024-09-12 12:00 PM, Valentina Fernandez wrote:
+> Add a dt-binding for the Microchip Inter-Processor Communication (IPC)
+> mailbox controller.
+> 
+> Signed-off-by: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
+> ---
+>  .../bindings/mailbox/microchip,sbi-ipc.yaml   | 115 ++++++++++++++++++
+>  1 file changed, 115 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml b/Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml
+> new file mode 100644
+> index 000000000000..dc2cbd5eb28f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml
+> @@ -0,0 +1,115 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/microchip,sbi-ipc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip Inter-processor communication (IPC) mailbox controller
+> +
+> +maintainers:
+> +  - Valentina Fernandez <valentina.fernandezalanis@microchip.com>
+> +
+> +description:
+> +  The Microchip Inter-processor Communication (IPC) facilitates
+> +  message passing between processors using an interrupt signaling
+> +  mechanism.
+> +  This SBI interface is compatible with the Mi-V Inter-hart
+> +  Communication (IHC) IP.
+> +  The microchip,sbi-ipc compatible string is inteded for use by software
+> +  running in supervisor privileged mode (s-mode). The SoC-specific
+> +  compatibles are inteded for use by the SBI implementation in machine
+> +  mode (m-mode).
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index dd4588838d90..faf109ae60eb 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3928,6 +3928,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/iio/accel/bosch,bma400.yaml
- F:	drivers/iio/accel/bma400*
- 
-+BOSCH SENSORTEC BMI270 IMU IIO DRIVER
-+M:	Alex Lanzano <lanzano.alex@gmail.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/imu/bosch,bmi270.yaml
-+F:	drivers/iio/imu/bmi270/
-+
- BOSCH SENSORTEC BMI323 IMU IIO DRIVER
- M:	Jagath Jog J <jagathjog1996@gmail.com>
- L:	linux-iio@vger.kernel.org
-diff --git a/drivers/iio/imu/Kconfig b/drivers/iio/imu/Kconfig
-index 782fb80e44c2..489dd898830b 100644
---- a/drivers/iio/imu/Kconfig
-+++ b/drivers/iio/imu/Kconfig
-@@ -53,6 +53,7 @@ config ADIS16480
- 	  ADIS16485, ADIS16488 inertial sensors.
- 
- source "drivers/iio/imu/bmi160/Kconfig"
-+source "drivers/iio/imu/bmi270/Kconfig"
- source "drivers/iio/imu/bmi323/Kconfig"
- source "drivers/iio/imu/bno055/Kconfig"
- 
-diff --git a/drivers/iio/imu/Makefile b/drivers/iio/imu/Makefile
-index 7e2d7d5c3b7b..79f83ea6f644 100644
---- a/drivers/iio/imu/Makefile
-+++ b/drivers/iio/imu/Makefile
-@@ -15,6 +15,7 @@ adis_lib-$(CONFIG_IIO_ADIS_LIB_BUFFER) += adis_buffer.o
- obj-$(CONFIG_IIO_ADIS_LIB) += adis_lib.o
- 
- obj-y += bmi160/
-+obj-y += bmi270/
- obj-y += bmi323/
- obj-y += bno055/
- 
-diff --git a/drivers/iio/imu/bmi270/Kconfig b/drivers/iio/imu/bmi270/Kconfig
-new file mode 100644
-index 000000000000..3f7b4ac30f00
---- /dev/null
-+++ b/drivers/iio/imu/bmi270/Kconfig
-@@ -0,0 +1,21 @@
-+# SPDX-License-Identifier: GPL-2.0
-+#
-+# BMI270 IMU driver
-+#
-+
-+config BMI270
-+	tristate
-+	select IIO_BUFFER
-+
-+config BMI270_I2C
-+	tristate "Bosch BMI270 I2C driver"
-+	depends on I2C
-+	select BMI270
-+	select REGMAP_I2C
-+	help
-+	  Enable support for the Bosch BMI270 6-Axis IMU connected to I2C
-+	  interface.
-+
-+	  This driver can also be built as a module. If so, the module will be
-+	  called bmi270_i2c.
-+
-diff --git a/drivers/iio/imu/bmi270/Makefile b/drivers/iio/imu/bmi270/Makefile
-new file mode 100644
-index 000000000000..ab4acaaee6d2
---- /dev/null
-+++ b/drivers/iio/imu/bmi270/Makefile
-@@ -0,0 +1,6 @@
-+# SPDX-License-Identifier: GPL-2.0
-+#
-+# Makefile for Bosch BMI270 IMU
-+#
-+obj-$(CONFIG_BMI270) += bmi270_core.o
-+obj-$(CONFIG_BMI270_I2C) += bmi270_i2c.o
-diff --git a/drivers/iio/imu/bmi270/bmi270.h b/drivers/iio/imu/bmi270/bmi270.h
-new file mode 100644
-index 000000000000..4af4098d8e82
---- /dev/null
-+++ b/drivers/iio/imu/bmi270/bmi270.h
-@@ -0,0 +1,62 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+
-+#ifndef BMI270_H_
-+#define BMI270_H_
-+
-+#include <linux/iio/iio.h>
-+
-+#define BMI270_CHIP_ID_REG				0x00
-+#define BMI270_CHIP_ID_VAL				0x24
-+#define BMI270_CHIP_ID_MSK				GENMASK(7, 0)
-+
-+#define BMI270_ACCEL_X_REG				0x0c
-+#define BMI270_ANG_VEL_X_REG				0x12
-+
-+#define BMI270_INTERNAL_STATUS_REG			0x21
-+#define BMI270_INTERNAL_STATUS_MSG_MSK			GENMASK(3, 0)
-+#define BMI270_INTERNAL_STATUS_MSG_INIT_OK		0x01
-+
-+#define BMI270_INTERNAL_STATUS_AXES_REMAP_ERR_MSK	BIT(5)
-+#define BMI270_INTERNAL_STATUS_ODR_50HZ_ERR_MSK		BIT(6)
-+
-+#define BMI270_ACC_CONF_REG				0x40
-+#define BMI270_ACC_CONF_ODR_MSK				GENMASK(3, 0)
-+#define BMI270_ACC_CONF_ODR_100HZ			0x08
-+#define BMI270_ACC_CONF_BWP_MSK				GENMASK(6, 4)
-+#define BMI270_ACC_CONF_BWP_NORMAL_MODE			0x02
-+#define BMI270_ACC_CONF_FILTER_PERF_MSK			BIT(7)
-+
-+#define BMI270_GYR_CONF_REG				0x42
-+#define BMI270_GYR_CONF_ODR_MSK				GENMASK(3, 0)
-+#define BMI270_GYR_CONF_ODR_200HZ			0x09
-+#define BMI270_GYR_CONF_BWP_MSK				GENMASK(5, 4)
-+#define BMI270_GYR_CONF_BWP_NORMAL_MODE			0x02
-+#define BMI270_GYR_CONF_NOISE_PERF_MSK			BIT(6)
-+#define BMI270_GYR_CONF_FILTER_PERF_MSK			BIT(7)
-+
-+#define BMI270_INIT_CTRL_REG				0x59
-+#define BMI270_INIT_CTRL_LOAD_DONE_MSK			BIT(0)
-+
-+#define BMI270_INIT_DATA_REG				0x5e
-+
-+#define BMI270_PWR_CONF_REG				0x7c
-+#define BMI270_PWR_CONF_ADV_PWR_SAVE_MSK		BIT(0)
-+#define BMI270_PWR_CONF_FIFO_WKUP_MSK			BIT(1)
-+#define BMI270_PWR_CONF_FUP_EN_MSK			BIT(2)
-+
-+#define BMI270_PWR_CTRL_REG				0x7d
-+#define BMI270_PWR_CTRL_AUX_EN_MSK			BIT(0)
-+#define BMI270_PWR_CTRL_GYR_EN_MSK			BIT(1)
-+#define BMI270_PWR_CTRL_ACCEL_EN_MSK			BIT(2)
-+#define BMI270_PWR_CTRL_TEMP_EN_MSK			BIT(3)
-+
-+struct bmi270_data {
-+	struct device *dev;
-+	struct regmap *regmap;
-+};
-+
-+extern const struct regmap_config bmi270_regmap_config;
-+
-+int bmi270_core_probe(struct device *dev, struct regmap *regmap);
-+
-+#endif  /* BMI270_H_ */
-diff --git a/drivers/iio/imu/bmi270/bmi270_core.c b/drivers/iio/imu/bmi270/bmi270_core.c
-new file mode 100644
-index 000000000000..319e5601d9e7
---- /dev/null
-+++ b/drivers/iio/imu/bmi270/bmi270_core.c
-@@ -0,0 +1,258 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+
-+#include <linux/firmware.h>
-+#include <linux/i2c.h>
-+#include <linux/iio/iio.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/bitfield.h>
-+
-+#include "bmi270.h"
-+
-+#define BMI270_INIT_DATA_FILE "bmi270-init-data.fw"
-+
-+enum bmi270_scan {
-+	BMI270_SCAN_ACCEL_X,
-+	BMI270_SCAN_ACCEL_Y,
-+	BMI270_SCAN_ACCEL_Z,
-+	BMI270_SCAN_GYRO_X,
-+	BMI270_SCAN_GYRO_Y,
-+	BMI270_SCAN_GYRO_Z,
-+};
-+
-+const struct regmap_config bmi270_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+};
-+EXPORT_SYMBOL_NS_GPL(bmi270_regmap_config, IIO_BMI270);
-+
-+static int bmi270_get_data(struct bmi270_data *bmi270_device,
-+			   int chan_type, int axis, int *val)
-+{
-+	__le16 sample;
-+	int reg;
-+	int ret;
-+
-+	switch (chan_type) {
-+	case IIO_ACCEL:
-+		reg = BMI270_ACCEL_X_REG + (axis - IIO_MOD_X) * sizeof(sample);
-+		break;
-+	case IIO_ANGL_VEL:
-+		reg = BMI270_ANG_VEL_X_REG + (axis - IIO_MOD_X) * sizeof(sample);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	ret = regmap_bulk_read(bmi270_device->regmap, reg, &sample, sizeof(sample));
-+	if (ret)
-+		return ret;
-+
-+	*val = sign_extend32(le16_to_cpu(sample), 15);
-+
-+	return 0;
-+}
-+
-+static int bmi270_read_raw(struct iio_dev *indio_dev,
-+			   struct iio_chan_spec const *chan,
-+			   int *val, int *val2, long mask)
-+{
-+	int ret;
-+	struct bmi270_data *bmi270_device = iio_priv(indio_dev);
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		ret = bmi270_get_data(bmi270_device, chan->type, chan->channel2, val);
-+		if (ret)
-+			return ret;
-+
-+		return IIO_VAL_INT;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info bmi270_info = {
-+	.read_raw = bmi270_read_raw,
-+};
-+
-+#define BMI270_ACCEL_CHANNEL(_axis) {				\
-+	.type = IIO_ACCEL,					\
-+	.modified = 1,						\
-+	.channel2 = IIO_MOD_##_axis,				\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-+	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |	\
-+	BIT(IIO_CHAN_INFO_FREQUENCY),				\
-+}
-+
-+#define BMI270_ANG_VEL_CHANNEL(_axis) {				\
-+	.type = IIO_ANGL_VEL,					\
-+	.modified = 1,						\
-+	.channel2 = IIO_MOD_##_axis,				\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-+	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |	\
-+	BIT(IIO_CHAN_INFO_FREQUENCY),				\
-+}
-+
-+static const struct iio_chan_spec bmi270_channels[] = {
-+	BMI270_ACCEL_CHANNEL(X),
-+	BMI270_ACCEL_CHANNEL(Y),
-+	BMI270_ACCEL_CHANNEL(Z),
-+	BMI270_ANG_VEL_CHANNEL(X),
-+	BMI270_ANG_VEL_CHANNEL(Y),
-+	BMI270_ANG_VEL_CHANNEL(Z)
-+};
-+
-+static int bmi270_validate_chip_id(struct bmi270_data *bmi270_device)
-+{
-+	int chip_id;
-+	int ret;
-+	struct device *dev = bmi270_device->dev;
-+	struct regmap *regmap = bmi270_device->regmap;
-+
-+	ret = regmap_read(regmap, BMI270_CHIP_ID_REG, &chip_id);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to read chip id");
-+
-+	if (chip_id != BMI270_CHIP_ID_VAL)
-+		return dev_err_probe(dev, -ENODEV, "Invalid chip id 0x%x", chip_id);
-+
-+	return 0;
-+}
-+
-+static int bmi270_write_calibration_data(struct bmi270_data *bmi270_device)
-+{
-+	int ret;
-+	int status = 0;
-+	const struct firmware *init_data;
-+	struct device *dev = bmi270_device->dev;
-+	struct regmap *regmap = bmi270_device->regmap;
-+
-+	ret = regmap_clear_bits(regmap, BMI270_PWR_CONF_REG, BMI270_PWR_CONF_ADV_PWR_SAVE_MSK);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to write power configuration");
-+
-+	/* After disabling advanced power save, all registers are accessible after a 450us delay
-+	 * This delay is specified in table A of the datasheet.
-+	 */
-+	usleep_range(450, 1000);
-+
-+	ret = regmap_clear_bits(regmap, BMI270_INIT_CTRL_REG, BMI270_INIT_CTRL_LOAD_DONE_MSK);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to prepare device to load init data");
-+
-+	ret = request_firmware(&init_data, BMI270_INIT_DATA_FILE, dev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to load init data file");
-+
-+	ret = regmap_bulk_write(regmap, BMI270_INIT_DATA_REG,
-+				init_data->data, init_data->size);
-+	release_firmware(init_data);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to write init data");
-+
-+	ret = regmap_set_bits(regmap, BMI270_INIT_CTRL_REG, BMI270_INIT_CTRL_LOAD_DONE_MSK);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to stop device initialization");
-+
-+	/* Wait at least 140ms for the device to complete configuration.
-+	 * This delay is specified in table C of the datasheet.
-+	 */
-+	usleep_range(140000, 160000);
-+
-+	ret = regmap_read(regmap, BMI270_INTERNAL_STATUS_REG, &status);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to read internal status");
-+
-+	if (status != BMI270_INTERNAL_STATUS_MSG_INIT_OK)
-+		return dev_err_probe(dev, -ENODEV, "Device failed to initialize");
-+
-+	return 0;
-+}
-+
-+static int bmi270_configure_imu(struct bmi270_data *bmi270_device)
-+{
-+	int ret;
-+	struct device *dev = bmi270_device->dev;
-+	struct regmap *regmap = bmi270_device->regmap;
-+
-+	ret = regmap_set_bits(regmap, BMI270_PWR_CTRL_REG,
-+			      BMI270_PWR_CTRL_AUX_EN_MSK |
-+			      BMI270_PWR_CTRL_GYR_EN_MSK |
-+			      BMI270_PWR_CTRL_ACCEL_EN_MSK);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to enable accelerometer and gyroscope");
-+
-+	ret = regmap_set_bits(regmap, BMI270_ACC_CONF_REG,
-+			      FIELD_PREP(BMI270_ACC_CONF_ODR_MSK,
-+					 BMI270_ACC_CONF_ODR_100HZ) |
-+			      FIELD_PREP(BMI270_ACC_CONF_BWP_MSK,
-+					 BMI270_ACC_CONF_BWP_NORMAL_MODE) |
-+			      BMI270_PWR_CONF_ADV_PWR_SAVE_MSK);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to configure accelerometer");
-+
-+	ret = regmap_set_bits(regmap, BMI270_GYR_CONF_REG,
-+			      FIELD_PREP(BMI270_GYR_CONF_ODR_MSK,
-+					 BMI270_GYR_CONF_ODR_200HZ) |
-+			      FIELD_PREP(BMI270_GYR_CONF_BWP_MSK,
-+					 BMI270_GYR_CONF_BWP_NORMAL_MODE) |
-+			      BMI270_PWR_CONF_ADV_PWR_SAVE_MSK);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to configure gyroscope");
-+
-+	/* Enable FIFO_WKUP, Disable ADV_PWR_SAVE and FUP_EN */
-+	ret = regmap_write(regmap, BMI270_PWR_CONF_REG,
-+			   BMI270_PWR_CONF_FIFO_WKUP_MSK);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to set power configuration");
-+
-+	return 0;
-+}
-+
-+static int bmi270_chip_init(struct bmi270_data *bmi270_device)
-+{
-+	int ret;
-+
-+	ret = bmi270_validate_chip_id(bmi270_device);
-+	if (ret)
-+		return ret;
-+
-+	ret = bmi270_write_calibration_data(bmi270_device);
-+	if (ret)
-+		return ret;
-+
-+	return bmi270_configure_imu(bmi270_device);
-+}
-+
-+int bmi270_core_probe(struct device *dev, struct regmap *regmap)
-+{
-+	int ret;
-+	struct bmi270_data *bmi270_device;
-+	struct iio_dev *indio_dev;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(struct bmi270_data *));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	bmi270_device = iio_priv(indio_dev);
-+	bmi270_device->dev = dev;
-+	bmi270_device->regmap = regmap;
-+
-+	ret = bmi270_chip_init(bmi270_device);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->channels = bmi270_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(bmi270_channels);
-+	indio_dev->name = "bmi270";
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->info = &bmi270_info;
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+EXPORT_SYMBOL_NS_GPL(bmi270_core_probe, IIO_BMI270);
-+
-+MODULE_AUTHOR("Alex Lanzano");
-+MODULE_DESCRIPTION("BMI270 driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/iio/imu/bmi270/bmi270_i2c.c b/drivers/iio/imu/bmi270/bmi270_i2c.c
-new file mode 100644
-index 000000000000..f70dee2d8a64
---- /dev/null
-+++ b/drivers/iio/imu/bmi270/bmi270_i2c.c
-@@ -0,0 +1,48 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+
-+#include <linux/module.h>
-+#include <linux/i2c.h>
-+#include <linux/iio/iio.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/regmap.h>
-+
-+#include "bmi270.h"
-+
-+static int bmi270_i2c_probe(struct i2c_client *client)
-+{
-+	struct regmap *regmap;
-+	struct device *dev = &client->dev;
-+
-+	regmap = devm_regmap_init_i2c(client, &bmi270_regmap_config);
-+	if (IS_ERR(regmap))
-+		return dev_err_probe(dev, PTR_ERR(regmap),
-+				     "Failed to init i2c regmap");
-+
-+	return bmi270_core_probe(dev, regmap);
-+}
-+
-+static const struct i2c_device_id bmi270_i2c_id[] = {
-+	{ "bmi270", 0 },
-+	{ }
-+};
-+
-+static const struct of_device_id bmi270_of_match[] = {
-+	{ .compatible = "bosch,bmi270" },
-+	{ }
-+};
-+
-+static struct i2c_driver bmi270_i2c_driver = {
-+	.driver = {
-+		.name = "bmi270_i2c",
-+		.of_match_table = bmi270_of_match,
-+	},
-+	.probe = bmi270_i2c_probe,
-+	.id_table = bmi270_i2c_id,
-+};
-+module_i2c_driver(bmi270_i2c_driver);
-+
-+MODULE_AUTHOR("Alex Lanzano");
-+MODULE_DESCRIPTION("BMI270 driver");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS(IIO_BMI270);
--- 
-2.46.0
+There is a lot of conditional logic in this binding for how small it is. Would
+it make sense to split this into two separate bindings? For example, with the
+current binding microchip,ihc-chan-disabled-mask is allowed for the SBI
+interface, but doesn't look like it belongs there.
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - microchip,sbi-ipc
+> +      - microchip,miv-ihc-rtl-v2
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 5
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 5
+> +
+> +  "#mbox-cells":
+> +    description:
+> +      For the SBI "device", the cell represents the global "logical" channel IDs.
+> +      The meaning of channel IDs are platform firmware dependent. The
+> +      SoC-specific compatibles are intended for use by the SBI implementation,
+> +      rather than s-mode software. There the cell would represent the physical
+> +      channel and do not vary depending on platform firmware.
+> +    const: 1
+> +
+> +  microchip,ihc-chan-disabled-mask:
+> +    description:
+> +      Represents the enable/disable state of the bi-directional IHC channels
+> +      within the MIV-IHC IP configuration. The mask is a 16-bit value, but only
+> +      the first 15 bits are utilized.Each of the bits corresponds to
+> +      one of the 15 IHC channels.
+> +      A bit set to '1' indicates that the corresponding channel is disabled,
+> +      and any read or write operations to that channel will return zero.
+> +      A bit set to '0' indicates that the corresponding channel is enabled
+> +      and will be accessible through its dedicated address range registers.
+> +      The remaining bit of the 16-bit mask is reserved and should be ignored.
+> +      The actual enable/disable state of each channel is determined by the
+> +      IP block’s configuration.
+> +    $ref: /schemas/types.yaml#/definitions/uint16
+> +    default: 0
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +  - interrupt-names
+> +  - "#mbox-cells"
+> +
+> +additionalProperties: false
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: microchip,sbi-ipc
+> +    then:
+> +      properties:
+> +        reg: false
+> +    else:
+> +      required:
+> +        - reg
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: microchip,miv-ihc-rtl-v2
+> +    then:
+> +      properties:
+> +        interrupt-names:
+> +          items:
+> +            pattern: "^hart-[0-5]+$"
+
+The driver in patch 3 uses this pattern for the SBI interface, so should it
+apply there as well?
+
+Regards,
+Samuel
+
+> +
+> +examples:
+> +  - |
+> +    mailbox {
+> +      compatible = "microchip,sbi-ipc";
+> +      interrupt-parent = <&plic>;
+> +      interrupts = <180>, <179>, <178>;
+> +      interrupt-names = "hart-1", "hart-2", "hart-3";
+> +      #mbox-cells = <1>;
+> +    };
+> +  - |
+> +    mailbox@50000000 {
+> +      compatible = "microchip,miv-ihc-rtl-v2";
+> +      microchip,ihc-chan-disabled-mask=  /bits/ 16 <0>;
+> +      reg = <0x50000000 0x1C000>;
+> +      interrupt-parent = <&plic>;
+> +      interrupts = <180>, <179>, <178>;
+> +      interrupt-names = "hart-1", "hart-2", "hart-3";
+> +      #mbox-cells = <1>;
+> +    };
 
 
