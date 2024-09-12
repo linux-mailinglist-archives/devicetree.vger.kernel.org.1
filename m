@@ -1,247 +1,190 @@
-Return-Path: <devicetree+bounces-102529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6C7B977587
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 01:28:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 251B897758D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 01:29:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 253EE1C2400A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 23:28:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC00E2830C3
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 23:29:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15DCE1C3F1D;
-	Thu, 12 Sep 2024 23:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B4751C3F06;
+	Thu, 12 Sep 2024 23:26:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BSmH14M0"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="HpxfaHD6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3763D1C331D;
-	Thu, 12 Sep 2024 23:20:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ECAE18BC07
+	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 23:26:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726183218; cv=none; b=AGTa+hVtS0vLTX9yMf0pXhtatH1l+OtMwKB0ik8yQb3MNHVoBuZGiFbVoowjmDaI+KGQwQiA8c/o7jJJJ3eSw43TR9vc/p/jcDWHx2SL0NNTwKGt3IcmUnItyYrQnL+ugKR5F5SAlC2kkKj0gwQ2PWsM8pHH+6T8xnrzqcokrJ0=
+	t=1726183590; cv=none; b=NJMU0E0zN0etu+a8xuWG/MVW/+VhFHdvdcYV53IEZBfx0SVgdY2Rad8oCaZvM/I9fB3FK2KMtJ6+BlKvYk05DKjLoZMlx3f9amCRD7OTNWSkRKy9PitKW54F1Sy0+G5KFNnKvWeV5ZfeDIXrJYeJGsQzxswILRyK3mewGhyGlf0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726183218; c=relaxed/simple;
-	bh=UdCJlnJosESBpLD1XXoyLp1nvyQEOPEcRjwTYfSsenA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dsexdsAXREhuUyBknzurCNMxh0sOPoLj+EdjFfZCz6/eA/dCDsO3mdkPDZQx4TTTfvmw7/Iae+5z7oXmHFHCma37Cw+VDz+aj+SLsq385hSVeh/bcwakIoZW0pv5uVY339sk+r03Rgi/V/c5XROzagGECngzblPjIRMNqarz+Os=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BSmH14M0; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a8a897bd4f1so33582066b.3;
-        Thu, 12 Sep 2024 16:20:15 -0700 (PDT)
+	s=arc-20240116; t=1726183590; c=relaxed/simple;
+	bh=AaV5BIZtfsOqmNhxqEnd/CUMPikNikqc4gb0i/esfeM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CkAC1HYLA5ibQ7H7xJOKvI7sdcKcFaRtWHN3glbFvcD6cfI5p95NVgbsnbXiLSWFx0VeRj/qPaZqQtvGhVS8KaGwv/p2eoDjQgO7QjsEWA3o83iQTD6PZcRh8A0k6MKdK3hDVb4unE9aLEhYnoKoFCoP5QLh8pU2uo7d1Di6Hu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=HpxfaHD6; arc=none smtp.client-ip=209.85.216.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2d87f34a650so1074955a91.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 16:26:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726183214; x=1726788014; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vXhULeeV7vls+nv+QnnPDOCh7Gg8+iCwIhYeNnAxrac=;
-        b=BSmH14M0ab7XXT8QK8TOPIncWlun8cPwJccEUfegXSm7IOqffBtVUR5NgNEHe+AWnm
-         0JIdXJJoJusAhvLpAgdZWg/lEegdBID2jCc04l1eYUuwbE5L0gOxEqVFt712w8x+4qal
-         v233afB9+2HK4TUzOFTckw6s+T6JIzm2wYxbCZdsb11UtVkw84Vre/5wz7SSBlAPg/Gm
-         uARbXiPHd1tvppBcsWa4dOKngJn+YVqwhYdt/0mCfWfsBBpk3VBbYiZ20uBVzfQFf3j4
-         yihd3tqiYAt8iebVpz3qW90UTna/Iv3+QYFbHM1NSunrnVFcrkoYac/sq5TR3W+5YBXz
-         OHpA==
+        d=google.com; s=20230601; t=1726183589; x=1726788389; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YZdUE8Iodj8kUFxgn8s41HQN9QXU5H4aO1QpJ5Ef1es=;
+        b=HpxfaHD6W4L5Y3wWceCwTWYEdAMurQx+kgQLWhsRX2pN9BDZhhpiiL4jmBi0ZTo5wp
+         MdwE9GJTYQHssSkHXEHjcZoOcQYLjPRbrvEKzVoEr/QVCCogSj12PA292CbSep/ydpwR
+         1dFV+EL233VpV6aQIqxRqFM1nZ5ebVVDlRc+5gmMOeHuRdU0IoZ5DsE9ucSFlte+wkCM
+         k8HIpegNfgvyyMqQoEbPbI9rZlgECNbL34NeFMeBaPuQxKAVRDe+1AxggMdQMZycdyfV
+         vauOBAZ0ma7V5Qbp9Gh4B+15xxqC0eN8LtOPeWsi3SkyfwMWCKvbnyeOuqsB7+NgLu4Q
+         vF3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726183214; x=1726788014;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vXhULeeV7vls+nv+QnnPDOCh7Gg8+iCwIhYeNnAxrac=;
-        b=gI3s3zL5gOfjFo0AYOuxeSOuzwjIABDf/PRH7P6WVJI22DIrPuT3rMckTnzW3Apzvu
-         mruQ5RrFCSGEMch78gVDAxE7mvMNWIL77YJUqKepGuPQRzSPxENovLFk7rW/p017zTWS
-         8IrN4I3X4G2tqZfexZGp3/Ol6hUN+HZ8XHQDy8b6+Hg20PFgn3adgWS/Ag1Ga32fDGTj
-         UzYCkhM4XtzV7lAf1pqApLWOCtH1isO4Rhqq+NFN8y7/8mJbMKxuMUZ7Pos82T3ES1Ll
-         GfzU5hSSRCbH8fNgW8pjxb92DYiwFFTDL+NiB2mqaZz7eT77QZLmfKyGU+N1X6dTuqIK
-         Ln9w==
-X-Forwarded-Encrypted: i=1; AJvYcCUBt9RZxnzkD2qhTorSGts//cuact/kMqdw80sJQ1gSLqcQ05nhaCZyrattRSPogthR6/7TXtzmE5b/@vger.kernel.org, AJvYcCUOb8wCGfQy2t7ajjlazFVIroFxHCg9lTMo3jRCcp3nnWO24DXRn9okISVybE5bqeu8qwnwcKloXzOZ1kGd@vger.kernel.org
-X-Gm-Message-State: AOJu0YyP0W0SuTOe1IR+eOnZll7ieKq/z/Y/6uH2gUVb+/WFqkkQ+JWj
-	cYwfqID9ODxMDtf5esFpXDic6qwBzbJjlWiPJGCK++/uv4Wh5O5uQemV4LLVzBJwicZfBj3rixm
-	+m80vmAJIIX2if2bx1DTQmoZ7sUM=
-X-Google-Smtp-Source: AGHT+IHbZo2wnjqdUsLgmBT4T7H7hcXQYR+XunYL7wqkMhhgveG3haS7KrE2iato4KRSLlyIyR37QuYUaUcqB8LNq1A=
-X-Received: by 2002:a17:907:f763:b0:a86:81b8:543f with SMTP id
- a640c23a62f3a-a90480cef74mr48691066b.64.1726183213701; Thu, 12 Sep 2024
- 16:20:13 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1726183589; x=1726788389;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YZdUE8Iodj8kUFxgn8s41HQN9QXU5H4aO1QpJ5Ef1es=;
+        b=QIbDtHXaSYMDvwJ2jPxDKr/dayrbk5TB4vnvYEfil2utSG76KnKEK0+wmSvl5Xxsyj
+         WYFPL74VHU/J0TJFJQ5faUxA39WyzijjqF2KrAnvdQWdRO7xlG38ql5HnD47AljwC8F3
+         Ky1OCDUjqIM3SFtszrCRme6bzhu332frA4kEz4fzctEQBrIW4ktoeOAjfwWiltC0KuxS
+         8Kun7DTxIHZ8rd7c6zr1Qz9/NxmPKOs4gYBwCFfYDg2Rx8l+6doQTHEB9ir5W9w8YWNg
+         tZpuDXyKGzT7WXNBHOXxKlfWM0uTT3xcB5mLvHEt9OgeQUoQVBc+cus+m9XlqS7Oj5Ql
+         AE2w==
+X-Forwarded-Encrypted: i=1; AJvYcCX0BNemdQN9zoJ5q0CIhhismVixPYYVIPAICml5XMpFVcmTzCEwVWdXxlrpxkeTCTVokpLp9SAbP8/4@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVLpn2K5b9U2EsZs+V5g7oA8dIBfPfR7ksGDsEkAZt6zp4m60h
+	IOuOL6/FyNSmVga9p+kuXPGNgu386aRmH4s/MNXD++lKaLlFIg4GKf/W+G7aqA==
+X-Google-Smtp-Source: AGHT+IEFdGF7Q2YWcAplAlykHSQNMLpEEWqBpuC11ZSD7YT+1n5yivK+MLpI/ib8DE+YI2s+P2mm4g==
+X-Received: by 2002:a17:90b:2285:b0:2c9:36bf:ba6f with SMTP id 98e67ed59e1d1-2db9fc1bf48mr6758422a91.3.1726183588056;
+        Thu, 12 Sep 2024 16:26:28 -0700 (PDT)
+Received: from ?IPV6:2600:1700:4570:89a0:ad3f:6937:2713:ef56? ([2600:1700:4570:89a0:ad3f:6937:2713:ef56])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2dbb9d157b4sm277831a91.47.2024.09.12.16.26.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Sep 2024 16:26:27 -0700 (PDT)
+Message-ID: <dc323138-3bbb-4e23-91f1-d6b80cb7bb72@google.com>
+Date: Thu, 12 Sep 2024 16:26:25 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240912025034.180233-1-CFSworks@gmail.com> <20240912025034.180233-5-CFSworks@gmail.com>
- <ed4b6913-f19b-4280-b3b2-f5bb1e7f47eb@kwiboo.se> <CAH5Ym4jEMvBVQNNS6U49RWTAVPX4GmOVC-VjgXsFCR=X68QWgA@mail.gmail.com>
- <8c0b8145-3e90-42e6-8e1a-5be6424d1055@kwiboo.se>
-In-Reply-To: <8c0b8145-3e90-42e6-8e1a-5be6424d1055@kwiboo.se>
-From: Sam Edwards <cfsworks@gmail.com>
-Date: Thu, 12 Sep 2024 16:20:01 -0700
-Message-ID: <CAH5Ym4hPGNgczG5TzYPqUHPE7Dsb2Kwyc9VJkoanMj=3AGZWVg@mail.gmail.com>
-Subject: Re: [PATCH 4/5] arm64: dts: rockchip: Enable all 3 USBs on Turing RK1
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Ondrej Jirman <megi@xff.cz>, 
-	Chris Morgan <macromorgan@hotmail.com>, Alex Zhao <zzc@rock-chips.com>, 
-	Dragan Simic <dsimic@manjaro.org>, FUKAUMI Naoki <naoki@radxa.com>, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, Jing Luo <jing@jing.rocks>, 
-	Kever Yang <kever.yang@rock-chips.com>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, =?UTF-8?Q?Daniel_Kukie=C5=82a?= <daniel@kukiela.pl>, 
-	Joshua Riek <jjriek@verizon.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 1/2] dt-bindings: connector: Add property to set pd timer
+ values
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, heikki.krogerus@linux.intel.com,
+ gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
+ kyletso@google.com, rdbabiera@google.com,
+ Badhri Jagan Sridharan <badhri@google.com>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240911000715.554184-1-amitsd@google.com>
+ <20240911000715.554184-2-amitsd@google.com>
+ <5iakowhmqc3hbstmwbs6ixabr27hf2dfz2m4do4qvsrtgrdn72@r7xqawwgebla>
+Content-Language: en-US
+From: Amit Sunil Dhamne <amitsd@google.com>
+In-Reply-To: <5iakowhmqc3hbstmwbs6ixabr27hf2dfz2m4do4qvsrtgrdn72@r7xqawwgebla>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Sep 12, 2024 at 3:35=E2=80=AFPM Jonas Karlman <jonas@kwiboo.se> wro=
-te:
->
-> On 2024-09-12 23:06, Sam Edwards wrote:
-> > On Thu, Sep 12, 2024 at 12:53=E2=80=AFPM Jonas Karlman <jonas@kwiboo.se=
-> wrote:
-> >>
-> >> Hi Sam,
-> >>
-> >> Sounds like this may be missing
-> >>
-> >>         rockchip,dp-lane-mux =3D <0 1 2 3>;
-> >>
-> >> or
-> >>
-> >>         rockchip,dp-lane-mux =3D <3 2 1 0>;
->
-> Small correction, the second 4-lane mode would be described as:
->
->         rockchip,dp-lane-mux =3D <2 3 0 1>;
->
-> >>
-> >> if all lanes are used for DP and none are used for USB.
-> >>
-> >> It should help describe the hw and also help the driver set mode to
-> >> UDPHY_MODE_DP and that should disable the u3 port, or there may be an
-> >> issue to fix in the phy driver.
-> >
-> > Thanks for your insights Jonas!
-> >
-> > I haven't yet gotten to DP enablement so I don't know the correct DP
-> > layout. Ultimately I do want the USBDP0 node to have the necessary
-> > properties for DP, but alas that's a patch for another day.
-> >
-> > Nonetheless, I briefly tried it and I don't think UDPHY_MODE_DP
-> > affects the PHY's "backend" (ctrl<->phy iface) at all, only the
-> > availability of frontend lanes to the USB-specific backend: So port u3
-> > is still enabled, there's just no way to reach it electrically.
-> >
-> > With that in mind, would you recommend that I add a placeholder
-> > dp-lane-mux of 0 1 2 3 for now, just to keep the PHY from attempting
-> > to speak USB to a DP device? I don't foresee any harm in leaving it
-> > as-is but you may know something that I don't.
->
-> The rk_udphy_u3_port_disable() call in usbdp phy driver should help set
-> the usb3otg0_host_num_u3_port=3D0 you mentioned:
->
->   .usb3otg0_cfg =3D RK_UDPHY_GEN_GRF_REG(0x001c, 15, 0, 0x1100, 0x0188),
->   .usb3otg1_cfg =3D RK_UDPHY_GEN_GRF_REG(0x0034, 15, 0, 0x1100, 0x0188),
->
-> Here the disable/enable values is little bit inverted in macro, i.e.
-> enable=3D0x0188 is the value set when u3_port_disable(disable=3Dtrue) is
-> called.
+Hi Dmitry,
 
-Aha, I didn't notice that the PHY driver had this, thanks for pointing
-it out! Yes, it's good that it's also switching the clock source and
-disabling PHY status signals so I should definitely be relying on this
-code for now.
+On 9/12/24 3:05 AM, Dmitry Baryshkov wrote:
+> On Tue, Sep 10, 2024 at 05:07:05PM GMT, Amit Sunil Dhamne wrote:
+>> This commit adds a new property "pd-timers" to enable setting of
+>> platform/board specific pd timer values for timers that have a range of
+>> acceptable values.
+>>
+>> Cc: Badhri Jagan Sridharan <badhri@google.com>
+>> Cc: linux-usb@vger.kernel.org
+>> Cc: devicetree@vger.kernel.org
+>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+>> ---
+>>   .../bindings/connector/usb-connector.yaml     | 23 +++++++++++++++++++
+>>   include/dt-bindings/usb/pd.h                  |  8 +++++++
+>>   2 files changed, 31 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>> index fb216ce68bb3..9be4ed12f13c 100644
+>> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>> @@ -253,6 +253,16 @@ properties:
+>>   
+>>       additionalProperties: false
+>>   
+>> +  pd-timers:
+>> +    description: An array of u32 integers, where an even index (i) is the timer (referenced in
+>> +      dt-bindings/usb/pd.h) and the odd index (i+1) is the timer value in ms (refer
+>> +      "Table 6-68 Time Values" of "USB Power Delivery Specification Revision 3.0, Version 1.2 " for
+>> +      the appropriate value). For certain timers the PD spec defines a range rather than a fixed
+>> +      value. The timers may need to be tuned based on the platform. This dt property allows the user
+>> +      to assign specific values based on the platform. If these values are not explicitly defined,
+>> +      TCPM will use a valid default value for such timers.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> Is it really necessary to use the array property? I think it's easier
+> and more logical to define corresponding individual properties, one per
+> the timer.
 
->
-> Guessing that because the phy is not referenced its init() ops never
-> gets called and u3 never gets disabled unless a usb3-phy is referenced.
->
-> >
-> >>
-> >>> +     status =3D "okay";
-> >>> +};
-> >>> +
-> >>> +&usb_host0_xhci {
-> >>> +     extcon =3D <&u2phy0>;
-> >>> +     maximum-speed =3D "high-speed";
-> >>
-> >> If this only use the USB2 phy, this should probably also override the
-> >> default phys and phy-names props with:
-> >>
-> >>         phys =3D <&u2phy0_otg>;
-> >>         phy-names =3D "usb2-phy";
-> >
-> > I agree completely: if the controller doesn't need the USB3 PHY, then
-> > it should not (implicitly) be specified in the DT. Being able to add
-> > these overrides is a big goal of mine as well. :)
-> >
-> > Sadly, `phys` is what initializes USBDP's USB-side backend, so without
-> > it the RX_STATUS line goes floating, and because the controller still
-> > expects a port there, it misbehaves:
-> > [   30.981076] usb usb2-port1: connect-debounce failed
-> >
-> > I can tell the controller that there is no u3 port by doing this in U-B=
-oot:
-> > =3D> mw.l 0xfd5ac01c 0xf0000000 # usb3otg0_host_num_u3_port=3D0
-> > =3D> boot
-> > ...and that makes single-PHY operation work perfectly! But unless
-> > Linux itself effects that change, this patch can't rely on that GRF
-> > being set correctly.
-> >
-> > Do you have a recommendation on how I might go about disabling this
-> > port? I sent a patchset last year [1] that had the DWC3/xHCI driver
-> > ignore enumerated u3 ports when the maximum-speed was set to
-> > high-speed, but the consensus seems to be that this shouldn't be
-> > addressed at the xHCI driver level, so somehow zeroing the necessary
-> > GRF bits sounds like the way to go here. What do you think?
->
-> Not sure if it would help but could be that part of init() ops should be
-> moved to probe(). Would still require the phy driver to probe before usb
-> controller for that to help/work.
->
-> Adding a rockchip,dp-lane-mux prop and keeping the phys prop as-is is
-> probably easiest way for now.
+Thanks for the review. The reason I did it this way was for
+convenience. If in the future someone else wants add a new timer,
+it'd be convenient to just add it as a new macro definition in pd.h
+rather than having to define a new property each time, especially
+if folks want to add more timers (scales better).
+There are 3 timers already and I am working to add a fourth in a
+follow up patch if the current RFC gets accepted.
 
-Continuing my comments above: I agree fully. My v2 will add a
-placeholder dp-lane-mux.
+Please let me know what do you think?
 
-Maintainers: I will be sending a v2 of this patch separately in the
-future; please consider this patch withdrawn from the series.
+Regards,
 
-> One option for future could possible be to have grf driver disable u3
-> and modify usbdp phy driver to enable u3 instead of disable u3, not
-> sure this will fully work, init of the usbdp phy seem very sensitive
-> and possible a one-time op. Trying to "usb start" in U-Boot will only
-> work one time, using "usb reset" or a "usb stop/start" cycle will cause
-> usbdp phy init to fail and a full board reset is needed to get port
-> working again.
+Amit
 
-Arguably, it doesn't make sense for the USBDP driver to be affecting
-these GRFs at all, because *technically* they're configuration signals
-fed into the DWC3: therefore whatever driver binds to
-"rockchip,rk3588-dwc3" ought to be setting them according to the PHYs
-it discovers in the DT. I suspect that this code was only put in the
-PHY driver because that's a more convenient place to put
-Rockchip-specific management code for the time being.
-
-Of course, this is all a discussion to be had in a different thread.
-For now, suffice to say, I agree with your thoughts about the USB3OTGn
-GRF management situation needing improvement and am interested in
-lending a hand wherever I can. :)
-
-Thank you for your insights,
-Sam
-
->
-> Regards,
-> Jonas
->
-> >
-> > Kind regards,
-> > Sam
-> >
-> > [1]: https://lore.kernel.org/all/20231208210458.912776-1-CFSworks@gmail=
-.com/
->
+>> +
+>>   dependencies:
+>>     sink-vdos-v1: [ sink-vdos ]
+>>     sink-vdos: [ sink-vdos-v1 ]
+>> @@ -478,3 +488,16 @@ examples:
+>>               };
+>>           };
+>>       };
+>> +
+>> +  # USB-C connector with PD timers
+>> +  - |
+>> +    #include <dt-bindings/usb/pd.h>
+>> +    usb {
+>> +        connector {
+>> +            compatible = "usb-c-connector";
+>> +            label = "USB-C";
+>> +            pd-timers =
+>> +                <PD_TIMER_SINK_WAIT_CAP 600>,
+>> +                <PD_TIMER_CC_DEBOUNCE 170>;
+>> +        };
+>> +    };
+>> diff --git a/include/dt-bindings/usb/pd.h b/include/dt-bindings/usb/pd.h
+>> index e6526b138174..6c58c30f3f39 100644
+>> --- a/include/dt-bindings/usb/pd.h
+>> +++ b/include/dt-bindings/usb/pd.h
+>> @@ -465,4 +465,12 @@
+>>   	 | ((vbm) & 0x3) << 15 | (curr) << 14 | ((vbi) & 0x3f) << 7	\
+>>   	 | ((gi) & 0x3f) << 1 | (ct))
+>>   
+>> +/* PD Timer definitions */
+>> +/* tTypeCSinkWaitCap (Table 6-68 Time Values, USB PD3.1 Spec) */
+>> +#define PD_TIMER_SINK_WAIT_CAP		0
+>> +/* tPSSourceOff (Table 6-68 Time Values, USB PD3.1 Spec) */
+>> +#define PD_TIMER_PS_SOURCE_OFF		1
+>> +/* tCCDebounce (Table 4-33 CC Timing, USB Type-C Cable & Connector Spec Rel2.2) */
+>> +#define PD_TIMER_CC_DEBOUNCE		2
+>> +
+>>   #endif /* __DT_POWER_DELIVERY_H */
+>> -- 
+>> 2.46.0.598.g6f2099f65c-goog
+>>
 
