@@ -1,178 +1,200 @@
-Return-Path: <devicetree+bounces-102480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA20B977329
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 22:58:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBD1697734B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 23:04:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 191311C23F74
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 20:58:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43834B242DB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 21:04:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 474261C1ADB;
-	Thu, 12 Sep 2024 20:57:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B10B81C1AA4;
+	Thu, 12 Sep 2024 21:04:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rj26X24R"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NBE3GJ3P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64BA71BFE0F
-	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 20:57:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EF0C19E96A;
+	Thu, 12 Sep 2024 21:04:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726174637; cv=none; b=JiwMUf3j2tn5kuDhJmGKbZAaZVTvSJ72ONuR9kb9YLMjhILhdY8/B7DVJawAl/iSIPtUDbQ/OxjDw8kG5QaOKzgelL7fXw3uaxGxT94Kf4B9LUOSBBgR077e8gSW8qjnC3O4gJ2l30Mz1Dw6QpmJuVKocC9P5C+ImmMuYuMXIaI=
+	t=1726175070; cv=none; b=TGzopXf01w3OnGw3g6ykfg/KEhvEyOek6jkZY9BRCM9Fz09VL/J904vGJZuNcTtJSRNkS7+Koqx6gBpqzRa8sRSZLF2HLUBbYRP6E1pUeDFxc5UzvTcVAybFR6S8nAtticEHUjv76ZX7+48j0gIu9Q00HwWe3vIbcZlh/dCP9z4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726174637; c=relaxed/simple;
-	bh=KJviDHZ9lPMrCKs9Y16MulHLEhykyksuBhbmdkvKEt4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E2JN3LqqJq+jyuvgEAOpmZWV+KpJDEZbZAPJck0qNQS+ZJfY2o73WfxgWuYJESU/2aLSJeBmqfoBVD+JzBXphNK8q/SclNA8jf3JuM7kB/MG/4hZPzHZk10GF8IR2CvWT2uoP4HWgtJ5pOiqU77nzHTW67cUJlQoO8UCrfmuZ70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rj26X24R; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2f77d142aa2so1851841fa.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 13:57:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726174633; x=1726779433; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VEN2kvQPgr1Ms7pd8H18XzR4Akxhw4D8Y32gs8tCUBI=;
-        b=rj26X24RZhaVvv9w0zswB2/K8IEyIqWc4uTFz9fJvw/oChVhjqO5s/XTa8sQzQhxMk
-         HBCWhJFVbblkhC+KahPfXSC1yiJjVszSJcpfMmH9+HYBadd2Q4FrA2GPPtM4j6Ek0Za4
-         d74Fwsc06P5nGhIDafJgLLbDG4zeZiAqw7SAzAdASWk/5b5O3oDxScPe69oY9Cvcr/V7
-         ODvvITP/D/q/b+YuMt6+C/YC2Wr/Dh0jT7eQYW+e77xn85bMI/K/8rEmEipaVj+7zSQh
-         LToD1WKa59n033SK2othiQBbyJLY6ps7euQ8CZVp2JfhgDZjIDOXRqcrEtSBmu4oQM3n
-         R72Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726174633; x=1726779433;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VEN2kvQPgr1Ms7pd8H18XzR4Akxhw4D8Y32gs8tCUBI=;
-        b=ZsoJViESPWLWl5KZLOY6S0HOrjR19mUX/ebDQqRBiPQTrZX+eual3eS07nrxchAaZp
-         kr80+ymbkLlGX0nT4l9za4i2eBn2eZ5yLzxGuMAWV7047ZfGg0fEu8m/eQWCyMBrT0Al
-         U2J7Z3j877m/zZOkYogikBcjUvOwiM7LK9uAHq378/q2ZbONUW2omXAD6MehdkZ62CIQ
-         fdSkBLHm+/V0HEwiDw/D1cCFKqARWEKg8KgPZ9uBK3idUJITyco2GhncZhp64lqo0ZCi
-         hqSqsaOSFQwoYQFJ4WSULJhKD9FAFMpsKjh1Qlwnehl6hsDVtXgp79Fa+C+DuHymdMQU
-         q85A==
-X-Forwarded-Encrypted: i=1; AJvYcCUgHgS0BWFclwrZzQplWvZb4EQo/ZbTMMwpyE/2GeVWTkpQEmZnqm0cKo2tIAFrj5kT7wMA+IJ+l/Sw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/h4P5aHC7r4pnnXN/iUNr9z7xuoNhPFlnzONX6tngMRi1Hke6
-	NBlGEa8FRyU79hZwtIWMJkURuOxJOlCx/0A5U07PadUTF4cNZuoazWgfVhxMeMA=
-X-Google-Smtp-Source: AGHT+IF5y36oHtilMrxdEGv+5g780tzqe3ogPeLW1QGZrWL44AwZEE7/E7trA6yIla2NOXosmijcCg==
-X-Received: by 2002:a05:651c:2203:b0:2f7:7f76:992f with SMTP id 38308e7fff4ca-2f787ee1554mr8031811fa.6.1726174633366;
-        Thu, 12 Sep 2024 13:57:13 -0700 (PDT)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f75bfe7f1fsm19904211fa.11.2024.09.12.13.57.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Sep 2024 13:57:12 -0700 (PDT)
-Message-ID: <6eadc285-f413-4bf0-8795-59ff19c734da@linaro.org>
-Date: Thu, 12 Sep 2024 23:57:11 +0300
+	s=arc-20240116; t=1726175070; c=relaxed/simple;
+	bh=cRVDHFSUybvmScJCn1XhuLmNJDXhvWTEUpsVyK4kqyE=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=klOTr7sHLK7mrzq9nMpi7sQgDrertFGXpvq+WjgTCnglek/bCSnrW9/JPz7q2C6Hs2B11n4tTSrocycTqIdbRFsFCVVPjXPyR08qKvElPzT0GUuX4syvTGtORZeaihGWz+DDjrW46qra+FfSmkf+Hv9M2jDzqhj/IRFex1dYzUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NBE3GJ3P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7AE8C4CEC5;
+	Thu, 12 Sep 2024 21:04:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726175070;
+	bh=cRVDHFSUybvmScJCn1XhuLmNJDXhvWTEUpsVyK4kqyE=;
+	h=Date:From:To:List-Id:Cc:In-Reply-To:References:Subject:From;
+	b=NBE3GJ3P+HfVh5nFD9mdRfCBIGbePIgWdRB7oE2lRaRaVXEuY7PRweuhReFfKt8xg
+	 UZXLR078rKhPxeQhm8wYy064LRPany8U6zTjOeBgmXfPZ58hZ8q01bQyhtJa2Qbf5y
+	 c+0E5yyvv/ZtqfB1JOzQqXxSa7egdKvEnotfotu2pc4xNYo35uc2ZTgsz8niHpHR3e
+	 YjQmT3ERZWLxYKzwZGzkLJwkdEvGiJt5ei1Kgae++5KSGy6FR4nDsgJq7s+ELvHhcW
+	 PV6XdZ0V48nEUDH5yql/1gzBFourFYB3Dl8NYp6r+O+ki5IUxY/ZxRtvo7m5/OEaeI
+	 +6UlbPhf6UgWw==
+Date: Thu, 12 Sep 2024 16:04:28 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/13] dt-bindings: media: camss: Add qcom,sm8550-camss
- binding
-Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
-References: <20240812144131.369378-1-quic_depengs@quicinc.com>
- <20240812144131.369378-8-quic_depengs@quicinc.com>
- <b1b4a866-fa64-4844-a49b-dfdcfca536df@linaro.org>
- <82dd61ab-83c0-4f9c-a2ee-e00473f4ff23@linaro.org>
- <da60cf71-13a4-465d-a0ee-ca2ad3775262@linaro.org>
- <97e4f888-1ed7-4d82-b972-3e0b95610198@linaro.org>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <97e4f888-1ed7-4d82-b972-3e0b95610198@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Arturs Artamonovs <arturs.artamonovs@analog.com>
+Cc: Olof Johansson <olof@lixom.net>, devicetree@vger.kernel.org, 
+ Jiri Slaby <jirislaby@kernel.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Thomas Gleixner <tglx@linutronix.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, soc@kernel.org, 
+ linux-clk@vger.kernel.org, linux-serial@vger.kernel.org, 
+ Andi Shyti <andi.shyti@kernel.org>, 
+ Arturs Artamonovs <Arturs.Artamonovs@analog.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+ Greg Malysa <greg.malysa@timesys.com>, Will Deacon <will@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Nathan Barrett-Morrison <nathan.morrison@timesys.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, Arnd Bergmann <arnd@arndb.de>, 
+ Utsav Agarwal <Utsav.Agarwal@analog.com>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, adsp-linux@analog.com, 
+ Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+ Stephen Boyd <sboyd@kernel.org>
+In-Reply-To: <20240912-test-v1-0-458fa57c8ccf@analog.com>
+References: <20240912-test-v1-0-458fa57c8ccf@analog.com>
+Message-Id: <172617500940.774816.11284671975335527090.robh@kernel.org>
+Subject: Re: [PATCH 00/21] Adding support of ADI ARMv8 ADSP-SC598 SoC.
 
-Hi Bryan,
 
-On 9/12/24 18:11, Bryan O'Donoghue wrote:
-> On 12/09/2024 13:44, Vladimir Zapolskiy wrote:
->>> csiphy0
->>>
->>> vdda-phy-supply = <&vreg_l2c_0p9>;
->>> vdda-pll-supply = <&vreg_l1c_1p2>;
->>>
->>> This is also the case for csiphy 1/2/4
->>>
->>> So, I _don't_ believe this is work we need to do, since its the same
->>> regulator for each PHY.
->>
->> This is board specific, and even if the separation is not needed on the
->> boards
->> you have just checked, still it may be needed on some boards, which are
->> not yet
->> checked/not yet known.
+On Thu, 12 Sep 2024 19:24:45 +0100, Arturs Artamonovs wrote:
+> This set of patches based on ADI fork of Linux Kerenl that support family of ADSP-SC5xx
+> SoC's and used by customers for some time . Patch series contains minimal set
+> of changes to add ADSP-SC598 support to upstream kernel. This series include
+> UART,I2C,IRQCHIP,RCU drivers and device-tree to be able boot on EV-SC598-SOM
+> board into serial shell and able to reset the board. Current SOM board
+> requires I2C expander to enable UART output.
 > 
-> There is a Power Grid Analysis document which specifies these rails @
-> the SoC level and assumes you've used the Qcom PMIC to power, moreover
-> the PGA re-uses the same regulator over and over again.
+> UART,I2C and PINCTRL drivers are based on old Blackfin drivers with
+> ADSP-SC5xx related bug fixes and improvments.
 > 
-> You _could_ provide that power from your own PMIC which provides the
-> same voltage range as the Qcom PMIC you haven't used. Even if you did
-> provide that from your own PMIC you'd have to provide _separate_ rails
-> for the various CSIPHYs before it would be required to have a per PHY
-> rail requirement on this SoC.
+> Signed-off-by: Arturs Artamonovs <arturs.artamonovs@analog.com>
+> ---
+> Arturs Artamonovs (21):
+>       arm64: Add ADI ADSP-SC598 SoC
+>       reset: Add driver for ADI ADSP-SC5xx reset controller
+>       dt-bindigs: arm64: adi,sc598 bindings
+>       dt-bindings: arm64: adi,sc598: Add ADSP-SC598 SoC bindings
+>       clock:Add driver for ADI ADSP-SC5xx PLL
+>       include: dt-binding: clock: add adi clock header file
+>       clock: Add driver for ADI ADSP-SC5xx clock
+>       dt-bindings: clock: adi,sc5xx-clocks: add bindings
+>       gpio: add driver for ADI ADSP-SC5xx platform
+>       dt-bindings: gpio: adi,adsp-port-gpio: add bindings
+>       irqchip: Add irqchip for ADI ADSP-SC5xx platform
+>       dt-bindings: irqchip: adi,adsp-pint: add binding
+>       pinctrl: Add drivers for ADI ADSP-SC5xx platform
+>       dt-bindings: pinctrl: adi,adsp-pinctrl: add bindings
+>       i2c: Add driver for ADI ADSP-SC5xx platforms
+>       dt-bindings: i2c: add i2c/twi driver documentation
+>       serial: adi,uart: Add driver for ADI ADSP-SC5xx
+>       dt-bindings: serial: adi,uart4: add adi,uart4 driver documentation
+>       arm64: dts: adi: sc598: add device tree
+>       arm64: defconfig: sc598 add minimal changes
+>       MAINTAINERS: add adi sc5xx maintainers
 > 
-> Are people really powering these SoCs with their own PMICs ?
-> No probably not.
+>  .../devicetree/bindings/arm/analog/adi,sc5xx.yaml  |   24 +
+>  .../bindings/clock/adi,sc5xx-clocks.yaml           |   65 ++
+>  .../bindings/gpio/adi,adsp-port-gpio.yaml          |   69 ++
+>  Documentation/devicetree/bindings/i2c/adi,twi.yaml |   71 ++
+>  .../interrupt-controller/adi,adsp-pint.yaml        |   51 +
+>  .../bindings/pinctrl/adi,adsp-pinctrl.yaml         |   83 ++
+>  .../devicetree/bindings/serial/adi,uart.yaml       |   85 ++
+>  .../bindings/soc/adi/adi,reset-controller.yaml     |   38 +
+>  MAINTAINERS                                        |   22 +
+>  arch/arm64/Kconfig.platforms                       |   13 +
+>  arch/arm64/boot/dts/Makefile                       |    1 +
+>  arch/arm64/boot/dts/adi/Makefile                   |    2 +
+>  arch/arm64/boot/dts/adi/sc598-som-ezkit.dts        |   14 +
+>  arch/arm64/boot/dts/adi/sc598-som.dtsi             |   58 ++
+>  arch/arm64/boot/dts/adi/sc59x-64.dtsi              |  367 +++++++
+>  arch/arm64/configs/defconfig                       |    6 +
+>  drivers/clk/Kconfig                                |    9 +
+>  drivers/clk/Makefile                               |    1 +
+>  drivers/clk/adi/Makefile                           |    4 +
+>  drivers/clk/adi/clk-adi-pll.c                      |  151 +++
+>  drivers/clk/adi/clk-adi-sc598.c                    |  329 ++++++
+>  drivers/clk/adi/clk.h                              |   99 ++
+>  drivers/gpio/Kconfig                               |    8 +
+>  drivers/gpio/Makefile                              |    1 +
+>  drivers/gpio/gpio-adi-adsp-port.c                  |  145 +++
+>  drivers/i2c/busses/Kconfig                         |   17 +
+>  drivers/i2c/busses/Makefile                        |    1 +
+>  drivers/i2c/busses/i2c-adi-twi.c                   |  940 ++++++++++++++++++
+>  drivers/irqchip/Kconfig                            |    9 +
+>  drivers/irqchip/Makefile                           |    2 +
+>  drivers/irqchip/irq-adi-adsp.c                     |  310 ++++++
+>  drivers/pinctrl/Kconfig                            |   12 +
+>  drivers/pinctrl/Makefile                           |    1 +
+>  drivers/pinctrl/pinctrl-adsp.c                     |  919 +++++++++++++++++
+>  drivers/reset/Makefile                             |    1 +
+>  drivers/soc/Makefile                               |    1 +
+>  drivers/soc/adi/Makefile                           |    5 +
+>  drivers/soc/adi/system.c                           |  257 +++++
+>  drivers/tty/serial/Kconfig                         |   19 +-
+>  drivers/tty/serial/Makefile                        |    1 +
+>  drivers/tty/serial/adi_uart.c                      | 1045 ++++++++++++++++++++
+>  include/dt-bindings/clock/adi-sc5xx-clock.h        |   93 ++
+>  include/dt-bindings/pinctrl/adi-adsp.h             |   19 +
+>  include/linux/soc/adi/adsp-gpio-port.h             |   85 ++
+>  include/linux/soc/adi/cpu.h                        |  107 ++
+>  include/linux/soc/adi/rcu.h                        |   55 ++
+>  include/linux/soc/adi/sc59x.h                      |  147 +++
+>  include/linux/soc/adi/system_config.h              |   65 ++
+>  include/uapi/linux/serial_core.h                   |    3 +
+>  49 files changed, 5829 insertions(+), 1 deletion(-)
+> ---
+> base-commit: da3ea35007d0af457a0afc87e84fddaebc4e0b63
+> change-id: 20240909-test-8ec5f76fe6d2
 > 
-> Should we add the support for it anyway ?
-> Maybe.
-
-To have a set of regulators is a matter of proper IC/IP description, actually
-here I see very little option for a divergence or disagreement.
-
-> So to reiterate:
+> Best regards,
+> --
+> Arturs Artamonovs <arturs.artamonovs@analog.com>
 > 
-> 1. csiphyX-vdda-phy-supply
->      csiphyX-vdda-pll-supply
 > 
->      In the dts and yaml
 > 
->      => The names should be generic from the perspective of the driver
 
-As for me I don't care about the particular names, somebody else can care.
 
-> 2. camss.c::csiphy_res_sm8550
->      [0].regulators = { "csiphy0-vdda-phy-supply",
->                         "csiphy0-vdda-pll-supply" }
->      ...
-> 
->      [N].regulators = { "csiphyN-vdda-phy-supply",
->                         "csiphyN-vdda-pll-supply" }
-> 
->      => The regulators for the PHY should be defined in the
->         PHY resources description
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-This is obvious.
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-> 3. Required not optional in the yaml
-> 
->      => You can't use the PHY without its regulators
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-No, the supplies shall be optional, since it's absolutely possible to have
-such a board, where supplies are merely not connected to the SoC.
+  pip3 install dtschema --upgrade
 
-Hence there shall be no requirement to describe any non-present supplies,
-which is a legit case, if there is no connection and usage of the
-correspondent non-supplied PHY.
 
---
-Best wishes,
-Vladimir
+New warnings running 'make CHECK_DTBS=y adi/sc598-som-ezkit.dtb' for 20240912-test-v1-0-458fa57c8ccf@analog.com:
+
+arch/arm64/boot/dts/adi/sc598-som-ezkit.dtb: /scb-bus/sec@31089000: failed to match any schema with compatible: ['adi,system-event-controller']
+
+
+
+
+
 
