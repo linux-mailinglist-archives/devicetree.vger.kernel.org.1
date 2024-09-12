@@ -1,148 +1,104 @@
-Return-Path: <devicetree+bounces-102208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22A80975EDE
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 04:22:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA92F975ED0
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 04:16:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 556981C22917
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 02:22:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 942851F23DA3
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 02:16:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF10912D20D;
-	Thu, 12 Sep 2024 02:21:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCFD039ADD;
+	Thu, 12 Sep 2024 02:16:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="UWlhUR4k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F095126BF4;
-	Thu, 12 Sep 2024 02:21:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDB1D282FB;
+	Thu, 12 Sep 2024 02:16:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726107698; cv=none; b=h+7rRTVfi8Uf4sTz6KXoL0wQVkLv20CP1j7UvwBrhXt0npSR3Oh6RXCCuGQDyllYl7RJnHpfkH+64g9vI1LqB9GvhMquj3GWOa2D6FetkQrF5fJ4IffoA0cc6XqgwBJWp5GVoDACQ2Hfq7YP0CnB29QUBSpD/jAkWT7SWFBpqwM=
+	t=1726107412; cv=none; b=TLn9tL4wRWqugoG/IMgz4fg6q5OfjikKGNuFyW5SP4kiQy3e7axQBDdIWA4PE9xCbXoqtznbPlBTEFRGT4P0FFAjnpM2muyZ76VBVygnSro+OOj+K1Et27PmOj8yXtzYXCx7G1IjGQ1/jGk5HsMPkBdXDWJx4PTT8JV1vYeka/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726107698; c=relaxed/simple;
-	bh=X5l+R2RLeYKNJoTh8PxTT2Rzk/VGB2PYSgqfwxHwcYs=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References; b=sCGvGVY0nKgz7JoBLxb1eZxS7vwIKtYqkQ4QAmT+QIhsi4rAx7mtstNwYkM/aQ/LSr6efrBbSNKLJWcgqgrn+2B/ivpUAAKilKBMdQvudFcVUIdYv4liNZ8HXSVmwpEEICNUc53DL2v+FVRK6oLbaqo+D75yk7EuPMjFeWl5qWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id D52671A0047;
-	Thu, 12 Sep 2024 04:21:29 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 9AC561A01C1;
-	Thu, 12 Sep 2024 04:21:29 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 604451840305;
-	Thu, 12 Sep 2024 10:21:28 +0800 (+08)
-From: Shengjiu Wang <shengjiu.wang@nxp.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	shengjiu.wang@gmail.com
-Subject: [PATCH v2 3/3] arm64: dts: imx93-9x9-qsb: Add PDM microphone sound card support
-Date: Thu, 12 Sep 2024 09:59:41 +0800
-Message-Id: <1726106381-1138-4-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1726106381-1138-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1726106381-1138-1-git-send-email-shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+	s=arc-20240116; t=1726107412; c=relaxed/simple;
+	bh=Tzzk1cA2o5tp+xiwq/YyxOWAaHtfPyCRWaj2LVEUd1M=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=b1EfV9fCcfAlzQxuyV5IXjuv2DMjxz3JOyM3fdjCHHHeAA7dYnhsOiFZW1x35pKlThNpQv/v7sC8XyYvZJQD/bpxehTDSDUi86eItghuTcJRVmTylcGBCZdVmOmtvwzzkDwt2eHUyiBxtelsigev0QgMfieCNxyKqM2PMCA1ESQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=UWlhUR4k; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1726107408;
+	bh=dTGWD0Gn+Yi/RRB39Ic05wD/vXoyL7B1/d6vhk5Cy3w=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=UWlhUR4kacrXMMr2rVhZkPbmfXUDEaLDt0sgF7YKt8aeR2BiebejEq1g8TC3GlEra
+	 ++wdggIEtNkwpIA8zpgXUkgVvoRvb/cyH2vZW4AIbJ59zHAc6f0YNklc3mrrFWJgX4
+	 db/kntu0OAts7HlM38nLtFf6bK0PVSUTVgFlxNDn6JR7Y4N7WThLSkgtWIY7PZ84t/
+	 j0r3mapTb7LZKT687nj6I4IMmFVq8vZkBti+N21/ZTzNu9oA2NeZE2LL4wweTC4WKB
+	 X6+JZaKtG4NGP/kTJFh7b6QM/039wx3cfHwonfP8k0b/NMSaP6eAkVuFPozY7QMxrr
+	 Nc7RxDnBUH6LQ==
+Received: from [192.168.68.112] (ppp118-210-89-8.adl-adc-lon-bras32.tpg.internode.on.net [118.210.89.8])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 13AB9650D6;
+	Thu, 12 Sep 2024 10:16:48 +0800 (AWST)
+Message-ID: <215e32abc38011a5e265d91340292234ca157ec8.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v1] ARM: dts: aspeed: yosemite4: Revise quad mode to
+ dual mode
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
+Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org
+Date: Thu, 12 Sep 2024 11:46:47 +0930
+In-Reply-To: <20240910051350.2580971-1-Delphine_CC_Chiu@wiwynn.com>
+References: <20240910051350.2580971-1-Delphine_CC_Chiu@wiwynn.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
 
-Add PDM micphone sound card support, configure the pinmux.
+On Tue, 2024-09-10 at 13:13 +0800, Delphine CC Chiu wrote:
+> From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+>=20
+> Revise quad mode to dual mode to avoid WP pin influnece the SPI.
+>=20
+> Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> ---
+>  .../arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b=
+/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> index 98477792aa00..3073ade6d77c 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> @@ -105,15 +105,17 @@ flash@0 {
+>  		status =3D "okay";
+>  		m25p,fast-read;
+>  		label =3D "bmc";
+> -		spi-rx-bus-width =3D <4>;
+> +		spi-tx-bus-width =3D <2>;
+> +		spi-rx-bus-width =3D <2>;
+>  		spi-max-frequency =3D <50000000>;
+> -#include "openbmc-flash-layout-64.dtsi"
+> +#include "openbmc-flash-layout-128.dtsi"
 
-This sound card supports recording sound from PDM microphone
-and convert the PDM format data to PCM data.
+This is a bit more drastic than changing the bus mode.
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- .../boot/dts/freescale/imx93-9x9-qsb.dts      | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
+Can you please split that out to a separate change with some
+justification in the commit message? For instance, was the chip changed
+too? Or were you using the 64M layout or a 128M chip the whole time?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
-index f44300225656..72a0e0290a84 100644
---- a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
-@@ -122,6 +122,20 @@ simple-audio-card,codec {
- 		};
- 	};
- 
-+	sound-micfil {
-+		compatible = "fsl,imx-audio-card";
-+		model = "micfil-audio";
-+
-+		pri-dai-link {
-+			link-name = "micfil hifi";
-+			format = "i2s";
-+
-+			cpu {
-+				sound-dai = <&micfil>;
-+			};
-+		};
-+	};
-+
- 	sound-wm8962 {
- 		compatible = "fsl,imx-audio-wm8962";
- 		model = "wm8962-audio";
-@@ -271,6 +285,12 @@ exp-sel-hog {
- 			gpios = <22 GPIO_ACTIVE_HIGH>;
- 			output-low;
- 		};
-+
-+		mic-can-sel-hog {
-+			gpio-hog;
-+			gpios = <17 GPIO_ACTIVE_HIGH>;
-+			output-low;
-+		};
- 	};
- 
- 	pmic@25 {
-@@ -355,6 +375,15 @@ &lpuart1 { /* console */
- 	status = "okay";
- };
- 
-+&micfil {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pdm>;
-+	assigned-clocks = <&clk IMX93_CLK_PDM>;
-+	assigned-clock-parents = <&clk IMX93_CLK_AUDIO_PLL>;
-+	assigned-clock-rates = <49152000>;
-+	status = "okay";
-+};
-+
- &mu1 {
- 	status = "okay";
- };
-@@ -468,6 +497,14 @@ MX93_PAD_CCM_CLKO1__GPIO3_IO26		0x31e
- 		>;
- 	};
- 
-+	pinctrl_pdm: pdmgrp {
-+		fsl,pins = <
-+			MX93_PAD_PDM_CLK__PDM_CLK			0x31e
-+			MX93_PAD_PDM_BIT_STREAM0__PDM_BIT_STREAM00	0x31e
-+			MX93_PAD_PDM_BIT_STREAM1__PDM_BIT_STREAM01	0x31e
-+		>;
-+	};
-+
- 	pinctrl_uart1: uart1grp {
- 		fsl,pins = <
- 			MX93_PAD_UART1_RXD__LPUART1_RX		0x31e
--- 
-2.34.1
-
+Andrew
 
