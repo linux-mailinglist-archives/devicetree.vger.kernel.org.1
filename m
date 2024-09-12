@@ -1,237 +1,197 @@
-Return-Path: <devicetree+bounces-102290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AF5C976409
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 10:07:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08C199762CB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 09:36:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0169B22108
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 08:07:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3AC4CB20E9A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 07:36:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF8CD1917F2;
-	Thu, 12 Sep 2024 08:06:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C66EB18BC39;
+	Thu, 12 Sep 2024 07:36:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="rF8Z8QJZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2070.outbound.protection.outlook.com [40.107.223.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 454C518DF9B
-	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 08:06:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726128393; cv=none; b=FxarzmGJQDzu5okDNeoGxDmiE0FZ9w7vSvFECYo3qe5uRLURFvKAiyKEMKH0p+zGj9FWUtUjB2r3okVKfBJVVu7n7fyEu5+YI5gAKAfTSw8HBXOzwLhCDxr3j1rvYRySNAMBLGoM38tMfHYjO+ityTNfbvOvwkWiBCpJxvSi5rs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726128393; c=relaxed/simple;
-	bh=yo6ClgrrYtZtJj0pgLHxHUjiwKMsQVS4UyGqBqyc2Ic=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o0aIPPFpwNB0P7SwNa20pL70ncaDiRjV/cTiiM8AaDmgE1jMBzD8F4EN5KvVy4jLmT85yyeMba8cY8lpSG176qpH/OMZwb1z1kZ6Ns+PuRnHZp+j6D1UOgf5Y2aidSLvdtmMwgaFbCGlVrBx36Z0suMPa68gUMX9ID56VD4GsJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1soeqA-0004AS-FW; Thu, 12 Sep 2024 10:06:10 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1soeq7-007KiX-Rx; Thu, 12 Sep 2024 10:06:07 +0200
-Received: from pengutronix.de (pd9e595f8.dip0.t-ipconnect.de [217.229.149.248])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id E4905338DC1;
-	Thu, 12 Sep 2024 07:35:27 +0000 (UTC)
-Date: Thu, 12 Sep 2024 09:35:27 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Charan Pedumuru <charan.pedumuru@microchip.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>, linux-can@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: can: atmel: Convert to json schema
-Message-ID: <20240912-literate-caped-mandrill-4c0c9d-mkl@pengutronix.de>
-References: <20240912-can-v1-1-c5651b1809bb@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6A8E18BBA5;
+	Thu, 12 Sep 2024 07:36:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.70
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726126566; cv=fail; b=EbRGYXfBaP6Fj/EB00B04ZED8Zxvc4aQHtjuLhlqQOA6nhGICQua8r5PGw7y04v+qlZ7KVVvAxoBPJQJUPHeKmn09qtxkVYgUcNVnUn3UlScDi2kAuAdXnHcQ1kb77dho7ZNrJDYhz3NCMeYqIRDcc+RO98iLSw0ZZLb7btceIs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726126566; c=relaxed/simple;
+	bh=z+0nqcj4pqvtfMcUpZL0rSB2ZHXefovr0/b5h7hpfSc=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=MndeOIw5yhDWBbKub0ZcQe2nB6CaO6hX4RAnITDjPmM3jjGlSg3qS5IeNnM8U5n9FqRfvNqd8a+Lf4cVqyGBaWg6Jj857D4w225vFnqTJmo9Yupp+om4SEk0Xjzfg4bTnNaPvgQ1ULhJlReoviXGK8i2igGKOR3Bp05R64uqi3E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=rF8Z8QJZ; arc=fail smtp.client-ip=40.107.223.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=puU7r8kClpfOQrx8sb4Dp9CeliRawF6n5/Jn7WSWfKoyHsRTEmFOJX6d9dmgWzAXC0l7yUYN+9CWiZ4JtUmOcJBNWF1AtTBbfNpr+1a7kzRKogM7Vv9maioodV9J3X880brEhZ3Qc+jvdf9T+tyorf4ZeFvd3wDi6PoBxSlQG6+z/1hdr/OuXq7f/xa1uhMqlPEIvTJtyqXrnL7so2Xn2zXyKVLKvHa8gtmL9o8+G8Mu2wfobOsKAtfgwRXgGvZ7MLnm/OSVa3w9DwQP9o0FiRz2B0WbYr1GiiibxT9UObxueUeUNiwduLuXM87L3yuv2igUlyCXEUSecBh75qs2Gg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=z+0nqcj4pqvtfMcUpZL0rSB2ZHXefovr0/b5h7hpfSc=;
+ b=AwyS3AHBHb6wCR0wopLxM/TI6c3tcCep7WxvwQlMGL/XL7fwkaEo0ogVHNI8yOFHmiT+17ovZvlNYGlZEfYGG1QOjpeLHlSb8fYxQQZ106bxZ56a1exBtUwCQMpBNaGPopC9XSYyc5Ypi3sx+6OCqSon1pw7oPRyVQAkxfVwrQbQboA8k68cn6nGYesPNOYASz/EdFX2luMxDvgDMed3Ra3onmuEL++hYXVzA072z62va/LYKnjJP6hQe3NvbUVuwOpMn/HGMiYqxhWXcgHJ6tcXdPh/+0vnfxZ8sORyAWq05BHVVasgE3Yn7tW/7jqAF9KCRZzxwTOqzG2ZO9Ty/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=z+0nqcj4pqvtfMcUpZL0rSB2ZHXefovr0/b5h7hpfSc=;
+ b=rF8Z8QJZRkRibGWJd4rnxhA46feBQnTdA6q6afG70FmQH9qLkEKCXgiIW4m0XlXyHFZf59654isSb9jRPROaGx6glFvh3r+6EXim9wPjR4bk0iG0G6ZJZ1ohVqzHkqBItlNPPybSbploOBC53vRC7NzvGHIrzDWJwAwYXnxzH1d972vlOeNU/H5T/9yrZ8Zy8dzC8PnpKk4cGwK963HrEbOuf4QvsUcsCWDI/cOr5f7Zam71CAaQMLwlNQo2jGsrunpnddzEPbZpjBKz3vMHVjOt/PT+BDvRAOlGBYxCaSb/YuwyHjkMdmUESc4h8ThAa58VtX6oELzLxklJrb/HuQ==
+Received: from BN9PR11MB5289.namprd11.prod.outlook.com (2603:10b6:408:136::10)
+ by SN7PR11MB6849.namprd11.prod.outlook.com (2603:10b6:806:2a1::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.27; Thu, 12 Sep
+ 2024 07:36:01 +0000
+Received: from BN9PR11MB5289.namprd11.prod.outlook.com
+ ([fe80::93b4:c87a:32b4:c395]) by BN9PR11MB5289.namprd11.prod.outlook.com
+ ([fe80::93b4:c87a:32b4:c395%6]) with mapi id 15.20.7962.017; Thu, 12 Sep 2024
+ 07:35:57 +0000
+From: <Andrei.Simion@microchip.com>
+To: <claudiu.beznea@tuxon.dev>, <Nicolas.Ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH] ARM: dts: microchip: sam9x60: Add missing property
+ atmel,usart-mode
+Thread-Topic: [PATCH] ARM: dts: microchip: sam9x60: Add missing property
+ atmel,usart-mode
+Thread-Index: AQHa/3ZRSb21CzWm2kyzuzG2afEotrJTynQAgAADYgA=
+Date: Thu, 12 Sep 2024 07:35:50 +0000
+Message-ID: <1b7f2442-8a37-4cf2-a6bf-c05def4948ed@microchip.com>
+References: <20240905093046.23428-1-andrei.simion@microchip.com>
+ <f1daa78b-43e4-400d-bb50-9cce1b42fd86@tuxon.dev>
+In-Reply-To: <f1daa78b-43e4-400d-bb50-9cce1b42fd86@tuxon.dev>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN9PR11MB5289:EE_|SN7PR11MB6849:EE_
+x-ms-office365-filtering-correlation-id: 5951229f-f11e-4f26-b131-08dcd2fd8aab
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN9PR11MB5289.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?Qjg3RzllNGt6SHFRcHZvenQzeWRVV0Y0dVBOZzRZbW5BV2ppMlJ5YVpzbDZB?=
+ =?utf-8?B?UW96QURDaGVPd2pHK1ZGODR6Q0x0YkV6dWRIR2JyNkY3aG5oYWwwTlBIck0x?=
+ =?utf-8?B?cXBwTUxnWG1xOXc4R0hpUzRmaUgybkRlUldTYS9EdkN2b2NwOEJJV05mT3Ru?=
+ =?utf-8?B?SkJ6UGdJZ09hN25wRWVrOUFaV21pQ3ZhSG9TUXdlVm0xZDBOUmVxQVVCdHly?=
+ =?utf-8?B?MlJuMUFkRTdQYWI5MjErMmNKR0JGT2R4ekN0MWx0RDVGbnRvVWNmdWJsaEhq?=
+ =?utf-8?B?NVNSNGVIZ20vY2p4MUZIc3RoWnlJdjBBSmpBalE3bVAxTXVJN21tMlk0NVh4?=
+ =?utf-8?B?VDlXd21uVlJ6NmVvRmhacjNkNG1vUW5wZGtuTG90RSs0Y05kdXkycUZncXVw?=
+ =?utf-8?B?RVJ2aUYySmJIUmRBS210QVhvMThNVVJqTktEZWtFWE1yRDdrdjgyQmVUVVVW?=
+ =?utf-8?B?QTVWOXZSOEdYMkN2RTNNRFJadFdJby9XYkVZZGtzQXF5OUY3TDBvczJ4dEU5?=
+ =?utf-8?B?VC9sOTA5QkduQmtaMXVHK1JWQXRWdDJmZXRYR1RXV0xEK2VyeVVkVzRRc2hH?=
+ =?utf-8?B?VnRlRklqU09yTjgwNWJiRU5yNEd1QzNQUDRJZXRtdGx2QTMwRGdYMnZ4TThM?=
+ =?utf-8?B?NlZibVhsNE5iUVhtam9MdXFUT3ppK01rWFF4WUJXbXlVSE5hVkNNUHZjWjlh?=
+ =?utf-8?B?SzVaVTQrdm1XMjVHcEI0V3lUbEhqOGNUeW85Mnp5cTB3dUtWYWFZZk95a1Zr?=
+ =?utf-8?B?cm04N29kY2VuREJxWjZBTURoSGVnRVJYR1JJOXlmQnFrTmtxaDZtdmRVRjN3?=
+ =?utf-8?B?M2V2UUdvNUhBMFFSTWtVeFovUDNvOGIxSkZrbHVKdUI0Z09lOFpQaW5JbFRT?=
+ =?utf-8?B?V3BJbnRpOGRpTUl3d2hZUHk1NDI3YXNaMi93bW51NmNja0o4WmZTWW9KZW5T?=
+ =?utf-8?B?TW5ieE50RW9nWFdhTHoyOElLdWcvVlhOZ2N2eFhZa0xTWk5qeHE0V1NtMmVt?=
+ =?utf-8?B?VU1HS0VMWU1sT3hJN0xQOTlNTlZLM05PZnQ2WmhzYkJwbllmYnVXOXZ5cGgy?=
+ =?utf-8?B?VmlOTjRJR3AyeFZaZ2VtUnhzWHk4NjZEb0R5U2g2NThGNnpCTXJFNDBJNEhh?=
+ =?utf-8?B?WVdPNGxDN3lrR1dLdzJsWkwvelY1emdGdlJXWVEvR2kzOGREMlBuTEJDcDlU?=
+ =?utf-8?B?dlA1OFBwTVhPQlN6V050Mk5sTTBYMk9oYUlDVVVUbmZpZVhZY1d5NjN6UjdS?=
+ =?utf-8?B?Ni9EQkt5Y01LdnhoMWllT0J4eExPaklJSmphaXpLUzBpY1Rmc2tUSklQcHVN?=
+ =?utf-8?B?RUxlYVdzSjFLMmVZb2tiSEQ4N2Y0cGIyUXNJU21wdk93dU41ZVVHY25rWklZ?=
+ =?utf-8?B?c2FINDlpa0UvNU5lSHNlZU5vNzcvUS9JOEZYS09yQWpLK1NtdXpIaS8xNzdL?=
+ =?utf-8?B?ZGtpK084M3JKQjh2aHFKSmJWLzRPckY0VS9LNHI0ZGs3Rm9nYnBRN3QxRHIr?=
+ =?utf-8?B?dlM3bkFhNGdwYW01TG1EaGtjVHgxNG1CdzBDNVBpQTBxdVB5aXE1bmFTSzFq?=
+ =?utf-8?B?cUM3WWJzbTh2ZFBlVWtHdFlPd09FaDdRUTBUYXRVMzlVVWpSeGV3ZmkwNVlv?=
+ =?utf-8?B?V3hGcXB0QlRHTkdnRVliS2JvT2Z5ZlpyUTJiclRBMFlWU0tialJwU25vbUZ2?=
+ =?utf-8?B?d0VtbDQyNnhSOXpxekI5MklnVlJtUVVvTTlvNHQ1NVEyLzJVOXpWdjJOSHgw?=
+ =?utf-8?B?SEZNUkRrT2w4ZEp1bUQ0TVZxOGw0dkNOT1o3ZlUybW1lRUhQQzhtMU5vWmJJ?=
+ =?utf-8?B?N29YYlYzZDF6bE1OSG8yVFRMUjZ6WDgvcEhKRWxTN1RGMlRnR1JhK3lNYXN0?=
+ =?utf-8?B?bWsxU1BiNVp2Slp3VnVQRkpPTkJEZjBZUlIzS1l0dFN6d0E9PQ==?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?WlMxWlZFOSs1NDVWN0s4L1pDNGZIUmxkSnRadzVWSkJRUkdURXhCcGd1WEo5?=
+ =?utf-8?B?UGp3ay9VdWY1bUZFNDQwc20ydXVPbXNzTkQzT3ZvZ0ZRY1ZValhHb2VRZHVp?=
+ =?utf-8?B?OW1tdDRKSDFGQnFpMXlHMFpKdFh5N3psNmFldkhLbnBsNUdjUmlKNTMrclox?=
+ =?utf-8?B?eW1VdGJDelNHdlJPcFhSL2dMVFRXd0VZU0FvN3hFYTl4bEpqU0YvbmRyMlFw?=
+ =?utf-8?B?UkhZMHFmN085Y2o1QSswNTRuUVpGRDF0aE45QTY0UGhsZWlJVGVmVXp0bVVs?=
+ =?utf-8?B?YVpRZTBUZmlVc05aVlVvQ3NaTzRRZDJZZmp6bkE2b2xJMzlMOWJSa0JzMWtB?=
+ =?utf-8?B?aDFlbnF0aVE3aGJOZDdXZDV1TnlCNXVKRDZLVDRXSjJxZXVBeTBkWExycndG?=
+ =?utf-8?B?OXF2UlNReHI4eVhGMUR3ZWZaZUI2cFZkWWJLaXI0RkFRd25LUmlyZ2Q4Ymoz?=
+ =?utf-8?B?STZ0azRqelVyVkNNdGJ6Z21LZWtLRkFZTTFQcWI4OHkwQkxGOVkxNHp0RXZY?=
+ =?utf-8?B?RU5hTW5GUHBGaUJnc0FRMkxRRGdpWm5scWhjVXhSdVFMTkxQOGNwbmNCcTk2?=
+ =?utf-8?B?dWh4T21qanFpRkxDSHFjTEprb3ViSllaUWZ0MTlZT3gyTGxoTlBOWktaWGEv?=
+ =?utf-8?B?dWVlQ3RiK3VMMkxoMWxQSWEyNXp0d2pIVlNrQ0lsaE5wNWh6eXBROEhPOUxV?=
+ =?utf-8?B?WVd2NTVSN25QLzFMNzRjU2xNRzAvSG54ajE0U0hQSWttbUtKOThxbFNyNHpt?=
+ =?utf-8?B?OEo0Y2s2ZjJNWnM1TWI1OVBjNUJQY2FYTVk4TEJuU2RtSkIzZVkzcUJqRnk1?=
+ =?utf-8?B?VVZ5d1A3dm1MdU1UL2JNRlpva2hSbWVGcy9TOHI3VlVHR3MyT2hxT3NWNHlk?=
+ =?utf-8?B?cGZKTXlZbkVUc1hvaklhVmg4MWFKMUxJbWE2OENZTGErRWpCUkkrRzI3cGlj?=
+ =?utf-8?B?bm94cEtOaTMvMWlTcmlRdzZidFlsbHhDVU9MZjY4ZkxabXlRQXRkSE1qZHRW?=
+ =?utf-8?B?WDE3KzFYbzRlUnkzUEdvNEdzSmtrNC91YVh3WmxoVC95RG43d2pOTkVZc2J4?=
+ =?utf-8?B?a3AybHNNK1VQVGlCVTN0RUxmQ0l6d0NIVmlwRnF1WkxhRDJyMzZ0ZTBaVWc0?=
+ =?utf-8?B?ekR6SFlwMS83M2gwQjFLcnpOUTNtQXBzYnJEeGkyV3I2czRkcUFZTHhJVnVQ?=
+ =?utf-8?B?dCtJVHJBWHB3b1ZteENFZ1Z6RDZPR3BIbkF1UlZtZkhMSURhUitLUmZwNU1N?=
+ =?utf-8?B?K09iTFhlQ2VXNjdVTXlHS2Ric1BvNmlqa0VQRllSMWd0aDk5dEdnYVhQQ21p?=
+ =?utf-8?B?ejNYRzI4eDFSU0Z2WEJzcGI0YlRtYm8wSnlGN0VORGZ4QjVnVzhJUTZBdktQ?=
+ =?utf-8?B?anhIajNESHphTzc2bkhJbGplRUNwYkR5WCtlYjhLYnU2eVBqTERlNkZKLzFh?=
+ =?utf-8?B?cC81WnB0c3hjYkVsTnRLZ1BNZG1uNktnb2FSZzBzMFdhODdURjdLVTg1akM1?=
+ =?utf-8?B?L1k1U09oTExjeURYeDNtTkU4QUwyZ0pCL0M5THIyVXdBcjVPdHhNSlV1WDdm?=
+ =?utf-8?B?V2ZCOFk4SkZ3NjhQZ1ZycXRkUjR2ZDAxYUxRem1LU3gzRU9IcmNIQW43akRQ?=
+ =?utf-8?B?a2dXV2Z1UGEyVlJFN3lncXBEZTF3b3ZvOGNkbXRVNExMSkcyQmdTUXhjYmVL?=
+ =?utf-8?B?WkpyVS9zR2NCMGI4ZUhwWnJYK2xlZ214U2VPbm9SRHpYL0k4OWd0emhJK2Zi?=
+ =?utf-8?B?dnZIejk4aERrbWxLa1RoeDAvUk1memhaYlk5QmRSZldveDFoaTdoYXljbFdD?=
+ =?utf-8?B?SFpHZUg3Y1ZUQ3Q0OHhMd1RlL0VOMW4vZ2Fkc3BsYlp1MEVnVGxkMmh0WEkz?=
+ =?utf-8?B?SG1sWTlvQnVocmU0aWlxRjlJZXJpWTJTR0NFODVJNEltdThUc2x6NUhPK1k1?=
+ =?utf-8?B?a1oxZURkcEx0L3NHTlI4ekh2Z3Fqb1FrUVlHcTg3OVA0K0krTThycGVzcjFG?=
+ =?utf-8?B?RHpRd2RwcGQxdDhKSVBCUUNzMlB0OEszZEdGV1h3aHcrRmozNW5kTWFpTW1O?=
+ =?utf-8?B?TjVGSFZ5QWR0cHhVMmVQWEFSRzBWZnc3T2ovSmh4ak56S09xYXNUMUVpc2tk?=
+ =?utf-8?B?OTQrSXVrNExLZVQwNFJ3aEpVNWFqdkgyZlFkWVk5d0lLUy8vaWRzaWdScWRi?=
+ =?utf-8?B?TWc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <F82A7F7AB8C4B34C9E152F77C0DADCF8@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="orv67sewbwknpnrd"
-Content-Disposition: inline
-In-Reply-To: <20240912-can-v1-1-c5651b1809bb@microchip.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-OriginatorOrg: microchip.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5289.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5951229f-f11e-4f26-b131-08dcd2fd8aab
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Sep 2024 07:35:50.4314
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: EqVCudOaSjk9Cf1yNSozBcIPIfsiX1RHGLaXyLl5CEHEiyzIahLCKVfyzaCjJGnlZRFIJrYMDTXZ311jYA49XzVPqJyjxiEERqElGCtZSDY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6849
 
-
---orv67sewbwknpnrd
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 12.09.2024 11:19:16, Charan Pedumuru wrote:
-> Convert atmel-can documentation to yaml format
->=20
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
-> ---
->  .../bindings/net/can/atmel,at91sam9263-can.yaml    | 67 ++++++++++++++++=
-++++++
->  .../devicetree/bindings/net/can/atmel-can.txt      | 15 -----
->  2 files changed, 67 insertions(+), 15 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-=
-can.yaml b/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.=
-yaml
-> new file mode 100644
-> index 000000000000..269af4c993a7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/can/atmel,at91sam9263-can.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Atmel CAN Controller
-> +
-> +maintainers:
-> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - atmel,at91sam9263-can
-> +          - atmel,at91sam9x5-can
-> +          - microchip,sam9x60-can
-
-The driver doesn't have a compatible for "microchip,sam9x60-can".
-
-> +      - items:
-> +          - enum:
-> +              - microchip,sam9x60-can
-> +          - const: atmel,at91sam9x5-can
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: can_clk
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +allOf:
-> +  - $ref: can-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - microchip,sam9x60-can
-> +    then:
-> +      required:
-> +        - compatible
-> +        - reg
-> +        - interrupts
-> +        - clocks
-> +        - clock-names
-
-AFAICS clock-names is required for all compatibles.
-
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    can0: can@f000c000 {
-
-I think unused labels should be removed.
-
-> +          compatible =3D "atmel,at91sam9x5-can";
-> +          reg =3D <0xf000c000 0x300>;
-> +          interrupts =3D <30 IRQ_TYPE_LEVEL_HIGH 3>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/net/can/atmel-can.txt b/Do=
-cumentation/devicetree/bindings/net/can/atmel-can.txt
-> deleted file mode 100644
-> index 218a3b3eb27e..000000000000
-> --- a/Documentation/devicetree/bindings/net/can/atmel-can.txt
-> +++ /dev/null
-> @@ -1,15 +0,0 @@
-> -* AT91 CAN *
-> -
-> -Required properties:
-> -  - compatible: Should be "atmel,at91sam9263-can", "atmel,at91sam9x5-can=
-" or
-> -    "microchip,sam9x60-can"
-> -  - reg: Should contain CAN controller registers location and length
-> -  - interrupts: Should contain IRQ line for the CAN controller
-> -
-> -Example:
-> -
-> -	can0: can@f000c000 {
-> -		compatible =3D "atmel,at91sam9x5-can";
-> -		reg =3D <0xf000c000 0x300>;
-> -		interrupts =3D <40 4 5>
-> -	};
->=20
-> ---
-> base-commit: 32ffa5373540a8d1c06619f52d019c6cdc948bb4
-> change-id: 20240912-can-8eb7f8e7566d
->=20
-> Best regards,
-> --=20
-> Charan Pedumuru <charan.pedumuru@microchip.com>
->=20
->=20
->=20
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---orv67sewbwknpnrd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmbimbwACgkQKDiiPnot
-vG+igQf7BhUphCaYd67/BKLQBNIguPGy39T5kQzPkdg/QflMpcz6bSZQXYsvyguA
-GsRPQcDt7APYW7tTpTnIa0ZNlYj+lF7cWPl9afS90kk4kRAPPvSYb9Vd2UAMjsPt
-m/jhQsupujHXJg8m2REBHmB0npIGoHuL+kqg0qRIIucFWs0jgsMPG6C11e/QiFtQ
-ArgNdeuIsS7DUqKNXy9eb43tnRSomQkn4M1NojRVKSmAuzMrvheHmKA2mQOLJ2Or
-4JRvI/oRZsbx1KBxqID2y/NMb9pk7TbVw6gZnTLJcYKg5GmhXuIbPIP3RZ6eWnB4
-8h+/7/1vWZlVuhVrFKzyXj9OfBiIyQ==
-=50PA
------END PGP SIGNATURE-----
-
---orv67sewbwknpnrd--
+T24gMTIuMDkuMjAyNCAxMDoyMywgY2xhdWRpdSBiZXpuZWEgd3JvdGU6DQo+IEVYVEVSTkFMIEVN
+QUlMOiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bmxlc3MgeW91IGtu
+b3cgdGhlIGNvbnRlbnQgaXMgc2FmZQ0KPiANCj4gSGksIEFuZHJlaSwNCj4gDQo+IE9uIDA1LjA5
+LjIwMjQgMTI6MzAsIEFuZHJlaSBTaW1pb24gd3JvdGU6DQo+PiB+OiBtYWtlIGR0YnNfY2hlY2sg
+RFRfU0NIRU1BX0ZJTEVTPWF0bWVsLGF0OTEtdXNhcnQueW1hbA0KPj4gLT4gZm9yIGFsbCBib2Fy
+ZHMgd2hpY2ggaW5oZXJpdCBzYW05eDYwLmR0c2k6IHNlcmlhbEAyMDA6ICRub2RlbmFtZTowOg0K
+Pj4gJ3NlcmlhbEAyMDAnIGRvZXMgbm90IG1hdGNoICdec3BpKEAuKnwtKFswLTldfFsxLTldWzAt
+OV0rKSk/JA0KPj4gc2VyaWFsQDIwMDogYXRtZWwsdXNlLWRtYS1yeDogRmFsc2Ugc2NoZW1hIGRv
+ZXMgbm90IGFsbG93IFRydWUNCj4+IHNlcmlhbEAyMDA6IGF0bWVsLHVzZS1kbWEtdHg6IEZhbHNl
+IHNjaGVtYSBkb2VzIG5vdCBhbGxvdyBUcnVlDQo+PiBzZXJpYWxAMjAwOiBhdG1lbCxmaWZvLXNp
+emU6IEZhbHNlIHNjaGVtYSBkb2VzIG5vdCBhbGxvdyBbWzE2XV0NCj4+IC0+IE1lYW5zIDogYXRt
+ZWwsdXNhcnQtbW9kZSA9IDxBVDkxX1VTQVJUX01PREVfU0VSSUFMPiBtaXNzZXMgZm9yIHVhcnQ6
+DQo+PiAwLDEsMiwzLDQsNiw3LDgsOSwxMCwxMSwxMg0KPiANCj4gQ2FuIHlvdSBwbGVhc2UgZXhw
+bGFpbiBpbiBwbGFpbiBFbmdsaXNoIHdoYXQgdGhpcyBtZWFucz8gRnJvbSBbMV0NCj4gDQoNClll
+cywgSSB3aWxsIGRvIHRoYXQgaW4gVjIuIFRoYW5rcyENCg0KQmVzdCBSZWdhcmRzLCANCkFuZHJl
+aSBTaW1pb24NCg0KDQo=
 
