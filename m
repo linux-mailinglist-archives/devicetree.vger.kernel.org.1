@@ -1,118 +1,83 @@
-Return-Path: <devicetree+bounces-102204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 152B5975ED5
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 04:19:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29553975EE3
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 04:27:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE1FA1F2241A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 02:19:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ADC26B230DD
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 02:27:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A1152D7BF;
-	Thu, 12 Sep 2024 02:19:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5456A3A8E4;
+	Thu, 12 Sep 2024 02:27:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="nYm0mDHT"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="M0lMF+m5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D1173B784;
-	Thu, 12 Sep 2024 02:19:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDF773C24;
+	Thu, 12 Sep 2024 02:27:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726107569; cv=none; b=PGqC0x8RkicBxRUHr9bJpD4LpsfFerSgg2jutizk/zjmo+rj1uYtIdevA8c+/ZHD3IW2qGoMSvS6w0JtKlXxeOY5A7oOxbjO17+KtlL/KeSp11lyAxzsh9RVeXdLwdNLvcTNGoybJlwAF6hq3RGuolW1dtLmqk+v/QHUR6+V0Dg=
+	t=1726108023; cv=none; b=g7OV0yCjM9AN1iWncLsVFxT8lKovnxbJKsoTaI9h3dC7J+FGwXYuEfQC7bvxLZDuFLyv6Z4YMILOyglaWb3W78f9Ic477atO6ssPUeAPX6Gc36lRPn8VPCcxvCH5R8Sgex7vHNzTJQ9HXrMcncCxm7XZxGtcT5ysIYDmtHNJZLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726107569; c=relaxed/simple;
-	bh=ApcHvfUEotxvS5e99qlFOrCpTx5gVZ+VOSXG6e0NcV8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=M5ghonY/kFRRgyJ8lPPa76jemSUpG2rfdPxNqtnBPlS9gcIzqk7KhkMEQ/Tukyq1h/aC7xc8J1aSUqMVA4BfIFAQsOT6SFyRkGSecN638RSshUdxxg1LRlF8e3t6hb5dZCv5LVJPr9dzt5GZ2YqjzfaU3WgJ9uM+9doGffiCNtA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=nYm0mDHT; arc=none smtp.client-ip=203.29.241.158
+	s=arc-20240116; t=1726108023; c=relaxed/simple;
+	bh=BXcYBcx2y4YZCH6yjZQSNtfF5AUmkdKLYxNVH2SITfQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Po86kMRLzQU4FC9hJn1gTn8m7BV6K38v9IEiNgTCviQbMzoXIKFGsbTWbV9/U/Y5baoqBxqZEORicvNSNUGh5K/J0Bs7bPVYk4F/fF3PSn56bh4uTfp+ENWbhL9S6E1CW+yG5Sh+f8DsyE5dwZ8Fv3OEj3H0hhyYuoa0QM6dDVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=M0lMF+m5; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1726107565;
-	bh=ipltQWMwxD1LeV+oKdLSFHbv43Qowb0JPJe2RinWwYo=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=nYm0mDHTJQ09HXajwVGyc/Q11zzgDlq+Y8IIwyDDuJeDTAyg/vA5BbpHxdFYEW9Mb
-	 AEqUuhEXp/TjE73BF0Z3T64UyZjwJX3IMlH81qoBv5tft/OINmb3addy58zHUiss31
-	 8QYjiEEOoP5vlEWVzwsTtG1ZC0hyMx42S6n10EWSf+x4YE3dCQ+NK7Fi60pe/wgGnq
-	 zjvEysFysrnifPwx68cA4WHzC4Hqv7oakCfXMEB8A4HiHIISci6CFjhNzenbyRM/1b
-	 YbBGg0iBe9mRUItZLcm/RYTkxIoS9q3IvAcPBr+dOeK1U6Vx+U7qWcikfwunFGt1OF
-	 sYJiZqMVphLPQ==
-Received: from [192.168.68.112] (ppp118-210-89-8.adl-adc-lon-bras32.tpg.internode.on.net [118.210.89.8])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id DED3B650D6;
-	Thu, 12 Sep 2024 10:19:24 +0800 (AWST)
-Message-ID: <63ce2d4b7edc52952a5f1bb97eb4dc8e7305045f.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v1] ARM: dts: aspeed: yosemite4: Enable spi-gpio setting
+	d=codeconstruct.com.au; s=2022a; t=1726108019;
+	bh=4T+rDZ0xJ2wcnLPEZ14zB7/g2o2IjvlNz0qDcwZKU/o=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=M0lMF+m5rm6jq08qEg42+8u0hQV2kXypF2aBpBQs6gO8f1qcAEKHWuwD6zUseVOah
+	 oE6YLdG/BwvAQu3nuBIPjNhsvSzHxgMiYtiuI9c8iGjlQVwoaDfddfClpj3JEJi4bG
+	 LrxU6d3FLkP7ppDGdf8BNZbvnLf7oVX0ICXDVaBs0qE7LEeE7fHpUBTOFdZ8EKNurC
+	 e0FB8+H4ZKWBRUl8E9dUFHiTVwjB+a08QpZoCnSDSaimkOf4dlEpP7Fm0jzOLEXCXs
+	 xyZM6OPdFVagMaLEfgD720gpdosvfbg8RlUdPGx6QgoXN4DUE8w7uQtFziFaXPuHU/
+	 S4eV5aabqvBAw==
+Received: from [127.0.1.1] (ppp118-210-89-8.adl-adc-lon-bras32.tpg.internode.on.net [118.210.89.8])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id F1A34650D6;
+	Thu, 12 Sep 2024 10:26:58 +0800 (AWST)
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
+To: patrick@stwcx.xyz, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
 Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org
-Date: Thu, 12 Sep 2024 11:49:24 +0930
-In-Reply-To: <20240910030324.2256698-1-Delphine_CC_Chiu@wiwynn.com>
-References: <20240910030324.2256698-1-Delphine_CC_Chiu@wiwynn.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240910022236.1564291-1-Delphine_CC_Chiu@wiwynn.com>
+References: <20240910022236.1564291-1-Delphine_CC_Chiu@wiwynn.com>
+Subject: Re: [PATCH v1] ARM: dts: aspeed: yosemite4: Enable adc15
+Message-Id: <172610801889.712033.6359452612409373701.b4-ty@codeconstruct.com.au>
+Date: Thu, 12 Sep 2024 11:56:58 +0930
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.1
 
-On Tue, 2024-09-10 at 11:03 +0800, Delphine CC Chiu wrote:
-> From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
->=20
-> Enable spi-gpio setting for spi flash in yosemite4.
+On Tue, 10 Sep 2024 10:22:36 +0800, Delphine CC Chiu wrote:
+> Enable Yosemite4 adc15 config for monitoring P3V_BAT_SCALED.
+> 
+> 
 
-Is there actually a flash chip on the same bus? You've only described a
-TPM. If there's no flash then this seems misleading.
+Thanks, I've applied this to be picked up through the BMC tree.
 
-Andrew
+[1/1] ARM: dts: aspeed: yosemite4: Enable adc15
+      commit: e3b9afda18a6dc7975197a061c698142deeccc1b
 
-> Add tpm device under spi.
->=20
-> Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-> ---
->  .../aspeed/aspeed-bmc-facebook-yosemite4.dts   | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->=20
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b=
-/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> index 98477792aa00..fdf9040d655b 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> @@ -34,6 +34,24 @@ iio-hwmon {
->  				<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
->  				<&adc1 0>, <&adc1 1>;
->  	};
-> +
-> +	spi {
-> +		compatible =3D "spi-gpio";
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		sck-gpios =3D <&gpio0 ASPEED_GPIO(X, 3) GPIO_ACTIVE_HIGH>;
-> +		mosi-gpios =3D <&gpio0 ASPEED_GPIO(X, 4) GPIO_ACTIVE_HIGH>;
-> +		miso-gpios =3D <&gpio0 ASPEED_GPIO(X, 5) GPIO_ACTIVE_HIGH>;
-> +		cs-gpios =3D <&gpio0 ASPEED_GPIO(X, 0) GPIO_ACTIVE_LOW>;
-> +		num-chipselects =3D <1>;
-> +
-> +		tpm@0 {
-> +			reg =3D <0>;
-> +			compatible =3D "infineon,slb9670", "tcg,tpm_tis-spi";
-> +			spi-max-frequency =3D <33000000>;
-> +		};
-> +	};
->  };
-> =20
->  &uart1 {
+--
+Andrew Jeffery <andrew@codeconstruct.com.au>
 
 
