@@ -1,579 +1,157 @@
-Return-Path: <devicetree+bounces-102372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DEE7976C0C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 16:28:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFF1B976C49
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 16:37:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E363F1F287A7
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 14:28:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 882BF285507
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 14:37:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 480A51BCA0E;
-	Thu, 12 Sep 2024 14:26:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D34091B1D5E;
+	Thu, 12 Sep 2024 14:37:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b="VXuxiNxK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UqmkcdBv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from omta38.uswest2.a.cloudfilter.net (omta38.uswest2.a.cloudfilter.net [35.89.44.37])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6568B1BC08C
-	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 14:26:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.89.44.37
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EDBB1AD279;
+	Thu, 12 Sep 2024 14:37:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726151188; cv=none; b=juG98PLnIuQBSQVQu1WQpBAyxMDlHl7YFLjEBfJPCNI5GbvbOfByDxGC5ecnj2tdxtbRprO7BGEOYnrLPS5njUw4qbeIYfBpuPz+utdsm7cUigvuo2o/31Qmnug/be0Zx99DmWak7qoBtNmstyycxsY/tD8lxeXh2cizqCxjG3M=
+	t=1726151869; cv=none; b=naAswUt9bUTjzyAPPCP4159AD8sL6wN8PuurlC7c1Dm6a2BY9wa8ORlOFEpV3P9/fxk+TxnNr/tAyueDoAbSn802yp3qGnF5kPVAh6FUDbC43Zk8aJgIHghtUpb5j8Hg7Rx8m86zUkJBJAwDbFOfuQZ4SrJsJVsxEx9jSYCn/c8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726151188; c=relaxed/simple;
-	bh=LfrAnhXADC0062RNdKl8qS+6gyErYopT8jQyNclhwEo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=jMe6CA1u4YIxvQnTa+uesN/qIxrmB611zqAVBuzQLpt3BVS19XhY+sUQmajcqeuV4HQ/2eEYNmnjdKVADCMJ0d2+UO8kIPm+4vlcgyQbiyhT0kc3tAx2hpx/E8sPdkHt/U8CY/GwTReA94vCErdYbv2KtDa5TA0iHw6iiBHPa+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com; spf=pass smtp.mailfrom=linumiz.com; dkim=pass (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b=VXuxiNxK; arc=none smtp.client-ip=35.89.44.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linumiz.com
-Received: from eig-obgw-5010a.ext.cloudfilter.net ([10.0.29.199])
-	by cmsmtp with ESMTPS
-	id oWJhs9nLWumtXokmAsTd7Z; Thu, 12 Sep 2024 14:26:26 +0000
-Received: from md-in-79.webhostbox.net ([43.225.55.182])
-	by cmsmtp with ESMTPS
-	id okm7sMIrYr1Juokm8sQdKv; Thu, 12 Sep 2024 14:26:25 +0000
-X-Authority-Analysis: v=2.4 cv=VPjbncPX c=1 sm=1 tr=0 ts=66e2fa11
- a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=kofhyyBXuK/oEhdxNjf66Q==:17
- a=EaEq8P2WXUwA:10 a=-pn6D5nKLtMA:10 a=vU9dKmh3AAAA:8 a=xgDJ2ItN4DbTUy_rRyQA:9
- a=rsP06fVo5MYu2ilr0aT5:22 a=ZCPYImcxYIQFgLOT52_G:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
-	; s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=I88Cfjzdme7FAFSLbyWAXyA3YYoq4ffeVCbtr93i2EM=; b=VXuxiNxKt02vunwxmfAhkXP9Jm
-	agl8tnz26KJljeLKVS853x04eJHd8Hq28xkOpTFyIeB5asg3ZYBJjA102VAmj9Q+It7BwnnHMJiqK
-	pcSX1WsyFE8ab4QSqRKQG93HIzDApEheoeKXP/x/yqSGz3Png5zKldN+AXrzL+yky1N26IQSRKWjX
-	ty3DdCt8Q47d+EqjLATvpIXLfzhVmWFyROGJPlnskTn5h/o+3fpH++QSumnNdA+HY4mOwsECc0wvw
-	GKZfcBzn8Zma/VicTq2ljaYwpIYlLssDkYKGdniF174UygRVf07fKyVva4lLGiTu1PhWdvEf3J82T
-	we6D31Uw==;
-Received: from [122.165.245.213] (port=41006 helo=localhost.localdomain)
-	by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <karthikeyan@linumiz.com>)
-	id 1sokm5-003n4z-14;
-	Thu, 12 Sep 2024 19:56:21 +0530
-From: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	alexandre.belloni@bootlin.com
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rtc@vger.kernel.org,
-	Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
-Subject: [PATCH v3 6/6] ARM: dts: rockchip: Add Relfor Saib board
-Date: Thu, 12 Sep 2024 19:54:51 +0530
-Message-Id: <20240912142451.2952633-7-karthikeyan@linumiz.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240912142451.2952633-1-karthikeyan@linumiz.com>
-References: <20240912142451.2952633-1-karthikeyan@linumiz.com>
+	s=arc-20240116; t=1726151869; c=relaxed/simple;
+	bh=aaWSOI6MHJpLiPOnj5+JUWz8WRVEzc2V3HK4lxMCrXg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HymfjYSMgQv5JK2IpheqPQImq2bU1UEJqwg5GdhXSAeSoyzIir0c7Usfr+P/iY91RKieuWy2ZJ7mEk4xa6Wm3kpVDWnHzD2YZQ/aFndzDz1BtlVGKDjz4sQ3MLQQCdk1SDJvFfqO12V3PlLARNqoNkeW7inGNB2WfWGjHcd26M8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UqmkcdBv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63210C4CEC3;
+	Thu, 12 Sep 2024 14:37:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726151869;
+	bh=aaWSOI6MHJpLiPOnj5+JUWz8WRVEzc2V3HK4lxMCrXg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UqmkcdBva718XKuLTmddQooosXpq27yFyMFL567h3OryjxwVrDJOdtHm5QJaKCxcm
+	 93KB1ZBPVPNnvAtgJDn1WHP9ywGz+muzfZorn2eHYEmO1kCCd7e1K6wRph5z9yE6Ve
+	 GvjMTETF6ht/xp8V5qLMdt1aYPVSBmiDt0GE9/aNzg1JAMwFYoc1WNVHZC/aMTUbsG
+	 RUj4a4KfesifilOHjhd81AGQhorbOiKV1m+Ri/V/X4egcafHZpHZ7/m+Lu0k2a5jER
+	 XNFJMwDf8ZMPCYPcpNQFAgR16FubTNv5NRBuJo49G68/ghUhWQc6Znzxr8urVYRXF0
+	 6y4w7XLpj3RoQ==
+Date: Thu, 12 Sep 2024 15:37:40 +0100
+From: Lee Jones <lee@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>, Arnd Bergmann <arnd@arndb.de>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Simon Horman <horms@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	UNGLinuxDriver@microchip.com, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Andrew Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Subject: Re: [PATCH v5 3/8] mfd: syscon: Add reference counting and device
+ managed support
+Message-ID: <20240912143740.GD24460@google.com>
+References: <20240808154658.247873-1-herve.codina@bootlin.com>
+ <20240808154658.247873-4-herve.codina@bootlin.com>
+ <20240903153839.GB6858@google.com>
+ <20240903180116.717a499b@bootlin.com>
+ <20240909095203.3d6effdb@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - linumiz.com
-X-BWhitelist: no
-X-Source-IP: 122.165.245.213
-X-Source-L: No
-X-Exim-ID: 1sokm5-003n4z-14
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: (localhost.localdomain) [122.165.245.213]:41006
-X-Source-Auth: karthikeyan@linumiz.com
-X-Email-Count: 70
-X-Org: HG=dishared_whb_net_legacy;ORG=directi;
-X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfOsmsAnW8FzrLTkLvDbgJr0Fl15VHG1FSRC5kc+rpRsxSiGI7rZMANvUb96YrVwbusI6NdUQZnzMD7ipA7glWhxVFM91qwv1fp29ar0W4KmjCeM9uvRT
- 2yQseJ3b+qjufchWQmem3VrNmYs86LD/kMo/GO+leaOJgPOdUV4Y+dVSQZ24u1tN5cF+/lgOLMbGMwp8LVhABMiArctND2GZgM0=
+In-Reply-To: <20240909095203.3d6effdb@bootlin.com>
 
-Saib is an consumer electronics board from Relfor labs
-Features:
-    - Rockchip RV1109
-    - 1GB DDR4
-    - 4GB eMMC
-    - Realtek RTL8821CS Wi-Fi/BT
-    - IR transmitter/receiver
-    - RV3028 RTC
-    - Switch
-    - User leds
+On Mon, 09 Sep 2024, Herve Codina wrote:
 
-Add support for it.
+> Hi Lee, Arnd,
+> 
+> On Tue, 3 Sep 2024 18:01:16 +0200
+> Herve Codina <herve.codina@bootlin.com> wrote:
+> 
+> > Hi Lee,
+> > 
+> > On Tue, 3 Sep 2024 16:38:39 +0100
+> > Lee Jones <lee@kernel.org> wrote:
+> > 
+> > > On Thu, 08 Aug 2024, Herve Codina wrote:
+> > >   
+> > > > From: Clément Léger <clement.leger@bootlin.com>
+> > > > 
+> > > > Syscon releasing is not supported.
+> > > > Without release function, unbinding a driver that uses syscon whether
+> > > > explicitly or due to a module removal left the used syscon in a in-use
+> > > > state.
+> > > > 
+> > > > For instance a syscon_node_to_regmap() call from a consumer retrieves a
+> > > > syscon regmap instance. Internally, syscon_node_to_regmap() can create
+> > > > syscon instance and add it to the existing syscon list. No API is
+> > > > available to release this syscon instance, remove it from the list and
+> > > > free it when it is not used anymore.
+> > > > 
+> > > > Introduce reference counting in syscon in order to keep track of syscon
+> > > > usage using syscon_{get,put}() and add a device managed version of
+> > > > syscon_regmap_lookup_by_phandle(), to automatically release the syscon
+> > > > instance on the consumer removal.
+> > > > 
+> > > > Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> > > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > > > ---
+> > > >  drivers/mfd/syscon.c       | 138 ++++++++++++++++++++++++++++++++++---
+> > > >  include/linux/mfd/syscon.h |  16 +++++
+> > > >  2 files changed, 144 insertions(+), 10 deletions(-)    
+> > > 
+> > > This doesn't look very popular.
+> > > 
+> > > What are the potential ramifications for existing users?
+> > >   
+> > 
+> > Existing user don't use devm_syscon_regmap_lookup_by_phandle() nor
+> > syscon_put_regmap().
+> > 
+> > So refcount is incremented but never decremented. syscon is never
+> > released. Exactly the same as current implementation.
+> > Nothing change for existing users.
+> > 
+> > Best regards,
+> > Hervé
+> 
+> I hope I answered to Lee's question related to possible impacts on
+> existing drivers.
+> 
+> Is there anything else that blocks this patch from being applied ?
 
-Signed-off-by: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
----
+Arnd usually takes care of Syscon reviews.
 
-Notes:
-    v3:
-    - sort nodes in aplhabetical order
-    
-    v2:
-    - Drop status=okay in new nodes
+Perhaps he's out on vacation.
 
- arch/arm/boot/dts/rockchip/Makefile           |   1 +
- .../boot/dts/rockchip/rv1109-relfor-saib.dts  | 422 ++++++++++++++++++
- 2 files changed, 423 insertions(+)
- create mode 100644 arch/arm/boot/dts/rockchip/rv1109-relfor-saib.dts
+Let's wait a little longer, since it's too late for this cycle anyway.
 
-diff --git a/arch/arm/boot/dts/rockchip/Makefile b/arch/arm/boot/dts/rockchip/Makefile
-index ab4cd9aab722..716f5540e438 100644
---- a/arch/arm/boot/dts/rockchip/Makefile
-+++ b/arch/arm/boot/dts/rockchip/Makefile
-@@ -2,6 +2,7 @@
- dtb-$(CONFIG_ARCH_ROCKCHIP) += \
- 	rv1108-elgin-r1.dtb \
- 	rv1108-evb.dtb \
-+	rv1109-relfor-saib.dtb \
- 	rv1109-sonoff-ihost.dtb \
- 	rv1126-edgeble-neu2-io.dtb \
- 	rv1126-sonoff-ihost.dtb \
-diff --git a/arch/arm/boot/dts/rockchip/rv1109-relfor-saib.dts b/arch/arm/boot/dts/rockchip/rv1109-relfor-saib.dts
-new file mode 100644
-index 000000000000..a63356ade3b7
---- /dev/null
-+++ b/arch/arm/boot/dts/rockchip/rv1109-relfor-saib.dts
-@@ -0,0 +1,422 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2024 Relfor Labs Pvt. Ltd.
-+ */
-+
-+
-+/dts-v1/;
-+#include "rv1109.dtsi"
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/input/input.h>
-+
-+/ {
-+	model = "Rockchip RV1109 Relfor Saib Board";
-+	compatible = "relfor,saib", "rockchip,rv1109";
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		button {
-+			gpios = <&gpio2 RK_PA7 GPIO_ACTIVE_HIGH>;
-+			linux,code = <KEY_DATA>;
-+			label = "GPIO User Switch";
-+			linux,input-type = <1>;
-+		};
-+	};
-+
-+	ir_receiver: ir-receiver {
-+		compatible = "gpio-ir-receiver";
-+		gpios = <&gpio3  RK_PB4 GPIO_ACTIVE_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ir_rx>;
-+	};
-+
-+	ir_transmitter: ir-transmitter {
-+		compatible = "pwm-ir-tx";
-+		pwms = <&pwm11 0 10000000 1>;
-+	};
-+
-+	led-controller {
-+		compatible = "pwm-leds-multicolor";
-+
-+		multi-led {
-+			color = <LED_COLOR_ID_RGB>;
-+			function = LED_FUNCTION_INDICATOR;
-+			max-brightness = <65535>;
-+
-+			led-0 {
-+				active-low;
-+				color = <LED_COLOR_ID_BLUE>;
-+				pwms = <&pwm9 0 50000 0>;
-+			};
-+
-+			led-1 {
-+				active-low;
-+				color = <LED_COLOR_ID_GREEN>;
-+				pwms = <&pwm6 0 50000 0>;
-+			};
-+
-+			led-2 {
-+				active-low;
-+				color = <LED_COLOR_ID_RED>;
-+				pwms = <&pwm10 0 50000 0>;
-+			};
-+		};
-+	};
-+
-+	pwm-leds {
-+		compatible = "pwm-leds";
-+
-+		led-0 {
-+			pwms = <&pwm2 0 50000 0>;
-+			max-brightness = <255>;
-+			linux,default-trigger = "none";
-+		};
-+
-+		led-1 {
-+			pwms = <&pwm8 0 50000 0>;
-+			max-brightness = <0>;
-+			linux,default-trigger = "none";
-+		};
-+
-+		led-2 {
-+			pwms = <&pwm5 0 50000 0>;
-+			max-brightness = <255>;
-+			linux,default-trigger = "none";
-+		};
-+	};
-+
-+	sdio_pwrseq: pwrseq-sdio {
-+		compatible = "mmc-pwrseq-simple";
-+		clocks = <&rtc0>;
-+		clock-names = "ext_clock";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_enable_h>;
-+		reset-gpios = <&gpio1 RK_PD0 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	thermal_sensor1: thermal-sensor1 {
-+		compatible = "generic-adc-thermal";
-+		#thermal-sensor-cells = <0>;
-+		io-channels = <&saradc 1>;
-+		io-channel-names = "sensor-channel";
-+		temperature-lookup-table = <(-40000) 826
-+					     85000 609>;
-+	};
-+
-+	thermal_sensor2: thermal-sensor2 {
-+		compatible = "generic-adc-thermal";
-+		#thermal-sensor-cells = <0>;
-+		io-channels = <&saradc 2>;
-+		io-channel-names = "sensor-channel";
-+		temperature-lookup-table = <(-40000) 826
-+					     85000 609>;
-+	};
-+
-+	vcc_0v8: vcc-0v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_0v8";
-+		regulator-min-microvolt = <800000>;
-+		regulator-max-microvolt = <800000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		startup-delay-us = <150>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc_1v2_ddr: vcc-1v2-ddr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_1v2_ddr";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		startup-delay-us = <75000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc_1v8: vcc-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		startup-delay-us = <51000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc1v8_ir: vcc1v8-ir {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc1v8_ir";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc_2v5_ddr: vcc-2v5-ddr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_2v5_ddr";
-+		regulator-min-microvolt = <2500000>;
-+		regulator-max-microvolt = <2500000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		vin-supply = <&vcc3v3_sys>;
-+	};
-+
-+	vcc3v3_sys: vcc3v3-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_sys";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		startup-delay-us = <75000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc5v0_sys: vcc5v0-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_arm: vdd-arm {
-+		compatible = "pwm-regulator";
-+		pwms = <&pwm0 0 5000 1>;
-+		regulator-name = "vdd_arm";
-+		regulator-min-microvolt = <720000>;
-+		regulator-max-microvolt = <1000000>;
-+		regulator-settling-time-up-us = <18000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		pwm-supply = <&vcc3v3_sys>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vdd_npu_vepu: vdd-npu-vepu {
-+		compatible = "pwm-regulator";
-+		pwms = <&pwm1 0 5000 1>;
-+		regulator-name = "vdd_npu_vepu";
-+		regulator-min-microvolt = <650000>;
-+		regulator-max-microvolt = <950000>;
-+		regulator-settling-time-up-us = <18000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		pwm-supply = <&vcc3v3_sys>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&emmc {
-+	bus-width = <8>;
-+	non-removable;
-+	pinctrl-0 = <&emmc_bus8 &emmc_cmd &emmc_clk>;
-+	pinctrl-names = "default";
-+	rockchip,default-sample-phase = <90>;
-+	vmmc-supply = <&vcc3v3_sys>;
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	pinctrl-0 = <&i2c3m2_xfer>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	rtc0: rtc@52 {
-+		compatible = "microcrystal,rv3028";
-+		reg = <0x52>;
-+		#clock-cells = <0>;
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-0 = <&rtc_int>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&i2s0 {
-+	/delete-property/ pinctrl-0;
-+	rockchip,trcm-sync-rx-only;
-+	pinctrl-0 =  <&i2s0m0_sclk_rx>,
-+		     <&i2s0m0_lrck_rx>,
-+		     <&i2s0m0_sdi0>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	bluetooth-pins {
-+		bt_reset: bt-reset {
-+			rockchip,pins =
-+			<1 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+		bt_wake_dev: bt-wake-dev {
-+			rockchip,pins =
-+			<1 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+		bt_wake_host: bt-wake-host {
-+			rockchip,pins =
-+			<1 RK_PC6 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+
-+	buttons {
-+		switch: switch {
-+			rockchip,pins = <2 RK_PA7 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	ir {
-+		ir_rx: ir-rx {
-+			rockchip,pins = <3 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	pwm {
-+		pwm0m0_pins_pull_up: pwm0m0-pins-pull-up {
-+			rockchip,pins =
-+			/* pwm0_pin_m0 */
-+			<0 RK_PB6 3 &pcfg_pull_up>;
-+		};
-+		pwm1m0_pins_pull_up: pwm1m0-pins-pull-up {
-+			rockchip,pins =
-+			/* pwm1_pin_m0 */
-+			<0 RK_PB7 3 &pcfg_pull_up>;
-+		};
-+	};
-+
-+	rtc {
-+		rtc_int: rtc-int {
-+			rockchip,pins = <2 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	sdio-pwrseq {
-+		wifi_enable_h: wifi-enable-h {
-+			rockchip,pins = <1 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&pmu_io_domains {
-+	pmuio0-supply = <&vcc3v3_sys>;
-+	pmuio1-supply = <&vcc3v3_sys>;
-+	vccio4-supply = <&vcc3v3_sys>;
-+	vccio5-supply = <&vcc3v3_sys>;
-+	vccio6-supply = <&vcc3v3_sys>;
-+	vccio7-supply = <&vcc3v3_sys>;
-+	status = "okay";
-+};
-+
-+&pwm0 {
-+	/delete-property/ pinctrl-0;
-+	pinctrl-0 = <&pwm0m0_pins_pull_up>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&pwm1 {
-+	/delete-property/ pinctrl-0;
-+	pinctrl-0 = <&pwm1m0_pins_pull_up>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&pwm2 {
-+	/delete-property/ pinctrl-0;
-+	pinctrl-0 = <&pwm2m1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&pwm5 {
-+	pinctrl-0 = <&pwm5m0_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&pwm6 {
-+	pinctrl-0 = <&pwm6m0_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&pwm8 {
-+	pinctrl-0 = <&pwm8m1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&pwm9 {
-+	pinctrl-0 = <&pwm9m1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&pwm10 {
-+	pinctrl-0 = <&pwm10m1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&pwm11 {
-+	/delete-property/ pinctrl-0;
-+	pinctrl-0 = <&pwm11m1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&saradc {
-+	vref-supply = <&vcc_1v8>;
-+	status = "okay";
-+};
-+
-+&sdio {
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	cap-sdio-irq;
-+	max-frequency = <100000000>;
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+	no-mmc;
-+	no-sd;
-+	non-removable;
-+	pinctrl-0 = <&sdmmc1_clk &sdmmc1_cmd &sdmmc1_bus4>;
-+	pinctrl-names = "default";
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc3v3_sys>;
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-0 = <&uart0_xfer &uart0_ctsn &uart0_rtsn>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "realtek,rtl8822cs-bt";
-+		device-wake-gpios = <&gpio1 RK_PC5 GPIO_ACTIVE_HIGH>;
-+		enable-gpios = <&gpio1 RK_PC4 GPIO_ACTIVE_HIGH>;
-+		host-wake-gpios = <&gpio1 RK_PC6 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&bt_reset>, <&bt_wake_dev>, <&bt_wake_host>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&uart2 {
-+	pinctrl-0 = <&uart2m1_xfer>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
 -- 
-2.39.2
-
+Lee Jones [李琼斯]
 
