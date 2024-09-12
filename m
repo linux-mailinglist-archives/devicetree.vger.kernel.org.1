@@ -1,108 +1,94 @@
-Return-Path: <devicetree+bounces-102297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 886DC97647E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 10:30:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 803349764AD
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 10:34:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2CDDB20FCE
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 08:30:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B34BA1C21C79
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 08:34:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 372661922EE;
-	Thu, 12 Sep 2024 08:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71566191F92;
+	Thu, 12 Sep 2024 08:34:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DMQSB9fP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D7ZcoHqh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0FC0191F9C;
-	Thu, 12 Sep 2024 08:29:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46DC018C915;
+	Thu, 12 Sep 2024 08:34:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726129792; cv=none; b=IbIAH1E4SM/qigvjOR35vSSqy1G3axrW7UU+S8b9RHTK0kY5F0SHYv9MbwKweOEjRjPLg0nQsmcWvgUuU8Q30eoCNevUonqxaBzDlbSqSyxCuDuY6JwtjBaO8KcgMplddU7OexiulytK8R+evVt/Ly3cRi2rI48iz+5l9xD926M=
+	t=1726130060; cv=none; b=BuJdwOuBX0PAAg/p7+QkNaIjVHzUMcwL/WgE8PrLOEa/s5RbMrRjy/fSYoepjWz9czj/LyVv/NwTv76Ib+UbE3cGDPPQYZBZThvRiEZDlfPO8x0f3Mn2STwz+LXFhuRYiuAdKifMDx9bK53NBMSZ6YFgYThDrfCYjiglAmbnLlQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726129792; c=relaxed/simple;
-	bh=eAUIlyp5qcM+w+YA1LphnKTG2D4G9lYzmAurJarHO5M=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=hb7hB8DvWXzSU0Qd2INGugXQKCMbwurS5gZIyB8MMXKdzTFkv+Pu844IGF0zsqjzI3itYly0vTZ3+dFuoCXKVwfY5v86ywD0y/UId7c1EGnExyk2TjSUzS+BcfPS57LeUKhH/JqNk334e+ExIRn9wl32txCi4r2tYvKt5W3a07Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DMQSB9fP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FE8FC4CECC;
-	Thu, 12 Sep 2024 08:29:51 +0000 (UTC)
+	s=arc-20240116; t=1726130060; c=relaxed/simple;
+	bh=Ku41fc1T+GKwYLO8P2D3ZeionndBbQ5FxSRlsy4rGD8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dUJlUdYx3LaesqnIqjWer7uFLR7J3knXymxatGtcswoyrH8GkcCPiw0UzmGEbkQ9n72vMrAZwW1lM1kmLq2a72eS3v3BdyAnN5pCq9tRC/Ieu2b9x3WGtzsCysyrUM4Ffu+yinUNlyYrc1PqFCInWo5x+no7FCyJ8V6n9ifThSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D7ZcoHqh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84A61C4CECC;
+	Thu, 12 Sep 2024 08:34:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726129791;
-	bh=eAUIlyp5qcM+w+YA1LphnKTG2D4G9lYzmAurJarHO5M=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=DMQSB9fPLxf8PIfjzcs5vllUIlSpcMxGXXdNF8+gVAg00HzoFWR4/hthDP9n3U5t6
-	 C8N1feL+6JScojQrfFgN2dWzs9ZeaH9GoMlwHJI0TZXoAzj3uC8xQOE5oklCscNEyt
-	 JHMX/HmDqnCI249/4+vM74YjnvhvUK3hITa1AAS0RqWmV6GXJTBQaKYy1ScSOPiFL5
-	 IDweBsuotpYbDhhrGJSATuaIfbes33+6OYJT+Dk6Mf0Uzxa2jj25e9jsIh7C9K9Pou
-	 K3sYUyjCfk2bTnq74Y4TarAobEoj0BTsrKDGSPhHfG2Q7yrvWXzVM3FcWV8BGI8Zkm
-	 sVjAC1K5S44ng==
-Date: Thu, 12 Sep 2024 03:29:50 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1726130059;
+	bh=Ku41fc1T+GKwYLO8P2D3ZeionndBbQ5FxSRlsy4rGD8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=D7ZcoHqho9j5hqC0Q3UimcEfd3sAaAc4wzARdnEb5Lql2UoBs7m92oRPsJ2qzrSCI
+	 QDf2j9gJ97OCRy078WKIWdErF1+8QM+6CRvCm9gXMIXlZpmmIIf3+x8GZziOplrO5K
+	 oyigFXrT/A92qDcaDhi6WiniT+2btFGQ1A+lqQDhEH9PeKGYsiyyOu5SKb56Xln8as
+	 wVBaXBMaK7qENR7gHdJvc81u8njtAqzd7lR01A7zCH2PBjrSSQYq4mlT96dDdjtZkI
+	 HjaaKV3qGjnSByNOjSXfI+9WgtE6dbCoPrVAOyZHhKRAkdv+2rjMT2aDmqM1nPf5vi
+	 GauUUHeDcMiLQ==
+Received: by wens.tw (Postfix, from userid 1000)
+	id EA07A5FC08; Thu, 12 Sep 2024 16:34:15 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	=?UTF-8?q?Kry=C5=A1tof=20=C4=8Cern=C3=BD?= <cleverline1mc@gmail.com>
+Cc: Chen-Yu Tsai <wens@csie.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] NanoPi NEO Plus2: Fix regulators and assign them
+Date: Thu, 12 Sep 2024 16:34:07 +0800
+Message-Id: <172613000178.1953155.16179648921609454400.b4-ty@csie.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240905-nanopi-neo-plus2-regfix-v3-0-1895dff59598@gmail.com>
+References: <20240905-nanopi-neo-plus2-regfix-v3-0-1895dff59598@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Mahadevan <quic_mahap@quicinc.com>
-Cc: quic_abhinavk@quicinc.com, linux-arm-msm@vger.kernel.org, 
- conor+dt@kernel.org, swboyd@chromium.org, bigfoot@classfun.cn, 
- devicetree@vger.kernel.org, airlied@gmail.com, konrad.dybcio@linaro.org, 
- neil.armstrong@linaro.org, mailingradian@gmail.com, 
- freedreno@lists.freedesktop.org, quic_jmadiset@quicinc.com, 
- quic_vpolimer@quicinc.com, quic_jesszhan@quicinc.com, 
- dri-devel@lists.freedesktop.org, quic_kalyant@quicinc.com, sean@poorly.run, 
- linux-kernel@vger.kernel.org, krzk+dt@kernel.org, andersson@kernel.org, 
- danila@jiaxyga.com, daniel@ffwll.ch, robdclark@gmail.com, 
- dmitry.baryshkov@linaro.org, maarten.lankhorst@linux.intel.com, 
- marijn.suijten@somainline.org, mripard@kernel.org, tzimmermann@suse.de
-In-Reply-To: <20240912071437.1708969-3-quic_mahap@quicinc.com>
-References: <20240912071437.1708969-1-quic_mahap@quicinc.com>
- <20240912071437.1708969-3-quic_mahap@quicinc.com>
-Message-Id: <172612978829.2592275.5038712419296813855.robh@kernel.org>
-Subject: Re: [PATCH 2/5] dt-bindings: display/msm: Document the DPU for
- SA8775P
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
+From: Chen-Yu Tsai <wens@csie.org>
 
-On Thu, 12 Sep 2024 12:44:34 +0530, Mahadevan wrote:
-> Document the DPU for Qualcomm SA8775P platform.
+On Thu, 05 Sep 2024 19:37:09 +0200, Kryštof Černý wrote:
+> Just minor changes based on feedback.
 > 
-> Signed-off-by: Mahadevan <quic_mahap@quicinc.com>
-> ---
->  .../display/msm/qcom,sa8775p-dpu.yaml         | 120 ++++++++++++++++++
->  1 file changed, 120 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sa8775p-dpu.yaml
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Applied to sunxi/dt-for-6.12 in sunxi/linux.git, thanks!
 
-yamllint warnings/errors:
+[1/2] arm64: dts: allwinner: H5: NanoPi Neo Plus2: Fix regulators
+      https://git.kernel.org/sunxi/linux/c/37ed8e75c660
+[2/2] arm64: dts: allwinner: H5: NanoPi NEO Plus2: Use regulators for pio
+      https://git.kernel.org/sunxi/linux/c/605f56405a67
 
-dtschema/dtc warnings/errors:
+I also changed the "H5" in the subject to lowercase, matching most other
+commits.
 
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240912071437.1708969-3-quic_mahap@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+-- 
+Chen-Yu Tsai <wens@csie.org>
 
