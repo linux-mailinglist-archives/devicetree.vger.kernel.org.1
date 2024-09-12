@@ -1,107 +1,119 @@
-Return-Path: <devicetree+bounces-102472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B42E797727D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 21:58:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 446F8977284
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 22:02:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6FD51C22A2D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 19:57:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B584C2845F9
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 20:02:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C24931BF7FC;
-	Thu, 12 Sep 2024 19:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E8F61BDA90;
+	Thu, 12 Sep 2024 20:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nXov8ImP"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lanZPK0C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9944413D530;
-	Thu, 12 Sep 2024 19:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 254EA13DBBE;
+	Thu, 12 Sep 2024 20:02:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726171075; cv=none; b=lSWFwL852Z+zuHp/VvpwMeFjVdIk3A9v8FO/tY1HxywL5ZwvjWk307462NqVoTvuMZvNs1onpBRZSY5TGPFSEIqW1DrBCSoOrPRVwX+XBpyG6fRn75mNtyM8IO+DESAQ1Ps8X453IR0Lkv52GJKY+c5sB6SLx1YBkkF0qtnQkA8=
+	t=1726171365; cv=none; b=mBtMj2vB+R8doVrMNpZ5zsHExRJEC7R7LcGmguowpo9oCqKHEDoWGih74viGhqm/GK4OXTMVNUy/p2fcQOKstwQbWQLSwHojI5e10fJErI0bqZxqGK4JD246yBhudhFqvl/7Aykd9ZnJMB5NESXgy39gNxcLMMxgpxMw39YzuN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726171075; c=relaxed/simple;
-	bh=RkWoI/SZq21kLXJf2EVrauT+m9UWfqNmPlRimV1ezzE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iT4x0CNiy/yb7h8bE6I4v6IdsBjl5bHx8L9u4KLiwWFiS0Q7ye7FuWsjC+vHgVs4Oq9rIOr01Yz2vfMlFkAXv/rC9OzQUXVUsbl2YIplhEWccJmEu8sF9eWrlTwb/tbcHGu+PMHe9wKP2HBXKJnozpC739w5+7DAWmwuoJng9y8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nXov8ImP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05E1DC4CEC3;
-	Thu, 12 Sep 2024 19:57:54 +0000 (UTC)
+	s=arc-20240116; t=1726171365; c=relaxed/simple;
+	bh=72sCiwcLGNLodmSGvD+gbRkHtOWi0verapOuz0ioxV4=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=gepAHQS79YjViUCPYKXVZZwioCFGHZmZbhQ3+vpa5CspHjoeYqqGG4a4mD9AMcUk1T0/W0Um+yOdUxZc8Lq5V2GpIb8GrFRCx6N99ltBdeI2pEs5HXDCaMWglxcwWjBMyWUQ7INxYDuATUcnD/lMVhNzr6S0UdC2iWKcV5KI5Ls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lanZPK0C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8086BC4CEC3;
+	Thu, 12 Sep 2024 20:02:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726171075;
-	bh=RkWoI/SZq21kLXJf2EVrauT+m9UWfqNmPlRimV1ezzE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nXov8ImPFzo59RqnVIIl8zmbJsYop1wnJ5/qII/nwnNKmSmgMteRBK9HPc3K7vImt
-	 zI3PLpJj/1TgrpU8fLn8ZvIm3hhtZMUeL7pgVa46bpTlqLjujppT9jSm/FAb5fLXiw
-	 D0ksFHuly11cyayesqk6I1vEMPVhBBEdMR9ApZ9s9VOM/A4IOijQbKmwS+XT2cQxKO
-	 jVxOP0twQrSrnxH1aJdStTl3/yTutEGiNiiU8zAlQ3oSTc2Vdds4+bsvwuAzd/Ujtr
-	 2cBZC8f5j7p9/1bBuSXjnbw6g86CiXhjB9sXlWVzoWy/GuneTlxA021X6xbzFwS+tf
-	 SfhhUnCmyrX3Q==
-Date: Thu, 12 Sep 2024 14:57:53 -0500
-From: Rob Herring <robh@kernel.org>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	saravanak@google.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] of/irq: Use helper to define resources
-Message-ID: <20240912195753.GA555349-robh@kernel.org>
-References: <20240911160253.37221-1-vassilisamir@gmail.com>
- <20240911160253.37221-3-vassilisamir@gmail.com>
- <ZuHCJcTyQvfPl7ai@smile.fi.intel.com>
- <20240911173438.GA5015@vamoiridPC>
+	s=k20201202; t=1726171364;
+	bh=72sCiwcLGNLodmSGvD+gbRkHtOWi0verapOuz0ioxV4=;
+	h=Date:From:To:List-Id:Cc:In-Reply-To:References:Subject:From;
+	b=lanZPK0CZSY6Z7NP9JdI9UYannUTXaM3wq1djEB+GI2uRdES/9XqLB+qY5++GszvM
+	 drGIaFpfAzBUX0cI0GJtPYrKz48WchYtJt//o01sE2rTLRNacfYNheYA38Qw+cZ3Ho
+	 VdXOY0gy0Jw1NrWEUtAvwLhIFWew78UhOe5HS7H7S1ygvLrLYpYS8BIT6KkQdBYkXZ
+	 vCdCMxgFPyHUGqpEQ/lWZ6pbHesxqum0wQYHDtUKfcG0hIot4Z+Txn5ynn5QwhqGhS
+	 kuYTmp+gSmrY5ywrbj4YxAWElgzxFOAWTpwe4BRNATyi7LFNVP0Shy9rISjIvBVG+Q
+	 gK1z80D+lAiaw==
+Date: Thu, 12 Sep 2024 15:02:43 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240911173438.GA5015@vamoiridPC>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Arturs Artamonovs <arturs.artamonovs@analog.com>
+Cc: Arturs Artamonovs <Arturs.Artamonovs@analog.com>, soc@kernel.org, 
+ adsp-linux@analog.com, Olof Johansson <olof@lixom.net>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Andi Shyti <andi.shyti@kernel.org>, Greg Malysa <greg.malysa@timesys.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Will Deacon <will@kernel.org>, 
+ linux-serial@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, 
+ Thomas Gleixner <tglx@linutronix.de>, linux-gpio@vger.kernel.org, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Michael Turquette <mturquette@baylibre.com>, linux-clk@vger.kernel.org, 
+ Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Nathan Barrett-Morrison <nathan.morrison@timesys.com>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Utsav Agarwal <Utsav.Agarwal@analog.com>, Jiri Slaby <jirislaby@kernel.org>
+In-Reply-To: <20240912-test-v1-18-458fa57c8ccf@analog.com>
+References: <20240912-test-v1-0-458fa57c8ccf@analog.com>
+ <20240912-test-v1-18-458fa57c8ccf@analog.com>
+Message-Id: <172617136354.581910.4890193401475528436.robh@kernel.org>
+Subject: Re: [PATCH 18/21] dt-bindings: serial: adi,uart4: add adi,uart4
+ driver documentation
 
-On Wed, Sep 11, 2024 at 07:34:38PM +0200, Vasileios Amoiridis wrote:
-> On Wed, Sep 11, 2024 at 07:15:33PM +0300, Andy Shevchenko wrote:
-> > On Wed, Sep 11, 2024 at 06:02:53PM +0200, Vasileios Amoiridis wrote:
-> > > Resources definition can become simpler and more organised by using the
-> > > dedicated helpers.
-> > 
-> > ...
-> > 
-> > > -		r->start = r->end = irq;
-> > > -		r->flags = IORESOURCE_IRQ | irq_get_trigger_type(irq);
-> > > -		r->name = name ? name : of_node_full_name(dev);
-> > > +		*r = DEFINE_RES_IRQ_NAMED(irq, name ? name : of_node_full_name(dev));
-> > 
-> > Hmm... It seems you haven't replied to me why you avoid using Elvis here,
-> > while at it.
-> > 
-> > Also for both patches you probably want
-> > Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > 
-> > > +		r->flags |= irq_get_trigger_type(irq);
-> > 
-> > -- 
-> > With Best Regards,
-> > Andy Shevchenko
-> > 
-> > 
-> 
-> 
-> Hi Andy,
-> 
-> Thanks for your message once again!!
-> 
-> I honestly didn't know this operator, I just found out about it.
-> Looks like it fits here, I can definitely use it.
-> 
-> I am going to leave it for a while to see if Krzysztof or Rob have
-> any other comments and then I can send as you proposed.
 
-No comments from me, please send with the updates.
+On Thu, 12 Sep 2024 19:25:03 +0100, Arturs Artamonovs wrote:
+> Add serial driver bindings.
+> 
+> Signed-off-by: Arturs Artamonovs <Arturs.Artamonovs@analog.com>
+> Signed-off-by: Utsav Agarwal <Utsav.Agarwal@analog.com>
+> Co-developed-by: Nathan Barrett-Morrison <nathan.morrison@timesys.com>
+> Signed-off-by: Nathan Barrett-Morrison <nathan.morrison@timesys.com>
+> Co-developed-by: Greg Malysa <greg.malysa@timesys.com>
+> Signed-off-by: Greg Malysa <greg.malysa@timesys.com>
+> ---
+>  .../devicetree/bindings/serial/adi,uart.yaml       | 85 ++++++++++++++++++++++
+>  1 file changed, 85 insertions(+)
+> 
 
-Rob
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/serial/adi,uart.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
+ 	 $id: http://devicetree.org/schemas/serial/adi,uart4.yaml
+ 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/serial/adi,uart.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240912-test-v1-18-458fa57c8ccf@analog.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
