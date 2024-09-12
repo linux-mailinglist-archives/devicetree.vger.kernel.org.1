@@ -1,196 +1,201 @@
-Return-Path: <devicetree+bounces-102495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB2B9977444
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 00:22:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 952BF977462
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 00:36:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CE0C286583
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 22:22:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B35511C21784
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 22:36:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 928EB1C243E;
-	Thu, 12 Sep 2024 22:22:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB5EF19F13D;
+	Thu, 12 Sep 2024 22:36:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZY5QZvqZ"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="X85expuw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [207.246.76.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 648E018EFED;
-	Thu, 12 Sep 2024 22:22:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E06C17DFF5
+	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 22:36:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.246.76.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726179752; cv=none; b=P4IW7ZG0O+zYeXc3WXHr/ARzJ+3m8kqBbUus66orO0lfGk6NndY9L2vtQamX+zMR8ZHZRLrj49sKgoml7mi6dKPHtnYaDrUxIPQeGhpkc4KJTbI2Qw7SehD3MXJmph+CykY0/e7EtAMhKlotqfcsFXUhewRqWOjii44VgZFdlOE=
+	t=1726180564; cv=none; b=iH4N+qphOnOrsCs6nYvSHb5nB5dKlWa2UPFOy+ptMQqlqYzPhvs5AMvLCsnU6KJXNJ8buwyhrnuCQfEmyf+4vHwN+8Rc2a7bKQgI6HmgvKeBb4bPxLo9NvZcEBk9IZkpb6ksVvQZyeE1skrkbFykfXnttQtsoQ1SWuqfi4mW8D4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726179752; c=relaxed/simple;
-	bh=hVc2+1JhJrTDAc90j+3UZdmeysg/R73KqlkXDprBFz8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=l7IzAop4A0H4nxy+zPr0A83JqsgLdVOFJgbS1sZwm/bJTlpI9VS+VtZEqcFuuTtXYt08Z26vJ+/JU+o1S2YZZaTjJYYced7SuiBIOBs7U4cbtmIVrnNos2fj6phfzO8MMldiwwOplKhHsha7djEYFNyQTXnT61zeyOYZg+67Xkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZY5QZvqZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE8D4C4AF09;
-	Thu, 12 Sep 2024 22:22:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726179752;
-	bh=hVc2+1JhJrTDAc90j+3UZdmeysg/R73KqlkXDprBFz8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=ZY5QZvqZXLUlUqEJETl9eoV3ckuLiTSYf50KU/bs+HKqWJtOeYuyn4Ur6SjAOVOSl
-	 qdLqij56rf9Pw+lZkHvBwYTpTrQPQVEHYmZTt66M/HKxQgP67y2rNiPuGsIJb4CNk9
-	 O66iTMW6AE0lQ9FU3beNP/vbtYeqHTuvfvSVA+fpjjLcgNEdpJ1of0S1rggSlay1RN
-	 Dbu8rrsBDcME0JutWUMmJAdyg6/uyw5ZtGUNstYeEt3d/uhkK+wWTqOjuCeT5PeVft
-	 psAB7k5lSA4+xL4Uk/hzOSYx5GFiapCQ8OaSHTMui3YhIbB6TBLIp28YgbbKSBIxGA
-	 PC2mB4QH/Uddw==
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-536584f6c84so1980938e87.0;
-        Thu, 12 Sep 2024 15:22:31 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUGL7OzSGXQyR33mTj8JRQETU/TWkTqTqzd0Tq0wd/pp9bdp2LY3kGwwf0fDgxHYvJ0qzkd3RtroijW1FP7@vger.kernel.org, AJvYcCVO98Sjg99vjjXEBUcXn7dh4ZB48iqnvxvaM/8Jul+WLtq8wrCpuI6d3jPdSNY2AkqHaZeQ13s+0geu@vger.kernel.org, AJvYcCVW4T5pKTW6XgWZoKK7iDqMu29IttxQI4QihHD0IrZ+IVins5oXo/Gr5HYvQFiQuuEvT7ArtVRSg1gl@vger.kernel.org, AJvYcCWKeTR5i6nDXDaV4fMtA+1P7fafwx/BSxVPlSUaNSpjtnSe9ZQ8ib8PfBoZXi0+eQA994Ln5qytSXU/ST/bdQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+laNdiPgjHzvPsTVJsSpMb1KsbeXzNbDcGIIOWEzrdkuzntJ6
-	PUfxxb3UugOaRjb9kkWiuNyNA1GDTD3V4bd3kh4NcQEujSS2pvmPymr1dK/Sv5Ny9DuCGPDpyKb
-	SU7pOJDgONHvE17V8HKKzmBHxibc=
-X-Google-Smtp-Source: AGHT+IH/wdIIuZ88OoM/jf7dlzTynCo2+ye8Eysc2JxBu22F5fKIu3OjeOJ+ZEntKBGxxv54+qUvrqHi68b4qG6OKGc=
-X-Received: by 2002:a05:6512:3b06:b0:52f:ca2b:1d33 with SMTP id
- 2adb3069b0e04-53678fc23e7mr2060932e87.20.1726179750638; Thu, 12 Sep 2024
- 15:22:30 -0700 (PDT)
+	s=arc-20240116; t=1726180564; c=relaxed/simple;
+	bh=HESB9tj7zMNiDW/ln+TD7ixuKlRE2u/tZMAMSZTRNMc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kKpHWAVigQr6BlNAQMVh9XTCaAGCxBlL1GPk7K8+bi65X9cGibfewCE5nAJZTzJNgYob22Ftnk6PAbYp9ds79ot5ovLqp39P49a5118XmqyPhM5C+oJmt+oDmZ2nsXzxIkUafPfsR3CpuDXEvez35yma8HixtjXt5cgr4UtaH+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=X85expuw; arc=none smtp.client-ip=207.246.76.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1726180531;
+ bh=rns+bPTPYHjFxU/x4Zy7sEWc0Gr6ktnAqcJoJdO8VEg=;
+ b=X85expuw4ZbdZykYAWLCoZxLKhdwvB7CYGRjVrLz6WUG0t1UBJELJfqGtX8SclAdVWj/1ln3S
+ Wm4wvh4r+u0/UaTASkHgNWMzc0uJgFXTPDzGWJrO7BI+y3eoitdwFQELOnLlFYbupj8PnxDiKwA
+ UytRVvISzj9WuWXknNKYtpy9YclWSAhGxDGSDZNSQZ+IKLHyXiaHnLENRZyMznW93UqlTAOBfS5
+ +ONW9Q7xEWD+GSAY2dO7OnBn3Z6o6UH48kqBQxp2YiXQVk6KE29jgK66DPIaf5L451PJKI0ximo
+ zI18lHZ2O1/2Mnmw+XAGNevxGyK5kPF+aBBaqFETrUeA==
+Message-ID: <8c0b8145-3e90-42e6-8e1a-5be6424d1055@kwiboo.se>
+Date: Fri, 13 Sep 2024 00:35:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240811-dwc3-refactor-v2-0-91f370d61ad2@quicinc.com> <20240811-dwc3-refactor-v2-5-91f370d61ad2@quicinc.com>
-In-Reply-To: <20240811-dwc3-refactor-v2-5-91f370d61ad2@quicinc.com>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Fri, 13 Sep 2024 07:21:54 +0900
-X-Gmail-Original-Message-ID: <CAK7LNASGJDoprCrjbyifAKzjyKv6_OewP1n7+so1-q-5kmn8DA@mail.gmail.com>
-Message-ID: <CAK7LNASGJDoprCrjbyifAKzjyKv6_OewP1n7+so1-q-5kmn8DA@mail.gmail.com>
-Subject: Re: [PATCH v2 5/7] usb: dwc3: qcom: Don't reply on drvdata during probe
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Felipe Balbi <balbi@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
-	Saravana Kannan <saravanak@google.com>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Bjorn Andersson <quic_bjorande@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] arm64: dts: rockchip: Enable all 3 USBs on Turing RK1
+To: Sam Edwards <cfsworks@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Ondrej Jirman <megi@xff.cz>,
+ Chris Morgan <macromorgan@hotmail.com>, Alex Zhao <zzc@rock-chips.com>,
+ Dragan Simic <dsimic@manjaro.org>, FUKAUMI Naoki <naoki@radxa.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Jing Luo <jing@jing.rocks>, Kever Yang <kever.yang@rock-chips.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ =?UTF-8?Q?Daniel_Kukie=C5=82a?= <daniel@kukiela.pl>,
+ Joshua Riek <jjriek@verizon.net>
+References: <20240912025034.180233-1-CFSworks@gmail.com>
+ <20240912025034.180233-5-CFSworks@gmail.com>
+ <ed4b6913-f19b-4280-b3b2-f5bb1e7f47eb@kwiboo.se>
+ <CAH5Ym4jEMvBVQNNS6U49RWTAVPX4GmOVC-VjgXsFCR=X68QWgA@mail.gmail.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <CAH5Ym4jEMvBVQNNS6U49RWTAVPX4GmOVC-VjgXsFCR=X68QWgA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 207.246.76.47
+X-ForwardEmail-ID: 66e36cb3fcb6c7d83e7bbd3c
 
-Regarding the patch subject,
-do you mean "Don't rely on drvdata" instead of
-"Don't reply on drvdata"?
+On 2024-09-12 23:06, Sam Edwards wrote:
+> On Thu, Sep 12, 2024 at 12:53 PM Jonas Karlman <jonas@kwiboo.se> wrote:
+>>
+>> Hi Sam,
+>>
+>> Sounds like this may be missing
+>>
+>>         rockchip,dp-lane-mux = <0 1 2 3>;
+>>
+>> or
+>>
+>>         rockchip,dp-lane-mux = <3 2 1 0>;
 
+Small correction, the second 4-lane mode would be described as:
 
+	rockchip,dp-lane-mux = <2 3 0 1>;
 
+>>
+>> if all lanes are used for DP and none are used for USB.
+>>
+>> It should help describe the hw and also help the driver set mode to
+>> UDPHY_MODE_DP and that should disable the u3 port, or there may be an
+>> issue to fix in the phy driver.
+> 
+> Thanks for your insights Jonas!
+> 
+> I haven't yet gotten to DP enablement so I don't know the correct DP
+> layout. Ultimately I do want the USBDP0 node to have the necessary
+> properties for DP, but alas that's a patch for another day.
+> 
+> Nonetheless, I briefly tried it and I don't think UDPHY_MODE_DP
+> affects the PHY's "backend" (ctrl<->phy iface) at all, only the
+> availability of frontend lanes to the USB-specific backend: So port u3
+> is still enabled, there's just no way to reach it electrically.
+> 
+> With that in mind, would you recommend that I add a placeholder
+> dp-lane-mux of 0 1 2 3 for now, just to keep the PHY from attempting
+> to speak USB to a DP device? I don't foresee any harm in leaving it
+> as-is but you may know something that I don't.
 
+The rk_udphy_u3_port_disable() call in usbdp phy driver should help set
+the usb3otg0_host_num_u3_port=0 you mentioned:
 
+  .usb3otg0_cfg = RK_UDPHY_GEN_GRF_REG(0x001c, 15, 0, 0x1100, 0x0188),
+  .usb3otg1_cfg = RK_UDPHY_GEN_GRF_REG(0x0034, 15, 0, 0x1100, 0x0188),
 
+Here the disable/enable values is little bit inverted in macro, i.e.
+enable=0x0188 is the value set when u3_port_disable(disable=true) is
+called.
 
-On Mon, Aug 12, 2024 at 12:07=E2=80=AFPM Bjorn Andersson <andersson@kernel.=
-org> wrote:
->
-> From: Bjorn Andersson <quic_bjorande@quicinc.com>
->
-> With the upcoming transition to a model where DWC3 core and glue operate
-> on a single struct device the drvdata datatype will change to be owned
-> by the core.
->
-> The drvdata is however used by the Qualcomm DWC3 glue to pass the qcom
-> glue context around before the core is allocated.
->
-> Remove this problem, and clean up the code, by passing the dwc3_qcom
-> struct around during probe, instead of acquiring it from the drvdata.
->
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
->  drivers/usb/dwc3/dwc3-qcom.c | 17 ++++++++---------
->  1 file changed, 8 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index 88fb6706a18d..33de03f2d782 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -546,9 +546,10 @@ static int dwc3_qcom_request_irq(struct dwc3_qcom *q=
-com, int irq,
->         return ret;
->  }
->
-> -static int dwc3_qcom_setup_port_irq(struct platform_device *pdev, int po=
-rt_index, bool is_multiport)
-> +static int dwc3_qcom_setup_port_irq(struct dwc3_qcom *qcom,
-> +                                   struct platform_device *pdev,
-> +                                   int port_index, bool is_multiport)
->  {
-> -       struct dwc3_qcom *qcom =3D platform_get_drvdata(pdev);
->         const char *irq_name;
->         int irq;
->         int ret;
-> @@ -633,9 +634,8 @@ static int dwc3_qcom_find_num_ports(struct platform_d=
-evice *pdev)
->         return DWC3_QCOM_MAX_PORTS;
->  }
->
-> -static int dwc3_qcom_setup_irq(struct platform_device *pdev)
-> +static int dwc3_qcom_setup_irq(struct dwc3_qcom *qcom, struct platform_d=
-evice *pdev)
->  {
-> -       struct dwc3_qcom *qcom =3D platform_get_drvdata(pdev);
->         bool is_multiport;
->         int ret;
->         int i;
-> @@ -644,7 +644,7 @@ static int dwc3_qcom_setup_irq(struct platform_device=
- *pdev)
->         is_multiport =3D (qcom->num_ports > 1);
->
->         for (i =3D 0; i < qcom->num_ports; i++) {
-> -               ret =3D dwc3_qcom_setup_port_irq(pdev, i, is_multiport);
-> +               ret =3D dwc3_qcom_setup_port_irq(qcom, pdev, i, is_multip=
-ort);
->                 if (ret)
->                         return ret;
->         }
-> @@ -699,9 +699,8 @@ static int dwc3_qcom_clk_init(struct dwc3_qcom *qcom,=
- int count)
->         return 0;
->  }
->
-> -static int dwc3_qcom_of_register_core(struct platform_device *pdev)
-> +static int dwc3_qcom_of_register_core(struct dwc3_qcom *qcom, struct pla=
-tform_device *pdev)
->  {
-> -       struct dwc3_qcom        *qcom =3D platform_get_drvdata(pdev);
->         struct device_node      *np =3D pdev->dev.of_node, *dwc3_np;
->         struct device           *dev =3D &pdev->dev;
->         int                     ret;
-> @@ -782,7 +781,7 @@ static int dwc3_qcom_probe(struct platform_device *pd=
-ev)
->                 goto clk_disable;
->         }
->
-> -       ret =3D dwc3_qcom_setup_irq(pdev);
-> +       ret =3D dwc3_qcom_setup_irq(qcom, pdev);
->         if (ret) {
->                 dev_err(dev, "failed to setup IRQs, err=3D%d\n", ret);
->                 goto clk_disable;
-> @@ -797,7 +796,7 @@ static int dwc3_qcom_probe(struct platform_device *pd=
-ev)
->         if (ignore_pipe_clk)
->                 dwc3_qcom_select_utmi_clk(qcom);
->
-> -       ret =3D dwc3_qcom_of_register_core(pdev);
-> +       ret =3D dwc3_qcom_of_register_core(qcom, pdev);
->         if (ret) {
->                 dev_err(dev, "failed to register DWC3 Core, err=3D%d\n", =
-ret);
->                 goto clk_disable;
->
-> --
-> 2.45.2
->
->
+Guessing that because the phy is not referenced its init() ops never
+gets called and u3 never gets disabled unless a usb3-phy is referenced.
 
+> 
+>>
+>>> +     status = "okay";
+>>> +};
+>>> +
+>>> +&usb_host0_xhci {
+>>> +     extcon = <&u2phy0>;
+>>> +     maximum-speed = "high-speed";
+>>
+>> If this only use the USB2 phy, this should probably also override the
+>> default phys and phy-names props with:
+>>
+>>         phys = <&u2phy0_otg>;
+>>         phy-names = "usb2-phy";
+> 
+> I agree completely: if the controller doesn't need the USB3 PHY, then
+> it should not (implicitly) be specified in the DT. Being able to add
+> these overrides is a big goal of mine as well. :)
+> 
+> Sadly, `phys` is what initializes USBDP's USB-side backend, so without
+> it the RX_STATUS line goes floating, and because the controller still
+> expects a port there, it misbehaves:
+> [   30.981076] usb usb2-port1: connect-debounce failed
+> 
+> I can tell the controller that there is no u3 port by doing this in U-Boot:
+> => mw.l 0xfd5ac01c 0xf0000000 # usb3otg0_host_num_u3_port=0
+> => boot
+> ...and that makes single-PHY operation work perfectly! But unless
+> Linux itself effects that change, this patch can't rely on that GRF
+> being set correctly.
+> 
+> Do you have a recommendation on how I might go about disabling this
+> port? I sent a patchset last year [1] that had the DWC3/xHCI driver
+> ignore enumerated u3 ports when the maximum-speed was set to
+> high-speed, but the consensus seems to be that this shouldn't be
+> addressed at the xHCI driver level, so somehow zeroing the necessary
+> GRF bits sounds like the way to go here. What do you think?
 
---
-Best Regards
-Masahiro Yamada
+Not sure if it would help but could be that part of init() ops should be
+moved to probe(). Would still require the phy driver to probe before usb
+controller for that to help/work.
+
+Adding a rockchip,dp-lane-mux prop and keeping the phys prop as-is is
+probably easiest way for now.
+
+One option for future could possible be to have grf driver disable u3
+and modify usbdp phy driver to enable u3 instead of disable u3, not
+sure this will fully work, init of the usbdp phy seem very sensitive
+and possible a one-time op. Trying to "usb start" in U-Boot will only
+work one time, using "usb reset" or a "usb stop/start" cycle will cause
+usbdp phy init to fail and a full board reset is needed to get port
+working again.
+
+Regards,
+Jonas
+
+> 
+> Kind regards,
+> Sam
+> 
+> [1]: https://lore.kernel.org/all/20231208210458.912776-1-CFSworks@gmail.com/
+
 
