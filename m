@@ -1,388 +1,265 @@
-Return-Path: <devicetree+bounces-102249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1BB79760DA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 07:59:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF4A397611F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 08:16:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 621E81F27EEC
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 05:59:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F35761C22E07
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 06:16:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DB2019C546;
-	Thu, 12 Sep 2024 05:56:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 307291891D9;
+	Thu, 12 Sep 2024 06:16:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="hyDPEtRC"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nyOaIF7G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6765118B486
-	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 05:56:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 637E723D7;
+	Thu, 12 Sep 2024 06:15:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726120577; cv=none; b=DIe7COijbMtqnHO3h1L57Yinr8DUTdvFtiuq6DlEB3ZbY3Iwt7bFy4miI/nAN7vb6ZDLqNkn3x2bdmQ6tbK2lDOQfAsvf+5gKd1kF7dPMW3btBb3aIFrLlSjWB0KQEYp7TCU2U4CCVkmpnSBNOxs7PcyOXAHYJWFIVqyQ0/ljhc=
+	t=1726121760; cv=none; b=T6GdAqFcIiuC7xDjoefwaoo/7d1+dDMkjuWj2T2lDEnJ4pb+YzDut+bjA59kdPvpMdNF2ApVh2Td8vSVbbGdKVmp8oOTYudl691pwjFYPXawJ3eH7vyy3AwL0J988cLGNdQ3imVCK3yjxlhvVHSPjI/ilfhPp/7C6OrfsXRx/Bg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726120577; c=relaxed/simple;
-	bh=2MZb8AJQZs0wG05Wps2DKInawqFPfqgCL1L5PflC7B4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qbZDLmAopPgCveX3+5Yf5eKaHc/c4B2Ns+j8zQGgnOKCyWMXcQ3lMzcflB4eBrYcUzPY/nh1hzI1iccwtXxs3XhKTiP15A77yKmtMURx68QSKbtIkxHXpo0i7/xV7f0yna/IWSbMXLtZy+lzyX7nBtv3l8s0xXnZHWQj5fJfAZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=hyDPEtRC; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-20688fbaeafso7444915ad.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2024 22:56:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1726120575; x=1726725375; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lZGiXXErbLpwtJqQgRszC/20gA32B7VjfeYUlTIyz2Y=;
-        b=hyDPEtRC1YSt8HY3ToJaylrg4hdczZZ7pciTOXe+yihIExv3zUrO8PnhsYZbWaRyMA
-         vHbQFClUH8soXWFxs1mFaHU5YqJ61s+BSVUu84mqvPNaMgeIOUXTbx/W6yQPlvgSU+as
-         3KEU2sKqXGjI3HBAHWUmZVOKie3tji/kp3kkK2itynJ9XFrRNWy8Odton1NaE79ODav7
-         iUPTYb8YC/THRXe04ylG9vB+MIknaT30hCo0bX5xaeW7D41oBOfZbSn+P4HpTeRTJ0rs
-         I3n6S60AuXHDo0CBJ41Xe50BQBzby8JPLIureTLUQWFWKUIF9WXtuLvDMX34OTpppE5S
-         XyEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726120575; x=1726725375;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lZGiXXErbLpwtJqQgRszC/20gA32B7VjfeYUlTIyz2Y=;
-        b=FGPLZ6M1YNXSHxxH480+6fojL5TNycA8DLAUgKqq1Z1MTIBLh3jLqfGC4hhANAkWwd
-         0DhVy2JmjOifAvMvnXVxkiK/825xIdN312OVKouFMxvnthoNg2miFfaVkASLQiCWTle0
-         MZDfrzasCF4bDzqjC8+kJxFR5I7JBITofkjidtxvcYuBJaklBQCbt3CY4rnlMFID2nxm
-         AGDlifmQVacIubIv1WXdYahPpRzDTX8H6FwqS7FtvmlWLKAC5Xf4TsGrV2/Kp6Po6Tz8
-         mYDojmMJbdW2GwDExgefW9GrrqwZWlFDUjxXCVNYMPjc7oRAPG3tPfkMq9lGubnwwQjV
-         aOSA==
-X-Forwarded-Encrypted: i=1; AJvYcCXgfsdT2T1scO1z7psHhZg2t0NZKViF4bR9MRMP2w7bRruSjjhvh4JbOcxAyVfJolCwQD3hoqGQk1UK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyeq5GsibrFXvHvTNT69PS+VQXlkynEf/tAnlK9Jr9n0nvHNzgr
-	CMM7a3uwyTs1iqFIif2rU0IMt4ewWqsmX6GduoYi7yyo67hCEQQTphmVyG3124w=
-X-Google-Smtp-Source: AGHT+IEP6KKwUZUW8OkMBb/fzUUdV4ELJioR4iSAdt1JCFUkRDRHnlZjxlI1+ScQqzaBoVsDlqO0MA==
-X-Received: by 2002:a17:902:e852:b0:205:8407:6321 with SMTP id d9443c01a7336-2076e32e467mr26718025ad.9.1726120574663;
-        Wed, 11 Sep 2024 22:56:14 -0700 (PDT)
-Received: from charlie.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2076afe99b6sm7870465ad.209.2024.09.11.22.56.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Sep 2024 22:56:13 -0700 (PDT)
-From: Charlie Jenkins <charlie@rivosinc.com>
-Date: Wed, 11 Sep 2024 22:55:22 -0700
-Subject: [PATCH v10 14/14] riscv: Add ghostwrite vulnerability
+	s=arc-20240116; t=1726121760; c=relaxed/simple;
+	bh=d9ANOiv3g65caoxUJzNR/elgsaYtsXpovZNaKDK9+No=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=n2sdV9V6coDomUKADX5OwGq1Tbcvm75jT4L11OlRl5WGHxQihGv6c3AkEiOdjcmo0zlE9HwrXGvM2qRlsO/cdyI3N8kKvDwIUNatHNAFq1/5Z+wY2JTROd6VFCLUAflO0ADkJEGlyZTJp9KACXZPvvvDbyD0pihwsTr7iNjzwPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nyOaIF7G; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48C2L4Z5000776;
+	Thu, 12 Sep 2024 06:15:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=ThCy74xY633evxCMvrZ5Nl
+	DMHVJ580fCGBacyvcK75w=; b=nyOaIF7GI/sx9yMVK3b10ZSmkijqTMEH7H1SCS
+	QxwD6D3Ww+8OcWWMkYVZqtMND1Rrxls0PXB4J6Q2JxwT4xtHNld698KgZMoIpsfe
+	OpdUA6bVnZkcdwu5J0TEVkzvRTmJmXUvEPpL4h0glNPYOUvzoKZ+ijDimsQNNehr
+	Z8sbg8j/V4wRfyLZpNcEaUGvAkK03fEaSzUlDOwdL8qJyy/tWQJCZ24urqcEAqM/
+	0wGCo47Xe4/0HJWgjS3xjwYAAEIWgUieSiW28w6x3gNxF6OLvskxmXOwa01VwLU2
+	474wZwxJgUhmEIf2HG2FcNiEQCYxaDKYgPTVoY1557eUsvug==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gybpv0ma-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Sep 2024 06:15:24 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48C6FNVQ007459
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Sep 2024 06:15:23 GMT
+Received: from hu-mdalam-blr.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 11 Sep 2024 23:15:17 -0700
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+To: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <miquel.raynal@bootlin.com>,
+        <richard@nod.at>, <vigneshr@ti.com>,
+        <manivannan.sadhasivam@linaro.org>, <esben@geanix.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mtd@lists.infradead.org>
+CC: <quic_mdalam@quicinc.com>, <quic_varada@quicinc.com>,
+        <quic_srichara@quicinc.com>
+Subject: [PATCH v9 0/8] Add QPIC SPI NAND driver
+Date: Thu, 12 Sep 2024 11:44:55 +0530
+Message-ID: <20240912061503.3468147-1-quic_mdalam@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240911-xtheadvector-v10-14-8d3930091246@rivosinc.com>
-References: <20240911-xtheadvector-v10-0-8d3930091246@rivosinc.com>
-In-Reply-To: <20240911-xtheadvector-v10-0-8d3930091246@rivosinc.com>
-To: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, 
- Guo Ren <guoren@kernel.org>, Evan Green <evan@rivosinc.com>, 
- Andy Chiu <andy.chiu@sifive.com>, Jessica Clarke <jrtc27@jrtc27.com>, 
- Andrew Jones <ajones@ventanamicro.com>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev, 
- linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- Charlie Jenkins <charlie@rivosinc.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9377; i=charlie@rivosinc.com;
- h=from:subject:message-id; bh=2MZb8AJQZs0wG05Wps2DKInawqFPfqgCL1L5PflC7B4=;
- b=owGbwMvMwCHWx5hUnlvL8Y3xtFoSQ9qjptiFMw5nP9trcGhyZOLbtRZvpOqP7b6X2+nx55Y4v
- 1rzq847HaUsDGIcDLJiiiw81xqYW+/olx0VLZsAM4eVCWQIAxenAEzkRikjw8kZu9hvVjGoXk3b
- vvRgabHQ1BfzTnhorbhbdZajvjUkTp7hf/4B+f1yv02/VcdquBxsSyl53Xbll6Ms+zxRa+/jDSu
- DWAE=
-X-Developer-Key: i=charlie@rivosinc.com; a=openpgp;
- fpr=7D834FF11B1D8387E61C776FFB10D1F27D6B1354
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Zj8TGpUUrwwnMeofDQ-jR29PlRL3zZRf
+X-Proofpoint-GUID: Zj8TGpUUrwwnMeofDQ-jR29PlRL3zZRf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 phishscore=0 spamscore=0 adultscore=0
+ lowpriorityscore=0 mlxlogscore=809 clxscore=1015 bulkscore=0
+ impostorscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409120043
 
-Follow the patterns of the other architectures that use
-GENERIC_CPU_VULNERABILITIES for riscv to introduce the ghostwrite
-vulnerability and mitigation. The mitigation is to disable all vector
-which is accomplished by clearing the bit from the cpufeature field.
+v9:
+ * Fixed all the compilation warning reported by
+   kernel test robot
+  * Changed type of cmd1, vld to u32 from __le32 in qcom_nand_controller
+   structure
+ * Changed type of cfg0, cfg1, cfg0_raw, cfg1_raw, clrflashstatus,
+   ecc_buf_cfg, ecc_bch_cfg, clrreadstatus to u32 in qcom_nand_host
+   structure
+ * In nandc_set_read_loc_first() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * In nandc_set_read_loc_last() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * Changed data type of cw_offset, read_size, is_last_read_loc to
+   u32 in nandc_set_read_loc() api to fix compilation warning reported
+   by kernel test bot
+ * In set_address() api added cpu_to_le32() macro to fix compilation
+   warning reported by kernel test bot
+ * In update_rw_regs() api added cpu_to_le32() macro to fix compilation
+   warning reported by kernel test bot
+ * In qcom_op_cmd_mapping() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * In qcom_read_status_exec() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * In qcom_read_id_type_exec() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * In qcom_misc_cmd_type_exec() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * In qcom_param_page_type_exec() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot   
+ * In update_rw_regs() api added cpu_to_le32() macro to fix compilation
+   issue reported by kernel test bot
+ * In qcom_param_page_type_exec() api added cpu_to_le32() macro to fix
+   compilation issue reported by kernel test bot
+ * Changed data type of addr1, addr2, cmd, to __le32 in qpic_spi_nand
+   structure
+ * In qcom_spi_set_read_loc_first() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_set_read_loc_last() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_init() api added cpu_to_le32() macro to fix compilation
+   warning
+ * In qcom_spi_ecc_init_ctx_pipelined() api removed unused variables
+   reqs, user, step_size, strength and added cpu_to_le32() macro as well
+   to fix compilation warning
+ * In qcom_spi_read_last_cw() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_check_error() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_read_page_ecc() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_read_page_oob() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_program_raw() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_program_ecc() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_program_oob() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_send_cmdaddr() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_io_op() api added cpu_to_le32() macro to fix compilation
+    warning
+v8:
+ * Fixed compilation warning reported by kernel test robot
+ * Added "chip" description in nandc_set_read_loc_first()
+ * Added "chip" description" in nandc_set_read_loc_last()
+ * Changed data type of read_location0, read_location1,
+   read_location2, read_location3, addr0, addr1, cmd, cfg0,
+   cfg1, ecc_bch_cfg, ecc_buf_cfg, clrflashstatus, clrreadstatus,
+   orig_cmd1, orig_vld to __le32 to fix compilation warning.
+ * Included bitfield.h header file in spi-qpic-snand.c to
+   fix compilation warning
+ * Removed unused variable "steps" variable from 
+   qcom_spi_ecc_init_ctx_pipelined()
 
-Ghostwrite only affects thead c9xx CPUs that impelment xtheadvector, so
-the vulerability will only be mitigated on these CPUs.
+v7:
+ * Added read_oob() and write_oob() api
+ * Added FIELD_PREP() in spi init
+ * Made CONFIG_SPI_QPIC_SNAND and CONFIG_MTD_NAND_QCOM
+   as bool type
+ * Removed offset 0 in oob_ecc() layout
+ * Handled multiple error condition
 
-Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
----
- arch/riscv/Kconfig.errata            | 11 ++++++++
- arch/riscv/errata/thead/errata.c     | 28 ++++++++++++++++++
- arch/riscv/include/asm/bugs.h        | 22 +++++++++++++++
- arch/riscv/include/asm/errata_list.h |  3 +-
- arch/riscv/kernel/Makefile           |  2 ++
- arch/riscv/kernel/bugs.c             | 55 ++++++++++++++++++++++++++++++++++++
- arch/riscv/kernel/cpufeature.c       |  9 +++++-
- drivers/base/cpu.c                   |  3 ++
- include/linux/cpu.h                  |  1 +
- 9 files changed, 132 insertions(+), 2 deletions(-)
+v6:
+ * Added FIELD_PREP() and GENMASK() macro
+ * Added qpic_spi_nand{..} structure for
+   spi nand realted variables
+ * Made qpic_common.c slectable based on
+   either CONFIG_MTD_NAND_QCOM or CONFIG_SPI_QPIC_SNAND
+ * Removed rawnand.h from qpic-common.h 
+ * Removed partitions.h and rawnand.h form spi-qpic-snand.c
+ * Added qcom_nand_unalloc() in remove()
 
-diff --git a/arch/riscv/Kconfig.errata b/arch/riscv/Kconfig.errata
-index 2acc7d876e1f..e318119d570d 100644
---- a/arch/riscv/Kconfig.errata
-+++ b/arch/riscv/Kconfig.errata
-@@ -119,4 +119,15 @@ config ERRATA_THEAD_PMU
- 
- 	  If you don't know what to do here, say "Y".
- 
-+config ERRATA_THEAD_GHOSTWRITE
-+	bool "Apply T-Head Ghostwrite errata"
-+	depends on ERRATA_THEAD && RISCV_ISA_XTHEADVECTOR
-+	default y
-+	help
-+	  The T-Head C9xx cores have a vulnerability in the xtheadvector
-+	  instruction set. When this errata is enabled, the CPUs will be probed
-+	  to determine if they are vulnerable and disable xtheadvector.
-+
-+	  If you don't know what to do here, say "Y".
-+
- endmenu # "CPU errata selection"
-diff --git a/arch/riscv/errata/thead/errata.c b/arch/riscv/errata/thead/errata.c
-index f5120e07c318..5cc008ab41a8 100644
---- a/arch/riscv/errata/thead/errata.c
-+++ b/arch/riscv/errata/thead/errata.c
-@@ -10,6 +10,7 @@
- #include <linux/string.h>
- #include <linux/uaccess.h>
- #include <asm/alternative.h>
-+#include <asm/bugs.h>
- #include <asm/cacheflush.h>
- #include <asm/cpufeature.h>
- #include <asm/dma-noncoherent.h>
-@@ -142,6 +143,31 @@ static bool errata_probe_pmu(unsigned int stage,
- 	return true;
- }
- 
-+static bool errata_probe_ghostwrite(unsigned int stage,
-+				    unsigned long arch_id, unsigned long impid)
-+{
-+	if (!IS_ENABLED(CONFIG_ERRATA_THEAD_GHOSTWRITE))
-+		return false;
-+
-+	/*
-+	 * target-c9xx cores report arch_id and impid as 0
-+	 *
-+	 * While ghostwrite may not affect all c9xx cores that implement
-+	 * xtheadvector, there is no futher granularity than c9xx. Assume
-+	 * vulnerable for this entire class of processors when xtheadvector is
-+	 * enabled.
-+	 */
-+	if (arch_id != 0 || impid != 0)
-+		return false;
-+
-+	if (stage != RISCV_ALTERNATIVES_EARLY_BOOT)
-+		return false;
-+
-+	ghostwrite_set_vulnerable();
-+
-+	return true;
-+}
-+
- static u32 thead_errata_probe(unsigned int stage,
- 			      unsigned long archid, unsigned long impid)
- {
-@@ -155,6 +181,8 @@ static u32 thead_errata_probe(unsigned int stage,
- 	if (errata_probe_pmu(stage, archid, impid))
- 		cpu_req_errata |= BIT(ERRATA_THEAD_PMU);
- 
-+	errata_probe_ghostwrite(stage, archid, impid);
-+
- 	return cpu_req_errata;
- }
- 
-diff --git a/arch/riscv/include/asm/bugs.h b/arch/riscv/include/asm/bugs.h
-new file mode 100644
-index 000000000000..e294b15bf78e
---- /dev/null
-+++ b/arch/riscv/include/asm/bugs.h
-@@ -0,0 +1,22 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Interface for managing mitigations for riscv vulnerabilities.
-+ *
-+ * Copyright (C) 2024 Rivos Inc.
-+ */
-+
-+#ifndef __ASM_BUGS_H
-+#define __ASM_BUGS_H
-+
-+/* Watch out, ordering is important here. */
-+enum mitigation_state {
-+	UNAFFECTED,
-+	MITIGATED,
-+	VULNERABLE,
-+};
-+
-+void ghostwrite_set_vulnerable(void);
-+void ghostwrite_enable_mitigation(void);
-+enum mitigation_state ghostwrite_get_state(void);
-+
-+#endif /* __ASM_BUGS_H */
-diff --git a/arch/riscv/include/asm/errata_list.h b/arch/riscv/include/asm/errata_list.h
-index 7c8a71a526a3..6e426ed7919a 100644
---- a/arch/riscv/include/asm/errata_list.h
-+++ b/arch/riscv/include/asm/errata_list.h
-@@ -25,7 +25,8 @@
- #ifdef CONFIG_ERRATA_THEAD
- #define	ERRATA_THEAD_MAE 0
- #define	ERRATA_THEAD_PMU 1
--#define	ERRATA_THEAD_NUMBER 2
-+#define	ERRATA_THEAD_GHOSTWRITE 2
-+#define	ERRATA_THEAD_NUMBER 3
- #endif
- 
- #ifdef __ASSEMBLY__
-diff --git a/arch/riscv/kernel/Makefile b/arch/riscv/kernel/Makefile
-index 06d407f1b30b..d7a54e34178e 100644
---- a/arch/riscv/kernel/Makefile
-+++ b/arch/riscv/kernel/Makefile
-@@ -113,3 +113,5 @@ obj-$(CONFIG_COMPAT)		+= compat_vdso/
- obj-$(CONFIG_64BIT)		+= pi/
- obj-$(CONFIG_ACPI)		+= acpi.o
- obj-$(CONFIG_ACPI_NUMA)	+= acpi_numa.o
-+
-+obj-$(CONFIG_GENERIC_CPU_VULNERABILITIES) += bugs.o
-diff --git a/arch/riscv/kernel/bugs.c b/arch/riscv/kernel/bugs.c
-new file mode 100644
-index 000000000000..0c19691b4cd5
---- /dev/null
-+++ b/arch/riscv/kernel/bugs.c
-@@ -0,0 +1,55 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2024 Rivos Inc.
-+ */
-+
-+#include <linux/cpu.h>
-+#include <linux/device.h>
-+#include <linux/sprintf.h>
-+
-+#include <asm/bugs.h>
-+#include <asm/vendor_extensions/thead.h>
-+
-+static enum mitigation_state ghostwrite_state;
-+
-+void ghostwrite_set_vulnerable(void)
-+{
-+	ghostwrite_state = VULNERABLE;
-+}
-+
-+/*
-+ * Vendor extension alternatives will use the value set at the time of boot
-+ * alternative patching, thus this must be called before boot alternatives are
-+ * patched (and after extension probing) to be effective.
-+ */
-+void ghostwrite_enable_mitigation(void)
-+{
-+	if (IS_ENABLED(CONFIG_RISCV_ISA_XTHEADVECTOR) &&
-+	    ghostwrite_state == VULNERABLE && !cpu_mitigations_off()) {
-+		disable_xtheadvector();
-+		ghostwrite_state = MITIGATED;
-+	}
-+}
-+
-+enum mitigation_state ghostwrite_get_state(void)
-+{
-+	return ghostwrite_state;
-+}
-+
-+ssize_t cpu_show_ghostwrite(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	if (IS_ENABLED(CONFIG_RISCV_ISA_XTHEADVECTOR)) {
-+		switch (ghostwrite_state) {
-+		case UNAFFECTED:
-+			return sprintf(buf, "Not affected\n");
-+		case MITIGATED:
-+			return sprintf(buf, "Mitigation: xtheadvector disabled\n");
-+		case VULNERABLE:
-+			fallthrough;
-+		default:
-+			return sprintf(buf, "Vulnerable\n");
-+		}
-+	} else {
-+		return sprintf(buf, "Not affected\n");
-+	}
-+}
-diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index 56b5054b8f86..1f4329bb8a9d 100644
---- a/arch/riscv/kernel/cpufeature.c
-+++ b/arch/riscv/kernel/cpufeature.c
-@@ -17,6 +17,7 @@
- #include <linux/of.h>
- #include <asm/acpi.h>
- #include <asm/alternative.h>
-+#include <asm/bugs.h>
- #include <asm/cacheflush.h>
- #include <asm/cpufeature.h>
- #include <asm/hwcap.h>
-@@ -867,7 +868,13 @@ static int __init riscv_fill_hwcap_from_ext_list(unsigned long *isa2hwcap)
- 		riscv_fill_vendor_ext_list(cpu);
- 	}
- 
--	if (has_xtheadvector_no_alternatives() && has_thead_homogeneous_vlenb() < 0) {
-+	/*
-+	 * Execute ghostwrite mitigation immediately after detecting extensions
-+	 * to disable xtheadvector if necessary.
-+	 */
-+	if (ghostwrite_get_state() == VULNERABLE) {
-+		ghostwrite_enable_mitigation();
-+	} else if (has_xtheadvector_no_alternatives() && has_thead_homogeneous_vlenb() < 0) {
- 		pr_warn("Unsupported heterogeneous vlenb detected, vector extension disabled.\n");
- 		disable_xtheadvector();
- 	}
-diff --git a/drivers/base/cpu.c b/drivers/base/cpu.c
-index fdaa24bb641a..a7e511849875 100644
---- a/drivers/base/cpu.c
-+++ b/drivers/base/cpu.c
-@@ -599,6 +599,7 @@ CPU_SHOW_VULN_FALLBACK(retbleed);
- CPU_SHOW_VULN_FALLBACK(spec_rstack_overflow);
- CPU_SHOW_VULN_FALLBACK(gds);
- CPU_SHOW_VULN_FALLBACK(reg_file_data_sampling);
-+CPU_SHOW_VULN_FALLBACK(ghostwrite);
- 
- static DEVICE_ATTR(meltdown, 0444, cpu_show_meltdown, NULL);
- static DEVICE_ATTR(spectre_v1, 0444, cpu_show_spectre_v1, NULL);
-@@ -614,6 +615,7 @@ static DEVICE_ATTR(retbleed, 0444, cpu_show_retbleed, NULL);
- static DEVICE_ATTR(spec_rstack_overflow, 0444, cpu_show_spec_rstack_overflow, NULL);
- static DEVICE_ATTR(gather_data_sampling, 0444, cpu_show_gds, NULL);
- static DEVICE_ATTR(reg_file_data_sampling, 0444, cpu_show_reg_file_data_sampling, NULL);
-+static DEVICE_ATTR(ghostwrite, 0444, cpu_show_ghostwrite, NULL);
- 
- static struct attribute *cpu_root_vulnerabilities_attrs[] = {
- 	&dev_attr_meltdown.attr,
-@@ -630,6 +632,7 @@ static struct attribute *cpu_root_vulnerabilities_attrs[] = {
- 	&dev_attr_spec_rstack_overflow.attr,
- 	&dev_attr_gather_data_sampling.attr,
- 	&dev_attr_reg_file_data_sampling.attr,
-+	&dev_attr_ghostwrite.attr,
- 	NULL
- };
- 
-diff --git a/include/linux/cpu.h b/include/linux/cpu.h
-index bdcec1732445..6a0a8f1c7c90 100644
---- a/include/linux/cpu.h
-+++ b/include/linux/cpu.h
-@@ -77,6 +77,7 @@ extern ssize_t cpu_show_gds(struct device *dev,
- 			    struct device_attribute *attr, char *buf);
- extern ssize_t cpu_show_reg_file_data_sampling(struct device *dev,
- 					       struct device_attribute *attr, char *buf);
-+extern ssize_t cpu_show_ghostwrite(struct device *dev, struct device_attribute *attr, char *buf);
- 
- extern __printf(4, 5)
- struct device *cpu_device_create(struct device *parent, void *drvdata,
+v5:
+ * Fixes nandbiterr issue
+ * Added raw_read() and raw_write() API
+ * Added qcom_ prefix to all the common API
+ * Removed register indirection
+ * Following tests for SPI-NAND devices passed
+
+   - mtd_oobtest
+   - mtd_pagetest
+   - mtd_readtest
+   - mtd_speedtest
+   - mtd_stresstest
+   - mtd_subpagetest
+   - mtd_nandbiterrs
+   - nandtest
+   - nanddump
+   - nandwrite
+   - nandbiterr -i
+   - mtd erase
+   - mtd write
+   - dd
+   - hexddump
+
+v4:
+ * In this patch series fixes kernel doc for all the cmmon api
+ * Also fixes dm-binding commit message
+ * Fix qpic_common.c compilation based on config
+
+v3:
+ * In this patch series fixes multiple things like
+   added clock-name, added _alloc_controller api instead
+   of alloc_master, made common apis more generic etc.
+
+ * Addressed all the comment from v2 patch series
+
+v2:
+ * https://lore.kernel.org/linux-arm-msm/20240215134856.1313239-1-quic_mdalam@quicinc.com/
+ * In this series of patchs we have added basic working QPIC SPI NAND
+   driver with READ, WRITE, ERASE etc functionality
+
+ * Addressed all the comments given in RFC [v1] patch
+
+v1:
+ * https://lore.kernel.org/linux-arm-msm/20231031120307.1600689-1-quic_mdalam@quicinc.com/
+ * Initial set of patches for handling QPIC SPI NAND.
+
+Md Sadre Alam (8):
+  spi: dt-bindings: Introduce qcom,spi-qpic-snand
+  mtd: rawnand: qcom: cleanup qcom_nandc driver
+  mtd: rawnand: qcom: Add qcom prefix to common api
+  mtd: nand: Add qpic_common API file
+  mtd: rawnand: qcom: use FIELD_PREP and GENMASK
+  spi: spi-qpic: add driver for QCOM SPI NAND flash Interface
+  arm64: dts: qcom: ipq9574: Add SPI nand support
+  arm64: dts: qcom: ipq9574: Disable eMMC node
+
+ .../bindings/spi/qcom,spi-qpic-snand.yaml     |   83 +
+ .../boot/dts/qcom/ipq9574-rdp-common.dtsi     |   43 +
+ arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts   |    2 +-
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         |   27 +
+ drivers/mtd/nand/Makefile                     |    7 +
+ drivers/mtd/nand/qpic_common.c                |  738 +++++++
+ drivers/mtd/nand/raw/Kconfig                  |    2 +-
+ drivers/mtd/nand/raw/qcom_nandc.c             | 1763 +++--------------
+ drivers/spi/Kconfig                           |    8 +
+ drivers/spi/Makefile                          |    1 +
+ drivers/spi/spi-qpic-snand.c                  | 1634 +++++++++++++++
+ include/linux/mtd/nand-qpic-common.h          |  482 +++++
+ 12 files changed, 3348 insertions(+), 1442 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
+ create mode 100644 drivers/mtd/nand/qpic_common.c
+ create mode 100644 drivers/spi/spi-qpic-snand.c
+ create mode 100644 include/linux/mtd/nand-qpic-common.h
 
 -- 
-2.45.0
+2.34.1
 
 
