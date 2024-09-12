@@ -1,115 +1,96 @@
-Return-Path: <devicetree+bounces-102361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51B5C976B44
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 15:54:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6B2E976B6F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 16:03:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64A35B21B4B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 13:54:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92D301F24B85
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 14:03:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDC2B1AE053;
-	Thu, 12 Sep 2024 13:53:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2645A1AED49;
+	Thu, 12 Sep 2024 14:03:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="jMv9AlFS"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RaPIlKBk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from classfun.cn (unknown [129.204.178.38])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5266B1B2ECD;
-	Thu, 12 Sep 2024 13:53:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C28D19F43E;
+	Thu, 12 Sep 2024 14:03:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726149233; cv=none; b=uG78u7FnK/T3GB1n2vKe3kk9LWN592lhno75qlzMRS2FuQlFLKpiuj7j1cGLH+rduVyNMeudJBqZYIJRxq23zyygqMvGZrD/rKZc920imrGFYOyzysuURo+zJiZIokkyN3wPmj7vKNmhNEJ55zaaxqwaILEm9GnxxTOFcSwfU30=
+	t=1726149809; cv=none; b=eISOQ+eBpyld9tKxxDiioXR3VmPiPtgjaDdS3mHyloeqQCyQd47CTIwK0ULSbnW4OIq75d2lPSuJYX+Jqh9o/jn/I26XjF4bIjfqGOmCW9eMy/ki0FgkV3wIenAmJN9b1tRTjZdIQEmV5FjRJe/+OnEOpcxhb48Q/RGfoUeu0hg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726149233; c=relaxed/simple;
-	bh=tcW2MGxIyjfg3SAuEmU59Agkom8lK5Y5Fp1ozgyiOb0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FOhm0HLc1OkiMNPYkce0vE1n2GFTVfNc23hW4kyRyIfR3sEhj9PqMD0t8P9bLE2E+fE6XtpTgu2M6oeThvfHa8DRzDHWtbaMAwXsEQP1IPWMLcBFQUFITcKTpYk53A8hW12DXVt5mxkeKZ4toQWPilF2wgmzk+BoqDLU8lsVcpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=jMv9AlFS; arc=none smtp.client-ip=129.204.178.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
-Received: from [192.168.0.160] (unknown [220.162.71.16])
-	(Authenticated sender: bigfoot)
-	by classfun.cn (Postfix) with ESMTPSA id C8CB67892D;
-	Thu, 12 Sep 2024 21:53:36 +0800 (CST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn C8CB67892D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
-	s=default; t=1726149220;
-	bh=8k+BLzuxKweSdS2kHP5jwMhPOyQcKLoWB7/Tll4vowk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jMv9AlFS5pRapyqCNfhgyF8Pebj4dX5KrWC/pluelM2Uhs0FLVzCq6Fjjkhb4qvRL
-	 1YfEzKmy7G+htbk1fkcEeOrOUDzkib8XVegr/gbQXa8alO/9a4jLrpTMfM+P3p42jR
-	 7hSQp91HHJ09+/pStfGAKBWgYFfr/mTgxBZnhy08=
-Message-ID: <1a7d017a-8317-462b-8698-03cc7099a74f@classfun.cn>
-Date: Thu, 12 Sep 2024 21:53:42 +0800
+	s=arc-20240116; t=1726149809; c=relaxed/simple;
+	bh=YsY3mlB5F9ACVWqyi0PIngb1gCNaAlYaNrMVm7KGDjM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dDXTdYOW005D+lkyyrBMK6L+zn0500Bo1sx0s1I6MmbzwY7ZfhSophEU33Y3laEUfDOH5qvAOo/37OJPgP1qvX4jJ3Pg6sn6tDuUNTmj+5CIzSQcirT3jrLhjWBd6HLeMRC67I0XF71zyXHH3GF2s0jsIKS2/aYq8ULPbJ9AGXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RaPIlKBk; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 026CAC0007;
+	Thu, 12 Sep 2024 14:03:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1726149804;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ykz7dg7d9papWK5sWxqUS11GHL3uHkl8jv+q45X3i+g=;
+	b=RaPIlKBkruFZtQBQ23m7JtXncLN14xNgh5WQrT4LU4xI56NZqC9KSJzCNKGhf91O3BmCOX
+	ylJMJf7Gx58ewLZTWyKqpasy1oqtALd2XsRJ9Yl6Cg5xBWq+sAtNckvmLDL2oNfmtSd7yV
+	p44vwf+kFXwU+S8XK9aFnXIlil6v8EllFq0XKozHGum33s8X7PiabBTueKhE4K3J4H7Cju
+	QL5QrfUAnQQ6oy72/ZxTSyLLPst3qFAFthf+okWKQNvh8R4CDF5lS3GCSKQlbJ+eWsbwDg
+	OFUVnh//BLJHJR0YBm01BIGEXH7bHSDVCFNy6SaBXbYzgGeeOSXpImGXiG5fgw==
+Date: Thu, 12 Sep 2024 16:03:23 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	NXP S32 Linux Team <s32@nxp.com>,
+	Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+Subject: Re: [PATCH 1/4] dt-bindings: rtc: add schema for NXP S32G2/S32G3 SoCs
+Message-ID: <202409121403232ab1295b@mail.local>
+References: <20240911070028.127659-1-ciprianmarian.costea@oss.nxp.com>
+ <20240911070028.127659-2-ciprianmarian.costea@oss.nxp.com>
+ <20240911-racism-playmaker-71cb87d1260f@spud>
+ <62ba70ca-429e-476c-bb7b-78f743574a68@oss.nxp.com>
+ <2024091212260302903af7@mail.local>
+ <2815dcf8-bb90-4e3f-837d-2c2a36a8744e@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: add dts for Ariaboard
- Photonicat RK3568
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, dsimic@manjaro.org,
- heiko@sntech.de, jonas@kwiboo.se, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, Junhao Xie <bigfoot@classfun.cn>
-References: <20240911122809.1789778-5-bigfoot@classfun.cn>
- <20240912023018.23986-1-amadeus@jmu.edu.cn>
-Content-Language: en-US
-From: Junhao Xie <bigfoot@classfun.cn>
-In-Reply-To: <20240912023018.23986-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2815dcf8-bb90-4e3f-837d-2c2a36a8744e@oss.nxp.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-On 2024/9/12 10:30, Chukun Pan wrote:
-> Hi Junhao,
+On 12/09/2024 15:36:46+0300, Ciprian Marian Costea wrote:
+> > Then should this mux be registered in the CCF so you can use the usual
+> > clock node properties?
 > 
->> ...
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/rockchip/rk3568-photonicat.dts
->> ...
+> Hello Alexandre,
 > 
->> +	rfkill-modem {
->> +		compatible = "rfkill-gpio";
->> +		label = "M.2 USB Modem";
->> +		radio-type = "wwan";
->> +		reset-gpios = <&gpio0 RK_PB0 GPIO_ACTIVE_LOW>;
->> +		shutdown-gpios = <&gpio4 RK_PC4 GPIO_ACTIVE_HIGH>;
->> +	};
-> 
-> gpio0 RK_PB0 conflicts with xin32k, please add:
-> 
-> &xin32k {
-> 	pinctrl-names = "default";
-> 	pinctrl-0 = <&clk32k_out1>;
-> };
+> In hardware, these clock muxes and divisors are part of the RTC module
+> itself and not external. Therefore, I would say no.
 
-I added it and it currently works fine
+This is irrelevant, if this is a clock mux, it must be in the CCF, just
+as when the RTC has a clock output.
 
-> 
->> +	vccin_5v: regulator-5v0-vcc-in {
->> +	vcc_sysin: regulator-5v0-vcc-sysin {
->> +	vcc_syson: regulator-5v0-vcc-syson {
->> +	vcc5v0_usb30_otg0: regulator-5v0-vcc-usb-host {
-> 
-> obviously (
 
-I seem to have misunderstood the rules in dt-bindings before.
-The following looks better:
-
-vcc5v0_usb30_otg0: regulator-vcc5v0-usb30-otg0 {
-vccin_5v: regulator-vccin-5v {
-vcc_sysin: regulator-vcc-sysin {
-vcc_syson: regulator-vcc-syson {
-
-> 
-
-Thanks for your review, I will fix all problems in next version!
-
-Best regards,
-Junhao
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
