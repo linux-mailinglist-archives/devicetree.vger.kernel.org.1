@@ -1,139 +1,208 @@
-Return-Path: <devicetree+bounces-102303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26F6197658C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 11:29:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22DD89765B8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 11:34:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEBA5287524
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 09:29:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D27AD283E53
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 09:34:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D17FB191499;
-	Thu, 12 Sep 2024 09:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED1E719C54C;
+	Thu, 12 Sep 2024 09:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J2mJ1WJQ"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Nu+vAQnn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A49F190063
-	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 09:29:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618DD19307E;
+	Thu, 12 Sep 2024 09:33:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726133352; cv=none; b=huITbo1WpozJsRNglOcF33Jh2W1usReS/TJITj6b0WP4mSmb8mo6fWoB02cKjBt5s3Gx/upAXTfomb7YUXsxsMLFF6gP0QwrvC2IzzeNmAUPX/u5xG0NwWrkRbmsBGyW2RMRzHvj9hNfSCazb0ObPKw3S28VHNCR/w7oJiAyvLw=
+	t=1726133600; cv=none; b=n54fzuTn5fcNSbaBAIzzrag4tXMilXvGUEkIo2uTHELmh4VoVuH/tW09e500tBKrPHJLH9vR+kF/q380xiQhoTa4UZc5h3kJk2Ui17xoliv4lU2JKxIQL/D2Y80uIwoRMMGmuj4+wkpJJsdpi/ZYw390xZOLn0NfnGFqV9sPeqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726133352; c=relaxed/simple;
-	bh=f1LgvUXrqwLz/Z4q62FxAV/qtsloeO9ZWMMYuuVqxOM=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=cLOfk6V1REys3pNk+Py9+CJR5Izk20AKrtYc+4V7K+wFiX53MQJQ7EDeOClMHo5GLGBQPkA/p2bUMFf2r0MWsizEtA4gicM6VSV3Qiou/GP4+J2fU6G41MN+DS0blEQqpbqpc7N1bX18uL58Xstfggo0VRvsWv2r4K9uZTlbckU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J2mJ1WJQ; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-378c16a4d3eso887315f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 02:29:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726133348; x=1726738148; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wp9jPxe8dbEyJ5HtUVcWqEzQO64+7gaLQ5RI1SB1IH0=;
-        b=J2mJ1WJQ9XprVcRx2GseUQBCqQ5rtefft/XEVK0VtWG5AOAvfjNMBvo4eAhLnW4sBb
-         oMMPE0tjNRl7nEHNVISd9a8aYcygYirJvKZmSPPZscYNdoH+Lg+yUhcaN4rZgXjh0wQ3
-         n4AoqvCgs5EhmAhLW+QIlmtSieLgL9EYhcE2b5koOpmNHGdgiVSjvotVHMp4H5C98CgN
-         oOIJ/1Z7bWjYEFbnjJ+riPmZbtVlraXKTu1Q5SL1LmnaBP87nLXBRg3HFW2dp2G/woET
-         NuwJhXTrkcYz8+xWWe7CAjCK4hJeJmAmagAhEaSqgbFBVQUNZFbJ+iOhKgN8kX97ZIL0
-         tJ3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726133348; x=1726738148;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wp9jPxe8dbEyJ5HtUVcWqEzQO64+7gaLQ5RI1SB1IH0=;
-        b=RSlJGSr8NwjwNyiX1boJEImM00z7FiX73oefQxJtrZ1SOmhRpJ3TSDvQoG+K2qveYr
-         4+88C3OVtt0GLLigMIp1g2IjX5w9D16ZfhywJPM66FriO3teWCexJCyNCckH+cTmgLvj
-         Cc9cBwMcOLxEV8PVkqUcLIRa/yWJato6VBdE6zLdoC5NH8C9MJUcvHjE+u0uTvJPsaxy
-         0FnMpynmI2+bPiT3VsizdHTVYdhMd3kL0tyU3fxXQU2GwKSzT/1d+xVt1e1VQvleqozv
-         aaki3HK2MiENl6WyLPu7xUspxgqHbi/gUrPPawjmhhwqibX9qlUK27k0/W8ALdnys9U3
-         CV6A==
-X-Forwarded-Encrypted: i=1; AJvYcCW0mSRa0b6lZByCi2CyyW/D6ytwBY9bDnWg6Jrig071APvYwn5OSN++BOFxfxnt7qWM+4MBcMOj6p+x@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQWjyPnTequqFnJyINjqOCC8u9QF5vjsWnRk27V/vOTWzY3aE7
-	U6N/D08MQve5p7RPR5gEItxF1komhEyqVf2jbaTbQ8H5czBMpU0uuxKpYPWQuW+PlXUOErGVmdt
-	Y
-X-Google-Smtp-Source: AGHT+IEgyiSK927zXIsO2K8ws+WuFo5rdGvLrwD1Uebv/Pcw7+ODrUZYJsEs7zuDgKzW3jgL4jxagg==
-X-Received: by 2002:a5d:4945:0:b0:374:c160:269e with SMTP id ffacd0b85a97d-378c2cf5617mr1780563f8f.22.1726133347751;
-        Thu, 12 Sep 2024 02:29:07 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378956652ddsm13911677f8f.29.2024.09.12.02.29.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Sep 2024 02:29:07 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, khilman@baylibre.com, jbrunet@baylibre.com, 
- martin.blumenstingl@googlemail.com, hkallweit1@gmail.com, 
- George Stark <gnstark@salutedevices.com>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, kernel@salutedevices.com
-In-Reply-To: <20240710234116.2370655-1-gnstark@salutedevices.com>
-References: <20240710234116.2370655-1-gnstark@salutedevices.com>
-Subject: Re: (subset) [PATCH v4 0/3] pwm: meson: add pwm support for A1
-Message-Id: <172613334685.3721802.3816923810532224075.b4-ty@linaro.org>
-Date: Thu, 12 Sep 2024 11:29:06 +0200
+	s=arc-20240116; t=1726133600; c=relaxed/simple;
+	bh=x9MZ4i7i6o6MmiE6TuNgzQILdZZGvsilrySuI6sanyE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=D1atFGdpPbGUJjxrz7Pcz8WmXMlm4JnE8nXAlskX3HeJYwWRV1jZiwAS2rKtciKBgV+e7gLmRe8oFbI/HgRJbMYfdKkZ6lD9EvRHlsntSGkYef3Q3+gSKIuuNoBDD62JgNDyMbFkqnQJyVbbGbfN25S2DcLl64iWK4l9hKvA2Tw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Nu+vAQnn; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1726133599; x=1757669599;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=x9MZ4i7i6o6MmiE6TuNgzQILdZZGvsilrySuI6sanyE=;
+  b=Nu+vAQnnc5Q1RBRcVEeDxvnoP+0gNZeiuL0z9nc8QFJjvf18Vlj0QSaY
+   K7eRF0sYyup9oFhlF2xLIQEtLz9/zFwYZ9gE9fwKJvTWlAS51PYOD+8Gu
+   ZryLxCIdfvJyMZxQuKHxXt3ivO9x69ttC0DSp/dr9SV4h3JCKS1QLUupT
+   P/9nRvvyrEwm9DuhCmTE8yxgmExltEja6qyuhshulsoBxNHM/9E15OnQG
+   udktMKUx3PDZC93HxUmBu78KOYHqj7IpKDCWeEIdG+7UNcCXkyU7GzTuy
+   I83qjpDyTZ6ZkSGpqrUuvY9Nqnwwyy8anbCJeu4pGCvb9V9vZ5J9HgItk
+   g==;
+X-CSE-ConnectionGUID: BCOxaM+xQw2ODPMijRn+Xg==
+X-CSE-MsgGUID: ApUAX4bvS0O/r4wqYbJuEg==
+X-IronPort-AV: E=Sophos;i="6.10,222,1719903600"; 
+   d="scan'208";a="262677950"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Sep 2024 02:33:18 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 12 Sep 2024 02:33:13 -0700
+Received: from ROB-ULT-M76677.microchip.com (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Thu, 12 Sep 2024 02:33:10 -0700
+From: Andrei Simion <andrei.simion@microchip.com>
+To: <nicolas.ferre@microchip.com>, <claudiu.beznea@tuxon.dev>,
+	<alexandre.belloni@bootlin.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, Andrei Simion <andrei.simion@microchip.com>
+Subject: [PATCH v2] ARM: dts: microchip: sam9x60: Add missing property atmel,usart-mode
+Date: Thu, 12 Sep 2024 12:33:07 +0300
+Message-ID: <20240912093307.40488-1-andrei.simion@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Hi,
+Add the atmel,usart-mode property to the UART nodes. This ensures
+compliance with the atmel,at91-usart.yaml schema and resolves the errors
+below:
+serial@200: $nodename:0: 'serial@200' does not match
+'^spi(@.*|-([0-9]|[1-9][0-9]+))?$'
+serial@200: atmel,use-dma-rx: False schema does not allow True
+serial@200: atmel,use-dma-tx: False schema does not allow True
+serial@200: atmel,fifo-size: False schema does not allow [[16]]
 
-On Thu, 11 Jul 2024 02:41:13 +0300, George Stark wrote:
-> Add support for Amlogic meson A1 SoC family PWM
-> 
-> Changes in v2:
->   add patch with optional power-domains to pwm bindings;
->   fix syntax in a1 bindigns patch:
->   - use enum over const for amlogic,meson-a1-pwm beacuse adding more devices here
->     are expected
->   - leave only base compatible amlogic,meson-s4-pwm in check section
->   dt_binding_check and dtbs_check run ok now;
->   previous version: [1]
-> 
-> [...]
+These errors indicate that the property
+atmel,usart-mode = <AT91_USART_MODE_SERIAL> is missing for
+UART nodes 0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, and 12.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.13/arm64-dt)
+Fixes: 99c808335877 ("ARM: dts: at91: sam9x60: Add missing flexcom definitions")
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
+---
+v1 -> v2:
+- reword commit message
+- add Acked-by received in V1
+---
+ arch/arm/boot/dts/microchip/sam9x60.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-[3/3] arm64: dts: meson: a1: add definitions for meson PWM
-      https://git.kernel.org/amlogic/c/b7e5f4bb555ba1d4fdad6f94eb6ab9f8d9c63597
+diff --git a/arch/arm/boot/dts/microchip/sam9x60.dtsi b/arch/arm/boot/dts/microchip/sam9x60.dtsi
+index 04a6d716ecaf..0ba424bba7cc 100644
+--- a/arch/arm/boot/dts/microchip/sam9x60.dtsi
++++ b/arch/arm/boot/dts/microchip/sam9x60.dtsi
+@@ -174,6 +174,7 @@ flx4: flexcom@f0000000 {
+ 				uart4: serial@200 {
+ 					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+ 					reg = <0x200 0x200>;
++					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+ 					interrupts = <13 IRQ_TYPE_LEVEL_HIGH 7>;
+ 					dmas = <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+@@ -376,6 +377,7 @@ flx11: flexcom@f0020000 {
+ 				uart11: serial@200 {
+ 					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+ 					reg = <0x200 0x200>;
++					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+ 					interrupts = <32 IRQ_TYPE_LEVEL_HIGH 7>;
+ 					dmas = <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+@@ -427,6 +429,7 @@ flx12: flexcom@f0024000 {
+ 				uart12: serial@200 {
+ 					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+ 					reg = <0x200 0x200>;
++					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+ 					interrupts = <33 IRQ_TYPE_LEVEL_HIGH 7>;
+ 					dmas = <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+@@ -586,6 +589,7 @@ flx6: flexcom@f8010000 {
+ 				uart6: serial@200 {
+ 					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+ 					reg = <0x200 0x200>;
++					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+ 					interrupts = <9 IRQ_TYPE_LEVEL_HIGH 7>;
+ 					dmas = <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+@@ -637,6 +641,7 @@ flx7: flexcom@f8014000 {
+ 				uart7: serial@200 {
+ 					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+ 					reg = <0x200 0x200>;
++					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+ 					interrupts = <10 IRQ_TYPE_LEVEL_HIGH 7>;
+ 					dmas = <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+@@ -688,6 +693,7 @@ flx8: flexcom@f8018000 {
+ 				uart8: serial@200 {
+ 					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+ 					reg = <0x200 0x200>;
++					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+ 					interrupts = <11 IRQ_TYPE_LEVEL_HIGH 7>;
+ 					dmas = <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+@@ -739,6 +745,7 @@ flx0: flexcom@f801c000 {
+ 				uart0: serial@200 {
+ 					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+ 					reg = <0x200 0x200>;
++					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+ 					interrupts = <5 IRQ_TYPE_LEVEL_HIGH 7>;
+ 					dmas = <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+@@ -809,6 +816,7 @@ flx1: flexcom@f8020000 {
+ 				uart1: serial@200 {
+ 					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+ 					reg = <0x200 0x200>;
++					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+ 					interrupts = <6 IRQ_TYPE_LEVEL_HIGH 7>;
+ 					dmas = <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+@@ -879,6 +887,7 @@ flx2: flexcom@f8024000 {
+ 				uart2: serial@200 {
+ 					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+ 					reg = <0x200 0x200>;
++					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+ 					interrupts = <7 IRQ_TYPE_LEVEL_HIGH 7>;
+ 					dmas = <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+@@ -949,6 +958,7 @@ flx3: flexcom@f8028000 {
+ 				uart3: serial@200 {
+ 					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+ 					reg = <0x200 0x200>;
++					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+ 					interrupts = <8 IRQ_TYPE_LEVEL_HIGH 7>;
+ 					dmas = <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+@@ -1074,6 +1084,7 @@ flx9: flexcom@f8040000 {
+ 				uart9: serial@200 {
+ 					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+ 					reg = <0x200 0x200>;
++					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+ 					interrupts = <15 IRQ_TYPE_LEVEL_HIGH 7>;
+ 					dmas = <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
+@@ -1125,6 +1136,7 @@ flx10: flexcom@f8044000 {
+ 				uart10: serial@200 {
+ 					compatible = "microchip,sam9x60-usart", "atmel,at91sam9260-usart";
+ 					reg = <0x200 0x200>;
++					atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
+ 					interrupts = <16 IRQ_TYPE_LEVEL_HIGH 7>;
+ 					dmas = <&dma0
+ 						(AT91_XDMAC_DT_MEM_IF(0) |
 
-These changes has been applied on the intermediate git tree [1].
-
-The v6.13/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
+base-commit: 32ffa5373540a8d1c06619f52d019c6cdc948bb4
 -- 
-Neil
+2.34.1
 
 
