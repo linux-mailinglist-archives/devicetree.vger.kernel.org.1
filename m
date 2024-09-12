@@ -1,167 +1,135 @@
-Return-Path: <devicetree+bounces-102300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BB0A9764EA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 10:51:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FAC89764F6
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 10:52:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D8C21C22911
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 08:51:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 463EE1F24885
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 08:52:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D11B18F2D3;
-	Thu, 12 Sep 2024 08:50:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADACC1917CD;
+	Thu, 12 Sep 2024 08:52:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WFHJSOch";
+	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="MztR/XCH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from hop.stappers.nl (hop.stappers.nl [141.105.120.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from a7-50.smtp-out.eu-west-1.amazonses.com (a7-50.smtp-out.eu-west-1.amazonses.com [54.240.7.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 160511A28D;
-	Thu, 12 Sep 2024 08:50:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.105.120.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FF9118BBA1;
+	Thu, 12 Sep 2024 08:52:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726131057; cv=none; b=VPIZMrlNordo7kjzFfLvsse68sI59p1pMh/3KOtXfw7vuTRGeqMD6UsakN0KO7//hNo2Z7sadt9gDaqxp6lEmGqUrOrezufDnAD8NiPRR5lcvhTMO4KA/EzSe+3K1ToFfMCJBv/g1+s4WhjN8xrlY0n4vhD2mZZUCWVXiJaB+9k=
+	t=1726131162; cv=none; b=BPXSHQ6PeVWXhJ5l8YTMXqyHFeH3xHEBhjH9LDD8gT1Iqa/MIKnMks216Geq1FzXIqZVKbGgRilaV3sqfnUkEmoY8F1A1EXHxsHEWH7Ln0N0zhJY0oN8OJoqycysxfHg4YylZ/HL9OmReS4iOt05DZ4rqua6n8Bxj9JrEsGKHRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726131057; c=relaxed/simple;
-	bh=c8HyqOidXdqkjfP+IvUGSpv3WS5hePUxpBdEbOgNNXw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oenRgkbw0u15pTdl4kUuiuHp5f6ZYJTr8l/FR+vfk1xQNSbrGyzQwCOOdTAfVmOjDyWlNGC/7l/vMHonz7ULyfDvNPij3n1cmHnP8wNvrgU8mpkw36ebiS1wwxoF3KsD7iq7ZKM/lwSV8fqThLGfdnBea7bcOqBbfnn+UdAUIRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=stappers.nl; spf=pass smtp.mailfrom=stappers.nl; arc=none smtp.client-ip=141.105.120.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=stappers.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=stappers.nl
-Received: from gpm.stappers.nl (gpm.stappers.nl [82.168.249.201])
-	by hop.stappers.nl (Postfix) with ESMTP id 476252000E;
-	Thu, 12 Sep 2024 08:50:45 +0000 (UTC)
-Received: by gpm.stappers.nl (Postfix, from userid 1000)
-	id AC09330417C; Thu, 12 Sep 2024 10:50:13 +0200 (CEST)
-Date: Thu, 12 Sep 2024 10:50:12 +0200
-From: Geert Stappers <stappers@stappers.nl>
-To: Ayush Singh <ayush@beagleboard.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Dirk Behme <dirk.behme@de.bosch.com>,
-	Ayush Singh <ayushdevel1325@gmail.com>, fabien.parent@linaro.org,
-	d-gole@ti.com, lorforlinux@beagleboard.org,
-	jkridner@beagleboard.org, robertcnelson@beagleboard.org,
-	Andrew Davis <afd@ti.com>, Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, linux-kernel@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 8/8] addon_boards: mikrobus: Add GPS3 Click
-Message-ID: <ZuKrRJUwBrcV8ffq@gpm.stappers.nl>
-References: <20240911-mikrobus-dt-v1-0-3ded4dc879e7@beagleboard.org>
- <20240911-mikrobus-dt-v1-8-3ded4dc879e7@beagleboard.org>
- <2024091149-vocalize-composite-6e48@gregkh>
- <44039255-159a-4284-abd8-a0f558ad006d@gmail.com>
- <2024091151-unworldly-dance-9a80@gregkh>
- <097159c7-1602-4e32-8e6f-9cd023d62238@beagleboard.org>
- <419bf74e-74cb-46ca-95d0-03b3bab3948d@de.bosch.com>
- <2024091211-bladder-runner-2d75@gregkh>
- <8072c698-93b0-4d3a-a970-e276243f82c4@beagleboard.org>
+	s=arc-20240116; t=1726131162; c=relaxed/simple;
+	bh=xJ9eCl1S0Iib7OyTFXyfu7E4QHZm/EK9MdR3L+m6jec=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pefrxDZLjmBmAOXhbhlTMZn3vuwM2RCn2PX5fNysbMDSBSxZZ+xBSfoatCcWlCmsl3xrJ8hTJuB2zF6EAe9/NojZEwkciQzztN9nxuP4/Tw7OWTlX/l2Qc3UYt24PBownDtz9wmpVTRzo4RE8YlOFaMzMZ6K17PsXxev6ljYIHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=WFHJSOch; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=MztR/XCH; arc=none smtp.client-ip=54.240.7.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazonses.collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1726131159;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding;
+	bh=xJ9eCl1S0Iib7OyTFXyfu7E4QHZm/EK9MdR3L+m6jec=;
+	b=WFHJSOch1FvME8xcQx8Vv+DhTaiZg8MNLVbiPbL5Lz2hytT1xDhsRd7PPn4D+cl9
+	DP1KBtLfO1dDOhfLVIRyTi7VsQi6JkSUyQoKib+Y9McTG0EI4AUaOD81ZQsAQl96+OX
+	t4aGLD8D58xVjF8qe+0S15lU+wzcrVdKNqqW6UV9dQUQiKx9CNAVzqm5eLm24MsIo+S
+	EeuvjJj2hLn/Ja5E5YGyeufA8386U6O2Jj+f0yQZO9q119XS4nTpFPMMMTTnIohxXyD
+	l8kqvgAiU7XVN1pb8tC3Q13r8Q8WXLTbLNnkM5JAaMBEYtftQEatV/ZIJ5pJl+5jHGv
+	75wKXDK99Q==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1726131159;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID;
+	bh=xJ9eCl1S0Iib7OyTFXyfu7E4QHZm/EK9MdR3L+m6jec=;
+	b=MztR/XCHSiCKUwbLYZTA3+Hhe+xQhiGVyicjuvUX1zjHqP6/8P0tiOMhNN0fA9fQ
+	o8JO9d9DUrihPvbi8u8nICihzwrIyl7iyKDGrIpzKUoisFUTPxWIq6Yv/AVbO/MKCCq
+	2+FYZKMRNJn5xpWQmIXOOXzZRM6//pNiBsOmKpe0=
+Message-ID: <01020191e56f3f66-1afb592c-a676-4871-b75a-bc38d896ae03-000000@eu-west-1.amazonses.com>
+Date: Thu, 12 Sep 2024 08:52:38 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8072c698-93b0-4d3a-a970-e276243f82c4@beagleboard.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/5] dt-bindings: mfd: mediatek,mt6357: Describe
+ Auxiliary ADC subdev
+To: lee@kernel.org, robh@kernel.org
+Cc: lars@metafoo.de, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, andy@kernel.org, nuno.sa@analog.com, 
+	bigunclemax@gmail.com, dlechner@baylibre.com, 
+	marius.cristea@microchip.com, marcelo.schmitt@analog.com, 
+	fr0st61te@gmail.com, mitrutzceclan@gmail.com, 
+	mike.looijmans@topic.nl, marcus.folkesson@gmail.com, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, andy.shevchenko@gmail.com, 
+	kernel@collabora.com, jic23@kernel.org
+References: <20240604123008.327424-1-angelogioacchino.delregno@collabora.com>
+ <20240604123008.327424-3-angelogioacchino.delregno@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240604123008.327424-3-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
+X-SES-Outgoing: 2024.09.12-54.240.7.50
 
-On Thu, Sep 12, 2024 at 01:47:18PM +0530, Ayush Singh wrote:
-> On 9/12/24 13:09, Greg Kroah-Hartman wrote:
-> > On Thu, Sep 12, 2024 at 09:29:01AM +0200, Dirk Behme wrote:
-> > > On 12.09.2024 09:16, Ayush Singh wrote:
-> > > > On 9/12/24 01:34, Greg Kroah-Hartman wrote:
-> > > > > On Wed, Sep 11, 2024 at 09:26:06PM +0530, Ayush Singh wrote:
-> > > > > > On 9/11/24 20:28, Greg Kroah-Hartman wrote:
-> > > > > > > >     addon_boards/mikrobus/Makefile         |  1 +
-> > > > > > > >     addon_boards/mikrobus/mikroe-1714.dtso | 28
-> > > > > > > > ++++++++++++++++++++++++++++
-> > > > > > > Odd top-level directory for the kernel, are you sure this is correct?
-> > > > > > I am open to moving them to a more suitable location if we have one.
-> > > > 
-> > > > So here are the directories where dtso files currently go:
-> > > > ❯ find . -type f -name "*.dtso" -printf "%h\n" | sort -u
-> > > > 
-> > > > 
-> > > > Out of these, `drivers/of` and `drivers/of/unittest-data` contain
-> > > > unittest dtso, so probably not the place.
-> > > > 
-> > > > And the `arch/arm` and `arch/arm64` are for arch specific stuff.
-> > > > MikroBUS is supported in RISC-V boards as well (BeagleV-Ahead). So
-> > > > probably not the correct location either.
-> > > > 
-> > > > Maybe something like `arch/common/addon_boards` would be better?
-> > > Whats about
-> > > 
-> > > drivers/misc/mikrobus/mikrobus.rs
-> > > drivers/misc/mikrobus/mikroe-1714.dtso
-> > > drivers/misc/mikrobus/mikroe-5761-i2c.dtso
-> > 
-> > Exactly, put them where the drivers are, like clk and of does.
-> > 
-> > thanks,
-> > greg k-h
+Il 04/06/24 14:30, AngeloGioacchino Del Regno ha scritto:
+> Describe the PMIC-integrated Auxiliary Analog to Digital Converter
+> subdevice node.
+> Full description is available in the mediatek,mt6359-auxadc.yaml
+> binding relative to that hardware.
 > 
+
+Hello,
+
+I just realized (indeed too late) that while all of the other commits of this
+series are upstream, this patch was not picked, causing dts validation warnings.
+
+Should I resend or can you just simply pick it?
+
+Cheers,
+Angelo
+
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>   .../devicetree/bindings/mfd/mediatek,mt6357.yaml       | 10 ++++++++++
+>   1 file changed, 10 insertions(+)
 > 
-> So I am writing a more thorough reply in the driver questions,
+> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
+> index 37423c2e0fdf..e3513cad25f6 100644
+> --- a/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
+> @@ -37,6 +37,11 @@ properties:
+>     "#interrupt-cells":
+>       const: 2
+>   
+> +  adc:
+> +    type: object
+> +    $ref: /schemas/iio/adc/mediatek,mt6359-auxadc.yaml
+> +    unevaluatedProperties: false
+> +
+>     regulators:
+>       type: object
+>       $ref: /schemas/regulator/mediatek,mt6357-regulator.yaml
+> @@ -83,6 +88,11 @@ examples:
+>               interrupt-controller;
+>               #interrupt-cells = <2>;
+>   
+> +            pmic_adc: adc {
+> +                    compatible = "mediatek,mt6357-auxadc";
+> +                    #io-channel-cells = <1>;
+> +            };
+> +
+>               regulators {
+>                   mt6357_vproc_reg: buck-vproc {
+>                       regulator-name = "vproc";
 
-As I did read it,
-is it not "driver questions" but about "location of new files"
-and "bus versus device"
-
-
-> but essentially, the driver is not actually required for using the
-> overlay based approach for mikroBUS addon boards. Initially, the driver
-> was not supposed to be included in the patch series at all. But I was
-> not able to find a way to use a GPIO nexus node [0] without having a
-> platform driver attached to the node.
-> 
-> In fact, if the GPIO nexus node is not required (like in the case of
-> weather click), there is no need to even have a mikrobus-connector
-> node in dt, let alone a driver.
-> 
-> So to answer why it probably should not go in the driver directory,
-> the driver for the connector, actually does not register the mikrobus
-> addon board. And if there is a way to have GPIO nexus node without
-> having a platform driver attached to the node, then it should probably
-> be removed.
-> 
-> The reason why the overlay based approach was suggested was because
-> previous approaches could not do board stacking (having chain of
-> mikrobus connector -> grove connector addon board -> grove board). So
-> as you can see, it is beneficial to have grove board overlays compiled
-> even in a board without any grove connectors because of stacking.
-
-Please be explicite about file location.
-
-And please elaborate on "bus" in mikrobus.
-
-
-Make it possible that your audience gets a completere picture.
-
-
-And for plan B: How important is this patch to the patch serie?
-
-
-Groeten
-Geert Stappers
-
-[0]: https://devicetree-specification.readthedocs.io/en/v0.3/devicetree-basics.html#nexus-nodes-and-specifier-mapping
--- 
-Silence is hard to parse
 
