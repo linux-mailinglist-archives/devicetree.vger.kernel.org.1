@@ -1,203 +1,138 @@
-Return-Path: <devicetree+bounces-102220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50413975F4B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 04:54:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56514975F4F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 04:55:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8382F1C22C4B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 02:54:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88D5D1C226DD
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 02:55:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EA40126C0E;
-	Thu, 12 Sep 2024 02:53:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E12663B7AC;
+	Thu, 12 Sep 2024 02:55:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="ilUpuQ+B"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BIWfbbqi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85846126BE3;
-	Thu, 12 Sep 2024 02:53:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41D8C524D7;
+	Thu, 12 Sep 2024 02:55:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726109625; cv=none; b=VNQYYtNH0NBDOMYqjzutxwHEoodgCwl4PMvyIxUG3jp+kTPPvgvHiyD/obfd+oL6avGDHYoGhrrsSIKPvrkbgwjqHmscijKODRSJcoTckK9lh2p9W47ps+DQUMP+Wc/YBSHC1P4i8aEiXpRECUatcNmp71ZcbT7Y11ylc2Tp1Sg=
+	t=1726109709; cv=none; b=qUJKL0tHpMobdjxSuE9TtKntZ9g3SfESWxuodp27kJnSZOziSynYLwaY59o1Szp9pSQ+GMUjP4J9A61agbPakFteH6TyZWitmbUC1huzGxCFr3EsiuR5e50gCtXS9Rq9tlG4rC5mLu+LbAiq7+QdG5rPebS4vR42fXUE9EkYVGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726109625; c=relaxed/simple;
-	bh=WnVGALMfYAfkhn1Js5rmU0pWrT9KA6F/yYAZk9iVwIc=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=bMpCu3UxqY2qgzjnavzVmO+UFjfTJeLOs9hLXer7Acdc7Hx3ELZApkFxxytpo6Nhqa12Uz07/9bJMf9gg+B8uoTkQ5avFlcWWHr6c90rFW5SlQfMFbYS8/d+EF2B+1OSQ0YoSZJ2NvZ8i0wOvLooWSsFh0QOgHXzE3+JiKIe8Ss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=ilUpuQ+B; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1726109621;
-	bh=yn+wZNBElEbo6z6rUQ2iwm+eHVU5SkpgkGRmFBHXQcM=;
-	h=Subject:From:To:Date:In-Reply-To:References;
-	b=ilUpuQ+BG4JQkm0ACs1v0T8cQFZBf8biCQCHBV9Jn7knEyQxdWd0LmQgrsAmSBw6o
-	 VliAn36FHdSeEZmEnADy+XEPbWz+VM3csvcecFsiQW6xW7fxREpQjDjiJRIDxTyTvF
-	 RpwRy70gazvGGFpPZrGjFMyuTsSeP3i7rkeM4DgDoK8/EB4szIE3AM8uwWuP5/w7Jg
-	 rgXTljqDMFYwesL/d29Ca60cLlXpF7g84YJv8zRjLG71aMG7KP6VFDtWHmsB+ZGYer
-	 k7zfkdyXZJcnylPpOzCWrlGTAqzHx0lTgtX1k+inZTXjC6iB40UllEuFveEddIM5j0
-	 dwDy2VeMgu8HQ==
-Received: from [192.168.68.112] (ppp118-210-89-8.adl-adc-lon-bras32.tpg.internode.on.net [118.210.89.8])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 236B3650D6;
-	Thu, 12 Sep 2024 10:53:39 +0800 (AWST)
-Message-ID: <908b7765584f96299c720c0d8312839a520a0e48.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v3 2/2] ARM: dts: aspeed: Harma: revise sgpio line name
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Peter Yin <peteryin.openbmc@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
-	 <joel@jms.id.au>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org
-Date: Thu, 12 Sep 2024 12:23:38 +0930
-In-Reply-To: <20240909080459.3457853-3-peteryin.openbmc@gmail.com>
-References: <20240909080459.3457853-1-peteryin.openbmc@gmail.com>
-	 <20240909080459.3457853-3-peteryin.openbmc@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1726109709; c=relaxed/simple;
+	bh=vuNi0K4I/I1V5v2eSkoRmh2Txah9Ac8BY8QFcho8GSY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=SkmiDosf7eSDrAnzi6Gu0pcAfHl/NWTbX4KJ/Ag8W8tjumyvLK9kBHNjzoN/yhYGQWmD/tpNzujpwmqKccuZ8nNgQnALcVbXqlGXtk7fAAuRIJDBjK0KguQnAgsrh0iBRvvkc0jGvQRrZ7TiK0n4Kb2hLT0ubRoZ0BVM5Z6W1Rw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BIWfbbqi; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48C2Lh3m015140;
+	Thu, 12 Sep 2024 02:55:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=jDTrdjTDsdCnjSMSh/Ry8S
+	IJ2opiRhT39K2mPMSa7PM=; b=BIWfbbqiIcbxm7aOA23FyNwahoCxaeZbObCLQ+
+	Vs9Yo5SEbKbsaC9SHUTDwP9UToXwwPzqZ0oPT4XCwLc0gClQojtpKvLfoip4J3sD
+	lKrwrBW990AZDFfHmd6hOHM+zYstPtqpkmvMgablXeYgZjxSzVF8lT1BCLl/cMsi
+	dYmOcYTEkiNLCX+br34H/dQglQkMl6FqQoKB6RuGR7lXiQX0ufwkDaujPqaSmtOS
+	cbuOWhLe4ah5wepZuXcRbeSPaBujgNJ0286SQNeO7ARVHGEmkd+zK3LtRX4kodpw
+	kG5iddmEsIj92rOS3ek97Lczlq5wFP4i2NUf82CkqdivKufg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy8p3q6c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Sep 2024 02:55:04 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48C2t22p015473
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Sep 2024 02:55:02 GMT
+Received: from lijuang2-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 11 Sep 2024 19:54:57 -0700
+From: Lijuan Gao <quic_lijuang@quicinc.com>
+Date: Thu, 12 Sep 2024 10:54:41 +0800
+Subject: [PATCH] dt-bindings: nvmem: qfprom: Add compatible for QCS615
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20240912-add_qfprom_compatible_for_qcs615-v1-1-9ef2e26c14ee@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAPFX4mYC/5WNWw6CMBBFt0L6bQ1THg1+uQ9DmjJMZRKl0CLRE
+ PZuZQd+npubczYRKTBFcck2EWjlyH5MAKdM4GDHO0nuEwuVqzJvAKTtezO7KfinQf+c7MLdg4z
+ zwcwYa6gkFV2uXO2sBhJJMwVy/D4StzbxwHHx4XMUV/itf8hXkCCbEpXWhYYK9XV+MfKI5/QX7
+ b7vXyCtr8fSAAAA
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Lijuan Gao
+	<quic_lijuang@quicinc.com>
+X-Mailer: b4 0.15-dev-99b12
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1726109697; l=1155;
+ i=quic_lijuang@quicinc.com; s=20240827; h=from:subject:message-id;
+ bh=vuNi0K4I/I1V5v2eSkoRmh2Txah9Ac8BY8QFcho8GSY=;
+ b=xQwbuiu3MSL6FfvcbKqgQMuPRywc5P6gWRCbvDvyzt9mA6shHO3Z1siC8dHtWmWnZriUv4QaX
+ ZpTrkrHBthoDHbJc8YnVlNRYEvBupa9GYeYvCBqyrqcGa3qRMnTeGdc
+X-Developer-Key: i=quic_lijuang@quicinc.com; a=ed25519;
+ pk=1zeM8FpQK/J1jSFHn8iXHeb3xt7F/3GvHv7ET2RNJxE=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Vh8ywmmsSbegP6e0-7wOx4p5pUQM8Abh
+X-Proofpoint-ORIG-GUID: Vh8ywmmsSbegP6e0-7wOx4p5pUQM8Abh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1011
+ impostorscore=0 mlxscore=0 bulkscore=0 suspectscore=0 priorityscore=1501
+ mlxlogscore=502 lowpriorityscore=0 adultscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409120020
 
-On Mon, 2024-09-09 at 16:04 +0800, Peter Yin wrote:
-> power-card-enable
-> power-fault-n
-> power-hsc-good
-> power-chassis-good
->=20
-> asic0-card-type-detection0-n
-> asic0-card-type-detection1-n
-> asic0-card-type-detection2-n
-> presence-cmm
->=20
-> uart-switch-button
-> uart-switch-lsb
-> uart-switch-msb
->=20
-> reset-control-cmos-clear
+Document compatible for QFPROM used on QCS615. It's compatible
+with generic QFPROM fallback.
 
-Can you please try to be more descriptive in the future? However, for
-now, I've applied the series to be picked up through the BMC tree.
+Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
+---
+Document QFPROM compatible for Qualcomm QCS615. It provides access
+functions for QFPROM data to rest of the drivers via nvmem interface.
+---
+ Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Andrew
+diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+index 80845c722ae4..38e0d50f0e1c 100644
+--- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
++++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+@@ -32,6 +32,7 @@ properties:
+           - qcom,msm8998-qfprom
+           - qcom,qcm2290-qfprom
+           - qcom,qcs404-qfprom
++          - qcom,qcs615-qfprom
+           - qcom,sc7180-qfprom
+           - qcom,sc7280-qfprom
+           - qcom,sc8280xp-qfprom
 
->=20
-> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
-> ---
->  .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 36 +++++++++----------
->  1 file changed, 16 insertions(+), 20 deletions(-)
->=20
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts b/arc=
-h/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-> index 92068c65eae4..9cb511a846e3 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-> @@ -393,12 +393,6 @@ gpio@31 {
->  		reg =3D <0x31>;
->  		gpio-controller;
->  		#gpio-cells =3D <2>;
-> -
-> -		gpio-line-names =3D
-> -		"","","","",
-> -		"","","presence-cmm","",
-> -		"","","","",
-> -		"","","","";
->  	};
-> =20
->  	// PTTV FRU
-> @@ -422,12 +416,6 @@ gpio@31 {
->  		reg =3D <0x31>;
->  		gpio-controller;
->  		#gpio-cells =3D <2>;
-> -
-> -		gpio-line-names =3D
-> -		"","","","",
-> -		"","","presence-cmm","",
-> -		"","","","",
-> -		"","","","";
->  	};
-> =20
->  	// Aegis FRU
-> @@ -566,7 +554,7 @@ &gpio0 {
->  	/*B0-B7*/	"","","","",
->  			"bmc-spi-mux-select-0","led-identify","","",
->  	/*C0-C7*/	"reset-cause-platrst","","","","",
-> -			"cpu0-err-alert","","",
-> +			"power-hsc-good","power-chassis-good","",
->  	/*D0-D7*/	"","","sol-uart-select","","","","","",
->  	/*E0-E7*/	"","","","","","","","",
->  	/*F0-F7*/	"","","","","","","","",
-> @@ -585,14 +573,16 @@ &gpio0 {
->  	/*O0-O7*/	"","","","","","","","",
->  	/*P0-P7*/	"power-button","power-host-control",
->  			"reset-button","","led-power","","","",
-> -	/*Q0-Q7*/	"","","","","","power-chassis-control","","",
-> +	/*Q0-Q7*/
-> +			"","","","",
-> +			"","power-chassis-control","","uart-switch-button",
->  	/*R0-R7*/	"","","","","","","","",
->  	/*S0-S7*/	"","","","","","","","",
->  	/*T0-T7*/	"","","","","","","","",
->  	/*U0-U7*/	"","","","","","","led-identify-gate","",
->  	/*V0-V7*/	"","","","",
->  			"rtc-battery-voltage-read-enable","",
-> -			"power-chassis-good","",
-> +			"","",
->  	/*W0-W7*/	"","","","","","","","",
->  	/*X0-X7*/	"","","","","","","","",
->  	/*Y0-Y7*/	"","","","","","","","",
-> @@ -673,7 +663,7 @@ &sgpiom0 {
->  	"presence-asic-modules-0","rt-cpu0-p1-force-enable",
->  	"presence-asic-modules-1","bios-debug-msg-disable",
->  	"","uart-control-buffer-select",
-> -	"","ac-control-n",
-> +	"presence-cmm","ac-control-n",
->  	/*G0-G3 line 96-103*/
->  	"FM_CPU_CORETYPE2","",
->  	"FM_CPU_CORETYPE1","",
-> @@ -685,7 +675,7 @@ &sgpiom0 {
->  	"FM_BOARD_REV_ID2","",
->  	"FM_BOARD_REV_ID1","",
->  	/*H0-H3 line 112-119*/
-> -	"FM_BOARD_REV_ID0","",
-> +	"FM_BOARD_REV_ID0","reset-control-cmos-clear",
->  	"","","","","","",
->  	/*H4-H7 line 120-127*/
->  	"","",
-> @@ -700,7 +690,7 @@ &sgpiom0 {
->  	/*I4-I7 line 136-143*/
->  	"","","","","","","","",
->  	/*J0-J3 line 144-151*/
-> -	"","","","","","","","",
-> +	"","","power-card-enable","","","","","",
->  	/*J4-J7 line 152-159*/
->  	"SLOT_ID_BCB_0","",
->  	"SLOT_ID_BCB_1","",
-> @@ -716,9 +706,15 @@ &sgpiom0 {
->  	"cpu0-thermtrip-alert","",
->  	"reset-cause-pcie","",
->  	/*L4-L7 line 184-191*/
-> -	"pvdd11-ocp-alert","","","","","","","",
-> +	"pvdd11-ocp-alert","",
-> +	"power-fault-n","",
-> +	"asic0-card-type-detection0-n","",
-> +	"asic0-card-type-detection1-n","",
->  	/*M0-M3 line 192-199*/
-> -	"","","","","","","","",
-> +	"asic0-card-type-detection2-n","",
-> +	"uart-switch-lsb","",
-> +	"uart-switch-msb","",
-> +	"","",
->  	/*M4-M7 line 200-207*/
->  	"","","","","","","","",
->  	/*N0-N3 line 208-215*/
+---
+base-commit: 100cc857359b5d731407d1038f7e76cd0e871d94
+change-id: 20240911-add_qfprom_compatible_for_qcs615-e3b02f6fa71e
+
+Best regards,
+-- 
+Lijuan Gao <quic_lijuang@quicinc.com>
 
 
