@@ -1,81 +1,145 @@
-Return-Path: <devicetree+bounces-102402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 550FA976F39
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 18:57:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B734B976F0D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 18:48:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F364A1F231F5
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 16:57:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2AF35B22BF5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 16:48:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E7111BE245;
-	Thu, 12 Sep 2024 16:57:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B07191BE22D;
+	Thu, 12 Sep 2024 16:48:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zty5W06r"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="lWy7vtvS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 188A017D378
-	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 16:57:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FC0919F105;
+	Thu, 12 Sep 2024 16:48:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726160273; cv=none; b=RXaKh9PugRwS3KRCZXyXVY7SzayMhWKDu0qsRvdX+MH6xw3gyPE6hSTXovfGIzdXlOlJXetXDUhSVY1wRDeZsknJNPjLFo3Eh+GVRoj3z5KodjtZ02ynp2491GCPFO+VvdMsYz3XZsylWvdjbaqZkxMXC925TV7Q3Z/7uenaeaE=
+	t=1726159708; cv=none; b=ZtbZkva11dOuSaFt2M4efZ6C/gkooKUnltqMef16Zi3IOdfJhOpdcbS8hp5ofRedwWiVmubleGQtsoxgutbR78I2g/WwIp+CTcdtUQHHmSxFdHntkIM9DJmSlhRK3+HwVoVNiI5M0lPJm72kneq0KCWXwca50+YzDnlIZEvZd9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726160273; c=relaxed/simple;
-	bh=aXiwnVgINGX+Cj7rEHCI6rfffyz/VtxpX+WpX5nu6R8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u4lb2hktYtvAHuCIpz0Z1MtrYibugZBcSaiHml6xiJSGT1Okpk8zyw4y806iGm0/tOMyLH9X6R+205kllLIiDkpPowBpdWZW1+RLr0vgZdhcOtRqkbCO1gB9fFx7a83ulpSbuOrmyGTFyo2W+eCpwo0rTdx0ioQ7Mf/ERwQpPxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zty5W06r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72AFDC4CEC3;
-	Thu, 12 Sep 2024 16:57:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726160272;
-	bh=aXiwnVgINGX+Cj7rEHCI6rfffyz/VtxpX+WpX5nu6R8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zty5W06rd85zVAATqU4yu+Rhx/JU/kMCfQR60Zxzi/vsrhRq/ujqJs+9qhQnCZCUE
-	 /MYawfKc9/FYDDmhzXQ7EnlxcEDnhxwM0RI+xiQVOwJVkr7B7COAKK/TCTIsKx+OcV
-	 QTgu5PHRFP49bhev3AbhoV+wJD80QZW7abfNEe7R+k26kaFpLvR8c3xdnQ3UMDepTX
-	 xfSy6+RyP3EZSH0OrxIq6WfC3pMlmVXObCFRRDtkVQUhU5QIKkeoGMW517clV/defg
-	 XZcu9fVfmfT+madUb4pnqkNiPyMIcqjAqQb3yp97O/tNlNt9yJrw7kV45utBOcFtfr
-	 jdP+Zt28YCp0A==
-Date: Thu, 12 Sep 2024 11:57:51 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: Fabio Estevam <festevam@denx.de>, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, tglx@linutronix.de
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: fsl,irqsteer:
- Document fsl,imx8qm-irqsteer
-Message-ID: <172616004347.3921900.1225862741191330932.robh@kernel.org>
-References: <20240701204106.160128-1-festevam@gmail.com>
+	s=arc-20240116; t=1726159708; c=relaxed/simple;
+	bh=tumOMK6ePQtr6oYjEIUYDl/feJA9f3v2UT5ccuOHVNo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Xch5xX4H0RJBVVpIsZTDeu6uouBiM+kSEruxKlnnprzu09l8HyQLSP8sAoeXjJEmJ49dD9LlNxHejYY4Elt9lJwNbEjeO2SIyUWhLq4iSLxifvdPTQ00BA6bGsG5Fy1NdMKJhmLK3eWJNw88Wf5Ma240x5eFEsc0XRG0aGZYiOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=lWy7vtvS; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1726159706; x=1757695706;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=tumOMK6ePQtr6oYjEIUYDl/feJA9f3v2UT5ccuOHVNo=;
+  b=lWy7vtvSLIv/9Lhv2vYS/tWxwkuBZoupEwCO1oREwmF14Wns8hHMx7A/
+   v9SvRtxVwSgI1YE7N8wGqPmmQMJ4kUyI8IIfKsemjK5m3UG1Mx95ui7nr
+   483+vov7+loBlcn+cJO7J7IXPKzIfKV0FuHLcPLJcsY9jsMT0G64zkSXq
+   Rc56pfud026DT5hkQdLpwLUEjvNRxQBhioJ29QQnJPGs0Umk3a56L92U5
+   Q72H5BJ0jVZoPOtJlP205xdfARdvRysQOvdB3YQStoN6PD9ZbYtCw/uVj
+   RqOhQyUj3j8dhrQ9/P+Ljm/7mhYQ1mptMjIok+sFTchczu40Arlu7aNLx
+   A==;
+X-CSE-ConnectionGUID: DQLE4LE3SvKX/JE8rC2tCg==
+X-CSE-MsgGUID: fZT3tPZfQRufVAoEKWniow==
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; 
+   d="scan'208";a="32331225"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Sep 2024 09:48:24 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 12 Sep 2024 09:47:44 -0700
+Received: from valentina.microchip.com (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Thu, 12 Sep 2024 09:47:41 -0700
+From: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
+To: <paul.walmsley@sifive.com>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
+	<peterlin@andestech.com>, <dminus@andestech.com>,
+	<conor.dooley@microchip.com>, <conor+dt@kernel.org>, <ycliang@andestech.com>,
+	<jassisinghbrar@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<andersson@kernel.org>, <mathieu.poirier@linaro.org>,
+	<valentina.fernandezalanis@microchip.com>
+CC: <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>
+Subject: [PATCH v1 0/5] Add Microchip IPC mailbox and remoteproc support
+Date: Thu, 12 Sep 2024 18:00:20 +0100
+Message-ID: <20240912170025.455167-1-valentina.fernandezalanis@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240701204106.160128-1-festevam@gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
+Hello all,
 
-On Mon, 01 Jul 2024 17:41:06 -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> Add an entry to fsl,imx8qm-irqsteer.
-> 
-> This fixes the following dt-schema warning:
-> 
-> failed to match any schema with compatible: ['fsl,imx8qm-irqsteer', 'fsl,imx-irqsteer']
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
->  .../devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml  | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+This series adds support for the Microchip Inter-Processor Communication
+(IPC) mailbox controller, as well as an IPC remoteproc platform driver.
 
-Applied, thanks!
+Microchip's family of RISC-V SoCs typically has one or more clusters
+that can be configured to run in Asymmetric Multi-Processing (AMP) mode.
+
+The Microchip IPC is used to send messages between processors using
+an interrupt signaling mechanism. The driver uses the RISC-V Supervisor
+Binary Interface (SBI) to communicate with software running in machine
+mode (M-mode) to access the IPC hardware block.
+
+Additional details on the Microchip vendor extension and the IPC
+function IDs described in the driver can be found in the following
+documentation:
+
+https://github.com/linux4microchip/microchip-sbi-ecall-extension
+
+The IPC remoteproc platform driver allows for starting and stopping
+firmware on the remote cluster(s) and facilitates RPMsg communication.
+The remoteproc attach/detach operations are also supported for use cases
+where the firmware is loaded by the Hart Software Services
+(zero-stage bootloader) before Linux boots.
+
+Error Recovery and Power Management features are not currently
+supported in the remoteproc platform driver.
+
+The PIC64GX MPU has a Mi-V IHC block, this will be added to the PIC64GX
+dts after the initial upstreaming:
+
+https://patchwork.kernel.org/project/linux-riscv/patch/20240725121609.13101-18-pierre-henry.moussay@microchip.com/
+
+Thanks,
+Valentina
+
+Valentina Fernandez (5):
+  riscv: asm: vendorid_list: Add Microchip Technology to the vendor list
+  dt-bindings: mailbox: add binding for Microchip IPC mailbox driver
+  mailbox: add Microchip IPC support
+  dt-bindings: remoteproc: add binding for Microchip IPC remoteproc
+  remoteproc: add support for Microchip IPC remoteproc platform driver
+
+ .../bindings/mailbox/microchip,sbi-ipc.yaml   | 115 ++++
+ .../remoteproc/microchip,ipc-remoteproc.yaml  |  84 +++
+ arch/riscv/include/asm/vendorid_list.h        |   1 +
+ drivers/mailbox/Kconfig                       |  12 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/mailbox-mchp-ipc-sbi.c        | 539 ++++++++++++++++++
+ drivers/remoteproc/Kconfig                    |  12 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/mchp_ipc_remoteproc.c      | 461 +++++++++++++++
+ include/linux/mailbox/mchp-ipc.h              |  23 +
+ 10 files changed, 1250 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/microchip,ipc-remoteproc.yaml
+ create mode 100644 drivers/mailbox/mailbox-mchp-ipc-sbi.c
+ create mode 100644 drivers/remoteproc/mchp_ipc_remoteproc.c
+ create mode 100644 include/linux/mailbox/mchp-ipc.h
+
+-- 
+2.34.1
 
 
