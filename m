@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-102487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 581B897738C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 23:23:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3161B9773A6
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 23:30:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA1FE1F21EEA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 21:23:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF65E2823CE
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 21:30:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEAE11C1AC6;
-	Thu, 12 Sep 2024 21:23:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD3DC18EFED;
+	Thu, 12 Sep 2024 21:30:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="cMWdsA1K"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="CYjH+b/B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE2A1BDA92
-	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 21:23:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BC48A5F
+	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 21:30:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726176229; cv=none; b=XhcNb2L73iJkly97X9X9xIGGNsCb13LHmTcWirFM8Z2BLRmCsI2+o6wiML85F14xGbJay9bgQmlquDSbEcRq5x8pWNu+n6gC3riRMlgCJmDyva8atFXD1SWgiF0vV3WLTQw4yyQEhLQMTUSKNqPwdl0p8YZc3fv/2VeTuLLOO2Q=
+	t=1726176648; cv=none; b=ohhsN59o1KAlaPZg0eDIVLOXHaQtLyenWY7Ue5rhF1SSOazortvt8EPnQc7ggBkVm+P12avW6HJ8Q61MlRNCdf+EL6eJjM5Ejg8++02zw8xBSE7cKmD76sdBfRdGIFYpjP9/iLdU8GcVsoeTcVSeVXLS9NkwGGHjn9DPkIBjVpg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726176229; c=relaxed/simple;
-	bh=k7Aa77smeh+Klqcv5HZk8DhYqOhjrnHLWwk6+Zw9j8Q=;
+	s=arc-20240116; t=1726176648; c=relaxed/simple;
+	bh=NUdUDtfXmxz6bqwrgpk0iyWOFljyOADqSJxLAc8iOxM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YtKBWHsJN2Ycu1bqi7/Wxj0kePKbHo4whltfDQzOWo7LXuzypbr3Ki8AgJfyF++4KPQiCsy7iaf7zt/eIMyEVlEFcLi1+vICRW0LinkV8IAIG8p53nCjsXwC5IIRmU9qyPcrNfG5EOxh64xkn0daV9Vy82vq/EMtIKtofXMiNG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=cMWdsA1K; arc=none smtp.client-ip=209.85.166.175
+	 In-Reply-To:Content-Type; b=AGy0uaI7dsDOpgJ4GR9rcFxGbGkMPKjL2bwiqibhQD/2g0wBlqbNkqutjNV94JXfcK8mSrDKjqJ42dUQKhPZbQqqJ5P/Quoej98Zx7CbjI0FFTN/gQkq/zMZrQOdxKK0/Bp+CoqVfbfIiEusfu8lweXhYkwVId3HMyn/AWuQjBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=CYjH+b/B; arc=none smtp.client-ip=209.85.166.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-39f37a5a091so1220125ab.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 14:23:47 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id ca18e2360f4ac-82ceab75c05so11491439f.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 14:30:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1726176227; x=1726781027; darn=vger.kernel.org;
+        d=sifive.com; s=google; t=1726176646; x=1726781446; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cRBGtOuc/d2snZdpwSiAnIV7rHRa11MPF2f8u+9dU+0=;
-        b=cMWdsA1KCPDE7CS45Aw3pQx6snGbih8YnPJNM/ao37lhA198hYUoLXmjPHHlAlsUpf
-         XDex3Ikl9dFKGohqd6Wytef3G6eGZI50xcDuWkDgeyy4QknHZ9MBWdariGtR4d2WZvGk
-         8Ug6gtDSYd/3xgbjS0SDZlwc135iyHibJsAXRnZSL84uhQ4h7uG76g3Qk+mljz1Y3TBJ
-         HJdhT+vRo9tKWy7lJUYcOKwtqiLMKbJkoVJdrmOu+XvXv3z7wF1HN+2LMe7LhEOB7M9M
-         GdQxJpQBQKBfAdqvJDNnwFjf0rEX+A2AhM8N3qhquJedPn2dv3uRjojuMEXJzf6kiDOv
-         uvKg==
+        bh=UtIMN8hjt+eHm8/8igTe0EDjoiHpYlyPflzpSE1/b8c=;
+        b=CYjH+b/B6JMik1bkkgUTlRIj91ZnhU8kiPpmLS+LwcfsBexBcjhxjGXoXyZL1Q1fka
+         eCJkzB+Iynuaz9+9plIwHiNOAX6BUAeInhfVw7p/j50ZAWi1Wep23+UtYnETNvPKsQ0x
+         DW5FtSSMJGraRXwcyC+v5+dCE4oVtitKnU9EibMcQR6NNhzHUFYMNBQRhMnD3St+nIq5
+         oAk1gZAH7FGthu+rh87icbTRb7F3bqTlMWaMjBopOkyZ6v2o1r+ljKFGZZcs7OyK0D64
+         GIVsgjUml2sI1G3uM8K2u0sF8URSeejvoenXmRdZnWib6Ji9OXzBvP7FQS1bywpJpq5J
+         eiXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726176227; x=1726781027;
+        d=1e100.net; s=20230601; t=1726176646; x=1726781446;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cRBGtOuc/d2snZdpwSiAnIV7rHRa11MPF2f8u+9dU+0=;
-        b=uvhXZhpV+2v3aZX6zGKK0IaX1VpC2k5aX3WJtIDtY248G7j7CqvYLx3yhKrohDtICe
-         vn6TJDz3s5ZEV2/4hopRr9+AeUVhO6RhlXIHcOhQpIKtucuOsZOWGIsX/UBLxl7qWvdz
-         jb2byggbdXa6Pe8k4f33GHBJVjkB97uC7ZTvGziarBJ+bpwja8dLY3bBj1seddNOiBGa
-         GmyL+6aiW99rnI+as6k3jUWmoHxeAxiSx74X/MBNyA+bK8gVBFdBC5OskOv/xsgMMXkd
-         ojZ0kYalOiCPOfMiVpMN7iiUDpmkaSudzjIpiDIvpB+0vqc0ns9tDGsP/U4WT/mCq11Q
-         xnyA==
-X-Forwarded-Encrypted: i=1; AJvYcCW/SKPkF59yAVZZ5lMbxpQ2/pXsWE+wjsjsS6OyhSvscAqizdNElW4x/tWAMJaNG/chTdWGp1kHclFQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwoBZTBD1Ti6hqBD5JOnNNDxzc+gR2akrFipJHye6++inZKPrP0
-	kiL0QFuRCFlrfo8J1IJgdb7rJgsACB8fgzamIY/GdFV+B0orL1le33bK3bhG22w=
-X-Google-Smtp-Source: AGHT+IFaS4zkwnkNa1ce/QUNVKsECyunuGyCa52gZYcGRtm6HZ4hFf3rIXLzwBxv9bvQwEqPk/66pQ==
-X-Received: by 2002:a05:6e02:1a81:b0:39d:637f:97bc with SMTP id e9e14a558f8ab-3a08b66273amr7178575ab.0.1726176227093;
-        Thu, 12 Sep 2024 14:23:47 -0700 (PDT)
+        bh=UtIMN8hjt+eHm8/8igTe0EDjoiHpYlyPflzpSE1/b8c=;
+        b=BTbZ5ijAKwpjIBnAyHjJ3lcf64VDdSlMzqVgDtIUBv3JtNLctsbSLcnrVvU230i12G
+         4D8TNgqGu1YjJSI04gC1ogO70pZYHU7k8WSZheMT3yhY6SBdsvCZ9mtwQmO6eGzg4Kil
+         vAQz+SGa1dcb348DV75LXv64O73EJI7OGFgUK3rI3UYVO/sTUUbi8rtVHahGJMyCiiHG
+         VHWEW0gBRjpC7amDi7CqWGFGgY056tkQhR+PHgmC1o7SjIZRXiqNg5W+n5HRYnC34eTk
+         DrS8Qz+kbDsxkp2wNdFAVsvX4FV/rgXlHDVV7esJ4psQ+tiOKJGQyHQLWL703pt1TYWl
+         yb6Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXJolbP5Vs7E/RlQngmUJu6EVsjAHg/JPUE4W8SSGEpM6zE6/UHP1eYZhh4AWlc0zA24/inTjyhcWJI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMN49e+c0cz3uVf0cB8YbaRC0j7xzNOas/sJMfD1+7TiLPhmbS
+	2g81qfnq8oL1epLZbt4KIln7X24Z0g6XXwHpckrW9p8X+jL4DS+PX+3So8rpDV8=
+X-Google-Smtp-Source: AGHT+IF0Dj116Hozge8v197MDvYjeTxK3MKp0aY5RS13PAtZvlLU8oqWjlPSuwRMds/rwKfYKaJo8g==
+X-Received: by 2002:a05:6602:15ca:b0:82d:d07:daaa with SMTP id ca18e2360f4ac-82d376b01c6mr102431939f.4.1726176646337;
+        Thu, 12 Sep 2024 14:30:46 -0700 (PDT)
 Received: from [100.64.0.1] ([147.124.94.167])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4d35f89137bsm814719173.104.2024.09.12.14.23.45
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4d35f8dac37sm807546173.133.2024.09.12.14.30.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Sep 2024 14:23:46 -0700 (PDT)
-Message-ID: <b4acc0a7-b7da-4947-904d-8406aa5ba95b@sifive.com>
-Date: Thu, 12 Sep 2024 16:23:44 -0500
+        Thu, 12 Sep 2024 14:30:45 -0700 (PDT)
+Message-ID: <22dd1d53-9ac5-4672-ad68-e82499038283@sifive.com>
+Date: Thu, 12 Sep 2024 16:30:43 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,169 +76,118 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/5] dt-bindings: mailbox: add binding for Microchip
- IPC mailbox driver
+Subject: Re: [PATCH v1 3/5] mailbox: add Microchip IPC support
 To: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
 Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
  paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- peterlin@andestech.com, dminus@andestech.com, ycliang@andestech.com,
- jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- andersson@kernel.org, mathieu.poirier@linaro.org, conor+dt@kernel.org,
- conor.dooley@microchip.com
+ peterlin@andestech.com, dminus@andestech.com, conor.dooley@microchip.com,
+ conor+dt@kernel.org, ycliang@andestech.com, jassisinghbrar@gmail.com,
+ robh@kernel.org, krzk+dt@kernel.org, andersson@kernel.org,
+ mathieu.poirier@linaro.org
 References: <20240912170025.455167-1-valentina.fernandezalanis@microchip.com>
- <20240912170025.455167-3-valentina.fernandezalanis@microchip.com>
+ <20240912170025.455167-4-valentina.fernandezalanis@microchip.com>
 From: Samuel Holland <samuel.holland@sifive.com>
 Content-Language: en-US
-In-Reply-To: <20240912170025.455167-3-valentina.fernandezalanis@microchip.com>
+In-Reply-To: <20240912170025.455167-4-valentina.fernandezalanis@microchip.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
 Hi Valentina,
 
 On 2024-09-12 12:00 PM, Valentina Fernandez wrote:
-> Add a dt-binding for the Microchip Inter-Processor Communication (IPC)
-> mailbox controller.
-> 
-> Signed-off-by: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
-> ---
->  .../bindings/mailbox/microchip,sbi-ipc.yaml   | 115 ++++++++++++++++++
->  1 file changed, 115 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml b/Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml
-> new file mode 100644
-> index 000000000000..dc2cbd5eb28f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml
-> @@ -0,0 +1,115 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/microchip,sbi-ipc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +static int mchp_ipc_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct mchp_ipc_probe ipc_info;
+> +	struct microchip_ipc *ipc;
+> +	struct ipc_chan_info *priv;
+> +	bool irq_avail = false;
+> +	int ret;
+> +	u32 chan_id;
 > +
-> +title: Microchip Inter-processor communication (IPC) mailbox controller
+> +	ret = sbi_probe_extension(SBI_EXT_MICROCHIP_TECHNOLOGY);
+> +	if (ret <= 0)
+> +		return dev_err_probe(dev, ret, "Microchip SBI extension not detected\n");
 > +
-> +maintainers:
-> +  - Valentina Fernandez <valentina.fernandezalanis@microchip.com>
+> +	ipc = devm_kzalloc(dev, sizeof(*ipc), GFP_KERNEL);
+> +	if (!ipc)
+> +		return -ENOMEM;
 > +
-> +description:
-> +  The Microchip Inter-processor Communication (IPC) facilitates
-> +  message passing between processors using an interrupt signaling
-> +  mechanism.
-> +  This SBI interface is compatible with the Mi-V Inter-hart
-> +  Communication (IHC) IP.
-> +  The microchip,sbi-ipc compatible string is inteded for use by software
-> +  running in supervisor privileged mode (s-mode). The SoC-specific
-> +  compatibles are inteded for use by the SBI implementation in machine
-> +  mode (m-mode).
+> +	platform_set_drvdata(pdev, ipc);
+> +
+> +	ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(IPC_DMA_BIT_MASK));
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "dma_set_mask_and_coherent failed\n");
+> +
+> +	ipc->buf_base = dmam_alloc_coherent(dev, sizeof(u32), &ipc->dma_addr, GFP_KERNEL);
+> +
+> +	if (!ipc->buf_base)
+> +		return -ENOMEM;
 
-There is a lot of conditional logic in this binding for how small it is. Would
-it make sense to split this into two separate bindings? For example, with the
-current binding microchip,ihc-chan-disabled-mask is allowed for the SBI
-interface, but doesn't look like it belongs there.
+One drive-by comment here: you don't need to use the DMA API to get a physical
+address for passing to the SBI interface. You can use __pa() on a kmalloc'd
+buffer, since kmalloc() returns memory from the linear map. This has the
+advantage of 1) using cacheable memory and 2) not rounding up the allocation
+size to a whole page.
 
 > +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,sbi-ipc
-> +      - microchip,miv-ihc-rtl-v2
+> +	ret = mchp_ipc_sbi_send(SBI_EXT_IPC_PROBE, ipc->dma_addr);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "could not probe IPC SBI service\n");
 > +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 5
-> +
-> +  interrupt-names:
-> +    minItems: 1
-> +    maxItems: 5
-> +
-> +  "#mbox-cells":
-> +    description:
-> +      For the SBI "device", the cell represents the global "logical" channel IDs.
-> +      The meaning of channel IDs are platform firmware dependent. The
-> +      SoC-specific compatibles are intended for use by the SBI implementation,
-> +      rather than s-mode software. There the cell would represent the physical
-> +      channel and do not vary depending on platform firmware.
-> +    const: 1
-> +
-> +  microchip,ihc-chan-disabled-mask:
-> +    description:
-> +      Represents the enable/disable state of the bi-directional IHC channels
-> +      within the MIV-IHC IP configuration. The mask is a 16-bit value, but only
-> +      the first 15 bits are utilized.Each of the bits corresponds to
-> +      one of the 15 IHC channels.
-> +      A bit set to '1' indicates that the corresponding channel is disabled,
-> +      and any read or write operations to that channel will return zero.
-> +      A bit set to '0' indicates that the corresponding channel is enabled
-> +      and will be accessible through its dedicated address range registers.
-> +      The remaining bit of the 16-bit mask is reserved and should be ignored.
-> +      The actual enable/disable state of each channel is determined by the
-> +      IP block’s configuration.
-> +    $ref: /schemas/types.yaml#/definitions/uint16
-> +    default: 0
-> +
-> +required:
-> +  - compatible
-> +  - interrupts
-> +  - interrupt-names
-> +  - "#mbox-cells"
-> +
-> +additionalProperties: false
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: microchip,sbi-ipc
-> +    then:
-> +      properties:
-> +        reg: false
-> +    else:
-> +      required:
-> +        - reg
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: microchip,miv-ihc-rtl-v2
-> +    then:
-> +      properties:
-> +        interrupt-names:
-> +          items:
-> +            pattern: "^hart-[0-5]+$"
+> +	memcpy(&ipc_info, ipc->buf_base, sizeof(struct mchp_ipc_probe));
 
-The driver in patch 3 uses this pattern for the SBI interface, so should it
-apply there as well?
+Here sizeof(struct mchp_ipc_probe) > sizeof(u32), so if the DMA API wasn't
+rounding up the allocation size, this would be a buffer overflow.
 
 Regards,
 Samuel
 
+> +	ipc->num_channels = ipc_info.num_channels;
+> +	ipc->hw_type = ipc_info.hw_type;
 > +
-> +examples:
-> +  - |
-> +    mailbox {
-> +      compatible = "microchip,sbi-ipc";
-> +      interrupt-parent = <&plic>;
-> +      interrupts = <180>, <179>, <178>;
-> +      interrupt-names = "hart-1", "hart-2", "hart-3";
-> +      #mbox-cells = <1>;
-> +    };
-> +  - |
-> +    mailbox@50000000 {
-> +      compatible = "microchip,miv-ihc-rtl-v2";
-> +      microchip,ihc-chan-disabled-mask=  /bits/ 16 <0>;
-> +      reg = <0x50000000 0x1C000>;
-> +      interrupt-parent = <&plic>;
-> +      interrupts = <180>, <179>, <178>;
-> +      interrupt-names = "hart-1", "hart-2", "hart-3";
-> +      #mbox-cells = <1>;
-> +    };
+> +	ipc->chans = devm_kcalloc(dev, ipc->num_channels, sizeof(*ipc->chans), GFP_KERNEL);
+> +	if (!ipc->chans)
+> +		return -ENOMEM;
+> +
+> +	ipc->dev = dev;
+> +	ipc->controller.txdone_irq = true;
+> +	ipc->controller.dev = ipc->dev;
+> +	ipc->controller.ops = &mchp_ipc_ops;
+> +	ipc->controller.chans = ipc->chans;
+> +	ipc->controller.num_chans = ipc->num_channels;
+> +	ipc->controller.of_xlate = mchp_ipc_mbox_xlate;
+> +
+> +	for (chan_id = 0; chan_id < ipc->num_channels; chan_id++) {
+> +		priv = devm_kmalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +		if (!priv)
+> +			return -ENOMEM;
+> +
+> +		ipc->chans[chan_id].con_priv = priv;
+> +		priv->id = chan_id;
+> +	}
+> +
+> +	if (ipc->hw_type == MIV_IHC) {
+> +		ipc->cluster_cfg = devm_kcalloc(dev, num_online_cpus(),
+> +						sizeof(struct mchp_ipc_cluster_cfg),
+> +						GFP_KERNEL);
+> +		if (!ipc->cluster_cfg)
+> +			return -ENOMEM;
+> +
+> +		if (mchp_ipc_get_cluster_aggr_irq(ipc))
+> +			irq_avail = true;
+> +	}
+> +
+> +	if (!irq_avail)
+> +		return dev_err_probe(dev, -ENODEV, "missing interrupt property\n");
+> +
+> +	ret = devm_mbox_controller_register(dev, &ipc->controller);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +					 "Inter-Processor communication (IPC) registration failed\n");
+> +
+> +	return 0;
+> +}
 
 
