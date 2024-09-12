@@ -1,103 +1,81 @@
-Return-Path: <devicetree+bounces-102401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97ED2976F2D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 18:54:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 550FA976F39
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 18:57:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D55B1F21398
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 16:54:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F364A1F231F5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 16:57:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AA121BE25C;
-	Thu, 12 Sep 2024 16:54:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E7111BE245;
+	Thu, 12 Sep 2024 16:57:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RSkpgXj+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zty5W06r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08E741AD256;
-	Thu, 12 Sep 2024 16:54:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 188A017D378
+	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 16:57:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726160053; cv=none; b=jU9/GSlmoOcDmOj6Usf2+E868R4wB/4db62vP3PPw9VD82qigJkoZBz3PAMjVEm6Hr9q5N4TwcupN6gfv7MZeHhuiBY4JqNbqRTPRWZg3/XPN/Egvgl5mj09r7zqA5N6jajSp6cff/ZeTDYqpoTbdhVkM5IkLgcqRQvkjOxTEJo=
+	t=1726160273; cv=none; b=RXaKh9PugRwS3KRCZXyXVY7SzayMhWKDu0qsRvdX+MH6xw3gyPE6hSTXovfGIzdXlOlJXetXDUhSVY1wRDeZsknJNPjLFo3Eh+GVRoj3z5KodjtZ02ynp2491GCPFO+VvdMsYz3XZsylWvdjbaqZkxMXC925TV7Q3Z/7uenaeaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726160053; c=relaxed/simple;
-	bh=EvuQRTOvCygv4JttyYOrIYG2JZuDMwbgBuOgkBJTeAc=;
+	s=arc-20240116; t=1726160273; c=relaxed/simple;
+	bh=aXiwnVgINGX+Cj7rEHCI6rfffyz/VtxpX+WpX5nu6R8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iMNTeCkbzpKSzXs7ErKT00apM2Cvt6yIOx+l3kUHiPD2Q1IrI3gh1VLaHznAp43Y4r4wGQF24MIq/pqYGzYhoNm7QDzojZA7QukEx8b46X6o77ijnw9gCYVgWqI169uHVix8jhnpnEi15JAT5/JMcyg/oPsaIivpBA7TUkhNWWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RSkpgXj+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B42B2C4CEC3;
-	Thu, 12 Sep 2024 16:54:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=u4lb2hktYtvAHuCIpz0Z1MtrYibugZBcSaiHml6xiJSGT1Okpk8zyw4y806iGm0/tOMyLH9X6R+205kllLIiDkpPowBpdWZW1+RLr0vgZdhcOtRqkbCO1gB9fFx7a83ulpSbuOrmyGTFyo2W+eCpwo0rTdx0ioQ7Mf/ERwQpPxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zty5W06r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72AFDC4CEC3;
+	Thu, 12 Sep 2024 16:57:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726160052;
-	bh=EvuQRTOvCygv4JttyYOrIYG2JZuDMwbgBuOgkBJTeAc=;
+	s=k20201202; t=1726160272;
+	bh=aXiwnVgINGX+Cj7rEHCI6rfffyz/VtxpX+WpX5nu6R8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RSkpgXj+jtRgdtCiTXLvwsUHUdoe4J25kmlMfVfb1/cYDHZ39VIPLu0B+EVQYrWEg
-	 eXasDGChp/IqEDddBOUc/14D0P3rUbJEy8ojr8kmWAWhcEzxIidEsLruIsiveCeT/7
-	 BlQTgenMOoQZz0A1+zCRv5EXrG4ipcfqagMuMEj9+sGrXYxlBljX5jv/saUVLWc63C
-	 tcH1VSgSzk7SiVByhan7p8/+K8io2ALVDTPqrE6CHWBJxDwKKo++qPawPEqMRdrpOn
-	 qYlXGo0kJqpyKlp5jnHne3PZ/qwgUGIbicMDDSaRVjD5Tv0fhuY5O5667XleL8Nm6P
-	 g8cY44G2Vnw+A==
-Date: Thu, 12 Sep 2024 17:54:04 +0100
-From: Lee Jones <lee@kernel.org>
-To: Mark Brown <broonie@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Flora Fu <flora.fu@mediatek.com>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Alexandre Mergnat <amergnat@baylibre.com>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Nicolas Belin <nbelin@baylibre.com>
-Subject: Re: (subset) [PATCH v7 00/16] Add audio support for the MediaTek
- Genio 350-evk board
-Message-ID: <20240912165404.GG24460@google.com>
-References: <20240226-audio-i350-v7-0-6518d953a141@baylibre.com>
- <172544860860.19172.7052813450885034844.b4-ty@kernel.org>
- <20240912145100.GE24460@google.com>
- <10c1217b-d8a3-489c-93fc-6de45dcbe47c@sirena.org.uk>
+	b=Zty5W06rd85zVAATqU4yu+Rhx/JU/kMCfQR60Zxzi/vsrhRq/ujqJs+9qhQnCZCUE
+	 /MYawfKc9/FYDDmhzXQ7EnlxcEDnhxwM0RI+xiQVOwJVkr7B7COAKK/TCTIsKx+OcV
+	 QTgu5PHRFP49bhev3AbhoV+wJD80QZW7abfNEe7R+k26kaFpLvR8c3xdnQ3UMDepTX
+	 xfSy6+RyP3EZSH0OrxIq6WfC3pMlmVXObCFRRDtkVQUhU5QIKkeoGMW517clV/defg
+	 XZcu9fVfmfT+madUb4pnqkNiPyMIcqjAqQb3yp97O/tNlNt9yJrw7kV45utBOcFtfr
+	 jdP+Zt28YCp0A==
+Date: Thu, 12 Sep 2024 11:57:51 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: Fabio Estevam <festevam@denx.de>, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, tglx@linutronix.de
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: fsl,irqsteer:
+ Document fsl,imx8qm-irqsteer
+Message-ID: <172616004347.3921900.1225862741191330932.robh@kernel.org>
+References: <20240701204106.160128-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <10c1217b-d8a3-489c-93fc-6de45dcbe47c@sirena.org.uk>
+In-Reply-To: <20240701204106.160128-1-festevam@gmail.com>
 
-On Thu, 12 Sep 2024, Mark Brown wrote:
 
-> On Thu, Sep 12, 2024 at 03:51:00PM +0100, Lee Jones wrote:
-> > On Wed, 04 Sep 2024, Mark Brown wrote:
+On Mon, 01 Jul 2024 17:41:06 -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> > > [03/16] dt-bindings: mfd: mediatek: Add codec property for MT6357 PMIC
-> > >         commit: 761cab667898d86c04867948f1b7aec1090be796
+> Add an entry to fsl,imx8qm-irqsteer.
 > 
-> > Did you mean to hoover this up?
+> This fixes the following dt-schema warning:
 > 
-> It seemed to go along with the series and had a DT review so it looked
-> like you'd just left it to the DT people to review, there wasn't any
-> other MFD content in the series.
+> failed to match any schema with compatible: ['fsl,imx8qm-irqsteer', 'fsl,imx-irqsteer']
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+>  .../devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml  | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-I applied it from this set 6 weeks ago! :)
+Applied, thanks!
 
-
--- 
-Lee Jones [李琼斯]
 
