@@ -1,158 +1,147 @@
-Return-Path: <devicetree+bounces-102378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71153976C74
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 16:45:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93E8E976C95
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 16:49:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34711285E93
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 14:45:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C679B1C23BAC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 14:49:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16AA71BB6B5;
-	Thu, 12 Sep 2024 14:45:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A9A1B533E;
+	Thu, 12 Sep 2024 14:48:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M64PuJY2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eJBl8BVw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F4B41B9821
-	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 14:45:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC7B619C552;
+	Thu, 12 Sep 2024 14:48:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726152303; cv=none; b=ueMB3wLtLtKT/SVfHpJ8PenZs14QQ+iatv28HaFeimEmGh/SleOLVckiUezz3+miuvwyGanuqoacj6J9MDs/fLVoP9dZIEgXfdUj5mC90OLb1IficK5h1UGtKKPl3wUjl/te3rcWS3szfzbRPQv/auOBh5EB8y7f5o7uuT5apDE=
+	t=1726152498; cv=none; b=BfaRhiQvmtQisbJ8AmUN6T8B7qw+zwbXvp57n2K5qT6vG5Om4Kc6swB2kJQ5ZSTDDe69SGOdhVQX6P4I0AIdFewWYu957886N3rc03CSVq0Qxz6sHYYXnXrlkGncvxJmTRqrriGDnyFMLmLygoURpNJ5GROTGSNja5YUPhU2VoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726152303; c=relaxed/simple;
-	bh=A/8ZCG9y3TEjGNR152EIdHi0nvsFyn37cQI3yggThnQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nrDSxy3XXoOZDiwe+/B5bD5OxHzVkP5fmxnutDDemjcjnqY6LGIXjmkfRJ0toFwtysTvfFhdlYmpIG/4Aqa8k8jk68w2VufK+AOWcrDI/k8L+6O0ISeEM5QOmtJDqH7Si2rDGGtfk04SMuUmEJQMz9ANHtgLR1Lqj4W+NMRpb4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M64PuJY2; arc=none smtp.client-ip=209.85.161.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-5d5eec95a74so486050eaf.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 07:45:01 -0700 (PDT)
+	s=arc-20240116; t=1726152498; c=relaxed/simple;
+	bh=Ng1We531z+ADdZeN339PERoJ+VtYQJlwGsc0+ZO3Jrs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XKnvLJxL8uHeI/eTYlKZ0MR3R9rDFALU3ke585BghlW69Y+vkHl7o25HvYThQKzLhr3/WnifBwo+npmLzRsInavSrmhrsTB4SKU5K1DvZt+Xvw1k/3RfJ6qR3jl32T8lrW3XP/8wiyZ7g7QfD9Ky1YiRKTpXqrW8/3HcmPAFtOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eJBl8BVw; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2f77fe7ccc4so13294591fa.2;
+        Thu, 12 Sep 2024 07:48:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726152300; x=1726757100; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Us8nS3NBHkRNjHO7PeWm6594BLpqNuKjFcNB+sFes+A=;
-        b=M64PuJY2q7KYAL40MoJ6dBc9GVuYcuKgtCUZckScnQOdyW1I+CCQzRKWvQOcEfSpi4
-         HkyDAeNWiYfZtqb5vEPTndtv0sT+5vvJC1a1HSq7vSP+EDTzN85dSocYGrS+TB1HouvP
-         sPJmitc6aSX3NCPIRi6IWAckO/x1qtAknGJcG845RCzEFHq5p/iAPun27yf3oE5FNEGw
-         QcKFnrIwWNkSTKWBuc/a6cqOx0rzLZLfNIEkq9+K/KZ2zLQ9cFig4hSDLfsmMEQywgQv
-         JILM/rfKbZU0rQgsof/Z1pzuIewpJ+A/4fU8wXw6nNlIegmElIfrQKk4QwvJi/36y5H9
-         3qnQ==
+        d=gmail.com; s=20230601; t=1726152495; x=1726757295; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AUm0nWPOidfCrggryH30scnyqAxC5irEWmcDPpRUwQc=;
+        b=eJBl8BVwdP+y37vJ6dSUDKRSz35PMooMjsKHHZtuSUoTCRMDzxmuJEiyAyp4QlMQSi
+         U+vWvgZVDLFBbJGH2kG8E3E/BtYpUhBMGsax1e0Cw0zLL9X0OhdNB+/MsJzrZWM+Qj3Z
+         uBKkd4/bMRB31AiY9WnkO+gE65+oYqqVG6krvswG1alLUNJ8P2KYpfSkl5f7+19RA+B3
+         Mz9bk8/Qux2ayu3vHXO/Ps8XRz091XRFILveYTsJxx4iBqG6Zum8KZobRW29+Uzp6vQB
+         AtYM71HLPrt1kkMNeln8zJ4gm+ySEQk6lprTtPTDXNH7DYIWApt1LyuoGrP23WnqVzn8
+         Y5UQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726152300; x=1726757100;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Us8nS3NBHkRNjHO7PeWm6594BLpqNuKjFcNB+sFes+A=;
-        b=XUNezipxtv7nNJbyIp7+rSvGLUDpkyjUK3DP1IHAGAnHL5QgEjvDb4teeo04ExTChm
-         xSD9oVaJDlLHBOxaTqUV3BKZ6v8YAJlAtF/3gK/sMFNwEJoS8GxW1KQXOUl6yxQE4yaW
-         P+57hefTQLdlmp2VYmi9DZvtdOkTGvv8mWyVDRSwPloof+sRuUmFbAxHbST2Mv8Oshk3
-         ynsxZwzdSZmmbyME6iGKEnPukseZpuV0TQGPz75YaSwP0x8TY1KOpBdfFq744quljts3
-         JdbfGBBl4xGZFYom2vNKodmUQuFkDAr383cM57q7BaABPzI+Wv1/b91L9y+lpD/i4f4X
-         L9ww==
-X-Forwarded-Encrypted: i=1; AJvYcCVW3zwpKyE7Fdf+KjkGaQNn6t36Xwo1f5aYNObr4GnBDJ6kd2kHgkezcRhaaszLgp1zQsOMSEhliKQM@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCAz2IP3kzymSZCfQRn4s6RBKaBUWOzNE//gR4SPuxIVqFMEzG
-	0x0QS4ApDqDamJKlQV1CmqRaiFUzvkA/GLQnTW+FktQ+pE33SlyaPe6ZnJlSpg==
-X-Google-Smtp-Source: AGHT+IELriO1F3RjFu7Nlmk0OH8Yy7rcsbs7jfdrPadTuniwAi50BrFet+dLaCQCkStjWf6ncGBXOA==
-X-Received: by 2002:a05:6871:3319:b0:277:ff5a:db0f with SMTP id 586e51a60fabf-27c3f2cfe64mr2186877fac.27.1726152300341;
-        Thu, 12 Sep 2024 07:45:00 -0700 (PDT)
-Received: from thinkpad ([120.60.79.18])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71908fe4e8asm4673021b3a.79.2024.09.12.07.44.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Sep 2024 07:45:00 -0700 (PDT)
-Date: Thu, 12 Sep 2024 20:14:39 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Qiang Yu <quic_qianyu@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, vkoul@kernel.org,
-	kishon@kernel.org, robh@kernel.org, andersson@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
-	sboyd@kernel.org, abel.vesa@linaro.org, quic_msarkar@quicinc.com,
-	quic_devipriy@quicinc.com, kw@linux.com, lpieralisi@kernel.org,
-	neil.armstrong@linaro.org, linux-arm-msm@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH 8/8] PCI: qcom: Add support to PCIe slot power supplies
-Message-ID: <20240912144439.fnne4x7qvggveve2@thinkpad>
-References: <20240827063631.3932971-1-quic_qianyu@quicinc.com>
- <20240827063631.3932971-9-quic_qianyu@quicinc.com>
- <CAA8EJpq5KergZ8czg4F=EYMLANoOeBsiSVoO-zAgfG0ezQrKCQ@mail.gmail.com>
- <20240827165826.moe6cnemeheos6jn@thinkpad>
- <26f2845f-2e29-4887-9f33-0b5b2a06adb6@quicinc.com>
- <20240911153228.7ajcqicxnu2afhbp@thinkpad>
- <9222ef18-2eef-4ba3-95aa-fae540c06925@quicinc.com>
- <d5468dd2-0f81-4d89-a3bd-a546b2395ca6@kernel.org>
+        d=1e100.net; s=20230601; t=1726152495; x=1726757295;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AUm0nWPOidfCrggryH30scnyqAxC5irEWmcDPpRUwQc=;
+        b=HLmpmFf/3aOe5KFBUBqIOfmMH3JVzDI201EMy8yJAIsTkBNJKBl2EDvjRectEDJgvz
+         HZYdITHIDVfIwP5BpkFGKrvOqasodJMuSLeGPtKZdU4FmzFwvVtFW8Tk9ilk77Gvnnl8
+         eFlXXcWGxg0EqVQxLVykqePfG/aMGehCkUrKuJxqj1x+zQBfEiqEnaYcFd2kOdXZ0WBC
+         In1QhVZr5UvVZdXMFF5Z8w062Fuoc/L+2yYN3G212MRBmbcpmMUoFwI+AvRnWctFLan7
+         hwpm28bqeF1aUDlZ8tRcCk6LPJhozc/A/J6zVk5ExosZBz1MCg5QpKpLZ1v9rGQJuSZA
+         ui5A==
+X-Forwarded-Encrypted: i=1; AJvYcCUZaoVMnGiNkmrGrHsOoZMUDH2o6G3WUJMexHfTTbQ4JxALdrq+cquXjUnYsGrAX0npW/EzS+KMi45O@vger.kernel.org, AJvYcCW9RZdOwMogEgXMvliaSDhsicLxZODihHHWoSYaJXQz4W0OaBXXiM96beHQO/sePrQ0JUeGQk+RMAvg@vger.kernel.org, AJvYcCXXaG88TsOn5CCuWCpjrO18JVCrp/5QoFbrg9eHvve4rlylzFt7Ae7v2MaXszsTyODjc9etF1kxOpsijHvG@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKYTpyPYPM1L3zQOVLZ3tv4FyIkAFwsaq7wpGDNai5cmHIEmsT
+	GHOWoMnfMv+HwVxBLI2hqFsM+vqONgIRd9VLvMvAYpWvrMY0zjRJklp6ARDEb6Fc5vOdZ0V4e2Q
+	WcY5ospWh0slVLpFOWPcVavL6API=
+X-Google-Smtp-Source: AGHT+IGnv4xxGM66TT0a/GyY0WL54Pjx0jtXuvVU+oyHKxJrlWryaJYczU+VBGx/R916mtU8dat+bdi2BvSNlHmUg6s=
+X-Received: by 2002:a2e:b8c7:0:b0:2ef:2b05:2ab3 with SMTP id
+ 38308e7fff4ca-2f787db726emr17969841fa.10.1726152494707; Thu, 12 Sep 2024
+ 07:48:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d5468dd2-0f81-4d89-a3bd-a546b2395ca6@kernel.org>
+References: <20240912121609.13438-1-ramona.nechita@analog.com> <20240912121609.13438-3-ramona.nechita@analog.com>
+In-Reply-To: <20240912121609.13438-3-ramona.nechita@analog.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Thu, 12 Sep 2024 17:47:37 +0300
+Message-ID: <CAHp75VdOjodDaz6J4sWOiT2HHmdXpOPcWeS5kz4e3rB_=gh3xw@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] Documentation: ABI: added filter mode doc in sysfs-bus-iio
+To: Ramona Alexandra Nechita <ramona.nechita@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Cosmin Tanislav <cosmin.tanislav@analog.com>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Marcelo Schmitt <marcelo.schmitt@analog.com>, Olivier Moysan <olivier.moysan@foss.st.com>, 
+	Dumitru Ceclan <mitrutzceclan@gmail.com>, Matteo Martelli <matteomartelli3@gmail.com>, 
+	=?UTF-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>, 
+	Alisa-Dariana Roman <alisadariana@gmail.com>, Mike Looijmans <mike.looijmans@topic.nl>, 
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 12, 2024 at 04:15:56PM +0200, Konrad Dybcio wrote:
-> On 12.09.2024 3:39 PM, Qiang Yu wrote:
-> > 
-> > On 9/11/2024 11:32 PM, Manivannan Sadhasivam wrote:
-> >> On Wed, Sep 11, 2024 at 04:17:41PM +0800, Qiang Yu wrote:
-> >>> On 8/28/2024 12:58 AM, Manivannan Sadhasivam wrote:
-> >>>> On Tue, Aug 27, 2024 at 02:44:09PM +0300, Dmitry Baryshkov wrote:
-> >>>>> On Tue, 27 Aug 2024 at 09:36, Qiang Yu <quic_qianyu@quicinc.com> wrote:
-> >>>>>> On platform x1e80100 QCP, PCIe3 is a standard x8 form factor. Hence, add
-> >>>>>> support to use 3.3v, 3.3v aux and 12v regulators.
-> >>>>> First of all, I don't see corresponding bindings change.
-> >>>>>
-> >>>>> Second, these supplies power up the slot, not the host controller
-> >>>>> itself. As such these supplies do not belong to the host controller
-> >>>>> entry. Please consider using the pwrseq framework instead.
-> >>>>>
-> >>>> Indeed. For legacy reasons, slot power supplies were populated in the host
-> >>>> bridge node itself until recently Rob started objecting it [1]. And it makes
-> >>>> real sense to put these supplies in the root port node and handle them in the
-> >>>> relevant driver.
-> >>>>
-> >>>> I'm still evaluating whether the handling should be done in the portdrv or
-> >>>> pwrctl driver, but haven't reached the conclusion. Pwrctl seems to be the ideal
-> >>>> choice, but I see a few issues related to handling the OF node for the root
-> >>>> port.
-> >>>>
-> >>>> Hope I'll come to a conclusion in the next few days and will update this thread.
-> >>>>
-> >>>> - Mani
-> >>>>
-> >>>> [1] https://lore.kernel.org/lkml/20240604235806.GA1903493-robh@kernel.org/
-> >>> Hi Mani, do you have any updates?
-> >>>
-> >> I'm working with Bartosz to add a new pwrctl driver for rootports. And we are
-> >> debugging an issue currently. Unfortunately, the progress is very slow as I'm on
-> >> vacation still.
-> >>
-> >> Will post the patches once it got resolved.
-> >>
-> >> - Mani
-> > OK, thanks for your update.
-> 
-> Qiang, you can still resubmit the rest of the patches without having
-> to wait on that to be resolved
-> 
+On Thu, Sep 12, 2024 at 3:17=E2=80=AFPM Ramona Alexandra Nechita
+<ramona.nechita@analog.com> wrote:
+>
+> The filter mode / filter type property is used for ad4130
+> and ad7779 drivers, therefore the ABI doc file for ad4130
+> was removed, merging both of them in the sysfs-bus-iio.
 
-In that case, the slot supplies should be described in the PCIe bridge.
+...
 
-- Mani
+> +What:          /sys/bus/iio/devices/iio:deviceX/filter_type_available
+> +What:          /sys/bus/iio/devices/iio:deviceX/in_voltage-voltage_filte=
+r_mode_available
+> +KernelVersion: 6.1
 
-> Konrad
+I believe I have already commented on this. The commit message keeps
+silent about version changes. Why?
 
--- 
-மணிவண்ணன் சதாசிவம்
+> +Contact:       linux-iio@vger.kernel.org
+> +Description:
+> +               Reading returns a list with the possible filter modes. Op=
+tions
+> +               for the attribute:
+> +                       * "sinc3"       - The digital sinc3 filter. Moder=
+ate 1st conversion time.
+> +                   Good noise performance.
+> +                       * "sinc4"       - Sinc 4. Excellent noise perform=
+ance. Long
+> +                       1st conversion time.
+> +                       * "sinc5"       - The digital sinc5 filter. Excel=
+lent noise performance
+> +                       * "sinc4+sinc1" - Sinc4 + averaging by 8. Low 1st=
+ conversion
+> +                   time.
+> +                       * "sinc3+rej60" - Sinc3 + 60Hz rejection.
+> +                       * "sinc3+sinc1" - Sinc3 + averaging by 8. Low 1st=
+ conversion
+> +                   time.
+> +                       * "sinc3+pf1"   - Sinc3 + device specific Post Fi=
+lter 1.
+> +                       * "sinc3+pf2"   - Sinc3 + device specific Post Fi=
+lter 2.
+> +                       * "sinc3+pf3"   - Sinc3 + device specific Post Fi=
+lter 3.
+> +                       * "sinc3+pf4"   - Sinc3 + device specific Post Fi=
+lter 4.
+
+Also, the original file was more verbose for the complex cases, like
+"sinc3+pfX", why has this been changed?
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
