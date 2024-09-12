@@ -1,137 +1,199 @@
-Return-Path: <devicetree+bounces-102233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2249897601A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 06:41:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04627976097
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 07:52:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B49501F23A78
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 04:41:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 367141C22B57
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 05:52:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4501A18858D;
-	Thu, 12 Sep 2024 04:41:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C45818786D;
+	Thu, 12 Sep 2024 05:51:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eyjbzGUw"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="gxZfs8K7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F0CA47;
-	Thu, 12 Sep 2024 04:41:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6232119;
+	Thu, 12 Sep 2024 05:51:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726116099; cv=none; b=sY5lZqI8LkCxEUuIRil3TGhxXSbxFhAm5COjNnURaNHjXk46GLz7YmodwfzFvkFzBJd+70bRUlJdwLP3X5OafFr1gR5MQmVf65zweYBuEerZQJDe7XdNHol1LYCaxr1fbAmwxjnMkVjscgrJl9Ok0S+Wm8axxzK9WRvEH/HqcSc=
+	t=1726120316; cv=none; b=IhcPeBSGfop7BOdyb1U4Uf8ADbS10gKLjRBsC16t3ECC/KNkS3g9wKnqda552NF07OdTp4d1ubv9QrZ80PkmRKeBNW5SuHIXUgVWKQs89WU8eeJU2rkFSaQKbALSpGTQhgm7ZZLChVbGdhP+Wn97Eb6zHykxequGhwUWckbF0UU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726116099; c=relaxed/simple;
-	bh=J+voR34oci4p2IIVjc3qd0YparHlcuZTim//SkaanKw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FOkjP5rKW3CGq9iEWpUhjU73FfevahILjZE5PkGo4w1MHbX9HBUprzzZWQr836g7A4YJxh/ASz5FrnXVso1T+oJNEqTJqShTdoEbHOmv3IoqaWXbXH7ksaj3nM1+sZdm9bU2a9w09LicGtz449AvUufGebfNkD6tA3v3i1n9yyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eyjbzGUw; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+	s=arc-20240116; t=1726120316; c=relaxed/simple;
+	bh=5nBw3jed5q3gOSsyd6ygguuJZHN5dfBDVK9fb2f+3nM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=E5ax4fsHP4fr1ldB2pdsd+fLvob4QsN00xbyfQfs7z+y8XVgTDQlYGCAS+TR5CcjOa1V9JHtE6X2Y31siqWcFBFky+BZ7MJV5ifBlNMSvY9rw/eeH4g1MA6UKSX98jAdwwW998PKkGHEXW/FJhaAarAuyEkxBPUX89l0P9u24tE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=gxZfs8K7; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1726116097; x=1757652097;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=J+voR34oci4p2IIVjc3qd0YparHlcuZTim//SkaanKw=;
-  b=eyjbzGUwP1GKQ4eBBwoFd2UzDTWgN9y9cHylvnUaRFDhoggC7u8yj3GU
-   VcjG9T0Q0uXyOfeynrEZXqS8QmVFPiwo/fNKqfMhPi1zIXyAf53r8K1X4
-   3wvCPRQ+BfiNFGVQPbjteD1H1o/I7BDb5tjtqYLEdkXLeUb3ykbMWdhMh
-   4hxvypnE5s4n/CDcssRmSqoZr6vaELGTRV/p1LHy2cDcEJkPyuimVKAPG
-   vSvp+3M26ZWEgoe8YA13UGxDKqAZAkfn102Hs5kDNJO/H+CD+7NOGIYp7
-   xAeansf3aj18fWGBclmc8O7lj4zYJNunoUS2ixDrK6PEq8jhFNZnSmAHV
-   w==;
-X-CSE-ConnectionGUID: 2VkQ9vXvSrakro1FHA+pfw==
-X-CSE-MsgGUID: X6bj7WsBTJinA+bvPauhkg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="25051008"
-X-IronPort-AV: E=Sophos;i="6.10,221,1719903600"; 
-   d="scan'208";a="25051008"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Sep 2024 21:41:36 -0700
-X-CSE-ConnectionGUID: CwOQcPi0Rqy9ZzuC58xUVQ==
-X-CSE-MsgGUID: bv3X29aXRbWeaiGw38nICg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,221,1719903600"; 
-   d="scan'208";a="67822998"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 11 Sep 2024 21:41:32 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sobe6-0004XK-1J;
-	Thu, 12 Sep 2024 04:41:30 +0000
-Date: Thu, 12 Sep 2024 12:41:16 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>,
-	Bogdan Hamciuc <bogdan.hamciuc@nxp.com>,
-	Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>,
-	Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-Subject: Re: [PATCH 2/4] rtc: s32g: add NXP S32G2/S32G3 SoC support
-Message-ID: <202409121103.EX9BTDFT-lkp@intel.com>
-References: <20240911070028.127659-3-ciprianmarian.costea@oss.nxp.com>
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1726120313; x=1757656313;
+  h=from:date:subject:mime-version:content-transfer-encoding:
+   message-id:to:cc;
+  bh=5nBw3jed5q3gOSsyd6ygguuJZHN5dfBDVK9fb2f+3nM=;
+  b=gxZfs8K7Cdw7omjQmW3vdzWoB30LLjd1H9br2j51F0TG8HsW8H2VU5IH
+   NdzXa+1tsaPPnBZ3dDwGTgLfq1QUpJ+Ch0uCVkZoePnFGAfiMeBYbiHac
+   6IjLShvh0JU4UnBcfmmVv0KawP1RwzJnB5qKAG9TwDWExCgxRob5gkTm3
+   b2CadhgA42UiFopilY+jgLAWhSiKeXpwe9vTvXHqFhLnVjaQNxQQGomzN
+   LCD9ENbluVqSxoAPjHR+VpYyo1KY5hYmiLhudZJabkj4FhNTCAdjXNUi/
+   2/imZrydwX/6Zn6uYcRWCcM/h51amq4R0M+9TfRu/guYUrgyo5stk/IKj
+   A==;
+X-CSE-ConnectionGUID: yO5+uw3DTJiRuB0mNxV1RA==
+X-CSE-MsgGUID: Uktahx2VTCiHDFDkJDH4kw==
+X-IronPort-AV: E=Sophos;i="6.10,222,1719903600"; 
+   d="scan'208";a="199112816"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Sep 2024 22:51:51 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 11 Sep 2024 22:50:51 -0700
+Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Wed, 11 Sep 2024 22:50:45 -0700
+From: Charan Pedumuru <charan.pedumuru@microchip.com>
+Date: Thu, 12 Sep 2024 11:19:16 +0530
+Subject: [PATCH] dt-bindings: net: can: atmel: Convert to json schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240911070028.127659-3-ciprianmarian.costea@oss.nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20240912-can-v1-1-c5651b1809bb@microchip.com>
+X-B4-Tracking: v=1; b=H4sIANuA4mYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDS0Mj3eTEPF2L1CTzNItUc1MzsxQloMqCotS0zAqwKdGxtbUAg1Hdc1U
+ AAAA=
+To: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol
+	<mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, "Eric
+ Dumazet" <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nicolas Ferre
+	<nicolas.ferre@microchip.com>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>
+CC: <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Charan Pedumuru
+	<charan.pedumuru@microchip.com>
+X-Mailer: b4 0.14.1
 
-Hi Ciprian,
+Convert atmel-can documentation to yaml format
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
+---
+ .../bindings/net/can/atmel,at91sam9263-can.yaml    | 67 ++++++++++++++++++++++
+ .../devicetree/bindings/net/can/atmel-can.txt      | 15 -----
+ 2 files changed, 67 insertions(+), 15 deletions(-)
 
-[auto build test WARNING on abelloni/rtc-next]
-[also build test WARNING on robh/for-next arm64/for-next/core linus/master v6.11-rc7 next-20240911]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+diff --git a/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.yaml b/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.yaml
+new file mode 100644
+index 000000000000..269af4c993a7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/can/atmel,at91sam9263-can.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Atmel CAN Controller
++
++maintainers:
++  - Nicolas Ferre <nicolas.ferre@microchip.com>
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - atmel,at91sam9263-can
++          - atmel,at91sam9x5-can
++          - microchip,sam9x60-can
++      - items:
++          - enum:
++              - microchip,sam9x60-can
++          - const: atmel,at91sam9x5-can
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: can_clk
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++allOf:
++  - $ref: can-controller.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - microchip,sam9x60-can
++    then:
++      required:
++        - compatible
++        - reg
++        - interrupts
++        - clocks
++        - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    can0: can@f000c000 {
++          compatible = "atmel,at91sam9x5-can";
++          reg = <0xf000c000 0x300>;
++          interrupts = <30 IRQ_TYPE_LEVEL_HIGH 3>;
++    };
+diff --git a/Documentation/devicetree/bindings/net/can/atmel-can.txt b/Documentation/devicetree/bindings/net/can/atmel-can.txt
+deleted file mode 100644
+index 218a3b3eb27e..000000000000
+--- a/Documentation/devicetree/bindings/net/can/atmel-can.txt
++++ /dev/null
+@@ -1,15 +0,0 @@
+-* AT91 CAN *
+-
+-Required properties:
+-  - compatible: Should be "atmel,at91sam9263-can", "atmel,at91sam9x5-can" or
+-    "microchip,sam9x60-can"
+-  - reg: Should contain CAN controller registers location and length
+-  - interrupts: Should contain IRQ line for the CAN controller
+-
+-Example:
+-
+-	can0: can@f000c000 {
+-		compatible = "atmel,at91sam9x5-can";
+-		reg = <0xf000c000 0x300>;
+-		interrupts = <40 4 5>
+-	};
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ciprian-Costea/dt-bindings-rtc-add-schema-for-NXP-S32G2-S32G3-SoCs/20240911-150205
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
-patch link:    https://lore.kernel.org/r/20240911070028.127659-3-ciprianmarian.costea%40oss.nxp.com
-patch subject: [PATCH 2/4] rtc: s32g: add NXP S32G2/S32G3 SoC support
-config: sh-randconfig-r073-20240912 (https://download.01.org/0day-ci/archive/20240912/202409121103.EX9BTDFT-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240912/202409121103.EX9BTDFT-lkp@intel.com/reproduce)
+---
+base-commit: 32ffa5373540a8d1c06619f52d019c6cdc948bb4
+change-id: 20240912-can-8eb7f8e7566d
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409121103.EX9BTDFT-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/rtc/rtc-s32g.c:668:34: warning: 'rtc_dt_ids' defined but not used [-Wunused-const-variable=]
-     668 | static const struct of_device_id rtc_dt_ids[] = {
-         |                                  ^~~~~~~~~~
-
-
-vim +/rtc_dt_ids +668 drivers/rtc/rtc-s32g.c
-
-   667	
- > 668	static const struct of_device_id rtc_dt_ids[] = {
-   669		{.compatible = "nxp,s32g-rtc" },
-   670		{ /* sentinel */ },
-   671	};
-   672	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Charan Pedumuru <charan.pedumuru@microchip.com>
+
 
