@@ -1,83 +1,178 @@
-Return-Path: <devicetree+bounces-102200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEC9D975EA9
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 03:52:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4993975EB3
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 04:02:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFD441C226F6
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 01:52:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 682681F23819
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 02:02:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2A4526ACC;
-	Thu, 12 Sep 2024 01:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA97528399;
+	Thu, 12 Sep 2024 02:02:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Q5A+Vg9x"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QT1C/bUb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9E94257D;
-	Thu, 12 Sep 2024 01:52:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE3D2A1CF;
+	Thu, 12 Sep 2024 02:01:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726105948; cv=none; b=alXTMmqzQF/GKrfvXK8jYxZ+GpnaAFAYmxlPv7YjkWr8CFjoOPxubouHy3g4IdMfqosLJx9uiX4pvb4m9R+kOUGT2w+WYGSFRcq0sYlITHFh38j4D8Q4l3Wp+AtYRhJEDjTstAjay9nPbWKc3bEnJSe2Vi/7nZH86M5mGgT476o=
+	t=1726106522; cv=none; b=BEn042lMoxMxH+2oJdzDF9sV0jVYcIfDRIcpiOi8J3Wy/ywNhNYZbzepyiYEg66DFeZFXdzJHqaC/cztYh887MROPKL17HDVfB+SaYvM+e9zpjUYRKaV/MAJ0si9Hx3ZRMIeo/ToW3NJD967nLRbHTolAldy4p+zfBVfQTVBhKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726105948; c=relaxed/simple;
-	bh=KOHru+WDJgBP+lLpgOajPKUPOkGltXyKZvX+5Qs0kKw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Tg0COvkYYy0GgnJ4cGvQXgx7+CAGxybE7gcQ0oivLV7PH5SOZrF1Xx3nZxIJSOy71SlBEzsKXxafbi7SZAptZ2HIjATcz8/RFoh+JkORg1LFXy++gSOuTH73jbJWEDaxO6/Cnu16W7Jyj67iacAnqNboFqC6i0g4saH8kePVwKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Q5A+Vg9x; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1726105943;
-	bh=1GeFB29HWhumDKOdV+Pt4PnPumW3p49ZFqKR/fUZIws=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=Q5A+Vg9xklu9nGYZwwkrRoivoF07C5SpEOD7nQh1keYfvyWHQAMfi+ne5k7vYwaw0
-	 w8SWXZa5JQr+BbbPvwM3zVXLVdUxQhgAhA8l+g39H5QO2gAyDU8C7IgBkKDo1nkm3E
-	 OfWIhzwEN+LY70Pjo0xQuT1KS2ddh5R1kLB/OyRghSC5+4/Vs0x4bDcNFYnfBzFcxz
-	 GUvLGSfn1MF3+3TV4Xq58EsKFKm+kLsMIou9PpooLmLyixdI92llR8wLhNJznKAfWb
-	 nNbAeJ2NxBFwCpbf13S93dID4Dl2A3ml0G6ELXruHz7EWRf6bpZEOMH6F5HgjwTypU
-	 VEJMJkvGmUSfQ==
-Received: from [127.0.1.1] (ppp118-210-89-8.adl-adc-lon-bras32.tpg.internode.on.net [118.210.89.8])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id E1FD3650D6;
-	Thu, 12 Sep 2024 09:52:21 +0800 (AWST)
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: patrick@stwcx.xyz, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20240910080951.3568594-1-Delphine_CC_Chiu@wiwynn.com>
-References: <20240910080951.3568594-1-Delphine_CC_Chiu@wiwynn.com>
-Subject: Re: [PATCH v2] ARM: dts: aspeed: yosemite4: Enable watchdog2
-Message-Id: <172610594183.699144.11293347477612952253.b4-ty@codeconstruct.com.au>
-Date: Thu, 12 Sep 2024 11:22:21 +0930
+	s=arc-20240116; t=1726106522; c=relaxed/simple;
+	bh=7JOMGHPGl9bZpl9dgy1+02bXme1tNRDP9Oj1y+Mp9K4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=cvyG23EaME+iqJiZC+pnwlaGolPlaCAjDmnoo2FSNMyqyoc+KtZVDZfiwoWwTs4NCfzsflObeZFx0ES628Stx1CQA5vBlJMharqsYC614rNT5M+W+OocFDhMmYC7DaY/TPZgaAQ/zXgw0fPnwRQPRQ9Zgzk3DFZEv4nTOGmUCFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QT1C/bUb; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48BEm0mV008622;
+	Thu, 12 Sep 2024 02:01:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	R9uxWCoTZQ9l46bFxytwAFQkW6irJNtC1UxAD6uZ9uM=; b=QT1C/bUbY+bHy1YT
+	C+Ocp8ek4LKHWLGt5clrlq+AqwTPWJFw/CIiFiq3KlEnzsprZCrknLSldnlbzCs7
+	QMa0ThJG240ZIDQJUElJUhZglXxGtTaYwweNA9toJFQXphlr3HaC55Y3p9NWrODD
+	8CjqRis/LrWFF8N7y8JJ31v3Gf13kptMH2KFk3a0v5KBVIHPeSMwJPaMMJGZCHxj
+	rG37H87dMr5zAevW78EZghZliIX/rrbWMXpFAXm8Qs5EziARisjHB6rhQwo+/xdH
+	hlLlWfBr0croD+KWXuHYIPYYTix5WNUVKcQ9IHQdYVW1Av0KZxIeV8Gx4hYGJtdK
+	YJrurg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy733m2x-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Sep 2024 02:01:55 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48C21sBb030061
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Sep 2024 02:01:54 GMT
+Received: from [10.239.132.205] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 11 Sep
+ 2024 19:01:48 -0700
+Message-ID: <8e5364f8-eaa3-4f70-b298-70a21e716f90@quicinc.com>
+Date: Thu, 12 Sep 2024 10:01:46 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.1
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: document the QCS615 Top Level
+ Mode Multiplexer
+To: Rob Herring <robh@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
+References: <20240910-add_qcs615_pinctrl_driver-v1-0-36f4c0d527d8@quicinc.com>
+ <20240910-add_qcs615_pinctrl_driver-v1-1-36f4c0d527d8@quicinc.com>
+ <20240911151818.GA283533-robh@kernel.org>
+From: Lijuan Gao <quic_lijuang@quicinc.com>
+In-Reply-To: <20240911151818.GA283533-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Qx0pBzmCki2RXxuwV4hV_dyjEJbLbZcB
+X-Proofpoint-GUID: Qx0pBzmCki2RXxuwV4hV_dyjEJbLbZcB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
+ impostorscore=0 lowpriorityscore=0 clxscore=1015 bulkscore=0
+ malwarescore=0 adultscore=0 mlxlogscore=999 suspectscore=0
+ priorityscore=1501 phishscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2408220000 definitions=main-2409120014
 
-On Tue, 10 Sep 2024 16:09:50 +0800, Delphine CC Chiu wrote:
-> Enable watchdog2 setting for yosemite4 system.
+
+
+在 9/11/2024 11:18 PM, Rob Herring 写道:
+> On Tue, Sep 10, 2024 at 06:26:14PM +0800, Lijuan Gao wrote:
+>> Document the Top Level Mode Multiplexer on the QCS615 Platform.
+>> It concisely explains the pin multiplexing and configuration in
+>> the device tree, and includes simple examples of typical device
+>> tree snippets, making it easier for designers to configure and
+>> manage chip pins.
+>>
+>> Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
+>> ---
+>>   .../bindings/pinctrl/qcom,qcs615-tlmm.yaml         | 123 +++++++++++++++++++++
+>>   1 file changed, 123 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,qcs615-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,qcs615-tlmm.yaml
+>> new file mode 100644
+>> index 000000000000..2bfb0a453880
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,qcs615-tlmm.yaml
+>> @@ -0,0 +1,123 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pinctrl/qcom,qcs615-tlmm.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Technologies, Inc. QCS615 TLMM block
+>> +
+>> +maintainers:
+>> +  - Lijuan Gao <quic_lijuang@quicinc.com>
+>> +
+>> +description:
+>> +  Top Level Mode Multiplexer pin controller in Qualcomm QCS615 SoC.
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: qcom,qcs615-tlmm
+>> +
+>> +  reg:
+>> +    maxItems: 3
+>> +
+>> +  reg-names:
+>> +    items:
+>> +      - const: east
+>> +      - const: west
+>> +      - const: south
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  gpio-reserved-ranges:
+>> +    minItems: 1
+>> +    maxItems: 62
+>> +
+>> +  gpio-line-names:
+>> +    maxItems: 123
+>> +
+>> +patternProperties:
+>> +  "-state$":
+>> +    oneOf:
+>> +      - $ref: "#/$defs/qcom-qcs615-tlmm-state"
+>> +      - patternProperties:
 > 
+> Needs 'type: object' before patternProperties.
+> > Otherwise,
 > 
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Well noted.
 
-Thanks, I've applied this to be picked up through the BMC tree.
 
-[1/1] ARM: dts: aspeed: yosemite4: Enable watchdog2
-      commit: 38534704e809d3f253ba131ae1ee8dfb79969166
-
---
-Andrew Jeffery <andrew@codeconstruct.com.au>
-
+-- 
+Thx and BRs
+Lijuan Gao
 
