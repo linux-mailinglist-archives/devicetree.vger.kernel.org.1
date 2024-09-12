@@ -1,144 +1,172 @@
-Return-Path: <devicetree+bounces-102330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E34B976801
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 13:38:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA973976804
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 13:41:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C80691F216FD
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 11:38:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7DD22B23056
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 11:41:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5F9E14B960;
-	Thu, 12 Sep 2024 11:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7873419F11E;
+	Thu, 12 Sep 2024 11:41:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="latU+9OM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c2PiO1QY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CFBB29CF6;
-	Thu, 12 Sep 2024 11:38:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2753288BD
+	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 11:41:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726141113; cv=none; b=dIs29dMcHrlDV/FBlOeI25+GuJUQZfEeOvS+k05uvcRZrez7c/l1Qqepvdb4uTEn0mt3t31VA5ISqxRrOXZ+HljdCaWcAzYaWxBot9qMFf4bEDqvbIdog0vIX+syq72HUh0s9R4mAGMv/3M/xDpvMkHgfYjas8Ovu7pW77qncrw=
+	t=1726141289; cv=none; b=eLyVsGfO9gz6/375z6nX5WuHc4jfCrgz32gpy5/HyOW+psP3g/2kcdEGReQxttsBLpEDbmgrMUYOB5ZQ9fB9tWg6G4x4cBzT/6M94gBFsmEyCCLL8ODq55jA1bjeNEyykqh+g+384SB2XK04fEMSXCYDjk3adWA7vZT8JB/GSG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726141113; c=relaxed/simple;
-	bh=hilndm36269LUYBh4eirr0Z179Ugs3I2OsaZrmx0zB4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=O8xqDGQ2+FN1Rl9t1v5+Z2cPe6V67b2g1mf4BAsLzhNinLWNpPSliUzFmjUZLwA5tqp9URSbJHlnlXxN7+Ow6nlpp0/Ve5wPTqcywRoZlfPnd15E7lIKgFsnWEBos1w6doCHPM9IAtDnjbi54hiW2lG7kfc0ivGoLRnJxBqivYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=latU+9OM; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 81acf11e70fb11efb66947d174671e26-20240912
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=zMl5165Nco4nnPRdvUh/bXbQdA86zHrP4M9QbnMQj9k=;
-	b=latU+9OMDNRD3zIVStiqfee1ZoKpvQIhRs60H1Ip3llZ0jB1FR5hR73iXp0c5pItX8/PDlS++5TUPfsW5wQIqSSJkpGMv3a58Y6/wYPAQ+0eeu8+PIsoN8i2d9lgNnhXP4loYUcZNHqmiDOfiNAxFEmovOyKM7U36zYs/ceeDDY=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:23332369-de2a-4755-a624-3b43f97f1cfb,IP:0,U
-	RL:25,TC:0,Content:1,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:26
-X-CID-META: VersionHash:6dc6a47,CLOUDID:3006e9b6-8c4d-4743-b649-83c6f3b849d4,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:4|-5,EDM:-3,IP:ni
-	l,URL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,
-	LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: 81acf11e70fb11efb66947d174671e26-20240912
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
-	(envelope-from <pablo.sun@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1815120095; Thu, 12 Sep 2024 19:38:18 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 12 Sep 2024 19:38:12 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Thu, 12 Sep 2024 19:38:12 +0800
-Message-ID: <30184391-12a6-c095-7862-35c7677b0ede@mediatek.com>
-Date: Thu, 12 Sep 2024 19:38:10 +0800
+	s=arc-20240116; t=1726141289; c=relaxed/simple;
+	bh=Heof43DyvfqRJlRi0bBeyPYxJf13DtSSsWQ+FAooBOQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=leEXAxNx7A/KheZTcADZBJ7VLf/9S3GJFmUAAPAOI5OVJJczazb8sE1wlWxgmVIUs/SrCEi/LaOYzu19zf/17lompcbNJGK6lo1CdiRSMckkYX/AeDMCa4f3njANiCuqKZMpcD7flzQJxm7zvs2hKjBG3IeaWxetWFPFdLY/v30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=c2PiO1QY; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a8a7b1c2f2bso142036266b.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 04:41:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1726141286; x=1726746086; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tzc1SB9FR1O0Hrrsa6BC4Sqb7TXAInj7HgbZ9sPm2/s=;
+        b=c2PiO1QYeAB6e+2rWgvYegE4mql9jjepoLT8xkXpkTHe+mqD1bnVT42vtPN3u8cnVf
+         iPKmDyY3NdYm9rvL3SyDj/4H/TQB//fteLoXsRxg9YS9s73dVTy2mpTEcuYNpABZpbHn
+         jfXyIWmi+MBX5NkuoNro8/cEdw8uAKzeyituls1+ggbnxKFyNyqgPPu42vnKLM97XouD
+         pZp0nsG0sGl4hGwb/8qnApcTBsbgb/z00HdaqQf5ew60j3X8PFEWCzIEiEGJ1MRsoDDT
+         ZYFERopwb2aj2zuusC9Nw2QZKTKUmog3pkR8CjWMiFdxCh+8Pb4SOwmh6xafEEcKsOBN
+         MQ1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726141286; x=1726746086;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tzc1SB9FR1O0Hrrsa6BC4Sqb7TXAInj7HgbZ9sPm2/s=;
+        b=T8R2LaCZWzzU3FG3ujxU6stCWmcnGZ5fWCLjbq9/nbVAriN7PPtpzuP9Il805eYLCD
+         dK8NvdKsqb7PDFEbeC6DCH/QTlCar+ZHbmlviPY+5549RzMr6iRMlQ+wBmYvb5bQfIqL
+         Zq0KYMvCrcoIVYTEDyMKT/RrA5EGDUkbvtl1N+6DZerG9UU+N2iK4iDEiJrgg6Xsfmv7
+         kZgxllEVKFREtmU54n4uKyqzBheBgk8ZZqCqsa1x3u9+ZLEiHnbtWcmwZcxPQclqoMgs
+         kawq6L5e4l0xTQHlfcnYG1UAKLHtmzbaZcgxN9F4DK8Ax+cOzRtknsSwlWfTeyMhPiZj
+         TFoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXUdotc5kCXZMG1hZkeGM3l88r+wPQhPcJzpR9+QtrQ+88PnfbfJykz7Glhd9CJq1yFoqvsL+ZD/wDj@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiXP3581J5FB6aJQEHGu+0sX6W094KYZdrM7rWfNGfudX6HMx4
+	jKHVgvNSXw9VCxGqafiG0Q3jtl5fk/9MtpfBkwZ5dh1tFvz6RzA0RD/TndAJpKU=
+X-Google-Smtp-Source: AGHT+IF2wx3/sCQSoXraGqXOBRLBye6JAmeptMCNWTKtJqhL/MIXqZonIUqoAEP5C6ftg/j1PBtCNw==
+X-Received: by 2002:a17:907:e6e8:b0:a86:7ddf:2909 with SMTP id a640c23a62f3a-a90294fcf3bmr253511866b.14.1726141285775;
+        Thu, 12 Sep 2024 04:41:25 -0700 (PDT)
+Received: from [192.168.0.25] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8d25ce9ed6sm729090166b.165.2024.09.12.04.41.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Sep 2024 04:41:25 -0700 (PDT)
+Message-ID: <82dd61ab-83c0-4f9c-a2ee-e00473f4ff23@linaro.org>
+Date: Thu, 12 Sep 2024 12:41:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8395-genio-1200-evk: Enable GPU
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/13] dt-bindings: media: camss: Add qcom,sm8550-camss
+ binding
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
+ todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
+References: <20240812144131.369378-1-quic_depengs@quicinc.com>
+ <20240812144131.369378-8-quic_depengs@quicinc.com>
+ <b1b4a866-fa64-4844-a49b-dfdcfca536df@linaro.org>
 Content-Language: en-US
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
-References: <20240910143245.5282-1-pablo.sun@mediatek.com>
- <01020191e04d4237-204596e1-6cc1-491c-a60f-de3917af7d42-000000@eu-west-1.amazonses.com>
- <2fd45240-a341-806b-f336-78d0595a8031@mediatek.com>
- <01020191e5383829-7eb375ea-ee17-419e-b173-30df46f61863-000000@eu-west-1.amazonses.com>
-From: Pablo Sun <pablo.sun@mediatek.com>
-In-Reply-To: <01020191e5383829-7eb375ea-ee17-419e-b173-30df46f61863-000000@eu-west-1.amazonses.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--9.398400-8.000000
-X-TMASE-MatchedRID: VfovoVrt/oYNtKv7cnNXnSa1MaKuob8P2r3/CX4MlKCqvcIF1TcLYIKO
-	HgdS51oIY8pnlWhODINRVnZsGmIphSw+COFH6OKxioK033WJkCk4m0JsW63IXBKCZ+Q6yB8qy7F
-	bVebgF6C5u9/qS1btcB+SaFrhL/iTQjr0vbZGNcuWLCkl1lq7B0Crr/LkAQ46+3n3Z6rbGhNjy0
-	xoWgR6JLEwnnFnQnmnUNHYJMizeW5f2oN5IGbAjgXysW33GYMpfkXv6w7OOZIKM+BgluLK4HJZ1
-	Ae+gMbqAZ/Skj4ls4+Rk6XtYogiau9c69BWUTGwVnRXm1iHN1bEQdG7H66TyMdRT5TQAJnA0heq
-	/DjysoVjrbuJifCzbU4niEfXGAFbP/pFwct6g8CeqD9WtJkSIw==
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--9.398400-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	1049EF671E4F33D3EAD7E1E3BDF8DDDA43F8B73B2326C84DD876E49E57F162052000:8
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <b1b4a866-fa64-4844-a49b-dfdcfca536df@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Angelo,
-
-On 9/12/24 15:52, AngeloGioacchino Del Regno wrote:
-[snip]
->>
+On 12/09/2024 09:22, Vladimir Zapolskiy wrote:
+>> +
+>> +  vdda-phy-supply:
+>> +    description:
+>> +      Phandle to a regulator supply to PHY core block.
+>> +
+>> +  vdda-pll-supply:
+>> +    description:
+>> +      Phandle to 1.2V regulator supply to PHY refclk pll block.
+>> +
 > 
-> The range should match the target device's Vin constraints; in this 
-> case, it
-> should be no lower than the minimum working voltage of the Vgpu-in of 
-> the Mali IP.
+> Here the supplies should be split into ones, which are specific to CSI 
+> blocks,
+> and I believe they shall be set as optional.
+
+In principle I agree with that, each CSIPHY should have its own vdda-phy 
+and vdda-pll regulator specified.
+
+In practice though I don't believe its necessary, below.
+
+> The proposed names are:
 > 
-> The drivers will be responsible of setting the lowest possible voltage for
-> enhanced efficiency (power saving), taking into account the fused chip 
-> quality bits
-> (in this case, the MediaTek SVS driver!).
-> 
-> You should, at this point, check the constraints of SVS, as in, given a 
-> reference
-> voltage (in this case, located in the GPU OPP table, the voltage 
-> associated with
-> the lowest frequency of the GPU), what is the maximum voltage 
-> *subtraction* that
-> SVS will do on the VGPU?
-> 
-> After the subtraction, may this voltage be lower than 0.546V? :-)
+> vdda-phy-01-supply
+> vdda-pll-01-supply
+> vdda-phy-23-supply
+> vdda-pll-23-supply
+> vdda-phy-46-supply
+> vdda-pll-46-supply
+> vdda-phy-57-supply
+> vdda-pll-57-supply
 
-Thanks for the clear explanation. While there are no explicit constraint 
-in the maximum voltage subtraction in the SVS driver, I have
-confirmed that the fuse data of MT8395 is written in a way that the SVS
-driver would never go lower than the minimum recommended operating
-voltage of DVDD_GPU in the datasheet[1], which supplies power to the 
-Mali IP.
+In principle, you're right, we need to expand the name set here.
 
-I have sent patch v2 to remove the always-on property and add a note
-about the fuse(eFuse) data in [2].
+> I understand that what I ask is much more clumsy, and it could be seen 
+> even as
+> unneeded, however it'll be the right set of properties to describe the 
+> CAMSS IP
+> in this respect
+I think the following naming would be better as it matches the 
+power-grid naming in the docs.
 
+csiphyX-vdda-phy-supply
+csiphyX-vdda-pll-supply
 
-[1]: 
-https://mediatek-marketing.files.svdcdn.com/production/documents/MTK_MT8395_Application-Processor-Datasheet_v1.8.pdf?dm=1724252510
-[2]: https://lkml.org/lkml/2024/9/12/285
+=>
 
-Many thanks,
-Pablo
+// voltage domain = vdd_a_csi_01_09 = regulator l1e
+csiphy0-vdda-phy-supply = <&vreg_l1e_0p9>;
+
+// voltage domain = vdd_a_csi_01_1p2 = regulator l3e
+csiphy0-vdda-pll-supply = <&vreg_l3e_1p2>;
+
+//
+csiphy1-vdda-phy-supply = <&vreg_l1e_0p9>;
+csiphy1-vdda-pll-supply = <&vreg_l3e_1p2>;
+
+Where X indicates the CSIPHY number.
+
+So in fact, in practice we don't need to differentiate these entries.
+
+Checking x1e80100 ...
+
+csiphy0
+
+vdda-phy-supply = <&vreg_l2c_0p9>;
+vdda-pll-supply = <&vreg_l1c_1p2>;
+
+This is also the case for csiphy 1/2/4
+
+So, I _don't_ believe this is work we need to do, since its the same 
+regulator for each PHY.
+
+---
+bod
 
