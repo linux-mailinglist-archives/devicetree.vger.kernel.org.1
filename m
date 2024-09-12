@@ -1,131 +1,117 @@
-Return-Path: <devicetree+bounces-102408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6308E976FD3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 19:51:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AAE6976FDD
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 19:57:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D834A1F251A2
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 17:51:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B32A1C21C57
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 17:57:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A0091BFDE5;
-	Thu, 12 Sep 2024 17:51:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A6CC1BF7EA;
+	Thu, 12 Sep 2024 17:57:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nyxzXIpE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Un8Pm1yk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC65C188592;
-	Thu, 12 Sep 2024 17:51:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EC6B450FA;
+	Thu, 12 Sep 2024 17:57:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726163466; cv=none; b=Vjt+VDbhPhjjs5yoeC2otftxsAqHzoPIBn7LBBiBqYwUSo/I0eUanbo5hxRmCnPoHz6XExXkBa8S3bOnSzS51PL2zlEafBMpmHxhBNBttbaLxX9XU7416CPqJAw8JiZP8rY6DZ7mFvEuSjytAE9yWKEhssyxyX/I7FfkBvw2OXA=
+	t=1726163868; cv=none; b=GYWMj8EiCrn/9mre1T3bCDuRPNjcpm7Vq5DQKPwC1sWELuuiuUBdXod99Cjxqc9bFBymP+7gFPlVQdPrn3pZnI5PgyTPhPEAk79EW8sTgCZNmJ2SiQQ4efyRDax31xNLxYgoaLrO7Yj6Px+y3N2atpNMpvm6FtHJyxT6uOSuYlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726163466; c=relaxed/simple;
-	bh=hE57exT5nkoakk6qpUhqx+qvtY8IHdaEVxrZ77/wNgs=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=q/lFnQ3vcwzza7qQAFOGpfm0CL1fQHYv2aC3CAczsgQSiH5l2rKtg4rYhcwO6o3NqKHOuvg3MuulXmDL+CSgZMEy37vjk5qdtH7vDnMBSx2FlDO246CIE4XFBvgPCENGlGpyE1PqNqExW9wvGExxUyeBuMTy00t6B8dGicUQlcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nyxzXIpE; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48CBnZfC028261;
-	Thu, 12 Sep 2024 17:50:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=JvW5JjlIyW6t8pxCWnahq3
-	wxHl71l61a8D2wN1+88W8=; b=nyxzXIpEARwySedRNcJS2PXMniR2rxOf5c1t4o
-	XI/dzmp3y3F1LJNgYEUb2sZahIrN4KnwxJenNvCuCTDgGNlXmRIhWzHmMLxJBMZT
-	o5YdpZ3aE+X7mlzrGhPrIMw2xbCUkGjWxcHSg9QyEP9OXKUTbjuP2wqWL9C+x9bt
-	ak2W9ELyM9+Q/hQnKX7qZqrt+Ff+Dasf5p5tZN9QT6wj4i4oTMftfXVoP9tw+Rwq
-	sg9Hgwd+Bc9fDvP0FEdq9iprwNaVyXy+bv2LTq1Cs42NQ6nqgO9bsU7DPEFHa+/Q
-	X6HiOz8pF1IciI3VdXCYy69otUKW4pLYGCZN0k6Iv6u+S/Ug==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy736c0a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Sep 2024 17:50:59 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48CHowEe022686
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Sep 2024 17:50:58 GMT
-Received: from hu-nkela-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 12 Sep 2024 10:50:54 -0700
-From: Nikunj Kela <quic_nkela@quicinc.com>
-To: <rafael@kernel.org>, <viresh.kumar@linaro.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        <quic_psodagud@quicinc.com>, Nikunj Kela <quic_nkela@quicinc.com>
-Subject: [PATCH v3] dt-bindings: cpufreq: qcom-hw: document support for SA8255p
-Date: Thu, 12 Sep 2024 10:50:43 -0700
-Message-ID: <20240912175043.2262697-1-quic_nkela@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1726163868; c=relaxed/simple;
+	bh=BwrRcSsqz0YiXi3pcxgbCGIoms2B7OsuEhfuqSvJd3o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P1RBxKstN4yYs8p9t8pIAdZquJVI+WpnbZXnQYpybWJKAGdO6SjEkyHlD5hYdCy8xXj0q03UKkvu2c3jB0PoRme55Nz4GD9GL5+vA4Yv7KzHKF43eo4TK64SRXnOUNS8HBPqVBQ724TngCeqgtm/zo5qAAXjTUuoWQvCuphvEi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Un8Pm1yk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A690C4CEC3;
+	Thu, 12 Sep 2024 17:57:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726163867;
+	bh=BwrRcSsqz0YiXi3pcxgbCGIoms2B7OsuEhfuqSvJd3o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Un8Pm1ykLG/zlWnKpzf3WUnA9/F4MoN9k8B6+gD8Y/niCzTJ51w7h068GLRd96Ytj
+	 v4Y07HPIxghbaVwmlld8orX/855C67S6ok0cLBY3zS68tJBmT0xz5wYxe6Ea8j7FEy
+	 9RiMwzkLpGIqu+Lt9Qf4MPIPlCfvLJKZTAJYN/dXhSEVKzjWnKAgYCPFZN6UbL0LM5
+	 YCojuH3H8V8DQ9XhxnF52PKUOI13130KDFFoj60TYcSnIGp/w/gdLdRfalbQz3s984
+	 9tRdxJC58uNtI/tDnQwsm0sZJUqapWkFgN8w5Wywvgy59HcoU/Jd/P61uuIHUpXcVZ
+	 BdfgRbaTFcTgg==
+Date: Thu, 12 Sep 2024 18:57:43 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Lukasz Majewski <lukma@denx.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] dt-bindings: arm: Document the btt3 i.MX28 based
+ board
+Message-ID: <20240912-hardcore-swagger-0d18494c5d56@spud>
+References: <20240912124825.2528984-1-lukma@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: MyqPSI2pmKsOsFPfAM7g4lts3ZTgt_wg
-X-Proofpoint-GUID: MyqPSI2pmKsOsFPfAM7g4lts3ZTgt_wg
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- impostorscore=0 lowpriorityscore=0 clxscore=1015 bulkscore=0
- malwarescore=0 adultscore=0 mlxlogscore=949 suspectscore=0
- priorityscore=1501 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2408220000 definitions=main-2409120132
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="I2AMAVctH7rGhPJI"
+Content-Disposition: inline
+In-Reply-To: <20240912124825.2528984-1-lukma@denx.de>
 
-Add compatible for the cpufreq engine representing support on SA8255p.
 
-Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
----
+--I2AMAVctH7rGhPJI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Changes in v3:
-	- Added compatible to the correct constraint list
-	- Removed the new constraint block added in v2
-	- Removed the patch from original series[1]
+On Thu, Sep 12, 2024 at 02:48:24PM +0200, Lukasz Majewski wrote:
+> The imx287 based btt3 board is very similar to xea in terms of used SOM
+> module.
+>=20
+> Signed-off-by: Lukasz Majewski <lukma@denx.de>
 
-Changes in v2:
-	- Added new constraints
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-[1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
----
- Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentati=
+on/devicetree/bindings/arm/fsl.yaml
+> index 80747d79418a..f290c824a91b 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -97,6 +97,7 @@ properties:
+>                - i2se,duckbill
+>                - i2se,duckbill-2
+>                - karo,tx28                 # Ka-Ro electronics TX28 module
+> +              - lwn,imx28-btt3
+>                - lwn,imx28-xea
+>                - msr,m28cu3                # M28 SoM with custom base boa=
+rd
+>                - schulercontrol,imx28-sps1
+> --=20
+> 2.39.2
+>=20
 
-diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-index 1e9797f96410..1d1f8637bc03 100644
---- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-+++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-@@ -34,6 +34,7 @@ properties:
-         items:
-           - enum:
-               - qcom,qdu1000-cpufreq-epss
-+              - qcom,sa8255p-cpufreq-epss
-               - qcom,sa8775p-cpufreq-epss
-               - qcom,sc7280-cpufreq-epss
-               - qcom,sc8280xp-cpufreq-epss
-@@ -130,6 +131,7 @@ allOf:
-           contains:
-             enum:
-               - qcom,qdu1000-cpufreq-epss
-+              - qcom,sa8255p-cpufreq-epss
-               - qcom,sc7180-cpufreq-hw
-               - qcom,sc8280xp-cpufreq-epss
-               - qcom,sdm670-cpufreq-hw
--- 
-2.34.1
+--I2AMAVctH7rGhPJI
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuMrlwAKCRB4tDGHoIJi
+0v1FAQCv6hRSIVryj1EuRuiQPd/4a27nLSPCBuGNv+RnagZJCQD/U+xL9Rq/Cxi5
+eHyLmRNdtrKXwOr8mmGevUMwb5VTMgo=
+=IutQ
+-----END PGP SIGNATURE-----
+
+--I2AMAVctH7rGhPJI--
 
