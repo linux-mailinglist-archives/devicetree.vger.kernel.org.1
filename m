@@ -1,161 +1,154 @@
-Return-Path: <devicetree+bounces-102325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AEC5976722
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 13:03:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD28D9766C7
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 12:39:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40AC51F21F48
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 11:03:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FC111F2150B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 10:39:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81D3019DFAC;
-	Thu, 12 Sep 2024 11:03:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B51B1A0BCA;
+	Thu, 12 Sep 2024 10:39:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="jjLWYZW2"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="bxtPHlzg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49237.qiye.163.com (mail-m49237.qiye.163.com [45.254.49.237])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A1DD18FDD7
-	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 11:03:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.237
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FFBD19F139
+	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 10:39:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726138992; cv=none; b=feje85rFRGzvaGy56HANFbUlyRFr54yqgAi+cGvYNwFO/W4DtuztmtTGESprGeEFU6CVI1tHUgo3frD6Prchp2S6HcGtPsQh9eOsUDieIDabIfnYnH4dLq/CLDrCPylp728KxZ1t7ZQvaZlgcC+Yl43lkyaL4arOHQM9SYRIwek=
+	t=1726137554; cv=none; b=BmJjZo3+gWtieO1mRDexcB5G3ZwC+22U0pp8N0EClsM873dbkcoj1XBIwTOKEjn9XNwLAqJ86t4ONiTE/llf0SJIYchmfRg3l/+EmxuhBOHSM5Pzx9ONeIPjgwTN+2MlSqdEu0KJTTC2aLVUAR4xX2Ol3cF4js+kwhdoaceg7Eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726138992; c=relaxed/simple;
-	bh=E8VoImG9+MF3eUu1HB3WXy5oVqOL5uqa+5XM8hDlKqo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hFOUaiAuSBhLD0VSMwCXyrlEWJKF2RsdMzi5bkjaJ9X2ygarE8Z6pCE89K+9KP3VAAIPx8+r87a1Qiq/7wuCIQAZ41Zl7MYST+XGiR+SUqQWecIgeUsJ8nOy/4ACdv6jBXelQd1G9dTdDcXVaCCgtfF0uCyzMnVrS4LO3xLnDp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=jjLWYZW2; arc=none smtp.client-ip=45.254.49.237
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-DKIM-Signature: a=rsa-sha256;
-	b=jjLWYZW2/7k3ggTDYipqkgmDgFY/pTxmOTvJxzY5vtJe7j/XVvxz+px9s3HVrkxxj+zEk+m4M1iOI1e4+QYsCwb2tJ1PUHCepl63amaGPBxYFNUTkkbxvYIMblqNgP20StyOySvJIuYP6maRCmKR7UKs4jAwHGewBmDTQin8vtM=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=0GXIUc6xG/GGsPFZhO+ucHCg3q0s0E/+IDeCgVQl8YE=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [192.168.60.65] (unknown [103.29.142.67])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id 06B29900C0D;
-	Thu, 12 Sep 2024 18:26:46 +0800 (CST)
-Message-ID: <e534f0b2-8d30-4175-9616-105e53d25811@rock-chips.com>
-Date: Thu, 12 Sep 2024 18:26:39 +0800
+	s=arc-20240116; t=1726137554; c=relaxed/simple;
+	bh=KL60dx9fshGB5LmggBDPVvqxNFJ38m0h1l/J+r6RXgI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=ZqYtl/oLf6npql/j60U3Yx51+MwU9My3W3z/mo8GMoRjfwn06DNDvvVa7q8NStz7+U07L5DhFXH/XzGAi7ur8YS1ukhBkr+eEGB08qCEQJVJkfPJZs9TqQF/pED4vM6pMKZhEafyjWvWFb9QLPh+lc5UgAc8DlhJML4tM4/e9Io=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=bxtPHlzg; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20240912103904epoutp02a81ae1f4d3ea61883f6ef5134d9675df~0ePOOY4871053510535epoutp02O
+	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 10:39:04 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20240912103904epoutp02a81ae1f4d3ea61883f6ef5134d9675df~0ePOOY4871053510535epoutp02O
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1726137544;
+	bh=sMHeG2TD6GRnHAxku6ZaajzzNHNByF1tvmQw41lD6vc=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=bxtPHlzgmQW+yYfZseWxkVk8LHO/zcXusUzIbBrrT6Ru8nMroQ6GuuiXbUokOnAYh
+	 LWyfJ1HP5SjRqbO3Ptn/y4FWWG5YSz0dhgk/YKkieITMdkNyPjH/a0B2Hw7scq9vYx
+	 4Z1cFFbUEG0SqPYOTFAsxoKen4QM22wnFS86iVK4=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTP id
+	20240912103903epcas2p477995dd6377bdc76d28f962f01617b95~0ePNhGIZc0547505475epcas2p4Q;
+	Thu, 12 Sep 2024 10:39:03 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.69]) by
+	epsnrtp4.localdomain (Postfix) with ESMTP id 4X4DSl3h9tz4x9Pw; Thu, 12 Sep
+	2024 10:39:03 +0000 (GMT)
+Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
+	epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+	83.2D.10012.7C4C2E66; Thu, 12 Sep 2024 19:39:03 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+	20240912103903epcas2p3ff3df48eb8b19d27053b2c2fe40ea1c5~0ePMt54nX2496324963epcas2p3x;
+	Thu, 12 Sep 2024 10:39:03 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20240912103903epsmtrp205e0626175eba11cf0da69ec76c02e44~0ePMswBPW1077810778epsmtrp2X;
+	Thu, 12 Sep 2024 10:39:03 +0000 (GMT)
+X-AuditID: b6c32a47-c43ff7000000271c-a5-66e2c4c7c0ab
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	2C.81.07567.6C4C2E66; Thu, 12 Sep 2024 19:39:02 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.60]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20240912103902epsmtip1fcb7844cb17f8ded5353b0818d4557f1~0ePMd1oWb3132831328epsmtip12;
+	Thu, 12 Sep 2024 10:39:02 +0000 (GMT)
+From: Sunyeal Hong <sunyeal.hong@samsung.com>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>, Chanwoo Choi
+	<cw00.choi@samsung.com>, Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, Sunyeal Hong <sunyeal.hong@samsung.com>
+Subject: [PATCH 0/3] add clocks support for exynosauto v920 SoC
+Date: Thu, 12 Sep 2024 19:38:53 +0900
+Message-ID: <20240912103856.3330631-1-sunyeal.hong@samsung.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] Revert "arm64: dts: rockchip: remove redundant
- cd-gpios from rk3588 sdmmc nodes"
-To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20240611120645.457-1-naoki@radxa.com>
- <20240613001757.1350-1-naoki@radxa.com>
-Content-Language: en-US
-From: Kever Yang <kever.yang@rock-chips.com>
-In-Reply-To: <20240613001757.1350-1-naoki@radxa.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCTh4aVhlJTE9KQ01CGENPSFYVFAkWGhdVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlKS0hVSUJVSk9JVU1MWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09LVUpLS1
-	VLWQY+
-X-HM-Tid: 0a91e5c570ba03a3kunm06b29900c0d
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PU06Myo5PTIyNyM9Nw8TCEg6
-	DSFPCTZVSlVKTElNSkhNQ0tDSUJIVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlKS0hVSUJVSk9JVU1MWVdZCAFZQU9NTkI3Bg++
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrAJsWRmVeSWpSXmKPExsWy7bCmue7xI4/SDDpXi1s8mLeNzWLN3nNM
+	Fte/PGe1mH/kHKvFy1n32Cw2Pb7GavGx5x6rxeVdc9gsZpzfx2Rx8ZSrxf89O9gtDr9pZ7X4
+	d20ji0XTsvVMDnwe72+0sntsWtXJ5rF5Sb1H35ZVjB6fN8kFsEZl22SkJqakFimk5iXnp2Tm
+	pdsqeQfHO8ebmhkY6hpaWpgrKeQl5qbaKrn4BOi6ZeYA3amkUJaYUwoUCkgsLlbSt7Mpyi8t
+	SVXIyC8usVVKLUjJKTAv0CtOzC0uzUvXy0stsTI0MDAyBSpMyM7ombiMveAdS8XS/lOMDYyv
+	mLsYOTgkBEwkmp8rdjFycggJ7GCUOHYrsouRC8j+xChx/u98dgjnG6PE3WUrWECqQBqm/H4L
+	ldjLKLF2fQMThPORUeLEj4lMIGPZBHQl/vxzAImLCOxnkri1YCYriMMscJZRYtXhPWCjhAXs
+	Ja7132MFsVkEVCVOtd0Gi/MCxY+d/wy1Tl7i+uOjTBBxQYmTM5+AxZmB4s1bZzODDJUQaOSQ
+	mHtjJxNEg4vE/N2foJqFJV4d38IOYUtJfH63lw3CzpeYfP0tE0RzA6PEtX/dzBAJe4lFZ36y
+	g7zALKApsX6XPiSQlCWO3ILayyfRcfgvO0SYV6KjTQiiUU3i05XLUENkJI6deAZle0j0LVjE
+	DgnfWIkl05ayT2CUn4Xkm1lIvpmFsHcBI/MqRrHUguLc9NRiowJjeKQm5+duYgQnVS33HYwz
+	3n7QO8TIxMF4iFGCg1lJhHcS26M0Id6UxMqq1KL8+KLSnNTiQ4ymwPCdyCwlmpwPTOt5JfGG
+	JpYGJmZmhuZGpgbmSuK891rnpggJpCeWpGanphakFsH0MXFwSjUwzV81lSNnm29lfvfJ1x1/
+	RGxmVfhXx/vP/HzZ/bpPstSNCEvrVQtTVmmHTKsxtvCo+8H2Z4WQYcra88t39l0sFfrEsVg3
+	c39HPOf5KSui2fbMU7v8W3nX3tD487wr5v95dcHI9GllfPkkacOgbr1EswmvtWySIpKXqS1N
+	mWF/Y3a2/Ssnufx/spUbbv27vDZnDif/w6tK/ue99yQqFlyMVHnMcfq0mpZzg2ZqZpNmnJ6p
+	3uyJNyt/XtSLybCdfW76v5nLl967Eaxh82Q+/8l57aZNP1ckHc0vMU8s6lRs2z1r7oyf9xsD
+	T09+wKdpo5D9QvP5Sz+nyOcvp0sqf60Qn/70anCZxKudaqsuqW/8qsRSnJFoqMVcVJwIAMLj
+	D58zBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrALMWRmVeSWpSXmKPExsWy7bCSnO6xI4/SDL53Wlo8mLeNzWLN3nNM
+	Fte/PGe1mH/kHKvFy1n32Cw2Pb7GavGx5x6rxeVdc9gsZpzfx2Rx8ZSrxf89O9gtDr9pZ7X4
+	d20ji0XTsvVMDnwe72+0sntsWtXJ5rF5Sb1H35ZVjB6fN8kFsEZx2aSk5mSWpRbp2yVwZfRM
+	XMZe8I6lYmn/KcYGxlfMXYycHBICJhJTfr9lB7GFBHYzSvQ8NYSIy0hsbPjPDmELS9xvOcLa
+	xcgFVPOeUeL3tR9sXYwcHGwCuhJ//jmAxEUEjjJJbFrwjBnEYRa4zChxdhdEt7CAvcS1/nus
+	IDaLgKrEqbbbLCA2L1D82PnPLBAb5CWuPz7KBBEXlDg58wlYnBko3rx1NvMERr5ZSFKzkKQW
+	MDKtYpRMLSjOTc9NNiwwzEst1ytOzC0uzUvXS87P3cQIDnQtjR2M9+b/0zvEyMTBeIhRgoNZ
+	SYR3EtujNCHelMTKqtSi/Pii0pzU4kOM0hwsSuK8hjNmpwgJpCeWpGanphakFsFkmTg4pRqY
+	IhfH9X+apD3VNPGxEu8z7wCL66ds+q9NkP+8kXHagaSYP/vNVvW3qIqKpE51v3mZRf3L9x/v
+	mHSeddS+fG2cZew4h+Hay4in/tXN+4s+14WGP7XOP3Ja0fX58h3x9gwMbzt4uNmj+j9HCEke
+	dp8uqhBz7pbmittyt3g31C7g26YW8NVN5cHcV6GHA8Udfvz9Vbn1URs3f9+LDouJqbM3Rn8R
+	6QhZ1rf+tKfVubkXetaEHdjysuPBj6zkmv4fKlvan/ZfKZS34VrEmlw878x0y5AeUY3Id+Hv
+	66a/n+50+pNhbP/mb+6hibF/deqfuZyOacvkYPervtcw4bmeoX7OLH/xbNkp7MsmT7R/eYBb
+	iaU4I9FQi7moOBEAAwT3D+MCAAA=
+X-CMS-MailID: 20240912103903epcas2p3ff3df48eb8b19d27053b2c2fe40ea1c5
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240912103903epcas2p3ff3df48eb8b19d27053b2c2fe40ea1c5
+References: <CGME20240912103903epcas2p3ff3df48eb8b19d27053b2c2fe40ea1c5@epcas2p3.samsung.com>
 
-Hi Naoki, Heiko,
+This patchset adds the CMU block below to support exynosauto v920 SoC.
+- CMU_PERIC1
+- CMU_MISC
+- CMU_HSI0/1
 
-On 2024/6/13 08:17, FUKAUMI Naoki wrote:
-> This reverts commit d859ad305ed19d9a77d8c8ecd22459b73da36ba6.
->
-> Inserting and removing microSD card is not detected since above commit.
-> Reverting it fixes this problem.
->
-> This is probably the same thing as 5 years ago on rk3399
-> https://lore.kernel.org/all/0608599d485117a9d99f5fb274fbb1b55f6ba9f7.1547466003.git.robin.murphy@arm.com/
+Sunyeal Hong (3):
+  dt-bindings: clock: exynosautov920: add peric1, misc and hsi0/1 clock
+    definitions
+  clk: samsung: exynosautov920: add peric1, misc and hsi0/1 clock
+    support
+  arm64: dts: exynosautov920: add peric1, misc and hsi0/1 clock DT nodes
 
-Sorry for didn't notice this patch.
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi |  50 +++
+ drivers/clk/samsung/clk-exynosautov920.c      | 290 ++++++++++++++++++
+ .../clock/samsung,exynosautov920.h            |  47 +++
+ 3 files changed, 387 insertions(+)
 
-The SD card hotplug can not work because the controller is getting into 
-runtime low power mode,
+-- 
+2.46.0
 
-so we need the fix in mmc driver to make the CD function work as below:
-
-https://lkml.org/lkml/2024/9/12/323
-
-
-Thanks,
-- Kever
->
-> So we'll go back to cd-gpios for now.
->
-> this patch is tested on Radxa ROCK 5A and 5B.
->
-> Fixes: d859ad305ed1 ("arm64: dts: rockchip: remove redundant cd-gpios from rk3588 sdmmc nodes")
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->
-> Changes in v2:
-> - reword commit message
-> - remove empty line
-> ---
->   arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts | 1 +
->   arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts     | 1 +
->   arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts         | 1 +
->   arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts        | 1 +
->   4 files changed, 4 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-> index 1a604429fb26..e74871491ef5 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-> @@ -444,6 +444,7 @@ &sdhci {
->   &sdmmc {
->   	bus-width = <4>;
->   	cap-sd-highspeed;
-> +	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
->   	disable-wp;
->   	max-frequency = <150000000>;
->   	no-sdio;
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
-> index b4f22d95ac0e..e80caa36f8e4 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
-> @@ -435,6 +435,7 @@ &sdhci {
->   &sdmmc {
->   	bus-width = <4>;
->   	cap-sd-highspeed;
-> +	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
->   	disable-wp;
->   	max-frequency = <150000000>;
->   	no-sdio;
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> index 4e2bf4eaef2b..df845929b084 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> @@ -390,6 +390,7 @@ &sdmmc {
->   	bus-width = <4>;
->   	cap-mmc-highspeed;
->   	cap-sd-highspeed;
-> +	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
->   	disable-wp;
->   	sd-uhs-sdr104;
->   	vmmc-supply = <&vcc_3v3_s3>;
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-> index 8e2a07612d17..b070955627be 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-> @@ -366,6 +366,7 @@ &sdmmc {
->   	bus-width = <4>;
->   	cap-mmc-highspeed;
->   	cap-sd-highspeed;
-> +	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
->   	disable-wp;
->   	max-frequency = <150000000>;
->   	no-sdio;
 
