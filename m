@@ -1,304 +1,362 @@
-Return-Path: <devicetree+bounces-102344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D84A397692B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 14:30:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0860A976942
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 14:37:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 670701F22419
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 12:30:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 55997B210F9
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 12:37:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A47A61A4E90;
-	Thu, 12 Sep 2024 12:30:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84ED1A2634;
+	Thu, 12 Sep 2024 12:37:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E7YnRWng"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="i8i60Lk+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2060.outbound.protection.outlook.com [40.107.21.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C8F41A4E8A;
-	Thu, 12 Sep 2024 12:30:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726144204; cv=none; b=IhfSbvTRKi4sO4IOWS81JKShwOM9MnHrGxB0CRd/VNjrgC6KmXO+iivrxvXQ1EZc6eJUWF6+LbsAbch3yjr76LjTpRilB+S7ctzUZXRLWYoSyyzE51hBHRpyqN7diWOV1PRPFIzjDRAhhYiDPSMcc5ygR+RhSlxDIeP1I1dbfSE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726144204; c=relaxed/simple;
-	bh=rC/IckTRtEJyVb/IPxL3i6IwaLij7O4xfaquM3pJMDk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ELoKoASLzeElIVxVoTrGQnN7eAT+DJBxpyl9eyOfXi11rrL/ftkKBLIKbbB2k6sTQFAddXRUmuuK431lQiKqvS1sJ/gokeIFYZSeJWHxXTIOW3KAwsA2kh4je019HicfA1h2Jj48JZCAx5MNpbzMzfjFxH7aCk9Jhv4y+q26ODk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E7YnRWng; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70790C4CEC3;
-	Thu, 12 Sep 2024 12:30:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726144203;
-	bh=rC/IckTRtEJyVb/IPxL3i6IwaLij7O4xfaquM3pJMDk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E7YnRWngPdl7KimbKVKa9bfMIjdAle664Knyo4Bbtiq2AkZqgPOTm5msSZxb8YhIV
-	 ZsqOEvPWtuiVPHqowVxaTngDirlCS6LqggKG0WU1TFDVMAXF7rk7LST/9E/K+1Ghbh
-	 gq8tJC57+lAup85+uEXpJBqffumtKICsSlOvZcOmLHAJHTwvl+LimWuOMCidPug4E7
-	 kHrugplzgV1v7cHBxt/KQul1SibQ//JezQpJ0h1/mVUf+lJwIFoyjQ7DJv3u/NR3tv
-	 RffNAI++IDpMDS1ejqdI5ihr513LFUieJfurvinbi336AcXQ8X8Oh0xyi+/AKUGOoR
-	 Fi6eASeCMs+xw==
-Date: Thu, 12 Sep 2024 14:30:01 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Sandor Yu <sandor.yu@nxp.com>
-Cc: "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>, 
-	"andrzej.hajda@intel.com" <andrzej.hajda@intel.com>, "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, "jonas@kwiboo.se" <jonas@kwiboo.se>, 
-	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>, "airlied@gmail.com" <airlied@gmail.com>, 
-	"daniel@ffwll.ch" <daniel@ffwll.ch>, "robh+dt@kernel.org" <robh+dt@kernel.org>, 
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>, 
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>, 
-	"vkoul@kernel.org" <vkoul@kernel.org>, 
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>, "kernel@pengutronix.de" <kernel@pengutronix.de>, 
-	dl-linux-imx <linux-imx@nxp.com>, Oliver Brown <oliver.brown@nxp.com>, 
-	"alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>, "sam@ravnborg.org" <sam@ravnborg.org>
-Subject: Re: [EXT] Re: [PATCH v16 4/8] drm: bridge: Cadence: Add MHDP8501
- DP/HDMI driver
-Message-ID: <20240912-zippy-mongoose-of-domination-2ebc1d@houat>
-References: <cover.1719903904.git.Sandor.yu@nxp.com>
- <359914108b879e995d4a39de32a33310009f0fab.1719903904.git.Sandor.yu@nxp.com>
- <20240702-quartz-salamander-of-culture-eec264@houat>
- <PAXPR04MB94480AB0490BBF00D2BA17BBF4932@PAXPR04MB9448.eurprd04.prod.outlook.com>
- <20240903-gay-capable-hound-3cbef2@houat>
- <PAXPR04MB9448EF507CB5C18A43239A80F49E2@PAXPR04MB9448.eurprd04.prod.outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E70B19F42D;
+	Thu, 12 Sep 2024 12:37:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.60
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726144654; cv=fail; b=KV+FkLv3fEcXey72EOlOQDurBhYEZbbRRBmfnfUGG2SVr0vHboPSFrgbW4rEy4+Kwqt1oK0zKKFEB2Cww/mBBixnPTa873gCTdE5CqaQsjwtSRvivZ4lEAPipqqqGlZyeqWJu+djAucQNzyEonq5g4DLwhizSYzcUrminvA1HW0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726144654; c=relaxed/simple;
+	bh=N++pw1PhiZDyT4FMQom0HHo8hEz1VSIpoMmVKPmZniQ=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=pK8AGHRRBtFnQO9Tk3B8ER8D+0IqTtMtSwzkzv0UobQhSqKuzYPDg658rfpo/hZYF/JiuJV7Xxp23FY8wSUFO1I9TAb5K9NPnnZLS2RjXKBZbiajzEAxc5dFObgmk9hykRk/dbmTUupcYi5vdV7shnxJlH7+h/r6554lyFsl3Xc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=i8i60Lk+; arc=fail smtp.client-ip=40.107.21.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NQAiUVHUCUp2BEhC8SpoUCoO9pfDZc8H1nxAbh4bdPWLjCVbmuhkpgUFxdEFyQvJs9o614ANE2AC4u3NMPb6Ib1n7wrkPYDUuZMXCK1CpXUmbHd/deUaiCuBwBAnFlrGy+yc2zwZ0dH/zAYaYWbtk13NHMl/zuSq+4dR8rAkQnsRHFjHilgl5/ImEepk1mGdMC0TC1VO0GEnfDIYDZPglIHzALO1nGyPMfpb8otGw//mvdgcqIu3Rb3z8HNz+QQPPWpn6esZ5yi4froeoD1LheEdmTAZgzpDOGxY4v9PWv9WSKUBekHQMuJBbUYGn9zweQ0NFtI2rwW/48I7BWeIfg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FzIjuBwIa5f1XGqcALVOSPdZTxgGf2atIH74XTRzuxo=;
+ b=vgH/4OlUskVj4TrCJf/aPomRYXrk9q3jg+EDc+Ri13hwrtbba0iCInG9xbT2h1BoTQygSKZbBtJw2439//IGKWhMELotUxb69d+Gpl5aKcWHJCtjHHnrsV9ucjv0dSoEXWOSXOJN1PiaWkdSVXVW8iJVAL88B4Q9V/C8/rRoh3HcVYL0BWzLUqPVxYHwPRgWuv7NR5xShAd0xM64cvD2faq5bvTT7zCJ9Zn1kfHb+PS0+aCfTanz9DJI+O+C5Phn2j2en0q2VVXRf2uET+dPh301atAqhHElOQI9H/d+VhNZjdVLJjKFe3chMeORuLqDHwm5QIMI8iCJTi1gWn2wXA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FzIjuBwIa5f1XGqcALVOSPdZTxgGf2atIH74XTRzuxo=;
+ b=i8i60Lk+j6VdASOPzNX+eQXQSNeYgyFMSxwXOFaxtBJ47OIT5mDiyM6x9vh0Mjy6G09/GGq06OjTlmOUNxGuuZY0Q9uM9ZI5Bp07g6iHQln485phvb7I6YV/VyiQ2Zjkp/EZ/9UmpUWL2/92bwPWZUA/6OsdQtXesT8dh21HDiZRpWVVp2GEe61oRLVRLjj7BlEyp9m3J4F7+vBQdNAXy56px+5XnOmqOHoHKvra7ZDsW9Wcj//ktw97XmGaM18zRiOaxSGd3SJ9tp3QnpIl+OEYng+SVS+GUj1vXuN6G+rQwtQ8xxur19Lv7bPFG/wF3ghZ3pV5vknSanrB8QHCwQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9251.eurprd04.prod.outlook.com (2603:10a6:10:352::15)
+ by VE1PR04MB7231.eurprd04.prod.outlook.com (2603:10a6:800:1a9::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.27; Thu, 12 Sep
+ 2024 12:37:28 +0000
+Received: from DU0PR04MB9251.eurprd04.prod.outlook.com
+ ([fe80::708f:69ee:15df:6ebd]) by DU0PR04MB9251.eurprd04.prod.outlook.com
+ ([fe80::708f:69ee:15df:6ebd%7]) with mapi id 15.20.7939.022; Thu, 12 Sep 2024
+ 12:37:28 +0000
+Message-ID: <2815dcf8-bb90-4e3f-837d-2c2a36a8744e@oss.nxp.com>
+Date: Thu, 12 Sep 2024 15:36:46 +0300
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: rtc: add schema for NXP S32G2/S32G3 SoCs
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, linux-rtc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, NXP S32 Linux Team <s32@nxp.com>,
+ Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>,
+ Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+References: <20240911070028.127659-1-ciprianmarian.costea@oss.nxp.com>
+ <20240911070028.127659-2-ciprianmarian.costea@oss.nxp.com>
+ <20240911-racism-playmaker-71cb87d1260f@spud>
+ <62ba70ca-429e-476c-bb7b-78f743574a68@oss.nxp.com>
+ <2024091212260302903af7@mail.local>
+Content-Language: en-US
+From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+In-Reply-To: <2024091212260302903af7@mail.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AS4P192CA0047.EURP192.PROD.OUTLOOK.COM
+ (2603:10a6:20b:658::19) To DU0PR04MB9251.eurprd04.prod.outlook.com
+ (2603:10a6:10:352::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="vicghtzdcgvwj5cg"
-Content-Disposition: inline
-In-Reply-To: <PAXPR04MB9448EF507CB5C18A43239A80F49E2@PAXPR04MB9448.eurprd04.prod.outlook.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9251:EE_|VE1PR04MB7231:EE_
+X-MS-Office365-Filtering-Correlation-Id: db49fa07-2b0f-47f6-28e9-08dcd327a965
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bnd3dDRrVUFpdW93dGNiY08zQk0xU05SUVQrKzdoR1NOdGZ1bzhKOGNmVVV0?=
+ =?utf-8?B?TjN0TnVwZTJkcUNDS3ZyQlEwQjdKVVFkM0NkU1JKbXNTYmpkUCtwZEt5Q2Nh?=
+ =?utf-8?B?MXpPaDhhMHVFU1YxbVlsbi90NXF0MWZiZU00QW1WUDB0ejFKbjFEYkNBQ1NF?=
+ =?utf-8?B?N0M5enk0VU9FS0RRblg5VWdVTVp3bEZUQUhoVGFOMlJLZjdFNytNd0lGb0px?=
+ =?utf-8?B?TVpGLzAxUWliaEwzMmoydmhZYmFiUnBFcTJSZkRJbzhPcDlMUXJZQzRqRmRx?=
+ =?utf-8?B?N2xRQUppVEVtb056MDhmQ0JhemF3L0hiR2hlYUZkUnN0dktLM3VodWJmSXhW?=
+ =?utf-8?B?Q3Q4KzE0Sjh0T0JiSGtoTkdQQmI4VWVxcFZwejM0NG4zTlB5QmN5RHVlbjl5?=
+ =?utf-8?B?ckp1QU9UdEpZSzdPTzQvZEJOK0RSUC9hdzdCbVVWWVJ5STlQR2YyTDFic0Ft?=
+ =?utf-8?B?Q1pST1dHVHUyaGhtRkRiZWdKOXQzWkIyaEN4U3JjVXlScGJyblUweXVFczBY?=
+ =?utf-8?B?WlFKZnM1a2hnU3VrTko4ZndVVzBhclZuWG9MTlNhRFZic2xHRnhYeTlBSnBL?=
+ =?utf-8?B?MC9ORklnRmx4cGVieVdpSUJybklYWGxGSk9sQitzNFdvWHNNVlpYZmVCNGxj?=
+ =?utf-8?B?MzJUWXpuemdtSjdEQ09FdkZKdmtBbjhZc1FkWFpiRlNTc3ZHcE04MGJSSXdv?=
+ =?utf-8?B?SlpKejV1MlNUVFdLd0VkdGlDMnBMRlIrZU5zQ1l0RlBzRHl2SDFIWVVBUmdh?=
+ =?utf-8?B?Mm1iQ25MbVZqbkx6VzJzMkJ5K040N2VmMnVsUFdhNHNtQTRuYnE2ejNvQUtw?=
+ =?utf-8?B?bktTMEhxOEhCWjNXOVNqd2ZLQzVnZXpoU3VuTklicVIybTBmRWxvbmhzaWpt?=
+ =?utf-8?B?Ui9jLzhhTG1nRkpUMEZ5QWd5aytERTBSWnlTNCs1c3hBZVFJUTRQczVMOXI2?=
+ =?utf-8?B?SzQxYjc1bjFUQ0NzakNtaVhGSlFYa05INjZIbm45MGNLY2d5WTZWVUgza25n?=
+ =?utf-8?B?VEZ5T3FqejYweEpWTW5rQURKcUVhY1RGcWttWEVHVEx5dDNhanJHaTVyNHdt?=
+ =?utf-8?B?a1VXWDlmNTU1ektmV1Y5anVVYzFTdCtEMWhzdmNsanpxU1QwUTRXYmVnTFlC?=
+ =?utf-8?B?SENockVZdTVzcjMraHgyUVhMWWxOZTV6WHNuVEsxbUZEcWV5VHZFeWt2dysv?=
+ =?utf-8?B?NkV3bXhWalp6TUUzSVBkOWFITS9jeUdzbnZDWmhNY1B0YnNad0NEZVlNOHRV?=
+ =?utf-8?B?blpXM05TdkI3bjNzajRBT1V0YXo2QmR3RWtVU0tVRVlub3Qxcnl0dmNKSzRw?=
+ =?utf-8?B?Uk5iMVFRN0tvYWRpczR1SERHd3NRU1VZUjAxVUdLWWgrNnEybnRKNTRpSFQ1?=
+ =?utf-8?B?NFhpNHdVZjMrM21WUFd2R1pVbEZuNVB2S2hYdXB0SlhCZENjTkVNc0hLV0o1?=
+ =?utf-8?B?SVZpVVdkcXF4R0VvbXBRVFZrcTkyZXpqWnZDcHZHR0I3Q2FpZldDVnJRWDRT?=
+ =?utf-8?B?YUxGSGN3ZnY1eUx0QWlBSWZrRmVjTXJsVVo1TSt3anV3Z0xJUVRTVlJIbmhz?=
+ =?utf-8?B?d2M0Mi9xMkdnSGRZSUlPN09sWjBzMXhlNWRvS29GeS9EaHpvVS93b0VId0tE?=
+ =?utf-8?B?dkhqQ2MycGNyaVV0bE1kSVVWczJPRm5leURnL2RVWGtPMTRwTy9KNGVuaVpp?=
+ =?utf-8?B?TXFNeTYyazJRTm1ZMTcydmljSlFSZ0NYU0VPZE4wbGRWMVBweG8vOGpxU2JE?=
+ =?utf-8?Q?qxYCmRPRwwe/yi8M/o=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9251.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?bUMyK3d6amd2aHE0cHVCblB3QWQwcHlma0wxNWlXV0ppM1pXR2psQm5UR3cz?=
+ =?utf-8?B?Sjgra1dobmJKY0N6RncvUUo2aVZkS2N2dk9WQmhOd3owd3U1UDVJU0hZU1BV?=
+ =?utf-8?B?QmQyWVFubDd0S2F5M1A2QWF5Q3NTaUU1bVRhNTIzUHljUjlIRjFVcC9VeFpv?=
+ =?utf-8?B?MkVZYjNFV2UrYUR5NGVIMW0rKzFSa3cvdzVVZWFMU25WRForV0Joekc0Umh5?=
+ =?utf-8?B?UnVxWXZXaStLMWRRYmVaVmpxM0t0RWphcFE2M0crU1RaNVMycWZQT0NJQm5z?=
+ =?utf-8?B?MC9McjVqMWpTRWZIY1kwMW1XcWhWN0pPMTVpNkRBRTRyRjZDNmxzT2llcUVR?=
+ =?utf-8?B?NHRFaG1GcDN3MnBVcG9ydjIwQW1pckZiUGsrclZZOXRNZkdxK2NjWjFRUGRT?=
+ =?utf-8?B?a3FKbXBWNE5URGVuN0FEWXpnZGY1UFpmejlHQmhwM09PSzF0YlhPQTExNE95?=
+ =?utf-8?B?eDA1akJIanJZMGVpMURJdE5iMFhvOW9jZXJ2MzFuRC81RXVJMkJEcTZZY0tW?=
+ =?utf-8?B?ZzRORXBKaldJcFcza0xZMHEzUi91SzUzNk5BYm82a1NZSnJzamUrWlRvVkRy?=
+ =?utf-8?B?cXlGeS9QVFQwaU1qNzZNZFI1U2VibktGdkJKdTNBSy9Gbm8zS3R3SW5jSUJy?=
+ =?utf-8?B?N3lWUk1Gdkg1U05PeHJLNmMrUEx3VVpxSVBqQkxvL29rbThlV2lTSGJwdmVJ?=
+ =?utf-8?B?dllWUnF5UnRJRnFXUWpoeS9Ta1BwMGdUOVdKRlhNcUh0bms2Y29hVmd1SjFO?=
+ =?utf-8?B?ZmR3R01KVWFNQVBjU2JRT0pDbzNtSWhxcUUwZVJHMDMwOFA3U2ZnMmZ6d3k2?=
+ =?utf-8?B?VGpiNDR2M090MmpuNHVDN3JvKzZEVTNCNHU1bUswUUdoOExoWnZQNUM5ODcx?=
+ =?utf-8?B?aFdWL0Z1cXhLT0FxRTlSTWhpbGxISGs1bi83emhrM1ZJQ0lhZm1sMmJ4Z1Fn?=
+ =?utf-8?B?RlJ5YUd4QVZsaW40dmVMc0M5SWhQRlE5Z21lS09IengveVMyOC9ubDAvRTli?=
+ =?utf-8?B?ZGFZeTg4SGx3d1IrcUFRY0ZERUJ4Zkg1RXNmM1FyKys4SFdsZTVZK0pXY25X?=
+ =?utf-8?B?OGJRUVBXbHVyaHNDTTlBZFl5alRtUVU0a0M3L21ZcXBQSFY2dkZCTUNXZjZi?=
+ =?utf-8?B?NVpZcDJ5alAvYzFOUDQyRi9kSHNZb3c3UXpOREJHWU9KOG1SRWxlaTlNdCtI?=
+ =?utf-8?B?VjhOUFNyR0gyMUpxVDZ2SmllMElVWHV6OEJieU5zaDFnc2R5REZGWlAyalhp?=
+ =?utf-8?B?WlREdmtaaEhhUThOVSs5dFJJNHd5cWhEdE1Oa0ZJQWhJSEhOM0xtTkVycjFm?=
+ =?utf-8?B?bmppZ1VkOWFrdWJGam8wcFhaTGtZY1FDSzB5VHNKQ3RKNTlTNk9zQVp1d1F0?=
+ =?utf-8?B?TFBNWXk0SWtGNk9ySG1wOVNFdmc2OTBRS3o1MDgwTmFGdC9mUEdrS0xUMHJY?=
+ =?utf-8?B?TVlyTjJ3UnhCZlV3ZUExZEE4dUxJR281aDZ5THc4bENrZG0xZWZVOUdRWE1h?=
+ =?utf-8?B?ZWc5NWRKRTkxYXFVM1Z4ODIrWWFSM0w4S1J2UkRtY3FRS1J5ZERpTUZKUWRh?=
+ =?utf-8?B?Vi9nSzBvQ3JFY2pIYmdSYWpvWXdCNjY5S3luVWtOcTBlb2lIYlc0TXRLa2xI?=
+ =?utf-8?B?M2V6RHZpK0NESEhnNitGN21VUml6K0laa0pTRXFPSEo4Nkt3QjhORDV1b0g5?=
+ =?utf-8?B?dERNVlpWQkwycWpxUkp5dWhpQ2tud3ZkZTlacURtYWw2N1hJSEdpczNXNXk4?=
+ =?utf-8?B?RXVLMk5EV0RGMVFTclZ5NU5xRFRNM1JmdjRFeXczSjEwSytBaWJtYXRVek8r?=
+ =?utf-8?B?WjRSZ08zcWVXWWswR0R1L2ZMd3BKSmY2K2lpS1lkaUNPTWhhdlpLdlJvcWE5?=
+ =?utf-8?B?Z2dsOVRpTHZ4cFVzcDJmUXJBTkdtell6RDlWclFsQ1VTNlozbVUzSWl3RFlC?=
+ =?utf-8?B?TVY1V1NjUURsQkZqQjRnM3FHT1BvL1p4eHdNTFIrYVh6Z2JzUWdycGhOTlJW?=
+ =?utf-8?B?K0lmOE53V1JNOHRibm9yQlVady9CREVQT3J3M0RqYXJqOXJmcWM4Q1lMQU13?=
+ =?utf-8?B?cXVIbDJYTU1OVGZYRVVSU2xuMHdZbDZMMHp0aS9VcEZHL1hPZk5Qb0o4SlRh?=
+ =?utf-8?B?TGZKajRFK3BSSmtJa1lNemRZc0tiRG5RZTNyOFN2WjJFQ09vekVGWlBiNHRP?=
+ =?utf-8?Q?4v3HQHncpmYhgeaaMmRlX4U=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: db49fa07-2b0f-47f6-28e9-08dcd327a965
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9251.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2024 12:37:28.1229
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jrOfZFCoQS9bIvbTIX71YnvPQNE5pYnPHzqyeDVifXAkJDFvHPRFrH9AN8CS+YDulkHtsDa1y+xXZfAOuIMGziKQkSNUk5PMyDopb+Sakqg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7231
 
+On 9/12/2024 3:26 PM, Alexandre Belloni wrote:
+> On 12/09/2024 13:50:25+0300, Ciprian Marian Costea wrote:
+>> On 9/11/2024 9:21 PM, Conor Dooley wrote:
+>>> On Wed, Sep 11, 2024 at 10:00:25AM +0300, Ciprian Costea wrote:
+>>>> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+>>>>
+>>>> This patch adds the dt-bindings for NXP S32G2/S32G3 SoCs RTC driver.
+>>>>
+>>>> Signed-off-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+>>>> Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+>>>> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+>>>> ---
+>>>>    .../devicetree/bindings/rtc/nxp,s32g-rtc.yaml | 79 +++++++++++++++++++
+>>>>    1 file changed, 79 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml b/Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..8f78bce6470a
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml
+>>>> @@ -0,0 +1,79 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/rtc/nxp,s32g-rtc.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: NXP S32G2/S32G3 Real Time Clock (RTC)
+>>>> +
+>>>> +maintainers:
+>>>> +  - Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+>>>> +  - Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: nxp,s32g-rtc
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  interrupts:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  nxp,clksel:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +    description:
+>>>> +      Input clock selector. Choose between 0-SIRC and 2-FIRC.
+>>>> +      The reason for these IDs not being consecutive is because
+>>>> +      they are hardware coupled.
+>>>> +    enum:
+>>>> +      - 0  # SIRC
+>>>> +      - 2  # FIRC
+>>>
+>>> Could you please explain why, given both clocks must be provided by
+>>> the hardware for there to be a choice, why choosing between them is a
+>>> property of the hardware?
+>>>
+>>
+>> Hello Conor,
+>>
+>> Thanks for your review.
+>>
+>> According to RTC module's clocking scheme for S32G2/S32G3 SoCs, it has three
+>> potential clock sources to select between:
+>>    1. FIRC:
+>>      - fast clock - ~48 MHz output
+>>      - chosen by default because it is proven to be more reliable (e.g:
+>> temperature drift).
+>>    2. SIRC:
+>>      - slow clock - ~32 kHz output
+>>      - When in Standby mode, SIRC_CLK is the only available clock for RTC.
+>> This is important because RTC module is used as a wakeup source from Suspend
+>> to RAM on S32G2/S32G3 SoC. Therefore, a temporary switch to SIRC clock is
+>> performed when entering Suspend to RAM.
+>>
+>>    3. EXT_CLK:
+>>      - has not been tested/validated for those SoCs within NXP's downstream
+>> Linux. Therefore, I did not treat it, nor mention it, for the moment.
+>>
+>> Now to answer your question, all above clocks are entering a RTCC[CLKSEL]
+>> (RTCC - RTC Control Register) mux. Therefore, a selection can be made,
+>> according to one's needs.
+>>
+> 
+> Then should this mux be registered in the CCF so you can use the usual
+> clock node properties?
 
---vicghtzdcgvwj5cg
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hello Alexandre,
 
-On Fri, Sep 06, 2024 at 02:50:08AM GMT, Sandor Yu wrote:
-> > On Tue, Sep 03, 2024 at 06:07:25AM GMT, Sandor Yu wrote:
-> > > > -----Original Message-----
-> > > > From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf
-> > > > Of Maxime Ripard
-> > > > Sent: 2024=E5=B9=B47=E6=9C=882=E6=97=A5 21:25
-> > > > To: Sandor Yu <sandor.yu@nxp.com>
-> > > > Cc: dmitry.baryshkov@linaro.org; andrzej.hajda@intel.com;
-> > > > neil.armstrong@linaro.org; Laurent Pinchart
-> > > > <laurent.pinchart@ideasonboard.com>; jonas@kwiboo.se;
-> > > > jernej.skrabec@gmail.com; airlied@gmail.com; daniel@ffwll.ch;
-> > > > robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> > > > shawnguo@kernel.org; s.hauer@pengutronix.de; festevam@gmail.com;
-> > > > vkoul@kernel.org; dri-devel@lists.freedesktop.org;
-> > > > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> > > > linux-kernel@vger.kernel.org; linux-phy@lists.infradead.org;
-> > > > kernel@pengutronix.de; dl-linux-imx <linux-imx@nxp.com>; Oliver
-> > > > Brown <oliver.brown@nxp.com>; alexander.stein@ew.tq-group.com;
-> > > > sam@ravnborg.org
-> > > > Subject: [EXT] Re: [PATCH v16 4/8] drm: bridge: Cadence: Add
-> > > > MHDP8501 DP/HDMI driver
-> > > >
-> > > > Hi,
-> > > >
-> > > > There's still the scrambler issue we discussed on v15, but I have
-> > > > some more comments.
-> > > >
-> > > > On Tue, Jul 02, 2024 at 08:22:36PM GMT, Sandor Yu wrote:
-> > > > > +enum drm_connector_status cdns_mhdp8501_detect(struct
-> > > > > +cdns_mhdp8501_device *mhdp) {
-> > > > > +	u8 hpd =3D 0xf;
-> > > > > +
-> > > > > +	hpd =3D cdns_mhdp8501_read_hpd(mhdp);
-> > > > > +	if (hpd =3D=3D 1)
-> > > > > +		return connector_status_connected;
-> > > > > +	else if (hpd =3D=3D 0)
-> > > > > +		return connector_status_disconnected;
-> > > > > +
-> > > > > +	dev_warn(mhdp->dev, "Unknown cable status, hdp=3D%u\n", hpd);
-> > > > > +	return connector_status_unknown; }
-> > > > > +
-> > > > > +static void hotplug_work_func(struct work_struct *work) {
-> > > > > +	struct cdns_mhdp8501_device *mhdp =3D container_of(work,
-> > > > > +						     struct cdns_mhdp8501_device,
-> > > > > +						     hotplug_work.work);
-> > > > > +	enum drm_connector_status status =3D
-> > cdns_mhdp8501_detect(mhdp);
-> > > > > +
-> > > > > +	drm_bridge_hpd_notify(&mhdp->bridge, status);
-> > > > > +
-> > > > > +	if (status =3D=3D connector_status_connected) {
-> > > > > +		/* Cable connected  */
-> > > > > +		DRM_INFO("HDMI/DP Cable Plug In\n");
-> > > > > +		enable_irq(mhdp->irq[IRQ_OUT]);
-> > > > > +	} else if (status =3D=3D connector_status_disconnected) {
-> > > > > +		/* Cable Disconnected  */
-> > > > > +		DRM_INFO("HDMI/DP Cable Plug Out\n");
-> > > > > +		enable_irq(mhdp->irq[IRQ_IN]);
-> > > > > +	}
-> > > > > +}
-> > > >
-> > > > You shouldn't play with the interrupt being enabled here: hotplug
-> > > > interrupts should always enabled.
-> > > >
-> > > > If you can't for some reason, the reason should be documented in yo=
-ur
-> > driver.
-> > >
-> > > iMX8MQ have two HPD interrupters, one for plugout and the other for
-> > > plugin, because they could not be masked, so we have to enable one and
-> > disable the other.
-> > > I will add more comments here.
-> >=20
-> > Right, but why do you need to enable and disable them? Do you get spuri=
-ous
-> > interrupts?
->=20
-> They don't have status registers and cannot be masked. If they are not di=
-sabled,=20
-> they will continuously generate interrupts. Therefore, I have to disable =
-one and enable the other.
+In hardware, these clock muxes and divisors are part of the RTC module 
+itself and not external. Therefore, I would say no.
 
-Sorry, I still don't get it. How can it be useful to detect hotplug
-interrupts if it constantly sends spurious interrupts when it's enabled?
+> 
+>> I will add a shorter version of above information in the bindings
+>> documentation in the V2 of this patchset.
+>>
+>>>> +
+>>>> +  nxp,dividers:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>>>> +    description:
+>>>> +      An array of two u32 elements, the former encoding DIV512,
+>>>> +      the latter encoding DIV32. These are dividers that can be enabled
+>>>> +      individually, or cascaded. Use 0 to disable the respective divider,
+>>>> +      and 1 to enable it.
+>>>
+>>> Please explain to me what makes this a property of the hardware and how
+>>> someone would go about choosing the divider settings for their hardware.
+>>>
+>>
+>> As per hardware RTC module clocking scheme, the output of the clock mux can
+>> be optionally divided by a combination of 512 and 32 (via other two input
+>> cascaded muxes) to give various count periods for different clock sources.
+>>
+>> With respect to choosing the divider settings for custom hardware, it
+>> depends on the clock source being selected and the desired rollover time.
+>> For example, on S32G2 or S32G3 SoC based boards, using FIRC (~48-51 MHz)
+>> with DIV512 enabled results in a rollover time of aprox. 13 hours.
+>>
+>>>> +    items:
+>>>> +      - description: div512
+>>>> +      - description: div32
+>>>> +
+>>>> +  clocks:
+>>>> +    maxItems: 3
+>>>
+>>> I'd rather you provided an explicit items list here, explaining what
+>>> each of the tree clocks do.
+>>>
+>>> Cheers,
+>>> Conor.
+>>>
+>>
+>> I will add such information in the V2 of this patchset.
+>>
+>> Regards,
+>> Ciprian
+>>
+>>>> +
+>>>> +  clock-names:
+>>>> +    items:
+>>>> +      - const: ipg
+>>>> +      - const: sirc
+>>>> +      - const: firc
+>>>> +
+>>>> +required:
+>>>> +  - clock-names
+>>>> +  - clocks
+>>>> +  - compatible
+>>>> +  - interrupts
+>>>> +  - nxp,clksel
+>>>> +  - nxp,dividers
+>>>> +  - reg
+>>>> +
+>>>> +additionalProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>>> +
+>>>> +    rtc0: rtc@40060000 {
+>>>> +        compatible = "nxp,s32g-rtc";
+>>>> +        reg = <0x40060000 0x1000>;
+>>>> +        interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
+>>>> +        clocks = <&clks 54>,
+>>>> +                 <&clks 55>,
+>>>> +                 <&clks 56>;
+>>>> +        clock-names = "ipg", "sirc", "firc";
+>>>> +        nxp,clksel = <2>;
+>>>> +        nxp,dividers = <1 0>;
+>>>> +    };
+>>>> -- 
+>>>> 2.45.2
+>>>>
+>>
+> 
 
-> > > > > +	/* Mailbox protect for HDMI PHY access */
-> > > > > +	mutex_lock(&mhdp->mbox_mutex);
-> > > > > +	ret =3D phy_init(mhdp->phy);
-> > > > > +	mutex_unlock(&mhdp->mbox_mutex);
-> > > > > +	if (ret) {
-> > > > > +		dev_err(dev, "Failed to initialize PHY: %d\n", ret);
-> > > > > +		goto clk_disable;
-> > > > > +	}
-> > > > > +
-> > > > > +	/* Mailbox protect for HDMI PHY access */
-> > > > > +	mutex_lock(&mhdp->mbox_mutex);
-> > > > > +	ret =3D phy_set_mode(mhdp->phy, phy_mode);
-> > > > > +	mutex_unlock(&mhdp->mbox_mutex);
-> > > > > +	if (ret) {
-> > > > > +		dev_err(dev, "Failed to configure PHY: %d\n", ret);
-> > > > > +		goto clk_disable;
-> > > > > +	}
-> > > >
-> > > > Why do you need a shared mutex between the phy and HDMI controller?
-> > >
-> > > Both PHY and HDMI controller could access to the HDMI firmware by
-> > > mailbox, So add mutex to avoid race condition.
-> >=20
-> > That should be handled at either the phy or mailbox level, not in your =
-hdmi
-> > driver.
->
-> In both HDMI driver and PHY driver, every mailbox access had protected
-> by its owns mutex. However, this mutex can only protect each mailbox
-> access within their respective drivers, and it cannot provide
-> protection for access between the HDMI and PHY drivers.
->=20
-> The PHY driver only provides two API functions, and these functions
-> are only called in the HDMI driver. Therefore, when accessing these
-> functions, we use a mutex to protect them. This ensures that mailbox
-> access is protected across different PHY and HDMI drivers.
-
-It's really about abstraction. You're using a publicly defined API, and
-change the semantics for your driver only, and that's not ok.
-
-Why can't the mailbox driver itself serialize the accesses from any
-user, HDMI and PHY drivers included?
-
-> > > >
-> > > > > +static enum drm_mode_status
-> > > > > +cdns_hdmi_tmds_char_rate_valid(const struct drm_bridge *bridge,
-> > > > > +			       const struct drm_display_mode *mode,
-> > > > > +			       unsigned long long tmds_rate) {
-> > > > > +	struct cdns_mhdp8501_device *mhdp =3D bridge->driver_private;
-> > > > > +	union phy_configure_opts phy_cfg;
-> > > > > +	int ret;
-> > > > > +
-> > > > > +	phy_cfg.hdmi.tmds_char_rate =3D tmds_rate;
-> > > > > +
-> > > > > +	/* Mailbox protect for HDMI PHY access */
-> > > > > +	mutex_lock(&mhdp->mbox_mutex);
-> > > > > +	ret =3D phy_validate(mhdp->phy, PHY_MODE_HDMI, 0, &phy_cfg);
-> > > > > +	mutex_unlock(&mhdp->mbox_mutex);
-> > > > > +	if (ret < 0)
-> > > > > +		return MODE_CLOCK_RANGE;
-> > > > > +
-> > > > > +	return MODE_OK;
-> > > > > +}
-> > > > > +
-> > > > > +static enum drm_mode_status
-> > > > > +cdns_hdmi_bridge_mode_valid(struct drm_bridge *bridge,
-> > > > > +			    const struct drm_display_info *info,
-> > > > > +			    const struct drm_display_mode *mode) {
-> > > > > +	unsigned long long tmds_rate;
-> > > > > +
-> > > > > +	/* We don't support double-clocked and Interlaced modes */
-> > > > > +	if (mode->flags & DRM_MODE_FLAG_DBLCLK ||
-> > > > > +	    mode->flags & DRM_MODE_FLAG_INTERLACE)
-> > > > > +		return MODE_BAD;
-> > > > > +
-> > > > > +	/* MAX support pixel clock rate 594MHz */
-> > > > > +	if (mode->clock > 594000)
-> > > > > +		return MODE_CLOCK_HIGH;
-> > > >
-> > > > This needs to be in the tmds_char_rate_valid function
-> > > This clock rate check is covered by function tmds_char_rate_valid() It
-> > > could be removed if keep function tmds_char_rate_valid() be called by
-> > mode_valid.
-> >=20
-> > Yeah, it's not something you should have to duplicate.
-> >=20
-> > > >
-> > > > > +	if (mode->hdisplay > 3840)
-> > > > > +		return MODE_BAD_HVALUE;
-> > > > > +
-> > > > > +	if (mode->vdisplay > 2160)
-> > > > > +		return MODE_BAD_VVALUE;
-> > > > > +
-> > > > > +	tmds_rate =3D mode->clock * 1000ULL;
-> > > > > +	return cdns_hdmi_tmds_char_rate_valid(bridge, mode, tmds_rate);
-> > > >
-> > > > It will already be called by the core so this is redundant.
-> > >
-> > > mode_valid function is use to filter the mode list in
-> > > drm_helper_probe_single_connector_modes(),
-> > > if function cdns_hdmi_tmds_char_rate_valid() is not called, unsupport=
-ed
-> > modes will in mode list.
-> >=20
-> > It's probably something we should deal with in the core somehow. I'm not
-> > entirely sure how to reconcile drm_bridge_connector and the hdmi
-> > framework there, but we should at the very least provide a mode_valid
-> > helper for bridges.
->
-> I agree with that. In fact, I'm a bit confused about the current
-> mode_valid and tmds_char_rate_valid functions. Ideally, we should find
-> a way to make tmds_char_rate_valid also work for filtering out the
-> mode list, rather than just during atomic_check.
-
-Yeah, definitely. The way we did so on vc4 for example was to compute
-the rate for a 8bpc, RGB, output and try to validate that. I think it
-would be reasonable to start with that.
-
-Maxime
-
---vicghtzdcgvwj5cg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZuLexQAKCRAnX84Zoj2+
-dpXIAYDwp4QqM+gxv4Ut07NLWDuIpy7iJnl2M21sl17DQP9KmComIqPanJMDobep
-InNhLfIBgKw7XRPw4mZGgL9zgnr5dsyvqyu4/lJnrajrzSPBSn1UjOZyoL6DRkcG
-tk1OTY2CEg==
-=PfXv
------END PGP SIGNATURE-----
-
---vicghtzdcgvwj5cg--
 
