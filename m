@@ -1,137 +1,203 @@
-Return-Path: <devicetree+bounces-102213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9928F975F39
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 04:52:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50413975F4B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 04:54:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E4FB1F2409A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 02:52:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8382F1C22C4B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 02:54:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34653126BF6;
-	Thu, 12 Sep 2024 02:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EA40126C0E;
+	Thu, 12 Sep 2024 02:53:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HjPrl+mn"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="ilUpuQ+B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56720524D7;
-	Thu, 12 Sep 2024 02:51:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85846126BE3;
+	Thu, 12 Sep 2024 02:53:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726109473; cv=none; b=diQyKvBWWclVkdE/TUGCfMh5SHreJiiTFMAMXfAllT6qUnpe3H1VBR007SjzpOIzQv8m4BpHjlypnqfcRzGomzHdSKIUaASa48gW3s8qr+fCtVvmJJW4/hR0QuUvt5sf/jf1vxxT7lFuPw2aS/bl9cwxgIAq2iN3YJtVGpQkWNE=
+	t=1726109625; cv=none; b=VNQYYtNH0NBDOMYqjzutxwHEoodgCwl4PMvyIxUG3jp+kTPPvgvHiyD/obfd+oL6avGDHYoGhrrsSIKPvrkbgwjqHmscijKODRSJcoTckK9lh2p9W47ps+DQUMP+Wc/YBSHC1P4i8aEiXpRECUatcNmp71ZcbT7Y11ylc2Tp1Sg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726109473; c=relaxed/simple;
-	bh=y/uLkUWBQOLP7TPOb5+vS1X6nVhCEjLZ5TdYFfVh6iE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=d3IdaQNSs+weCM2i24bH/k9X3esrY3Wav0s30ojTWH5qKtzLsk/hzcC+otmDXgKZFVGRDsZ38aKk1dgSYC2D/+LNglUwFHh7W1X/+JQDHB8B7Lbq6zSYmYhDqJvQGONtxs6Lj89x8vj22e40UDJG2wpNbd/4t9n4iCh7da1qL0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HjPrl+mn; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48C2Ku8e006373;
-	Thu, 12 Sep 2024 02:51:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=CJ5sZMWil1t8FAGnOVtcPM
-	tKd3t9USG+iO6mzn5nstQ=; b=HjPrl+mnowHzddBQMEpmsdQ3goMSEqCBfAhecY
-	WjBKQu/5s+kPdflZ6JdKOZ5MBWmnAGtRtI0E2Xw3EQBL0KT5fuUTn6aPxJJuCMkJ
-	9HlvlNWPqDPfKb+gPnzfHmbCyV8lQ8G2wWSvjG1HnRUIyZztFznwiBF4mRPXwhf/
-	wfAcM8n0wOsgZ4688Z8+hPTmkYjugyJw1RrHltPIchFu3ZfrF/AqHB3JaLL7hMTH
-	IROgL1gzLQaO6yWA/kEfLqh7x+hZS6yN0YhVNVB/57SObJMYjE9CXoyWDi8Fl5Yk
-	IE21JM5EASCQ5Tfg+mh2V1iUsqH2yxqZxJWB7NHKcPdPYPyg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy6pbm92-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Sep 2024 02:51:08 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48C2p7Kj024918
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Sep 2024 02:51:07 GMT
-Received: from lijuang2-gv.ap.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 11 Sep 2024 19:51:02 -0700
-From: Lijuan Gao <quic_lijuang@quicinc.com>
-Date: Thu, 12 Sep 2024 10:50:39 +0800
-Subject: [PATCH] dt-bindings: mfd: qcom,tcsr: Add compatible for qcs615
+	s=arc-20240116; t=1726109625; c=relaxed/simple;
+	bh=WnVGALMfYAfkhn1Js5rmU0pWrT9KA6F/yYAZk9iVwIc=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=bMpCu3UxqY2qgzjnavzVmO+UFjfTJeLOs9hLXer7Acdc7Hx3ELZApkFxxytpo6Nhqa12Uz07/9bJMf9gg+B8uoTkQ5avFlcWWHr6c90rFW5SlQfMFbYS8/d+EF2B+1OSQ0YoSZJ2NvZ8i0wOvLooWSsFh0QOgHXzE3+JiKIe8Ss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=ilUpuQ+B; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1726109621;
+	bh=yn+wZNBElEbo6z6rUQ2iwm+eHVU5SkpgkGRmFBHXQcM=;
+	h=Subject:From:To:Date:In-Reply-To:References;
+	b=ilUpuQ+BG4JQkm0ACs1v0T8cQFZBf8biCQCHBV9Jn7knEyQxdWd0LmQgrsAmSBw6o
+	 VliAn36FHdSeEZmEnADy+XEPbWz+VM3csvcecFsiQW6xW7fxREpQjDjiJRIDxTyTvF
+	 RpwRy70gazvGGFpPZrGjFMyuTsSeP3i7rkeM4DgDoK8/EB4szIE3AM8uwWuP5/w7Jg
+	 rgXTljqDMFYwesL/d29Ca60cLlXpF7g84YJv8zRjLG71aMG7KP6VFDtWHmsB+ZGYer
+	 k7zfkdyXZJcnylPpOzCWrlGTAqzHx0lTgtX1k+inZTXjC6iB40UllEuFveEddIM5j0
+	 dwDy2VeMgu8HQ==
+Received: from [192.168.68.112] (ppp118-210-89-8.adl-adc-lon-bras32.tpg.internode.on.net [118.210.89.8])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 236B3650D6;
+	Thu, 12 Sep 2024 10:53:39 +0800 (AWST)
+Message-ID: <908b7765584f96299c720c0d8312839a520a0e48.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v3 2/2] ARM: dts: aspeed: Harma: revise sgpio line name
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Peter Yin <peteryin.openbmc@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+	 <joel@jms.id.au>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org
+Date: Thu, 12 Sep 2024 12:23:38 +0930
+In-Reply-To: <20240909080459.3457853-3-peteryin.openbmc@gmail.com>
+References: <20240909080459.3457853-1-peteryin.openbmc@gmail.com>
+	 <20240909080459.3457853-3-peteryin.openbmc@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240912-add_tcsr_compatible_for_qcs615-v1-1-5b85dd4d42ad@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAP5W4mYC/42NQQ6CMBBFr2JmbU0HioAr72FIQ4dWJlEKLRIN4
- e5WTuDy/fy8t0K0gW2Ey2GFYBeO7IcEeDwA9e1wt4K7xJDJTMkaUbRdp2eKQZN/ju3M5mG180F
- PFM9YCKfI5K6opKoIkmQM1vF7D9yaxD3H2YfP3lvwt/6tXlCgKGuZF9IYUnl5nV5MPNAp/aHZt
- u0LO1egvM4AAAA=
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        Lijuan Gao
-	<quic_lijuang@quicinc.com>
-X-Mailer: b4 0.15-dev-99b12
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1726109462; l=1050;
- i=quic_lijuang@quicinc.com; s=20240827; h=from:subject:message-id;
- bh=y/uLkUWBQOLP7TPOb5+vS1X6nVhCEjLZ5TdYFfVh6iE=;
- b=73IyChFMtwCDIKLXJwOV7JY5Up7bZJBdk7btNSOxwra4ijtU+Kvsm1Fh3zjDkDiVJSzQPZuGr
- YBFraVvofhMBR2p2owPwyvmNJyiI3pDEvGVp4kp6V5DTA/zjiic8tMW
-X-Developer-Key: i=quic_lijuang@quicinc.com; a=ed25519;
- pk=1zeM8FpQK/J1jSFHn8iXHeb3xt7F/3GvHv7ET2RNJxE=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: v_50T28R2Lhg9M1e7fjzWi6mSKcoxIdk
-X-Proofpoint-GUID: v_50T28R2Lhg9M1e7fjzWi6mSKcoxIdk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 adultscore=0
- bulkscore=0 lowpriorityscore=0 mlxlogscore=693 spamscore=0 phishscore=0
- impostorscore=0 suspectscore=0 mlxscore=0 malwarescore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409120020
 
-Document the qcom,qcs615-tcsr compatible.
+On Mon, 2024-09-09 at 16:04 +0800, Peter Yin wrote:
+> power-card-enable
+> power-fault-n
+> power-hsc-good
+> power-chassis-good
+>=20
+> asic0-card-type-detection0-n
+> asic0-card-type-detection1-n
+> asic0-card-type-detection2-n
+> presence-cmm
+>=20
+> uart-switch-button
+> uart-switch-lsb
+> uart-switch-msb
+>=20
+> reset-control-cmos-clear
 
-Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
----
-Document the qcom,qcs615-tcsr compatible, tcsr will provide various
-control and status functions for their peripherals.
----
- Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Can you please try to be more descriptive in the future? However, for
+now, I've applied the series to be picked up through the BMC tree.
 
-diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-index c6bd14ec5aa0..1b09a57fc633 100644
---- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-+++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-@@ -21,6 +21,7 @@ properties:
-           - qcom,msm8998-tcsr
-           - qcom,qcm2290-tcsr
-           - qcom,qcs404-tcsr
-+          - qcom,qcs615-tcsr
-           - qcom,sc7180-tcsr
-           - qcom,sc7280-tcsr
-           - qcom,sc8280xp-tcsr
+Andrew
 
----
-base-commit: 100cc857359b5d731407d1038f7e76cd0e871d94
-change-id: 20240911-add_tcsr_compatible_for_qcs615-f4cb3f58048c
-
-Best regards,
--- 
-Lijuan Gao <quic_lijuang@quicinc.com>
+>=20
+> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+> ---
+>  .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 36 +++++++++----------
+>  1 file changed, 16 insertions(+), 20 deletions(-)
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts b/arc=
+h/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+> index 92068c65eae4..9cb511a846e3 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+> @@ -393,12 +393,6 @@ gpio@31 {
+>  		reg =3D <0x31>;
+>  		gpio-controller;
+>  		#gpio-cells =3D <2>;
+> -
+> -		gpio-line-names =3D
+> -		"","","","",
+> -		"","","presence-cmm","",
+> -		"","","","",
+> -		"","","","";
+>  	};
+> =20
+>  	// PTTV FRU
+> @@ -422,12 +416,6 @@ gpio@31 {
+>  		reg =3D <0x31>;
+>  		gpio-controller;
+>  		#gpio-cells =3D <2>;
+> -
+> -		gpio-line-names =3D
+> -		"","","","",
+> -		"","","presence-cmm","",
+> -		"","","","",
+> -		"","","","";
+>  	};
+> =20
+>  	// Aegis FRU
+> @@ -566,7 +554,7 @@ &gpio0 {
+>  	/*B0-B7*/	"","","","",
+>  			"bmc-spi-mux-select-0","led-identify","","",
+>  	/*C0-C7*/	"reset-cause-platrst","","","","",
+> -			"cpu0-err-alert","","",
+> +			"power-hsc-good","power-chassis-good","",
+>  	/*D0-D7*/	"","","sol-uart-select","","","","","",
+>  	/*E0-E7*/	"","","","","","","","",
+>  	/*F0-F7*/	"","","","","","","","",
+> @@ -585,14 +573,16 @@ &gpio0 {
+>  	/*O0-O7*/	"","","","","","","","",
+>  	/*P0-P7*/	"power-button","power-host-control",
+>  			"reset-button","","led-power","","","",
+> -	/*Q0-Q7*/	"","","","","","power-chassis-control","","",
+> +	/*Q0-Q7*/
+> +			"","","","",
+> +			"","power-chassis-control","","uart-switch-button",
+>  	/*R0-R7*/	"","","","","","","","",
+>  	/*S0-S7*/	"","","","","","","","",
+>  	/*T0-T7*/	"","","","","","","","",
+>  	/*U0-U7*/	"","","","","","","led-identify-gate","",
+>  	/*V0-V7*/	"","","","",
+>  			"rtc-battery-voltage-read-enable","",
+> -			"power-chassis-good","",
+> +			"","",
+>  	/*W0-W7*/	"","","","","","","","",
+>  	/*X0-X7*/	"","","","","","","","",
+>  	/*Y0-Y7*/	"","","","","","","","",
+> @@ -673,7 +663,7 @@ &sgpiom0 {
+>  	"presence-asic-modules-0","rt-cpu0-p1-force-enable",
+>  	"presence-asic-modules-1","bios-debug-msg-disable",
+>  	"","uart-control-buffer-select",
+> -	"","ac-control-n",
+> +	"presence-cmm","ac-control-n",
+>  	/*G0-G3 line 96-103*/
+>  	"FM_CPU_CORETYPE2","",
+>  	"FM_CPU_CORETYPE1","",
+> @@ -685,7 +675,7 @@ &sgpiom0 {
+>  	"FM_BOARD_REV_ID2","",
+>  	"FM_BOARD_REV_ID1","",
+>  	/*H0-H3 line 112-119*/
+> -	"FM_BOARD_REV_ID0","",
+> +	"FM_BOARD_REV_ID0","reset-control-cmos-clear",
+>  	"","","","","","",
+>  	/*H4-H7 line 120-127*/
+>  	"","",
+> @@ -700,7 +690,7 @@ &sgpiom0 {
+>  	/*I4-I7 line 136-143*/
+>  	"","","","","","","","",
+>  	/*J0-J3 line 144-151*/
+> -	"","","","","","","","",
+> +	"","","power-card-enable","","","","","",
+>  	/*J4-J7 line 152-159*/
+>  	"SLOT_ID_BCB_0","",
+>  	"SLOT_ID_BCB_1","",
+> @@ -716,9 +706,15 @@ &sgpiom0 {
+>  	"cpu0-thermtrip-alert","",
+>  	"reset-cause-pcie","",
+>  	/*L4-L7 line 184-191*/
+> -	"pvdd11-ocp-alert","","","","","","","",
+> +	"pvdd11-ocp-alert","",
+> +	"power-fault-n","",
+> +	"asic0-card-type-detection0-n","",
+> +	"asic0-card-type-detection1-n","",
+>  	/*M0-M3 line 192-199*/
+> -	"","","","","","","","",
+> +	"asic0-card-type-detection2-n","",
+> +	"uart-switch-lsb","",
+> +	"uart-switch-msb","",
+> +	"","",
+>  	/*M4-M7 line 200-207*/
+>  	"","","","","","","","",
+>  	/*N0-N3 line 208-215*/
 
 
