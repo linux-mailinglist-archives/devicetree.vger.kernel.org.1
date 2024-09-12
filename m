@@ -1,60 +1,64 @@
-Return-Path: <devicetree+bounces-102195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7A1F975E29
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 02:52:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53393975E4B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 03:00:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C076285AF6
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 00:52:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E7D71C20C2F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 01:00:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C5A012B94;
-	Thu, 12 Sep 2024 00:52:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBEB52F30;
+	Thu, 12 Sep 2024 01:00:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="PW33KAQW"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="UgDTvYii"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A17338F45;
-	Thu, 12 Sep 2024 00:52:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DE3015C3;
+	Thu, 12 Sep 2024 01:00:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726102338; cv=none; b=Q5LrLWauYv8yWX5U+xjNgo2I3EVUCUvYwg1iMhTvkvGfj0wAcvTeJ1Waf+kb/WQ2A1bvPL24NQaFIK2uuojYuksoO+QrZnj9WNpHWsObmDNzGaKd6AENbtkXmKk5kZ25NQsubnnvo4/Gi7bVfR7/+qzHpHNvCKlLFCidVZYb980=
+	t=1726102849; cv=none; b=iy4SsZVjSu9BffJG6o6RSY0K6fiwaRMdaoW8Q02Z9XGoVVGtglY/l14ABwZDO+2L5cCMgCK6HC5N1N9HC43mG9vq0ZfyqKT/56mjnHkscvf9XiqPtsdq9mJZlsvkP9kMmvqOsc5p0xzKD5l/oQqQitLVC8soG0mKXKw6QWkTRGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726102338; c=relaxed/simple;
-	bh=2VQngztHRnEp+3r2CybqohuxIQlCmejfmOOnUHXAJkE=;
+	s=arc-20240116; t=1726102849; c=relaxed/simple;
+	bh=LTVCW/TUO91aqFZtxT8rnStLjRXD7FVxAuDObdr0C0A=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=hSoREu/2IzXgT4KLjRO+MDzFDn42lxiRHBrOIkI/f5qJqWjIC6z75AMCXg3p1Im1YZpAnxGHinfBoq9iQ3K7PziVioDyBmnEMRDz4ddE+60dErFVpQibKOvAFI0DqQS7uceWvQpSryYFRUtO20RVXhp8XZJ8hrQAJ7yX5jR3Qwg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=PW33KAQW; arc=none smtp.client-ip=203.29.241.158
+	 Content-Type:MIME-Version; b=e9Jjg/hDSXHaj5L2Fwgo5J3kpRD9YVtet4xE8o9AM4UdytQRErZmGVTYwmN4YgMzHWVC/G8CChfbjOAlXUyG4doHnOCCekiFOKlj2BTTbgGP9ekNpDjyP0vwXK6dtD1NPCKcwSSnScIL6aGemxII/RnZOa1jJzu5iZJDEkYNYiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=UgDTvYii; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1726101986;
-	bh=2VQngztHRnEp+3r2CybqohuxIQlCmejfmOOnUHXAJkE=;
+	d=codeconstruct.com.au; s=2022a; t=1726102845;
+	bh=GNjZ85orHNFiT2iD9bmLshHf/vQPcwQdQ803KguC+x0=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=PW33KAQW7ezqXTkUJELheZI99O6C5LbwAW3+2CvLfMDQM7kuDWNsuBK42JvjEo0At
-	 AMFs2orEnMf58pl3Z2S8BeQh5Svk7zvXHCpjMUKN+rZ6LA+XWXiBorbe17BwMtLDxl
-	 IS4SEwVwmIb65LmAkM/ZySu1BPmlAEQAUv3dU1x2oDYxNPRjb69a19XjIsV07AE8I6
-	 leKBCjVdj7zl9qDGbTwmJidNNE2eewIFZvUCBZvPrG+LevXoVRQx2qamgltpbXIVEA
-	 IkV8kU4LIaGELgylbCN2ygVXvb+Q39816H7O47OwKatGxkxF0O8780GsDlpLvJwTu4
-	 GHI3Mv2tU90OQ==
+	b=UgDTvYiiiAUto4p3EkRZMy61b83Dvibk+E2PmV3N2CigzezLx1Fz3sYCBXtmqXSNn
+	 1zHiK68BlJ9nB6QJAgtyzHS/COKy3i6A2vpNpfjnuJRBPHdJSOxGrti6Thjaocf82m
+	 ubI9epK0MvBLymOdQDmTaxpU7KtzoHp7o/kef74CARNhpwcSjovFaElV09GH75C+Xv
+	 B+DyKxxIVYwq7uI21sIkfd5aqlnp4E0ZNPbqAMStHCd0nTe+7224+liizl8SsgNiS1
+	 2fUttIp7ffwHVEgRJ/Y+qgdTLm0i1+QUvo+TOnly4e3dutdvvNYxRFUiba1vFLac3l
+	 VGyvojW7DfwuA==
 Received: from [192.168.68.112] (ppp118-210-89-8.adl-adc-lon-bras32.tpg.internode.on.net [118.210.89.8])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 1EC5D650AD;
-	Thu, 12 Sep 2024 08:46:23 +0800 (AWST)
-Message-ID: <082cea8c7ca1aa15001b7c48b1c3ef1f209cc40a.camel@codeconstruct.com.au>
-Subject: Re: [PATCH] ARM: dts: aspeed: Fix at24 EEPROM node names
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 9BE28650AD;
+	Thu, 12 Sep 2024 09:00:44 +0800 (AWST)
+Message-ID: <4ad15ead271edd36d4638068cdf63b124a78b437.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v1] ARM: dts: aspeed: yosemite4: Add power module and
+ ADC on Medusa Board
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: "Rob Herring (Arm)" <robh@kernel.org>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
-	 <joel@jms.id.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Date: Thu, 12 Sep 2024 10:16:23 +0930
-In-Reply-To: <20240910215929.823913-1-robh@kernel.org>
-References: <20240910215929.823913-1-robh@kernel.org>
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, Ricky CX Wu
+	 <ricky.cx.wu.wiwynn@gmail.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, linux-aspeed@lists.ozlabs.org, 
+ linux-arm-kernel@lists.infradead.org, patrick@stwcx.xyz, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Joel Stanley
+ <joel@jms.id.au>
+Date: Thu, 12 Sep 2024 10:30:44 +0930
+In-Reply-To: <172597760852.3917242.15739474117640537130.robh@kernel.org>
+References: <20240910075357.3531211-1-Delphine_CC_Chiu@wiwynn.com>
+	 <172597760852.3917242.15739474117640537130.robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -65,12 +69,63 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-On Tue, 2024-09-10 at 16:59 -0500, Rob Herring (Arm) wrote:
-> at24.yaml defines the node name for at24 EEPROMs as 'eeprom'.
->=20
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Hi Ricky,
 
-Thanks, I've applied this to be picked up through the BMC tree.
+On Tue, 2024-09-10 at 09:15 -0500, Rob Herring (Arm) wrote:
+> On Tue, 10 Sep 2024 15:53:56 +0800, Delphine CC Chiu wrote:
+> > From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+> >=20
+> > Add RTQ6056 as 2nd source ADC sensor on Medusa Board.
+> > Add power sensors on Medusa board:
+> > - Add XDP710 as 2nd source HSC to monitor P48V PSU power.
+> > - Add MP5023 as P12V efuse (Driver exists but un-documented).
+> > - Add PMBUS sensors as P12V Delta Module.
+> >=20
+> > Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+> > Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> > ---
+> >  .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 45 ++++++++++++++++++-
+> >  1 file changed, 43 insertions(+), 2 deletions(-)
+> >=20
+>=20
+>=20
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+>=20
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+>=20
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+>=20
+>   pip3 install dtschema --upgrade
+>=20
+>=20
+> New warnings running 'make CHECK_DTBS=3Dy aspeed/aspeed-bmc-facebook-yose=
+mite4.dtb' for 20240910075357.3531211-1-Delphine_CC_Chiu@wiwynn.com:
+>=20
+> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dtb: /ahb/apb/bus@=
+1e78a000/i2c@600/power-sensor@40: failed to match any schema with compatibl=
+e: ['mps,mp5023']
+> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dtb: /ahb/apb/bus@=
+1e78a000/i2c@600/power-sensor@62: failed to match any schema with compatibl=
+e: ['pmbus']
+> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dtb: /ahb/apb/bus@=
+1e78a000/i2c@600/power-sensor@64: failed to match any schema with compatibl=
+e: ['pmbus']
+> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dtb: /ahb/apb/bus@=
+1e78a000/i2c@600/power-sensor@65: failed to match any schema with compatibl=
+e: ['pmbus']
+> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dtb: /ahb/apb/bus@=
+1e78a000/i2c@600/power-sensor@68: failed to match any schema with compatibl=
+e: ['pmbus']
+
+Can you please either:
+
+1. Drop these nodes so we're not adding more warnings, or
+2. Write the appropriate bindings and send them in a v2?
 
 Andrew
 
