@@ -1,116 +1,147 @@
-Return-Path: <devicetree+bounces-102334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 166ED9768C3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 14:11:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EC299768CB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 14:13:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D27A92835FC
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 12:11:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 111C9283BB4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 12:13:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0F911A0BFF;
-	Thu, 12 Sep 2024 12:11:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E02451A2622;
+	Thu, 12 Sep 2024 12:13:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="E/Mxrh4L";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="hcVRnVhI"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="MZkojX1F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from a7-47.smtp-out.eu-west-1.amazonses.com (a7-47.smtp-out.eu-west-1.amazonses.com [54.240.7.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4ED92C6BB;
-	Thu, 12 Sep 2024 12:11:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FCCF190662;
+	Thu, 12 Sep 2024 12:13:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726143071; cv=none; b=WWHVqX07mCfge6DChlmRSZPxiLd6czQ0NLypWQG9NWzBOQJm9wSOTA7FfZ3pjT6Nv6zo3sAJwFIDouLI+TppJKOqwq08n983LL4uD7iKKuo0f3q1Ai5v+dSJZ8JFg7O5GF3QNTBy11ftMPdd0C1e4janQm7uGvGXvDNzwpu/Vso=
+	t=1726143209; cv=none; b=bm751R5mMNdOhsmpbtveO1XKza/N0iaqwNBiqZEWETg5PDiVOprkkrP31lzGGG/9kyfGLtsfrOogS0Z22Kuxxo0MIZbYgJw/7bMFKg42kRsTnWDkgEIuNrkkt1oRitklhaRKcVPPUFQrpQ/RI0SatC3D99AjPh1wWMqtIV/CsDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726143071; c=relaxed/simple;
-	bh=2bcxoMD+cj1qNRt+Y8OhtR+SXNu5doal71FkCvDP6Ck=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C+uvrdY+8DZd8pIrnN35lm0npUgC79oc1fe9nERyygUGSGbwHWqTqKKJTYfsYTYSmVfotcDg5w/TGybxKspekltyv5vPwGeyyaGK2a5HxM9UUpASmaFoaCnHeb0rwxYzkpzU0q11HMgNSSNeFgzGHPcXxVc/GSAuhklRauqaaSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=E/Mxrh4L; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=hcVRnVhI; arc=none smtp.client-ip=54.240.7.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazonses.collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1726143068;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding;
-	bh=2bcxoMD+cj1qNRt+Y8OhtR+SXNu5doal71FkCvDP6Ck=;
-	b=E/Mxrh4LnDaV9UEv7xbNmR8LX8sdTQ5UKY+XTFZQX8+TiAVYVa73TAI8Henff3cV
-	lTP2mUD1mqXovHW52ApZfY/1VTCBP+4Ikpmfa2htYZSFGHHxiRg7RnUwmscH3mI1YNQ
-	yPWqSCZDPs1UzFi+Dxf7JmYQynNYxzYyjcj68EOEdn5oVT34cFJ/o4mW69KEMW4CZyI
-	9+dI6tRLpvn+v8MlHiC4YnNbDrgU3gXDVXGYYQMRgktoXXkMSHl1OB19+7tR9+BhDNY
-	IYOyBtMon9Jh6366qFZuhV6E5isB3PBrWe6soT90jOlsABHwGlTse+RY4Q7bGrp+CUX
-	CWVG5dBGJQ==
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1726143068;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID;
-	bh=2bcxoMD+cj1qNRt+Y8OhtR+SXNu5doal71FkCvDP6Ck=;
-	b=hcVRnVhInK0IHoJFxwyNuNQRERW3LKno54/EBEuwpEUf7GAReQkyQwyshYo+O4Rs
-	W7YxHKpYOfNmKMlfDwbxEwb0+O31c92N/0CpXNpc8D6TowFCJNw8giDmjSWYEIIg4B6
-	zpb7uvQu7pVn6gOdqqdq/g4jxxIj7NI5XAMV1ME0=
-Message-ID: <01020191e624f788-d1ad3271-81ef-47ec-931a-e638927114a0-000000@eu-west-1.amazonses.com>
-Date: Thu, 12 Sep 2024 12:11:08 +0000
+	s=arc-20240116; t=1726143209; c=relaxed/simple;
+	bh=cEY1AOlL91/61eGcJH2ELkDPPzV3GkUqoGzJ0Pd46k8=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oxwaVqK0um+gvyklv9iVgCiPxOshwVgISNI+cp/1UtQdZPP7lmM1niYA6CcWJgEli+x0Kjzp6LqU1wM3G7+EdZcdJdbTbw3ZKDMXjifl84H1uOO1jWMMEFkdefhrIhZp5OmvS6b1zBoMQNXVD9iembUIqDarvhWZcWVA0tPuHxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=MZkojX1F; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1726143208; x=1757679208;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=cEY1AOlL91/61eGcJH2ELkDPPzV3GkUqoGzJ0Pd46k8=;
+  b=MZkojX1FVGekpnNSDTtL1J7gAGbgz804RtSZ5M5cAXc3ymLQ6kNu/Xok
+   80f+NkSKgkoZlh9FUEB6DwJGpqTelr0vmKjymnUacWBRZWPgpbNYduqUo
+   QrojMtt77pgxpmDvSDd2c04BvtAB0dBxLrPudhQD9EQS54tDGR61mIn0b
+   BczqKkVrCsIWyVoxCoiIatyOJ5FJUlTr4sx/rP1mxLkaR++gJyeJMGDmN
+   G9saeRDmsuX6VuTV1tmiBDXX5CPLvsbl/+Rm2Aem5kl7GGxT3eIdRy2j/
+   veIJjQQ1C4fDSTN7WYujwO9G/AkcTxb1ZgHEMDXG4jU4gTGf8a0EVs7Kr
+   Q==;
+X-CSE-ConnectionGUID: 18BxjTQpRoWaBWoUq6oHpQ==
+X-CSE-MsgGUID: x9envEQaRfmwJpgwNfqwSA==
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; 
+   d="asc'?scan'208";a="262683165"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Sep 2024 05:13:25 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 12 Sep 2024 05:12:44 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Thu, 12 Sep 2024 05:12:42 -0700
+Date: Thu, 12 Sep 2024 13:12:09 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+CC: Conor Dooley <conor@kernel.org>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Catalin
+ Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+	<linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, NXP
+ S32 Linux Team <s32@nxp.com>, Bogdan-Gabriel Roman
+	<bogdan-gabriel.roman@nxp.com>, Ghennadi Procopciuc
+	<ghennadi.procopciuc@nxp.com>
+Subject: Re: [PATCH 1/4] dt-bindings: rtc: add schema for NXP S32G2/S32G3 SoCs
+Message-ID: <20240912-trodden-lens-1dbf15786960@wendy>
+References: <20240911070028.127659-1-ciprianmarian.costea@oss.nxp.com>
+ <20240911070028.127659-2-ciprianmarian.costea@oss.nxp.com>
+ <20240911-caretaker-dropper-424e102f8634@spud>
+ <2aa1d3ff-bc9b-4c1f-a6d7-5673981d0ed6@oss.nxp.com>
+ <20240912-skedaddle-till-2fa6f44c6e66@wendy>
+ <f6c4a4b4-d05d-40e1-8ecd-45df7cc21ebd@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8395-genio-1200-evk: Enable
- GPU
-To: Pablo Sun <pablo.sun@mediatek.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-References: <20240912070624.25540-1-pablo.sun@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240912070624.25540-1-pablo.sun@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
-X-SES-Outgoing: 2024.09.12-54.240.7.47
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="T9fVS6fm1fe+YfoO"
+Content-Disposition: inline
+In-Reply-To: <f6c4a4b4-d05d-40e1-8ecd-45df7cc21ebd@oss.nxp.com>
 
-Il 12/09/24 09:06, Pablo Sun ha scritto:
-> Enable the Mali Valhall GPU on Genio 1200 EVK by providing regulator
-> supply settingsi to gpu and mfg1, and enable the GPU node.
-> 
-> In addition, set the GPU related regulator voltage range:
-> 
-> 1. Set the recommended input voltage range of DVDD_GPU to (0.546V-0.787V),
->     based on Table 5-3 of MT8395 Application Processor Datasheet.
->     The regulator mt6315_7_vbuck1("Vgpu") connects to the DVDD_GPU input.
->     Note that the minimum voltage in SoC eFuse data, which is read by
->     MTK-SVS to adjust the regulator voltage, does not go below
->     the recommended operating voltage in the datasheet.
-> 
-> 2. Set the input voltage of DVDD_SRAM_GPU, supplied by
->     mt6359_vsram_others_ldo_reg, to 0.75V, the recommended typical
->     operating voltage in MT8395 Application Processor Datasheet.
-> 
-> This patch is tested by enabling CONFIG_DRM_PANFROST and
-> on Genio 1200 EVK it probed with following dmesg:
-> 
-> ```
-> panfrost 13000000.gpu: clock rate = 700000092
-> panfrost 13000000.gpu: mali-g57 id 0x9093 major 0x0 minor 0x1 status 0x0
-> panfrost 13000000.gpu: features: 00000000,000019f7,
-> 					   issues: 00000001,80000400
-> panfrost 13000000.gpu: Features: L2:0x07120206 Shader:0x00000000
-> 					   Tiler:0x00000809 Mem:0x301
-> 					   MMU:0x00002830 AS:0xff JS:0x7
-> panfrost 13000000.gpu: shader_present=0x50045 l2_present=0x1
-> [drm] Initialized panfrost 1.2.0 for 13000000.gpu on minor 0
-> ```
-> 
-> Signed-off-by: Pablo Sun <pablo.sun@mediatek.com>
+--T9fVS6fm1fe+YfoO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On Thu, Sep 12, 2024 at 03:00:20PM +0300, Ciprian Marian Costea wrote:
+> On 9/12/2024 2:13 PM, Conor Dooley wrote:
+> > On Thu, Sep 12, 2024 at 01:55:34PM +0300, Ciprian Marian Costea wrote:
+> > > On 9/11/2024 9:22 PM, Conor Dooley wrote:
+> > > > On Wed, Sep 11, 2024 at 10:00:25AM +0300, Ciprian Costea wrote:
+> > > > > From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> > > > >=20
+> > > > > This patch adds the dt-bindings for NXP S32G2/S32G3 SoCs RTC driv=
+er.
+> > > >=20
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    const: nxp,s32g-rtc
+> > > >=20
+> > > > Also, how come there are not specific compatibles for the two SoCs
+> > > > supported here?
+> > >=20
+> > > The RTC module is the same for S32G2 and S32G3 SoCs.
+> > > Therefore, I did not wanted to add two compatible strings ('nxp,s32g2=
+-rtc'
+> > > and 'nxp,s32g3-rtc') when there is no actual difference which they co=
+uld
+> > > target.
+> >=20
+> > Are these different fusings of the same silicon, or are they distinctly
+> > different SoCs that happen to share an IP block?
+> >=20
+>=20
+> S32G2 and S32G3 are different SoCs that share the RTC IP block.
 
+In that case, I'd expect there to be two compatibles, one for each SoC.
+One can then fall back to the other, so the driver only has to be aware
+of one compatible. Had they been different fusings of the same silicon,
+thus sharing the same integration etc, a generic compatible would have
+been fine.
 
+--T9fVS6fm1fe+YfoO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuLamQAKCRB4tDGHoIJi
+0pKUAP98pWkcE6doOXtn3+eXgRMuCf3W2atGBYQjaD33w4oQ1AEApWry3Dc81DSh
+j2yu5s5TN5SXpWQAx1YS/GDpVTIlrgA=
+=ZOCH
+-----END PGP SIGNATURE-----
+
+--T9fVS6fm1fe+YfoO--
 
