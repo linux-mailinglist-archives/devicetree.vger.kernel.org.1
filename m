@@ -1,60 +1,54 @@
-Return-Path: <devicetree+bounces-102474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42ECC9772AB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 22:23:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 970CA9772AF
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 22:25:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 012E7282209
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 20:23:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AED3028216B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 20:25:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8D721420DD;
-	Thu, 12 Sep 2024 20:23:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 639EF19FA86;
+	Thu, 12 Sep 2024 20:25:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DurCSC3g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Aanmxpyt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFC85A5F;
-	Thu, 12 Sep 2024 20:23:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FEB8A5F
+	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 20:25:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726172624; cv=none; b=gEoTYjYnvf4PL6z28DCfAGXmrMlkm3JFL+BFaKvX5CNcERwCxRgG2Y2GrKFuRecISlCm2JAiLZwSCjflCYsYcZsQzRE6p9iUDlTNDbQ6dwPRl5QkHG6jVEF1TMuK2Uno0gozEbx9ULD8lnv+xiw33xvWV3Ha/y0Y9j9J7D5utmM=
+	t=1726172750; cv=none; b=igSXcW1G+UnVKHUmwYHW/0vtiJQaU/KonluAKnDUUrIf4P56v/3o2H7bvyskiAiZdOIi2uzen0T87LVcuSDnLS2HFyc44sOmlbgX0At+qhckWa6Q4HtQFBKPDFU1Ab26EzmBucf/DCDcvg+1yB++uPDRJdR9Ft8VGa6gpBZ2ymM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726172624; c=relaxed/simple;
-	bh=QpmQl3wtvJU71f2obSC7dpuiYqwDCv+U4WLiEOinQ7I=;
+	s=arc-20240116; t=1726172750; c=relaxed/simple;
+	bh=pRgZrtPJQowqjGdrrEok+KdaSZGZDSgABCUgoJne+vs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fch7nosqh0vE6XIQ/eLBbUquTBY7AwPc8GNiYY5ZzGJFVEO7V8xU5kMSd6iL2SiuhYKpfJ20uFPlaGzubC8OqauAIpN4IXZrgalPgAzRYXEmKW+6FsaHAvvHAtTtUssaRbhdA+qmGKlrRZxAB/z2WJA4wrB2yznkvefhMW1LQ6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DurCSC3g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19024C4CEC3;
-	Thu, 12 Sep 2024 20:23:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LQiw5SX1L9dxHHfOsqT7Is9f3GMa88n3ZLWcfiKfcejTcj2QwjXaxr+YvyBCMNSfbIvCddYoPDcHra1fMmm48eTWxomZdZdIjx+E6ZrdNOcc+YxtaQlRRVT0SbK7DwtrpAkx5VCuRFh5/DpwBI5fw3jJRLBBGmkvZZ3czC2219U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Aanmxpyt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1D5DC4CEC3;
+	Thu, 12 Sep 2024 20:25:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726172624;
-	bh=QpmQl3wtvJU71f2obSC7dpuiYqwDCv+U4WLiEOinQ7I=;
+	s=k20201202; t=1726172750;
+	bh=pRgZrtPJQowqjGdrrEok+KdaSZGZDSgABCUgoJne+vs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DurCSC3gTkwi3e+6B9d/K9i44XrDOzF9luCIXnKUFJhOucWii2WJdCWlVgwEkZNFQ
-	 TI7rTbzXp+2sdnuK8F1Xpf9yKH5/f2BS+291HF3qwJ/0w1NvC8HzNHQ3Ll6dt4jHuc
-	 1yLkmSXJxlrAVsBl02VcSgnijQSdIYsbGyS0JFxP91J+94NEx0+O3Lh/4JH7ESvuBh
-	 2iC/gz+SZ5tVW9/LeL9UkaWihzfP1BDz1LGIFdPL+BX6aSKUFAP4qcYH37MKOZwtXs
-	 QR3TzWETgAIuZsG+NbVr/9yJGBc15jqZ2UuyK6+E+a8WWIK8Aw9LrZgB1FTMNljCuf
-	 lcn/QiUaZIA1g==
-Date: Thu, 12 Sep 2024 15:23:43 -0500
+	b=AanmxpyttkO4BGYHnbFNkTyWRe1GtCsb6rjdTeAH0HKYO1lbdYI6P8NAC8kCK7xDV
+	 Z/jVmvobiOST9LRpR1krblkfmPDgS+PT+c3b653/lLt9UAhSvoigaqARjuYnoQrY6g
+	 4kDXYwUi/WyTcSTUNfWR3iWbMLxMap3t0yoPMiUttc6HpVac2glAEalJinEKUp5jMn
+	 b/3/8TnoG+QTkglqOI0/vqx+/CbDLR1c3UQy4hFpILbVyIr5DJ5v2gI0iEWkiTrf83
+	 xKtPesE7ZxUKdtaDFHcE4ZVC5GU4lnk7HaQr1nGOMDqfzkNZRx2Ax6sPVF6JTUH8+S
+	 7YPikZ5KBjgWg==
+Date: Thu, 12 Sep 2024 15:25:49 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Nikunj Kela <quic_nkela@quicinc.com>
-Cc: conor+dt@kernel.org, wim@linux-watchdog.org,
-	linux-arm-msm@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-kernel@vger.kernel.org, linux@roeck-us.net,
-	quic_psodagud@quicinc.com, devicetree@vger.kernel.org,
-	krzk+dt@kernel.org, linux-watchdog@vger.kernel.org,
-	kernel@quicinc.com
-Subject: Re: [PATCH v4] dt-bindings: watchdog: qcom-wdt: document support on
- SA8255p
-Message-ID: <172617261979.727443.12146960187268113082.robh@kernel.org>
-References: <20240910165926.2408630-1-quic_nkela@quicinc.com>
+To: Zhang Zekun <zhangzekun11@huawei.com>
+Cc: saravanak@google.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] of: property: Do some clean up with use of __free()
+Message-ID: <172617274698.730898.3265664579804776904.robh@kernel.org>
+References: <20240830020626.115933-1-zhangzekun11@huawei.com>
+ <20240830020626.115933-4-zhangzekun11@huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,30 +57,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240910165926.2408630-1-quic_nkela@quicinc.com>
+In-Reply-To: <20240830020626.115933-4-zhangzekun11@huawei.com>
 
 
-On Tue, 10 Sep 2024 09:59:26 -0700, Nikunj Kela wrote:
-> Add a compatible for the SA8255p platform's KPSS watchdog.
+On Fri, 30 Aug 2024 10:06:26 +0800, Zhang Zekun wrote:
+> __free() provides a scoped of_node_put() functionality to put the
+> device_node automatically, and we don't need to call of_node_put()
+> directly. Let's simplify the code a bit with the use of __free().
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+> Signed-off-by: Zhang Zekun <zhangzekun11@huawei.com>
 > ---
-> 
-> Changes in v4:
->         - Added Reviewed-by tag
-> 
-> Changes in v3:
->         - Removed the patch from original series[1]
-> 
-> Changes in v2:
->         - Added Reviewed-by tag
-> 
-> [1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
-> ---
->  Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/of/property.c | 28 ++++++++--------------------
+>  1 file changed, 8 insertions(+), 20 deletions(-)
 > 
 
 Applied, thanks!
