@@ -1,176 +1,173 @@
-Return-Path: <devicetree+bounces-102482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0850497734F
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 23:06:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EAE2977353
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 23:06:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51AEFB20841
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 21:06:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1CC6283A41
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 21:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D9CE1BF80A;
-	Thu, 12 Sep 2024 21:06:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 632AE1C1AD7;
+	Thu, 12 Sep 2024 21:06:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dCC84n4q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FBoviauP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9080913CFB7;
-	Thu, 12 Sep 2024 21:06:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B393F1C1AC9;
+	Thu, 12 Sep 2024 21:06:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726175163; cv=none; b=bzZzCmrisaQhkKpmyQYoOz4UzCte8VG2RdwaqMxurUa5Tm52zgFgEWJRymyCEPNSvdPPup8wco1Zj/yYzpCGDyjoVSddeR7XUp2u/Sj/BZrh9rkvkT5acv0cUaS1cDUUhT2MvrEa7jWiz9f/jVB3MDA0LOoppJo5FxLhwlTLk18=
+	t=1726175206; cv=none; b=PGOzmy9cfw0aVtM+ZCE2MWMVASoyiniPSfJ70sJ4oHW8esQtrScVBWuGfJdgV7V+qoiLR7oDKo6nXQPW7ATEJexpGdewvcIPZx5IiGNBNvzW7O7x7bwuXX50kXrFmM+VJJSfi/nYSN98VP5o6CctwTIenOa5FtvywBePrJU3ZMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726175163; c=relaxed/simple;
-	bh=maVSLvZFLcsOdWoWALMsw18r/Gm24WEmErrDf8r4s7U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ecp8ctA8RZKvqBhPOIAVVlvTASdMR8FRsKMGmj2vy0vmgDuumEdzrILpCRGsh4dmH2nx4mCtw2B1vWWCVvKxDKuy3IdZWl/1maq13fT2KHcZYiy3drfz+JUzfcXGtF5hy4UhJE49+X+4iULehwGHfVrlJoIrPAdXvNpHXWLcSIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dCC84n4q; arc=none smtp.client-ip=209.85.128.50
+	s=arc-20240116; t=1726175206; c=relaxed/simple;
+	bh=HNLAMrxrjiMfUQP1t9c/9Bsvhia8nbus+nR8JGadFp0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tVUo8bnVfqOVqw8RdAvDB6pIX8fzN3+8y+86D9G9BlFWWiFwnhRT/aQthOxqVaUir5A3PR7wwIzuOrvPDI3mAm3tHDJzg/SpuQ2OCSX2eFwNFT5awKAMwPr8kZxtMekbHo4pUIKaTV7fcO9a/KvOs4+EzR9JEQ10i07kwVsfghI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FBoviauP; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42cb0f28bfbso12857005e9.1;
-        Thu, 12 Sep 2024 14:06:01 -0700 (PDT)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a8d4979b843so194453266b.3;
+        Thu, 12 Sep 2024 14:06:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726175160; x=1726779960; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=dCFCtYRF0r0oUa2Y3h+lyp5YSyFCuvNcC5gH+noZfs8=;
-        b=dCC84n4qbTW+V0ECMMgnhvzCKmj0r0nRVUD4IIpZe4mNziFAgKLDajIhyUQZ+3UF/c
-         6Vz4dGbOTitWqrEbm2NNxJN4RCcEZG4OwsNa2wk+4mmHAGEpcfSifBM2PE8cxqj+f2UV
-         9hU5e7ITnDQJnfyGRA5SwLF/E30Wges+jk3hHeR756mkltgOiRa1Hp2BrZvMMAa1q7qc
-         ohKuor1nR0HjVIgwe5aZyxfrNYbVzsP7KE3XNbKeiVhYgvFam9j/PwxVj4dlxBmf9RFF
-         BfqUmQ0MFJBvT11oriJlN/noZyHBPBFQwM8dBaDfnEkG7CRIZuP3nR8oRNxGYCEXSyLt
-         xSiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726175160; x=1726779960;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1726175203; x=1726780003; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dCFCtYRF0r0oUa2Y3h+lyp5YSyFCuvNcC5gH+noZfs8=;
-        b=FhMkY14mlOciBbBI8zp9cddI5N4AiJ8dSTbJ1mZXBIyr3J2Lu61IvWIiPDf5ktp59l
-         0Yj/mC4GiJHA9roWd3MUpXFyt5BI/cAPJD0xSDBYADQKgtK+KPKSVSDTo15ZQK2ARssH
-         KpTfEUJ4B40IIygtUgc9RV3HduTHGkU9UG3iNVKqcL+Fusq5mZ/OS2XSrh61bKRoSdmv
-         XRZ2f5yFbJJtKMDlhS86bO2LV/0HtZAfq9kUex33HbPbPWUUPcIEUvSSZT36ksX8fNAX
-         horI//quWhQoB0uIpLSaGtVEhKCL77doSPQjZSFGU60KM3p2pvxDBTMrrFqThWQIDYIR
-         mGXA==
-X-Forwarded-Encrypted: i=1; AJvYcCWiSDlP8gsiLRV3BPkST96Kn9RWKl55geg66bjaJZ76p/1CV48/sIdO3gyWIAnDxiWVwb1lELz8pA/MflKI@vger.kernel.org, AJvYcCXGhRG4CZ5jR2zptglFoh3cTOyv3N3LxcUl5TECborR4BatDWiUf5jbxFhwBFBQJq2MKrR7I3H8+g==@vger.kernel.org, AJvYcCXLPdiElV5vsAo71eGXIM0M2fFkIOKE0LTOj024hC15DUk+Z7WXoYRojuy7aExAKe39scetKQX8HFF0eQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEj6D6ENWAuKAEBAz4pMIOocQqGzk+x3aozDqAd3SI1FsqV4EC
-	3hfhZX4pqbO26UPwxoUNaBki9pXgkAfX1ybxUbu2nNDB/7W3RQ2n
-X-Google-Smtp-Source: AGHT+IE6dRu5huMEssWnMsPIy2t6zBPfrKMsG6Pz+edE4URaDTNGGNiP4KPcM+oZQLgD+z2/2tnhVw==
-X-Received: by 2002:a05:6000:c86:b0:374:b3a3:3f83 with SMTP id ffacd0b85a97d-378c2d617cemr2360491f8f.53.1726175159433;
-        Thu, 12 Sep 2024 14:05:59 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378956dd932sm15173971f8f.98.2024.09.12.14.05.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Sep 2024 14:05:58 -0700 (PDT)
-Message-ID: <1ea7fff0-149d-408a-b5a7-1b223e8509d0@gmail.com>
-Date: Thu, 12 Sep 2024 14:05:53 -0700
+        bh=M3icDhOuZ25W4TPAI+V+FnNmr4Y9zRWbBHCfxgpLHww=;
+        b=FBoviauPbBHDgUXMxplHap8uZjk+c4HrU1SLbMkOwo0AWXqruo5LDmB1sjDhIW9Okv
+         kd952ETb6DMqxXBmhFFE4Qo9lK8Wmik5LadBgxe14JXYdP+i/uocFbFqsIdUEDXD/KLQ
+         byM37Lgb96YmmbSIywZAzPtS3pWDqNhpuNPLvss8Ng1pZFL/znO2ew+8FsKYbND/f66N
+         weMxdm3ZmQOb91cfAZXURfBV5rgCc/9a+trqYHqBWMcmb7f9OZXRXAR4hqzKe+87jigr
+         OF2vQPTHZZbPYzAot3D0PAN4cKC1lePJahebkPTfMjLeWkmxduWO0XuZzkWZcNMgbFYf
+         +ABw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726175203; x=1726780003;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=M3icDhOuZ25W4TPAI+V+FnNmr4Y9zRWbBHCfxgpLHww=;
+        b=fi2F3hR8qR6aoMUtsVO6VPwzt9WY3fnjO5VDmMQ2OQA6dR75y19VMdR6BoS9dEVcPq
+         8wB2f+4qWTB7cplh7Fet0NsIEvpkIpKZPIiJ4HUpyFhnFviK867KHnJ4EcZ2i2rmBjQn
+         /oggzoWin/uq8qbWayaeerQiIc//GZQxgynpJTm2eBsYPof+t+t1MT6cdCMThZhaIjZH
+         Yn5b8hD9diGpSyFZPaDo5rFRBvGveMoI5vVQoSGzlvGsjRrv10NlA9uqVlwPD9zLSEBz
+         a4SAGOKpXkg7fSoljTzkdKpPTlId9IIDw35yTMUVHx1gj6dwKtfv43Y7vE5yraallQDd
+         Xqhw==
+X-Forwarded-Encrypted: i=1; AJvYcCUyf1jJtVNs8gOGBf/kfNWv2GsT6uQ0/eVuV8WQatmABiA3jNzNLpSiPTAc1kJMVIDLmWTVRIPVdMmha1kh@vger.kernel.org, AJvYcCV9B+iLU/+u4hAzzmcsNajnGUmit0I2pJL/zEOc/M30e3bOxFT1B6WWL2uATrLVA63Y/wPNvMLhnCkd@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGOTpJ5W7uwk84v7sYplqxbCDYyW/TVPLRvxvjhmykgbrXbhum
+	tehZMYBOhfJM3M9Hw0OlgCHBVKM8+HFcbHE/VrvTCW2Hiu+iVccfHYSenGutlrHZ/+VMg52zU15
+	6pwDneCDXrABmNBo4F54rldSGFe8=
+X-Google-Smtp-Source: AGHT+IFrQrdqAxHzrPLVGz1hbEuwHetZrtXDERaEA0Nn5RHxr3g5dYXt3TyxDHWraN+GSFlYSOXR30ibkiavfFB5P2Y=
+X-Received: by 2002:a17:907:f168:b0:a77:d52c:c42d with SMTP id
+ a640c23a62f3a-a902941e749mr390227666b.13.1726175202427; Thu, 12 Sep 2024
+ 14:06:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/6] firmware: arm_scmi: Use max-rx-timeout-ms from
- devicetree
-To: Cristian Marussi <cristian.marussi@arm.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- arm-scmi@vger.kernel.org, devicetree@vger.kernel.org
-Cc: sudeep.holla@arm.com, james.quinlan@broadcom.com,
- vincent.guittot@linaro.org, etienne.carriere@st.com, peng.fan@oss.nxp.com,
- michal.simek@amd.com, quic_sibis@quicinc.com, quic_nkela@quicinc.com,
- dan.carpenter@linaro.org, souvik.chakravarty@arm.com, robh@kernel.org,
- krzk+dt@kernel.org, Peng Fan <peng.fan@nxp.com>
-References: <20240730144707.1647025-1-cristian.marussi@arm.com>
- <20240730144707.1647025-4-cristian.marussi@arm.com>
-Content-Language: en-US
-From: Florian Fainelli <f.fainelli@gmail.com>
-Autocrypt: addr=f.fainelli@gmail.com; keydata=
- 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
- HGuUuzv+GKZ6nsysJw==
-In-Reply-To: <20240730144707.1647025-4-cristian.marussi@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240912025034.180233-1-CFSworks@gmail.com> <20240912025034.180233-5-CFSworks@gmail.com>
+ <ed4b6913-f19b-4280-b3b2-f5bb1e7f47eb@kwiboo.se>
+In-Reply-To: <ed4b6913-f19b-4280-b3b2-f5bb1e7f47eb@kwiboo.se>
+From: Sam Edwards <cfsworks@gmail.com>
+Date: Thu, 12 Sep 2024 14:06:30 -0700
+Message-ID: <CAH5Ym4jEMvBVQNNS6U49RWTAVPX4GmOVC-VjgXsFCR=X68QWgA@mail.gmail.com>
+Subject: Re: [PATCH 4/5] arm64: dts: rockchip: Enable all 3 USBs on Turing RK1
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Ondrej Jirman <megi@xff.cz>, 
+	Chris Morgan <macromorgan@hotmail.com>, Alex Zhao <zzc@rock-chips.com>, 
+	Dragan Simic <dsimic@manjaro.org>, FUKAUMI Naoki <naoki@radxa.com>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, Jing Luo <jing@jing.rocks>, 
+	Kever Yang <kever.yang@rock-chips.com>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, =?UTF-8?Q?Daniel_Kukie=C5=82a?= <daniel@kukiela.pl>, 
+	Joshua Riek <jjriek@verizon.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 7/30/24 07:47, Cristian Marussi wrote:
-> Override default maximum RX timeout with the value picked from the
-> devicetree, when provided.
-> 
-> Suggested-by: Peng Fan <peng.fan@nxp.com>
-> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
-> ---
->   drivers/firmware/arm_scmi/driver.c | 9 +++++++++
->   1 file changed, 9 insertions(+)
-> 
-> diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
-> index 332cd5207bbc..e7dab0eea540 100644
-> --- a/drivers/firmware/arm_scmi/driver.c
-> +++ b/drivers/firmware/arm_scmi/driver.c
-> @@ -2964,6 +2964,7 @@ static int scmi_debugfs_raw_mode_setup(struct scmi_info *info)
->   static const struct scmi_desc *scmi_transport_setup(struct device *dev)
->   {
->   	struct scmi_transport *trans;
-> +	int ret;
->   
->   	trans = dev_get_platdata(dev);
->   	if (!trans || !trans->desc || !trans->supplier || !trans->core_ops)
-> @@ -2980,6 +2981,14 @@ static const struct scmi_desc *scmi_transport_setup(struct device *dev)
->   
->   	dev_info(dev, "Using %s\n", dev_driver_string(trans->supplier));
->   
-> +	ret = of_property_read_u32(dev->of_node, "max-rx-timeout-ms",
-> +				   &trans->desc->max_rx_timeout_ms);
-> +	if (ret && ret != -EINVAL)
-> +		dev_err(dev, "Malformed max-rx-timeout-ms DT property.\n");
-> +
-> +	dev_info(dev, "SCMI max-rx-timeout: %dms\n",
-> +		 trans->desc->max_rx_timeout_ms);
+On Thu, Sep 12, 2024 at 12:53=E2=80=AFPM Jonas Karlman <jonas@kwiboo.se> wr=
+ote:
+>
+> Hi Sam,
+>
+> Sounds like this may be missing
+>
+>         rockchip,dp-lane-mux =3D <0 1 2 3>;
+>
+> or
+>
+>         rockchip,dp-lane-mux =3D <3 2 1 0>;
+>
+> if all lanes are used for DP and none are used for USB.
+>
+> It should help describe the hw and also help the driver set mode to
+> UDPHY_MODE_DP and that should disable the u3 port, or there may be an
+> issue to fix in the phy driver.
 
-I am bit on the fence on that change, it is useful, and we have done 
-similar things before using a command line parameter.
+Thanks for your insights Jonas!
 
-This is definitively useful when bringing up new systems where you might 
-be sprinkling enough debugging messages that this pushes your message 
-processing logic too close to the default 30ms timeout. For normal use 
-cases, we really want the message timeout to be as small as possible for 
-most SCMI traffic but if we want the timeout to be configurable, that 
-might have have to be on a per-message basis.
--- 
-Florian
+I haven't yet gotten to DP enablement so I don't know the correct DP
+layout. Ultimately I do want the USBDP0 node to have the necessary
+properties for DP, but alas that's a patch for another day.
+
+Nonetheless, I briefly tried it and I don't think UDPHY_MODE_DP
+affects the PHY's "backend" (ctrl<->phy iface) at all, only the
+availability of frontend lanes to the USB-specific backend: So port u3
+is still enabled, there's just no way to reach it electrically.
+
+With that in mind, would you recommend that I add a placeholder
+dp-lane-mux of 0 1 2 3 for now, just to keep the PHY from attempting
+to speak USB to a DP device? I don't foresee any harm in leaving it
+as-is but you may know something that I don't.
+
+>
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&usb_host0_xhci {
+> > +     extcon =3D <&u2phy0>;
+> > +     maximum-speed =3D "high-speed";
+>
+> If this only use the USB2 phy, this should probably also override the
+> default phys and phy-names props with:
+>
+>         phys =3D <&u2phy0_otg>;
+>         phy-names =3D "usb2-phy";
+
+I agree completely: if the controller doesn't need the USB3 PHY, then
+it should not (implicitly) be specified in the DT. Being able to add
+these overrides is a big goal of mine as well. :)
+
+Sadly, `phys` is what initializes USBDP's USB-side backend, so without
+it the RX_STATUS line goes floating, and because the controller still
+expects a port there, it misbehaves:
+[   30.981076] usb usb2-port1: connect-debounce failed
+
+I can tell the controller that there is no u3 port by doing this in U-Boot:
+=3D> mw.l 0xfd5ac01c 0xf0000000 # usb3otg0_host_num_u3_port=3D0
+=3D> boot
+...and that makes single-PHY operation work perfectly! But unless
+Linux itself effects that change, this patch can't rely on that GRF
+being set correctly.
+
+Do you have a recommendation on how I might go about disabling this
+port? I sent a patchset last year [1] that had the DWC3/xHCI driver
+ignore enumerated u3 ports when the maximum-speed was set to
+high-speed, but the consensus seems to be that this shouldn't be
+addressed at the xHCI driver level, so somehow zeroing the necessary
+GRF bits sounds like the way to go here. What do you think?
+
+Kind regards,
+Sam
+
+[1]: https://lore.kernel.org/all/20231208210458.912776-1-CFSworks@gmail.com=
+/
 
