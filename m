@@ -1,74 +1,45 @@
-Return-Path: <devicetree+bounces-102317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47C00976689
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 12:14:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AEC5976722
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 13:03:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70D4CB21E27
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 10:14:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40AC51F21F48
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 11:03:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 339AD19F400;
-	Thu, 12 Sep 2024 10:13:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81D3019DFAC;
+	Thu, 12 Sep 2024 11:03:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="JokuuGst"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="jjLWYZW2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m49237.qiye.163.com (mail-m49237.qiye.163.com [45.254.49.237])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E33BB19F404
-	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 10:13:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A1DD18FDD7
+	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 11:03:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.237
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726136038; cv=none; b=Eymd7oBMAlMm+vWOTfHG0Qke79ODjjVxAyy+GZrzx5fOQOn3slPUUUR/E0br1yDMVH3aEK8B8GZp8yhS4uf7OFYQrkUp1atbCtTECB5S9P7RPYPqk0XZpTl4wtCwqaskZT1SW27Yg0Pi8JersgB1hyb2ZpLrJm6Sy2JZD+2p/G4=
+	t=1726138992; cv=none; b=feje85rFRGzvaGy56HANFbUlyRFr54yqgAi+cGvYNwFO/W4DtuztmtTGESprGeEFU6CVI1tHUgo3frD6Prchp2S6HcGtPsQh9eOsUDieIDabIfnYnH4dLq/CLDrCPylp728KxZ1t7ZQvaZlgcC+Yl43lkyaL4arOHQM9SYRIwek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726136038; c=relaxed/simple;
-	bh=pWuYnZdetnnnu+3BlcUE/4gNPjsDaaKXpqGIDigZmfw=;
+	s=arc-20240116; t=1726138992; c=relaxed/simple;
+	bh=E8VoImG9+MF3eUu1HB3WXy5oVqOL5uqa+5XM8hDlKqo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OeWeWSgUJ8oiYox2q4IC5KjcvjL6jxA06b7viGTjxEyIf94JdP4PtuAsN2vsq8XZC69byOjURQ23Jo8S/TuADjTcQvTImPai4psHvT79GpBukOHgAq4NqFpiFklEpVf3T7WwJAdHdP76TejafjYxXdF4Fq1n14eQ4s7u9vyP574=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=JokuuGst; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-378c16a4d3eso937197f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 03:13:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1726136034; x=1726740834; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ax7dbBbCuzQUcfZcqCi06hx4jCIx6kiT7TrMLm6qkD0=;
-        b=JokuuGstRYcrSol6rHF/9RQNn64YhBGHUl6S/EZTgWdA0EUDqUwl5diQvGkE/vF2Nc
-         T3u05t7H5HchK7hV25w6vwUI0ouqHTdRtzTvxX07VXCnuFAiIXcMnnYJdF0SHOWCQGlG
-         jDr2rdFU42Tqu6t5If0wksq7yOIUHem0WyegHbgR+8Y/7qGVwVAPmZrU6JhVhWGzQCzF
-         +DQtswEyex8LsMsaJN941rUO6bGfYB7NiXxio+TY0vtuuSFvcD7v1S/8rc7To4IH1K38
-         ml+8+Z8NCZIXWpCAHPgRKv5Kq0I636kKbZjaLJGFZgqjF4cckmNKTaPVTuvQOHjSxJ8E
-         74gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726136034; x=1726740834;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ax7dbBbCuzQUcfZcqCi06hx4jCIx6kiT7TrMLm6qkD0=;
-        b=oMAK7MuNtNxHVZxqTGdDzHyck6Ml72MbRJVQamr0Q28B2R6FQAunDa7vX42m45+31m
-         uUZdKVrdwoOCEqRRXe3cKC4J4gCDVfO3l3SOMHiDau2RBqCLwsm93nNFayZQau4fDJY2
-         8fK7EMsMDMikdAaaPE2N0w8ZLEbuuQoEbgdPAhZIGYQ0bYAhOrgYnimp/IqjpwoKft2/
-         YhA6W6nEyWsKRbSkAw3EhwpT38VHD1NtW7dmRti1JUpYIFCfKNaiRHoUnne1dDHQ9Y5J
-         OoNzL2tVyqXumkjB7OvOgv47XJ5nehu8eVKrBujC/dJszFnP1lGUXEKRvJugyTmnfBn9
-         tQUA==
-X-Forwarded-Encrypted: i=1; AJvYcCWuXlFY8VNNS5INeJ7Sf5+oAAxhByEghLxO65TBxegOEJUOqjcOH8WqKy2nMSkD10InFasY2+/HN9Y8@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5LSH4kQeWTzIisHFvOgMFSoXDjxS0VvqG0nVRKvTS7tmOCpjE
-	I5YdHVtl+QiWCa8NFOLSXRBb4N6SAdbViO07uQq2JG1Y7r9R1sjUPay7vBel8dI=
-X-Google-Smtp-Source: AGHT+IGupFXKL8Oc6nvWjZJWcoxASYjloZVWY9tJWtiOtX2e41F+Jn5Rq4bbYQ4F3WiAHGg87siCJA==
-X-Received: by 2002:adf:eec5:0:b0:374:c231:a5ea with SMTP id ffacd0b85a97d-378c2cd39f8mr1794861f8f.5.1726136033785;
-        Thu, 12 Sep 2024 03:13:53 -0700 (PDT)
-Received: from ?IPV6:2a02:8428:e55b:1101:a464:2bc6:7cd8:5d56? (2a02-8428-e55b-1101-a464-2bc6-7cd8-5d56.rev.sfr.net. [2a02:8428:e55b:1101:a464:2bc6:7cd8:5d56])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378956d3941sm13981214f8f.84.2024.09.12.03.13.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Sep 2024 03:13:53 -0700 (PDT)
-Message-ID: <31a1dfeb-2d72-44bc-b3ca-36b4115c3010@baylibre.com>
-Date: Thu, 12 Sep 2024 12:13:51 +0200
+	 In-Reply-To:Content-Type; b=hFOUaiAuSBhLD0VSMwCXyrlEWJKF2RsdMzi5bkjaJ9X2ygarE8Z6pCE89K+9KP3VAAIPx8+r87a1Qiq/7wuCIQAZ41Zl7MYST+XGiR+SUqQWecIgeUsJ8nOy/4ACdv6jBXelQd1G9dTdDcXVaCCgtfF0uCyzMnVrS4LO3xLnDp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=jjLWYZW2; arc=none smtp.client-ip=45.254.49.237
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+DKIM-Signature: a=rsa-sha256;
+	b=jjLWYZW2/7k3ggTDYipqkgmDgFY/pTxmOTvJxzY5vtJe7j/XVvxz+px9s3HVrkxxj+zEk+m4M1iOI1e4+QYsCwb2tJ1PUHCepl63amaGPBxYFNUTkkbxvYIMblqNgP20StyOySvJIuYP6maRCmKR7UKs4jAwHGewBmDTQin8vtM=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=0GXIUc6xG/GGsPFZhO+ucHCg3q0s0E/+IDeCgVQl8YE=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [192.168.60.65] (unknown [103.29.142.67])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id 06B29900C0D;
+	Thu, 12 Sep 2024 18:26:46 +0800 (CST)
+Message-ID: <e534f0b2-8d30-4175-9616-105e53d25811@rock-chips.com>
+Date: Thu, 12 Sep 2024 18:26:39 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,311 +47,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/8] iio:adc:ad7606: Add iio-backend support
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-fbdev@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
- 20240705211452.1157967-2-u.kleine-koenig@baylibre.com,
- 20240712171821.1470833-2-u.kleine-koenig@baylibre.com,
- cover.1721040875.git.u.kleine-koenig@baylibre.com, aardelean@baylibre.com
-References: <20240815-ad7606_add_iio_backend_support-v1-0-cea3e11b1aa4@baylibre.com>
- <20240815-ad7606_add_iio_backend_support-v1-8-cea3e11b1aa4@baylibre.com>
- <5dedf51d8ec19b7b3bd0c6cb136048344f1c1007.camel@gmail.com>
+Subject: Re: [PATCH v2] Revert "arm64: dts: rockchip: remove redundant
+ cd-gpios from rk3588 sdmmc nodes"
+To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20240611120645.457-1-naoki@radxa.com>
+ <20240613001757.1350-1-naoki@radxa.com>
 Content-Language: en-US
-From: Guillaume Stols <gstols@baylibre.com>
-In-Reply-To: <5dedf51d8ec19b7b3bd0c6cb136048344f1c1007.camel@gmail.com>
+From: Kever Yang <kever.yang@rock-chips.com>
+In-Reply-To: <20240613001757.1350-1-naoki@radxa.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCTh4aVhlJTE9KQ01CGENPSFYVFAkWGhdVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlKS0hVSUJVSk9JVU1MWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09LVUpLS1
+	VLWQY+
+X-HM-Tid: 0a91e5c570ba03a3kunm06b29900c0d
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PU06Myo5PTIyNyM9Nw8TCEg6
+	DSFPCTZVSlVKTElNSkhNQ0tDSUJIVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlKS0hVSUJVSk9JVU1MWVdZCAFZQU9NTkI3Bg++
 
-On 9/5/24 10:40, Nuno Sá wrote:
-> On Thu, 2024-08-15 at 12:12 +0000, Guillaume Stols wrote:
->> - Basic support for iio backend.
->> - Supports IIO_CHAN_INFO_SAMP_FREQ R/W.
->> - Only hardware mode is available, and that IIO_CHAN_INFO_RAW is not
->>    supported if iio-backend mode is selected.
->>
->> A small correction was added to the driver's file name in the Kconfig
->> file's description.
->>
->> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
->> ---
-> Hi Guillaume,
+Hi Naoki, Heiko,
+
+On 2024/6/13 08:17, FUKAUMI Naoki wrote:
+> This reverts commit d859ad305ed19d9a77d8c8ecd22459b73da36ba6.
 >
-> Some initial feedback from me...
+> Inserting and removing microSD card is not detected since above commit.
+> Reverting it fixes this problem.
 >
->>   drivers/iio/adc/Kconfig      |   3 +-
->>   drivers/iio/adc/ad7606.c     | 103 +++++++++++++++++++++++++++++++++++-------
->> -
->>   drivers/iio/adc/ad7606.h     |  16 +++++++
->>   drivers/iio/adc/ad7606_par.c |  98 +++++++++++++++++++++++++++++++++++++++-
->>   4 files changed, 200 insertions(+), 20 deletions(-)
->>
->> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
->> index 88e8ce2e78b3..01248b6df868 100644
->> --- a/drivers/iio/adc/Kconfig
->> +++ b/drivers/iio/adc/Kconfig
->> @@ -227,9 +227,10 @@ config AD7606_IFACE_PARALLEL
->>   	help
->>   	  Say yes here to build parallel interface support for Analog
->> Devices:
->>   	  ad7605-4, ad7606, ad7606-6, ad7606-4 analog to digital converters
->> (ADC).
->> +	  It also support iio_backended devices for AD7606B.
->>   
->>   	  To compile this driver as a module, choose M here: the
->> -	  module will be called ad7606_parallel.
->> +	  module will be called ad7606_par.
->>   
->>   config AD7606_IFACE_SPI
->>   	tristate "Analog Devices AD7606 ADC driver with spi interface
->> support"
->> diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
->> index 99d5ca5c2348..a753d5caa9f8 100644
->> --- a/drivers/iio/adc/ad7606.c
->> +++ b/drivers/iio/adc/ad7606.c
->> @@ -21,6 +21,7 @@
->>   #include <linux/util_macros.h>
->>   #include <linux/units.h>
->> +
->> +	/* backend manages interruptions by itself.*/
-> missing space before closing the comment (also not sure the comments adds much)
+> This is probably the same thing as 5 years ago on rk3399
+> https://lore.kernel.org/all/0608599d485117a9d99f5fb274fbb1b55f6ba9f7.1547466003.git.robin.murphy@arm.com/
+
+Sorry for didn't notice this patch.
+
+The SD card hotplug can not work because the controller is getting into 
+runtime low power mode,
+
+so we need the fix in mmc driver to make the CD function work as below:
+
+https://lkml.org/lkml/2024/9/12/323
 
 
-thx, will check again
-
-
+Thanks,
+- Kever
 >
->> +	if (!st->back) {
->> +		ret = wait_for_completion_timeout(&st->completion,
->> +						  msecs_to_jiffies(1000));
->> +		if (!ret) {
->> +			ret = -ETIMEDOUT;
->> +			goto error_ret;
->> +		}
->>   	}
->>   
->>   	ret = ad7606_read_samples(st);
->> @@ -271,6 +284,12 @@ static int ad7606_read_raw(struct iio_dev *indio_dev,
->>   	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
->>   		*val = st->oversampling;
->>   		return IIO_VAL_INT;
->> +	case IIO_CHAN_INFO_SAMP_FREQ:
->> +		pwm_get_state_hw(st->cnvst_pwm, &cnvst_pwm_state);
->> +		/* If the PWM is swinging, return the real frequency,
->> otherwise 0 */
->> +		*val = ad7606_pwm_is_swinging(st) ?
->> +			DIV_ROUND_CLOSEST_ULL(NSEC_PER_SEC,
->> cnvst_pwm_state.period) : 0;
->> +		return IIO_VAL_INT;
->>   	}
->>   	return -EINVAL;
->>   }
->> @@ -360,6 +379,8 @@ static int ad7606_write_raw(struct iio_dev *indio_dev,
->>   			return ret;
->>   
->>   		return 0;
->> +	case IIO_CHAN_INFO_SAMP_FREQ:
->> +		return ad7606_set_sampling_freq(st, val);
->>   	default:
->>   		return -EINVAL;
->>   	}
->> @@ -482,7 +503,6 @@ static int ad7606_buffer_postenable(struct iio_dev
->> *indio_dev)
->>   	struct ad7606_state *st = iio_priv(indio_dev);
->>   
->>   	gpiod_set_value(st->gpio_convst, 1);
->> -	ad7606_pwm_set_swing(st);
->>   
->>   	return 0;
->>   }
->> @@ -492,19 +512,53 @@ static int ad7606_buffer_predisable(struct iio_dev
->> *indio_dev)
->>   	struct ad7606_state *st = iio_priv(indio_dev);
->>   
->>   	gpiod_set_value(st->gpio_convst, 0);
->> -	ad7606_pwm_set_low(st);
->>   
->>   	return 0;
->>   }
->>   
->> +static int ad7606_pwm_buffer_postenable(struct iio_dev *indio_dev)
->> +{
->> +	struct ad7606_state *st = iio_priv(indio_dev);
->> +
->> +	return ad7606_pwm_set_swing(st);
->> +}
->> +
->> +static int ad7606_pwm_buffer_predisable(struct iio_dev *indio_dev)
->> +{
->> +	struct ad7606_state *st = iio_priv(indio_dev);
->> +
->> +	return ad7606_pwm_set_low(st);
->> +}
-> Maybe I'm missing something but are we removing the gpiod calls?
-
-
-Well actually the pwm is meant to be used only with backend. Though it 
-could be used without it, I dont think it is a very good idea because 
-interrupt handling + transmission init takes quite some time, and a new 
-rising edge could happen before the current samples are effectively 
-transferred. However, since PWM and backend are two separate things, I 
-wanted to show an usage for the PWM when introducing it, and one way to 
-do it was to use it to emulate a GPIO by setting the duty cycle 100% for 
-having a 1 (set_high) and 0% for having a 0 (set_low). Then on this 
-patch, since we introduce iio-backend, I removed this 'mock' usage of it.
-
-But I think that I should separate the removal into an additional patch 
-to avoid confusions. Or shall I just remove the mock usage from the PWM 
-patch ?
-
-
->> +
->> +static int ad7606_update_scan_mode(struct iio_dev *indio_dev,
->> +				   const unsigned long *scan_mask)
->> +{
->> +	struct ad7606_state *st = iio_priv(indio_dev);
->> +
->> +	/* The update scan mode is only for iio backend compatible drivers.
->> +	 * If the specific update_scan_mode is not defined in the bus ops,
->> +	 * just do nothing and return 0.
->> +	 */
->> +	if (st->bops->update_scan_mode)
->> +		return st->bops->update_scan_mode(indio_dev, scan_mask);
->> +	else
->> +		return 0;
-> Redundant else
-
-
-ack
-
->> -	if (ret)
->> -		return ret;
->>   
->> +	if (st->bops->iio_backend_config) {
->> +		st->bops->iio_backend_config(dev, indio_dev);
->> +		indio_dev->setup_ops = &ad7606_pwm_buffer_ops;
-> Ignoring error code
-
-
-will handle
-
-
+> So we'll go back to cd-gpios for now.
 >
->> +	} else {
->> +		/* Reserve the PWM use only for backend (force gpio_convst
->> definition)*/
->> +		if (!st->gpio_convst)
->> +			return dev_err_probe(dev, -EINVAL,
->> +					     "Convst pin must be defined when
->> not in backend mode");
->> +
->> +		init_completion(&st->completion);
->> +		ret = devm_request_threaded_irq(dev, irq,
->> +						NULL,
->> +						&ad7606_interrupt,
->> +						IRQF_TRIGGER_FALLING |
->> IRQF_ONESHOT,
->> +						chip_info->name, indio_dev);
->> +		if (ret)
->> +			return ret;
->> +	}
-> Are we still calling devm_iio_triggered_buffer_setup() in case we have a backend
-> device?
-
-
-No, this portion of code is only executed if convst is defined 
-(conversion trigger GPIO), which is not the case if there is a backend.
-
-
+> this patch is tested on Radxa ROCK 5A and 5B.
 >
->>   	return devm_iio_device_register(dev, indio_dev);
->>   }
-> ...
+> Fixes: d859ad305ed1 ("arm64: dts: rockchip: remove redundant cd-gpios from rk3588 sdmmc nodes")
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 >
->> +#ifdef CONFIG_IIO_BACKEND
-> Not a fan of this #ifef... It's not that much code so I would just select
-> IIO_BACKEND for this driver. In fact, I don't think we can separately enable
-> IIO_BACKEND in the menuconfig menu?
-
-
-OK I can do it that way.
-
->> +static int ad7606_bi_setup_iio_backend(struct device *dev, struct iio_dev
->> *indio_dev)
->> +{
->> +		struct ad7606_state *st = iio_priv(indio_dev);
->> +		unsigned int ret, c;
->> +
->> +		st->back = devm_iio_backend_get(dev, NULL);
->> +		if (IS_ERR(st->back))
->> +			return PTR_ERR(st->back);
->> +
->> +		/* If the device is iio_backend powered the PWM is mandatory
->> */
->> +		if (!st->cnvst_pwm)
->> +			return -EINVAL;
->> +
->> +		ret = devm_iio_backend_request_buffer(dev, st->back,
->> indio_dev);
->> +		if (ret)
->> +			return ret;
->> +
->> +		ret = devm_iio_backend_enable(dev, st->back);
->> +		if (ret)
->> +			return ret;
->> +
->> +		struct iio_backend_data_fmt data = {
->> +			.sign_extend = true,
->> +			.enable = true,
->> +		};
-> I would follow typical kernel coding style and have this declared at the
-> beginning of the function.
-
-
-aouch, yes !
-
-
->> -
->> +#ifdef CONFIG_IIO_BACKEND
->> +	struct iio_backend *back;
->> +
->> +	/*For now, only the AD7606B is backend compatible.*/
->> +	if (chip_info->has_backend) {
->> +		back = devm_iio_backend_get(&pdev->dev, NULL);
->> +		if (IS_ERR(back))
->> +			return PTR_ERR(back);
->> +
->> +		return ad7606_probe(&pdev->dev, 0, NULL,
->> +				    chip_info,
->> +				    &ad7606_bi_bops);
->> +	}
->> +#endif
-> Not sure I follow the above? You also get the backend in
-> ad7606_bi_setup_iio_backend()? So it seems to be that the has_backend flag is
-> not really needed?
-
-
-The first call to devm_iio_backend_get checks if there is a backend 
-available, and if so the backend bops (ad7606_bi_bops)are passed to the 
-generic probe function.
-
-At this stage, the backend cannot be stored in the ad7606_state 
-structure because it is not initialized yet, it will be in the generic 
-probe function, hence the second call.
-
-The has_backend flag is discussed in my answer to Jonathan's comment, 
-and will probably be removed.
-
+> Changes in v2:
+> - reword commit message
+> - remove empty line
+> ---
+>   arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts | 1 +
+>   arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts     | 1 +
+>   arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts         | 1 +
+>   arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts        | 1 +
+>   4 files changed, 4 insertions(+)
 >
-> - Nuno Sá
->
->
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> index 1a604429fb26..e74871491ef5 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> @@ -444,6 +444,7 @@ &sdhci {
+>   &sdmmc {
+>   	bus-width = <4>;
+>   	cap-sd-highspeed;
+> +	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+>   	disable-wp;
+>   	max-frequency = <150000000>;
+>   	no-sdio;
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+> index b4f22d95ac0e..e80caa36f8e4 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+> @@ -435,6 +435,7 @@ &sdhci {
+>   &sdmmc {
+>   	bus-width = <4>;
+>   	cap-sd-highspeed;
+> +	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+>   	disable-wp;
+>   	max-frequency = <150000000>;
+>   	no-sdio;
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> index 4e2bf4eaef2b..df845929b084 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> @@ -390,6 +390,7 @@ &sdmmc {
+>   	bus-width = <4>;
+>   	cap-mmc-highspeed;
+>   	cap-sd-highspeed;
+> +	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+>   	disable-wp;
+>   	sd-uhs-sdr104;
+>   	vmmc-supply = <&vcc_3v3_s3>;
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+> index 8e2a07612d17..b070955627be 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+> @@ -366,6 +366,7 @@ &sdmmc {
+>   	bus-width = <4>;
+>   	cap-mmc-highspeed;
+>   	cap-sd-highspeed;
+> +	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+>   	disable-wp;
+>   	max-frequency = <150000000>;
+>   	no-sdio;
 
