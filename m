@@ -1,157 +1,237 @@
-Return-Path: <devicetree+bounces-102275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 436979762BE
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 09:33:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AF5C976409
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 10:07:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E10F81F22052
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 07:33:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0169B22108
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 08:07:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3251018DF92;
-	Thu, 12 Sep 2024 07:33:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="CWEpvclX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF8CD1917F2;
+	Thu, 12 Sep 2024 08:06:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1063178C7B;
-	Thu, 12 Sep 2024 07:32:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 454C518DF9B
+	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 08:06:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726126382; cv=none; b=MgbMIpY5CxfppGLhDp7HAltgOYXO3N1+n8TNqK7Y3pjFJ9y7CfFNBJ3i/JOXwVYvJMf0HKR3H2o7IYedYOm424Qz1tCwxmulpwOqRhyiwGZjyfX/x5enldf3iIpx1QgnAojL9tJEY7L5wz3Ie5Tz4Sd69ZCetVAh+wcrkpC6GBg=
+	t=1726128393; cv=none; b=FxarzmGJQDzu5okDNeoGxDmiE0FZ9w7vSvFECYo3qe5uRLURFvKAiyKEMKH0p+zGj9FWUtUjB2r3okVKfBJVVu7n7fyEu5+YI5gAKAfTSw8HBXOzwLhCDxr3j1rvYRySNAMBLGoM38tMfHYjO+ityTNfbvOvwkWiBCpJxvSi5rs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726126382; c=relaxed/simple;
-	bh=A0OLi+CRloHyK/Ua4rHjaFAPFQYO8jOgh8kX9YifaN0=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tQGSembQjBmyHcwvSp6ftGwrinx/Bbfwz0Rnnv6Q+PblYdNJSvV0f32wdudIoo9Bin3UEm9IK3Dltj8ZM3pSPNNMdDuYvQHQOnxgfKOaBTTAoD5SDadrEcM3BOY/+J+gEeVzsNheap7dJGM5RSOokYt5dbT6bz62MiVylIX5EBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=CWEpvclX; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1726126380; x=1757662380;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=A0OLi+CRloHyK/Ua4rHjaFAPFQYO8jOgh8kX9YifaN0=;
-  b=CWEpvclX97d2Yrq9XxSVEETrq4ydiUk4STBJlqts65R3soA9H7FCMvxl
-   v4OkInI78IHyNMjW66LuKKJREh7gVkaDTerHhwXhLMdXGJvStPPIKpou3
-   6KloXlGhdDHAcMsgN0Ss/1S4/hSaKmO8QIW7sEai9XordKoPbU1C0jr7p
-   CKkCWn3zAOB1YCiMV6G9be8iiDyWGnC9dtZZG8+PD2Rj5GY3WLSBxbQq8
-   2jND3WG4xF3up5uhkBMiGiqdLO+kseaNSgieHHssu/f5zJNHZ1xGUFFwy
-   Q9/Wjb+UN+yz5kaZNLqulIw5hYbDOrRFh8Rv/QN5rBIKfnPoS6kBgj2y6
-   A==;
-X-CSE-ConnectionGUID: LpRQBBlMQkGueR9dw36uBA==
-X-CSE-MsgGUID: f7yaRPOpS069i9Newcnl4A==
-X-IronPort-AV: E=Sophos;i="6.10,222,1719903600"; 
-   d="asc'?scan'208";a="31577165"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Sep 2024 00:32:58 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 12 Sep 2024 00:32:23 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Thu, 12 Sep 2024 00:32:20 -0700
-Date: Thu, 12 Sep 2024 08:31:46 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: WangYuli <wangyuli@uniontech.com>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	<stable@vger.kernel.org>, <gregkh@linuxfoundation.org>, <sashal@kernel.org>,
-	<william.qiu@starfivetech.com>, <emil.renner.berthing@canonical.com>,
-	<xingyu.wu@starfivetech.com>, <walker.chen@starfivetech.com>,
-	<robh@kernel.org>, <hal.feng@starfivetech.com>, <kernel@esmil.dk>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
-	<aou@eecs.berkeley.edu>, <devicetree@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<richardcochran@gmail.com>, <netdev@vger.kernel.org>
-Subject: Re: [PATCH 6.6 1/4] riscv: dts: starfive: add assigned-clock* to
- limit frquency
-Message-ID: <20240912-sketch-research-ad02c157cbf3@wendy>
-References: <D200DC520B462771+20240909074645.1161554-1-wangyuli@uniontech.com>
- <20240909-fidgeting-baggage-e9ef9fab9ca4@wendy>
- <ac72665f-0138-4951-aa90-d1defebac9ca@linaro.org>
- <20240909-wrath-sway-0fe29ff06a22@wendy>
- <DBEFAD22C49AAFC6+58debc20-5281-4ae7-a418-a4b232be9458@uniontech.com>
+	s=arc-20240116; t=1726128393; c=relaxed/simple;
+	bh=yo6ClgrrYtZtJj0pgLHxHUjiwKMsQVS4UyGqBqyc2Ic=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o0aIPPFpwNB0P7SwNa20pL70ncaDiRjV/cTiiM8AaDmgE1jMBzD8F4EN5KvVy4jLmT85yyeMba8cY8lpSG176qpH/OMZwb1z1kZ6Ns+PuRnHZp+j6D1UOgf5Y2aidSLvdtmMwgaFbCGlVrBx36Z0suMPa68gUMX9ID56VD4GsJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1soeqA-0004AS-FW; Thu, 12 Sep 2024 10:06:10 +0200
+Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1soeq7-007KiX-Rx; Thu, 12 Sep 2024 10:06:07 +0200
+Received: from pengutronix.de (pd9e595f8.dip0.t-ipconnect.de [217.229.149.248])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id E4905338DC1;
+	Thu, 12 Sep 2024 07:35:27 +0000 (UTC)
+Date: Thu, 12 Sep 2024 09:35:27 +0200
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Charan Pedumuru <charan.pedumuru@microchip.com>
+Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, linux-can@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: net: can: atmel: Convert to json schema
+Message-ID: <20240912-literate-caped-mandrill-4c0c9d-mkl@pengutronix.de>
+References: <20240912-can-v1-1-c5651b1809bb@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="dUrs2a+ddceNZFId"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="orv67sewbwknpnrd"
 Content-Disposition: inline
-In-Reply-To: <DBEFAD22C49AAFC6+58debc20-5281-4ae7-a418-a4b232be9458@uniontech.com>
+In-Reply-To: <20240912-can-v1-1-c5651b1809bb@microchip.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
---dUrs2a+ddceNZFId
-Content-Type: text/plain; charset=us-ascii
+
+--orv67sewbwknpnrd
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 12, 2024 at 10:38:20AM +0800, WangYuli wrote:
+On 12.09.2024 11:19:16, Charan Pedumuru wrote:
+> Convert atmel-can documentation to yaml format
 >=20
-> On 2024/9/9 19:17, Conor Dooley wrote:
-> > [6.6] in the subject and Sasha/Greg/stable list on CC, so I figure it is
-> > for stable, yeah. Only one of these patches is a "fix", and not really a
-> > functional one, so I would like to know why this stuff is being
-> > backported. I think under some definition of "new device IDs and quirks"
-> > it could be suitable, but it'd be a looser definition than I personally
-> > agree with!
-> These submissions will help to ensure a more stable behavior for the RISC=
--V
-> devices involved on the Linux-6.6.y kernel,
-
-I'll accept that argument for the first patch, but the three that are
-adding support for audio devices on the platform cannot really be
-described as making behaviour more stable. I don't hugely object to
-these being backported, but I would like a more accurate justification
-for it being done - even if that is just that "we are using this board
-with 6.6 and would like audio to work, which these 3 simple patches
-allow it to do".
-
-> and as far as I can tell,they
-> won't introduce any new issues (please correct me if I'm wrong).
-
-I don't know. Does this first patch require a driver change for the
-mmc driver to work correctly?
-
-> > Oh, and also, the 4 patches aren't threaded - you should fix that
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
+> ---
+>  .../bindings/net/can/atmel,at91sam9263-can.yaml    | 67 ++++++++++++++++=
+++++++
+>  .../devicetree/bindings/net/can/atmel-can.txt      | 15 -----
+>  2 files changed, 67 insertions(+), 15 deletions(-)
 >=20
-> I apologize for my ignorance about the correct procedure...
+> diff --git a/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-=
+can.yaml b/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.=
+yaml
+> new file mode 100644
+> index 000000000000..269af4c993a7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/can/atmel,at91sam9263-can.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel CAN Controller
+> +
+> +maintainers:
+> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - atmel,at91sam9263-can
+> +          - atmel,at91sam9x5-can
+> +          - microchip,sam9x60-can
+
+The driver doesn't have a compatible for "microchip,sam9x60-can".
+
+> +      - items:
+> +          - enum:
+> +              - microchip,sam9x60-can
+> +          - const: atmel,at91sam9x5-can
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: can_clk
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +allOf:
+> +  - $ref: can-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - microchip,sam9x60-can
+> +    then:
+> +      required:
+> +        - compatible
+> +        - reg
+> +        - interrupts
+> +        - clocks
+> +        - clock-names
+
+AFAICS clock-names is required for all compatibles.
+
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    can0: can@f000c000 {
+
+I think unused labels should be removed.
+
+> +          compatible =3D "atmel,at91sam9x5-can";
+> +          reg =3D <0xf000c000 0x300>;
+> +          interrupts =3D <30 IRQ_TYPE_LEVEL_HIGH 3>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/net/can/atmel-can.txt b/Do=
+cumentation/devicetree/bindings/net/can/atmel-can.txt
+> deleted file mode 100644
+> index 218a3b3eb27e..000000000000
+> --- a/Documentation/devicetree/bindings/net/can/atmel-can.txt
+> +++ /dev/null
+> @@ -1,15 +0,0 @@
+> -* AT91 CAN *
+> -
+> -Required properties:
+> -  - compatible: Should be "atmel,at91sam9263-can", "atmel,at91sam9x5-can=
+" or
+> -    "microchip,sam9x60-can"
+> -  - reg: Should contain CAN controller registers location and length
+> -  - interrupts: Should contain IRQ line for the CAN controller
+> -
+> -Example:
+> -
+> -	can0: can@f000c000 {
+> -		compatible =3D "atmel,at91sam9x5-can";
+> -		reg =3D <0xf000c000 0x300>;
+> -		interrupts =3D <40 4 5>
+> -	};
 >=20
-> For instance,for these four commits,I first used 'git format-patch -4' to
-> create four consecutive .patch files,and then used 'git send-email
-> --annotate --cover-letter --thread ./*.patch' to send them,but the result
-> wasn't as expected...
+> ---
+> base-commit: 32ffa5373540a8d1c06619f52d019c6cdc948bb4
+> change-id: 20240912-can-8eb7f8e7566d
 >=20
-> I'm not sure where the problem lies...
+> Best regards,
+> --=20
+> Charan Pedumuru <charan.pedumuru@microchip.com>
+>=20
+>=20
+>=20
 
-I'm not sure, I don't send patches using that method. Usually I output
-my patches to a directory and call git send-email using the path to that
-directory.
+Marc
 
-Cheers,
-Conor.
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
---dUrs2a+ddceNZFId
+--orv67sewbwknpnrd
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuKY4gAKCRB4tDGHoIJi
-0r2pAQDK9tw50M9/pd5jx1uyrtkDT/RUbd0s3qpnx1Z0YSYF9AEA+k8EKSF51lvO
-hrrZQj9ToA2Lnoo4N8es473eQLiq+g8=
-=6MvV
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmbimbwACgkQKDiiPnot
+vG+igQf7BhUphCaYd67/BKLQBNIguPGy39T5kQzPkdg/QflMpcz6bSZQXYsvyguA
+GsRPQcDt7APYW7tTpTnIa0ZNlYj+lF7cWPl9afS90kk4kRAPPvSYb9Vd2UAMjsPt
+m/jhQsupujHXJg8m2REBHmB0npIGoHuL+kqg0qRIIucFWs0jgsMPG6C11e/QiFtQ
+ArgNdeuIsS7DUqKNXy9eb43tnRSomQkn4M1NojRVKSmAuzMrvheHmKA2mQOLJ2Or
+4JRvI/oRZsbx1KBxqID2y/NMb9pk7TbVw6gZnTLJcYKg5GmhXuIbPIP3RZ6eWnB4
+8h+/7/1vWZlVuhVrFKzyXj9OfBiIyQ==
+=50PA
 -----END PGP SIGNATURE-----
 
---dUrs2a+ddceNZFId--
+--orv67sewbwknpnrd--
 
