@@ -1,151 +1,205 @@
-Return-Path: <devicetree+bounces-102465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35B0A977223
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 21:45:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD54C97727A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 21:53:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D47761F250E2
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 19:45:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BA931C23AF4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 19:53:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C6C41CBEB5;
-	Thu, 12 Sep 2024 19:40:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 017D21BFDF6;
+	Thu, 12 Sep 2024 19:53:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="R3pxgM5d"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="TbFaotKV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9940C1C0DF0;
-	Thu, 12 Sep 2024 19:40:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1002313D530
+	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 19:53:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726170026; cv=none; b=NuAB80l2OTPk2wuaLZUrRfbzQjdZPAswJNi/Hqx1F+pf0YV1YOUJ75tyKntuKx+xQ/UbnbBoyZqnzHMQ3dth2ak7HDTzBkWgBHNsGA2G9rn55xhxksuvStoH/TPK+Knj7n4DZXKB4O6UttcuCaUbAQvaVRon02/J2AIUkYxV/TM=
+	t=1726170824; cv=none; b=qC3Y1vEUqd0z5XMqEVHGdRkEajJqkgtYjdRvvsmVqdfAKcq+QR7N70e80ReACVSjuOO6zL2r/zrKtRDSh+ne04uFV+18/EvKQOmsQv8lvslh0pONQJyIOhm5KIWZRM3P1wtTh+fegBCcOkxI+K83kad8vXb9qkPees5nNeLSknI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726170026; c=relaxed/simple;
-	bh=prnyaP8xdPvgf7lPSdgoOnTFSQEEfdLilloaJUXm1RE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=d8H3J7DM9tfjMjm8R9XjYGaX0C9ZODgPS9zhYkkYFfCqpAcmuK97ecHJFqh2M3PBexj27HnT1eq9nzWqEBVJUo4rVa4RlqIKi3xMKS89stsy63wn0q7ZV5Xk6hWi2ixidU6Be1PNLthJIjeOCdZG2+RIopLKJ7CUv+qxCf4cil0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=R3pxgM5d; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48CHtE53009379;
-	Thu, 12 Sep 2024 19:39:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	IHuzCQGYpXyTPH0RihFbQD623zcQRcB8CUdC3cqWdMA=; b=R3pxgM5dNh9T2Az8
-	PZ5ac24L2Q8WQ/2fKUD/e/lochroPqS9LGXSO1VmS1fyup/qE+XRUPYUt4seyEum
-	P82YhN689vuOSeFV3Er0e1JvIoh8/cSEmjeDUHztrw2sJyqVv2i22TC/wqS6sBZf
-	W1d+vrhDiD4du2Idr2ppYi4i3MMLWEiivJu9VMcGcYSvw+pBtYQBVUqEfxoovTkJ
-	XYfRRLZayzK8+6wHQTr9IvC7cKepQSmbrR6pMhnJnBwnTWP1NSlZ+nE19fjAvj+t
-	NzO8OeZfTtbu9v/bB4gnZQ9r+g9pq7RGzXqXKHWmcbCFDXxFT0Brsh1fsU6sV9as
-	IrPD/Q==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy6peeyj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Sep 2024 19:39:56 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48CJdubu006060
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Sep 2024 19:39:56 GMT
-Received: from hu-wcheng-lv.qualcomm.com (10.49.16.6) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 12 Sep 2024 12:39:55 -0700
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-To: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
-        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <tiwai@suse.com>, <krzk+dt@kernel.org>,
-        <pierre-louis.bossart@linux.intel.com>, <Thinh.Nguyen@synopsys.com>,
-        <bgoswami@quicinc.com>, <robh@kernel.org>,
-        <gregkh@linuxfoundation.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        Wesley Cheng
-	<quic_wcheng@quicinc.com>
-Subject: [PATCH v27 32/32] ASoC: usb: Rediscover USB SND devices on USB port add
-Date: Thu, 12 Sep 2024 12:39:35 -0700
-Message-ID: <20240912193935.1916426-33-quic_wcheng@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240912193935.1916426-1-quic_wcheng@quicinc.com>
-References: <20240912193935.1916426-1-quic_wcheng@quicinc.com>
+	s=arc-20240116; t=1726170824; c=relaxed/simple;
+	bh=gPwCkTrHQdbsIlO87NzXTZsyvl2I+63Uc/+HMghrN1w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=g+6EfKGiaq48Esm+ydFbFRsyGdILt+Lv3BVgZhdjjc2GQTxv3YRGgjA2JA+x18A8vN6H+lUGLKp7oC3JLBuqth5HyHd7/GPP5vQ/ZXGMO8hskr7FGMWfzrnZlYOO6kcWVAOvYMhmgRlM0ohfSt7W49ke1J/z8RXS0tMmxBMl394=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=TbFaotKV; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1726170804;
+ bh=r1OmUvvXBK2m/ZTQhR2+stgE0XRSFyk2GHzUddZ5Wps=;
+ b=TbFaotKVrsa0TchV4o5DR4L2n6rXDXyvQK76MFEZFrYNEi0a8utv/ifedW1G/GJvlgMIleVGj
+ lhVdLdXzYvLBUziOOaJAfy+3tEPkIbZhsDFwcA5rNSnry1mvHoOL1N5cBiFj2MhWEDzZZ9el7wJ
+ INTl4xfiZH8k+pmtK5UT81YBVhn5ivCVGj/2lKQoKohY+UypgLO0PBuGSrHVDPt7ZF3g+lFCAfq
+ ZgqqZAmLNtgmuK4AbtsAqLhFlj6LffaPVTlgUnnmwHzCyrdAZDCi9bKciGPyEb+kGc5hhAKeB+9
+ 32omUelNuR+l14xaLCVbpASlpV45ap8CRwoRfSbxJuQA==
+Message-ID: <ed4b6913-f19b-4280-b3b2-f5bb1e7f47eb@kwiboo.se>
+Date: Thu, 12 Sep 2024 21:53:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ogiyPitW642ue2kmpSl3oPFemrvuiZ_P
-X-Proofpoint-GUID: ogiyPitW642ue2kmpSl3oPFemrvuiZ_P
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- bulkscore=0 lowpriorityscore=0 mlxlogscore=999 spamscore=0 phishscore=0
- impostorscore=0 suspectscore=0 mlxscore=0 malwarescore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409120144
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] arm64: dts: rockchip: Enable all 3 USBs on Turing RK1
+To: Sam Edwards <cfsworks@gmail.com>, Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ondrej Jirman <megi@xff.cz>,
+ Chris Morgan <macromorgan@hotmail.com>, Alex Zhao <zzc@rock-chips.com>,
+ Dragan Simic <dsimic@manjaro.org>, FUKAUMI Naoki <naoki@radxa.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Jing Luo <jing@jing.rocks>, Kever Yang <kever.yang@rock-chips.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ =?UTF-8?Q?Daniel_Kukie=C5=82a?= <daniel@kukiela.pl>,
+ Joshua Riek <jjriek@verizon.net>
+References: <20240912025034.180233-1-CFSworks@gmail.com>
+ <20240912025034.180233-5-CFSworks@gmail.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20240912025034.180233-5-CFSworks@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 66e346b3fcb6c7d83e7b8dc6
 
-In case the USB backend device has not been initialized/probed, USB SND
-device connections can still occur.  When the USB backend is eventually
-made available, previous USB SND device connections are not communicated to
-the USB backend.  Call snd_usb_rediscover_devices() to generate the connect
-callbacks for all USB SND devices connected.  This will allow for the USB
-backend to be updated with the current set of devices available.
+Hi Sam,
 
-The chip array entries are all populated and removed while under the
-register_mutex, so going over potential race conditions:
+On 2024-09-12 04:50, Sam Edwards wrote:
+> The Turing RK1 contains 3 different USBs:
+> - USB0: USB 2.0, OTG
+> - USB1: USB 3.0, host
+> - USB2: USB 2.0, host
+> 
+> This patch activates the necessary DT nodes to enable all 3 buses.
+> 
+> Future work will be needed on USB0: it is not USB 3.0, but Linux creates
+> an unused USB 3.0 root hub and the controller also requires that USBDP0
+> be powered up. However, it is possible to remove this dependency. By
+> either patching the xHCI driver to ignore the enumerated USB 3.0 port or
+> setting usb3otg0_host_num_u3_port=0 in the GRF to stop the controller
+> from enumerating a USB 3.0 port in the first place, neither Linux nor
+> the controller will expect USB 3.0 capability, and USBDP0 can then
+> safely be removed from the `phys` property.
+> 
+> Signed-off-by: Sam Edwards <CFSworks@gmail.com>
+> ---
+>  .../boot/dts/rockchip/rk3588-turing-rk1.dtsi  | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
+> index f6a12fe12d45..6036c4fe6727 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
+> @@ -666,3 +666,67 @@ &uart9 {
+>  	pinctrl-0 = <&uart9m0_xfer>;
+>  	status = "okay";
+>  };
+> +
+> +/* USB 0: USB 2.0 only, OTG-capable */
+> +&u2phy0 {
+> +	status = "okay";
+> +};
+> +
+> +&u2phy0_otg {
+> +	status = "okay";
+> +};
+> +
+> +&usbdp_phy0 {
+> +	/*
+> +	 * TODO: On the RK1, USBDP0 drives the DisplayPort pins, and is not
+> +	 * involved in this USB2-only bus.  However, if the USB3 port is
+> +	 * enabled in the xHCI below, the controller will expect this PHY to be
+> +	 * powered up and holding RX_STATUS idle, or else it will generate an
+> +	 * endless stream of CSC events whenever a device is plugged in.  Until
+> +	 * there is a way to communicate to usb_host0_xhci that it doesn't have
+> +	 * a USB3 port, we have no choice but to power up USBDP0.
+> +	 */
 
-Thread#1:
-  q6usb_component_probe()
-    --> snd_soc_usb_add_port()
-      --> snd_usb_rediscover_devices()
-        --> mutex_lock(register_mutex)
+Sounds like this may be missing
 
-Thread#2
-  --> usb_audio_disconnect()
-    --> mutex_lock(register_mutex)
+	rockchip,dp-lane-mux = <0 1 2 3>;
 
-So either thread#1 or thread#2 will complete first.  If
+or
 
-Thread#1 completes before thread#2:
-  SOC USB will notify DPCM backend of the device connection.  Shortly
-  after, once thread#2 runs, we will get a disconnect event for the
-  connected device.
+	rockchip,dp-lane-mux = <3 2 1 0>;
 
-Thread#2 completes before thread#1:
-  Then during snd_usb_rediscover_devices() it won't notify of any
-  connection for that particular chip index.
+if all lanes are used for DP and none are used for USB.
 
-Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
----
- sound/soc/soc-usb.c | 2 ++
- 1 file changed, 2 insertions(+)
+It should help describe the hw and also help the driver set mode to
+UDPHY_MODE_DP and that should disable the u3 port, or there may be an
+issue to fix in the phy driver.
 
-diff --git a/sound/soc/soc-usb.c b/sound/soc/soc-usb.c
-index f88ccf90df32..3457bb51a0a1 100644
---- a/sound/soc/soc-usb.c
-+++ b/sound/soc/soc-usb.c
-@@ -252,6 +252,8 @@ void snd_soc_usb_add_port(struct snd_soc_usb *usb)
- 	mutex_lock(&ctx_mutex);
- 	list_add_tail(&usb->list, &usb_ctx_list);
- 	mutex_unlock(&ctx_mutex);
-+
-+	snd_usb_rediscover_devices();
- }
- EXPORT_SYMBOL_GPL(snd_soc_usb_add_port);
- 
+> +	status = "okay";
+> +};
+> +
+> +&usb_host0_xhci {
+> +	extcon = <&u2phy0>;
+> +	maximum-speed = "high-speed";
+
+If this only use the USB2 phy, this should probably also override the
+default phys and phy-names props with:
+
+	phys = <&u2phy0_otg>;
+	phy-names = "usb2-phy";
+
+Regards,
+Jonas
+
+> +	status = "okay";
+> +};
+> +
+> +/* USB 1: USB 3.0, host only */
+> +&u2phy1 {
+> +	status = "okay";
+> +};
+> +
+> +&u2phy1_otg {
+> +	status = "okay";
+> +};
+> +
+> +&usbdp_phy1 {
+> +	status = "okay";
+> +};
+> +
+> +&usb_host1_xhci {
+> +	extcon = <&u2phy1>;
+> +	dr_mode = "host";
+> +	status = "okay";
+> +};
+> +
+> +/* USB 2: USB 2.0, host only */
+> +&u2phy2 {
+> +	status = "okay";
+> +};
+> +
+> +&u2phy2_host {
+> +	status = "okay";
+> +};
+> +
+> +&usb_host0_ehci {
+> +	status = "okay";
+> +};
+> +
+> +&usb_host0_ohci {
+> +	status = "okay";
+> +};
+
 
