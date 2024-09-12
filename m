@@ -1,133 +1,178 @@
-Return-Path: <devicetree+bounces-102479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 255D7977312
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 22:56:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA20B977329
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 22:58:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84D6FB20932
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 20:56:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 191311C23F74
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 20:58:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C3A61C0DEA;
-	Thu, 12 Sep 2024 20:56:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 474261C1ADB;
+	Thu, 12 Sep 2024 20:57:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mKVAkLI6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rj26X24R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8930513CFB7;
-	Thu, 12 Sep 2024 20:56:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64BA71BFE0F
+	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 20:57:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726174584; cv=none; b=V2jJyoq/lVTZMO4tadKxezF5fhjG3NfzHBug2b6uchDxqu+b+GcyD1cvyLU8CDHq6J0ekiLp3Y3g3INP5hPC1NPboIw/54cH1UI1qqreNrzYkkPKelmKE98/hmWvGKCLE3TXRZi2DFUR0AklYj8KYlNB3BCXG9o03nTmYDNUgAo=
+	t=1726174637; cv=none; b=JiwMUf3j2tn5kuDhJmGKbZAaZVTvSJ72ONuR9kb9YLMjhILhdY8/B7DVJawAl/iSIPtUDbQ/OxjDw8kG5QaOKzgelL7fXw3uaxGxT94Kf4B9LUOSBBgR077e8gSW8qjnC3O4gJ2l30Mz1Dw6QpmJuVKocC9P5C+ImmMuYuMXIaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726174584; c=relaxed/simple;
-	bh=JCBJWBQxeXSFHiPgv+FCZsBBAd2DQYlPd7mAd0twXWo=;
-	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Date:
-	 MIME-Version:Content-Type; b=RIh2Z0wJDGEfT5vUeu5y09kLXWptkAqZpDCms2GE3IeQmzqisp0g4nfeb5PvIZ4B5BLJupiVYRCPp2r3FztVvTigngoCz1425xFbsebcWVBr6sepI1Tm4ClC5BQCyfKiO+NbiYQgQ8JGD/sxTC0/O9Nhq1/SVvDFvY1Ie36gXhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mKVAkLI6; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-42cae4eb026so13455275e9.0;
-        Thu, 12 Sep 2024 13:56:22 -0700 (PDT)
+	s=arc-20240116; t=1726174637; c=relaxed/simple;
+	bh=KJviDHZ9lPMrCKs9Y16MulHLEhykyksuBhbmdkvKEt4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E2JN3LqqJq+jyuvgEAOpmZWV+KpJDEZbZAPJck0qNQS+ZJfY2o73WfxgWuYJESU/2aLSJeBmqfoBVD+JzBXphNK8q/SclNA8jf3JuM7kB/MG/4hZPzHZk10GF8IR2CvWT2uoP4HWgtJ5pOiqU77nzHTW67cUJlQoO8UCrfmuZ70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rj26X24R; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2f77d142aa2so1851841fa.3
+        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 13:57:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726174581; x=1726779381; darn=vger.kernel.org;
-        h=mime-version:date:references:organization:in-reply-to:subject:cc:to
-         :from:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=7YB7OGUmP2DQFc+bvfH2hCbNbgkST2+Q5rt52eeLQTA=;
-        b=mKVAkLI6F9ZmUbgnD5AvIFMO4rmpLp0q4MTdLXFfPsakoFOmJEp26jAu8+W8wnYW4+
-         kl0jum25V/q1Uj9EXcVxjw6e5cRi1Ylbu50sNmAKlTnwPsbC880nPY50EMmR3IvDLPUq
-         YxFSBi4QxOMX70nJYxjSwnmFW9tsXHGYFA75FZMffJJQrNGc2d67fzbwAXcVH+zXwQRm
-         eLKsAQmLhryrVgEgwaFmKyyyIawQqx1mzJzSJ/oroVjUQFl8gdD56Q222W7TkB7lDokt
-         /cx3g/qIFc8weTNxE3nrhghJ6PdM2fn1zyXUvmsw3pevZrR21TQgwdSc6UknncLL7k9x
-         UM9A==
+        d=linaro.org; s=google; t=1726174633; x=1726779433; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VEN2kvQPgr1Ms7pd8H18XzR4Akxhw4D8Y32gs8tCUBI=;
+        b=rj26X24RZhaVvv9w0zswB2/K8IEyIqWc4uTFz9fJvw/oChVhjqO5s/XTa8sQzQhxMk
+         HBCWhJFVbblkhC+KahPfXSC1yiJjVszSJcpfMmH9+HYBadd2Q4FrA2GPPtM4j6Ek0Za4
+         d74Fwsc06P5nGhIDafJgLLbDG4zeZiAqw7SAzAdASWk/5b5O3oDxScPe69oY9Cvcr/V7
+         ODvvITP/D/q/b+YuMt6+C/YC2Wr/Dh0jT7eQYW+e77xn85bMI/K/8rEmEipaVj+7zSQh
+         LToD1WKa59n033SK2othiQBbyJLY6ps7euQ8CZVp2JfhgDZjIDOXRqcrEtSBmu4oQM3n
+         R72Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726174581; x=1726779381;
-        h=mime-version:date:references:organization:in-reply-to:subject:cc:to
-         :from:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7YB7OGUmP2DQFc+bvfH2hCbNbgkST2+Q5rt52eeLQTA=;
-        b=aXdllJycQFZcHxtdK6sPq0nXq9x9C928FUoR4U8UK6QGf8wEQzS3uZVz78ux/hYO55
-         vOPT3+CSPeM+0A0UDsriqmIuOZHWG/RnpOrHMYqT2d/1W8gpA1Kxz7aYfHEBPROUDwPS
-         JhJ3DuhcRLSseGlrpm4DP2FahGAw7l9NqCMIBF66DofbEPX1o1W/VXWvd02JpspXPOOn
-         V4yCRKyCiN9B2lWdID5hwxqHIk5var7XMWBeVfyPgnHxs/Kp+aQ2D7YNj2mczosDB7dr
-         /pxhQgX080tZdUpfBQOfwSmE4wM40VOiWwY9lDmwRdl3/9ypK8nIr86fBF+LF5S85IXE
-         7Nmg==
-X-Forwarded-Encrypted: i=1; AJvYcCUsGajywT2y9tiQFe5wkjvBJbzuqttpjNaOkgGbMju8v3J4H3q2dvtAZPcHCcy7zibf0C8Yfxh/ZH0ojQ0=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhecJriHbj353BFYImD7Hmc6mwzErts8ofCU0OiKJ2mMFQ1nIl
-	jN4wsr4XqH3tMmITsjfsSvauP36Kesuf+OwLIWMxwJ1ErAjlhjuwTpMHXw==
-X-Google-Smtp-Source: AGHT+IEwcEaz5nKF16N5xA8l7cvpacZadUc376ihK92QYjGbHuWcgHRwzdIylk4pJsb/Ujcq8xCzwA==
-X-Received: by 2002:a05:600c:3504:b0:42c:b1ee:4afb with SMTP id 5b1f17b1804b1-42cdfac946fmr25591885e9.26.1726174580559;
-        Thu, 12 Sep 2024 13:56:20 -0700 (PDT)
-Received: from localhost ([37.72.3.43])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42cc01d4617sm80600155e9.0.2024.09.12.13.56.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Sep 2024 13:56:20 -0700 (PDT)
-Message-ID: <66e35574.7b0a0220.20af38.7a93@mx.google.com>
-X-Google-Original-Message-ID: <87ikv0wpzh.fsf@>
-From: =?utf-8?Q?Miquel_Sabat=C3=A9_Sol=C3=A0?= <mikisabate@gmail.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  saravanak@google.com
-Subject: Re: [PATCH v2] drivers/of: Improve documentation for match_string
-In-Reply-To: <172617312190.738061.4164864853737783773.robh@kernel.org> (Rob
-	Herring's message of "Thu, 12 Sep 2024 15:32:02 -0500")
-Organization: Linux Private Site
-References: <20240911204938.9172-1-mikisabate@gmail.com>
-	<172617312190.738061.4164864853737783773.robh@kernel.org>
-Date: Thu, 12 Sep 2024 22:56:18 +0200
+        d=1e100.net; s=20230601; t=1726174633; x=1726779433;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VEN2kvQPgr1Ms7pd8H18XzR4Akxhw4D8Y32gs8tCUBI=;
+        b=ZsoJViESPWLWl5KZLOY6S0HOrjR19mUX/ebDQqRBiPQTrZX+eual3eS07nrxchAaZp
+         kr80+ymbkLlGX0nT4l9za4i2eBn2eZ5yLzxGuMAWV7047ZfGg0fEu8m/eQWCyMBrT0Al
+         U2J7Z3j877m/zZOkYogikBcjUvOwiM7LK9uAHq378/q2ZbONUW2omXAD6MehdkZ62CIQ
+         fdSkBLHm+/V0HEwiDw/D1cCFKqARWEKg8KgPZ9uBK3idUJITyco2GhncZhp64lqo0ZCi
+         hqSqsaOSFQwoYQFJ4WSULJhKD9FAFMpsKjh1Qlwnehl6hsDVtXgp79Fa+C+DuHymdMQU
+         q85A==
+X-Forwarded-Encrypted: i=1; AJvYcCUgHgS0BWFclwrZzQplWvZb4EQo/ZbTMMwpyE/2GeVWTkpQEmZnqm0cKo2tIAFrj5kT7wMA+IJ+l/Sw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/h4P5aHC7r4pnnXN/iUNr9z7xuoNhPFlnzONX6tngMRi1Hke6
+	NBlGEa8FRyU79hZwtIWMJkURuOxJOlCx/0A5U07PadUTF4cNZuoazWgfVhxMeMA=
+X-Google-Smtp-Source: AGHT+IF5y36oHtilMrxdEGv+5g780tzqe3ogPeLW1QGZrWL44AwZEE7/E7trA6yIla2NOXosmijcCg==
+X-Received: by 2002:a05:651c:2203:b0:2f7:7f76:992f with SMTP id 38308e7fff4ca-2f787ee1554mr8031811fa.6.1726174633366;
+        Thu, 12 Sep 2024 13:57:13 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f75bfe7f1fsm19904211fa.11.2024.09.12.13.57.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Sep 2024 13:57:12 -0700 (PDT)
+Message-ID: <6eadc285-f413-4bf0-8795-59ff19c734da@linaro.org>
+Date: Thu, 12 Sep 2024 23:57:11 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-	micalg=pgp-sha512; protocol="application/pgp-signature"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/13] dt-bindings: media: camss: Add qcom,sm8550-camss
+ binding
+Content-Language: en-US
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
+ todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
+References: <20240812144131.369378-1-quic_depengs@quicinc.com>
+ <20240812144131.369378-8-quic_depengs@quicinc.com>
+ <b1b4a866-fa64-4844-a49b-dfdcfca536df@linaro.org>
+ <82dd61ab-83c0-4f9c-a2ee-e00473f4ff23@linaro.org>
+ <da60cf71-13a4-465d-a0ee-ca2ad3775262@linaro.org>
+ <97e4f888-1ed7-4d82-b972-3e0b95610198@linaro.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <97e4f888-1ed7-4d82-b972-3e0b95610198@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Hi Bryan,
 
-On dj., de set. 12 2024, Rob Herring (Arm) wrote:
+On 9/12/24 18:11, Bryan O'Donoghue wrote:
+> On 12/09/2024 13:44, Vladimir Zapolskiy wrote:
+>>> csiphy0
+>>>
+>>> vdda-phy-supply = <&vreg_l2c_0p9>;
+>>> vdda-pll-supply = <&vreg_l1c_1p2>;
+>>>
+>>> This is also the case for csiphy 1/2/4
+>>>
+>>> So, I _don't_ believe this is work we need to do, since its the same
+>>> regulator for each PHY.
+>>
+>> This is board specific, and even if the separation is not needed on the
+>> boards
+>> you have just checked, still it may be needed on some boards, which are
+>> not yet
+>> checked/not yet known.
+> 
+> There is a Power Grid Analysis document which specifies these rails @
+> the SoC level and assumes you've used the Qcom PMIC to power, moreover
+> the PGA re-uses the same regulator over and over again.
+> 
+> You _could_ provide that power from your own PMIC which provides the
+> same voltage range as the Qcom PMIC you haven't used. Even if you did
+> provide that from your own PMIC you'd have to provide _separate_ rails
+> for the various CSIPHYs before it would be required to have a per PHY
+> rail requirement on this SoC.
+> 
+> Are people really powering these SoCs with their own PMICs ?
+> No probably not.
+> 
+> Should we add the support for it anyway ?
+> Maybe.
 
-> On Wed, 11 Sep 2024 22:49:38 +0200, Miquel Sabat=C3=A9 Sol=C3=A0 wrote:
->> The description of the function now explicitly states that it's
->> an *exact* match for the given string (i.e. not a submatch). It also
->> better states all the possible return values.
->>=20
->> Signed-off-by: Miquel Sabat=C3=A9 Sol=C3=A0 <mikisabate@gmail.com>
->> ---
->>  drivers/of/property.c | 13 +++++++++----
->>  1 file changed, 9 insertions(+), 4 deletions(-)
->>=20
->
-> Applied, thanks!
+To have a set of regulators is a matter of proper IC/IP description, actually
+here I see very little option for a divergence or disagreement.
 
-Great, thanks!
+> So to reiterate:
+> 
+> 1. csiphyX-vdda-phy-supply
+>      csiphyX-vdda-pll-supply
+> 
+>      In the dts and yaml
+> 
+>      => The names should be generic from the perspective of the driver
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+As for me I don't care about the particular names, somebody else can care.
 
------BEGIN PGP SIGNATURE-----
+> 2. camss.c::csiphy_res_sm8550
+>      [0].regulators = { "csiphy0-vdda-phy-supply",
+>                         "csiphy0-vdda-pll-supply" }
+>      ...
+> 
+>      [N].regulators = { "csiphyN-vdda-phy-supply",
+>                         "csiphyN-vdda-pll-supply" }
+> 
+>      => The regulators for the PHY should be defined in the
+>         PHY resources description
 
-iQJJBAEBCgAzFiEEG6U8esk9yirP39qXlr6Mb9idZWUFAmbjVXIVHG1pa2lzYWJh
-dGVAZ21haWwuY29tAAoJEJa+jG/YnWVlxfUP/2bl5IBRgknyBEypmo+9fZdP5rHs
-lg0aeWVg0yOYXuP7wZBDIwGJjCjF50Z6C90R2tr0fGYbItSSAEfmnqOeN1XArlHa
-Yi6XeFt5eTHRdbvSR1nbjEEVgw2ISl42tIYOpRTIELmQLQj2GUowyR3eoFHj2vNs
-p2dpx3jZBNCWkoCfG7uDBppjc0L5ro7I0llArmEgnv0DXMsItsB2mBnkq71KB+7v
-9whritIfrW2SYOm/2HotfF5w16W0pqMlHS32i4g93IBY5faazfBOfc7GMWpFtoTw
-pgAezDlA9cUIv7qsXAduGffMGPx8ST8hW4yuyqTJ7ifQ7hf2DT+Uh8eBro30hc1B
-zGY75n5Hz2HA/M5Iay1VHhhX9VbefiyJ9/8rfGCQlvjAIyZqmPsbrrrSt4u5H4Fz
-o968AH3E9kUHj0oJgzopIy6HzjNfU2UPGRBSpgSM60DSOd8npg2dAT9gSCEuAFC4
-/lJZZ0sWfQY1JfcWeNoQz+AiV7D7KyvQJLc4ykJTsrcgxNax0JURK+1RaJ4+3AvD
-5dTTvwGwr7+HnWDHAUTJn+fobwGkCUHTU9h39CkOgHJ5d1Yym+oZVu3CD1xoPOIx
-/NfRnVVlstnvn8zyBKJhwgPC/yH3bQHNJydfh5LXC7+3mA8i1K4IbpmI91wHRgV+
-K/qduJ9NVnpLlby2
-=NxGc
------END PGP SIGNATURE-----
---=-=-=--
+This is obvious.
+
+> 3. Required not optional in the yaml
+> 
+>      => You can't use the PHY without its regulators
+
+No, the supplies shall be optional, since it's absolutely possible to have
+such a board, where supplies are merely not connected to the SoC.
+
+Hence there shall be no requirement to describe any non-present supplies,
+which is a legit case, if there is no connection and usage of the
+correspondent non-supplied PHY.
+
+--
+Best wishes,
+Vladimir
 
