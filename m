@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-102376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C63B1976C69
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 16:45:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92F8A976C6B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 16:45:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03F321C238C0
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 14:45:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C512D1C237B4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 14:45:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 583BD1B985D;
-	Thu, 12 Sep 2024 14:44:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 179471BA294;
+	Thu, 12 Sep 2024 14:44:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="fGKOrdfV"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="HZ1LgLP7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C91871B9848
-	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 14:44:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC5841B9B2A
+	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 14:44:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726152283; cv=none; b=UTD3AZWonMMVuj4BaHZFwbA71q4JkcMtwC3pTRlnY9XjClkSC8oJ3y94tHVE57RGwyrh1US8uleWbZ2e/t/jcfL1QC3CRmyjnzPVInncAS4fWBpXczL8ek8P51Z9O8J5YblzYiIjhxotK/2NNmLjOCNhYxzEQ43+Z6S2wP+/6U8=
+	t=1726152286; cv=none; b=czlVZw2tUG5jgeZL4VjVJADCe54M3HI5S3jOUpexzrsHW/Rf5MTke+nA7SMToOsJW1wkRs/VVy+tpQ5XoPNPAmwj9M6BzdKoMEH8YnNNW8tJXRwVDti/Htrzjhnx4QVAAlbUZYvdsYjiKKI87XVz44dB5O3pFKZFTSonSRNQwkg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726152283; c=relaxed/simple;
-	bh=o0CFMv3zUMlbHLsYeUBPcNq1Mj+k/sjWZCmQYc7SHrM=;
+	s=arc-20240116; t=1726152286; c=relaxed/simple;
+	bh=RDZTD0ddsCBrpFPbbEm78JMGTuO/C6UMRKc4Ag2Bbuo=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=C+etntX4yqDFIX9bmCpienFFQ6fS/8gdPZL9yg2CDphES5t5UTS4dJu4JyVAtFm4+Wg3pOUg1F7Wg/pFjiBOG9HxOaOpUYk7ehl/RBk6DA3Zp1vRR6BCxwEl5fXgs9DRG27Ggy6H80jpDnKSzXDkgWMQuvCPDP38iSnro5+8rCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=fGKOrdfV; arc=none smtp.client-ip=209.85.161.49
+	 MIME-Version; b=HBOvths65JEzJy6s1glNW/kFc9WmbZ7Wg5iXeNjnhbIEKxqOzNySLRzUKU4yiV9gVvpATtPYI+SBG/x3E/AP0EwPTqBIcHbv7dO4HsBHWH9xWtNubyBuxlwdC332WLKb2V/ebLSKH7WdPpM4KF+z3yhtjXjCP3hOBLWMB1EqNEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=HZ1LgLP7; arc=none smtp.client-ip=209.85.210.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5e1bf327af8so489137eaf.2
-        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 07:44:41 -0700 (PDT)
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-718f4fd89e5so908099b3a.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 07:44:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1726152281; x=1726757081; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1726152284; x=1726757084; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pBobOyxG7h8nS1KWtk3g4MWOyKZOXk2z2jSGYhG4DTs=;
-        b=fGKOrdfVQfrBZZRdimB/4bKTYSrlC3xUDA6GDYucIH8aBcqQzK7GoJyQwVMUoY4/Ye
-         2Rthk4Ep2GO8AMNbNI3n+i2OO+9wxJHAQvlbinz6BqqBpTuhiFA4+Di+j5n55wFdwWJX
-         TYXmsIOr37p9UcqoP/+TvrZqkyAw6XPnaTeCs=
+        bh=ENHzAa0J3LYULKcETMFEp8gDeg2pft3wUA50kLkpahc=;
+        b=HZ1LgLP7UdZsQNPUhIlXvYA4TG5bUeY7ACIWFkStsfUddDyQZ2z8pxtoPeKikBp2Ml
+         as2+Vf1UdEzgRPCuIc/DAIkTn1Dm/el9iUcV3jIbgU0uefT0HprmUge9TQ77bwXtlVI3
+         y15lGNAmOxWX6T4K6XOicbV7i1AaUqZao07bk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726152281; x=1726757081;
+        d=1e100.net; s=20230601; t=1726152284; x=1726757084;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=pBobOyxG7h8nS1KWtk3g4MWOyKZOXk2z2jSGYhG4DTs=;
-        b=qVdUrpWoZPlIw1YEFdZ5r4K4XHkXxRjzFzMhMHR3qo0MNlgLYNKgRrGpzDLzHHTFzU
-         F4vuDOoqMX5L2W2uXiAlPXJoG3EH+WGxZhafaplYR4H5lWH/WApyx1U9yu07ZHFFkE+/
-         ThHcFSuklY7D/urYI82JFxddup97MKE3e28EK2Hv4YzX/Uup6SpgjO5YpZWLnltNnZtN
-         e2L1JeH9GcZvdSWR/KD6vB9XqrQ+ihtT/Vad2dQ+HWyA+zZxMXkn69Y3cCQq0EGkLwau
-         ZscFnQruZf/gPDJ1WZ5D83A52EB7BBi+7HGG27+wc8iIDyj/LqkCfgMll6ixriZYJC9R
-         eB0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXNuN7k1rEvnU7XcbDJuke+dBFspaXiVjf6WYtmNxWotittkkSEKNwkLFR2cbnbLOs8O12/bQc7HS/R@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUI4I2IpBWvpX7p7T5JrQPFn3fVQg/I6WxG9Qg1t0RKwnTlZgS
-	wnUbfImPJ8cEN3XosRt3p5ZLq+lnNyy75YnJLs7Xf7840eOtJTXOnWSEdBo7Kg==
-X-Google-Smtp-Source: AGHT+IHO/WoJUXlOGm3jql0fNBGLuC2NTWOQUgJ/i3VELhySJR9ptX7aA3pjDFcXYgWO/HiMD6f3fw==
-X-Received: by 2002:a05:6871:2b27:b0:277:c21c:8619 with SMTP id 586e51a60fabf-27c3f0e0e6fmr1795567fac.8.1726152280812;
-        Thu, 12 Sep 2024 07:44:40 -0700 (PDT)
+        bh=ENHzAa0J3LYULKcETMFEp8gDeg2pft3wUA50kLkpahc=;
+        b=bqb2WdZTVS+Hbizno5LF42YN0li/p8wbgHeyWvuLAwVfs0EN68F7qla8PXe8QaIk7t
+         hM7Yi0cIa8/W56HNSOhBPp/IvME+7YH3g6qwHmxX5kaKkd/dNUBqUxSQV5eD0dW43Qtg
+         BQBVzcpCHKgISvExLStx1+80QXJXq8uhbTGDzFEkdTBDE2BwS1p3QVL5VCbcueYF+Oqd
+         /MOwP/LbIJISkxfW0BcYkmIU/eUYu81aPGPM6VnOaE7/LWzjYa6n80E8LiMKIQWOBUUQ
+         TPfvgaUrCpEoHvj7sSriR5wP3T8wNGfthbzSaESxUzt8X+jyKovG/lWQ06PAawX24+Rj
+         kHsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWM239Ud9n7sp+audT8wR/V3FNosbHC0YcqUNAaHnffL46qCjGeNtYdcbuzdZbVSZhU4ySiqOF1B0Qm@vger.kernel.org
+X-Gm-Message-State: AOJu0YweVON7Urx3pxWQGW2+OdCYqyKZdkSq0d5XYE0zJayAgC7yEEV7
+	1e2kcqkglj+HnSj4fWQYOX0ykn8HGu4Zxa21XGVM1GOp1ibA746cwkE1MGOfXA==
+X-Google-Smtp-Source: AGHT+IGmocmHhOdJqPoiASVWIbhrUvuzbyP0frIxr5SqJiWxgxpjRkvqPtBS2tOxjv28s+maVvPRJA==
+X-Received: by 2002:a05:6a00:1790:b0:706:a931:20da with SMTP id d2e1a72fcca58-719260654f6mr5526880b3a.3.1726152283924;
+        Thu, 12 Sep 2024 07:44:43 -0700 (PDT)
 Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:8638:897f:b6cd:8c44])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7db1fdee186sm1826269a12.85.2024.09.12.07.44.38
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7db1fdee186sm1826269a12.85.2024.09.12.07.44.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Sep 2024 07:44:40 -0700 (PDT)
+        Thu, 12 Sep 2024 07:44:43 -0700 (PDT)
 From: Pin-yen Lin <treapking@chromium.org>
 To: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
 	Philipp Zabel <p.zabel@pengutronix.de>,
@@ -80,10 +80,11 @@ Cc: linux-kernel@vger.kernel.org,
 	Fabien Parent <fparent@baylibre.com>,
 	Jitao shi <jitao.shi@mediatek.com>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH 1/2] dt-bindings: display: mediatek: dpi: Add power-domains to the bindings
-Date: Thu, 12 Sep 2024 22:43:58 +0800
-Message-ID: <20240912144430.3161717-2-treapking@chromium.org>
+	linux-mediatek@lists.infradead.org,
+	kernel test robot <lkp@intel.com>
+Subject: [PATCH 2/2] arm64: dts: mt8183: Add port node to dpi node
+Date: Thu, 12 Sep 2024 22:43:59 +0800
+Message-ID: <20240912144430.3161717-3-treapking@chromium.org>
 X-Mailer: git-send-email 2.46.0.662.g92d0881bb0-goog
 In-Reply-To: <20240912144430.3161717-1-treapking@chromium.org>
 References: <20240912144430.3161717-1-treapking@chromium.org>
@@ -95,46 +96,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The power-domains property is used by most DT nodes using mediatek,dpi
-bindings. Add this to the bindings to fix the schema check error.
+Add the port node to fix the binding schema check.
 
+Fixes: 009d855a26fd ("arm64: dts: mt8183: add dpi node to mt8183")
 Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202409110843.Hm5W9upr-lkp@intel.com/
+
 ---
 
- .../bindings/display/mediatek/mediatek,dpi.yaml           | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-index 5ca7679d5427..7e0bb88f5856 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-@@ -42,6 +42,12 @@ properties:
-   interrupts:
-     maxItems: 1
- 
-+  power-domains:
-+    description:
-+      A phandle and PM domain specifier as defined by bindings
-+      of the power controller specified by phandle. See
-+      Documentation/devicetree/bindings/power/power-domain.yaml for details.
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index 266441e999f2..0a6578aacf82 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -1845,6 +1845,10 @@ dpi0: dpi@14015000 {
+ 				 <&mmsys CLK_MM_DPI_MM>,
+ 				 <&apmixedsys CLK_APMIXED_TVDPLL>;
+ 			clock-names = "pixel", "engine", "pll";
 +
-   clocks:
-     items:
-       - description: Pixel Clock
-@@ -82,11 +88,13 @@ examples:
-   - |
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-     #include <dt-bindings/clock/mt8173-clk.h>
-+    #include <dt-bindings/power/mt8173-power.h>
++			port {
++				dpi_out: endpoint { };
++			};
+ 		};
  
-     dpi0: dpi@1401d000 {
-         compatible = "mediatek,mt8173-dpi";
-         reg = <0x1401d000 0x1000>;
-         interrupts = <GIC_SPI 194 IRQ_TYPE_LEVEL_LOW>;
-+        power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
-         clocks = <&mmsys CLK_MM_DPI_PIXEL>,
-              <&mmsys CLK_MM_DPI_ENGINE>,
-              <&apmixedsys CLK_APMIXED_TVDPLL>;
+ 		mutex: mutex@14016000 {
 -- 
 2.46.0.662.g92d0881bb0-goog
 
