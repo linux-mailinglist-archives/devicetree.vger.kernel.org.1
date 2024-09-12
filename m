@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-102502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9E2B9774DB
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 01:18:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 328F39774DE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 01:18:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03CCDB245F6
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 23:18:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E45BA2862DC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 23:18:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DB141C578F;
-	Thu, 12 Sep 2024 23:17:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6103F1C688F;
+	Thu, 12 Sep 2024 23:17:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="2lSaC9hv"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="MnYIxpMv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9C7619F402
-	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 23:17:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC84B1C57BA
+	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 23:17:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726183046; cv=none; b=JZwm6YP4JSxM8Qwyd7cuta0fb+XJtUalIDUEL4jfH6HvdSBM16iftGM7+fTkzU97TXHkHxdQI8vgCq0F7NNEIzUKDTFp2+JMAI52F9hCx9u3+G3AlW22ew+OX6IbdIfN/447Q0DzsLoxqAC392M8daZMH7XCaDW+p2TBfDGoCwY=
+	t=1726183050; cv=none; b=nSuDKimlT7o4GRGN/QN2cluOFCKjo/oxDMZ1SW0VKm+ANLILasWy1M7ErdA3S91R2slYD82Myku+IM6eJSbjf22gVLmG1f4UpGyWOpoCqxy37iZy90jZhnp8QqIZ2l5L8VtBkW3tRD+GINWXp8KDdIkVv9huAT/oGhtvRKdYQSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726183046; c=relaxed/simple;
-	bh=Oc3tmdk4WmYM5iSxiU/jX+1L3bm0lX4lAYJVUxwchig=;
+	s=arc-20240116; t=1726183050; c=relaxed/simple;
+	bh=ZQTODxyv7j9Jb3MVQzLLFTP1AD7KtUwwJbRsAsWaO44=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JzQUCHg6fcmIOAn7e/s24Xm885637mBUDl5FNRv95MU8hktMWbKdgXZ+t+dnRy0tMu6XvRLi3khEX44+SRPNnMVYXofjFwisUlIn5vCbAL2ZqTCPTBCToCUKJszc/hZTi1P5dBU+Q03UdVTaPiUVXn0ft+kFpll+J5UURtkmN1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=2lSaC9hv; arc=none smtp.client-ip=209.85.216.47
+	 MIME-Version; b=DVOCbmCPsqayDRgKR77yPe6HKlyJR/umt5ZcbzzrMRHc4uZuUsS3/2XIkgDtLmG1xu7vAiyWx6NCBQxhY87+OLfq79jJkUSkDrzzILJc8GMslAvG7noqU4Dw/8kZTj0cwHZA+kpByXaXhGHkVESKnlWRwy09GFBARU/rEmfo1w0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=MnYIxpMv; arc=none smtp.client-ip=209.85.214.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2d87196ec9fso277850a91.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 16:17:23 -0700 (PDT)
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-201d5af11a4so17597235ad.3
+        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 16:17:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1726183043; x=1726787843; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1726183048; x=1726787848; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zDmvOTSrnPg54HHGP9mWRdaXRn5Dr4fSLwQGe7BW+Sc=;
-        b=2lSaC9hvugi5SkRe/F7+wIOM0y2dA392sQV7ybDgxQJ1NJfG5hssVoSQnOZ5IVeFuI
-         BGRJDseJKzIvIWxt3O4cD+KSRYyLd6GtAKRu4IAwvZbD1c2YMHguc8kiOYitePD+iz0y
-         3uVv+3RTp9bt48xXCDVLcZaftM/TaPfZIAr9KMJaLD/NeXOp3NEtAdDfCeGkrUyl5l27
-         UYE8nFmGrWxW2dlkbtDylKywTdJy+P2hM0heOzBQQgmBTqJPfrSTXjQQ8KmcKlu7xQ69
-         6OcSn4R7pHaqP9rGl/G4BOW13/IK2AoOpNrBL9mTGnGg3RFEjlnVqrhpvQAgPfGBNIn9
-         mWDg==
+        bh=KDHpycfSyd14eKEYNZ2Tiwh37NTkssfzdaJprWVmYic=;
+        b=MnYIxpMvgo30YZpkITBNIV/EeP4b9RXnuRVsP9tAQiC8dLM3QvpswEcD90jdgyNXLn
+         YFf/OBXED/1dPYcZoaEvAjequ3RxsvdZfPBwoUmJhm24KhS2b/+ZdJHZVpELbytwzLZs
+         Zt+ZVxlF4Op2wsWLunFWsS4bFjmW+7YbM5RisRmh+need/B518CBNgVBek+SX3DPReX4
+         pK/+ohjff073TASMwyA5Qgut+c+wtSKxf7XcLaJSwXkJqaj3CrkgcZ9rjkUjNoUW2knY
+         x80GgSlprYmwKbnRSQe4AuXTvV/xJaKW6B61e/3aPI/Hd+teoBtOVsLZbrTvYPSj5SIN
+         u2qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726183043; x=1726787843;
+        d=1e100.net; s=20230601; t=1726183048; x=1726787848;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zDmvOTSrnPg54HHGP9mWRdaXRn5Dr4fSLwQGe7BW+Sc=;
-        b=dNmaIoyQ3KoTlNBxvx87vfDuROKcu6H/+c0Xe6AMUPszAwGgxqHGmXHsUFRAyVNjF3
-         gR1hPo5ETV3qG/KrU/I1qrXkXLk3keiM299XzbpyQDMP8Y/ZzicVV6FvFAQ0je45cPxG
-         ye4lxeQH1Hv0vA40Io/grRdRs5JzSYMjSUYC70rqzCGONb7e3RRcOVT6mXDx2w32PGFw
-         Enf9AeefXxzt7R9EknQawC10Iwnzn1Cszt+lEpw6AHekjUwu1h0Lvc3yxOf7cbhWvBim
-         pvPxsM0xs/LjIVVmJUNtp330as1RusxTabYUUp6G8WPy/V4NNMenmdFa0nIyWFpH99w5
-         Wsmw==
-X-Forwarded-Encrypted: i=1; AJvYcCUAUXGgQy3zKS935HuBnEd1zyGqkysSOXbKlhl+hdVsOXpZ5DeekG2HXSCxAXMAkLg1Ei61A9vgBb0W@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJW6UEn32B022JDWSlp329S5n5yxv6edJ5DE4QKoADO16ED0JV
-	4vjixjNtzE4qiD37mAqgoVTbMHpckmcYNMUr3HwTlc7Fdu56nG+lXjQ5XGAMk1U=
-X-Google-Smtp-Source: AGHT+IFCbH4CWj3cRlGP/tTcFYJu5lqNBzSaDboWQslgR+Qb4odzPou2d9TOn5WUDlzlxhbuOJA+kw==
-X-Received: by 2002:a17:90a:cf0f:b0:2d8:8ce3:1e9d with SMTP id 98e67ed59e1d1-2dbb9dbda04mr929613a91.3.1726183043273;
-        Thu, 12 Sep 2024 16:17:23 -0700 (PDT)
+        bh=KDHpycfSyd14eKEYNZ2Tiwh37NTkssfzdaJprWVmYic=;
+        b=m4LB29adGJ6GGEwbLZYTPMruIbSpHEfMSPFy0yuE5sCE58ae0a7OFW5xFQZgFB5Vle
+         U/QITSeH5XZ+8PO/PMTI8Q28QoYIrCAqtnn0k+k5oaAzMuLjPRxraoyESNFr5qX4L57i
+         8eYN149qXyTeC2n03cv6lhwXlXGmDGei9L6B+oiPoQQMafJdxfhAt1/C57enusER5C3U
+         LtdL9G0emMqDxsRTLZ9KGfNViH9aUnWO9PLh4jWhoPAirqlmME1c5AloDm0evh0tqHRK
+         ARDK0u8gBRX3RxDwy7eC1pOM6qOdG8CWKt58f6uhEY385/Fm5uIEcw7bihaMRVFbxdOm
+         fEPg==
+X-Forwarded-Encrypted: i=1; AJvYcCVFh98S303qxVW/lZhdjBEcUBvEIpjaDLtdw6SBTJblJ1fbHYmEeJV9etm+ExnVwxY4jMqL7xsR3VLK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHxYumpsJqF/iT4JUjQuDP3Io2suOucSjqoCNUvJi8799WiNjz
+	U+tcURywJWJ8B+WatBGktzLMp2kyK+1sMXhTxDteEh2PjdBRKENURVqq0WLnncY=
+X-Google-Smtp-Source: AGHT+IGgw8wuv6wUiP6Uqm3H0s61sB80F1WhERdlqMkwOmwPP9ITQsqy/bvbAfvC2aqbyGgjaY4ahg==
+X-Received: by 2002:a17:90a:f2c9:b0:2da:6a4d:53a6 with SMTP id 98e67ed59e1d1-2db9ffb3672mr5841992a91.19.1726183047961;
+        Thu, 12 Sep 2024 16:17:27 -0700 (PDT)
 Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2db6c1ac69asm3157591a91.0.2024.09.12.16.17.19
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2db6c1ac69asm3157591a91.0.2024.09.12.16.17.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Sep 2024 16:17:22 -0700 (PDT)
+        Thu, 12 Sep 2024 16:17:27 -0700 (PDT)
 From: Deepak Gupta <debug@rivosinc.com>
 To: paul.walmsley@sifive.com,
 	palmer@sifive.com,
@@ -154,10 +154,11 @@ Cc: corbet@lwn.net,
 	revest@chromium.org,
 	bgray@linux.ibm.com,
 	deller@gmx.de,
-	zev@bewilderbeest.net
-Subject: [PATCH v4 04/30] riscv: Add support for per-thread envcfg CSR values
-Date: Thu, 12 Sep 2024 16:16:23 -0700
-Message-ID: <20240912231650.3740732-5-debug@rivosinc.com>
+	zev@bewilderbeest.net,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v4 05/30] riscv: Call riscv_user_isa_enable() only on the boot hart
+Date: Thu, 12 Sep 2024 16:16:24 -0700
+Message-ID: <20240912231650.3740732-6-debug@rivosinc.com>
 X-Mailer: git-send-email 2.45.0
 In-Reply-To: <20240912231650.3740732-1-debug@rivosinc.com>
 References: <20240912231650.3740732-1-debug@rivosinc.com>
@@ -171,80 +172,67 @@ Content-Transfer-Encoding: 8bit
 
 From: Samuel Holland <samuel.holland@sifive.com>
 
-Some bits in the [ms]envcfg CSR, such as the CFI state and pointer
-masking mode, need to be controlled on a per-thread basis. Support this
-by keeping a copy of the CSR value in struct thread_struct and writing
-it during context switches. It is safe to discard the old CSR value
-during the context switch because the CSR is modified only by software,
-so the CSR will remain in sync with the copy in thread_struct.
-
-Use ALTERNATIVE directly instead of riscv_has_extension_unlikely() to
-minimize branchiness in the context switching code.
-
-Since thread_struct is copied during fork(), setting the value for the
-init task sets the default value for all other threads.
+Now that the [ms]envcfg CSR value is maintained per thread, not per
+hart, riscv_user_isa_enable() only needs to be called once during boot,
+to set the value for the init task. This also allows it to be marked as
+__init.
 
 Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 Reviewed-by: Deepak Gupta <debug@rivosinc.com>
 Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 Signed-off-by: Deepak Gupta <debug@rivosinc.com>
 ---
- arch/riscv/include/asm/switch_to.h   | 8 ++++++++
- arch/riscv/include/asm/thread_info.h | 1 +
- arch/riscv/kernel/cpufeature.c       | 2 +-
- 3 files changed, 10 insertions(+), 1 deletion(-)
+ arch/riscv/include/asm/cpufeature.h | 2 +-
+ arch/riscv/kernel/cpufeature.c      | 4 ++--
+ arch/riscv/kernel/smpboot.c         | 2 --
+ 3 files changed, 3 insertions(+), 5 deletions(-)
 
-diff --git a/arch/riscv/include/asm/switch_to.h b/arch/riscv/include/asm/switch_to.h
-index 7594df37cc9f..dd4a36ff4356 100644
---- a/arch/riscv/include/asm/switch_to.h
-+++ b/arch/riscv/include/asm/switch_to.h
-@@ -70,6 +70,13 @@ static __always_inline bool has_fpu(void) { return false; }
- #define __switch_to_fpu(__prev, __next) do { } while (0)
- #endif
+diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm/cpufeature.h
+index 45f9c1171a48..ce9a995730c1 100644
+--- a/arch/riscv/include/asm/cpufeature.h
++++ b/arch/riscv/include/asm/cpufeature.h
+@@ -31,7 +31,7 @@ DECLARE_PER_CPU(struct riscv_cpuinfo, riscv_cpuinfo);
+ /* Per-cpu ISA extensions. */
+ extern struct riscv_isainfo hart_isa[NR_CPUS];
  
-+static inline void __switch_to_envcfg(struct task_struct *next)
-+{
-+	asm volatile (ALTERNATIVE("nop", "csrw " __stringify(CSR_ENVCFG) ", %0",
-+				  0, RISCV_ISA_EXT_XLINUXENVCFG, 1)
-+			:: "r" (next->thread_info.envcfg) : "memory");
-+}
-+
- extern struct task_struct *__switch_to(struct task_struct *,
- 				       struct task_struct *);
+-void riscv_user_isa_enable(void);
++void __init riscv_user_isa_enable(void);
  
-@@ -103,6 +110,7 @@ do {							\
- 		__switch_to_vector(__prev, __next);	\
- 	if (switch_to_should_flush_icache(__next))	\
- 		local_flush_icache_all();		\
-+	__switch_to_envcfg(__next);			\
- 	((last) = __switch_to(__prev, __next));		\
- } while (0)
- 
-diff --git a/arch/riscv/include/asm/thread_info.h b/arch/riscv/include/asm/thread_info.h
-index fca5c6be2b81..c74536194626 100644
---- a/arch/riscv/include/asm/thread_info.h
-+++ b/arch/riscv/include/asm/thread_info.h
-@@ -57,6 +57,7 @@ struct thread_info {
- 	long			user_sp;	/* User stack pointer */
- 	int			cpu;
- 	unsigned long		syscall_work;	/* SYSCALL_WORK_ flags */
-+	unsigned long envcfg;
- #ifdef CONFIG_SHADOW_CALL_STACK
- 	void			*scs_base;
- 	void			*scs_sp;
+ #define _RISCV_ISA_EXT_DATA(_name, _id, _subset_exts, _subset_exts_size, _validate) {	\
+ 	.name = #_name,									\
 diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index 0139d4ea8426..f7fcd23d55de 100644
+index f7fcd23d55de..41fd0be25bd8 100644
 --- a/arch/riscv/kernel/cpufeature.c
 +++ b/arch/riscv/kernel/cpufeature.c
-@@ -922,7 +922,7 @@ unsigned long riscv_get_elf_hwcap(void)
- void riscv_user_isa_enable(void)
+@@ -919,12 +919,12 @@ unsigned long riscv_get_elf_hwcap(void)
+ 	return hwcap;
+ }
+ 
+-void riscv_user_isa_enable(void)
++void __init riscv_user_isa_enable(void)
  {
  	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_ZICBOZ))
--		csr_set(CSR_ENVCFG, ENVCFG_CBZE);
-+		current->thread_info.envcfg |= ENVCFG_CBZE;
+ 		current->thread_info.envcfg |= ENVCFG_CBZE;
  	else if (any_cpu_has_zicboz)
- 		pr_warn_once("Zicboz disabled as it is unavailable on some harts\n");
+-		pr_warn_once("Zicboz disabled as it is unavailable on some harts\n");
++		pr_warn("Zicboz disabled as it is unavailable on some harts\n");
  }
+ 
+ #ifdef CONFIG_RISCV_ALTERNATIVE
+diff --git a/arch/riscv/kernel/smpboot.c b/arch/riscv/kernel/smpboot.c
+index 0f8f1c95ac38..e36d20205bd7 100644
+--- a/arch/riscv/kernel/smpboot.c
++++ b/arch/riscv/kernel/smpboot.c
+@@ -233,8 +233,6 @@ asmlinkage __visible void smp_callin(void)
+ 	numa_add_cpu(curr_cpuid);
+ 	set_cpu_online(curr_cpuid, true);
+ 
+-	riscv_user_isa_enable();
+-
+ 	/*
+ 	 * Remote cache and TLB flushes are ignored while the CPU is offline,
+ 	 * so flush them both right now just in case.
 -- 
 2.45.0
 
