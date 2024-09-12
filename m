@@ -1,83 +1,102 @@
-Return-Path: <devicetree+bounces-102209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29553975EE3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 04:27:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46F2F975EEA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 04:32:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ADC26B230DD
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 02:27:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4CFD28237F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 02:32:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5456A3A8E4;
-	Thu, 12 Sep 2024 02:27:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="M0lMF+m5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA3EE2CCAA;
+	Thu, 12 Sep 2024 02:32:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDF773C24;
-	Thu, 12 Sep 2024 02:27:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2466746BF;
+	Thu, 12 Sep 2024 02:32:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726108023; cv=none; b=g7OV0yCjM9AN1iWncLsVFxT8lKovnxbJKsoTaI9h3dC7J+FGwXYuEfQC7bvxLZDuFLyv6Z4YMILOyglaWb3W78f9Ic477atO6ssPUeAPX6Gc36lRPn8VPCcxvCH5R8Sgex7vHNzTJQ9HXrMcncCxm7XZxGtcT5ysIYDmtHNJZLw=
+	t=1726108351; cv=none; b=KsUSw5aCNmK8pZAtUW2JyAaR/bQUbfBKeqVWqpQpQ8TaKqtMx471ZruobVkxgxuMS3TeE8fcjJEmecSI2xQAvGx1gHoEyc4T9bLd3NdoSWvPIX68qUQDupT7VqyCvcnKBNXNabJdvfDoFkSNn1qI1FoT9FngGzcLyXQkkeNFXWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726108023; c=relaxed/simple;
-	bh=BXcYBcx2y4YZCH6yjZQSNtfF5AUmkdKLYxNVH2SITfQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Po86kMRLzQU4FC9hJn1gTn8m7BV6K38v9IEiNgTCviQbMzoXIKFGsbTWbV9/U/Y5baoqBxqZEORicvNSNUGh5K/J0Bs7bPVYk4F/fF3PSn56bh4uTfp+ENWbhL9S6E1CW+yG5Sh+f8DsyE5dwZ8Fv3OEj3H0hhyYuoa0QM6dDVg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=M0lMF+m5; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1726108019;
-	bh=4T+rDZ0xJ2wcnLPEZ14zB7/g2o2IjvlNz0qDcwZKU/o=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=M0lMF+m5rm6jq08qEg42+8u0hQV2kXypF2aBpBQs6gO8f1qcAEKHWuwD6zUseVOah
-	 oE6YLdG/BwvAQu3nuBIPjNhsvSzHxgMiYtiuI9c8iGjlQVwoaDfddfClpj3JEJi4bG
-	 LrxU6d3FLkP7ppDGdf8BNZbvnLf7oVX0ICXDVaBs0qE7LEeE7fHpUBTOFdZ8EKNurC
-	 e0FB8+H4ZKWBRUl8E9dUFHiTVwjB+a08QpZoCnSDSaimkOf4dlEpP7Fm0jzOLEXCXs
-	 xyZM6OPdFVagMaLEfgD720gpdosvfbg8RlUdPGx6QgoXN4DUE8w7uQtFziFaXPuHU/
-	 S4eV5aabqvBAw==
-Received: from [127.0.1.1] (ppp118-210-89-8.adl-adc-lon-bras32.tpg.internode.on.net [118.210.89.8])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id F1A34650D6;
-	Thu, 12 Sep 2024 10:26:58 +0800 (AWST)
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: patrick@stwcx.xyz, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20240910022236.1564291-1-Delphine_CC_Chiu@wiwynn.com>
-References: <20240910022236.1564291-1-Delphine_CC_Chiu@wiwynn.com>
-Subject: Re: [PATCH v1] ARM: dts: aspeed: yosemite4: Enable adc15
-Message-Id: <172610801889.712033.6359452612409373701.b4-ty@codeconstruct.com.au>
-Date: Thu, 12 Sep 2024 11:56:58 +0930
+	s=arc-20240116; t=1726108351; c=relaxed/simple;
+	bh=ZmUjudHiyuEWMBzCozWoAuZie6RwccvbeHh4MzHt5nM=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=R/9lMNEM/YjbH5WOy3ZS3pVXVa7c5woYqV9iAZPfaUoNvjA/Uvt2+MnPs10J/3Jli8SBWpwlRlo9RwlqQwmwLedjU8KM7uHoA+tf/BHPMUvo2pPnHjgKgG078oCKJUzerpQgqOchhAuJhXTyZaMIkUTi7N4bFzIefkw7KPc2les=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c02:fc40::1])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id 8786E7E0187;
+	Thu, 12 Sep 2024 10:30:22 +0800 (CST)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: bigfoot@classfun.cn
+Cc: amadeus@jmu.edu.cn,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dsimic@manjaro.org,
+	heiko@sntech.de,
+	jonas@kwiboo.se,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: add dts for Ariaboard Photonicat RK3568
+Date: Thu, 12 Sep 2024 10:30:18 +0800
+Message-Id: <20240912023018.23986-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240911122809.1789778-5-bigfoot@classfun.cn>
+References: <20240911122809.1789778-5-bigfoot@classfun.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.1
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCHkNDVkkeTRgYQk0dSR9OQlYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtJQR0YT0tBQUpZV1kWGg8SFR0UWUFZT0tIVUpLSUJDQ0
+	xVSktLVUtZBg++
+X-HM-Tid: 0a91e411456003a2kunm8786e7e0187
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PDY6Thw6TjI0Ti0jLUMKNRE4
+	OAkaCUJVSlVKTElNSktDSUlISU1JVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
+	Sx5BSBlIQUkYS0lBHRhPS0FBSllXWQgBWUFKQkxLNwY+
 
-On Tue, 10 Sep 2024 10:22:36 +0800, Delphine CC Chiu wrote:
-> Enable Yosemite4 adc15 config for monitoring P3V_BAT_SCALED.
-> 
-> 
+Hi Junhao,
 
-Thanks, I've applied this to be picked up through the BMC tree.
+> ...
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-photonicat.dts
+> ...
 
-[1/1] ARM: dts: aspeed: yosemite4: Enable adc15
-      commit: e3b9afda18a6dc7975197a061c698142deeccc1b
+> +	rfkill-modem {
+> +		compatible = "rfkill-gpio";
+> +		label = "M.2 USB Modem";
+> +		radio-type = "wwan";
+> +		reset-gpios = <&gpio0 RK_PB0 GPIO_ACTIVE_LOW>;
+> +		shutdown-gpios = <&gpio4 RK_PC4 GPIO_ACTIVE_HIGH>;
+> +	};
 
---
-Andrew Jeffery <andrew@codeconstruct.com.au>
+gpio0 RK_PB0 conflicts with xin32k, please add:
+
+&xin32k {
+	pinctrl-names = "default";
+	pinctrl-0 = <&clk32k_out1>;
+};
+
+> +	vccin_5v: regulator-5v0-vcc-in {
+> +	vcc_sysin: regulator-5v0-vcc-sysin {
+> +	vcc_syson: regulator-5v0-vcc-syson {
+> +	vcc5v0_usb30_otg0: regulator-5v0-vcc-usb-host {
+
+obviously (
+
+-- 
+2.25.1
 
 
