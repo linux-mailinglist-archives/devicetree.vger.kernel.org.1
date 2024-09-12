@@ -1,82 +1,84 @@
-Return-Path: <devicetree+bounces-102197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D85F975E61
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 03:13:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73657975E98
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 03:42:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03322B2210D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 01:13:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A644F1C22786
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 01:42:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7237E4A29;
-	Thu, 12 Sep 2024 01:13:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AF43282FB;
+	Thu, 12 Sep 2024 01:42:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Cru5l5Y2"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="fB8KAnEF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D74181AACA;
-	Thu, 12 Sep 2024 01:13:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 333153C24;
+	Thu, 12 Sep 2024 01:42:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726103617; cv=none; b=TaOcQ5+i7BA3zx6r4Zscj08yPIL+uGMSOYh6nyBi8TYdcO37xHITkX8Srf2GOpYJPdhF+5jCDdbJ2tGR9bPwmvb1wKoc0qEiLeoDKPUpQGmTYDnBBFFzJdGO26kMyZcLchY+JONcj+VkQZpYGxcbtxiD+KgbWEU//0bbXfOV3JE=
+	t=1726105350; cv=none; b=Q6ydMH/IExbyKjGuP86IZ9zqazLEc1YiNTpqY+ayLHe328HLMernpR0369jUp+J6XcauZaAEUH1c2lgVZZVVo5wVsCOqzmKQ+arTWDPA4SBeU0z2jeVQeQrTItgBNn9fYgl0g1EQejYyuYRfBPHalSfJFY/LhRJkeamK1u6ZeV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726103617; c=relaxed/simple;
-	bh=S+MbdhdVOhOMSghEANs8RIXiI0K1AciZRyT3zzRZOq0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=QL3+kJqWymN6F908e0/+7PW/GhnWLMtcDR+htxOYzhNvcXKjTQ7Z4VeITbYGVb/2lkeskjJHAM4oSoDrC5KTEFcgJGIgFTYNI4a7zW8x9zxiOPoPa4LguzaSAbCuTDRTprjtKWN1zwNEkR4UMphE2tfgwl7t3WB8C/M/IiCozWY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Cru5l5Y2; arc=none smtp.client-ip=203.29.241.158
+	s=arc-20240116; t=1726105350; c=relaxed/simple;
+	bh=AhtLjJmMWl9cki27GULLW7uMxbGxUMd5ibgfjOAe0Bw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=HdPQFEFUHVrifpbvI2h8HoDeTdWCgjbu5x4cZrp9EbgE1DX87coRPOlecmhxPlYwwaKqb+vpxsrVV9nm5bpRQ+I9/hGLbOTPoq2lBwjZ1crlDw/Cbw9G+2TDjaqUjXL9E+ACUpii3UViwKVg8S3FdrTvxCn6QhCcXXWvwbXYXqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=fB8KAnEF; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1726103613;
-	bh=S+MbdhdVOhOMSghEANs8RIXiI0K1AciZRyT3zzRZOq0=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=Cru5l5Y2rBnuxKzpakQ/JaAECYPKlIOBOpGYvbSlvhvSTEcTVF1oLZpaQgdYrRHAf
-	 Gsj+cbl2e+gfdes6mIsQdyphkQNPkNBWpQi0NzBfPdwPl3enSGwi4Mf0kmX3daoEaY
-	 4DW5Hce8vsqEYuk22jAsPHNgTRaE8AAAa9YfD8hJeAXo/XxwIbwdHRCc+vm235DaLP
-	 8ckVh6devlrBy9B3y1/248dNltGYJjfisPznYpgTPfvselxIkFbqS6s1V+Fa0RCe8V
-	 KmlasRJk0JbldRS12HmKF9hEVVxQwKgtpYIu+IL9FvIzPo3yzb5hc7WSAmC2AGRQIF
-	 iNRNmKChMchyg==
-Received: from [192.168.68.112] (ppp118-210-89-8.adl-adc-lon-bras32.tpg.internode.on.net [118.210.89.8])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 1202F650AD;
-	Thu, 12 Sep 2024 09:13:33 +0800 (AWST)
-Message-ID: <7c5a2a91fad3c52733beb5cd192ad4c90d48f82c.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v1] ARM: dts: aspeed: yosemite4: Remove temperature
- sensors on Medusa Board
+	d=codeconstruct.com.au; s=2022a; t=1726105347;
+	bh=HXBEzjrhINnkFwKmcbEAFRdNpgF88rPAK0NhIO44r1Y=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=fB8KAnEFOcjOww3sh7HWeeCgy97J7orYvAH5wbAPAhf5Uxljpx6sRM5/YwjpRhiG5
+	 iPIEE9E0jLDaAX76YgEBRoZMlaM46U8Pt7oWCs3sVJh0h4T7SXR4fsr4Tkl8mqta4M
+	 5iYPcVl7dqAKNhK4tyuL/TuQc/mdLNU57E08q0rQaGQd3Bm0goU5lX2ms4Ib8+R4q7
+	 KJu0CK7WHmaeeRYhyufOXW1QVoEarh7mLFMz7nlHwvvrmxeQxLIpSjJFgIbaxB24zK
+	 xBMSMX1RJqptRhnsntue8g9IJfgY+Uxlsx9AkHP4ubz77NmvQXH2zzhQODzh4tvdUv
+	 CdOiQ1pHA/fJA==
+Received: from [127.0.1.1] (ppp118-210-89-8.adl-adc-lon-bras32.tpg.internode.on.net [118.210.89.8])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 4897D650D6;
+	Thu, 12 Sep 2024 09:42:26 +0800 (AWST)
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
+To: patrick@stwcx.xyz, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
 Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org
-Date: Thu, 12 Sep 2024 10:43:32 +0930
-In-Reply-To: <20240910085701.3595248-1-Delphine_CC_Chiu@wiwynn.com>
-References: <20240910085701.3595248-1-Delphine_CC_Chiu@wiwynn.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240910084109.3585923-1-Delphine_CC_Chiu@wiwynn.com>
+References: <20240910084109.3585923-1-Delphine_CC_Chiu@wiwynn.com>
+Subject: Re: [PATCH v1] ARM: dts: aspeed: yosemite4: Change eeprom for
+ Medusa Board
+Message-Id: <172610534620.690179.300123501570049846.b4-ty@codeconstruct.com.au>
+Date: Thu, 12 Sep 2024 11:12:26 +0930
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.1
 
-On Tue, 2024-09-10 at 16:57 +0800, Delphine CC Chiu wrote:
-> From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
->=20
-> Remove two temperature sensors on Medusa Board according to hardware
-> change.
->=20
-> Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+On Tue, 10 Sep 2024 16:41:09 +0800, Delphine CC Chiu wrote:
+> Change eeprom on Medusa Board to AT24C128 according to hardware change.
+> 
+> 
 
 Thanks, I've applied this to be picked up through the BMC tree.
 
-Andrew
+[1/1] ARM: dts: aspeed: yosemite4: Change eeprom for Medusa Board
+      commit: 41217159f292ae69e5ba255b260c77dc644f0bdc
+
+--
+Andrew Jeffery <andrew@codeconstruct.com.au>
+
 
