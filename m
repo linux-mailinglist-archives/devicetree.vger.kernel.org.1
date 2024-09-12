@@ -1,155 +1,159 @@
-Return-Path: <devicetree+bounces-102381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEF81976CB0
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 16:51:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86B4A976D62
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 17:15:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3FAF91F236FE
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 14:51:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 079DC1F24344
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2024 15:15:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D9291BAEEC;
-	Thu, 12 Sep 2024 14:51:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1913B1BA27A;
+	Thu, 12 Sep 2024 15:12:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HrxG7s+4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rdvdfyad"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CE6B1B9837;
-	Thu, 12 Sep 2024 14:51:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54BF01BD00F
+	for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 15:12:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726152669; cv=none; b=hnPCXX6b6swF7AupJNzsHiMAnoZWfv8sCxBnMG9DXzilGP0xZ5suKk+T1nK4zpcobKWTO2O0EfKPbT/fSJLC+7fQ3gKQh2DlEyIzn8hBKLJlyDZYiY0vAeIlKDI1yEENcZQT4SV5E4Fkyqr5Fmgq38zvGStW+98FhHcH4bnXBO0=
+	t=1726153923; cv=none; b=Rq8UewvYgmqnXkPBRnpiv23rquHmWcQzI/DnHWPFonhoCMWgf1GtvIXqs5HeUxCFDchhXapi3bjpSsb1z/OVJqtqX9kBwMWXs6z6VCaDsF0hoFJy7la6YiqOhx8y8m3opyZzATZWZxnU9/HYGS30Ox8sUGnsBpwIecHX/KR53P0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726152669; c=relaxed/simple;
-	bh=YzlriyEKn+i3JtEOOQGPkP98c79C4k//CQThjLlVVc4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cnucUnq4fgVybNxcZkjlht6QNd9L8YqzInvR/D0NT3wEfol49Hlq/LWki+nTZkc1iUlZWJI9BKIQOVIk6GU8fA3/gaQ+qUgl9/G4+08QccGUWpISpzTGuOl5UAs5eJ/ExU6zfoQg6xNRrYILSqHASu/xDidRomn/G3Wr/S+RWBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HrxG7s+4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84085C4CEC3;
-	Thu, 12 Sep 2024 14:51:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726152668;
-	bh=YzlriyEKn+i3JtEOOQGPkP98c79C4k//CQThjLlVVc4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HrxG7s+4gt4QkbKM94COqUg/lsJfAnNxvZG4sakPtakRVd8xz6ynsRhLd72JCnXPg
-	 QAzGWtP+eCsqYPIzj1wR02E4WW9qULYbKYk0+WGJ2u6/fe/JHnp/VOVtXzohpkQn4h
-	 oa/Du/8mrhank/o0dL7v71V05rNZvL+1swetRDqm18bfFB2dfPuaEVuADcW2uOO7+v
-	 IZiwkqPeN1hPhQRce4OF5+y3kjru3mbfQY0tleSF0kq/09kfYfowjzt+IPiGVxWtmw
-	 CXYmCQ7oJGZ58rITCVxchFy4RaxlEEOwJZz2bLV6SqlkJOpJo84iIFqAoibzyjo5bA
-	 MapFVCGcHYUkw==
-Date: Thu, 12 Sep 2024 15:51:00 +0100
-From: Lee Jones <lee@kernel.org>
-To: Mark Brown <broonie@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Flora Fu <flora.fu@mediatek.com>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Alexandre Mergnat <amergnat@baylibre.com>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Nicolas Belin <nbelin@baylibre.com>
-Subject: Re: (subset) [PATCH v7 00/16] Add audio support for the MediaTek
- Genio 350-evk board
-Message-ID: <20240912145100.GE24460@google.com>
-References: <20240226-audio-i350-v7-0-6518d953a141@baylibre.com>
- <172544860860.19172.7052813450885034844.b4-ty@kernel.org>
+	s=arc-20240116; t=1726153923; c=relaxed/simple;
+	bh=JLkUVGiDvOxyxYbcuHoP7hUeOJR66jvK9ErDIQ+bqQo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UiddkIdSzVntyQc8k4Yanx1RR3Tv/zxs2BWnb2wmgwvQN58QEI49jkfuhXLKOcnyki/EZQkr5dhHZ5u320CvhozCGy6xsmuXiqKi3uwplffmlmtWaSfEEHVcowHjXz7Mp3Vt4KLRk34CH3cT1KQAmt/QiM7QRDXpaMjzZrp+E18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rdvdfyad; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5becd359800so988674a12.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 08:12:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1726153920; x=1726758720; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Pp2nKxgKyUUwRWYFUOJ32ePs5kEKlqwCPYig/SVKyzI=;
+        b=rdvdfyadfBnWQezC9Le4YIPyW//fToBKX9EMT3tS5VKTKZaTc95arLGJz5Zm06ZNbJ
+         fMfXaPM0rWgOCmjJeItXN9ibEn1NY0CjA23/QXYElNPTv8qwHvOgfC08b0TBM934fggE
+         +ioxKAvH3igXJoHk3d40o5ctzspuqXxactnX/ZlYE2bfBXKnsIgtFdH0xhKHroNb7Ds4
+         Y8FGyfaFjHL8JsDK3ztNccHso0IXmVgr1gVnpcftizr0wdB/M3+HOvJuNUTGqXRa2KJx
+         I1P1Pvv4gwQiMO4CVl0XS22ENu/UM24yud3Zsxr3cdK3xWZ9SHV+/8Hn2uf1tBEJhkuU
+         6TGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726153920; x=1726758720;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pp2nKxgKyUUwRWYFUOJ32ePs5kEKlqwCPYig/SVKyzI=;
+        b=eaKXUxaQ42RLEfT4fQm8hpCeaf053l8BbdfvWBI176o69NwAGV8uPYWTwiP0GhyISX
+         UvX5cCtUm98DDjFrPkRZvuUX74thAxFOT4qUIlqBH409dwyMDXEPfkBe1Y3KvKjaK3Zm
+         KtPvHAKD+pYoQgrYdChBTXNbCynMlA6AX8U1zqq12zOrdeTGC34uxhyPKA0dHdJ21/Pu
+         C6zE76o182r0AYznTo40VC2HrLkJC7Qjv2WIxBZOclcLF3FH1nUEj5Sp2NGbZqEcz7vL
+         9xEPtqcv82LLVm6GzQuX8QAYmh7/CmiIVOtiiUZOmDtgT0mNA1JoKVtJTW9hcYwgr1hT
+         Ripw==
+X-Forwarded-Encrypted: i=1; AJvYcCXBcHilh/jMGFb9A+NTJGMmBzwtffHFXxW/yIrbNNaJUk1UE4jqHI/BsJjEglYaA9l4HjL4zm6k5AOb@vger.kernel.org
+X-Gm-Message-State: AOJu0YylJ52IeKjJeJUYE3G/4ENsS24hAegPnM9CiR9gcMKePVMMDJnL
+	FBH0XIF5hhEV2PF2uO5zEVAe9NOaJa6Ufshcc57BS+aTjPOo5fZun8jnqjDuMxA=
+X-Google-Smtp-Source: AGHT+IGX4l9aTFwCHKggFIiy76YIi1Ok8DrhJuyxt3k/Eo8HbzkG8vJ1RfkPD3Mt7v//+e2YZTzpQA==
+X-Received: by 2002:a17:907:7255:b0:a8a:18f9:269f with SMTP id a640c23a62f3a-a902966f353mr261081266b.60.1726153919502;
+        Thu, 12 Sep 2024 08:11:59 -0700 (PDT)
+Received: from [192.168.0.25] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8d25a2844fsm761034366b.88.2024.09.12.08.11.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Sep 2024 08:11:59 -0700 (PDT)
+Message-ID: <97e4f888-1ed7-4d82-b972-3e0b95610198@linaro.org>
+Date: Thu, 12 Sep 2024 16:11:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <172544860860.19172.7052813450885034844.b4-ty@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/13] dt-bindings: media: camss: Add qcom,sm8550-camss
+ binding
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
+ todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
+References: <20240812144131.369378-1-quic_depengs@quicinc.com>
+ <20240812144131.369378-8-quic_depengs@quicinc.com>
+ <b1b4a866-fa64-4844-a49b-dfdcfca536df@linaro.org>
+ <82dd61ab-83c0-4f9c-a2ee-e00473f4ff23@linaro.org>
+ <da60cf71-13a4-465d-a0ee-ca2ad3775262@linaro.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <da60cf71-13a4-465d-a0ee-ca2ad3775262@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, 04 Sep 2024, Mark Brown wrote:
+On 12/09/2024 13:44, Vladimir Zapolskiy wrote:
+>> csiphy0
+>>
+>> vdda-phy-supply = <&vreg_l2c_0p9>;
+>> vdda-pll-supply = <&vreg_l1c_1p2>;
+>>
+>> This is also the case for csiphy 1/2/4
+>>
+>> So, I _don't_ believe this is work we need to do, since its the same
+>> regulator for each PHY.
+> 
+> This is board specific, and even if the separation is not needed on the 
+> boards
+> you have just checked, still it may be needed on some boards, which are 
+> not yet
+> checked/not yet known.
 
-> On Mon, 22 Jul 2024 08:53:29 +0200, Alexandre Mergnat wrote:
-> > This serie aim to add the following audio support for the Genio 350-evk:
-> > - Playback
-> >   - 2ch Headset Jack (Earphone)
-> >   - 1ch Line-out Jack (Speaker)
-> >   - 8ch HDMI Tx
-> > - Capture
-> >   - 1ch DMIC (On-board Digital Microphone)
-> >   - 1ch AMIC (On-board Analogic Microphone)
-> >   - 1ch Headset Jack (External Analogic Microphone)
-> > 
-> > [...]
-> 
-> Applied to
-> 
->    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-> 
-> Thanks!
-> 
-> [01/16] ASoC: dt-bindings: mediatek,mt8365-afe: Add audio afe document
->         commit: ceb3ca2876243e3ea02f78b3d488b1f2d734de49
-> [02/16] ASoC: dt-bindings: mediatek,mt8365-mt6357: Add audio sound card document
->         commit: 76d80dcdd55f70b28930edb97b96ee375e1cce5a
-> [03/16] dt-bindings: mfd: mediatek: Add codec property for MT6357 PMIC
->         commit: 761cab667898d86c04867948f1b7aec1090be796
+There is a Power Grid Analysis document which specifies these rails @ 
+the SoC level and assumes you've used the Qcom PMIC to power, moreover 
+the PGA re-uses the same regulator over and over again.
 
-Did you mean to hoover this up?
+You _could_ provide that power from your own PMIC which provides the 
+same voltage range as the Qcom PMIC you haven't used. Even if you did 
+provide that from your own PMIC you'd have to provide _separate_ rails 
+for the various CSIPHYs before it would be required to have a per PHY 
+rail requirement on this SoC.
 
-> [04/16] ASoC: mediatek: mt8365: Add common header
->         commit: 38c7c9ddc74033406461d64e541bbc8268e77f73
-> [05/16] ASoC: mediatek: mt8365: Add audio clock control support
->         commit: ef307b40b7f0042d54f020bccb3e728ced292282
-> [06/16] ASoC: mediatek: mt8365: Add I2S DAI support
->         commit: 402bbb13a195caa83b3279ebecdabfb11ddee084
-> [07/16] ASoC: mediatek: mt8365: Add ADDA DAI support
->         commit: 7c58c88e524180e8439acdfc44872325e7f6d33d
-> [08/16] ASoC: mediatek: mt8365: Add DMIC DAI support
->         commit: 1c50ec75ce6c0c6b5736499393e522f73e19d0cf
-> [09/16] ASoC: mediatek: mt8365: Add PCM DAI support
->         commit: 5097c0c8634d703e3c59cfb89831b7db9dc46339
-> [10/16] ASoc: mediatek: mt8365: Add a specific soundcard for EVK
->         commit: 1bf6dbd75f7603dd026660bebf324f812200dc1b
-> [11/16] ASoC: mediatek: mt8365: Add the AFE driver support
->         commit: e1991d102bc2abb32331c462f8f3e77059c69578
-> [12/16] ASoC: codecs: add MT6357 support
->         (no commit info)
-> [13/16] ASoC: mediatek: Add MT8365 support
->         (no commit info)
-> 
-> All being well this means that it will be integrated into the linux-next
-> tree (usually sometime in the next 24 hours) and sent to Linus during
-> the next merge window (or sooner if it is a bug fix), however if
-> problems are discovered then the patch may be dropped or reverted.
-> 
-> You may get further e-mails resulting from automated or manual testing
-> and review of the tree, please engage with people reporting problems and
-> send followup patches addressing any issues that are reported if needed.
-> 
-> If any updates are required or you are submitting further changes they
-> should be sent as incremental updates against current git, existing
-> patches will not be replaced.
-> 
-> Please add any relevant lists and maintainers to the CCs when replying
-> to this mail.
-> 
-> Thanks,
-> Mark
-> 
+Are people really powering these SoCs with their own PMICs ?
+No probably not.
 
--- 
-Lee Jones [李琼斯]
+Should we add the support for it anyway ?
+Maybe.
+
+So to reiterate:
+
+1. csiphyX-vdda-phy-supply
+    csiphyX-vdda-pll-supply
+
+    In the dts and yaml
+
+    => The names should be generic from the perspective of the driver
+
+2. camss.c::csiphy_res_sm8550
+    [0].regulators = { "csiphy0-vdda-phy-supply",
+                       "csiphy0-vdda-pll-supply" }
+    ...
+
+    [N].regulators = { "csiphyN-vdda-phy-supply",
+                       "csiphyN-vdda-pll-supply" }
+
+    => The regulators for the PHY should be defined in the
+       PHY resources description
+
+3. Required not optional in the yaml
+
+    => You can't use the PHY without its regulators
+
+---
+bod
 
