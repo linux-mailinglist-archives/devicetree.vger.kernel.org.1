@@ -1,124 +1,126 @@
-Return-Path: <devicetree+bounces-102765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C13C9782EE
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 16:52:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68AE7978309
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 16:57:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6F631F246A2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 14:52:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AE9D1F25AE0
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 14:57:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5C591EEE0;
-	Fri, 13 Sep 2024 14:52:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDBF84F20E;
+	Fri, 13 Sep 2024 14:56:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IPmJL5L+"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="frB2zXBk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
+Received: from msa.smtpout.orange.fr (smtp-79.smtpout.orange.fr [80.12.242.79])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60EA8EED6;
-	Fri, 13 Sep 2024 14:52:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B16B739FFE
+	for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 14:56:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.79
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726239129; cv=none; b=mkHnxxFjk93CUWTkFt0vGgtz93cZOCDJgz52vDxcErCsjvU5VdXbnfdsqjng/jWlPx/4JOB6npId4GQ+HnfOS/biAsbZVVXCPKMPAz4q4u0rdo9q8ekeXMKo2WukSDPvok9c7gordTi3QiGC0F1nFmeZ7+eTsGeNyH8RSwVDYis=
+	t=1726239415; cv=none; b=PoMFOE/O6gS4z8cN0vTOMETftnpSCA1qzm9UOdvJN0I3ZHTxFChEfblbrINUydgiJBAmx/q5NW8iGgJQpVWkgv+OER6mXdIJFADDuiUZrkxJcnOANGdSuMHru+DT2lxYLzwFuGDYJI4HBlZKdeV0B6II9wgFPoEE+4OnM83lHv0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726239129; c=relaxed/simple;
-	bh=N/xGBp+Akf2x8w+9/94FGQTZDsqfmxwzez4y1UP+/QE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NCFhJpkvD5KwwpdrsSdffP6atYvisomz0OrGH3DDpTDJvDHrKYGcRedN9+3dNa4Ln+RxC7QCPnN/05cWnlm8BCDZ/6rIP1wT7J3tB3/0mXuhPcRE6KNk3erUmweg3wi33DVnDN4Z95qYeJd29wxduigjxiur2ip9iG3goMPX/co=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IPmJL5L+; arc=none smtp.client-ip=209.85.217.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-49bc13c3a47so431440137.3;
-        Fri, 13 Sep 2024 07:52:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726239127; x=1726843927; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SC7Qi9CJ/UlqMx5HJFGorczxcYiMNzmkMF/PjtSiNQc=;
-        b=IPmJL5L+04gC83EmJWm29rUNtery4irTfv6Xk/zS5n3eowIaa6CsvTTkBV2WkWek8V
-         Y0wXGApYmUf6Q/EWvW7wUdjYaM7VdYsJlGh3dtnTlPbHyJ7JBhaGdYGMIpg7Th/HdOrq
-         LYBrutaaXAz3fIw3veyEemYw0rUpN/ew84Ey0fi6y0L6ECopep0KZAmFCezMwQBUtV6k
-         nXegm6dmXfFZd/VtJIjdoZRrPrhdgGvko46y2QvQI01UIi6aA/piykwN6xXArhyxmg1w
-         b0jMfVloZVpd8EVfgqAC9o3tR/PNrwyCTFZnVpOkuGnp3CE9+pm7wdgZsFCog2M4TUal
-         uu3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726239127; x=1726843927;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SC7Qi9CJ/UlqMx5HJFGorczxcYiMNzmkMF/PjtSiNQc=;
-        b=H6c11HRDRwFOV4HLKNU9jAUKt+dua81y0GOyk5blz6vG+l0qg+hlFTMFGx3i7PCFNW
-         EqRaEZy8ZAItkRsVcVLUTKhScAslqkxEfRMzA48GWtRfq5R7Q/v+ynsj6herKiKXzljm
-         KuvtlIf1YSQ57LiXLXyhNEHXXyJsCmjfyIlzutu/U2CU5BmB/6pONchFN38LxedZTsrG
-         eqaEmCeqExX+V8GBrXnj6RKGaaErnduFzwNBhTNwtBmiCyl3RKeb1NnPFd4ZUs42ia9Q
-         KKU6Ghmn/tO5WsCKswg75u1SqNYzz7w7t9AKQaep7jQtByM+qoj2GnC+uNeiMJLua/7k
-         a1gQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUPokIGQIq/NAJsD1Gpkp/6TscdctQ9pnU48LLOFTVQ+9ZDcIhKtC5kD3wYu94zj/TaJgtr1pbHBzsu@vger.kernel.org, AJvYcCUYMiAz5tZBawjr5X4ZK8N9AMmo47YPfyUGCcU8D1vL0P0w8cfX2gULw8U8zxwATGnFWtvX2jAEDFHyC0RP@vger.kernel.org, AJvYcCUomohpmDVKMEesmL81cfkFZZ2vW5wPQsYH6LkVOVPo6eda88qhKJoer5Bi+RBkpDxiTIzcGmGd875e@vger.kernel.org, AJvYcCUqG/6J9y2M/mr6bZeCtHGcyjIE1fL5ZnhD0pekNAQA0Off0F5D7ODSjNbKctV9Fyg7Ok4PjBWcy0Zr@vger.kernel.org, AJvYcCUuV1TE0NfbDttYSLJMYiRssi0fzXzrGLs/5vKClypYaF2X1Krq4noR0RknvloiML04QgvOvDpW2kKiL9i+eBYaSA0=@vger.kernel.org, AJvYcCVjHeGDvMz5cACO+5y2pcLPE2fP02QIIzbJJRZ9Fxz/Yy3QEGgBhazHYwa1ZsTKIy1grpFxNjMntse5qGU=@vger.kernel.org, AJvYcCVjo5ulMq6V0AumAXef8nCmLmZ0ETTOQmOtEBZZnIYDJuEi4Lz4azHYIp2Dm7eFKBqh8WVo2nRQFFhdMg4=@vger.kernel.org, AJvYcCVpE9w8kQ//h/aJ3E5xsEUzmzYfWbMeto/At0C8gj7+2VWt18bnV7Lw4eidhTLUZ+oKBB8VoWi2nE0=@vger.kernel.org, AJvYcCXnxOGyyjk1ffPSZ0jU9lbdoESo5JGGp/eaIyjz4AUYqrdOJHVH+RAJAL9BF7ZyRT+F3jdLF4YnvQZl7F4OIg==@vger.kernel.org, AJvYcCXtHPOAWmKj0dkr
- upoB5srGsNVHjupE0Qr1+FSjQtSnJMcRejmxnPrXCJuQz8bvBvRk1vLfg+4ITHOOCw==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8F6z+yyfgnP8PtHBXPYFCB/v8g60xniBP7lnisolRABExAdF4
-	+/aVgMhtFL2fqMPhAJUxQ9YfjZAF8SSsjomyd0nDu8fK8shyrZPErDcMcQ0Qadd3YmDOt4XdQGd
-	AGeLHvcOtGa9puniCDDyjZ1uwYD0=
-X-Google-Smtp-Source: AGHT+IFzt77B+UQvTyXWnWYICtP+/AmJJ5rq6JqNXDt5n+hgGmGESoN8kaR8YY1ZG0wjobVeQOsHMwrHDFFr4Mg31HU=
-X-Received: by 2002:a05:6102:e14:b0:49c:1bc:1eff with SMTP id
- ada2fe7eead31-49d4f6fafc6mr2074878137.28.1726239127329; Fri, 13 Sep 2024
- 07:52:07 -0700 (PDT)
+	s=arc-20240116; t=1726239415; c=relaxed/simple;
+	bh=bk5fBYoRubuV3SwJbAObGRT8vGObXynBdtgnt0h4beo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eO5noRQ91mE3DUoxqDjzbZ3+6L/D9veLHvmKJRvKXvgTHcw0kuweZR1zWCr/EA9cOg1O9/kWCXnnZyzPpgdSjfYGj8W8HKnyL8Y+IJN1yBeI4YNyH/Ayvsv8KvYs64EyGzE1ydQWcOoUdt3e656ttWB+fvFjpW8rFlG3DNeuqg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=frB2zXBk; arc=none smtp.client-ip=80.12.242.79
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id p7j0sSUf9oR4tp7j1soqq0; Fri, 13 Sep 2024 16:56:51 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1726239411;
+	bh=2ppfZtFE3UF/ZPMPNi/oYz7eBBncngRv+97pSLrZhqA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=frB2zXBkPf2SbckhFM/MElr0u4oWmiNEG9WMsoDpJ/9F4I7EYcra7Vs8SKV+jLf+1
+	 WWGlSmHvc/f7s+3oGUMSXH5RIL/A2V+mD/tDQ2Npd7phpBuZLSvDKJhe1Lm1JTLPfu
+	 aoxhKvyROQrUYZ8kb0VNSo/Qfd2ONclCAzrvbaA7mu5HE+UmjR/zDHxx+E1fE7Es+7
+	 kJbvvCde1ENSFzGt/J6Qu/wq7dZt4HKhih6QC9K5ksQM1/n4HyKc1NWK5Yw0uZwRO6
+	 s4b/ny6bMWwAvVEVZZhnBEqRRMu4p2PMo2aiVQriYVg2PMV8jODsa9EVN43ryFMzxo
+	 R4XOTF72vKrbw==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Fri, 13 Sep 2024 16:56:51 +0200
+X-ME-IP: 90.11.132.44
+Message-ID: <e2d7ed77-827b-4b7c-800c-9c8f3bcb6b5a@wanadoo.fr>
+Date: Fri, 13 Sep 2024 16:56:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240618-starqltechn_integration_upstream-v3-0-e3f6662017ac@gmail.com>
- <20240618-starqltechn_integration_upstream-v3-4-e3f6662017ac@gmail.com> <13a650f4-7ca7-4c95-b536-9814a22f00ff@kernel.org>
-In-Reply-To: <13a650f4-7ca7-4c95-b536-9814a22f00ff@kernel.org>
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Fri, 13 Sep 2024 17:51:56 +0300
-Message-ID: <CABTCjFCOTd5V5WyRbD1OCS9Hatk0mOCtNy5WWfp0KkUBgqXs+A@mail.gmail.com>
-Subject: Re: [PATCH v3 04/23] dt-bindings: mfd: add maxim,max77705
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	phone-devel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
-	linux-leds@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6.6 v2 1/4] riscv: dts: starfive: add assigned-clock* to
+ limit frquency
+To: WangYuli <wangyuli@uniontech.com>, stable@vger.kernel.org,
+ gregkh@linuxfoundation.org, sashal@kernel.org, william.qiu@starfivetech.com,
+ emil.renner.berthing@canonical.com, conor.dooley@microchip.com,
+ xingyu.wu@starfivetech.com, walker.chen@starfivetech.com, robh@kernel.org,
+ hal.feng@starfivetech.com
+Cc: kernel@esmil.dk, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ richardcochran@gmail.com, netdev@vger.kernel.org
+References: <3A31C289BC240955+20240912025539.1928223-1-wangyuli@uniontech.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <3A31C289BC240955+20240912025539.1928223-1-wangyuli@uniontech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-=D1=87=D1=82, 20 =D0=B8=D1=8E=D0=BD. 2024=E2=80=AF=D0=B3. =D0=B2 18:46, Krz=
-ysztof Kozlowski <krzk@kernel.org>:
->
-> On 18/06/2024 15:59, Dzmitry Sankouski wrote:
-> > maxim,max77705 is MAX77705 pmic binding part
-> >
-> > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> > ---
-> >  .../devicetree/bindings/mfd/maxim,max77705.yaml    | 112 +++++++++++++=
-++++++++
->
-> Your patch order is totally messed. Not tested by automation. Only
-> limited review follows.
->
-Hmm, not sure what was wrong. I sent version 4 to myself with `b4 send
---reflect`, the order looks good.
+Le 12/09/2024 à 04:55, WangYuli a écrit :
+> From: William Qiu <william.qiu@starfivetech.com>
+> 
+> [ Upstream commit af571133f7ae028ec9b5fdab78f483af13bf28d3 ]
+> 
+> In JH7110 SoC, we need to go by-pass mode, so we need add the
+> assigned-clock* properties to limit clock frquency.
+> 
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: WangYuli <wangyuli@uniontech.com>
+> ---
 
---=20
+Hi,
 
-Best regards,
-Dzmitry
+if/when resent, there is a typo in the subject: s/frquency/frequency/
+
+CJ
+
+
+>   .../riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> index 062b97c6e7df..4874e3bb42ab 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> @@ -204,6 +204,8 @@ &i2c6 {
+>   
+>   &mmc0 {
+>   	max-frequency = <100000000>;
+> +	assigned-clocks = <&syscrg JH7110_SYSCLK_SDIO0_SDCARD>;
+> +	assigned-clock-rates = <50000000>;
+>   	bus-width = <8>;
+>   	cap-mmc-highspeed;
+>   	mmc-ddr-1_8v;
+> @@ -220,6 +222,8 @@ &mmc0 {
+>   
+>   &mmc1 {
+>   	max-frequency = <100000000>;
+> +	assigned-clocks = <&syscrg JH7110_SYSCLK_SDIO1_SDCARD>;
+> +	assigned-clock-rates = <50000000>;
+>   	bus-width = <4>;
+>   	no-sdio;
+>   	no-mmc;
+
 
