@@ -1,193 +1,132 @@
-Return-Path: <devicetree+bounces-102672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D009D977E16
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 12:58:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64086977EBE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 13:44:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78D721F274E5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 10:58:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E0AC1C23351
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 11:44:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0C861D86D1;
-	Fri, 13 Sep 2024 10:58:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 350511D88BC;
+	Fri, 13 Sep 2024 11:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lRuityh/"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="+JmDCEuF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AC111D7E5D;
-	Fri, 13 Sep 2024 10:58:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 730E21D86EC;
+	Fri, 13 Sep 2024 11:44:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726225106; cv=none; b=nYJKmK7UKpd/w1fSREdUEmswtDULP1/NvX0SZlfg/9FFg5s1jgKNJANW9rHhTGXrBvCdMywvHTTz8/sW1caBZtOOssxN7LV3S+1ZO1Vid0we+k0VYDCR9ZLDso4lGgaqmvZS8RmwgVTwemB0H/MEgSDqU3AhceZAD6sl7yQcsn8=
+	t=1726227889; cv=none; b=FwHsRoODcuUrToJGf3SdiBQZr1hDGE9xkDq+HZhJZnGc+kORVtpDljVP3P08WCsAcK5t+2IYb0klwp4LDDef8TNwzzzJhs9JQmr31oTZodkcNLrak92csYN+VFLGGEbfp0S+X+4YfOdpBFVkIA6sOxO2iFFkzcc7uNBDy1Sa/2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726225106; c=relaxed/simple;
-	bh=9p981OvMkywvKsAAD2daezWTgkyDqjWG4EqrhZkATZw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=e4N/DUS8yMhZtoIEeBaTCF1eELQlfcXa7wmWPLjA1zEZVh1sJG3Mx6BQJLKErYpCxYc+6y1S71CHYKDeiXkl0GahDT9iywWvbxsAO/YGSVtlG8AnIm0i74vu3gcZ5pkWMWuy6tqpAKYsFHUTECN6DxqBolEHGDOf+/vSYHRmde8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lRuityh/; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 48DAvqa6118441;
-	Fri, 13 Sep 2024 05:57:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1726225072;
-	bh=ViJUQV5fSR++ApNPdcsUD6G3ze85E58ABfaG2Vb7csw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=lRuityh/kv1cUyUZaJBXrBaJpsHmh266FGavNzn/pAMzDHfhQPyNf3+zYdpfd4BdF
-	 rdHK2ExAdzTOYXV6+vXnVa7+l4JsO0dDUy3OR0yyvB/uKMwXQ6F/czQ62rnMwzj3S6
-	 dZTb2z8Qx+2Su+fd1Xfdnv5cA523FGXJK102pu7A=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 48DAvqld072540
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 13 Sep 2024 05:57:52 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 13
- Sep 2024 05:57:52 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 13 Sep 2024 05:57:52 -0500
-Received: from [172.24.227.151] (uda0510294.dhcp.ti.com [172.24.227.151])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 48DAvlZB128677;
-	Fri, 13 Sep 2024 05:57:48 -0500
-Message-ID: <c4ace228-ea32-4760-b6af-f7555b68063a@ti.com>
-Date: Fri, 13 Sep 2024 16:27:47 +0530
+	s=arc-20240116; t=1726227889; c=relaxed/simple;
+	bh=D6Aea0vN4+YQgnTaFtA2Xc8h1cmTBP0II52kCPnOPg4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HOyMH/p3fVf25PO3hYc1iWG+F+M9DYUunLb968ehzitmZTpAmgKYg8ln+cWF82Y3xOgjo4/4n7doA/dwN3kxRYFVJnDoa+XChll/PdwxQiDJkWbudkhj/+DU2OLdd07qIRHpHe66RtgBIPd+WWR4kwDrBiKeWUMdkGbfk3RE7Zk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=+JmDCEuF; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=uKY+vBHzrvIaEx4iv91a6m00ms046KPp640Lmm3Yn6s=; b=+JmDCEuFzksb5sWhlECW0+2ZkO
+	984ONyEZWm3pqtyBG2GROEMIooQCO/NjangcEc7ZcbgeIyPWdsw/N8Zil+lxlxbsBZcBEMtt8bk77
+	NqpsRDf+fcrulXLVcyphURBI0VYmHPr/sckH3hX8hm6jmi9EQUPppr5GL6hTV9hF7qWQllUs72Xqi
+	WYOuaFQW1VdwGG7xSv88h7NZDV2OzS1miuHqndZENlvrlwqj16iVywhBFV+JI5HaUXwSdTfYrsVoA
+	m46isSJTld6JZ5ZiwTJ9b1sedRPelftfEIAgRA7JV56cUCyCQAUtl99SXqB8PiU2JWOM4e9J07oze
+	2oJ/06+A==;
+From: Andreas Kemnade <andreas@kemnade.info>
+To: tony@atomide.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	hns@goldelico.com
+Cc: Andreas Kemnade <andreas@kemnade.info>,
+	linux-gpio@vger.kernel.org,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: [RFC PATCH] ARM: dts: omap3-gta04: add line names for modem-related GPIOs
+Date: Fri, 13 Sep 2024 13:01:25 +0200
+Message-Id: <20240913110125.753142-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-j784s4-evm: Mark tps659413
- regulators as bootph-all
-To: Andrew Halaney <ahalaney@redhat.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: Keerthy <j-keerthy@ti.com>, Neha Malcom Francis <n-francis@ti.com>,
-        Eric
- Chanudet <echanude@redhat.com>,
-        Enric Balletbo <eballetb@redhat.com>, Udit
- Kumar <u-kumar1@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240911-j784s4-tps6594-bootph-v2-0-a83526264ab1@redhat.com>
- <20240911-j784s4-tps6594-bootph-v2-1-a83526264ab1@redhat.com>
-Content-Language: en-US
-From: Beleswar Prasad Padhi <b-padhi@ti.com>
-In-Reply-To: <20240911-j784s4-tps6594-bootph-v2-1-a83526264ab1@redhat.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 
-Hi Andrew,
+There is one GPIO which needs a high pulse to toggle power of the
+modem. Since GPIO numbering (and even chip numbering) is not stable
+anymore, make it detectable via gpiofind, so userspace can take care.
 
-On 11/09/24 22:49, Andrew Halaney wrote:
-> In order for the MCU domain to access this PMIC, a regulator
-> needs to be marked appropriately otherwise it is not seen by SPL and
-> therefore not configured.
->
-> This is necessary if the MCU domain is to program the TPS6594 MCU ESM
-> state machine, which is required to wire up the watchdog in a manner
-> that will reset the board.
->
-> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 8 ++++++++
->   1 file changed, 8 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> index 6695ebbcb4d0..6ed628c2884e 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> @@ -663,6 +663,7 @@ tps659413: pmic@48 {
->   
->   		regulators {
->   			bucka12: buck12 {
-> +				bootph-all;
->   				regulator-name = "vdd_ddr_1v1";
->   				regulator-min-microvolt = <1100000>;
->   				regulator-max-microvolt = <1100000>;
+There is another reset-out gpio on the A5 which indicates the power state
+of the modem, make it also available.
 
+Note: there is a full kernel space implementation of this issue:
+https://git.goldelico.com/?p=letux-kernel.git;a=blob;f=drivers/misc/wwan-on-off.c;h=768b6f9fa745d7f4d820685748a1b801e731962d;hb=letux-6.11-rc7
+which never hit mainline.
 
-In my opinion, bootph-all property should come after other standard 
-properties like regulator-name etc., as it is least important to Linux. 
-Same comment for other nodes wherever applicable. What is your opinion?
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+CC: linux-gpio@vger.kernel.org
+CC: Linus Walleij <linus.walleij@linaro.org>
+CC: Bartosz Golaszewski <brgl@bgdev.pl>
+---
+This looks quite ugly and does not even fully solve the problem, since
+gpioset does not keep that gpio state on exit, so scripts using
+sysfs-export cannot use it as a drop-in replacement. So probably some
+daemon sitting on that gpio is needed, if things should be done in
+userspace.
+At least this patch improves the description of the hardware
+what is what the devicetree is for.
 
+ arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi  | 7 +++++++
+ arch/arm/boot/dts/ti/omap/omap3-gta04a5.dts | 4 ++++
+ 2 files changed, 11 insertions(+)
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n130
+diff --git a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
+index 5001c4ea35658..b00d0d092eabc 100644
+--- a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
++++ b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
+@@ -469,6 +469,13 @@ OMAP3630_CORE2_IOPAD(0x25e4, PIN_INPUT | MUX_MODE4) /* rx */
+ 	};
+ };
+ 
++&gpio6 {
++	gpio-line-names = "", "", "", "", "", "", "", "",
++			  "", "", "", "", "", "", "", "",
++			  "", "", "", "", "", "", "", "",
++			  "", "", "MODEM_EN";
++};
++
+ &i2c1 {
+ 	clock-frequency = <2600000>;
+ 
+diff --git a/arch/arm/boot/dts/ti/omap/omap3-gta04a5.dts b/arch/arm/boot/dts/ti/omap/omap3-gta04a5.dts
+index 230f6f4fc6bf8..be7f71d720680 100644
+--- a/arch/arm/boot/dts/ti/omap/omap3-gta04a5.dts
++++ b/arch/arm/boot/dts/ti/omap/omap3-gta04a5.dts
+@@ -44,6 +44,10 @@ irda-en-hog {
+ 	};
+ };
+ 
++&twl_gpio {
++	gpio-line-names = "", "", "", "", "", "", "MODEM_RESET_OUT";
++};
++
+ &omap3_pmx_core {
+ 	bt_pins: bt-pins {
+ 		pinctrl-single,pins = <
+-- 
+2.39.2
 
-
-Thanks,
-
-Beleswar
-
-> @@ -671,6 +672,7 @@ bucka12: buck12 {
->   			};
->   
->   			bucka3: buck3 {
-> +				bootph-all;
->   				regulator-name = "vdd_ram_0v85";
->   				regulator-min-microvolt = <850000>;
->   				regulator-max-microvolt = <850000>;
-> @@ -679,6 +681,7 @@ bucka3: buck3 {
->   			};
->   
->   			bucka4: buck4 {
-> +				bootph-all;
->   				regulator-name = "vdd_io_1v8";
->   				regulator-min-microvolt = <1800000>;
->   				regulator-max-microvolt = <1800000>;
-> @@ -687,6 +690,7 @@ bucka4: buck4 {
->   			};
->   
->   			bucka5: buck5 {
-> +				bootph-all;
->   				regulator-name = "vdd_mcu_0v85";
->   				regulator-min-microvolt = <850000>;
->   				regulator-max-microvolt = <850000>;
-> @@ -695,6 +699,7 @@ bucka5: buck5 {
->   			};
->   
->   			ldoa1: ldo1 {
-> +				bootph-all;
->   				regulator-name = "vdd_mcuio_1v8";
->   				regulator-min-microvolt = <1800000>;
->   				regulator-max-microvolt = <1800000>;
-> @@ -703,6 +708,7 @@ ldoa1: ldo1 {
->   			};
->   
->   			ldoa2: ldo2 {
-> +				bootph-all;
->   				regulator-name = "vdd_mcuio_3v3";
->   				regulator-min-microvolt = <3300000>;
->   				regulator-max-microvolt = <3300000>;
-> @@ -711,6 +717,7 @@ ldoa2: ldo2 {
->   			};
->   
->   			ldoa3: ldo3 {
-> +				bootph-all;
->   				regulator-name = "vds_dll_0v8";
->   				regulator-min-microvolt = <800000>;
->   				regulator-max-microvolt = <800000>;
-> @@ -719,6 +726,7 @@ ldoa3: ldo3 {
->   			};
->   
->   			ldoa4: ldo4 {
-> +				bootph-all;
->   				regulator-name = "vda_mcu_1v8";
->   				regulator-min-microvolt = <1800000>;
->   				regulator-max-microvolt = <1800000>;
->
 
