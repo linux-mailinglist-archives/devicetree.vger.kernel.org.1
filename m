@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-102812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBCCA9786A3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 19:24:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3EEC9786A7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 19:25:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 951852814D8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 17:24:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E24F02818DE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 17:25:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44BA380C0C;
-	Fri, 13 Sep 2024 17:24:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08DD78060A;
+	Fri, 13 Sep 2024 17:25:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UKf16Lsy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qn8CVC1c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 102B66F31E;
-	Fri, 13 Sep 2024 17:24:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE05B2562E;
+	Fri, 13 Sep 2024 17:25:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726248293; cv=none; b=uMRc6mle90BxKnOw0O4n3ryYoWzvWPjCSc4LHOVvwrRMXBE5DUsuG8GClsv9eEZhpJl/c738gx0m4qi1FyxlNzobNau+ulGkFmOLMjReSrUA4BSUr8nSYTXAq7q6yrLSUzPKTaiA3m9IXhzK7rBUedXHV5rEMPw7k5QJuLQaG84=
+	t=1726248344; cv=none; b=CAq3HnJfBenetT7oJjs23FzqVEwrqDSXiy/jglzAKVzyCvfR3DAR+PPtosxqSEPEpLCVdVBd8qGaxKqbQZ4x2ltCwgwjwA0HQUYsWFiQpeMPAGkaJvKeaIevq4BGkeMhsvUOFpTI+o6II0cmd3MILE64ty9z9z+K8vw2OH6bldc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726248293; c=relaxed/simple;
-	bh=PnxiBuLP2r+FlaRXWWuCH9SooIjCuVke4h/VjCYOCNU=;
+	s=arc-20240116; t=1726248344; c=relaxed/simple;
+	bh=2oJu5gnYXFlqvyj7LMUho0tUx9dwavN3a2NzpR93BWY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pV85O2NWqOUvPHmsUC5rGQ8O5mvSb7gjQ4J5HD+5Cu1/ANTklcxKwifrwMSZw2AWpyJ/37FKWjzn2ssJarWDa/3Qeo2e+LCBZiw2yE1tpAqsmXU/gOZJmkszCpFfuu3BIl4eFTVBtX+ZQ30eMt3PgCtu8acVIahMGqW86QN+gPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UKf16Lsy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEC2AC4CEC0;
-	Fri, 13 Sep 2024 17:24:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nam1D236PGyeIU1LccBVHUKoTjeq99RnBCbaYRCLV4FZiMtU1dc8bezXJkQVgRmmogVgCAEGdw+ak8PnglQYznncdYZPV2ALnfM254qNy9UuoQXdEre4wJEk759IzWC3u76s2i2I5rqQPO0vdCpmCkBp3uCMfd89XQH1c7PSpps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qn8CVC1c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4AD2C4CEC0;
+	Fri, 13 Sep 2024 17:25:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726248292;
-	bh=PnxiBuLP2r+FlaRXWWuCH9SooIjCuVke4h/VjCYOCNU=;
+	s=k20201202; t=1726248344;
+	bh=2oJu5gnYXFlqvyj7LMUho0tUx9dwavN3a2NzpR93BWY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UKf16Lsyktzjkf9OKskVaxOsM9QAx34cF8UO+z9ZcgTKgzFyeaXHCe1SzRaYRE0wh
-	 /MwiPJ7GzibU49760jGEkOMElo2e+r15+1oDNLoR2uXQLLnh0Iqme0YFzA2eQL0NGM
-	 PSMC63H7SuUeQ6cy5LiQWrkW0trozSOMn8RZei6o2IZI+IKfDW1nCqQ/K7BWBLkdpP
-	 vlJxKiDvEq3XZjnlnatu0PTdN39GDS7Pa8qw1hOZGo1MQ0EVj4WXsp4OUaRpKd0XMo
-	 PF4AMM5pR35WguMKcHn61BLEbNu+YJDYYyUJ96LEFuX5hqvM8fnOE+ird31npSIGt/
-	 9O4VEju03b0xg==
-Date: Fri, 13 Sep 2024 18:24:47 +0100
+	b=Qn8CVC1c0sXcmbgBhartxN2G0DABLvODrqju+/HuNwwkl8t13iONIxtXQHyKQmF48
+	 2PW1GD0t/KaQiKlRKx3glHGpPzib+98kuyTqen5W3Pw1VhGhb2sAAiNaq6/YubO6Wy
+	 omah2UfsUm5e4VS+Gq9HUDkYqv/9fQ9+tYp1CvSbXmnfwU0sD1nWmOFLvdhI72hVBp
+	 rRkJHI33j+sVlasTnEXsx+0xDVfQxZ5x3G/D5wUW5akXpqr0yPb0Z2FuK2eCvkbmtf
+	 HCMbSi8QCVX8teV5Pfc8nVGqUFiSnJcuMVhR1FYiiSeVEP1+yhuak+/2BXIYuFlON0
+	 c4ZX05DIvheAw==
+Date: Fri, 13 Sep 2024 18:25:39 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Michal Simek <michal.simek@amd.com>
-Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
-	git@xilinx.com, stable@vger.kernel.org,
-	Benjamin Gaignard <benjamin.gaignard@st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:TTY LAYER AND SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: serial: rs485: Fix rs485-rts-delay
- property
-Message-ID: <20240913-sulk-threaten-79448edf988a@spud>
-References: <1b60e457c2f1bfa2284291ad58af02c982936ac8.1726224922.git.michal.simek@amd.com>
+To: Icenowy Zheng <uwu@icenowy.me>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: sunxi: document RerVision
+ A33-Vstar board
+Message-ID: <20240913-thong-endowment-cb760617f7c5@spud>
+References: <20240913104845.4112986-1-uwu@icenowy.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,90 +63,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="rqNS0kyIGTMLDBX1"
+	protocol="application/pgp-signature"; boundary="oMRq14sTUO9x8LTg"
 Content-Disposition: inline
-In-Reply-To: <1b60e457c2f1bfa2284291ad58af02c982936ac8.1726224922.git.michal.simek@amd.com>
+In-Reply-To: <20240913104845.4112986-1-uwu@icenowy.me>
 
 
---rqNS0kyIGTMLDBX1
+--oMRq14sTUO9x8LTg
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 13, 2024 at 12:55:23PM +0200, Michal Simek wrote:
-> Code expects array only with 2 items which should be checked.
-> But also item checking is not working as it should likely because of
-> incorrect items description.
+On Fri, Sep 13, 2024 at 06:48:44PM +0800, Icenowy Zheng wrote:
+> RerVision A33-Vstar is an evaluation board of their A33-Core1 SoM.
 >=20
-> Fixes: d50f974c4f7f ("dt-bindings: serial: Convert rs485 bindings to json=
--schema")
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> Cc: <stable@vger.kernel.org>
-> ---
+> Add its compatible (with the SoM compatible) to the sunxi board DT
+> binding file.
 >=20
-> Changes in v2:
-> - Remove maxItems properties which are not needed
-> - Add stable ML to CC
->=20
->  .../devicetree/bindings/serial/rs485.yaml     | 19 +++++++++----------
->  1 file changed, 9 insertions(+), 10 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/serial/rs485.yaml b/Docume=
-ntation/devicetree/bindings/serial/rs485.yaml
-> index 9418fd66a8e9..9665de41762e 100644
-> --- a/Documentation/devicetree/bindings/serial/rs485.yaml
-> +++ b/Documentation/devicetree/bindings/serial/rs485.yaml
-> @@ -18,16 +18,15 @@ properties:
->      description: prop-encoded-array <a b>
->      $ref: /schemas/types.yaml#/definitions/uint32-array
->      items:
-> -      items:
-> -        - description: Delay between rts signal and beginning of data se=
-nt in
-> -            milliseconds. It corresponds to the delay before sending dat=
-a.
-> -          default: 0
-> -          maximum: 100
-> -        - description: Delay between end of data sent and rts signal in =
-milliseconds.
-> -            It corresponds to the delay after sending data and actual re=
-lease
-> -            of the line.
-> -          default: 0
-> -          maximum: 100
-> +      - description: Delay between rts signal and beginning of data sent=
- in
-> +          milliseconds. It corresponds to the delay before sending data.
-> +        default: 0
-> +        maximum: 50
+> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 
-I would expect to see some mention in the commit message as to why the
-maximum has changed from 100 to 50 milliseconds.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> +      - description: Delay between end of data sent and rts signal in mi=
-lliseconds.
-> +          It corresponds to the delay after sending data and actual rele=
-ase
-> +          of the line.
-> +        default: 0
-> +        maximum: 100
-> =20
->    rs485-rts-active-high:
->      description: drive RTS high when sending (this is the default).
-> --=20
-> 2.43.0
->=20
-
---rqNS0kyIGTMLDBX1
+--oMRq14sTUO9x8LTg
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuR1XwAKCRB4tDGHoIJi
-0vfwAP0TfUUdDtg6AO2HGHUxJaYOIeAhds57L3Zm/Cdtut8DIwEA1zocxXYyK33w
-6LSjDjUNRjqlKfpC0Rgmq7fgwoE4KgY=
-=vUf3
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuR1kwAKCRB4tDGHoIJi
+0gOcAQCuUkpqUP9QEdlqxxHGGyvwYebhAMnJoIctTDLBrvMUkgEAkRTkmcuvEIfC
+KeZXgMjtPWP4wXx3KAyefwErq5gHxQ0=
+=2G1a
 -----END PGP SIGNATURE-----
 
---rqNS0kyIGTMLDBX1--
+--oMRq14sTUO9x8LTg--
 
