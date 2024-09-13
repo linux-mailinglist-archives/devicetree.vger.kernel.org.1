@@ -1,86 +1,66 @@
-Return-Path: <devicetree+bounces-102655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5670977D4E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 12:27:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89F52977D9A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 12:35:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8830D287DA9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 10:27:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C42571C246D3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 10:35:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CE941D7997;
-	Fri, 13 Sep 2024 10:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A0EA1D86DE;
+	Fri, 13 Sep 2024 10:31:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jkX/KnuP"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="dcOugToG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E37E01D6C7F;
-	Fri, 13 Sep 2024 10:27:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAE881D86D4;
+	Fri, 13 Sep 2024 10:31:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726223240; cv=none; b=p+rtEm/7RZL+G15A8+eqJBWDaqrqgNPyXq5D07JgMJufAx/L2Eo+GAnc0hJb5Sq+UUmtPLBZxwVsZZe8O8wIl8CCvjJMgMF2yteLUFDfaxBly6DT6XCDXBXSx9nJ2UUTR4dLS4xn+ySewMjuCCr6xkhEj9bcgPnY5B6uXBFGzbU=
+	t=1726223485; cv=none; b=GHDhaojhOCQ8vbsdnsD/CSqDl0cy1BH0r3Gd5/mE3kZvGy7Gbt4PsqPMIm29RrBX82iMMuJMVxVV6jPKerpWD8BKh56WfzVDPAkEoOvGvTmIvOOT1ehuiAhjOvLeZVDkw5n4TLwAh+g1IP0EmVPhYiXWr5h/jg//bPIjkMw1HvE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726223240; c=relaxed/simple;
-	bh=TrwaSnGSZr2bfjo3SWe2U7AL25TlCBVEkrZRf6lgy8A=;
+	s=arc-20240116; t=1726223485; c=relaxed/simple;
+	bh=7PC7dBsO5qdVJj9CUBwHk7MsyB3cbQSwmRq1M/Lstw0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EMwM9RFuUOYqXhH7i7IFrg0R0Y5dptALNVujJnBZodCpkKI32T/pO/Q4szh9oyz+Jt5MnI8TEV9Rbb0Lr20bc3PZXNB2kLPBu1b9v3RSxcBfZfKMirtqaWXaZD1bwhIJ0E12e5zUzItoSR8FsB3cMsRDdBo3/S21KrNE3rp15oM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jkX/KnuP; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1726223239; x=1757759239;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=TrwaSnGSZr2bfjo3SWe2U7AL25TlCBVEkrZRf6lgy8A=;
-  b=jkX/KnuPS3XVL6cosXBU1o7hhosIcsJS8t+AP3EOVn+CCEnXFjUE0aRL
-   WPrdGXiyApCfGTRMCrrdtRYTHgh7z/Jpl3r26PLQ6BfofyI8HTiVotT5F
-   1WQQae8ZDz82c8SWkltolwtm5wYc0ZP5vpR0lQnJ5eOeMB/DQlL2nVQlm
-   7YA5azEvrjA6ibwT8/MsrVxRheG4ZE5kEJ0DoCzo3oSE+KOefuJvI4ky7
-   xw5xkUyNoYYSggYW9ac+geW3npehQPf6HmK3+7hNuvZ1O/2pRX/T6I55Z
-   xEg4KAVJH/vsYvaOE2rwXjrro4+9gEI3EWGdTgUhPpx4RLrbYU4k6jwqw
-   A==;
-X-CSE-ConnectionGUID: 9kRDiTeeSQGNYwvQlzQlcw==
-X-CSE-MsgGUID: K/GBQ5wWT5ahAyV9F7Do3Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="28863699"
-X-IronPort-AV: E=Sophos;i="6.10,225,1719903600"; 
-   d="scan'208";a="28863699"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2024 03:27:18 -0700
-X-CSE-ConnectionGUID: oXOdqqt7RNywTmc/BAEEVQ==
-X-CSE-MsgGUID: wq3nQX7HT92g5GEvSvGEoQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,225,1719903600"; 
-   d="scan'208";a="72813103"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2024 03:27:14 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1sp3WB-00000008GC9-1PTf;
-	Fri, 13 Sep 2024 13:27:11 +0300
-Date: Fri, 13 Sep 2024 13:27:11 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v7 03/10] regulator: Split up _regulator_get()
-Message-ID: <ZuQTf0MiktCGAELP@smile.fi.intel.com>
-References: <20240911072751.365361-1-wenst@chromium.org>
- <20240911072751.365361-4-wenst@chromium.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=gHquVlE4JU4cKyjC4skmNYHHY6S4HJQ5L0exbA4b6nWqlo5hMl8J5gRvnnRWpFIdKOmXvqbEmYtwc+K0Cu7mQyV3aaOGt+TEEixbDrawvsxuhthqC7CQcHnK4+g88qRqjrP6CUBHOnAi4rOlBWyOm1vJq8UvuBqJtIEZCCsUuuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=dcOugToG; arc=none smtp.client-ip=144.6.53.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
+	s=formenos; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=VP+/xz/zRmlGlWOlqk49bxIVVwjukdiFcru7Plei7HE=; b=dcOugToGenxuel3DOFxVhA1/jr
+	gMO0lvyUIUOMzmZiFzUXAaoga5MQ/X16YL2RBGq4v7xqROkiJNYQxFUvqd3QjecjowtMfUyqNr7vM
+	6X5MIhUvElmt4csGfCjfKywzRtW+2nmUDSbCwbfCoJPZe94EvSVnf0ozba7jZrCQ3CEjkVepTEWia
+	Rnt9AVl5PLmLIvKeyaW3GZ7h1rBE7BLhPglFIytpZnOrJvcK1Tnjrkw9nmKATqdfuilSTJVBwQi2X
+	KrPVrn6R2qZeE3qOxPZHCnOc+gHrM0mgj5Wib7bFgaKJoZA5DSXF8/rvLCdxUxa8knt7rMGNpE8DH
+	WpggVSxQ==;
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
+	id 1sp3QD-002Dv2-2s;
+	Fri, 13 Sep 2024 18:31:16 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 13 Sep 2024 18:31:15 +0800
+Date: Fri, 13 Sep 2024 18:31:15 +0800
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Nikunj Kela <quic_nkela@quicinc.com>
+Cc: davem@davemloft.net, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@quicinc.com,
+	quic_psodagud@quicinc.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3] dt-bindings: crypto: qcom,prng: document support for
+ SA8255p
+Message-ID: <ZuQUc3hWESCELCLx@gondor.apana.org.au>
+References: <20240905190605.3770972-1-quic_nkela@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,25 +69,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240911072751.365361-4-wenst@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20240905190605.3770972-1-quic_nkela@quicinc.com>
 
-On Wed, Sep 11, 2024 at 03:27:41PM +0800, Chen-Yu Tsai wrote:
-> _regulator_get() contains a lot of common code doing checks prior to the
-> regulator lookup and housekeeping work after the lookup. Almost all the
-> code could be shared with a OF-specific variant of _regulator_get().
+On Thu, Sep 05, 2024 at 12:06:05PM -0700, Nikunj Kela wrote:
+> Document SA8255p compatible for the True Random Number Generator.
 > 
-> Split out the common parts so that they can be reused. The OF-specific
-> version of _regulator_get() will be added in a subsequent patch.
-> No functional changes were made.
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+> ---
+> 
+> Changes in v3:
+> 	- Removed the patch from original series[1]
+> 
+> Changes in v2:
+> 	- Added Reviewed-by tag
+> 
+> [1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
+> ---
+>  Documentation/devicetree/bindings/crypto/qcom,prng.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-I think this patch makes sense on its own, but it of course up to Mark.
-FWIW,
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-
+Patch applied.  Thanks.
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
