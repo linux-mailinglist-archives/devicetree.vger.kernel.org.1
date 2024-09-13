@@ -1,153 +1,155 @@
-Return-Path: <devicetree+bounces-102817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FD84978720
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 19:48:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCCEA97872E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 19:51:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE9C61F23963
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 17:48:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E900A1C2274C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 17:51:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2574212BF25;
-	Fri, 13 Sep 2024 17:48:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D878D8289E;
+	Fri, 13 Sep 2024 17:51:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="bLXyoRao"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Nyumg6wO";
+	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="ewHt1O6F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from a7-50.smtp-out.eu-west-1.amazonses.com (a7-50.smtp-out.eu-west-1.amazonses.com [54.240.7.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE2FD84A5C;
-	Fri, 13 Sep 2024 17:48:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2E005811A;
+	Fri, 13 Sep 2024 17:51:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726249695; cv=none; b=gWaHF8NODowWjqC2R4J5xNSdkfUzBjx63yUNjzEENoE03RIbbxh8v0efGXWmR3+w0mlIKGgG84lSeDootxrWfMd8M4tdBC9Gh9KVKkzu5fngv7XlRCNLIwc/JyEo3spks23hPLcxip4VRF62NXXkzfVXkhzAWpBh7GDM7mHVnBQ=
+	t=1726249870; cv=none; b=YhVIh1KiLNLuYUw0YxDb0pSSUYILEg2OfGaGYRfYIDMm0rHPFfilOoB+Kx/LTNa7gFrWrNhF6d0Cw0bGsiyP4b0IObSMa5+PhyDmmbeVVtcoYME4WzuQaE26YrHraJNThWl8Wg8drtpVjOodQP1YQbFZgJDOaqa1chtnV2ngwQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726249695; c=relaxed/simple;
-	bh=1bgvytnR1cBoSNS0eNWksDlJAGVUVW56J/DY/7oQ/r8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=dpula4lhPyko0yJZwc7LTWiB+LRivtPsekXVcq/GblGbqrUHRUgVVi1oWEdXPxDn1F1p197MwvWnTusIhFf0MrpMLr12fkprTz57/lCbp9gCzcCeJBPgqAZCwpitkC7Fx5sKVsY4fyJf/FqfRwWU3iWZAg1CIqx0FOl6eMvLPV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=bLXyoRao; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 5567fcfe71f811efb66947d174671e26-20240914
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=xotAzUqezhsD17X56wb62uKRJaTQRcsCpG1PKAuJkiA=;
-	b=bLXyoRaoG2BWcPSJ/Lob/YGLmHH4jbYR3bk0ORhMvifoOAmUaBlAx6bHj6/nV1/gzH0pPf1djrTf1weAV0tC6/tEpJIFJ93cPXAaiu6cberu/CQ1x3hEI3RwJcQmMKOFE6KcDyKPU1wwt6G6AWFtgAJ4PdIBznlj4kQQ+79uViw=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:260387d0-77f3-4e5a-a2a0-e1a34bc0a739,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:d5672ed0-7921-4900-88a1-3aef019a55ce,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|-5,EDM:-3,IP:ni
-	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
-	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 5567fcfe71f811efb66947d174671e26-20240914
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 321677032; Sat, 14 Sep 2024 01:48:07 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Sat, 14 Sep 2024 01:48:04 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Sat, 14 Sep 2024 01:47:53 +0800
-Message-ID: <f6050fa5-4cb5-9283-263b-bcd0d97a09bc@mediatek.com>
-Date: Sat, 14 Sep 2024 01:47:52 +0800
+	s=arc-20240116; t=1726249870; c=relaxed/simple;
+	bh=weKSgDbGfPkKlWvUEgYyQ3ih4rSsXzcdQgevS8u5uXA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dUITM3mn32Hf5q5uDV4FMIkaDr+P9IyakGbn79wkTxSelU/n6zUZOvaZoIFOlV0EI75lsPAy48DG+6Wz9eZVY7YG14mB1rx/NFECqXqS5LuARC0uFlptfk+s6aJgG2RbT+3XjAamHRA1HqJjqxK5RnIA0rUjRrFz5lqPg2sW+Fk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=amazonses.collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Nyumg6wO; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=ewHt1O6F; arc=none smtp.client-ip=54.240.7.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazonses.collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1726249867;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To;
+	bh=weKSgDbGfPkKlWvUEgYyQ3ih4rSsXzcdQgevS8u5uXA=;
+	b=Nyumg6wORIhuElwT3wR/skSz0PRdzPS48O9DeSzEPEeF1FovnRc71evQHZomy2Cs
+	1M3VB7ex1Yjx+1M7ygNGLZ6Sxqemjlp2YBW88qFm1O1CUKX2SvrJwoSKZlnD9gLTWcv
+	wTUKf6CTt+HHyWjMVJManAvCtuttNP78vRRPe0LbnhZrCC1nIK+daMX1kt6/e66ej6o
+	igbqw9E3D5db9l2I9OR1sxw26nyTeo07QhqHtel/ij66Im7ppuqAXW6MzJpMHWeEhPT
+	mprpBfBB0PuO50o69Wo1290ftz7cb3RhKWRdNL/s+4PvnzBe8wyW4eN4qhvAPE3uOry
+	MPbR2s4j0g==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1726249867;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Feedback-ID;
+	bh=weKSgDbGfPkKlWvUEgYyQ3ih4rSsXzcdQgevS8u5uXA=;
+	b=ewHt1O6FQlJNVgK79/UEpok9L97OK1Mm5VKlxuzflS2bXsZ/8DRqw3vBgzGQnAs/
+	DEA3CGNYxOB1zodJTZmJBwhEhcE7Lr/sQkDh8jfirs3uSncelaaWXikWOTJq+ifEvDM
+	ZwP8+irvXoDuRn75Vwviehm5u3YlzXyC4C1ZdnRM=
+Date: Fri, 13 Sep 2024 17:51:06 +0000
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Jacobe Zang <jacobe.zang@wesion.com>
+Cc: Kalle Valo <kvalo@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, van Spriel <arend@broadcom.com>, 
+	Arend van Spriel <arend.vanspriel@broadcom.com>, 
+	linux-wireless@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	brcm80211@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com, 
+	nick@khadas.com, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v14 1/4] dt-bindings: net: wireless: brcm4329-fmac: add
+ pci14e4,449d
+Message-ID: <01020191ec829670-4deb0998-8f48-474f-b588-1c19509cc081-000000@eu-west-1.amazonses.com>
+References: <20240910-wireless-mainline-v14-0-9d80fea5326d@wesion.com>
+ <20240910-wireless-mainline-v14-1-9d80fea5326d@wesion.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 1/7] regulator: dt-bindings: mt6323: Convert to DT
- schema
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-CC: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	<linux-leds@vger.kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
-	<broonie@kernel.org>, Sebastian Reichel <sre@kernel.org>, Pavel Machek
-	<pavel@ucw.cz>, Sean Wang <sean.wang@mediatek.com>, Lee Jones
-	<lee@kernel.org>, Alexandre Mergnat <amergnat@baylibre.com>, Flora Fu
-	<flora.fu@mediatek.com>, Bear Wang <bear.wang@mediatek.com>, Pablo Sun
-	<pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, Sen Chu
-	<sen.chu@mediatek.com>, Chris-qj chen <chris-qj.chen@mediatek.com>, "MediaTek
- Chromebook Upstream" <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-	<linux-rtc@vger.kernel.org>, <linux-sound@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, Chen-Yu Tsai <wenst@chromium.org>
-References: <20240830110732.30080-1-macpaul.lin@mediatek.com>
- <20240830145056.GA4170065-robh@kernel.org>
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <20240830145056.GA4170065-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--14.924800-8.000000
-X-TMASE-MatchedRID: oTBA/+sdKaYOwH4pD14DsPHkpkyUphL9meN8m2FdGic3xO2R3boBWFbu
-	qIY+/skQkABPgKBt/0rdkc3IJsq77y9FtW7XfHueU+OjsPhIWDiwR/wKmchi2X3ikYeDnk/KepZ
-	UyQ6EeDXoapbtUvkIf+xNbFV/iNBgt3ZVSPV8VOi0sO72q2op4f+UEb65dgmQEB/Asc4oaYEfg0
-	sA1HT2xmQQJkXF7hk6vMxSxMv7UnmPLG+A0qvEpp4CIKY/Hg3AtOt1ofVlaoLUHQeTVDUrItRnE
-	QCUU+jzjoczmuoPCq0Bv7xhCXsjZm/ZfgvjZa1rh9ifqkpf8qhcEkm/83qnHz1B6iuMVH+d
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--14.924800-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: BAB98BC90D7C6C90416F4D37BF8B8CF0C1790B6C68AB3A968115B29A6A8B76452000:8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="uedstvshx674acxy"
+Content-Disposition: inline
+In-Reply-To: <20240910-wireless-mainline-v14-1-9d80fea5326d@wesion.com>
+Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
+X-SES-Outgoing: 2024.09.13-54.240.7.50
 
-On 8/30/24 22:50, Rob Herring wrote:
-> 	
-> 
-> External email : Please do not click links or open attachments until you 
-> have verified the sender or the content.
-> 
-> On Fri, Aug 30, 2024 at 07:07:26PM +0800, Macpaul Lin wrote:
->> Convert this from the old style text based binding to the new DT schema
->> style.
->> 
->> The examples have been trimmed down and move to parent schema
->> mfd/mediatek,mt6397.yaml.
->> 
->> Add new maintainers and submitter from MediaTek.
->> 
->> Signed-off-by: Sen Chu <sen.chu@mediatek.com>
->> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
 
-[snip]
+--uedstvshx674acxy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->> +
->> +patternProperties:
->> +  "^(buck_)?v(pa|proc|sys)$":
->> +    description: Buck regulators
->> +    type: object
->> +    $ref: regulator.yaml#
->> +    properties:
->> +      regulator-allowed-modes: false
->> +    unevaluatedProperties: false
->> +
->> +  "^(ldo_)?v(camio|cn18)$":
-> 
-> Why are buck_ and ldo_ prefixes optional? The old binding didn't reflect
-> actual (upstream) users? If so, that's fine, but mention that in the
-> commit message.
-> 
-> Rob
-> 
+Hi,
 
-Will use "^buck_v" and "^ldo_v" as the prefixes of each items in 
-patternProperties. Thanks!
+On Tue, Sep 10, 2024 at 11:04:11AM GMT, Jacobe Zang wrote:
+> It's the device id used by AP6275P which is the Wi-Fi module
+> used by Rockchip's RK3588 evaluation board and also used in
+> some other RK3588 boards.
+>=20
+> Acked-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
 
-Regards,
-Macpaul Lin
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+
+Greetings,
+
+-- Sebastian
+
+> ---
+>  Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml | =
+1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-=
+fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fma=
+c.yaml
+> index e564f20d8f415..2c2093c77ec9a 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.ya=
+ml
+> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.ya=
+ml
+> @@ -53,6 +53,7 @@ properties:
+>            - pci14e4,4488  # BCM4377
+>            - pci14e4,4425  # BCM4378
+>            - pci14e4,4433  # BCM4387
+> +          - pci14e4,449d  # BCM43752
+> =20
+>    reg:
+>      description: SDIO function number for the device (for most cases
+>=20
+> --=20
+> 2.34.1
+>=20
+>=20
+
+--uedstvshx674acxy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmbke4EACgkQ2O7X88g7
++poQoQ/7B3UguxgoIlXiLeeJrH9kR6deBlpURctMULFJ+O0AlOul6JL2us2CxqGo
+1YBOTNIez5oZ5fvZsXVLMEoSdkd6mLZ4+HTpqrNCD6zU4ckSXG3ys6HGKRyyGDMp
+wk5NyDsdpA/4eTlG4NhXWySas0V9PObRlxNVgel+X0wNG+HKMShD2XFXsBB5AFB7
+T4L7m50OTPPslFB36jgnhCnfTtV9rQCVDwyDSZ3cjRWn/hqIpU2yX5HMLb1YoptU
+sF+hLEpgRCvQk8rWPP328MYKWISOFlFmgxa9/Inp74ZsQ4FrnCarSz7CWKRh8Tie
+zXdeONyGQLikzWxJC6zzoTloubbdcS/6OHzvVOxLktSQQu5e4dpoZ6HyUvt64QeD
+v09NT7CSS+N/AbtQRgdWBDYCcqwzH/THWD91IpeNp1qJtD59vem8r74L8WxTxX/b
+aOffL9aYwgi25Zb2knAkWnGGCpPOE89hZ3zHAbR6qbVeqKO7eNBLb/1Qs2OM75zD
+0xkF+Ts/EvB2bZ4K1zF6xw2AVpcUSCBxun4gytC6xlzzOvRltrPSZwk+mB6w64Iy
+cBZGv+wrtw5D0Ciio3HgAe2neQNum0pmNuPJbyoN8Rsgx0WnkPvAvxY6U4nw5kJU
+nVV0K8ru0WBM5MgB4UjXcIXvKsB+No/t3bjC0k/R8SRf5YeSoCg=
+=jHQ0
+-----END PGP SIGNATURE-----
+
+--uedstvshx674acxy--
 
