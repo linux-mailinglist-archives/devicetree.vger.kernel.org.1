@@ -1,164 +1,124 @@
-Return-Path: <devicetree+bounces-102764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36D719782D9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 16:45:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C13C9782EE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 16:52:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D63B71F21B96
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 14:45:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6F631F246A2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 14:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3B8A2576F;
-	Fri, 13 Sep 2024 14:45:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5C591EEE0;
+	Fri, 13 Sep 2024 14:52:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eOZSeYOY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IPmJL5L+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E814F18C36
-	for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 14:45:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60EA8EED6;
+	Fri, 13 Sep 2024 14:52:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726238713; cv=none; b=JzB/YJzNj2Dj2bwYOOetnrQcUHi0uQf5MNUcUzEp07loGTDNVolpMhSUq/w6Qov0J2ir88Iite9lgnANoWooNy2xK0nSTEQDGL7pGRGpp1cVj82Onhr4+GJxWdBPZYZBiI8rzMZRbI2KhQ5PZGXn9Oofx34vUpSp/SR7eVqJg8o=
+	t=1726239129; cv=none; b=mkHnxxFjk93CUWTkFt0vGgtz93cZOCDJgz52vDxcErCsjvU5VdXbnfdsqjng/jWlPx/4JOB6npId4GQ+HnfOS/biAsbZVVXCPKMPAz4q4u0rdo9q8ekeXMKo2WukSDPvok9c7gordTi3QiGC0F1nFmeZ7+eTsGeNyH8RSwVDYis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726238713; c=relaxed/simple;
-	bh=g2ybvLjs9yiUiIZpkDchh13jHortfCHh94LQJ1NTVQ4=;
+	s=arc-20240116; t=1726239129; c=relaxed/simple;
+	bh=N/xGBp+Akf2x8w+9/94FGQTZDsqfmxwzez4y1UP+/QE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YIJDVhn1tEqTdKa23JuFlsdsRD2+Czvm+/qyjgzSe+cMm8mXcPkQxs4cRu0ijiEoNbh2NlG50QoCSSjpuAn7QJCge5qEvUCSUS/86JOGW+MV/usXk/wXpx3j6Ns991I83KfRRUUx/xCW/nK5jyiMaB60dsQ/ccDph/7zGuPGhTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eOZSeYOY; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2f760f7e25bso24060081fa.2
-        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 07:45:11 -0700 (PDT)
+	 To:Cc:Content-Type; b=NCFhJpkvD5KwwpdrsSdffP6atYvisomz0OrGH3DDpTDJvDHrKYGcRedN9+3dNa4Ln+RxC7QCPnN/05cWnlm8BCDZ/6rIP1wT7J3tB3/0mXuhPcRE6KNk3erUmweg3wi33DVnDN4Z95qYeJd29wxduigjxiur2ip9iG3goMPX/co=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IPmJL5L+; arc=none smtp.client-ip=209.85.217.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-49bc13c3a47so431440137.3;
+        Fri, 13 Sep 2024 07:52:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726238710; x=1726843510; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=hRlsoz0SQi6Y31kBnSS0wNEmQwFLdHQJn6urXpVey+s=;
-        b=eOZSeYOYHaJS/OgMMvEGOWpt7Z82u5QnWTgkPC5R/+k/DjCxmYHst1z2BGis5DZ1or
-         hMxZPOSVgqm6QsACdsNoFJmqmeJXie1OH2vVx8r+w87AFNw5rD207X74MA73CyvZFVbh
-         CKubRBLExbQ8qDc7T3+0GSiFJ2f16VL6PyR+mjC2jj5mYf/UOSgcgiz5ebTvGr8OslUX
-         LxJwHlutJgGbaU8aQ1/c3Xa0bQ1t1viUuGOHXgTRxWyHGKXjOkgqXrxnb68o7hD/YbVi
-         UeWtFuMJzbf9LgsFLqqR7NZjGXZZQ61Rgwc3+Zw33H6kDmNDwCBU/oIRdcohsOzjETWT
-         eyTQ==
+        d=gmail.com; s=20230601; t=1726239127; x=1726843927; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SC7Qi9CJ/UlqMx5HJFGorczxcYiMNzmkMF/PjtSiNQc=;
+        b=IPmJL5L+04gC83EmJWm29rUNtery4irTfv6Xk/zS5n3eowIaa6CsvTTkBV2WkWek8V
+         Y0wXGApYmUf6Q/EWvW7wUdjYaM7VdYsJlGh3dtnTlPbHyJ7JBhaGdYGMIpg7Th/HdOrq
+         LYBrutaaXAz3fIw3veyEemYw0rUpN/ew84Ey0fi6y0L6ECopep0KZAmFCezMwQBUtV6k
+         nXegm6dmXfFZd/VtJIjdoZRrPrhdgGvko46y2QvQI01UIi6aA/piykwN6xXArhyxmg1w
+         b0jMfVloZVpd8EVfgqAC9o3tR/PNrwyCTFZnVpOkuGnp3CE9+pm7wdgZsFCog2M4TUal
+         uu3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726238710; x=1726843510;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hRlsoz0SQi6Y31kBnSS0wNEmQwFLdHQJn6urXpVey+s=;
-        b=U2YxvxKLIt/BjxLSv6YTRyhmEHtLnOsNAsCFQ/1CJ64rh+cRvCQO5lyL7qItwROUku
-         TyaGMLGQKsBqLYYLI7hpV+JQlGFvKlkePOMfTv5Buq9a5IypRMfsP5oYm6sYNo3/rMqB
-         TODL6Fq9JoXm+OtRK/KG/d3DMLi1wNZpcO9Gm9I+wbEam+QuxYw7RhhGqkySRHI1IYhj
-         gXAeq1gSMtEy25u8MdG9HU2dIa1J3GUMdHIJuaKlz+7zSyZuRDhUT4wc8jUZqyNZqKDH
-         YF9fks6U25kD7g+JeHvqOYXLnS+NxgmmNx9OIdkbljZ7ZDl3ht8omkYwpbbCmV66w5T9
-         eHKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWnFhkvgSqyzPc7Akd+3MNQZ7/JqdjrmdgDANZwQlM82Li1e7l7BZ4G6W14xuYwVtyEPWSB4coQp3+v@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiM1QrCr5bTaPpmXUj37iianqhgjWvyama3JWF7MqMbG2T80T8
-	WB5MGn9+BDQTvusVVXbqApw9a1Kguc0h2nXl32Dzzr9TwDQLWFJ1YxvJUh3u/g7umC2CchZPp5p
-	8hycU8P13ykP8m2c/urzV5M0Ms3feSC1rD32Hew==
-X-Google-Smtp-Source: AGHT+IHUFXrwlfPMaxEeDNt9yglyljvYbg/DLrmw5ptYs+I26fJbLl2Yz4iDT0/avZHjhVpNTTnBoHkg2kD6Gg/9LqI=
-X-Received: by 2002:a2e:4c19:0:b0:2f6:d5e2:7889 with SMTP id
- 38308e7fff4ca-2f787ddf348mr27934931fa.19.1726238709788; Fri, 13 Sep 2024
- 07:45:09 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1726239127; x=1726843927;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SC7Qi9CJ/UlqMx5HJFGorczxcYiMNzmkMF/PjtSiNQc=;
+        b=H6c11HRDRwFOV4HLKNU9jAUKt+dua81y0GOyk5blz6vG+l0qg+hlFTMFGx3i7PCFNW
+         EqRaEZy8ZAItkRsVcVLUTKhScAslqkxEfRMzA48GWtRfq5R7Q/v+ynsj6herKiKXzljm
+         KuvtlIf1YSQ57LiXLXyhNEHXXyJsCmjfyIlzutu/U2CU5BmB/6pONchFN38LxedZTsrG
+         eqaEmCeqExX+V8GBrXnj6RKGaaErnduFzwNBhTNwtBmiCyl3RKeb1NnPFd4ZUs42ia9Q
+         KKU6Ghmn/tO5WsCKswg75u1SqNYzz7w7t9AKQaep7jQtByM+qoj2GnC+uNeiMJLua/7k
+         a1gQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUPokIGQIq/NAJsD1Gpkp/6TscdctQ9pnU48LLOFTVQ+9ZDcIhKtC5kD3wYu94zj/TaJgtr1pbHBzsu@vger.kernel.org, AJvYcCUYMiAz5tZBawjr5X4ZK8N9AMmo47YPfyUGCcU8D1vL0P0w8cfX2gULw8U8zxwATGnFWtvX2jAEDFHyC0RP@vger.kernel.org, AJvYcCUomohpmDVKMEesmL81cfkFZZ2vW5wPQsYH6LkVOVPo6eda88qhKJoer5Bi+RBkpDxiTIzcGmGd875e@vger.kernel.org, AJvYcCUqG/6J9y2M/mr6bZeCtHGcyjIE1fL5ZnhD0pekNAQA0Off0F5D7ODSjNbKctV9Fyg7Ok4PjBWcy0Zr@vger.kernel.org, AJvYcCUuV1TE0NfbDttYSLJMYiRssi0fzXzrGLs/5vKClypYaF2X1Krq4noR0RknvloiML04QgvOvDpW2kKiL9i+eBYaSA0=@vger.kernel.org, AJvYcCVjHeGDvMz5cACO+5y2pcLPE2fP02QIIzbJJRZ9Fxz/Yy3QEGgBhazHYwa1ZsTKIy1grpFxNjMntse5qGU=@vger.kernel.org, AJvYcCVjo5ulMq6V0AumAXef8nCmLmZ0ETTOQmOtEBZZnIYDJuEi4Lz4azHYIp2Dm7eFKBqh8WVo2nRQFFhdMg4=@vger.kernel.org, AJvYcCVpE9w8kQ//h/aJ3E5xsEUzmzYfWbMeto/At0C8gj7+2VWt18bnV7Lw4eidhTLUZ+oKBB8VoWi2nE0=@vger.kernel.org, AJvYcCXnxOGyyjk1ffPSZ0jU9lbdoESo5JGGp/eaIyjz4AUYqrdOJHVH+RAJAL9BF7ZyRT+F3jdLF4YnvQZl7F4OIg==@vger.kernel.org, AJvYcCXtHPOAWmKj0dkr
+ upoB5srGsNVHjupE0Qr1+FSjQtSnJMcRejmxnPrXCJuQz8bvBvRk1vLfg+4ITHOOCw==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8F6z+yyfgnP8PtHBXPYFCB/v8g60xniBP7lnisolRABExAdF4
+	+/aVgMhtFL2fqMPhAJUxQ9YfjZAF8SSsjomyd0nDu8fK8shyrZPErDcMcQ0Qadd3YmDOt4XdQGd
+	AGeLHvcOtGa9puniCDDyjZ1uwYD0=
+X-Google-Smtp-Source: AGHT+IFzt77B+UQvTyXWnWYICtP+/AmJJ5rq6JqNXDt5n+hgGmGESoN8kaR8YY1ZG0wjobVeQOsHMwrHDFFr4Mg31HU=
+X-Received: by 2002:a05:6102:e14:b0:49c:1bc:1eff with SMTP id
+ ada2fe7eead31-49d4f6fafc6mr2074878137.28.1726239127329; Fri, 13 Sep 2024
+ 07:52:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240912170025.455167-1-valentina.fernandezalanis@microchip.com>
-In-Reply-To: <20240912170025.455167-1-valentina.fernandezalanis@microchip.com>
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-Date: Fri, 13 Sep 2024 08:44:58 -0600
-Message-ID: <CANLsYkwC0hW3YPmfxOCW+sQcNVVficvPX0+yhsTnKb70f_4taA@mail.gmail.com>
-Subject: Re: [PATCH v1 0/5] Add Microchip IPC mailbox and remoteproc support
-To: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
-Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	peterlin@andestech.com, dminus@andestech.com, conor.dooley@microchip.com, 
-	conor+dt@kernel.org, ycliang@andestech.com, jassisinghbrar@gmail.com, 
-	robh@kernel.org, krzk+dt@kernel.org, andersson@kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org
+References: <20240618-starqltechn_integration_upstream-v3-0-e3f6662017ac@gmail.com>
+ <20240618-starqltechn_integration_upstream-v3-4-e3f6662017ac@gmail.com> <13a650f4-7ca7-4c95-b536-9814a22f00ff@kernel.org>
+In-Reply-To: <13a650f4-7ca7-4c95-b536-9814a22f00ff@kernel.org>
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Date: Fri, 13 Sep 2024 17:51:56 +0300
+Message-ID: <CABTCjFCOTd5V5WyRbD1OCS9Hatk0mOCtNy5WWfp0KkUBgqXs+A@mail.gmail.com>
+Subject: Re: [PATCH v3 04/23] dt-bindings: mfd: add maxim,max77705
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Sebastian Reichel <sre@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Sam Ravnborg <sam@ravnborg.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	phone-devel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-leds@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Valentina,
+=D1=87=D1=82, 20 =D0=B8=D1=8E=D0=BD. 2024=E2=80=AF=D0=B3. =D0=B2 18:46, Krz=
+ysztof Kozlowski <krzk@kernel.org>:
+>
+> On 18/06/2024 15:59, Dzmitry Sankouski wrote:
+> > maxim,max77705 is MAX77705 pmic binding part
+> >
+> > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> > ---
+> >  .../devicetree/bindings/mfd/maxim,max77705.yaml    | 112 +++++++++++++=
+++++++++
+>
+> Your patch order is totally messed. Not tested by automation. Only
+> limited review follows.
+>
+Hmm, not sure what was wrong. I sent version 4 to myself with `b4 send
+--reflect`, the order looks good.
 
-On Thu, 12 Sept 2024 at 10:48, Valentina Fernandez
-<valentina.fernandezalanis@microchip.com> wrote:
->
-> Hello all,
->
-> This series adds support for the Microchip Inter-Processor Communication
-> (IPC) mailbox controller, as well as an IPC remoteproc platform driver.
->
-> Microchip's family of RISC-V SoCs typically has one or more clusters
-> that can be configured to run in Asymmetric Multi-Processing (AMP) mode.
->
-> The Microchip IPC is used to send messages between processors using
-> an interrupt signaling mechanism. The driver uses the RISC-V Supervisor
-> Binary Interface (SBI) to communicate with software running in machine
-> mode (M-mode) to access the IPC hardware block.
->
-> Additional details on the Microchip vendor extension and the IPC
-> function IDs described in the driver can be found in the following
-> documentation:
->
-> https://github.com/linux4microchip/microchip-sbi-ecall-extension
->
-> The IPC remoteproc platform driver allows for starting and stopping
-> firmware on the remote cluster(s) and facilitates RPMsg communication.
-> The remoteproc attach/detach operations are also supported for use cases
-> where the firmware is loaded by the Hart Software Services
-> (zero-stage bootloader) before Linux boots.
->
-> Error Recovery and Power Management features are not currently
-> supported in the remoteproc platform driver.
->
-> The PIC64GX MPU has a Mi-V IHC block, this will be added to the PIC64GX
-> dts after the initial upstreaming:
->
-> https://patchwork.kernel.org/project/linux-riscv/patch/20240725121609.13101-18-pierre-henry.moussay@microchip.com/
->
-> Thanks,
-> Valentina
->
-> Valentina Fernandez (5):
->   riscv: asm: vendorid_list: Add Microchip Technology to the vendor list
->   dt-bindings: mailbox: add binding for Microchip IPC mailbox driver
->   mailbox: add Microchip IPC support
->   dt-bindings: remoteproc: add binding for Microchip IPC remoteproc
->   remoteproc: add support for Microchip IPC remoteproc platform driver
->
->  .../bindings/mailbox/microchip,sbi-ipc.yaml   | 115 ++++
->  .../remoteproc/microchip,ipc-remoteproc.yaml  |  84 +++
->  arch/riscv/include/asm/vendorid_list.h        |   1 +
->  drivers/mailbox/Kconfig                       |  12 +
->  drivers/mailbox/Makefile                      |   2 +
->  drivers/mailbox/mailbox-mchp-ipc-sbi.c        | 539 ++++++++++++++++++
->  drivers/remoteproc/Kconfig                    |  12 +
->  drivers/remoteproc/Makefile                   |   1 +
->  drivers/remoteproc/mchp_ipc_remoteproc.c      | 461 +++++++++++++++
->  include/linux/mailbox/mchp-ipc.h              |  23 +
->  10 files changed, 1250 insertions(+)
+--=20
 
-It might be easier to split this patchset in two and proceed
-incrementally, i.e upstream the mailbox driver first and then the
-remoteproc part.
-
-Regards,
-Mathieu
-
->  create mode 100644 Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/microchip,ipc-remoteproc.yaml
->  create mode 100644 drivers/mailbox/mailbox-mchp-ipc-sbi.c
->  create mode 100644 drivers/remoteproc/mchp_ipc_remoteproc.c
->  create mode 100644 include/linux/mailbox/mchp-ipc.h
->
-> --
-> 2.34.1
->
+Best regards,
+Dzmitry
 
