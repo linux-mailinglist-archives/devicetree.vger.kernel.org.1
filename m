@@ -1,192 +1,349 @@
-Return-Path: <devicetree+bounces-102745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 553B897816D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 15:46:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B6F49781FB
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 16:00:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C980D1F24EE5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 13:46:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 770E11C23B23
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 14:00:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B8A61DA63A;
-	Fri, 13 Sep 2024 13:46:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84FD71DCB06;
+	Fri, 13 Sep 2024 13:57:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CwiAXrvo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mxCR1lZn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6764A1DA600;
-	Fri, 13 Sep 2024 13:46:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD6781DC75A
+	for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 13:57:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726235183; cv=none; b=U2Hlmk/N6fnK6GUrefMtgy1jaFnbhLiOKeNvrGQZBe/PSKzBCdT9EZFydN0c+s5lyWnsHLfqO6uYPWfPD+zFwxK8dVcIFvBUxFVwP7Ap+8GXZjHklGpu6ttagY6X3UcKVsZumDXG4F8m/byxvZ1SxMlRkBCFlJSaUwLvKFyCPPA=
+	t=1726235841; cv=none; b=hqlpTwlm00o2YOoWHrjduTEUwpHVs64enBVbQCMX3PX1uKfWOvtv4AQmj3QZTs7C3TxmiJ3ncmEXbPjEErjtnRrHL5nNruyBq5j5urUmbNFnu43pstnfZEhtnkov9ZwlISyB6xg+NCUwH4skQgY3/HweQ1wt90+A+2+kTXWD7Hg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726235183; c=relaxed/simple;
-	bh=k3SaSIw+5cdu41t10Wgn4gD1im3EUxo+zV84Aqklf2E=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=meKwiO9JipuidRoiJHZ72ARpcjpdZ+SRbS4as4c5ZHG+/bn5GBtG/6w76AS0gCtqqvYCqc40y2COe59xDVtkgNAQY/XQPKKy7nrkcEhyf+OxOV2m4Tg6QPVLLkmjvA3Xd666FLyc+H9UPqCFrZ3dQgKXy0aAxf8BIGiKLzfR/8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CwiAXrvo; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-42cb2191107so17807725e9.1;
-        Fri, 13 Sep 2024 06:46:21 -0700 (PDT)
+	s=arc-20240116; t=1726235841; c=relaxed/simple;
+	bh=nygQcvBgkEXlQczrMZaRkwU7DMO4Sgzp88nUG5kKe5s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iSqSa+kUwg7M0MGEp/qaE38jHbbK634ZGAa6fNeVpPiFc8UKBAGJy3YdfY9iPzby4x4AdCaLMYd4F+kCetNU1529p5FVX6hJsQKnT0qelcjtQ9yoW38NB/vu3tACCrjl/3aPnFGtfbkt2OZ/xZkzH6wZNr7RXE28Od3Q6weAikg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mxCR1lZn; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2057835395aso24970785ad.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 06:57:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726235180; x=1726839980; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=yfduLuvsKg6eBFII0Ig+uMU+Bi2A5zMk2ggjeQnvzmk=;
-        b=CwiAXrvogENAd2Sl1cMEq6i1FM1rFh0BpcykxG2auKr7UhpMyFyb+o8QevMvc6yQrH
-         ijriMDs1TpCfW//IjyvU+iFvNFKQ2GMsz1NLBPzCWlg4sI5U1Wo4CpEQCofxI1SVHeFf
-         J6YgcQCLwZk+yrTPaU9yeLyFAhIRM+Ex4NXzGp2Mw/b3w0X7z7usv1aiyQRtHTGRkyw6
-         fwG4N01I13PIf2fgQYUeKk5uAVNyH/Q+nao8JCDFs0t0mbCWohedktCgR7888XTa0DWm
-         mSuhmcCUjhZ5v1FuKjRSMxXuL+5PlemvInpZG6e49C3pKwqvkVGA+B35ikUW3llA9UXF
-         wmew==
+        d=linaro.org; s=google; t=1726235839; x=1726840639; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=j4zVOa+rsJLoaZtlg7qNm3b8vXOuxAqtzpJMF/Jo70g=;
+        b=mxCR1lZnLia7tXuzndmEmU9G/PqZ3bWM7olWjHgy68VKbkcAa7fFyPgiXkmK3EyeN1
+         I0O6lqAiVB0zxCBLs/U1Yf+0aQ/cRjO+qwDx6rsL6SkJe2QFVETz9C/bd1a3lgkX+8bi
+         tAzvU/Gzv5xXBDYC/V0Vpp6f8SR5L6e+MKOQm/vjKi4olziVi+iXMsbaRu556EAH+6rq
+         9q5YPGCdyYxbZOxMci57owTtPivKZTEOUZp0dVTPWbtXZXd4WhGQpP8o8Dgkzrjj05Pd
+         Z5CwhDH2/+S6mDMlyiDOVojhLse+vhGlMxKWnVsxc+QF16rZTx4sSoyDkLQ/nXQMrKRf
+         RpvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726235180; x=1726839980;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yfduLuvsKg6eBFII0Ig+uMU+Bi2A5zMk2ggjeQnvzmk=;
-        b=jcK2oGEwMgdct/EmyZKhNyJsfij5y7PwlFKv/gPlqSr0DgaUavWO/bklLPN5fYsOtJ
-         Czo5EYm+a6n2IoS1oggwiVQyZn4jbviAzCTI3sYeeTQ3bI2sQYY/uRs9ur4yK/W/3peP
-         1vK6kAxuCkqcaLnPB9iQ6pvZUpHpW6/0R2ql2oI/IgW7MyaIHdGVfP+wrh2R+YKD/w5F
-         DGhIynBC2S6kz5veIGha0R/Xt+lM5RPco3pUXidlS7jk/ACAxf3+DxAOrICaVXhtSiRV
-         RRPixkx07rmN6skqyq1ciEm/itre/RNgrNlDBaKKwzjRRQRvvP5wgj1ufv6tg2lf2/Xq
-         3rbg==
-X-Forwarded-Encrypted: i=1; AJvYcCUAsJrEbErEnXRGkDn0iwoC4OdhYgIQZv+Y07o91wAzLKXgFPwnmqCG29UiW0+FRAj1uNtdbRopv9ALo1+s@vger.kernel.org, AJvYcCV10OlFcCeiwSsO/4//nuVbmJdEc6ZThbQKbdfHssFU0KVsYCuuI4LtZlsK8x2g+DNd+9PNeEQnZ75D@vger.kernel.org, AJvYcCV4fOlbhLJ5FmiFivvE/rmzAbQxWyAaxYP+RLj7O3m3oFbuGruDvb+Vwpep1euze1jTEa9SaCE/YTYF@vger.kernel.org, AJvYcCVRdqvJSQb0A+10bQILm0OXkFEtMUv1Fo9QgCNvZZ5x0C4hdhHcAC99ACF/Q7UEPDG9XzGjaUqEDl+5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/HLuuavCGqMdrb+svShN21fAbFCWdBpgo9OtSN0wecgAVLJdG
-	vk/GuOdzedn9TpCeCb8N2uO7MNyBB0lUgIruONkSRnynSw5XPSSr
-X-Google-Smtp-Source: AGHT+IFEB323XdIuf48ZUgv8Y/doK07A8Vh8Hg4zl8bZxFxqztDimv74fJ6wwoGuHyeUyE4bD0/rDw==
-X-Received: by 2002:a05:600c:4f0c:b0:426:6f17:531 with SMTP id 5b1f17b1804b1-42cdb530cc2mr58082855e9.13.1726235178879;
-        Fri, 13 Sep 2024 06:46:18 -0700 (PDT)
-Received: from ?IPv6:2001:a61:341e:1201:c434:b5b1:98a6:efed? ([2001:a61:341e:1201:c434:b5b1:98a6:efed])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42d9b1899efsm26262915e9.30.2024.09.13.06.46.17
+        d=1e100.net; s=20230601; t=1726235839; x=1726840639;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=j4zVOa+rsJLoaZtlg7qNm3b8vXOuxAqtzpJMF/Jo70g=;
+        b=myP03tpdYY2HsB1LYiHuuiuoxjZW/DbGitxcrmGJmxiHxlTdMZ3Bjca7yTZdL7LYj1
+         Op7U75rwFVqkiX1Wm9LsmXhxbEJDmGZr2c70WwCwrFB3sRKuYIUpmYP7RxErcRsMiMn8
+         6ADQFqCe6IblDaFF9/h7iWLVfPpmDpHPzVhCaU6XkIow2ix6Zz8gAM1K9b4SMRKUYkJ1
+         7Usr9vaboAuesv/oln5DzwcdyYqTmmz9uOCHhlbcqcmChDv4THp/IbuzTAofOBVg2Czr
+         MApWRGmPQo4HOF8MctFSv/spek/0dGbrfYCjbuKBPJmanM0MTY9yZs8ZOnqh5JxukfCi
+         jXIw==
+X-Forwarded-Encrypted: i=1; AJvYcCUV2VRTCgwAjFvckETnXbMIyp/enidPIuwFMqlDCzm9cgUPCNySXQVlLK0LR0jKWVAhwZrYeWQEmlnI@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKiWgNKeTXTVzBQs3ahr3aTMJTwkqYkExkh5zrpcQeZ/hICyoe
+	6LXGTepIupdhlrerlpaH8TAU41E3oAC7Tz4KBz0EnLRhB67V4z9dvqtsW5HoyA==
+X-Google-Smtp-Source: AGHT+IF/dhpwnwCRU/9Bk+v+2G3zbmxcvhusIOoU80hBY2klO7C51mKtJhG7H4NPXx22niLc5+SxxA==
+X-Received: by 2002:a17:902:f785:b0:205:7863:2dec with SMTP id d9443c01a7336-2076e3698edmr95862965ad.27.1726235838719;
+        Fri, 13 Sep 2024 06:57:18 -0700 (PDT)
+Received: from thinkpad ([120.60.66.60])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2076af4739asm28455325ad.66.2024.09.13.06.57.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Sep 2024 06:46:18 -0700 (PDT)
-Message-ID: <84961c1f857dfc8498c41ac97235a037111ed6d5.camel@gmail.com>
-Subject: Re: [PATCH 4/6] iio: adc: ad4030: add support for ad4630-24 and
- ad4630-16
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Esteban Blanc <eblanc@baylibre.com>, Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno Sa
- <nuno.sa@analog.com>,  Jonathan Corbet <corbet@lwn.net>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>, 
- linux-doc@vger.kernel.org
-Date: Fri, 13 Sep 2024 15:46:17 +0200
-In-Reply-To: <D4567LFFTYJQ.2YC5OODKOVPNB@baylibre.com>
-References: <20240822-eblanc-ad4630_v1-v1-0-5c68f3327fdd@baylibre.com>
-	 <20240822-eblanc-ad4630_v1-v1-4-5c68f3327fdd@baylibre.com>
-	 <20240826102748.4be0b642@jic23-huawei>
-	 <D452E2M75XCM.13OQGAPJ7JJ4A@baylibre.com>
-	 <0a4e7fe39cf36774b28c86f6baab5ef8c20e3d6b.camel@gmail.com>
-	 <D4567LFFTYJQ.2YC5OODKOVPNB@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
+        Fri, 13 Sep 2024 06:57:18 -0700 (PDT)
+Date: Fri, 13 Sep 2024 19:27:10 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Qiang Yu <quic_qianyu@quicinc.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+	abel.vesa@linaro.org, quic_msarkar@quicinc.com,
+	quic_devipriy@quicinc.com, dmitry.baryshkov@linaro.org,
+	kw@linux.com, lpieralisi@kernel.org, neil.armstrong@linaro.org,
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: x1e80100: Add support for PCIe3
+ on x1e80100
+Message-ID: <20240913135710.6ionsmzo45orin6n@thinkpad>
+References: <20240913083724.1217691-1-quic_qianyu@quicinc.com>
+ <20240913083724.1217691-6-quic_qianyu@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240913083724.1217691-6-quic_qianyu@quicinc.com>
 
-On Fri, 2024-09-13 at 12:55 +0000, Esteban Blanc wrote:
-> On Fri Sep 13, 2024 at 10:18 AM UTC, Nuno S=C3=A1 wrote:
-> > On Fri, 2024-09-13 at 09:55 +0000, Esteban Blanc wrote:
-> > > On Mon Aug 26, 2024 at 9:27 AM UTC, Jonathan Cameron wrote:
-> > > > On Thu, 22 Aug 2024 14:45:20 +0200
-> > > > Esteban Blanc <eblanc@baylibre.com> wrote:
-> > > > > +static const unsigned long ad4630_channel_masks[] =3D {
-> > > > > +	/* Differential only */
-> > > > > +	BIT(0) | BIT(2),
-> > > > > +	/* Differential with common byte */
-> > > > > +	GENMASK(3, 0),
-> > > > The packing of data isn't going to be good. How bad to shuffle
-> > > > to put the two small channels next to each other?
-> > > > Seems like it means you will want to combine your deinterleave
-> > > > and channel specific handling above, which is a bit fiddly but
-> > > > not much worse than current code.
-> > >=20
-> > > I can do it since that was what I had done in the RFC in the first pl=
-ace.
-> > > Nuno asked for in this email
-> > > https://lore.kernel.org/r/0036d44542f8cf45c91c867f0ddd7b45d1904d6b.ca=
-mel@gmail.com/
-> > > :
-> > >=20
-> > > > > > * You're pushing the CM channels into the end. So when we a 2 c=
-hannel
-> > > > > > device
-> > > > > > we'll have:
-> > >=20
-> > > > > > in_voltage0 - diff
-> > > > > > in_voltage1 - diff
-> > > > > > in_voltage2 - CM associated with chan0
-> > > > > > in_voltage0 - CM associated with chan1
-> > > > > >=20
-> > > > > > I think we could make it so the CM channel comes right after th=
-e channel
-> > > > > > where
-> > > > > > it's data belongs too. So for example, odd channels would be CM=
- channels
-> > > > > > (and
-> > > > > > labels could also make sense).
-> > >=20
-> > > So that's what I did here :D
-> > >=20
-> > > For the software side off things here it doesn't change a lot of thin=
-gs
-> > > since we have to manipulate the data anyway, putting the extra byte a=
-t the
-> > > end or in between is no extra work.
-> > > For the offload engine however, it should be easier to ask for 24 bit=
-s
-> > > then 8 bits for each channel as it would return two u32 per "hardware
-> > > channel".
-> > >=20
-> > > In order to avoid having two different layouts, I was kind of sold by
-> > > Nuno's idea of having the CM in between each diff channel.
-> > >=20
-> >=20
-> > Tbh, I was not even thinking about the layout when I proposed the arran=
-gement.
-> > Just
-> > made sense to me (from a logical point of view) to have them together a=
-s they
-> > relate
-> > to the same physical channel. FWIW, we're also speaking bytes in here s=
-o not sure
-> > if
-> > it's that important (or bad).
->=20
-> The best we can do (if we managed to do it HDL wise) is to reorder the
-> data to get both CM byte in a single u32 after the 2 u32 of both diff
-> channel. That would be 3 u32 instead of 4.
->=20
+On Fri, Sep 13, 2024 at 01:37:24AM -0700, Qiang Yu wrote:
+> Describe PCIe3 controller and PHY. Also add required system resources like
+> regulators, clocks, interrupts and registers configuration for PCIe3.
+> 
+> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 202 ++++++++++++++++++++++++-
+>  1 file changed, 201 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> index a36076e3c56b..a7703e4974a6 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> @@ -744,7 +744,7 @@ gcc: clock-controller@100000 {
+>  
+>  			clocks = <&bi_tcxo_div2>,
+>  				 <&sleep_clk>,
+> -				 <0>,
+> +				 <&pcie3_phy>,
+>  				 <&pcie4_phy>,
+>  				 <&pcie5_phy>,
+>  				 <&pcie6a_phy>,
+> @@ -2907,6 +2907,206 @@ mmss_noc: interconnect@1780000 {
+>  			#interconnect-cells = <2>;
+>  		};
+>  
+> +		pcie3: pci@1bd0000 {
 
-We are starting to see more and more devices that do stuff like this. Have =
-one
-physical channel that reflects in more than one IIO channel. For SW bufferi=
-ng it's
-not really a big deal but for HW buffering it's not ideal.=20
+pcie@
 
-I feel that at some point we should think about having a way to map a chann=
-el scan
-element (being kind of a virtual scan element) into the storage_bits of ano=
-ther one.
-So in this case, one sample (for one channel) would be the 32bits and thing=
-s should
-work the same either in SW or HW buffering.
+> +			device_type = "pci";
+> +			compatible = "qcom,pcie-x1e80100";
+> +			reg = <0 0x01bd0000 0 0x3000>,
+> +			      <0 0x78000000 0 0xf1d>,
 
-That said, it's probably easier said than done in practice :)
+0x0 here and below.
 
-- Nuno S=C3=A1
+> +			      <0 0x78000f40 0 0xa8>,
+> +			      <0 0x78001000 0 0x1000>,
+> +			      <0 0x78100000 0 0x100000>,
+> +			      <0 0x01bd3000 0 0x1000>;
+> +			reg-names = "parf",
+> +				    "dbi",
+> +				    "elbi",
+> +				    "atu",
+> +				    "config",
+> +				    "mhi";
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +			ranges = <0x01000000 0x0 0x00000000 0x0 0x78200000 0x0 0x100000>,
+> +				 <0x02000000 0x0 0x78300000 0x0 0x78300000 0x0 0x3d00000>,
+> +				 <0x03000000 0x7 0x40000000 0x7 0x40000000 0x0 0x40000000>;
+> +			bus-range = <0x00 0xff>;
+> +
+> +			dma-coherent;
+> +
+> +			linux,pci-domain = <3>;
+> +			num-lanes = <8>;
+> +
+> +			interrupts = <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 769 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 836 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 671 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 218 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "msi0",
+> +					  "msi1",
+> +					  "msi2",
+> +					  "msi3",
+> +					  "msi4",
+> +					  "msi5",
+> +					  "msi6",
+> +					  "msi7";
 
+Can you add 'global' interrupt as well? While doing so, please make sure the
+global_irq related patches are applied and Link up works fine. Those patches are
+already in linux-next.
+
+> +
+> +			#interrupt-cells = <1>;
+> +			interrupt-map-mask = <0 0 0 0x7>;
+> +			interrupt-map = <0 0 0 1 &intc 0 0 0 220 IRQ_TYPE_LEVEL_HIGH>,
+
+Use GIC_SPI for the parent interrupt specifier.
+
+- Mani
+
+> +					<0 0 0 2 &intc 0 0 0 221 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 3 &intc 0 0 0 237 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 4 &intc 0 0 0 238 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			clocks = <&gcc GCC_PCIE_3_AUX_CLK>,
+> +				 <&gcc GCC_PCIE_3_CFG_AHB_CLK>,
+> +				 <&gcc GCC_PCIE_3_MSTR_AXI_CLK>,
+> +				 <&gcc GCC_PCIE_3_SLV_AXI_CLK>,
+> +				 <&gcc GCC_PCIE_3_SLV_Q2A_AXI_CLK>,
+> +				 <&gcc GCC_CFG_NOC_PCIE_ANOC_NORTH_AHB_CLK>,
+> +				 <&gcc GCC_CNOC_PCIE_NORTH_SF_AXI_CLK>;
+> +			clock-names = "aux",
+> +				      "cfg",
+> +				      "bus_master",
+> +				      "bus_slave",
+> +				      "slave_q2a",
+> +				      "noc_aggr",
+> +				      "cnoc_sf_axi";
+> +
+> +			assigned-clocks = <&gcc GCC_PCIE_3_AUX_CLK>;
+> +			assigned-clock-rates = <19200000>;
+> +
+> +			interconnects = <&pcie_south_anoc MASTER_PCIE_3 QCOM_ICC_TAG_ALWAYS
+> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+> +					 &cnoc_main SLAVE_PCIE_3 QCOM_ICC_TAG_ALWAYS>;
+> +			interconnect-names = "pcie-mem",
+> +					     "cpu-pcie";
+> +
+> +			resets = <&gcc GCC_PCIE_3_BCR>,
+> +				 <&gcc GCC_PCIE_3_LINK_DOWN_BCR>;
+> +			reset-names = "pci",
+> +				      "link_down";
+> +
+> +			power-domains = <&gcc GCC_PCIE_3_GDSC>;
+> +
+> +			phys = <&pcie3_phy>;
+> +			phy-names = "pciephy";
+> +
+> +			operating-points-v2 = <&pcie3_opp_table>;
+> +
+> +			status = "disabled";
+> +
+> +			pcie3_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				/* GEN 1 x1 */
+> +				opp-2500000 {
+> +					opp-hz = /bits/ 64 <2500000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +					opp-peak-kBps = <250000 1>;
+> +				};
+> +
+> +				/* GEN 1 x2 and GEN 2 x1 */
+> +				opp-5000000 {
+> +					opp-hz = /bits/ 64 <5000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +					opp-peak-kBps = <500000 1>;
+> +				};
+> +
+> +				/* GEN 1 x4 and GEN 2 x2 */
+> +				opp-10000000 {
+> +					opp-hz = /bits/ 64 <10000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +					opp-peak-kBps = <1000000 1>;
+> +				};
+> +
+> +				/* GEN 1 x8 and GEN 2 x4 */
+> +				opp-20000000 {
+> +					opp-hz = /bits/ 64 <20000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +					opp-peak-kBps = <2000000 1>;
+> +				};
+> +
+> +				/* GEN 2 x8 */
+> +				opp-40000000 {
+> +					opp-hz = /bits/ 64 <40000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +					opp-peak-kBps = <4000000 1>;
+> +				};
+> +
+> +				/* GEN 3 x1 */
+> +				opp-8000000 {
+> +					opp-hz = /bits/ 64 <8000000>;
+> +					required-opps = <&rpmhpd_opp_svs>;
+> +					opp-peak-kBps = <984500 1>;
+> +				};
+> +
+> +				/* GEN 3 x2 and GEN 4 x1 */
+> +				opp-16000000 {
+> +					opp-hz = /bits/ 64 <16000000>;
+> +					required-opps = <&rpmhpd_opp_svs>;
+> +					opp-peak-kBps = <1969000 1>;
+> +				};
+> +
+> +				/* GEN 3 x4 and GEN 4 x2 */
+> +				opp-32000000 {
+> +					opp-hz = /bits/ 64 <32000000>;
+> +					required-opps = <&rpmhpd_opp_svs>;
+> +					opp-peak-kBps = <3938000 1>;
+> +				};
+> +
+> +				/* GEN 3 x8 and GEN 4 x4 */
+> +				opp-64000000 {
+> +					opp-hz = /bits/ 64 <64000000>;
+> +					required-opps = <&rpmhpd_opp_svs>;
+> +					opp-peak-kBps = <7876000 1>;
+> +				};
+> +
+> +				/* GEN 4 x8 */
+> +				opp-128000000 {
+> +					opp-hz = /bits/ 64 <128000000>;
+> +					required-opps = <&rpmhpd_opp_svs>;
+> +					opp-peak-kBps = <15753000 1>;
+> +				};
+> +			};
+> +		};
+> +
+> +		pcie3_phy: phy@1be0000 {
+> +			compatible = "qcom,x1e80100-qmp-gen4x8-pcie-phy";
+> +			reg = <0 0x01be0000 0 0x10000>;
+> +
+> +			clocks = <&gcc GCC_PCIE_3_PHY_AUX_CLK>,
+> +				 <&gcc GCC_PCIE_3_CFG_AHB_CLK>,
+> +				 <&tcsr TCSR_PCIE_8L_CLKREF_EN>,
+> +				 <&gcc GCC_PCIE_3_PHY_RCHNG_CLK>,
+> +				 <&gcc GCC_PCIE_3_PIPE_CLK>,
+> +				 <&gcc GCC_PCIE_3_PIPEDIV2_CLK>;
+> +			clock-names = "aux",
+> +				      "cfg_ahb",
+> +				      "ref",
+> +				      "rchng",
+> +				      "pipe",
+> +				      "pipediv2";
+> +
+> +			resets = <&gcc GCC_PCIE_3_PHY_BCR>,
+> +				 <&gcc GCC_PCIE_3_NOCSR_COM_PHY_BCR>;
+> +			reset-names = "phy",
+> +				      "phy_nocsr";
+> +
+> +			assigned-clocks = <&gcc GCC_PCIE_3_PHY_RCHNG_CLK>;
+> +			assigned-clock-rates = <100000000>;
+> +
+> +			power-domains = <&gcc GCC_PCIE_3_PHY_GDSC>;
+> +
+> +			#clock-cells = <0>;
+> +			clock-output-names = "pcie3_pipe_clk";
+> +
+> +			#phy-cells = <0>;
+> +
+> +			status = "disabled";
+> +		};
+> +
+>  		pcie6a: pci@1bf8000 {
+>  			device_type = "pci";
+>  			compatible = "qcom,pcie-x1e80100";
+> -- 
+> 2.34.1
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
