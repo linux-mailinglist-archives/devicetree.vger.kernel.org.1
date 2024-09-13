@@ -1,79 +1,98 @@
-Return-Path: <devicetree+bounces-102870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C89B9789EF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 22:31:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5E3A978A1B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 22:41:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB0A2B234E9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 20:31:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B60C1F24FFF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 20:41:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E79814831E;
-	Fri, 13 Sep 2024 20:31:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AA5314F9EE;
+	Fri, 13 Sep 2024 20:41:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TWNFYvLw"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FEFRRqqw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34590B67D;
-	Fri, 13 Sep 2024 20:31:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D69C14D2B8;
+	Fri, 13 Sep 2024 20:41:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726259486; cv=none; b=hLGmELKcnNdvz4YX7PmTgg7jg//5c8uxDxqNTvjsKWPiQgJesSp5kpcC/xSz+QHBo2R1KDK+BSYP69ZDwtST1vWsIZVKX85S8VZGuEeva43O9SQZt/e31MsZoaGRrOrcnJdzfWB67D/Ciy04Ue2MLeGJ8nNCi1AJQbHenVGnSs4=
+	t=1726260090; cv=none; b=D3J8A4evhJuQhbO4MVg0yoVgOFecn+JWZUgjknmZAyIlzOzuaM9DShKm21YYSns0DRC5178ovNjLagY656MZEvvt9K7AvAYsGzqgIwpW3lD/TYzYwm4JupZVVlvJbzHSs8uLg3K/IaZ0CcTq00F4I0vhX6GYrFpgTsIT+CimEHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726259486; c=relaxed/simple;
-	bh=Tx5/dZmHNQNXpIuvYmfC/G6hrzVqoftURJxPv5bI6kk=;
+	s=arc-20240116; t=1726260090; c=relaxed/simple;
+	bh=dxtHkHhZlIEtYto+4D7ABktR9JYb+fxPTDKaT0Bg+p4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Rvj6L4pvAFZoRSdv5OM+vKxdCuDuYgzA9otjHRIxP5wVtV1dDKKi8C+0aZYDG0+1x0bsRH+i/fPrC/dgsxps0lZaGe9oZH6yvhyNTryV3t1AbHIruMmEldLX+/m+vnIbOQKYdx4yiV65lggXKwfzO9jnZhmLl/9kdMVEeebewiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TWNFYvLw; arc=none smtp.client-ip=198.175.65.21
+	 Content-Type:Content-Disposition:In-Reply-To; b=ubymY+v6xpJibfRB6uabDweFx1zIOsQgGcPfa26MEQkDVEi+bTUoMmnzpOWpRkD6kt2oN6H3ZwrwVahcPMzhk+01AJt0IXAT2SNfuUa/dNXUES1OZ4JaejTpDmvDgHUav9XL1yg/92JJfnbrXvqkcCS1+Rgutomt1cgwk1d7mDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FEFRRqqw; arc=none smtp.client-ip=192.198.163.9
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1726259484; x=1757795484;
+  t=1726260089; x=1757796089;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=Tx5/dZmHNQNXpIuvYmfC/G6hrzVqoftURJxPv5bI6kk=;
-  b=TWNFYvLwI74IuXHjfCFlF/64YUQgsOzOguDnQrJTOYUUY5wP7l4NO7AW
-   /1YukI6N3KxnPA5WscG/JnKpw+rEhtyfpuIaeqiiufdJKMxRf4gO8fJN1
-   pKDpsJbPIcrj/6l6UFQ4YgFiJKsy5vLTvlh2cHF2f+YdHRS8UyfgImJPs
-   oxq0DuiJCeSHXGLKGaAH8x8nYDjAeet5H8SZPHV5HUxCDv/pGjV8qB2W6
-   u8oZRZk2w9VZTkVB6B/pUYBdelOdplGMU+NGJ7ggQHiC3z+wHi2M6kW7o
-   z+wvbqctjmXax5hW1VKGj87l8KWistI1j/wAsw0LVDy7S1bnMe1M5ZQWP
+  bh=dxtHkHhZlIEtYto+4D7ABktR9JYb+fxPTDKaT0Bg+p4=;
+  b=FEFRRqqw99XR1fzmldi4aE/2gu3SzpE0qsz5k/hYLIyAFWrjpaXundza
+   hbnkzWAOf8+KWaMxGV/IYDoiVdDZoWx8YPcnzpsdL2GuqNticiufOHPab
+   kGvs8nT6ib0055yzshaWCbt3fBzglVMWK7Qn8k364Byicte2uACnXtq08
+   1hj0r6K/Zy+qtYPO0KS/OZfmPsNb9isHmqJy9qDi1G55H8OCfuDPcM3fi
+   KQetAtGIoicyaIMmgsKBILdfnxOsa8DGHl8PDAyJOZiapWHhh6xEFUWjT
+   KPQJrDhwDWUqqYaB6VDtZG5I0SAHckhCM67xAJKxh5SqTxAJa1GrpMj4m
    Q==;
-X-CSE-ConnectionGUID: BdOAa7aPQy2zjTQAjnHqAg==
-X-CSE-MsgGUID: r4Wa7KjeRXmF7dzoLT2uEg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="25110863"
+X-CSE-ConnectionGUID: rdGknI2rQSSfI6dODY7nVA==
+X-CSE-MsgGUID: 5/iOL3BETrO2GjKZojzLfg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="35848673"
 X-IronPort-AV: E=Sophos;i="6.10,227,1719903600"; 
-   d="scan'208";a="25110863"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2024 13:31:23 -0700
-X-CSE-ConnectionGUID: Yaf97OChSUq8zt1fjh93bw==
-X-CSE-MsgGUID: 5M2YQM5/TGGWtgJ6fMjEVA==
+   d="scan'208";a="35848673"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2024 13:41:28 -0700
+X-CSE-ConnectionGUID: GVjA4IFURsadu4GOWs5ACw==
+X-CSE-MsgGUID: 1LTFprj9SQKpm0G8VRBwfA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.10,227,1719903600"; 
-   d="scan'208";a="72556858"
+   d="scan'208";a="68966522"
 Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 13 Sep 2024 13:31:21 -0700
+  by orviesa008.jf.intel.com with ESMTP; 13 Sep 2024 13:41:21 -0700
 Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
 	(envelope-from <lkp@intel.com>)
-	id 1spCwo-0006xw-1u;
-	Fri, 13 Sep 2024 20:31:18 +0000
-Date: Sat, 14 Sep 2024 04:30:42 +0800
+	id 1spD6U-0006yI-2Y;
+	Fri, 13 Sep 2024 20:41:18 +0000
+Date: Sat, 14 Sep 2024 04:40:58 +0800
 From: kernel test robot <lkp@intel.com>
-To: Alexandru Ardelean <aardelean@baylibre.com>, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, jic23@kernel.org, krzk+dt@kernel.org,
-	robh@kernel.org, lars@metafoo.de, michael.hennerich@analog.com,
-	gstols@baylibre.com, dlechner@baylibre.com,
-	Alexandru Ardelean <aardelean@baylibre.com>
-Subject: Re: [PATCH v6 8/8] iio: adc: ad7606: add support for AD7606C-{16,18}
- parts
-Message-ID: <202409140416.KWHXjFSv-lkp@intel.com>
-References: <20240913135744.152669-9-aardelean@baylibre.com>
+To: Arturs Artamonovs via B4 Relay <devnull+arturs.artamonovs.analog.com@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Greg Malysa <greg.malysa@timesys.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Utsav Agarwal <Utsav.Agarwal@analog.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Olof Johansson <olof@lixom.net>, soc@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	Arturs Artamonovs <arturs.artamonovs@analog.com>,
+	adsp-linux@analog.com,
+	Nathan Barrett-Morrison <nathan.morrison@timesys.com>
+Subject: Re: [PATCH 11/21] irqchip: Add irqchip for ADI ADSP-SC5xx platform
+Message-ID: <202409140451.t2a9fck6-lkp@intel.com>
+References: <20240912-test-v1-11-458fa57c8ccf@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,46 +101,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240913135744.152669-9-aardelean@baylibre.com>
+In-Reply-To: <20240912-test-v1-11-458fa57c8ccf@analog.com>
 
-Hi Alexandru,
+Hi Arturs,
 
 kernel test robot noticed the following build warnings:
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on next-20240913]
-[cannot apply to linus/master v6.11-rc7]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+[auto build test WARNING on da3ea35007d0af457a0afc87e84fddaebc4e0b63]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Alexandru-Ardelean/iio-adc-ad7606-add-bits-parameter-to-channels-macros/20240913-220501
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20240913135744.152669-9-aardelean%40baylibre.com
-patch subject: [PATCH v6 8/8] iio: adc: ad7606: add support for AD7606C-{16,18} parts
-config: arm-randconfig-001-20240914 (https://download.01.org/0day-ci/archive/20240914/202409140416.KWHXjFSv-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240914/202409140416.KWHXjFSv-lkp@intel.com/reproduce)
+url:    https://github.com/intel-lab-lkp/linux/commits/Arturs-Artamonovs-via-B4-Relay/arm64-Add-ADI-ADSP-SC598-SoC/20240913-022308
+base:   da3ea35007d0af457a0afc87e84fddaebc4e0b63
+patch link:    https://lore.kernel.org/r/20240912-test-v1-11-458fa57c8ccf%40analog.com
+patch subject: [PATCH 11/21] irqchip: Add irqchip for ADI ADSP-SC5xx platform
+config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20240914/202409140451.t2a9fck6-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project bf684034844c660b778f0eba103582f582b710c9)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240914/202409140451.t2a9fck6-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409140416.KWHXjFSv-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409140451.t2a9fck6-lkp@intel.com/
 
 All warnings (new ones prefixed by >>):
 
->> drivers/iio/adc/ad7606.c:39:27: warning: 'ad7606_18bit_hw_scale_avail' defined but not used [-Wunused-const-variable=]
-      39 | static const unsigned int ad7606_18bit_hw_scale_avail[2] = {
-         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/irqchip/irq-adi-adsp.c:3: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+    * ADSP PINT PORT driver.
+   drivers/irqchip/irq-adi-adsp.c:51: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+    * Each gpio device should be connected to one of the two valid pints with an
+   drivers/irqchip/irq-adi-adsp.c:152: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+    * This handles the GIC interrupt associated with this PINT being activated.
 
 
-vim +/ad7606_18bit_hw_scale_avail +39 drivers/iio/adc/ad7606.c
+vim +3 drivers/irqchip/irq-adi-adsp.c
 
-    38	
-  > 39	static const unsigned int ad7606_18bit_hw_scale_avail[2] = {
-    40		38147, 76294
-    41	};
-    42	
+   > 3	 * ADSP PINT PORT driver.
+     4	 *
+     5	 * The default mapping is used for all PINTs, refer to the HRM to identify
+     6	 * PORT mapping to PINTs. For example, PINT0 has PORT B (0-15) and PORT A
+     7	 * (16-31).
+     8	 *
+     9	 * Copyright (C) 2022-2024, Analog Devices, Inc.
+    10	 */
+    11	
 
 -- 
 0-DAY CI Kernel Test Service
