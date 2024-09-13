@@ -1,122 +1,125 @@
-Return-Path: <devicetree+bounces-102704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82A61977FDD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 14:29:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47B3E977FE8
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 14:31:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D40861C21432
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 12:28:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 812321C21DB2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 12:31:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5D121D935A;
-	Fri, 13 Sep 2024 12:28:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A47F1DA117;
+	Fri, 13 Sep 2024 12:31:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tUF+eQ0R"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aLo5XgDR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3506E1D932C
-	for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 12:28:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 717231DA110;
+	Fri, 13 Sep 2024 12:31:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726230527; cv=none; b=XdJIebgXcD7Bx3+I+XtLYtYqiJjfzAkJkw90dIXfxy6bQmaSGIMcV5ie4Y/fZCrVFnNgx7M0C/ovc8rhfGG2hNm5pyRvBOXUoYRMHJAJNw/5m2Iw/hWESP/CvmaRWkpqXRuiIdLJ46eCk6uUc5PO4OdjWUWRjAfCWR0Wpz31Q3E=
+	t=1726230670; cv=none; b=OQRFlTx4nphoGszSfITbR1OCgph5YQZylpOnlGtTkmnfVpNJKBiNQXYgaI1fJgf/SgINnoaVVF5PfU1pOCpdI1j3W8oDH5q7G8vsMAAopleEaevxLA/+11FqkgZ8jAHYqUPx9djRPO+t6FkgNToe8ek9JLxVVv75TvTOt6iqYiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726230527; c=relaxed/simple;
-	bh=PsWOLXYhGEPuJf8nwq+prRl7Dg+ag5UAqgxM272Ss1o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m6uMDUjmdA4uBS4RuEXcOWr4t3CYJ2k6/OUKmdu/ZxHECCneG0FT96vpIK4tTlmWCNjA0/jxvGnrXMaQqRnTw86zLBQJgtjUEBBf6+qvWvaukX+9k0T2Zn0b193GqyXYy8/iICBeER4sDkPs1IEKRC2Yk6ldbp+Jv9wzXn4Kfzw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tUF+eQ0R; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2f752d9ab62so10173871fa.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 05:28:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726230523; x=1726835323; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3Ji4NYmFGGbt+gGev2Tj2lbi8IGg1JCceX+r4CZ9/dE=;
-        b=tUF+eQ0RUL1LwPTPRipqgzJIKZ655MO23yXNjlKlDF8O4fVY4qN/Hw1+UuvO95y7WS
-         zeGZMRcSNZcREhEB5jHwk6WRaI2Nlmwa9Q0XKkVbwhbRuO5x8Nm4de639XP+otuJ9FGE
-         vxwsOYENEdQogefpxOlHb+bZQoZNwD08ZiNKSMNW1xZ1PiDia9t/KzRGNFPhGpUTAYQB
-         ezG6wR5KAJJxRueRR91C+0VDDDSfOeQEcNlJCqEjPWMmN5xXj6eOAsq9bLbbEG35IxMG
-         92feOX6cQWIXAzy7KQyT3Qy6xastQwNVthJrHxq0oGmmVQDLTE3NL1FSkGreBD6xGBsU
-         lRKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726230523; x=1726835323;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3Ji4NYmFGGbt+gGev2Tj2lbi8IGg1JCceX+r4CZ9/dE=;
-        b=fLDCIOFBqVNmmTIrwErwj01oQ+QcAxUcRMNilX6UXbmu7UhtN+89jU9XPB+1vMrqgI
-         3cAnUfp2bkTh3eoGBjoh+d5pbMjI7pJW9U6mCCJbUeLxIptjhxboUv9NHgYxE7/uPH30
-         IuAb43omAFHFf8q7CwUIVinYHjXevEQfKJRz6TG2QH3nDsxIQwPA3QAhmGvQR3oOrMiP
-         9QOMWIHDfOKD5Op6hQ2ElreJBRBSnFKr4KzX6WeRuELGI2Sc4v17u/b6mDpNzrqBujnl
-         46zEgJcI1vmaad49Qc9w/vlGISjmriWoVvGD4Che9i8RVLwKRMkTF8dESZEB/2JpvBlD
-         wRMA==
-X-Forwarded-Encrypted: i=1; AJvYcCWtc6c2CwuJCY0t3oyyJAiKTvNmY0hFKV4yPpMHAVdbrsUwaMY6SpZ4Ysvip1Fr/keoesqFQzxfnMaP@vger.kernel.org
-X-Gm-Message-State: AOJu0YxY33vR0ZBckRmEo422PwEfqkDPJBXniE1XFlmIrNVzZdhnUiDZ
-	yj7sByZfneFdADXB/ydddsYOf4xgEictkkePw+2F8X9C9Q+1U1fbRrEiFu6bzAg=
-X-Google-Smtp-Source: AGHT+IFjTOd+RrLVc1MSCX5go4WC8b4PHBCxtlwa/ercIrMyEGIaP2cttCmh5EftrPHHdbja2IAJsQ==
-X-Received: by 2002:a05:6512:3e0a:b0:52c:9e25:978d with SMTP id 2adb3069b0e04-5367ff24baemr1651346e87.45.1726230522693;
-        Fri, 13 Sep 2024 05:28:42 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5365f903ca4sm2262019e87.192.2024.09.13.05.28.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Sep 2024 05:28:42 -0700 (PDT)
-Date: Fri, 13 Sep 2024 15:28:40 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Qiang Yu <quic_qianyu@quicinc.com>
-Cc: manivannan.sadhasivam@linaro.org, vkoul@kernel.org, kishon@kernel.org, 
-	robh@kernel.org, andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, abel.vesa@linaro.org, 
-	quic_msarkar@quicinc.com, quic_devipriy@quicinc.com, kw@linux.com, lpieralisi@kernel.org, 
-	neil.armstrong@linaro.org, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] phy: qcom: qmp: Add phy register and clk setting
- for x1e80100 PCIe3
-Message-ID: <tkt6ox75xsbqhbopgi2dkexvubpmuizuzeyy5hkdv7si7jljzq@x3tgbepgxeni>
-References: <20240913083724.1217691-1-quic_qianyu@quicinc.com>
- <20240913083724.1217691-4-quic_qianyu@quicinc.com>
+	s=arc-20240116; t=1726230670; c=relaxed/simple;
+	bh=9zbXLs01rJN0ObAMBm52pWCMloxHSGISDzqIEVGl3o4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=J3ryhaIYs8yC9DLAh/3XWeHXShvvo8HJrE4I2LySeQBvcDOUBTzfq232nfL0n0LnC5HmaNODQwyGeti1pRhuxljUAgO/tTgji4vuqiWpj3EBeXgIpvHN+o8tqUVfhf3+IMGkfEbDA/br56FbzkdlDDsftAuf72eqN8Kzyfd1/II=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aLo5XgDR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88DB9C4CED4;
+	Fri, 13 Sep 2024 12:31:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726230669;
+	bh=9zbXLs01rJN0ObAMBm52pWCMloxHSGISDzqIEVGl3o4=;
+	h=From:To:List-Id:Cc:Subject:Date:From;
+	b=aLo5XgDR0oiFrLoC5NDgki1hsAHhvzoWoGCxrAgPehMKkGEpSahDcwiy08PzK5kXa
+	 fYez0ivrsFSWXX5HPFIgDpc0UCKl/8WQowSpiTNY2FwinGO+TeNOm0qgjzlsXng1b1
+	 2F6wrDFief7HfVbSL1VxwajYRXiATxnHv/lCJm0ueXALmKHPMjLep2xL7+e491FIcO
+	 m4XO7I7qyDixmz1eq8xWCmQ+8iaqC9tAD/WL20C8xHX9eV3FRJh8jGOk8UsihWhM5B
+	 0lUKBe7bmBEHb9Z6z0RaLXB1+eQ+drfVb4C+D9lUooxTzOmIVzhsxfW0oW/tCTzsXo
+	 u8CIUcf41RBUw==
+From: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+To: Lee Jones <lee@kernel.org>
+Cc: Pavel Machek <pavel@ucw.cz>,
+	linux-leds@vger.kernel.org,
+	Arnd Bergmann <arnd@arndb.de>,
+	soc@kernel.org,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	arm@kernel.org,
+	Andy Shevchenko <andy@kernel.org>,
+	Hans de Goede <hdegoede@redhat.com>,
+	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+Subject: [PATCH leds v3 00/11] Turris Omnia LED driver changes
+Date: Fri, 13 Sep 2024 14:30:52 +0200
+Message-ID: <20240913123103.21226-1-kabel@kernel.org>
+X-Mailer: git-send-email 2.44.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240913083724.1217691-4-quic_qianyu@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, Sep 13, 2024 at 01:37:22AM GMT, Qiang Yu wrote:
-> Currently driver supports only x4 lane based functionality using tx/rx and
-> tx2/rx2 pair of register sets. To support 8 lane functionality with PCIe3,
-> PCIe3 related QMP PHY provides additional programming which are available
-> as txz and rxz based register set. Hence adds txz and rxz based registers
-> usage and programming sequences. Phy register setting for txz and rxz will
-> be applied to all 8 lanes. Some lanes may have different settings on
-> several registers than txz/rxz, these registers should be programmed after
-> txz/rxz programming sequences completing.
-> 
-> Besides, x1e80100 SoC uses QMP phy with version v6.30 for PCIe Gen4 x8.
-> Add the new register offsets in a dedicated header file.
-> 
-> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      | 211 ++++++++++++++++++
->  .../qualcomm/phy-qcom-qmp-pcs-pcie-v6_30.h    |  25 +++
->  drivers/phy/qualcomm/phy-qcom-qmp-pcs-v6_30.h |  19 ++
->  3 files changed, 255 insertions(+)
->  create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6_30.h
->  create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-v6_30.h
-> 
+Hello Lee,
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+this is v3 of Turris Omnia LED driver changes.
+v1 and v2 can be found at
+  https://lore.kernel.org/linux-leds/20240902124104.14297-1-kabel@kernel.org/
+  https://lore.kernel.org/linux-leds/20240903101930.16251-1-kabel@kernel.org/
+
+This series is for 6.12 (alternatively 6.13), but it depends on changes
+that have been merged to 6.11-rc3. Your for-leds-next branch is based on
+6.11-rc1, so it won't apply there.
+
+Changes since v2:
+- added interrupts property description to device-tree binding to fix
+  the device-tree binding check reported by Rob's bot (new patch 05/11
+  in this series)
+- dropped the patch that converted to 100 column wrapping, as suggested
+  by Arnd
+- took Andy's suggestions into the patch that converts to
+  dev_err_probe()
+
+Marek
+
+Marek Behún (11):
+  turris-omnia-mcu-interface.h: Move command execution function to
+    global header
+  leds: turris-omnia: Use command execution functions from the MCU
+    driver
+  turris-omnia-mcu-interface.h: Add LED commands related definitions to
+    global header
+  leds: turris-omnia: Use global header for MCU command definitions
+  dt-bindings: leds: cznic,turris-omnia-leds: Allow interrupts property
+  leds: turris-omnia: Notify sysfs on MCU global LEDs brightness change
+  platform: cznic: turris-omnia-mcu: Inform about missing LED panel
+    brightness change interrupt feature
+  leds: turris-omnia: Inform about missing LED gamma correction feature
+    in the MCU driver
+  leds: turris-omnia: Use dev_err_probe() where appropriate
+  leds: turris-omnia: Use uppercase first letter in all comments
+  ARM: dts: turris-omnia: Add global LED brightness change interrupt
+
+ .../leds/cznic,turris-omnia-leds.yaml         |   8 +
+ .../dts/marvell/armada-385-turris-omnia.dts   |   1 +
+ drivers/leds/leds-turris-omnia.c              | 262 +++++++-----------
+ .../platform/cznic/turris-omnia-mcu-base.c    |   3 +
+ drivers/platform/cznic/turris-omnia-mcu.h     | 130 ---------
+ include/linux/turris-omnia-mcu-interface.h    | 148 +++++++++-
+ 6 files changed, 258 insertions(+), 294 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.44.2
+
 
