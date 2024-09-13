@@ -1,203 +1,142 @@
-Return-Path: <devicetree+bounces-102568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1485A977815
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 06:46:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62F1897782A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 07:03:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 864B21F25D53
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 04:46:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94ECE1C23A00
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 05:03:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F4011D54DD;
-	Fri, 13 Sep 2024 04:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAA2A126C13;
+	Fri, 13 Sep 2024 05:03:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BREDj6+f"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="o4XoWv2E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43D9B1D54C9;
-	Fri, 13 Sep 2024 04:46:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23D6C4A07;
+	Fri, 13 Sep 2024 05:03:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726202769; cv=none; b=NveCfQZlFAnUx8bg0LmvZYOp6FyoDVa9MJTcZh05XltiZuETKYfwE2uhbutedmjnXjPE1j4ny5UIFJOiy442ruUZMef22ksBbRBNn/1TayoW3lhbGsc4bd03O0plx+nxgJs+plEJtRqtdtodAg6Y98X2E0LB0si08nz8AL6LugA=
+	t=1726203816; cv=none; b=gVomYj6jTNZ3E0WKDshy/zYEbDM6U9mh3+0G/IJrwzm9bAIJ4pEh5G/L502I9dhbTPwcmDzOMld1lQ0czWOVsCzGfzHF+cGQdmofGV201Lt89wbDgUmEmZ7GcjOqfQ1Zm619J0MUVfYc4hoTg+jBcMwJjFSixPfchcCKzjjRvBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726202769; c=relaxed/simple;
-	bh=X3KlgtXHgexwXS0B4cwdvFH0XY8ZItddpY8RzLuW6m4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=O8JFsfEHMmm3tSxWGM2ySUwKbeSPFtNkH+0TBCvpJldezSLtTtxRxA8kqHd6De+KrvdVXPreyceJOaIWNymNr0GqYQyQHgDorH83KeqcAgb6ftEWo6gzyo4bmIfg/udiUCAtNUBeLZknWzAFgbCo+Mah07Iben06v1gdkduSdBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BREDj6+f; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5c24ebaa427so4239908a12.1;
-        Thu, 12 Sep 2024 21:46:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726202766; x=1726807566; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=etW/iub89JqiLphBAHzvsoo9XIPyzDTt8mamtwnIl7s=;
-        b=BREDj6+fGscZdD6A6x3BIbkeKJ9tOQXea2zKyCclvHclN1MGaahC8BynKztmp5EJsA
-         0afNkp1nwu3xMEEqQTQiwNRDVz8sJTgiTrcaC4/CSXvTwKNT/jad0/F1ocYDg/sQnT5Y
-         K9yKwxaZANWFvAA7cfxrh8kk4MD+KUeviQLcMvz1fa+1cJ9lgmMMCMf3U2eZgpV6x+Fr
-         V8lvCSjdCBsNj5NWEuPqu4jk8vgUjuHOVkNsa56qU/zGDCSwUJhkSTtaedwrVVxSxMX6
-         vLULPcHT08i+FE3V5QAItI6ddOKr3BATuOEsZBMLZfBYF2nixwQ6J+Ls+ndbeanexHJx
-         R/Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726202766; x=1726807566;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=etW/iub89JqiLphBAHzvsoo9XIPyzDTt8mamtwnIl7s=;
-        b=a+rb37cQy6k8Xc66Gm1YymfkynWrAch3SaQYkp73txtqjXBcsnGdNUXKIo/k2jFZ/V
-         xccxj0pXvbw0eQ1tgH4mqvLpmgfrKL7RUOQ0XIysdT/VDQ09aOzrrmrqpkpfmzaY96oI
-         n24tTOjXXEUbCjM3yth15OZR29xlnsNuP/uc/wGP4gOX94C4dOVsOd91LbT/U9LU0BgE
-         aznWsRp6lASmJeSqB8RvNalBoODF7EtgTDeMAeOI+Sq+/l+5A9i+QT7+RjTKR0ZfVsNq
-         iuoqPQ2S8U8/H75+TsC5LHPoPPkksShQ81IlqU8rc3k8FcXYa4hwPOiYIMf5bdezkk2M
-         qLQA==
-X-Forwarded-Encrypted: i=1; AJvYcCVGg0dSdni4n+ecS6d3rkNh15icIFj8nOMOJyhNAhdtLeQzHMvUNhmQ3bhk6fq60MhOh7z5HPuhyT9ZB/eq@vger.kernel.org, AJvYcCVL5UKdTHf+UgMCDMGmXFPkkSAhS7a7QxIhrYzyyHqEmn2RWmfNO/CV6iFpC7M4IYgnuH+556CICNND@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywkyvhcod4roUbODUjdxKgZ/l6wpnONrfKJad+3M4z4D1JEYVaG
-	WnpsGyrVO4th2fAM/0WFlLNKhZdlV3G3TGF6T2bnOkq6EgCmBXls
-X-Google-Smtp-Source: AGHT+IHxgF432i43pDnIe5jmxrG9h7pU58o/7t/3GD8MSHv7ETteVuY0BK3UNxdrJtKC2Ox0T0rmDw==
-X-Received: by 2002:a05:6402:520e:b0:5c2:5248:a929 with SMTP id 4fb4d7f45d1cf-5c41435c3d2mr6267297a12.7.1726202766355;
-        Thu, 12 Sep 2024 21:46:06 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c3ebd76fc4sm7303468a12.78.2024.09.12.21.46.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Sep 2024 21:46:05 -0700 (PDT)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 2/2] phy: bcm-ns-usb2: drop support for old binding variant
-Date: Fri, 13 Sep 2024 06:45:57 +0200
-Message-Id: <20240913044557.28315-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20240913044557.28315-1-zajec5@gmail.com>
-References: <20240913044557.28315-1-zajec5@gmail.com>
+	s=arc-20240116; t=1726203816; c=relaxed/simple;
+	bh=YmyPnEl45ACPUN325a0XmhNEugYv4p9LROQs1+Iap0U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nyurvO7oj1G+Qz3aPReY5y9ev02HBMQE+//J3wCx/2Y1vEbdVVlHIh7m5WVzN0pAGyZnX7neCYtvkEN0aj7h2E2STbCoQe4R6qMDck2ZeMLO93kMKZrjIQIE8zbLhIXaXmFFdv+wXAZAtYEqVnEONk045PhnSZDGxPUjwcC3itw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=o4XoWv2E; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48CMBIgC004278;
+	Fri, 13 Sep 2024 05:03:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	SM52+lia3XFLtAORVvalfea5pGsmbBS2wnhmx0Ivpco=; b=o4XoWv2E4pI9EHEk
+	hAVPg6emCyf7X0FtHuIOZSMYv0M+eJl+SNF4Hh7D1igPJDxrMQ/P41AMni91NTrY
+	ZcJnwI6D8IFLDCPj+1YSR2FCe9OYa3oVhuuBFty6rMXJdeM1WsFXz/vokOoUOhwI
+	co/L/zy/XcCIUAkBPYan98Xa2bT8NNoMg1X4kYcZwFyLOF+JZdJIKid8ygMndtT5
+	J4PZE3Us6Rh80vr6k3kTuwbw5hrBizi4zyhHj4CXGfHjiLq7JAi8h6SIGs2beI8y
+	NzIzprKNB3ComKK4j6WFRmUEdR0XCUXax8oOqhn539xFXV4D0rWy2sNdraqZh8gO
+	3s23Dw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41kvma35pg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 13 Sep 2024 05:03:30 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48D53Sue023984
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 13 Sep 2024 05:03:28 GMT
+Received: from [10.217.216.152] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 12 Sep
+ 2024 22:02:55 -0700
+Message-ID: <40dc7c1a-9f27-45a3-ad8d-0e9989894574@quicinc.com>
+Date: Fri, 13 Sep 2024 10:32:39 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/8] dt-bindings: clock: qcom: Add SA8775P camera clock
+ controller
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Bartosz
+ Golaszewski" <bartosz.golaszewski@linaro.org>,
+        <quic_imrashai@quicinc.com>, <quic_jkona@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240816-sa8775p-mm-v3-v1-0-77d53c3c0cef@quicinc.com>
+ <20240816-sa8775p-mm-v3-v1-3-77d53c3c0cef@quicinc.com>
+ <57672tyb6pij3h7ensq4itbhnw3lr4wahfttc2fdcj4twbqpta@pwskxpet4nsh>
+ <5d6c455f-7fbc-4e2f-a537-907f26a4ef59@kernel.org>
+Content-Language: en-US
+From: Taniya Das <quic_tdas@quicinc.com>
+In-Reply-To: <5d6c455f-7fbc-4e2f-a537-907f26a4ef59@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: vSRUChjvVMahuxidvG7zCRblY2q0Tx9A
+X-Proofpoint-GUID: vSRUChjvVMahuxidvG7zCRblY2q0Tx9A
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ phishscore=0 mlxlogscore=920 bulkscore=0 priorityscore=1501 adultscore=0
+ mlxscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0 clxscore=1011
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2408220000
+ definitions=main-2409130033
 
-From: Rafał Miłecki <rafal@milecki.pl>
 
-The old binding was incorrectly designed and ended up being deprecated 3
-years ago. Finally it has been dropped so relevant code it not needed
-anymore.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- drivers/phy/broadcom/phy-bcm-ns-usb2.c | 54 +++++++-------------------
- 1 file changed, 15 insertions(+), 39 deletions(-)
+On 9/6/2024 5:54 PM, Krzysztof Kozlowski wrote:
+> On 18/08/2024 20:02, Krzysztof Kozlowski wrote:
+>> On Fri, Aug 16, 2024 at 12:01:45PM +0530, Taniya Das wrote:
+>>> Add device tree bindings for the camera clock controller
+>>> on Qualcomm SA8775P platform.
+>>>
+>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>>> ---
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Un-reviewed.
+> 
+> We achieved consensus allowing sa8775p to stay, but now Qualcomm changes
+> point of view and insists on new approach of dropping sa8775p. Therefore
+> this change does not make much sense in the new approach.
+>
 
-diff --git a/drivers/phy/broadcom/phy-bcm-ns-usb2.c b/drivers/phy/broadcom/phy-bcm-ns-usb2.c
-index 5213c75b6da6..c5d35031b398 100644
---- a/drivers/phy/broadcom/phy-bcm-ns-usb2.c
-+++ b/drivers/phy/broadcom/phy-bcm-ns-usb2.c
-@@ -24,9 +24,6 @@ struct bcm_ns_usb2 {
- 	struct phy *phy;
- 	struct regmap *clkset;
- 	void __iomem *base;
--
--	/* Deprecated binding */
--	void __iomem *dmu;
- };
- 
- static int bcm_ns_usb2_phy_init(struct phy *phy)
-@@ -49,10 +46,7 @@ static int bcm_ns_usb2_phy_init(struct phy *phy)
- 		goto err_clk_off;
- 	}
- 
--	if (usb2->base)
--		usb2ctl = readl(usb2->base);
--	else
--		usb2ctl = readl(usb2->dmu + BCMA_DMU_CRU_USB2_CONTROL);
-+	usb2ctl = readl(usb2->base);
- 
- 	if (usb2ctl & BCMA_DMU_CRU_USB2_CONTROL_USB_PLL_PDIV_MASK) {
- 		usb_pll_pdiv = usb2ctl;
-@@ -66,24 +60,16 @@ static int bcm_ns_usb2_phy_init(struct phy *phy)
- 	usb_pll_ndiv = (1920000000 * usb_pll_pdiv) / ref_clk_rate;
- 
- 	/* Unlock DMU PLL settings with some magic value */
--	if (usb2->clkset)
--		regmap_write(usb2->clkset, 0, 0x0000ea68);
--	else
--		writel(0x0000ea68, usb2->dmu + BCMA_DMU_CRU_CLKSET_KEY);
-+	regmap_write(usb2->clkset, 0, 0x0000ea68);
- 
- 	/* Write USB 2.0 PLL control setting */
- 	usb2ctl &= ~BCMA_DMU_CRU_USB2_CONTROL_USB_PLL_NDIV_MASK;
- 	usb2ctl |= usb_pll_ndiv << BCMA_DMU_CRU_USB2_CONTROL_USB_PLL_NDIV_SHIFT;
--	if (usb2->base)
--		writel(usb2ctl, usb2->base);
--	else
--		writel(usb2ctl, usb2->dmu + BCMA_DMU_CRU_USB2_CONTROL);
-+
-+	writel(usb2ctl, usb2->base);
- 
- 	/* Lock DMU PLL settings */
--	if (usb2->clkset)
--		regmap_write(usb2->clkset, 0, 0x00000000);
--	else
--		writel(0x00000000, usb2->dmu + BCMA_DMU_CRU_CLKSET_KEY);
-+	regmap_write(usb2->clkset, 0, 0x00000000);
- 
- err_clk_off:
- 	clk_disable_unprepare(usb2->ref_clk);
-@@ -107,27 +93,17 @@ static int bcm_ns_usb2_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 	usb2->dev = dev;
- 
--	if (of_property_present(dev->of_node, "brcm,syscon-clkset")) {
--		usb2->base = devm_platform_ioremap_resource(pdev, 0);
--		if (IS_ERR(usb2->base)) {
--			dev_err(dev, "Failed to map control reg\n");
--			return PTR_ERR(usb2->base);
--		}
--
--		usb2->clkset = syscon_regmap_lookup_by_phandle(dev->of_node,
--							       "brcm,syscon-clkset");
--		if (IS_ERR(usb2->clkset)) {
--			dev_err(dev, "Failed to lookup clkset regmap\n");
--			return PTR_ERR(usb2->clkset);
--		}
--	} else {
--		usb2->dmu = devm_platform_ioremap_resource_byname(pdev, "dmu");
--		if (IS_ERR(usb2->dmu)) {
--			dev_err(dev, "Failed to map DMU regs\n");
--			return PTR_ERR(usb2->dmu);
--		}
-+	usb2->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(usb2->base)) {
-+		dev_err(dev, "Failed to map control reg\n");
-+		return PTR_ERR(usb2->base);
-+	}
- 
--		dev_warn(dev, "using deprecated DT binding\n");
-+	usb2->clkset = syscon_regmap_lookup_by_phandle(dev->of_node,
-+						       "brcm,syscon-clkset");
-+	if (IS_ERR(usb2->clkset)) {
-+		dev_err(dev, "Failed to lookup clkset regmap\n");
-+		return PTR_ERR(usb2->clkset);
- 	}
- 
- 	usb2->ref_clk = devm_clk_get(dev, "phy-ref-clk");
+Krzysztof could you please re-review the patches again? As I understand 
+the that Qualcomm will support both SA8775p and QCS9100 in Kernel. 
+There’s no plan to drop SA8775p support. These two SoCs will keep 
+compatible.
+
+
+> Best regards,
+> Krzysztof
+> 
+
 -- 
-2.35.3
-
+Thanks & Regards,
+Taniya Das.
 
