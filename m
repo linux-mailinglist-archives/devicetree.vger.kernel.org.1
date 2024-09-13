@@ -1,65 +1,80 @@
-Return-Path: <devicetree+bounces-102814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31F1F9786B3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 19:27:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 978159786E7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 19:37:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CDE31C20BF7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 17:27:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC28DB2618B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 17:36:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C5407D417;
-	Fri, 13 Sep 2024 17:27:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Hfo6QdCJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E8884E11;
+	Fri, 13 Sep 2024 17:36:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8978877F2F;
-	Fri, 13 Sep 2024 17:26:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BE001C14;
+	Fri, 13 Sep 2024 17:36:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726248420; cv=none; b=VL+3NfqwrYuU/cg/aJ3DmsQceNdjEKG47HULqddvokvSvrWJC+2NQUcK6ySdTCX3Qo1TiWpUmPg21+a3N3/IL2IwI0b8YeUhpaBrWMe9tITMOhZn97j/VTQv5sXneUr7qUX0EsI4adITMCWM7m/PNr4iV3vgFbN41yEmDQbrRP4=
+	t=1726249002; cv=none; b=uBmC/e4xpLvVno0HfH2hD6BmXoPVqUkwsMTyzL3Frt2Dwf0W5E+9gnpXNMb2Bm6GWMLFhYFWLpn/7Nt4gO1a4HhvntJzMpCE3mcoE315QmpmJyukYpuy66x6e5M4y800/SCDuuXqi6O/oHLpIa2/nItsBsZeWjsovwI8jX9/7Yc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726248420; c=relaxed/simple;
-	bh=NVHDT0pZ1zHz5uTG07jzhk7YNB3Ko4HEeOjB7XAzKsc=;
+	s=arc-20240116; t=1726249002; c=relaxed/simple;
+	bh=D11EquOkxJRaOVUkKtxsD3m2xYUCqKKmdjEKiBybbjk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fLwv7rwdHi+/Zsrb3cGK1mo0owjC/MptFpdKQihv0JNjGEdikQaVaqMXp+/3WkNcO1UQaE/gadZqm2yqeg6zXCYxG/K42uMK3tnH3NbBh5ogq0+JV1oaVp0bA1xw4FctO4WEixnzLGpCqWyVNgLgSON3aXTZVhv90D2C/9veS3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Hfo6QdCJ; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=32UdeEDTGODPOGNxUz6i5sSk42ZhPb7Adwn/D1E2ONc=; b=Hfo6QdCJ9MxMuSWa/bGCLd/vhE
-	hMmQl8h6OyrZLJ2CqQapkX6NNQVg1xyHAGTRyy8ACqFSPvYZS6obUAzLBnd8qwOPKUVXbs41ySUSr
-	BPR449SLMCHqcu8I8wDTNeNWO5fxd11OFmDs1mmSUYk32iJwfMkClShPysvjpPC/pMpU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1spA4H-007PWh-HE; Fri, 13 Sep 2024 19:26:49 +0200
-Date: Fri, 13 Sep 2024 19:26:49 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Conor Dooley <conor@kernel.org>
-Cc: Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZkHYvvWsJf1C2cvxPMzRpuuckcxpQGkQi+Y7M5zmktmU8/rgEKr4jcEMXpQqlDfuYwg5iYlXoD+Cl/eeebsBpUb8gFD/AXCmTwrNniVJoMkyhthl2b6UhOHLlhjui98X8jnekUSpz+oLxWt1l7ja2EZX42TqkL1jWh9JCwdbrGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
+X-CSE-ConnectionGUID: rC3uDd1ZStKvMmGMZmghbw==
+X-CSE-MsgGUID: itPzId6UQA+J2tcbHhARUQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="25095539"
+X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; 
+   d="scan'208";a="25095539"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2024 10:36:41 -0700
+X-CSE-ConnectionGUID: 1+fOcsm8QZ6oe9+CessA4g==
+X-CSE-MsgGUID: URKtfhegR7+1jeTkfiofQQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; 
+   d="scan'208";a="72954063"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2024 10:36:36 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andy.shevchenko@gmail.com>)
+	id 1spADh-00000008ND0-0smQ;
+	Fri, 13 Sep 2024 20:36:33 +0300
+Date: Fri, 13 Sep 2024 20:36:32 +0300
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+To: "Nechita, Ramona" <Ramona.Nechita@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	"Tanislav, Cosmin" <Cosmin.Tanislav@analog.com>,
+	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/4] dt-bindings: net: dsa: the adjacent DSA
- port must appear first in "link" property
-Message-ID: <c2244d42-eda4-4bbc-9805-cc2c2ae38109@lunn.ch>
-References: <20240913131507.2760966-1-vladimir.oltean@nxp.com>
- <20240913131507.2760966-3-vladimir.oltean@nxp.com>
- <20240913-estimate-badland-5ab577e69bab@spud>
+	Conor Dooley <conor+dt@kernel.org>, "Sa, Nuno" <Nuno.Sa@analog.com>,
+	David Lechner <dlechner@baylibre.com>,
+	"Schmitt, Marcelo" <Marcelo.Schmitt@analog.com>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	Dumitru Ceclan <mitrutzceclan@gmail.com>,
+	Matteo Martelli <matteomartelli3@gmail.com>,
+	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
+	Alisa-Dariana Roman <alisadariana@gmail.com>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v5 2/3] Documentation: ABI: added filter mode doc in
+ sysfs-bus-iio
+Message-ID: <ZuR4IE-mwhL27ZG0@smile.fi.intel.com>
+References: <20240912121609.13438-1-ramona.nechita@analog.com>
+ <20240912121609.13438-3-ramona.nechita@analog.com>
+ <CAHp75VdOjodDaz6J4sWOiT2HHmdXpOPcWeS5kz4e3rB_=gh3xw@mail.gmail.com>
+ <SN6PR03MB4320EC2760F85BB6B0DDEED4F3652@SN6PR03MB4320.namprd03.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,55 +83,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240913-estimate-badland-5ab577e69bab@spud>
+In-Reply-To: <SN6PR03MB4320EC2760F85BB6B0DDEED4F3652@SN6PR03MB4320.namprd03.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Fri, Sep 13, 2024 at 06:04:17PM +0100, Conor Dooley wrote:
-> On Fri, Sep 13, 2024 at 04:15:05PM +0300, Vladimir Oltean wrote:
-> > If we don't add something along these lines, it is absolutely impossible
-> > to know, for trees with 3 or more switches, which links represent direct
-> > connections and which don't.
-> > 
-> > I've studied existing mainline device trees, and it seems that the rule
-> > has been respected thus far. I've actually tested such a 3-switch setup
-> > with the Turris MOX.
+On Fri, Sep 13, 2024 at 02:06:48PM +0000, Nechita, Ramona wrote:
+> >>
+> >> The filter mode / filter type property is used for ad4130 and ad7779
+> >> drivers, therefore the ABI doc file for ad4130 was removed, merging
+> >> both of them in the sysfs-bus-iio.
+
+...
+
+> >> +What:          /sys/bus/iio/devices/iio:deviceX/filter_type_available
+> >> +What:          /sys/bus/iio/devices/iio:deviceX/in_voltage-voltage_filter_mode_available
+> >> +KernelVersion: 6.1
+> >
+> >I believe I have already commented on this. The commit message keeps silent about version changes. Why?
 > 
-> What about out of tree (so in u-boot or the likes)? Are there other
-> users that we need to care about?
+> I mentioned it in the cover-letter, since the attributes of two devices were
+> merged, and one of them was available in 6.1 ad the other in 6.2, it felt
+> appropriate to leave it as 6.1.
+> I was wondering if this is ok or if it should be kept as 6.2. Should this be
+> mentioned in the commit message as well?
+
+Please, mention in the commit message.
+
+> >> +Contact:       linux-iio@vger.kernel.org
+> >> +Description:
+> >> +               Reading returns a list with the possible filter modes. Options
+> >> +               for the attribute:
+> >> +                       * "sinc3"       - The digital sinc3 filter. Moderate 1st conversion time.
+> >> +                   Good noise performance.
+> >> +                       * "sinc4"       - Sinc 4. Excellent noise performance. Long
+> >> +                       1st conversion time.
+> >> +                       * "sinc5"       - The digital sinc5 filter. Excellent noise performance
+> >> +                       * "sinc4+sinc1" - Sinc4 + averaging by 8. Low 1st conversion
+> >> +                   time.
+> >> +                       * "sinc3+rej60" - Sinc3 + 60Hz rejection.
+> >> +                       * "sinc3+sinc1" - Sinc3 + averaging by 8. Low 1st conversion
+> >> +                   time.
+> >> +                       * "sinc3+pf1"   - Sinc3 + device specific Post Filter 1.
+> >> +                       * "sinc3+pf2"   - Sinc3 + device specific Post Filter 2.
+> >> +                       * "sinc3+pf3"   - Sinc3 + device specific Post Filter 3.
+> >> +                       * "sinc3+pf4"   - Sinc3 + device specific Post Filter 4.
+> >
+> >Also, the original file was more verbose for the complex cases, like
+> >"sinc3+pfX", why has this been changed?
 > 
-> This doesn't really seem like an ABI change, if this is the established
-> convention, but feels like a fixes tag and backports to stable etc are
-> in order to me.
+> Since this is a more generic file I was advised to leave out specific
+> details, should I include them just as they were in the original file?
 
-Looking at the next patch, it does not appear to change the behaviour
-of existing drivers, it just adds additional information a driver may
-choose to use.
+I would leave the examples for the mentioned chip in the parentheses. But it's
+up to Jonathan, I have no such device anyway, so personally I'm not affected
+:-)
 
-As Vladimir says, all existing instances already appear to be in this
-order, but that is just happen stance, because it does not matter. So
-i would be reluctant to say there is an established convention.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-The mv88e6xxx driver does not care about the order of the list, and
-this patch series does not appear to change that. So i'm O.K. with the
-code changes.
 
-> > -      Should be a list of phandles to other switch's DSA port. This
-> > -      port is used as the outgoing port towards the phandle ports. The
-> > -      full routing information must be given, not just the one hop
-> > -      routes to neighbouring switches
-> > +      Should be a list of phandles to other switch's DSA port. This port is
-> > +      used as the outgoing port towards the phandle ports. In case of trees
-> > +      with more than 2 switches, the full routing information must be given.
-> > +      The first element of the list must be the directly connected DSA port
-> > +      of the adjacent switch.
-
-I would prefer to weaken this, just to avoid future backwards
-compatibility issues. `must` is too strong, because mv88e6xxx does not
-care, and there could be DT blobs out there which do not conform to
-this. Maybe 'For the SJA1105, the first element ...".
-
-What i don't want is some future developer reading this, assume it is
-actually true when it maybe is not, and making use of it in the
-mv88e6xxx or the core, breaking backwards compatibility.
-
-	Andrew
 
