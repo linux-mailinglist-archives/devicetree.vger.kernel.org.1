@@ -1,61 +1,86 @@
-Return-Path: <devicetree+bounces-102839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB38F9787D1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 20:27:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F23AF9787F0
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 20:33:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 814F42894FD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 18:27:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0750282AE2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 18:33:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEBF613A27D;
-	Fri, 13 Sep 2024 18:27:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0E6C13342F;
+	Fri, 13 Sep 2024 18:33:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eLI6O7yj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xse7L38f"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3BF28C11;
-	Fri, 13 Sep 2024 18:27:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B739712D773;
+	Fri, 13 Sep 2024 18:33:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726252055; cv=none; b=LM/PHzMBawpCdlmdYMxN1c6iHmElMWKVL24667/Ei2paY/r6U8LJ+4nxOjRHcwZvnZ9twApPv9oqGJAhzdUgrD91toGdSF12bZai3ykVm1T5KcYjQUO0MdMF/coLM4EPAtEW3DvEc5zyJA2zLDch9rS/3IdA/v7GDvahm7iCtpg=
+	t=1726252405; cv=none; b=FdH9GclVMw0UpU8Y650Pxv06GspkNBLhyhEuy32SL+5DBrj7tWhxx/0oFFPEqOwSHpR+jOEBR/BhybmMldwobvDRArzmcJ8TXxrWs2hX7o7j21nqBJnfv1ugjsna+nRDslqw3+jzufPewWbBiwqDilihPB3x2ezf5khUMYqI3dI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726252055; c=relaxed/simple;
-	bh=lw0eK6fflWLo8L9Xc6oEj9NPbarXvrNywgJhseEI1to=;
+	s=arc-20240116; t=1726252405; c=relaxed/simple;
+	bh=A1W9jCfny74eDZ2Sq3AsHaoLeaw3yFn1FM9duxuPzpw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g94UpfFZd0G+1WmuGq9HOuLDl1pEdU/u0ELyPVuk/exTobo7DuAtXKxDOM/kmCD5dTcyAWwSr1BeJvzOOtmkpQ5yxnykuxQ1PYmH3jTIn4/tR3FdMgn63TUWKLllbC/AVbWRmoY8mD+jtA5LBrY9OYmczRizh/AIXmSivP5WYuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eLI6O7yj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF4ACC4CEC7;
-	Fri, 13 Sep 2024 18:27:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iZpBf12XnyGY5gjW5UIt51wjLgyKCi9L4fobuRjIW3065jetV3iCeRrto7VDxn3XSMbGXY/HqtCvA0krG1aeg9YSnA8iKqLzu0teHYMYQfwgJ66beiiRhF+J21Bpym+DMCk4QMyI3K6KGFoqvmJDOskyXm5C6xDV9+8iRaGz7do=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xse7L38f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05299C4CEC0;
+	Fri, 13 Sep 2024 18:33:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726252055;
-	bh=lw0eK6fflWLo8L9Xc6oEj9NPbarXvrNywgJhseEI1to=;
+	s=k20201202; t=1726252405;
+	bh=A1W9jCfny74eDZ2Sq3AsHaoLeaw3yFn1FM9duxuPzpw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eLI6O7yjFdju5S0/44XPZp2MQYIvN2HPbxq0F7Y91MPyxs54GtyJnn01HhMHWIMO9
-	 IXdzSj9MppdtB2VRQif816nHhSVsSit2ZvaC6dJj1oZrlBFUFQZ7Y7pTtO+27RUXIR
-	 4FzLz2nUKVLNjOdtmyBXMXQWLfXAJqhEkUWjO3JnspWY5xKjo+Ey8AkdOzbB8u1ToW
-	 vzCc4ztMYHVCIQfJmDoTgauCs5VPcLMd5/8S0DqDXIqdkl8F/szMLQEBwaWUo8Yql2
-	 Wnwo79mdtdwoG+Y0n/Jbxi4Yz0Q9uh7ytO2dbP9Ox8W5WdxnRu8RdCXYhDNUGW1Wpn
-	 Ppqw66NUmN/yQ==
-Date: Fri, 13 Sep 2024 19:27:29 +0100
+	b=Xse7L38f6kbjvUpu6KuIcVvQkUwvvSdpQAM+baUWBOxKHwkNfN5n2a4WPozZqBe8H
+	 wK0MzQxo8HaBbxuUeFJXh3/RW+hMjig/4aZGdSxtxD3LD8GbD3DRZcbszWLIfS3u+T
+	 +C1yA4kCqVrgK0dsD4o3gsiA0TZa8JVM1HU/f8BtZlm8MQBlP8HkJcDN5H+1fbF5jI
+	 ndbaCs1vA15EeSzoQc+9usB98O311e5c8s64OxS6Xxc1uJ16cXD1TaIJd3pdwK4a4D
+	 07izK89AKA0KtL0Q249Alsfdaz8Zn0MATGInL83hMy59wNE/n9GB0mXHAaewkqPYn8
+	 4wIslCdEw1Wyg==
+Date: Fri, 13 Sep 2024 19:33:07 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, andriy.shevchenko@linux.intel.com,
-	ang.iglesiasg@gmail.com, linus.walleij@linaro.org,
-	biju.das.jz@bp.renesas.com, javier.carrasco.cruz@gmail.com,
-	semen.protsenko@linaro.org, 579lpy@gmail.com, ak@it-klinger.de,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, christophe.jaillet@wanadoo.fr
-Subject: Re: [PATCH v6 2/4] dt-bindings: iio: pressure: bmp085: Add
- interrupts for BMP3xx and BMP5xx devices
-Message-ID: <20240913-overarch-preplan-c899f16a90c8@spud>
-References: <20240912233234.45519-1-vassilisamir@gmail.com>
- <20240912233234.45519-3-vassilisamir@gmail.com>
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: paul.walmsley@sifive.com, palmer@sifive.com, linux-doc@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org, linux-arch@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, corbet@lwn.net, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, robh@kernel.org, krzk+dt@kernel.org,
+	oleg@redhat.com, tglx@linutronix.de, mingo@redhat.com, bp@alien8.de,
+	dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com,
+	peterz@infradead.org, akpm@linux-foundation.org, arnd@arndb.de,
+	ebiederm@xmission.com, kees@kernel.org, Liam.Howlett@oracle.com,
+	vbabka@suse.cz, lorenzo.stoakes@oracle.com, shuah@kernel.org,
+	brauner@kernel.org, samuel.holland@sifive.com, andy.chiu@sifive.com,
+	jerry.shih@sifive.com, greentime.hu@sifive.com,
+	charlie@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
+	xiao.w.wang@intel.com, ajones@ventanamicro.com, anup@brainfault.org,
+	mchitale@ventanamicro.com, atishp@rivosinc.com, sameo@rivosinc.com,
+	bjorn@rivosinc.com, alexghiti@rivosinc.com, david@redhat.com,
+	libang.li@antgroup.com, jszhang@kernel.org, leobras@redhat.com,
+	guoren@kernel.org, samitolvanen@google.com,
+	songshuaishuai@tinylab.org, costa.shul@redhat.com, bhe@redhat.com,
+	zong.li@sifive.com, puranjay@kernel.org, namcaov@gmail.com,
+	antonb@tenstorrent.com, sorear@fastmail.com,
+	quic_bjorande@quicinc.com, ancientmodern4@gmail.com,
+	ben.dooks@codethink.co.uk, quic_zhonhan@quicinc.com,
+	cuiyunhui@bytedance.com, yang.lee@linux.alibaba.com,
+	ke.zhao@shingroup.cn, sunilvl@ventanamicro.com,
+	tanzhasanwork@gmail.com, schwab@suse.de, dawei.li@shingroup.cn,
+	rppt@kernel.org, willy@infradead.org, usama.anjum@collabora.com,
+	osalvador@suse.de, ryan.roberts@arm.com, andrii@kernel.org,
+	alx@kernel.org, catalin.marinas@arm.com, broonie@kernel.org,
+	revest@chromium.org, bgray@linux.ibm.com, deller@gmx.de,
+	zev@bewilderbeest.net
+Subject: Re: [PATCH v4 07/30] riscv: zicfilp / zicfiss in dt-bindings
+ (extensions.yaml)
+Message-ID: <20240913-woven-droplet-1f25d0d5a33b@spud>
+References: <20240912231650.3740732-1-debug@rivosinc.com>
+ <20240912231650.3740732-8-debug@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,89 +88,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="yklktLtRTBY9hG1i"
+	protocol="application/pgp-signature"; boundary="Wo0WH8RKXYiALMcP"
 Content-Disposition: inline
-In-Reply-To: <20240912233234.45519-3-vassilisamir@gmail.com>
+In-Reply-To: <20240912231650.3740732-8-debug@rivosinc.com>
 
 
---yklktLtRTBY9hG1i
+--Wo0WH8RKXYiALMcP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 13, 2024 at 01:32:32AM +0200, Vasileios Amoiridis wrote:
-> Add interrupt options for BMP3xx and BMP5xx devices as well.
+On Thu, Sep 12, 2024 at 04:16:26PM -0700, Deepak Gupta wrote:
+> Make an entry for cfi extensions in extensions.yaml.
 >=20
-> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
 > ---
->  .../bindings/iio/pressure/bmp085.yaml         | 22 ++++++++++++++++++-
->  1 file changed, 21 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/riscv/extensions.yaml        | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml b=
-/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-> index 6fda887ee9d4..7c9d85be9008 100644
-> --- a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-> +++ b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-> @@ -48,14 +48,34 @@ properties:
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
+cumentation/devicetree/bindings/riscv/extensions.yaml
+> index a06dbc6b4928..b7c86fb91984 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -361,6 +361,18 @@ properties:
+>              The standard Zicboz extension for cache-block zeroing as rat=
+ified
+>              in commit 3dd606f ("Create cmobase-v1.0.pdf") of riscv-CMOs.
 > =20
->    interrupts:
->      description:
-> -      interrupt mapping for IRQ (BMP085 only)
-> +      interrupt mapping for IRQ. Supported in BMP085, BMP3xx, BMP5xx
-
-If you respin, you can drop the description entirely, since you've added
-proper enforcement below.
-
-Otherwise,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
->      maxItems: 1
-> =20
-> +  drive-open-drain:
-> +    description:
-> +      set if the interrupt pin should be configured as open drain.
-> +      If not set, defaults to push-pull configuration.
-> +    type: boolean
+> +        - const: zicfilp
+> +          description:
+> +            The standard Zicfilp extension for enforcing forward edge co=
+ntrol-flow
+> +            integrity as ratified in commit 3f8e450 ("merge pull request=
+ #227 from
+> +            ved-rivos/0709") of riscv-cfi github repo.
 > +
->  required:
->    - compatible
->    - vddd-supply
->    - vdda-supply
-> =20
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          not:
-> +            contains:
-> +              enum:
-> +                - bosch,bmp085
-> +                - bosch,bmp380
-> +                - bosch,bmp580
-> +    then:
-> +      properties:
-> +        interrupts: false
+> +        - const: zicfiss
+> +          description:
+> +            The standard Zicfilp extension for enforcing forward edge co=
+ntrol-flow
+> +            integrity as ratified in commit 3f8e450 ("merge pull request=
+ #227 from
+> +            ved-rivos/0709") of riscv-cfi github repo.
+
+Because both of these have a # in them you need to have a | after
+description:. Please run dt_binding_check :)
+
 > +
->  additionalProperties: false
-> =20
->  examples:
+>          - const: zicntr
+>            description:
+>              The standard Zicntr extension for base counters and timers, =
+as
 > --=20
-> 2.25.1
+> 2.45.0
 >=20
 
---yklktLtRTBY9hG1i
+--Wo0WH8RKXYiALMcP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuSEEQAKCRB4tDGHoIJi
-0ug0AQDv9jtxn90k9XFvocbM+CoDnehphvbc+3ADMDwVjaf1rgEA1SL5+udw2VPe
-exH1SqZqbO4XEmb+Nl+bljSO0kWQ+gg=
-=ett3
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuSFYwAKCRB4tDGHoIJi
+0vnMAP4jAcike3nNkua8hG9QWEW4+qazPoSFmDREmFEymZqK8wD/R5K+u0LGQlr6
+Bci3roI9osxHgbbuooL8Ckvlomw/wAc=
+=cQDJ
 -----END PGP SIGNATURE-----
 
---yklktLtRTBY9hG1i--
+--Wo0WH8RKXYiALMcP--
 
