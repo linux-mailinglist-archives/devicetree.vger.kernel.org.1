@@ -1,62 +1,60 @@
-Return-Path: <devicetree+bounces-102837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 330DD9787BB
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 20:23:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 077199787C5
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 20:25:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC9A51F26687
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 18:23:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB3F41F22CEB
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 18:25:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35EEC12CD88;
-	Fri, 13 Sep 2024 18:23:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB76613342F;
+	Fri, 13 Sep 2024 18:24:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NezOInz7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LHuShvTa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0783BBA2D;
-	Fri, 13 Sep 2024 18:23:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B48761EEE0;
+	Fri, 13 Sep 2024 18:24:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726251820; cv=none; b=g0Ho/sNAwu2gXa11x+UI/H9mkTWbGf9HtOILpFunfS0w1ARioeHyLmn1aTdQ4R0cEOZWJkcPmT0GtG49JxtbqKkrgC9T6frX4qLgkmdxjqBlPVATgmQvgT24r4ok243mD7kNUTOgDXyafXJreNsnrma78rdY+UnPjkw+95QEZ30=
+	t=1726251884; cv=none; b=DgwAh9VpLMXRbdnN1+lUlTghlbGWWFbz3OC48zPAu/GU0PTmiyKRL5/Z0jadGFAGZUrSBRBS+yuTNeR8z+E1L9HPNax2sSTqzoYOwsUJvkQCBO2At0Fnpf4O8lEVd1KrkOZKomTdidanwntANFCsMx1BHygZhjrbVRiHf7N3TLE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726251820; c=relaxed/simple;
-	bh=jwmatwnPJlZVUwHNTnWsiaicspZRmQYAIdIScvWNoFM=;
+	s=arc-20240116; t=1726251884; c=relaxed/simple;
+	bh=iNlKwKpdp2ZsLozJYZ5+b//iKVeh2WfBLezgaI4UM7c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ErMKPa/8opFer1U14i1pNvz7AV6bmc6eErIsugeswCOmWcYH7T4g0iGHA/R4/G3yFIjEMtH2G0TFg8zZCg6o7XeXDp/opz8Tva8CmNWoqARy/kRT8hcCKKtzx6TS4AO5FPLBNFeL+lGxG+j/vZA8blR+ANT4akPKgcqQAcuoYsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NezOInz7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D2E8C4CEC7;
-	Fri, 13 Sep 2024 18:23:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=n0sYuy3DyiqdfY48JOZooNz+9aiGXtwpET7eM3+r0HXbTmeBR1AkA5WFi2KWkqZ5ejVlr+4M91YOwQCjIl1Yg13uOAj/aCgkRS/ov/j4uUh4C0E2XAzU+vY4e517i70zu+kdEJutuJpRvLl0wfJ721Hk+81Cd6ZCJAe0TzTHvls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LHuShvTa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 613EAC4CEC0;
+	Fri, 13 Sep 2024 18:24:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726251819;
-	bh=jwmatwnPJlZVUwHNTnWsiaicspZRmQYAIdIScvWNoFM=;
+	s=k20201202; t=1726251884;
+	bh=iNlKwKpdp2ZsLozJYZ5+b//iKVeh2WfBLezgaI4UM7c=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NezOInz7vB/cKu7LjKDdF8QWpO2uoXjcaQhWpUz2iNpovlP0v2OrgMOSPxHCiJYQ+
-	 QeyyS1hS0KUpAy5MjPz6A8ZBcMf63k/WCoOwUUHKjjndOJxw2bt9Tsiz/XA66lvDvF
-	 HchFaCC0QmCmKmwSLnSkWwoO3gNgsMnQk3qdl423TrAIboZ7IYGCnZWqWC4iGKPEy1
-	 VxE/6zWuF5vkAMRLhqHqeeiVzN5mebyR37ll4SxsO+9EOy7TuMdAaYSnLIN4+xeljy
-	 9AxQdy62r3TMqvQWZ5ayp/gfqhBVarz9GNUsEZDgXqiggMylqW+La50S5zz8HDc1uv
-	 hg6kHhYnlKmEA==
-Date: Fri, 13 Sep 2024 19:23:35 +0100
+	b=LHuShvTaDCz+nyy+cYZsSfLfat4WUzaHx69+RG+R0C1T/aCHHa8jhhdA9gHhTKrRJ
+	 y5FTrUnowQkYSslrWiN9339L9ZLgLSeiZ5kIAqmIG0ndhwJgm4xUykvavx7xMBZGGs
+	 wsNw9upMvoejwWM5VAOG8CPrdwuBwGy3W0vmGRyTJAUiB4gsnzXwwEQc+P6ayS+IBy
+	 ZRXuD8zmE1p1GBJBsopYpLVtD+twRNkbdEdjQx1EW8hiwE87+YfiYTphh3noFE8GS2
+	 E3asI79XPDTRkP+iv2tZR/becuEO7sa/zEIhfp5fSJI94JNpRXSCG9pnX29H34KOHG
+	 KL52BWYfQWhDQ==
+Date: Fri, 13 Sep 2024 19:24:40 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Jai Luthra <j-luthra@ti.com>
-Cc: Jai Luthra <jai.luthra@linux.dev>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Devarsh Thakkar <devarsht@ti.com>, Nishanth Menon <nm@ti.com>
-Subject: Re: [PATCH 2/2] dt-bindings: media: ti,j721e-csi2rx-shim: Update
- maintainer email
-Message-ID: <20240913-frostbite-reminder-46df0ae07c0e@spud>
-References: <20240913-maintainer_email-v1-0-10c574bc1e7f@ti.com>
- <20240913-maintainer_email-v1-2-10c574bc1e7f@ti.com>
+To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Jeff Johnson <quic_jjohnson@quicinc.com>,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 1/2] dt-bindings: phy: bcm-ns-usb2-phy: drop deprecated
+ variant
+Message-ID: <20240913-spiritual-sneeze-7c48a16d2700@spud>
+References: <20240913044557.28315-1-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,37 +62,47 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="xjV4XvatyTBXrHuf"
+	protocol="application/pgp-signature"; boundary="R27qjzCqPLhq9VAn"
 Content-Disposition: inline
-In-Reply-To: <20240913-maintainer_email-v1-2-10c574bc1e7f@ti.com>
+In-Reply-To: <20240913044557.28315-1-zajec5@gmail.com>
 
 
---xjV4XvatyTBXrHuf
-Content-Type: text/plain; charset=us-ascii
+--R27qjzCqPLhq9VAn
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 13, 2024 at 11:15:01AM +0530, Jai Luthra wrote:
-> I will no longer be an employee of TI, so update my email in maintainer
-> list.
+On Fri, Sep 13, 2024 at 06:45:56AM +0200, Rafa=C5=82 Mi=C5=82ecki wrote:
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
 >=20
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> The old binding variant (the one covering whole DMU block) was
+> deprecated 3 years ago. Linux kernel was warning when using it for
+> similar amount of time.
+>=20
+> There aren't any known Northstar devices with bootloader providing DT to
+> operating system. Actually OpenWrt seems to be the only project using
+> this binding and it always appends DTB to kernel. It has switched to the
+> non-deprecated binding years ago.
+>=20
+> Given there is close to zero chance this breaks anyone's setup it should
+> more than safe to drop this binding variant after 3 years.
 
-Unnecessary, but
+I love a commit message like this.
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+Thanks,
+Conor.
 
-
---xjV4XvatyTBXrHuf
+--R27qjzCqPLhq9VAn
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuSDJgAKCRB4tDGHoIJi
-0hHWAP45nYRhqkMBbHzoNp0IMe7w59wp4y0TbccTh+XJCB2DtgD9FG/YopIbNdk2
-yvY/4VftYy5fSdXg36bwafkxGwU67Qg=
-=t1oJ
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuSDaAAKCRB4tDGHoIJi
+0k0YAP92wBmfRtY6iNbU8/6oouu4H1tJlPi0OczQX+aAQXy8CAD/fHQlTonufz8q
+mRYlzKrkS/rh1bP/4IdYt2TOYdqF4wg=
+=/aR8
 -----END PGP SIGNATURE-----
 
---xjV4XvatyTBXrHuf--
+--R27qjzCqPLhq9VAn--
 
