@@ -1,159 +1,135 @@
-Return-Path: <devicetree+bounces-102840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F23AF9787F0
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 20:33:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBF5897881C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 20:47:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0750282AE2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 18:33:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2D4F2876F5
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 18:47:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0E6C13342F;
-	Fri, 13 Sep 2024 18:33:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF8FD139579;
+	Fri, 13 Sep 2024 18:47:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xse7L38f"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BOBGXJJt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B739712D773;
-	Fri, 13 Sep 2024 18:33:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D20983CD6;
+	Fri, 13 Sep 2024 18:47:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726252405; cv=none; b=FdH9GclVMw0UpU8Y650Pxv06GspkNBLhyhEuy32SL+5DBrj7tWhxx/0oFFPEqOwSHpR+jOEBR/BhybmMldwobvDRArzmcJ8TXxrWs2hX7o7j21nqBJnfv1ugjsna+nRDslqw3+jzufPewWbBiwqDilihPB3x2ezf5khUMYqI3dI=
+	t=1726253251; cv=none; b=Y6vwrGkFrxi6/9J++X391ZS0dDrdjp+6mUdj6d8h8gvD3LpodXFKgOl8GOx74GLAV8Yivh3f8xjYg4+cbKytCWHBcEecL9UfYVGhO/HXDNoyIFtuQT4ZJ4Doj/KctHTjihd2dF5htdhiTDL2yTc+t/I/iZiiQ/Qe0mJEqLAvzzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726252405; c=relaxed/simple;
-	bh=A1W9jCfny74eDZ2Sq3AsHaoLeaw3yFn1FM9duxuPzpw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iZpBf12XnyGY5gjW5UIt51wjLgyKCi9L4fobuRjIW3065jetV3iCeRrto7VDxn3XSMbGXY/HqtCvA0krG1aeg9YSnA8iKqLzu0teHYMYQfwgJ66beiiRhF+J21Bpym+DMCk4QMyI3K6KGFoqvmJDOskyXm5C6xDV9+8iRaGz7do=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xse7L38f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05299C4CEC0;
-	Fri, 13 Sep 2024 18:33:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726252405;
-	bh=A1W9jCfny74eDZ2Sq3AsHaoLeaw3yFn1FM9duxuPzpw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Xse7L38f6kbjvUpu6KuIcVvQkUwvvSdpQAM+baUWBOxKHwkNfN5n2a4WPozZqBe8H
-	 wK0MzQxo8HaBbxuUeFJXh3/RW+hMjig/4aZGdSxtxD3LD8GbD3DRZcbszWLIfS3u+T
-	 +C1yA4kCqVrgK0dsD4o3gsiA0TZa8JVM1HU/f8BtZlm8MQBlP8HkJcDN5H+1fbF5jI
-	 ndbaCs1vA15EeSzoQc+9usB98O311e5c8s64OxS6Xxc1uJ16cXD1TaIJd3pdwK4a4D
-	 07izK89AKA0KtL0Q249Alsfdaz8Zn0MATGInL83hMy59wNE/n9GB0mXHAaewkqPYn8
-	 4wIslCdEw1Wyg==
-Date: Fri, 13 Sep 2024 19:33:07 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Deepak Gupta <debug@rivosinc.com>
-Cc: paul.walmsley@sifive.com, palmer@sifive.com, linux-doc@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-	linux-mm@kvack.org, linux-arch@vger.kernel.org,
-	linux-kselftest@vger.kernel.org, corbet@lwn.net, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, robh@kernel.org, krzk+dt@kernel.org,
-	oleg@redhat.com, tglx@linutronix.de, mingo@redhat.com, bp@alien8.de,
-	dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com,
-	peterz@infradead.org, akpm@linux-foundation.org, arnd@arndb.de,
-	ebiederm@xmission.com, kees@kernel.org, Liam.Howlett@oracle.com,
-	vbabka@suse.cz, lorenzo.stoakes@oracle.com, shuah@kernel.org,
-	brauner@kernel.org, samuel.holland@sifive.com, andy.chiu@sifive.com,
-	jerry.shih@sifive.com, greentime.hu@sifive.com,
-	charlie@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
-	xiao.w.wang@intel.com, ajones@ventanamicro.com, anup@brainfault.org,
-	mchitale@ventanamicro.com, atishp@rivosinc.com, sameo@rivosinc.com,
-	bjorn@rivosinc.com, alexghiti@rivosinc.com, david@redhat.com,
-	libang.li@antgroup.com, jszhang@kernel.org, leobras@redhat.com,
-	guoren@kernel.org, samitolvanen@google.com,
-	songshuaishuai@tinylab.org, costa.shul@redhat.com, bhe@redhat.com,
-	zong.li@sifive.com, puranjay@kernel.org, namcaov@gmail.com,
-	antonb@tenstorrent.com, sorear@fastmail.com,
-	quic_bjorande@quicinc.com, ancientmodern4@gmail.com,
-	ben.dooks@codethink.co.uk, quic_zhonhan@quicinc.com,
-	cuiyunhui@bytedance.com, yang.lee@linux.alibaba.com,
-	ke.zhao@shingroup.cn, sunilvl@ventanamicro.com,
-	tanzhasanwork@gmail.com, schwab@suse.de, dawei.li@shingroup.cn,
-	rppt@kernel.org, willy@infradead.org, usama.anjum@collabora.com,
-	osalvador@suse.de, ryan.roberts@arm.com, andrii@kernel.org,
-	alx@kernel.org, catalin.marinas@arm.com, broonie@kernel.org,
-	revest@chromium.org, bgray@linux.ibm.com, deller@gmx.de,
-	zev@bewilderbeest.net
-Subject: Re: [PATCH v4 07/30] riscv: zicfilp / zicfiss in dt-bindings
- (extensions.yaml)
-Message-ID: <20240913-woven-droplet-1f25d0d5a33b@spud>
-References: <20240912231650.3740732-1-debug@rivosinc.com>
- <20240912231650.3740732-8-debug@rivosinc.com>
+	s=arc-20240116; t=1726253251; c=relaxed/simple;
+	bh=jvKTyXUXSeaOuAM6Yckn9QohtrKa/1nx14lGNJN/9Ps=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HCyAp/UAsc3HGgLkDfH7WQBYzG9nao617Fkm2cHava8ac9v8eTXuRsfRnIUgQf0Qx1ITi64knOTcKAHKp+JwZbSFTIhKmyxr+1cDjZ894Lglk4X/kIcpFBPkrH9y/N9+xwodQQRR+LEnXKTZfYe0M0QFvk20UUv3jQiA0qKd9/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BOBGXJJt; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1726253242;
+	bh=jvKTyXUXSeaOuAM6Yckn9QohtrKa/1nx14lGNJN/9Ps=;
+	h=From:To:Cc:Subject:Date:From;
+	b=BOBGXJJt2Az41sRT3JLfenCMdYI23odSFRt1CGHfE+VDlQxWnmX9o7xf82imS2tfy
+	 rrob0NEPdNKnPHP4MOecuD7TC/k8iDaxHRgH8RRGtvmH8CcwvLxDh5v1hAa4sC5oD5
+	 yjfUO1ySOFXv+DswyWXWM178Qz0I/BEp9EsLxMF5jMcJvJ4HRvObIuU5BIoMISkib8
+	 xUjb+sNbBRHGxX8J5wpkq67da4J3iD0P0Tu/PDR0SRM/PAbfq2dNsGY7IphkQOEu6P
+	 6VIdnKrfzyY+uoe4dV7dD0Ty2OBq86ko32dJVqeuMrApmbzt0jYer8WJl5f8SeNZ8R
+	 ALpVUub95xzaA==
+Received: from jupiter.universe (dyndsl-091-248-214-164.ewe-ip-backbone.de [91.248.214.164])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2A85D17E360F;
+	Fri, 13 Sep 2024 20:47:22 +0200 (CEST)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id DA04C4800EA; Fri, 13 Sep 2024 20:47:21 +0200 (CEST)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	linux-clk@vger.kernel.org
+Cc: Elaine Zhang <zhangqing@rock-chips.com>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	huangtao@rock-chips.com,
+	andy.yan@rock-chips.com,
+	Michal Tomek <mtdev79b@gmail.com>,
+	Ilya K <me@0upti.me>,
+	Chad LeClair <leclair@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	kernel@collabora.com
+Subject: [PATCH v10 0/5] rockchip: clk: add GATE_LINK support
+Date: Fri, 13 Sep 2024 20:45:40 +0200
+Message-ID: <20240913184720.57381-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Wo0WH8RKXYiALMcP"
-Content-Disposition: inline
-In-Reply-To: <20240912231650.3740732-8-debug@rivosinc.com>
+Content-Transfer-Encoding: 8bit
 
+Hi,
 
---Wo0WH8RKXYiALMcP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This implements proper GATE_LINK support following the suggestion from Stephen
+Boyd to use clk PM operations by creating MFD dynamically. This required some
+restructuring, since CLK_OF_DECLARE() is called before devices are available.
 
-On Thu, Sep 12, 2024 at 04:16:26PM -0700, Deepak Gupta wrote:
-> Make an entry for cfi extensions in extensions.yaml.
->=20
-> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
-> ---
->  .../devicetree/bindings/riscv/extensions.yaml        | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
-cumentation/devicetree/bindings/riscv/extensions.yaml
-> index a06dbc6b4928..b7c86fb91984 100644
-> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> @@ -361,6 +361,18 @@ properties:
->              The standard Zicboz extension for cache-block zeroing as rat=
-ified
->              in commit 3dd606f ("Create cmobase-v1.0.pdf") of riscv-CMOs.
-> =20
-> +        - const: zicfilp
-> +          description:
-> +            The standard Zicfilp extension for enforcing forward edge co=
-ntrol-flow
-> +            integrity as ratified in commit 3f8e450 ("merge pull request=
- #227 from
-> +            ved-rivos/0709") of riscv-cfi github repo.
-> +
-> +        - const: zicfiss
-> +          description:
-> +            The standard Zicfilp extension for enforcing forward edge co=
-ntrol-flow
-> +            integrity as ratified in commit 3f8e450 ("merge pull request=
- #227 from
-> +            ved-rivos/0709") of riscv-cfi github repo.
+Apart from improved power consumption, this fixes the runtime errors from the
+pmdomain driver (failed to set idle on domain '%s').
 
-Because both of these have a # in them you need to have a | after
-description:. Please run dt_binding_check :)
+Changes since PATCHv9:
+ * https://lore.kernel.org/linux-rockchip/20240325193609.237182-1-sebastian.reichel@collabora.com/
+ * drop patches 1 & 5 (merged)
+ * keep reporting ENOENT for missing clocks after CRU has been fully initialized
+ * drop module remove support for the linked gate clock driver
 
-> +
->          - const: zicntr
->            description:
->              The standard Zicntr extension for base counters and timers, =
-as
-> --=20
-> 2.45.0
->=20
+Changes since PATCHv8:
+ * https://lore.kernel.org/linux-rockchip/20240126182919.48402-1-sebastian.reichel@collabora.com/
+ * rebased to v6.9-rc1
+ * dropped all merged patches (i.e. all but the last one)
+ * rewrote and split the final patch
+   - should be easier to review
+   - properly calls pm_clk_suspend/pm_clk_resume
+   - now works on Orange Pi
 
---Wo0WH8RKXYiALMcP
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes since PATCHv7:
+ * https://lore.kernel.org/all/20231213185114.47565-1-sebastian.reichel@collabora.com/
+ * rebased to v6.8-rc1
+ * Collected Reviewed-by/Acked-by from Krzysztof Kozlowski for DT binding patches
+ * support nr_clk=0 in rockchip_clk_find_max_clk_id() for smatch
 
------BEGIN PGP SIGNATURE-----
+Greetings,
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuSFYwAKCRB4tDGHoIJi
-0vnMAP4jAcike3nNkua8hG9QWEW4+qazPoSFmDREmFEymZqK8wD/R5K+u0LGQlr6
-Bci3roI9osxHgbbuooL8Ckvlomw/wAc=
-=cQDJ
------END PGP SIGNATURE-----
+-- Sebstian
 
---Wo0WH8RKXYiALMcP--
+Sebastian Reichel (5):
+  clk: rockchip: support clocks registered late
+  clk: rockchip: rk3588: register GATE_LINK later
+  clk: rockchip: expose rockchip_clk_set_lookup
+  clk: rockchip: implement linked gate clock support
+  clk: rockchip: rk3588: drop RK3588_LINKED_CLK
+
+ drivers/clk/rockchip/Makefile     |   1 +
+ drivers/clk/rockchip/clk-rk3588.c | 116 ++++++++++++++++++------------
+ drivers/clk/rockchip/clk.c        | 101 ++++++++++++++++++++++----
+ drivers/clk/rockchip/clk.h        |  40 +++++++++++
+ drivers/clk/rockchip/gate-link.c  |  85 ++++++++++++++++++++++
+ 5 files changed, 285 insertions(+), 58 deletions(-)
+ create mode 100644 drivers/clk/rockchip/gate-link.c
+
+-- 
+2.45.2
+
 
