@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-102540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 214BF97764F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 03:16:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 071DB977690
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 03:52:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 460A41C20F57
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 01:16:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 105721C24268
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 01:52:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3EC07E1;
-	Fri, 13 Sep 2024 01:16:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43C8B4C96;
+	Fri, 13 Sep 2024 01:52:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="00K90ats"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="135XgVAP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2E6F4A06
-	for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 01:16:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A0744A21
+	for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 01:52:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726190188; cv=none; b=X9S3XoZ1MXTZk+fDI5hN2CjykJ4LHdcIHmz3We0sSMJ9uqL45NOzpj5YVOdPPSibm8CfWtZmBN0+7VjTGwBcQRF5RKP/MG5IoLeuBPrzt+xxDvWf9pJORIpONi4AzP4KTwQ++sCiNOWp6kgVzSxl4vvm7TRTkbE6KUqlSM+64kw=
+	t=1726192336; cv=none; b=evGglFB2DhU+DywxnhID3FU1J8i6gKHWq8gdAlp77QyzcN7l6uCA76u5qRdR5xmP+J5J9SecISfAzVFfxnNd0x7unrj6kBm2JwIKgcxcKge1B1bhqvxvGk7ND4hAttNWcx9XmcilHmyABwKAx1/gUlyK+bVny2puG8BkWxAThkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726190188; c=relaxed/simple;
-	bh=r/yO+OeFcLvOjY6JHwXkqX6j3rz4+wcN2tkneSV7wN4=;
+	s=arc-20240116; t=1726192336; c=relaxed/simple;
+	bh=AQ/nvfCoQ08ugK2iGVA4aMpTNluorvcCoLYrtwQ4UUs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b6Oghyfsu0LoL7ckn7tk4qa6iXFfI39X+/tQDlVuoBNMOll39aI33KD0uCPKa3P4f5k1XWR414zvP4OKeB+XtCcEZwm6d0SOpyJ54Z118pYoMkNDU9O0FRCWirUt8rbAL2aINJ1mhgxda7WJXfaokg70QAXRURMrgovhgygVV6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=00K90ats; arc=none smtp.client-ip=209.85.214.170
+	 Content-Type:Content-Disposition:In-Reply-To; b=krnqt8VQccUiaAgo0RTt46jWWJFw2Ftq8M9kdaiQwnjsv3e9FsOgY21/6I74MgG2P+GcFANoIQGI5qRvKQhVXhimeG0WR1u5++QN1quASsLJppYYq4XryE8olbEk20Th+k640/esLiP8c9/QaBTSy5h8KTukFxg/ldydzeJHMKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=135XgVAP; arc=none smtp.client-ip=209.85.216.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2068bee21d8so17966345ad.2
-        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 18:16:26 -0700 (PDT)
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2d87a0bfaa7so396440a91.2
+        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 18:52:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1726190186; x=1726794986; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1726192332; x=1726797132; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=CGdN0gxzpmFovSXXc4PPR7wb1goaAH/sxNtRx0azomw=;
-        b=00K90atsMMhkIeOfviDeZgLYYMC+Kbv2wOkwkhJ/F4QWA5SXHcrTqnl1Cn1MxNUefB
-         1003I+kUTcBfPO024bgJV4j7L4L5oVT1HvzopP5Q5vfXoewSywIxcOROSBKrc2rcxcYO
-         6/5dVIu8pRBV6cIfFU6vXmQxRyAFy3OHS7xixXfc92NNS7sKRqPx1IFavjKQv9sZKyQU
-         Xvvw4bEsIHA47MfuqXKerx/tfNc5iGKPNVUrsA0U0vJvLpPDHpolRlwuzP3yPtx282L0
-         O1dbY12H2QGipm+1NUM288QgWj7wHA4gF/nGP+g6fIFTpXy+Lz97XiPQSpaa1MOqG0Ad
-         8nfQ==
+        bh=k+ges+VvxmrgdZD6nkY5IuumPBlR6fNV3QrQLoSkcjs=;
+        b=135XgVAPWMuJDJ8zR5Xl0SA2gF6aiOhN7EjI/xt1qbCjqYXnkD/QFdkqFFguzaHUdo
+         WmSiFgmjMAc4Lq+JTpUE6Km72C+7VmHYpQ5IymeeaAA2/IlAPlG9XTXYzjvGFbonxTJ3
+         XycEG6l+sxsENbM/9PSYM0Hv+I4Y8drDzrwkszlibS4luKsLtdwxZtHGLib6IoWPDymg
+         yv10avdNu5pAvqR8ZVohv/8ecsfW/ZRGMIxV0NYaBEmBhTQX5Vz7V2Y+Mv0egg4V7/1U
+         RRKasKyNuE7TsO/Ya5jMKYjGTxIP7sIkfUIj5pJWOv7P0poPh2hL4FICz6p3IG+GyfrD
+         FXaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726190186; x=1726794986;
+        d=1e100.net; s=20230601; t=1726192332; x=1726797132;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CGdN0gxzpmFovSXXc4PPR7wb1goaAH/sxNtRx0azomw=;
-        b=DWjfMy5n9PmLOTC45fZj8Nm1JHg1onY2TmfT0AGsBzAlrAlHbF2DAeVE1t3lEOAska
-         Bg//VSPymLm7kD+Wpy4/5ycA5Pu/DB2HeeF9OGWOYuPr951fXONanyq03+oBTIWq4VH+
-         5M0acfgHxGiqS5m2u7EeO4+6Cu1nDXlLK16olwF10N38EUkQXcp93RuX8QN8mNF6uG0F
-         bU+uLQYrKrSC9xNJDuw7Bb/xYWBfr8gG61vrLi9zvTrQDOuD28PSDBXgfG1mmQVbJMoa
-         iy6B4N6h0tP3JKthTufP+qdR76Rslip+ynk23f8FpFNu1XF2gumPVj3MmXsWlfWEDofA
-         ipTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWMXGX4XcCvopt3UP/pb1olB7FpUcgylrmV5uVXaHCFnvXjFX5NeEdKVFMIRpwDQVPR3lztgHVwpIyI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxn3vBwbZJJx8mkUtjibfhfZwPt59p0K7aLLGz7ahsXyBjfbSkR
-	6Mbw+Y0IP1AsY8ExB8yFOFOGJGX1YJzdT1BW+F1bgb+SBMnU21af6z7mpuJ/M7c=
-X-Google-Smtp-Source: AGHT+IEHKm3UNTMeYi9FcEOsLtiVsBpfeVoViEjIu4klChUXmqp/JF2zUsw5pdnzmHwyVdvF9TzQWQ==
-X-Received: by 2002:a17:903:249:b0:206:8eec:c087 with SMTP id d9443c01a7336-2076e354d05mr65687755ad.16.1726190185980;
-        Thu, 12 Sep 2024 18:16:25 -0700 (PDT)
+        bh=k+ges+VvxmrgdZD6nkY5IuumPBlR6fNV3QrQLoSkcjs=;
+        b=jedG3LlWT1V+oOslQHQaGh/UPMnLfJZQlGhLRmvG66SUFxx0TkMsTxNSuDnwDVhl8B
+         LtOy3AAjcUrqBZWnEKJmpjnveOnPUNV14NqFc3B/y7VraiBAfa+8mQHMFo8XBDTP51c4
+         Nji0ZafYsGwmmB8kTpHUp+Doy/LKv/D7rXNVhbNA1NGTKm9UJnhyME9C/Fm+/5rQgfCh
+         OGK9NvtTmZcJ/0tgo/1YPPWTyHpUeIjpfhOMlNDmoVjm3RohKlN0Mcuc4PuutABMD3iZ
+         ZZA2MQRXHuhwfSD2qEHtyPa4gWg4OozQBVlaZTlQIxd8blT4+UFz2j+u2HHB0RDqXZiC
+         GTWA==
+X-Forwarded-Encrypted: i=1; AJvYcCV4cBKhUwUbuIGGeqx72LenXjfh5Iwloftn0FfOiTzmE4T1XS2ibXjW5USlZHhuZfCczHJjQ2lEp5lw@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLbfkI7VcVTZ9iZQt7yVxfQsR6OAEtyVPOHu43Fo9w6oaRDnSA
+	9lbIgpndBbQoa1THQ/MNWBRyb3sWPAkOUq8MrkgaxMyKb9hipIUiHU5A8mFxz/M=
+X-Google-Smtp-Source: AGHT+IG2ZanLdLem/NUYAdInqYRRfqsc0iX2f/JGJquLApX32cXtS2V3Cr9a879h0s7MYWnv4kMFzg==
+X-Received: by 2002:a17:90b:1e4c:b0:2d3:dd48:992c with SMTP id 98e67ed59e1d1-2dbb9e47099mr1670673a91.23.1726192332239;
+        Thu, 12 Sep 2024 18:52:12 -0700 (PDT)
 Received: from ghost ([50.145.13.30])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2dbb9c98f1fsm382550a91.20.2024.09.12.18.16.23
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2dbb9d953a6sm407052a91.56.2024.09.12.18.52.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Sep 2024 18:16:24 -0700 (PDT)
-Date: Thu, 12 Sep 2024 18:16:20 -0700
+        Thu, 12 Sep 2024 18:52:11 -0700 (PDT)
+Date: Thu, 12 Sep 2024 18:52:09 -0700
 From: Charlie Jenkins <charlie@rivosinc.com>
 To: Samuel Holland <samuel.holland@sifive.com>
 Cc: Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org,
@@ -79,10 +79,10 @@ Cc: Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	"Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>
-Subject: Re: [PATCH v4 03/10] riscv: Add CSR definitions for pointer masking
-Message-ID: <ZuOSZPJLBUeoTMA9@ghost>
+Subject: Re: [PATCH v4 04/10] riscv: Add support for userspace pointer masking
+Message-ID: <ZuOayQEfZZeDWW7b@ghost>
 References: <20240829010151.2813377-1-samuel.holland@sifive.com>
- <20240829010151.2813377-4-samuel.holland@sifive.com>
+ <20240829010151.2813377-5-samuel.holland@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,80 +91,238 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240829010151.2813377-4-samuel.holland@sifive.com>
+In-Reply-To: <20240829010151.2813377-5-samuel.holland@sifive.com>
 
-On Wed, Aug 28, 2024 at 06:01:25PM -0700, Samuel Holland wrote:
-> Pointer masking is controlled via a two-bit PMM field, which appears in
-> various CSRs depending on which extensions are implemented. Smmpm adds
-> the field to mseccfg; Smnpm adds the field to menvcfg; Ssnpm adds the
-> field to senvcfg. If the H extension is implemented, Ssnpm also defines
-> henvcfg.PMM and hstatus.HUPMM.
+On Wed, Aug 28, 2024 at 06:01:26PM -0700, Samuel Holland wrote:
+> RISC-V supports pointer masking with a variable number of tag bits
+> (which is called "PMLEN" in the specification) and which is configured
+> at the next higher privilege level.
+> 
+> Wire up the PR_SET_TAGGED_ADDR_CTRL and PR_GET_TAGGED_ADDR_CTRL prctls
+> so userspace can request a lower bound on the number of tag bits and
+> determine the actual number of tag bits. As with arm64's
+> PR_TAGGED_ADDR_ENABLE, the pointer masking configuration is
+> thread-scoped, inherited on clone() and fork() and cleared on execve().
 > 
 > Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 
 Reviewed-by: Charlie Jenkins <charlie@rivosinc.com>
+Tested-by: Charlie Jenkins <charlie@rivosinc.com>
 
 > ---
 > 
-> (no changes since v3)
+> Changes in v4:
+>  - Switch IS_ENABLED back to #ifdef to fix riscv32 build
 > 
 > Changes in v3:
->  - Use shifts instead of large numbers in ENVCFG_PMM* macro definitions
+>  - Rename CONFIG_RISCV_ISA_POINTER_MASKING to CONFIG_RISCV_ISA_SUPM,
+>    since it only controls the userspace part of pointer masking
+>  - Use IS_ENABLED instead of #ifdef when possible
+>  - Use an enum for the supported PMLEN values
+>  - Simplify the logic in set_tagged_addr_ctrl()
 > 
 > Changes in v2:
->  - Use the correct name for the hstatus.HUPMM field
+>  - Rebase on riscv/linux.git for-next
+>  - Add and use the envcfg_update_bits() helper function
+>  - Inline flush_tagged_addr_state()
 > 
->  arch/riscv/include/asm/csr.h | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+>  arch/riscv/Kconfig                 | 11 ++++
+>  arch/riscv/include/asm/processor.h |  8 +++
+>  arch/riscv/include/asm/switch_to.h | 11 ++++
+>  arch/riscv/kernel/process.c        | 91 ++++++++++++++++++++++++++++++
+>  include/uapi/linux/prctl.h         |  3 +
+>  5 files changed, 124 insertions(+)
 > 
-> diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
-> index 25966995da04..fe5d4eb9adea 100644
-> --- a/arch/riscv/include/asm/csr.h
-> +++ b/arch/riscv/include/asm/csr.h
-> @@ -119,6 +119,10 @@
+> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> index 0f3cd7c3a436..817437157138 100644
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -512,6 +512,17 @@ config RISCV_ISA_C
 >  
->  /* HSTATUS flags */
->  #ifdef CONFIG_64BIT
-> +#define HSTATUS_HUPMM		_AC(0x3000000000000, UL)
-> +#define HSTATUS_HUPMM_PMLEN_0	_AC(0x0000000000000, UL)
-> +#define HSTATUS_HUPMM_PMLEN_7	_AC(0x2000000000000, UL)
-> +#define HSTATUS_HUPMM_PMLEN_16	_AC(0x3000000000000, UL)
->  #define HSTATUS_VSXL		_AC(0x300000000, UL)
->  #define HSTATUS_VSXL_SHIFT	32
->  #endif
-> @@ -195,6 +199,10 @@
->  /* xENVCFG flags */
->  #define ENVCFG_STCE			(_AC(1, ULL) << 63)
->  #define ENVCFG_PBMTE			(_AC(1, ULL) << 62)
-> +#define ENVCFG_PMM			(_AC(0x3, ULL) << 32)
-> +#define ENVCFG_PMM_PMLEN_0		(_AC(0x0, ULL) << 32)
-> +#define ENVCFG_PMM_PMLEN_7		(_AC(0x2, ULL) << 32)
-> +#define ENVCFG_PMM_PMLEN_16		(_AC(0x3, ULL) << 32)
->  #define ENVCFG_CBZE			(_AC(1, UL) << 7)
->  #define ENVCFG_CBCFE			(_AC(1, UL) << 6)
->  #define ENVCFG_CBIE_SHIFT		4
-> @@ -216,6 +224,12 @@
->  #define SMSTATEEN0_SSTATEEN0_SHIFT	63
->  #define SMSTATEEN0_SSTATEEN0		(_ULL(1) << SMSTATEEN0_SSTATEEN0_SHIFT)
+>  	  If you don't know what to do here, say Y.
 >  
-> +/* mseccfg bits */
-> +#define MSECCFG_PMM			ENVCFG_PMM
-> +#define MSECCFG_PMM_PMLEN_0		ENVCFG_PMM_PMLEN_0
-> +#define MSECCFG_PMM_PMLEN_7		ENVCFG_PMM_PMLEN_7
-> +#define MSECCFG_PMM_PMLEN_16		ENVCFG_PMM_PMLEN_16
+> +config RISCV_ISA_SUPM
+> +	bool "Supm extension for userspace pointer masking"
+> +	depends on 64BIT
+> +	default y
+> +	help
+> +	  Add support for pointer masking in userspace (Supm) when the
+> +	  underlying hardware extension (Smnpm or Ssnpm) is detected at boot.
 > +
->  /* symbolic CSR names: */
->  #define CSR_CYCLE		0xc00
->  #define CSR_TIME		0xc01
-> @@ -382,6 +396,8 @@
->  #define CSR_MIP			0x344
->  #define CSR_PMPCFG0		0x3a0
->  #define CSR_PMPADDR0		0x3b0
-> +#define CSR_MSECCFG		0x747
-> +#define CSR_MSECCFGH		0x757
->  #define CSR_MVENDORID		0xf11
->  #define CSR_MARCHID		0xf12
->  #define CSR_MIMPID		0xf13
+> +	  If this option is disabled, userspace will be unable to use
+> +	  the prctl(PR_{SET,GET}_TAGGED_ADDR_CTRL) API.
+> +
+>  config RISCV_ISA_SVNAPOT
+>  	bool "Svnapot extension support for supervisor mode NAPOT pages"
+>  	depends on 64BIT && MMU
+> diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/processor.h
+> index 586e4ab701c4..5c4d4fb97314 100644
+> --- a/arch/riscv/include/asm/processor.h
+> +++ b/arch/riscv/include/asm/processor.h
+> @@ -200,6 +200,14 @@ extern int set_unalign_ctl(struct task_struct *tsk, unsigned int val);
+>  #define RISCV_SET_ICACHE_FLUSH_CTX(arg1, arg2)	riscv_set_icache_flush_ctx(arg1, arg2)
+>  extern int riscv_set_icache_flush_ctx(unsigned long ctx, unsigned long per_thread);
+>  
+> +#ifdef CONFIG_RISCV_ISA_SUPM
+> +/* PR_{SET,GET}_TAGGED_ADDR_CTRL prctl */
+> +long set_tagged_addr_ctrl(struct task_struct *task, unsigned long arg);
+> +long get_tagged_addr_ctrl(struct task_struct *task);
+> +#define SET_TAGGED_ADDR_CTRL(arg)	set_tagged_addr_ctrl(current, arg)
+> +#define GET_TAGGED_ADDR_CTRL()		get_tagged_addr_ctrl(current)
+> +#endif
+> +
+>  #endif /* __ASSEMBLY__ */
+>  
+>  #endif /* _ASM_RISCV_PROCESSOR_H */
+> diff --git a/arch/riscv/include/asm/switch_to.h b/arch/riscv/include/asm/switch_to.h
+> index 9685cd85e57c..94e33216b2d9 100644
+> --- a/arch/riscv/include/asm/switch_to.h
+> +++ b/arch/riscv/include/asm/switch_to.h
+> @@ -70,6 +70,17 @@ static __always_inline bool has_fpu(void) { return false; }
+>  #define __switch_to_fpu(__prev, __next) do { } while (0)
+>  #endif
+>  
+> +static inline void envcfg_update_bits(struct task_struct *task,
+> +				      unsigned long mask, unsigned long val)
+> +{
+> +	unsigned long envcfg;
+> +
+> +	envcfg = (task->thread.envcfg & ~mask) | val;
+> +	task->thread.envcfg = envcfg;
+> +	if (task == current)
+> +		csr_write(CSR_ENVCFG, envcfg);
+> +}
+> +
+>  static inline void __switch_to_envcfg(struct task_struct *next)
+>  {
+>  	asm volatile (ALTERNATIVE("nop", "csrw " __stringify(CSR_ENVCFG) ", %0",
+> diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
+> index e4bc61c4e58a..f39221ab5ddd 100644
+> --- a/arch/riscv/kernel/process.c
+> +++ b/arch/riscv/kernel/process.c
+> @@ -7,6 +7,7 @@
+>   * Copyright (C) 2017 SiFive
+>   */
+>  
+> +#include <linux/bitfield.h>
+>  #include <linux/cpu.h>
+>  #include <linux/kernel.h>
+>  #include <linux/sched.h>
+> @@ -171,6 +172,10 @@ void flush_thread(void)
+>  	memset(&current->thread.vstate, 0, sizeof(struct __riscv_v_ext_state));
+>  	clear_tsk_thread_flag(current, TIF_RISCV_V_DEFER_RESTORE);
+>  #endif
+> +#ifdef CONFIG_RISCV_ISA_SUPM
+> +	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM))
+> +		envcfg_update_bits(current, ENVCFG_PMM, ENVCFG_PMM_PMLEN_0);
+> +#endif
+>  }
+>  
+>  void arch_release_task_struct(struct task_struct *tsk)
+> @@ -233,3 +238,89 @@ void __init arch_task_cache_init(void)
+>  {
+>  	riscv_v_setup_ctx_cache();
+>  }
+> +
+> +#ifdef CONFIG_RISCV_ISA_SUPM
+> +enum {
+> +	PMLEN_0 = 0,
+> +	PMLEN_7 = 7,
+> +	PMLEN_16 = 16,
+> +};
+> +
+> +static bool have_user_pmlen_7;
+> +static bool have_user_pmlen_16;
+> +
+> +long set_tagged_addr_ctrl(struct task_struct *task, unsigned long arg)
+> +{
+> +	unsigned long valid_mask = PR_PMLEN_MASK;
+> +	struct thread_info *ti = task_thread_info(task);
+> +	unsigned long pmm;
+> +	u8 pmlen;
+> +
+> +	if (is_compat_thread(ti))
+> +		return -EINVAL;
+> +
+> +	if (arg & ~valid_mask)
+> +		return -EINVAL;
+> +
+> +	/*
+> +	 * Prefer the smallest PMLEN that satisfies the user's request,
+> +	 * in case choosing a larger PMLEN has a performance impact.
+> +	 */
+> +	pmlen = FIELD_GET(PR_PMLEN_MASK, arg);
+> +	if (pmlen == PMLEN_0)
+> +		pmm = ENVCFG_PMM_PMLEN_0;
+> +	else if (pmlen <= PMLEN_7 && have_user_pmlen_7)
+> +		pmm = ENVCFG_PMM_PMLEN_7;
+> +	else if (pmlen <= PMLEN_16 && have_user_pmlen_16)
+> +		pmm = ENVCFG_PMM_PMLEN_16;
+> +	else
+> +		return -EINVAL;
+> +
+> +	envcfg_update_bits(task, ENVCFG_PMM, pmm);
+> +
+> +	return 0;
+> +}
+> +
+> +long get_tagged_addr_ctrl(struct task_struct *task)
+> +{
+> +	struct thread_info *ti = task_thread_info(task);
+> +	long ret = 0;
+> +
+> +	if (is_compat_thread(ti))
+> +		return -EINVAL;
+> +
+> +	switch (task->thread.envcfg & ENVCFG_PMM) {
+> +	case ENVCFG_PMM_PMLEN_7:
+> +		ret = FIELD_PREP(PR_PMLEN_MASK, PMLEN_7);
+> +		break;
+> +	case ENVCFG_PMM_PMLEN_16:
+> +		ret = FIELD_PREP(PR_PMLEN_MASK, PMLEN_16);
+> +		break;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static bool try_to_set_pmm(unsigned long value)
+> +{
+> +	csr_set(CSR_ENVCFG, value);
+> +	return (csr_read_clear(CSR_ENVCFG, ENVCFG_PMM) & ENVCFG_PMM) == value;
+> +}
+> +
+> +static int __init tagged_addr_init(void)
+> +{
+> +	if (!riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM))
+> +		return 0;
+> +
+> +	/*
+> +	 * envcfg.PMM is a WARL field. Detect which values are supported.
+> +	 * Assume the supported PMLEN values are the same on all harts.
+> +	 */
+> +	csr_clear(CSR_ENVCFG, ENVCFG_PMM);
+> +	have_user_pmlen_7 = try_to_set_pmm(ENVCFG_PMM_PMLEN_7);
+> +	have_user_pmlen_16 = try_to_set_pmm(ENVCFG_PMM_PMLEN_16);
+> +
+> +	return 0;
+> +}
+> +core_initcall(tagged_addr_init);
+> +#endif	/* CONFIG_RISCV_ISA_SUPM */
+> diff --git a/include/uapi/linux/prctl.h b/include/uapi/linux/prctl.h
+> index 35791791a879..6e84c827869b 100644
+> --- a/include/uapi/linux/prctl.h
+> +++ b/include/uapi/linux/prctl.h
+> @@ -244,6 +244,9 @@ struct prctl_mm_map {
+>  # define PR_MTE_TAG_MASK		(0xffffUL << PR_MTE_TAG_SHIFT)
+>  /* Unused; kept only for source compatibility */
+>  # define PR_MTE_TCF_SHIFT		1
+> +/* RISC-V pointer masking tag length */
+> +# define PR_PMLEN_SHIFT			24
+> +# define PR_PMLEN_MASK			(0x7fUL << PR_PMLEN_SHIFT)
+>  
+>  /* Control reclaim behavior when allocating memory */
+>  #define PR_SET_IO_FLUSHER		57
 > -- 
 > 2.45.1
 > 
