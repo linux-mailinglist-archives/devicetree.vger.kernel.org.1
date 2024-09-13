@@ -1,202 +1,128 @@
-Return-Path: <devicetree+bounces-102797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CA84978487
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 17:19:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 806969784CE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 17:26:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A1AB284FD8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 15:19:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 35E2A1F283FC
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 15:26:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49FE41C463E;
-	Fri, 13 Sep 2024 15:09:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18EF94776E;
+	Fri, 13 Sep 2024 15:26:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QqtG5sjD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KYIsiGg6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 896E01C3F30;
-	Fri, 13 Sep 2024 15:09:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2E0B3C485;
+	Fri, 13 Sep 2024 15:26:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726240175; cv=none; b=qnNEYSB1a5xLPs0sDfIpXR986lhd2I9snSKjKQdM2G/LRoy36wdmESYAAUocnMavoOvgBECrVBAGoBRhGnHzRM0wG5rGmQIIoWnmRodabhjAWCbGUvY/d7uuSd3+FdfviqYLnbQYIdDxuVhQFqmp+X/4xhvy9Puh5Pz0bDnJKtM=
+	t=1726241199; cv=none; b=KtGQxC29cI2Bk84V+oS3Txxr/bSIIH0pJ9n2RfgcvOEm4GTIA5AqO7uQjik+Vu0yBRj4YQd7v4LkF1e1bwoRDuewT5yyYh8lNTydFplqZRIPVP0uElg6/4QbVGLZrzqkWVN3DGnmEhRo/l7A8IHOm7Eto8rGrKfgc2PjrYni29Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726240175; c=relaxed/simple;
-	bh=sotlZbQi5UxMTXTY9iQWeBGitc5Ct0BtuZ2yW6i8Nok=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VNp+hW1d1PgsGFhK5D7e2RqyNGNAhD6Cmr5ocg6ziPLmseic6XHGkjcaTIe20Ec6kj4002Q46NVVExSRfVNqqn6Jn738mX6ABG1vUp2V4LBk1bPSaoMxGgYR5hsly/UxEWlq2t1Dg4VRnJlKXUIzFvnFI30yLftOzpCSj3E/pSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QqtG5sjD; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5c26311c6f0so2944448a12.3;
-        Fri, 13 Sep 2024 08:09:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726240171; x=1726844971; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mXJIkSLw8SmFch9ZUCSaWYebLdfaycyre/4lwJqktRc=;
-        b=QqtG5sjD75MPPTL9uxDFdApVZ3+r7KD2KL0iNEd7Js90da5B8v2G7y+/hyWDKlV5rX
-         3Fztu+Wr2ICdSY2o/ip5d3KH8+xusrmEk4hGscNhCdvFluwf/bmjeOVoL8nh2Ixdb9IJ
-         8U3CtH+hvCV76li6tt5eG48Gg8AHVZvQlRHh8Iy1dsORWODQX5jFUWiWqOMInp9PIMAH
-         Eam4aRySDKUWLk1mcEu1RA6JcvJ5gyFy+57gK4h1j2AScZLQbGYtM+Xs1NvdELKUDhmk
-         VuhKzTAeL7kuvMrIK55UaKutlSNNDmXIDkoTqOUNNL/vrl+yneS+sZaOlU7w6poRuwn5
-         7baw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726240171; x=1726844971;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mXJIkSLw8SmFch9ZUCSaWYebLdfaycyre/4lwJqktRc=;
-        b=J9s27h1UUGLr84U5/yAyZJsgI6gwTHTQQ+vx/u51IwWj7gqz1CmyTrroV5jq8Uh2kr
-         E6u/R847+cr5r/nQ2cV7iHoiZ/O8Tnuqm1jUfKDhRIJ/WZF6sKhlzSzO04n2OS86LbR0
-         EUfQ2zyMBYDHXc6Q4qcMzz39U9NEvPDWHumLR14W95EsHaqGt0qOc1T96vkXLvxGZDoi
-         R5rnELotNTtDWaSnFytAWVM0bOaJ7FdMiB9fpweo4LiQ3ATYKmZdbNBA+ImhCfSjQ0Ch
-         6NmICZQIdot3wAagTOVaiWzPG5FK7xN17aQ/feXCCjFm8oGKxBLN0/GNL+ae640xuK/z
-         0wHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUhCX0BAMk05IyBLSQutDLJfVWTFswx9F6GWd198LSABd381GBIIaofuv+n3Fa5lFEPdxdJepGB/ueakzc=@vger.kernel.org, AJvYcCUuti24ziJKj2yZFdgTlk5qdVp945GGwnleaoFOwvGYAgF7kM/9o3AZlWOLxs+cYjH4P6bgysgzQEM9drJk@vger.kernel.org, AJvYcCV/qB5ttufj9m/e1++oHyIrcBu/Jt7mXBsrsWZpW93JbSKj/Zx9IYSZWtbqcNxF6T8URIhVfGCxA7YUd61q3DF5fE0=@vger.kernel.org, AJvYcCVkbNcUFQEropyKy8NfbbsMNZ0QFvOOxr1HnVH6jZrBzr082ilPdQ9RkssS8xkcR+35Qbb7GX9WOIsQu46sKg==@vger.kernel.org, AJvYcCWkJ1fxPDQw+F8r8yx7Po3+bsO/Ie2HEvDLachSkDhlUvGLdF0gIqwUzuNz3Ji0C3TXXVK+1MAIYtX+@vger.kernel.org, AJvYcCXJHZsaa+Lap0z/vITRjAjE62GtCcTohp03NyLwF6TsIf9FuM6fHeZe2uwiRnsoxTVQn7RploJGBy5rBw==@vger.kernel.org, AJvYcCXJnUnKOXJwgWI/0HxHCnRFJ6i5GZUP9VgPjkF/qb/TieQqREoyTLOspdurnGLOHPfqyNQSodpmpsci@vger.kernel.org, AJvYcCXt0cotO6XZozI3melRYob9QNcTS0GS2D4FCOYxAwa1B0Sgm/cZTNkjEey2pOgXjSPttPPrsaluxiW0@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuhtrqkE/IfZ68GjJMK0tVXPbHrxcDBj+ASAUTOSw7C4Nva94o
-	ajFXxhiT6NXbFfN+Y1dTeTE+SQ9dGLGsQrG0J2viUkESwvG/xvQyBeZVeA==
-X-Google-Smtp-Source: AGHT+IGyk1J+WrXxg3n6en6ZybXZ+SEJzAfSUZQA055wEMUefoWDRM5H6YgIPbZdZbXXjvmPnSljDQ==
-X-Received: by 2002:a05:6402:35c1:b0:5c4:181a:6b0a with SMTP id 4fb4d7f45d1cf-5c4181a6b7dmr4656181a12.10.1726240171482;
-        Fri, 13 Sep 2024 08:09:31 -0700 (PDT)
-Received: from [127.0.1.1] ([178.127.153.210])
-        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-5c3ebd523b4sm7774318a12.51.2024.09.13.08.09.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Sep 2024 08:09:31 -0700 (PDT)
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Fri, 13 Sep 2024 18:08:10 +0300
-Subject: [PATCH v4 27/27] arm64: dts: qcom: starqltechn: add modem support
+	s=arc-20240116; t=1726241199; c=relaxed/simple;
+	bh=ztIFbvcKHrPQ+NfdDu5k6kNg3CZWEYi5RfxBXDsqDZI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HknUXWmcTVacbuDYRTfvVSM+2Zhj1b8ymVvoWPi5GJfCl0gWAU0mBLGuayGG1rxytksSrln4zdWjkKEJah7/EsFL3xPkERTnI8darglEf/S3jMen2nsWDmgDBrgE7SjU26IOzLadjlRLxAJQI+YtuuLcu9zchEGzSwYIVXQiaDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KYIsiGg6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15DC8C4CEC0;
+	Fri, 13 Sep 2024 15:26:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726241198;
+	bh=ztIFbvcKHrPQ+NfdDu5k6kNg3CZWEYi5RfxBXDsqDZI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KYIsiGg67ZSEYjI+/JpS8X4W0kcxPK+UzDAXAdG1PyIFs3rv2bEQPuAySqIBGc5Xv
+	 p5zQiVmUqbRLyMQhk8u2Bg3NCQSYyiwpzHo8fnQoBM34PTLUJC0Gx6Sy5Z2hzqm9tj
+	 iD4M7OLvOn/wM9WR66B/vcjCLdmOKn/onYUTW5yrNFYeNUyw78v6GCFu1EYnoH3aJk
+	 te0ADuUj45E/VLOfSrJgqCuQPaiJ7sWZcMKLgMdfWGEqshfI7ZLMuockf6xIq9InNR
+	 H5RPCmR5HVOAo9q3mCoBMXa5xfX+NPl4SgRRlDcVr5OcbDKBHSWvotFUKFDpmMof6w
+	 To7i5QdUXP0qg==
+Date: Fri, 13 Sep 2024 16:26:20 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: paul.walmsley@sifive.com, palmer@sifive.com, conor@kernel.org,
+	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
+	linux-arch@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	corbet@lwn.net, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	robh@kernel.org, krzk+dt@kernel.org, oleg@redhat.com,
+	tglx@linutronix.de, mingo@redhat.com, bp@alien8.de,
+	dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com,
+	peterz@infradead.org, akpm@linux-foundation.org, arnd@arndb.de,
+	ebiederm@xmission.com, kees@kernel.org, Liam.Howlett@oracle.com,
+	vbabka@suse.cz, lorenzo.stoakes@oracle.com, shuah@kernel.org,
+	brauner@kernel.org, samuel.holland@sifive.com, andy.chiu@sifive.com,
+	jerry.shih@sifive.com, greentime.hu@sifive.com,
+	charlie@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
+	xiao.w.wang@intel.com, ajones@ventanamicro.com, anup@brainfault.org,
+	mchitale@ventanamicro.com, atishp@rivosinc.com, sameo@rivosinc.com,
+	bjorn@rivosinc.com, alexghiti@rivosinc.com, david@redhat.com,
+	libang.li@antgroup.com, jszhang@kernel.org, leobras@redhat.com,
+	guoren@kernel.org, samitolvanen@google.com,
+	songshuaishuai@tinylab.org, costa.shul@redhat.com, bhe@redhat.com,
+	zong.li@sifive.com, puranjay@kernel.org, namcaov@gmail.com,
+	antonb@tenstorrent.com, sorear@fastmail.com,
+	quic_bjorande@quicinc.com, ancientmodern4@gmail.com,
+	ben.dooks@codethink.co.uk, quic_zhonhan@quicinc.com,
+	cuiyunhui@bytedance.com, yang.lee@linux.alibaba.com,
+	ke.zhao@shingroup.cn, sunilvl@ventanamicro.com,
+	tanzhasanwork@gmail.com, schwab@suse.de, dawei.li@shingroup.cn,
+	rppt@kernel.org, willy@infradead.org, usama.anjum@collabora.com,
+	osalvador@suse.de, ryan.roberts@arm.com, andrii@kernel.org,
+	alx@kernel.org, catalin.marinas@arm.com, revest@chromium.org,
+	bgray@linux.ibm.com, deller@gmx.de, zev@bewilderbeest.net
+Subject: Re: [PATCH v4 15/30] riscv/mm: Implement map_shadow_stack() syscall
+Message-ID: <8904b159-7798-454e-a615-34566c088fda@sirena.org.uk>
+References: <20240912231650.3740732-1-debug@rivosinc.com>
+ <20240912231650.3740732-16-debug@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240913-starqltechn_integration_upstream-v4-27-2d2efd5c5877@gmail.com>
-References: <20240913-starqltechn_integration_upstream-v4-0-2d2efd5c5877@gmail.com>
-In-Reply-To: <20240913-starqltechn_integration_upstream-v4-0-2d2efd5c5877@gmail.com>
-To: Sebastian Reichel <sre@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Krzysztof Kozlowski <krzk@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, 
- Simona Vetter <simona@ffwll.ch>, cros-qcom-dts-watchers@chromium.org, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Simona Vetter <simona.vetter@ffwll.ch>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-input@vger.kernel.org, linux-leds@vger.kernel.org, 
- linux-pwm@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- Dzmitry Sankouski <dsankouski@gmail.com>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1726240085; l=2030;
- i=dsankouski@gmail.com; s=20240618; h=from:subject:message-id;
- bh=sotlZbQi5UxMTXTY9iQWeBGitc5Ct0BtuZ2yW6i8Nok=;
- b=2OY/1Wou8Los9DL2QaeQkDbKQavhO22dQvFX7va+9W+VFm6Zwxp1qTyqVIttAEcQn/XWN02FC
- mMW9IBedqIOB+8AWBDGbU1ksLCmuAtMW2nQ+hhGKetema4Hwj+gR7YU
-X-Developer-Key: i=dsankouski@gmail.com; a=ed25519;
- pk=6pMMVVDDReSiRgPCbMOUauN5nS3ty4Sf5b7a2gi4x0M=
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="EXdCC84RfjoEE1iq"
+Content-Disposition: inline
+In-Reply-To: <20240912231650.3740732-16-debug@rivosinc.com>
+X-Cookie: In space, no one can hear you fart.
 
-Add support for modem and ipa(IP Accelerator).
-Add spss reserved memory node.
 
-Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
----
- .../boot/dts/qcom/sdm845-samsung-starqltechn.dts   | 39 ++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+--EXdCC84RfjoEE1iq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-index 2710386a89e1..4614ec5f731f 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-@@ -17,6 +17,8 @@
- #include "pm8998.dtsi"
- #include "sdm845-wcd9340.dtsi"
- 
-+/delete-node/ &rmtfs_mem;
-+/delete-node/ &spss_mem;
- /delete-node/ &adsp_mem;
- /delete-node/ &slpi_mem;
- 
-@@ -91,15 +93,39 @@ memory@a1300000 {
- 			pmsg-size = <0x40000>;
- 		};
- 
-+		/*
-+		 * It seems like reserving the old rmtfs_mem region is also needed to prevent
-+		 * random crashes which are most likely modem related, more testing needed.
-+		 */
-+		removed_region: removed-region@88f00000 {
-+			reg = <0 0x88f00000 0 0x1c00000>;
-+			no-map;
-+		};
-+
- 		slpi_mem: slpi@96700000 {
- 			reg = <0 0x96700000 0 0xf00000>;
- 			no-map;
- 		};
- 
-+		spss_mem: spss@97700000 {
-+			reg = <0 0x97700000 0 0x100000>;
-+			no-map;
-+		};
-+
- 		adsp_mem: memory@97800000 {
- 			reg = <0 0x97800000 0 0x2000000>;
- 			no-map;
- 		};
-+
-+		rmtfs_mem: rmtfs-mem@fde00000 {
-+			compatible = "qcom,rmtfs-mem";
-+			reg = <0 0xfde00000 0 0x202000>;
-+			qcom,use-guard-pages;
-+			no-map;
-+
-+			qcom,client-id = <1>;
-+			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
-+		};
- 	};
- 
- 	gpio_keys {
-@@ -837,6 +863,19 @@ dai@5 {
- 	};
- };
- 
-+&mss_pil {
-+	firmware-name = "qcom/sdm845/starqltechn/mba.mbn",
-+			"qcom/sdm845/starqltechn/modem.mbn";
-+	status = "okay";
-+};
-+
-+&ipa {
-+	qcom,gsi-loader = "self";
-+	memory-region = <&ipa_fw_mem>;
-+	firmware-name = "qcom/sdm845/starqltechn/ipa_fws.mbn";
-+	status = "okay";
-+};
-+
- &usb_1 {
- 	status = "okay";
- };
+On Thu, Sep 12, 2024 at 04:16:34PM -0700, Deepak Gupta wrote:
 
--- 
-2.39.2
+> This patch implements this syscall for riscv. riscv doesn't require token
+> to be setup by kernel because user mode can do that by itself. However to
+> provide compatibility and portability with other architectues, user mode
+> can specify token set flag.
 
+The arm64 series also adds SHADOW_STACK_SET_MARKER for a top of stack
+marker, if this is only being done for compatibility it might be good to
+pick that up as well.  I don't know what the thoughts are on using them
+for RISC-V.  On arm64 the top of stack marker is just all bits 0.
+
+--EXdCC84RfjoEE1iq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbkWZsACgkQJNaLcl1U
+h9BxgAf+PzUH92Qd8Gx84qFgdXuCpqKnDddOVzhJ/1HXiYtm3Yst508zBxwr03E0
+oP3VhAC469mn8uOctrOJqdGHEFcC2/i3SXoyOMIp2gE+YkhdZxatybrRoCF+oNAT
+AW4y0dPMgjW0i9h1kbiw/MjiHQgVoxdgULs0eZOFLl2zr+QVAD6PYLIAh/3y/lzl
+e4xv7Bdh51DfKjKr7WwnKYJRGG12WjMxyOjHmy37b09h7THnjSTrg+Y/B7uQ6IpD
+xS8TYwFAAn9veTqu5LuGRrKm5zBfJ+xSs78Ee/F/MZ+JgzW4ZpDbmQxuBnk33TRe
+bsixBm+3DOUSeFsCCg21dGBeFYR0JQ==
+=Y+Cs
+-----END PGP SIGNATURE-----
+
+--EXdCC84RfjoEE1iq--
 
