@@ -1,85 +1,59 @@
-Return-Path: <devicetree+bounces-102722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61CDA97803C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 14:40:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1835D978044
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 14:42:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EAAF284743
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 12:40:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C231F1F2212C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 12:42:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EDA21DA111;
-	Fri, 13 Sep 2024 12:40:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD3471DA0F3;
+	Fri, 13 Sep 2024 12:42:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="U4sC6Zm5"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="H2+N+/os"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ECA41D6DA0
-	for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 12:40:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C16F1D6DA0;
+	Fri, 13 Sep 2024 12:42:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726231202; cv=none; b=HggUTxkjRca93Z2c7cPvjjugoDVpndtp3NQpl5z4gdEXCOz5m2AF4et8QTKJJ0H2dcAZpv2fYd9EGlp1hxtYt5UJQlGt7l1ZBvH4UD4WvD3+2Vsg1PjuB4kQVAckrs+tfowpS8QsMLB3uWNp61WsulS7VsqNMfoBlywC+dBRTmw=
+	t=1726231333; cv=none; b=biLo8qrcsWQGxpFhBcWWDetmutZgo8ncQDjT/vTHW8Y+Owry75a4hFsl5YVcIcxLd4Es01E55Lgu5G1FAV8JxRQy/38cb955t4mp5jhZuDYPzu8o4LDOtIB4VRl5QwgIgxMwnJ/93lJ/uzOxoUJnN5OiofmnMN/wOKFHxFPUoKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726231202; c=relaxed/simple;
-	bh=hztMeMM1qCriyo1fCCjrjQS1iGtiCvXmTAMGzfOehHM=;
+	s=arc-20240116; t=1726231333; c=relaxed/simple;
+	bh=Z458e25P5sMZPiUvcMK90HVD/MY6/klAorNSKi5ld6s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nKEKkBgIzqHmr3dQp+N4hNUylONPmZuzI5KFXg7559aRfCAQr8uRHa/mI5uwY9VBBXB2C5BKKU7rfbicezCxB8hhu+BqVkSb4Mn8zFeiwYKkNQ2XPjBx0hA7K1BxL/cBYtJv8StBOXjHrUTLQTj+C8k+7AaRLZyAqoiCc1n2bgA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=U4sC6Zm5; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5366fd6fdf1so2849462e87.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 05:40:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726231199; x=1726835999; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=a/eh4g1pBfcVaclixyeWzAYTvF5fM6tbBPcl9T1n1mk=;
-        b=U4sC6Zm5PqiPHtLb1C2yNYgdATpjD4wL6T/f4ni1f0OrXngLJkna8gWkxXnQ5JeEgc
-         9SHUCZs1IxGz0zoX5Uh139e7ofgz6B+lkjis6MtBUkU31PF8tru3h1FKDorU4+rfovdR
-         hDBN24X4qOk4Lq3CDJkF0msWZQTvp29hZici2dXLgkzZaVc/4Vm0vjw+tCyAQgM+YLw/
-         +WgNwafrEEnf2DSY4zqIQw8I85bNTlql5FRYJgAJyHfmf4rY6r9lJuAU01Uwlz5X3QP1
-         4dnhj5U9w3NLmZqQb1F5w8DJ4Dwwdv7smaKY3csEfT/zEQCS9xUD2RnYMq+R7KRvHrMM
-         St4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726231199; x=1726835999;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=a/eh4g1pBfcVaclixyeWzAYTvF5fM6tbBPcl9T1n1mk=;
-        b=gIH9qU6eYUGOVbM5cV2RkiQkPdWfOgTbVSNTzVOUFtims0qSAlaRklTBqBA+RHDXDY
-         5CqUVhJyZoY4wx4m7OYueLATBUW8to6ncBwnbRCo0+TDuC66c+LoKVsa6SLWtBqt/tOM
-         q01QIBCVLP8+NV3ZmblKRK1I6/xu+CrczQxbSSaGE6QJG4G2iGeQMwONcpmSisSSBHuC
-         +5N7GkgsJ8WjybEJX1IAo9At8QsYJUf4jndA3s+QV4jDJg2ogCWFug65ZNp2/U4GzFgj
-         gYqwnAeYDW+C1t1GscsTY/FkPxXl53E+UrODZ/oS1zFQsD8RpkooTfNU5U5L3TBOmwXA
-         cNiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVE39O4MgYeKAE80PSOPdFB4aNfR+GxqCqsIppnORsvxyLu1d8yBuPTFjeBIExyapyZmmgG/I0xQuPB@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqLOE1diP160PCwX2NqGNN3zvolEetLDDaqyoRYncw3iD/lXn8
-	k0lH94b0A06lXejShNxHlY2t/0eSSm6cu2ueg5sYB/BQtHV9XtaO2nr99G0Ruxg=
-X-Google-Smtp-Source: AGHT+IGF8/okjNEJNbENv2WyVE+pN5ByLnMfk4sOuuiGymoDntbqVYCR2vaw8GBVD7i51Vqu3U49Sg==
-X-Received: by 2002:a05:6512:3e07:b0:533:4522:7409 with SMTP id 2adb3069b0e04-53678ff3285mr3614089e87.53.1726231198189;
-        Fri, 13 Sep 2024 05:39:58 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5365f903bdfsm2232338e87.210.2024.09.13.05.39.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Sep 2024 05:39:57 -0700 (PDT)
-Date: Fri, 13 Sep 2024 15:39:55 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Sricharan R <quic_srichara@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
-	ulf.hansson@linaro.org, linus.walleij@linaro.org, catalin.marinas@arm.com, 
-	p.zabel@pengutronix.de, geert+renesas@glider.be, neil.armstrong@linaro.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, quic_varada@quicinc.com
-Subject: Re: [PATCH 4/8] pinctrl: qcom: Introduce IPQ5424 TLMM driver
-Message-ID: <rp6hhamsqwtneyfrf6lwrchd4p35blaqzgiq66wfkn66xofbar@7dgexti4qs4u>
-References: <20240913121250.2995351-1-quic_srichara@quicinc.com>
- <20240913121250.2995351-5-quic_srichara@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=F6uOQWgYDliFD9xmKxxfRcDqt4pFXCdTJiWfRvzhSrTbYc337vxRk/CL16Z3Lz3XhxoDVPX2BRX5N7OQjScVi8F04HvlE9uwiPg+vVJKn6TFtv2GJgFjvNdAvCFuZi6n+Fz+QJZZrmUNQC4sqbsUeedjXqMaxoRPEMyzAkJbCyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=H2+N+/os; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 903E7C4CEC0;
+	Fri, 13 Sep 2024 12:42:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1726231333;
+	bh=Z458e25P5sMZPiUvcMK90HVD/MY6/klAorNSKi5ld6s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=H2+N+/osF+w+n9MBkQvfOimEr9WFWLtVerEqIJhlgpssLVWlplAJf0TOGfCZcbUZb
+	 D35Tffti/f+NY4akk0mTKqJQTzMD6IL7FmSjfdQEI4UuLXQjwCYEF20f8lyeq7Gu19
+	 e4h/+fFpgBHweao1PWY5GckFncMwGoyYlSHxhFa4=
+Date: Fri, 13 Sep 2024 14:42:10 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: WangYuli <wangyuli@uniontech.com>
+Cc: stable@vger.kernel.org, sashal@kernel.org, william.qiu@starfivetech.com,
+	emil.renner.berthing@canonical.com, conor.dooley@microchip.com,
+	xingyu.wu@starfivetech.com, walker.chen@starfivetech.com,
+	robh@kernel.org, hal.feng@starfivetech.com, kernel@esmil.dk,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	richardcochran@gmail.com, netdev@vger.kernel.org
+Subject: Re: [PATCH 6.6 v2 1/4] riscv: dts: starfive: add assigned-clock* to
+ limit frquency
+Message-ID: <2024091350-lapdog-tarot-0130@gregkh>
+References: <3A31C289BC240955+20240912025539.1928223-1-wangyuli@uniontech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,31 +62,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240913121250.2995351-5-quic_srichara@quicinc.com>
+In-Reply-To: <3A31C289BC240955+20240912025539.1928223-1-wangyuli@uniontech.com>
 
-On Fri, Sep 13, 2024 at 05:42:46PM GMT, Sricharan R wrote:
-> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+On Thu, Sep 12, 2024 at 10:55:05AM +0800, WangYuli wrote:
+> From: William Qiu <william.qiu@starfivetech.com>
 > 
-> The IPQ5424 SoC comes with a TLMM block, like all other Qualcomm
-> platforms, so add a driver for it.
+> [ Upstream commit af571133f7ae028ec9b5fdab78f483af13bf28d3 ]
 > 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-
-The order of trailers is strange. It lists you as an author, but then
-Varadarajan's SoB comes first and yours (authors) comes afterwards. If
-it was a joing effort, please use Co-developed-by tag in addition to SoB.
-
+> In JH7110 SoC, we need to go by-pass mode, so we need add the
+> assigned-clock* properties to limit clock frquency.
+> 
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: WangYuli <wangyuli@uniontech.com>
 > ---
->  drivers/pinctrl/qcom/Kconfig.msm       |   9 +
->  drivers/pinctrl/qcom/Makefile          |   1 +
->  drivers/pinctrl/qcom/pinctrl-ipq5424.c | 792 +++++++++++++++++++++++++
->  3 files changed, 802 insertions(+)
->  create mode 100644 drivers/pinctrl/qcom/pinctrl-ipq5424.c
+>  .../riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi | 4 ++++
+>  1 file changed, 4 insertions(+)
 
-The rest LGTM
+Please rework this series and send only what is needed here.
 
--- 
-With best wishes
-Dmitry
+thanks,
+
+greg k-h
 
