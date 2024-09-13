@@ -1,125 +1,131 @@
-Return-Path: <devicetree+bounces-102806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEF5E978610
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 18:45:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 465A0978618
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 18:48:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8B19B22D4A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 16:44:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E76101F25A52
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 16:48:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B0377DA95;
-	Fri, 13 Sep 2024 16:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C09B824A1;
+	Fri, 13 Sep 2024 16:47:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nkuwIQTl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dxp3WfnE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CC216F077;
-	Fri, 13 Sep 2024 16:44:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 236D22D052;
+	Fri, 13 Sep 2024 16:47:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726245892; cv=none; b=V4z576D5mJoznLiMWp4kGgjW6QC3yVnTOiizLw4jFxom6C4WnEhfX9UEyb7fz7GCJtY0qWhPPJhD/2F87w/DR4M40DzlpqdMXmKCdOiA1JtDC5t9+gE/cAk4zCusSAbvJoHyxSTrZJC0pRJasKQ/1SuAOS7X4BIlJKo+wk/gelk=
+	t=1726246069; cv=none; b=KK06VkkMVp7sfjJdofh7OohlJATP8/mWVFwu+2H98RCdBBRtMy+0yy/46UcpWmZNNSPun/0MBjcElMODVSu/FMjaAFHhtFasY0H/R6GLJRKv10Jt8V9HTM0zhru9zqjzgdizuobrjolkBlSaXKqK8j8lr0YBrt7R2ue8gZ3eiCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726245892; c=relaxed/simple;
-	bh=s26bQZzJ3df3LTgBAKbXOf7FXaKcvwCGSPy7vTjdMI0=;
+	s=arc-20240116; t=1726246069; c=relaxed/simple;
+	bh=u5+27xyUUOfs9JlsXpfN9e9YD2zu86QlM9sNV0ZIPIs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=INSjaDpkQjLN2kjXAKKo1/VaRTZpTz8esrYCChO5mGGqXTfdemHjBFB3xiM1YTKan4GU7Nt9Gw09MS70Za+EV8lJ9ElMF30AM4wRrCz7VHcTU9z1Zy4lq+xX2R1VkthSCe4WmkHU6IEZrj7vHE+N5NYvgAsYFL7J0QYo/qAn21E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nkuwIQTl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02E0EC4CEC0;
-	Fri, 13 Sep 2024 16:44:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TZLUTRGfrKnRwmI/cYOB616M8n43IYxKGScGgiclrvhg/01ODOksoIfhKC55zaEpqSNOmttrgLXpo8euD2c43+qWpI2lgJWCq6frvJ5PpDAUmaeqbaiCVpz3keikRfphwVmp4nQbTSwF7ll70WU3luhF5TPIf1yh5MjdzIYeTPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dxp3WfnE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 331EBC4CEC0;
+	Fri, 13 Sep 2024 16:47:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726245891;
-	bh=s26bQZzJ3df3LTgBAKbXOf7FXaKcvwCGSPy7vTjdMI0=;
+	s=k20201202; t=1726246068;
+	bh=u5+27xyUUOfs9JlsXpfN9e9YD2zu86QlM9sNV0ZIPIs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nkuwIQTlu1zMARvz3BfZ2qy0vB7dmtz/4TR0N1+4nvauXlPW4HaLfX381rXRk9Vsf
-	 IqrtwMipvSHRH8DrDkOMnuZ92aFa0lCcYwWxM4GwAG3+wm7MbYSCsHawauOebKU82p
-	 GL77NRpbm0FMnqZ1UQB41zQb7LKNw5NeHYQ6CurtzQ3aoI4cjSYyJmhwIQf5D+US1j
-	 ImWtR7+HjgMOIoXuPv+OtD97KysrJu+DKACM5rMu1T8mPMdunlWCQDsA6Ga5/SWrFR
-	 ZvBEfKgnJGaL/7W9JhUuY34OlAr5nKhy966hY2ckxtvjvG9jmHZLnVTXhLa5UfFBrp
-	 liFTt5kJSINXA==
-Date: Fri, 13 Sep 2024 17:44:46 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Huacai Chen <chenhuacai@kernel.org>, devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev
-Subject: Re: [PATCH v1 02/10] ASoC: codecs: Add support for ES8323
-Message-ID: <eaa0b894-b4f7-4e4e-927d-216ff87e6f14@sirena.org.uk>
-References: <cover.1725518229.git.zhoubinbin@loongson.cn>
- <c44a6525d77941ef235825a58a9ea91f9f7d7042.1725518229.git.zhoubinbin@loongson.cn>
- <5a7357f7-da3b-4532-b055-ad33eb93fe1c@sirena.org.uk>
- <CAMpQs4JRz8x=zfB-DuDSxbcYDR=mtVET_AwawU+J9Vn=sx9LNw@mail.gmail.com>
+	b=dxp3WfnEec3z+Qchn+RvKHnza6/Hd4uDbbnNLerZze1hvLkeiDERjv7JNPfYXMTxB
+	 +yG0urQnyu1DGsT6N96ZYFogXCsf8vCxMHJz2AmbL7uWO9AYnat8RjV9ZRrxpyd/jB
+	 I7UdijVMgYL6yyQ9rdOqmqQ9Wr2qvbwlRAGZNw27Z1WaL/Lm3Lus+q6bJ2dBqTlFMQ
+	 ith8yad7QZFl49dI9nKDsriqsuhifcF1gqEjnNPWNFpdkHI7C6XOzA7ijcBblDRW9s
+	 pTDf4jG85eiowyGp7EFgovmeIki1pSyssjiMGhONgjuRyePS8bf7DPKQZzU4eYsv/q
+	 +WL06gHoXA3ew==
+Date: Fri, 13 Sep 2024 17:47:40 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Dzmitry Sankouski <dsankouski@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Pavel Machek <pavel@ucw.cz>, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Chanwoo Choi <cw00.choi@samsung.com>, phone-devel@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
+	linux-pwm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v3 04/23] dt-bindings: mfd: add maxim,max77705
+Message-ID: <20240913-platter-reset-2ec8d7c7295a@spud>
+References: <20240618-starqltechn_integration_upstream-v3-0-e3f6662017ac@gmail.com>
+ <20240618-starqltechn_integration_upstream-v3-4-e3f6662017ac@gmail.com>
+ <13a650f4-7ca7-4c95-b536-9814a22f00ff@kernel.org>
+ <CABTCjFCOTd5V5WyRbD1OCS9Hatk0mOCtNy5WWfp0KkUBgqXs+A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="c3I7//ljyRVcTArV"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ye/AKZ4nM3H9W2aP"
 Content-Disposition: inline
-In-Reply-To: <CAMpQs4JRz8x=zfB-DuDSxbcYDR=mtVET_AwawU+J9Vn=sx9LNw@mail.gmail.com>
-X-Cookie: In space, no one can hear you fart.
+In-Reply-To: <CABTCjFCOTd5V5WyRbD1OCS9Hatk0mOCtNy5WWfp0KkUBgqXs+A@mail.gmail.com>
 
 
---c3I7//ljyRVcTArV
+--ye/AKZ4nM3H9W2aP
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 13, 2024 at 08:02:02AM +0600, Binbin Zhou wrote:
-> On Thu, Sep 5, 2024 at 8:05=E2=80=AFPM Mark Brown <broonie@kernel.org> wr=
-ote:
+On Fri, Sep 13, 2024 at 05:51:56PM +0300, Dzmitry Sankouski wrote:
+> =D1=87=D1=82, 20 =D0=B8=D1=8E=D0=BD. 2024=E2=80=AF=D0=B3. =D0=B2 18:46, K=
+rzysztof Kozlowski <krzk@kernel.org>:
+> >
+> > On 18/06/2024 15:59, Dzmitry Sankouski wrote:
+> > > maxim,max77705 is MAX77705 pmic binding part
+> > >
+> > > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> > > ---
+> > >  .../devicetree/bindings/mfd/maxim,max77705.yaml    | 112 +++++++++++=
+++++++++++
+> >
+> > Your patch order is totally messed. Not tested by automation. Only
+> > limited review follows.
+> >
+> Hmm, not sure what was wrong. I sent version 4 to myself with `b4 send
+> --reflect`, the order looks good.
 
-> > > +/*
-> > > + * es8323 register cache
-> > > + * We can't read the es8323 register space when we
-> > > + * are using 2 wire for device control, so we cache them instead.
-> > > + */
-> > > +static u16 es8323_reg[] =3D {
-> > > +     0x06, 0x1C, 0xC3, 0xFC, /*  0 */
-> > > +     0xC0, 0x00, 0x00, 0x7C, /*  4 */
+I suspect that the order that he is referring to is not what you think,
+and that the patches do appear in the order to him that they did to you,
+but that order you committed changes is likely not bisectable due
+dependencies coming after their users.
 
-> > There's a bunch of regmap reimplementation in the driver, the cache and
-> > I/O code all looks totally generic.  Just use regmap.
-
-> Sorry, I don't really understand this point.
-> Do you mean to use regmap_read()/regmap_write() instead of
-> snd_soc_component_read()/snd_soc_component_write()?
-
-> If so, are there any rules for using snd_soc_component_xxx()?
-
-No, it's fine to use the component wrappers if you happen to have a
-component to hand.  What's an issue is things like writing your own
-register cache code (the above bit is part of an open coded cache
-implementation), or I2C read/write functions if there's not something
-unusual with how the device does I/O.
-
---c3I7//ljyRVcTArV
+--ye/AKZ4nM3H9W2aP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbka/0ACgkQJNaLcl1U
-h9BwNgf9EnOeRrl9jmhM2rPn+w+HO6+EuVqEi4X2xj7eNVP4f3bmm5rHrYwwa97E
-nEVoHyVqI5DNP6VDk+PZgODFsKW8Lomij/n3CCCgH04XGm5/uWVMNsT3h9Q0n4CX
-MhIw8ClD1QMuVipBaqyMkFS0gxo6K8OOp0a4JudlzIzGYCo3oSVQ1b7Zm3ovizjj
-ib/begFQFAJwkkMKgo02o16aZ19Nt+F4ewVByk5r86qQK+zZxwUoKSQlz6U9MIo1
-53zM59C9wMXkjw3MKlpnNcPtB46FGHWI3Uo/A+Lk1RDoPNYZWOxTYclElvlq1NUG
-ZHf5eh9li5yiQyHN2osCqhkVEAXUwQ==
-=5u7U
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuRsrAAKCRB4tDGHoIJi
+0sARAP9HtB47ae3VUBdcqtRSXtfh9F/QtUAtZQYTV93JLHGAvwEAgE6iBhZNSP8y
+/bl7XakNdZvek3z1WJ6OStgIn8KeBQ4=
+=yLFY
 -----END PGP SIGNATURE-----
 
---c3I7//ljyRVcTArV--
+--ye/AKZ4nM3H9W2aP--
 
