@@ -1,115 +1,331 @@
-Return-Path: <devicetree+bounces-102875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FA97978AB5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 23:39:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9BD0978AEE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 23:55:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 448471C22E9E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 21:39:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE3A91C22FB2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 21:55:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52BCA154435;
-	Fri, 13 Sep 2024 21:39:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DD6017C9AD;
+	Fri, 13 Sep 2024 21:55:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TnskXcut"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WcQMUsYv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28B42149C4A;
-	Fri, 13 Sep 2024 21:39:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DEA617BEC7;
+	Fri, 13 Sep 2024 21:55:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726263564; cv=none; b=I5CuVuQJdEdwr+HFg+0i7NiVPUF9sRXyxrqcNKxcM9TzQgmgRWJqlff+hFfjNAhl0mE78oa9GA/YUJlxiBdaEzH3cf2hZZ9g8hgP4ngI9kDQh+NuyZp/Ii3SWBQ0nDRJnY/c3NZpbznI7mmPCZ7BctgeQxbw2378qXWY9I0/KRs=
+	t=1726264523; cv=none; b=MVvSHcovw5Yi2KV6/lWKKPJ4C8zGS2BTTD0ZfClMlWEAROPZH2rpboO6sFjGwdFGvxY58i7SkIiSgJD/SvNAMRmhFfr3I+uEXv89vhpJrCqOyniuAu8qPgtR5ckrJcw/GHuRSWMdy8b6UpOdj3vDfiUmBgJuaz4Q1yd+pg4ekYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726263564; c=relaxed/simple;
-	bh=29lldcaIiks9/LfCKap1Yktuq2JC3H3MvPcdHX/euBs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=s6PijhI4CFkNzxiwNgxOuaNC96Nd6Lh3YtKpPIOOvaiHzEXtrKfTzt/UrCWsDaDcMMscptum9e6owgairaTrR857iNwR1g5LgWoE50C5t7pNxz/S3R/bp6tmzXod79TN4QBj1sicannVbQ61EHPeZG1zaFh0vWJjTYxo7p9p698=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TnskXcut; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACCCDC4CEC0;
-	Fri, 13 Sep 2024 21:39:23 +0000 (UTC)
+	s=arc-20240116; t=1726264523; c=relaxed/simple;
+	bh=q6149tWf9a83IHhHEMU2VwoiZlrZy13ezqBewO8qXZM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dcsuYDbuWAUT87YcEqOy+FEPIAKObB1KrATnnyCW0rBG6ubFiXKzrgraCnr5P8DX2JQnMsWSK5/p9BGKIOCy0q0FRSOARE5xH4y9VRLbXCLXeZyNAsdyByWEfeZoV8JypDfeGWMZMdf7LWYjedBmjkfBPiRGjJrsctihbkobcmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WcQMUsYv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66B8EC4CECC;
+	Fri, 13 Sep 2024 21:55:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726263563;
-	bh=29lldcaIiks9/LfCKap1Yktuq2JC3H3MvPcdHX/euBs=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=TnskXcutylpvBl9psxUrUfUCRPAzJGzmd8y9uJnn49340vS09VnNflnBAhFARrcMn
-	 IeSpHw6/nWrPg1N6jtMkHHEJpBw96cHY8PioWhedzjHpsV3dwmsC2vTS8f9vlANP5p
-	 +HoUS4oiP2V76PpFhUocCnKBbWUPVpSkWJAOgahqgRMzQ9pkJy/TUgljsiqiOHeWj/
-	 fu6o5gKxrN51JtIBvAdl8ErSWEHkk/S9RiuQ6CZapIx8/DrqfSYzBAACLCSsdgblPm
-	 6TFJvXE/t+34KGDYtsxzIHLLGK5ePjSCFibY6KWREM9KQP4r5wyoCIO35Q1RDacKa+
-	 bfRvrVFijIrcg==
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5367ae52a01so1959695e87.3;
-        Fri, 13 Sep 2024 14:39:23 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCX86voZFnCBD9cZHuKyHMUdhlAqRZxuUsPx/UYhYs2HiHMTWTuwJ1Me7YR7je7Bic0mCvoSodf+jrSr@vger.kernel.org, AJvYcCXD+bfKuY/sjtgBXU1kpBzYPFThu1ryJ5/onfxgj0GjQ1tXuYJFzTXadcIBQ2cYR6HKv5IsCbqE+8GAe9+o@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuccCcyyvqZrEcPCp6YpqYgQ7Rj3xDBw0yg+Y/ld8K5M+mw59A
-	W7wuQgTmjcMH8oaKyRobyT8YkyvRtoUKpfctE4UK/ONus+oAuREoZ/3kCqQo1Q/93ijKY8OyPbX
-	k9fUNgh3oWKzkxvvIgOPdfQJu1Q==
-X-Google-Smtp-Source: AGHT+IHja0EdX+FTr55htGcN7Jpd0i8VmeMa2FJm1kpulhqYl5C0BU8PCxBt6UcQdsqHXvue4VOMzQdKb8SnPRakjGM=
-X-Received: by 2002:a05:6512:2393:b0:52e:98f6:c21f with SMTP id
- 2adb3069b0e04-5367fec3915mr2947015e87.16.1726263562116; Fri, 13 Sep 2024
- 14:39:22 -0700 (PDT)
+	s=k20201202; t=1726264522;
+	bh=q6149tWf9a83IHhHEMU2VwoiZlrZy13ezqBewO8qXZM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WcQMUsYvo9iMfCXqKzz6WfBOeSf3QnxCe7qBB55jtluaLCdkajX3PK+h6pyWyBX07
+	 PnEet5lNBh2xMOHyEUtFlosiTzo3hwcMA6t3RS+egfoow2NGG+5Npxa7L2SoCr/Fwq
+	 +7PxDup8jdlmXiDh0wY+Xr8SAzjC+G1FGXhlQ9FtrV5qrJACiTJ7rzq5GLGeGaPylO
+	 GB8gfB5GU9GIUuRgX2zsW3uP0oSuG9V+oz/AGRvxv9tI7ACCSGFP0+5eFAjyG+icUO
+	 Rv2Mvreqixc/gkn8utok04BwajsZETiwRjz2Yoy/B6F6jeyNk8jWAZP9/okZ+fjhXI
+	 EJdZKnyjanX/A==
+Date: Fri, 13 Sep 2024 16:55:21 -0500
+From: Rob Herring <robh@kernel.org>
+To: Dzmitry Sankouski <dsankouski@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Pavel Machek <pavel@ucw.cz>, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	cros-qcom-dts-watchers@chromium.org,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Simona Vetter <simona.vetter@ffwll.ch>, linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-leds@vger.kernel.org, linux-pwm@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v4 05/27] dt-bindings: mfd: add maxim,max77705
+Message-ID: <20240913215521.GA864207-robh@kernel.org>
+References: <20240913-starqltechn_integration_upstream-v4-0-2d2efd5c5877@gmail.com>
+ <20240913-starqltechn_integration_upstream-v4-5-2d2efd5c5877@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240912144430.3161717-1-treapking@chromium.org> <20240912144430.3161717-2-treapking@chromium.org>
-In-Reply-To: <20240912144430.3161717-2-treapking@chromium.org>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 13 Sep 2024 16:39:10 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLhnuqASgOab7RjdrUxGs4ags8CutL0K9Vr_57HmL+TpQ@mail.gmail.com>
-Message-ID: <CAL_JsqLhnuqASgOab7RjdrUxGs4ags8CutL0K9Vr_57HmL+TpQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display: mediatek: dpi: Add
- power-domains to the bindings
-To: Pin-yen Lin <treapking@chromium.org>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, CK Hu <ck.hu@mediatek.com>, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, Fabien Parent <fparent@baylibre.com>, 
-	Jitao shi <jitao.shi@mediatek.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240913-starqltechn_integration_upstream-v4-5-2d2efd5c5877@gmail.com>
 
-On Thu, Sep 12, 2024 at 9:44=E2=80=AFAM Pin-yen Lin <treapking@chromium.org=
-> wrote:
->
-> The power-domains property is used by most DT nodes using mediatek,dpi
-> bindings. Add this to the bindings to fix the schema check error.
->
-> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+On Fri, Sep 13, 2024 at 06:07:48PM +0300, Dzmitry Sankouski wrote:
+> Add maxim,max77705 core binding part.
+> 
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> 
 > ---
->
->  .../bindings/display/mediatek/mediatek,dpi.yaml           | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.=
-yaml
-> index 5ca7679d5427..7e0bb88f5856 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam=
-l
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam=
-l
-> @@ -42,6 +42,12 @@ properties:
->    interrupts:
->      maxItems: 1
->
-> +  power-domains:
+> Changes in v4:
+> - change dts example intendation from tabs
+>  to spaces
+> - remove interrupt-names property
+> - remove obvious reg description
+> - split long(>80) lines
+> ---
+>  .../devicetree/bindings/mfd/maxim,max77705.yaml    | 169 +++++++++++++++++++++
+>  MAINTAINERS                                        |   1 +
+>  2 files changed, 170 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77705.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77705.yaml
+> new file mode 100644
+> index 000000000000..40a67d15e312
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/maxim,max77705.yaml
+> @@ -0,0 +1,169 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/maxim,max77705.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim MAX77705 Companion Power Management IC and USB Type-C interface IC
+> +
+> +maintainers:
+> +  - Dzmitry Sankouski <dsankouski@gmail.com>
+> +
+> +description: |
+> +  This is a part of device tree bindings for Maxim MAX77705 multi functional
+> +  device.
+> +
+> +  The Maxim MAX77705 is a Companion Power Management and Type-C
+> +  interface IC which includes charger, fuelgauge, LED, haptic motor driver and
+> +  Type-C management IC.
+> +
+> +properties:
+> +  compatible:
+> +    const: maxim,max77705
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  charger:
+> +    $ref: /schemas/power/supply/power-supply.yaml
+> +    additionalProperties: true
+
+No, true is only valid for incomplete schemas (i.e. common ones included 
+by another complete schema).
+
+And since you reference another schema, you want 'unevaluatedProperties' 
+instead if you want to use any properties defined in power-supply.yaml.
+
+> +    properties:
+> +      compatible:
+> +        const: maxim,max77705-charger
+> +
+> +    required:
+> +      - compatible
+> +      - monitored-battery
+> +
+> +  fuel_gauge:
+
+fuel-gauge
+
+> +    $ref: /schemas/power/supply/power-supply.yaml
+> +    type: object
+> +    additionalProperties: true
+> +    description: MAX77705 fuel gauge with ModelGauge m5 EZ algorithm support.
+
+blank line
+
+> +    properties:
+> +      compatible:
+> +        const: maxim,max77705-fuel-gauge
+> +
+> +      shunt-resistor-micro-ohms:
+> +        description: |
+
+Don't need '|'.
+
+> +          The value of current sense resistor in microohms.
+> +
+> +    required:
+> +      - compatible
+> +      - shunt-resistor-micro-ohms
+> +      - monitored-battery
+> +      - power-supplies
+> +
+> +  haptic:
+> +    type: object
+> +    additionalProperties: false
+
+blank line
+
+> +    properties:
+> +      compatible:
+> +        const: maxim,max77705-haptic
+> +
+> +      haptic-supply: true
+> +
+> +      pwms:
+> +        maxItems: 1
+> +
+> +    required:
+> +      - compatible
+> +      - haptic-supply
+> +      - pwms
+> +
+> +  leds:
+> +    type: object
+> +    additionalProperties: false
 > +    description:
-> +      A phandle and PM domain specifier as defined by bindings
-> +      of the power controller specified by phandle. See
-> +      Documentation/devicetree/bindings/power/power-domain.yaml for deta=
-ils.
+> +      Up to 4 LEDs supported. One LED is represented by one child node.
 
-power-domains was already added recently, but mt8183 was not included.
-So you'll need to adjust the if/then schema for it.
+blank line
 
-Rob
+> +    properties:
+> +      compatible:
+> +        const: maxim,max77705-led
+> +
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +    patternProperties:
+> +      "^led@[0-3]$":
+> +        type: object
+> +        $ref: /schemas/leds/common.yaml#
+
+blank line
+
+> +        properties:
+> +          reg:
+> +            description:
+> +              LED index.
+
+blank line
+
+> +        unevaluatedProperties: false
+
+blank line
+
+> +        required:
+> +          - reg
+> +
+> +    required:
+> +      - compatible
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pmic@66 {
+> +            compatible = "maxim,max77705";
+> +            reg = <0x66>;
+> +            interrupt-parent = <&pm8998_gpios>;
+> +            interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+> +            pinctrl-0 = <&chg_int_default>;
+> +            pinctrl-names = "default";
+> +
+> +            leds {
+> +                compatible = "maxim,max77705-led";
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                led@1 {
+> +                    reg = <1>;
+> +                    label = "red:usr1";
+> +                };
+> +
+> +                led@2 {
+> +                    reg = <2>;
+> +                    label = "green:usr2";
+> +                };
+> +
+> +                led@3 {
+> +                    reg = <3>;
+> +                    label = "blue:usr3";
+> +                };
+> +            };
+> +
+> +            max77705_charger: charger {
+> +                compatible = "maxim,max77705-charger";
+> +                monitored-battery = <&battery>;
+> +            };
+> +
+> +            fuel_gauge {
+> +                compatible = "maxim,max77705-fuel-gauge";
+> +                monitored-battery = <&battery>;
+> +                power-supplies = <&max77705_charger>;
+> +                rsense = <5>;
+
+Not documented.
+
+> +            };
+> +
+> +
+> +            haptic {
+> +                compatible = "maxim,max77705-haptic";
+> +                haptic-supply = <&vib_regulator>;
+> +                pwms = <&vib_pwm 0 50000>;
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index b65cfa1d322d..59d027591e34 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14064,6 +14064,7 @@ B:	mailto:linux-samsung-soc@vger.kernel.org
+>  F:	Documentation/devicetree/bindings/*/maxim,max14577.yaml
+>  F:	Documentation/devicetree/bindings/*/maxim,max77686.yaml
+>  F:	Documentation/devicetree/bindings/*/maxim,max77693.yaml
+> +F:	Documentation/devicetree/bindings/*/maxim,max77705*.yaml
+>  F:	Documentation/devicetree/bindings/*/maxim,max77843.yaml
+>  F:	Documentation/devicetree/bindings/clock/maxim,max77686.txt
+>  F:	drivers/*/*max77843.c
+> 
+> -- 
+> 2.39.2
+> 
 
