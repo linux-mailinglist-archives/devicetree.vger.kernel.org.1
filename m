@@ -1,257 +1,272 @@
-Return-Path: <devicetree+bounces-102544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CB819776A5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 03:55:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF94D9776B1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 04:02:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F47B283028
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 01:55:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F7F31F25BC8
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 02:02:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E94EF149C41;
-	Fri, 13 Sep 2024 01:55:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C29901D3640;
+	Fri, 13 Sep 2024 02:02:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="zETWvmRS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PfitY7kH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E780213A896
-	for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 01:55:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D76531D279F;
+	Fri, 13 Sep 2024 02:02:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726192527; cv=none; b=dZDB7Tf0pBjlV5fc/dnHZqp2qMP0/36K/AjLP9zOLYCzCbKn6x8V7e7AQn5hZa/NBqJKj0x8XVt5RJVgl65W9g600u/bTZSDpIUVo00GhpIzaLw9cRE2WdHkbYH6Rz7iN8XtTFp99N+zT4vt9lgO0u29tcH0WuxmETemKU691y8=
+	t=1726192939; cv=none; b=HoUms8kS8Ffu1WG94XfBdHnfoWe3P/q8rRLNPuOrohQ8STgmRumiZW/P7ynpviXBlX5DCMlMRryTRdgybviwOEecZQHX/yFFkQePLB9K0es05cK1AduZgnF/t4jA5ec1/I9BiNwZ2M17Hpx31F4Pv7ZybFTeQYeh+vbKWlfVNcU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726192527; c=relaxed/simple;
-	bh=tD/0mhFvRY4eEH2ER7s1nKHZ7MapcKs41srjhXVYDA8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=aeViY9NcP/Og8ZDQASthjEIdIMi3gBYjiIxVOh2O85hKa8F51Oz7yFtI41E3xisTzPmuYDRWLyRtS3p05U3Pt85YQseiyj3mp6DiBJQDpm+mPKqltE34gM5baHZnQ6CDGU/EMGBRtDY55qdOIWpyHmuL2rHo7bRaLZpfQAYiO+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=zETWvmRS; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2068bee21d8so18193265ad.2
-        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 18:55:25 -0700 (PDT)
+	s=arc-20240116; t=1726192939; c=relaxed/simple;
+	bh=Cz5zX1I9CzyGjxg/hnDfG1D8skWYZ4tTNIVZ5IfjHiY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=V1TdT1Ur6eKhPR4Rtt6HUZ7JYWEyvHMAtFTwx0/SKmUjpnTJd7gMnu5g+TNFqYBb9t/klSPcOpXB/zCQLvi9KiiBly8BcFFVDRLo+EtDLVNhYqw/XACp3bcfHf88U1yYQDXBJjnjtL+5mMFW+nqKfrIHZ5HhFpPvIeOpQycuEWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PfitY7kH; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a8d2daa2262so38065366b.1;
+        Thu, 12 Sep 2024 19:02:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1726192525; x=1726797325; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1726192936; x=1726797736; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RPvN3QrjGq02f86hZYf9aco+Usfx+kruEilYioxOFMk=;
-        b=zETWvmRS6xqMjm7Jurq82HttmQpapGV2wFe0zOFxgU1DA3VBZVva1CjfuQGhtpL28X
-         bZKbvwFAmSLUUZO9ypyenpduIX0cB/azm2VH94vpQJBUBeMt344bvB9P1SYNcNaEZJC/
-         kvNKH3Z9dMi3opipZaPHSwfWWVRHXtVduljF4Y5d2N6724eKFUdo1yUtO37ygaV9NneR
-         PeMiqEAd0fdWaBlo8kg8JhziPYu4v953gD2CWIiSNRPn1Y0GyKhJlCFXrzfY5frD/sgN
-         6+3/FhR4zpNd8tKvOXTbbJeSlo3x0w8lVJPErWGNS6DqCu8xuy0Sahh4QnrbNW3B0FNz
-         Z48g==
+        bh=Za1VrBBRwn+rfA8pvyhHB+W1qLi3Bv4s93LHwXChOXM=;
+        b=PfitY7kHEuL+hLS4mISTxH/02KGZVKLVxJ9l8g/DRZdeZbZ2vfRLSuHqT4KowclWBK
+         hGO7MQA5t51YvwQD24ZAuqRHqFxvW+cOxu4ImHx8p9heAozzaNmYesuLby16PlBxmjTG
+         nwLpjWIdzxPAkr5HwEah4OSU57wFQHFibszGflRsCRZHA5NdrbPnLQ6rf1NKkktfCAAA
+         mlmpBilq3Ck8N6TSCvUbfYmX4K1xgZXS6acqMQpO/3F9Z+RLxDyva+7S/LKu8qYEux3q
+         BiJ/fsM4a2NdKMPRHdsIcz6yNomn/Ow2tBnHOnNbWKmVDzVCSpmI7GkhPtpMKOuwsLnK
+         SEgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726192525; x=1726797325;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1726192936; x=1726797736;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RPvN3QrjGq02f86hZYf9aco+Usfx+kruEilYioxOFMk=;
-        b=C+yLs2AqEourqo+8qEDRGz1XySBNPlfMmGqayd4TpLxpjxpGTrEZt2JqxPwmxZ6UrD
-         ImbQU4+v42ai8rSM1NlF4V2amdPXXlYTWqz71jY/fRGuShUZO3boVBUcawHyzgLoYixL
-         A1Y2k0bL32xn+VJ7ONWK3DGRCubfBf5gtA1mMAuZJB4U2yYX9pv5PSYvHCRSBp6FhLFq
-         NiYTA+IF/ORSjNeE/DXt1KGUZyOX0S4OYqrq/MIlZLXuuPyMK/96AXNjb8byGYGY2Uis
-         LcY7CrYz4ple4hMM69VGGGu0S5YWntlvrndgNFpvHQPaijTbug5yLcvblDYCCinPw54f
-         v6hA==
-X-Forwarded-Encrypted: i=1; AJvYcCXuFn7l5+9AryVMVBA5B5nGAQgz1TvVpNwaktI2KUc4qJ9e6hH4YuXhUXWYsxShCIYdTzrHiqhF2tDp@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKu4K0+erAd7x6+SP8N5jJIzEVypVXr0a68UA8QKjgvjkyfm5e
-	KRKzqszuS2O5d1CC7dF48pTfFWCmVlablCBLVc0rBKMDbNaUkYaQj2hrKYSmBnc=
-X-Google-Smtp-Source: AGHT+IHXk0XxSwev03jWrdCcxnbXBoYWIX5zOUw0pJsgtf/v83w1Mu5mNXdVgLktnksUG8khkgSYAQ==
-X-Received: by 2002:a17:902:e5d1:b0:205:5f36:ffb1 with SMTP id d9443c01a7336-2076e412909mr58310905ad.37.1726192525022;
-        Thu, 12 Sep 2024 18:55:25 -0700 (PDT)
-Received: from zjn.huaqin.com ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2076af49210sm19896605ad.99.2024.09.12.18.55.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Sep 2024 18:55:24 -0700 (PDT)
-From: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
-To: angelogioacchino.delregno@collabora.com,
-	matthias.bgg@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	knoxchiou@google.com,
-	hsinyi@google.com
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
-Subject: [PATCH v6 2/2] arm64: dts: mediatek: Add MT8186 Ponyta Chromebooks
-Date: Fri, 13 Sep 2024 09:55:03 +0800
-Message-Id: <20240913015503.4192806-3-cengjianeng@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240913015503.4192806-1-cengjianeng@huaqin.corp-partner.google.com>
-References: <20240913015503.4192806-1-cengjianeng@huaqin.corp-partner.google.com>
+        bh=Za1VrBBRwn+rfA8pvyhHB+W1qLi3Bv4s93LHwXChOXM=;
+        b=LJvMzGDuYvib0LzhPMcu93yFXyj8sqLD68Lk3Yty1garfPBkqkdou/d5SBl5h+c1Uu
+         wjC4bI80/dSFc8/uL6eCdb/GJssko87uyonyT/HZysl7HokjOXnaG2HMk9q+MUKmBVuR
+         HzW4A2uAOsfL/5LRJ0AK8r/QBNPIEZJh9eud9E32XU5+1Yov5Q+r8OOcJ+FpLT8Nq7I7
+         PJYUE9uR8kaXuoK9ZCFGaqPce3+TuOaXLZ7REBYeC2sXQ2tllNs4UVLa4Tx8EBsJwKEt
+         GnOsDj0/1QJ86QRDfps2LyPZKecjoNUzERL4YMtAu5/XumCHw6n0Smx2GNz0rw5H0RMB
+         l/YA==
+X-Forwarded-Encrypted: i=1; AJvYcCUcm4upLzig8oOtEXBMCtVDHMMpoy3H51bKdhMrRp5VXFukPNTwiS9/TxIp+DubVIsfV8NnvepdzPkT@vger.kernel.org, AJvYcCWwvtixQrUPc+mIabdHQXfTj0QxRu4xDXUqLutKSsQ+3T/KOFZPb0VoUOktlttD/AwI1wdT03q30X7ebiI=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6h2GadP3RtddSY3dMg1my+wcNyNxOH1+8v03FwsBbC5wknoOw
+	R7/n1wcWFk7vbuQwn9Ppwga13eRBSLZp9njOueaHOSx/gVrCOku2GFyUh+4JNtMgOdSdmAnI9V6
+	ayY17tPFmyXOdrZfprKSiHG+WVqUshQjwh1W8dg==
+X-Google-Smtp-Source: AGHT+IGmaOVz9eWZVBmnkUFctSYHbKgcUw492jRbUuzTOMojrpripRNj32SgNyGp+C1Af+8TAqbpm3AcRWf/z4hTLp4=
+X-Received: by 2002:a17:906:c109:b0:a86:7a84:abb7 with SMTP id
+ a640c23a62f3a-a9047ca076emr61223666b.20.1726192935634; Thu, 12 Sep 2024
+ 19:02:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1725518229.git.zhoubinbin@loongson.cn> <c44a6525d77941ef235825a58a9ea91f9f7d7042.1725518229.git.zhoubinbin@loongson.cn>
+ <5a7357f7-da3b-4532-b055-ad33eb93fe1c@sirena.org.uk>
+In-Reply-To: <5a7357f7-da3b-4532-b055-ad33eb93fe1c@sirena.org.uk>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Fri, 13 Sep 2024 08:02:02 +0600
+Message-ID: <CAMpQs4JRz8x=zfB-DuDSxbcYDR=mtVET_AwawU+J9Vn=sx9LNw@mail.gmail.com>
+Subject: Re: [PATCH v1 02/10] ASoC: codecs: Add support for ES8323
+To: Mark Brown <broonie@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Huacai Chen <chenhuacai@kernel.org>, devicetree@vger.kernel.org, 
+	linux-sound@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-MT8186 ponyta, known as huaqin custom label, is a
-MT8186 based laptop. It is based on the "corsola" design.
-It includes LTE, touchpad combinations.
+Hi Mark:
 
-Signed-off-by: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
----
-Changes in v6:
-- PATCH 2/2: Remove prototype sku.
-- PATCH 2/2: Disable the other trackpad to enable one of them.
-- Link to v5:https://lore.kernel.org/all/20240909023148.1677936-3-cengjianeng@huaqin.corp-partner.google.com/
+Thanks for your detailed review.
 
-Changes in v5:
-- PATCH 2/2: Remove sku2147483647.
-- Link to v4:https://lore.kernel.org/all/20240906085739.1322676-3-cengjianeng@huaqin.corp-partner.google.com/
+On Thu, Sep 5, 2024 at 8:05=E2=80=AFPM Mark Brown <broonie@kernel.org> wrot=
+e:
+>
+> On Thu, Sep 05, 2024 at 03:02:15PM +0800, Binbin Zhou wrote:
+>
+> This looks like it was based on some *extremely* old code and needs
+> quite a few updates to bring it up to modern standards.
+>
+> > + * Author: Mark Brown <will@everset-semi.com>
+>
+> Oh?
+>
+> > +/*
+> > + * es8323 register cache
+> > + * We can't read the es8323 register space when we
+> > + * are using 2 wire for device control, so we cache them instead.
+> > + */
+> > +static u16 es8323_reg[] =3D {
+> > +     0x06, 0x1C, 0xC3, 0xFC, /*  0 */
+> > +     0xC0, 0x00, 0x00, 0x7C, /*  4 */
+>
+> There's a bunch of regmap reimplementation in the driver, the cache and
+> I/O code all looks totally generic.  Just use regmap.
 
-Chage since v3:
-- No change.
+Sorry, I don't really understand this point.
+Do you mean to use regmap_read()/regmap_write() instead of
+snd_soc_component_read()/snd_soc_component_write()?
 
-Changes in v2:
-- PATCH 2/2: Modify the dtb name without rev2.
-- Link to v1:https://lore.kernel.org/all/20240902125502.1844374-1-cengjianeng@huaqin.corp-partner.google.com/
+If so, are there any rules for using snd_soc_component_xxx()?
+>
+> > +static const struct soc_enum es8323_enum[] =3D {
+> > +     SOC_VALUE_ENUM_SINGLE(ES8323_DACCONTROL16, 3, 7, ARRAY_SIZE(es832=
+3_line_texts),
+> > +                           es8323_line_texts, es8323_line_values),   /=
+* LLINE */
+> > +     SOC_VALUE_ENUM_SINGLE(ES8323_DACCONTROL16, 0, 7, ARRAY_SIZE(es832=
+3_line_texts),
+> > +                           es8323_line_texts, es8323_line_values),   /=
+* RLINE */
+>
+> Use named variables for the enums rather than putting them into an array
+> that's not otherwise used...
 
----
- arch/arm64/boot/dts/mediatek/Makefile         |  2 +
- .../mediatek/mt8186-corsola-ponyta-sku0.dts   | 23 ++++++++++
- .../mediatek/mt8186-corsola-ponyta-sku1.dts   | 27 ++++++++++++
- .../dts/mediatek/mt8186-corsola-ponyta.dtsi   | 44 +++++++++++++++++++
- 4 files changed, 96 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku0.dts
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku1.dts
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta.dtsi
+OK, I will use macro like SOC_ENUM_SINGLE_DECL() to define them.
+>
+> > +static const struct snd_kcontrol_new es8323_snd_controls[] =3D {
+> > +     SOC_ENUM("3D Mode", es8323_enum[4]),
+> > +     SOC_ENUM("ALC Capture Function", es8323_enum[5]),
+>
+> ...it's *vastly* more readable and maintainable.
+>
+> > +     SOC_SINGLE("Capture Mute", ES8323_ADC_MUTE, 2, 1, 0),
+>
+> On/off switches should end in Switch, see control-names.rst.
+>
+> > +     /* gModify.Cmmt Implement when suspend/startup */
+> > +     SND_SOC_DAPM_DAC("Right DAC", "Right Playback", SND_SOC_NOPM, 6, =
+1),
+>
+> gModify.Cmmt?
+>
+> > +/*
+> > + * Note that this should be called from init rather than from hw_param=
+s.
+> > + */
+> > +static int es8323_set_dai_sysclk(struct snd_soc_dai *codec_dai,
+> > +                              int clk_id, unsigned int freq, int dir)
+>
+> Why?
+>
+> > +     /* set master/slave audio interface */
+> > +     switch (fmt & SND_SOC_DAIFMT_MASTER_MASK) {
+> > +     case SND_SOC_DAIFMT_CBM_CFM:    /* MASTER MODE */
+> > +             iface |=3D 0x80;
+> > +             break;
+> > +     case SND_SOC_DAIFMT_CBS_CFS:    /* SLAVE MODE */
+>
+> Please use the modern naming with _CBP_CFP and so on.
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 8fd7b2bb7a15..50b5cf04d3ae 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -58,6 +58,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393216.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393217.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393218.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-ponyta-sku0.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-ponyta-sku1.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-rusty-sku196608.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-steelix-sku131072.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-steelix-sku131073.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku0.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku0.dts
-new file mode 100644
-index 000000000000..f6448e91436a
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku0.dts
-@@ -0,0 +1,23 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2023 Google LLC
-+ */
-+
-+/dts-v1/;
-+#include "mt8186-corsola-ponyta.dtsi"
-+
-+/ {
-+	model = "Google Ponyta sku0/unprovisioned board";
-+	compatible = "google,ponyta-sku0", "google,ponyta", "mediatek,mt8186";
-+};
-+
-+&i2c2 {
-+	touchpad@2c {
-+		compatible = "hid-over-i2c";
-+		reg = <0x2c>;
-+		hid-descr-addr = <0x20>;
-+		interrupts-extended = <&pio 11 IRQ_TYPE_LEVEL_LOW>;
-+		vcc-supply = <&pp3300_s3>;
-+		wakeup-source;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku1.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku1.dts
-new file mode 100644
-index 000000000000..203ee109bbf7
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku1.dts
-@@ -0,0 +1,27 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2023 Google LLC
-+ */
-+
-+/dts-v1/;
-+#include "mt8186-corsola-ponyta.dtsi"
-+
-+/ {
-+	model = "Google Ponyta sku1 board";
-+	compatible = "google,ponyta-sku1", "google,ponyta", "mediatek,mt8186";
-+};
-+
-+&i2c2 {
-+	touchpad@15 {
-+		compatible = "elan,ekth3000";
-+		reg = <0x15>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		vcc-supply = <&pp3300_s3>;
-+		wakeup-source;
-+	};
-+};
-+
-+&usb_c1 {
-+	status = "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta.dtsi
-new file mode 100644
-index 000000000000..59594022331e
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta.dtsi
-@@ -0,0 +1,44 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2023 Google LLC
-+ */
-+
-+/dts-v1/;
-+#include "mt8186-corsola-steelix.dtsi"
-+
-+&keyboard_controller {
-+	function-row-physmap = <
-+		MATRIX_KEY(0x00, 0x02, 0)	/* T1 */
-+		MATRIX_KEY(0x03, 0x02, 0)	/* T2 */
-+		MATRIX_KEY(0x02, 0x02, 0)	/* T3 */
-+		MATRIX_KEY(0x01, 0x02, 0)	/* T4 */
-+		MATRIX_KEY(0x03, 0x04, 0)	/* T5 */
-+		MATRIX_KEY(0x02, 0x04, 0)	/* T6 */
-+		MATRIX_KEY(0x01, 0x04, 0)	/* T7 */
-+		MATRIX_KEY(0x00, 0x04, 0)	/* T8 */
-+		MATRIX_KEY(0x00, 0x01, 0)	/* T9 */
-+		MATRIX_KEY(0x02, 0x09, 0)	/* T10 */
-+		MATRIX_KEY(0x01, 0x09, 0)	/* T11 */
-+		MATRIX_KEY(0x01, 0x05, 0)	/* T12 */
-+	>;
-+
-+	linux,keymap = <
-+		CROS_STD_MAIN_KEYMAP
-+		MATRIX_KEY(0x00, 0x02, KEY_BACK)
-+		MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
-+		MATRIX_KEY(0x02, 0x02, KEY_ZOOM)
-+		MATRIX_KEY(0x01, 0x02, KEY_SCALE)
-+		MATRIX_KEY(0x03, 0x04, KEY_SYSRQ)
-+		MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSDOWN)
-+		MATRIX_KEY(0x01, 0x04, KEY_BRIGHTNESSUP)
-+		MATRIX_KEY(0x00, 0x04, KEY_PLAYPAUSE)
-+		MATRIX_KEY(0x00, 0x01, KEY_MICMUTE)
-+		MATRIX_KEY(0x02, 0x09, KEY_MUTE)
-+		MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
-+		MATRIX_KEY(0x01, 0x05, KEY_VOLUMEUP)
-+	>;
-+};
-+
-+&mt6366codec {
-+	mediatek,dmic-mode = <1>; /* one-wire */
-+};
--- 
-2.34.1
+Get. SND_SOC_DAIFMT_BC_FP/SND_SOC_DAIFMT_BC_FC will be used.
+>
+> > +static int es8323_mute(struct snd_soc_dai *dai, int mute,  int stream)
+> > +{
+> > +     struct snd_soc_component *component =3D dai->component;
+> > +     struct es8323_priv *es8323 =3D snd_soc_component_get_drvdata(comp=
+onent);
+> > +
+> > +     if (mute) {
+> > +             es8323_set_gpio(ES8323_CODEC_SET_SPK,
+> > +                             !es8323->spk_gpio_level, es8323->spk_ctl_=
+gpio);
+> > +             usleep_range(2000, 3000);
+> > +             snd_soc_component_write(component, ES8323_DAC_MUTE, 0x06)=
+;
+> > +     } else {
+> > +             snd_soc_component_write(component, ES8323_DAC_MUTE, 0x02)=
+;
+> > +             usleep_range(2000, 3000);
+> > +             if (!es8323->hp_inserted)
+> > +                     es8323_set_gpio(ES8323_CODEC_SET_SPK,
+> > +                                     es8323->spk_gpio_level, es8323->s=
+pk_ctl_gpio);
+>
+> This appears to be controlling the speaker based on jack detection.
+> Unless there is some hardware restriction this should be done via DAPM
+> and the user allowed to manage when the speaker is used depending on
+> their use case.
 
+In this version of the patch, I plan to remove the jack related
+functions, and I will add them later.
+>
+> > +static int es8323_suspend(struct snd_soc_component *component)
+> > +{
+> > +     snd_soc_component_write(component, ES8323_DAC_MUTE, 0x06);
+> > +     snd_soc_component_write(component, ES8323_LOUT1_VOL, 0x00);
+> > +     snd_soc_component_write(component, ES8323_ROUT1_VOL, 0x00);
+> > +     snd_soc_component_write(component, ES8323_LOUT2_VOL, 0x00);
+> > +     snd_soc_component_write(component, ES8323_ROUT2_VOL, 0x00);
+>
+> This will overwrite user settings when suspending, the controls should
+> be unaffected by suspend.  If the device needs this then use cache
+> bypass to do the writes during suspend and resync the cache on resume.
+
+regcache_cache_only() and regcache_sync() will be used.
+>
+> > +     snd_soc_component_write(component, ES8323_CONTROL1, 0x06);
+> > +     snd_soc_component_write(component, ES8323_CONTROL2, 0x58);
+> > +     usleep_range(18000, 20000);
+>
+> Use fsleep().
+>
+> > +static void es8323_init_component_regs(struct snd_soc_component *compo=
+nent)
+> > +{
+>
+> > +     snd_soc_component_write(component, ES8323_ADCCONTROL1, 0x88);
+> > +     snd_soc_component_write(component, ES8323_ADCCONTROL2, 0xF0);
+> > +     snd_soc_component_write(component, ES8323_ADCCONTROL3, 0x02);
+> > +     snd_soc_component_write(component, ES8323_ADCCONTROL4, 0x0C);
+> > +     snd_soc_component_write(component, ES8323_ADCCONTROL5, 0x02);
+> > +     snd_soc_component_write(component, ES8323_LADC_VOL, 0x00);
+> > +     snd_soc_component_write(component, ES8323_RADC_VOL, 0x00);
+>
+> User visible controls should use the chip defaults as standard,
+> userspace can configure what it needs and this avoids us worrying about
+> individual use cases in the driver.
+>
+> > +static int es8323_resume(struct snd_soc_component *component)
+> > +{
+> > +     es8323_init_component_regs(component);
+> > +     /* open dac output */
+> > +     snd_soc_component_write(component, ES8323_DACPOWER, 0x3c);
+> > +
+> > +     return 0;
+> > +}
+>
+> This doesn't restore any user settings.
+>
+> > +static int es8323_i2c_probe(struct i2c_client *i2c)
+> > +{
+> > +     struct es8323_priv *es8323;
+> > +     struct i2c_adapter *adapter =3D to_i2c_adapter(i2c->dev.parent);
+> > +
+> > +     if (!i2c_check_functionality(adapter, I2C_FUNC_I2C)) {
+> > +             dev_warn(&adapter->dev,
+> > +                      "I2C-Adapter doesn't support I2C_FUNC_I2C\n");
+> > +             return -EIO;
+> > +     }
+>
+> Does the device really need this?  It seems to be doing very basic I/O
+> which should be SMBus compatible.  In any case when you move to regmap
+> this should be redundant.
+
+Emm, I will drop it.
+
+Thanks.
+Binbin
 
