@@ -1,129 +1,158 @@
-Return-Path: <devicetree+bounces-102647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65502977CDE
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 12:05:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9C10977CE3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 12:06:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FB1F1C24B09
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 10:05:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 216991C20971
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 10:06:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEDF01D6DDF;
-	Fri, 13 Sep 2024 10:05:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39C971D7E23;
+	Fri, 13 Sep 2024 10:06:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="g8A9plyT";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="dbBs//JG"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="z6e0hP6O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com [209.85.215.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A37D51D7991;
-	Fri, 13 Sep 2024 10:05:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E2671D6C47
+	for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 10:06:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726221921; cv=none; b=TvH6+2kFb9O2/SINX733hUq8gv0cgFU7z2geSPrApxhabJyubmMrn8pLXMmvnDa7sUoBtRtcH9V0m/Jdff4FKF0gnBPBkholwNTtpGS8S+u4CwzcqZOUE3ttnWxB2pSpO1cty0y7Ya48KgTu4WoF0sm+6xvfwVa3ACC2H9mvsIE=
+	t=1726221985; cv=none; b=MxbREG/boGzp111VRdpgQpbenQVkJmNUdtWpbJqMGM8DWR1HIt2d9tWzC3sDYQJKhotpw2ddsMk2YmkGA2dwfiVYFCUgZKi4VhTxihEMnm2JCtprrYFbOPWnoHCLOfLjthV5Nb5OF6Cj2FfZ3ndn9bgpCFamO4WMWXyoph0YDqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726221921; c=relaxed/simple;
-	bh=iUwICgjRJY7EChP4Mk7u9O13h+fgwLzpT/CTu01MYg8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ukhVFvsWU+JREXpfpAcJZLCQAxi5tEV21zSCd029VffEzx9gveYxNXoB+0IRaVWjqq86AknYOau5ODeSSX9ugddi2g31ZE7/2Av4yob6AYqMkaentZZGQz7aJ4uptD13pvCo2kc8B+0AP8GpWVtRbG5scAvbkORSeRD6fwG56fk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=g8A9plyT; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=dbBs//JG reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1726221985; c=relaxed/simple;
+	bh=ma3gih4QZb3W22XO1BUgS2TgaOmdM7cLRLgQ6YOHH+0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=pKG2+Dx5JyblQUo+t4X2r/cWmghW/qWnhlbkAqakK+YgcTeoxQqdJPo5VcmQe9gErmS1fcajO/ET/XXMG9mtyNlMzfAQdm4LrXwhZ1Im6y97QFuyyoQw+RPR7eLHol7LR6b3nu3N8FUiraW5rePaT0DYEWprXko7DqUiM3ox1W4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=z6e0hP6O; arc=none smtp.client-ip=209.85.215.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-pg1-f196.google.com with SMTP id 41be03b00d2f7-7db1f0e1641so762917a12.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 03:06:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1726221918; x=1757757918;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=iUwICgjRJY7EChP4Mk7u9O13h+fgwLzpT/CTu01MYg8=;
-  b=g8A9plyTPjI6tswesVHrACiGvH+FKcvJm5maASrohyMon4wBfEWOuCkS
-   EXbrezue3OpWBziT9F066UXtsddaNK9KMYIiYYeO0VYcNEJ6OgWkil9CX
-   aXOzGUDTza/XKznxx+Wekq6xSaUjsKgrutb6aNB1Rnw2myU+CNpoCBihE
-   A9ZLiVH8s7xQkspXRqXi5ET8V6chWmDguJd8iiB7cw5ODrKkDQDcITJDE
-   GcbvFpBuO+SM305is9soaaWXfKu7ZfynZWrVbUDb6+vpOtzTtQdG2hus8
-   Yyb8dRQ7N4soxZKfc8VRgM6r1h6C8e8k1THUAOWUqozt4jcS3cqC3ECvk
-   Q==;
-X-CSE-ConnectionGUID: jMYiFZVGR9K5JwinR1reSg==
-X-CSE-MsgGUID: MT4M9Ws7QyKseA9HON+ZiA==
-X-IronPort-AV: E=Sophos;i="6.10,225,1719871200"; 
-   d="scan'208";a="38931165"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 13 Sep 2024 12:05:15 +0200
-X-CheckPoint: {66E40E5B-0-22BB8E18-F5F6D0B4}
-X-MAIL-CPID: 7046A3EE398502D92DFD192A872BB005_5
-X-Control-Analysis: str=0001.0A782F22.66E40E5B.008B,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6ED34167CDC;
-	Fri, 13 Sep 2024 12:05:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1726221910;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=iUwICgjRJY7EChP4Mk7u9O13h+fgwLzpT/CTu01MYg8=;
-	b=dbBs//JGN/w93yZCVs4TJ3y3UYZdyf0g/eX4ejgS/awaNJqgg98KpIkbLg9mLg/pq6YqDo
-	6aThuJnvYtKm322fowoWEfu/wy7xExwKBoTLC9PVB4XZlTLLKPqnnebyZZBqfbPT0qPsA6
-	xYtCSS4Q3SkaeWRofThVh29okMzwYz67jOeDjlRcNOzGPfdWl46wB4NtoUTyXi97tgyGil
-	QtAPefzNRS4WounJKHxtKfVVnbeD6dmIg3+04DLNl8uvRxRVcVcAvK+e8x7WqqiwhzGm0+
-	G2ZGfHDhULE2YpQEXSHhrFWByL2nPjxiTrC8lRWPZnpsy9HG79uzRfZoMw/a/Q==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: fabien.parent@linaro.org, d-gole@ti.com, lorforlinux@beagleboard.org, jkridner@beagleboard.org, robertcnelson@beagleboard.org, Andrew Davis <afd@ti.com>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, =?ISO-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>, Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Ayush Singh <ayush@beagleboard.org>
-Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Ayush Singh <ayush@beagleboard.org>
-Subject: Re: [PATCH 0/8] Add generic overlay for MikroBUS addon boards
-Date: Fri, 13 Sep 2024 12:05:05 +0200
-Message-ID: <8428068.T7Z3S40VBb@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20240911-mikrobus-dt-v1-0-3ded4dc879e7@beagleboard.org>
-References: <20240911-mikrobus-dt-v1-0-3ded4dc879e7@beagleboard.org>
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1726221983; x=1726826783; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mebWSTRXrpHOd1Ov9TjvCQ1BH1A/L8W/aymjC8YjMyA=;
+        b=z6e0hP6OxTMPKuUg5RaTBbFTmZqs3vk4s2dISS0tYPRoh8V5sR/hvna32G8oSlzlCE
+         kZy8oXZq9iNnBXhvK3Qqmyy4x/uwXLOOJNMEpbra4AGZmtyc9l4UeVPFmT+RqiPUYFKm
+         4C+coIIKTd4Bjg+JVzNIGghCHf6z07QBS7gIsgZAkYa1fCYwGWS3f+14v2/jhNVCrBoe
+         8qbDAzmE7FUV+ZykKD8ujyvhP2C9udICRX3S7od5nYnIUA05zcXNQbx7or8PfhZo3GV5
+         PqHisU/tjfFpk+YmhlsELWaQqtpqBX2C9a3JXohyZlIw6OtDf7k2+02KBCuR9WEAjQZo
+         tlGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726221983; x=1726826783;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mebWSTRXrpHOd1Ov9TjvCQ1BH1A/L8W/aymjC8YjMyA=;
+        b=oW1zwyRwOcrwyOI/gf+pF+GyogXrDE0c3I71oRvSGBEIUq4Kd9jBUo+jtqoPaynrQW
+         frsRrtvmY6N8Mrqzark/tRJnNs5plQpVfeM2P8mL8eOcVbVYmm1zcRAp/eztrviLfRyF
+         qa/JLJfsb34awjbFA5AyviUmyc8Z1HATllpLysfzbVV2wYP5h6mVxN+DRoBIYzR3SbSJ
+         t7ohAAd5sjUZJkhb9Tb/0Y84PwDqkZP86JPZoUqoG2/6RcH5CvP/BxUZxnIOfT8W9J19
+         fmhKZ1TmSzVZrYfJqVZn1vS9CkrcT/W4sX4crKGmf22LZGXPpZSy3zO4u4fa8TeO00M9
+         NVlg==
+X-Forwarded-Encrypted: i=1; AJvYcCUd3LXF/6ZPW9IlN7L70ffBd+Sx35xxp0uvG6I3Tq+IChn5j/DmFev9H8maVbowbt/pHFXWYU1AJbNu@vger.kernel.org
+X-Gm-Message-State: AOJu0YzL98ZY478JaP9F0JzC3vYBifwlH+xSEcfnR7wB1wXU33UydIwg
+	zp6pDX9+8vI3f+oWdUu7/U5sgMrX94SNPLT4zS4RMO2/iuSiGhCc4M+eypDt7A==
+X-Google-Smtp-Source: AGHT+IGLF8zeCK3gH9gqiVNfJYO+Cu9SMZiiwsrMlizscSm85IPSqVB6yJRnzNjrd0cry5ZoLKZYdQ==
+X-Received: by 2002:a17:90b:238a:b0:2d8:8fe9:b00f with SMTP id 98e67ed59e1d1-2db9ffbeec2mr6810986a91.13.1726221982859;
+        Fri, 13 Sep 2024 03:06:22 -0700 (PDT)
+Received: from [172.16.118.100] ([103.15.228.94])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2dbb9cd2debsm1308113a91.33.2024.09.13.03.06.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Sep 2024 03:06:22 -0700 (PDT)
+From: Ayush Singh <ayush@beagleboard.org>
+Date: Fri, 13 Sep 2024 15:36:06 +0530
+Subject: [PATCH] arm64: dts: ti: k3-am625-beagleplay: Enable MikroBUS PWM
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240913-beagleplay-pwm-v1-1-d38ee5b36d8c@beagleboard.org>
+X-B4-Tracking: v=1; b=H4sIAI0O5GYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDS0Nj3aTUxPSc1IKcxErdgvJc3SQLU8uUJENLY0OLFCWgpoKi1LTMCrC
+ B0bG1tQB9SXGEYAAAAA==
+To: d-gole@ti.com, lorforlinux@beagleboard.org, jkridner@beagleboard.org, 
+ robertcnelson@beagleboard.org, Nishanth Menon <nm@ti.com>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Ayush Singh <ayush@beagleboard.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1443; i=ayush@beagleboard.org;
+ h=from:subject:message-id; bh=ma3gih4QZb3W22XO1BUgS2TgaOmdM7cLRLgQ6YOHH+0=;
+ b=owEBbQKS/ZANAwAIAQXO9ceJ5Vp0AcsmYgBm5A6Zx6uuVBdo3ha/5xti0lllZFtl8lR1cNRX2
+ Yx244On5EOJAjMEAAEIAB0WIQTfzBMe8k8tZW+lBNYFzvXHieVadAUCZuQOmQAKCRAFzvXHieVa
+ dInaD/9Pmkto8ZWDHi68ML9FmaWdEtTeFO/ldoi3zNJVP1yWscyJL+64k9mbUgBWtRFcgkY55en
+ FVeoKby3zVuKwpexAtk3iWqqkcRHcb2QTeEG7vD5Vdx/uh8N4hOFlSXksFWq0mEiSaw55isJMsh
+ PYZq3Ni9YIutSxD/ChCuUsUw8kwkhRkCc4kmZlnm4g70YpM/CcjngrKJ6//bzdIthiTr4cK2r1I
+ ZejdKGLIAoN52aT3GQJWKDcOmYhobdgCQK9kwr1UjDVvZpquj9zqYqF1UWFmdh4DxsL5xe7VJYy
+ 0GdacoRnwBtUxCdntoPefkWWzZnafpeEsEKAINH+pAcMr6DXdA9jVj4jAAWANqWzkIh7Pl4Z911
+ WFSX+dfVjavT4lKlR4JCguiVvcQpJTIIh7FPLEjmfTyela88RE+E4zgHQHzS8mttVBcSdrQBrcs
+ B6EQ78FA+AkM5s3bpKXi7qKBpt4o3JsWSjlzFP6GSjswfmuBQLZquQhSHJmstQ/m76J2lgGK1/I
+ sSjhTst/is7qnvehmrHmrpjEpz0j6qp8l2z8sQ7rmacptSRpBPHqzkY9DMNmd6NyEvPRCTAqRbw
+ Yy9WdtKWmee+GRJymhoclrzgEAVJiPmehtkWQ2W0QZwXooAvWMGlXfjP5DnhdDfmIqljeAo0t6n
+ ZyGkzoWCBemeBjA==
+X-Developer-Key: i=ayush@beagleboard.org; a=openpgp;
+ fpr=DFCC131EF24F2D656FA504D605CEF5C789E55A74
 
-Hi,
+Add pinmux for PWM functionality of MikroBUS PWM pin and enable the pwm
+controller.
 
-Am Mittwoch, 11. September 2024, 16:27:17 CEST schrieb Ayush Singh:
-> Hello all,
->=20
-> This is an attempt to add MikroBUS addon support using the approach
-> described by Grove connector patch series [0].
->=20
-> The patch series tests out 2 addon boards + pwm and GPIO on the MikroBUS
-> connector. The boards used are GPS3 Click (for UART) [1] and Weather
-> Click (for I2C) [2]. Additionally, I have tested relative GPIO numbering
-> using devicetree nexus nodes [3].
->=20
-> The patch series does not attempt to do any dynamic discovery for 1-wire
-> eeprom MikroBUS addon boards, nor does it provide any sysfs entry for
-> board addition/removal. The connector driver might include them after
-> the basic support is ironed out, but the existing patches for dynamic
-> overlays work fine.
-> [sniip]
+Signed-off-by: Ayush Singh <ayush@beagleboard.org>
+---
+Add pinmux for MikroBUS port PWM pin. Also enable the pwm controller.
 
-To put it in a more abstract perspective, aren't you "just" defining some
-kind of connector with a fixed layout of pins and features?
-It's not really different to Arduino Shields and Raspberry Pi hats, no?
-Ignoring multi-purpose pins for GPIO or e.g. I2C, this is about matching
-the plugin module's pins to platform-specific on-board peripherals.
+Tested with the sysfs interface [0].
 
-Sticking the name to MikroBUS might be misleading, because this is AFAICT
-just a trademark for a specific connector pin layout.
-This concept could be applied for any kind of connector, where e.g.
-the I2C interface is mapped to i2c0 on one platform and to lpi2c5
-on a different platform.
+[0]: https://docs.kernel.org/driver-api/pwm.html#using-pwms-with-the-sysfs-interface
+---
+ arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+index 70de288d728e..2dbb8930be3f 100644
+--- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
++++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+@@ -419,6 +419,12 @@ AM62X_IOPAD(0x01a8, PIN_INPUT, 7) /* (D20) MCASP0_AFSX.GPIO1_12 */
+ 		>;
+ 	};
+ 
++	mikrobus_pwm_pins_default: mikrobus-pwm-default-pins {
++		pinctrl-single,pins = <
++			AM62X_IOPAD(0x01a4, PIN_INPUT, 2) /* (B20) MCASP0_ACLKX.ECAP2_IN_APWM_OUT */
++		>;
++	};
++
+ 	main_uart0_pins_default: main-uart0-default-pins {
+ 		bootph-all;
+ 		pinctrl-single,pins = <
+@@ -925,3 +931,9 @@ &mcasp1 {
+ 	       0 0 0 0
+ 	>;
+ };
++
++&ecap2 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&mikrobus_pwm_pins_default>;
++};
+
+---
+base-commit: 57f962b956f1d116cd64d5c406776c4975de549d
+change-id: 20240913-beagleplay-pwm-b859db19318d
 
 Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+-- 
+Ayush Singh <ayush@beagleboard.org>
 
 
