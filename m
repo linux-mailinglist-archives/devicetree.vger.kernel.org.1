@@ -1,292 +1,128 @@
-Return-Path: <devicetree+bounces-102829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41FBA978766
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 20:01:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 314B2978781
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 20:07:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01D0F282A9A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 18:01:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BFB0B26372
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 18:07:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AA8443152;
-	Fri, 13 Sep 2024 18:00:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C327C84E11;
+	Fri, 13 Sep 2024 18:07:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="I5y96WtA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tv71CAS6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C05713213A;
-	Fri, 13 Sep 2024 18:00:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9731684A40;
+	Fri, 13 Sep 2024 18:07:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726250455; cv=none; b=rTvqvAhqPuXRoOAwYg6g2jOEenxlLPkzOOVePeOwp+NhSRWmYyGnimMU2y8jXH0rTbOJz5rwxrqUSt/6ROXilC9ci2unq+Q5pQ8030ib+yHSSsworhcX71PzdXI+2H6b/ZgxacPdvh7cjyzU4p5hPsKS3e4wgJ5Ff166RQjRTBA=
+	t=1726250842; cv=none; b=m6iKpZmKrBt5xRkn44awf3gnutd1zSHpknHRHYYrU/lrTjUrYkoSDCCim/9/8dLuvM9eCiCVFRQecHa66egVyMre3GbhQr9EFzCkGQdW2KIywQAZC/eC4YD66N965R95NShylSEQgLKSlIbO1I28vF78yYDih0/fqlB0UkwJSMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726250455; c=relaxed/simple;
-	bh=4bOoXdw4lgukLLDcA7XeqEgHnTAFp6etDKxS0LCYhaw=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=L1Kbp6OHtjTUXmkwkwdJMuU6TWUhpShUEJP2Bm8GRqC4yctFv40f4LtzJ5MH2Q5PSfW0I/xg+b8cU68nhsSu9Y0GA6uE7AEeTG9kdSwZ1XSnOWy3MJLQojzj2w7B5BnJl4C+uNAEOoE+1zuxaoubOzWJOVcnCBIwqAvrCzrigNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=I5y96WtA; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 1a0109a671fa11ef8b96093e013ec31c-20240914
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=hEsf7w29g0U+GKf3VFz6N3gs2A2sWTv8+edIpFcNJec=;
-	b=I5y96WtAlbuOapOpHoo6gvh11ed/05a/o0OJgfZd1WK7WXDNKwpHT3DGTCB+1Fy3J0br0eAL7PoLmzglCVIMGKk8LWzK6olMeo1/hDcx73/j6bMNYvVDONsYymUwYVpNICGdfl15Cr0gZfuPKH6TdcCtXPgVFuGqih8b2W8xe90=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:94a97b52-5159-4ea4-824b-e1d95a0690f0,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:6f802ed0-7921-4900-88a1-3aef019a55ce,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 1a0109a671fa11ef8b96093e013ec31c-20240914
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1768853924; Sat, 14 Sep 2024 02:00:46 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Sat, 14 Sep 2024 02:00:45 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Sat, 14 Sep 2024 02:00:45 +0800
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sen Chu
-	<sen.chu@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	Alexandre Mergnat <amergnat@baylibre.com>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul@gmail.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
-	MediaTek Chromebook Upstream
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
-	<wenst@chromium.org>
-Subject: [PATCH v3 3/3] regulator: dt-bindings: mt6397: move examples to parent PMIC mt6397
-Date: Sat, 14 Sep 2024 02:00:39 +0800
-Message-ID: <20240913180039.8175-1-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+	s=arc-20240116; t=1726250842; c=relaxed/simple;
+	bh=WBLnnwyIn8w3d6CyiQ5QRfFUDAUXUgM89Rb9FC2tTuE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YpMkks+fO40qQx/yKGbr3Vjd0b/y0AYpeWfSvVnoZhXxscS/r+9+w9reFhWnX3CMQ6YzUQpR8JXdi+FRNKMg5KePleVpgFRcYFqG07DsucDLVi5V0ZqkgHWVDy30abfrK6epuHBuI4fA3eHx5fImTWfhm4XqpR/BoUZkMqbbnto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tv71CAS6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2C91C4CEC0;
+	Fri, 13 Sep 2024 18:07:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726250842;
+	bh=WBLnnwyIn8w3d6CyiQ5QRfFUDAUXUgM89Rb9FC2tTuE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Tv71CAS6S+Rn/U6AgWyhAvSEENpd0fXHR2JGo+NxDsSjcvv4XSXTTDcvomlbr4pVL
+	 761kLpNapeJsT+mnqSsW0fYFtjAstxZzQgAIhmNUGj0nzwrhYoYuq6BsMZ8Wis+SOA
+	 fwTYtlxbFnMKHZCZU9I38NYsjbI2j8WNghKSRqo+fOYT9nTznxJgXHokC8DQr7OSu/
+	 q8uzJESdASA+VHrD54jAzdR/FTI8CWSS32RiwLWcja1D+imWjLTJGOhkvSMIijs0bC
+	 EG7szqoEss2dkcxIV9BKCwYPwrN4P8Jdta+pMMAHry85pcXxDWlQ5xawKlmH/gKYQd
+	 I8ch69EbpfI/w==
+Date: Fri, 13 Sep 2024 19:07:17 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Emil Gedenryd <emil.gedenryd@axis.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andreas Dannenberg <dannenberg@ti.com>, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	kernel@axis.com
+Subject: Re: [PATCH v2 2/3] dt-bindings: iio: light: opt3001: add compatible
+ for opt3002
+Message-ID: <20240913-stimulate-swell-3964c45e6e81@spud>
+References: <20240913-add_opt3002-v2-0-69e04f840360@axis.com>
+ <20240913-add_opt3002-v2-2-69e04f840360@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="MTkaypvhF8DGEqkj"
+Content-Disposition: inline
+In-Reply-To: <20240913-add_opt3002-v2-2-69e04f840360@axis.com>
 
-Since the DT schema of multiple function PMIC mt6397 has been converted,
-move the examples in "mediatek,mt6397-regulator.yaml" to the parent schema
-"mediatek,mt6397.yaml".
 
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
----
- .../regulator/mediatek,mt6397-regulator.yaml  | 173 ------------------
- 1 file changed, 173 deletions(-)
+--MTkaypvhF8DGEqkj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Changes for v1 and v2:
- - This is the first version of converting rtc-mt6397.txt.
-   This is because converting rtc-mt6397 together
-   with mfd/mediatek,mt6397.yaml, so we've create a patch set
-   instead of submitting single patch for each subdevice.
- - This patch has been made base on linux-next/master git repo.
+On Fri, Sep 13, 2024 at 11:57:03AM +0200, Emil Gedenryd wrote:
+> OPT3002 is a Light-to-Digital Sensor by TI with support for wide-range
+> spectrum light.
+>=20
+> Add the compatible string of opt3002.
 
-Changes for v3:
- - Re-order this patch since other patches for removing text DT bindings
-   in v2 qill be squash into MFD patch.
+You should mention what makes the 02 and 01 devices different here, and
+with that done,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6397-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6397-regulator.yaml
-index 50db678..337ac58 100644
---- a/Documentation/devicetree/bindings/regulator/mediatek,mt6397-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6397-regulator.yaml
-@@ -63,176 +63,3 @@ required:
- 
- additionalProperties: false
- 
--examples:
--  - |
--    #include <dt-bindings/interrupt-controller/arm-gic.h>
--
--    mt6397_regulators: regulators {
--        compatible = "mediatek,mt6397-regulator";
--
--        mt6397_vpca15_reg: buck_vpca15 {
--            regulator-name = "vpca15";
--            regulator-min-microvolt = < 850000>;
--            regulator-max-microvolt = <1350000>;
--            regulator-ramp-delay = <12500>;
--            regulator-enable-ramp-delay = <200>;
--        };
--
--        mt6397_vpca7_reg: buck_vpca7 {
--            regulator-name = "vpca7";
--            regulator-min-microvolt = < 850000>;
--            regulator-max-microvolt = <1350000>;
--            regulator-ramp-delay = <12500>;
--            regulator-enable-ramp-delay = <115>;
--        };
--
--        mt6397_vsramca15_reg: buck_vsramca15 {
--            regulator-name = "vsramca15";
--            regulator-min-microvolt = < 850000>;
--            regulator-max-microvolt = <1350000>;
--            regulator-ramp-delay = <12500>;
--            regulator-enable-ramp-delay = <115>;
--        };
--
--        mt6397_vsramca7_reg: buck_vsramca7 {
--            regulator-name = "vsramca7";
--            regulator-min-microvolt = < 850000>;
--            regulator-max-microvolt = <1350000>;
--            regulator-ramp-delay = <12500>;
--            regulator-enable-ramp-delay = <115>;
--        };
--
--        mt6397_vcore_reg: buck_vcore {
--            regulator-name = "vcore";
--            regulator-min-microvolt = < 850000>;
--            regulator-max-microvolt = <1350000>;
--            regulator-ramp-delay = <12500>;
--            regulator-enable-ramp-delay = <115>;
--        };
--
--        mt6397_vgpu_reg: buck_vgpu {
--            regulator-name = "vgpu";
--            regulator-min-microvolt = < 700000>;
--            regulator-max-microvolt = <1350000>;
--            regulator-ramp-delay = <12500>;
--            regulator-enable-ramp-delay = <115>;
--        };
--
--        mt6397_vdrm_reg: buck_vdrm {
--            regulator-name = "vdrm";
--            regulator-min-microvolt = < 800000>;
--            regulator-max-microvolt = <1400000>;
--            regulator-ramp-delay = <12500>;
--            regulator-enable-ramp-delay = <500>;
--        };
--
--        mt6397_vio18_reg: buck_vio18 {
--            regulator-name = "vio18";
--            regulator-min-microvolt = <1500000>;
--            regulator-max-microvolt = <2120000>;
--            regulator-ramp-delay = <12500>;
--            regulator-enable-ramp-delay = <500>;
--        };
--
--        mt6397_vtcxo_reg: ldo_vtcxo {
--            regulator-name = "vtcxo";
--            regulator-min-microvolt = <2800000>;
--            regulator-max-microvolt = <2800000>;
--            regulator-enable-ramp-delay = <90>;
--        };
--
--        mt6397_va28_reg: ldo_va28 {
--            regulator-name = "va28";
--            /* fixed output 2.8 V */
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vcama_reg: ldo_vcama {
--            regulator-name = "vcama";
--            regulator-min-microvolt = <1500000>;
--            regulator-max-microvolt = <2800000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vio28_reg: ldo_vio28 {
--            regulator-name = "vio28";
--            /* fixed output 2.8 V */
--            regulator-enable-ramp-delay = <240>;
--        };
--
--        mt6397_usb_reg: ldo_vusb {
--            regulator-name = "vusb";
--            /* fixed output 3.3 V */
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vmc_reg: ldo_vmc {
--            regulator-name = "vmc";
--            regulator-min-microvolt = <1800000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vmch_reg: ldo_vmch {
--            regulator-name = "vmch";
--            regulator-min-microvolt = <3000000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vemc_3v3_reg: ldo_vemc3v3 {
--            regulator-name = "vemc_3v3";
--            regulator-min-microvolt = <3000000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vgp1_reg: ldo_vgp1 {
--            regulator-name = "vcamd";
--            regulator-min-microvolt = <1220000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <240>;
--        };
--
--        mt6397_vgp2_reg: ldo_vgp2 {
--            regulator-name = "vcamio";
--            regulator-min-microvolt = <1000000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vgp3_reg: ldo_vgp3 {
--            regulator-name = "vcamaf";
--            regulator-min-microvolt = <1200000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vgp4_reg: ldo_vgp4 {
--            regulator-name = "vgp4";
--            regulator-min-microvolt = <1200000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vgp5_reg: ldo_vgp5 {
--            regulator-name = "vgp5";
--            regulator-min-microvolt = <1200000>;
--            regulator-max-microvolt = <3000000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vgp6_reg: ldo_vgp6 {
--            regulator-name = "vgp6";
--            regulator-min-microvolt = <1200000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vibr_reg: ldo_vibr {
--            regulator-name = "vibr";
--            regulator-min-microvolt = <1200000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--    };
--- 
-2.45.2
+Thanks,
+Conor.
 
+>=20
+> Signed-off-by: Emil Gedenryd <emil.gedenryd@axis.com>
+> ---
+>  Documentation/devicetree/bindings/iio/light/ti,opt3001.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/light/ti,opt3001.yaml =
+b/Documentation/devicetree/bindings/iio/light/ti,opt3001.yaml
+> index 441e9343fc97..67ca8d08256a 100644
+> --- a/Documentation/devicetree/bindings/iio/light/ti,opt3001.yaml
+> +++ b/Documentation/devicetree/bindings/iio/light/ti,opt3001.yaml
+> @@ -15,7 +15,9 @@ description: |
+> =20
+>  properties:
+>    compatible:
+> -    const: ti,opt3001
+> +    enum:
+> +      - ti,opt3001
+> +      - ti,opt3002
+> =20
+>    reg:
+>      maxItems: 1
+>=20
+> --=20
+> 2.39.2
+>=20
+
+--MTkaypvhF8DGEqkj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuR/VQAKCRB4tDGHoIJi
+0mk3AP9Mdpd5kDmgviAPbnYr/o6taLkyGrfPkZYsZSB9P7CU1QEAo4Cun+yDOwLB
+7R92PVr/Fyr+wIcMVNHu7PnQvvogLwg=
+=LyEq
+-----END PGP SIGNATURE-----
+
+--MTkaypvhF8DGEqkj--
 
