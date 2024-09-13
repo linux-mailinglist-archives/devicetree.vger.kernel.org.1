@@ -1,214 +1,129 @@
-Return-Path: <devicetree+bounces-102869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A524978957
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 22:09:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C89B9789EF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 22:31:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B5C2282E6A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 20:09:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB0A2B234E9
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 20:31:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE77314831E;
-	Fri, 13 Sep 2024 20:09:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E79814831E;
+	Fri, 13 Sep 2024 20:31:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IUKwcydY"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TWNFYvLw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54C7A148316
-	for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 20:09:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34590B67D;
+	Fri, 13 Sep 2024 20:31:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726258162; cv=none; b=lXq/4VOYhA3YmRDGtWbBZ6O3zk1veZZaue2C84VeSvyNyLSZc6UHtfgZTn1jzsZu/Z5OKRNyO53ywV+3iEnhz3PQAzazPwo/NLKraQXpuoXVz0tfpvNWs3oRJb4ZtgOCuluCj9Q9MJfMnq1FNWXKOJKhKzsyQoynuEtkCOuGaik=
+	t=1726259486; cv=none; b=hLGmELKcnNdvz4YX7PmTgg7jg//5c8uxDxqNTvjsKWPiQgJesSp5kpcC/xSz+QHBo2R1KDK+BSYP69ZDwtST1vWsIZVKX85S8VZGuEeva43O9SQZt/e31MsZoaGRrOrcnJdzfWB67D/Ciy04Ue2MLeGJ8nNCi1AJQbHenVGnSs4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726258162; c=relaxed/simple;
-	bh=IV5eTaH7tl3v77jfIEGc9POfP3TzIYP67hH9P7+jDIY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Wfqun8nYZLMTg5HaedwIbelQKvJyQCGhcEFgWTYrLZflKBIf/PXMt5tAE2pIbO7NGI4A/A0sZoScc19bPohq3BVWJh9cwfEJA6S9dN1m9SRV4iSDsDq8uLfqPbJTGCOQumfbPWn9SBuQ4NN7hjTDaE2R5RX7OXXTNsz37FCoeRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IUKwcydY; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2db85775c43so1821488a91.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 13:09:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726258160; x=1726862960; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SNtAXoXRrNHY1D9nMXD/LZ56mAPT8Bw1WEjMYqzybWw=;
-        b=IUKwcydY4qqrrWvgEGThk/49EDVqbEO0fVzel8ccUI8G9SOqAAOLq58sWtNXh9J33z
-         DqPphWqge2h+XQdQNh76CytvHf6uBE0XKzdHdkAL7B8tb9f/i/it/V5PhFTkf/7WzNkZ
-         pnuyEfr/GFGmMOiMdwoi04oDt8n7EUAZ6XNg15EBMrt0n1OtGhnsMSxd8CgbYmcGiYw5
-         5F10g1NH6caHqHjLEX117YEzJAolXJnQ+i14C3tAyY3Utmi44bvIqhqksIPQUZItJ5zk
-         0HxmRI06rRwB/GfL2FzG4gafWXABqxUrs9JpSkYxA0a8wn1mXqm/GDWNGAMCfxU2We3R
-         PIpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726258160; x=1726862960;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SNtAXoXRrNHY1D9nMXD/LZ56mAPT8Bw1WEjMYqzybWw=;
-        b=JTg45VkdOHGB3IJjK/b8OMDQ3gHDQXyw9HCU4rwnI+W0WvqVpa1RtLhcEBi0PsxGOd
-         XQYBaPk4YY0Q4UvsrRHiv8oz21R5ENIio7WQlRAX7XOd6WHj6AUvgNvv9MIZAX/BNFLG
-         6vtRIhUmk1zN64K0ytrKdc8PryO2aPnhqoDEHKn0PmOECuSXPG53xccMpTWIUdQfliN6
-         Mb8t9fRbZgrbAHi9lO+nzxbpmgZ0kNXSlGKyu0TNEGI1z/Qu9Ac+k+DfZECyVzxQAzgz
-         PqxiL5AqHfhbPba9+26xU96Ah5htzByE90H/J6i0Ub5n+8UQzNqEgl373LxOtKtLadrX
-         +6Qw==
-X-Forwarded-Encrypted: i=1; AJvYcCVPvGXiOVlfWH71XtrHelrV+sU5jWnYyETOARer9AQfwBP/r/XaDQLt7pw0qCYNgWuOuyk5iVbsPUk9@vger.kernel.org
-X-Gm-Message-State: AOJu0YykMnp/MwMFpGee6HMAhkVoz6s5OUs/p5ACOEiwAS+GlcWTY25G
-	mpQ2O/c6yrqyzIzszY043gxjmQ9LT+15NK00mOY+r4k2IFLahWK4
-X-Google-Smtp-Source: AGHT+IGTQn8sK1OGzEsONDA+U1Pz41yuNPnqgGfqaz1kqyQoxpkepZTYUJh2ClAj+zk3HpnCCoeLIw==
-X-Received: by 2002:a17:90a:7086:b0:2d8:999a:bc37 with SMTP id 98e67ed59e1d1-2db67226a2dmr22204321a91.19.1726258160554;
-        Fri, 13 Sep 2024 13:09:20 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:f375:804a:5c89:62a])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2dbcfdc06b0sm61545a91.55.2024.09.13.13.09.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Sep 2024 13:09:20 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: shawnguo@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 3/3] ARM: dts: imx6q-lxr: Add board support
-Date: Fri, 13 Sep 2024 17:09:06 -0300
-Message-Id: <20240913200906.1753458-3-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240913200906.1753458-1-festevam@gmail.com>
-References: <20240913200906.1753458-1-festevam@gmail.com>
+	s=arc-20240116; t=1726259486; c=relaxed/simple;
+	bh=Tx5/dZmHNQNXpIuvYmfC/G6hrzVqoftURJxPv5bI6kk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Rvj6L4pvAFZoRSdv5OM+vKxdCuDuYgzA9otjHRIxP5wVtV1dDKKi8C+0aZYDG0+1x0bsRH+i/fPrC/dgsxps0lZaGe9oZH6yvhyNTryV3t1AbHIruMmEldLX+/m+vnIbOQKYdx4yiV65lggXKwfzO9jnZhmLl/9kdMVEeebewiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TWNFYvLw; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1726259484; x=1757795484;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Tx5/dZmHNQNXpIuvYmfC/G6hrzVqoftURJxPv5bI6kk=;
+  b=TWNFYvLwI74IuXHjfCFlF/64YUQgsOzOguDnQrJTOYUUY5wP7l4NO7AW
+   /1YukI6N3KxnPA5WscG/JnKpw+rEhtyfpuIaeqiiufdJKMxRf4gO8fJN1
+   pKDpsJbPIcrj/6l6UFQ4YgFiJKsy5vLTvlh2cHF2f+YdHRS8UyfgImJPs
+   oxq0DuiJCeSHXGLKGaAH8x8nYDjAeet5H8SZPHV5HUxCDv/pGjV8qB2W6
+   u8oZRZk2w9VZTkVB6B/pUYBdelOdplGMU+NGJ7ggQHiC3z+wHi2M6kW7o
+   z+wvbqctjmXax5hW1VKGj87l8KWistI1j/wAsw0LVDy7S1bnMe1M5ZQWP
+   Q==;
+X-CSE-ConnectionGUID: BdOAa7aPQy2zjTQAjnHqAg==
+X-CSE-MsgGUID: r4Wa7KjeRXmF7dzoLT2uEg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="25110863"
+X-IronPort-AV: E=Sophos;i="6.10,227,1719903600"; 
+   d="scan'208";a="25110863"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2024 13:31:23 -0700
+X-CSE-ConnectionGUID: Yaf97OChSUq8zt1fjh93bw==
+X-CSE-MsgGUID: 5M2YQM5/TGGWtgJ6fMjEVA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,227,1719903600"; 
+   d="scan'208";a="72556858"
+Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
+  by fmviesa005.fm.intel.com with ESMTP; 13 Sep 2024 13:31:21 -0700
+Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1spCwo-0006xw-1u;
+	Fri, 13 Sep 2024 20:31:18 +0000
+Date: Sat, 14 Sep 2024 04:30:42 +0800
+From: kernel test robot <lkp@intel.com>
+To: Alexandru Ardelean <aardelean@baylibre.com>, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, jic23@kernel.org, krzk+dt@kernel.org,
+	robh@kernel.org, lars@metafoo.de, michael.hennerich@analog.com,
+	gstols@baylibre.com, dlechner@baylibre.com,
+	Alexandru Ardelean <aardelean@baylibre.com>
+Subject: Re: [PATCH v6 8/8] iio: adc: ad7606: add support for AD7606C-{16,18}
+ parts
+Message-ID: <202409140416.KWHXjFSv-lkp@intel.com>
+References: <20240913135744.152669-9-aardelean@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240913135744.152669-9-aardelean@baylibre.com>
 
-From: Fabio Estevam <festevam@denx.de>
+Hi Alexandru,
 
-The Comvetia LXR board is based on a i.MX6Q phyFLEX-i.MX6 Quad SoM
-from Phytec.
+kernel test robot noticed the following build warnings:
 
-Add a devicetree description for this board.
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on next-20240913]
+[cannot apply to linus/master v6.11-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- arch/arm/boot/dts/nxp/imx/Makefile      |  1 +
- arch/arm/boot/dts/nxp/imx/imx6q-lxr.dts | 87 +++++++++++++++++++++++++
- 2 files changed, 88 insertions(+)
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6q-lxr.dts
+url:    https://github.com/intel-lab-lkp/linux/commits/Alexandru-Ardelean/iio-adc-ad7606-add-bits-parameter-to-channels-macros/20240913-220501
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20240913135744.152669-9-aardelean%40baylibre.com
+patch subject: [PATCH v6 8/8] iio: adc: ad7606: add support for AD7606C-{16,18} parts
+config: arm-randconfig-001-20240914 (https://download.01.org/0day-ci/archive/20240914/202409140416.KWHXjFSv-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240914/202409140416.KWHXjFSv-lkp@intel.com/reproduce)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
-index 92e291603ea1..8acd3a6d1e12 100644
---- a/arch/arm/boot/dts/nxp/imx/Makefile
-+++ b/arch/arm/boot/dts/nxp/imx/Makefile
-@@ -211,6 +211,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6q-kontron-samx6i-ads2.dtb \
- 	imx6q-kp-tpc.dtb \
- 	imx6q-logicpd.dtb \
-+	imx6q-lxr.dtb \
- 	imx6q-marsboard.dtb \
- 	imx6q-mba6a.dtb \
- 	imx6q-mba6b.dtb \
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-lxr.dts b/arch/arm/boot/dts/nxp/imx/imx6q-lxr.dts
-new file mode 100644
-index 000000000000..a49d6f623410
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6q-lxr.dts
-@@ -0,0 +1,87 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+//
-+// Copyright 2024 Comvetia AG
-+
-+/dts-v1/;
-+#include "imx6q-phytec-pfla02.dtsi"
-+
-+/ {
-+	model = "COMVETIA QSoIP LXR-2";
-+	compatible = "comvetia,imx6q-lxr", "phytec,imx6q-pfla02", "fsl,imx6q";
-+
-+	chosen {
-+		stdout-path = &uart4;
-+	};
-+
-+	spi {
-+		compatible = "spi-gpio";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_spi_gpio>;
-+		sck-gpios = <&gpio5 8 GPIO_ACTIVE_HIGH>;
-+		mosi-gpios = <&gpio5 7 GPIO_ACTIVE_HIGH>;
-+		num-chipselects = <0>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		fpga@0 {
-+			compatible = "altr,fpga-passive-serial";
-+			reg = <0>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&pinctrl_fpga>;
-+			nconfig-gpios = <&gpio4 18 GPIO_ACTIVE_LOW>;
-+			nstat-gpios = <&gpio4 19 GPIO_ACTIVE_LOW>;
-+			confd-gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+};
-+
-+&ecspi3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi3>;
-+	cs-gpios = <&gpio4 24 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <20000000>;
-+	};
-+};
-+
-+&fec {
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	status = "okay";
-+};
-+
-+&usdhc3 {
-+	no-1-8-v;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_fpga: fpgagrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_6__GPIO1_IO06       0x1b0b0
-+			MX6QDL_PAD_DI0_PIN2__GPIO4_IO18     0x1b0b0
-+			MX6QDL_PAD_DI0_PIN3__GPIO4_IO19     0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_spi_gpio: spigpiogrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_DISP0_DAT14__GPIO5_IO08  0x1b0b0
-+			MX6QDL_PAD_DISP0_DAT13__GPIO5_IO07  0x1b0b0
-+		>;
-+	};
-+};
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409140416.KWHXjFSv-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/iio/adc/ad7606.c:39:27: warning: 'ad7606_18bit_hw_scale_avail' defined but not used [-Wunused-const-variable=]
+      39 | static const unsigned int ad7606_18bit_hw_scale_avail[2] = {
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/ad7606_18bit_hw_scale_avail +39 drivers/iio/adc/ad7606.c
+
+    38	
+  > 39	static const unsigned int ad7606_18bit_hw_scale_avail[2] = {
+    40		38147, 76294
+    41	};
+    42	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
