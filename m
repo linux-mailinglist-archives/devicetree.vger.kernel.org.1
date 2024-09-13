@@ -1,172 +1,177 @@
-Return-Path: <devicetree+bounces-102681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74279977EFB
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 13:56:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85E8D977F12
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 13:59:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BAF40B238A0
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 11:56:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09719287298
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 11:59:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AB1C1D9338;
-	Fri, 13 Sep 2024 11:56:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CE2C1D88BB;
+	Fri, 13 Sep 2024 11:59:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hc6Eb4dJ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O6O9F7NP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 749B71D88A8;
-	Fri, 13 Sep 2024 11:56:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9187B1D88A0;
+	Fri, 13 Sep 2024 11:58:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726228565; cv=none; b=cRZYjodR660KHFndGiQx4k/4eo1RFdvphTxbfhfeiuVzw/KyWEAsXqH+eKwTNR7/q8Q57vByK1l2irY0Yeah17hMMfUp370wbUmaTPaj6D82LKBizhFd5O8bp4OH7O78C+6YYOKgjag9mJ17iegrl0gJC1+5iNYgomUnanc5AEo=
+	t=1726228742; cv=none; b=aTLet/EDjW5ED4gTiaLeUT3BIK29ypu3EVwW6xfyCj62RadETTy3md13aRfaP9fxX8LlMnidjsUP0yV7sjTKTe3ZT3dBsYDcW5ZxmpT2vlzRD6qK0YTyD4gYKfGnpOjvDHakyopIlZql5KaPueWUh7HhWy9RmFL5/HKXfzN+/lc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726228565; c=relaxed/simple;
-	bh=J7RFXPVp0Pyqw/DNKpxT1uHd9AZ/lM/8Nl8rUJaU58c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=gCvaGq1kGGUQ2H79pdaV4/pdLCh0pJtBLu3jufvsaW/vkP1c+B6qj4qNW4vAfz/sLwuIbOsfrINfNhsLt7ILx9QqOkW1hEfZD4sSR3asqDghtp4j+Nrqeq2/HB7vniMcxmc6hxIZn8gZeZuivDO4GqLe1jAVUyyknkGWoaHVwQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hc6Eb4dJ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48DAWfmm025468;
-	Fri, 13 Sep 2024 11:56:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0W45hF7yZpC1I+dpF7s/bJ81RmiWgmp5zqtQaJQ2ZjI=; b=hc6Eb4dJuUsYAKI2
-	1wNSv7JPU6tbBKob9oqeukE3FjKWQHAHwB7e6ZgNhmYD6SG/hMfr3Ax6e4PQjvxy
-	RH0EN7CCm5hvCw87NPqgJyZeXtjUcwPjeDDa6X5B+hB1HEfwCbNYsQr+VC7dFqg9
-	BLoIz/+4HXZlDmmFRrmPWGtgETUJ0cNQ2PcXTopkltr+kn+1urUUquGLLojhxF3f
-	sDSX7d2Eius6Fua5kk5LmcjPaVAR1V5lYYognJJKfp9sTva9eR/Gp++HAqPVnJ4S
-	nHWtFxUIy8k14cwtYwek0h3jOiNOIQCsbTicGQD5+0q3zweCTvlDbKtmEbYqpU55
-	EIfOmg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy8p8q5a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Sep 2024 11:55:59 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48DBtwo4011816
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Sep 2024 11:55:58 GMT
-Received: from lijuang2-gv.ap.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 13 Sep 2024 04:55:53 -0700
-From: Lijuan Gao <quic_lijuang@quicinc.com>
-Date: Fri, 13 Sep 2024 19:55:28 +0800
-Subject: [PATCH v2 6/6] arm64: dts: qcom: add base QCS615 RIDE dts
+	s=arc-20240116; t=1726228742; c=relaxed/simple;
+	bh=AZHXRLJsSTYEt/qjTqze+Z2qsR1But2NuNPf/jl1ZSE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=r4nZfEJeOBkeO1EXb1NcyK/tY+gku43SV1FacP0Kt/L43nCTLKIgoLB7zlRBCn5A98PQwapdbL6raAlSDWIgsfLQjA1pEgQrybuwjYZWPtSl2Vg3V83ooiQvYCoPVhrtMin1cBlNeFD/vS3UWCoLQp48kNcAteHZI251dnSBAmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O6O9F7NP; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1726228739; x=1757764739;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=AZHXRLJsSTYEt/qjTqze+Z2qsR1But2NuNPf/jl1ZSE=;
+  b=O6O9F7NPA+7S+3ATB4HpmWV0A4VIzXWwVo+gmCzGp2y5nBkwBzGfbyqG
+   DMxcYpLyAUORhnqXMS11+7npMnif8rBpGZox+BpUeWHEavZlD/PlhCZHZ
+   4Co/o7jLU3wWTu+f9WxnVURTMJgvZGd4WPXjubLdUWMNQcsnk8dMwjsYR
+   1ummXs9Dg4uUrRovF/cfF+dyLvJ3QBexkbKE0TBqI0/1YpW2WX5iCIuSw
+   4A7ejSU3JfuwpMCwZhCnvWoJOFE4DTdFe3FLBu3DcN73W1aDh4i6GnEPk
+   XRJw8TgtXPXtymIZKCnd9NQSdMucwS0ShwQsOMTn/eepCuBH/mFEd1eDR
+   g==;
+X-CSE-ConnectionGUID: 8GsT5SAhRYyzWHFIXrhD7w==
+X-CSE-MsgGUID: sm6e1E2eQOqtt6Jh2J+Zwg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="35792061"
+X-IronPort-AV: E=Sophos;i="6.10,225,1719903600"; 
+   d="scan'208";a="35792061"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2024 04:58:59 -0700
+X-CSE-ConnectionGUID: 8HlKHWXsR5K6uLQzqnwe+g==
+X-CSE-MsgGUID: +RAOk1pZTYq/Yzxlq5UnWw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,225,1719903600"; 
+   d="scan'208";a="72797822"
+Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
+  by orviesa003.jf.intel.com with ESMTP; 13 Sep 2024 04:58:55 -0700
+Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sp4wu-0006UY-1n;
+	Fri, 13 Sep 2024 11:58:52 +0000
+Date: Fri, 13 Sep 2024 19:58:46 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	NXP S32 Linux Team <s32@nxp.com>,
+	Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>,
+	Bogdan Hamciuc <bogdan.hamciuc@nxp.com>,
+	Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>,
+	Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+Subject: Re: [PATCH 2/4] rtc: s32g: add NXP S32G2/S32G3 SoC support
+Message-ID: <202409131950.ozDVVv5X-lkp@intel.com>
+References: <20240911070028.127659-3-ciprianmarian.costea@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240913-add_initial_support_for_qcs615-v2-6-9236223e7dab@quicinc.com>
-References: <20240913-add_initial_support_for_qcs615-v2-0-9236223e7dab@quicinc.com>
-In-Reply-To: <20240913-add_initial_support_for_qcs615-v2-0-9236223e7dab@quicinc.com>
-To: <kernel@quicinc.com>, Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Thomas
- Gleixner" <tglx@linutronix.de>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Lijuan Gao <quic_lijuang@quicinc.com>
-X-Mailer: b4 0.15-dev-99b12
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1726228536; l=1907;
- i=quic_lijuang@quicinc.com; s=20240827; h=from:subject:message-id;
- bh=J7RFXPVp0Pyqw/DNKpxT1uHd9AZ/lM/8Nl8rUJaU58c=;
- b=6tvCvPKxfEt+Vc26lB4D3GTut1zAL6ELlWFL/DxUl7zCrZ4t5Sn8zg7D+aT8Dgu89bpH/fKxO
- aJtKI8OAIQwCK4q8s6rLABwO9OlT+rsGBtakkFLsXheE3820MDu8b13
-X-Developer-Key: i=quic_lijuang@quicinc.com; a=ed25519;
- pk=1zeM8FpQK/J1jSFHn8iXHeb3xt7F/3GvHv7ET2RNJxE=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: IR1ZiZYIwFqezJDwxRhUHPugHTsKgO0R
-X-Proofpoint-ORIG-GUID: IR1ZiZYIwFqezJDwxRhUHPugHTsKgO0R
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
- impostorscore=0 mlxscore=0 bulkscore=0 suspectscore=0 priorityscore=1501
- mlxlogscore=999 lowpriorityscore=0 adultscore=0 phishscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409130083
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240911070028.127659-3-ciprianmarian.costea@oss.nxp.com>
 
-Add initial support for Qualcomm QCS615 RIDE board and enable
-the QCS615 RIDE board to shell with dcc console.
+Hi Ciprian,
 
-Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
----
- arch/arm64/boot/dts/qcom/Makefile        |  1 +
- arch/arm64/boot/dts/qcom/qcs615-ride.dts | 34 ++++++++++++++++++++++++++++++++
- 2 files changed, 35 insertions(+)
+kernel test robot noticed the following build warnings:
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index ae002c7cf126..30a1c679bbb7 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -110,6 +110,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-idp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-shift-otter.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= qcs615-ride.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
-diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-new file mode 100644
-index 000000000000..761e915d4165
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-@@ -0,0 +1,34 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+/dts-v1/;
-+
-+#include "qcs615.dtsi"
-+/ {
-+	model = "Qualcomm Technologies, Inc. QCS615 Ride";
-+	compatible = "qcom,qcs615-ride", "qcom,qcs615";
-+	chassis-type = "embedded";
-+
-+	chosen {
-+		bootargs = "console=hvc0";
-+	};
-+
-+	clocks {
-+		sleep_clk: sleep-clk {
-+			compatible = "fixed-clock";
-+			clock-frequency = <32000>;
-+			#clock-cells = <0>;
-+		};
-+
-+		xo_board_clk: xo-board-clk {
-+			compatible = "fixed-clock";
-+			clock-frequency = <38400000>;
-+			#clock-cells = <0>;
-+		};
-+	};
-+};
-+
-+&watchdog {
-+	clocks = <&sleep_clk>;
-+};
+[auto build test WARNING on abelloni/rtc-next]
+[also build test WARNING on robh/for-next arm64/for-next/core linus/master v6.11-rc7 next-20240912]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Ciprian-Costea/dt-bindings-rtc-add-schema-for-NXP-S32G2-S32G3-SoCs/20240911-150205
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
+patch link:    https://lore.kernel.org/r/20240911070028.127659-3-ciprianmarian.costea%40oss.nxp.com
+patch subject: [PATCH 2/4] rtc: s32g: add NXP S32G2/S32G3 SoC support
+config: hexagon-randconfig-r112-20240913 (https://download.01.org/0day-ci/archive/20240913/202409131950.ozDVVv5X-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project bf684034844c660b778f0eba103582f582b710c9)
+reproduce: (https://download.01.org/0day-ci/archive/20240913/202409131950.ozDVVv5X-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409131950.ozDVVv5X-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/rtc/rtc-s32g.c:7:
+   In file included from include/linux/of_irq.h:7:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     548 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+         |                                                   ^
+   In file included from drivers/rtc/rtc-s32g.c:7:
+   In file included from include/linux/of_irq.h:7:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+         |                                                   ^
+   In file included from drivers/rtc/rtc-s32g.c:7:
+   In file included from include/linux/of_irq.h:7:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     585 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+>> drivers/rtc/rtc-s32g.c:668:34: warning: unused variable 'rtc_dt_ids' [-Wunused-const-variable]
+     668 | static const struct of_device_id rtc_dt_ids[] = {
+         |                                  ^~~~~~~~~~
+   7 warnings generated.
+
+
+vim +/rtc_dt_ids +668 drivers/rtc/rtc-s32g.c
+
+   667	
+ > 668	static const struct of_device_id rtc_dt_ids[] = {
+   669		{.compatible = "nxp,s32g-rtc" },
+   670		{ /* sentinel */ },
+   671	};
+   672	
 
 -- 
-2.46.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
