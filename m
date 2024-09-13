@@ -1,203 +1,113 @@
-Return-Path: <devicetree+bounces-102666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86BAF977DE9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 12:47:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33BB5977DF7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 12:49:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 194742849C4
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 10:47:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B38DAB263C1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 10:49:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28CB41D86E5;
-	Fri, 13 Sep 2024 10:46:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A97561D88A5;
+	Fri, 13 Sep 2024 10:49:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ae/23Uoq"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="qZtLeqwm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 729791D7E39;
-	Fri, 13 Sep 2024 10:46:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726224397; cv=none; b=q6FOLkC8x+52mKl7vhsDw92ZGVhOwBmqteTNqi6icWjzWp9gIGoHkKQm5qJyhtd/KUGJS7v7Ke/ea7EdvJIBpw9LKGBtyXNc/ZBZbS5p9FjB4GwLysvhI8a30f7Fq2/5dFtcuKrB3p40XovayDcMAp7a9tdy63n4d3y0ojG9DMw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726224397; c=relaxed/simple;
-	bh=e+un8vaDxaujRJMqDIAlvYg83zY4vEsoD9RPHPWxTwo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pr50SIhIb24cM9h06YitJFBN8SxClEK9CHESn2BbZCXzXyH24JM6c9OkdK7Oc+1CXMLKVcjPFKCCalk/TwSmIPa2iHhiGkaddYXPvUng7BlJ2u+sQcokEFaHs2QMS1L+ufqB4SL5gi+bPW5qc+5ktCh0OmO2VvllSr6mt9V+QWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ae/23Uoq; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1726224395; x=1757760395;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=e+un8vaDxaujRJMqDIAlvYg83zY4vEsoD9RPHPWxTwo=;
-  b=ae/23UoqqdmhacqBw6LjgwJxMICWMMRsYuVkiQDeRXCJ3kk1d3WnpBxG
-   ILib/1bJGKgcv4E/PvEjvsoqXZv1SWCCoD8LVagu7Op90pueNpQ8xFl+1
-   uYraH9lCMpDuo4QYrP6JdEBf07MF4WiD0dQi08MLLjD+zW5EN8Pg15+Uf
-   ovFFCFd8ntUPuv5ij6pbZSvqhYmiYniDl30B0mrTUdDyOP37ODfTSY7Vm
-   cZjSGEAQvDfgLd9utZOMoOWgHfoSYMLHLuftAcgzqd0uA2FNeo0XLgQGv
-   xiApmu2EG4q5kV5LageiHKEU4Z/YPizUF4Nny0PbPC00xpf2fbOdg7Ptl
-   Q==;
-X-CSE-ConnectionGUID: vk65TY1JRMyugHXntDcOwg==
-X-CSE-MsgGUID: vz7xmvZzRpyVVa6M/Y4RZg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="35785565"
-X-IronPort-AV: E=Sophos;i="6.10,225,1719903600"; 
-   d="scan'208";a="35785565"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2024 03:46:33 -0700
-X-CSE-ConnectionGUID: Hhyk6Xc+Sgq83pUXYmyoqg==
-X-CSE-MsgGUID: meWPunBWTZyMDaizKz0Dpg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,225,1719903600"; 
-   d="scan'208";a="72781058"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2024 03:46:29 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1sp3oo-00000008GXj-3PLy;
-	Fri, 13 Sep 2024 13:46:26 +0300
-Date: Fri, 13 Sep 2024 13:46:26 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F0D61D58A8;
+	Fri, 13 Sep 2024 10:49:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726224561; cv=pass; b=lHjDRKbgtB0Zci61JpiMVH06aJfNQM5T6QJCkNKCWGWwUu5+bDnaydo3/OrnKYixRoDsVPHqKxGRxomZ1rtorSlkAhb5DH8ox89LkD+rWexIbS8NfEYrfppUkIH3NoQYFP+QMdzVYwAHaIaR8UIl9jolyesdpIuHO+mUPr657pg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726224561; c=relaxed/simple;
+	bh=rrqHstqaOoJH0oNf7w9RLAC65EvHqF+QEqg7yXEXkXk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AoiRDZnlX1jOzT65JrN/ei6rT2fgqWYyYFLIpTcx/wIClE33kDY/v6YB5eHp0RFTME6Yzyr0GGbWFCxY38SiSzHxSe6omxKTrRazcTmQqX/o0/whvtrAt34S9dzJ5Ikp/gaoNkiZXM+Oi0n05WfifQcF1Ns/in2d9I8VLkh5itc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=qZtLeqwm; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1726224544; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=JgCHy26J5RTuZfALei11p0LhFB2xQIpGjsbqbvN9xv7ak/7OkkOAcXpS7EI5ZITdMYpf/oM3Xj/hui9a07q6BtSa1OYcb0b/n3BubOu93V8x/hD3BVGVfDnnO+DzLm8R7iFz//EBM77fiWXTIlwEtM52wHmIXMzZbXUUA7xoF1M=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1726224544; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=JgVVClL/nl81iGMgJH6Or+qEABIgBR2m9kRyKGMQOxs=; 
+	b=EkrO2d2Y0f9JOBlm+Ef1G5O9iV7x7U9rPwWWjsqLr9iKX1Fymcx8NjQyoGuCMG2vu+tsX1A5Hw8yAK7fR6fLEZ67HetLbHSdtsXvWUIgCbbrJLf5py2GqtsQ2iep+CQAKDMsVu9C/Sasw26mKNS8EchPsicMz7A07znK1f4cY5M=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1726224544;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=JgVVClL/nl81iGMgJH6Or+qEABIgBR2m9kRyKGMQOxs=;
+	b=qZtLeqwmL+sYAKut+OP6DssmODsfmsiVnRMD5/zrlLlQ6dL0H4LVkD5rBelNi6/R
+	vGjHGyRed5k1EaXuUVf1y9gcGrCmCdE0uetObtqmH5rluSOXFvMe0vv4RfmNh8CBeDU
+	QBgpmV8D0WOFEk1ETLqsCHzifCyD/pjijuy3L1QB3Fon4t0Miv0vEvh9Z3/655n8BmK
+	liAle6a9bdd9PM0kbns3EzfvfEvCVLnzvJ3iP+4Mo++vOE2OjmXmoAeRwh08Q7pnbfd
+	zClLtfNicvVWgNjPM29aKSxdw4Lfq6y3CjTjLmSPfnFQxgGQXPv/kboF4wcCqHObGqm
+	80xC5+IgwA==
+Received: by mx.zohomail.com with SMTPS id 1726224543413872.8186395558075;
+	Fri, 13 Sep 2024 03:49:03 -0700 (PDT)
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Maxime Ripard <mripard@kernel.org>
+Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v7 07/10] i2c: of-prober: Add simple helpers for
- regulator support
-Message-ID: <ZuQYAu9tBN0wrNfo@smile.fi.intel.com>
-References: <20240911072751.365361-1-wenst@chromium.org>
- <20240911072751.365361-8-wenst@chromium.org>
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Icenowy Zheng <uwu@icenowy.me>
+Subject: [PATCH 1/2] dt-bindings: arm: sunxi: document RerVision A33-Vstar board
+Date: Fri, 13 Sep 2024 18:48:44 +0800
+Message-ID: <20240913104845.4112986-1-uwu@icenowy.me>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240911072751.365361-8-wenst@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-On Wed, Sep 11, 2024 at 03:27:45PM +0800, Chen-Yu Tsai wrote:
-> Add helpers to do regulator management for the I2C OF component prober.
-> Components that the prober intends to probe likely require their
-> regulator supplies be enabled, and GPIOs be toggled to enable them or
-> bring them out of reset before they will respond to probe attempts.
-> GPIOs will be handled in the next patch.
-> 
-> The assumption is that the same class of components to be probed are
-> always connected in the same fashion with the same regulator supply
-> and GPIO. The names may vary due to binding differences, but the
-> physical layout does not change.
-> 
-> This set of helpers supports at most one regulator supply. The user
-> must specify the node from which the supply is retrieved. The supply
-> name and the amount of time to wait after the supply is enabled are
-> also given by the user.
+RerVision A33-Vstar is an evaluation board of their A33-Core1 SoM.
 
-...
+Add its compatible (with the SoM compatible) to the sunxi board DT
+binding file.
 
-> +static int i2c_of_probe_simple_get_supply(struct device *dev, struct device_node *node,
-> +					  struct i2c_of_probe_simple_ctx *ctx)
-> +{
-> +	const char *supply_name;
-> +	struct regulator *supply;
-> +
-> +	/*
-> +	 * It's entirely possible for the component's device node to not have regulator
-> +	 * supplies. While it does not make sense from a hardware perspective, the
-> +	 * supplies could be always on or otherwise not modeled in the device tree, but
-> +	 * the device would still work.
-> +	 */
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-I would reformat as
-
-	/*
-	 * It's entirely possible for the component's device node to not have the
-	 * regulator supplies. While it does not make sense from a hardware perspective,
-	 * the supplies could be always on or otherwise not modeled in the device tree,
-	 * but the device would still work.
-	 */
-
-> +	supply_name = ctx->opts->supply_name;
-> +	if (!supply_name)
-> +		return 0;
-> +
-> +	supply = of_regulator_get_optional(dev, node, supply_name);
-> +	if (IS_ERR(supply)) {
-> +		return dev_err_probe(dev, PTR_ERR(supply),
-> +				     "Failed to get regulator supply \"%s\" from %pOF\n",
-> +				     supply_name, node);
-> +	}
-> +
-> +	ctx->supply = supply;
-> +
-> +	return 0;
-> +}
-
-...
-
-> +int i2c_of_probe_simple_get_res(struct device *dev, struct device_node *bus_node, void *data)
-> +{
-> +	struct i2c_of_probe_simple_ctx *ctx = data;
-> +	struct device_node *node;
-> +	const char *compat;
-> +	int ret;
-> +
-> +	dev_dbg(dev, "Requesting resources for components under I2C bus %pOF\n", bus_node);
-> +
-> +	if (!ctx || !ctx->opts)
-> +		return -EINVAL;
-> +
-> +	compat = ctx->opts->res_node_compatible;
-> +	if (!compat)
-> +		return -EINVAL;
-
-> +	node = of_get_compatible_child(bus_node, compat);
-
-	__free(of_node_put) ?
-
-> +	if (!node)
-> +		return dev_err_probe(dev, -ENODEV, "No device compatible with \"%s\" found\n",
-> +				     compat);
-> +
-> +	ret = i2c_of_probe_simple_get_supply(dev, node, ctx);
-> +	if (ret)
-> +		goto out_put_node;
-> +
-> +	return 0;
-> +
-> +out_put_node:
-> +	of_node_put(node);
-> +	return ret;
-> +}
-
-...
-
-> + * @post_power_on_delay_ms: Delay in ms after regulators are powered on. Passed to msleep().
-
-No need to duplicate the units as it's obvious from the variable name and msleep().
-
- * @post_power_on_delay_ms: Delay after regulators are powered on. Passed to msleep().
-
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index 09dc6f4249866..6e56530d02439 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -841,6 +841,12 @@ properties:
+           - const: allwinner,sun50i-h64
+           - const: allwinner,sun50i-a64
+ 
++      - description: RerVision A33-Vstar (with A33-Core1 SoM)
++        items:
++          - const: rervision,a33-vstar
++          - const: rervision,a33-core1
++          - const: allwinner,sun8i-a33
++
+       - description: RerVision H3-DVK
+         items:
+           - const: rervision,h3-dvk
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.46.0
 
 
