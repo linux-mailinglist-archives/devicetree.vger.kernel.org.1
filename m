@@ -1,265 +1,196 @@
-Return-Path: <devicetree+bounces-102649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46464977CFD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 12:12:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 939F3977D23
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 12:18:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1A221F293C1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 10:12:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D57E3B21461
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 10:18:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB581D7E48;
-	Fri, 13 Sep 2024 10:12:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4176F1BE857;
+	Fri, 13 Sep 2024 10:18:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="JJY1XJ8L"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B0oE51jG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B38A51BD00C;
-	Fri, 13 Sep 2024 10:12:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 779C51272A6;
+	Fri, 13 Sep 2024 10:18:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726222335; cv=none; b=Qy7TS8PB8TTzRFyoVp/ehoRhwAjq18wubrW4wH0H8uETsr2fbt6ZU7IhGiI3VC5iJeDc9nFhJDb1qU2yZJb8418npuGGlu/ZL8QRTqvM5HkFcZpbIxQPI1HQGXEP1kp23IO+vAO9hPNOIKFry2C93gOB3ODY7VfqZKOmF9/qgCY=
+	t=1726222691; cv=none; b=QfqyUKRR0vtbkPL+wHcjgFnT41PBzaN9kiE0joSw6dDC3k/gIAaIK7P4sFZGjYnMYDA7Jm70DacoY9jxtTnGeG1xFvxSOmJNXKhtXKArHiB4+oeakw8DL2PofmxdL/JX+wXI8fmD3i0WLqqe9xrqMQedjhZQgSImbZpCHQ0jAKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726222335; c=relaxed/simple;
-	bh=662V56QWViFIlp4gb+aLqLrTxGX17BcMSp70REF+ZWA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lr70UdTcqIsrABE2H4JbOGGBcploq0cXyBAsqwBye1CgzGragWu2q81Jjxeee4zSB8QJiZ6lNxIibPTmroUG1DNXQkUuuWSjOeygijC/mIAvP+a6sbnFJsEkTpMp22W/gPs+UW8nnD/764b+ZnhvPzUUOUMqasT5ZLBPZfcNY1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=JJY1XJ8L; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id D1FC840E0289;
-	Fri, 13 Sep 2024 10:12:03 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
-	header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id WrLjSCCCXrfh; Fri, 13 Sep 2024 10:12:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1726222318; bh=yWZvK7qK3CvlJ6DKacE32zmSE6s7LldG87vSA0J6Ufs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JJY1XJ8LrTQfzftmybO3y10RT0bdb6reSxeOmziCztzicO5RpTW9BWBEo9DiRMXim
-	 9h3i/9CMB+VtKeNKJ5fywSSYFxM2IE7Kq91+w3Fd6KTdT+AikkKB/h/bsgL8ff9owh
-	 mP/BLVegzf3taqokqrxIFtXElf8zjI8I2054zRT/sLITDcNvi0gQEPY1YCY4HitKJs
-	 Ni44wdch9Alyr548bVNHcym8BV+BsYrd0/2RIMkK2dD1Zn+/VW1e/qgo9gMf03gdra
-	 orehy+ZcK3IL/ZRYhjOEkizZP/r1phDPrmlTk+zfT3PhC5DBO1c5T0NmwEMSgJuL1i
-	 H/ZgmVkAVG42luPxmfcC1daDbCmS+cDJiLs7dWyA6FuLGpXYljV8nWvYU//1MkME4E
-	 Is/9Tzk+yMSDagg1mjsuveYa1HPVAuTQIEkf4wHlF02GWFGAnW924U8koCL9OC0xaW
-	 MFdwmnsB8MHlOaBrylwC4MkX07IoD9bo1mjeA9TBfLkL5vHJbKMM4n/SPv9d16exsP
-	 zERL9t0p+J3sFW+u5w1Gb/aih8pYpFq1nmWnvhiB2UJBCnOePrcypB71LCYR7xa2U8
-	 o8d/nGds08I/vD9rIvpWqS+s9rlYMk7QpY3j6i0OaT7OBt8zH7FTqSlD9ROl2xk2Vm
-	 9VqfBQk1S1m1CYslfmIWPz9c=
-Received: from zn.tnic (p5de8e8eb.dip0.t-ipconnect.de [93.232.232.235])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 56E6E40E0288;
-	Fri, 13 Sep 2024 10:11:44 +0000 (UTC)
-Date: Fri, 13 Sep 2024 12:11:37 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Zhao Qunqin <zhaoqunqin@loongson.cn>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	chenhuacai@kernel.org, linux-edac@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kernel@xen0n.name, tony.luck@intel.com, james.morse@arm.com,
-	mchehab@kernel.org, rric@kernel.org, loongarch@lists.linux.dev
-Subject: Re: [PATCH v4 2/2] Loongarch: EDAC driver for loongson memory
- controller
-Message-ID: <20240913101137.GHZuQP2WzlkvJ5gG2F@fat_crate.local>
-References: <20240909032124.18819-1-zhaoqunqin@loongson.cn>
- <20240909032124.18819-3-zhaoqunqin@loongson.cn>
+	s=arc-20240116; t=1726222691; c=relaxed/simple;
+	bh=rq0cpoOgAqPg2i8ruVnsc/sSAuiTwarjDXcOaAEYfXo=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=GCrVmeGwJnMgiGgiw8wOAqwkdl5/S0s7OYstumpFCtYJkZ9miFKLFrvCs/sKmNCV2zw+Ku5ZY4Vo3fhtqWSoIYKA5L+u+nl3WnhUQQyTWsyb4X+tO0wPKbzvlh+VBv+gKq2/qmVJ9wNvYgw74zfNafZVu2hacEuZUu5R7pF3iNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B0oE51jG; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-42cae4eb026so19024805e9.0;
+        Fri, 13 Sep 2024 03:18:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726222688; x=1726827488; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=kx5BsABkoElJE7bjexxNubeyaOGJiSqqc8lQf9xJ58Q=;
+        b=B0oE51jGBj0ZKAyD0lA/QMotEfWtsZ6b4WgvUn91D7IPWfeYl6ifYJefTbU0/StIl+
+         iXum81AFs0Obvl7zhP5Ci/IlIJ6xTaIsr2rmjgjgNgHe0XfKBvlPrORVkxWWUQm7X86H
+         tgrL7gjU6bDpbmNLlc+ku4aA/i4JiArbIU3dm+mOEE6nbsIB7n71CK8nd1Rj9HRSghp2
+         TFVy4NLQfH9e97ZVkziqEhP+h1XkboklPKpFCuyPHdafcdFSz0MzGssTeT/BAcC3wN4k
+         rzDmpiSYGjGTcLExAW2n9xurqE8G8HmqQ7V7IefIPaQghKGBvWX9GAFhfWNMtIm7WSjh
+         09oQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726222688; x=1726827488;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kx5BsABkoElJE7bjexxNubeyaOGJiSqqc8lQf9xJ58Q=;
+        b=l28xs8uNfPcRXk/3yf0DkgxWNIgLDa4JqjrMQfLQS6XpoH15iU9hkmugVEZMJ47e+S
+         NuCiOo3lGLP5VmD+3X00XNdWOP3fTJw59/P3EiMjyx2KC9+zrM980S6CMqbX1M6zF5oi
+         xgWtbzGoc8NC8oN1MeWBR7ADRqUgVZYrXPzPIgB5JJuayGh9VIhd/kudYrCY4YeenlKS
+         +pfGi+Rdu1oBwtEn7vlZiAVxxnwPaM1JQpmyvESjASaJ1+b5dXUbVz1JFoldz6NQnuRg
+         ehuvzq67MVPGd/yVHu02ySFO/u/33ur/UF1ixf38Gf9rb1e9fzo/RJj9c5ciMkS/0JL8
+         gKuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWMYH9fsGMWdSR2nbjQRFvb2y8xpb75O99u4+WVA897aJEFgvy52xVPBs/hVETyn2C/QrMQIwDCEuFe@vger.kernel.org, AJvYcCWpCLx0eSEGwM+YB+7/KqgzAp/MjeZbT6IuzYtFHzu/r8SgzgG+7sYOUEfG6n3ab+qlxfVqqEUjHmXA@vger.kernel.org, AJvYcCX+U56JJmtkchdlGxwQO6WhwFSDpGHBddVsyS0igY/kF3OGoTu77TtpFmdN7w/ZmFaGQprVDJFZxGsDGzPo@vger.kernel.org, AJvYcCXQ1xsMMYPXnEcg9QQLvtq3tpO3ideoaX2wF45BaTv5YMwYeQNFWk+Bs3DubEJxU/vclV/zPMREPQ9i@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhZbci6+aoN0spfXpzJTn2vY5B2KVPvBZXoChT4mWQ0HTIFaha
+	BknM/rwe/Wl539rv+2DHO9ApcF7Ezy2pFZbJTwAf7SdN+sVvTGPu
+X-Google-Smtp-Source: AGHT+IEErEMp5HKQGF5Xiah+gi6I3jO7IyCsIxXTBZS6IkyJs7SzH7NjDnG+zYgZu1BvEiIjkfAT/g==
+X-Received: by 2002:a05:600c:1caa:b0:42c:a574:6364 with SMTP id 5b1f17b1804b1-42cdb531b89mr45506795e9.12.1726222686967;
+        Fri, 13 Sep 2024 03:18:06 -0700 (PDT)
+Received: from ?IPv6:2001:a61:341e:1201:c434:b5b1:98a6:efed? ([2001:a61:341e:1201:c434:b5b1:98a6:efed])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42d9b05a700sm19998105e9.10.2024.09.13.03.18.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Sep 2024 03:18:06 -0700 (PDT)
+Message-ID: <0a4e7fe39cf36774b28c86f6baab5ef8c20e3d6b.camel@gmail.com>
+Subject: Re: [PATCH 4/6] iio: adc: ad4030: add support for ad4630-24 and
+ ad4630-16
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Esteban Blanc <eblanc@baylibre.com>, Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno Sa
+ <nuno.sa@analog.com>,  Jonathan Corbet <corbet@lwn.net>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>, 
+ linux-doc@vger.kernel.org
+Date: Fri, 13 Sep 2024 12:18:05 +0200
+In-Reply-To: <D452E2M75XCM.13OQGAPJ7JJ4A@baylibre.com>
+References: <20240822-eblanc-ad4630_v1-v1-0-5c68f3327fdd@baylibre.com>
+	 <20240822-eblanc-ad4630_v1-v1-4-5c68f3327fdd@baylibre.com>
+	 <20240826102748.4be0b642@jic23-huawei>
+	 <D452E2M75XCM.13OQGAPJ7JJ4A@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240909032124.18819-3-zhaoqunqin@loongson.cn>
 
-On Mon, Sep 09, 2024 at 11:21:24AM +0800, Zhao Qunqin wrote:
-> Subject: Re: [PATCH v4 2/2] Loongarch: EDAC driver for loongson memory controller
+On Fri, 2024-09-13 at 09:55 +0000, Esteban Blanc wrote:
+> On Mon Aug 26, 2024 at 9:27 AM UTC, Jonathan Cameron wrote:
+> > On Thu, 22 Aug 2024 14:45:20 +0200
+> > Esteban Blanc <eblanc@baylibre.com> wrote:
+> > > @@ -460,12 +517,21 @@ static int ad4030_conversion(struct ad4030_stat=
+e *st,
+> > > =C2=A0	if (ret)
+> > > =C2=A0		return ret;
+> > > =C2=A0
+> > > -	if (st->mode !=3D AD4030_OUT_DATA_MD_24_DIFF_8_COM)
+> > > +	if (st->chip->num_channels =3D=3D 2)
+> > > +		ad4030_extract_interleaved(st->rx_data.raw,
+> > > +					=C2=A0=C2=A0 &st->rx_data.diff[0],
+> > > +					=C2=A0=C2=A0 &st->rx_data.diff[1]);
+> > > +
+> > > +	if (st->mode !=3D AD4030_OUT_DATA_MD_16_DIFF_8_COM &&
+> > > +	=C2=A0=C2=A0=C2=A0 st->mode !=3D AD4030_OUT_DATA_MD_24_DIFF_8_COM)
+> > > =C2=A0		return 0;
+> > > =C2=A0
+> > > =C2=A0	byte_index =3D BITS_TO_BYTES(chan->scan_type.realbits);
+> > > -	for (i =3D 0; i < st->chip->num_channels; i++)
+> > > -		st->rx_data.buffered[i].common =3D ((u8 *)&st-
+> > > >rx_data.buffered[i].val)[byte_index];
+> > > +	/* Doing it backward to avoid overlap when reordering */
+> > > +	for (i =3D st->chip->num_channels - 1; i > 0; i--) {
+> > > +		st->rx_data.buffered_common[i].diff =3D st->rx_data.diff[i];
+> > > +		st->rx_data.buffered_common[i].common =3D ((u8 *)&st-
+> > > >rx_data.diff[i])[byte_index];
+> > > +	}
+> >=20
+> > I wonder if doing it in place is actually worthwhile.=C2=A0 Maybe unpac=
+k into a second
+> > array? That is still fairly small and may make code easier to read.
+>=20
+> Okay sure
+>=20
+> > > +static const unsigned long ad4630_channel_masks[] =3D {
+> > > +	/* Differential only */
+> > > +	BIT(0) | BIT(2),
+> > > +	/* Differential with common byte */
+> > > +	GENMASK(3, 0),
+> > The packing of data isn't going to be good. How bad to shuffle
+> > to put the two small channels next to each other?
+> > Seems like it means you will want to combine your deinterleave
+> > and channel specific handling above, which is a bit fiddly but
+> > not much worse than current code.
+>=20
+> I can do it since that was what I had done in the RFC in the first place.
+> Nuno asked for in this email
+> https://lore.kernel.org/r/0036d44542f8cf45c91c867f0ddd7b45d1904d6b.camel@=
+gmail.com/
+> :
+>=20
+> > > > * You're pushing the CM channels into the end. So when we a 2 chann=
+el device
+> > > > we'll have:
+>=20
+> > > > in_voltage0 - diff
+> > > > in_voltage1 - diff
+> > > > in_voltage2 - CM associated with chan0
+> > > > in_voltage0 - CM associated with chan1
+> > > >=20
+> > > > I think we could make it so the CM channel comes right after the ch=
+annel
+> > > > where
+> > > > it's data belongs too. So for example, odd channels would be CM cha=
+nnels (and
+> > > > labels could also make sense).
+>=20
+> So that's what I did here :D
+>=20
+> For the software side off things here it doesn't change a lot of things
+> since we have to manipulate the data anyway, putting the extra byte at th=
+e
+> end or in between is no extra work.
+> For the offload engine however, it should be easier to ask for 24 bits
+> then 8 bits for each channel as it would return two u32 per "hardware
+> channel".
+>=20
+> In order to avoid having two different layouts, I was kind of sold by
+> Nuno's idea of having the CM in between each diff channel.
+>=20
 
-			EDAC/loongson: Add EDAC driver ...
+Tbh, I was not even thinking about the layout when I proposed the arrangeme=
+nt. Just
+made sense to me (from a logical point of view) to have them together as th=
+ey relate
+to the same physical channel. FWIW, we're also speaking bytes in here so no=
+t sure if
+it's that important (or bad).
 
-> Reports single bit errors (CE) only.
-> 
-> Signed-off-by: Zhao Qunqin <zhaoqunqin@loongson.cn>
-> ---
+That said, as we should have labels anyways, I'm not being the blocker if e=
+veryone
+else prefers to have the RFC layout :)
 
-...
-
-> diff --git a/drivers/edac/loongson_edac.c b/drivers/edac/loongson_edac.c
-> new file mode 100644
-> index 000000000..b89d6e0e7
-> --- /dev/null
-> +++ b/drivers/edac/loongson_edac.c
-> @@ -0,0 +1,182 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2024 Loongson Technology Corporation Limited.
-> + */
-> +
-> +#include <linux/edac.h>
-> +#include <linux/module.h>
-> +#include <linux/init.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include "edac_module.h"
-> +
-> +enum ecc_index {
-> +	ECC_SET = 0,
-> +	ECC_RESERVED,
-> +	ECC_COUNT,
-> +	ECC_CS_COUNT,
-> +	ECC_CODE,
-> +	ECC_ADDR,
-> +	ECC_DATA0,
-> +	ECC_DATA1,
-> +	ECC_DATA2,
-> +	ECC_DATA3,
-> +};
-> +
-> +struct loongson_edac_pvt {
-> +	u64 *ecc_base;
-> +	int last_ce_count;
-> +};
-> +
-> +static void loongson_update_ce_count(struct mem_ctl_info *mci,
-
-Drop the loongson_ prefix from all static functions.
-
-Also, align function arguments on the opening brace.
-
-> +					int chan,
-> +					int new)
-> +{
-> +	int add;
-> +	struct loongson_edac_pvt *pvt = mci->pvt_info;
-
-The EDAC tree preferred ordering of variable declarations at the
-beginning of a function is reverse fir tree order::
-
-	struct long_struct_name *descriptive_name;
-	unsigned long foo, bar;
-	unsigned int tmp;
-	int ret;
-
-The above is faster to parse than the reverse ordering::
-
-	int ret;
-	unsigned int tmp;
-	unsigned long foo, bar;
-	struct long_struct_name *descriptive_name;
-
-And even more so than random ordering::
-
-	unsigned long foo, bar;
-	int ret;
-	struct long_struct_name *descriptive_name;
-	unsigned int tmp;
-
-> +
-> +	add = new - pvt->last_ce_count;
-> +
-> +	/* Store the new value */
-
-Drop all those obvious comments.
-
-> +	pvt->last_ce_count = new;
-> +
-> +	/* device resume or any other exceptions*/
-
-No clue what that means.
-
-Also,  the check goes right under the assignment.
-
-> +	if (add < 0)
-> +		return;
-> +
-> +	/*updated the edac core */
-
-Useless comment.
-
-> +	if (add != 0) {
-
-	if (!add)
-		return;
-
-and now you can save yourself an indentation level:
-
-	edac_mc_...(
-
-> +		edac_mc_handle_error(HW_EVENT_ERR_CORRECTED, mci, add,
-> +					0, 0, 0,
-> +					chan, 0, -1, "error", "");
-> +		edac_mc_printk(mci, KERN_INFO, "add: %d", add);
-> +	}
-> +}
-> +
-> +static int loongson_read_ecc(struct mem_ctl_info *mci)
-> +{
-> +	u64 ecc;
-> +	int cs = 0;
-> +	struct loongson_edac_pvt *pvt = mci->pvt_info;
-> +
-> +	if (!pvt->ecc_base)
-> +		return pvt->last_ce_count;
-> +
-> +	ecc = pvt->ecc_base[ECC_CS_COUNT];
-> +	cs += ecc & 0xff;		// cs0
-> +	cs += (ecc >> 8) & 0xff;	// cs1
-> +	cs += (ecc >> 16) & 0xff;	// cs2
-> +	cs += (ecc >> 24) & 0xff;	// cs3
-
-No side comments pls - put them over the line.
-
-> +
-> +	return cs;
-> +}
-> +
-> +static void loongson_edac_check(struct mem_ctl_info *mci)
-> +{
-> +	loongson_update_ce_count(mci, 0, loongson_read_ecc(mci));
-
-Drop this silly wrapper.
-
-> +}
-> +
-> +static int get_dimm_config(struct mem_ctl_info *mci)
-> +{
-> +	u32 size, npages;
-> +	struct dimm_info *dimm;
-> +
-> +	/* size not used */
-> +	size = -1;
-> +	npages = MiB_TO_PAGES(size);
-> +
-> +	dimm = edac_get_dimm(mci, 0, 0, 0);
-> +	dimm->nr_pages = npages;
-> +	snprintf(dimm->label, sizeof(dimm->label),
-> +			"MC#%uChannel#%u_DIMM#%u",
-> +			mci->mc_idx, 0, 0);
-
-Align arguments on the opening brace.
-
-> +	dimm->grain = 8;
-> +
-> +	return 0;
-> +}
-
-...
+- Nuno S=C3=A1
 
 
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
 
