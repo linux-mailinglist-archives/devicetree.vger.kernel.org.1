@@ -1,202 +1,127 @@
-Return-Path: <devicetree+bounces-102659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0645977DB1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 12:37:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F459977DF4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 12:49:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95BC8286E0A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 10:37:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B95791C23D1F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 10:49:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C09E14A4FB;
-	Fri, 13 Sep 2024 10:37:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88A6E1D7E5D;
+	Fri, 13 Sep 2024 10:49:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nokia.com header.i=@nokia.com header.b="el3sPBs1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DKDtu1tA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2043.outbound.protection.outlook.com [40.107.104.43])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD8E780B;
-	Fri, 13 Sep 2024 10:37:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726223857; cv=fail; b=Fxx8uFRui2X9WSF2cioh/PORQmlx9VSyEc3D5jFEWvct9/LauGR+fmqvHA0Z2T+T/cnFyZuLXV+BHWSfN0GuyVPMey1zNMXkNzJMbkqAfEORb0b0oZL61wl1a3PeTdnKKDYnQ4ZQVTJ6Evqx05AB+uC77T7RpQRVDm81+AEq3jQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726223857; c=relaxed/simple;
-	bh=B6rVBiHEre5aw3k00IOynDZyCjkwj8pNUcpe4HHhXW0=;
-	h=From:To:CC:Subject:Date:Message-ID:Content-Type:MIME-Version; b=u8XAif4EPaN7VWEyIY+a137kheLC78bDRZWFPz/1E2PhlM0GEafz7J8M1sZEemzn1y/EwLcAawPtw8/bhwKKMbsBA/ou4X5ZKOvboNCre62xcDYMw20qfQUrey/vg5dy1gapnv/MbiPZsY78H9nPNbZuGOmXKxJqG43k2xn/wdY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nokia.com; spf=fail smtp.mailfrom=nokia.com; dkim=pass (2048-bit key) header.d=nokia.com header.i=@nokia.com header.b=el3sPBs1; arc=fail smtp.client-ip=40.107.104.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nokia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nokia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Lpkb/xfZ2U01XIRkNiH14tGjgvNFvmjWna67SJVKSVJ6qtipAfCp8CUDp2Eg8D5ozA/DXQTQzF8jXyFSp7lPR+K7mNV/c5EFdm4tJITdFRsJma4HAppD1Z4OYx76pmsRovIK5KiuxcaWKJC384+JAwPSTn5RloSOWwAYl2l3hmxkn5+1SfzbF+lOEg6ZQYWnmFVGVVs7uWLtBK61xBLh4cq8Y46z5D7DKvfF9B2H3T8Nil3df+upDeQN6ajYxhXdr8A6NSJkF7qUYfTNYvWXQRBvz7apj1SfKAn8OZYRL8Se452lUcGYgAsCZODMYxVuQ2HMmoqJNPRUQrxb9sQJtQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DBWD1K4+3RfYOz6ml5XAu+I43C6yVC4FsoCZR6m1a4I=;
- b=HsEwP5147sMH1JLwuwUa6S7SjuD8gcWePyfj+fkqwsVqwzMqu4viTyd3r5Zt1kP5ydnaIzz6FAuUg+g3go1MnWMBZCuRZ+e+5ayuU0bLXPfXOBwhLLsaP7XTpjoB6LTZfHd4EjCNiVUykbi54LdYd5U5FqFkVA5i3kFWnwItj4fbUqyX06nJE1JYzq7Rx6jSwVjSZV0JONuMb5LYGAQbw/wMMNLlxuyj/kCu5ZowTbjpDqkw6d+GNOEw+9IrTDL68Gt+qzBtzSXeVOQTVsU6CLdDiupRJH1fNx4+Da0wKo3EKTn4dfiv/dUozLcWRNz8NokHK1je//iAM6C6HZsbQQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
- dkim=pass header.d=nokia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DBWD1K4+3RfYOz6ml5XAu+I43C6yVC4FsoCZR6m1a4I=;
- b=el3sPBs1VeCIdJC3CrClpj9sMNHspsF3hhvCb8H4comCe3Q8XeqzH94ih/qT3gjgXraX/W/amyTkTMBhuK5xIL191y0vb2CS7ZwkrOLSREf/cEwkfsl6TZAxpvZ93M4ugBPVub+wkHQnmkbmsi1+Iwy2oB9nzmPm/gZQf8/F7wJ52FFth5zDoSA4pfQoORvUpqLYCcKaAbdMtiTm7nm8mFUB6apneJUHiQVbONXE+L5zLJfwroPOwcvjXSX/nT22h0aSnQtn1eoFFmNt7LdHQl2LYnZoOG5ppun9OKSRwcmBSJ3ugz/hUsmbvJxQH2kwouklrm1jYEC8Cu5VSnggvQ==
-Received: from DB6PR07MB3509.eurprd07.prod.outlook.com (2603:10a6:6:21::16) by
- VI1PR07MB9408.eurprd07.prod.outlook.com (2603:10a6:800:1c3::6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7962.17; Fri, 13 Sep 2024 10:37:30 +0000
-Received: from DB6PR07MB3509.eurprd07.prod.outlook.com
- ([fe80::5484:a966:1322:f78b]) by DB6PR07MB3509.eurprd07.prod.outlook.com
- ([fe80::5484:a966:1322:f78b%6]) with mapi id 15.20.7962.017; Fri, 13 Sep 2024
- 10:37:30 +0000
-From: "Wojciech Siudy (Nokia)" <wojciech.siudy@nokia.com>
-To: "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-CC: Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>,
-	"laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>
-Subject: [PATCH v4 1/2] dt-bindings: i2c: pca954x: Add timeout reset property
-Thread-Topic: [PATCH v4 1/2] dt-bindings: i2c: pca954x: Add timeout reset
- property
-Thread-Index: AQHbBcjQ3MHOkSAFhkWJk/Sp2JYEzA==
-Date: Fri, 13 Sep 2024 10:37:30 +0000
-Message-ID:
- <DB6PR07MB3509DBD6C72832E8ABE7FA539D652@DB6PR07MB3509.eurprd07.prod.outlook.com>
-Accept-Language: pl-PL, en-US
-Content-Language: pl-PL
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nokia.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB6PR07MB3509:EE_|VI1PR07MB9408:EE_
-x-ms-office365-filtering-correlation-id: 8a6149e2-9181-4a9d-2ed8-08dcd3e011b1
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?iso-8859-2?Q?BbFkpTWiK59j7ZresLUjN+UsQxzylUYtWLgP9Aa9Sl+SQnV3ZODu3/iz5M?=
- =?iso-8859-2?Q?6rdKEhtlGjFErQ1rJOAfjH3h3iIqZyuy/nOqr9D8VcQ8+/lLLX8cXM9ZQm?=
- =?iso-8859-2?Q?KvH5BvWfo/akoEynFjvWHGlJv27E33U7vEHIuGJ6wL3M/SAfUCuGYjY8Bo?=
- =?iso-8859-2?Q?Ii644nYwVIjoA/lyGq+OLCShcnndWRsbYAMd9Vc7JzVav7Hv67JlQazaIk?=
- =?iso-8859-2?Q?wumySnD24eSB1sKGW6rAZZvRwtx1ewn5Cc8pZq4F69A1tTNS8b8zcZA2SM?=
- =?iso-8859-2?Q?JitHYQRbq4pHM1DpJsNXl9XOf9m6NnuJpjtAjD/iutljmnVnfeG5YM595/?=
- =?iso-8859-2?Q?oXJxxGy6SpJZCmkmZn5r4BFmZgNuXSSWmj3i2Oc1TokvSoujGNu8lGULOF?=
- =?iso-8859-2?Q?PITG+18VmjYZZPHnfzxspOc5PJdH1An+9L/7DMkhPicloKLANq0hOmX760?=
- =?iso-8859-2?Q?PAVfyVb81DaHIqG+OnZIoTEx2Z/5i4ltRzPzqwtPuUze41GeIgLEXPmpCd?=
- =?iso-8859-2?Q?lPb0pWzHzRrfBg84k5HTLz0y1AsK581CszPWiC527udXDhud7zJ8YdJjI8?=
- =?iso-8859-2?Q?wsUZ93gN+SuN6IfpKen7VaYsvVpl2hhzjV2nlVj9xQgR2oQnuJWX53mewY?=
- =?iso-8859-2?Q?07oeVXPOklx3NY64hO3ttYlRSMXj8tj9RqQqPevG7HqWERvakuVmdMchF7?=
- =?iso-8859-2?Q?LhB+3O20UHZ0cMbkS1DBPw+uVpElUQis9e1QZzENzZcBt7gND6JbtRkvH2?=
- =?iso-8859-2?Q?ClCp4Nne72E8OH3UYzlYkCSLenTHcAfufEEvuBPsUUUNO1k4wLoNRZX6yf?=
- =?iso-8859-2?Q?f2j2del/vPpFqCvTpmg7HZ60/wsxekZSFUe0IXXQHqdIteJCqdRtgJdqkb?=
- =?iso-8859-2?Q?0FSqq+GIkicOM5tk6zXpYGrJtMwsk52y9s22Rpb7EDjyZW798wreU4UIiZ?=
- =?iso-8859-2?Q?qf7AHZ8PmJYxS0kTSe9fV32LdcOcPMEbE1OWUQDvDthUttvs/Yylue2kmO?=
- =?iso-8859-2?Q?8yqP3o+z73Aq2ylZaKBY4nc0I5uCZOf1AxZJsJh8f78GWaNSmEAdnWSAVh?=
- =?iso-8859-2?Q?/c+gJ5RxUS75L9ql13kTkIVgVg5iVMT0Ejjo0jawLVXYv+GUIxgH4YnC8W?=
- =?iso-8859-2?Q?y7XoalVs6/ApyOPhkA824rbjZ/h9IMuLwzIMhMCGbtKHhz8R5cGn/PiH38?=
- =?iso-8859-2?Q?HZQH2dWDFXGseDUtLfZrX2ZH+Li3S6UmL+ho8bYdbLv8SySpYpiL6mEvKu?=
- =?iso-8859-2?Q?SfhrHojO53dGQx52E4RvuYAdgld0moE/+BLn+BEzAbe/qqhJOdpUol9ZCF?=
- =?iso-8859-2?Q?1i+I6z+0owfuoJCNMOcJSximPSqfxXChEi/1YGyudM1HnnVXvfCTAjmQTZ?=
- =?iso-8859-2?Q?V8hUOxsnukEHUe6fTBOczhZnPuQFuvUQ=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR07MB3509.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-2?Q?QsyDaAtJNXNOZa9gC6jAVr6hDpIMjDtWZxOSpNJCjV0bdfrb8YNIcaqiLv?=
- =?iso-8859-2?Q?sJpZqbC1/Oi3BqOEY5+pEZCkRlOz/XnExNXOFUTWUAJNx8F9IBJqlrb9+Y?=
- =?iso-8859-2?Q?4ImqEghm1bTEoWZ4J/u8mjy0ipxVuiPIC+KwLeCO9qJJXQMd/HMzbiuZ1y?=
- =?iso-8859-2?Q?VV0l72NhOmAtvIWbhnXKqFkBNTPGQ4oSethlGRQCu9lHOoTdBG7bCsPoX6?=
- =?iso-8859-2?Q?mNluqijzn0LPv/L7NudTQ5qY21+J6UWzSqIGgYH4udYpSvmKJz0Esn3wYU?=
- =?iso-8859-2?Q?1RUmSnfDQcgpICZXaQcm68hCOGCNIVuQwXerPvRmYfvefbNMaTCSSdsOOf?=
- =?iso-8859-2?Q?LeTevn7jH7p7Nejl7VXinbEbS6Loeic+sIlm/AHYuo/e0dwRitsxHzLyPz?=
- =?iso-8859-2?Q?S6j9/7+6K9yCzz+zZLWK9CAVY0J6++IvCRXu7q5YdDTROqZzsPuOWboko6?=
- =?iso-8859-2?Q?X51XXaXEWw6svi19D/F7CnT1A4oZZLdY6tqxvCTprV4EDrIBOpScpd6nv/?=
- =?iso-8859-2?Q?gSdFNLDlB1mcoJI5J/OxNDCayU8WP0YpWNCfARzVln+/X2oifgK7buGBd3?=
- =?iso-8859-2?Q?YTObFkIVP7LHLWpYgk+ySgtRPghDC8kKECvCL3SIrLIElZA1Bpl6SJM2qW?=
- =?iso-8859-2?Q?cyNtdcGL0x51eZ0qiPJPvXK49NlNRowPzPPCR/c6Ye3dTpRsNQqlM1lpml?=
- =?iso-8859-2?Q?GfdWZhl9F+2m2LSWMmEy+/Yhs1JFh4j+5HaFevxi43d3V8PCehrvRiEboW?=
- =?iso-8859-2?Q?Km9FIXDvDg8X12bsVncSxQXyaYXlhBlZb+VCH4YlcNZrpgahFi9H2pdW42?=
- =?iso-8859-2?Q?knD8NtYxFmV5pBgz3Tkp5Xp2wOQMWyH/+BJ+aJ1zNrvqFRdBwSEFD+JlPo?=
- =?iso-8859-2?Q?gbsV/L3QKmeF/lpLysjOq244qokJGATLzYCpP9lQ9X4MLyz9XM/jBhmVzj?=
- =?iso-8859-2?Q?2z7mqT3Jh2iZBlgAw/GpfXFOzdDX0Kl5e/9pZXJAfxRZjD5fQY2GhX9jNg?=
- =?iso-8859-2?Q?TmFJ1uSDsXHswUnjyEdJjhiye8Nh95jwLsv/iulnu/uPDy/jX9giBnVcBX?=
- =?iso-8859-2?Q?pUFEChCkhFuYyIKIU9Yv+/ZRaviMkdaY0D+RRL9kPFB/LpGmVbw16dl/We?=
- =?iso-8859-2?Q?x7z3iY1o3sm+n6hNcn5NxODDv8SVfEpVHCM1m1Qie8RlTB9Yg7USvsmgIX?=
- =?iso-8859-2?Q?22vflRvP5ntTBX7Ajqcb3b52Zc5V12L/lcHJTuG42WrThGVmbURiE5s0IO?=
- =?iso-8859-2?Q?sLhd6o/iCuUz64bEoUMTZyqT4f74vjrJEgE0w5u/dIcbtCH7VDy67L8nnz?=
- =?iso-8859-2?Q?HqENezn2G8n996zUjS18u3rv9ljcu89SyAhGhLOS1dD83jKotcaCq7XK56?=
- =?iso-8859-2?Q?53dHls+9L3ooNv/dQY82j/BHXEMEkCZcpx2TQ1ARq55v/5sERBaUDSuh9a?=
- =?iso-8859-2?Q?gr6mvXLzi0ljhj2I997m3hlkCcXDgl+2fqvp8Jh/fs9cUY4sCIdN2tnceJ?=
- =?iso-8859-2?Q?DMMGLA9g8hq39tbV0H3CNlkqfrrYsRicue4tMnWVi1AEu1v1LvvHelYpvP?=
- =?iso-8859-2?Q?nDIbeNEd0eCszOiu+5BH9MM2GaYACEI2BnnwK3ahtTkmSoF3GRzQ4p2keD?=
- =?iso-8859-2?Q?SNWPkzzzcLtQzRSRy9YqHmqISuDCnKLD3r?=
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 296831D58A8;
+	Fri, 13 Sep 2024 10:49:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726224556; cv=none; b=b6iSAFAozCpQC8FDEfBHMaQ7XtcwHyS6XAdvLaz0ZQE0SBMmTn5oRJwlEum99rXUx6yphqk6UZjGHNgGn+KRqIzES2yS7ZOmf/JDUmy8q0241HjrqTjfsDNgwvfnf3lk8YZRRflmkItjOK4WyZbG4XNyqzezUeBn03tsLU9Yvyg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726224556; c=relaxed/simple;
+	bh=EyH/VSN68skuuoKiqyeFlp9tXrWX5o1yjV9sTkx4df0=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=Q23vLcWVoCtWiiY3PI0slYdU9H+J3Qtm2hn30UhK1DNhcACgT/e+8nzq6L9JB1oCcR8nxtnKZ109gRTtPhxmSCikCrk7JuoXLRbEWm8ZvKF/xRZuOuJsz8wSrKT05mRRbhvZA1mpBUHDURAtvecI1AEZ/twmKMjMWwBPw7/d9q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DKDtu1tA; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48DAUR3F016801;
+	Fri, 13 Sep 2024 10:49:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:date:from:message-id:subject:to; s=qcppdkim1; bh=D4LbTFvYAn54
+	L7SxpTc+XzckHw9ndSNUzGsHpRkMvvs=; b=DKDtu1tA+HFt2B9k6ebMOMaDIWRI
+	Mt5PuXEDPZZYjCbCO0JN6ZyoiPa7tlPgTxXPiqWHvaoyqVebxyUthdoIjzHu/xPe
+	LtErklID6ptkqaejPhEOwVNMBB/RQW8amyzWHS9k9+CuZuem6MnfBKvA6DhP5vaY
+	dax+7/bMU4gqIc9xlBZe5S+HLdvyYQJm1b73I6jPn+hn1SIx681AOu+HDIfXWaEA
+	vCqT4tazzhhw1t6Ex1nsnebnYGAQVJKxZAWAXGYwNHOUEvaEjjXSSAQaTHpMDJZb
+	WYsd1IQE2rYToooNs8Y2yG2ltf2Ovoe8i+41kN4qDM+A/QiObhm4cOXiPQ==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41he5e7qe2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 13 Sep 2024 10:48:59 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 48DAjLL7030765;
+	Fri, 13 Sep 2024 10:48:55 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 41h0eru4vd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Fri, 13 Sep 2024 10:48:55 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 48DAmtCo001193;
+	Fri, 13 Sep 2024 10:48:55 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-mukhopad-hyd.qualcomm.com [10.147.244.250])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 48DAmtlD001191;
+	Fri, 13 Sep 2024 10:48:55 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 3978529)
+	id 822895000A9; Fri, 13 Sep 2024 16:08:01 +0530 (+0530)
+From: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+To: vkoul@kernel.org, kishon@kernel.org, konradybcio@kernel.org,
+        andersson@kernel.org, simona@ffwll.ch, dmitry.baryshkov@linaro.org,
+        abel.vesa@linaro.org, robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        sean@poorly.run, marijn.suijten@somainline.org, airlied@gmail.com,
+        daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, quic_khsieh@quicinc.com, konrad.dybcio@linaro.org,
+        quic_parellan@quicinc.com, quic_bjorande@quicinc.com
+Cc: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        quic_riteshk@quicinc.com, quic_vproddut@quicinc.com
+Subject: [PATCH v2 0/5] Add support for DisplayPort on SA8775P platform
+Date: Fri, 13 Sep 2024 16:07:50 +0530
+Message-Id: <20240913103755.7290-1-quic_mukhopad@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: r0JNGIwx-pvtKgJvi9fa_iuyJkGq1d_o
+X-Proofpoint-GUID: r0JNGIwx-pvtKgJvi9fa_iuyJkGq1d_o
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
+ priorityscore=1501 suspectscore=0 lowpriorityscore=0 impostorscore=0
+ malwarescore=0 mlxscore=0 phishscore=0 bulkscore=0 adultscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409130074
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-OriginatorOrg: nokia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR07MB3509.eurprd07.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8a6149e2-9181-4a9d-2ed8-08dcd3e011b1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Sep 2024 10:37:30.2284
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 5d471751-9675-428d-917b-70f44f9630b0
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: EOARj+p+gDS+FnpKYR16PlzTzWtsoZ9syneSldSTKXuklz0uenoUFRaQdpTo+gBm7GsN1JN8hBNp1n2lLxn4ky8zu+bkQSH85hMFMOJ5bvI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR07MB9408
 
-From: Wojciech Siudy <wojciech.siudy@nokia.com>=0A=
-=0A=
-For cases when the mux shares reset line with other chips we cannot=0A=
-use it when channel selection or deselection times out, because it=0A=
-could break them without proper init/probe.=0A=
-=0A=
-Signed-off-by: Wojciech Siudy <wojciech.siudy@nokia.com>=0A=
----=0A=
- .../devicetree/bindings/i2c/i2c-mux-pca954x.yaml          | 8 ++++++++=0A=
- 1 file changed, 8 insertions(+)=0A=
-=0A=
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/D=
-ocumentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml=0A=
-index 9aa0585200c9..872be72da965 100644=0A=
---- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml=0A=
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml=0A=
-@@ -63,6 +63,12 @@ properties:=0A=
-       necessary for example, if there are several multiplexers on the bus =
-and=0A=
-       the devices behind them use same I2C addresses.=0A=
- =0A=
-+  i2c-mux-timeout-reset:=0A=
-+    type: boolean=0A=
-+    description: Sends reset pulse if channel selection or deselection tim=
-es=0A=
-+      out. Works only if reset GPIO provided. Do not use if other chips sh=
-are=0A=
-+      the same reset line.=0A=
-+=0A=
-   idle-state:=0A=
-     description: if present, overrides i2c-mux-idle-disconnect=0A=
-     $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state=0A=
-@@ -146,6 +152,8 @@ examples:=0A=
-             interrupt-parent =3D <&ipic>;=0A=
-             interrupts =3D <17 IRQ_TYPE_LEVEL_LOW>;=0A=
-             interrupt-controller;=0A=
-+            i2c-mux-idle-disconnect;=0A=
-+            i2c-mux-timeout-reset;=0A=
-             #interrupt-cells =3D <2>;=0A=
- =0A=
-             i2c@2 {=0A=
--- =0A=
-2.34.1=0A=
-=0A=
+This series adds support for the DisplayPort controller
+and eDP PHY v5 found on the Qualcomm SA8775P platform.
+
+---
+v2: Fixed review comments from Dmitry and Bjorn
+	- Made aux_cfg array as const.
+	- Reused edp_swing_hbr_rbr and edp_swing_hbr2_hbr3 for v5.
+	 
+---
+Soutrik Mukhopadhyay (5):
+  dt-bindings: phy: Add eDP PHY compatible for sa8775p
+  phy: qcom: edp: Introduce aux_cfg array for version specific aux
+    settings
+  phy: qcom: edp: Add support for eDP PHY on SA8775P
+  dt-bindings: display: msm: dp-controller: document SA8775P compatible
+  drm/msm/dp: Add DisplayPort controller for SA8775P
+
+ .../bindings/display/msm/dp-controller.yaml   |  1 +
+ .../devicetree/bindings/phy/qcom,edp-phy.yaml |  1 +
+ drivers/gpu/drm/msm/dp/dp_display.c           |  7 ++
+ drivers/phy/qualcomm/phy-qcom-edp.c           | 70 +++++++++++++++----
+ 4 files changed, 65 insertions(+), 14 deletions(-)
+
+-- 
+2.17.1
+
 
