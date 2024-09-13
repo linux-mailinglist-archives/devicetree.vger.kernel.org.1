@@ -1,231 +1,225 @@
-Return-Path: <devicetree+bounces-102675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A019E977E84
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 13:35:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F711977EB2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 13:43:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B1F0B2215D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 11:34:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1C4C1F25E10
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 11:43:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42D9F1D86DB;
-	Fri, 13 Sep 2024 11:34:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F38EC1D86C3;
+	Fri, 13 Sep 2024 11:43:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GtqSG+lI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gvyT8Q1M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F8C81D86C3;
-	Fri, 13 Sep 2024 11:34:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AC041865EC
+	for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 11:43:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726227295; cv=none; b=QrUgntBdOQHxg2Lj9jDezGJOHu2ai4UEMrULcY+8SGrJ2dptpW5vqNvqhyKEXxqvD7+Da542M6nRu5ddnoWI2RUJo4yNLPDHYG+yZdqcMuL0YzLmJTdK5B/4WYbFAPPRsvnsOShdVyJ/Wo5MLhSVu2LRB+i9wuuGo+flYCQKSJg=
+	t=1726227790; cv=none; b=HjT0EZNMnOPQjyo0igoK/0czmYAFK/0Mzn3aM/OXwIrqlsmuBnrU+8XQDXF2Pimn5nLd/f8xwlZN7O2fdEBY6g+A5q6MrD1/BUbTzVytsYOw+xN2NI/lQMciHcTHABZuL1ZWiBuhX22m5CFL3KuzIUKC453ah9nr3a7GI4jzCl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726227295; c=relaxed/simple;
-	bh=aox+2AgEiNYG1u0TgPXG6D1t/7jiNc6huiqp4LX58qk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dAe993AKqTrw3ciYRuATz3VIOecp4yx3B2MgNC4hYJ883SmDvIYVGq97MmfomHmz+olsYdO5QQQSDkjpTwxj9Qchz1BRYhHF6VJZZn1TygrMGSjNowyPgI9AkiufRFHHAZN9tPNdGIYh9C/ChlGPHbyfW45nhGs+knG9M/Z26hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GtqSG+lI; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-42cb60aff1eso19672745e9.0;
-        Fri, 13 Sep 2024 04:34:53 -0700 (PDT)
+	s=arc-20240116; t=1726227790; c=relaxed/simple;
+	bh=97YoPWO30aOmzmIGDrW8k0PQ1PFGfCeF0Ju6v6syArU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NBfX3YeBW+YcQhTORHsKG8F7BqOOGXMn8J0pHARc1iygjRouVZiQqHWsO5aQhoWDYu4jDJwvKekso/CG0gAmMIjWnFH9OsKNWSjnOGIMHRxB7ERyutMTEPBdZd3gB6YyyflfZO2KK2UCRACw9JRYyyRp7cHYWGuzwJhIam8U9u4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gvyT8Q1M; arc=none smtp.client-ip=209.85.219.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e05f25fb96eso825728276.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 04:43:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726227292; x=1726832092; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=X9PVZTr1fh4UFLRanBhn9s1OhJ/Bjd4ZmZyv8BDZt9A=;
-        b=GtqSG+lIRiOn5e+UcCfJPVCeSYBruUrsggnrSGk/RqBphrcgb7/vE40yQ0Fw+gyvci
-         PV9OWTxEHvaUIeE9nvb8hn6D8s8H5mTL+/nmY0CfF5BS4VGF8pGBtqMBBDVKgPQrQy8h
-         wUfJsanY4DjNfbuujBWeUhU/RIM9vWId/tHM3e1kcIpfpgJvdMJDToyKRBrC8OZEpwuQ
-         qu7wQqRB1RM+a3d8UbD4ajfd6y9JaFOU6I5b7xppibfzqc5G0eFqNBIVOI9UZxJmGvm7
-         tZ+KnFfdx6IuJB7T1dynHTj07Wn1hOwWN7WZLc6TzD7JgE15cYzikVk9/r7VLQnbRIhL
-         GIEg==
+        d=linaro.org; s=google; t=1726227788; x=1726832588; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9UwhSpacqWbNrpzy9OkkjEtHbhA7k4WWF7GmkMMBnJM=;
+        b=gvyT8Q1MRV0KSAr1VAax5qpoJqKqtPzYNR7N8Lz65ABFbWCZkapCibKjWeVQPk7CDL
+         j4Q2j5zdEow7qKBwFdEksxcgcHHt4IuPUIoV8UwC5GNGdHiYISPlpJuwcCaFN+h0ELuf
+         B8cPowTmtw5vSFPrBfU429sh+zIlDV4ujLsJzzJJf6DL0fwnQz/QnIK1QVJSs7mYdMjD
+         zGp4/R5NVxHT+C/CEhPbYm07SDqvBCdk/HHPpJJrt5g+Yl9PKpwAXl76ts7KTnbL35nD
+         +/PpT75zbrhxOEsB6/QdQTlwPFBB1tI0BHlPgsAQsqdVUQkywm+4wajr0BDT6VscowhU
+         BMow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726227292; x=1726832092;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=X9PVZTr1fh4UFLRanBhn9s1OhJ/Bjd4ZmZyv8BDZt9A=;
-        b=pNWksjE9I3vtsht708Dwor8VeD4x1hI2V9bbDj+qAQMsdobSJB8X+3KSeqcbrE9CM4
-         clIXrQcZmVSpKUVJj116LpLmYcuPu4mxmpArK2S4PWL5bAiacslnTFl24i5NSsKCA2Gv
-         LS5pBWBxutIMJo+tyd9zTsB/LJr9Hz6+QjWiZDbtYlJ+UgQnt9Ivw71HLeCRJ2LDxcMP
-         fqzWB4jIghQe4xLPlzojDhDY6E2+UJypTOrMBBx7MnoXQTzTGW+Am3x5M6k1RhBFV4bu
-         APddWYqr3Rc2WMDhGOSjb+R5Qqt2xzvpJLFH/NlehAR+MiPxeyGk5Wv8CgVUIuEJLlyO
-         eIvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVpEdjsGYrqKArc2Pqu04uJA6SVyuOJTxPOs4ZqYg1wFPvFPSfzPie9fOlAVmpaMEyL4mVlRXqbBtznNlU=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzfhTX6nVelKb/RqXMWGnMuJvR1hRtc8N7Rf+0cjYizxVxs7AQE
-	e/8jNzn1+lqCH7lWY0ByYp8i3UbWyqfTpeuqgxj4B+haaMhFkL9O
-X-Google-Smtp-Source: AGHT+IEl7GKlmReq3OGYMyX5zDP86AfYN6alFNLZd/Xy9rw9+fboK/8UqpKzwm5ckrE89LwvpwuS1A==
-X-Received: by 2002:a05:600c:3505:b0:42c:a8d5:2df5 with SMTP id 5b1f17b1804b1-42cdb586ee0mr48328435e9.24.1726227291420;
-        Fri, 13 Sep 2024 04:34:51 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.162.240])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42d9b05a700sm22547905e9.10.2024.09.13.04.34.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Sep 2024 04:34:50 -0700 (PDT)
-Message-ID: <edf25359-1804-445d-bd49-45c7238a3cd5@gmail.com>
-Date: Fri, 13 Sep 2024 13:34:49 +0200
+        d=1e100.net; s=20230601; t=1726227788; x=1726832588;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9UwhSpacqWbNrpzy9OkkjEtHbhA7k4WWF7GmkMMBnJM=;
+        b=Pdnda0LLVvM+w0RjeJntrWtM9TuXajUU9l/hdK8BRyEyZMGqGEPN46wngVa55CxF6l
+         bdaDTxT1cnBkqjOSqtIkogfOgEQkKU6jOH5iVHGBUXfXGgX+kOS2z3peNS9sYCFljGLp
+         PrTvTZszMyRdxuyBXjsZW7Zny/+L7Jxqe4nvcpQ6LrBvs+f3sTy5s5W5sABRGJr/MFO4
+         Uk8w5zCJFsf6vmXecCkKjSJ6VMycvT8mPZR2laAiHO22tpRDOpqI/jtjbm/9dOr5iX82
+         5MakIiRY6EiahXj04EwhO8OozVboLvi7na17SN7fIux0Lty0nKsCC+7PuItGZYc3vinD
+         yOBg==
+X-Forwarded-Encrypted: i=1; AJvYcCVOQZUupmpZLIzsZEhyUqkeMm/RuMeouR1tq604nfmuOB8T1Xi9ZRdo80O6poHlYMt3p+l1Hahf4Nh0@vger.kernel.org
+X-Gm-Message-State: AOJu0YxcPgieNX93aPvXLUXr41uPF1b0cZlbqjfJaxjRhna75EB7XyVm
+	+wT+BonLWhEV7NiV5nxpp/dBqjbpqAPYfNXYT0nnRBDwyPpbY68HYDrWRo0kO+rF7i+GZJyTd7t
+	6TX10NQ2bKBopY1aKTXo8zh5JSyYJGk+wMSJpVg==
+X-Google-Smtp-Source: AGHT+IE1TLnxU5IuXLszG0sh4Cmeh/NG3k6A0NeL7GYbVv4i0eJleu/njbaWM0plHlg4dpg3DlaBntAGY4GvPCDnoFM=
+X-Received: by 2002:a05:690c:ec9:b0:632:5b24:c0c with SMTP id
+ 00721157ae682-6dbcc23000fmr21070177b3.5.1726227787870; Fri, 13 Sep 2024
+ 04:43:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8395-genio-1200-evk: Enable
- GPU
-To: Pablo Sun <pablo.sun@mediatek.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20240912070624.25540-1-pablo.sun@mediatek.com>
-Content-Language: en-US, ca-ES, es-ES
-From: Matthias Brugger <matthias.bgg@gmail.com>
-Autocrypt: addr=matthias.bgg@gmail.com; keydata=
- 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
-In-Reply-To: <20240912070624.25540-1-pablo.sun@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240913103755.7290-1-quic_mukhopad@quicinc.com> <20240913103755.7290-3-quic_mukhopad@quicinc.com>
+In-Reply-To: <20240913103755.7290-3-quic_mukhopad@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 13 Sep 2024 14:42:56 +0300
+Message-ID: <CAA8EJppddLmzJ9WSkLLr-nwM-qe647Sm6jV8SpHdB=0vRQT-=Q@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] phy: qcom: edp: Introduce aux_cfg array for
+ version specific aux settings
+To: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, konradybcio@kernel.org, 
+	andersson@kernel.org, simona@ffwll.ch, abel.vesa@linaro.org, 
+	robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run, 
+	marijn.suijten@somainline.org, airlied@gmail.com, daniel@ffwll.ch, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	quic_khsieh@quicinc.com, konrad.dybcio@linaro.org, quic_parellan@quicinc.com, 
+	quic_bjorande@quicinc.com, linux-arm-msm@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, quic_riteshk@quicinc.com, 
+	quic_vproddut@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
-
-
-On 12/09/2024 09:06, Pablo Sun wrote:
-> Enable the Mali Valhall GPU on Genio 1200 EVK by providing regulator
-> supply settingsi to gpu and mfg1, and enable the GPU node.
-> 
-> In addition, set the GPU related regulator voltage range:
-> 
-> 1. Set the recommended input voltage range of DVDD_GPU to (0.546V-0.787V),
->     based on Table 5-3 of MT8395 Application Processor Datasheet.
->     The regulator mt6315_7_vbuck1("Vgpu") connects to the DVDD_GPU input.
->     Note that the minimum voltage in SoC eFuse data, which is read by
->     MTK-SVS to adjust the regulator voltage, does not go below
->     the recommended operating voltage in the datasheet.
-> 
-> 2. Set the input voltage of DVDD_SRAM_GPU, supplied by
->     mt6359_vsram_others_ldo_reg, to 0.75V, the recommended typical
->     operating voltage in MT8395 Application Processor Datasheet.
-> 
-> This patch is tested by enabling CONFIG_DRM_PANFROST and
-> on Genio 1200 EVK it probed with following dmesg:
-> 
-> ```
-> panfrost 13000000.gpu: clock rate = 700000092
-> panfrost 13000000.gpu: mali-g57 id 0x9093 major 0x0 minor 0x1 status 0x0
-> panfrost 13000000.gpu: features: 00000000,000019f7,
-> 					   issues: 00000001,80000400
-> panfrost 13000000.gpu: Features: L2:0x07120206 Shader:0x00000000
-> 					   Tiler:0x00000809 Mem:0x301
-> 					   MMU:0x00002830 AS:0xff JS:0x7
-> panfrost 13000000.gpu: shader_present=0x50045 l2_present=0x1
-> [drm] Initialized panfrost 1.2.0 for 13000000.gpu on minor 0
-> ```
-> 
-> Signed-off-by: Pablo Sun <pablo.sun@mediatek.com>
-
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-
+On Fri, 13 Sept 2024 at 13:38, Soutrik Mukhopadhyay
+<quic_mukhopad@quicinc.com> wrote:
+>
+> In order to support different HW versions, introduce aux_cfg array
+> to move v4 specific aux configuration settings.
+>
+> Signed-off-by: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
 > ---
->   .../dts/mediatek/mt8395-genio-1200-evk.dts    | 19 +++++++++++++++++--
->   1 file changed, 17 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-> index a06610fff8ad..4f7d66d6d785 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-> @@ -194,6 +194,11 @@ eth_phy0: eth-phy0@1 {
->   	};
->   };
->   
-> +&gpu {
-> +	mali-supply = <&mt6315_7_vbuck1>;
-> +	status = "okay";
+> v2: Fixed review comments from Bjorn and Dmitry
+>         - Made aux_cfg array as const.
+>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-edp.c | 37 ++++++++++++++++++-----------
+>  1 file changed, 23 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/phy/qualcomm/phy-qcom-edp.c b/drivers/phy/qualcomm/phy-qcom-edp.c
+> index da2b32fb5b45..bcd5aced9e06 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-edp.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-edp.c
+> @@ -90,6 +90,7 @@ struct phy_ver_ops {
+>
+>  struct qcom_edp_phy_cfg {
+>         bool is_edp;
+> +       const u8 *aux_cfg;
+>         const struct qcom_edp_swing_pre_emph_cfg *swing_pre_emph_cfg;
+>         const struct phy_ver_ops *ver_ops;
+>  };
+> @@ -186,11 +187,15 @@ static const struct qcom_edp_swing_pre_emph_cfg edp_phy_swing_pre_emph_cfg = {
+>         .pre_emphasis_hbr3_hbr2 = &edp_pre_emp_hbr2_hbr3,
+>  };
+>
+> +static const u8 edp_phy_aux_cfg_v4[10] = {
+> +       0x00, 0x13, 0x24, 0x00, 0x0a, 0x26, 0x0a, 0x03, 0x37, 0x03
 > +};
 > +
->   &i2c0 {
->   	clock-frequency = <400000>;
->   	pinctrl-0 = <&i2c0_pins>;
-> @@ -337,6 +342,10 @@ &mfg0 {
->   	domain-supply = <&mt6315_7_vbuck1>;
->   };
->   
-> +&mfg1 {
-> +	domain-supply = <&mt6359_vsram_others_ldo_reg>;
-> +};
+>  static int qcom_edp_phy_init(struct phy *phy)
+>  {
+>         struct qcom_edp *edp = phy_get_drvdata(phy);
+> +       u8 aux_cfg[10];
+
+Please define 10, so that there are no magic numbers (and less chance
+of damaging the stack if it gets changed in one place only.
+
+>         int ret;
+> -       u8 cfg8;
+>
+>         ret = regulator_bulk_enable(ARRAY_SIZE(edp->supplies), edp->supplies);
+>         if (ret)
+> @@ -200,6 +205,8 @@ static int qcom_edp_phy_init(struct phy *phy)
+>         if (ret)
+>                 goto out_disable_supplies;
+>
+> +       memcpy(aux_cfg, edp->cfg->aux_cfg, sizeof(aux_cfg));
 > +
->   &mmc0 {
->   	status = "okay";
->   	pinctrl-names = "default", "state_uhs";
-> @@ -407,6 +416,12 @@ &mt6359_vrf12_ldo_reg {
->   	regulator-always-on;
->   };
->   
-> +/* for GPU SRAM */
-> +&mt6359_vsram_others_ldo_reg {
-> +	regulator-min-microvolt = <750000>;
-> +	regulator-max-microvolt = <750000>;
-> +};
-> +
->   &mt6359codec {
->   	mediatek,mic-type-0 = <1>; /* ACC */
->   	mediatek,mic-type-1 = <3>; /* DCC */
-> @@ -839,8 +854,8 @@ regulators {
->   			mt6315_7_vbuck1: vbuck1 {
->   				regulator-compatible = "vbuck1";
->   				regulator-name = "Vgpu";
-> -				regulator-min-microvolt = <300000>;
-> -				regulator-max-microvolt = <1193750>;
-> +				regulator-min-microvolt = <546000>;
-> +				regulator-max-microvolt = <787000>;
->   				regulator-enable-ramp-delay = <256>;
->   				regulator-allowed-modes = <0 1 2>;
->   			};
+>         writel(DP_PHY_PD_CTL_PWRDN | DP_PHY_PD_CTL_AUX_PWRDN |
+>                DP_PHY_PD_CTL_PLL_PWRDN | DP_PHY_PD_CTL_DP_CLAMP_EN,
+>                edp->edp + DP_PHY_PD_CTL);
+> @@ -222,22 +229,20 @@ static int qcom_edp_phy_init(struct phy *phy)
+>          * even needed.
+>          */
+>         if (edp->cfg->swing_pre_emph_cfg && !edp->is_edp)
+> -               cfg8 = 0xb7;
+> -       else
+> -               cfg8 = 0x37;
+> +               aux_cfg[8] = 0xb7;
+>
+>         writel(0xfc, edp->edp + DP_PHY_MODE);
+>
+> -       writel(0x00, edp->edp + DP_PHY_AUX_CFG0);
+> -       writel(0x13, edp->edp + DP_PHY_AUX_CFG1);
+> -       writel(0x24, edp->edp + DP_PHY_AUX_CFG2);
+> -       writel(0x00, edp->edp + DP_PHY_AUX_CFG3);
+> -       writel(0x0a, edp->edp + DP_PHY_AUX_CFG4);
+> -       writel(0x26, edp->edp + DP_PHY_AUX_CFG5);
+> -       writel(0x0a, edp->edp + DP_PHY_AUX_CFG6);
+> -       writel(0x03, edp->edp + DP_PHY_AUX_CFG7);
+> -       writel(cfg8, edp->edp + DP_PHY_AUX_CFG8);
+> -       writel(0x03, edp->edp + DP_PHY_AUX_CFG9);
+> +       writel(aux_cfg[0], edp->edp + DP_PHY_AUX_CFG0);
+> +       writel(aux_cfg[1], edp->edp + DP_PHY_AUX_CFG1);
+> +       writel(aux_cfg[2], edp->edp + DP_PHY_AUX_CFG2);
+> +       writel(aux_cfg[3], edp->edp + DP_PHY_AUX_CFG3);
+> +       writel(aux_cfg[4], edp->edp + DP_PHY_AUX_CFG4);
+> +       writel(aux_cfg[5], edp->edp + DP_PHY_AUX_CFG5);
+> +       writel(aux_cfg[6], edp->edp + DP_PHY_AUX_CFG6);
+> +       writel(aux_cfg[7], edp->edp + DP_PHY_AUX_CFG7);
+> +       writel(aux_cfg[8], edp->edp + DP_PHY_AUX_CFG8);
+> +       writel(aux_cfg[9], edp->edp + DP_PHY_AUX_CFG9);
+
+Replace this with a loop?
+
+>
+>         writel(PHY_AUX_STOP_ERR_MASK | PHY_AUX_DEC_ERR_MASK |
+>                PHY_AUX_SYNC_ERR_MASK | PHY_AUX_ALIGN_ERR_MASK |
+> @@ -519,16 +524,19 @@ static const struct phy_ver_ops qcom_edp_phy_ops_v4 = {
+>  };
+>
+>  static const struct qcom_edp_phy_cfg sc7280_dp_phy_cfg = {
+> +       .aux_cfg = edp_phy_aux_cfg_v4,
+>         .ver_ops = &qcom_edp_phy_ops_v4,
+>  };
+>
+>  static const struct qcom_edp_phy_cfg sc8280xp_dp_phy_cfg = {
+> +       .aux_cfg = edp_phy_aux_cfg_v4,
+>         .swing_pre_emph_cfg = &dp_phy_swing_pre_emph_cfg,
+>         .ver_ops = &qcom_edp_phy_ops_v4,
+>  };
+>
+>  static const struct qcom_edp_phy_cfg sc8280xp_edp_phy_cfg = {
+>         .is_edp = true,
+> +       .aux_cfg = edp_phy_aux_cfg_v4,
+>         .swing_pre_emph_cfg = &edp_phy_swing_pre_emph_cfg,
+>         .ver_ops = &qcom_edp_phy_ops_v4,
+>  };
+> @@ -707,6 +715,7 @@ static const struct phy_ver_ops qcom_edp_phy_ops_v6 = {
+>  };
+>
+>  static struct qcom_edp_phy_cfg x1e80100_phy_cfg = {
+> +       .aux_cfg = edp_phy_aux_cfg_v4,
+>         .swing_pre_emph_cfg = &dp_phy_swing_pre_emph_cfg,
+>         .ver_ops = &qcom_edp_phy_ops_v6,
+>  };
+> --
+> 2.17.1
+>
+
+
+-- 
+With best wishes
+Dmitry
 
