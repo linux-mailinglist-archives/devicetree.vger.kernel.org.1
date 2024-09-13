@@ -1,204 +1,238 @@
-Return-Path: <devicetree+bounces-102552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8049977714
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 04:51:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A826897771E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 04:54:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 11FABB231C7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 02:51:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 270201F243D5
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 02:54:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6D501AE87C;
-	Fri, 13 Sep 2024 02:51:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11D601B12D9;
+	Fri, 13 Sep 2024 02:54:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="ZLl1fNrt"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="joXLh5Gm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2043.outbound.protection.outlook.com [40.107.103.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A28C82C95
-	for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 02:51:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726195886; cv=none; b=pmtv8TfwFXQxoruCUtdTGaZBIjfRvcHkkfjShl1fBTccnsEUxINkeiJFJBSM8NGOKOBaWYMKgh6OS0p4KcfjH4qwnjn7OsXZ5tUhMzUW3YX37729c0HLEj17RRX2UvXgr6LRV0m6lHjx/toPUPmboHmEBP5YigPpSZw0g+m4aho=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726195886; c=relaxed/simple;
-	bh=AN4DtVKMFJj+Oka4ewoJjhlxUHL0Ou2WbvKruw5A9Vg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CvDqQLvccUdtYP7NGwCfKp/yqWxWOZ27x3GQF8fuyTbQXboqU0bCT+SgtlOraeKvWRFUN4F+O3tuxgAfKrI+K8BoLJIZB7S1B3Ludb80p0cyQBEGR/X0uTsbU9yhgvFIMq6l/ned7H3Ns3WvWEoe7Saj5euyR3CxkBi7NWUACo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=ZLl1fNrt; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-718a3b8a2dcso364042b3a.2
-        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2024 19:51:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1726195884; x=1726800684; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=7lucKHZRD1F8sNhQoF0GbULdmAnhRsrGT0LLKCZjQ8Q=;
-        b=ZLl1fNrtCqmkdQ382N7VDZy2JOd14XjwPAbzHzgvUi+CeVt+f8zlsbo4Mp/pZvRGH8
-         ns0tU92Jl+wKIBTMfPFbAeJGeZW3Ajv0HsBBazurcwNBkcgnuRFCV1hAj/S+8pL5bv8+
-         DAiQD6+dPe/6DNJnJVRnd3I1+mySPREtjbUjBFzQlwMB8oHzPbGGnIBRpBiA0+u38j9b
-         TIbXar+jbPPolb3OvP/mp2ushsDtnVB3vUARfha2mOSPJ6aHlNqMi960NUMvNKVh5tUp
-         svQMjN2RpD5obnFzEb5UIf7veRBgJu8htMrnhJPF4pIly2Do6pAVOtdtcoGAEYhQ0HxS
-         5udw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726195884; x=1726800684;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7lucKHZRD1F8sNhQoF0GbULdmAnhRsrGT0LLKCZjQ8Q=;
-        b=nf7VF/xnYt1wb9wjvkxnnfzqV6h22WNl57x1n0lCPNkmocmgQMgQb1FeE+863lCYEE
-         jh7uAaC+o/cV1uKeJynVbzCHMYmY3NN6lMp8vEAhsyy/oUeVDhkMadPba8iykBBrfXLA
-         WeKr09wyynChK3bKcSf1Nch4D6zdRupyicMGbmQ4XWKkIN9ZUpqQ06L4OKO83mLHtgjx
-         GArMqXn/6YquB4IqpJLmdjpYPxJjXY1QY2RG2WBK0MVy36X6An0q3hrZXcXWzufZtaYi
-         +RsObPT23ZwzRWZisob9Xz+4nyYtsIeSRfeK0EAEL3IF89mtNDlk4aodvHlnTixS/DPc
-         INmw==
-X-Forwarded-Encrypted: i=1; AJvYcCX1i8WYpwgmX6T0nKmK8Q1ntVeJURZ7otu/vKXHoxi+8A2Rx5iXYBAyJ8TV9WtvAsj+/Z6LD63A3+hY@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfbDmO4V8I2E+TasNqtU59DYLYTuOLZXANcUqb19g7+PSocRKV
-	AsdH8hFmjzt7x/peD/aV4nbKYH4yUkBhI//sby9BZTvKnk0zAb0VAHbppO4o/K0=
-X-Google-Smtp-Source: AGHT+IF0SPnqCcWggj+ZbMP5BdP/rIV8aCEiZw6gABT7Jq6B8FmEO+5IPUNs4ZDtOMOgvUeBHKH7Nw==
-X-Received: by 2002:a05:6300:668a:b0:1cc:cdb6:c116 with SMTP id adf61e73a8af0-1d112db1368mr1881160637.24.1726195883833;
-        Thu, 12 Sep 2024 19:51:23 -0700 (PDT)
-Received: from ghost ([50.145.13.30])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71908fc8febsm5398290b3a.19.2024.09.12.19.51.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Sep 2024 19:51:23 -0700 (PDT)
-Date: Thu, 12 Sep 2024 19:51:21 -0700
-From: Charlie Jenkins <charlie@rivosinc.com>
-To: Samuel Holland <samuel.holland@sifive.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	linux-kernel@vger.kernel.org, Anup Patel <anup@brainfault.org>,
-	Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com,
-	Atish Patra <atishp@atishpatra.org>,
-	Evgenii Stepanov <eugenis@google.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	"Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>
-Subject: Re: [PATCH v4 06/10] riscv: Allow ptrace control of the tagged
- address ABI
-Message-ID: <ZuOoqTfKs/7G075O@ghost>
-References: <20240829010151.2813377-1-samuel.holland@sifive.com>
- <20240829010151.2813377-7-samuel.holland@sifive.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B66731BD503;
+	Fri, 13 Sep 2024 02:54:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.43
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726196087; cv=fail; b=Sdr7opAZRxves8XhWgcp+OEnGHtcHHS3WxigU5TagTyvw+se0d5WrrUNKiD98Y4qnb4e+JEnWXOpgN5A/MKurQNHhrCdZsmnDIOqTQBo5xzoh6g7x/DRQVQgmGmawYkfV5//Ll93yb8wOf3vdZk/72f02f83h0AU9i5hMXqKpY0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726196087; c=relaxed/simple;
+	bh=tq/shTKP6cvUIhGDKdXF9tPJ4obrB2CeqzCMvmwjd6s=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=N9N9lHoCp/b1qokBX/EIBImpD+rDud5q66g0mJ1M6pV/Dv1VQZhp0tgTpOFZo1dez0OHXf1Qb68DqOhlb3l5h80SJ8JSNm56P2aX0Hm5sA/Hv/wczWl9QvSwia8FigHqvnGLXB2Qx2Cz1SA+2TJodheY6KVtCgqIoKWX+R7rgf4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=joXLh5Gm; arc=fail smtp.client-ip=40.107.103.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=l2WyjGmJ7QfNchCU3VblzYPe9uCkgnHSd6vcixb+JEFKp4hR7rHyKWEgQ1+xQmNOLczM6AUcpq6avIGqF49id1WgM9EWFuQAy6vO49vnrfi78F3KmrumVcF8ZtiDeaMCZZZVP8k7Hc3isXApQbZ8Jve99sWh1yir3ufAaZcLLe+Knha6t2CpzfX0pGaZMeN52Gg8m4042tud/2gPGcrvnW1Ljc5u9q0Ez9quD1dt5QcuvGRD4D5CpmO6GFcrHzA7smHHnfFPDqfkDF6iGhLpBlW6gjW2CG8dKp245fpaWbs5jV3tNWjhCaz+ajOg//UP2HBfKT0HHT/ZpBX1kc8xQw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Mnty920cT9w/Qa4/ZnzYPi+3pFIp0Y0oiB0Dt1R1FCY=;
+ b=t0VegmflfBHRJl8LB06rx/xWwVMX18W/xPYjluph+WvThBZyIBVThXdR6J5caHp9QY18IqvHSNYxMSVnD7D747RPA7FXZTUbp/JkO7s5nk0QCuxutEEdxpPJSBKRMTfiaBOXsOJGo0rt0+CPdRz9TshK01z/iBwr4A6cLiyfldmeMWv+66UTf+MlCah/WAu3gN0cC37mOFVHzPBOjadFM6LtkKxQlQGcta1tpCF9jpP+gq3YlHPMhQmv58FXnt9Q73T759Rf3tXBa6BNI85EWfBYNik4qtJ7sIRJqSH1K63lYnVkB9MPuWlTzok/5fpDOh3dIt9gYu8UacRoALjGFA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Mnty920cT9w/Qa4/ZnzYPi+3pFIp0Y0oiB0Dt1R1FCY=;
+ b=joXLh5GmQI9fhxSciSndZsQfyzgdkEjrQNZunUcAjRq+7Jtcj3SNzCdIGcRLxCpc3O5pK/1Pe6ATDDuGfqtZO78hrFbhddQe1cPGc96LI4r+AJrTp5eu0eTSg0JOAGBY3a5aDftM1MO4wDwZjACVUU3cGi1zb7SlkyW1w5czNRaSOVi98gMiywhBmBv4jjDcxI0Tm71ERFpa4lJdsGzfzT3RFulo+vD4N6zB8Z3gVXqTjLDzIupEVCaZBQ42cUCDjz4f/4ieLPdx+7odvBzOiAZUyoFqlvMXrOukrQt/oL4hgIk+C7EbucfI+aD1z7fz2/re2yWleh4bgVmfBaXgZQ==
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
+ by AS5PR04MB9732.eurprd04.prod.outlook.com (2603:10a6:20b:672::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24; Fri, 13 Sep
+ 2024 02:54:41 +0000
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630%6]) with mapi id 15.20.7962.016; Fri, 13 Sep 2024
+ 02:54:41 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+CC: Markus Niebel <Markus.Niebel@ew.tq-group.com>, "linux@ew.tq-group.com"
+	<linux@ew.tq-group.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 1/2] arm64: dt: imx93-tqma9352-mba93xxca: enable Open
+ Drain for MDIO
+Thread-Topic: [PATCH 1/2] arm64: dt: imx93-tqma9352-mba93xxca: enable Open
+ Drain for MDIO
+Thread-Index: AQHbBBo5rAWvTjk5kUaFZz6ncDuYzbJVAy7g
+Date: Fri, 13 Sep 2024 02:54:41 +0000
+Message-ID:
+ <PAXPR04MB8459AEC9C8D156EF23FAF0A688652@PAXPR04MB8459.eurprd04.prod.outlook.com>
+References: <20240911071359.2971191-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20240911071359.2971191-1-alexander.stein@ew.tq-group.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB8459:EE_|AS5PR04MB9732:EE_
+x-ms-office365-filtering-correlation-id: 23e415bb-c906-4159-73de-08dcd39f6a15
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|1800799024|366016|376014|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?hPCkEsalSSVIZhYhFPUCqE0PVUCbGt73hcx5HQTHf7gwtSpvilJQfV5N2Y3+?=
+ =?us-ascii?Q?JgjNF+QoRa4hwEvbYGzRb4WaedxtlikUzsndEPxEJ19y6f9PLnzIt9TIuKSk?=
+ =?us-ascii?Q?DqHCYAWT7hRxVBGNhUv6RW60Wc/dw0MEAlUU7XQlkIQSnPYEFIZ5NGThKWLb?=
+ =?us-ascii?Q?eSfjk33yH0kzKxu2k6rv4iMrDTaTkfRtq7Iu7L1uGefpIqkhb+Ao7qNRlP/i?=
+ =?us-ascii?Q?gjgvvX8Yq4X7IFQD2qpjkFfeOOemWW4lKL0MtioaUrdbpd4yjs9vJmlL3cOo?=
+ =?us-ascii?Q?EYDmUFRE2dg2GJjqc45HOBTUvjjz4KwmzlHsh9hwpX9hDOjrareT5MCTR8sS?=
+ =?us-ascii?Q?tcK9ilSvIj+dtH90lDX7iir/MI6LJrRj7caCgqRQylqv61t63vNQX4GjfSwk?=
+ =?us-ascii?Q?ZCPMhmxXFPpt2Ox15vUmgXq2LorY1bYhbvveMBZJscvj/izraT8wrkNrsWqk?=
+ =?us-ascii?Q?RwaqV+hMV2m3LL03hT42rWGF7YvDJimdoSk74UWpklJiWZNjMq9NM2e3RqQl?=
+ =?us-ascii?Q?bwr0HmFZMJlGjFIVvBtoom/jVNcPCgE1C87qEYIYbf74lUwDW+Tak2N1tSou?=
+ =?us-ascii?Q?RtsJn20sCBrFgS598BeEyh+AjOUD+oXwkfin4GFgEMKCpW9+KwajMtHpAKhC?=
+ =?us-ascii?Q?rwVZmVvNFa95V5wB8pzxayFcL1TSTDk3dn2ks0cwVZeBAZc8QofQGNeXfgsx?=
+ =?us-ascii?Q?xGlnmU4zkFP0eK9fX+i6R4pm7tJ5iqrnWrW/iIuT0PectiSvbiyMlu9xX0Ll?=
+ =?us-ascii?Q?kMe0mwgo97wrvo48r43eLasnhy80qUQ6M3cmurFXIIGer2NTmFbbbYsznhq1?=
+ =?us-ascii?Q?GPjq+WexcA4EEh6iMnQQrK/x0OerrTFc9S3IPSM3E+yU5ebvwhXXQqNwaQFk?=
+ =?us-ascii?Q?xevGYQAMWoPG/3PQr/8jgLLeqKs2CIA1YG53X3yiTGRMYwBmcCTdZsiYVj6q?=
+ =?us-ascii?Q?LBzbWHLo87/m5Vd+QFLeZ+lZB6kn+0ztlMLecPN2+pSX6gMbkiTXQ2jLVGRC?=
+ =?us-ascii?Q?DYoCwirdiHMlRjMSY32PnbWC1J5FKrVotJsx3lQAkgD/XWxCOYDxB/Wn8WPV?=
+ =?us-ascii?Q?zFgkVMYPNERjp0PtAG8ptTM9rqCvmA9MxJIHxfsgDoQNKeYgHRYzlpnGKva+?=
+ =?us-ascii?Q?njJDLR/OoP+VppkUCQ3FiatlOKcXZTbdyY6TysCu8okTz/jZKG9Bk/ADaFEM?=
+ =?us-ascii?Q?SHbPBw4Caf73Ib1PDnJzQEWhg4enDT2RotatI5+aicic3hWzV+VR7yvbeuIQ?=
+ =?us-ascii?Q?Ax9ZyosgYBtR19OXZrUKBsdcRSqrXdE+I3CNR+dwo+XSB/OTSP9QvBHJiB15?=
+ =?us-ascii?Q?75s7Qpn8I0HScuLUAuF3Y+7fuK6gYH3q4WkGeolKL38i7oANrr+Q4O4OjbhN?=
+ =?us-ascii?Q?EfHqN8py6nA3NJh8H31y8yHSaXf9t9vkRPELyF1rnjvm6QsAWw=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(366016)(376014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?r86ElhmsEDwZ2bN8SR79MbSd82WtcwNplRmzb2XQghrdYb1Ii/NlZlTxrwpl?=
+ =?us-ascii?Q?jG2YsFKRyeh7RsrGbHiRqKOAcSjoONfagpdJsZfq2GWrpg3r9AqqSBJmfIb4?=
+ =?us-ascii?Q?PX/Mb2vgQ69CJfRXLhUZKMrVSvUzCkr9D6X6vDsV9a8CCHdKnxoDIMdp5NPz?=
+ =?us-ascii?Q?T41FIgK5rc96BFP9T47VB9YN2sPeQ8Ui4QdBxrBslxe1yefBmdrsKog2rNXy?=
+ =?us-ascii?Q?JivhtpMI5Dv91IjvxlqwkIZQIBTpH1f/U2JYzWp8h6z9VO4qT7mwsaum08/E?=
+ =?us-ascii?Q?n0+vMXvIk4LKc4/dJbBh3jGSYVDdE6oM8QQ6KxGMo3NrYPMtrmkAqtTvi/9A?=
+ =?us-ascii?Q?hGf+GAecqziWwMx6yO0z+VkkftXTQ/UeBWIcSkYyRmv11wiawAoa/jLP8SXT?=
+ =?us-ascii?Q?vs/X/LLfcWwc8cKWs27wEA7o9kH3Bl3fEIvCL5yh2r9FfawtUZeMv5+9cA2/?=
+ =?us-ascii?Q?LrBM5C/F2gQYFei0of3pRRvOPtes3KCMCc24UWvkgxqUcmFgchnWPokN0tD7?=
+ =?us-ascii?Q?ElgxMd8cze8duGu0LiIx8sC4bJIAe5IUxM6fmiPAChcy4Q4KCA0iSqlBj3JO?=
+ =?us-ascii?Q?Zd3rFl+EoxfmzKFvVgeNxsp+ExUw5XzyQ5HIInbawS+JncQlSQOkwOWz9kyn?=
+ =?us-ascii?Q?M/WM0jxz4awjIhPkX2s9DgXG/bQMw4KCR6VhAIz7NRcEfm8yxa7pcrVxNIlT?=
+ =?us-ascii?Q?2RGyCv0ZTgyJvYg1jvF1OkFyuRZerOaPVPC8CbKJ/Ur6rJd/c0NtRjiQg1HE?=
+ =?us-ascii?Q?4BCe67kyxlp5pZaJyYWzp4Kz36Lb/9/mtorT0Idfql0Uk4ZHoRS3lw5IheIb?=
+ =?us-ascii?Q?rfdSmNv66kUhcBnLrdOfMGswDGAqQPQ7zVGcoNZjIIdMBPBTRzBbcMICIWhW?=
+ =?us-ascii?Q?njqp2lQFGNnWrxmGiumLocOMJI47zOdwxt9Lva7tOabF0Vx5xuWew9bi7OXr?=
+ =?us-ascii?Q?5S4Ur4BcKC4q6+B9G2OMoVysX95Q84NaPEtGkei88FQQ/Z93OL+wxc8RYAGw?=
+ =?us-ascii?Q?qN64ZxCDM2i/sTUbBTqfFLJdgwedIOis0pf6HvyYpqDcF1ZfDFF/g0fAost2?=
+ =?us-ascii?Q?lEWO4h5TWyW0kYc7Mgq0DkjwzQQBGUyo2W5ED5UIULCFUxbCaLpKR0vM5cxo?=
+ =?us-ascii?Q?itue34dOeUL+Lg50Y5wTwWZsUGrUBCDEIjEMXtAxTLbQqtfIIxUlBjyg3INW?=
+ =?us-ascii?Q?1oglctF+Yl5+JpgLDsnNZwtl6NGChhYSbk6MeAcX2T+40gOeHrse1NHlsvK5?=
+ =?us-ascii?Q?wEn5/5eK/kNonKkcXfG2amelcsLC01MEPDERy7sNwHooxnjvDNsVWcKGtp2m?=
+ =?us-ascii?Q?3ZLjnY6UtFFkWWWJNsEAMp/ZYio+5roCMEdpm1Cs8CH0GK587YAl+g6Du1+L?=
+ =?us-ascii?Q?dlJH+qKWHCPSeAaCumjKKuZadZ3L/QYplNmCI2+sCcg+EbZzKYFMW+t9g8N3?=
+ =?us-ascii?Q?HXRmMn9kD9vHN+Hzl3ZEU7DZxSEkiilVSwBws0rWtqEo74Itmyz7apZoHweP?=
+ =?us-ascii?Q?Y+FpBq0BsKAUD2b4ndenFBhouvNQI8+qKpSS/tD+grWg7AVmxbUDzy4ITy7N?=
+ =?us-ascii?Q?NkREWpt3SOcc3ZEXQic=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240829010151.2813377-7-samuel.holland@sifive.com>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 23e415bb-c906-4159-73de-08dcd39f6a15
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Sep 2024 02:54:41.2661
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: hqtwiQ4kF9uBB7pbwXE2RipRYUDXvsWsmBHSoFG9qKNMaF98zi397sXCwAOAym3bakFKKHn9JI+7sCZZCYDa4Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB9732
 
-On Wed, Aug 28, 2024 at 06:01:28PM -0700, Samuel Holland wrote:
-> This allows a tracer to control the ABI of the tracee, as on arm64.
-> 
-> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+> Subject: [PATCH 1/2] arm64: dt: imx93-tqma9352-mba93xxca: enable
+> Open Drain for MDIO
+>=20
+> From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+>=20
+> Follow suggestion from hardware team.
+
+This is a bit vague, my guess:
+
+The board has a pull-up resistor for MDIO pin per PHY design guide.
+When MDIO is idle, it needs to be high and open drain is better
+to be used here for power saving.
+
+Regards,
+Peng.
+>=20
+> Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > ---
+>  .../arm64/boot/dts/freescale/imx93-tqma9352-mba93xxca.dts | 8
+> ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx93-tqma9352-
+> mba93xxca.dts b/arch/arm64/boot/dts/freescale/imx93-tqma9352-
+> mba93xxca.dts
+> index 599df32976e24..8e939d716aac8 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxca.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx93-tqma9352-
+> mba93xxca.dts
+> @@ -627,8 +627,8 @@ pinctrl_eqos: eqosgrp {
+>  		fsl,pins =3D <
+>  			/* PD | FSEL_2 | DSE X4 */
+>  			MX93_PAD_ENET1_MDC__ENET_QOS_MDC
+> 			0x51e
+> -			/* SION | HYS | FSEL_2 | DSE X4 */
+> -
+> 	MX93_PAD_ENET1_MDIO__ENET_QOS_MDIO
+> 	0x4000111e
+> +			/* SION | HYS | ODE | FSEL_2 | DSE X4 */
+> +
+> 	MX93_PAD_ENET1_MDIO__ENET_QOS_MDIO
+> 	0x4000191e
+>  			/* HYS | FSEL_0 | DSE no drive */
+>=20
+> 	MX93_PAD_ENET1_RD0__ENET_QOS_RGMII_RD0
+> 	0x1000
+>=20
+> 	MX93_PAD_ENET1_RD1__ENET_QOS_RGMII_RD1
+> 	0x1000
+> @@ -659,8 +659,8 @@ pinctrl_fec: fecgrp {
+>  		fsl,pins =3D <
+>  			/* PD | FSEL_2 | DSE X4 */
+>  			MX93_PAD_ENET2_MDC__ENET1_MDC
+> 		0x51e
+> -			/* SION | HYS | FSEL_2 | DSE X4 */
+> -			MX93_PAD_ENET2_MDIO__ENET1_MDIO
+> 		0x4000111e
+> +			/* SION | HYS | ODE | FSEL_2 | DSE X4 */
+> +			MX93_PAD_ENET2_MDIO__ENET1_MDIO
+> 		0x4000191e
+>  			/* HYS | FSEL_0 | DSE no drive */
+>  			MX93_PAD_ENET2_RD0__ENET1_RGMII_RD0
+> 		0x1000
+>  			MX93_PAD_ENET2_RD1__ENET1_RGMII_RD1
+> 		0x1000
+> --
+> 2.34.1
+>=20
 
-Since this code is identical to the arm64 port, could it be extracted
-out into the generic ptrace.c and ifdef on either CONFIG_RISCV_ISA_SUPM
-or CONFIG_ARM64_TAGGED_ADDR_ABI by adding some generic flag like
-CONFIG_HAVE_ARCH_TAGGED_ADDR_ABI?
-
-- Charlie
-
->
-> (no changes since v1)
-> 
->  arch/riscv/kernel/ptrace.c | 42 ++++++++++++++++++++++++++++++++++++++
->  include/uapi/linux/elf.h   |  1 +
->  2 files changed, 43 insertions(+)
-> 
-> diff --git a/arch/riscv/kernel/ptrace.c b/arch/riscv/kernel/ptrace.c
-> index 92731ff8c79a..ea67e9fb7a58 100644
-> --- a/arch/riscv/kernel/ptrace.c
-> +++ b/arch/riscv/kernel/ptrace.c
-> @@ -28,6 +28,9 @@ enum riscv_regset {
->  #ifdef CONFIG_RISCV_ISA_V
->  	REGSET_V,
->  #endif
-> +#ifdef CONFIG_RISCV_ISA_SUPM
-> +	REGSET_TAGGED_ADDR_CTRL,
-> +#endif
->  };
->  
->  static int riscv_gpr_get(struct task_struct *target,
-> @@ -152,6 +155,35 @@ static int riscv_vr_set(struct task_struct *target,
->  }
->  #endif
->  
-> +#ifdef CONFIG_RISCV_ISA_SUPM
-> +static int tagged_addr_ctrl_get(struct task_struct *target,
-> +				const struct user_regset *regset,
-> +				struct membuf to)
-> +{
-> +	long ctrl = get_tagged_addr_ctrl(target);
-> +
-> +	if (IS_ERR_VALUE(ctrl))
-> +		return ctrl;
-> +
-> +	return membuf_write(&to, &ctrl, sizeof(ctrl));
-> +}
-> +
-> +static int tagged_addr_ctrl_set(struct task_struct *target,
-> +				const struct user_regset *regset,
-> +				unsigned int pos, unsigned int count,
-> +				const void *kbuf, const void __user *ubuf)
-> +{
-> +	int ret;
-> +	long ctrl;
-> +
-> +	ret = user_regset_copyin(&pos, &count, &kbuf, &ubuf, &ctrl, 0, -1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return set_tagged_addr_ctrl(target, ctrl);
-> +}
-> +#endif
-> +
->  static const struct user_regset riscv_user_regset[] = {
->  	[REGSET_X] = {
->  		.core_note_type = NT_PRSTATUS,
-> @@ -182,6 +214,16 @@ static const struct user_regset riscv_user_regset[] = {
->  		.set = riscv_vr_set,
->  	},
->  #endif
-> +#ifdef CONFIG_RISCV_ISA_SUPM
-> +	[REGSET_TAGGED_ADDR_CTRL] = {
-> +		.core_note_type = NT_RISCV_TAGGED_ADDR_CTRL,
-> +		.n = 1,
-> +		.size = sizeof(long),
-> +		.align = sizeof(long),
-> +		.regset_get = tagged_addr_ctrl_get,
-> +		.set = tagged_addr_ctrl_set,
-> +	},
-> +#endif
->  };
->  
->  static const struct user_regset_view riscv_user_native_view = {
-> diff --git a/include/uapi/linux/elf.h b/include/uapi/linux/elf.h
-> index b54b313bcf07..9a32532d7264 100644
-> --- a/include/uapi/linux/elf.h
-> +++ b/include/uapi/linux/elf.h
-> @@ -448,6 +448,7 @@ typedef struct elf64_shdr {
->  #define NT_MIPS_MSA	0x802		/* MIPS SIMD registers */
->  #define NT_RISCV_CSR	0x900		/* RISC-V Control and Status Registers */
->  #define NT_RISCV_VECTOR	0x901		/* RISC-V vector registers */
-> +#define NT_RISCV_TAGGED_ADDR_CTRL 0x902	/* RISC-V tagged address control (prctl()) */
->  #define NT_LOONGARCH_CPUCFG	0xa00	/* LoongArch CPU config registers */
->  #define NT_LOONGARCH_CSR	0xa01	/* LoongArch control and status registers */
->  #define NT_LOONGARCH_LSX	0xa02	/* LoongArch Loongson SIMD Extension registers */
-> -- 
-> 2.45.1
-> 
-> 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
