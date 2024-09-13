@@ -1,111 +1,95 @@
-Return-Path: <devicetree+bounces-102631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC635977C3E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 11:35:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59303977C5A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 11:40:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 703F3B20E44
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 09:35:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E1E71F21CA2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 09:40:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3839B1C230C;
-	Fri, 13 Sep 2024 09:35:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24FA81D79A9;
+	Fri, 13 Sep 2024 09:39:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D9BxO6h/"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KmM2LyOb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08474175D45;
-	Fri, 13 Sep 2024 09:35:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DD601BD4F2;
+	Fri, 13 Sep 2024 09:39:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726220152; cv=none; b=d6begquK8+EqZNj8JVQoV4TLSzSWA+2xoOatVA6me3Czorsxay2BxCrPU3Snpg7ksGfyAwcK6OVb45WzLTdXmlRCnbtRabJG4g7noP4zxYfaBr9Y+dFQt42TqhipdxfS/vnCxt2F4Kk3+crSUEQjGV658r6gQon9gricL4Ce0jo=
+	t=1726220351; cv=none; b=qIDqeYUu+ttHUpZLgKmLl6Xvf8Vl5rQcDafGRX1CZX250el9YXgdTZYi2+TtewKYuNcaWbrJqHUrGNjaqI0Y3IEbUFngq398TZd0vmAMtriYmbJ7liDphCgH3+0NDXfYVy2SCs4en3pLH2U0fMQXas0yBtW60ueyP9xCrZGXOps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726220152; c=relaxed/simple;
-	bh=RHaelLa6/GKnvmZfK1KHj21+T+l1dsx4khox488sQF4=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=bKoTsyxb2utMTkmAIOaJG4QrniQCcwUA/6I9SCInVkJs9Nw6a6BoJX3Xr2IQNV7BH7qdu4mb5Lh0qDe6vmkqnaaBe9k6wsF0ipEN5htzkrGAB+MkoTamOiWmAGy595urMlGuWgk+wpyAKEMIgmhYrull1lnb8S4M7i9FEbSA4tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D9BxO6h/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A45C0C4CEC0;
-	Fri, 13 Sep 2024 09:35:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726220151;
-	bh=RHaelLa6/GKnvmZfK1KHj21+T+l1dsx4khox488sQF4=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=D9BxO6h/jCHprQts9ZQw37k65i4jUXJRh3eZweJoFUn54BDgXZ76Xy5abdbgv0sHJ
-	 +bQmhQWb86ISDD8FZEa+PC/8GNxXUUNtYKHKNcctOOsKNLHirtpmSUqH8ExN3Vqq2s
-	 TA4LOxutzTgVo11qigU89hj9PZCDqvRsVxeTv1IZD9+4Fr9RFQxs3UOMU9dSvr2M2Z
-	 ZfihrQpjXoF7qTIZci8sP600vsCoZp9FIxWSc7YPBdE7laREXA4eX5hAXZyDueuD7I
-	 eNA2qtZW28UYG9+EG8bPixa86KnZunlvvAZbnxdb21Wibluck+BJ07lEGcdGtWJxtC
-	 5DGUSsiHSEx+w==
-Date: Fri, 13 Sep 2024 04:35:50 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1726220351; c=relaxed/simple;
+	bh=JI2ZLU0FyTqnuSB6wzQzLJ8IjKER/NhO6YLSEUfYLns=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uELa0EtJV/RX4kEGLGFgV5zW4IfStx0gcF32yCupjnycM+/BdWTB0hQ1ldxCJ/Y/vDIVB2s6ltlHnC0VM+RPGCC4IzZv9PMneBUBWwhu2ARqjK8dL5rCI9/IQ+bmX68MvnwTesKJbLLRN++FaGEJL/GwtrMnJzLur/MmhF5BiTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KmM2LyOb; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1726220349; x=1757756349;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JI2ZLU0FyTqnuSB6wzQzLJ8IjKER/NhO6YLSEUfYLns=;
+  b=KmM2LyObMEXacq4m5QHvhsswNtERTpU9rZ0+Z63GzItGvKBh5dV9IXSE
+   shpE32RoK60/MPj/zMFfnlZEgDlrQetG6nSrHBMWEvcgEXXxGo3Fu1WGD
+   DeXMPHQOGodtpP1EVWYccCc6bmWN9zJqcIhbzORsvKuc0ATANh9bueYga
+   NPCMOY2xteDsnFdzvpqz6MHJCZwcPRP4TT3XUfAQ79AkJS4FMTDMErZZv
+   W12IVre94vlckuRgcpycK7r6GGCudsKcZZKsD0Omk2kSAF/XtHQXxvda1
+   9inbenWboZHCWtDYPhYopeX52Zh5ZFR14ElguzG+o16UOWmcIliC6ewh8
+   w==;
+X-CSE-ConnectionGUID: RDnyyfA2QUSCMqS8HYIFoQ==
+X-CSE-MsgGUID: 4S+SHxS0TXaOt84EEgJpDg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="25240118"
+X-IronPort-AV: E=Sophos;i="6.10,225,1719903600"; 
+   d="scan'208";a="25240118"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2024 02:39:09 -0700
+X-CSE-ConnectionGUID: 82q8k3OBSUeFliXMTpbJEA==
+X-CSE-MsgGUID: saJO+JZ6Qw6jSfZ5p00AYA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,225,1719903600"; 
+   d="scan'208";a="98687270"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2024 02:39:07 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1sp2ld-00000008FJY-0JzY;
+	Fri, 13 Sep 2024 12:39:05 +0300
+Date: Fri, 13 Sep 2024 12:39:04 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: robh@kernel.org, saravanak@google.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/2] Use functionality of irq_get_trigger_type() and
+Message-ID: <ZuQIOKzDO5aUhoCJ@smile.fi.intel.com>
+References: <20240912221605.27089-1-vassilisamir@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, linux-kernel@vger.kernel.org, 
- NXP S32 Linux Team <s32@nxp.com>, linux-gpio@vger.kernel.org, 
- Bartosz Golaszewski <brgl@bgdev.pl>, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Chester Lin <chester62515@gmail.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Matthias Brugger <mbrugger@suse.com>, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20240913082937.444367-3-andrei.stefanescu@oss.nxp.com>
-References: <20240913082937.444367-1-andrei.stefanescu@oss.nxp.com>
- <20240913082937.444367-3-andrei.stefanescu@oss.nxp.com>
-Message-Id: <172622015057.2463404.4285438986782752017.robh@kernel.org>
-Subject: Re: [PATCH v2 2/4] dt-bindings: gpio: add support for NXP
- S32G2/S32G3 SoCs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240912221605.27089-1-vassilisamir@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
+On Fri, Sep 13, 2024 at 12:16:03AM +0200, Vasileios Amoiridis wrote:
+> The series is compile tested.
 
-On Fri, 13 Sep 2024 11:29:33 +0300, Andrei Stefanescu wrote:
-> Add support for the GPIO driver of the NXP S32G2/S32G3 SoCs.
-> 
-> Signed-off-by: Phu Luu An <phu.luuan@nxp.com>
-> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-> ---
->  .../bindings/gpio/nxp,s32g2-siul2-gpio.yaml   | 106 ++++++++++++++++++
->  1 file changed, 106 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/nxp,s32g2-siul2-gpio.yaml
-> 
+LGTM, FWIW,
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-My bot found errors running 'make dt_binding_check' on your patch:
+-- 
+With Best Regards,
+Andy Shevchenko
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/nxp,s32g2-siul2-gpio.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
- 	 $id: http://devicetree.org/schemas/gpio/nxp,gpio-siul2-s32g2.yaml
- 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/nxp,s32g2-siul2-gpio.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240913082937.444367-3-andrei.stefanescu@oss.nxp.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
