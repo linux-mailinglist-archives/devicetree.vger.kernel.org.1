@@ -1,261 +1,150 @@
-Return-Path: <devicetree+bounces-102598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2591A977A66
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 10:00:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A90CB977A7F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 10:03:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D6A01F23FFF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 08:00:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51F471F2694D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 08:03:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DECAB1BCA0F;
-	Fri, 13 Sep 2024 07:59:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01C681BD026;
+	Fri, 13 Sep 2024 08:03:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="FMtRYG/N";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="MY+rZsBR"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="GuWNpS6c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout7-smtp.messagingengine.com (fout7-smtp.messagingengine.com [103.168.172.150])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BCC013F42F;
-	Fri, 13 Sep 2024 07:59:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.150
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0F6B15575F
+	for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 08:03:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726214398; cv=none; b=QjhfyIxX6KCTxDTBLvtpPyKaJS/Fbav/Q1v3Q74X3VkarBqJnhg00gTW2bKf7iDP8rpWo4YN1r+mytZmPA61AC35sahNGw1DF7D1lBieSPzOWd2mGCxm0WOWcSWgdIJ1zNxbfO11qfXGm6N/Od474oLajQATA/4sUXpm9ZQB0a0=
+	t=1726214632; cv=none; b=ge/hGBkPifgz87RsRXZqumb+aVmzzF302+CMjGrCnhFFgEpelwqvWKj5/Zlx4V5J7+dDn9VbKrHnmbmyObKTQVZR6tDhdOm6tTupEZtAZ7qS5JheO1Pw9/BP9s+wRI1D7HaEu5CEkKuTaqLyt1HaGfpKTwy8sdFvWeIU/XMbOSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726214398; c=relaxed/simple;
-	bh=djHV2/XNK5IPdhYmsv3PbBq94apMRd0hB5/K/LMOyS4=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=nNMdQOeZicJDst2L4biae23MO3Fd3zsysb0ZXJRGIVQoIKJPiHpOHRfj7b7ZWKrJikKX7TuMQrbzslr6RZe2PF/De3DIxR+PDvjfiMP6bYBKjL1tPG33W6GAyWgmpMvKetzm3VjSdiGZHbrwomjfqbqu4WaFe4fvCGJ+DqEPuQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=FMtRYG/N; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=MY+rZsBR; arc=none smtp.client-ip=103.168.172.150
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
-	by mailfout.phl.internal (Postfix) with ESMTP id 31A40138048D;
-	Fri, 13 Sep 2024 03:59:56 -0400 (EDT)
-Received: from phl-imap-11 ([10.202.2.101])
-  by phl-compute-10.internal (MEProxy); Fri, 13 Sep 2024 03:59:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1726214396;
-	 x=1726300796; bh=4CzBYefCbC8etZ+AyFpSOC775tw2tVhYGtceXnzwH1U=; b=
-	FMtRYG/NxCbpPWzUbeUcs2kSWrmne3N2oB9HDtAZjdnxZV08DTuPG8XRVB1msUvz
-	AQeDI18TYIq7dCx4eVRf8X6lkvhpqBUnlV+I1rCjFv9ksVoFh3jqU+c5d0lxpG+n
-	aSBpj/NFtraf1gvGeakqK0rP7MiVcLry5Qwv01vQ+wSw7XKlLsBmguda+Mgpjm/t
-	cAENj5nzkA4DIYMhedjdVHqnb799lYFL43cvgFxuTW9oz9ZH4eMDcPFk5HMzQ1Cl
-	kekNu+GokziTe2U44vqbnCQSJ1VpET4YW1Pxf3Y0XhHv/vhFrDVo+9R+DVNK1l4+
-	F79VUWZkl8zvlGloD2WwCA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1726214396; x=
-	1726300796; bh=4CzBYefCbC8etZ+AyFpSOC775tw2tVhYGtceXnzwH1U=; b=M
-	Y+rZsBRmkwECMX2ef/FHDEDwdJ0FSRMwahs2wE2rxPXJFINXJJlQ4W1L8vGPI8/5
-	8WD+7VCrVlig4QR+xLjvbVBK7b4sKJlbfwOI4G0M+aT18qI+b77Nl053UwFB9SdZ
-	QhBKvXUvjIbuPNyDAKymd/fDn+dvDCN/CRHQT4FXZ7uXawtpUswQIF+BxXwtVJ+V
-	fjN+9m974ZhzBJe+RA+JTVB//NWwTxzR6UPLmHAyAKwAmZrCDQIfRXhrmZk9bzaK
-	SjzxCAUbdjsNVkS0727EnF0nFmIL3/Ied61XkHmaPyTTCtvXCllIhFPMhb+BDIfE
-	9+be7x29ms3+D3KqErtfA==
-X-ME-Sender: <xms:-_DjZix3uZ1bTOC819TBR2gu3SGKbIcQ6TZK7SlJ0mOG0ArjGlxyDg>
-    <xme:-_DjZuRhjxU1eZyOw_CYIwoLQF7CpSFxu8AgunrcBJtwhhIwtUPqOIm4sefrCPiUt
-    7Bhl5eJad9jrRdM5Lk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrudejiedggeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddt
-    necuhfhrohhmpedftehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrd
-    guvgeqnecuggftrfgrthhtvghrnhephfdthfdvtdefhedukeetgefggffhjeeggeetfefg
-    gfevudegudevledvkefhvdeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
-    hmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohepvdek
-    pdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehuthhsrghvrdgrghgrrhifrghlse
-    grnhgrlhhoghdrtghomhdprhgtphhtthhopegrughsphdqlhhinhhugiesrghnrghlohhg
-    rdgtohhmpdhrtghpthhtoheprghrthhurhhsrdgrrhhtrghmohhnohhvshesrghnrghloh
-    hgrdgtohhmpdhrtghpthhtoheptggrthgrlhhinhdrmhgrrhhinhgrshesrghrmhdrtgho
-    mhdprhgtphhtthhopehmthhurhhquhgvthhtvgessggrhihlihgsrhgvrdgtohhmpdhrtg
-    hpthhtohepsghrghhlsegsghguvghvrdhplhdprhgtphhtthhopegrnhguihdrshhhhiht
-    iheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlh
-    drohhrghdprhgtphhtthhopehjihhrihhslhgrsgihsehkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:-_DjZkXej-3t-hSZeNoBGJ2QVkW__okQTLkon2codkGGIgd8WKSXhQ>
-    <xmx:-_DjZogNc2pOim6rNdUR2H5GlbH6pcDQr0o0FOi4tUs_nCeq7YMXSg>
-    <xmx:-_DjZkC3yFY0Ff8IKQQZI1WXdx8VI0scP9zqwlS-oHwEHj-02WU6Bg>
-    <xmx:-_DjZpIiADhKvmG7AaDzFsl928yQWgUf0HbXrU5GYdQbohN1yhUhfQ>
-    <xmx:_PDjZlgAsUJJWHPsU6dZVfnHlrhYp8x8wNDEgX8AQIG2jnoKRekVhedK>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 6C8EC222006F; Fri, 13 Sep 2024 03:59:55 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1726214632; c=relaxed/simple;
+	bh=lpgK5gbS6/9SMqTCmS2Z5Slaqd40ZHLdXqf6k8Qr0xY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=JTnklM8IScjBCs+cLSrO7AxxZVEgMln1vDp1qtACr+TYv6e/nCYazuJUkgK6A5gKMIgLSs7MjCMorU6e75UcykNAeHgGbzobuC7VjJy+07pGVIywELrRcj9JWMpNCbw/GK4wLMyLy4wYffZFHJGqX4QoKHv3k3okcgmQfAAJ7Qc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=GuWNpS6c; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20240913080348epoutp0142f3ba5018e90b7160ea1958cd8f03bc~0vw8X_pzW1930119301epoutp01G
+	for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 08:03:48 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20240913080348epoutp0142f3ba5018e90b7160ea1958cd8f03bc~0vw8X_pzW1930119301epoutp01G
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1726214628;
+	bh=JSVm/FcnnPcqmoGUM1pLwmPTfMWW5QlF099INg66XHE=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=GuWNpS6cQdEp0/icMX9fkrfMRM3a/SWwpH/1sXuXIrZgEH5CvaWm7BEZtUOVSZkPk
+	 IkGaTBByno6DhP3rEAKWTodchD4Frk3lzfKmxSw8fYGSQsslzNn3/gZreXhmPDGzGp
+	 vZM3K0Xtv//tBGuSe5TFzr/ZQkdjzKS3EtszXQas=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTP id
+	20240913080347epcas2p4b7e2df6a05e3c9f2028ea0812c5574cb~0vw7qMaBK1978819788epcas2p4T;
+	Fri, 13 Sep 2024 08:03:47 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.100]) by
+	epsnrtp3.localdomain (Postfix) with ESMTP id 4X4mz74XKhz4x9Pp; Fri, 13 Sep
+	2024 08:03:47 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+	epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+	CA.B0.10012.3E1F3E66; Fri, 13 Sep 2024 17:03:47 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+	20240913080347epcas2p222e2536e026f90bb12c18e640fd05e8e~0vw66cSyK1165011650epcas2p2O;
+	Fri, 13 Sep 2024 08:03:47 +0000 (GMT)
+Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20240913080347epsmtrp13f7d4dea2eafd447bfd2693d711ba8a4~0vw65tuyZ1626316263epsmtrp1C;
+	Fri, 13 Sep 2024 08:03:47 +0000 (GMT)
+X-AuditID: b6c32a47-c43ff7000000271c-1b-66e3f1e37e2d
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	2A.6B.19367.3E1F3E66; Fri, 13 Sep 2024 17:03:47 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.55]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20240913080346epsmtip2a092e2e8b46072e153f1ba0cf7865e99~0vw6qeZ1F0654506545epsmtip2e;
+	Fri, 13 Sep 2024 08:03:46 +0000 (GMT)
+From: Taewan Kim <trunixs.kim@samsung.com>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+	<linux@roeck-us.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alim Akhtar
+	<alim.akhtar@samsung.com>
+Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, Taewan Kim <trunixs.kim@samsung.com>
+Subject: [PATCH 0/3] support watchdog for exynosautov920
+Date: Fri, 13 Sep 2024 17:03:22 +0900
+Message-ID: <20240913080325.3676181-1-trunixs.kim@samsung.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 13 Sep 2024 07:59:34 +0000
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: arturs.artamonovs@analog.com, "Catalin Marinas" <catalin.marinas@arm.com>,
- "Will Deacon" <will@kernel.org>, "Greg Malysa" <greg.malysa@timesys.com>,
- "Philipp Zabel" <p.zabel@pengutronix.de>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Utsav Agarwal" <Utsav.Agarwal@analog.com>,
- "Michael Turquette" <mturquette@baylibre.com>,
- "Stephen Boyd" <sboyd@kernel.org>,
- "Linus Walleij" <linus.walleij@linaro.org>,
- "Bartosz Golaszewski" <brgl@bgdev.pl>,
- "Thomas Gleixner" <tglx@linutronix.de>, "Andi Shyti" <andi.shyti@kernel.org>,
- "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Jiri Slaby" <jirislaby@kernel.org>, "Olof Johansson" <olof@lixom.net>,
- soc@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
- adsp-linux@analog.com,
- "Nathan Barrett-Morrison" <nathan.morrison@timesys.com>
-Message-Id: <c1bdcf44-ce2f-4350-b9d9-053c4d99875e@app.fastmail.com>
-In-Reply-To: <20240912-test-v1-15-458fa57c8ccf@analog.com>
-References: <20240912-test-v1-0-458fa57c8ccf@analog.com>
- <20240912-test-v1-15-458fa57c8ccf@analog.com>
-Subject: Re: [PATCH 15/21] i2c: Add driver for ADI ADSP-SC5xx platforms
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprNJsWRmVeSWpSXmKPExsWy7bCmqe7jj4/TDJ7uU7R4MG8bm8WaveeY
+	LOYfOcdq8XLWPTaLTY+vsVpc3jWHzWLG+X1MFjfW7WO3eLLwDJPF/z072C0mLT7PZPH45T9m
+	Bx6PTas62TxWrlnD6rF5Sb3Hzu8N7B59W1YxenzeJBfAFpVtk5GamJJapJCal5yfkpmXbqvk
+	HRzvHG9qZmCoa2hpYa6kkJeYm2qr5OIToOuWmQN0o5JCWWJOKVAoILG4WEnfzqYov7QkVSEj
+	v7jEVim1ICWnwLxArzgxt7g0L10vL7XEytDAwMgUqDAhO+Pz/7nMBXdYK3ZMv8XcwHiBpYuR
+	k0NCwETi9J5drF2MXBxCAjsYJV5vns8O4XxilPjVcZQZzrn8cTMTTMuOjj1g7UICOxkl5nws
+	gCj6yCjR+HQDM0iCTUBLYtvhV0wgCRGB14wSTb3vwEYxC5xnlDh0qAmsXVjAQuLrql52EJtF
+	QFVifssFRhCbV8BOovfPHEaIdfIS1x8fZYKIC0qcnPkErJcZKN68dTYzRM1HdokZx+whbBeJ
+	XeceQZ0qLPHq+BZ2CFtK4mV/G5SdL7Fy5QmomhqJe227oKFhL7HozE+gGg6g+ZoS63fpg5gS
+	AsoSR25BbeWT6Dj8lx0izCvR0SYEYapKTF8WADFDWmLijLVsELaHxOOp56FBFSux6tEqtgmM
+	8rOQvDILySuzENYuYGRexSiWWlCcm55abFRgDI/T5PzcTYzgVKrlvoNxxtsPeocYmTgYDzFK
+	cDArifBOYnuUJsSbklhZlVqUH19UmpNafIjRFBi4E5mlRJPzgck8ryTe0MTSwMTMzNDcyNTA
+	XEmc917r3BQhgfTEktTs1NSC1CKYPiYOTqkGJjb1fbYVGzvMk04flV3t+F/UVai66D3Dn6Nt
+	Uvlz0h7+1EuSttyhKv25uiC5YFr6skOz9iuYGOoyHl2auXJitcYX4dmXb3N+7+7Iva8dwvTt
+	xnzXbcwX+/afNr60hPnxlNMiv33fGU6WmfhrtlVW/0KPu5v6GXbLPHRwv7iH843nMdZmlv/G
+	lvvPiCQJ7VgoKmV5+7cOV37e3SkMd1R85afM2r4orHHlRj+LD+ohzj5zla4cMLapqI9c16sm
+	Xx7rYP4n1vbU+QABo1Q9s5r3QTHfl2ecaI1wC1dTWZAUM+vXuo+sBflL4pxWfrybkLcpavtO
+	/jjxf1XTdIJd89wfrj8VeGPeQ9WsNMMf5+NllFiKMxINtZiLihMBOeKXgy4EAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJLMWRmVeSWpSXmKPExsWy7bCSvO7jj4/TDH7dZLZ4MG8bm8WaveeY
+	LOYfOcdq8XLWPTaLTY+vsVpc3jWHzWLG+X1MFjfW7WO3eLLwDJPF/z072C0mLT7PZPH45T9m
+	Bx6PTas62TxWrlnD6rF5Sb3Hzu8N7B59W1YxenzeJBfAFsVlk5Kak1mWWqRvl8CV8fn/XOaC
+	O6wVO6bfYm5gvMDSxcjJISFgIrGjYw+QzcUhJLCdUWLL+Q3sEAlpiSO/X7BB2MIS91uOsILY
+	QgLvGSWWrwWrYRPQkth2+BUTSLMISPzsl1+MIA6zwFVGiR+L3oFVCQtYSHxd1QtmswioSsxv
+	ucAIYvMK2En0/pnDCLFBXuL646NMEHFBiZMzn4CdxwwUb946m3kCI98sJKlZSFILGJlWMYqm
+	FhTnpucmFxjqFSfmFpfmpesl5+duYgSHtlbQDsZl6//qHWJk4mA8xCjBwawkwjuJ7VGaEG9K
+	YmVValF+fFFpTmrxIUZpDhYlcV7lnM4UIYH0xJLU7NTUgtQimCwTB6dUA1Nh2SdF+dfRhywD
+	GbdxhrFGnAvhtXjL+IOD0bZQ2/rzJL1zYXGpzj6zvO5yCzx4+9vf92lU2+ZDM/SjwnLc1M0S
+	NhZV8b1Wqup6tGXp/fTkw/VOIiWSW2JfxcxzOf7EIsvTrPq9w3WRvyvkD1kKZh1lWPHoQoxP
+	9x3vs7v//98QoTF9NcsV7VmPtWPCDkQ+dObVVXFckOjet7CEleli4I3JfmzfeLLFate2/hN9
+	tDyL+d3DOR1WMvVC++LSBbTOXLOpCz9h2vC6bV2e334x99D+3o2rAvaFdF0z2LNvb/sUhmq2
+	2fYaa1QEj4nM0M05J39nyisuvktNBW2x2zbo+NxhFnt656KaBmuQwZTlSizFGYmGWsxFxYkA
+	d/CDgNwCAAA=
+X-CMS-MailID: 20240913080347epcas2p222e2536e026f90bb12c18e640fd05e8e
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240913080347epcas2p222e2536e026f90bb12c18e640fd05e8e
+References: <CGME20240913080347epcas2p222e2536e026f90bb12c18e640fd05e8e@epcas2p2.samsung.com>
 
-On Thu, Sep 12, 2024, at 18:25, Arturs Artamonovs via B4 Relay wrote:
-> +
-> +config I2C_ADI_TWI_CLK_KHZ
-> +    int "ADI TWI I2C clock (kHz)"
-> +    depends on I2C_ADI_TWI
-> +    range 21 400
-> +    default 50
-> +    help
-> +      The unit of the TWI clock is kHz.
+Add support for the ExynosAutoV920 SoC. Basically this is almost
+similar to ExynosAuto V9 or Exynos850 such as two watchdog instance for
+each cluster but some CPU configuration are quite different.
+Therefore device tree, compatibles and drvdata should be added.
 
-This does not look like something that should be a compile-time
-option, the kernel needs to be able to run on different
-configurations.
+Byoungtae Cho (3):
+  dt-bindings: watchdog: Document ExynosAutoV920 watchdog bindings
+  watchdog: s3c2410_wdt: add support for exynosautov920 SoC
+  arm64: dts: exynosautov920: add watchdog DT node
 
-> +
-> +static void adi_twi_handle_interrupt(struct adi_twi_iface *iface,
-> +					unsigned short twi_int_status,
-> +					bool polling)
-> +{
-> +	u16 writeValue;
-> +	unsigned short mast_stat = ioread16(&iface->regs_base->master_stat);
+ .../bindings/watchdog/samsung-wdt.yaml        |  3 ++
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi | 20 ++++++++++
+ drivers/watchdog/s3c2410_wdt.c                | 37 ++++++++++++++++++-
+ 3 files changed, 59 insertions(+), 1 deletion(-)
 
-It's a bit unusual to use ioread16()/iowrite16() instead of the
-normal readw()/writew().
+-- 
+2.46.0
 
-> +			} else if (iface->cur_mode == TWI_I2C_MODE_REPEAT &&
-> +				   iface->cur_msg + 1 < iface->msg_num) {
-> +
-> +				if (iface->pmsg[iface->cur_msg + 1].flags & I2C_M_RD) {
-> +					writeValue = ioread16(&iface->regs_base->master_ctl)
-> +							      | MDIR;
-> +					iowrite16(writeValue, &iface->regs_base->master_ctl);
-> +				} else {
-> +					writeValue = ioread16(&iface->regs_base->master_ctl)
-> +							      & ~MDIR;
-> +					iowrite16(writeValue, &iface->regs_base->master_ctl);
-
-The use of a structure instead of register offset macros makes
-these lines rather long, especially at five levels of indentation.
-Maybe this can be restructured for readability.
-
-> +		if (ioread16(&iface->regs_base->master_stat) & SDASEN) {
-> +			int cnt = 9;
-> +
-> +			do {
-> +				iowrite16(SCLOVR, &iface->regs_base->master_ctl);
-> +				udelay(6);
-> +				iowrite16(0, &iface->regs_base->master_ctl);
-> +				udelay(6);
-> +			} while ((ioread16(&iface->regs_base->master_stat) & SDASEN)
-
-Since writes on device mappings are posted, the delay between
-the two iowrite16() is not really meaningful, unless you add
-another ioread16() or readw() before the delay. Mapping these
-with ioremap_np() should also work.
-
-> +			iowrite16(SDAOVR | SCLOVR, &iface->regs_base->master_ctl);
-> +			udelay(6);
-> +			iowrite16(SDAOVR, &iface->regs_base->master_ctl);
-> +			udelay(6);
-> +			iowrite16(0, &iface->regs_base->master_ctl);
-> +		}
-
-Same here.
-
-> +/* Interrupt handler */
-> +static irqreturn_t adi_twi_handle_all_interrupts(struct adi_twi_iface 
-> *iface,
-> +						 bool polling)
-> +{
-> +	irqreturn_t handled = IRQ_NONE;
-> +	unsigned short twi_int_status;
-> +
-> +	while (1) {
-> +		twi_int_status = ioread16(&iface->regs_base->int_stat);
-> +		if (!twi_int_status)
-> +			return handled;
-> +		/* Clear interrupt status */
-> +		iowrite16(twi_int_status, &iface->regs_base->int_stat);
-> +		adi_twi_handle_interrupt(iface, twi_int_status, polling);
-> +		handled = IRQ_HANDLED;
-> +	}
-> +}
-> +
-> +static irqreturn_t adi_twi_interrupt_entry(int irq, void *dev_id)
-> +{
-> +	struct adi_twi_iface *iface = dev_id;
-> +	unsigned long flags;
-> +	irqreturn_t handled;
-> +
-> +	spin_lock_irqsave(&iface->lock, flags);
-> +	handled = adi_twi_handle_all_interrupts(iface, false);
-> +	spin_unlock_irqrestore(&iface->lock, flags);
-> +	return handled;
-> +}
-
-Interrupt handlers are called with IRQs disabled, so no
-need to turn them off again.
-
-> +static SIMPLE_DEV_PM_OPS(i2c_adi_twi_pm,
-> +			 i2c_adi_twi_suspend, i2c_adi_twi_resume);
-> +#define I2C_ADI_TWI_PM_OPS	(&i2c_adi_twi_pm)
-> +#else
-> +#define I2C_ADI_TWI_PM_OPS	NULL
-> +#endif
-
-Please convert to DEFINE_SIMPLE_DEV_PM_OPS() and remove the
-#ifdef.
-
-> +#ifdef CONFIG_OF
-> +static const struct of_device_id adi_twi_of_match[] = {
-> +	{
-> +		.compatible = "adi,twi",
-> +	},
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, adi_twi_of_match);
-> +#endif
-
-No need to optimize for non-CONFIG_OF builds, we don't
-support traditional board files on arm64.
-
-> +	match = of_match_device(of_match_ptr(adi_twi_of_match), &pdev->dev);
-
-This of_match_ptr() and the second one later should also
-get removed then.
-
-> \ No newline at end of file
->
-
-Whitespace damage.
-
-      Arnd
 
