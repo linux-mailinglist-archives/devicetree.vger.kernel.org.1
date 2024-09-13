@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-102674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22E66977E7F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 13:33:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A019E977E84
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 13:35:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD11E286E48
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 11:33:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B1F0B2215D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 11:34:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 944961C2DB3;
-	Fri, 13 Sep 2024 11:33:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42D9F1D86DB;
+	Fri, 13 Sep 2024 11:34:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ds9k+S5m"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GtqSG+lI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A9019C57E;
-	Fri, 13 Sep 2024 11:33:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F8C81D86C3;
+	Fri, 13 Sep 2024 11:34:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726227199; cv=none; b=FPz58S7Tn4jHASwMnOAHNVnlSHMFgjg2B47R6LX1Tppv70tIgQKs5YrcRQUWWzloxOMmCeAlqVNsaOfJtGz+sdZ29BGMR3hcWPhUWtRJUKCLh+ALJYpCdnzqEhl9Jg+RW5OYMcENpyjmB3wNMHOJr1b+uq0Ku5MYA9KVbWp7C8I=
+	t=1726227295; cv=none; b=QrUgntBdOQHxg2Lj9jDezGJOHu2ai4UEMrULcY+8SGrJ2dptpW5vqNvqhyKEXxqvD7+Da542M6nRu5ddnoWI2RUJo4yNLPDHYG+yZdqcMuL0YzLmJTdK5B/4WYbFAPPRsvnsOShdVyJ/Wo5MLhSVu2LRB+i9wuuGo+flYCQKSJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726227199; c=relaxed/simple;
-	bh=LmCMXkrFfxQP5J0e0cGcJC+aT2pmV0I+HXKfWJPO18M=;
+	s=arc-20240116; t=1726227295; c=relaxed/simple;
+	bh=aox+2AgEiNYG1u0TgPXG6D1t/7jiNc6huiqp4LX58qk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GTsfcthMaj0fBp6vWkHzLqIOlxoREFoe+J6x44oJnP6BuNGHHm34I69gQG8XIxiPf2bXoBf5c1hVaqOZQtoAovRBx2TkDJqFT4ACXsfphjRDqDTWSYLzkrjyGZ/m71aMv5nddEP2iy/ymOuTYP7gvWwQt0i/cUiWd5F0SiR6uGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ds9k+S5m; arc=none smtp.client-ip=209.85.128.49
+	 In-Reply-To:Content-Type; b=dAe993AKqTrw3ciYRuATz3VIOecp4yx3B2MgNC4hYJ883SmDvIYVGq97MmfomHmz+olsYdO5QQQSDkjpTwxj9Qchz1BRYhHF6VJZZn1TygrMGSjNowyPgI9AkiufRFHHAZN9tPNdGIYh9C/ChlGPHbyfW45nhGs+knG9M/Z26hs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GtqSG+lI; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-42cbbb1727eso17736615e9.2;
-        Fri, 13 Sep 2024 04:33:17 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-42cb60aff1eso19672745e9.0;
+        Fri, 13 Sep 2024 04:34:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726227196; x=1726831996; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1726227292; x=1726832092; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=zQLem0H5xR7gHFsoayzHMPC1GWFG8EEy54uIDYEfoL8=;
-        b=ds9k+S5mvGWxESZetHVOS4tTGgHnNoKtNjOyOCqBxsWqAhx2iSPZ0hEHIcq+VJU9a+
-         VzoHW8xAfqCfMonik3CGd+QN2imQRcNKRCPZKUfUWXWJgXfu7pOSy/Jd8L00Z/fsx4S9
-         XOS5a9x2YmhUGjZYcQMdfBEhZiXgur9dx+25PtTwXe22K0zMr81xjDFF3cnasnnRCwn0
-         2jmWaZV9dgEK1mTjwbke3YIlGYq4gl4BTb5rDQPPYA7T22zkGe8Vbr4uoN/wNvMEL/hp
-         nZFMzdQvBkt7SfkveGmjURhg9dZXkZzhFYNFjnbHZC3r1W8kYOlsSSmjekz0f7UgniEo
-         aIZg==
+        bh=X9PVZTr1fh4UFLRanBhn9s1OhJ/Bjd4ZmZyv8BDZt9A=;
+        b=GtqSG+lIRiOn5e+UcCfJPVCeSYBruUrsggnrSGk/RqBphrcgb7/vE40yQ0Fw+gyvci
+         PV9OWTxEHvaUIeE9nvb8hn6D8s8H5mTL+/nmY0CfF5BS4VGF8pGBtqMBBDVKgPQrQy8h
+         wUfJsanY4DjNfbuujBWeUhU/RIM9vWId/tHM3e1kcIpfpgJvdMJDToyKRBrC8OZEpwuQ
+         qu7wQqRB1RM+a3d8UbD4ajfd6y9JaFOU6I5b7xppibfzqc5G0eFqNBIVOI9UZxJmGvm7
+         tZ+KnFfdx6IuJB7T1dynHTj07Wn1hOwWN7WZLc6TzD7JgE15cYzikVk9/r7VLQnbRIhL
+         GIEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726227196; x=1726831996;
+        d=1e100.net; s=20230601; t=1726227292; x=1726832092;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zQLem0H5xR7gHFsoayzHMPC1GWFG8EEy54uIDYEfoL8=;
-        b=OxYHJ0p+TrIBiwW5IYxl/dWMvt07pESxxLo22ctoopbriWCecYMUoorSSfwzsakZVW
-         cPsdsZGq4nFfPnyx5fY1pYqpgUzKbjyy/lSorQwV4uUxGeEHBTU+jJ1uSV/q7dftiDun
-         2qXOpapEvzKsHtfWsHmnOyiuxlPaVohZufTq5LS5XIX+r1RZ2Ni1jMiqKsVx1durJ4SZ
-         +Xu4PgMHqwPn5BRaysZx+noz52D4KUAi0n2TZgEof1SnirQmdPTvAqPZS4lVMfdCAyyB
-         a5ZiizQi9JsJEuNrngpqsh28kCtioXpuudjmU70M3vUe9Z0Bbv/8iR+gDheqSrlbABuO
-         Y5Nw==
-X-Forwarded-Encrypted: i=1; AJvYcCU4+pOBJspn1ynutEpsJuKlic0GpfvkrR62LysGLdZLsf+hkRYel5sOCFjxHBXanYM1xlibV9g6E+ZR3W+u@vger.kernel.org, AJvYcCX1N4Hu7oRdY1yAxLltzz3LD41VqJEmx9IMO4vnRZKJvUe8XrJsJg5om3Ic0SfGyzeePa5oQAtJqkd9@vger.kernel.org
-X-Gm-Message-State: AOJu0YySKODRoroQu/adJXU+Xxg15jUIYVWlE4SxbY6t4Jy8zV8PTijG
-	CTUr8Pa6IM/HUKbwfkcfA+wGkMcrDATGIdEHtaRVknHYpRjVAq6h
-X-Google-Smtp-Source: AGHT+IFQ1q+OqvVOZ5k4N0i7cfvN+WZFlk5LgixAIqWSWnoJv18qnXA8hM/I/zfHYp2Jq9+1yoNEUw==
-X-Received: by 2002:a5d:59a5:0:b0:374:c614:73df with SMTP id ffacd0b85a97d-378c2d5b43emr4176583f8f.57.1726227195199;
-        Fri, 13 Sep 2024 04:33:15 -0700 (PDT)
+        bh=X9PVZTr1fh4UFLRanBhn9s1OhJ/Bjd4ZmZyv8BDZt9A=;
+        b=pNWksjE9I3vtsht708Dwor8VeD4x1hI2V9bbDj+qAQMsdobSJB8X+3KSeqcbrE9CM4
+         clIXrQcZmVSpKUVJj116LpLmYcuPu4mxmpArK2S4PWL5bAiacslnTFl24i5NSsKCA2Gv
+         LS5pBWBxutIMJo+tyd9zTsB/LJr9Hz6+QjWiZDbtYlJ+UgQnt9Ivw71HLeCRJ2LDxcMP
+         fqzWB4jIghQe4xLPlzojDhDY6E2+UJypTOrMBBx7MnoXQTzTGW+Am3x5M6k1RhBFV4bu
+         APddWYqr3Rc2WMDhGOSjb+R5Qqt2xzvpJLFH/NlehAR+MiPxeyGk5Wv8CgVUIuEJLlyO
+         eIvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVpEdjsGYrqKArc2Pqu04uJA6SVyuOJTxPOs4ZqYg1wFPvFPSfzPie9fOlAVmpaMEyL4mVlRXqbBtznNlU=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfhTX6nVelKb/RqXMWGnMuJvR1hRtc8N7Rf+0cjYizxVxs7AQE
+	e/8jNzn1+lqCH7lWY0ByYp8i3UbWyqfTpeuqgxj4B+haaMhFkL9O
+X-Google-Smtp-Source: AGHT+IEl7GKlmReq3OGYMyX5zDP86AfYN6alFNLZd/Xy9rw9+fboK/8UqpKzwm5ckrE89LwvpwuS1A==
+X-Received: by 2002:a05:600c:3505:b0:42c:a8d5:2df5 with SMTP id 5b1f17b1804b1-42cdb586ee0mr48328435e9.24.1726227291420;
+        Fri, 13 Sep 2024 04:34:51 -0700 (PDT)
 Received: from [192.168.2.177] ([207.188.162.240])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42d9b17b136sm22116535e9.40.2024.09.13.04.33.13
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42d9b05a700sm22547905e9.10.2024.09.13.04.34.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Sep 2024 04:33:14 -0700 (PDT)
-Message-ID: <e820d20b-3a5f-46bb-8293-d1e85098aaf2@gmail.com>
-Date: Fri, 13 Sep 2024 13:33:12 +0200
+        Fri, 13 Sep 2024 04:34:50 -0700 (PDT)
+Message-ID: <edf25359-1804-445d-bd49-45c7238a3cd5@gmail.com>
+Date: Fri, 13 Sep 2024 13:34:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,16 +77,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mt8192-asurada-spherion: Add Synaptics
- trackpad support
-To: Pin-yen Lin <treapking@chromium.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8395-genio-1200-evk: Enable
+ GPU
+To: Pablo Sun <pablo.sun@mediatek.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- Chen-Yu Tsai <wenst@chromium.org>
-References: <20240912154451.3447081-1-treapking@chromium.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20240912070624.25540-1-pablo.sun@mediatek.com>
 Content-Language: en-US, ca-ES, es-ES
 From: Matthias Brugger <matthias.bgg@gmail.com>
 Autocrypt: addr=matthias.bgg@gmail.com; keydata=
@@ -132,67 +131,101 @@ Autocrypt: addr=matthias.bgg@gmail.com; keydata=
  +zFJv9fVUpo/bjePOL4PMP1y+PYrp4PmPmRwoklBpy1ep8m8XURv46fGUHUEIsTwPWs2Q87k
  7vjYyrcyAOarX2X5pvMQvpAMADGf2Z3wrCsDdG25w2HztweUNd9QEprtJG8GNNzMOD4cQ82T
  a7eGvPWPeXauWJDLVR9jHtWT9Ot3BQgmApLxACvwvD1a69jaFKov28SPHxUCQ9Y1Y/Ct
-In-Reply-To: <20240912154451.3447081-1-treapking@chromium.org>
+In-Reply-To: <20240912070624.25540-1-pablo.sun@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
-On 12/09/2024 17:44, Pin-yen Lin wrote:
-> Some spherion variants use Synaptics trackpad at address 0x2c in the
-> I2C2 bus with the generic HID-over-i2c driver, and this cannot be
-> distinguished from the firmware compatible string.
+On 12/09/2024 09:06, Pablo Sun wrote:
+> Enable the Mali Valhall GPU on Genio 1200 EVK by providing regulator
+> supply settingsi to gpu and mfg1, and enable the GPU node.
 > 
-> Support both trackpads in the same devicetree by moving the trackpad
-> pinctrl property to i2c2 and adding the node for Synaptics trackpad.
+> In addition, set the GPU related regulator voltage range:
 > 
-> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+> 1. Set the recommended input voltage range of DVDD_GPU to (0.546V-0.787V),
+>     based on Table 5-3 of MT8395 Application Processor Datasheet.
+>     The regulator mt6315_7_vbuck1("Vgpu") connects to the DVDD_GPU input.
+>     Note that the minimum voltage in SoC eFuse data, which is read by
+>     MTK-SVS to adjust the regulator voltage, does not go below
+>     the recommended operating voltage in the datasheet.
+> 
+> 2. Set the input voltage of DVDD_SRAM_GPU, supplied by
+>     mt6359_vsram_others_ldo_reg, to 0.75V, the recommended typical
+>     operating voltage in MT8395 Application Processor Datasheet.
+> 
+> This patch is tested by enabling CONFIG_DRM_PANFROST and
+> on Genio 1200 EVK it probed with following dmesg:
+> 
+> ```
+> panfrost 13000000.gpu: clock rate = 700000092
+> panfrost 13000000.gpu: mali-g57 id 0x9093 major 0x0 minor 0x1 status 0x0
+> panfrost 13000000.gpu: features: 00000000,000019f7,
+> 					   issues: 00000001,80000400
+> panfrost 13000000.gpu: Features: L2:0x07120206 Shader:0x00000000
+> 					   Tiler:0x00000809 Mem:0x301
+> 					   MMU:0x00002830 AS:0xff JS:0x7
+> panfrost 13000000.gpu: shader_present=0x50045 l2_present=0x1
+> [drm] Initialized panfrost 1.2.0 for 13000000.gpu on minor 0
+> ```
+> 
+> Signed-off-by: Pablo Sun <pablo.sun@mediatek.com>
 
 Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
 > ---
+>   .../dts/mediatek/mt8395-genio-1200-evk.dts    | 19 +++++++++++++++++--
+>   1 file changed, 17 insertions(+), 2 deletions(-)
 > 
->   .../boot/dts/mediatek/mt8192-asurada-spherion-r0.dts  | 11 +++++++++++
->   arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi      |  4 +---
->   2 files changed, 12 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts b/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
-> index 29aa87e93888..8c485c3ced2c 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
-> @@ -79,3 +79,14 @@ headset-codec {
->   &touchscreen {
->   	compatible = "elan,ekth3500";
->   };
-> +
-> +&i2c2 {
-> +	/* synaptics touchpad */
-> +	trackpad@2c {
-> +		compatible = "hid-over-i2c";
-> +		reg = <0x2c>;
-> +		hid-descr-addr = <0x20>;
-> +		interrupts-extended = <&pio 15 IRQ_TYPE_LEVEL_LOW>;
-> +		wakeup-source;
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> index 08d71ddf3668..8dda8b63765b 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> @@ -335,14 +335,12 @@ &i2c2 {
->   	clock-frequency = <400000>;
->   	clock-stretch-ns = <12600>;
->   	pinctrl-names = "default";
-> -	pinctrl-0 = <&i2c2_pins>;
-> +	pinctrl-0 = <&i2c2_pins>, <&trackpad_pins>;
->   
->   	trackpad@15 {
->   		compatible = "elan,ekth3000";
->   		reg = <0x15>;
->   		interrupts-extended = <&pio 15 IRQ_TYPE_LEVEL_LOW>;
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&trackpad_pins>;
->   		vcc-supply = <&pp3300_u>;
->   		wakeup-source;
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+> index a06610fff8ad..4f7d66d6d785 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+> @@ -194,6 +194,11 @@ eth_phy0: eth-phy0@1 {
 >   	};
+>   };
+>   
+> +&gpu {
+> +	mali-supply = <&mt6315_7_vbuck1>;
+> +	status = "okay";
+> +};
+> +
+>   &i2c0 {
+>   	clock-frequency = <400000>;
+>   	pinctrl-0 = <&i2c0_pins>;
+> @@ -337,6 +342,10 @@ &mfg0 {
+>   	domain-supply = <&mt6315_7_vbuck1>;
+>   };
+>   
+> +&mfg1 {
+> +	domain-supply = <&mt6359_vsram_others_ldo_reg>;
+> +};
+> +
+>   &mmc0 {
+>   	status = "okay";
+>   	pinctrl-names = "default", "state_uhs";
+> @@ -407,6 +416,12 @@ &mt6359_vrf12_ldo_reg {
+>   	regulator-always-on;
+>   };
+>   
+> +/* for GPU SRAM */
+> +&mt6359_vsram_others_ldo_reg {
+> +	regulator-min-microvolt = <750000>;
+> +	regulator-max-microvolt = <750000>;
+> +};
+> +
+>   &mt6359codec {
+>   	mediatek,mic-type-0 = <1>; /* ACC */
+>   	mediatek,mic-type-1 = <3>; /* DCC */
+> @@ -839,8 +854,8 @@ regulators {
+>   			mt6315_7_vbuck1: vbuck1 {
+>   				regulator-compatible = "vbuck1";
+>   				regulator-name = "Vgpu";
+> -				regulator-min-microvolt = <300000>;
+> -				regulator-max-microvolt = <1193750>;
+> +				regulator-min-microvolt = <546000>;
+> +				regulator-max-microvolt = <787000>;
+>   				regulator-enable-ramp-delay = <256>;
+>   				regulator-allowed-modes = <0 1 2>;
+>   			};
 
