@@ -1,213 +1,149 @@
-Return-Path: <devicetree+bounces-102582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9598D97796B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 09:19:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76F09977974
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 09:22:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 276611F246DD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 07:19:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DDB02B20B9A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 07:22:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 589B919F419;
-	Fri, 13 Sep 2024 07:19:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A5101B982B;
+	Fri, 13 Sep 2024 07:22:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="NrRNolY4"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="H5Zwon+4";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Kbk/Kh6a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11013020.outbound.protection.outlook.com [52.101.67.20])
+Received: from fout6-smtp.messagingengine.com (fout6-smtp.messagingengine.com [103.168.172.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ADB877107;
-	Fri, 13 Sep 2024 07:18:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.67.20
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726211973; cv=fail; b=LUDPV/ZVnzx4aqlAdezvOqRKp8BVxau/dKgXCNUF/91kjWTE4rRsihWNGPd7I02IU8CFx68Oa2U5Sa0R+a2jtQfzQEvqy93+VwSNoHoXvtnnchGwFgtzXEa8/jiqGC3fu80vI9fkizEZO6B3ef3FKR+jjQiPTlM41wrozkUAEQI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726211973; c=relaxed/simple;
-	bh=zZKY8L0lHf/YKBHW/t6BN6SXgdiFW/uJfucfnuDSo2s=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=D4R1kzzYVZGi54NYBWigmRJYQkLBOgn3vHA4Bjocj51Dk4wuFxXnk7ua8ZDqHlFrL2lbYMZtNNf0Goz759pyZTz32b2xXHsXjYG4qmYse8KCh4hFph+dIQBRGHmHpppYswHzPOl77+HRzJApKPIcSFdGogSqbDTKcQcT6KjgOrY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=unknown smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=NrRNolY4; arc=fail smtp.client-ip=52.101.67.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=tempfail smtp.mailfrom=axis.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QxPSWOFOyDZe92rPe8bUhDJTWKBozThTJQXlTtXFr30Tzhm26wYN7idsfvC3Rzsy0ihyBvtQcgipTCwP/f3DXXJOsyl2rgrOfwkxwDYy9EC3OXIO+rRJAHZx0mNRWJcC7UpakE4qKPtEW8oMOoqgCOfz5IzeHxWZiNlpo+dQ0fex/7GvmvVCy8Scj2CzI6hfeMc0XPpWdVgGHc9rGD3DDX9mdX+syC3qvtXm2N5ZmvsDwqkTwWGFeCijd+WzwlEBoZJrU6jICN4kTZfyzZT9BTYyKRaiYoSkKOKjuWqBN4xTkO7fhouC3nt2FSdmfa57o/8zpEpL9++ySAMRNlarsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zZKY8L0lHf/YKBHW/t6BN6SXgdiFW/uJfucfnuDSo2s=;
- b=gJbhSnry1rLXLl23VVzluy6YMl6qFlBdRKqtD/SBJM2vjMSDDQx+88uQgU5aHxS6ECgjEC+139TLm+EDcDwmj9c3/uzM3bM3zkBuDoYs1SUj5WewDAyVUX+rB8xhnUtGlbL63obEoKIKQFkuTzoz2hGkYjrdYFU/WsAiKUFEGoSjNzu6hnd4WMfYPE2D47PfWHxH7+xdgNbWbReF5sxWeX2kzX0olil9tqZGNFuShjYW7fXiK/pYd5chnyZ/uQ5Xd+A1JCGrsyhNIW49xsU+gXYFPhkkDY8qyZBADSKMdId+fsKiYTRAyom6tin4fk/wtGzf/w5BBdeMJdCK7w2uEg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axis.com; dmarc=pass action=none header.from=axis.com;
- dkim=pass header.d=axis.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zZKY8L0lHf/YKBHW/t6BN6SXgdiFW/uJfucfnuDSo2s=;
- b=NrRNolY4m+NNwvlVw89gQEjMuGCsFeJlLEJ9cjbNBTCHsYXFPeotciNqKtGhA2LPykQwcydVyeUzYNyi3WP8lOEA5FOZr9MbSutuvmNi+XJfw+CAY73Rj4AjMtL7zd9hLDYhE2eEsNypnwt9xWDxoteA6wWnN3yuJOLxbhPD25c=
-Received: from AM7PR02MB5784.eurprd02.prod.outlook.com (2603:10a6:20b:de::15)
- by DB3PR0202MB8962.eurprd02.prod.outlook.com (2603:10a6:10:43b::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.19; Fri, 13 Sep
- 2024 07:18:49 +0000
-Received: from AM7PR02MB5784.eurprd02.prod.outlook.com
- ([fe80::33dc:f613:4b96:46aa]) by AM7PR02MB5784.eurprd02.prod.outlook.com
- ([fe80::33dc:f613:4b96:46aa%4]) with mapi id 15.20.7962.017; Fri, 13 Sep 2024
- 07:18:49 +0000
-From: Emil Gedenryd <Emil.Gedenryd@axis.com>
-To: "jic23@kernel.org" <jic23@kernel.org>
-CC: "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "robh@kernel.org"
-	<robh@kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "dannenberg@ti.com" <dannenberg@ti.com>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "lars@metafoo.de"
-	<lars@metafoo.de>, "conor+dt@kernel.org" <conor+dt@kernel.org>, Kernel
-	<Kernel@axis.com>
-Subject: Re: [PATCH 2/3] iio: light: opt3001: add support for TI's opt3002
- light sensor
-Thread-Topic: [PATCH 2/3] iio: light: opt3001: add support for TI's opt3002
- light sensor
-Thread-Index: AQHa/312frF1bpxddUKg2DUrEwzCVrJMmaEAgAKCWgCAAL3TAIAFgY+A
-Date: Fri, 13 Sep 2024 07:18:49 +0000
-Message-ID: <7c08bcb758d032d3fe37afb18fa31d052026006d.camel@axis.com>
-References: <20240905-add_opt3002-v1-0-a5ae21b924fb@axis.com>
-	 <20240905-add_opt3002-v1-2-a5ae21b924fb@axis.com>
-	 <20240907183518.1e8ee0bf@jic23-huawei>
-	 <8361d77321d503b9690c40bb4f4293782c7ca5b4.camel@axis.com>
-	 <20240909201346.5ee793d2@jic23-huawei>
-In-Reply-To: <20240909201346.5ee793d2@jic23-huawei>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axis.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM7PR02MB5784:EE_|DB3PR0202MB8962:EE_
-x-ms-office365-filtering-correlation-id: 6b7468da-e31c-4ee9-4f42-08dcd3c4505a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?ejRMVllWTmloUHNnbWZyU09SeFk3MXFHbEppMEFxTG93ODFUYWd2S2xZOTl1?=
- =?utf-8?B?QURJb0p1QmlkVkovY3lsd3l2S0VDTDFOL3pZWXBYSFUxc3MybDBBSkFNcGVY?=
- =?utf-8?B?QjA4OVFmZnNHcCswL3VoUnhTYXYvenJJYnpoYTNnVjBPbFZ5UjdaWlRJRVpE?=
- =?utf-8?B?UWtRRE9WRTZiKzBoc25EQXh1eWRxbUZvZmdOWkd2ZkFEWk1zQVlaTEJadDZn?=
- =?utf-8?B?ZlM1N2k5TXg3U3Z5ZkhyamJwZFo2L3dTVDRsVE1TUmMvenVlRlhrUVdyWWFm?=
- =?utf-8?B?dkc0bkpjMzhXdGR5YWI4SEd4QmxDdHZCZlR4bzB1d05kQmF6a2dlRUZ6Q08w?=
- =?utf-8?B?WUJ4OHpsd3NuRjB4bmNJbmJad0N1aE9NMWtIQ2cvQ2ZueU1nWk56bUxGOWFX?=
- =?utf-8?B?WVJMdEtnaG1zNWdZcEFYMXFJZmRtWFNaRlpBb0hmQ2wxVmNCY1dvSXM3VEVY?=
- =?utf-8?B?YUU4aEFuNitja1gwVUdvREVrSHJHazg1dGozSnh6YkVaQUhVN28xQlV4cFlN?=
- =?utf-8?B?V3ZaaWI0eWxiajZtaURjL1R3SnIrclBhWCtwT2NMVHRuMFl4aGx3STZGVkwy?=
- =?utf-8?B?YlZoYTE1OHp1K1h6Rk5mZW13em15RzNxNEFTeWpQK1JJcEJYNlpIMDF6cXNP?=
- =?utf-8?B?ZkROMEtoV25SUXJEYTBTNnl3OHQvSVpZeXhjenk0UHFsM1REQjZyNk5pU1FU?=
- =?utf-8?B?aTNIQ1ZCdndoZHBwSHgxZmg0WW10UGMvbVI2WWxrWTlMbEQreXZKQWlZMHFK?=
- =?utf-8?B?L1ZCblBDU0pFTU5oMVNsNVQxZ2w4cy91a1NnWHhwUzhrYUJrTjZ2NXp6ajR1?=
- =?utf-8?B?cExySUhOR3BZaWYydk42WDlvOXZTVTZBS3VrOXpMRGIwaTlvSWlaMlFiOGNV?=
- =?utf-8?B?VXFyR2FtTDBObEQwV0NwVjVWQ1NSVkhTMlZJV29MZlVwdVZlWFV4aHl6SzVz?=
- =?utf-8?B?SzBHOWdWSDdhekJybkZJakpxbGEwTDRURlg3S3RtZzM2WHA3SHozbVdSRTl4?=
- =?utf-8?B?bTA3WUlESTF1YTJHRE81dFpnUlhySklNSUhMY1JPdG5GSVRpTUlOUzU2dmRT?=
- =?utf-8?B?Sm44VmYxWnJ0dlVMMzFFcjBnTG9IeS9YWlgxMlhzeUxRU0VGMTNuSGxsb1Ax?=
- =?utf-8?B?NnBidEVDZFN1UWVyRWpCeElCb1JpTUIrWDV5dS9BSlhhYXY5UjFxZW5rR0Ni?=
- =?utf-8?B?OXZsdUd5NGNsdk9mYzBRem8wN1pZTzlodFJUYUE0OXh4bHZBeHE5Z1lXazli?=
- =?utf-8?B?YU5CYk55MXZXZW9pOU53dFVNT3VKSHVOWFlMNzBVNEJDaUhZV2YwNHdORVpr?=
- =?utf-8?B?ODcyd0JLN3djRWlrbU54Rkx3bnZSaDd3YXFOOWs5a2N5MDVobGJCeTRIZ2xG?=
- =?utf-8?B?WGRjZFNoS1ZkMmpkZ3orczNwa1ptbFZXNkdBU2ozNWdSV2RtUXpoamVUYkhW?=
- =?utf-8?B?eGk0WUV5aENvMHNYcGR4RGorSXpEdXdXYkdOZ1N1SHhvM3dmNUJZZE8xSHRo?=
- =?utf-8?B?c1RPR1UzNDFxM3dnRG12WVlmSFZNeTc2S1llY3R4dngwMjBNUmpkdHo0eEJT?=
- =?utf-8?B?dXpxT01PaGVMcjNwMitwZERMc2Q1endVSjBkTG8zZE0xSHJBODlVSEtEelFQ?=
- =?utf-8?B?RGhxRytiMmtJejdQR0VMNWpYV2VwVkZtZGthRzhlaTgwRnMrYXZhaGlvMkpG?=
- =?utf-8?B?TkNNa3VKclhjb3RZckxlb1lRejZ3UUR5UkZGdFFDeStjYUJQVFpEUytHWlU2?=
- =?utf-8?B?d0JWK3A2TytVTGljZ25ZS3pvSitObThQNlFJcUF6Q1p6dEc0c2lSNlJtajAy?=
- =?utf-8?B?bllycjBHa1lXYk5NZ1YrYkZSdmlWdlZxQTVXbEx6bG02Sklkb2wyY1doSmdC?=
- =?utf-8?B?N05sR0ZsQVFYWDNDMUdubmRKbFE0RTBFQXZDMC9sV2VaTHc9PQ==?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR02MB5784.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?TVV1czFoRjlJUlFGY255NTNlQ1ozL3V6MkplTEswbEFBT3JZWGl0ZzNWclNF?=
- =?utf-8?B?Ni9mTjN2THlxS2svNzVFaUpIdlVjT2dLSGp1UEZpM3A4TUVBY1hxd016TVEr?=
- =?utf-8?B?L3psRVNLaisvVDNUcUZCeGJXenRKT2FnNSsrd3NPNlpZdUkwMlZVUEhLQmwz?=
- =?utf-8?B?Wk9HdVAwU3NlRXE3MTU3ajdiVGxTeVNYVUhtaVJHYVZTNkhFS1U4aEpYcitt?=
- =?utf-8?B?MEh2akZ6TnZ6M1JvYlNKbTdteENvOGN4cnAzUGRLNlRVYWxLR0s3Unh2NldW?=
- =?utf-8?B?VFlNOUFaTDN3YWQ5ZzlaY0Znc242Y3NBVit0d29BbzZiTVNRRmozbldmWUNj?=
- =?utf-8?B?dXE5VDJMbFozME5QdC9ya0gvMjZncDBkYnM0SEVlZG1nQjhkbzkzRTFJcHFO?=
- =?utf-8?B?RlZIOXltUUFRTXFtY0JpanRzdzgxZC9HLzFkYm5HaVhDOVd1WGJCTUVnNWJ1?=
- =?utf-8?B?c1Jnd1lLU0FTRVR1eWh3akduemwyd0RoUWxySlE3RnJ4R0d2c1JTNFM0SHA0?=
- =?utf-8?B?QkdjZ1AraGtCKzBGTlhaWXF5MmxHeEhuNHI0cGdEYWdZakJrMG1jSkFQNmlE?=
- =?utf-8?B?Tk9Yb1hRQWF4d3lkOUMvN25wQ3IzY1pLNGhqVE45QkVSMC85bDMzeHhSOXFq?=
- =?utf-8?B?MnNOSnU3dElHK3lIZytlancvTmwzb1hsOHkxbzkrY1N2cVgza1I3VDBRaTJw?=
- =?utf-8?B?cjllNXJkZi9JZFJ5eEZ0OXRCVVV4b01zajdBYVoveCtGMW9ncTF1TWdCQ0hk?=
- =?utf-8?B?bVhhSU5qVVU4bTZJc3dmT3hKRkx1L1VQR2E1UEZ5bk04S1BJSURvSy85ZFMz?=
- =?utf-8?B?LzBDanRVU1lLREdaZUsvcWR3TjRTMmVQN0g1UUlucWFXVktTb2hMaVAwSHRz?=
- =?utf-8?B?a3ZQMFh0U0phMXU4RDFpUDRxUE1TVThBdmdmOUg0MElTNlBDUFMvaS80dktX?=
- =?utf-8?B?QXhKSk5uS1hETUk5MlFwdmlzYUFRZ1RNQ1RyVENGSTR4b20wN2lWdjRJZ2tv?=
- =?utf-8?B?NlBiU2tMaU9pTnZPN1hybUFVQVFnOVlaZ1N5aDJBZEtDVEhKVXhYOTdSSEha?=
- =?utf-8?B?d0ZKQkI5dENPSU1IazV3Um5ZdkoyK2d3cUpFUkhzcEZXUVg3L05pQlRUYmI5?=
- =?utf-8?B?a1JlQzZtenFDeVNZaDBDdXFoK2JOcmtFZ3JlU1RhN25jTHJOOWlmejczd1Nz?=
- =?utf-8?B?YkJKUmtEUXNpQXpDOGJOV1NxNjl0dHVJT3Zlc09KQzVhTDdYRDRURWNmTncz?=
- =?utf-8?B?VGxXNlhpSW5HUGtKTHBaVGdkSmxRM0c2WldMNVlXdGJoL3BSYjNhRi84UWsw?=
- =?utf-8?B?d2E1SEgvRzlNYTZGMjYxYWlVWlBYRmQzdjMvZVUzeFZFVTZ6SVZlWVVaL3NV?=
- =?utf-8?B?UFVVQ0lSVHByUGtPbXowVEU2Um1DOUN2ZjFTOVBXTEFBR21Kb3VOdjB5WEV4?=
- =?utf-8?B?QnpwM0U0MDMxUWJ4UU1wYm1ZbjU1aGRYaHBxc3BFYjVuNkNTbmF5RE5WOUZ3?=
- =?utf-8?B?S2NnY1IvbHFJMDIxZXdvQnVmNzZJa3hlbmMva2xuODFhK1h1SzM2clA5cWFw?=
- =?utf-8?B?MWNicGtLNStIa3JLZFkrTjE4Q3RVY0dpRlltTmEyYjc4Z0RtcjB6bUFJR1Bm?=
- =?utf-8?B?UEZJdVI2RWN2Y2hUL3hvazdEU0d3UisyN3VXdnAwR2JIamhJMjRWTjhWa2R3?=
- =?utf-8?B?QzNOWEN3NDA1alo2aHJCaEhoSXpJMUYyeWxhKzRJcUFCMUsyTzFNamJxbDhY?=
- =?utf-8?B?SHJtdTdsc0haTlMxZDNsOC96YWFsV1lnc3JZRy9BRzNJcmJwQjVadXZnb1VG?=
- =?utf-8?B?Vmx1N3dHU2FURWR0RU05VGFOaEVQek15bXo1bXl1QXZ5cDZOSk5KZ3JkeTMz?=
- =?utf-8?B?Z2J0bzNHSjcxMHRCK2dIMnhPQ1dUK0xJT2F6eDVwWDA3RU9kY1dHYXBQbUdS?=
- =?utf-8?B?TDAyS1VWVG1mVFZkM3hXT2lOYjMxZHJNbzdud1NPaFdib20yS2w0Q3I4amN6?=
- =?utf-8?B?eU1kRTh1blE0VzJ6bWVIcTdEVjF2SmorZER4U0tBcSthTEVyQ1prQjJOcDU1?=
- =?utf-8?B?eElHMUJ2eFR1RXJ6Nm5xVmNNNk1TTEFFN1h2QXVDb3RaYUhpalgxM2RuWUJl?=
- =?utf-8?Q?M/CS9/aA3ZN+mjRBzKZy8s5+1?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <E15849A2A36C254B8427601452CAB0D2@eurprd02.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D7C177107;
+	Fri, 13 Sep 2024 07:22:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.149
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726212152; cv=none; b=KMhMUGcAz0EY/1BCkt6+3DkkzHFSLrKlYiGxQIQJtPyudD65SESAbvgEV7rbKWYKrNfKQyWC7C71Sa6ahAs3rlHYCoFYImWR4H58ip6w+o8EQ08Ef7zY8wTTZQ7jnU7xylNKXzTkGbjkYQAjZKWRXJnhsybV8p2ai/BZvPE2br8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726212152; c=relaxed/simple;
+	bh=SE9XGIr259kH8liELfyjmoiYbUShJgwxtNyTPVcNnf0=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=d4iwtzV8F2SMFpn6vKHGaXWtUN2+u1yM1aUZHQ1/uZk1eDvpeccf1UEUWKVxJY+2bng44b0S3T/zRZDR36MUNCSDlW7+8Z1UBDU/AvBH7wmEWf/DmiJ0LN9i4Gzx48MrtUb/BtODf2iAp6hrgmo7YPPrZLaQU7dqF2cdB9G2Uq0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=H5Zwon+4; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Kbk/Kh6a; arc=none smtp.client-ip=103.168.172.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
+	by mailfout.phl.internal (Postfix) with ESMTP id 91FCB138025C;
+	Fri, 13 Sep 2024 03:22:28 -0400 (EDT)
+Received: from phl-imap-11 ([10.202.2.101])
+  by phl-compute-10.internal (MEProxy); Fri, 13 Sep 2024 03:22:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1726212148;
+	 x=1726298548; bh=2oQEFoCPYi2QMn8U1xO87M2WoQhLkPtOwQ6Ztptql7Q=; b=
+	H5Zwon+48gp+9ycLozX3Po/oWzAGByal1NW0PjUn7dwtSaelJ47YcLKjEgkXAxtv
+	y+WLvTdVzA4JC/hn7OFoy26iMDJKNPDnT1N38XZjpXf5aHbP/p0Pha8KtojA9scc
+	k6Mt+stHyTQegighu+vxFTq8aN+vGqK5xxZIEQrukKbSOe5k5QlNQrDnywEauuvM
+	1shhGcFkauXa88DufvLFmbbQHaAH2j3nrunLH5d+ah6z0ZlCdeRZVB2t9m8FViPZ
+	5GXwTLzCv1LMsfMd8PSXLayF/LD2TJo3VpU2ts2zLKMIMSjDqWEqnH4hd6vc/8Zr
+	7R9aLhNnarDP61lkcHsU7w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1726212148; x=
+	1726298548; bh=2oQEFoCPYi2QMn8U1xO87M2WoQhLkPtOwQ6Ztptql7Q=; b=K
+	bk/Kh6a69Tx4wdnHdfhpjYPQGjz8LJNEQBlkAgE607gyKYh+maLUh9kR24Y7j/gS
+	c8WYteuRU6Nd3XX/6A22HRJKlvEJ4AU/N3kVGWX4wmYZ5Fj7K69mZx4XpDNRejVh
+	IcEHwQ94kivtlgV5++1TpKZeoJHp9ARtRMXpndrZV0Doo4QJ3zDGFqHgJbn+aU3b
+	2cKrnhMovk4XKshjIuFgg0dSkyaCyGSN7FRRzYFxiPAKPU8G8qL6q4wlMUuk9qF8
+	jRljW0KPcKd1DlAt7CBFfhh1uDSsHHjuFXaMJFsRKG5666qr4e7N8J73uN3+Cj9x
+	STdgvT5VVaL08drpesUwQ==
+X-ME-Sender: <xms:M-jjZjwcGKF3oD8QhWro4BuCDKETNJlwQblWPVsNK0TadIWU4CMbEw>
+    <xme:M-jjZrQJ6Jfu22_qk7PfUtdM4dMbHliVhJlZc6jJRf9t2n5iaxkpscK4rXzE7QtU2
+    cSDELSJ505hQfVeww4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrudejiedgfeelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddt
+    necuhfhrohhmpedftehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrd
+    guvgeqnecuggftrfgrthhtvghrnhephfdthfdvtdefhedukeetgefggffhjeeggeetfefg
+    gfevudegudevledvkefhvdeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
+    hmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohepvdek
+    pdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehuthhsrghvrdgrghgrrhifrghlse
+    grnhgrlhhoghdrtghomhdprhgtphhtthhopegrughsphdqlhhinhhugiesrghnrghlohhg
+    rdgtohhmpdhrtghpthhtoheprghrthhurhhsrdgrrhhtrghmohhnohhvshesrghnrghloh
+    hgrdgtohhmpdhrtghpthhtoheptggrthgrlhhinhdrmhgrrhhinhgrshesrghrmhdrtgho
+    mhdprhgtphhtthhopehmthhurhhquhgvthhtvgessggrhihlihgsrhgvrdgtohhmpdhrtg
+    hpthhtohepsghrghhlsegsghguvghvrdhplhdprhgtphhtthhopegrnhguihdrshhhhiht
+    iheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlh
+    drohhrghdprhgtphhtthhopehjihhrihhslhgrsgihsehkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:M-jjZtUx1CcaU5ttqpfhH-cw3bJ-0cydHgOkPJUla9O9k65EqDZ5Kg>
+    <xmx:M-jjZtgBXoUGwddeLK9ny-NPLeQ9xOXA9oNJTqOp1NbxAUF8zALWlw>
+    <xmx:M-jjZlCdEn7NcUyv51eObd7AD7sCQuNtdJQoIzVyR_AlJutfTJEQHw>
+    <xmx:M-jjZmJ36U236uMjiigd2_wn-qRvMwBCnstt6HdEYW92wFAJmug1OA>
+    <xmx:NOjjZij9dCyUJGL4ETJCpWZg2kzk_N7BRjAc0OEz_jAAS3-AZ3OnNjC9>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id D4D33222006F; Fri, 13 Sep 2024 03:22:27 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR02MB5784.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b7468da-e31c-4ee9-4f42-08dcd3c4505a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Sep 2024 07:18:49.4710
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: k8HBnfCvbPPWnfbUuL9Jiyeno7U+B4OCnUYjgTnZHD9XkIRv/p1wDAr/L0rPKDjk
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0202MB8962
+Date: Fri, 13 Sep 2024 07:22:07 +0000
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: arturs.artamonovs@analog.com, "Catalin Marinas" <catalin.marinas@arm.com>,
+ "Will Deacon" <will@kernel.org>, "Greg Malysa" <greg.malysa@timesys.com>,
+ "Philipp Zabel" <p.zabel@pengutronix.de>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Utsav Agarwal" <Utsav.Agarwal@analog.com>,
+ "Michael Turquette" <mturquette@baylibre.com>,
+ "Stephen Boyd" <sboyd@kernel.org>,
+ "Linus Walleij" <linus.walleij@linaro.org>,
+ "Bartosz Golaszewski" <brgl@bgdev.pl>,
+ "Thomas Gleixner" <tglx@linutronix.de>, "Andi Shyti" <andi.shyti@kernel.org>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Jiri Slaby" <jirislaby@kernel.org>, "Olof Johansson" <olof@lixom.net>,
+ soc@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
+ adsp-linux@analog.com,
+ "Nathan Barrett-Morrison" <nathan.morrison@timesys.com>
+Message-Id: <193d68e0-e347-46b5-b6d2-107042b93ca1@app.fastmail.com>
+In-Reply-To: <20240912-test-v1-2-458fa57c8ccf@analog.com>
+References: <20240912-test-v1-0-458fa57c8ccf@analog.com>
+ <20240912-test-v1-2-458fa57c8ccf@analog.com>
+Subject: Re: [PATCH 02/21] reset: Add driver for ADI ADSP-SC5xx reset controller
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
-T24gTW9uLCAyMDI0LTA5LTA5IGF0IDIwOjEzICswMTAwLCBKb25hdGhhbiBDYW1lcm9uIHdyb3Rl
-Og0KPiBIaSBFbWlsLA0KPiANCj4gPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvaWlvL2xpZ2h0
-L29wdDMwMDEuYyBiL2RyaXZlcnMvaWlvL2xpZ2h0L29wdDMwMDEuYw0KPiA+ID4gPiBpbmRleCAx
-NzZlNTRiYjQ4YzMuLmU2MDk4Zjg4ZGQwNCAxMDA2NDQNCj4gPiA+ID4gLS0tIGEvZHJpdmVycy9p
-aW8vbGlnaHQvb3B0MzAwMS5jDQo+ID4gPiA+ICsrKyBiL2RyaXZlcnMvaWlvL2xpZ2h0L29wdDMw
-MDEuYw0KPiA+ID4gPiBAQCAtNzAsNiArNzAsMTkgQEANCj4gPiA+ID4gICNkZWZpbmUgT1BUMzAw
-MV9SRVNVTFRfUkVBRFlfU0hPUlQJMTUwDQo+ID4gPiA+ICAjZGVmaW5lIE9QVDMwMDFfUkVTVUxU
-X1JFQURZX0xPTkcJMTAwMA0KPiA+ID4gPiAgDQo+ID4gPiA+ICsvKiBUaGUgb3B0MzAwMiBkb2Vz
-bid0IGhhdmUgYSBkZXZpY2UgaWQgcmVnaXN0ZXIsIHByZWRlZmluZSB2YWx1ZSBpbnN0ZWFkICov
-DQo+ID4gPiA+ICsjZGVmaW5lIE9QVDMwMDJfREVWSUNFX0lEX1ZBTFVFCQkzMDAyICANCj4gPiA+
-IA0KPiA+ID4gV2h5PyAgSnVzdCBtYWtlIHRoZSBjb2RlIG5vdCBjYXJlIGFib3V0IHRoZSB2YWx1
-ZSBmb3IgdGhpcw0KPiA+ID4gZGV2aWNlLiAgQWRkIGEgZmxhZyB0byB0aGUgY2hpcCBpbmZvIHN0
-cnVjdHVyZSB0byBzYXkgaXQgZG9lc24ndCBoYXZlDQo+ID4gPiBvbmUgYW5kIGNoZWNrIHRoYXQg
-YmVmb3JlIHVzaW5nIGl0LiAgDQo+ID4gDQo+ID4gVGhlIGRldmljZSBpZCBpcyB1c2VkIHRvIGxv
-ZyB0aGUgbW9kZWwuIFNob3VsZCBJIG5vdCBsb2cgdGhlDQo+ID4gbW9kZWwgZm9yIHRoZSBvcHQz
-MDAyIHRoZW4gb3Igc2hvdWxkIEkgaGF2ZSB0aGUgY2FsbGJhY2sganVzdCByZXR1cm4NCj4gPiAz
-MDAyPyBJIHRob3VnaHQgaXQgd291bGQgYmUgY2xlYW5lciB0byBoYXZlIHRoZSBpZCB2YWx1ZSBh
-cyBhIGRlZmluZWQNCj4gPiBjb25zdGFudCBpbnN0ZWFkIG9mIGEgIm1hZ2ljIiBudW1iZXIgaW4g
-dGhlIGNvZGUuIElzIHRoZXJlIGEgcHJlZmVycmVkDQo+ID4gd2F5IG9mIGRvaW5nIGl0Pw0KPiAN
-Cj4gR2l2ZW4gdGhlIGxhY2sgb2YgcmVnaXN0ZXIgbWVhbnMgeW91IGNhbid0IGNoZWNrIHRoZSBt
-b2RlbCwgZG9uJ3QNCj4gcmVwb3J0IG9uZSBhdCBhbGwuIFNvIGRvbid0IHByaW50IHRoYXQgbWVz
-c2FnZSBmb3IgdGhpcw0KPiBkZXZpY2UuDQo+IA0KPiBGb3IgZnV0dXJlIHJlcGxpZXMgY3JvcCBv
-dXQgYW55dGhpbmcgdGhhdCBkb2Vzbid0IG5lZWQgYSByZXBseS4NCj4gU2F2ZXMgYSByZWFkZXIg
-aGF2aW5nIHRvIHNjcm9sbCBhbmQgcG90ZW50aWFsbHkgbWlzcyBzb21ldGhpbmcNCj4gaW1wb3J0
-YW50IQ0KPiANCj4gVGhhbmtzLA0KPiANCj4gSm9uYXRoYW4NCg0KSGkgSm9uYXRoYW4sDQpTb3Jy
-eSBmb3IgdGhlIGRlbGF5IGFuZCB0aGFuayB5b3UgZm9yIHRoZSBzdWdnZXN0aW9uLiBJJ2xsIGRv
-DQp0aGUgZmluaXNoaW5nIHRvdWNoZXMgb24gdmVyc2lvbiAyIGFuZCBzdWJtaXQgaXQgYXMgc29v
-biBhcyBwb3NzaWJsZS4NCg0KQmVzdCByZWdhcmRzLA0KRW1pbA0K
+On Thu, Sep 12, 2024, at 18:24, Arturs Artamonovs via B4 Relay wrote:
+> From: Arturs Artamonovs <arturs.artamonovs@analog.com>
+>
+> Adding support for ADI ADSP reset controller. This driver allows
+> trigger a software reset.
+>
+> Signed-off-by: Arturs Artamonovs <Arturs.Artamonovs@analog.com>
+> Co-developed-by: Utsav Agarwal <Utsav.Agarwal@analog.com>
+> Signed-off-by: Utsav Agarwal <Utsav.Agarwal@analog.com>
+> Co-developed-by: Nathan Barrett-Morrison <nathan.morrison@timesys.com>
+> Signed-off-by: Nathan Barrett-Morrison <nathan.morrison@timesys.com>
+> Co-developed-by: Greg Malysa <greg.malysa@timesys.com>
+> Signed-off-by: Greg Malysa <greg.malysa@timesys.com>
+> ---
+>  drivers/reset/Makefile | 1 +
+>  1 file changed, 1 insertion(+)
+
+It looks like you accidentally dropped the actual driver during
+a rebase, this is only the Makefile change.
+
+       Arnd
 
