@@ -1,257 +1,207 @@
-Return-Path: <devicetree+bounces-102862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75EF6978903
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 21:36:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07393978917
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 21:46:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34988289BD7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 19:36:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 332051C22050
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 19:46:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 797CF146017;
-	Fri, 13 Sep 2024 19:36:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39AB7136338;
+	Fri, 13 Sep 2024 19:46:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EfnARFIH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gDm2wIMW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C383C12FB0A;
-	Fri, 13 Sep 2024 19:36:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 088294A06;
+	Fri, 13 Sep 2024 19:46:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726256164; cv=none; b=UOGkN2yo1THla/N+qcNQNwwGc0H3loQFTUHgfUzpeK/1WodwmD7BJeFGJKUEJcLDQhv02p2Bpexkg/t/Dj7RFpbJbJwcOPLZ0qaRRieISYSrCkL3G52eUDYfzJJh0TJxL8lm31M48piz+RdGk/3KlVmem1ynhyeOw+dTWWW8nH8=
+	t=1726256765; cv=none; b=cUUJKwqPsfsUA43MAddyiBhv1aJj3eqq5bthVyxcqEKjwnYwRnN/WJGEU9yiXbkr50LnZbyxPEigrOybnMokM41gLqxQze9z7IuDuIYSrU1oQBY6W3oW79i0dn5voy01VhS6iehHndUIeINtJRmWhVF5peurk3RIVPSO1wFWM7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726256164; c=relaxed/simple;
-	bh=UdHQBWDMc71bE8Iy55dArrd3rCWm3VHJo00yp68l710=;
+	s=arc-20240116; t=1726256765; c=relaxed/simple;
+	bh=irzfxl48davcfw8D4U+UFH+kFUss2avEidDpQCzdmW4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HC+7sItT6v/mkekRbGkXsB6wDSOWawRMJ1PBpeB7STqvhMa/gQHq5ask2OTbn8v/W0lO6GRGthzhod2YKo4iy+SxPAuMOgW5UpBz7Vu7oFZmzkZ50YDf4W+goFj3f/P7Qax++lYqQmilduuorGPdVY+bhcEQCC7xq49BIop1ibI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EfnARFIH; arc=none smtp.client-ip=209.85.219.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-e1a9dc3efc1so1455916276.2;
-        Fri, 13 Sep 2024 12:36:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726256162; x=1726860962; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3U+IHR6pDMRbfhHaDLoFAFxaYoo4zOVYQxFvK1iMreQ=;
-        b=EfnARFIHcg+YhL+Q8aiMFlzxhgiKN3Cc/f0qBcwh99IumqFRWTDN9uWw9nIfUg0LHv
-         Py6p/zmdrEo/aJuEalbxUqZGo2cU4Fdn278Sh8Xs5553tPUQ9ok+bYjxGttv6yogcQgq
-         9BrtoX8DbsqclI4PoZJ/LGOGLiRD9ZxCEx5I7ZeZXfhjpqZvJMjEH2laurGYKtr9KWCx
-         HUmQmn7Gh7vRS4RzBT3ildYVDOLylLL5QhM5ZYdyOw15LqnXWZIabTatfPju6R1ulJN3
-         4pQFn3Todz7MHCxncAzcVF9WufMSNX9umnbGxGZJK28ny7T+kCiVkVOjUnjcfCpRowfU
-         EulA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726256162; x=1726860962;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3U+IHR6pDMRbfhHaDLoFAFxaYoo4zOVYQxFvK1iMreQ=;
-        b=tHVgwenVRZfN0Xxk2M85iR4ucR0NCLBwl21S2sSGBu7HAj0dB3F2JaW6J+NBUWydP4
-         qzsU3c5AAuTgLpvhQzq+4cOJRCj0dOp6LvFsOREUb36b0Cc1xRfrPXyeY9MLziE6FB2r
-         uTltXYPaOF4UIIb+W4QleVL3tAs6jExn6r9bLKKRLAu8PzPxuioPC0Y1QAxdIPg/85Zw
-         Q4Z2A09Cu/gPJaiJjT1Va1JDBM6K6IGnVIDEwDDO6mTGhsoIfv4SCuYrNjINGIu3d0s3
-         hn2gGtPR3rDkmzT3YVFMeWuGQWVGEl7TFlmy7WdWdeM07jmKqzsr4EoEs2/tgn7oAihT
-         +DHg==
-X-Forwarded-Encrypted: i=1; AJvYcCU1KfSzRJCaQqOAcuLaNjRU/3y/1TgARWy53Dbwoj17oBk93iwuTpFgNwrM7/8rzV58ZkmW6DZfIX733ykYl4Al@vger.kernel.org, AJvYcCU6iTHy6GB4N4uFsyhJsBbicpn60jF4str2BrnN/lGTb8y196rPMRw0xnSoCPbIk+XOb8pxHkYRzZII8XSBSQ==@vger.kernel.org, AJvYcCUXPc8lc3/TRXo7SZ1DUVGHwH/ZVTcesuS3yMUNe17u3+cPh4BFE+hkBPVGPfB1DKslpiMkBZuF7pMV62eW@vger.kernel.org, AJvYcCVFS/2tDU7FCSt1S2vYaAp8esAX57JAtXZ7w66Fdu6Y+E2vIlKFgQJCeUl6xPy9tj6pBuwG3gheID4Mog==@vger.kernel.org, AJvYcCW81wrYJkdYqIj2k9IolEkLDcHYdnGAkDYvbzAnyJKFmdYP5+M2Ucadp9b1YeTJprUtPiu4UgkRed5s@vger.kernel.org, AJvYcCW9nvZ956xzeYuD/h1qtg980ZQ73vDi4X2PNG6/hycSYeZb3fTkPVzj9EpAzRpEsNmHNJxFZpObQBXk@vger.kernel.org
-X-Gm-Message-State: AOJu0YypdvwQIPGYoD1o2e5F4QioDOkvouiRIvVwDHesTgqThWBFGx0N
-	F0kJ5PbN9ria22WQ16m0+9J+ohZaMi4X0kpZSDQMi2rE4RADQNw46aNGb3MRVk7njENXgbmNnv4
-	CyaxXOgBdtbuVWLZpSa4h50sABIo=
-X-Google-Smtp-Source: AGHT+IGt2176DfmuLWxLHRhUxP0ghtikgtAQtBs9a9ck/J1CfxjCxtNDV3zRVrMU5j3a8AABIjT1IH6bzLR1lWVcy+0=
-X-Received: by 2002:a05:6902:15c7:b0:e1d:1dee:eeeb with SMTP id
- 3f1490d57ef6-e1daff7cac4mr2967353276.22.1726256161483; Fri, 13 Sep 2024
- 12:36:01 -0700 (PDT)
+	 To:Cc:Content-Type; b=UTTa6Fvfbul/qhceds6Mw4akyRDK/BcmcKXsILd1nNt5PT41P++TaGPeNHIsicPcGk968FiAmXLZaQWfLWZiCdve6MEtty9S3dKMBWfOmsUdVj9tjWXgpPNzPDcgEMkpPKE7QMgAVfXrFLWOq6Q+jYOYDDJQvUPQtD/a46jM1a4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gDm2wIMW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 923DEC4CED3;
+	Fri, 13 Sep 2024 19:46:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726256764;
+	bh=irzfxl48davcfw8D4U+UFH+kFUss2avEidDpQCzdmW4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=gDm2wIMWzTyd7BFXJKoSaho5ZnNS6B8a/yEAnurFH7JZmpv7BCz77S6IIClDIfUZi
+	 SOQ65O7r0w8lACeionWKDvlNIT01OGj6/mSsH3+jbCvcdPYyE7Objjrtk0cfVKtM5g
+	 3hnsYxbB+J7HxoXCyu4ciHdbtYcqOzbqmDf2MCzUJ8fayZdlpQ4VQZHsiiaDgl6F+q
+	 +YfzOtd/75gbZaWdCEFdvGGmucwKFB6keRv+rNEXUQxVxBj86amEDCG242oBsGk1WW
+	 FnHvVorQVKHB/LNSxfCqPJnJNSI3Xr1uHy4+h/JMm1XzqRrlCDEFICnGMYd/FooezM
+	 YyvRgkJJEyz3Q==
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5356aa9a0afso2205249e87.2;
+        Fri, 13 Sep 2024 12:46:04 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU/3CcRqnBI0F15SqJnkctvcGsCfEERIYA008cjWQvee1Emd2xoHFavZ3RHHSutk7lwzMVwNIDBsQwn@vger.kernel.org, AJvYcCV5jLQMBIMqom68uAOxpuRVimBWWMQwwlsCo0/V3RAFU6AFx/qAfIMx9rWuMKpaX4jiC7/quDTqSnaH@vger.kernel.org, AJvYcCXYXUe6dmeXIF25OE0gZbY2fV1RvckcrotEzwS4PADmc47oNYQI8GOeSwwdMs9k2uyJqProm7MkRwzWfpmXU0d2qg==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6x+DRuXE5OP8glEbpocjnKXm/Ex9TV1k9G0AJewPMBXuDQscV
+	ZsTeIIDkBsouyGzvFmCiQQy4of65vPf3XPeo33HOkXNCb4JurPB09ctLNNG/o3rnNMD5XW0QTXs
+	9kmvOzRLL4omc+quLeiMHB45BJQ==
+X-Google-Smtp-Source: AGHT+IF8ujH5G7IhHrAEJ1Q7WeKs8dPxgfyl9SMhJtytPlJ29u1zY89ILXutLa7Jid+UQ5+M+KGLOW/C/KhbD9qMLWU=
+X-Received: by 2002:a05:6512:158e:b0:533:71f:3a3d with SMTP id
+ 2adb3069b0e04-5367fee454bmr3952584e87.24.1726256762744; Fri, 13 Sep 2024
+ 12:46:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240912231650.3740732-1-debug@rivosinc.com> <20240912231650.3740732-22-debug@rivosinc.com>
-In-Reply-To: <20240912231650.3740732-22-debug@rivosinc.com>
-From: Andy Chiu <andybnac@gmail.com>
-Date: Fri, 13 Sep 2024 21:35:50 +0200
-Message-ID: <CAFTtA3NA+OwZv5hJU3EWjuNHNjA3fQzPC+sX84Nb9YyJXdENSA@mail.gmail.com>
-Subject: Re: [PATCH v4 21/30] riscv/traps: Introduce software check exception
-To: Deepak Gupta <debug@rivosinc.com>
-Cc: paul.walmsley@sifive.com, palmer@sifive.com, conor@kernel.org, 
-	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, linux-arch@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, quic_zhonhan@quicinc.com, zong.li@sifive.com, 
-	zev@bewilderbeest.net, david@redhat.com, peterz@infradead.org, 
-	catalin.marinas@arm.com, broonie@kernel.org, dave.hansen@linux.intel.com, 
-	atishp@rivosinc.com, bjorn@rivosinc.com, namcaov@gmail.com, 
-	usama.anjum@collabora.com, guoren@kernel.org, alx@kernel.org, 
-	jszhang@kernel.org, hpa@zytor.com, puranjay@kernel.org, shuah@kernel.org, 
-	sorear@fastmail.com, costa.shul@redhat.com, robh@kernel.org, 
-	antonb@tenstorrent.com, quic_bjorande@quicinc.com, lorenzo.stoakes@oracle.com, 
-	corbet@lwn.net, dawei.li@shingroup.cn, anup@brainfault.org, deller@gmx.de, 
-	x86@kernel.org, andrii@kernel.org, willy@infradead.org, kees@kernel.org, 
-	mingo@redhat.com, libang.li@antgroup.com, samitolvanen@google.com, 
-	greentime.hu@sifive.com, osalvador@suse.de, ajones@ventanamicro.com, 
-	revest@chromium.org, ancientmodern4@gmail.com, aou@eecs.berkeley.edu, 
-	jerry.shih@sifive.com, alexghiti@rivosinc.com, arnd@arndb.de, 
-	yang.lee@linux.alibaba.com, charlie@rivosinc.com, bgray@linux.ibm.com, 
-	Liam.Howlett@oracle.com, leobras@redhat.com, songshuaishuai@tinylab.org, 
-	xiao.w.wang@intel.com, bp@alien8.de, cuiyunhui@bytedance.com, 
-	mchitale@ventanamicro.com, cleger@rivosinc.com, tglx@linutronix.de, 
-	krzk+dt@kernel.org, vbabka@suse.cz, brauner@kernel.org, bhe@redhat.com, 
-	ke.zhao@shingroup.cn, oleg@redhat.com, samuel.holland@sifive.com, 
-	ben.dooks@codethink.co.uk, evan@rivosinc.com, palmer@dabbelt.com, 
-	ebiederm@xmission.com, andy.chiu@sifive.com, schwab@suse.de, 
-	akpm@linux-foundation.org, sameo@rivosinc.com, tanzhasanwork@gmail.com, 
-	rppt@kernel.org, ryan.roberts@arm.com
+References: <68037ad181991fe0b792f6d003e3e9e538d5ffd7.1673452118.git.geert+renesas@glider.be>
+ <5da02a9b-3d42-a26f-0d18-29a6b5b181e5@seco.com> <20230124091236.1bf8c6da@booty>
+ <CAMuHMdV8_+dF03VD6mST2zMDQ68cgsLLRQi6UeXK2jH-eWqWZg@mail.gmail.com>
+ <232f59aa-704b-a374-6a78-469156ccdbea@seco.com> <83f4f33ebd3706ec7d35acd807b1e44b.sboyd@kernel.org>
+ <20230322093918.33690db3@booty> <CAL_JsqKj6A=GvgaZCd9jiF71YPGuQSKJ9Ob6erHT45q8vRR13w@mail.gmail.com>
+ <20240913170701.156d8e82@booty> <663b1735-5346-4fe7-b269-9d958b090a38@seco.com>
+In-Reply-To: <663b1735-5346-4fe7-b269-9d958b090a38@seco.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Fri, 13 Sep 2024 14:45:50 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ5NNSgKxeCHhQ8ZsLm8ARsOHpgibjXLCkKb8cGEinJnA@mail.gmail.com>
+Message-ID: <CAL_JsqJ5NNSgKxeCHhQ8ZsLm8ARsOHpgibjXLCkKb8cGEinJnA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: clk: vc5: Make SD/OE pin configuration
+ properties not required
+To: Sean Anderson <sean.anderson@seco.com>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>, Geert Uytterhoeven <geert@linux-m68k.org>, 
+	Stephen Boyd <sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Marek Vasut <marek.vasut@gmail.com>, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-reneas-soc@vger.kernel.org, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+	Takeshi Kihara <takeshi.kihara.df@renesas.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>, Adam Ford <aford173@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Deepak
+On Fri, Sep 13, 2024 at 11:41=E2=80=AFAM Sean Anderson <sean.anderson@seco.=
+com> wrote:
+>
+> On 9/13/24 11:07, Luca Ceresoli wrote:
+> > Hello Sean, Geert,
+> >
+> > On Tue, 10 Sep 2024 17:13:55 -0500
+> > Rob Herring <robh+dt@kernel.org> wrote:
+> >
+> >> On Wed, Mar 22, 2023 at 3:39=E2=80=AFAM Luca Ceresoli <luca.ceresoli@b=
+ootlin.com> wrote:
+> >> >
+> >> > Hello Stephen,
+> >> >
+> >> > On Mon, 20 Mar 2023 14:27:56 -0700
+> >> > Stephen Boyd <sboyd@kernel.org> wrote:
+> >> >
+> >> > > Quoting Sean Anderson (2023-01-24 08:23:45)
+> >> > > > On 1/24/23 03:28, Geert Uytterhoeven wrote:
+> >> > > > > Hi Luca,
+> >> > > > >
+> >> > > > > On Tue, Jan 24, 2023 at 9:12 AM Luca Ceresoli <luca.ceresoli@b=
+ootlin.com> wrote:
+> >> > > > >> On Thu, 19 Jan 2023 14:27:43 -0500
+> >> > > > >> Sean Anderson <sean.anderson@seco.com> wrote:
+> >> > > > >> > On 1/11/23 10:55, Geert Uytterhoeven wrote:
+> >> > > > >
+> >> > > > >> I'm wondering whether Geert has a practical example of a situ=
+ation
+> >> > > > >> where it is better to have these properties optional.
+> >> > > > >
+> >> > > > > My issue was that these properties were introduced long after =
+the
+> >> > > > > initial bindings, hence pre-existing DTS does not have them.
+> >> > > > > Yes, we can add them, but then we have to read out the OTP-pro=
+grammed
+> >> > > > > settings first. If that's the way to go, I can look into that,=
+ though...
+> >> > > >
+> >> > > > FWIW I think there's no need to update existing bindings which d=
+on't
+> >> > > > have this property. The required aspect is mainly a reminder for=
+ new
+> >> > > > device trees.
+> >> > > >
+> >> > >
+> >> > > Is there any resolution on this thread? I'm dropping this patch fr=
+om my
+> >> > > queue.
+> >> >
+> >> > IIRC Geert kind of accepted the idea that these properties should st=
+ay
+> >> > required. Which is a bit annoying but it's the safest option, so unl=
+ess
+> >> > there are new complaints with solid use cases for making them option=
+alm,
+> >> > I think it's OK to drop the patch.
+> >>
+> >> The warnings related to this are now at the top of the list (by number
+> >> of occurrences):
+> >>
+> >>      50 clock-generator@6a: 'idt,shutdown' is a required property
+> >>      50 clock-generator@6a: 'idt,output-enable-active' is a required p=
+roperty
+> >>
+> >> IMO, if these properties haven't been needed for years, then they
+> >> obviously aren't really required.
+> >
+> > I think Rob's point adds to Geert's observation that there are other
+> > "idt,*" properties in the output nodes that may also be important to
+> > have correctly set, and are optional.
+> >
+> > So, Sean, I understand when you state it's safer to have these set.
+> > However this is valid for lots of other optional properties in any
+> > binding. Optional properties _can_ be set if that's important, just
+> > it's not mandatory to set them in all cases.
+> >
+> > As a matter of fact, we have been having for a long time some in-tree
+> > device trees which don't set these properties, which I believe implies
+> > it's OK for those cases to not set them, and to let them be set for the
+> > device trees where it is important.
+> >
+> > Finally, there is a maintenance/legacy issue: if we wanted to keep thes=
+e
+> > properties optional, who would chase all the boards defined in existing
+> > device trees to discover the correct values?
+> >
+> > Bottom line, my Reviewed-by tag is still valid.
+> >
+> > What is your opinion given these last few discussion point Sean?
+>
+> I am willing to send patches adding these properties for the appropriate
+> boards. There are only 6 in tree (all Renesas):
+>
+> $ git grep -l idt,5p49 '**.dts*'
+> arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
+> arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
+> arch/arm64/boot/dts/renesas/hihope-common.dtsi
+> arch/arm64/boot/dts/renesas/salvator-x.dtsi
+> arch/arm64/boot/dts/renesas/salvator-xs.dtsi
+> arch/arm64/boot/dts/renesas/ulcb.dtsi
+>
+> I was able to find schematics for ULCB. Salvator-X seems to be gone from
+> Renesas's website (in favor of the -XS). I have requested access to the
+> -XS schematics.  The HiHope board doesn't seem to have schematics
+> anywhere I could find (which is pretty unusual for a reference
+> design...). The Beacon schematics are behind a support portal (or so I
+> assume).
 
-Deepak Gupta <debug@rivosinc.com> =E6=96=BC 2024=E5=B9=B49=E6=9C=8813=E6=97=
-=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=882:32=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> zicfiss / zicfilp introduces a new exception to priv isa `software check
-> exception` with cause code =3D 18. This patch implements software check
-> exception.
->
-> Additionally it implements a cfi violation handler which checks for code
-> in xtval. If xtval=3D2, it means that sw check exception happened because=
- of
-> an indirect branch not landing on 4 byte aligned PC or not landing on
-> `lpad` instruction or label value embedded in `lpad` not matching label
-> value setup in `x7`. If xtval=3D3, it means that sw check exception happe=
-ned
-> because of mismatch between link register (x1 or x5) and top of shadow
-> stack (on execution of `sspopchk`).
->
-> In case of cfi violation, SIGSEGV is raised with code=3DSEGV_CPERR.
-> SEGV_CPERR was introduced by x86 shadow stack patches.
->
-> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
-> ---
->  arch/riscv/include/asm/asm-prototypes.h |  1 +
->  arch/riscv/include/asm/entry-common.h   |  2 ++
->  arch/riscv/kernel/entry.S               |  3 ++
->  arch/riscv/kernel/traps.c               | 38 +++++++++++++++++++++++++
->  4 files changed, 44 insertions(+)
->
-> diff --git a/arch/riscv/include/asm/asm-prototypes.h b/arch/riscv/include=
-/asm/asm-prototypes.h
-> index cd627ec289f1..5a27cefd7805 100644
-> --- a/arch/riscv/include/asm/asm-prototypes.h
-> +++ b/arch/riscv/include/asm/asm-prototypes.h
-> @@ -51,6 +51,7 @@ DECLARE_DO_ERROR_INFO(do_trap_ecall_u);
->  DECLARE_DO_ERROR_INFO(do_trap_ecall_s);
->  DECLARE_DO_ERROR_INFO(do_trap_ecall_m);
->  DECLARE_DO_ERROR_INFO(do_trap_break);
-> +DECLARE_DO_ERROR_INFO(do_trap_software_check);
->
->  asmlinkage void handle_bad_stack(struct pt_regs *regs);
->  asmlinkage void do_page_fault(struct pt_regs *regs);
-> diff --git a/arch/riscv/include/asm/entry-common.h b/arch/riscv/include/a=
-sm/entry-common.h
-> index 2293e535f865..4068c7e5452a 100644
-> --- a/arch/riscv/include/asm/entry-common.h
-> +++ b/arch/riscv/include/asm/entry-common.h
-> @@ -39,4 +39,6 @@ static inline int handle_misaligned_store(struct pt_reg=
-s *regs)
->  }
->  #endif
->
-> +bool handle_user_cfi_violation(struct pt_regs *regs);
-> +
->  #endif /* _ASM_RISCV_ENTRY_COMMON_H */
-> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
-> index ca9203e6d76d..2ec75ba864a8 100644
-> --- a/arch/riscv/kernel/entry.S
-> +++ b/arch/riscv/kernel/entry.S
-> @@ -384,6 +384,9 @@ SYM_DATA_START_LOCAL(excp_vect_table)
->         RISCV_PTR do_page_fault   /* load page fault */
->         RISCV_PTR do_trap_unknown
->         RISCV_PTR do_page_fault   /* store page fault */
-> +       RISCV_PTR do_trap_unknown /* cause=3D16 */
-> +       RISCV_PTR do_trap_unknown /* cause=3D17 */
-> +       RISCV_PTR do_trap_software_check /* cause=3D18 is sw check except=
-ion */
->  SYM_DATA_END_LABEL(excp_vect_table, SYM_L_LOCAL, excp_vect_table_end)
->
->  #ifndef CONFIG_MMU
-> diff --git a/arch/riscv/kernel/traps.c b/arch/riscv/kernel/traps.c
-> index 51ebfd23e007..32d1453bed72 100644
-> --- a/arch/riscv/kernel/traps.c
-> +++ b/arch/riscv/kernel/traps.c
-> @@ -354,6 +354,44 @@ void do_trap_ecall_u(struct pt_regs *regs)
->
->  }
->
-> +#define CFI_TVAL_FCFI_CODE     2
-> +#define CFI_TVAL_BCFI_CODE     3
-> +/* handle cfi violations */
-> +bool handle_user_cfi_violation(struct pt_regs *regs)
-> +{
-> +       bool ret =3D false;
-> +       unsigned long tval =3D csr_read(CSR_TVAL);
-> +
-> +       if (((tval =3D=3D CFI_TVAL_FCFI_CODE) && cpu_supports_indirect_br=
-_lp_instr()) ||
-> +               ((tval =3D=3D CFI_TVAL_BCFI_CODE) && cpu_supports_shadow_=
-stack())) {
-> +               do_trap_error(regs, SIGSEGV, SEGV_CPERR, regs->epc,
-> +                                         "Oops - control flow violation"=
-);
-> +               ret =3D true;
-> +       }
-> +
-> +       return ret;
-> +}
-> +/*
-> + * software check exception is defined with risc-v cfi spec. Software ch=
-eck
-> + * exception is raised when:-
-> + * a) An indirect branch doesn't land on 4 byte aligned PC or `lpad`
-> + *    instruction or `label` value programmed in `lpad` instr doesn't
-> + *    match with value setup in `x7`. reported code in `xtval` is 2.
-> + * b) `sspopchk` instruction finds a mismatch between top of shadow stac=
-k (ssp)
-> + *    and x1/x5. reported code in `xtval` is 3.
-> + */
+That doesn't sound promising to me.
 
-It seems like this trap handler does not follow generic entry. This
-can cause problems as signal delivery is done in
-irqentry_exit_to_user_mode(). Please reference the commit f0bddf50586d
-("riscv: entry: Convert to generic entry") for more information.
+> That said, this info should be pretty easy to find for anyone with
+> physical access to a board. Just boot it up and probe the voltage on the
+> SD/OE pin. I've added some people who may have the hardware to CC.
 
-> +asmlinkage __visible __trap_section void do_trap_software_check(struct p=
-t_regs *regs)
-> +{
-> +       if (user_mode(regs)) {
-> +               /* not a cfi violation, then merge into flow of unknown t=
-rap handler */
-> +               if (!handle_user_cfi_violation(regs))
-> +                       do_trap_unknown(regs);
-> +       } else {
-> +               /* sw check exception coming from kernel is a bug in kern=
-el */
-> +               die(regs, "Kernel BUG");
-> +       }
-> +}
-> +
->  #ifdef CONFIG_MMU
->  asmlinkage __visible noinstr void do_page_fault(struct pt_regs *regs)
->  {
-> --
-> 2.45.0
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+By some definition of easy I guess...
 
-Cheers,
-Andy
+I want the warning gone, so I'm going to apply this patch. When/if all
+the cases have been fixed, I'll happily revert it.
+
+Rob
 
