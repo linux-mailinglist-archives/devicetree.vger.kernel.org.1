@@ -1,161 +1,164 @@
-Return-Path: <devicetree+bounces-102885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C560978BF8
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 01:49:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E27E978C00
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 01:58:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1BB501F238B7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 23:49:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D32E287ADE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 23:58:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B431117BECD;
-	Fri, 13 Sep 2024 23:49:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FC3C1865F3;
+	Fri, 13 Sep 2024 23:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="RWstc9wO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g6y+IHnZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36B0815B108
-	for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 23:49:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61A9517CA19;
+	Fri, 13 Sep 2024 23:58:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726271356; cv=none; b=pYYLTrDtQlfZz0ubdP10L9i2Mg5juY5IC+Xih+RLFk8c80B9+NFY3sgft5dWdS4CIc6zsz4B18T3SoZ4ZaenBlKDWsrm74WgM3nvYo0DCt2LTO41h0ss0ifia3xrrB+L1FY/a91cgpR6sZNKhq7X8fs9qdxWdTkFxop/X+ZL44A=
+	t=1726271927; cv=none; b=GMzAF+mKJ4sBd74pPa+q+PlmZf/dYBR8zlqtXJdmBqd7fMcYNJKAkNqsEsdEIGV0dPv8sK9eJVbBgTZamXBAYo/4tsFmlVMUKMBJb4SnTXccFiQn/nmrnnV8cedY0p4d54KMwdXahHioexLKsY1uRvIBtPcsSZVloZ28UIOHbEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726271356; c=relaxed/simple;
-	bh=HPCIWNWpBdtqLYZEm2Q7Mjcha/BIoksmpFmSMnXlxFs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XBMQgsUFl8DrRsb+TA5tjzAMYv2tylCml8dYVnIUlU3Fvy37cLoyO1LK+ed/4s70Z1Wf0xacXe+lqbFSu4Ip36oHBmNb7UjWZcd98/6b+2j72gFwa8yuwTxpnKzVqpfMZJh/WwZGd+saY7KTc19IS6hTcOI0kWEDU2umsgJNr5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=RWstc9wO; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-718d962ad64so2242479b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 16:49:15 -0700 (PDT)
+	s=arc-20240116; t=1726271927; c=relaxed/simple;
+	bh=t1kBUvvfAyBSEJqy6ISe01TikB0sm7vvU/LfFcfX58s=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y/RuNpsigwXSlFQXVCkW03j0rf4Qj1w+Fl1431KYgfcYT2TmTK7jrBTXkI1A+L1F9WVrLKUMEihmFuNBCw5g9CHUMN+gSmEBBT220E3fqTN5JuiTUhlepn8H+EIjpDMRx7fYHr7nbRemTTntoJLWV7nj0rtOIWJ6b8UNmXEzfi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g6y+IHnZ; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-42cb9a0c300so24808625e9.0;
+        Fri, 13 Sep 2024 16:58:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1726271354; x=1726876154; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QgrnQAkPxnP9xr/uHfnesOWhy4bQylWu/nCRFkQoiTg=;
-        b=RWstc9wOu5i3PKNEk2GdWtxp9hH7QHVrvTyKshYuMgkkxHdXyTw6OVSRIf01eIoMfd
-         Vp1xA754N0nfc/MeOIRupAIC/2SWcMHjUqUm7Ie+pZhL7mCP9k7WdIb2MWqnk3mJAGEf
-         Xkc6oTXpLAavX3vQ6tJ3ilBtZY/70QSBh9/EI=
+        d=gmail.com; s=20230601; t=1726271924; x=1726876724; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=r+Uo9CZ+/vWr76G0BdqpOSgPTj8l9thCWDLiz+ayKMY=;
+        b=g6y+IHnZKSJwVOxbs7t2KHamAjfj7MoOaCP4bPBr7m8r85bFznq/BKjgA5d2/JkpbO
+         XTcrs8qMj7rN/eDBx6cGjF530g7hoDISjBMkRfW6jGgWSfdjx9J5kUBl/3uVDuXIZxiu
+         LwOP3UbSujicE3wgwuQdJuP+Zji5KJz0gEQl00T/wQwGXMCI5w4Vp0jS2dMHlLswuXwf
+         5NKw+XoDZC40p1rLRopO76Dj1WfG45fvsUCu8svsUw8Aa/b07eeZmGz4tln1nFbiyX08
+         Q46GDhqM2XD72wCR/JZgW2mdPSET1zvc6iYZd8T9XC2DDGCORzN4/a5UMp1MtpTeWeS1
+         +JMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726271354; x=1726876154;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QgrnQAkPxnP9xr/uHfnesOWhy4bQylWu/nCRFkQoiTg=;
-        b=SMjCmy1vGb0hXwb/aUp70TIJUmcHftc+s8F8FJV5mpnvRJJyhKDAdGfL3W1qjv5Imd
-         MnzV8TtdiASHNkQ11pdoz/XtoH5mdnzhJ8rlYU3tzJZVDlh1JXK49tdwGdmKFDUhG3HR
-         u7MxdKHENVazGwGsrHAG896zoTafdx08dPTUMGncvFv8WKkzGxAU1ocpaIT9LqJ3Ic5D
-         7W+aNUeZkJcoaEDCTsEG9E/NSxsBWLxBx3wR1coWigzqoEsAzUMETapFoq4LGeuw5AOs
-         k0iiRvErK2SHL7+XOQLgJyL936nINgwLZXW9g4qWdJawgC7OWy6XXvUIFWqAKCoWLJK0
-         WH9g==
-X-Forwarded-Encrypted: i=1; AJvYcCXoyjhYqtE0H+tB/n2ZxwgIWfAn/NxoEBcVyqA8Tj+x/dwMgcFnZEUuoxKDqc1/z0XUdy2PoQJTzuqH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHtdcczsIUYwxGceQYc7ibQvG6u3HznIhTOW5DAZUNYUoMuJcy
-	AtTsJowWUCbM4USDKUbRS9Npe1yXWRFpCb/hhJhk+MJ9fqhW1qWJv4jWDonwoiq4Baa+FVwyniA
-	=
-X-Google-Smtp-Source: AGHT+IFWf30U7gbJ+JNv4NgmzxrQNLRBjkPVoHA/5Y4/D7XL4gV0ISk4EovMqKcoPY3mzyKMEnlx/Q==
-X-Received: by 2002:a05:6a00:1948:b0:717:8ee0:4ea1 with SMTP id d2e1a72fcca58-71925fa95c9mr15221589b3a.0.1726271353798;
-        Fri, 13 Sep 2024 16:49:13 -0700 (PDT)
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com. [209.85.216.53])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71944a977d1sm134013b3a.18.2024.09.13.16.49.13
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Sep 2024 16:49:13 -0700 (PDT)
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2d89229ac81so2255810a91.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 16:49:13 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVKUQsSToLO6VHBCtqdmIvee9NkI8WgNe/dogUAKw+1Vf8TkdTYE6LZDWsEwCEnsrtF+PcoIx6Q/+Qv@vger.kernel.org
-X-Received: by 2002:a05:6214:5f07:b0:6c5:de4:3edb with SMTP id
- 6a1803df08f44-6c5735881a8mr122878276d6.29.1726271012120; Fri, 13 Sep 2024
- 16:43:32 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1726271924; x=1726876724;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=r+Uo9CZ+/vWr76G0BdqpOSgPTj8l9thCWDLiz+ayKMY=;
+        b=S5UEDeL29kH33X6IWamd+q8ZqodFUYjLxP36nf8D/Uh+aa8rW4+NUSd5fHnJ+VfnkR
+         cQRdk7wP4tekHIJW8GOzQs2f1RS2VCIucYU9N4nasgSCZVzjhMeCmCKt5YQHaQbYzbM/
+         IbJ7UYMerjJyvReHRM0yA9CEAGE0haOiN1tyVoza4k7IUllOCtB+UPFumgwss8eDCQEq
+         n5gy187yCtXs4JU1rDAbA4FP27ef99NNPIRWb7bl6zKOGwsZzg3NE0ZcIzMVDxo71J8/
+         CIupZfm3DJ/qaZWOkRDq/VzAg7TaLPNSLjl2C5zJWCFN6wHcucvyo+930hRIvhurk92h
+         lMLg==
+X-Forwarded-Encrypted: i=1; AJvYcCUnxVrnsSaMN9PfNXs1L60sUEs4EO1XRA4uNwagEXGQ1NBUh5amC7MYuOsAnY3LDWOjsO822Kc1LvnD@vger.kernel.org, AJvYcCVBvxsVZXgsO20St812epK5Ikxi1IK5Iif0lfZDOlm/Dmww5Zn0EbMVH7z976KC5SNUUYYewhGhaWBq@vger.kernel.org, AJvYcCW4bmXkO+e5Wq4tyqMkymPYS5N8+u8t3rhqj1Z1EmubGNf6jJC5Y3HY8toeyQWNqTvry3IxfpQiy+3hlXbZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLoByllYpETtqTG4xs/jVEMxQHILDYi75hQ9WFSg+TUQJTSyMn
+	Ss931BEzOxf0XwuxZ1GIbCakKvVmd8hhbOnkUAcyidBsWadnK32E
+X-Google-Smtp-Source: AGHT+IHTOKPj1k9m5Ti8Vddyk9GlaX0+XkbHG41xc76RPoB6x/CX92bA3gKJiVV+RxQF4FGuXsDOkA==
+X-Received: by 2002:a05:600c:3b13:b0:42c:b961:c902 with SMTP id 5b1f17b1804b1-42cdb522ce4mr56954355e9.12.1726271923434;
+        Fri, 13 Sep 2024 16:58:43 -0700 (PDT)
+Received: from vamoiridPC ([2a04:ee41:82:7577:6bd1:9a24:6b02:4a8f])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42d9b15c1d5sm38293285e9.21.2024.09.13.16.58.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Sep 2024 16:58:43 -0700 (PDT)
+From: Vasileios Amoiridis <vassilisamir@gmail.com>
+X-Google-Original-From: Vasileios Amoiridis <vamoirid@vamoiridPC>
+Date: Sat, 14 Sep 2024 01:58:41 +0200
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Vasileios Amoiridis <vassilisamir@gmail.com>, jic23@kernel.org,
+	lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ang.iglesiasg@gmail.com,
+	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
+	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
+	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	christophe.jaillet@wanadoo.fr
+Subject: Re: [PATCH v6 1/4] iio: pressure: bmp280: Use sleep and forced mode
+ for oneshot captures
+Message-ID: <20240913235841.GB33362@vamoiridPC>
+References: <20240912233234.45519-1-vassilisamir@gmail.com>
+ <20240912233234.45519-2-vassilisamir@gmail.com>
+ <ZuQLOwjQUTjo1nPg@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240911072751.365361-1-wenst@chromium.org> <20240911072751.365361-10-wenst@chromium.org>
-In-Reply-To: <20240911072751.365361-10-wenst@chromium.org>
-From: Doug Anderson <dianders@chromium.org>
-Date: Fri, 13 Sep 2024 16:43:20 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WtVSQ5GX6H5CtxNPTdOAJVMj_xNRvG9siZB6_ePZr7CQ@mail.gmail.com>
-Message-ID: <CAD=FV=WtVSQ5GX6H5CtxNPTdOAJVMj_xNRvG9siZB6_ePZr7CQ@mail.gmail.com>
-Subject: Re: [PATCH v7 09/10] platform/chrome: Introduce device tree hardware prober
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
-	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
-	Jiri Kosina <jikos@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	linux-i2c@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZuQLOwjQUTjo1nPg@smile.fi.intel.com>
 
-Hi,
-
-On Wed, Sep 11, 2024 at 12:29=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.org> =
-wrote:
->
-> @@ -8,6 +8,7 @@ obj-$(CONFIG_CHROMEOS_ACPI)             +=3D chromeos_acp=
-i.o
->  obj-$(CONFIG_CHROMEOS_LAPTOP)          +=3D chromeos_laptop.o
->  obj-$(CONFIG_CHROMEOS_PRIVACY_SCREEN)  +=3D chromeos_privacy_screen.o
->  obj-$(CONFIG_CHROMEOS_PSTORE)          +=3D chromeos_pstore.o
-> +obj-$(CONFIG_CHROMEOS_OF_HW_PROBER)    +=3D chromeos_of_hw_prober.o
-
-"o" sorts before "p" so "of" should sort before "privacy"?
-
-I guess it's not exactly all sorted, but this small section is. Since
-it's arbitrary you could preserve the existing sorting. :-P
-
-
-> +static const struct hw_prober_entry hw_prober_platforms[] =3D {
-> +       { .compatible =3D "google,hana", .prober =3D chromeos_i2c_compone=
-nt_prober, .data =3D &chromeos_i2c_probe_dumb_touchscreen },
-> +       { .compatible =3D "google,hana", .prober =3D chromeos_i2c_compone=
-nt_prober, .data =3D &chromeos_i2c_probe_dumb_trackpad },
-
-The fact that the example is only using "dumb" probers doesn't make it
-quite as a compelling proof that the code will scale up. Any chance
-you could add something that requires a bit more oomph? ;-)
-
-
-> +static int chromeos_of_hw_prober_driver_init(void)
-> +{
-> +       size_t i;
-> +       int ret;
-> +
-> +       for (i =3D 0; i < ARRAY_SIZE(hw_prober_platforms); i++)
-> +               if (of_machine_is_compatible(hw_prober_platforms[i].compa=
-tible))
-> +                       break;
-> +       if (i =3D=3D ARRAY_SIZE(hw_prober_platforms))
-> +               return -ENODEV;
-> +
-> +       ret =3D platform_driver_register(&chromeos_of_hw_prober_driver);
-> +       if (ret)
-> +               return ret;
-> +
-> +       chromeos_of_hw_prober_pdev =3D
-> +                       platform_device_register_simple(DRV_NAME, PLATFOR=
-M_DEVID_NONE, NULL, 0);
-> +       if (IS_ERR(chromeos_of_hw_prober_pdev))
-> +               goto err;
-
-FWIW if you didn't want to see your prober called over and over again
-if one of the devices deferred you could just register one device per
-type, right? Then each device would be able to defer separately. Dunno
-if it's worth it but figured I'd mention it...
+On Fri, Sep 13, 2024 at 12:51:55PM +0300, Andy Shevchenko wrote:
+> On Fri, Sep 13, 2024 at 01:32:31AM +0200, Vasileios Amoiridis wrote:
+> > Add forced mode support in sensors BMP28x, BME28x, BMP3xx and BMP58x.
+> > Sensors BMP18x and BMP085 are old and do not support this feature so
+> > their operation is not affected at all.
+> > 
+> > Essentially, up to now, the rest of the sensors were used in normal mode
+> > all the time. This means that they are continuously doing measurements
+> > even though these measurements are not used. Even though the sensor does
+> > provide PM support, to cover all the possible use cases, the sensor needs
+> > to go into sleep mode and wake up whenever necessary.
+> > 
+> > The idea is that the sensor is by default in sleep mode, wakes up in
+> > forced mode when a oneshot capture is requested, or in normal mode
+> > when the buffer is enabled. The difference lays in the fact that in
+> > forced mode, the sensor does only one conversion and goes back to sleep
+> > while in normal mode, the sensor does continuous measurements with the
+> > frequency that was set in the ODR registers.
+> > 
+> > The bmpX_chip_config() functions which are responsible for applying
+> > the requested configuration to the sensor, are modified accordingly
+> > in order to set the sensor by default in sleep mode.
+> > 
+> > DEEP STANDBY, Low Power NORMAL and CONTINUOUS modes, supported only by
+> > the BMP58x version, are not added.
+> 
+> ...
+> 
+> > +	if (!((reg & BMP380_STATUS_DRDY_PRESS_MASK) &&
+> > +	    (reg & BMP380_STATUS_DRDY_TEMP_MASK))) {
+> 
+> I would add one more space to make the indentation follow the logic.
+> 
+> (no need to resend until Jonathan asks for it, otherwise I believe
+>  he can amend this whilst applying)
+> 
+> > +		dev_err(data->dev, "Measurement cycle didn't complete.\n");
+> > +		return -EBUSY;
+> > +	}
+> 
+> ...
+> 
+> > +		/*
+> > +		 * According to the BMP3 Sensor API, the sensor needs 5000us
+> 
+> Can we use 5ms...
+> 
+> > +		 * in order to go to the sleep mode.
+> > +		 */
+> > +		fsleep(5000);
+> 
+> ...and 5 * USEC_PER_MSEC here respectively?
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
 
 
-Also: as a high level comment, this all looks much nicer to me now
-that it's parameterized. :-)
+Hi Andy,
+
+Thanks for the time for the review once again. I think I can manage to
+find the time to do it today.
+
+Cheers,
+Vasilis
 
