@@ -1,60 +1,63 @@
-Return-Path: <devicetree+bounces-102809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BBA7978642
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 18:55:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB62297865D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 19:04:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84CEB1C22C2E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 16:55:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3F121F2599C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 17:04:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A880A7A15A;
-	Fri, 13 Sep 2024 16:55:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 621FB80C02;
+	Fri, 13 Sep 2024 17:04:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uiEni0i7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kxin2TFY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74DE4811F1;
-	Fri, 13 Sep 2024 16:55:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F0CC7DA64;
+	Fri, 13 Sep 2024 17:04:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726246510; cv=none; b=RnXXwNJ9DRnjoDug6OIuDTacUOQJpFqwPyvkpfpESAtZ7KeWLALdnXg8bZfT/XInTkvwjdNszPT1pwHQpaaPKH3gxQMLAy6Kh6pjVEKq58nwKlYzb1w5B/Odr+SkuW6+iTKvxle/GKAb0rqcD9O4XaNA/4gqPnsOo+i7F8bQamk=
+	t=1726247062; cv=none; b=nr956Nvbbcc6+Y6SjilXfoGLWHleLsfBG+EnZzYDMHgptFi0AYx3u0H+odUuNoOC6WocrsBLFBoBUPjs4bE9PiVNjxAjmUO01WEY8zErzTdUc0O5k9fMmWWcZoz7y0col7R9lJJIQjzb7KDO7NBes8ONZYxFgpPbKGMhAEOea3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726246510; c=relaxed/simple;
-	bh=uKhpgO4U1LU2Qn0MR9AEWzNBPZVEpvrphvFSVZ5WChc=;
+	s=arc-20240116; t=1726247062; c=relaxed/simple;
+	bh=Bimw3teACghVaYDGbMFiMeYLIhGUrCaX5bh5RjG58O0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u8SR7Km5ijW0bwGtKcMEf4GXgdbneye1BBOg0DU+z2CM2m9yXLCCYeuchQNtevvmxtIJkgyRfIGlTkn+D4PEuWRBkMR3vK6+Fe9GI418GY3qmiKUN9UyDHLnEaJwq0lGeuUr5Jfl1nOIy9SCzZUi5/ATiiX5Ps2cMKFPGbEnKO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uiEni0i7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0E9FC4CEC0;
-	Fri, 13 Sep 2024 16:55:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=KmQg5ut2GFL0eMz0DtXM8yT/LGdTwVOQ25HAHmWczRlbrav0ORRPIY7WNPpw9XYDVn2f+jaDJ60S6w/I5mJF8U9jf/k4TUM5RUOueZgrD7BEjDTr94yqE+EA7pz47jsx+1uwM1kLaByQWHawbyf+70kNRwInAaF4JVhX1gQlW2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kxin2TFY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A6ADC4CEC0;
+	Fri, 13 Sep 2024 17:04:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726246510;
-	bh=uKhpgO4U1LU2Qn0MR9AEWzNBPZVEpvrphvFSVZ5WChc=;
+	s=k20201202; t=1726247061;
+	bh=Bimw3teACghVaYDGbMFiMeYLIhGUrCaX5bh5RjG58O0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uiEni0i71hRGogUzI6V8cTtiNOTxq9X3jgPJ+ZIemrJap1W1mv2C0TaAak+x79epJ
-	 zVbhmNJy2W+fe/3ERrq/Zah3bQGryKibjykKng7OQ9scyf41C+2I4cLcHL0brB4IYK
-	 J5x02OU06yI2zdE1K5UxRQ3EFmTrBIoV2T/46eiVOD58TQhxelONiEcCZ9NGaZuOEa
-	 lzLaoWIcJ9zjeT5/VYZBWhFhBjnkUSmrc/0j/AFklzsA6zjzrDWFcMsxtQchCmMG8b
-	 xr7KgcqT8G+8/O7gAVmEgg5pARf5NygSJVTBZ0OO88gok8nrmmXuP45QZIOChHBVMp
-	 wtkouJ4pfV4rg==
-Date: Fri, 13 Sep 2024 17:55:05 +0100
+	b=kxin2TFYdo2MpnoqN3/ru1HXkcRRgGB0aGiMC3+oI/dvsnotFUvxCMtQoPFpmLWvp
+	 42JQreaD/b26F7UepH93bp8GmZOfDc4wN7EZ3Bg+NTdgjnUOyaKulsSOlH5amgeWwX
+	 JJI3jHupE1s5neWUzhqNkYRCr0KAcI5V6nzAy71JqPFPEZvCtU6eXVYGTR2kMdC4sb
+	 1+zZ84ml2XFSO3tMSmzcs2os+2sX9Wd4HUTImpGtSXeQZzaKXuCGQ52O8ha2iM9/NW
+	 yW8ybh0rzwS1NZPOxcCNP+wTbin7+prMU7oAx1BiAK55l0smOaodlE6spWLfFPFxe4
+	 5evh8JodlF01Q==
+Date: Fri, 13 Sep 2024 18:04:17 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rishi Gupta <gupt21@gmail.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH 2/7] dt-bindings: iio: light: veml6030: add veml6035
-Message-ID: <20240913-triceps-impure-bc97dd2b432a@spud>
-References: <20240913-veml6035-v1-0-0b09c0c90418@gmail.com>
- <20240913-veml6035-v1-2-0b09c0c90418@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 2/4] dt-bindings: net: dsa: the adjacent DSA
+ port must appear first in "link" property
+Message-ID: <20240913-estimate-badland-5ab577e69bab@spud>
+References: <20240913131507.2760966-1-vladimir.oltean@nxp.com>
+ <20240913131507.2760966-3-vladimir.oltean@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,130 +65,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="CPwJ6ZTIqbb0u5rU"
+	protocol="application/pgp-signature"; boundary="erhZyKGbQwqN4Ufv"
 Content-Disposition: inline
-In-Reply-To: <20240913-veml6035-v1-2-0b09c0c90418@gmail.com>
+In-Reply-To: <20240913131507.2760966-3-vladimir.oltean@nxp.com>
 
 
---CPwJ6ZTIqbb0u5rU
+--erhZyKGbQwqN4Ufv
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 13, 2024 at 03:18:57PM +0200, Javier Carrasco wrote:
-> The veml6035 is a similar ambient light sensor to the veml6030, and
-> from the bindings point of view, it shares the same properties. Its
-> only difference in that respect is a different I2C address.
+On Fri, Sep 13, 2024 at 04:15:05PM +0300, Vladimir Oltean wrote:
+> If we don't add something along these lines, it is absolutely impossible
+> to know, for trees with 3 or more switches, which links represent direct
+> connections and which don't.
 >=20
-> Estend the existing bindings to support the veml6035 ALS.
+> I've studied existing mainline device trees, and it seems that the rule
+> has been respected thus far. I've actually tested such a 3-switch setup
+> with the Turris MOX.
+
+What about out of tree (so in u-boot or the likes)? Are there other
+users that we need to care about?
+
+This doesn't really seem like an ABI change, if this is the established
+convention, but feels like a fixes tag and backports to stable etc are
+in order to me.
+
 >=20
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 > ---
->  .../bindings/iio/light/vishay,veml6030.yaml        | 40 ++++++++++++++++=
-+-----
->  1 file changed, 31 insertions(+), 9 deletions(-)
+>  Documentation/devicetree/bindings/net/dsa/dsa-port.yaml | 9 +++++----
+>  1 file changed, 5 insertions(+), 4 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/iio/light/vishay,veml6030.=
-yaml b/Documentation/devicetree/bindings/iio/light/vishay,veml6030.yaml
-> index 7f4995557570..f88e043d7ede 100644
-> --- a/Documentation/devicetree/bindings/iio/light/vishay,veml6030.yaml
-> +++ b/Documentation/devicetree/bindings/iio/light/vishay,veml6030.yaml
-> @@ -4,14 +4,14 @@
->  $id: http://devicetree.org/schemas/iio/light/vishay,veml6030.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml b/Do=
+cumentation/devicetree/bindings/net/dsa/dsa-port.yaml
+> index 480120469953..307c61aadcbc 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
+> @@ -31,10 +31,11 @@ properties:
 > =20
-> -title: VEML6030 Ambient Light Sensor (ALS)
-> +title: VEML6030 and VEML6035 Ambient Light Sensors (ALS)
-> =20
->  maintainers:
->    - Rishi Gupta <gupt21@gmail.com>
-> =20
->  description: |
-> -  Bindings for the ambient light sensor veml6030 from Vishay
-> -  Semiconductors over an i2c interface.
-> +  Bindings for the ambient light sensors veml6030 and veml6035 from
-> +  Vishay Semiconductors over an i2c interface.
-> =20
->    Irrespective of whether interrupt is used or not, application
->    can get the ALS and White channel reading from IIO raw interface.
-> @@ -19,20 +19,18 @@ description: |
->    If the interrupts are used, application will receive an IIO event
->    whenever configured threshold is crossed.
-> =20
-> -  Specifications about the sensor can be found at:
-> +  Specifications about the sensors can be found at:
->      https://www.vishay.com/docs/84366/veml6030.pdf
-> +    https://www.vishay.com/docs/84889/veml6035.pdf
-> =20
->  properties:
->    compatible:
->      enum:
->        - vishay,veml6030
-> +      - vishay,veml6035
-> =20
->    reg:
-> -    description:
-> -      I2C address of the device.
-> -    enum:
-> -      - 0x10 # ADDR pin pulled down
-> -      - 0x48 # ADDR pin pulled up
-> +    maxItems: 1
-> =20
->    interrupts:
+>    link:
 >      description:
-> @@ -45,6 +43,30 @@ required:
->    - compatible
->    - reg
-> =20
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - vishay,veml6030
-> +    then:
-> +      properties:
-> +        reg:
-> +          enum:
-> +            - 0x10  # ADDR pin pulled down
-> +            - 0x48  # ADDR pin pulled up
-
-Ordinarily, I'd say that enforcing the reg properties isn't really
-needed, but I think in this case the extra detail in the comments makes
-it worth retaining.
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - vishay,veml6035
-> +    then:
-> +      properties:
-> +        reg:
-> +          enum:
-> +            - 0x29
-> +
->  additionalProperties: false
-> =20
->  examples:
->=20
+> -      Should be a list of phandles to other switch's DSA port. This
+> -      port is used as the outgoing port towards the phandle ports. The
+> -      full routing information must be given, not just the one hop
+> -      routes to neighbouring switches
+> +      Should be a list of phandles to other switch's DSA port. This port=
+ is
+> +      used as the outgoing port towards the phandle ports. In case of tr=
+ees
+> +      with more than 2 switches, the full routing information must be gi=
+ven.
+> +      The first element of the list must be the directly connected DSA p=
+ort
+> +      of the adjacent switch.
+>      $ref: /schemas/types.yaml#/definitions/phandle-array
+>      items:
+>        maxItems: 1
 > --=20
-> 2.43.0
+> 2.34.1
 >=20
 
---CPwJ6ZTIqbb0u5rU
+--erhZyKGbQwqN4Ufv
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuRuaQAKCRB4tDGHoIJi
-0mT3AP9M4mogwv8GmIRVMbmdkIzKy/0MA8oc05awjjdvrwB+ugEAiXtE0nHvFtRS
-TcMVHXhav8HI1r48GUMgWvJFmnN62Qk=
-=Fre/
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuRwkAAKCRB4tDGHoIJi
+0vfHAP9cFzroVB3GZuA91GabzA+2kn0YS6xgfGRCeLfS6kRX1QEA5gk62mEFp0mn
+yro855Nq9nioDWT9HBzDB0OgiW+rHAA=
+=W9Nn
 -----END PGP SIGNATURE-----
 
---CPwJ6ZTIqbb0u5rU--
+--erhZyKGbQwqN4Ufv--
 
