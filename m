@@ -1,130 +1,174 @@
-Return-Path: <devicetree+bounces-102872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B576978A81
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 23:23:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEA8D978A8C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 23:25:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20B6228629D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 21:23:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DDAC1C2245F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 21:25:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15B161547EB;
-	Fri, 13 Sep 2024 21:23:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE76A153824;
+	Fri, 13 Sep 2024 21:24:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GJMi/kZB"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hPORs8CW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3428E14A099;
-	Fri, 13 Sep 2024 21:23:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C72031465A5;
+	Fri, 13 Sep 2024 21:24:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726262612; cv=none; b=rZST8ii+lREI7LKCtTyj/3KTkr+XI4P0uiCrBxETBIKbRJBpqtD4zGGg0fcH+oNAf5wNCIgS1mB7nS5w03UYrvz2QI4UpUcwFZrfFgL60wN3tYj0doesBuB20/7ZYXQslJI5OeGXfJIkihY6xPNHOOMYM3tCCKzZUfo+WfHjLio=
+	t=1726262696; cv=none; b=fS12eFPZaAZaQCm64+SC1uT0FIZcIbRoKf76n5UURGliXjckapJ3XWtzPeVp/LSxa8USXxTKCffJ1IHDTpcPIOVMHd/bxcvoGMjhzbhF+TogG+vZIFAl/gUlzckI3xjFNCoOzA4dIBnGfyJz0fWyuepe3yQa5sAiFIWqr7VW2D8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726262612; c=relaxed/simple;
-	bh=kgN2i7NsfUPKHMks6Mw32UbeU2Yvq5ArmNtuqvuaYM8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FoJAxf5Q5+Ho1rU6L3Y3OsmD/1rY9ftptfFk88szWZZPFu5DQTgA9EcrrPaGCI/IvaHwJYMJ8pd+yesPDcrYTwgJwusGaXrwVdfRhKAFgr0wBUI12JF9I+BgalJ93EGiKpgofgXlD7b0J8Ke4G3TX7tjwm1zSU6qFitLOwecpWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GJMi/kZB; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1726262610; x=1757798610;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kgN2i7NsfUPKHMks6Mw32UbeU2Yvq5ArmNtuqvuaYM8=;
-  b=GJMi/kZB2mWYHmfDBKXYpjRa5XPJP4rzH449R9URD9g5lcy30XTdp5FG
-   b4RfWjc2tnHGNWN5D5tycfuRcaCHOSSpTvRx/uzMJBzsf1l8Gwo6T2jQi
-   Ma5ShZxtsPv23kMxIgOuU42EMiC90U3D2+5m4e/JpiLHaxPAWsRId8QVi
-   0HBB+Y2yo0Kg75qpCd4/43H+Onz/w+H1Y7g3mqJZZ6u5es6/U/ciPdx7E
-   Pz5w848IVrqyliQGK2BgUYruwvtJKtFfVGBMaXfER1w1QKlt9bg6pMrOg
-   pLc34ekhp7fp3xLOO2ywkfOnq1HSTJBz4Dryc//sdG1RAbhFtxX+lKc4N
-   g==;
-X-CSE-ConnectionGUID: t1ONs8sWQlmNrNgaz9gDRA==
-X-CSE-MsgGUID: JlPbWAgSTdWfzF1lVZSpPw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="25062601"
-X-IronPort-AV: E=Sophos;i="6.10,227,1719903600"; 
-   d="scan'208";a="25062601"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2024 14:23:29 -0700
-X-CSE-ConnectionGUID: wcD6Tg/0SbWtW7sX5NwBfg==
-X-CSE-MsgGUID: Ehnn7tAjQTqDu8DphUsfGw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,227,1719903600"; 
-   d="scan'208";a="68520817"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 13 Sep 2024 14:23:27 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1spDlE-000728-13;
-	Fri, 13 Sep 2024 21:23:24 +0000
-Date: Sat, 14 Sep 2024 05:22:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Alexandru Ardelean <aardelean@baylibre.com>, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, jic23@kernel.org,
-	krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de,
-	michael.hennerich@analog.com, gstols@baylibre.com,
-	dlechner@baylibre.com, Alexandru Ardelean <aardelean@baylibre.com>
-Subject: Re: [PATCH v6 8/8] iio: adc: ad7606: add support for AD7606C-{16,18}
- parts
-Message-ID: <202409140543.VXctRtFP-lkp@intel.com>
-References: <20240913135744.152669-9-aardelean@baylibre.com>
+	s=arc-20240116; t=1726262696; c=relaxed/simple;
+	bh=va+jZAgJxc6vLth0ilwdb3ZLGS4SqyD5JRmTdq/jru0=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UJ6plzIdlF9DCds7I/4+btXSbn1YBY+4k6vraNFKSTtQJDxsOM3u88evzC/mLrzyCFQu0yZq8y0zixARoafpgz4eGkEneD6QG35vz0OR21Ak+adpMOI/PBsQ7aqSOOsLdUXjsayg4UTY+ZtxM6H364ys9Br+LmNjmn/8Adlgn9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hPORs8CW; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48DAMtOY020721;
+	Fri, 13 Sep 2024 21:24:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=tQMAo/P1IflG7nAnXqAA/OEs
+	PpPBcgSWfyxQsLmmhyQ=; b=hPORs8CWJDrsMA5BXP/N68whcDL+nSNB9SPTABw/
+	Acpf8YX9z4OI/G4BLtm/YqqJZ5n0mQDE8XYtDUcaL/h4V0opZB86jsBrzT2Z21YS
+	KqYivrNAg/vJgycnhWJmQh0pVJRoe0n91alO8yeI7HeNRsykQ0sPpfr+3bCgiQWG
+	2kEG9IzsJKmp41YKOgJDkQmvKEmmXxJIW7DHomvcfInzKYbeO7GAGsrOe72JS6fF
+	cBT+86BdIO47aux8VpSObs5MaRnXat1TRfU0FRx80pxUIKP6wqwB7O4OQ/x6POEN
+	eDTqMSsyOZDj+I1cO+oPRvfZF2ybA9PqHhOJR/AvpQvmGA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41gy6phxea-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 13 Sep 2024 21:24:37 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48DLOZXO020049
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 13 Sep 2024 21:24:35 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 13 Sep 2024 14:24:35 -0700
+Date: Fri, 13 Sep 2024 14:24:33 -0700
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+To: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+CC: <vkoul@kernel.org>, <kishon@kernel.org>, <konradybcio@kernel.org>,
+        <andersson@kernel.org>, <simona@ffwll.ch>,
+        <dmitry.baryshkov@linaro.org>, <abel.vesa@linaro.org>,
+        <robdclark@gmail.com>, <quic_abhinavk@quicinc.com>, <sean@poorly.run>,
+        <marijn.suijten@somainline.org>, <airlied@gmail.com>,
+        <daniel@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <quic_khsieh@quicinc.com>,
+        <konrad.dybcio@linaro.org>, <quic_parellan@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <quic_riteshk@quicinc.com>, <quic_vproddut@quicinc.com>
+Subject: Re: [PATCH 5/5] drm/msm/dp: Add DisplayPort controller for SA8775P
+Message-ID: <ZuStkRFvwJT7re6D@hu-bjorande-lv.qualcomm.com>
+References: <20240911100813.338-1-quic_mukhopad@quicinc.com>
+ <20240911100813.338-6-quic_mukhopad@quicinc.com>
+ <ZuH3WqMwn7fl3nhh@hu-bjorande-lv.qualcomm.com>
+ <a44a6f08-1f4a-4e5c-a4e4-30ab65c467f7@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240913135744.152669-9-aardelean@baylibre.com>
+In-Reply-To: <a44a6f08-1f4a-4e5c-a4e4-30ab65c467f7@quicinc.com>
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: g_fwJ9nxwhCCQryUMpJpBLvqMux3AxWq
+X-Proofpoint-GUID: g_fwJ9nxwhCCQryUMpJpBLvqMux3AxWq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ bulkscore=0 lowpriorityscore=0 mlxlogscore=999 spamscore=0 phishscore=0
+ impostorscore=0 suspectscore=0 mlxscore=0 malwarescore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409130152
 
-Hi Alexandru,
+On Thu, Sep 12, 2024 at 03:34:05PM +0530, Soutrik Mukhopadhyay wrote:
+> 
+> On 9/12/2024 1:32 AM, Bjorn Andersson wrote:
+> > On Wed, Sep 11, 2024 at 03:38:13PM +0530, Soutrik Mukhopadhyay wrote:
+> > > The Qualcomm SA8775P platform comes with a DisplayPort controller
+> > > with a different base offset than the previous SoCs,
+> > > add support for this in the DisplayPort driver.
 
-kernel test robot noticed the following build warnings:
+Please check the line wrapping of this as well; the lines here should be
+wrapped at 75 columns.
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on next-20240913]
-[cannot apply to linus/master v6.11-rc7]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> > > 
+> > > Signed-off-by: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+> > > ---
+> > >   drivers/gpu/drm/msm/dp/dp_display.c | 7 +++++++
+> > >   1 file changed, 7 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
+> > > index e1228fb093ee..e4954fd99eb0 100644
+> > > --- a/drivers/gpu/drm/msm/dp/dp_display.c
+> > > +++ b/drivers/gpu/drm/msm/dp/dp_display.c
+> > > @@ -118,6 +118,12 @@ struct msm_dp_desc {
+> > >   	bool wide_bus_supported;
+> > >   };
+> > > +static const struct msm_dp_desc sa8775p_dp_descs[] = {
+> > > +	{ .io_start = 0xaf54000, .id = MSM_DP_CONTROLLER_0, .wide_bus_supported = true },
+> > > +	{ .io_start = 0xaf5c000, .id = MSM_DP_CONTROLLER_1, .wide_bus_supported = true },
+> > Why is this list incomplete?
+> > 
+> > Regards,
+> > Bjorn
+> 
+> 
+> Do you mean to add for mdss_1 as well?
+> 
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Alexandru-Ardelean/iio-adc-ad7606-add-bits-parameter-to-channels-macros/20240913-220501
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20240913135744.152669-9-aardelean%40baylibre.com
-patch subject: [PATCH v6 8/8] iio: adc: ad7606: add support for AD7606C-{16,18} parts
-config: i386-buildonly-randconfig-002-20240914 (https://download.01.org/0day-ci/archive/20240914/202409140543.VXctRtFP-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240914/202409140543.VXctRtFP-lkp@intel.com/reproduce)
+I don't see a reason for not submitting them as well.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409140543.VXctRtFP-lkp@intel.com/
+> We only added dp controllers for mdss_0 as we plan to validate and enable
+> only these.
+> 
 
-All warnings (new ones prefixed by >>):
-
->> drivers/iio/adc/ad7606.c:39:27: warning: unused variable 'ad7606_18bit_hw_scale_avail' [-Wunused-const-variable]
-      39 | static const unsigned int ad7606_18bit_hw_scale_avail[2] = {
-         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-   1 warning generated.
+As far as I can tell there are 5 DPTX blocks on mdss_0.
 
 
-vim +/ad7606_18bit_hw_scale_avail +39 drivers/iio/adc/ad7606.c
+It is perfectly fine that you just state in the commit message that
+"Only MDSS0 DPTX0 and DPTX1 have been validated", but please add the
+others as well in this commit.
 
-    38	
-  > 39	static const unsigned int ad7606_18bit_hw_scale_avail[2] = {
-    40		38147, 76294
-    41	};
-    42	
+Regards,
+Bjorn
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> 
+> > 
+> > > +	{}
+> > > +};
+> > > +
+> > >   static const struct msm_dp_desc sc7180_dp_descs[] = {
+> > >   	{ .io_start = 0x0ae90000, .id = MSM_DP_CONTROLLER_0, .wide_bus_supported = true },
+> > >   	{}
+> > > @@ -162,6 +168,7 @@ static const struct msm_dp_desc x1e80100_dp_descs[] = {
+> > >   };
+> > >   static const struct of_device_id dp_dt_match[] = {
+> > > +	{ .compatible = "qcom,sa8775p-dp", .data = &sa8775p_dp_descs },
+> > >   	{ .compatible = "qcom,sc7180-dp", .data = &sc7180_dp_descs },
+> > >   	{ .compatible = "qcom,sc7280-dp", .data = &sc7280_dp_descs },
+> > >   	{ .compatible = "qcom,sc7280-edp", .data = &sc7280_dp_descs },
+> > > -- 
+> > > 2.17.1
+> > > 
 
