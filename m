@@ -1,98 +1,122 @@
-Return-Path: <devicetree+bounces-102813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3EEC9786A7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 19:25:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31F1F9786B3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 19:27:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E24F02818DE
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 17:25:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CDE31C20BF7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2024 17:27:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08DD78060A;
-	Fri, 13 Sep 2024 17:25:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C5407D417;
+	Fri, 13 Sep 2024 17:27:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qn8CVC1c"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Hfo6QdCJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE05B2562E;
-	Fri, 13 Sep 2024 17:25:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8978877F2F;
+	Fri, 13 Sep 2024 17:26:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726248344; cv=none; b=CAq3HnJfBenetT7oJjs23FzqVEwrqDSXiy/jglzAKVzyCvfR3DAR+PPtosxqSEPEpLCVdVBd8qGaxKqbQZ4x2ltCwgwjwA0HQUYsWFiQpeMPAGkaJvKeaIevq4BGkeMhsvUOFpTI+o6II0cmd3MILE64ty9z9z+K8vw2OH6bldc=
+	t=1726248420; cv=none; b=VL+3NfqwrYuU/cg/aJ3DmsQceNdjEKG47HULqddvokvSvrWJC+2NQUcK6ySdTCX3Qo1TiWpUmPg21+a3N3/IL2IwI0b8YeUhpaBrWMe9tITMOhZn97j/VTQv5sXneUr7qUX0EsI4adITMCWM7m/PNr4iV3vgFbN41yEmDQbrRP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726248344; c=relaxed/simple;
-	bh=2oJu5gnYXFlqvyj7LMUho0tUx9dwavN3a2NzpR93BWY=;
+	s=arc-20240116; t=1726248420; c=relaxed/simple;
+	bh=NVHDT0pZ1zHz5uTG07jzhk7YNB3Ko4HEeOjB7XAzKsc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nam1D236PGyeIU1LccBVHUKoTjeq99RnBCbaYRCLV4FZiMtU1dc8bezXJkQVgRmmogVgCAEGdw+ak8PnglQYznncdYZPV2ALnfM254qNy9UuoQXdEre4wJEk759IzWC3u76s2i2I5rqQPO0vdCpmCkBp3uCMfd89XQH1c7PSpps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qn8CVC1c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4AD2C4CEC0;
-	Fri, 13 Sep 2024 17:25:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726248344;
-	bh=2oJu5gnYXFlqvyj7LMUho0tUx9dwavN3a2NzpR93BWY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Qn8CVC1c0sXcmbgBhartxN2G0DABLvODrqju+/HuNwwkl8t13iONIxtXQHyKQmF48
-	 2PW1GD0t/KaQiKlRKx3glHGpPzib+98kuyTqen5W3Pw1VhGhb2sAAiNaq6/YubO6Wy
-	 omah2UfsUm5e4VS+Gq9HUDkYqv/9fQ9+tYp1CvSbXmnfwU0sD1nWmOFLvdhI72hVBp
-	 rRkJHI33j+sVlasTnEXsx+0xDVfQxZ5x3G/D5wUW5akXpqr0yPb0Z2FuK2eCvkbmtf
-	 HCMbSi8QCVX8teV5Pfc8nVGqUFiSnJcuMVhR1FYiiSeVEP1+yhuak+/2BXIYuFlON0
-	 c4ZX05DIvheAw==
-Date: Fri, 13 Sep 2024 18:25:39 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	 Content-Type:Content-Disposition:In-Reply-To; b=fLwv7rwdHi+/Zsrb3cGK1mo0owjC/MptFpdKQihv0JNjGEdikQaVaqMXp+/3WkNcO1UQaE/gadZqm2yqeg6zXCYxG/K42uMK3tnH3NbBh5ogq0+JV1oaVp0bA1xw4FctO4WEixnzLGpCqWyVNgLgSON3aXTZVhv90D2C/9veS3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Hfo6QdCJ; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=32UdeEDTGODPOGNxUz6i5sSk42ZhPb7Adwn/D1E2ONc=; b=Hfo6QdCJ9MxMuSWa/bGCLd/vhE
+	hMmQl8h6OyrZLJ2CqQapkX6NNQVg1xyHAGTRyy8ACqFSPvYZS6obUAzLBnd8qwOPKUVXbs41ySUSr
+	BPR449SLMCHqcu8I8wDTNeNWO5fxd11OFmDs1mmSUYk32iJwfMkClShPysvjpPC/pMpU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1spA4H-007PWh-HE; Fri, 13 Sep 2024 19:26:49 +0200
+Date: Fri, 13 Sep 2024 19:26:49 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Conor Dooley <conor@kernel.org>
+Cc: Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: arm: sunxi: document RerVision
- A33-Vstar board
-Message-ID: <20240913-thong-endowment-cb760617f7c5@spud>
-References: <20240913104845.4112986-1-uwu@icenowy.me>
+Subject: Re: [PATCH net-next 2/4] dt-bindings: net: dsa: the adjacent DSA
+ port must appear first in "link" property
+Message-ID: <c2244d42-eda4-4bbc-9805-cc2c2ae38109@lunn.ch>
+References: <20240913131507.2760966-1-vladimir.oltean@nxp.com>
+ <20240913131507.2760966-3-vladimir.oltean@nxp.com>
+ <20240913-estimate-badland-5ab577e69bab@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="oMRq14sTUO9x8LTg"
-Content-Disposition: inline
-In-Reply-To: <20240913104845.4112986-1-uwu@icenowy.me>
-
-
---oMRq14sTUO9x8LTg
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240913-estimate-badland-5ab577e69bab@spud>
 
-On Fri, Sep 13, 2024 at 06:48:44PM +0800, Icenowy Zheng wrote:
-> RerVision A33-Vstar is an evaluation board of their A33-Core1 SoM.
->=20
-> Add its compatible (with the SoM compatible) to the sunxi board DT
-> binding file.
->=20
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+On Fri, Sep 13, 2024 at 06:04:17PM +0100, Conor Dooley wrote:
+> On Fri, Sep 13, 2024 at 04:15:05PM +0300, Vladimir Oltean wrote:
+> > If we don't add something along these lines, it is absolutely impossible
+> > to know, for trees with 3 or more switches, which links represent direct
+> > connections and which don't.
+> > 
+> > I've studied existing mainline device trees, and it seems that the rule
+> > has been respected thus far. I've actually tested such a 3-switch setup
+> > with the Turris MOX.
+> 
+> What about out of tree (so in u-boot or the likes)? Are there other
+> users that we need to care about?
+> 
+> This doesn't really seem like an ABI change, if this is the established
+> convention, but feels like a fixes tag and backports to stable etc are
+> in order to me.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Looking at the next patch, it does not appear to change the behaviour
+of existing drivers, it just adds additional information a driver may
+choose to use.
 
---oMRq14sTUO9x8LTg
-Content-Type: application/pgp-signature; name="signature.asc"
+As Vladimir says, all existing instances already appear to be in this
+order, but that is just happen stance, because it does not matter. So
+i would be reluctant to say there is an established convention.
 
------BEGIN PGP SIGNATURE-----
+The mv88e6xxx driver does not care about the order of the list, and
+this patch series does not appear to change that. So i'm O.K. with the
+code changes.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuR1kwAKCRB4tDGHoIJi
-0gOcAQCuUkpqUP9QEdlqxxHGGyvwYebhAMnJoIctTDLBrvMUkgEAkRTkmcuvEIfC
-KeZXgMjtPWP4wXx3KAyefwErq5gHxQ0=
-=2G1a
------END PGP SIGNATURE-----
+> > -      Should be a list of phandles to other switch's DSA port. This
+> > -      port is used as the outgoing port towards the phandle ports. The
+> > -      full routing information must be given, not just the one hop
+> > -      routes to neighbouring switches
+> > +      Should be a list of phandles to other switch's DSA port. This port is
+> > +      used as the outgoing port towards the phandle ports. In case of trees
+> > +      with more than 2 switches, the full routing information must be given.
+> > +      The first element of the list must be the directly connected DSA port
+> > +      of the adjacent switch.
 
---oMRq14sTUO9x8LTg--
+I would prefer to weaken this, just to avoid future backwards
+compatibility issues. `must` is too strong, because mv88e6xxx does not
+care, and there could be DT blobs out there which do not conform to
+this. Maybe 'For the SJA1105, the first element ...".
+
+What i don't want is some future developer reading this, assume it is
+actually true when it maybe is not, and making use of it in the
+mv88e6xxx or the core, breaking backwards compatibility.
+
+	Andrew
 
