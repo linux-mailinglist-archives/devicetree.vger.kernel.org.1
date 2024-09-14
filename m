@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-103007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9311B9792A4
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 19:18:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6AFB9792AC
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 19:29:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 520EB281D25
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 17:18:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42E1DB22D7B
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 17:29:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 523441D1300;
-	Sat, 14 Sep 2024 17:18:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0FC51D1305;
+	Sat, 14 Sep 2024 17:28:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qRmiCdyc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e56duIMx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 232C01CFEC1;
-	Sat, 14 Sep 2024 17:18:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5C41D12EB;
+	Sat, 14 Sep 2024 17:28:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726334316; cv=none; b=bvZZzcHARp5w9tlUlelaHAmlyxyLrOAxiHg8jkFVjTWb+vodwBZmS/9Cvp7LQATWHSHvxeL1Q4rlbNL9DKoVLnk96VQAJxskwRo7ySUwT95NhDGeOu3njNTsmqYpsTcANB9KrnE5GKY58gR/Cp4c6nLF83LZuKpHTxXZsoEd0xo=
+	t=1726334939; cv=none; b=JG/DmdV4sh8oTty4xr8f3lSpaUSnBrMciT8Dcono7GWrWHREZWqPrFjFjOMIdLsaies/lGWFYbIEUU/RsXaDsLVP0TP2Wr8XPa4H1waX/K6cXFY9JpfirMGpnDNaG1NhOZbo/NZpN3eANnYJVrPoXZ5qfln2j5J/x0fliOHo7/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726334316; c=relaxed/simple;
-	bh=xg6hK/fXzG2UUmxxWKEk6Ei3QeIfxPrF8uCj/a0xQJ8=;
+	s=arc-20240116; t=1726334939; c=relaxed/simple;
+	bh=NXf7e01hl3GO0CQZRAffBRyDuc6rntgFk96UeBSOmaA=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QTeIndGE4EZLbVjahmT8vQPD9JKcoZEfrfRiF3HwJJg1z2pBUvTtyhdGrQ0lv6mg6eZQz1L0Ujzt/imnzXS4UMPSewFYTl0NYwY9352f/GbQvkhUipiSKIp7wyH4dN5cXZyqXvILRGtqO9bjxxA+JwD0AgSxxBcUI+a72+oQb0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qRmiCdyc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D180C4CEC0;
-	Sat, 14 Sep 2024 17:18:31 +0000 (UTC)
+	 MIME-Version:Content-Type; b=say1gQitbP2HuA7FuKP989savLY19VlU27UpCqSnebFIVl+TU9PAh6tElaaH9AHotcZIU9h0WYGqC4mNTEtWzkT6peAPTt5cwlD7DvAQj4eEw+bQZnB0Q6pyR9dzrGNlSu7JniB5KOqHIWnCwkv793wicCwGYTiAH54JA8wuMng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e56duIMx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55B5EC4CEC0;
+	Sat, 14 Sep 2024 17:28:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726334315;
-	bh=xg6hK/fXzG2UUmxxWKEk6Ei3QeIfxPrF8uCj/a0xQJ8=;
+	s=k20201202; t=1726334939;
+	bh=NXf7e01hl3GO0CQZRAffBRyDuc6rntgFk96UeBSOmaA=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=qRmiCdyckqkGcjjjBMO0g8Eq7wAYr+oDt/A6VL8zgxEng59RocuRRPG5qfJ0LcrWY
-	 /xgkW/GfgfJr0LU5YByThbW+AReCPHvCQKv1s4tstsFbz7FyDrVe1oAerbkrXn1YHu
-	 0el/PZGKZTmVAbb1wrhwcwCqvL7f3AVWGo7phx1SMIcQYHMApYLC3skyBvSd9DF3X6
-	 x02iM9gsaI0ANHQ9JvaaHUpYga74b7otn/4yuPsEBeGOFAAfFUnupluef4TVRnpqI7
-	 5w17EI46CyqbDLtIF4dZHMQoNscjPAMAx+9NUs8KcFHWC3z06vKaZwO8nvkyWh+uQ0
-	 Sspm74lpxy2PA==
-Date: Sat, 14 Sep 2024 18:18:27 +0100
+	b=e56duIMxJb49lnihZT+U4kBjmaOg51PqwNPQ71sZHpGmuDYThT5CvbDKs+8hjSOZY
+	 BzV9s0h6z8GIWoVFFQV6Xd8JtQAl6KFB8n8SLDdZNg+2duzurx7y35z5JKPC7/ytlE
+	 K1nrJoZotWHuY+jNLiGtJYR/JIMebUo7XA/IndRR6Hm6C+VvEfh12Irg1o6fLC6Uly
+	 p6StNaJjiFxXYe3qzWtS7H4PZd1HzGogZKN77ClrToTVJMH52inY0y9JPKyKt+9VjN
+	 U4Cvx0FRvMe7CpNV9wU/7CAZUhGujbZs8BlF52Ij3UuWL5AgsIPl/RRaWbgyzXcrLH
+	 6CkbEu9fbd93w==
+Date: Sat, 14 Sep 2024 18:28:48 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Mariel Tinaco <Mariel.Tinaco@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Michael Hennerich <Michael.Hennerich@analog.com>, Conor Dooley
- <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
- Dimitri Fedrau <dima.fedrau@gmail.com>, David Lechner
- <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
-Subject: Re: [PATCH v4 2/2] iio: dac: support the ad8460 Waveform DAC
-Message-ID: <20240914181827.2c0a9578@jic23-huawei>
-In-Reply-To: <20240912095435.18639-3-Mariel.Tinaco@analog.com>
-References: <20240912095435.18639-1-Mariel.Tinaco@analog.com>
-	<20240912095435.18639-3-Mariel.Tinaco@analog.com>
+To: Trevor Gamblin <tgamblin@baylibre.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, David
+ Lechner <dlechner@baylibre.com>, Uwe Kleine-Konig
+ <u.kleine-koenig@baylibre.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v5 0/3] iio: adc: add new ad7625 driver
+Message-ID: <20240914182848.34edc5e3@jic23-huawei>
+In-Reply-To: <20240909-ad7625_r1-v5-0-60a397768b25@baylibre.com>
+References: <20240909-ad7625_r1-v5-0-60a397768b25@baylibre.com>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -63,161 +63,42 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, 12 Sep 2024 17:54:35 +0800
-Mariel Tinaco <Mariel.Tinaco@analog.com> wrote:
+On Mon, 09 Sep 2024 10:30:46 -0400
+Trevor Gamblin <tgamblin@baylibre.com> wrote:
 
-> The AD8460 is a =E2=80=9Cbits in, power out=E2=80=9D high voltage, high-p=
-ower,
-> high-speed driver optimized for large output current (up to =C2=B11 A)
-> and high slew rate (up to =C2=B11800 V/=CE=BCs) at high voltage (up to =
-=C2=B140 V)
-> into capacitive loads.
->=20
-> A digital engine implements user-configurable features: modes for
-> digital input, programmable supply current, and fault monitoring
-> and programmable protection settings for output current,
-> output voltage, and junction temperature. The AD8460 operates on
-> high voltage dual supplies up to =C2=B155 V and a single low voltage
-> supply of 5 V.
->=20
-> Signed-off-by: Mariel Tinaco <Mariel.Tinaco@analog.com>
-Hi Mariel
+> This series adds a new driver for the Analog Devices Inc. AD7625,
+> AD7626, AD7960, and AD7961. These chips are part of a family of
+> LVDS-based SAR ADCs. The initial driver implementation does not support
+> the devices' self-clocked mode, although that can be added later.
+> 
+> The devices make use of two offset PWM signals, one to trigger
+> conversions and the other as a burst signal for transferring data to the
+> host. These rely on the new PWM waveform functionality being
+> reviewed in [1] and also available at [2].
+> 
+> This work is being done by BayLibre and on behalf of Analog Devices
+> Inc., hence the maintainers are @analog.com.
+> 
+> Special thanks to David Lechner for his guidance and reviews.
+> 
+> [1]: https://lore.kernel.org/linux-pwm/cover.1722261050.git.u.kleine-koenig@baylibre.com
+> [2]: https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git/log/?h=pwm/chardev
+> 
+> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
+Hi Trevor, 
 
-A few minor comments from me.  I'd like it to sit on the list a while
-longer, but if there is nothing else I can make minor tweaks whilst
-applying.
+This driver looks good to me. 
+
+Uwe: From a quick look at [1], looks like you plan to queue that lot up
+after the merge window.  Would you mind doing an immutable branch for
+me to pull into IIO?
+
+No rush though - we can figure this out next cycle.
+
+Thanks,
 
 Jonathan
-
-> diff --git a/drivers/iio/dac/ad8460.c b/drivers/iio/dac/ad8460.c
-> new file mode 100644
-> index 000000000000..9ce3a0f288ba
-> --- /dev/null
-> +++ b/drivers/iio/dac/ad8460.c
-> @@ -0,0 +1,947 @@
-
-
-> +static struct iio_chan_spec_ext_info ad8460_ext_info[] =3D {
-> +	AD8460_CHAN_EXT_INFO("raw0", 0, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw1", 1, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw2", 2, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw3", 3, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw4", 4, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw5", 5, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw6", 6, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw7", 7, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw8", 8, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw9", 9, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw10", 10, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw11", 11, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw12", 12, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw13", 13, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw14", 14, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw15", 15, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("toggle_en", 0, ad8460_read_toggle_en,
-> +			     ad8460_write_toggle_en),
-> +	AD8460_CHAN_EXT_INFO("symbol", 0, ad8460_read_symbol,
-> +			     ad8460_write_symbol),
-> +	AD8460_CHAN_EXT_INFO("powerdown", 0, ad8460_read_powerdown,
-> +			     ad8460_write_powerdown),
-> +	IIO_ENUM("powerdown_mode", IIO_SEPARATE, &ad8460_powerdown_mode_enum),
-> +	IIO_ENUM_AVAILABLE("powerdown_mode", IIO_SHARED_BY_TYPE,
-> +			   &ad8460_powerdown_mode_enum),
-> +	{}
-	{ }
-is my style preference.  Mostly I want consistency and happened to pick this
-for IIO.
-
-> +};
-
-> +#define AD8460_TEMP_CHAN {					\
-> +	.type =3D IIO_TEMP,					\
-> +	.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW),		\
-> +	.output =3D 1,						\
-
-An output temperature channel?  That's a heater which seems unlikely
-on this device.
-
-> +	.indexed =3D 1,						\
-> +	.channel =3D 0,						\
-> +	.scan_index =3D -1,					\
-> +	.event_spec =3D ad8460_events,				\
-> +	.num_event_specs =3D 1,					\
-> +}
-
-> +static int ad8460_probe(struct spi_device *spi)
-> +{
-> +	struct ad8460_state *state;
-> +	struct iio_dev *indio_dev;
-> +	struct device *dev;
-> +	u32 tmp[2], temp;
-> +	int ret;
-> +
-> +	indio_dev =3D devm_iio_device_alloc(&spi->dev, sizeof(*state));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	state =3D iio_priv(indio_dev);
-> +
-> +	indio_dev->name =3D "ad8460";
-> +	indio_dev->info =3D &ad8460_info;
-> +
-> +	state->spi =3D spi;
-> +	dev =3D &spi->dev;
-Might as well do this one where you declare above.
-	struct device *dev =3D &spi->dev;
-
-> +
-> +	state->regmap =3D devm_regmap_init_spi(spi, &ad8460_regmap_config);
-> +	if (IS_ERR(state->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(state->regmap),
-> +				     "Failed to initialize regmap");
-> +
-> +	devm_mutex_init(dev, &state->lock);
-
-Check return value.  devm registration can potentially fail.
-
-...
-
-> +
-> +	/* Enables DAC by default */
-> +	ret =3D regmap_update_bits(state->regmap, AD8460_CTRL_REG(0x01),
-> +				 AD8460_HVDAC_SLEEP_MSK,
-> +				 FIELD_PREP(AD8460_HVDAC_SLEEP_MSK, 0));
-
-regmap_clear_bits() perhaps.
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	indio_dev->modes =3D INDIO_DIRECT_MODE;
-> +	indio_dev->setup_ops =3D &ad8460_buffer_setup_ops;
-> +
-> +	ret =3D devm_iio_dmaengine_buffer_setup_ext(dev, indio_dev, "tx",
-> +						  IIO_BUFFER_DIRECTION_OUT);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "Failed to get DMA buffer\n");
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
 
