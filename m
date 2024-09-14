@@ -1,134 +1,143 @@
-Return-Path: <devicetree+bounces-102941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80FED978E5F
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 08:18:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 291D6978E6B
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 08:31:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 259A31F23584
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 06:18:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7DC9286F60
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 06:31:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 349865464E;
-	Sat, 14 Sep 2024 06:14:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 832FB47796;
+	Sat, 14 Sep 2024 06:31:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Cp50RM/H"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="A8Qjl72H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EC5F57CAC;
-	Sat, 14 Sep 2024 06:14:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E28B71AAD7
+	for <devicetree@vger.kernel.org>; Sat, 14 Sep 2024 06:31:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726294491; cv=none; b=nZ4Is5L74Eng/5vW955MeXTVrXFro99FnA/65sOpYPJegGU9DojsEVMM9+2W5sRJUUxlFbhw9ojqPIrVRTN1cFfzokQgxXmFciUQzurhj+24RDLILU9e2NMD0PDjericK4DAbI0Xup8KhH1lZkIXy98nkYpc/K054tyC1Hlg4Sc=
+	t=1726295494; cv=none; b=e/sNwgo06yTrWVjTyAkjhsDvOt++qdpCSy5qSSOwdbmv9MkN+dRbaHWTMqFa7pMNX/afSUsH3aUlLX/LK5TXg1N48gSL5z5B8DWJPDcr2sIkplhfZZmymKaEcBQVBVk9FIft6vJW8OXmT855fJQ7LduMWsCKdS6zy/liWJxCTng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726294491; c=relaxed/simple;
-	bh=gtgG7++hfQoedYAbNm1ByFyRcSWJX3tPiW00y5S+y0Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l6Na36BW5v/2lfQc04oIMdl+J+Ak3eduxTsYL0hxSANzlyqphg6nNFfyfwPDFGricwoOgrwGvKJ9irsFnAINwRGgqkE+AA5FKm1gzE9wX1cVwNRfQVFRG51xnlFBLVMsUJYXWEkTcR8na3rQTtcpoT9q81hxMsqaszsVbDlT7iw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Cp50RM/H; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1726294489; x=1757830489;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=gtgG7++hfQoedYAbNm1ByFyRcSWJX3tPiW00y5S+y0Y=;
-  b=Cp50RM/HaxQqexTX/sqd2+gkkLXu4PQTLhtyr3qeh5gI5RD9jGe9vrxr
-   //JRJwegWr1DJicvCWleT3gDK4MwxZUDpj6dHdiF0HxrfNuaDrT+LSAiy
-   QXO/YTwBwuojxGIbDKtfa0gAoE42p1yio1g35md1hZYe+NaGfzAgPbrIB
-   Nylpw7eYDbASVoptZSKL6r7H/Z0WmgcllRx++FQm1COZ077sOsyn33Sic
-   ySV/YfUlEqHwiYfD6hGTFYuQaPln3zf/jCTdR+Eo/+niQV+tjFXSLpv+f
-   ZVKnS0ols444PYC3DNzCacGoVZ0qcf8NwEIm9dWu47d7fPqrCO9r5eF/5
-   w==;
-X-CSE-ConnectionGUID: Ssf0BibOS7KeghHIsg+eyg==
-X-CSE-MsgGUID: Iy6NVW+tQ3eBv0RsJWl/3w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="50617939"
-X-IronPort-AV: E=Sophos;i="6.10,228,1719903600"; 
-   d="scan'208";a="50617939"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2024 23:14:48 -0700
-X-CSE-ConnectionGUID: StiVNNFcTWao6Bdsc5Zz+A==
-X-CSE-MsgGUID: RzdkT+mxTHGF7AoTFI1KIA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,228,1719903600"; 
-   d="scan'208";a="105765711"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
-  by orviesa001.jf.intel.com with ESMTP; 13 Sep 2024 23:14:45 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1spM3O-0007Ru-1C;
-	Sat, 14 Sep 2024 06:14:42 +0000
-Date: Sat, 14 Sep 2024 14:14:42 +0800
-From: kernel test robot <lkp@intel.com>
-To: Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Lee Jones <lee@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, Pavel Machek <pavel@ucw.cz>,
-	linux-leds@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-	soc@kernel.org, Gregory CLEMENT <gregory.clement@bootlin.com>,
-	arm@kernel.org, Andy Shevchenko <andy@kernel.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Subject: Re: [PATCH leds v3 02/11] leds: turris-omnia: Use command execution
- functions from the MCU driver
-Message-ID: <202409141326.XsUVZj3l-lkp@intel.com>
-References: <20240913123103.21226-3-kabel@kernel.org>
+	s=arc-20240116; t=1726295494; c=relaxed/simple;
+	bh=V0dYaUxOR22WkG37Wt448oiq8c5ulPda+OgqmSUfHVw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oPuWnQk4TcUfqY2ajOCy/2eQUdDHcrRRXluhoGx6GSQ8QWTiBOFzuwCWJY6sxFjHB8j2phA1eX9mLz9DZolUlXEYKPFcW7mllD8X1cE9NBacjmw516QivGM8+eZLwj7YlkfOJuFcJApucqAqaL+24X6/1BTnxaNbC2fACiwD3nE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=A8Qjl72H; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2055f630934so26123645ad.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 23:31:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1726295492; x=1726900292; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YA3F8RL5B/IqI+2pfLBP9VWUihTDASIHOdqEg57DLsQ=;
+        b=A8Qjl72H3HrwfrU+ljcSgJerRg7JTYGqQje4lmfcr0wND43wQJ46kRRJ9CTgxYbeV4
+         fzFTBSySSvfZ246m5CBhHwFmwwvhUC131OXA5xcP5ECv+8FcESZmu+oBhK/3eraiu/xp
+         USXLmFh2l+k1ZQUXTp+Ot02gauoP3VYFaoBaoKRg2h3eiqSjEuGJTegxjYWaZMbCqVh6
+         +tc4kXM3D0bR/EN69Sua1aKHh4CY1ovvoOKOpOqjOnUwgXQj+ECitBa1B6ggXGtFekp6
+         vsWCkDeDGxl8lCY0NchWv/j1RaWcBOv1JKBGWxXPlqHkGqZpJlvp4bOaqZP6DPPyeYth
+         XEMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726295492; x=1726900292;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YA3F8RL5B/IqI+2pfLBP9VWUihTDASIHOdqEg57DLsQ=;
+        b=RIDrar5ixHBB2yRCsaZoy0RtXl3p+PkCXKTSM6W/8bR29Gf7saIF1gfdG2QZTKQf6I
+         GOMzOa5Gr2DeurBkAnhSVdLZz71SX1Lmp0XP8XKtOzjI9RNrFcZDGaXkg+L+Xewql+0G
+         7rmvyQ2r50mFb/A9teL53tZOLnDKEnENdKQ3sHvxWPZWb9dv8fuehqgZZ299GZn5CHdi
+         xZ9aRRhD4UTXOM9CB+E4WdgLPiCtTFAnPskYB0BnS0EMuQz2qTINAWePTfVLOK6xP9rB
+         VZniBh6+dC0Bzp4cvooLn4g6SCPLJCFcyLH+PDZvY+h3VAqKbolI74pv4OzziKA/2VSZ
+         x/SQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVZDEuv/pmNUQIy2HLKK0jMgTevW68c7xo5hEOFcXSfj+vKiux4DI8cptrw5HXWDN16jcinkL9iGhaO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzz6VksdmayUUSFbOdKlxeVvkGFnvIFIyfEYIpwhN3RInMz5/OR
+	Z2jGQ+0rCc4kptXL2/qS4aV9f3iyXGmR6aj2NScQBQjan0YFNeQUFYAJBvfDAy8=
+X-Google-Smtp-Source: AGHT+IGtfxxOGIugbIiDlOc5Jtw9CTrvz5uv5il2P9BcO9JycK8o2ZIE40DV90rpSTLnoassY7JfoA==
+X-Received: by 2002:a17:902:da8d:b0:205:3525:81bd with SMTP id d9443c01a7336-2076e36a660mr150026835ad.29.1726295491870;
+        Fri, 13 Sep 2024 23:31:31 -0700 (PDT)
+Received: from zjn.huaqin.com ([116.66.212.162])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7db4990cebbsm599216a12.37.2024.09.13.23.31.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Sep 2024 23:31:31 -0700 (PDT)
+From: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
+To: angelogioacchino.delregno@collabora.com,
+	matthias.bgg@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	knoxchiou@google.com,
+	hsinyi@google.com
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
+Subject: [PATCH v8 0/2] arm64: dts: mediatek: Add MT8186 Ponyta
+Date: Sat, 14 Sep 2024 14:31:20 +0800
+Message-Id: <20240914063122.1622196-1-cengjianeng@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240913123103.21226-3-kabel@kernel.org>
+Content-Transfer-Encoding: 8bit
 
-Hi Marek,
+This is v8 of the MT8186 Chromebook device tree series.
+---
+Changes in v8:
+- PATCH 1/2: Remove custom label.
+- PATCH 2/2: Change the commit about ponyta.
+- Link to v7:https://lore.kernel.org/all/20240913031505.372868-1-cengjianeng@huaqin.corp-partner.google.com/
 
-kernel test robot noticed the following build errors:
+Changes in v7:
+- PATCH 2/2: Remove prototype sku.
+- PATCH 2/2: Disable the other trackpad to enable one of them.
+- Link to v5:https://lore.kernel.org/all/20240913015503.4192806-1-cengjianeng@huaqin.corp-partner.google.com/
 
-[auto build test ERROR on next-20240913]
-[also build test ERROR on v6.11-rc7]
-[cannot apply to lee-leds/for-leds-next robh/for-next linus/master v6.11-rc7 v6.11-rc6 v6.11-rc5]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Changes in v6:
+- No change.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Marek-Beh-n/turris-omnia-mcu-interface-h-Move-command-execution-function-to-global-header/20240913-203320
-base:   next-20240913
-patch link:    https://lore.kernel.org/r/20240913123103.21226-3-kabel%40kernel.org
-patch subject: [PATCH leds v3 02/11] leds: turris-omnia: Use command execution functions from the MCU driver
-config: arc-randconfig-001-20240914 (https://download.01.org/0day-ci/archive/20240914/202409141326.XsUVZj3l-lkp@intel.com/config)
-compiler: arc-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240914/202409141326.XsUVZj3l-lkp@intel.com/reproduce)
+Changes in v5:
+- PATCH 1/2: Remove sku2147483647.
+- PATCH 2/2: Remove sku2147483647.
+- Link to v4:https://lore.kernel.org/all/20240906085739.1322676-1-cengjianeng@huaqin.corp-partner.google.com/
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409141326.XsUVZj3l-lkp@intel.com/
+Changes in v4:
+- PATCH 1/2: Add more info for Ponyta custom label in commit.
+- Link to v3:https://lore.kernel.org/all/20240904081501.2060933-1-cengjianeng@huaqin.corp-partner.google.com/
 
-All errors (new ones prefixed by >>):
+Changes in v3:
+- PATCH 0/2: Add the modify records.
+- PATCH 1/2: Modify lable to label.
+- Link to v2:https://lore.kernel.org/all/20240903061603.3007289-1-cengjianeng@huaqin.corp-partner.google.com/
 
-   arc-elf-ld: drivers/leds/leds-turris-omnia.o: in function `gamma_correction_show':
->> leds-turris-omnia.c:(.text+0x26): undefined reference to `omnia_cmd_write_read'
->> arc-elf-ld: leds-turris-omnia.c:(.text+0x26): undefined reference to `omnia_cmd_write_read'
-   arc-elf-ld: drivers/leds/leds-turris-omnia.o: in function `brightness_show':
-   leds-turris-omnia.c:(.text+0x98): undefined reference to `omnia_cmd_write_read'
-   arc-elf-ld: leds-turris-omnia.c:(.text+0x98): undefined reference to `omnia_cmd_write_read'
-   arc-elf-ld: drivers/leds/leds-turris-omnia.o: in function `omnia_led_send_color_cmd':
-   leds-turris-omnia.c:(.text+0xfc): undefined reference to `omnia_cmd_write_read'
-   arc-elf-ld: drivers/leds/leds-turris-omnia.o:leds-turris-omnia.c:(.text+0xfc): more undefined references to `omnia_cmd_write_read' follow
+Changes in v2:
+- PATCH 2/2: Modify the dtb name without rev2.
+- Link to v1:https://lore.kernel.org/all/20240902125502.1844374-1-cengjianeng@huaqin.corp-partner.google.com/
+
+Jianeng Ceng (2):
+  dt-bindings: arm: mediatek: Add MT8186 Ponyta Chromebook
+  arm64: dts: mediatek: Add MT8186 Ponyta Chromebooks
+
+ .../devicetree/bindings/arm/mediatek.yaml     | 10 +++++
+ arch/arm64/boot/dts/mediatek/Makefile         |  2 +
+ .../mediatek/mt8186-corsola-ponyta-sku0.dts   | 18 ++++++++
+ .../mediatek/mt8186-corsola-ponyta-sku1.dts   | 22 ++++++++++
+ .../dts/mediatek/mt8186-corsola-ponyta.dtsi   | 44 +++++++++++++++++++
+ 5 files changed, 96 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku0.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku1.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta.dtsi
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
