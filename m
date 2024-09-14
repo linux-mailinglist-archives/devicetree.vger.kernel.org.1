@@ -1,308 +1,181 @@
-Return-Path: <devicetree+bounces-102976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 610CE9790F4
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 15:28:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04FF6979150
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 16:18:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 866901C21212
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 13:28:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57A77B213DD
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 14:18:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC3DD1CF292;
-	Sat, 14 Sep 2024 13:28:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A612C1CF7C4;
+	Sat, 14 Sep 2024 14:18:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="fReJZjJT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QkPyBMlM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCD161CF5C1;
-	Sat, 14 Sep 2024 13:28:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 761D71CF2B0;
+	Sat, 14 Sep 2024 14:18:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726320529; cv=none; b=DH2mO4tQPkvu9Pilenq/5D7nonWWXUn8EF+XDbAlX39oSb3esRzNQDlYp2//PAPcRVp+qOZk1ha47B5O8nrCDhfJO9zb83eNAgJ2SX9FIToclxdSoYyrXg6dmae5GsG2hzeXpg3RBXop2JCKPtyndPBWnpVyDPXOL6x2LppbIjY=
+	t=1726323494; cv=none; b=HiiKmRFY1xSJAT+v/hDp2occShLD5df38usMsx+NEx9O3QOIcrvAM91XUPeM0ZShowRwkUwmWUd1jcoEJWrndYMNRgHBUG5LV150EqM2BoiFacpIbgwExbCtBwEvvSUqMeM4+muNKjifm93PlHRhCtDdhKOjX0SP7oRGU12X2nk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726320529; c=relaxed/simple;
-	bh=KuEXBzCQyjKrVK/ji8x8jvInIC08pi7xzZUUvGZuNi8=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=bx9ngPpvU9SRg0szDm4TAkrCRf5zakCoJYZsb9jKhiDow+FW4tr5nyn5toT/hEEmCAktaK6AXXeJnVTFn3eNfcX6lmsq8B5eFdd8w6XrlFZOIZiZT2d83b9ZRR7Uuqef+2pGaRIl/M4jPpV+JGXRhhtDU3MULlLQOdJghqP/CBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=fReJZjJT; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 420fb7d2729d11efb66947d174671e26-20240914
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=8EsMFvgM/rHkn2Bp+x+Mwx0rwto+KF83Fupv23yrInc=;
-	b=fReJZjJTXPBvzqatlPOzIK0caAp4/X6AWPiioMRsQJ7+iLzxVmC/OKDKcP/w7FnofFhuTnrWwWMGlAfj+q6Wl1UkgZzuVE/2vGie4qMwInIusvVzNG8Jb2McEL/lQxXcNr2vLPW7wWxgfIrAhmbl3kDutEM0PtkHomEfW6Vis48=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:507e5ebd-9ea4-4c01-ae31-6c4237b9451c,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:4a8e35d0-7921-4900-88a1-3aef019a55ce,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 420fb7d2729d11efb66947d174671e26-20240914
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1656340153; Sat, 14 Sep 2024 21:28:41 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Sat, 14 Sep 2024 21:28:38 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Sat, 14 Sep 2024 21:28:38 +0800
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sen Chu
-	<sen.chu@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	Alexandre Mergnat <amergnat@baylibre.com>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul@gmail.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
-	MediaTek Chromebook Upstream
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
-	<wenst@chromium.org>
-Subject: [PATCH v4 3/3] regulator: dt-bindings: mt6397: move examples to parent PMIC mt6397
-Date: Sat, 14 Sep 2024 21:28:32 +0800
-Message-ID: <20240914132833.9882-1-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+	s=arc-20240116; t=1726323494; c=relaxed/simple;
+	bh=YzlIrKa9qROLJ8Xaw/r1jxKSFT05Dy3NWxL/FjHMwig=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hEP0CdwHlNbIaKgIo6FrdZkYg34RN6g+0PVblbBQMdjwOK48maQDUoeWHqw51x4Ucy+F7ecmvfODaFnq1EkKq9gjpe6oPV3FL+/uOHvwZ7Pfe4jMbqchuQIgH+0jSkauqEYYVqQ74twj5EBvpFfOkx14PTpgZ4nt8eSMEawnA58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QkPyBMlM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77113C4CEC0;
+	Sat, 14 Sep 2024 14:18:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726323494;
+	bh=YzlIrKa9qROLJ8Xaw/r1jxKSFT05Dy3NWxL/FjHMwig=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=QkPyBMlMruE8ewcrPt7o7wG4IgQF2yRzoiyJrY5xhfsmkSHNwb3sFd9QTC6iPnETM
+	 sBLJne1rJM+si+vhC8o7vxUfjkw8g4rlLmSK+yDTisjdL8pozBNg27TlM27yXCd9V+
+	 cXxsvENmA6jHqJ4jT2yauxxiJ8Mbsybw206AYkFpfABED7cOTwFfCgv5umhj4dUToq
+	 0ZII9M40+uGUuoZoTY1IdLP7umV9FAJbRAUAWgSykFn6L19SzOHcAyNj3ZvBfd6ZKh
+	 w8KFBe8i7YMYWud0DRLvA5eHrQnRsMB6BUznru1udel3UuZKA8LNZckBmhLUhXQFY4
+	 Gx0cNRsm9GUPQ==
+Date: Sat, 14 Sep 2024 15:18:06 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michael Auchter
+ <michael.auchter@ni.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: iio: dac: adi,ad56xx: Fix duplicate
+ compatible strings
+Message-ID: <20240914151806.66c58bfd@jic23-huawei>
+In-Reply-To: <20240910234440.1045098-1-robh@kernel.org>
+References: <20240910234440.1045098-1-robh@kernel.org>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--2.065400-8.000000
-X-TMASE-MatchedRID: /CPACGWdrN6PrjM/ltMU+Y+emiGnyeDRVF5mUd6sIMbfUZT83lbkECE5
-	3BqiJpQi43HhQBEsO8h9XhRtuAtoH/gN61BAK04F6/xAZojbl7f/lBG+uXYJkJTORr84pjK1lwW
-	f7/4SyDskpovHHUzQSoAy6p60ZV62fJ5/bZ6npdiujVRFkkVsm3qpy/q3UrSbQgzqXfVysehaXC
-	yaHa+gjhtM7833T4Bas/bGLTLiKYCFIX7naGk/9ThtUOaCAGYK8sDC3ONNDOgFQGaq9Rtht21Rj
-	oup2VCcWve+eVz4Pp5Vk5utmQ1VlGVF3+d9rnoxXsgQSqx49gY=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--2.065400-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	97AB92A8EB883A43A7B9CB36186487B5BB92EC0F3CEBD8122EBE41CF1925732B2000:8
-X-MTK: N
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Since the DT schema of multiple function PMIC mt6397 has been converted,
-move the examples in "mediatek,mt6397-regulator.yaml" to the parent schema
-"mediatek,mt6397.yaml".
+On Tue, 10 Sep 2024 18:44:39 -0500
+"Rob Herring (Arm)" <robh@kernel.org> wrote:
 
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
----
- .../regulator/mediatek,mt6397-regulator.yaml  | 173 ------------------
- 1 file changed, 173 deletions(-)
+> adi,ad5686.yaml and adi,ad5696.yaml duplicate all the I2C device
+> compatible strings with the exception of "adi,ad5337r". Since
+> adi,ad5686.yaml references spi-peripheral-props.yaml, drop the I2C
+> devices from it making it only SPI devices. Update the titles to make
+> the distinction clear.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Is this an urgent thing, or can it wait for the merge window after next?
+For now I've queued it up for then in my testing branch but can yank it
+out and send it as a fix after rc1 if that is useful.
 
-Changes for v1 and v2:
- - This is the first version of converting rtc-mt6397.txt.
-   This is because converting rtc-mt6397 together
-   with mfd/mediatek,mt6397.yaml, so we've create a patch set
-   instead of submitting single patch for each subdevice.
- - This patch has been made base on linux-next/master git repo.
-
-Changes for v3:
- - Re-order this patch since other patches for removing text DT bindings
-   in v2 qill be squash into MFD patch.
-
-Changes for v4:
- - No change.
-
-diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6397-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6397-regulator.yaml
-index 50db678..337ac58 100644
---- a/Documentation/devicetree/bindings/regulator/mediatek,mt6397-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6397-regulator.yaml
-@@ -63,176 +63,3 @@ required:
+Jonathan
  
- additionalProperties: false
- 
--examples:
--  - |
--    #include <dt-bindings/interrupt-controller/arm-gic.h>
--
--    mt6397_regulators: regulators {
--        compatible = "mediatek,mt6397-regulator";
--
--        mt6397_vpca15_reg: buck_vpca15 {
--            regulator-name = "vpca15";
--            regulator-min-microvolt = < 850000>;
--            regulator-max-microvolt = <1350000>;
--            regulator-ramp-delay = <12500>;
--            regulator-enable-ramp-delay = <200>;
--        };
--
--        mt6397_vpca7_reg: buck_vpca7 {
--            regulator-name = "vpca7";
--            regulator-min-microvolt = < 850000>;
--            regulator-max-microvolt = <1350000>;
--            regulator-ramp-delay = <12500>;
--            regulator-enable-ramp-delay = <115>;
--        };
--
--        mt6397_vsramca15_reg: buck_vsramca15 {
--            regulator-name = "vsramca15";
--            regulator-min-microvolt = < 850000>;
--            regulator-max-microvolt = <1350000>;
--            regulator-ramp-delay = <12500>;
--            regulator-enable-ramp-delay = <115>;
--        };
--
--        mt6397_vsramca7_reg: buck_vsramca7 {
--            regulator-name = "vsramca7";
--            regulator-min-microvolt = < 850000>;
--            regulator-max-microvolt = <1350000>;
--            regulator-ramp-delay = <12500>;
--            regulator-enable-ramp-delay = <115>;
--        };
--
--        mt6397_vcore_reg: buck_vcore {
--            regulator-name = "vcore";
--            regulator-min-microvolt = < 850000>;
--            regulator-max-microvolt = <1350000>;
--            regulator-ramp-delay = <12500>;
--            regulator-enable-ramp-delay = <115>;
--        };
--
--        mt6397_vgpu_reg: buck_vgpu {
--            regulator-name = "vgpu";
--            regulator-min-microvolt = < 700000>;
--            regulator-max-microvolt = <1350000>;
--            regulator-ramp-delay = <12500>;
--            regulator-enable-ramp-delay = <115>;
--        };
--
--        mt6397_vdrm_reg: buck_vdrm {
--            regulator-name = "vdrm";
--            regulator-min-microvolt = < 800000>;
--            regulator-max-microvolt = <1400000>;
--            regulator-ramp-delay = <12500>;
--            regulator-enable-ramp-delay = <500>;
--        };
--
--        mt6397_vio18_reg: buck_vio18 {
--            regulator-name = "vio18";
--            regulator-min-microvolt = <1500000>;
--            regulator-max-microvolt = <2120000>;
--            regulator-ramp-delay = <12500>;
--            regulator-enable-ramp-delay = <500>;
--        };
--
--        mt6397_vtcxo_reg: ldo_vtcxo {
--            regulator-name = "vtcxo";
--            regulator-min-microvolt = <2800000>;
--            regulator-max-microvolt = <2800000>;
--            regulator-enable-ramp-delay = <90>;
--        };
--
--        mt6397_va28_reg: ldo_va28 {
--            regulator-name = "va28";
--            /* fixed output 2.8 V */
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vcama_reg: ldo_vcama {
--            regulator-name = "vcama";
--            regulator-min-microvolt = <1500000>;
--            regulator-max-microvolt = <2800000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vio28_reg: ldo_vio28 {
--            regulator-name = "vio28";
--            /* fixed output 2.8 V */
--            regulator-enable-ramp-delay = <240>;
--        };
--
--        mt6397_usb_reg: ldo_vusb {
--            regulator-name = "vusb";
--            /* fixed output 3.3 V */
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vmc_reg: ldo_vmc {
--            regulator-name = "vmc";
--            regulator-min-microvolt = <1800000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vmch_reg: ldo_vmch {
--            regulator-name = "vmch";
--            regulator-min-microvolt = <3000000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vemc_3v3_reg: ldo_vemc3v3 {
--            regulator-name = "vemc_3v3";
--            regulator-min-microvolt = <3000000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vgp1_reg: ldo_vgp1 {
--            regulator-name = "vcamd";
--            regulator-min-microvolt = <1220000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <240>;
--        };
--
--        mt6397_vgp2_reg: ldo_vgp2 {
--            regulator-name = "vcamio";
--            regulator-min-microvolt = <1000000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vgp3_reg: ldo_vgp3 {
--            regulator-name = "vcamaf";
--            regulator-min-microvolt = <1200000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vgp4_reg: ldo_vgp4 {
--            regulator-name = "vgp4";
--            regulator-min-microvolt = <1200000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vgp5_reg: ldo_vgp5 {
--            regulator-name = "vgp5";
--            regulator-min-microvolt = <1200000>;
--            regulator-max-microvolt = <3000000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vgp6_reg: ldo_vgp6 {
--            regulator-name = "vgp6";
--            regulator-min-microvolt = <1200000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--
--        mt6397_vibr_reg: ldo_vibr {
--            regulator-name = "vibr";
--            regulator-min-microvolt = <1200000>;
--            regulator-max-microvolt = <3300000>;
--            regulator-enable-ramp-delay = <218>;
--        };
--    };
--- 
-2.45.2
+> ---
+>  .../bindings/iio/dac/adi,ad5686.yaml          | 53 ++++++-------------
+>  .../bindings/iio/dac/adi,ad5696.yaml          |  3 +-
+>  2 files changed, 19 insertions(+), 37 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
+> index b4400c52bec3..713f535bb33a 100644
+> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
+> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/iio/dac/adi,ad5686.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Analog Devices AD5360 and similar DACs
+> +title: Analog Devices AD5360 and similar SPI DACs
+>  
+>  maintainers:
+>    - Michael Hennerich <michael.hennerich@analog.com>
+> @@ -12,41 +12,22 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    oneOf:
+> -      - description: SPI devices
+> -        enum:
+> -          - adi,ad5310r
+> -          - adi,ad5672r
+> -          - adi,ad5674r
+> -          - adi,ad5676
+> -          - adi,ad5676r
+> -          - adi,ad5679r
+> -          - adi,ad5681r
+> -          - adi,ad5682r
+> -          - adi,ad5683
+> -          - adi,ad5683r
+> -          - adi,ad5684
+> -          - adi,ad5684r
+> -          - adi,ad5685r
+> -          - adi,ad5686
+> -          - adi,ad5686r
+> -      - description: I2C devices
+> -        enum:
+> -          - adi,ad5311r
+> -          - adi,ad5337r
+> -          - adi,ad5338r
+> -          - adi,ad5671r
+> -          - adi,ad5675r
+> -          - adi,ad5691r
+> -          - adi,ad5692r
+> -          - adi,ad5693
+> -          - adi,ad5693r
+> -          - adi,ad5694
+> -          - adi,ad5694r
+> -          - adi,ad5695r
+> -          - adi,ad5696
+> -          - adi,ad5696r
+> -
+> +    enum:
+> +      - adi,ad5310r
+> +      - adi,ad5672r
+> +      - adi,ad5674r
+> +      - adi,ad5676
+> +      - adi,ad5676r
+> +      - adi,ad5679r
+> +      - adi,ad5681r
+> +      - adi,ad5682r
+> +      - adi,ad5683
+> +      - adi,ad5683r
+> +      - adi,ad5684
+> +      - adi,ad5684r
+> +      - adi,ad5685r
+> +      - adi,ad5686
+> +      - adi,ad5686r
+>  
+>    reg:
+>      maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml
+> index 56b0cda0f30a..b5a88b03dc2f 100644
+> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml
+> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5696.yaml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/iio/dac/adi,ad5696.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Analog Devices AD5696 and similar multi-channel DACs
+> +title: Analog Devices AD5696 and similar I2C multi-channel DACs
+>  
+>  maintainers:
+>    - Michael Auchter <michael.auchter@ni.com>
+> @@ -16,6 +16,7 @@ properties:
+>    compatible:
+>      enum:
+>        - adi,ad5311r
+> +      - adi,ad5337r
+>        - adi,ad5338r
+>        - adi,ad5671r
+>        - adi,ad5675r
 
 
