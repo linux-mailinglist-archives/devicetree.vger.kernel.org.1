@@ -1,170 +1,141 @@
-Return-Path: <devicetree+bounces-102969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36BC39790AC
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 13:51:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9543D9790B7
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 14:05:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB54AB209D1
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 11:51:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DB141F22D3A
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 12:05:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93CAA1CF2AA;
-	Sat, 14 Sep 2024 11:51:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7130E1CF2B0;
+	Sat, 14 Sep 2024 12:05:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SCMaev+i"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w/LXDgmM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F9501482F3;
-	Sat, 14 Sep 2024 11:51:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FB72168DC
+	for <devicetree@vger.kernel.org>; Sat, 14 Sep 2024 12:04:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726314694; cv=none; b=IaGd50mwkxtw5eZbPDDVKQe/0v/BpU5HIl7KyZAxZvDbS2PSZEi19hvnh93KsaRRtBOnad5tihs0l5lE54Tq81CxpmjwGKzCWs8w4MsjGg05rwF+uRPkS2aoy+6csYHnxX89yIeiBcWM1XEIaHF4fn8UAvO+mB7ULHapdIuUnB0=
+	t=1726315502; cv=none; b=HfDiY1TyzIbteCUOpj4uE51j4CRdcciTIuwDT4VcvwBYkE+CuMpqALzkeZjIhInijqyY+o/Ger9tpcB+OYA8M7wy5SyqPGjvUlYE77Q9kBNs4bdjLFTVYWnNwsQWaKQIUukG8PBTfcNjxqElf+majLGvUiuSCpOqf0tHR+HsYVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726314694; c=relaxed/simple;
-	bh=D3alaH9FVz0eNtgjK7+8PY9RsxlT58gKMLTR4lhwrXc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MRJYvDzEvRj1/Y1ZsZ56vLW/b8KJojSmfvRhbqASLZCQqhzFRZhwDvuSaUWLh5W5+ZwvmFHQU4X3+zmmjk6OoaOIj3rSpqfu0YtAvnkMiuo6ZafxPDKGp7ryVum5LnB0NifB/Sool1+qJmbQPBJkWW/Zy4YyAj6QNFOhG14lID4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SCMaev+i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9DEDC4CEC0;
-	Sat, 14 Sep 2024 11:51:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726314693;
-	bh=D3alaH9FVz0eNtgjK7+8PY9RsxlT58gKMLTR4lhwrXc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=SCMaev+iHtp/B5hdrJYkCRC444/iSywfihSD5qTRX7OiROVFtpWnz5SXQO2ITH2vU
-	 pZ/chHUhdmG4sFh17S9zvNgykKRxXa1Uw9tMUKOabCsoaZ92DPrnBZDaPI8V9SWTSZ
-	 LglwUcYsHsEmvWh2SijxAJAIo7g+ry9rkeox96gBPEocX9L5EzofIiBvr4X8dDYlRn
-	 QuVHJa5d/0wjmdad2NgPpm1Hyb7r238/n10aOKA3KZ+Wl6gsK8QqHhdbH6+3Sinw/C
-	 WwZfejSQ2SkF9U9/KQ8KEkk/8Jerm2qRmDxDvmEGjxYHfDRxkaAYSacvZtEYk7hxQr
-	 FmqxioiFxaHMg==
-Date: Sat, 14 Sep 2024 12:51:23 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Alex Lanzano <lanzano.alex@gmail.com>
-Cc: kernel test robot <lkp@intel.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Jagath Jog J <jagathjog1996@gmail.com>,
- Ramona Gradinariu <ramona.bolboaca13@gmail.com>, Nuno Sa
- <nuno.sa@analog.com>, oe-kbuild-all@lists.linux.dev,
- skhan@linuxfoundation.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] iio: imu: Add i2c driver for bmi270 imu
-Message-ID: <20240914125123.13ec48f1@jic23-huawei>
-In-Reply-To: <f5zruqfmohoaohr2qwqug33dsar5q3fubhspbwuisxxblni6h4@paioiqyjzeg5>
-References: <20240909043254.611589-3-lanzano.alex@gmail.com>
-	<202409100026.17N3K11W-lkp@intel.com>
-	<f5zruqfmohoaohr2qwqug33dsar5q3fubhspbwuisxxblni6h4@paioiqyjzeg5>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1726315502; c=relaxed/simple;
+	bh=hLDbBiO0lIXw7qQZoLddPPxgRLyxCa9AMIv188JWSqA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ATDl72qbGTALU/emJYbnOS2xv1/uHPS0GOOmLQZr7XrsNb00g+dzUvQfwp1AhQvDpZQtYIwyOyHqR6n6fYAEJQzV+ARB92uMYv5qrn9QeDfP/Y3CF5m0xpughjNuJiqT59QpuBxbNQrm/fDLJB08xUX25dTQo1/g6k01tpvfVuU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w/LXDgmM; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6dbc5db8a31so16623757b3.1
+        for <devicetree@vger.kernel.org>; Sat, 14 Sep 2024 05:04:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1726315499; x=1726920299; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=v/BwEPPxE9nFO1CcsZ05pg5b/eN2UhsgUftUMF1y+k0=;
+        b=w/LXDgmM6S1e7UKwN1Pwl/+ipX6WhawuVtH2vTWfpbmolOLPVaG83hQjklqndueKO8
+         2BZGIaGUS3lNvkp7exLZVx7E9AqkLjspbdq9QuzyGOHPXOBgjvFLnLCnRpglnJvKM0Mj
+         kC9P32XvI7U4DniGzkxYvOwpYBmyCSTrYFGMF2z1KsnFQVGODaKKj6NQaZi3bSOi5czb
+         ByLTycCdzHdYPY1NBcLbIYuWusQiDq2lOzU7eYEvo/dphjJdUSIMy8mF42YshpHyms7o
+         yZ/LlMMIkBicSh6FipWAVo+6asF+3UUhH5q2YEthwoVJtYN3qfpF0V0fi3Blxls1NPTu
+         jWYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726315499; x=1726920299;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=v/BwEPPxE9nFO1CcsZ05pg5b/eN2UhsgUftUMF1y+k0=;
+        b=CxcLcfojbu1nI0mgNTY88m2lZ6VcLvXRy4QydtVilBgU2Lm98KAUd2NMCY7LUp3f9d
+         GNI4baqsAK0fxMmC8TraIiX/PbD3KQpIAgFEQ0iRMw0s1k/+34JJu2x0ymJj1W/z7TWn
+         ePI+fOaPKtbfo4i6UYxgGp2h/oJ8PSYBQDYjWTE4qh2bIzGTwjLk0RWPQJOaVG0fqAMX
+         4mQN4sUSAPlq78IpaaNrPm4EzrLebDmJ4gSuKQMejPIdSd0MgRtYJ39zfz1QNzV85JQc
+         3s5IeSIw9ZC5ha4EQUGBnO88ZNtmvwnYKnrU71QpP5SC1+FkfSOBkQL3eOfRGn4LqQ+D
+         sy5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUSVMZpu/PfIquwpQWU3r6BMMQ7sHWLNT8BKqeACX0kHWQyPesh3h8iZrByfj/39nRLNbc/adG2HP5l@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSqAYEmL+Bjl+8ghgcp/mh+I2Ij3l0f5ljSohuWnLLSXa3Dt0m
+	FYYawu4lWkbT4Mzso+pSVqIrNbOG9qqitfGhVhAaKrHRTFLdj38H/wzLQqatS0kJALxxceOeu20
+	utkRRHIwZ2rDP/ir1DkO01xrDSkys13wqfVE9xw==
+X-Google-Smtp-Source: AGHT+IFr6ztHkdXR12yHJt9BqfgF+oj8X/upMI/MFEq0hVIM1jdcxlJa5xJkzkTkMIDH+Ri6BPcsmXHfSOGUlyxg2dU=
+X-Received: by 2002:a05:690c:660c:b0:6d0:f91e:2ffa with SMTP id
+ 00721157ae682-6dbb7015a8cmr71152697b3.3.1726315498811; Sat, 14 Sep 2024
+ 05:04:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20240913103755.7290-1-quic_mukhopad@quicinc.com>
+ <20240913103755.7290-3-quic_mukhopad@quicinc.com> <9fee28de-24eb-46b1-aa5b-6febc2972a3c@kernel.org>
+In-Reply-To: <9fee28de-24eb-46b1-aa5b-6febc2972a3c@kernel.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Sat, 14 Sep 2024 15:04:48 +0300
+Message-ID: <CAA8EJpquBih8jO_Tv8RFLVYN0c+N7KC45VztGSJHV87x22tdcA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] phy: qcom: edp: Introduce aux_cfg array for
+ version specific aux settings
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>, vkoul@kernel.org, kishon@kernel.org, 
+	andersson@kernel.org, simona@ffwll.ch, abel.vesa@linaro.org, 
+	robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run, 
+	marijn.suijten@somainline.org, airlied@gmail.com, daniel@ffwll.ch, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	quic_khsieh@quicinc.com, konrad.dybcio@linaro.org, quic_parellan@quicinc.com, 
+	quic_bjorande@quicinc.com, linux-arm-msm@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, quic_riteshk@quicinc.com, 
+	quic_vproddut@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, 9 Sep 2024 23:21:52 -0400
-Alex Lanzano <lanzano.alex@gmail.com> wrote:
+On Sat, 14 Sept 2024 at 14:29, Konrad Dybcio <konradybcio@kernel.org> wrote:
+>
+> On 13.09.2024 12:37 PM, Soutrik Mukhopadhyay wrote:
+> > In order to support different HW versions, introduce aux_cfg array
+> > to move v4 specific aux configuration settings.
+> >
+> > Signed-off-by: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+> > ---
+> > v2: Fixed review comments from Bjorn and Dmitry
+> >       - Made aux_cfg array as const.
+> >
+> > ---
+> >  drivers/phy/qualcomm/phy-qcom-edp.c | 37 ++++++++++++++++++-----------
+> >  1 file changed, 23 insertions(+), 14 deletions(-)
+> >
+> > diff --git a/drivers/phy/qualcomm/phy-qcom-edp.c b/drivers/phy/qualcomm/phy-qcom-edp.c
+> > index da2b32fb5b45..bcd5aced9e06 100644
+> > --- a/drivers/phy/qualcomm/phy-qcom-edp.c
+> > +++ b/drivers/phy/qualcomm/phy-qcom-edp.c
+> > @@ -90,6 +90,7 @@ struct phy_ver_ops {
+> >
+> >  struct qcom_edp_phy_cfg {
+> >       bool is_edp;
+> > +     const u8 *aux_cfg;
+> >       const struct qcom_edp_swing_pre_emph_cfg *swing_pre_emph_cfg;
+> >       const struct phy_ver_ops *ver_ops;
+> >  };
+> > @@ -186,11 +187,15 @@ static const struct qcom_edp_swing_pre_emph_cfg edp_phy_swing_pre_emph_cfg = {
+> >       .pre_emphasis_hbr3_hbr2 = &edp_pre_emp_hbr2_hbr3,
+> >  };
+> >
+> > +static const u8 edp_phy_aux_cfg_v4[10] = {
+> > +     0x00, 0x13, 0x24, 0x00, 0x0a, 0x26, 0x0a, 0x03, 0x37, 0x03
+> > +};
+>
+> How about we only abstract the values that differ? It would seem like more
+> platforms reuse about half of these magic bytes
 
-> On Tue, Sep 10, 2024 at 01:03:04AM GMT, kernel test robot wrote:
-> > Hi Alex,
-> > 
-> > kernel test robot noticed the following build errors:
-> > 
-> > [auto build test ERROR on jic23-iio/togreg]
-> > [also build test ERROR on robh/for-next linus/master v6.11-rc7 next-20240909]
-> > [If your patch is applied to the wrong git tree, kindly drop us a note.
-> > And when submitting patch, we suggest to use '--base' as documented in
-> > https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> > 
-> > url:    https://github.com/intel-lab-lkp/linux/commits/Alex-Lanzano/dt-bindings-iio-imu-add-bmi270-bindings/20240909-123509
-> > base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-> > patch link:    https://lore.kernel.org/r/20240909043254.611589-3-lanzano.alex%40gmail.com
-> > patch subject: [PATCH v3 2/2] iio: imu: Add i2c driver for bmi270 imu
-> > config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20240910/202409100026.17N3K11W-lkp@intel.com/config)
-> > compiler: m68k-linux-gcc (GCC) 14.1.0
-> > reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240910/202409100026.17N3K11W-lkp@intel.com/reproduce)
-> > 
-> > If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> > the same patch/commit), kindly add following tags
-> > | Reported-by: kernel test robot <lkp@intel.com>
-> > | Closes: https://lore.kernel.org/oe-kbuild-all/202409100026.17N3K11W-lkp@intel.com/
-> > 
-> > All errors (new ones prefixed by >>):
-> > 
-> >    drivers/iio/imu/bmi270/bmi270_core.c: In function 'bmi270_configure_imu':  
-> > >> drivers/iio/imu/bmi270/bmi270_core.c:180:31: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]  
-> >      180 |                               FIELD_PREP(BMI270_ACC_CONF_ODR_MSK,
-> >          |                               ^~~~~~~~~~
-> > 
-> > 
-> > vim +/FIELD_PREP +180 drivers/iio/imu/bmi270/bmi270_core.c
-> > 
-> >    165	
-> >    166	static int bmi270_configure_imu(struct bmi270_data *bmi270_device)
-> >    167	{
-> >    168		int ret;
-> >    169		struct device *dev = bmi270_device->dev;
-> >    170		struct regmap *regmap = bmi270_device->regmap;
-> >    171	
-> >    172		ret = regmap_set_bits(regmap, BMI270_PWR_CTRL_REG,
-> >    173				      BMI270_PWR_CTRL_AUX_EN_MSK |
-> >    174				      BMI270_PWR_CTRL_GYR_EN_MSK |
-> >    175				      BMI270_PWR_CTRL_ACCEL_EN_MSK);
-> >    176		if (ret)
-> >    177			return dev_err_probe(dev, ret, "Failed to enable accelerometer and gyroscope");
-> >    178	
-> >    179		ret = regmap_set_bits(regmap, BMI270_ACC_CONF_REG,  
-> >  > 180				      FIELD_PREP(BMI270_ACC_CONF_ODR_MSK,  
-> >    181						 BMI270_ACC_CONF_ODR_100HZ) |
-> >    182				      FIELD_PREP(BMI270_ACC_CONF_BWP_MSK,
-> >    183						 BMI270_ACC_CONF_BWP_NORMAL_MODE) |
-> >    184				      BMI270_PWR_CONF_ADV_PWR_SAVE_MSK);
-> >    185		if (ret)
-> >    186			return dev_err_probe(dev, ret, "Failed to configure accelerometer");
-> >    187	
-> >    188		ret = regmap_set_bits(regmap, BMI270_GYR_CONF_REG,
-> >    189				      FIELD_PREP(BMI270_GYR_CONF_ODR_MSK,
-> >    190						 BMI270_GYR_CONF_ODR_200HZ) |
-> >    191				      FIELD_PREP(BMI270_GYR_CONF_BWP_MSK,
-> >    192						 BMI270_GYR_CONF_BWP_NORMAL_MODE) |
-> >    193				      BMI270_PWR_CONF_ADV_PWR_SAVE_MSK);
-> >    194		if (ret)
-> >    195			return dev_err_probe(dev, ret, "Failed to configure gyroscope");
-> >    196	
-> >    197		/* Enable FIFO_WKUP, Disable ADV_PWR_SAVE and FUP_EN */
-> >    198		ret = regmap_write(regmap, BMI270_PWR_CONF_REG,
-> >    199				   BMI270_PWR_CONF_FIFO_WKUP_MSK);
-> >    200		if (ret)
-> >    201			return dev_err_probe(dev, ret, "Failed to set power configuration");
-> >    202	
-> >    203		return 0;
-> >    204	}
-> >    205	
-> > 
-> > -- 
-> > 0-DAY CI Kernel Test Service
-> > https://github.com/intel/lkp-tests/wiki  
-> 
-> I am having trouble reproducing this build error on both jic23-iio/togreg and
-> linus/master v6.11.rc7 on an aarch64 box with the same compiler version.
-> Maybe a config option is causing this?
-> 
-> However, I will add #include <linux/bitfield.h> to remedy this issue if
-> some edge case is being hit.
-Makes sense anyways roughly speaking we should aim for "include what you use"
-for headers to avoid this sort of subtle build issue.
-There are exceptions for one or two headers that are always included via
-another path, but bitfield.h isn't one of those.
+I think it's easier to review and compare the whole sequence rather
+than numbers here and then numbers there.
 
-Jonathan
 
-> 
-> Best regards,
-> Alex
-
+-- 
+With best wishes
+Dmitry
 
