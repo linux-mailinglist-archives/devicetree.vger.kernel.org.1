@@ -1,163 +1,205 @@
-Return-Path: <devicetree+bounces-102957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0E3D978FDF
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 12:12:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56C25979034
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 13:00:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7420F2841D8
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 10:12:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8DD68B24B3D
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 11:00:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CA0D1CEEAC;
-	Sat, 14 Sep 2024 10:11:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C1BA1CF294;
+	Sat, 14 Sep 2024 11:00:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="aORr7H8J";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="U9Nm20lH"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kPNk2ipE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout7-smtp.messagingengine.com (fout7-smtp.messagingengine.com [103.168.172.150])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D7B71CE6FE;
-	Sat, 14 Sep 2024 10:11:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.150
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5599E1CEAAC;
+	Sat, 14 Sep 2024 10:59:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726308715; cv=none; b=RBaqC1/rBTyRVQP+wKPHEV4MYiZ7NnkwA4bj33sbJ/TsMVxPa/hfZrUcuYnEjsYq2w6PuHHT6uZO2NFQPrOiU/zdbc0gNBhbZghKEYxkgWYsx7y7RhSd4VF1GKCg9nLAApo4OZxnRJML/s7p72/RoSkpiYKY2vCt2EZTShUc4wU=
+	t=1726311601; cv=none; b=PzUUOIBM3wXVEjtvaM3u5vlH/DBhOGz4IVfNLzmXjOhCwNWWrNH2FoEpb3VNdBbywhbL9RxyWB/JD/GxQNHRMSZTiHE07iqGaU3bqgEvurIBAg1tlZeK7FgWZ8ODqWsaEB81fdHsjGWSFGWomXl3aVHL+xu/Ty/lgYreHLannk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726308715; c=relaxed/simple;
-	bh=c7hrh1mNhY5Po59linuz91/Lp273Kl2sAkDSofcmW3U=;
+	s=arc-20240116; t=1726311601; c=relaxed/simple;
+	bh=RqagvQleKzznUmEAGUk3kJBskCidxziKVdoH64L73j4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aCMzOt6OkbAe/h9Sfqeyn5elVWiTNHxlUZKRhWr+bwwepxzKmfAhkFQyKxf+B1we468J6vI1Cb0zXk/pTQI9uPnMphHobHuurlgyKZ1wVVGQJDv+TEyiIG13rxvwGwaS4HqkFTKllBeUfox6bvxYdFCVglIxZoOxh8cJzVkYR1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=aORr7H8J; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=U9Nm20lH; arc=none smtp.client-ip=103.168.172.150
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
-Received: from phl-compute-09.internal (phl-compute-09.phl.internal [10.202.2.49])
-	by mailfout.phl.internal (Postfix) with ESMTP id 6D141138034D;
-	Sat, 14 Sep 2024 06:11:52 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-09.internal (MEProxy); Sat, 14 Sep 2024 06:11:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm3; t=1726308712; x=1726395112; bh=wdYBlJH1j2
-	NJdmrQ3AgD6IKbm38HR2Yf3Znhh5VlisQ=; b=aORr7H8JGhZkcbuntmIvaMOGA0
-	/MNDvEBK3EaaffdNtywXEszDv4oT8lgmjaAJSQ6hG4BZw3pyXUZ0HuxCFgW51Jho
-	3mxbyvmk50xrGYlquXhO9YOAOFGgFsltTBmbcmDFqDlo3RqCG9omkTpF7ayriiuJ
-	HxjmMyu8tF7M7aprtQ8tnmEszHEQLWNueWq5efKeL4iw8HZciroSaRIqJlDdr9Bn
-	8xrCLzoGJ05vb0DdrlD43/tXcrLeGGYtF3NMicV9HmVnUolIb0DH3O6WwBH4S84v
-	Op/8/PmCnq1TsZQqWGzYVx5XtRJUdpUStYtXAiSyjFzJn3UJ22qS14RzkREQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm1; t=1726308712; x=1726395112; bh=wdYBlJH1j2NJdmrQ3AgD6IKbm38H
-	R2Yf3Znhh5VlisQ=; b=U9Nm20lH/voTbRJWFA4oNdsQX1ya+5iERjCc+qxE3p9N
-	V6H3QXBWhGBNMpDapVyukAbnWJkhnoNY18qLSVd8bKe3irf9zwvfZrn+7KSepErX
-	w3Zt9TGVJspLYGoC5482obPRi5YoxGuIb9hXjuDJLO2Q9jLLi252gYPhVXzXTJBn
-	XHYqPUxlR5VWYeNnYUIFaqiOteX1j7xIaD0kz/A9cp2hOvuxOLzzfG2nfaPOZv+6
-	4g8rDYXNBd5B0iwEjg12ecYIH0xzUDAhusQWpWI7o4TbmTycae11hBm0MKvCc0EC
-	20vZIXKSTkSdDcnkuN4lGVjCK/aTKYGf8HBFo7Gx5g==
-X-ME-Sender: <xms:Z2HlZgLGCIZ8gWL6kJFrNK_OJRgX8CdROU6K_bAEQdAXwk5Z7xh3-A>
-    <xme:Z2HlZgI3cIECw5vwULhBTJ8t9KgInmT1VhnPb5-_kVfEnoo2lqfrZegd5WmuoMDEU
-    Lz5XPEa5LAwbZcr2cs>
-X-ME-Received: <xmr:Z2HlZguQa1dRX1HqSEuHnyIrsg3uN2AoNXiXIL9wWhUTJARPgtvtSegE0y1IC9Fmx5vYQg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrudektddgvdeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddtjeen
-    ucfhrhhomheplfgrnhhnvgcuifhruhhnrghuuceojhgrnhhnvgesjhgrnhhnrghurdhnvg
-    htqeenucggtffrrghtthgvrhhnpeetkeegfffhhfekhfdtveejueevtdefkeehgeekgeel
-    teeluddugeeuvddukeeuffenucffohhmrghinhepghhithhhuhgsrdgtohhmnecuvehluh
-    hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhgrnhhnvgesjhgr
-    nhhnrghurdhnvghtpdhnsggprhgtphhtthhopeefvddpmhhouggvpehsmhhtphhouhhtpd
-    hrtghpthhtohepuggrkhhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehgrhgvghhk
-    hheslhhinhhugihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopegrhihushhhse
-    gsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtohepfhgrsghivghnrdhprghrvghn
-    theslhhinhgrrhhordhorhhgpdhrtghpthhtohepugdqghholhgvsehtihdrtghomhdprh
-    gtphhtthhopehlohhrfhhorhhlihhnuhigsegsvggrghhlvggsohgrrhgurdhorhhgpdhr
-    tghpthhtohepjhhkrhhiughnvghrsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpth
-    htoheprhhosggvrhhttghnvghlshhonhessggvrghglhgvsghorghrugdrohhrghdprhgt
-    phhtthhopegrfhgusehtihdrtghomh
-X-ME-Proxy: <xmx:Z2HlZtaiPXWo0hoNfwFmPC9K2ADDDofXYS8ZgxTLBNIaDKBpiSKpDQ>
-    <xmx:Z2HlZnZdFjkun-rTi_pNVt9B7MhEdaB-MEYhEQnEPnt7l3WQBz4S6Q>
-    <xmx:Z2HlZpBrLGThc8Oyk8ay8ddteDZxWvpwHx7WsmKyt6rhy076VLNfMA>
-    <xmx:Z2HlZta96gou4U4zmRiYrSQYPZ7O0VpCGl0y45bvGn_lJHxiPLwY6A>
-    <xmx:aGHlZkwpfgeBBy3OeE8ggur4QJ_hWsPnlquY6Hme4l7QxApo3RtW2okr>
-Feedback-ID: i449149f6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 14 Sep 2024 06:11:51 -0400 (EDT)
-Date: Sat, 14 Sep 2024 12:11:49 +0200
-From: Janne Grunau <janne@jannau.net>
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Ayush Singh <ayush@beagleboard.org>, fabien.parent@linaro.org,
-	d-gole@ti.com, lorforlinux@beagleboard.org,	jkridner@beagleboard.org,
- robertcnelson@beagleboard.org,	Andrew Davis <afd@ti.com>,
- Miguel Ojeda <ojeda@kernel.org>,	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Rob Herring <robh@kernel.org>,	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,	Arnd Bergmann <arnd@arndb.de>,
- Nishanth Menon <nm@ti.com>,	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, linux-kernel@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, asahi@lists.linux.dev
-Subject: Re: [PATCH 1/8] rust: kernel: Add Platform device and driver
- abstractions
-Message-ID: <ZuVhZV2KW2Gv340V@robin>
-References: <20240911-mikrobus-dt-v1-0-3ded4dc879e7@beagleboard.org>
- <20240911-mikrobus-dt-v1-1-3ded4dc879e7@beagleboard.org>
- <2024091106-scouring-smitten-e740@gregkh>
- <ZuHU5yrJUOKnJGrB@pollux>
+	 Content-Type:Content-Disposition:In-Reply-To; b=MGlk5uRd66B0VhmoW5/yp10x5h4C4dIPM1VQT4dqOM/OEVcJ0OuMhoIn4cG5j/dlojPlzZRWOOv6YA1QQYuhKX2G8JKHWQzZgmxNmFk15szvwKXgm7ptkM2NCSOu032W0st/YYVBYYD2d+MmEfqN8SVJiWA4uB1r7ar6tEaLK6o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kPNk2ipE; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1726311600; x=1757847600;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RqagvQleKzznUmEAGUk3kJBskCidxziKVdoH64L73j4=;
+  b=kPNk2ipElCfIxuvzTU734SvruXM3iKVsD7VKukOqFpinIeTJQLTlpkhX
+   mGwQNrjs1sGkGbahWpw4+z3oz5o1TeIQWS/Tfk4jc8D/s+qPTstF7AxXN
+   zRFOEoO2+4IVTMU0Wkhp+8CyBbbV7pEouYUAUGxNuxTcjsvS8bpBrDKa/
+   KisK3XZEHwnj2o4/bvGV2kbrPxsE77feNisN0+I7iBeEk2fWFhD1wRf3r
+   Tjm4huQotrMfJYNrdUbMxqj+sdOnVBjGnMmkZgi2c6OXnznnt9iuuKxAX
+   Q/r8Eboc18QlduOvVw7F8/QOid4BtcLuZxl/PcMlHdt+bk8Au0a7BaXMk
+   Q==;
+X-CSE-ConnectionGUID: IVldnLavS9elPdKiyxBTVQ==
+X-CSE-MsgGUID: kGpZz281SNSh7lJCKXzBDw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="25148004"
+X-IronPort-AV: E=Sophos;i="6.10,229,1719903600"; 
+   d="scan'208";a="25148004"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Sep 2024 03:59:59 -0700
+X-CSE-ConnectionGUID: vS6oIURLS3S2LyICQh7zNw==
+X-CSE-MsgGUID: 3Elus/PHQPesz24am0+B+Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,228,1719903600"; 
+   d="scan'208";a="72971200"
+Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 14 Sep 2024 03:59:56 -0700
+Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1spQVN-0007f1-2j;
+	Sat, 14 Sep 2024 10:59:53 +0000
+Date: Sat, 14 Sep 2024 18:59:42 +0800
+From: kernel test robot <lkp@intel.com>
+To: Oleh Kuzhylnyi <kuzhylol@gmail.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Oleh Kuzhylnyi <kuzhylol@gmail.com>, igor.opaniuk@gmail.com,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jeff LaBundy <jeff@labundy.com>
+Subject: Re: [PATCH v7 2/2] input: add driver for Hynitron CST816X touchscreen
+Message-ID: <202409141849.QpkMdWlC-lkp@intel.com>
+References: <20240912132823.123409-2-kuzhylol@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZuHU5yrJUOKnJGrB@pollux>
+In-Reply-To: <20240912132823.123409-2-kuzhylol@gmail.com>
 
-On Wed, Sep 11, 2024 at 07:35:35PM +0200, Danilo Krummrich wrote:
-> On Wed, Sep 11, 2024 at 04:56:14PM +0200, Greg Kroah-Hartman wrote:
-> > On Wed, Sep 11, 2024 at 07:57:18PM +0530, Ayush Singh wrote:
-> > > +/// An identifier for Platform devices.
-> > > +///
-> > > +/// Represents the kernel's [`struct of_device_id`]. This is used to find an appropriate
-> > > +/// Platform driver.
-> > > +///
-> > > +/// [`struct of_device_id`]: srctree/include/linux/mod_devicetable.h
-> > > +pub struct DeviceId(&'static CStr);
-> > > +
-> > > +impl DeviceId {
-> > 
-> > <snip>
-> > 
-> > I appreciate posting this, but this really should go on top of the
-> > device driver work Danilo Krummrich has been doing.
-> 
-> If everyone agrees, I'd offer to just provide platform device / driver
-> abstractions with my next patch series. This way you don't need to worry
-> about aligning things with the rest of the abstractions yourself and throughout
-> potential further versions of the series.
+Hi Oleh,
 
-Covering platform device/driver abstractions in the same series would
-be appreciated from asahi side. It hopefully results in earlier merge
-since it avoids a dependency on the device driver abstractions.
-Feel free to reach out to me for an earlier preview / rabsing of the
-asahi driver.
-https://github.com/AsahiLinux/linux/tree/bits/210-gpu has all relevant
-rust changes from 6.11-rc but I plan to rebase onto 6.11 in the next
-days and possibly import changes from 6.12-rc* / rust-next.
+kernel test robot noticed the following build warnings:
 
-Thanks
-Janne
+[auto build test WARNING on dtor-input/next]
+[also build test WARNING on dtor-input/for-linus robh/for-next krzk-dt/for-next linus/master v6.11-rc7 next-20240913]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Oleh-Kuzhylnyi/input-add-driver-for-Hynitron-CST816X-touchscreen/20240912-213044
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
+patch link:    https://lore.kernel.org/r/20240912132823.123409-2-kuzhylol%40gmail.com
+patch subject: [PATCH v7 2/2] input: add driver for Hynitron CST816X touchscreen
+config: sparc64-randconfig-r133-20240913 (https://download.01.org/0day-ci/archive/20240914/202409141849.QpkMdWlC-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 14.1.0
+reproduce: (https://download.01.org/0day-ci/archive/20240914/202409141849.QpkMdWlC-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409141849.QpkMdWlC-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/input/touchscreen/hynitron-cst816x.c:100:21: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __be16 [usertype] abs_x @@     got unsigned long @@
+   drivers/input/touchscreen/hynitron-cst816x.c:100:21: sparse:     expected restricted __be16 [usertype] abs_x
+   drivers/input/touchscreen/hynitron-cst816x.c:100:21: sparse:     got unsigned long
+>> drivers/input/touchscreen/hynitron-cst816x.c:101:21: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __be16 [usertype] abs_y @@     got unsigned long @@
+   drivers/input/touchscreen/hynitron-cst816x.c:101:21: sparse:     expected restricted __be16 [usertype] abs_y
+   drivers/input/touchscreen/hynitron-cst816x.c:101:21: sparse:     got unsigned long
+>> drivers/input/touchscreen/hynitron-cst816x.c:147:58: sparse: sparse: incorrect type in argument 3 (different base types) @@     expected int value @@     got restricted __be16 [addressable] [usertype] abs_x @@
+   drivers/input/touchscreen/hynitron-cst816x.c:147:58: sparse:     expected int value
+   drivers/input/touchscreen/hynitron-cst816x.c:147:58: sparse:     got restricted __be16 [addressable] [usertype] abs_x
+>> drivers/input/touchscreen/hynitron-cst816x.c:148:58: sparse: sparse: incorrect type in argument 3 (different base types) @@     expected int value @@     got restricted __be16 [addressable] [usertype] abs_y @@
+   drivers/input/touchscreen/hynitron-cst816x.c:148:58: sparse:     expected int value
+   drivers/input/touchscreen/hynitron-cst816x.c:148:58: sparse:     got restricted __be16 [addressable] [usertype] abs_y
+
+vim +100 drivers/input/touchscreen/hynitron-cst816x.c
+
+    93	
+    94	static bool cst816x_process_touch(struct cst816x_priv *priv,
+    95					  struct cst816x_touch_info *info)
+    96	{
+    97		if (cst816x_i2c_read_register(priv, CST816X_FRAME, info, sizeof(*info)))
+    98			return false;
+    99	
+ > 100		info->abs_x = get_unaligned_be16(&info->abs_x) & GENMASK(11, 0);
+ > 101		info->abs_y = get_unaligned_be16(&info->abs_y) & GENMASK(11, 0);
+   102	
+   103		dev_dbg(&priv->client->dev, "x: %d, y: %d, t: %d, g: 0x%x\n",
+   104			info->abs_x, info->abs_y, info->touch, info->gesture);
+   105	
+   106		return true;
+   107	}
+   108	
+   109	static int cst816x_register_input(struct cst816x_priv *priv)
+   110	{
+   111		priv->input = devm_input_allocate_device(&priv->client->dev);
+   112		if (!priv->input)
+   113			return -ENOMEM;
+   114	
+   115		priv->input->name = "Hynitron CST816X Touchscreen";
+   116		priv->input->phys = "input/ts";
+   117		priv->input->id.bustype = BUS_I2C;
+   118		input_set_drvdata(priv->input, priv);
+   119	
+   120		for (int i = 0; i < ARRAY_SIZE(priv->event_map); i++)
+   121			input_set_capability(priv->input, EV_KEY,
+   122					     priv->event_map[i].code);
+   123	
+   124		input_set_abs_params(priv->input, ABS_X, 0, 240, 0, 0);
+   125		input_set_abs_params(priv->input, ABS_Y, 0, 240, 0, 0);
+   126	
+   127		return input_register_device(priv->input);
+   128	}
+   129	
+   130	static void cst816x_reset(struct cst816x_priv *priv)
+   131	{
+   132		gpiod_set_value_cansleep(priv->reset, 1);
+   133		msleep(50);
+   134		gpiod_set_value_cansleep(priv->reset, 0);
+   135		msleep(100);
+   136	}
+   137	
+   138	static irqreturn_t cst816x_irq_cb(int irq, void *cookie)
+   139	{
+   140		struct cst816x_priv *priv = cookie;
+   141		struct cst816x_touch_info info;
+   142	
+   143		if (!cst816x_process_touch(priv, &info))
+   144			return IRQ_HANDLED;
+   145	
+   146		if (info.touch) {
+ > 147			input_report_abs(priv->input, ABS_X, info.abs_x);
+ > 148			input_report_abs(priv->input, ABS_Y, info.abs_y);
+   149			input_report_key(priv->input, BTN_TOUCH, 1);
+   150		}
+   151	
+   152		if (info.gesture) {
+   153			input_report_key(priv->input,
+   154					 priv->event_map[info.gesture & 0x0F].code,
+   155					 info.touch);
+   156	
+   157			if (!info.touch)
+   158				input_report_key(priv->input, BTN_TOUCH, 0);
+   159		}
+   160	
+   161		input_sync(priv->input);
+   162	
+   163		return IRQ_HANDLED;
+   164	}
+   165	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
