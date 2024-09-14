@@ -1,255 +1,185 @@
-Return-Path: <devicetree+bounces-102944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4485978E71
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 08:32:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1212978E8B
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 08:57:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AAB31F21BE6
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 06:32:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 778501F23BDA
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 06:57:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62A111946B0;
-	Sat, 14 Sep 2024 06:31:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B42441CDA34;
+	Sat, 14 Sep 2024 06:56:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="m8tuBQv7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="G0+QHPCl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9A141990AA
-	for <devicetree@vger.kernel.org>; Sat, 14 Sep 2024 06:31:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF3651CDA2F;
+	Sat, 14 Sep 2024 06:56:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726295514; cv=none; b=Iq/Bu9ifia1x0wt6khnCVjmndqWODjOya3HdsCj1Z7zESpQnzkdqlrYovOkm0CG6O53VyxV8nH8sYEn+ShtXLlx9t00m2Ir8vy1fyHnoW55Lsf/Gmb9s9bz7NtJJo+JdJINockzL+PfcTMO7mOd+4kfYoQYA37/oxcszLFtTqYk=
+	t=1726297015; cv=none; b=JvCi8iqY3gXgTAYbvBCEkWKo7PqYxyv+G5xg9wvipDnbuWtOA5fR3QtHlHVWe8k2+yVVJXjeid/S+hqWSQO6gHd5xQzBFQ5Brq4KgJyzPam0hGBmr+J9k9lilEjjTTqJCqaLBzZojv3SxGBxhskCD6IfbASw/CwecIOcVovKsZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726295514; c=relaxed/simple;
-	bh=YGySdCl9oHCQEVuL0rPLs8S/OL4b/TWh+9D0N8uRP20=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=H/ZpDrVwgIMYjOjZ1pi8Anb3s+pM5tQxFrYm6CVifcPSwpUsVjX3qXWbOt4Yl67spycjvyNdWPzPuH0FoouA/GzUqK3yX/3//3eEJEyOtNlXOywDN6km1jcn83gZqN2afoKu7aa1PNqidqsFlaRIvlKXpCR2OIDh5Ii9sMvot30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=m8tuBQv7; arc=none smtp.client-ip=209.85.215.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-6e7b121be30so1077854a12.1
-        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 23:31:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1726295510; x=1726900310; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RMDclbtx7gHhtYQ7pcwGHJBdL790wexMa87Hv1rL3aE=;
-        b=m8tuBQv77edkVC+z3NkC65BksG2FLWY47UoJJaYN81du+iOp+3YF7rtRzgTlL9Vhpi
-         qUdq1ZqoXRtQX5juHRPuCkgGqF1J5L4+aGmn1FOKGb8y5xJqhdx3YGmxXM+TZM6K6hYW
-         PQ1P7audV77BAof60cGsdr2ZHnlgmnaT5beGwpnzAMGUZ4+NbMIubiB7GVryuuUl14XG
-         CJ2ZUs4iduRiTxH7Do0rwFsoNRIeN/RqHQXlKZK1yOLJISu8kUqjYUyFXwKB7fgbbN+F
-         z5pdSBqgQIWhUgNBqvFnJYoej8T23ix1RXbWuEloYYvEI+jeGG+2OWNx25S/oG9bdbC7
-         Cx1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726295510; x=1726900310;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RMDclbtx7gHhtYQ7pcwGHJBdL790wexMa87Hv1rL3aE=;
-        b=Po+LLqflN27j+wbeDLCxp3JNT0hgIu3km/sV4nBMFc1tWQ0VeYtZU4E4ixO3wv0nT+
-         Pmjq+ZD6COG3uGGM1FD03w90JoWmgjgtm93EJr1L0DEUHwmKXoltk0yYW+q1q59QQuMw
-         vBZ8sPaKqroCb/J4F580waQ0QoL+r5J9c+q/yQnQIgdYGflFNK83c+vRrdYUzNZ/4PIK
-         OPcDPcXNJsKLq7yXC94gLNcmcQ11lcL65ZZeIgrJmjr19zRC5XtlZF9cgdDuYfueGeMa
-         tiD2lenY9nP9kKBrNSxqV5d5ZhaSpuxZozOux5lfun2UZMG+rvlgJaGM7LKDGj5jl+Ld
-         DGlQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVr3skdUaUpVP+/GZel35kiD0ZaHOX5Wlj4YoeIX921zsboZMos86soBtHfOVnUumV7L3//5lsTi/l6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyP41x/n2a/+rSQV0RkhrIFfXNcdcZPfjRqfvtR9JpIMx6Xv7us
-	b07n4AfvP901WDaYdXja4Eg6AVEt7PHPak5oUQ5iQOs8CgT9a0sHqd5F9/pOBhY=
-X-Google-Smtp-Source: AGHT+IGsok1vDAZ/mi760URrjlrejrK4cZ0oz7PvT67mcNxyXmewLZnIj+/X60ao6Owm7NY6ot6Hmg==
-X-Received: by 2002:a05:6a20:304a:b0:1d1:1795:4b43 with SMTP id adf61e73a8af0-1d117954cb8mr4571669637.26.1726295509521;
-        Fri, 13 Sep 2024 23:31:49 -0700 (PDT)
-Received: from zjn.huaqin.com ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7db4990cebbsm599216a12.37.2024.09.13.23.31.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Sep 2024 23:31:49 -0700 (PDT)
-From: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
-To: angelogioacchino.delregno@collabora.com,
-	matthias.bgg@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	knoxchiou@google.com,
-	hsinyi@google.com
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
-Subject: [PATCH v8 2/2] arm64: dts: mediatek: Add MT8186 Ponyta Chromebooks
-Date: Sat, 14 Sep 2024 14:31:22 +0800
-Message-Id: <20240914063122.1622196-3-cengjianeng@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240914063122.1622196-1-cengjianeng@huaqin.corp-partner.google.com>
-References: <20240914063122.1622196-1-cengjianeng@huaqin.corp-partner.google.com>
+	s=arc-20240116; t=1726297015; c=relaxed/simple;
+	bh=z82qoXfdXrLYs3jMxnQP89C3VVMg1koj+ufGNLLviTY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H6FvcGUNTdpePSTNjP5C8D4nGtvGZyhr7Z4buH1Wfu2/Uxu1I9O5DBFOz1Xh1zZFxJBvF4n+3CkhnQWjpma/Zv5SCCVt/rAnFA6BgBFmJvVo9xF+A6jX+BUJEhb9YtVYnJiKn8AQX89YXHgJePgX0UPiOenvHRYaWRMXXi3ZA2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=G0+QHPCl; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1726297014; x=1757833014;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=z82qoXfdXrLYs3jMxnQP89C3VVMg1koj+ufGNLLviTY=;
+  b=G0+QHPClqpztL4q1gszdIj/Jax2lSZlm/wtYKhCDZbyZTgaRi2fM0DkO
+   IrF022bg1z49ZT0qKZY5bSmpbuMz/w2sX3aQplbiv+oqOzDAmuEVMXcQZ
+   bqaY1CwYyQdbc3+565FHcffjLpO1iZCHGDkB+svefUeXJ12LzSIlxklMb
+   qn7qrwoXL0FUsw4hwV/pBXo2flCYNWiaD2eKghFtleViZ8ZOB5OAT1d8x
+   Ql77av5CJU2dfkM9tRwlvLw9rbj2OAL1dur0mYplR54RVaYEPyPL8Z+ro
+   RSGJD7YT8o8h7hizbz8FBNrwaWHgsY2gx7XUBCyRy5fDTRiiphqrXfntU
+   A==;
+X-CSE-ConnectionGUID: QVd9BH0OTziphDShyzQA6g==
+X-CSE-MsgGUID: cHz493HESm66AzGNDOVU4Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="35878469"
+X-IronPort-AV: E=Sophos;i="6.10,228,1719903600"; 
+   d="scan'208";a="35878469"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2024 23:56:53 -0700
+X-CSE-ConnectionGUID: 0Ta95WA3Rs+rO+CmSX4CtQ==
+X-CSE-MsgGUID: 5n97j3mcQOyiIWczxHzCcA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,228,1719903600"; 
+   d="scan'208";a="68320761"
+Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
+  by fmviesa009.fm.intel.com with ESMTP; 13 Sep 2024 23:56:47 -0700
+Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1spMi5-0007TQ-0T;
+	Sat, 14 Sep 2024 06:56:45 +0000
+Date: Sat, 14 Sep 2024 14:56:27 +0800
+From: kernel test robot <lkp@intel.com>
+To: Dzmitry Sankouski <dsankouski@gmail.com>,
+	Sebastian Reichel <sre@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Pavel Machek <pavel@ucw.cz>, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	cros-qcom-dts-watchers@chromium.org,
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 03/27] gcc-sdm845: Add general purpose clock ops
+Message-ID: <202409141429.Wv6WJPEQ-lkp@intel.com>
+References: <20240913-starqltechn_integration_upstream-v4-3-2d2efd5c5877@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240913-starqltechn_integration_upstream-v4-3-2d2efd5c5877@gmail.com>
 
-MT8186 Ponyta is a Huaqin board based on the Corsola board design
-with the addition of LTE connectivity through usb integrated module.
-SKU0 with LTE. SKU1 without LTE.
+Hi Dzmitry,
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
----
-Changes in v8:
-- PATCH 2/2: Change the commit about ponyta.
-- Link to v7:https://lore.kernel.org/all/20240913031505.372868-3-cengjianeng@huaqin.corp-partner.google.com/
+kernel test robot noticed the following build errors:
 
-Changes in v7:
-- PATCH 2/2: Remove prototype sku.
-- PATCH 2/2: Disable the other trackpad to enable one of them.
-- Link to v5:https://lore.kernel.org/all/20240909023148.1677936-3-cengjianeng@huaqin.corp-partner.google.com/
+[auto build test ERROR on 5acd9952f95fb4b7da6d09a3be39195a80845eb6]
 
-Changes in v6:
-- No change.
+url:    https://github.com/intel-lab-lkp/linux/commits/Dzmitry-Sankouski/power-supply-add-undervoltage-health-status-property/20240913-231027
+base:   5acd9952f95fb4b7da6d09a3be39195a80845eb6
+patch link:    https://lore.kernel.org/r/20240913-starqltechn_integration_upstream-v4-3-2d2efd5c5877%40gmail.com
+patch subject: [PATCH v4 03/27] gcc-sdm845: Add general purpose clock ops
+config: arm-randconfig-001-20240914 (https://download.01.org/0day-ci/archive/20240914/202409141429.Wv6WJPEQ-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240914/202409141429.Wv6WJPEQ-lkp@intel.com/reproduce)
 
-Changes in v5:
-- PATCH 2/2: Remove sku2147483647.
-- Link to v4:https://lore.kernel.org/all/20240906085739.1322676-3-cengjianeng@huaqin.corp-partner.google.com/
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409141429.Wv6WJPEQ-lkp@intel.com/
 
-Chage since v3:
-- No change.
+All errors (new ones prefixed by >>):
 
-Changes in v2:
-- PATCH 2/2: Modify the dtb name without rev2.
-- Link to v1:https://lore.kernel.org/all/20240902125502.1844374-1-cengjianeng@huaqin.corp-partner.google.com/
+   arm-linux-gnueabi-ld: drivers/clk/qcom/clk-rcg2.o: in function `clk_rcg2_calc_mnd':
+>> drivers/clk/qcom/clk-rcg2.c:437:(.text.clk_rcg2_calc_mnd+0x26): undefined reference to `__aeabi_uldivmod'
+>> arm-linux-gnueabi-ld: drivers/clk/qcom/clk-rcg2.c:438:(.text.clk_rcg2_calc_mnd+0x38): undefined reference to `__aeabi_uldivmod'
 
----
- arch/arm64/boot/dts/mediatek/Makefile         |  2 +
- .../mediatek/mt8186-corsola-ponyta-sku0.dts   | 18 ++++++++
- .../mediatek/mt8186-corsola-ponyta-sku1.dts   | 22 ++++++++++
- .../dts/mediatek/mt8186-corsola-ponyta.dtsi   | 44 +++++++++++++++++++
- 4 files changed, 86 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku0.dts
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku1.dts
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta.dtsi
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 8fd7b2bb7a15..50b5cf04d3ae 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -58,6 +58,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393216.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393217.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393218.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-ponyta-sku0.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-ponyta-sku1.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-rusty-sku196608.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-steelix-sku131072.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-steelix-sku131073.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku0.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku0.dts
-new file mode 100644
-index 000000000000..986498af4c70
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku0.dts
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2023 Google LLC
-+ */
-+
-+/dts-v1/;
-+#include "mt8186-corsola-ponyta.dtsi"
-+
-+/ {
-+	model = "Google Ponyta sku0 board";
-+	compatible = "google,ponyta-sku0", "google,ponyta", "mediatek,mt8186";
-+};
-+
-+&i2c2 {
-+	trackpad@15 {
-+		status = "disabled";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku1.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku1.dts
-new file mode 100644
-index 000000000000..ff5eea0ddeb4
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta-sku1.dts
-@@ -0,0 +1,22 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2023 Google LLC
-+ */
-+
-+/dts-v1/;
-+#include "mt8186-corsola-ponyta.dtsi"
-+
-+/ {
-+	model = "Google Ponyta sku1 board";
-+	compatible = "google,ponyta-sku1", "google,ponyta", "mediatek,mt8186";
-+};
-+
-+&i2c2 {
-+	trackpad@2c {
-+		status = "disabled";
-+	};
-+};
-+
-+&usb_c1 {
-+	status = "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta.dtsi
-new file mode 100644
-index 000000000000..59594022331e
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-ponyta.dtsi
-@@ -0,0 +1,44 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2023 Google LLC
-+ */
-+
-+/dts-v1/;
-+#include "mt8186-corsola-steelix.dtsi"
-+
-+&keyboard_controller {
-+	function-row-physmap = <
-+		MATRIX_KEY(0x00, 0x02, 0)	/* T1 */
-+		MATRIX_KEY(0x03, 0x02, 0)	/* T2 */
-+		MATRIX_KEY(0x02, 0x02, 0)	/* T3 */
-+		MATRIX_KEY(0x01, 0x02, 0)	/* T4 */
-+		MATRIX_KEY(0x03, 0x04, 0)	/* T5 */
-+		MATRIX_KEY(0x02, 0x04, 0)	/* T6 */
-+		MATRIX_KEY(0x01, 0x04, 0)	/* T7 */
-+		MATRIX_KEY(0x00, 0x04, 0)	/* T8 */
-+		MATRIX_KEY(0x00, 0x01, 0)	/* T9 */
-+		MATRIX_KEY(0x02, 0x09, 0)	/* T10 */
-+		MATRIX_KEY(0x01, 0x09, 0)	/* T11 */
-+		MATRIX_KEY(0x01, 0x05, 0)	/* T12 */
-+	>;
-+
-+	linux,keymap = <
-+		CROS_STD_MAIN_KEYMAP
-+		MATRIX_KEY(0x00, 0x02, KEY_BACK)
-+		MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
-+		MATRIX_KEY(0x02, 0x02, KEY_ZOOM)
-+		MATRIX_KEY(0x01, 0x02, KEY_SCALE)
-+		MATRIX_KEY(0x03, 0x04, KEY_SYSRQ)
-+		MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSDOWN)
-+		MATRIX_KEY(0x01, 0x04, KEY_BRIGHTNESSUP)
-+		MATRIX_KEY(0x00, 0x04, KEY_PLAYPAUSE)
-+		MATRIX_KEY(0x00, 0x01, KEY_MICMUTE)
-+		MATRIX_KEY(0x02, 0x09, KEY_MUTE)
-+		MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
-+		MATRIX_KEY(0x01, 0x05, KEY_VOLUMEUP)
-+	>;
-+};
-+
-+&mt6366codec {
-+	mediatek,dmic-mode = <1>; /* one-wire */
-+};
+vim +437 drivers/clk/qcom/clk-rcg2.c
+
+   427	
+   428	static void clk_rcg2_calc_mnd(u64 parent_rate, u64 rate, struct freq_tbl *f,
+   429				unsigned int mnd_max, unsigned int hid_max)
+   430	{
+   431		int i = 2, count = 0;
+   432		unsigned int pre_div_pure = 1;
+   433		unsigned long rates_gcd, scaled_parent_rate;
+   434		u16 m, n = 1, n_candidate = 1, n_max;
+   435	
+   436		rates_gcd = gcd(parent_rate, rate);
+ > 437		m = rate / rates_gcd;
+ > 438		scaled_parent_rate = parent_rate / rates_gcd;
+   439		while (scaled_parent_rate > (mnd_max + m) * hid_max) {
+   440			// we're exceeding divisor's range, trying lower scale.
+   441			if (m > 1) {
+   442				m--;
+   443				scaled_parent_rate = mult_frac(scaled_parent_rate, m, (m + 1));
+   444			} else {
+   445				f->n = mnd_max + m;
+   446				f->pre_div = hid_max;
+   447				f->m = m;
+   448			}
+   449		}
+   450	
+   451		n_max = m + mnd_max;
+   452	
+   453		while (scaled_parent_rate > 1) {
+   454			while (scaled_parent_rate % i == 0) {
+   455				n_candidate *= i;
+   456				if (n_candidate < n_max)
+   457					n = n_candidate;
+   458				else if (pre_div_pure * i < hid_max)
+   459					pre_div_pure *= i;
+   460				else
+   461					clk_rcg2_split_div(i, &pre_div_pure, &n, hid_max);
+   462	
+   463				scaled_parent_rate /= i;
+   464			}
+   465			i++;
+   466			count++;
+   467		}
+   468	
+   469		f->m = m;
+   470		f->n = n;
+   471		f->pre_div = pre_div_pure > 1 ? pre_div_pure : 0;
+   472	}
+   473	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
