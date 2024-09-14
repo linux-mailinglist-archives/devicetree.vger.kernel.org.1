@@ -1,136 +1,125 @@
-Return-Path: <devicetree+bounces-102936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0C87978E08
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 07:32:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2289978D95
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 07:25:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5FEEFB21058
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 05:32:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E65911C22671
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 05:25:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62750192B73;
-	Sat, 14 Sep 2024 05:26:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D60A78283;
+	Sat, 14 Sep 2024 05:25:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cqxSHtIM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nPLP5TJY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0747192B63;
-	Sat, 14 Sep 2024 05:26:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBF6A44C8C;
+	Sat, 14 Sep 2024 05:25:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726291615; cv=none; b=OGHxk8unUQJsQmSTZfreskCCMAeqIz5pVPpoMOwITeu35QDdpDBceF1Z+D6vn9tToH/Q8CFOqFKk4860fMIxpvpfUt8uIRLpZKwcE5BWr8bCvdAkwe1foa9I6Obw5ERt420rmTrJ1OrtZ5HFx0zasfAGc2UI31k/TFEdY61Fkjw=
+	t=1726291532; cv=none; b=DMny2r2+izun2p8frZbsfVvSNt/Fi3vTvg/3psXm63yif1ILHeBuPk0yw6AuAu75IOdCxoS7xEzlz2s7xP0jUBhkig9jXAN5vwFJ4oX8zxpMK4AIUUIKVm8HgtQriHXHLUNIcsY3wO/KL4eudeceq2HkpBR9L4jxHqt2OcrTvNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726291615; c=relaxed/simple;
-	bh=IlwfpKeYG1A6lmRpl2J8Js+0dUrkM33rNMIVVPeLcso=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=EBcUY/5w7sO44ZjcpBsHXI+Prl7lJGWLmTsOQBQ8qicKuZ5VlAmDSBB2BNo7kdZJDU2YfsIpE3pgy4E/BY1GRjfuHhn41OIHccHbO+pU7KFz/4AgEJl/AZnG0rj2tVtk/aYw/jKsw2uwXzxmkrVfKQfYwV5hoTYpJWxxgIdBE58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cqxSHtIM; arc=none smtp.client-ip=209.85.215.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-7163489149eso1246518a12.1;
-        Fri, 13 Sep 2024 22:26:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726291613; x=1726896413; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Zy0C2tn+S+ad9UGMaUozuLH5nIPIOY9VH2lYfYG3DPM=;
-        b=cqxSHtIMhW3IZ0I25qq7R1PMrSYWmTnVo0QCXF8KJ5FKBLHoSReJQldWHt9OertdIE
-         D2IBeh/8ILTYMVbO8+GtaKrzbJhXn9xt3GJNjMziJNM8OIoHiHWwefxdFBV+ExXoUJNn
-         SFelCNyQERnotstjdU6pYA6bXHPno3qgwsrbEMWWNhJ5qG9YfqFdjNBw65JfMxNrGuJJ
-         UPnRWxBJJzTI7ZJbgsqteFyFwBtrR8R3bQqtGkCTk46xh9Tv/TqGxXkk7qUBwwdq3Bti
-         4S64DZ39NHlK3EXxHYa987H2n3oV69kyVil1u8DOrFxwaOrH7UjZJWoHhitAhGKwlkho
-         EgMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726291613; x=1726896413;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Zy0C2tn+S+ad9UGMaUozuLH5nIPIOY9VH2lYfYG3DPM=;
-        b=kCBNFu/w/uEziYq4IknJwP62nbwAsWakN0aL+B9T1PWa1WXHoX0HInrQKj/fsL900e
-         RLHYXn5NueiS4sMVEiL0sknjzqkPyfcAOJmtwygXGalGGa7wJSpehcDpNO/U02PwUpud
-         kzOuCr/b0iPIRlW6yIg7VULV3Vie9OBwTjwq7C+sROSxdwA36Vr37YsjoK6sXkyeJAdR
-         dDVdt7V+x0brhhiSKSgWT1ucIK9IeDujjUFikdbxJ7enE9JwqjPusNvAgsNOKpOj6+D9
-         Ewiz2iS2GNy9FnfUDQ3m2/FlLgPpzxrCESVtzQbE1+kvkXd8M0lwBx8doqdhaT8B2Z7t
-         LbKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVJafuLksu6Ctf6f9z724q+faK5PB1D8jiQ8XKA4ICp36wml5+I2VVdKvWY+vYyCjIwI+iYNyHKZwhMiw==@vger.kernel.org, AJvYcCVjGUcXhT2V3up8xfZWTNyy8EXwN50VcXc0cRxqXdNt7t8CGRQb2eY8rr1urr/RyxmCcWHFeRAfeesElzSVJXY=@vger.kernel.org, AJvYcCW5RmPd75dbWWqNq6bNRgWQ+KnJQIQvNlI1tRe+l6avrqGcA6h3Nn5jkUyx3/h8NOKBcoLfcj2E5/D/nBWJ@vger.kernel.org, AJvYcCWP2AC4HeaWvNY0S+jLy89QxVPIgp36gUVxex675safx3GdW8mM6I4ELfjZTLK7ekTfGzPsLA3HM5I=@vger.kernel.org, AJvYcCXcwNndotA88rzbmoBg+skaEz4I8FgAU0bPGY0ngp52eklShzbEUbInjLTPB8zwS/pbJ/jKp5ygYMqf@vger.kernel.org
-X-Gm-Message-State: AOJu0YzESYxVdTK9kcgvpPKJNFxCbUlr5IvJW8NDjKf9e/VkiL1Txw2T
-	KI3B/KkOsLEuj2atX9ANoUiM05oKaWusIi7/klK62f4cUI9dEkye
-X-Google-Smtp-Source: AGHT+IFAx3i0hnBuicVE8YdLzp74NzUBOGZMK0WvmVsGZX4ALFKO/gW3JhnXQICFiSDi3OGKhSwvZQ==
-X-Received: by 2002:a05:6a20:7b26:b0:1d1:17c6:7a38 with SMTP id adf61e73a8af0-1d117c67a9emr4578281637.9.1726291613169;
-        Fri, 13 Sep 2024 22:26:53 -0700 (PDT)
-Received: from localhost.localdomain ([59.188.211.160])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-71944b7b749sm391223b3a.113.2024.09.13.22.26.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Sep 2024 22:26:52 -0700 (PDT)
-From: Nick Chan <towinchenmi@gmail.com>
-To: Hector Martin <marcan@marcan.st>,
-	Sven Peter <sven@svenpeter.dev>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Mark Kettenis <kettenis@openbsd.org>,
-	asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-watchdog@vger.kernel.org
-Cc: Nick Chan <towinchenmi@gmail.com>,
-	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Subject: [PATCH v2 22/22] arm64: Kconfig: Update help text for CONFIG_ARCH_APPLE
-Date: Sat, 14 Sep 2024 13:17:31 +0800
-Message-ID: <20240914052413.68177-26-towinchenmi@gmail.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240914052413.68177-1-towinchenmi@gmail.com>
-References: <20240914052413.68177-1-towinchenmi@gmail.com>
+	s=arc-20240116; t=1726291532; c=relaxed/simple;
+	bh=y10UL2fiKM6zXqdv45T+NCDp2jd43U6zrfE3QLH15qU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NsGv82Q8wX5Efa/oD1YErUaSDM4yaydaiHD8YxIIP047z2/vpmfD/4YHOgSguLLuQrVB87Di/E6905AiLkjsKTH2Q19+66vp26IygDSdmL0Y+ylKYsFtew0OR8agTQEyAzXqOCzz3cSACKqwuhvRm28pBzPhB5JvoJr7fPcMvG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nPLP5TJY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 541BAC4CECC;
+	Sat, 14 Sep 2024 05:25:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726291532;
+	bh=y10UL2fiKM6zXqdv45T+NCDp2jd43U6zrfE3QLH15qU=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=nPLP5TJYWkdJdEgOCEQ5vpb+KiRf/nRbnZ+G9jyjppMeoMFCGpD4ZQSdvHkYqtiCS
+	 O9ySghrOtoXSZwuLmg/P635Lw4E2/2aiFzCtozHyXxFz9D/K8vB97L1FBkxC8CnNsF
+	 WwoTJWdjIcYbospS/JHpDPpOWjKC+FMHe+teS1gQd2/7AMcPcU2Lmeccqod6S44pr8
+	 gEOy4obLpVGS41j5G69tQsHkNvF8FHyCFMTexFSQVqosbku6Y/AZye6Xh51fPSXVIQ
+	 1F5a69Cn7AiRkDn0rLrUr3bVoVzjtmOp3KtPkQsOKLk7pBT7dCK1PiWg3/46+Jr96V
+	 xKtXcwJ23cLOg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BD82FA374E;
+	Sat, 14 Sep 2024 05:25:32 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH 0/5] Add A5 SoC PLLs and Peripheral clock
+Date: Sat, 14 Sep 2024 13:25:22 +0800
+Message-Id: <20240914-a5-clk-v1-0-5ee2c4f1b08c@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEIe5WYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDS0ND3URT3eScbF1j02QTy8TkJGOTVEMloOKCotS0zAqwQdGxtbUAVqX
+ Sv1gAAAA=
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chuan Liu <chuan.liu@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1726291530; l=1750;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=y10UL2fiKM6zXqdv45T+NCDp2jd43U6zrfE3QLH15qU=;
+ b=sUAB/u6hyKEzqV+R2fe113uLL+QgpGEdnrQzsqmHoS4LtwcUOpqrDytQM0YYlyT5HmDUqn3l5
+ n9qfi5GZ0DwBdITVtOTKWoe3YbR/qVjhcoZn7RJXksRTcBduZShmnUR
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-Apple's A7-A11 SoC is now supported, so the original help text is no longer
-accurate.
+The patchset adds support for the peripheral and PLL clock controller
+found on the Amlogic A5 SoC family, such as A113X2.
 
-Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+Some clocks are provided by security zones. These clock accessed
+througth SCMI driver in linux, inlcuding OSC, SYS_CLK, AXI_CLK,
+CPU_CLK, DSU_CLK, GP1_PLL, FIXED_PLL_DCO, FIXED_PLL, SYS_PLL_DIV16,
+ACLKM, CPU_CLK_DIV16, FCLK_50M_PREDIV, FCLK_50M_DIV, FCLK_50M, 
+FCLK_DIV2_DIV, FCLK_DIV2, FCLK_DIV2P5_DIV, FCLK_DIV2P5, FCLK_DIV3_DIV,
+FCLK_DIV3, FCLK_DIV4_DIV, FCLK_DIV4, FCLK_DIV5_DIV, FCLK_DIV5,
+FCLK_DIV7_DIV and FCLK_DIV7.
+
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- arch/arm64/Kconfig.platforms | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Chuan Liu (5):
+      dt-bindings: clock: add Amlogic A5 PLL clock controller
+      dt-bindings: clock: add Amlogic A5 SCMI clock controller support
+      dt-bindings: clock: add Amlogic A5 peripherals clock controller
+      clk: meson: add support for the A5 SoC PLL clock
+      clk: meson: add A5 clock peripherals controller driver
 
-diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-index 6c6d11536b42..370a9d2b6919 100644
---- a/arch/arm64/Kconfig.platforms
-+++ b/arch/arm64/Kconfig.platforms
-@@ -37,8 +37,8 @@ config ARCH_APPLE
- 	bool "Apple Silicon SoC family"
- 	select APPLE_AIC
- 	help
--	  This enables support for Apple's in-house ARM SoC family, starting
--	  with the Apple M1.
-+	  This enables support for Apple's in-house ARM SoC family, such
-+	  as the Apple M1.
- 
- menuconfig ARCH_BCM
- 	bool "Broadcom SoC Support"
+ .../clock/amlogic,a5-peripherals-clkc.yaml         |  126 ++
+ .../bindings/clock/amlogic,a5-pll-clkc.yaml        |   62 +
+ drivers/clk/meson/Kconfig                          |   28 +
+ drivers/clk/meson/Makefile                         |    2 +
+ drivers/clk/meson/a5-peripherals.c                 | 1471 ++++++++++++++++++++
+ drivers/clk/meson/a5-pll.c                         |  553 ++++++++
+ .../clock/amlogic,a5-peripherals-clkc.h            |  139 ++
+ include/dt-bindings/clock/amlogic,a5-pll-clkc.h    |   24 +
+ include/dt-bindings/clock/amlogic,a5-scmi-clkc.h   |   37 +
+ 9 files changed, 2442 insertions(+)
+---
+base-commit: c92651b5d51738859098d59692ff8ff4fa85bcd6
+change-id: 20240911-a5-clk-35c49acb34e1
+
+Best regards,
 -- 
-2.46.0
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
 
 
