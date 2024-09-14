@@ -1,104 +1,124 @@
-Return-Path: <devicetree+bounces-103008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6AFB9792AC
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 19:29:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E4CD9792BA
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 19:56:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42E1DB22D7B
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 17:29:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B1F21C21393
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 17:56:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0FC51D1305;
-	Sat, 14 Sep 2024 17:28:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58B9C1D096C;
+	Sat, 14 Sep 2024 17:56:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e56duIMx"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="BCKnMStk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5C41D12EB;
-	Sat, 14 Sep 2024 17:28:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AAA6522F;
+	Sat, 14 Sep 2024 17:56:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726334939; cv=none; b=JG/DmdV4sh8oTty4xr8f3lSpaUSnBrMciT8Dcono7GWrWHREZWqPrFjFjOMIdLsaies/lGWFYbIEUU/RsXaDsLVP0TP2Wr8XPa4H1waX/K6cXFY9JpfirMGpnDNaG1NhOZbo/NZpN3eANnYJVrPoXZ5qfln2j5J/x0fliOHo7/g=
+	t=1726336574; cv=none; b=WtgyLB5XCKpA7ioEWVtxsCz3uPfxQKhRBY4JBVWudomC3ChKl9b5C35x0D/SGn1QdHl2r0pA+uwwnjfFewNuVUEe2X2mECOO2kDEtj85QLm73XDEpyclUvD5tlKnh2Gs3/Gh7DuMJrhu0wgjITNxticNFDn69mSItbtBFkMVsOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726334939; c=relaxed/simple;
-	bh=NXf7e01hl3GO0CQZRAffBRyDuc6rntgFk96UeBSOmaA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=say1gQitbP2HuA7FuKP989savLY19VlU27UpCqSnebFIVl+TU9PAh6tElaaH9AHotcZIU9h0WYGqC4mNTEtWzkT6peAPTt5cwlD7DvAQj4eEw+bQZnB0Q6pyR9dzrGNlSu7JniB5KOqHIWnCwkv793wicCwGYTiAH54JA8wuMng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e56duIMx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55B5EC4CEC0;
-	Sat, 14 Sep 2024 17:28:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726334939;
-	bh=NXf7e01hl3GO0CQZRAffBRyDuc6rntgFk96UeBSOmaA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=e56duIMxJb49lnihZT+U4kBjmaOg51PqwNPQ71sZHpGmuDYThT5CvbDKs+8hjSOZY
-	 BzV9s0h6z8GIWoVFFQV6Xd8JtQAl6KFB8n8SLDdZNg+2duzurx7y35z5JKPC7/ytlE
-	 K1nrJoZotWHuY+jNLiGtJYR/JIMebUo7XA/IndRR6Hm6C+VvEfh12Irg1o6fLC6Uly
-	 p6StNaJjiFxXYe3qzWtS7H4PZd1HzGogZKN77ClrToTVJMH52inY0y9JPKyKt+9VjN
-	 U4Cvx0FRvMe7CpNV9wU/7CAZUhGujbZs8BlF52Ij3UuWL5AgsIPl/RRaWbgyzXcrLH
-	 6CkbEu9fbd93w==
-Date: Sat, 14 Sep 2024 18:28:48 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Trevor Gamblin <tgamblin@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, David
- Lechner <dlechner@baylibre.com>, Uwe Kleine-Konig
- <u.kleine-koenig@baylibre.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v5 0/3] iio: adc: add new ad7625 driver
-Message-ID: <20240914182848.34edc5e3@jic23-huawei>
-In-Reply-To: <20240909-ad7625_r1-v5-0-60a397768b25@baylibre.com>
-References: <20240909-ad7625_r1-v5-0-60a397768b25@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1726336574; c=relaxed/simple;
+	bh=usg5zuvL6dMiMtReqxAmcXPlYBF1AWzxevclY567A/4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eGPxkqOOeL2frg0ZxgqulD244E4Pn3cRqlgLHYfr5DlwhmK1eAXyi2ScBrvMhgaHNfN6+Bn8MX1c33+kQSZXNuGbynbL7n6v+bacrvua2YQSoIFMZLSfG8eiZxup+bUZq/kpSwzgEWD56dCsu32TGYxjlDro0ArzPuMq4QtE03c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=BCKnMStk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78388C4CEC0;
+	Sat, 14 Sep 2024 17:56:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1726336573;
+	bh=usg5zuvL6dMiMtReqxAmcXPlYBF1AWzxevclY567A/4=;
+	h=Date:From:To:List-Id:Cc:Subject:References:In-Reply-To:From;
+	b=BCKnMStk0KD+KF5iLNc2XB3G3YDXTC7IF5zt1upbDpbkyTewGa+L+bN3T+QCIm+/Y
+	 dcUP4wpxJ5OVej1SrXlGVNH6rMQsZ8gFAsxwg3lKkaE7rzFkVGFbcQIkMnzvhVM6Kr
+	 M5RTY7BxqmGcL3I30T4qtMRxT9JvvK30B023vO8c=
+Date: Sat, 14 Sep 2024 19:56:09 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Markus Elfring <Markus.Elfring@web.de>
+Cc: Arturs Artamonovs <Arturs.Artamonovs@analog.com>,
+	Greg Malysa <greg.malysa@timesys.com>,
+	Nathan Barrett-Morrison <nathan.morrison@timesys.com>,
+	Utsav Agarwal <Utsav.Agarwal@analog.com>,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+	soc@kernel.org, Andi Shyti <andi.shyti@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Olof Johansson <olof@lixom.net>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>, Will Deacon <will@kernel.org>,
+	LKML <linux-kernel@vger.kernel.org>, adsp-linux@analog.com
+Subject: Re: [PATCH 01/21] arm64: Add ADI ADSP-SC598 SoC
+Message-ID: <2024091459-company-diabolic-a9ed@gregkh>
+References: <20240912-test-v1-1-458fa57c8ccf@analog.com>
+ <b6af2603-7f72-47d7-98b9-6dc2761dfb74@web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b6af2603-7f72-47d7-98b9-6dc2761dfb74@web.de>
 
-On Mon, 09 Sep 2024 10:30:46 -0400
-Trevor Gamblin <tgamblin@baylibre.com> wrote:
-
-> This series adds a new driver for the Analog Devices Inc. AD7625,
-> AD7626, AD7960, and AD7961. These chips are part of a family of
-> LVDS-based SAR ADCs. The initial driver implementation does not support
-> the devices' self-clocked mode, although that can be added later.
+On Sat, Sep 14, 2024 at 07:15:08PM +0200, Markus Elfring wrote:
+> …
+> > +++ b/drivers/soc/adi/system.c
+> > @@ -0,0 +1,257 @@
+> …
+> > +static void adi_system_config_remove(struct platform_device *pdev)
+> +{
+> > +	struct adi_system_config *config = platform_get_drvdata(pdev);
+> > +	unsigned long flags;
+> > +
+> > +	spin_lock_irqsave(&adi_system_config_lock, flags);
+> > +	list_del(&config->list);
+> > +	spin_unlock_irqrestore(&adi_system_config_lock, flags);
+> > +}
+> …
 > 
-> The devices make use of two offset PWM signals, one to trigger
-> conversions and the other as a burst signal for transferring data to the
-> host. These rely on the new PWM waveform functionality being
-> reviewed in [1] and also available at [2].
+> Under which circumstances would you become interested to apply a statement
+> like “guard(spinlock_irqsave)(&adi_system_config_lock);”?
+> https://elixir.bootlin.com/linux/v6.11-rc7/source/include/linux/spinlock.h#L572
 > 
-> This work is being done by BayLibre and on behalf of Analog Devices
-> Inc., hence the maintainers are @analog.com.
+> Regards,
+> Markus
 > 
-> Special thanks to David Lechner for his guidance and reviews.
-> 
-> [1]: https://lore.kernel.org/linux-pwm/cover.1722261050.git.u.kleine-koenig@baylibre.com
-> [2]: https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git/log/?h=pwm/chardev
-> 
-> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
-Hi Trevor, 
 
-This driver looks good to me. 
 
-Uwe: From a quick look at [1], looks like you plan to queue that lot up
-after the merge window.  Would you mind doing an immutable branch for
-me to pull into IIO?
+Hi,
 
-No rush though - we can figure this out next cycle.
+This is the semi-friendly patch-bot of Greg Kroah-Hartman.
 
-Thanks,
+Markus, you seem to have sent a nonsensical or otherwise pointless
+review comment to a patch submission on a Linux kernel developer mailing
+list.  I strongly suggest that you not do this anymore.  Please do not
+bother developers who are actively working to produce patches and
+features with comments that, in the end, are a waste of time.
 
-Jonathan
+Patch submitter, please ignore Markus's suggestion; you do not need to
+follow it at all.  The person/bot/AI that sent it is being ignored by
+almost all Linux kernel maintainers for having a persistent pattern of
+behavior of producing distracting and pointless commentary, and
+inability to adapt to feedback.  Please feel free to also ignore emails
+from them.
+
+thanks,
+
+greg k-h's patch email bot
 
