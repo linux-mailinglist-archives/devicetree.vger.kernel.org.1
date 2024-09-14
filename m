@@ -1,223 +1,96 @@
-Return-Path: <devicetree+bounces-103011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8CBB9792ED
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 20:22:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A71489792F6
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 20:30:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A7091F22584
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 18:22:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 994FBB223AE
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 18:30:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C36E21D1311;
-	Sat, 14 Sep 2024 18:22:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD2201D12F0;
+	Sat, 14 Sep 2024 18:30:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="TARNF8fy"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="jN/kQzvY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-19.smtpout.orange.fr [80.12.242.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62DE41D1301
-	for <devicetree@vger.kernel.org>; Sat, 14 Sep 2024 18:22:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 250F91D2232
+	for <devicetree@vger.kernel.org>; Sat, 14 Sep 2024 18:30:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726338126; cv=none; b=ZHN6xO5Hgi4eQLbMSzEffOveP9RIjvOF729fPwyn3SZ/aICBi1sKfXVHpNkTOwHG8rLGKkOTWseF+FxGTFyp4GI0qNCqx8CfG1MoNQeZtg8cnfpeYE34i21idmHMSQHpbJC+jyZroifvNXZfeAwf5k3Vy926aN9T+5nHiFoZ6t0=
+	t=1726338618; cv=none; b=Ig4o0W5MWdT6VG2C3bgCa1qPOpdvmDcp2KITbO8RmMp4ZaKynrg4l2O9SLFI5p9vVSAqJv3o6AjRcgHNKMIWhSD6vnDOqoVR/yRsMwM2uyzIIbwRvOcH00EUCdj0p7awhukntY2VFY1394q0joq5wtJ6RJQBhVRy6GYQnN0cvyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726338126; c=relaxed/simple;
-	bh=j55s553NOeci77Fom8LTNM9U0CMq/EwxScjnjpwSj6s=;
-	h=Message-ID:Date:MIME-Version:Subject:References:From:Cc:To:
-	 In-Reply-To:Content-Type; b=icrsrhoPHlAmE5x1290PoH5zbQvNr5WITzH315QDoBKpQJnkjPnCJgQsaDKOhibF6xJvQUUrzGTkI56XRbfH1Kz8SGXKttjlfUeEiZWoVd5r4Idh+6I2e3Sh51YRBhk87NvR71XSkEG22gTB8rPhFZO9miwwkR9iMMJMu/2m94Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=TARNF8fy; arc=none smtp.client-ip=80.12.242.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id pXPDskhYqv6ompXPEsampP; Sat, 14 Sep 2024 20:22:01 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1726338121;
-	bh=OFVbNL38l0/PGyVb7FHahbcqf/dMCKYK2Z28IptNgWQ=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To;
-	b=TARNF8fy9dkV0wQYIkEHOdKPxwQwEWBr+ZQAZFB5GFeXJgqxzw8U2tq5xQR44dACw
-	 qDvRc96FXAt0Cc6hMLx27Z9AoB14LttkKQa6yq6uwUbc1X2MICg29HeYTNIRtu5clQ
-	 1FW1oVPJAdcdQ04lm2NU9KIYwHJct5qidTjeO/6AcZ4w+l5avCmepRSvA3LTD9T5cg
-	 LIvKn7HQ4nEsFY8gDXgLdH1tJ11H6/SqMqSKl+0ebr434y5GOGrOBuYnvwWG6SJXyN
-	 jbNHSQfV9uK4++DfLkD2VXh3s8anSDTpsBfd+LDD3QDHmdJzZlLCKUDlWkQxbdIe9O
-	 hrkut749LJaKg==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Sat, 14 Sep 2024 20:22:01 +0200
-X-ME-IP: 90.11.132.44
-Message-ID: <8f869b3b-df3f-49a9-9b6e-640697aa91dd@wanadoo.fr>
-Date: Sat, 14 Sep 2024 20:21:56 +0200
+	s=arc-20240116; t=1726338618; c=relaxed/simple;
+	bh=EQ93nZSDGHLyBey8wgh1gxUSuoEk4PtupfSEChU/0Kw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QSNwi0jWyVWF00FWrt+nDYI+TXsZnhWmYD8PDQO9FhH+nMIKcugQmuPHNexgXF2BJHkJ0AJJ/nREn9E5RarCTjxTt5zzKz1sZXatyHBLi21ID0sktSLyi6agBI3oR40P+IlqS9vK45WBV3INxFbQ6cpFRY55f0oXsKi7a9xXNMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=jN/kQzvY; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=GvysVu0PhnkMft
+	9fkJoOIHZ3G0gRGbte7iX2P5NSMF0=; b=jN/kQzvYddBXxQ5+VA67fKKJQQOeab
+	0TIgRjf7sWjhVpHDZXxI5QM1PtCpTJ8tXgu8OND2YssumkU8nfzjxe4pYiKJ3rpq
+	uic08txEdMA7ZeJdU3H5oyQQfEVW3p9W3aipkIs8YeguPZxjEMFuULNv8FKO2p/x
+	3MMcgiYDb17gV66NWEaHC+R3zJcTqZQ9eRh6ZEJSwJqmDKguwzcTwAlD6zt4dm+N
+	oj1J9ncVVFGdHsYon4/jS2hDDHF4dOCJnC/oZ/3u1t1rseX+nUM1K5O/24NKqFx5
+	uvVRh1h5gw0f+JbpB7Wsf5wEatd4S1urI83fy9lGQ52IxCm/L5a6gMvg==
+Received: (qmail 1531060 invoked from network); 14 Sep 2024 20:30:05 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 14 Sep 2024 20:30:05 +0200
+X-UD-Smtp-Session: l3s3148p1@rvdVhxgiUrlQT+F6
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH] ARM: dts: renesas: genmai: Fix partition size for QSPI NOR Flash
+Date: Sat, 14 Sep 2024 20:28:44 +0200
+Message-ID: <20240914182948.94031-2-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] iio: dac: support the ad8460 Waveform DAC
-References: <20240912095435.18639-1-Mariel.Tinaco@analog.com>
- <20240912095435.18639-3-Mariel.Tinaco@analog.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Conor Dooley <conor+dt@kernel.org>,
- Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
- Dimitri Fedrau <dima.fedrau@gmail.com>, David Lechner
- <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>
-To: Mariel Tinaco <Mariel.Tinaco@analog.com>
-In-Reply-To: <20240912095435.18639-3-Mariel.Tinaco@analog.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Le 12/09/2024 à 11:54, Mariel Tinaco a écrit :
-> The AD8460 is a “bits in, power out” high voltage, high-power,
-> high-speed driver optimized for large output current (up to ±1 A)
-> and high slew rate (up to ±1800 V/μs) at high voltage (up to ±40 V)
-> into capacitive loads.
-> 
-> A digital engine implements user-configurable features: modes for
-> digital input, programmable supply current, and fault monitoring
-> and programmable protection settings for output current,
-> output voltage, and junction temperature. The AD8460 operates on
-> high voltage dual supplies up to ±55 V and a single low voltage
-> supply of 5 V.
-> 
-> Signed-off-by: Mariel Tinaco <Mariel.Tinaco-OyLXuOCK7orQT0dZR+AlfA@public.gmane.org>
-> ---
+Second partition was too large, looks like two digits got mixed up.
+Fixes:
 
-Hi,
+mtd: partition "user1" extends beyond the end of device "18000000.flash" -- size truncated to 0x4000000
 
-...
+Fixes: 30e0a8cf886c ("ARM: dts: renesas: genmai: Add FLASH nodes")
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
 
-> +#define AD8460_CHAN_EXT_INFO(_name, _what, _read, _write) {		\
-> +	.name = _name,							\
-> +	.read = (_read),						\
-> +	.write = (_write),						\
-> +	.private = (_what),						\
+As you can see, I got my Genmai board working again \o/
 
-Why () for _read, _write, _what?
-(or why no () for _name?)
+ arch/arm/boot/dts/renesas/r7s72100-genmai.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> +	.shared = IIO_SEPARATE,						\
-> +}
-> +
-> +static struct iio_chan_spec_ext_info ad8460_ext_info[] = {
+diff --git a/arch/arm/boot/dts/renesas/r7s72100-genmai.dts b/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
+index 63f9f679964b..c835d61fc20d 100644
+--- a/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
++++ b/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
+@@ -54,7 +54,7 @@ partition@0 {
+ 
+ 			partition@4000000 {
+ 				label = "user1";
+-				reg = <0x04000000 0x40000000>;
++				reg = <0x04000000 0x04000000>;
+ 			};
+ 		};
+ 	};
+-- 
+2.45.2
 
-I think this can be static const struct.
-
-> +	AD8460_CHAN_EXT_INFO("raw0", 0, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw1", 1, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw2", 2, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw3", 3, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw4", 4, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw5", 5, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw6", 6, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw7", 7, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw8", 8, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw9", 9, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw10", 10, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw11", 11, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw12", 12, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw13", 13, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw14", 14, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("raw15", 15, ad8460_dac_input_read,
-> +			     ad8460_dac_input_write),
-> +	AD8460_CHAN_EXT_INFO("toggle_en", 0, ad8460_read_toggle_en,
-> +			     ad8460_write_toggle_en),
-> +	AD8460_CHAN_EXT_INFO("symbol", 0, ad8460_read_symbol,
-> +			     ad8460_write_symbol),
-> +	AD8460_CHAN_EXT_INFO("powerdown", 0, ad8460_read_powerdown,
-> +			     ad8460_write_powerdown),
-> +	IIO_ENUM("powerdown_mode", IIO_SEPARATE, &ad8460_powerdown_mode_enum),
-> +	IIO_ENUM_AVAILABLE("powerdown_mode", IIO_SHARED_BY_TYPE,
-> +			   &ad8460_powerdown_mode_enum),
-> +	{}
-> +};
-
-...
-
-> +static int ad8460_probe(struct spi_device *spi)
-> +{
-> +	struct ad8460_state *state;
-> +	struct iio_dev *indio_dev;
-> +	struct device *dev;
-> +	u32 tmp[2], temp;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*state));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	state = iio_priv(indio_dev);
-> +
-> +	indio_dev->name = "ad8460";
-> +	indio_dev->info = &ad8460_info;
-> +
-> +	state->spi = spi;
-> +	dev = &spi->dev;
-> +
-> +	state->regmap = devm_regmap_init_spi(spi, &ad8460_regmap_config);
-> +	if (IS_ERR(state->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(state->regmap),
-> +				     "Failed to initialize regmap");
-> +
-> +	devm_mutex_init(dev, &state->lock);
-> +
-> +	state->sync_clk = devm_clk_get_enabled(dev, NULL);
-> +	if (IS_ERR(state->sync_clk))
-> +		return dev_err_probe(dev, PTR_ERR(state->sync_clk),
-> +				     "Failed to get sync clk\n");
-> +
-> +	state->tmp_adc_channel = devm_iio_channel_get(dev, "ad8460-tmp");
-> +	if (IS_ERR(state->tmp_adc_channel)) {
-> +		if (PTR_ERR(state->tmp_adc_channel) == -EPROBE_DEFER)
-> +			return -EPROBE_DEFER;
-> +		indio_dev->channels = ad8460_channels;
-> +		indio_dev->num_channels = ARRAY_SIZE(ad8460_channels);
-> +	} else {
-> +		indio_dev->channels = ad8460_channels_with_tmp_adc;
-> +		indio_dev->num_channels = ARRAY_SIZE(ad8460_channels_with_tmp_adc);
-> +	}
-> +
-> +	ret = devm_regulator_bulk_get_enable(dev, ARRAY_SIZE(ad8460_supplies),
-> +					     ad8460_supplies);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to enable power supplies\n");
-> +		return ret;
-
-Nitpick: return dev_err_probe() as done in other places?
-
-> +	}
-> +
-> +	ret = devm_regulator_get_enable_read_voltage(dev, "refio_1p2v");
-> +	if (ret < 0 && ret != -ENODEV)
-> +		return dev_err_probe(dev, ret, "Failed to get reference voltage\n");
-> +
-> +	state->refio_1p2v_mv = ret == -ENODEV ? 1200 : ret / 1000;
-
-...
-
-CJ
 
