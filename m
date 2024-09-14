@@ -1,261 +1,308 @@
-Return-Path: <devicetree+bounces-102898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D6A9978CBD
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 04:19:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66F4A978CD8
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 04:52:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8341C288A70
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 02:19:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B01C1C22AFD
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 02:52:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AB02168B7;
-	Sat, 14 Sep 2024 02:18:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C69BB12B82;
+	Sat, 14 Sep 2024 02:52:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="O7/l4jf6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAE4FC13D;
-	Sat, 14 Sep 2024 02:18:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FFB211185
+	for <devicetree@vger.kernel.org>; Sat, 14 Sep 2024 02:52:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726280335; cv=none; b=N7jBFW3tyYeBfVEoHYsOFBVN/aqmyEIu6AJ0bmYPZZzNiLos75CwY8j+Wn/oxo1XsqtKjEZbwJLZuw0eygNGTWw2s4nfk9/aHSBFuGRxsZgDco0G0vCWQ9phpaG5bywuPYV1Lt17ZOP5k9J7miibsHRd9Ql6dvrWgCRG0rJ/Rqg=
+	t=1726282333; cv=none; b=Oxsr0/GH7FSpwj9Zr4/b1AMUi7DhRJF6vzXAgbl/FWH5qMy+oih1XaHDGiroN1+Gh9EdfEUwXB8/s8nH/yeT9/yoHczLEG56sC9y7PVe4cIb0tfvgSl73DpkuAPdJbTDeiXPd4h76ZCdfKbHDWgrggyIgzN5NQNwheBm/sCZ7Co=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726280335; c=relaxed/simple;
-	bh=ZTEcpdbnmUfr1X64bF3TIuqOhdRmJceHg9z2xV2RnJU=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=mcnVvLjISWwa+NqnAqwXqZr8jWyAh65m/8j3Y/pyqVramlOyDqXw0M3W3gCxgbfvCRtvi8Ujg+SSTIV4PH71BfJ3qALkXuYeqfqCeQX85SL1f58NPCwOCLj2fLLj0S19f8Z174t7j9gx8S5YSKM2zpIXwwTc1M1uzRCGz2CqxJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [10.20.42.164])
-	by gateway (Coremail) with SMTP id _____8Ax6+mJ8uRm7pwHAA--.17457S3;
-	Sat, 14 Sep 2024 10:18:49 +0800 (CST)
-Received: from [10.20.42.164] (unknown [10.20.42.164])
-	by front2 (Coremail) with SMTP id qciowMBxOsaI8uRmhrYHAA--.34198S2;
-	Sat, 14 Sep 2024 10:18:48 +0800 (CST)
-Subject: Re: [PATCH v4 2/2] Loongarch: EDAC driver for loongson memory
- controller
-To: Borislav Petkov <bp@alien8.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- chenhuacai@kernel.org, linux-edac@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@xen0n.name,
- tony.luck@intel.com, james.morse@arm.com, mchehab@kernel.org,
- rric@kernel.org, loongarch@lists.linux.dev
-References: <20240909032124.18819-1-zhaoqunqin@loongson.cn>
- <20240909032124.18819-3-zhaoqunqin@loongson.cn>
- <20240913101137.GHZuQP2WzlkvJ5gG2F@fat_crate.local>
-From: Zhao Qunqin <zhaoqunqin@loongson.cn>
-Message-ID: <2ca97c7c-2fd4-3ce5-9e8c-426c418ebcf5@loongson.cn>
-Date: Sat, 14 Sep 2024 10:18:02 +0800
-User-Agent: Mozilla/5.0 (X11; Linux mips64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+	s=arc-20240116; t=1726282333; c=relaxed/simple;
+	bh=1Gr5pJH9pMrNB4Z2ewdxf3KB031tjCazkwMcq3AHEks=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VRkzwidtA+Hv4sVgqKkq9ZgCISVM4hC7qMFBe+/KwMKQaH22gJbpLf1IJ1H2zi5mJPu0JXOhvMQNYWEg4MqIzJPagm7P+2nrkkj1wTvtepKDg870mOifv1suU0EvkrejsMvczW7H4mLuBsbKxXybuoJWZS8/o0HCR1dbV9P7/YM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=O7/l4jf6; arc=none smtp.client-ip=209.85.166.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-82ce1cd2026so98118339f.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2024 19:52:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1726282330; x=1726887130; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PcgocvC07KwdgYkvDV/qMfScM5+LqmPejCCEAA1uMJI=;
+        b=O7/l4jf6WeHi3/qunfph2cyQj94ZPUkAtgNgcMFvigFIzUCCXx9Q8kuFw1Tz52eyiu
+         a04cS3mJ/OeBbfxXrrPIUX7kyjTrTFROQOjL9Llx9Wta/I3kBvM0W4pksc/l+4T4N7nt
+         3yGauRwmLcCCWBNBkyJH0tWFKKylkcrNMFOVeJKzC2KY6xiSsMXMNLZ5SkKGHMDqkFT6
+         /wVMqYk09lis4/r83VD3lDgyWWnNUimTOGCHGnefVRETqy1K2lUDtZzOEzc5nBBZRDy2
+         jzVbx480MMm8rlllzyUMm9bcQvnCJlEhjwZ5AV9SzG2FbQCdxcdRIjcP5SyaypbVHhq/
+         VevQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726282330; x=1726887130;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PcgocvC07KwdgYkvDV/qMfScM5+LqmPejCCEAA1uMJI=;
+        b=I2LSRuahYmA0N3EeAkzjisDHX+BKCnxKqp0788p6zLdkLsDYIrfRkiJ2YOiq0VWRRC
+         fdD6wT2Ubi1+8WpCHUSdsousXqji0NIn0FQEZlc1NBMa095BoNs7sb7vB7SiiqMdOAg6
+         AJkM7BqGdu6e5UVXYBDuSXK3ZPC2IXzWi7DYOaBI91VQf+MHfOBJAL+coblKsTgPaz7j
+         2dnv7xncJduhUAUj4aotBUKKwU+PkaidrNWdZ5zVsaiQG1N0Z/KWzMnguCwhxal6oE/C
+         8nIkYmfbbkOsMqa0KdFd5zQYm+azSAigTHrKcqU2HEGwgQiO7rctSYKscBFsUSsv8zmr
+         ce1A==
+X-Forwarded-Encrypted: i=1; AJvYcCW0XNWpEuMNVmirCa4lzJQ0AxfVTPXoMcsxNU6HxXjMcJczEY4PxXjNrDytPQ/9Jvbdw/kNiWLDnj34@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyd8UvOU/a19MMUecOIOqHHXM2KJUKTEghHLnQ7Mh2NBmCK2Ro+
+	aLIJ1i+1MzX4pNyE1QZzDMtvkiLpKqOxb7VW5kNavO6srbS9kK0WWArfpBmUH/8=
+X-Google-Smtp-Source: AGHT+IEaD4v+a/RKnKmId+r+Iz4R86fNRYyVeVXynZnVMTjpM3fXydjExpGYdtf8Iye3kIi/wgX9bQ==
+X-Received: by 2002:a05:6e02:5ad:b0:3a0:8dae:8b06 with SMTP id e9e14a558f8ab-3a08dae8c99mr24837465ab.9.1726282330175;
+        Fri, 13 Sep 2024 19:52:10 -0700 (PDT)
+Received: from [100.64.0.1] ([147.124.94.167])
+        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3a092dfe1d8sm1609685ab.13.2024.09.13.19.52.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Sep 2024 19:52:09 -0700 (PDT)
+Message-ID: <8e474b14-e963-4d3e-8240-37f662e7bd8a@sifive.com>
+Date: Fri, 13 Sep 2024 21:52:07 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20240913101137.GHZuQP2WzlkvJ5gG2F@fat_crate.local>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 09/10] RISC-V: KVM: Allow Smnpm and Ssnpm extensions
+ for guests
+To: Anup Patel <anup@brainfault.org>
+Cc: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>,
+ linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>,
+ kasan-dev@googlegroups.com, Atish Patra <atishp@atishpatra.org>,
+ Evgenii Stepanov <eugenis@google.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>,
+ kvm-riscv@lists.infradead.org
+References: <20240829010151.2813377-1-samuel.holland@sifive.com>
+ <20240829010151.2813377-10-samuel.holland@sifive.com>
+ <CAK9=C2WjraWjuQCeU2Y4Jhr-gKkOcP42Sza7wVp0FgeGaD923g@mail.gmail.com>
+ <b6de8769-7e4e-4a19-b239-a39fd424e0c8@sifive.com>
+ <CAAhSdy08SoDoZCii9R--BK7_NKLnRciW7V3mo2aQRKW1dbOgNg@mail.gmail.com>
+ <20ab0fa2-d5dd-446d-9fff-a3ef82e8db35@sifive.com>
+ <CAAhSdy1pZcEfajg3OZUCaFf9JMYcMzpRVogCT5VL2FHx__vDdA@mail.gmail.com>
+ <4c010cb1-b57c-427e-a241-1dd3ab15f2ce@sifive.com>
+ <CAAhSdy0kYUdgX8NUKuOdQa-69ET=cscduJvyz3z31kVeB-JaNw@mail.gmail.com>
+From: Samuel Holland <samuel.holland@sifive.com>
 Content-Language: en-US
-X-CM-TRANSID:qciowMBxOsaI8uRmhrYHAA--.34198S2
-X-CM-SenderInfo: 52kd01pxqtx0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxCF15GrW3ZrWxJryxtryruFX_yoWrWry8pF
-	15C3WqyFs8tryUK34vvwn8ZF9avrZ3tF12yrW3t343Aa4qywn3ur9agF129r1kAr1jkr12
-	va4UKrZ3uFn0kFXCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUPFb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r106r15M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_
-	Gr0_Gr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYI
-	kI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUXVWU
-	AwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JMx
-	k0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l
-	4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxVAqx4xG67AKxV
-	WUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI
-	7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r
-	4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI
-	42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUcTKZDUUUU
+In-Reply-To: <CAAhSdy0kYUdgX8NUKuOdQa-69ET=cscduJvyz3z31kVeB-JaNw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Hi Anup,
 
-在 2024/9/13 下午6:11, Borislav Petkov 写道:
-> On Mon, Sep 09, 2024 at 11:21:24AM +0800, Zhao Qunqin wrote:
->> Subject: Re: [PATCH v4 2/2] Loongarch: EDAC driver for loongson memory controller
-> 			EDAC/loongson: Add EDAC driver ...
->
->> Reports single bit errors (CE) only.
+On 2024-09-05 12:18 AM, Anup Patel wrote:
+> On Wed, Sep 4, 2024 at 9:25 PM Samuel Holland <samuel.holland@sifive.com> wrote:
 >>
->> Signed-off-by: Zhao Qunqin <zhaoqunqin@loongson.cn>
->> ---
-> ...
->
->> diff --git a/drivers/edac/loongson_edac.c b/drivers/edac/loongson_edac.c
->> new file mode 100644
->> index 000000000..b89d6e0e7
->> --- /dev/null
->> +++ b/drivers/edac/loongson_edac.c
->> @@ -0,0 +1,182 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (C) 2024 Loongson Technology Corporation Limited.
->> + */
->> +
->> +#include <linux/edac.h>
->> +#include <linux/module.h>
->> +#include <linux/init.h>
->> +#include <linux/platform_device.h>
->> +
->> +#include "edac_module.h"
->> +
->> +enum ecc_index {
->> +	ECC_SET = 0,
->> +	ECC_RESERVED,
->> +	ECC_COUNT,
->> +	ECC_CS_COUNT,
->> +	ECC_CODE,
->> +	ECC_ADDR,
->> +	ECC_DATA0,
->> +	ECC_DATA1,
->> +	ECC_DATA2,
->> +	ECC_DATA3,
->> +};
->> +
->> +struct loongson_edac_pvt {
->> +	u64 *ecc_base;
->> +	int last_ce_count;
->> +};
->> +
->> +static void loongson_update_ce_count(struct mem_ctl_info *mci,
-> Drop the loongson_ prefix from all static functions.
->
-> Also, align function arguments on the opening brace.
->
->> +					int chan,
->> +					int new)
->> +{
->> +	int add;
->> +	struct loongson_edac_pvt *pvt = mci->pvt_info;
-> The EDAC tree preferred ordering of variable declarations at the
-> beginning of a function is reverse fir tree order::
->
-> 	struct long_struct_name *descriptive_name;
-> 	unsigned long foo, bar;
-> 	unsigned int tmp;
-> 	int ret;
->
-> The above is faster to parse than the reverse ordering::
->
-> 	int ret;
-> 	unsigned int tmp;
-> 	unsigned long foo, bar;
-> 	struct long_struct_name *descriptive_name;
->
-> And even more so than random ordering::
->
-> 	unsigned long foo, bar;
-> 	int ret;
-> 	struct long_struct_name *descriptive_name;
-> 	unsigned int tmp;
->
->> +
->> +	add = new - pvt->last_ce_count;
->> +
->> +	/* Store the new value */
-> Drop all those obvious comments.
->
->> +	pvt->last_ce_count = new;
->> +
->> +	/* device resume or any other exceptions*/
-> No clue what that means.
+>> On 2024-09-04 10:20 AM, Anup Patel wrote:
+>>> On Wed, Sep 4, 2024 at 8:27 PM Samuel Holland <samuel.holland@sifive.com> wrote:
+>>>>
+>>>> Hi Anup,
+>>>>
+>>>> On 2024-09-04 9:45 AM, Anup Patel wrote:
+>>>>> On Wed, Sep 4, 2024 at 8:01 PM Samuel Holland <samuel.holland@sifive.com> wrote:
+>>>>>> On 2024-09-04 7:17 AM, Anup Patel wrote:
+>>>>>>> On Thu, Aug 29, 2024 at 6:32 AM Samuel Holland
+>>>>>>> <samuel.holland@sifive.com> wrote:
+>>>>>>>>
+>>>>>>>> The interface for controlling pointer masking in VS-mode is henvcfg.PMM,
+>>>>>>>> which is part of the Ssnpm extension, even though pointer masking in
+>>>>>>>> HS-mode is provided by the Smnpm extension. As a result, emulating Smnpm
+>>>>>>>> in the guest requires (only) Ssnpm on the host.
+>>>>>>>>
+>>>>>>>> Since the guest configures Smnpm through the SBI Firmware Features
+>>>>>>>> interface, the extension can be disabled by failing the SBI call. Ssnpm
+>>>>>>>> cannot be disabled without intercepting writes to the senvcfg CSR.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+>>>>>>>> ---
+>>>>>>>>
+>>>>>>>> (no changes since v2)
+>>>>>>>>
+>>>>>>>> Changes in v2:
+>>>>>>>>  - New patch for v2
+>>>>>>>>
+>>>>>>>>  arch/riscv/include/uapi/asm/kvm.h | 2 ++
+>>>>>>>>  arch/riscv/kvm/vcpu_onereg.c      | 3 +++
+>>>>>>>>  2 files changed, 5 insertions(+)
+>>>>>>>>
+>>>>>>>> diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
+>>>>>>>> index e97db3296456..4f24201376b1 100644
+>>>>>>>> --- a/arch/riscv/include/uapi/asm/kvm.h
+>>>>>>>> +++ b/arch/riscv/include/uapi/asm/kvm.h
+>>>>>>>> @@ -175,6 +175,8 @@ enum KVM_RISCV_ISA_EXT_ID {
+>>>>>>>>         KVM_RISCV_ISA_EXT_ZCF,
+>>>>>>>>         KVM_RISCV_ISA_EXT_ZCMOP,
+>>>>>>>>         KVM_RISCV_ISA_EXT_ZAWRS,
+>>>>>>>> +       KVM_RISCV_ISA_EXT_SMNPM,
+>>>>>>>> +       KVM_RISCV_ISA_EXT_SSNPM,
+>>>>>>>>         KVM_RISCV_ISA_EXT_MAX,
+>>>>>>>>  };
+>>>>>>>>
+>>>>>>>> diff --git a/arch/riscv/kvm/vcpu_onereg.c b/arch/riscv/kvm/vcpu_onereg.c
+>>>>>>>> index b319c4c13c54..6f833ec2344a 100644
+>>>>>>>> --- a/arch/riscv/kvm/vcpu_onereg.c
+>>>>>>>> +++ b/arch/riscv/kvm/vcpu_onereg.c
+>>>>>>>> @@ -34,9 +34,11 @@ static const unsigned long kvm_isa_ext_arr[] = {
+>>>>>>>>         [KVM_RISCV_ISA_EXT_M] = RISCV_ISA_EXT_m,
+>>>>>>>>         [KVM_RISCV_ISA_EXT_V] = RISCV_ISA_EXT_v,
+>>>>>>>>         /* Multi letter extensions (alphabetically sorted) */
+>>>>>>>> +       [KVM_RISCV_ISA_EXT_SMNPM] = RISCV_ISA_EXT_SSNPM,
+>>>>>>>
+>>>>>>> Why not use KVM_ISA_EXT_ARR() macro here ?
+>>>>>>
+>>>>>> Because the extension name in the host does not match the extension name in the
+>>>>>> guest. Pointer masking for HS mode is provided by Smnpm. Pointer masking for VS
+>>>>>> mode is provided by Ssnpm at the hardware level, but this needs to appear to the
+>>>>>> guest as if Smnpm was implemented, since the guest thinks it is running on bare
+>>>>>> metal.
+>>>>>
+>>>>> Okay, makes sense.
+>>>>>
+>>>>>>
+>>>>>>>>         KVM_ISA_EXT_ARR(SMSTATEEN),
+>>>>>>>>         KVM_ISA_EXT_ARR(SSAIA),
+>>>>>>>>         KVM_ISA_EXT_ARR(SSCOFPMF),
+>>>>>>>> +       KVM_ISA_EXT_ARR(SSNPM),
+>>>>>>>>         KVM_ISA_EXT_ARR(SSTC),
+>>>>>>>>         KVM_ISA_EXT_ARR(SVINVAL),
+>>>>>>>>         KVM_ISA_EXT_ARR(SVNAPOT),
+>>>>>>>> @@ -129,6 +131,7 @@ static bool kvm_riscv_vcpu_isa_disable_allowed(unsigned long ext)
+>>>>>>>>         case KVM_RISCV_ISA_EXT_M:
+>>>>>>>>         /* There is not architectural config bit to disable sscofpmf completely */
+>>>>>>>>         case KVM_RISCV_ISA_EXT_SSCOFPMF:
+>>>>>>>> +       case KVM_RISCV_ISA_EXT_SSNPM:
+>>>>>>>
+>>>>>>> Why not add KVM_RISCV_ISA_EXT_SMNPM here ?
+>>>>>>>
+>>>>>>> Disabling Smnpm from KVM user space is very different from
+>>>>>>> disabling Smnpm from Guest using SBI FWFT extension.
+>>>>>>
+>>>>>> Until a successful SBI FWFT call to KVM to enable pointer masking for VS mode,
+>>>>>> the existence of Smnpm has no visible effect on the guest. So failing the SBI
+>>>>>> call is sufficient to pretend that the hardware does not support Smnpm.
+>>>>>>
+>>>>>>> The KVM user space should always add Smnpm in the
+>>>>>>> Guest ISA string whenever the Host ISA string has it.
+>>>>>>
+>>>>>> I disagree. Allowing userspace to disable extensions is useful for testing and
+>>>>>> to support migration to hosts which do not support those extensions. So I would
+>>>>>> only add extensions to this list if there is no possible way to disable them.
+>>>>>
+>>>>> I am not saying to disallow KVM user space disabling Smnpm.
+>>>>
+>>>> Then I'm confused. This is the "return false;" switch case inside
+>>>> kvm_riscv_vcpu_isa_disable_allowed(). If I add KVM_RISCV_ISA_EXT_SMNPM here,
+>>>> then (unless I am misreading the code) I am disallowing KVM userspace from
+>>>> disabling Smnpm in the guest (i.e. preventing KVM userspace from removing Smnpm
+>>>> from the guest ISA string). If that is not desired, then why do you suggest I
+>>>> add KVM_RISCV_ISA_EXT_SMNPM here?
+>>>
+>>> Yes, adding KVM_RISCV_ISA_EXT_SMNPM here means KVM
+>>> user space can't disable it using ONE_REG interface but KVM user
+>>> space can certainly not add it in the Guest ISA string.
+>>
+>> Is there a problem with allowing KVM userspace to disable the ISA extension with
+>> the ONE_REG interface?
+>>
+>> If KVM userspace removes Smnpm from the ISA string without the host kernel's
+>> knowledge, that doesn't actually prevent the guest from successfully calling
+>> sbi_fwft_set(POINTER_MASKING_PMLEN, ...), so it doesn't guarantee that the VM
+>> can be migrated to a host without pointer masking support. So the ONE_REG
+>> interface still has value. (And that's my answer to your original question "Why
+>> not add KVM_RISCV_ISA_EXT_SMNPM here ?")
+> 
+> Currently, disabling KVM_RISCV_ISA_EXT_SMNPM via ONE_REG
+> will only clear the corresponding bit in VCPU isa bitmap. Basically, the
+> KVM user space disabling KVM_RISCV_ISA_EXT_SMNPM for Guest
+> changes nothing for the Guest/VM.
+> 
+> On other hand, disabling KVM_RISCV_ISA_EXT_SVPBMT via
+> ONE_REG will not only clear it from VCPU isa bitmap but also
+> disable Svpmbt from henvcfg CSR for the Guest/VM.
+> 
+> In other words, if disabling an ISA extension is allowed by the
+> kvm_riscv_vcpu_isa_disable_allowed() then the Guest/VM must
+> see a different behaviour when the ISA extension is disabled by
+> KVM user space.
+> 
+>>
+>>>>> The presence of Smnpm in ISA only means that it is present in HW
+>>>>> but it needs to be explicitly configured/enabled using SBI FWFT.
+>>>>>
+>>>>> KVM user space can certainly disable extensions by not adding it to
+>>>>> ISA string based on the KVMTOOL/QEMU-KVM command line option.
+>>>>> Additionally, when SBI FWFT is added to KVM RISC-V. It will have its
+>>>>> own way to explicitly disable firmware features from KVM user space.
+>>>>
+>>>> I think we agree on this, but your explanation here appears to conflict with
+>>>> your suggested code change. Apologies if I'm missing something.
+>>>
+>>> I think the confusion is about what does it mean when Smnpm is present
+>>> in the ISA string. We have two approaches:
+>>>
+>>> 1) Presence of Smnpm in ISA string only means it is present in HW but
+>>>     says nothing about its enable/disable state. To configure/enable
+>>>     Smnpm, the supervisor must use SBI FWFT.
+>>>
+>>> 2) Presence of Smnpm in ISA string means it is present in HW and
+>>>     enabled at boot-time. To re-configure/disable Smnpm, the supervisor
+>>>     must use SBI FWFT.
+>>>
+>>> I am suggesting approach #1 but I am guessing you are leaning towards
+>>> approach #2 ?
+>>>
+>>> For approach #2, additional hencfg.PMM configuration is required in
+>>> this patch based on the state of KVM_RISCV_ISA_EXT_SMNPM.
+>>
+>> No, I am definitely suggesting only approach #1. My proposal for adding pointer
+>> masking to the SBI FWFT extension[1] specifies the feature as disabled by
+>> default, and this would apply both inside and ouside a VM.
+>>
+>> But I am also suggesting that the ONE_REG interface is a useful way to
+>> completely hide the extension from the guest, like we do for other extensions
+>> such as Svpbmt. The only difference between something like Svpbmt and Smnpm is
+>> that instead of clearing a bit in henvcfg to hide the extension from the guest,
+>> we reject calls to sbi_fwft_set(POINTER_MASKING_PMLEN, ...) when the ISA
+>> extension is hidden from the guest.
+> 
+> I think we are converging towards the same thing.
+> 
+> How about this ?
+> 
+> For this series, lets add KVM_RISCV_ISA_EXT_SMNPM to
+> kvm_riscv_vcpu_isa_disable_allowed() so that for the time
+> being KVM user space can't disable Smnpm.
+> 
+> In the future, a separate series which adds SBI FWFT to
+> KVM RISC-V will remove KVM_RISCV_ISA_EXT_SMNPM
+> from the kvm_riscv_vcpu_isa_disable_allowed() because
+> disabling Smnpm from KVM user space would mean that
+> the POINTER_MASKING_PMLEN firmware feature is
+> not available to the Guest/VM.
+> 
+> This means in the future (after SBI FWFT is implemented in
+> KVM RISC-V), Guest with Smnpm disabled can be migrated
+> to a host without pointer masking.
 
-The CE value of the memory controller should only increase,
+OK, that is a reasonable compromise. I'll do that for v5.
 
-but it will return to its initial value when resuming from S3 or S4 
-sleep state,
-
-then the new ce count may be smaller than the last ce count.
-
->
-> Also,  the check goes right under the assignment.
->
->> +	if (add < 0)
->> +		return;
->> +
->> +	/*updated the edac core */
-> Useless comment.
->
->> +	if (add != 0) {
-> 	if (!add)
-> 		return;
->
-> and now you can save yourself an indentation level:
->
-> 	edac_mc_...(
->
->> +		edac_mc_handle_error(HW_EVENT_ERR_CORRECTED, mci, add,
->> +					0, 0, 0,
->> +					chan, 0, -1, "error", "");
->> +		edac_mc_printk(mci, KERN_INFO, "add: %d", add);
->> +	}
->> +}
->> +
->> +static int loongson_read_ecc(struct mem_ctl_info *mci)
->> +{
->> +	u64 ecc;
->> +	int cs = 0;
->> +	struct loongson_edac_pvt *pvt = mci->pvt_info;
->> +
->> +	if (!pvt->ecc_base)
->> +		return pvt->last_ce_count;
->> +
->> +	ecc = pvt->ecc_base[ECC_CS_COUNT];
->> +	cs += ecc & 0xff;		// cs0
->> +	cs += (ecc >> 8) & 0xff;	// cs1
->> +	cs += (ecc >> 16) & 0xff;	// cs2
->> +	cs += (ecc >> 24) & 0xff;	// cs3
-> No side comments pls - put them over the line.
->
->> +
->> +	return cs;
->> +}
->> +
->> +static void loongson_edac_check(struct mem_ctl_info *mci)
->> +{
->> +	loongson_update_ce_count(mci, 0, loongson_read_ecc(mci));
-> Drop this silly wrapper.
->
->> +}
->> +
->> +static int get_dimm_config(struct mem_ctl_info *mci)
->> +{
->> +	u32 size, npages;
->> +	struct dimm_info *dimm;
->> +
->> +	/* size not used */
->> +	size = -1;
->> +	npages = MiB_TO_PAGES(size);
->> +
->> +	dimm = edac_get_dimm(mci, 0, 0, 0);
->> +	dimm->nr_pages = npages;
->> +	snprintf(dimm->label, sizeof(dimm->label),
->> +			"MC#%uChannel#%u_DIMM#%u",
->> +			mci->mc_idx, 0, 0);
-> Align arguments on the opening brace.
->
->> +	dimm->grain = 8;
->> +
->> +	return 0;
->> +}
-
-Will address above comments. Thanks for taking the time to review.
-
-Best regards,
-
-Zhao Qunqin.
-
->
->
+Regards,
+Samuel
 
 
