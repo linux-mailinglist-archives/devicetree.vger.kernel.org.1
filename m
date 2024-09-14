@@ -1,112 +1,111 @@
-Return-Path: <devicetree+bounces-103018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2499979316
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 21:03:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91ADE979325
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 21:10:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C90581C20F82
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 19:03:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 560E3283B57
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 19:10:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5A5017BA7;
-	Sat, 14 Sep 2024 19:03:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A8397C6D4;
+	Sat, 14 Sep 2024 19:10:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="RZw5RP3z"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="VyABFD5/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FEEAC2C8
-	for <devicetree@vger.kernel.org>; Sat, 14 Sep 2024 19:03:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D275175BF;
+	Sat, 14 Sep 2024 19:10:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726340604; cv=none; b=rPlqUN3Tye5FrnwEYxVcjS5cXwVofjW2nj7g06TkZdDfmvygVUi4uoC4ZdfJ/urvX+rBuXffsnPxMkeu6k24Zp2jMXniWZkinoFqmyrcxUssOfo+y44I8QghpTJ0gTZiRKdFt/F0sGpSUval1QFVpJIAKo4sCLh88pWuMJtZPD0=
+	t=1726341039; cv=none; b=pNEcDMffx4llZuSWu88d3fxMuFC5J3AusJADMwDnjrBbIJaaIHkRGh8c2M3pKP+YoWwwKMdUItWUumoGV3JyiqvGa+PRGR3/oEFK8YrPg/T/cJHAebmQB9tyRYJZ+R2q7RzZhh03ilZ01KqqRE2vlJHEO5OkysJDVdpDQRY8V4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726340604; c=relaxed/simple;
-	bh=M0ing7sm9ujZQXkplyNj4IalrUV4jfEOZT/huewW/iI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M7/7pIEmRt1o5z4vLqL5PIZlKCYbxae8HPC+sN9P/CAtcLDC/93d2S/tTUqgt7CJyX/eJYxLQXT9gxMinHQPyg7INCDt/deGD7+qouC9jbZXtMCXEZwaqLdMxfIyrMFngB/XKGBkEAc1jw5p7bcFZsTkMQQ1f2mWCupHFS1uEtw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=RZw5RP3z; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=M0in
-	g7sm9ujZQXkplyNj4IalrUV4jfEOZT/huewW/iI=; b=RZw5RP3z5O+Z7Hh7/S9X
-	cHutPLfjd4puGNtoxRGwLpmeuksKx4duCMZKINHqAAOvlIZZT63woXxwubDQ6lU+
-	lA9THPfvxAfetU1fBhrsl1JRaFLHeyoOg7A4wI0hBBVNY4zHpgzMs8o075bts8KW
-	b+23fFSUUZj0T/YwNd34IP2+alkWGebFCc2wujHBEpBRYfEEcuUw84jh+obvq5Wj
-	6iPXTYLtT9vjQ6isgiQQwv7ZNcc5kMaWwFiLvizoKFT/+i2DcDKBkq3uUYy3UmRp
-	GLoII2be1Vunzp5Y1bXIahcprWtb07wzsnYtaalgbU0f0CsH6DtuDeZ4HrbIpm5G
-	5Q==
-Received: (qmail 1538995 invoked from network); 14 Sep 2024 21:03:20 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 14 Sep 2024 21:03:20 +0200
-X-UD-Smtp-Session: l3s3148p1@jb48/hgiJIdQT+F6
-Date: Sat, 14 Sep 2024 21:03:19 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: renesas: genmai: Fix partition size for QSPI
- NOR Flash
-Message-ID: <ZuXd963lKqwqEmEo@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-renesas-soc@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20240914182948.94031-2-wsa+renesas@sang-engineering.com>
+	s=arc-20240116; t=1726341039; c=relaxed/simple;
+	bh=fA1i+LFpTdmNvbAqJul+OWfUJe2k3jNyASYB+A1+Jfw=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=hEtow3nZNDUu+hY7UNpoTS4uBC0x867/Q9cMrL/rJ3S7vi1cFRl7dOGuFtNVNvFqlPRtsWm2Gz8qlMRx5f+r5/m1XMl+lv4LD/+QRHM+1H7QTzMb1sRNPIwhQFY+snoAY4wqHrEjVdTCAZtb+8D94If85wWn6waLfMSG1h06D0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=VyABFD5/; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1726341037; x=1757877037;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=fA1i+LFpTdmNvbAqJul+OWfUJe2k3jNyASYB+A1+Jfw=;
+  b=VyABFD5/xy9xzbKAX+PRis8v8RrlatxtGwfFLsRMwsHzj5tiuJvoCBRM
+   h7LrklL5N8Cs8CdIdF4PfsKq22D6cqkbTeGqxuze0BUSJkOPqHG1FdIvb
+   VEEv74+eIKCY8euk1vUdGe9QmCSw4U8Lpd7pcjyobTB7r2QR5Olciq+cw
+   +NoxmtDo2SAb+EAYi9QJq96lgEZrEVJoZ81NEILvv9I2rN5SYBLu0ZC0E
+   o+WIeeWIyI3PwQ7xjz0L//Fu2MsCg814fwC1H3fvCPMmIozCGUWsko1ao
+   6qTBirf4J3zJVClcocpWlTpqjEFr2Q9UAXTO4GEwwqKVCKV0yPy2Z6h+Y
+   A==;
+X-CSE-ConnectionGUID: aORpv4XtRiOtN55YVRgpfg==
+X-CSE-MsgGUID: Bdxol7M6R++9c8ZMkPuUPA==
+X-IronPort-AV: E=Sophos;i="6.10,229,1719903600"; 
+   d="scan'208";a="31675563"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Sep 2024 12:10:35 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Sat, 14 Sep 2024 12:10:30 -0700
+Received: from DEN-DL-M70577.microchip.com (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Sat, 14 Sep 2024 12:10:28 -0700
+From: Daniel Machon <daniel.machon@microchip.com>
+Subject: [PATCH 0/2] pinctrl: ocelot: add support for lan969x SoC
+Date: Sat, 14 Sep 2024 21:10:07 +0200
+Message-ID: <20240914-lan969x-pinctrl-v1-0-1b3a4d454b0d@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="npS3hTjcRxfK8iHi"
-Content-Disposition: inline
-In-Reply-To: <20240914182948.94031-2-wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAI/f5WYC/x3MTQqDQAxA4atI1g2Mgz9Mr1K6mIlpDUi0GRVBv
+ HunXX6L907IbMIZ7tUJxrtkmbWgvlVAY9Q3owzF4J1vXKg9TlFDFw5cRGm1CRsKbUuOU+86KNV
+ i/JLjf3w8i1PMjMmi0vj7DLzjZ+ON4bq+sBlaR30AAAA=
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Lars Povlsen
+	<lars.povlsen@microchip.com>, Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>
+CC: <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+X-Mailer: b4 0.14-dev
 
+This series adds support for lan969x SoC pinctrl by reusing the existing
+Ocelot pinctrl driver.
 
---npS3hTjcRxfK8iHi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+There are 66 General Purpose I/O pins that are individually configurable
+to multiple interfaces. The matrix of available GPIO alternate functions
+is detailed in the pinmuxing table of patch #2.
 
-On Sat, Sep 14, 2024 at 08:28:44PM +0200, Wolfram Sang wrote:
-> Second partition was too large, looks like two digits got mixed up.
-> Fixes:
+Patch #1 adds compatible strings for lan969x in the dt-bindings.
+Patch #2 adds support for lan969x SoC pinctrl.
 
-Hmm, maybe this "Fixes:" is ambiguous... perhaps we should leave it out.
+Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
+---
+Daniel Machon (2):
+      dt-bindings: ocelot: document lan969x-pinctrl
+      pinctrl: ocelot: add support for lan969x SoC pinctrl
 
->=20
-> mtd: partition "user1" extends beyond the end of device "18000000.flash" =
--- size truncated to 0x4000000
+ .../bindings/pinctrl/mscc,ocelot-pinctrl.yaml      |  32 +++-
+ drivers/pinctrl/pinctrl-ocelot.c                   | 203 +++++++++++++++++++++
+ 2 files changed, 227 insertions(+), 8 deletions(-)
+---
+base-commit: 3cfb5aa10cb78571e214e48a3a6e42c11d5288a1
+change-id: 20240912-lan969x-pinctrl-4c955c0eb706
 
---npS3hTjcRxfK8iHi
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+-- 
+Daniel Machon <daniel.machon@microchip.com>
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmbl3fMACgkQFA3kzBSg
-KbY80BAAo9zsaw6nX6EFMkBzh3GyyPi1qeAoIekVRfSEEOTC9dkNS00rnjFCaFzC
-oS/b9Kp17RSJTvS7wuzACok6V8R44B5on7fVxObvGmAcGuxT2ovcvhmm6z9IotXM
-vJnkToJiTzhzcHUt6DyS7w/MwlN4jU/wc1hhAZbih1UYb6whWbXKgvdlINWeurm0
-PgIJ8pDwipoqvz422T+CaHOXO1RDzz/yQFPOrzPjwHY8LAwP8+TrR+4+no+AX4+R
-Ol0ISHh/YsL8WsQdUnnecAo/jA0vTHgUBxBdJNfUGjs8NR2Y70kljb8LLxuZe41+
-s6CdT1aik2wKucZ8SSlR4xJ4FeAOnzmsNZtJ7BHsQe2a+11N7rfiST9+Lyb/FbYA
-bO8e5FWz0Znqm/bwB4Sl7EB+w9zx5m0BQlgcQh0K8rhXsyL++3pWS8dakbPTJEH6
-fDNyyNlMOVx0IBfi/75yI244+ZdY8ZaALSG7+6jzDRjLL9pAj/P7k5RKt5wQI3Bb
-Hju8+iTP8eiKVib9ipEi7TWZRFm0q3SDZj//f8RdSBTdv/ZsNA20Y3+qLqoqhr6V
-TcFlQtm7NuIZEPl42wVE3H9OO0C7cAzsTNqdezmU2hmKdOaQ7zZrdz40sLGbfk8z
-IjYaK0amoP6bHHraVO+m6Td7OqrdcFPK2qCn+0sI2fsIceqEcIg=
-=+AFc
------END PGP SIGNATURE-----
-
---npS3hTjcRxfK8iHi--
 
