@@ -1,374 +1,126 @@
-Return-Path: <devicetree+bounces-103004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7647D97923E
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 19:07:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 709EC979298
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 19:15:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F087E1F22763
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 17:07:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 326EB281C48
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 17:15:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E5681D096E;
-	Sat, 14 Sep 2024 17:06:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0414C1D0967;
+	Sat, 14 Sep 2024 17:15:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c0tU4ifW"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="TH/qJUv8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.web.de (mout.web.de [212.227.15.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 718F6208DA;
-	Sat, 14 Sep 2024 17:06:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F9F8208DA;
+	Sat, 14 Sep 2024 17:15:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726333619; cv=none; b=V8RcDyYVAQhfWe2d23lbpc7BzMvKNXEpsV6cmsjxvNgXkHfaTAgp5SuwPF4pci2ZSW9QTB7LhQHjaoMKCUCgeKfPJuqOnaCnJhxRcMeR/UY9IsTqWiUSxIoT7UD6Sfry5FIU0zP470oUf51D+9rekO5PwtCQJHJKc+4f8Najz8o=
+	t=1726334153; cv=none; b=sJtATi0wZA4Hxf03zL4dos38EhcHNIL6ZMowtxPxmcHl1Cq1/QfEgjL1lnEfuIDpnnPqwGSgnUvVRAVGJ6JmwP1vQ7mR/9toF9jgcqBAdlBKmkF4wgipADKZ0FtfdutEwwWhWyaXbrX9n84A8zJxxTuQPaPUZvy1TNQDcGEFRj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726333619; c=relaxed/simple;
-	bh=Hc328JVFbmZz+imPdU0ZX1xC9jylhpvtV+oaxa8mRLw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eoafTLvaFlsghpPII4nX0rMUsCVKVmK8kOxccTBYgIkziZD9jCEMfyX1fysWlI46HLQQVJgMXt3GWNnHtPp8M1+l7ssavkdvBI+jj1qmtCua2+libt24/nEduzsOSDSkF+RxTdY6eAUAaYdLWvztKW/Rbs7npOMmEXECmUUyjD8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c0tU4ifW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EA78C4CEC0;
-	Sat, 14 Sep 2024 17:06:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726333619;
-	bh=Hc328JVFbmZz+imPdU0ZX1xC9jylhpvtV+oaxa8mRLw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=c0tU4ifW5PomF3ZO3nf5H9wJkgggx2GjQ7FdFnKkI5H8p4Wc7mSz9eCknG3PCFBAD
-	 xoxRtRLV6IvWVHaa9MigveIphZhVX0vRcMqj5z4ZDUZi1yY6R7+9qylLUsGEa4TFUo
-	 Iuv52q2j63ejLdVqdhXyXfuXpIwPmquF7EGftyk49fLhkwiXB1zuuP4oachjtO4TMn
-	 EBNecDtQtnnq0Uc2F9HC3irtm/E2zSjepinWA0n+mT8E+1UulQR5bFdjy6+Y6p1Jt5
-	 vsZXZO35sC1hXpmcn46lMALKopUp/ZoIWUwy70+vKA62YSoyytBHV4D4Ghf5Z6UaBS
-	 LgC16mpV6Xn8A==
-Date: Sat, 14 Sep 2024 18:06:48 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Ramona Alexandra Nechita <ramona.nechita@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Cosmin Tanislav
- <cosmin.tanislav@analog.com>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno
- Sa <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, David Lechner
- <dlechner@baylibre.com>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Olivier Moysan <olivier.moysan@foss.st.com>, Dumitru Ceclan
- <mitrutzceclan@gmail.com>, Matteo Martelli <matteomartelli3@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Alisa-Dariana Roman <alisadariana@gmail.com>, Ivan Mikhaylov
- <fr0st61te@gmail.com>, Mike Looijmans <mike.looijmans@topic.nl>,
- <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 3/3] drivers: iio: adc: add support for ad777x family
-Message-ID: <20240914180648.592cd69e@jic23-huawei>
-In-Reply-To: <20240912121609.13438-4-ramona.nechita@analog.com>
-References: <20240912121609.13438-1-ramona.nechita@analog.com>
-	<20240912121609.13438-4-ramona.nechita@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1726334153; c=relaxed/simple;
+	bh=EUWxZgcoFYYZNW8gfinlOzKVYhuSHdm+8B/zIAgs2QU=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=chG8433fmmVhNNtz6dRYaZoF5SW6+9zRkXYZuv8zpAbZ0NXpzUtTMEOm/+W8SiQB8TFZtSoc/5CZuabdS20di7aFRL6ldW/s+HNd0MrneOctbCP//3g1LEUqHJqQ0yPrlNc+smEiXygA1LUNfxQKusHr7pjKCBDPNrr3gvLVniw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=TH/qJUv8; arc=none smtp.client-ip=212.227.15.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1726334120; x=1726938920; i=markus.elfring@web.de;
+	bh=+t3z0lY6Wi+QQz/YvzzBvM5zQR/hzCVK35DvfY6u49Y=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=TH/qJUv8lAJ14MX+E2pXRcb1BUh3hlwtFZLXhV32TWTdJ7D+8uM5xYeUyxHs2bhQ
+	 tlHklcZxZzNdAkXLs1G3U7g5ht+F55QTAfWmerg4lsuMGtxcYxz6ZygtMq68LQSYu
+	 aYVJYu+cw/pX8rLWzjsvXKepiK3iwrQww+MV/eKe+f/8jEBQsuVYlqCFqm8PGXa7I
+	 D4rHd+tvzjvbp9emltm0GzmnIb0hEznVvWKp1IPc2GiXnkXVCggtndXSt8TZIW4sN
+	 oehA2YEHuyNyyqxlsP3Cq5aACKvUkOc4/8sWMXvhHy/RsxD6RM4522v5ebbxiXSRO
+	 QIEY+d5ooXOnHL8gXQ==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.85.95]) by smtp.web.de (mrweb006
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MDMzC-1sgCh40IFy-0082Wi; Sat, 14
+ Sep 2024 19:15:20 +0200
+Message-ID: <b6af2603-7f72-47d7-98b9-6dc2761dfb74@web.de>
+Date: Sat, 14 Sep 2024 19:15:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+To: Arturs Artamonovs <Arturs.Artamonovs@analog.com>,
+ Greg Malysa <greg.malysa@timesys.com>,
+ Nathan Barrett-Morrison <nathan.morrison@timesys.com>,
+ Utsav Agarwal <Utsav.Agarwal@analog.com>,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-serial@vger.kernel.org, devicetree@vger.kernel.org, soc@kernel.org,
+ Andi Shyti <andi.shyti@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Bartosz Golaszewski <brgl@bgdev.pl>,
+ Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Olof Johansson
+ <olof@lixom.net>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Will Deacon <will@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, adsp-linux@analog.com
+References: <20240912-test-v1-1-458fa57c8ccf@analog.com>
+Subject: Re: [PATCH 01/21] arm64: Add ADI ADSP-SC598 SoC
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20240912-test-v1-1-458fa57c8ccf@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:pV0uTKYfcGUMdOgO9MqJT1BRxvTzoHwr5Vt05L/dgQGDXgjMhkQ
+ pN+/bQrdI/vRORvoUUSM59SmOZ0GwvJ4rTFRAe2GZND4ey7VoodFBr8goj1Q0BfJBY3hFzX
+ eICHcTkByWsNPptIFinbcj9lNfn7FsAuDf967yNX0P9v31RBZN885aP1YeFm2IZxyD3Bemk
+ 1XQQN9Vdeu1OggOAxtuYA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:WR3H5j/uLjc=;Z3lo8gIY+Jv7jyzsqSgLVpi7AAD
+ NUy/0l7boyOp4GUAXV0lTzdayMVEksKGX3YxME1Cn/Rxm2VRAEJtR/NiEq3NmX7cclzekYXnV
+ /YPgqMyHrwIEd+1lBVxRbyXshXW1/TzslerwGXYG/SlnLGgIDMEqnzVn4kwQLZBVjjhRlTmSh
+ SqzuC7r/VH4w0I/uTnpJOim3RD7OssNKnRk9qXwxTKNrjfWECCdJlG8rFd+IRDShlg8OGcVRS
+ XUv8bLAl93Bceyc5Qg2svL54Akk6wH9AS+M5GgL+5w/7AMajN8p4CtKJo+Dtr6DP/fHUCLabP
+ iV37/Z279FU9QcWQfEuBwRZJs3/uZHYcdb9MGu/r0/kptCPDpce3X92jImMITfbAqpiZmLqFN
+ 7zuA8Ox3XgmgZ/Y81/PwdemgweyJ7YdEXq8BbKNRxNxCiiMEjLj8Wh2sCD+XjyF4+/j2WdQ6m
+ 1fK/Vjehec4fHIYFR0gyteRqpW0yLjBdk/42QqsGrCwDu0nlry/VEiMO5CDBWu095Vg5S8NfB
+ 8ushY0UKPp7ZGv6dMPE1rG//7OJkh9FFHNnNItv8tfxgDD56MrbttOo7r7UsPPwQs14mFKhjo
+ P0IT6pyL17kH6VF+wlCp+tfsOhwez6fkHauGXHfvjAPauiecoEk6Ww6wxekFSjMsf5QkmcG1T
+ S51de4azvhLzYpG1895bZq8oJAlqyFyKkI5m0PvDQuDtzHvCbHqfsvqaxcdjDDNp/d5wduvbd
+ 4yhXFOpIYYhmnFM+OoyIjlVx7p4nESJnylU8oiUlNYGrM+xggceMQL47pv/xSMYbgg+67nGGQ
+ wxEW3VdgLj1pzALYjwlXTOrw==
 
-On Thu, 12 Sep 2024 15:15:47 +0300
-Ramona Alexandra Nechita <ramona.nechita@analog.com> wrote:
-
-> Add support for AD7770, AD7771, AD7779 ADCs. The device is capable of
-> sending out data both on DOUT lines interface,as on the SDO line.
-> The driver currently implements only the SDO data streaming mode. SPI
-> communication is used alternatively for accessing registers and streaming
-> data. Register access are protected by crc8.
-> 
-> Signed-off-by: Ramona Alexandra Nechita <ramona.nechita@analog.com>
-Hi Ramona,
-
-A few additional comments inline,
-
-Jonathan
-> diff --git a/drivers/iio/adc/ad7779.c b/drivers/iio/adc/ad7779.c
-> new file mode 100644
-> index 000000000000..05ae72257c9e
-> --- /dev/null
-> +++ b/drivers/iio/adc/ad7779.c
-> @@ -0,0 +1,917 @@
-
-> +static int ad7779_set_calibbias(struct ad7779_state *st, int channel, int val)
-> +{
-> +	int ret;
-> +	u8 calibbias[3];
+=E2=80=A6
+> +++ b/drivers/soc/adi/system.c
+> @@ -0,0 +1,257 @@
+=E2=80=A6
+> +static void adi_system_config_remove(struct platform_device *pdev)
++{
+> +	struct adi_system_config *config =3D platform_get_drvdata(pdev);
+> +	unsigned long flags;
 > +
-> +	put_unaligned_be24(val, calibbias);
-> +	ret = ad7779_spi_write(st,
-> +			       AD7779_REG_CH_OFFSET_UPPER_BYTE(channel),
-> +			       calibbias[0]);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ad7779_spi_write(st,
-> +			       AD7779_REG_CH_OFFSET_MID_BYTE(channel),
-> +			       calibbias[1]);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return ad7779_spi_write(st,
-> +				AD7779_REG_CH_OFFSET_LOWER_BYTE(channel),
-Wrap closer to 80 chars.
-	return ad7779_spi_write(st, AD7779_REG_CH_OFFSET_LOWER_BYTE(channel),
-				calibbias[2]);
-
-etc as it'll shorted the code a little bit for no significant loss
-of readability.  Do the same for all other such cases.
+> +	spin_lock_irqsave(&adi_system_config_lock, flags);
+> +	list_del(&config->list);
+> +	spin_unlock_irqrestore(&adi_system_config_lock, flags);
 > +}
+=E2=80=A6
 
-> +
-> +static irqreturn_t ad7779_trigger_handler(int irq, void *p)
-> +{
-> +	struct iio_poll_func *pf = p;
-> +	struct iio_dev *indio_dev = pf->indio_dev;
-> +	struct ad7779_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +	int bit;
-> +	int k = 0;
-> +	/*
-> +	 * Each channel shifts out HEADER + 24 bits of data therefore 8 * u32
-> +	 * for the data and 64 bits for the timestamp
-> +	 */
-> +	u32 tmp[10];
-> +
-> +	struct spi_transfer sd_readback_tr[] = {
-> +		{
-> +			.rx_buf = st->spidata_rx,
-> +			.tx_buf = st->spidata_tx,
-> +			.len = AD7779_NUM_CHANNELS * AD7779_CHAN_DATA_SIZE,
-> +		}
-> +	};
-> +
-> +	if (!iio_buffer_enabled(indio_dev))
-> +		goto exit_handler;
+Under which circumstances would you become interested to apply a statement
+like =E2=80=9Cguard(spinlock_irqsave)(&adi_system_config_lock);=E2=80=9D?
+https://elixir.bootlin.com/linux/v6.11-rc7/source/include/linux/spinlock.h=
+#L572
 
-If buffers aren't enabled, the push to buffers won't do anything. So this race
-shouldn't matter.  If it does, what happens?
-I'm curious because I'd expect any races that cause trouble in this case
-to be pretty universal across drivers.
-
-
-> +
-> +	st->spidata_tx[0] = AD7779_SPI_READ_CMD;
-> +	ret = spi_sync_transfer(st->spi, sd_readback_tr,
-> +				ARRAY_SIZE(sd_readback_tr));
-> +	if (ret) {
-> +		dev_err(&st->spi->dev,
-> +			"spi transfer error in irq handler");
-> +		goto exit_handler;
-> +	}
-> +
-> +	for_each_set_bit(bit, indio_dev->active_scan_mask, AD7779_NUM_CHANNELS - 1)
-> +		tmp[k++] = st->spidata_rx[bit];
-
-If you can't use the core demux handling + available_scan_masks, please add
-a comment here to say why.  That would allow you to do the SPI transfer directly
-into the buffer you then push below. The IIO core will figure out how to
-pull data out of that if the user wants a subset of channels.
-
-
-> +
-> +	iio_push_to_buffers_with_timestamp(indio_dev, &tmp[0], pf->timestamp);
-> +
-> +exit_handler:
-> +	iio_trigger_notify_done(indio_dev->trig);
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int ad7779_reset(struct iio_dev *indio_dev, struct gpio_desc *reset_gpio)
-> +{
-> +	struct ad7779_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +	struct spi_transfer reg_read_tr[] = {
-> +		{
-> +			.tx_buf = st->reset_buf,
-> +			.len = 8,
-> +		},
-> +	};
-> +
-> +	memset(st->reset_buf, 0xff, sizeof(st->reset_buf));
-> +
-> +	if (reset_gpio) {
-> +		/* Delay for reset to occur is 225 microseconds*/
-> +		gpiod_set_value(reset_gpio, 1);
-> +		fsleep(230);
-> +		return 0;
-
- +	}
-	if (reset_gpio) {
-		/* Delay for reset to occur is 225 microseconds*/
-		gpiod_set_value(reset_gpio, 1);
-
-	} else {
-		struct spi_transfer reg_read_tr[] = {
-			{
-				.tx_buf = st->reset_buf,
-				.len = 8,
-			},
-		};
-		int ret;
-
-		memset(st->reset_buf, 0xff, sizeof(st->reset_buf));
-		ret = spi_sync_transfer(st->spi, reg_read_tr,
-					ARRAY_SIZE(reg_read_tr));
-		if (ret)
-			return ret;
-	}
-	fsleep(230);
-	return 0;
-
-or something along those lines.  Shares the sleep so showing the wait
-is the same in both types of reset and doesn't do a memset that I think
-is otherwise irrelevant if there is a gpio.
-> +
-> +	ret = spi_sync_transfer(st->spi, reg_read_tr,
-> +				ARRAY_SIZE(reg_read_tr));
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Delay for reset to occur is 225 microseconds*/
-> +	fsleep(230);
-> +
-> +	return 0;
-> +}
-
-> +static int ad7779_probe(struct spi_device *spi)
-> +{
-> +	struct iio_dev *indio_dev;
-> +	struct ad7779_state *st;
-> +	struct gpio_desc *reset_gpio, *start_gpio;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st = iio_priv(indio_dev);
-> +
-> +	st->mclk = devm_clk_get_enabled(&spi->dev, "mclk");
-> +	if (IS_ERR(st->mclk))
-> +		return PTR_ERR(st->mclk);
-> +
-> +	if (!spi->irq)
-> +		return dev_err_probe(&spi->dev, ret,
-> +				     "DRDY irq not present\n");
-> +
-> +	reset_gpio = devm_gpiod_get_optional(&spi->dev, "reset", GPIOD_OUT_LOW);
-> +	if (IS_ERR(reset_gpio))
-> +		return PTR_ERR(reset_gpio);
-> +
-> +	start_gpio = devm_gpiod_get(&spi->dev, "start", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(start_gpio))
-> +		return PTR_ERR(start_gpio);
-> +
-> +	crc8_populate_msb(ad7779_crc8_table, AD7779_CRC8_POLY);
-> +	st->spi = spi;
-> +
-> +	st->chip_info = spi_get_device_match_data(spi);
-> +	if (!st->chip_info)
-> +		return -ENODEV;
-> +
-> +	ret = ad7779_reset(indio_dev, reset_gpio);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ad7779_powerup(st, start_gpio);
-> +	if (ret)
-> +		return ret;
-What powers the device down again if we hit an error?
-
-Probably need a devm_add_action_or_reset() or if it self powers down
-may a comment on that.
-
-> +
-> +	indio_dev->name = st->chip_info->name;
-> +	indio_dev->info = &ad7779_info;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->channels = st->chip_info->channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(ad7779_channels);
-> +
-> +	st->trig = devm_iio_trigger_alloc(&spi->dev, "%s-dev%d",
-> +					  indio_dev->name, iio_device_id(indio_dev));
-> +	if (!st->trig)
-> +		return -ENOMEM;
-> +
-> +	st->trig->ops = &ad7779_trigger_ops;
-> +
-> +	iio_trigger_set_drvdata(st->trig, st);
-> +
-> +	ret = devm_request_irq(&spi->dev, spi->irq,
-> +			      iio_trigger_generic_data_rdy_poll,
-> +			      IRQF_ONESHOT | IRQF_NO_AUTOEN,
-> +			      indio_dev->name, st->trig);
-> +	if (ret)
-> +		return dev_err_probe(&spi->dev, ret, "request irq %d failed\n",
-> +				     st->spi->irq);
-> +
-> +	ret = devm_iio_trigger_register(&spi->dev, st->trig);
-> +	if (ret)
-> +		return ret;
-> +
-> +	indio_dev->trig = iio_trigger_get(st->trig);
-> +
-> +	init_completion(&st->completion);
-> +
-> +	ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
-> +					      &iio_pollfunc_store_time,
-> +					      &ad7779_trigger_handler,
-> +					      &ad7779_buffer_setup_ops);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ad7779_spi_write_mask(st, AD7779_REG_DOUT_FORMAT,
-> +				    AD7779_DCLK_CLK_DIV_MSK,
-> +				    FIELD_PREP(AD7779_DCLK_CLK_DIV_MSK, 7));
-> +	if (ret)
-> +		return ret;
-> +
-> +	return devm_iio_device_register(&spi->dev, indio_dev);
-> +}
-> +
-> +static int ad7779_suspend(struct device *dev)
-> +{
-> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-> +	struct ad7779_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	ret = ad7779_spi_write_mask(st, AD7779_REG_GENERAL_USER_CONFIG_1,
-> +				    AD7779_MOD_POWERMODE_MSK,
-> +				    FIELD_PREP(AD7779_MOD_POWERMODE_MSK,
-> +					       AD7779_LOW_POWER));
-> +	if (ret)
-> +		return ret;
-As below.  Given if !ret, ret == 0 so same as just returning it unconditionally.
-
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int ad7779_resume(struct device *dev)
-> +{
-> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-> +	struct ad7779_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	ret = ad7779_spi_write_mask(st, AD7779_REG_GENERAL_USER_CONFIG_1,
-> +				    AD7779_MOD_POWERMODE_MSK,
-> +				    FIELD_PREP(AD7779_MOD_POWERMODE_MSK,
-> +					       AD7779_HIGH_POWER));
-> +	if (ret)
-> +		return ret;
-	return ad7779_spi_write_mask...
-
-> +
-> +	return 0;
-> +}
-
+Regards,
+Markus
 
