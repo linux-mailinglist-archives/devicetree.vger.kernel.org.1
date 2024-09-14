@@ -1,205 +1,129 @@
-Return-Path: <devicetree+bounces-102959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56C25979034
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 13:00:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02D6A97904B
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 13:09:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8DD68B24B3D
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 11:00:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEF5D285F14
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 11:09:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C1BA1CF294;
-	Sat, 14 Sep 2024 11:00:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A218B1CEEAF;
+	Sat, 14 Sep 2024 11:09:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kPNk2ipE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A3AFowFB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5599E1CEAAC;
-	Sat, 14 Sep 2024 10:59:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FC627A15A;
+	Sat, 14 Sep 2024 11:09:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726311601; cv=none; b=PzUUOIBM3wXVEjtvaM3u5vlH/DBhOGz4IVfNLzmXjOhCwNWWrNH2FoEpb3VNdBbywhbL9RxyWB/JD/GxQNHRMSZTiHE07iqGaU3bqgEvurIBAg1tlZeK7FgWZ8ODqWsaEB81fdHsjGWSFGWomXl3aVHL+xu/Ty/lgYreHLannk4=
+	t=1726312187; cv=none; b=tSUBqwQQ8WCHUZYXIGlRD+SS71vAxR7/c2n2SakhkReYpsReD2essj3QYAkXaDc1OhuLyL7mk/6ybE6ShkHO32nAZbEkkXI59Wsospv0fWfgM8thE88WezmEodSgfefSHoW8BkQbuJPAbl+IXQqwwQ1TimVZh7mvl2smJDJ7LG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726311601; c=relaxed/simple;
-	bh=RqagvQleKzznUmEAGUk3kJBskCidxziKVdoH64L73j4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MGlk5uRd66B0VhmoW5/yp10x5h4C4dIPM1VQT4dqOM/OEVcJ0OuMhoIn4cG5j/dlojPlzZRWOOv6YA1QQYuhKX2G8JKHWQzZgmxNmFk15szvwKXgm7ptkM2NCSOu032W0st/YYVBYYD2d+MmEfqN8SVJiWA4uB1r7ar6tEaLK6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kPNk2ipE; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1726311600; x=1757847600;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=RqagvQleKzznUmEAGUk3kJBskCidxziKVdoH64L73j4=;
-  b=kPNk2ipElCfIxuvzTU734SvruXM3iKVsD7VKukOqFpinIeTJQLTlpkhX
-   mGwQNrjs1sGkGbahWpw4+z3oz5o1TeIQWS/Tfk4jc8D/s+qPTstF7AxXN
-   zRFOEoO2+4IVTMU0Wkhp+8CyBbbV7pEouYUAUGxNuxTcjsvS8bpBrDKa/
-   KisK3XZEHwnj2o4/bvGV2kbrPxsE77feNisN0+I7iBeEk2fWFhD1wRf3r
-   Tjm4huQotrMfJYNrdUbMxqj+sdOnVBjGnMmkZgi2c6OXnznnt9iuuKxAX
-   Q/r8Eboc18QlduOvVw7F8/QOid4BtcLuZxl/PcMlHdt+bk8Au0a7BaXMk
-   Q==;
-X-CSE-ConnectionGUID: IVldnLavS9elPdKiyxBTVQ==
-X-CSE-MsgGUID: kGpZz281SNSh7lJCKXzBDw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="25148004"
-X-IronPort-AV: E=Sophos;i="6.10,229,1719903600"; 
-   d="scan'208";a="25148004"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Sep 2024 03:59:59 -0700
-X-CSE-ConnectionGUID: vS6oIURLS3S2LyICQh7zNw==
-X-CSE-MsgGUID: 3Elus/PHQPesz24am0+B+Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,228,1719903600"; 
-   d="scan'208";a="72971200"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 14 Sep 2024 03:59:56 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1spQVN-0007f1-2j;
-	Sat, 14 Sep 2024 10:59:53 +0000
-Date: Sat, 14 Sep 2024 18:59:42 +0800
-From: kernel test robot <lkp@intel.com>
-To: Oleh Kuzhylnyi <kuzhylol@gmail.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Oleh Kuzhylnyi <kuzhylol@gmail.com>, igor.opaniuk@gmail.com,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jeff LaBundy <jeff@labundy.com>
-Subject: Re: [PATCH v7 2/2] input: add driver for Hynitron CST816X touchscreen
-Message-ID: <202409141849.QpkMdWlC-lkp@intel.com>
-References: <20240912132823.123409-2-kuzhylol@gmail.com>
+	s=arc-20240116; t=1726312187; c=relaxed/simple;
+	bh=dj3RBJNoLKQBK3vq1ElWbWaAStCLklS2fV4ce+qLNLw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=npXadbZT0wVoKEkp2R0HeIMTl2VaIEaHAItCpFXTcQlRAryLPVwNi56sgz4kZXC+9Mru5mdH+B/9nQeGFORKMyI61Kqdavz05tldKNUDdofEhag0GXOpJ2MlC+ZtqDU0JUYEtw4m2Z452hM8/jflekvrCTl9PCbFdbbfwZPpT/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A3AFowFB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43321C4CEC0;
+	Sat, 14 Sep 2024 11:09:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726312186;
+	bh=dj3RBJNoLKQBK3vq1ElWbWaAStCLklS2fV4ce+qLNLw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=A3AFowFBpYHm3nEXBsh3KY+x69JVDf+m+f2xnGnr/5M3fRQDzUsqxBbp1VK4Xe5Jz
+	 XL6KwzGdfp8Tob718K9bFBbD8mu+Q6PVKpTG7Z3vfdNpNm0ecEZ9Ljk7WpvFx9UVpY
+	 pAD5OLo7Jzw5qMmjcZpvIItjpZ0IIY9bEYXydbrWEs2BkHjYaj+mrpXGAU7zE6qNIN
+	 I+5GJwVAg5zNwYxUigqH9XdOQqifOWpWmuJR0Vweje6uBMGNC0jr2TenJWxT0hkYDN
+	 uGJRrJbTWH2XYn3KohTR1QLabVJ/IM9ZY8hyiBiLm44VQrym4WDnLmQGHahZemO6s3
+	 NDewcY92WN7/Q==
+Date: Sat, 14 Sep 2024 12:09:36 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Guillaume Stols <gstols@baylibre.com>
+Cc: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+ aardelean@baylibre.com
+Subject: Re: [PATCH 7/8] iio: adc: ad7606: Switch to
+ xxx_get_device_match_data
+Message-ID: <20240914120936.01e3d694@jic23-huawei>
+In-Reply-To: <e6d3926a-002d-445a-8ac5-8d47b2be27b0@baylibre.com>
+References: <20240815-ad7606_add_iio_backend_support-v1-0-cea3e11b1aa4@baylibre.com>
+	<20240815-ad7606_add_iio_backend_support-v1-7-cea3e11b1aa4@baylibre.com>
+	<20240817163354.68ec95f4@jic23-huawei>
+	<e6d3926a-002d-445a-8ac5-8d47b2be27b0@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240912132823.123409-2-kuzhylol@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Oleh,
+On Sat, 14 Sep 2024 11:21:34 +0200
+Guillaume Stols <gstols@baylibre.com> wrote:
 
-kernel test robot noticed the following build warnings:
+> On 8/17/24 17:33, Jonathan Cameron wrote:
+> > On Thu, 15 Aug 2024 12:12:01 +0000
+> > Guillaume Stols <gstols@baylibre.com> wrote:
+> > =20
+> >> On the parallel version, the current implementation is only compatible
+> >> with id tables and won't work with fx_nodes. So in this commit, the go=
+al
+> >> is to switch to use get_device_match_data, in order to simplify the
+> >> logic of retrieving chip data.
+> >>
+> >> Also, chip info is moved in the .h file so to be accessible to all the
+> >> driver files that can set a pointer to the corresponding chip as the
+> >> driver data. =20
+> > This means each driver gets their own copy.
+> >
+> > Better to use an extern in the header and keep the actual data
+> > in the core module. =20
+>=20
+> ack.
+>=20
+> Given your previous comment about introducing=20
+> platform_device_get_match_data, I guess I should instead do it directly=20
+> in the driver's probe, like its done in axp20x_adc.c ? Somehting like tha=
+t:
+>=20
+> if (!dev_fwnode(&pdev->dev)) {
+>  =C2=A0=C2=A0=C2=A0 const struct platform_device_id *id;
+>=20
+>  =C2=A0=C2=A0=C2=A0 id =3D platform_get_device_id(pdev);
+>  =C2=A0=C2=A0=C2=A0 chip_info =3D (const struct ad7606_chip_info *)id->dr=
+iver_data;
+> } else {
+>  =C2=A0=C2=A0=C2=A0 struct device *dev =3D &pdev->dev;
+>  =C2=A0=C2=A0=C2=A0 chip_info =3D device_get_match_data(dev);
+> }
 
-[auto build test WARNING on dtor-input/next]
-[also build test WARNING on dtor-input/for-linus robh/for-next krzk-dt/for-next linus/master v6.11-rc7 next-20240913]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Yes, something along those lines makes sense.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Oleh-Kuzhylnyi/input-add-driver-for-Hynitron-CST816X-touchscreen/20240912-213044
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-patch link:    https://lore.kernel.org/r/20240912132823.123409-2-kuzhylol%40gmail.com
-patch subject: [PATCH v7 2/2] input: add driver for Hynitron CST816X touchscreen
-config: sparc64-randconfig-r133-20240913 (https://download.01.org/0day-ci/archive/20240914/202409141849.QpkMdWlC-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 14.1.0
-reproduce: (https://download.01.org/0day-ci/archive/20240914/202409141849.QpkMdWlC-lkp@intel.com/reproduce)
+If there are enough instances of this we can have a standard
+definition for this similar to the i2c / spi ones that defaults
+to device_get_match_data() if available, and falls back to the old
+way if not.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409141849.QpkMdWlC-lkp@intel.com/
+If you want to add that great, if not it can be a separate
+bit of work for another day.
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/input/touchscreen/hynitron-cst816x.c:100:21: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __be16 [usertype] abs_x @@     got unsigned long @@
-   drivers/input/touchscreen/hynitron-cst816x.c:100:21: sparse:     expected restricted __be16 [usertype] abs_x
-   drivers/input/touchscreen/hynitron-cst816x.c:100:21: sparse:     got unsigned long
->> drivers/input/touchscreen/hynitron-cst816x.c:101:21: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __be16 [usertype] abs_y @@     got unsigned long @@
-   drivers/input/touchscreen/hynitron-cst816x.c:101:21: sparse:     expected restricted __be16 [usertype] abs_y
-   drivers/input/touchscreen/hynitron-cst816x.c:101:21: sparse:     got unsigned long
->> drivers/input/touchscreen/hynitron-cst816x.c:147:58: sparse: sparse: incorrect type in argument 3 (different base types) @@     expected int value @@     got restricted __be16 [addressable] [usertype] abs_x @@
-   drivers/input/touchscreen/hynitron-cst816x.c:147:58: sparse:     expected int value
-   drivers/input/touchscreen/hynitron-cst816x.c:147:58: sparse:     got restricted __be16 [addressable] [usertype] abs_x
->> drivers/input/touchscreen/hynitron-cst816x.c:148:58: sparse: sparse: incorrect type in argument 3 (different base types) @@     expected int value @@     got restricted __be16 [addressable] [usertype] abs_y @@
-   drivers/input/touchscreen/hynitron-cst816x.c:148:58: sparse:     expected int value
-   drivers/input/touchscreen/hynitron-cst816x.c:148:58: sparse:     got restricted __be16 [addressable] [usertype] abs_y
+Jonathan
 
-vim +100 drivers/input/touchscreen/hynitron-cst816x.c
 
-    93	
-    94	static bool cst816x_process_touch(struct cst816x_priv *priv,
-    95					  struct cst816x_touch_info *info)
-    96	{
-    97		if (cst816x_i2c_read_register(priv, CST816X_FRAME, info, sizeof(*info)))
-    98			return false;
-    99	
- > 100		info->abs_x = get_unaligned_be16(&info->abs_x) & GENMASK(11, 0);
- > 101		info->abs_y = get_unaligned_be16(&info->abs_y) & GENMASK(11, 0);
-   102	
-   103		dev_dbg(&priv->client->dev, "x: %d, y: %d, t: %d, g: 0x%x\n",
-   104			info->abs_x, info->abs_y, info->touch, info->gesture);
-   105	
-   106		return true;
-   107	}
-   108	
-   109	static int cst816x_register_input(struct cst816x_priv *priv)
-   110	{
-   111		priv->input = devm_input_allocate_device(&priv->client->dev);
-   112		if (!priv->input)
-   113			return -ENOMEM;
-   114	
-   115		priv->input->name = "Hynitron CST816X Touchscreen";
-   116		priv->input->phys = "input/ts";
-   117		priv->input->id.bustype = BUS_I2C;
-   118		input_set_drvdata(priv->input, priv);
-   119	
-   120		for (int i = 0; i < ARRAY_SIZE(priv->event_map); i++)
-   121			input_set_capability(priv->input, EV_KEY,
-   122					     priv->event_map[i].code);
-   123	
-   124		input_set_abs_params(priv->input, ABS_X, 0, 240, 0, 0);
-   125		input_set_abs_params(priv->input, ABS_Y, 0, 240, 0, 0);
-   126	
-   127		return input_register_device(priv->input);
-   128	}
-   129	
-   130	static void cst816x_reset(struct cst816x_priv *priv)
-   131	{
-   132		gpiod_set_value_cansleep(priv->reset, 1);
-   133		msleep(50);
-   134		gpiod_set_value_cansleep(priv->reset, 0);
-   135		msleep(100);
-   136	}
-   137	
-   138	static irqreturn_t cst816x_irq_cb(int irq, void *cookie)
-   139	{
-   140		struct cst816x_priv *priv = cookie;
-   141		struct cst816x_touch_info info;
-   142	
-   143		if (!cst816x_process_touch(priv, &info))
-   144			return IRQ_HANDLED;
-   145	
-   146		if (info.touch) {
- > 147			input_report_abs(priv->input, ABS_X, info.abs_x);
- > 148			input_report_abs(priv->input, ABS_Y, info.abs_y);
-   149			input_report_key(priv->input, BTN_TOUCH, 1);
-   150		}
-   151	
-   152		if (info.gesture) {
-   153			input_report_key(priv->input,
-   154					 priv->event_map[info.gesture & 0x0F].code,
-   155					 info.touch);
-   156	
-   157			if (!info.touch)
-   158				input_report_key(priv->input, BTN_TOUCH, 0);
-   159		}
-   160	
-   161		input_sync(priv->input);
-   162	
-   163		return IRQ_HANDLED;
-   164	}
-   165	
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+
 
