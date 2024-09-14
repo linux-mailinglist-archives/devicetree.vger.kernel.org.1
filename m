@@ -1,143 +1,261 @@
-Return-Path: <devicetree+bounces-102897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B8F7978C7F
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 03:56:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D6A9978CBD
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 04:19:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC43D1F23A1E
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 01:56:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8341C288A70
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 02:19:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FFD48F58;
-	Sat, 14 Sep 2024 01:56:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="JJNmq9jL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AB02168B7;
+	Sat, 14 Sep 2024 02:18:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E4488C1A;
-	Sat, 14 Sep 2024 01:56:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726278987; cv=pass; b=cJEsN0l54y95wMAj5yM3OxuIp3wPu698Q0qoXNLdKgAZhCn/3GUHXIYDqO/3dGByb0VlcwiZrHA/dYx13bX4mmRwyTKO0HlvY4Ik8GXTyML2TKRW6EsZ86cK20iIZcXrTZYEi1rqmtYrjRYEgc65SwPR/xGoynQOZZ0huEwK+Jo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726278987; c=relaxed/simple;
-	bh=ayBCYZquB2nxVKX6mp0OElWmvLIk/UXOyDEVCYprcsY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=O55ffQne+VGIuVCfvn2Yc2IvYi20I2jrOtM0rE1mm9ITT0KIJYnukdvd/meVQ1XE4MVVsrrrSkNBr72wn7ncKh0LR6TcuQ4EJqmrV05c3aJBXnoB3eIDZN8idLa4+mCPZR3yGkYH9UXA0NQ5zv4CzJP8dfHUH4Nh1DO1Q6Twrm4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=JJNmq9jL; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1726278962; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=RzJyEf15GliLrSVJ/uyX7penK2QMkryN+d4RXb6QJ+6ncXwSJGTy/7GOWV1ckmLDatEPFQzhxrIyognx/6uMMvLQFhIwNZf4YwweT2y940uaqn3k6jEUFiZ5MuZJ5WnbPHKR0BEWlOfzx7kwNigV3wCFNuUj1p+HDtSL5hWZzWk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1726278962; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=NXQ26KT6Pv90YwCJ3APT9lq+9hwmObUaP8zl7IDRZwQ=; 
-	b=YUuDxBcrCMqE7sf81QwLdoaT0JqQi+gxSRajQgUF5A7iIGvIJhjxVXj+fjoXfC24qjPSNJTCNjv13yZdQiPT+duK25CsK5hye+wuhUZHlDyiwHfC/FNYKVeYcIcqO128AUeov4IRRdz59c+ht5oFWRiJn2NL7G/pVchcVHPpaTQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1726278962;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=NXQ26KT6Pv90YwCJ3APT9lq+9hwmObUaP8zl7IDRZwQ=;
-	b=JJNmq9jLLHCaqwfhUXkVQTdtdGm8q9fe+oLihCQoK9+cANoPVN4caaGg+8aEw0gm
-	oCvW1te5P8I5iiwm722yBp/HW0m3VVe7hORwALOo+jD5hHi8jY2191pO/o0OPUPurss
-	mPRawi+IxSq/0UlgezWaITrvHz6YFwbjZCfrfiMsOGNg3AgPF2tWZ9Ui1eQW6b0k0fb
-	RVZ9ZYmJ72w6BQyBxJm+KLuduHvhw3yrif11BKHLOBHtJBdfsMoKl3cXKIPpIGhRjqo
-	LCyoVofFN7JlrR9uYYcAAus6RZObpHkaLp7xC79RQq4te1RwXC0hHLdRtMKYaWbJwjm
-	fGtv6NXA3g==
-Received: by mx.zohomail.com with SMTPS id 1726278961359640.2990860982334;
-	Fri, 13 Sep 2024 18:56:01 -0700 (PDT)
-Message-ID: <ad869e684c940435ba3fcf4dbccbfc770b38c16b.camel@icenowy.me>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: sunxi: document RerVision
- A33-Vstar board
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <mripard@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-sunxi@lists.linux.dev, Andre Przywara <andre.przywara@arm.com>,
- Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Date: Sat, 14 Sep 2024 09:55:55 +0800
-In-Reply-To: <172623730520.4076253.7175037716930825765.robh@kernel.org>
-References: <20240913104845.4112986-1-uwu@icenowy.me>
-	 <172623730520.4076253.7175037716930825765.robh@kernel.org>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAE4FC13D;
+	Sat, 14 Sep 2024 02:18:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726280335; cv=none; b=N7jBFW3tyYeBfVEoHYsOFBVN/aqmyEIu6AJ0bmYPZZzNiLos75CwY8j+Wn/oxo1XsqtKjEZbwJLZuw0eygNGTWw2s4nfk9/aHSBFuGRxsZgDco0G0vCWQ9phpaG5bywuPYV1Lt17ZOP5k9J7miibsHRd9Ql6dvrWgCRG0rJ/Rqg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726280335; c=relaxed/simple;
+	bh=ZTEcpdbnmUfr1X64bF3TIuqOhdRmJceHg9z2xV2RnJU=;
+	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+	 In-Reply-To:Content-Type; b=mcnVvLjISWwa+NqnAqwXqZr8jWyAh65m/8j3Y/pyqVramlOyDqXw0M3W3gCxgbfvCRtvi8Ujg+SSTIV4PH71BfJ3qALkXuYeqfqCeQX85SL1f58NPCwOCLj2fLLj0S19f8Z174t7j9gx8S5YSKM2zpIXwwTc1M1uzRCGz2CqxJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [10.20.42.164])
+	by gateway (Coremail) with SMTP id _____8Ax6+mJ8uRm7pwHAA--.17457S3;
+	Sat, 14 Sep 2024 10:18:49 +0800 (CST)
+Received: from [10.20.42.164] (unknown [10.20.42.164])
+	by front2 (Coremail) with SMTP id qciowMBxOsaI8uRmhrYHAA--.34198S2;
+	Sat, 14 Sep 2024 10:18:48 +0800 (CST)
+Subject: Re: [PATCH v4 2/2] Loongarch: EDAC driver for loongson memory
+ controller
+To: Borislav Petkov <bp@alien8.de>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ chenhuacai@kernel.org, linux-edac@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@xen0n.name,
+ tony.luck@intel.com, james.morse@arm.com, mchehab@kernel.org,
+ rric@kernel.org, loongarch@lists.linux.dev
+References: <20240909032124.18819-1-zhaoqunqin@loongson.cn>
+ <20240909032124.18819-3-zhaoqunqin@loongson.cn>
+ <20240913101137.GHZuQP2WzlkvJ5gG2F@fat_crate.local>
+From: Zhao Qunqin <zhaoqunqin@loongson.cn>
+Message-ID: <2ca97c7c-2fd4-3ce5-9e8c-426c418ebcf5@loongson.cn>
+Date: Sat, 14 Sep 2024 10:18:02 +0800
+User-Agent: Mozilla/5.0 (X11; Linux mips64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+In-Reply-To: <20240913101137.GHZuQP2WzlkvJ5gG2F@fat_crate.local>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-CM-TRANSID:qciowMBxOsaI8uRmhrYHAA--.34198S2
+X-CM-SenderInfo: 52kd01pxqtx0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj93XoWxCF15GrW3ZrWxJryxtryruFX_yoWrWry8pF
+	15C3WqyFs8tryUK34vvwn8ZF9avrZ3tF12yrW3t343Aa4qywn3ur9agF129r1kAr1jkr12
+	va4UKrZ3uFn0kFXCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUPFb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r106r15M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_
+	Gr0_Gr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYI
+	kI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUXVWU
+	AwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JMx
+	k0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l
+	4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxVAqx4xG67AKxV
+	WUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI
+	7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r
+	4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI
+	42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUcTKZDUUUU
 
-=E5=9C=A8 2024-09-13=E6=98=9F=E6=9C=9F=E4=BA=94=E7=9A=84 09:24 -0500=EF=BC=
-=8CRob Herring (Arm)=E5=86=99=E9=81=93=EF=BC=9A
->=20
-> On Fri, 13 Sep 2024 18:48:44 +0800, Icenowy Zheng wrote:
-> > RerVision A33-Vstar is an evaluation board of their A33-Core1 SoM.
-> >=20
-> > Add its compatible (with the SoM compatible) to the sunxi board DT
-> > binding file.
-> >=20
-> > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> > ---
-> > =C2=A0Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++
-> > =C2=A01 file changed, 6 insertions(+)
-> >=20
->=20
->=20
-> My bot found new DTB warnings on the .dts files added or changed in
-> this
-> series.
->=20
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the
-> warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to
-> reply
-> unless the platform maintainer has comments.
->=20
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
->=20
-> =C2=A0 pip3 install dtschema --upgrade
->=20
->=20
-> New warnings running 'make CHECK_DTBS=3Dy allwinner/sun8i-a33-
-> vstar.dtb' for 20240913104845.4112986-1-uwu@icenowy.me:
->=20
-> arch/arm/boot/dts/allwinner/sun8i-a33-vstar.dtb: hub@1: '#address-
-> cells', '#size-cells', 'ethernet@4' do not match any of the regexes:
-> 'pinctrl-[0-9]+'
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id:
-> http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
 
-I think I need help to properly reference usb-device.yaml to allow
-cells properties. Currently it's in a allOf: section of
-genesys,gl850g.yaml along with Genesys-specific per-compatible rules
-(USB2/USB3 hubs), but it looks that this fails to work.
+在 2024/9/13 下午6:11, Borislav Petkov 写道:
+> On Mon, Sep 09, 2024 at 11:21:24AM +0800, Zhao Qunqin wrote:
+>> Subject: Re: [PATCH v4 2/2] Loongarch: EDAC driver for loongson memory controller
+> 			EDAC/loongson: Add EDAC driver ...
+>
+>> Reports single bit errors (CE) only.
+>>
+>> Signed-off-by: Zhao Qunqin <zhaoqunqin@loongson.cn>
+>> ---
+> ...
+>
+>> diff --git a/drivers/edac/loongson_edac.c b/drivers/edac/loongson_edac.c
+>> new file mode 100644
+>> index 000000000..b89d6e0e7
+>> --- /dev/null
+>> +++ b/drivers/edac/loongson_edac.c
+>> @@ -0,0 +1,182 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (C) 2024 Loongson Technology Corporation Limited.
+>> + */
+>> +
+>> +#include <linux/edac.h>
+>> +#include <linux/module.h>
+>> +#include <linux/init.h>
+>> +#include <linux/platform_device.h>
+>> +
+>> +#include "edac_module.h"
+>> +
+>> +enum ecc_index {
+>> +	ECC_SET = 0,
+>> +	ECC_RESERVED,
+>> +	ECC_COUNT,
+>> +	ECC_CS_COUNT,
+>> +	ECC_CODE,
+>> +	ECC_ADDR,
+>> +	ECC_DATA0,
+>> +	ECC_DATA1,
+>> +	ECC_DATA2,
+>> +	ECC_DATA3,
+>> +};
+>> +
+>> +struct loongson_edac_pvt {
+>> +	u64 *ecc_base;
+>> +	int last_ce_count;
+>> +};
+>> +
+>> +static void loongson_update_ce_count(struct mem_ctl_info *mci,
+> Drop the loongson_ prefix from all static functions.
+>
+> Also, align function arguments on the opening brace.
+>
+>> +					int chan,
+>> +					int new)
+>> +{
+>> +	int add;
+>> +	struct loongson_edac_pvt *pvt = mci->pvt_info;
+> The EDAC tree preferred ordering of variable declarations at the
+> beginning of a function is reverse fir tree order::
+>
+> 	struct long_struct_name *descriptive_name;
+> 	unsigned long foo, bar;
+> 	unsigned int tmp;
+> 	int ret;
+>
+> The above is faster to parse than the reverse ordering::
+>
+> 	int ret;
+> 	unsigned int tmp;
+> 	unsigned long foo, bar;
+> 	struct long_struct_name *descriptive_name;
+>
+> And even more so than random ordering::
+>
+> 	unsigned long foo, bar;
+> 	int ret;
+> 	struct long_struct_name *descriptive_name;
+> 	unsigned int tmp;
+>
+>> +
+>> +	add = new - pvt->last_ce_count;
+>> +
+>> +	/* Store the new value */
+> Drop all those obvious comments.
+>
+>> +	pvt->last_ce_count = new;
+>> +
+>> +	/* device resume or any other exceptions*/
+> No clue what that means.
 
-I copied the patternProperties rule from usb-hcd.yaml to allow
-downstream devices,  this works well.
+The CE value of the memory controller should only increase,
 
-BTW should a usb-hub.yaml be present to allow different hub bindings to
-share the code for downstream devices?
+but it will return to its initial value when resuming from S3 or S4 
+sleep state,
 
->=20
->=20
->=20
->=20
->=20
+then the new ce count may be smaller than the last ce count.
+
+>
+> Also,  the check goes right under the assignment.
+>
+>> +	if (add < 0)
+>> +		return;
+>> +
+>> +	/*updated the edac core */
+> Useless comment.
+>
+>> +	if (add != 0) {
+> 	if (!add)
+> 		return;
+>
+> and now you can save yourself an indentation level:
+>
+> 	edac_mc_...(
+>
+>> +		edac_mc_handle_error(HW_EVENT_ERR_CORRECTED, mci, add,
+>> +					0, 0, 0,
+>> +					chan, 0, -1, "error", "");
+>> +		edac_mc_printk(mci, KERN_INFO, "add: %d", add);
+>> +	}
+>> +}
+>> +
+>> +static int loongson_read_ecc(struct mem_ctl_info *mci)
+>> +{
+>> +	u64 ecc;
+>> +	int cs = 0;
+>> +	struct loongson_edac_pvt *pvt = mci->pvt_info;
+>> +
+>> +	if (!pvt->ecc_base)
+>> +		return pvt->last_ce_count;
+>> +
+>> +	ecc = pvt->ecc_base[ECC_CS_COUNT];
+>> +	cs += ecc & 0xff;		// cs0
+>> +	cs += (ecc >> 8) & 0xff;	// cs1
+>> +	cs += (ecc >> 16) & 0xff;	// cs2
+>> +	cs += (ecc >> 24) & 0xff;	// cs3
+> No side comments pls - put them over the line.
+>
+>> +
+>> +	return cs;
+>> +}
+>> +
+>> +static void loongson_edac_check(struct mem_ctl_info *mci)
+>> +{
+>> +	loongson_update_ce_count(mci, 0, loongson_read_ecc(mci));
+> Drop this silly wrapper.
+>
+>> +}
+>> +
+>> +static int get_dimm_config(struct mem_ctl_info *mci)
+>> +{
+>> +	u32 size, npages;
+>> +	struct dimm_info *dimm;
+>> +
+>> +	/* size not used */
+>> +	size = -1;
+>> +	npages = MiB_TO_PAGES(size);
+>> +
+>> +	dimm = edac_get_dimm(mci, 0, 0, 0);
+>> +	dimm->nr_pages = npages;
+>> +	snprintf(dimm->label, sizeof(dimm->label),
+>> +			"MC#%uChannel#%u_DIMM#%u",
+>> +			mci->mc_idx, 0, 0);
+> Align arguments on the opening brace.
+>
+>> +	dimm->grain = 8;
+>> +
+>> +	return 0;
+>> +}
+
+Will address above comments. Thanks for taking the time to review.
+
+Best regards,
+
+Zhao Qunqin.
+
+>
+>
 
 
