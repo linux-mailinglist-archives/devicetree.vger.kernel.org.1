@@ -1,128 +1,163 @@
-Return-Path: <devicetree+bounces-102956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-102957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DD84978FD6
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 12:07:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0E3D978FDF
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 12:12:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD54F1F21FE0
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 10:07:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7420F2841D8
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 10:12:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7028A1CDFCE;
-	Sat, 14 Sep 2024 10:07:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CA0D1CEEAC;
+	Sat, 14 Sep 2024 10:11:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IsdoPM0M"
+	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="aORr7H8J";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="U9Nm20lH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout7-smtp.messagingengine.com (fout7-smtp.messagingengine.com [103.168.172.150])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C73F3146D5A;
-	Sat, 14 Sep 2024 10:07:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D7B71CE6FE;
+	Sat, 14 Sep 2024 10:11:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726308427; cv=none; b=sNVif947KgqDNV5DHHvskC+kN/j4WUdq34tsngCv6usOfi9yvuNdIMT/Ref9PPYnHM1rR2DvmAkpD7A6yxkDEV4vWvsfAXCgdNm5FojsD5lNI28qLJl8Ivc7jvBGDWW99KsferGoelgdORJKwp4AFznhDzfgpVEXKDSoUqNXlVw=
+	t=1726308715; cv=none; b=RBaqC1/rBTyRVQP+wKPHEV4MYiZ7NnkwA4bj33sbJ/TsMVxPa/hfZrUcuYnEjsYq2w6PuHHT6uZO2NFQPrOiU/zdbc0gNBhbZghKEYxkgWYsx7y7RhSd4VF1GKCg9nLAApo4OZxnRJML/s7p72/RoSkpiYKY2vCt2EZTShUc4wU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726308427; c=relaxed/simple;
-	bh=B2uo95TFjLNThhU6mneOTIuZhASXTkzS/sf9qt5JAbM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=RtX1/wx4GsFuWf+dYHC4HiWejrieeb2y4GG8sncZFkgtYqmGGDNARR8uKbqV6p/XYZ0q6oq3UA85DKaGHOwhWaFPB2sVco+Ba59tZVw4IN+t1zCRvtLgf7Yom7Dgxxjpnikt4qt/cCEKbR5J5o0bCvul2sXgkFJ3Dy4wQpOZtTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IsdoPM0M; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a7a843bef98so210029366b.2;
-        Sat, 14 Sep 2024 03:07:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726308424; x=1726913224; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=oEIrC6fkjUDhUytmEyujyx/BPZ/Dm0y8aAc80KqecXk=;
-        b=IsdoPM0MgQ4/YgPVShnbSlMCgHXe9rf8vUPdFXosO+3kSmb6HovmkSCVEblR2cbIZd
-         u0PojGy2HWlApR7Wiv0+xiIbaYrfAOTe3D4sLLoep6Zw5MjkgLFegHjGGpWeX0+JjKRq
-         56AnRAyhF5emjIzTpYSmaABekD3pluGWb1xkcMAQIy0L+/WqRi/NDDifNPxfqogcSPFj
-         1QJ67IjDACz+fGebK7YDPBsWPYX9f0XnGPjvX/jlSZ7XovcxjWCOL81syUG8uM1azttA
-         7tRHA7Q7ZQUaaFQKrmttkAV5fgEnEEMYLK8mWF8u98tyc0aLSHRa0YHRJz0ORKCVizJN
-         aDiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726308424; x=1726913224;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oEIrC6fkjUDhUytmEyujyx/BPZ/Dm0y8aAc80KqecXk=;
-        b=AoMRJkCdW/cilfETPlvBp0g2IUXuSgVRxsRxrf0+rc8da/hU0HwnOmPLXfXDiPBzMj
-         gcXQoT8wS9KJozPPqp9BmCu9WnsVqPfiHoMhyVPjGPuVkTiZDBzO4ofoc2SUslGvUHJJ
-         KXU+PI60d67hDkHAGVkEZkZZ5K8qSsT+0fK2TgUjamaMrQESh5DRzfpf0Q17KAo6rk6W
-         wUmBz3V781YDJnlNHSROoub+CLcN0t0ehG/mzlsb7OzyzhZKQqrQWQ9rjHK5JttzX/PU
-         qdtgvlydD/3RyDjk0fGi8Cz8UZAvujGxfx0Ow0YZBc/fJpbsMfWCc18SAuw7czOP2kWZ
-         k52g==
-X-Forwarded-Encrypted: i=1; AJvYcCUq6NZYPJEMOh9BZTDy5L2SveuhI/iVjaime+x46DblKuxxwY1Q9iT1m163Bwo23eMM7qMegn//DX0Tntk=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvJKFVdSUK8nJoGBTDiQcYJIcJO/C406ncdyhPx/GjzLHW5saa
-	UMkYG7P0nxIOgcSY2GlkpJpYA8NbMLkwP//5wYqjnMaxmsxO24MH
-X-Google-Smtp-Source: AGHT+IGXhJKaMfZi7R0EnhsiSO5qMw+KJZP5yHlgmcZg4J4vj0+/2FLyveFNjO4NJ+/HQOISxQcnNw==
-X-Received: by 2002:a17:907:94cc:b0:a8d:6921:e17d with SMTP id a640c23a62f3a-a9047d1adf4mr547920966b.33.1726308423034;
-        Sat, 14 Sep 2024 03:07:03 -0700 (PDT)
-Received: from cleve-worktop. (cst-prg-101-230.cust.vodafone.cz. [46.135.101.230])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-a906111aa91sm61961666b.97.2024.09.14.03.07.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Sep 2024 03:07:02 -0700 (PDT)
-From: =?utf-8?q?Kry=C5=A1tof_=C4=8Cern=C3=BD?= <cleverline1mc@gmail.com>
-Date: Sat, 14 Sep 2024 12:07:00 +0200
-Subject: [PATCH] arm64: dts: allwinner: h5: NanoPi NEO Plus2: Add
- disable-wp to mmc0
+	s=arc-20240116; t=1726308715; c=relaxed/simple;
+	bh=c7hrh1mNhY5Po59linuz91/Lp273Kl2sAkDSofcmW3U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aCMzOt6OkbAe/h9Sfqeyn5elVWiTNHxlUZKRhWr+bwwepxzKmfAhkFQyKxf+B1we468J6vI1Cb0zXk/pTQI9uPnMphHobHuurlgyKZ1wVVGQJDv+TEyiIG13rxvwGwaS4HqkFTKllBeUfox6bvxYdFCVglIxZoOxh8cJzVkYR1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=aORr7H8J; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=U9Nm20lH; arc=none smtp.client-ip=103.168.172.150
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
+Received: from phl-compute-09.internal (phl-compute-09.phl.internal [10.202.2.49])
+	by mailfout.phl.internal (Postfix) with ESMTP id 6D141138034D;
+	Sat, 14 Sep 2024 06:11:52 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-09.internal (MEProxy); Sat, 14 Sep 2024 06:11:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm3; t=1726308712; x=1726395112; bh=wdYBlJH1j2
+	NJdmrQ3AgD6IKbm38HR2Yf3Znhh5VlisQ=; b=aORr7H8JGhZkcbuntmIvaMOGA0
+	/MNDvEBK3EaaffdNtywXEszDv4oT8lgmjaAJSQ6hG4BZw3pyXUZ0HuxCFgW51Jho
+	3mxbyvmk50xrGYlquXhO9YOAOFGgFsltTBmbcmDFqDlo3RqCG9omkTpF7ayriiuJ
+	HxjmMyu8tF7M7aprtQ8tnmEszHEQLWNueWq5efKeL4iw8HZciroSaRIqJlDdr9Bn
+	8xrCLzoGJ05vb0DdrlD43/tXcrLeGGYtF3NMicV9HmVnUolIb0DH3O6WwBH4S84v
+	Op/8/PmCnq1TsZQqWGzYVx5XtRJUdpUStYtXAiSyjFzJn3UJ22qS14RzkREQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm1; t=1726308712; x=1726395112; bh=wdYBlJH1j2NJdmrQ3AgD6IKbm38H
+	R2Yf3Znhh5VlisQ=; b=U9Nm20lH/voTbRJWFA4oNdsQX1ya+5iERjCc+qxE3p9N
+	V6H3QXBWhGBNMpDapVyukAbnWJkhnoNY18qLSVd8bKe3irf9zwvfZrn+7KSepErX
+	w3Zt9TGVJspLYGoC5482obPRi5YoxGuIb9hXjuDJLO2Q9jLLi252gYPhVXzXTJBn
+	XHYqPUxlR5VWYeNnYUIFaqiOteX1j7xIaD0kz/A9cp2hOvuxOLzzfG2nfaPOZv+6
+	4g8rDYXNBd5B0iwEjg12ecYIH0xzUDAhusQWpWI7o4TbmTycae11hBm0MKvCc0EC
+	20vZIXKSTkSdDcnkuN4lGVjCK/aTKYGf8HBFo7Gx5g==
+X-ME-Sender: <xms:Z2HlZgLGCIZ8gWL6kJFrNK_OJRgX8CdROU6K_bAEQdAXwk5Z7xh3-A>
+    <xme:Z2HlZgI3cIECw5vwULhBTJ8t9KgInmT1VhnPb5-_kVfEnoo2lqfrZegd5WmuoMDEU
+    Lz5XPEa5LAwbZcr2cs>
+X-ME-Received: <xmr:Z2HlZguQa1dRX1HqSEuHnyIrsg3uN2AoNXiXIL9wWhUTJARPgtvtSegE0y1IC9Fmx5vYQg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrudektddgvdeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddtjeen
+    ucfhrhhomheplfgrnhhnvgcuifhruhhnrghuuceojhgrnhhnvgesjhgrnhhnrghurdhnvg
+    htqeenucggtffrrghtthgvrhhnpeetkeegfffhhfekhfdtveejueevtdefkeehgeekgeel
+    teeluddugeeuvddukeeuffenucffohhmrghinhepghhithhhuhgsrdgtohhmnecuvehluh
+    hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhgrnhhnvgesjhgr
+    nhhnrghurdhnvghtpdhnsggprhgtphhtthhopeefvddpmhhouggvpehsmhhtphhouhhtpd
+    hrtghpthhtohepuggrkhhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehgrhgvghhk
+    hheslhhinhhugihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopegrhihushhhse
+    gsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtohepfhgrsghivghnrdhprghrvghn
+    theslhhinhgrrhhordhorhhgpdhrtghpthhtohepugdqghholhgvsehtihdrtghomhdprh
+    gtphhtthhopehlohhrfhhorhhlihhnuhigsegsvggrghhlvggsohgrrhgurdhorhhgpdhr
+    tghpthhtohepjhhkrhhiughnvghrsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpth
+    htoheprhhosggvrhhttghnvghlshhonhessggvrghglhgvsghorghrugdrohhrghdprhgt
+    phhtthhopegrfhgusehtihdrtghomh
+X-ME-Proxy: <xmx:Z2HlZtaiPXWo0hoNfwFmPC9K2ADDDofXYS8ZgxTLBNIaDKBpiSKpDQ>
+    <xmx:Z2HlZnZdFjkun-rTi_pNVt9B7MhEdaB-MEYhEQnEPnt7l3WQBz4S6Q>
+    <xmx:Z2HlZpBrLGThc8Oyk8ay8ddteDZxWvpwHx7WsmKyt6rhy076VLNfMA>
+    <xmx:Z2HlZta96gou4U4zmRiYrSQYPZ7O0VpCGl0y45bvGn_lJHxiPLwY6A>
+    <xmx:aGHlZkwpfgeBBy3OeE8ggur4QJ_hWsPnlquY6Hme4l7QxApo3RtW2okr>
+Feedback-ID: i449149f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 14 Sep 2024 06:11:51 -0400 (EDT)
+Date: Sat, 14 Sep 2024 12:11:49 +0200
+From: Janne Grunau <janne@jannau.net>
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Ayush Singh <ayush@beagleboard.org>, fabien.parent@linaro.org,
+	d-gole@ti.com, lorforlinux@beagleboard.org,	jkridner@beagleboard.org,
+ robertcnelson@beagleboard.org,	Andrew Davis <afd@ti.com>,
+ Miguel Ojeda <ojeda@kernel.org>,	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Rob Herring <robh@kernel.org>,	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,	Arnd Bergmann <arnd@arndb.de>,
+ Nishanth Menon <nm@ti.com>,	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, linux-kernel@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, asahi@lists.linux.dev
+Subject: Re: [PATCH 1/8] rust: kernel: Add Platform device and driver
+ abstractions
+Message-ID: <ZuVhZV2KW2Gv340V@robin>
+References: <20240911-mikrobus-dt-v1-0-3ded4dc879e7@beagleboard.org>
+ <20240911-mikrobus-dt-v1-1-3ded4dc879e7@beagleboard.org>
+ <2024091106-scouring-smitten-e740@gregkh>
+ <ZuHU5yrJUOKnJGrB@pollux>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240914-b4-nanopineoplus2-fix-mmc0-wp-v1-1-12f54f0d6620@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAENg5WYC/x3MTQqDMBBA4avIrDuQpGklXqW48GfSDugkJKgFy
- d0NLj8evBMyJaYMXXNCop0zB6nQjwam3yBfQp6rwShjldMWR4sySIgsFOKyZYOe/7iuk8Ijopv
- b1o+O3i/9hPqIiWq+/5++lAuw8lKSbwAAAA==
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- =?utf-8?q?Kry=C5=A1tof_=C4=8Cern=C3=BD?= <cleverline1mc@gmail.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1726308424; l=918;
- i=cleverline1mc@gmail.com; s=20240824; h=from:subject:message-id;
- bh=B2uo95TFjLNThhU6mneOTIuZhASXTkzS/sf9qt5JAbM=;
- b=5Lrk4c31YFwAF0a+C3UhpMwhNyIjmtsc4QT30mPA4izeJ8UHvH/xMLNfmKhpSYe3KIDe0hyIO
- tiZn1Q+K3/0DbIMaaW9nHZBO+HNrRs5ChBEj9/rFZggux9tF1/X5LOw
-X-Developer-Key: i=cleverline1mc@gmail.com; a=ed25519;
- pk=CQifx5FUgTQKAoj5VCYrwYHi235AkXQ5yT1P6gkaBxM=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <ZuHU5yrJUOKnJGrB@pollux>
 
-The board does not have wp pin/switch for micro SD card (mmc0).
+On Wed, Sep 11, 2024 at 07:35:35PM +0200, Danilo Krummrich wrote:
+> On Wed, Sep 11, 2024 at 04:56:14PM +0200, Greg Kroah-Hartman wrote:
+> > On Wed, Sep 11, 2024 at 07:57:18PM +0530, Ayush Singh wrote:
+> > > +/// An identifier for Platform devices.
+> > > +///
+> > > +/// Represents the kernel's [`struct of_device_id`]. This is used to find an appropriate
+> > > +/// Platform driver.
+> > > +///
+> > > +/// [`struct of_device_id`]: srctree/include/linux/mod_devicetable.h
+> > > +pub struct DeviceId(&'static CStr);
+> > > +
+> > > +impl DeviceId {
+> > 
+> > <snip>
+> > 
+> > I appreciate posting this, but this really should go on top of the
+> > device driver work Danilo Krummrich has been doing.
+> 
+> If everyone agrees, I'd offer to just provide platform device / driver
+> abstractions with my next patch series. This way you don't need to worry
+> about aligning things with the rest of the abstractions yourself and throughout
+> potential further versions of the series.
 
-Signed-off-by: Kryštof Černý <cleverline1mc@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts | 1 +
- 1 file changed, 1 insertion(+)
+Covering platform device/driver abstractions in the same series would
+be appreciated from asahi side. It hopefully results in earlier merge
+since it avoids a dependency on the device driver abstractions.
+Feel free to reach out to me for an earlier preview / rabsing of the
+asahi driver.
+https://github.com/AsahiLinux/linux/tree/bits/210-gpu has all relevant
+rust changes from 6.11-rc but I plan to rebase onto 6.11 in the next
+days and possibly import changes from 6.12-rc* / rust-next.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts
-index 526443bb736c..18fa541795a6 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts
-@@ -136,6 +136,7 @@ &mmc0 {
- 	vmmc-supply = <&reg_vcc3v3>;
- 	bus-width = <4>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-+	disable-wp;
- 	status = "okay";
- };
- 
-
----
-base-commit: 57f962b956f1d116cd64d5c406776c4975de549d
-change-id: 20240914-b4-nanopineoplus2-fix-mmc0-wp-9d77fb9e6513
-
-Best regards,
--- 
-Kryštof Černý <cleverline1mc@gmail.com>
-
+Thanks
+Janne
 
