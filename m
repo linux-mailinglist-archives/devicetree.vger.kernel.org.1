@@ -1,134 +1,105 @@
-Return-Path: <devicetree+bounces-103041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CCDD979499
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 06:25:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1167D9794B8
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 08:15:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E19CC1C218A4
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 04:25:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9C161F21BAD
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 06:15:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F5111CAF;
-	Sun, 15 Sep 2024 04:25:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BDD617BBE;
+	Sun, 15 Sep 2024 06:14:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="amkJhq5b"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="DER2PoBD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F74F11CA0;
-	Sun, 15 Sep 2024 04:25:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 100C21B85D6;
+	Sun, 15 Sep 2024 06:14:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726374314; cv=none; b=EiNQcQqZGpdTupblH69W00wjaRVVar8yhVJdr9tIsJVa0NaN3xxJfz24sdYkpwxR6UQ7NYFrquDwXtRpYzEFMR2txmZM+0TgVj2nYl1RjHhTj+/3lc5jb40MJHbv1teoWNlzcYJ/UF5HNJYCHBKj8KxNYTw2Y84V30dehj3R96E=
+	t=1726380896; cv=none; b=igcYfGc4vwHfjIZNdJdoL1ha8g9j4feKTyvRbIzjLao0FHLc4SxqV7Fdcn+lHSJojNDLTHlcBiz6qJtFU9Su6fjgP6mp1pHLU0LjuXg/x2CscNTJW1YPd+kJ+6+HlRBSfCPIgtC8gLvlawR/LtwuNAeVaMpM8Zz451AtPe5RtLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726374314; c=relaxed/simple;
-	bh=Hs3A/0NgMdrdsVPIXyw3hBiawKKXZLwpEf6kATB+HVg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=OXiMROAxODCBvTlydI1IP+iqx+mYLyEDJWIEAvoJBtgc66w0zZC+r3TgOWulT7ro1Uen7O9/c1NPSbDYT+9zb8fQi9qfviYV1bFR5lynOx9mZk3HIVB8IpgO9wWR52vUGj65evExJZjePd/up7vWCa5fdFILIhA+jZhn/zEkbtU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=amkJhq5b; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48F40F18024744;
-	Sun, 15 Sep 2024 04:24:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1Di0Oqdi4xGJgoL6vNrrVyWlC/CcTvosN/PQueUb9K8=; b=amkJhq5bbK41F5hj
-	wCdJVIXbdBku5mFAUvKq1ZvjUBux2X0pTe1pHfQJnXNcNPArMnK8wk96Outuq4Rm
-	9EahMgreag/zyAKNceMWspsWi+k5uI2QjLgChL2z4U/+NpIS1inwXvba67p3zBsh
-	b9JIto8jvu0xCgWqY40urgdD/zneQi9fm3Ost00g8gmTabDSyFnzaEkWgCEnJ0El
-	tWhXkrH0ZL0y9G39q5f++mD6dB5Zreq1fKN6ArzCUxJRv/b0zKb/pVYnsld/g5lK
-	xmXX47ZAsPJ/1jOgcdP6s1kR/Q0VOTyutV9z2gelfqHnNqdVRfVYeYiWbzK1tNAQ
-	Ir1OTw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41n4hf9dd4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 15 Sep 2024 04:24:40 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48F4OdNG016839
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 15 Sep 2024 04:24:39 GMT
-Received: from [10.50.62.96] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sat, 14 Sep
- 2024 21:24:28 -0700
-Message-ID: <306acd78-cb7d-4fd2-9bdd-540426bac50d@quicinc.com>
-Date: Sun, 15 Sep 2024 09:54:29 +0530
+	s=arc-20240116; t=1726380896; c=relaxed/simple;
+	bh=QFcX13p8OW5CrGZzXg3ZbeocYkXwmHrZHAM9iVL4z2E=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GNi4PTtqb2MKobjfUWDS8vwQd+BXf7IenBMJlIbLgW2DGcXaeFo6sCaxHKZ7EwJNnFLxnIYCQrJ6OFQ4aBW94Va2mSyltxpPV+/EgW+ECKhVtBJ78YXBkrPZHXXahWcUxt6Z3nwGxd/5LScCG8zzCFJzPkAOORVXqTx96yunIcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=DER2PoBD; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=f+4XgwVGxJeOjUz5ZvQCVWlV8A1nJn2/v5ZCP+iqPbM=; b=DER2PoBDYhRvbzjwgZnsh1iREo
+	m3QYH/xlflR6I9HxIc99+Vl1nBuJBnIuWf9hFYtFnNYq7A1B5q/rf+KMKyFf2xyPScBLmkS7byTpv
+	0O4WSDqQ1LM1xbyoatxdmo5mu9C3OJ/eSNMNb3lABEqxtnLFyzPvbo8p6kxcy2wRqe+O9ucH6s0d4
+	+oFbx3NFjhBTqcKhfPl7NobNfhFG7Aj04+DmkdcmiBLMfpNicSSeU8ZpGcQO+6ZJM/xA/50YaQ1Tq
+	Ek+GjfTq8e3sGBMZXuEUjVacGdqeniNoqbdFDYEYwjh0iVv4FX456PTyBZheaIzeTEcxrLW6Q34pm
+	NVMtw74Q==;
+Received: from [213.235.133.41] (helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1spiWX-0008L4-NC; Sun, 15 Sep 2024 08:14:18 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, kernel@collabora.com,
+ Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>,
+ Algea Cao <algea.cao@rock-chips.com>
+Subject: Re: [PATCH v6 3/3] drm/rockchip: Add basic RK3588 HDMI output support
+Date: Sun, 15 Sep 2024 08:13:53 +0200
+Message-ID: <2748376.mvXUDI8C0e@phil>
+In-Reply-To: <4766d230-c9c3-414d-a954-3b0c890e7e08@collabora.com>
+References:
+ <20240906-b4-rk3588-bridge-upstream-v6-0-a3128fb103eb@collabora.com>
+ <2376712.1SvkZsmPdQ@diego>
+ <4766d230-c9c3-414d-a954-3b0c890e7e08@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/8] pinctrl: qcom: Introduce IPQ5424 TLMM driver
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <ulf.hansson@linaro.org>,
-        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
-        <p.zabel@pengutronix.de>, <geert+renesas@glider.be>,
-        <neil.armstrong@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <quic_varada@quicinc.com>
-References: <20240913121250.2995351-1-quic_srichara@quicinc.com>
- <20240913121250.2995351-5-quic_srichara@quicinc.com>
- <rp6hhamsqwtneyfrf6lwrchd4p35blaqzgiq66wfkn66xofbar@7dgexti4qs4u>
-Content-Language: en-US
-From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <rp6hhamsqwtneyfrf6lwrchd4p35blaqzgiq66wfkn66xofbar@7dgexti4qs4u>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: vah4GJY3KHbLBr0dESlP-hYGzFbTr_1K
-X-Proofpoint-ORIG-GUID: vah4GJY3KHbLBr0dESlP-hYGzFbTr_1K
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- clxscore=1015 phishscore=0 malwarescore=0 mlxlogscore=777 mlxscore=0
- impostorscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409150030
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+
+Am Samstag, 14. September 2024, 20:28:59 CEST schrieb Cristian Ciocaltea:
+> On 9/10/24 10:08 PM, Heiko St=FCbner wrote:
+> > Am Freitag, 6. September 2024, 03:17:42 CEST schrieb Cristian Ciocaltea:
+
+> > That hdmi->ref_clk just accidentially falls out of that loop at the end
+> > looks somewhat strange, so getting and keeping that refclk
+> > separately would make this look cleaner.
+>=20
+> I've added /* keep "ref" last */ comment above, but I agree it's not real=
+ly
+> the best approach.
+>=20
+> I'm going to submit v7 in the meantime, as this was the last remaining op=
+en
+> topic on my list.  I guess we can figure this out afterwards.
+
+yep, that is fine to figure out later, as it's mainly a style thing.
 
 
-
-On 9/13/2024 6:09 PM, Dmitry Baryshkov wrote:
-> On Fri, Sep 13, 2024 at 05:42:46PM GMT, Sricharan R wrote:
->> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>
->> The IPQ5424 SoC comes with a TLMM block, like all other Qualcomm
->> platforms, so add a driver for it.
->>
->> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> 
-> The order of trailers is strange. It lists you as an author, but then
-> Varadarajan's SoB comes first and yours (authors) comes afterwards. If
-> it was a joing effort, please use Co-developed-by tag in addition to SoB.
-> 
-  ok, will add the co-developed.
-
->> ---
->>   drivers/pinctrl/qcom/Kconfig.msm       |   9 +
->>   drivers/pinctrl/qcom/Makefile          |   1 +
->>   drivers/pinctrl/qcom/pinctrl-ipq5424.c | 792 +++++++++++++++++++++++++
->>   3 files changed, 802 insertions(+)
->>   create mode 100644 drivers/pinctrl/qcom/pinctrl-ipq5424.c
-> 
-> The rest LGTM
-> 
-Thanks
-
-Regards,
-  Sricharan
 
