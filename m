@@ -1,135 +1,106 @@
-Return-Path: <devicetree+bounces-103083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD57C979710
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 16:18:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70C85979713
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 16:24:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE29A1C20C3B
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 14:18:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A35D91C20C4F
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 14:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95D5C1C6F4F;
-	Sun, 15 Sep 2024 14:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D32621C6F4F;
+	Sun, 15 Sep 2024 14:24:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eEMZ8YD2"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="kxEeo9F9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2F421C68A2;
-	Sun, 15 Sep 2024 14:18:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D611C6897;
+	Sun, 15 Sep 2024 14:24:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726409924; cv=none; b=BTYJdx011rIJxvH+88K45/yjneGrlWcOz0lalv7QFamlZas8QbDmnk0/8rgrk3xeQa980geTT47xvrCLteyrmkqHsV69CGmUAwrb8QjYx4DWO3aqL/rMtyd9IoYN5XLtYrKfKugOa1w6v8ZIrR3ns1IipvmAP8OnTkwz1bclELE=
+	t=1726410263; cv=none; b=mfouJQojWH4Ap2xWzEr4+qVvmLwDZaEGQt5T/9zcXeoMpyV9KXpHCa66iomXNMJ4oP+8KEnJfvn9xslUAmR+rFLcYjcONI/QO2c+R65iFiOz1H1w9k5FXaHnaqiujcWUk9R1vil5/XniptzEbU55RfCf+5/Ku3Ari7oXWS8+8ew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726409924; c=relaxed/simple;
-	bh=sPXpD92T+hvJ3Xq4Y2miBjvbDMl5XcT1vqRWKRi48uw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=h5NT9S5QCk7H5w0Td4cHmeirq+L9CNSzr+W8b9pJ2DTMkR9DhOXAXs9463PROv5kSXxoyZ5VG6qC8BPMFOzCGq4VTPndwwq4CXPQPm5CP00qjou1+k3Nl3PpWIPLBcWuDgE0O5bg+5n4Ve6P1Swrz2IzqXIrr5lCuEuAut4OOPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eEMZ8YD2; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-535694d67eeso3562712e87.0;
-        Sun, 15 Sep 2024 07:18:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726409921; x=1727014721; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=731RcZeHTEALfaVb7fhfHI1er4oVn7kj9vmasIgzTaE=;
-        b=eEMZ8YD24GI+nBw+SAV+wdTWPIOQOk8AQyWh9qxHnWR+BbxM+AZ3uFjD5drMoh/wLB
-         SlGxZt+k6khIF3NvLMUXUU1vlFlf0V7zDS8Io54kk++7182tADKtaYeFpOeEn3cqVhNl
-         TQ+4ZpBpTLcLLg6Shw13EmLxCXNccJevRqWwDli/7vkAxYXTPjgpkx5/LvgnmRECKPnS
-         bPYX6DeRlF48yVpPraBCtuEMWlfbDH6Sb/j2713iS71XkYjkP3moYY9XcEUF6fzxStKb
-         1VpJEXKflmh8sifdP3bpfvT2JvxdOXhGkU+43MT1leBM4rs5DBpkp4CcZHgU8gTyuymi
-         fYvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726409921; x=1727014721;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=731RcZeHTEALfaVb7fhfHI1er4oVn7kj9vmasIgzTaE=;
-        b=jO0pZyQ4CEBuvu36bRykMobe9VOBNX78q/7lQKniR5if/paXN56sFnsmXxKxR+6JHz
-         XVvvqkEDwIFzjemMpzFZk0H1P1lGWlWroBWRtUNKaPJjUUuVPrCfiZPIVRCnqvZ+G8H8
-         BXkyOjfc9ekEWZ+0BAaZPCW3v/YfwG62RqeZt3EjYgHnMHvPTfXsA43y5oKYgVjvylA5
-         5E+dCOCtrjA5n7GtkYI5gcJlLPrBX7dSj+CnkxCWACgcTbat+ybjfXnDLIWC7lqkiqWc
-         7B/6rEw/si90u7vu78AWZodiABe6lu/OMeVJ3LvX22qInJeCp1vIrekhEmoapXFNvpqp
-         EXCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXHC3QiMY43yRPIaWoWIlTTaqLj23Gyi+ek7hdQOgCT6VSoTyd4bqlsp0BBBn2ed1rtMC98gDrsy4NG@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTJ2jmVhIWltSlRD7EU353htHJin32X4Rd6jhcWLKiNus9TN3B
-	L4R+BKhl9wedlaPEH7wJZpz+HDMIIchZAvRBeJ2VwbVIEYzRMgBF
-X-Google-Smtp-Source: AGHT+IEdGMoIq8Cu8zXTnL+7jCZhukUPP4pANNbdKP+4SVXTL6PZrH6oArytismgN7UkEcJAe5MgPA==
-X-Received: by 2002:a05:6512:3095:b0:533:4322:d03e with SMTP id 2adb3069b0e04-5366bb48a87mr6996850e87.25.1726409920722;
-        Sun, 15 Sep 2024 07:18:40 -0700 (PDT)
-Received: from ilordash-vm.mshome.net (broadband-5-228-117-203.ip.moscow.rt.ru. [5.228.117.203])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-536870968c6sm568967e87.125.2024.09.15.07.18.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Sep 2024 07:18:40 -0700 (PDT)
-From: Ilya Orazov <ilordash02@gmail.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Aswath Govindraju <a-govindraju@ti.com>
-Cc: linux-can@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Ilya Orazov <ilordash02@gmail.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [RESEND PATCH v4 1/1] dt-bindings: phy: ti,tcan104x-can: Document Microchip ATA6561
-Date: Sun, 15 Sep 2024 17:18:31 +0300
-Message-Id: <20240915141831.2809208-2-ilordash02@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240915141831.2809208-1-ilordash02@gmail.com>
-References: <20240915141831.2809208-1-ilordash02@gmail.com>
+	s=arc-20240116; t=1726410263; c=relaxed/simple;
+	bh=sWnAKgucH18oeq9zYS40OQn7pH5zp57SRhJ7CklZ7Cw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=mTJY0KD5rEXYep4TWGeZze8CNmOmwJDvCBe4gZws/bhWsKchJyK4uJtXm8mkszPpmQfx+8f3NYIDWxOl7XKjJUUvXPeaNEGpA8bmy0YKVdaGImRwpUD42e7AkELNYhE+QpLit2eKF4ZxLDjidqf7wWUDNtB7lxeCHOPWP0CVJaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=kxEeo9F9; arc=none smtp.client-ip=117.135.210.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=TKFcsOdhek0MQQPDbf+d7h1KvB9ASf45xqz2FA0Pvtw=;
+	b=kxEeo9F9quII4RERyftAooA6a1sJkTQAfSl47OAWc36+x1KG7EvXN/TjrEUBP7
+	bf/hsr7c1j7Yz+D7G6UyCJlKSHHai1bg9GwaXIjDoij1ngUkT4ztAYBm0CtCLpeU
+	thNnP0IzmpplGkfIwfSukHaEufUb4n89D0g6KnkbHv4O8=
+Received: from localhost (unknown [27.18.168.209])
+	by gzga-smtp-mta-g3-0 (Coremail) with SMTP id _____wAnblZk7eZmaNI2Aw--.11240S2;
+	Sun, 15 Sep 2024 22:21:24 +0800 (CST)
+Date: Sun, 15 Sep 2024 22:21:24 +0800
+From: Ze Huang <18771902331@163.com>
+To: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, conor@kernel.org
+Cc: cyy@cyyself.name, jesse@rivosinc.com, jszhang@kernel.org,
+	inochiama@outlook.com, uwu@icenowy.me, zhangmeng.kevin@spacemit.com,
+	kevin.z.m@hotmail.com, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	dlan@gentoo.org, 18771902331@163.com
+Subject: [PATCH 0/3] Add initial support for Canaan Kendryte K230 pinctrl
+Message-ID: <ZubtZKlxqejnCFx_@jean.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-CM-TRANSID:_____wAnblZk7eZmaNI2Aw--.11240S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7AFW3uFyxWrW8WFWrCr18AFb_yoW8AF1Upa
+	13CF9xGrnrGr4SkrWft3Wv9ry3Can7Jr1Y93Way3srXF43ZFyqywnxKrW5Xw4DGr47Z3yY
+	9r4rtry8Wr15AaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0ziU5r7UUUUU=
+X-CM-SenderInfo: zpryllqrzqjjitr6il2tof0z/1tbiNxxbomXAnRCLnwAEsq
 
-Microchip ATA6561 is High-Speed CAN Transceiver with Standby Mode.
-It is pin-compatible with TI TCAN1042 and has a compatible programming
-model, therefore use ti,tcan1042 as fallback compatible.
+This patch series introduces support for the pinctrl driver of the Canaan
+K230 SoC. The K230 SoC features 64 IO pins, each of which can be configured
+for up to five different functions.
+							
+The controller manages the entire pin configuration and multiplexing
+through a single register, which control features such as schmitt trigger,
+drive strength, bias pull-up/down, input/output enable, power source, and
+mux mode.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
----
- .../devicetree/bindings/phy/ti,tcan104x-can.yaml    | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+The changes have been tested on the K230 development board.
+							
+The pin function definition can be found here [1], and most of the DTS data
+was converted from the vendor's code [2].
 
-diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-index 79dad3e89aa6..4a8c3829d85d 100644
---- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-+++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-@@ -14,10 +14,15 @@ properties:
-     pattern: "^can-phy"
- 
-   compatible:
--    enum:
--      - nxp,tjr1443
--      - ti,tcan1042
--      - ti,tcan1043
-+    oneOf:
-+      - items:
-+          - enum:
-+              - microchip,ata6561
-+          - const: ti,tcan1042
-+      - enum:
-+          - ti,tcan1042
-+          - ti,tcan1043
-+          - nxp,tjr1443
- 
-   '#phy-cells':
-     const: 0
+Link: https://developer.canaan-creative.com/k230/dev/_downloads/a53655a81951bc8a440ae647be286e75/K230_PINOUT_V1.1_20230321.xlsx [1]
+Link: https://github.com/kendryte/k230_sdk/blob/main/src/little/uboot/arch/riscv/dts/k230_canmv.dts [2]
+
+Ze Huang (3):
+  dt-bindings: pinctrl: Add support for canaan,k230 SoC
+  pinctrl: canaan: Add support for k230 SoC
+  riscv: dts: canaan: Add k230's pinctrl node
+
+ .../bindings/pinctrl/canaan,k230-pinctrl.yaml | 128 ++++
+ arch/riscv/boot/dts/canaan/k230-pinctrl.dtsi  | 318 +++++++++
+ arch/riscv/boot/dts/canaan/k230-pinctrl.h     |  18 +
+ arch/riscv/boot/dts/canaan/k230.dtsi          |   2 +
+ drivers/pinctrl/Kconfig                       |  10 +
+ drivers/pinctrl/Makefile                      |   1 +
+ drivers/pinctrl/pinctrl-k230.c                | 674 ++++++++++++++++++
+ 7 files changed, 1151 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/canaan,k230-pinctrl.yaml
+ create mode 100644 arch/riscv/boot/dts/canaan/k230-pinctrl.dtsi
+ create mode 100644 arch/riscv/boot/dts/canaan/k230-pinctrl.h
+ create mode 100644 drivers/pinctrl/pinctrl-k230.c
+
 -- 
-2.34.1
+2.46.1
 
 
