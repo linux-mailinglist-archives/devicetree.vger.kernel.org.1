@@ -1,113 +1,147 @@
-Return-Path: <devicetree+bounces-103102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09D6697986D
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 21:25:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 060F3979875
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 21:35:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD9E7281F73
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 19:25:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA60A1F21F64
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 19:35:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE65A1C9ECE;
-	Sun, 15 Sep 2024 19:25:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0CB31CA687;
+	Sun, 15 Sep 2024 19:35:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="ixq+9ZfE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uce/rLQF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64BF13D551;
-	Sun, 15 Sep 2024 19:25:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75A051CA685;
+	Sun, 15 Sep 2024 19:35:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726428352; cv=none; b=JmtOMyGvhUCfd0QCAOz8HHWyyzqSZ1w49T+HzWFrsR81NP8EAiWfdO9Vk1ZaboVVFko4JGNd/kxllNlMLM9XiIRydqJHF75Let+RDzLAL0t2ZCZX2Lbnr1hBjM/aakjFVXnHWJkZI0xNJ+g1UGN6sNABf8TFS5GH2sFrjs1DwFg=
+	t=1726428908; cv=none; b=k5CK7Go0BTyqCzf/x7+Kv9kFOwZFKiZazAnrII00NPDrjKkDeIXMFEPCI3lPa/wraiSQNZ5RLF89MHJbE9jsWaH1ddLlDqhmNGTlNE61Y7IYpo/VRjR0USGGgdt8iEMVYSguyHvEgDGyZr2d9EkwnG+XcDGiyiBcgyqE34mKTx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726428352; c=relaxed/simple;
-	bh=dsFMrp52owgT+QXsdARrXyzoDdIWrvC9j2u21aCjt/E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R6JkvBpqPxVelrZ59N8d/cX8ntp81gYUPopw6auIEiJ/xj9+qmruzwn//ok8vprm38qzgJ+oN3JPk+KqAN1p0Tds+HtDuMzA/r62yTkUOth6W60Vkhc1TjEvvOSLu4K1U1rpDgrIFLmVGniEFbFXDkh2uplVzcVB+eYP1/WSO18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=ixq+9ZfE; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-205909afad3so39763475ad.2;
-        Sun, 15 Sep 2024 12:25:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1726428351; x=1727033151; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dsFMrp52owgT+QXsdARrXyzoDdIWrvC9j2u21aCjt/E=;
-        b=ixq+9ZfE7a8lBazixy8cfGWC3Y0xGA+isuAsqt0wh/p4Rtrt80ry1MhuH0gYHb0kXT
-         tmUWyDX9plxuNra9cSie4cTPA83KCFL7mNWveDw1fT4TihzseaLAqN3xGjYkUug2fvwt
-         3/j2LyIZ774wJNoMBLE6PWKj05ftd0+SeHyv1/tTErAMg9xdzzsRKC6zUPvGVGLODAki
-         uvBkttM6J+HM94hmtRqrT8q67MehzCv0WhAItYlIsv28hsMa4jLIxytwvc6sZ16mupL4
-         Ht1iAa3XtTEG67rdCcW58BagxKCsn18VurIGN1ksABm93j37M/SBVebA3MLlsBuUkl62
-         mc6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726428351; x=1727033151;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dsFMrp52owgT+QXsdARrXyzoDdIWrvC9j2u21aCjt/E=;
-        b=TYYUDQT9T/gbsTViq1kf68RUPG5kg5QHX1CGRDGqQCwKkuJUxIeu8JL/9LkvEi4oV8
-         8bHhNqCMAnYJdEkEpIJg9tizjeA7l7LOTb0MRrh1sEdRM2UPmP1Kw0WXzGn4b6RziK8A
-         4+p28b8wtuIwxhPeX7UQ2d5Rg98Mp9eTLwxnyq1rGx7eDqugjrqBv6RHmmKNwendLDSG
-         3ZXkPReiH9OEuTzmnHuOTEvHnuFIFngBU2UfqMG4qAv1RvQysXpzSGT7O/k2dhXONaUH
-         wG4Dx+CMKBQYvmU6EbyO+KNQC5jP7Co0QEbnyKpqaY+FrzbjJrQ7YvBgo3DwoNGgmwws
-         qvUw==
-X-Forwarded-Encrypted: i=1; AJvYcCVVpqq5fnFz+6MpANExEyLLQlOpgal8p9DfnXTyPcIzldQmclJg8QXvmx+GuOmmXWQADVx6recSseM8@vger.kernel.org, AJvYcCVlAyJ7nUAs+4HtC8z59xOBEFITsNnZaFuyjHqIpusHUw1FayqruWmLiNhICWoaXSA4Fgw+nxL+DOhP@vger.kernel.org, AJvYcCXJ5fk+oDVjJHdTzgULIje8GyE7l/Fhu2YYXntDQF9E9ymq2jbMVkanEfmwM1z1PmlmeLuGPAl82OiAg/Pb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1Ov3QJBfIahPzQEWQFEIlDxlyciOSg3lavUUwwJyBXG9Ni+J9
-	fZY5Vmpg66ESYQhqNpymPGbO2tqjfx3aXWLSL+3VkQ99Ly+MJPbVNJb2Vo5QJJ8bcffK6uD7KNS
-	LTFQciQ5WOitoDOwFPYYQsWb3OHI=
-X-Google-Smtp-Source: AGHT+IH+Uh1qYC1xAfKonOLcFVaIB/RFxfFjSDlBJUEqbp07iFMSDQJBm36Rof9f/CiWuchgMutW+DT9FNYBnFttrAk=
-X-Received: by 2002:a17:902:d546:b0:205:9112:efea with SMTP id
- d9443c01a7336-2076e39c879mr190881715ad.35.1726428350658; Sun, 15 Sep 2024
- 12:25:50 -0700 (PDT)
+	s=arc-20240116; t=1726428908; c=relaxed/simple;
+	bh=TegTfxzMRKVsjSI958Q3E0pV4BcivWmeXOWpP71ZNh0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tlR6n4TnbpgGOj/+9KspLsdRQS3vBII8rG6oaISosfcvb/XopUDjJJfBrV5QZ3/sPQqdyFRti2u/q/WPr8pUjScg8GfWq+3HChMGTOGzY6zYay1NpsShwXuZlaIFzNjEKqSPUSAw2ZGrraM9o20AHgdtZsUHS/X6xzGN4ecXNl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Uce/rLQF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47350C4CEC3;
+	Sun, 15 Sep 2024 19:35:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726428907;
+	bh=TegTfxzMRKVsjSI958Q3E0pV4BcivWmeXOWpP71ZNh0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Uce/rLQFmd2E1rkjh8POBHvnJYzVZsdoRWrsqAH4jxBLkC++ToznVXMGsZXneSsnT
+	 1mAf0PP5pJtlGnh1qpQjERBVkEKD8vUJbssm3D7PkVZKwGqis4ox1j64o2YoYZk9Q5
+	 i7IpnNQpMVA5HvXHUoHfjaKpsO1O4unouAvAxEMUvfsiv/R5uwR7zpYJi+g5mpgrEP
+	 v02UhFpu3c//sss+5+52xKJgH5CVGnls7NduFfYni/PHn9c0klt3MBhbAyv6SXEHTz
+	 6CMstSEUCq0thVzF3cMJotaaH6hkkjwJA3/xhrtAHlc8MI6usuDZMldZbKceuYCe5t
+	 jt446Li/EB0oA==
+Date: Sun, 15 Sep 2024 20:35:02 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Ze Huang <18771902331@163.com>
+Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, cyy@cyyself.name, jesse@rivosinc.com,
+	jszhang@kernel.org, inochiama@outlook.com, uwu@icenowy.me,
+	zhangmeng.kevin@spacemit.com, kevin.z.m@hotmail.com,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, dlan@gentoo.org
+Subject: Re: [PATCH 0/3] Add initial support for Canaan Kendryte K230 pinctrl
+Message-ID: <20240915-flinch-harness-e9e1b92f5c79@spud>
+References: <ZubtZKlxqejnCFx_@jean.localdomain>
+ <320c1fd8-2f8d-414d-a6a5-23280955b9b8@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson8-clkc-v1-1-e0b8623c090d@linaro.org>
-In-Reply-To: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson8-clkc-v1-1-e0b8623c090d@linaro.org>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 15 Sep 2024 21:25:39 +0200
-Message-ID: <CAFBinCBZ8kowT_R6MnVkQO_BpxPA88xz-=KPStFDYQgH=P5upA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: clock: convert amlogic,meson8b-clkc.txt to dtschema
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="CyzwYAu3/6FE9Ujm"
+Content-Disposition: inline
+In-Reply-To: <320c1fd8-2f8d-414d-a6a5-23280955b9b8@163.com>
+
+
+--CyzwYAu3/6FE9Ujm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Neil,
+On Sun, Sep 15, 2024 at 11:22:16PM +0800, Ze Huang wrote:
+>=20
+> On 9/15/24 10:21 PM, Ze Huang wrote:
+> > This patch series introduces support for the pinctrl driver of the Cana=
+an
+> > K230 SoC. The K230 SoC features 64 IO pins, each of which can be config=
+ured
+> > for up to five different functions.
+> > 						=09
+> > The controller manages the entire pin configuration and multiplexing
+> > through a single register, which control features such as schmitt trigg=
+er,
+> > drive strength, bias pull-up/down, input/output enable, power source, a=
+nd
+> > mux mode.
+> >=20
+> > The changes have been tested on the K230 development board.
+> > 						=09
+> > The pin function definition can be found here [1], and most of the DTS =
+data
+> > was converted from the vendor's code [2].
+> >=20
+> > Link: https://developer.canaan-creative.com/k230/dev/_downloads/a53655a=
+81951bc8a440ae647be286e75/K230_PINOUT_V1.1_20230321.xlsx [1]
+> > Link: https://github.com/kendryte/k230_sdk/blob/main/src/little/uboot/a=
+rch/riscv/dts/k230_canmv.dts [2]
+> >=20
+> > Ze Huang (3):
+> >    dt-bindings: pinctrl: Add support for canaan,k230 SoC
+> >    pinctrl: canaan: Add support for k230 SoC
+> >    riscv: dts: canaan: Add k230's pinctrl node
+> >=20
+> >   .../bindings/pinctrl/canaan,k230-pinctrl.yaml | 128 ++++
+> >   arch/riscv/boot/dts/canaan/k230-pinctrl.dtsi  | 318 +++++++++
+> >   arch/riscv/boot/dts/canaan/k230-pinctrl.h     |  18 +
+> >   arch/riscv/boot/dts/canaan/k230.dtsi          |   2 +
+> >   drivers/pinctrl/Kconfig                       |  10 +
+> >   drivers/pinctrl/Makefile                      |   1 +
+> >   drivers/pinctrl/pinctrl-k230.c                | 674 ++++++++++++++++++
+> >   7 files changed, 1151 insertions(+)
+> >   create mode 100644 Documentation/devicetree/bindings/pinctrl/canaan,k=
+230-pinctrl.yaml
+> >   create mode 100644 arch/riscv/boot/dts/canaan/k230-pinctrl.dtsi
+> >   create mode 100644 arch/riscv/boot/dts/canaan/k230-pinctrl.h
+> >   create mode 100644 drivers/pinctrl/pinctrl-k230.c
+> >=20
+>=20
+> lost base commit and prerequisite patch id here:
+>=20
+> base-commit: 0eea987088a22d73d81e968de7347cdc7e594f72
+> prerequisite-patch-id: 740cbeb9fc3f3e3fd30df4914cd31e9eb148a581
+> prerequisite-patch-id: b5cc919a7e8e2f852569d5918944dbe4f21e6912
+> prerequisite-patch-id: 554cb838b7264109437359e88443cc3497ed344c
 
-On Wed, Sep 11, 2024 at 5:09=E2=80=AFPM Neil Armstrong
-<neil.armstrong@linaro.org> wrote:
->
-> Convert the Amlogic Meson8, Meson8b and Meson8m2 Clock and
-> Reset Controller to dt-schema.
->
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-Thank you for working on this! First of all this patch is:
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+I don't have the ability to convert those to something I can understand,
+is
+https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/log/?h=3Dk2=
+30-basic
+effectively the basis for your series?
 
-Do you want me to send a patch to document the
-"amlogic,meson-hhi-sysctrl" compatible string next?
-We either have to update
-Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.=
-yaml
-or create a similar binding file for the older SoCs.
-Also I think when documenting that compatible string we'll have to add
-per-SoC compatibles as I think this generic one is not enough.
+--CyzwYAu3/6FE9Ujm
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
-Martin
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuc25gAKCRB4tDGHoIJi
+0ulQAQCknK6VYQasoWh8AAI3+LsDn+3tbfKKbzDGoTZdf0W2tQD/ayh4pmeE6f4b
+G7dvGUnbYVw+aPXbxopXJPwekkLhtQU=
+=a291
+-----END PGP SIGNATURE-----
+
+--CyzwYAu3/6FE9Ujm--
 
