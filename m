@@ -1,154 +1,153 @@
-Return-Path: <devicetree+bounces-103030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D37789793CE
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 01:40:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87F89979460
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 04:21:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A0E21F20406
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2024 23:40:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A5CF1C20DFF
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 02:21:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 693C913DDAA;
-	Sat, 14 Sep 2024 23:40:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CD8E1B85DF;
+	Sun, 15 Sep 2024 02:21:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y+eBfPj0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QAzvOK1E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFFED1754B;
-	Sat, 14 Sep 2024 23:39:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1DBF8C0B;
+	Sun, 15 Sep 2024 02:21:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726357201; cv=none; b=IpFvAye1kqojREzUCH9Mm5M5e7Dg4rIpfANNauwd+OJBgjGkTzjpet8m0onVx5Pb3nJVZofpy265PhUIp86lUwmbip78atg68cW5ir9VwlwqYEAkXvTbSPzL6IgIf3i7TEC9YkjOPdZF9irvmyqGWfFjRBAdwV3SDrShbeC23Lk=
+	t=1726366898; cv=none; b=EtJBO1NPfkUCpmP6H8FQ3WketBOFlgi4tT0YRR7MYMgMlntYF9D3hdgzxtQ/+NwQlGE3pcZGtCBxuNWhpaNNsEQrm8YdNJixCSKIhuqYxqNEcXP69vKatXNmA/3VEf+3+SiPexQUzfczWv2EcOh0QjowJvoWWvEJA6byZWiVPOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726357201; c=relaxed/simple;
-	bh=KVrtqc69Bj/9Cl0nn3MSnykQQki0hTOXkBmMMqFTm+k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s9aUM2XiXfrnZXBQAI8PY4/okDytFPrNN4F8kQwPK+BFH0Tyb9u8X4q3cwnNqtFkyXB6rcgqJI2MjuZ3crsBHkzSN1eyBTYIOEBJWSFM/Qs3uLzm2QsZflpI+fShe5rF7m6hH8Vn2Hw/+3LRXL+SOVR0nIXhKPj0DVU/K3gCl8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y+eBfPj0; arc=none smtp.client-ip=209.85.222.177
+	s=arc-20240116; t=1726366898; c=relaxed/simple;
+	bh=/TFCcMuH3eFlHq9L3PNd9dVZtxS+2tNTLiYU/MynuPE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EfJKSWQFd68jefvKPpMV+OCrzcR/D34BCuX1N6QYMoEpPHn6b8NT+eOTDXeE8kxqD5XHnfr+lw5g451xwOTTSO3Xw6CYBuYgp8uxxFSQrp19VAyjk81vDk3gKPBtN71NNE935PFaL1oncIJ9CaACGwVr+cNvRF2+EjNuEWks3RE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QAzvOK1E; arc=none smtp.client-ip=209.85.216.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-7a9a23fc16fso346278385a.2;
-        Sat, 14 Sep 2024 16:39:59 -0700 (PDT)
+Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2d873dc644dso2833220a91.3;
+        Sat, 14 Sep 2024 19:21:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726357198; x=1726961998; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=KNiLC9yIqzSFrDj7dhKEamKTUs7tim6by4sA4P0KRMM=;
-        b=Y+eBfPj09QiFmPaN8yMZYVZKAJs7NvbQdl/DeAyOia0BDOuPfUKZa+V2ekOHdxu/rM
-         LwNdiJC7Y0zkb8/YKeORc4ZFZDeJn7dmOHAu04TCW3vI2iTVLVUHO/rsdei7W0mhikuV
-         t5t2DMwALckyqefZx5vFPzpv8KWmNQCoajNNJcDQhySiqMLQ9xmYyIBgRJwtpVJCk5ud
-         IDG0D7AKyOL5XKEfatOS4UINNuDalzPjTy8hUyHREnNflT0aPuHA1J5MQTpWXAXt3rw1
-         cter+BktGzfZzRXOut/CKPhNCH/5XS57aiq4GPc2eiQCFps77G0zVoHlfxEYdn5Xb5yK
-         LOUg==
+        d=gmail.com; s=20230601; t=1726366896; x=1726971696; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Wlgq2n3Pu88VWjuj9DZNU9s2yQJKQNU/Scco8Aq+2xU=;
+        b=QAzvOK1E8/BYVPnuGKYkYApnlXiPX4pTYIatrGZiik+G7IfLCNAuv+mnjfSwSuIWww
+         1jYG4WPXsvQU8l6TRnR9CnqUjawQMV2XkJPleaqBK2hcFqO3yWUWAam2GFyOQKayLi+w
+         MQi2wIAvPNued9sF7maudvQqSZ1YQPtpTBGz3DxuqIyoKJsC07oFfS3tK1sL3rwcT2HU
+         /4CiXt4ToWBUH3tWgaCQZEmJ3WncIwy7xsw/zJx/KvhOSFCBjGSvSOOVgl1bHiCgRlS+
+         RPluK8dGdHVC5zImWDng5lFWK7fVzYfRbl1ryTvS5uEPs2ZXdvSUdtrFBvf1LlSj5wvM
+         It9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726357198; x=1726961998;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KNiLC9yIqzSFrDj7dhKEamKTUs7tim6by4sA4P0KRMM=;
-        b=OyV3hlVPXyI4/m5nHzZr+ELb8vAcLGDKnPqhMhhP/nryUL24QC4HcmCO8FjiGC7BhM
-         c6O50bQSZqO64X1yjuUokdNoWjp6GOtlDjmlVw92Qmf3m5sunEfENoUiabFDvq6z6L3K
-         FpoR5H/b3fLae1gERfeSrj66NXx43NWs74TkaTJaIkowg66xJ6RK+ukLBeD+tPpjNBat
-         zfu7MjjHIQ+0VeCyhPX9uEylSkTW+OmJ+WQpndmDvZD8Ln1C8+NfHlX4Sy74xMLYPZVP
-         R5VFWn8ZNAggfs1urzaaFqCr8EnL5rUuJhOsOwkCbC9lfPmotzU8pRXSE17xHBpOQtkf
-         Sejg==
-X-Forwarded-Encrypted: i=1; AJvYcCV9tWUf9CyRDTRzDnPwFtCwf6zz+uyGXAASXtXseVFJwpNWYrwuDx4370+d1TfN52pUXQzEGhvNCowv@vger.kernel.org, AJvYcCVV5IT2kt6AE4oM17pn0tScI+uXF5vn4BZ8mq1+vuoC4rtAY69p4iFnFL9bkHAon+zIR6X1f4YXigOh@vger.kernel.org, AJvYcCWjXME/6l2gdm87dftb9KW+mxrRU07bywXQAGmdAw7qb2t/blru1iejVd+MSqQGOA6hJrELOtcNK4xjHCyf@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVZE1HTCkEdpyg94Ldq7AN7BEnnrjxfDkkG2OQe/4WVqOOswVQ
-	mqIEkuFaU3k7EwUCvO775sSSSxj5d4gHBNa3EUJ48Zy5rNZRdYIs
-X-Google-Smtp-Source: AGHT+IFc0J5CoyQ8jeRWmCtEJ8yaJztt/TGB5Ou6Z8EfWoWRWpnOH/8UJPeuV8AFHaApQK4MhV6Eag==
-X-Received: by 2002:a05:620a:2910:b0:7a9:b839:1e87 with SMTP id af79cd13be357-7a9e5f3d252mr1836226285a.39.1726357198429;
-        Sat, 14 Sep 2024 16:39:58 -0700 (PDT)
-Received: from VM-Arch (ool-1826d901.dyn.optonline.net. [24.38.217.1])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7ab3e95e9bdsm112982585a.16.2024.09.14.16.39.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Sep 2024 16:39:57 -0700 (PDT)
-Date: Sat, 14 Sep 2024 19:39:54 -0400
-From: Alex Lanzano <lanzano.alex@gmail.com>
-To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Mehdi Djait <mehdi.djait@bootlin.com>
-Cc: christophe.jaillet@wanadoo.fr, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v6 0/2] Add driver for Sharp Memory LCD
-Message-ID: <wasfy7vwlvw2kikj4szgj6m4pdiqhmkub4g5jg4wop2nzb3hzc@oo6mrj7q2jt3>
-References: <20240905124432.834831-1-lanzano.alex@gmail.com>
+        d=1e100.net; s=20230601; t=1726366896; x=1726971696;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Wlgq2n3Pu88VWjuj9DZNU9s2yQJKQNU/Scco8Aq+2xU=;
+        b=nZdAze4kRrqrhFqu6ZIsGiMPAlGMw0DKtpkrMANDNFQmXkRhEWGAxJr2z8SM13rsNI
+         UkhLqr/M+ctVbzOaAGEQTSEMT3883aiku4m/tAti58VAoRXlh1m+TK1FjxVH8wPYFCAW
+         0zZG1SBopmQx4cMbA6/vTnj4Ytz7wfyKqDKU0PbFdvs6KodNDU7iNRQov/wwCKYqhjak
+         ghkdgnnluLNXfXO5B9L1q1O6FbHOd7EJrEM0pPZ2t8XudJdp4oOh+OVl+cWPCFhBXUxE
+         svl1cgi1vKC1WUTHDyLQNCf85hlEAwnsLpyMWBW4jzeVVh3Yymd1oKiyQ+8S61zI83JM
+         /kVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV1S3kQlRwdcXCPxnCFK1j1ft7lqATJ01o6gOHdCSARSOpgQXz+djC162cbL8mOpwILozwUfUuNz0uw@vger.kernel.org, AJvYcCV7YHtJY+7yQV2zMGVTPB+nHm2UgQuJYaUqkaigMNRKO+4OAT4Zyr0g14Eglo9mqecgGQ696spA/sm/+kFiceo=@vger.kernel.org, AJvYcCVMX/jPKHf0an1f7h2Oid6kUXz/gNnKFp5Pr7Ctjq4MP5WfusOV66XXOr1WDniHtP1WOwWcX91Bkdf7aA==@vger.kernel.org, AJvYcCX05Cvz5BjygfFAFjR+I+kAmcfvltY8kENXMgookvnUupDbGM2aRk/Ezp6KUkZXYQDGYcKNpwCIxYY=@vger.kernel.org, AJvYcCX5WMxuAzw/+pUxCPGB2omtgOqFMP78WU/iMg3mXIkntvro87yPXRH/vKeGZTk6yM9FONkF1V+YKJY8mdBl@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIwmlIVmwtHntwIAFPXdON+s77duXlFvU1xxXhIOXJZf827sSX
+	Fd8bV+1WkTWUyWkCS+tZv1sQrZaQtXsToQWQ0V7hdrWKB2C44yGu
+X-Google-Smtp-Source: AGHT+IGaD7u+NPj+qsxGjhpuYjsmHLBN+A4TI1iEQ+R9rpf75fx7e5oYIgQONG2M0UTX610QvqKYAA==
+X-Received: by 2002:a17:90b:4b8b:b0:2c2:df58:bb8c with SMTP id 98e67ed59e1d1-2db9ffef53bmr14156849a91.18.1726366895835;
+        Sat, 14 Sep 2024 19:21:35 -0700 (PDT)
+Received: from [172.20.10.2] ([182.153.180.44])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2dbb9d5c9c6sm4419363a91.46.2024.09.14.19.21.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 14 Sep 2024 19:21:35 -0700 (PDT)
+Message-ID: <8a813234-71d3-49e7-9a2e-c950fe35be20@gmail.com>
+Date: Sun, 15 Sep 2024 10:21:28 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240905124432.834831-1-lanzano.alex@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 15/22] arm64: dts: apple: Add A8X devices
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+ Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Mark Kettenis <kettenis@openbsd.org>, asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org
+Cc: Konrad Dybcio <konradybcio@kernel.org>
+References: <20240914052413.68177-1-towinchenmi@gmail.com>
+ <20240914052413.68177-19-towinchenmi@gmail.com>
+ <34c748fe-89d2-d3a5-599d-52972c10f688@gmail.com>
+Content-Language: en-MW
+From: Nick Chan <towinchenmi@gmail.com>
+In-Reply-To: <34c748fe-89d2-d3a5-599d-52972c10f688@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi all,
 
-Just a friendly ping. Please send feedback whenever possible.
 
-Best regards,
-Alex
+On 15/9/2024 05:02, Ivaylo Ivanov wrote:
+> 
+> On 9/14/24 08:17, Nick Chan wrote:
+>> From: Konrad Dybcio <konradybcio@kernel.org>
+>>
+>> Add DTS files for the A8X SoC and the only device based on it, the iPad
+>> Air 2.
+>>
+>> Signed-off-by: Konrad Dybcio <konradybcio@kernel.org>
+>> [Ivalyo: system memory bits]
+> s/Ivalyo/Ivaylo/g
+oh...
 
-On Thu, Sep 05, 2024 at 08:43:58AM GMT, Alex Lanzano wrote:
-> This patch series add support for the monochrome Sharp Memory LCD
-> panels. This series is based off of the work done by Mehdi Djait.
+>> Co-developed-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+For A7-A8X, the tags are from Konrad's linux fork from two years ago,
+though your tags in particular may no longer apply since as you can
+see, all memory related things are now /* To be filled by loader */.
+
 > 
-> References:
-> https://lore.kernel.org/dri-devel/71a9dbf4609dbba46026a31f60261830163a0b99.1701267411.git.mehdi.djait@bootlin.com/
-> https://www.sharpsde.com/fileadmin/products/Displays/2016_SDE_App_Note_for_Memory_LCD_programming_V1.3.pdf
+> You've confused me with Markuss Broks <markuss.broks@gmail.com>.
 > 
-> Co-developed-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> Signed-off-by: Alex Lanzano <lanzano.alex@gmail.com>
-> ---
-> Changes in v6:
-> - Rebase off latest drm-misc-next
-> - Replace pwm_apply_state with pwm_apply_might_sleep
+> He was the one who brought up A8X. I brought up A8 (in particular
 > 
-> Changes in v5:
-> - Address minor style issues in sharp-memory.c
+> iPhone 6).
 > 
-> Changes in v4:
-> - Remove redundant dev_err
 > 
-> Changes in v3:
-> - Fix file path in MAINTAINERS file
-> - Address review comments
-> - Simplify mode selection based on match data instead of model
+> Regards, Ivo.
 > 
-> Changes in v2:
-> - Credited Mehdi Djait in commit messages
-> - Renamed sharp,sharp-memory.yaml to sharp,ls010b7dh04.yaml
-> - Using strings instead of int for vcom-mode in dt-binding
-> - Fixed indentation of binding example
-> - Removed binding header
-> - Removed extra whitespace in sharp-memory.c
-> - Fixed error handling in sharp-memory.c
-> - Added match data to of_device_id table to be in-sync with spi_device_id table
-> - Replaced redundant function with spi_get_device_match_data
-> - Sorted header files in sharp-memory.c
-> ---
-> 
-> Alex Lanzano (2):
->   dt-bindings: display: Add Sharp Memory LCD bindings
->   drm/tiny: Add driver for Sharp Memory LCD
-> 
->  .../bindings/display/sharp,ls010b7dh04.yaml   |  92 +++
->  MAINTAINERS                                   |   6 +
->  drivers/gpu/drm/tiny/Kconfig                  |  20 +
->  drivers/gpu/drm/tiny/Makefile                 |   1 +
->  drivers/gpu/drm/tiny/sharp-memory.c           | 682 ++++++++++++++++++
->  5 files changed, 801 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/sharp,ls010b7dh04.yaml
->  create mode 100644 drivers/gpu/drm/tiny/sharp-memory.c
-> 
-> -- 
-> 2.46.0
-> 
+>> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+>> [Nick: SMP, m1n1 and gpio-keys support, pinctrl fixes]
+>> Co-developed-by: Nick Chan <towinchenmi@gmail.com>
+>> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+>> ---
+>>  arch/arm64/boot/dts/apple/Makefile        |   2 +
+>>  arch/arm64/boot/dts/apple/t7001-air2.dtsi |  46 +++++++
+>>  arch/arm64/boot/dts/apple/t7001-j81.dts   |  14 ++
+>>  arch/arm64/boot/dts/apple/t7001-j82.dts   |  14 ++
+>>  arch/arm64/boot/dts/apple/t7001.dtsi      | 154 ++++++++++++++++++++++
+>>  5 files changed, 230 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/apple/t7001-air2.dtsi
+> [snip]
+>> +			     <AIC_FIQ AIC_TMR_GUEST_VIRT IRQ_TYPE_LEVEL_HIGH>;
+>> +	};
+>> +};
+
+Nick Chan
+
 
