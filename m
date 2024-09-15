@@ -1,89 +1,101 @@
-Return-Path: <devicetree+bounces-103092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84DBB979839
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 20:42:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEDBC97984B
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 21:02:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E089FB21DE2
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 18:42:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05B401C211BC
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 19:02:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4306A1C9DFE;
-	Sun, 15 Sep 2024 18:42:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20CF91BC59;
+	Sun, 15 Sep 2024 19:02:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="QcjOzvSa"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Ex7xvI8A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C51752F4A;
-	Sun, 15 Sep 2024 18:42:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4C061B85EC;
+	Sun, 15 Sep 2024 19:02:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726425728; cv=none; b=Yl0nTOhbHJpLWoOAGjZ8aTJ5V1ZW0vf4m6Hwfxl7+6jBYTkuz9JR2sFjirhy0ueAc+VRXE8ufaUxa+RBAqjzE9f3HqAND2kZRZYgoqWPebAy2y6fnmJ3EJsP5MpAe7iIIomW21Zvm2dH6uDcXhH0vguICqSjNpE3gOjUwJ3jr2Q=
+	t=1726426939; cv=none; b=JskrcvauE7GGjmI/ISdzTAB/hsbMbAlk7UnI1dmzoU8EXxu2Mc40xfRoOiiClUu2oxkdHEUkvzk0TBiv+Cisq23u9K2VTvQOUs39WJQEhdcbo7XNqLFsLTYXCTeiPsZylZPmcApxvh03HQ42XhUiYDeh8yr9HSU9yUqB2s6G+i8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726425728; c=relaxed/simple;
-	bh=4WArnAgFZ1RsLIBejZ3FEo5KQ80z/6WM43E5FcPoh3M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I032N+lxwD/KBeLYg8P+oKQMfpBtoucCshGVkvIZRJ1CWSFzeWeLDati7jd3lcR6S++N3l9sQNUi53ICHPjLL33cOkBQDj+EhMtRCqpsMRPPsN1I7AQ2qblkjhBn+og3xrAXlgvgddyuE+C3QY8LvPJK5BdZw3n3gkDK/MVfovk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=QcjOzvSa; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=U8/tbEdFoHXqOiG/YLXzy2LtmW2ImDT55zt0J4tQrQM=; b=QcjOzvSadaNeNzBskCn7dhZ30O
-	aYvA4v7g0XRZqhjidD50J7t0FL+6RzSOKWnrqGh9oF0wcqEdPSuRMxnOd/lPL0/toyoOAdJo+qgAA
-	ko9ZhRc1AHHJXSxDacCZf0R6w1hAlMTfWUhM2q+EWmuyIapTw6oYKvV9gYpH0sFLbyig=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1spuBq-007Vte-HA; Sun, 15 Sep 2024 20:41:42 +0200
-Date: Sun, 15 Sep 2024 20:41:42 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <f.fainelli@gmail.com>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v3 0/2] net: phy: Support master-slave config
- via device tree
-Message-ID: <5befa01e-f52d-44de-b356-bc7e1946777a@lunn.ch>
-References: <20240913084022.3343903-1-o.rempel@pengutronix.de>
- <20240915180630.613433aa@kernel.org>
+	s=arc-20240116; t=1726426939; c=relaxed/simple;
+	bh=H5Hu/8gjONjIyi1nXJ1H/zgchlAiM87cQq8+/OyBoSA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=knLxpqvDCWo2FzeIk0XeO5PucO9wGWMvBQ71cgme+Rb9RECLEe6n/aH+QSmq+GIPqV4rJYohJGzgMCFj1plzL2xpHMDhi1speRWlDl385+z5Jl3Y0C/NevFe19xkuqCXH3Jfepf6GbLWooo8hD/9qMGL/Wyr1dxpZhTEewfzA2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=Ex7xvI8A; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2068acc8a4fso22813545ad.1;
+        Sun, 15 Sep 2024 12:02:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1726426937; x=1727031737; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RZjqU4AINP/IiVa4kPndu35gKyQ6yjWUa2bBBkDYEpo=;
+        b=Ex7xvI8A6xuK9ZyBoYY9eBjDu0FK3jSOgeYegRc6qEn6GwWWJxI2pgpoRRAhIGJ3mc
+         rPfkx+YQNk9Agu+iLXIcPkKbbiwzyrCdXye+d/Sc1Q+tvVY28q/EtKfNqXJV9k1/dwbj
+         MlQRSDhvU4EZJ0JdDNWg1gJ1K/l74lrYTlHrRYGpk8AvhKwZj/dhY/om+Ubfnenq6u+d
+         SClZ6m7yDGzAhhcBFHakXU8ruLb5FKmf+X+wPD6RoWdRJuXX8Uhrb8AvhSe+X1Ug193k
+         n5CMoB4SdF5oMWBdVOGufGxPkiBEk3bFlEYkbxY3uyy8l016bwdc+G03SdRMbcIzC2in
+         Y2QA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726426937; x=1727031737;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RZjqU4AINP/IiVa4kPndu35gKyQ6yjWUa2bBBkDYEpo=;
+        b=TNcv170VGQ0W1kHYepmmQ1yOOy35+fWjN8KKYhUpgawGuU3V97cPEHOnz8Gk0f2Lnz
+         sR/2Rkb8eu78JAMIrPHuMk9yqHN+oPw10LNB5Szag1CUGNkdMHEdc9XjMnP9AmuNzqZj
+         1ix88Sa4REv6B6alIkw2BpnniDOta03PkCGXNoP8VaRkF69miSRYgPBtzyuWvIVZhVK8
+         xFSCjxYffRSEQzofek1gNXKlzeXD6sskL5mH3NIT6l7oWuPgstQN6cN9u7tCX2Z9532x
+         0+jApR5qOCohsTQ/bSWqrYOWANpYhXv2uMWLGpPZ3TkGby6YrHtPuBIWc7v5DhugnYk/
+         CTeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVWYz5eDENUKB2KJzPl99znGG+C8JWR0Lv9BUI3GIU1nXsj8cOZObiz1hoj7GAlQ8NnFZiTzgCUZPgadKxE@vger.kernel.org, AJvYcCVszUN4QAr9ryIai1poEfPe8yMfo5PprjmZ0M4o+beFiBRhhnZ45JIVXl9nqoeWF9IRa3wBmREu1usT@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnIwbWIFZJo18PDTxONeorufIAHyGpAcwCtsUjMgO4mMOTUq+Y
+	G0GWrcXewOwH7xae1F9sqeCO0EWvjP9aG49tMTmlTuU1/o57PLJYBAQF/tmZJ28e0ltsZ+cUr+I
+	i5s813ETKKDK/3n1fNyj4lgFSi26APdmS
+X-Google-Smtp-Source: AGHT+IHe1atv/v02eHxBeLSaQupGAbcdfb73NBASPB+dRd+NN2OC/Y8NMPRVfzEtOWGS4P74u50FWjgUkjJh6E5mYEA=
+X-Received: by 2002:a17:902:ce8a:b0:205:8b84:d60c with SMTP id
+ d9443c01a7336-20782b642a8mr164239225ad.35.1726426936833; Sun, 15 Sep 2024
+ 12:02:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240915180630.613433aa@kernel.org>
+References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-0-feaabb45916b@linaro.org>
+ <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-2-feaabb45916b@linaro.org>
+In-Reply-To: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-2-feaabb45916b@linaro.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 15 Sep 2024 21:02:05 +0200
+Message-ID: <CAFBinCChaq4YF2koPnRaSCJpP=qSZVpRsqCMmidnHzF-TPjX9w@mail.gmail.com>
+Subject: Re: [PATCH 2/7] ARM: dts: amlogic: meson8: fix soc thermal-zone node name
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, Sep 15, 2024 at 06:06:30PM +0200, Jakub Kicinski wrote:
-> On Fri, 13 Sep 2024 10:40:20 +0200 Oleksij Rempel wrote:
-> > This patch series adds support for configuring the master/slave role of
-> > PHYs via the device tree. A new `master-slave` property is introduced in
-> > the device tree bindings, allowing PHYs to be forced into either master
-> > or slave mode. This is particularly necessary for Single Pair Ethernet
-> > (SPE) PHYs (1000/100/10Base-T1), where hardware strap pins may not be
-> > available or correctly configured, but it is applicable to all PHY
-> > types.
-> 
-> I was hoping we'd see some acks here in time, but now Linus cut the 6.11
-> final so the 6.12 game is over now:
-
-The device tree binding is not decided on yet. So deferred is correct.
-
-    Andrew
+On Wed, Sep 11, 2024 at 12:19=E2=80=AFPM Neil Armstrong
+<neil.armstrong@linaro.org> wrote:
+>
+> Use proper name for the soc thermal, fixing:
+> thermal-zones: 'soc' does not match any of the regexes: '^[a-zA-Z][a-zA-Z=
+0-9\\-]{1,10}-thermal$', 'pinctrl-[0-9]+'
+>         from schema $id: http://devicetree.org/schemas/thermal/thermal-zo=
+nes.yaml#
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
