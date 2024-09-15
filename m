@@ -1,97 +1,111 @@
-Return-Path: <devicetree+bounces-103104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BBA997987B
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 21:35:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A209197996A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 00:48:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D66BB282B0D
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 19:35:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDD2B1C22313
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 22:48:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E20D51CA68E;
-	Sun, 15 Sep 2024 19:35:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94E297BB15;
+	Sun, 15 Sep 2024 22:48:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="4GfNyVVs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cmbBDCoe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 686A63D551;
-	Sun, 15 Sep 2024 19:35:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 688841B85C1;
+	Sun, 15 Sep 2024 22:48:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726428951; cv=none; b=emVLVPQJd211FhKtJg++bDfb6hV8tmXZTrqltyqpY1wMsRHmuoQnLGTicyKekSF75Y2FSz5MjFZW8elLVHmFdEcNYV3U5zNVx+ppXurC89z/TZ80Kgatuq1l4KmdJzeqmLWavm1B0TcrayOCM+iwfL+qNIBJfdvVDvRnGXNHo3o=
+	t=1726440488; cv=none; b=sct9EUQtyLH2cq2S8v5EJXpW4wG2mKXzHVSM1DOGmgCEiHHHJfu3+u1Wg0be7I4CXLYebdCyUMbjeEQr0VGcTpfzYvfLDxl/ubWrMdrKhh0Vcpuc/f+2k1prZRtwnNJey+VPTlijz4GLYoTOvctHC6RgUv/Ybj4nMT+hWJsA8WI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726428951; c=relaxed/simple;
-	bh=tuVA2WxlehopaUYYIhQg6h1R4SWk601XYWtIMU3ROH8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=geylrb7TCElPH+3akeyOAzfQg7crGm+RdQ6xcskmMbGhba8HNUhkDsZXIo1LkBKSWGIQd4W3blEWrkhcYnlSRkvg76xOYug5T4LgIlVuV4aAJVwVCImDm3L2DVNSlKf/46kAZ9N6oYI5iM9nvUGoBzEB4e8jPrNkGQc9GR04Gbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=4GfNyVVs; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References;
-	bh=45Z33l/RcutDajIr/YKmREB0obYUTwFgojxxwKicMXU=; b=4GfNyVVsrxdoIGrOJ0cXr9AlRB
-	penG2KpgmIVe81/fQB9BpURffzqCXhBUWOqnBQgylPYgbY+qj9HImhis3oRzImPnWvutgAntvBxs/
-	R7SkBa56djhDsvATwBiBhePM3lya9/O6yjLxO3u+D2h/ZaxzHlJ15+dgV5R+9SgldqGT+KOLV/reT
-	EZsmKv9T6Hb4+RoVTLqER8MT9CW1n+pbNCadzv+vb6Zr8wDOQ/N0unCS9ai+nT3nsz5XMyLF7Fe+J
-	NWP0+/ezePWwJuQ0toS67EmPFJJs5y+AdEur0a3r9OEuT2w/ESAjR1truIcYN4okPmdhtljWVOxqA
-	FVhh0n8Q==;
-From: Andreas Kemnade <andreas@kemnade.info>
-To: tony@atomide.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-omap@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Kevin Hilman <khilman@baylibre.com>
-Cc: Andreas Kemnade <andreas@kemnade.info>,
-	Paul Kocialkowski <contact@paulk.fr>
-Subject: [PATCH] ARM: dts: omap4-kc1: fix twl6030 power node
-Date: Sun, 15 Sep 2024 21:35:27 +0200
-Message-Id: <20240915193527.1071792-1-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1726440488; c=relaxed/simple;
+	bh=W3AVPczafQzhHEPVJeMO8EQOQr9O4ild1Pi+en8FGfY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jS9LlJUEdzsurEj5V4Mu90caxmhq9Vt/M/Z1SUjVXOI6rvqUH6C1ssUKINHYzz2nfezjA+cL3NDgl8um1u3aOTaRjF8pgLFUt5toW0Z7x8mLS5toJtxVMKQ5c1MRL0NgSyYO/0T5Uzi0DsBO0VMF9FeZJDeBTK4ivuR5krDyDtg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cmbBDCoe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C917BC4CEC3;
+	Sun, 15 Sep 2024 22:48:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726440487;
+	bh=W3AVPczafQzhHEPVJeMO8EQOQr9O4ild1Pi+en8FGfY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=cmbBDCoe8YIXNQ4cRKOfBR+foeUaN/TAvRnxLLfr9uVATqYSEYphtLMjTwinVdn5b
+	 bW2xvvYeq3SxuMyrdfloOvzGtzQ9XXU1LnGP2JuzL/mCnArd7Wv91rTsmWOse1NkJX
+	 qMEnAiID8/DXeeufEJLauoZRKPU7HjaF0mZPNw4e+IoKnVy+GPf+xY8I1K4kyjN838
+	 mOBM6JnrMBr1PVXR5ZfLPTediVd63R06ZY3G4/X7y+Z5A1yVgEJhJshPrFAjpMbqd+
+	 3INqMPXnVAHXvHWPuvAQppCm9ZYeNm+jcKFohVjmTh3761xTKsE3hmvu8QykGp//1f
+	 VtRUrOnj1Kcyg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B2989C3ABB0;
+	Sun, 15 Sep 2024 22:48:07 +0000 (UTC)
+From: Jasper Korten via B4 Relay <devnull+jja2000.gmail.com@kernel.org>
+Subject: [PATCH 0/2] Add touchscreen and TMP451 tempsensor nodes to Google
+ Pixel C (tegra210-smaug) Device Tree
+Date: Mon, 16 Sep 2024 00:48:12 +0200
+Message-Id: <20240916-touch-temp-v1-0-5a008b2acbc8@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACxk52YC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDS0NT3ZL80uQM3ZLU3ALdZDOTJDMLSzPDxNRUJaCGgqLUtMwKsGHRsbW
+ 1ALWGrpdcAAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, 
+ Jasper Korten <jja2000@gmail.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1726440502; l=1112;
+ i=jja2000@gmail.com; s=20240916; h=from:subject:message-id;
+ bh=W3AVPczafQzhHEPVJeMO8EQOQr9O4ild1Pi+en8FGfY=;
+ b=ZPhbv3N1xwYF4OASpscfGJybNimUttAT4cGxgIPHBup4hw6xYif8atQccSUpMV8j5olBjwYP7
+ aQ/9X5wnKYNC8DaykgGgExDNs5W7AtHl9JM3Mh/Bje4qv9Xm6+y+H50
+X-Developer-Key: i=jja2000@gmail.com; a=ed25519;
+ pk=NV6r6q/S3nZILZkoOEuEM7F+uxANotfAYeXyNZTniJc=
+X-Endpoint-Received: by B4 Relay for jja2000@gmail.com/20240916 with
+ auth_id=210
+X-Original-From: Jasper Korten <jja2000@gmail.com>
+Reply-To: jja2000@gmail.com
 
-dtbs_check was moaning about twl6030-power, use the standard property
-instead.
-Apparently that twl6030 power snippet slipped in without the
-corresponding driver. Now it is handled by the standard property.
+Information to get these working was gained from downstream DTS.
+Link: https://android.googlesource.com/kernel/tegra/+/refs/heads/android-tegra-dragon-3.18-oreo-m8/arch/arm64/boot/dts/tegra/tegra210-smaug.dtsi
 
-CC: Paul Kocialkowski <contact@paulk.fr>
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+Both were missing upstream and easy to add:
+- It uses a RMI4 HID-over-I2C compatible touchscreen.
+- TMP451 is located close to eMMC according to iFixit's teardown.
+  Link: https://www.ifixit.com/Teardown/Google+Pixel+C+Teardown/62277#s290806
+
+This is the first time I've ever submitted patches upstream myself.
+If there's anything I've missed or could do better in a new rev,
+please let me know!
+
+Signed-off-by: Jasper Korten <jja2000@gmail.com>
 ---
- arch/arm/boot/dts/ti/omap/omap4-kc1.dts | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+Jasper Korten (2):
+      arm64: dts: nvidia: tegra210-smaug: Add touchscreen node
+      arm64: dts: nvidia: tegra210-smaug: Add TMP451 temperature sensor node
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap4-kc1.dts b/arch/arm/boot/dts/ti/omap/omap4-kc1.dts
-index c6b79ba8bbc91..df874d5f5327f 100644
---- a/arch/arm/boot/dts/ti/omap/omap4-kc1.dts
-+++ b/arch/arm/boot/dts/ti/omap/omap4-kc1.dts
-@@ -112,11 +112,7 @@ twl: twl@48 {
- 		reg = <0x48>;
- 		/* IRQ# = 7 */
- 		interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>; /* IRQ_SYS_1N cascaded to gic */
--
--		twl_power: power {
--			compatible = "ti,twl6030-power";
--			ti,system-power-controller;
--		};
-+		system-power-controller;
- 	};
- };
- 
+ arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+---
+base-commit: da3ea35007d0af457a0afc87e84fddaebc4e0b63
+change-id: 20240915-touch-temp-c64b68961aee
+
+Best regards,
 -- 
-2.39.2
+Jasper Korten <jja2000@gmail.com>
+
 
 
