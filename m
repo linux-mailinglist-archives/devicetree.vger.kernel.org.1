@@ -1,70 +1,70 @@
-Return-Path: <devicetree+bounces-103095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A901997984F
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 21:03:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D59A979851
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 21:03:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DF47B211A4
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 19:03:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B41DBB2121D
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 19:03:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E668C1C9865;
-	Sun, 15 Sep 2024 19:02:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFD6B1C7B8B;
+	Sun, 15 Sep 2024 19:03:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="D5RQkV0S"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="FGL4+8IX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6941B85EC;
-	Sun, 15 Sep 2024 19:02:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64CCE175AD;
+	Sun, 15 Sep 2024 19:03:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726426978; cv=none; b=oXgxHEaIXyJMd1lfPgM6Hy+kltqquM+BIgDT2MiP8BvDAvHVwPlT8RGYoNT//CEHORdpNEq+GFqDcqTGuJYCqvJ1egt5UYF/cOXF+gH0Gx5rwB42QtF42GDmvtj4w3SgPNioft1i+nhsRtsWQ7arXLTTugzs5AJS2RzfupK/4Jk=
+	t=1726427001; cv=none; b=eGSsuvlL27gUqXBAS+i6wy3JUcrsA1q+It3CGmLbLdEPE4CikaW8UKd1FG7WFuGjXFGfWAaUTN2v0KA4H8rCxuOVK73ltdCB+jZ8dfZC7a5IZSJT79vg1Z92rdz3lFNR4lFgYfVyuM7dmQqafZEscJbdcq0e238S7KywxUuR8nc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726426978; c=relaxed/simple;
-	bh=incBIIGh6/Nb8jqbKnb1w2E8rNeIc3tWZZuPGZv0P+c=;
+	s=arc-20240116; t=1726427001; c=relaxed/simple;
+	bh=q5h6c/YvAP1zhZ3/e123DERCW4j9bZxrt7p2p+WIsLU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iYW7JFN/rZuitfToPuM6rz0SbruS3lwbQ2v9EpNdHB1dz+QlLtPt36mPKuGB0ezU3PaquUhJlpK0DSkjsN+JsT7NsfOQRiZFVESrtDMp04qvvviN1jFyisfMqrJr4qQheuo9vaGvY8zFeXUipnAZRdc+GDoagN9TtVvNX6lVjEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=D5RQkV0S; arc=none smtp.client-ip=209.85.214.176
+	 To:Cc:Content-Type; b=rHE065tKXC9pbvqJ3okq9bywfk14rXiQMs7tS0SssIZvrmRY2xP9m4ZNFiMGxyhLUfW7KcnFBCVop/CKhN14lqmWHB+AO/6BmylOBWB5VgZ9e9DAuOq3uauUzXafzXDDg5mUZmmJTAama7GBCHUsPteoamHiMieMMHXsxgOCS6U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=FGL4+8IX; arc=none smtp.client-ip=209.85.214.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-20688fbaeafso29104055ad.0;
-        Sun, 15 Sep 2024 12:02:57 -0700 (PDT)
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-206bd1c6ccdso22631655ad.3;
+        Sun, 15 Sep 2024 12:03:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1726426977; x=1727031777; darn=vger.kernel.org;
+        d=googlemail.com; s=20230601; t=1726427000; x=1727031800; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=I4UOvVGZ8GtKwRInuJIT2ch8XFkLj324WspKyPQ0xaw=;
-        b=D5RQkV0SxNk3csv51Jfs5cc6ctiv/zwAHLEYR5WJqifpno0ZY2macaBTLxcW2XsrM7
-         Prqw7jOSrJ84E2EwNfwZvt25fKTsshZsgoFWNW+G5WgVlq9VsGwZaaIRzhrCJcyOmwBx
-         SetW2k08rm5a4Dv7bK5qLumOJKtd2Ic2NmH4k2OSF+pNHlhBLk0vs6XnVdDdIRt93pGt
-         sU88oFu8EiS2cToFQaVfiMjpPzALWjOWlko6fCie7ae32bhQdy7f0EUIt/dkKc2Yp5ps
-         w9WD+dU5BZ0aOd5/vfVeBJU5EcMZ1KF11h240ZYJY3HpTiKMHFq7vqAM4rY+uT0Vwolg
-         RALg==
+        bh=7jJyScG3d9NHQ5S4X3PfMPGGWweIlWR9sQ4K9rWSPFE=;
+        b=FGL4+8IXaUwtmlx4ZINdG6PeNTuuk7WlWDc+jDF5X4WgoegXeo9JtDNXePjor13Eul
+         GMDJg4P5CescoqMrhX2LJQg3xVi0Yb9uSEiici9sWKiC5H8KNG/JT3HH0T+uRh1XplQe
+         4SCxGh3UUXlumLkXgaAYEXmFwPo+Ot0BtUxZq9NMkXjsn//b/Jf9alfhnzYTcVild60a
+         MGbbZKsAUTDqaFtfq6+Xp/sUhUqdSop1g48zSL9yor7btRvCL3MDgbVj9h4+wRdgGONO
+         m+tkwfbygL5EqnVp+zDqr558PB1Sb5FornbFvYwJ/LXV3QAmC7CX4r8KG7fPy1kVMpXu
+         nlTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726426977; x=1727031777;
+        d=1e100.net; s=20230601; t=1726427000; x=1727031800;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=I4UOvVGZ8GtKwRInuJIT2ch8XFkLj324WspKyPQ0xaw=;
-        b=evYiGazhvM0svXlL52CzxWheP9DuMfXH6PMG7i5804UgFZauzJUFDROcQTCQPyTGVs
-         4LvjlklScXsEJnsMkKLXnXZX21XIsrwy1ynL8tnxyJVeTJUOqSnmLD1J5pbEWMnK1kUw
-         BhRu/R1mI9EevB7wD97aByAgytNX7FUp3bcwAcMzZVw/ZLCx/J2YwpQmDlKpMvqijTvA
-         NxKYxx+Rba/R86xyOpZUWQpc9/p9qJZriP+hi7jb31gMpb4XLYLx+WcygIumvi1XnY5C
-         TnpFxUKxhMH11Nu6vtQ8GfldaFuaJ5tXj9duhZ8IycKATxMlO2iWj/js93n3tkIKDsTs
-         YvhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV9zjnUWtJFiWnystlf3u9fu6KdjWD5pOyxDxKE1YqFF0DEqeR3xLJVQfPHCu5edhlH0xrc0n38ENFvGkUR@vger.kernel.org, AJvYcCVX1NX6Ux+oim3OGtV20pkZd8dx7oldeudwttzSPG8HwfVBjmKSG8tddsNn94+YCCZ9kjU9TSIEEKyY@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQUerhvENvWIQiOW6mt5VdIpaolybMM8BrJwU1GvLcIQ+OGtY5
-	J1CrIOJnGllJlFmN3GsAIDAAbx+wyhZiq4Md+YKFdzvPwl6VYt6x6Z4cN5qz0buPebMAuiY07tS
-	ljraRKM7jpTA4Ql4W9U6tcA9X7pK6DFI5
-X-Google-Smtp-Source: AGHT+IE7kheTN19zXbJRfYda2IivoITqgwqNICI/LYdA2vzUDioYop84RC1rbN/XaMWP5zvCukwcsh729j6RO0lWXnk=
-X-Received: by 2002:a17:903:2a8e:b0:205:5582:d650 with SMTP id
- d9443c01a7336-20782b7d46dmr146275835ad.52.1726426976825; Sun, 15 Sep 2024
- 12:02:56 -0700 (PDT)
+        bh=7jJyScG3d9NHQ5S4X3PfMPGGWweIlWR9sQ4K9rWSPFE=;
+        b=Hzh8GjUnPJTRXUESFjO86gaaFDAhxfS6MxNT1rKBA+7Mxytv1pplOfoSSzqzLUStCA
+         Ox6HqO4mNHTpwYQ4VyknGUXI0c/uiYBFp239OmjxL17LXKF4RvcUv5bJm5co1I8Q3pY3
+         Ze/UEhtX2vWPRNgAmzosZo5Qk5KOTTM/6nksCwv3b05K7N6J6d/ovD9kXgs0OePY3Out
+         AeOp1FncGGRRT62ubAeCAm00ozGbUnxKKOs2LICHmmPxHneIV53xh+VNQ3bm/ePTmkMa
+         PVsrOx0Me3WVodJXLi25+tBFx/5aG10wDk61ZIMMCjprhM71o9Yb3HYoKX7EaG1WAN8X
+         Nq5g==
+X-Forwarded-Encrypted: i=1; AJvYcCW2nU+qazoiL3b2s0pAXOo71UblqbWoZVNTx97Q6XaVbrFbSxXx+Un8wCIXi411fqJwS6lnteqQs7TXz2rQ@vger.kernel.org, AJvYcCWi+9RwnqAc6FJlrSVNRTuL7x4ufPJ8AdVXwDJoXnsX2a0Bbq0NUXseJgjG7Ka1fy/SLz44BwaEbwd6@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywdxz6LSYpPxZK9o4RPnqOba0k2/G/MQszSNNFylLSTg78A6bt/
+	GMT57mW03S7EFBfFDnwri3prQ73PP9WJhjxMWE6QgvOSXQQZLpde4CvDKMuEljYZGEGKP8GBS4L
+	Zn/dscHO6MTGxegJLE8ar7KDTviw=
+X-Google-Smtp-Source: AGHT+IEZ6GCkzKAWLZZHHU7eMS2eyq+j9CTeJLAwZNxO0mhFJtwQEHrrljy0vbXUZx2OkSpdfzy+QX7A9REB1jTMkmE=
+X-Received: by 2002:a17:902:d58c:b0:207:2093:99bb with SMTP id
+ d9443c01a7336-20782529c52mr108597785ad.31.1726426999543; Sun, 15 Sep 2024
+ 12:03:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,12 +72,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-0-feaabb45916b@linaro.org>
- <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-5-feaabb45916b@linaro.org>
-In-Reply-To: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-5-feaabb45916b@linaro.org>
+ <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-7-feaabb45916b@linaro.org>
+In-Reply-To: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-7-feaabb45916b@linaro.org>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 15 Sep 2024 21:02:46 +0200
-Message-ID: <CAFBinCAgm+OGnxDvYAWGU-hEgBgGqJwHESR3ivT66BNvTNo5Pw@mail.gmail.com>
-Subject: Re: [PATCH 5/7] ARM: dts: amlogic: meson8b-odroidc1: fix invalid reset-gpio
+Date: Sun, 15 Sep 2024 21:03:08 +0200
+Message-ID: <CAFBinCDe-yhHja=KMjAr6-EigOWipTCZZ0ETT9QttuOOBFX+kw@mail.gmail.com>
+Subject: Re: [PATCH 7/7] ARM: dts: amlogic: meson8: use correct pinctrl bank
+ node name
 To: Neil Armstrong <neil.armstrong@linaro.org>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
 	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
@@ -90,10 +91,17 @@ Content-Transfer-Encoding: quoted-printable
 On Wed, Sep 11, 2024 at 12:19=E2=80=AFPM Neil Armstrong
 <neil.armstrong@linaro.org> wrote:
 >
-> Use the proper "-gpios" property name, fixing:
-> hub@1: 'reset-gpio' does not match any of the regexes: 'pinctrl-[0-9]+'
->         from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g=
-.yaml#
+> Use the proper name for the pinctrl bank subnode, fixing:
+> pinctrl@9880: Unevaluated properties are not allowed ('banks@80b0', 'bank=
+s@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b=
+0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', '=
+banks@80b0', 'banks@80b0', 'banks@80b0', 'reg', 'reg' were unexpected)
+>         from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,me=
+son8-pinctrl-cbus.yaml#
+> pinctrl@84: Unevaluated properties are not allowed ('ao-bank@14', 'ao-ban=
+k@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14'=
+, 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao=
+-bank@14', 'ao-bank@14', 'ao-bank@14', 'reg', 'reg' were unexpected)
 >
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
