@@ -1,70 +1,70 @@
-Return-Path: <devicetree+bounces-103097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01587979855
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 21:06:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A0D197985B
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 21:12:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D07F1C21347
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 19:06:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8574C1F2110D
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 19:12:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3A521C9DDC;
-	Sun, 15 Sep 2024 19:06:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2D5D1C9EC3;
+	Sun, 15 Sep 2024 19:12:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="g7N5qRUR"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="JjV0Etml"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4873B175AD;
-	Sun, 15 Sep 2024 19:06:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D0EB282E1;
+	Sun, 15 Sep 2024 19:12:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726427165; cv=none; b=Yby6byosjC5WdzeXnmoumxh8AdGGc+TWpJn7dlzebVoTqHaWdDcj+R9ZYfyll9G6q3/QQeJ/OA6Fviw1ooxnWNf8whUiwqSJwsuMUeu2m6wHj2fCtUlGhOIWYvpew0dy1GuMfQDOZEYs4BU0MYWnDtZX8Uzh5tJy9XMTNpsb6hU=
+	t=1726427543; cv=none; b=P4o3HXtAYwTTiBht16xLPiXcFQwOi5ygyySQPzm4QCVBtGc4XlDrPat/zb2NT7qh64YfxTQGlPRwmAgJeUUAjbueaziUb2ZBfSZd5RtNI894iYol7ysAcl1zrPeUY6xbkvIaBBGC5RSIfE7V7K708UH4Yk5vanZzJko58pKqDHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726427165; c=relaxed/simple;
-	bh=gL7+LPPXbmim7gWuH+PohwSFVDdKZqCM4KyIUHlEYyw=;
+	s=arc-20240116; t=1726427543; c=relaxed/simple;
+	bh=H6cMlZCkPdeABP+HQgXYJFpxk146R6dKpNrOQxsa0wM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bWb/3WoUgNl3Ufq203DJGZ1I/9DoDaaV8bKwrRQoZ3S9jKl1kJSYgekgwTGjT7j3brBDTf5yeSCVET9b9YSMqHXmBhwHHl8dzYK7Ne/JBCkuLSpdjBAyXUksNp7ri4bjw3S5InuZZXxGIfIVNkByjqHxFEnpGb6iY2xbysHLfCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=g7N5qRUR; arc=none smtp.client-ip=209.85.214.169
+	 To:Cc:Content-Type; b=Alj1y4cduJF9Rji7Og927w+DUOJSfp1sfrE+xbeYPAatU5MAxGqaMz4w+QFC8dWQs8OuvHROWnfd+RTkwhfrY7VCBWql4G+kA8SsIO98kosxR6kAHHPD1TWd8iS5ACY21p+aMDDkd0NI9+WGiVY7GXUVJzZ0flLacGtOaONR/s0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=JjV0Etml; arc=none smtp.client-ip=209.85.214.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2053616fa36so44667345ad.0;
-        Sun, 15 Sep 2024 12:06:03 -0700 (PDT)
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-206f9b872b2so34465655ad.3;
+        Sun, 15 Sep 2024 12:12:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1726427162; x=1727031962; darn=vger.kernel.org;
+        d=googlemail.com; s=20230601; t=1726427542; x=1727032342; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=WOH05K8gI+IAZvbuBzqlVV1cO+viSa94cBnfzwtz9m4=;
-        b=g7N5qRURq3wBfhtAQU5z6FHyCYHWY1ilajTOEO69ZwzPlzW4U6FaprxH8gh67ycmK/
-         N4tLz692TpNn3ZHsTpMcDUFLZ29CYGLb7FQXQLQRxipcQbQdWpcgbBUSvfU+q+FdcGdU
-         HJo/OIMtZyKymgEyimdS4Ccc/Km0J4V/kodR4AKhQqVwsqrOEijRNmt1Vcon9VSTg/K6
-         ezXpvIvDlOSiYrlIgL8yDdxujkquznVbZoV6+x1cnIVySGrhXeAKX2rqN8B5ameFkLrN
-         fXqWhxOyhtyCTDD9Vaxjed0gWu+5fX14HFFZQRSPkmIonwnuQEwd/dZOZMjbhatqswjZ
-         m3kw==
+        bh=gxbVkHtrWftjJ2Lx66Ozc/KK6sjKVqL5eejGgkG0fY8=;
+        b=JjV0EtmlzF2D0alVLf/kPpSsGBL536FH5aOfvKwx2baPepwCLQQobepMxfw6VfkrMP
+         LaekqaivLCBLt6p8TeVhXGjfwSccLhAmo5D8MR/7StKOGrHa/b/jvaLzeywJ9zlBT5qx
+         /T11Y1nlZGY7hQx3pbep+F2/54JZF/1stXX8EUPSd7urZNQGMgdsHb5ptZfK+N685JhK
+         qAEiMxPLQtlE3Q8HbV0GWlMxep5xqw+wLnNdt/Aaz3TFb6hAchyDLMDJjMpvjA044uxE
+         cKmVNEU1JBrwPCqT7bmCtpn1yO/j1cqiXsX5nqe5XqO2k9BwmeIkl3VVUZaRfTei55xv
+         H0gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726427162; x=1727031962;
+        d=1e100.net; s=20230601; t=1726427542; x=1727032342;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=WOH05K8gI+IAZvbuBzqlVV1cO+viSa94cBnfzwtz9m4=;
-        b=QZx8tsmmMrRCCBaJjRfanbNfIGzok1cVXaWjw+6YQtuRleEK8TVnRprJzymDgMOYQN
-         xnoadU8EhbOOcXFVEADuBITVCD3V4YlaSinQVTE5I4HzNsDjlI2T0LZCgwKkFexOakwI
-         IB0Y50ttqissFrzXqZJGIantu4SKPFVat0s1grWvGCdX5G/Vnf/9uPpQHCAIF9WYGS4q
-         PqbLx/eCwN9rNqKHjPu9v6Cn1JB8QA+7YsSPjUca3vPh6lwuu8txxxLF/RmwE3RslcRG
-         t2tHht2dOCXGD08ojoD1q0bM3ngDqp0Ad6HQz0nqNpBqmm7NN2BA7igrFzpUnoCAgccQ
-         vUEg==
-X-Forwarded-Encrypted: i=1; AJvYcCUJ0ftWFNbqcb5AHnmYCerRd/oJ9R/LP0csOkW7DckidnYaeMfK6fLSO+qgCRya/ODjcrj1BNE4FsWKfcio@vger.kernel.org, AJvYcCUz9+m/KiIiBFajtgMHBmSWHdynqpBdsBM+0zbTUVPamKeX+nWbcjCnZpYcNl+MergUXQ+eLh0xVQ7J@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBWXdcGtEZ/SOOyk+8OnOqnfr0kx9Zz+Ll+tI86TeVeNsGUrAg
-	PQF+6aoQhjlyCddwF3LklWDDUfO2+evgNhONhON/GALZh8/LyphvyD2Xgy4ew910tOOgUj3SByQ
-	dnhuNOhm4v83D4bvdmyuBSzzuFjc=
-X-Google-Smtp-Source: AGHT+IFkqcbht/Z9kET9D030mGFZFTW4/RPeXFa22UBotYkviT8dg4bE+MVcepiuEYhDIm2gnxuL8wAP6O7rI/yMaVk=
-X-Received: by 2002:a17:902:d509:b0:202:28b1:9f34 with SMTP id
- d9443c01a7336-2076e41cbcamr200524825ad.56.1726427162571; Sun, 15 Sep 2024
- 12:06:02 -0700 (PDT)
+        bh=gxbVkHtrWftjJ2Lx66Ozc/KK6sjKVqL5eejGgkG0fY8=;
+        b=MD/uKZszUYHCrOdRmltZe+4Cu7g7AegEk7nUPX+HF+HwOfJArUkgnxAn+umF+x2/d+
+         Tg0Z4Dpd2VS4FGI0kf2Ef1dXeMEsOphlBytc38CyvnwObn8zBats0vY4qd11obGqWUm5
+         ysxN4INgE9FJmFW5sbdY2yIEyeyP+6OgyVcXghgm4P3zUgDVoSlL2x1hTD+PrK7NgCIF
+         /XobJE/V+x6Ia+tBvkwSMeNxHncxEERdNyDUdmMxoeMvEMaxRdTiK9guh6uh52uAI5u2
+         kO/7rYE268B4EJ1dUWWQYq9jctJnincFQEVRspIZwi8bmwf3o0ta/B44Q/518Xq4+nw+
+         leUg==
+X-Forwarded-Encrypted: i=1; AJvYcCXOj2a/82nkeoU4Hn8p+WIeNZyVnixtQX5eM6L/1/A7/+dwgZx6p2KXuwwVOACU37jAaKEaZL9lopi1@vger.kernel.org, AJvYcCXmstTqTxcHZgKubpIeZpwTfZF0qARivwfzf0h+v+AOKS9XKkXex82489z8d7YugNlYbWxFmSkTRcpc/xmj@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPl3m1C9un+81XlK0xfc48D3WzVfnd+V7EwMddM6VpimMyRGBH
+	5ATOMGBpG0BCAwOwwCn379jBB1FP04FjjF2C+kifqidSU0bZEAmr0uQluuCEzwF/B07pdXOzcmo
+	XHGlFvwCGSik+aBn3aMiaF17lB6s=
+X-Google-Smtp-Source: AGHT+IHxCPO0nUOsBlDCzPdjxqDPeTdDXS2walgmZ+6/o28mYOwDrUV87m3jQF+6E8j/0hcYgKfgCATM8QOp7MRaDvM=
+X-Received: by 2002:a17:902:e851:b0:205:861c:5c4a with SMTP id
+ d9443c01a7336-2076e4ebba0mr150793145ad.60.1726427541541; Sun, 15 Sep 2024
+ 12:12:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,12 +72,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-0-feaabb45916b@linaro.org>
- <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-6-feaabb45916b@linaro.org>
-In-Reply-To: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-6-feaabb45916b@linaro.org>
+ <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-4-feaabb45916b@linaro.org>
+In-Reply-To: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-4-feaabb45916b@linaro.org>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 15 Sep 2024 21:05:51 +0200
-Message-ID: <CAFBinCB8dhzNExOaO=VrDzTYLHHKUaxHZ49HzAYVnNZhAT_YFw@mail.gmail.com>
-Subject: Re: [PATCH 6/7] ARM: dts: amlogic: fix /memory node name
+Date: Sun, 15 Sep 2024 21:12:10 +0200
+Message-ID: <CAFBinCD+txhz0x20LXhydZpLk=u4d9FT4=1sOX1bKuDeQqsMjQ@mail.gmail.com>
+Subject: Re: [PATCH 4/7] ARM: dts: amlogic: meson6: delete undocumented nodes
 To: Neil Armstrong <neil.armstrong@linaro.org>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
 	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
@@ -91,11 +91,68 @@ Hi Neil,
 
 On Wed, Sep 11, 2024 at 12:19=E2=80=AFPM Neil Armstrong
 <neil.armstrong@linaro.org> wrote:
-[...]
-> -       memory {
-> +       memory@0 {
->                 device_type =3D "memory";
->                 reg =3D <0x40000000 0x80000000>;
-On the 32-bit SoCs we specify memory at an 0x40000000 offset.
-Shouldn't we use memory@40000000 in that case?
+>
+> Delete nodes in meson6.dtsi that are clearly undocumented & unused for me=
+son6,
+> fixing the following check errors:
+> audio-controller@5400: compatible:0: 'amlogic,aiu' is not one of ['amlogi=
+c,aiu-gxbb', 'amlogic,aiu-gxl', 'amlogic,aiu-meson8', 'amlogic,aiu-meson8b'=
+]
+>         from schema $id: http://devicetree.org/schemas/sound/amlogic,aiu.=
+yaml#
+> audio-controller@5400: compatible: ['amlogic,aiu'] is too short
+>         from schema $id: http://devicetree.org/schemas/sound/amlogic,aiu.=
+yaml#
+> /soc/bus@c1100000/pwm@8550: failed to match any schema with compatible: [=
+'amlogic,meson-pwm']
+> /soc/bus@c1100000/pwm@8650: failed to match any schema with compatible: [=
+'amlogic,meson-pwm']
+> phy@8800: compatible: 'oneOf' conditional failed, one must be fixed:
+>         ['amlogic,meson-mx-usb2-phy'] is too short
+>         'amlogic,meson-mx-usb2-phy' is not one of ['amlogic,meson8-usb2-p=
+hy', 'amlogic,meson8b-usb2-phy', 'amlogic,meson8m2-usb2-phy']
+>         'amlogic,meson-gxbb-usb2-phy' was expected
+>         from schema $id: http://devicetree.org/schemas/phy/amlogic,meson8=
+b-usb2-phy.yaml#
+> phy@8820: compatible: 'oneOf' conditional failed, one must be fixed:
+>         ['amlogic,meson-mx-usb2-phy'] is too short
+>         'amlogic,meson-mx-usb2-phy' is not one of ['amlogic,meson8-usb2-p=
+hy', 'amlogic,meson8b-usb2-phy', 'amlogic,meson8m2-usb2-phy']
+>         'amlogic,meson-gxbb-usb2-phy' was expected
+>         from schema $id: http://devicetree.org/schemas/phy/amlogic,meson8=
+b-usb2-phy.yaml#
+> /soc/bus@c1100000/mmc@8c20: failed to match any schema with compatible: [=
+'amlogic,meson-mx-sdio']
+> mmc@8e00: compatible:0: 'amlogic,meson-mx-sdhc' is not one of ['amlogic,m=
+eson8-sdhc', 'amlogic,meson8b-sdhc', 'amlogic,meson8m2-sdhc']
+>         from schema $id: http://devicetree.org/schemas/mmc/amlogic,meson-=
+mx-sdhc.yaml#
+> mmc@8e00: compatible: ['amlogic,meson-mx-sdhc'] is too short
+>         from schema $id: http://devicetree.org/schemas/mmc/amlogic,meson-=
+mx-sdhc.yaml#
+> remoteproc@1c: compatible:0: 'amlogic,meson-mx-ao-arc' is not one of ['am=
+logic,meson8-ao-arc', 'amlogic,meson8b-ao-arc']
+>         from schema $id: http://devicetree.org/schemas/remoteproc/amlogic=
+,meson-mx-ao-arc.yaml#
+> remoteproc@1c: compatible: ['amlogic,meson-mx-ao-arc'] is too short
+>         from schema $id: http://devicetree.org/schemas/remoteproc/amlogic=
+,meson-mx-ao-arc.yaml#
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Generally I'm fine with this. I'm wondering if we should go one step
+further by decommissioning Meson6 support?
+To be specific here, I'm thinking of removing MACH_MESON6 from
+arch/arm/mach-meson/Kconfig and deleting meson6{.dtsi,-atv1200.dts}
+
+I don't have any boards with Meson6 SoC, there's no upstream GPIO,
+pinctrl, clock, MMC, <you name it> driver for that SoC either.
+So all we have upstream is the ability to boot to initramfs and use
+serial console(s).
+If someone is interested in Meson6 support they should bring it back
+along with a few more patches for upstream support of further
+peripherals.
+
+
+Best regards,
+Martin
 
