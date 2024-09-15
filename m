@@ -1,70 +1,70 @@
-Return-Path: <devicetree+bounces-103096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D59A979851
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 21:03:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01587979855
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 21:06:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B41DBB2121D
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 19:03:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D07F1C21347
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2024 19:06:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFD6B1C7B8B;
-	Sun, 15 Sep 2024 19:03:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3A521C9DDC;
+	Sun, 15 Sep 2024 19:06:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="FGL4+8IX"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="g7N5qRUR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64CCE175AD;
-	Sun, 15 Sep 2024 19:03:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4873B175AD;
+	Sun, 15 Sep 2024 19:06:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726427001; cv=none; b=eGSsuvlL27gUqXBAS+i6wy3JUcrsA1q+It3CGmLbLdEPE4CikaW8UKd1FG7WFuGjXFGfWAaUTN2v0KA4H8rCxuOVK73ltdCB+jZ8dfZC7a5IZSJT79vg1Z92rdz3lFNR4lFgYfVyuM7dmQqafZEscJbdcq0e238S7KywxUuR8nc=
+	t=1726427165; cv=none; b=Yby6byosjC5WdzeXnmoumxh8AdGGc+TWpJn7dlzebVoTqHaWdDcj+R9ZYfyll9G6q3/QQeJ/OA6Fviw1ooxnWNf8whUiwqSJwsuMUeu2m6wHj2fCtUlGhOIWYvpew0dy1GuMfQDOZEYs4BU0MYWnDtZX8Uzh5tJy9XMTNpsb6hU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726427001; c=relaxed/simple;
-	bh=q5h6c/YvAP1zhZ3/e123DERCW4j9bZxrt7p2p+WIsLU=;
+	s=arc-20240116; t=1726427165; c=relaxed/simple;
+	bh=gL7+LPPXbmim7gWuH+PohwSFVDdKZqCM4KyIUHlEYyw=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rHE065tKXC9pbvqJ3okq9bywfk14rXiQMs7tS0SssIZvrmRY2xP9m4ZNFiMGxyhLUfW7KcnFBCVop/CKhN14lqmWHB+AO/6BmylOBWB5VgZ9e9DAuOq3uauUzXafzXDDg5mUZmmJTAama7GBCHUsPteoamHiMieMMHXsxgOCS6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=FGL4+8IX; arc=none smtp.client-ip=209.85.214.170
+	 To:Cc:Content-Type; b=bWb/3WoUgNl3Ufq203DJGZ1I/9DoDaaV8bKwrRQoZ3S9jKl1kJSYgekgwTGjT7j3brBDTf5yeSCVET9b9YSMqHXmBhwHHl8dzYK7Ne/JBCkuLSpdjBAyXUksNp7ri4bjw3S5InuZZXxGIfIVNkByjqHxFEnpGb6iY2xbysHLfCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=g7N5qRUR; arc=none smtp.client-ip=209.85.214.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-206bd1c6ccdso22631655ad.3;
-        Sun, 15 Sep 2024 12:03:20 -0700 (PDT)
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2053616fa36so44667345ad.0;
+        Sun, 15 Sep 2024 12:06:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1726427000; x=1727031800; darn=vger.kernel.org;
+        d=googlemail.com; s=20230601; t=1726427162; x=1727031962; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7jJyScG3d9NHQ5S4X3PfMPGGWweIlWR9sQ4K9rWSPFE=;
-        b=FGL4+8IXaUwtmlx4ZINdG6PeNTuuk7WlWDc+jDF5X4WgoegXeo9JtDNXePjor13Eul
-         GMDJg4P5CescoqMrhX2LJQg3xVi0Yb9uSEiici9sWKiC5H8KNG/JT3HH0T+uRh1XplQe
-         4SCxGh3UUXlumLkXgaAYEXmFwPo+Ot0BtUxZq9NMkXjsn//b/Jf9alfhnzYTcVild60a
-         MGbbZKsAUTDqaFtfq6+Xp/sUhUqdSop1g48zSL9yor7btRvCL3MDgbVj9h4+wRdgGONO
-         m+tkwfbygL5EqnVp+zDqr558PB1Sb5FornbFvYwJ/LXV3QAmC7CX4r8KG7fPy1kVMpXu
-         nlTA==
+        bh=WOH05K8gI+IAZvbuBzqlVV1cO+viSa94cBnfzwtz9m4=;
+        b=g7N5qRURq3wBfhtAQU5z6FHyCYHWY1ilajTOEO69ZwzPlzW4U6FaprxH8gh67ycmK/
+         N4tLz692TpNn3ZHsTpMcDUFLZ29CYGLb7FQXQLQRxipcQbQdWpcgbBUSvfU+q+FdcGdU
+         HJo/OIMtZyKymgEyimdS4Ccc/Km0J4V/kodR4AKhQqVwsqrOEijRNmt1Vcon9VSTg/K6
+         ezXpvIvDlOSiYrlIgL8yDdxujkquznVbZoV6+x1cnIVySGrhXeAKX2rqN8B5ameFkLrN
+         fXqWhxOyhtyCTDD9Vaxjed0gWu+5fX14HFFZQRSPkmIonwnuQEwd/dZOZMjbhatqswjZ
+         m3kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726427000; x=1727031800;
+        d=1e100.net; s=20230601; t=1726427162; x=1727031962;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=7jJyScG3d9NHQ5S4X3PfMPGGWweIlWR9sQ4K9rWSPFE=;
-        b=Hzh8GjUnPJTRXUESFjO86gaaFDAhxfS6MxNT1rKBA+7Mxytv1pplOfoSSzqzLUStCA
-         Ox6HqO4mNHTpwYQ4VyknGUXI0c/uiYBFp239OmjxL17LXKF4RvcUv5bJm5co1I8Q3pY3
-         Ze/UEhtX2vWPRNgAmzosZo5Qk5KOTTM/6nksCwv3b05K7N6J6d/ovD9kXgs0OePY3Out
-         AeOp1FncGGRRT62ubAeCAm00ozGbUnxKKOs2LICHmmPxHneIV53xh+VNQ3bm/ePTmkMa
-         PVsrOx0Me3WVodJXLi25+tBFx/5aG10wDk61ZIMMCjprhM71o9Yb3HYoKX7EaG1WAN8X
-         Nq5g==
-X-Forwarded-Encrypted: i=1; AJvYcCW2nU+qazoiL3b2s0pAXOo71UblqbWoZVNTx97Q6XaVbrFbSxXx+Un8wCIXi411fqJwS6lnteqQs7TXz2rQ@vger.kernel.org, AJvYcCWi+9RwnqAc6FJlrSVNRTuL7x4ufPJ8AdVXwDJoXnsX2a0Bbq0NUXseJgjG7Ka1fy/SLz44BwaEbwd6@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywdxz6LSYpPxZK9o4RPnqOba0k2/G/MQszSNNFylLSTg78A6bt/
-	GMT57mW03S7EFBfFDnwri3prQ73PP9WJhjxMWE6QgvOSXQQZLpde4CvDKMuEljYZGEGKP8GBS4L
-	Zn/dscHO6MTGxegJLE8ar7KDTviw=
-X-Google-Smtp-Source: AGHT+IEZ6GCkzKAWLZZHHU7eMS2eyq+j9CTeJLAwZNxO0mhFJtwQEHrrljy0vbXUZx2OkSpdfzy+QX7A9REB1jTMkmE=
-X-Received: by 2002:a17:902:d58c:b0:207:2093:99bb with SMTP id
- d9443c01a7336-20782529c52mr108597785ad.31.1726426999543; Sun, 15 Sep 2024
- 12:03:19 -0700 (PDT)
+        bh=WOH05K8gI+IAZvbuBzqlVV1cO+viSa94cBnfzwtz9m4=;
+        b=QZx8tsmmMrRCCBaJjRfanbNfIGzok1cVXaWjw+6YQtuRleEK8TVnRprJzymDgMOYQN
+         xnoadU8EhbOOcXFVEADuBITVCD3V4YlaSinQVTE5I4HzNsDjlI2T0LZCgwKkFexOakwI
+         IB0Y50ttqissFrzXqZJGIantu4SKPFVat0s1grWvGCdX5G/Vnf/9uPpQHCAIF9WYGS4q
+         PqbLx/eCwN9rNqKHjPu9v6Cn1JB8QA+7YsSPjUca3vPh6lwuu8txxxLF/RmwE3RslcRG
+         t2tHht2dOCXGD08ojoD1q0bM3ngDqp0Ad6HQz0nqNpBqmm7NN2BA7igrFzpUnoCAgccQ
+         vUEg==
+X-Forwarded-Encrypted: i=1; AJvYcCUJ0ftWFNbqcb5AHnmYCerRd/oJ9R/LP0csOkW7DckidnYaeMfK6fLSO+qgCRya/ODjcrj1BNE4FsWKfcio@vger.kernel.org, AJvYcCUz9+m/KiIiBFajtgMHBmSWHdynqpBdsBM+0zbTUVPamKeX+nWbcjCnZpYcNl+MergUXQ+eLh0xVQ7J@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBWXdcGtEZ/SOOyk+8OnOqnfr0kx9Zz+Ll+tI86TeVeNsGUrAg
+	PQF+6aoQhjlyCddwF3LklWDDUfO2+evgNhONhON/GALZh8/LyphvyD2Xgy4ew910tOOgUj3SByQ
+	dnhuNOhm4v83D4bvdmyuBSzzuFjc=
+X-Google-Smtp-Source: AGHT+IFkqcbht/Z9kET9D030mGFZFTW4/RPeXFa22UBotYkviT8dg4bE+MVcepiuEYhDIm2gnxuL8wAP6O7rI/yMaVk=
+X-Received: by 2002:a17:902:d509:b0:202:28b1:9f34 with SMTP id
+ d9443c01a7336-2076e41cbcamr200524825ad.56.1726427162571; Sun, 15 Sep 2024
+ 12:06:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,13 +72,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-0-feaabb45916b@linaro.org>
- <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-7-feaabb45916b@linaro.org>
-In-Reply-To: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-7-feaabb45916b@linaro.org>
+ <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-6-feaabb45916b@linaro.org>
+In-Reply-To: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-6-feaabb45916b@linaro.org>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 15 Sep 2024 21:03:08 +0200
-Message-ID: <CAFBinCDe-yhHja=KMjAr6-EigOWipTCZZ0ETT9QttuOOBFX+kw@mail.gmail.com>
-Subject: Re: [PATCH 7/7] ARM: dts: amlogic: meson8: use correct pinctrl bank
- node name
+Date: Sun, 15 Sep 2024 21:05:51 +0200
+Message-ID: <CAFBinCB8dhzNExOaO=VrDzTYLHHKUaxHZ49HzAYVnNZhAT_YFw@mail.gmail.com>
+Subject: Re: [PATCH 6/7] ARM: dts: amlogic: fix /memory node name
 To: Neil Armstrong <neil.armstrong@linaro.org>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
 	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
@@ -88,21 +87,15 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
+Hi Neil,
+
 On Wed, Sep 11, 2024 at 12:19=E2=80=AFPM Neil Armstrong
 <neil.armstrong@linaro.org> wrote:
->
-> Use the proper name for the pinctrl bank subnode, fixing:
-> pinctrl@9880: Unevaluated properties are not allowed ('banks@80b0', 'bank=
-s@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b=
-0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', 'banks@80b0', '=
-banks@80b0', 'banks@80b0', 'banks@80b0', 'reg', 'reg' were unexpected)
->         from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,me=
-son8-pinctrl-cbus.yaml#
-> pinctrl@84: Unevaluated properties are not allowed ('ao-bank@14', 'ao-ban=
-k@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14'=
-, 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao-bank@14', 'ao=
--bank@14', 'ao-bank@14', 'ao-bank@14', 'reg', 'reg' were unexpected)
->
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+[...]
+> -       memory {
+> +       memory@0 {
+>                 device_type =3D "memory";
+>                 reg =3D <0x40000000 0x80000000>;
+On the 32-bit SoCs we specify memory at an 0x40000000 offset.
+Shouldn't we use memory@40000000 in that case?
 
