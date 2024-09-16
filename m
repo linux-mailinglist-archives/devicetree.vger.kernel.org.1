@@ -1,102 +1,99 @@
-Return-Path: <devicetree+bounces-103268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82B4C97A435
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 16:33:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39BB497A43A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 16:34:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E84928E2B5
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 14:33:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00E9428E76D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 14:34:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229E8156C40;
-	Mon, 16 Sep 2024 14:33:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6F38156F36;
+	Mon, 16 Sep 2024 14:34:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RHTXLGmw"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DNwbSC7Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED12F154C14;
-	Mon, 16 Sep 2024 14:33:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43B7E155316;
+	Mon, 16 Sep 2024 14:34:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726497197; cv=none; b=ZHWTBwJ4qwR3w72A2MnIcHPNFqEnnpECWw+I3UiotT1tVVK8foQVOmz4mVmZGu4D9jQ6dhf0N+IrzMXTa1tHJkONlG0/nGw6gknmn5hlsyy19VOU0iO+wXH6JvmtNtPS8LCkGd9DqPgRQETr55jlifiYsK7tdVkNKUXEez6Uk+Q=
+	t=1726497253; cv=none; b=WwvMeHiCpIz1rNVPpfv0CK01XtoaivEe4asytLH611EcogGO+hNPQpoDQyp2F+E10uCtFvqQGOJyKOyIh4BfRtMRId1gX3+NzEaz3q8zEDifu6C+vjN1//XoCKXlDVKR43g3OPbSNiMdch+F0QyZu1S6WF2sv022pAfR17Ou3AI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726497197; c=relaxed/simple;
-	bh=Z/CvUXkaSdf/EtGRsR+rg0pbyNHYk1lP5H8wfJohrCk=;
+	s=arc-20240116; t=1726497253; c=relaxed/simple;
+	bh=pSoeKF2CxoGcJsQNgsi79thTLDQHBKgmcJ+Q6tANxPY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oMxFodudj3jPr0yRM0WzALEAgoBPworbHfWesEGpmdC8sOww39KxLWTOmLYVq2VnQhapUbv8+OS3B+JO86WGNb21D92lUa7Sd+3IsnwTgUEiYaauQnmC48rm8CRoWehfy7+38xAzIXBTa2dUD7rlkDpEWpS2Q7LAMmNMgcHAzso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RHTXLGmw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8D35C4CEC4;
-	Mon, 16 Sep 2024 14:33:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726497196;
-	bh=Z/CvUXkaSdf/EtGRsR+rg0pbyNHYk1lP5H8wfJohrCk=;
-	h=Date:From:To:List-Id:Cc:Subject:References:In-Reply-To:From;
-	b=RHTXLGmwdBWmuGb1YCSXlEJ6JJXRy/aEN74KjHz655i3E4ib/JztMDMuelv4m/fxh
-	 7yZs2ijP1K40DcUcVQvAxZj7vouCPpyjrQGsuUzFD7aqM2OuLpm+seZHIobCKx+cbe
-	 Ox9XZvDpzxojPEY4eHzYxo2oOorxaPmD1rWbOXOyTOpoFdK1a3pfoFBkPvPo/e24B4
-	 wfCKzHazw7j+AWiwDU9+RyCIbHBjrysLRBWVwCz8xE/Wix4mcraIy5dfcm9I1TglrN
-	 5+5zMHfY8ErDkz2e0KwSWQw4eeB6NAg+gRfD6TYDSmy2xR95i9S4TNlFy1EwVTSx7e
-	 mxgypYXzaL8+w==
-Date: Mon, 16 Sep 2024 16:33:13 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>, 
-	linux-leds@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, soc@kernel.org, 
-	Gregory CLEMENT <gregory.clement@bootlin.com>, arm@kernel.org, Andy Shevchenko <andy@kernel.org>, 
-	Hans de Goede <hdegoede@redhat.com>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
-	Andrew Lunn <andrew@lunn.ch>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH leds v3 05/11] dt-bindings: leds:
- cznic,turris-omnia-leds: Allow interrupts property
-Message-ID: <rchpwlmgzsoj37oz6plzqcyxdyzpcdqtpmzik2gcflakeca3rm@vcdrovzs4nzh>
-References: <20240913123103.21226-1-kabel@kernel.org>
- <20240913123103.21226-6-kabel@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=c9d6XMHToQSt6DuO8XUf+1Z6Ko5rzXtEvN9LaiQMX88M8WSEULpQw7LT8l7xMHyBeUDxM8OALdCl1dornAm17pQsbSimj4ErW4nY83wJVv152eFYDVASOPEZmnvoqtKylmob5GIPk+QItIIP05SDViy13uGkwSotoNpn18vD9GY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DNwbSC7Z; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 60B061C0011;
+	Mon, 16 Sep 2024 14:34:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1726497249;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=BdKDr+vXYYA/wATEJlbHZYT7+pvHpBt+R944tF/F0e4=;
+	b=DNwbSC7ZqzEfhLNKVcASBnUIKBD8CqyrXlmVOKH0oyw2yofmmmy08dJ8IQvZP/gojRd0R5
+	7BclSh4nQE/dh5U/ZWsXmTrn/cRJx67LBU2hpPqea7udDnt5d5MalLaQwQIaGLJT/gwK3t
+	0qu7zB7AYIo02uKXRoGqW93KnpLt7CdoOuKNarvltglPOQJNwzReb0bdcQyDTLSg2pwwK0
+	Gb7VSR6Hfw0fsXuGcrvujO9ESLnip68+TWLztfreQz1q46oc4OBD7WW8meulsFZ0gYo68R
+	wd/l9IJtFygPqiBERJOsSKEuilF9FjGgW5/9brRNgDkRaz7aqrlg+CpvSj9lsg==
+Date: Mon, 16 Sep 2024 16:34:07 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-rtc@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 3/6] dt-bindings: rtc: microcrystal,rv3028: add
+ #clock-cells property
+Message-ID: <20240916143407734d133c@mail.local>
+References: <20240912142451.2952633-1-karthikeyan@linumiz.com>
+ <20240912142451.2952633-4-karthikeyan@linumiz.com>
+ <202409161237568b626ad7@mail.local>
+ <2955009.e9J7NaK4W3@phil>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240913123103.21226-6-kabel@kernel.org>
+In-Reply-To: <2955009.e9J7NaK4W3@phil>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-On Fri, Sep 13, 2024 at 02:30:57PM +0200, Marek Beh=C3=BAn wrote:
-> Extend the cznic,turris-omnia-leds binding with interrupts property,
-> specifying the global LED brightness changed by button press interrupt.
->=20
-> Signed-off-by: Marek Beh=C3=BAn <kabel@kernel.org>
-> ---
->  .../devicetree/bindings/leds/cznic,turris-omnia-leds.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-le=
-ds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.ya=
-ml
-> index 34ef5215c150..f52f6304c79e 100644
-> --- a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-> +++ b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-> @@ -23,6 +23,12 @@ properties:
->      description: I2C slave address of the microcontroller.
->      maxItems: 1
-> =20
-> +  interrupts:
-> +    description:
-> +      Specifier for the global LED brightness changed by front button pr=
-ess
-> +      interrupt.
+On 16/09/2024 16:26:23+0200, Heiko Stuebner wrote:
+> Hi Alexandre,
+> 
+> Am Montag, 16. September 2024, 14:37:56 CEST schrieb Alexandre Belloni:
+> > On 12/09/2024 19:54:48+0530, Karthikeyan Krishnasamy wrote:
+> > > RV3028 RTC has a clock out features, the clk out can be
+> > > controlled using clkout register, to consume the clock out
+> > > from rv3028 '#clock-cells' property is added.
+> > > 
+> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> 
+> just for my understanding, does this mean that you expect this change
+> to get applied together with the others?
+> 
+> No preference, just making sure I understand :-)
 
-This "front button press" concerns me that you just hooked here
-gpio-key. Are you sure that this is the physical interrupt line going to
-this device?
+i was actually wondering how this was going to get applied. I guess that
+if you are planning to take the rest, you can also apply this one.
 
-Best regards,
-Krzysztof
 
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
