@@ -1,207 +1,167 @@
-Return-Path: <devicetree+bounces-103387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE98397A9BC
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 01:47:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4694297A9CA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 01:52:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89CAF281A7C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 23:47:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52E0F1C22E4B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 23:52:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF41614BFBF;
-	Mon, 16 Sep 2024 23:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1700E1537DB;
+	Mon, 16 Sep 2024 23:52:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="MW1pMfep"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC1FB5258;
-	Mon, 16 Sep 2024 23:47:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8221314F9EA
+	for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 23:52:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726530454; cv=none; b=Xc+5xG/yB0ZbwLV/9eSMpQAfy5QGpWb8f6YWFUOzj6C3IX9+/KXP5gUrjW0H6T4y4uZKHTPTci4c5j5sK+/PjyUbe32LGk15MZRkRwUUUG4YxKRsCFRHn7kashU0hYfXZD5b1Z5hu+/lIlIw87/Hdg9AizvPBttjA96EqK8Bn0A=
+	t=1726530748; cv=none; b=QCVy+/CQR8DRpN1vzOlQ4eFdAK0rnUVgwDPUidL01qMqJpJZCIUdPyKG2wR3wjVgrX/xnbHzNgXlsLE5QG6DLNrZT1QWzGm9xGdJtuAxHv3g0QndOjWSzSMan5Aah7lkZ1UOdJP3yAHxFsOSlNvUYDq8ShSO8B6hgNXKpDGWChs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726530454; c=relaxed/simple;
-	bh=/I7qqZEcoU6y0kdp1g0RfS946oqSqX1ygCuHRLuwISw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jfuf/vtpptNVguzsVlrBnfQBgWwiqiKBjba7n+S+oe/1/SAPzz9oWnxAMJTT3VUdmd+ANekNf1Pv+Fjf6fBRv80GtIsqA5MX/DwHLZY5oFi8n/EiHcopebPWMNHgSWBwqYJWhDjgic2jCOHUdqr0nfoJiLQy/RiWKgHT+692W5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Date: Mon, 16 Sep 2024 23:47:25 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Jesse T <mr.bossman075@gmail.com>
-Cc: Yangyu Chen <cyy@cyyself.name>, Jisheng Zhang <jszhang@kernel.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Meng Zhang <zhangmeng.kevin@spacemit.com>,
-	Meng Zhang <kevin.z.m@hotmail.com>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>
-Subject: Re: [PATCH v4 3/3] riscv: dts: spacemit: add pinctrl property to
- uart0 in BPI-F3
-Message-ID: <20240916234725-GYA2069032@gentoo>
-References: <7ede7ca6-f8db-4b38-a1cc-8be3d0db7fae@gmail.com>
- <20240916024536-GYA2058951@gentoo>
- <CAJFTR8QEwoJDANTgGOyMxX4d539ZjHUU2nzf-sB=Gu5bsHBfyQ@mail.gmail.com>
+	s=arc-20240116; t=1726530748; c=relaxed/simple;
+	bh=iSw57K47VCkqhnLMo83NOu7bewfvRAA5tpz0HXWaZDs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LqFTas3E6URl0PDbtaExBiv7T9BQoqGs0T1aD9kOURMBPckuzRKanbjPtA9t0P6r89Kc302YKP13+1I9FAB4bzFlECK7X/gSEfzwZhSlSm6rKQqWV12AourhcO7vHglK5u+6jN4f6bSA+MDUD3oNyKZIBowHIrMH6Tfiz/SY0uU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=MW1pMfep; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-718e285544fso3031023b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 16:52:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1726530746; x=1727135546; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jhmI1munFkauKvxlDNOHjZGlilZQzed2TX2YAHV/fM0=;
+        b=MW1pMfepjjs7G0XgD0CF3Pn8HunyXwShtRC4aQn7wuc0coE0Heo5Gt3X/CwZB0jPUO
+         23Bq3kVmaBBV9lmBQASWektr3aTwiDfEEHs7PtB1eg5ObGLuH5aX5jDf5IHy83qx+o+z
+         qHUbUoRMhe6mHrK8ETWtDxPCEBf5pc1MFoEJp4BCEYAsbIshuskGLMCx0fUnhzfnIxFe
+         pmoKl4e3qSdggdJVdEBcizhMadGAi9rba8QikMtUGSMGa1qXTAk0ZcgwHdqjHstvjaBr
+         nODq/LNjmhBF8kW34SYMYtdIEJKBSddbxz4ROvfqknbA7PQQ8V6Nny4dIA0GDxRcjDGo
+         yotA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726530746; x=1727135546;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jhmI1munFkauKvxlDNOHjZGlilZQzed2TX2YAHV/fM0=;
+        b=RNlmHuz4W77xtqXojPiFAIuCKaciBw6G1VHrDQ34Jr63FZqbuI5tFjbklzKsBkOUoq
+         rQh+yb4dwqzjr1zbwlCnd9G1fBGH/ouDPjxTgV14pRpCyKPgZh+C6YPeWNOjCdL+gpe1
+         CXq/+9AlwxwDq4FVVVsNxrMp4id+6ERxv+OV/pgSnJOuc7D9eV6QX5K8qQqr7kdN2AO3
+         DVToa9dT+0O+5d5OPu9/YupqgLocS7UFuBDVs5Kvq53VbX/tk3ajUC1yyC43j1/Dtn+r
+         jbDXszzAItrOWoLYxWTxKBIkl2QdIw5ODXfa8H8nfawS96+n58YTSkcBvW1Z8AbNEnMf
+         gvbA==
+X-Forwarded-Encrypted: i=1; AJvYcCVnTASWiZJn0DM2vm34JFDFjVNqFxcrUaBCWbeDwCNNuXzo0A5DHi2TPeFcSvcOuNi2nMCpodFXoKdW@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvEwNnIHhH3M1KIiV7g4nuD2Vb0SvYrJmKyssfEV8ZziK2cKTY
+	XozOGpX5iekyX20z8T/evibaVOSfQ3l0PB8AXCN6MiVd9B1djoUqxp1CfR2FkBSXxeFnChaDc8Z
+	b5btds+s=
+X-Google-Smtp-Source: AGHT+IEFm5GbBV7eGS959qNUFceX3m6BxPtuPlzC44s9RWgt7WTQmWJWLiMigsTz8a+GlSr3zKoSaA==
+X-Received: by 2002:a05:6a00:2d10:b0:717:9462:8bda with SMTP id d2e1a72fcca58-71936a5fb10mr19503102b3a.12.1726530745295;
+        Mon, 16 Sep 2024 16:52:25 -0700 (PDT)
+Received: from ?IPV6:2a00:79e0:2e14:7:e1f6:9f31:2c3f:1500? ([2a00:79e0:2e14:7:e1f6:9f31:2c3f:1500])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71944ae41dbsm4395563b3a.96.2024.09.16.16.52.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Sep 2024 16:52:24 -0700 (PDT)
+Message-ID: <7ad81408-ee33-4b4a-b70e-0cebd8b46880@google.com>
+Date: Mon, 16 Sep 2024 16:52:23 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJFTR8QEwoJDANTgGOyMxX4d539ZjHUU2nzf-sB=Gu5bsHBfyQ@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 1/2] dt-bindings: connector: Add property to set pd timer
+ values
+To: Rob Herring <robh@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
+ linux-kernel@vger.kernel.org, kyletso@google.com, rdbabiera@google.com,
+ Badhri Jagan Sridharan <badhri@google.com>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240911000715.554184-1-amitsd@google.com>
+ <20240911000715.554184-2-amitsd@google.com>
+ <5iakowhmqc3hbstmwbs6ixabr27hf2dfz2m4do4qvsrtgrdn72@r7xqawwgebla>
+ <dc323138-3bbb-4e23-91f1-d6b80cb7bb72@google.com>
+ <ascu5yztalk62fernydttkywnqemnmjlcflzdyfmt7dzuzngho@vvxrnvwhfdmk>
+ <20240916163328.GA394032-robh@kernel.org>
+Content-Language: en-US
+From: Amit Sunil Dhamne <amitsd@google.com>
+In-Reply-To: <20240916163328.GA394032-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Jesse:
+Hi Rob,
 
-On 10:18 Mon 16 Sep     , Jesse T wrote:
-> On Sun, Sep 15, 2024 at 10:45 PM Yixun Lan <dlan@gentoo.org> wrote:
-> >
-> > Hi Jesse
-> >
-> > On 10:45 Sun 15 Sep     , Jesse Taube wrote:
-> > >
-> > > Before pinctrl driver implemented, the uart0 controller reply on
-> > > bootloader for setting correct pin mux and configurations.
-> > >
-> > > Now, let's add pinctrl property to uart0 of Bananapi-F3 board.
-> > >
-> > > Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> > > ---
-> > >   arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts |  3 +++
-> > >   arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi    | 20 ++++++++++++++++++++
-> > >   arch/riscv/boot/dts/spacemit/k1.dtsi            |  5 +++++
-> > >   3 files changed, 28 insertions(+)
-> > >
-> > > diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> > > b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> > > index 023274189b492..bc88d4de25a62 100644
-> > > --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> > > +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> > > @@ -4,6 +4,7 @@
-> > >    */
-> > >
-> > >   #include "k1.dtsi"
-> > > +#include "k1-pinctrl.dtsi"
-> > >
-> > >   / {
-> > >       model = "Banana Pi BPI-F3";
-> > > @@ -15,5 +16,7 @@ chosen {
-> > >   };
-> > >
-> > >   &uart0 {
-> > > +     pinctrl-names = "default";
-> > > +     pinctrl-0 = <&uart0_2_cfg>;
-> > >       status = "okay";
-> > >   };
-> > > diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> > > b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> > > new file mode 100644
-> > > index 0000000000000..a8eac5517f857
-> > > --- /dev/null
-> > > +++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> > > @@ -0,0 +1,20 @@
-> > > +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> > > +/*
-> > > + * Copyright (c) 2024 Yixun Lan <dlan@gentoo.org>
-> > > + */
-> > > +
-> > > +#include <dt-bindings/gpio/gpio.h>
-> > > +
-> > > +#define K1_PADCONF(pin, func) (((pin) << 16) | (func))
-> > >
-> > > It would be nice to have a pinfunc header like
-> > > arch/arm/boot/dts/nxp/imx/imx7ulp-pinfunc.h.
-> > > It would reference and encode the data of "3.2 Pin Multiplex" in
-> > > https://developer.spacemit.com/documentation?token=An1vwTwKaigaXRkYfwmcznTXned
-> > > , the document you attached in the summary.
-> > Not sure if it's worth the effort..
-> 
-> I can send a future patch for this.
-> 
-Ok, thanks, no objection from my side
-but, that gonna be a lot work as you need to list ALL the functions..
+On 9/16/24 9:33 AM, Rob Herring wrote:
+> On Fri, Sep 13, 2024 at 07:34:27AM +0300, Dmitry Baryshkov wrote:
+>> On Thu, Sep 12, 2024 at 04:26:25PM GMT, Amit Sunil Dhamne wrote:
+>>> Hi Dmitry,
+>>>
+>>> On 9/12/24 3:05 AM, Dmitry Baryshkov wrote:
+>>>> On Tue, Sep 10, 2024 at 05:07:05PM GMT, Amit Sunil Dhamne wrote:
+>>>>> This commit adds a new property "pd-timers" to enable setting of
+>>>>> platform/board specific pd timer values for timers that have a range of
+>>>>> acceptable values.
+>>>>>
+>>>>> Cc: Badhri Jagan Sridharan <badhri@google.com>
+>>>>> Cc: linux-usb@vger.kernel.org
+>>>>> Cc: devicetree@vger.kernel.org
+>>>>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+>>>>> ---
+>>>>>    .../bindings/connector/usb-connector.yaml     | 23 +++++++++++++++++++
+>>>>>    include/dt-bindings/usb/pd.h                  |  8 +++++++
+>>>>>    2 files changed, 31 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>>>>> index fb216ce68bb3..9be4ed12f13c 100644
+>>>>> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>>>>> @@ -253,6 +253,16 @@ properties:
+>>>>>        additionalProperties: false
+>>>>> +  pd-timers:
+>>>>> +    description: An array of u32 integers, where an even index (i) is the timer (referenced in
+>>>>> +      dt-bindings/usb/pd.h) and the odd index (i+1) is the timer value in ms (refer
+>>>>> +      "Table 6-68 Time Values" of "USB Power Delivery Specification Revision 3.0, Version 1.2 " for
+>>>>> +      the appropriate value). For certain timers the PD spec defines a range rather than a fixed
+>>>>> +      value. The timers may need to be tuned based on the platform. This dt property allows the user
+>>>>> +      to assign specific values based on the platform. If these values are not explicitly defined,
+>>>>> +      TCPM will use a valid default value for such timers.
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>>>> Is it really necessary to use the array property? I think it's easier
+>>>> and more logical to define corresponding individual properties, one per
+>>>> the timer.
+>>> Thanks for the review. The reason I did it this way was for
+>>> convenience. If in the future someone else wants add a new timer,
+>>> it'd be convenient to just add it as a new macro definition in pd.h
+>>> rather than having to define a new property each time, especially
+>>> if folks want to add more timers (scales better).
+>>> There are 3 timers already and I am working to add a fourth in a
+>>> follow up patch if the current RFC gets accepted.
+>>>
+>>> Please let me know what do you think?
+>> I'd leave the decision to DT maintainers, but in my opinion multiple
+>> properties scale better. Having a single value per property is easier to
+>> handle rather than changing the tagged array.
+> I agree. And it avoids what looks like a made up number space with the
+> defines.
+>
+> And note that an array of tuples is a matrix in DT defined types, not
+> an array.
+Thanks for the review! I will incorporate the suggested comments in the
+next revision by creating a "single value per timer" property.
 
-> >
-> > I gave up of introducing another macro, as it's exactly one to one mapping to
-> > GPIO ID, which mean pin(x) -> GPIO_x
-> >
-> > maybe I could put a comment at K1_PADCONF() to document this?
-> 
-> I'm weary the Manual may not exist on the site in the future or
-> will change formats. But it would be nice otherwise.
-> 
-> >
-> > /* pin is same to the GPIO id according to 3.2 Pin Multiplex of User Manual */
-> > #define K1_PADCONF(pin, func) (((pin) << 16) | (func))
-> >
-> > does this sound good to you?
-> 
-> Sure, add it.
-> 
-> Also sorry for messing up the reply-to thing thunderbird is confusing.
-> 
-> Thanks,
-> Jesse Taube
-> 
-> >
-> > >
-> > > Otherwise,
-> > > Acked-by: Jesse Taube <Mr.Bossman075@gmail.com>
-> > >
-> > thanks
-> >
-> > > +
-> > > +&pinctrl {
-> > > +     uart0_2_cfg: uart0-2-cfg {
-> > > +             uart0-2-pins {
-> > > +                     pinmux = <K1_PADCONF(68, 2)>,
-> > > +                              <K1_PADCONF(69, 2)>;
-> > > +
-> > > +                     bias-pull-up = <0>;
-> > > +                     drive-strength = <32>;
-> > > +             };
-> > > +     };
-> > > +};
-> > > diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi
-> > > b/arch/riscv/boot/dts/spacemit/k1.dtsi
-> > > index 0777bf9e01183..a2d5f7d4a942a 100644
-> > > --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-> > > +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-> > > @@ -416,6 +416,11 @@ uart9: serial@d4017800 {
-> > >                       status = "disabled";
-> > >               };
-> > >
-> > > +             pinctrl: pinctrl@d401e000 {
-> > > +                     compatible = "spacemit,k1-pinctrl";
-> > > +                     reg = <0x0 0xd401e000 0x0 0x400>;
-> > > +             };
-> > > +
-> > >               plic: interrupt-controller@e0000000 {
-> > >                       compatible = "spacemit,k1-plic", "sifive,plic-1.0.0";
-> > >                       reg = <0x0 0xe0000000 0x0 0x4000000>;
-> > >
-> > > --
-> > > 2.45.2
-> >
-> > --
-> > Yixun Lan (dlan)
-> > Gentoo Linux Developer
-> > GPG Key ID AABEFD55
+Regards,
 
--- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+Amit
+
+>
+> Rob
 
