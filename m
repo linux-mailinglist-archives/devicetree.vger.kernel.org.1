@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-103224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45DEF979EE0
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 12:02:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37773979EE9
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 12:07:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7BFE1F2413A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 10:02:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E718C281D01
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 10:07:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3700B14A614;
-	Mon, 16 Sep 2024 10:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E596014AD3F;
+	Mon, 16 Sep 2024 10:07:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SmCKTdx4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PEce7qQz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D21517C8D;
-	Mon, 16 Sep 2024 10:02:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8F934965B;
+	Mon, 16 Sep 2024 10:07:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726480974; cv=none; b=g1cfv91faWG7R2Dy2AnlyS3LGeUfAWBE1mRtUOKdIcLow4xDbALRbKgbI+HWZQFw87+TEcip3K3joWN8upIAol3WGY5R8r2FmGD/3J+rrOvChWnAbLwsGxDXJoCRwcRV+uXTzh0bRlyabGlIo9ey9B8aQT0OXnUFIPPxzxB+XQQ=
+	t=1726481220; cv=none; b=QqMsjMro88XMwuz6GfFD40i2d1ETMU09s0I74t/uE1aWijWcElpnPbkEgGg06w2mkxNuaB7Cnj2u+Fi76D0thcXx55/RGIY4eYRiVNIU4VwCXpGrHNLy5muLX1onmMrKioSP8CF++1Y5vdayqIoMn2G/L+YvfE+Ftyj6bi+Rbd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726480974; c=relaxed/simple;
-	bh=2JAcUazpILyjWEBfKP9J2vMMoWzkdvtOE73YS/HthaQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TFtXKk6ZvvVQBJs70mkozsFPZNCPlewoZrBONZAxo8Z1P2mchBiB2F8Q7W8ZvmC33BE2PG1UOaATtccWEWIlIdK3Ccv0rEt/hvCKxmAM5Al5pnVJGtZgMjRt7qewUYUaCQQPkREfZE6inGtiZSOPRrF4/oSy9OWLl0xLngk9lL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SmCKTdx4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8E07C4CEC7;
-	Mon, 16 Sep 2024 10:02:48 +0000 (UTC)
+	s=arc-20240116; t=1726481220; c=relaxed/simple;
+	bh=WKkLu9wfALhg/L0cGpegTCJTJzWhfFCyZsiBVX4rlmo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=pONLKl/M9C85ygCOjJNuYg55HPANUogZfmqPk8JDuk23nLk28ID1i8EqvfEm4oWDbeh/fD6hYpOTvcY93wK8ZCWLnCaJ8mpQWFIbr8752Z2ptUIF0a7+m5OjGzKxExSAkpD1BOBUkFTHxI9xanF2uuQKIIxUD60dtYp05sCUf+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PEce7qQz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BCECC4CEC4;
+	Mon, 16 Sep 2024 10:06:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726480973;
-	bh=2JAcUazpILyjWEBfKP9J2vMMoWzkdvtOE73YS/HthaQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SmCKTdx4BqPrZ9VjlAHhbQRyex+r4GiqztP/6IvBFfAy4strRwH3ZMUzxbr9E+YKz
-	 GcnaQ2bgwtWgQRYvgU097TVr3MxD94YrzwCdO/Z/sRyHYKG2KzF+9e71PzqNIS0rMg
-	 TzFEOu7KodZ6FAdIVWr3cVmBM7LSenM8qk3LNmHxfWcPETC0cu3h/XtCR9TTxKezLa
-	 mK7b32Z/67G46n1xMcRAgMScpVZ5UqTeD8OuZfxULJ/kCwAosbCsk7JrqnYuth8q1W
-	 4JgYiGiY0xQorr6MM0KxGjSorKnfznieJcNF9uVxY8kz+onWNrEYZquD0VMGa/4gbE
-	 NY/vM+m5dovDw==
-Message-ID: <a9a7038c-4478-4366-831a-81dca8fa5afc@kernel.org>
-Date: Mon, 16 Sep 2024 12:02:46 +0200
+	s=k20201202; t=1726481220;
+	bh=WKkLu9wfALhg/L0cGpegTCJTJzWhfFCyZsiBVX4rlmo=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=PEce7qQzDsH5xl2TAhS/mYdVc8rQwjANOC88fG9MYQxhNPOY2F2gSE8KMUflwzbjc
+	 nv3y9s7U+M/QI3DH0yUvWe++jqFgPd1jlGazXzhFOu+aGu9eco/oAzry2l2etA5F9t
+	 mTDr27MD8JpCRcx7HSvlffoCF+q+zFtGWsGB/sCZU3J0Fx2ngdXhg/QYqMwSANpH8c
+	 xz9UiLHwnJReI2hTRxi1QLQPJSq+7WcFR8p6iPGYk1wGQp0dCqxv0IQ6VRkFcgf/BI
+	 GUcgNjrwjn+kxGnqnotEbMdWOY0uG84KIdpcJlJQO5Y+bSXMXQ+sipIuPb+qM4NERx
+	 +HzQIiPu9xO0g==
+Message-ID: <b9bf19af-0c3c-4622-9124-a66d9df649b2@kernel.org>
+Date: Mon, 16 Sep 2024 12:06:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/13] arm64: dts: mediatek: mt8188: Update VPPSYS node
- name and compatible
-To: Fei Shao <fshao@chromium.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Conor Dooley
- <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org
-References: <20240909111535.528624-1-fshao@chromium.org>
- <20240909111535.528624-7-fshao@chromium.org>
- <11bc2522-bc10-4dcf-8142-708b57d181cf@kernel.org>
- <CAC=S1nhiJ=7yAucJsaYKUUBrwrxOVBMB2CF=bFwyLa2o-5RmWw@mail.gmail.com>
- <64cc35c8-30df-4882-a933-f42119270f48@kernel.org>
- <CAC=S1ni+pJJZhbjvVqhba5u1JqGv=dZTv8+KH4xburea2AG4Qg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] dt-bindings: Add AST2700 bindings
+To: Ryan Chen <ryan_chen@aspeedtech.com>, mturquette@baylibre.com,
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ joel@jms.id.au, andrew@codeconstruct.com.au, p.zabel@pengutronix.de,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org
+References: <20240916091039.3584505-1-ryan_chen@aspeedtech.com>
+ <20240916091039.3584505-3-ryan_chen@aspeedtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,64 +104,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CAC=S1ni+pJJZhbjvVqhba5u1JqGv=dZTv8+KH4xburea2AG4Qg@mail.gmail.com>
+In-Reply-To: <20240916091039.3584505-3-ryan_chen@aspeedtech.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 10/09/2024 13:06, Fei Shao wrote:
-> On Tue, Sep 10, 2024 at 3:19 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 10/09/2024 07:12, Fei Shao wrote:
->>> On Mon, Sep 9, 2024 at 7:41 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>>
->>>> On 09/09/2024 13:14, Fei Shao wrote:
->>>>> Use and add "syscon" in VPPSYS node names and compatible to fix errors
->>>>> from `make CHECK_DTBS=y mediatek/mt8188-evb.dtb`.
->>>>>
->>>>> Signed-off-by: Fei Shao <fshao@chromium.org>
->>>>> ---
->>>>>
->>>>>  arch/arm64/boot/dts/mediatek/mt8188.dtsi | 8 ++++----
->>>>>  1 file changed, 4 insertions(+), 4 deletions(-)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
->>>>> index 2900d78b7ceb..14e51a11f688 100644
->>>>> --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
->>>>> +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
->>>>> @@ -1799,8 +1799,8 @@ mfgcfg: clock-controller@13fbf000 {
->>>>>                       #clock-cells = <1>;
->>>>>               };
->>>>>
->>>>> -             vppsys0: clock-controller@14000000 {
->>>>> -                     compatible = "mediatek,mt8188-vppsys0";
->>>>> +             vppsys0: syscon@14000000 {
->>>>> +                     compatible = "mediatek,mt8188-vppsys0", "syscon";
->>>>
->>>> If this was working before, it looks like this is not a syscon and
->>>> bindings need to be fixed.
->>>
->>> I guess it's because the binding was later updated in commit
->>> 26bcd8a53098 ("dt-bindings: arm: mediatek: mmsys: Add VPPSYS
->>> compatible for MT8188"), and the corresponding DT update was unnoticed
->>> at the time.
->>> If that makes sense then this should be a valid fix.
->>
->> Not necessarily. Why not fixing bindings? Prove that bindings are
->> correct, not DTS, first.
+On 16/09/2024 11:10, Ryan Chen wrote:
+> Add reset, clock dt bindings for AST2700.
 > 
-> MediaTek's mmsys doesn't merely control clocks, it also provides
-> display pipeline routing control and other misc control registers, so
-> it's appropriate to categorize it as a system controller over a clock
-> controller.
-> As for vdosys and vppsys, they are likely variants or aliases of mmsys
-> introduced in their newer SoCs.
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> ---
+>  .../dt-bindings/clock/aspeed,ast2700-clk.h    | 163 ++++++++++++++++++
+>  .../dt-bindings/reset/aspeed,ast2700-reset.h  | 124 +++++++++++++
+>  2 files changed, 287 insertions(+)
 
-Nothing like that was in the commit msg...
+This is supposed to be part of the commit adding these bindings. You got
+this comment already, didn't you?
 
+>  create mode 100644 include/dt-bindings/clock/aspeed,ast2700-clk.h
+>  create mode 100644 include/dt-bindings/reset/aspeed,ast2700-reset.h
 > 
-> That description was updated in commit 1a680aa888d6 ("dt-bindings:
-> mediatek: Update mmsys binding to reflect it is a system controller"),
-> so I just assumed it's correct without thinking much...
+> diff --git a/include/dt-bindings/clock/aspeed,ast2700-clk.h b/include/dt-bindings/clock/aspeed,ast2700-clk.h
+> new file mode 100644
+> index 000000000000..63021af3caf5
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/aspeed,ast2700-clk.h
+
+Use compatible as filename.
 
 
 Best regards,
