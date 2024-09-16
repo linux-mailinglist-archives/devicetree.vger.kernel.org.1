@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-103155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 939B1979BF5
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 09:20:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C95C979BFA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 09:22:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AD081F229F6
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 07:20:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AA181B20B7B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 07:22:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3020131BDD;
-	Mon, 16 Sep 2024 07:20:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2785131BDD;
+	Mon, 16 Sep 2024 07:22:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iiF1tHqp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rtdlcAGL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B504A7E59A
-	for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 07:20:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A7155C8EF
+	for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 07:22:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726471250; cv=none; b=cA+dW6kYtW8MnDwirOyMIFE49FGjarX5rsgeSl9s3wTl9sfFA2jzoMl7JG+hSmngc1fxJtkJV3uLTvLYxH1UMWg+Hb3KgxZVMC/iB3cEJVPu6q0mmCcb/hyF2NSzwxvRu6B/WzSjSeDNEkTmCRy1VFiSTIQXP2Z1ALYVHFmpd+g=
+	t=1726471356; cv=none; b=A5soy1nONmSs0dNRwpGFzylcpva0ENkCJNFqFZbaFRtsDDMJEwjXvrO3oSEL02UlYGS0d/OQG0UQhPuOIL7fwm4dHaPOJGWQCf17PI6dZSYIT+GklDS3iFWTYrfJOxL03TcQN8KWyrPuvVqDflCVxw9IdXEBtruxOhMkby7jC38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726471250; c=relaxed/simple;
-	bh=9mPn+F8Bj7AoM9q+BHrYAjNZXQCWRr4pIG11ZkDFRjM=;
+	s=arc-20240116; t=1726471356; c=relaxed/simple;
+	bh=493j1d3LXGwgFLtSTfhEAYwnQGK3YmDQKE1/T6CCMuA=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=iAS/rI2nSLMluW9Hy3QIv+7EIJDndzOuXkQCLqslrL+uFQGdrFsWLLieBYUrDQIEepb+kQltNW4/1Dx88kkg00pEWXRBmayn9aAJ8nXrxFWQXD8b2LuSUhPsbbC2/HhYO2mNsYfi9/O15axeSgYMkQ8jpWjSTgU8eZ7JkyxVlcM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iiF1tHqp; arc=none smtp.client-ip=209.85.128.47
+	 In-Reply-To:Content-Type; b=oaUgIUI3ab+dEqGkm5NhswECenNfKM1ufgyPtBTJ4/cJdD2zZez5rq4eaz3Rxnt3Hikdh34dhIwOzU8QHnEID80vHZaWadwEvhQhRuYlK7SdC4QFtmxtxhHawo2Akm7ff5PrjbodFqE4dUbv+wtFl5ue8QZiYzsRo/90DIZtaCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rtdlcAGL; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-42cc43454d5so23052545e9.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 00:20:48 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-374ca65cafdso1899787f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 00:22:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726471247; x=1727076047; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1726471353; x=1727076153; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=F4G2KoVlFImQyEEBlvtWpQhFz3zZpE+7zDeyjIho9XI=;
-        b=iiF1tHqp+rCYV/mDUY/OKUvK8S3JwUOaVs0a9EMC42ElgYW0bWob9zib+bTGFWleIV
-         /dlaYjJTwWCJwDxm8/dW5uQaBT+a1ZktKq36wiobfS1cdOpi/8Z2YnEo7Ye1rAdFP4pk
-         MdKKAZpfHvZL2XOHxSIpFIseLTFyh8XLCEQsqnPykhGogHmhiy6JVhW3aSqYrWI1keUL
-         ezV52lJXlFwWGFEqZ8Oxahxq+eOZOjomhOmveLr+Z60Ayf32sKJRKu1aDppG62ovzFOS
-         jB9q+vNrude26gVjyNDmdudW4fYTRR/pRcYdC034Io4pe7A267MUVcHLAuXSsLJJY3OH
-         t3QA==
+        bh=VLjW0/5ZDl0ouUZFFt8vfRFxA6ScieB6Wo2BPonGqig=;
+        b=rtdlcAGLmAqJ6/F6PkANxa6s3Zlivo7ERz9GxyXr/36lf8rggcqIp9dzO1gSPkbvwB
+         h1PWSU5WiVnQogg+4Zvrj4l0cI+8enBoZ9h8qFvBuXPnWGex6uThDRSlFb76xmzMpG3D
+         xrblZYb858Y7kLT80xJSTv9h+ixhPSbgi2hsk4b3kWov6M38DUh2orox+pCo1bc/sB9r
+         Jt+8SBifHqqI3CHUMZ/XPzERZc3FzaXvEmR4ogFos0LyJ6wDqqL9gccEaHF5xUmISKA5
+         893Y34Wb1DUqX5qrVjHuYtxqOkKGGMxrNd/t1CC8rT7eo/hild3uao4fcst772+vIF3c
+         47ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726471247; x=1727076047;
+        d=1e100.net; s=20230601; t=1726471353; x=1727076153;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=F4G2KoVlFImQyEEBlvtWpQhFz3zZpE+7zDeyjIho9XI=;
-        b=LubLgY9TZIXHGD8LhASZPxeaLbMHJqzWHTSSy3rKBvpLBhE324NMN853oTcNcMEttR
-         Yw/CMHLO2692Hunrwma+BGlLPF4b+9TbXr3aFHANj7aB+9f99wAKOx82M2wH+nMEyHMK
-         DSlMy1jnSNOh0AxSP89UwBSZH4xqKyg0y4WffsqpYlWV06pANAnw72Pb+MokQty9+gbx
-         Pw9w6o8JSqFi7sq7ua8Sz5yDFawl1npsFxBmg2va+yC+40AtogMDKbBrRwO4Vz+Bs8xK
-         3XBAxvkb/a/q+gC7jvwRXr4DW3dH2QzfmpE//vyokHzueqm0TVbgbibUdstIdMfPEIqb
-         aXCA==
-X-Forwarded-Encrypted: i=1; AJvYcCUXINuvo+IoLK0QEeMvx7f09mpuEsxCkPZ1rVq84iafVpNuBA+dXfA1XemA0WAQgZCvbd10Bs9vdvUZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxsz5wbihiI0t4NUGdm5eZ9hQNM0zCmalxwxQw4HCkgsgAMcchp
-	42vIibPK6oWJF9fxUHJvEXv9qOgPA+aPgc3p7WzBp2ifQMdis0ExabZBHMYuedk=
-X-Google-Smtp-Source: AGHT+IF+BiCZpHlNGDJ0WVsb2BbNS1rcnnfUaWDIzT2pr8fr1gMxHSS2QBCjtZVj34KgbZSFWvXMFg==
-X-Received: by 2002:a05:600c:63d3:b0:426:6a53:e54f with SMTP id 5b1f17b1804b1-42d964e10b0mr60254615e9.33.1726471246241;
-        Mon, 16 Sep 2024 00:20:46 -0700 (PDT)
+        bh=VLjW0/5ZDl0ouUZFFt8vfRFxA6ScieB6Wo2BPonGqig=;
+        b=rZcDYxkyDFE3+PKb+gNGxwSAa15FVldNzEeay5LxHhW7TAfm80QVX79em1ns32R2A0
+         JfOLf07aBSKUE0t9FwMpvLi2zbsEbvGQVl8lJ3i8Ui7xjCAfs70a38H8L9fjYXJet1bE
+         IMEjeJBndV6XMQf4IHeGy5uX13fAcIAxCJhJiQeaLjsZSdPetCfbO57a31lqA7iylp6+
+         gtcrHLsgt6jF6kBZZJ6roeitqsWu6yb/Stt5u6eAl4iLYRvKt3YKh7xjGizh3sWB4Dq2
+         uvwY5TUJIoBrV0bGXvL+T5FHC4Bh5vZCyVfrl//HhKGIpgelxLHD04ZgCRba7HaGulYk
+         K7tw==
+X-Forwarded-Encrypted: i=1; AJvYcCWtrZLhQ52l3SPvDHVNHAMaS6AG4CLUwNlzatgmA6q+7t/M2o330SDUvTo4gkIdE+ihtN9CXEYjWOz0@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgO8p5L7CL6uLgDFoBSurq9FZFqVP+vJDiZh4W05TIFfFzUErt
+	4TzJx5hUw1ONC4QdgwfGVcptIu+xCEJgrQAqqFnn7X3W8g0JXzPT2mSozpG6TQI=
+X-Google-Smtp-Source: AGHT+IF8mNG9Q2MKAbQKPDAtK9i1wqbgQMI068oTtpXfSdCmEYXClrggOaykUylFIescX0LCueSBjg==
+X-Received: by 2002:a5d:5f49:0:b0:378:8205:58ac with SMTP id ffacd0b85a97d-378d61f1608mr7614486f8f.34.1726471352338;
+        Mon, 16 Sep 2024 00:22:32 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:46e0:9b1e:8680:c41c? ([2a01:e0a:982:cbb0:46e0:9b1e:8680:c41c])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42da2427227sm67433715e9.44.2024.09.16.00.20.45
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378e73e80eesm6307487f8f.30.2024.09.16.00.22.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Sep 2024 00:20:45 -0700 (PDT)
-Message-ID: <c9392d3a-8336-4cac-83c6-6b85a8cb92f0@linaro.org>
-Date: Mon, 16 Sep 2024 09:20:46 +0200
+        Mon, 16 Sep 2024 00:22:31 -0700 (PDT)
+Message-ID: <7df4b349-7126-434a-8ae7-ea2db535e8c2@linaro.org>
+Date: Mon, 16 Sep 2024 09:22:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,19 +80,18 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] dt-bindings: clock: convert amlogic,meson8b-clkc.txt to
- dtschema
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson8-clkc-v1-1-e0b8623c090d@linaro.org>
- <CAFBinCBZ8kowT_R6MnVkQO_BpxPA88xz-=KPStFDYQgH=P5upA@mail.gmail.com>
+Subject: Re: [PATCH 4/7] ARM: dts: amlogic: meson6: delete undocumented nodes
+To: Christian Hewitt <christianshewitt@gmail.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, devicetree
+ <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org,
+ AML <linux-amlogic@lists.infradead.org>, LKML <linux-kernel@vger.kernel.org>
+References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-0-feaabb45916b@linaro.org>
+ <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-4-feaabb45916b@linaro.org>
+ <CAFBinCD+txhz0x20LXhydZpLk=u4d9FT4=1sOX1bKuDeQqsMjQ@mail.gmail.com>
+ <DAFA9AA0-F51E-438E-A486-389164C043CE@gmail.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -119,41 +118,74 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <CAFBinCBZ8kowT_R6MnVkQO_BpxPA88xz-=KPStFDYQgH=P5upA@mail.gmail.com>
+In-Reply-To: <DAFA9AA0-F51E-438E-A486-389164C043CE@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Hi,
-
-On 15/09/2024 21:25, Martin Blumenstingl wrote:
-> Hi Neil,
-> 
-> On Wed, Sep 11, 2024 at 5:09 PM Neil Armstrong
-> <neil.armstrong@linaro.org> wrote:
+On 16/09/2024 07:57, Christian Hewitt wrote:
+>> On 15 Sep 2024, at 11:12 PM, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 >>
->> Convert the Amlogic Meson8, Meson8b and Meson8m2 Clock and
->> Reset Controller to dt-schema.
+>> Hi Neil,
 >>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Thank you for working on this! First of all this patch is:
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> On Wed, Sep 11, 2024 at 12:19 PM Neil Armstrong
+>> <neil.armstrong@linaro.org> wrote:
+>>>
+>>> Delete nodes in meson6.dtsi that are clearly undocumented & unused for meson6,
+>>> fixing the following check errors:
+>>> audio-controller@5400: compatible:0: 'amlogic,aiu' is not one of ['amlogic,aiu-gxbb', 'amlogic,aiu-gxl', 'amlogic,aiu-meson8', 'amlogic,aiu-meson8b']
+>>>         from schema $id: http://devicetree.org/schemas/sound/amlogic,aiu.yaml#
+>>> audio-controller@5400: compatible: ['amlogic,aiu'] is too short
+>>>         from schema $id: http://devicetree.org/schemas/sound/amlogic,aiu.yaml#
+>>> /soc/bus@c1100000/pwm@8550: failed to match any schema with compatible: ['amlogic,meson-pwm']
+>>> /soc/bus@c1100000/pwm@8650: failed to match any schema with compatible: ['amlogic,meson-pwm']
+>>> phy@8800: compatible: 'oneOf' conditional failed, one must be fixed:
+>>>         ['amlogic,meson-mx-usb2-phy'] is too short
+>>>         'amlogic,meson-mx-usb2-phy' is not one of ['amlogic,meson8-usb2-phy', 'amlogic,meson8b-usb2-phy', 'amlogic,meson8m2-usb2-phy']
+>>>         'amlogic,meson-gxbb-usb2-phy' was expected
+>>>         from schema $id: http://devicetree.org/schemas/phy/amlogic,meson8b-usb2-phy.yaml#
+>>> phy@8820: compatible: 'oneOf' conditional failed, one must be fixed:
+>>>         ['amlogic,meson-mx-usb2-phy'] is too short
+>>>         'amlogic,meson-mx-usb2-phy' is not one of ['amlogic,meson8-usb2-phy', 'amlogic,meson8b-usb2-phy', 'amlogic,meson8m2-usb2-phy']
+>>>         'amlogic,meson-gxbb-usb2-phy' was expected
+>>>         from schema $id: http://devicetree.org/schemas/phy/amlogic,meson8b-usb2-phy.yaml#
+>>> /soc/bus@c1100000/mmc@8c20: failed to match any schema with compatible: ['amlogic,meson-mx-sdio']
+>>> mmc@8e00: compatible:0: 'amlogic,meson-mx-sdhc' is not one of ['amlogic,meson8-sdhc', 'amlogic,meson8b-sdhc', 'amlogic,meson8m2-sdhc']
+>>>         from schema $id: http://devicetree.org/schemas/mmc/amlogic,meson-mx-sdhc.yaml#
+>>> mmc@8e00: compatible: ['amlogic,meson-mx-sdhc'] is too short
+>>>         from schema $id: http://devicetree.org/schemas/mmc/amlogic,meson-mx-sdhc.yaml#
+>>> remoteproc@1c: compatible:0: 'amlogic,meson-mx-ao-arc' is not one of ['amlogic,meson8-ao-arc', 'amlogic,meson8b-ao-arc']
+>>>         from schema $id: http://devicetree.org/schemas/remoteproc/amlogic,meson-mx-ao-arc.yaml#
+>>> remoteproc@1c: compatible: ['amlogic,meson-mx-ao-arc'] is too short
+>>>         from schema $id: http://devicetree.org/schemas/remoteproc/amlogic,meson-mx-ao-arc.yaml#
+>>>
+>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> Generally I'm fine with this. I'm wondering if we should go one step
+>> further by decommissioning Meson6 support?
+>> To be specific here, I'm thinking of removing MACH_MESON6 from
+>> arch/arm/mach-meson/Kconfig and deleting meson6{.dtsi,-atv1200.dts}
+>>
+>> I don't have any boards with Meson6 SoC, there's no upstream GPIO,
+>> pinctrl, clock, MMC, <you name it> driver for that SoC either.
+>> So all we have upstream is the ability to boot to initramfs and use
+>> serial console(s).
+>> If someone is interested in Meson6 support they should bring it back
+>> along with a few more patches for upstream support of further
+>> peripherals.
 > 
-> Do you want me to send a patch to document the
-> "amlogic,meson-hhi-sysctrl" compatible string next?
-> We either have to update
-> Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
-> or create a similar binding file for the older SoCs.
-> Also I think when documenting that compatible string we'll have to add
-> per-SoC compatibles as I think this generic one is not enough.
+> I think that’s a sensible move. LibreELEC was one of the few distros
+> that supported Meson6 hardware in the past (via the vendor kernel)
+> but we ended support in 2018. Meson6 devices are mostly/all? cheap
+> Android boxes dating from 2011-2013 and these have either been been
+> discarded by users through upgrades or the boxes died long ago. There
+> is still community interest in supporting Meson8 boards (the 8x core
+> devices are used for retro-gaming) but not the earlier Meson6 ones.
 
-I have it ready already, waiting for this one to go upstream first!
-
-https://git.codelinaro.org/neil.armstrong/linux/-/commit/1be8f8c67e5b83fa4069ccbcfa80d0614f668a65
+Yeah let's remove meson6 dtsi for v6.13, I'll respin this serie but with
+the meson6 removal and some more dts fixes.
 
 Neil
 
 > 
-> Best regards,
-> Martin
+> Christian
 
 
