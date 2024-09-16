@@ -1,117 +1,100 @@
-Return-Path: <devicetree+bounces-103334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0B2597A669
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 19:01:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA98397A67B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 19:11:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9D011C21E5B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 17:01:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 946CC1F261A3
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 17:11:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C38E2837A;
-	Mon, 16 Sep 2024 17:01:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6007C1591F0;
+	Mon, 16 Sep 2024 17:11:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ONHj/8w+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gpq59S3g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A723A168DA
-	for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 17:01:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 349AB1581E0;
+	Mon, 16 Sep 2024 17:11:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726506087; cv=none; b=mMZbagWsMOaAWdBT7GBWYvEEHesAcHcS/AuNQI0IHrTXkqDZvDkESlP5o2oG0Qw1AorN6H6o/YvB+Ff87AfaeMimn/q8DTZYNb5hxokMZSzqGjyTTyF6Sl2ZdzoFQTTzbgQREZ7sLhXT6a3Le6Tb14N4YwS6kTmhNykVlsOjpaQ=
+	t=1726506669; cv=none; b=cb9oMC/6MWGCeoS9IHu4YdxHKoddS3qBkSYxybfYzlMcVtTMRpaxhoJBAR3xCvT3yVVquGAcp1zZIQFJIM49KLKK4T8sAzy/YseyUnqcHFw9/wfWZQLYFJagOhKAVAk8xkfiTtLEDN8AcKbNXc7+Y+LapvBXdzRg3AA4LD+fwME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726506087; c=relaxed/simple;
-	bh=48e6Kxirghoxt/50oW26tPAHg2OJLSQ3Ti0IeTafAPQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=j/+1zJEQYwfU3Ubd8KcPV4ppCb4KFOWu1REiydY5gInTmsKWiPJnLSHa9rA9td0rB6nSgour9bCeLhxswdyPAjkIujag6Ch4IsuEO+t/wcHkjn0L6NAaRfpKuNCfaxDcKj3MHGN/0jh3q4az26NcIFsKpmwBNNzD7z2voIhVekQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ONHj/8w+; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a8d64b27c45so577245466b.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 10:01:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726506084; x=1727110884; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=48e6Kxirghoxt/50oW26tPAHg2OJLSQ3Ti0IeTafAPQ=;
-        b=ONHj/8w+3WLaTJxBab6E0nedoScCQmG5huM/R4oH9NJtJcsIMnptjetDAbCx0suCcF
-         JKnld82j3jZsIfLS2diouFHmUgVr2qq1RgZl2KDoF6IrHe7oyMjcTc/JLb4B65Eqfinm
-         hKfRpiCZlGlTzcfQUUHmxBaLW+lhBmssx7FyN0IOYkY04rJ3ox3CGKQWDZxdEhb+yDNW
-         kutZTcp3kpqPqcAkC7iSZt5Jfs+75ZOYFdZ8iJaDFwm99wslrKEtmByuT+yPAuaTYUaB
-         kWHALzuqatYR2jaw2J1qd365yXcIIxjI5r7HhNJAobnavqu376XVJkvb3w0nEvz41mpy
-         REiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726506084; x=1727110884;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=48e6Kxirghoxt/50oW26tPAHg2OJLSQ3Ti0IeTafAPQ=;
-        b=Lsr6dJFayBnTJOeNVJDDXl9V8ynAyazjK+E0GXtHciPPszdnzR9o78YrN5u+WAOsTA
-         vnpgrYqAdxPb3nvYyTaVJYwgTlXYO8FNS6lurbKPvtPow9Pi6EY7c45wO7TtroWkDLbA
-         PvoUZbGBs6EagZOeFYT97tmDb4Pcmlw8vhJvZAAknUUoOw2AfEh4NIy1KkwXXEHjAyx4
-         26n12y4L5IFE99iPwTX+h65SgHGaXoUduik5M2Xs8dYH7WcitWK9aLHbA9S9MHIee5yv
-         73076AxNrBB7oHc/Uw15drSMb2s31QPikIvbvi+hnNd/6KRL1X710N2pgpvoTWy8YebQ
-         lIvw==
-X-Forwarded-Encrypted: i=1; AJvYcCUuTaM8S+SEC7t17oPJJoihggTOSxtBwLB0A2VJA1umJWuhCWNtNQBDFHIWPLQIh2IKJe+icxdzt4C3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxdDA3Qtk2NBxBOLz+dk3hencnCvJxygdW/Qa3PQiTHG/HS6I3Y
-	VRJTlI2ZM/pJOCejn/w9AISW+8Xj9brqJt5b9Rs3uFFTbR4nljqQfTDwU6jQRnk=
-X-Google-Smtp-Source: AGHT+IGe1TfoP2o2Ws9yKVCIHm4ikg6tF6P50uYijZWW42Vu7qlvA6T51QZHhAyvGZGYqDh7YI/JJg==
-X-Received: by 2002:a17:906:d54a:b0:a8d:439d:5c3c with SMTP id a640c23a62f3a-a9047b4750cmr1204277866b.8.1726506083760;
-        Mon, 16 Sep 2024 10:01:23 -0700 (PDT)
-Received: from [10.1.1.109] ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a90612b38desm340386566b.121.2024.09.16.10.01.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Sep 2024 10:01:22 -0700 (PDT)
-Message-ID: <1ab324b0702c87371b9e92a72dc639d49ec055d0.camel@linaro.org>
-Subject: Re: [PATCH 0/2] Maxim MAX20339 regulator driver
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,  Michael Walle <mwalle@kernel.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus
-	 <tudor.ambarus@linaro.org>, Will McVicker <willmcvicker@google.com>, 
-	kernel-team@android.com, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Date: Mon, 16 Sep 2024 18:01:21 +0100
-In-Reply-To: <20240916-max20339-v1-0-b04ce8e8c471@linaro.org>
-References: <20240916-max20339-v1-0-b04ce8e8c471@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.1-4 
+	s=arc-20240116; t=1726506669; c=relaxed/simple;
+	bh=At1Pr7PthC5cR3eEm4LyYtKE8cs9rEAJIqeU0f1G/fc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IbV7Toja+gpWBjn4DjXYRv1zhF5kzGUKiptyHarATVe9kFaWOhqJ+yi32SO+9BHlSeGZHXoOjfc9qT+eHVf4bIsuvMJ2TfSYr2tdF3VnCIs9vFNBsUecZamB39GxK5u8ecaxaxsBH6flQZH7QTZfmtPhI0y54EQqME4GYevprSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gpq59S3g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DECC5C4CEC4;
+	Mon, 16 Sep 2024 17:11:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726506669;
+	bh=At1Pr7PthC5cR3eEm4LyYtKE8cs9rEAJIqeU0f1G/fc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gpq59S3gZdEPOMG+cSrM2MZyeEgLgRN00IshBx+pgdBrAHOEdij6WUJlapjW7nfRy
+	 S8j3B+V4QSvhZjy4haX6D1fs+l5Q6ZEOQS/o/8/YqDIT0uTUMX4WVzqbH365RyZmhL
+	 RIeWbNwmnhXeaQFUzKc0DQs/E5DNljCxJlFgw35aSLuEpV+JvXwZoZF0ElB+3ODHOG
+	 L43MbAlf4pLUsccqgxId18XQdg7yawyEEZM4jwhqPjQAZLSAGD3n6DZOIK/IALKzjz
+	 2BuPwLHzeyZja8n/AB50Vt93p4imZxtA/kKdoMEjl2iWDVBQ4lR74fvmEnM7PpbtKA
+	 T0ag2z9rV9Ujg==
+Date: Mon, 16 Sep 2024 12:11:07 -0500
+From: Rob Herring <robh@kernel.org>
+To: Rohit Agarwal <rohiagar@chromium.org>
+Cc: chunkuang.hu@kernel.org, krzk+dt@kernel.org, ck.hu@mediatek.com,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH] dt-bindings: display: mediatek: dpi: Add power domain
+ for MT8195 DP_INTF
+Message-ID: <20240916171107.GA605353-robh@kernel.org>
+References: <20240911071722.558960-1-rohiagar@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240911071722.558960-1-rohiagar@chromium.org>
 
-On Mon, 2024-09-16 at 17:48 +0100, Andr=C3=A9 Draszik wrote:
-> Hi,
->=20
-> This series adds a regulator driver for the Maxim MAX20339 overvoltage
-> protector with load switches.
->=20
-> The MAX20339 is an overvoltage protection (OVP) device with integrated
-> load switches and ESD Protection for USB Type-C applications. It
-> protects low voltage systems against voltage faults and surges. It also
-> integrates two load switches with current limiting, configurable by
-> hard- and software.
->=20
-> It is used on the Google Pixel 6 (oriole).
->=20
-> To make maintainers' work easier, the relevant DTS and defconfig
-> changes will be sent via a different series.
+On Wed, Sep 11, 2024 at 07:17:21AM +0000, Rohit Agarwal wrote:
+> Add power domain binding for MT8195 DP_INTF that resolves the following
+> error and many more similar ones:
+> 
+> arch/arm64/boot/dts/mediatek/mt8195-cherry-dojo-r1.dtb: dp-intf@1c113000:
+> power-domains: False schema does not allow [[55, 18]]
+> 
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202409102119.AYvaTjUi-lkp@intel.com/
 
-For reference, DTS and related changes for Pixel 6 are in
-https://lore.kernel.org/all/20240916-max20339-dts-v1-0-2f7ed7c24e83@linaro.=
-org/
+Fixes?
 
-Cheers,
-Andre'
+> Signed-off-by: Rohit Agarwal <rohiagar@chromium.org>
+> ---
+>  .../devicetree/bindings/display/mediatek/mediatek,dpi.yaml       | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> index 3a82aec9021c..07acc8a76bfc 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> @@ -89,6 +89,7 @@ allOf:
+>                  - mediatek,mt6795-dpi
+>                  - mediatek,mt8173-dpi
+>                  - mediatek,mt8186-dpi
+> +                - mediatek,mt8195-dp-intf
 
+mt8183 is also missing. There's a patch[1] to fix it, but it's wrong 
+given the recent changes. It would be best to fix both in one 
+patch/series as 2 separate patches will have conflicts.
+
+Rob
+
+
+[1] https://lore.kernel.org/all/20240912144430.3161717-2-treapking@chromium.org/
 
