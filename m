@@ -1,200 +1,715 @@
-Return-Path: <devicetree+bounces-103151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C59CD979BC3
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 09:02:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72DAC979BCE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 09:05:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 535121F21160
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 07:02:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91DF41C21C8E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 07:05:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4247349637;
-	Mon, 16 Sep 2024 07:02:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61CB877117;
+	Mon, 16 Sep 2024 07:05:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="D5nWmaQc"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mwBSzI0D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11013008.outbound.protection.outlook.com [52.101.67.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CADBB1BDC8;
-	Mon, 16 Sep 2024 07:02:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.67.8
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726470169; cv=fail; b=st28p0aOR1V0V9hwtkuVAPbchaxx/fUiBQnJq8pkcAoqO2BywL0yMWfFBytTfJq43pJU+/w7spYJ+Z57r8Xzm0HtwlBon+6eKZEXGrLN2ZR+IhI5HqAV2T9ZZD3mtyWAcHyUOxhm3HKTO+fBrSGLdERJlC227+qwoHHa+GXZQu0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726470169; c=relaxed/simple;
-	bh=QXB1gVPR8gx7YdJq5xLjHtfg9amXYfujxL9OyoWE1JQ=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Mw+2lWrglBdxtf9Y7I1mEntNBfLL4Y1ziLbuV5RCQsaxUfhXDIkW626WWe178zTiko9NIp2kxMIwwCJ3yvxzn8TKi63ik7aCNxBc0O6ThiaG7xARZMaBcsunO8afmI6ZJkXa7RZZODiB9CJ/RpNINE4gMrepR0Isf8B7QC2cdrI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=D5nWmaQc; arc=fail smtp.client-ip=52.101.67.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=K+5ccvkmgvnDpaR93Xyl+3ZaT0Kp35WYGHa2urEEpvY+WgaeFG1AhL7TZD4zdRYo6pOz/vahdGJ9dTdT9Rs95QJ0IheqYi6xkcS6M0rMhO1ABPclVhVeQtnaBhqV1+KSBvUg8FrccKOpLL+P6mGrSrFISKHl/IJcUxb2v1qHax7UmOwN8Q9+cVCKun2sQrKIG9x8LKWBPVVasB3vOWAOUYtfmgkxQl+WjqDTD0t3NvscGLun8jqijqrSqOaHZN3L3sUlPG6rjksjhv4fYnjzR+13gHikb8NgYyCOCSaAZaR1B3m3eveFaoCId6E4DXxhII0080RFj6imAhnUDhwtWw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QXB1gVPR8gx7YdJq5xLjHtfg9amXYfujxL9OyoWE1JQ=;
- b=NtUDzptOQI5y/BojQJ9wBBrWXaV7fUn1Z3HrYtZ/QGoLDgPzAuLGq/xxbp1XCHEW0qa+PmXu5kHqhqCU2pLQv0HiomvE+1KKhPUzXC6xDMRch1gzYJic15Hha184VV6yKwD4oRv2LGc9PT+ikd8pNA81DjbyV7HasKfxuLo+lltuNzuTu3l3uB4V1oTK/AyU6N8+bwNs43SqyvvD2RsGK3uzKGo7yOYs7B51pqOZp7wWggbcezNiyMDm+UgUQOGRJJ2Y+nbS/OLCXu2tC53p7Qz4CCtNJ/rS999me0Ooxdj6wpYvtXFZoq6Rnb+VBrq3EG3him4ZPBfuzfGw8DhQ9A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axis.com; dmarc=pass action=none header.from=axis.com;
- dkim=pass header.d=axis.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QXB1gVPR8gx7YdJq5xLjHtfg9amXYfujxL9OyoWE1JQ=;
- b=D5nWmaQc3RA9A9nAkPWY98lHi6j9TG2LmE6m4vFuAYYCkxVuarYVH5ocZKYEIVrwuB/aBglH65ltsoon+/mIrU5bAuIYBd4A1xGfVtWplgQrV4/Vpi5DyZQVLDU7YHOKFqYIx7YnF4RrAQZjkzlVyJsLcjESt4jYxl6vUtVkELE=
-Received: from AM7PR02MB5784.eurprd02.prod.outlook.com (2603:10a6:20b:de::15)
- by DU0PR02MB10424.eurprd02.prod.outlook.com (2603:10a6:10:477::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.23; Mon, 16 Sep
- 2024 07:02:43 +0000
-Received: from AM7PR02MB5784.eurprd02.prod.outlook.com
- ([fe80::33dc:f613:4b96:46aa]) by AM7PR02MB5784.eurprd02.prod.outlook.com
- ([fe80::33dc:f613:4b96:46aa%4]) with mapi id 15.20.7962.022; Mon, 16 Sep 2024
- 07:02:43 +0000
-From: Emil Gedenryd <Emil.Gedenryd@axis.com>
-To: "jic23@kernel.org" <jic23@kernel.org>
-CC: "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "robh@kernel.org"
-	<robh@kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "dannenberg@ti.com" <dannenberg@ti.com>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "lars@metafoo.de"
-	<lars@metafoo.de>, "conor+dt@kernel.org" <conor+dt@kernel.org>, Kernel
-	<Kernel@axis.com>
-Subject: Re: [PATCH v2 1/3] iio: light: opt3001: add missing full-scale range
- value
-Thread-Topic: [PATCH v2 1/3] iio: light: opt3001: add missing full-scale range
- value
-Thread-Index: AQHbBcNWXu+pemrmGUy/SjJ4CJwNl7JXdI4AgAKMxAA=
-Date: Mon, 16 Sep 2024 07:02:43 +0000
-Message-ID: <0b8817a2fb702a2a73a51ca47a350dc8c9085fb3.camel@axis.com>
-References: <20240913-add_opt3002-v2-0-69e04f840360@axis.com>
-	 <20240913-add_opt3002-v2-1-69e04f840360@axis.com>
-	 <20240914170622.227911f8@jic23-huawei>
-In-Reply-To: <20240914170622.227911f8@jic23-huawei>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axis.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM7PR02MB5784:EE_|DU0PR02MB10424:EE_
-x-ms-office365-filtering-correlation-id: 56d3325e-5bf3-4e7b-2f31-08dcd61d8f89
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|366016|376014|1800799024|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?M1dMVVhyR2J1RlJTNVJtR1lIVUlLZWJuN040RXNWSTR5UXB3UGVCNHVVcGQ5?=
- =?utf-8?B?VXFXbHljYlVKRXVtL1VRYmVxMVgrY0NFK3pWK1JLVDhpaUt2a1I5QVFOUFVK?=
- =?utf-8?B?MktHZ24yYk82eG1JS2lrNVNPMWJCU2R0U2VzR2dXUnVKNkh4YWxnMUVvTzJU?=
- =?utf-8?B?R3dnU2J1Q0xDZWU1QkNjaVd0Vk5pa2x3Z2JaRTNSK2FQSTVnaDNUaTlWL2Ex?=
- =?utf-8?B?azRkczFhUWVNTUJtRWc0Umdic2VtT0h1cXlyL3JWZHF6STYzdjB2TERId3Vv?=
- =?utf-8?B?L1VudzdlVzNBS0Y1aVdrSUtSYkxFNG9kTkZaTDFDVlBITFBLOXVHNWtlTWVp?=
- =?utf-8?B?SlBDSlZ3bXh4VlA0ZnZkbzRuUS9uTE9PQk1pcytsZUhNcGFQbzhLUWxmWHhF?=
- =?utf-8?B?RUNlMDBGb0ptUU0vS2dLa0RWbm0rcG5PRlEzQXBFT1FPa25UckMvKzI1Q21E?=
- =?utf-8?B?eW1iSmluaVl2S2JuWDg5ZEhrOWhVMCtHdlJHSjllWUVDaE5CYU13Y3FoYUlB?=
- =?utf-8?B?b1ZqZVRaQlFuUXFBbjR1aGRVTGQvTThOU0tFQWx1bndTSGVZaktUSk9wK1gy?=
- =?utf-8?B?NHcyVFdOd3lralNlKzVROW13eGlUR0RRalM2Wmo4MVZTUXI5Yk9wQXF0UDA1?=
- =?utf-8?B?cThIbmg4U2Z6anJmWTVmWUxoa05FVXkxb1pneldyeHJMZlBwNU9rOTVnajYv?=
- =?utf-8?B?WlJLOGtNSUtNWE81V3prU1B1K1IyRVNYUm45QjAxRTFPOVZwTEVhMGFhaEo2?=
- =?utf-8?B?U3Zlc2xKOU1JUWJhL3kxRVVoZjk0T3RrckxGSExNSGUvR2Y0TG1pRTJKRTU4?=
- =?utf-8?B?QkJ1NkNiY3ladCthOUlwT0RMQ0ttaTFSajBYZjRkMXJBWFB2OW5FbDhoV1hj?=
- =?utf-8?B?ajA1NFV5V0JNZFV2ck1BbUNGV2pacE9TeFpOUFRTWXR2bklSSWtaTnZic0JD?=
- =?utf-8?B?aGFtcGpZMTdVMFlzUXBvQUJ3OFdoK2U5VXhUc29tWWI0WCtyTTlMTUFUUFEz?=
- =?utf-8?B?ay9jN1cxVEl3MWthRnNpWG1sblpTYm1RS3dDM0hBTlJrYTd2UjdpV3ozZjhC?=
- =?utf-8?B?YWlkbHVGek9sTzJ3U29LenQ0LzJvMzIxZ1BiT2l4QVh1TEhKQ3BqbWdrR09s?=
- =?utf-8?B?VmNpMnV6ck14Rzg0VnNpV0puSEgycFZDY0hKbk5IVXEreDMrTjkySmE5WlJL?=
- =?utf-8?B?U1dFWnFKUHpuWkpwempDeGo1aGhpMEJnNDYyWXMxaEU2YjFXaFY4dWs0T2J5?=
- =?utf-8?B?S0lQeGhncVZqMTNqclVaSjlZNk1WajBPM20wVlFyNWZ5Z3M2NWt6TUNUWDVF?=
- =?utf-8?B?Q1RiT3k4cGlCc0xmQXVaKzU3THFDeUZGTmprOWNRaGgwbkRsbWc2TCs5WUg4?=
- =?utf-8?B?cWdNdVU4djk2YWZ2TjNpdU9zS3RXOHFkTS9DYzJvUExJNXhsaDFmTFI0VFlO?=
- =?utf-8?B?ZmlIeUd3bEd0VjU2YnE3ekkwR2owVHI2cFRJTnJ2UkJaV0g3ZmFHTXNiaHUz?=
- =?utf-8?B?UHdVczVBQWNzV09WVG9OZlVhQytKd0p3UmxOTE5uL25lQ1hRbzV1MEJXVEl0?=
- =?utf-8?B?UzZPZVRiRWdjUTdRQk5iWmNnS1crblFCTG8vbFF1Q3VlT05HR3VzdzRXdWo5?=
- =?utf-8?B?Q1psVzVsSFZKUDg2bGFDZHVRR1FPb1NEQS9UWHk5OHZjdlh4UmVuMlRLWFVr?=
- =?utf-8?B?UDV0TUorVEFPWjJxRmk5R2ZiTGlEVTVzOHpCZDdIemxFby9XdXZGankvYXNP?=
- =?utf-8?B?ajRCYVNLRVpnZG9iTkphR09MdERtTWxwWllyd2NUTFROcUsyNWRYRzlLTGpq?=
- =?utf-8?B?a3pPVC9LNE04NncwUEpRU0xhRnh6Ni9NV1I3Ymx5dGUxYnBsSGowNUgybnRy?=
- =?utf-8?B?UXk4Zy9kUkZtdk5DYTl2bGYxTUNTampEYStoMHphM1NyNkE9PQ==?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR02MB5784.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?RnZraTlGRHcyT3gzVGdsc3grYXpYUXUwZmhKK2JNWTVzVEViTExmbFFJU2Q4?=
- =?utf-8?B?T1ZHcnNaaVpsMFVla2l4N2JsMkM4SnE0YnF3OEtIWkgyZ2JRaVF5UnpmU09K?=
- =?utf-8?B?Nk5QZUpUQUxxZGRvSWZGbU1pZS84TFI1K1ZhMmNUL21xNGRweENJRDExdzhh?=
- =?utf-8?B?SitoUUFoemhFcmxMeGk0ZVh6eE1ra3RTUW9aZDNtUk1UUjdRMUdQNVBnTU1j?=
- =?utf-8?B?NzRHdmEwWWZiWW5lVlNNV3h0RDRiUkpsYXFBYlFDeVNmTWt2aWJyYjIwYU9a?=
- =?utf-8?B?N3R5bHlleWtYc1ZucC9vaE4rQlZTZU02Wm4rRWdaVEZuSEZYczFLSndYSjQ2?=
- =?utf-8?B?amU0TEVjZ3FsS2c1Z1Y1VjdUMHA3TG1ra0drczhQZjdzazFnZXFnWmhBSkZJ?=
- =?utf-8?B?ZFdId0pKcU1jeVU5SXdadW9nakFCUTcxUVJ1SGY1ME9IcEtWUEdSOHNSQUlX?=
- =?utf-8?B?TmQ2ZnBmUXo3L2V3M21jM1Awd09OdS9uaGdRZmIydXNCRkhBVXp2ZmNNam1G?=
- =?utf-8?B?SERKT2UraTY3MjExWHNzazhpZ3NjUXVrdFZuN0R2YW43ZWFBa3JYTVd5MUQv?=
- =?utf-8?B?MDdwYkluS1liOVpqVS84U09Jbm1lcDM4aUErcmpBUnZzU3dyNG1XaGQ5VVhq?=
- =?utf-8?B?bWxHS3J3Z2VOSmVvckcvTEZ5VEdJb0ZlanRpY0g2YU9XbVB1OG13SWdJcEtO?=
- =?utf-8?B?dTZhR29zdGRQQkRzUy9OUUIvSXdEMW1zRlBMUElLQThxUGRGTitzOHFEeWFk?=
- =?utf-8?B?cVpzQmlCdHVkdXMxejA1YlR0NzhuSldFeGN1aUVnSGxHUXpWQTNYMVptRHl3?=
- =?utf-8?B?UjdnditGVmhyRFc5MC9aa2orU3dVQUJ5R1lMZUszaTI0MEs5YWFya2dXMVBj?=
- =?utf-8?B?VHNDSmMwamZoRDNNMWliNjRuaUQ5VXN4RHBEWTVteHlLNVMxSWlHVzEwRDkx?=
- =?utf-8?B?L1VvS3c5a3pVN3dNV0s5WlZaK2RpaStKeGJEREJrQzB3ZlZTK1pRbzhsVGNi?=
- =?utf-8?B?T2FaZjRLL0l5cGg0NHJFRFdyM1ZiK3FacHY0elRTUUtoN0ZzQlo4MGJ3Qi9B?=
- =?utf-8?B?QWV4Y09Valluc2J2WE1VVWtGbkt2eXJnU0ppRTR0NzlET1l0Z05EN2tzQzFO?=
- =?utf-8?B?OW5CNnprd2ZRNnBFS2l6TWlyVVdGWUJaQXlodVc3TW4rVHowLzFFQlVnVC9G?=
- =?utf-8?B?Q1htbVZ5T2JXbnFhK0xxRnpHTHlmZ0w1eDN0SHRkWEZHdS83K05VNUVZc0l2?=
- =?utf-8?B?TlFJQkxzejNLTkhabS9Rb0F0eUk2Z1JkZUI0aEFpM2ZrRkNlT1h0Q3VDY2sx?=
- =?utf-8?B?MUw2VFBjWWRrUitpQ3YyOVRlWjB3UVRMY2RGdnVMajRZRUpkbnJXYVJnY0pw?=
- =?utf-8?B?dG1laXpuNjhyOXVSQ3Z3aVN2RFIwaFZobE5UaWdkRzE0ZGhWbTcrYjF2VTZM?=
- =?utf-8?B?c2E3aW9NVU9UZlRnSnpuR2xWYlVSR3AwL215ejlqdEIrZWNDZG5pU2p0cFJY?=
- =?utf-8?B?VEkvNXRiSGtZR0xFUVVHYmMvTlZScFY0Y2h2NDFNM3RheDhiUTk1aUljS0ti?=
- =?utf-8?B?c2lid1FSbStuVzVYeEtUVEMwanBtbFBEWEJaU1dubzB6dGdYY2hKMXh2Vm1m?=
- =?utf-8?B?RGEwbGJJTHNOQk1VVDJ2WTNMbXdnMGJZbW9ySkJsVDhmbFJYUy9KYS9zQzc1?=
- =?utf-8?B?cW1NejRVNmJORjVobzRPWFBEc0EzcHY1M3g2YzRvSkt0Nzg5Y04zUy9qY0xT?=
- =?utf-8?B?bEhsdW1PZGMvaEgzdjNoOGc0dDdnQndQWUJzNGNhR2pwcFZXUmN5YUVCU0RG?=
- =?utf-8?B?RDZQTEcyUXN5Zm5MVmtPcVdXMFJINHg5Zi9BV0t4NkhSWVVEMmVBWk05T216?=
- =?utf-8?B?UTA4R3h0Yk9jUXJNZTFaekRyVnVJbENoTm5Ra2dOeXRiNUd6MStQVDZFWTln?=
- =?utf-8?B?YXZLMEdBL0YvbTBPMU12a0tFOVZGU3p3Z0NYbGVISWJ6Vy84aDJkMnV6WHQx?=
- =?utf-8?B?WlN1ZitEQzdraElDc1NSMDR0blVacStkTTFpV25YUlZpVjhvSXJoTktpZWtD?=
- =?utf-8?B?T0JFb242TTJDOGk1Y3pzMFp4TVZPOXdGK0RWazhhNUlRUmgrYUtDNEo1VVp0?=
- =?utf-8?Q?8Wf5ox9cI4RQTeZzY5cDoUxyZ?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <30C70A0A084B2446995D0F52A6EA1FAB@eurprd02.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 217271BDC8;
+	Mon, 16 Sep 2024 07:05:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726470313; cv=none; b=iONgZcCsaprUD853DjC8/XS+Bi4MpfaRNRAwu5II2p87VIWiNEADaIAkBiVRmTKcux3g6fCKGrUw1gox/sVXG2b+QYGUY0BKscrcpn+mRTcAnRwypF+bP2+L+e9oL3ZJ6FPrfCj4b/AhR3TpMOMs1IrHrc6Y6bqwcmzu1EPkNHs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726470313; c=relaxed/simple;
+	bh=sLD8gZ+5WWCc3phVvhYizgaea8uaK6uzmMaR+dMCXkE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MU2kquo7/GVKa7vX1GTJf7auZRu6VETzujxUnFZC5IQ87CgcOWaf5r/hNY0fuHxqK6ilet2H+YIONOR8VPHc+ngf8TqnDtBUBTSqOtXzdGtvZ6Yfzn8lo4DFha5GV3V1tqj7PlJ5Fpb7BF/rjPMxL0OOTrTiiyZCxqqNALkeIvo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mwBSzI0D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2676C4CEC4;
+	Mon, 16 Sep 2024 07:05:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726470312;
+	bh=sLD8gZ+5WWCc3phVvhYizgaea8uaK6uzmMaR+dMCXkE=;
+	h=Date:Subject:List-Id:To:Cc:References:From:In-Reply-To:From;
+	b=mwBSzI0D6ZUIkr8DrIDPCCfCjRCpiZJBw2btBbHyuRdmqLbyDMtgz7DCVdzcZ9FOH
+	 RlOJP+HEeZVH5gilRboRXunGwt74vUL9OuPBcokIxJ7HOE7jGx+8xzCmLZIWKuJWfP
+	 7Tvx72HP8s+UF6NEWAoftHYpuNNXe8i5ZXcwo5wKVk8f9aYXMVZf6TexxK7Sb1zXtH
+	 IGc5ldHKyz1ggdFD6rxLws8tPp3IeUM4jm2AZYxF4J8qcvkENStq37m6Z40Iid1Mqx
+	 svaij4ieP0oLJKmjy+5bhnxS+94F+XvULFGbWnWnidb+aBgloYOx1VqhqXa8Xf4Bpi
+	 KQlr0wWpKgz5w==
+Message-ID: <19e3d0a1-02e3-44bf-ae42-cd090bfde471@kernel.org>
+Date: Mon, 16 Sep 2024 09:04:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR02MB5784.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 56d3325e-5bf3-4e7b-2f31-08dcd61d8f89
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Sep 2024 07:02:43.0124
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wyCI+qixIqI+wKUHnJUtYFhlKl8RpIqsm9s3zI2I3+jTGMCnS0gNOkW7gbSwIpgv
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR02MB10424
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 19/21] arm64: dts: adi: sc598: add device tree
+To: arturs.artamonovs@analog.com, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, Greg Malysa <greg.malysa@timesys.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Utsav Agarwal <Utsav.Agarwal@analog.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Thomas Gleixner <tglx@linutronix.de>,
+ Andi Shyti <andi.shyti@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Olof Johansson <olof@lixom.net>, soc@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-serial@vger.kernel.org, adsp-linux@analog.com,
+ Nathan Barrett-Morrison <nathan.morrison@timesys.com>
+References: <20240912-test-v1-0-458fa57c8ccf@analog.com>
+ <20240912-test-v1-19-458fa57c8ccf@analog.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20240912-test-v1-19-458fa57c8ccf@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-T24gU2F0LCAyMDI0LTA5LTE0IGF0IDE3OjA2ICswMTAwLCBKb25hdGhhbiBDYW1lcm9uIHdyb3Rl
-Og0KPiBPbiBGcmksIDEzIFNlcCAyMDI0IDExOjU3OjAyICswMjAwDQo+IEVtaWwgR2VkZW5yeWQg
-PGVtaWwuZ2VkZW5yeWRAYXhpcy5jb20+IHdyb3RlOg0KPiANCj4gPiBUaGUgb3B0MzAwMSBkcml2
-ZXIgdXNlcyBwcmVkZXRlcm1pbmVkIGZ1bGwtc2NhbGUgcmFuZ2UgdmFsdWVzIHRvDQo+ID4gZGV0
-ZXJtaW5lIHdoYXQgZXhwb25lbnQgdG8gdXNlIGZvciBldmVudCB0cmlnZ2VyIHRocmVzaG9sZCB2
-YWx1ZXMuDQo+ID4gVGhlIHByb2JsZW0gaXMgdGhhdCBvbmUgb2YgdGhlIHZhbHVlcyBzcGVjaWZp
-ZWQgaW4gdGhlIGRhdGFzaGVldCBpcw0KPiA+IG1pc3NpbmcgZnJvbSB0aGUgaW1wbGVtZW50YXRp
-b24uIFRoaXMgY2F1c2VzIGxhcmdlciB2YWx1ZXMgdG8gYmUNCj4gPiBzY2FsZWQgZG93biB0byBh
-biBpbmNvcnJlY3QgZXhwb25lbnQsIGVmZmVjdGl2ZWx5IHJlZHVjaW5nIHRoZQ0KPiA+IG1heGlt
-dW0gc2V0dGFibGUgdGhyZXNob2xkIHZhbHVlIGJ5IGEgZmFjdG9yIG9mIDIuDQo+ID4gDQo+ID4g
-QWRkIG1pc3NpbmcgZnVsbC1zY2FsZSByYW5nZSBhcnJheSB2YWx1ZS4NCj4gPiANCj4gPiBGaXhl
-czogOTRhOWI3YjE4MDlmICgiaWlvOiBsaWdodDogYWRkIHN1cHBvcnQgZm9yIFRJJ3Mgb3B0MzAw
-MSBsaWdodCBzZW5zb3IiKQ0KPiA+IFNpZ25lZC1vZmYtYnk6IEVtaWwgR2VkZW5yeWQgPGVtaWwu
-Z2VkZW5yeWRAYXhpcy5jb20+DQo+IEFwcGxpZWQgdG8gdGhlIGZpeGVzLXRvZ3JlZyBicmFuY2gg
-b2YgaWlvLmdpdCBhbmQgbWFya2VkIGZvciBzdGFibGUuDQo+IEknbGwgcHJvYmFibHkgc2VuZCBh
-IHB1bGwgcmVxdWVzdCB3aXRoIHRoaXMgaW4gc2hvcnRseSBhZnRlciByYzEuDQo+IA0KPiBKb25h
-dGhhbg0KPiANCj4gDQpHcmVhdCwgdGhhbmsgeW91Lg0KDQpCZXN0IFJlZ2FyZHMsDQpFbWlsDQo=
+On 12/09/2024 20:25, Arturs Artamonovs via B4 Relay wrote:
+> From: Arturs Artamonovs <arturs.artamonovs@analog.com>
+> 
+> Add ADI SC598-EZKIT device tree.
+> Support UART console as output.
+> 
+> Signed-off-by: Arturs Artamonovs <Arturs.Artamonovs@analog.com>
+> Signed-off-by: Utsav Agarwal <Utsav.Agarwal@analog.com>
+> Co-developed-by: Nathan Barrett-Morrison <nathan.morrison@timesys.com>
+> Signed-off-by: Nathan Barrett-Morrison <nathan.morrison@timesys.com>
+> Co-developed-by: Greg Malysa <greg.malysa@timesys.com>
+> Signed-off-by: Greg Malysa <greg.malysa@timesys.com>
+> ---
+>  arch/arm64/boot/dts/Makefile                |   1 +
+>  arch/arm64/boot/dts/adi/Makefile            |   2 +
+>  arch/arm64/boot/dts/adi/sc598-som-ezkit.dts |  14 ++
+>  arch/arm64/boot/dts/adi/sc598-som.dtsi      |  58 +++++
+>  arch/arm64/boot/dts/adi/sc59x-64.dtsi       | 367 ++++++++++++++++++++++++++++
+>  5 files changed, 442 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
+> index 21cd3a87f385309c3a655a67a3bee5f0abed7545..9b3996a8e01d8e7d264c44c075d7a50ee350ba44 100644
+> --- a/arch/arm64/boot/dts/Makefile
+> +++ b/arch/arm64/boot/dts/Makefile
+> @@ -1,5 +1,6 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  subdir-y += actions
+> +subdir-y += adi
+>  subdir-y += airoha
+>  subdir-y += allwinner
+>  subdir-y += altera
+> diff --git a/arch/arm64/boot/dts/adi/Makefile b/arch/arm64/boot/dts/adi/Makefile
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..1bf54bc97095e1ea3577953d379746fbc0ea02a9
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/adi/Makefile
+> @@ -0,0 +1,2 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +dtb-$(CONFIG_ARCH_SC59X_64) += sc598-som-ezkit.dtb
+> diff --git a/arch/arm64/boot/dts/adi/sc598-som-ezkit.dts b/arch/arm64/boot/dts/adi/sc598-som-ezkit.dts
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..a8db6d5ea764f917faa6839d3d4f0b5217b927b8
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/adi/sc598-som-ezkit.dts
+> @@ -0,0 +1,14 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright 2021-2024 - Analog Devices Inc.
+> + * Author: Nathan Barrett-Morrison <nathan.morrison@timesys.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sc598-som.dtsi"
+> +
+> +/ {
+> +	model = "ADI 64-bit SC598 SOM EZ Kit";
+> +	compatible = "adi,sc598-som-ezkit", "adi,sc59x-64";
+
+Where is adi,sc598-som-ezlite?
+
+> +};
+> diff --git a/arch/arm64/boot/dts/adi/sc598-som.dtsi b/arch/arm64/boot/dts/adi/sc598-som.dtsi
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..3b90f367db1a24de1e1dddc4db3c219736c5b90f
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/adi/sc598-som.dtsi
+> @@ -0,0 +1,58 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright 2021-2024 - Analog Devices Inc.
+> + * Author: Nathan Barrett-Morrison <nathan.morrison@timesys.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/pinctrl/adi-adsp.h>
+> +#include "sc59x-64.dtsi"
+> +
+> +/ {
+> +	chosen {
+> +		stdout-path = &uart1;
+> +		bootargs = "earlycon=adi_uart,0x31003000 console=ttySC0,115200 mem=224M";
+
+Drop entire bootargs. Look how other SoCs do it, if you need port speed.
+
+> +	};
+> +
+> +	memory@90000000 {
+> +		device_type = "memory";
+> +		reg = <0x90000000 0x0e000000>;
+> +	};
+> +
+> +	memory@20040000 {
+> +		device_type = "memory";
+> +		reg = <0x20040000 0x40000>;
+> +	};
+> +
+> +	scb: scb-bus {
+
+What is this?
+
+> +		sec: sec@31089000 {
+
+And this?
+
+> +			adi,sharc-cores = <2>;
+> +		};
+> +	};
+
+Drop entire node.
+
+> +
+
+Fix redundant blank lines.
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-0 = <&uart0_default>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c1 {
+> +	status = "disabled";
+> +};
+> +
+> +&pinctrl0 {
+> +	uart0_default: uart0-default-pins {
+> +		pins {
+> +			pinmux = <ADI_ADSP_PINMUX('A', 6, ADI_ADSP_PINFUNC_ALT1)>,
+> +				 <ADI_ADSP_PINMUX('A', 7, ADI_ADSP_PINFUNC_ALT1)>;
+> +		};
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/adi/sc59x-64.dtsi b/arch/arm64/boot/dts/adi/sc59x-64.dtsi
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..4a9aa08b4acb0936c97e683562e05da063a4e193
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/adi/sc59x-64.dtsi
+> @@ -0,0 +1,367 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright 2021-2024 - Analog Devices Inc.
+> + * Author: Nathan Barrett-Morrison <nathan.morrison@timesys.com>
+> + */
+> +
+> +#include <dt-bindings/clock/adi-sc5xx-clock.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +/ {
+> +	model = "ADI 64-bit SC59X";
+> +	compatible = "adi,sc59x-64";
+> +
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <1>;
+> +	#size-cells = <1>;
+> +
+> +	chosen { };
+
+Drop
+
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		serial2 = &uart2;
+> +		serial3 = &uart3;
+> +	};
+
+
+Drop or move to board DTS. Not a property of the SoC.
+
+
+> +
+> +	cpus {
+> +		#address-cells = <0x2>;
+> +		#size-cells = <0x0>;
+> +
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x0 0x0>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0x0 0xdeadbeef>;
+> +			clocks = <&clk ADSP_SC598_CLK_ARM>, <&clk ADSP_SC598_CLK_DDR>;
+> +		};
+> +	};
+> +
+> +	pmu {
+
+Order nodes alphabetically. See DTS coding style.
+
+> +		compatible = "arm,armv8-pmuv3";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-parent = <&gic>;
+> +	};
+> +
+> +	gic: interrupt-controller@31200000 {
+
+
+This cannot be outside of SoC. See writing-bindings and DTS coding style.
+
+> +		compatible = "arm,gic-v3";
+> +		#interrupt-cells = <3>;
+> +		interrupt-controller;
+> +		reg = <0x31200000 0x40000>, /* GIC Dist */
+> +		      <0x31240000 0x40000>; /* GICR */
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>, /* Physical Secure */
+> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>, /* Physical Non-Secure */
+> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>, /* Virtual */
+> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>; /* Hypervisor */
+> +	};
+> +
+> +	clocks {
+> +		sys_clkin0: oscillator@1 {
+
+There is no way you tested it. It's obvious W=1 warning.
+
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <25000000>;
+> +			clock-output-names = "sys_clkin0";
+> +		};
+> +
+> +		sys_clkin1: oscillator@2 {
+
+How are these properties of the SoC? Where are they located physically?
+See DTS coding style.
+
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <25000000>;
+> +			clock-output-names = "sys_clkin1";
+> +		};
+> +	};
+> +
+> +	clk: clocks@3108d000 {
+> +		compatible = "adi,sc598-clocks";
+> +		reg = <0x3108d000 0x1000>,
+> +		      <0x3108e000 0x1000>,
+> +		      <0x3108f000 0x1000>,
+> +		      <0x310a9000 0x1000>;
+> +		#clock-cells = <1>;
+> +		clocks = <&sys_clkin0>, <&sys_clkin1>;
+> +		clock-names = "sys_clkin0", "sys_clkin1";
+> +		status = "okay";
+
+Drop... everywhere.
+
+> +	};
+> +
+> +	scb: scb-bus {
+
+What is scb-bus?
+
+See DTS coding style or any other SoC. This is supposed to be just sco@
+with proper unit address.
+
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		rcu: rcu@3108c000 {
+> +			compatible = "adi,reset-controller";
+> +			reg = <0x3108c000 0x1000>;
+> +			status = "okay";
+
+Oh...
+
+> +		};
+> +
+> +		sec: sec@31089000 {
+
+Random order of nodes? See DTS coding style.
+
+> +			compatible = "adi,system-event-controller";
+> +			reg = <0x31089000 0x1000>;
+> +			adi,rcu = <&rcu>;
+> +			status = "okay";
+> +		};
+> +
+> +		uart0: uart@31003000 {
+
+Never tested.
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+> +			compatible = "adi,uart";
+> +			reg = <0x31003000 0x40>;
+> +			clocks = <&clk ADSP_SC598_CLK_CGU0_SCLK0>;
+> +			clock-names = "sclk0";
+> +			interrupt-parent = <&gic>;
+> +			interrupt-names = "tx", "rx", "status";
+> +			interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 139 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+> +			adi,use-edbo;
+> +			status = "disabled";
+> +		};
+> +
+> +		uart1: uart@31003400 {
+> +			compatible = "adi,uart";
+> +			reg = <0x31003400 0x40>;
+> +			clocks = <&clk ADSP_SC598_CLK_CGU0_SCLK0>;
+> +			clock-names = "sclk0";
+> +			interrupt-parent = <&gic>;
+> +			interrupt-names = "tx", "rx", "status";
+> +			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
+> +			adi,use-edbo;
+> +			status = "disabled";
+> +		};
+> +
+> +		uart2: uart@31003800 {
+> +			compatible = "adi,uart";
+> +			reg = <0x31003800 0x40>;
+> +			clocks = <&clk ADSP_SC598_CLK_CGU0_SCLK0>;
+> +			clock-names = "sclk0";
+> +			interrupt-parent = <&gic>;
+> +			interrupt-names = "tx", "rx", "status";
+> +			interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
+> +			adi,use-edbo;
+> +			status = "disabled";
+> +		};
+> +
+> +		uart3: uart@31003c00 {
+> +			compatible = "adi,uart";
+> +			reg = <0x31003C00 0x40>;
+> +			clocks = <&clk ADSP_SC598_CLK_CGU0_SCLK0>;
+> +			clock-names = "sclk0";
+> +			interrupt-parent = <&gic>;
+> +			interrupt-names = "tx", "rx", "status";
+> +			interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>;
+> +			adi,use-edbo;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c0: twi@31001400 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+Completely wrong order of properties. Please follow DTS coding style.
+
+
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			compatible = "adi,twi";
+
+You cannot have generic compatibles in the SoC.
+
+> +			reg = <0x31001400 0xFF>;
+
+I already commented on lower case hex.
+
+> +			interrupts = <GIC_SPI 150 IRQ_TYPE_LEVEL_HIGH>;
+> +			clock-khz = <100>;
+> +			clocks = <&clk ADSP_SC598_CLK_CGU0_SCLK0>;
+> +			clock-names = "sclk0";
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c1: twi@31001500 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			compatible = "adi,twi";
+> +			reg = <0x31001500 0xFF>;
+> +			interrupts = <GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH>;
+> +			clock-khz = <100>;
+> +			clocks = <&clk ADSP_SC598_CLK_CGU0_SCLK0>;
+> +			clock-names = "sclk0";
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c3: twi@31001000 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			compatible = "adi,twi";
+> +			reg = <0x31001000 0xFF>;
+> +			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>;
+> +			clock-khz = <100>;
+> +			clocks = <&clk ADSP_SC598_CLK_CGU0_SCLK0>;
+> +			clock-names = "sclk0";
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c4: twi@31001100 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			compatible = "adi,twi";
+> +			reg = <0x31001100 0xFF>;
+> +			interrupts = <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>;
+> +			clock-khz = <100>;
+> +			clocks = <&clk ADSP_SC598_CLK_CGU0_SCLK0>;
+> +			clock-names = "sclk0";
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c5: twi@31001200 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			compatible = "adi,twi";
+> +			reg = <0x31001200 0xFF>;
+> +			interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+> +			clock-khz = <100>;
+> +			clocks = <&clk ADSP_SC598_CLK_CGU0_SCLK0>;
+> +			clock-names = "sclk0";
+> +			status = "disabled";
+> +		};
+> +
+> +		pinctrl0: pinctrl@31004600 {
+> +			compatible = "adi,adsp-pinctrl";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			reg = <0x31004600 0x400>;
+> +			adi,port-sizes = <16 16 16 16 16 16 16 16 7>;
+> +		};
+> +
+> +		pint0: pint@31005000 {
+> +			compatible = "adi,adsp-pint";
+> +			reg = <0x31005000 0xFF>;
+> +			interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +
+> +		pint1: pint@31005100 {
+> +			compatible = "adi,adsp-pint";
+> +			reg = <0x31005100 0xFF>;
+> +			interrupts = <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +
+> +		pint2: pint@31005200 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +			compatible = "adi,adsp-pint";
+> +			reg = <0x31005200 0xFF>;
+> +			interrupts = <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +
+> +		pint3: pint@31005300 {
+> +			compatible = "adi,adsp-pint";
+> +			reg = <0x31005300 0xFF>;
+> +			interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +
+> +		pint4: pint@31005400 {
+> +			compatible = "adi,adsp-pint";
+> +			reg = <0x31005400 0xFF>;
+> +			interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +
+> +		pint5: pint@31005500 {
+> +			compatible = "adi,adsp-pint";
+> +			reg = <0x31005500 0xFF>;
+> +			interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +
+> +		pint6: pint@31005600 {
+> +			compatible = "adi,adsp-pint";
+> +			reg = <0x31005600 0xFF>;
+> +			interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +
+> +		pint7: pint@31005700 {
+> +			compatible = "adi,adsp-pint";
+> +			reg = <0x31005700 0xFF>;
+> +			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +
+> +		gpa: gport@31004000 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +			compatible = "adi,adsp-port-gpio";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			reg = <0x31004000 0x7F>;
+> +			gpio-ranges = <&pinctrl0 0 0 16>;
+> +			adi,pint = <&pint0 1>;
+> +			status = "okay";
+> +		};
+> +
+> +		gpb: gport@31004080 {
+> +			compatible = "adi,adsp-port-gpio";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			reg = <0x31004080 0x7F>;
+> +			gpio-ranges = <&pinctrl0 0 16 16>;
+> +			adi,pint = <&pint0 0>;
+> +			status = "okay";
+> +		};
+> +
+> +		gpc: gport@31004100 {
+> +			compatible = "adi,adsp-port-gpio";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			reg = <0x31004100 0x7F>;
+> +			gpio-ranges = <&pinctrl0 0 32 16>;
+> +			adi,pint = <&pint2 1>;
+> +			status = "okay";
+> +		};
+> +
+> +		gpd: gport@31004180 {
+> +			compatible = "adi,adsp-port-gpio";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			reg = <0x31004180 0x7F>;
+> +			gpio-ranges = <&pinctrl0 0 48 16>;
+> +			adi,pint = <&pint2 0>;
+> +		};
+> +
+> +		gpe: gport@31004200 {
+> +			compatible = "adi,adsp-port-gpio";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			reg = <0x31004200 0x7F>;
+> +			gpio-ranges = <&pinctrl0 0 64 16>;
+> +			adi,pint = <&pint4 1>;
+> +		};
+> +
+> +		gpf: gport@31004280 {
+> +			compatible = "adi,adsp-port-gpio";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			reg = <0x31004280 0x7F>;
+> +			gpio-ranges = <&pinctrl0 0 80 16>;
+> +			adi,pint = <&pint4 0>;
+> +		};
+> +
+> +		gpg: gport@31004300 {
+> +			compatible = "adi,adsp-port-gpio";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			reg = <0x31004300 0x7F>;
+> +			gpio-ranges = <&pinctrl0 0 96 16>;
+> +			adi,pint = <&pint6 1>;
+> +		};
+> +
+> +		gph: gport@31004380 {
+> +			compatible = "adi,adsp-port-gpio";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			reg = <0x31004380 0x7F>;
+> +			gpio-ranges = <&pinctrl0 0 112 16>;
+> +			adi,pint = <&pint6 0>;
+> +		};
+> +
+> +		gpi: gport@31004400 {
+> +			compatible = "adi,adsp-port-gpio";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			reg = <0x31004400 0x7F>;
+> +			gpio-ranges = <&pinctrl0 0 128 7>;
+> +			adi,pint = <&pint7 1>;
+> +		};
+> +
+
+All your patches have such sloppy blank lines here and there.
+
+> +	};
+> +};
+> 
+
+Best regards,
+Krzysztof
+
 
