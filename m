@@ -1,114 +1,209 @@
-Return-Path: <devicetree+bounces-103370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A074797A854
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 22:33:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5680C97A86B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 22:50:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 492A02877B6
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 20:33:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3ED7FB22795
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 20:50:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9685E13D52C;
-	Mon, 16 Sep 2024 20:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C41615C146;
+	Mon, 16 Sep 2024 20:50:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="R49d04Du"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N0jlC3Xu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF696138490
-	for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 20:33:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E451F101EE;
+	Mon, 16 Sep 2024 20:50:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726518826; cv=none; b=R/vYhLu1wTYq8SITgMuSQSNukoaIm1LrodoPC8ofWSakb0FLUS0+vGSoKnfpUXcJhaBRFaS1tGDc5sHoeHMMELq7vhksgQZMlH9faleBZZ83XaMjsPmWfcroZTHLgD5+1fMRjrEhFbLR5qd51q/zwwlKkrV91FyDYc3Lja2AOO0=
+	t=1726519841; cv=none; b=WZ+kpxKhZ+ce9ggWmRDC7agLO02SGduyB3E0SNAwSlGId5P/X6baOsDY1yZg0o2KFDqz42VjBT06y9tktSDUQj/juySFzT8917Q8OTLOz93oHs5jJLVQn3/tLOG5s1sUnXgPnJKX4ISb2ZD23AFNG28NeSPSGh3ABjSOE6onRLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726518826; c=relaxed/simple;
-	bh=5TA47WiIrIdHSe3xcjU9Lqfg8ws6fqDEOWtYofifKZw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ut9SNEHWVXnTBptR3QT3ssYUwfZOh2/V3n6EtDTrYFfSqUo/lvN3kArIjnsMxpf4uCoInmMBA1H/8INtPMcHyV0Rbsq1buROno0YXzzAKsNHVQJW6T5xLxqbvt7Lbq6pbAJ/YOB8skR90s8THKCTbwltOTHqgOdrBF9PJoxzYqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=R49d04Du; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5356aa9a0afso5010408e87.2
-        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 13:33:44 -0700 (PDT)
+	s=arc-20240116; t=1726519841; c=relaxed/simple;
+	bh=EPuS2/x+Apeqo+h5PlDJ57xWx6EiaLVNmNHDNkprA+Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oIYR/FoxJBoz9OErWh3YWNriy85iZKL2K4C4O9+zTHmy1N8fcssN8kGUh2lHhE20D16IkSauUDbhIDCUjR32N8CqSDhuJjKh4TJ5iBVYgw1wUdX/VsfnJ4bsZ8rYAoNjnwxQ9olOjDIfNZAHU8U5APmW/eh4dSkpdMLPXD4sk1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N0jlC3Xu; arc=none smtp.client-ip=209.85.219.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e1d2cf4cbf1so4817454276.1;
+        Mon, 16 Sep 2024 13:50:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726518823; x=1727123623; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Yut24jaXEEyXf2W6luYkU7vtIEq+YITeP0mm4QVVNxw=;
-        b=R49d04DuzfAJfqOQzkT1Vv8jRh2t/JYcMvt/RxrNsfvu3XsrLROgKIymyMtl4kPnLc
-         LhtkjBC1ZJZ7M+qiO7CUstBRCYgYKDJha+yAjR5UJOIV5hlaCjq0qdfJG/O8rAlBrNHa
-         7lAZo/yXLBY5iBvja4O7Yo2A/ZrAGrPht0XOlnjYn3SMXDz47O3w/HUlJqDdyfJqGobk
-         fWuhLrpVb0KV1jzJL5KKlyrMMt0DpbBl3lynyKIvOcJLxzhw4JcVxBx/q/oZ6K5kqi0N
-         BEEATgNtLHNFAGgGlTj1LRssB7e+xlf+CoLT5PWtUlxq4gbxR3BLCQe0rR9YxbbqAo3l
-         OZmw==
+        d=gmail.com; s=20230601; t=1726519839; x=1727124639; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=6x/uji5axtWcw2sGeJ1wr4Dagb+N5kE/4J37Qx8pyTE=;
+        b=N0jlC3XuUs2FiXTSfB1ZLQ4fLBDZ9z4TpiJaA/ostN5tWWDktiRUSv4nJwcsN0KAym
+         l3+syIsEGw0J4yByZrylwuxTCKNWE1E6+gGRqHdQuy4PeFHLwcIvUer4S1Q4YL+o+2HP
+         1pL2+HvkqruRvBefSJfVVzZ7qpUJjYKv7NzEHPmqXj8hVTdNi+4X7j/aEnSS/cnOLBOF
+         suo7s7HEXn46jY94LAB9eCZOVZOjoJ6Sqs0xTcEYLZxRVUzBoDhWTvBCw91z9OV0FSCm
+         5MoiO1owOP6xhyIRePv4006sMExEgQxTABNjwSr2FZRazj7mDLioDd+5St1tHTqUlO9N
+         DUeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726518823; x=1727123623;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Yut24jaXEEyXf2W6luYkU7vtIEq+YITeP0mm4QVVNxw=;
-        b=SmlFcwHuPglRDEyHsUpaSPuws8VGe9nJyB5VWV9hhPhXaCxP+fB448ruYOmHqK/BE9
-         VBsJyv7ywW8rXzuvmjIntQHB5NjYw56rRSZEyWnzU3iXQqNjwFpx4DK8TLrMDnMSAHU4
-         amNftQ6yZVq6DdJBaGb4/NSLzitw7Mo/X32UOuymhkngUfk0RbpLHTqbDjruHjKv7DB4
-         nGhrKxK6Vqh320/ez5aCTwwopl+TsmjNyypm7ef73ksvnsGq1/2wQACMk0ryNGrZoKFa
-         6GQDXjPZIOE5zwRdjheIE0UXk/0KwavpJsxjJFQII6RjKADkxMb3UMMjq1m98hVZbKVe
-         tXeA==
-X-Forwarded-Encrypted: i=1; AJvYcCXBPhtLy62qhUikNq1f+IYwxsQkImZc/fk5by0utCNqiUTWoAX/dj49S5e+fQW0iJ1+LDb45HPzC6VI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyb6takMxXq7ZKsB6QTlWS2cWnN+E9u3nNuoloOX96AuLYULkEx
-	aLmSWf9mNS2CSvAcF9U4zXgROrK+L2cn926MiajxsOzdMEfotChm6wVTAk1gNsk=
-X-Google-Smtp-Source: AGHT+IG9vXaSNFzRABgfXln+bLUZnXnpxO3ZvNYLOdCVSLIxonM0R628q5CyjP8oU+JQdKKaIhTAYg==
-X-Received: by 2002:a05:6512:3f0f:b0:536:7d7d:c621 with SMTP id 2adb3069b0e04-5367feb9550mr8405049e87.8.1726518821966;
-        Mon, 16 Sep 2024 13:33:41 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5368704685esm976445e87.27.2024.09.16.13.33.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Sep 2024 13:33:41 -0700 (PDT)
-Date: Mon, 16 Sep 2024 23:33:38 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>, vkoul@kernel.org, 
-	kishon@kernel.org, konradybcio@kernel.org, andersson@kernel.org, simona@ffwll.ch, 
-	abel.vesa@linaro.org, robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run, 
-	marijn.suijten@somainline.org, airlied@gmail.com, daniel@ffwll.ch, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, quic_khsieh@quicinc.com, 
-	konrad.dybcio@linaro.org, quic_parellan@quicinc.com, quic_bjorande@quicinc.com, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	quic_riteshk@quicinc.com, quic_vproddut@quicinc.com
-Subject: Re: [PATCH v2 1/5] dt-bindings: phy: Add eDP PHY compatible for
- sa8775p
-Message-ID: <t4ytnii3sdiqsni74d7qsi2c6uv2klwmzmgznnirt2z55to4hj@lyaoh5fzcyti>
-References: <20240913103755.7290-1-quic_mukhopad@quicinc.com>
- <20240913103755.7290-2-quic_mukhopad@quicinc.com>
- <2hv2hcpbanduw4wg2wbza4jkze4sgilrtyc7zack23uygwsjol@ckskl2rkd5xp>
+        d=1e100.net; s=20230601; t=1726519839; x=1727124639;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6x/uji5axtWcw2sGeJ1wr4Dagb+N5kE/4J37Qx8pyTE=;
+        b=vDKfu+2ecINv57F6jZr09wPWwiPkD/bDj4FHeKXG60bdwNsWA88DlzClqlQdH+x0Lk
+         KOFZXlZg4BC2WxmNdxBi4FXeiyrnEl9mfe/yXiX+lAXDYtNAnGKhbrhHfw2jydfSYhSb
+         mo5l2pzh7qbKwkc9AC4mudzRqmnadD222k8odWYLVU2MRa9N6NFY7yD8ir/uvfF0rLGH
+         ArYmYpPTkKAkQ/g11tBwRy22nZHTMhB5jsMKig9YSClzHaWGYTaW2Jucyjk0c6+5+Czx
+         vfR8Dt+MCdforsoAxAS2S6r8JtB/KQpuj5xtnjap8CQgLybiXVqwOAYfsApmNFZxX2Ml
+         UQTg==
+X-Forwarded-Encrypted: i=1; AJvYcCUD648QmZ5hU1quYm26kyATB80f/Ii4amVghUtIa+VGUnXaiUR119tQIQBFmgtLU8yyvEmto1v9qaHa@vger.kernel.org, AJvYcCXL1bQpwgwFsoT1VIA+xTayK4Nei9b9Hjli3U+YcAXjX1vDh7HVsFd9jcK2Z6b1NIxYuYUigdEnTK3AjH/Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcU3h2G3y5tMa8kh9m4pP0MXwGk+TsQfzK3qLq5CgJBOBp9LMP
+	hJcyTo7CyU1PxyJBm1IGNFlLBM4sm7smIDWbV+XS2nTj9v6OntjlQFa1dLfzxIkmuLQz2awh6dv
+	TKr4AMpBxs/+OvjlL45+0BSoPgG0=
+X-Google-Smtp-Source: AGHT+IHNWoBnckh4JzG0DDNvv5RpTkKQzvqOqO9Ri3IKF30PiwhxsioNGUI2YVdoXHTZXLgQWO0U4qG9goXSQaXULW0=
+X-Received: by 2002:a05:6902:1246:b0:e1d:33f1:cb91 with SMTP id
+ 3f1490d57ef6-e1d9dc2c28emr14379688276.39.1726519838644; Mon, 16 Sep 2024
+ 13:50:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2hv2hcpbanduw4wg2wbza4jkze4sgilrtyc7zack23uygwsjol@ckskl2rkd5xp>
+References: <20240916200255.2566209-1-diogo.pais@ttcontrol.com> <eb3ec7f1-388c-4613-b995-69b8ad6ef2c0@kernel.org>
+In-Reply-To: <eb3ec7f1-388c-4613-b995-69b8ad6ef2c0@kernel.org>
+From: Diogo Silva <diogompaissilva@gmail.com>
+Date: Mon, 16 Sep 2024 22:50:27 +0200
+Message-ID: <CAJpoHp4MbeNCz4Sys1_khQiG7BG6F-aVkrgivHGY_JYP831teg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8: Fix lvds0 device tree
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, aisheng.dong@nxp.com, Frank.Li@nxp.com, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Sep 16, 2024 at 05:23:55PM GMT, Krzysztof Kozlowski wrote:
-> On Fri, Sep 13, 2024 at 04:07:51PM +0530, Soutrik Mukhopadhyay wrote:
-> > Add compatible string for the supported eDP PHY on sa8775p platform.
-> > 
-> > Signed-off-by: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+Hey,
+
+Sorry for the broken tag, will fix on a resend.
+
+As for the naming, if there is any reason for them to be named qm_*
+it's totally fine, I'll revert it and only touch the clock names. I
+changed them because comparing with lvds1, those ones do not contain
+the qm_ prefix and I don't see how this dtsi relates specifically to
+the imx8qm, since it is a imx8-ss... and not imx8qm-ss...
+I didn't quite get the question about the nodes. Could you elaborate? Thanks
+
+Best regards,
+Diogo
+
+
+On Mon, 16 Sept 2024 at 22:23, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On 16/09/2024 22:02, Diogo Silva wrote:
+> > From: Diogo Silva <diogompaissilva@gmail.com>
+> >
+> > Some clock output names on lvds0 device tree were duplicated from mipi1,
+> > which caused an -EEXIST when registering these clocks during probe.
+> > Also fixed the device naming to be consistent with lvds1.
+> >
+> > Fixes: 0fba24b3b956 ("arm64: dts: imx8: add basic lvds0 and lvds1 subsystem")
+> > subsystem")
+>
+> Broken tags. They do not line-brake, BTW.
+>
+> > Signed-off-by: Diogo Silva <diogompaissilva@gmail.com>
 > > ---
-> > v2: No change
-> >  
-> 
-> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
-
-So, is it reviewed or acked?
-
--- 
-With best wishes
-Dmitry
+> >  .../boot/dts/freescale/imx8-ss-lvds0.dtsi     | 22 +++++++++----------
+> >  arch/arm64/boot/dts/freescale/imx8qm-mek.dts  |  4 ++--
+> >  .../boot/dts/freescale/imx8qm-ss-lvds.dtsi    | 20 ++++++++---------
+> >  3 files changed, 23 insertions(+), 23 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi
+> > index d00036204a8c..a4d94467039f 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi
+> > @@ -10,34 +10,34 @@ lvds0_subsys: bus@56240000 {
+> >       #size-cells = <1>;
+> >       ranges = <0x56240000 0x0 0x56240000 0x10000>;
+> >
+> > -     qm_lvds0_lis_lpcg: qxp_mipi1_lis_lpcg: clock-controller@56243000 {
+> > +     lvds0_lis_lpcg: clock-controller@56243000 {
+> >               compatible = "fsl,imx8qxp-lpcg";
+> >               reg = <0x56243000 0x4>;
+> >               #clock-cells = <1>;
+> > -             clock-output-names = "mipi1_lis_lpcg_ipg_clk";
+> > +             clock-output-names = "lvds0_lis_lpcg_ipg_clk";
+> >               power-domains = <&pd IMX_SC_R_MIPI_1>;
+> >       };
+> >
+> > -     qm_lvds0_pwm_lpcg: qxp_mipi1_pwm_lpcg: clock-controller@5624300c {
+> > +     lvds0_pwm_lpcg: clock-controller@5624300c {
+> >               compatible = "fsl,imx8qxp-lpcg";
+> >               reg = <0x5624300c 0x4>;
+> >               #clock-cells = <1>;
+> > -             clock-output-names = "mipi1_pwm_lpcg_clk",
+> > -                                  "mipi1_pwm_lpcg_ipg_clk",
+> > -                                  "mipi1_pwm_lpcg_32k_clk";
+> > +             clock-output-names = "lvds0_pwm_lpcg_clk",
+> > +                                  "lvds0_pwm_lpcg_ipg_clk",
+> > +                                  "lvds0_pwm_lpcg_32k_clk";
+> >               power-domains = <&pd IMX_SC_R_MIPI_1_PWM_0>;
+> >       };
+> >
+> > -     qm_lvds0_i2c0_lpcg: qxp_mipi1_i2c0_lpcg: clock-controller@56243010 {
+> > +     lvds0_i2c0_lpcg: clock-controller@56243010 {
+> >               compatible = "fsl,imx8qxp-lpcg";
+> >               reg = <0x56243010 0x4>;
+> >               #clock-cells = <1>;
+> > -             clock-output-names = "mipi1_i2c0_lpcg_clk",
+> > -                                  "mipi1_i2c0_lpcg_ipg_clk";
+> > +             clock-output-names = "lvds0_i2c0_lpcg_clk",
+> > +                                  "lvds0_i2c0_lpcg_ipg_clk";
+> >               power-domains = <&pd IMX_SC_R_MIPI_1_I2C_0>;
+> >       };
+> >
+> > -     qm_pwm_lvds0: qxp_pwm_mipi_lvds1: pwm@56244000 {
+> > +     pwm_lvds0: pwm@56244000 {
+> >               compatible = "fsl,imx8qxp-pwm", "fsl,imx27-pwm";
+> >               reg = <0x56244000 0x1000>;
+> >               clock-names = "ipg", "per";
+> > @@ -48,7 +48,7 @@ qm_pwm_lvds0: qxp_pwm_mipi_lvds1: pwm@56244000 {
+> >               status = "disabled";
+> >       };
+> >
+> > -     qm_i2c0_lvds0: qxp_i2c0_mipi_lvds1: i2c@56246000 {
+> > +     i2c0_lvds0: i2c@56246000 {
+> >               compatible = "fsl,imx8qxp-lpi2c", "fsl,imx7ulp-lpi2c";
+> >               reg = <0x56246000 0x1000>;
+> >               #address-cells = <1>;
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
+> > index 62203eed6a6c..f7b9b319a58a 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
+> > @@ -96,7 +96,7 @@ vdevbuffer: memory@90400000 {
+> >
+> >       lvds_backlight0: backlight-lvds0 {
+> >               compatible = "pwm-backlight";
+> > -             pwms = <&qm_pwm_lvds0 0 100000 0>;
+> > +             pwms = <&pwm_lvds0 0 100000 0>;
+> >               brightness-levels = <0 100>;
+> >               num-interpolated-steps = <100>;
+> >               default-brightness-level = <80>;
+> > @@ -541,7 +541,7 @@ &fec2 {
+> >       status = "okay";
+> >  };
+> >
+> > -&qm_pwm_lvds0 {
+> > +&pwm_lvds0 {
+>
+> Why this cannot stay qm_pwm_lvds0? Are you sure nodes now have correct
+> order?
+>
+>
+>
+> Best regards,
+> Krzysztof
+>
 
