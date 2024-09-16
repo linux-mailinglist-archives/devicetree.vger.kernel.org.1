@@ -1,282 +1,201 @@
-Return-Path: <devicetree+bounces-103228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C62B979F54
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 12:32:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D08E979F67
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 12:35:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A67C1C21FD8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 10:32:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E4592B23370
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 10:35:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7056C14E2ED;
-	Mon, 16 Sep 2024 10:32:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BBBA15531A;
+	Mon, 16 Sep 2024 10:35:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="GgSKh/iM";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="qf5/5sEW";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="GgSKh/iM";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="qf5/5sEW"
+	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="FFdO/att"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B739E1CF83;
-	Mon, 16 Sep 2024 10:32:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4446154C18;
+	Mon, 16 Sep 2024 10:35:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.148.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726482766; cv=none; b=nvrZA2qbRRaejRPYBSCrqEHEW+ZINm07yUvGNsus2/WgwqFjcP3JExIAiYLfr8iAtv6BDPErh7t3Ohmt3NmxLeh2Q1TM9iJ3AdE1HpdVCvcMCaeTyieP8xP3PsKb16Nv1IqdrATejUcueNUqq1gG0+fatDrc0cInSG4jNtnvSOM=
+	t=1726482917; cv=none; b=Z4kByEA7ZStes3DiDcT7kK+be/29lDj5TsB93zXMoXSQHfsIiOHjPn5oW65nNyhjjG3wGDxvMdBJZsMNvh5AR7x+HPozHWfnJ6X3Ujf2jylb3aw/1aj1Wi6vi8gAwKByxsyqG3fG5/EDkqTmg0PtXGxEp97wz1BIe+YU0xQopEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726482766; c=relaxed/simple;
-	bh=kN2tLmTwtAeLvHdpahKB+hx/wXDn+ABywghAx+yQqJQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GQrdGYAg0WGVudvSC+yhtLw6gqzWlBp7MMmMQtyWYfY6G/7vwRmi0o7iYgxQRjoq6WRDPFN/3IPQszvOAWeaJJO1u3GeGVmEA4jHUljUrpcJsxruUTq8tnJfiTM7ejNUHl6K1+GDp076bmYgf2cwb71LLg6S0hJBBakysaH6qRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=GgSKh/iM; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=qf5/5sEW; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=GgSKh/iM; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=qf5/5sEW; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id BE41C21AAD;
-	Mon, 16 Sep 2024 10:32:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1726482762; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=QDZPsOE8S64OUNNvCNuXXFuZs9RSJRdgavt14Vqc3VI=;
-	b=GgSKh/iMk38I8lb4va9XfGNDQy5jJrpUivlIRurq+Rx7OvUp3JCiJzBcjjQsaJaBteH+ka
-	U41zwuaWawdNqIQyGEaKnALoourFjvJS0tIEgqAq6tIX1pqQD2g7DmPGavM4UBaMBava8n
-	HIAqzMon2KOq7VmYxaKhrUZdnPHjSGc=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1726482762;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=QDZPsOE8S64OUNNvCNuXXFuZs9RSJRdgavt14Vqc3VI=;
-	b=qf5/5sEWREeZzAgtseDbWfe5WoRPt13aDIVz+oAZQeOOxDELy9mrwzhhx4h908xLn1U132
-	4fLsRpxht5FKjlCA==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1726482762; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=QDZPsOE8S64OUNNvCNuXXFuZs9RSJRdgavt14Vqc3VI=;
-	b=GgSKh/iMk38I8lb4va9XfGNDQy5jJrpUivlIRurq+Rx7OvUp3JCiJzBcjjQsaJaBteH+ka
-	U41zwuaWawdNqIQyGEaKnALoourFjvJS0tIEgqAq6tIX1pqQD2g7DmPGavM4UBaMBava8n
-	HIAqzMon2KOq7VmYxaKhrUZdnPHjSGc=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1726482762;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=QDZPsOE8S64OUNNvCNuXXFuZs9RSJRdgavt14Vqc3VI=;
-	b=qf5/5sEWREeZzAgtseDbWfe5WoRPt13aDIVz+oAZQeOOxDELy9mrwzhhx4h908xLn1U132
-	4fLsRpxht5FKjlCA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 4D216139CE;
-	Mon, 16 Sep 2024 10:32:41 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id 4S9pD0kJ6GaYZgAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Mon, 16 Sep 2024 10:32:41 +0000
-Message-ID: <a22e095c-d0fb-4414-8a4b-eea86bb90d02@suse.de>
-Date: Mon, 16 Sep 2024 13:32:32 +0300
+	s=arc-20240116; t=1726482917; c=relaxed/simple;
+	bh=20qsj4m1DPQ+/ZDMLLZxIdaw/hQ/nP4PxruNqxKGFIo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=DYxbVqiflj6D/YD2taVtkthZHd11rQ7ynwnzwPVlQf6uORPXElMMvxzjbJVzf4l7EtxNsHlbQZyM+ZMgAx8HNk4PgQRARg55ct/yj9DqqLPhvQxCe5FN7i59jObJgPPfD7691hOkGpar6qRqe5RPhTQi+zcdVvcahv48g2i3Jlk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=FFdO/att; arc=none smtp.client-ip=67.231.148.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+	by mx0a-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48GA0QaD024628;
+	Mon, 16 Sep 2024 03:34:51 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=pfpt0220; bh=gUdewsYTg5kNQwINFdOpoCt
+	8+cBKcqpcXykI+k/2fRE=; b=FFdO/atte8kvwQkTqYCVIE7ALmOwL0m/Edxuz41
+	XUfSvruuHWvjSOlV3VHPFzxJRSYAptmJEkMQt/+8oG8xLqPsXFaSUlr/rCnAJ7Df
+	bRc6e0J/fqxBSnK5TYRytpnx/p91aHFnCBNSsIWrr1xr7u6Ad/6/rjXebqZ/TzJJ
+	+J4yrklCYMMqdWtb0XPTFL0UkoIE4+xnJLOdHXogDnlkdhu6JIjXS7MYCISW+hNw
+	uYUfs+wzW/ZhTvhyBmxC5Gx2VweuQDh0mgYG96TGkC7ciWT7Di6jrcnlyumbVwfv
+	utZZ3DbEMadoBbHUksLLbDtlBuwEjURWWCllo58uhWuddeA==
+Received: from dc5-exch05.marvell.com ([199.233.59.128])
+	by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 41n7ujnd9t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Sep 2024 03:34:50 -0700 (PDT)
+Received: from DC5-EXCH05.marvell.com (10.69.176.209) by
+ DC5-EXCH05.marvell.com (10.69.176.209) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Mon, 16 Sep 2024 03:34:49 -0700
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH05.marvell.com
+ (10.69.176.209) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Mon, 16 Sep 2024 03:34:49 -0700
+Received: from virtx40.. (unknown [10.28.34.196])
+	by maili.marvell.com (Postfix) with ESMTP id 41B213F704A;
+	Mon, 16 Sep 2024 03:34:45 -0700 (PDT)
+From: Linu Cherian <lcherian@marvell.com>
+To: <suzuki.poulose@arm.com>, <mike.leach@linaro.org>, <james.clark@arm.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <coresight@lists.linaro.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <corbet@lwn.net>, <devicetree@vger.kernel.org>, <sgoutham@marvell.com>,
+        <gcherian@marvell.com>, Linu Cherian <lcherian@marvell.com>
+Subject: [PATCH v10 0/8] Coresight for Kernel panic and watchdog reset
+Date: Mon, 16 Sep 2024 16:04:29 +0530
+Message-ID: <20240916103437.226816-1-lcherian@marvell.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 -next 01/11] dt-bindings: interrupt-controller: Add
- bcm2712 MSI-X DT bindings
-To: Rob Herring <robh@kernel.org>, Stanimir Varbanov <svarbanov@suse.de>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
- linux-pci@vger.kernel.org,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Thomas Gleixner
- <tglx@linutronix.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Jim Quinlan <jim2101024@gmail.com>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Andrea della Porta <andrea.porta@suse.com>,
- Phil Elwell <phil@raspberrypi.com>, Jonathan Bell <jonathan@raspberrypi.com>
-References: <20240910151845.17308-1-svarbanov@suse.de>
- <20240910151845.17308-2-svarbanov@suse.de>
- <20240911165611.GA897131-robh@kernel.org>
-Content-Language: en-US
-From: Stanimir Varbanov <svarbanov@suse.de>
-In-Reply-To: <20240911165611.GA897131-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Level: 
-X-Spamd-Result: default: False [-2.80 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	RCVD_COUNT_TWO(0.00)[2];
-	TAGGED_RCPT(0.00)[dt];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	ARC_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FROM_EQ_ENVFROM(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,broadcom.com,linutronix.de,kernel.org,gmail.com,google.com,linux.com,pengutronix.de,suse.com,raspberrypi.com];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_ALL(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:mid]
-X-Spam-Score: -2.80
-X-Spam-Flag: NO
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: UxWg_Zc5P0_kRgQNtx6jkYl4t9jKAjP8
+X-Proofpoint-ORIG-GUID: UxWg_Zc5P0_kRgQNtx6jkYl4t9jKAjP8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-Hi Rob,
+This patch series is rebased on coresight-next-v6.12.
 
-Thank you for the review comments!
+Changelog from v9:
+* Add common helper function of_tmc_get_reserved_resource_by_name
+  for better code reuse
+* Reserved buffer validity and crashdata validity has been separated to
+  avoid interdependence
+* New fields added to crash metadata: version, ffcr, ffsr, mode
+* Version checks added for metadata validation
+* Special file /dev/crash_tmc_xxx would be available only when
+  crash metadata is valid
+* Removed READ_CRASHDATA mode meant for special casing crashdata reads.
+  Instead, dedicated read function added for crashdata reads from reserved
+  buffer which is common for both ETR and ETF sinks as well.
+* Documentation added to Documentation/tracing/coresight/panic.rst
 
-On 9/11/24 19:56, Rob Herring wrote:
-> On Tue, Sep 10, 2024 at 06:18:35PM +0300, Stanimir Varbanov wrote:
->> Adds DT bindings for bcm2712 MSI-X interrupt peripheral controller.
->>
->> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
->> ---
->>  .../brcm,bcm2712-msix.yaml                    | 69 +++++++++++++++++++
->>  1 file changed, 69 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
->> new file mode 100644
->> index 000000000000..2b53dfa7c25e
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
->> @@ -0,0 +1,69 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/interrupt-controller/brcm,bcm2712-msix.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Broadcom bcm2712 MSI-X Interrupt Peripheral support
->> +
->> +maintainers:
->> +  - Stanimir Varbanov <svarbanov@suse.de>
->> +
->> +description: >
-> 
-> Don't need '>' here.
+Changelog from v8:
+* Added missing exit path on error in __tmc_probe.
+* Few whitespace fixes, checkpatch fixes.
+* With perf sessions honouring stop_on_flush sysfs attribute, 
+  removed redundant variable stop_on_flush_en. 
 
-OK.
+Changelog from v7:
+* Fixed breakage on perf test -vvvv  "arm coresight".
+  No issues seen with and without "resrv" buffer mode
+* Moved the crashdev registration into a separate function.
+* Removed redundant variable in tmc_etr_setup_crashdata_buf
+* Avoided a redundant memcpy in tmc_panic_sync_etf.
+* Tested kernel panic with trace session started uisng perf.   
+  Please see the title "Perf based testing" below for details.
+  For this, stop_on_flush sysfs attribute is taken into 
+  consideration while starting perf sessions as well. 
 
-> 
->> +  This interrupt controller is used to provide interrupt vectors to the
->> +  generic interrupt controller (GIC) on bcm2712. It will be used as
->> +  external MSI-X controller for PCIe root complex.
->> +
->> +allOf:
->> +  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: brcm,bcm2712-mip
->> +
->> +  reg:
->> +    items:
->> +      - description: base registers address
->> +      - description: pcie message address
->> +
->> +  interrupt-controller: true
->> +
->> +  "#interrupt-cells":
->> +    const: 2
-> 
-> What goes in these cells?
-> 
-> But really, what interrupts does an MSI controller handle? Or are we 
-> just putting "interrupt-controller" in here so that kernel handles this 
-> with IRQCHIP_DECLARE()?
-> 
+Changelog from v6:
+* Added special device files for reading crashdata, so that
+  read_prevboot mode flag is removed. 
+* Added new sysfs TMC device attribute, stop_on_flush.
+  Stop on flush trigger event is disabled by default. 
+  User need to explicitly enable this from sysfs for panic stop
+  to work.
+* Address parameter for panicstop ETM configuration is   
+  chosen as kernel "panic" address by default.
+* Added missing tmc_wait_for_tmcready during panic handling
+* Few other misc code rearrangements. 
 
-Yes, looks like interrupt-controller property is need by IRQCHIP_DECLARE().
+Changelog from v5:
+* Fixed issues reported by CONFIG_DEBUG_ATOMIC_SLEEP
+* Fixed a memory leak while reading data from /dev/tmc_etrx in
+  READ_PREVBOOT mode
+* Tested reading trace data from crashdump kernel
 
-I will drop interrupt-controller/cells and convert the driver to use
-IRQCHIP_PLATFORM_DRIVER_BEGIN/END().
+Changelog from v4:
+* Device tree binding
+  - Description is made more explicit on the usage of reserved memory
+    region
+  - Mismatch in memory region names in dts binding and driver fixed
+  - Removed "mem" suffix from the memory region names
+* Rename "struct tmc_register_snapshot" ->  "struct tmc_crash_metadata",
+  since it contains more than register snapshot.
+  Related variables are named accordingly.
+* Rename struct tmc_drvdata members
+   resrv_buf -> crash_tbuf
+   metadata  -> crash_mdata
+* Size field in metadata refers to RSZ register and hence indicates the
+  size in 32 bit words. ETR metadata follows this convention, the same
+  has been extended to ETF metadata as well.
+* Added crc32 for more robust metadata and tracedata validation.
+* Added/modified dev_dbg messages during metadata validation
+* Fixed a typo in patch 5 commit description
 
->> +
->> +  msi-controller: true
-> 
-> Drop and use 'unevaluatedProperties'.
+Changelog from v3:
+* Converted the Coresight ETM driver change to a named configuration.
+  RFC tag has been removed with this change.
+* Fixed yaml issues reported by "make dt_binding_check"
+* Added names for reserved memory regions 0 and 1
+* Added prevalidation checks for metadata processing
+* Fixed a regression introduced in RFC v3
+  - TMC Status register was getting saved wrongly
+* Reverted memremap attribute changes from _WB to _WC to match
+  with the dma map attributes
+* Introduced reserved buffer mode specific .sync op.
+  This fixes a possible crash when reserved buffer mode was used in
+  normal trace capture, due to unwanted dma maintenance operations.
 
-OK.
+   *** SUBJECT HERE ***
 
-> 
->> +
->> +  "#msi-cells":
->> +    enum: [0]
-> 
-> const: 0
+*** BLURB HERE ***
 
-OK.
+Linu Cherian (8):
+  dt-bindings: arm: coresight-tmc: Add "memory-region" property
+  coresight: tmc-etr: Add support to use reserved trace memory
+  coresight: core: Add provision for panic callbacks
+  coresight: tmc: Enable panic sync handling
+  coresight: tmc: Add support for reading crash data
+  coresight: tmc: Stop trace capture on FlIn
+  coresight: config: Add preloaded configuration
+  Documentation: coresight: Panic support
 
-> 
->> +
->> +  msi-ranges: true
-> 
-> Drop.
+ .../bindings/arm/arm,coresight-tmc.yaml       |  26 ++
+ Documentation/trace/coresight/panic.rst       | 356 ++++++++++++++++++
+ drivers/hwtracing/coresight/Makefile          |   2 +-
+ .../coresight/coresight-cfg-preload.c         |   2 +
+ .../coresight/coresight-cfg-preload.h         |   2 +
+ .../hwtracing/coresight/coresight-cfg-pstop.c |  83 ++++
+ drivers/hwtracing/coresight/coresight-core.c  |  42 +++
+ .../hwtracing/coresight/coresight-tmc-core.c  | 296 ++++++++++++++-
+ .../hwtracing/coresight/coresight-tmc-etf.c   | 124 +++++-
+ .../hwtracing/coresight/coresight-tmc-etr.c   | 231 +++++++++++-
+ drivers/hwtracing/coresight/coresight-tmc.h   | 106 ++++++
+ include/linux/coresight.h                     |  24 ++
+ 12 files changed, 1282 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/trace/coresight/panic.rst
+ create mode 100644 drivers/hwtracing/coresight/coresight-cfg-pstop.c
 
-OK.
+-- 
+2.34.1
 
-> 
->> +
->> +additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupt-controller
->> +  - "#interrupt-cells"
->> +  - msi-controller
->> +  - msi-ranges
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +    axi {
->> +        #address-cells = <2>;
->> +        #size-cells = <2>;
->> +
->> +        msi-controller@1000130000 {
->> +            compatible = "brcm,bcm2712-mip";
->> +            reg = <0x10 0x00130000 0x00 0xc0>,
->> +                  <0xff 0xfffff000 0x00 0x1000>;
->> +            msi-controller;
->> +            #msi-cells = <0>;
->> +            interrupt-controller;
->> +            #interrupt-cells = <2>;
->> +            msi-ranges = <&gicv2 GIC_SPI 128 IRQ_TYPE_EDGE_RISING 64>;
->> +        };
->> +    };
->> -- 
->> 2.35.3
->>
 
