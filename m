@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-103367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B30ED97A83D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 22:21:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 001B497A849
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 22:23:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77D5D28839D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 20:21:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A1FDB2A197
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 20:23:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9779015C137;
-	Mon, 16 Sep 2024 20:21:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2CB815C144;
+	Mon, 16 Sep 2024 20:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AI6nrhE+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pdFWBWb2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 694B72628C;
-	Mon, 16 Sep 2024 20:21:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 751714174A;
+	Mon, 16 Sep 2024 20:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726518092; cv=none; b=h9H/qqE5N1ZobqfLnYTokIYabsVn1kgiky6WPs+XXKsgZhXVs+D0vZjbQ13jmJN0cQ+bh25SEP02qrHvJFv3IX/gJSUf/bZbCFIEvId2evJF2m/hy+2t7ei6qhsPnV08TZSHGOiHhRXJDcU7eq9ktt9By7XaTfhV8CpifYe9myw=
+	t=1726518203; cv=none; b=WVpntj6l2RIU/fabvwVpXHA07Ohx/9AMDyPOXK1tewOnR9gu2csyKmx15mkGstKNTvld12HXDWVCGAr8pUovgDN/VnRZ2mOFIpsg4IwyHt33YgWqM7a51ILNl8RLYR/C7suG664QuOgZ9tdrpfyvOnYVTcbSnqLE0ZMTfNB/SZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726518092; c=relaxed/simple;
-	bh=deePev/5PolISmSihzoi92wFF4nh6uH26O7kF3BOKIE=;
+	s=arc-20240116; t=1726518203; c=relaxed/simple;
+	bh=I+eYB9/iGpjy2fwoJ4YmiqEzyB8jdfZHLMIS00A1aRQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=noR9D4Fs7qRIbKQ5H7qNp09P/wMd/WEq3nLdN7q1QTnL+3mzG8CahCbKK4YYvxDodFemMAQCr4hHJdzvC5X3MNTUH2rdew8RQP7Ju7+3ugZgHr2pn3D8BUoXA1uCyK+YLmKAwM3dbFcDTi4jhEf55YDehsboFXOcq6p/1oQ4bQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AI6nrhE+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4393AC4CEC4;
-	Mon, 16 Sep 2024 20:21:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=s8miRLaHykjUfoPUcT/bVyZ4/Knt+Aid5/EwoYot5bujAgfo4r+kj3vxbymVywhPKi6a5Jft1g63f3klk9PC0GcdesagwSCU0xqDMd8AEE6Jixr3iOAh+mJwnMc1Avo1MmhNFSS8nKLT62vz0g/qgLTGPgcEgsd9l3YlT7cHs94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pdFWBWb2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFDC5C4CEC4;
+	Mon, 16 Sep 2024 20:23:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726518091;
-	bh=deePev/5PolISmSihzoi92wFF4nh6uH26O7kF3BOKIE=;
+	s=k20201202; t=1726518202;
+	bh=I+eYB9/iGpjy2fwoJ4YmiqEzyB8jdfZHLMIS00A1aRQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AI6nrhE+qlOcShePDmLEslKbmQSQ1NecLFiA6QqOcVst0iui8VTKnQ46vtMd9by+c
-	 RV6MapLMdaKiJqsFOdGrjk0BomIxMxhQAewfqWqpg3OdkagGcpI5IWA/0SFgOAjQFZ
-	 IpiW74loDU/bX0EW1W0DZzLKcedy2TgyJY0zV7MnITIp2g0/D/0QBIVaKgax+hedne
-	 OTUDN8XN7GuPTfHP+ZYbJAL2Jo3Hfs+E6n/zGE/uzas0YxjxJzcSFFqGgxcn3YD9X8
-	 dX28BmTdEsuQjQWnPYp4cHORQBV8Q0uUZ2bD240uDToEai3OJFLaHQLvArv3qQ2a/F
-	 99KeXyLOnEbJg==
-Message-ID: <0b855362-d0a7-45da-81d5-10d53bf8d965@kernel.org>
-Date: Mon, 16 Sep 2024 22:21:21 +0200
+	b=pdFWBWb20FdS4V997/xrw9O1dpeTWn7iVg3EaG0bBJlp641TvOOE9FodW2tSb2kNn
+	 5WWRTQJqDGEWmzDb7/v5CWX79JqENsMOi5bgzGebQHgAr6OlSnjWpYIgjKKn2rs5OK
+	 /emFMkVJBR8sZjQLDOvnRks5qvU7TSsh0SQLY1fZHkRDmLBB9pnLgxMy2FAwuvbW/F
+	 +YBPZA1Lk5tcRx+W/q2nRtpx7aqvX+1hRfeqWlYDt3AaFXc+AegdozvcOnolpc4iE/
+	 iTCeU/fAYiC5OUYeOzUetev+mLlykWKN/MGBYDs/cnPzRqFRHcTLZ5ecWi2Bz2BeTT
+	 Q+C9zLXgUfTgQ==
+Message-ID: <eb3ec7f1-388c-4613-b995-69b8ad6ef2c0@kernel.org>
+Date: Mon, 16 Sep 2024 22:23:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/5] mailbox: add Microchip IPC support
-To: Valentina Fernandez <valentina.fernandezalanis@microchip.com>,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- peterlin@andestech.com, dminus@andestech.com, conor.dooley@microchip.com,
- conor+dt@kernel.org, ycliang@andestech.com, jassisinghbrar@gmail.com,
- robh@kernel.org, krzk+dt@kernel.org, andersson@kernel.org,
- mathieu.poirier@linaro.org
-Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org
-References: <20240912170025.455167-1-valentina.fernandezalanis@microchip.com>
- <20240912170025.455167-4-valentina.fernandezalanis@microchip.com>
+Subject: Re: [PATCH] arm64: dts: imx8: Fix lvds0 device tree
+To: Diogo Silva <diogompaissilva@gmail.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ aisheng.dong@nxp.com, Frank.Li@nxp.com
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240916200255.2566209-1-diogo.pais@ttcontrol.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,149 +103,109 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240912170025.455167-4-valentina.fernandezalanis@microchip.com>
+In-Reply-To: <20240916200255.2566209-1-diogo.pais@ttcontrol.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/09/2024 19:00, Valentina Fernandez wrote:
-> Add a mailbox controller driver for the Microchip Inter-processor
-> Communication (IPC), which is used to send and receive data between
-> processors.
+On 16/09/2024 22:02, Diogo Silva wrote:
+> From: Diogo Silva <diogompaissilva@gmail.com>
 > 
-> The driver uses the RISC-V Supervisor Binary Interface (SBI) to
-> communicate with software running in machine mode (M-mode) to access
-> the IPC hardware block.
+> Some clock output names on lvds0 device tree were duplicated from mipi1,
+> which caused an -EEXIST when registering these clocks during probe.
+> Also fixed the device naming to be consistent with lvds1.
 > 
+> Fixes: 0fba24b3b956 ("arm64: dts: imx8: add basic lvds0 and lvds1 subsystem")
+> subsystem")
 
-...
+Broken tags. They do not line-brake, BTW.
 
-> +
-> +static struct microchip_ipc *to_mchp_ipc_mbox(struct mbox_controller *mbox)
-> +{
-> +	return container_of(mbox, struct microchip_ipc, controller);
-> +}
-> +
+> Signed-off-by: Diogo Silva <diogompaissilva@gmail.com>
+> ---
+>  .../boot/dts/freescale/imx8-ss-lvds0.dtsi     | 22 +++++++++----------
+>  arch/arm64/boot/dts/freescale/imx8qm-mek.dts  |  4 ++--
+>  .../boot/dts/freescale/imx8qm-ss-lvds.dtsi    | 20 ++++++++---------
+>  3 files changed, 23 insertions(+), 23 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi
+> index d00036204a8c..a4d94467039f 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi
+> @@ -10,34 +10,34 @@ lvds0_subsys: bus@56240000 {
+>  	#size-cells = <1>;
+>  	ranges = <0x56240000 0x0 0x56240000 0x10000>;
+>  
+> -	qm_lvds0_lis_lpcg: qxp_mipi1_lis_lpcg: clock-controller@56243000 {
+> +	lvds0_lis_lpcg: clock-controller@56243000 {
+>  		compatible = "fsl,imx8qxp-lpcg";
+>  		reg = <0x56243000 0x4>;
+>  		#clock-cells = <1>;
+> -		clock-output-names = "mipi1_lis_lpcg_ipg_clk";
+> +		clock-output-names = "lvds0_lis_lpcg_ipg_clk";
+>  		power-domains = <&pd IMX_SC_R_MIPI_1>;
+>  	};
+>  
+> -	qm_lvds0_pwm_lpcg: qxp_mipi1_pwm_lpcg: clock-controller@5624300c {
+> +	lvds0_pwm_lpcg: clock-controller@5624300c {
+>  		compatible = "fsl,imx8qxp-lpcg";
+>  		reg = <0x5624300c 0x4>;
+>  		#clock-cells = <1>;
+> -		clock-output-names = "mipi1_pwm_lpcg_clk",
+> -				     "mipi1_pwm_lpcg_ipg_clk",
+> -				     "mipi1_pwm_lpcg_32k_clk";
+> +		clock-output-names = "lvds0_pwm_lpcg_clk",
+> +				     "lvds0_pwm_lpcg_ipg_clk",
+> +				     "lvds0_pwm_lpcg_32k_clk";
+>  		power-domains = <&pd IMX_SC_R_MIPI_1_PWM_0>;
+>  	};
+>  
+> -	qm_lvds0_i2c0_lpcg: qxp_mipi1_i2c0_lpcg: clock-controller@56243010 {
+> +	lvds0_i2c0_lpcg: clock-controller@56243010 {
+>  		compatible = "fsl,imx8qxp-lpcg";
+>  		reg = <0x56243010 0x4>;
+>  		#clock-cells = <1>;
+> -		clock-output-names = "mipi1_i2c0_lpcg_clk",
+> -				     "mipi1_i2c0_lpcg_ipg_clk";
+> +		clock-output-names = "lvds0_i2c0_lpcg_clk",
+> +				     "lvds0_i2c0_lpcg_ipg_clk";
+>  		power-domains = <&pd IMX_SC_R_MIPI_1_I2C_0>;
+>  	};
+>  
+> -	qm_pwm_lvds0: qxp_pwm_mipi_lvds1: pwm@56244000 {
+> +	pwm_lvds0: pwm@56244000 {
+>  		compatible = "fsl,imx8qxp-pwm", "fsl,imx27-pwm";
+>  		reg = <0x56244000 0x1000>;
+>  		clock-names = "ipg", "per";
+> @@ -48,7 +48,7 @@ qm_pwm_lvds0: qxp_pwm_mipi_lvds1: pwm@56244000 {
+>  		status = "disabled";
+>  	};
+>  
+> -	qm_i2c0_lvds0: qxp_i2c0_mipi_lvds1: i2c@56246000 {
+> +	i2c0_lvds0: i2c@56246000 {
+>  		compatible = "fsl,imx8qxp-lpi2c", "fsl,imx7ulp-lpi2c";
+>  		reg = <0x56246000 0x1000>;
+>  		#address-cells = <1>;
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
+> index 62203eed6a6c..f7b9b319a58a 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
+> @@ -96,7 +96,7 @@ vdevbuffer: memory@90400000 {
+>  
+>  	lvds_backlight0: backlight-lvds0 {
+>  		compatible = "pwm-backlight";
+> -		pwms = <&qm_pwm_lvds0 0 100000 0>;
+> +		pwms = <&pwm_lvds0 0 100000 0>;
+>  		brightness-levels = <0 100>;
+>  		num-interpolated-steps = <100>;
+>  		default-brightness-level = <80>;
+> @@ -541,7 +541,7 @@ &fec2 {
+>  	status = "okay";
+>  };
+>  
+> -&qm_pwm_lvds0 {
+> +&pwm_lvds0 {
 
-You need kerneldoc for exported functions.
-
-> +u32 mchp_ipc_get_chan_id(struct mbox_chan *chan)
-> +{
-> +	struct ipc_chan_info *chan_info = (struct ipc_chan_info *)chan->con_priv;
-> +
-> +	return chan_info->id;
-> +}
-> +EXPORT_SYMBOL(mchp_ipc_get_chan_id);
-
-EXPORT_SYMBOL_GPL
-
-> +
-
-
-...
-
-> +static int mchp_ipc_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct mchp_ipc_probe ipc_info;
-> +	struct microchip_ipc *ipc;
-> +	struct ipc_chan_info *priv;
-> +	bool irq_avail = false;
-> +	int ret;
-> +	u32 chan_id;
-> +
-> +	ret = sbi_probe_extension(SBI_EXT_MICROCHIP_TECHNOLOGY);
-> +	if (ret <= 0)
-> +		return dev_err_probe(dev, ret, "Microchip SBI extension not detected\n");
-> +
-> +	ipc = devm_kzalloc(dev, sizeof(*ipc), GFP_KERNEL);
-> +	if (!ipc)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, ipc);
-> +
-> +	ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(IPC_DMA_BIT_MASK));
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "dma_set_mask_and_coherent failed\n");
-> +
-> +	ipc->buf_base = dmam_alloc_coherent(dev, sizeof(u32), &ipc->dma_addr, GFP_KERNEL);
-> +
-
-Drop blank line.
-
-> +	if (!ipc->buf_base)
-> +		return -ENOMEM;
-> +
-> +	ret = mchp_ipc_sbi_send(SBI_EXT_IPC_PROBE, ipc->dma_addr);
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "could not probe IPC SBI service\n");
-> +
-> +	memcpy(&ipc_info, ipc->buf_base, sizeof(struct mchp_ipc_probe));
-> +	ipc->num_channels = ipc_info.num_channels;
-> +	ipc->hw_type = ipc_info.hw_type;
-> +
-> +	ipc->chans = devm_kcalloc(dev, ipc->num_channels, sizeof(*ipc->chans), GFP_KERNEL);
-> +	if (!ipc->chans)
-> +		return -ENOMEM;
-> +
-> +	ipc->dev = dev;
-> +	ipc->controller.txdone_irq = true;
-> +	ipc->controller.dev = ipc->dev;
-> +	ipc->controller.ops = &mchp_ipc_ops;
-> +	ipc->controller.chans = ipc->chans;
-> +	ipc->controller.num_chans = ipc->num_channels;
-> +	ipc->controller.of_xlate = mchp_ipc_mbox_xlate;
-> +
-> +	for (chan_id = 0; chan_id < ipc->num_channels; chan_id++) {
-> +		priv = devm_kmalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +		if (!priv)
-> +			return -ENOMEM;
-> +
-> +		ipc->chans[chan_id].con_priv = priv;
-> +		priv->id = chan_id;
-> +	}
-> +
-> +	if (ipc->hw_type == MIV_IHC) {
-> +		ipc->cluster_cfg = devm_kcalloc(dev, num_online_cpus(),
-> +						sizeof(struct mchp_ipc_cluster_cfg),
-> +						GFP_KERNEL);
-> +		if (!ipc->cluster_cfg)
-> +			return -ENOMEM;
-> +
-> +		if (mchp_ipc_get_cluster_aggr_irq(ipc))
-> +			irq_avail = true;
-> +	}
-> +
-> +	if (!irq_avail)
-> +		return dev_err_probe(dev, -ENODEV, "missing interrupt property\n");
-> +
-> +	ret = devm_mbox_controller_register(dev, &ipc->controller);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +					 "Inter-Processor communication (IPC) registration failed\n");
-
-Fix alignment.
-
-> +
-> +	return 0;
-> +}
-> +
-> +MODULE_DEVICE_TABLE(of, mchp_ipc_of_match);
-
-This is ALWAYS next to the definition.
-
-> +
-> +static struct platform_driver mchp_ipc_driver = {
-> +	.driver = {
-> +		.name = "microchip_ipc",
-> +		.of_match_table = of_match_ptr(mchp_ipc_of_match),
-
-Drop of_match_ptr. You have warnings here.
-
-> +	},
-> +	.probe = mchp_ipc_probe,
-> +};
-> +
-> +module_platform_driver(mchp_ipc_driver);
+Why this cannot stay qm_pwm_lvds0? Are you sure nodes now have correct
+order?
 
 
 
