@@ -1,218 +1,224 @@
-Return-Path: <devicetree+bounces-103242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 644E4979FC9
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 12:55:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE31C97A021
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 13:18:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2809728254F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 10:55:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E5DD1F2234A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 11:18:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7A221534E9;
-	Mon, 16 Sep 2024 10:55:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5CE814B942;
+	Mon, 16 Sep 2024 11:17:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="Dp27cnon"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AAB11482FE;
-	Mon, 16 Sep 2024 10:55:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EDA313A89B;
+	Mon, 16 Sep 2024 11:17:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.156.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726484131; cv=none; b=WhtCQTCNkntSrI8XUDczz6wGN/vwQOHeiniWB3ojz3i8dv4QchexoJcDid9eZ5oVul8jIpOm/KQKNP/wTbJ5pLbqaEc72IhbixJRUw+O40zTVKBJETZ4tZjXEzcZJqCdHjwvlooLbL2I9LZIFNV054/gIV9nKhColSj4E1ArK0M=
+	t=1726485479; cv=none; b=IG/GBmfHjm0OT4iI+tmRuBDOEYnRNw7Dr1EEbkIDUyYHCFbHedYBHou/IqGlPe6cMotDlq4N3/jqnaEF9uVy+mtPVCUu2U/4zdLyogH+VLTX+3gqf1uiOAhB8DPWFM+Q9e0TmCkFGJINUPnuRsz/MMPXdJ2bMbw8JwpoHhlE66E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726484131; c=relaxed/simple;
-	bh=zdVQq5K8PIZNGz15V1HeyVqfSmTTbaI0Lk4mbOZxYPI=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lGojVPYXLuAyWoGkEZvB3PRpnLHDHJtIFYY6ldokB5CWK0pXfzdBUEiktE0SJH2iXGnK5R+jinXZNqNZhZGGYT6iJsfLa4aUHl7kq5wXZl+ZUxmW1gsQel6Cuiyixn8harh5XSpz1twSdG5Dd1Vqz8b9s6OM5NZpNA6JSE7RKxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4X6hY03zmLz6K5lT;
-	Mon, 16 Sep 2024 18:51:16 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id E3D721400CB;
-	Mon, 16 Sep 2024 18:55:27 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Mon, 16 Sep
- 2024 12:55:27 +0200
-Date: Mon, 16 Sep 2024 11:55:25 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-CC: Chen-Yu Tsai <wenst@chromium.org>, Rob Herring <robh@kernel.org>, Saravana
- Kannan <saravanak@google.com>, Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram
- Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>, Tzung-Bi Shih
-	<tzungbi@kernel.org>, Mark Brown <broonie@kernel.org>, Liam Girdwood
-	<lgirdwood@gmail.com>, <chrome-platform@lists.linux.dev>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <linux-kernel@vger.kernel.org>, Douglas
- Anderson <dianders@chromium.org>, Johan Hovold <johan@kernel.org>, Jiri
- Kosina <jikos@kernel.org>, <linux-i2c@vger.kernel.org>
-Subject: Re: [PATCH v7 06/10] i2c: Introduce OF component probe function
-Message-ID: <20240916115525.000078a3@Huawei.com>
-In-Reply-To: <ZugKHrzs5BWoDr1c@smile.fi.intel.com>
-References: <20240911072751.365361-1-wenst@chromium.org>
-	<20240911072751.365361-7-wenst@chromium.org>
-	<ZuQTFTNTBLCziD05@smile.fi.intel.com>
-	<CAGXv+5HgkCZ=vdHGgvCW1U-nid=cQrVaxC+V+H2Gknf2pnTbYA@mail.gmail.com>
-	<ZugKHrzs5BWoDr1c@smile.fi.intel.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1726485479; c=relaxed/simple;
+	bh=ZlYPSvZsGi1q6s6YN0bdu0Qlhkipn0uDSl6liAg9Uv8=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uTkylBfFVyQnn8gofAcujcnbmo/pNl/4+IB14trUl9g5Tk22wgdrqSgZVQyEqwvEcl7Ndgk5Rd3TmcxacZE4Oyqz+NRPSmpFYISqx7XkpM4vwFverVPttJKV6BkZNLM9L0OW8xPfCMJrfR915P9F9TY5rndUhu7W0Hbz6eJU9tA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=Dp27cnon; arc=none smtp.client-ip=67.231.156.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+	by mx0b-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48FM081x015731;
+	Mon, 16 Sep 2024 04:17:37 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=pfpt0220; bh=2v3BNJCeLd77X2UkoE0pewcsx
+	RCDqasl+o2bw/iIP8Q=; b=Dp27cnonNWMjdjcPaG2R65bm1px3h0i8dWPsvy9yX
+	TiVPNq248e8QoqhhPXxnNRIymPQ/p4Xm1YXEtKDwy3ZBfpKNFqC/k0nFCspJKZTs
+	vEjL+waeygFj+T0GyuKIWAtbokmB8j8tFs7twwkogDi1XVimDhyi0BLMmEG5frJV
+	2cFTihARaoEnLUPDimxM+cgQSgNtSZuMF/MwORh2uGsPGJUx0/5+PSIa+lsetP8X
+	aw6ch3ZWj2pxetCpdQI6GxfC4GD0lVDrtVMX2vzWoidz4I5PHVLUAVLI8owvzZT/
+	At2tCUXlbXhVKyxaSzvlj65evaHrUtBblxA09UEs2tP0Q==
+Received: from dc6wp-exch02.marvell.com ([4.21.29.225])
+	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 41na0fw89b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Sep 2024 04:17:36 -0700 (PDT)
+Received: from DC6WP-EXCH02.marvell.com (10.76.176.209) by
+ DC6WP-EXCH02.marvell.com (10.76.176.209) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Mon, 16 Sep 2024 04:17:04 -0700
+Received: from maili.marvell.com (10.69.176.80) by DC6WP-EXCH02.marvell.com
+ (10.76.176.209) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Mon, 16 Sep 2024 04:17:04 -0700
+Received: from hyd1403.caveonetworks.com (unknown [10.29.37.84])
+	by maili.marvell.com (Postfix) with SMTP id 6DD823F704E;
+	Mon, 16 Sep 2024 04:17:00 -0700 (PDT)
+Date: Mon, 16 Sep 2024 16:46:59 +0530
+From: Linu Cherian <lcherian@marvell.com>
+To: <suzuki.poulose@arm.com>, <mike.leach@linaro.org>, <james.clark@arm.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <coresight@lists.linaro.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <corbet@lwn.net>, <devicetree@vger.kernel.org>, <sgoutham@marvell.com>,
+        <gcherian@marvell.com>
+Subject: Re: [PATCH v10 0/8] Coresight for Kernel panic and watchdog reset
+Message-ID: <20240916111659.GA716806@hyd1403.caveonetworks.com>
+References: <20240916103437.226816-1-lcherian@marvell.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
- frapeml500008.china.huawei.com (7.182.85.71)
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240916103437.226816-1-lcherian@marvell.com>
+X-Proofpoint-ORIG-GUID: N0o_ppgiyOcZaDldnaR4YUnHfRCNxT_8
+X-Proofpoint-GUID: N0o_ppgiyOcZaDldnaR4YUnHfRCNxT_8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-On Mon, 16 Sep 2024 13:36:14 +0300
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+Hi,
 
-> On Sun, Sep 15, 2024 at 12:44:13PM +0200, Chen-Yu Tsai wrote:
-> > On Fri, Sep 13, 2024 at 12:25=E2=80=AFPM Andy Shevchenko
-> > <andriy.shevchenko@linux.intel.com> wrote: =20
-> > > On Wed, Sep 11, 2024 at 03:27:44PM +0800, Chen-Yu Tsai wrote: =20
->=20
-> ...
->=20
-> > > > +int i2c_of_probe_component(struct device *dev, const struct i2c_of=
-_probe_cfg *cfg, void *ctx)
-> > > > +{
-> > > > +     const struct i2c_of_probe_ops *ops;
-> > > > +     const char *type;
-> > > > +     struct device_node *i2c_node;
-> > > > +     struct i2c_adapter *i2c;
-> > > > +     int ret;
-> > > > +
-> > > > +     if (!cfg)
-> > > > +             return -EINVAL;
-> > > > +
-> > > > +     ops =3D cfg->ops ?: &i2c_of_probe_dummy_ops;
-> > > > +     type =3D cfg->type;
-> > > > +
-> > > > +     i2c_node =3D i2c_of_probe_get_i2c_node(dev, type); =20
-> > >
-> > >
-> > >         struct device_node *i2c_node __free(of_node_put) =3D
-> > >                 i2c_...; =20
-> >=20
-> > cleanup.h says to not mix the two styles (scoped vs goto). I was trying
-> > to follow that, though I realize now that with the scoped loops it
-> > probably doesn't help.
+On 2024-09-16 at 16:04:29, Linu Cherian (lcherian@marvell.com) wrote:
+> This patch series is rebased on coresight-next-v6.12.
 
-The problem pattern is (IIUC)
+Adding info which i missed out in the cover letter.
 
-	if (x)
-		goto bob;
+* V9 was posted here,
+   https://lore.kernel.org/linux-arm-kernel/20240605081725.622953-1-lcherian@marvell.com/
+* Patches 1 & 2 adds support for allocation of trace buffer pages from reserved RAM
+* Patches 3 & 4 adds support for saving metadata at the time of kernel panic 
+* Patch 5 adds support for reading trace data captured at the time of panic
+* Patches 6 & 7 adds support for disabling coresight blocks at the time of panic
+* Patch 8: Gives the full description about this feature as part of
+  documentation 
 
-	struct device_node *i2c_node __free(of_node_put) =3D i2c_....
+> 
+> Changelog from v9:
+> * Add common helper function of_tmc_get_reserved_resource_by_name
+>   for better code reuse
+> * Reserved buffer validity and crashdata validity has been separated to
+>   avoid interdependence
+> * New fields added to crash metadata: version, ffcr, ffsr, mode
+> * Version checks added for metadata validation
+> * Special file /dev/crash_tmc_xxx would be available only when
+>   crash metadata is valid
+> * Removed READ_CRASHDATA mode meant for special casing crashdata reads.
+>   Instead, dedicated read function added for crashdata reads from reserved
+>   buffer which is common for both ETR and ETF sinks as well.
+> * Documentation added to Documentation/tracing/coresight/panic.rst
+> 
+> Changelog from v8:
+> * Added missing exit path on error in __tmc_probe.
+> * Few whitespace fixes, checkpatch fixes.
+> * With perf sessions honouring stop_on_flush sysfs attribute, 
+>   removed redundant variable stop_on_flush_en. 
+> 
+> Changelog from v7:
+> * Fixed breakage on perf test -vvvv  "arm coresight".
+>   No issues seen with and without "resrv" buffer mode
+> * Moved the crashdev registration into a separate function.
+> * Removed redundant variable in tmc_etr_setup_crashdata_buf
+> * Avoided a redundant memcpy in tmc_panic_sync_etf.
+> * Tested kernel panic with trace session started uisng perf.   
+>   Please see the title "Perf based testing" below for details.
+>   For this, stop_on_flush sysfs attribute is taken into 
+>   consideration while starting perf sessions as well. 
+> 
+> Changelog from v6:
+> * Added special device files for reading crashdata, so that
+>   read_prevboot mode flag is removed. 
+> * Added new sysfs TMC device attribute, stop_on_flush.
+>   Stop on flush trigger event is disabled by default. 
+>   User need to explicitly enable this from sysfs for panic stop
+>   to work.
+> * Address parameter for panicstop ETM configuration is   
+>   chosen as kernel "panic" address by default.
+> * Added missing tmc_wait_for_tmcready during panic handling
+> * Few other misc code rearrangements. 
+> 
+> Changelog from v5:
+> * Fixed issues reported by CONFIG_DEBUG_ATOMIC_SLEEP
+> * Fixed a memory leak while reading data from /dev/tmc_etrx in
+>   READ_PREVBOOT mode
+> * Tested reading trace data from crashdump kernel
+> 
+> Changelog from v4:
+> * Device tree binding
+>   - Description is made more explicit on the usage of reserved memory
+>     region
+>   - Mismatch in memory region names in dts binding and driver fixed
+>   - Removed "mem" suffix from the memory region names
+> * Rename "struct tmc_register_snapshot" ->  "struct tmc_crash_metadata",
+>   since it contains more than register snapshot.
+>   Related variables are named accordingly.
+> * Rename struct tmc_drvdata members
+>    resrv_buf -> crash_tbuf
+>    metadata  -> crash_mdata
+> * Size field in metadata refers to RSZ register and hence indicates the
+>   size in 32 bit words. ETR metadata follows this convention, the same
+>   has been extended to ETF metadata as well.
+> * Added crc32 for more robust metadata and tracedata validation.
+> * Added/modified dev_dbg messages during metadata validation
+> * Fixed a typo in patch 5 commit description
+> 
+> Changelog from v3:
+> * Converted the Coresight ETM driver change to a named configuration.
+>   RFC tag has been removed with this change.
+> * Fixed yaml issues reported by "make dt_binding_check"
+> * Added names for reserved memory regions 0 and 1
+> * Added prevalidation checks for metadata processing
+> * Fixed a regression introduced in RFC v3
+>   - TMC Status register was getting saved wrongly
+> * Reverted memremap attribute changes from _WB to _WC to match
+>   with the dma map attributes
+> * Introduced reserved buffer mode specific .sync op.
+>   This fixes a possible crash when reserved buffer mode was used in
+>   normal trace capture, due to unwanted dma maintenance operations.
+> 
+>    *** SUBJECT HERE ***
+> 
+> *** BLURB HERE ***
 
+Sorry about this. 
 
-bob:
-	return ret;
+> 
+> Linu Cherian (8):
+>   dt-bindings: arm: coresight-tmc: Add "memory-region" property
+>   coresight: tmc-etr: Add support to use reserved trace memory
+>   coresight: core: Add provision for panic callbacks
+>   coresight: tmc: Enable panic sync handling
+>   coresight: tmc: Add support for reading crash data
+>   coresight: tmc: Stop trace capture on FlIn
+>   coresight: config: Add preloaded configuration
+>   Documentation: coresight: Panic support
+> 
+>  .../bindings/arm/arm,coresight-tmc.yaml       |  26 ++
+>  Documentation/trace/coresight/panic.rst       | 356 ++++++++++++++++++
+>  drivers/hwtracing/coresight/Makefile          |   2 +-
+>  .../coresight/coresight-cfg-preload.c         |   2 +
+>  .../coresight/coresight-cfg-preload.h         |   2 +
+>  .../hwtracing/coresight/coresight-cfg-pstop.c |  83 ++++
+>  drivers/hwtracing/coresight/coresight-core.c  |  42 +++
+>  .../hwtracing/coresight/coresight-tmc-core.c  | 296 ++++++++++++++-
+>  .../hwtracing/coresight/coresight-tmc-etf.c   | 124 +++++-
+>  .../hwtracing/coresight/coresight-tmc-etr.c   | 231 +++++++++++-
+>  drivers/hwtracing/coresight/coresight-tmc.h   | 106 ++++++
+>  include/linux/coresight.h                     |  24 ++
+>  12 files changed, 1282 insertions(+), 12 deletions(-)
+>  create mode 100644 Documentation/trace/coresight/panic.rst
+>  create mode 100644 drivers/hwtracing/coresight/coresight-cfg-pstop.c
+> 
+> -- 
+> 2.34.1
+> 
 
-
-So a goto that jumps over registration of a cleanup function.
-
-Jonathan
-
-> >=20
-> > I'll revert back to having __free().
-> >  =20
-> > > > +     if (IS_ERR(i2c_node))
-> > > > +             return PTR_ERR(i2c_node);
-> > > > +
-> > > > +     for_each_child_of_node_with_prefix(i2c_node, node, type) {
-> > > > +             if (!of_device_is_available(node))
-> > > > +                     continue;
-> > > > +
-> > > > +             /*
-> > > > +              * Device tree has component already enabled. Either =
-the
-> > > > +              * device tree isn't supported or we already probed o=
-nce.
-> > > > +              */
-> > > > +             ret =3D 0; =20
-> > >
-> > > Shouldn't you drop reference count for "node"? (See also below) =20
-> >=20
-> > This for-each loop the "scoped". It just doesn't have the prefix anymor=
-e.
-> > I believe you asked if the prefix could be dropped and then Rob agreed.=
- =20
->=20
-> Hmm... I have looked into the implementation and I haven't found the evid=
-ence
-> that this is anyhow scoped. Can you point out what I have missed?
->=20
-> > > > +             goto out_put_i2c_node;
-> > > > +     }
-> > > > +
-> > > > +     i2c =3D of_get_i2c_adapter_by_node(i2c_node);
-> > > > +     if (!i2c) {
-> > > > +             ret =3D dev_err_probe(dev, -EPROBE_DEFER, "Couldn't g=
-et I2C adapter\n");
-> > > > +             goto out_put_i2c_node;
-> > > > +     }
-> > > > +
-> > > > +     /* Grab resources */
-> > > > +     ret =3D 0;
-> > > > +     if (ops->get_resources)
-> > > > +             ret =3D ops->get_resources(dev, i2c_node, ctx);
-> > > > +     if (ret)
-> > > > +             goto out_put_i2c_adapter;
-> > > > +
-> > > > +     /* Enable resources */
-> > > > +     if (ops->enable)
-> > > > +             ret =3D ops->enable(dev, ctx);
-> > > > +     if (ret)
-> > > > +             goto out_release_resources;
-> > > > +
-> > > > +     ret =3D 0;
-> > > > +     for_each_child_of_node_with_prefix(i2c_node, node, type) {
-> > > > +             union i2c_smbus_data data;
-> > > > +             u32 addr;
-> > > > +
-> > > > +             if (of_property_read_u32(node, "reg", &addr))
-> > > > +                     continue;
-> > > > +             if (i2c_smbus_xfer(i2c, addr, 0, I2C_SMBUS_READ, 0, I=
-2C_SMBUS_BYTE, &data) < 0)
-> > > > +                     continue;
-> > > > +
-> > > > +             /* Found a device that is responding */
-> > > > +             if (ops->free_resources_early)
-> > > > +                     ops->free_resources_early(ctx);
-> > > > +             ret =3D i2c_of_probe_enable_node(dev, node); =20
-> > >
-> > > Hmm... Is "node" reference count left bumped up for a reason? =20
-> >=20
-> > Same as above. =20
->=20
-> Same as above.
->=20
-> > > > +             break;
-> > > > +     }
-> > > > +
-> > > > +     if (ops->cleanup)
-> > > > +             ops->cleanup(dev, ctx);
-> > > > +out_release_resources:
-> > > > +     if (ops->free_resources_late)
-> > > > +             ops->free_resources_late(ctx);
-> > > > +out_put_i2c_adapter:
-> > > > +     i2c_put_adapter(i2c);
-> > > > +out_put_i2c_node:
-> > > > +     of_node_put(i2c_node);
-> > > > +
-> > > > +     return ret;
-> > > > +} =20
->=20
+Linu Cherian.
 
 
