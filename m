@@ -1,67 +1,62 @@
-Return-Path: <devicetree+bounces-103344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01B8D97A6D7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 19:39:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54D4A97A6DA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 19:40:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D71FB22D4A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 17:39:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B7D94B256E6
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 17:40:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B668815990E;
-	Mon, 16 Sep 2024 17:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1050A15AD95;
+	Mon, 16 Sep 2024 17:40:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="KbPSoLkP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SxFxdFFr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8881C158A1F;
-	Mon, 16 Sep 2024 17:39:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBC5B158D96;
+	Mon, 16 Sep 2024 17:40:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726508371; cv=none; b=kfcfOfwjn5bnmX1O+dq0m6YEYmZTKO+qAdO6CRQlNu9aMZXygIvbEqgB11tSP3aHjf3h37c2wvR2g3nJg8TvB72FCAletMwhlLsuRufkzu/R7ZsauVvRS4ycEvVk6Tz2E7IB9X1A/aIGIo9Jd7RRibUGkQXeENDTQg8F/+fliZI=
+	t=1726508432; cv=none; b=QaEyDdJaYVfyJDqeGqv54GQ+0muWxKJWFSA4T6DDVN75FSQn+OgiOizgXXNmpgoTTn8wTK+yHU04a2q8mIlyq5gdCcascC+uDbg5DkHwF5FLdotAeABJp3qUYy61Xl0IQTk9mDAO8urNDhhN5I3y3xi0ItFnBJudfxW3MyZoyvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726508371; c=relaxed/simple;
-	bh=4uA3yvxhGcyJm/hRudJ642pDYzrgInwohFwQ2QiPijI=;
+	s=arc-20240116; t=1726508432; c=relaxed/simple;
+	bh=qOgVuJKaEdKj21DVkkp/lMIeO9oIy+tidNV376TfMx0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o8jPrqyuLWscCpsjFWEW4YXdr1ZA/GEIcrKEvrkTJrksQdEk76IwINCxRubUdvyQxDN05Px0NhYL+kXSaKWfDrKimrYfk9BmlzLQKyHH8IoM49mD7mxImX6yNbYDOSejleC8jOVIjc7i71eNyCT4fg/s0KqzSFEOAhq8Ep69BTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=KbPSoLkP; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 8B2A923D79;
-	Mon, 16 Sep 2024 19:39:26 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id yp1IwWCoYNUG; Mon, 16 Sep 2024 19:39:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1726508365; bh=4uA3yvxhGcyJm/hRudJ642pDYzrgInwohFwQ2QiPijI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=KbPSoLkPaT3Iyig84kQNoT1JHhpRH+vTj6BvS7EgQY1vQK7XqFz1xeb1apY3hjexY
-	 OdpKeTOVNNk09a5Q62gq4sqks4/HFDhsBxmShdzpl8jGDhPXTFYI+qDIcS21zl969O
-	 5owirBiEt9Aq/T8CYBSgsGJIYachaUBOsQXUlbmVgko51YTTzkMApXxEBxxLz4etBp
-	 pkMSwuh6f31vVPoW1u8QCG3m5XsjEUk4KZjjXh8pAFTHhlVkLO8EtNyKdFezL3z/Pj
-	 TMsRu4rEdG5H/XFiotaGsiVsLxVFz504S7mthCkyh6UTI73fjJf4aYBOR61pW5m719
-	 c2pKS//7sgVsw==
-Date: Mon, 16 Sep 2024 17:38:56 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, Conor Dooley <conor+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=P7o8UoR4N0fXBOSjCYZk678h1xkzDfNlmaeVNuMvK8BLpkd7CnKmHtbK2/psF84YqhbVZWjgHOt9mps3zQ8osXB3CuHBp18vCnYwiui2zjxbO83HMfl9FidP7XkiBpT+Bv0GScTaUtwmczLXklLnabfxd109ECPUNPkHaKC94cM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SxFxdFFr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26F01C4CEC4;
+	Mon, 16 Sep 2024 17:40:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726508431;
+	bh=qOgVuJKaEdKj21DVkkp/lMIeO9oIy+tidNV376TfMx0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SxFxdFFrkp7w2Ip+VoLobiA5mjW/El/K+T8Cg69DeU1O/h4EqKiZATUK+bi4u3oql
+	 uPjde9odYPv3iu8d0LGmJtLLhu9fqrqODW3DgzHurU+ncBIs6dX+svoDMHvL6TNydh
+	 /BX59JkIb4mUsQH1j+DGNtFXP2jzWTH3loVq97lYFcI550cxvH1P+6Y/lzDOSFtnS1
+	 wvh/yrvUfWUV235kuQ1ZMdVOJqeSyR8cc2VduVFRuri8chqFbyQuC2iDjfBkB6MJFP
+	 GOyVzF5G1Gqebo0XF6bTDL3GVii3kLnKGqZt8vPTEGQOpCeXY1SO3fxfUcwex2BRqo
+	 dTsnNWfTt0tYQ==
+Date: Mon, 16 Sep 2024 12:40:30 -0500
+From: Rob Herring <robh@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: Possible misleading information in rockchip,rk3588-cru.yaml
-Message-ID: <ZuhtMHgx8XlZaayp@pineapple>
-References: <ZuIJgiN2xp6oPrHD@pineapple>
- <20240916-neuron-surfer-32db6440e1ad@spud>
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mmc: convert amlogic,meson-mx-sdio.txt to
+ dtschema
+Message-ID: <20240916174030.GA835203-robh@kernel.org>
+References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v1-1-b7bfae886211@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,43 +65,211 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240916-neuron-surfer-32db6440e1ad@spud>
+In-Reply-To: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v1-1-b7bfae886211@linaro.org>
 
-On Mon, Sep 16, 2024 at 05:33:49PM +0100, Conor Dooley wrote:
-> On Wed, Sep 11, 2024 at 09:20:02PM +0000, Yao Zi wrote:
-> > Hi,
-> > 
-> > rockchip,rk3588-cru.yaml, dt-binding for RK3588 clock and reset module,
-> > contains description of customized property "rockchip,grf",
-> > 
-> >   rockchip,grf:
-> >     $ref: /schemas/types.yaml#/definitions/phandle
-> >     description: >
-> >       phandle to the syscon managing the "general register files". It is
-> >       used for GRF muxes, if missing any muxes present in the GRF will
-> >       not be available.
-> > 
-> > But after doing some searching, I found that clk-rk3588.c actually
-> > defines no clock hardware with MUXGRF type. This is also true in in the
-> > vendor code[1], it seems there is actually no GRF mux on RK3588
-> > platform.
+On Wed, Sep 11, 2024 at 05:20:47PM +0200, Neil Armstrong wrote:
+> Convert the Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
+> bindings to dt-schema.
 > 
-> Have you been able to check the datasheet/register map for this piece of
-> hardware? Does it have a grf register region?
-> Wouldn't be surprised if it didn't, and the cause of it being in the
-> binding was nothing more than copy-paste.
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  .../bindings/mmc/amlogic,meson-mx-sdio.txt         |  54 -----------
+>  .../bindings/mmc/amlogic,meson-mx-sdio.yaml        | 101 +++++++++++++++++++++
+>  2 files changed, 101 insertions(+), 54 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
+> deleted file mode 100644
+> index 8765c605e6bc..000000000000
+> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
+> +++ /dev/null
+> @@ -1,54 +0,0 @@
+> -* Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
+> -
+> -The highspeed MMC host controller on Amlogic SoCs provides an interface
+> -for MMC, SD, SDIO and SDHC types of memory cards.
+> -
+> -Supported maximum speeds are the ones of the eMMC standard 4.41 as well
+> -as the speed of SD standard 2.0.
+> -
+> -The hardware provides an internal "mux" which allows up to three slots
+> -to be controlled. Only one slot can be accessed at a time.
+> -
+> -Required properties:
+> - - compatible : must be one of
+> -	- "amlogic,meson8-sdio"
+> -	- "amlogic,meson8b-sdio"
+> -	along with the generic "amlogic,meson-mx-sdio"
+> - - reg : mmc controller base registers
+> - - interrupts : mmc controller interrupt
+> - - #address-cells : must be 1
+> - - size-cells : must be 0
+> - - clocks : phandle to clock providers
+> - - clock-names : must contain "core" and "clkin"
+> -
+> -Required child nodes:
+> -A node for each slot provided by the MMC controller is required.
+> -NOTE: due to a driver limitation currently only one slot (= child node)
+> -      is supported!
+> -
+> -Required properties on each child node (= slot):
+> - - compatible : must be "mmc-slot" (see mmc.txt within this directory)
+> - - reg : the slot (or "port") ID
+> -
+> -Optional properties on each child node (= slot):
+> - - bus-width : must be 1 or 4 (8-bit bus is not supported)
+> - - for cd and all other additional generic mmc parameters
+> -   please refer to mmc.txt within this directory
+> -
+> -Examples:
+> -	mmc@c1108c20 {
+> -		compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
+> -		reg = <0xc1108c20 0x20>;
+> -		interrupts = <0 28 1>;
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -		clocks = <&clkc CLKID_SDIO>, <&clkc CLKID_CLK81>;
+> -		clock-names = "core", "clkin";
+> -
+> -		slot@1 {
+> -			compatible = "mmc-slot";
+> -			reg = <1>;
+> -
+> -			bus-width = <4>;
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
+> new file mode 100644
+> index 000000000000..4d1142d2ff02
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
+> @@ -0,0 +1,101 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/amlogic,meson-mx-sdio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
+> +
+> +description:
+> +  The highspeed MMC host controller on Amlogic SoCs provides an interface
+> +  for MMC, SD, SDIO and SDHC types of memory cards.
+> +  Supported maximum speeds are the ones of the eMMC standard 4.41 as well
+> +  as the speed of SD standard 2.0.
+> +  The hardware provides an internal "mux" which allows up to three slots
+> +  to be controlled. Only one slot can be accessed at a time.
 
-Have checked a public datasheet[1], RK3588 does have corresponding grf
-region and there are only clock related bits in PHP_GRF_CLK_CON1[2].
+You need '|' or this is treated as 1 paragraph. If it is 1 paragraph, 
+then format it that way.
 
-But these gmac clocks bits are used in dwmac-rk GMAC driver[3]
-internally, out of the common clock driver, rk3588-cru. So I don't think
-the CRU needs access to the grf by design.
+But really if you want 3 paragraphs, then you should use '>' and put 2 
+CR's between each paragraph.
 
-Best regards,
-Yao Zi
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - amlogic,meson8-sdio
+> +          - amlogic,meson8b-sdio
+> +      - const: amlogic,meson-mx-sdio
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: core
+> +      - const: clkin
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +
+> +patternProperties:
+> +  "slot@[a-f0-9]+$":
 
-[1]: https://github.com/FanX-Tek/rk3588-TRM-and-Datasheet/blob/master/Rockchip%20RK3588%20TRM%20V1.0-Part1-20220309.pdf
-[2]: Page 836 in [1]
-[3]: net/ethernet/stmicro/stmmac/dwmac-rk.c:1132
+Are you going to add 'slot' to nodename in mmc-controller.yaml?
+
+> +    $ref: mmc-controller.yaml#
+> +    description:
+> +      A node for each slot provided by the MMC controller
+
+blank line
+
+> +    properties:
+> +      compatible:
+> +        const: mmc-slot
+
+This is also used by the Cavium controller. Should be common.
+
+> +
+> +      reg:
+> +        description:
+> +          the slot (or "port") ID
+> +        maxItems: 1
+
+Aren't there limits in the number of slots the h/w can support?
+
+> +
+> +      bus-width:
+> +        enum: [1, 4]
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +
+> +    unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    mmc@c1108c20 {
+> +        compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
+> +        reg = <0xc1108c20 0x20>;
+> +        interrupts = <GIC_SPI 28 IRQ_TYPE_EDGE_RISING>;
+> +        clocks = <&clk_core>, <&clk_in>;
+> +        clock-names = "core", "clkin";
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        slot@1 {
+> +            compatible = "mmc-slot";
+> +            reg = <1>;
+> +            bus-width = <4>;
+> +        };
+> +    };
+> 
+> ---
+> base-commit: 47ac09b91befbb6a235ab620c32af719f8208399
+> change-id: 20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-6fa70546ebb8
+> 
+> Best regards,
+> -- 
+> Neil Armstrong <neil.armstrong@linaro.org>
+> 
 
