@@ -1,272 +1,248 @@
-Return-Path: <devicetree+bounces-103361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2470A97A7FF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 21:56:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F2EE97A80F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 22:04:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5726CB23FEC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 19:56:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC14CB25123
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 20:04:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71DB715B0F1;
-	Mon, 16 Sep 2024 19:56:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09D1158531;
+	Mon, 16 Sep 2024 20:03:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bdD5q3dL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ebyNXrAD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44BE12E659;
-	Mon, 16 Sep 2024 19:56:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AF22BE6C;
+	Mon, 16 Sep 2024 20:03:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726516573; cv=none; b=mHkHzwDAucdD1fP5zh7Roqv30ZiEy8uqzM+j78hrEpc1IsHjZPOENH7PS6d/BYH//bjgXXVukv/qtqn+CMH001Wlha96CYV4N2RulsMj8W9cjdwAlDCfLvjpxfc78U36I9FXfMgsquNsBqSJsSnG8qxYD6tPghq23/jdBfDJXNg=
+	t=1726517037; cv=none; b=ZJMWbi5mXssQ/fgsdkr01C3Psmf6e5TEYkEJUHwWcE/v918iL18kM2DGx2Akr6hUlP6R2T5NPxR1/XjJQlekEktvUjjM0u943pDkK3CCE0iBqbei2tSeEX1I/VNPnnDZNh8QVM0DGBQ1E2AgP1wlOv3YekLUN8Z08wkBwrshpOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726516573; c=relaxed/simple;
-	bh=XqGZ2D0eFfmQ0wRAHzQLxJtep5CdGS45aey8K4YMTAg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W+OddBMOaX/cvF8WrjAhaxWxb6h1OHfrhNC8s4DLoyLfHy37V06K3wRiLduEMQVMccM+LQK/5NPrAlsidh183BFa2pOPFE75WYUThStL2e4bNUhTlM4dewxd9MSK6jgfAn95ky3Wv39cKUmXXPZERLQGJ/npTac/K4i5JqCUBcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bdD5q3dL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36B96C4CEC4;
-	Mon, 16 Sep 2024 19:56:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726516572;
-	bh=XqGZ2D0eFfmQ0wRAHzQLxJtep5CdGS45aey8K4YMTAg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bdD5q3dLy1DexGEvODNRSHWKhLX8ih/ChY3KiHVmz1PjUos5AoxdZB9QHMVwkwmF1
-	 uy4lGaStAF2PyiZA37gtqv5f38Eewik/d7wwrElnB2+8+pDzy6ueQOEDlL1THLJ+2+
-	 c4uM/IddQBCXcvBy6Mi5Eqyo38TuxFXR1jv03n6AxI4jJhsZ2BPdmT+wk110pXqYGv
-	 4wxkcsEsisvNwTyaxpnbnVxpdsYJYChyGitcBRlmwwA+4eUkYa33GVel02R7O7IqrP
-	 bEaQLYIalKwFlQtOVucm/EIMtM3F6tMn2l9VhWq3zZsq7Mlkce9E6tonU3JjFdbSex
-	 gTNV5DeMLfnbQ==
-Message-ID: <90c9f1a8-fcfb-49f5-803e-cb0ec14463cb@kernel.org>
-Date: Mon, 16 Sep 2024 21:56:06 +0200
+	s=arc-20240116; t=1726517037; c=relaxed/simple;
+	bh=Df0vu8wyKcJgl+eGOHEdy980cdxBQwXmPA5py9E7sMM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oiPzWm3Fi6lAis1Bzf9KBw0/MduxP4KvAzYk7I7MovyjddcpWQrfDSipdyBonsith5BR2+XZl4O29AudwWnZVDeaoNGcDrBYv42iI401zqDwPjSGhiquVPFOPto0mhDErAWxajb1z2pv/e6NVc3QIY7vJ0enZwAV/RMT/+6cf+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ebyNXrAD; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-42cba8340beso36905945e9.1;
+        Mon, 16 Sep 2024 13:03:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726517034; x=1727121834; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oJqKzDykopbcXCyaQAM3tTia9TVWEfHdxg285UZzTsY=;
+        b=ebyNXrAD/30SB8yhRSJCghW+YysatBF2bKl41/EvhTgQi8lZmxhSHww+gfmKTBz8B+
+         KYO1zcts+XBLp+Ez32y/mNQ9mpIyFaJ80DWSQhpTthmTl1N79En68esug2bBsgVXE3Ql
+         r1cniGdmw5s9qrDlMLMAn76imr3KcDwsZX5z1wUjgSx1MKlqmvvXPqjaGHblBvoO6Ktl
+         n1aVjVH2Yz4pc8zz9tSYaS7mds1t/r8VVrdoqxobMgHPH/ojyS/H9tjGYcI/rs/kZ26T
+         kbeq6DWy2PpJvdbC9myWi2jPkJooaUmJ8KVFiAngpkbRa4XDMTJneFQK5XimAP0mU2CV
+         sJFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726517034; x=1727121834;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oJqKzDykopbcXCyaQAM3tTia9TVWEfHdxg285UZzTsY=;
+        b=DnnHDux0Iq3SBMdtfa3wpXP5KcOyon7oWDS/xF7Q9SDZ6u3ZcmWkIHNfSi9ym57c56
+         8F+7kyiYkxZQpkU1aaWgLhE6/ZRb2FQeH5Ow/tNcctfLyg0Nuq4xfLwtIOLhsaqIxtr+
+         QwmrrgnOSWJXIoC3fdEZM013HgatQSt9p1eT/GKP/xrrbWG36q2cfCqRiKV3567zubZo
+         TUzMM49UDArTKW+t4J791pfAmpAIFo8KqYXS3IxhS+shvrhINRSutGCTt+ng7C6i2bK1
+         2b81lMDWuN5opNGu7bhac+k1Mhk2uT1QeH8OSn5bikp+0FZdmovCG5ZHF5eFHCKVrGMZ
+         WvoA==
+X-Forwarded-Encrypted: i=1; AJvYcCXh0KqBb96gxV1Zui5M1fjTvqASXmnbBHnFEMnKcE8B9UFIp2fERtqPbrAuUUtZ/egzO39O8F340Uzcd7A=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwFDHZhaemUWK2wdAFMc4rrYWdzCTfJd9P5TanUH75SkwlqrOT
+	XJXd0/M3du+EfoWprsviCzPXcyB2RUMWGYdl2bPlxaQ79EMtQ1LV
+X-Google-Smtp-Source: AGHT+IGpcdlnbpU7EgkN9nVbuDNBKqoVX0DKnfVRK05L+w7SZW6I3HTkSWOHcc7UuhjMDardzIpoZA==
+X-Received: by 2002:a05:600c:3516:b0:42c:b7ae:4c97 with SMTP id 5b1f17b1804b1-42cbde1a867mr131407545e9.11.1726517034351;
+        Mon, 16 Sep 2024 13:03:54 -0700 (PDT)
+Received: from ld-100007.ds1.internal (178.165.165.188.wireless.dyn.drei.com. [178.165.165.188])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-378e7800138sm7884487f8f.68.2024.09.16.13.03.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Sep 2024 13:03:53 -0700 (PDT)
+From: Diogo Silva <diogompaissilva@gmail.com>
+X-Google-Original-From: Diogo Silva <diogo.pais@ttcontrol.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	aisheng.dong@nxp.com,
+	Frank.Li@nxp.com
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	diogompaissilva@gmail.com
+Subject: [PATCH] arm64: dts: imx8: Fix lvds0 device tree
+Date: Mon, 16 Sep 2024 22:02:56 +0200
+Message-Id: <20240916200255.2566209-1-diogo.pais@ttcontrol.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: add max20339 binding
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Michael Walle <mwalle@kernel.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240916-max20339-v1-0-b04ce8e8c471@linaro.org>
- <20240916-max20339-v1-1-b04ce8e8c471@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240916-max20339-v1-1-b04ce8e8c471@linaro.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 16/09/2024 18:48, André Draszik wrote:
-> Add device tree binding for Maxim MAX20339 overvoltage protector with
-> load switches.
+From: Diogo Silva <diogompaissilva@gmail.com>
 
-Subject:
-regulator: dt-bindings:
+Some clock output names on lvds0 device tree were duplicated from mipi1,
+which caused an -EEXIST when registering these clocks during probe.
+Also fixed the device naming to be consistent with lvds1.
 
-See submitting patches.
+Fixes: 0fba24b3b956 ("arm64: dts: imx8: add basic lvds0 and lvds1 subsystem")
+subsystem")
+Signed-off-by: Diogo Silva <diogompaissilva@gmail.com>
+---
+ .../boot/dts/freescale/imx8-ss-lvds0.dtsi     | 22 +++++++++----------
+ arch/arm64/boot/dts/freescale/imx8qm-mek.dts  |  4 ++--
+ .../boot/dts/freescale/imx8qm-ss-lvds.dtsi    | 20 ++++++++---------
+ 3 files changed, 23 insertions(+), 23 deletions(-)
 
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
-> ---
->  .../bindings/regulator/maxim,max20339.yaml         | 171 +++++++++++++++++++++
->  MAINTAINERS                                        |   6 +
->  2 files changed, 177 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/maxim,max20339.yaml b/Documentation/devicetree/bindings/regulator/maxim,max20339.yaml
-> new file mode 100644
-> index 000000000000..ef6490cf5a6b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/maxim,max20339.yaml
-> @@ -0,0 +1,171 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/maxim,max20339.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Maxim Integrated MAX20339 overvoltage protector with load switches
-> +
-> +maintainers:
-> +  - André Draszik <andre.draszik@linaro.org>
-> +
-> +description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +  The MAX20339 is an overvoltage protection (OVP) device with integrated load
-> +  switches and ESD Protection for USB Type-C applications. It protects low
-> +  voltage systems against voltage faults and surges. It also integrates two
-> +  load switches with current limiting, configurable by hard- and software.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - maxim,max20339
-> +
-> +  dig-supply:
-> +    description:
-> +      Input supply for the device itself (DIG pin, 1.7V to 1.9V). In absence of
-> +      Vdig, the IN pin will power the device.
-> +
-> +  gpio:
-> +    type: object
-> +
-> +    properties:
-> +      "#gpio-cells":
-> +        const: 2
-> +
-> +      gpio-controller: true
-> +
-> +      gpio-line-names:
-> +        description: Strings describing the names of each gpio line.
-
-Drop description.
-
-> +        maxItems: 1
-> +
-> +    required:
-> +      - "#gpio-cells"
-> +      - gpio-controller
-> +
-> +    additionalProperties: false
-
-Does any existing driver require this to be separate node? I don't see
-here any resources, so these properties should be in main device node.
-
-> +
-> +  insw-supply:
-> +    description:
-> +      Input supply for the outputs (IN pin, 3.9V to 28.0V). Also used as supply
-> +      for the device itself in case dig-supply is not wired up.
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  lsw1-supply:
-> +    description: Input supply for the outputs (LSW1IN pin, 4.0V to 10.0V)
-> +
-> +  lsw2-supply:
-> +    description: Input supply for the outputs (LSW2IN pin, 4.0V to 10.0V)
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  regulators:
-> +    type: object
-> +
-> +    properties:
-> +      insw:
-> +        type: object
-> +        $ref: regulator.yaml#
-> +        description: Represents the switch connecting IN to OUT, INSW.
-> +
-> +        properties:
-> +          regulator-ov-protection-microvolt:
-> +            enum: [5850000, 9700000, 14500000]
-> +
-> +        unevaluatedProperties: false
-> +
-> +    patternProperties:
-> +      "^lsw[12]$":
-> +        type: object
-> +        $ref: regulator.yaml#
-> +        description: Represents the load switches LSW1 and LSW2.
-> +
-> +        properties:
-> +          regulator-ov-protection-microvolt:
-> +            enum: [0, 1]
-> +
-> +          shunt-resistor-micro-ohms:
-> +            description:
-> +              Value in micro Ohm of the resistor connected between the SETx
-> +              pin and GND. This value is required to be able to calculate and
-> +              program the current limiting threshold register.
-> +
-> +        required:
-> +          - shunt-resistor-micro-ohms
-> +
-> +        unevaluatedProperties: false
-> +
-> +    required:
-> +      - lsw1
-> +      - lsw2
-> +
-> +    additionalProperties: false
-> +
-> +anyOf:
-> +  - oneOf:
-> +      - required:
-> +          - dig-supply
-> +      - required:
-> +          - insw-supply
-> +  - required:
-> +      - dig-supply
-> +      - insw-supply
-
-oneOf looks redundant here. you allow any combination, right?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - regulators
-
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi
+index d00036204a8c..a4d94467039f 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi
+@@ -10,34 +10,34 @@ lvds0_subsys: bus@56240000 {
+ 	#size-cells = <1>;
+ 	ranges = <0x56240000 0x0 0x56240000 0x10000>;
+ 
+-	qm_lvds0_lis_lpcg: qxp_mipi1_lis_lpcg: clock-controller@56243000 {
++	lvds0_lis_lpcg: clock-controller@56243000 {
+ 		compatible = "fsl,imx8qxp-lpcg";
+ 		reg = <0x56243000 0x4>;
+ 		#clock-cells = <1>;
+-		clock-output-names = "mipi1_lis_lpcg_ipg_clk";
++		clock-output-names = "lvds0_lis_lpcg_ipg_clk";
+ 		power-domains = <&pd IMX_SC_R_MIPI_1>;
+ 	};
+ 
+-	qm_lvds0_pwm_lpcg: qxp_mipi1_pwm_lpcg: clock-controller@5624300c {
++	lvds0_pwm_lpcg: clock-controller@5624300c {
+ 		compatible = "fsl,imx8qxp-lpcg";
+ 		reg = <0x5624300c 0x4>;
+ 		#clock-cells = <1>;
+-		clock-output-names = "mipi1_pwm_lpcg_clk",
+-				     "mipi1_pwm_lpcg_ipg_clk",
+-				     "mipi1_pwm_lpcg_32k_clk";
++		clock-output-names = "lvds0_pwm_lpcg_clk",
++				     "lvds0_pwm_lpcg_ipg_clk",
++				     "lvds0_pwm_lpcg_32k_clk";
+ 		power-domains = <&pd IMX_SC_R_MIPI_1_PWM_0>;
+ 	};
+ 
+-	qm_lvds0_i2c0_lpcg: qxp_mipi1_i2c0_lpcg: clock-controller@56243010 {
++	lvds0_i2c0_lpcg: clock-controller@56243010 {
+ 		compatible = "fsl,imx8qxp-lpcg";
+ 		reg = <0x56243010 0x4>;
+ 		#clock-cells = <1>;
+-		clock-output-names = "mipi1_i2c0_lpcg_clk",
+-				     "mipi1_i2c0_lpcg_ipg_clk";
++		clock-output-names = "lvds0_i2c0_lpcg_clk",
++				     "lvds0_i2c0_lpcg_ipg_clk";
+ 		power-domains = <&pd IMX_SC_R_MIPI_1_I2C_0>;
+ 	};
+ 
+-	qm_pwm_lvds0: qxp_pwm_mipi_lvds1: pwm@56244000 {
++	pwm_lvds0: pwm@56244000 {
+ 		compatible = "fsl,imx8qxp-pwm", "fsl,imx27-pwm";
+ 		reg = <0x56244000 0x1000>;
+ 		clock-names = "ipg", "per";
+@@ -48,7 +48,7 @@ qm_pwm_lvds0: qxp_pwm_mipi_lvds1: pwm@56244000 {
+ 		status = "disabled";
+ 	};
+ 
+-	qm_i2c0_lvds0: qxp_i2c0_mipi_lvds1: i2c@56246000 {
++	i2c0_lvds0: i2c@56246000 {
+ 		compatible = "fsl,imx8qxp-lpi2c", "fsl,imx7ulp-lpi2c";
+ 		reg = <0x56246000 0x1000>;
+ 		#address-cells = <1>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
+index 62203eed6a6c..f7b9b319a58a 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
+@@ -96,7 +96,7 @@ vdevbuffer: memory@90400000 {
+ 
+ 	lvds_backlight0: backlight-lvds0 {
+ 		compatible = "pwm-backlight";
+-		pwms = <&qm_pwm_lvds0 0 100000 0>;
++		pwms = <&pwm_lvds0 0 100000 0>;
+ 		brightness-levels = <0 100>;
+ 		num-interpolated-steps = <100>;
+ 		default-brightness-level = <80>;
+@@ -541,7 +541,7 @@ &fec2 {
+ 	status = "okay";
+ };
+ 
+-&qm_pwm_lvds0 {
++&pwm_lvds0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_pwm_lvds0>;
+ 	status = "okay";
+diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-lvds.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-ss-lvds.dtsi
+index 0514d8b2af75..46fa97d5ba5c 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qm-ss-lvds.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-lvds.dtsi
+@@ -4,31 +4,31 @@
+  * Copyright 2024 NXP
+  */
+ 
+-&qm_lvds0_lis_lpcg {
++&lvds0_lis_lpcg {
+ 	clocks = <&lvds_ipg_clk>;
+ 	clock-indices = <IMX_LPCG_CLK_4>;
+ };
+ 
+-&qm_lvds0_pwm_lpcg {
++&lvds0_pwm_lpcg {
+ 	clocks = <&clk IMX_SC_R_LVDS_0_PWM_0 IMX_SC_PM_CLK_PER>,
+ 		 <&lvds_ipg_clk>;
+ 	clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
+ };
+ 
+-&qm_lvds0_i2c0_lpcg {
++&lvds0_i2c0_lpcg {
+ 	clocks = <&clk IMX_SC_R_LVDS_0_I2C_0 IMX_SC_PM_CLK_PER>,
+ 		 <&lvds_ipg_clk>;
+ 	clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
+ };
+ 
+-&qm_pwm_lvds0 {
+-	clocks = <&qm_lvds0_pwm_lpcg IMX_LPCG_CLK_4>,
+-		 <&qm_lvds0_pwm_lpcg IMX_LPCG_CLK_0>;
++&pwm_lvds0 {
++	clocks = <&lvds0_pwm_lpcg IMX_LPCG_CLK_4>,
++		 <&lvds0_pwm_lpcg IMX_LPCG_CLK_0>;
+ };
+ 
+-&qm_i2c0_lvds0 {
+-	clocks = <&qm_lvds0_i2c0_lpcg IMX_LPCG_CLK_0>,
+-		 <&qm_lvds0_i2c0_lpcg IMX_LPCG_CLK_4>;
++&i2c0_lvds0 {
++	clocks = <&lvds0_i2c0_lpcg IMX_LPCG_CLK_0>,
++		 <&lvds0_i2c0_lpcg IMX_LPCG_CLK_4>;
+ };
+ 
+ &lvds0_subsys {
+@@ -41,7 +41,7 @@ irqsteer_lvds0: interrupt-controller@56240000 {
+ 		interrupt-controller;
+ 		interrupt-parent = <&gic>;
+ 		#interrupt-cells = <1>;
+-		clocks = <&qm_lvds0_lis_lpcg IMX_LPCG_CLK_4>;
++		clocks = <&lvds0_lis_lpcg IMX_LPCG_CLK_4>;
+ 		clock-names = "ipg";
+ 		power-domains = <&pd IMX_SC_R_LVDS_0>;
+ 
+-- 
+2.34.1
 
 
