@@ -1,183 +1,317 @@
-Return-Path: <devicetree+bounces-103248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89EE597A2AE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 15:03:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F0B997A3BA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 16:09:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CDFFDB20CA3
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 13:03:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9273BB299FE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 14:08:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 852AC155392;
-	Mon, 16 Sep 2024 13:03:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23C0D15B137;
+	Mon, 16 Sep 2024 14:01:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="l4Ey8fL5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FfFGLVGX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 785F11D555
-	for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 13:03:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DF2D15A86D
+	for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 14:01:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726491794; cv=none; b=rHYFj3ZjGV51OYubnBMcDT0Zceov34VuL4zDzLyNDR8vaO4UEC74cmJxn7/cRAEsd55k1frPHuuM0pxcuXSmNI6vx/Udbl6QO8/Nl2J8QMi1dEWFHC6JqcO6Cwjd3JrcCrDOn4pfjFz2Vu6I8fYu+GDNpiBQQ+TEPOviag3VbV0=
+	t=1726495305; cv=none; b=SLd9sYNv/zDpPBIeTEgKZHQroYF1fGn34jRUdTf96pDuOV/xcfAcZKzvwKkEBQQsPOmbQ46vrAvyWkIGhVr4082Ifd927Wwcjy+V15xSbp6C2UxG1TB7CGGNZlOII6yR7v/aiRAiYASfu7DXdbYLsJohbaXOMekv7CuhbtkKjc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726491794; c=relaxed/simple;
-	bh=m35dDssCabVJuMRlGOZTc6qI+dzsKKWYeM0JmQhFPcg=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=kJ0aSAdVVscnmBbSB7hovcdQtgvyCe9m2E8r0oC1/+OL7hnMIX2ntge+ofEbEGSc8jzf7cURFYmaFd0MzkqBRk+N75BoBRh4xsmm0ag2cibZ5HWH1fdkIvREYC/wnY4Gy31L7QUtrF2HFEnD9P9YIKKy4BiRXYdi9tj0jQK/O2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=l4Ey8fL5; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42bbffe38e6so34208765e9.0
-        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 06:03:12 -0700 (PDT)
+	s=arc-20240116; t=1726495305; c=relaxed/simple;
+	bh=4XZIIM24aLHamEa/bTQSWXBtB5sFrjDpG1Gb7kSqWVw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A9bqEeH90f7PUiutoQKkIqm/LCZ6cRB3DAQiwo4qZzeaAD9Xvd8c1Io4eLn0UtoMUNaHN0jr3MexP0eZ9iC0IDFyqG2Jzl1ohC5HJ8aaGCdsSs9JYthq4rRilVRZfp13cJHQ/sa1Cy3uS1Ta+OMVyzwgOUQX5lWDMgV2DIsDCBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FfFGLVGX; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-53659c8d688so3553198e87.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 07:01:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1726491791; x=1727096591; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fZskt6RQWwBKvf8VCH4bF9IdkeZRhcjl5ETFLty+q4k=;
-        b=l4Ey8fL5OhzB2JmN8LwLNK2VZocHDAOYBBudBRQ+9c58kRH34mOoyTbm0csm8BQ78X
-         33nGWf/MnJpsDzPHnluoiNfqwIRqeKITIXB81rdyvkl5Sv0kpGbzjFRk5f1ULTg+wrwk
-         2J/Gm2Zsw2BamcCNlazeMFFeutz+uB2ikroh5cG/HOVZMfAMYH5hdf7R0PG60d4OZ7JB
-         fDhWSoL1wy6n3e+9vRrBsJRhpwT2gafRo0ESECGE+3tVwYNlzgftx/8fqyKvK3ChpmKh
-         I8X/wftNYTWFzLoUMC7UChQMHfJ4O8SF7LwNSAYbshfPGkm9fNnBfz5kBl/qFgTlBZq2
-         ErNA==
+        d=linaro.org; s=google; t=1726495301; x=1727100101; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=cMlMT+B8deIK9qAsz5RzoKJhcSIicRL6O2d2Qw8WeUM=;
+        b=FfFGLVGXUr1aW2Fj2BXBxhf8Os/w4CyHee/3cfqYRUoNvkVPE0wjx8r7iZZfihusqT
+         WHfseYN2wZQDQ88NffkmrdtOQR1GsdPEBoBICA0w+faA62rJBKL/uvlNLeV6IYFnWAYK
+         mxn+2Ke8o+Qr41JJmRtq6CXayeZ1F0OLdEOmaOYCBj9It892gvq0xvqrtBxTUptGzzcu
+         In31o49A46iFMuo6S72BYLj2UBHJtGVn829pV3a7+rWyUx6aTWiwv1jQh8CRoTlqvcpg
+         Iv5ZQDSBWcAG1rVKLcXpNtpswwydWFtvNb1CcGvNRXlfIE+sw+HWfQZ+daiIId8QVA8O
+         krzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726491791; x=1727096591;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=fZskt6RQWwBKvf8VCH4bF9IdkeZRhcjl5ETFLty+q4k=;
-        b=tF1FnpiPLYSeEepelDV9pgpqIQJxtaIb7n5obNUGc01pWQbVZRPMx8dpULvzY+TMlm
-         abKVnlZhXdyT2yQfAz/hvwt9Dqd/H4k8CArweIJRyYFBZYIJbvTr+UqXBB5usfwd8jYv
-         6JTxAg9XporzeKWpHlo6JAUhGStUaGMchHtnQDJaZu7Rwbrh1APQ7TmUB6JAv+B0R0WM
-         sjYZqogmVjI/aFJJ4ydzOEJRaWx+wo4CRJpGD0ErUgqJOwzL6IBeECWxdg7Urul25I8S
-         lLDGNbbjBG2v1rsQNshjNmqA2xL4k5x4dZz3H+eEi2XQOmMsAW+lE7GoWqSi1U51sNYy
-         mdZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU8GFcVLczyhx/3vH3nnrGiFQXk5KHPk94ZsJ58FkCut6DGzfPr7MhpZ04S/sRm+sE6iBPsCvku/h3X@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1VETbkxulEsn8tgna8t6gZnTJUuDDM1+paEU6MWK8uWTahUcc
-	PyrevqGp7y2ixT7Ae2tSMy4/5sGOHx2uvzXULhl5qCZ3Rjri98SKhD4WH4OPpzk=
-X-Google-Smtp-Source: AGHT+IG2nrplOfj3/5iWG04x2nhwLzDmV7EDuTH5ottx1vDxjUFR2VnB7SicdyNXc/hTI5mX9cPsJg==
-X-Received: by 2002:a05:6000:459f:b0:374:c0c5:3c05 with SMTP id ffacd0b85a97d-378c2d4d802mr7925015f8f.42.1726491790471;
-        Mon, 16 Sep 2024 06:03:10 -0700 (PDT)
-Received: from localhost (amontpellier-556-1-151-252.w109-210.abo.wanadoo.fr. [109.210.7.252])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42da22b87a9sm78564735e9.6.2024.09.16.06.03.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Sep 2024 06:03:09 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1726495301; x=1727100101;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cMlMT+B8deIK9qAsz5RzoKJhcSIicRL6O2d2Qw8WeUM=;
+        b=OavOP/1hRelo4ZoxvbB2/iJwg3MIMeDY4RJ/FndV2FyIrHmZJiKuEmSe7Put5e3JHk
+         e66o6uAmT1TABmT2Nk9mxCEBxEWwyELpXZKTrHd8UTnTIDAO64rA5XyResbZDSxwL5yU
+         sbXtTeDRFABne7CjY3FRUpvpHGt+VYhPNyILT8qcB8n6rJTaVagKiKgFl90lnakYU4tq
+         vdnkub3HrqsM+z4x2+GZnLb95RKPFP21fR6gOorwLU0+IqTnPiUPpENfqr5vXzUbmgNn
+         vES9acUUAflrGriIOafZC4iZ0JberFpUHvoPKKGBPml+MtVXAfrGG+kE4g8cHH5stPQV
+         Fi/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCX4Eye3zdF4fWZzzSkybaRlmn3LYgse8kWr56SO/Csd0gJse4ANa8ppCXUE1sbGv2C1ypT9ymZNk7YE@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUEVxQ+r4IoKyGwXSYxAj9Q1DBJwwl6/yB+dgELW8ww2KswY0U
+	oOpbtbdwuyZ2hVUY0JNpwCg1d3KSruN3NvLLyFtlfsiHGMeYTEEHH1XmPQuRqcM=
+X-Google-Smtp-Source: AGHT+IEwCi4h0gOcjJ2J7PtEto/0FYri5a2pwjVMPIpg1KFvHkVKQSJnPO78DdIo2pyTdxnG3Wmhlg==
+X-Received: by 2002:a05:6512:ba0:b0:52f:c281:72de with SMTP id 2adb3069b0e04-5367907b3d6mr4942303e87.15.1726495300202;
+        Mon, 16 Sep 2024 07:01:40 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-536870c57bfsm885316e87.307.2024.09.16.07.01.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Sep 2024 07:01:39 -0700 (PDT)
+Date: Mon, 16 Sep 2024 17:01:37 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, quic_riteshk@quicinc.com, 
+	quic_vproddut@quicinc.com, quic_abhinavk@quicinc.com
+Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: add DisplayPort device node
+Message-ID: <ivbohyezb57mcqgfnjot3j2olgj4kvyoq2fjstgugscagsmlg7@vav3cbokzg7q>
+References: <20240916091344.27607-1-quic_mukhopad@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 16 Sep 2024 13:03:08 +0000
-Message-Id: <D47Q9E5EW08V.2JP0X6EFQMFBT@baylibre.com>
-Cc: "Lars-Peter Clausen" <lars@metafoo.de>, "Michael Hennerich"
- <Michael.Hennerich@analog.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Nuno Sa" <nuno.sa@analog.com>, "Jonathan Corbet" <corbet@lwn.net>,
- <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "David Lechner" <dlechner@baylibre.com>,
- <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH 4/6] iio: adc: ad4030: add support for ad4630-24 and
- ad4630-16
-From: "Esteban Blanc" <eblanc@baylibre.com>
-To: "Esteban Blanc" <eblanc@baylibre.com>, "Jonathan Cameron"
- <jic23@kernel.org>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20240822-eblanc-ad4630_v1-v1-0-5c68f3327fdd@baylibre.com>
- <20240822-eblanc-ad4630_v1-v1-4-5c68f3327fdd@baylibre.com>
- <20240826102748.4be0b642@jic23-huawei>
- <D452E2M75XCM.13OQGAPJ7JJ4A@baylibre.com>
-In-Reply-To: <D452E2M75XCM.13OQGAPJ7JJ4A@baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240916091344.27607-1-quic_mukhopad@quicinc.com>
 
-On Fri Sep 13, 2024 at 9:55 AM UTC, Esteban Blanc wrote:
-> On Mon Aug 26, 2024 at 9:27 AM UTC, Jonathan Cameron wrote:
-> > On Thu, 22 Aug 2024 14:45:20 +0200
-> > Esteban Blanc <eblanc@baylibre.com> wrote:
-> > > @@ -460,12 +517,21 @@ static int ad4030_conversion(struct ad4030_stat=
-e *st,
-> > >  	if (ret)
-> > >  		return ret;
-> > > =20
-> > > -	if (st->mode !=3D AD4030_OUT_DATA_MD_24_DIFF_8_COM)
-> > > +	if (st->chip->num_channels =3D=3D 2)
-> > > +		ad4030_extract_interleaved(st->rx_data.raw,
-> > > +					   &st->rx_data.diff[0],
-> > > +					   &st->rx_data.diff[1]);
-> > > +
-> > > +	if (st->mode !=3D AD4030_OUT_DATA_MD_16_DIFF_8_COM &&
-> > > +	    st->mode !=3D AD4030_OUT_DATA_MD_24_DIFF_8_COM)
-> > >  		return 0;
-> > > =20
-> > >  	byte_index =3D BITS_TO_BYTES(chan->scan_type.realbits);
-> > > -	for (i =3D 0; i < st->chip->num_channels; i++)
-> > > -		st->rx_data.buffered[i].common =3D ((u8 *)&st->rx_data.buffered[i]=
-.val)[byte_index];
-> > > +	/* Doing it backward to avoid overlap when reordering */
-> > > +	for (i =3D st->chip->num_channels - 1; i > 0; i--) {
-> > > +		st->rx_data.buffered_common[i].diff =3D st->rx_data.diff[i];
-> > > +		st->rx_data.buffered_common[i].common =3D ((u8 *)&st->rx_data.diff=
-[i])[byte_index];
-> > > +	}
-> >
-> > I wonder if doing it in place is actually worthwhile.  Maybe unpack int=
-o a second
-> > array? That is still fairly small and may make code easier to read.
->
-> Okay sure
+On Mon, Sep 16, 2024 at 02:43:44PM GMT, Soutrik Mukhopadhyay wrote:
+> Add device tree node for the DisplayPort controller
+> and eDP PHY found on the Qualcomm SA8775P SoC.
 
-Actually I can't consolidate the differential only mode and the common
-byte mode without having to create a bunch of if/else or having a
-memcpy. The best I can do is this, but I don't like it:
+Not quite. You are also enabling it for the RIDE platforms, not just the
+SA8775p SoC.
 
-```
-static int ad4030_conversion(struct ad4030_state *st,
-			     const struct iio_chan_spec *chan)
-{
-	...
-	u32 tmp[AD4030_MAX_HARDWARE_CHANNEL_NB];
-	u32 *diff;
+> 
+> Signed-off-by: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+> ---
+> This patch depends on following series:
+> https://lore.kernel.org/all/20240816-sa8775p-mm-v3-v1-0-77d53c3c0cef@quicinc.com/
+> https://lore.kernel.org/all/20240912071437.1708969-1-quic_mahap@quicinc.com/
+> https://lore.kernel.org/all/20240913103755.7290-1-quic_mukhopad@quicinc.com/
 
-	...
+Also please provide mdss_dp1 device nodes, you have documented them in
+the patch "drm/msm/dp: Add DisplayPort controller for SA8775P"
 
-	if (st->mode !=3D AD4030_OUT_DATA_MD_16_DIFF_8_COM &&
-	    st->mode !=3D AD4030_OUT_DATA_MD_24_DIFF_8_COM) {
-		if (st->chip->num_voltage_inputs =3D=3D 2)
-			ad4030_extract_interleaved(st->rx_data.raw,
-						   &st->rx_data.diff[0],
-						   &st->rx_data.diff[1]);
-		return 0;
-	}
+> ---
+>  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi |  23 +++++
+>  arch/arm64/boot/dts/qcom/sa8775p.dtsi      | 114 ++++++++++++++++++++-
+>  2 files changed, 136 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> index 0c1b21def4b6..728b4cda8353 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> @@ -421,6 +421,23 @@
+>  	status = "okay";
+>  };
+>  
+> +&mdss0 {
+> +	status = "okay";
+> +};
+> +
+> +&mdss0_dp0 {
+> +	status = "okay";
+> +};
+> +
+> +&mdss0_dp0_out {
+> +	data-lanes = <0 1 2 3>;
+> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+> +};
+> +
+> +&mdss0_edp_phy0 {
+> +	status = "okay";
+> +};
+> +
+>  &pmm8654au_0_gpios {
+>  	gpio-line-names = "DS_EN",
+>  			  "POFF_COMPLETE",
+> @@ -527,6 +544,12 @@
+>  };
+>  
+>  &tlmm {
+> +	dp_hot_plug_det: dp-hot-plug-det-state {
+> +		pins = "gpio101";
+> +		function = "edp0_hot";
+> +		bias-disable;
+> +	};
+> +
+>  	ethernet0_default: ethernet0-default-state {
+>  		ethernet0_mdc: ethernet0-mdc-pins {
+>  			pins = "gpio8";
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> index 7747965e7e46..a04150c29565 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> @@ -3339,6 +3339,18 @@
+>  				interrupt-parent = <&mdss0>;
+>  				interrupts = <0>;
+>  
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +						dpu_intf0_out: endpoint {
+> +							remote-endpoint = <&mdss0_dp0_in>;
+> +						};
+> +					};
+> +				};
+> +
+>  				mdss0_mdp_opp_table: opp-table {
+>  					compatible = "operating-points-v2";
+>  
+> @@ -3363,6 +3375,106 @@
+>  					};
+>  				};
+>  			};
+> +
+> +			mdss0_edp_phy0: phy@aec2a00 {
+> +				compatible = "qcom,sa8775p-edp-phy";
+> +
+> +				reg = <0x0 0xaec2a00 0x0 0x200>,
+> +					<0x0 0xaec2200 0x0 0xd0>,
+> +					<0x0 0xaec2600 0x0 0xd0>,
+> +					<0x0 0xaec2000 0x0 0x1c8>;
 
-	if (st->chip->num_voltage_inputs =3D=3D 2) {
-		ad4030_extract_interleaved(st->rx_data.raw,
-					   &tmp[0],
-					   &tmp[1]);
-		diff =3D tmp;
-	} else {
-		diff =3D st->rx_data.diff;
-	}
+Please ident on the angle bracket.
 
-	common_byte_mask =3D BITS_TO_BYTES(chan->scan_type.realbits);
-	for (i =3D 0; i < st->chip->num_voltage_inputs; i++) {
-		st->rx_data.buffered[i].val =3D diff[i];
-		st->rx_data.buffered[i].common =3D
-			((u8 *)(diff + i))[common_byte_mask];
-	}
+> +
+> +				clocks = <&rpmhcc RPMH_CXO_CLK>,
 
-	return 0;
-```
+It it really CXO?
 
-The root cause is that when we are in a differential only mode we are
-leaving before the for loop and we want the data to be in the rx_data.
+> +					 <&gcc GCC_EDP_REF_CLKREF_EN>;
 
-It fells clunky and brain consuming IMAO, I prefer a reversed loop with
-a good comment (the one we have now is not explicit enough, I will
-update it).
+And this isn't cfg_ahb.
+
+> +				clock-names = "aux",
+> +					      "cfg_ahb";
+> +
+> +				vdda-phy-supply = <&vreg_l1c>;
+> +				vdda-pll-supply = <&vreg_l4a>;
+
+regulators are not a part of the SoC
+
+> +				#clock-cells = <1>;
+> +				#phy-cells = <0>;
+> +
+> +				status = "disabled";
+> +			};
+> +
+> +			mdss0_dp0: displayport-controller@af54000 {
+> +				compatible = "qcom,sa8775p-dp";
+> +
+> +				pinctrl-0 = <&dp_hot_plug_det>;
+> +				pinctrl-names = "default";
+> +
+> +				reg = <0x0 0xaf54000 0x0 0x104>,
+> +					<0x0 0xaf54200 0x0 0x0c0>,
+> +					<0x0 0xaf55000 0x0 0x770>,
+> +					<0x0 0xaf56000 0x0 0x09c>;
+
+Wrong indentation.
+
+> +
+> +				interrupt-parent = <&mdss0>;
+> +				interrupts = <12>;
+> +
+> +				clocks = <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
+> +					 <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_AUX_CLK>,
+> +					 <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_LINK_CLK>,
+> +					 <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
+> +					 <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
+> +				clock-names = "core_iface",
+> +						"core_aux",
+> +						"ctrl_link",
+> +						"ctrl_link_iface",
+> +						"stream_pixel";
+
+And here.
+
+> +				assigned-clocks = <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_LINK_CLK_SRC>,
+> +						  <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC>;
+> +				assigned-clock-parents = <&mdss0_edp_phy0 0>, <&mdss0_edp_phy0 1>;
+> +				phys = <&mdss0_edp_phy0>;
+> +				phy-names = "dp";
+> +
+> +				operating-points-v2 = <&dp_opp_table>;
+> +				power-domains = <&rpmhpd SA8775P_MMCX>;
+> +
+> +				#sound-dai-cells = <0>;
+> +
+> +				status = "disabled";
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +						mdss0_dp0_in: endpoint {
+> +							remote-endpoint = <&dpu_intf0_out>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +						mdss0_dp0_out: endpoint { };
+> +					};
+> +				};
+> +
+> +				dp_opp_table: opp-table {
+> +					compatible = "operating-points-v2";
+> +
+> +					opp-160000000 {
+> +						opp-hz = /bits/ 64 <160000000>;
+> +						required-opps = <&rpmhpd_opp_low_svs>;
+> +					};
+> +
+> +					opp-270000000 {
+> +						opp-hz = /bits/ 64 <270000000>;
+> +						required-opps = <&rpmhpd_opp_svs>;
+> +					};
+> +
+> +					opp-540000000 {
+> +						opp-hz = /bits/ 64 <540000000>;
+> +						required-opps = <&rpmhpd_opp_svs_l1>;
+> +					};
+> +
+> +					opp-810000000 {
+> +						opp-hz = /bits/ 64 <810000000>;
+> +						required-opps = <&rpmhpd_opp_nom>;
+> +					};
+> +				};
+> +			};
+>  		};
+>  
+>  		dispcc0: clock-controller@af00000 {
+> @@ -3372,7 +3484,7 @@
+>  				 <&rpmhcc RPMH_CXO_CLK>,
+>  				 <&rpmhcc RPMH_CXO_CLK_A>,
+>  				 <&sleep_clk>,
+> -				 <0>, <0>, <0>, <0>,
+> +				 <&mdss0_edp_phy0 0>, <&mdss0_edp_phy0 1>, <0>, <0>,
+>  				 <0>, <0>, <0>, <0>;
+>  			power-domains = <&rpmhpd SA8775P_MMCX>;
+>  			#clock-cells = <1>;
+> -- 
+> 2.17.1
+> 
+
+-- 
+With best wishes
+Dmitry
 
