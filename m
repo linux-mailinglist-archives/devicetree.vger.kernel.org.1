@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-103215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE56A979E9A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 11:43:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7722979EA1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 11:44:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0C1B1C22D79
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 09:43:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CD142812B5
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 09:44:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80B1914A095;
-	Mon, 16 Sep 2024 09:43:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7133614A09C;
+	Mon, 16 Sep 2024 09:44:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VPvHXqk/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DRgB6yP3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5540B140E50;
-	Mon, 16 Sep 2024 09:43:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44D0850284;
+	Mon, 16 Sep 2024 09:44:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726479829; cv=none; b=sxkqgAZZdgx+cYL+ievEkcxhzWJe+83MdRHzwBBq2dMCz87wvwGGWentMKZbNgAh0Mu4Bh1eAxeBT/Ve+W7QiomyT67U2stSxJOhp++IFVBTTDTZgt5c4958raQg5YDjBMV9R9lqvBUGJvj1ceR1S7BjQr3LitPyXTjaE9HJDvs=
+	t=1726479894; cv=none; b=oh9Yw/D0FXTfPqVN58D9SGf+Ddl63Q2iKevM5j8YhxQmpSNIK945AQWkSsBBbl+xkaFMBgfIj8oBDEM/PLs5ULpn441O8qYAGGpAPJI1VZgXMdmEKZZ4bWvlok8/iyeWvD29IPRCTRW2qqv2TniPYJRNCR6tdtghiXeRqZGoU4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726479829; c=relaxed/simple;
-	bh=uSLjVMOFtjZ6RN5n2oEbfcv69+hcDB7RedYfY0m4J3c=;
+	s=arc-20240116; t=1726479894; c=relaxed/simple;
+	bh=XBHns7lIsGV3fhSomVNc6Im5cLOPXoTu21pGn5vhiIA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X1ZoqvhxNeEAlDm7PbNzCwh+q+UHXY99j1bPLO02lKWrv0akvPDhAgALizoSNF9mABD7jyMBZOiXjxHtbgS22j5xrL+tXwZQlC57fkw1ValIkQ+G5v6JVFBV2BibTTRyDjbp8AFhodwIzpvERD26hITYttfUbhodAi+Hr1JqGMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VPvHXqk/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FAD8C4CEC4;
-	Mon, 16 Sep 2024 09:43:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=D4coYuBGKDh/s8EhuNhJT/Y8UAN3IbWpAjXCltAviY+7UQmztGas0hYYV/X2IEZIBYq8Q74IOO6yc7DC9uQdtAhlOCtDmECiNnlfZ7P6/Cfu2fX0ehe4dsnvP2coUq4+bNVje2yh35JsTkWqRVEYnv/f8rNd8UjVVRZvYu4DEOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DRgB6yP3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC33AC4CECD;
+	Mon, 16 Sep 2024 09:44:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726479828;
-	bh=uSLjVMOFtjZ6RN5n2oEbfcv69+hcDB7RedYfY0m4J3c=;
+	s=k20201202; t=1726479893;
+	bh=XBHns7lIsGV3fhSomVNc6Im5cLOPXoTu21pGn5vhiIA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VPvHXqk/f8+eUm3LxYMPvdkcxy7SbCr6raEVx58xFF5uuoMAdjmOor+HmP+kpR4uQ
-	 S5rJi/E+pDizyB24Sdqd/VhkL5bvN1P+oLHkU8SJ/0aT+NBngwKxvyuycU3vsfBLOI
-	 2uq9egVifX2vRvfqUMgQjXf/q5X5nkrVAbo6nznPKKYl3KTUe7rcw3XOKZtFqzkeHQ
-	 GiUm7lkvEPgLkW8s6O0NhV/I1p5gP4rVYHoq1zRGODBIHW1/dANXaFqHzhrM4Qoz5V
-	 itDaOFF18Ft9W6Cj3+D73zeznIMWEsbAScczDZYMyfk/MvxqcTnqFt6AHCXvkdkUcY
-	 ON0dvyU0QobXQ==
-Date: Mon, 16 Sep 2024 11:43:44 +0200
+	b=DRgB6yP3oG+MT62mk+/l+vQdOQJAvmLXfEJL2sEuiSE0rrflnr6utDQwir3n+WPTm
+	 5xVu7jlgsJIq4Yv5npV6CR3qaZlmvDhxTlNZsSAoNxCKSlTwtdzIvqwIJAgUvtbCRe
+	 xkc9a61CzUBn+3wasU/dFzJv5gtxOU8XpUdtk5+3sC73gpY7GTadMW5PYZVzwHem9z
+	 /Z3PpzHDKBdHmXjE3VIUYu3hMlmWVwjUWfFmmdivTijl3EUz2ARhYBGCuhZ77AtylS
+	 x13TU1Q1f6JAFVbeRJy1Y2arj8NE4LuxvLrxQj7M0E1pPoIVgT4KiDfqzyW+KmkE8W
+	 PX4cp2wWNvLdg==
+Date: Mon, 16 Sep 2024 11:44:49 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Yiting Deng <yiting.deng@amlogic.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: rtc: Add Amlogic A4 and A5 RTC
-Message-ID: <u5dtpbnnfrjwf5nmpxfug4fd5argwdu5oi4cogu2wiexkw3l5p@qxjxu52w3pea>
-References: <20240910-rtc-v3-0-1fa077a69a20@amlogic.com>
- <20240910-rtc-v3-1-1fa077a69a20@amlogic.com>
+To: Nikunj Kela <quic_nkela@quicinc.com>
+Cc: rafael@kernel.org, viresh.kumar@linaro.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com, 
+	quic_psodagud@quicinc.com
+Subject: Re: [PATCH v3] dt-bindings: cpufreq: qcom-hw: document support for
+ SA8255p
+Message-ID: <crsuqys5tlgtf4667fwaojn5z5ri4uf3te4n5a2bcalidgobo2@up62meevaxwn>
+References: <20240912175043.2262697-1-quic_nkela@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,71 +60,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240910-rtc-v3-1-1fa077a69a20@amlogic.com>
+In-Reply-To: <20240912175043.2262697-1-quic_nkela@quicinc.com>
 
-On Tue, Sep 10, 2024 at 06:14:18PM +0800, Xianwei Zhao wrote:
-> From: Yiting Deng <yiting.deng@amlogic.com>
+On Thu, Sep 12, 2024 at 10:50:43AM -0700, Nikunj Kela wrote:
+> Add compatible for the cpufreq engine representing support on SA8255p.
 > 
-> Add documentation describing the Amlogic A4(A113L2) and A5(A113X2) RTC.
-> 
-> Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
 > ---
->  .../devicetree/bindings/rtc/amlogic,a4-rtc.yaml    | 63 ++++++++++++++++++++++
->  1 file changed, 63 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/rtc/amlogic,a4-rtc.yaml b/Documentation/devicetree/bindings/rtc/amlogic,a4-rtc.yaml
-> new file mode 100644
-> index 000000000000..eee994753a12
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/amlogic,a4-rtc.yaml
-> @@ -0,0 +1,63 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2024 Amlogic, Inc. All rights reserved
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/amlogic,a4-rtc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic A4 and A5 RTC
-> +
-> +maintainers:
-> +  - Yiting Deng <yiting.deng@amlogic.com>
-> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
-> +
-> +allOf:
-> +  - $ref: rtc.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - amlogic,a4-rtc
-> +      - amlogic,a5-rtc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: RTC clock source, available 24M or 32K crystal
-> +          oscillator source. when using 24M, need to divide 24M into 32K.
-> +      - description: RTC module accesses the clock of the apb bus.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: osc
-> +      - const: sys
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-
-If there is going to be a new version, keep the same order as in
-properties: section.
+> Changes in v3:
+> 	- Added compatible to the correct constraint list
+> 	- Removed the new constraint block added in v2
+> 	- Removed the patch from original series[1]
+> 
+> Changes in v2:
+> 	- Added new constraints
+> 
+> [1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
+> ---
+>  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
