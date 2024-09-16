@@ -1,87 +1,98 @@
-Return-Path: <devicetree+bounces-103303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1FF897A532
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 17:21:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F97A97A535
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 17:22:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65F5B28C786
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 15:21:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 561BA1F21FAF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 15:22:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6311515AD9E;
-	Mon, 16 Sep 2024 15:21:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA101158D9C;
+	Mon, 16 Sep 2024 15:22:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B5ITreaq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QvyPPq4P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3588C149C4D;
-	Mon, 16 Sep 2024 15:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B26F1482ED;
+	Mon, 16 Sep 2024 15:22:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726500076; cv=none; b=eE+kma2f2de2AAlQzErGb1z4pX195a7zQhh6DyRetExvccX0wT0jCmt9GD/z1Oc7AW2TcNaTv+3eGNrLM396jmxyX/bZyzNaja01wCTAAU60RcRvzjs3cbmSYczpzUj+mFvAF6HnLNFXD2kOD5l7Q4UBguOcOhJPHOW/8osxDAM=
+	t=1726500154; cv=none; b=HBttPWMBHo0Myl9F92ew2QeBLNTK/lpHeCiqKfYPBSEaH5dUGiHvHknPqCNArEjfZXUNS6DZ1VzHF7W9jjp6AH71XnbN1hV0X2eZLiBGXh8qDDfEtl9g1N+kHtw2vjYxsMAJPkXD3TDa57kdan6+d+zmb8VDPVmIc1wrv9RJkss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726500076; c=relaxed/simple;
-	bh=15KPeQUmUDmhfRZADjOpKO9OZuRW742vA+qq24d9DQo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JVLDeQLEZR8x8E0dKW+5SHe0PADMpGr+HjBf70CSjjjWrTlQOEVKin2wht2rcOLpKNypo00pRJBy09/023jqbIL/sdx9uJbBCDYLJAG5abuXXLtfibE3YRVjMlMSueQo5+hSx8X8BEfinwdTQotwo+Oqor2bBESoWgq4d0Iw91g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B5ITreaq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4741C4CEC4;
-	Mon, 16 Sep 2024 15:21:14 +0000 (UTC)
+	s=arc-20240116; t=1726500154; c=relaxed/simple;
+	bh=C9MlE4yODMM5mb6XjDjjfXwhm5Ed/UVERDpGQeMhzI4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=L0AcJEdJGbhfBynxf5g12Bifp5KAxSp+Hkn/q8OYkfo3NelYjS3pz+V7jF5xpmR8WVYlCf8sbbJetk8KCQnEmNNEos6vU/Zq8l1OZjSo6l4QabD8Rh1S7lR9+awRSWAPwZZqV8uKfSrNTGKIrywLc0Gjlc3a3Qk4bMA9QbT23G8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QvyPPq4P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18086C4CEC5;
+	Mon, 16 Sep 2024 15:22:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726500075;
-	bh=15KPeQUmUDmhfRZADjOpKO9OZuRW742vA+qq24d9DQo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B5ITreaqD66aCZn0ZnFRJQUnkcv9GGjMkBePgY00QODxUerihkKlQ/zgReoKJwE2Q
-	 Cap3vUp5CkErTeHLvGn0fZa13YQzZxOCbR+88hd5sTElej40AgSEz+toE+/ngvMUZm
-	 EGEtYX8jlXedfWk40Ep2CJOYrGNjS+8XUqV2K1kWZrw2P2vndv/Lw9zb9VL3pQPHkj
-	 YoGmZkYSS0I/H58sA1yM0QCgNHLkjE8SSN+w1RelY8FwpUsdq2uBiKyEOb1rirrEHc
-	 Z5C2xlsId/ivtorQ6nAOg7xPJ7QU550v4Z35ZhWnUq/g3VyAo/65+vr4nsezSW3mtV
-	 0C29kzbyIC/YQ==
-Date: Mon, 16 Sep 2024 17:21:12 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, konradybcio@kernel.org, 
-	andersson@kernel.org, simona@ffwll.ch, dmitry.baryshkov@linaro.org, 
-	abel.vesa@linaro.org, robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run, 
-	marijn.suijten@somainline.org, airlied@gmail.com, daniel@ffwll.ch, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, quic_khsieh@quicinc.com, 
-	konrad.dybcio@linaro.org, quic_parellan@quicinc.com, quic_bjorande@quicinc.com, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	quic_riteshk@quicinc.com, quic_vproddut@quicinc.com
-Subject: Re: [PATCH v2 1/5] dt-bindings: phy: Add eDP PHY compatible for
- sa8775p
-Message-ID: <qy4hizhsrz6nnfq4a5eremcc7b2gtw6czpav2j34nyj4i6fenv@p6vzlxanhmd5>
-References: <20240913103755.7290-1-quic_mukhopad@quicinc.com>
- <20240913103755.7290-2-quic_mukhopad@quicinc.com>
+	s=k20201202; t=1726500154;
+	bh=C9MlE4yODMM5mb6XjDjjfXwhm5Ed/UVERDpGQeMhzI4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=QvyPPq4PaX8U6jJA+NLsNZk82XFNX5LgSvfSbeeetrqB/4g6cwgPk1E2VLx7GoSfU
+	 Qvc4FanfUnRlaE4FdEvBIUYhJWhZF7fcWKA3aYJ7/1rhZu/6Pa75pGN1mgrjPbmO7+
+	 jdRe2fYMw/SsHRgzjdb8kCHMTxM+fO2YaPS/MLhY9sp1rUGYv17R/d7a7sK5fthxJj
+	 1KkV4uE6GSv/j4yqCZuCRip29Hu0beqfeSlfzF8ETCZ+koLgOrJCJx2Iy+IPR7Dm5o
+	 s/zGRaHOLtnn9AAU4qWnf8ChOtGRMfqL2COSzhcrmzx1EL2lsN7Vk7OZpPJElq9LLx
+	 J15/JjJxrLQMQ==
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5365928acd0so5032716e87.2;
+        Mon, 16 Sep 2024 08:22:34 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVJWFRzmwuDCshCy9ywEeD+JjKkTxlRJ38VIZkHAa0S77utjedn1HZLtXvQw8KuzBXEFS1NCtqaw6/h@vger.kernel.org, AJvYcCXPfa59aB+oJO1Mwac2/+FQyjOpC4PAE612iu1NBBfnXeouTtNissGeU5gEYvDQ6N/mPR3UoyGtZypB@vger.kernel.org, AJvYcCXhOWFf77tC9OHybIhmg/mk3RoXNRaBWQvbbJe3C2lLP3uoeUUPJR3UHoVbXv37Uomng0g1hAtwU0tz8UwE@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywlq+7SnEbSNF8P08q6xjcgd0WCA+GhUhJx3QHkitYcKmZLUXgW
+	sUB7bzT4cr+bSvWqDHUur6F1MLPJDRgSql15mKAcjAYGf2uzRJLeGF8d1toYrvePcS/3mT44NVB
+	+8hWFDtLl9lSRgpiqDpfKv0a+3w==
+X-Google-Smtp-Source: AGHT+IGdtTw/KSz+ewhmThokJhzQHLQtbmkjbMSGHd0sSEClAzNlgWwy0LVcgG/meO/bYpmv5im6I9R4MCOcEvebLO4=
+X-Received: by 2002:a05:6512:3195:b0:530:aa3f:7889 with SMTP id
+ 2adb3069b0e04-53678ff4b11mr8342939e87.56.1726500152476; Mon, 16 Sep 2024
+ 08:22:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240913103755.7290-2-quic_mukhopad@quicinc.com>
+References: <20240910234440.1045098-1-robh@kernel.org> <20240914151806.66c58bfd@jic23-huawei>
+In-Reply-To: <20240914151806.66c58bfd@jic23-huawei>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 16 Sep 2024 10:22:19 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+oJ71ncJOLH_ozyKgO8N0Dq85nvXM00cpOE24wUprXjQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+oJ71ncJOLH_ozyKgO8N0Dq85nvXM00cpOE24wUprXjQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: iio: dac: adi,ad56xx: Fix duplicate
+ compatible strings
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Auchter <michael.auchter@ni.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 13, 2024 at 04:07:51PM +0530, Soutrik Mukhopadhyay wrote:
-> Add compatible string for the supported eDP PHY on sa8775p platform.
-> 
-> Signed-off-by: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
-> ---
-> v2: No change
->  
-> ---
->  Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml | 1 +
+On Sat, Sep 14, 2024 at 9:18=E2=80=AFAM Jonathan Cameron <jic23@kernel.org>=
+ wrote:
+>
+> On Tue, 10 Sep 2024 18:44:39 -0500
+> "Rob Herring (Arm)" <robh@kernel.org> wrote:
+>
+> > adi,ad5686.yaml and adi,ad5696.yaml duplicate all the I2C device
+> > compatible strings with the exception of "adi,ad5337r". Since
+> > adi,ad5686.yaml references spi-peripheral-props.yaml, drop the I2C
+> > devices from it making it only SPI devices. Update the titles to make
+> > the distinction clear.
+> >
+> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> Is this an urgent thing, or can it wait for the merge window after next?
+> For now I've queued it up for then in my testing branch but can yank it
+> out and send it as a fix after rc1 if that is useful.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Sooner would be better. It's now a warning in dtschema main branch.
+The issue is not so much the duplication, but that which schema gets
+applied is not deterministic.
 
-Best regards,
-Krzysztof
-
+Rob
 
