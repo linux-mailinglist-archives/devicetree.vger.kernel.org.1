@@ -1,65 +1,63 @@
-Return-Path: <devicetree+bounces-103158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36DCF979BFE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 09:24:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0639F979C46
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 09:51:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69BC01C22521
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 07:24:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF7522811F2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 07:51:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1FA7131BDD;
-	Mon, 16 Sep 2024 07:24:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3CAF13AA38;
+	Mon, 16 Sep 2024 07:51:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="IqQxikJ/"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LxF5/PLI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 513C91FAA;
-	Mon, 16 Sep 2024 07:24:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08C191339B1;
+	Mon, 16 Sep 2024 07:51:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726471454; cv=none; b=klUt7D64fy6xJTCzjAKDfVAYudVZtv4m8XpYZyTUurbOBfiAeRe+l28UckEjIk0+fTDAeZ4iRxkrWm21vRduhhaASWPTZnZVbzPN/ZfDPYc1E1uGNaTsBYYROclqCfG+a/GWFE8AKt0roHBLpkJmVdLZJjnlq8gw/e7Ay8u+VHU=
+	t=1726473065; cv=none; b=XKrAP/GfDmc5S6mdVahGmMxTzrsO9i9wmSfo7feVBMxhjmEGodG+HApNNTahFsYgnGaCWQPasl8ljJlDxv9NIwJ8L0pZwPxC+XIFLaqLQXvPtUviLb3H3FCoi3vDWEFUMvWO9j0QeOf5M0NJJW5emx7aKEMjh46Rkfhdh4xPx7E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726471454; c=relaxed/simple;
-	bh=7HdfdAuYOXtzpuZeeI+Yr0Hwt6eDeO1YBtPamvGsXiQ=;
+	s=arc-20240116; t=1726473065; c=relaxed/simple;
+	bh=Z9uIWG2PKf2KyhsARs6C+a8hCyFUNF7z+oDNfDWyUlI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=jc6NWZugMZyRpYPIDRjXcJgVu6dGb+OCJP5ntMs/T7zs3Ji6M0qgSqJ6ehdIfM5FtlQFtFK/lw+S4+3aXZFQ4ky+LHd4JBwKelqAoQAuLIEEz1YpV2YYtAulWfn7FQ+wv5FVKdrj8JnKI7+0pkB0ssy9DonZnnEVyT3Hh/WTmz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=IqQxikJ/; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1726471452; x=1758007452;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=7HdfdAuYOXtzpuZeeI+Yr0Hwt6eDeO1YBtPamvGsXiQ=;
-  b=IqQxikJ/CpHQJml/6H53KAIYY9J1hb0wCqDwyU07WVi0E1Jk0zsoRthG
-   HZB7tRribRbCveJIDaDLOiywprkS+fjObn8Vsg9Rl06SvGM7oBJKzXu6W
-   jL4ZjwspK7DG/gfMUk2dnZVMo7OpLH6Z4s+mIV2bgj6bnRK+a1NqoZ79X
-   PkwScwVbRDvNDa2W2DEVjHurE8x57LCb5TAp/tY0ERCEHUik0dsEJ7Ysa
-   uJfWsFIvJ6VXSqW9yo55wvzyF6RFwqKFuxtb22jiWIY61xVMFQnynvP7/
-   Adb6mqM1IsBXn3jqDkzBYzeZ2148o27Ew7O1fq5OtIqDzJ9MRZDNGhPDk
-   g==;
-X-CSE-ConnectionGUID: tsAC/8XwRP2MTt/y/cnXKg==
-X-CSE-MsgGUID: 19NcF4nmQhewUaHyp5jtlA==
-X-IronPort-AV: E=Sophos;i="6.10,232,1719903600"; 
-   d="scan'208";a="199255006"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 16 Sep 2024 00:24:11 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 16 Sep 2024 00:23:41 -0700
-Received: from [10.159.245.205] (10.10.85.11) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Mon, 16 Sep 2024 00:23:39 -0700
-Message-ID: <67d0e60f-718f-4496-bb7f-aa5180291cfd@microchip.com>
-Date: Mon, 16 Sep 2024 09:23:57 +0200
+	 In-Reply-To:Content-Type; b=X30wxTdhmpOySvugy7czh9QD45L9AVgwds0DhSqTZTBB2bwOVaVwgEITid+Lykq6nAzR/pQ+8apLiFyLVxheAVY/tFJ5EOGN9GRZcMKRP4UsKe9iAz+ZIHKY1gJBX3YjvlYfMXqHaiOg4gkLhaFD31OdU2/YY7faH0+bLwYzywA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LxF5/PLI; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48FNmwBA024426;
+	Mon, 16 Sep 2024 07:50:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	gBgmFYIDtjCkjwPRAQZ3OnNLyodUiCbqaDvzxqA+Jog=; b=LxF5/PLIqnNscV1V
+	h5fsKk2lNKyAB+/1ODBuwJa29nB1U10CeqfixNcxascuUhmI7KAzaphLLU43jtBb
+	4MENoySc0b7apl5JuzSo5LADUyYXKsptKy64B/iMkCXPBDEK6yzUcjY5hb35QWip
+	4NcICcQYFSvDSWYREEpsvvlsb/sFdRV8OwZBTb7/D3f+zbwIgyoGWpKj7O7el10e
+	PFVF2OT7fhJrZakDFjJkkRTJCQ8IY22EX/rZ2ROVA1glSOAMfPF0h+i6qQiI16ww
+	vaDQpJJzet2nDxk94/4iu/Adr+uZA0LXvTkTSjmTTCMDY8nxVuu848nJiD2UnfNU
+	bSJ4Zg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41n4gcu60a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Sep 2024 07:50:34 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48G7oXGF012618
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Sep 2024 07:50:33 GMT
+Received: from [10.151.37.100] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 16 Sep
+ 2024 00:50:27 -0700
+Message-ID: <f9126534-3a46-4d01-9026-58e0b65c08d2@quicinc.com>
+Date: Mon, 16 Sep 2024 13:20:24 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,106 +65,340 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: microchip: Add trng labels for all at91 SoCs
-Content-Language: en-US, fr-FR
-To: Alexander Dahl <ada@thorsis.com>, Conor Dooley <conor+dt@kernel.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea
-	<claudiu.beznea@tuxon.dev>, "open list:OPEN FIRMWARE AND FLATTENED DEVICE
- TREE BINDINGS" <devicetree@vger.kernel.org>, open list
-	<linux-kernel@vger.kernel.org>, linux-arm-kernel
-	<linux-arm-kernel@lists.infradead.org>
-References: <20240916064233.697215-1-ada@thorsis.com>
-From: Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <20240916064233.697215-1-ada@thorsis.com>
+Subject: Re: [PATCH 5/8] clk: qcom: add Global Clock controller (GCC) driver
+ for IPQ5424 SoC
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <ulf.hansson@linaro.org>,
+        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
+        <p.zabel@pengutronix.de>, <geert+renesas@glider.be>,
+        <neil.armstrong@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <quic_varada@quicinc.com>
+References: <20240913121250.2995351-1-quic_srichara@quicinc.com>
+ <20240913121250.2995351-6-quic_srichara@quicinc.com>
+ <glkvcne5eius5l7dro7gzd7hyztc6vc4eekcbbxz6c4wwolwqy@aoj66qbrxezg>
+Content-Language: en-US
+From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+In-Reply-To: <glkvcne5eius5l7dro7gzd7hyztc6vc4eekcbbxz6c4wwolwqy@aoj66qbrxezg>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: lGQJOmdExYP4olx6XnTSFvayGnhWWGDd
+X-Proofpoint-GUID: lGQJOmdExYP4olx6XnTSFvayGnhWWGDd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ bulkscore=0 clxscore=1015 spamscore=0 adultscore=0 lowpriorityscore=0
+ mlxlogscore=999 impostorscore=0 mlxscore=0 priorityscore=1501 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2408220000
+ definitions=main-2409160048
 
-Hi Alexander,
 
-On 16/09/2024 at 08:42, Alexander Dahl wrote:
-> SAM9X60 and SAMA7G5 already have those labels.  Add it for the other SoC
-> families so it can be referenced in board files.
-> 
-> Signed-off-by: Alexander Dahl <ada@thorsis.com>
 
-Thanks for the patch.
+On 9/13/2024 6:16 PM, Dmitry Baryshkov wrote:
+> On Fri, Sep 13, 2024 at 05:42:47PM GMT, Sricharan R wrote:
+>> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>>
+>> Add support for the global clock controller found on IPQ5424 SoC.
+>>
+>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> 
+> Same comment regarding tags.
+> 
+ok
+>> ---
+>>   drivers/clk/qcom/Kconfig       |    7 +
+>>   drivers/clk/qcom/Makefile      |    1 +
+>>   drivers/clk/qcom/gcc-ipq5424.c | 3333 ++++++++++++++++++++++++++++++++
+>>   3 files changed, 3341 insertions(+)
+>>   create mode 100644 drivers/clk/qcom/gcc-ipq5424.c
+>>
+>> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+>> index a3e2a09e2105..c41e3318c2a7 100644
+>> --- a/drivers/clk/qcom/Kconfig
+>> +++ b/drivers/clk/qcom/Kconfig
+>> @@ -213,6 +213,13 @@ config IPQ_GCC_5332
+>>   	  Say Y if you want to use peripheral devices such as UART, SPI,
+>>   	  i2c, USB, SD/eMMC, etc.
+>>   
+>> +config IPQ_GCC_5424
+>> +	tristate "IPQ5424 Global Clock Controller"
+>> +	help
+>> +	  Support for the global clock controller on ipq5424 devices.
+>> +	  Say Y if you want to use peripheral devices such as UART, SPI,
+>> +	  i2c, USB, SD/eMMC, etc.
+>> +
+>>   config IPQ_GCC_6018
+>>   	tristate "IPQ6018 Global Clock Controller"
+>>   	help
+>> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+>> index 2b378667a63f..d58ba0f9a482 100644
+>> --- a/drivers/clk/qcom/Makefile
+>> +++ b/drivers/clk/qcom/Makefile
+>> @@ -32,6 +32,7 @@ obj-$(CONFIG_IPQ_APSS_6018) += apss-ipq6018.o
+>>   obj-$(CONFIG_IPQ_GCC_4019) += gcc-ipq4019.o
+>>   obj-$(CONFIG_IPQ_GCC_5018) += gcc-ipq5018.o
+>>   obj-$(CONFIG_IPQ_GCC_5332) += gcc-ipq5332.o
+>> +obj-$(CONFIG_IPQ_GCC_5424) += gcc-ipq5424.o
+>>   obj-$(CONFIG_IPQ_GCC_6018) += gcc-ipq6018.o
+>>   obj-$(CONFIG_IPQ_GCC_806X) += gcc-ipq806x.o
+>>   obj-$(CONFIG_IPQ_GCC_8074) += gcc-ipq8074.o
+>> diff --git a/drivers/clk/qcom/gcc-ipq5424.c b/drivers/clk/qcom/gcc-ipq5424.c
+>> new file mode 100644
+>> index 000000000000..72d2c9bfa986
+>> --- /dev/null
+>> +++ b/drivers/clk/qcom/gcc-ipq5424.c
+>> @@ -0,0 +1,3333 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (c) 2018,2020 The Linux Foundation. All rights reserved.
+>> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/regmap.h>
+>> +
+>> +#include <dt-bindings/clock/qcom,ipq5424-gcc.h>
+>> +#include <dt-bindings/reset/qcom,ipq5424-gcc.h>
+>> +
+>> +#include "clk-alpha-pll.h"
+>> +#include "clk-branch.h"
+>> +#include "clk-rcg.h"
+>> +#include "clk-regmap.h"
+>> +#include "clk-regmap-divider.h"
+>> +#include "clk-regmap-mux.h"
+>> +#include "clk-regmap-phy-mux.h"
+>> +#include "common.h"
+>> +#include "reset.h"
+>> +
+>> +enum {
+>> +	DT_XO,
+>> +	DT_SLEEP_CLK,
+>> +	DT_PCIE30_PHY0_PIPE_CLK,
+>> +	DT_PCIE30_PHY1_PIPE_CLK,
+>> +	DT_PCIE30_PHY2_PIPE_CLK,
+>> +	DT_PCIE30_PHY3_PIPE_CLK,
+>> +	DT_USB_PCIE_WRAPPER_PIPE_CLK,
+> 
+> This doesn't seem to match bindings.
+> 
+ok, will fix
+>> +};
+>> +
+>> +enum {
+>> +	P_GCC_GPLL0_OUT_MAIN_DIV_CLK_SRC,
+>> +	P_GPLL0_OUT_AUX,
+>> +	P_GPLL0_OUT_MAIN,
+>> +	P_GPLL2_OUT_AUX,
+>> +	P_GPLL2_OUT_MAIN,
+>> +	P_GPLL4_OUT_AUX,
+>> +	P_GPLL4_OUT_MAIN,
+>> +	P_SLEEP_CLK,
+>> +	P_XO,
+>> +	P_USB3PHY_0_PIPE,
+>> +};
+>> +
+>> +static const struct clk_parent_data gcc_parent_data_xo = { .index = DT_XO };
+>> +
+>> +static struct clk_alpha_pll gpll0 = {
+>> +	.offset = 0x20000,
+>> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT_EVO],
+>> +	.clkr = {
+>> +		.enable_reg = 0xb000,
+>> +		.enable_mask = BIT(0),
+>> +		.hw.init = &(const struct clk_init_data) {
+>> +			.name = "gpll0",
+>> +			.parent_data = &gcc_parent_data_xo,
+>> +			.num_parents = 1,
+>> +			.ops = &clk_alpha_pll_ops,
+>> +			.flags = CLK_IS_CRITICAL,
+> 
+> This deserves a comment
+> 
+ok will add
+>> +		},
+>> +	},
+>> +};
+>> +
+>> +static struct clk_fixed_factor gpll0_div2 = {
+>> +	.mult = 1,
+>> +	.div = 2,
+>> +	.hw.init = &(const struct clk_init_data) {
+>> +		.name = "gpll0_div2",
+>> +		.parent_hws = (const struct clk_hw *[]) {
+>> +			&gpll0.clkr.hw
+>> +		},
+>> +		.num_parents = 1,
+>> +		.ops = &clk_fixed_factor_ops,
+>> +	},
+>> +};
+>> +
+>> +static struct clk_alpha_pll gpll2 = {
+>> +	.offset = 0x21000,
+>> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_NSS_HUAYRA],
+>> +	.clkr = {
+>> +		.enable_reg = 0xb000,
+>> +		.enable_mask = BIT(1),
+>> +		.hw.init = &(const struct clk_init_data) {
+>> +			.name = "gpll2",
+>> +			.parent_data = &gcc_parent_data_xo,
+>> +			.num_parents = 1,
+>> +			.ops = &clk_alpha_pll_ops,
+>> +		},
+>> +	},
+>> +};
+>> +
+>> +static const struct clk_div_table post_div_table_gpll2_out_main[] = {
+>> +	{ 0x1, 2 },
+>> +	{ }
+>> +};
+>> +
+>> +static struct clk_alpha_pll_postdiv gpll2_out_main = {
+>> +	.offset = 0x21000,
+>> +	.post_div_table = post_div_table_gpll2_out_main,
+>> +	.num_post_div = ARRAY_SIZE(post_div_table_gpll2_out_main),
+>> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_NSS_HUAYRA],
+>> +	.clkr.hw.init = &(const struct clk_init_data) {
+>> +		.name = "gpll2_out_main",
+>> +		.parent_hws = (const struct clk_hw*[]) {
+>> +			&gpll2.clkr.hw,
+>> +		},
+>> +		.num_parents = 1,
+>> +		.ops = &clk_alpha_pll_postdiv_ro_ops,
+>> +	},
+>> +};
+>> +
+>> +static struct clk_alpha_pll gpll4 = {
+>> +	.offset = 0x22000,
+>> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT_EVO],
+>> +	.clkr = {
+>> +		.enable_reg = 0xb000,
+>> +		.enable_mask = BIT(2),
+>> +		.hw.init = &(const struct clk_init_data) {
+>> +			.name = "gpll4",
+>> +			.parent_data = &gcc_parent_data_xo,
+>> +			.num_parents = 1,
+>> +			.flags = CLK_IS_CRITICAL,
+> 
+> Comment, please.
+> 
+ok, will add
+>> +			.ops = &clk_alpha_pll_ops,
+>> +		},
+>> +	},
+>> +};
+>> +
+> 
+> [skipped]
+> 
+>> +
+>> +static struct clk_rcg2 gcc_pcnoc_bfdcd_clk_src = {
+>> +	.cmd_rcgr = 0x31004,
+>> +	.mnd_width = 0,
+>> +	.hid_width = 5,
+>> +	.parent_map = gcc_parent_map_0,
+>> +	.freq_tbl = ftbl_gcc_pcnoc_bfdcd_clk_src,
+>> +	.clkr.hw.init = &(const struct clk_init_data) {
+>> +		.name = "gcc_pcnoc_bfdcd_clk_src",
+>> +		.parent_data = gcc_parent_data_0,
+>> +		.num_parents = ARRAY_SIZE(gcc_parent_data_0),
+>> +		.flags = CLK_IS_CRITICAL,
+> 
+> Comment
+> 
+ok
+>> +		.ops = &clk_rcg2_ops,
+>> +	},
+>> +};
+>> +
+> 
+> [skipped]
+> 
+>> +
+>> +static struct clk_branch gcc_qdss_dap_clk = {
+>> +	.halt_reg = 0x2d058,
+>> +	.clkr = {
+>> +		.enable_reg = 0x2d058,
+>> +		.enable_mask = BIT(0),
+>> +		.hw.init = &(const struct clk_init_data) {
+>> +			.name = "gcc_qdss_dap_clk",
+>> +			.parent_hws = (const struct clk_hw *[]) {
+>> +				&gcc_qdss_dap_sync_clk_src.hw
+>> +			},
+>> +			.num_parents = 1,
+>> +			.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+> 
+> Comment
+> 
+ok
+>> +			.ops = &clk_branch2_ops,
+>> +		},
+>> +	},
+>> +};
+>> +
+>> +static struct clk_branch gcc_qdss_at_clk = {
+>> +	.halt_reg = 0x2d034,
+>> +	.clkr = {
+>> +		.enable_reg = 0x2d034,
+>> +		.enable_mask = BIT(0),
+>> +		.hw.init = &(const struct clk_init_data) {
+>> +			.name = "gcc_qdss_at_clk",
+>> +			.parent_hws = (const struct clk_hw *[]) {
+>> +				&gcc_qdss_at_clk_src.clkr.hw
+>> +			},
+>> +			.num_parents = 1,
+>> +			.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+> 
+> Comment
+> 
+ok
+>> +			.ops = &clk_branch2_ops,
+>> +		},
+>> +	},
+>> +};
+>> +
+> 
+> [skipped]
+> 
+>> +
+>> +static int gcc_ipq5424_probe(struct platform_device *pdev)
+>> +{
+>> +	struct regmap *regmap;
+>> +	struct qcom_cc_desc ipq5424_desc = gcc_ipq5424_desc;
+>> +	int ret;
+>> +
+>> +	regmap = qcom_cc_map(pdev, &ipq5424_desc);
+>> +	if (IS_ERR(regmap))
+>> +		return PTR_ERR(regmap);
+>> +
+>> +	ret = qcom_cc_really_probe(&pdev->dev, &ipq5424_desc, regmap);
+>> +	if (ret) {
+>> +		dev_err(&pdev->dev, "Failed to register GCC clocks ret=%d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	dev_info(&pdev->dev, "Registered GCC clocks\n");
+>> +
+>> +	return ret;
+> 
+> Drop all the cruft and use qcom_cc_probe() directly.
+> 
+ok
 
-While we are at it, now that we have a proper label, can you please 
-change the node name which should be "rng" ?
-
-It will be aligned with latest Device Tree specification and what we 
-tried to follow for newer sama7g5 for instance:
-
-https://elixir.bootlin.com/linux/v6.10.10/source/arch/arm/boot/dts/microchip/sama7g5.dtsi#L774
-
-Best regards,
-   Nicolas
-
-> ---
->   arch/arm/boot/dts/microchip/at91sam9g45.dtsi | 2 +-
->   arch/arm/boot/dts/microchip/sama5d2.dtsi     | 2 +-
->   arch/arm/boot/dts/microchip/sama5d3.dtsi     | 2 +-
->   arch/arm/boot/dts/microchip/sama5d4.dtsi     | 2 +-
->   4 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/microchip/at91sam9g45.dtsi b/arch/arm/boot/dts/microchip/at91sam9g45.dtsi
-> index 325c63a53118..02bd5a1833e8 100644
-> --- a/arch/arm/boot/dts/microchip/at91sam9g45.dtsi
-> +++ b/arch/arm/boot/dts/microchip/at91sam9g45.dtsi
-> @@ -753,7 +753,7 @@ macb0: ethernet@fffbc000 {
->                                  status = "disabled";
->                          };
-> 
-> -                       trng@fffcc000 {
-> +                       trng: trng@fffcc000 {
->                                  compatible = "atmel,at91sam9g45-trng";
->                                  reg = <0xfffcc000 0x100>;
->                                  interrupts = <6 IRQ_TYPE_LEVEL_HIGH 0>;
-> diff --git a/arch/arm/boot/dts/microchip/sama5d2.dtsi b/arch/arm/boot/dts/microchip/sama5d2.dtsi
-> index 5f8e297e19ed..2fefe3efa769 100644
-> --- a/arch/arm/boot/dts/microchip/sama5d2.dtsi
-> +++ b/arch/arm/boot/dts/microchip/sama5d2.dtsi
-> @@ -1019,7 +1019,7 @@ AT91_XDMAC_DT_PER_IF(1) |
->                                  };
->                          };
-> 
-> -                       trng@fc01c000 {
-> +                       trng: trng@fc01c000 {
->                                  compatible = "atmel,at91sam9g45-trng";
->                                  reg = <0xfc01c000 0x100>;
->                                  interrupts = <47 IRQ_TYPE_LEVEL_HIGH 0>;
-> diff --git a/arch/arm/boot/dts/microchip/sama5d3.dtsi b/arch/arm/boot/dts/microchip/sama5d3.dtsi
-> index d4fc0c1dfc10..8335e0c8066f 100644
-> --- a/arch/arm/boot/dts/microchip/sama5d3.dtsi
-> +++ b/arch/arm/boot/dts/microchip/sama5d3.dtsi
-> @@ -419,7 +419,7 @@ tdes: crypto@f803c000 {
->                                  clock-names = "tdes_clk";
->                          };
-> 
-> -                       trng@f8040000 {
-> +                       trng: trng@f8040000 {
->                                  compatible = "atmel,at91sam9g45-trng";
->                                  reg = <0xf8040000 0x100>;
->                                  interrupts = <45 IRQ_TYPE_LEVEL_HIGH 0>;
-> diff --git a/arch/arm/boot/dts/microchip/sama5d4.dtsi b/arch/arm/boot/dts/microchip/sama5d4.dtsi
-> index 58ceed997889..20b8a9b123e1 100644
-> --- a/arch/arm/boot/dts/microchip/sama5d4.dtsi
-> +++ b/arch/arm/boot/dts/microchip/sama5d4.dtsi
-> @@ -658,7 +658,7 @@ macb1: ethernet@fc028000 {
->                                  status = "disabled";
->                          };
-> 
-> -                       trng@fc030000 {
-> +                       trng: trng@fc030000 {
->                                  compatible = "atmel,at91sam9g45-trng";
->                                  reg = <0xfc030000 0x100>;
->                                  interrupts = <53 IRQ_TYPE_LEVEL_HIGH 0>;
-> 
-> base-commit: 98f7e32f20d28ec452afb208f9cffc08448a2652
-> --
-> 2.39.5
-> 
+Regards,
+  Sricharan
 
 
