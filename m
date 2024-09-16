@@ -1,203 +1,248 @@
-Return-Path: <devicetree+bounces-103207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0F38979E47
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 11:19:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 822F3979E52
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 11:22:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E3C79B23AAB
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 09:19:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6A991C22724
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 09:22:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73EE41494DF;
-	Mon, 16 Sep 2024 09:19:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9211F14A4D0;
+	Mon, 16 Sep 2024 09:22:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="mnW2KrCs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jsPGQlYB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B1C014659B
-	for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 09:19:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 442FB144304;
+	Mon, 16 Sep 2024 09:22:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726478348; cv=none; b=R7Rf7M4fKei34BMohHxvrLTghIvu3AHxAhx/UIsoksMMo/XXB1DJb0SGqg16DbT41/Gr0nj4MC8/DAA3SxLJTKDZ2e0HI/syEQcxgGzJSSxTNh4J4jxh+SR4yM3Hp8trGNYYlH7lMfmKjARfv9AQ7/dfSqozdPLqD0xl6mN4V1A=
+	t=1726478521; cv=none; b=LnKiaiUPKDa4OxPWBBBaeXIRlDBFxwzoDrXUEa7ALPMZ8J/Dm/YFcDL7WPghgYK+SbZB332ilK52Pg3SB5zrp8hPjCyuJMMtQlYsUIi95atw5D5qReiQZc6oo/gDFFxWHR3NjxtCNPbIu8jHY3NQvh76mJ7AscnHI5MB6oJAh2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726478348; c=relaxed/simple;
-	bh=tUn3Lb8xB6w5JpvkBfX8jr4Rmxy4aQ9cSkNjcTe14E0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=E+KbjEKEBfyFFXEP1RWgQpOJzL+TIb5u/fzjNHNKcrjgAQkXN5Y1zXX9Al0bwvRUbEJ7Qlh8OxwO/Q+lAtovKdKcyStSNacsvs7v5fySo5p5ir13fsTXDep1kmJqBLUVeLrY8FbtC4ze8902YtKS1SKuxzLXuGuhYU/ZGHsazbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=mnW2KrCs; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4280ca0791bso41341385e9.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 02:19:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1726478344; x=1727083144; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3S0+hnJtME97aYVYNEFjXn7v5J7Z9ezZzdhIUThh/M4=;
-        b=mnW2KrCsukwIHvFgTRnD99W6i3JiusOmnT/9JNoAcEqcsPi4jSPQFo4/sngLw5H4Xh
-         zbQ0ya6+2S1XN3bzj/4LoBxc/9LHaFg3NegV5wUs/wncGjNesdKcG2gLV2F0Qt2DYzdI
-         233ZvArSV3qszjeqDgzJvkFn6BnU1NDIFwuubPr3JVcugYQ/jtQIB6iyLwGC8TSuHak+
-         K3s1VUYlmHq0vKYKMZnFo69SWPbz8RDU7JN/UG56EnlN2vHTyTMSTLVn3PY/KtzB2qtw
-         m96DXjZV7vLPQhx5JyyxnxakQJ7hKTHwpbcwQj0E/uH30R7csiYB/1tEeEeCuVIRpTYV
-         eaIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726478344; x=1727083144;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=3S0+hnJtME97aYVYNEFjXn7v5J7Z9ezZzdhIUThh/M4=;
-        b=KzhG3HNgRO3V5JBfo1+UIl4eRJNknx18uVKNuotPfhJzMs1Wjs9v7pkbTUxM1jGpjB
-         vmk44x+oGhLmyoqmEw/oDK+ZQzPicUyCqxCEQKXxl7nB2qu/AG7AUhEpGMBGx8dOSUX7
-         RH7d1GOuxz4lhxKb9dC7QGUYdDjp2fAYaII64463RfMYGZvMVhbCmoB5AUmbYO7KW9W8
-         jvf5GBoR8JrjW3K6Ge+iAz8/4rvrvWhFgoVQi+uVJrkRTK2V1uJTQq1ffNSqSEgIJCrI
-         x79diIRQw0/8Y593hyQpstN/ixfpr3Rjahq5IaVKxTYh30TwDDRtlF9syvxgGGhWw/bA
-         Be5g==
-X-Forwarded-Encrypted: i=1; AJvYcCVCPmHT3B73ygmqUyp+NIIDnXhD4g4SqaqHcBOfGdUyqT8fqyf9sOaoUw9HJzVVZKTm1ojnZ+PelJb2@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCUtJJR6KHMShnf7cTOhrb7dYI/LDs6bXWKgOvrh7HTjv5on0v
-	1WIjhB5TmzLnVJVtNRRaefUnd13xg2fRMptFT9HwPjSCTap9NCiXSom2K1E/Ov4=
-X-Google-Smtp-Source: AGHT+IHAcQcrc3voHWoxZH5ruJpkQ2UnBhuAfFL7M0m2Kh1+BP66VwdpFaj9SlK3Tb1udKSqVEmBjA==
-X-Received: by 2002:a05:600c:4f51:b0:42c:b95c:65b7 with SMTP id 5b1f17b1804b1-42cdb531b1cmr103606165e9.8.1726478344247;
-        Mon, 16 Sep 2024 02:19:04 -0700 (PDT)
-Received: from localhost (amontpellier-556-1-151-252.w109-210.abo.wanadoo.fr. [109.210.7.252])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378e6f2486esm6806258f8f.0.2024.09.16.02.19.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Sep 2024 02:19:03 -0700 (PDT)
+	s=arc-20240116; t=1726478521; c=relaxed/simple;
+	bh=A5qBoko8pAMwveL+v901lMUwnWa5DeXCPvgTk3pPW/c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AQmml5eCETbDg17bidwTZAA8VDHoSR10kPGIFa95eMYkZPJmIqKFUEa1yQ98kUFfsd89Cf14LPUvpWgKykO8al05CnNhcwBGnxmAX9MF/4njxeFNIIgYQhd7x6aBJ9NUobuRljfFJim7tKA1/wm40j8vg4+yCV9cprBsDO5jvtY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jsPGQlYB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D82BC4CEC4;
+	Mon, 16 Sep 2024 09:22:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726478521;
+	bh=A5qBoko8pAMwveL+v901lMUwnWa5DeXCPvgTk3pPW/c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jsPGQlYBPSTiFJMXX9gAj5l7zVJTiyzJzXpksrqR1WURfgNlsR0edZrPFBFebfxPh
+	 1naZciVddWbs2v5+7UTUIxbnrMUVzYbF5ER+r4g7G90IE6v7I0XAKjcFMgpbg4pig/
+	 wQ1XSQ+SdxEj2650FQa2tjaQT0SoQ+ylNtYEqDp9dTqjaKiOECALJJSYA7VNitOgMh
+	 AjMnnhcHLCDsPFpPK6KW1AURzv0wx3qvnIOHepmhmYrEopdQjswknmjwCMOOKs1mS4
+	 TWRHOApsZFFUD1JA6Wcz85YIauCpiAwmve4uFw0m7r0nd+IqVpw4u51eyKxUASgxfI
+	 5W4F6EODAOv9w==
+Date: Mon, 16 Sep 2024 11:21:57 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dzmitry Sankouski <dsankouski@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+	Chanwoo Choi <cw00.choi@samsung.com>, Simona Vetter <simona@ffwll.ch>, 
+	cros-qcom-dts-watchers@chromium.org, Konrad Dybcio <konradybcio@kernel.org>, 
+	Simona Vetter <simona.vetter@ffwll.ch>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org, linux-leds@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v4 15/27] regulator: add s2dos05 regulator support
+Message-ID: <35liocltjuxv3gjueuvpaytx44crebbc4c63atztakuq5dfpax@bquve7tkrvtx>
+References: <20240913-starqltechn_integration_upstream-v4-0-2d2efd5c5877@gmail.com>
+ <20240913-starqltechn_integration_upstream-v4-15-2d2efd5c5877@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 16 Sep 2024 09:19:02 +0000
-Message-Id: <D47LHT5XPYTX.3OWFQR9N23FZH@baylibre.com>
-Cc: "Lars-Peter Clausen" <lars@metafoo.de>, "Michael Hennerich"
- <Michael.Hennerich@analog.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Nuno Sa" <nuno.sa@analog.com>, "Jonathan Corbet" <corbet@lwn.net>,
- <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "David Lechner" <dlechner@baylibre.com>,
- <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH 4/6] iio: adc: ad4030: add support for ad4630-24 and
- ad4630-16
-From: "Esteban Blanc" <eblanc@baylibre.com>
-To: "Jonathan Cameron" <jic23@kernel.org>, =?utf-8?q?Nuno_S=C3=A1?=
- <noname.nuno@gmail.com>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20240822-eblanc-ad4630_v1-v1-0-5c68f3327fdd@baylibre.com>
- <20240822-eblanc-ad4630_v1-v1-4-5c68f3327fdd@baylibre.com>
- <20240826102748.4be0b642@jic23-huawei>
- <D452E2M75XCM.13OQGAPJ7JJ4A@baylibre.com>
- <0a4e7fe39cf36774b28c86f6baab5ef8c20e3d6b.camel@gmail.com>
- <D4567LFFTYJQ.2YC5OODKOVPNB@baylibre.com>
- <84961c1f857dfc8498c41ac97235a037111ed6d5.camel@gmail.com>
- <20240914122529.14759e63@jic23-huawei>
-In-Reply-To: <20240914122529.14759e63@jic23-huawei>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240913-starqltechn_integration_upstream-v4-15-2d2efd5c5877@gmail.com>
 
-On Sat Sep 14, 2024 at 11:25 AM UTC, Jonathan Cameron wrote:
-> On Fri, 13 Sep 2024 15:46:17 +0200
-> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
->
-> > On Fri, 2024-09-13 at 12:55 +0000, Esteban Blanc wrote:
-> > > On Fri Sep 13, 2024 at 10:18 AM UTC, Nuno S=C3=A1 wrote: =20
-> > > > On Fri, 2024-09-13 at 09:55 +0000, Esteban Blanc wrote: =20
-> > > > > On Mon Aug 26, 2024 at 9:27 AM UTC, Jonathan Cameron wrote: =20
-> > > > > > On Thu, 22 Aug 2024 14:45:20 +0200
-> > > > > > Esteban Blanc <eblanc@baylibre.com> wrote: =20
-> > > > > > > +static const unsigned long ad4630_channel_masks[] =3D {
-> > > > > > > +	/* Differential only */
-> > > > > > > +	BIT(0) | BIT(2),
-> > > > > > > +	/* Differential with common byte */
-> > > > > > > +	GENMASK(3, 0), =20
-> > > > > > The packing of data isn't going to be good. How bad to shuffle
-> > > > > > to put the two small channels next to each other?
-> > > > > > Seems like it means you will want to combine your deinterleave
-> > > > > > and channel specific handling above, which is a bit fiddly but
-> > > > > > not much worse than current code. =20
-> > > > >=20
-> > > > > I can do it since that was what I had done in the RFC in the firs=
-t place.
-> > > > > Nuno asked for in this email
-> > > > > https://lore.kernel.org/r/0036d44542f8cf45c91c867f0ddd7b45d1904d6=
-b.camel@gmail.com/
-> > > > > :
-> > > > >  =20
-> > > > > > > > * You're pushing the CM channels into the end. So when we a=
- 2 channel
-> > > > > > > > device
-> > > > > > > > we'll have: =20
-> > > > >  =20
-> > > > > > > > in_voltage0 - diff
-> > > > > > > > in_voltage1 - diff
-> > > > > > > > in_voltage2 - CM associated with chan0
-> > > > > > > > in_voltage0 - CM associated with chan1
-> > > > > > > >=20
-> > > > > > > > I think we could make it so the CM channel comes right afte=
-r the channel
-> > > > > > > > where
-> > > > > > > > it's data belongs too. So for example, odd channels would b=
-e CM channels
-> > > > > > > > (and
-> > > > > > > > labels could also make sense). =20
-> > > > >=20
-> > > > > So that's what I did here :D
-> > > > >=20
-> > > > > For the software side off things here it doesn't change a lot of =
-things
-> > > > > since we have to manipulate the data anyway, putting the extra by=
-te at the
-> > > > > end or in between is no extra work.
-> > > > > For the offload engine however, it should be easier to ask for 24=
- bits
-> > > > > then 8 bits for each channel as it would return two u32 per "hard=
-ware
-> > > > > channel".
-> > > > >=20
-> > > > > In order to avoid having two different layouts, I was kind of sol=
-d by
-> > > > > Nuno's idea of having the CM in between each diff channel.
-> > > > >  =20
-> > > >=20
-> > > > Tbh, I was not even thinking about the layout when I proposed the a=
-rrangement.
-> > > > Just
-> > > > made sense to me (from a logical point of view) to have them togeth=
-er as they
-> > > > relate
-> > > > to the same physical channel. FWIW, we're also speaking bytes in he=
-re so not sure
-> > > > if
-> > > > it's that important (or bad). =20
-> > >=20
-> > > The best we can do (if we managed to do it HDL wise) is to reorder th=
-e
-> > > data to get both CM byte in a single u32 after the 2 u32 of both diff
-> > > channel. That would be 3 u32 instead of 4.
->
-> Entirely up to you. :)
+On Fri, Sep 13, 2024 at 06:07:58PM +0300, Dzmitry Sankouski wrote:
+> S2dos05 has 1 buck and 4 LDO regulators, used for powering
+> panel/touchscreen.
+> 
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> 
 
-Ok so here is the plan I propose:
- 1. Use the layout of this patch (common byte channels just after their
- respective diff channel) as it should work out of the box for the offload
- engine (once it's merged [1]).
- 2. In case of performance issue, switch to the RFC layout (both diff
- channels then both common byte channels) and try to modify the HDL for
- the offload engine to reduce the memory footprint by one byte for the 2
- hardware channels case.
+...
 
-[1]: https://lore.kernel.org/lkml/20240722-dlech-mainline-spi-engine-offloa=
-d-2-v3-0-7420e45df69b@baylibre.com/
+> +#include <linux/bug.h>
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/slab.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regulator/driver.h>
+> +#include <linux/regulator/machine.h>
+> +#include <linux/regulator/of_regulator.h>
+> +#include <linux/mfd/samsung/core.h>
+> +#include <linux/regulator/s2dos05.h>
+> +#include <linux/i2c.h>
+> +
+> +struct s2dos05_data {
+> +	struct regmap *regmap;
+> +	struct device *dev;
+> +};
+> +
+> +static const struct regulator_ops s2dos05_ops = {
+
+Keep definitions together. This goes down, after all declarations and
+macros.
+
+> +	.list_voltage		= regulator_list_voltage_linear,
+> +	.map_voltage		= regulator_map_voltage_linear,
+> +	.is_enabled		= regulator_is_enabled_regmap,
+> +	.enable			= regulator_enable_regmap,
+> +	.disable		= regulator_disable_regmap,
+> +	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
+> +	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
+> +	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
+> +	.set_active_discharge	= regulator_set_active_discharge_regmap,
+> +};
+> +
+> +#define _BUCK(macro)	S2DOS05_BUCK##macro
+> +#define _buck_ops(num)	s2dos05_ops##num
+> +
+> +#define _LDO(macro)	S2DOS05_LDO##macro
+> +#define _REG(ctrl)	S2DOS05_REG##ctrl
+> +#define _ldo_ops(num)	s2dos05_ops##num
+> +#define _MASK(macro)	S2DOS05_ENABLE_MASK##macro
+> +#define _TIME(macro)	S2DOS05_ENABLE_TIME##macro
+> +
+
+...
+
+> +
+> +static struct regulator_desc regulators[S2DOS05_REGULATOR_MAX] = {
+
+This should be const.
+
+> +		// name, id, ops, min_uv, uV_step, vsel_reg, enable_reg
+> +		LDO_DESC("ldo1", _LDO(1), &_ldo_ops(), _LDO(_MIN1),
+> +			_LDO(_STEP1), _REG(_LDO1_CFG),
+> +			_REG(_EN), _MASK(_L1), _TIME(_LDO), _REG(_LDO1_CFG)),
+> +		LDO_DESC("ldo2", _LDO(2), &_ldo_ops(), _LDO(_MIN1),
+> +			_LDO(_STEP1), _REG(_LDO2_CFG),
+> +			_REG(_EN), _MASK(_L2), _TIME(_LDO), _REG(_LDO2_CFG)),
+> +		LDO_DESC("ldo3", _LDO(3), &_ldo_ops(), _LDO(_MIN2),
+> +			_LDO(_STEP1), _REG(_LDO3_CFG),
+> +			_REG(_EN), _MASK(_L3), _TIME(_LDO), _REG(_LDO3_CFG)),
+> +		LDO_DESC("ldo4", _LDO(4), &_ldo_ops(), _LDO(_MIN2),
+> +			_LDO(_STEP1), _REG(_LDO4_CFG),
+> +			_REG(_EN), _MASK(_L4), _TIME(_LDO), _REG(_LDO4_CFG)),
+> +		BUCK_DESC("buck1", _BUCK(1), &_buck_ops(), _BUCK(_MIN1),
+> +			_BUCK(_STEP1), _REG(_BUCK_VOUT),
+> +			_REG(_EN), _MASK(_B1), _TIME(_BUCK), _REG(_BUCK_CFG)),
+> +};
+> +
+> +static int s2dos05_pmic_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct sec_pmic_dev *iodev = dev_get_drvdata(pdev->dev.parent);
+> +	struct of_regulator_match *rdata = NULL;
+> +	struct s2dos05_data *s2dos05;
+> +	struct regulator_config config = { };
+> +	unsigned int rdev_num = ARRAY_SIZE(regulators);
+> +	int i, ret;
+> +
+> +	s2dos05 = devm_kzalloc(dev, sizeof(struct s2dos05_data),
+> +				GFP_KERNEL);
+
+sizeof(*)
+
+> +	if (!s2dos05)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, s2dos05);
+> +
+> +	rdata = devm_kcalloc(dev, rdev_num, sizeof(*rdata), GFP_KERNEL);
+> +	if (!rdata)
+> +		return -ENOMEM;
+> +
+> +	for (i = 0; i < rdev_num; i++)
+> +		rdata[i].name = regulators[i].name;
+> +
+> +	s2dos05->regmap = iodev->regmap_pmic;
+> +	s2dos05->dev = dev;
+> +	if (!dev->of_node)
+> +		dev->of_node = dev->parent->of_node;
+> +
+> +	for (i = 0; i < rdev_num; i++) {
+> +		struct regulator_dev *regulator;
+> +
+> +		config.init_data = rdata[i].init_data;
+> +		config.of_node = rdata[i].of_node;
+> +		config.dev = dev;
+> +		config.driver_data = s2dos05;
+> +		regulator = devm_regulator_register(&pdev->dev,
+> +						&regulators[i], &config);
+> +		if (IS_ERR(regulator)) {
+> +			ret = PTR_ERR(regulator);
+> +			dev_err(&pdev->dev, "regulator init failed for %d\n",
+> +				i);
+> +		}
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct platform_device_id s2dos05_pmic_id[] = {
+> +	{ "s2dos05-regulator" },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(platform, s2dos05_pmic_id);
+> +
+> +static struct platform_driver s2dos05_platform_driver = {
+> +	.driver = {
+> +		.name = "s2dos05",
+> +	},
+> +	.probe = s2dos05_pmic_probe,
+> +	.id_table = s2dos05_pmic_id,
+> +};
+> +module_platform_driver(s2dos05_platform_driver);
+> +
+> +MODULE_AUTHOR("Dzmitry Sankouski <dsankouski@gmail.com>");
+> +MODULE_DESCRIPTION("SAMSUNG s2dos05 Regulator Driver");
+
+s/SAMSUNG/Samsung/
+
+Also, your Kconfig used different name, so please use one - probably
+Samsung.
+
+This applies to MFD patch as well.
+
+> +MODULE_LICENSE("GPL");
+> diff --git a/include/linux/regulator/s2dos05.h b/include/linux/regulator/s2dos05.h
+> new file mode 100644
+> index 000000000000..2e89fcbce769
+> --- /dev/null
+> +++ b/include/linux/regulator/s2dos05.h
+> @@ -0,0 +1,73 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ */
+
+Are you sure that here (and other places) you want any newer GPL? This
+is quite odd. Does original code (from which you took 2016 copyrights)
+have this as well?
 
 Best regards,
-
---=20
-Esteban Blanc
-BayLibre
+Krzysztof
 
 
