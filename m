@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-103384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A33F997A99F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 01:31:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC0EC97A9A6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 01:33:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B0571F2133D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 23:31:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5224AB2A782
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 23:33:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B64E214F9DD;
-	Mon, 16 Sep 2024 23:31:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9BFC16130B;
+	Mon, 16 Sep 2024 23:32:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iYIDiKpf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dYb1IZjh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B64D381C2;
-	Mon, 16 Sep 2024 23:31:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A611160883;
+	Mon, 16 Sep 2024 23:32:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726529502; cv=none; b=VVp35pz3PJ91qRX2+rZlU2UaYDY+ttQ6mmARKrIaBCTH9fNQMbyjM/LHtgFDPoQgzPldguxLiZdFoenwb+QlCVCssJHUhOex+/AZANzEuhD+8v5UFTyyRBa3MleXrjbM/1a0xpCA+epAPDpn7y0na78E9ilERwZlGWcHV3ZZgEw=
+	t=1726529572; cv=none; b=sffZn0mdz9p99CTqSwfSuAPmm54s17pITMh45M1uSQ7YOeDWI76sw/nlk3gOkde/A5PUQbiRABUPxAywSmZ5NXl/IhJCfRbmTGwlqyz8M2elfkyLNAMEHP6454MNbWUgIbn4Df/iKZbEHV69kzzlWawMwvKF4jhL49Byi02aTjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726529502; c=relaxed/simple;
-	bh=PfrVg8wkn1O+jJEoQFvKSiJ2KYALwlhbi5sq6BHRJ4o=;
+	s=arc-20240116; t=1726529572; c=relaxed/simple;
+	bh=ROixPGdaV3KjJlBn+Wx9tvLmJ8N/itC/+M1JA09al6A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VVR0GuffjvM4YdO1eZLSKwiuzpu8b8kojEETojc3sM6D5eMNklI40gKy3SVnPeYqDMMebNStQZ2NZ4zTqmS2kp+S9G0+SlfIX3jMB2B126pVaDgktbpbx6QvF2/kt6r4WGXVtxBS6bMqUASVTh14As8oTwcvSr8oMNooYDL6BpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iYIDiKpf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2637C4CEC5;
-	Mon, 16 Sep 2024 23:31:37 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ctdiPAmadXroUI0HZu3DmcALqXChC04dgYw4U+jrkMos72jOVv8R+VPR4MdyoqbvQkgYZAMrjmjZm7duLNSw7P7im2c2MuEBkl6s/uyxYyLa0wzDtPniCrrDdoZ+YqWBqJyEf51CIEqIoSMt29xRCv5gdi46DWDv5mZktRc6p9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dYb1IZjh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9747C4CECD;
+	Mon, 16 Sep 2024 23:32:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726529502;
-	bh=PfrVg8wkn1O+jJEoQFvKSiJ2KYALwlhbi5sq6BHRJ4o=;
+	s=k20201202; t=1726529572;
+	bh=ROixPGdaV3KjJlBn+Wx9tvLmJ8N/itC/+M1JA09al6A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iYIDiKpfXfa4bwSKsoC0OWstXFjPvZL+TQyBxsS87X3tZDC/RIUZ/yc7jKUUrHyew
-	 szkJYldtmaP/bR0iMc+GBgqusHut8vXekKNfhV1JRZVPotDACqgfBiKnOwvnw2Yv7k
-	 qvTRKJ5rF6jpmQiMyzRdmQ0Xfxse0BM8FGAE9a9o5HLDAI+SZwe9SV1k3ZV7u4zpSv
-	 +9hIuEYmpWnD6V4jv67GFYGx8DeTObwv2doO+rV861hnR58h5QL56i0/jwjbl+Omd8
-	 Jo0jaas5mhTDJr0dbjZQjzYyOR+PBORiHj1M0GufJZSeauqDc4XO3y9RdDeaiElEqp
-	 9Di8zkzCsSdPg==
-Message-ID: <0069dc15-250e-4cac-a641-ab7d7ae5b497@kernel.org>
-Date: Tue, 17 Sep 2024 01:31:37 +0200
+	b=dYb1IZjhVZuJz1KUp4Ws0YIaX2OA9clWgRo5NSP65kXzYiPJF30lpDl0lA8U1/uik
+	 j8+WRqmmjUq6eUkvs+W55Vy6ZFstVmvY6DPwwtFY3zG2Kh+oC95yCTujnqK2BsyAwI
+	 V7XgQX8QEEItO9rvYd0XshXwDshRqwpR7qj0bHqlUt8n/W+qwR0I1BSgtRiJK3GrPT
+	 rrGZ1NOV24eRnHtoP+mgq6hwv9/q13LiwMPfFAYyteUP+YhqhNxdGzTOAaJ+Kfvb5y
+	 xoWvJBZjODT7EYatczYMXrZPu2+AhRnySAAi/cLViPPftkHZMofgsHqx1noApnNhiC
+	 5FvaUC4qhpdWQ==
+Message-ID: <dc1216db-128f-4cb4-9df9-ba095dfe713d@kernel.org>
+Date: Tue, 17 Sep 2024 01:32:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,30 +50,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: x1e80100: fix PCIe5 PHY clocks
-To: Johan Hovold <johan+linaro@kernel.org>,
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: qcs9100: Add support for the
+ QCS9100 Ride and Ride Rev3 boards
+To: Tengfei Fan <quic_tengfan@quicinc.com>,
  Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Vinod Koul <vkoul@kernel.org>
-Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
- Rajendra Nayak <quic_rjendra@quicinc.com>,
- Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240916082307.29393-1-johan+linaro@kernel.org>
- <20240916082307.29393-4-johan+linaro@kernel.org>
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240911-add_qcs9100_support-v2-0-e43a71ceb017@quicinc.com>
+ <20240911-add_qcs9100_support-v2-4-e43a71ceb017@quicinc.com>
 Content-Language: en-US
 From: Konrad Dybcio <konradybcio@kernel.org>
-In-Reply-To: <20240916082307.29393-4-johan+linaro@kernel.org>
+In-Reply-To: <20240911-add_qcs9100_support-v2-4-e43a71ceb017@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16.09.2024 10:23 AM, Johan Hovold wrote:
-> Add the missing clkref enable and pipediv2 clocks to the PCIe5 PHY.
+On 11.09.2024 1:10 PM, Tengfei Fan wrote:
+> Add device tree support for the QCS9100 Ride and Ride Rev3 boards. The
+> QCS9100 is a variant of the SA8775p, and they are fully compatible with
+> each other. The QCS9100 Ride/Ride Rev3 board is essentially the same as
+> the SA8775p Ride/Ride Rev3 board, with the QCS9100 SoC mounted instead
+> of the SA8775p.
 > 
-> Fixes: 62ab23e15508 ("arm64: dts: qcom: x1e80100: add PCIe5 nodes")
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
 > ---
 
 Reviewed-by: Konrad Dybcio <konradybcio@kernel.org>
