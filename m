@@ -1,82 +1,83 @@
-Return-Path: <devicetree+bounces-103337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA29D97A68C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 19:15:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A2A097A68D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 19:15:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3311CB2386B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 17:15:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 829FCB23B0E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 17:15:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB32215921D;
-	Mon, 16 Sep 2024 17:15:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A8E115B543;
+	Mon, 16 Sep 2024 17:15:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="XEXs5QTh"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="RJAWGNve"
 X-Original-To: devicetree@vger.kernel.org
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6CA11591F0
-	for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 17:14:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B5851591F1
+	for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 17:15:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726506901; cv=none; b=fKlo7WdGWoqsxoNgMGl5U99McSvsbHL6OBzYinE5j/pd5xJGRu9tDPcPka4/EE+0UA4iDI+iFmFBr5aG2FqXApgifOSWzQb6eZM1xd4K7incenp9FXu6hcrjid4cGQXsWzL/SyWMRWj6Wzu1AfL7h6BKmY4vgaXMmm3sjawR2FI=
+	t=1726506903; cv=none; b=g7b+Gh04L1ttiRBV1dFgNscdY3RCM1xljefaJJu8aijr30cHDXSLIwbwlAt3UqmoVfaoLHezDLtAyM4NLK8NHqnqjnIQnDDdjCT2MV5iKbD1Y1r5TilsarlZouiYHmnfoVm1sApu8h9uVGaGKOheUBRjSA/nanBDq9PnOIrlUeM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726506901; c=relaxed/simple;
-	bh=XAEw1O4ypXbNAeQ8bJrLgeWVtDK++9rbiKHcfGsc+W4=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=naUcpi2hDVDjZuodkYxBOu8ES9Yiq3Jz7ofE/sGu96Hlelu/1ws65rA3DMqqfS+F8jTIs23K8PEyBxwkEW/L4bQZ1wPn+AShsA80DP1qsZ2RoNCrqbFyR0sUYuyONkh4lCo9FulYT3o5TWPCfEV9IxJG5Nz+SuRjFP5oSJs3SoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=XEXs5QTh; arc=none smtp.client-ip=170.10.129.124
+	s=arc-20240116; t=1726506903; c=relaxed/simple;
+	bh=6IaFT2/ohrQru/Mrl/o1mNIokzVDUxjyxOrF2zTQv68=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=UlWBS6h3hXuHf+LASg5VBvcDCbB9PM8pnxW0+0fRp7pUb56Knj+0/YIKnCLWC20bUnTw5EweEbC1xd25H45nSsbA3sGw3AdqcD7EP1Mlf8NxBP6pvROVX5L85D1wP97nLQzTqfEDJ0RTMI1oD5V1VqdbI6hYyeaj+IUfMhX1wi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=RJAWGNve; arc=none smtp.client-ip=170.10.129.124
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1726506898;
+	s=mimecast20190719; t=1726506900;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=MD/gbR/K562HjYAqjBfv2TN8nj9GE34IYQno6KvPYbo=;
-	b=XEXs5QThZ0KZvNaN/PUwR3r/eyYAu6rfItgyYSIxCBHZCAqcYzho5CuvpTUw/ei4Nz1Q0H
-	PbyXT9WqYBhAX1nep5YiFHxS5+7ZbtLAai+HHTfF5BrQD5b4kkUAlnQ7f2TL/fGiDP9rfm
-	X7BqKNSXkyz8cB+wdUvFLhE+VxjQSXc=
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=NhZEHGCroaVGHFp9gEos3MTv0PtDFgshMDzxRxracYI=;
+	b=RJAWGNveMZj1dzf92qQy2zVWP4aBnU0yw2rLOO97F3F0BeUm8oGqUhxWEAX9LW84B+K61P
+	fBNFEM54XOP69+jATyb7lXyWuMvZwZ9vYCja5QC9cqCUcKdPvgqli7XnBNWpBIFiTk/z9x
+	3DEcjPPT51W7XQmLRbeHqAAcsfAV0E4=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-515-MPgjruuuNGuz7yDRJJQYug-1; Mon, 16 Sep 2024 13:14:57 -0400
-X-MC-Unique: MPgjruuuNGuz7yDRJJQYug-1
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-45826823bb0so75459131cf.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 10:14:57 -0700 (PDT)
+ us-mta-591-yALFeqIQNA6KsWLywD_rFw-1; Mon, 16 Sep 2024 13:14:59 -0400
+X-MC-Unique: yALFeqIQNA6KsWLywD_rFw-1
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6c36310588fso119232586d6.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 10:14:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726506894; x=1727111694;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MD/gbR/K562HjYAqjBfv2TN8nj9GE34IYQno6KvPYbo=;
-        b=i2oBGZi31rDIfMOBNSbBgqSLd+x1zEGFU+UhAXbGG3XW+trJPBCO4Kre03MFBsKiDW
-         4f8f3cnyOf8/Q5HkrF3QkrNekx8eOo75H6y1iX0FHJ30TJGbF+4K+zlD/XLveQa9dUss
-         UH7uTm6pTzv3uUtJHrzy+fUOsxFh+KuvvXbFGTEAoVRTYbvpPOyO0FOEk97kbOPydJTu
-         Wjwxek9sbZBID988J9tp5crDpoMUWFRo/dsMDUV+AegkWJGg6XN3eyLZsBOol7GIXUM1
-         +Z+g5xn9+mEJZ3k95eO5tVbGlaldka2Rah/gMRXPGvJSr2+L8h70IPpEwSoZs+DdcUpw
-         LBQA==
-X-Forwarded-Encrypted: i=1; AJvYcCWVVpYKicVW5zixsCIBLbPefAfIONRyEA7OyXn8nFurZRGmzfkMz/oHSt2zLbOQwo8Xopr2RQWruoKQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzx8yLLJl7YQiMoft7wKlduarQvsanNkhB0/jfILpCaVXPagMsX
-	KTl0ND0gwSRsHTmm/PjYm2MptMecWh7gG0EsxC0PMEyrsEiuz383NZ2OBqYHGO7KuCFR9AYoyTb
-	v1rCqYFG6V2J+wBNebcQWJdPOJufzkuGg/EpRx2kdHQUSHsDKmi/nXhJ+xqi6OtIPreELz7u1bi
-	7Bc6+C0RCNp8PLUPUdurlJqkyw1gNlmyUA0J/i/YVWgqM=
-X-Received: by 2002:a05:6214:498a:b0:6c5:2797:f4c0 with SMTP id 6a1803df08f44-6c57df9ad48mr200405626d6.20.1726506894544;
-        Mon, 16 Sep 2024 10:14:54 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEUfaeTxKssYTRqsixAXgs3eyrhnP6I6P7WPKLanNFYrSeTBYWKtg5eW/HG9SepEUdICcRnPg==
-X-Received: by 2002:a05:6214:498a:b0:6c5:2797:f4c0 with SMTP id 6a1803df08f44-6c57df9ad48mr200405096d6.20.1726506894061;
-        Mon, 16 Sep 2024 10:14:54 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1726506898; x=1727111698;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NhZEHGCroaVGHFp9gEos3MTv0PtDFgshMDzxRxracYI=;
+        b=j7RGKi00E2aCP84laPD7mb2jwjEN4zwABDAq+zlzk4wTn4Pub6nBjUWhHyVPt3zLZH
+         rRLJ1nuP0iI0I9Eo96LDrYKKqz9vSFjK4zCzReUSBdNTKM1yjNGQgIW8wlM8RI4QTZ26
+         dprvrJ7OMlaRlAok4RwjsLSrt2wRJlJIOkMEgI+jel+LuVBdr9NcysesqJlYgHsipPrF
+         WbWv2VRnS9NOCS0NqoH3OGwrm9AyGWtuRfb2dQy1nwhZGOB5N9DY1NW6JbnSp+iuxrtd
+         H6YErNNH5SAmadROrIGFiFCvxg8skAlkwVEhhKeiFMRQR9gtudgplMJxFkTx/I06tLiu
+         NiVg==
+X-Forwarded-Encrypted: i=1; AJvYcCXeicprzK9R9sa2oEbDNkt/90BTsQxidk2jTgo5xyWeW/Kf8yViip49jCifMymlqXwqVBLcFxI85F8Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YxVJGOVeSP5th3tKU184JA/OIHY8EnUg5XKKFZnVHFtE4uWym9Y
+	ap1qZL35xgs5TOkJHMm6NCK5SxYVt2yrhh05Ajm1xwWHR/EC9KxAmpbqCybe23MRb5i0zJG6Jus
+	GN+mnHMR88aOYOG93uIVmmwZmEzL7oHPmmXdqUE9zfu8eZIZGGk0l9PtkiHyNSxQdat+WCTTk7l
+	GRo/eQk8RQwR2wqYEGuxHOSbJEW5Xs3eibuc2y4iJYL5A=
+X-Received: by 2002:a05:6214:5d89:b0:6c3:5454:6e1e with SMTP id 6a1803df08f44-6c573b5910fmr311393256d6.24.1726506898485;
+        Mon, 16 Sep 2024 10:14:58 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHG0QxGNDmQ1+GIOrknDD4WO1kV7CbK6PFRFI6iPR4lqXaXa/MtbEa348BAmNlFhhhTNmq0rg==
+X-Received: by 2002:a05:6214:5d89:b0:6c3:5454:6e1e with SMTP id 6a1803df08f44-6c573b5910fmr311392466d6.24.1726506897968;
+        Mon, 16 Sep 2024 10:14:57 -0700 (PDT)
 Received: from x1gen2nano.local ([2600:1700:1ff0:d0e0::43])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6c58c6262d9sm26342046d6.28.2024.09.16.10.14.53
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6c58c6262d9sm26342046d6.28.2024.09.16.10.14.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Sep 2024 10:14:53 -0700 (PDT)
+        Mon, 16 Sep 2024 10:14:54 -0700 (PDT)
 From: Andrew Halaney <ahalaney@redhat.com>
-Subject: [PATCH v3 0/2] arm64: dts: ti: k3-j784s4: Mark tps659413
+Date: Mon, 16 Sep 2024 12:14:51 -0500
+Subject: [PATCH v3 1/2] arm64: dts: ti: k3-j784s4-evm: Mark tps659413
  regulators as bootph-all
-Date: Mon, 16 Sep 2024 12:14:50 -0500
-Message-Id: <20240916-j784s4-tps6594-bootph-v3-0-ab70da0de7bd@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,10 +86,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAIpn6GYC/4XNvQ7CIBSG4VtpmMXwLzh5H8YBCggmSgOEaJreu
- 7STDsbx/ZLznBkUl6Mr4DjMILsWS0yPHnQ3gDHox9XBaHsDgghDCgl4O0hWGKxTEVwxaFKqU4B
- YWeoR8kZJDfrtlJ2Pz809X3qHWGrKr+1Nw+v6T2wYIjhyw6Vl1HjETtnZoOt+THewko18MBj/Y
- khntKScCCKYNviLWZblDbqQJKYCAQAA
+Message-Id: <20240916-j784s4-tps6594-bootph-v3-1-ab70da0de7bd@redhat.com>
+References: <20240916-j784s4-tps6594-bootph-v3-0-ab70da0de7bd@redhat.com>
+In-Reply-To: <20240916-j784s4-tps6594-bootph-v3-0-ab70da0de7bd@redhat.com>
 To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
  Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -100,58 +100,90 @@ Cc: Keerthy <j-keerthy@ti.com>, Neha Malcom Francis <n-francis@ti.com>,
  linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>
 X-Mailer: b4 0.14.1
 
-This series marks tps659413's regulators as bootph-all in order for
-the nodes (and parent nodes) to be accessible during MCU's u-boot SPL.
+In order for the MCU domain to access this PMIC, a regulator
+needs to be marked appropriately otherwise it is not seen by SPL and
+therefore not configured.
 
-This in turn is desired since the tps659413 needs its MCU ESM
-state machine setup in order for the watchdog to reset the board.
+This is necessary if the MCU domain is to program the TPS6594 MCU ESM
+state machine, which is required to wire up the watchdog in a manner
+that will reset the board.
 
-This took me a little while to track down, as enabling the ESM, TPS6594,
-etc in u-boot would result in the below boot failure:
-
-    U-Boot SPL 2024.10-rc4-00007-g44b12cbcd1b3-dirty (Sep 06 2024 - 14:25:52 -0500)
-    SYSFW ABI: 3.1 (firmware rev 0x0009 '9.2.4--v09.02.04 (Kool Koala)')
-    Initialized 4 DRAM controllers
-    SPL initial stack usage: 13408 bytes
-    ### ERROR ### Please RESET the board ###
-
-Which turns out to actually have failed far earlier in spl_early_init(),
-due to these nodes not being accessible in u-boot. That's hard to tell
-though since console isn't setup until later (and for that reason I
-think spl_early_init()'s return value in j784s4_init.c isn't
-evaluated since a panic() at that point would leave a user with *no*
-information at all).
-
-I've tested this in conjunction with a u-boot series which I'll link in
-a follow-up response on the k3-j784s4-evm. I'd appreciate someone testing
-on the k3-am69-sk at a minimum, as it should suffer the same fate if things
-aren't setup appropriately.
-
+Tested-by: Udit Kumar <u-kumar1@ti.com>
 Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
 ---
-Changes in v3:
-- Added Udit's Tested-by tags
-- Reordered bootph-all to align with dts-coding-style (Beleswar)
-- Link to v2: https://lore.kernel.org/r/20240911-j784s4-tps6594-bootph-v2-0-a83526264ab1@redhat.com
-
-Changes in v2:
-- Only mark the regulator nodes as bootph-all since parents are implied
-- Link to v1: https://lore.kernel.org/r/20240906-j784s4-tps6594-bootph-v1-0-c5b58d43bf04@redhat.com
-
----
-Andrew Halaney (2):
-      arm64: dts: ti: k3-j784s4-evm: Mark tps659413 regulators as bootph-all
-      arm64: dts: ti: k3-am69-sk:  Mark tps659413 regulators as bootph-all
-
- arch/arm64/boot/dts/ti/k3-am69-sk.dts    | 8 ++++++++
  arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 8 ++++++++
- 2 files changed, 16 insertions(+)
----
-base-commit: 7083504315d64199a329de322fce989e1e10f4f7
-change-id: 20240906-j784s4-tps6594-bootph-19d3f00fb98a
+ 1 file changed, 8 insertions(+)
 
-Best regards,
+diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+index 6695ebbcb4d0..87b5b9b11e96 100644
+--- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+@@ -668,6 +668,7 @@ bucka12: buck12 {
+ 				regulator-max-microvolt = <1100000>;
+ 				regulator-boot-on;
+ 				regulator-always-on;
++				bootph-all;
+ 			};
+ 
+ 			bucka3: buck3 {
+@@ -676,6 +677,7 @@ bucka3: buck3 {
+ 				regulator-max-microvolt = <850000>;
+ 				regulator-boot-on;
+ 				regulator-always-on;
++				bootph-all;
+ 			};
+ 
+ 			bucka4: buck4 {
+@@ -684,6 +686,7 @@ bucka4: buck4 {
+ 				regulator-max-microvolt = <1800000>;
+ 				regulator-boot-on;
+ 				regulator-always-on;
++				bootph-all;
+ 			};
+ 
+ 			bucka5: buck5 {
+@@ -692,6 +695,7 @@ bucka5: buck5 {
+ 				regulator-max-microvolt = <850000>;
+ 				regulator-boot-on;
+ 				regulator-always-on;
++				bootph-all;
+ 			};
+ 
+ 			ldoa1: ldo1 {
+@@ -700,6 +704,7 @@ ldoa1: ldo1 {
+ 				regulator-max-microvolt = <1800000>;
+ 				regulator-boot-on;
+ 				regulator-always-on;
++				bootph-all;
+ 			};
+ 
+ 			ldoa2: ldo2 {
+@@ -708,6 +713,7 @@ ldoa2: ldo2 {
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-boot-on;
+ 				regulator-always-on;
++				bootph-all;
+ 			};
+ 
+ 			ldoa3: ldo3 {
+@@ -716,6 +722,7 @@ ldoa3: ldo3 {
+ 				regulator-max-microvolt = <800000>;
+ 				regulator-boot-on;
+ 				regulator-always-on;
++				bootph-all;
+ 			};
+ 
+ 			ldoa4: ldo4 {
+@@ -724,6 +731,7 @@ ldoa4: ldo4 {
+ 				regulator-max-microvolt = <1800000>;
+ 				regulator-boot-on;
+ 				regulator-always-on;
++				bootph-all;
+ 			};
+ 		};
+ 	};
+
 -- 
-Andrew Halaney <ahalaney@redhat.com>
+2.46.0
 
 
