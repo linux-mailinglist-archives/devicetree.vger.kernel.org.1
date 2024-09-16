@@ -1,306 +1,119 @@
-Return-Path: <devicetree+bounces-103130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A857E979B12
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 08:19:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4959979B38
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 08:35:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C670A1C2202D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 06:19:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BCB5B21FDF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 06:35:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C2C43C08A;
-	Mon, 16 Sep 2024 06:19:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 097403D97F;
+	Mon, 16 Sep 2024 06:35:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IJzlFqPU"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="li4f2R9r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D2DD1F5F6;
-	Mon, 16 Sep 2024 06:19:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 053663D0A9;
+	Mon, 16 Sep 2024 06:34:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726467569; cv=none; b=iWwBE7ARRQHRIn2Ze+SZ7NL/A07xg97gLYWPxr/LgJ+7OXOa4j+tsSpfjpbEsiXgD0unbhkoBumzjKNK8Zifc0uymH8tmENntKGiPb0GVNXhz9bmAuOwTyLzcHFHmxR+mFzv48ofoMFsqiX0GEwpuzil41OB8oSg8n1PnhjVpDk=
+	t=1726468500; cv=none; b=aLypIlWCwNTmh+Lor/Nr3iy6F0RUosQwpQV2qHUK2ZDXEpJ0MtNnXhVUFeZkF7MC0MumZwE90ep7tkwvaGYBJAX4NC+uOWNUdPbUpMzVj7rlkGrXXnnBet8vE8x0kUM8LTYrBe2vKtlkAA8cFC9n5ORhR/StODMtS17WlBqDE6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726467569; c=relaxed/simple;
-	bh=pP48Vv721DQSlgKYtMiIq70OYZvh5Dgy/Y36z5kxpa0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AkJNlYPBOMYV6c5QRhTn99Ix2sejnI1+wxECnPR0JGVtChq/rZe43xvZKpa68XFEbrsqKo8kAyI/HqOw57fvlxmfuwcNkg2Puk5suUG/mov7NJ9qkksHUCszvCWj8pkH8nXRpEcm0H8y5pSKugcSQ0MjqmUSw6tkwE2JYmoZS14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IJzlFqPU; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a8d6ac24a3bso736074366b.1;
-        Sun, 15 Sep 2024 23:19:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726467566; x=1727072366; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vD0nTmWMdSzwNQvkoTUB1WjrHQU7c/gU3YlpKeXgZJE=;
-        b=IJzlFqPUm+vIqv7fVdDElxr/AUpp9Ubz3lOVvD1nuPFbf8ltWgiy1AtQh0k6oCzjuK
-         rXVe/O4aSMN+/Y3e5VGkwjp4BXPdpu4dYZ20M0RdED+w+6maANAlmsz91pXC2U4aG416
-         jr3J5tS0uAdYVhiwoXvG6bRmeD2LVBiYyx42A5KID5nsgDJM+MIoVpWWvPyZaazTJFxY
-         w04nTeqpCqn8YhqR7vROgLzBLshi6QboZG4XmwsGR3TWMQAjWO+YpHIDVnJdQFl+SSAL
-         kZGlFQ45es/0rNFJK1T0LtCcL9A6DhezFaX49e5kf0B/IGjmD6/335QZEWTdp0sV9Qmk
-         Tf2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726467566; x=1727072366;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vD0nTmWMdSzwNQvkoTUB1WjrHQU7c/gU3YlpKeXgZJE=;
-        b=rbDaZfuQZsgZP8BFw7yuOn1I9+YZARRAIw1xiiwky0R9hj016W828a9NiUjw9FiAYU
-         NsPds/LNRkzl5lyNN3liEPNQkVXvJVjJXAkUFOxKBcGdK5b1W+TkBjBAytpseo7nL3Wp
-         aMyq271xy2WCzQfkLJ0W9rXCsEq0HnYmjC+/EGGJ/FoDyXlPhE2cZFytudnqDmGaeEIk
-         jbugIQtmduWK1eUKKgvKdmzs6VkpLROJVyiQfDSi11sZ56cLW8Py9zp92DbHZDMn4nUZ
-         mxgrfeLVJ0/t4LCdfBg6FhEeDCu34gL7FVzqX7C8HtdfThc24sFO+uckvIB7YroPRP4/
-         PCYA==
-X-Forwarded-Encrypted: i=1; AJvYcCVHziVTaMF0aZN6yPkcWI2X/9+HnWvyvrYpZZk/6owqhj/m1w3E/1Eio1wlu9f1Wh4qPNIknxVriknea9GS@vger.kernel.org, AJvYcCVa0y0uFnJdGHdF192q1DcMWc8HzDDJxOrD1kzLaXvKZVXHjEcw3fxCcwTqG5tTPvwDvVokpGPho5kp@vger.kernel.org, AJvYcCWt7amKnlZlLLRkV7g3UmVSuu0XN0lRJyAODuZseflm3dPoEyyo2u2dnTNXMVE41kVxQbLRr6vg1rYw@vger.kernel.org
-X-Gm-Message-State: AOJu0YxR2h/LCA/Rk359hKmkFmI9uVsp0/wBx+vZdOO98OH0AG3/E7Wr
-	B/I+q4OoNZQgn4Zi/vES+IQ3OnAz/sB2ccoD5QcZgAWSBtt1K9hU
-X-Google-Smtp-Source: AGHT+IH5amVQOMkTRcUhvA2UFfwyNwOd/8AegF0E9EPf1h2wwCiTqx6WSQK6OCz22/U+sQamRX31Dw==
-X-Received: by 2002:a17:907:3f26:b0:a87:370:8dfc with SMTP id a640c23a62f3a-a902a47871dmr1474225966b.14.1726467565427;
-        Sun, 15 Sep 2024 23:19:25 -0700 (PDT)
-Received: from [10.134.2.234] ([83.68.141.146])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a90610f43f4sm269198566b.80.2024.09.15.23.19.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Sep 2024 23:19:24 -0700 (PDT)
-Message-ID: <e3414f78-417c-4983-a91d-0c58e1639de8@gmail.com>
-Date: Mon, 16 Sep 2024 08:19:23 +0200
+	s=arc-20240116; t=1726468500; c=relaxed/simple;
+	bh=of9yhCK3M+bzzPmQoMEXbkI6up3J1zdAGPIJN1xknHg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VUbGsg7B8R4cO8VgwUWpyu+hi4LKPOX6IpdcuizIGZjTqFYlcZVzr6iwHi+/3EKAa6HwCfZsm+XiDd12hlyo0PjZV6NTSyN+RxewXIsbxBhSIZxT0yie2naojDHxIUa0CZoBSkEPRUfUpv9xlkreC1YXdz+0s7k6XtAlhaIGsAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=li4f2R9r; arc=none smtp.client-ip=117.135.210.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=1Tm0X
+	Dtxf0Yguf+xgj8TAvMZ8SsZAM4lNoTmcDL2Y8o=; b=li4f2R9ru9FkjQp7ed2RR
+	XPY4x0DaY6TMZXOQAbHUHX9X5dgWsiRWHdtzTDT66XUyej/FlB8uhJkoRUpTZphr
+	v/tzr9HgTYw75PDqfABy+F1flIZgum2HpXHz2y1QJ391BCyl84bInttvK8HjR3lh
+	8ojhu7jWZWRcidj/1GoDPs=
+Received: from jean.localdomain (unknown [27.18.168.209])
+	by gzga-smtp-mta-g3-0 (Coremail) with SMTP id _____wDnL2pT0edm2LOeAw--.31222S2;
+	Mon, 16 Sep 2024 14:33:56 +0800 (CST)
+From: Ze Huang <18771902331@163.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Ze Huang <18771902331@163.com>,
+	Yangyu Chen <cyy@cyyself.name>
+Cc: linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [RESEND PATCH 0/3] Add initial support for Canaan Kendryte K230 pinctrl
+Date: Mon, 16 Sep 2024 14:30:21 +0800
+Message-ID: <20240916063021.311721-1-18771902331@163.com>
+X-Mailer: git-send-email 2.46.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] iio: light: veml6030: add support for veml6035
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Rishi Gupta <gupt21@gmail.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20240913-veml6035-v1-0-0b09c0c90418@gmail.com>
- <20240913-veml6035-v1-7-0b09c0c90418@gmail.com>
- <20240914170347.54959319@jic23-huawei>
-Content-Language: en-US, de-AT
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-In-Reply-To: <20240914170347.54959319@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wDnL2pT0edm2LOeAw--.31222S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7KFyUGw1fKF4xZr47uw43trb_yoW8Kr4fpa
+	y3CFZ8CrnxJrsay3ySya1q9ryay3Z7Ar1Yg3WYkr9rJF43Z34DJwn3Kr47ZrZ8Gr45ZrWY
+	vrs5Jryxur47Z3JanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0piL0ePUUUUU=
+X-CM-SenderInfo: zpryllqrzqjjitr6il2tof0z/1tbiNxdcomXAnRk5IgAAsk
 
-On 14/09/2024 18:03, Jonathan Cameron wrote:
-> On Fri, 13 Sep 2024 15:19:02 +0200
-> Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
-> 
->> The veml6035 is an ALS that shares most of its functionality with the
->> veml6030, which allows for some code recycling.
->>
->> Some chip-specific properties differ and dedicated functions to get and
->> set the sensor gain as well as its initialization are required.
->>
->> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> Mostly a request to first switch to using read_avail() and the relevant
-> bit masks instead of custom attributes.  That will require converting the
-> driver to that approach first, but looks straight forward.
-> 
->> ---
->>  drivers/iio/light/veml6030.c | 300 +++++++++++++++++++++++++++++++++++++++----
->>  1 file changed, 273 insertions(+), 27 deletions(-)
->>
->> diff --git a/drivers/iio/light/veml6030.c b/drivers/iio/light/veml6030.c
->> index 2945cc1db599..105f310c4954 100644
->> --- a/drivers/iio/light/veml6030.c
->> +++ b/drivers/iio/light/veml6030.c
->> @@ -1,13 +1,19 @@
->>  // SPDX-License-Identifier: GPL-2.0+
->>  /*
->> - * VEML6030 Ambient Light Sensor
->> + * VEML6030 and VMEL6035 Ambient Light Sensors
->>   *
->>   * Copyright (c) 2019, Rishi Gupta <gupt21@gmail.com>
->>   *
->> + * VEML6030:
->>   * Datasheet: https://www.vishay.com/docs/84366/veml6030.pdf
->>   * Appnote-84367: https://www.vishay.com/docs/84367/designingveml6030.pdf
->> + *
->> + * VEML6035:
->> + * Datasheet: https://www.vishay.com/docs/84889/veml6035.pdf
->> + * Appnote-84944: https://www.vishay.com/docs/84944/designingveml6035.pdf
->>   */
->>  
->> +#include <linux/bitfield.h>
->>  #include <linux/module.h>
->>  #include <linux/i2c.h>
->>  #include <linux/err.h>
->> @@ -38,16 +44,33 @@
->>  #define VEML6030_ALS_INT_EN   BIT(1)
->>  #define VEML6030_ALS_SD       BIT(0)
->>  
->> +#define VEML6035_GAIN_M       GENMASK(12, 10)
->> +#define VEML6035_GAIN         BIT(10)
->> +#define VEML6035_DG           BIT(11)
->> +#define VEML6035_SENS         BIT(12)
->> +#define VEML6035_INT_CHAN     BIT(3)
->> +#define VEML6035_CHAN_EN      BIT(2)
->> +
->> +struct veml603x_chip {
->> +	const char *name;
->> +	const struct iio_info *info;
->> +	const struct iio_info *info_no_irq;
->> +	const char * const in_illuminance_scale_avail;
-> 
-> For this, better with read_avail() provided and a pointer to an array of
-> values + a size element in here.  That way we can get rid of the
-> custom attribute handling.  Might end up as similar amount of code, but
-> will be simpler to read.
-> 
->> +	int (*hw_init)(struct iio_dev *indio_dev);
->> +	int (*set_als_gain)(struct iio_dev *indio_dev, int val, int val2);
->> +	int (*get_als_gain)(struct iio_dev *indio_dev, int *val, int *val2);
->> +};
-> 
->>  
->>  /* Integration time available in seconds */
->> @@ -63,14 +87,25 @@ static IIO_CONST_ATTR(in_illuminance_integration_time_available,
->>  
->>  /*
->>   * Scale is 1/gain. Value 0.125 is ALS gain x (1/8), 0.25 is
->> - * ALS gain x (1/4), 1.0 = ALS gain x 1 and 2.0 is ALS gain x 2.
->> + * ALS gain x (1/4), 0.5 is ALS gain x (1/2), 1.0 is ALS gain x 1,
->> + * 2.0 is ALS gain x2, and 4.0 is ALS gain x 4.
->>   */
->> -static IIO_CONST_ATTR(in_illuminance_scale_available,
->> +static IIO_CONST_ATTR_NAMED(veml6030_in_illuminance_scale_available,
->> +			    in_illuminance_scale_available,
->>  				"0.125 0.25 1.0 2.0");
->> +static IIO_CONST_ATTR_NAMED(veml6035_in_illuminance_scale_available,
->> +			    in_illuminance_scale_available,
->> +				"0.125 0.25 0.5 1.0 2.0 4.0");
->>  
->>  static struct attribute *veml6030_attributes[] = {
->>  	&iio_const_attr_in_illuminance_integration_time_available.dev_attr.attr,
->> -	&iio_const_attr_in_illuminance_scale_available.dev_attr.attr,
->> +	&iio_const_attr_veml6030_in_illuminance_scale_available.dev_attr.attr,
->> +	NULL
->> +};
->> +
->> +static struct attribute *veml6035_attributes[] = {
->> +	&iio_const_attr_in_illuminance_integration_time_available.dev_attr.attr,
->> +	&iio_const_attr_veml6035_in_illuminance_scale_available.dev_attr.attr,
-> 
-> Using get_avail() etc would let you handle these as arrays of numbers rather than
-> strings + get rid of the need for any custom attributes. This should be
-> a very simple conversion so perhaps worth doing before adding the
-> new support.  Then you will have pointers to the value arrays + sizes
-> in your chip specific structures that just get looked up directly
-> by read_avail()
-> 
-> 
+Resend the patches to the same thread and fix incorrect patch ID.
 
-Hi Jonathan, thanks for your review.
+This patch series introduces support for the pinctrl driver of the Canaan
+K230 SoC. The K230 SoC features 64 IO pins, each of which can be configured
+for up to five different functions.
 
-I will update the update the driver to work that way.
+The controller manages the entire pin configuration and multiplexing
+through a single register, which control features such as schmitt trigger,
+drive strength, bias pull-up/down, input/output enable, power source, and
+mux mode.
 
->>  	NULL
->>  };
-> 
-> 
->>  
->> +/*
->> + * Set ALS gain to 1/8, integration time to 100 ms, ALS and WHITE
->> + * channel enabled, ALS channel interrupt, PSM enabled,
->> + * PSM_WAIT = 0.8 s, persistence to 1 x integration time and the
->> + * threshold interrupt disabled by default. First shutdown the sensor,
->> + * update registers and then power on the sensor.
->> + */
->> +static int veml6035_hw_init(struct iio_dev *indio_dev)
->> +{
->> +	int ret, val;
->> +	struct veml6030_data *data = iio_priv(indio_dev);
->> +	struct i2c_client *client = data->client;
->> +
->> +	ret = veml6030_als_shut_down(data);
->> +	if (ret) {
->> +		dev_err(&client->dev, "can't shutdown als %d\n", ret);
->> +		return ret;
-> 
-> If this is only ever called from probe() (I think that's true?)
-> can use return dev_err_probe() for all these error cases.
-> Main advantage here being shorter simpler code.
-> 
+The changes have been tested on the K230 development board.
 
-I know, I procrastinated a little bit and I left the dev_err() calls as
-they are. But that's easy to update, so I will add a patch for it in v2.
->> +	}
->> +
->> +	ret = regmap_write(data->regmap, VEML6030_REG_ALS_CONF,
->> +			   VEML6035_SENS | VEML6035_CHAN_EN | VEML6030_ALS_SD);
->> +	if (ret) {
->> +		dev_err(&client->dev, "can't setup als configs %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = regmap_update_bits(data->regmap, VEML6030_REG_ALS_PSM,
->> +				 VEML6030_PSM | VEML6030_PSM_EN, 0x03);
->> +	if (ret) {
->> +		dev_err(&client->dev, "can't setup default PSM %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = regmap_write(data->regmap, VEML6030_REG_ALS_WH, 0xFFFF);
->> +	if (ret) {
->> +		dev_err(&client->dev, "can't setup high threshold %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = regmap_write(data->regmap, VEML6030_REG_ALS_WL, 0x0000);
->> +	if (ret) {
->> +		dev_err(&client->dev, "can't setup low threshold %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = veml6030_als_pwr_on(data);
->> +	if (ret) {
->> +		dev_err(&client->dev, "can't poweron als %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	/* Clear stale interrupt status bits if any during start */
->> +	ret = regmap_read(data->regmap, VEML6030_REG_ALS_INT, &val);
->> +	if (ret < 0) {
->> +		dev_err(&client->dev,
->> +			"can't clear als interrupt status %d\n", ret);
->> +		return ret;
-> 
-> It's true of existing code, but I noticed it here.
-> Should we be powering down in this error path?
-> 
+The pin function definition can be found here [1], and most of the DTS data
+was converted from the vendor's code [2].
 
-We could, because this is the only error path where the device is
-powered on before the power off action gets registered. On the other
-hand, could we not move the call to devm_add_action_or_reset() a few
-lines up, so the action gets registered before calling hw_init()?
+Link: https://developer.canaan-creative.com/k230/dev/_downloads/a53655a81951bc8a440ae647be286e75/K230_PINOUT_V1.1_20230321.xlsx [1]
+Link: https://github.com/kendryte/k230_sdk/blob/main/src/little/uboot/arch/riscv/dts/k230_canmv.dts [2]
 
-Powering off the device is just writing a bit, so it would not hurt in
-the error paths where the device is already powered off. Then we would
-not need an explicit call to power off the device in this error path.
+Ze Huang (3):
+  dt-bindings: pinctrl: Add support for canaan,k230 SoC
+  pinctrl: canaan: Add support for k230 SoC
+  riscv: dts: canaan: Add k230's pinctrl node
 
->> +	}
->> +
->> +	/* Cache currently active measurement parameters */
->> +	data->cur_gain = 5;
->> +	data->cur_resolution = 1024;
->> +	data->cur_integration_time = 3;
->> +
->> +	return 0;
->> +}
-> 
+ .../bindings/pinctrl/canaan,k230-pinctrl.yaml | 128 ++++
+ arch/riscv/boot/dts/canaan/k230-pinctrl.dtsi  | 316 ++++++++
+ arch/riscv/boot/dts/canaan/k230-pinctrl.h     |  18 +
+ arch/riscv/boot/dts/canaan/k230.dtsi          |   2 +
+ drivers/pinctrl/Kconfig                       |  10 +
+ drivers/pinctrl/Makefile                      |   1 +
+ drivers/pinctrl/pinctrl-k230.c                | 674 ++++++++++++++++++
+ 7 files changed, 1149 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/canaan,k230-pinctrl.yaml
+ create mode 100644 arch/riscv/boot/dts/canaan/k230-pinctrl.dtsi
+ create mode 100644 arch/riscv/boot/dts/canaan/k230-pinctrl.h
+ create mode 100644 drivers/pinctrl/pinctrl-k230.c
 
+base-commit: 0eea987088a22d73d81e968de7347cdc7e594f72
+prerequisite-patch-id: 2401703b57448c9ea2c3dc7650b4502491a28944
+prerequisite-patch-id: 50ccf1104191cdf22f9077880d3dc781b190a3c8
+prerequisite-patch-id: f8b983b301d0c14f1448b9e4c321262a509e061e
+prerequisite-patch-id: ced4a01ccd8ddab2fd308d543ddf47bd1641518a
+prerequisite-patch-id: c2144cf468c57b856830a61615ba6ba501e8ec58
+prerequisite-patch-id: 704efc6e76814e1877748959d7319d558c8386c1
+-- 
+2.46.1
 
-Best regards,
-Javier Carrasco
 
