@@ -1,62 +1,57 @@
-Return-Path: <devicetree+bounces-103347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF71797A6E2
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 19:41:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FE3497A6F0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 19:43:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 58022B29491
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 17:41:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F2D91C268CF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 17:43:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B7E915B551;
-	Mon, 16 Sep 2024 17:41:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51B6615B15D;
+	Mon, 16 Sep 2024 17:43:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pYOM1LZs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RECG0Ubg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4156315B130;
-	Mon, 16 Sep 2024 17:41:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2133B158D96;
+	Mon, 16 Sep 2024 17:43:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726508484; cv=none; b=eoJEO+0kLT3OzFpi9zcUi+kR0yX07KZ2BIzj121q4BPbrLOZnsCmMtl8/1ef/8oqeNXiSydP+P6Aik2ZvTKND5XZsNiR7A3n2XPAc/sXqPZU8fJ/WA9myZKjzDinR6gmSthuNZdFcRESycfJ6D5iA5vW4D5ngmaMYChlc2HGZrQ=
+	t=1726508604; cv=none; b=FaN8hje2vy4+tTnOw7bP54OQMbb8zP5baww9IRKzarTXFFioXCPcJhh/lC22PAXCKlG1kQCTSpJO8CD8zktYaMBPxZm0I3NNfzi+EZuvQbUDthrAi8FZuYQ8mbCSVlrYF8LXRmefW3GLF+YfIvM0eGtu/ladj5Kpre9Z2yDgVpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726508484; c=relaxed/simple;
-	bh=WloC7Qh/dLsituTGu+eNmaO/f60monF/EFxD1o3csTA=;
+	s=arc-20240116; t=1726508604; c=relaxed/simple;
+	bh=JjjqoHBbrAIkpCbOUUlkHPM0n0YlMlxgxT2/SNiWpy0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fp3z38k1CVZXRmZfwaj/s+3k+mWesb9SjXdqSE55sEcCmOBID5Qq9Mm9ooZWzrDWSkMee0Gt6I2lBlshAC01N6VdChQjJEFIkiHrPi8+GCbMOiONJtiHwvTBVXGisb3qTc8dKLfFrqsLO7FdlqbRWNfVTLIRDyRNOgPB+KsO634=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pYOM1LZs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A88D9C4CECD;
-	Mon, 16 Sep 2024 17:41:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Oh2/ctXwkhKyei5h3BD/6bdLUmnV2xD6BUIofirSOHclZOrjneU9kI5H1cTJuebj1bROfMpxEWDUvplgvw4WmDvYONRpFmP9sUUaT4hIkGddAQ4lyhAWeUOCUfHJWt4XyEhESb1aOrxE9lqIIcjxrgYu2KqdUEZhLh90MrAWM30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RECG0Ubg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A77BC4CEC4;
+	Mon, 16 Sep 2024 17:43:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726508483;
-	bh=WloC7Qh/dLsituTGu+eNmaO/f60monF/EFxD1o3csTA=;
+	s=k20201202; t=1726508603;
+	bh=JjjqoHBbrAIkpCbOUUlkHPM0n0YlMlxgxT2/SNiWpy0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pYOM1LZsrgkaAz4oK4zF9ZHnqMRf07KFptCLqVRXkqSMDSNZbfmFFUlbFyAQeqoKK
-	 CfuSaUjL5WDiUww44Pex4wE/sVOMeZ9D/aTMdqL4Y59UXXSdeEOmOeXgBBGao2Y1E3
-	 VVmaTaHKo9uDpZQkHAyc4/dybfagoB4Z5mjfMDISXZj+6tZQzJG5QlOxdVyyFK5Ufw
-	 /KNaB0x7vRKhThBYusOLYLF8fS86Kx/UHHiAdaT1cfH32RgoO1Qu1UAZ2l/954t+cG
-	 cjF98NCl6YUXnCQfzDNGEb2IEAfu88VzLpHmFdMmDxFj1YuMK4VePvx8wlmD9g1edW
-	 F/otK1TVZGL7A==
-Date: Mon, 16 Sep 2024 12:41:22 -0500
+	b=RECG0Ubg7B6sGx+CjqOr41EeWDehL2TTMnyTKo7+iZPzr214ao+CknbPvNZ1+0VHT
+	 qL+FhnRq9hoCYb14wGjUSoCiwu3FsmSrRKkHs0dJ+f6oaQpYidYuI+ko5uxgXanBhM
+	 Fha/uRXnklucSEYzPjyMkgEEnIAJh7Ptxyl7KwYseW0DtwDMnE4SqjbM1YkEwNZZBl
+	 mWfsHk0Ha9Fpiafq7wszPp18elPPsG5bffLC+0QvHid8Xp117YpVk1BMQSGAEJ/mWQ
+	 mr+JaUYowqRzcNUK/38FStV1ZOxzNMQPZ9BaobZ4zGqRwf1ePtzL6dfOnvKQbORxDX
+	 HmZR3CmtDNlew==
+Date: Mon, 16 Sep 2024 12:43:22 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org,
-	Kevin Hilman <khilman@baylibre.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: iio: adc: amlogic,meson-saradc: also allow
- meson8-saradc to have amlogic,hhi-sysctrl property
-Message-ID: <172650848142.859049.15257284071045853888.robh@kernel.org>
-References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-amlogic-hhi-sysctrl-v1-1-b8c3180b2fba@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: realtek,rt5640: Convert to dtschema
+Message-ID: <172650860184.861976.2123613682245526181.robh@kernel.org>
+References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-covert-realtek-rt5640-v1-1-6b3745e34540@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,20 +60,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-amlogic-hhi-sysctrl-v1-1-b8c3180b2fba@linaro.org>
+In-Reply-To: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-covert-realtek-rt5640-v1-1-6b3745e34540@linaro.org>
 
 
-On Wed, 11 Sep 2024 17:29:53 +0200, Neil Armstrong wrote:
-> The SARADC on the Amlogic Meson8 SoC also requires the amlogic,hhi-sysctrl,
-> property, document it by adding the amlogic,meson8-saradc compatible in the
-> adequate allOf:if:compatible:contains:enums along meson8b and meson8m2.
+On Wed, 11 Sep 2024 17:34:01 +0200, Neil Armstrong wrote:
+> Convert the RT5640/RT5639 audio CODEC bindings to DT schema.
 > 
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/sound/realtek,rt5640.yaml  | 146 +++++++++++++++++++++
+>  Documentation/devicetree/bindings/sound/rt5640.txt |  97 --------------
+>  2 files changed, 146 insertions(+), 97 deletions(-)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
