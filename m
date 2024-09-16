@@ -1,139 +1,102 @@
-Return-Path: <devicetree+bounces-103267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62D8997A42D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 16:32:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82B4C97A435
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 16:33:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E0231F26E3A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 14:32:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E84928E2B5
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 14:33:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB77B155359;
-	Mon, 16 Sep 2024 14:32:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229E8156C40;
+	Mon, 16 Sep 2024 14:33:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="U+PaxkZg"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RHTXLGmw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FA3F14EC47;
-	Mon, 16 Sep 2024 14:32:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED12F154C14;
+	Mon, 16 Sep 2024 14:33:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726497125; cv=none; b=k3PeX/YGhnFnmmaF49iABOGLFAAzeQ5ejh8jWpo12uZd58pcQwgBNQV2q6S8MrGEwhY5bVhSI+wTSVHrGJWyOcduZiO+ziHHpp73w79UhLYqSpiQ5wREJlkmu40KdzTIQDyhR1s2TKnUdSTKz/qJqdO3RtOQD+Mt+p/vbUs9x64=
+	t=1726497197; cv=none; b=ZHWTBwJ4qwR3w72A2MnIcHPNFqEnnpECWw+I3UiotT1tVVK8foQVOmz4mVmZGu4D9jQ6dhf0N+IrzMXTa1tHJkONlG0/nGw6gknmn5hlsyy19VOU0iO+wXH6JvmtNtPS8LCkGd9DqPgRQETr55jlifiYsK7tdVkNKUXEez6Uk+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726497125; c=relaxed/simple;
-	bh=FNKagr8fgT2UuOBtN5mFu5V6NQIr1s6QD15dfSvCMfw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Z/ocJvu00BnVdRfpKD9TlsfwbPjhnsP9FTYWk+wkcvgmc1K9a+quTAl29wdNVLhw321qV8fTFbTW4FPDLpAZkRw4D+MOMxwMiMJKy9O8NM5jBe1y4l30fKTsMtqNidAI2m6/lasPhAmTCc9YpnT3WirOc2myPetPJKpUHJqDmDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=U+PaxkZg; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48GEBHSo019341;
-	Mon, 16 Sep 2024 14:32:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	rV+gZObA7zqyq+elv/MNQSpTmnsg0cKcpZcE22qis3M=; b=U+PaxkZgtX9amyue
-	mx/R9de/bPEaBekjoV81PUltv/M00YrFdB0CIu5i8Gq/oqLgrW3F0UKSq8fWnLka
-	Kb8jsxijdiOUtu40uT43Tr0gBXPZlQQqc7D3C4gFXJRmEbcnQMAv7xHchzL4CyIi
-	2i38QPglu41sP6kCrCypQuyW8f5P3yc7aI8A97DdgzRZmnJgILubIdLGQcSadIcK
-	GcyklR22ymlwviRaPlHUPzfmmWq8WLYGfBG8ZWew/rYFMY1SBj6DYRo/ebDKO1lu
-	y9SEA3+JGsUVJiE+vxzecTB7J0eRxDNVZGqV4QlHMC8ALGn0SSQmM92JVjfLV6Go
-	aoQWhg==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41n4hev6ga-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Sep 2024 14:32:00 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48GEVwMh011918
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Sep 2024 14:31:58 GMT
-Received: from [10.110.0.24] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 16 Sep
- 2024 07:31:55 -0700
-Message-ID: <849913f2-eb77-49ef-bab0-86f84d0a435e@quicinc.com>
-Date: Mon, 16 Sep 2024 07:31:55 -0700
+	s=arc-20240116; t=1726497197; c=relaxed/simple;
+	bh=Z/CvUXkaSdf/EtGRsR+rg0pbyNHYk1lP5H8wfJohrCk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oMxFodudj3jPr0yRM0WzALEAgoBPworbHfWesEGpmdC8sOww39KxLWTOmLYVq2VnQhapUbv8+OS3B+JO86WGNb21D92lUa7Sd+3IsnwTgUEiYaauQnmC48rm8CRoWehfy7+38xAzIXBTa2dUD7rlkDpEWpS2Q7LAMmNMgcHAzso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RHTXLGmw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8D35C4CEC4;
+	Mon, 16 Sep 2024 14:33:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726497196;
+	bh=Z/CvUXkaSdf/EtGRsR+rg0pbyNHYk1lP5H8wfJohrCk=;
+	h=Date:From:To:List-Id:Cc:Subject:References:In-Reply-To:From;
+	b=RHTXLGmwdBWmuGb1YCSXlEJ6JJXRy/aEN74KjHz655i3E4ib/JztMDMuelv4m/fxh
+	 7yZs2ijP1K40DcUcVQvAxZj7vouCPpyjrQGsuUzFD7aqM2OuLpm+seZHIobCKx+cbe
+	 Ox9XZvDpzxojPEY4eHzYxo2oOorxaPmD1rWbOXOyTOpoFdK1a3pfoFBkPvPo/e24B4
+	 wfCKzHazw7j+AWiwDU9+RyCIbHBjrysLRBWVwCz8xE/Wix4mcraIy5dfcm9I1TglrN
+	 5+5zMHfY8ErDkz2e0KwSWQw4eeB6NAg+gRfD6TYDSmy2xR95i9S4TNlFy1EwVTSx7e
+	 mxgypYXzaL8+w==
+Date: Mon, 16 Sep 2024 16:33:13 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>, 
+	linux-leds@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, soc@kernel.org, 
+	Gregory CLEMENT <gregory.clement@bootlin.com>, arm@kernel.org, Andy Shevchenko <andy@kernel.org>, 
+	Hans de Goede <hdegoede@redhat.com>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
+	Andrew Lunn <andrew@lunn.ch>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH leds v3 05/11] dt-bindings: leds:
+ cznic,turris-omnia-leds: Allow interrupts property
+Message-ID: <rchpwlmgzsoj37oz6plzqcyxdyzpcdqtpmzik2gcflakeca3rm@vcdrovzs4nzh>
+References: <20240913123103.21226-1-kabel@kernel.org>
+ <20240913123103.21226-6-kabel@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: firmware: qcom,scm: document support for
- SA8255p
-Content-Language: en-US
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        <quic_psodagud@quicinc.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-References: <20240905183016.3742735-1-quic_nkela@quicinc.com>
-From: Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <20240905183016.3742735-1-quic_nkela@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: YBhpvBgRFO2_IHCxUJwiZdRnwkImxnj9
-X-Proofpoint-GUID: YBhpvBgRFO2_IHCxUJwiZdRnwkImxnj9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- suspectscore=0 bulkscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015
- mlxlogscore=999 adultscore=0 malwarescore=0 phishscore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2408220000
- definitions=main-2409160093
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240913123103.21226-6-kabel@kernel.org>
 
-Gentle ping...
+On Fri, Sep 13, 2024 at 02:30:57PM +0200, Marek Beh=C3=BAn wrote:
+> Extend the cznic,turris-omnia-leds binding with interrupts property,
+> specifying the global LED brightness changed by button press interrupt.
+>=20
+> Signed-off-by: Marek Beh=C3=BAn <kabel@kernel.org>
+> ---
+>  .../devicetree/bindings/leds/cznic,turris-omnia-leds.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-le=
+ds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.ya=
+ml
+> index 34ef5215c150..f52f6304c79e 100644
+> --- a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+> +++ b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+> @@ -23,6 +23,12 @@ properties:
+>      description: I2C slave address of the microcontroller.
+>      maxItems: 1
+> =20
+> +  interrupts:
+> +    description:
+> +      Specifier for the global LED brightness changed by front button pr=
+ess
+> +      interrupt.
 
-On 9/5/2024 11:30 AM, Nikunj Kela wrote:
-> Add a compatible for the SA8255p platform's Secure Channel Manager
-> firmware interface.
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
-> ---
->
-> Changes in v3:
-> 	- Removed the patch from original series[1]
->
-> Changes in v2:
-> 	- Added Reviewed-by tag
->
-> [1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
-> ---
->  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> index 2cc83771d8e7..65057f5c8972 100644
-> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> @@ -43,6 +43,7 @@ properties:
->            - qcom,scm-msm8998
->            - qcom,scm-qcm2290
->            - qcom,scm-qdu1000
-> +          - qcom,scm-sa8255p
->            - qcom,scm-sa8775p
->            - qcom,scm-sc7180
->            - qcom,scm-sc7280
-> @@ -204,6 +205,7 @@ allOf:
->            compatible:
->              contains:
->                enum:
-> +                - qcom,scm-sa8255p
->                  - qcom,scm-sa8775p
->      then:
->        properties:
+This "front button press" concerns me that you just hooked here
+gpio-key. Are you sure that this is the physical interrupt line going to
+this device?
+
+Best regards,
+Krzysztof
+
 
