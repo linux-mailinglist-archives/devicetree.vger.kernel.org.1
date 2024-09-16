@@ -1,97 +1,139 @@
-Return-Path: <devicetree+bounces-103319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4414697A5E6
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 18:24:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A042C97A5FA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 18:30:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 14495B2CCA3
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 16:17:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A4BE28A416
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 16:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45504158A3D;
-	Mon, 16 Sep 2024 16:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF97415B145;
+	Mon, 16 Sep 2024 16:30:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FD1aSrtr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AvgG2epv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2108A28371
-	for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 16:17:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F60B15B0FA;
+	Mon, 16 Sep 2024 16:30:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726503462; cv=none; b=ZXPzqjIqOmxxAJbVX4ztQovNZ3US6sQAfpvQyP0320kAU22vjzFpIWMM23/dM1L9EsqZ3QjUZeao6l3/QjPpyIIZUrohgtbiQBIK2/I9YPL1x7Sht3UBzSu0zPT5E5AHJqWqC4nV4MMxtKHjd2nXLPm1Y1pdd+b7+Zye9/bmQhE=
+	t=1726504215; cv=none; b=CMJkJj8LYBZAorudbrkUvpejx3ncPdNHVYZdJfAgbPJHkz0igWSPqCMVTjO/+d0X90Wrb4HgIb08GqlBF4u3POqI8XFV6kWGe27yvRwfWxTDQUl8XBepRPhAuKb+SfsxRC/iIPR3cFi8+TCLAcnKLS1z9fXqnlfhkx1MDiMPNXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726503462; c=relaxed/simple;
-	bh=LRTwH4s4Ogw/as5MdeQKQ5ujUGmHf11kW+Qnv77pTpE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZhuJhq1ZH9TcWMCw4JcerLXM4dP7B5iSwtgXvPqeMRRzj+b/ye/1Rj53GKav+aQBfjjHz0SuYwibXl+yIZ5CJF061qXY2x52bT8Z6fqUoynn+nHxl920TlZRg1jC2MXHhPm0lCBui1KLamMaPWLB+fNZsZx2IQYMqh1DNuQqHt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FD1aSrtr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CCE1C4CEC4;
-	Mon, 16 Sep 2024 16:17:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726503461;
-	bh=LRTwH4s4Ogw/as5MdeQKQ5ujUGmHf11kW+Qnv77pTpE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FD1aSrtrT09AayrcekIIq3kzL0BrYOj1SoGQtTXs8jgRZvSJ/cQqL9rJEis6Xkjt3
-	 pCKaiZky2VZZCazvLfqqt5HN6Nl52X8E1HMpu2N63ODhmOewPHYRBCgo6A+zcY1SoC
-	 r8+9vvlQbZT7AEuuZRRqmDzOAUmH0g4YxHEKDPSQxP5Q1+xLm7dVDTZu719+X7AISU
-	 +eEbT3Y7a2nkhfmh4U8qGMkk9VLhqXrkMt65XL9f5V3HmEPgvwO3npNM4cfJQg2EuW
-	 CVdrJHKRS8yUVxZHmKq3B+/B6HpCDt48Q9II0T4EuYVyHF11IhI3Mlg3uzD2JEDaCk
-	 xFlRWnO6H1fBw==
-Date: Mon, 16 Sep 2024 17:17:37 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add an entry for
- ComVetia AG
-Message-ID: <20240916-shadily-basil-90db916723f1@spud>
-References: <20240913200906.1753458-1-festevam@gmail.com>
+	s=arc-20240116; t=1726504215; c=relaxed/simple;
+	bh=EuytTvgDgOMM78hVNpjfaJDLmg1Z09ncXbEZw2CiDvw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mwr/KpbFAczS8Wz3kf4oNPGLXrb1vuo5uqesOmXOL8JOJ4Vu5M2jVxW+GScUB1RidwAbgy3+JagfZf1nb3EVG6rxeUNenUNfR02CMRgOUQTPTbRqfeoI2GEoF6lV0rhSrmJAwP8zM2+kDNBufkj3wOyG3xqZXUwaZzqPWb70MxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AvgG2epv; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-536748c7e9aso5524091e87.0;
+        Mon, 16 Sep 2024 09:30:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726504210; x=1727109010; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0oGX2cVcDg8n9bBokDIe5AJiMWrG4qmBl/bUEKpKSwQ=;
+        b=AvgG2epvaHNqVSsg44HcPoa6bJPKw+wWpTYuJONWqXpeky5Zs+EaCzabbUVqPEq0gk
+         dKW76Gdj8emAYRW1Ha4w+Fvbwg7oeSBfmf1FCyi+2Fl9MBEplT3wi2f4uOo5czbBaJIt
+         GBGWxzVkROZHdGLgJZMtw+THMDLpmLcxNQf16tI5ZAWolNZtfRlsSUZx2kzNzaMc8xA4
+         U8YzYu0sbHAZFk+wDolZZj3YO1Y/y7Ij4Fe7MTa5yDx2xYxuFJczq6VXtyuoczTg/uD0
+         XSMFBl202/74cs9YttmvyJKYoZ24FK+O892JUtb1AtJnELQ3c8pIbnz9TxDfUBWY+Kiy
+         R+0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726504210; x=1727109010;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0oGX2cVcDg8n9bBokDIe5AJiMWrG4qmBl/bUEKpKSwQ=;
+        b=Hsk5Dfly/4yNSDrxz2uo19+yl+KhY+DEtlxj5pKxHiUskBNh+VXOu/6j3JiBfM0FYO
+         N4WLvXWanwWa4Gn58pyCWswpjUZNZaoYUl4kTFclb+6C1Ap7ky0qINiA/5p4TbExP+A8
+         BOy00UuAF1bTMa5xoFy62n5T6GGSy4zC85MVXppfQCjzMJZ6c5oMOTMfgTtx7Ulsct5o
+         qw9LteVv+wRLzO/lxWRlikWnJWT311p25o7/LFsqPlxOclZQRrH13j95Mh6ntb1y9FpT
+         /UDaBsV+yCFdHlS97T9CKnu5YHB4TKXuwMHdErTs0TpHc4n5SEJyvnTwrsGJOUn1rmTS
+         Q3/A==
+X-Forwarded-Encrypted: i=1; AJvYcCWxMU75KyUoz1+H1D+Lu+hDP+QHKS1MsMhUnyWS/6Z6PrSF55oEGLyZTHP0yf6/imT3zqhbXtDYkCi+tFbq@vger.kernel.org, AJvYcCXxAfNvxFC/kBwZhmDKr2xzxizMk9Dsppfyd5c9wbjsto4FAV5c1TY6CG4ITqrh+AyuU3jrED7K95yi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1inclXhISuaDKnK4FW2vtVbloLhetgszHbdSxEkiLJjirIsCi
+	AthK5VLD1XJfMLPdSiFBHMY5x/xNapP2caMkVdoS1BBUw/gic4oT
+X-Google-Smtp-Source: AGHT+IHtcJ1YcDrAz2kQKqR5WKY41KEmQUmaGuv89pTxIR7GbvzwLNEv+6RonALiz+sDYt30CX/Rog==
+X-Received: by 2002:a05:6512:15a1:b0:52e:999b:7c01 with SMTP id 2adb3069b0e04-53678feb0c0mr7958701e87.48.1726504209925;
+        Mon, 16 Sep 2024 09:30:09 -0700 (PDT)
+Received: from ALPER-PC.koi-vector.ts.net ([178.233.24.52])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5368709656bsm930130e87.171.2024.09.16.09.30.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Sep 2024 09:30:09 -0700 (PDT)
+From: Alper Nebi Yasak <alpernebiyasak@gmail.com>
+To: linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org
+Cc: Pi-Hsun Shih <pihsun@chromium.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	Fabien Parent <fparent@baylibre.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Jitao Shi <jitao.shi@mediatek.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Pin-yen Lin <treapking@chromium.org>,
+	linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alper Nebi Yasak <alpernebiyasak@gmail.com>
+Subject: [PATCH] arm64: dts: mediatek: mt8183-kukui: Disable DPI display interface
+Date: Mon, 16 Sep 2024 19:29:32 +0300
+Message-ID: <20240916162956.267340-1-alpernebiyasak@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="UTagNkEp5RUCEmAC"
-Content-Disposition: inline
-In-Reply-To: <20240913200906.1753458-1-festevam@gmail.com>
+Content-Transfer-Encoding: 8bit
 
+Commit 009d855a26fd ("arm64: dts: mt8183: add dpi node to mt8183") adds
+a device-tree node for the DPI display interface that feeds the external
+display pipeline, to enable HDMI support on the Pumpkin board.
 
---UTagNkEp5RUCEmAC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+However, the external display is not fully described on Chrome devices,
+blocked by further work on DP / USB-C muxing graph bindings. This
+incomplete description currently breaks internal display at least on the
+Cozmo board. The same issue was found and fixed on MT8186 devices with
+commit 3079fb09ddac ("arm64: dts: mediatek: mt8186-corsola: Disable DPI
+display interface"), but the MT8183 change wasn't merged until then.
 
-On Fri, Sep 13, 2024 at 05:09:04PM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
->=20
-> ComVetia AG is a professional radio communication platforms
-> manufacturer:
->=20
-> https://comvetia.com/
->=20
-> Add a vendor prefix entry for it.
->=20
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+Disable the external display interface for the Kukui device family until
+the necessary work is done, like in the MT8186 Corsola case.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Fixes: 009d855a26fd ("arm64: dts: mt8183: add dpi node to mt8183")
+Link: https://lore.kernel.org/linux-mediatek/20240821042836.2631815-1-wenst@chromium.org/
+Signed-off-by: Alper Nebi Yasak <alpernebiyasak@gmail.com>
+---
 
---UTagNkEp5RUCEmAC
-Content-Type: application/pgp-signature; name="signature.asc"
+ arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
------BEGIN PGP SIGNATURE-----
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+index 22924f61ec9e..07ae3c8e897b 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+@@ -290,6 +290,11 @@ dsi_out: endpoint {
+ 	};
+ };
+ 
++&dpi0 {
++	/* TODO Re-enable after DP to Type-C port muxing can be described */
++	status = "disabled";
++};
++
+ &gic {
+ 	mediatek,broken-save-restore-fw;
+ };
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuhaIQAKCRB4tDGHoIJi
-0vh4AQCaxMhlr+ynMGVAK57Ho7maBJXhp3lCRXs5DAPerBbG4AEAuMlZMleLXEDy
-GHxI5RcIG1ETfCGAWkmUCSG4OO9DpQI=
-=qhep
------END PGP SIGNATURE-----
+base-commit: 7083504315d64199a329de322fce989e1e10f4f7
+-- 
+2.45.2
 
---UTagNkEp5RUCEmAC--
 
