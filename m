@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-103314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2260B97A5B7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 18:07:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2371E97A5BF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 18:11:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B9E7B2A6C4
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 16:05:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47ABE1C265A7
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 16:11:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98973158D8B;
-	Mon, 16 Sep 2024 16:05:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 972DC158A3D;
+	Mon, 16 Sep 2024 16:11:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lp7vlN7K"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eVNUywoZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF0E6155C98
-	for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 16:05:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCDE6249EB
+	for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 16:10:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726502749; cv=none; b=pT3qQQetwK6eYjKWSYBMITps37ktZ34cP8Yebr6F/7cu3I+pQXgcbNxi+KcJwGZu06X38rnCzoxKgwbsfpSXB4xY8ccebZ1V5rTi6jfHusxFHJYrO2/6f+2eh9ZZyj7giQbYkoZAc02Z+7L7Egr9CvHMPowvERmt5Bx76dOID8o=
+	t=1726503061; cv=none; b=Ufs5Hhl4bfT6iaqHV1iQnLxPdfI8Nrjnv/eKlQygiPv7qOGCLMyt+wrG0tgrIAhCuZOxwqrqifX/eAICOj3X25zq0+2mWXAOnzLNQq+TQKtYCS8hyCi97vqcykjROMYuTwm7v4v8OOc9hikdWuMZN/juriVb3/QTWVFUHBorQBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726502749; c=relaxed/simple;
-	bh=+hulRIncmZYwX6AbjLI7q+5ZTyeCTbMLFoW0OYJzYbo=;
+	s=arc-20240116; t=1726503061; c=relaxed/simple;
+	bh=3DbQUXtqH23XasZeBnq+108DgEMzEZGpBFTL+QLu2mM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lgMbviBJKskLSH8D3REAe05Srayb9O5ALCM1PRphNC9oVKP9egtL6xWVf+etW3uDNtvcn7bLX3cnpL/IO78Yw2r6VVIrE6AEWDk6euvFWLuzxkTNKyNQiys2cZES0iP1pPAYyRxX1HdotLIp8+ssF7uKnrMflS38hxwl27bjPec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lp7vlN7K; arc=none smtp.client-ip=209.85.128.52
+	 In-Reply-To:Content-Type; b=Px0hNsbqz/+u00/j5HOn4er+D5ULg6rqVPSpckFoVnOLWRqvCszC6EMhM3FzbeJhk5X2rZX0MqfsweC3a8xJvPgQFMRaAlQho4R3oqLysymVSXfGYvM4+l6ahRoofUDMbD8AntRRqCV2iKWSi+uPQo6ghsvu4NwSJL1aK3XgAKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eVNUywoZ; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-42cacda27d1so7869295e9.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 09:05:47 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-42cacd90ee4so6673175e9.3
+        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 09:10:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726502746; x=1727107546; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1726503058; x=1727107858; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=RFt9a3w/ePwIdDqIIrubu40TRnzaXtPMT/2pFLElACw=;
-        b=lp7vlN7KKN3So2FVGTWnPWHxxa6JfYNY1+GrtXttcb4yOy+KQckwa5katfYIRM9osr
-         WvjehQDZP/BDkwcXgZ8A93Otr5fGWUcOJrFu6ojt6JBPcoKAHPd7inuoloJ4lAFPkBTe
-         NzNFA4Dya9nIQ5K6eh20flhKzChYASSHMD8Tjoq+nhlC89LBjp2STbOO5D+wOPXr5MYQ
-         rRNEddv0LkYBX8+ff0sCIW/+K0n7AXt7XmCzsgPmR4MU411Aaa0bB889BWegmw53GrXj
-         XhWOTOgXN9cz6Y1V8Oya0AWg8xeeAZhoRs9uQeV5v8dV7BkXWFotV4FkX7Pnny/gdi9G
-         Rfhw==
+        bh=J4+Jty7EIZNiPVaUv2S/nx0rgNauVejWPcfPCFDPezA=;
+        b=eVNUywoZAMaXux8CDKgY9x+DwgM5iGCb3WajuIcvyyycrwHQ54c6+GixWAF/mrCf+1
+         xJ66gMaFDicOPXHQBn7EZsgjPgYrpdsNxseqUtYRTuyg9xtji/VLHsMLrx4nMexzYgRS
+         vozNMdOBO7Lzha8+dQ8ZM3WV00D0kIdG0JmjxnP/DuaqYzIF+k+3HPBbq+kiFlidrxRU
+         OtyuTkHnslX20vVNtrvgtkNHvwXpVx5C0IJjB9EeHGQ9Kkfg00xnH199iov3uMOcYtXj
+         +AbQxnAMVIs0RwHVf63ducJNq3k5/OtIKOHYmX95t/nD14b7zUM1PhLFAxWVnc5p7lCq
+         cQ6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726502746; x=1727107546;
+        d=1e100.net; s=20230601; t=1726503058; x=1727107858;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=RFt9a3w/ePwIdDqIIrubu40TRnzaXtPMT/2pFLElACw=;
-        b=tkQWFRr6UuxQE9nf2GilPK45u3k5/+FxU/CIInhmqJ/h70mX90kt5RkASN2Wobf9KF
-         P7Vp7ahtQa06X8WZAsciWNWtL35/iTu+DwmOqFf61QqeEiphCZIcZd2O7OUwQ49WwgyO
-         EIHjp1zD3PbdF34eSTezbpJUylaHrsZwLiDLmv4YTeO4jarXuINIEcWiXXGUDPxwSe3D
-         NYIVqH+4y2f9eL3nU6LYc6xRSuA6yY0WUlk/SRhF2gpYzI+X+NRo3ZQCIWDagKyfc06U
-         DnRolO6O2sfeCOPU2euWhZBuDeeDvuRx8in1u5WAQyBTd6I3QzfHeCaVI3wViVKGkORp
-         odcw==
-X-Forwarded-Encrypted: i=1; AJvYcCUdxOvTR10bKVb35LGLfSlxlgggoGtMWY+M1aCrkU6E2olAfraSIqd/v/Pt9GaIwX3wl2yTbVnGmDBO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwbA8yxq+zY1V4T7pG2CwiF3LQYa19b2xMHHHhspw0A77ufEVEH
-	BAIoLg6n11JZTqaygkl9+i/CcqWrx8OFRPrBxlN4j9Nz7KaGdyIYrXXSpOIb3aQ=
-X-Google-Smtp-Source: AGHT+IFMbsPuBPKcyYlNFQnL82lKpSnFEz+gTmak+bL0oHIs7OuvsUlzJL5rM6bwOAsGgusTrHcxpA==
-X-Received: by 2002:a05:600c:600a:b0:42c:aeee:da87 with SMTP id 5b1f17b1804b1-42cdb66c943mr52095185e9.9.1726502745851;
-        Mon, 16 Sep 2024 09:05:45 -0700 (PDT)
+        bh=J4+Jty7EIZNiPVaUv2S/nx0rgNauVejWPcfPCFDPezA=;
+        b=Baecomu/jkpiNtQoWYCib7jwO15desaWANc1a9CY7/arhq7L8PQ306dS+VEMLVMNxP
+         1V1j3iJ6URwv6SBfH6mVS2VMx4i/5wOduzEakcLHe48puV2L3WP/Fj2c/J2xJNwGuqJ0
+         ThYo3DdNEsKC5aI1tjtNCoB6QoprLrnzaXA5VDFztMryQKd+ZLH78OFKdYtwUbzFkw06
+         ST11swsI3WGQnxPcVlDjQc1lMmdcFi4otRMzTE/fuzF1pxItoKqeRFm5F1jQXJlhJg2i
+         UwdWr64Q0UQPFip1aO77I5IAMCi2I/K7r4YX3TWRbbnlOf29Ccz52EpGkDpjQ3KfYclB
+         t+Xg==
+X-Forwarded-Encrypted: i=1; AJvYcCUy3i5CrwZUktKIYWBX6f6jFjclqMjbr/7KYxp5Ib5bk9iEXyRHDOdm479CVgvrbzDI46Qz1yaI6xdV@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0o0ItUINngGBNKuXflq/REF7P4+7CEPuYUgJU7DDDf8FbAimJ
+	e0OxO5ImwkIPqYBSuEqwp7eUOYRv+yPjShVBtWgGg2svFqEb+I3GVCji+ipkRhU=
+X-Google-Smtp-Source: AGHT+IGxTXM9Wb8DB8Qm7+ybWT3EPaUG3djZ7oREPLKcDqiEWohBU0TmIUPTI/3l2E6Nb4ZRCVwVCA==
+X-Received: by 2002:a5d:6c61:0:b0:376:3ef8:61ab with SMTP id ffacd0b85a97d-378c2d024e1mr5078583f8f.8.1726503057945;
+        Mon, 16 Sep 2024 09:10:57 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.211.167])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42da2427227sm80656885e9.44.2024.09.16.09.05.44
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378e71f0600sm7621145f8f.9.2024.09.16.09.10.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Sep 2024 09:05:45 -0700 (PDT)
-Message-ID: <c858c534-98d6-4603-819e-9134dbed94cf@linaro.org>
-Date: Mon, 16 Sep 2024 18:05:43 +0200
+        Mon, 16 Sep 2024 09:10:57 -0700 (PDT)
+Message-ID: <1cfe3f3a-28a3-4030-b6ba-3892a2a7bc79@linaro.org>
+Date: Mon, 16 Sep 2024 18:10:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,20 +77,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 1/2] dt-bindings: connector: Add property to set pd timer
- values
-To: Amit Sunil Dhamne <amitsd@google.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, heikki.krogerus@linux.intel.com,
- gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
- kyletso@google.com, rdbabiera@google.com,
- Badhri Jagan Sridharan <badhri@google.com>, linux-usb@vger.kernel.org,
+Subject: Re: [PATCH v1] arm64: dts: colibri-imx8x: Add ad7879_ts label to
+ touchscreen controller
+To: Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  devicetree@vger.kernel.org
-References: <20240911000715.554184-1-amitsd@google.com>
- <20240911000715.554184-2-amitsd@google.com>
- <5iakowhmqc3hbstmwbs6ixabr27hf2dfz2m4do4qvsrtgrdn72@r7xqawwgebla>
- <dc323138-3bbb-4e23-91f1-d6b80cb7bb72@google.com>
+Cc: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Francesco Dolcini <francesco.dolcini@toradex.com>
+References: <20240910152213.2072743-1-ghidoliemanuele@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -137,60 +136,24 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <dc323138-3bbb-4e23-91f1-d6b80cb7bb72@google.com>
+In-Reply-To: <20240910152213.2072743-1-ghidoliemanuele@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/09/2024 01:26, Amit Sunil Dhamne wrote:
-> Hi Dmitry,
+On 10/09/2024 17:22, Emanuele Ghidoli wrote:
+> From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
 > 
-> On 9/12/24 3:05 AM, Dmitry Baryshkov wrote:
->> On Tue, Sep 10, 2024 at 05:07:05PM GMT, Amit Sunil Dhamne wrote:
->>> This commit adds a new property "pd-timers" to enable setting of
->>> platform/board specific pd timer values for timers that have a range of
->>> acceptable values.
->>>
->>> Cc: Badhri Jagan Sridharan <badhri@google.com>
->>> Cc: linux-usb@vger.kernel.org
->>> Cc: devicetree@vger.kernel.org
->>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
->>> ---
->>>   .../bindings/connector/usb-connector.yaml     | 23 +++++++++++++++++++
->>>   include/dt-bindings/usb/pd.h                  |  8 +++++++
->>>   2 files changed, 31 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>> index fb216ce68bb3..9be4ed12f13c 100644
->>> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>> @@ -253,6 +253,16 @@ properties:
->>>   
->>>       additionalProperties: false
->>>   
->>> +  pd-timers:
->>> +    description: An array of u32 integers, where an even index (i) is the timer (referenced in
->>> +      dt-bindings/usb/pd.h) and the odd index (i+1) is the timer value in ms (refer
->>> +      "Table 6-68 Time Values" of "USB Power Delivery Specification Revision 3.0, Version 1.2 " for
->>> +      the appropriate value). For certain timers the PD spec defines a range rather than a fixed
->>> +      value. The timers may need to be tuned based on the platform. This dt property allows the user
->>> +      to assign specific values based on the platform. If these values are not explicitly defined,
->>> +      TCPM will use a valid default value for such timers.
->>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> Is it really necessary to use the array property? I think it's easier
->> and more logical to define corresponding individual properties, one per
->> the timer.
-> 
-> Thanks for the review. The reason I did it this way was for
-> convenience. If in the future someone else wants add a new timer,
-> it'd be convenient to just add it as a new macro definition in pd.h
-> rather than having to define a new property each time, especially
-> if folks want to add more timers (scales better).
-> There are 3 timers already and I am working to add a fourth in a
-> follow up patch if the current RFC gets accepted.
-> 
-> Please let me know what do you think?
+> The device tree defines the touchscreen controller, but it cannot be
+> enabled because it lacks a reference label.
 
-Binding is supposed to be complete. You already know this is not complete...
+It can be. Just enable it...
+
+> This commit adds a label to allow it to be referenced and enabled.
+> 
+
+You changed here nothing. For me this patch is churn and pointless.
+
+You add the label when you need to use it.
 
 Best regards,
 Krzysztof
