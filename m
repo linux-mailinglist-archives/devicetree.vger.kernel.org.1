@@ -1,198 +1,203 @@
-Return-Path: <devicetree+bounces-103206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01FAE979E34
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 11:17:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0F38979E47
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 11:19:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC8B21F21100
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 09:17:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E3C79B23AAB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 09:19:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6CA8146A79;
-	Mon, 16 Sep 2024 09:17:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73EE41494DF;
+	Mon, 16 Sep 2024 09:19:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pbdrOnJZ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="mnW2KrCs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8423482EF;
-	Mon, 16 Sep 2024 09:17:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B1C014659B
+	for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 09:19:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726478236; cv=none; b=lDc7sk6TfjRLVtd7SpO8OP+mZb20ztTw8gi6DZBdmNveHZi4u1IoiVfUB8+kzHYadB/6C0fd2PIwx3Woy73fKriBj6SeuPT6w3qd+jWb5lYrWXgYpMCeMyeDfB9mCdEa0cwY6QgT5i3frSGJycT+1hBMAoqX7eVyh7O7JSz5jis=
+	t=1726478348; cv=none; b=R7Rf7M4fKei34BMohHxvrLTghIvu3AHxAhx/UIsoksMMo/XXB1DJb0SGqg16DbT41/Gr0nj4MC8/DAA3SxLJTKDZ2e0HI/syEQcxgGzJSSxTNh4J4jxh+SR4yM3Hp8trGNYYlH7lMfmKjARfv9AQ7/dfSqozdPLqD0xl6mN4V1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726478236; c=relaxed/simple;
-	bh=Hf78NC2O19esKVAGkRW6er0cOjPx5E32KUQUQLtJM/0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PhoFyPpmoaRNLIi2ecknc/I0bSztG8JOh1stgKuPd4SWneMjkPZg8OyinPHUfybeVf0Li5I3QvIjPisoXrctYzYCgNE5dcThN1FRXNuYaEInRGf6hfVAivC4QScXXThnWcNri88mNbD6mNYRDN5iWT+1xX03dq+11dQcj2r4FtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pbdrOnJZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25C4EC4CEC4;
-	Mon, 16 Sep 2024 09:17:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726478236;
-	bh=Hf78NC2O19esKVAGkRW6er0cOjPx5E32KUQUQLtJM/0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pbdrOnJZrQPWZZ0hXGwLCKBjLzdhzCpUaCrN9zaRgsLA4SgW9Glr9NStq9C3LhS5G
-	 ChSDKXbeSA+2FB45JP+Wv/6EwA1sqp6u+5gzdxi8m1yDx5H9ACjCjX1x39cIidOyuF
-	 o+w5RJRx/ZlroJyeWEk/cjPZv3FFmL/8Zpp7vrBqC8WtnMETlYs2ynpIlXmbB6NHq1
-	 +fl01P5aYzoc9xajvW4+NQWXU8dZHIIKmunXI6ME5eTUrrTLvpBIivNcUtiyWFDmA8
-	 dEW8todI+dRvTLB6Q8tmUEi2bZmiM4LTrP3mlt68NlUDEMedt3skHomeN2F72Q68FQ
-	 rLtaN6Nmtjz2w==
-Date: Mon, 16 Sep 2024 11:17:12 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dzmitry Sankouski <dsankouski@gmail.com>
-Cc: Sebastian Reichel <sre@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, Simona Vetter <simona@ffwll.ch>, 
-	cros-qcom-dts-watchers@chromium.org, Konrad Dybcio <konradybcio@kernel.org>, 
-	Simona Vetter <simona.vetter@ffwll.ch>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org, linux-leds@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v4 22/27] arm64: dts: qcom: starqltechn: add max77705 PMIC
-Message-ID: <2zdatzzxd4jjev7uwdfacyrv4fmukqwbtabewfsxhgonxuhkjh@ty7v33g57q6h>
-References: <20240913-starqltechn_integration_upstream-v4-0-2d2efd5c5877@gmail.com>
- <20240913-starqltechn_integration_upstream-v4-22-2d2efd5c5877@gmail.com>
+	s=arc-20240116; t=1726478348; c=relaxed/simple;
+	bh=tUn3Lb8xB6w5JpvkBfX8jr4Rmxy4aQ9cSkNjcTe14E0=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=E+KbjEKEBfyFFXEP1RWgQpOJzL+TIb5u/fzjNHNKcrjgAQkXN5Y1zXX9Al0bwvRUbEJ7Qlh8OxwO/Q+lAtovKdKcyStSNacsvs7v5fySo5p5ir13fsTXDep1kmJqBLUVeLrY8FbtC4ze8902YtKS1SKuxzLXuGuhYU/ZGHsazbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=mnW2KrCs; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4280ca0791bso41341385e9.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 02:19:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1726478344; x=1727083144; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3S0+hnJtME97aYVYNEFjXn7v5J7Z9ezZzdhIUThh/M4=;
+        b=mnW2KrCsukwIHvFgTRnD99W6i3JiusOmnT/9JNoAcEqcsPi4jSPQFo4/sngLw5H4Xh
+         zbQ0ya6+2S1XN3bzj/4LoBxc/9LHaFg3NegV5wUs/wncGjNesdKcG2gLV2F0Qt2DYzdI
+         233ZvArSV3qszjeqDgzJvkFn6BnU1NDIFwuubPr3JVcugYQ/jtQIB6iyLwGC8TSuHak+
+         K3s1VUYlmHq0vKYKMZnFo69SWPbz8RDU7JN/UG56EnlN2vHTyTMSTLVn3PY/KtzB2qtw
+         m96DXjZV7vLPQhx5JyyxnxakQJ7hKTHwpbcwQj0E/uH30R7csiYB/1tEeEeCuVIRpTYV
+         eaIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726478344; x=1727083144;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=3S0+hnJtME97aYVYNEFjXn7v5J7Z9ezZzdhIUThh/M4=;
+        b=KzhG3HNgRO3V5JBfo1+UIl4eRJNknx18uVKNuotPfhJzMs1Wjs9v7pkbTUxM1jGpjB
+         vmk44x+oGhLmyoqmEw/oDK+ZQzPicUyCqxCEQKXxl7nB2qu/AG7AUhEpGMBGx8dOSUX7
+         RH7d1GOuxz4lhxKb9dC7QGUYdDjp2fAYaII64463RfMYGZvMVhbCmoB5AUmbYO7KW9W8
+         jvf5GBoR8JrjW3K6Ge+iAz8/4rvrvWhFgoVQi+uVJrkRTK2V1uJTQq1ffNSqSEgIJCrI
+         x79diIRQw0/8Y593hyQpstN/ixfpr3Rjahq5IaVKxTYh30TwDDRtlF9syvxgGGhWw/bA
+         Be5g==
+X-Forwarded-Encrypted: i=1; AJvYcCVCPmHT3B73ygmqUyp+NIIDnXhD4g4SqaqHcBOfGdUyqT8fqyf9sOaoUw9HJzVVZKTm1ojnZ+PelJb2@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCUtJJR6KHMShnf7cTOhrb7dYI/LDs6bXWKgOvrh7HTjv5on0v
+	1WIjhB5TmzLnVJVtNRRaefUnd13xg2fRMptFT9HwPjSCTap9NCiXSom2K1E/Ov4=
+X-Google-Smtp-Source: AGHT+IHAcQcrc3voHWoxZH5ruJpkQ2UnBhuAfFL7M0m2Kh1+BP66VwdpFaj9SlK3Tb1udKSqVEmBjA==
+X-Received: by 2002:a05:600c:4f51:b0:42c:b95c:65b7 with SMTP id 5b1f17b1804b1-42cdb531b1cmr103606165e9.8.1726478344247;
+        Mon, 16 Sep 2024 02:19:04 -0700 (PDT)
+Received: from localhost (amontpellier-556-1-151-252.w109-210.abo.wanadoo.fr. [109.210.7.252])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378e6f2486esm6806258f8f.0.2024.09.16.02.19.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Sep 2024 02:19:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240913-starqltechn_integration_upstream-v4-22-2d2efd5c5877@gmail.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 16 Sep 2024 09:19:02 +0000
+Message-Id: <D47LHT5XPYTX.3OWFQR9N23FZH@baylibre.com>
+Cc: "Lars-Peter Clausen" <lars@metafoo.de>, "Michael Hennerich"
+ <Michael.Hennerich@analog.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Nuno Sa" <nuno.sa@analog.com>, "Jonathan Corbet" <corbet@lwn.net>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "David Lechner" <dlechner@baylibre.com>,
+ <linux-doc@vger.kernel.org>
+Subject: Re: [PATCH 4/6] iio: adc: ad4030: add support for ad4630-24 and
+ ad4630-16
+From: "Esteban Blanc" <eblanc@baylibre.com>
+To: "Jonathan Cameron" <jic23@kernel.org>, =?utf-8?q?Nuno_S=C3=A1?=
+ <noname.nuno@gmail.com>
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20240822-eblanc-ad4630_v1-v1-0-5c68f3327fdd@baylibre.com>
+ <20240822-eblanc-ad4630_v1-v1-4-5c68f3327fdd@baylibre.com>
+ <20240826102748.4be0b642@jic23-huawei>
+ <D452E2M75XCM.13OQGAPJ7JJ4A@baylibre.com>
+ <0a4e7fe39cf36774b28c86f6baab5ef8c20e3d6b.camel@gmail.com>
+ <D4567LFFTYJQ.2YC5OODKOVPNB@baylibre.com>
+ <84961c1f857dfc8498c41ac97235a037111ed6d5.camel@gmail.com>
+ <20240914122529.14759e63@jic23-huawei>
+In-Reply-To: <20240914122529.14759e63@jic23-huawei>
 
-On Fri, Sep 13, 2024 at 06:08:05PM +0300, Dzmitry Sankouski wrote:
-> Add support for max77705 MFD device. Supported sub-devices:
->  charger, fuelgauge, haptic, led
-> 
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> ---
->  .../boot/dts/qcom/sdm845-samsung-starqltechn.dts   | 103 +++++++++++++++++++++
->  1 file changed, 103 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-> index a3bd5231569d..865253d8f0c7 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-> @@ -18,6 +18,16 @@ / {
->  	model = "Samsung Galaxy S9 SM-G9600";
->  	compatible = "samsung,starqltechn", "qcom,sdm845";
->  
-> +	battery: battery {
-> +		compatible = "simple-battery";
-> +		constant-charge-current-max-microamp = <2150000>;
-> +		charge-full-design-microamp-hours = <3000000>;
-> +
-> +		over-voltage-threshold-microvolt = <4500000>;
-> +		voltage-min-design-microvolt = <3400000>;
-> +		voltage-max-design-microvolt = <4350000>;
-> +	};
-> +
->  	chosen {
->  		#address-cells = <2>;
->  		#size-cells = <2>;
-> @@ -90,6 +100,27 @@ key-wink {
->  			debounce-interval = <15>;
->  		};
->  	};
-> +
-> +	vib_regulator: gpio-regulator {
+On Sat Sep 14, 2024 at 11:25 AM UTC, Jonathan Cameron wrote:
+> On Fri, 13 Sep 2024 15:46:17 +0200
+> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+>
+> > On Fri, 2024-09-13 at 12:55 +0000, Esteban Blanc wrote:
+> > > On Fri Sep 13, 2024 at 10:18 AM UTC, Nuno S=C3=A1 wrote: =20
+> > > > On Fri, 2024-09-13 at 09:55 +0000, Esteban Blanc wrote: =20
+> > > > > On Mon Aug 26, 2024 at 9:27 AM UTC, Jonathan Cameron wrote: =20
+> > > > > > On Thu, 22 Aug 2024 14:45:20 +0200
+> > > > > > Esteban Blanc <eblanc@baylibre.com> wrote: =20
+> > > > > > > +static const unsigned long ad4630_channel_masks[] =3D {
+> > > > > > > +	/* Differential only */
+> > > > > > > +	BIT(0) | BIT(2),
+> > > > > > > +	/* Differential with common byte */
+> > > > > > > +	GENMASK(3, 0), =20
+> > > > > > The packing of data isn't going to be good. How bad to shuffle
+> > > > > > to put the two small channels next to each other?
+> > > > > > Seems like it means you will want to combine your deinterleave
+> > > > > > and channel specific handling above, which is a bit fiddly but
+> > > > > > not much worse than current code. =20
+> > > > >=20
+> > > > > I can do it since that was what I had done in the RFC in the firs=
+t place.
+> > > > > Nuno asked for in this email
+> > > > > https://lore.kernel.org/r/0036d44542f8cf45c91c867f0ddd7b45d1904d6=
+b.camel@gmail.com/
+> > > > > :
+> > > > >  =20
+> > > > > > > > * You're pushing the CM channels into the end. So when we a=
+ 2 channel
+> > > > > > > > device
+> > > > > > > > we'll have: =20
+> > > > >  =20
+> > > > > > > > in_voltage0 - diff
+> > > > > > > > in_voltage1 - diff
+> > > > > > > > in_voltage2 - CM associated with chan0
+> > > > > > > > in_voltage0 - CM associated with chan1
+> > > > > > > >=20
+> > > > > > > > I think we could make it so the CM channel comes right afte=
+r the channel
+> > > > > > > > where
+> > > > > > > > it's data belongs too. So for example, odd channels would b=
+e CM channels
+> > > > > > > > (and
+> > > > > > > > labels could also make sense). =20
+> > > > >=20
+> > > > > So that's what I did here :D
+> > > > >=20
+> > > > > For the software side off things here it doesn't change a lot of =
+things
+> > > > > since we have to manipulate the data anyway, putting the extra by=
+te at the
+> > > > > end or in between is no extra work.
+> > > > > For the offload engine however, it should be easier to ask for 24=
+ bits
+> > > > > then 8 bits for each channel as it would return two u32 per "hard=
+ware
+> > > > > channel".
+> > > > >=20
+> > > > > In order to avoid having two different layouts, I was kind of sol=
+d by
+> > > > > Nuno's idea of having the CM in between each diff channel.
+> > > > >  =20
+> > > >=20
+> > > > Tbh, I was not even thinking about the layout when I proposed the a=
+rrangement.
+> > > > Just
+> > > > made sense to me (from a logical point of view) to have them togeth=
+er as they
+> > > > relate
+> > > > to the same physical channel. FWIW, we're also speaking bytes in he=
+re so not sure
+> > > > if
+> > > > it's that important (or bad). =20
+> > >=20
+> > > The best we can do (if we managed to do it HDL wise) is to reorder th=
+e
+> > > data to get both CM byte in a single u32 after the 2 u32 of both diff
+> > > channel. That would be 3 u32 instead of 4.
+>
+> Entirely up to you. :)
 
-Please use name for all fixed regulators which matches current format
-recommendation: 'regulator-[0-9]v[0-9]'
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml?h=v6.11-rc1#n46
+Ok so here is the plan I propose:
+ 1. Use the layout of this patch (common byte channels just after their
+ respective diff channel) as it should work out of the box for the offload
+ engine (once it's merged [1]).
+ 2. In case of performance issue, switch to the RFC layout (both diff
+ channels then both common byte channels) and try to modify the HDL for
+ the offload engine to reduce the memory footprint by one byte for the 2
+ hardware channels case.
 
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "haptic";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +		gpio = <&pm8998_gpios 18 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	vib_pwm: pwm {
-> +		#pwm-cells = <2>;
-> +		compatible = "clk-pwm";
-
-compatible is always the first property. See DTS coding style.
-
-> +		clocks = <&gcc GCC_GP1_CLK>;
-> +		assigned-clock-parents = <&rpmhcc RPMH_CXO_CLK>;
-> +		assigned-clocks = <&gcc GCC_GP1_CLK_SRC>;
-> +		pinctrl-0 = <&motor_pwm_default_state>;
-> +		pinctrl-1 = <&motor_pwm_suspend_state>;
-> +		pinctrl-names = "default", "suspend";
-> +	};
->  };
->  
->  
-> @@ -385,10 +416,66 @@ &qupv3_id_1 {
->  	status = "okay";
->  };
->  
-> +&gpi_dma1 {
-> +	status = "okay";
-> +};
-> +
->  &uart9 {
->  	status = "okay";
->  };
->  
-> +&i2c14 {
-> +	status = "okay";
-> +
-> +	pmic@66 {
-> +		compatible = "maxim,max77705";
-> +		reg = <0x66>;
-> +		interrupt-parent = <&pm8998_gpios>;
-> +		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-> +		pinctrl-0 = <&chg_int_default>;
-> +		pinctrl-names = "default";
-> +
-> +		leds {
-> +			compatible = "maxim,max77705-led";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			led@1 {
-> +				reg = <1>;
-> +				label = "red:usr1";
-> +			};
-> +
-> +			led@2 {
-> +				reg = <2>;
-> +				label = "green:usr2";
-> +			};
-> +
-> +			led@3 {
-> +				reg = <3>;
-> +				label = "blue:usr3";
-> +			};
-> +		};
-> +
-> +		max77705_charger: charger {
-> +			compatible = "maxim,max77705-charger";
-> +			monitored-battery = <&battery>;
-> +		};
-> +
-> +		fuel_gauge {
-
-No underscores in node names. See DTS coding style.
+[1]: https://lore.kernel.org/lkml/20240722-dlech-mainline-spi-engine-offloa=
+d-2-v3-0-7420e45df69b@baylibre.com/
 
 Best regards,
-Krzysztof
+
+--=20
+Esteban Blanc
+BayLibre
 
 
