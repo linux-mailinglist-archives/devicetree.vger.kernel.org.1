@@ -1,135 +1,176 @@
-Return-Path: <devicetree+bounces-103222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 020A2979ECE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 11:55:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45DEF979EE0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 12:02:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABEBA1F23959
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 09:55:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7BFE1F2413A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 10:02:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A80014B945;
-	Mon, 16 Sep 2024 09:54:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3700B14A614;
+	Mon, 16 Sep 2024 10:02:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SmCKTdx4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A29714E2E3;
-	Mon, 16 Sep 2024 09:54:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D21517C8D;
+	Mon, 16 Sep 2024 10:02:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726480494; cv=none; b=JvlyHFYkYKNcAkxnkgtQAVo082Hw1c17mFC315Go0KAmz7sqe0NuwKftIULfF0FmLKU6xmZXH/r+hSAwVFgoyhGDdFAcT83tmpImAieopqIHpBZgckGCWapUlSi5TN6XEk39TB4lUT32AgQ228XKzuliDRfrULDdN00CbRHE74s=
+	t=1726480974; cv=none; b=g1cfv91faWG7R2Dy2AnlyS3LGeUfAWBE1mRtUOKdIcLow4xDbALRbKgbI+HWZQFw87+TEcip3K3joWN8upIAol3WGY5R8r2FmGD/3J+rrOvChWnAbLwsGxDXJoCRwcRV+uXTzh0bRlyabGlIo9ey9B8aQT0OXnUFIPPxzxB+XQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726480494; c=relaxed/simple;
-	bh=3zhFERW+ABv2xBeqqfsJmsFaCIsJm9felNo1s/sH2Nk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AJW9tdvTWLRYqX39/NzSTWY2q8LbzzU9WnRaEfobvyL14y2E0o1NCCmADIWAeSnJb5jt+Ktqc0WlOE3GUWWPGOq/3JwsDFE8M6Zw6y1k5ZHwUpuJbAOlbHqFr8ZHpnMUfB1RNuioQB66QU8/5oWbpUp2ZCgdH3mayy/ihvatX5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2C28211FB;
-	Mon, 16 Sep 2024 02:55:21 -0700 (PDT)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6DA363F64C;
-	Mon, 16 Sep 2024 02:54:49 -0700 (PDT)
-Date: Mon, 16 Sep 2024 10:54:40 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Florian Fainelli <f.fainelli@gmail.com>
-Cc: Cristian Marussi <cristian.marussi@arm.com>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	arm-scmi@vger.kernel.org, devicetree@vger.kernel.org,
-	sudeep.holla@arm.com, james.quinlan@broadcom.com,
-	vincent.guittot@linaro.org, etienne.carriere@st.com,
-	peng.fan@oss.nxp.com, michal.simek@amd.com, quic_sibis@quicinc.com,
-	quic_nkela@quicinc.com, dan.carpenter@linaro.org,
-	souvik.chakravarty@arm.com, robh@kernel.org, krzk+dt@kernel.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v1 3/6] firmware: arm_scmi: Use max-rx-timeout-ms from
- devicetree
-Message-ID: <Zuf_3D636c3JXypF@pluto>
-References: <20240730144707.1647025-1-cristian.marussi@arm.com>
- <20240730144707.1647025-4-cristian.marussi@arm.com>
- <1ea7fff0-149d-408a-b5a7-1b223e8509d0@gmail.com>
+	s=arc-20240116; t=1726480974; c=relaxed/simple;
+	bh=2JAcUazpILyjWEBfKP9J2vMMoWzkdvtOE73YS/HthaQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TFtXKk6ZvvVQBJs70mkozsFPZNCPlewoZrBONZAxo8Z1P2mchBiB2F8Q7W8ZvmC33BE2PG1UOaATtccWEWIlIdK3Ccv0rEt/hvCKxmAM5Al5pnVJGtZgMjRt7qewUYUaCQQPkREfZE6inGtiZSOPRrF4/oSy9OWLl0xLngk9lL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SmCKTdx4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8E07C4CEC7;
+	Mon, 16 Sep 2024 10:02:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726480973;
+	bh=2JAcUazpILyjWEBfKP9J2vMMoWzkdvtOE73YS/HthaQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=SmCKTdx4BqPrZ9VjlAHhbQRyex+r4GiqztP/6IvBFfAy4strRwH3ZMUzxbr9E+YKz
+	 GcnaQ2bgwtWgQRYvgU097TVr3MxD94YrzwCdO/Z/sRyHYKG2KzF+9e71PzqNIS0rMg
+	 TzFEOu7KodZ6FAdIVWr3cVmBM7LSenM8qk3LNmHxfWcPETC0cu3h/XtCR9TTxKezLa
+	 mK7b32Z/67G46n1xMcRAgMScpVZ5UqTeD8OuZfxULJ/kCwAosbCsk7JrqnYuth8q1W
+	 4JgYiGiY0xQorr6MM0KxGjSorKnfznieJcNF9uVxY8kz+onWNrEYZquD0VMGa/4gbE
+	 NY/vM+m5dovDw==
+Message-ID: <a9a7038c-4478-4366-831a-81dca8fa5afc@kernel.org>
+Date: Mon, 16 Sep 2024 12:02:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1ea7fff0-149d-408a-b5a7-1b223e8509d0@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 06/13] arm64: dts: mediatek: mt8188: Update VPPSYS node
+ name and compatible
+To: Fei Shao <fshao@chromium.org>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Conor Dooley
+ <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-mediatek@lists.infradead.org
+References: <20240909111535.528624-1-fshao@chromium.org>
+ <20240909111535.528624-7-fshao@chromium.org>
+ <11bc2522-bc10-4dcf-8142-708b57d181cf@kernel.org>
+ <CAC=S1nhiJ=7yAucJsaYKUUBrwrxOVBMB2CF=bFwyLa2o-5RmWw@mail.gmail.com>
+ <64cc35c8-30df-4882-a933-f42119270f48@kernel.org>
+ <CAC=S1ni+pJJZhbjvVqhba5u1JqGv=dZTv8+KH4xburea2AG4Qg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAC=S1ni+pJJZhbjvVqhba5u1JqGv=dZTv8+KH4xburea2AG4Qg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Sep 12, 2024 at 02:05:53PM -0700, Florian Fainelli wrote:
-> On 7/30/24 07:47, Cristian Marussi wrote:
-> > Override default maximum RX timeout with the value picked from the
-> > devicetree, when provided.
-> > 
-> > Suggested-by: Peng Fan <peng.fan@nxp.com>
-> > Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
-> > ---
-> >   drivers/firmware/arm_scmi/driver.c | 9 +++++++++
-> >   1 file changed, 9 insertions(+)
-> > 
-> > diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
-> > index 332cd5207bbc..e7dab0eea540 100644
-> > --- a/drivers/firmware/arm_scmi/driver.c
-> > +++ b/drivers/firmware/arm_scmi/driver.c
-> > @@ -2964,6 +2964,7 @@ static int scmi_debugfs_raw_mode_setup(struct scmi_info *info)
-> >   static const struct scmi_desc *scmi_transport_setup(struct device *dev)
-> >   {
-> >   	struct scmi_transport *trans;
-> > +	int ret;
-> >   	trans = dev_get_platdata(dev);
-> >   	if (!trans || !trans->desc || !trans->supplier || !trans->core_ops)
-> > @@ -2980,6 +2981,14 @@ static const struct scmi_desc *scmi_transport_setup(struct device *dev)
-> >   	dev_info(dev, "Using %s\n", dev_driver_string(trans->supplier));
-> > +	ret = of_property_read_u32(dev->of_node, "max-rx-timeout-ms",
-> > +				   &trans->desc->max_rx_timeout_ms);
-> > +	if (ret && ret != -EINVAL)
-> > +		dev_err(dev, "Malformed max-rx-timeout-ms DT property.\n");
-> > +
-> > +	dev_info(dev, "SCMI max-rx-timeout: %dms\n",
-> > +		 trans->desc->max_rx_timeout_ms);
->
-
-Hi Florian,
- 
-> I am bit on the fence on that change, it is useful, and we have done similar
-> things before using a command line parameter.
+On 10/09/2024 13:06, Fei Shao wrote:
+> On Tue, Sep 10, 2024 at 3:19 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 10/09/2024 07:12, Fei Shao wrote:
+>>> On Mon, Sep 9, 2024 at 7:41 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>>
+>>>> On 09/09/2024 13:14, Fei Shao wrote:
+>>>>> Use and add "syscon" in VPPSYS node names and compatible to fix errors
+>>>>> from `make CHECK_DTBS=y mediatek/mt8188-evb.dtb`.
+>>>>>
+>>>>> Signed-off-by: Fei Shao <fshao@chromium.org>
+>>>>> ---
+>>>>>
+>>>>>  arch/arm64/boot/dts/mediatek/mt8188.dtsi | 8 ++++----
+>>>>>  1 file changed, 4 insertions(+), 4 deletions(-)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+>>>>> index 2900d78b7ceb..14e51a11f688 100644
+>>>>> --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+>>>>> @@ -1799,8 +1799,8 @@ mfgcfg: clock-controller@13fbf000 {
+>>>>>                       #clock-cells = <1>;
+>>>>>               };
+>>>>>
+>>>>> -             vppsys0: clock-controller@14000000 {
+>>>>> -                     compatible = "mediatek,mt8188-vppsys0";
+>>>>> +             vppsys0: syscon@14000000 {
+>>>>> +                     compatible = "mediatek,mt8188-vppsys0", "syscon";
+>>>>
+>>>> If this was working before, it looks like this is not a syscon and
+>>>> bindings need to be fixed.
+>>>
+>>> I guess it's because the binding was later updated in commit
+>>> 26bcd8a53098 ("dt-bindings: arm: mediatek: mmsys: Add VPPSYS
+>>> compatible for MT8188"), and the corresponding DT update was unnoticed
+>>> at the time.
+>>> If that makes sense then this should be a valid fix.
+>>
+>> Not necessarily. Why not fixing bindings? Prove that bindings are
+>> correct, not DTS, first.
 > 
+> MediaTek's mmsys doesn't merely control clocks, it also provides
+> display pipeline routing control and other misc control registers, so
+> it's appropriate to categorize it as a system controller over a clock
+> controller.
+> As for vdosys and vppsys, they are likely variants or aliases of mmsys
+> introduced in their newer SoCs.
 
-I think the requirement around this as it came from from NXP/Peng was that,
-depending on the design (HW/FW) of the SCMI platform at hand it can be that
-the same default transport timeout (that is by itself much larger than
-usually needed) could still be not enough for the transport: I think the
-example was mentioning a system with many agents, so that your request
-could end-up been "bootle-necked" in the execution queue of the server (AFAIU)
+Nothing like that was in the commit msg...
 
-In such a case (if you cannot avoid the issue at first by reviewing your
-design...) you have the effective need of describing that specific
-platform/transport timeout characteristic and override the built-in default....
+> 
+> That description was updated in commit 1a680aa888d6 ("dt-bindings:
+> mediatek: Update mmsys binding to reflect it is a system controller"),
+> so I just assumed it's correct without thinking much...
 
-...it was not meant to be usead as a plain configuration....even though I
-suppose this is sort of a matter of interepretation (and that can be
-abused downstream...)
 
-> This is definitively useful when bringing up new systems where you might be
-> sprinkling enough debugging messages that this pushes your message
-> processing logic too close to the default 30ms timeout. For normal use
-> cases, we really want the message timeout to be as small as possible for
-> most SCMI traffic but if we want the timeout to be configurable, that might
-> have have to be on a per-message basis.
+Best regards,
+Krzysztof
 
-A per-message timeout would need a lot of re-design, but how would you tune
-then all the possibly different timeouts across different platforms and/or
-transports combinations...this seems something that could need a lot of
-runtime calibration and re-configuration on a live system....
-
-...have you specifically seen the need for such varying per-message
-timeout in some specific case ?
-
-Thanks,
-Cristian
 
