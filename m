@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-103342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44C7697A6A2
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 19:21:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8414E97A6AB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 19:23:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0ADBB28C9C7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 17:21:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AADFA1C217CA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 17:23:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE17C15B107;
-	Mon, 16 Sep 2024 17:20:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B78BC15ADB3;
+	Mon, 16 Sep 2024 17:23:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pEwPtgEu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ad4X7v/v"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9250D158A1F;
-	Mon, 16 Sep 2024 17:20:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AF1C143C63;
+	Mon, 16 Sep 2024 17:23:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726507216; cv=none; b=Ci00+iGhcDXkjJgApFRxsG2pUEa+6DkZ2Ri3PMXlimMICiFpj468tm8kA7LDv8EiL+v+hToTjmkZ65c53V/Q3alOH1FoN/2nv/eqPJTS6eO+pnWc3lAegHbmgAX2Mhx5G8OM5LTGBBHqezD9FPrwQP+d1kcDK8esyZnEsHwiQFU=
+	t=1726507393; cv=none; b=AY0XSVmlopzEO7Ee/EHUuYnZeEgbXg6vluxdG61zEwqZn4LaHjsdxzpCiDQ/PRfh8ky1l1BP1zo1duS6RHYEATMjILH9GGnvCTmbJvvLuwLDPW9Kje/yDeqy7IknzzxX7AcbHXl87GFxGvRrJmabm7uROK8SOELpOUuzo0X27o0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726507216; c=relaxed/simple;
-	bh=BuqWk+oynntSkEt/VqRuyPyq2XjA7UEMx12/OyaPpmw=;
+	s=arc-20240116; t=1726507393; c=relaxed/simple;
+	bh=nBMpe9G5hX+7mnkTEs+rD8NKlNfpBVsk7V90+43erik=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q7VaOoK5VC/7dH5UfcdJFElwiFLEp9E6w+SUGMQJZPxy6IIfCtiw5IOnNjCStcpOOvhi+3ffkY8MKYRVDbpM2cwvI8cGcKCW3jCLIzlhsV50jNg3DF1N/Ktf10zSoJDDqC4/RE/5r2xo6kgl4fWecexlY3VtRrbG1InrQ3dqvsQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pEwPtgEu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1016C4CEC4;
-	Mon, 16 Sep 2024 17:20:15 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=k8Pii/O4CEaB2mxbOHpy4AZq86chcCB1Pn4NWE+joemGmbZerWl19W4/s3B/o9EIDHrn/+dh715ivG96AdL6OkcIpP1xa3KS6p+7+RmP+GEYaQaklLsqclZLrNGFIksT+9gzZziEmB/89t9pQ6BxYDmqIgdwMd1Nlbi9tGkVLLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ad4X7v/v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D086AC4CEC4;
+	Mon, 16 Sep 2024 17:23:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726507216;
-	bh=BuqWk+oynntSkEt/VqRuyPyq2XjA7UEMx12/OyaPpmw=;
+	s=k20201202; t=1726507393;
+	bh=nBMpe9G5hX+7mnkTEs+rD8NKlNfpBVsk7V90+43erik=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pEwPtgEubZrtfI/0EjSS5yAO3pxyp85wQBeRl6iUPrGSp1z+cfQ6qMKcAE/GayE+r
-	 zSXiiKbGA/DDOaxzJPPelbKUnr4ASUFzVw+a/NXM/hx5RhAJ6GP/60GGhI/muhSpE1
-	 juWWD3CJjrqbape54Rl/45Xx2gNtWTpJkI7MUsAPrcQIl3jji3MoIe8UTeEGUmY1Xu
-	 IZb9CqFiYXAD/giV6RtKEmX5unS8Xr5NmQIIhdr4z3HdFQNgUIDV1uKpuYkeoIsjMD
-	 GCDffjxlNCTo4GTTnHKEgdMIjgnFqwWfXLzy6la1WAnGLWJc4SKL4SdixtQ1vekvON
-	 +pu0CiWRLTjpg==
-Date: Mon, 16 Sep 2024 12:20:14 -0500
+	b=ad4X7v/v7VOIVBO5YYXnJF6fy7P7yN6RTL+277um3XnwWhj9KpGXfHuDCZJUWlw1G
+	 4YWGavyLmyw6nMohxL6DbeB5LlsCweNA2Xe7R1TWx8mx739Z3Y375FTkL4TEWZE/pV
+	 C2TY0sqoINVoBIyQ55c5wt/SbTAfPqcR5nuJk/fWFW5NoaFexcHEJScsrQlrMqp8rP
+	 dhCr/jqrKmOtdOPQfSqVbd4OvdQHAXUEBXQFyaJ5oTD19vLE/LzwNHuyi3SBUuvfXF
+	 08TGx2pAB0r61UPwg3qD9bsa37VkiZ1rQRed0aN4cA9NT98NCdNLna0zBTIzqWFnOS
+	 f3xVO8HlQVdww==
+Date: Mon, 16 Sep 2024 12:23:11 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: linux-kernel@vger.kernel.org, robh+dt@kernel.org, abel.vesa@linaro.org,
-	konradybcio@kernel.org, krzk+dt@kernel.org,
-	devicetree@vger.kernel.org, conor+dt@kernel.org,
-	andersson@kernel.org, srinivas.kandagatla@linaro.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Add Snapdragon Devkit for
- Windows
-Message-ID: <172650721401.830831.10249674056161765352.robh@kernel.org>
-References: <20240911073337.90577-1-quic_sibis@quicinc.com>
- <20240911073337.90577-2-quic_sibis@quicinc.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	Kevin Hilman <khilman@baylibre.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Michael Turquette <mturquette@baylibre.com>
+Subject: Re: [PATCH] dt-bindings: clock: convert amlogic,meson8b-clkc.txt to
+ dtschema
+Message-ID: <172650738929.834858.9318382302373477607.robh@kernel.org>
+References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson8-clkc-v1-1-e0b8623c090d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +65,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240911073337.90577-2-quic_sibis@quicinc.com>
+In-Reply-To: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson8-clkc-v1-1-e0b8623c090d@linaro.org>
 
 
-On Wed, 11 Sep 2024 13:03:36 +0530, Sibi Sankar wrote:
-> X1E001DE is the speed binned variant of X1E80100 that supports turbo
-> boost up to 4.3 Ghz.
+On Wed, 11 Sep 2024 17:09:06 +0200, Neil Armstrong wrote:
+> Convert the Amlogic Meson8, Meson8b and Meson8m2 Clock and
+> Reset Controller to dt-schema.
 > 
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../bindings/clock/amlogic,meson8-clkc.yaml        | 45 +++++++++++++++++++
+>  .../bindings/clock/amlogic,meson8b-clkc.txt        | 51 ----------------------
+>  2 files changed, 45 insertions(+), 51 deletions(-)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
