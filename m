@@ -1,58 +1,65 @@
-Return-Path: <devicetree+bounces-103562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 476FC97B595
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 00:11:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE44097B59E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 00:14:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB4BAB23E56
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 22:11:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0F881C2130F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 22:14:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC7FF1862B9;
-	Tue, 17 Sep 2024 22:11:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFDFF18BC12;
+	Tue, 17 Sep 2024 22:14:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RsHFumXJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g4X2vVKm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE91315B0F2;
-	Tue, 17 Sep 2024 22:11:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC34615B0F2;
+	Tue, 17 Sep 2024 22:14:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726611088; cv=none; b=DW3bQcsQXYHEAJhVuQ3EFPd/vJ/uDlT/PF8XVYpnPUqEhwj7p5DiIKAH3pygEPTziQrbTzyVCIdcPI1ARoXtfbEXD9n59Zb76llAlAWJqdJo0ULch4TpVJ3ZY2u7J8L/g6JToJXV2nvsq6+tco5DzAhKwll3BobyuG6ZxsmWO9E=
+	t=1726611273; cv=none; b=Wv1CwvZzYYjq7hoX4uIz2TfEMAnw8ZA1VCDljVDnCY8HF8LOxmDSAtV2d3R5pLCdQVZjPkUFZuQIY0ysb6ZYYEQ6YcLMHdvOM6aUwHcb5hwM2RZxLWsbgU2fSniWzYpGRMzt61YYihDS113ciVaYqLuEWZ25SWbKNS+tgEAnjz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726611088; c=relaxed/simple;
-	bh=3zlCQ5XhONwK70p5T8DApl7b3ks8gUqFavgcErUBXks=;
+	s=arc-20240116; t=1726611273; c=relaxed/simple;
+	bh=cobEPWqsWZm0Du07sK1Y/uq1qTyF38HoM8wKmDcvw2Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AphhQo8QgadqhcYeDw5FVxwg1+BmZmIH6IfWbmc7NoF4KhN2CV92ITg3/hIvRhHlVBkBsTlQ4OiLHLWZZRGh6S45KDz0vSX8PBSMrXd4tz50q1j1TWvHj92b1DgKpBe4kfwOSR/Vcng/jWAF+4FeT4Q/XqfEyOK0gpxC8MGPElo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RsHFumXJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 056FFC4CEC5;
-	Tue, 17 Sep 2024 22:11:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=k881lGiceQmVuppfal4+GZt3EoafhPM7+hh1qeCsndKkXOhPas6rZ8KgPDs5LP50m85p/0yBW+6owVHIlfDSvdc3036cD+Ww+M5kAuoo7iqtqpCmQPoCMPGUzcA180cSezh9FnzrNF6fi2FonxDAbipLxv9w8w4i0klpSm0LoOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g4X2vVKm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB2DCC4CEC5;
+	Tue, 17 Sep 2024 22:14:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726611088;
-	bh=3zlCQ5XhONwK70p5T8DApl7b3ks8gUqFavgcErUBXks=;
+	s=k20201202; t=1726611272;
+	bh=cobEPWqsWZm0Du07sK1Y/uq1qTyF38HoM8wKmDcvw2Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RsHFumXJphh53qPKe051WLkmQxpZK/VjsK7WQXiM5VBm3f8XbT8Pne4pm24A/EhRL
-	 0XIJP4W7857sNcj1jQLpsg5OElmB65FK4XT5Y+oHgE+yuaujCxIZEly2Emk4pCfj82
-	 /tk/pdMN1gIGAY6EHIcRQ2RCo92xJrhkID12F0S9R0kB4+qS3T54VW3KNrMvdSOahD
-	 LAs3aOflMuudR0tC7LY6uQRJdBCGG+C5A+8a/sS8tla94O8/jHavslHCCii9BJ3+gM
-	 UKqZqteDEnnx4gQWfN57WlFITA1OTaJsi8JtNkUdfiniH9WEMqxR5ekHPoxtMhF6lC
-	 v5lQF0MRZZKAw==
-Date: Tue, 17 Sep 2024 17:11:27 -0500
+	b=g4X2vVKmbAepbDsue3YVaTy/2eU/nZYHcrYk0VQt8pALx1LNE+8YfKxPQn+m34Wlj
+	 JNAd+WzJM78pAcFsUXs4p4XCvxSfJYd7xB/rDgGKsJzBsOjcpNtOP1CVYkvoBtg5M5
+	 3G3SD15OjMJslkY6P56iAfAw45ujfY2g36BX7xNswZiggNFJssmSd4tYs2T9AL8mC7
+	 XQj9LmEnyaANxyKG3wkRnAbl4E4gnTzarj0Ln7o/Emdb1J237erlNEVAh8fwW45ykF
+	 iMSlYpElce8vNA/LGqQoC8cU/N93QXMYCoB1a+wwnYD7TZtUuMZnGg0YwINNp7N2QY
+	 DLmOWOD35dkRw==
+Date: Tue, 17 Sep 2024 17:14:30 -0500
 From: Rob Herring <robh@kernel.org>
-To: Dhruva Gole <d-gole@ti.com>
-Cc: Viresh Kumar <vireshk@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, nm@ti.com,
-	vigneshr@ti.com
-Subject: Re: [PATCH v3] dt-bindings: opp: operating-points-v2-ti-cpu:
- Describe opp-supported-hw
-Message-ID: <20240917221127.GA4045627-robh@kernel.org>
-References: <20240917095252.1292321-1-d-gole@ti.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Marc Zyngier <maz@kernel.org>, linux-renesas-soc@vger.kernel.org,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Chris Paterson <Chris.Paterson2@renesas.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH 1/6] dt-bindings: pinctrl: renesas: rzg2l-pinctrl: Add
+ interrupt-parent
+Message-ID: <20240917221430.GA4049704-robh@kernel.org>
+References: <20240917173249.158920-1-fabrizio.castro.jz@renesas.com>
+ <20240917173249.158920-2-fabrizio.castro.jz@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,70 +68,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240917095252.1292321-1-d-gole@ti.com>
+In-Reply-To: <20240917173249.158920-2-fabrizio.castro.jz@renesas.com>
 
-On Tue, Sep 17, 2024 at 03:22:52PM +0530, Dhruva Gole wrote:
-> It seems like we missed migrating the complete information from the old
-> DT binding where we had described what the opp-supported-hw is supposed
-> to describe. Hence, bring back the description from the previous binding
-> to the current one along with a bit more context on what the values are
-> supposed to be.
+On Tue, Sep 17, 2024 at 06:32:44PM +0100, Fabrizio Castro wrote:
+> All the platforms from the renesas,rzg2l-pinctrl.yaml binding
+> actually require the interrupt-parent property. Add it.
+
+But they don't require it. It *never* is required. If interrupt-parent 
+is not found in a node, the parent will be checked.
+
+The check failure is because the example extraction has to play with 
+interrupt-parent to make interrupt parsing work.
+
 > 
-> Fixes: e576a9a8603f ("dt-bindings: cpufreq: Convert ti-cpufreq to json schema")
-> Signed-off-by: Dhruva Gole <d-gole@ti.com>
+> Fixes: 35c37efd1273 ("dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Document the properties to handle GPIO IRQ")
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 > ---
-> 
-> Changes in v3:
-> - Use the items: and then provide description for both required items.
->   This tries to address Rob's comments on previous revision.
-> - I've not use min/max Items as the 2 descriptions items implicitly
->   imply that number of bitfields needed are 2.
-> - Link to v2: https://lore.kernel.org/all/20240905-b4-opp-dt-binding-fix-v2-1-1e3d2a06748d@ti.com/
-> 
-> Changes in v2:
-> - Drop the patch where I updated Maintainers since it's already picked
->   by Viresh.
-> - Add more details of how to populate the property based on device
->   documents like TRM/ datasheet.
-> - Link to v1: https://lore.kernel.org/r/20240903-b4-opp-dt-binding-fix-v1-0-f7e186456d9f@ti.com
-> 
-> ---
->  .../opp/operating-points-v2-ti-cpu.yaml         | 17 ++++++++++++++++-
->  1 file changed, 16 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.yaml b/Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.yaml
-> index fd0c8d5c5f3e..700af89487d0 100644
-> --- a/Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.yaml
-> +++ b/Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.yaml
-> @@ -45,7 +45,22 @@ patternProperties:
->        clock-latency-ns: true
->        opp-hz: true
->        opp-microvolt: true
-> -      opp-supported-hw: true
-> +      opp-supported-hw:
-> +        items:
-> +          - description: |
-
-Don't need '|'. If you want multiple paragraphs, then put a blank line 
-in between them.
-
-> +            Which revision of the SoC the OPP is supported by.
-> +            This can be easily obtained from the datasheet of the
-> +            part being ordered/used. For eg. it will be 0x01 for SR1.0
-> +          - description : |
-> +            Which eFuse bits indicate this OPP is available.
-> +            The device datasheet has a table talking about Device Speed Grades.
-> +            If one were to sort this table and only retain the unique elements
-> +            of the MAXIMUM OPERATING FREQUENCY starting from the first row
-> +            which tells the lowest OPP, to the highest. The corresponding bits
-> +            need to be set based on N elements of speed grade the device supports.
-> +            So, if there are 3 possible unique MAXIMUM OPERATING FREQUENCY
-> +            in the table, then BIT(0), (1) and (2) will be set, which means
-> +            the value shall be 0x7.
->        opp-suspend: true
->        turbo-mode: true
->  
-> -- 
-> 2.34.1
+>  .../devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml    | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
