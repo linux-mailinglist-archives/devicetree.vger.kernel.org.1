@@ -1,119 +1,116 @@
-Return-Path: <devicetree+bounces-103447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B24497ADCF
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 11:24:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D549997ADE6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 11:30:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4EF51F22A77
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 09:24:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 811901F241DC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 09:30:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E32421586CB;
-	Tue, 17 Sep 2024 09:24:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m1ggbs2D"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EED2115AAD9;
+	Tue, 17 Sep 2024 09:29:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B38E3148833;
-	Tue, 17 Sep 2024 09:24:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85CA915A853
+	for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 09:29:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726565072; cv=none; b=MnXQfLRF/mGnQ02gmhF0f7y1X9iXaxjPQKbMoDPzs3uu7GO7QGt8MygsNTsutMhZCITZq9Lv0+GybBcdd87uK+75kGpl26w1eM+ifm2Ss+OHEu7BP7aV3+BkfJaDsGYOPnEXq9wDwVyVcvTBwXJgxP7CD5X10fX0vy04twHg8Sk=
+	t=1726565397; cv=none; b=dHRhubp1jFGuoMOYfz/F3IBYVH+qBaStTCgYDjTsYEAxiAmvXqPeoQNXaATn5zVUdOO1QbrZ5N0qI0uZ0HkAx7id/mVXSvxD/y6r1G/rxA0SeggEaOhnn7PkLBZA6jxfVzB+QEadsrJdpMUPoCtJj6iODQ2lURDFC6kqlTwQ5XA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726565072; c=relaxed/simple;
-	bh=7NYVP76ItUcCnoWbKCu5GU2jp3ayGD7v+JIQAF9P4iI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=DT/1V+6AuLOzDm+1XZGe2bvl6WSrcxXkC/XoSAL2v5rU2zRARpYFBQDiyPEeDbcqICzcVT2CBOOkFEwTx8RJNJKlqJnBqi0XLwIr+dPwPjgf8kKRlot//Lx1MO4/F6cpgaqmaniUK1JGCCsxO/ePL6sKa21eRZIu4P94jX2qNTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m1ggbs2D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 49455C4CEC5;
-	Tue, 17 Sep 2024 09:24:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726565072;
-	bh=7NYVP76ItUcCnoWbKCu5GU2jp3ayGD7v+JIQAF9P4iI=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=m1ggbs2DNrHnq83pHj8kgR3iIhccfximOFconTBzQOnarziRBUWmyvG5iJHckT1WC
-	 q4ubRWcKx25IAinM6NOnubzC4R1VTNSR+tYs7tXMpPSIyIlx31u9QC3s4mwK5B79Lc
-	 GG2iysQCorEKf3VorOUhtpUhJfJKuTwIomvpa65TcIYvwhh6Wo1C3LDtfwMoMuwCf+
-	 0FEYPf15NaP2fhz/+HC/Ji9FdaUyk79VmSMgjJy5nZgf7K7rKgGXnmbGmTNWdVqoO2
-	 RWXifXY30A3kW3Gs6PLmYyFqH9nRnknz6RAXmBGDohVbPo6UYeMti1Wj9nOn2ANcG+
-	 EE6k1WHtrpUFw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3633DC3ABD2;
-	Tue, 17 Sep 2024 09:24:32 +0000 (UTC)
-From: Vedang Nagar via B4 Relay <devnull+quic_vnagar.quicinc.com@kernel.org>
-Date: Tue, 17 Sep 2024 14:54:31 +0530
-Subject: [PATCH] arm64: dts: qcom: qcs6460-rb3gen2: enable venus node
+	s=arc-20240116; t=1726565397; c=relaxed/simple;
+	bh=6z3ylPcsDoxYnF3RvsW/5CW6s7kXk7w3W/c+LA7gHfg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k76MdQAWafZDg8YvK3B0DuOdky7UWBxVnvMCx5u7ZXt39DScDLsG28J1zxlqJVVxBh30jBnedgFNto3VKJW1xQPR2Laa+aukaOHC6/pAu4WOTHTk59OtSxs9L+icUWnNJUiFdQW9F/4MpQCAzwE81vsSL0wzgYYI+AUza4t6kSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1sqUW5-00028y-I5; Tue, 17 Sep 2024 11:29:01 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1sqUW3-008XC0-Rd; Tue, 17 Sep 2024 11:28:59 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1sqUW3-00DCdr-2P;
+	Tue, 17 Sep 2024 11:28:59 +0200
+Date: Tue, 17 Sep 2024 11:28:59 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <f.fainelli@gmail.com>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v3 1/2] dt-bindings: net: ethernet-phy: Add
+ timing-role role property for ethernet PHYs
+Message-ID: <ZulL2w0s6m7BnqV6@pengutronix.de>
+References: <20240913084022.3343903-1-o.rempel@pengutronix.de>
+ <20240913084022.3343903-2-o.rempel@pengutronix.de>
+ <ZulHp9IBvptenuRa@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240917-venus_rb3_gen2-v1-1-8fea70733592@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAM5K6WYC/0XMWwqDMBCF4a3IPHdgnHhBt1JETBxtaBs1qVIQ9
- 95QC338D5xvhyDeSoA62cHLZoOdXIz0koC5dW4UtH1sYOKMqrTETdwaWq9VO4pjzImlKLknYYJ
- 4mr0M9v0Fr83ZXpY1uq9z/LN18kMVLuZZZBWheUzmjmZygx0DEqtqUKQ7rfN6S6E5jg8Ul7zks
- AAAAA==
-X-Change-ID: 20240917-venus_rb3_gen2-502e672d0e20
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Vedang Nagar <quic_vnagar@quicinc.com>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1726565071; l=1015;
- i=quic_vnagar@quicinc.com; s=20240917; h=from:subject:message-id;
- bh=ZOz1XrvGoup5DkTpUjnTAImnT63pIeOYTBQe0DKCiP4=;
- b=4CvhtO+l3KQXE/X5CjMCShcqBxg8W6nsJdtPKY22T4SZhGUtRDkxecxOX88BL8wbEicNPq8/S
- l2ELgUskF39DlugXTrKXvEFEeNn4MP9rvA2UGp2Jn3bDu1lt0FbLuKG
-X-Developer-Key: i=quic_vnagar@quicinc.com; a=ed25519;
- pk=GHqLT8NPue4v+CDHbZork8Ps39CBHq345GQKvCZ1glE=
-X-Endpoint-Received: by B4 Relay for quic_vnagar@quicinc.com/20240917 with
- auth_id=213
-X-Original-From: Vedang Nagar <quic_vnagar@quicinc.com>
-Reply-To: quic_vnagar@quicinc.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <ZulHp9IBvptenuRa@shell.armlinux.org.uk>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-From: Vedang Nagar <quic_vnagar@quicinc.com>
+On Tue, Sep 17, 2024 at 10:11:03AM +0100, Russell King (Oracle) wrote:
+> On Fri, Sep 13, 2024 at 10:40:21AM +0200, Oleksij Rempel wrote:
+> > This patch introduces a new `timing-role` property in the device tree
+> > bindings for configuring the master/slave role of PHYs. This is
+> > essential for scenarios where hardware strap pins are unavailable or
+> > incorrectly configured.
+> > 
+> > The `timing-role` property supports the following values:
+> > - `force-master`: Forces the PHY to operate as a master (clock source).
+> > - `force-slave`: Forces the PHY to operate as a slave (clock receiver).
+> > - `prefer-master`: Prefers the PHY to be master but allows negotiation.
+> > - `prefer-slave`: Prefers the PHY to be slave but allows negotiation.
+> > 
+> > The terms "master" and "slave" are retained in this context to align
+> > with the IEEE 802.3 standards, where they are used to describe the roles
+> > of PHY devices in managing clock signals for data transmission. In
+> > particular, the terms are used in specifications for 1000Base-T and
+> > MultiGBASE-T PHYs, among others. Although there is an effort to adopt
+> > more inclusive terminology, replacing these terms could create
+> > discrepancies between the Linux kernel and the established standards,
+> > documentation, and existing hardware interfaces.
+> 
+> Does this provide the boot-time default that userspace is subsequently
+> allowed to change through ethtool, or does it provide a fixed
+> configuration?
 
-Enable the venus node on Qualcomm Rb3gen2 so that the
-video decoder will start working.
+It provides the boot-time default.
 
-Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-index 0d45662b8028bff475024cff37c33e01d2ee251b..d52a7e0a35bf941c66ccaa00425147781976b359 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-@@ -790,6 +790,10 @@ &ufs_mem_phy {
- 	status = "okay";
- };
- 
-+&venus {
-+	status = "okay";
-+};
-+
- &wifi {
- 	memory-region = <&wlan_fw_mem>;
- };
-
----
-base-commit: 3f52e32445a1f63b788bc8969b7dc2386a80a24d
-change-id: 20240917-venus_rb3_gen2-502e672d0e20
-prerequisite-change-id: 20240913-qcm6490-clock-configs-0239f30babb5:v1
-prerequisite-patch-id: faac726ebdf08240ab0913132beb2c620e52a98a
-
-Best regards,
 -- 
-Vedang Nagar <quic_vnagar@quicinc.com>
-
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
