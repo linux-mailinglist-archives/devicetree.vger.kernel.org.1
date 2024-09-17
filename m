@@ -1,134 +1,128 @@
-Return-Path: <devicetree+bounces-103480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA9B197AF4A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 13:13:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AFEB97AF8C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 13:17:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E727FB21172
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 11:13:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F4011F216AB
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 11:17:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C5D15CD41;
-	Tue, 17 Sep 2024 11:13:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7720171E70;
+	Tue, 17 Sep 2024 11:15:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tKe3TFMN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GK2oTKhU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC37949659;
-	Tue, 17 Sep 2024 11:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA027171650;
+	Tue, 17 Sep 2024 11:15:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726571597; cv=none; b=NMLrS69l2JflYpakJauZ2i1Q9SGYuRd0NInOGXD1RsOWZ3EIbH3SrVsM+sPUT+s7h2HrfvWSBvzmnRpAuidkKINm+51+Ze3t5Zw+i/j4f3l7cn2gRTeAPus+339LpMrYkjW37u/faVszwkDzWbOPTqhxz4uGvQSS+gRuXQRAS0w=
+	t=1726571707; cv=none; b=XMx6qEJtIpowRdiKurqsi6coPP4Fpz/Vjbraezwpnca/mJBmYWrbb35ehxcu+5lJPLI1cI5dTOs7dDgKL0nkeIZH3IpvCpqZ9Wt4Hlux/TXT7I+VB8rHOtIBCIxnwwszlchT8uaN5DweunxdfEffzGuo++HEIhu1PDUg4nvIz2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726571597; c=relaxed/simple;
-	bh=6lkR70ZMKFHtrFZOKX0zZA/AWJe88OjDhpXj46DGRD4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hi/1IMya74K/Thts98EaCpqAuWYZ+YfhzU5I8KXJGyBhPxUceOmj6JJfxEArZodilqyo4NCCYMzV0eONktOiBV6VMvIGJ0bv3ow/9VwMjqlJrSYfRbkUSZ8aSFQjAnvhpeixjaXOur0AcAUK20myYQ8zgjgq+KUv5VEUdXyk1v8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tKe3TFMN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E32F5C4CEC5;
-	Tue, 17 Sep 2024 11:13:08 +0000 (UTC)
+	s=arc-20240116; t=1726571707; c=relaxed/simple;
+	bh=/dzXGXN7SpKLAErSAYQKoA0kf+pgmBde2DR3bA+cqZc=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=U2dHBVq3RTyRdxlvNkWiNV7lvwVyy9M0ql2pa/9m92hq4Niu+XIQrYYKRKIK+WFGhbax42Pv+SHZlnONrPq9TpNeRnDDGjrGGr6D/C7rzLYWdzBo0MdHysq9EILCEcQz74rLLW/pmSNCL8bRieBRIQMTOH5M2OCKhILnrch89dY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GK2oTKhU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16B8FC4CEC5;
+	Tue, 17 Sep 2024 11:15:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726571596;
-	bh=6lkR70ZMKFHtrFZOKX0zZA/AWJe88OjDhpXj46DGRD4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=tKe3TFMNitbuFMrUU3GCIuYvuEs7bFk5+1O/TzRFzH8dnh793KRnNIneE9khxIaFo
-	 upcbNi6v5ApkWaxCM0NWt4yWdTyJedldNIysSiPribpTUbSjibECvBUpMOclfaysxN
-	 6NiXwc65wKcrtoaum1CacZ5WEPKyQ8ZApYiM1wk9NiAJXvJsDA6UmR3zyxflt1zhz0
-	 VxotGJFYmq/qiN6p5K7ujrCLDoMHRBnZDacgrYaTV3pyJDmxmuDzGImuRx/PBmiILP
-	 VeeUF3VW388XPpAjej4OWKsY57RxbcgZvqvGu+YHxnwQ4cffefmU87evdyQnzah1HY
-	 wAV90V+2ovfag==
-Date: Tue, 17 Sep 2024 12:13:01 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: "Shen Jianping (ME-SE/EAD2)" <Jianping.Shen@de.bosch.com>
-Cc: "lars@metafoo.de" <lars@metafoo.de>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "dima.fedrau@gmail.com"
- <dima.fedrau@gmail.com>, "marcelo.schmitt1@gmail.com"
- <marcelo.schmitt1@gmail.com>, "linux-iio@vger.kernel.org"
- <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "Lorenz Christian (ME-SE/EAD2)"
- <Christian.Lorenz3@de.bosch.com>, "Frauendorf Ulrike (ME/PJ-SW3)"
- <Ulrike.Frauendorf@de.bosch.com>, "Dolde Kai (ME-SE/PAE-A3)"
- <Kai.Dolde@de.bosch.com>
-Subject: Re: [PATCH v7 2/2] iio: imu: smi240: add driver
-Message-ID: <20240917121301.3864a3f7@jic23-huawei>
-In-Reply-To: <AM8PR10MB4721196E13BCDAD7ABAD8E85CD602@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
-References: <20240913100011.4618-1-Jianping.Shen@de.bosch.com>
-	<20240913100011.4618-3-Jianping.Shen@de.bosch.com>
-	<20240914173229.57548005@jic23-huawei>
-	<AM8PR10MB4721196E13BCDAD7ABAD8E85CD602@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=k20201202; t=1726571707;
+	bh=/dzXGXN7SpKLAErSAYQKoA0kf+pgmBde2DR3bA+cqZc=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=GK2oTKhUsx6QAkvWuJQE/itSMUmYCkBf9WnVDw05nyqiO2NoBFKinRaNyIJETg8Dh
+	 sRdWmEhVBYEWs1l/JGVfeduq9Xivc9i53XHexh0PRW9h0nR8/nzGXoidyHLNKwjpHf
+	 UbEtD2RLzAy3dZxl11fDR+7H3/Qr2FzHLX+t1jcEhQ30bpDdNsAvpIne7MfDVMtREi
+	 VPxoyqUIMRIWIAGGEXWUeH+/h0ucWikOLJhcjzj97IcozdvX/UHnY3W63skY/S4Vk9
+	 wJ6B9GkCwEzyRB6YIx6KwZ5xe2xS9227VZq65Fv5BW5jG1EItgfPpoykTRA1y9kNYl
+	 HbJHp6jo/nq7g==
+Date: Tue, 17 Sep 2024 06:15:05 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Dhruva Gole <d-gole@ti.com>
+Cc: linux-pm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ nm@ti.com, linux-kernel@vger.kernel.org, vigneshr@ti.com, 
+ devicetree@vger.kernel.org, Viresh Kumar <vireshk@kernel.org>
+In-Reply-To: <20240917095252.1292321-1-d-gole@ti.com>
+References: <20240917095252.1292321-1-d-gole@ti.com>
+Message-Id: <172657170552.2868246.14297688654670188245.robh@kernel.org>
+Subject: Re: [PATCH v3] dt-bindings: opp: operating-points-v2-ti-cpu:
+ Describe opp-supported-hw
 
-On Mon, 16 Sep 2024 20:32:56 +0000
-"Shen Jianping (ME-SE/EAD2)" <Jianping.Shen@de.bosch.com> wrote:
 
-> >Hi Shen,
-> >
-> >I suspect I led you astray.  regmap core seems unlikely to feed us little endian
-> >buffers on writes (they should be CPU endian I think) so there should be memcpy()
-> >for that not a get_unaligned_le16()
-> >  
-> >> +
-> >> +static int smi240_regmap_spi_write(void *context, const void *data,
-> >> +				   size_t count)
-> >> +{
-> >> +	u8 reg_addr;
-> >> +	u16 reg_data;
-> >> +	u32 request;
-> >> +	struct spi_device *spi = context;
-> >> +	struct iio_dev *indio_dev = dev_get_drvdata(&spi->dev);
-> >> +	struct smi240_data *iio_priv_data = iio_priv(indio_dev);
-> >> +
-> >> +	if (count < 2)
-> >> +		return -EINVAL;
-> >> +
-> >> +	reg_addr = ((u8 *)data)[0];
-> >> +	reg_data = get_unaligned_le16(&((u8 *)data)[1]);  
-> >
-> >Why is the regmap core giving us an le16?
-> >I probably sent you wrong way with this earlier :( memcpy probably the correct
-> >choice here.  
+On Tue, 17 Sep 2024 15:22:52 +0530, Dhruva Gole wrote:
+> It seems like we missed migrating the complete information from the old
+> DT binding where we had described what the opp-supported-hw is supposed
+> to describe. Hence, bring back the description from the previous binding
+> to the current one along with a bit more context on what the values are
+> supposed to be.
 > 
-> Yes, you are right. We shall use memcpy to keep the be CPU endian.  Just using memcpy may be not enough.
+> Fixes: e576a9a8603f ("dt-bindings: cpufreq: Convert ti-cpufreq to json schema")
+> Signed-off-by: Dhruva Gole <d-gole@ti.com>
+> ---
 > 
-> Shall we also change regmap_config.val_format_endian  from REGMAP_ENDIAN_LITTLE to  REGMAP_ENDIAN_NATIVE ?
+> Changes in v3:
+> - Use the items: and then provide description for both required items.
+>   This tries to address Rob's comments on previous revision.
+> - I've not use min/max Items as the 2 descriptions items implicitly
+>   imply that number of bitfields needed are 2.
+> - Link to v2: https://lore.kernel.org/all/20240905-b4-opp-dt-binding-fix-v2-1-1e3d2a06748d@ti.com/
 > 
-> This is to make sure that regmap_write passes the reg-value to smi240_regmap_spi_write without changing the CPU endian.
->
-Hmm. I'd missed that control.  If the register data needs to be little endian
-then it is correct to leave that set as REGMAP_ENDIAN_LITTLE as then
-the regmap core will do the endian swap for you on Big endian systems.
+> Changes in v2:
+> - Drop the patch where I updated Maintainers since it's already picked
+>   by Viresh.
+> - Add more details of how to populate the property based on device
+>   documents like TRM/ datasheet.
+> - Link to v1: https://lore.kernel.org/r/20240903-b4-opp-dt-binding-fix-v1-0-f7e186456d9f@ti.com
+> 
+> ---
+>  .../opp/operating-points-v2-ti-cpu.yaml         | 17 ++++++++++++++++-
+>  1 file changed, 16 insertions(+), 1 deletion(-)
+> 
 
-If I follow that bit of regmap correctly it will then have the data
-in the right order so the above still wants to just be a memcpy.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-As it stands, on a Big endian host, regmap will use the val_format_endian
-to decide to flip the bytes.  This code then flips them back again and
-the value written is big endian which is not what you intend!
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.yaml:52:13: [error] syntax error: could not find expected ':' (syntax)
 
-Easy way to check this will be to set it, on your little endian
-host, to REGMAP_BIG_ENDIAN and see what you get in the value.
-Then consider if you'd had get_unaligned_be16
-then it would end up as little endian again.  This should mirror
-the current situation if this driver runs on a big endian host.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.yaml: ignoring, error parsing file
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.example.dts'
+Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.yaml:52:13: could not find expected ':'
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/opp/operating-points-v2-ti-cpu.yaml:52:13: could not find expected ':'
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1432: dt_binding_check] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
 
-Hope that confusing set of comments helps!
+doc reference errors (make refcheckdocs):
 
-Jonathan
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240917095252.1292321-1-d-gole@ti.com
 
- 
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
