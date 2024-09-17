@@ -1,194 +1,182 @@
-Return-Path: <devicetree+bounces-103518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 501E997B23F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 17:49:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FA7F97B2EB
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 18:21:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D63991F26BCC
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 15:49:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 949781C216AB
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 16:21:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 447C617B4E5;
-	Tue, 17 Sep 2024 15:44:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A45A8173332;
+	Tue, 17 Sep 2024 16:21:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="EQUwViiG"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="q0QSwvUU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011032.outbound.protection.outlook.com [52.101.70.32])
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61161193091
-	for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 15:44:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.32
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726587885; cv=fail; b=K4m95ZiD9ssky6IyhgGWg5T/kJW92J5/7HZePwhcuA+dGuUFPo+qa/dKcn5Q5HD37uogEcdWMSzMHaCdmPFR0TG3T+GxUpNn0ms2vJyinu//MaevfD4K6rPLrCFVyFGjGpfOyc/Mz4EChEFJmSST3yvWPkH3DgJfX82aG8OHOv0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726587885; c=relaxed/simple;
-	bh=dHwZl3yJ4HDHrCSlwRzqvYwYhXw2cba90lCqzKU80eQ=;
-	h=Date:From:To:Subject:Message-ID:Content-Type:Content-Disposition:
-	 MIME-Version; b=NrZ1mmYFEPFSDplUA5FYCF1xj930/9gtba2bvj6wwo0FsZzdYSUVlU7xbh9CJFuMUPc2qdLznWo/JYBleBUQXhLs4eCv0t3LdhglntRlc7BdHbY3Nsm+F9EhtCweOjdtaQwsQyYkwIFq7skdYr9ilIlI1Qmz5BGDUF5hnD9dpUM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=EQUwViiG; arc=fail smtp.client-ip=52.101.70.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OeLCUMy8HcxBLRUibEtk12sKLYQ8uUyDJgw3KyyUK4+TuN/pAPXOEVnyy82KKBwAjNPrtBCY5copwELSOGofDdaWtvFJr6m3n55cQjEoHHbxP7dNAdvx+QkvMQgLkASu4Sfgoe0hVYIm1tvQ3eIAkgdwNOSqNhxwCY4kvJilpudWOxBioUZxbdUwwEc4gzm2uHR9fW55/sIT4uRP0QeoIRjl+2vp812WK2SD23KSJWtMnRDB8O04iaTVNXKsbT8BoQg0co5wEOPr6oHhvrfaQ0nR5Yfy9kUHkjBYJ3Y7GADkUrMBQ+HzfyQ9oHfy32JfJmpR6HJVmdpnDk78rf/FNw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VYH/EQaUpkcPZdbQgxLDRE+ONFWu6JPJh91Yu+R8VCA=;
- b=RSwYwa0Fd2qTPvkt0bJpsY/bOyQsHXJo5pAwG3yAh8D+rpZd0Lo9Fe62WbcFJWRi3SfpmUa7SfKymzU5RUCfAOwDi2Cdo3p8jLZdbsGcImiGL8SS/4gppZoArOBviYbLo409FX/NZeZOyK2KOZG56jkoURF+5y8dVGljcJ9gofFPaYwTna0vW6l//TiTxvFSrb/B2PLZzQs/oypE2f4u9IdbtuRV4XM9TyRgdjHX0FIHit3I3vbALU3DaixUuRaR9jRUov/QS5zIdVwxm8yHCGID878ZnftvByiIHYxsGCiJwd0SDCNDpMC5RyacXL8uEBlrkNgpIVfsPfZxKeEUbg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VYH/EQaUpkcPZdbQgxLDRE+ONFWu6JPJh91Yu+R8VCA=;
- b=EQUwViiGBKjN9RZxto3UmN9GSgfFGaxVUT5xBKXbIWdgjLX5G9lJcgCx+TXcIwXVK7ofMQV+Alll54cySiFHFJc80g2CYHxA5HVO6vjxpCkGn1cv3sC7yk7hbOZoA/Xi8H8aI0PdXPS4k7TwXB/cTEtQHKPtAjESiEONHenPc6zc943+7wumRfVI4mFi44UTiCxFkV+g+5MDWEpDd9VFY64Srylx17v4MAgCD8FiKJQrgeH5UeuCCsUBOb/rGTWeo2dF8X1hYd388oHJHf1rRr2o7Wg2ZSzko2ld7TRNtMDa6euxcZqY065TKJVq94ocfeRyY1CvP0p/3rZ/2P4xKg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PAXPR04MB8720.eurprd04.prod.outlook.com (2603:10a6:102:21f::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.25; Tue, 17 Sep
- 2024 15:43:59 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.7962.022; Tue, 17 Sep 2024
- 15:43:59 +0000
-Date: Tue, 17 Sep 2024 11:43:53 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: conor+dt@kernel.org, krzk@kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, krzk+dt@kernel.org, robh@kernel.org,
-	shawnguo@kernel.org, festevam@gmail.com
-Subject: Device tree node order sort tool
-Message-ID: <ZumjueKy+tvkODnB@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-ClientProxiedBy: SJ0PR03CA0269.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::34) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A0BD2905
+	for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 16:21:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726590087; cv=none; b=bydlKAF+iDJtdMKZOlEFicBlkH74/ynM6Tp4Gfdgu1uKEGhbfplgKW8/WRJqbnlXCtSUEA5WtFcLxPnOP4WULGomiLTnkc7l56ZQ5bYHG1fquqvCajTGZMwPtPsrMegNxBo6EmUXhxBtlfKcjtCMP0+EWvoaDpowCp7l9Q4MxBI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726590087; c=relaxed/simple;
+	bh=Ms/4vFBkVOjDpM5YqyzKIKALUrHEMKp6h+FoiXA3M1Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iOvxF/RdlomYPzBV1HEqd6kxqq/zz16p2zXYnFL/eafLYJfqImEvWTL1GLrvBEFfqH/zZWLn8ZEfU6fn+eh7/JlV0VB2o3dA/4t/81TBltJdtYvIeyqbbR1MUbJnYlPYyTJPh9e7/147Q3vp7gx1NI7lhUzi9q/gIAykAEaJ3x8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=q0QSwvUU; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48HAGXOa006205;
+	Tue, 17 Sep 2024 16:21:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from
+	:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding; s=pp1; bh=r2pSsQ57V7ZZBxHEa9DDe3pPPZ
+	/65TXqWjSRoUFmmfk=; b=q0QSwvUUfAb+GiLz4UMgtYNFmqlsinS47WvKXo4Djj
+	v8DgHvM+P35Nj/hDnVRvqls5jzcNKSgKHyFkx0lLuAGANIeVeZFNwu+6lWFx8QeT
+	Jzc3IR0Ugm8/DeS9hWnHbfflMH1ct52YAmv7KulKVM0qSjlOFYY9ZLumn3+v4ASo
+	4zGBnT0NaNA4t2q+2S/AelKtx30ONuTfUTRVkdXKq24OqJCAP3kRyGrn7aRe+4dE
+	wesF5WLTjbAdFBxqirsJFfSzFvj/QMoCnrzHo2Trc+Rrz6/Yig5qhmTgXAkXH0y9
+	gyAS/dgxGaLt0l8ZRqMFnnH2LFKA+FtnK1zu/8+HM4Gw==
+Received: from ppma21.wdc07v.mail.ibm.com (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 41n41agmgt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Sep 2024 16:21:08 +0000 (GMT)
+Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma21.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 48HFuZiW001187;
+	Tue, 17 Sep 2024 16:21:07 GMT
+Received: from smtprelay02.wdc07v.mail.ibm.com ([172.16.1.69])
+	by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 41nntq669m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Sep 2024 16:21:07 +0000
+Received: from smtpav03.wdc07v.mail.ibm.com (smtpav03.wdc07v.mail.ibm.com [10.39.53.230])
+	by smtprelay02.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 48HGL79M18875128
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 17 Sep 2024 16:21:07 GMT
+Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 5BA085805D;
+	Tue, 17 Sep 2024 16:21:07 +0000 (GMT)
+Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id D72075805A;
+	Tue, 17 Sep 2024 16:21:06 +0000 (GMT)
+Received: from slate16.aus.stglabs.ibm.com (unknown [9.61.93.228])
+	by smtpav03.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Tue, 17 Sep 2024 16:21:06 +0000 (GMT)
+From: Eddie James <eajames@linux.ibm.com>
+To: linux-aspeed@lists.ozlabs.org
+Cc: devicetree@vger.kernel.org, andrew@codeconstruct.com.au, joel@jms.id.au,
+        conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+        Eddie James <eajames@linux.ibm.com>
+Subject: [PATCH] ARM: dts: aspeed: Fix Rainier and Blueridge GPIO LED names
+Date: Tue, 17 Sep 2024 11:21:00 -0500
+Message-ID: <20240917162100.1386130-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8720:EE_
-X-MS-Office365-Filtering-Correlation-Id: a11e2912-e63a-4c1a-af27-08dcd72f8c02
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|52116014|376014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?rK/l9bCJt82BGBD90H5G4HRccnETImYf9KWEU29d3184Mtpxq2SsNS4cVOFc?=
- =?us-ascii?Q?TG4gOMINJn/YPSBhfTzVt54t7qmgN+pleoz80rkMpHLfXSuiOpmZt7VKZjB0?=
- =?us-ascii?Q?Ud1WlU6bsMomvnQckZTTED5cmq3ru/Bp4SAY6/1TdmRHWn7bDmuXgfJMZ8UO?=
- =?us-ascii?Q?Qqp0S+wOoH6F/+zH2c0KjmD6WQOkhH6HMJWXm0LkQRpg3vxL4rCp/j9wrueJ?=
- =?us-ascii?Q?ZgamCn4ED2GlGkAbP3+p3gjH/Z+g+c5AZwRZ/a0oLyjhxROlbLL4fTcJWkvQ?=
- =?us-ascii?Q?5lA7sTTthnO5Zozuen0Lkw3eIkvpQsHXFEtjD2y3OrBPpuqTcetIGEPx13r2?=
- =?us-ascii?Q?DkV6jRiaIVhCdwU//yYkqzbMTBaCRaEsv06IfNgjYU+TEoDWT11NrHZwpEWi?=
- =?us-ascii?Q?iDBArOQszXzx4tjRtIN9i4OiF6No4X6AXGqeDH4QuFKJbbgdl8UYYD+AkuFM?=
- =?us-ascii?Q?xNL4geZNL+I//oqa8TbJB+A7+I9VOBBzL1ur95JsyTeIx+uRK/4c4sW3obm8?=
- =?us-ascii?Q?1QZl70+S3mKGx1k6po+0gZYU9KkeNjmR4PNPtG/kyErldmAK0K3Y1bbWfO+u?=
- =?us-ascii?Q?dDDnijL/ULdI6/agJ5UT6QbIFRqz8DmjfQ3aOYrx3NaMaEb48T/HrXeFMZML?=
- =?us-ascii?Q?qJaUNzJfDvDrlooIWfugqbRV0G04dJ9c/4U88Q4kdadGz6bvzeqLvznO8tb1?=
- =?us-ascii?Q?nzGPeszp6ML1R3MSy5FDcCUx57TNMxekAlNWj0W7+OsNZ1ryICSV5/iHeTaK?=
- =?us-ascii?Q?vKhenrsXxdPs8PUsZp28ZxkHBzXH9/R+Fl9DxwZbGMJPgi+M6ulq21zuvGP2?=
- =?us-ascii?Q?5p61ajCbb1O3mr/+Tt1ToedZfHufxPm9SzPupr6DusX9PBsaJXbZJV8lxBt0?=
- =?us-ascii?Q?gGO/wj93qFBum6FccPbtRwCflyqwzjQ+2ZfjlgNBl4WV60r8W/24BJ7lyORb?=
- =?us-ascii?Q?/iGGTaIXfiqQk4CoCDHbOmXb1aI2NJzuuoLameKA/O+kjbiSeS2mBx2KuyZC?=
- =?us-ascii?Q?Il24v3kQHWNX2+6AkQChbnam+EcGzwzCzJp4PGVf2X7QuTkX2+/H+c99jAv2?=
- =?us-ascii?Q?DEQpgd0hp31UrDb5Uvk/s45FMcSt8YXmG0vfHbPjUjpbsBhfQkL9HQlqU495?=
- =?us-ascii?Q?evmtHH66diDvhOXOj4/jW3CB+u8EF/YOiUuUe/GY6Ol5fZH7xQLCUC+hLW9K?=
- =?us-ascii?Q?JeAIPBgx4lOYay/sAejB9THJwHui2rrnGw/0IqDoTXQgWValA3weu87CIc67?=
- =?us-ascii?Q?ASLjqHcmDIdSi5vV7NjLZGDGTKSYqAHQwoYVa0RDMbJecJMo15B0Bx99fDMI?=
- =?us-ascii?Q?ZK/Y+/I8HzPZ/P1DqpndbJbaPS7MgCgL/3Lq7kgCefBRGKyuKr0SSDGAm4ZD?=
- =?us-ascii?Q?Fb4f/p9Iezdr9suoJ7Eh6wcwoHqjVmxWjIubRD079I84LheTJA=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(376014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?/J3gAzDjK5lW3fB7XkqG32TwbS0Lr1l4Q8BI99h0EiErhBFzjGL+wXMn7+7h?=
- =?us-ascii?Q?Grk76SFJOm7l2E6GbNXHnc97pABcONTwA95j9WheD8kH/H6gm9/9X4SGQLi4?=
- =?us-ascii?Q?GHQUE2XVqFj0Spg28/FfYU59w2DZE7IV8ITZs3NoVSlNMUBLnF3pW5jHZaqZ?=
- =?us-ascii?Q?CaQI+8GMQFhxUQoC/4TIPLtfgWJfaMCDT9piCV0eM/CzYMEdakYH5cGnwU41?=
- =?us-ascii?Q?mRHmAf4NuqdAYvVN26GWYym9zypdmWFhfpxc7LzrZs9ekoZbpJzDyzJbMg9n?=
- =?us-ascii?Q?+RrrsLpo6tEvoNps8QYUuPwZW8viswikD/NcaD4T87DduyyEwsxzxN7DcVp6?=
- =?us-ascii?Q?03JIeoG0mhG0LidTUchSNu2mYhBw+QEdrUQEcRDVZfWd/VW24p9NMXKvJtHJ?=
- =?us-ascii?Q?u6fK/raFEM7Ss17iI2dC1nyPrjEjL7oZfAjpWjDLcuDNnLcYtWpehzmggQ1i?=
- =?us-ascii?Q?GGX3S+Vwbhy8W5tVW+6pqOxVgMaN3gK7U3790FQt/TVZqW1kG31FQ3OmUuC7?=
- =?us-ascii?Q?HGNqf0duK883Z1NdH3K/R4yav35pjVyNv34QY/6grn8/8kfaMygNNPdsfmPs?=
- =?us-ascii?Q?IrIDGEFuH+L8oLXE7gWWLpn25ilsqzPSEDaxrr57/4PacTNLjEH2/W9j4A+7?=
- =?us-ascii?Q?iiymjQhbMGfoAQQWoDX2DhyNmpEQqSQbG0eZNqc9k4RHZvxuVVeA1y5eTi7Y?=
- =?us-ascii?Q?DMvcJ2NLe1F6Y5OMWZcRmB4GFFZs8GjlBzG6dvpfX6LEIY47EYt82tGvxu7F?=
- =?us-ascii?Q?KkMiVF6V+0hBnRnKJY25zcFQa/rOdwEAUNN13abAC902H5fY08ivHWMokjf9?=
- =?us-ascii?Q?ebHG3pqK/tBE8iFOEreqaL4sEGSCtxS5Yzr6HggrTBwuWi3Lc2xfv5yFH1+j?=
- =?us-ascii?Q?pj3JmjKiUtFbnyikyztSET1VivNyF6Db8Ap599iDfcWYQCSEA42W/iBg+9C4?=
- =?us-ascii?Q?hPFRc3YV119BNq5/YoeAyMvFCq38+5zBkvD5FgBkJ/fv+mKphhKUa0moGSIP?=
- =?us-ascii?Q?iVHXs+rvkIco0ZCnJbIBaEPfRWy6I8n4xCHNq4pUIg+/kjVCaH73OcCZE0yB?=
- =?us-ascii?Q?4gdrYMUHcGBpc9yIIW4E3PKvhKEGBu0EqbXizFYDKU7RDQNZbBzKwqj9qywM?=
- =?us-ascii?Q?cfbdwuk4+qGPCQLeVWyVeNg4M7vaeqmsQ5kUMFFxcb6RrZLyzVUlyRoUe4bg?=
- =?us-ascii?Q?WlDRmsZDGQcCnyNLgUqpJcgguCImE0FxMjYxC9YbjDbzdKhMr34+1f4dCcT/?=
- =?us-ascii?Q?5pZ096Z2y0sF18DYGNFERaaezaN8UqvhzS9sSRX5Uf0UXuzsS4NRj7IsU7fD?=
- =?us-ascii?Q?hAtOwOwML5Uk/B5atNb9XHqq0Vcc4IU4jfZr/AwpSrXxt/takS2Q/2JFtNrk?=
- =?us-ascii?Q?08u7iJIOPhd47BhLzVTfZxso8jxr3OC/xh6EArG1texE6cUWLYNj3a3zhV1f?=
- =?us-ascii?Q?S8wCFy8xzGMl2q9KryZHxUNZB5GHBQjvIBwRG0VU4711SehSKDf9MI6hkFsw?=
- =?us-ascii?Q?tcjlIh4VI2h4hOfXzBbsF/QTyktHlyZQpDqecD8aOxXW9M+GSyQhWPLqHxHe?=
- =?us-ascii?Q?9nb/2UW6oYfh05RbUEHD6JK0quuGupqzJys2511I?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a11e2912-e63a-4c1a-af27-08dcd72f8c02
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Sep 2024 15:43:59.3358
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qON6apraG4m8TldoQk1QYuZnEHhZ2b9q+wmYC37Gx4MXUyACVH1HeVYC84e5q9ms1HbVIVz9sm2uUyv4N33qBQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8720
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: 33ZsqN1xw8zCrbN0fcQFLBTWX9EqL2EN
+X-Proofpoint-ORIG-GUID: 33ZsqN1xw8zCrbN0fcQFLBTWX9EqL2EN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-17_08,2024-09-16_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ lowpriorityscore=0 suspectscore=0 mlxscore=0 mlxlogscore=406 bulkscore=0
+ impostorscore=0 phishscore=0 priorityscore=1501 spamscore=0 clxscore=1011
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409170118
 
-All:
-	I write a simple tools to sort device tree to make sure nodes and
-properties sort as correct order.
-	https://github.com/lznuaa/dt-format
+Blueridge LED names to include the "led-" prefix as is proper.
+Rainier should match for ease of application design. In addition,
+the gpio line name ought to match.
 
-	There are many dt files, which have node order trivial issue, when
-try to upstream. To reduce reviewer's time, dt-format can help correct the
-order.
+Signed-off-by: Eddie James <eajames@linux.ibm.com>
+---
+ .../arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts |  5 +++--
+ arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts  | 12 ++++++------
+ 2 files changed, 9 insertions(+), 8 deletions(-)
 
-	I just want to make sure my understand about node order is correct.
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts
+index dfe5cc3edb52..9e6bfaef3840 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts
+@@ -207,7 +207,8 @@ &gpio0 {
+ 	/*F0-F7*/	"","","rtc-battery-voltage-read-enable","reset-cause-pinhole","","",
+ 			"factory-reset-toggle","",
+ 	/*G0-G7*/	"","","","","","","","",
+-	/*H0-H7*/	"","bmc-ingraham0","rear-enc-id0","rear-enc-fault0","","","","",
++	/*H0-H7*/	"","led-bmc-ingraham0","led-rear-enc-id0","led-rear-enc-fault0","","","",
++			"",
+ 	/*I0-I7*/	"","","","","","","bmc-secure-boot","",
+ 	/*J0-J7*/	"","","","","","","","",
+ 	/*K0-K7*/	"","","","","","","","",
+@@ -215,7 +216,7 @@ &gpio0 {
+ 	/*M0-M7*/	"","","","","","","","",
+ 	/*N0-N7*/	"","","","","","","","",
+ 	/*O0-O7*/	"","","","usb-power","","","","",
+-	/*P0-P7*/	"","","","","pcieslot-power","","","",
++	/*P0-P7*/	"","","","","led-pcieslot-power","","","",
+ 	/*Q0-Q7*/	"cfam-reset","","regulator-standby-faulted","","","","","",
+ 	/*R0-R7*/	"bmc-tpm-reset","power-chassis-control","power-chassis-good","","","","",
+ 			"",
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
+index 0776b72c2199..a4aec3010456 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
+@@ -109,22 +109,22 @@ leds {
+ 		compatible = "gpio-leds";
+ 
+ 		/* BMC Card fault LED at the back */
+-		bmc-ingraham0 {
++		led-bmc-ingraham0 {
+ 			gpios = <&gpio0 ASPEED_GPIO(H, 1) GPIO_ACTIVE_LOW>;
+ 		};
+ 
+ 		/* Enclosure ID LED at the back */
+-		rear-enc-id0 {
++		led-rear-enc-id0 {
+ 			gpios = <&gpio0 ASPEED_GPIO(H, 2) GPIO_ACTIVE_LOW>;
+ 		};
+ 
+ 		/* Enclosure fault LED at the back */
+-		rear-enc-fault0 {
++		led-rear-enc-fault0 {
+ 			gpios = <&gpio0 ASPEED_GPIO(H, 3) GPIO_ACTIVE_LOW>;
+ 		};
+ 
+ 		/* PCIE slot power LED */
+-		pcieslot-power {
++		led-pcieslot-power {
+ 			gpios = <&gpio0 ASPEED_GPIO(P, 4) GPIO_ACTIVE_LOW>;
+ 		};
+ 	};
+@@ -203,7 +203,7 @@ &gpio0 {
+ 	/*E0-E7*/	"","","","","","","","",
+ 	/*F0-F7*/	"","","rtc-battery-voltage-read-enable","reset-cause-pinhole","","","factory-reset-toggle","",
+ 	/*G0-G7*/	"","","","","","","","",
+-	/*H0-H7*/	"","bmc-ingraham0","rear-enc-id0","rear-enc-fault0","","","","",
++	/*H0-H7*/	"","led-bmc-ingraham0","led-rear-enc-id0","led-rear-enc-fault0","","","","",
+ 	/*I0-I7*/	"","","","","","","bmc-secure-boot","",
+ 	/*J0-J7*/	"","","","","","","","",
+ 	/*K0-K7*/	"","","","","","","","",
+@@ -211,7 +211,7 @@ &gpio0 {
+ 	/*M0-M7*/	"","","","","","","","",
+ 	/*N0-N7*/	"","","","","","","","",
+ 	/*O0-O7*/	"","","","usb-power","","","","",
+-	/*P0-P7*/	"","","","","pcieslot-power","","","",
++	/*P0-P7*/	"","","","","led-pcieslot-power","","","",
+ 	/*Q0-Q7*/	"cfam-reset","","regulator-standby-faulted","","","","","",
+ 	/*R0-R7*/	"bmc-tpm-reset","power-chassis-control","power-chassis-good","","","","","",
+ 	/*S0-S7*/	"presence-ps0","presence-ps1","presence-ps2","presence-ps3",
+-- 
+2.43.0
 
-	Rule 1: node@hexvalue,  	order by hexvalue
-	Rule 2: label: node,  		order by node name
-	Rule 3: node, 			order by node name
-	Rule 3: &label			order by label
-	Rule 4: children node already after property
-	Rule 5: "status" always is last one.
-	Rule 6: property order as below list[unfinished], otherwise, order
-	        by name.
-
-compatible
-reg
-reg-names
-ranges
-#interrupt-cells
-interrupt-controller
-interrupts
-interrupt-names
-#gpio-cells
-gpio-controller
-gpio-ranges
-#address-cells
-#size-cells
-clocks
-clock-names
-assigned-clocks
-assigned-clock-parents
-assigned-clock-rates
-dmas
-dma-names
-
-Frank
 
