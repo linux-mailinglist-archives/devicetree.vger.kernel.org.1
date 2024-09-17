@@ -1,685 +1,275 @@
-Return-Path: <devicetree+bounces-103436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ED8E97AD57
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 10:56:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB8F697ACD5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 10:28:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6D461F22C0E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 08:56:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94C1A282C7C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 08:28:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C568E15B14F;
-	Tue, 17 Sep 2024 08:53:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72537156665;
+	Tue, 17 Sep 2024 08:28:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="PBtMUpvs"
+	dkim=pass (2048-bit key) header.d=sony.com header.i=@sony.com header.b="mCu8FSXs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from mx08-001d1705.pphosted.com (mx08-001d1705.pphosted.com [185.183.30.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFCC8178397;
-	Tue, 17 Sep 2024 08:53:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726563220; cv=none; b=lJ13sy7w9oZ4SbWwMmQ4qrRPhFSVpU/hhhAixL9e/xyJnDQPlpmH1Fu9Vs0BpgNIauI93zLETx90R/DUMy+msTGn6C1r5nimIQwlsI7xq3V4j3o55yOUZvEZykPBJoMTs0L+8sPiCpAVJx5t3tdwihwapVeIol+tDBRFGvwRT1k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726563220; c=relaxed/simple;
-	bh=d46UyFg31sQdtl+sD0JkuMUtCzrEA2Rn4kzIuAmWtPk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ElGSkag3JFlgliSBxwW7qVCrHilQBGXf4jdcweywVE1hY7fKWrdcOh9ubTEYydPO65ujVHZUwHk0lvDOBdIShwZvMUr86sm3A0g+bp1b5ZW9sfvsIFBLhA6rNc4F/5DbWtsAMrUK2yFkjTF+gTDNAMrOIRQmg5o3ixYsYVPhsxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=PBtMUpvs; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id EC972240013;
-	Tue, 17 Sep 2024 08:53:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1726563216;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HXAI/3ju1VCCwHCAXzm98BOlwNQZ+fS3qOU0jxqqHME=;
-	b=PBtMUpvsQ6u8B6br9fNHriTcfs27bbqmsPcDiOOvE/K0+CWYRz7KkOmv96eLDMjFhye0BJ
-	MCDjrTItCm0F/ZfRddlYvKkPyhQKl+4xrPd+REuiksVuV4kPnSjeBO4evplsR19lgrZ93x
-	TCLy9AKbH6uRdSbIjbtG5p6y95P2awGt0h5p1EJ1q3qPCm2uFFxHGEOf7XqlU7SqD+YPTP
-	ryjavBsToaMvdfQ12aiYGivWaPmNIFOB300pqtuW8GFCT0ST8IBlHs1nU/OyHraG1R05b/
-	Np1MCqZWxZlXqI2duqti4I5eJsScFndC6D9/zsfCIV8mpF9MC6NSw/+fE/V2Zg==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Tue, 17 Sep 2024 10:53:12 +0200
-Subject: [PATCH v4 8/8] misc: add ge-addon-connector driver
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A60C62905;
+	Tue, 17 Sep 2024 08:28:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.183.30.70
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726561733; cv=fail; b=J8RqC3MbEihwfu42kpsmLSFLleCv26fprLcygkI0ZrMxfDj4lzla90QUzdY4KFsjrbh2mc+Nz0JYNGerzw9Lguw3O71waIzoB1JE57Prso1oxhfM9x/13zpn25jTejsHA0QwngCsCt6a288ngpxLYPA7hpQcMTiCSfzd0XW+ykU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726561733; c=relaxed/simple;
+	bh=mUEqAtkE+7I2D82YuhuCaib28qBvUECUMl4yvWUwywk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EJvLfysKaAb/UNxgp9kmTZoqzz67k8YeeQhC39D3m9oBuUs26x9tWOhn9jPX86SZVfwd3NeNZthuCF5u/Z5cwFHSTwxwgOAuNPCGNhFCjRexLwu4euMliw9UcMFun8KROtVXB2MFnKMHL2RZrjHFSzavA/bZQUbj7oX2KXymvfY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sony.com; spf=pass smtp.mailfrom=sony.com; dkim=pass (2048-bit key) header.d=sony.com header.i=@sony.com header.b=mCu8FSXs; arc=fail smtp.client-ip=185.183.30.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sony.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sony.com
+Received: from pps.filterd (m0209322.ppops.net [127.0.0.1])
+	by mx08-001d1705.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48H5TXFj014389;
+	Tue, 17 Sep 2024 08:28:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sony.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=S1; bh=wZN90nCH1izEV0+NnHH5QzsIahBb59k
+	nve/D9XqTneg=; b=mCu8FSXsmpuRGuEC0gJQOfm6zN7EL2joc81L1Mm76j8957j
+	7KKsqC2b5Ok8duw1JXW0XsalTP7qZ0yH0Y2+Y6BBDja931IEBrgR5HEqJPoHY825
+	7rpzEiTueUzrJd/mb9xwh2jOxFSGshysvu0WV9gPP89MlvjsxKuIYA13KWO7/2r7
+	mddzUodjJskuVC43ziEgSoZyzHiDj6vwmxrdYdYZFVrOjm9S8NXAm4BGcydhirVH
+	eQODN5DoeM0tk18q+4NC4mazJyVy6zJDGTLplE+Tau2JNq8Mw2Fmr+uMKEE46Cq1
+	gDf+wPD5V5/1CI3tlCpB5TPvzthlRAvU7KEnUBg==
+Received: from nam04-bn8-obe.outbound.protection.outlook.com (mail-bn8nam04lp2040.outbound.protection.outlook.com [104.47.74.40])
+	by mx08-001d1705.pphosted.com (PPS) with ESMTPS id 41n3jaa1kd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 17 Sep 2024 08:28:43 +0000 (GMT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=n/9g+tX4URvisCTqf18982A2w5o+iIAMMjpnurM2nVYNE90IEsPJ3LHDHYXUThCPzjOgGetn4BrKpqzjCSjsPdO5AQLDtsAOaRkh+Ka3nv5it4MssEz31TXNlbTyIECa9Tcbn8ms23JvmDOH5Y/QOaV6pt0xQtYJ1u3aQ/7n5DYEi2q9q0ztA6p/54bL7JkizajUUjoVZbR6fQm+ROIpHAIfv7ge/44wN7K3rJPB0RVBfll4J7BPsc1JjuPECazBH+csj3erJP2riU7peGBl5sZyTWvny5zCafneEQCECg7eKfNpU/3CiYyMlA3+EQ+soslYeXaJNGf1cq0rCf093w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wZN90nCH1izEV0+NnHH5QzsIahBb59knve/D9XqTneg=;
+ b=yKsaEzOy5fZFgnI9v1tmvwNzqTrHmK5g+H+ZAabQnX22RxgAqX0qAxk4vQwOXeZN9LAzWoZ/SMhsQtD5sIYwD5juunf2XNNu7XtFYc7Kmf6U3LDmdJV8H4UWPRFh5oxeTXbFHLd6h/Y+waCKsZtfx4rCfvp3CcCRijYY0oME4wuSnWmd4XflIlzAXlJ6s+6z45q90XW18SnHcEg/tD3JYTEI0xHblA+8+ME4bS2eeR/ySyv2oGJokgI/tuiSlhKIIACHFjd0RnaS0ozBeP7J8JxsYe+Upum3192/awkuDnRl0nTDh4R7sCXGqMXFE23t6tg5sajox7rV+wQflSZjPQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 121.100.38.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=sony.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=sony.com;
+ dkim=none (message not signed); arc=none (0)
+Received: from CH0PR03CA0341.namprd03.prod.outlook.com (2603:10b6:610:11a::18)
+ by PH0PR13MB6086.namprd13.prod.outlook.com (2603:10b6:510:29c::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.24; Tue, 17 Sep
+ 2024 08:28:38 +0000
+Received: from DS3PEPF000099E1.namprd04.prod.outlook.com
+ (2603:10b6:610:11a:cafe::21) by CH0PR03CA0341.outlook.office365.com
+ (2603:10b6:610:11a::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.30 via Frontend
+ Transport; Tue, 17 Sep 2024 08:28:37 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 121.100.38.198)
+ smtp.mailfrom=sony.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=sony.com;
+Received-SPF: Fail (protection.outlook.com: domain of sony.com does not
+ designate 121.100.38.198 as permitted sender)
+ receiver=protection.outlook.com; client-ip=121.100.38.198;
+ helo=gepdcl09.sg.gdce.sony.com.sg;
+Received: from gepdcl09.sg.gdce.sony.com.sg (121.100.38.198) by
+ DS3PEPF000099E1.mail.protection.outlook.com (10.167.17.196) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7918.13 via Frontend Transport; Tue, 17 Sep 2024 08:28:36 +0000
+Received: from gepdcl04.s.gdce.sony.com.sg (SGGDCSE1NS08.sony.com.sg [146.215.123.198])
+	by gepdcl09.sg.gdce.sony.com.sg (8.14.7/8.14.4) with ESMTP id 48H8SYQK027145;
+	Tue, 17 Sep 2024 16:28:34 +0800
+Received: from mail.sony.com ([43.88.80.182])
+	by gepdcl04.s.gdce.sony.com.sg (8.14.7/8.14.4) with ESMTP id 48H8SXeG032144;
+	Tue, 17 Sep 2024 16:28:33 +0800
+Received: by mail.sony.com (Postfix, from userid 1000)
+	id 2AC151BA9034; Tue, 17 Sep 2024 14:25:50 +0530 (IST)
+Date: Tue, 17 Sep 2024 14:25:50 +0530
+From: Nayeemahmed Badebade <nayeemahmed.badebade@sony.com>
+To: Rob Herring <robh@kernel.org>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org,
+        rafael@kernel.org, yoshihiro.toyama@sony.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] driver: core: add probe control driver
+Message-ID: <ZulEFlDoRz4USTB8@NAB-HP-ProDesk-600sony.com>
+References: <20240911142319.3435746-1-nayeemahmed.badebade@sony.com>
+ <20240911142319.3435746-3-nayeemahmed.badebade@sony.com>
+ <20240912204634.GA738361-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240917-hotplug-drm-bridge-v4-8-bc4dfee61be6@bootlin.com>
-References: <20240917-hotplug-drm-bridge-v4-0-bc4dfee61be6@bootlin.com>
-In-Reply-To: <20240917-hotplug-drm-bridge-v4-0-bc4dfee61be6@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Derek Kiernan <derek.kiernan@amd.com>, 
- Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Saravana Kannan <saravanak@google.com>, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Lee Jones <lee@kernel.org>, 
- Daniel Thompson <daniel.thompson@linaro.org>, 
- Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>
-Cc: Paul Kocialkowski <contact@paulk.fr>, 
- =?utf-8?q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-i2c@vger.kernel.org, linux-fbdev@vger.kernel.org, 
- Paul Kocialkowski <paul.kocialkowski@bootlin.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>
-X-Mailer: b4 0.14.1
-X-GND-Sasl: luca.ceresoli@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240912204634.GA738361-robh@kernel.org>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS3PEPF000099E1:EE_|PH0PR13MB6086:EE_
+X-MS-Office365-Filtering-Correlation-Id: 96cfbcdf-3bfa-4f53-6f9b-08dcd6f2ba19
+x-proofpoint-id: d8690225-876f-412f-87c6-a7cb45557a4c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|376014|82310400026|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?ib3bbU/P92lPpQgH1XeSa6CWEk2Cjj2MipD0RWRpgEJ/bNNnpXi0qhma3a7p?=
+ =?us-ascii?Q?Rs20I6SW1HY/RB2PSlHrA6+rp7az1dDftSXOYe9vqxFZV4pIDboXnaNONcC5?=
+ =?us-ascii?Q?ufLT8CGL0YM6JfL4Gca+GkYFV6nnqlgZJjS9dW6fMxYMS/UhehoUh9eofi/R?=
+ =?us-ascii?Q?Vth7u+JqlNxkHz4umgNr+lDJ737gDJfXKKMBl3mvXZA6vK7+bkeCFtb4nnpm?=
+ =?us-ascii?Q?ycpAGTLqY0NVM6eeyHyCBXFzaMEzq5yyX90pGkpf5aKAXI6VZmfVT+gdMAQh?=
+ =?us-ascii?Q?nkpWBZnMu/6dmXeessv1zZHqs/QbiD6y4e7Urz1qiJ5EH0WW1GvHO0w2XJtv?=
+ =?us-ascii?Q?HQt9i8A9URFTGjFRpsKDcavu4iDTn8gtriaDupZ7xEBnOGM2G9++EwD0u6xd?=
+ =?us-ascii?Q?jHrwpLVdgRo8jPANIbNTa8nRzMkIAbFAcNYkCWE/ZN/xEgHu3WVgFVqD2qb1?=
+ =?us-ascii?Q?0GvCJ65OKH8uB1Z/+Hyd7uFksyr+GCzBkwXX+A1hsicxQ59msn6dwDxf9MMu?=
+ =?us-ascii?Q?1I9Dkkh4e0jeMV90ZXlzcUjrktBwrJJ1F986N9e+Zvfa6JqaOxP0mHH8hLXT?=
+ =?us-ascii?Q?t3NcdponMIuUP46HlegOVCPgvIH1+aR9Y7mb2QfdyNA9ATDlyiPW1RaLDAp3?=
+ =?us-ascii?Q?Vt6GjpCQMR9aIsFcDhS6Tdq7eY8C1m0VNh7NSYrlNGLIF0NCFJxsFfF5Fjxm?=
+ =?us-ascii?Q?emAONjBZAlOfpU4tIe1HcHUb6PqmWdjGWw4d0EOGOrL3Zb3ozBmh4iw7vySN?=
+ =?us-ascii?Q?fQ1QCRsELJjmV9UrHj1EsWzF5KibHk/Tf3fpcfLpBahmAEGc2Nl9ygEVwHw7?=
+ =?us-ascii?Q?Vi/Wk9ywVFjG3x8GZ3AAKOFv5Axold3CH3iU1uPAhWlJ+bOBW0K87lVgvLKH?=
+ =?us-ascii?Q?g/3TIMZyyB8xCoFJUhpaGwl/f+eOioJiahppBLCjCZnDwB9ALwtRgutw76sB?=
+ =?us-ascii?Q?l90opi776wDO5BpgYaTJKmGi5lr77yYbwXOD3RUscVIjerAaW2FB+SRLnWob?=
+ =?us-ascii?Q?E5suEXAqYtxZ+pPSBl0Mhv6Efwi02MH2kzbghxZeqsD8lpwV9EnL6PT1Luhr?=
+ =?us-ascii?Q?vn/a5VXIA58eRF8wjQZiNZEJC8qQs8leoukdEnw06q3bQMqq7R9z4nDGxeS+?=
+ =?us-ascii?Q?X02QfQ1fwlwM308+21XUwBG6HQh97mzQWKP2KOFcP/JT7ruy6kdfOReKbS5P?=
+ =?us-ascii?Q?gFVYf6HhWtOO7SYfNgyF3Hu/P0fEee1R/e7rZVdUGL4NgumZDPLhDM1lC4PR?=
+ =?us-ascii?Q?W1lxvwlE28NSLoVA4m6R5e4K6N6bcK3sG/zk4x256EDh8LfSsAlQrq6DnvlB?=
+ =?us-ascii?Q?zODq1zk84SSAkaXSjKD4cTH1EKX/LAuC/MxB0NNljwHsmZ6bgwOPLwI7Cg9j?=
+ =?us-ascii?Q?/PZaFqBGV6FsPxvFw4qjORRIfoNi?=
+X-Forefront-Antispam-Report:
+	CIP:121.100.38.198;CTRY:SG;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:gepdcl09.sg.gdce.sony.com.sg;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
+	yjxoFSJshcCaogqGH3GoA4x3kvVj4dp3moQ1FDa4Un98o3SYhPljWjd+vEnOH+TPkvccGCEvNas9tBgvq6Z4EIcgvCACV8O88VXoNTiCjek9ygddc+2EAGxxt7gpH/2Iu8pjmq+kW7Z1Pkrdf+yohfp5VV+lE58pCzoJZk8o73HKJjBPS+qj04TgWBMe7mM1kZ6ZbFL6hfiENJlCBP8vIOD13/XgrRlF2hiXnV90z/297/Mf3kXUZDAeMd0T/kFGrtikU2Kuahs4Ppkzn5L3HZpYQMhncyQoZ+cdwx4iLvWwK39gbQ4N8rTB78j6WqG1RaADjZ+/hA/eR0RU+8wwl3M6ol+nh1LoB/HIpyO7pGItUZ0O64VX4uvgwwlNYAQeJTzAsq999XSQrbfSs9kWPuR5h+0EEAw2ba3m0welo+zjlhDMP4+QNH3CUpDbeDDiq3QLCHR4d17cavMrG/Kq7sQF52waagtnBGn1YPKVt8mb2RTPfvV5zJiidgj6rM7Se+GA01PghDnCxuMuAQKT1V8WcqfvacAHq5MLfZia7roX+hQuUSlLC+SiKyDG14JsjTgkFN8LhSgM/CnwoRFfMI2ke/SlGhC/2VzOdEqCOyOBkBKjzgFfS7WYrbEJ8xeE
+X-OriginatorOrg: sony.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Sep 2024 08:28:36.5395
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 96cfbcdf-3bfa-4f53-6f9b-08dcd6f2ba19
+X-MS-Exchange-CrossTenant-Id: 66c65d8a-9158-4521-a2d8-664963db48e4
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=66c65d8a-9158-4521-a2d8-664963db48e4;Ip=[121.100.38.198];Helo=[gepdcl09.sg.gdce.sony.com.sg]
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-DS3PEPF000099E1.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR13MB6086
+X-Proofpoint-GUID: hePDI1DisJr7qcXLXC0vmmL2yGaZ3Noz
+X-Proofpoint-ORIG-GUID: hePDI1DisJr7qcXLXC0vmmL2yGaZ3Noz
+X-Sony-Outbound-GUID: hePDI1DisJr7qcXLXC0vmmL2yGaZ3Noz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-17_02,2024-09-16_01,2024-09-02_01
 
-Add a driver to support the runtime hot-pluggable add-on connector on the
-GE SUNH device. This connector allows connecting and disconnecting an
-add-on to/from the main device to augment its features. Connection and
-disconnection can happen at runtime at any moment without notice.
+Hi Rob,
 
-Different add-on models can be connected, and each has an EEPROM with a
-model identifier at a fixed address.
+Thank you for taking the time to check our patch and provide
+valuable feedback. We appreciate your comments/suggestions.
 
-The add-on hardware is added and removed using device tree overlay loading
-and unloading.
+Please find our reply to your comments.
 
-Co-developed-by: Herve Codina <herve.codina@bootlin.com>
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+On Thu, Sep 12, 2024 at 03:46:34PM -0500, Rob Herring wrote:
+> On Wed, Sep 11, 2024 at 07:53:19PM +0530, Nayeemahmed Badebade wrote:
+> > Probe control driver framework allows deferring the probes of a group of
+> > devices to an arbitrary time, giving the user control to trigger the probes
+> > after boot. This is useful for deferring probes from builtin drivers that
+> > are not required during boot and probe when user wants after boot.
+> 
+> This seems like the wrong way around to me. Why not define what you want 
+> to probe first or some priority order? I could see use for kernel to 
+> probe whatever is the console device first. Or the rootfs device... You 
+> don't need anything added to DT for those.
+> 
+> Of course, there's the issue that Linux probes are triggered bottom-up 
+> rather than top-down.
+> 
 
----
+Our intention is to only postpone some driver probes not required during
+boot, similar to https://elinux.org/Deferred_Initcalls. But instead of
+delaying initcall execution(which requires initmem to be kept and not
+freed during boot) we are trying to delay driver probes as this is much
+simpler.
 
-Changed in v4:
- - rename 'nobus-devices' to 'devices' as per new bindings
- - remove the 'powergood' GPIO, removed from hardware design
- - rename "base" and "addon" overlays to "overlay 0" and "overlay 1" as the
-   "addon" name is ambiguous
- - remove unused enum sunh_conn_overlay_level entries, then move the only
-   remaining enum value to a define
+> 
+> > This is achieved by adding a dummy device aka probe control device node
+> > as provider to a group of devices(consumer nodes) in platform's device
+> > tree. Consumers are the devices we want to probe after boot.
+> 
+> There's the obvious question of then why not make those devices modules 
+> instead of built-in?
+> 
 
-Changed in v3:
- - update to the new overlay representation that now does not include the
-   target node; instead the target node is the connector node itself and is
-   now passed by the connector driver to of_overlay_fdt_apply(), so the
-   overlay is now decoupled from the base device tree
- - update to explicitely probe devices not reachable by the CPU on any
-   physical bus (which probe as platform devices) which are now inside a
-   'nobus-devices' subnode of the connector node
- - change how the DRM bridge is populated to use the new device tree
-   representation, having the video ports inside the 'dsi' node
+Yes we can use modules for this, but there are drivers that cannot be
+built as modules and this framework is specifically for such scenario.
+Example: drivers/pci/controller/dwc/pci-imx6.c
 
-   **NOTE** this specific change opens up a question about the
-            .of_node_reused flag: setting it to true might be wrong now as
-            the bridge will be handed the 'dsi' subnode of the connector
-            node; however not setting it to true prevents the hotplug
-            bridge module autoloading due to the alias string changing from
-            "platform:hotplug-dsi-bridge" to "of:NdsiT(null)".
+> > 
+> > To establish control over consumer device probes, each consumer device node
+> > need to refer the probe control provider node by the phandle.
+> > 'probe-control-supply' property is used for this.
+> > 
+> > Example:
+> >     // The node below defines a probe control device/provider node
+> >     prb_ctrl_dev_0: prb_ctrl_dev_0 {
+> >         compatible = "linux,probe-control";
+> >     };
+> > 
+> >     // The node below is the consumer device node that refers to provider
+> >     // node by its phandle and a result will not be probed until provider
+> >     // node is probed.
+> >     pcie@1ffc000 {
+> >         reg = <0x01ffc000 0x04000>, <0x01f00000 0x80000>;
+> >         #address-cells = <3>;
+> >         #size-cells = <2>;
+> >         device_type = "pci";
+> >         ranges = <0x81000000 0 0          0x01f80000 0 0x00010000>,
+> >                  <0x82000000 0 0x01000000 0x01000000 0 0x00f00000>;
+> > 
+> >         probe-control-supply = <&prb_ctrl_dev_0>;
+> >     };
+> 
+> Sorry, but this isn't going to happen in DT.
+> 
 
- - remove dev_info() and uninformative dev_dbg() calls
- - Kconfig: use 'depends on' instead of 'select'
- - Kconfig: improve help text and add module name
+You mean we cannot add custom properties like this to an existing
+device node in DT?
 
-This patch first appeared in v2.
----
- MAINTAINERS                      |   1 +
- drivers/misc/Kconfig             |  18 ++
- drivers/misc/Makefile            |   1 +
- drivers/misc/ge-sunh-connector.c | 481 +++++++++++++++++++++++++++++++++++++++
- 4 files changed, 501 insertions(+)
+> > 
+> > fw_devlink ensures consumers are not probed until provider is probed
+> > successfully. The provider probe during boot returns -ENXIO and is not
+> > re-probed again.
+> > 
+> > The driver provides debug interface /sys/kernel/debug/probe_control_status
+> > for checking probe control status of registered probe control devices.
+> >  # cat /sys/kernel/debug/probe_control_status
+> >  prb_ctrl_dev_0: [not triggered]
+> >   Consumers: 1ffc000.pcie
+> > 
+> > Interface /sys/kernel/probe_control/trigger is provided for triggering
+> > probes of the probe control devices. User can write to this interface to
+> > trigger specific or all device probes managed by this driver.
+> > Once the probe is triggered by user, provider probe control device is added
+> > to deferred_probe_pending_list and driver_deferred_probe_trigger() is
+> > triggered. This time the probe of probe control device will be
+> > successful and its consumers will then be probed.
+> > 
+> > To trigger specific provider probe:
+> >   # echo prb_ctrl_dev_0 > /sys/kernel/probe_control/trigger
+> > 
+> > To trigger all registered provider probes
+> >   # echo all > /sys/kernel/probe_control/trigger
+> > 
+> > Signed-off-by: Toyama Yoshihiro <yoshihiro.toyama@sony.com>
+> > Signed-off-by: Nayeemahmed Badebade <nayeemahmed.badebade@sony.com>
+> 
+> This is wrong. Either Toyama is the author and you need to fix the git 
+> author, or you both are authors and you need a Co-developed-by tag for 
+> Toyama.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 95a05eb75202..7dec59888df2 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10278,6 +10278,7 @@ F:	drivers/iio/pressure/mprls0025pa*
- HOTPLUG CONNECTOR FOR GE SUNH ADDONS
- M:	Luca Ceresoli <luca.ceresoli@bootlin.com>
- S:	Maintained
-+F:	drivers/misc/ge-sunh-connector.c
- F:	Documentation/devicetree/bindings/connector/ge,sunh-addon-connector.yaml
- 
- HP BIOSCFG DRIVER
-diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-index 41c54051347a..e2a5bcce0073 100644
---- a/drivers/misc/Kconfig
-+++ b/drivers/misc/Kconfig
-@@ -600,6 +600,24 @@ config MARVELL_CN10K_DPI
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called mrvl_cn10k_dpi.
- 
-+config GE_SUNH_CONNECTOR
-+	tristate "GE SUNH hotplug add-on connector"
-+	depends on OF_OVERLAY
-+	depends on NVMEM
-+	depends on DRM_HOTPLUG_BRIDGE
-+	select FW_LOADER
-+	help
-+	  Driver for the runtime hot-pluggable add-on connector on the GE
-+	  SUNH device. This connector allows connecting an add-on to the
-+	  main device to augment its features, and to later disconnect
-+	  it. Connection and disconnection can be done at runtime at any
-+	  moment without notice. Different add-on models can be connected,
-+	  and each has an EEPROM with a model identifier at a fixed
-+	  address.
-+
-+	  To compile this driver as a module, choose M here.
-+	  The module will be called ge-sunh-connector.
-+
- source "drivers/misc/c2port/Kconfig"
- source "drivers/misc/eeprom/Kconfig"
- source "drivers/misc/cb710/Kconfig"
-diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-index c2f990862d2b..69747b048046 100644
---- a/drivers/misc/Makefile
-+++ b/drivers/misc/Makefile
-@@ -70,4 +70,5 @@ obj-$(CONFIG_TPS6594_ESM)	+= tps6594-esm.o
- obj-$(CONFIG_TPS6594_PFSM)	+= tps6594-pfsm.o
- obj-$(CONFIG_NSM)		+= nsm.o
- obj-$(CONFIG_MARVELL_CN10K_DPI)	+= mrvl_cn10k_dpi.o
-+obj-$(CONFIG_GE_SUNH_CONNECTOR)	+= ge-sunh-connector.o
- obj-y				+= keba/
-diff --git a/drivers/misc/ge-sunh-connector.c b/drivers/misc/ge-sunh-connector.c
-new file mode 100644
-index 000000000000..0e6064a9a519
---- /dev/null
-+++ b/drivers/misc/ge-sunh-connector.c
-@@ -0,0 +1,481 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * GE SUNH hotplug add-on connector
-+ *
-+ * Driver for the runtime hot-pluggable add-on connector on the GE SUNH
-+ * device. Add-on connection is detected via GPIOs (+ a debugfs
-+ * trigger). On connection, a "base" DT overlay is added that describes
-+ * enough to reach the NVMEM cell with the model ID. Based on the ID, an
-+ * add-on-specific overlay is loaded on top to describe everything else.
-+ *
-+ * Copyright (C) 2024, GE HealthCare
-+ *
-+ * Authors:
-+ * Luca Ceresoli <luca.ceresoli@bootlin.com>
-+ * Herve Codina <herve.codina@bootlin.com>
-+ */
-+
-+#include <linux/debugfs.h>
-+#include <linux/delay.h>
-+#include <linux/firmware.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/interrupt.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/nvmem-consumer.h>
-+#include <linux/of.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/workqueue.h>
-+
-+#define SUNH_CONN_OVERLAY_N_LEVELS       2
-+
-+struct sunh_conn {
-+	struct device *dev;
-+	struct gpio_desc *reset_gpio;
-+	struct gpio_desc *plugged_gpio;
-+
-+	bool plugged;
-+	int ovcs_id[SUNH_CONN_OVERLAY_N_LEVELS];
-+	struct mutex ovl_mutex; // serialize overlay code
-+	struct notifier_block nvmem_nb;
-+	struct work_struct nvmem_notifier_work;
-+
-+	struct platform_device *hpb_pdev;
-+	struct dentry *debugfs_root;
-+};
-+
-+/*
-+ * Populate all platform devices that are not on any bus.
-+ *
-+ * Populate devices without any I/O access from the CPU, (e.g. fixed
-+ * regulators and gpio regulators). In the normal case of a device tree
-+ * without runtime-loaded overlays these are direct children of the root
-+ * node and as such they are populated as a special case.
-+ *
-+ * Within the hotplug connector they need to be at a deeper level of the
-+ * tree. Moreover they are "segregated" in the "devices" node which allows
-+ * to avoid trying of_platform_default_populate() on other kind of nodes.
-+ *
-+ * No need to depopulate them in this driver: of_platform_notify() will do
-+ * that on overlay removal.
-+ *
-+ * In case a generalized framework for OF_based hotplug connector drivers
-+ * will exist in the future, this function is definitely meant for the
-+ * framework.
-+ */
-+static int sunh_conn_populate_nobus_devices(struct sunh_conn *conn)
-+{
-+	struct device_node *nobus_devs_dn;
-+	int err;
-+
-+	nobus_devs_dn = of_get_child_by_name(conn->dev->of_node, "devices");
-+	if (!nobus_devs_dn)
-+		return 0;
-+
-+	err = of_platform_default_populate(nobus_devs_dn, NULL, conn->dev);
-+	if (err)
-+		dev_err(conn->dev, "Failed to populate nobus devices\n");
-+
-+	of_node_put(nobus_devs_dn);
-+	return err;
-+}
-+
-+static int sunh_conn_insert_overlay(struct sunh_conn *conn,
-+				    unsigned int level,
-+				    const char *filename)
-+{
-+	const struct firmware *fw;
-+	int err;
-+
-+	err = request_firmware(&fw, filename, conn->dev);
-+	if (err)
-+		return dev_err_probe(conn->dev, err, "Error requesting overlay %s", filename);
-+
-+	dev_dbg(conn->dev, "insert overlay %d: %s", level, filename);
-+	err = of_overlay_fdt_apply(fw->data, fw->size, &conn->ovcs_id[level], conn->dev->of_node);
-+	if (err)
-+		dev_err_probe(conn->dev, err, "Failed to apply overlay %s\n", filename);
-+	else
-+		err = sunh_conn_populate_nobus_devices(conn);
-+
-+	if (err) {
-+		int err2;
-+
-+		/* changeset may be partially applied */
-+		err2 = of_overlay_remove(&conn->ovcs_id[level]);
-+		if (err2 < 0)
-+			dev_err_probe(conn->dev, err2,
-+				      "Failed to remove failed overlay %s\n", filename);
-+	}
-+
-+	release_firmware(fw);
-+
-+	return err;
-+}
-+
-+/* Load the overlay common to all add-ons (enough to read the model ID) */
-+static int sunh_conn_load_overlay_0(struct sunh_conn *conn)
-+{
-+	int err = 0;
-+
-+	mutex_lock(&conn->ovl_mutex);
-+
-+	if (conn->ovcs_id[0] != 0) {
-+		dev_dbg(conn->dev, "base overlay already loaded\n");
-+		goto out_unlock;
-+	}
-+
-+	err = sunh_conn_insert_overlay(conn, 0, "imx8mp-sundv1-addon-base.dtbo");
-+
-+out_unlock:
-+	mutex_unlock(&conn->ovl_mutex);
-+	return err;
-+}
-+
-+/* Load the model-specific overlay describing everything not in the overlay 0 */
-+static int sunh_conn_load_overlay_1(struct sunh_conn *conn)
-+{
-+	u8 addon_id;
-+	const char *filename;
-+	int err;
-+
-+	mutex_lock(&conn->ovl_mutex);
-+
-+	if (conn->ovcs_id[0] == 0) {
-+		dev_dbg(conn->dev, "base overlay not loaded\n");
-+		err = -EINVAL;
-+		goto out_unlock;
-+	}
-+
-+	if (conn->ovcs_id[1] != 0) {
-+		dev_dbg(conn->dev, "addon overlay already loaded\n");
-+		err = -EEXIST;
-+		goto out_unlock;
-+	}
-+
-+	err = nvmem_cell_read_u8(conn->dev, "id", &addon_id);
-+	if (err)
-+		goto out_unlock;
-+
-+	dev_dbg(conn->dev, "Found add-on ID %d\n", addon_id);
-+
-+	switch (addon_id) {
-+	case 23:
-+		filename = "imx8mp-sundv1-addon-13.dtbo";
-+		break;
-+	case 24:
-+		filename = "imx8mp-sundv1-addon-15.dtbo";
-+		break;
-+	case 25:
-+		filename = "imx8mp-sundv1-addon-18.dtbo";
-+		break;
-+	default:
-+		dev_warn(conn->dev, "Unknown add-on ID %d\n", addon_id);
-+		err = -ENODEV;
-+		goto out_unlock;
-+	}
-+
-+	err = sunh_conn_insert_overlay(conn, 1, filename);
-+
-+out_unlock:
-+	mutex_unlock(&conn->ovl_mutex);
-+	return err;
-+}
-+
-+static void sunh_conn_unload_overlays(struct sunh_conn *conn)
-+{
-+	int level = SUNH_CONN_OVERLAY_N_LEVELS;
-+	int err;
-+
-+	mutex_lock(&conn->ovl_mutex);
-+	while (level) {
-+		level--;
-+
-+		if (conn->ovcs_id[level] == 0)
-+			continue;
-+
-+		dev_dbg(conn->dev, "remove overlay %d (ovcs id %d)",
-+			level, conn->ovcs_id[level]);
-+
-+		err = of_overlay_remove(&conn->ovcs_id[level]);
-+		if (err)
-+			dev_err_probe(conn->dev, err, "Failed to remove overlay %d\n", level);
-+	}
-+	mutex_unlock(&conn->ovl_mutex);
-+}
-+
-+static void sunh_conn_reset(struct sunh_conn *conn, bool keep_reset)
-+{
-+	gpiod_set_value_cansleep(conn->reset_gpio, 1);
-+
-+	if (keep_reset)
-+		return;
-+
-+	mdelay(10);
-+	gpiod_set_value_cansleep(conn->reset_gpio, 0);
-+	mdelay(10);
-+}
-+
-+static int sunh_conn_detach(struct sunh_conn *conn)
-+{
-+	/* Cancel any pending NVMEM notification jobs */
-+	cancel_work_sync(&conn->nvmem_notifier_work);
-+
-+	/* Unload previouly loaded overlays */
-+	sunh_conn_unload_overlays(conn);
-+
-+	/* Set reset signal to have it set on next plug */
-+	sunh_conn_reset(conn, true);
-+
-+	return 0;
-+}
-+
-+static int sunh_conn_attach(struct sunh_conn *conn)
-+{
-+	int err;
-+
-+	/* Reset the plugged board in order to start from a stable state */
-+	sunh_conn_reset(conn, false);
-+
-+	err = sunh_conn_load_overlay_0(conn);
-+	if (err)
-+		goto err;
-+
-+	/*
-+	 * -EPROBE_DEFER can be due to NVMEM cell not yet available, so
-+	 * don't give up, an NVMEM event could arrive later
-+	 */
-+	err = sunh_conn_load_overlay_1(conn);
-+	if (err && err != -EPROBE_DEFER)
-+		goto err;
-+
-+	return 0;
-+
-+err:
-+	sunh_conn_detach(conn);
-+	return err;
-+}
-+
-+static int sunh_conn_handle_event(struct sunh_conn *conn, bool plugged)
-+{
-+	int err;
-+
-+	if (plugged == conn->plugged)
-+		return 0;
-+
-+	dev_dbg(conn->dev, "%s\n", plugged ? "connected" : "disconnected");
-+
-+	err = (plugged ?
-+	       sunh_conn_attach(conn) :
-+	       sunh_conn_detach(conn));
-+
-+	conn->plugged = plugged;
-+
-+	return err;
-+}
-+
-+/*
-+ * Return the current status of the connector as reported by the hardware,
-+ * logging any errors.
-+ */
-+static int sunh_conn_get_connector_status(struct sunh_conn *conn)
-+{
-+	int val = gpiod_get_value_cansleep(conn->plugged_gpio);
-+
-+	if (val < 0)
-+		dev_err(conn->dev, "Error reading plugged GPIO (%d)\n", val);
-+
-+	return val;
-+}
-+
-+static irqreturn_t sunh_conn_gpio_irq(int irq, void *data)
-+{
-+	struct sunh_conn *conn = data;
-+	int conn_status;
-+
-+	conn_status = sunh_conn_get_connector_status(conn);
-+	if (conn_status >= 0)
-+		sunh_conn_handle_event(conn, conn_status);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int plugged_read(void *dat, u64 *val)
-+{
-+	struct sunh_conn *conn = dat;
-+
-+	*val = conn->plugged;
-+
-+	return 0;
-+}
-+
-+static int plugged_write(void *dat, u64 val)
-+{
-+	struct sunh_conn *conn = dat;
-+
-+	if (val > 1)
-+		return -EINVAL;
-+
-+	return sunh_conn_handle_event(conn, val);
-+}
-+
-+DEFINE_DEBUGFS_ATTRIBUTE(plugged_fops, plugged_read, plugged_write, "%lld\n");
-+
-+static void sunh_conn_nvmem_notifier_work(struct work_struct *work)
-+{
-+	struct sunh_conn *conn = container_of(work, struct sunh_conn, nvmem_notifier_work);
-+
-+	sunh_conn_load_overlay_1(conn);
-+}
-+
-+static int sunh_conn_nvmem_notifier(struct notifier_block *nb, unsigned long action, void *arg)
-+{
-+	struct sunh_conn *conn = container_of(nb, struct sunh_conn, nvmem_nb);
-+
-+	if (action == NVMEM_CELL_ADD)
-+		queue_work(system_power_efficient_wq, &conn->nvmem_notifier_work);
-+
-+	return NOTIFY_OK;
-+}
-+
-+static int sunh_conn_register_drm_bridge(struct sunh_conn *conn)
-+{
-+	struct device *dev = conn->dev;
-+	struct device_node *dsi_np;
-+
-+	dsi_np = of_get_child_by_name(dev->of_node, "dsi");
-+	if (!dsi_np)
-+		return dev_err_probe(dev, -ENOENT, "dsi node not found");
-+
-+	const struct platform_device_info hpb_info = {
-+		.parent = dev,
-+		.fwnode = of_fwnode_handle(dsi_np),
-+		.of_node_reused = true,
-+		.name = "hotplug-dsi-bridge",
-+		.id = PLATFORM_DEVID_NONE,
-+	};
-+
-+	conn->hpb_pdev = platform_device_register_full(&hpb_info);
-+	of_node_put(dsi_np); // platform core gets/puts the device node
-+	if (IS_ERR(conn->hpb_pdev))
-+		return dev_err_probe(dev, PTR_ERR(conn->hpb_pdev),
-+				     "Error registering DRM bridge\n");
-+
-+	return 0;
-+}
-+
-+static void sunh_conn_unregister_drm_bridge(struct sunh_conn *conn)
-+{
-+	platform_device_unregister(conn->hpb_pdev);
-+}
-+
-+static int sunh_conn_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct sunh_conn *conn;
-+	int conn_status;
-+	int err;
-+
-+	/* Cannot load overlay from filesystem before rootfs is mounted */
-+	if (system_state < SYSTEM_RUNNING)
-+		return -EPROBE_DEFER;
-+
-+	conn = devm_kzalloc(dev, sizeof(*conn), GFP_KERNEL);
-+	if (!conn)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, conn);
-+	conn->dev = dev;
-+
-+	mutex_init(&conn->ovl_mutex);
-+	INIT_WORK(&conn->nvmem_notifier_work, sunh_conn_nvmem_notifier_work);
-+
-+	conn->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(conn->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(conn->reset_gpio),
-+				     "Error getting reset GPIO\n");
-+
-+	conn->plugged_gpio = devm_gpiod_get_optional(dev, "plugged", GPIOD_IN);
-+	if (IS_ERR(conn->plugged_gpio))
-+		return dev_err_probe(dev, PTR_ERR(conn->plugged_gpio),
-+				     "Error getting plugged GPIO\n");
-+
-+	err = sunh_conn_register_drm_bridge(conn);
-+	if (err)
-+		return err;
-+
-+	conn->nvmem_nb.notifier_call = sunh_conn_nvmem_notifier;
-+	err = nvmem_register_notifier(&conn->nvmem_nb);
-+	if (err) {
-+		dev_err_probe(dev, err, "Error registering NVMEM notifier\n");
-+		goto err_unregister_drm_bridge;
-+	}
-+
-+	if (conn->plugged_gpio) {
-+		err = devm_request_threaded_irq(dev, gpiod_to_irq(conn->plugged_gpio),
-+						NULL, sunh_conn_gpio_irq,
-+						IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING |
-+						IRQF_ONESHOT,
-+						dev_name(dev), conn);
-+		if (err) {
-+			dev_err_probe(dev, err, "Error getting plugged GPIO IRQ\n");
-+			goto err_nvmem_unregister_notifier;
-+		}
-+	}
-+
-+	conn_status = sunh_conn_get_connector_status(conn);
-+	if (conn_status < 0) {
-+		err = conn_status;
-+		goto err_nvmem_unregister_notifier;
-+	}
-+
-+	/* Ensure initial state is known and overlay loaded if plugged */
-+	sunh_conn_handle_event(conn, conn_status);
-+
-+	conn->debugfs_root = debugfs_create_dir(dev_name(dev), NULL);
-+	debugfs_create_file("plugged", 0644, conn->debugfs_root, conn, &plugged_fops);
-+
-+	return 0;
-+
-+err_nvmem_unregister_notifier:
-+	nvmem_unregister_notifier(&conn->nvmem_nb);
-+	cancel_work_sync(&conn->nvmem_notifier_work);
-+err_unregister_drm_bridge:
-+	sunh_conn_unregister_drm_bridge(conn);
-+	return err;
-+}
-+
-+static void sunh_conn_remove(struct platform_device *pdev)
-+{
-+	struct sunh_conn *conn = platform_get_drvdata(pdev);
-+
-+	debugfs_remove(conn->debugfs_root);
-+	sunh_conn_detach(conn);
-+
-+	nvmem_unregister_notifier(&conn->nvmem_nb);
-+	cancel_work_sync(&conn->nvmem_notifier_work);
-+
-+	sunh_conn_unregister_drm_bridge(conn);
-+}
-+
-+static const struct of_device_id sunh_conn_dt_ids[] = {
-+	{ .compatible = "ge,sunh-addon-connector" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, sunh_conn_dt_ids);
-+
-+static struct platform_driver sunh_conn_driver = {
-+	.driver = {
-+		.name = "sunh-addon-connector",
-+		.of_match_table = sunh_conn_dt_ids,
-+	},
-+	.probe = sunh_conn_probe,
-+	.remove_new = sunh_conn_remove,
-+};
-+module_platform_driver(sunh_conn_driver);
-+
-+MODULE_AUTHOR("Luca Ceresoli <luca.ceresoli@bootlin.com>");
-+MODULE_AUTHOR("Herve Codina <herve.codina@bootlin.com>");
-+MODULE_DESCRIPTION("GE SUNH hotplug add-on connector");
-+MODULE_LICENSE("GPL");
+Sorry about that, we will fix this.
 
--- 
-2.34.1
-
+Thanks,
+Nayeem
 
