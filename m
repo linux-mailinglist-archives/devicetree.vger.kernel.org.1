@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-103398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89C9F97AB3E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 08:04:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C06AC97AB44
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 08:05:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 283D61F226E4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 06:04:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 420C21F226EB
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 06:05:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E24D5482EF;
-	Tue, 17 Sep 2024 06:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51DD482D98;
+	Tue, 17 Sep 2024 06:05:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dovvvv7N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k0rPUmZw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B61FC4174A;
-	Tue, 17 Sep 2024 06:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22C6F482EF;
+	Tue, 17 Sep 2024 06:05:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726553053; cv=none; b=Z7KxLUfvZOR4K0aNeBtTefxKbI+1R7WA1ijoS3UEecdArYmF8UEMSsx0Fub/rBpYaoMyMW/NO3dOXxA71g6VvyYbqfnlLFWxUA4G5Vt9UtxuSrs+eBUNRJjM3K9QLEIRqAZxfsH+0SevSk/EC7c9a0CsuAE4VcR7T6pUnSKye+s=
+	t=1726553141; cv=none; b=eD69GMvdcerDoDkkcg7fC9UmvVMHrtTU0JP4WUonQdLmg184nQHn+0P9qUvkGNhgybbmmuZSBJ1A2ai7ujImrKxVLW6D0Zo4dZDT6hYnNRw2IEqCmxrKoqsHQaToiVQN+Juw2YJ2o/HwkJrYPaLoVi+mrndA+g24yXzKHh6o4tw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726553053; c=relaxed/simple;
-	bh=vlUhT/e6l8JvkPqSUOpKwwLGx50wAgbnGaKM0ehUu5k=;
+	s=arc-20240116; t=1726553141; c=relaxed/simple;
+	bh=1qmXAr3iyDYVj6kyFQABNj1o9wNT7ZhstxLGmwB5twA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jzGkwSsZ7T1doHBHMxyTefaYYlMBnMKb7GETBTJWEQKK7LNhqSynKgyPowmkZNvgcyJaqmYv694oI8iq/1mnxevZooffqE34TqYuLS1Di+1zfpeD2FPIyenxN/Vvc0UzCs1hEGzFOf7dpWKbe/O4/TF3thh9oXHzzkwiAfJGOHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dovvvv7N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E083C4CEC6;
-	Tue, 17 Sep 2024 06:04:03 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ngOyd9NWnPET8qDhhLayPxxtre7/oH9JJ8c6quvym5PvYMAzXGUOBIVt4VDrT3orA9LYgwIeo5dNRltvcsF3sCGEbPQhP+5dXIVS7v+kHw5/mGCzYRmxg/y8eXAApcIUDEON9+a8Oh/QR0Y5lrMYCdhM6AaDPDhhSC07BM8nEHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k0rPUmZw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E120C4CEC6;
+	Tue, 17 Sep 2024 06:05:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726553053;
-	bh=vlUhT/e6l8JvkPqSUOpKwwLGx50wAgbnGaKM0ehUu5k=;
+	s=k20201202; t=1726553140;
+	bh=1qmXAr3iyDYVj6kyFQABNj1o9wNT7ZhstxLGmwB5twA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Dovvvv7Na6uQGrDLIiFntJULd3yG5S2H4EbnWItgRifd/I6aoIvyZN3QG7wEALXkL
-	 kS/I1Cru1Bx3Bs9zrZNNe43pT5APgCtblJj47pvq70tuf5zgsgYj6tpPbTc63KUVZb
-	 78qzhuKCqEFpQXgOHLxEPKa0wIw+EXDEOTq10cBypNF8lor4bQUcZRKBEJJmz/A63Y
-	 UiCZO3hRWKuLQLuVzLuKt3DmEq+Yfc1wemTln8gY3z53cOCcuNgKRYTPMDkxHXzvqp
-	 Ux9AJ5QSfpeOssRdx4SgvvVJsMjbF3dsawKjbGpSnUEAxOUhzqH4GBq4s8tVoiPz9b
-	 +naIEaJ37ERsA==
-Message-ID: <e9ee952a-7c88-4c4c-b12f-fc4a33b3a517@kernel.org>
-Date: Tue, 17 Sep 2024 08:04:01 +0200
+	b=k0rPUmZwW+JGVxPSWWkHzLQylZeu+nO7yVG7GRTdVpgqpL5r1S0CJGHh6keFc/uAg
+	 q0bEDOF0AsRshUDm41wK6hsdBhQC8CIhQU3QNj5rz2XgELBQmwmYdf9W//QFQpArLd
+	 cbMR2r9xbZ8OumfM+KO4k9RA+8aifJeRnpKrOa+CgT/soXaSPrCptyGoICYEDmPgiZ
+	 vVWbGEkKEGC3rFNDCyw6Lav3AEmg2UDbkcZQukakXRrYUD4ZiPRx17dmY47N03Yslk
+	 Hip3jzq3xrv+3deeHgaSEfGRDLom+Po4S7YHQXJN56o+FQnka5+IDlLX6VwGIWAzCa
+	 cTtAD5JX5yhmQ==
+Message-ID: <9b86de44-c80c-42d9-a0eb-d39b077ce8f8@kernel.org>
+Date: Tue, 17 Sep 2024 08:05:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,29 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: phy: Add eDP PHY compatible for
- sa8775p
-To: Konrad Dybcio <konradybcio@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>, vkoul@kernel.org,
- kishon@kernel.org, andersson@kernel.org, simona@ffwll.ch,
- abel.vesa@linaro.org, robdclark@gmail.com, quic_abhinavk@quicinc.com,
- sean@poorly.run, marijn.suijten@somainline.org, airlied@gmail.com,
- daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, quic_khsieh@quicinc.com, konrad.dybcio@linaro.org,
- quic_parellan@quicinc.com, quic_bjorande@quicinc.com,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
- quic_riteshk@quicinc.com, quic_vproddut@quicinc.com
-References: <20240913103755.7290-1-quic_mukhopad@quicinc.com>
- <20240913103755.7290-2-quic_mukhopad@quicinc.com>
- <2hv2hcpbanduw4wg2wbza4jkze4sgilrtyc7zack23uygwsjol@ckskl2rkd5xp>
- <t4ytnii3sdiqsni74d7qsi2c6uv2klwmzmgznnirt2z55to4hj@lyaoh5fzcyti>
- <f736f02e-f19b-4be2-86ad-73d6ae7c6dc2@kernel.org>
-Content-Language: en-US
+Subject: Re: [PATCH] arm64: dts: imx8: Fix lvds0 device tree
+To: Diogo Silva <diogompaissilva@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, aisheng.dong@nxp.com, Frank.Li@nxp.com,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240916200255.2566209-1-diogo.pais@ttcontrol.com>
+ <eb3ec7f1-388c-4613-b995-69b8ad6ef2c0@kernel.org>
+ <CAJpoHp4Dija5jDDMZnqX_g5QpQWfYPjoHK-3orJsyxCQYv4N0Q@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -116,28 +105,28 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <f736f02e-f19b-4be2-86ad-73d6ae7c6dc2@kernel.org>
+In-Reply-To: <CAJpoHp4Dija5jDDMZnqX_g5QpQWfYPjoHK-3orJsyxCQYv4N0Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/09/2024 01:26, Konrad Dybcio wrote:
-> On 16.09.2024 10:33 PM, Dmitry Baryshkov wrote:
->> On Mon, Sep 16, 2024 at 05:23:55PM GMT, Krzysztof Kozlowski wrote:
->>> On Fri, Sep 13, 2024 at 04:07:51PM +0530, Soutrik Mukhopadhyay wrote:
->>>> Add compatible string for the supported eDP PHY on sa8775p platform.
->>>>
->>>> Signed-off-by: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
->>>> ---
->>>> v2: No change
->>>>  
->>>
->>> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
->>
->> So, is it reviewed or acked?
+On 16/09/2024 22:47, Diogo Silva wrote:
+> Hey,
 > 
-> After a thorough review, it has been acked
+> Sorry for the broken tag, will fix on a resend.
+> 
+> As for the naming, if there is any reason for them to be named qm_* it's
+> totally fine, I'll revert it and only touch the clock names. I changed them
 
-Way too many emails in inbox after short trip... This should be only acked.
+It's just unnecessary.
+
+> because comparing with lvds1, those ones do not contain the qm_ prefix and
+> I don't see how this dtsi relates specifically to the imx8qm, since it is a
+> imx8-ss... and not imx8qm-ss...
+> I didn't quite get the question about the nodes. Could you elaborate? Thanks
+> 
+
+Usually they have alphabetical order and your change does not look like
+keeping it.
 
 Best regards,
 Krzysztof
