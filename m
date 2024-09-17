@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-103555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF49297B50B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 23:14:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 488E797B51C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 23:19:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 763791F21AD5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 21:14:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2F2A1F222A1
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 21:19:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1F321925B9;
-	Tue, 17 Sep 2024 21:13:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE6801862B9;
+	Tue, 17 Sep 2024 21:19:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TyE8X+Gq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VfPVKvzp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B19482AEEE;
-	Tue, 17 Sep 2024 21:13:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD4D374EA;
+	Tue, 17 Sep 2024 21:19:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726607635; cv=none; b=ZE8zLdcN3jf9ik6SyRz5mw9tK23XA/2I+T1GMObfvUcj2A5dtsOpEagSKLGXtVOs8XShYzRJi2R81y9yFrsYeNlGrcXUltE9fvOnwovyJO6q/KxTV2O8l3D4Ee4R8/SEUsi6wizaeQ6eQqUSoSZLVz9jX/uoDNSycj3zCOJ7x/Y=
+	t=1726607991; cv=none; b=R6oWD6wG1b+vWmHSaj6G4ICX/W4eaQOQao/ApMIUeJ7EOMhyypica+ok6yw481HwHa401uYE6SMTCrzowWOX9NgZPaXFc0B61NBX4hB7KiyPNo1iKVhaX5Yk08LrPnXRnRYiqkG6mvRPrjZhnTLmP37LUwcWgMVNTEO6Q4NKtyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726607635; c=relaxed/simple;
-	bh=h6tfNn4BixxJYWQYKrDQLr7/eqjQkFy0kULBd/P+I4g=;
+	s=arc-20240116; t=1726607991; c=relaxed/simple;
+	bh=19cw6zZQnCL1Bd8cjqmQv07SG13S1pvml2RAS/6079Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UD2glWYTSx+z+ruNNbVVk7yHm+/XIHqbv+7WXR6GpZE+KC61BiXyTGYcqOrg1mlMRQ2q3laEUXs0vkbQMtUhV9wiEusmzIwURJN5wCl752r5Bxm//6X7d8sOE6WkhaLtrHjT3BnAURG8tP2EzChNWIBNlA+UnqzPhrkN73IzxrE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TyE8X+Gq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70DC3C4CEC5;
-	Tue, 17 Sep 2024 21:13:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=F8WuID/bpfg695jtu3LKxpCVLdO2uw+kEcXB6mvly3x3EP/r1qw/H5wMbG1y85oV8Usevc6HnHgcI/FOZHc+5nn8kt1AqbDega/TRD4tAZbV9iv1/vVzIq1dlIM766s3j4spBPlVhYv6BDO4f4+9I9dVH7pxu4ffuS6q+u+ognk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VfPVKvzp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCD86C4CEC5;
+	Tue, 17 Sep 2024 21:19:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726607635;
-	bh=h6tfNn4BixxJYWQYKrDQLr7/eqjQkFy0kULBd/P+I4g=;
+	s=k20201202; t=1726607991;
+	bh=19cw6zZQnCL1Bd8cjqmQv07SG13S1pvml2RAS/6079Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TyE8X+GqWp7Z/p5furrj0+eAxM/KsS6HaBJHLmVLo8Koq88/0VSzkyTGN5IKW1HZG
-	 OPwMjuyM78k+lDKtOBlMtoDD5NvXGC/HfGb0ZP4s+t0l70B3tkUCXZeU0Q/u/X0M/Q
-	 a54APR/wJoX5/8nmIxkF6XPa3vuriJP7Jy7pCGTgpleDJnyjg/vJppLeEKS8rrwkm8
-	 PUV0AxR9m5qcOUzETL8CZ409Ff01O8bxO3wotbiUby33e7RDVvXN89v5cQqtYX4P/C
-	 gPYxufC+CdP2VL3vdg9U2I7ilIp5Y6DgI5t6CP5vLyuEb7fjJ4SSh3pNKahZ/CrqYg
-	 DQM4Xhac7Mb5A==
-Date: Tue, 17 Sep 2024 22:13:58 +0100
+	b=VfPVKvzpVxZaOjs6873tkODB8DNV2a1E6aZBNy8THW7mfTr+ocmetwfaUhEU9ndWT
+	 1IZ2m7bbwCfpYEGRG3PlRDr8JNeHplvjdl5iVStvWa942CGaUT5Cgvac4GqLYQO+H9
+	 oXUrOea+4ZapzIVMAY1JgmjCtrqK3Xnn5LuUnxmiMUhBMTjSXdn+MXrcxZQT7sR1SU
+	 iKUaijv0/ds5I9fLSpADxwbxBoUOjMM6sA8e/dmLfn2VlrAHUG7SFYiMJTI4UjY84g
+	 F/Bmj8756t2UepygavD4gOCTygo3JcwZndNE1WNgCfCTxKhICUJ4oy/6bUVOrrDVOM
+	 CHaM7lB4JOsFA==
+Date: Tue, 17 Sep 2024 22:19:54 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Yao Zi <ziyao@disroot.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, Conor Dooley <conor+dt@kernel.org>,
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: Possible misleading information in rockchip,rk3588-cru.yaml
-Message-ID: <20240917-flypaper-december-3719ea838b3c@squawk>
-References: <ZuIJgiN2xp6oPrHD@pineapple>
- <20240916-neuron-surfer-32db6440e1ad@spud>
- <ZuhtMHgx8XlZaayp@pineapple>
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] MAINTAINERS: add myself for Google Tensor SoC
+Message-ID: <20240917-pentagon-veteran-952cdac50e6c@squawk>
+References: <20240916-max20339-dts-v1-0-2f7ed7c24e83@linaro.org>
+ <20240916-max20339-dts-v1-3-2f7ed7c24e83@linaro.org>
+ <CADrjBPoOZu_79OaXaq=5KzUT=eEhRdESwK7Np74Nsjx7cTRm8g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,66 +66,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="RIDGw94K0j/yawb4"
+	protocol="application/pgp-signature"; boundary="ClZoFYlarA2I48nY"
 Content-Disposition: inline
-In-Reply-To: <ZuhtMHgx8XlZaayp@pineapple>
+In-Reply-To: <CADrjBPoOZu_79OaXaq=5KzUT=eEhRdESwK7Np74Nsjx7cTRm8g@mail.gmail.com>
 
 
---RIDGw94K0j/yawb4
-Content-Type: text/plain; charset=us-ascii
+--ClZoFYlarA2I48nY
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 16, 2024 at 05:38:56PM +0000, Yao Zi wrote:
-> On Mon, Sep 16, 2024 at 05:33:49PM +0100, Conor Dooley wrote:
-> > On Wed, Sep 11, 2024 at 09:20:02PM +0000, Yao Zi wrote:
-> > > Hi,
-> > >=20
-> > > rockchip,rk3588-cru.yaml, dt-binding for RK3588 clock and reset modul=
-e,
-> > > contains description of customized property "rockchip,grf",
-> > >=20
-> > >   rockchip,grf:
-> > >     $ref: /schemas/types.yaml#/definitions/phandle
-> > >     description: >
-> > >       phandle to the syscon managing the "general register files". It=
- is
-> > >       used for GRF muxes, if missing any muxes present in the GRF will
-> > >       not be available.
-> > >=20
-> > > But after doing some searching, I found that clk-rk3588.c actually
-> > > defines no clock hardware with MUXGRF type. This is also true in in t=
-he
-> > > vendor code[1], it seems there is actually no GRF mux on RK3588
-> > > platform.
-> >=20
-> > Have you been able to check the datasheet/register map for this piece of
-> > hardware? Does it have a grf register region?
-> > Wouldn't be surprised if it didn't, and the cause of it being in the
-> > binding was nothing more than copy-paste.
+On Mon, Sep 16, 2024 at 08:42:03PM +0100, Peter Griffin wrote:
+> Hi Andr=E9,
 >=20
-> Have checked a public datasheet[1], RK3588 does have corresponding grf
-> region and there are only clock related bits in PHP_GRF_CLK_CON1[2].
+> On Mon, 16 Sept 2024 at 17:58, Andr=E9 Draszik <andre.draszik@linaro.org>=
+ wrote:
+> >
+> > Add myself as maintainer for the Google Tensor SoC alongside Peter.
+> >
+> > Signed-off-by: Andr=E9 Draszik <andre.draszik@linaro.org>
+> > ---
+> >  MAINTAINERS | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 2cdd7cacec86..b6edb21b4f2d 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -9669,6 +9669,7 @@ T:        git git://git.kernel.org/pub/scm/linux/=
+kernel/git/chrome-platform/linux.git
+> >  F:     drivers/firmware/google/
+> >
+> >  GOOGLE TENSOR SoC SUPPORT
+> > +M:     Andr=E9 Draszik <andre.draszik@linaro.org>
 >=20
-> But these gmac clocks bits are used in dwmac-rk GMAC driver[3]
-> internally, out of the common clock driver, rk3588-cru. So I don't think
-> the CRU needs access to the grf by design.
+> Please update this to: -
+>=20
+> +R:     Andr=E9 Draszik <andre.draszik@linaro.org>
+>=20
+> The definition of which is
+>=20
+> R: Designated *Reviewer*: FullName <address@domain>
+> These reviewers should be CCed on patches.
 
-That sounds like a reasonable justification for deleting it - but please
-check U-Boot etc to make sure that other projects are not using this in
-a different manner to the kernel. If they are not using it, then please
-send a patch :)
+I find this email really weird. If you discussed something off-list and
+Andre misunderstood that you wanted him as a reviewer not a maintainer,
+that's fine - but you need to explain why to the rest of us. If it were
+not for the fact you share an employer, I'd find this to be a kinda rude
+way of denying someone co-maintainer status.
 
---RIDGw94K0j/yawb4
+--ClZoFYlarA2I48nY
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZunxEgAKCRB4tDGHoIJi
-0tzwAPsEW69ocfhtVR+GMWt0pS+MPPaBskZvsdl4XuVumMe3NAEAvsgdPy+i81Ec
-ZX8q4UQyEvwTSKQHOQvpLTNM8UhH0gw=
-=GlRo
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZunydwAKCRB4tDGHoIJi
+0g8MAP9vzQIab4yoFF2S8dlflBDMtFEpaXoOJ9P68KtWhnokQwEA3uKe70t2le+L
+HDDr4hG7THiFy8nJNo1GVR1mq0jaCgc=
+=JH5Y
 -----END PGP SIGNATURE-----
 
---RIDGw94K0j/yawb4--
+--ClZoFYlarA2I48nY--
 
