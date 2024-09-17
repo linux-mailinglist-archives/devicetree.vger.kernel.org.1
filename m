@@ -1,321 +1,191 @@
-Return-Path: <devicetree+bounces-103420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9D7697AC89
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 10:04:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0BA197ACB0
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 10:13:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 515C9B21023
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 08:04:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F34A81C209E9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 08:13:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0A0C14B948;
-	Tue, 17 Sep 2024 08:03:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1294C156C40;
+	Tue, 17 Sep 2024 08:13:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H48qdkqh"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YyQ8hnum"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 085EE12F399
-	for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 08:03:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A66C4C66;
+	Tue, 17 Sep 2024 08:13:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726560238; cv=none; b=NxsgYUscApcEs8MIqG8BXzBrE9zzUXBIx8vkMdNlOiV3bfu2906Qm9mibnnUqulwJP57oHQKsBGidfJfAaVilsEH2/3wbYBJIDiSAZEatnfP1bL/PQbrbEt0hGHl7Q8ldv4p5YZEcxK/H09Ct3qH/yl1CiJSzpbgIbu2SRZwHxk=
+	t=1726560820; cv=none; b=dKjjYBWQTLUciIJ41meJM/FGDZgB3IpHY6gUqnx6k0wKHnQajeFoEu4CZ/NC8YfbMKm9XYU3ZS6NbWEX/GzVNfl2jT/5TD/42WckZQTEhRgCMZyoW8NbkgPlc4cTpbDK1yUSPjFF3/QskXlPcF2ljyGzoG39pNqNBssRmEAsfPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726560238; c=relaxed/simple;
-	bh=UoFfqD2LpJMk5DZ5pGUZqOQwQDnWXKdu78Ih+LQXRWI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=kcY8Fs7LO8UXNT2btCT8ysRfc/C5nSoNSKX1NWtTmEfw5CBu5K2OdB72aF5xd8xGUt1MfgmZE7oHFxnamOQ7eXY4C8g2l2sqq8n9OeecRiDisfwogpdVWX4UyAtX0B0ndLqjQWzi0y6/SgiCiMeuN1RVNK10ZgE/Q895//Jb+VQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H48qdkqh; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-378c16a4d3eso4190805f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 01:03:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726560235; x=1727165035; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=+Jj52CojAbwaF478qQYZAkMXNuH+bJTMmbgiHCPAopE=;
-        b=H48qdkqhfOw7P1BrPP15qiZD8hP09j8OadZrF2Y2oYH0Qie68UjGFB49DDQXorn7Vx
-         Japd03M2hd5a+2kJ/kH1bmeeJlX9L1B2F+9VlIxc61pqpUzLPenTWt1rXCpFqyrb5K9e
-         ZSJBrVC8LzASP53SKJATTIK7fJa26G2zXgaN3Esn1qkmrly4omY3eHOaB3qc4c+fY6FP
-         HdtmTHlmjzSCTxYnluMQg5utSF/SNq1+g2Z6TFMfrSxS1eES5/4fmMjqFQbl4JElZzDD
-         cgHRSYkl5580Cq7pNO7TIstB59R2D14Fwz4bm2hUr8zSGIOjCzXU7dLB/KaflTuN4aU7
-         Wx1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726560235; x=1727165035;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+Jj52CojAbwaF478qQYZAkMXNuH+bJTMmbgiHCPAopE=;
-        b=ohbEZjkjXqIYIlvUUXev6mExcAjcYy/0itNC6nbf51lzf0CA8JTYV+a2OM0Hwpz7f4
-         w47DFEIuq6FlMhf12yOiQ63ElS5kiBJz72oXmrJftYEwDpnLO9dzUVemOuHyzJi5mZOL
-         ZAYifN7gbRT/p83EeOTETjMLls+FTOPyXZKp6U/1LGXOW7g+OJmlxvgYKX5cl1eNturu
-         6kVHzBYjLUEyLJiR/8HqWS+m9dbsOiarSgk7c1GJ4gTAfzaq8PYOr5jWWvb/Zg2bCOhs
-         Smx9wboWAHyq9kp0MF2f8PPd2dMVnwQN9GFOM5L1DjIOpD/T6KnAvvLFzA/xL2O7XND7
-         acVA==
-X-Forwarded-Encrypted: i=1; AJvYcCXAqIxXUYoHW+V3bCaQR92Ey1pz/qKeOVcy/gGFZpfr4hArocP9HqJTgcJQQKECHviCs97O7EWV84FZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVB2YPCAYvOk9ElO8yMy8B+kpbSG0pfu3xJPuq+YgautHsaa3v
-	spXe1fFpIYb9j+aGiS+e3x6gIPjT9nyZhuTzOWME3VKH+UK5RfvCSaJtp5fr/qk=
-X-Google-Smtp-Source: AGHT+IHkEDJrgqcI0g1xCLSvN5bAIBmHriRBiRQ9vxVJa5aGKjqQ3X8TkQv3aRXEqJKW8YEDlx1VsQ==
-X-Received: by 2002:a05:6000:b82:b0:377:4aa2:3af8 with SMTP id ffacd0b85a97d-378d61e251dmr12963702f8f.13.1726560235117;
-        Tue, 17 Sep 2024 01:03:55 -0700 (PDT)
-Received: from [10.1.1.109] ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a906111a7a3sm414297066b.96.2024.09.17.01.03.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Sep 2024 01:03:54 -0700 (PDT)
-Message-ID: <290668fb4f86a4d2caa779e517c736c93c3fc429.camel@linaro.org>
-Subject: Re: [PATCH 2/2] regulator: max20339: add Maxim MAX20339 regulator
- driver
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Liam Girdwood
- <lgirdwood@gmail.com>,  Mark Brown <broonie@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
- <conor+dt@kernel.org>, Michael Walle <mwalle@kernel.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus
-	 <tudor.ambarus@linaro.org>, Will McVicker <willmcvicker@google.com>, 
-	kernel-team@android.com, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Date: Tue, 17 Sep 2024 09:03:53 +0100
-In-Reply-To: <29f30aae-ffad-4a42-909e-b05f9cf360b5@kernel.org>
-References: <20240916-max20339-v1-0-b04ce8e8c471@linaro.org>
-	 <20240916-max20339-v1-2-b04ce8e8c471@linaro.org>
-	 <29f30aae-ffad-4a42-909e-b05f9cf360b5@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.1-4 
+	s=arc-20240116; t=1726560820; c=relaxed/simple;
+	bh=Jm5H51ypjDRfmud7zfN/qRg1l14hF/3tZRg+kYXohSU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GWDYRqez31Qh9RNGTb+clQSZ4wD5tSbpyljIL5XrokWyJryRhvfbFPVf1eKnRHQvRA2VIo3A/rmbzIHawSF2H7EdS2NOl56dWexwY7cCEhAhpErwdp6dR5aMEpsh+nSBayTI65RhZRP2Nv0EFQWQCaEWPZaxMx60MtS6/AOWSLI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YyQ8hnum; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48GFEtL6007234;
+	Tue, 17 Sep 2024 08:13:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6RdX0bFCBFita5q9pO6XTSQJpayvjOJ/luZyvNW3Cn0=; b=YyQ8hnumYeB79eof
+	espbv8XOu908CLozu+8rC7jxULWG1TzfYrKk1t65xpvxuCS1UU/tZGbGfgk3/6Ru
+	Q0QZu9KJ3fbHIAxStdQ92/9LKjMWoEFQlO4HR0m4NcmSzV8LAoTsk+yLsNXmdFDb
+	hRZTp5MJat/PTBlqTvwzC0dxJxseWEzt3Q0tmS9evQqwXkuwj2jXHw83raE4tcTd
+	v7kjws+vE0a7KDJLFXBsHGn7o+eKsCL8+v1E2pKckrs7hgNyT2D6VI1PzlSnlj4t
+	JsEqpy+j2NT7WL/XeHfPbGlQ1+RD026vBsteYGdVKl1MEwszKGJhe3Qp0B7e+J6W
+	kx11+w==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41n4jhp8e3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Sep 2024 08:13:07 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48H8D65w000864
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Sep 2024 08:13:06 GMT
+Received: from [10.204.67.70] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 17 Sep
+ 2024 01:12:57 -0700
+Message-ID: <b2d94fa5-6924-46f6-95cf-bde315ccbdbd@quicinc.com>
+Date: Tue, 17 Sep 2024 13:42:54 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] drm/msm/dp: Add DisplayPort controller for SA8775P
+Content-Language: en-US
+To: Bjorn Andersson <quic_bjorande@quicinc.com>
+CC: <vkoul@kernel.org>, <kishon@kernel.org>, <konradybcio@kernel.org>,
+        <andersson@kernel.org>, <simona@ffwll.ch>,
+        <dmitry.baryshkov@linaro.org>, <abel.vesa@linaro.org>,
+        <robdclark@gmail.com>, <quic_abhinavk@quicinc.com>, <sean@poorly.run>,
+        <marijn.suijten@somainline.org>, <airlied@gmail.com>,
+        <daniel@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <quic_khsieh@quicinc.com>,
+        <konrad.dybcio@linaro.org>, <quic_parellan@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <quic_riteshk@quicinc.com>, <quic_vproddut@quicinc.com>
+References: <20240911100813.338-1-quic_mukhopad@quicinc.com>
+ <20240911100813.338-6-quic_mukhopad@quicinc.com>
+ <ZuH3WqMwn7fl3nhh@hu-bjorande-lv.qualcomm.com>
+ <a44a6f08-1f4a-4e5c-a4e4-30ab65c467f7@quicinc.com>
+ <ZuStkRFvwJT7re6D@hu-bjorande-lv.qualcomm.com>
+From: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+In-Reply-To: <ZuStkRFvwJT7re6D@hu-bjorande-lv.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: C2cU45NdQrzcj1_yrumqfypF_LZ5lcmM
+X-Proofpoint-GUID: C2cU45NdQrzcj1_yrumqfypF_LZ5lcmM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ clxscore=1015 phishscore=0 impostorscore=0 bulkscore=0 adultscore=0
+ suspectscore=0 lowpriorityscore=0 malwarescore=0 spamscore=0 mlxscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409170061
 
-Hi Krzysztof,
 
-On Mon, 2024-09-16 at 22:06 +0200, Krzysztof Kozlowski wrote:
-> On 16/09/2024 18:48, Andr=C3=A9 Draszik wrote:
-> > The MAX20339 is an overvoltage protection (OVP) device which also
-> > integrates two load switches with resistor programmable current
-> > limiting and includes ESD protection for the USB Type-C signal pins.
-> >=20
-> > This driver exposes the main path and the two the load switches via the
->=20
-> ...
->=20
-> > +
-> > +
-> > +static irqreturn_t max20339_irq(int irqno, void *data)
-> > +{
-> > +	struct max20339_irq_data *max20339 =3D data;
-> > +	struct device *dev =3D max20339->dev;
-> > +	struct regmap *regmap =3D max20339->regmap;
-> > +	u8 status[6];
-> > +	int ret;
-> > +
-> > +	ret =3D regmap_bulk_read(regmap, MAX20339_STATUS1, status,
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ARRAY_SIZE(status));
-> > +	if (ret) {
-> > +		dev_err(dev, "Failed to read IRQ status: %d\n", ret);
-> > +		return IRQ_NONE;
-> > +	}
-> > +
-> > +	dev_dbg(dev,
-> > +		"INT1 2 3: %#.2x %#.2x %#.2x STATUS1 2 3: %#.2x %#.2x %#.2x\n",
-> > +		status[3], status[4], status[5], status[0], status[1],
-> > +		status[2]);
->=20
-> You should not have prints, even debugs, in interrupt handlers. This can
-> flood the dmesg.
->=20
-> > +
-> > +	if (!status[3] && !status[4] && !status[5])
-> > +		return IRQ_NONE;
-> > +
-> > +	/* overall status */
-> > +	if (status[3] & status[0] & MAX20339_THMFAULT) {
-> > +		dev_warn(dev, "Thermal fault\n");
-> > +		for (int i =3D 0; i < ARRAY_SIZE(max20339->rdevs); ++i)
-> > +			regulator_notifier_call_chain(max20339->rdevs[i],
-> > +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 REGULATOR_EVENT_OVER_TEMP,
-> > +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 NULL);
-> > +	}
-> > +
-> > +	/* INSW status */
-> > +	if ((status[3] & MAX20339_VINVALID)
-> > +	=C2=A0=C2=A0=C2=A0 && !(status[0] & MAX20339_VINVALID)) {
-> > +		dev_warn(dev, "Vin over- or undervoltage\n");
->=20
-> Same with all these. What happens if interrupt is triggered constantly?
+On 9/14/2024 2:54 AM, Bjorn Andersson wrote:
+> On Thu, Sep 12, 2024 at 03:34:05PM +0530, Soutrik Mukhopadhyay wrote:
+>> On 9/12/2024 1:32 AM, Bjorn Andersson wrote:
+>>> On Wed, Sep 11, 2024 at 03:38:13PM +0530, Soutrik Mukhopadhyay wrote:
+>>>> The Qualcomm SA8775P platform comes with a DisplayPort controller
+>>>> with a different base offset than the previous SoCs,
+>>>> add support for this in the DisplayPort driver.
+> Please check the line wrapping of this as well; the lines here should be
+> wrapped at 75 columns.
 
-You unplug the USB cable :-), but yes, I'll come up with something better.
 
-> [...]
-> > +}
-> > +
-> > +static int max20339_lsw_dt_parse(struct device_node *np,
-> > +				 const struct regulator_desc *desc,
-> > +				 struct regulator_config *cfg)
-> > +{
-> > +	struct max20339_regulator *data =3D cfg->driver_data;
-> > +
-> > +	/* we turn missing properties into a fatal issue during probe() */
->=20
-> Your binding does not look in sync with above.
+Yes, it is within 75 columns, we ran checkpatch.pl before posting the patch.
 
-Do you mean it doesn't enforce existence of this property? (It does and
-binding check appropriately complains if it's missing). Otherwise, can
-you please point me to the problem you're seeing?
 
-From the binding:
+>
+>>>> Signed-off-by: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+>>>> ---
+>>>>    drivers/gpu/drm/msm/dp/dp_display.c | 7 +++++++
+>>>>    1 file changed, 7 insertions(+)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
+>>>> index e1228fb093ee..e4954fd99eb0 100644
+>>>> --- a/drivers/gpu/drm/msm/dp/dp_display.c
+>>>> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
+>>>> @@ -118,6 +118,12 @@ struct msm_dp_desc {
+>>>>    	bool wide_bus_supported;
+>>>>    };
+>>>> +static const struct msm_dp_desc sa8775p_dp_descs[] = {
+>>>> +	{ .io_start = 0xaf54000, .id = MSM_DP_CONTROLLER_0, .wide_bus_supported = true },
+>>>> +	{ .io_start = 0xaf5c000, .id = MSM_DP_CONTROLLER_1, .wide_bus_supported = true },
+>>> Why is this list incomplete?
+>>>
+>>> Regards,
+>>> Bjorn
+>>
+>> Do you mean to add for mdss_1 as well?
+>>
+> I don't see a reason for not submitting them as well.
 
-+properties:
-+  [...]
-+  regulators:
-+    type: object
-+    [...]
-+    patternProperties:
-+      "^lsw[12]$":
-+        [...]
-+        properties:
-+          [...]
-+          shunt-resistor-micro-ohms:
-+            [...]
-+        required:
-+          - shunt-resistor-micro-ohms
-+
-+        unevaluatedProperties: false
-+
-+    required:
-+      - lsw1
-+      - lsw2
-+
-+    additionalProperties: false
-+
-+[...]
-+
-+required:
-+  [...]
-+  - regulators
 
-Anything wrong or missing in the above?
+Sure, we will add for mdss_1 as well.
 
-> > [...]
-> > +	},=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \
-> > +	.ovp_mask =3D _ovp_mask,=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 \
-> > +	.status_reg =3D _status_reg,=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \
-> > +}
-> > +
-> > +
->=20
-> Here and in few other places - just one blank line.
 
-OK.
+>
+>> We only added dp controllers for mdss_0 as we plan to validate and enable
+>> only these.
+>>
+> As far as I can tell there are 5 DPTX blocks on mdss_0.
+>
+>
+> It is perfectly fine that you just state in the commit message that
+> "Only MDSS0 DPTX0 and DPTX1 have been validated", but please add the
+> others as well in this commit.
+>
+> Regards,
+> Bjorn
 
-> > +static struct max20339_regulator max20339_regulators[MAX20339_N_REGULA=
-TORS] =3D {
->=20
-> This can be const and then use container_of instead of rdev_get_drvdata()=
-.
->=20
-> See:
-> https://lore.kernel.org/all/20240909-regulator-const-v1-17-8934704a5787@l=
-inaro.org/
 
-Thanks!
+We cross-checked the mdss architecture and found that there are only 2 
+dp controllers for each mdss.
 
-> [...]
-> > +
-> > +	irq_flags =3D IRQF_ONESHOT | IRQF_SHARED;
->=20
-> Why shared?
+We will add all 4 and mention in the commit message that "Only MDSS0 
+DPTX0 and DPTX1 have been validated".
 
-Just to be nice in case somebody puts it on a shared line. Not actually
-required in my case.
 
-> > +	irq_flags |=3D irqd_get_trigger_type(irq_get_irq_data(client->irq));
-> > +
-> > +	ret =3D devm_request_threaded_irq(&client->dev, client->irq,
->=20
-> Shared interrupts should not be devm. It leads to tricky cases during
-> removal. If you investigated the code and you are 100% sure there is no
-> issue, please write a short comment in the code confirming that. Or just
-> don't use devm.
-
-I wasn't aware of this, thanks. I'll drop the shared and somebody can
-revisit it in the future if required. BTW, a naive grep returned +400
-drivers that use shared together with devm.
-
-> > [...]
-> > +
-> > +	ret =3D PTR_ERR_OR_ZERO(devm_gpio_regmap_register(&client->dev,
-> > +			&(struct gpio_regmap_config) {
-> > +				.parent =3D &client->dev,
-> > +				.regmap =3D regmap,
-> > +				.fwnode =3D fwnode,
-> > +				.ngpio =3D ARRAY_SIZE(names),
-> > +				.names =3D names,
-> > +				.reg_dat_base =3D MAX20339_STATUS1,
-> > +				.reg_mask_xlate =3D max20339_gpio_regmap_xlate
-> > +			}));
->=20
-> That's not really readable. Please split PTR_ERR_OR_ZERO.
-
-OK.
-
-> > [...]
-> > +
-> > +	regmap =3D devm_regmap_init_i2c(client, &max20339_regmap_config);
-> > +	if (IS_ERR(regmap)) {
-> > +		dev_err_probe(&client->dev, PTR_ERR(regmap),
->=20
-> return dev_err_probe
-
-Oops, sure.
-
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "regmap init failed\n");
-> > +		return PTR_ERR(regmap);
-> > +	}
-
-> > [...]
-> > +
-> > +#ifdef CONFIG_OF
-> > +static const struct of_device_id max20339_of_id[] =3D {
-> > +	{ .compatible =3D "maxim,max20339", },
-> > +	{},
-> > +};
-> > +MODULE_DEVICE_TABLE(of, max20339_of_id);
-> > +#endif
-> > +
-> > +static struct i2c_driver max20339_i2c_driver =3D {
-> > +	.driver =3D {
-> > +		.name =3D "max20339",
-> > +		.probe_type =3D PROBE_PREFER_ASYNCHRONOUS,
-> > +		.of_match_table =3D of_match_ptr(max20339_of_id),
->=20
-> Drop of_match_ptr and earlier #ifdef. Not much benefits and limits usage
-> to OF-systems.
-
-OK.
-
-Thanks Krzysztof!
-Andre
-
->=20
-> Best regards,
-> Krzysztof
->=20
-
+>
+>>>> +	{}
+>>>> +};
+>>>> +
+>>>>    static const struct msm_dp_desc sc7180_dp_descs[] = {
+>>>>    	{ .io_start = 0x0ae90000, .id = MSM_DP_CONTROLLER_0, .wide_bus_supported = true },
+>>>>    	{}
+>>>> @@ -162,6 +168,7 @@ static const struct msm_dp_desc x1e80100_dp_descs[] = {
+>>>>    };
+>>>>    static const struct of_device_id dp_dt_match[] = {
+>>>> +	{ .compatible = "qcom,sa8775p-dp", .data = &sa8775p_dp_descs },
+>>>>    	{ .compatible = "qcom,sc7180-dp", .data = &sc7180_dp_descs },
+>>>>    	{ .compatible = "qcom,sc7280-dp", .data = &sc7280_dp_descs },
+>>>>    	{ .compatible = "qcom,sc7280-edp", .data = &sc7280_dp_descs },
+>>>> -- 
+>>>> 2.17.1
+>>>>
 
