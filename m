@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-103439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E11497AD70
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 11:01:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13D4B97AD79
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 11:03:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E801A28885E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 09:01:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93F3E1F220B3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 09:03:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F19D1158203;
-	Tue, 17 Sep 2024 09:00:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9CE7150990;
+	Tue, 17 Sep 2024 09:03:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B2Kf22Ac"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fDL01/k7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C99441581F4;
-	Tue, 17 Sep 2024 09:00:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91958136357;
+	Tue, 17 Sep 2024 09:03:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726563630; cv=none; b=igDyRqi5XQLm/L7kYbgwyjIwrt0epuBClI8yz+Gw+IHm951qsKigTCVmLyaoaopiCtl6GbnO/6AYHmmVZ40L3jCO7HwLmPCc7Cxb5wnL24YCYM0ET1gvkqoANTkGvJZPyNRp3lS6szxHaREEzdlBJO+9oFXHYJBXD/RKLSC+ErI=
+	t=1726563801; cv=none; b=kvVwFcK6A0uh0L60NMVPPYtDSn2dO1/BTFMQ3QTZglVhX2Z0+AJs6qJtWxYtZHTnCMO8jHP7/ZEtNJKPK8R07Fmr8fAzqYTNks8/Mf0xYZydL+ORO/daBZ1ae9ZMaIWgzoG6z7cfZX7qcVMGU+Ikl1fvobSaVE+dzZ9tllMGXlI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726563630; c=relaxed/simple;
-	bh=bylRqLvpte95KDB+rIKaU72XufqIzcho94KPX37KWSY=;
+	s=arc-20240116; t=1726563801; c=relaxed/simple;
+	bh=OsFdptcZeF3SkvKh3KbXZC51VYL7O10KmMpKSiV9EgE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SotXY4HlyCux2Pu94rnWud8liT1GYNHot7O9EGg8wO8DA3fwDcdtlF89t8ykJ33RrrGHHUVOx6q9uzSgLiUvbP5tVYCjTNAYLEkaitWAptbZJ06NnttSxfqIRkPinIiO4bKkfsx320KMtT+A3ovCKnTuKBX+8vzBqguZ+7OjtfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B2Kf22Ac; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 811ACC4CECE;
-	Tue, 17 Sep 2024 09:00:26 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=dPM2p++KE7NsuxSazXrtuO2rmjQ+MVhb2uzIIk8CuvXMMaqjdLNtWttFp8i9gn87xJ/OOwfDkMrXRBoEwqGq4NaIC1Ah7F42czrCJ4fxUzqC6S2OJb5xuFWTvhYKyVZ+bU8RWH0RA8v7zekuFzJgFU2z69OY0YWlE9TjMFOhTYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fDL01/k7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FB4DC4CEC6;
+	Tue, 17 Sep 2024 09:03:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726563630;
-	bh=bylRqLvpte95KDB+rIKaU72XufqIzcho94KPX37KWSY=;
+	s=k20201202; t=1726563801;
+	bh=OsFdptcZeF3SkvKh3KbXZC51VYL7O10KmMpKSiV9EgE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=B2Kf22AcWi8n7QZe0kUovmYLR0PjYqz12U38N8Ee9dM09PUEhIuY/jNC2hR86CG9p
-	 yO+n5q3EfN4JFATcPJLhDTu+vH1OUNkQ9Yc+PeHhtnkT86Dg4iY5uLmWpj/nLZNjs2
-	 5ONUfAFjMvv8WiHKatsLUxzOVa4MWal19NZOK+pFPrhYsuyHX2Ma0S6B62v7XP+qpi
-	 NZy3qP9yrJdH/9SCsWlRHsi3vFcz4fWuSRump2FAop/WeHOhBlFEyvPRddPIf3yAvz
-	 Eghm8lYHaedqMZQJxKuyz2Rro1wAqyWPR4WFfWVhT/k1IZEv5nSxksdUIFM3Zk538V
-	 9rsBCf2YxVDpw==
-Message-ID: <cd4ff3c1-ece5-4508-93f0-2806cc6e76ba@kernel.org>
-Date: Tue, 17 Sep 2024 11:00:23 +0200
+	b=fDL01/k735mRABQsLa5JjfYg42kh4IIOz9YBzhl0cIPUqscQXIXtuWWNgEI3auO+A
+	 v4/BR1LGT43a/giVYohTuuDA24hjNqKuNIoOtOJpPFCgM/igLscryEZ5MPWnPpdW/T
+	 SGLeLjCxfP0NrPftCE2cIptotuAwsNVWRNs/6b0x/U1p8gcM/Cnp0XMe1g22UIJWyy
+	 2ie4zsWzLObN25DtOQH5c8WzwKMUWWZj5l9qzN+gK9F2v9d8DbC4s0Zg71R/ZKAh17
+	 vSWhVdSYDeSpvXso45hIZnZD+8rTpliz9lbiCNFTYI+IYOPMJcU+GpeGaZk4mh3LJd
+	 ltBrlnuLbwSlQ==
+Message-ID: <26fed82b-7c60-4fda-8951-b22654728743@kernel.org>
+Date: Tue, 17 Sep 2024 11:03:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: probe-control: add probe control driver
-To: Nayeemahmed Badebade <nayeemahmed.badebade@sony.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org,
- rafael@kernel.org
-Cc: yoshihiro.toyama@sony.com, linux-kernel@vger.kernel.org,
+Subject: Re: [PATCH 0/2] Add framework for user controlled driver probes
+To: Nayeemahmed Badebade <nayeemahmed.badebade@sony.com>,
+ Greg KH <gregkh@linuxfoundation.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ rafael@kernel.org, yoshihiro.toyama@sony.com, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org
 References: <20240911142319.3435746-1-nayeemahmed.badebade@sony.com>
- <20240911142319.3435746-2-nayeemahmed.badebade@sony.com>
+ <2024091327-repacking-avatar-ec23@gregkh>
+ <ZulGr8Ul7y0T0NkQ@NAB-HP-ProDesk-600sony.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,100 +104,110 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240911142319.3435746-2-nayeemahmed.badebade@sony.com>
+In-Reply-To: <ZulGr8Ul7y0T0NkQ@NAB-HP-ProDesk-600sony.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/09/2024 16:23, Nayeemahmed Badebade wrote:
-> Device tree binding document for the probe-control driver
-
-Describe the hardware, not driver...
-
+On 17/09/2024 11:06, Nayeemahmed Badebade wrote:
+> Hi Greg,
 > 
-> Signed-off-by: Toyama Yoshihiro <yoshihiro.toyama@sony.com>
-> Signed-off-by: Nayeemahmed Badebade <nayeemahmed.badebade@sony.com>
-> ---
->  .../probe-control/linux,probe-controller.yaml | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/probe-control/linux,probe-controller.yaml
+> Thank you for taking the time to check our patch and provide
+> valuable feedback. We appreciate your comments/suggestions.
 > 
-> diff --git a/Documentation/devicetree/bindings/probe-control/linux,probe-controller.yaml b/Documentation/devicetree/bindings/probe-control/linux,probe-controller.yaml
-> new file mode 100644
-> index 000000000000..1945a7a5ab3c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/probe-control/linux,probe-controller.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (c) 2024 Sony Group Corporation
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/linux,probe-controller.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Probe control device
-> +
-> +maintainers:
-> +  - Nayeemahmed Badebade <nayeemahmed.badebade@sony.com>
-> +  - Toyama Yoshihiro <yoshihiro.toyama@sony.com>
-> +
-> +description: |
-> +  This binding is for controlling the probes of a set of devices in the system.
-> +  Probe control device is a dummy device that can be used to control the probe
-> +  of a group of devices. To have finer control, the devices can further be
-> +  divided into multiple groups and for each group a probe control device can
-> +  be assigned. This way, individual groups can be managed independently.
-> +  For example, one group can be for pcie based devices and other can be
-> +  scsi or usb devices.
-> +  Probe control device is provider node and the devices whose probes need to be
-> +  controlled, are consumer nodes. To establish control over consumer device
-> +  probes, each consumer device node need to refer the probe control provider
-> +  node by the phandle.
+> Please find our reply to your comments.
+> 
+> On Fri, Sep 13, 2024 at 06:36:38AM +0200, Greg KH wrote:
+>> On Wed, Sep 11, 2024 at 07:53:17PM +0530, Nayeemahmed Badebade wrote:
+>>> Hi,
+>>
+>> If Rob hadn't responded, I wouldn't have noticed these as they ended up
+>> in spam for some reason.  You might want to check your email settings...
+>>
+> 
+> I have ensured standard settings which we have been using are used this
+> time, let me know if this email is received properly.
+> 
+>>> This patch series introduces a new framework in the form of a driver
+>>> probe-control, aimed at addressing the need for deferring the probes
+>>> from built-in drivers in kernels where modules are not used.
+>>
+>> Wait, why?
+>>
+> 
+> We have a scenario where a driver cannot be built as a module and ends up
+> as a built-in driver. We don't want to probe this driver during boot as its
 
-So all this looks like not suitable for DT at all.
+Fix this instead.
 
-> +
-> +properties:
-> +  compatible:
-> +    const: linux,probe-control
-> +
-> +  probe-control-supply:
-> +    description:
-> +      Phandle to the probe control provider node.
+> not required at the time of booting.
+> Example: drivers/pci/controller/dwc/pci-imx6.c
+> So the intention is to only postpone some driver probes similar to:
+> https://elinux.org/Deferred_Initcalls
+> But instead of delaying initcall execution(which requires initmem to be kept
+> and not freed during boot) we are trying to delay driver probes as this is
+> much simpler.
+> The proposed driver is a generic solution for managing such driver
+> probes.
+> 
+>>> In such scenario, delaying the initialization of certain devices such
+>>> as pcie based devices not needed during boot and giving user the control
+>>> on probing these devices post boot, can help reduce overall boot time.
+>>> This is achieved without modifying the driver code, simply by configuring
+>>> the platform device tree.
+>>
+>> PCI devices should not be on the platform device tree.
+>>
+> 
+> You are right, we are referring to the pci host controller that will be
+> listed in device tree and skipping its probe during boot as an example
+> here.
+> 
+>> And what's wrong with async probing?  That was written for this very
+>> issue.
+>>
+> 
+> We have explored async probe as an option, but we noticed below:
+> 1) Probe initiated via async
+> 2) Boot continues with other setup.
+> 3) Boot reaches stage where ip configuration is to be done via
+>    ip_auto_config() and 1) is still in progress, then boot waits for all
+>    async calls to be completed before proceeding with network setup.
+>    ip_auto_config()
+>     -> wait_for_devices()
+>       -> wait_for_device_probe()
+>          -> async_synchronize_full()
+> 4) Similar thing happens with rootfs mount step in prepare_namespace()
+>    initcall
+> 
+> So to avoid getting blocked on these probes which are not required
+> during boot, we proposed this driver for managing such built-in driver
+> probes execution.
+> 
+>>> This patch series includes 2 patches:
+>>>
+>>> 1) dt-binding document for the probe-control driver
+>>>    This document explains how device tree of a platform can be configured
+>>>    to use probe-control devices for deferring the probes of certain
+>>>    devices.
+>>
+>> But what does that have to do with PCI devices?
+> 
+> As explained before, the driver is generic one and is for managing probes of
+> drivers that are built-in.
+> 
+> To delay such probes, in DT we add dummy devices managed by the proposed
+> driver. These dummy devices(probe control devices) will be setup as
+> supplier to the device nodes that we want to probe later.
 
-I don't understand this. Regulator supply is not a provider node.
+You embedded OS policy into DT. That's not really the way to go. Look
+how boot phase does it. First of all - it already solves your problem.
+Second - it's property of each device, not some fake provider.
 
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    // The node below defines a probe control device/provider node
-> +    prb_ctrl_dev_0: prb_ctrl_dev_0 {
+> dt-binding doc patch explains this process with pci controller node as
+> an example that needs to be probed later after the boot.
+> 
+>>
 
-No underscores in node names.
-
-> +        compatible = "linux,probe-control";
-
-Where are the resources? It's empty?
-
-> +    };
-> +
-> +    // The node below is the consumer device node that refers to provider
-> +    // node by its phandle and a result will not be probed until provider
-> +    // node is probed.
-> +    pcie@1ffc000 {
-> +        reg = <0x01ffc000 0x04000>, <0x01f00000 0x80000>;
-> +        #address-cells = <3>;
-> +        #size-cells = <2>;
-> +        device_type = "pci";
-> +        ranges = <0x81000000 0 0          0x01f80000 0 0x00010000>,
-> +                 <0x82000000 0 0x01000000 0x01000000 0 0x00f00000>;
-> +
-> +        probe-control-supply = <&prb_ctrl_dev_0>;
-> +    };
 
 Best regards,
 Krzysztof
