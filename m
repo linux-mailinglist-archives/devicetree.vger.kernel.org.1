@@ -1,96 +1,48 @@
-Return-Path: <devicetree+bounces-103471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C06197AEF0
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 12:36:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE39C97AEFC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 12:37:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0CEA281430
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 10:36:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1D98B2A596
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 10:37:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAD1E168491;
-	Tue, 17 Sep 2024 10:36:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CAB5165F19;
+	Tue, 17 Sep 2024 10:37:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="n2AGEgRj";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="0HyloQUg";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="n2AGEgRj";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="0HyloQUg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YhOxRFkW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FD9B166F39;
-	Tue, 17 Sep 2024 10:36:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44D183AC36;
+	Tue, 17 Sep 2024 10:37:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726569389; cv=none; b=eKZgJtqgjF3VUSuaTRSP6Bq0c6hQPUoadg5X007axdE9wyYRfwtY74OTXF6JHZEMLgm3MLCLunOUeC6JFNceoaO7gOA5le0Cg1Z63UrVi+ZlfKdhCrFg2R+S0u2gOdJRXdO2eMGk5vLilcK4/9YooJyU7+GywF+F44QBbn847wI=
+	t=1726569456; cv=none; b=C8DCTXP5nXw2lp2cBRENgk4h8emCaKDVS3hGlxfPFTnG2mklt7+xtbUuQIIK6NUlYXU9FnUSaNKc+GurodRUGnOj7Zzbl5ecQOsqTzcco1fQGf6PnTZc12exQWVSjplZZryNY14AI+5LvrDfdYTKa8CgeloFcx0nA9NQ3tvFvpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726569389; c=relaxed/simple;
-	bh=EXjHP0ntIqBSDvqt/VUu+sQc/EeSv8evdSX1J2w9cxg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CeCpOHrPoRzEZfrc+daVlKdHsgTTvVMI0YmVTq61sE4iMjZKRHogwbFfohmtw648k65FSh+u2fmqE8A/GsjFf1hpiXEwEIiyLv5QSl6kK5YLtE1PaN2QgbEnQHSBtTjFu0BstDa7zxFkd7opQ8cSX2GL1/QnjPMiWi91kKDCGT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=n2AGEgRj; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=0HyloQUg; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=n2AGEgRj; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=0HyloQUg; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 577DA2000D;
-	Tue, 17 Sep 2024 10:36:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1726569386; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=EMMN4yUf7Xe7564xvTCUNORqPqK8TC5Mw2dgzq+7TBY=;
-	b=n2AGEgRjSSSpUeEhqEFKDbrsf+QBmNJmdgEU1IfCFPmp6F/o/VzePAillHSkv1rOxO+6Ye
-	BNDQLj5Avg4yewxo0l85hT0o05aFaHeAH00YvOis0RZ5eHv2FDGC7A3Gj9D8SmQlfrpFOb
-	pK/1bsVoWB1c4bHoI2m4apxMntgA5VQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1726569386;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=EMMN4yUf7Xe7564xvTCUNORqPqK8TC5Mw2dgzq+7TBY=;
-	b=0HyloQUgExFcWuF0noc9p6gZUg878/BJS33bxdnG1Anul7mZEkjW1OZ39amj/o69rlnqKv
-	ApKruc6EATX6ytCA==
-Authentication-Results: smtp-out2.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=n2AGEgRj;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=0HyloQUg
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1726569386; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=EMMN4yUf7Xe7564xvTCUNORqPqK8TC5Mw2dgzq+7TBY=;
-	b=n2AGEgRjSSSpUeEhqEFKDbrsf+QBmNJmdgEU1IfCFPmp6F/o/VzePAillHSkv1rOxO+6Ye
-	BNDQLj5Avg4yewxo0l85hT0o05aFaHeAH00YvOis0RZ5eHv2FDGC7A3Gj9D8SmQlfrpFOb
-	pK/1bsVoWB1c4bHoI2m4apxMntgA5VQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1726569386;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=EMMN4yUf7Xe7564xvTCUNORqPqK8TC5Mw2dgzq+7TBY=;
-	b=0HyloQUgExFcWuF0noc9p6gZUg878/BJS33bxdnG1Anul7mZEkjW1OZ39amj/o69rlnqKv
-	ApKruc6EATX6ytCA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5A2A2139CE;
-	Tue, 17 Sep 2024 10:36:25 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id GBGKE6lb6WYzeQAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Tue, 17 Sep 2024 10:36:25 +0000
-Message-ID: <d9e4253f-c817-4197-9c77-40d2ac8dec65@suse.de>
-Date: Tue, 17 Sep 2024 13:36:20 +0300
+	s=arc-20240116; t=1726569456; c=relaxed/simple;
+	bh=1TizHPORiQ6VfvePkX32LHtVIJBWdE3bSR8lh47pklY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=KOwxkysnfI2FhImBN+0ODFCI2W7xt0W6Owp/m5wAx77iO20i4AhjfxUosYe7sHwOB7lglcCUmH7S+870orwdLZP2Ha1MntSgGB6rNpNzZMq0OKiFRa6IwSckqIUQS1ZgCQLu/yBuanoDOMIKHFxSbosIAGzWGuRG3o6keiOYylw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YhOxRFkW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A48B8C4CEC5;
+	Tue, 17 Sep 2024 10:37:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726569455;
+	bh=1TizHPORiQ6VfvePkX32LHtVIJBWdE3bSR8lh47pklY=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=YhOxRFkWxex5CcEdHZn1KeeWc+McTHDmidJGUf2lWhiQFn4irwxS8e2UEijiI7UzE
+	 a+Ud18LXh0dhV0WOBiy/LYID8IwUJtUwe6J1SMT26qUMsXzB+oAcMAymDtqmb5oBvg
+	 plxfL9KBl1Uu82SzHa/YFaZ7GlKEljJxzAztfTjtXlHbyndT5iL4pXmdHSLctNeMOS
+	 vj8X9+8s8+AfprwU5qwCL0rgYH1x9rz9xR25S5Y8FoJ+wfRgUMr1f+r4kO0O/wTlIo
+	 y2ThlzoDwbo84wVjBiUR7uKE1bPt3GkAy++67fevtTxTZwZ8wyizCMjxDwaFLaQ6XK
+	 2lH1ju9gAXKCA==
+Message-ID: <df51e0ae-a97d-4567-a16e-ef0667aac661@kernel.org>
+Date: Tue, 17 Sep 2024 12:37:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,136 +50,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 -next 03/11] irqchip: mip: Add Broadcom bcm2712 MSI-X
- interrupt controller
-To: Thomas Gleixner <tglx@linutronix.de>,
- Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Jim Quinlan <jim2101024@gmail.com>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Andrea della Porta <andrea.porta@suse.com>,
- Phil Elwell <phil@raspberrypi.com>, Jonathan Bell <jonathan@raspberrypi.com>
-References: <20240910151845.17308-1-svarbanov@suse.de>
- <20240910151845.17308-4-svarbanov@suse.de> <87o74va4br.ffs@tglx>
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel-simple: Document support
+ for Microchip AC69T88A
+To: Manikandan Muralidharan <manikandan.m@microchip.com>,
+ neil.armstrong@linaro.org, quic_jesszhan@quicinc.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, thierry.reding@gmail.com, sam@ravnborg.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240917095330.267397-1-manikandan.m@microchip.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Stanimir Varbanov <svarbanov@suse.de>
-In-Reply-To: <87o74va4br.ffs@tglx>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240917095330.267397-1-manikandan.m@microchip.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 577DA2000D
-X-Spam-Level: 
-X-Spamd-Result: default: False [-5.01 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	DWL_DNSWL_MED(-2.00)[suse.de:dkim];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	MIME_TRACE(0.00)[0:+];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	ARC_NA(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[kernel.org,broadcom.com,gmail.com,google.com,linux.com,pengutronix.de,suse.com,raspberrypi.com];
-	RCVD_COUNT_TWO(0.00)[2];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	RCVD_TLS_ALL(0.00)[];
-	DKIM_TRACE(0.00)[suse.de:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:mid,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns]
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Action: no action
-X-Spam-Score: -5.01
-X-Spam-Flag: NO
+Content-Transfer-Encoding: 8bit
 
-Hi Thomas,
-
-Thank you for the comments!
-
-On 9/10/24 18:58, Thomas Gleixner wrote:
-> On Tue, Sep 10 2024 at 18:18, Stanimir Varbanov wrote:
->> +
->> +struct mip_priv {
->> +	/* used to protect bitmap alloc/free */
->> +	spinlock_t lock;
->> +	void __iomem *base;
->> +	u64 msg_addr;
->> +	u32 msi_base;
->> +	u32 num_msis;
->> +	unsigned long *bitmap;
->> +	struct irq_domain *parent;
+On 17/09/2024 11:53, Manikandan Muralidharan wrote:
+> Add Microchip AC69T88A 5" LVDS interface (800x480) TFT LCD panel
+> compatible string
 > 
-> https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#struct-declarations-and-initializers
+> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+> ---
+>  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> And please read the rest of the document too.
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> index b89e39790579..09911b89d140 100644
+> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> @@ -200,6 +200,8 @@ properties:
+>        - logictechno,lttd800480070-l2rt
+>          # Logic Technologies LTTD800480070-L6WH-RT 7” 800x480 TFT Resistive Touch Module
+>        - logictechno,lttd800480070-l6wh-rt
+> +        # Microchip AC69T88A 5" 800X480 LVDS interface TFT LCD Panel
+> +      - microchip,ac69t88a-lvds-panel
 
-Sure.
+Is this device some sort of multi-function? Why "lvds-panel"? What else
+could it be?
 
-> 
->> +};
->> +
->> +static void mip_mask_msi_irq(struct irq_data *d)
->> +{
->> +	pci_msi_mask_irq(d);
->> +	irq_chip_mask_parent(d);
->> +}
->> +
->> +static void mip_unmask_msi_irq(struct irq_data *d)
->> +{
->> +	pci_msi_unmask_irq(d);
->> +	irq_chip_unmask_parent(d);
-> 
-> This is asymmetric vs. mask(), but that's just the usual copy & pasta
-> problem.
+Best regards,
+Krzysztof
 
-Correct, but this will disappear when convert to MSI parent.
-
-> 
->> +}
->> +static int mip_init_domains(struct mip_priv *priv, struct device_node *np)
->> +{
->> +	struct irq_domain *middle_domain, *msi_domain;
->> +
->> +	middle_domain = irq_domain_add_hierarchy(priv->parent, 0,
->> +						 priv->num_msis, np,
->> +						 &mip_middle_domain_ops,
->> +						 priv);
->> +	if (!middle_domain)
->> +		return -ENOMEM;
->> +
->> +	msi_domain = pci_msi_create_irq_domain(of_node_to_fwnode(np),
->> +					       &mip_msi_domain_info,
->> +					       middle_domain);
->> +	if (!msi_domain) {
->> +		irq_domain_remove(middle_domain);
->> +		return -ENOMEM;
->> +	}
-> 
-> This is not much different. Please convert this to a proper MSI parent
-> domain and let the PCI/MSI core handle the PCI/MSI part.
-
-I apologize, but I wasn't able to make it work on time. The good news is
-that I made it now and will send it in next version of the series.
-
-regards,
-~Stan
 
