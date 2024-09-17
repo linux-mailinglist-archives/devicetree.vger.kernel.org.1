@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-103554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C45C997B501
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 23:10:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF49297B50B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 23:14:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83D8C284719
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 21:10:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 763791F21AD5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 21:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24F5218BC12;
-	Tue, 17 Sep 2024 21:10:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1F321925B9;
+	Tue, 17 Sep 2024 21:13:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C+IeerCj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TyE8X+Gq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED48B148828;
-	Tue, 17 Sep 2024 21:10:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B19482AEEE;
+	Tue, 17 Sep 2024 21:13:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726607422; cv=none; b=OuJVpMiFQhEUhBiM06jVzx6eILKeOyrvXkJxW1U0ARxfFkKYAueuJtGDCn2hpYJwjqlJ0koe0ynLp+Ntvc2KqopZ1TQ+sSZGaLxON+7QdnS7WjE/K9SJavsGG9nYm/0eI0kBwlZe2zdoqlE5hQENgnj8LXWXCRg+YMfMt1XFnQk=
+	t=1726607635; cv=none; b=ZE8zLdcN3jf9ik6SyRz5mw9tK23XA/2I+T1GMObfvUcj2A5dtsOpEagSKLGXtVOs8XShYzRJi2R81y9yFrsYeNlGrcXUltE9fvOnwovyJO6q/KxTV2O8l3D4Ee4R8/SEUsi6wizaeQ6eQqUSoSZLVz9jX/uoDNSycj3zCOJ7x/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726607422; c=relaxed/simple;
-	bh=0+1Kk8qbnQpvx/WTrWcAecTadUQe/6CkxewPFVE67f0=;
+	s=arc-20240116; t=1726607635; c=relaxed/simple;
+	bh=h6tfNn4BixxJYWQYKrDQLr7/eqjQkFy0kULBd/P+I4g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P8S6QbVvCckY2HmxEKT1cCr26oipmncNqf0pt85VIzTc3dd8y8p7b1JB8lLxvY5BpvE4KzADRd+1KNBkQ+K3eA2AoSrGwsgODu5+h1NAsBuGlPurBtEsyhGdtUD9GTu7jpGdURrT3ZyRq9iOrVAuugP2zx/bMWwADoK3gxkyqa8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C+IeerCj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8368C4CEC5;
-	Tue, 17 Sep 2024 21:10:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UD2glWYTSx+z+ruNNbVVk7yHm+/XIHqbv+7WXR6GpZE+KC61BiXyTGYcqOrg1mlMRQ2q3laEUXs0vkbQMtUhV9wiEusmzIwURJN5wCl752r5Bxm//6X7d8sOE6WkhaLtrHjT3BnAURG8tP2EzChNWIBNlA+UnqzPhrkN73IzxrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TyE8X+Gq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70DC3C4CEC5;
+	Tue, 17 Sep 2024 21:13:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726607421;
-	bh=0+1Kk8qbnQpvx/WTrWcAecTadUQe/6CkxewPFVE67f0=;
+	s=k20201202; t=1726607635;
+	bh=h6tfNn4BixxJYWQYKrDQLr7/eqjQkFy0kULBd/P+I4g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C+IeerCjUCjrDlkF+ZG++13Tno4MgaBhi202Htzlv88wmkFSredyg2zc+RExWjX/J
-	 Y3/aJtLP31WYS1s1gs4LsPmbECVV1PTaH1tbNa+o12k90KBTDYvlGqXrqiLKTTYJD5
-	 tqBbcLbSIk/CQBRLpU+PQiWo7Olg8l2m9D234ACNO/LxUyfeZohCosX45R6uMUVKpX
-	 KO8yADgQCI40F2f+jFSJIjMb6OoPk0ODwqYNeNz2kt0xRKlHy74xRVfb5YOYns0DAl
-	 JyT7guFRCMgdNCruMGXrMUMo5ditXGEzLVkpJdt7p+YVlrsxOj9ij/qjAJlQuJe2Pf
-	 uu1grnJqdSk0w==
-Date: Tue, 17 Sep 2024 22:10:25 +0100
+	b=TyE8X+GqWp7Z/p5furrj0+eAxM/KsS6HaBJHLmVLo8Koq88/0VSzkyTGN5IKW1HZG
+	 OPwMjuyM78k+lDKtOBlMtoDD5NvXGC/HfGb0ZP4s+t0l70B3tkUCXZeU0Q/u/X0M/Q
+	 a54APR/wJoX5/8nmIxkF6XPa3vuriJP7Jy7pCGTgpleDJnyjg/vJppLeEKS8rrwkm8
+	 PUV0AxR9m5qcOUzETL8CZ409Ff01O8bxO3wotbiUby33e7RDVvXN89v5cQqtYX4P/C
+	 gPYxufC+CdP2VL3vdg9U2I7ilIp5Y6DgI5t6CP5vLyuEb7fjJ4SSh3pNKahZ/CrqYg
+	 DQM4Xhac7Mb5A==
+Date: Tue, 17 Sep 2024 22:13:58 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Daniel Machon <daniel.machon@microchip.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+To: Yao Zi <ziyao@disroot.org>
+Cc: Heiko Stuebner <heiko@sntech.de>, Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Lars Povlsen <lars.povlsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: ocelot: document lan969x-pinctrl
-Message-ID: <20240917-appease-angelfish-7ae6490f3dd9@squawk>
-References: <20240917-lan969x-pinctrl-v2-0-ea02cbc56831@microchip.com>
- <20240917-lan969x-pinctrl-v2-1-ea02cbc56831@microchip.com>
+	Rob Herring <robh@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: Possible misleading information in rockchip,rk3588-cru.yaml
+Message-ID: <20240917-flypaper-december-3719ea838b3c@squawk>
+References: <ZuIJgiN2xp6oPrHD@pineapple>
+ <20240916-neuron-surfer-32db6440e1ad@spud>
+ <ZuhtMHgx8XlZaayp@pineapple>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,36 +64,66 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jaFozI3L4Cl0p1Ja"
+	protocol="application/pgp-signature"; boundary="RIDGw94K0j/yawb4"
 Content-Disposition: inline
-In-Reply-To: <20240917-lan969x-pinctrl-v2-1-ea02cbc56831@microchip.com>
+In-Reply-To: <ZuhtMHgx8XlZaayp@pineapple>
 
 
---jaFozI3L4Cl0p1Ja
+--RIDGw94K0j/yawb4
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 17, 2024 at 02:45:40PM +0200, Daniel Machon wrote:
-> Lan969x is going to reuse the existing Ocelot pinctrl driver - document
-> that by adding compatible strings for the different SKU's that we
-> support.
+On Mon, Sep 16, 2024 at 05:38:56PM +0000, Yao Zi wrote:
+> On Mon, Sep 16, 2024 at 05:33:49PM +0100, Conor Dooley wrote:
+> > On Wed, Sep 11, 2024 at 09:20:02PM +0000, Yao Zi wrote:
+> > > Hi,
+> > >=20
+> > > rockchip,rk3588-cru.yaml, dt-binding for RK3588 clock and reset modul=
+e,
+> > > contains description of customized property "rockchip,grf",
+> > >=20
+> > >   rockchip,grf:
+> > >     $ref: /schemas/types.yaml#/definitions/phandle
+> > >     description: >
+> > >       phandle to the syscon managing the "general register files". It=
+ is
+> > >       used for GRF muxes, if missing any muxes present in the GRF will
+> > >       not be available.
+> > >=20
+> > > But after doing some searching, I found that clk-rk3588.c actually
+> > > defines no clock hardware with MUXGRF type. This is also true in in t=
+he
+> > > vendor code[1], it seems there is actually no GRF mux on RK3588
+> > > platform.
+> >=20
+> > Have you been able to check the datasheet/register map for this piece of
+> > hardware? Does it have a grf register region?
+> > Wouldn't be surprised if it didn't, and the cause of it being in the
+> > binding was nothing more than copy-paste.
 >=20
-> Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
+> Have checked a public datasheet[1], RK3588 does have corresponding grf
+> region and there are only clock related bits in PHP_GRF_CLK_CON1[2].
+>=20
+> But these gmac clocks bits are used in dwmac-rk GMAC driver[3]
+> internally, out of the common clock driver, rk3588-cru. So I don't think
+> the CRU needs access to the grf by design.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+That sounds like a reasonable justification for deleting it - but please
+check U-Boot etc to make sure that other projects are not using this in
+a different manner to the kernel. If they are not using it, then please
+send a patch :)
 
-
---jaFozI3L4Cl0p1Ja
+--RIDGw94K0j/yawb4
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZunwPgAKCRB4tDGHoIJi
-0r5CAP9nkg4MqFxcQWXAXSDB29vqTFeIHZse1degYU92eUEDcAD9ERB+KS1RYS6Q
-snKzldKIgd4RVWUeb9oa/TkQtMs1fw8=
-=So0U
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZunxEgAKCRB4tDGHoIJi
+0tzwAPsEW69ocfhtVR+GMWt0pS+MPPaBskZvsdl4XuVumMe3NAEAvsgdPy+i81Ec
+ZX8q4UQyEvwTSKQHOQvpLTNM8UhH0gw=
+=GlRo
 -----END PGP SIGNATURE-----
 
---jaFozI3L4Cl0p1Ja--
+--RIDGw94K0j/yawb4--
 
