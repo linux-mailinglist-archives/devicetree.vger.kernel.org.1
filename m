@@ -1,135 +1,103 @@
-Return-Path: <devicetree+bounces-103475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B233097AF18
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 12:42:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C0EF97AF1D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 12:43:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E528FB2B0FA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 10:42:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1199A1F22AB6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 10:43:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAD0F167D80;
-	Tue, 17 Sep 2024 10:42:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD67170A12;
+	Tue, 17 Sep 2024 10:43:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BIgE5YF6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="avABdRfp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED29416131A;
-	Tue, 17 Sep 2024 10:42:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AEEE15A853;
+	Tue, 17 Sep 2024 10:43:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726569765; cv=none; b=DmCzsVw7Mrt5CBpD4vmNizx+Vb14TYzXTHWWU57Tjyd53f5ChJk/FXi8q/FfxVw+4kSFHzxOeGGDN1G/mjNmGQon1Rd7mj+NwRlVJeUuxshRwGvB33Jb5W0Um9YVzo8llRtsMTpAvA2wBG6EhdosTMECIWmvEg2kkCtE83TBWlM=
+	t=1726569797; cv=none; b=trOE9xQokQOgT8aZQlHQLtVHVGzlR20xMdHNIuo8uUErySuWOKwcP4l8AXi/m0qYCEhud22khGeFj3HYI1fqYofS1SB2rGjAXep2WwQFYOr9NnsddAEK2TSIdOlG46hM4Zws8+rqji7BZQsEMKucNkngNZaQue3d4kGF936T0LI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726569765; c=relaxed/simple;
-	bh=E9a/nxXo2KiCHfXmLHA8W5nWpSHl1mkItmUZHHEd060=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IghpCZpoEvWIxMrDq0lk7I1dagZxNjbzjAvnhzqyo1U6nRJO5Eimz5kur1VSi310sSZVuCyGjvmCN5M9o1kus1V58rYF3p8o7OvwT0iNyGr6j5f/1Kx9yRNWwPfZ865j15o/RSMJt91AYkJrGg0O/qMHljE2ubwPQ+u4VbGsAQ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BIgE5YF6; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2f763e9e759so55786611fa.3;
-        Tue, 17 Sep 2024 03:42:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726569762; x=1727174562; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ofmX+HKXE00WtuM13hFGpW8n7y4t1BDYpJWpTwCfwYg=;
-        b=BIgE5YF6Ue3O9OXMIy5gRbmp0Sqh1SPHjYjge27rEVylgFZ1NoVm6VMXSeqlQTMDAp
-         R4wC86o/yevVzYXVyrMkxa+OVtw14PrCu8UU6efHA7OCt0ZUymawoAntST2IH/VeEAyy
-         lFI0GeI/dtDrsFrLVGyDgLfnwQngQyZAyGg/yV+tI8ENXNLXYmj9EsawI/U0BstAXfrF
-         lPCcvPgWUumIgn22xLyWh1yj3ZwbMPvYSf0SjJhGR9rslDAHKp6Pkw7lMEkMuHkw4aZG
-         HqlMbeMdPR7v/lmqhEaNTJR8+aDUCwD4+BcZevh/e+mxRr4OrP2CA9Qvmt9Fo7In2L9A
-         XEgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726569762; x=1727174562;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ofmX+HKXE00WtuM13hFGpW8n7y4t1BDYpJWpTwCfwYg=;
-        b=DmfH893KnxQsj10NPAzqf7OojQG19YinuCXjQ3uv+4oWUjW8XV1sf+5YST3a5TfUob
-         4KbZcnaDJOwR9G5thsCUN4DOzLkm/5ijwykPWpojO8xRCdAKukP1+DUjBIWZQdtNKfRN
-         mQ4tMKlley4rE21UoMyGrv6A65c/FsoShpfwkR8BgV13akdkY0+gIe7qKbPmOP1icccr
-         0flioI9ogYR1ZrRV04dFE5C1GO5bjUVxm1HUAXBUvfJ08+89sahg5TQoLMFH4zGupAzG
-         VSdNhReWBlHtSWwDsueiPCeLFUKbvXCgrHuQ/0ExDGiqy0l7GOeBGZzkHEP7159WYieR
-         XbGA==
-X-Forwarded-Encrypted: i=1; AJvYcCVrWGW0d9nBleISW+Dc70yK2HbiHEZJhpg1ujuc0h48aYhNG5Rhn9Re8+sQDB+wo87wtn2wK2IkS8uiH5XM@vger.kernel.org, AJvYcCWjlWCpGN87zJOkt+d085rM0TDBOChbjc9qT1FgHzxDukBl7Rpl5EzAPY3Uj3kO/aM84MIKB8mmcCgY@vger.kernel.org
-X-Gm-Message-State: AOJu0YxH2GdQbtTTr5h0criq8r4oMTTsTAbNiDGfYAJdqGrplz7VMAjN
-	aEdyWVQ+h4zpX21YVdDGh76SEsQ967jNfQ1TFCzVve6BvzMgzNtXZ45okmWnoGDvEK2FK79BWPp
-	PCt2BKX7UrQ3Zi+TEVJIwCtaq8w==
-X-Google-Smtp-Source: AGHT+IE7wDEsYvo3hu0cfYozzAesa6JgzseU8Or3sJo+TYtS5n5WmyOVSXkx1QfoYY8onXcByFX6eMTMS9XFQBUU0jU=
-X-Received: by 2002:a05:651c:b12:b0:2f7:6812:d0ae with SMTP id
- 38308e7fff4ca-2f787dc301amr101396411fa.13.1726569761761; Tue, 17 Sep 2024
- 03:42:41 -0700 (PDT)
+	s=arc-20240116; t=1726569797; c=relaxed/simple;
+	bh=n81L2trzyp31tus8/KCiZJidEZh+JZJGPMDzdZ3+wFM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KK5l5rVIIwnFXySN5X0YzPWo1uNgWGaRDNOySbFfnx3uZ6UEMo6sCDl79Vd+4Vj4tXOegtICcsT8qcJ46cIIamoUK17xNSGQu+2dmPrrLLjKMoNN0W6ewmtDrTy5NKyeTm4tOVUkIsd80GrfZPBTov8Zpr+TsVDarmd8Qm1V7Z0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=avABdRfp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB66CC4CEC5;
+	Tue, 17 Sep 2024 10:43:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726569796;
+	bh=n81L2trzyp31tus8/KCiZJidEZh+JZJGPMDzdZ3+wFM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=avABdRfpLdPwQPfO4vptX5IXn8WXkMDTB4RxbFz2i2i/vlaBBNz5J9+2Bm8GkZgCX
+	 tNqjfQL/eJdjd2b/uDUkUbXXgQY3icZxjV39/T/7zYvj+BC7hbmvPxBS9Nulf0ATkn
+	 490HDxbdZWtcx9NJCAxi3oUiT5lIVx2E4LgwNERUiNyCMqelZYS2qR81NNXQyqEWZS
+	 X17em13q2dZmrRi4REl+g+FHNBGdu3au/Ffde3NfVeC4NCxfhbP2rGJPcRkmqLJx7h
+	 7YKF0z4e3ykxFhu3hd3TGVXpgvTYDXLPBq9sYCcSU7EvXONCpqademyfNBxfuzM3+e
+	 i03Tb7QFptjLQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1sqVgF-0000000061P-2cfg;
+	Tue, 17 Sep 2024 12:43:36 +0200
+Date: Tue, 17 Sep 2024 12:43:35 +0200
+From: Johan Hovold <johan@kernel.org>
+To: srinivas.kandagatla@linaro.org
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100-t14s: add another trackpad
+ support
+Message-ID: <ZuldVzzK24JdCgQP@hovoldconsulting.com>
+References: <20240917102715.4096-1-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240917094956.437078-1-erezgeva@nwtime.org> <20240917094956.437078-4-erezgeva@nwtime.org>
- <9c273945-5a70-408e-a9da-a0797aa6d935@kernel.org>
-In-Reply-To: <9c273945-5a70-408e-a9da-a0797aa6d935@kernel.org>
-From: Erez <erezgeva2@gmail.com>
-Date: Tue, 17 Sep 2024 12:42:05 +0200
-Message-ID: <CANeKEMN+ZUAGKGsqnaToDB3AxX9NN_JeCBWHwd-wwnTWLU3R+g@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] dt-bindings: mtd: spi-nor: add OTP parameters
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Pratyush Yadav <pratyush@kernel.org>, 
-	Michael Walle <mwalle@kernel.org>, linux-kernel@vger.kernel.org, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Esben Haabendal <esben@geanix.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240917102715.4096-1-srinivas.kandagatla@linaro.org>
 
-On Tue, 17 Sept 2024 at 12:36, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On 17/09/2024 11:49, Erez Geva wrote:
-> > From: Erez Geva <ErezGeva2@gmail.com>
-> >
-> > Some flash devices need OTP parameters in device tree.
-> > As we can not deduce the parameters based on JEDEC ID or SFDP.
-> >
-> > Signed-off-by: Erez Geva <ErezGeva2@gmail.com>
-> > ---
-> >  .../bindings/mtd/jedec,spi-nor.yaml           | 37 +++++++++++++++++++
-> >  1 file changed, 37 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> > index 6e3afb42926e..d502b7fab2ce 100644
-> > --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> > +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> > @@ -90,6 +90,43 @@ properties:
-> >        the SRWD bit while writing the status register. WP# signal hard strapped to GND
-> >        can be a valid use case.
-> >
-> > +  opt_n_regions:
->
-> No underscores, but hyphens.
+On Tue, Sep 17, 2024 at 06:27:15AM -0400, Srinivas Kandagatla wrote:
+> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> 
+> Trackpad HID device on some of the T14s Product Models 21N2ZC5PUS is
+> at I2C address 0x2c add this to be able to get it working on these laptops.
 
-I'll fix this.
+> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
+> index 941dfddd6713..8468f99d9bed 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
+> @@ -467,7 +467,19 @@ touchpad@15 {
+>  		wakeup-source;
+>  	};
+>  
+> -	/* TODO: second-sourced SYNA8022 or SYNA8024 touchpad @ 0x2c */
+> +	/* SYNA8022 or SYNA8024 touchpad @ 0x2c */
+> +	touchpad@15 {
+> +		compatible = "hid-over-i2c";
+> +		reg = <0x2c>;
+> +
+> +		hid-descr-addr = <0x20>;
+> +		interrupts-extended = <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		pinctrl-0 = <&tpad_default>;
+> +		pinctrl-names = "default";
 
->
-> > +    type: u32
->
-> It does not look like you tested the bindings, at least after quick
-> look. Please run `make dt_binding_check` (see
+This doesn't work currently. You can't have two devices claiming the
+same pins (and these HID devices may be probed in parallel even if at
+most one will probe successfully). 
 
-I run "make dt_binding_check" on kernel 6.6.
+You can work around this by moving the pinctrl properties to the parent
+bus node as we did for the X13s.
 
-> Documentation/devicetree/bindings/writing-schema.rst for instructions).
-> Maybe you need to update your dtschema and yamllint.
->
->
->
-> Best regards,
-> Krzysztof
->
-
-Thanks for the feedback.
+Johan
 
