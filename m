@@ -1,130 +1,257 @@
-Return-Path: <devicetree+bounces-103556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 488E797B51C
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 23:19:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F134797B527
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 23:27:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2F2A1F222A1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 21:19:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E6981F22500
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 21:27:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE6801862B9;
-	Tue, 17 Sep 2024 21:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B46421922D7;
+	Tue, 17 Sep 2024 21:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VfPVKvzp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Vc7xCuoy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD4D374EA;
-	Tue, 17 Sep 2024 21:19:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36ADD34CE5
+	for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 21:27:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726607991; cv=none; b=R6oWD6wG1b+vWmHSaj6G4ICX/W4eaQOQao/ApMIUeJ7EOMhyypica+ok6yw481HwHa401uYE6SMTCrzowWOX9NgZPaXFc0B61NBX4hB7KiyPNo1iKVhaX5Yk08LrPnXRnRYiqkG6mvRPrjZhnTLmP37LUwcWgMVNTEO6Q4NKtyc=
+	t=1726608431; cv=none; b=nZBIAw9Gf6UvLSy8vEdI94KxQs9S0VDP+BQVJXu6oOmc6NDpu0JZwFVvJdp0W/6oODUn/IHc3EO6aTCeKpNU/p+Zc6iJJLWsloll07v7zTjnYky047ZiMPT1O8plA8yhkZ+TmYdOpSfirL1Oz9nc0CyYK3QJIWftubF5K+Wcz2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726607991; c=relaxed/simple;
-	bh=19cw6zZQnCL1Bd8cjqmQv07SG13S1pvml2RAS/6079Q=;
+	s=arc-20240116; t=1726608431; c=relaxed/simple;
+	bh=6c9f9GMk0RwJmVnM261XKRTWoq80B+gB/g6JMY3uYy8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F8WuID/bpfg695jtu3LKxpCVLdO2uw+kEcXB6mvly3x3EP/r1qw/H5wMbG1y85oV8Usevc6HnHgcI/FOZHc+5nn8kt1AqbDega/TRD4tAZbV9iv1/vVzIq1dlIM766s3j4spBPlVhYv6BDO4f4+9I9dVH7pxu4ffuS6q+u+ognk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VfPVKvzp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCD86C4CEC5;
-	Tue, 17 Sep 2024 21:19:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726607991;
-	bh=19cw6zZQnCL1Bd8cjqmQv07SG13S1pvml2RAS/6079Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VfPVKvzpVxZaOjs6873tkODB8DNV2a1E6aZBNy8THW7mfTr+ocmetwfaUhEU9ndWT
-	 1IZ2m7bbwCfpYEGRG3PlRDr8JNeHplvjdl5iVStvWa942CGaUT5Cgvac4GqLYQO+H9
-	 oXUrOea+4ZapzIVMAY1JgmjCtrqK3Xnn5LuUnxmiMUhBMTjSXdn+MXrcxZQT7sR1SU
-	 iKUaijv0/ds5I9fLSpADxwbxBoUOjMM6sA8e/dmLfn2VlrAHUG7SFYiMJTI4UjY84g
-	 F/Bmj8756t2UepygavD4gOCTygo3JcwZndNE1WNgCfCTxKhICUJ4oy/6bUVOrrDVOM
-	 CHaM7lB4JOsFA==
-Date: Tue, 17 Sep 2024 22:19:54 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] MAINTAINERS: add myself for Google Tensor SoC
-Message-ID: <20240917-pentagon-veteran-952cdac50e6c@squawk>
-References: <20240916-max20339-dts-v1-0-2f7ed7c24e83@linaro.org>
- <20240916-max20339-dts-v1-3-2f7ed7c24e83@linaro.org>
- <CADrjBPoOZu_79OaXaq=5KzUT=eEhRdESwK7Np74Nsjx7cTRm8g@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KSlCk55aP9KzqkgGlXrIpl4c9wVmHJOvIakVupsRlIGwkbJu9XxWUqEuuDRycz+Jfn0wbzGtMMdoD5S00PT8nSWuEq6/fh/7O8LiaHPDMoITw0xr6NoiPSUR+12fqWHm0rxVkLwEbA5GMOvKfih93ey9XStSKxtgpEDguudGif8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Vc7xCuoy; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2f74b6e1810so54413561fa.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 14:27:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1726608427; x=1727213227; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=tK+eryvZIWB7XUY6xEZS8PhI/lDVITII9hGxNEZ3sN0=;
+        b=Vc7xCuoyqm72XUQEgmzEsSrnaV6Y+0UjosmGGP4scYrV0ad9zZx882+GogUe+Olb9A
+         0ROtun+rRwlW+qYayiKeJRKivFaxn3TUkYf57yomLDALft0bhgCsEAcBolXLrCV9zOg2
+         QqtQVgq05Y2wiMnhOqrviEogJDiXNI/NA8HkjnTZtGcyUoWiUGwfqM3kTfM1/QoWF5Y9
+         dG1S3PibQHNBSwhS2QOoIxmDJ+tfvBPxoG3GocDiEKKuvBOmfe6lKQzfAGXhnmA11NLG
+         ha9XbtEhjZNuMSw++0wGh1NIitV2DeJoA6r/psdwMRvP1296r8ZQKj1fKbXAMU7lJ7Q+
+         gNeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726608427; x=1727213227;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tK+eryvZIWB7XUY6xEZS8PhI/lDVITII9hGxNEZ3sN0=;
+        b=mP/yGGiDpZY99R+OflsmAUtg0gL20rG0+qdng8TrquzZXAQ7bkLWktmCCyJYWy+3i/
+         jtf4DPkTI3hiMadwfIjzbRk3u+qT2NYazVcD37DUjg4X3Su4Q1Dy8b3jgff8+goovg74
+         N4dfXe86EnLCBnnPqSGkWG+bvd2YSiMqRuPZR+BdPeXl9PITzA+9MwwjSsGm3fkkN24+
+         OT9QSzKhnUWLpJMNP+2YafBomkJwcS604GTX5zfrcBEmfk+f2nnZaZpI2w9+P4eCJuxI
+         bgwgnHavOodzVxv9hMIXYGsNIwVWqjxTs2+kcPdTj1Kkbhr/u0Mvfvi/w7T3AERXN3OQ
+         oz8w==
+X-Forwarded-Encrypted: i=1; AJvYcCU6K6z682xuLDbPrFss136Umt6x5zVJBaUNNk++FpxunZ2wICZUvwftcDo49bIrWKXVnc3RnYBawgkc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBSvyHhndcXnQByPWypWWNUHevFdQnrlATfKO708wrHg3pY0pk
+	MTe+qmRMybNQLMh2t43JCSfsBSace+po4/hU+At2uXVG6AvBME9k//9ZNXHzFhg=
+X-Google-Smtp-Source: AGHT+IF3NskUcf8RUOcTnIF63jZutapZ5Jeb7rdsU+2KtEQcoz8cIrf/mUhNgh51RCcY1c8ixVHM1Q==
+X-Received: by 2002:a05:6512:118a:b0:52e:e3c3:643f with SMTP id 2adb3069b0e04-53678fb1d3bmr11190040e87.2.1726608427105;
+        Tue, 17 Sep 2024 14:27:07 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-536870a89d7sm1324239e87.239.2024.09.17.14.27.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Sep 2024 14:27:06 -0700 (PDT)
+Date: Wed, 18 Sep 2024 00:27:03 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sa8775p: Add gpu and gmu nodes
+Message-ID: <udt76i3sl7zekhudqpnvhvhfxchvixwoinz7metuwfrpynl47k@wlpforwv7mcf>
+References: <20240918-a663-gpu-support-v1-0-25fea3f3d64d@quicinc.com>
+ <20240918-a663-gpu-support-v1-3-25fea3f3d64d@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ClZoFYlarA2I48nY"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CADrjBPoOZu_79OaXaq=5KzUT=eEhRdESwK7Np74Nsjx7cTRm8g@mail.gmail.com>
+In-Reply-To: <20240918-a663-gpu-support-v1-3-25fea3f3d64d@quicinc.com>
 
+On Wed, Sep 18, 2024 at 02:08:43AM GMT, Akhil P Oommen wrote:
+> From: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
+> 
+> Add gpu and gmu nodes for sa8775p based platforms.
 
---ClZoFYlarA2I48nY
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Which platforms? The commit adds nodes to the SoC and the single RIDE
+platform.
 
-On Mon, Sep 16, 2024 at 08:42:03PM +0100, Peter Griffin wrote:
-> Hi Andr=E9,
->=20
-> On Mon, 16 Sept 2024 at 17:58, Andr=E9 Draszik <andre.draszik@linaro.org>=
- wrote:
-> >
-> > Add myself as maintainer for the Google Tensor SoC alongside Peter.
-> >
-> > Signed-off-by: Andr=E9 Draszik <andre.draszik@linaro.org>
-> > ---
-> >  MAINTAINERS | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 2cdd7cacec86..b6edb21b4f2d 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -9669,6 +9669,7 @@ T:        git git://git.kernel.org/pub/scm/linux/=
-kernel/git/chrome-platform/linux.git
-> >  F:     drivers/firmware/google/
-> >
-> >  GOOGLE TENSOR SoC SUPPORT
-> > +M:     Andr=E9 Draszik <andre.draszik@linaro.org>
->=20
-> Please update this to: -
->=20
-> +R:     Andr=E9 Draszik <andre.draszik@linaro.org>
->=20
-> The definition of which is
->=20
-> R: Designated *Reviewer*: FullName <address@domain>
-> These reviewers should be CCed on patches.
+> 
+> Signed-off-by: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
+> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi |  8 ++++
+>  arch/arm64/boot/dts/qcom/sa8775p.dtsi      | 75 ++++++++++++++++++++++++++++++
+>  2 files changed, 83 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> index 2a6170623ea9..a01e6675c4bb 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> @@ -407,6 +407,14 @@ queue3 {
+>  	};
+>  };
+>  
+> +&gpu {
+> +	status = "okay";
+> +
+> +	zap-shader {
 
-I find this email really weird. If you discussed something off-list and
-Andre misunderstood that you wanted him as a reviewer not a maintainer,
-that's fine - but you need to explain why to the rest of us. If it were
-not for the fact you share an employer, I'd find this to be a kinda rude
-way of denying someone co-maintainer status.
+It's easier to add gpu_zap_shader_link label in the DTSI file and then
+reference it instead of using the subnode again.
 
---ClZoFYlarA2I48nY
-Content-Type: application/pgp-signature; name="signature.asc"
+> +		firmware-name = "qcom/sa8775p/a663_zap.mbn";
+> +	};
+> +};
 
------BEGIN PGP SIGNATURE-----
+Separate patch, please.
 
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZunydwAKCRB4tDGHoIJi
-0g8MAP9vzQIab4yoFF2S8dlflBDMtFEpaXoOJ9P68KtWhnokQwEA3uKe70t2le+L
-HDDr4hG7THiFy8nJNo1GVR1mq0jaCgc=
-=JH5Y
------END PGP SIGNATURE-----
+> +
+>  &i2c11 {
+>  	clock-frequency = <400000>;
+>  	pinctrl-0 = <&qup_i2c11_default>;
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> index 23f1b2e5e624..12c79135a303 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> @@ -2824,6 +2824,81 @@ tcsr_mutex: hwlock@1f40000 {
+>  			#hwlock-cells = <1>;
+>  		};
+>  
+> +		gpu: gpu@3d00000 {
+> +			compatible = "qcom,adreno-663.0", "qcom,adreno";
+> +			reg = <0 0x03d00000 0 0x40000>,
+> +			      <0 0x03d9e000 0 0x1000>,
+> +			      <0 0x03d61000 0 0x800>;
 
---ClZoFYlarA2I48nY--
+I think it's suggested to use 0x0 now
+
+> +			reg-names = "kgsl_3d0_reg_memory",
+> +				    "cx_mem",
+> +				    "cx_dbgc";
+> +			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
+> +			iommus = <&adreno_smmu 0 0xc00>,
+> +				 <&adreno_smmu 1 0xc00>;
+> +			operating-points-v2 = <&gpu_opp_table>;
+> +			qcom,gmu = <&gmu>;
+> +			interconnects = <&gem_noc MASTER_GFX3D 0 &mc_virt SLAVE_EBI1 0>;
+
+QCOM_ICC_TAG_ALWAYS instead of 0
+
+> +			interconnect-names = "gfx-mem";
+> +			#cooling-cells = <2>;
+
+No speed bins?
+
+> +
+> +			status = "disabled";
+> +
+> +			zap-shader {
+
+gpu_zap_shader: zap-shader
+
+> +				memory-region = <&pil_gpu_mem>;
+> +			};
+> +
+> +			gpu_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-405000000 {
+
+Just a single freq?
+
+> +					opp-hz = /bits/ 64 <405000000>;
+> +					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
+> +					opp-peak-kBps = <8368000>;
+> +				};
+> +
+
+Drop the empty line, please.
+
+> +			};
+> +		};
+> +
+> +		gmu: gmu@3d6a000 {
+> +			compatible = "qcom,adreno-gmu-663.0", "qcom,adreno-gmu";
+> +			reg = <0 0x03d6a000 0 0x34000>,
+> +				<0 0x3de0000 0 0x10000>,
+> +				<0 0x0b290000 0 0x10000>;
+
+Wrong indentation, please align to the angle bracket.
+Also I think it's suggested to use 0x0 now
+
+> +			reg-names = "gmu", "rscc", "gmu_pdc";
+> +			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
+> +					<GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
+
+And here
+
+> +			interrupt-names = "hfi", "gmu";
+> +			clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
+> +				 <&gpucc GPU_CC_CXO_CLK>,
+> +				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
+> +				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
+> +				 <&gpucc GPU_CC_AHB_CLK>,
+> +				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
+> +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>;
+> +			clock-names = "gmu",
+> +				      "cxo",
+> +				      "axi",
+> +				      "memnoc",
+> +				      "ahb",
+> +				      "hub",
+> +				      "smmu_vote";
+> +			power-domains = <&gpucc GPU_CC_CX_GDSC>,
+> +					<&gpucc GPU_CC_GX_GDSC>;
+> +			power-domain-names = "cx",
+> +					     "gx";
+> +			iommus = <&adreno_smmu 5 0xc00>;
+> +			operating-points-v2 = <&gmu_opp_table>;
+> +
+> +			gmu_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-200000000 {
+> +					opp-hz = /bits/ 64 <200000000>;
+> +					opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
+> +				};
+> +			};
+> +		};
+> +
+>  		gpucc: clock-controller@3d90000 {
+>  			compatible = "qcom,sa8775p-gpucc";
+>  			reg = <0x0 0x03d90000 0x0 0xa000>;
+> 
+> -- 
+> 2.45.2
+> 
+
+-- 
+With best wishes
+Dmitry
 
