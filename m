@@ -1,199 +1,144 @@
-Return-Path: <devicetree+bounces-103403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B757197AB88
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 08:39:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43AEC97ABB2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 08:58:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 757141F291DB
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 06:39:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03B9328B45A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 06:58:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5637F6CDBA;
-	Tue, 17 Sep 2024 06:39:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24ABA7404E;
+	Tue, 17 Sep 2024 06:58:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AXyvubyG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NbfMy4FG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26B61A920;
-	Tue, 17 Sep 2024 06:39:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C7594C66;
+	Tue, 17 Sep 2024 06:58:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726555182; cv=none; b=UkzV+i65lEYIC06wkkbrJteTmRE0vbB0nYyGXRRXnT705LZTO+QFU8MnzGVjOoObJMPye+tqEnKBXGNMeB3nS4dOE9NRC41df/enQNqWqqIQX6uj/2o/iFFL9tF1SfQCyqJ7zvBcr83eO57SuYEEyoKUDLIjuJ/alf3NIlop6Oo=
+	t=1726556315; cv=none; b=M8p81B/8P8Fb4RW0h4vaw0OmA0Hj/GxC57qNFNrgx1xlzK8B4a/tSmW9ayJyoqjGk8z44RscrIlqXMacRE7YFMH6I/eShmVz/f9BnlFZvcCNKDSrmbwvK/ecgFEYoUAhWsxpzQdG3zf5e2OOhbQ/ccxFrhMD1FchWeEG1EFQxFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726555182; c=relaxed/simple;
-	bh=KOEJZeVljojcmRdwqwJWhjQoq6gbxqBjzRiz12hG9lw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d2J6svtYdP9C8esx5iFjTcE9cEAUsrcVezqrPfOAF5UXdFqY6zBwbHm/JrqX184KKXA/gWb1Xm1ceSzjdulgUuAuxr/FZbZ9PRttyfanIHXlSwHFwMXlJ3ydb1Shff9z3+yil+ale6Y6sFlJdBYyHpPUFyYnJMlDorRvwTiXZxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AXyvubyG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2762AC4CEC6;
-	Tue, 17 Sep 2024 06:39:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726555182;
-	bh=KOEJZeVljojcmRdwqwJWhjQoq6gbxqBjzRiz12hG9lw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AXyvubyGaCUUsTrHT+W7VZ7JeaIytYlT3RDrRDLrKg0sS6oE6PMzgPaDG91555GFs
-	 0Tzg4SM3D6OH2dOdx83Qy6CvHDAUZwf4yazQcDTdX9p/lOGxPyWCDb1FR/qF/xvGYf
-	 V10susybUX8F7Vd9CaqjgDsV4DRyQE9r6Gj7JAIy5Un42raGcSMmsif99H5T12BgYx
-	 44c+hzVKxXIZ07xoLR0r7wL2CMpd9Hh5/WciDMr7a/LZ9H7Z1lZ0G/439wKpFL7T51
-	 2tGLthWSxHpVT01kFntNdV3lxaHP6ULgYwzI0s5Ntl0WdwQA5mOQjhTR9x5DnB6Ng7
-	 3g0wfta/r/ZBg==
-Date: Tue, 17 Sep 2024 08:39:37 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Haylen Chu <heylenay@outlook.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Inochi Amaoto <inochiama@outlook.com>, 
-	Chen Wang <unicornxdotw@foxmail.com>, Jisheng Zhang <jszhang@kernel.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: clock: spacemit: Add clock
- controllers of Spacemit K1 SoC
-Message-ID: <zsayhliz4a4fauzmvkimd4uzucuunt6gmkypjlqh4omle4uqx4@cbknudobc57g>
-References: <SEYPR01MB4221829A2CD4D4C1704BABD7D7602@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
- <SEYPR01MB4221BDC11EE244C7D70C229DD7602@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
+	s=arc-20240116; t=1726556315; c=relaxed/simple;
+	bh=HvKjEaTed6/+RfsVR4nP0piQihMfmcB16bZRUl8o+qs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ejOPa9lAMRhPu57igV1o3ChavQNY6sS2vRy5dsz87cemTRFfLF0cmZVP9s8+9YJB5DauCKzJZL3OgysrGmqDsyCQWV1ue51fJvJgVsxrHP9nvLn0KOae4CIF9dQSdvQAX1ZvonZZlHpeCCcJrhKaTXjTg+U88t68o58LfDCVA7k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NbfMy4FG; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-535dc4ec181so4428973e87.3;
+        Mon, 16 Sep 2024 23:58:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726556311; x=1727161111; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z7wsxkt8kD2tv/Cwg977j2CL2XAhPdhs/VJmk8MeTU4=;
+        b=NbfMy4FGHRha1nwE79dqvnR9AtkWh4WYzVf7YTzZ9OkWnf/qVFf/KebkoKyNmjQjAo
+         JNNa0Eww8vu9BQamt8VNzTVn+Lpc52Jw+SiUpJ9y5MM0vgVMHG3aBwTCCq3ZrgXf4867
+         Ba/GB6RGums06WVZY1OXpXTnC66KbKdGoWCLHnHHJ46KVB9VF6pW1E0aTpmOX2SDO9ti
+         wXILlkFEfxFlTKZrPhSAEx0CswSwKsbWfacOD7132YV1MO5QcDhXTgZuvyZWzpJZRyV1
+         RKbJsjfExaSY+HDPJdx3w17uvlGCGisM3KI6hpOyp0FzMJxuhfWNNZ6UhqJB0XLj0Tf3
+         mtrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726556311; x=1727161111;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Z7wsxkt8kD2tv/Cwg977j2CL2XAhPdhs/VJmk8MeTU4=;
+        b=nik5QGXmb1IUmcsPfWycrEjlugFOJqdRnF7Dsf5c7oItELZQr9KmR8/vpSij+9DtgI
+         2ktuHSPlQDvHp1uAD/naLyyy6+0yi0xGWcypOQ/nfmqQLG5at6qgSZxk7DGVzq7Ve/Ux
+         wSxVLoPz4llfjVVpaUXM5w+3nCcP3mYqMjOaQnyiHb2Kziptl8YTzTrHZ2d1tWp2iyd9
+         2QMM772JVn3mnnSoh1Nz0MopMZQYaHwnrZMe1S6u9VlqVm9JCXtcrXbTPC4mtJq6NrIE
+         7hEzo//nR9QQLjcxaM/BdmYFtfCfpQD9kyULnBWxTvIk3bTOJsnxDuW6YNxxuTn9iLdX
+         0a6A==
+X-Forwarded-Encrypted: i=1; AJvYcCXdMawe4hsJLzmdj2nP//K9hZDl1p1RObSivuyI5ZN3auD4O51nDwCdIAUgMKGQ77SEvQiTntOzK0IL86A=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwFd+dGa6rU735qvP3KTWbLQQHP0tLRjZGnX5zpKYfo99jfpuLs
+	atBE+23KcPmhetVCayXe4hpIakSAmzMD9zOhrYFAuOUAEzDCFlVM
+X-Google-Smtp-Source: AGHT+IGkjhSF7e+whaWFPHV7ed3DYwsF94+etu0W20gL9z5Qoa7dvhLLxv9lP4XynRZRJ9Hm9pDrxQ==
+X-Received: by 2002:a05:6512:ba8:b0:52f:413:7e8c with SMTP id 2adb3069b0e04-53678fb6a90mr9664342e87.14.1726556311324;
+        Mon, 16 Sep 2024 23:58:31 -0700 (PDT)
+Received: from ld-100007.ds1.internal (77.119.220.220.wireless.dyn.drei.com. [77.119.220.220])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-a90610f4510sm405100666b.67.2024.09.16.23.58.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Sep 2024 23:58:31 -0700 (PDT)
+From: Diogo Silva <diogompaissilva@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	aisheng.dong@nxp.com,
+	Frank.Li@nxp.com
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	diogompaissilva@gmail.com
+Subject: [PATCH v2] arm64: dts: imx8: Fix lvds0 device tree
+Date: Tue, 17 Sep 2024 08:58:01 +0200
+Message-Id: <20240917065801.2579750-1-diogompaissilva@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <SEYPR01MB4221BDC11EE244C7D70C229DD7602@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Sep 16, 2024 at 10:23:09PM +0000, Haylen Chu wrote:
-> Add definition for the clock controllers of Spacemit K1 SoC. The clock
-> tree is managed by several SoC parts, thus different compatible strings
-> are added for each.
-> 
-> spacemit,k1-syscon.yaml is updated as well to allow clock controller
-> being its subnode.
-> 
-> Signed-off-by: Haylen Chu <heylenay@outlook.com>
+Some clock output names on lvds0 device tree were duplicated from mipi1,
+which caused an -EEXIST when registering these clocks during probe.
 
-Please order patches correctly. First this, then the parent so you will
-not submit incomplete binding.
+Fixes: 0fba24b3b956 ("arm64: dts: imx8: add basic lvds0 and lvds1 subsystem")
+Signed-off-by: Diogo Silva <diogompaissilva@gmail.com>
+---
+ arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-You still must test it, though :(
-
-> ---
->  .../bindings/clock/spacemit,k1-ccu.yaml       |  71 +++++++
->  .../soc/spacemit/spacemit,k1-syscon.yaml      |   4 +
->  include/dt-bindings/clock/spacemit,k1-ccu.h   | 198 ++++++++++++++++++
->  3 files changed, 273 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/spacemit,k1-ccu.yaml
->  create mode 100644 include/dt-bindings/clock/spacemit,k1-ccu.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/spacemit,k1-ccu.yaml b/Documentation/devicetree/bindings/clock/spacemit,k1-ccu.yaml
-> new file mode 100644
-> index 000000000000..0186722cfd87
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/spacemit,k1-ccu.yaml
-> @@ -0,0 +1,71 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/spacemit,k1-ccu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Spacemit K1 SoC Clock Controller
-> +
-> +maintainers:
-> +  - Haylen Chu <heylenay@outlook.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - spacemit,k1-ccu-apbs
-> +      - spacemit,k1-ccu-mpmu
-> +      - spacemit,k1-ccu-apbc
-> +      - spacemit,k1-ccu-apmu
-> +
-> +  clocks:
-> +    minItems: 4
-
-Drop
-
-> +    maxItems: 4
-> +
-> +  clock-names:
-> +    items:
-> +      - const: clk_32k
-> +      - const: vctcxo_1
-> +      - const: vctcxo_24
-> +      - const: vctcxo_3
-> +
-> +  spacemit,mpmu:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to the syscon managing "Main PMU (MPMU)" registers. It is used to
-> +      check PLL lock status.
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +    description:
-> +      See <dt-bindings/clock/spacemit,k1-ccu.h> for valid indices.
-> +
-> +required:
-> +  - compatible
-> +  - "#clock-cells"
-> +
-> +additionalProperties: false
-
-Move it after allOf block
-
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: spacemit,k1-ccu-apbs
-> +    then:
-> +      required:
-> +        - compatible
-> +        - "#clock-cells"
-
-Drop both, redundant
-
-
-> +        - spacemit,mpmu
-> +
-> +examples:
-> +  - |
-> +    syscon_apbs: system-control@d4090000 {
-
-Only one example, keep it in parent node.
-
-> +        compatible = "spacemit,k1-apbs-syscon", "syscon", "simple-mfd";
-> +        reg = <0x0 0xd4090000 0x0 0x1000>;
-> +
-> +        clk_apbs: clock-controller {
-> +            compatible = "spacemit,k1-ccu-apbs";
-> +            #clock-cells = <1>;
-> +            spacemit,mpmu = <&syscon_mpmu>;
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> index 4e3a72b48aff..08efda207101 100644
-> --- a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> +++ b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> @@ -27,6 +27,10 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  clock-controller:
-> +    $ref: /schemas/clock/spacemit,k1-ccu.yaml#
-> +    type: object
-> +
-
-This MUST be part of other patch.
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi
+index d00036204a8c..dad0dc8fb431 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-ss-lvds0.dtsi
+@@ -14,7 +14,7 @@ qm_lvds0_lis_lpcg: qxp_mipi1_lis_lpcg: clock-controller@56243000 {
+ 		compatible = "fsl,imx8qxp-lpcg";
+ 		reg = <0x56243000 0x4>;
+ 		#clock-cells = <1>;
+-		clock-output-names = "mipi1_lis_lpcg_ipg_clk";
++		clock-output-names = "lvds0_lis_lpcg_ipg_clk";
+ 		power-domains = <&pd IMX_SC_R_MIPI_1>;
+ 	};
+ 
+@@ -22,9 +22,9 @@ qm_lvds0_pwm_lpcg: qxp_mipi1_pwm_lpcg: clock-controller@5624300c {
+ 		compatible = "fsl,imx8qxp-lpcg";
+ 		reg = <0x5624300c 0x4>;
+ 		#clock-cells = <1>;
+-		clock-output-names = "mipi1_pwm_lpcg_clk",
+-				     "mipi1_pwm_lpcg_ipg_clk",
+-				     "mipi1_pwm_lpcg_32k_clk";
++		clock-output-names = "lvds0_pwm_lpcg_clk",
++				     "lvds0_pwm_lpcg_ipg_clk",
++				     "lvds0_pwm_lpcg_32k_clk";
+ 		power-domains = <&pd IMX_SC_R_MIPI_1_PWM_0>;
+ 	};
+ 
+@@ -32,8 +32,8 @@ qm_lvds0_i2c0_lpcg: qxp_mipi1_i2c0_lpcg: clock-controller@56243010 {
+ 		compatible = "fsl,imx8qxp-lpcg";
+ 		reg = <0x56243010 0x4>;
+ 		#clock-cells = <1>;
+-		clock-output-names = "mipi1_i2c0_lpcg_clk",
+-				     "mipi1_i2c0_lpcg_ipg_clk";
++		clock-output-names = "lvds0_i2c0_lpcg_clk",
++				     "lvds0_i2c0_lpcg_ipg_clk";
+ 		power-domains = <&pd IMX_SC_R_MIPI_1_I2C_0>;
+ 	};
+ 
+-- 
+2.34.1
 
 
