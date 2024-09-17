@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-103422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AA4A97ACB4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 10:15:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF10597ACB8
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 10:16:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F3881C220BC
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 08:15:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B0641C22003
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 08:16:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D3E015AAD9;
-	Tue, 17 Sep 2024 08:15:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E59A14A0A0;
+	Tue, 17 Sep 2024 08:16:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gAga/992"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KHcMnDYJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2438E154454;
-	Tue, 17 Sep 2024 08:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35364130AC8;
+	Tue, 17 Sep 2024 08:16:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726560912; cv=none; b=hOtQaV2QNR2Bb93uiseMuu9emvWprxD6OS1JDr1tyg3D+BBxJdkftlRxRk8dQamUIRxFOh5H71mh4LRDN1JfKy6oqDHGJrnCW6FjImk4NFhmYTRi3fm39DjcigeMUQqtcCBN6r2AfL3S4yWD+RI+llMcc+rtlzr6dGsKQoHpJBc=
+	t=1726560978; cv=none; b=XbtT899Bx/9aK2GOesZOf8C8UbmOwPfLPj91TJQoSPO8CQLMZDWaQH4rDMU+qTD4SPWj0mK1SJ7557LqeEECehv9eilR7J+Z/TkB7lflkyhuBdM2W5aGVE55hsIKrJk8WrypudCosjEa/0XG3KLL6Ke/pVYMl/giNUQCRc7PRTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726560912; c=relaxed/simple;
-	bh=X8t15naKkmIQAijVecue21y1T52JyDvS8+FkFEqBo3Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BrT/13ZaX/fljZqRAMA79lRm3h/oTsVF9RKAOu1lLXG7OGmTWwEuuHwVE6lTeZLq0cIpCEOJxVM6j+fnC6y3XLA/X66N21Wg71jV9NUampocrum6O40rt9mwErgl0R/PihMg4apy4/rhTqI9HDlLkLpsX0Msetp1hNntROkh1xs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gAga/992; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D750AC4CEC6;
-	Tue, 17 Sep 2024 08:15:06 +0000 (UTC)
+	s=arc-20240116; t=1726560978; c=relaxed/simple;
+	bh=mJYN3VsjHf4rEH8MXychftbCLmej4v7+Oy4ZQIJUkhA=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=cOzKo1oIwpTRSOVlWfmVC3Gp7EkRsVu6bWlLRAa1U6Ar81+7x++rcrWE9Nqj9vWHRMAGfgOU/9f7fld4p6vl6buiTWlSd53i8KIENS4uKxiX9vs5ZIgJ6Lxv8ynqkfK/2GCDZlV2lbn3wG0UPzqmwd7F66pp8YlD0Rky8jWJzVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KHcMnDYJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36BC8C4CEC6;
+	Tue, 17 Sep 2024 08:16:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726560911;
-	bh=X8t15naKkmIQAijVecue21y1T52JyDvS8+FkFEqBo3Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gAga/992/QembpC4cgku0YnCasW2ebaWp3rcO4zvC6JgXHOw5x+zvghr24XMIz2y6
-	 rTebLZbBLCaUFyiRa49Dra69lJJwYGGSJJBP4ykXs7XJ10e0DNyFY8c0vxI/1ERMhe
-	 bvVL2rODTP31N6YsCn1autKu3A78Pd53AEEoqmjNLrAqXMgxDUT311QpGnMcWSc20m
-	 Er4stFGEWRrNYpqiZSs2N9OjvNPUDjJWnQiFKeXUxnUZCcV0CYu8WE/fBMuEMtJwHU
-	 dess8L20YCz0pzQBbz8puWLgoPLnx7v5zdYXp8UAyM1JFsmu7S7/NCQBYPXrf1yxHl
-	 w5X+ea6nQAtaw==
-Message-ID: <a2193800-69ea-4909-ba8b-05b85915ae6a@kernel.org>
-Date: Tue, 17 Sep 2024 10:15:04 +0200
+	s=k20201202; t=1726560977;
+	bh=mJYN3VsjHf4rEH8MXychftbCLmej4v7+Oy4ZQIJUkhA=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=KHcMnDYJWxxQdWexgoV5EHwh+OMG/wV5GO2imLvc1CKC28DLEWyVlLgD97tlLI56r
+	 bbDMFRwA4NbHMcYf6iMMYiVsYmk6Di/BZanvuQx4PunIrVALZBEln+aoweoGYEIb1O
+	 84LMko4KHC39kFlmNX/N4jdrC4DWQTxNR4quL3bkCtFcMW/npK1HUSh5jcgFYcmrJJ
+	 tRnBEAZliC/BnuauE3wEqoYkpoqZ+pWbI5bGvSNsWZt9Z3k3nCWJO4XbabGdv+J9y3
+	 Gt9UNFNUL4Qf24wWf3bWdpl4wuVF2qNYixc6T443s7Aj4eP1NwYHx76nAlD6c+Jp2j
+	 A/OuXSbx8pq9g==
+Message-ID: <224bfd44-d26a-494c-81ad-560677761d81@kernel.org>
+Date: Tue, 17 Sep 2024 10:16:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,6 +52,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 2/2] regulator: max20339: add Maxim MAX20339 regulator
  driver
+From: Krzysztof Kozlowski <krzk@kernel.org>
 To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
  Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -64,7 +65,7 @@ References: <20240916-max20339-v1-0-b04ce8e8c471@linaro.org>
  <20240916-max20339-v1-2-b04ce8e8c471@linaro.org>
  <29f30aae-ffad-4a42-909e-b05f9cf360b5@kernel.org>
  <290668fb4f86a4d2caa779e517c736c93c3fc429.camel@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <a2193800-69ea-4909-ba8b-05b85915ae6a@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -109,115 +110,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <290668fb4f86a4d2caa779e517c736c93c3fc429.camel@linaro.org>
+In-Reply-To: <a2193800-69ea-4909-ba8b-05b85915ae6a@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 17/09/2024 10:03, André Draszik wrote:
->>> +}
->>> +
->>> +static int max20339_lsw_dt_parse(struct device_node *np,
->>> +				 const struct regulator_desc *desc,
->>> +				 struct regulator_config *cfg)
->>> +{
->>> +	struct max20339_regulator *data = cfg->driver_data;
->>> +
->>> +	/* we turn missing properties into a fatal issue during probe() */
+On 17/09/2024 10:15, Krzysztof Kozlowski wrote:
 >>
->> Your binding does not look in sync with above.
+>>>> +	irq_flags |= irqd_get_trigger_type(irq_get_irq_data(client->irq));
+>>>> +
+>>>> +	ret = devm_request_threaded_irq(&client->dev, client->irq,
+>>>
+>>> Shared interrupts should not be devm. It leads to tricky cases during
+>>> removal. If you investigated the code and you are 100% sure there is no
+>>> issue, please write a short comment in the code confirming that. Or just
+>>> don't use devm.
+>>
+>> I wasn't aware of this, thanks. I'll drop the shared and somebody can
+>> revisit it in the future if required. BTW, a naive grep returned +400
+>> drivers that use shared together with devm.
 > 
-> Do you mean it doesn't enforce existence of this property? (It does and
-> binding check appropriately complains if it's missing). Otherwise, can
-> you please point me to the problem you're seeing?
+> Yeah, I was once thinking to check them, because there is an easy hint
+> problems are possible: if driver has remove() callback which does
+> anything with resources. However even if driver code looks unsafe, it
+> requires quite some time to figure out if the issue is real - need to
+> find other driver who will trigger the interrupt afterwards.
+> 
+> You can BTW test it with CONFIG_DEBUG_SHIRQ + bind/unbind.
+> 
+> Maybe we need some more explicit documentation around devm() or IRQF_SHARED.
 
-Indeed, it's in the subnode. It's fine.
-
-> 
-> From the binding:
-> 
-> +properties:
-> +  [...]
-> +  regulators:
-> +    type: object
-> +    [...]
-> +    patternProperties:
-> +      "^lsw[12]$":
-> +        [...]
-> +        properties:
-> +          [...]
-> +          shunt-resistor-micro-ohms:
-> +            [...]
-> +        required:
-> +          - shunt-resistor-micro-ohms
-> +
-> +        unevaluatedProperties: false
-> +
-> +    required:
-> +      - lsw1
-> +      - lsw2
-> +
-> +    additionalProperties: false
-> +
-> +[...]
-> +
-> +required:
-> +  [...]
-> +  - regulators
-> 
-> Anything wrong or missing in the above?
-> 
->>> [...]
->>> +	},                                                        \
->>> +	.ovp_mask = _ovp_mask,                                    \
->>> +	.status_reg = _status_reg,                                \
->>> +}
->>> +
->>> +
->>
->> Here and in few other places - just one blank line.
-> 
-> OK.
-> 
->>> +static struct max20339_regulator max20339_regulators[MAX20339_N_REGULATORS] = {
->>
->> This can be const and then use container_of instead of rdev_get_drvdata().
->>
->> See:
->> https://lore.kernel.org/all/20240909-regulator-const-v1-17-8934704a5787@linaro.org/
-> 
-> Thanks!
-> 
->> [...]
->>> +
->>> +	irq_flags = IRQF_ONESHOT | IRQF_SHARED;
->>
->> Why shared?
-> 
-> Just to be nice in case somebody puts it on a shared line. Not actually
-> required in my case.
-> 
->>> +	irq_flags |= irqd_get_trigger_type(irq_get_irq_data(client->irq));
->>> +
->>> +	ret = devm_request_threaded_irq(&client->dev, client->irq,
->>
->> Shared interrupts should not be devm. It leads to tricky cases during
->> removal. If you investigated the code and you are 100% sure there is no
->> issue, please write a short comment in the code confirming that. Or just
->> don't use devm.
-> 
-> I wasn't aware of this, thanks. I'll drop the shared and somebody can
-> revisit it in the future if required. BTW, a naive grep returned +400
-> drivers that use shared together with devm.
-
-Yeah, I was once thinking to check them, because there is an easy hint
-problems are possible: if driver has remove() callback which does
-anything with resources. However even if driver code looks unsafe, it
-requires quite some time to figure out if the issue is real - need to
-find other driver who will trigger the interrupt afterwards.
-
-You can BTW test it with CONFIG_DEBUG_SHIRQ + bind/unbind.
-
-Maybe we need some more explicit documentation around devm() or IRQF_SHARED.
+Also discussion here:
+https://lore.kernel.org/all/20220929050426.955139-1-dmitry.torokhov@gmail.com/
 
 Best regards,
 Krzysztof
