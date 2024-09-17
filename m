@@ -1,275 +1,547 @@
-Return-Path: <devicetree+bounces-103510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC3C97B1E0
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 17:35:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EF6B97B1E8
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 17:36:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90064B2A4F0
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 15:35:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 785081F22411
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 15:36:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5566A1A071F;
-	Tue, 17 Sep 2024 15:10:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73F191A2652;
+	Tue, 17 Sep 2024 15:11:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kef5JOLB"
+	dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b="OUB9N7Mm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from uho.ysoft.cz (uho.ysoft.cz [81.19.3.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD041A0714
-	for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 15:10:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873A51A0B0F;
+	Tue, 17 Sep 2024 15:11:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=81.19.3.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726585807; cv=none; b=gq9dKbcEF06oVhNiew+9FQ+dC/YARQLeqqIgTLmxX9YD/IKURRmrpG7FNc5CwLRXct+TU2xzbqB2rXv2ZWJSjCdMBJ3jOSqwzUZUpU/+Bqfa6wlXMDtY7FdyoyQv8OfU3YCreYLcPccUp9aYkgUKUCeN0aS8K8N66/emsBJW7kg=
+	t=1726585877; cv=none; b=OUzN7KSoedDan5/sxy6unYu5ssSCd5rCgFpc8IeaSW2VLsDi0jnQ7UWsFS4Z+eE5eohfjSN9lJAHtO85dwgQqXmLK6mU+woiNh84VWg3t0AYQj2nfKosMLGnURJR5zTCmL0Eh3qCe1rWZQciLGmFkfRdym4SNi9CMZ2JPpogES0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726585807; c=relaxed/simple;
-	bh=PnYbAq39PE3erNcxHa/JuLqNkblIRpP7Fgb21+avdnY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gHaj3mxrrVA1X3r9Q956xksoHZO2v7+zwMvOBMv12jUGlTed4xvJWgNuQv3ioawAYY7QE2/DfuhYp+hec0yqtIgkGnYLM1Nk3OhkaUFTvQzSpmfZ4jxMsR/9whds2XvkDzfB4SI546xSLerPnjWy9lvkcHBcP0+zttil2kGFzTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Kef5JOLB; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-718e11e4186so5497523b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 08:10:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726585805; x=1727190605; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=iCYHskEI+GQ9Ix+yOkIDZ3w1IkWzSol0a0DLeDR1+R0=;
-        b=Kef5JOLBJrlNqMAhfWqS4oYahyYULB4Fx/jDgM6G8R4ks9W3ycNXidAK026obR8I7R
-         bKa4BlZLl+r7o1SnzbXFTqigyFQ2SHsRKjwxBUHYpt9gAaupyd/Hr0y39NpJ3qvzBEWl
-         SlEe/yoj9fQNhqpUvB671INHofSsGGm7t7G0dsD76vp9ofChWn7D/fFHfxH6Eh+ootIK
-         AyzhrRnrjuFO9KpEBRaOlBK9BJKNCbOKssrRES9gfZAzUIcoPkyuTxsifKwnv4PyjfVH
-         Owrv0M1IqT4fgUFS5MigpME+C8yrCWXwV2xaDqPp/Ux3YTYjXPmAZsQp0d+ZnSF0RJpv
-         CDsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726585805; x=1727190605;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iCYHskEI+GQ9Ix+yOkIDZ3w1IkWzSol0a0DLeDR1+R0=;
-        b=J5EyzbLI9Mb+rCFclWPVWVGoQ1EyRR4TbZv4hgVRpabJ80uidqgkTck7uE2xPtc1mu
-         jAo9wUEYzVhQeUA3cRu9aEi84nio5cD6TmLf596vlWCKroPpuMIz/WM2ijICJWqdLmS/
-         Pvm8uI+PjiR9cltVSuHZzVbdNGIscLPcZrniOY+ebmzQLkspUrKUaHQ2Yy7/HOl6vt0+
-         3JB0VaNS9XGkQ6Tf8EZiCDfL2mdOKUnJAih+2iCnLs+55z3UFOZ5EMVyc3AJ3/G5ASDS
-         Z4jTDXul2KvEHnHjGJMYJTbUzppIrd4B9tZRu+KdBc+5H22gExkBWw1DuIt9pvV8goh+
-         aDFw==
-X-Forwarded-Encrypted: i=1; AJvYcCVrbxHAgnoByOBsrDWlMAFV3dSEcQ9dklE7J0NeTAT35+0irzvwxYyCbx9ud8/KvhLolyFQfiPcgp+d@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3tONccUJGVbnT3IPGkLRC6lhq01iUPKDKL4EWoLQdW5twgxQw
-	voYpMDbdrQQLPJWxqQDLML4ri62CFTttHjx8Jfny6CmyBJ7ziKom9o+AyEGoLw==
-X-Google-Smtp-Source: AGHT+IFLZcWjrqjoZmsI4ZpaPNRFceD/PPRyGcVrqh1UCItMr9SJpLdCzWP/+3tdf5QVyfDeA87z/g==
-X-Received: by 2002:a05:6a20:8420:b0:1cf:d745:d641 with SMTP id adf61e73a8af0-1cfd745d677mr30630257637.18.1726585804735;
-        Tue, 17 Sep 2024 08:10:04 -0700 (PDT)
-Received: from thinkpad ([103.174.21.175])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7db49911546sm5948153a12.40.2024.09.17.08.10.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Sep 2024 08:10:04 -0700 (PDT)
-Date: Tue, 17 Sep 2024 20:39:59 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Thippeswamy Havalige <thippesw@amd.com>
-Cc: robh@kernel.org, linux-pci@vger.kernel.org, bhelgaas@google.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	bharat.kumar.gogada@amd.com, michal.simek@amd.com,
-	lpieralisi@kernel.org, kw@linux.com
-Subject: Re: [PATCH v2 2/2] PCI: xilinx-cpm: Add support for Versal CPM5 Root
- Port controller 1
-Message-ID: <20240917150959.3fsytm4xguoit2xd@thinkpad>
-References: <20240916163748.2223815-1-thippesw@amd.com>
+	s=arc-20240116; t=1726585877; c=relaxed/simple;
+	bh=MSDE1YisBDhBfclGcQGQr63axeklACb9lpmz5biYqYU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MoX15i6dWunBzVWyrVxLpiyAg0x1UF5IOj6t0wYW/rIDfNvUUpKDZe8hBv49zoBJuxnRM6a5F44Bs+N/Gxv8tIRBankoLCaxa02xBEsZAZpS5PCjcoaNXaErFd5qLaO3+/6fWFpfzMWOPxs5mguCNKWw9fr9RtEnZqcGRB9SLQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com; spf=pass smtp.mailfrom=ysoft.com; dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b=OUB9N7Mm; arc=none smtp.client-ip=81.19.3.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ysoft.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+	s=20160406-ysoft-com; t=1726585874;
+	bh=n2EsA9zRqXjD/m3Iloey1Ttl1cv8J/KbWK52Kpw1a98=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=OUB9N7MmwMjBMBSiwqhs+AOK/tu726pvSwG84VgZn0cADLlgl/Rh1ZXtid4vM6JLx
+	 W/t5AAk8tKTUsF4CWhB4daZEY0YqezeeeCC6pcN5xShjYA9YS7JMWgP4WR+Dx4Sg+V
+	 CtE7gMNAiLJA7dOoK6GufkLHUlCYVaVmbamAW7rw=
+Received: from vokac-nb.ysoft.local (unknown [10.1.8.111])
+	by uho.ysoft.cz (Postfix) with ESMTP id C54F3A1B72;
+	Tue, 17 Sep 2024 17:11:13 +0200 (CEST)
+From: =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Petr Benes <petr.benes@ysoft.com>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Herburger <gregor.herburger@ew.tq-group.com>,
+	Hiago De Franco <hiago.franco@toradex.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	Michael Walle <mwalle@kernel.org>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Mathieu Othacehe <m.othacehe@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	=?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+Subject: [PATCH 2/4] arm64: dts: imx: Add imx8mp-iota2-lumpy board
+Date: Tue, 17 Sep 2024 17:09:59 +0200
+Message-ID: <20240917151001.1289399-3-michal.vokac@ysoft.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240917151001.1289399-1-michal.vokac@ysoft.com>
+References: <20240917151001.1289399-1-michal.vokac@ysoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240916163748.2223815-1-thippesw@amd.com>
 
-On Mon, Sep 16, 2024 at 10:07:48PM +0530, Thippeswamy Havalige wrote:
+The IOTA2 Lumpy board is based on the i.MX8MPlus EVK.
 
-For some reason, this patch is not threaded and not part of the series:
-[PATCH v2 0/2] Add support for CPM5 controller 1
+Basic features are:
+- 4GB LPDDR4
+- 64GB eMMC
+- 2x 1GB Ethernet
+- USB 3.0 Type-C dual role port, without power delivery
+- USB 3.0 Type-A host port
+- RGB LED - PWM driven
+- speaker - PWM driven
+- RTC with super capacitor backup
 
-> This patch adds support for the Xilinx Versal CPM5 Root Port Controller 1.
+Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+---
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../boot/dts/freescale/imx8mp-iota2-lumpy.dts | 425 ++++++++++++++++++
+ 2 files changed, 426 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
 
-s/patch/commit
-
-Once this patch gets merged, it will become a commit.
-
-> The key difference between Controller 0 and Controller 1 lies in the
-> platform-specific error interrupt bits, which are located at different
-> register offsets.
-> 
-> To handle these differences, a variant structure is introduced that holds
-> the following platform-specific details:
-> 
-
-The variant structure is already present in the driver. Hence not introduced
-in *this* patch.
-
-> - Interrupt status register offset (ir_status)
-> - Interrupt enable register offset (ir_enable)
-> - Miscellaneous interrupt values (ir_misc_value)
-> 
-> The driver differentiates between Controller 0 and Controller 1 using the
-> compatible string in the device tree. This ensures that the appropriate
-> register offsets are used for each controller, allowing for correct
-> handling of platform-specific interrupts and initialization.
-> 
-> Signed-off-by: Thippeswamy Havalige <thippesw@amd.com>
-> ---
-> changes in v2:
-> --------------
-> 1. Introduced new constants for Controller 1.
-> 2. Extended the xilinx_cpm_variant structure to support
-> 	a. ir_status,
-> 	b. ir_enable, and 
-> 	c. ir_misc_value for different controllers.
-> 3. Updated IRQ handling and initialization to use the variant structure.
-> 4. Added a new device tree match entry for Controller 1.
-> ---
->  drivers/pci/controller/pcie-xilinx-cpm.c | 47 ++++++++++++++++++------
->  1 file changed, 36 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/pcie-xilinx-cpm.c b/drivers/pci/controller/pcie-xilinx-cpm.c
-> index a0f5e1d67b04..b783fff27c9d 100644
-> --- a/drivers/pci/controller/pcie-xilinx-cpm.c
-> +++ b/drivers/pci/controller/pcie-xilinx-cpm.c
-> @@ -30,11 +30,14 @@
->  #define XILINX_CPM_PCIE_REG_IDRN_MASK	0x00000E3C
->  #define XILINX_CPM_PCIE_MISC_IR_STATUS	0x00000340
->  #define XILINX_CPM_PCIE_MISC_IR_ENABLE	0x00000348
-> -#define XILINX_CPM_PCIE_MISC_IR_LOCAL	BIT(1)
-> +#define XILINX_CPM_PCIE0_MISC_IR_LOCAL	BIT(1)
-> +#define XILINX_CPM_PCIE1_MISC_IR_LOCAL	BIT(2)
->  
-> -#define XILINX_CPM_PCIE_IR_STATUS       0x000002A0
-> -#define XILINX_CPM_PCIE_IR_ENABLE       0x000002A8
-> -#define XILINX_CPM_PCIE_IR_LOCAL        BIT(0)
-> +#define XILINX_CPM_PCIE0_IR_STATUS	0x000002A0
-> +#define XILINX_CPM_PCIE1_IR_STATUS	0x000002B4
-> +#define XILINX_CPM_PCIE0_IR_ENABLE	0x000002A8
-> +#define XILINX_CPM_PCIE1_IR_ENABLE	0x000002BC
-> +#define XILINX_CPM_PCIE_IR_LOCAL	BIT(0)
->  
->  #define IMR(x) BIT(XILINX_PCIE_INTR_ ##x)
->  
-> @@ -80,6 +83,7 @@
->  enum xilinx_cpm_version {
->  	CPM,
->  	CPM5,
-> +	CPM5_HOST1,
->  };
->  
->  /**
-> @@ -88,6 +92,9 @@ enum xilinx_cpm_version {
->   */
->  struct xilinx_cpm_variant {
->  	enum xilinx_cpm_version version;
-> +	u32 ir_status;
-> +	u32 ir_enable;
-> +	u32 ir_misc_value;
-
-Kdoc comments missing for these members.
-
->  };
->  
->  /**
-> @@ -269,6 +276,7 @@ static void xilinx_cpm_pcie_event_flow(struct irq_desc *desc)
->  {
->  	struct xilinx_cpm_pcie *port = irq_desc_get_handler_data(desc);
->  	struct irq_chip *chip = irq_desc_get_chip(desc);
-> +	const struct xilinx_cpm_variant *variant = port->variant;
->  	unsigned long val;
->  	int i;
->  
-> @@ -279,11 +287,11 @@ static void xilinx_cpm_pcie_event_flow(struct irq_desc *desc)
->  		generic_handle_domain_irq(port->cpm_domain, i);
->  	pcie_write(port, val, XILINX_CPM_PCIE_REG_IDR);
->  
-> -	if (port->variant->version == CPM5) {
-> -		val = readl_relaxed(port->cpm_base + XILINX_CPM_PCIE_IR_STATUS);
-> +	if (variant->ir_status) {
-> +		val = readl_relaxed(port->cpm_base + variant->ir_status);
->  		if (val)
->  			writel_relaxed(val, port->cpm_base +
-> -					    XILINX_CPM_PCIE_IR_STATUS);
-> +				       variant->ir_status);
->  	}
->  
->  	/*
-> @@ -465,6 +473,8 @@ static int xilinx_cpm_setup_irq(struct xilinx_cpm_pcie *port)
->   */
->  static void xilinx_cpm_pcie_init_port(struct xilinx_cpm_pcie *port)
->  {
-> +	const struct xilinx_cpm_variant *variant = port->variant;
-> +
->  	if (cpm_pcie_link_up(port))
->  		dev_info(port->dev, "PCIe Link is UP\n");
->  	else
-> @@ -483,15 +493,15 @@ static void xilinx_cpm_pcie_init_port(struct xilinx_cpm_pcie *port)
->  	 * XILINX_CPM_PCIE_MISC_IR_ENABLE register is mapped to
->  	 * CPM SLCR block.
->  	 */
-> -	writel(XILINX_CPM_PCIE_MISC_IR_LOCAL,
-> +	writel(variant->ir_misc_value,
->  	       port->cpm_base + XILINX_CPM_PCIE_MISC_IR_ENABLE);
->  
-> -	if (port->variant->version == CPM5) {
-> +	if (variant->ir_enable) {
->  		writel(XILINX_CPM_PCIE_IR_LOCAL,
-> -		       port->cpm_base + XILINX_CPM_PCIE_IR_ENABLE);
-> +		       port->cpm_base + variant->ir_enable);
->  	}
->  
-> -	/* Enable the Bridge enable bit */
-> +	/* Set Bridge enable bit */
-
-This changes doesn't belong to this patch.
-
->  	pcie_write(port, pcie_read(port, XILINX_CPM_PCIE_REG_RPSC) |
->  		   XILINX_CPM_PCIE_REG_RPSC_BEN,
->  		   XILINX_CPM_PCIE_REG_RPSC);
-> @@ -609,10 +619,21 @@ static int xilinx_cpm_pcie_probe(struct platform_device *pdev)
->  
->  static const struct xilinx_cpm_variant cpm_host = {
->  	.version = CPM,
-> +	.ir_misc_value = XILINX_CPM_PCIE0_MISC_IR_LOCAL,
->  };
->  
->  static const struct xilinx_cpm_variant cpm5_host = {
->  	.version = CPM5,
-> +	.ir_misc_value = XILINX_CPM_PCIE0_MISC_IR_LOCAL,
-> +	.ir_status = XILINX_CPM_PCIE0_IR_STATUS,
-> +	.ir_enable = XILINX_CPM_PCIE0_IR_ENABLE,
-> +};
-> +
-> +static const struct xilinx_cpm_variant cpm5_host1 = {
-> +	.version = CPM5_HOST1,
-> +	.ir_misc_value = XILINX_CPM_PCIE1_MISC_IR_LOCAL,
-> +	.ir_status = XILINX_CPM_PCIE1_IR_STATUS,
-> +	.ir_enable = XILINX_CPM_PCIE1_IR_ENABLE,
->  };
->  
->  static const struct of_device_id xilinx_cpm_pcie_of_match[] = {
-> @@ -624,6 +645,10 @@ static const struct of_device_id xilinx_cpm_pcie_of_match[] = {
->  		.compatible = "xlnx,versal-cpm5-host",
->  		.data = &cpm5_host,
->  	},
-> +	{
-> +		.compatible = "xlnx,versal-cpm5-host1-1",
-
-This doesn't look like a valid compatible name. Please use the compatible as per
-the IP version.
-
-- Mani
-
-
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index f04c22b7de72..421c36c5ae68 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -171,6 +171,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk2.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk3.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mp-iota2-lumpy.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-navqp.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts b/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
+new file mode 100644
+index 000000000000..21d0899cabd5
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
+@@ -0,0 +1,425 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2023 Y Soft
++ */
++
++/dts-v1/;
++
++#include "imx8mp.dtsi"
++
++/ {
++	model = "Y Soft i.MX8MPlus IOTA2 Lumpy board";
++	compatible = "ysoft,imx8mp-iota2-lumpy", "fsl,imx8mp";
++
++	chosen {
++		stdout-path = &uart2;
++	};
++
++	beeper {
++		compatible = "pwm-beeper";
++		pwms = <&pwm4 0 500000 0>;
++	};
++
++	gpio_keys: gpio-keys {
++		compatible = "gpio-keys";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpio_keys>;
++
++		button-reset {
++			label = "Factory RESET";
++			linux,code = <BTN_0>;
++			gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;
++		};
++	};
++
++	memory@40000000 {
++		device_type = "memory";
++		reg = <0x0 0x40000000 0 0x80000000>,
++		      <0x1 0x00000000 0 0x80000000>;
++	};
++
++	reg_usb_host: regulator-usb-host {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpio = <&gpio1 14 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_usb_host_vbus>;
++		regulator-max-microvolt = <5000000>;
++		regulator-min-microvolt = <5000000>;
++		regulator-name = "usb-host";
++	};
++};
++
++&A53_0 {
++	cpu-supply = <&reg_arm>;
++};
++
++&A53_1 {
++	cpu-supply = <&reg_arm>;
++};
++
++&A53_2 {
++	cpu-supply = <&reg_arm>;
++};
++
++&A53_3 {
++	cpu-supply = <&reg_arm>;
++};
++
++&eqos {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_eqos>;
++	phy-mode = "rgmii-id";
++	phy-handle = <&ethphy0>;
++	status = "okay";
++
++	mdio {
++		compatible = "snps,dwmac-mdio";
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		ethphy0: ethernet-phy@0 {
++			pinctrl-0 = <&pinctrl_ethphy0>;
++			pinctrl-names = "default";
++			reg = <0>;
++			interrupt-parent = <&gpio3>;
++			interrupts = <21 IRQ_TYPE_LEVEL_LOW>;
++			micrel,led-mode = <0>;
++			reset-gpios = <&gpio3 22 GPIO_ACTIVE_LOW>;
++			reset-assert-us = <1000>;
++			reset-deassert-us = <1000>;
++		};
++	};
++};
++
++&fec {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_fec>;
++	phy-mode = "rgmii-id";
++	phy-handle = <&ethphy1>;
++	fsl,magic-packet;
++	status = "okay";
++
++	mdio {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		ethphy1: ethernet-phy@0 {
++			pinctrl-0 = <&pinctrl_ethphy1>;
++			pinctrl-names = "default";
++			reg = <0>;
++			interrupt-parent = <&gpio3>;
++			interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
++			micrel,led-mode = <0>;
++			reset-gpios = <&gpio3 20 GPIO_ACTIVE_LOW>;
++			reset-assert-us = <1000>;
++			reset-deassert-us = <1000>;
++		};
++	};
++};
++
++&i2c1 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c1>;
++	status = "okay";
++
++	pmic@25 {
++		compatible = "nxp,pca9450c";
++		reg = <0x25>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_pmic>;
++		interrupt-parent = <&gpio1>;
++		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
++
++		regulators {
++			BUCK1 {
++				regulator-name = "BUCK1";
++				regulator-min-microvolt = <720000>;
++				regulator-max-microvolt = <1000000>;
++				regulator-boot-on;
++				regulator-always-on;
++				regulator-ramp-delay = <3125>;
++			};
++
++			reg_arm: BUCK2 {
++				regulator-name = "BUCK2";
++				regulator-min-microvolt = <720000>;
++				regulator-max-microvolt = <1025000>;
++				regulator-boot-on;
++				regulator-always-on;
++				regulator-ramp-delay = <3125>;
++				nxp,dvs-run-voltage = <950000>;
++				nxp,dvs-standby-voltage = <850000>;
++			};
++
++			BUCK4 {
++				regulator-name = "BUCK4";
++				regulator-min-microvolt = <3000000>;
++				regulator-max-microvolt = <3600000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			BUCK5 {
++				regulator-name = "BUCK5";
++				regulator-min-microvolt = <1650000>;
++				regulator-max-microvolt = <1950000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			BUCK6 {
++				regulator-name = "BUCK6";
++				regulator-min-microvolt = <1045000>;
++				regulator-max-microvolt = <1155000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			LDO1 {
++				regulator-name = "LDO1";
++				regulator-min-microvolt = <1650000>;
++				regulator-max-microvolt = <1950000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			LDO3 {
++				regulator-name = "LDO3";
++				regulator-min-microvolt = <1710000>;
++				regulator-max-microvolt = <1890000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			LDO4 {
++				regulator-name = "LDO4";
++				regulator-min-microvolt = <850000>;
++				regulator-max-microvolt = <950000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			LDO5 {
++				regulator-name = "LDO5";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++		};
++	};
++};
++
++&i2c2 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c2>;
++	status = "okay";
++
++	rtc: rtc@68 {
++		compatible = "dallas,ds1341";
++		reg = <0x68>;
++	};
++};
++
++&pwm4 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pwm4>;
++	pwm-gpios = <&gpio5 2 GPIO_ACTIVE_HIGH>;
++	status = "okay";
++};
++
++&uart2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart2>;
++	status = "okay";
++};
++
++&usb3_phy1 {
++	vbus-supply = <&reg_usb_host>;
++	status = "okay";
++};
++
++&usb3_1 {
++	status = "okay";
++};
++
++&usb_dwc3_1 {
++	pinctrl-names = "default";
++	dr_mode = "host";
++	status = "okay";
++};
++
++&usdhc3 {
++	assigned-clocks = <&clk IMX8MP_CLK_USDHC3>;
++	assigned-clock-rates = <400000000>;
++	pinctrl-names = "default", "state_100mhz", "state_200mhz";
++	pinctrl-0 = <&pinctrl_usdhc3>;
++	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
++	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
++	bus-width = <8>;
++	non-removable;
++	status = "okay";
++};
++
++&wdog1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_wdog>;
++	fsl,ext-reset-output;
++	status = "okay";
++};
++
++&iomuxc {
++	pinctrl_eqos: eqosgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC		0x2
++			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO		0x2
++			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0	0x90
++			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1	0x90
++			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2	0x90
++			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3	0x90
++			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL	0x90
++			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x90
++			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0	0x16
++			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1	0x16
++			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2	0x16
++			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3	0x16
++			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL	0x16
++			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x16
++		>;
++	};
++
++	pinctrl_ethphy0: ethphy0grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SAI5_RXD0__GPIO3_IO21		0x10
++			MX8MP_IOMUXC_SAI5_RXD1__GPIO3_IO22		0x10
++		>;
++	};
++
++	pinctrl_ethphy1: ethphy1grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SAI5_RXFS__GPIO3_IO19		0x10
++			MX8MP_IOMUXC_SAI5_RXC__GPIO3_IO20		0x10
++		>;
++	};
++
++	pinctrl_fec: fecgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC		0x2
++			MX8MP_IOMUXC_SAI1_RXD3__ENET1_MDIO		0x2
++			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0		0x90
++			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1		0x90
++			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2		0x90
++			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3		0x90
++			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC		0x90
++			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL	0x90
++			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0		0x16
++			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1		0x16
++			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2		0x16
++			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3		0x16
++			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL	0x16
++			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC		0x16
++		>;
++	};
++
++	pinctrl_gpio_keys: gpiokeysgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_GPIO1_IO07__GPIO1_IO07	0x80
++		>;
++	};
++
++	pinctrl_i2c1: i2c1grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x400001c2
++			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA		0x400001c2
++		>;
++	};
++
++	pinctrl_i2c2: i2c2grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL		0x400001c2
++			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA		0x400001c2
++		>;
++	};
++
++	pinctrl_pmic: pmicgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03	0x1c0
++		>;
++	};
++
++	pinctrl_pwm4: pwm4grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SAI3_MCLK__PWM4_OUT	0x102
++		>;
++	};
++
++	pinctrl_uart2: uart2grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	0x0
++			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX	0x0
++		>;
++	};
++
++	pinctrl_usb_host_vbus: usb1grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_GPIO1_IO14__USB2_OTG_PWR	0x0
++		>;
++	};
++
++	pinctrl_usdhc3: usdhc3grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x190
++			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d0
++			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d0
++			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d0
++			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d0
++			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d0
++			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d0
++			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d0
++			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d0
++			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d0
++			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x190
++		>;
++	};
++
++	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x194
++			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d4
++			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d4
++			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d4
++			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d4
++			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d4
++			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d4
++			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d4
++			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d4
++			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d4
++			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x194
++		>;
++	};
++
++	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x196
++			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d6
++			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d6
++			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d6
++			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d6
++			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d6
++			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d6
++			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d6
++			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d6
++			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d6
++			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x196
++		>;
++	};
++
++	pinctrl_wdog: wdoggrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_GPIO1_IO02__WDOG1_WDOG_B	0x166
++		>;
++	};
++};
 -- 
-மணிவண்ணன் சதாசிவம்
+2.43.0
+
 
