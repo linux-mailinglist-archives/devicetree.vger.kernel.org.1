@@ -1,155 +1,211 @@
-Return-Path: <devicetree+bounces-103462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03E2397AE9A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 12:18:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFE0F97AEB0
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 12:26:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEBC2281C1F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 10:18:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6687AB22626
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 10:24:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3D5415FD16;
-	Tue, 17 Sep 2024 10:18:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5BD15D5B6;
+	Tue, 17 Sep 2024 10:24:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W+wVIrlK"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Qk+IN80N";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="VXYMTNr+";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Qk+IN80N";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="VXYMTNr+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4065115D5B8;
-	Tue, 17 Sep 2024 10:18:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F41215B14F;
+	Tue, 17 Sep 2024 10:24:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726568310; cv=none; b=WecPUnssghrz4SZLRNrvIoFbq/3HSzE97mA6ReozKv8W7GPEtYE0/9eOmv+PYoONRPLOD6WrV/VYoaIQ9aPW7uibfl28Actuy3zGFYsDn7RZIM/O1loJBuETLVqvtkl+am9BGipSPAS678tnTSVkK+SYqIsGX+h8PpzcRCjb6Dk=
+	t=1726568680; cv=none; b=VmEjtuFGqDnGLe/TE4CWdLEaOQHpfhMxEvHsLSPbOFdiuxu9HY3LlbfcLJNvgEyfreFWxcdg4JzJdyJ9ZTdCjkaXkeTZALCsvMPjYGaDjBKSjRTLn4UgfNQuh9iyqt84hZ7/39kWLPizO/WaVbIIis6kUkiPek58jQoCMiKrSto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726568310; c=relaxed/simple;
-	bh=/CSOxkHfgO7zvTmBYBXJxaZ5unslc9ZBnbzkD7JUIXE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fG4uU/UqL+Uzfwyy/k0ZT46r3ImSJqYFTND1mPo12/O9MJWmyj3TI7MXTKeQd5Pv/cZIk7ZsLqEmLERgq8pA1qLVwQFycrQH/1jwYoW3CHymd4g7nK+jgACed3G8Ew2mk0APCyiC/ynLLR/xfZkMkdEsI/JRCYaVl4E6/U+EHS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W+wVIrlK; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a8d3cde1103so735328966b.2;
-        Tue, 17 Sep 2024 03:18:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726568307; x=1727173107; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=j3I8RvtrkEGLcn/jjCsGtDX+89c/RzZJGXWndr0k2ts=;
-        b=W+wVIrlKyBhQPtw2qoq43Rav3FhRQu9V8nHacXWo3ftjOthHIr+f422upBN3AVl+eG
-         jg9ok72nE2VLFobNLJsine0Y2GvJMPZtoRF8JUn7M3MmfSindpwjiBoTnQG8SbHG8k8t
-         cqOZucDBJTqXxPjCuf/uycmqpzhFipdH/EHlzhOQ/3A70dFG8+gowyUNa2gSKMkRPWaP
-         PDSUReN8FHIxlpYw0xYTxrefFyIaVtYCYqEqRkfVgum3bL27UbQHYDQjm4B8Js3Qk1xT
-         eaT1AuTlS+QFwdCtQ795ozLr3ZN5uTvuFZnvjSW3CasTJscQ7VC+wopQpTS2KvsQKeAF
-         bDPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726568307; x=1727173107;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=j3I8RvtrkEGLcn/jjCsGtDX+89c/RzZJGXWndr0k2ts=;
-        b=vTBkXky86BRauyKPkbo4eYVbLFrugM89GnTxlshqU72fpttwthV1W0nmm3DG+K9O5w
-         DKFxdw6pvXSYOr2jRLk6A1CrCJvpKnu7vQBCNOiyZqfv8N/RVeb2mx2JxB2sdHwM5SaD
-         KJ1LZ0kO0AmWxUg0LuyxLs+yIWddqM5gaPvpfCqfxGVOcgAJoa6aXuYlyOYyzwTrDrUI
-         6EPiuPqu4VVHAfs8jwRBWOx6I0Qu7R2a4UZOQtn7lCVAA+HEN14OZJoO7et0WTnjl2QJ
-         vc5IwM94xB607UFOqpHdusV/3slsCjsRyzYPU6pIG/LRoGjDjcL8Cp/j+0qsJiubuXIT
-         /rhw==
-X-Forwarded-Encrypted: i=1; AJvYcCWSuUW5TGdI+aS5YALIE7Kg4XpckEdtWDPSD/teeByYiXVLyG7zWICNNkpruBO2VoEAe64tL9iKLG2u@vger.kernel.org, AJvYcCX+KMKuFZB4i25cbB2mWdkA+1HBgvTiP4vg/YcFF/hcysLtvret8UKxNtZ1aZteYcheiJRBgjuwVBZLWuum@vger.kernel.org
-X-Gm-Message-State: AOJu0YytxQpe0xcbWbNoajqdCrGMR8ud8/poNiYc7OXgGp7cMlUdn9ZW
-	1Ox07ZQweO3qHAAYCiegVB2xn3e4PHE+d9lJinpRhw4EKHaNgWRFKh2/z/ypRqLfuKqAZMocHet
-	kwVMyjqVZIidz5/UFWSYvekAwhg==
-X-Google-Smtp-Source: AGHT+IFPC7DuVhYOkzCC23HgXMsE9KQr7nFypNg6U23LTW2Jqo3RSrdGkptdza7AxI6UwIQn0MGyh39umF9wjGpzJPM=
-X-Received: by 2002:a17:907:f72a:b0:a80:7193:bd93 with SMTP id
- a640c23a62f3a-a9029447148mr1934202366b.25.1726568307199; Tue, 17 Sep 2024
- 03:18:27 -0700 (PDT)
+	s=arc-20240116; t=1726568680; c=relaxed/simple;
+	bh=eyT1OtP54UlgVcI+m5y0AaA0jFcpYLcpfC+GsNQLgRU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LjQQZJCxH7K2Bos5/Qw/olCl6Has0I9Nfoq5pH4orwMHx/jLNinjW5R5BrQsvWdqDHm9BtCeF3MN/mqIecafE/btE8DMp5L6KujcEF7UnXlIq/ETBxKebBmHp2ITiGziIJ1gvvJEtRaj78pSuKjb0/OOI4QwGnHHYSjuKP8gtY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=Qk+IN80N; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=VXYMTNr+; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=Qk+IN80N; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=VXYMTNr+; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 5274C20006;
+	Tue, 17 Sep 2024 10:24:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1726568676; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SuGWZnD6p9BvXmL4N0uz16mbensRF2aEqhxw/6Os88g=;
+	b=Qk+IN80NjcPI5QJAMLDj4yio/ttB+54eP768tXylVeUCr5JxKeax765lDaRdBbxXksm9sU
+	V/3oVBnNB+LKp7YUhTb5vkt0m/dc24PiqcJ7FjkOSb856+3YFYTGHkkKgG4/RH4G2CxEQ8
+	FA4jOjSBLq3v9fwZtntrR6UbzjjQPR8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1726568676;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SuGWZnD6p9BvXmL4N0uz16mbensRF2aEqhxw/6Os88g=;
+	b=VXYMTNr+RcGPMnM1ZA81h1IkQtdcFx01Ht1PQkf+xzrDTit8gjjgDgRS86naZpsBk65KSl
+	jSUvF/oTQpVVXXCw==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1726568676; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SuGWZnD6p9BvXmL4N0uz16mbensRF2aEqhxw/6Os88g=;
+	b=Qk+IN80NjcPI5QJAMLDj4yio/ttB+54eP768tXylVeUCr5JxKeax765lDaRdBbxXksm9sU
+	V/3oVBnNB+LKp7YUhTb5vkt0m/dc24PiqcJ7FjkOSb856+3YFYTGHkkKgG4/RH4G2CxEQ8
+	FA4jOjSBLq3v9fwZtntrR6UbzjjQPR8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1726568676;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SuGWZnD6p9BvXmL4N0uz16mbensRF2aEqhxw/6Os88g=;
+	b=VXYMTNr+RcGPMnM1ZA81h1IkQtdcFx01Ht1PQkf+xzrDTit8gjjgDgRS86naZpsBk65KSl
+	jSUvF/oTQpVVXXCw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 623D713AB6;
+	Tue, 17 Sep 2024 10:24:35 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id kGX0FONY6WafdQAAD6G6ig
+	(envelope-from <svarbanov@suse.de>); Tue, 17 Sep 2024 10:24:35 +0000
+Message-ID: <a93c9757-963a-4b4f-a169-0c17ff39576b@suse.de>
+Date: Tue, 17 Sep 2024 13:24:30 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240917094956.437078-1-erezgeva@nwtime.org> <20240917094956.437078-4-erezgeva@nwtime.org>
-In-Reply-To: <20240917094956.437078-4-erezgeva@nwtime.org>
-From: Erez <erezgeva2@gmail.com>
-Date: Tue, 17 Sep 2024 12:17:50 +0200
-Message-ID: <CANeKEMMDj2D9x5jbOEbDDtbN_NG22mJwDPJva+bT-p6RJawMdg@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] dt-bindings: mtd: spi-nor: add OTP parameters
-To: Erez Geva <erezgeva@nwtime.org>
-Cc: linux-mtd@lists.infradead.org, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, linux-kernel@vger.kernel.org, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Esben Haabendal <esben@geanix.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 -next 05/11] PCI: brcmstb: Restore CRS in RootCtl after
+ prstn_n
+To: Florian Fainelli <florian.fainelli@broadcom.com>,
+ Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jim Quinlan <jim2101024@gmail.com>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Andrea della Porta <andrea.porta@suse.com>,
+ Phil Elwell <phil@raspberrypi.com>, Jonathan Bell <jonathan@raspberrypi.com>
+References: <20240910151845.17308-1-svarbanov@suse.de>
+ <20240910151845.17308-6-svarbanov@suse.de>
+ <9de505c5-d9a2-44b7-8db1-0686c61a0fb4@broadcom.com>
+Content-Language: en-US
+From: Stanimir Varbanov <svarbanov@suse.de>
+In-Reply-To: <9de505c5-d9a2-44b7-8db1-0686c61a0fb4@broadcom.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Level: 
+X-Spamd-Result: default: False [-2.80 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	ARC_NA(0.00)[];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	RCVD_TLS_ALL(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linutronix.de,kernel.org,gmail.com,google.com,linux.com,pengutronix.de,suse.com,raspberrypi.com];
+	RCVD_COUNT_TWO(0.00)[2];
+	TAGGED_RCPT(0.00)[dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:email,suse.de:mid]
+X-Spam-Score: -2.80
+X-Spam-Flag: NO
 
-On Tue, 17 Sept 2024 at 11:50, Erez Geva <erezgeva@nwtime.org> wrote:
->
-> From: Erez Geva <ErezGeva2@gmail.com>
->
-> Some flash devices need OTP parameters in device tree.
-> As we can not deduce the parameters based on JEDEC ID or SFDP.
->
-> Signed-off-by: Erez Geva <ErezGeva2@gmail.com>
-> ---
->  .../bindings/mtd/jedec,spi-nor.yaml           | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> index 6e3afb42926e..d502b7fab2ce 100644
-> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> @@ -90,6 +90,43 @@ properties:
->        the SRWD bit while writing the status register. WP# signal hard strapped to GND
->        can be a valid use case.
->
-> +  opt_n_regions:
-> +    type: u32
-> +    description:
-> +      Some flash devices need OTP parameters in the device tree.
-> +      As we can not deduce the parameters based on JEDEC ID or SFDP.
-> +      This parameter indicates the number of OTP regions.
-> +      The value must be larger than 1 and mandatory for OTP.
+Hi Florian,
 
-Sorry: "The value must be larger or equal to 1 and mandatory for OTP.
-"
+On 9/10/24 19:59, Florian Fainelli wrote:
+> On 9/10/24 08:18, Stanimir Varbanov wrote:
+>> RootCtl bits might reset by perst_n during probe, re-enable
+>> CRS SVE here in pcie_start_link.
+>>
+>> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+> 
+> This looks like a bug fix, and we should explain what is the user
+> visible effect of that, if any.
 
-> +
-> +  otp_len:
-> +    type: u32
-> +    description:
-> +      Some flash devices need OTP parameters in the device tree.
-> +      As we can not deduce the parameters based on JEDEC ID or SFDP.
-> +      This parameter indicates the size (length) in bytes of an OTP region.
-> +      Currently the driver supports symmetric OTP,
-> +       which means all regions must use the same size.
-> +      The value must be positive and mandatory for OTP.
-> +
-> +  otp_offset:
-> +    type: u32
-> +    description:
-> +      Some flash devices need OTP parameters in the device tree.
-> +      As we can not deduce the parameters based on JEDEC ID or SFDP.
-> +      This parameter indicates the offset in bytes of
-> +       an OTP region relative to its previous.
-> +      User can omit it if the offset equals the length.
-> +      Or in case we have a single OTP region.
-> +
-> +  otp_base:
-> +    type: u32
-> +    description:
-> +      Some flash devices need OTP parameters in the device tree.
-> +      As we can not deduce the parameters based on JEDEC ID or SFDP.
-> +      This parameter indicates the base in bytes of the first OTP region.
-> +      User can omit it if the base is zero.
-> +      I.e. the address of the first OTP region starts from 0.
-> +
->    reset-gpios:
->      description:
->        A GPIO line connected to the RESET (active low) signal of the device.
-> --
-> 2.39.5
->
+It is definitely a bugfix. Otherwise, CRS Software Visibility is
+important feature from pcie1.1. Not enabling it on Root Port could lead
+to infinite configuration retry cycles when enumerate endpoints which
+supports CRS. For more information [1] and [2].
+
+I spent some time debugging it and found that this is not the proper
+solution.  I think the issue comes from wrongly implemented .add_bus
+pci_ops. Looks like .add_bus op shouldn't call brcm_pcie_start_link()
+but invoke before pci_host_probe(), then the issue will fix by itself.
+
+What I observed is that pci_enable_crs() is setting CSR Software
+Visibility Enable bit but the controller is ignoring it without error
+(reading the Root Control register returns zero). This means that the
+controller is not ready to accept configuration write requests at that
+time, that's why I tried the following diff which seems to work:
+
+ static struct pci_ops brcm_pcie_ops = {
+        .map_bus = brcm_pcie_map_bus,
+        .read = pci_generic_config_read,
+        .write = pci_generic_config_write,
+-       .add_bus = brcm_pcie_add_bus,
+-       .remove_bus = brcm_pcie_remove_bus,
+ };
+
+ static struct pci_ops brcm7425_pcie_ops = {
+@@ -1983,6 +2018,9 @@ static int brcm_pcie_probe(struct platform_device
+*pdev)
+
+        platform_set_drvdata(pdev, pcie);
+
++       //TODO: check for error
++       brcm_pcie_start_link(pcie);
++
+        ret = pci_host_probe(bridge);
+        if (!ret && !brcm_pcie_link_up(pcie))
+                ret = -ENODEV;
+
+Of course this change would work on RPi5 because there are no regulators.
+
+I will drop the patch from the series for now and work on a proper solution.
+
+regards,
+~Stan
+
+[1]
+https://patchwork.kernel.org/project/linux-pci/patch/53FFA54D.9000907@gmail.com/
+[2]
+https://blog.linuxplumbersconf.org/2017/ocw/system/presentations/4732/original/crs.pdf
 
