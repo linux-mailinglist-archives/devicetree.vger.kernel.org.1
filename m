@@ -1,255 +1,117 @@
-Return-Path: <devicetree+bounces-103389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 631FE97A9D4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 02:00:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3E3A97AA39
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 03:24:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A0EB6B233B3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 00:00:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D5681C25ED8
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 01:24:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A112B133987;
-	Tue, 17 Sep 2024 00:00:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDCCAD2FA;
+	Tue, 17 Sep 2024 01:24:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="RhRoQT49"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="BO6Kq4VJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C583456B8C
-	for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 00:00:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13EF5BA3D;
+	Tue, 17 Sep 2024 01:24:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726531248; cv=none; b=gCuVBW5lHERsb+gkdZSeHcGBIm2O/X9Z/x21c8aWzDnO7WXyyNN24EpmAdXQDKIk61PxfkeWqPnlqmbj8H2gY3wLAyVAE/Q27lU0lZGG9ORuuNS2A5JyiSYJxaNf/3dDuUnV4cZtcB3kNVtLsNAGOsljF1fTQn7KTx58tlmdlbo=
+	t=1726536246; cv=none; b=aJooKVEnvF1uzBKnl2fUCU1iQPJq0YNidstyqsaORQyjvYi8dlisxDmzUE6u7h1nJp5/QgjT/8O+CfnrqfgYyUwb1PeHwSIxbCYirTqhnQPfi/ZNx+iIyWmKidvVWBy7/3TVTnRhRL1JGpjfup+NqSdyI+IqkFklgwDvH5amDSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726531248; c=relaxed/simple;
-	bh=Ee17siRqBFROuZr/thXBuY61Xxnn7brpn1HX2BS79j4=;
+	s=arc-20240116; t=1726536246; c=relaxed/simple;
+	bh=Np3GozIbbmB22mZE3U5ucWcm5gxvv6ogmixGDDZ0MnY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z+RIfi0ZjPIBZuTzT7zciIg+QrFnfGAiyrrlLACMbDadSunsi71Cik1PXCFd5T6+TyRH7B5i1Bha+rPYAcxFFTPTk/uLX1buJAegNi5KV4Enz02nMNmy6B4jRZ0DL5LyrXlm732GMekQORN5OBjPUrFyjgCooJA29lPiiQpVYMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=RhRoQT49; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2053a0bd0a6so51896165ad.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 17:00:46 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oliWkBr3tnIx10y6KOOqKkYUc8lSDo+VMwLWDkgVTTi8px6brWaW8cnUUqLStTy4SeE5azgJ1KXhMS91mfwQjNnTkJMr7KkfCHem+kRTtQThQEzu5oOzBe9PbcqENooCiEWOBpijmwX/eYXAuk/td99Anr0FVPwrRTLY7ipvkJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=BO6Kq4VJ; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1726531246; x=1727136046; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=eup1ahvLxbk3GqS/ZMeUjwBFH9cE8D+Ggr+WJlLQMOk=;
-        b=RhRoQT49oLiMTKeVDt3o35EPTFrI9VTfyuiHCpYg0jF/Ir0+3X6JtB37avwfLK/pOo
-         xtUz4MGUJ6UkuCuX+7d1d7AMVsLkDNoHDX5K14QrtR8CNaDZkDZUC2CwcyvDqi99H8k0
-         SGt7yw9X814xthl4fj/4VQFD6VQjlbyrxxw5EkJUNfr4kfrfC5MEl7zwcFJMbhfvCeaM
-         EKmNXMThZdV2mD32PkwhtCa0LrlHqz+etI5OcLU2psrqL/OE6ymC6jTgvp9xbONqSMP8
-         BUTnOj2lJLTz9/RK58pKcXsMfwkOfq6yQ9Y6hgKizhG7G6mYHOPDm4WIYfihyE0f8IYh
-         PjXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726531246; x=1727136046;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eup1ahvLxbk3GqS/ZMeUjwBFH9cE8D+Ggr+WJlLQMOk=;
-        b=oEudvEcFuDnZgYipMo/V+0A2DHCEzMLLHqoQZqyuz4Sa7HzDjxkzrBTSn1O1e9mvfB
-         t5Z5cV1d0CpfHz+U0J6OtsqHToEatWU1717O/0j1UeTBJYMzPg4fW0EHv8SzS8Ufr/PZ
-         8J1C6v5eqGr1GrhQBIjeJ9maKuVJVjxHIhrU0EdBQ7iZtSULUEePJ6j1XEuXO4u8Iavp
-         4E2lcRQjVvNET7FIEYL4+I2i5HWNSDhB8cmBpbgygMyuSlqVF4KueYD0ikAinAqXM5vw
-         eal+k2sbLEOqjhssxkrJNwZXNioCCDVYxeEJBZ+29KHAk/naw3DgONd2xQxqJL+1dyJK
-         9CFw==
-X-Forwarded-Encrypted: i=1; AJvYcCWlqt0F6YLhqNWDfJ6kPjNqiX+eEEY1EG3bepidDNr5BJpZRe0e9bW7u2MLhm4qR4EZlbjjuXfh9NQS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwxH/h7KRKc9B95Yfi3G/rUhWzgmUm1+XgvFrto4DdEsC5tqxkW
-	RywXsJrGe+6ukmND24pX4Pk0qmgT2U4v7akOpM/yJXuG/X0Q8n32eJkTZcExmTo=
-X-Google-Smtp-Source: AGHT+IH64YpGkOt6sdEnN70vzwbW5vOexKApQ3tQQA6MC8BwStmIPrrAyTwaRSTJo5R11SP51oTbHQ==
-X-Received: by 2002:a17:902:ea0d:b0:205:7c76:4b2c with SMTP id d9443c01a7336-2076e412882mr247960785ad.48.1726531245442;
-        Mon, 16 Sep 2024 17:00:45 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20794601384sm41311685ad.94.2024.09.16.17.00.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Sep 2024 17:00:45 -0700 (PDT)
-Date: Mon, 16 Sep 2024 17:00:40 -0700
-From: Deepak Gupta <debug@rivosinc.com>
-To: Andy Chiu <andybnac@gmail.com>
-Cc: paul.walmsley@sifive.com, palmer@sifive.com, conor@kernel.org,
-	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
-	linux-arch@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	quic_zhonhan@quicinc.com, zong.li@sifive.com, zev@bewilderbeest.net,
-	david@redhat.com, peterz@infradead.org, catalin.marinas@arm.com,
-	broonie@kernel.org, dave.hansen@linux.intel.com,
-	atishp@rivosinc.com, bjorn@rivosinc.com, namcaov@gmail.com,
-	usama.anjum@collabora.com, guoren@kernel.org, alx@kernel.org,
-	jszhang@kernel.org, hpa@zytor.com, puranjay@kernel.org,
-	shuah@kernel.org, sorear@fastmail.com, costa.shul@redhat.com,
-	robh@kernel.org, antonb@tenstorrent.com, quic_bjorande@quicinc.com,
-	lorenzo.stoakes@oracle.com, corbet@lwn.net, dawei.li@shingroup.cn,
-	anup@brainfault.org, deller@gmx.de, x86@kernel.org,
-	andrii@kernel.org, willy@infradead.org, kees@kernel.org,
-	mingo@redhat.com, libang.li@antgroup.com, samitolvanen@google.com,
-	greentime.hu@sifive.com, osalvador@suse.de, ajones@ventanamicro.com,
-	revest@chromium.org, ancientmodern4@gmail.com,
-	aou@eecs.berkeley.edu, jerry.shih@sifive.com,
-	alexghiti@rivosinc.com, arnd@arndb.de, yang.lee@linux.alibaba.com,
-	charlie@rivosinc.com, bgray@linux.ibm.com, Liam.Howlett@oracle.com,
-	leobras@redhat.com, songshuaishuai@tinylab.org,
-	xiao.w.wang@intel.com, bp@alien8.de, cuiyunhui@bytedance.com,
-	mchitale@ventanamicro.com, cleger@rivosinc.com, tglx@linutronix.de,
-	krzk+dt@kernel.org, vbabka@suse.cz, brauner@kernel.org,
-	bhe@redhat.com, ke.zhao@shingroup.cn, oleg@redhat.com,
-	samuel.holland@sifive.com, ben.dooks@codethink.co.uk,
-	evan@rivosinc.com, palmer@dabbelt.com, ebiederm@xmission.com,
-	andy.chiu@sifive.com, schwab@suse.de, akpm@linux-foundation.org,
-	sameo@rivosinc.com, tanzhasanwork@gmail.com, rppt@kernel.org,
-	ryan.roberts@arm.com
-Subject: Re: [PATCH v4 21/30] riscv/traps: Introduce software check exception
-Message-ID: <ZujGqOVbYZ8+8XPu@debug.ba.rivosinc.com>
-References: <20240912231650.3740732-1-debug@rivosinc.com>
- <20240912231650.3740732-22-debug@rivosinc.com>
- <CAFTtA3NA+OwZv5hJU3EWjuNHNjA3fQzPC+sX84Nb9YyJXdENSA@mail.gmail.com>
+	d=gibson.dropbear.id.au; s=202408; t=1726536241;
+	bh=keLfVWBBeJtBd1mdj89pwrb9qSeWWE/FkBEDS8LpSrE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BO6Kq4VJ9LJrXEFgSeHBS5mEyyyzd7MPMfad6+Qk4sfSy3PfEHg/46h8kcnOFD44Y
+	 J7geojQtarwGWPnmc1I5v9EGEK03TQinPbLkj75KaIggq1rU4XdqS+u/SlvvQ+Bgkf
+	 p+BaU/AdzFFo9+GOqEwKd/QVTO4bpd+h4DnDx8wKBPHhcbmRrmVtiyJa395w4DREfR
+	 EOFEitTAK9WbzCF3IxJy0Ddpnu2JFjMoxsfAMgME7oPnYUKw5q01YnH1fzSnuzmZ+w
+	 /HLspRY8jZZIIISoSAeziJsMhd2abxrg1PGW+CNIGUKaeqH7wFX0IFXw+yFan/Ht6L
+	 VQ+vTmsMXCG6w==
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+	id 4X73w10bNkz4xZg; Tue, 17 Sep 2024 11:24:01 +1000 (AEST)
+Date: Tue, 17 Sep 2024 10:17:36 +1000
+From: David Gibson <david@gibson.dropbear.id.au>
+To: Rob Herring <robh@kernel.org>
+Cc: devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: Device Tree Compiler v1.7.1
+Message-ID: <ZujKoLT9VBHATtyP@zatzit.fritz.box>
+References: <ZsBvsq5pVv9xEPmp@zatzit>
+ <CAL_Jsq+P6j70L=Sr=a5cBrGEMswZN0fYdaeOeDxGFG-VJgWNbg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="TARbBD0HUiIwQt3A"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAFTtA3NA+OwZv5hJU3EWjuNHNjA3fQzPC+sX84Nb9YyJXdENSA@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+P6j70L=Sr=a5cBrGEMswZN0fYdaeOeDxGFG-VJgWNbg@mail.gmail.com>
 
-On Fri, Sep 13, 2024 at 09:35:50PM +0200, Andy Chiu wrote:
->Hi Deepak
->
->Deepak Gupta <debug@rivosinc.com> 於 2024年9月13日 週五 上午2:32寫道：
->>
->> zicfiss / zicfilp introduces a new exception to priv isa `software check
->> exception` with cause code = 18. This patch implements software check
->> exception.
->>
->> Additionally it implements a cfi violation handler which checks for code
->> in xtval. If xtval=2, it means that sw check exception happened because of
->> an indirect branch not landing on 4 byte aligned PC or not landing on
->> `lpad` instruction or label value embedded in `lpad` not matching label
->> value setup in `x7`. If xtval=3, it means that sw check exception happened
->> because of mismatch between link register (x1 or x5) and top of shadow
->> stack (on execution of `sspopchk`).
->>
->> In case of cfi violation, SIGSEGV is raised with code=SEGV_CPERR.
->> SEGV_CPERR was introduced by x86 shadow stack patches.
->>
->> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
->> ---
->>  arch/riscv/include/asm/asm-prototypes.h |  1 +
->>  arch/riscv/include/asm/entry-common.h   |  2 ++
->>  arch/riscv/kernel/entry.S               |  3 ++
->>  arch/riscv/kernel/traps.c               | 38 +++++++++++++++++++++++++
->>  4 files changed, 44 insertions(+)
->>
->> diff --git a/arch/riscv/include/asm/asm-prototypes.h b/arch/riscv/include/asm/asm-prototypes.h
->> index cd627ec289f1..5a27cefd7805 100644
->> --- a/arch/riscv/include/asm/asm-prototypes.h
->> +++ b/arch/riscv/include/asm/asm-prototypes.h
->> @@ -51,6 +51,7 @@ DECLARE_DO_ERROR_INFO(do_trap_ecall_u);
->>  DECLARE_DO_ERROR_INFO(do_trap_ecall_s);
->>  DECLARE_DO_ERROR_INFO(do_trap_ecall_m);
->>  DECLARE_DO_ERROR_INFO(do_trap_break);
->> +DECLARE_DO_ERROR_INFO(do_trap_software_check);
->>
->>  asmlinkage void handle_bad_stack(struct pt_regs *regs);
->>  asmlinkage void do_page_fault(struct pt_regs *regs);
->> diff --git a/arch/riscv/include/asm/entry-common.h b/arch/riscv/include/asm/entry-common.h
->> index 2293e535f865..4068c7e5452a 100644
->> --- a/arch/riscv/include/asm/entry-common.h
->> +++ b/arch/riscv/include/asm/entry-common.h
->> @@ -39,4 +39,6 @@ static inline int handle_misaligned_store(struct pt_regs *regs)
->>  }
->>  #endif
->>
->> +bool handle_user_cfi_violation(struct pt_regs *regs);
->> +
->>  #endif /* _ASM_RISCV_ENTRY_COMMON_H */
->> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
->> index ca9203e6d76d..2ec75ba864a8 100644
->> --- a/arch/riscv/kernel/entry.S
->> +++ b/arch/riscv/kernel/entry.S
->> @@ -384,6 +384,9 @@ SYM_DATA_START_LOCAL(excp_vect_table)
->>         RISCV_PTR do_page_fault   /* load page fault */
->>         RISCV_PTR do_trap_unknown
->>         RISCV_PTR do_page_fault   /* store page fault */
->> +       RISCV_PTR do_trap_unknown /* cause=16 */
->> +       RISCV_PTR do_trap_unknown /* cause=17 */
->> +       RISCV_PTR do_trap_software_check /* cause=18 is sw check exception */
->>  SYM_DATA_END_LABEL(excp_vect_table, SYM_L_LOCAL, excp_vect_table_end)
->>
->>  #ifndef CONFIG_MMU
->> diff --git a/arch/riscv/kernel/traps.c b/arch/riscv/kernel/traps.c
->> index 51ebfd23e007..32d1453bed72 100644
->> --- a/arch/riscv/kernel/traps.c
->> +++ b/arch/riscv/kernel/traps.c
->> @@ -354,6 +354,44 @@ void do_trap_ecall_u(struct pt_regs *regs)
->>
->>  }
->>
->> +#define CFI_TVAL_FCFI_CODE     2
->> +#define CFI_TVAL_BCFI_CODE     3
->> +/* handle cfi violations */
->> +bool handle_user_cfi_violation(struct pt_regs *regs)
->> +{
->> +       bool ret = false;
->> +       unsigned long tval = csr_read(CSR_TVAL);
->> +
->> +       if (((tval == CFI_TVAL_FCFI_CODE) && cpu_supports_indirect_br_lp_instr()) ||
->> +               ((tval == CFI_TVAL_BCFI_CODE) && cpu_supports_shadow_stack())) {
->> +               do_trap_error(regs, SIGSEGV, SEGV_CPERR, regs->epc,
->> +                                         "Oops - control flow violation");
->> +               ret = true;
->> +       }
->> +
->> +       return ret;
->> +}
->> +/*
->> + * software check exception is defined with risc-v cfi spec. Software check
->> + * exception is raised when:-
->> + * a) An indirect branch doesn't land on 4 byte aligned PC or `lpad`
->> + *    instruction or `label` value programmed in `lpad` instr doesn't
->> + *    match with value setup in `x7`. reported code in `xtval` is 2.
->> + * b) `sspopchk` instruction finds a mismatch between top of shadow stack (ssp)
->> + *    and x1/x5. reported code in `xtval` is 3.
->> + */
->
->It seems like this trap handler does not follow generic entry. This
->can cause problems as signal delivery is done in
->irqentry_exit_to_user_mode(). Please reference the commit f0bddf50586d
->("riscv: entry: Convert to generic entry") for more information.
 
-Ack. will fix it.
+--TARbBD0HUiIwQt3A
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->
->> +asmlinkage __visible __trap_section void do_trap_software_check(struct pt_regs *regs)
->> +{
->> +       if (user_mode(regs)) {
->> +               /* not a cfi violation, then merge into flow of unknown trap handler */
->> +               if (!handle_user_cfi_violation(regs))
->> +                       do_trap_unknown(regs);
->> +       } else {
->> +               /* sw check exception coming from kernel is a bug in kernel */
->> +               die(regs, "Kernel BUG");
->> +       }
->> +}
->> +
->>  #ifdef CONFIG_MMU
->>  asmlinkage __visible noinstr void do_page_fault(struct pt_regs *regs)
->>  {
->> --
->> 2.45.0
->>
->>
->> _______________________________________________
->> linux-riscv mailing list
->> linux-riscv@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-riscv
->
->Cheers,
->Andy
+On Mon, Sep 16, 2024 at 02:45:23PM -0500, Rob Herring wrote:
+> On Sat, Aug 17, 2024 at 4:39=E2=80=AFAM David Gibson
+> <david@gibson.dropbear.id.au> wrote:
+> >
+> > Rob Herring pointed out it's been a year and a half since the last dtc
+> > release.  There haven't actually been any headline changes since then,
+> > but there has been a steady stream of small updates.  So, I've rolled
+> > up a new release.
+> >
+> > As usual, the git tree can be had from:
+> >         git://git.kernel.org/pub/scm/utils/dtc/dtc.git
+> > and tarballs can be had from:
+> >         https://mirrors.edge.kernel.org/pub/software/utils/dtc/
+>=20
+> The tarballs are there, but it doesn't look like you pushed the tag
+> to git repo.
+
+Oops, sorry.  FIxed now.
+
+--=20
+David Gibson (he or they)	| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
+				| around.
+http://www.ozlabs.org/~dgibson
+
+--TARbBD0HUiIwQt3A
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmboypAACgkQzQJF27ox
+2GdVXw//SDXS/vTEC5C6oA13+0H7u0OgBBHJE94SfcMqvoAy++cCsK0CdQa51Ewb
+ET4nbdkUVV+H2cOK3l7NoUma0CBnpcfM4aNcn84jMNWk3uHVpMvR4FXU9C/3mbPb
+uQ4IqqrU3IWnoDxq73A8FnELM0n/1/vmLGfdDeRD/vnoyzQ71GnWQewLqu+A5qyT
+ouRxaOynk3+eTdcJ8zx8H0J76qMLYp7J/ELffGqyG9Sfd+diy7XrFc1zPuUsK6Pt
+AoREpuAV4brIo5Yw2vr2BKy7k/6JM9wPz+zQpZS1aa8Bh2zUPNR6eed6GvdSEOkl
+byTKCNKMsnqVde7IGWMzw/5yZ5xGKBXSfADzDyM9Wel1RAD+QKZcn4fAjtNKzycN
+3A7xRIFdcetixkVgedGKELvk7iqf6FUyd1dRe+Uwg3wZ9gFSehcCiQ2njpkhfEHo
+0MhqJJbzM+A0GUQJR1RonmMMDLY+OQP4+xznLlFYJBUGE6lyfEcLKIPIxkOa62E8
+2+kuw55TOowQXNO6J0KF58YbAuwC+ujGGdJojh+Hi1rUecmyRo2NilsTw3IVbmE/
+a4zRrYIThmcMbyxSBaAfWesoakMjUPVR+NvSzpgAP8SbVpPjhtzniThoB8Xk6qj6
+0LXv9YfaVmdu+dXHeEy1YUl/NP4qjpMEOw1wPt/SabBIHXnW+yM=
+=WjPI
+-----END PGP SIGNATURE-----
+
+--TARbBD0HUiIwQt3A--
 
