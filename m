@@ -1,106 +1,115 @@
-Return-Path: <devicetree+bounces-103418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13C3397AC71
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 09:53:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 555F897AC83
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 10:01:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA81D28D094
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 07:53:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 886651C215D8
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 08:01:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 946DD154C0A;
-	Tue, 17 Sep 2024 07:53:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F07812F399;
+	Tue, 17 Sep 2024 08:01:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="t80vha9J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B98kdvWp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F375847B;
-	Tue, 17 Sep 2024 07:53:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5FA929A0;
+	Tue, 17 Sep 2024 08:01:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726559599; cv=none; b=kIZXH/yjED/aVZutcmzyYDCUHEEIAmXd8xEl8LwMxCIKwyuBTeO39mt5q0UHXUfA7Jqm9nZR0i28jxE0J2gZ4x8lR3+qHzgIUDjN+0VDhSefHsoMK1NffFGuop4vJflfDX6ifdBCeYAilgzPSvNr8fVfKOMz3Ypu7Pivo4JNYfs=
+	t=1726560081; cv=none; b=BQblffU8pJtw1uQNwVxxnblGSw43mwMe2TbIwcXyCzUBq/SxJOzL6H6m1XyzRe7eEvTrUAx1/aVb4tKK2o6xmjvI3L05wCQIgC/vFD/7x4m5+yqi50La7dadrB7vIWEXrI1ANf5oXmFKyaZjK7uxAtzoe0XlEBtTIrEQpqua0oM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726559599; c=relaxed/simple;
-	bh=BW1bBTE+Kgi3GbEF9WPYjCD8Z3weDrmWy5PaSnftEfs=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qvGVMwMvkBmvUie5b93O57BMd4r4Lv8xdzWLoabQvqqv0Eu97OeZdipFiozAbOeGrC5OOEhs6KbOUgFDX3w7TgwrI1ezRcDypeaxu+XWdpFLRARPCGB3RxyjBJnbfrXFAEMZWquuw56+ijadPcwkmyZlfFypZ1aAcGDPqo4Plac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=t80vha9J; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1726559597; x=1758095597;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=BW1bBTE+Kgi3GbEF9WPYjCD8Z3weDrmWy5PaSnftEfs=;
-  b=t80vha9JteMQytKuOQaFOhvfumgNJG1sjk1sMtjSCpAb7JR4jN0A7SUf
-   bUyQPNUxgcMYREx8s7P979taRJ0+DGIMgmeDWlrc7E1De5OsUAGynTKtN
-   f3m+CcLRgKwklguupgL8pXJimurGURtvAQ0+tSYIPx+J5awv6NI3xV96f
-   3la+CBajcHoM8TrTBXlS9riWElSSl8aBTpWGKYkpGizSGg9t2A/3m/yZb
-   IjvznmvCbMspDQXwxVmykwdMn0gx5Qn1Te5ZQ3m4UwrIe5HN/kxzljv50
-   aDDt18EI+Hb4K5a9Wm1zaSESjH3okMI5gt2EomJhspK5blO45a2LCFN4Z
-   w==;
-X-CSE-ConnectionGUID: oGLJsDF/Qd+MdI2DdWlOIg==
-X-CSE-MsgGUID: D6yVr8HIQDSo9/Ku4oj0Mg==
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; 
-   d="scan'208";a="31763481"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Sep 2024 00:53:15 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 17 Sep 2024 00:53:02 -0700
-Received: from DEN-DL-M70577 (10.10.85.11) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Tue, 17 Sep 2024 00:53:00 -0700
-Date: Tue, 17 Sep 2024 07:52:59 +0000
-From: Daniel Machon <daniel.machon@microchip.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Lars Povlsen
-	<lars.povlsen@microchip.com>, Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>, <linux-gpio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: ocelot: document lan969x-pinctrl
-Message-ID: <20240917075259.deuwi5s5gdqo3w6z@DEN-DL-M70577>
-References: <20240914-lan969x-pinctrl-v1-0-1b3a4d454b0d@microchip.com>
- <20240914-lan969x-pinctrl-v1-1-1b3a4d454b0d@microchip.com>
- <20240916-uncut-badge-f31b97d7c375@spud>
+	s=arc-20240116; t=1726560081; c=relaxed/simple;
+	bh=tO6Tw7K9c4PjqQEh9NEuL90zC3+LFKl6sE7WNkMEt34=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m/IC60OPeaOnZqT5dRU/zYu/r8bNP3f31OhMYBt0xCpvMMJymJfhbMauhdsc2/Kxj9nA1mgLFugSuQPHJawHCdbICu28Gk0eoLwchNkSrKCH1HZeXMzFxXz6/xp1ZwE7XfkVcjAX/aetaw31jQjHEA0DoFktUxWaQzjDRWAfKEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B98kdvWp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5EF3C4CEC6;
+	Tue, 17 Sep 2024 08:01:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726560080;
+	bh=tO6Tw7K9c4PjqQEh9NEuL90zC3+LFKl6sE7WNkMEt34=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=B98kdvWpHvR9LgiEwUGT6oiBjA53BjSiTZZPXfA2wWflYl8MCVvcBECGBsLVKTmtD
+	 JL4Oa3CyJiE2j9R7Oq34tMBr5gUsujQp+Wo4HyMcJ/BLdEXTyhmp7xcjok+xuEBrwf
+	 bePXQdfJ2bGndDyPXS67kw+b/P1L2NL053dQ/OJbYgjSvn/FIG58ARSziOLPA9HHJC
+	 GgOViL8pr3yLrKOb4VPROFhWzYQo5x0IvPD0dB43hZDPbEPsxLFgwGn0rBD5ALlNMl
+	 Sd0P/Zgc2jCZ71X4hrjvi8E1WbjNVuvZGRhYj/1cvXTx2oicjPTCEx8kOC74mNti/+
+	 buFehd8wLVogw==
+Date: Tue, 17 Sep 2024 09:01:15 +0100
+From: Lee Jones <lee@kernel.org>
+To: Nikunj Kela <quic_nkela@quicinc.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@quicinc.com,
+	quic_psodagud@quicinc.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Shazad Hussain <quic_shazhuss@quicinc.com>
+Subject: Re: [PATCH v3] dt-bindings: mfd: qcom,tcsr: document support for
+ SA8255p
+Message-ID: <20240917080115.GA9955@google.com>
+References: <20240905194741.3803345-1-quic_nkela@quicinc.com>
+ <edb25f16-aa9a-4d44-9eb5-63f509f80fde@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240916-uncut-badge-f31b97d7c375@spud>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <edb25f16-aa9a-4d44-9eb5-63f509f80fde@quicinc.com>
 
-> >    reg:
-> >      items:
-> > @@ -85,6 +95,12 @@ allOf:
-> >            contains:
-> >              enum:
-> >                - microchip,lan966x-pinctrl
-> > +              - microchip,lan9698-pinctrl
-> > +              - microchip,lan9696-pinctrl
-> > +              - microchip,lan9694-pinctrl
-> > +              - microchip,lan9693-pinctrl
-> > +              - microchip,lan9692-pinctrl
-> 
-> > +              - microchip,lan9691-pinctrl
-> 
-> This should work on its own, since the other devices here have it as a
-> fallback.
+On Mon, 16 Sep 2024, Nikunj Kela wrote:
 
-Just to be clear - we only need the "microchip,lan9691-pinctrl" here?
+> Gentle ping...
 
-/Daniel
+Please don't do that!
 
+No top posting, no contentless pings, and be aware of the merge-cycle.
+
+You're on the list (which since it's in reverse chronological order
+based on the last message, you've just put yourself at the bottom of the
+list).
+
+> On 9/5/2024 12:47 PM, Nikunj Kela wrote:
+> > Add compatible for tcsr representing support on SA8255p SoC.
+> >
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Shazad Hussain <quic_shazhuss@quicinc.com>
+> > Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+> > ---
+> >
+> > Changes in v3:
+> > 	- Removed the patch from original series[1]
+> >
+> > Changes in v2:
+> > 	- Added Reviewed-by tag
+> >
+> > [1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
+> > ---
+> >  Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+> > index c6bd14ec5aa0..88f804bd7581 100644
+> > --- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+> > +++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+> > @@ -21,6 +21,7 @@ properties:
+> >            - qcom,msm8998-tcsr
+> >            - qcom,qcm2290-tcsr
+> >            - qcom,qcs404-tcsr
+> > +          - qcom,sa8255p-tcsr
+> >            - qcom,sc7180-tcsr
+> >            - qcom,sc7280-tcsr
+> >            - qcom,sc8280xp-tcsr
+
+-- 
+Lee Jones [李琼斯]
 
