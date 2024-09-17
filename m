@@ -1,182 +1,167 @@
-Return-Path: <devicetree+bounces-103519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FA7F97B2EB
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 18:21:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D844F97B328
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 18:55:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 949781C216AB
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 16:21:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9D3A285C2A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 16:55:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A45A8173332;
-	Tue, 17 Sep 2024 16:21:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AF69176233;
+	Tue, 17 Sep 2024 16:55:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="q0QSwvUU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oWk6coou"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A0BD2905
-	for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 16:21:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F1DD2EAEA;
+	Tue, 17 Sep 2024 16:55:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726590087; cv=none; b=bydlKAF+iDJtdMKZOlEFicBlkH74/ynM6Tp4Gfdgu1uKEGhbfplgKW8/WRJqbnlXCtSUEA5WtFcLxPnOP4WULGomiLTnkc7l56ZQ5bYHG1fquqvCajTGZMwPtPsrMegNxBo6EmUXhxBtlfKcjtCMP0+EWvoaDpowCp7l9Q4MxBI=
+	t=1726592125; cv=none; b=hs2f/jgK6F03MISPiUtpqi+1UFbjOQh9WJj2mZmVxtc9+7WEaWBOLqX+Ml3s9K1CgthpB9d+5y/doR+V43wjZQqaHBx02D4cbOGezoVT2tcP+s0zHAmjV2uVe/dSxVTe7WJ/r2OJb/H07R0gM2KJ7LBRIZgBX6MZvid+TOHBQXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726590087; c=relaxed/simple;
-	bh=Ms/4vFBkVOjDpM5YqyzKIKALUrHEMKp6h+FoiXA3M1Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iOvxF/RdlomYPzBV1HEqd6kxqq/zz16p2zXYnFL/eafLYJfqImEvWTL1GLrvBEFfqH/zZWLn8ZEfU6fn+eh7/JlV0VB2o3dA/4t/81TBltJdtYvIeyqbbR1MUbJnYlPYyTJPh9e7/147Q3vp7gx1NI7lhUzi9q/gIAykAEaJ3x8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=q0QSwvUU; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48HAGXOa006205;
-	Tue, 17 Sep 2024 16:21:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from
-	:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding; s=pp1; bh=r2pSsQ57V7ZZBxHEa9DDe3pPPZ
-	/65TXqWjSRoUFmmfk=; b=q0QSwvUUfAb+GiLz4UMgtYNFmqlsinS47WvKXo4Djj
-	v8DgHvM+P35Nj/hDnVRvqls5jzcNKSgKHyFkx0lLuAGANIeVeZFNwu+6lWFx8QeT
-	Jzc3IR0Ugm8/DeS9hWnHbfflMH1ct52YAmv7KulKVM0qSjlOFYY9ZLumn3+v4ASo
-	4zGBnT0NaNA4t2q+2S/AelKtx30ONuTfUTRVkdXKq24OqJCAP3kRyGrn7aRe+4dE
-	wesF5WLTjbAdFBxqirsJFfSzFvj/QMoCnrzHo2Trc+Rrz6/Yig5qhmTgXAkXH0y9
-	gyAS/dgxGaLt0l8ZRqMFnnH2LFKA+FtnK1zu/8+HM4Gw==
-Received: from ppma21.wdc07v.mail.ibm.com (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 41n41agmgt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Sep 2024 16:21:08 +0000 (GMT)
-Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma21.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 48HFuZiW001187;
-	Tue, 17 Sep 2024 16:21:07 GMT
-Received: from smtprelay02.wdc07v.mail.ibm.com ([172.16.1.69])
-	by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 41nntq669m-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Sep 2024 16:21:07 +0000
-Received: from smtpav03.wdc07v.mail.ibm.com (smtpav03.wdc07v.mail.ibm.com [10.39.53.230])
-	by smtprelay02.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 48HGL79M18875128
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 17 Sep 2024 16:21:07 GMT
-Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 5BA085805D;
-	Tue, 17 Sep 2024 16:21:07 +0000 (GMT)
-Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id D72075805A;
-	Tue, 17 Sep 2024 16:21:06 +0000 (GMT)
-Received: from slate16.aus.stglabs.ibm.com (unknown [9.61.93.228])
-	by smtpav03.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Tue, 17 Sep 2024 16:21:06 +0000 (GMT)
-From: Eddie James <eajames@linux.ibm.com>
-To: linux-aspeed@lists.ozlabs.org
-Cc: devicetree@vger.kernel.org, andrew@codeconstruct.com.au, joel@jms.id.au,
-        conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
-        Eddie James <eajames@linux.ibm.com>
-Subject: [PATCH] ARM: dts: aspeed: Fix Rainier and Blueridge GPIO LED names
-Date: Tue, 17 Sep 2024 11:21:00 -0500
-Message-ID: <20240917162100.1386130-1-eajames@linux.ibm.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1726592125; c=relaxed/simple;
+	bh=AYkc77Maz/sVF6DUda6J3CIh2dCKMgXWRxg4il5DkVc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=laofxPHqiY+0pdeUC70Ut0ixDTA6hAhhN4mOFWCKlepIRroKixaFogiIzyxnHZGgzSekXrbGv4/bU9vztrn+E9i7EeN6gmXk7UtRq1xJ/A08AiQexBFc7yZCXFGU88+D91vCIcirJYugNQc9orVSHtc3d22NDNQc8VzSbrlqqYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oWk6coou; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EE9EC4CEC5;
+	Tue, 17 Sep 2024 16:55:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726592125;
+	bh=AYkc77Maz/sVF6DUda6J3CIh2dCKMgXWRxg4il5DkVc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oWk6cooucaEaqPyQxG1RCP8SAF5o/BZvqTv0J4oYYDHdK1nVAwUrSCumIp8WO1s8c
+	 mmHHe3sfod2/A3NYLGN1m+qKz/x2WYaZIOKFJ5aDEt4Gh/3wTHxrax1ZNdtEx5PQYN
+	 qmoM0AipB5GM7P0Q42JT0DXMAtEXfsvC0wcCMu4piUe9hJzxmmNvFmvde7iwAnW0ad
+	 W+4MEGC+Z6RZeGH9LmUKAgYPRrDWcLRX1QuSndkhIdZiq/CthaAIYramZzNQxhR2Z6
+	 Q1Qj0JxK1WpvsmWQzxTWxC9GCVFWHzIHIzJ6wIdqLuGSNCmBk7Mkk88+mGBvnyzur9
+	 FrugcbLwoFq2g==
+Message-ID: <b0cd6a5c-9dc2-4ca6-a526-104788edf581@kernel.org>
+Date: Tue, 17 Sep 2024 18:55:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] regulator: max20339: add Maxim MAX20339 regulator
+ driver
+To: Mark Brown <broonie@kernel.org>
+Cc: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Michael Walle <mwalle@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240916-max20339-v1-0-b04ce8e8c471@linaro.org>
+ <20240916-max20339-v1-2-b04ce8e8c471@linaro.org>
+ <29f30aae-ffad-4a42-909e-b05f9cf360b5@kernel.org>
+ <ZulFBQzRdOdw9cfV@finisterre.sirena.org.uk>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <ZulFBQzRdOdw9cfV@finisterre.sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: 33ZsqN1xw8zCrbN0fcQFLBTWX9EqL2EN
-X-Proofpoint-ORIG-GUID: 33ZsqN1xw8zCrbN0fcQFLBTWX9EqL2EN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-17_08,2024-09-16_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- lowpriorityscore=0 suspectscore=0 mlxscore=0 mlxlogscore=406 bulkscore=0
- impostorscore=0 phishscore=0 priorityscore=1501 spamscore=0 clxscore=1011
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409170118
 
-Blueridge LED names to include the "led-" prefix as is proper.
-Rainier should match for ease of application design. In addition,
-the gpio line name ought to match.
+On 17/09/2024 10:59, Mark Brown wrote:
+> On Mon, Sep 16, 2024 at 10:06:37PM +0200, Krzysztof Kozlowski wrote:
+>> On 16/09/2024 18:48, André Draszik wrote:
+> 
+>>> +	/* INSW status */
+>>> +	if ((status[3] & MAX20339_VINVALID)
+>>> +	    && !(status[0] & MAX20339_VINVALID)) {
+>>> +		dev_warn(dev, "Vin over- or undervoltage\n");
+> 
+>> Same with all these. What happens if interrupt is triggered constantly?
+> 
+> Logs on physical error conditions are a lot more appropriate than debug
+> logs, they should basically never be triggered in normal operation and 
+> often it's a priorty to get information out about a failure in case
+> someone might actually see something going wrong - especially with
+> regulators, the system might be about to fall over if we're failing to
+> regulate except in cases like SD cards.  However in the case of the
+> regulator API where you're telling the core about the error it's good to
+> defer this to the core.  We should probably be doing a better job here
+> and logging something in the core.
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
- .../arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts |  5 +++--
- arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts  | 12 ++++++------
- 2 files changed, 9 insertions(+), 8 deletions(-)
+In any case, this probably should be dev_warn_ratelimited.
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts
-index dfe5cc3edb52..9e6bfaef3840 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts
-@@ -207,7 +207,8 @@ &gpio0 {
- 	/*F0-F7*/	"","","rtc-battery-voltage-read-enable","reset-cause-pinhole","","",
- 			"factory-reset-toggle","",
- 	/*G0-G7*/	"","","","","","","","",
--	/*H0-H7*/	"","bmc-ingraham0","rear-enc-id0","rear-enc-fault0","","","","",
-+	/*H0-H7*/	"","led-bmc-ingraham0","led-rear-enc-id0","led-rear-enc-fault0","","","",
-+			"",
- 	/*I0-I7*/	"","","","","","","bmc-secure-boot","",
- 	/*J0-J7*/	"","","","","","","","",
- 	/*K0-K7*/	"","","","","","","","",
-@@ -215,7 +216,7 @@ &gpio0 {
- 	/*M0-M7*/	"","","","","","","","",
- 	/*N0-N7*/	"","","","","","","","",
- 	/*O0-O7*/	"","","","usb-power","","","","",
--	/*P0-P7*/	"","","","","pcieslot-power","","","",
-+	/*P0-P7*/	"","","","","led-pcieslot-power","","","",
- 	/*Q0-Q7*/	"cfam-reset","","regulator-standby-faulted","","","","","",
- 	/*R0-R7*/	"bmc-tpm-reset","power-chassis-control","power-chassis-good","","","","",
- 			"",
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
-index 0776b72c2199..a4aec3010456 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
-@@ -109,22 +109,22 @@ leds {
- 		compatible = "gpio-leds";
- 
- 		/* BMC Card fault LED at the back */
--		bmc-ingraham0 {
-+		led-bmc-ingraham0 {
- 			gpios = <&gpio0 ASPEED_GPIO(H, 1) GPIO_ACTIVE_LOW>;
- 		};
- 
- 		/* Enclosure ID LED at the back */
--		rear-enc-id0 {
-+		led-rear-enc-id0 {
- 			gpios = <&gpio0 ASPEED_GPIO(H, 2) GPIO_ACTIVE_LOW>;
- 		};
- 
- 		/* Enclosure fault LED at the back */
--		rear-enc-fault0 {
-+		led-rear-enc-fault0 {
- 			gpios = <&gpio0 ASPEED_GPIO(H, 3) GPIO_ACTIVE_LOW>;
- 		};
- 
- 		/* PCIE slot power LED */
--		pcieslot-power {
-+		led-pcieslot-power {
- 			gpios = <&gpio0 ASPEED_GPIO(P, 4) GPIO_ACTIVE_LOW>;
- 		};
- 	};
-@@ -203,7 +203,7 @@ &gpio0 {
- 	/*E0-E7*/	"","","","","","","","",
- 	/*F0-F7*/	"","","rtc-battery-voltage-read-enable","reset-cause-pinhole","","","factory-reset-toggle","",
- 	/*G0-G7*/	"","","","","","","","",
--	/*H0-H7*/	"","bmc-ingraham0","rear-enc-id0","rear-enc-fault0","","","","",
-+	/*H0-H7*/	"","led-bmc-ingraham0","led-rear-enc-id0","led-rear-enc-fault0","","","","",
- 	/*I0-I7*/	"","","","","","","bmc-secure-boot","",
- 	/*J0-J7*/	"","","","","","","","",
- 	/*K0-K7*/	"","","","","","","","",
-@@ -211,7 +211,7 @@ &gpio0 {
- 	/*M0-M7*/	"","","","","","","","",
- 	/*N0-N7*/	"","","","","","","","",
- 	/*O0-O7*/	"","","","usb-power","","","","",
--	/*P0-P7*/	"","","","","pcieslot-power","","","",
-+	/*P0-P7*/	"","","","","led-pcieslot-power","","","",
- 	/*Q0-Q7*/	"cfam-reset","","regulator-standby-faulted","","","","","",
- 	/*R0-R7*/	"bmc-tpm-reset","power-chassis-control","power-chassis-good","","","","","",
- 	/*S0-S7*/	"presence-ps0","presence-ps1","presence-ps2","presence-ps3",
--- 
-2.43.0
+> 
+>>> +	if (val & MAX20339_LSWxSHORTFAULT)
+>>> +		*flags |= REGULATOR_ERROR_OVER_CURRENT;
+>>> +
+>>> +	if (val & MAX20339_LSWxOVFAULT)
+>>> +		*flags |= REGULATOR_ERROR_OVER_VOLTAGE_WARN;
+>>> +
+>>> +	if (val & MAX20339_LSWxOCFAULT)
+>>> +		*flags |= REGULATOR_ERROR_OVER_CURRENT;
+> 
+> These should be notified to the core too, especially over voltage.
+> 
+>>> +	irq_flags = IRQF_ONESHOT | IRQF_SHARED;
+> 
+>> Why shared?
+> 
+> Why not?  In general if a driver can support a shared interrupt it's
+> polite for it to do so.
+
+I explained why not further down the context: because with devm it can
+cause resource release issues. I also poke if person added it on
+purpose, thus knows the answer "why", or just copied whatever code was
+somewhere.
+
+Best regards,
+Krzysztof
 
 
