@@ -1,101 +1,117 @@
-Return-Path: <devicetree+bounces-103499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B643197B075
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 15:01:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 125A297B07E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 15:03:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27F7D288E6B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 13:01:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9E5D4B2748E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 13:03:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3281D183CCF;
-	Tue, 17 Sep 2024 13:00:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6059417625C;
+	Tue, 17 Sep 2024 13:01:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WeAP3Lig"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="L65FQO4i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B88F183CB2;
-	Tue, 17 Sep 2024 13:00:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5718C174EFA;
+	Tue, 17 Sep 2024 13:01:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726578047; cv=none; b=HsURBsUFHYXIN8VRIScOkBL591iM1KaOnNOOCGUCq7SgotLxiE0/BM1gFY4KsC0dbi+yXh8+/EVJYwQIajtLYw3Kj2F+Nce3SKsQ3JrYAmpMIr0Fc0sKWau7AsCS3/mSoEC3QN+IRZW6Eq+XkRXnjQ3A7BjrgBX0AjTarmHZ/G4=
+	t=1726578086; cv=none; b=MfEB5H4xC8k27GmwDywfatwPRwgtpbNKvqI2LkVaqU7BiEKY4/KCKoO8Bo7fU9EbJ5HKpA+FbawcSRKDNtVAHRRNWLdtJuGrT2ewgn1YaLtz9x7mKqr0zICil97PO6GFzr/Z8hq5WZCUzPwAFpF/RHjUrqY8FJuOaNfBMyDQ/Y0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726578047; c=relaxed/simple;
-	bh=vTvMx1oNGJjm1PhwOnzQdSKI1GIYzb7T3kcv//bAFCA=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=r89qqL8nk2o4bJ93Xyu0+Z6Rgr22p7mcf2dKY66qqGEWOADLHbj/amPOEgxVR1pWLOZkpU4MQkYDjHn/YZ9R3S+Ub6fln71bfBZS556hGTPxGTcP8hoZobhZ8C5EkeUkPxR87iR1mDLV56cw0pi4j9QUP/2PXJWpuOqLd+YO21A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WeAP3Lig; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 824D7C4CEDB;
-	Tue, 17 Sep 2024 13:00:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726578046;
-	bh=vTvMx1oNGJjm1PhwOnzQdSKI1GIYzb7T3kcv//bAFCA=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=WeAP3LigiMlwxUcF2xHOoW35WtlhkOao/QUEEED/NhbcFKCilFKeaAv9O7AWujJof
-	 kGC1zq7lp9cb4jXgq/VLS1IF4XDedj4Bv9ZEdA1gKtbaH/jKw4arzYKjF3x/IvtuaN
-	 o7CqSWhUNNTaDQ7iZxX9rzN9skirGaZV/ouHRciirdtZw2B1iyHAOoU8JaLptZmKuB
-	 7uDhg2Rqq/oq6Xjw9aDZovfGReuS0hSJObJ7ywXQNM2H9xm+MB5wulWdMtdYstdGeE
-	 asEp+hlPHl7ivZFGxM4xgREGw1mXNHH4qhdTN/vCdTqQKG+qLJxxCYjFJl53uLcQGd
-	 vpvTOE2GTeLlQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 711A53809A80;
-	Tue, 17 Sep 2024 13:00:49 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1726578086; c=relaxed/simple;
+	bh=90Dg2b97RJ0B1Ja+kw/9SxgeGa9WjZTfsvdLrngyNPk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WdppMhRR4Xzez8+NSOCxrhShAWnIH06ozVn5p9au9yOpNuinX2msU6A4gW4iVz3qGhZIMIYxjmAngPK9HnmY/3bgIKKVRyzayP94yNWsaMkNm9yAsUFW4DI7QpWgeBrlh/wImHMQ/16qhyRIescRT7evW4g9Nf6A7Vn4AqokKeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=L65FQO4i; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 86FD21BF20C;
+	Tue, 17 Sep 2024 13:01:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1726578075;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=vQlfje8RzrGkZL2VqWknD0uNiWO5cAU70iaVLEwLNAU=;
+	b=L65FQO4iMpdZMyY+qPrsMRQ50jSWU2ygXHMRw3RA7fsdQOm81tYUl+GSn+x5dLKr0UPIxb
+	sOlegEAWN5N4XlefLr7ICeppeFTkaYBBbLwzMyH3PTZoFhVnBsI69RbZGae0RAb0dIV02X
+	8L5ZD5DFLtZpJ2Jy0CzrS3HdPc9sKIAAu44cTrHPDLBE5zHVHQOQa9G6OFGqu9lB4fEL7Q
+	m6nxqZQF4MwdkskvdHSveY6oP1y/0QQgsCfW9n2oDcsB1vnc9Tdup5uW86MxXTYZ9gQc/2
+	6QPfZWisAPbjh0HhV7zmF7Pk0QU6EgtjniT4QOqf0NqYpgq8wOmoUN4HePb4Ag==
+Date: Tue, 17 Sep 2024 15:01:13 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	NXP S32 Linux Team <s32@nxp.com>,
+	Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+Subject: Re: [PATCH 1/4] dt-bindings: rtc: add schema for NXP S32G2/S32G3 SoCs
+Message-ID: <20240917130113daecdd5b@mail.local>
+References: <20240911070028.127659-1-ciprianmarian.costea@oss.nxp.com>
+ <20240911070028.127659-2-ciprianmarian.costea@oss.nxp.com>
+ <20240911-racism-playmaker-71cb87d1260f@spud>
+ <62ba70ca-429e-476c-bb7b-78f743574a68@oss.nxp.com>
+ <2024091212260302903af7@mail.local>
+ <2815dcf8-bb90-4e3f-837d-2c2a36a8744e@oss.nxp.com>
+ <202409121403232ab1295b@mail.local>
+ <c51a8065-2052-4a4e-b871-c0bd8d834548@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v4 0/4] Svvptc extension to remove preventive sfence.vma
-From: patchwork-bot+linux-riscv@kernel.org
-Message-Id: 
- <172657804824.126252.9959954454312019280.git-patchwork-notify@kernel.org>
-Date: Tue, 17 Sep 2024 13:00:48 +0000
-References: <20240717060125.139416-1-alexghiti@rivosinc.com>
-In-Reply-To: <20240717060125.139416-1-alexghiti@rivosinc.com>
-To: Alexandre Ghiti <alexghiti@rivosinc.com>
-Cc: linux-riscv@lists.infradead.org, conor@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, ved@rivosinc.com, mev@rivosinc.com,
- cuiyunhui@bytedance.com, anup@brainfault.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c51a8065-2052-4a4e-b871-c0bd8d834548@oss.nxp.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-Hello:
-
-This series was applied to riscv/linux.git (for-next)
-by Palmer Dabbelt <palmer@rivosinc.com>:
-
-On Wed, 17 Jul 2024 08:01:21 +0200 you wrote:
-> In RISC-V, after a new mapping is established, a sfence.vma needs to be
-> emitted for different reasons:
+On 17/09/2024 10:21:32+0300, Ciprian Marian Costea wrote:
+> On 9/12/2024 5:03 PM, Alexandre Belloni wrote:
+> > On 12/09/2024 15:36:46+0300, Ciprian Marian Costea wrote:
+> > > > Then should this mux be registered in the CCF so you can use the usual
+> > > > clock node properties?
+> > > 
+> > > Hello Alexandre,
+> > > 
+> > > In hardware, these clock muxes and divisors are part of the RTC module
+> > > itself and not external. Therefore, I would say no.
+> > 
+> > This is irrelevant, if this is a clock mux, it must be in the CCF, just
+> > as when the RTC has a clock output.
+> > 
+> > 
 > 
-> - if the uarch caches invalid entries, we need to invalidate it otherwise
->   we would trap on this invalid entry,
-> - if the uarch does not cache invalid entries, a reordered access could fail
->   to see the new mapping and then trap (sfence.vma acts as a fence).
+> I understand your point, but taking into account the fact that FIRC clock
+> should be used in most scenarios, would it be acceptable to not export this
+> 'clksel' property in the devicetree bindings and simply use the FIRC clock
+> by default in the RTC driver ?
 > 
-> [...]
 
-Here is the summary with links:
-  - [v4,1/4] riscv: Add ISA extension parsing for Svvptc
-    https://git.kernel.org/riscv/c/a6efe33cc594
-  - [v4,2/4] dt-bindings: riscv: Add Svvptc ISA extension description
-    https://git.kernel.org/riscv/c/d25599b5933f
-  - [v4,3/4] riscv: Stop emitting preventive sfence.vma for new vmalloc mappings
-    https://git.kernel.org/riscv/c/503638e0babf
-  - [v4,4/4] riscv: Stop emitting preventive sfence.vma for new userspace mappings with Svvptc
-    https://git.kernel.org/riscv/c/7a21b2e370da
+No, this doesn't work for RTCs because their lifecycle is longer than the
+system's and f you change a configuration from the default value without
+providing a way to control it, we won't have any upgrade path without
+breaking users.
 
-You are awesome, thank you!
+> At least for this patchset, in order to ease the review process. If
+> configurable clock source support would want to be enabled and exported via
+> bindings for this S32G2/S32G3 RTC driver, then CCF registration for this clk
+> mux could be added in future patches.
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
