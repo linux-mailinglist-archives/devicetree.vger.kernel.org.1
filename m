@@ -1,257 +1,183 @@
-Return-Path: <devicetree+bounces-103557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F134797B527
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 23:27:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B63E497B53A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 23:30:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E6981F22500
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 21:27:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB06E1C21787
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 21:30:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B46421922D7;
-	Tue, 17 Sep 2024 21:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D549F1925B9;
+	Tue, 17 Sep 2024 21:30:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Vc7xCuoy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bknTGe2H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36ADD34CE5
-	for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 21:27:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06C68446A1;
+	Tue, 17 Sep 2024 21:30:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726608431; cv=none; b=nZBIAw9Gf6UvLSy8vEdI94KxQs9S0VDP+BQVJXu6oOmc6NDpu0JZwFVvJdp0W/6oODUn/IHc3EO6aTCeKpNU/p+Zc6iJJLWsloll07v7zTjnYky047ZiMPT1O8plA8yhkZ+TmYdOpSfirL1Oz9nc0CyYK3QJIWftubF5K+Wcz2g=
+	t=1726608602; cv=none; b=uYMDW/9VtpZBHpajdb2n3/1JWzQ/14fLpDidV2MI4Q65m87wwtaW5vV/UuO9p4fIbmVM51AmQIMDAMLfMcaVilSQDVRfnWR2qLNPl5bIe9qpANlYL0VW+vSCvJbSPZ0G24Ccl08QGyvDwkyQqaonwaiHXZay6vv63PbgTp5vMs8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726608431; c=relaxed/simple;
-	bh=6c9f9GMk0RwJmVnM261XKRTWoq80B+gB/g6JMY3uYy8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KSlCk55aP9KzqkgGlXrIpl4c9wVmHJOvIakVupsRlIGwkbJu9XxWUqEuuDRycz+Jfn0wbzGtMMdoD5S00PT8nSWuEq6/fh/7O8LiaHPDMoITw0xr6NoiPSUR+12fqWHm0rxVkLwEbA5GMOvKfih93ey9XStSKxtgpEDguudGif8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Vc7xCuoy; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2f74b6e1810so54413561fa.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 14:27:08 -0700 (PDT)
+	s=arc-20240116; t=1726608602; c=relaxed/simple;
+	bh=J3ZfIbWvV/pUT2sQiBwsH1xpKOvs6n7Ihgb2nMGi+cA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tp/mek977Oi4xoXpZrZiEJISZ8FiNZc7gLnKLBfw6Tjq3JqNZnumL7T81oYKgKV/X0fwtREkP8JMmM60LTbJghjqTZ7Zen83nPrPohMukH9dOiRAVyyO2udwOuG8BJw339czj30jgQxt5dc+NMd8exZXEIruhKYbKn8xOJYBgMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bknTGe2H; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5c4226a5af8so6191849a12.1;
+        Tue, 17 Sep 2024 14:30:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726608427; x=1727213227; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=tK+eryvZIWB7XUY6xEZS8PhI/lDVITII9hGxNEZ3sN0=;
-        b=Vc7xCuoyqm72XUQEgmzEsSrnaV6Y+0UjosmGGP4scYrV0ad9zZx882+GogUe+Olb9A
-         0ROtun+rRwlW+qYayiKeJRKivFaxn3TUkYf57yomLDALft0bhgCsEAcBolXLrCV9zOg2
-         QqtQVgq05Y2wiMnhOqrviEogJDiXNI/NA8HkjnTZtGcyUoWiUGwfqM3kTfM1/QoWF5Y9
-         dG1S3PibQHNBSwhS2QOoIxmDJ+tfvBPxoG3GocDiEKKuvBOmfe6lKQzfAGXhnmA11NLG
-         ha9XbtEhjZNuMSw++0wGh1NIitV2DeJoA6r/psdwMRvP1296r8ZQKj1fKbXAMU7lJ7Q+
-         gNeA==
+        d=gmail.com; s=20230601; t=1726608599; x=1727213399; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/5yS1EFc2UkCNqUe9XkDS8zSd6iM9CaMBvaXI1VqENI=;
+        b=bknTGe2HEpPKSfi0FDLIzYUr3FAbp6Owg5nDdtrVd9W3vhSjt/De9pIhm6Z8XxLakq
+         stz5JtZoGDc/eJwV79vn6Y/OApxOz03JSjQB9CTWYZcPqE3xyCUALL5wuVS67viPbjSm
+         JQMkEJGXwUtA9d8c4XQJ+HWyJZ3qrg3wUAQEIkeVEuftUTaVBfFq2jEBrtMxqOXpdwzZ
+         RfESA7vXGnguA+yh9Ld+kwdPxH8c/C/+Jh8Svzo3iachjTty4Us1Jbb/mjqSkPGaaBvc
+         38wOo9nIjWuNDb0IAVMqIBLzWn8lMirMVLxrJoS+J6RJXfL6eqBeCWi6hbnEoti1peRO
+         ETog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726608427; x=1727213227;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tK+eryvZIWB7XUY6xEZS8PhI/lDVITII9hGxNEZ3sN0=;
-        b=mP/yGGiDpZY99R+OflsmAUtg0gL20rG0+qdng8TrquzZXAQ7bkLWktmCCyJYWy+3i/
-         jtf4DPkTI3hiMadwfIjzbRk3u+qT2NYazVcD37DUjg4X3Su4Q1Dy8b3jgff8+goovg74
-         N4dfXe86EnLCBnnPqSGkWG+bvd2YSiMqRuPZR+BdPeXl9PITzA+9MwwjSsGm3fkkN24+
-         OT9QSzKhnUWLpJMNP+2YafBomkJwcS604GTX5zfrcBEmfk+f2nnZaZpI2w9+P4eCJuxI
-         bgwgnHavOodzVxv9hMIXYGsNIwVWqjxTs2+kcPdTj1Kkbhr/u0Mvfvi/w7T3AERXN3OQ
-         oz8w==
-X-Forwarded-Encrypted: i=1; AJvYcCU6K6z682xuLDbPrFss136Umt6x5zVJBaUNNk++FpxunZ2wICZUvwftcDo49bIrWKXVnc3RnYBawgkc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBSvyHhndcXnQByPWypWWNUHevFdQnrlATfKO708wrHg3pY0pk
-	MTe+qmRMybNQLMh2t43JCSfsBSace+po4/hU+At2uXVG6AvBME9k//9ZNXHzFhg=
-X-Google-Smtp-Source: AGHT+IF3NskUcf8RUOcTnIF63jZutapZ5Jeb7rdsU+2KtEQcoz8cIrf/mUhNgh51RCcY1c8ixVHM1Q==
-X-Received: by 2002:a05:6512:118a:b0:52e:e3c3:643f with SMTP id 2adb3069b0e04-53678fb1d3bmr11190040e87.2.1726608427105;
-        Tue, 17 Sep 2024 14:27:07 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-536870a89d7sm1324239e87.239.2024.09.17.14.27.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Sep 2024 14:27:06 -0700 (PDT)
-Date: Wed, 18 Sep 2024 00:27:03 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sa8775p: Add gpu and gmu nodes
-Message-ID: <udt76i3sl7zekhudqpnvhvhfxchvixwoinz7metuwfrpynl47k@wlpforwv7mcf>
-References: <20240918-a663-gpu-support-v1-0-25fea3f3d64d@quicinc.com>
- <20240918-a663-gpu-support-v1-3-25fea3f3d64d@quicinc.com>
+        d=1e100.net; s=20230601; t=1726608599; x=1727213399;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/5yS1EFc2UkCNqUe9XkDS8zSd6iM9CaMBvaXI1VqENI=;
+        b=tYIz7X/e1Fx9BkXqtEum1GMKzS/e2NrPj8CPb3yGkt5VuM/Q1/JLBDVPF2WnAXZZNR
+         34tnIrUVb9DhKKglgnJJe3lVwKe9Y6APhreDqwJ/v51G1xR6fOOri3FUo8Ks2vm0gsLk
+         ebz1Bd/SpwQY0haGjfQ/a2X1PuSfNyM5jcJnVWb+hbCYB9Cy9BCVP1MF9YU5bqMwK7pX
+         jnVsz3Ud2eDfD2OZD40pIDsCpsqUsligbquHQX4daDlEd2IW5nu2MXO7SS9nSCwnCMdn
+         H2fEToWUQFcgl3PzyImYRkMOF4fnmJwr3X/l36Dz8o3NPC7txu2DmI6Fh5HqrJsLJvj/
+         8s1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVZJBO4fiPEKIfx7uEySDhmI2PVLEowl9xXPXbb4xRJuXocOKFbwbchujWyUoxs8p0O+BJp5SGv39N6@vger.kernel.org, AJvYcCXvMYPM5+Icve8LrsFAC5ED1oh6iMAFQwjeQAIjlKTGkgvRjeRdBdI5pBq4NmigCVFZEiW9i4DQqTWzX1wn@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZxT7tWXzF6/iwB+YRhqsFTQwzSkJUtY9hdbu3hU4d8ZYfOCE2
+	XX1SLocIeQq7BLh/k6632KKDvcJHfDCy3vSPxHx9NcAiXIFFzsdG2if3ri5H0nRdquqC+n3az2N
+	D3svdGilZaxeOFwPb0h45vHyQxQ==
+X-Google-Smtp-Source: AGHT+IHZDSOWH5g2mse3vvoQufmbyrZHOiOqYeHvdcDTmjg09A/dKV48ek5QF2G9EkhG6CVgJbewgqf3PB397EjBApg=
+X-Received: by 2002:aa7:c882:0:b0:5c4:b33:1f with SMTP id 4fb4d7f45d1cf-5c413e4d733mr16483402a12.28.1726608598858;
+ Tue, 17 Sep 2024 14:29:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240918-a663-gpu-support-v1-3-25fea3f3d64d@quicinc.com>
+References: <20240917094956.437078-1-erezgeva@nwtime.org> <20240917094956.437078-4-erezgeva@nwtime.org>
+ <9c273945-5a70-408e-a9da-a0797aa6d935@kernel.org> <CANeKEMN+ZUAGKGsqnaToDB3AxX9NN_JeCBWHwd-wwnTWLU3R+g@mail.gmail.com>
+ <64ef46b1-7908-4b15-866d-9cabe2e5dc9e@kernel.org> <CANeKEMPwgtECfksgz6jXkR+bjVFwCB9DOh1q7t_3WeojReqxbA@mail.gmail.com>
+ <e0db2f62-b2fd-4b61-932c-cc2caf5dd647@kernel.org> <CANeKEMNCFKX2thq+Ws0vy9ovbQ7dve3YPh_FbRaoOEgL+7c_Mw@mail.gmail.com>
+ <fe98e49d-96d1-462f-99ac-93d8a53e55fd@kernel.org> <CANeKEMNg_hPcVHVo2c9u1Vdzaso0ODT+2uLmip6sd26uK8d_FQ@mail.gmail.com>
+ <20240917-taps-applied-6c0d411bbe08@squawk>
+In-Reply-To: <20240917-taps-applied-6c0d411bbe08@squawk>
+From: Erez <erezgeva2@gmail.com>
+Date: Tue, 17 Sep 2024 23:29:22 +0200
+Message-ID: <CANeKEMOXZjgLm-Wb8+9RMJYNN1a2Oy81P3MXZiLxNaAerLhYEA@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] dt-bindings: mtd: spi-nor: add OTP parameters
+To: Conor Dooley <conor@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Pratyush Yadav <pratyush@kernel.org>, 
+	Michael Walle <mwalle@kernel.org>, linux-kernel@vger.kernel.org, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Esben Haabendal <esben@geanix.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Sep 18, 2024 at 02:08:43AM GMT, Akhil P Oommen wrote:
-> From: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
-> 
-> Add gpu and gmu nodes for sa8775p based platforms.
+On Tue, 17 Sept 2024 at 22:39, Conor Dooley <conor@kernel.org> wrote:
+>
+> On Tue, Sep 17, 2024 at 08:39:48PM +0200, Erez wrote:
+> > On Tue, 17 Sept 2024 at 19:32, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > >
+> > > On 17/09/2024 19:24, Erez wrote:
+> > > >>>>>>
+> > > >>>>>> It does not look like you tested the bindings, at least after quick
+> > > >>>>>> look. Please run `make dt_binding_check` (see
+> > > >>>>>
+> > > >>>>> I run "make dt_binding_check" on kernel 6.6.
+> > > >>>>
+> > > >>>> Yeah, we are no on kernel 6.6. You can run it also on kernel v4.1 -
+> > > >>>> still does not matter.
+> > > >>>>
+> > > >>>> Don't develop on ancient code because then you ask us to review same
+> > > >>>> broken stuff we already fixed.
+> > > >>>
+> > > >>> I test with Beaglebone black for testing, it is difficult to run the
+> > > >>> last vanille version.
+> > > >>> I did backport the spi-nor driver.
+> > > >>> As for "make dt_binding_check" on last kernel, it need to upgrade the tools,
+> > > >>>  and I did not think it could change that much.
+> > > >>>
+> > > >>
+> > > >> Well, it is possible to build kernel on small embedded board, but that's
+> > > >> quite cumbersone, slow and inefficient, considering that it's just
+> > > >> easier to cross compile. But anyway, binding check does not even need
+> > > >> cross compilation.
+> > > >>
+> > > >> Sorry, the code is obviously wrong, there is no such thing as u32, so
+> > > >> you did not test it. I provided link which explains how to test it. You
+> > > >> must do it on latest mainline kernel. Just like you must develop and
+> > > >> generate patches on latest mainline kernel, because this is where we
+> > > >> apply the patches. We do not apply them to v6.6.
+> > > >
+> > > > The patches are based on the lastest  mainline kernel.
+> > > > I do not understand why you think otherwise.
+> > >
+> > > Because you wrote:
+> > > "I run "make dt_binding_check" on kernel 6.6."
+> > >
+> > > The command is either part of build process or final check process
+> > > (static analyzers etc). If you say you did this on v6.6, you got such
+> > > response.
+> >
+> > I know you are NOT a service.
+> > The device tree is not the focus of my work.
+> > It should not be broken like that.
+> >
+> > I install dt-schema_2023.11-3_all.deb
+> > with Debian trixie
+> > I get:
+> >
+> > l
+> >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+> > Traceback (most recent call last):
+> >   File "/usr/bin/dt-mk-schema", line 8, in <module>
+> >     sys.exit(main())
+> >              ^^^^^^
+> >   File "/usr/lib/python3/dist-packages/dtschema/mk_schema.py", line 28, in main
+> >     schemas = dtschema.DTValidator(args.schemas).schemas
+> >               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> >   File "/usr/lib/python3/dist-packages/dtschema/validator.py", line
+> > 363, in __init__
+> >     self.make_property_type_cache()
+> >   File "/usr/lib/python3/dist-packages/dtschema/validator.py", line
+> > 420, in make_property_type_cache
+> >     self.props, self.pat_props = get_prop_types(self.schemas)
+> >                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> >   File "/usr/lib/python3/dist-packages/dtschema/validator.py", line
+> > 187, in get_prop_types
+> >     del props[r'^[a-z][a-z0-9\-]*$']
+> >         ~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+> > KeyError: '^[a-z][a-z0-9\\-]*$'
+> > make[2]: *** [Documentation/devicetree/bindings/Makefile:64:
+> > Documentation/devicetree/bindings/processed-schema.json] Error 1
+> > make[2]: *** Deleting file
+> > 'Documentation/devicetree/bindings/processed-schema.json'
+> > make[1]: *** [/home/builder/kernel/Makefile:1435: dt_binding_schemas] Error 2
+>
+> Have you considered that this might be because of the invalid types you
+> used?
 
-Which platforms? The commit adds nodes to the SoC and the single RIDE
-platform.
+I remove the types.
+Anyway, scripts should report on errors, not crash.
+This is the purpose of syntax scripts, to help us, developers find out errors.
 
-> 
-> Signed-off-by: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
-> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi |  8 ++++
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi      | 75 ++++++++++++++++++++++++++++++
->  2 files changed, 83 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> index 2a6170623ea9..a01e6675c4bb 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> @@ -407,6 +407,14 @@ queue3 {
->  	};
->  };
->  
-> +&gpu {
-> +	status = "okay";
-> +
-> +	zap-shader {
 
-It's easier to add gpu_zap_shader_link label in the DTSI file and then
-reference it instead of using the subnode again.
-
-> +		firmware-name = "qcom/sa8775p/a663_zap.mbn";
-> +	};
-> +};
-
-Separate patch, please.
-
-> +
->  &i2c11 {
->  	clock-frequency = <400000>;
->  	pinctrl-0 = <&qup_i2c11_default>;
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index 23f1b2e5e624..12c79135a303 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -2824,6 +2824,81 @@ tcsr_mutex: hwlock@1f40000 {
->  			#hwlock-cells = <1>;
->  		};
->  
-> +		gpu: gpu@3d00000 {
-> +			compatible = "qcom,adreno-663.0", "qcom,adreno";
-> +			reg = <0 0x03d00000 0 0x40000>,
-> +			      <0 0x03d9e000 0 0x1000>,
-> +			      <0 0x03d61000 0 0x800>;
-
-I think it's suggested to use 0x0 now
-
-> +			reg-names = "kgsl_3d0_reg_memory",
-> +				    "cx_mem",
-> +				    "cx_dbgc";
-> +			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
-> +			iommus = <&adreno_smmu 0 0xc00>,
-> +				 <&adreno_smmu 1 0xc00>;
-> +			operating-points-v2 = <&gpu_opp_table>;
-> +			qcom,gmu = <&gmu>;
-> +			interconnects = <&gem_noc MASTER_GFX3D 0 &mc_virt SLAVE_EBI1 0>;
-
-QCOM_ICC_TAG_ALWAYS instead of 0
-
-> +			interconnect-names = "gfx-mem";
-> +			#cooling-cells = <2>;
-
-No speed bins?
-
-> +
-> +			status = "disabled";
-> +
-> +			zap-shader {
-
-gpu_zap_shader: zap-shader
-
-> +				memory-region = <&pil_gpu_mem>;
-> +			};
-> +
-> +			gpu_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				opp-405000000 {
-
-Just a single freq?
-
-> +					opp-hz = /bits/ 64 <405000000>;
-> +					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-> +					opp-peak-kBps = <8368000>;
-> +				};
-> +
-
-Drop the empty line, please.
-
-> +			};
-> +		};
-> +
-> +		gmu: gmu@3d6a000 {
-> +			compatible = "qcom,adreno-gmu-663.0", "qcom,adreno-gmu";
-> +			reg = <0 0x03d6a000 0 0x34000>,
-> +				<0 0x3de0000 0 0x10000>,
-> +				<0 0x0b290000 0 0x10000>;
-
-Wrong indentation, please align to the angle bracket.
-Also I think it's suggested to use 0x0 now
-
-> +			reg-names = "gmu", "rscc", "gmu_pdc";
-> +			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
-> +					<GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
-
-And here
-
-> +			interrupt-names = "hfi", "gmu";
-> +			clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
-> +				 <&gpucc GPU_CC_CXO_CLK>,
-> +				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
-> +				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
-> +				 <&gpucc GPU_CC_AHB_CLK>,
-> +				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
-> +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>;
-> +			clock-names = "gmu",
-> +				      "cxo",
-> +				      "axi",
-> +				      "memnoc",
-> +				      "ahb",
-> +				      "hub",
-> +				      "smmu_vote";
-> +			power-domains = <&gpucc GPU_CC_CX_GDSC>,
-> +					<&gpucc GPU_CC_GX_GDSC>;
-> +			power-domain-names = "cx",
-> +					     "gx";
-> +			iommus = <&adreno_smmu 5 0xc00>;
-> +			operating-points-v2 = <&gmu_opp_table>;
-> +
-> +			gmu_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				opp-200000000 {
-> +					opp-hz = /bits/ 64 <200000000>;
-> +					opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
-> +				};
-> +			};
-> +		};
-> +
->  		gpucc: clock-controller@3d90000 {
->  			compatible = "qcom,sa8775p-gpucc";
->  			reg = <0x0 0x03d90000 0x0 0xa000>;
-> 
-> -- 
-> 2.45.2
-> 
-
--- 
-With best wishes
-Dmitry
+Erez :-)
 
