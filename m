@@ -1,182 +1,123 @@
-Return-Path: <devicetree+bounces-103530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADDE197B39D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 19:34:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0A5A97B3A1
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 19:36:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A85C1F246BA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 17:34:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D823C1C23455
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 17:36:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE5EE18BB9C;
-	Tue, 17 Sep 2024 17:33:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 735F317C23D;
+	Tue, 17 Sep 2024 17:36:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BnMV7Gs5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD731189F30;
-	Tue, 17 Sep 2024 17:33:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45CD2182;
+	Tue, 17 Sep 2024 17:36:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726594424; cv=none; b=a9z1pGMuivxsmfktopjXtc+3Y4rBKTJY69wV/J4F6hO72E0ZhsBZiTquaSIbwZ04q5ud3NYMQYuPilRXv7L2yNHpSH7epeclxK3ihCqOIzGn/nB5AYKt7QI5/+TA63KWO2Zdn4WM57uTYOh9GgNcwHr4fxi/rUBfvDIcdVvmO5U=
+	t=1726594573; cv=none; b=qksxu/Rv7kQerQjQvohyFqs2q0sslC0f9TsxPFlxkVlVJlPEJ1sm49B6RG83iippNmANOX6+eJXxmyqHHhC4XYBrDc6HztkmPO9UvwUDLM59rArWQLtqRZNqHIMHIQOJZqxmr8pVRPdxXm6mdwRxAYFV8uwlPOzypJV8zDtDrMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726594424; c=relaxed/simple;
-	bh=KXbCGsfFYclLb9z4LSdpZaP3z+wkediRY72mW3/Lj2E=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=b3YquTt31SLQNOTUwa9SIaY/cOIV09dXf/EyB1dsNtkYg9ZAjimx8gLpo8BLbN4By8oNFtVewQdW1VKdOqadLA63gyre4NnSPaPmCVoiII9nPnaNWFan2qcwbuUS7aJd5Gqz5Lq76UwvK8AMS4sBynMjb5IW9AoKF6hf/CNNlnU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-IronPort-AV: E=Sophos;i="6.10,235,1719846000"; 
-   d="scan'208";a="218976918"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 18 Sep 2024 02:33:41 +0900
-Received: from mulinux.example.org (unknown [10.226.92.130])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 400154011F7F;
-	Wed, 18 Sep 2024 02:33:37 +0900 (JST)
-From: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Chris Paterson <Chris.Paterson2@renesas.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 6/6] arm64: dts: renesas: r9a09g057: Add ICU node
-Date: Tue, 17 Sep 2024 18:32:49 +0100
-Message-Id: <20240917173249.158920-7-fabrizio.castro.jz@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240917173249.158920-1-fabrizio.castro.jz@renesas.com>
-References: <20240917173249.158920-1-fabrizio.castro.jz@renesas.com>
+	s=arc-20240116; t=1726594573; c=relaxed/simple;
+	bh=/r3lZgA0K8dFIfRNt3dRyl5F1WVj4N3lg1mU48m1d+Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gtzCr9qN8zKlpBrC98lbN0XKxxKfJ89NvcW444ltL8dY+IZNpXG7OoAOuiZ2IwyVoVdZY6GZ/EFvJvGFB58buHl3KCLGGsN+bAvbghJ59iljEw4W5XfJjHad9rEP2sZiGxf7TAdEQclL6wICPzRG+qmhVebc3lUSbnxohWyOhD8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BnMV7Gs5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85FC7C4CEC5;
+	Tue, 17 Sep 2024 17:36:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726594572;
+	bh=/r3lZgA0K8dFIfRNt3dRyl5F1WVj4N3lg1mU48m1d+Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BnMV7Gs5fxZUsVS9o4cvhpxHEBEb1FUXo0tu+NgaJGP44Rsu3pZ2tdl1ibDTTB1pN
+	 cJ+cjas//tzYmvcLfB7JmQrB8x/kMS8jZRWYp7cQtdD5oiRgnoKU3Ym9bSpLCd6iNI
+	 5QRs/+oiPpwcKDdyHcj6rvuDHobgE0pX3L2D+gzyZM/vTDAoZ4J6IaT+PBz/UEBqXe
+	 S44h6Gsf9Ot5UwINX+ylYN8rM791+mUcobDP1lrxuFYhqeewX0Z0VK/TaHuypHBX1N
+	 969sTnD/5sqllhiiCRekpuKEwLkFD5tzNK8sGsN56P/vNXm/37Zu9W6HRz9//11LwZ
+	 YlE9163l9Ev4Q==
+Message-ID: <f39900f0-f99a-4a31-88bc-13d459392ffc@kernel.org>
+Date: Tue, 17 Sep 2024 19:36:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: defconfig: add S32G RTC module support
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ NXP S32 Linux Team <s32@nxp.com>
+References: <20240911070028.127659-1-ciprianmarian.costea@oss.nxp.com>
+ <20240911070028.127659-4-ciprianmarian.costea@oss.nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240911070028.127659-4-ciprianmarian.costea@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add node for the Interrupt Control Unit IP found on the Renesas
-RZ/V2H(P) SoC, and modify the pinctrl node as its interrupt parent
-is the ICU node.
+On 11/09/2024 09:00, Ciprian Costea wrote:
+> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> 
+> This patch enables CONFIG_RTC_DRV_S32G as module by default.
 
-Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a09g057.dtsi | 88 ++++++++++++++++++++++
- 1 file changed, 88 insertions(+)
+We see this from the diff. We do not see why we would like this.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-index 1ad5a1b6917f..72d54aa68e37 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-@@ -90,6 +90,93 @@ soc: soc {
- 		#size-cells = <2>;
- 		ranges;
- 
-+		icu: interrupt-controller@10400000 {
-+			compatible = "renesas,r9a09g057-icu";
-+			reg = <0 0x10400000 0 0x10000>;
-+			#interrupt-cells = <2>;
-+			#address-cells = <0>;
-+			interrupt-controller;
-+			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 427 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 428 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 429 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 430 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 432 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 433 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 434 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 436 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 437 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 438 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 440 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 441 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 443 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 445 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 449 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 450 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 262 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 263 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 265 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 451 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 453 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 454 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "nmi",
-+					  "irq0", "irq1", "irq2", "irq3",
-+					  "irq4", "irq5", "irq6", "irq7",
-+					  "irq8", "irq9", "irq10", "irq11",
-+					  "irq12", "irq13", "irq14", "irq15",
-+					  "tint0", "tint1", "tint2", "tint3",
-+					  "tint4", "tint5", "tint6", "tint7",
-+					  "tint8", "tint9", "tint10", "tint11",
-+					  "tint12", "tint13", "tint14", "tint15",
-+					  "tint16", "tint17", "tint18", "tint19",
-+					  "tint20", "tint21", "tint22", "tint23",
-+					  "tint24", "tint25", "tint26", "tint27",
-+					  "tint28", "tint29", "tint30", "tint31",
-+					  "int-ca55-0", "int-ca55-1",
-+					  "int-ca55-2", "int-ca55-3",
-+					  "icu-error-ca55",
-+					  "gpt-u0-gtciada", "gpt-u0-gtciadb",
-+					  "gpt-u1-gtciada", "gpt-u1-gtciadb";
-+			clocks = <&cpg CPG_MOD 0x5>;
-+			power-domains = <&cpg>;
-+			resets = <&cpg 0x36>;
-+		};
-+
- 		pinctrl: pinctrl@10410000 {
- 			compatible = "renesas,r9a09g057-pinctrl";
- 			reg = <0 0x10410000 0 0x10000>;
-@@ -99,6 +186,7 @@ pinctrl: pinctrl@10410000 {
- 			gpio-ranges = <&pinctrl 0 0 96>;
- 			#interrupt-cells = <2>;
- 			interrupt-controller;
-+			interrupt-parent = <&icu>;
- 			power-domains = <&cpg>;
- 			resets = <&cpg 0xa5>, <&cpg 0xa6>;
- 		};
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
