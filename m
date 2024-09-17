@@ -1,151 +1,289 @@
-Return-Path: <devicetree+bounces-103414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91CDF97AC09
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 09:27:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 084B097AC11
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 09:30:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 471101F22B01
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 07:27:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F0A21F2292B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 07:30:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DF7414D70A;
-	Tue, 17 Sep 2024 07:27:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 959B01369B4;
+	Tue, 17 Sep 2024 07:29:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="Wvaelxph"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VTKVgwuF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0DD761FCE;
-	Tue, 17 Sep 2024 07:27:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68CCC7DA91;
+	Tue, 17 Sep 2024 07:29:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726558048; cv=none; b=cog8/TJX4SYakcJXMK3rkNRLnVkL71WPm4q0cIsVMRtNC3JQnADMD9dp7m9rF5m7+NhssHgXmpKCevLPuiY0rF9Tfjdcavxes3H7w9MqqHSuKNBcvOYdI0b3UtBIAzhZuXE+61+zZtoS1C/m18ecRQPDCzk5SPn56HjPosNqw2I=
+	t=1726558199; cv=none; b=BnE6GBNkyAdocEfzMyyobw12l2XYI4wNbWrpOzKdxzHHotzBUsU/68aG3kHCmZBBG52YoBVRqSGYZvukdErF8kONq5j4sx9QtZqZiATSaF7UdpqbTrr9KYYMVkb35mkeajsef3wLhuZHCgNE4uYO6TKFSWAEGf7nY95FBMWDzwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726558048; c=relaxed/simple;
-	bh=oD+t+jNGTRkU19nK4oGnBU8RsqVKQ3nAjA6hIRxuNKE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=DX9+I/XgM8wC9lreKeWCYHpXfX6Aiwb43amUcy7c8ARkrTkCSOP86zfsAs2qL6DceFYjGRDf/QRPt4phwnhHx3IeFO3zgvIOj34hGbqsYdI9TXxsj/02lyaxkpHXFyIbAjqNQKp+E8Obe2c60/I59O3IqM6EUm1FvTel8pIsGWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=Wvaelxph; arc=none smtp.client-ip=217.92.40.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4F0231486936;
-	Tue, 17 Sep 2024 09:27:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
-	t=1726558038; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=PaGslVzUvMf4ZLkj7aVsDIG+nfFcVU182X0uhMNizEo=;
-	b=WvaelxphwqXWfYnVXD3dNak0XkmAOOGPDzr6ZupxM5KTwtj3YyAj5Y0wjisvuhAy1jVOMh
-	nKMcSuUZXQvUFwh0N9uc5wZUu9d7OaRrsc6TSDRc73sCcKekFcVIlU5CwQ8yA2QzKW30JX
-	l4X/64cegbUAUi4a8P+OPv5V+4aFsH4TDolTdcYCzSZGM/4R2pphBBWwK8eJp7eCb30tsC
-	Pwac0VeSF5PBpKgKJGqTKBRcIeTHBEJeUXDHCMhyaawe2iLRaj4TbZcdmua6fQ6Cn5uCQA
-	zA3KZVFHFBPKuFUfkfJsR5Nb8euAo4vocFxGxeP4RieF5m3svuTm7iNc9IhDSw==
-From: Alexander Dahl <ada@thorsis.com>
-To: Conor Dooley <conor+dt@kernel.org>
-Cc: Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Microchip (AT91) SoC support),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 2/2] ARM: dts: microchip: Unify rng node names
-Date: Tue, 17 Sep 2024 09:27:10 +0200
-Message-Id: <20240917072710.125435-3-ada@thorsis.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20240917072710.125435-1-ada@thorsis.com>
-References: <20240917072710.125435-1-ada@thorsis.com>
+	s=arc-20240116; t=1726558199; c=relaxed/simple;
+	bh=Z5NUsYcUClm/uE1LHjZj4eyucRsVWIllVFrJCeNFoRs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GQFBkcovAMRmxR+3whjOlVOcnsIoGtHyYhl+KY4K4B1A+wAy9mfZooWtJd61XkUDRoDXYuCKOTR5vst7j7t/nYfFtLE0D4ymWvj+F/+qo6ZNk1CAVJvk0QEbgs2AxDceqZINg+/sPljGq5+nmZZ5H1b2cWQqwdqnMHeMkGielIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VTKVgwuF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B398C4CEC6;
+	Tue, 17 Sep 2024 07:29:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726558198;
+	bh=Z5NUsYcUClm/uE1LHjZj4eyucRsVWIllVFrJCeNFoRs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VTKVgwuFxN4Xn9f+gqdGxPsksxaOc5UH3HhFDWdnCFE0IGvFjhdxXP/tjUTGFgmRH
+	 5lPa8SSZm6T3SGbWs4a/IgVSHAOaSolpvzunVSBCEJmtttyNtSZc/JyykQIpi9yVmX
+	 frHA12yeXUJCYgYa8/j8Ut64W3d8TiyG+Fh7fqflWXnFwT8uX/XN5gfqXgsSeiSLTG
+	 tha3LsiZ45Sg1WIcsZc0prD52955Szu0SQUltJ66Qy015YVW5Gr0/Fi8nZM+pBl6vg
+	 JrEOzni0J8z/Hx4iKSsRTDoGLCR8pIhCy4AXn79KZubPS34LnlmDmhI9wARW/FnWBG
+	 5NwcOVv2WZeVw==
+Date: Tue, 17 Sep 2024 09:29:46 +0200
+From: Bjorn Andersson <andersson@kernel.org>
+To: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, quic_riteshk@quicinc.com, quic_vproddut@quicinc.com, 
+	quic_abhinavk@quicinc.com
+Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: add DisplayPort device node
+Message-ID: <cofwijgk2dgg5i5xhvhq3exug4o77mttmozw5amtc3myn4zzq5@m5x44hswwsmt>
+References: <20240916091344.27607-1-quic_mukhopad@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240916091344.27607-1-quic_mukhopad@quicinc.com>
 
-Using a generic name common over different platforms and matching the
-recent atmel rng binding now.
+On Mon, Sep 16, 2024 at 02:43:44PM GMT, Soutrik Mukhopadhyay wrote:
+> Add device tree node for the DisplayPort controller
+> and eDP PHY found on the Qualcomm SA8775P SoC.
+> 
 
-Signed-off-by: Alexander Dahl <ada@thorsis.com>
-Suggested-by: Nicolas Ferre <nicolas.ferre@microchip.com>
----
- arch/arm/boot/dts/microchip/at91sam9g45.dtsi | 2 +-
- arch/arm/boot/dts/microchip/sam9x60.dtsi     | 2 +-
- arch/arm/boot/dts/microchip/sama5d2.dtsi     | 2 +-
- arch/arm/boot/dts/microchip/sama5d3.dtsi     | 2 +-
- arch/arm/boot/dts/microchip/sama5d4.dtsi     | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
+Please split this in a change for the platform (.dtsi) which defines
+_all_ the DPTX and DP PHYs, and then a ride dts change which enables all
+the ports available on the Ride.
 
-diff --git a/arch/arm/boot/dts/microchip/at91sam9g45.dtsi b/arch/arm/boot/dts/microchip/at91sam9g45.dtsi
-index 02bd5a1833e8..072576dd6f7b 100644
---- a/arch/arm/boot/dts/microchip/at91sam9g45.dtsi
-+++ b/arch/arm/boot/dts/microchip/at91sam9g45.dtsi
-@@ -753,7 +753,7 @@ macb0: ethernet@fffbc000 {
- 				status = "disabled";
- 			};
- 
--			trng: trng@fffcc000 {
-+			trng: rng@fffcc000 {
- 				compatible = "atmel,at91sam9g45-trng";
- 				reg = <0xfffcc000 0x100>;
- 				interrupts = <6 IRQ_TYPE_LEVEL_HIGH 0>;
-diff --git a/arch/arm/boot/dts/microchip/sam9x60.dtsi b/arch/arm/boot/dts/microchip/sam9x60.dtsi
-index 291540e5d81e..b1a4b68e4b0c 100644
---- a/arch/arm/boot/dts/microchip/sam9x60.dtsi
-+++ b/arch/arm/boot/dts/microchip/sam9x60.dtsi
-@@ -478,7 +478,7 @@ sha: crypto@f002c000 {
- 				clock-names = "sha_clk";
- 			};
- 
--			trng: trng@f0030000 {
-+			trng: rng@f0030000 {
- 				compatible = "microchip,sam9x60-trng";
- 				reg = <0xf0030000 0x100>;
- 				interrupts = <38 IRQ_TYPE_LEVEL_HIGH 0>;
-diff --git a/arch/arm/boot/dts/microchip/sama5d2.dtsi b/arch/arm/boot/dts/microchip/sama5d2.dtsi
-index 2fefe3efa769..3f99451aef83 100644
---- a/arch/arm/boot/dts/microchip/sama5d2.dtsi
-+++ b/arch/arm/boot/dts/microchip/sama5d2.dtsi
-@@ -1019,7 +1019,7 @@ AT91_XDMAC_DT_PER_IF(1) |
- 				};
- 			};
- 
--			trng: trng@fc01c000 {
-+			trng: rng@fc01c000 {
- 				compatible = "atmel,at91sam9g45-trng";
- 				reg = <0xfc01c000 0x100>;
- 				interrupts = <47 IRQ_TYPE_LEVEL_HIGH 0>;
-diff --git a/arch/arm/boot/dts/microchip/sama5d3.dtsi b/arch/arm/boot/dts/microchip/sama5d3.dtsi
-index 8335e0c8066f..4816e87c9777 100644
---- a/arch/arm/boot/dts/microchip/sama5d3.dtsi
-+++ b/arch/arm/boot/dts/microchip/sama5d3.dtsi
-@@ -419,7 +419,7 @@ tdes: crypto@f803c000 {
- 				clock-names = "tdes_clk";
- 			};
- 
--			trng: trng@f8040000 {
-+			trng: rng@f8040000 {
- 				compatible = "atmel,at91sam9g45-trng";
- 				reg = <0xf8040000 0x100>;
- 				interrupts = <45 IRQ_TYPE_LEVEL_HIGH 0>;
-diff --git a/arch/arm/boot/dts/microchip/sama5d4.dtsi b/arch/arm/boot/dts/microchip/sama5d4.dtsi
-index 20b8a9b123e1..a577b6ee1747 100644
---- a/arch/arm/boot/dts/microchip/sama5d4.dtsi
-+++ b/arch/arm/boot/dts/microchip/sama5d4.dtsi
-@@ -658,7 +658,7 @@ macb1: ethernet@fc028000 {
- 				status = "disabled";
- 			};
- 
--			trng: trng@fc030000 {
-+			trng: rng@fc030000 {
- 				compatible = "atmel,at91sam9g45-trng";
- 				reg = <0xfc030000 0x100>;
- 				interrupts = <53 IRQ_TYPE_LEVEL_HIGH 0>;
--- 
-2.39.5
+If there are platform ports that are not accessible on any hardware,
+state in the commit message which ones you tested and which ones you
+didn't test.
 
+> Signed-off-by: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+> ---
+> This patch depends on following series:
+> https://lore.kernel.org/all/20240816-sa8775p-mm-v3-v1-0-77d53c3c0cef@quicinc.com/
+> https://lore.kernel.org/all/20240912071437.1708969-1-quic_mahap@quicinc.com/
+> https://lore.kernel.org/all/20240913103755.7290-1-quic_mukhopad@quicinc.com/
+
+Please hold off resubmitting this series until there's conclusion on
+these dependencies.
+
+>  
+> ---
+>  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi |  23 +++++
+>  arch/arm64/boot/dts/qcom/sa8775p.dtsi      | 114 ++++++++++++++++++++-
+>  2 files changed, 136 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> index 0c1b21def4b6..728b4cda8353 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> @@ -421,6 +421,23 @@
+>  	status = "okay";
+>  };
+>  
+> +&mdss0 {
+> +	status = "okay";
+> +};
+> +
+> +&mdss0_dp0 {
+> +	status = "okay";
+> +};
+> +
+> +&mdss0_dp0_out {
+> +	data-lanes = <0 1 2 3>;
+> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+> +};
+> +
+> +&mdss0_edp_phy0 {
+> +	status = "okay";
+> +};
+> +
+>  &pmm8654au_0_gpios {
+>  	gpio-line-names = "DS_EN",
+>  			  "POFF_COMPLETE",
+> @@ -527,6 +544,12 @@
+>  };
+>  
+>  &tlmm {
+> +	dp_hot_plug_det: dp-hot-plug-det-state {
+> +		pins = "gpio101";
+> +		function = "edp0_hot";
+> +		bias-disable;
+> +	};
+> +
+>  	ethernet0_default: ethernet0-default-state {
+>  		ethernet0_mdc: ethernet0-mdc-pins {
+>  			pins = "gpio8";
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> index 7747965e7e46..a04150c29565 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> @@ -3339,6 +3339,18 @@
+>  				interrupt-parent = <&mdss0>;
+>  				interrupts = <0>;
+>  
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +						dpu_intf0_out: endpoint {
+> +							remote-endpoint = <&mdss0_dp0_in>;
+> +						};
+> +					};
+> +				};
+> +
+>  				mdss0_mdp_opp_table: opp-table {
+>  					compatible = "operating-points-v2";
+>  
+> @@ -3363,6 +3375,106 @@
+>  					};
+>  				};
+>  			};
+> +
+> +			mdss0_edp_phy0: phy@aec2a00 {
+> +				compatible = "qcom,sa8775p-edp-phy";
+
+Is this really a eDP PHY, not a DP/eDP combo phy?
+
+I would prefer that we keep the label prefix "mdssM_dpN" on the DP TX
+and DP PHY nodes, to keep them neatly sorted in the dts. (If you name
+half mdssM_edp_phyN and half mdssM_dp_phyN we're going to have a mess)
+
+> +
+> +				reg = <0x0 0xaec2a00 0x0 0x200>,
+> +					<0x0 0xaec2200 0x0 0xd0>,
+> +					<0x0 0xaec2600 0x0 0xd0>,
+> +					<0x0 0xaec2000 0x0 0x1c8>;
+> +
+> +				clocks = <&rpmhcc RPMH_CXO_CLK>,
+> +					 <&gcc GCC_EDP_REF_CLKREF_EN>;
+> +				clock-names = "aux",
+> +					      "cfg_ahb";
+> +
+> +				vdda-phy-supply = <&vreg_l1c>;
+> +				vdda-pll-supply = <&vreg_l4a>;
+> +				#clock-cells = <1>;
+> +				#phy-cells = <0>;
+> +
+> +				status = "disabled";
+> +			};
+> +
+> +			mdss0_dp0: displayport-controller@af54000 {
+> +				compatible = "qcom,sa8775p-dp";
+> +
+> +				pinctrl-0 = <&dp_hot_plug_det>;
+
+Don't make references from .dtsi to labels defined in .dts.
+
+Regards,
+Bjorn
+
+> +				pinctrl-names = "default";
+> +
+> +				reg = <0x0 0xaf54000 0x0 0x104>,
+> +					<0x0 0xaf54200 0x0 0x0c0>,
+> +					<0x0 0xaf55000 0x0 0x770>,
+> +					<0x0 0xaf56000 0x0 0x09c>;
+> +
+> +				interrupt-parent = <&mdss0>;
+> +				interrupts = <12>;
+> +
+> +				clocks = <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
+> +					 <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_AUX_CLK>,
+> +					 <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_LINK_CLK>,
+> +					 <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
+> +					 <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
+> +				clock-names = "core_iface",
+> +						"core_aux",
+> +						"ctrl_link",
+> +						"ctrl_link_iface",
+> +						"stream_pixel";
+> +				assigned-clocks = <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_LINK_CLK_SRC>,
+> +						  <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC>;
+> +				assigned-clock-parents = <&mdss0_edp_phy0 0>, <&mdss0_edp_phy0 1>;
+> +				phys = <&mdss0_edp_phy0>;
+> +				phy-names = "dp";
+> +
+> +				operating-points-v2 = <&dp_opp_table>;
+> +				power-domains = <&rpmhpd SA8775P_MMCX>;
+> +
+> +				#sound-dai-cells = <0>;
+> +
+> +				status = "disabled";
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +						mdss0_dp0_in: endpoint {
+> +							remote-endpoint = <&dpu_intf0_out>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +						mdss0_dp0_out: endpoint { };
+> +					};
+> +				};
+> +
+> +				dp_opp_table: opp-table {
+> +					compatible = "operating-points-v2";
+> +
+> +					opp-160000000 {
+> +						opp-hz = /bits/ 64 <160000000>;
+> +						required-opps = <&rpmhpd_opp_low_svs>;
+> +					};
+> +
+> +					opp-270000000 {
+> +						opp-hz = /bits/ 64 <270000000>;
+> +						required-opps = <&rpmhpd_opp_svs>;
+> +					};
+> +
+> +					opp-540000000 {
+> +						opp-hz = /bits/ 64 <540000000>;
+> +						required-opps = <&rpmhpd_opp_svs_l1>;
+> +					};
+> +
+> +					opp-810000000 {
+> +						opp-hz = /bits/ 64 <810000000>;
+> +						required-opps = <&rpmhpd_opp_nom>;
+> +					};
+> +				};
+> +			};
+>  		};
+>  
+>  		dispcc0: clock-controller@af00000 {
+> @@ -3372,7 +3484,7 @@
+>  				 <&rpmhcc RPMH_CXO_CLK>,
+>  				 <&rpmhcc RPMH_CXO_CLK_A>,
+>  				 <&sleep_clk>,
+> -				 <0>, <0>, <0>, <0>,
+> +				 <&mdss0_edp_phy0 0>, <&mdss0_edp_phy0 1>, <0>, <0>,
+>  				 <0>, <0>, <0>, <0>;
+>  			power-domains = <&rpmhpd SA8775P_MMCX>;
+>  			#clock-cells = <1>;
+> -- 
+> 2.17.1
+> 
 
