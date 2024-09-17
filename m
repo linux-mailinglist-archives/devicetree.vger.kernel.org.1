@@ -1,107 +1,111 @@
-Return-Path: <devicetree+bounces-103416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36EF397AC5A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 09:46:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8DBD97AC6B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 09:51:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC928285462
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 07:46:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D2F128C7BC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 07:51:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8099C1494C2;
-	Tue, 17 Sep 2024 07:46:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5910714B948;
+	Tue, 17 Sep 2024 07:51:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="GMTNj07v"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b03w+eEB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A2882D98;
-	Tue, 17 Sep 2024 07:45:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB9F220EB;
+	Tue, 17 Sep 2024 07:51:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726559164; cv=none; b=ZGXN/k0MWKLVbNczxM2FoYGniARPS+JCBY4G2+yyRQTFUmwT+zKyff/J4/5Pn6lthujfMl5D7vzYEPdvwx/y+6rOGj1ken7C5S422+I4RG4EMjtGszsWl+IRtt1juT8jYI/OxqfkqzwtqsigNX5nG2ZQ3Jbyv/dkEtpZIeHLHME=
+	t=1726559484; cv=none; b=ZRt7MAjXhHbNnGPjmRsO1ssXtUh2JNigTaIApAkyED77JZIbwb8I/YYAKvOisFwxhdb9htEMr3MrJ4K2oJ1korXYoMYzB8aio2HbL8rMwZ5kfrJpB83GqfEB2jLpsb8PiiRRkmEQdXCvee2QcNbmG49aixEwpN5jDHgiS1Pkb0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726559164; c=relaxed/simple;
-	bh=x+0wJ4cJX9+ICI32gYblCANCl/cc296DmLw3hduBRCs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RBj4DGtem/ryYJ7ENBeZVR+Lm+r2Qqo/DUNumnsqgC77WJ5Su+nqz1MBIwjLeoNj3mJR/PlYOi1eZgJfMSCgZRqbIvFmOpDxqelkk1ZBppNBg86wxiFaW1ucTc2YjHOqenjSNxhhEdL3THnzlqNVt7hTj5JFOvJ7EYX1d6i/Utg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=GMTNj07v; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 6A8781F9C7;
-	Tue, 17 Sep 2024 09:45:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1726559150;
-	bh=0ctxh6EHatNfEKj/a1TCaaMo+DnREyCVRKDJamzJcTA=; h=From:To:Subject;
-	b=GMTNj07vlNNAvHSkjs9h+CXYzHd3oI0JfRiZ/HOZ3AKx3Syqt2ZbRfgZ02g3ByEqI
-	 sFrv0aqx8qzPsSIhkDhEW/fQe7S4WC02W9mvZv2GFE659P3e3cjTr8ZracM0IW3Q3D
-	 6ZBhoKXOqK5sZGuWLcH/Ovzs31BEsTKsK3p2lpxY3kr4gw+OH684fXtaJCR67DiJ80
-	 10AkWd1dLoWFGniJy14/vu2xp2ONRvs476xdVIponkHV2NTAg80445XDSNMKnO3TaB
-	 i7/Hd1AQertKt/B9sQZ7k90O7CIqTgZTszEctaozmfsC/w+ssz7bofteSSqnzDocYy
-	 qulu7vIvg0FYw==
-Date: Tue, 17 Sep 2024 09:45:44 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v1] arm64: dts: colibri-imx8x: Add ad7879_ts label to
- touchscreen controller
-Message-ID: <20240917074544.GA7916@francesco-nb>
-References: <20240910152213.2072743-1-ghidoliemanuele@gmail.com>
- <1cfe3f3a-28a3-4030-b6ba-3892a2a7bc79@linaro.org>
+	s=arc-20240116; t=1726559484; c=relaxed/simple;
+	bh=pjuFRl9WZsOXg0FqWF5gKgVdiqZ8jg1lC79dYya+Fr4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PKg3PnY5kQEGM+IKRHxbUFw99mYUlik+111ZVgyXgghqFgjhJXVn8Xz7UdxBlccJ1xp87h5moFH0Mya/CBJ9JUOVZVQDj73xkRww3z2yrudZTf54c1N4C7icWCgl4+M3kedwlqywF9UYMSJZU/AOAdWqx2wCRcz6Hicx07FOLt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b03w+eEB; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-20792913262so34165115ad.3;
+        Tue, 17 Sep 2024 00:51:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726559482; x=1727164282; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GrGH2mPIe89MQypJfzhvjQ7gBAj+5lcgtl2++J9A1dc=;
+        b=b03w+eEB1iow081wfwgO+m9xWHrd5vy3vI76EDlNefq/OLbFXoi1mjdrdX5OSc96CG
+         ClXv5Sqffz9MdMLOubHb6BDkFRh9qLWgQLqe3K/tgMfLl/u3Ccv1lJTfL6nyLSbDs4ZF
+         tYD4qduPLIoNxpdDl2owBkYYJDFz5KpibiERBSedOxht1vDhqqhRkzYfiJyPtfe3IBBc
+         WTIYWQhWoDSpv6Str0UFA1M255DvNghxghLcoR9oEKC6lMfS/P7AiCMvQNB3Q5bFFN1z
+         tOMnemJabFXroxVYQggYd9KZTLOXYqT8MuoUa6/upNqm9Oy9n3HPA2/SG06RhccR8ipK
+         rvrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726559482; x=1727164282;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GrGH2mPIe89MQypJfzhvjQ7gBAj+5lcgtl2++J9A1dc=;
+        b=E9YOMNThbSp7U4sLMp5F4UyAHtNjL7Dromt5qwNY2TCkPA2j3PPHfmx7t/Q4qXJKHv
+         CcM7yptvDhugVwTvMUCrt8Xq4cUcZjx4bUJRRJieedLa1nFqR0CVVZ5cnV7mphLiFFzG
+         U9EaqOUKyl1UaPJEZG9vDAH0+i0qRMKZSOj3GuAXlCZw8/Cwpfv8gdGUIwkVROhceqLo
+         TB291R5wcLYE76104aE3NOd/T6d7ReBhcDERGwsdlK9FnJIR0j6qbwHNw3ZAmT2k2hj9
+         45FgtENNrGH3CE+u1xIj7BuneiQ2T9JbWupo3m6R2sSp80VIeuo5uqX1JI+MYVaNUizo
+         slXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVbt+7WOLsqjoR6e5JKh6oq3dBijY/WrfI/f0YtyGBzRup6ZUalqq5l7ZoHcmQxBqDbFcB6E0R9F9/nNoOs@vger.kernel.org, AJvYcCXb6bEXS3UdHHGd2M+5tuFAGEVT+HZK8MI4B9VKLYVPc/YzYmU7+XMsgJS1OCGAx9xwVQp3NxbX4dxM@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYpD6czHkoIGwNAY93lkMReGrD9hbFjqIPk22YIs0fl0rrWJ25
+	4V78pHTEsb2hKzQE99BOyHa5S1api+Da6Gl5KOtq4cgio7KJdjRjESTz2TD77JvIog==
+X-Google-Smtp-Source: AGHT+IEeus8aOTYcUECAdvl+30eI4Dv62kNZY04t3pAKwmTROL2awD8q4KVcvuM9V7BGz+mqH4+LeA==
+X-Received: by 2002:a17:902:c94b:b0:207:5665:32b2 with SMTP id d9443c01a7336-20782a69ad1mr210704465ad.40.1726559481985;
+        Tue, 17 Sep 2024 00:51:21 -0700 (PDT)
+Received: from ?IPV6:2601:644:8502:9460:864b:f5ff:fe5c:59a5? ([2601:644:8502:9460:864b:f5ff:fe5c:59a5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-207946d19c0sm46139135ad.146.2024.09.17.00.51.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Sep 2024 00:51:21 -0700 (PDT)
+Message-ID: <7c99becc-c179-4f81-ae50-5fa3bdffe1b4@gmail.com>
+Date: Tue, 17 Sep 2024 00:51:20 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1cfe3f3a-28a3-4030-b6ba-3892a2a7bc79@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm: expressatt: fix pm8921_l6 regulator
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240916-sd-card-regulator-v1-1-669533c393d7@gmail.com>
+ <edeb1681-7159-4fbd-ba81-6d007fa12f4d@kernel.org>
+Content-Language: en-US
+From: Rudraksha Gupta <guptarud@gmail.com>
+In-Reply-To: <edeb1681-7159-4fbd-ba81-6d007fa12f4d@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello Krzysztof,
-it seems that this patch requires more explanation, maybe something
-that should be part of the commit message, let's see ...
+> That's odd. Are you sure regulator is provided in SD card node? Is it
+> SDCC1 or SDCC3?
 
-On Mon, Sep 16, 2024 at 06:10:55PM +0200, Krzysztof Kozlowski wrote:
-> On 10/09/2024 17:22, Emanuele Ghidoli wrote:
-> > From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-> > 
-> > The device tree defines the touchscreen controller, but it cannot be
-> > enabled because it lacks a reference label.
-> 
-> It can be. Just enable it...
+I believe it's SDCC3. Unfortunately, I don't think this patch is the 
+solution either anymore. It was working with this patch consistently, 
+but now my phone just hangs on mounting the SD card like before. I've 
+tried a combination of GPT and MSDOS + vfat, ext2, and ext4. I'm not 
+sure what I'm doing wrong cause the SD card consistently works on the 
+downstream Linux kernel :(
 
-colibri-imx8x is a SoM, it's not a complete self-contained device. The
-display touch controller is part of the SoM, however it is kept disabled
-since you need an actual touchscreen to make any use of it.
+Sorry for wasting your time
 
-This label would be used where an actual touchscreen is defined, this can
-happen with a DT overlay, for example.
 
-> > This commit adds a label to allow it to be referenced and enabled.
-> 
-> You changed here nothing. For me this patch is churn and pointless.
-> You add the label when you need to use it.
+Thanks,
 
-DT files from the Linux kernel GIT are used also outside the Linux kernel
-sources, see for example U-Boot OF_UPSTREAM [1], to me it's fair to add
-a label for an out-of-tree user, am I wrong?
+Rudraksha
 
-Francesco
-
-[1] https://lore.kernel.org/all/20240222093607.3085545-1-sumit.garg@linaro.org/
 
