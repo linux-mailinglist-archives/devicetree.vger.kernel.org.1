@@ -1,121 +1,352 @@
-Return-Path: <devicetree+bounces-103408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 417A697ABD3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 09:08:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F4397ABE0
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 09:13:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E872C1F2606A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 07:08:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD31A1C2131E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 07:13:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B14714C588;
-	Tue, 17 Sep 2024 07:08:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C853A14D444;
+	Tue, 17 Sep 2024 07:13:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ly3yQwKS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nFaD8EDW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1272714B948;
-	Tue, 17 Sep 2024 07:08:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D35F14A4D6
+	for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 07:13:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726556906; cv=none; b=dP6vj7HPXYWnu3ZMVpYwpJS5j/EsG+PJFK7/ldKeBXedUV/nYKwQ4A4K425wFZqjxEVixd9jM6iFo4YqUYsf8F9kEeBG+vmdK69vlPMWSubBaRu1jeXOUnxSxw/StUStd3uixCK0U5aklAjIJnI/5PP5DUfzvlp8f31ceuGqk5w=
+	t=1726557202; cv=none; b=U8umLyOjJQKhoWfDZFZHWGCSR0luJPL8BjXFtrwMIbSDL+aJngLYjvyDhX9DbkI5G0ld+MaoShjL10U2FJTa9aWeOZrYRHjf4Ri0QvGv51khUwY+OQEtZoYMEtGq31eVrqkCNDyycY7uCEGIRrxbhz/YAIhIKM+LAlg8/vsBIx0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726556906; c=relaxed/simple;
-	bh=CtLX31xBKl7pTBviyO7QkqtzLTLLKRQCAQc0l5Biwe4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Vl7hNtLi9PVfAcNiX5iMCMUZNc/YaM+oungTD+cbMZKW6gxbvvnLefVlixBEQL+zG9vpqZwYh7bWOqZXED/fmiRT5EcaOC93sDGLEVon9LSKik7sx9joVf43s2e/mj6FWxe5h/KH8UzurmEFkaMj9734glJQclgxmza/KEIYEc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ly3yQwKS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 545C9C4CEC7;
-	Tue, 17 Sep 2024 07:08:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726556905;
-	bh=CtLX31xBKl7pTBviyO7QkqtzLTLLKRQCAQc0l5Biwe4=;
-	h=Date:From:To:List-Id:Cc:Subject:References:In-Reply-To:From;
-	b=ly3yQwKS8/GQz3n9+dUoxaEjMwuaYdOdA/Y3+rjhDCcVAob/XSTaQI8qc2FBN86z+
-	 IJbDhzy1A6XT+7GV1AsZrTllIGx08L0F3tQwc+2Ofg4ps45rd4bjiiqz+5zsyyOsZV
-	 rbJbJr26IErc2wYiobRt4wBHP2KYevUydLN4XN+A/5aOGe9dtkceUpKE1I/RPFDAO1
-	 Pbfj9NqyzxjQwv1VhZKLnd5ENEvzky2a8Cs1xcoJdI3AHs6sAqdINQE8THZ8q3GJlf
-	 0Mm8FqYukT5tAXq98cOJjPLmTCi8d+YZbwLHYfWpJgkyLm2AP2t+Kbb2OdykWH5rjh
-	 jiCAKCIi81+pA==
-Date: Tue, 17 Sep 2024 09:08:19 +0200
-From: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>, 
-	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org, 
-	Arnd Bergmann <arnd@arndb.de>, soc@kernel.org, Gregory CLEMENT <gregory.clement@bootlin.com>, 
-	arm@kernel.org, Andy Shevchenko <andy@kernel.org>, 
-	Hans de Goede <hdegoede@redhat.com>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
-	Andrew Lunn <andrew@lunn.ch>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH leds v3 05/11] dt-bindings: leds:
- cznic,turris-omnia-leds: Allow interrupts property
-Message-ID: <wn6mj233oqouxbrbogpf27w5bdybukoblbold6gk25fdfmy5j2@dlzxkh7whlzw>
-References: <20240913123103.21226-1-kabel@kernel.org>
- <20240913123103.21226-6-kabel@kernel.org>
- <rchpwlmgzsoj37oz6plzqcyxdyzpcdqtpmzik2gcflakeca3rm@vcdrovzs4nzh>
+	s=arc-20240116; t=1726557202; c=relaxed/simple;
+	bh=swNKLDkS2SD8YNTNI87RH+xrjb7mM6lIq0Tjir43pOY=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=WJ/eElSXH/PE7nATJu/GzvXXwOeOxMSsHTh/8MQYXr/i7SID7bt3eY4MUZFuWA4KJB52w5LjaB2cfWbApW/4tDb+SLpD7MoicRz0HtRATsLA7oleG/w5j6/d53huji1AGJRwqLpTQAimwKSTVPp4aPB+ZhHWXBH/PC2298Zb9EM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nFaD8EDW; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3787e067230so3736056f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 00:13:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1726557199; x=1727161999; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=C+HBEKsxJcqP81WkAW4sAI0iZg0KYU8heYcnB9a8jAU=;
+        b=nFaD8EDWAwZy1DnM+y3V/l69v4xPAOaxxvG39vGF0YWb16YweLYwLLaglMPl9A+Ksl
+         /zEBSHYuEdKgBbioTDD+aKObYRwHihZEdVKSq6PLt5/2r0HOfPE9QEQjcW+iN5hu7E/i
+         M+DsJEM1NZZL5fGX+YS+gx2dwZ3F7kJSjnn6OPH0Gksxav+BI3OGUM/07GGhTqcfYOx5
+         63fi7u89lz2f6GBlcU+hx/K1NCWFMc8eEMOTIi/OL/RYeTFYWod/0h2MKUvoCr7g49NG
+         LJrKTwOlwvFCoBmwKui06DDsqjGPA+MsxFe5ADZ/UFv/fl9oizUoB1NkZ1Z1Ewqws9D6
+         TFWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726557199; x=1727161999;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=C+HBEKsxJcqP81WkAW4sAI0iZg0KYU8heYcnB9a8jAU=;
+        b=Z3JrccUR2j+9DfDfJwVklJJKCvrXzl/I1z/aTFvCk2NhPz0UNBl0qFpfoTyKCHS6tZ
+         oC07foJxONWqDbfTXzeLcNOM4Va/24cQhiaakIfLVkgDjaaESJgEHBi74IuC7jHd9UMW
+         0hOsXXiHpMYnx/wwLyPo/HeAqj0JBt0AUFd0wPdNnRAW1vFbQyYva3Ct6J7wcxa51rvM
+         d+hpgo+SS1ICkzCDdi8X7ffor0/+GWwGdcZklZpZXMFmJDho3O9yAyUuOn7QRT1pGXRo
+         wILU+RBGVeAfckxMMdMadU3Ncfn9yBCdqa3Fy3MYYEUjDRV7xegyhfBet1cGH7AjMiEc
+         2MNg==
+X-Forwarded-Encrypted: i=1; AJvYcCXnuz3u6RnX6vrd9AsZVxcUgUFzKbMMzy5k0miW0sRzJrjM1kj38aRq0ygCnrQD2xkcXMvRst38qZVX@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+UBiNV8LZ5Ptjdn6xjjM8d6FApyLQW537QAIEUUvjO6hUVE+L
+	F4gQzOr9G4hsQBrSey9LybMcmMtUycvc0Rr/9LXdKXWQ29CaZeLfxso68rg53Ng=
+X-Google-Smtp-Source: AGHT+IFGpq/+J4ssPTXSy5MwONJpkzTKPo1IEOJH30s3xB5j9inEc2DszWR139tQAfWBSHi5+GrDYQ==
+X-Received: by 2002:adf:efc9:0:b0:371:8a91:9e72 with SMTP id ffacd0b85a97d-378c2d119f7mr11727570f8f.30.1726557198613;
+        Tue, 17 Sep 2024 00:13:18 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:e5df:ee06:f22e:a8cf? ([2a01:e0a:982:cbb0:e5df:ee06:f22e:a8cf])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42d9b193f2dsm128955935e9.39.2024.09.17.00.13.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Sep 2024 00:13:17 -0700 (PDT)
+Message-ID: <9394d785-5954-4d44-8ad0-9b57fbecde25@linaro.org>
+Date: Tue, 17 Sep 2024 09:13:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <rchpwlmgzsoj37oz6plzqcyxdyzpcdqtpmzik2gcflakeca3rm@vcdrovzs4nzh>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH] dt-bindings: mmc: convert amlogic,meson-mx-sdio.txt to
+ dtschema
+To: Rob Herring <robh@kernel.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v1-1-b7bfae886211@linaro.org>
+ <20240916174030.GA835203-robh@kernel.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240916174030.GA835203-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Sep 16, 2024 at 04:33:13PM +0200, Krzysztof Kozlowski wrote:
-> On Fri, Sep 13, 2024 at 02:30:57PM +0200, Marek Behún wrote:
-> > Extend the cznic,turris-omnia-leds binding with interrupts property,
-> > specifying the global LED brightness changed by button press interrupt.
-> > 
-> > Signed-off-by: Marek Behún <kabel@kernel.org>
-> > ---
-> >  .../devicetree/bindings/leds/cznic,turris-omnia-leds.yaml | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-> > index 34ef5215c150..f52f6304c79e 100644
-> > --- a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-> > +++ b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-> > @@ -23,6 +23,12 @@ properties:
-> >      description: I2C slave address of the microcontroller.
-> >      maxItems: 1
-> >  
-> > +  interrupts:
-> > +    description:
-> > +      Specifier for the global LED brightness changed by front button press
-> > +      interrupt.
+Hi Rob,
+
+On 16/09/2024 19:40, Rob Herring wrote:
+> On Wed, Sep 11, 2024 at 05:20:47PM +0200, Neil Armstrong wrote:
+>> Convert the Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
+>> bindings to dt-schema.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   .../bindings/mmc/amlogic,meson-mx-sdio.txt         |  54 -----------
+>>   .../bindings/mmc/amlogic,meson-mx-sdio.yaml        | 101 +++++++++++++++++++++
+>>   2 files changed, 101 insertions(+), 54 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
+>> deleted file mode 100644
+>> index 8765c605e6bc..000000000000
+>> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
+>> +++ /dev/null
+>> @@ -1,54 +0,0 @@
+>> -* Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
+>> -
+>> -The highspeed MMC host controller on Amlogic SoCs provides an interface
+>> -for MMC, SD, SDIO and SDHC types of memory cards.
+>> -
+>> -Supported maximum speeds are the ones of the eMMC standard 4.41 as well
+>> -as the speed of SD standard 2.0.
+>> -
+>> -The hardware provides an internal "mux" which allows up to three slots
+>> -to be controlled. Only one slot can be accessed at a time.
+>> -
+>> -Required properties:
+>> - - compatible : must be one of
+>> -	- "amlogic,meson8-sdio"
+>> -	- "amlogic,meson8b-sdio"
+>> -	along with the generic "amlogic,meson-mx-sdio"
+>> - - reg : mmc controller base registers
+>> - - interrupts : mmc controller interrupt
+>> - - #address-cells : must be 1
+>> - - size-cells : must be 0
+>> - - clocks : phandle to clock providers
+>> - - clock-names : must contain "core" and "clkin"
+>> -
+>> -Required child nodes:
+>> -A node for each slot provided by the MMC controller is required.
+>> -NOTE: due to a driver limitation currently only one slot (= child node)
+>> -      is supported!
+>> -
+>> -Required properties on each child node (= slot):
+>> - - compatible : must be "mmc-slot" (see mmc.txt within this directory)
+>> - - reg : the slot (or "port") ID
+>> -
+>> -Optional properties on each child node (= slot):
+>> - - bus-width : must be 1 or 4 (8-bit bus is not supported)
+>> - - for cd and all other additional generic mmc parameters
+>> -   please refer to mmc.txt within this directory
+>> -
+>> -Examples:
+>> -	mmc@c1108c20 {
+>> -		compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
+>> -		reg = <0xc1108c20 0x20>;
+>> -		interrupts = <0 28 1>;
+>> -		#address-cells = <1>;
+>> -		#size-cells = <0>;
+>> -		clocks = <&clkc CLKID_SDIO>, <&clkc CLKID_CLK81>;
+>> -		clock-names = "core", "clkin";
+>> -
+>> -		slot@1 {
+>> -			compatible = "mmc-slot";
+>> -			reg = <1>;
+>> -
+>> -			bus-width = <4>;
+>> -		};
+>> -	};
+>> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
+>> new file mode 100644
+>> index 000000000000..4d1142d2ff02
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
+>> @@ -0,0 +1,101 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mmc/amlogic,meson-mx-sdio.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
+>> +
+>> +description:
+>> +  The highspeed MMC host controller on Amlogic SoCs provides an interface
+>> +  for MMC, SD, SDIO and SDHC types of memory cards.
+>> +  Supported maximum speeds are the ones of the eMMC standard 4.41 as well
+>> +  as the speed of SD standard 2.0.
+>> +  The hardware provides an internal "mux" which allows up to three slots
+>> +  to be controlled. Only one slot can be accessed at a time.
 > 
-> This "front button press" concerns me that you just hooked here
-> gpio-key. Are you sure that this is the physical interrupt line going to
-> this device?
+> You need '|' or this is treated as 1 paragraph. If it is 1 paragraph,
+> then format it that way.
+> 
+> But really if you want 3 paragraphs, then you should use '>' and put 2
+> CR's between each paragraph.
 
-No no no, that is a different interrupt from the gpio-key.
+Ack
 
-The button can be configure in two modes:
+> 
+>> +
+>> +maintainers:
+>> +  - Neil Armstrong <neil.armstrong@linaro.org>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +          - amlogic,meson8-sdio
+>> +          - amlogic,meson8b-sdio
+>> +      - const: amlogic,meson-mx-sdio
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 2
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: core
+>> +      - const: clkin
+>> +
+>> +  "#address-cells":
+>> +    const: 1
+>> +
+>> +  "#size-cells":
+>> +    const: 0
+>> +
+>> +
+>> +patternProperties:
+>> +  "slot@[a-f0-9]+$":
+> 
+> Are you going to add 'slot' to nodename in mmc-controller.yaml?
 
-- it can act like a GPIO to the CPU, forwarding press and release events
-  via the GPIO chip (so button press it is handled by CPU)
-  - can be set with
-      echo cpu >/sys/bus/i2c/devices/1-002a/front_button_mode
-  - pressing it will generate the INT_BUTTON_PRESSED interrupt from the
-    MCU
 
-- it can change LED panel brightness (so button press is handled by MCU)
-  - this is the default mode, configured after boot
-  - can be set with
-      echo mcu >/sys/bus/i2c/devices/1-002a/front_button_mode
-  - pressing it will generate the INT_BRIGHTNESS_CHANGED interrupt
+Hmm, well slot should not be a valid nodename for a direct mmc-controller,
+so how to solve that ?
 
-The INT_BUTTON_PRESSED and INT_BRIGHTNESS_CHANGED interrupt semantically
-different (and also literally, they are at different bits). See
-  https://gitlab.nic.cz/turris/hw/omnia_hw_ctrl/-/blob/master/src/drivers/i2c_iface.h?ref_type=heads#L289-L321
+> 
+>> +    $ref: mmc-controller.yaml#
+>> +    description:
+>> +      A node for each slot provided by the MMC controller
+> 
+> blank line
+> 
+>> +    properties:
+>> +      compatible:
+>> +        const: mmc-slot
+> 
+> This is also used by the Cavium controller. Should be common.
 
-Marek
+Right but the cavium one isn't in dtschema, is it worth doing a
+common yaml for that ?
+
+> 
+>> +
+>> +      reg:
+>> +        description:
+>> +          the slot (or "port") ID
+>> +        maxItems: 1
+> 
+> Aren't there limits in the number of slots the h/w can support?
+
+Good question, let me check
+
+> 
+>> +
+>> +      bus-width:
+>> +        enum: [1, 4]
+>> +
+>> +    required:
+>> +      - compatible
+>> +      - reg
+>> +
+>> +    unevaluatedProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +  - clock-names
+>> +  - "#address-cells"
+>> +  - "#size-cells"
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    mmc@c1108c20 {
+>> +        compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
+>> +        reg = <0xc1108c20 0x20>;
+>> +        interrupts = <GIC_SPI 28 IRQ_TYPE_EDGE_RISING>;
+>> +        clocks = <&clk_core>, <&clk_in>;
+>> +        clock-names = "core", "clkin";
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        slot@1 {
+>> +            compatible = "mmc-slot";
+>> +            reg = <1>;
+>> +            bus-width = <4>;
+>> +        };
+>> +    };
+>>
+>> ---
+>> base-commit: 47ac09b91befbb6a235ab620c32af719f8208399
+>> change-id: 20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-6fa70546ebb8
+>>
+>> Best regards,
+>> -- 
+>> Neil Armstrong <neil.armstrong@linaro.org>
+>>
+
+Thanks,
+Neil
 
