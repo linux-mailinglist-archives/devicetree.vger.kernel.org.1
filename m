@@ -1,252 +1,244 @@
-Return-Path: <devicetree+bounces-103393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7FAF97AA51
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 04:00:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30F5F97AA76
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 05:17:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26C3E1F28A27
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 02:00:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E783E28AB48
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 03:17:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD9F1B813;
-	Tue, 17 Sep 2024 01:59:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38EC3200CB;
+	Tue, 17 Sep 2024 03:17:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="31hvlrO6"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="4Z+Qhy2x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1nam02on2057.outbound.protection.outlook.com [40.107.96.57])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58BC2EAEA
-	for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 01:59:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726538393; cv=none; b=Q/EYC5eU0jGYc4WxGzFsXgf0wfzA+WaSXyPYR0Fv7/S6Gt+py16taewm6I1HALHmwOV9l47zcWUTUO/f8+C7HHnV5LUUOn6juYB127PP9AkkQtGzcHLdXujKM6uCN/8PS56pIXM8QkPNRNBJct4c0LfyzPKlPIyOUbyC+auE7Zk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726538393; c=relaxed/simple;
-	bh=a4cyz9C2TYpaQTgEf3VqxHDqbgfDNEPLnRIQAzrWS04=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V7yn8GyeAT6L6xcMEcKzgDYkbIsYNXyyTdB9IwPA0aKomcMoDgpjaur7lynoglfWyEfwYToW/dz0XKkQy/YizY+l9bR7NQ2PDCU9jnRZ4/q4hXF4inzo1GH5GBVA3reLd75PG+A/7TKAS9ziEFIQLFau4fq7Axpv//qsHEx8BjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=31hvlrO6; arc=none smtp.client-ip=209.85.215.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-7db299608e7so2410535a12.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 18:59:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1726538391; x=1727143191; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+eogsbTlEU/20KpLpv0UCHv4GA8kVLu0/JxFWXQRsSU=;
-        b=31hvlrO6rdJozOlIHN8V/MFfiqUMCHNaTQbbxg4hQngMTQFDi8pR0M1jAYF9KJtpM5
-         2x8et6c7cNZF206CBdmzic6GLb+kS5pCMLHy78frB2dqoBb/Kl8AlEPiGV3CGyFUsNf+
-         CHL9zNIGapnTcNbZ9BLuakv/qb/QPTSr/6H62SuW/gD4mD+YpiPqmbFgNddu2xZY94OF
-         djFLvxP611pabv/hKwwH8UXbAdksHVfGm+Tp2hn5xCo4LS3u8uaZgTWbAiic/Ulxsk/K
-         etL4XIwK+LVy2aW94LzSBF1MNwOP5mccKAqqXNgAtcM7dzDMFY3uHX7HOdLWsFZjKkwM
-         j8MQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726538391; x=1727143191;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+eogsbTlEU/20KpLpv0UCHv4GA8kVLu0/JxFWXQRsSU=;
-        b=F/qIKF64HL/MS5PmpHEbBBjJXpZsGUwANry2EMjlk0Eda9fkcTQ0LMEjyn6kq2u8Oa
-         W2Zeqpk+n0myBWH1ieFZist0ZH/ijF9DXzNY9DH12nCsoLq7dtCcBjd8SYOp6Wr6bEEX
-         5bF8mV8hJpHHjmLq7Bz+9xQbV2Rm2PJSsTLq6HSCmHbcxZaNPBPFzFxzD/pmPWu1z6DB
-         KMMh9ERNGW3sgKJmG8f9EeEnDzPuAaHa6nx4Gtjyugywd825ViHXtnuisEYZOdK4K/cK
-         vGy4SdW9WDzR4zt38hm9sOejLrFtM7sqJUwk/KzDM1ABnBEloMKr3lA5wlhOX7OVYVNi
-         JbwA==
-X-Forwarded-Encrypted: i=1; AJvYcCVZsHULR/PJ7LbzQ3teHHxpVO5iPIeRATPcMbHX902sxdmzjYgSlJ4byoAj5RRTkWrsZoPu9KjikIWj@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLM/fgNnkOjYjP7A8pgzLhhPcZsZZtF1p5W2NQNvaCa+lpwLDp
-	hDxNIMKquLS5eL24MW+GrkAHRD3euGbgwsiCaVzakMLiZfAxpSco9ngrCom9EA==
-X-Google-Smtp-Source: AGHT+IEiSrWG76oGSMdtgJ8W8NNxk2NCB1dVYWJNPMFzgRZn9A2zFmCZkc+rVecNPMaHzfQokThRFQ==
-X-Received: by 2002:a17:90a:4924:b0:2d8:8d61:8a50 with SMTP id 98e67ed59e1d1-2dbb9f31abcmr15360207a91.32.1726538390300;
-        Mon, 16 Sep 2024 18:59:50 -0700 (PDT)
-Received: from ?IPV6:2a00:79e0:2e14:7:e1f6:9f31:2c3f:1500? ([2a00:79e0:2e14:7:e1f6:9f31:2c3f:1500])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2dbb9d972fcsm8174933a91.57.2024.09.16.18.59.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Sep 2024 18:59:49 -0700 (PDT)
-Message-ID: <2dab1111-49fd-43b7-8624-2d61b3d546b1@google.com>
-Date: Mon, 16 Sep 2024 18:59:47 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 304A22572;
+	Tue, 17 Sep 2024 03:16:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.96.57
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726543020; cv=fail; b=gn23LVSnHBtTTgGe/V5J35xfoJrhQC9faG/wJlzA8Ng0rxHW7fA7sgeaHziIp+fxjo3L5O9tP44JnUmgaiyuzkTdX+Sm7bY2g0n0EngApUvwLMqLw/vU98NKb1/OSbgTbYI4NcGaLlKNFO0Uj+Ai4lue+969T7YaCemRt7h9gGU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726543020; c=relaxed/simple;
+	bh=3b7jdovQ3G9zMLiFAZPvKECVrTDW4YH6J8nm/WPMNqM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=KNWPzlLhwLjoY095XSGb1cz8CbBRoBTWZLygAHH50yrFYrbfGD2aymebjHdbhJi37WesQXJfziHmMv5HUM7sOI8ACMXNlmO1pXWkbgR260Rg/lZZhopxTlf7unw75OLwTNixb4+EFQE9spUs2DVPSOyTwsvZcqwqeWsOtc3mhgs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=4Z+Qhy2x; arc=fail smtp.client-ip=40.107.96.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bdoIAbWtvGwsgufEuF9l9yR7Rp/kZPlAtB66h1fzP7SP+obwHePMIz4PvMtzbwVqUghz9+1/rpBYbRT+jWfw7vSaeFOJNNdVTeXlZKYTKVbgTLq355CDo4/bxOtdLy+mtky4C8qIrFJ7ndx1jcaydwrH/dCsVCi+hnECkc7GsCNLkFet5wMpRqeVjy0qaTFQLVaDvRi2QeYjfkZFujo3dbDEql02dIqXnO7gRBDf9esKQMYcyTFVUlxVOg9ILy60U+NkpHtTV5B5JnIv4Q+JQdMH9kCc4EEwaABVAz/ronpzrMgY7AZu5KZTxrMCYy+e9yAxiDsb7MtKTRhTRzbgzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3b7jdovQ3G9zMLiFAZPvKECVrTDW4YH6J8nm/WPMNqM=;
+ b=tnCUMxi0a+5yeBhFylZbfg0AzDmsgsdYyNRqgnV38ZJaxhXiJBT0VyoYA81tty0Kru+4CX4dQZLs/Xh5BbjN5lkoAUqxUiDUgfHajz1jp/M+ULI6g/zLIO8MinsIVthdLYcuJymswOpIrXAsF+qtyZOTIrEuJ4aqsSKjkRO6oSiWx4xqSOxzttpxaNv06jKECOHGPo9Tcrxam0CIl3XcAqW5kDLNO86bV+E0qfCZXfbLT7WGvGgRq1ars7s0QdQKaaqFvuNGhtYgeTp8IehnfRptKek4lZ1N3FcZF1Nru4xabefTvl8AcybOLkh96W65tI1oUmRbZHRWrlsD13z+OQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3b7jdovQ3G9zMLiFAZPvKECVrTDW4YH6J8nm/WPMNqM=;
+ b=4Z+Qhy2xl/gnrmAlLDyxAVqMtkcfqovAOoneySF76fFLCgNO/LEhi6i3mWFmdM6TiqOTwVzX5/8KNVGqAt/tY/dOVU8K50kVK9mnVY5o7opg33ErB7Pu47ff01aIqU4eqw1a4YbW6C5ezTRE0oiL3CA5UwuNiSMHBSds6JfVUpCrB5RzpZTaAuMajXB6f8RKXsKxTpu8tBFZ74JSJaqGgmfik0x6NmJBKlVzQMlkvBN//TjOn7fmG6nJDIG4Zp2khD2z8j47lcb6Smvq4zFksgDEcDg3QO9S0S5kyJ3HwHNV+WuXA1lpvtDaRGJUZWuD8LVcXDrgl5wXIjASafPxoA==
+Received: from PH8PR11MB6609.namprd11.prod.outlook.com (2603:10b6:510:1cc::16)
+ by SJ0PR11MB5772.namprd11.prod.outlook.com (2603:10b6:a03:422::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.23; Tue, 17 Sep
+ 2024 03:16:53 +0000
+Received: from PH8PR11MB6609.namprd11.prod.outlook.com
+ ([fe80::ebc1:5d63:a07c:60d]) by PH8PR11MB6609.namprd11.prod.outlook.com
+ ([fe80::ebc1:5d63:a07c:60d%4]) with mapi id 15.20.7962.022; Tue, 17 Sep 2024
+ 03:16:53 +0000
+From: <Manikandan.M@microchip.com>
+To: <conor@kernel.org>
+CC: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
+	<rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
+	<jernej.skrabec@gmail.com>, <airlied@gmail.com>, <daniel@ffwll.ch>,
+	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+	<tzimmermann@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <linux@armlinux.org.uk>,
+	<Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>, <arnd@arndb.de>, <geert+renesas@glider.be>,
+	<mpe@ellerman.id.au>, <rdunlap@infradead.org>, <Dharma.B@microchip.com>,
+	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 1/4] dt-bindings: display: bridge: add sam9x75-mipi-dsi
+ binding
+Thread-Topic: [PATCH v3 1/4] dt-bindings: display: bridge: add
+ sam9x75-mipi-dsi binding
+Thread-Index: AQHa7jg/AxrwKF2pJU2+HZGoh+wjwbImx9aAgDS7zgA=
+Date: Tue, 17 Sep 2024 03:16:53 +0000
+Message-ID: <5cb63b40-9710-4a6d-984d-1be1394dcb63@microchip.com>
+References: <20240814105256.177319-1-manikandan.m@microchip.com>
+ <20240814105256.177319-2-manikandan.m@microchip.com>
+ <20240814-anaerobic-unpainted-532b8b117b79@spud>
+In-Reply-To: <20240814-anaerobic-unpainted-532b8b117b79@spud>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH8PR11MB6609:EE_|SJ0PR11MB5772:EE_
+x-ms-office365-filtering-correlation-id: a72d10eb-b469-4160-4b5b-08dcd6c72dc1
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH8PR11MB6609.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|366016|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?aUZCbWM3S2ZPOFh2SmVRdGY4YURDeXFtODBSSHozRjViTHI5S1ZGR25UaFJt?=
+ =?utf-8?B?K3Z3WkpjTGoxcjlNMzZ6Q2ZLem91VnFKVUcweGtDUVllMW1oK0JndytvSnBW?=
+ =?utf-8?B?OG50WFBrbGJLeUh3SUUzK1Zoc2M3VEhPSUR1MC95TVl1SFo1MXJ4bWlrNkVw?=
+ =?utf-8?B?UFlJNGtKbnFXNkJXdVdvck9NMmpPOHpEbHRCb2tsam9iaXBHUXAxYUFwYnQ3?=
+ =?utf-8?B?NXdHTUVJaFYwUGlmUlVqdXYvZ2lqYTZtUHpWWkFraFVEQ2kwL3lxSEVBVXlK?=
+ =?utf-8?B?QnJHWmpHNDV1M05lWFMxOTh6TGZYNmJLdXRMRlFPb3NuMGhZWDl4bG1PY2dq?=
+ =?utf-8?B?bEpETW1DcndrbURUQ2poZUVpU3hQNEFUa0hRZlZmdmZUSWd5U28xWjR0RW5J?=
+ =?utf-8?B?TTZ1TmEzTGVrWlV6UkhJVk9tdXlXZWRYaEtFbUk5TVUwSENSMGZhQnZNQ29U?=
+ =?utf-8?B?WldJSnlVcWxEUEZhMW9QVHBKTG40RWJ2MnAwanlKcnBlNnk3L2J0LzRMWmg4?=
+ =?utf-8?B?QjBWc3Mvc05EVFh5T0pmNFZteWVtZFNJWEtjY2c0c0diZkc3MVBjaXA4TkZE?=
+ =?utf-8?B?MEpQcE1vbm1OY1dHK0xwbDcxS2xuUjJ1VFVyaWhHNlRBcm9oRURIODhmOCt0?=
+ =?utf-8?B?SnlUbFQrSkxxNXBnV3RadTVxWno2RlhqZVlBZWo2T2ZWVUVZQUhtYTYrR3kv?=
+ =?utf-8?B?KzJ3eUxoU2ttWTBCZXVUSVZmWVkwVmdmMGtBTUVITFpSRGJweUU2NCtPMTdE?=
+ =?utf-8?B?d3FZTjNaeDlXTUU4R01rbUpySG9USkdHeHN3Q0I3a0ptYjRteVpxVEppSksr?=
+ =?utf-8?B?WXB6K3BEamcxQjNKcXcvMHkzNTNtamEzanppMnhMNkR5eHVzcDBJZUVBVG0x?=
+ =?utf-8?B?dk91elk4TmZKTE5rU08yazNhNEtRcmtCOUdhc3hwMEdpMWtOZ0Zha2VTZHJk?=
+ =?utf-8?B?dEZLVlJiRE81ZGZLT2dWZGR4UkhoWW1VaXNEZjN0R05GMUdEWHc3WmN4U3JQ?=
+ =?utf-8?B?Rzl3RzFwSTlXZENYd3ZOUmFERUNsSGdhMXQzYVVLQTRKdXNSVEs5N3d3V2pZ?=
+ =?utf-8?B?eTY4am9Ebm1tWXdLdFpsQXlDOGxPUnBDWVRBcHZtRitIS09DN3NPS3pZYXRv?=
+ =?utf-8?B?cm5rY2dHMDBFTUtDUFdsMVZsOVcwR2FDWkp3cDJMNldJbGdXNXpWeVFrZXZp?=
+ =?utf-8?B?ekRWVWZCajloZFNVMWVYQTBZRU1NL0VSazgzc2c1VzZKMDhTZy9YWFN2Lzgr?=
+ =?utf-8?B?RUpnYTVwN2tXRVprWE5GOWphc2dNSkxnZVdJU2VnM0V6b2VmK3FuV1U1dmE4?=
+ =?utf-8?B?UHRRNDdiWGw2SlVXRWJlZjc4eVlTdElEN2RNT3FKZHlXMElrK25xcEdoQUlF?=
+ =?utf-8?B?V2daV0NWS09zbnhmQkFqMkFGbkM0enh6QmpaRXcvWjNzY2Iva01OVUFJenVo?=
+ =?utf-8?B?LzhTRkpyUThKTnlLOUVISWkxRTl6Um00Vk5kU1gxaVNxaWVrSXJsVDF6MHg5?=
+ =?utf-8?B?U3ZKbVlmMXE3WmFLa2R3OU1BbVJkUVdWdmtkYUgwejkwL1doYm11TGxwSXFy?=
+ =?utf-8?B?TEFxZHpMY2lYZnpBK1ZtbE1EZE93aHM1NTRpZE5BZ0ZFVkQwTnJFQzZpTUZm?=
+ =?utf-8?B?Z3FKN3RtaHFJQUQvcVZhK2VaTEFKLzVjOGkxeGtOWDdJdE5RbU03N2E5b3g2?=
+ =?utf-8?B?QTkyM2J4T3dCL01MSGUyY0lSSEw1RWcvZldUYVBVQkt1d0tiVXRQcnNpSndE?=
+ =?utf-8?B?Y2NibDBUSzBUSFdFeEc4R0xscmR2bGJHMUhNNk9XazJxQXlHRDl2VTg1TDEx?=
+ =?utf-8?Q?FjzN5mmWyDdi3GYdqE8X4MNFTx0qL3LI4CnR8=3D?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?STZjSXl5eDlUa1ZYWmpHdm9rdGVDMWRXVmlVcERITmI0K3VZb0JxU3hySzQ4?=
+ =?utf-8?B?NHVudlZRY1RteE5EMHdJM3ViZXlmS0svNkFEa2UyVHZ6V2dCTGI3RU45QUw1?=
+ =?utf-8?B?QXFQQlhYSFhweEg0V2R5cUlDcWdDQmZjSDZNaC8xTEpBMjdCSVVwRGJ3N0lX?=
+ =?utf-8?B?ZjdQVHJlZWtjL0JXcis3cGtMRG11SWNTTEE2WHlGVUVSUDZFNk95S2JHN04w?=
+ =?utf-8?B?K3N5Q29zZ3JyMkY5NWdCUCtJMkZTR3J0dGZtMXRNdXJlV3Bzcm9WdGFFc3dN?=
+ =?utf-8?B?ajAram1iVUN3MWYyOXpGZG92dm4wVVFPeUpPcXZCdFl1WXFGVjAxdU55alhF?=
+ =?utf-8?B?N05sY0I5OXZJeDJ0NGFIMGtXUXV3WEFLMXdWM1gwb3p5VGJXNEVTSHlIZExL?=
+ =?utf-8?B?UldNR28xV0pnRlNYZG12VjZBZDU5VTlLSGtUQzFzdGNFV1FFbXNjK3llUGRJ?=
+ =?utf-8?B?YXErd1BTN2RIN1VMaU1IajV4VmRCVmIzcURzS3pMRndXQzVORTI5K0VYS1FE?=
+ =?utf-8?B?T1JTUFNHaHpodmJlWHRBUFlCVVUzdW9lZEpRWGxVK2M5SCtTVVJsTUtVSHph?=
+ =?utf-8?B?dHhNb2RyTkx3TzVVa2p6d2FOWEhRS1hQV2FFUTZLa0tWNlFrMDlDYnlYWUVy?=
+ =?utf-8?B?NFpWcWxqazhQamxuLzIwbFdNWlY2TFNaRjZpZnR1KzdRUSt5bGV4VkRZWXJJ?=
+ =?utf-8?B?ajNUdUVvTE9QbjYxSnJYVmFBaXRUTk5FTFJKK3RXMFhNVU9PNWtrVVZ2cEZt?=
+ =?utf-8?B?SmtlckhuWXNVWi9XaFBFNE1yZkNPNXc4MWNiSjlmT2ZrR21Bc05adGJDYzNY?=
+ =?utf-8?B?QTNkN0toQ2szbitZam90VHNXOVRLdkdJNmkwcHY3eHNOT0pFbkpwL01LVURj?=
+ =?utf-8?B?bC9ReXNleDZVZVh6RFhzTDlQY0tqSDdoZXVsL09iNU5sdkI0SjdEclIvcTZ4?=
+ =?utf-8?B?WGdPOUtMc2FybTFMaTJDa2NIOWNCdWorR04vaWdseHhvbHl0aHZNTWorVmZM?=
+ =?utf-8?B?NXVJK05rOHJKWFVLUXZra2kyK0wyeXB0aUdic1lZNDFvZGtWYWVPdSs0Q2hn?=
+ =?utf-8?B?S1BXbEduNkcyRUVGd0g1ajZLc3Z2bCtPUTRRNGJRbEFzbmcrWXFGRHJkYmFu?=
+ =?utf-8?B?OHBGZ2ZOa0J4K3JlaTA2VEhUWXV4TmxzSEJNM0RTUDE1QStQVTFDMTJ0WmJL?=
+ =?utf-8?B?MXRMc1JTbUVqeEtMMStrNmdGUnlRMitJcUNaN3I0Z3kyVVYyQUZLbnhOSU5t?=
+ =?utf-8?B?NkxSTmJ0ZXBTeHdUcWozcVBzM29tRHRNd1FHNEdybGlmTEVRaXFnWGQwdEtG?=
+ =?utf-8?B?NTRDaEZLN2JrazZYQzVPUE5sbGV6MWtZd2RDWGZ1V3NrYTFWR1NaWVFQMUZl?=
+ =?utf-8?B?KysvaXVEZnFLR0QxVUhnd051MXZIV2E4Tnl2YkVvY2cyZ2VCVC9qeW9yZ1M3?=
+ =?utf-8?B?L3FqTUxwSEFDcFBtV1EzQW9YeW9BRkdVMkFEQUtHekx0bjZNMW5lY1JnY1po?=
+ =?utf-8?B?TUZ6T0lwVVZXeWVNNUY4VEZ1SGk1aUZ3MDY1UXRKTSsxUzhuSUJ1UWRxSk1P?=
+ =?utf-8?B?bVJqb1JkYVdQYjYxdzJld2R3Zm9MZnB0Q1g3OTdLN211enBmOElyeVZIQW9J?=
+ =?utf-8?B?VEdCUkRKKzk1TFZLdUN4bG4yTmFrWkhKOWlrZnlMQXd6TVdEajBwT2I0Ky8z?=
+ =?utf-8?B?aTB6OXk0VEx5ZGJmWkNNRXE2RzVhUDRoTlNqTFR0OEFjYkdXalpwKzJCaXZn?=
+ =?utf-8?B?d080ZXhoVUIwSkYraFI4VHFmR3lDaHBSWnJzTGhzdXU1d2o2UjVvQjB4dHB0?=
+ =?utf-8?B?ZHFKS2d1c2l5ZEFGVjZyd3VaeC9wSkRYYllCT2lTNXMyWG9xNzBhTm5HdHRr?=
+ =?utf-8?B?bmtIQkY0andzNmVZMG40dy96cDRTL3BVSVV2UnB1Z3h4aFBPRTlabEZMOUgz?=
+ =?utf-8?B?VnpLUW5uVjhkbGtuemw0YVVaY05xUDRrVlJERHYvL3FHaThQMGNuNStvbngy?=
+ =?utf-8?B?RklqVVltY1lCQm5YUFl2UVh5bXBacmsvMm9HVlByUnBpVzJCVk05dlFFRS9z?=
+ =?utf-8?B?bCttVmFzdVlyQi9pNnVVcTlaWnJtUUk4SjlhNk11ZWpqRFBka2lvVzB3WFpD?=
+ =?utf-8?Q?TNxjtPfn+6OvOIt/rVm4nffGs?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <4669A5A57250E74CAC9F6B104D624C12@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 1/2] dt-bindings: connector: Add property to set pd timer
- values
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org
-Cc: linux-kernel@vger.kernel.org, kyletso@google.com, rdbabiera@google.com,
- Badhri Jagan Sridharan <badhri@google.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240911000715.554184-1-amitsd@google.com>
- <20240911000715.554184-2-amitsd@google.com>
- <ae520641-38a4-405e-89d0-e0921dfc7cff@linaro.org>
-Content-Language: en-US
-From: Amit Sunil Dhamne <amitsd@google.com>
-In-Reply-To: <ae520641-38a4-405e-89d0-e0921dfc7cff@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: microchip.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6609.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a72d10eb-b469-4160-4b5b-08dcd6c72dc1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Sep 2024 03:16:53.4150
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: +hLCJ1CtE+DobAnt5OsoN5HaJMcchoa2HA9ebupeOU0LbT5jz31uh3MyX6tSjCz9CAdoAOU9ygpCACexYQLaKomzyGOvzaz0c55skeW7xrM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5772
 
-Hi Krzysztof,
-
-Thanks for the review!
-
-On 9/16/24 9:05 AM, Krzysztof Kozlowski wrote:
-> On 11/09/2024 02:07, Amit Sunil Dhamne wrote:
->> This commit adds a new property "pd-timers" to enable setting of
->> platform/board specific pd timer values for timers that have a range of
->> acceptable values.
->>
->> Cc: Badhri Jagan Sridharan <badhri@google.com>
->> Cc: linux-usb@vger.kernel.org
->> Cc: devicetree@vger.kernel.org
->> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
-> Please work on mainline, not ancient tree. You cannot get my CC address
-> like that from mainline.
-I was working off gregkh's tree on usb-next branch as that's suggested 
-for USB development.
-
-
-> It's not possible. So either you don't develop
-> on mainline or you don't use get_maintainers.pl/b4/patman.
->
-The above branch and even the tree on Linus' master branch has you
-listed as a maintainer
-(https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/MAINTAINERS#n17181).
-I guess that's why the get_maintainers script probably returned your
-email id when I ran it. Please let me know if I missed something :).
-
-
->> ---
->>   .../bindings/connector/usb-connector.yaml     | 23 +++++++++++++++++++
->>   include/dt-bindings/usb/pd.h                  |  8 +++++++
->>   2 files changed, 31 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->> index fb216ce68bb3..9be4ed12f13c 100644
->> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
->> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->> @@ -253,6 +253,16 @@ properties:
->>   
->>       additionalProperties: false
->>   
->> +  pd-timers:
->> +    description: An array of u32 integers, where an even index (i) is the timer (referenced in
->> +      dt-bindings/usb/pd.h) and the odd index (i+1) is the timer value in ms (refer
-> timer of what? OS behavior?
-In the context of USB Type C Power Delivery (PD), timers are run on the 
-typec protocol driver
-(usb/typec/tcpm/tcpm.c).
-These are used to keep track of min/max or range of time required to 
-enter a PD state with the
-goal of a successful USB typec capabilities negotiation.  Eg., the timer 
-PD_TIMER_SINK_WAIT_CAP (referred to as SinkWaitCapTimer in spec)would be 
-responsible to keep track of whether a power source sent us (as sink) PD 
-source capabilities pkts within 600ms (say), if yes, then we would 
-transition to the next state or do a state machine reset. USB PD 3.1 
-spec refers to these elements as timers and therefore referred to as 
-such here.
-
-
->> +      "Table 6-68 Time Values" of "USB Power Delivery Specification Revision 3.0, Version 1.2 " for
->> +      the appropriate value). For certain timers the PD spec defines a range rather than a fixed
->> +      value. The timers may need to be tuned based on the platform. This dt property allows the user
-> Do not describe what DT is. We all know what DT properties allow.
-> Instead describe how this relates to hardware or boards.
->
-> All this is wrongly wrapped. See Coding style (and I am not telling you
-> the value on purpose, so you will read the coding style) .
-
-
-Ack. Thanks for pointing it out, I will fix both the above in the next 
-revision.
-
-
->
->> +      to assign specific values based on the platform. If these values are not explicitly defined,
->> +      TCPM will use a valid default value for such timers.
-> And what is the default?
-
-Defaults are given in (include/linux/usb/pd.h). But I guess I should 
-have probably mentioned
-that here.
-
-
->
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> I guess you want matrix here.
-
-Yes, I should have. Though, I will be re-implementing this such that 
-each timer is represented
-as a separate property based on Rob and Dmitry's suggestion in
-https://lore.kernel.org/lkml/20240916163328.GA394032-robh@kernel.org/ .
-
->> +
->>   dependencies:
->>     sink-vdos-v1: [ sink-vdos ]
->>     sink-vdos: [ sink-vdos-v1 ]
->> @@ -478,3 +488,16 @@ examples:
->>               };
->>           };
->>       };
->> +
->> +  # USB-C connector with PD timers
->> +  - |
->> +    #include <dt-bindings/usb/pd.h>
->> +    usb {
->> +        connector {
->> +            compatible = "usb-c-connector";
->> +            label = "USB-C";
->> +            pd-timers =
->> +                <PD_TIMER_SINK_WAIT_CAP 600>,
->> +                <PD_TIMER_CC_DEBOUNCE 170>;
-> Incorporate it into existing example.
->
-Ack.
-
-
->> +        };
->> +    };
->> diff --git a/include/dt-bindings/usb/pd.h b/include/dt-bindings/usb/pd.h
->> index e6526b138174..6c58c30f3f39 100644
->> --- a/include/dt-bindings/usb/pd.h
->> +++ b/include/dt-bindings/usb/pd.h
->> @@ -465,4 +465,12 @@
->>   	 | ((vbm) & 0x3) << 15 | (curr) << 14 | ((vbi) & 0x3f) << 7	\
->>   	 | ((gi) & 0x3f) << 1 | (ct))
->>   
->> +/* PD Timer definitions */
->> +/* tTypeCSinkWaitCap (Table 6-68 Time Values, USB PD3.1 Spec) */
-> Please expand this a bit, so we won't have to reach to external sources.
-
-Ack.
-
-I will incorporate all of your review comments.
-
-Since you are no longer maintaining the
-"OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" component, please let 
-me know
-if you'd still like to be CC'ed in the subsequent revisions.
-
-
-Thanks,
-
-Amit
-
-
->> +#define PD_TIMER_SINK_WAIT_CAP		0
->> +/* tPSSourceOff (Table 6-68 Time Values, USB PD3.1 Spec) */
->> +#define PD_TIMER_PS_SOURCE_OFF		1
->> +/* tCCDebounce (Table 4-33 CC Timing, USB Type-C Cable & Connector Spec Rel2.2) */
->> +#define PD_TIMER_CC_DEBOUNCE		2
->
-> Best regards,
-> Krzysztof
->
+SGkgQ29ub3IsDQoNCk9uIDE0LzA4LzI0IDc6MjkgcG0sIENvbm9yIERvb2xleSB3cm90ZToNCj4g
+T24gV2VkLCBBdWcgMTQsIDIwMjQgYXQgMDQ6MjI6NTNQTSArMDUzMCwgTWFuaWthbmRhbiBNdXJh
+bGlkaGFyYW4gd3JvdGU6DQo+PiBBZGQgdGhlICdzYW05eDc1LW1pcGktZHNpJyBjb21wYXRpYmxl
+IGJpbmRpbmcsIHdoaWNoIGRlc2NyaWJlcyB0aGUNCj4+IE1pY3JvY2hpcCdzIHNwZWNpZmljIHdy
+YXBwZXIgZm9yIHRoZSBTeW5vcHN5cyBEZXNpZ25XYXJlIE1JUEkgRFNJIEhPU1QNCj4+IENvbnRy
+b2xsZXIgZm9yIHRoZSBzYW05eDc1IHNlcmllcyBTeXN0ZW0tb24tQ2hpcCAoU29DKSBkZXZpY2Vz
+Lg0KPj4NCj4+IFNpZ25lZC1vZmYtYnk6IE1hbmlrYW5kYW4gTXVyYWxpZGhhcmFuPG1hbmlrYW5k
+YW4ubUBtaWNyb2NoaXAuY29tPg0KPj4gLS0tDQo+PiBjaGFuZ2VzIGluIHYzOg0KPj4gLSBEZXNj
+cmliZSB0aGUgY2xvY2tzIHVzZWQNCj4+DQo+PiBjaGFuZ2VzIGluIHYyOg0KPj4gLSBMaXN0IHRo
+ZSBjbG9ja3Mgd2l0aCBkZXNjcmlwdGlvbg0KPj4gLSByZW1vdmUgZGVzY3JpYmluZyAncmVtb3Zl
+LWVuZHBvaW50JyBwcm9wZXJ0aWVzDQo+PiAtIHJlbW92ZSB1bnVzZWQgbGFiZWwsIG5vZGUgYW5k
+IGZpeCBleGFtcGxlIERUIGluZGVudGF0aW9uDQo+PiAtIGNvc21ldGljIGZpeGVzDQo+PiAtLS0N
+Cj4+ICAgLi4uL2JyaWRnZS9taWNyb2NoaXAsc2FtOXg3NS1taXBpLWRzaS55YW1sICAgIHwgMTE2
+ICsrKysrKysrKysrKysrKysrKw0KPj4gICAxIGZpbGUgY2hhbmdlZCwgMTE2IGluc2VydGlvbnMo
+KykNCj4+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
+aW5ncy9kaXNwbGF5L2JyaWRnZS9taWNyb2NoaXAsc2FtOXg3NS1taXBpLWRzaS55YW1sDQo+Pg0K
+Pj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5
+L2JyaWRnZS9taWNyb2NoaXAsc2FtOXg3NS1taXBpLWRzaS55YW1sIGIvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvYnJpZGdlL21pY3JvY2hpcCxzYW05eDc1LW1pcGkt
+ZHNpLnlhbWwNCj4+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+PiBpbmRleCAwMDAwMDAwMDAwMDAu
+LjNjODZmMGNkNDllOQ0KPj4gLS0tIC9kZXYvbnVsbA0KPj4gKysrIGIvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvYnJpZGdlL21pY3JvY2hpcCxzYW05eDc1LW1pcGkt
+ZHNpLnlhbWwNCj4+IEBAIC0wLDAgKzEsMTE2IEBADQo+PiArIyBTUERYLUxpY2Vuc2UtSWRlbnRp
+ZmllcjogKEdQTC0yLjAtb25seSBPUiBCU0QtMi1DbGF1c2UpDQo+PiArJVlBTUwgMS4yDQo+PiAr
+LS0tDQo+PiArJGlkOmh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9zY2hlbWFzL2Rpc3BsYXkvYnJpZGdl
+L21pY3JvY2hpcCxzYW05eDc1LW1pcGktZHNpLnlhbWwjDQo+PiArJHNjaGVtYTpodHRwOi8vZGV2
+aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4+ICsNCj4+ICt0aXRsZTogTWlj
+cm9jaGlwIFNBTTlYNzUgTUlQSSBEU0kgQ29udHJvbGxlcg0KPj4gKw0KPj4gK21haW50YWluZXJz
+Og0KPj4gKyAgLSBNYW5pa2FuZGFuIE11cmFsaWRoYXJhbjxtYW5pa2FuZGFuLm1AbWljcm9jaGlw
+LmNvbT4NCj4+ICsNCj4+ICtkZXNjcmlwdGlvbjoNCj4+ICsgIE1pY3JvY2hpcCBzcGVjaWZpYyBl
+eHRlbnNpb25zIG9yIHdyYXBwZXIgdG8gdGhlIFN5bm9wc3lzIERlc2lnbndhcmUgTUlQSSBEU0ku
+DQo+PiArICBUaGUgTUlQSSBEaXNwbGF5IFNlcmlhbCBJbnRlcmZhY2UgKERTSSkgSG9zdCBDb250
+cm9sbGVyIGltcGxlbWVudHMgYWxsDQo+PiArICBwcm90b2NvbCBmdW5jdGlvbnMgZGVmaW5lZCBp
+biB0aGUgTUlQSSBEU0kgU3BlY2lmaWNhdGlvbi5UaGUgRFNJIEhvc3QNCj4+ICsgIHByb3ZpZGVz
+IGFuIGludGVyZmFjZSBiZXR3ZWVuIHRoZSBMQ0QgQ29udHJvbGxlciAoTENEQykgYW5kIHRoZSBN
+SVBJIEQtUEhZLA0KPj4gKyAgYWxsb3dpbmcgY29tbXVuaWNhdGlvbiB3aXRoIGEgRFNJLWNvbXBs
+aWFudCBkaXNwbGF5Lg0KPj4gKw0KPj4gK2FsbE9mOg0KPj4gKyAgLSAkcmVmOiAvc2NoZW1hcy9k
+aXNwbGF5L2RzaS1jb250cm9sbGVyLnlhbWwjDQo+PiArDQo+PiArcHJvcGVydGllczoNCj4+ICsg
+IGNvbXBhdGlibGU6DQo+PiArICAgIGNvbnN0OiBtaWNyb2NoaXAsc2FtOXg3NS1taXBpLWRzaQ0K
+Pj4gKw0KPj4gKyAgcmVnOg0KPj4gKyAgICBtYXhJdGVtczogMQ0KPj4gKw0KPj4gKyAgY2xvY2tz
+Og0KPj4gKyAgICBpdGVtczoNCj4+ICsgICAgICAtIGRlc2NyaXB0aW9uOg0KPj4gKyAgICAgICAg
+ICBQZXJpcGhlcmFsIEJ1cyBDbG9jayBiZXR3ZWVuIExDREMgYW5kIE1JUEkgRFBIWQ0KPj4gKyAg
+ICAgIC0gZGVzY3JpcHRpb246DQo+PiArICAgICAgICAgIE1JUEkgRFBIWSBJbnRlcmZhY2UgcmVm
+ZXJlbmNlIGNsb2NrIGZvciBQTEwgYmxvY2sNCj4+ICsNCj4+ICsgIGNsb2NrLW5hbWVzOg0KPj4g
+KyAgICBpdGVtczoNCj4+ICsgICAgICAtIGNvbnN0OiBwY2xrDQo+PiArICAgICAgLSBjb25zdDog
+cmVmY2xrDQo+PiArDQo+PiArICBtaWNyb2NoaXAsc2ZyOg0KPj4gKyAgICAkcmVmOiAvc2NoZW1h
+cy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy9waGFuZGxlDQo+PiArICAgIGRlc2NyaXB0aW9uOg0K
+Pj4gKyAgICAgIHBoYW5kbGUgdG8gU3BlY2lhbCBGdW5jdGlvbiBSZWdpc3RlciAoU0ZSKSBub2Rl
+LlRvIGVuYWJsZSB0aGUgRFNJL0NTSQ0KPj4gKyAgICAgIHNlbGVjdGlvbiBiaXQgaW4gU0ZSJ3Mg
+SVNTIENvbmZpZ3VyYXRpb24gUmVnaXN0ZXIuDQo+IEknbSBjdXJpb3VzIC0gd2h5IGlzIHRoaXMg
+cGhhbmRsZSByZXF1aXJlZD8gSG93IG1hbnkgU0ZSIG5vZGVzIGFyZSB0aGVyZQ0KPiBvbiB0aGUg
+cGxhdGZvcm0/DQpUaGlzIHBoYW5kbGUgaXMgdG8gbWFwIHRoZSBtZW1vcnkgcmVnaW9uIG9mIFNG
+UiBub2RlIGFuZCBjb25maWd1cmUgdGhlIA0KRFNJIGJpdCBpbiB0aGUgU0ZSJ3MgSVNTIGNvbmZp
+Z3VyYXRpb24gcmVnaXN0ZXIuDQpjdXJyZW50bHkgdGhlcmUgaXMgb25seSBvbmUgU0ZSIG5vZGUg
+aW4gdGhpcyBwbGF0Zm9ybS4NCg0KLS0gDQpUaGFua3MgYW5kIFJlZ2FyZHMsDQpNYW5pa2FuZGFu
+IE0uDQoNCg==
 
