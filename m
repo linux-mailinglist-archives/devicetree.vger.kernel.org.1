@@ -1,286 +1,252 @@
-Return-Path: <devicetree+bounces-103392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09C3297AA45
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 03:47:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7FAF97AA51
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 04:00:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72024B21D8A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 01:46:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26C3E1F28A27
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 02:00:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC8E815AF6;
-	Tue, 17 Sep 2024 01:46:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD9F1B813;
+	Tue, 17 Sep 2024 01:59:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Su5pRlkJ"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="31hvlrO6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ADBC134B6;
-	Tue, 17 Sep 2024 01:46:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58BC2EAEA
+	for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 01:59:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726537614; cv=none; b=GShQSw2eNdMnt01WfqyJHzleEorYPsR7rp4Q82TN1ZZ0v20yRhhQFKJhYyyDQMRQQvjo+phQZSRpz9ahjt8nHfLkHpq5x7l23s5JIeUfWI5W1VCR2hY5t7ex09c7N1yjGn9UvePh+pW3dbAGWkLyeenrYENtirZ3cPHUI0mXDo4=
+	t=1726538393; cv=none; b=Q/EYC5eU0jGYc4WxGzFsXgf0wfzA+WaSXyPYR0Fv7/S6Gt+py16taewm6I1HALHmwOV9l47zcWUTUO/f8+C7HHnV5LUUOn6juYB127PP9AkkQtGzcHLdXujKM6uCN/8PS56pIXM8QkPNRNBJct4c0LfyzPKlPIyOUbyC+auE7Zk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726537614; c=relaxed/simple;
-	bh=/brxbPc3FMEZyUFKdaEo/F3MJogHN+JwKDCdPbpHpiM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WPthcIIX+WE4SNKwkRxcUBCeKgwVR07JXOpegKrLf/ZmJpfQAyZtqlEtQhUXx7WJ3XYYPZ0cDRlQvQMu7PsxNBZE+hjsdhP8sT0ugxzxBNhF7wm55HpA19pWs7celHQxrkb+Gz4aDF406kufbzZHIu6r5xcnzDRTbIIBKqTo8jI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Su5pRlkJ; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2d86f71353dso3589052a91.2;
-        Mon, 16 Sep 2024 18:46:52 -0700 (PDT)
+	s=arc-20240116; t=1726538393; c=relaxed/simple;
+	bh=a4cyz9C2TYpaQTgEf3VqxHDqbgfDNEPLnRIQAzrWS04=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V7yn8GyeAT6L6xcMEcKzgDYkbIsYNXyyTdB9IwPA0aKomcMoDgpjaur7lynoglfWyEfwYToW/dz0XKkQy/YizY+l9bR7NQ2PDCU9jnRZ4/q4hXF4inzo1GH5GBVA3reLd75PG+A/7TKAS9ziEFIQLFau4fq7Axpv//qsHEx8BjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=31hvlrO6; arc=none smtp.client-ip=209.85.215.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-7db299608e7so2410535a12.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 18:59:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726537612; x=1727142412; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=q+D4cPBmRT6xaemcGTmAgItbpnUbMzRSePyZlZJqK1E=;
-        b=Su5pRlkJVS8oMuIM6KKmP3wqbzHdoCRKZsfJBBFQJqjgPOsCUNx+kbcTz+Vsb9LRVj
-         5ZsNC/bRfPB1HjJdrCpEIXzbyMfoGlt+gFn8xOGXS7z+ImJIzt6diHkZ0Kv2dNIlGLNC
-         Zm82fS4KXWd9iHHEIqMDJnZ9Q80BA8uSP5X2exUO6k+hjpkyIlZuVtNf088yKcheWh++
-         7Ws9zBsMorPwgHvcW+FqMXdlwYcUgM2+v09+L+Cv/yU92Zkt56VBPABfFQmL7+002VZu
-         LEPW8Vd0vrIRQJbgDmVVN8WQbFEG8gJfW1LsKfRYIEuqxc40/pYVoCgBFdCQqPvp7EWY
-         4aZw==
+        d=google.com; s=20230601; t=1726538391; x=1727143191; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+eogsbTlEU/20KpLpv0UCHv4GA8kVLu0/JxFWXQRsSU=;
+        b=31hvlrO6rdJozOlIHN8V/MFfiqUMCHNaTQbbxg4hQngMTQFDi8pR0M1jAYF9KJtpM5
+         2x8et6c7cNZF206CBdmzic6GLb+kS5pCMLHy78frB2dqoBb/Kl8AlEPiGV3CGyFUsNf+
+         CHL9zNIGapnTcNbZ9BLuakv/qb/QPTSr/6H62SuW/gD4mD+YpiPqmbFgNddu2xZY94OF
+         djFLvxP611pabv/hKwwH8UXbAdksHVfGm+Tp2hn5xCo4LS3u8uaZgTWbAiic/Ulxsk/K
+         etL4XIwK+LVy2aW94LzSBF1MNwOP5mccKAqqXNgAtcM7dzDMFY3uHX7HOdLWsFZjKkwM
+         j8MQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726537612; x=1727142412;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q+D4cPBmRT6xaemcGTmAgItbpnUbMzRSePyZlZJqK1E=;
-        b=RycS0ukvbMpWF18kQgnlcUejNfICwEFMqu/0vnNdbOAJMHwkEhVrkvZ0qWyxmjEE87
-         f1JZt2ATiknepgaSVbeyoVrlcpq3Vp5rWnguPPYnDeN5efMlpSGuz4/87NIUyUi168Yw
-         EYOU+6EeoozmzoQwUsM93StNYkLzTRKdvFc2aLeOuOGA5ASe4QRo9npBojqqP24Uo2ls
-         9c+OFdly3JZ+r1dYT28JzHC+TsPBcjPHwv431nyMLyszRoS8cFP9TthO5E12wmGGFlH7
-         J1lJDBUhWga2q1lZCIbTOUhsf1kG5kCdJDaxQrExMYNF2uNI5RR8pf1FTQIW+w/nwwO0
-         l91A==
-X-Forwarded-Encrypted: i=1; AJvYcCUt328uZODeZ/NMXngX+FD8Q3fR4IlmwLB3flCFNH5cvKY+C9tpkMDlwGdN18fwQCLC6060jwmhliP9@vger.kernel.org, AJvYcCW2v0M2IMxC5zZjfXPlXDrF6XliUj3eClL6fIWlTfn0sVvagyhaCusDo3lITKVWzzJW7jlflFIc016+@vger.kernel.org, AJvYcCXMXYkefIdxZWzRdrkuPryWHHj3Wq5JsVVnMLNvnVjOxs+UfVCKk/c62AtT7grkLizDHObnyuIzXqFXc1AR@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXFqKJCIdAeYVS43555ta0sowqNJANMWBW19d8r86xc5o8rWr+
-	IyQiyR2Y4CJMRFPbX1OFaixXdc5IW6VhYK9cCmytjgwy8KieYOKY
-X-Google-Smtp-Source: AGHT+IEdGRthF0fnla/GYicoDcKM7UbNyJjWQz8xasioZPu4c/6Qc7VBLGYpi0jEQP/OFDLMoLvwkw==
-X-Received: by 2002:a17:90b:2883:b0:2dd:4f93:93d4 with SMTP id 98e67ed59e1d1-2dd4f93944emr672335a91.17.1726537611784;
-        Mon, 16 Sep 2024 18:46:51 -0700 (PDT)
-Received: from archie.me ([103.124.138.155])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2dbb9ccd91dsm8113123a91.33.2024.09.16.18.46.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Sep 2024 18:46:50 -0700 (PDT)
-Received: by archie.me (Postfix, from userid 1000)
-	id 950254A1A1F4; Tue, 17 Sep 2024 08:46:46 +0700 (WIB)
-Date: Tue, 17 Sep 2024 08:46:46 +0700
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-To: Linu Cherian <lcherian@marvell.com>, suzuki.poulose@arm.com,
-	mike.leach@linaro.org, james.clark@arm.com
-Cc: linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	corbet@lwn.net, devicetree@vger.kernel.org, sgoutham@marvell.com,
-	gcherian@marvell.com
-Subject: Re: [PATCH v10 8/8] Documentation: coresight: Panic support
-Message-ID: <ZujfhpLezHtbXhjs@archie.me>
-References: <20240916103437.226816-1-lcherian@marvell.com>
- <20240916103437.226816-9-lcherian@marvell.com>
+        d=1e100.net; s=20230601; t=1726538391; x=1727143191;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+eogsbTlEU/20KpLpv0UCHv4GA8kVLu0/JxFWXQRsSU=;
+        b=F/qIKF64HL/MS5PmpHEbBBjJXpZsGUwANry2EMjlk0Eda9fkcTQ0LMEjyn6kq2u8Oa
+         W2Zeqpk+n0myBWH1ieFZist0ZH/ijF9DXzNY9DH12nCsoLq7dtCcBjd8SYOp6Wr6bEEX
+         5bF8mV8hJpHHjmLq7Bz+9xQbV2Rm2PJSsTLq6HSCmHbcxZaNPBPFzFxzD/pmPWu1z6DB
+         KMMh9ERNGW3sgKJmG8f9EeEnDzPuAaHa6nx4Gtjyugywd825ViHXtnuisEYZOdK4K/cK
+         vGy4SdW9WDzR4zt38hm9sOejLrFtM7sqJUwk/KzDM1ABnBEloMKr3lA5wlhOX7OVYVNi
+         JbwA==
+X-Forwarded-Encrypted: i=1; AJvYcCVZsHULR/PJ7LbzQ3teHHxpVO5iPIeRATPcMbHX902sxdmzjYgSlJ4byoAj5RRTkWrsZoPu9KjikIWj@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLM/fgNnkOjYjP7A8pgzLhhPcZsZZtF1p5W2NQNvaCa+lpwLDp
+	hDxNIMKquLS5eL24MW+GrkAHRD3euGbgwsiCaVzakMLiZfAxpSco9ngrCom9EA==
+X-Google-Smtp-Source: AGHT+IEiSrWG76oGSMdtgJ8W8NNxk2NCB1dVYWJNPMFzgRZn9A2zFmCZkc+rVecNPMaHzfQokThRFQ==
+X-Received: by 2002:a17:90a:4924:b0:2d8:8d61:8a50 with SMTP id 98e67ed59e1d1-2dbb9f31abcmr15360207a91.32.1726538390300;
+        Mon, 16 Sep 2024 18:59:50 -0700 (PDT)
+Received: from ?IPV6:2a00:79e0:2e14:7:e1f6:9f31:2c3f:1500? ([2a00:79e0:2e14:7:e1f6:9f31:2c3f:1500])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2dbb9d972fcsm8174933a91.57.2024.09.16.18.59.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Sep 2024 18:59:49 -0700 (PDT)
+Message-ID: <2dab1111-49fd-43b7-8624-2d61b3d546b1@google.com>
+Date: Mon, 16 Sep 2024 18:59:47 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="NdeeukOhj8gwtfO8"
-Content-Disposition: inline
-In-Reply-To: <20240916103437.226816-9-lcherian@marvell.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 1/2] dt-bindings: connector: Add property to set pd timer
+ values
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org
+Cc: linux-kernel@vger.kernel.org, kyletso@google.com, rdbabiera@google.com,
+ Badhri Jagan Sridharan <badhri@google.com>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240911000715.554184-1-amitsd@google.com>
+ <20240911000715.554184-2-amitsd@google.com>
+ <ae520641-38a4-405e-89d0-e0921dfc7cff@linaro.org>
+Content-Language: en-US
+From: Amit Sunil Dhamne <amitsd@google.com>
+In-Reply-To: <ae520641-38a4-405e-89d0-e0921dfc7cff@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Hi Krzysztof,
+
+Thanks for the review!
+
+On 9/16/24 9:05 AM, Krzysztof Kozlowski wrote:
+> On 11/09/2024 02:07, Amit Sunil Dhamne wrote:
+>> This commit adds a new property "pd-timers" to enable setting of
+>> platform/board specific pd timer values for timers that have a range of
+>> acceptable values.
+>>
+>> Cc: Badhri Jagan Sridharan <badhri@google.com>
+>> Cc: linux-usb@vger.kernel.org
+>> Cc: devicetree@vger.kernel.org
+>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+> Please work on mainline, not ancient tree. You cannot get my CC address
+> like that from mainline.
+I was working off gregkh's tree on usb-next branch as that's suggested 
+for USB development.
 
 
---NdeeukOhj8gwtfO8
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> It's not possible. So either you don't develop
+> on mainline or you don't use get_maintainers.pl/b4/patman.
+>
+The above branch and even the tree on Linus' master branch has you
+listed as a maintainer
+(https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/MAINTAINERS#n17181).
+I guess that's why the get_maintainers script probably returned your
+email id when I ran it. Please let me know if I missed something :).
 
-On Mon, Sep 16, 2024 at 04:04:37PM +0530, Linu Cherian wrote:
-> +3. On a kernel panic, all coresight blocks are disabled, necessary
-> +   metadata is synced by kernel panic handler.
-"... and necessary metadata ..."
-> +
-> +   System would eventually reboot or boot a crashdump kernel.
-> +
-> +4. For  platforms that supports crashdump kernel, raw trace data can be
-> +   dumped using the coresight sysfs interface from the crashdump kernel
-> +   itself. Persistent RAM is not a requirement in this case.
-> +
-> +5. For platforms that supports persistent RAM, trace data can be dumped
-> +   using the coresight sysfs interface in the subsequent Linux boot.
-> +   Crashdump kernel is not a requirement in this case. Persistent RAM
-> +   ensures that trace data is intact across reboot.
-> +
-> +Coresight trace during Watchdog reset
-> +-------------------------------------
-> +The main difference between addressing the watchdog reset and kernel pan=
-ic
-> +case are below,
-"... are:"
-> +Sample commands for testing a Kernel panic case with ETR sink
-> +-------------------------------------------------------------
-> +
-> +1. Boot Linux kernel with "crash_kexec_post_notifiers" added to the kern=
-el
-> +   bootargs. This is mandatory if the user would like to read the traced=
-ata
-> +   from the crashdump kernel.
-> +
-> +2. Enable the preloaded ETM configuration
-> +
-> +    #echo 1 > /sys/kernel/config/cs-syscfg/configurations/panicstop/enab=
-le
-> +
-> +3. Configure CTI using sysfs interface::
-> +
-> +    #./cti_setup.sh
-> +
-> +    #cat cti_setup.sh
-> +
-> +
-> +    cd /sys/bus/coresight/devices/
-> +
-> +    ap_cti_config () {
-> +      #ETM trig out[0] trigger to Channel 0
-> +      echo 0 4 > channels/trigin_attach
-> +    }
-> +
-> +    etf_cti_config () {
-> +      #ETF Flush in trigger from Channel 0
-> +      echo 0 1 > channels/trigout_attach
-> +      echo 1 > channels/trig_filter_enable
-> +    }
-> +
-> +    etr_cti_config () {
-> +      #ETR Flush in from Channel 0
-> +      echo 0 1 > channels/trigout_attach
-> +      echo 1 > channels/trig_filter_enable
-> +    }
-> +
-> +    ctidevs=3D`find . -name "cti*"`
-> +
-> +    for i in $ctidevs
-> +    do
-> +            cd $i
-> +
-> +            connection=3D`find . -name "ete*"`
-> +            if [ ! -z "$connection" ]
-> +            then
-> +                    echo "AP CTI config for $i"
-> +                    ap_cti_config
-> +            fi
-> +
-> +            connection=3D`find . -name "tmc_etf*"`
-> +            if [ ! -z "$connection" ]
-> +            then
-> +                    echo "ETF CTI config for $i"
-> +                    etf_cti_config
-> +            fi
-> +
-> +            connection=3D`find . -name "tmc_etr*"`
-> +            if [ ! -z "$connection" ]
-> +            then
-> +                    echo "ETR CTI config for $i"
-> +                    etr_cti_config
-> +            fi
-> +
-> +            cd ..
-> +    done
-> +
-> +Note: CTI connections are SOC specific and hence the above script is
-> +added just for reference.
-> +
-> +4. Choose reserved buffer mode for ETR buffer
-> +    #echo "resrv" > /sys/bus/coresight/devices/tmc_etr0/buf_mode_preferr=
-ed
-> +
-> +5. Enable stop on flush trigger configuration
-> +    #echo 1 > /sys/bus/coresight/devices/tmc_etr0/stop_on_flush
-> +
-> +6. Start Coresight tracing on cores 1 and 2 using sysfs interface
-> +
-> +7. Run some application on core 1
-> +    #taskset -c 1 dd if=3D/dev/urandom of=3D/dev/null &
-> +
-> +8. Invoke kernel panic on core 2
-> +    #echo 1 > /proc/sys/kernel/panic
-> +    #taskset -c 2 echo c > /proc/sysrq-trigger
-> +
-> +9. From rebooted kernel or crashdump kernel, read crashdata
-> +
-> +    #dd if=3D/dev/crash_tmc_etr0 of=3D/trace/cstrace.bin
-> +
-> +10. Run opencsd decoder tools/scripts to generate the instruction trace.
 
-Format all command lines as literal code blocks to be consistent:
+>> ---
+>>   .../bindings/connector/usb-connector.yaml     | 23 +++++++++++++++++++
+>>   include/dt-bindings/usb/pd.h                  |  8 +++++++
+>>   2 files changed, 31 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>> index fb216ce68bb3..9be4ed12f13c 100644
+>> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>> @@ -253,6 +253,16 @@ properties:
+>>   
+>>       additionalProperties: false
+>>   
+>> +  pd-timers:
+>> +    description: An array of u32 integers, where an even index (i) is the timer (referenced in
+>> +      dt-bindings/usb/pd.h) and the odd index (i+1) is the timer value in ms (refer
+> timer of what? OS behavior?
+In the context of USB Type C Power Delivery (PD), timers are run on the 
+typec protocol driver
+(usb/typec/tcpm/tcpm.c).
+These are used to keep track of min/max or range of time required to 
+enter a PD state with the
+goal of a successful USB typec capabilities negotiation.  Eg., the timer 
+PD_TIMER_SINK_WAIT_CAP (referred to as SinkWaitCapTimer in spec)would be 
+responsible to keep track of whether a power source sent us (as sink) PD 
+source capabilities pkts within 600ms (say), if yes, then we would 
+transition to the next state or do a state machine reset. USB PD 3.1 
+spec refers to these elements as timers and therefore referred to as 
+such here.
 
----- >8 ----
-diff --git a/Documentation/trace/coresight/panic.rst b/Documentation/trace/=
-coresight/panic.rst
-index 3b53d91cace8fd..864f6c05b3f7af 100644
---- a/Documentation/trace/coresight/panic.rst
-+++ b/Documentation/trace/coresight/panic.rst
-@@ -113,7 +113,7 @@ Sample commands for testing a Kernel panic case with ET=
-R sink
-    bootargs. This is mandatory if the user would like to read the tracedata
-    from the crashdump kernel.
-=20
--2. Enable the preloaded ETM configuration
-+2. Enable the preloaded ETM configuration::
-=20
-     #echo 1 > /sys/kernel/config/cs-syscfg/configurations/panicstop/enable
-=20
-@@ -176,22 +176,26 @@ Sample commands for testing a Kernel panic case with =
-ETR sink
- Note: CTI connections are SOC specific and hence the above script is
- added just for reference.
-=20
--4. Choose reserved buffer mode for ETR buffer
-+4. Choose reserved buffer mode for ETR buffer::
-+
-     #echo "resrv" > /sys/bus/coresight/devices/tmc_etr0/buf_mode_preferred
-=20
--5. Enable stop on flush trigger configuration
-+5. Enable stop on flush trigger configuration::
-+
-     #echo 1 > /sys/bus/coresight/devices/tmc_etr0/stop_on_flush
-=20
- 6. Start Coresight tracing on cores 1 and 2 using sysfs interface
-=20
--7. Run some application on core 1
-+7. Run some application on core 1::
-+
-     #taskset -c 1 dd if=3D/dev/urandom of=3D/dev/null &
-=20
--8. Invoke kernel panic on core 2
-+8. Invoke kernel panic on core 2::
-+
-     #echo 1 > /proc/sys/kernel/panic
-     #taskset -c 2 echo c > /proc/sysrq-trigger
-=20
--9. From rebooted kernel or crashdump kernel, read crashdata
-+9. From rebooted kernel or crashdump kernel, read crashdata::
-=20
-     #dd if=3D/dev/crash_tmc_etr0 of=3D/trace/cstrace.bin
-=20
-Thanks.
 
---=20
-An old man doll... just what I always wanted! - Clara
+>> +      "Table 6-68 Time Values" of "USB Power Delivery Specification Revision 3.0, Version 1.2 " for
+>> +      the appropriate value). For certain timers the PD spec defines a range rather than a fixed
+>> +      value. The timers may need to be tuned based on the platform. This dt property allows the user
+> Do not describe what DT is. We all know what DT properties allow.
+> Instead describe how this relates to hardware or boards.
+>
+> All this is wrongly wrapped. See Coding style (and I am not telling you
+> the value on purpose, so you will read the coding style) .
 
---NdeeukOhj8gwtfO8
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+Ack. Thanks for pointing it out, I will fix both the above in the next 
+revision.
 
-iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZujfgQAKCRD2uYlJVVFO
-o2zvAQDx+PVsRJKQr7fD6gbDCeVA0X1MY9/zbQoMUWgQIFBkLQD/cQtUnKML1Ccq
-xuiDgDEMvkAKQS8ti1jx1KpyslAhDwY=
-=mgTK
------END PGP SIGNATURE-----
 
---NdeeukOhj8gwtfO8--
+>
+>> +      to assign specific values based on the platform. If these values are not explicitly defined,
+>> +      TCPM will use a valid default value for such timers.
+> And what is the default?
+
+Defaults are given in (include/linux/usb/pd.h). But I guess I should 
+have probably mentioned
+that here.
+
+
+>
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> I guess you want matrix here.
+
+Yes, I should have. Though, I will be re-implementing this such that 
+each timer is represented
+as a separate property based on Rob and Dmitry's suggestion in
+https://lore.kernel.org/lkml/20240916163328.GA394032-robh@kernel.org/ .
+
+>> +
+>>   dependencies:
+>>     sink-vdos-v1: [ sink-vdos ]
+>>     sink-vdos: [ sink-vdos-v1 ]
+>> @@ -478,3 +488,16 @@ examples:
+>>               };
+>>           };
+>>       };
+>> +
+>> +  # USB-C connector with PD timers
+>> +  - |
+>> +    #include <dt-bindings/usb/pd.h>
+>> +    usb {
+>> +        connector {
+>> +            compatible = "usb-c-connector";
+>> +            label = "USB-C";
+>> +            pd-timers =
+>> +                <PD_TIMER_SINK_WAIT_CAP 600>,
+>> +                <PD_TIMER_CC_DEBOUNCE 170>;
+> Incorporate it into existing example.
+>
+Ack.
+
+
+>> +        };
+>> +    };
+>> diff --git a/include/dt-bindings/usb/pd.h b/include/dt-bindings/usb/pd.h
+>> index e6526b138174..6c58c30f3f39 100644
+>> --- a/include/dt-bindings/usb/pd.h
+>> +++ b/include/dt-bindings/usb/pd.h
+>> @@ -465,4 +465,12 @@
+>>   	 | ((vbm) & 0x3) << 15 | (curr) << 14 | ((vbi) & 0x3f) << 7	\
+>>   	 | ((gi) & 0x3f) << 1 | (ct))
+>>   
+>> +/* PD Timer definitions */
+>> +/* tTypeCSinkWaitCap (Table 6-68 Time Values, USB PD3.1 Spec) */
+> Please expand this a bit, so we won't have to reach to external sources.
+
+Ack.
+
+I will incorporate all of your review comments.
+
+Since you are no longer maintaining the
+"OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" component, please let 
+me know
+if you'd still like to be CC'ed in the subsequent revisions.
+
+
+Thanks,
+
+Amit
+
+
+>> +#define PD_TIMER_SINK_WAIT_CAP		0
+>> +/* tPSSourceOff (Table 6-68 Time Values, USB PD3.1 Spec) */
+>> +#define PD_TIMER_PS_SOURCE_OFF		1
+>> +/* tCCDebounce (Table 4-33 CC Timing, USB Type-C Cable & Connector Spec Rel2.2) */
+>> +#define PD_TIMER_CC_DEBOUNCE		2
+>
+> Best regards,
+> Krzysztof
+>
 
