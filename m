@@ -1,117 +1,153 @@
-Return-Path: <devicetree+bounces-103441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFF7297AD82
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 11:04:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62D9297AD90
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 11:07:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 641211F23677
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 09:04:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D33A2828E4
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 09:07:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0630015748F;
-	Tue, 17 Sep 2024 09:04:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11C9A154C0A;
+	Tue, 17 Sep 2024 09:07:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="S5RMeAyL"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SsKuW7Wx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02B50150990;
-	Tue, 17 Sep 2024 09:04:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DA841BF24;
+	Tue, 17 Sep 2024 09:07:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726563881; cv=none; b=CYyON8CekeyrDP76HlJBp7l5++G+vONTwY8B5hc0cX4rfWG12VhjU7kclQHeDanaJybEf5v0T6J0D9bFyNAjD/3h6APpW7U4bLR8piGKKMgNFchAliMnhtAPY3AiPOegPiWhf7xeKVmcow2u+QDXNDFZtufEyZSJwcuR5kzdDPU=
+	t=1726564067; cv=none; b=ppfNcUXiZWI7P3aJqIlG+ys/wFAoZo3oBEZ/qPPwCoxkPiA3Ifz6NZSpcivkSqnkhZoFOPoC+LrcRpeUktKUWhxQTBkf8uUMexSkGaBLl0nNXc4vQoCdAAI7MOMQDtx1fSmZZH/9YCWW+UU7zSQzxk3CQlwcLaJlB3xXcKCdVr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726563881; c=relaxed/simple;
-	bh=5NCGPiERJ+Jw5qTfwSzmHF6iCdF89H70h6XEILDhTIE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i/Pnp9DC411k1ssPzZJK3nXdGPGila/tMSTbGu9N2R/Tm8jrsVraFkFYhkfQz55a804Moh2E0iwt2UbBEiaJWD381/OTFfupR7Skz4ELc21HtcNCdYAPFP6TofbLhbGK1VYMzuFZ5qqifXVwcXsmfhshxK4IpO+jOjs/pOdtUDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=S5RMeAyL; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1726563878;
-	bh=5NCGPiERJ+Jw5qTfwSzmHF6iCdF89H70h6XEILDhTIE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=S5RMeAyLuLMXAZ2qIVHPpQd+yUU7hN6A9HmCHPyK3f/Qm4sqiXA2P5IDtgTO6x+CA
-	 gY9CznaCeUisJIeO7nOfj9MvveNWSI96sSPNWHDMTf3HO1lOXXEQRXgs5Yqo/VIw5X
-	 3EzWC/6RCGN4xCicPAKEqbaYzsy4XIpR/EkE432JijXfSsEhiXKuuC9+tPDNxLdUP9
-	 P2OUxIR7t8sYk+AtNUm9IrY+oLh5bnYHNEyiwHQBNPsef5b7lGbZhtNkygfnOFy3FJ
-	 TBSgxGOyL/YUvetV7okyLSdFBN4RSsA5Dt9gxfphjhOQY1Y6C7zN9zLm2AD/oWg5TP
-	 R4jGK++Gne67w==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id ADEF717E107A;
-	Tue, 17 Sep 2024 11:04:34 +0200 (CEST)
-Message-ID: <08bdcc19-023b-4c7d-9e01-2b04cac00a08@collabora.com>
-Date: Tue, 17 Sep 2024 11:04:33 +0200
+	s=arc-20240116; t=1726564067; c=relaxed/simple;
+	bh=nCYNkoT4zRwAUv0gz5sUkyV3PRGCDV6DNj//vtt2KMQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=i+4tet9fiTh2zHouwD/hUpbMy4qZPhqALZl1pRHdY56FNBwSsOE3JTOQaWSfOyKI1FeGSLjurLk6EKOzkMLRMfC6tpZkqTuO30hTH7f8lUnhmSGrletXt27TuIYEHAW1N0mjItYv5zTSsNjWCH5f/gzqVbfzxd7GLbbjMFYoYbo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SsKuW7Wx; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48H50lRu011687;
+	Tue, 17 Sep 2024 09:07:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	qcppdkim1; bh=ow0WdeNBw2TCaIQEYuxzSw1d1oinzb3nLjwG8RgGakE=; b=Ss
+	KuW7Wxg8ZF08Ko3bvf4Yya503IOcsZfYW+u8KLIaeJUPFdBU+v8gmzS/DDh+EcYH
+	7SO6Zz46RBPjlya3z48SjiCiI//eGJik3y7cFoaqKoVN6cjI1G57USwENBQWhGx6
+	Ocsl2P+WMALVtXSFHFOvzTXKikirB58YUxJFaSqAVP7oFcNFs48Xl0tNkYfpJnPV
+	cDuwmkUMVDarifnKp0fK9hOU7R6j6tuTjWzo/TUERaNBTurFiBk2GgefDB9VwxS4
+	lBhdPU0SysBOBxjQaGrjEMfkC9ltXRCQ74P/gXBG+UqGOMgLlYcVDdZIowT0Lp6C
+	KX0fYviG4TAky8+WCs4g==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41n4k0p9xy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Sep 2024 09:07:42 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48H97e3t024455
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Sep 2024 09:07:40 GMT
+Received: from hu-sachgupt-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 17 Sep 2024 02:07:35 -0700
+From: Sachin Gupta <quic_sachgupt@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_cang@quicinc.com>,
+        <quic_nguyenb@quicinc.com>, <quic_bhaskarv@quicinc.com>,
+        <quic_mapa@quicinc.com>, <quic_narepall@quicinc.com>,
+        <quic_nitirawa@quicinc.com>, <quic_rampraka@quicinc.com>,
+        <quic_sachgupt@quicinc.com>, <quic_sartgarg@quicinc.com>
+Subject: [PATCH 1/1] arm64: dts: qcom: qcs6490-rb3gen2: Add SD Card node
+Date: Tue, 17 Sep 2024 14:36:30 +0530
+Message-ID: <20240917090630.1025-1-quic_sachgupt@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] regulator: dt-bindings: mt6397: move examples to
- parent PMIC mt6397
-To: Macpaul Lin <macpaul.lin@mediatek.com>, Andrew Lunn <andrew@lunn.ch>,
- Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean
- <olteanv@gmail.com>, "David S . Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Sean Wang <sean.wang@mediatek.com>, Sen Chu <sen.chu@mediatek.com>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>,
- Lee Jones <lee@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Chen Zhong <chen.zhong@mediatek.com>, linux-input@vger.kernel.org,
- linux-leds@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-rtc@vger.kernel.org, linux-sound@vger.kernel.org,
- Alexandre Mergnat <amergnat@baylibre.com>
-Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
- Macpaul Lin <macpaul@gmail.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
- MediaTek Chromebook Upstream
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- Chen-Yu Tsai <wenst@chromium.org>
-References: <20240916151132.32321-1-macpaul.lin@mediatek.com>
- <20240916151132.32321-3-macpaul.lin@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240916151132.32321-3-macpaul.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: YkzJhxzZoHX0n__KAdHMpe24HeOb5YmT
+X-Proofpoint-GUID: YkzJhxzZoHX0n__KAdHMpe24HeOb5YmT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ suspectscore=0 adultscore=0 phishscore=0 spamscore=0 malwarescore=0
+ bulkscore=0 impostorscore=0 mlxlogscore=768 clxscore=1011
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409170066
 
-Il 16/09/24 17:11, Macpaul Lin ha scritto:
-> Since the DT schema of multiple function PMIC mt6397 has been converted,
-> move the examples in "mediatek,mt6397-regulator.yaml" to the parent schema
-> "mediatek,mt6397.yaml".
-> 
+Add SD Card node for Qualcomm qcs6490-rb3gen2 Board.
 
-You can instead just keep a reference to mediatek,mt6397-regulator.yaml in the
-"MFD" (pmic) schema instead.
+Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 33 ++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
-It's true that for MT6397 you can possibly have only MT6397's regulator and not
-others, but still, the logic is to:
-  - Say that MT6397 supports regulator subnode(s) in mediatek,mt6397.yaml
-    - Refer to the regulator schema (mediatek,mt6397-regulator.yaml)
-  - Keep the regulator schema (providing only regulator HW specific info)
-    in the regulator folder.
-
-Besides that, this also makes the main mediatek,mt6397.yaml schema a bit more
-human readable... :-)
-
-Cheers,
-Angelo
-
+diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+index 0d45662b8028..5df3167651ca 100644
+--- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
++++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+@@ -716,9 +716,42 @@
+ 	status = "okay";
+ };
+ 
++&sdc2_clk {
++	bias-disable;
++	drive-strength = <16>;
++};
++
++&sdc2_cmd {
++	bias-pull-up;
++	drive-strength = <10>;
++};
++
++&sdc2_data {
++	bias-pull-up;
++	drive-strength = <10>;
++};
++
++&sdhc_2 {
++	status = "okay";
++
++	pinctrl-0 = <&sdc2_clk>, <&sdc2_cmd>, <&sdc2_data>, <&sd_cd>;
++	pinctrl-1 = <&sdc2_clk_sleep>, <&sdc2_cmd_sleep>, <&sdc2_data_sleep>, <&sd_cd>;
++
++	vmmc-supply = <&vreg_l9c_2p96>;
++	vqmmc-supply = <&vreg_l6c_2p96>;
++
++	cd-gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
++};
++
+ &tlmm {
+ 	gpio-reserved-ranges = <32 2>, /* ADSP */
+ 			       <48 4>; /* NFC */
++
++	sd_cd: sd-cd-state {
++		pins = "gpio91";
++		function = "gpio";
++		bias-pull-up;
++	};
+ };
+ 
+ &uart5 {
+-- 
+2.17.1
 
 
