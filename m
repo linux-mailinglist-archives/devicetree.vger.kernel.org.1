@@ -1,279 +1,326 @@
-Return-Path: <devicetree+bounces-103484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA3CB97AFA1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 13:22:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E605797AFC9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 13:42:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 365BC1F2245E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 11:22:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C134B230D2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 11:41:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27A7715E5BB;
-	Tue, 17 Sep 2024 11:22:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 498D2165F16;
+	Tue, 17 Sep 2024 11:41:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iGiR9O5e"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HdnjA14E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED3D61E4A6;
-	Tue, 17 Sep 2024 11:21:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A1C0156C6F
+	for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 11:41:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726572120; cv=none; b=InIuBmsf1hQC9kHIn9heeVPWXUIfSsuqeQgQKP8NCLPE/uK3H7wPMPMd3aGtFAASfEeOH513UBS/eovNsVGvGg0aFM1iXe5b1CLRFr03Yl1lHXSOcdL4UDVHnorx2nuGSU+hy9xjsFG6Fsan4i6lNQ4iCB7qPhW4EzD3HqTJjNY=
+	t=1726573282; cv=none; b=LSy0tT5pdtTjczC2fPWXTpHuqhfaMY8ha4eGsH5UB2WKLsayMkymibLwyVXiHCUz4MdSSRwWdrHmqbtYsnfkxO3pHeFgJlsEsBFd1gvAdA2mrKCcypZ3osJQMZYF/9yFyghcFhTP4EdWngPWQkB6nf1EsDYe9Sqg01olopQWY64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726572120; c=relaxed/simple;
-	bh=wWJH4qthvkKah4YoqMVuhDK4KUnv3vBmdbn04K2tkuA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dz+6Qy/mBJw+zk017VlAiFIBehq6DdF6wxQ7lmtUiwu3M8w152Mblyq1OJy6eRN3lgqFy8EAgxBruwLSe/RIh2+fFQUV3Wys/Qf+egnyZlXRcNiE2vMwm4TtsPVAoVxtx3rNexmJSzRhPY3eNzNPfoSHhLfwbP6wp5Jl7jyn9Fw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iGiR9O5e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27D97C4CEC5;
-	Tue, 17 Sep 2024 11:21:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726572119;
-	bh=wWJH4qthvkKah4YoqMVuhDK4KUnv3vBmdbn04K2tkuA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=iGiR9O5eMWIb8wJqL9rnUmMdXKFXDhQPfVi+8D0HJQE6HsRuMn8m2PfuQUyGhj8ft
-	 2P7udfLTAoK+MU13t8w0g1HzKUik0b1ZYAGcB7MDrwHZ6rdD318K8ZDmScnJlk0Jl5
-	 yW5RFiG9A1K95nvXdwNrJHGC28elf9LdjPk5fVBgyW8hDk6W0NVavYv51+U/xRfuZA
-	 bsemn4x9HlaWXivm/730MYwu4BvnCdjAh2CNMADeVYTlx+NKO6+O9kfdjz0nLPvG2a
-	 VfI6c8kvCKBaKvHHzCZDAxSpmAvAgfCwBOebccHgsoEmJIsyTfFFJAIQ9ZFO9k8j8p
-	 MIEbokVh5qfUQ==
-Date: Tue, 17 Sep 2024 12:21:43 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: Esteban Blanc <eblanc@baylibre.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>, Jonathan Corbet
- <corbet@lwn.net>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH 4/6] iio: adc: ad4030: add support for ad4630-24 and
- ad4630-16
-Message-ID: <20240917121920.75e7edba@jic23-huawei>
-In-Reply-To: <2b319d9453f4fe8842e4c306d9e2071ad031c0e7.camel@gmail.com>
-References: <20240822-eblanc-ad4630_v1-v1-0-5c68f3327fdd@baylibre.com>
-	<20240822-eblanc-ad4630_v1-v1-4-5c68f3327fdd@baylibre.com>
-	<20240826102748.4be0b642@jic23-huawei>
-	<D452E2M75XCM.13OQGAPJ7JJ4A@baylibre.com>
-	<0a4e7fe39cf36774b28c86f6baab5ef8c20e3d6b.camel@gmail.com>
-	<D4567LFFTYJQ.2YC5OODKOVPNB@baylibre.com>
-	<84961c1f857dfc8498c41ac97235a037111ed6d5.camel@gmail.com>
-	<20240914122529.14759e63@jic23-huawei>
-	<2b319d9453f4fe8842e4c306d9e2071ad031c0e7.camel@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1726573282; c=relaxed/simple;
+	bh=jz0FE0Kf675baCmwmaa4cz9aN8rAv8r7cgzxmXwFamI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=N0/OUx0IRF3hRoMYkb2hoMWZhOC5n1fPny/ryXxYhmeFXgpIhexsCX4Kxg4VBNq+b24lUuOClrBgiTkR31hVmveARbZALmRzXWMPnCXLiyoMxFVajNo8Fzfq9rQHriKmGXXNwQbl3v9zbj+PztYtg+NSpnNyn+I2F4dnfS4xyv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HdnjA14E; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a8d3cde1103so744910666b.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 04:41:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1726573279; x=1727178079; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ZBWxTLIwaRXzz2B6lBD4X89iivmw4HPn5CVhIHdb5b4=;
+        b=HdnjA14Eo8G/eygl4QXA/kUdAo9m+07PH1fiSHlUnvfxFFuAdl4APEgCgiIBSZff4O
+         uwYrPTfAYIGFoMNAsElo/97xA0U0cMJ662oxyw3nNN/aKiwF3cWAmcaMdmymmU99P+b1
+         l64oyhKrNvMrHfBTNgFDmynLy7hLQV8zkOdsiVY3Mv07ZSG+x3H7a4SNFrDyGiQqfPbM
+         dPFFiIisFPna68CBFlnpWvCEPK1/TE9VI8X4uhI7XzRbWEJqZjRpKr6w+cL9sPaXgSUg
+         qlu7/Mf9XaD0SAAswcHYWUTilaNYFRChLkcHPVQImwxTymiHW0B5yTDRvU8+c+MmNOQu
+         1eww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726573279; x=1727178079;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZBWxTLIwaRXzz2B6lBD4X89iivmw4HPn5CVhIHdb5b4=;
+        b=FXWEZnp0KXjcFWPW13BGCMmz9/NJFr7xfCxfzmM3lzi9fwu2/0EImjUTOcEFAAW42P
+         z3lPcCu8/4ltQnFhPmmqYgbZ118K7CW7vfVZARg9ALniJ10L0tJA2l5pJCrK9wOGb3mx
+         mIAFDvUdjsBCer8zWugmAE70nqQMRe/L/ikJcgynIC4tE+W0PizJsQCBx2NXeuhiiJa8
+         u7MKRdRZfh2M3OEbnFq7so+Zjyb94OZkmaipJTvpwQCi1y0abyGp23U1E3ekAWu9wWo+
+         ojEQyspkD8rqllYvEEbe5Dpa7A9nYoBwgH4XlFo7TiBgPGYrxZNsYdl8YeTBm4LlEko2
+         H59w==
+X-Forwarded-Encrypted: i=1; AJvYcCWB0pNRjr3pEnlvOg7x1vEzSDmE/ZSDe1PoxDQwL2cbPB6CLRLpqu88+ZjOqFz+WYooE7tC6N2K2XMX@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZZqSFWo9JN5kGYKofKXXjdF1m1juRw8/DoClcb/bB5Ag6c4Gb
+	DjLr+WLlNH+UpdURf0299IQ6syllNw0Kwz3wMt1l5xJ2+D5yFtoQsLW/z+t6z/w=
+X-Google-Smtp-Source: AGHT+IH2PSVF4UNMXvmdrYZyznZ7q1qkqZCW0MIRea2AY8og0vl8cI8cc+wtlZVbuMmX/jgs8zvd9w==
+X-Received: by 2002:a17:907:2da3:b0:a7d:9f92:9107 with SMTP id a640c23a62f3a-a9029690793mr2309234666b.58.1726573278256;
+        Tue, 17 Sep 2024 04:41:18 -0700 (PDT)
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a90612b4321sm431729166b.113.2024.09.17.04.41.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Sep 2024 04:41:17 -0700 (PDT)
+Message-ID: <5ad81ed43d8bb2426c9ae7d22fdb4c7aeb905129.camel@linaro.org>
+Subject: Re: [PATCH 2/2] regulator: max20339: add Maxim MAX20339 regulator
+ driver
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Mark Brown <broonie@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Michael Walle <mwalle@kernel.org>, Peter Griffin
+ <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, Will
+ McVicker <willmcvicker@google.com>,  kernel-team@android.com,
+ linux-kernel@vger.kernel.org,  devicetree@vger.kernel.org
+Date: Tue, 17 Sep 2024 12:41:16 +0100
+In-Reply-To: <ZulJuCu-QcMYrphP@finisterre.sirena.org.uk>
+References: <20240916-max20339-v1-0-b04ce8e8c471@linaro.org>
+	 <20240916-max20339-v1-2-b04ce8e8c471@linaro.org>
+	 <ZulJuCu-QcMYrphP@finisterre.sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.1-4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, 16 Sep 2024 08:12:24 +0200
-Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+Hi Mark,
 
-> On Sat, 2024-09-14 at 12:25 +0100, Jonathan Cameron wrote:
-> > On Fri, 13 Sep 2024 15:46:17 +0200
-> > Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
-> >  =20
-> > > On Fri, 2024-09-13 at 12:55 +0000, Esteban Blanc wrote: =20
-> > > > On Fri Sep 13, 2024 at 10:18 AM UTC, Nuno S=C3=A1 wrote:=C2=A0  =20
-> > > > > On Fri, 2024-09-13 at 09:55 +0000, Esteban Blanc wrote:=C2=A0  =20
-> > > > > > On Mon Aug 26, 2024 at 9:27 AM UTC, Jonathan Cameron wrote:=C2=
-=A0  =20
-> > > > > > > On Thu, 22 Aug 2024 14:45:20 +0200
-> > > > > > > Esteban Blanc <eblanc@baylibre.com> wrote:=C2=A0  =20
-> > > > > > > > +static const unsigned long ad4630_channel_masks[] =3D {
-> > > > > > > > +	/* Differential only */
-> > > > > > > > +	BIT(0) | BIT(2),
-> > > > > > > > +	/* Differential with common byte */
-> > > > > > > > +	GENMASK(3, 0),=C2=A0  =20
-> > > > > > > The packing of data isn't going to be good. How bad to shuffle
-> > > > > > > to put the two small channels next to each other?
-> > > > > > > Seems like it means you will want to combine your deinterleave
-> > > > > > > and channel specific handling above, which is a bit fiddly but
-> > > > > > > not much worse than current code.=C2=A0  =20
-> > > > > >=20
-> > > > > > I can do it since that was what I had done in the RFC in the fi=
-rst place.
-> > > > > > Nuno asked for in this email
-> > > > > > https://lore.kernel.org/r/0036d44542f8cf45c91c867f0ddd7b45d1904=
-d6b.camel@gmail.com/
-> > > > > > :
-> > > > > > =C2=A0  =20
-> > > > > > > > > * You're pushing the CM channels into the end. So when we=
- a 2 channel
-> > > > > > > > > device
-> > > > > > > > > we'll have:=C2=A0  =20
-> > > > > > =C2=A0  =20
-> > > > > > > > > in_voltage0 - diff
-> > > > > > > > > in_voltage1 - diff
-> > > > > > > > > in_voltage2 - CM associated with chan0
-> > > > > > > > > in_voltage0 - CM associated with chan1
-> > > > > > > > >=20
-> > > > > > > > > I think we could make it so the CM channel comes right af=
-ter the
-> > > > > > > > > channel
-> > > > > > > > > where
-> > > > > > > > > it's data belongs too. So for example, odd channels would=
- be CM
-> > > > > > > > > channels
-> > > > > > > > > (and
-> > > > > > > > > labels could also make sense).=C2=A0  =20
-> > > > > >=20
-> > > > > > So that's what I did here :D
-> > > > > >=20
-> > > > > > For the software side off things here it doesn't change a lot o=
-f things
-> > > > > > since we have to manipulate the data anyway, putting the extra =
-byte at the
-> > > > > > end or in between is no extra work.
-> > > > > > For the offload engine however, it should be easier to ask for =
-24 bits
-> > > > > > then 8 bits for each channel as it would return two u32 per "ha=
-rdware
-> > > > > > channel".
-> > > > > >=20
-> > > > > > In order to avoid having two different layouts, I was kind of s=
-old by
-> > > > > > Nuno's idea of having the CM in between each diff channel.
-> > > > > > =C2=A0  =20
-> > > > >=20
-> > > > > Tbh, I was not even thinking about the layout when I proposed the
-> > > > > arrangement.
-> > > > > Just
-> > > > > made sense to me (from a logical point of view) to have them toge=
-ther as they
-> > > > > relate
-> > > > > to the same physical channel. FWIW, we're also speaking bytes in =
-here so not
-> > > > > sure
-> > > > > if
-> > > > > it's that important (or bad).=C2=A0  =20
-> > > >=20
-> > > > The best we can do (if we managed to do it HDL wise) is to reorder =
-the
-> > > > data to get both CM byte in a single u32 after the 2 u32 of both di=
-ff
-> > > > channel. That would be 3 u32 instead of 4. =20
-> >=20
-> > Entirely up to you. :) =20
-> > > > =C2=A0  =20
-> > >=20
-> > > We are starting to see more and more devices that do stuff like this.=
- Have one
-> > > physical channel that reflects in more than one IIO channel. For SW b=
-uffering
-> > > it's
-> > > not really a big deal but for HW buffering it's not ideal.=20
-> > >=20
-> > > I feel that at some point we should think about having a way to map a=
- channel
-> > > scan
-> > > element (being kind of a virtual scan element) into the storage_bits =
-of another
-> > > one.
-> > > So in this case, one sample (for one channel) would be the 32bits and=
- things
-> > > should
-> > > work the same either in SW or HW buffering.
-> > >=20
-> > > That said, it's probably easier said than done in practice :) =20
-> >=20
-> > Yeah. That could get ugly fast + All existing userspace will fail to ha=
-ndle it
-> > so I'm not keen. Maybe it's doable if we assume the 'virtual channels' =
-are all
-> > meta data we don't mind loosing with existing software stacks and define
-> > a non overlapping ABI to identify the metadata.=C2=A0 Still smells bad =
-to me so
-> > I'll take quite a bit of convincing! =20
+Thanks for the review!
+
+On Tue, 2024-09-17 at 11:19 +0200, Mark Brown wrote:
+> On Mon, Sep 16, 2024 at 05:48:53PM +0100, Andr=C3=A9 Draszik wrote:
 >=20
-> Naturally it would have to be done in a way that drivers not defining the=
- "special"
-> scan elements would not be affected.
+> > +config REGULATOR_MAX20339
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tristate "Maxim MAX20339 overvolt=
+age protector with load switches"
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 depends on GPIOLIB || COMPILE_TES=
+T
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 depends on I2C
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 select GPIO_REGMAP if GPIOLIB
+>=20
+> I don't see any dependency on gpiolib here, the GPIO functionality
+> appears unrelated to the regulator functionality (this could reasonably
+> be a MFD, though it's probably not worth it given how trivial the GPIO
+> functionality is).
 
-It's worse than that - it would need be defined so userspace running
-against the devices with the special channels would have to work without
-knowing anything about them. So we couldn't do the really nasty thing
-of setting scan_index the same for both of them with same storage size and
-different shifts and real_bits.  That would be the sort of things that might
-crash userspace code.
+Yes, it's very trivial and I opted to go the simpler path without MFD.
 
-Driver effects are less of an issue than ABI breakage - or even just
-ABI a userspace author would not expect.
+The alternative is just
+         depends on GPIO_REGMAP || COMPILE_TEST
+which doesn't appear used at all in the tree, so I opted for the above
+instead.
+
+I'll change it the dependency line
 
 >=20
-> >=20
-> > Adding something to clearly 'associate' multiple related channels would=
- be fine
-> > as that wouldn't change the data interpretation, just provide more info=
- on top.
-> > Kind of a structured _label=20
-> >=20
-> > Maybe a _channelgroup attribute?=C2=A0=C2=A0 Would be const and all the=
- channels with
-> > the same index would reflect that they were measured on same 'thing'.
-> > Typically thing might be a pin or differential pair, but we might be me=
-asuring
-> > different types of signals - e.g. current and power.
-> >  =20
+> > +++ b/drivers/regulator/max20339-regulator.c
+> > @@ -0,0 +1,912 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (C) 2024 Linaro Ltd.
 >=20
-> Sounds reasonable but I think the tricky part is always to have a sane wa=
-y of saying
-> that multiple scan elements relate to just one storage_bits so we could s=
-ay something
-> like (taking this as example):
->=20
-> scan0: //diff channel which describing the physical HW in terms of real s=
-ize
->  .storage_bits =3D 32
->  .real_bits =3D 24
->  .shift =3D 8
->=20
-> scan1: //CM data
->  //.storage - relates to scan0 so should add nothing to the sample size i=
-f both
-> enabled
->  .real_bits =3D 8
->=20
-Indeed - I get the concept, but don't like it.=20
-In general it's a dead end for general purpose channels - because of that
-pile of legacy userspace.  It 'might' just about be acceptable for 'meta da=
-ta' channels
-or where we are adding significant new interface for functionality purposes=
- (e.g.
-when we did the newer DMA buffer stuff).
+> Nothing inherited from the original Pixel 6 kernel?
 
-> Likely not what you meant but one thing I took from your '_channelgroup' =
-idea was to
-> have something similar to extended_info maybe with a small top level desc=
-ription and
-> then an array of channels (that would form the group/aggregated channel).=
- Only on the
-> top level description we would be allowed to define the size of the scan =
-element (in
-> case of buffering). Still seems tricky to me :).
+No, not for this one.
 
-Yeah.  The channel group thing was for normal naturally aligned packing, not
-data backed tighter than that.
+> > + *
+> > + * Maxim MAX20339 load switch with over voltage protection
+>=20
+> Please make the entire comment a C++ one so things look more
+> intentional.
+>=20
+> > +static const struct regmap_config max20339_regmap_config =3D {
+> > +	.reg_bits =3D 8,
+> > +	.val_bits =3D 8,
+> > +	.max_register =3D MAX20339_LAST_REGISTER,
+> > +	.wr_table =3D &max20339_write_table,
+> > +	.rd_table =3D &max20339_rd_table,
+> > +	.volatile_table =3D &max20339_volatile_table,
+> > +	.precious_table =3D &max20339_precious_table,
+> > +};
+>=20
+> You've specified volatile registers here but not configured a cache.
+
+Yes, cache didn't seem worthwhile, but I wanted to document the volatile
+registers nonetheless.
+
+I'll enable the cache.
+
+> > +	if (status[3] & status[0] & MAX20339_INOVFAULT) {
+> > +		dev_warn(dev, "Over voltage on INput\n");
+> > +		regulator_notifier_call_chain(max20339->rdevs[MAX20339_REGULATOR_INS=
+W],
+> > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 REGULATOR_EVENT_OVER_VOLTAGE_WARN,
+> > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 NULL);
+> > +	}
+>=20
+> This is an error on the input, not an error from this regulator, so the
+> notification isn't appropriate here.
+
+The input is usually a USB plug / cable. Is there a better option to report
+this? I guess I could register a power supply.
+
+> > +static int max20339_insw_is_enabled(struct regulator_dev *rdev)
+> > +{
+> > +	unsigned int val;
+> > +	int ret;
+> > +	struct device *dev =3D rdev_get_dev(rdev);
+> > +
+> > +	ret =3D regmap_read(rdev_get_regmap(rdev), MAX20339_STATUS1, &val);
+> > +	if (ret) {
+> > +		dev_err(dev, "error reading STATUS1: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	dev_dbg(dev, "%s: %s: %c\n", __func__, rdev->desc->name,
+> > +		"ny"[FIELD_GET(MAX20339_INSWCLOSED, val)]);
+>=20
+> In addition to the log spam issues I've no idea how anyone is supposed
+> to interpret this log :/
+
+I'll remove it, it doesn't add much value.
+
+> > +
+> > +	return FIELD_GET(MAX20339_INSWCLOSED, val) =3D=3D 1;
+> > +}
+>=20
+> This does not appear to be an enable control, it's reading back a status
+> register rather than turning on or off a regulator.
+
+This is the regulator_ops::is_enabled() callback, shouldn't it return the
+status in effect? It's required to return effective status for one of the
+code paths in _regulator_do_enable(), when .poll_enabled_time is !=3D 0.
+
+> It's not clear to
+> me what the status actually is (possibly saying if there's a voltage
+> present?)
+
+To enable, one writes to MAX20339_IN_CTR. While one can read back that
+register, it doesn't reflect the actual status (e.g. it takes time to
+take effect), so it has this MAX20339_STATUS1 register to inform us if
+the output is actually enabled (switch closed or open).
+
+On top of that, yes, the switch will also open if the input disappears
+(cable unplug), this also is reflected in MAX20339_STATUS1 only.
+
+So this regulator_ops::is_enabled() callback returns whether or not
+it's open or closed - it returns the status that is in effect.
+
+>  but it should be reported with a get_status() operation.
+
+I missed ::get_status(), I'll implement it.
+
+> > +static int max20339_set_voltage_sel(struct regulator_dev *rdev,
+> > +				=C2=A0=C2=A0=C2=A0 unsigned int sel)
+> > +{
+> > +	return max20339_set_ovlo_helper(rdev,
+> > +					FIELD_PREP(MAX20339_OVLOSEL_INOVLOSEL,
+> > +						=C2=A0=C2=A0 sel));
+> > +}
+>=20
+> This device does not appear to be a voltage regualtor, it is a
+> protection device.=C2=A0 A set_voltage() operation is therfore inappropri=
+ate
+> for it, any voltage configuration would need to be done on the parent
+> regulator.
+
+This is handling one of the switches, and the input usually is
+a USB plug / cable.
+
+Based on the use-case (peripheral / OTG / wireless charging), the
+overvoltage voltage=C2=A0needs to be modified at runtime for full
+protection.
+
+The set-voltage APIs seemed like a good fit for that, given the
+regulator APIs allow setting those thresholds already (during init).
+
+I'll see if I could maybe add a power supply as the parent and leave out
+all the voltage and current related settings here altogether and make it
+just control the switches, like some other regulator drivers do.
 
 >=20
-> Anyways, Right now, I have no time for something like this but eventually=
- would like
-> to try something. But if someone wants to propose something sooner, pleas=
-e :)
-
-*looks doubtful*  Maybe I can be convinced.  We'll see.
-
-Jonathan
+> > +static const struct regulator_ops max20339_insw_ops =3D {
+> > +	.enable =3D regulator_enable_regmap,
+> > +	.disable =3D regulator_disable_regmap,
+> > +	.is_enabled =3D max20339_insw_is_enabled,
 >=20
-> - Nuno S=C3=A1=20
+> The is_enabled() operation should match the enable() and disable(), it
+> should reflect what the device is being told to do.
+
+That wouldn't match _regulator_do_enable(), which requires .is_enabled()
+to return the status in effect rather than the requested status, when
+.poll_enabled_time is !=3D 0.
+
+
+> > +static int max20339_lsw_is_enabled(struct regulator_dev *rdev)
+> > +{
+> > +	struct max20339_regulator *data =3D rdev_get_drvdata(rdev);
+> > +	unsigned int val;
+> > +	int ret;
+> > +	struct device *dev =3D rdev_get_dev(rdev);
+> > +
+> > +	ret =3D regmap_read(rdev_get_regmap(rdev), data->status_reg, &val);
+> > +	if (ret) {
+> > +		dev_err(dev, "error reading STATUS%d: %d\n",
+> > +			data->status_reg, ret);
+> > +		return ret;
+> > +	}
 >=20
+> Same issues here.
+
+See above.
+
+>=20
+> > +	if (val & MAX20339_LSWxSHORTFAULT)
+> > +		*flags |=3D REGULATOR_ERROR_OVER_CURRENT;
+> > +
+> > +	if (val & MAX20339_LSWxOVFAULT)
+> > +		*flags |=3D REGULATOR_ERROR_OVER_VOLTAGE_WARN;
+> > +
+> > +	if (val & MAX20339_LSWxOCFAULT)
+> > +		*flags |=3D REGULATOR_ERROR_OVER_CURRENT;
+>=20
+> These statuses should be flagged ot the core.
+
+OK
+
+>=20
+> > +static int max20339_setup_irq(struct i2c_client *client,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct regmap *regmap,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct regulator_dev *rdevs[])
+> > +{
+> > +	u8 enabled_irqs[3];
+> > +	struct max20339_irq_data *max20339;
+> > +	int ret;
+> > +	unsigned long irq_flags;
+> > +
+> > +	/* the IRQ is optional */
+> > +	if (!client->irq) {
+> > +		enabled_irqs[0] =3D enabled_irqs[1] =3D enabled_irqs[2] =3D 0;
+>=20
+> Please just write a normal series of assignments, it's much clearer.
+
+OK
+
+> `
+> > +		dev_info(&client->dev, "registered MAX20339 regulator %s\n",
+> > +			 max20339_regulators[i].desc.name);
+>=20
+> This is just noise, remove it.
+
+OK
+
+Thanks,
+Andre'
 
 
