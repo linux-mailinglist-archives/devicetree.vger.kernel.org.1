@@ -1,167 +1,255 @@
-Return-Path: <devicetree+bounces-103388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4694297A9CA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 01:52:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 631FE97A9D4
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 02:00:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52E0F1C22E4B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2024 23:52:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A0EB6B233B3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2024 00:00:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1700E1537DB;
-	Mon, 16 Sep 2024 23:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A112B133987;
+	Tue, 17 Sep 2024 00:00:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="MW1pMfep"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="RhRoQT49"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8221314F9EA
-	for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 23:52:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C583456B8C
+	for <devicetree@vger.kernel.org>; Tue, 17 Sep 2024 00:00:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726530748; cv=none; b=QCVy+/CQR8DRpN1vzOlQ4eFdAK0rnUVgwDPUidL01qMqJpJZCIUdPyKG2wR3wjVgrX/xnbHzNgXlsLE5QG6DLNrZT1QWzGm9xGdJtuAxHv3g0QndOjWSzSMan5Aah7lkZ1UOdJP3yAHxFsOSlNvUYDq8ShSO8B6hgNXKpDGWChs=
+	t=1726531248; cv=none; b=gCuVBW5lHERsb+gkdZSeHcGBIm2O/X9Z/x21c8aWzDnO7WXyyNN24EpmAdXQDKIk61PxfkeWqPnlqmbj8H2gY3wLAyVAE/Q27lU0lZGG9ORuuNS2A5JyiSYJxaNf/3dDuUnV4cZtcB3kNVtLsNAGOsljF1fTQn7KTx58tlmdlbo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726530748; c=relaxed/simple;
-	bh=iSw57K47VCkqhnLMo83NOu7bewfvRAA5tpz0HXWaZDs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LqFTas3E6URl0PDbtaExBiv7T9BQoqGs0T1aD9kOURMBPckuzRKanbjPtA9t0P6r89Kc302YKP13+1I9FAB4bzFlECK7X/gSEfzwZhSlSm6rKQqWV12AourhcO7vHglK5u+6jN4f6bSA+MDUD3oNyKZIBowHIrMH6Tfiz/SY0uU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=MW1pMfep; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-718e285544fso3031023b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 16:52:26 -0700 (PDT)
+	s=arc-20240116; t=1726531248; c=relaxed/simple;
+	bh=Ee17siRqBFROuZr/thXBuY61Xxnn7brpn1HX2BS79j4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z+RIfi0ZjPIBZuTzT7zciIg+QrFnfGAiyrrlLACMbDadSunsi71Cik1PXCFd5T6+TyRH7B5i1Bha+rPYAcxFFTPTk/uLX1buJAegNi5KV4Enz02nMNmy6B4jRZ0DL5LyrXlm732GMekQORN5OBjPUrFyjgCooJA29lPiiQpVYMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=RhRoQT49; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2053a0bd0a6so51896165ad.3
+        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2024 17:00:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1726530746; x=1727135546; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jhmI1munFkauKvxlDNOHjZGlilZQzed2TX2YAHV/fM0=;
-        b=MW1pMfepjjs7G0XgD0CF3Pn8HunyXwShtRC4aQn7wuc0coE0Heo5Gt3X/CwZB0jPUO
-         23Bq3kVmaBBV9lmBQASWektr3aTwiDfEEHs7PtB1eg5ObGLuH5aX5jDf5IHy83qx+o+z
-         qHUbUoRMhe6mHrK8ETWtDxPCEBf5pc1MFoEJp4BCEYAsbIshuskGLMCx0fUnhzfnIxFe
-         pmoKl4e3qSdggdJVdEBcizhMadGAi9rba8QikMtUGSMGa1qXTAk0ZcgwHdqjHstvjaBr
-         nODq/LNjmhBF8kW34SYMYtdIEJKBSddbxz4ROvfqknbA7PQQ8V6Nny4dIA0GDxRcjDGo
-         yotA==
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1726531246; x=1727136046; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=eup1ahvLxbk3GqS/ZMeUjwBFH9cE8D+Ggr+WJlLQMOk=;
+        b=RhRoQT49oLiMTKeVDt3o35EPTFrI9VTfyuiHCpYg0jF/Ir0+3X6JtB37avwfLK/pOo
+         xtUz4MGUJ6UkuCuX+7d1d7AMVsLkDNoHDX5K14QrtR8CNaDZkDZUC2CwcyvDqi99H8k0
+         SGt7yw9X814xthl4fj/4VQFD6VQjlbyrxxw5EkJUNfr4kfrfC5MEl7zwcFJMbhfvCeaM
+         EKmNXMThZdV2mD32PkwhtCa0LrlHqz+etI5OcLU2psrqL/OE6ymC6jTgvp9xbONqSMP8
+         BUTnOj2lJLTz9/RK58pKcXsMfwkOfq6yQ9Y6hgKizhG7G6mYHOPDm4WIYfihyE0f8IYh
+         PjXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726530746; x=1727135546;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1726531246; x=1727136046;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jhmI1munFkauKvxlDNOHjZGlilZQzed2TX2YAHV/fM0=;
-        b=RNlmHuz4W77xtqXojPiFAIuCKaciBw6G1VHrDQ34Jr63FZqbuI5tFjbklzKsBkOUoq
-         rQh+yb4dwqzjr1zbwlCnd9G1fBGH/ouDPjxTgV14pRpCyKPgZh+C6YPeWNOjCdL+gpe1
-         CXq/+9AlwxwDq4FVVVsNxrMp4id+6ERxv+OV/pgSnJOuc7D9eV6QX5K8qQqr7kdN2AO3
-         DVToa9dT+0O+5d5OPu9/YupqgLocS7UFuBDVs5Kvq53VbX/tk3ajUC1yyC43j1/Dtn+r
-         jbDXszzAItrOWoLYxWTxKBIkl2QdIw5ODXfa8H8nfawS96+n58YTSkcBvW1Z8AbNEnMf
-         gvbA==
-X-Forwarded-Encrypted: i=1; AJvYcCVnTASWiZJn0DM2vm34JFDFjVNqFxcrUaBCWbeDwCNNuXzo0A5DHi2TPeFcSvcOuNi2nMCpodFXoKdW@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvEwNnIHhH3M1KIiV7g4nuD2Vb0SvYrJmKyssfEV8ZziK2cKTY
-	XozOGpX5iekyX20z8T/evibaVOSfQ3l0PB8AXCN6MiVd9B1djoUqxp1CfR2FkBSXxeFnChaDc8Z
-	b5btds+s=
-X-Google-Smtp-Source: AGHT+IEFm5GbBV7eGS959qNUFceX3m6BxPtuPlzC44s9RWgt7WTQmWJWLiMigsTz8a+GlSr3zKoSaA==
-X-Received: by 2002:a05:6a00:2d10:b0:717:9462:8bda with SMTP id d2e1a72fcca58-71936a5fb10mr19503102b3a.12.1726530745295;
-        Mon, 16 Sep 2024 16:52:25 -0700 (PDT)
-Received: from ?IPV6:2a00:79e0:2e14:7:e1f6:9f31:2c3f:1500? ([2a00:79e0:2e14:7:e1f6:9f31:2c3f:1500])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71944ae41dbsm4395563b3a.96.2024.09.16.16.52.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Sep 2024 16:52:24 -0700 (PDT)
-Message-ID: <7ad81408-ee33-4b4a-b70e-0cebd8b46880@google.com>
-Date: Mon, 16 Sep 2024 16:52:23 -0700
+        bh=eup1ahvLxbk3GqS/ZMeUjwBFH9cE8D+Ggr+WJlLQMOk=;
+        b=oEudvEcFuDnZgYipMo/V+0A2DHCEzMLLHqoQZqyuz4Sa7HzDjxkzrBTSn1O1e9mvfB
+         t5Z5cV1d0CpfHz+U0J6OtsqHToEatWU1717O/0j1UeTBJYMzPg4fW0EHv8SzS8Ufr/PZ
+         8J1C6v5eqGr1GrhQBIjeJ9maKuVJVjxHIhrU0EdBQ7iZtSULUEePJ6j1XEuXO4u8Iavp
+         4E2lcRQjVvNET7FIEYL4+I2i5HWNSDhB8cmBpbgygMyuSlqVF4KueYD0ikAinAqXM5vw
+         eal+k2sbLEOqjhssxkrJNwZXNioCCDVYxeEJBZ+29KHAk/naw3DgONd2xQxqJL+1dyJK
+         9CFw==
+X-Forwarded-Encrypted: i=1; AJvYcCWlqt0F6YLhqNWDfJ6kPjNqiX+eEEY1EG3bepidDNr5BJpZRe0e9bW7u2MLhm4qR4EZlbjjuXfh9NQS@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxH/h7KRKc9B95Yfi3G/rUhWzgmUm1+XgvFrto4DdEsC5tqxkW
+	RywXsJrGe+6ukmND24pX4Pk0qmgT2U4v7akOpM/yJXuG/X0Q8n32eJkTZcExmTo=
+X-Google-Smtp-Source: AGHT+IH64YpGkOt6sdEnN70vzwbW5vOexKApQ3tQQA6MC8BwStmIPrrAyTwaRSTJo5R11SP51oTbHQ==
+X-Received: by 2002:a17:902:ea0d:b0:205:7c76:4b2c with SMTP id d9443c01a7336-2076e412882mr247960785ad.48.1726531245442;
+        Mon, 16 Sep 2024 17:00:45 -0700 (PDT)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20794601384sm41311685ad.94.2024.09.16.17.00.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Sep 2024 17:00:45 -0700 (PDT)
+Date: Mon, 16 Sep 2024 17:00:40 -0700
+From: Deepak Gupta <debug@rivosinc.com>
+To: Andy Chiu <andybnac@gmail.com>
+Cc: paul.walmsley@sifive.com, palmer@sifive.com, conor@kernel.org,
+	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
+	linux-arch@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	quic_zhonhan@quicinc.com, zong.li@sifive.com, zev@bewilderbeest.net,
+	david@redhat.com, peterz@infradead.org, catalin.marinas@arm.com,
+	broonie@kernel.org, dave.hansen@linux.intel.com,
+	atishp@rivosinc.com, bjorn@rivosinc.com, namcaov@gmail.com,
+	usama.anjum@collabora.com, guoren@kernel.org, alx@kernel.org,
+	jszhang@kernel.org, hpa@zytor.com, puranjay@kernel.org,
+	shuah@kernel.org, sorear@fastmail.com, costa.shul@redhat.com,
+	robh@kernel.org, antonb@tenstorrent.com, quic_bjorande@quicinc.com,
+	lorenzo.stoakes@oracle.com, corbet@lwn.net, dawei.li@shingroup.cn,
+	anup@brainfault.org, deller@gmx.de, x86@kernel.org,
+	andrii@kernel.org, willy@infradead.org, kees@kernel.org,
+	mingo@redhat.com, libang.li@antgroup.com, samitolvanen@google.com,
+	greentime.hu@sifive.com, osalvador@suse.de, ajones@ventanamicro.com,
+	revest@chromium.org, ancientmodern4@gmail.com,
+	aou@eecs.berkeley.edu, jerry.shih@sifive.com,
+	alexghiti@rivosinc.com, arnd@arndb.de, yang.lee@linux.alibaba.com,
+	charlie@rivosinc.com, bgray@linux.ibm.com, Liam.Howlett@oracle.com,
+	leobras@redhat.com, songshuaishuai@tinylab.org,
+	xiao.w.wang@intel.com, bp@alien8.de, cuiyunhui@bytedance.com,
+	mchitale@ventanamicro.com, cleger@rivosinc.com, tglx@linutronix.de,
+	krzk+dt@kernel.org, vbabka@suse.cz, brauner@kernel.org,
+	bhe@redhat.com, ke.zhao@shingroup.cn, oleg@redhat.com,
+	samuel.holland@sifive.com, ben.dooks@codethink.co.uk,
+	evan@rivosinc.com, palmer@dabbelt.com, ebiederm@xmission.com,
+	andy.chiu@sifive.com, schwab@suse.de, akpm@linux-foundation.org,
+	sameo@rivosinc.com, tanzhasanwork@gmail.com, rppt@kernel.org,
+	ryan.roberts@arm.com
+Subject: Re: [PATCH v4 21/30] riscv/traps: Introduce software check exception
+Message-ID: <ZujGqOVbYZ8+8XPu@debug.ba.rivosinc.com>
+References: <20240912231650.3740732-1-debug@rivosinc.com>
+ <20240912231650.3740732-22-debug@rivosinc.com>
+ <CAFTtA3NA+OwZv5hJU3EWjuNHNjA3fQzPC+sX84Nb9YyJXdENSA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 1/2] dt-bindings: connector: Add property to set pd timer
- values
-To: Rob Herring <robh@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
- linux-kernel@vger.kernel.org, kyletso@google.com, rdbabiera@google.com,
- Badhri Jagan Sridharan <badhri@google.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240911000715.554184-1-amitsd@google.com>
- <20240911000715.554184-2-amitsd@google.com>
- <5iakowhmqc3hbstmwbs6ixabr27hf2dfz2m4do4qvsrtgrdn72@r7xqawwgebla>
- <dc323138-3bbb-4e23-91f1-d6b80cb7bb72@google.com>
- <ascu5yztalk62fernydttkywnqemnmjlcflzdyfmt7dzuzngho@vvxrnvwhfdmk>
- <20240916163328.GA394032-robh@kernel.org>
-Content-Language: en-US
-From: Amit Sunil Dhamne <amitsd@google.com>
-In-Reply-To: <20240916163328.GA394032-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAFTtA3NA+OwZv5hJU3EWjuNHNjA3fQzPC+sX84Nb9YyJXdENSA@mail.gmail.com>
 
-Hi Rob,
-
-On 9/16/24 9:33 AM, Rob Herring wrote:
-> On Fri, Sep 13, 2024 at 07:34:27AM +0300, Dmitry Baryshkov wrote:
->> On Thu, Sep 12, 2024 at 04:26:25PM GMT, Amit Sunil Dhamne wrote:
->>> Hi Dmitry,
->>>
->>> On 9/12/24 3:05 AM, Dmitry Baryshkov wrote:
->>>> On Tue, Sep 10, 2024 at 05:07:05PM GMT, Amit Sunil Dhamne wrote:
->>>>> This commit adds a new property "pd-timers" to enable setting of
->>>>> platform/board specific pd timer values for timers that have a range of
->>>>> acceptable values.
->>>>>
->>>>> Cc: Badhri Jagan Sridharan <badhri@google.com>
->>>>> Cc: linux-usb@vger.kernel.org
->>>>> Cc: devicetree@vger.kernel.org
->>>>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
->>>>> ---
->>>>>    .../bindings/connector/usb-connector.yaml     | 23 +++++++++++++++++++
->>>>>    include/dt-bindings/usb/pd.h                  |  8 +++++++
->>>>>    2 files changed, 31 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>>>> index fb216ce68bb3..9be4ed12f13c 100644
->>>>> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>>>> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>>>> @@ -253,6 +253,16 @@ properties:
->>>>>        additionalProperties: false
->>>>> +  pd-timers:
->>>>> +    description: An array of u32 integers, where an even index (i) is the timer (referenced in
->>>>> +      dt-bindings/usb/pd.h) and the odd index (i+1) is the timer value in ms (refer
->>>>> +      "Table 6-68 Time Values" of "USB Power Delivery Specification Revision 3.0, Version 1.2 " for
->>>>> +      the appropriate value). For certain timers the PD spec defines a range rather than a fixed
->>>>> +      value. The timers may need to be tuned based on the platform. This dt property allows the user
->>>>> +      to assign specific values based on the platform. If these values are not explicitly defined,
->>>>> +      TCPM will use a valid default value for such timers.
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->>>> Is it really necessary to use the array property? I think it's easier
->>>> and more logical to define corresponding individual properties, one per
->>>> the timer.
->>> Thanks for the review. The reason I did it this way was for
->>> convenience. If in the future someone else wants add a new timer,
->>> it'd be convenient to just add it as a new macro definition in pd.h
->>> rather than having to define a new property each time, especially
->>> if folks want to add more timers (scales better).
->>> There are 3 timers already and I am working to add a fourth in a
->>> follow up patch if the current RFC gets accepted.
->>>
->>> Please let me know what do you think?
->> I'd leave the decision to DT maintainers, but in my opinion multiple
->> properties scale better. Having a single value per property is easier to
->> handle rather than changing the tagged array.
-> I agree. And it avoids what looks like a made up number space with the
-> defines.
+On Fri, Sep 13, 2024 at 09:35:50PM +0200, Andy Chiu wrote:
+>Hi Deepak
 >
-> And note that an array of tuples is a matrix in DT defined types, not
-> an array.
-Thanks for the review! I will incorporate the suggested comments in the
-next revision by creating a "single value per timer" property.
+>Deepak Gupta <debug@rivosinc.com> 於 2024年9月13日 週五 上午2:32寫道：
+>>
+>> zicfiss / zicfilp introduces a new exception to priv isa `software check
+>> exception` with cause code = 18. This patch implements software check
+>> exception.
+>>
+>> Additionally it implements a cfi violation handler which checks for code
+>> in xtval. If xtval=2, it means that sw check exception happened because of
+>> an indirect branch not landing on 4 byte aligned PC or not landing on
+>> `lpad` instruction or label value embedded in `lpad` not matching label
+>> value setup in `x7`. If xtval=3, it means that sw check exception happened
+>> because of mismatch between link register (x1 or x5) and top of shadow
+>> stack (on execution of `sspopchk`).
+>>
+>> In case of cfi violation, SIGSEGV is raised with code=SEGV_CPERR.
+>> SEGV_CPERR was introduced by x86 shadow stack patches.
+>>
+>> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+>> ---
+>>  arch/riscv/include/asm/asm-prototypes.h |  1 +
+>>  arch/riscv/include/asm/entry-common.h   |  2 ++
+>>  arch/riscv/kernel/entry.S               |  3 ++
+>>  arch/riscv/kernel/traps.c               | 38 +++++++++++++++++++++++++
+>>  4 files changed, 44 insertions(+)
+>>
+>> diff --git a/arch/riscv/include/asm/asm-prototypes.h b/arch/riscv/include/asm/asm-prototypes.h
+>> index cd627ec289f1..5a27cefd7805 100644
+>> --- a/arch/riscv/include/asm/asm-prototypes.h
+>> +++ b/arch/riscv/include/asm/asm-prototypes.h
+>> @@ -51,6 +51,7 @@ DECLARE_DO_ERROR_INFO(do_trap_ecall_u);
+>>  DECLARE_DO_ERROR_INFO(do_trap_ecall_s);
+>>  DECLARE_DO_ERROR_INFO(do_trap_ecall_m);
+>>  DECLARE_DO_ERROR_INFO(do_trap_break);
+>> +DECLARE_DO_ERROR_INFO(do_trap_software_check);
+>>
+>>  asmlinkage void handle_bad_stack(struct pt_regs *regs);
+>>  asmlinkage void do_page_fault(struct pt_regs *regs);
+>> diff --git a/arch/riscv/include/asm/entry-common.h b/arch/riscv/include/asm/entry-common.h
+>> index 2293e535f865..4068c7e5452a 100644
+>> --- a/arch/riscv/include/asm/entry-common.h
+>> +++ b/arch/riscv/include/asm/entry-common.h
+>> @@ -39,4 +39,6 @@ static inline int handle_misaligned_store(struct pt_regs *regs)
+>>  }
+>>  #endif
+>>
+>> +bool handle_user_cfi_violation(struct pt_regs *regs);
+>> +
+>>  #endif /* _ASM_RISCV_ENTRY_COMMON_H */
+>> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
+>> index ca9203e6d76d..2ec75ba864a8 100644
+>> --- a/arch/riscv/kernel/entry.S
+>> +++ b/arch/riscv/kernel/entry.S
+>> @@ -384,6 +384,9 @@ SYM_DATA_START_LOCAL(excp_vect_table)
+>>         RISCV_PTR do_page_fault   /* load page fault */
+>>         RISCV_PTR do_trap_unknown
+>>         RISCV_PTR do_page_fault   /* store page fault */
+>> +       RISCV_PTR do_trap_unknown /* cause=16 */
+>> +       RISCV_PTR do_trap_unknown /* cause=17 */
+>> +       RISCV_PTR do_trap_software_check /* cause=18 is sw check exception */
+>>  SYM_DATA_END_LABEL(excp_vect_table, SYM_L_LOCAL, excp_vect_table_end)
+>>
+>>  #ifndef CONFIG_MMU
+>> diff --git a/arch/riscv/kernel/traps.c b/arch/riscv/kernel/traps.c
+>> index 51ebfd23e007..32d1453bed72 100644
+>> --- a/arch/riscv/kernel/traps.c
+>> +++ b/arch/riscv/kernel/traps.c
+>> @@ -354,6 +354,44 @@ void do_trap_ecall_u(struct pt_regs *regs)
+>>
+>>  }
+>>
+>> +#define CFI_TVAL_FCFI_CODE     2
+>> +#define CFI_TVAL_BCFI_CODE     3
+>> +/* handle cfi violations */
+>> +bool handle_user_cfi_violation(struct pt_regs *regs)
+>> +{
+>> +       bool ret = false;
+>> +       unsigned long tval = csr_read(CSR_TVAL);
+>> +
+>> +       if (((tval == CFI_TVAL_FCFI_CODE) && cpu_supports_indirect_br_lp_instr()) ||
+>> +               ((tval == CFI_TVAL_BCFI_CODE) && cpu_supports_shadow_stack())) {
+>> +               do_trap_error(regs, SIGSEGV, SEGV_CPERR, regs->epc,
+>> +                                         "Oops - control flow violation");
+>> +               ret = true;
+>> +       }
+>> +
+>> +       return ret;
+>> +}
+>> +/*
+>> + * software check exception is defined with risc-v cfi spec. Software check
+>> + * exception is raised when:-
+>> + * a) An indirect branch doesn't land on 4 byte aligned PC or `lpad`
+>> + *    instruction or `label` value programmed in `lpad` instr doesn't
+>> + *    match with value setup in `x7`. reported code in `xtval` is 2.
+>> + * b) `sspopchk` instruction finds a mismatch between top of shadow stack (ssp)
+>> + *    and x1/x5. reported code in `xtval` is 3.
+>> + */
+>
+>It seems like this trap handler does not follow generic entry. This
+>can cause problems as signal delivery is done in
+>irqentry_exit_to_user_mode(). Please reference the commit f0bddf50586d
+>("riscv: entry: Convert to generic entry") for more information.
 
-Regards,
-
-Amit
+Ack. will fix it.
 
 >
-> Rob
+>> +asmlinkage __visible __trap_section void do_trap_software_check(struct pt_regs *regs)
+>> +{
+>> +       if (user_mode(regs)) {
+>> +               /* not a cfi violation, then merge into flow of unknown trap handler */
+>> +               if (!handle_user_cfi_violation(regs))
+>> +                       do_trap_unknown(regs);
+>> +       } else {
+>> +               /* sw check exception coming from kernel is a bug in kernel */
+>> +               die(regs, "Kernel BUG");
+>> +       }
+>> +}
+>> +
+>>  #ifdef CONFIG_MMU
+>>  asmlinkage __visible noinstr void do_page_fault(struct pt_regs *regs)
+>>  {
+>> --
+>> 2.45.0
+>>
+>>
+>> _______________________________________________
+>> linux-riscv mailing list
+>> linux-riscv@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-riscv
+>
+>Cheers,
+>Andy
 
