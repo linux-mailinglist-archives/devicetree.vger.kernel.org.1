@@ -1,106 +1,120 @@
-Return-Path: <devicetree+bounces-103680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A82E97BBE4
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 14:08:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2353397BBEF
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 14:09:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3312C1F227CD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 12:08:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A0BBCB251AA
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 12:09:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68BB9188CCD;
-	Wed, 18 Sep 2024 12:08:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613921898FA;
+	Wed, 18 Sep 2024 12:09:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="oGHM76aF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gDhXNkrW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C7BD17C9BA;
-	Wed, 18 Sep 2024 12:08:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97FBD18594F;
+	Wed, 18 Sep 2024 12:09:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726661285; cv=none; b=dZsNntlJV8pgIh34gh45DQzvPLifX6impUhd+4vdmpSPSkbbfJXfpeZ7q4rxddu9sHNNw91QiUP6OaVYPulmBRy9Vm9IbzjTOvMi3z61a6ClGz3P0rHk9DAGyD5xyCivGspHUc1hJ5OFukv9uU0zEUpPVXc4BRCiBMY16eTtbx8=
+	t=1726661381; cv=none; b=FTeJkI/s0ofowFlISJNRcNlPusLU3TdyzQjyNp3JDWuApieQLluU/MS9VHnXN3CC4qOkhRt12BnTlknbNbKs/zCwjdZS6ln7tVSqfhWPQAEFFNr6wFbksp8pS2pnb69PDbPmgRuLBhMSuz650bgwCZkPKCBYHWiVJxEiA6FwYHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726661285; c=relaxed/simple;
-	bh=e+grsrw7X10ZOPlPc72sgvxinJrP6CJB5urz+D13ZJA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=D6g6I5AO5bI8uqEazypJFcCVU+8sks6BjKod9hvTvUPRRLZpfY73gWOrWlhhlk7WkFDjKan/U675zPJT18NkzWgLejo96LoPTfzs454SXGeV1ifGvIlo3+sCuFRekvr1enBpISL+kwJ8g2fuy9NUBCklP0F9bSAQTyjcEPxDoLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=oGHM76aF; arc=none smtp.client-ip=188.40.30.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=Cc:To:In-Reply-To:References:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=ryG+DpEEYzpFDZHslmtvAz+CY1MLuD8QWuWHWwZLF1k=; b=oGHM76aFDy7jcPV83YF5sxSDK2
-	xIdYCCNMmYegzplnPHkMwW9F5KSM1CvuWWTHJN42T5cLZrQyVGZ7MBADEyy04MReatKy4eY2SkftD
-	l5LBMYcdnEVmI/ebPxbwzSHlVBoYK6/bVffUMImsqRAe19RyaESgStJ3s5eqz1sUBTpEgpc/SvEcm
-	SBYDJ4DIXHRsYV8XdhV93cYShuQwNQLKJjeCZ7tN8lSj2tj99nVK0GxTFkFXkWlx3w4QPPdm7yvOY
-	yZeNd5H5ZEULNDj3qD3KDgKzuc4KL34yVaAkwV2gpX0ZR9oroDVzMkEnMKJqzwO4vH4VVzSkylbLj
-	63z22aCQ==;
-Received: from sslproxy05.your-server.de ([78.46.172.2])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sean@geanix.com>)
-	id 1sqtTF-000Nl7-9J; Wed, 18 Sep 2024 14:07:45 +0200
-Received: from [185.17.218.86] (helo=zen.localdomain)
-	by sslproxy05.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sean@geanix.com>)
-	id 1sqtTF-000Fv4-13;
-	Wed, 18 Sep 2024 14:07:44 +0200
-From: Sean Nyekjaer <sean@geanix.com>
-Date: Wed, 18 Sep 2024 14:07:43 +0200
-Subject: [PATCH 2/2] ARM: dts: nxp: imx6ull: add dma support for uart8
+	s=arc-20240116; t=1726661381; c=relaxed/simple;
+	bh=yCio83aeLk7ovoU9iIHVbFuPw7v4fXcfPFULTd8OxS4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=F3NzdeWsFIG6RXWJ2dI2/wOZc40xX1fyqVpMfHIGE85Ybm4FNlfA9yAp2Gbz2vO0BDsw3sILEtkIaaBDBpnCEzPPp5bJoe7d3mSvWmqLEM+iYrzsNodGk0T4/N6TVJjl4ZihrK75GzjFf6RVxwte6VlfUULFtnvBfwRbLo80Vyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gDhXNkrW; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a7a81bd549eso809653966b.3;
+        Wed, 18 Sep 2024 05:09:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726661378; x=1727266178; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y66DJFYVL5PY5giFrc3PWU2VMH2144tJiJMcHBEkmd0=;
+        b=gDhXNkrW6e0JRj7jmg3j/90TueIEo3PFuSrrdgV594hA2h/lJLfBsP2yXwfmXP5P3g
+         qhfNeWJ2L2ft0jnYmk1KQX+MpYFq4Hy+w66OTiMowXBK8eIgTX8+3J1X76Gwv8u5bJc5
+         P3uU50eNGVGsbKrat4ARxdp4M9J1axmtErTWUhI8b5nD6AxNsgL1Qi9pZUqNFBbdldna
+         5vEp+IFQQahb9j/NZd56Xq2xfBhfCrtsxehPlsU3iiUw/7ELmTQXFY5+TjXF0B0Jt+UX
+         kdp/aAjBqxD/8/3JAgsbSZRQH2V58kmAnUGY9Qm0586LUPR0+UAdlL/+XqyGCnb2qSgp
+         bGoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726661378; x=1727266178;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y66DJFYVL5PY5giFrc3PWU2VMH2144tJiJMcHBEkmd0=;
+        b=LhKp6FDxDqegO0WYNvrsTeeHnZTGKCvlKClqVbmg1ZXatFLLMBofc+BvWcosuxtWDe
+         T0JLwv/NP9F733gfN2DogJcS7YNX56uiptyA+SkMaQtqBpGC04zqrIIY/5gy5bnDRaCo
+         p38EHo60UO8TP++E3yzy7/KW7HfjIL9LPdKIp3LEfPTqf5FZH8fNCiFVZeyx6rRDwBRU
+         FLWFWvNi1ivhsm/kBYqwUjdMnkjH+m7JvkcnLb0RJpQjdmRrkLSAa6cqTGT4kBddBS76
+         TZopkUUNe+RlUoezum9kRQICohIzlssslcJRQ7DGOMfk6JHnP4+fWnTBq8v/Fa4VglzQ
+         xSEA==
+X-Forwarded-Encrypted: i=1; AJvYcCUSswWHfi1/t8kttae2UyaQL3iSlLL0uhqKiL6nNK+9iSdZaavouW6UkY5cZluNd2HLy1aAht2gE8nB@vger.kernel.org, AJvYcCVhmc/S9JEEZ5NvA2uP3sDTqznF/085GmGhYV20F0IX5KMA7vzOlb1DI3j8WKcHlYcY+3I9n2YsAIfrEQ==@vger.kernel.org, AJvYcCXj03XSOx27X8szR0V4lp51vgsKCai90J8bPfhnfgl2Bc4kODK9ulwto+HHBEBNYowgB69MadfhhOJHN07e@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4IvZdKl4o9OtE+9uFp24271t1T6ocjlhxiL74pylcziiQSo7a
+	bUxNFBVDOaaE5abiOxfPdN+H2ftly8bucpqw95m3nr+GJMgE9gBS
+X-Google-Smtp-Source: AGHT+IE6D3nSuq8h7O9jMr5OVxk957IkkHMEKQMoyo41X0kNj+Wakcr+5SIVRrsz4nV69XJ/NNxHJA==
+X-Received: by 2002:a17:906:cadc:b0:a8a:7501:de21 with SMTP id a640c23a62f3a-a90294ab552mr2151917166b.12.1726661377252;
+        Wed, 18 Sep 2024 05:09:37 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2500:a01:2595:4364:d152:dff3])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a90612b384fsm584440366b.142.2024.09.18.05.09.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Sep 2024 05:09:36 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/3] pinctrl: renesas: rzg2l: Add support to configure open-drain and schmitt-trigger properties
+Date: Wed, 18 Sep 2024 13:09:06 +0100
+Message-Id: <20240918120909.284930-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240918-imx6ul-sdma-v1-2-d25abd56e65c@geanix.com>
-References: <20240918-imx6ul-sdma-v1-0-d25abd56e65c@geanix.com>
-In-Reply-To: <20240918-imx6ul-sdma-v1-0-d25abd56e65c@geanix.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Sean Nyekjaer <sean@geanix.com>
-X-Mailer: b4 0.13.0
-X-Authenticated-Sender: sean@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27402/Wed Sep 18 12:32:17 2024)
+Content-Transfer-Encoding: 8bit
 
-Add dma support on uart8.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Signed-off-by: Sean Nyekjaer <sean@geanix.com>
----
- arch/arm/boot/dts/nxp/imx/imx6ull.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Hi All,
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ull.dtsi
-index 8a1776067ecc..db0c339022ac 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull.dtsi
-@@ -88,6 +88,8 @@ uart8: serial@2288000 {
- 				clocks = <&clks IMX6UL_CLK_UART8_IPG>,
- 					 <&clks IMX6UL_CLK_UART8_SERIAL>;
- 				clock-names = "ipg", "per";
-+				dmas = <&sdma 45 4 0>, <&sdma 46 4 0>;
-+				dma-names = "rx", "tx";
- 				status = "disabled";
- 			};
- 		};
+This patch series aims to add support for configuring open-drain and
+schmitt-trigger properties for pins on Renesas RZ/V2H(P) SoC.
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (3):
+  dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Allow
+    'input-schmitt-{enable,disable}' and 'drive-open-drain' properties
+  pinctrl: renesas: rzg2l: Add support for configuring open-drain
+    outputs
+  pinctrl: renesas: rzg2l: Add support for configuring schmitt-trigger
+
+ .../pinctrl/renesas,rzg2l-pinctrl.yaml        |  3 ++
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 36 +++++++++++++++++++
+ 2 files changed, 39 insertions(+)
 
 -- 
-2.45.2
+2.34.1
 
 
