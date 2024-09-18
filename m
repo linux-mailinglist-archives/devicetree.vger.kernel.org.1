@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-103697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B24C97BCD0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 15:09:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFDDF97BCD7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 15:12:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC1241F23BC8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 13:09:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 68D5CB20FC6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 13:12:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2772818893B;
-	Wed, 18 Sep 2024 13:09:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F55A189F42;
+	Wed, 18 Sep 2024 13:12:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PWm/vk8j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pg7vMisb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB1211CD3F;
-	Wed, 18 Sep 2024 13:09:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CB3B1E52D;
+	Wed, 18 Sep 2024 13:12:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726664971; cv=none; b=gfcvOBvch0xJqKFyPFCdtgfMXelPuMz71ugxqdQRiRLotGMwSYXXnwb/PmcJwnenp2ROI8fzQ09uc8khbMaxI0iJXNgsuMWUdWDf5LP8ar2l0GgoZsPlp0AyxEvB05jKD3DYS5Q9Db05BUd23LhF+ixUETP4jlOwjwb4oI/qebk=
+	t=1726665162; cv=none; b=D+KpXaUmfQlbV5tLjOnIqC5cJje2lj05hcgRur6UAHV4NJcSS1WUBTmsP9DtOlrakwJ1NhhyEsMGCnzIYssAn8wYEwZIIFkZAfosCKA5q3k49lUltV+4kjIf+hLNvFJ6fpegxpVaeS4q8t4UzDvWjjJJtiMZM8EoN0VNMdCNMtA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726664971; c=relaxed/simple;
-	bh=mkprWbpT2wGxmF/c5R7sG5Fz3VUnN6uka/jY6PobMjM=;
+	s=arc-20240116; t=1726665162; c=relaxed/simple;
+	bh=yxYXYlwmteaEMYa8T0wu+hdQ6QPJDt+/p1TX+biQid4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bngIsGnf+RCFGBFU3a0qCGQ1gS09b0/x0Xf4psrtx7l/L1xbqOO7LzuChkRH33UqruYrJgXKIxNLR12hz5xucYTCZ1P3aEb2BXqRVbTyCOpmlnEdJcOOWHrJLZd7x5QsbmVr3vjnftFoPx2VfFyNyLJaawMpfkfESQ/Zjs8aMPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PWm/vk8j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E996FC4CEC3;
-	Wed, 18 Sep 2024 13:09:25 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=noWxakwctzA40fO8d9/cjrpCICQuSMOzJgDt+9c3xMVcaICIPnkyKIq1MTrwUhXlFDa7QMJffEG3w5b+u+OyY+m856jB8mARMSS1zKgkxvqnrmrkKaUV/eCTlFQwdNrNTkRRawEWcI6UKI42LDWkjLpGXA+QCE3MFt3I7kk9fqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pg7vMisb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACFF3C4CED9;
+	Wed, 18 Sep 2024 13:12:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726664969;
-	bh=mkprWbpT2wGxmF/c5R7sG5Fz3VUnN6uka/jY6PobMjM=;
+	s=k20201202; t=1726665161;
+	bh=yxYXYlwmteaEMYa8T0wu+hdQ6QPJDt+/p1TX+biQid4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PWm/vk8j+r6e0JzKTmxDKxKo1ODwqGwQafB91zxuZqWJg7cVwzvswsOiduJJYZmzq
-	 5mdOOCBa5eOXD6Uke7i0wuLLRCGBPtIxnrx0feAI6mxdThZ5cw0TDdqh/OqQzcQV4l
-	 RVYks6naXnxAxZkBCD+LODhvvj/hWmsPO3+W4c4Ng2statwIWLNNwzhsT5Iqqh7h9s
-	 PM9Yc+TmZumz2cL7co6qfa5gZ4POnrJn3F7RDTy1fZZJhk5UG7cHSEgU4Lj6Yk6hwJ
-	 /GubvRlIVEZoAHys6mvUGfoJ52e+7H4okTnpYGPfCDdEAshiawhx97ufz00wAwLBCY
-	 rL61OKpdq57Fg==
-Message-ID: <bc13d8fd-4f03-4445-bc4a-1e0ca7c23ef7@kernel.org>
-Date: Wed, 18 Sep 2024 15:09:23 +0200
+	b=pg7vMisbhkectbMH6ox1OFz08DXxCrNtpyeh8qTisPyO0yAIVygzyR3lwe38iXfxu
+	 WX0+zA0+X1BGKV0CGLa08t9meaVsYA+URodVDfMZDocbeL/rC5XW19kR/FvtQm7VeF
+	 VOZbrrPPs5YS0acQ3ff2MP4zFvTsRht5r49zf0tdcJRtq7GyyRp+7kYmSkIf8CEQZY
+	 BHzTUGuXlHtxnFgZJSE1lD/D3JNUj1t19xMxJmzFDufnZzKChdIMXxOUcjoDWYH075
+	 XjcJyYnoEi2PnT5V4C0gwO3sNbcLJnvga84Ob9v8VwE4BOnY5nvSYV0hwp5qa/Ciw8
+	 WhfwQxWBrBB/Q==
+Message-ID: <c96af8f2-4b06-4e7b-b3ca-d4db67df3137@kernel.org>
+Date: Wed, 18 Sep 2024 15:12:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: hwmon: Add adt7462
-To: Chanh Nguyen <chanh@os.amperecomputing.com>,
- Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
- OpenBMC Maillist <openbmc@lists.ozlabs.org>,
- Open Source Submission <patches@amperecomputing.com>
-Cc: Phong Vo <phong@os.amperecomputing.com>,
- Thang Nguyen <thang@os.amperecomputing.com>,
- Quan Nguyen <quan@os.amperecomputing.com>,
- Khanh Pham <khpham@amperecomputing.com>
-References: <20240918103212.591204-1-chanh@os.amperecomputing.com>
+Subject: Re: [PATCH 1/4] dt-bindings: arm: Add i.MX8MP IOTA2 Lumpy board
+To: =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Shawn Guo <shawnguo@kernel.org>, Petr Benes <petr.benes@ysoft.com>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Herburger <gregor.herburger@ew.tq-group.com>,
+ Hiago De Franco <hiago.franco@toradex.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+ Michael Walle <mwalle@kernel.org>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Mathieu Othacehe <m.othacehe@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20240917151001.1289399-1-michal.vokac@ysoft.com>
+ <20240917151001.1289399-2-michal.vokac@ysoft.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,29 +115,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240918103212.591204-1-chanh@os.amperecomputing.com>
+In-Reply-To: <20240917151001.1289399-2-michal.vokac@ysoft.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 18/09/2024 12:32, Chanh Nguyen wrote:
-> Add device tree binding and example for adt7462 device.
+On 17/09/2024 17:09, Michal Vokáč wrote:
+> Add new board from the Y Soft IOTA family. This one is based on the i.MX8MP
+> SoC. It is basically a stripped-down clone of the EVK board with some minor
+> additions.
 > 
-> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
-> ---
->  .../bindings/hwmon/onnn,adt7462.yaml          | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
+> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
 
-Where is any user? This is supposed to be sent along driver change
-implementing this compatible.
 
->  create mode 100644 Documentation/devicetree/bindings/hwmon/onnn,adt7462.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/onnn,adt7462.yaml b/Documentation/devicetree/bindings/hwmon/onnn,adt7462.yaml
-> new file mode 100644
-> index 000000000000..4a980cca419a
-
-Binding looks ok.
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
