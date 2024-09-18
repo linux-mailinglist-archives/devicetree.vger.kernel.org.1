@@ -1,120 +1,155 @@
-Return-Path: <devicetree+bounces-103644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DACE297B9FD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 11:11:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7FC797BA09
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 11:20:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8AC828536C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 09:11:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57FA52870E9
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 09:20:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B61A16D9C2;
-	Wed, 18 Sep 2024 09:11:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54392152176;
+	Wed, 18 Sep 2024 09:20:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iZmLy7zG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fC06XVHb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D1601304BA;
-	Wed, 18 Sep 2024 09:11:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A1142868B;
+	Wed, 18 Sep 2024 09:20:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726650708; cv=none; b=oMuTeXS/1yyunBebzbzYWCP03Hr1sHNxz0VVnp06jRmVrUc6GJCfGIImJVR7/82oz730G8FCNpB+LHgLwkRedffZspMsZmgBS398wIW9u6pLnu+/b+wFbSrIY9VbSzCP6aefTSy+oaEAyFCqlDk47Nx6VfVYBBsjF97TyYSK3cs=
+	t=1726651211; cv=none; b=ib3Q+oLbfeAxQoyBbyEcgJJ0bU2jCh9XWCFuFgM5ao/2NRkcm78tyuRhOaPRwYttM7Vz6q/jK6jeY5N60kvdddNe0J70PlxntGCKfHWr0fiDrNtu12JyokBbZgXPSO+5oa+fVsh8tMopzbf5e87idSMEyXQdlpRP7mQS6ap/aHM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726650708; c=relaxed/simple;
-	bh=0ijlviExnt3f+hLMD0CMjM7Y8g6fw5+mcJmUJWlUdiw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EagyAf6TrGK3q1NitEKz3zhNJHM6lepRICMDUb9p7sfWkFpcj9zqT8+/j1QyOw+Z4yLzosAhOPQVlKuXhLXymbPMJIkocxCjDcfd8dq7L5F9uIQWu16gOvwPPwEIH5qy27bFL/ZcTvt3EnbsVdj8O/HzvQ9vjp1Otobmz5/70jA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iZmLy7zG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F31E9C4CEC3;
-	Wed, 18 Sep 2024 09:11:46 +0000 (UTC)
+	s=arc-20240116; t=1726651211; c=relaxed/simple;
+	bh=2IPuGsFVx6i3IPlbaxYG1lBF+gtjjtT/tgBzPKncEKQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=JCSnOPGj96ldvcyLV+wRHRLuqZNb9fUg7bCjxFfrGDJZhtPTHUXBJ5gFryknlxvVx6l/LFcx49muuAUxDn4GJFMeVJgt51Xqk1WdVyM5luDHFbnzlTn5+EKzzk6qG9fldnNBH8+zOhxVnl7EUmxsMH7qi9n1PDfjGplrREnJaqA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fC06XVHb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A2314C4CECD;
+	Wed, 18 Sep 2024 09:20:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726650707;
-	bh=0ijlviExnt3f+hLMD0CMjM7Y8g6fw5+mcJmUJWlUdiw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iZmLy7zGUI3CzLlWYB+bnhv4F/f7eaDqfSoBXjEb7ARm/Dh6aFsXhlKUFJxSZWkGe
-	 LVgU5Voavzwbeist7WEjpiVwHFKr7IrX3QKS9Hdxp7aft3qxYzuV8Ftk/9535pdKTu
-	 86uZfzGgFwaqPVUEcjZ3OhVQfvZzKbbDKbujyfZlG7I6ZWfryJ4ZumF6rKBHirJr7w
-	 51osgRDH24SRFaQLG4qAPsKH/Dqnkmypkd0xP6r17hatutaOK9EU62MpwuX0evT09/
-	 pTKHRCvvc0TZpqrdYQsvVCsHirisXtOUkrJUQVI1aq/C6Df3v+OE3YpeSM+1esqq3D
-	 pSJ8MUfN4mA2Q==
-Date: Wed, 18 Sep 2024 11:11:44 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jan Kiszka <jan.kiszka@siemens.com>
-Cc: Nishanth Menon <nm@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	Siddharth Vadapalli <s-vadapalli@ti.com>, Bao Cheng Su <baocheng.su@siemens.com>, 
-	Hua Qian Li <huaqian.li@siemens.com>, Diogo Ivo <diogo.ivo@siemens.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>
-Subject: Re: [PATCH v6 2/7] dt-bindings: PCI: ti,am65: Extend for use with PVU
-Message-ID: <7qybwyvcjratnxvumvrjk7kjm6aiki27f2lymqaon5e6jljv4w@gqqzygmsprnp>
-References: <cover.1725901439.git.jan.kiszka@siemens.com>
- <de3465dc41f8a8f584a1302f99777cf5d6a8a05d.1725901439.git.jan.kiszka@siemens.com>
+	s=k20201202; t=1726651210;
+	bh=2IPuGsFVx6i3IPlbaxYG1lBF+gtjjtT/tgBzPKncEKQ=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=fC06XVHb0/Un4jdSh1HWBV7i/wmL1z2RxPkGk8bOlKg9AfKs01BfHtIzPEx+yuwTl
+	 lBs6hYpXEK09I/sWdZSYTDA2yePX/1dUhQZTnoj2tMWdUN/lh4368Ri1SXjyMo6M1U
+	 kGaeqrLxMYiNpHBuyUFq1li+i6nrob1V4+sMThYJezPS3HFbjkfgAtg3KbWaHQHctu
+	 Opi3Fjbl8UDWlH75eCxCulPgpszA/eymt9iVSA4RifTcA6eJ8gFCF2A7X3yy5b7oiA
+	 NdQNBtNgCQCg2joM8bqJn34ekUqhqnZYLWe0o77gcwGZ6Xd9FicrH1FxU61poWlcED
+	 j6aJEIM8xkCKQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 971C5CCD193;
+	Wed, 18 Sep 2024 09:20:10 +0000 (UTC)
+From: Manojkiran Eda via B4 Relay <devnull+manojkiran.eda.gmail.com@kernel.org>
+Date: Wed, 18 Sep 2024 14:50:03 +0530
+Subject: [PATCH v2] ARM: dts: aspeed: Enable PECI and LPC snoop for IBM
+ System1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <de3465dc41f8a8f584a1302f99777cf5d6a8a05d.1725901439.git.jan.kiszka@siemens.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240918-dts-aspeed-system1-peci-snoop-v2-1-2d4d17403670@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAEKb6mYC/43NTQ6CMBCG4auQWTuGlp+qK+9hWJQywCRCmw4hE
+ sLdrZzA5fMt3m8Hocgk8Mh2iLSysJ8T9CUDN9p5IOQuGXSuy/yuDHaLoJVA1KFsstCkMJBjlNn
+ 7gEZXzuR9actbBakRIvX8OfuvJnlkWXzczrtV/dZ/y6tChe29Nn1b2NoU1XOYLL+vzk/QHMfxB
+ WL1jDLKAAAA
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Manojkiran Eda <manojkiran.eda@gmail.com>, 
+ Ninad Palsule <ninad@linux.ibm.com>, openbmc@lists.ozlabs.org, 
+ Eddie James <eajames@linux.ibm.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1726651208; l=2124;
+ i=manojkiran.eda@gmail.com; s=20240917; h=from:subject:message-id;
+ bh=PhsAWX7PZUt4OM1Bw10bIDsLdGTH2xpjWLavU7+Q4Tk=;
+ b=czWKIuxWc7LaxglC3n9wJmLebajDF5jrdBsRa+IlENMLoNzE6kVM3/qJqWPjuB3Y/egwdDuqB
+ JNNjTtL1XS5BICAZswrBb/1tOEriGVb3/1DQfw2KkhL3/sE8CpMpgrM
+X-Developer-Key: i=manojkiran.eda@gmail.com; a=ed25519;
+ pk=DhQ/NRPeyE1WOxUmafF9Oy8LLco0c8CCeTN+Ef6q6Ts=
+X-Endpoint-Received: by B4 Relay for manojkiran.eda@gmail.com/20240917 with
+ auth_id=215
+X-Original-From: Manojkiran Eda <manojkiran.eda@gmail.com>
+Reply-To: manojkiran.eda@gmail.com
 
-On Mon, Sep 09, 2024 at 07:03:55PM +0200, Jan Kiszka wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
-> 
-> The PVU on the AM65 SoC is capable of restricting DMA from PCIe devices
-> to specific regions of host memory. Add the optional property
-> "memory-regions" to point to such regions of memory when PVU is used.
-> 
-> Since the PVU deals with system physical addresses, utilizing the PVU
-> with PCIe devices also requires setting up the VMAP registers to map the
-> Requester ID of the PCIe device to the CBA Virtual ID, which in turn is
-> mapped to the system physical address. Hence, describe the VMAP
-> registers which are optional unless the PVU shall be used for PCIe.
+From: Manojkiran Eda <manojkiran.eda@gmail.com>
+
+This patch enables the PECI interface and configures the LPC Snoop for
+ports 0x80 and 0x81 in the ASPEED BMC for IBM System1.
+
+Signed-off-by: Manojkiran Eda <manojkiran.eda@gmail.com>
+---
+This patch enables PECI and LPC snoop functionality on the IBM System1
+BMC in the device tree.
+
+The following changes have been made:
+
+1. Enabled the PECI controller (peci0) by marking its status to "okay".
+2. Enabled the LPC snoop engine, configuring snoop ports at 0x80 and
+   0x81.
+
+These changes are required to support PECI communication and LPC
+snooping for system monitoring and debugging purposes.
+
+To: Ninad Palsule <ninad@linux.ibm.com>
+To: Joel Stanley <joel@jms.id.au>
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: openbmc@lists.ozlabs.org
+To: Eddie James <eajames@linux.ibm.com>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-aspeed@lists.ozlabs.org
+Cc: linux-kernel@vger.kernel.org
+
+Changes in v2:
+- Added ibm system1 in the subject & added upstream mailing
+  list as well for reviews.
+- Link to v1: https://lore.kernel.org/r/20240917-dts-aspeed-system1-peci-snoop-v1-1-b967fb3a6735@gmail.com
+---
+ arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
+index cb3063413d1f..738a86c787c0 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
+@@ -464,6 +464,15 @@ &kcs3 {
+ 	aspeed,lpc-interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+ };
  
-> +  memory-region:
-> +    maxItems: 1
-> +    description: |
-> +      phandle to a restricted DMA pool to be used for all devices behind
-> +      this controller. The regions should be defined according to
-> +      reserved-memory/shared-dma-pool.yaml.
-> +      Note that enforcement via the PVU will only be available to
-> +      ti,am654-pcie-rc devices.
-> +
->  required:
->    - compatible
->    - reg
-> @@ -89,6 +102,13 @@ then:
->      - power-domains
->      - msi-map
->      - num-viewport
++&peci0 {
++	status = "okay";
++};
++
++&lpc_snoop {
++	status = "okay";
++	snoop-ports = <0x80>, <0x81>;
++};
++
+ &i2c0 {
+ 	status = "okay";
+ 
 
-You could add here schema expressing dependency, e.g.
-if:
-  properties:
-    required:
-      - memory-region
-then:
-  properties:
-    reg:
-      minItems: 6
-    reg-names:
-      minItems: 6
-
-If I got your commit msg correctly.
-
-Anyway, it's fine as is.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+base-commit: ca2478a7d974f38d29d27acb42a952c7f168916e
+change-id: 20240917-dts-aspeed-system1-peci-snoop-725c70f4a485
 
 Best regards,
-Krzysztof
+-- 
+Manojkiran Eda <manojkiran.eda@gmail.com>
+
 
 
