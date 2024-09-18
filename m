@@ -1,155 +1,134 @@
-Return-Path: <devicetree+bounces-103645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7FC797BA09
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 11:20:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9786997BA15
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 11:25:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57FA52870E9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 09:20:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F670B2668D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 09:25:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54392152176;
-	Wed, 18 Sep 2024 09:20:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E31F176259;
+	Wed, 18 Sep 2024 09:25:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fC06XVHb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N2z4cmAq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A1142868B;
-	Wed, 18 Sep 2024 09:20:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95CCD3A1A8;
+	Wed, 18 Sep 2024 09:25:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726651211; cv=none; b=ib3Q+oLbfeAxQoyBbyEcgJJ0bU2jCh9XWCFuFgM5ao/2NRkcm78tyuRhOaPRwYttM7Vz6q/jK6jeY5N60kvdddNe0J70PlxntGCKfHWr0fiDrNtu12JyokBbZgXPSO+5oa+fVsh8tMopzbf5e87idSMEyXQdlpRP7mQS6ap/aHM=
+	t=1726651503; cv=none; b=RNY17L+9zw1PTbTsgIA18eHc7sv0NPrPOgfxX8vnlqWg2LpyBcRkzZ3ojol8FTQ7WG9yxo7k8mLfhV/kdigsRAi/Ibbsrz7ugfcyAwuVTErh7krlvV9k/WFymGMtdP5uOyPSCTktY4wJke+3fRZHXCmi1hiqOQ3QaIsq8+ycImk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726651211; c=relaxed/simple;
-	bh=2IPuGsFVx6i3IPlbaxYG1lBF+gtjjtT/tgBzPKncEKQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=JCSnOPGj96ldvcyLV+wRHRLuqZNb9fUg7bCjxFfrGDJZhtPTHUXBJ5gFryknlxvVx6l/LFcx49muuAUxDn4GJFMeVJgt51Xqk1WdVyM5luDHFbnzlTn5+EKzzk6qG9fldnNBH8+zOhxVnl7EUmxsMH7qi9n1PDfjGplrREnJaqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fC06XVHb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A2314C4CECD;
-	Wed, 18 Sep 2024 09:20:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726651210;
-	bh=2IPuGsFVx6i3IPlbaxYG1lBF+gtjjtT/tgBzPKncEKQ=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=fC06XVHb0/Un4jdSh1HWBV7i/wmL1z2RxPkGk8bOlKg9AfKs01BfHtIzPEx+yuwTl
-	 lBs6hYpXEK09I/sWdZSYTDA2yePX/1dUhQZTnoj2tMWdUN/lh4368Ri1SXjyMo6M1U
-	 kGaeqrLxMYiNpHBuyUFq1li+i6nrob1V4+sMThYJezPS3HFbjkfgAtg3KbWaHQHctu
-	 Opi3Fjbl8UDWlH75eCxCulPgpszA/eymt9iVSA4RifTcA6eJ8gFCF2A7X3yy5b7oiA
-	 NdQNBtNgCQCg2joM8bqJn34ekUqhqnZYLWe0o77gcwGZ6Xd9FicrH1FxU61poWlcED
-	 j6aJEIM8xkCKQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 971C5CCD193;
-	Wed, 18 Sep 2024 09:20:10 +0000 (UTC)
-From: Manojkiran Eda via B4 Relay <devnull+manojkiran.eda.gmail.com@kernel.org>
-Date: Wed, 18 Sep 2024 14:50:03 +0530
-Subject: [PATCH v2] ARM: dts: aspeed: Enable PECI and LPC snoop for IBM
- System1
+	s=arc-20240116; t=1726651503; c=relaxed/simple;
+	bh=4Ckold4mqnpEic1raVAIRpA5fsbkH1jkSKs6+3JSmfs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ln5fPGH/KLVhVYbHNgPfGkRv78rPQfqnCAZCb/t5QNhgZKLLgjIn3TfwQPOTIZ7SV8+Gm9VUIViKa9hrhEifdg8x+H272O7d5qMhhJPT5TZ8buW+I2s2e8Hl4wYWSSaPmknHiTCPOWN9KS87KfS08nhs7P+WiDdTDl2hOn0iMQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N2z4cmAq; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5c423d496abso3626031a12.3;
+        Wed, 18 Sep 2024 02:25:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726651500; x=1727256300; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LkNDpY07V25JTDLmYMQ0N8Bt4Opex80DRrP8orE+KJk=;
+        b=N2z4cmAq7q3z5noUSMynX/R6CAzgLrSlP18xSUE97fi1r3/wtwAUFu1iHkGk8Ccedi
+         oy8CecYY3hoy6OBALe27SaMHtBOTQjPHHGYhC6F49TG+CMnGTOcFZwWsjaBJNvb2MHHP
+         65jUzR9AfWZYm4W9tsRTBih8iDnlDhb/hFncRSb0MMYqABMXbaSdU+skk2QdnS2NLS+G
+         0bmwaIEkPOdspBvySEnSI2qY54shom5DIUOqt164CfbOWyz5RVwyZ01ocjxkd3gNlwJl
+         bmYQDKV9SQjmItJbvrpWRPDCCDz73Zy/nwrS44eM+LCfn8/nwRjbVLhnz6E2LPhBSniI
+         lZVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726651500; x=1727256300;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LkNDpY07V25JTDLmYMQ0N8Bt4Opex80DRrP8orE+KJk=;
+        b=ZY0EDt7n15rWSktokn3BP5qqj1mXliGgtFRy1/yHs2ZnqNSSU2F1Cbp6i/v/lF1bwV
+         xuLQaIe6yvz4HC0jUKXNjmMOJ29IlGI8geA24j94y/84yQziutn/j7zurbI2YVU7iHiG
+         ayp1ZX7MaNeIFOO9F0JXOOKpU5k+wFdeXWKDvJ5jmWPDOeW+JHjF0bAoqTvPLjVoIV8B
+         hszgorPyl53RouQsbVU1NHc838MLj3WFN70l/E0GLEh12i0szIJ3GCQJchsgvh7GZY7X
+         lgWuYdY/WIGd2GmuZ4hR/MPa3qM4ZfN/uVQJzgQKQMmPPTdMbGfOjRebA68OEIrPu4DZ
+         Z73Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUiGM4pwNh4JO0GtMcL8zkJ6Uc0Fux3dJbST5EIUO77rwNg6/1uKwpXb0lJCNl9gamkhSPNBCQmX1R0@vger.kernel.org, AJvYcCWyARgPKKmkbE7wmeIHiJQ/6LhpCUsZJPKeDx/qYgpV1GyG6O0CM5o4gh6AEhJMGq1vpWnyUaRCfQIk/aA=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwE6XjFXrUkm/3DMNGOu6vPmYKW2wNMXPTQKrLwsWUMMnTh4GoA
+	Guh52Jc8E07Q0gyRXVIg+6mGNcJIbhDwE/LOEpRJOwa6rZOl4gx/tpu+6oNYeESlwUidJ7LmZid
+	mpFYkc++9FuvRNLzzI2NpQ7s0WuI=
+X-Google-Smtp-Source: AGHT+IELpoiFd0lCLB1yAYSsNv0EoCUJgRfKEMLoQxfu0an1ra0w4/nZbSMhzNKRAZncpaRhJTu+vGp40ilipQ7mj+Y=
+X-Received: by 2002:a05:6402:2491:b0:5c3:d0b5:453f with SMTP id
+ 4fb4d7f45d1cf-5c41e18ad59mr26768552a12.12.1726651499548; Wed, 18 Sep 2024
+ 02:24:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240918-dts-aspeed-system1-peci-snoop-v2-1-2d4d17403670@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAEKb6mYC/43NTQ6CMBCG4auQWTuGlp+qK+9hWJQywCRCmw4hE
- sLdrZzA5fMt3m8Hocgk8Mh2iLSysJ8T9CUDN9p5IOQuGXSuy/yuDHaLoJVA1KFsstCkMJBjlNn
- 7gEZXzuR9actbBakRIvX8OfuvJnlkWXzczrtV/dZ/y6tChe29Nn1b2NoU1XOYLL+vzk/QHMfxB
- WL1jDLKAAAA
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- Manojkiran Eda <manojkiran.eda@gmail.com>, 
- Ninad Palsule <ninad@linux.ibm.com>, openbmc@lists.ozlabs.org, 
- Eddie James <eajames@linux.ibm.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1726651208; l=2124;
- i=manojkiran.eda@gmail.com; s=20240917; h=from:subject:message-id;
- bh=PhsAWX7PZUt4OM1Bw10bIDsLdGTH2xpjWLavU7+Q4Tk=;
- b=czWKIuxWc7LaxglC3n9wJmLebajDF5jrdBsRa+IlENMLoNzE6kVM3/qJqWPjuB3Y/egwdDuqB
- JNNjTtL1XS5BICAZswrBb/1tOEriGVb3/1DQfw2KkhL3/sE8CpMpgrM
-X-Developer-Key: i=manojkiran.eda@gmail.com; a=ed25519;
- pk=DhQ/NRPeyE1WOxUmafF9Oy8LLco0c8CCeTN+Ef6q6Ts=
-X-Endpoint-Received: by B4 Relay for manojkiran.eda@gmail.com/20240917 with
- auth_id=215
-X-Original-From: Manojkiran Eda <manojkiran.eda@gmail.com>
-Reply-To: manojkiran.eda@gmail.com
+References: <cover.1725518229.git.zhoubinbin@loongson.cn> <c44a6525d77941ef235825a58a9ea91f9f7d7042.1725518229.git.zhoubinbin@loongson.cn>
+ <5a7357f7-da3b-4532-b055-ad33eb93fe1c@sirena.org.uk> <CAMpQs4JRz8x=zfB-DuDSxbcYDR=mtVET_AwawU+J9Vn=sx9LNw@mail.gmail.com>
+ <eaa0b894-b4f7-4e4e-927d-216ff87e6f14@sirena.org.uk>
+In-Reply-To: <eaa0b894-b4f7-4e4e-927d-216ff87e6f14@sirena.org.uk>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Wed, 18 Sep 2024 15:24:45 +0600
+Message-ID: <CAMpQs4LwAJoyRn7tT9BpiGcDcWyHPG11ZCPWB+ku6uzGikGcBA@mail.gmail.com>
+Subject: Re: [PATCH v1 02/10] ASoC: codecs: Add support for ES8323
+To: Mark Brown <broonie@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Huacai Chen <chenhuacai@kernel.org>, devicetree@vger.kernel.org, 
+	linux-sound@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Manojkiran Eda <manojkiran.eda@gmail.com>
+Hi Mark:
 
-This patch enables the PECI interface and configures the LPC Snoop for
-ports 0x80 and 0x81 in the ASPEED BMC for IBM System1.
+Thanks for your explanation.
 
-Signed-off-by: Manojkiran Eda <manojkiran.eda@gmail.com>
----
-This patch enables PECI and LPC snoop functionality on the IBM System1
-BMC in the device tree.
+On Fri, Sep 13, 2024 at 10:44=E2=80=AFPM Mark Brown <broonie@kernel.org> wr=
+ote:
+>
+> On Fri, Sep 13, 2024 at 08:02:02AM +0600, Binbin Zhou wrote:
+> > On Thu, Sep 5, 2024 at 8:05=E2=80=AFPM Mark Brown <broonie@kernel.org> =
+wrote:
+>
+> > > > +/*
+> > > > + * es8323 register cache
+> > > > + * We can't read the es8323 register space when we
+> > > > + * are using 2 wire for device control, so we cache them instead.
+> > > > + */
+> > > > +static u16 es8323_reg[] =3D {
+> > > > +     0x06, 0x1C, 0xC3, 0xFC, /*  0 */
+> > > > +     0xC0, 0x00, 0x00, 0x7C, /*  4 */
+>
+> > > There's a bunch of regmap reimplementation in the driver, the cache a=
+nd
+> > > I/O code all looks totally generic.  Just use regmap.
+>
+> > Sorry, I don't really understand this point.
+> > Do you mean to use regmap_read()/regmap_write() instead of
+> > snd_soc_component_read()/snd_soc_component_write()?
+>
+> > If so, are there any rules for using snd_soc_component_xxx()?
+>
+> No, it's fine to use the component wrappers if you happen to have a
+> component to hand.  What's an issue is things like writing your own
+> register cache code (the above bit is part of an open coded cache
+> implementation), or I2C read/write functions if there's not something
+> unusual with how the device does I/O.
 
-The following changes have been made:
+Indeed, I misunderstood it before. As I understand it, we should use
+regmap_config.reg_defaults instead of
+snd_soc_component_driver.{read/write}.
 
-1. Enabled the PECI controller (peci0) by marking its status to "okay".
-2. Enabled the LPC snoop engine, configuring snoop ports at 0x80 and
-   0x81.
-
-These changes are required to support PECI communication and LPC
-snooping for system monitoring and debugging purposes.
-
-To: Ninad Palsule <ninad@linux.ibm.com>
-To: Joel Stanley <joel@jms.id.au>
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: openbmc@lists.ozlabs.org
-To: Eddie James <eajames@linux.ibm.com>
-To: Rob Herring <robh+dt@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-To: Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-aspeed@lists.ozlabs.org
-Cc: linux-kernel@vger.kernel.org
-
-Changes in v2:
-- Added ibm system1 in the subject & added upstream mailing
-  list as well for reviews.
-- Link to v1: https://lore.kernel.org/r/20240917-dts-aspeed-system1-peci-snoop-v1-1-b967fb3a6735@gmail.com
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-index cb3063413d1f..738a86c787c0 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-@@ -464,6 +464,15 @@ &kcs3 {
- 	aspeed,lpc-interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
- };
- 
-+&peci0 {
-+	status = "okay";
-+};
-+
-+&lpc_snoop {
-+	status = "okay";
-+	snoop-ports = <0x80>, <0x81>;
-+};
-+
- &i2c0 {
- 	status = "okay";
- 
-
----
-base-commit: ca2478a7d974f38d29d27acb42a952c7f168916e
-change-id: 20240917-dts-aspeed-system1-peci-snoop-725c70f4a485
-
-Best regards,
--- 
-Manojkiran Eda <manojkiran.eda@gmail.com>
-
-
+Thanks.
+Binbin
 
