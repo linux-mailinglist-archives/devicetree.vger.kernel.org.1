@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-103626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BABF497B92E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 10:20:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60BA297B933
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 10:21:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 393821F23CD3
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 08:20:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E77F41F23BBF
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 08:21:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49598176ADA;
-	Wed, 18 Sep 2024 08:16:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84BA41741EF;
+	Wed, 18 Sep 2024 08:17:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rbUgdib9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yk8vHog2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DC6916EBE6;
-	Wed, 18 Sep 2024 08:16:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59DAA3A1A8;
+	Wed, 18 Sep 2024 08:17:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726647396; cv=none; b=B6cd9PfUDLyLRrGHM5Zdy1jQmfAJtIUqmg8zusKRUz4EjVrdrUj48Uj4WoZjHnMf2vCVvipfhzB3gUes1LK//n7DmoWfKLfXW2frqAo4N7/CS7YK3tstQ9awSOQaQmmlpfRH03FBMfZo6MnNBR6TchMPEuSFzslIJctWl/gu/BU=
+	t=1726647433; cv=none; b=rIlcOok6bqizjY18klXZUP1X6eSjMu79hYcAuAxHceE7sm9f+Ks9jtvJbMHyCKm7OizD8pQFUeFuyPC+pXjIlMRyHiJ6Tc6S/ek7vxAh2Otb5ojTAEqYrqd1xI8hbopB3u3W3BFZLs2IHhagbh1ynQgoPw4NvqAz0uj7+NOGDIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726647396; c=relaxed/simple;
-	bh=rS3yh68+aPmvRr7KeL3WFOG0COqNzn1pj+Gz6AdWruU=;
+	s=arc-20240116; t=1726647433; c=relaxed/simple;
+	bh=vYqA1OPWGAmibzxSpiuC4hbEPhEDOi+6eLPRV4jZDE0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AMublWiOsP8ogX0IX7m4LY8NuoTvWf380tWDlbQEEmO8B2Hbqzt2rYewKiskQ/JNn80vU7h7cLA8XN8Uv8artHow2W4bo1aZ+dgjB+67HpdobG+LGY2xk1oAkRsf20AN9aleXGxidMn2flwtzg54/rib0ndfH9JU5GqtvZOPDg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rbUgdib9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75288C4CEC3;
-	Wed, 18 Sep 2024 08:16:32 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ovTfw+EC99FqHzbyyWVycOt3h8eNJk5nZBoXNCo3W0fr8ZwgRWtgR5oDuitVoUNa/lHok5Yvs8hDNGeLQZ7MRHouxuZa3uxjmKzjg1+xiTCeJyUED6Gly0fDLVtVBPlTkY8+N7Px/n1CuNjICQ/Bp6xO6+wXRqunW/VSVWepsZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yk8vHog2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5696C4CECE;
+	Wed, 18 Sep 2024 08:17:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726647395;
-	bh=rS3yh68+aPmvRr7KeL3WFOG0COqNzn1pj+Gz6AdWruU=;
+	s=k20201202; t=1726647433;
+	bh=vYqA1OPWGAmibzxSpiuC4hbEPhEDOi+6eLPRV4jZDE0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rbUgdib977duU6lRpXpPJgA2+aU5s5JbAPqxEi9ejCgLlzpsVmpXHlyg4tX6H+6io
-	 mqRXu6BRfaBSWwj45Pzdzx3n4F1dXPIBr/XIzZbI+njoaAo3521ipdUJrF1fxbECrR
-	 /AzJo7BsxRmuGClVa42VAcT932QOq1wnlBjuTQHarXxM6WtdfpRS1EQl5L8k7MgRhS
-	 FH4+aDauauLHzpvUVep1JxTviueiR87Q3foUMi7oGQ7JTG7AWYWUtnrfv0899uSMyl
-	 sexIFV8WktBliOa2ncmm0B5z8ZZAcWs9H8RR8qXeX7kUy1+bJfhRvSL3RtGVxAJhjt
-	 S/fBzE/1eEVsg==
-Message-ID: <d9268240-4c57-4f5c-8ebb-82abb5ce0e3c@kernel.org>
-Date: Wed, 18 Sep 2024 10:16:30 +0200
+	b=Yk8vHog2JdyXyrULy9Xq6M+f5yxjlZHd4G0Tpk0C7FvlhUINKg0iS3Jx77a1m+/Ts
+	 usc+KGp6xjc3df5flBNLHeoOFtcLJOVprUInZ8MZ4Fck8e/L9dEgUdBhArEeFJwdcY
+	 J9j4G8DCDqIl4m6ECZ9pZUxCgww+zBiPXl0jLhBeb/jTgOzQSdYJM+0hJva9E5Nz8V
+	 QsuU7fl3Av0ofIswx8wXM974WF22KLLVq9WS7sei9XNe/86keFRIvcGrEAmICJ9BEW
+	 2vlB24WcDqUXEeC/cUOfkaC46kw3SpVKfPY2mbeU9h1ZE4Sxz4JN131DZfK5lrWKYh
+	 gEAvtSBuVia9w==
+Message-ID: <3a33370a-4f11-4f19-96e8-95bd1a8a48cb@kernel.org>
+Date: Wed, 18 Sep 2024 10:17:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] ARM: dts: aspeed: yosemite4: Enable interrupt setting
- for pca9555
-To: Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>,
- "patrick@stwcx.xyz" <patrick@stwcx.xyz>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20240910063952.3006665-1-Delphine_CC_Chiu@wiwynn.com>
- <42049344-fafb-4aee-8423-fe09a1a977f2@kernel.org>
- <TYZPR04MB5853795FDC6497F7E0114E43D69A2@TYZPR04MB5853.apcprd04.prod.outlook.com>
- <10de03e4-db98-4b5c-9cf6-3f98a5cc0537@kernel.org>
- <TYZPR04MB58538354F2C7B6C767679308D6622@TYZPR04MB5853.apcprd04.prod.outlook.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel-simple: Document support
+ for Microchip AC69T88A
+To: Manikandan.M@microchip.com
+Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, thierry.reding@gmail.com, sam@ravnborg.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240917095330.267397-1-manikandan.m@microchip.com>
+ <df51e0ae-a97d-4567-a16e-ef0667aac661@kernel.org>
+ <46cb2204-ee5a-4999-b229-ee1282f96a69@microchip.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,68 +107,41 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <TYZPR04MB58538354F2C7B6C767679308D6622@TYZPR04MB5853.apcprd04.prod.outlook.com>
+In-Reply-To: <46cb2204-ee5a-4999-b229-ee1282f96a69@microchip.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 18/09/2024 05:12, Delphine_CC_Chiu/WYHQ/Wiwynn wrote:
-> 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Monday, September 16, 2024 4:51 PM
->> To: Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>;
->> patrick@stwcx.xyz; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
->> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Joel Stanley
->> <joel@jms.id.au>; Andrew Jeffery <andrew@codeconstruct.com.au>
->> Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>;
->> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
->> linux-aspeed@lists.ozlabs.org; linux-kernel@vger.kernel.org
->> Subject: Re: [PATCH v1] ARM: dts: aspeed: yosemite4: Enable interrupt setting
->> for pca9555
->>
->>  [External Sender]
->>
->>  [External Sender]
->>
->> On 10/09/2024 10:20, Delphine_CC_Chiu/WYHQ/Wiwynn wrote:
->>> I will revise in v2. Thanks!
->>>>> +             interrupt-parent = <&gpio0>;
->>>>> +             interrupts = <98 IRQ_TYPE_LEVEL_LOW>;
->>>>> +             gpio-line-names =
->>>>> +             "P48V_OCP_GPIO1","P48V_OCP_GPIO2",
->>>>
->>>> Nothing improved here. I already commented about above and this.
->>>> Implement feedback for all your patches, not only one.
->>>>
->>>> Best regards,
->>>> Krzysztof
->>> Sorry about that.
->>> I saw you say "Broken alignment" in v15 patch.
->>> Would like to ask if the following format meets your expectations?
->>> +                     gpio-line-names =
->>> +                             "P48V_OCP_GPIO1",
->> "P48V_OCP_GPIO2",
->>> +                             "P48V_OCP_GPIO3",
->>> + "FAN_BOARD_0_REVISION_0_R",
->>
->> Please read DTS coding style before posting next version of the patch (or any
->> patch for DTS). This is still not aligned. There is (almost) never a blank line
->> after '='.
->>
->> Best regards,
->> Krzysztof
+On 18/09/2024 05:08, Manikandan.M@microchip.com wrote:
 > Hi Krzysztof,
-> After checking the DTS coding style, I found the "Indentation" section mentioned that:
-> "For arrays spanning across lines, it is preferred to align the continued entries with opening < from the first line."
 > 
-> Should I align the code with following format? (No blank line after = and use two space to align the ")
-> Or would like to ask could you help to provide the dts file that I can follow?
+> On 17/09/24 4:07 pm, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 17/09/2024 11:53, Manikandan Muralidharan wrote:
+>>> Add Microchip AC69T88A 5" LVDS interface (800x480) TFT LCD panel
+>>> compatible string
+>>>
+>>> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+>>> ---
+>>>   .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+>>>   1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+>>> index b89e39790579..09911b89d140 100644
+>>> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+>>> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+>>> @@ -200,6 +200,8 @@ properties:
+>>>         - logictechno,lttd800480070-l2rt
+>>>           # Logic Technologies LTTD800480070-L6WH-RT 7” 800x480 TFT Resistive Touch Module
+>>>         - logictechno,lttd800480070-l6wh-rt
+>>> +        # Microchip AC69T88A 5" 800X480 LVDS interface TFT LCD Panel
+>>> +      - microchip,ac69t88a-lvds-panel
+>>
+>> Is this device some sort of multi-function? Why "lvds-panel"? What else
+>> could it be?
+> This device does not multi-function, I will rephrase and share a v2
 
-Sure, e.g. qcom/sm8650.dtsi, line 765 or line 796.
-
-Or arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi and
-gpio-line-names.
+Then drop lvds-panel, please.
 
 Best regards,
 Krzysztof
