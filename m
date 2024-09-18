@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-103695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CC4697BCAD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 15:01:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87B8197BCB5
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 15:03:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C03FB23659
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 13:01:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 205BFB22974
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 13:03:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 947C0189900;
-	Wed, 18 Sep 2024 13:01:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 861F9189B86;
+	Wed, 18 Sep 2024 13:03:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RSns5O8m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XbZjq2QJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68A0917B515;
-	Wed, 18 Sep 2024 13:01:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D1EA17B515;
+	Wed, 18 Sep 2024 13:03:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726664503; cv=none; b=lo2uCTsuGecZJ0FPAgEwx8rGiy9Vuyk8awU0HTUqF7RvsoVLqHiMG8PreEFsN9qSnIftDN6LzRURCFEDUNxJJsBsfgURkAMVTR+DVvvQjisi3IYgIosA8bnqXnnexeJU9+e8peg8Abk0VmdsISPkCkh6GaWTRQ7pLfl8il4ySuU=
+	t=1726664589; cv=none; b=NDhek3z5wIr4wmDyowZfHMArgOTC1sBE5foeTvyjUsBoQ/eTaAO56i/cJ0PNM7UHk77UroURxcI6S1fnO3Ryet9ePv4ICopBUUwRXNN6JAg5ijHGsIYY4ecnsU5+3rR9RONCxbxRhA1siz3eaTPUpwE42a62WrXldo2zHOMhsoQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726664503; c=relaxed/simple;
-	bh=vgloteRtKHCFk58GBxwki21fuDxtLf/Q+rzpXZCu11M=;
+	s=arc-20240116; t=1726664589; c=relaxed/simple;
+	bh=ZolYjb2XOGecKlj3tLtBWn1nCvSR9TIeo7yAuMdp4js=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PdfAr+NtU66pM7Inu5let3era42vucEWYgyxGeswhLv0qy1neZTrOZ/mA4LwBBUowkvyYhdP5ex7hCv+JySUS2elzy6FW10gXKHH5g7sRyKE6WtkNeLksDtY/KpMK1SFbG33tX/Dv50jeMUBONfGesO8sdWvVty5Tfp6yABRq1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RSns5O8m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1F83C4CEC3;
-	Wed, 18 Sep 2024 13:01:37 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=hDRoEO+Q2Wgp2QTP9NJQTOLAneHAveChGMEWF2HvtWbAGkhcGLkqIKjUnxs0mwrW9kz/rfaUKpp++MmUPOXgjMAg5iuBfRNdWG1NzeegqzIncbHNv706ZG1Ggkc6T6wWr2h73yAHBwO1y9hvwKTjsuVSfCfgzm2Go6A1ztG9Evs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XbZjq2QJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05BABC4CEC3;
+	Wed, 18 Sep 2024 13:03:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726664503;
-	bh=vgloteRtKHCFk58GBxwki21fuDxtLf/Q+rzpXZCu11M=;
+	s=k20201202; t=1726664589;
+	bh=ZolYjb2XOGecKlj3tLtBWn1nCvSR9TIeo7yAuMdp4js=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RSns5O8mi7Pg5uVnQjy3B0x6TeluReRAtLX22dTZlFB9q81qiCa8EJcMTZNbZPsgC
-	 ViHdBfUtkB941l4jLrFUKfMybFegL7XGWhtdSVbun1PVPEJbix9JGk3Gi6EusN6Ppi
-	 jm/xv2ictP4RNxmsVQx97Hb0zroetztznEa0HoGlWqdsbydKpKQCLEvCLDWUMZy9ZZ
-	 0Ob7WhmVl57P/rHXJP0o5ejVIvkTOAUOdfDrKxlvvq/1r7GMmME9iQZol00EDB4C6p
-	 KsQTVx4eEOKxIfU2r9DDKJXP1iMMZM4p5fwbzenJXwxnNxlUqahylyr/qbBZAdrIMe
-	 4jiAj5onJXmrw==
-Message-ID: <d5d41bc2-f67e-492b-a12a-6671ebeab68f@kernel.org>
-Date: Wed, 18 Sep 2024 15:01:35 +0200
+	b=XbZjq2QJWgbwbpndJRvMai+zFGaZuyN19FCOIHLXgIl1g+u0lLKIeQJKHgoorg309
+	 mKkteFO/wiRjm+1aT8wlk8KuQPPpnqMSFjakHUeFzMbDjP7pMGknJf2eorUkNuungv
+	 Df5oZUL3+9yZmD5eGuLl4cSzLNFKEVuWSPnscs9GUO3PCmRbLaZFIF1Jha9bGr+DnZ
+	 W5h3FhVgnCT1DhYabNu+KXPUI4MVMdjIS1dACRTTPZySqVO6Y+B1yRnZ1DuR8MBc8Q
+	 DIPBO+DGZ95/tCfRvBCY2ZuB1F5PEsqbQBCmLhCS94v4yS6L5J2ITgRCdQJmYNQPAi
+	 s2mMZYCJTgAZA==
+Message-ID: <e94f03a9-92e1-47d5-aa36-fc51216436c9@kernel.org>
+Date: Wed, 18 Sep 2024 15:03:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: trivial-devices: support MPS MP5023
+Subject: Re: [PATCH v2 1/3] dt-bindings: trivial-devices: support pmbus
+ compatible string
 To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
 Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>, Joel Stanley
  <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
- Guenter Roeck <linux@roeck-us.net>, Peter Yin <peteryin.openbmc@gmail.com>,
- Noah Wang <noahwang.wang@outlook.com>,
+ Guenter Roeck <linux@roeck-us.net>, Noah Wang <noahwang.wang@outlook.com>,
+ Peter Yin <peteryin.openbmc@gmail.com>,
  Javier Carrasco <javier.carrasco.cruz@gmail.com>,
  Fabio Estevam <festevam@gmail.com>, Lukas Wunner <lukas@wunner.de>,
  Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
 References: <20240918095438.1345886-1-Delphine_CC_Chiu@wiwynn.com>
- <20240918095438.1345886-3-Delphine_CC_Chiu@wiwynn.com>
+ <20240918095438.1345886-2-Delphine_CC_Chiu@wiwynn.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,22 +111,22 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240918095438.1345886-3-Delphine_CC_Chiu@wiwynn.com>
+In-Reply-To: <20240918095438.1345886-2-Delphine_CC_Chiu@wiwynn.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 18/09/2024 11:54, Delphine CC Chiu wrote:
 > From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
 > 
-> Add support for hot-swap controller MPS MP5023.
+> Add pmbus compatibale string for the Generic PMbus devices that could
+> be monitor by pmbus driver.
 > 
-> Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
 
+You need to explain more, provide background why we would like to accept
+a generic compatible. And why a specific compatible cannot or should not
+be used...
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In general this is a no, you cannot have such compatibles for real hardware.
 
 Best regards,
 Krzysztof
