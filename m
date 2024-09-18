@@ -1,360 +1,594 @@
-Return-Path: <devicetree+bounces-103742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB1AF97BFE7
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 19:54:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC24897C005
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 20:15:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D5B81F217EB
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 17:54:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 719641F21B30
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 18:15:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4950E1C9EBE;
-	Wed, 18 Sep 2024 17:54:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A980B1C9DD6;
+	Wed, 18 Sep 2024 18:15:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LE3IpYln"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="AeiH97/5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010032.outbound.protection.outlook.com [52.101.229.32])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55C141C9EB4;
-	Wed, 18 Sep 2024 17:54:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726682060; cv=none; b=a/cnMwwh9pNB2Nb1egM5iFNEbrcMTp1zCWkqgZIuBS149kr2tRqzL/fH6Dq86aAvYil0oQiNbtgoABqVTPVA+2XyZVW1kiXTU9T2Ra8Oj7QY6sBSLaDLnzMn94NBg9BnH4/u7hX0gk3mTOSzWd7mYMSn1+ZFfKiSZt5QOgFZWc0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726682060; c=relaxed/simple;
-	bh=8g1ZyWNrJVy3mg588ybFXKX4m9TA5WDT4YyZap2W66Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cFc/YI+Wr1yZHjK1/1JgDlvozjWTkZ2EZdZpB5xuqVinncYh4iEOxCv2gb3mkLvmI5ah7vvd+ZR4+TSi++2AC+iIOZ6v/8MWkxCr/mg87x69tZ8bO1kerrimh6MCfmY2x5q5b6RsrsAMDXmfAjwMfTHcaIE+hohr8DBT3CeVrTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LE3IpYln; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-42cb0f28bfbso61525305e9.1;
-        Wed, 18 Sep 2024 10:54:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726682057; x=1727286857; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4YdeDfryno/+LkCXv1GZ4YNBzPvX86nNSKieqAhx+P8=;
-        b=LE3IpYlnX64yp5R+uaCDgx817yIRAgCZuH7AMCyiHZeP3C1ju3FwHK7RAKUF7Tna5v
-         g2I39BMc2XnvOUJuPH7+EdSKOgaQ2gC7zGQXu/Bm32u7tfTNyNeCI8KHYELeEZMxEqr2
-         bep7JvhdCn1nJDEelC49VpxA1mCNOxyWYzZxZSa4HwCQPtq/LAAefeaJFNqJXHgeDOQt
-         m0W2JVN+ZByP7En3715PXU0mHomDqOJ/nxuPKlK+nFgW3hccjMu4Mh3H3WwVDOivkUyc
-         TM7aH5Sl4GUrIXQiFrmNqoKVKSxQa98ysxvTLP+h5psCmtka2DsBVLW5WlpTtcmL2MDW
-         s8Ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726682057; x=1727286857;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4YdeDfryno/+LkCXv1GZ4YNBzPvX86nNSKieqAhx+P8=;
-        b=Uz3/ojhOjT1dOpLjz0rYsxGG87Eod2DpfaEs1JIKhOJdqTiimwKBDPXGA9NyHJe/ex
-         zgZ84fisANyIt69vLvyH6umQ6rfhs85ozVeGj3WOGUexmGI172EyHgOYUDvNE1HKgtl5
-         66N+1yKkIWxBwsBJwoOhpno2hhOgMaojjUfNd0jjDjreyP2LZK59k+9DHXELcp3Gobhs
-         3vQNnkUIcxqUtdnYSyDzQSl0xgCOxyRr7E2yD2tFw7ERANfgBfSxZPaglX3h3ADBKsBJ
-         z4Oix9+pnowOPmo/8mrf9coujVwuVk4Q+UwfArh8dkt3erixJ0/z4jHn5CjE0XgHnE9K
-         +E0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU77MLCCNxnJECahI8qZIfKk7Hg2pTYLNhFGvr/vkrZbRGSQU2btqrbSmDUsY8QNeum4Dd1K5ln0fMBBA==@vger.kernel.org, AJvYcCWt5DsXpskP+bwjfsdShzsK6V9MRpwxJcDWDKBdP602w8KqKvgVoN1iJUwTzNsxeaua/X/Dg0/1bLaE@vger.kernel.org, AJvYcCWun4dKVcQa2uzTtMoD4r5Ykp0FDY+liU49pJOFovgRKLLMxl4ElXptP9t0lo90ct/TLLMrQUXr0SY5piL8jWpeNLI=@vger.kernel.org, AJvYcCXEOXrAkz7e0m4aKd8UMZLRSpmIw9YHNpi2Fxjx6nnY3aJDA3O2LiucrZH7Sm2Jd8oj4PyRVGPEwV8JUi+h@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4glQfg3fEMSLNMhjPG6yzqoLBBn59/ZoD0/yayDJSa14ht+G5
-	GpWVjxbv1stwIynipRKPHxUfR6ZI00g5dAU3Jwr+0hYKNoA3nUZR
-X-Google-Smtp-Source: AGHT+IHzflAi+Tk6JXO6OnkT4gjSHrOOAjOa6jFD00Heydj2S+pRfz+9cYpMV5t0dwEaJfWoEJVIwQ==
-X-Received: by 2002:a05:6000:c86:b0:374:b3a3:3f83 with SMTP id ffacd0b85a97d-378c2d617cemr11727764f8f.53.1726682056212;
-        Wed, 18 Sep 2024 10:54:16 -0700 (PDT)
-Received: from [192.168.1.106] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e70537c71sm22762645e9.31.2024.09.18.10.54.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Sep 2024 10:54:15 -0700 (PDT)
-Message-ID: <ddda4f98-2402-04ab-108d-a1ee4beb33bd@gmail.com>
-Date: Wed, 18 Sep 2024 20:54:14 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E62013A3F2;
+	Wed, 18 Sep 2024 18:15:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.32
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726683335; cv=fail; b=CtXzRlKhXnBkIWCGmXDb24qzQTjyGRq5w4ic4axb9A92JxURs3VIwrtp+iVa8BpzbgLgUO2faPTNC9pjG+/TLtIgEHQ7G9o1q1dPOpLLlVrV/1uyr4sEyhkxkKovH8nWoh7R5Mm59NmWI6S9pf6Km0fRMeNzcgNX64vyUZ03ejg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726683335; c=relaxed/simple;
+	bh=J2ssANppZajWQfJw+yzz7yYP4lhiHjzasVFKdpAgDHo=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=i6WxkCtHuGuN6FIAs3JC7I9/maErRAZxFbrsyZmdD5skEBeHiMLW/WRuXj1cBp7swa5FPWtnfUdDTTfg0qg9CFc+V7EG4XndG5IiYVXkN/6b/erN789Bu9xg2FNLZnrR8/3xviXH3FOSgl/VBMAfPSCl03dy9JmaqWWDCkSyj00=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=AeiH97/5; arc=fail smtp.client-ip=52.101.229.32
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=S7VDHF4GaJXPkGRQv6aWGcbe3sJaaJCZjYcznLJ3Ds/0sSQsgXEy6oIAA0161HPqi0SWqldl9sQ2XbXdp8tfB15ClqNLOuPaOBZRQI5teb36Md3Q/cuhZgLlsncJoxmz27I9ppDMhs8uVF53BtgHc++lbEv/Ezl6eP98M8MSxWxnQlGm1xR+gDKQvil1VkqRPTLs1gfYoHZxhN/FEbspe4TbSQoETLG0sH6FljXUbhuMrHNJDhqQswMOnpJsW+7FaTU5h3r6tseJqQXA0jYbaYB0ZJEukDP5nWbvQeHQuh73gw8YfJsbJ873YDVFwSgRWsamnj76jS0ZE1z38tRRAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Lq+9fn9bg27xO50teiRzz9IgvKN35d4QaGOHg2mH+EE=;
+ b=mfcPGjXPg2Fg/aCUAx/2SLksrDyTfIpYCKdwER0RIv0X1REoR0KyCgdEXauihENOKgANICy+cFvnbf3MzPlCqBXhrk8pBRI/JqaQM86kydU2nTmtowx6JYDrmZtj44lfpvcL3wc5QKs3t9lE0E7im/60eLDRQ/w+uq+KxsTKVMJBYmexxdrzCWuiSmmEniJK+azkOJU5NhFBCqnevqE9ra73Tynn6YbIRPdJFBF9poy429sNBJ/5PthshfH4BUNQ9Qa1dE6YaGyyg4UuvWswgKAVwgKb+qBa5LXM0vi89yvYLNSyyEefH+0qyY5TiOmCE4xNdreE6OzJOU1Cw2WYWg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Lq+9fn9bg27xO50teiRzz9IgvKN35d4QaGOHg2mH+EE=;
+ b=AeiH97/53jhCYK5X2pfY3GVxOZrVmjUY5nGdbySOSQ4NkqksGZM18V3p61Yfc0ad3KAjHhAECVHp0Ncaltt+MFuiyD887iwPSPmmmquaQtOcjh/vP5JCgvjeZPWB226Ml2HyEnpTNvADVnB9P6lWt9PAD6Jkv1rN/8gEQ4cuKoY=
+Received: from TYCPR01MB12093.jpnprd01.prod.outlook.com (2603:1096:400:448::7)
+ by OS0PR01MB5748.jpnprd01.prod.outlook.com (2603:1096:604:ba::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.16; Wed, 18 Sep
+ 2024 18:15:26 +0000
+Received: from TYCPR01MB12093.jpnprd01.prod.outlook.com
+ ([fe80::439:42dd:2bf:a430]) by TYCPR01MB12093.jpnprd01.prod.outlook.com
+ ([fe80::439:42dd:2bf:a430%3]) with mapi id 15.20.7982.018; Wed, 18 Sep 2024
+ 18:15:18 +0000
+From: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+To: Rob Herring <robh@kernel.org>
+CC: Thomas Gleixner <tglx@linutronix.de>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven
+	<geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	Chris Paterson <Chris.Paterson2@renesas.com>, Biju Das
+	<biju.das.jz@bp.renesas.com>, Prabhakar Mahadev Lad
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: RE: [PATCH 3/6] dt-bindings: interrupt-controller: Add Renesas
+ RZ/V2H(P) Interrupt Controller
+Thread-Topic: [PATCH 3/6] dt-bindings: interrupt-controller: Add Renesas
+ RZ/V2H(P) Interrupt Controller
+Thread-Index: AQHbCSe1auB4kIFR/0yrte1v28WXh7JdzfyAgAALcTA=
+Date: Wed, 18 Sep 2024 18:15:18 +0000
+Message-ID:
+ <TYCPR01MB1209324DA2100B5E86B8D544CC2622@TYCPR01MB12093.jpnprd01.prod.outlook.com>
+References: <20240917173249.158920-1-fabrizio.castro.jz@renesas.com>
+ <20240917173249.158920-4-fabrizio.castro.jz@renesas.com>
+ <20240918172817.GA1823473-robh@kernel.org>
+In-Reply-To: <20240918172817.GA1823473-robh@kernel.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYCPR01MB12093:EE_|OS0PR01MB5748:EE_
+x-ms-office365-filtering-correlation-id: 4064a581-1a14-499b-044e-08dcd80dda38
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|366016|376014|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?V2nrZbLCzTcAwXOZunbp88QgYLsu88HaZmCizwyDuwTYawGcVbAazqmz+tBu?=
+ =?us-ascii?Q?FbMNnYkruTaA/TAhnRWvQXpE+VNqJbt8CPeUmERgkdHMBjK+MIDQ0i2wddLJ?=
+ =?us-ascii?Q?JuInoBF4+YAkumrLHdMCWzO/kXuSl+7CrM5pGqCJ32g/T8ZYQIwBZH4egIez?=
+ =?us-ascii?Q?58xVPTr5C8OilWUonCfT+yNKsODV4k6A81rXZCdIDHkt4s44gJikaVQnHEbQ?=
+ =?us-ascii?Q?wClvkRUShdegVD1oOH0SmmRX/iB14ridQFLziLQCg+f1U5IrYFSLazaenmxw?=
+ =?us-ascii?Q?5WaVRgP8g58KlPKSK5fH99HkCyQxloZA9m17IzcRLagYlrPkViwmfB1nhTFb?=
+ =?us-ascii?Q?ucBJDcBEyGhQfmZdrOUmqBjjglooEVAGLEskF96ENXvK1iLUdN7QnTwHQxo4?=
+ =?us-ascii?Q?sE08TloewoEycZ6nTvENiqw31gK5+WePgcfsA313ctIFGNWY9GALu10SXLkF?=
+ =?us-ascii?Q?BYMQiNhDDxyExHCvyu8aGwmIIYtgNYkZdU6aTmvwh03x/Vu2wC22IeJVmT4w?=
+ =?us-ascii?Q?H7qJ/5cjJqCd20P3TPNaloNYTMFf1aOk80h2/8Izfvnkye8Z3sJyg+5aRPNT?=
+ =?us-ascii?Q?aIN95/0PPCZd7dSN8IW1zj4YcxunKKxyi08JA46JDOVSSx2P0HHyXvbNjN9h?=
+ =?us-ascii?Q?Mul3N6CCxmJe71GrEWe2MJ0tvlbAC8pfLfjq1b4P1zPJZGPLuD8RJfXEFObp?=
+ =?us-ascii?Q?4p1KeGTZKv2UR4/SAEs1iNjcV/t/bTL3vaL3r36KtTjc0QarVZhufY1KyRXq?=
+ =?us-ascii?Q?OtCX1hLtkD6J2gk8Rt4We2kesiSR/f2hoj2UtGoMG6YprsU5yeK4w5ucaSiU?=
+ =?us-ascii?Q?2g9w/4RY+Ze5TayhhjLhJJhtjr5fQ0D/wtB6Vkld8af2/CA6x1oR8AMV+u+J?=
+ =?us-ascii?Q?9hE+lcnN/mWH8zuv+Tt/xqykVwyCTX+4wXy6YgMPwNLO+PF7o97aXTMv42Lk?=
+ =?us-ascii?Q?QRIOZCD8VZWgs3rL5osae3sKA6tSHhh2dmWi/hjCNDKb3STTwFKEl2m7h/AW?=
+ =?us-ascii?Q?5OrCrHZfbPL3EiRCHANPMYi50b11TMd1ntzXYYGW/VwJSvmf+tcxvCCZephV?=
+ =?us-ascii?Q?0L3IGhew0QnRLXKp1Fj4Bg2oP2pWoJX9IWfmdZ45psp7hTXFyrl43tQpAMOe?=
+ =?us-ascii?Q?0Q4h8jEI4PuYuVaUWfsq4WulBYfIAo1vLGRzBmu2IPB9KKIZu/oHCEz54en1?=
+ =?us-ascii?Q?qw4A55HKvgh91IOIQeXIeUC65DHJnijtAbE0cyeQLaK0h0V1xJyYEjm6stiv?=
+ =?us-ascii?Q?lpcCw71B4I1RoykeQoGWDgkgufv/bWxYIKs7wgHUfUpwIfkly0rAdWkxG3Qr?=
+ =?us-ascii?Q?Ib2/ff1DKepEpPviGqaSbnAbGcRpg0jXCAQkSpz47dVNMy5ABcbY8AYJWBDY?=
+ =?us-ascii?Q?QY4a8us=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB12093.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?3nAyVAKUuooYXUbN1blxFr+Jnz+Y0vB6IQIYToNpTJDbqGMa7+BVxUjIehoo?=
+ =?us-ascii?Q?jXhRp0zWjJMipFbNU2Gah/VfEOozKGP7PvAohh9l+hiqErJ3GB88zDwS4S08?=
+ =?us-ascii?Q?I48JI7bp2Mvr8qrovN8iAAtuMQqfWE+W8QKeSfc4uJFY14DP8zmlpLZVHKm/?=
+ =?us-ascii?Q?NNaE0SwUQvQYbSY7BunFoYFUGSycUVzXLwFr+ULDMJ/vMdJnBb6d3PVaprqr?=
+ =?us-ascii?Q?w4EAlWOeoi25m8iHPqHo7UuCBu4LWiskKFB77d940twBo/ImD7i7XAJ0tAC5?=
+ =?us-ascii?Q?hlC9xI/9QnscKqc/ohkZmOrL5PpQRV4ZlMKr61hziiYQ7yQR21UeAl/lCIGT?=
+ =?us-ascii?Q?xwTtR2t7CxRJN41XBEc2LsxOIprrcpZc4CJbVsiF6gLsMJ0WFd7Zs+ReW1bX?=
+ =?us-ascii?Q?bI7GO02YmLPeIFnj4tjez7fl5RAvarrl850oYxknJhMADm/lxpFojFGl/BeJ?=
+ =?us-ascii?Q?UDQv/ZkxKeRAGMvjQ6yfFgQYRQB/EOUn0iCCHnv38kGM2q4dyWwFTOTk7LAW?=
+ =?us-ascii?Q?M9taigL0QPldYF4mzD9AIXt8rmbFXngohvX/ZwHT2lBVMOFvDlv3eaE+Q/+H?=
+ =?us-ascii?Q?ekcTj91LEYrw/UpBimZnLFsYe3sN+Jk0CFFvJMNNwtx2AS8WiReZLbUijUnU?=
+ =?us-ascii?Q?vPwqxCjLoD9cm2prmA6EhYOxXPo7WE0N17krqSmnHIyqoYtstrsPdVHcCP0R?=
+ =?us-ascii?Q?czWb6hg0mBDegs0swqW1k+bcdcIN4nux77qNkBKgfP8a3z6KKnJ8Jqs5ihv9?=
+ =?us-ascii?Q?KU+Ke6vrmPKED7Jb1zVG/eEQIwzUocH/mgAHM5N6gJv3wsHx7NxWIuqtAjWN?=
+ =?us-ascii?Q?9rVbKe4hfXP/u+Azv6Sf9tYzVCSyKXZ9LdPJ+87YQY9Ef+eVptR+OIh3wmBk?=
+ =?us-ascii?Q?nahQqnTUrzLJMviB3sO6K0bJGiWmUTuuBgkl2HP8DNW8uSJu4KIdbfDsy0qC?=
+ =?us-ascii?Q?DD21rgo6M7jHJXWyoA7vmS17zH3lkiyxadeD8dy2XlCpNPMGT4u9zByWGzyL?=
+ =?us-ascii?Q?BERtYCZE7njDnPwya6XV+eayJ1ExyoT9wV8bKG5L44MC5xYT7kcfNTjI/EKN?=
+ =?us-ascii?Q?WOOyJzrFQ9Gt+hMU093dMZgnwu1zjaJ5rYaU7S8uF0lWvivwU2MAMZeAA2q1?=
+ =?us-ascii?Q?/xXEQ/WBukDhC96MzD9g14LiH/Tuq1vIwy9fJ7KxlsNpF4+xwFALtFIxbg+G?=
+ =?us-ascii?Q?ndwbWE+vReMRuW6sZxNiveoLxyyZZRaELM4WnrMPbpUxFaBIMgwYd0uaEFPI?=
+ =?us-ascii?Q?Y55nOEFqLHnxrg5JamhvhcPBtyh14cING4tXjl2se3bBH9IZsUlgEV2r8gAP?=
+ =?us-ascii?Q?q/fW6f43htgZ7CTjTNLAFjsRABA+gg5fnFw8RYvvS/qEJIeRXhfctageqvva?=
+ =?us-ascii?Q?Vvpi9l3226vjYtbns5+L6n12Vm42iMaWH3c64kdcxW+a0e/KNdj22kPP75Cz?=
+ =?us-ascii?Q?VIUM5sELmjgp/PQ9MI8W+0V7ntG4DjSyAOvkIbz6ddoov0Wj9iqjarBBEzmE?=
+ =?us-ascii?Q?fA2ADukPSEV/Y4Rau2HwFWFbT58JAUbpAz0l0qWZctZ40DksofT37pALmiSL?=
+ =?us-ascii?Q?HzUgn/2rICmA7kyvPRzA/EZg1h9f689Xb1pVCHcndVwnPlSRY0m6zIY1jVrK?=
+ =?us-ascii?Q?Nw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v4 08/10] arm64: dts: exynos: Add initial support for
- exynos8895 SoC
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240909110017.419960-1-ivo.ivanov.ivanov1@gmail.com>
- <20240909110017.419960-9-ivo.ivanov.ivanov1@gmail.com>
- <ylxrbde4kafbos3qmx54w2d6hpv26ngxgkkpnbdynjj2wfce32@fyzr4jxzn6z4>
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <ylxrbde4kafbos3qmx54w2d6hpv26ngxgkkpnbdynjj2wfce32@fyzr4jxzn6z4>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB12093.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4064a581-1a14-499b-044e-08dcd80dda38
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2024 18:15:18.6981
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: myI+BwsGHPac4n78D5ioPmUC2tmM3YVJS9ZlbwGnN+ZJbnsCKL2NGFOjmRNP7q75MWmNNAHmyiHc4oVjt0QGMhMCKtK62wC8KbGJeG1ebng=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS0PR01MB5748
 
+Hi Rob,
 
-On 9/16/24 17:23, Krzysztof Kozlowski wrote:
-> On Mon, Sep 09, 2024 at 02:00:15PM +0300, Ivaylo Ivanov wrote:
->
->> +&pinctrl_peric0 {
->> +	gpd0: gpd0-gpio-bank {
->> +		gpio-controller;
->> +		#gpio-cells = <2>;
->> +
->> +		interrupt-controller;
->> +		#interrupt-cells = <2>;
->> +	};
->> +
->> +	gpd1: gpd1-gpio-bank {
->> +		gpio-controller;
->> +		#gpio-cells = <2>;
->> +
->> +		interrupt-controller;
->> +		#interrupt-cells = <2>;
->> +	};
->> +
->> +	gpd2: gpd2-gpio-bank {
->> +		gpio-controller;
->> +		#gpio-cells = <2>;
->> +
->> +		interrupt-controller;
->> +		#interrupt-cells = <2>;
->> +	};
->> +
->> +	gpd3: gpd3-gpio-bank {
-> These should be ordered by node name. Same in peric1.
-Alright.
->
->> +		gpio-controller;
->> +		#gpio-cells = <2>;
->> +
->> +		interrupt-controller;
->> +		#interrupt-cells = <2>;
->> +	};
->> +
->> +	gpb1: gpb1-gpio-bank {
->> +		gpio-controller;
->> +		#gpio-cells = <2>;
->> +
->> +		interrupt-controller;
->> +		#interrupt-cells = <2>;
->> +	};
->> +
->> +	gpe7: gpe7-gpio-bank {
->> +		gpio-controller;
->> +		#gpio-cells = <2>;
->> +
->> +		interrupt-controller;
->> +		#interrupt-cells = <2>;
->> +	};
->> +
->> +	gpf1: gpf1-gpio-bank {
->> +		gpio-controller;
->> +		#gpio-cells = <2>;
->> +
->> +		interrupt-controller;
->> +		#interrupt-cells = <2>;
->> +	};
->
->> diff --git a/arch/arm64/boot/dts/exynos/exynos8895.dtsi b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
->> new file mode 100644
->> index 000000000..59af33420
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
->> @@ -0,0 +1,249 @@
->> +// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
->> +/*
->> + * Samsung's Exynos 8895 SoC device tree source
->> + *
->> + * Copyright (c) 2024, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
->> + */
->> +
->> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +/ {
->> +	compatible = "samsung,exynos8895";
->> +	#address-cells = <2>;
->> +	#size-cells = <1>;
->> +
->> +	interrupt-parent = <&gic>;
->> +
->> +	aliases {
->> +		pinctrl0 = &pinctrl_alive;
->> +		pinctrl1 = &pinctrl_abox;
->> +		pinctrl2 = &pinctrl_vts;
->> +		pinctrl3 = &pinctrl_fsys0;
->> +		pinctrl4 = &pinctrl_fsys1;
->> +		pinctrl5 = &pinctrl_busc;
->> +		pinctrl6 = &pinctrl_peric0;
->> +		pinctrl7 = &pinctrl_peric1;
->> +	};
->> +
->> +	arm-a53-pmu {
->> +		compatible = "arm,cortex-a53-pmu";
->> +		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
->> +			     <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
->> +			     <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
->> +			     <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
->> +		interrupt-affinity = <&cpu0>,
->> +				     <&cpu1>,
->> +				     <&cpu2>,
->> +				     <&cpu3>;
->> +	};
->> +
->> +	/* There's no PMU model for the Mongoose cores */
->> +
->> +	cpus {
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		cpu-map {
->> +			cluster0 {
->> +				core0 {
->> +					cpu = <&cpu0>;
->> +				};
->> +				core1 {
->> +					cpu = <&cpu1>;
->> +				};
->> +				core2 {
->> +					cpu = <&cpu2>;
->> +				};
->> +				core3 {
->> +					cpu = <&cpu3>;
->> +				};
->> +			};
->> +
->> +			cluster1 {
->> +				core0 {
->> +					cpu = <&cpu4>;
->> +				};
->> +				core1 {
->> +					cpu = <&cpu5>;
->> +				};
->> +				core2 {
->> +					cpu = <&cpu6>;
->> +				};
->> +				core3 {
->> +					cpu = <&cpu7>;
->> +				};
->> +			};
->> +		};
->> +
->> +		cpu0: cpu@100 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a53";
->> +			reg = <0x100>;
->> +			enable-method = "psci";
->> +		};
->> +
->> +		cpu1: cpu@101 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a53";
->> +			reg = <0x101>;
->> +			enable-method = "psci";
->> +		};
->> +
->> +		cpu2: cpu@102 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a53";
->> +			reg = <0x102>;
->> +			enable-method = "psci";
->> +		};
->> +
->> +		cpu3: cpu@103 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a53";
->> +			reg = <0x103>;
->> +			enable-method = "psci";
->> +		};
->> +
->> +		cpu4: cpu@0 {
-> Why cpu@0 is cpu4 not cpu0? Anyway, these should be ordered by unit
-> address.
+thank you for your reply.
 
-cpu@100 is the boot core of the first cluster consisting of cortex-a53
+> From: Rob Herring <robh@kernel.org>
+> Sent: Wednesday, September 18, 2024 6:28 PM
+> To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Subject: Re: [PATCH 3/6] dt-bindings: interrupt-controller: Add Renesas R=
+Z/V2H(P) Interrupt Controller
+>=20
+> On Tue, Sep 17, 2024 at 06:32:46PM +0100, Fabrizio Castro wrote:
+> > Add DT bindings for the Renesas RZ/V2H(P) Interrupt Controller.
+> >
+> > Also add macros for the NMI and IRQ0-15 interrupts which map the
+> > SPI0-16 interrupts on the RZ/V2H(P) SoC so that they can be used in
+> > the first cell of the interrupt specifiers.
+> >
+> > For the second cell of the interrupt specifier, since NMI, IRQn and
+> > TINTn support different types of interrupts between themselves, add
+> > helper macros to make it easier for the user to work out what's
+> > available.
+> >
+> > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > ---
+> >  .../renesas,rzv2h-icu.yaml                    | 278 ++++++++++++++++++
+> >  .../interrupt-controller/icu-rzv2h.h          |  48 +++
+> >  2 files changed, 326 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/interrupt-controller/renesas,rzv2h-i
+> > cu.yaml  create mode 100644
+> > include/dt-bindings/interrupt-controller/icu-rzv2h.h
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzv2h
+> > -icu.yaml
+> > b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzv2h
+> > -icu.yaml
+> > new file mode 100644
+> > index 000000000000..28f5b2f30c31
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,r
+> > +++ zv2h-icu.yaml
+> > @@ -0,0 +1,278 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+> > +---
+> > +$id:
+> > +http://devicetree.org/schemas/interrupt-controller/renesas,rzv2h-icu.
+> > +yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Renesas RZ/V2H(P) Interrupt Control Unit
+> > +
+> > +maintainers:
+> > +  - Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/interrupt-controller.yaml#
+> > +
+> > +description: |
+>=20
+> Don't need '|' if no formatting.
 
-cores, hence why it's labelled as cpu0. The second cluster contains
+I will take it out in v2.
 
-the Mongoose cores, labelled and ordered after the first cluster.
+>=20
+> > +  The Interrupt Control Unit (ICU) handles external interrupts (NMI,
+> > + IRQ, and  TINT), error interrupts, DMAC requests, GPT interrupts,
+> > + and internal  interrupts.
+> > +  It notifies GIC of the relevant interrupts.
+>=20
+> If you want paragraphs, then put a blank line in between.
+>=20
+> What this interrupt controller is attached to is really outside the scope=
+ of this binding, so maybe
+> just drop it.
 
+I'll drop it.
 
-It's ordered like so on a lot of SoCs for sanity's sake, hence why I
+>=20
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: renesas,r9a09g057-icu          # RZ/V2H(P)
+> > +
+> > +  '#interrupt-cells':
+> > +    description: The first cell should contain a macro RZV2H_{NMI,IRQn=
+} from
+> > +                 file include/dt-bindings/interrupt-controller/icu-rzv=
+2h.h,
+> > +                 and the second cell is used to specify the flag. Help=
+er macros
+> > +                 for the second cell can also be found in the same hea=
+der file.
+>=20
+> Ident by 2 more than 'description'.
 
-believe it should stay like that.
+Will do, and I will amend the description as the header file is most likely=
+ going to be dropped.
 
+>=20
+> > +    const: 2
+> > +
+> > +  '#address-cells':
+> > +    const: 0
+> > +
+> > +  interrupt-controller: true
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    minItems: 58
+> > +    items:
+> > +      - description: NMI interrupt
+> > +      - description: IRQ0 interrupt
+> > +      - description: IRQ1 interrupt
+> > +      - description: IRQ2 interrupt
+> > +      - description: IRQ3 interrupt
+> > +      - description: IRQ4 interrupt
+> > +      - description: IRQ5 interrupt
+> > +      - description: IRQ6 interrupt
+> > +      - description: IRQ7 interrupt
+> > +      - description: IRQ8 interrupt
+> > +      - description: IRQ9 interrupt
+> > +      - description: IRQ10 interrupt
+> > +      - description: IRQ11 interrupt
+> > +      - description: IRQ12 interrupt
+> > +      - description: IRQ13 interrupt
+> > +      - description: IRQ14 interrupt
+> > +      - description: IRQ15 interrupt
+> > +      - description: GPIO interrupt, TINT0
+> > +      - description: GPIO interrupt, TINT1
+> > +      - description: GPIO interrupt, TINT2
+> > +      - description: GPIO interrupt, TINT3
+> > +      - description: GPIO interrupt, TINT4
+> > +      - description: GPIO interrupt, TINT5
+> > +      - description: GPIO interrupt, TINT6
+> > +      - description: GPIO interrupt, TINT7
+> > +      - description: GPIO interrupt, TINT8
+> > +      - description: GPIO interrupt, TINT9
+> > +      - description: GPIO interrupt, TINT10
+> > +      - description: GPIO interrupt, TINT11
+> > +      - description: GPIO interrupt, TINT12
+> > +      - description: GPIO interrupt, TINT13
+> > +      - description: GPIO interrupt, TINT14
+> > +      - description: GPIO interrupt, TINT15
+> > +      - description: GPIO interrupt, TINT16
+> > +      - description: GPIO interrupt, TINT17
+> > +      - description: GPIO interrupt, TINT18
+> > +      - description: GPIO interrupt, TINT19
+> > +      - description: GPIO interrupt, TINT20
+> > +      - description: GPIO interrupt, TINT21
+> > +      - description: GPIO interrupt, TINT22
+> > +      - description: GPIO interrupt, TINT23
+> > +      - description: GPIO interrupt, TINT24
+> > +      - description: GPIO interrupt, TINT25
+> > +      - description: GPIO interrupt, TINT26
+> > +      - description: GPIO interrupt, TINT27
+> > +      - description: GPIO interrupt, TINT28
+> > +      - description: GPIO interrupt, TINT29
+> > +      - description: GPIO interrupt, TINT30
+> > +      - description: GPIO interrupt, TINT31
+> > +      - description: Software interrupt, INTA55_0
+> > +      - description: Software interrupt, INTA55_1
+> > +      - description: Software interrupt, INTA55_2
+> > +      - description: Software interrupt, INTA55_3
+> > +      - description: Error interrupt to CA55
+> > +      - description: GTCCRA compare match/input capture (U0)
+> > +      - description: GTCCRB compare match/input capture (U0)
+> > +      - description: GTCCRA compare match/input capture (U1)
+> > +      - description: GTCCRB compare match/input capture (U1)
+> > +
+> > +  interrupt-names:
+> > +    minItems: 58
+> > +    items:
+> > +      - const: nmi
+> > +      - const: irq0
+> > +      - const: irq1
+> > +      - const: irq2
+> > +      - const: irq3
+> > +      - const: irq4
+> > +      - const: irq5
+> > +      - const: irq6
+> > +      - const: irq7
+> > +      - const: irq8
+> > +      - const: irq9
+> > +      - const: irq10
+> > +      - const: irq11
+> > +      - const: irq12
+> > +      - const: irq13
+> > +      - const: irq14
+> > +      - const: irq15
+> > +      - const: tint0
+> > +      - const: tint1
+> > +      - const: tint2
+> > +      - const: tint3
+> > +      - const: tint4
+> > +      - const: tint5
+> > +      - const: tint6
+> > +      - const: tint7
+> > +      - const: tint8
+> > +      - const: tint9
+> > +      - const: tint10
+> > +      - const: tint11
+> > +      - const: tint12
+> > +      - const: tint13
+> > +      - const: tint14
+> > +      - const: tint15
+> > +      - const: tint16
+> > +      - const: tint17
+> > +      - const: tint18
+> > +      - const: tint19
+> > +      - const: tint20
+> > +      - const: tint21
+> > +      - const: tint22
+> > +      - const: tint23
+> > +      - const: tint24
+> > +      - const: tint25
+> > +      - const: tint26
+> > +      - const: tint27
+> > +      - const: tint28
+> > +      - const: tint29
+> > +      - const: tint30
+> > +      - const: tint31
+> > +      - const: int-ca55-0
+> > +      - const: int-ca55-1
+> > +      - const: int-ca55-2
+> > +      - const: int-ca55-3
+> > +      - const: icu-error-ca55
+> > +      - const: gpt-u0-gtciada
+> > +      - const: gpt-u0-gtciadb
+> > +      - const: gpt-u1-gtciada
+> > +      - const: gpt-u1-gtciadb
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - '#interrupt-cells'
+> > +  - '#address-cells'
+> > +  - interrupt-controller
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - clocks
+> > +  - power-domains
+> > +  - resets
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/clock/renesas-cpg-mssr.h>
+> > +
+> > +    icu: interrupt-controller@10400000 {
+> > +        compatible =3D "renesas,r9a09g057-icu";
+> > +        reg =3D <0x10400000 0x10000>;
+> > +        #interrupt-cells =3D <2>;
+> > +        #address-cells =3D <0>;
+> > +        interrupt-controller;
+> > +        interrupts =3D <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 427 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 428 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 429 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 430 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 432 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 433 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 434 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 436 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 437 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 438 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 440 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 441 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 443 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 445 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 449 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 450 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 262 IRQ_TYPE_EDGE_RISING>,
+> > +                     <GIC_SPI 263 IRQ_TYPE_EDGE_RISING>,
+> > +                     <GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
+> > +                     <GIC_SPI 265 IRQ_TYPE_EDGE_RISING>,
+> > +                     <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 451 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 453 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 454 IRQ_TYPE_LEVEL_HIGH>;
+> > +        interrupt-names =3D "nmi",
+> > +                          "irq0", "irq1", "irq2", "irq3",
+> > +                          "irq4", "irq5", "irq6", "irq7",
+> > +                          "irq8", "irq9", "irq10", "irq11",
+> > +                          "irq12", "irq13", "irq14", "irq15",
+> > +                          "tint0", "tint1", "tint2", "tint3",
+> > +                          "tint4", "tint5", "tint6", "tint7",
+> > +                          "tint8", "tint9", "tint10", "tint11",
+> > +                          "tint12", "tint13", "tint14", "tint15",
+> > +                          "tint16", "tint17", "tint18", "tint19",
+> > +                          "tint20", "tint21", "tint22", "tint23",
+> > +                          "tint24", "tint25", "tint26", "tint27",
+> > +                          "tint28", "tint29", "tint30", "tint31",
+> > +                          "int-ca55-0", "int-ca55-1",
+> > +                          "int-ca55-2", "int-ca55-3",
+> > +                          "icu-error-ca55",
+> > +                          "gpt-u0-gtciada", "gpt-u0-gtciadb",
+> > +                          "gpt-u1-gtciada", "gpt-u1-gtciadb";
+> > +        clocks =3D <&cpg CPG_MOD 0x5>;
+> > +        power-domains =3D <&cpg>;
+> > +        resets =3D <&cpg 0x36>;
+> > +    };
+> > diff --git a/include/dt-bindings/interrupt-controller/icu-rzv2h.h
+> > b/include/dt-bindings/interrupt-controller/icu-rzv2h.h
+> > new file mode 100644
+> > index 000000000000..5d1e7bb256cd
+> > --- /dev/null
+> > +++ b/include/dt-bindings/interrupt-controller/icu-rzv2h.h
+> > @@ -0,0 +1,48 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> > +/*
+> > + * This header provides constants for Renesas RZ/V2H(P) SoC ICU bindin=
+gs.
+> > + *
+> > + * Copyright (C) 2024 Renesas Electronics Corp.
+> > + *
+> > + */
+> > +
+> > +#ifndef __DT_BINDINGS_ICU_RZV2H_H
+> > +#define __DT_BINDINGS_ICU_RZV2H_H
+> > +
+> > +#include <dt-bindings/interrupt-controller/irq.h>
+> > +
+> > +/* NMI maps to SPI0 */
+> > +#define RZV2H_NMI	0
+> > +
+> > +/* IRQ0-15 map to SPI1-16 */
+> > +#define RZV2H_IRQ0	1
+> > +#define RZV2H_IRQ1	2
+> > +#define RZV2H_IRQ2	3
+> > +#define RZV2H_IRQ3	4
+> > +#define RZV2H_IRQ4	5
+> > +#define RZV2H_IRQ5	6
+> > +#define RZV2H_IRQ6	7
+> > +#define RZV2H_IRQ7	8
+> > +#define RZV2H_IRQ8	9
+> > +#define RZV2H_IRQ9	10
+> > +#define RZV2H_IRQ10	11
+> > +#define RZV2H_IRQ11	12
+> > +#define RZV2H_IRQ12	13
+> > +#define RZV2H_IRQ13	14
+> > +#define RZV2H_IRQ14	15
+> > +#define RZV2H_IRQ15	16
+>=20
+> #define FOO_N N (or N+1 in this case) is pretty useless.
+>=20
+> Also, we generally don't do defines unless we've made up the numbering (l=
+ike clock indices). That's
+> generally never the case for IRQs because they are defined in SoC referen=
+ce manuals. Note the lack of
+> headers in this directory.
+>=20
+> > +
+> > +#define RZV2H_NMI_TYPE_EDGE_RISING		IRQ_TYPE_EDGE_RISING
+> > +#define RZV2H_NMI_TYPE_EDGE_FALLING		IRQ_TYPE_EDGE_FALLING
+> > +
+> > +#define RZV2H_IRQ_TYPE_EDGE_RISING		IRQ_TYPE_EDGE_RISING
+> > +#define RZV2H_IRQ_TYPE_EDGE_FALLING		IRQ_TYPE_EDGE_FALLING
+> > +#define RZV2H_IRQ_TYPE_EDGE_BOTH		IRQ_TYPE_EDGE_BOTH
+> > +#define RZV2H_IRQ_TYPE_LEVEL_LOW		IRQ_TYPE_LEVEL_LOW
+> > +
+> > +#define RZV2H_TINT_TYPE_EDGE_RISING		IRQ_TYPE_EDGE_RISING
+> > +#define RZV2H_TINT_TYPE_EDGE_FALLING		IRQ_TYPE_EDGE_FALLING
+> > +#define RZV2H_TINT_TYPE_LEVEL_HIGH		IRQ_TYPE_LEVEL_HIGH
+> > +#define RZV2H_TINT_TYPE_LEVEL_LOW		IRQ_TYPE_LEVEL_LOW
+>=20
+> Humm, that's a big no. Use the existing defines directly.
 
-If you still think that they must be ordered by unit address, please
+I think I am just going to drop this header file completely in v2.
 
-explicitly let me know so that I include that change in the v5.
+Thanks for your feedback.
 
+Cheers,
+Fab
 
-Regards, Ivo.
-
->
->> +
->> +	oscclk: osc-clock {
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +		clock-output-names = "oscclk";
->> +	};
->> +
->> +	psci {
->> +		compatible = "arm,psci";
->> +		method = "smc";
->> +		cpu_suspend = <0xc4000001>;
->> +		cpu_off = <0x84000002>;
->> +		cpu_on = <0xc4000003>;
->> +	};
->> +
->> +	timer {
-> Keep order by names, timer goes after soc.
->
->> +		compatible = "arm,armv8-timer";
->> +		/* Hypervisor Virtual Timer interrupt is not wired to GIC */
->> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
->> +		/*
->> +		 * Non-updatable, broken stock Samsung bootloader does not
->> +		 * configure CNTFRQ_EL0
->> +		 */
->> +		clock-frequency = <26000000>;
->> +	};
->> +
->> +	soc: soc@0 {
->> +		compatible = "simple-bus";
->> +		#address-cells = <1>;
->> +		#size-cells = <1>;
->> +		ranges = <0x0 0x0 0x0 0x20000000>;
-> ranges is the second property (see DTS coding style).
->
->> +
->> +		chipid@10000000 {
->> +			compatible = "samsung,exynos8895-chipid",
->> +				     "samsung,exynos850-chipid";
->> +			reg = <0x10000000 0x24>;
->> +		};
->> +
->> +		gic: interrupt-controller@10201000 {
->> +			compatible = "arm,gic-400";
->> +			#interrupt-cells = <3>;
->> +			#address-cells = <0>;
->> +			interrupt-controller;
->> +			reg = <0x10201000 0x1000>,
-> reg is second, please follow DTS coding style for new submissions.
->
->> +			      <0x10202000 0x1000>,
->> +			      <0x10204000 0x2000>,
->> +			      <0x10206000 0x2000>;
->> +			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(8) |
->> +						 IRQ_TYPE_LEVEL_HIGH)>;
->> +		};
-> Best regards,
-> Krzysztof
->
+>=20
+> Rob
 
