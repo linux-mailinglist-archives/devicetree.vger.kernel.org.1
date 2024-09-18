@@ -1,135 +1,472 @@
-Return-Path: <devicetree+bounces-103672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADA7597BB25
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 12:56:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02B2C97BB37
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 12:59:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 752D5285AF0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 10:56:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0FB2AB23A4E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 10:59:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2824817D8A2;
-	Wed, 18 Sep 2024 10:56:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="cubQ4nhU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CD2185B52;
+	Wed, 18 Sep 2024 10:58:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99B6A381D5
-	for <devicetree@vger.kernel.org>; Wed, 18 Sep 2024 10:56:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DD8B184114
+	for <devicetree@vger.kernel.org>; Wed, 18 Sep 2024 10:58:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726656977; cv=none; b=oyVRDlK14Mpu7Fmo3+sqNDABQ3F2TEDUFTsV8ZMY+sMLwg7vdP19RpbxkKB2fdpvZ/Iz8gg7Dpm1hLvekvl9xNYfQ/cAOiSW6sghN1b+Rgf7ECxJStDUCyKf4RNVSYlV1iGpJDgrzDO3HGUwIP+8CgrsvZpnE8lvg3YSRt4oKfU=
+	t=1726657132; cv=none; b=b+Ny9zFqY8cn4FlH02MrMLgdilM4OmKHIUuJLbmvA9NOzAmB7Z766jgHWzItfP+3ouVopE9fUOa7DlPvvM/nLfCOyUNASc0TxuTW+V+p8+9/ZinIwQ/Sd+LGQPHT3wVg+DnxWu/Sn/qUETQoJUgaGmr2s5V9dFbJAFrV+lg/oJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726656977; c=relaxed/simple;
-	bh=1GAnHGD26ccjCUphmCxybd5/3JfQEutdlYE5pfnKPlk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fKKRDZfQ92/v0WFtD0qL7u5ubM8MB9GbFzcqrZ0F8WsOrIEZidYE3PHvrzED4sNmw0dTbvzh04Cj1zEaZZ9KJ41T8O0TfcXahxHLAgXuaeFOO6Te25+rmSAWzhiIp5wEQsFFwFsranO/c79sO+r6Tbm3s7k1/wWkxXN46qFJ1EI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=cubQ4nhU; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-71781f42f75so5724598b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Sep 2024 03:56:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1726656975; x=1727261775; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=p41HDdPJ9Xqsou/GrXV93VQCKVWaaOB67+1yPY3lbP0=;
-        b=cubQ4nhU/9ePBV9bQev71WQY6TVXsUKLFKEDaJ0IJUgWCLt0i9xDV4uut6eO07vV1O
-         a/+26YmFpK9j65DZKfTF7UW5L9GOfnWVrQMUZQQzoQ6FNn9ENXqYAtjz6Ig+3q7opinf
-         eXquHoDhsSNeivfs/+c8qVVP37hhihhYFN/P4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726656975; x=1727261775;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p41HDdPJ9Xqsou/GrXV93VQCKVWaaOB67+1yPY3lbP0=;
-        b=OLWeKZ2we8T0t0JnbV0WJhM2QPU7RDOSElSdyGZJtLSirCNN1rXc6pe38k7ihzhsRI
-         ZbeXqRzZoDIgYwFvva/0y1OqLOgrA0FG6rviP2DVo1qzYKSRaI3SE5c34wdGF59w5LBt
-         MEPXXHuFjanu6Xe6HO0sNNC9gXBRt2plE8V+g6HPwd9SnjyMQdmFzcl2VAI779HTV33v
-         LhrBCLbONwpSXwnlWZ8qO/RJ+IjJRuUAX/+cChOIp+ysEoEx8lBvkTxr1JpX58EvgAT/
-         SOuX/pao/lIr16tgaKOg+LnfybXdG18fV71qdgJLzcDEr05TmyCKEIcG0s4cGBhlFIwX
-         wpNg==
-X-Forwarded-Encrypted: i=1; AJvYcCX5YKjvMFKzM+pRlbcp4GLK2W+iTr/CYXiqro+1+DAqPxXmggeb7YdX6n6FDrHniAXNSllxTZn2d0WB@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkJLa+p+WgzlnbEXJoJEINuMEflHHi17OnXQYDzDQg0t26aanh
-	ai/M0JOVKhC4mbuZPL1VQQMVG8Oxx1BEwVGEtv5VqgiJ/pMZCGRzu+YDhk47ZA==
-X-Google-Smtp-Source: AGHT+IFhMb15QzWlbO320Kzkgs8u2zWlJt0MSXq3KFswpzmoxO8x4jWlVrgugevSX5yLlMwZDNzRXw==
-X-Received: by 2002:a05:6a00:1906:b0:70d:2621:5808 with SMTP id d2e1a72fcca58-7192607fcb9mr33427847b3a.9.1726656974863;
-        Wed, 18 Sep 2024 03:56:14 -0700 (PDT)
-Received: from [192.168.0.103] ([103.163.98.64])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71944b7b754sm6505848b3a.105.2024.09.18.03.56.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Sep 2024 03:56:14 -0700 (PDT)
-Message-ID: <110f6583-f76d-4c7c-bd77-cdeb21b78704@chromium.org>
-Date: Wed, 18 Sep 2024 16:26:10 +0530
+	s=arc-20240116; t=1726657132; c=relaxed/simple;
+	bh=PbxBhHN7vN+kkxE4URxlvwkZX9VcUD7bmsJwMbHPftw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZiYot4ehLtcbJRx5GD+zUl+ASiaGap7WXvbJ/N30dWTc7cBvhwHgzPxAA4iLh5mZETwHaDCsqkNr37j4PMs+D/D12BrBoxqkP+6YCPnUuAt1cKAejolyX0ROaqBKYAmBc/pluWoTUW7sxoPBpZRzCN5GDpbOqaAM4BSiCh5aWgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1sqsNz-0004yv-FL; Wed, 18 Sep 2024 12:58:15 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sha@pengutronix.de>)
+	id 1sqsNx-008nPU-TV; Wed, 18 Sep 2024 12:58:13 +0200
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1sqsNx-00F7vT-2Y;
+	Wed, 18 Sep 2024 12:58:13 +0200
+Date: Wed, 18 Sep 2024 12:58:13 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Hui-Ping Chen <hpchen0nvt@gmail.com>
+Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	sumit.semwal@linaro.org, christian.koenig@amd.com, esben@geanix.com,
+	linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH v4 2/2] mtd: rawnand: nuvoton: add new driver for the
+ Nuvoton MA35 SoC
+Message-ID: <ZuqyRXi-LWZ7-Qgw@pengutronix.de>
+References: <20240918090308.292617-1-hpchen0nvt@gmail.com>
+ <20240918090308.292617-3-hpchen0nvt@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: display: mediatek: dpi: Add power domain for
- MT8195 DP_INTF
-To: Rob Herring <robh@kernel.org>
-Cc: chunkuang.hu@kernel.org, krzk+dt@kernel.org, ck.hu@mediatek.com,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- kernel test robot <lkp@intel.com>
-References: <20240911071722.558960-1-rohiagar@chromium.org>
- <20240916171107.GA605353-robh@kernel.org>
-Content-Language: en-US
-From: Rohit Agarwal <rohiagar@chromium.org>
-In-Reply-To: <20240916171107.GA605353-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240918090308.292617-3-hpchen0nvt@gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi,
 
-On 16/09/24 10:41 PM, Rob Herring wrote:
-> On Wed, Sep 11, 2024 at 07:17:21AM +0000, Rohit Agarwal wrote:
->> Add power domain binding for MT8195 DP_INTF that resolves the following
->> error and many more similar ones:
->>
->> arch/arm64/boot/dts/mediatek/mt8195-cherry-dojo-r1.dtb: dp-intf@1c113000:
->> power-domains: False schema does not allow [[55, 18]]
->>
->> Reported-by: kernel test robot <lkp@intel.com>
->> Closes: https://lore.kernel.org/oe-kbuild-all/202409102119.AYvaTjUi-lkp@intel.com/
-> Fixes?
-Will add in the next version.
->
->> Signed-off-by: Rohit Agarwal <rohiagar@chromium.org>
->> ---
->>   .../devicetree/bindings/display/mediatek/mediatek,dpi.yaml       | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
->> index 3a82aec9021c..07acc8a76bfc 100644
->> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
->> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
->> @@ -89,6 +89,7 @@ allOf:
->>                   - mediatek,mt6795-dpi
->>                   - mediatek,mt8173-dpi
->>                   - mediatek,mt8186-dpi
->> +                - mediatek,mt8195-dp-intf
-> mt8183 is also missing. There's a patch[1] to fix it, but it's wrong
-> given the recent changes. It would be best to fix both in one
-> patch/series as 2 separate patches will have conflicts.
->
-> Rob
->
->
-> [1] https://lore.kernel.org/all/20240912144430.3161717-2-treapking@chromium.org/
+The driver has a few minor whitespace issues, please run through
+checkpatch.pl to catch them.
 
-Ok, Sure will have a new (separate) patch added here to include the 
-compatible strings. Thanks for pointing out.
+Some more things inline.
 
-Thanks,
-Rohit.
+On Wed, Sep 18, 2024 at 09:03:08AM +0000, Hui-Ping Chen wrote:
+> Nuvoton MA35 SoCs NAND Flash Interface Controller
+> supports 2kiB, 4kiB and 8kiB page size, and up to
+> 8-bit, 12-bit, and 24-bit hardware ECC calculation
+> circuit to protect data.
+> 
+> Signed-off-by: Hui-Ping Chen <hpchen0nvt@gmail.com>
+> ---
+>  drivers/mtd/nand/raw/Kconfig               |   8 +
+>  drivers/mtd/nand/raw/Makefile              |   1 +
+>  drivers/mtd/nand/raw/nuvoton_ma35d1_nand.c | 935 +++++++++++++++++++++
+>  3 files changed, 944 insertions(+)
+>  create mode 100644 drivers/mtd/nand/raw/nuvoton_ma35d1_nand.c
+> 
+> +#define SKIP_SPARE_BYTES	4
 
+Unused, please drop.
 
+> +static int ma35_nfi_ecc_check(struct nand_chip *chip, unsigned long addr)
+> +{
+> +	struct ma35_nand_info *nand = nand_get_controller_data(chip);
+> +	struct mtd_info *mtd = nand_to_mtd(chip);
+> +	int status, i, j, nchunks = 0;
+
+status should be unsigned.
+
+> +	int report_err = 0;
+> +	int err_cnt = 0;
+> +
+> +	nchunks = mtd->writesize / chip->ecc.steps;
+> +	if (nchunks < 4)
+> +		nchunks = 1;
+> +	else
+> +		nchunks /= 4;
+> +
+> +	for (j = 0; j < nchunks; j++) {
+> +		status = readl(nand->regs + MA35_NFI_REG_NANDECCES0 + j*4);
+> +		if (!status)
+> +			continue;
+> +
+> +		for (i = 0; i < 4; i++) {
+> +			if (!(status & ECC_STATUS_MASK)) {
+> +				/* No error */
+> +				status >>= 8;
+> +				continue;
+> +
+> +			} else if ((status & ECC_STATUS_MASK) == 0x01) {
+> +				/* Correctable error */
+> +				err_cnt = (status >> 2) & ECC_ERR_CNT_MASK;
+> +				dev_warn(nand->dev, "nchunks (%d, %d) have %d error!\n",
+> +					j, i, err_cnt);
+
+Correctable bitflips are expected. Please don't spam the log with it.
+
+> +				ma35_nfi_correct(nand, j*4+i, err_cnt, (u8 *)addr);
+> +				report_err += err_cnt;
+> +
+> +			} else {
+> +				/* uncorrectable error */
+> +				dev_warn(nand->dev, "uncorrectable error! 0x%4x\n", status);
+> +				return -1;
+> +			}
+> +			status >>= 8;
+> +		}
+> +	}
+> +	return report_err;
+
+There are a few things wrong here. Your chip->ecc.read_page op must
+return the maximum number of bitflips occured on a subpage while
+reading a page.
+
+To archieve this I suggest you fix the return value of this function
+accordingly and call it from chip->ecc.read_page rather than from the
+interrupt handler.
+
+Nevertheless mtd->ecc_stats.corrected counts the total number of
+bitflips, so you must handle this counter in this function.
+
+See rk_nfc_read_page_hwecc() as an example of a driver which gets it
+right.
+
+The background is that we have to rewrite the page once one ECC block
+hits a critical bitflip limit. A whole page might be fine when the
+bitflips are evenly distributed across the subpages, but it's not when
+all bitflips are occur in a single subpage.
+
+> +static int ma35_nand_do_write(struct nand_chip *chip, const u8 *addr, u32 len)
+> +{
+> +	struct ma35_nand_info *nand = nand_get_controller_data(chip);
+> +	struct mtd_info *mtd = nand_to_mtd(chip);
+> +	dma_addr_t dma_addr;
+> +	int ret = 0, i;
+> +	u32 val, reg;
+> +
+> +	ma35_nand_target_enable(nand);
+> +
+> +	if (len != mtd->writesize) {
+> +		for (i = 0; i < len; i++)
+> +			writel(addr[i], nand->regs + MA35_NFI_REG_NANDDATA);
+> +		ma35_nand_target_disable(nand);
+> +		return ret;
+> +	}
+> +
+> +	/* Check the DMA status before enabling the DMA */
+> +	ret = readl_poll_timeout(nand->regs + MA35_NFI_REG_DMACTL, val,
+> +				 !(val & DMA_BUSY), 50, HZ/2);
+> +	if (ret)
+> +		dev_warn(nand->dev, "dma busy\n");
+> +
+> +	/* Reinitial dmac */
+> +	ma35_nand_dmac_init(nand);
+
+The function name already says it and the comment doesn't offer any
+additional information. Please drop such comments.
+
+> +
+> +	writel(mtd->oobsize, nand->regs + MA35_NFI_REG_NANDRACTL);
+> +
+> +	/* setup and start DMA using dma_addr */
+> +	writel(INT_DMA, nand->regs + MA35_NFI_REG_NANDINTEN);
+> +	/* To mark this page as dirty. */
+> +	reg = readl(nand->regs + MA35_NFI_REG_NANDRA0);
+> +	if (reg & 0xffff0000)
+> +		writel(reg & 0xffff, nand->regs + MA35_NFI_REG_NANDRA0);
+> +
+> +	/* Fill dma_addr */
+> +	dma_addr = dma_map_single(nand->dev, (void *)addr, len, DMA_TO_DEVICE);
+> +	dma_sync_single_for_device(nand->dev, dma_addr, len, DMA_TO_DEVICE);
+> +	ret = dma_mapping_error(nand->dev, dma_addr);
+> +	if (ret) {
+> +		dev_err(nand->dev, "dma mapping error\n");
+> +		return -EINVAL;
+> +	}
+
+Call dma_sync_single_for_device() after you have checked for an error
+with dma_mapping_error().
+
+That said, I think calling dma_sync_single_for_device() after
+dma_map_single() is unnecessary.
+
+> +
+> +	writel((unsigned long)dma_addr, nand->regs + MA35_NFI_REG_DMASA);
+> +	writel(readl(nand->regs + MA35_NFI_REG_NANDCTL) | DMA_W_EN,
+> +		nand->regs + MA35_NFI_REG_NANDCTL);
+> +	ret = wait_for_completion_timeout(&nand->complete, msecs_to_jiffies(1000));
+> +	if (!ret) {
+> +		dev_err(nand->dev, "write timeout\n");
+> +		ret = -ETIMEDOUT;
+> +	}
+> +
+> +	dma_unmap_single(nand->dev, dma_addr, len, DMA_TO_DEVICE);
+> +
+> +	ma35_nand_target_disable(nand);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ma35_nand_do_read(struct nand_chip *chip, const u8 *addr, u32 len)
+
+The addr argument shouldn't be const. You are supposed to write to this
+buffer and you actually do so.
+
+> +{
+> +	struct ma35_nand_info *nand = nand_get_controller_data(chip);
+> +	struct mtd_info *mtd = nand_to_mtd(chip);
+> +	u8 *ptr = (u8 *)addr;
+> +	dma_addr_t dma_addr;
+> +	int ret = 0, i;
+> +	u32 val;
+> +
+> +	ma35_nand_target_enable(nand);
+> +
+> +	if (len != mtd->writesize) {
+> +		for (i = 0; i < len; i++)
+> +			*(ptr+i) = (u8)readl(nand->regs + MA35_NFI_REG_NANDDATA);
+> +		ma35_nand_target_disable(nand);
+> +		return ret;
+
+Just return 0 here. It's easier to read than having to look up the
+initialization value.
+
+> +	}
+> +
+> +	/* Check the DMA status before enabling the DMA */
+> +	ret = readl_poll_timeout(nand->regs + MA35_NFI_REG_DMACTL, val,
+> +				 !(val & DMA_BUSY), 50, HZ/2);
+> +	if (ret)
+> +		dev_warn(nand->dev, "dma busy\n");
+> +
+> +	/* Reinitial dmac */
+> +	ma35_nand_dmac_init(nand);
+> +
+> +	writel(mtd->oobsize, nand->regs + MA35_NFI_REG_NANDRACTL);
+> +
+> +	/* setup and start DMA using dma_addr */
+> +	dma_addr = dma_map_single(nand->dev, (void *)addr, len, DMA_FROM_DEVICE);
+> +	ret = dma_mapping_error(nand->dev, dma_addr);
+> +	if (ret) {
+> +		dev_err(nand->dev, "dma mapping error\n");
+> +		return -EINVAL;
+> +	}
+> +	nand->dma_buf = (u8 *)addr;
+> +	nand->dma_addr = dma_addr;
+> +
+> +	writel((unsigned long)dma_addr, nand->regs + MA35_NFI_REG_DMASA);
+> +	writel(readl(nand->regs + MA35_NFI_REG_NANDCTL) | DMA_R_EN,
+> +		nand->regs + MA35_NFI_REG_NANDCTL);
+> +	ret = wait_for_completion_timeout(&nand->complete, msecs_to_jiffies(1000));
+> +	if (!ret) {
+> +		dev_err(nand->dev, "read timeout\n");
+> +		ret = -ETIMEDOUT;
+> +	}
+> +
+> +	dma_sync_single_for_cpu(nand->dev, dma_addr, len, DMA_FROM_DEVICE);
+> +	dma_unmap_single(nand->dev, dma_addr, len, DMA_FROM_DEVICE);
+
+No need to call dma_sync_single_for_cpu() before dma_unmap_single().
+
+> +
+> +	ma35_nand_target_disable(nand);
+> +
+> +	return ret;
+> +}
+> +
+> +
+> +static int ma35_nand_write_page_hwecc(struct nand_chip *chip, const u8 *buf,
+> +				      int oob_required, int page)
+> +{
+> +	struct mtd_info *mtd = nand_to_mtd(chip);
+> +	u8 *ecc_calc = chip->ecc.calc_buf;
+
+Make this a void * to get rid of the explicit casting below.
+
+> +
+> +	ma35_clear_spare(chip, mtd->oobsize);
+> +	ma35_write_spare(chip, mtd->oobsize - chip->ecc.total, (u32 *)chip->oob_poi);
+> +
+> +	nand_prog_page_begin_op(chip, page, 0, buf, mtd->writesize);
+> +	nand_prog_page_end_op(chip);
+> +
+> +	/* Copy parity code in NANDRA to calc */
+> +	ma35_read_spare(chip, chip->ecc.total, (u32 *)ecc_calc,
+> +			mtd->oobsize - chip->ecc.total);
+> +
+> +	/* Copy parity code in calc to oob_poi */
+> +	memcpy((void *)(chip->oob_poi + (mtd->oobsize - chip->ecc.total)),
+> +		(void *)ecc_calc, chip->ecc.total);
+> +
+> +	return 0;
+> +}
+> +
+> +static irqreturn_t ma35_nand_irq(int irq, void *id)
+> +{
+> +	struct ma35_nand_info *nand = (struct ma35_nand_info *)id;
+> +	struct mtd_info *mtd = nand_to_mtd(&nand->chip);
+> +	int stat = 0;
+> +	u32 isr;
+> +
+> +	spin_lock(&nand->dma_lock);
+> +
+> +	isr = readl(nand->regs + MA35_NFI_REG_NANDINTSTS);
+> +	if (isr & INT_ECC) {
+> +		dma_sync_single_for_cpu(nand->dev, nand->dma_addr, mtd->writesize,
+> +					DMA_FROM_DEVICE);
+> +		stat = ma35_nfi_ecc_check(&nand->chip, (unsigned long)nand->dma_buf);
+
+nand->dma_buf already is a pointer which you cast to unisgned long here
+and back to a pointer in ma35_nfi_ecc_check(). ma35_nfi_ecc_check()
+should take a poiner instead.
+
+> +		if (stat < 0) {
+> +			mtd->ecc_stats.failed++;
+> +			writel(DMA_RST | DMA_EN, nand->regs + MA35_NFI_REG_DMACTL);
+> +			writel(readl(nand->regs + MA35_NFI_REG_NANDCTL) | SWRST,
+> +				nand->regs + MA35_NFI_REG_NANDCTL);
+> +		} else if (stat > 0) {
+> +			mtd->ecc_stats.corrected += stat;   /* Add corrected bit count */
+> +		}
+> +		writel(INT_ECC, nand->regs + MA35_NFI_REG_NANDINTSTS);
+> +	}
+> +	if (isr & INT_DMA) {
+> +		writel(INT_DMA, nand->regs + MA35_NFI_REG_NANDINTSTS);
+> +		complete(&nand->complete);
+> +	}
+> +	spin_unlock(&nand->dma_lock);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int ma35_nfc_exec_op(struct nand_chip *chip,
+> +			  const struct nand_operation *op,
+> +			  bool check_only)
+> +{
+> +	struct ma35_nand_info *nand = nand_get_controller_data(chip);
+> +	u32 i, reg;
+> +	int ret = 0;
+> +
+> +	if (check_only)
+> +		return 0;
+> +
+> +	ma35_nand_target_enable(nand);
+> +	reg = readl(nand->regs + MA35_NFI_REG_NANDINTSTS);
+> +	reg |= INT_RB0;
+> +	writel(reg, nand->regs + MA35_NFI_REG_NANDINTSTS);
+> +
+> +	for (i = 0; i < op->ninstrs; i++) {
+> +		ret = ma35_nfc_exec_instr(chip, &op->instrs[i]);
+> +		if (ret)
+> +			break;
+> +	}
+
+The way ma35_nand_target_[en|dis]able() is called looks inconsistent.
+
+This function calls ma35_nand_target_enable(), so I would expect that
+the corresponding ma35_nand_target_disable() should be called here as
+well.
+
+ma35_nand_do_read() is called from here which has its own call to
+ma35_nand_target_enable(), but it doesn't call ma35_nand_target_disable()
+from all of its return pathes.
+
+> +
+> +	ret = devm_request_irq(&pdev->dev, nand->irq, ma35_nand_irq,
+> +				  IRQF_TRIGGER_HIGH, "ma35d1-nand", nand);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failed to request NAND irq\n");
+> +		clk_disable_unprepare(nand->clk);
+
+You used devm_clk_get_enabled(), so this will be done automatically.
+
+> +		return -ENXIO;
+> +	}
+> +
+> +	nand->chip.controller = &nand->controller;
+> +	platform_set_drvdata(pdev, nand);
+> +
+> +	chip->options |= NAND_NO_SUBPAGE_WRITE | NAND_USES_DMA;
+> +
+> +	/* set default mode in case dt entry is missing */
+> +	chip->ecc.engine_type = NAND_ECC_ENGINE_TYPE_ON_HOST;
+> +
+> +	chip->ecc.write_page = ma35_nand_write_page_hwecc;
+> +	chip->ecc.read_page  = ma35_nand_read_page_hwecc;
+> +	chip->ecc.read_oob   = ma35_nand_read_oob_hwecc;
+> +
+> +	mtd = nand_to_mtd(chip);
+> +	mtd->priv = chip;
+> +	mtd->owner = THIS_MODULE;
+> +	mtd->dev.parent = &pdev->dev;
+> +
+> +	writel(NAND_EN, nand->regs + MA35_NFI_REG_GCTL);
+> +
+> +	ret = nand_scan(chip, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = mtd_device_register(mtd, NULL, 0);
+> +	if (ret) {
+> +		nand_cleanup(chip);
+> +		devm_kfree(&pdev->dev, nand);
+
+Unnecessary free. Drop it.
+
+> +		return ret;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static void ma35_nand_remove(struct platform_device *pdev)
+> +{
+> +	struct ma35_nand_info *nand = platform_get_drvdata(pdev);
+> +	int ret;
+> +
+> +	devm_free_irq(&pdev->dev, nand->irq, nand);
+
+devm_ is a mechanism to let resources be freed automatically. There's
+normally no need to do this manually.
+
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
