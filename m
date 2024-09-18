@@ -1,167 +1,96 @@
-Return-Path: <devicetree+bounces-103703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95C8F97BD51
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 15:49:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 138F897BD62
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 15:54:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 583DC2832A5
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 13:49:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9B22B238A7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 13:54:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A82218BC03;
-	Wed, 18 Sep 2024 13:49:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FA2E18A944;
+	Wed, 18 Sep 2024 13:54:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="IQbZYUVo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nw6LNRz8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9300E18B46E
-	for <devicetree@vger.kernel.org>; Wed, 18 Sep 2024 13:49:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58CE6189B98;
+	Wed, 18 Sep 2024 13:54:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726667372; cv=none; b=CPEltF+amE7KlphYXOctHJo1Qu0Qa9NLn6sZr2tBucbVZQ5Ob8vWCS8EBwlhwS0DXrg/YTatAvN7PsT1l7X+Efv+T4+IL1XysToyIWJOTfIbaN0lgrCTi1ZAEQyLEkY7UPZOVxBKlw1ZkV3Rg8a+T890T6tet5wl/jcUOROvDMA=
+	t=1726667656; cv=none; b=O2Kl/ntghPBKR08kf4FDBG60LrpJPWDSlRQrsRyLSWzBYg/qUBLvKbt1i4zIEbyiDrqZhZkE4d/pJj/gld7wI00LkyPXdiD7m3XhTJIuFapMk56vkJtoDI6C0j1tlvPT8RinQQOseEBL/UvQ+PdkZ9WFQlSawtA//dyw0pHVSpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726667372; c=relaxed/simple;
-	bh=9SWnzQzcyvWcLTDsOnmQNroqxqJIzKQ+//wP7s1rvM4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=LG+/EJ+6exsxMzwUWJ0HLgb0lulnr7tNDh5meyY1xEk9eBCT3056ZV9FNMRJ96iuaMkd/KLIweU6mC8I1DPAU612euIRK7RwCrgtGcKe78jNVk9mpYRn28jVkcqahOmg2fDrVoqH+EMKgIo9oEw0UikIWVH/zyjTqSBEvfjDGG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=IQbZYUVo; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20240918134928euoutp018eb31e4e01dd23bdf57008968b05c1d4~2WtLhotNE0223702237euoutp010
-	for <devicetree@vger.kernel.org>; Wed, 18 Sep 2024 13:49:28 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20240918134928euoutp018eb31e4e01dd23bdf57008968b05c1d4~2WtLhotNE0223702237euoutp010
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1726667368;
-	bh=5fUgpCsJux7Lg3Z0dohni+cpqjEONc3jhq5kpwUvl3U=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=IQbZYUVol8s0rwsLmFZfIq/J1akjpmyDd4FuIaiAzN1a8kJTaqhzgVsWcNVkv78cZ
-	 b8pqKy+rpDNv7Vxzkv9sBvH6WY8BEv9ZDPOfMesI8WxYSVky6Q6M9H0SZZnLNr1JEi
-	 3b0AC+WOMbyp0VDZr/MjTvT4ydbT1QTaBVrciYyI=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20240918134928eucas1p2e4f0984503f67a7c50ff85cc3181081e~2WtLL-GYv2479524795eucas1p2V;
-	Wed, 18 Sep 2024 13:49:28 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges1new.samsung.com (EUCPMTA) with SMTP id 0C.AA.09624.86ADAE66; Wed, 18
-	Sep 2024 14:49:28 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20240918134928eucas1p216ff09a6f98681def7e8e38e02c27145~2WtKuzpFr2479924799eucas1p2M;
-	Wed, 18 Sep 2024 13:49:28 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20240918134928eusmtrp27aeaa4468d559e99a86c9978ba737140~2WtKuE6bp0382303823eusmtrp2s;
-	Wed, 18 Sep 2024 13:49:28 +0000 (GMT)
-X-AuditID: cbfec7f2-bfbff70000002598-95-66eada68d343
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-	eusmgms1.samsung.com (EUCPMTA) with SMTP id AB.48.14621.76ADAE66; Wed, 18
-	Sep 2024 14:49:27 +0100 (BST)
-Received: from AMDC4942.home (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20240918134927eusmtip164d7500664afdd5903469ddd7fb746f0~2WtJ70Jem1705517055eusmtip1T;
-	Wed, 18 Sep 2024 13:49:27 +0000 (GMT)
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-To: drew@pdp7.com, guoren@kernel.org, wefu@redhat.com,
-	jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, m.szyprowski@samsung.com
-Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Michal Wilczynski <m.wilczynski@samsung.com>
-Subject: [PATCH RFC v1 3/3] riscv: dts: thead: Add mailbox node
-Date: Wed, 18 Sep 2024 15:49:01 +0200
-Message-Id: <20240918134901.193033-4-m.wilczynski@samsung.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240918134901.193033-1-m.wilczynski@samsung.com>
+	s=arc-20240116; t=1726667656; c=relaxed/simple;
+	bh=+Zh+djR7AX48cdY3rFqnD3jZEZXXjC49iXCG8eZYSeQ=;
+	h=Content-Type:MIME-Version:Subject:From:In-Reply-To:References:To:
+	 Cc:Message-ID:Date; b=no1CqK+8l58doy63KWB+Rpm5RlEBGtABr6pqrwzZlBGj6wZm8wO/Kek0Foz8xIFncVnqAHkb+iVfTi7Fd7K8reS1pSSq7wLN4JVfLyVy8st0mVPX0LYO0EHVwxPhXYeFfKmCnYJ99dhZOHbTN2b32M7PetcqvLlbK0xYgYCckvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nw6LNRz8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5BB6C4CEC3;
+	Wed, 18 Sep 2024 13:54:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726667655;
+	bh=+Zh+djR7AX48cdY3rFqnD3jZEZXXjC49iXCG8eZYSeQ=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=nw6LNRz8J9W64qF/DfXUhAyHwC28qLffJN9zKZfGnAB/+4WgMSB8qZrvvUi/i0qR5
+	 KyDVMXk3Mq8AkJNhbZh3zGmKCjXvecm+dEHDWypua9YjTdxAedFiKd8kxsGc4vXt3Z
+	 VGeQsGAfQjdQYmfaoAF2lDlYOO/WorjYtPuwN6GVsgwDvSRXLt8sRZPD1LdgpvwQej
+	 /7nygbP4u7B9ijApHNJu6TkMKqs7XMuHvexhh9T5TbvQ6PRYOJaRhAVew5GJKiQO5n
+	 ELHYaXMykWl2r1VLrofuyR6jDYO8fdrSOhx5Pw50WNKAErP+RNn9y6L19IkGjl3Qsv
+	 vUn+Jja8xj+ZA==
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrIKsWRmVeSWpSXmKPExsWy7djPc7oZt16lGXy+IGOx9fcsdos1e88x
-	Wcw/co7V4t6lLUwWL/Y2slhcWzGX3eLlrHtsFpd3zWGz2Pa5hc1i7ZG77Bbrv85nsnh5uYfZ
-	om0Wv8X/PTvYLVr2T2Fx4Pd48/Ili8fhji/sHjtn3WX32LSqk81j85J6j5a1x5g83u+7yubR
-	t2UVo8el5uvsHp83yQVwRXHZpKTmZJalFunbJXBl3Nl+mLlgK2fFmaUz2RoY57N3MXJySAiY
-	SFxqmABkc3EICaxglFjX+J8ZwvnCKLGzr5URwvnMKPH74AdWmJbX7RNYIRLLGSX+TDoLVfWG
-	UWL21sVgg9kEjCQeLJ8PViUi8I5RYtK120wgDrNAL6PE1L0zmUCqhAXsJV7deckGYrMIqEr8
-	3LUayObg4BWwk7h9Xx9inbzE/oNnmUFsTqDyGZ8aWUBsXgFBiZMzn4DZzEA1zVtngx0uITCb
-	U+Lf1IXMEM0uEi+Pz2WEsIUlXh3fAvW2jMT/nfOZIOx8iQdbP0HV10js7DkOZVtL3Dn3C+we
-	ZgFNifW7oO5xlDj9qIUZJCwhwCdx460gxAl8EpO2TYcK80p0tAlBVKtJTO3phVt6bsU2qKUe
-	Ehufb2GawKg4C8kzs5A8Mwth7wJG5lWM4qmlxbnpqcWGeanlesWJucWleel6yfm5mxiBqe70
-	v+OfdjDOffVR7xAjEwfjIUYJDmYlEV7xDy/ThHhTEiurUovy44tKc1KLDzFKc7AoifOqpsin
-	CgmkJ5akZqemFqQWwWSZODilGphE5x58GXXmo8vDa8IlcvcUCj+/CFp5d5pT/9SbqcnnH8Sp
-	9c78Xqm06mDNqagJ70QedrctPH6idMneLNtd5+809d57xTWf602/8qNUaZ1pva4uH/jsuNK4
-	GoX+1O8Obw2Z53508YVliV4F9zNndflyyO0LVHqw41GB8uHm+TXLLNQT/irdZ5K6b/f8TEPQ
-	4wXTmZSu57+bIhTbeXN9SabQou/Nhk5x3beEUhw9ipayTNjMIq5/2/T4JG3+2ecqX71RNvj8
-	qYa9+fzsXRNbVHj+bj8mMqP5qKEaU8qz57nmpVFq+x4HhwVNK1Vg9lrls+ijVI6fy33bdw2T
-	ORPWC/45IFbww3Njy7GNs5mtP/cosRRnJBpqMRcVJwIACyBx6uQDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrAIsWRmVeSWpSXmKPExsVy+t/xu7rpt16lGXydZGOx9fcsdos1e88x
-	Wcw/co7V4t6lLUwWL/Y2slhcWzGX3eLlrHtsFpd3zWGz2Pa5hc1i7ZG77Bbrv85nsnh5uYfZ
-	om0Wv8X/PTvYLVr2T2Fx4Pd48/Ili8fhji/sHjtn3WX32LSqk81j85J6j5a1x5g83u+7yubR
-	t2UVo8el5uvsHp83yQVwRenZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY6hkam8daGZkq6dvZ
-	pKTmZJalFunbJehl3Nl+mLlgK2fFmaUz2RoY57N3MXJySAiYSLxun8DaxcjFISSwlFFi+fPv
-	TBAJGYlr3S9ZIGxhiT/Xutggil4xSjReOsYGkmATMJJ4sHw+WLeIwB9GievP3jCCOMwCExkl
-	bs69zwhSJSxgL/HqzkuwDhYBVYmfu1YD2RwcvAJ2Erfv60NskJfYf/AsM4jNCVQ+41Mj2GYh
-	oJJfTzaA2bwCghInZz4Bs5mB6pu3zmaewCgwC0lqFpLUAkamVYwiqaXFuem5xYZ6xYm5xaV5
-	6XrJ+bmbGIFRue3Yz807GOe9+qh3iJGJg/EQowQHs5IIr/iHl2lCvCmJlVWpRfnxRaU5qcWH
-	GE2Bzp7ILCWanA9MC3kl8YZmBqaGJmaWBqaWZsZK4rxul8+nCQmkJ5akZqemFqQWwfQxcXBK
-	NTCtOzddbN5TI//+BQaCjevkvKxvOL/kmn7sRogfW8SEtvVbXV94plt/mOvyd5KoevRREZYj
-	QZcCZipKfberueZ07cIqs/UyIZ4i78NKtzjf/bl6bsEj3/riSy6n88UPhRS1qHy5NTUgffbZ
-	KLE6BV7RV/0vH6o213W8KK4JVxd5xaU86VXl5vy+WzszH/Rd1vWqVxebLhCxmf/8f42IQ8fO
-	Wnyssl4gG7pj3ser+bvktiw+seVj6PElW4S2druEHrr+KU6IQZqhtPO51tLJF5/s9fhxNceh
-	MDbIk/3Chh1NW6ayhxR8qd1kz8bovZjr8fI+idNJDfWnVbe+2J+4xjhUsNA0aNvBXVOCl1ob
-	HP6pxFKckWioxVxUnAgAb87np1MDAAA=
-X-CMS-MailID: 20240918134928eucas1p216ff09a6f98681def7e8e38e02c27145
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20240918134928eucas1p216ff09a6f98681def7e8e38e02c27145
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20240918134928eucas1p216ff09a6f98681def7e8e38e02c27145
-References: <20240918134901.193033-1-m.wilczynski@samsung.com>
-	<CGME20240918134928eucas1p216ff09a6f98681def7e8e38e02c27145@eucas1p2.samsung.com>
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v14 1/4] dt-bindings: net: wireless: brcm4329-fmac: add
+ pci14e4,449d
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20240910-wireless-mainline-v14-1-9d80fea5326d@wesion.com>
+References: <20240910-wireless-mainline-v14-1-9d80fea5326d@wesion.com>
+To: Jacobe Zang <jacobe.zang@wesion.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ van Spriel <arend@broadcom.com>,
+ Arend van Spriel <arend.vanspriel@broadcom.com>,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ brcm80211@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com,
+ nick@khadas.com, Jacobe Zang <jacobe.zang@wesion.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <172666764990.3996465.9327030359445823508.kvalo@kernel.org>
+Date: Wed, 18 Sep 2024 13:54:11 +0000 (UTC)
 
-Add mailbox device tree node. This work is based on the vendor kernel [1].
+Jacobe Zang <jacobe.zang@wesion.com> wrote:
 
-Link: https://github.com/revyos/thead-kernel.git [1]
+> It's the device id used by AP6275P which is the Wi-Fi module
+> used by Rockchip's RK3588 evaluation board and also used in
+> some other RK3588 boards.
+> 
+> Acked-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
+> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
----
- arch/riscv/boot/dts/thead/th1520.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+4 patches applied to wireless-next.git, thanks.
 
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index 3c9974062c20..5d0cc1d899d7 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -546,5 +546,20 @@ portf: gpio-controller@0 {
- 				interrupts = <55 IRQ_TYPE_LEVEL_HIGH>;
- 			};
- 		};
-+
-+		mbox_910t: mbox@ffffc38000 {
-+		       compatible = "thead,th1520-mbox";
-+		       reg = <0xff 0xffc38000 0x0 0x4000>,
-+			     <0xff 0xffc44000 0x0 0x1000>,
-+			     <0xff 0xffc4c000 0x0 0x1000>,
-+			     <0xff 0xffc54000 0x0 0x1000>;
-+		       reg-names = "local_base", "remote_icu0", "remote_icu1", "remote_icu2";
-+		       interrupt-parent = <&plic>;
-+		       interrupts = <28 IRQ_TYPE_LEVEL_HIGH>;
-+		       clocks = <&apb_clk>;
-+		       clock-names = "ipg";
-+		       icu_cpu_id = <0>;
-+		       #mbox-cells = <2>;
-+		};
- 	};
- };
+97cb465ee6c1 dt-bindings: net: wireless: brcm4329-fmac: add pci14e4,449d
+7ca3fac19541 dt-bindings: net: wireless: brcm4329-fmac: add clock description for AP6275P
+0ff0843310b7 wifi: brcmfmac: Add optional lpo clock enable support
+ea11a89c3ac6 wifi: brcmfmac: add flag for random seed during firmware download
+
 -- 
-2.34.1
+https://patchwork.kernel.org/project/linux-wireless/patch/20240910-wireless-mainline-v14-1-9d80fea5326d@wesion.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
