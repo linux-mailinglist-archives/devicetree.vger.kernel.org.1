@@ -1,201 +1,144 @@
-Return-Path: <devicetree+bounces-103616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2F2597B8E1
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 09:58:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96DB597B8C8
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 09:51:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E645F1C20F46
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 07:58:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 675312825ED
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 07:51:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35BB2178CF6;
-	Wed, 18 Sep 2024 07:57:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90CB4170A0E;
+	Wed, 18 Sep 2024 07:51:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-sh.amlogic.com (unknown [58.32.228.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47A7E176ABE;
-	Wed, 18 Sep 2024 07:57:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=58.32.228.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AE7378C7E
+	for <devicetree@vger.kernel.org>; Wed, 18 Sep 2024 07:51:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726646274; cv=none; b=PH+zo4GKtlJJ9dCA5TQqeKpCOyYvPH/2YkY1BRrFq4adYljA/7yskFB7D7OW7HJxIqff/qHUk7H2sIRCx/tExI7aXaZdkybLTiFVRtCkEltBayb5wdC81ZIeAeuuPJPS/EFTW6VtovvC80WyktJC2d3DP+iu+I4fmremBduK6Dc=
+	t=1726645906; cv=none; b=VuRmubUTx5/pkct/mVmOB1J3LEes3vicdH4eosBiLmD6VVR8NLXtPLrQd2iiDleluLdb7y3Jw52x3FSoMM3ZUP/ium8DnpdSn4MbcF8mYrtuGdQnRflVu0B/z2mpZyVvWfJPkrinFK0CkJuCxsuqPDCLs0F7d/zrjvLEPD6r3NM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726646274; c=relaxed/simple;
-	bh=heAmavohfn9ft6C0SkwCO57RX15LHWtPgwT3yujcDlw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o3G9JypenC0w2MTri37CiHhMhf1RXSeEC4tb0t8Z8k2NB3cn3MVjC/CupsgSxyCcat29Jp1qbpQ/lylntL7yTfvJbSkKxfbv+RbTeDFGAAfSOxmNMkdlKwmvm4TSC/AGoghd8Q4qzzDrNJ5JjfN4vpFuRXi/TjFClYnYIOUb3T0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; arc=none smtp.client-ip=58.32.228.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
-Received: from droid10-sz.amlogic.com (10.28.11.69) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.39; Wed, 18 Sep 2024
- 15:42:21 +0800
-From: zelong dong <zelong.dong@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>, Rob Herring
-	<robh@kernel.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jerome Brunet <jbrunet@baylibre.com>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<kelvin.zhang@amlogic.com>, Zelong Dong <zelong.dong@amlogic.com>
-Subject: [PATCH v3 3/3] arm64: dts: amlogic: Add Amlogic A5 reset controller
-Date: Wed, 18 Sep 2024 15:42:11 +0800
-Message-ID: <20240918074211.8067-4-zelong.dong@amlogic.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20240918074211.8067-1-zelong.dong@amlogic.com>
+	s=arc-20240116; t=1726645906; c=relaxed/simple;
+	bh=Kf43Yet5xV7HH7wH9vxJTGBIETihrhz60E9zHZDbqOc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=DwCPDa2h2HRVMRiDIC8NRxmNDCDMjH/wUctGu1Qn/zlfWPID8kW2rZtxbeCVEAXAqAVJi/aQRtutkh0LOm6ZIRs6HSXyqRVGKDqeFufCJ164cVjENCYxrK7g/TJ/ZYtmynMyBqDfy2pUvfuwEhxPAWZ3UK/vFHVNjlXvMXp53d8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1sqpTF-00010R-3v; Wed, 18 Sep 2024 09:51:29 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1sqpTE-008lMO-57; Wed, 18 Sep 2024 09:51:28 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1sqpTE-0003Dy-0H;
+	Wed, 18 Sep 2024 09:51:28 +0200
+Message-ID: <a5d9b775dd860d8f2bbf174300a2e3161b654035.camel@pengutronix.de>
+Subject: Re: [PATCH v3 1/3] dt-bindings: reset: Add compatible for Amlogic
+ A4/A5 Reset Controller
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: zelong dong <zelong.dong@amlogic.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Rob
+ Herring <robh@kernel.org>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  Jerome Brunet
+ <jbrunet@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	kelvin.zhang@amlogic.com, Conor Dooley <conor.dooley@microchip.com>
+Date: Wed, 18 Sep 2024 09:51:28 +0200
+In-Reply-To: <20240918074211.8067-2-zelong.dong@amlogic.com>
 References: <20240918074211.8067-1-zelong.dong@amlogic.com>
+	 <20240918074211.8067-2-zelong.dong@amlogic.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-From: Zelong Dong <zelong.dong@amlogic.com>
+On Mi, 2024-09-18 at 15:42 +0800, zelong dong wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
+>=20
+> Add new compatible for Amlogic A4/A5 Reset Controller
+>=20
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  .../bindings/reset/amlogic,meson-reset.yaml   | 23 ++++++++++++-------
+>  1 file changed, 15 insertions(+), 8 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.=
+yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> index 695ef38a7bb3..0ad81fe7b629 100644
+> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> @@ -12,14 +12,21 @@ maintainers:
+> =20
+>  properties:
+>    compatible:
+> -    enum:
+> -      - amlogic,meson8b-reset # Reset Controller on Meson8b and compatib=
+le SoCs
+> -      - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatib=
+le SoCs
+> -      - amlogic,meson-axg-reset # Reset Controller on AXG and compatible=
+ SoCs
+> -      - amlogic,meson-a1-reset # Reset Controller on A1 and compatible S=
+oCs
+> -      - amlogic,meson-s4-reset # Reset Controller on S4 and compatible S=
+oCs
+> -      - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
+> -      - amlogic,t7-reset
+> +    oneOf:
+> +      - items:
 
-Add the device node and related header file for Amlogic
-A5 reset controller. The count and offset for A5 Soc
-RESET registers are same as S4 Soc.
+I'm not well versed in preferred dt-bindings style, but this items
+looks superfluous to me. It only contains a single enum.
 
-Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
----
- .../arm64/boot/dts/amlogic/amlogic-a5-reset.h | 95 +++++++++++++++++++
- arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi   | 10 ++
- 2 files changed, 105 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h
+> +          - enum:
+> +              - amlogic,meson8b-reset # Reset Controller on Meson8b and =
+compatible SoCs
+> +              - amlogic,meson-gxbb-reset # Reset Controller on GXBB and =
+compatible SoCs
+> +              - amlogic,meson-axg-reset # Reset Controller on AXG and co=
+mpatible SoCs
+> +              - amlogic,meson-a1-reset # Reset Controller on A1 and comp=
+atible SoCs
+> +              - amlogic,meson-s4-reset # Reset Controller on S4 and comp=
+atible SoCs
+> +              - amlogic,c3-reset # Reset Controller on C3 and compatible=
+ SoCs
+> +              - amlogic,t7-reset
+> +      - items:
+> +          - enum:
+> +              - amlogic,a4-reset
+> +              - amlogic,a5-reset
+> +          - const: amlogic,meson-s4-reset
+> =20
+>    reg:
+>      maxItems: 1
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h b/arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h
-new file mode 100644
-index 000000000000..cdf0f5159620
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h
-@@ -0,0 +1,95 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-+/*
-+ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#ifndef __DTS_AMLOGIC_A5_RESET_H
-+#define __DTS_AMLOGIC_A5_RESET_H
-+
-+/* RESET0 */
-+/*						0-3 */
-+#define RESET_USB				4
-+/*						5-7 */
-+#define RESET_USBPHY20				8
-+/*						9 */
-+#define RESET_USB2DRD				10
-+/*						11-31 */
-+
-+/* RESET1 */
-+#define RESET_AUDIO				32
-+#define RESET_AUDIO_VAD				33
-+/*                                              34 */
-+#define RESET_DDR_APB				35
-+#define RESET_DDR				36
-+/*						37-40 */
-+#define RESET_DSPA_DEBUG			41
-+/*                                              42 */
-+#define RESET_DSPA				43
-+/*						44-46 */
-+#define RESET_NNA				47
-+#define RESET_ETHERNET				48
-+/*						49-63 */
-+
-+/* RESET2 */
-+#define RESET_ABUS_ARB				64
-+#define RESET_IRCTRL				65
-+/*						66 */
-+#define RESET_TS_PLL				67
-+/*						68-72 */
-+#define RESET_SPICC_0				73
-+#define RESET_SPICC_1				74
-+#define RESET_RSA				75
-+
-+/*						76-79 */
-+#define RESET_MSR_CLK				80
-+#define RESET_SPIFC				81
-+#define RESET_SAR_ADC				82
-+/*						83-90 */
-+#define RESET_WATCHDOG				91
-+/*						92-95 */
-+
-+/* RESET3 */
-+/*						96-127 */
-+
-+/* RESET4 */
-+#define RESET_RTC				128
-+/*						129-131 */
-+#define RESET_PWM_AB				132
-+#define RESET_PWM_CD				133
-+#define RESET_PWM_EF				134
-+#define RESET_PWM_GH				135
-+/*						104-105 */
-+#define RESET_UART_A				138
-+#define RESET_UART_B				139
-+#define RESET_UART_C				140
-+#define RESET_UART_D				141
-+#define RESET_UART_E				142
-+/*						143*/
-+#define RESET_I2C_S_A				144
-+#define RESET_I2C_M_A				145
-+#define RESET_I2C_M_B				146
-+#define RESET_I2C_M_C				147
-+#define RESET_I2C_M_D				148
-+/*						149-151 */
-+#define RESET_SDEMMC_A				152
-+/*						153 */
-+#define RESET_SDEMMC_C				154
-+/*						155-159*/
-+
-+/* RESET5 */
-+/*						160-175 */
-+#define RESET_BRG_AO_NIC_SYS			176
-+#define RESET_BRG_AO_NIC_DSPA			177
-+#define RESET_BRG_AO_NIC_MAIN			178
-+#define RESET_BRG_AO_NIC_AUDIO			179
-+/*						180-183 */
-+#define RESET_BRG_AO_NIC_ALL			184
-+#define RESET_BRG_NIC_NNA			185
-+#define RESET_BRG_NIC_SDIO			186
-+#define RESET_BRG_NIC_EMMC			187
-+#define RESET_BRG_NIC_DSU			188
-+#define RESET_BRG_NIC_SYSCLK			189
-+#define RESET_BRG_NIC_MAIN			190
-+#define RESET_BRG_NIC_ALL			191
-+
-+#endif
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-index 17a6316de891..b97e2f3091bf 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-@@ -4,6 +4,7 @@
-  */
- 
- #include "amlogic-a4-common.dtsi"
-+#include "amlogic-a5-reset.h"
- #include <dt-bindings/power/amlogic,a5-pwrc.h>
- / {
- 	cpus {
-@@ -48,3 +49,12 @@ pwrc: power-controller {
- 		};
- 	};
- };
-+
-+&apb {
-+	reset: reset-controller@2000 {
-+		compatible = "amlogic,a5-reset",
-+			     "amlogic,meson-s4-reset";
-+		reg = <0x0 0x2000 0x0 0x98>;
-+		#reset-cells = <1>;
-+	};
-+};
--- 
-2.35.1
+I think this can be merged together with the dts patches.
 
+Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+
+regards
+Philipp
 
