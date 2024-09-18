@@ -1,149 +1,95 @@
-Return-Path: <devicetree+bounces-103712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0D6097BE43
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 16:55:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 534C697BE61
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 17:06:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B2D728251E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 14:55:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F19641F22493
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 15:06:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 352131C331C;
-	Wed, 18 Sep 2024 14:55:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C22661C8FB4;
+	Wed, 18 Sep 2024 15:06:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W0h/TcEs"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NJCajW1v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09B231C32EB;
-	Wed, 18 Sep 2024 14:55:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC1941BD02C;
+	Wed, 18 Sep 2024 15:06:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726671318; cv=none; b=GHR4xzNh3U2rsU6mKIkhL7jHl3yfhfDIUGk81vFD8vhbthoSph+EKphl+Msa/r3Rrodq0qZ9NOLDTel7rnoe64uHj7zReZU8skBp8Kr1CHpyLf7ck1iN3Ci2jF3BHyNGf604+AS4mSucdWn2qTmnsYxqpcuwY12jpR/zMNkTfSY=
+	t=1726671992; cv=none; b=axaJNQG2X1ABqjqlCWmaLwn4GkHuFJtVwgX3l+FjbtHVjlF+G8s9uM65ZIqDkEz5S9VK3v4TfFZo4htyKe1BXbtzlr/UQNmlI/tLzSKxcQrkT5lKle4jtLsPX+dBZw6iziLAB3PSstrg7A2AFVPykbkbBxTr9iu5zpLl5KIWlc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726671318; c=relaxed/simple;
-	bh=NZradPtTQgiorCoRL5b8AEiP0ukiBDGBBYb0phx50k8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J8uxQGoRjooxk/y+0xcp123cKGGwTPnRIxnYQGsjyi1Id3cnUY+7dNVc5CXgW6b54sY7GYPjCUCuLSqDEIzXO7VdY5ZHh8QjeI76YVSAPSIq6qTw/UhgCjRDTW1DpX8xvm9E3V+7Bnyh4Lb949LL2889kccz/RZ+ihKYiGDj2qg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W0h/TcEs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D3F0C4CEC2;
-	Wed, 18 Sep 2024 14:55:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726671317;
-	bh=NZradPtTQgiorCoRL5b8AEiP0ukiBDGBBYb0phx50k8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W0h/TcEsbiRR6fgkbWIxS8nIRprbq6VKUsK+6fQkQsUTbIyoApUT5du1QtsduGHvK
-	 kMV0gNqfAxjkdsJAi4pIJnczFHfm4yecMPGpqR/dPomtTwGpVcVn9pErq3BQoZUrv0
-	 hN7F+8h9o4cxJFYUE/xfRNhIsyCmYWWrgmKUAF+X/K00R/lyzD3L3jVXkm+S2E7Qpt
-	 MxevvIBY5HlJnALtAvkDgrlQ5zEujBV4uErwhdE8KQCyW25Cbn3REt+CpL7qkT5tHO
-	 OLImN/ucVbnpYLoX3WUvblTeNn4F8eI8xu69+7k1yUzJSLpVOxzqz6Dc3C1pLqHHXV
-	 PsSu2UERXDTuQ==
-Date: Wed, 18 Sep 2024 09:55:16 -0500
-From: Rob Herring <robh@kernel.org>
-To: Nayeemahmed Badebade <nayeemahmed.badebade@sony.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org,
-	rafael@kernel.org, yoshihiro.toyama@sony.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] driver: core: add probe control driver
-Message-ID: <20240918145516.GA1560032-robh@kernel.org>
-References: <20240911142319.3435746-1-nayeemahmed.badebade@sony.com>
- <20240911142319.3435746-3-nayeemahmed.badebade@sony.com>
- <20240912204634.GA738361-robh@kernel.org>
- <ZulEFlDoRz4USTB8@NAB-HP-ProDesk-600sony.com>
+	s=arc-20240116; t=1726671992; c=relaxed/simple;
+	bh=pR/ziYqo2OWSzFGu33248YUgttPGF4Xwh9xEkBoN1ro=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GjHS8Emghzc6kIVd1TpS93qXsoACUt636yCDTDUl95bzadBLItaHJmXxpQuLw+cbJdiHxlXj9MBAwgS9AJLBEkDNI3gFMrAmxeUxnErEsS0TeZG0Er3vG1MWxLjdfoYvTMJkfSWNY9KDf/XVB+b9HWMid7NJMJl4kb77hl6RsSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NJCajW1v; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1726671988;
+	bh=pR/ziYqo2OWSzFGu33248YUgttPGF4Xwh9xEkBoN1ro=;
+	h=From:To:Cc:Subject:Date:From;
+	b=NJCajW1vVct7Htjmf8yzFslmMHaTQtzRvtAffbf2AKWnXwMakZJNgx108JPG5PGSE
+	 gzYs1H5k1wXSH4C/1RzOB466fD4Iq4tkJSlrjwLrlhN5aLuGg0S5MHQLcXY87ePCk6
+	 gl5l0x1R6hpf2BQ+FvUJIrmRthLifEvDyLKorxm/GXNQk63Ppy9yr7xfDnYVNboWnZ
+	 BNj0iSKtM/rxCUo2WXZzNzOnysteDAztWbaQ1KDQaGNX/vIiRO8RR2H5dep+dkw4BY
+	 QKA/czAMUe+yFJtt95FBRi8FI46kCuQXWpk8hQfs0ZsPASdoef3yLSL5foxjjHoGvr
+	 oc0Wic7qJSQ+Q==
+Received: from trenzalore.hitronhub.home (unknown [23.233.251.139])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: detlev)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5AB5617E35DB;
+	Wed, 18 Sep 2024 17:06:27 +0200 (CEST)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: linux-kernel@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Jiri Slaby <jirislaby@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	kernel@collabora.com,
+	Detlev Casanova <detlev.casanova@collabora.com>
+Subject: [PATCH 0/1] dt-bindings: serial: snps-dw-apb-uart: Add Rockchip RK3576
+Date: Wed, 18 Sep 2024 11:05:06 -0400
+Message-ID: <20240918150704.1163581-1-detlev.casanova@collabora.com>
+X-Mailer: git-send-email 2.46.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZulEFlDoRz4USTB8@NAB-HP-ProDesk-600sony.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Sep 17, 2024 at 02:25:50PM +0530, Nayeemahmed Badebade wrote:
-> Hi Rob,
-> 
-> Thank you for taking the time to check our patch and provide
-> valuable feedback. We appreciate your comments/suggestions.
-> 
-> Please find our reply to your comments.
-> 
-> On Thu, Sep 12, 2024 at 03:46:34PM -0500, Rob Herring wrote:
-> > On Wed, Sep 11, 2024 at 07:53:19PM +0530, Nayeemahmed Badebade wrote:
-> > > Probe control driver framework allows deferring the probes of a group of
-> > > devices to an arbitrary time, giving the user control to trigger the probes
-> > > after boot. This is useful for deferring probes from builtin drivers that
-> > > are not required during boot and probe when user wants after boot.
-> > 
-> > This seems like the wrong way around to me. Why not define what you want 
-> > to probe first or some priority order? I could see use for kernel to 
-> > probe whatever is the console device first. Or the rootfs device... You 
-> > don't need anything added to DT for those.
-> > 
-> > Of course, there's the issue that Linux probes are triggered bottom-up 
-> > rather than top-down.
-> > 
-> 
-> Our intention is to only postpone some driver probes not required during
-> boot, similar to https://elinux.org/Deferred_Initcalls. But instead of
-> delaying initcall execution(which requires initmem to be kept and not
-> freed during boot) we are trying to delay driver probes as this is much
-> simpler.
-> 
-> > 
-> > > This is achieved by adding a dummy device aka probe control device node
-> > > as provider to a group of devices(consumer nodes) in platform's device
-> > > tree. Consumers are the devices we want to probe after boot.
-> > 
-> > There's the obvious question of then why not make those devices modules 
-> > instead of built-in?
-> > 
-> 
-> Yes we can use modules for this, but there are drivers that cannot be
-> built as modules and this framework is specifically for such scenario.
-> Example: drivers/pci/controller/dwc/pci-imx6.c
+Hi Greg !
 
-Then fix the driver to work as a module. Or to use async probe which is 
-not the default and is opt-in per driver.
+I extracted this patch from the patchset in [0] as it is blocking the
+following device tree patches and might have been lost in your CCs.
 
-> 
-> > > 
-> > > To establish control over consumer device probes, each consumer device node
-> > > need to refer the probe control provider node by the phandle.
-> > > 'probe-control-supply' property is used for this.
-> > > 
-> > > Example:
-> > >     // The node below defines a probe control device/provider node
-> > >     prb_ctrl_dev_0: prb_ctrl_dev_0 {
-> > >         compatible = "linux,probe-control";
-> > >     };
-> > > 
-> > >     // The node below is the consumer device node that refers to provider
-> > >     // node by its phandle and a result will not be probed until provider
-> > >     // node is probed.
-> > >     pcie@1ffc000 {
-> > >         reg = <0x01ffc000 0x04000>, <0x01f00000 0x80000>;
-> > >         #address-cells = <3>;
-> > >         #size-cells = <2>;
-> > >         device_type = "pci";
-> > >         ranges = <0x81000000 0 0          0x01f80000 0 0x00010000>,
-> > >                  <0x82000000 0 0x01000000 0x01000000 0 0x00f00000>;
-> > > 
-> > >         probe-control-supply = <&prb_ctrl_dev_0>;
-> > >     };
-> > 
-> > Sorry, but this isn't going to happen in DT.
-> > 
-> 
-> You mean we cannot add custom properties like this to an existing
-> device node in DT?
+This is v5 of the patch and it has no changelog as it didn't change since
+v1, except for the Acked-by: tags.
 
-Sure, you can add properties. It happens all the time. This is too tied 
-to some OS implementation/behavior and therefore is not appropriate for 
-DT.
+Regards,
+Detlev.
 
-Rob
+[0]: https://lore.kernel.org/all/20240903152308.13565-1-detlev.casanova@collabora.com/
+
+Detlev Casanova (1):
+  dt-bindings: serial: snps-dw-apb-uart: Add Rockchip RK3576
+
+ Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+-- 
+2.46.1
+
 
