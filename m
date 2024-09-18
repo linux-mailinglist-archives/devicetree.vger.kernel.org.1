@@ -1,104 +1,126 @@
-Return-Path: <devicetree+bounces-103579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DC5097B677
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 02:33:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D598697B694
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 03:36:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 27A21B21E92
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 00:33:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 611991F25327
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 01:36:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E427C4428;
-	Wed, 18 Sep 2024 00:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A529F6AB8;
+	Wed, 18 Sep 2024 01:36:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tw5+/mqm"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="LW6kbAHC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m3286.qiye.163.com (mail-m3286.qiye.163.com [220.197.32.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B296FB641;
-	Wed, 18 Sep 2024 00:32:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 450B923B0;
+	Wed, 18 Sep 2024 01:36:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726619576; cv=none; b=R+NkbSETsRjhuvOLcoGrwvBybj75U5vpO9hc7W3wMIvTF+MtBn1t+MFJoPv3ZjBzFdIBG5vxSKogJ1D3d5FGKA1fvRHVj62CB6/gzMnXVQJL0x2GC4UVXG3RfwwJBX2BSdU+loypLJFrgoJjKDHAKQUEs7edJFaeJE9psI+4CCM=
+	t=1726623375; cv=none; b=i9BLkSRaeCIzeXeUCC3P8Lh3if3cOGCgv5hFJ7ORTfCS408q3Auhb+rfbc7AIShmks6t2GcVp9AdEDoa/AViq5R2/s4uOoU4UFYoYKInQ2WW/jI1Q9N3ITjVe3CZ8rcdTvZHMy20Y5cVbFiX+V8jis3KfesJWxah0nCK4m6PFDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726619576; c=relaxed/simple;
-	bh=GKFSFRscBZROAt5wvUmtDG2ifhoCSZnrla+6G5AIl0Q=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=T4vGM3bJuu/KAwpunKK3eDiDoaIi1KOfKqmmHPZfBA5l5nIWQrCVFYeygcfKE7qblJB5xBSDO2sSG9JN7xACvXfoit3jbNIzGDVYdStIYg0QKNd9YTfAI4ys7QDRSjCJ5HH56egbBE5Px6R6D9+E8UZU3EErBb4epzCH2AY5Oh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tw5+/mqm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8FADC4CEC7;
-	Wed, 18 Sep 2024 00:32:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726619576;
-	bh=GKFSFRscBZROAt5wvUmtDG2ifhoCSZnrla+6G5AIl0Q=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=tw5+/mqmtg0TqEOA38Ysx76IR2zmynADeaH2ZhJvMg5CWTLeNxZyXMIoXO/ixeDBW
-	 a0gay/nNnVDYuvoJzPvTYQjYSFy1HaoYfbRTKxWZRzHLt+ohWToSwPlm2xU4hiXCL5
-	 lgfvfsRQA0BQnO9pkQm34k4DXNY7YUjL6lwcFBTZwOFKMi81yRI7CVj6ROER//Z3+a
-	 4jSnqlCXV7FuBDuKj1aOkldNU9lU6MVq3MKX8h6JSfJtz7lKP1gVg+rdll5D3v5p6y
-	 KRWvcQohzTWLTKvNroBeFaW1/txhrU6uWcX/Q1AAujbGKazdP3SzijAC+QRzCglFRL
-	 xfYxOh/4NtoQg==
-Date: Tue, 17 Sep 2024 19:32:54 -0500
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=arc-20240116; t=1726623375; c=relaxed/simple;
+	bh=I4DOH1yoCq6jGAu1f1uGUgoF0OpVVzjyR4RgOinZi/A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aWL8VOnG5eeB/b4+tBJNgLbGNYgbVLU3rgIzYWgkpLPSs1DqKDGaZ9ML1EA8I2O2ZrGK1/SFWv2Y41WaMBdkBJGH8pBx33GvYi/MGQ85MgwzCwnQ9XCYURmyO+5c4hRoGA72bORmiACgwNwwc1PNtRP4CtAthvAfypLWiMH2ytw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=LW6kbAHC; arc=none smtp.client-ip=220.197.32.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+DKIM-Signature: a=rsa-sha256;
+	b=LW6kbAHC+5GXY2OfZMS5sTuDv1f1PUf2Jokq7SwLNMcVkKd5XYcfbfTqPkpzRhq+C84wAq72EZ75gfWTCIxw97GfBr9nLOywtphVyrlgsYkCDJo+6PFQdke69l3JSZV3+nfdSnMiJiP0yiasl5A0BLRAM859TRaxru7J4jFeWlo=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=TVkZycR1rpHNLPIXL884jOUJnJVbwEfw2KUOAdKWNS8=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.26] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id 8307810032A;
+	Wed, 18 Sep 2024 09:35:03 +0800 (CST)
+Message-ID: <d8161786-24b1-408e-af8e-f942598fa50a@rock-chips.com>
+Date: Wed, 18 Sep 2024 09:35:03 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: krzk+dt@kernel.org, linux-i2c@vger.kernel.org, 
- linux-mips@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, tsbogend@alpha.franken.de, 
- andi.shyti@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20240917232932.3641992-5-chris.packham@alliedtelesis.co.nz>
-References: <20240917232932.3641992-1-chris.packham@alliedtelesis.co.nz>
- <20240917232932.3641992-5-chris.packham@alliedtelesis.co.nz>
-Message-Id: <172661957327.22757.9240077475502765313.robh@kernel.org>
-Subject: Re: [PATCH 4/5] dt-bindings: i2c: Add RTL9300 I2C multiplexer
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/2] dt-bindings: arm: rockchip: Add RK3588S EVB1 board
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, macromorgan@hotmail.com, jonas@kwiboo.se,
+ tim@feathertop.org, knaerzche@gmail.com, efectn@protonmail.com,
+ andyshrk@163.com, jagan@edgeble.ai, dsimic@manjaro.org, megi@xff.cz,
+ sebastian.reichel@collabora.com, alchark@gmail.com,
+ boris.brezillon@collabora.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240914095456.2347532-1-damon.ding@rock-chips.com>
+ <20240914095456.2347532-2-damon.ding@rock-chips.com>
+ <krfo47rjxks7gouirhmcfwa67sy3vztq2ktdcs4kkikhtwgbv3@ofvnobfyqzhf>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <krfo47rjxks7gouirhmcfwa67sy3vztq2ktdcs4kkikhtwgbv3@ofvnobfyqzhf>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkkfSFZCH0gZGUoZTB5JGk9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	JVSktLVUpCS0tZBg++
+X-HM-Tid: 0a9202c4cb9203a7kunm8307810032a
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6ORg6ERw4LzIrKwsPTUMKMw8h
+	CQtPCy1VSlVKTElNTUlISEtOSUJIVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFITE5JNwY+
 
+Hi Krzysztof:
 
-On Wed, 18 Sep 2024 11:29:31 +1200, Chris Packham wrote:
-> An extension of the RTL9300 SoC is to support multiplexing by selecting
-> the SDA pins that are being used dynamically. Add a binding that allows
-> us to describe hardware that makes use of this.
+On 2024/9/16 16:49, Krzysztof Kozlowski wrote:
+> On Sat, Sep 14, 2024 at 05:54:55PM +0800, Damon Ding wrote:
+>> Add devicetree binding for the Rockchip RK3588S evaluation board.
+>>
+>> RK3588S EVB1 board features:
+>> - Rockchip RK3588S
+>> - PMIC: RK806-2x2pcs+DiscretePower
+>> - RAM: LPDDR4/4x 2pcsx 32bit
+>> - ROM: eMMC5.1+ SPI Falsh
+>>
+>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+>> ---
+>>
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
->  .../bindings/i2c/realtek,rtl9300-i2c-mux.yaml | 82 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 83 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c-mux.yaml
+> <form letter>
+> This is a friendly reminder during the review process.
+> 
+> It looks like you received a tag and forgot to add it.
+> 
+> If you do not know the process, here is a short explanation: Please add
+> Acked-by/Reviewed-by/Tested-by tags when posting new versions, under
+> or above your Signed-off-by tag. Tag is "received", when provided
+> in a message replied to you on the mailing list. Tools like b4 can help
+> here. However, there's no need to repost patches *only* to add the tags.
+> The upstream maintainer will do that for tags received on the version
+> they apply.
+> 
+> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+> 
+> If a tag was not added on purpose, please state why and what changed.
+> </form letter>
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Best regards,
+> Krzysztof
+> 
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Thank you for your friendly reminder and the detailed explanation about 
+the tag. I did forget to add the tag in v5 patch, and I will pay more 
+attention to this in future updates.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c-mux.example.dts:22.25-28.13: Warning (unit_address_vs_reg): /example-0/switch@1b000000/i2c@36c: node has a unit name, but no reg or ranges property
-Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c-mux.example.dtb: /example-0/switch@1b000000: failed to match any schema with compatible: ['realtek,rtl9302c-switch', 'syscon', 'simple-mfd']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240917232932.3641992-5-chris.packham@alliedtelesis.co.nz
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Damon
 
 
