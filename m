@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-103736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9FF097BF86
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 19:15:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 900AF97BF93
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 19:17:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1474D1C223E1
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 17:15:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 447521F22569
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 17:17:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF5F51C9DDA;
-	Wed, 18 Sep 2024 17:14:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11E5B1C8FB9;
+	Wed, 18 Sep 2024 17:17:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hjFh4A1H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RtoLPaq7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91B361B9B49;
-	Wed, 18 Sep 2024 17:14:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D683D1AD3F8;
+	Wed, 18 Sep 2024 17:17:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726679695; cv=none; b=W65S19XvzbzxvfSV7iBGiEMwnJtZVqrfjz5b4Ni9XsX1Jac7ranyJwSQ9ql3rxXhbMkB4fr5bVs+CzC15h24cMATQjZosN2xIvmd4E6KdzxC2QVc/rEELYWnsnyRGycZXdErhrqAW6X0VW5o6soTIADFnCL3e36T+1pIGE1vlyI=
+	t=1726679868; cv=none; b=fqbvZQ9fdysEOU0djvfVhRv26/BHLOZnvdrD1MjfiLh5IeKLhVsmPFO+J9iXu7RWJ6YgdHmY3Pj6r1TyunOj3JYfk8AhV3x2JM2apRMoSz/jYBzBkNHGJvV7tae4h8ztAltGaM5ZWAtFpPIfj1gzYwSzJ0azBJlP/hULnSPSGK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726679695; c=relaxed/simple;
-	bh=se9nDBRBjI7FoM8cZzoIPCEXe0jMmjU5Q1XxWRQ6wUA=;
+	s=arc-20240116; t=1726679868; c=relaxed/simple;
+	bh=rF59NlVc8RdVfJ1BvQvUzd07bfrQYtLfcHPmONHYpGs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JBD0ZS1Z3XBMUFd//SI62qWl5kIQojDTnD3eaa5R8l+2L+GIeEZ8lWC0Fp2zJySNBeWkIWMW46dd+33UvBvo9qK2pH9w7jUTWHdNS8kjqgxW2YrwmzTAUl9yFbphYbPOSCptC0v0f1CTt3tSr3YgywSyRyY8JnO8qjsRx+lxOvo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hjFh4A1H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA227C4CEC2;
-	Wed, 18 Sep 2024 17:14:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dd/nBnS/O6LjYDA2kZ4BiY6JMik/bqpynBDfLsgb4Z7UwREt0bnuNJV3pSPZTqZ0P2umWhkR1Up4lftQEN6IOGezt2edXOCZQ0IebtS7wr27PvaZ/PGoNDiYFR0yKIPtFLH7oTuMJgjvqAoQhDJMgcpRrgHy/qXYMpZxrWQzEZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RtoLPaq7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F865C4CEC2;
+	Wed, 18 Sep 2024 17:17:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726679695;
-	bh=se9nDBRBjI7FoM8cZzoIPCEXe0jMmjU5Q1XxWRQ6wUA=;
+	s=k20201202; t=1726679867;
+	bh=rF59NlVc8RdVfJ1BvQvUzd07bfrQYtLfcHPmONHYpGs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hjFh4A1Hi4VkpIC8I2IMLHVXC6pOFVGLcPJu/LY/tYv312M0B/g+aA5eMcOB21d7v
-	 pirME89AvXq8f7qy+B6NQifjSFYkUCLG3Kee7FQKBJLcNz/VI/ymALb0BCCKljjpjX
-	 Gy8b3WYJAkWTraU6DbWgX2S6z8RFZ6OmA9GFSijBmzek5JfJ68PvdQ2gVmfVdxtL+m
-	 vG45JW3AWMI2o+zIBHtpc7pZOK83tK8BIE2Avw4ikCQjFZVBgDP91w7wkSIViXd3w8
-	 Z9FqO2F3LLS7nFTPQLEU+8N3QAomNYMbjwZlStqRp2lDIK+Xq55YG8d0Cfpklh+Frx
-	 o2Q3ESpMo1dww==
-Date: Wed, 18 Sep 2024 12:14:53 -0500
+	b=RtoLPaq7qufGYckdBFCgTUn8u95FViuUhtLsCxwPFPZ1TgLZC2oNCakgAqqDMjqSL
+	 EVhY8lL3ZqKHmR5f2i+tnkvH2ifmJl0PuuMStSsQic/whvK5SZf2skRuHV3iKA5Tfj
+	 l6ABgqD/1McUwZMc1npsOs/C6k0pEDH9c9q7QiVrRq6FRNhlbSXDj7n6itCj/cEytS
+	 z/JfeQ6WBM/TrZKUwWtZVKeIUOIktYwTmQCJxCft0ItDUCNWn3KkuIuMN6tLmQ1CXy
+	 JLsM6d6l/yXwhT3+9h24SttkQzbFPJWrIMTo88Ot1GihYXr4re9kotTAfsdnnI5cqm
+	 Am+7pAz5mcJtQ==
+Date: Wed, 18 Sep 2024 12:17:46 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sibi Sankar <quic_sibis@quicinc.com>, linux-phy@lists.infradead.org,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Abel Vesa <abel.vesa@linaro.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: add
- missing x1e80100 pipediv2 clocks
-Message-ID: <172667969326.1817225.11425040649410740756.robh@kernel.org>
-References: <20240916082307.29393-1-johan+linaro@kernel.org>
- <20240916082307.29393-2-johan+linaro@kernel.org>
+To: Inbaraj E <inbaraj.e@samsung.com>
+Cc: linux-kernel@vger.kernel.org, alim.akhtar@samsung.com, krzk@kernel.org,
+	conor+dt@kernel.org, sboyd@kernel.org,
+	linux-samsung-soc@vger.kernel.org, s.nawrocki@samsung.com,
+	linux-clk@vger.kernel.org, cw00.choi@samsung.com,
+	gost.dev@samsung.com, devicetree@vger.kernel.org,
+	mturquette@baylibre.com, pankaj.dubey@samsung.com
+Subject: Re: [PATCH 2/2] dt-bindings: clock: samsung: remove define with
+ number of clocks for FSD
+Message-ID: <172667986572.1820528.6558113024982582816.robh@kernel.org>
+References: <20240917094355.37887-1-inbaraj.e@samsung.com>
+ <CGME20240917094454epcas5p22a75e3bb5a09b12eb269f1dcde573741@epcas5p2.samsung.com>
+ <20240917094355.37887-3-inbaraj.e@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,19 +64,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240916082307.29393-2-johan+linaro@kernel.org>
+In-Reply-To: <20240917094355.37887-3-inbaraj.e@samsung.com>
 
 
-On Mon, 16 Sep 2024 10:23:05 +0200, Johan Hovold wrote:
-> The x1e80100 QMP PCIe PHYs all have a pipediv2 clock that needs to be
-> described.
+On Tue, 17 Sep 2024 15:13:55 +0530, Inbaraj E wrote:
+> Number of clocks supported by Linux drivers might vary - sometimes we
+> add new clocks, not exposed previously.  Therefore these numbers of
+> clocks should not be in the bindings, as that prevents changing them.
+> Remove it entirely from the bindings, once Linux drivers stopped using
+> them.
 > 
-> Fixes: e94b29f2bd73 ("dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Document the X1E80100 QMP PCIe PHYs")
-> Cc: Abel Vesa <abel.vesa@linaro.org>
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> Signed-off-by: Inbaraj E <inbaraj.e@samsung.com>
 > ---
->  .../devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml   | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  include/dt-bindings/clock/fsd-clk.h | 7 -------
+>  1 file changed, 7 deletions(-)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
