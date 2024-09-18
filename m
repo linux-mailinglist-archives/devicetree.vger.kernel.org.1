@@ -1,695 +1,160 @@
-Return-Path: <devicetree+bounces-103635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20C3797B989
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 10:42:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD72D97B994
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 10:49:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 760CAB219C2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 08:42:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3E361C2135D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 08:49:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD1EF17ADF6;
-	Wed, 18 Sep 2024 08:41:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAB96171E5A;
+	Wed, 18 Sep 2024 08:49:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="7dN+ntsD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HQDDWhhW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6733E1741C8;
-	Wed, 18 Sep 2024 08:41:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F963DF6C;
+	Wed, 18 Sep 2024 08:49:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726648906; cv=none; b=LKPZUDpQPyCia6OcWgkqqvZL7su0eNoOAlYxGyJ1tXEAuJWBYLQ1elSKAPIl14Yu0/5NICxBpfLSy5a3yb+fh7dvj9qrh/qR2Bhf5/NVA9XTcD7pbZ4fCxmntIw3auN3dU40NzZ9Np9sj6OriyKL0R068w5eT8geANF1fB1hKPo=
+	t=1726649362; cv=none; b=g1le4EuTtu42t0ytuUJ7g27mU4PxB350HFh76kuvMWBdDgi/YU1hzEdwBROLbkYbrM69cWd/iy0ewONpPgUOq9HmDTdlgg9Iu+pXxKUNReBhW1YJ0xttuCB6DVmziU59cUR+N1jXl7Znikap5qgnG9EzUahGJWXBroXZRRsPxq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726648906; c=relaxed/simple;
-	bh=rOZk0yxoeCJgwqog7KOpiaJHXO9W0fu+ZXBz8wUzLmI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=DFGSMMNsPArTpwOpYFUbHw3IkwWxDngjxNETJ55CL81F11zpq9xypIJdJVNaFqT9YUNCeDtME0bYjVG3XnQdXBspsr+KywH+HlnhFcxwjv9CrxGsOTPrLAQ7eGZNoJ86bZvkOKICK85g6kUbaeedrhZC0iUh3E4G16FjYtUHw1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=7dN+ntsD; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=iHv8TbcPBVGlI172+vzOQTyYjecvHNE7NVjp/uoxdZY=; b=7dN+ntsD5eOeeCMywGPxHUx6fo
-	tGFDb71CsqMW9DQh4zPjmTJeHAreGH+i3c1XMfqfAP2lDB9KlFJAWeLHQl/eGf5HMrXxXq7Vhc2h0
-	lNyeHIRQxhZ4GY00Hne/vS97eIfJHPbpH+TQYVNu7STXplzMzVZTUFFWNEBEOvNDAiWn943Ueu3wQ
-	IRSuG86dR3TNE4+9zMHemZEadDLJ9EPiJ7/LaDOCgcZ+24PLYFeGpQx/y1UZTxS7rDwdBQc1IuP9B
-	JETdCBvrz0itCbxZ1VPeqJbiUe18ssLvXCtgN5EnpeDxzZ/PkQ3vUxewvolW9h/+ZF878r82BerLd
-	QUVo/Lqg==;
-From: Andreas Kemnade <andreas@kemnade.info>
-To: tony@atomide.com,
-	Sebastian Reichel <sre@kernel.org>,
-	linux-omap@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1726649362; c=relaxed/simple;
+	bh=Qy5FllhBkPQbLsxTmUUnuogOwSaJdkkZ2cGgJ9vQjpU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KFBPjvyzDhKWe/PynSJeXiZh4LKS1h+DzT/2aA3LeBnuDsyFAntgbgJ1PBgtfaDYXhLToyYFllPmjli+CZpncW9CWgLJFvopzAEfw7Phm6s1IH9Yib/5Y9HxVT1JLa+Ofz+qSJ1qhUgIa7BIqbTVnlqXhSdqel+yHYNDePUlV9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HQDDWhhW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5469CC4CEC3;
+	Wed, 18 Sep 2024 08:49:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726649362;
+	bh=Qy5FllhBkPQbLsxTmUUnuogOwSaJdkkZ2cGgJ9vQjpU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HQDDWhhW+lVW+sgRvIjK+8Zu0WbtNPTRCiTbKuBFxU3oAUQ1AFTLTrTFc0j0SUOdB
+	 +r5qp/NQhQ/eP4kcx9mq+2MhAQaol9rkBBsMnjMggWKOkADacZLb82aWEfcctdZcAq
+	 xFpK3moxPGXjgCOW8sETJ+VK8aNbo+9GnnGlzsx0pYio/lGU+85GyAWYDjgSv1U2MI
+	 taAHsIJNOv/2cuBz8EaQrZrDAkFxq5ODZdBorGimMhEwDQrFqFXCgfxPs06cEoJRTp
+	 SLQBHYTgC7FmHRM3kLK/E5Y3f5ZRJ5r49hUTIL2PH1rphyKwtsOGJ/QcLL6oV8AYEC
+	 NHtRuKkOsPJ3A==
+Date: Wed, 18 Sep 2024 10:49:16 +0200
+From: Mark Brown <broonie@kernel.org>
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-pm@vger.kernel.org
-Cc: Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH 3/3] power: supply: initial support for TWL6030/32
-Date: Wed, 18 Sep 2024 10:41:32 +0200
-Message-Id: <20240918084132.928295-4-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240918084132.928295-1-andreas@kemnade.info>
-References: <20240918084132.928295-1-andreas@kemnade.info>
+	Michael Walle <mwalle@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] regulator: max20339: add Maxim MAX20339 regulator
+ driver
+Message-ID: <ZuqUDJThMvReRskQ@finisterre.sirena.org.uk>
+References: <20240916-max20339-v1-0-b04ce8e8c471@linaro.org>
+ <20240916-max20339-v1-2-b04ce8e8c471@linaro.org>
+ <ZulJuCu-QcMYrphP@finisterre.sirena.org.uk>
+ <5ad81ed43d8bb2426c9ae7d22fdb4c7aeb905129.camel@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="r2Zdp1ebFNH8qHs2"
+Content-Disposition: inline
+In-Reply-To: <5ad81ed43d8bb2426c9ae7d22fdb4c7aeb905129.camel@linaro.org>
+X-Cookie: Editing is a rewording activity.
 
-Add a driver for the charger in the TWL6030/32. For now it does not report
-much in sysfs but parameters are set up for USB, charging is enabled with
-the specified parameters. It stops charging when full and also restarts
-charging.
-This prevents ending up in a system setup where you run out of battery
-although a charger is plugged in after precharge completed.
 
-Battery voltage behavior was checked via the GPADC.
+--r2Zdp1ebFNH8qHs2
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- drivers/power/supply/Kconfig           |  10 +
- drivers/power/supply/Makefile          |   1 +
- drivers/power/supply/twl6030_charger.c | 566 +++++++++++++++++++++++++
- 3 files changed, 577 insertions(+)
- create mode 100644 drivers/power/supply/twl6030_charger.c
+On Tue, Sep 17, 2024 at 12:41:16PM +0100, Andr=E9 Draszik wrote:
+> On Tue, 2024-09-17 at 11:19 +0200, Mark Brown wrote:
 
-diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-index bcfa63fb9f1e2..9f2eef6787f7a 100644
---- a/drivers/power/supply/Kconfig
-+++ b/drivers/power/supply/Kconfig
-@@ -493,6 +493,16 @@ config CHARGER_TWL4030
- 	help
- 	  Say Y here to enable support for TWL4030 Battery Charge Interface.
- 
-+config CHARGER_TWL6030
-+	tristate "OMAP TWL6030 BCI charger driver"
-+	depends on IIO && TWL4030_CORE
-+	help
-+	  Say Y here to enable support for TWL6030/6032 Battery Charge
-+	  Interface.
-+
-+	  This driver can be build as a module. If so, the module will be
-+	  called twl6030_charger.
-+
- config CHARGER_LP8727
- 	tristate "TI/National Semiconductor LP8727 charger driver"
- 	depends on I2C
-diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
-index 8dcb415453171..59c4a9f40d28a 100644
---- a/drivers/power/supply/Makefile
-+++ b/drivers/power/supply/Makefile
-@@ -69,6 +69,7 @@ obj-$(CONFIG_CHARGER_CPCAP)	+= cpcap-charger.o
- obj-$(CONFIG_CHARGER_ISP1704)	+= isp1704_charger.o
- obj-$(CONFIG_CHARGER_MAX8903)	+= max8903_charger.o
- obj-$(CONFIG_CHARGER_TWL4030)	+= twl4030_charger.o
-+obj-$(CONFIG_CHARGER_TWL6030)	+= twl6030_charger.o
- obj-$(CONFIG_CHARGER_LP8727)	+= lp8727_charger.o
- obj-$(CONFIG_CHARGER_LP8788)	+= lp8788-charger.o
- obj-$(CONFIG_CHARGER_GPIO)	+= gpio-charger.o
-diff --git a/drivers/power/supply/twl6030_charger.c b/drivers/power/supply/twl6030_charger.c
-new file mode 100644
-index 0000000000000..5704b8ca9d22b
---- /dev/null
-+++ b/drivers/power/supply/twl6030_charger.c
-@@ -0,0 +1,566 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * TWL6030 charger
-+ *
-+ * Copyright (C) 2024 Andreas Kemnade <andreas@kemnade.info>
-+ *
-+ * based on older 6030 driver found in a v3.0 vendor kernel
-+ *
-+ * based on twl4030_bci_battery.c by TI
-+ * Copyright (C) 2008 Texas Instruments, Inc.
-+ */
-+
-+#include <linux/init.h>
-+#include <linux/module.h>
-+#include <linux/slab.h>
-+#include <linux/err.h>
-+#include <linux/of.h>
-+#include <linux/bits.h>
-+#include <linux/platform_device.h>
-+#include <linux/interrupt.h>
-+#include <linux/mfd/twl.h>
-+#include <linux/power_supply.h>
-+#include <linux/notifier.h>
-+#include <linux/usb/otg.h>
-+#include <linux/iio/consumer.h>
-+#include <linux/devm-helpers.h>
-+
-+#define CONTROLLER_INT_MASK	0x00
-+#define CONTROLLER_CTRL1	0x01
-+#define CONTROLLER_WDG		0x02
-+#define CONTROLLER_STAT1	0x03
-+#define CHARGERUSB_INT_STATUS	0x04
-+#define CHARGERUSB_INT_MASK	0x05
-+#define CHARGERUSB_STATUS_INT1	0x06
-+#define CHARGERUSB_STATUS_INT2	0x07
-+#define CHARGERUSB_CTRL1	0x08
-+#define CHARGERUSB_CTRL2	0x09
-+#define CHARGERUSB_CTRL3	0x0A
-+#define CHARGERUSB_STAT1	0x0B
-+#define CHARGERUSB_VOREG	0x0C
-+#define CHARGERUSB_VICHRG	0x0D
-+#define CHARGERUSB_CINLIMIT	0x0E
-+#define CHARGERUSB_CTRLLIMIT1	0x0F
-+#define CHARGERUSB_CTRLLIMIT2	0x10
-+#define ANTICOLLAPSE_CTRL1	0x11
-+#define ANTICOLLAPSE_CTRL2	0x12
-+
-+/* TWL6032 registers 0xDA to 0xDE - TWL6032_MODULE_CHARGER */
-+#define CONTROLLER_CTRL2	0x00
-+#define CONTROLLER_VSEL_COMP	0x01
-+#define CHARGERUSB_VSYSREG	0x02
-+#define CHARGERUSB_VICHRG_PC	0x03
-+#define LINEAR_CHRG_STS		0x04
-+
-+#define LINEAR_CHRG_STS_CRYSTL_OSC_OK	0x40
-+#define LINEAR_CHRG_STS_END_OF_CHARGE	0x20
-+#define LINEAR_CHRG_STS_VBATOV		0x10
-+#define LINEAR_CHRG_STS_VSYSOV		0x08
-+#define LINEAR_CHRG_STS_DPPM_STS	0x04
-+#define LINEAR_CHRG_STS_CV_STS		0x02
-+#define LINEAR_CHRG_STS_CC_STS		0x01
-+
-+#define FG_REG_00	0x00
-+#define FG_REG_01	0x01
-+#define FG_REG_02	0x02
-+#define FG_REG_03	0x03
-+#define FG_REG_04	0x04
-+#define FG_REG_05	0x05
-+#define FG_REG_06	0x06
-+#define FG_REG_07	0x07
-+#define FG_REG_08	0x08
-+#define FG_REG_09	0x09
-+#define FG_REG_10	0x0A
-+#define FG_REG_11	0x0B
-+
-+/* CONTROLLER_INT_MASK */
-+#define MVAC_FAULT		BIT(7)
-+#define MAC_EOC			BIT(6)
-+#define LINCH_GATED		BIT(5)
-+#define MBAT_REMOVED		BIT(4)
-+#define MFAULT_WDG		BIT(3)
-+#define MBAT_TEMP		BIT(2)
-+#define MVBUS_DET		BIT(1)
-+#define MVAC_DET		BIT(0)
-+
-+/* CONTROLLER_CTRL1 */
-+#define CONTROLLER_CTRL1_EN_LINCH	BIT(5)
-+#define CONTROLLER_CTRL1_EN_CHARGER	BIT(4)
-+#define CONTROLLER_CTRL1_SEL_CHARGER	BIT(3)
-+
-+/* CONTROLLER_STAT1 */
-+#define CONTROLLER_STAT1_EXTCHRG_STATZ	BIT(7)
-+#define CONTROLLER_STAT1_LINCH_GATED	BIT(6)
-+#define CONTROLLER_STAT1_CHRG_DET_N	BIT(5)
-+#define CONTROLLER_STAT1_FAULT_WDG	BIT(4)
-+#define CONTROLLER_STAT1_VAC_DET	BIT(3)
-+#define VAC_DET	BIT(3)
-+#define CONTROLLER_STAT1_VBUS_DET	BIT(2)
-+#define VBUS_DET	BIT(2)
-+#define CONTROLLER_STAT1_BAT_REMOVED	BIT(1)
-+#define CONTROLLER_STAT1_BAT_TEMP_OVRANGE BIT(0)
-+
-+/* CHARGERUSB_INT_STATUS */
-+#define EN_LINCH		BIT(4)
-+#define CURRENT_TERM_INT	BIT(3)
-+#define CHARGERUSB_STAT		BIT(2)
-+#define CHARGERUSB_THMREG	BIT(1)
-+#define CHARGERUSB_FAULT	BIT(0)
-+
-+/* CHARGERUSB_INT_MASK */
-+#define MASK_MCURRENT_TERM		BIT(3)
-+#define MASK_MCHARGERUSB_STAT		BIT(2)
-+#define MASK_MCHARGERUSB_THMREG		BIT(1)
-+#define MASK_MCHARGERUSB_FAULT		BIT(0)
-+
-+/* CHARGERUSB_STATUS_INT1 */
-+#define CHARGERUSB_STATUS_INT1_TMREG	BIT(7)
-+#define CHARGERUSB_STATUS_INT1_NO_BAT	BIT(6)
-+#define CHARGERUSB_STATUS_INT1_BST_OCP	BIT(5)
-+#define CHARGERUSB_STATUS_INT1_TH_SHUTD	BIT(4)
-+#define CHARGERUSB_STATUS_INT1_BAT_OVP	BIT(3)
-+#define CHARGERUSB_STATUS_INT1_POOR_SRC	BIT(2)
-+#define CHARGERUSB_STATUS_INT1_SLP_MODE	BIT(1)
-+#define CHARGERUSB_STATUS_INT1_VBUS_OVP	BIT(0)
-+
-+/* CHARGERUSB_STATUS_INT2 */
-+#define ICCLOOP		BIT(3)
-+#define CURRENT_TERM	BIT(2)
-+#define CHARGE_DONE	BIT(1)
-+#define ANTICOLLAPSE	BIT(0)
-+
-+/* CHARGERUSB_CTRL1 */
-+#define SUSPEND_BOOT	BIT(7)
-+#define OPA_MODE	BIT(6)
-+#define HZ_MODE		BIT(5)
-+#define TERM		BIT(4)
-+
-+/* CHARGERUSB_CTRL2 */
-+#define UA_TO_VITERM(x) (((x) / 50000 - 1) << 5)
-+
-+/* CHARGERUSB_CTRL3 */
-+#define VBUSCHRG_LDO_OVRD	BIT(7)
-+#define CHARGE_ONCE		BIT(6)
-+#define BST_HW_PR_DIS		BIT(5)
-+#define AUTOSUPPLY		BIT(3)
-+#define BUCK_HSILIM		BIT(0)
-+
-+/* CHARGERUSB_VOREG */
-+#define UV_TO_VOREG(x) (((x) - 3500000) / 20000)
-+#define VOREG_TO_UV(x) (((x) & 0x3F) * 20000 + 3500000)
-+#define CHARGERUSB_VOREG_3P52		0x01
-+#define CHARGERUSB_VOREG_4P0		0x19
-+#define CHARGERUSB_VOREG_4P2		0x23
-+#define CHARGERUSB_VOREG_4P76		0x3F
-+
-+/* CHARGERUSB_VICHRG */
-+/*
-+ * might be inaccurate for < 500 mA, diffent scale might apply,
-+ * either starting from 100 mA or 300 mA
-+ */
-+#define UA_TO_VICHRG(x) (((x) / 100000) - 1)
-+#define VICHRG_TO_UA(x) (((x) & 0xf) * 100000 + 100000)
-+
-+/* CHARGERUSB_CINLIMIT */
-+#define CHARGERUSB_CIN_LIMIT_100	0x1
-+#define CHARGERUSB_CIN_LIMIT_300	0x5
-+#define CHARGERUSB_CIN_LIMIT_500	0x9
-+#define CHARGERUSB_CIN_LIMIT_NONE	0xF
-+
-+/* CHARGERUSB_CTRLLIMIT2 */
-+#define CHARGERUSB_CTRLLIMIT2_1500	0x0E
-+#define		LOCK_LIMIT		BIT(4)
-+
-+/* ANTICOLLAPSE_CTRL2 */
-+#define BUCK_VTH_SHIFT			5
-+
-+/* FG_REG_00 */
-+#define CC_ACTIVE_MODE_SHIFT	6
-+#define CC_AUTOCLEAR		BIT(2)
-+#define CC_CAL_EN		BIT(1)
-+#define CC_PAUSE		BIT(0)
-+
-+#define REG_TOGGLE1		0x90
-+#define REG_PWDNSTATUS1		0x93
-+#define FGDITHS			BIT(7)
-+#define FGDITHR			BIT(6)
-+#define FGS			BIT(5)
-+#define FGR			BIT(4)
-+#define BBSPOR_CFG		0xE6
-+#define	BB_CHG_EN		BIT(3)
-+
-+struct twl6030_charger_info {
-+	struct device		*dev;
-+	struct power_supply	*usb;
-+	struct power_supply_battery_info *binfo;
-+	struct work_struct	work;
-+	int			irq_chg;
-+	int			input_current_limit;
-+	struct iio_channel	*channel_vusb;
-+	struct delayed_work	charger_monitor;
-+};
-+
-+static int twl6030_charger_read(u8 reg, u8 *val)
-+{
-+	return twl_i2c_read_u8(TWL_MODULE_MAIN_CHARGE, val, reg);
-+}
-+
-+static int twl6030_charger_write(u8 reg, u8 val)
-+{
-+	return twl_i2c_write_u8(TWL_MODULE_MAIN_CHARGE, val, reg);
-+}
-+
-+static int twl6030_config_cinlimit_reg(struct twl6030_charger_info *charger,
-+				       unsigned int ua)
-+{
-+	if (ua >= 50000 && ua <= 750000) {
-+		ua = (ua - 50000) / 50000;
-+	} else if ((ua > 750000) && (ua <= 1500000) &&
-+		 (device_is_compatible(charger->dev, "ti,twl6032-charger"))) {
-+		ua = ((ua % 100000) ? 0x30 : 0x20) + ((ua - 100000) / 100000);
-+	} else {
-+		if (ua < 50000) {
-+			dev_err(charger->dev, "invalid input current limit\n");
-+			return -EINVAL;
-+		}
-+		/* This is no current limit */
-+		ua = 0x0F;
-+	}
-+
-+	return twl6030_charger_write(CHARGERUSB_CINLIMIT, ua);
-+}
-+
-+/*
-+ * rewriting all stuff here, resets to extremely conservative defaults were
-+ * seen under some circumstances, like charge voltage to 3.5V
-+ */
-+static int twl6030_enable_usb(struct twl6030_charger_info *charger)
-+{
-+	int ret;
-+
-+	ret = twl6030_charger_write(CHARGERUSB_VICHRG,
-+				    UA_TO_VICHRG(charger->binfo->constant_charge_current_max_ua));
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = twl6030_charger_write(CONTROLLER_WDG, 0xff);
-+	if (ret < 0)
-+		return ret;
-+
-+	charger->input_current_limit = 500000;
-+	ret = twl6030_config_cinlimit_reg(charger, charger->input_current_limit);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = twl6030_charger_write(CHARGERUSB_CINLIMIT, CHARGERUSB_CIN_LIMIT_500);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = twl6030_charger_write(CHARGERUSB_VOREG,
-+				    UV_TO_VOREG(charger->binfo->constant_charge_voltage_max_uv));
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = twl6030_charger_write(CHARGERUSB_CTRL1, TERM);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (charger->binfo->charge_term_current_ua != -EINVAL) {
-+		ret = twl6030_charger_write(CHARGERUSB_CTRL2,
-+					    UA_TO_VITERM(charger->binfo->charge_term_current_ua));
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	return twl6030_charger_write(CONTROLLER_CTRL1, CONTROLLER_CTRL1_EN_CHARGER);
-+}
-+
-+static void twl6030_charger_wdg(struct work_struct *data)
-+{
-+	struct twl6030_charger_info *charger =
-+		container_of(data, struct twl6030_charger_info,
-+			     charger_monitor.work);
-+
-+	u8 val;
-+	u8 int_stat;
-+	u8 stat_int1;
-+	u8 stat_int2;
-+
-+	twl6030_charger_read(CONTROLLER_STAT1, &val);
-+	twl6030_charger_read(CHARGERUSB_INT_STATUS, &int_stat);
-+	twl6030_charger_read(CHARGERUSB_STATUS_INT1, &stat_int1);
-+	twl6030_charger_read(CHARGERUSB_STATUS_INT2, &stat_int2);
-+	dev_dbg(charger->dev,
-+		"wdg: stat1: %02x %s INT_STATUS %02x STATUS_INT1 %02x STATUS_INT2 %02x\n",
-+		val, (val & VBUS_DET) ? "usb online" :  "usb offline",
-+		int_stat, stat_int1, stat_int2);
-+
-+	twl6030_charger_write(CONTROLLER_WDG, 0xff);
-+	schedule_delayed_work(&charger->charger_monitor,
-+			      msecs_to_jiffies(10000));
-+}
-+
-+static irqreturn_t twl6030_charger_interrupt(int irq, void *arg)
-+{
-+	struct twl6030_charger_info *charger = arg;
-+	u8 val;
-+	u8 int_stat;
-+	u8 stat_int1;
-+	u8 stat_int2;
-+
-+	if (twl6030_charger_read(CONTROLLER_STAT1, &val) < 0)
-+		return IRQ_HANDLED;
-+
-+	if (twl6030_charger_read(CHARGERUSB_INT_STATUS, &int_stat) < 0)
-+		return IRQ_HANDLED;
-+
-+	if (twl6030_charger_read(CHARGERUSB_STATUS_INT1, &stat_int1) < 0)
-+		return IRQ_HANDLED;
-+
-+	if (twl6030_charger_read(CHARGERUSB_STATUS_INT2, &stat_int2) < 0)
-+		return IRQ_HANDLED;
-+
-+	dev_dbg(charger->dev,
-+		"charger irq: stat1: %02x %s INT_STATUS %02x STATUS_INT1 %02x STATUS_INT2 %02x\n",
-+		val, (val & VBUS_DET) ? "usb online" :  "usb offline",
-+		int_stat, stat_int1, stat_int2);
-+	power_supply_changed(charger->usb);
-+
-+	if (val & VBUS_DET) {
-+		if (twl6030_charger_read(CONTROLLER_CTRL1, &val) < 0)
-+			return IRQ_HANDLED;
-+
-+		if (!(val & CONTROLLER_CTRL1_EN_CHARGER)) {
-+			if (twl6030_enable_usb(charger) < 0)
-+				return IRQ_HANDLED;
-+
-+			schedule_delayed_work(&charger->charger_monitor,
-+					      msecs_to_jiffies(10000));
-+		}
-+	} else {
-+		cancel_delayed_work(&charger->charger_monitor);
-+	}
-+	return IRQ_HANDLED;
-+}
-+
-+static int twl6030_charger_usb_get_property(struct power_supply *psy,
-+					    enum power_supply_property psp,
-+					    union power_supply_propval *val)
-+{
-+	struct twl6030_charger_info *charger = power_supply_get_drvdata(psy);
-+	int ret;
-+	u8 stat1;
-+
-+	ret = twl6030_charger_read(CONTROLLER_STAT1, &stat1);
-+	if (ret)
-+		return ret;
-+
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_STATUS:
-+		u8 intstat;
-+
-+		if (!(stat1 & VBUS_DET)) {
-+			val->intval = POWER_SUPPLY_STATUS_NOT_CHARGING;
-+			break;
-+		}
-+		ret = twl6030_charger_read(CHARGERUSB_STATUS_INT2, &intstat);
-+		if (ret)
-+			return ret;
-+
-+		if (intstat & CHARGE_DONE)
-+			val->intval = POWER_SUPPLY_STATUS_FULL;
-+		else if (intstat & CURRENT_TERM)
-+			val->intval = POWER_SUPPLY_STATUS_NOT_CHARGING;
-+		else
-+			val->intval = POWER_SUPPLY_STATUS_CHARGING;
-+		break;
-+	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-+		if (!charger->channel_vusb)
-+			return -ENODATA;
-+
-+		ret = iio_read_channel_processed_scale(charger->channel_vusb, &val->intval, 1000);
-+		if (ret < 0)
-+			return ret;
-+
-+		break;
-+	case POWER_SUPPLY_PROP_ONLINE:
-+		val->intval = !!(stat1 & VBUS_DET);
-+		break;
-+	case POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT:
-+		val->intval = charger->input_current_limit;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int twl6030_charger_usb_set_property(struct power_supply *psy,
-+					    enum power_supply_property psp,
-+					    const union power_supply_propval *val)
-+{
-+	struct twl6030_charger_info *charger = power_supply_get_drvdata(psy);
-+
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT:
-+		charger->input_current_limit = val->intval;
-+		return twl6030_config_cinlimit_reg(charger, charger->input_current_limit);
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int twl6030_charger_usb_property_is_writeable(struct power_supply *psy,
-+						     enum power_supply_property psp)
-+{
-+	dev_info(&psy->dev, "is %d writeable?\n", (int)psp);
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static enum power_supply_property twl6030_charger_props[] = {
-+	POWER_SUPPLY_PROP_STATUS,
-+	POWER_SUPPLY_PROP_ONLINE,
-+	POWER_SUPPLY_PROP_VOLTAGE_NOW,
-+	POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT,
-+};
-+
-+static const struct power_supply_desc twl6030_charger_usb_desc = {
-+	.name		= "twl6030_usb",
-+	.type		= POWER_SUPPLY_TYPE_USB,
-+	.properties	= twl6030_charger_props,
-+	.num_properties	= ARRAY_SIZE(twl6030_charger_props),
-+	.get_property	= twl6030_charger_usb_get_property,
-+	.set_property	= twl6030_charger_usb_set_property,
-+	.property_is_writeable	= twl6030_charger_usb_property_is_writeable,
-+};
-+
-+static int twl6030_charger_probe(struct platform_device *pdev)
-+{
-+	struct twl6030_charger_info *charger;
-+	struct power_supply_config psy_cfg = {};
-+	int ret;
-+	u8 val;
-+
-+	charger = devm_kzalloc(&pdev->dev, sizeof(*charger), GFP_KERNEL);
-+	if (!charger)
-+		return -ENOMEM;
-+
-+	charger->dev = &pdev->dev;
-+	charger->irq_chg = platform_get_irq(pdev, 0);
-+
-+	platform_set_drvdata(pdev, charger);
-+	psy_cfg.drv_data = charger;
-+
-+	charger->channel_vusb = devm_iio_channel_get(&pdev->dev, "vusb");
-+	if (IS_ERR(charger->channel_vusb)) {
-+		ret = PTR_ERR(charger->channel_vusb);
-+		if (ret == -EPROBE_DEFER)
-+			return ret;	/* iio not ready */
-+		dev_warn(&pdev->dev, "could not request vusb iio channel (%d)",
-+			 ret);
-+		charger->channel_vusb = NULL;
-+	}
-+
-+	charger->usb = devm_power_supply_register(&pdev->dev,
-+						  &twl6030_charger_usb_desc,
-+						  &psy_cfg);
-+	if (IS_ERR(charger->usb)) {
-+		return dev_err_probe(&pdev->dev, PTR_ERR(charger->usb),
-+				     "Failed to register usb\n");
-+	}
-+
-+	ret = power_supply_get_battery_info(charger->usb, &charger->binfo);
-+	if (ret < 0)
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "Failed to get battery info\n");
-+
-+	dev_info(&pdev->dev, "battery with vmax %d imax: %d\n",
-+		 charger->binfo->constant_charge_voltage_max_uv,
-+		 charger->binfo->constant_charge_current_max_ua);
-+
-+	if (charger->binfo->constant_charge_voltage_max_uv == -EINVAL) {
-+		ret = twl6030_charger_read(CHARGERUSB_CTRLLIMIT1, &val);
-+		if (ret < 0)
-+			return ret;
-+
-+		charger->binfo->constant_charge_voltage_max_uv =
-+			VOREG_TO_UV(val);
-+	}
-+
-+	if (charger->binfo->constant_charge_voltage_max_uv > 4760000 ||
-+	    charger->binfo->constant_charge_voltage_max_uv < 350000)
-+		return dev_err_probe(&pdev->dev, -EINVAL,
-+				     "Invalid charge voltage\n");
-+
-+	if (charger->binfo->constant_charge_current_max_ua == -EINVAL) {
-+		ret = twl6030_charger_read(CHARGERUSB_CTRLLIMIT2, &val);
-+		if (ret < 0)
-+			return ret;
-+
-+		charger->binfo->constant_charge_current_max_ua = VICHRG_TO_UA(val);
-+	}
-+
-+	if (charger->binfo->constant_charge_current_max_ua < 100000 ||
-+	    charger->binfo->constant_charge_current_max_ua > 1500000) {
-+		return dev_err_probe(&pdev->dev, -EINVAL,
-+			 "Invalid charge current\n");
-+	}
-+
-+	if ((charger->binfo->charge_term_current_ua != -EINVAL) &&
-+	    (charger->binfo->charge_term_current_ua > 400000 ||
-+	     charger->binfo->charge_term_current_ua < 50000)) {
-+		return dev_err_probe(&pdev->dev, -EINVAL,
-+			"Invalid charge termination current\n");
-+	}
-+
-+	ret = devm_delayed_work_autocancel(&pdev->dev,
-+					   &charger->charger_monitor,
-+					   twl6030_charger_wdg);
-+	if (ret < 0)
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "Failed to register delayed work\n");
-+
-+	ret = devm_request_threaded_irq(&pdev->dev, charger->irq_chg, NULL,
-+					twl6030_charger_interrupt,
-+					IRQF_ONESHOT, pdev->name,
-+					charger);
-+	if (ret < 0) {
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "could not request irq %d\n",
-+				     charger->irq_chg);
-+	}
-+
-+	/* turing to charging to configure things */
-+	twl6030_charger_write(CONTROLLER_CTRL1, 0);
-+	twl6030_charger_interrupt(0, charger);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id twl_charger_of_match[] __maybe_unused = {
-+	{.compatible = "ti,twl6030-charger", },
-+	{.compatible = "ti,twl6032-charger", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, twl_charger_of_match);
-+
-+static struct platform_driver twl6030_charger_driver = {
-+	.probe = twl6030_charger_probe,
-+	.driver	= {
-+		.name	= "twl6030_charger",
-+		.of_match_table = of_match_ptr(twl_charger_of_match),
-+	},
-+};
-+module_platform_driver(twl6030_charger_driver);
-+
-+MODULE_DESCRIPTION("TWL6030 Battery Charger Interface driver");
-+MODULE_LICENSE("GPL");
-+MODULE_ALIAS("platform:twl6030_charger");
--- 
-2.39.2
+> > This is an error on the input, not an error from this regulator, so the
+> > notification isn't appropriate here.
 
+> The input is usually a USB plug / cable. Is there a better option to repo=
+rt
+> this? I guess I could register a power supply.
+
+Yes, that's a power supply.
+
+> > > +	return FIELD_GET(MAX20339_INSWCLOSED, val) =3D=3D 1;
+> > > +}
+
+> > This does not appear to be an enable control, it's reading back a status
+> > register rather than turning on or off a regulator.
+
+> This is the regulator_ops::is_enabled() callback, shouldn't it return the
+> status in effect? It's required to return effective status for one of the
+> code paths in _regulator_do_enable(), when .poll_enabled_time is !=3D 0.
+
+No, if there are separate enable and status bits it should return the
+value written to the enable bit.  Some devices overload the
+functionality, this one splits them.
+
+> > > +static int max20339_set_voltage_sel(struct regulator_dev *rdev,
+> > > +				=A0=A0=A0 unsigned int sel)
+> > > +{
+> > > +	return max20339_set_ovlo_helper(rdev,
+> > > +					FIELD_PREP(MAX20339_OVLOSEL_INOVLOSEL,
+> > > +						=A0=A0 sel));
+> > > +}
+
+> > This device does not appear to be a voltage regualtor, it is a
+> > protection device.=A0 A set_voltage() operation is therfore inappropria=
+te
+> > for it, any voltage configuration would need to be done on the parent
+> > regulator.
+
+> This is handling one of the switches, and the input usually is
+> a USB plug / cable.
+
+> Based on the use-case (peripheral / OTG / wireless charging), the
+> overvoltage voltage=A0needs to be modified at runtime for full
+> protection.
+
+Sure, but that's not setting the voltage of a regulator that's
+configuring the protection.
+
+> The set-voltage APIs seemed like a good fit for that, given the
+> regulator APIs allow setting those thresholds already (during init).
+
+Don't shoehorn vaugely related things into a somewhat similar looking
+API, that'll just blow up whenever something actually assumes that using
+the API does the thing it's supposed to.
+
+> I'll see if I could maybe add a power supply as the parent and leave out
+> all the voltage and current related settings here altogether and make it
+> just control the switches, like some other regulator drivers do.
+
+An API for dynamically configuring limits for regulators at runtime
+would be OK too.
+
+--r2Zdp1ebFNH8qHs2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbqlAwACgkQJNaLcl1U
+h9Congf8CFyanpADAaXWaU7Diss2zCzIVD69MBPxqVmx5zQMPd/5grAdWLtVhd/8
+0md2SQHeC7lEeYMAngWsuHRdEbFaxzzJT5uvUYLZxQdeKZQE073huxNH3KBKS2lr
+cA8VnFdGOCwsBasvBtQq4YIbkhM8Z+sEND9HpbquFTi1/jTZmEjIujMfBhk+Eke5
+0OEGp5LXURRg8YEus2kWtAuC6vE/7a1BUyeMLWFL97uEUJBLhMyASDoXSbN5IXiC
+38uiseS2udVMvWY8qt/tIwL/dEFCxwUFgRrDwePx1QJnewWsf5zcl7In6DbctPQK
+AnvOtf2kxqYGvXOKtohaUPOdWXYrQQ==
+=1Aeq
+-----END PGP SIGNATURE-----
+
+--r2Zdp1ebFNH8qHs2--
 
