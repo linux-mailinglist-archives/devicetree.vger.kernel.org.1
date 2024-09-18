@@ -1,116 +1,153 @@
-Return-Path: <devicetree+bounces-103675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28A8597BB6C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 13:15:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B46B197BB6F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 13:16:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAA9C286721
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 11:15:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 715CA282C23
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 11:16:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19EB0180A6A;
-	Wed, 18 Sep 2024 11:15:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6D09188A13;
+	Wed, 18 Sep 2024 11:16:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="modpcmP8"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YmnGBwzw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE8731714B8;
-	Wed, 18 Sep 2024 11:15:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AFE21487F1;
+	Wed, 18 Sep 2024 11:16:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726658123; cv=none; b=AXnDUHAGOqnTR8kJpsLBTSliHQQl1iVtg38FxgNaAeYkuOS93GKbTnMx47EGhtXnG64CLZt031pI57ZRDneOEm6GLklxZpxqZXfgLnvcDe9zXLZTph4rVuqfYroFclj2d5aahxFoDB2c6PhaVM2l67aUyHPtGDJ+NHMZupKCpCE=
+	t=1726658171; cv=none; b=Q6T/UqCLkG/u/aCnqP0ISw74mn75J1JMGGsHSu3ninQtaGKAYXoEsU8l59JmJs/k1Sie9XmKc0wqTmvgcJkUkrVcQEA7MeMgx5ZHPghKoozXAFKFjYYm4Z/cFIWN+HkrI2MfyPq3m2M9jH7PYOcaHKkPSbhmRjwq7ifPdA64OOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726658123; c=relaxed/simple;
-	bh=FpOMTIjgy4CIjGQsnUdOKH4Q06iQikrOfVY9huczM6s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d/3qr9zlPEHD1bM6bLYsDIjmqQOdO+FPW+q0STKmpcdPTN8ADJGOPegp86uBBIlZ8BdTbyLaCfQlunqQNfWCZmtAkKTadO2AAZ4gaKjHZzNDlNYQXpx9qPLgEFfctg3Uj1matstq+o6Z+Tze7ARiqLq1vU3LYj9HRziLCIyK5SY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=modpcmP8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BEEDC4CEC3;
-	Wed, 18 Sep 2024 11:15:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726658122;
-	bh=FpOMTIjgy4CIjGQsnUdOKH4Q06iQikrOfVY9huczM6s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=modpcmP8l5XbxvYNPmYKRGSMvKhhtKgc56FGTqAJZhQiH+vQoUowAujANZ7+OYXoA
-	 2PcDMbLovVTpcRAAXGO9oTm0A1nRJXdrEVX2su8LAXCx2uYLEvMs/Y91AeO2aMuxUv
-	 7M3uGlQZyB8fEXex/e/qKsPq6FkrHjnvnM7T0FUJCfG3mO3jC36rrWzlTkR93hjGFq
-	 0FyH96mx2MwlE9GOSv1Q6p8q197c8bIsWGkOfmOgKMWrUGcjb18Bt/ywrple5wnsL3
-	 GCNy4xVG+do2ss5HYZHSX8UFcRQpgMYQhTGExxl/oeaGo1J5zjfKCQ5IODPpN5tzEq
-	 ZoVLjLjxg59Gg==
-Date: Wed, 18 Sep 2024 13:15:18 +0200
-From: Mark Brown <broonie@kernel.org>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Huacai Chen <chenhuacai@kernel.org>, devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev
-Subject: Re: [PATCH v1 02/10] ASoC: codecs: Add support for ES8323
-Message-ID: <Zuq2RmF1jW9tOYwA@finisterre.sirena.org.uk>
-References: <cover.1725518229.git.zhoubinbin@loongson.cn>
- <c44a6525d77941ef235825a58a9ea91f9f7d7042.1725518229.git.zhoubinbin@loongson.cn>
- <5a7357f7-da3b-4532-b055-ad33eb93fe1c@sirena.org.uk>
- <CAMpQs4JRz8x=zfB-DuDSxbcYDR=mtVET_AwawU+J9Vn=sx9LNw@mail.gmail.com>
- <eaa0b894-b4f7-4e4e-927d-216ff87e6f14@sirena.org.uk>
- <CAMpQs4LwAJoyRn7tT9BpiGcDcWyHPG11ZCPWB+ku6uzGikGcBA@mail.gmail.com>
+	s=arc-20240116; t=1726658171; c=relaxed/simple;
+	bh=5ns7ITLPh/fqSmIw80MmxRuwVniGnlyuggKfxA/njgU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Vyew9xdgMtDR0/bUOSCzlDImJwbGh44QI2Iw6iK+lEdrbuD0tuju28co42TvGep+8Ic0bU3QMM+upsgq5I5jU+TZbQIWYooYVfl2wpcAewheTvI01bwilqu/YRXlj0riSv8PvLD+NhohTE6fDheh96uUT8112hWLjiCQSKX7hz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YmnGBwzw; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48I8ns7u022162;
+	Wed, 18 Sep 2024 11:16:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	gX6ZWdOJtc8Z/9bJvUFqnKX6Aot+3ajVUy+mrwll0tE=; b=YmnGBwzw1hgcKeac
+	/Ep2K5r/ZNDSr+ir61qkrYe9COd+EjyJFzV6istfa0Bb07uccdtj0AuocJzFaHIz
+	oSun6BcwwavE3Nh3uYy/tzwl8dvXODsMX9BaKEXt5X5Lej9wp/6oRmeXmqdBCRms
+	wPxNX4hbahAV1Zt2B/rDbFWuN47a5U6CKQ4o8ilBqq7h7748pji01OoXYI4pgfqI
+	jN802nsD4dxlpGX0o6jvl6JBvDz7wAfgskLNC1V/3/V+btkVMZ8E3bA+MTK9OB1N
+	S2oO181Y2b1JRwktcIjxL/Yk/ndQNS+lEHgOTpf426U8hzNb/bMcVOHiWrrsMMiq
+	rqm8Fg==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41n4hfhrer-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Sep 2024 11:16:03 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48IBG2RV022735
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Sep 2024 11:16:02 GMT
+Received: from [10.206.111.70] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 18 Sep
+ 2024 04:15:59 -0700
+Message-ID: <f7780c8e-2908-43af-8c2b-71f445cfab44@quicinc.com>
+Date: Wed, 18 Sep 2024 16:45:56 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="alzXyC4LqiT3voNX"
-Content-Disposition: inline
-In-Reply-To: <CAMpQs4LwAJoyRn7tT9BpiGcDcWyHPG11ZCPWB+ku6uzGikGcBA@mail.gmail.com>
-X-Cookie: Editing is a rewording activity.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: qcs6460-rb3gen2: enable venus node
+To: Luca Weiss <luca.weiss@fairphone.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240917-venus_rb3_gen2-v1-1-8fea70733592@quicinc.com>
+ <D498M9YSOTE8.2LB8FJBSBBLT2@fairphone.com>
+Content-Language: en-US
+From: Vedang Nagar <quic_vnagar@quicinc.com>
+In-Reply-To: <D498M9YSOTE8.2LB8FJBSBBLT2@fairphone.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 6F1Ony4TxKQR-iuTC6OHu9k7fKjPJ76p
+X-Proofpoint-ORIG-GUID: 6F1Ony4TxKQR-iuTC6OHu9k7fKjPJ76p
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ clxscore=1015 phishscore=0 malwarescore=0 mlxlogscore=999 mlxscore=0
+ impostorscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409180072
 
+Hi Luca,
 
---alzXyC4LqiT3voNX
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 9/18/2024 1:08 PM, Luca Weiss wrote:
+> Hi Vedang!
+> 
+> On Tue Sep 17, 2024 at 11:24 AM CEST, Vedang Nagar via B4 Relay wrote:
+>> From: Vedang Nagar <quic_vnagar@quicinc.com>
+>>
+>> Enable the venus node on Qualcomm Rb3gen2 so that the
+>> video decoder will start working.
+>>
+>> Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> index 0d45662b8028bff475024cff37c33e01d2ee251b..d52a7e0a35bf941c66ccaa00425147781976b359 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> @@ -790,6 +790,10 @@ &ufs_mem_phy {
+>>  	status = "okay";
+>>  };
+>>  
+>> +&venus {
+>> +	status = "okay";
+> 
+> Don't you want to set firmware-name property here?
+No, we don't need to set firmware-name property here, it will pick the default path from:
+https://elixir.bootlin.com/linux/v6.11/source/drivers/media/platform/qcom/venus/core.c#L932
 
-On Wed, Sep 18, 2024 at 03:24:45PM +0600, Binbin Zhou wrote:
-> On Fri, Sep 13, 2024 at 10:44=E2=80=AFPM Mark Brown <broonie@kernel.org> =
-wrote:
-
-> > No, it's fine to use the component wrappers if you happen to have a
-> > component to hand.  What's an issue is things like writing your own
-> > register cache code (the above bit is part of an open coded cache
-> > implementation), or I2C read/write functions if there's not something
-> > unusual with how the device does I/O.
-
-> Indeed, I misunderstood it before. As I understand it, we should use
-> regmap_config.reg_defaults instead of
-> snd_soc_component_driver.{read/write}.
-
-I think so - I'll need to see your actual patch to confirm but that
-sounds like the right direction.
-
---alzXyC4LqiT3voNX
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbqtkMACgkQJNaLcl1U
-h9DGNQf/fir0Ww8j1S7p3Kp3a68sjBMnFAd6nyuc4Lpjhz2n+T+PA4ECjFUlfMRs
-mYGPFm/hzqiI3jr99tYqFlxfi8lPBjKNjzoPXGbX6Kw7vgybMqJL+33lzpzUzFnW
-+TQ9fe+b+Ev2n+G7piCOIs6g0a8gito9fZbWBlicqhCsVxwr5ePWEwPw5RRGAUt8
-sCxNbaTcS4uw4Yz1i7Dz8sLhBR/nOArHc6aa3iAFSjFdQ8kzbg1VUlekQYdxXeGV
-7I9xp99PSqNELaVOEiAaS08DLSlZpyZExtxwObQ1mW+b/qhbQQ9uWY4CUHl8fYyq
-ZFhcI/7t0TO99CXwsLmBbm5ygAtLUA==
-=MTqc
------END PGP SIGNATURE-----
-
---alzXyC4LqiT3voNX--
+Regards,
+Vedang Nagar
+> 
+> Regards
+> Luca
+> 
+>> +};
+>> +
+>>  &wifi {
+>>  	memory-region = <&wlan_fw_mem>;
+>>  };
+>>
+>> ---
+>> base-commit: 3f52e32445a1f63b788bc8969b7dc2386a80a24d
+>> change-id: 20240917-venus_rb3_gen2-502e672d0e20
+>> prerequisite-change-id: 20240913-qcm6490-clock-configs-0239f30babb5:v1
+>> prerequisite-patch-id: faac726ebdf08240ab0913132beb2c620e52a98a
+>>
+>> Best regards,
+> 
 
