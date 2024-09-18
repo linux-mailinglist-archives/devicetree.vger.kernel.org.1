@@ -1,153 +1,120 @@
-Return-Path: <devicetree+bounces-103676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B46B197BB6F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 13:16:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9920F97BBAD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 13:36:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 715CA282C23
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 11:16:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 40835B23018
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 11:35:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6D09188A13;
-	Wed, 18 Sep 2024 11:16:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1091187868;
+	Wed, 18 Sep 2024 11:35:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YmnGBwzw"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="aB4sLtY8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AFE21487F1;
-	Wed, 18 Sep 2024 11:16:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDAC1282E5;
+	Wed, 18 Sep 2024 11:35:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726658171; cv=none; b=Q6T/UqCLkG/u/aCnqP0ISw74mn75J1JMGGsHSu3ninQtaGKAYXoEsU8l59JmJs/k1Sie9XmKc0wqTmvgcJkUkrVcQEA7MeMgx5ZHPghKoozXAFKFjYYm4Z/cFIWN+HkrI2MfyPq3m2M9jH7PYOcaHKkPSbhmRjwq7ifPdA64OOk=
+	t=1726659356; cv=none; b=o+hJWUIx7dqvr036pSe5U0KqRdDrEOboRhJeQxDvemtccWnCN3A5z3dX0PKBfyhB+nrzGFd6gveJURdKLloIrndpGw9p6p+upG4xMtg25krVXsLBJRcxdEqulP9SEN8viWgJdQsJB6EJpDMneD2KzUCcmzhoRPANMpaqANx/Q5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726658171; c=relaxed/simple;
-	bh=5ns7ITLPh/fqSmIw80MmxRuwVniGnlyuggKfxA/njgU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Vyew9xdgMtDR0/bUOSCzlDImJwbGh44QI2Iw6iK+lEdrbuD0tuju28co42TvGep+8Ic0bU3QMM+upsgq5I5jU+TZbQIWYooYVfl2wpcAewheTvI01bwilqu/YRXlj0riSv8PvLD+NhohTE6fDheh96uUT8112hWLjiCQSKX7hz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YmnGBwzw; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48I8ns7u022162;
-	Wed, 18 Sep 2024 11:16:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	gX6ZWdOJtc8Z/9bJvUFqnKX6Aot+3ajVUy+mrwll0tE=; b=YmnGBwzw1hgcKeac
-	/Ep2K5r/ZNDSr+ir61qkrYe9COd+EjyJFzV6istfa0Bb07uccdtj0AuocJzFaHIz
-	oSun6BcwwavE3Nh3uYy/tzwl8dvXODsMX9BaKEXt5X5Lej9wp/6oRmeXmqdBCRms
-	wPxNX4hbahAV1Zt2B/rDbFWuN47a5U6CKQ4o8ilBqq7h7748pji01OoXYI4pgfqI
-	jN802nsD4dxlpGX0o6jvl6JBvDz7wAfgskLNC1V/3/V+btkVMZ8E3bA+MTK9OB1N
-	S2oO181Y2b1JRwktcIjxL/Yk/ndQNS+lEHgOTpf426U8hzNb/bMcVOHiWrrsMMiq
-	rqm8Fg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41n4hfhrer-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Sep 2024 11:16:03 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48IBG2RV022735
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Sep 2024 11:16:02 GMT
-Received: from [10.206.111.70] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 18 Sep
- 2024 04:15:59 -0700
-Message-ID: <f7780c8e-2908-43af-8c2b-71f445cfab44@quicinc.com>
-Date: Wed, 18 Sep 2024 16:45:56 +0530
+	s=arc-20240116; t=1726659356; c=relaxed/simple;
+	bh=PPDrz82lIfrteE+dEjEqvbG0bP+PLJJgb9hsrt8OMl8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Aws+d+2TUygEap33mcJJsQW0VIbD91LdtKQPKmbVj78o/ufIdrr0OpEChTVj7K02i2iZ0/IISXbbeEa+wia3CEGwW8zxb4/LKuR7dNFacpT334sBnmhHO4V8DWC1b4xVNHxQSRQ94c0YN4He1nlicyfBewDQVrjw0BPJgbVxtJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=aB4sLtY8; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=c+4wISZpTBZ5pFb7R+0lordsy6M0zdVfp3Wwwcoc6g4=; b=aB4sLtY8ju6ohBMuN3AV9zX8TM
+	3F4E1iB+yGNMjguydi/Akd6s9lRhMiXsWALCyq9WH0wvHNyGlsk1xcUnQjthvySuaGtoTs9xGIYpD
+	/cV/Z7zU9jknjL/ASjyez8+PY+sEs+Ij0NuxZtra+Fo/W/737JPZCbyjle2o13cJ3Xs7oWDtwElCw
+	oizzrpcGkBeSvDDaDPaEQeTYXafcDEQOFHzncVUh91ww7dFUTN+SJAO0j2Hx5BclczEj6DhHcRSPy
+	TtwueghTfLIt8oMFKUKVKAmch8k25EGf7pOVeocYOFHbwn4WCKzIAHY+aTv5Jk2oRn5nXp5PVmFtz
+	qvSD6nlA==;
+Date: Wed, 18 Sep 2024 13:35:46 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: tony@atomide.com, Sebastian Reichel <sre@kernel.org>,
+ linux-omap@vger.kernel.org, devicetree@vger.kernel.org, Lee Jones
+ <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, Conor Dooley
+ <conor+dt@kernel.org>, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: mfd: twl: add charger node also for
+ TWL603x
+Message-ID: <20240918133546.33cb6d68@akair>
+In-Reply-To: <c38c9ada-e054-4a14-9265-25065048ae54@kernel.org>
+References: <20240918084132.928295-1-andreas@kemnade.info>
+	<20240918084132.928295-3-andreas@kemnade.info>
+	<c38c9ada-e054-4a14-9265-25065048ae54@kernel.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: qcs6460-rb3gen2: enable venus node
-To: Luca Weiss <luca.weiss@fairphone.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240917-venus_rb3_gen2-v1-1-8fea70733592@quicinc.com>
- <D498M9YSOTE8.2LB8FJBSBBLT2@fairphone.com>
-Content-Language: en-US
-From: Vedang Nagar <quic_vnagar@quicinc.com>
-In-Reply-To: <D498M9YSOTE8.2LB8FJBSBBLT2@fairphone.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 6F1Ony4TxKQR-iuTC6OHu9k7fKjPJ76p
-X-Proofpoint-ORIG-GUID: 6F1Ony4TxKQR-iuTC6OHu9k7fKjPJ76p
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- clxscore=1015 phishscore=0 malwarescore=0 mlxlogscore=999 mlxscore=0
- impostorscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409180072
 
-Hi Luca,
+Am Wed, 18 Sep 2024 12:47:22 +0200
+schrieb Krzysztof Kozlowski <krzk@kernel.org>:
 
-On 9/18/2024 1:08 PM, Luca Weiss wrote:
-> Hi Vedang!
+> On 18/09/2024 10:41, Andreas Kemnade wrote:
+> > Also the TWL603X devices have a charger, so allow to specify it
+> > here.
+> > 
+> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > ---
+> >  .../devicetree/bindings/mfd/ti,twl.yaml        | 18
+> > ++++++++++++++++++ 1 file changed, 18 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+> > b/Documentation/devicetree/bindings/mfd/ti,twl.yaml index
+> > e94b0fd7af0f8..4064a228cb0fc 100644 ---
+> > a/Documentation/devicetree/bindings/mfd/ti,twl.yaml +++
+> > b/Documentation/devicetree/bindings/mfd/ti,twl.yaml @@ -105,6
+> > +105,11 @@ allOf: regulator-initial-mode: false
+> >  
+> >        properties:
+> > +        bci:  
 > 
-> On Tue Sep 17, 2024 at 11:24 AM CEST, Vedang Nagar via B4 Relay wrote:
->> From: Vedang Nagar <quic_vnagar@quicinc.com>
->>
->> Enable the venus node on Qualcomm Rb3gen2 so that the
->> video decoder will start working.
->>
->> Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
->> ---
->>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 4 ++++
->>  1 file changed, 4 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> index 0d45662b8028bff475024cff37c33e01d2ee251b..d52a7e0a35bf941c66ccaa00425147781976b359 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> @@ -790,6 +790,10 @@ &ufs_mem_phy {
->>  	status = "okay";
->>  };
->>  
->> +&venus {
->> +	status = "okay";
+> charger
 > 
-> Don't you want to set firmware-name property here?
-No, we don't need to set firmware-name property here, it will pick the default path from:
-https://elixir.bootlin.com/linux/v6.11/source/drivers/media/platform/qcom/venus/core.c#L932
+> > +          type: object  
+> 
+> additionalProperties: true
+> 
+> Each node must end with additionalProperties or unevaluated. I think
+> you never tested it, because dtschema reports this.
+> 
+I did run it, no complaints:
+
+andi@aktux:~/kernel$ touch Documentation/devicetree/bindings/mfd/ti,twl.yaml 
+andi@aktux:~/kernel$ touch Documentation/devicetree/bindings/power/supply/ti,twl6030-charger.yaml 
+andi@aktux:~/kernel$ make ARCH=arm dt_binding_check DT_SCHEMA_FILES=twl
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+/home/andi/kernel/Documentation/devicetree/bindings/net/snps,dwmac.yaml: mac-mode: missing type definition
+  CHKDT   Documentation/devicetree/bindings
+  LINT    Documentation/devicetree/bindings
+  DTC [C] Documentation/devicetree/bindings/power/supply/twl4030-charger.example.dtb
+  DTEX    Documentation/devicetree/bindings/power/supply/ti,twl6030-charger.example.dts
+  DTC [C] Documentation/devicetree/bindings/power/supply/ti,twl6030-charger.example.dtb
+  DTC [C] Documentation/devicetree/bindings/iio/adc/ti,twl6030-gpadc.example.dtb
+  DTC [C] Documentation/devicetree/bindings/iio/adc/ti,twl4030-madc.example.dtb
+  DTEX    Documentation/devicetree/bindings/mfd/ti,twl.example.dts
+  DTC [C] Documentation/devicetree/bindings/mfd/ti,twl.example.dtb
+andi@aktux:~/kernel$
 
 Regards,
-Vedang Nagar
-> 
-> Regards
-> Luca
-> 
->> +};
->> +
->>  &wifi {
->>  	memory-region = <&wlan_fw_mem>;
->>  };
->>
->> ---
->> base-commit: 3f52e32445a1f63b788bc8969b7dc2386a80a24d
->> change-id: 20240917-venus_rb3_gen2-502e672d0e20
->> prerequisite-change-id: 20240913-qcm6490-clock-configs-0239f30babb5:v1
->> prerequisite-patch-id: faac726ebdf08240ab0913132beb2c620e52a98a
->>
->> Best regards,
-> 
+Andreas
 
