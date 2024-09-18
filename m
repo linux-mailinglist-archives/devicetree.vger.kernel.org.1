@@ -1,168 +1,112 @@
-Return-Path: <devicetree+bounces-103660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD38697BAD0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 12:30:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2D3197BAD7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 12:31:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AFA81C20EB4
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 10:30:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E678D1C21224
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 10:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7561017C9FA;
-	Wed, 18 Sep 2024 10:30:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40435175D54;
+	Wed, 18 Sep 2024 10:31:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gbf1E5bc"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="SlVi7rjt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF1DE1741C3;
-	Wed, 18 Sep 2024 10:29:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04EDB178363;
+	Wed, 18 Sep 2024 10:31:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726655401; cv=none; b=njYeVBr7jFKeaubhsLFEPZl7ms/FPtdAYTfmsQaS/eiJNEyn3B5AXtUGnWjGZ+da2KLUQrWmCFbg9vPzCQIYrnZ9Yclh53yUMqe7ZmaYkQk+dmb+UgSRbMpe90awPDaZ0Wh3A95RW37j70uEhK/54If6AyTDKWyhzv6rLdcfw2w=
+	t=1726655497; cv=none; b=SzzjuedS6LSVCsohiC/j3pitvfM8bQIkS1lwjcWVsjEoe4QqSe2aFEZuKHsxwJSKL4tu8FCJOP775C6zN8sGyddzvYvD0EPhMAJ3G3x+zJ2OXX2j8H4o5bSnwbUzRA38rsTblNDzkLpmh/1u+uSjs0ussO2b9d2qCik8XaK53qA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726655401; c=relaxed/simple;
-	bh=tUuALn5ehxlNDWSv25T4l7vlKGj0FmVP4lN29YTyaTo=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=I6hV3gR0D++rWyG0JuCD+uQuKWl4qP9pYa8JkBwdBzTbcBxSooIlQUE4torOvN5ngVn9H+PtP2h2U8XDtPPj5SW1F9HpdFGjoyg9vX6mfg8d7An2Azt2DUgMaVZLGPoGekMkAYwEshxB3+hWWN6UFTd4+mUx/9yK4AYEX+B4c64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gbf1E5bc; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48I8iIId012612;
-	Wed, 18 Sep 2024 10:29:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:message-id:mime-version:subject:to; s=
-	qcppdkim1; bh=ifynQdRVvINRhkbByRD63oWSvNW1uNbqnQlGfESNpBI=; b=gb
-	f1E5bcIM8gAMxgjcQzYJofjl0WCfaIvrYV0CqrsoWweu6GmTRWwnWAol5oWzU8+s
-	AB2DZLIkwWCumk+MRtsTAvqeLiO+xYouWwbtoo7D46I3m5l0LFbtLAytQkT+M1a8
-	n2/guXIdbvuv41esKtMVHESaTGXQ+UyBHTID6xkooWy942mPtSV3898uEDs7rOsK
-	nX6KIM95V8aVzaGYiPmIkW5L9oYioXqyNoC8l+i5Jt36B1ZBVsqypo4ES2e2TOXT
-	jMhEzwxkj+hJ0eckBnhnDG+D/1SYon1JKGVTYXj36ASCPViAWStyHEWstxMlO/Iw
-	cz0jEOKoLPBWNIb5Bf1g==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41n4gd1m7s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Sep 2024 10:29:42 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48IATgpl006216
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Sep 2024 10:29:42 GMT
-Received: from hu-sachgupt-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 18 Sep 2024 03:29:36 -0700
-From: Sachin Gupta <quic_sachgupt@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_cang@quicinc.com>,
-        <quic_nguyenb@quicinc.com>, <quic_bhaskarv@quicinc.com>,
-        <quic_mapa@quicinc.com>, <quic_narepall@quicinc.com>,
-        <quic_nitirawa@quicinc.com>, <quic_rampraka@quicinc.com>,
-        <quic_sachgupt@quicinc.com>, <quic_sartgarg@quicinc.com>
-Subject: [PATCH V2] arm64: dts: qcom: qcs6490-rb3gen2: Add SD Card node
-Date: Wed, 18 Sep 2024 15:59:21 +0530
-Message-ID: <20240918102921.23334-1-quic_sachgupt@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+	s=arc-20240116; t=1726655497; c=relaxed/simple;
+	bh=zRwVKxY/ljPw+PWBx03TIerZJoDRcw2Ws1V9+SjbY18=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=V+L28qczhmI972jLo26/N2mzt38PEr3hxuocjA43oTf9JfNgEY48Cn2bSx11G+1afitguTMyas9f+itXA+rpHAm7cZbd5OaA1bh/b/yHIifNStn2ozojMLxVC1jbSGrWQ0rGogzPH3t3iYF5PDUxC8E62u7EEJTlWg2HXJC9sxE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=SlVi7rjt; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1726655495; x=1758191495;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=zRwVKxY/ljPw+PWBx03TIerZJoDRcw2Ws1V9+SjbY18=;
+  b=SlVi7rjt2LjmrxKFXITZksUbCvPefOteT1ZzTof3vcj1nRGhwySv7CNJ
+   tKtfG4+HW2L3dRBXGrlWjqjZOH4ZGdiEX4uIpEQwG4Gkx9Pz11XBz89kU
+   xsM6yQF4AfRSAkOtP/Vrq3Ceux2dWG4HjRRA8ZwVf45mAKpTj4olnoDgN
+   m4u8yaSwiuGhKZKTKlPml2aU78/otJNEL23CWvALN/Rq4+XrWkuDWqvtT
+   mhKkVordN7Gi7LmzXN7MU9qL6bxoJtOTTE/39sRWoZnFp+mxwBTolwUmk
+   lRlGpeChFt/J+7A/Tit63RsF1q8ewuJdECr84ZLgG2w5nvi4AJPZqntbn
+   Q==;
+X-CSE-ConnectionGUID: XkM55Ki9SVKEk/iYTQx3pQ==
+X-CSE-MsgGUID: GsVaWKZST8K4Wl0q9UIIhw==
+X-IronPort-AV: E=Sophos;i="6.10,238,1719903600"; 
+   d="scan'208";a="35129244"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 18 Sep 2024 03:31:33 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 18 Sep 2024 03:31:29 -0700
+Received: from che-lt-i67131.microchip.com (10.10.85.11) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Wed, 18 Sep 2024 03:31:21 -0700
+From: Manikandan Muralidharan <manikandan.m@microchip.com>
+To: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
+	<rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
+	<jernej.skrabec@gmail.com>, <airlied@gmail.com>, <simona@ffwll.ch>,
+	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+	<tzimmermann@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <linux@armlinux.org.uk>,
+	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>, <dharma.b@microchip.com>, <arnd@arndb.de>,
+	<hari.prasathge@microchip.com>, <dri-devel@lists.freedesktop.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+CC: <manikandan.m@microchip.com>
+Subject: [PATCH v4 0/4] MIPI DSI Controller support for SAM9X75 series
+Date: Wed, 18 Sep 2024 16:01:15 +0530
+Message-ID: <20240918103119.385597-1-manikandan.m@microchip.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: RGMIyHjOYGp_a9o2goip3HVQMttdPDvR
-X-Proofpoint-GUID: RGMIyHjOYGp_a9o2goip3HVQMttdPDvR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- bulkscore=0 clxscore=1015 spamscore=0 adultscore=0 lowpriorityscore=0
- mlxlogscore=790 impostorscore=0 mlxscore=0 priorityscore=1501 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2408220000
- definitions=main-2409180066
 
-Add SD Card node for Qualcomm qcs6490-rb3gen2 Board.
+This patch series adds support for the Microchip's MIPI DSI Controller
+wrapper driver that uses the Synopsys DesignWare MIPI DSI host controller
+bridge for SAM9X75 SoC series.
 
-Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
----
+Changelogs are available in respective patches.
 
-Changes from v1:
- - Addressed Dmitry's comment.
- - moved pinctrl-related nodes below the PINCTRL comment.
- - moved sd-cd node in PINCRTL_related TLMM.
----
- arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 33 ++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+Manikandan Muralidharan (4):
+  dt-bindings: display: bridge: add sam9x75-mipi-dsi binding
+  drm/bridge: add Microchip DSI controller support for sam9x7 SoC series
+  MAINTAINERS: add SAM9X7 SoC's Microchip's MIPI DSI host wrapper driver
+  ARM: configs: at91: Enable Microchip's MIPI DSI Host Controller
+    support
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-index 0d45662b8028..c9f4c6812b71 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-@@ -716,6 +716,18 @@
- 	status = "okay";
- };
- 
-+&sdhc_2 {
-+	status = "okay";
-+
-+	pinctrl-0 = <&sdc2_clk>, <&sdc2_cmd>, <&sdc2_data>, <&sd_cd>;
-+	pinctrl-1 = <&sdc2_clk_sleep>, <&sdc2_cmd_sleep>, <&sdc2_data_sleep>, <&sd_cd>;
-+
-+	vmmc-supply = <&vreg_l9c_2p96>;
-+	vqmmc-supply = <&vreg_l6c_2p96>;
-+
-+	cd-gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
-+};
-+
- &tlmm {
- 	gpio-reserved-ranges = <32 2>, /* ADSP */
- 			       <48 4>; /* NFC */
-@@ -812,6 +824,21 @@
- 	};
- };
- 
-+&sdc2_clk {
-+	bias-disable;
-+	drive-strength = <16>;
-+};
-+
-+&sdc2_cmd {
-+	bias-pull-up;
-+	drive-strength = <10>;
-+};
-+
-+&sdc2_data {
-+	bias-pull-up;
-+	drive-strength = <10>;
-+};
-+
- &tlmm {
- 	lt9611_irq_pin: lt9611-irq-state {
- 		pins = "gpio24";
-@@ -819,4 +846,10 @@
- 		drive-strength = <2>;
- 		bias-disable;
- 	};
-+
-+	sd_cd: sd-cd-state {
-+		pins = "gpio91";
-+		function = "gpio";
-+		bias-pull-up;
-+	};
- };
+ .../bridge/microchip,sam9x75-mipi-dsi.yaml    | 109 ++++
+ MAINTAINERS                                   |   7 +
+ arch/arm/configs/at91_dt_defconfig            |   1 +
+ drivers/gpu/drm/bridge/Kconfig                |   8 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/dw-mipi-dsi-mchp.c     | 545 ++++++++++++++++++
+ 6 files changed, 671 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/microchip,sam9x75-mipi-dsi.yaml
+ create mode 100644 drivers/gpu/drm/bridge/dw-mipi-dsi-mchp.c
+
 -- 
-2.17.1
+2.25.1
 
 
