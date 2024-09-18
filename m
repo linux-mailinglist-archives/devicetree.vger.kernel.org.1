@@ -1,196 +1,146 @@
-Return-Path: <devicetree+bounces-103710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED7CB97BE36
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 16:46:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29A1F97BE40
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 16:53:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32B24B21DB9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 14:46:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E61532838F2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 14:52:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EE981BF335;
-	Wed, 18 Sep 2024 14:46:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 947311C2DB2;
+	Wed, 18 Sep 2024 14:52:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Ek9if8Nt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SyEmCWC0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C77D81BE853;
-	Wed, 18 Sep 2024 14:46:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6DC61C2450
+	for <devicetree@vger.kernel.org>; Wed, 18 Sep 2024 14:52:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726670799; cv=none; b=JPb60I323/PLz8syIblyR9ftllBlYWJgWm3zy2oiZGYN+DtvNVrnKsHhkNT+x0ICmHUkqGEaKPRGnDgSE+H0UKnQRJfGyHhd3jmcTgEbGcLpa4VFxhfLJaKrpEF9x+drxFNbYY5f69XB3YLosWvRbLD2/zGocp0pTLTEtmQFpPY=
+	t=1726671174; cv=none; b=nwsRLwQybeWDq6F4sGH2Fu/oo/cs8JIRgr3w2DolH1VmLtrV8QPyONwQzzirnUOuptMIwU2IDlU8aX3H4uJTKHdunFh9KaAR1JdxvMERyJEKETmly32FT2sqA+M+tclV+5crQfd3vE2fgchsFBM64Pr642d+j8GyKD8TEOuDuiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726670799; c=relaxed/simple;
-	bh=BM8hNkRIdH5oUzp/C0nNik0IY4RsXG+YF5a51+mTTyc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=loDF4Mzd6MjiqKjdLSLIeNL+6KwWDumJy0JE+twZj0ylDLzA4C/Ly70X9RYY9NBjaD7DgodcZ0Xer7iekbZ0Vv0aRYat5SqgGek/Oo3oXEEngcDqoUYB9DE770x1Oztx8bCXELWOKzNEFAPDZu63ivkVRIArBgIAR1MzpMdxt5E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Ek9if8Nt; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48ICZctX017253;
-	Wed, 18 Sep 2024 16:46:14 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	Ds0wtYkHarzU5Z0GpuaBvBbV3g5NZzHffS5yleTHHoQ=; b=Ek9if8NtFgnioPTi
-	lUeIjqVVQwrHB5LrcoTOXITp5DzP0AM852YMxrLqWSI3iXnGemW8ZoBhqwPAPbWz
-	ThlgQRA0JHR789Oqj/mMTTzF30fO3z5JAWnR37eZdImJJkqEcNaM7Bb07sb+qD6r
-	HW9rJSpjBspcR6oAAKFn0zSTBNmqyE6HGqmMEHGStByRiMUVd3KM+Ua4suiLE6S4
-	vOELQ1Av8TvtRzaj5nSFU8KtSJGSXCRzajM9qFd/K1xaLIn80RGeFjmkOcpusHOI
-	I3rJiyTRRzac9Ll1tp8uosZAhZ4fkoMCwM+NOEzyq/dn7j+/18xDLIC4r97WorcY
-	bjeKrg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41nnehq9gv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Sep 2024 16:46:13 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 33D6340044;
-	Wed, 18 Sep 2024 16:45:03 +0200 (CEST)
-Received: from Webmail-eu.st.com (eqndag1node5.st.com [10.75.129.134])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 253FB2928B9;
-	Wed, 18 Sep 2024 16:43:34 +0200 (CEST)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE5.st.com
- (10.75.129.134) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 18 Sep
- 2024 16:43:33 +0200
-Received: from [10.48.86.121] (10.48.86.121) by SAFDAG1NODE1.st.com
- (10.75.90.17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 18 Sep
- 2024 16:43:33 +0200
-Message-ID: <fabec69a-3b3a-4068-8906-7996cf125c0b@foss.st.com>
-Date: Wed, 18 Sep 2024 16:43:32 +0200
+	s=arc-20240116; t=1726671174; c=relaxed/simple;
+	bh=YwYGcA73as0nxEUAf9dOfWfED1MHnlo9lGhvxzvtXr8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZLB//LrYX5RrHCMOWt6qb/x63GwDFzKJ5+LGxcxmCpe7YUZihC1oM415F3Yxcqgxz0RnyIZgxQjb3cJ10vH7Saiyvdqika4oFHyjoDxnllYcQSkWoa+4LqqOQfQeeB65XtTsEoI10PRipNEww+LTIY5nZQhliU5gJ/Z1b+Pr2sg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SyEmCWC0; arc=none smtp.client-ip=209.85.167.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3e03cd34975so3770184b6e.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Sep 2024 07:52:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1726671172; x=1727275972; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Dg5TUigQcGHTM+4Y9DdoFWJ5Q+abMrsddrXpSw+MndU=;
+        b=SyEmCWC0ELG+GmRYld21jAfnTlL7h095YJNswQB4tfBXEp+o/C2FJ+RwPwXSzQZ4gq
+         Rs8CwMU5A/j049rQ3ufhqZJjoruqEQKd+f0dh+26ynLogcnwRj+fjAK/1PnzuQMeUhao
+         izCAw4u1dulO/isiv9QvlivJwW7U8x8w9e3RUa+4ACThvHAGLPlMxcFuXmsBXDmGazzV
+         1eQmjUusRsw0MbfOREYPw0B/LjC6XF/xFikAdKXjo6VvCsGLbnW29r0IbJrQA2EDFj1a
+         OnSYSof5XW/5IqV+8ieVBOrny4MbNiaDi2cwxspGw3QqibeXcQEn8YEYNTl4l7ixMfvG
+         s/Zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726671172; x=1727275972;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Dg5TUigQcGHTM+4Y9DdoFWJ5Q+abMrsddrXpSw+MndU=;
+        b=RItdZw3xC0udh9semH7ZVK4DGSO6GbqaqGzi17+UG+xQadXDgbMIV1tW/f/ij1YnqZ
+         zmu3NphS+IuSRX88ZCjacI9CmRsBakBoJfBE3rZnc/be0NbnCUvRx1UrPV/k6nA3mFcH
+         IWN+DIOIfMUNn3QvK+ktYGtcVr+Tosr9arUajbjinbJlkqo5UMd88woZ20XefAWVF1uz
+         j+bpEhNymuLloJqwtZ6g3SCCM4bVLFkXkhinX+4ugI5qJGjTYSysOPoHFWAYog+TdsrJ
+         UnjKbiOdCeJEZa92BqaJT77kO9+3PNUIaM6m6OuFVtawK/leoV2TXirUN+KRr9KPUGpR
+         e4jA==
+X-Forwarded-Encrypted: i=1; AJvYcCUnxeA5XAExF7KO60O6zmbZ/+qPYhvzkEaaaqSfPh5klLlf3WhXiD98ln+nXSRGH1pxKSDrn/24WpUo@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdkiOj8LY0KLrG6Y1IOHDAZf/JYBQt5xi2iJSMLd0h+OMfIjMX
+	DgoIWMtPh7nd376wKMZ0tvW7lh3qS8lcxIOXIcU/8moY1LoUAZUwemaPWB3bzI6ftyEhJmQTCYT
+	SwSnl3uasWGXe9OZYrii95t4cwGoP0wN8Q4JLQw==
+X-Google-Smtp-Source: AGHT+IEER+FXbZLQQX4Gs9msTScTSDVTczlbz0lmxLp0o5NgibVsmppgq8EMmYdtbzgX96TYKhAF6yp4Ywzl9gXi0VQ=
+X-Received: by 2002:a05:6808:3a1a:b0:3e0:73b7:36ca with SMTP id
+ 5614622812f47-3e073b73802mr15662325b6e.40.1726671171845; Wed, 18 Sep 2024
+ 07:52:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 4/7] remoteproc: core: Add TEE interface support for
- firmware release
-To: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <op-tee@lists.trustedfirmware.org>, <devicetree@vger.kernel.org>
-References: <20240830095147.3538047-1-arnaud.pouliquen@foss.st.com>
- <20240830095147.3538047-5-arnaud.pouliquen@foss.st.com>
-Content-Language: en-US
-From: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
-Organization: STMicroelectronics
-In-Reply-To: <20240830095147.3538047-5-arnaud.pouliquen@foss.st.com>
+References: <20240916-max20339-dts-v1-0-2f7ed7c24e83@linaro.org>
+ <20240916-max20339-dts-v1-3-2f7ed7c24e83@linaro.org> <CADrjBPoOZu_79OaXaq=5KzUT=eEhRdESwK7Np74Nsjx7cTRm8g@mail.gmail.com>
+ <20240917-pentagon-veteran-952cdac50e6c@squawk>
+In-Reply-To: <20240917-pentagon-veteran-952cdac50e6c@squawk>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Wed, 18 Sep 2024 15:52:40 +0100
+Message-ID: <CADrjBPpNpv-xaWri1KuFPN+7BAAu90Ti9t=fVth7_cjXnuj4Jw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] MAINTAINERS: add myself for Google Tensor SoC
+To: Conor Dooley <conor@kernel.org>
+Cc: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SAFDAG1NODE1.st.com
- (10.75.90.17)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+Content-Transfer-Encoding: quoted-printable
 
-Hello Mathieu,
+Hi Conor,
 
-On 8/30/24 11:51, Arnaud Pouliquen wrote:
-> Add support for releasing remote processor firmware through
-> the Trusted Execution Environment (TEE) interface.
-> 
-> The tee_rproc_release_fw() function is called in the following cases:
-> 
-> - An error occurs in rproc_start() between the loading of the segments and
->   the start of the remote processor.
-> - When rproc_release_fw is called on error or after stopping the remote
->   processor.
-> 
-> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-> ---
->  drivers/remoteproc/remoteproc_core.c | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
-> index 7694817f25d4..32052dedc149 100644
-> --- a/drivers/remoteproc/remoteproc_core.c
-> +++ b/drivers/remoteproc/remoteproc_core.c
-> @@ -29,6 +29,7 @@
->  #include <linux/debugfs.h>
->  #include <linux/rculist.h>
->  #include <linux/remoteproc.h>
-> +#include <linux/remoteproc_tee.h>
->  #include <linux/iommu.h>
->  #include <linux/idr.h>
->  #include <linux/elf.h>
-> @@ -1258,6 +1259,9 @@ static int rproc_alloc_registered_carveouts(struct rproc *rproc)
->  
->  static void rproc_release_fw(struct rproc *rproc)
->  {
-> +	if (rproc->state == RPROC_OFFLINE && rproc->tee_interface)
-> +		tee_rproc_release_fw(rproc);
+On Tue, 17 Sept 2024 at 22:19, Conor Dooley <conor@kernel.org> wrote:
+>
+> On Mon, Sep 16, 2024 at 08:42:03PM +0100, Peter Griffin wrote:
+> > Hi Andr=C3=A9,
+> >
+> > On Mon, 16 Sept 2024 at 17:58, Andr=C3=A9 Draszik <andre.draszik@linaro=
+.org> wrote:
+> > >
+> > > Add myself as maintainer for the Google Tensor SoC alongside Peter.
+> > >
+> > > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> > > ---
+> > >  MAINTAINERS | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > >
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index 2cdd7cacec86..b6edb21b4f2d 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -9669,6 +9669,7 @@ T:        git git://git.kernel.org/pub/scm/linu=
+x/kernel/git/chrome-platform/linux.git
+> > >  F:     drivers/firmware/google/
+> > >
+> > >  GOOGLE TENSOR SoC SUPPORT
+> > > +M:     Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> >
+> > Please update this to: -
+> >
+> > +R:     Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> >
+> > The definition of which is
+> >
+> > R: Designated *Reviewer*: FullName <address@domain>
+> > These reviewers should be CCed on patches.
+>
+> I find this email really weird. If you discussed something off-list and
+> Andre misunderstood that you wanted him as a reviewer not a maintainer,
+> that's fine - but you need to explain why to the rest of us.
 
-I'm requesting you expertise to fix an issue I'm facing during my test preparing
-the V10.
+Apologies for the brevity, it wasn't my intention for it to come
+across as weird.
 
-My issue is that here, we can call the tee_rproc_release_fw() function, defined
-in remoteproc_tee built as a remoteproc_tee.ko module.
+We have a small handful of files here currently, so I don't think it
+requires a team of maintainers, it's not particularly high volume.
+Having said that, Andre, Tudor and myself usually CC each other on our
+patches for gs101 and Pixel 6 so it makes sense for the tooling to
+include them as reviewers on patches that may only come to me
+otherwise. Other ICs like Maxim 20339 on the board have their own
+dedicated MAINTAINERS entry.
 
-I tried to use the IS_ENABLED and IS_REACHABLE macros in remoteproc_tee.h, but
-without success:
-- use IS_ENABLED() results in a link error: "undefined reference to
-tee_rproc_release_fw."
-- use IS_REACHABLE() returns false and remoteproc_core calls the inline
-tee_rproc_release_fw function that just call WARN_ON(1).
-
-To solve the issue, I can see three alternatives:
-
-1) Modify Kconfig and remoteproc_tee.c to support only built-in.
-2) Use symbol_get/symbol_put.
-3) Define a new rproc_ops->release_fw operation that will be initialized to
-tee_rproc_release_fw.
-
-From my perspective, the solution 3 seems to be the cleanest way, as it also
-removes the dependency between remoteproc_core.c and remoteproc_tee.c. But
-regarding previous discussion/series version, it seems that it could not be your
-preferred solution.
-
-Please, could you indicate your preference so that I can directly implement the
-best solution (or perhaps you have another alternative to propose)?
-
-Thanks in advance!
-
-Arnaud
-
-
-> +
->  	/* Free the copy of the resource table */
->  	kfree(rproc->cached_table);
->  	rproc->cached_table = NULL;
-> @@ -1348,7 +1352,7 @@ static int rproc_start(struct rproc *rproc, const struct firmware *fw)
->  	if (ret) {
->  		dev_err(dev, "failed to prepare subdevices for %s: %d\n",
->  			rproc->name, ret);
-> -		goto reset_table_ptr;
-> +		goto release_fw;
->  	}
->  
->  	/* power up the remote processor */
-> @@ -1376,7 +1380,9 @@ static int rproc_start(struct rproc *rproc, const struct firmware *fw)
->  	rproc->ops->stop(rproc);
->  unprepare_subdevices:
->  	rproc_unprepare_subdevices(rproc);
-> -reset_table_ptr:
-> +release_fw:
-> +	if (rproc->tee_interface)
-> +		tee_rproc_release_fw(rproc);
->  	rproc->table_ptr = rproc->cached_table;
->  
->  	return ret;
+Peter.
 
