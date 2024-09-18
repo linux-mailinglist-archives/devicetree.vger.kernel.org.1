@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-103696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87B8197BCB5
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 15:03:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B24C97BCD0
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 15:09:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 205BFB22974
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 13:03:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC1241F23BC8
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 13:09:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 861F9189B86;
-	Wed, 18 Sep 2024 13:03:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2772818893B;
+	Wed, 18 Sep 2024 13:09:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XbZjq2QJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PWm/vk8j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D1EA17B515;
-	Wed, 18 Sep 2024 13:03:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB1211CD3F;
+	Wed, 18 Sep 2024 13:09:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726664589; cv=none; b=NDhek3z5wIr4wmDyowZfHMArgOTC1sBE5foeTvyjUsBoQ/eTaAO56i/cJ0PNM7UHk77UroURxcI6S1fnO3Ryet9ePv4ICopBUUwRXNN6JAg5ijHGsIYY4ecnsU5+3rR9RONCxbxRhA1siz3eaTPUpwE42a62WrXldo2zHOMhsoQ=
+	t=1726664971; cv=none; b=gfcvOBvch0xJqKFyPFCdtgfMXelPuMz71ugxqdQRiRLotGMwSYXXnwb/PmcJwnenp2ROI8fzQ09uc8khbMaxI0iJXNgsuMWUdWDf5LP8ar2l0GgoZsPlp0AyxEvB05jKD3DYS5Q9Db05BUd23LhF+ixUETP4jlOwjwb4oI/qebk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726664589; c=relaxed/simple;
-	bh=ZolYjb2XOGecKlj3tLtBWn1nCvSR9TIeo7yAuMdp4js=;
+	s=arc-20240116; t=1726664971; c=relaxed/simple;
+	bh=mkprWbpT2wGxmF/c5R7sG5Fz3VUnN6uka/jY6PobMjM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hDRoEO+Q2Wgp2QTP9NJQTOLAneHAveChGMEWF2HvtWbAGkhcGLkqIKjUnxs0mwrW9kz/rfaUKpp++MmUPOXgjMAg5iuBfRNdWG1NzeegqzIncbHNv706ZG1Ggkc6T6wWr2h73yAHBwO1y9hvwKTjsuVSfCfgzm2Go6A1ztG9Evs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XbZjq2QJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05BABC4CEC3;
-	Wed, 18 Sep 2024 13:03:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=bngIsGnf+RCFGBFU3a0qCGQ1gS09b0/x0Xf4psrtx7l/L1xbqOO7LzuChkRH33UqruYrJgXKIxNLR12hz5xucYTCZ1P3aEb2BXqRVbTyCOpmlnEdJcOOWHrJLZd7x5QsbmVr3vjnftFoPx2VfFyNyLJaawMpfkfESQ/Zjs8aMPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PWm/vk8j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E996FC4CEC3;
+	Wed, 18 Sep 2024 13:09:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726664589;
-	bh=ZolYjb2XOGecKlj3tLtBWn1nCvSR9TIeo7yAuMdp4js=;
+	s=k20201202; t=1726664969;
+	bh=mkprWbpT2wGxmF/c5R7sG5Fz3VUnN6uka/jY6PobMjM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XbZjq2QJWgbwbpndJRvMai+zFGaZuyN19FCOIHLXgIl1g+u0lLKIeQJKHgoorg309
-	 mKkteFO/wiRjm+1aT8wlk8KuQPPpnqMSFjakHUeFzMbDjP7pMGknJf2eorUkNuungv
-	 Df5oZUL3+9yZmD5eGuLl4cSzLNFKEVuWSPnscs9GUO3PCmRbLaZFIF1Jha9bGr+DnZ
-	 W5h3FhVgnCT1DhYabNu+KXPUI4MVMdjIS1dACRTTPZySqVO6Y+B1yRnZ1DuR8MBc8Q
-	 DIPBO+DGZ95/tCfRvBCY2ZuB1F5PEsqbQBCmLhCS94v4yS6L5J2ITgRCdQJmYNQPAi
-	 s2mMZYCJTgAZA==
-Message-ID: <e94f03a9-92e1-47d5-aa36-fc51216436c9@kernel.org>
-Date: Wed, 18 Sep 2024 15:03:03 +0200
+	b=PWm/vk8j+r6e0JzKTmxDKxKo1ODwqGwQafB91zxuZqWJg7cVwzvswsOiduJJYZmzq
+	 5mdOOCBa5eOXD6Uke7i0wuLLRCGBPtIxnrx0feAI6mxdThZ5cw0TDdqh/OqQzcQV4l
+	 RVYks6naXnxAxZkBCD+LODhvvj/hWmsPO3+W4c4Ng2statwIWLNNwzhsT5Iqqh7h9s
+	 PM9Yc+TmZumz2cL7co6qfa5gZ4POnrJn3F7RDTy1fZZJhk5UG7cHSEgU4Lj6Yk6hwJ
+	 /GubvRlIVEZoAHys6mvUGfoJ52e+7H4okTnpYGPfCDdEAshiawhx97ufz00wAwLBCY
+	 rL61OKpdq57Fg==
+Message-ID: <bc13d8fd-4f03-4445-bc4a-1e0ca7c23ef7@kernel.org>
+Date: Wed, 18 Sep 2024 15:09:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: trivial-devices: support pmbus
- compatible string
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>, Joel Stanley
- <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
- Guenter Roeck <linux@roeck-us.net>, Noah Wang <noahwang.wang@outlook.com>,
- Peter Yin <peteryin.openbmc@gmail.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Fabio Estevam <festevam@gmail.com>, Lukas Wunner <lukas@wunner.de>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
-References: <20240918095438.1345886-1-Delphine_CC_Chiu@wiwynn.com>
- <20240918095438.1345886-2-Delphine_CC_Chiu@wiwynn.com>
+Subject: Re: [PATCH] dt-bindings: hwmon: Add adt7462
+To: Chanh Nguyen <chanh@os.amperecomputing.com>,
+ Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+ OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+ Open Source Submission <patches@amperecomputing.com>
+Cc: Phong Vo <phong@os.amperecomputing.com>,
+ Thang Nguyen <thang@os.amperecomputing.com>,
+ Quan Nguyen <quan@os.amperecomputing.com>,
+ Khanh Pham <khpham@amperecomputing.com>
+References: <20240918103212.591204-1-chanh@os.amperecomputing.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,22 +108,29 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240918095438.1345886-2-Delphine_CC_Chiu@wiwynn.com>
+In-Reply-To: <20240918103212.591204-1-chanh@os.amperecomputing.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/09/2024 11:54, Delphine CC Chiu wrote:
-> From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+On 18/09/2024 12:32, Chanh Nguyen wrote:
+> Add device tree binding and example for adt7462 device.
 > 
-> Add pmbus compatibale string for the Generic PMbus devices that could
-> be monitor by pmbus driver.
+> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
+> ---
+>  .../bindings/hwmon/onnn,adt7462.yaml          | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+
+Where is any user? This is supposed to be sent along driver change
+implementing this compatible.
+
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/onnn,adt7462.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/hwmon/onnn,adt7462.yaml b/Documentation/devicetree/bindings/hwmon/onnn,adt7462.yaml
+> new file mode 100644
+> index 000000000000..4a980cca419a
 
-You need to explain more, provide background why we would like to accept
-a generic compatible. And why a specific compatible cannot or should not
-be used...
+Binding looks ok.
 
-In general this is a no, you cannot have such compatibles for real hardware.
 
 Best regards,
 Krzysztof
