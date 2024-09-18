@@ -1,82 +1,131 @@
-Return-Path: <devicetree+bounces-103577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 940A197B670
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 02:28:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2829397B671
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 02:33:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C50401C233B1
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 00:28:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 515DF1C22BCD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 00:32:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8AD73D8E;
-	Wed, 18 Sep 2024 00:28:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5303C63A9;
+	Wed, 18 Sep 2024 00:32:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="i3awoUv2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VMUomP5x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91C583D76
-	for <devicetree@vger.kernel.org>; Wed, 18 Sep 2024 00:28:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14FC84C74;
+	Wed, 18 Sep 2024 00:32:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726619287; cv=none; b=C5rBJNFR3axMggkoshW/XY4oxgf9DHAQpykCkz61x+a/X8wV/x9NhcUh0mfCdMJF+lOTzxPCOfdlfINb9Il0c+CrctSQVmxyjumVFhthD0UBF1hB0YEh8WGX+bTQMbzl/nNnQKqdN6V2vMKU9GzzFMtMeVu1YL6fUi0Dn0hfmeg=
+	t=1726619575; cv=none; b=Yt3Ie8ZN+qZrYLjrlhs0oOECgScS7zpORcheYh4p83lDi3c6deogQYLF19XLia2bh6LDo++LwtrdYxLQ3sLlQ7d7HuMb4O8FnUCqwEbdASpipdq8xdbigRWbjbQF8ZDVtmymB1+NNVTtnQWvWV70sifpPmTAUrUa5A8mZTVyOhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726619287; c=relaxed/simple;
-	bh=GF2ynYuoy6p6f6fjHEuaGKamfajoG/12iRyTPMtw8Go=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=o4aEK4UJlZE3BqjJXZ5fgxo2zXc36glSVykijI+qedRC186UANwyXHLYg5sha0nWyOMJmuO0p7JTJnTHaezfkTiL3ZFvnIEtkhwH/bHgur5vXtvH02Atq0Sk0sSnXizs7JQPr4sJZMFvgoxTmZKTOYHUgbO7GlN9JhXZogUwiBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=i3awoUv2; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1726619277;
-	bh=PSQZulomhTTLDjFgGjKQiLSCRHAwcfGzNEoRqNraszM=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=i3awoUv2X95+pLFwbNifY1iPdqIqhD3GsOYEdqqSkKKgbnaCtgWzlYOC1TyIAbVkK
-	 4RQLkpBFS5lHy2hgm+A4OoQ2ZXdTLRErVlTLkI2oT1etnwYchQSshdiq6jdvm8XSyP
-	 IDN3UzIqAwW+gYpsfuYbM/QKF0odg87WJXOmbHzxyu71Guljs0VqYzpjpLT5ydAeWS
-	 Q2F7K6jMCnsLDqYhC3UEiNZsHwp861rLoU0KV7Tvi+paZev+S2+Pd3TGAwVcD4gcx7
-	 VBTm6w/b/REhwwzSpv+VHXBEWdVC4mCDT+XHXcSCup0GoUzfSZPrIfMm/ZYb43FV0q
-	 OTfqQ5Q5Q0/xA==
-Received: from [127.0.1.1] (ppp118-210-161-36.adl-adc-lon-bras34.tpg.internode.on.net [118.210.161.36])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id E5FB065027;
-	Wed, 18 Sep 2024 08:27:55 +0800 (AWST)
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: linux-aspeed@lists.ozlabs.org, Eddie James <eajames@linux.ibm.com>
-Cc: devicetree@vger.kernel.org, joel@jms.id.au, conor+dt@kernel.org, 
- krzk+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20240917162100.1386130-1-eajames@linux.ibm.com>
-References: <20240917162100.1386130-1-eajames@linux.ibm.com>
-Subject: Re: [PATCH] ARM: dts: aspeed: Fix Rainier and Blueridge GPIO LED
- names
-Message-Id: <172661927571.3432555.2039083339536065640.b4-ty@codeconstruct.com.au>
-Date: Wed, 18 Sep 2024 09:57:55 +0930
+	s=arc-20240116; t=1726619575; c=relaxed/simple;
+	bh=VX89jGGqe8LcFZfqS1+w6fGYFBiKFfWaYF5DbCUvMyw=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=k4bT6g3GiPGUINLqwmVUDZEnUOXdkqiBiXMw8fQ99MZmF3coT5lJZ+UaiVM9QJIBrTwIcLMcmM5Gn6qTwkzcxhxXQqhMkOAW++ujWP6whFNCIrd1EyMKWS+QlHhE8nhurmklrTrF/EdU0zuQwPvZWIgQiWd95bA+RG0BE7S+ZAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VMUomP5x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 638E5C4CEC5;
+	Wed, 18 Sep 2024 00:32:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726619574;
+	bh=VX89jGGqe8LcFZfqS1+w6fGYFBiKFfWaYF5DbCUvMyw=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=VMUomP5x9WGZphszjZYW61EpqSk/N//fiarc78qqmjz0l/EVrEk1Lz+v4XmVcz5PY
+	 AgNTFdZPcczAqTJ2GFwqkm5nBuMuyVv3xLwjcDE2QtIWL0pOYfsHY6M/5dr/vz8su0
+	 vc29PVIO7LcR8bXDhKO5Jntbi0xsBBvreX7XGuiUprMxeMANX0IB2tCDpYsYCRHZJO
+	 Q2ABRsLzmH/KhmXNZXxyDw3dIqHR8nho8cjF5ZdZ1egYsk4vHHqpe8hCWGDZ+IAm7X
+	 Jex0P24OVOEUdb3tcu7DWoGTMjtEUoJpxFNq+gJAd/1n6iCGGxhkQaf4e1mfQfebVx
+	 UjNAovr3JpPqQ==
+Date: Tue, 17 Sep 2024 19:32:53 -0500
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.1
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: conor+dt@kernel.org, krzk+dt@kernel.org, linux-mips@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, tsbogend@alpha.franken.de, 
+ linux-i2c@vger.kernel.org, andi.shyti@kernel.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20240917232932.3641992-2-chris.packham@alliedtelesis.co.nz>
+References: <20240917232932.3641992-1-chris.packham@alliedtelesis.co.nz>
+ <20240917232932.3641992-2-chris.packham@alliedtelesis.co.nz>
+Message-Id: <172661957208.22701.3209125488509586374.robh@kernel.org>
+Subject: Re: [PATCH 1/5] dt-bindings: i2c: Add RTL9300 I2C controller
 
-On Tue, 17 Sep 2024 11:21:00 -0500, Eddie James wrote:
-> Blueridge LED names to include the "led-" prefix as is proper.
-> Rainier should match for ease of application design. In addition,
-> the gpio line name ought to match.
+
+On Wed, 18 Sep 2024 11:29:28 +1200, Chris Packham wrote:
+> Add dtschema for the I2C controller on the RTL9300 SoC. The I2C
+> controllers on this SoC are part of the "switch" block which is
+> represented here as a syscon node. The SCL pins are dependent on the I2C
+> controller (GPIO8 for the first controller, GPIO 17 for the second). The
+> SDA pins can be assigned to either one of the I2C controllers (but not
+> both).
 > 
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+> 
+> Notes:
+>     This does hit generate the following dt_binding_check warning
+> 
+>     realtek,rtl9300-i2c.example.dts:22.19-30.13: Warning (unit_address_vs_reg): /example-0/switch@1b000000/i2c@36c: node has a unit name, but no reg or ranges property
+> 
+>     Which is totally correct. I haven't given this thing a reg property
+>     because I'm using an offset from the parent syscon node. I'm also not
+>     calling the first offset "offset" but I don't think that'd help.
+> 
+>     I looked at a couple of other examples of devices that are children of
+>     syscon nodes (e.g. armada-ap806-thermal, ap806-cpu-clock) these do have
+>     a reg property in the dts but as far as I can see from the code it's not
+>     actually used, instead the register offsets are in the code looked up
+>     from the driver data (in at least one-case the reg offset is for a
+>     legacy usage).
+> 
+>     So I'm a little unsure what to do here. I can add a reg property and
+>     update the driver to use that to get the offset for the first set of
+>     registers (or just not use it). Or I could drop the @36c from the node
+>     names but then I coudn't distinguish the two controllers without failing
+>     the $nodename: requirement from i2c-controller.yaml.
+> 
+>  .../bindings/i2c/realtek,rtl9300-i2c.yaml     | 73 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 ++
+>  2 files changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.yaml
 > 
 
-Thanks, I've applied this to be picked up through the BMC tree.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-[1/1] ARM: dts: aspeed: Fix Rainier and Blueridge GPIO LED names
-      commit: bb5d0b3ea047506a8a55dec5f39977bd05a4ac98
+yamllint warnings/errors:
 
---
-Andrew Jeffery <andrew@codeconstruct.com.au>
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.example.dts:22.19-30.13: Warning (unit_address_vs_reg): /example-0/switch@1b000000/i2c@36c: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.example.dts:32.19-38.13: Warning (unit_address_vs_reg): /example-0/switch@1b000000/i2c@388: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.example.dtb: /example-0/switch@1b000000: failed to match any schema with compatible: ['realtek,rtl9302c-switch', 'syscon', 'simple-mfd']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240917232932.3641992-2-chris.packham@alliedtelesis.co.nz
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
