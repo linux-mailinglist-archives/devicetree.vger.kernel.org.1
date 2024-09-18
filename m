@@ -1,302 +1,172 @@
-Return-Path: <devicetree+bounces-103629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C4B297B949
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 10:23:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52F5097B94E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 10:24:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6166B234E8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 08:23:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B477B2724E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 08:24:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80005175D33;
-	Wed, 18 Sep 2024 08:22:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77AAE175D54;
+	Wed, 18 Sep 2024 08:23:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="THUK2y5w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FXBrxdYy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16B46132105;
-	Wed, 18 Sep 2024 08:22:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D019166F25;
+	Wed, 18 Sep 2024 08:23:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726647773; cv=none; b=s8+LuRS0/DFqUYtLOMG+QzNWPC6kZAmzxrK0GoXp8B5lCGAax1igiE312S05sKKyeW+JceBakjPcGEaHtWUMmq4GUQ3lhnlqL1pMlpOdBOjMOG8WczhKUEGwWkYCtgLywkPuW+lz9i+J7gFLjlJYdijtPZiMEXA5mtNKs35riq8=
+	t=1726647833; cv=none; b=Bdi/e7vv6whvMAgUIowjxVjgMbTNSpP/MkiQ/+LpX1CNkyTh82tRYWXR07zLB44byUtxRFcsmG1IwdVLgZwWZgB4A6TEPONqbJW0Q1cldVmleqSUj0zneiRmZD7I+X7eZT7Ab/jlwDS+Fd/eOIifnG1+F62PeCR2LiQMcADjQsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726647773; c=relaxed/simple;
-	bh=LojxUU3x/uZccgFR5R3AeUdTvX07sQhrz1DVu2meqJ0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eAFiiNjIPmkrCcQQi0D2oZh64gATX1sd28fu6Di/oKS+S61UAj8UClegHfZjfYUls3Rhh6TTCP0qjS6P1L53WMTrLDW5bbS+nCVNLbbzB+sC1lk/RWJHq1/WjUGgMZwZjARhiOtLsCRZsNKn2Aruh7CQrcOJQ3ZAxWEzbrUbkWY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=THUK2y5w; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1726647771; x=1758183771;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=LojxUU3x/uZccgFR5R3AeUdTvX07sQhrz1DVu2meqJ0=;
-  b=THUK2y5wKyEgI5MRXwn2e3nOhtuugkwuW5IIDA/ddcqZcQ16l9FM5Wfi
-   5xQ8X+k5tBW/3gpIFBRjfROjoi9/GYO0gObuQe3wF6bL/rXvYW7btJyNI
-   jpJiBVNQlw9DLKZQj0Ac9bDX3B/FIHrDecdPtB8w/hcX8ptMf0lkLPXGp
-   40rW/P+QL543e7G+WualTnAyHwSA7vouXhDc7dGPCGz/Jsh7qo8ADB8Ve
-   +mtF1cZ4ZYPuYLiVNt5PAlBL9RGU1Lwgh2IzE6q6OrWQ3haceAq/408xF
-   R1jmQQc1opXplzafz5orr95oAGL+LRAtmYlk2l9mTI5vPHacuoaB5KxHs
-   w==;
-X-CSE-ConnectionGUID: tdnGr8piTn6EbNag3Pt3LA==
-X-CSE-MsgGUID: NYohTC/2TLqdvcTcMRS3dg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="25363808"
-X-IronPort-AV: E=Sophos;i="6.10,238,1719903600"; 
-   d="scan'208";a="25363808"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2024 01:22:50 -0700
-X-CSE-ConnectionGUID: 0ow3PrdfRbuhqk6+bYw64g==
-X-CSE-MsgGUID: jKoubgzwTsCXxY6F61BcGg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,238,1719903600"; 
-   d="scan'208";a="69463985"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by fmviesa009.fm.intel.com with ESMTP; 18 Sep 2024 01:22:47 -0700
-Date: Wed, 18 Sep 2024 16:19:59 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: "Manne, Nava kishore" <nava.kishore.manne@amd.com>
-Cc: "git (AMD-Xilinx)" <git@amd.com>, "mdf@kernel.org" <mdf@kernel.org>,
-	"hao.wu@intel.com" <hao.wu@intel.com>,
-	"yilun.xu@intel.com" <yilun.xu@intel.com>,
-	"trix@redhat.com" <trix@redhat.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"saravanak@google.com" <saravanak@google.com>,
-	"linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [RFC 1/1] of-fpga-region: Add sysfs interface support for FPGA
- configuration
-Message-ID: <ZuqNL41bgpPZ9QQ7@yilunxu-OptiPlex-7050>
-References: <20240726063819.2274324-1-nava.kishore.manne@amd.com>
- <20240726063819.2274324-2-nava.kishore.manne@amd.com>
- <Zqe7yoAMIJ+Qv8YC@yilunxu-OptiPlex-7050>
- <DS7PR12MB6070C9991ED88DFFADA7EC3CCDB22@DS7PR12MB6070.namprd12.prod.outlook.com>
- <ZrEX9HlAOlUtgnTj@yilunxu-OptiPlex-7050>
- <DS7PR12MB60702067EE3B40A4256F90D3CD612@DS7PR12MB6070.namprd12.prod.outlook.com>
+	s=arc-20240116; t=1726647833; c=relaxed/simple;
+	bh=LwzMaIc15tLg1yHiT2GoTP0A5P1Orbn/m7pSOqUxBv0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=S8M+1KTNfGwbtYg2DxWFPsR8KqzvRQPIahwYXmtTsdetnX9uF0yk2NOb9nfQND1R3Z70mlY73ety3Jt3Vb2TBOx35OqNUyNPoOI/C2AOc59XbX9Cb3P0E7DJOKFMfQNPILKlnJHRc9HshLjyzOq0ZuPJpEuhHLbwDOEzphr3hbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FXBrxdYy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00B32C4CECD;
+	Wed, 18 Sep 2024 08:23:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726647832;
+	bh=LwzMaIc15tLg1yHiT2GoTP0A5P1Orbn/m7pSOqUxBv0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FXBrxdYyCCV1K3WeK/539anp9pQLbjjyx+TKy0mC5gmS9fmbYW1vAVFVxAQGfRi71
+	 KawCtc3duVEWzPlLZGjrXBIjZNfXizMQ67QfOTzGO5dFgG/nTswozUQPmQuoM5XM6T
+	 r6qcHzfNLfjHSeAEnJN+QtwDTS16WmUST+61Zj1+VdxZQkWeiSqngHQFD5wdHCGQPN
+	 m/qwUkyJaNp6LGEGaPSEsC/z4WUR8DSySXKxzA8+TH+M+KtU8giR4OGScu4U77CHVw
+	 Tp5X/rKXiuAGtWszFvj8Tm4CNRr39FyJzdJ2XTP1G4xEUVKelx2Vt3h7v0ChIJIb9w
+	 Wcy+B4/8Hcq5Q==
+Message-ID: <a74cf534-b8ce-4d06-b15b-3df349b48c4e@kernel.org>
+Date: Wed, 18 Sep 2024 10:23:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DS7PR12MB60702067EE3B40A4256F90D3CD612@DS7PR12MB6070.namprd12.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/5] dt-bindings: mtd: spi-nor: add OTP parameters
+To: Erez <erezgeva2@gmail.com>, Conor Dooley <conor@kernel.org>
+Cc: Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>,
+ linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Esben Haabendal <esben@geanix.com>
+References: <20240917094956.437078-1-erezgeva@nwtime.org>
+ <20240917094956.437078-4-erezgeva@nwtime.org>
+ <9c273945-5a70-408e-a9da-a0797aa6d935@kernel.org>
+ <CANeKEMN+ZUAGKGsqnaToDB3AxX9NN_JeCBWHwd-wwnTWLU3R+g@mail.gmail.com>
+ <64ef46b1-7908-4b15-866d-9cabe2e5dc9e@kernel.org>
+ <CANeKEMPwgtECfksgz6jXkR+bjVFwCB9DOh1q7t_3WeojReqxbA@mail.gmail.com>
+ <e0db2f62-b2fd-4b61-932c-cc2caf5dd647@kernel.org>
+ <CANeKEMNCFKX2thq+Ws0vy9ovbQ7dve3YPh_FbRaoOEgL+7c_Mw@mail.gmail.com>
+ <fe98e49d-96d1-462f-99ac-93d8a53e55fd@kernel.org>
+ <CANeKEMNg_hPcVHVo2c9u1Vdzaso0ODT+2uLmip6sd26uK8d_FQ@mail.gmail.com>
+ <20240917-taps-applied-6c0d411bbe08@squawk>
+ <CANeKEMOXZjgLm-Wb8+9RMJYNN1a2Oy81P3MXZiLxNaAerLhYEA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CANeKEMOXZjgLm-Wb8+9RMJYNN1a2Oy81P3MXZiLxNaAerLhYEA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Sep 17, 2024 at 11:16:08AM +0000, Manne, Nava kishore wrote:
-> > -----Original Message-----
-> > From: Xu Yilun <yilun.xu@linux.intel.com>
-> > Sent: Monday, August 5, 2024 11:51 PM
-> > To: Manne, Nava kishore <nava.kishore.manne@amd.com>
-> > Cc: git (AMD-Xilinx) <git@amd.com>; mdf@kernel.org; hao.wu@intel.com;
-> > yilun.xu@intel.com; trix@redhat.com; robh@kernel.org; saravanak@google.com;
-> > linux-fpga@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > devicetree@vger.kernel.org
-> > Subject: Re: [RFC 1/1] of-fpga-region: Add sysfs interface support for FPGA
-> > configuration
-> > 
-> > On Thu, Aug 01, 2024 at 04:25:42AM +0000, Manne, Nava kishore wrote:
-> > > Hi Yilun,
-> > >
-> > > > -----Original Message-----
-> > > > From: Xu Yilun <yilun.xu@linux.intel.com>
-> > > > Sent: Monday, July 29, 2024 9:27 PM
-> > > > To: Manne, Nava kishore <nava.kishore.manne@amd.com>
-> > > > Cc: git (AMD-Xilinx) <git@amd.com>; mdf@kernel.org;
-> > > > hao.wu@intel.com; yilun.xu@intel.com; trix@redhat.com;
-> > > > robh@kernel.org; saravanak@google.com; linux-fpga@vger.kernel.org;
-> > > > linux- kernel@vger.kernel.org; devicetree@vger.kernel.org
-> > > > Subject: Re: [RFC 1/1] of-fpga-region: Add sysfs interface support
-> > > > for FPGA configuration
-> > > >
-> > > > On Fri, Jul 26, 2024 at 12:08:19PM +0530, Nava kishore Manne wrote:
-> > > > > Adds sysfs interface as part of the of-fpga-region. This newly
-> > > > > added sysfs interface uses Device Tree Overlay (DTO) files to
-> > > > > configure/reprogram an FPGA while an operating system is
-> > > > > running.This solution will not change the existing sequence When a
-> > > > > DT overlay that targets an FPGA Region is applied.
-> > > > > 	- Disable appropriate FPGA bridges.
-> > > > > 	- Program the FPGA using the FPGA manager.
-> > > > > 	- Enable the FPGA bridges.
-> > > > > 	- The Device Tree overlay is accepted into the live tree.
-> > > > > 	- Child devices are populated.
-> > > > >
-> > > > > When the overlay is removed, the child nodes will be removed, and
-> > > > > the FPGA Region will disable the bridges.
-> > > > >
-> > > > > Usage:
-> > > > > To configure/reprogram an FPGA region:
-> > > > > echo "fpga.dtbo" > /sys/class/fpga_region/<region>/device/load
-> > > >
-> > > > IIRC, last time we are considering some generic interface for both
-> > > > OF & non- OF FPGA region, but this is still OF specific.
-> > > >
-> > > At AMD, we exclusively use OF for FPGA configuration/reconfiguration, utilizing
-> > overlay files as outlined in the fpga-region.txt documentation.
-> > > However, some devices, like dfl.c those relying solely on the FPGA region, do not
-> > use OF.
-> > > For these non-OF devices, should we expect them to follow the fpga-region.txt
-> > guidelines for FPGA configuration/reconfiguration?
-> > 
-> > I assume it is Documentation/devicetree/bindings/fpga/fpga-region.yaml.
-> > 
-> > No, Non-OF devices don't have to follow the DT binding.
-> > 
-> > > If so, it may be advantageous to develop a common interface for both OF and
-> > non-OF.
-> > > If not, it might be more appropriate to establish distinct interfaces to cater to their
-> > specific requirements.
-> > 
-> > I think each vendor may have specific way for device enumeration, but that doesn't
-> > mean we need distinct user interfaces. For all FPGA devices, we should avoid the
-> > situation that the HW is changed but system SW knows nothing. So the common
-> > needs are:
-> > 
-> >  - Find out and remove all devices within the fpga region before
-> >    reprograming.
-> >  - Re-enumerate devices in fpga region after reprograming.
-> > 
-> > I expect the fpga region class could generally enforce a flow for the reprograming
-> > interface. And of-fpga-region could specifically implement it using DT overlay.
-> > 
+On 17/09/2024 23:29, Erez wrote:
+>>>
+>>> I install dt-schema_2023.11-3_all.deb
+>>> with Debian trixie
+>>> I get:
+>>>
+>>> l
+>>>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>>> Traceback (most recent call last):
+>>>   File "/usr/bin/dt-mk-schema", line 8, in <module>
+>>>     sys.exit(main())
+>>>              ^^^^^^
+>>>   File "/usr/lib/python3/dist-packages/dtschema/mk_schema.py", line 28, in main
+>>>     schemas = dtschema.DTValidator(args.schemas).schemas
+>>>               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>>>   File "/usr/lib/python3/dist-packages/dtschema/validator.py", line
+>>> 363, in __init__
+>>>     self.make_property_type_cache()
+>>>   File "/usr/lib/python3/dist-packages/dtschema/validator.py", line
+>>> 420, in make_property_type_cache
+>>>     self.props, self.pat_props = get_prop_types(self.schemas)
+>>>                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>>>   File "/usr/lib/python3/dist-packages/dtschema/validator.py", line
+>>> 187, in get_prop_types
+>>>     del props[r'^[a-z][a-z0-9\-]*$']
+>>>         ~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+>>> KeyError: '^[a-z][a-z0-9\\-]*$'
+>>> make[2]: *** [Documentation/devicetree/bindings/Makefile:64:
+>>> Documentation/devicetree/bindings/processed-schema.json] Error 1
+>>> make[2]: *** Deleting file
+>>> 'Documentation/devicetree/bindings/processed-schema.json'
+>>> make[1]: *** [/home/builder/kernel/Makefile:1435: dt_binding_schemas] Error 2
+>>
+>> Have you considered that this might be because of the invalid types you
+>> used?
 > 
-> To address the vendor-specific nature(either of or non-of) of device enumeration
-> in FPGA regions, As you suggested, we can develop a common programming
-> interface that abstracts these vendor-specifc differences. This can be achieved
-> by integrating vendor-specific callbacks(ex: of and non-of) for device configuration,
-> enumeration and removal to fpga-region. 
-> 
-> I have outlined the top-level framework changes here:
-> 
-> diff --git a/drivers/fpga/fpga-region.c b/drivers/fpga/fpga-region.c index b364a929425c..7d4b755dc8e0 100644
-> --- a/drivers/fpga/fpga-region.c
-> +++ b/drivers/fpga/fpga-region.c
-> @@ -213,6 +213,7 @@ fpga_region_register_full(struct device *parent, const struct fpga_region_info *
->  	region->compat_id = info->compat_id;
->  	region->priv = info->priv;
->  	region->get_bridges = info->get_bridges;
-> +	region->region_ops = info->region_ops;
->  
->  	mutex_init(&region->mutex);
->  	INIT_LIST_HEAD(&region->bridge_list);
-> @@ -257,17 +258,46 @@ EXPORT_SYMBOL_GPL(fpga_region_register_full);
->   */
->  struct fpga_region *
->  fpga_region_register(struct device *parent, struct fpga_manager *mgr,
-> +		     struct fpga_region_ops *region_ops,
->  		     int (*get_bridges)(struct fpga_region *))  {
->  	struct fpga_region_info info = { 0 };
->  
->  	info.mgr = mgr;
->  	info.get_bridges = get_bridges;
-> +	info.region_ops = region_ops;
->  
->  	return fpga_region_register_full(parent, &info);  }  EXPORT_SYMBOL_GPL(fpga_region_register);
->  
-> +static int fpga_region_device_open(struct inode *inode, struct file *file) {
-> +	struct miscdevice *miscdev = file->private_data;
-> +	struct fpga_region *region = container_of(miscdev, struct fpga_region, 
-> +miscdev);
-> +
-> +	file->private_data = region;
-> +
-> +	return 0;
-> +}
-> +
-> +static long fpga_region_device_ioctl(struct file *file, unsigned int cmd, unsigned long arg) {
-> +	char __user *argp = (char __user *)arg;
-> +	struct fpga_region *region =  (struct fpga_region *)(file->private_data);
-> +	int err;
-> +
-> +	switch (cmd) {
-> +	case FPGA_REGION_IOCTL_LOAD:
-> +		err = region->region_ops->fpga_region_config_enumerate (region, argp);
+> I remove the types.
+> Anyway, scripts should report on errors, not crash.
+> This is the purpose of syntax scripts, to help us, developers find out errors.
 
-Not sure "void *args" is a proposal or something yet to be decided.
-I think we should try best not to give up parameter type and have a clear API
-definition.
+Yeah, things can be improved. Help in that is always welcomed.
 
-> +		break;
-> +	case FPGA_REGION_IOCTL_REMOVE:
-> +		err = region->region_ops->fpga_region_remove(region, argp);
-> +		break;
-> +	case FPGA_REGION_IOCTL_STATUS:
-> +		err = region->region_ops->fpga_region_status(region, argp);
-> +	default:
-> +		err = -ENOTTY;
-> +}
-> +
->  /**
->   * fpga_region_unregister - unregister an FPGA region
->   * @region: FPGA region
-> diff --git a/include/linux/fpga/fpga-region.h b/include/linux/fpga/fpga-region.h
-> index 9d4d32909340..725fdcbab3d8 100644
-> --- a/include/linux/fpga/fpga-region.h
-> +++ b/include/linux/fpga/fpga-region.h
-> @@ -9,6 +9,20 @@
->  
->  struct fpga_region;
->  
-> +/**
-> + * struct fpga_region_ops - ops for low level FPGA region ops for 
-> +device
-> + * enumeration/removal
-> + * @region_status: returns the FPGA region status
-> + * @region_config_enumeration: Configure and enumerate the FPGA region.
+The package you installed is very old (almost a year old!). I suggest
+using pip or pipx (or virtualenv or whatever Python setup you have).
 
-region config could be a common existing operation, fpga_region_program_fpga().
-So maybe only enumeration is needed?
+Best regards,
+Krzysztof
 
-> + * @region_remove: Remove all devices within the fpga region
-> + * (which are added as part of the enumeration).
-> + */
-> +struct fpga_region_ops {
-> +	int (*region_status)(struct fpga_region *bridge);
-> +	int (*region_config_enumeration)(struct fpga_region *region, void *args);
-> +	void (*region_remove)(struct fpga_region *region, void *args); };
-> +
->  /**
->   * struct fpga_region_info - collection of parameters an FPGA Region
->   * @mgr: fpga region manager
-> @@ -26,6 +40,7 @@ struct fpga_region_info {
->  	struct fpga_compat_id *compat_id;
->  	void *priv;
->  	int (*get_bridges)(struct fpga_region *region);
-> +	struct fpga_region_ops *region_ops;
->  };
->  
->  /**
-> @@ -48,6 +63,7 @@ struct fpga_region {
->  	struct fpga_compat_id *compat_id;
->  	void *priv;
->  	int (*get_bridges)(struct fpga_region *region);
-> +	struct fpga_region_ops *region_ops;
->  };
->  
->  #define to_fpga_region(d) container_of(d, struct fpga_region, dev)
-> 
-> In this approach, we utilized an IOCTL-based user interface, but it doesn't have
-> to be confined to IOCTL. We can also use sysfs or configfs, or other appropriate
-> options as we finalized on it.
-> 
-> This call-backs approach works for both OF and non-OF devices. 
-> If this aligns with your expectations, I can do the necessary changes
-
-There are still much to discuss, but yes this is a good start.
-
-Thanks,
-Yilun
-
-> for one vendor specific interface (of-fpga-region.c) devices and submit
-> the RFC patch shortly.
-> 
-> 
-> Regards,
-> Navakishore.
 
