@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-103731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64F8A97BF51
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 18:53:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3307897BF5E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 19:00:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21D6B28241B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 16:53:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC8AC1C21D7E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 17:00:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8D7D13AD1C;
-	Wed, 18 Sep 2024 16:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B28D41C9DCC;
+	Wed, 18 Sep 2024 17:00:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K04gp4L2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KCPNUEOR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C472F210EC;
-	Wed, 18 Sep 2024 16:53:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E391C987C;
+	Wed, 18 Sep 2024 17:00:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726678394; cv=none; b=BjQZUiRfYOJDIupw3IZ+u62nd85Wh9Lor6RRTuo+m1hKZGSAqowvL6PMK9amNCCbAdRYYmhpOw9b+b/Nd4lpfAI8iIE5T6qrPwh1RXGFdfIbkmTHqGK2tcS9m3bFr9RMNVQnrRbBcHmKHtwT/SymFuT3s7P6iHqQrwFHHl5/EDg=
+	t=1726678812; cv=none; b=qgnjf7Z/1MUd8XGeJKmbeK+O36WCGyKexbvmJ5NaLbZfT1usHmdg7owEvSrZu6d4bAuPqYJdHmqr0v+8fyqFScVCaTK8ONPg8piPDGW9zAfjwwEgJBPhRzvGJKmcrUx12UdCa7+gG8/Y/750/uuDDPMzbnaBOokJbr0ZAp3ATnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726678394; c=relaxed/simple;
-	bh=5dAxKzkDyGuXMmBNEdKWUyh9xQq1sdPJBz4J+tT5EWY=;
+	s=arc-20240116; t=1726678812; c=relaxed/simple;
+	bh=fSZZnG12ZPOXEsDV34gL2GAHAjkV4638oZ1iIPy9sqo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V8nYdC1rTIgU9c5shPCmqbCX6NtOjyKkXgw0cm/LPVoQK3TeO6WalwNeFjObSeXZ1Hk0GuEIPrJDCEiVW8jGPOM02mEB5PZYwzOgFcT5FS0uLu7b6leFMPJDCYwINvwk41ryfhCOhFFNs/3BkYca1j2liUjqNGp9FHYHQJ4nlt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K04gp4L2; arc=none smtp.client-ip=209.85.216.53
+	 In-Reply-To:Content-Type; b=NTtVmJByXFDWS3es2eYfWpAI70I//O7oW9JK0u14CECLlV7L4hikKI2/u/uSV/Wtx8kmkTyORwelTJDfUi8VrJthUgLpMLpm/YNi5XJdYk4UhZZ9NFOpFM/r4dLPLCQCoSxrm78DdTcEUpEJesIPWJMSW4zDnmHKlBXwjyV0TdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KCPNUEOR; arc=none smtp.client-ip=209.85.210.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2db85775c43so816910a91.0;
-        Wed, 18 Sep 2024 09:53:12 -0700 (PDT)
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-71798661a52so883569b3a.0;
+        Wed, 18 Sep 2024 10:00:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726678392; x=1727283192; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1726678810; x=1727283610; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=TwVG27iWjhMbbo2rXogcr5hiQ868jFDOAxTn8sf+ht8=;
-        b=K04gp4L24mz77ICGQ3pTsaKVCN/YX4frs5c8vFKrR4UM5rsZUGikvts1xVKdyIeXgr
-         OzI3Zp3ZUVcuhDkAf1VqskWKLb2A+PS5gvuFuxplbYXb/t7eCsOyX+1+QRpGxZ70MlSQ
-         Us/hOe9qI5q69dLfOXV7SciB+KH9YMVOhvDzhg3xXkMkhV5g8QtOSewH31XdcASLvzH8
-         BoEACazdyvMUUcf70Kp11NpqDSlwUeV5eqQPVDujMrAt+I6hy+e26qve4MMHNNUI5YF3
-         ocYlGnGvPB+uHxCia39bIiErLr4ABHkLLTMWXom+dr4X94h7oF/PP3vfy2pBSKMNxFBX
-         kFow==
+        bh=I1+36+NZhDVwDQqZ2ssIFpr45WKecMP/sjx43vhCbeM=;
+        b=KCPNUEORDzoD9lAo1uGiuh3TQ4RoFx5lljkj6CysGyBhu/89iVMzbrWyzjcAjNeudZ
+         GUxSynItF3euXTI4AePi4FijElqLJ7ZaCuZJPH/QLBYy4V0YSbwORhzyQs8w3cX7AVm/
+         2tbw/RD3yNN5TIgox3WOefYpDe6IXuLl1OYfd+EKCrEiu/R7XWIrhier7uyeaeY97EiY
+         SlODlJo308hLS3g9xzoHpqIFVhfgMOGG31ZKCiC8gk1rsfZV3b+DMGG03MIm2eOWXWOW
+         HhyJ+Ob1taJohIrGh63UDapLXCGtgA3zKUiJZ8vpkqA7KwrUmbDMkUoadTt03B+dfLRm
+         rtHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726678392; x=1727283192;
+        d=1e100.net; s=20230601; t=1726678810; x=1727283610;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TwVG27iWjhMbbo2rXogcr5hiQ868jFDOAxTn8sf+ht8=;
-        b=Is8XYhs2aPih+oslVjFeQ4W6TuRCKVA71tfbtsi5x1tdy8inbzMrkYl3cVVz5/04mU
-         JZGT3qTb0zjjc5njya+JOtgTziRVngR82IWVKHAq3qZSJXzf7nQbHYpfN3T8SE5mpPyi
-         7ptn27NfpRPBl5CWHOfkRs0U5C6hG+9blDHX41ZQ2mEnOn26KS4Vfa607VQB+UIXSq0X
-         XgPi8M+LbD/XbsJvrbOgh565vmYI0EzzMunpLU7y4eUi0pBkFUv6uWcSybMSCVv22MKu
-         3ufLi7gUnFW+bRA371Wi4D33NDG5h8w2M/OV0HmhGlTlY/BwqUnYRjaXMLoQvUTb7+uN
-         zdJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWOSyllekYB3kTJz+pOgjgs+d3U5DFMDstOw7idJtaWDSdCbYZO+iEEeGiNcGT+1Ev12rP0Vs7vpZYv@vger.kernel.org, AJvYcCXXzMn1aruLuchaNk3arqEOUJ9JX9oWAR2k8W+bzEXbTMi0Av2ge6Y/8TxmAcN+VwigmKd25fi0qkqvFQtD@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAiQRgvChc96YmODH8opwb3BLr/Y26xXJsqQoBPQIyA8rTEUFf
-	bMrf25VQxENzbC1Ml0Oik3rDcHp1onXz6xLSDC2chExseYXZ4D+T
-X-Google-Smtp-Source: AGHT+IESeiykBWoBfHRj3NaZN3SuHuAvzzhhGH7qh4VssYv7fmnVXVd/X4/EWjz9DQQv7UGoDuV0Mg==
-X-Received: by 2002:a17:90a:7345:b0:2d8:8a3a:7b88 with SMTP id 98e67ed59e1d1-2dd6cdfaefcmr427948a91.6.1726678391880;
-        Wed, 18 Sep 2024 09:53:11 -0700 (PDT)
+        bh=I1+36+NZhDVwDQqZ2ssIFpr45WKecMP/sjx43vhCbeM=;
+        b=gNptWrFuMuvrpddjZ4q9B+VmmyQ0cU/eFe70KgFzBl0Z49FcU7DMhPDwM7Pd1rgDx8
+         SwJLZf5UbLsDXGxBadz/XXCYIy40rRK6boNvIWXu3QUyEb21AqaWNJzZIC4KjfBTcCjj
+         MSyG9DpvI0tV4L8cWyybnHydrChU1wSLbbz/Z+mUoPK7UHwcsSd/b/whx96DgrmucXib
+         M3Tx+f6RHTEqlX6d+RflZMLqhe8cEyzgzkA2mar7ulvTpHmRBPQrUxlmEPyAMuV3GX/H
+         i4AB1xXYpefBli3U9NUOa/FyI0vdB4Ew7IVGkNNwPCsDKTyU+d/VHJxjdo0DB6Rm0tuX
+         VBVw==
+X-Forwarded-Encrypted: i=1; AJvYcCVLfRuLPh3ZtJCKFsQPADldSdDUb4FdTIrLWgdh8aDN0+GXYhDx41nnh68RprTo90Y1FK+eGiVzwBMy@vger.kernel.org, AJvYcCWAEokw2KeHvxFm62sH/ww7mWUQB21V43+MRHpa2mAFpHRBB8Twrv0jTQNYtEjlwyTe78IZuLZwa63Pe3kf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJzSTQocx2Y1oFGS8bezN1Uinm8dKJka9wtgxvpNLb9vIbC+Gv
+	Ry2jYlajlgNE4oqJfPZZm0oiO7bGsXfFOl9s5FB5YwFf+eE8GgZN
+X-Google-Smtp-Source: AGHT+IFhp5c6rZituXcxVjcSwleChm8M8mXicRag0NAnlTUMWtXlovSdktNzbEIcDnLinAD0Vpa3Zg==
+X-Received: by 2002:a05:6a00:66d8:b0:718:d4e4:a10a with SMTP id d2e1a72fcca58-7198e26c590mr419348b3a.4.1726678810378;
+        Wed, 18 Sep 2024 10:00:10 -0700 (PDT)
 Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2dd608e5e5esm1895404a91.33.2024.09.18.09.53.09
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71944b7b110sm6953943b3a.134.2024.09.18.10.00.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Sep 2024 09:53:11 -0700 (PDT)
+        Wed, 18 Sep 2024 10:00:09 -0700 (PDT)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <f76798ea-6edd-4888-8057-c09aaed88f25@roeck-us.net>
-Date: Wed, 18 Sep 2024 09:53:09 -0700
+Message-ID: <bf5258b8-a5a1-4cf3-9bd0-1fa44696c3b0@roeck-us.net>
+Date: Wed, 18 Sep 2024 10:00:08 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,24 +78,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: trivial-devices: support pmbus
- compatible string
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
+Subject: Re: [PATCH v2 2/3] dt-bindings: trivial-devices: support MPS MP5023
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
 Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>, Joel Stanley
  <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
- Noah Wang <noahwang.wang@outlook.com>, Peter Yin
- <peteryin.openbmc@gmail.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Fabio Estevam <festevam@gmail.com>, Lukas Wunner <lukas@wunner.de>,
+ Peter Yin <peteryin.openbmc@gmail.com>, Noah Wang
+ <noahwang.wang@outlook.com>, Javier Carrasco
+ <javier.carrasco.cruz@gmail.com>, Fabio Estevam <festevam@gmail.com>,
+ Lukas Wunner <lukas@wunner.de>,
  Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
 References: <20240918095438.1345886-1-Delphine_CC_Chiu@wiwynn.com>
- <20240918095438.1345886-2-Delphine_CC_Chiu@wiwynn.com>
- <e94f03a9-92e1-47d5-aa36-fc51216436c9@kernel.org>
+ <20240918095438.1345886-3-Delphine_CC_Chiu@wiwynn.com>
 Content-Language: en-US
 From: Guenter Roeck <linux@roeck-us.net>
 Autocrypt: addr=linux@roeck-us.net; keydata=
@@ -141,28 +138,22 @@ Autocrypt: addr=linux@roeck-us.net; keydata=
  WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
  HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
  mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <e94f03a9-92e1-47d5-aa36-fc51216436c9@kernel.org>
+In-Reply-To: <20240918095438.1345886-3-Delphine_CC_Chiu@wiwynn.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 9/18/24 06:03, Krzysztof Kozlowski wrote:
-> On 18/09/2024 11:54, Delphine CC Chiu wrote:
->> From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
->>
->> Add pmbus compatibale string for the Generic PMbus devices that could
->> be monitor by pmbus driver.
->>
+On 9/18/24 02:54, Delphine CC Chiu wrote:
+> From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
 > 
-> You need to explain more, provide background why we would like to accept
-> a generic compatible. And why a specific compatible cannot or should not
-> be used...
+> Add support for hot-swap controller MPS MP5023.
 > 
-> In general this is a no, you cannot have such compatibles for real hardware.
-> 
+> Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> --
 
-Agreed; affected chips should be listed explicitly in drivers/hwmon/pmbus/pmbus.c.
+The hardware monitoring mailing list was not copied, so I assume that
+the expectation is that it will be applied through some other tree.
 
-Guenter
-
+Acked-by: Guenter Roeck <linux@roeck-us.net>
 
 
