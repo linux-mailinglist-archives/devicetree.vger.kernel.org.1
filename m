@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-103668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C3D197BAF9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 12:38:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B88497BB07
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 12:43:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D191284D23
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 10:38:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F4C22828D3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 10:43:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F7E718951C;
-	Wed, 18 Sep 2024 10:37:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C394617AE0C;
+	Wed, 18 Sep 2024 10:43:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SZ3UHD9l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YyTif9Dw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 080231891C3;
-	Wed, 18 Sep 2024 10:37:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E1FA1CF9B;
+	Wed, 18 Sep 2024 10:43:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726655866; cv=none; b=p0b4dRWoigMqW5PU6M92vHDRkreKudJrJO+fO8TjYLIN2atWWwsbZEiIgNXnZmMF+INg0TTgfnrTelkppOKBFIzLfWpcttt4F/DBjjOHnKhlnfrDcY8YstYtTgIzp6iQQpuBm0XRy333UtfHaVq8q/is/sFHgVGynpi3M9K2pQA=
+	t=1726656187; cv=none; b=Id9/QPmDeqezmfALbsleuTtC/NKEybxH25EqUQii780medYsY0RS6bLpnr+9VY0FV3AizDIaQUC5BJX6ahRdiOOSzipR18yzpPvUUj1mUABGn9bpnjxiVOjfZuQ394GUyXp64+wf9KgwveKlLfw5dL3D6ydejHq3O9pPtypa4tU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726655866; c=relaxed/simple;
-	bh=CTOcKEgY8jlNQ+MQfkCHYV1DkzEiLwX7P5+oZbdhIgc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=stiGO2cEiXHBlKUcoanABldiDFEot6XmhCwKgVw4wCX7YveQNmnZn/BcXwdKYCwvFuIhyZXqWtJwhxytHBSRqM1ayXLw8AdE27709/rZfRT9MQfGjzKwI10Es6EeTzEfkPnDILTZdhFqmrKprcyyrLeicAYZyz4cN5dyurmFS/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SZ3UHD9l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 042C8C4CEC7;
-	Wed, 18 Sep 2024 10:37:35 +0000 (UTC)
+	s=arc-20240116; t=1726656187; c=relaxed/simple;
+	bh=pLNSGSlxEJMU9z/8PbcHIURJH1dyIXAik9PiewAkWFg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=LJZFU+dunnpSL07EedVrU30anHJ8tkw+4sAWjb7WQqwkRk9QpsoAS5rj8Sq81Y1e9SrNHJUYo6GsS53xt82n5lqw5MG2TWZ3qMxWJlqqo5TnZmBgr/rbNAZ7j/Mq3WCEietZMjuSScFQJ5ppGq0lHxgL9ZnxYOWZuv4o8MYhy48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YyTif9Dw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3345C4CEC3;
+	Wed, 18 Sep 2024 10:43:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726655865;
-	bh=CTOcKEgY8jlNQ+MQfkCHYV1DkzEiLwX7P5+oZbdhIgc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SZ3UHD9lG/YMqqUGJEJ77qacsEmbMTK3iXizTHgwF83KRCbDGCRVfsJQhPJQ6SoGx
-	 mbbXW8QcFZ7UXNJpDnPV/ohUkx9vNDYIxDwYmI36/PxEHkc+LDE/KM+X8Uqc8PTsTs
-	 76xuWD/qcgj2+3i2pgAMfGRgK+DgDZ/1RWzZTiw42kLQgi25r4F/Moud1816wkqC3o
-	 vwJzTqLUra8BRIgXtOYTqlDSkmpUmb1faj04JQUv2Y6irhZytq78FtymR8gJRkJzNz
-	 QvQUc4z+tXDM5SFnVaI78ru0LjvkAmgxzsPC/ZCYdzobXSqUfUGjfbfCeJoGvPTpa7
-	 GyVvRRRCHgzdw==
-Message-ID: <c50905e4-1f99-4b17-b932-f28aa6d1a7c3@kernel.org>
-Date: Wed, 18 Sep 2024 12:37:33 +0200
+	s=k20201202; t=1726656187;
+	bh=pLNSGSlxEJMU9z/8PbcHIURJH1dyIXAik9PiewAkWFg=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=YyTif9Dwz5B/v+HDBD0f3duGiOGbbpEjEPhqdkaKAMkM28D8PaLaNZ9lX/d8jHuxC
+	 9vSPH+M4SHdu1ZilQNO2K6/IVtLopndSQmlS8sJG3vU13kZZZug2hx+ABzRRIYLmoT
+	 OIYWoRdthOC6MnM1R7+ypzs6hy5I9puxALU+V1ND0AzYiZ3x2mPSu3o1THbrOdfdgT
+	 Vm7wtHDPb0vHCla0KEmCc0MbCnB7LKcaFQIvHqr0Mf5oj+l4hs8iBmOSCIjNwbM2v2
+	 hn7I/P8DDnWXZRKgMLGywASc63F18/SndyrsPx+2H7LT/Qc6AFGTgsfcSEIU1cf7pZ
+	 hS31q71yoxs3Q==
+Message-ID: <89a7e86b-8866-4148-9f9e-13ca84c1aede@kernel.org>
+Date: Wed, 18 Sep 2024 12:43:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,38 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] regulator: dt-bindings: mt6397: move examples to
- parent PMIC mt6397
-To: Macpaul Lin <macpaul.lin@mediatek.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
- Vladimir Oltean <olteanv@gmail.com>, "David S . Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+Subject: Re: [PATCH 3/3] power: supply: initial support for TWL6030/32
+To: Andreas Kemnade <andreas@kemnade.info>, tony@atomide.com,
+ Sebastian Reichel <sre@kernel.org>, linux-omap@vger.kernel.org,
+ devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Sean Wang <sean.wang@mediatek.com>, Sen Chu <sen.chu@mediatek.com>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>,
- Lee Jones <lee@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Chen Zhong <chen.zhong@mediatek.com>, linux-input@vger.kernel.org,
- linux-leds@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-rtc@vger.kernel.org, linux-sound@vger.kernel.org,
- Alexandre Mergnat <amergnat@baylibre.com>, Bear Wang
- <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
- Macpaul Lin <macpaul@gmail.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
- MediaTek Chromebook Upstream
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- Chen-Yu Tsai <wenst@chromium.org>
-References: <20240916151132.32321-1-macpaul.lin@mediatek.com>
- <20240916151132.32321-3-macpaul.lin@mediatek.com>
- <ev4kqtbjwglrti3mk2cnayilj4muy7ll7ux2uwlekcwu73dy5e@h4wvpucmyepw>
- <9caff3d5-22af-3481-d2af-6afb4abd49d7@mediatek.com>
+ linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ linux-pm@vger.kernel.org
+References: <20240918084132.928295-1-andreas@kemnade.info>
+ <20240918084132.928295-4-andreas@kemnade.info>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -127,37 +104,199 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <9caff3d5-22af-3481-d2af-6afb4abd49d7@mediatek.com>
+In-Reply-To: <20240918084132.928295-4-andreas@kemnade.info>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/09/2024 04:44, Macpaul Lin wrote:
+On 18/09/2024 10:41, Andreas Kemnade wrote:
+> Add a driver for the charger in the TWL6030/32. For now it does not report
+> much in sysfs but parameters are set up for USB, charging is enabled with
+> the specified parameters. It stops charging when full and also restarts
+> charging.
+> This prevents ending up in a system setup where you run out of battery
+> although a charger is plugged in after precharge completed.
 > 
-> On 9/17/24 15:01, Krzysztof Kozlowski wrote:
->> 	
->>
->> External email : Please do not click links or open attachments until you 
->> have verified the sender or the content.
->>
->> On Mon, Sep 16, 2024 at 11:11:32PM +0800, Macpaul Lin wrote:
->>> Since the DT schema of multiple function PMIC mt6397 has been converted,
->>> move the examples in "mediatek,mt6397-regulator.yaml" to the parent schema
->>> "mediatek,mt6397.yaml".
->>
->> Is there any error otherwise? Why this cannot stay here, since it is
->> already there?
->>
->> Best regards,
->> Krzysztof
->>
+> Battery voltage behavior was checked via the GPADC.
 > 
-> I previously thought that all regulator examples needed to have a 
-> complete version placed centrally in the main MFD. In that case, this 
-> patch 3/3 should not need to be required. This will be dropped in the 
-> next version.
 
-That's the preference for new bindings, but there is no harm if existing
-and functional example stays, even if it is partial.
+Few stylistic comments below.
+
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
+>  drivers/power/supply/Kconfig           |  10 +
+>  drivers/power/supply/Makefile          |   1 +
+>  drivers/power/supply/twl6030_charger.c | 566 +++++++++++++++++++++++++
+>  3 files changed, 577 insertions(+)
+>  create mode 100644 drivers/power/supply/twl6030_charger.c
+> 
+> diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
+> index bcfa63fb9f1e2..9f2eef6787f7a 100644
+> --- a/drivers/power/supply/Kconfig
+> +++ b/drivers/power/supply/Kconfig
+> @@ -493,6 +493,16 @@ config CHARGER_TWL4030
+>  	help
+>  	  Say Y here to enable support for TWL4030 Battery Charge Interface.
+>  
+> +config CHARGER_TWL6030
+> +	tristate "OMAP TWL6030 BCI charger driver"
+> +	depends on IIO && TWL4030_CORE
+
+|| COMPILE_TEST, at least for TWL part
+(but please test first)
+
+> +	help
+> +	  Say Y here to enable support for TWL6030/6032 Battery Charge
+> +	  Interface.
+> +
+> +	  This driver can be build as a module. If so, the module will be
+> +	  called twl6030_charger.
+> +
+
+
+
+> +
+> +static int twl6030_charger_probe(struct platform_device *pdev)
+> +{
+> +	struct twl6030_charger_info *charger;
+> +	struct power_supply_config psy_cfg = {};
+> +	int ret;
+> +	u8 val;
+> +
+> +	charger = devm_kzalloc(&pdev->dev, sizeof(*charger), GFP_KERNEL);
+> +	if (!charger)
+> +		return -ENOMEM;
+> +
+> +	charger->dev = &pdev->dev;
+> +	charger->irq_chg = platform_get_irq(pdev, 0);
+> +
+> +	platform_set_drvdata(pdev, charger);
+> +	psy_cfg.drv_data = charger;
+> +
+> +	charger->channel_vusb = devm_iio_channel_get(&pdev->dev, "vusb");
+> +	if (IS_ERR(charger->channel_vusb)) {
+> +		ret = PTR_ERR(charger->channel_vusb);
+> +		if (ret == -EPROBE_DEFER)
+> +			return ret;	/* iio not ready */
+> +		dev_warn(&pdev->dev, "could not request vusb iio channel (%d)",
+> +			 ret);
+> +		charger->channel_vusb = NULL;
+> +	}
+> +
+> +	charger->usb = devm_power_supply_register(&pdev->dev,
+> +						  &twl6030_charger_usb_desc,
+> +						  &psy_cfg);
+> +	if (IS_ERR(charger->usb)) {
+
+Checkpatch...
+
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(charger->usb),
+> +				     "Failed to register usb\n");
+> +	}
+> +
+> +	ret = power_supply_get_battery_info(charger->usb, &charger->binfo);
+> +	if (ret < 0)
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "Failed to get battery info\n");
+> +
+> +	dev_info(&pdev->dev, "battery with vmax %d imax: %d\n",
+> +		 charger->binfo->constant_charge_voltage_max_uv,
+> +		 charger->binfo->constant_charge_current_max_ua);
+> +
+> +	if (charger->binfo->constant_charge_voltage_max_uv == -EINVAL) {
+> +		ret = twl6030_charger_read(CHARGERUSB_CTRLLIMIT1, &val);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		charger->binfo->constant_charge_voltage_max_uv =
+> +			VOREG_TO_UV(val);
+> +	}
+> +
+> +	if (charger->binfo->constant_charge_voltage_max_uv > 4760000 ||
+> +	    charger->binfo->constant_charge_voltage_max_uv < 350000)
+> +		return dev_err_probe(&pdev->dev, -EINVAL,
+> +				     "Invalid charge voltage\n");
+> +
+> +	if (charger->binfo->constant_charge_current_max_ua == -EINVAL) {
+> +		ret = twl6030_charger_read(CHARGERUSB_CTRLLIMIT2, &val);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		charger->binfo->constant_charge_current_max_ua = VICHRG_TO_UA(val);
+> +	}
+> +
+> +	if (charger->binfo->constant_charge_current_max_ua < 100000 ||
+> +	    charger->binfo->constant_charge_current_max_ua > 1500000) {
+> +		return dev_err_probe(&pdev->dev, -EINVAL,
+> +			 "Invalid charge current\n");
+> +	}
+> +
+> +	if ((charger->binfo->charge_term_current_ua != -EINVAL) &&
+> +	    (charger->binfo->charge_term_current_ua > 400000 ||
+> +	     charger->binfo->charge_term_current_ua < 50000)) {
+> +		return dev_err_probe(&pdev->dev, -EINVAL,
+> +			"Invalid charge termination current\n");
+> +	}
+> +
+> +	ret = devm_delayed_work_autocancel(&pdev->dev,
+> +					   &charger->charger_monitor,
+> +					   twl6030_charger_wdg);
+> +	if (ret < 0)
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "Failed to register delayed work\n");
+> +
+> +	ret = devm_request_threaded_irq(&pdev->dev, charger->irq_chg, NULL,
+> +					twl6030_charger_interrupt,
+> +					IRQF_ONESHOT, pdev->name,
+> +					charger);
+> +	if (ret < 0) {
+
+Drop {}, see checkpatch.
+
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "could not request irq %d\n",
+> +				     charger->irq_chg);
+> +	}
+> +
+> +	/* turing to charging to configure things */
+> +	twl6030_charger_write(CONTROLLER_CTRL1, 0);
+> +	twl6030_charger_interrupt(0, charger);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id twl_charger_of_match[] __maybe_unused = {
+> +	{.compatible = "ti,twl6030-charger", },
+> +	{.compatible = "ti,twl6032-charger", },
+
+So they are compatible? Why two entries in such case?
+
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, twl_charger_of_match);
+> +
+> +static struct platform_driver twl6030_charger_driver = {
+> +	.probe = twl6030_charger_probe,
+> +	.driver	= {
+> +		.name	= "twl6030_charger",
+> +		.of_match_table = of_match_ptr(twl_charger_of_match),
+
+I propose to drop of_match_ptr and maybe_unused, so this won't be
+restricted only to OF
+
+> +	},
+> +};
+> +module_platform_driver(twl6030_charger_driver);
+> +
+> +MODULE_DESCRIPTION("TWL6030 Battery Charger Interface driver");
+> +MODULE_LICENSE("GPL");
+> +MODULE_ALIAS("platform:twl6030_charger");
+
+
+You should not need MODULE_ALIAS() in normal cases. If you need it,
+usually it means your device ID table is wrong (e.g. misses either
+entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
+for incomplete ID table.
+
 
 Best regards,
 Krzysztof
