@@ -1,149 +1,161 @@
-Return-Path: <devicetree+bounces-103627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60BA297B933
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 10:21:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F82E97B935
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 10:21:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E77F41F23BBF
-	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 08:21:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A28451C2256F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Sep 2024 08:21:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84BA41741EF;
-	Wed, 18 Sep 2024 08:17:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EEE517920E;
+	Wed, 18 Sep 2024 08:17:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yk8vHog2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H6A/qU+V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59DAA3A1A8;
-	Wed, 18 Sep 2024 08:17:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2449A3A1A8;
+	Wed, 18 Sep 2024 08:17:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726647433; cv=none; b=rIlcOok6bqizjY18klXZUP1X6eSjMu79hYcAuAxHceE7sm9f+Ks9jtvJbMHyCKm7OizD8pQFUeFuyPC+pXjIlMRyHiJ6Tc6S/ek7vxAh2Otb5ojTAEqYrqd1xI8hbopB3u3W3BFZLs2IHhagbh1ynQgoPw4NvqAz0uj7+NOGDIE=
+	t=1726647454; cv=none; b=bb+vqhVmiJMvhCyJUHntpAeTJdjcybBQUstMG0QGPUAN/dPwlwL+AvxYX5KOYN0trRmt6gWwc/TOaFBCrZsxJPJlxHtmkq+XmNq3gEp3opJlMPK2kVfzJprmpR/RbICtFnbnFpDMOgc61QBuCmxc/lLRIFnysgbRO6ZNCi2izVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726647433; c=relaxed/simple;
-	bh=vYqA1OPWGAmibzxSpiuC4hbEPhEDOi+6eLPRV4jZDE0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ovTfw+EC99FqHzbyyWVycOt3h8eNJk5nZBoXNCo3W0fr8ZwgRWtgR5oDuitVoUNa/lHok5Yvs8hDNGeLQZ7MRHouxuZa3uxjmKzjg1+xiTCeJyUED6Gly0fDLVtVBPlTkY8+N7Px/n1CuNjICQ/Bp6xO6+wXRqunW/VSVWepsZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yk8vHog2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5696C4CECE;
-	Wed, 18 Sep 2024 08:17:08 +0000 (UTC)
+	s=arc-20240116; t=1726647454; c=relaxed/simple;
+	bh=FTJoZ8AQeQAw65u2/w9rBqCYK5Ht6T2q1Qca/3oUkA0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m5cqtibSb0AC2a6wcOzUp4YJvV+kXlm9KqqpSSAftn41MBVWd09we2em6URSAhu2t8hTtosneqlQtKL2NSgT+qsb44t+bbkc65oEOLv55uEWtwdssyjzKKeTOg5xeDGY2iFl/OFBcwdRUV2Xxmq7bAAm1BYEfXBEGihwzKBK7P4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H6A/qU+V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C3C4C4CEC3;
+	Wed, 18 Sep 2024 08:17:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726647433;
-	bh=vYqA1OPWGAmibzxSpiuC4hbEPhEDOi+6eLPRV4jZDE0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Yk8vHog2JdyXyrULy9Xq6M+f5yxjlZHd4G0Tpk0C7FvlhUINKg0iS3Jx77a1m+/Ts
-	 usc+KGp6xjc3df5flBNLHeoOFtcLJOVprUInZ8MZ4Fck8e/L9dEgUdBhArEeFJwdcY
-	 J9j4G8DCDqIl4m6ECZ9pZUxCgww+zBiPXl0jLhBeb/jTgOzQSdYJM+0hJva9E5Nz8V
-	 QsuU7fl3Av0ofIswx8wXM974WF22KLLVq9WS7sei9XNe/86keFRIvcGrEAmICJ9BEW
-	 2vlB24WcDqUXEeC/cUOfkaC46kw3SpVKfPY2mbeU9h1ZE4Sxz4JN131DZfK5lrWKYh
-	 gEAvtSBuVia9w==
-Message-ID: <3a33370a-4f11-4f19-96e8-95bd1a8a48cb@kernel.org>
-Date: Wed, 18 Sep 2024 10:17:07 +0200
+	s=k20201202; t=1726647453;
+	bh=FTJoZ8AQeQAw65u2/w9rBqCYK5Ht6T2q1Qca/3oUkA0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=H6A/qU+VdR0Y9jSSTcHLWbmJwfGOU0AKo++1CxM4/BQaGOZrMD1gENYrHFK0XBE8f
+	 f3Le05cLyNQ+TL/ODz4erntA1KRUd91HJrd8B1n2akUgPWKGG2suUPQJyAbvWOKBhe
+	 Xoi52+s0ntAVHeSXdor9XcoZ96/4cvEco2n741xJWfhjLCDVllGPojfwCqTHsr4S6K
+	 wjDZ3AhefQ9eN9ScOCR4SxEHulmdLcmTR3ybU9tgT0QrH2OiFThnxpOWVIaOD3BYpA
+	 dT8063COUFujg6JLfjpDbh888J88G9xTXdwMkDg7KV0OSwD7YzeTmsVyJsyyx4CUX6
+	 hGuc1pkoePLCg==
+Date: Wed, 18 Sep 2024 09:17:37 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Frank Li <Frank.li@nxp.com>, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev, krzk+dt@kernel.org,
+	robh@kernel.org, shawnguo@kernel.org, festevam@gmail.com
+Subject: Re: Device tree node order sort tool
+Message-ID: <20240918-igloo-unspoken-45443a52e338@squawk>
+References: <ZumjueKy+tvkODnB@lizhi-Precision-Tower-5810>
+ <2fdfmn7wjt5tr6lsxee2qubjgiphys5n2fivlracaksilvvgmi@od6t76mpd3co>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel-simple: Document support
- for Microchip AC69T88A
-To: Manikandan.M@microchip.com
-Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, thierry.reding@gmail.com, sam@ravnborg.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240917095330.267397-1-manikandan.m@microchip.com>
- <df51e0ae-a97d-4567-a16e-ef0667aac661@kernel.org>
- <46cb2204-ee5a-4999-b229-ee1282f96a69@microchip.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <46cb2204-ee5a-4999-b229-ee1282f96a69@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="/Tt7n4fJunpch9ts"
+Content-Disposition: inline
+In-Reply-To: <2fdfmn7wjt5tr6lsxee2qubjgiphys5n2fivlracaksilvvgmi@od6t76mpd3co>
 
-On 18/09/2024 05:08, Manikandan.M@microchip.com wrote:
-> Hi Krzysztof,
-> 
-> On 17/09/24 4:07 pm, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> On 17/09/2024 11:53, Manikandan Muralidharan wrote:
->>> Add Microchip AC69T88A 5" LVDS interface (800x480) TFT LCD panel
->>> compatible string
->>>
->>> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
->>> ---
->>>   .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
->>>   1 file changed, 2 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
->>> index b89e39790579..09911b89d140 100644
->>> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
->>> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
->>> @@ -200,6 +200,8 @@ properties:
->>>         - logictechno,lttd800480070-l2rt
->>>           # Logic Technologies LTTD800480070-L6WH-RT 7” 800x480 TFT Resistive Touch Module
->>>         - logictechno,lttd800480070-l6wh-rt
->>> +        # Microchip AC69T88A 5" 800X480 LVDS interface TFT LCD Panel
->>> +      - microchip,ac69t88a-lvds-panel
->>
->> Is this device some sort of multi-function? Why "lvds-panel"? What else
->> could it be?
-> This device does not multi-function, I will rephrase and share a v2
 
-Then drop lvds-panel, please.
+--/Tt7n4fJunpch9ts
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Wed, Sep 18, 2024 at 10:03:32AM +0200, Krzysztof Kozlowski wrote:
+> On Tue, Sep 17, 2024 at 11:43:53AM -0400, Frank Li wrote:
+> > All:
+> > 	I write a simple tools to sort device tree to make sure nodes and
+> > properties sort as correct order.
+> > 	https://github.com/lznuaa/dt-format
+> >=20
+> > 	There are many dt files, which have node order trivial issue, when
+> > try to upstream. To reduce reviewer's time, dt-format can help correct =
+the
+> > order.
+> >=20
+>=20
+> Hey Frank,
+>=20
+> Cool idea!
 
+I concur, it is a useful idea.
+
+> > 	I just want to make sure my understand about node order is correct.
+> >=20
+> > 	Rule 1: node@hexvalue,  	order by hexvalue
+> > 	Rule 2: label: node,  		order by node name
+> > 	Rule 3: node, 			order by node name
+> > 	Rule 3: &label			order by label
+>=20
+> Some subsystems have different ordering, like expressed in DTS coding
+> style:
+> 1. DTS: keep order of DTSI file
+> 2. DTSI: group similar nodes together (e.g. serial engines).
+
+I think it's fine to pick whatever is used by =D1=96mx/nxp and start with
+that style, get something working and then decide based on whether or
+not there are many users (or interest) if it is worth allowing the
+"style" to be configured.
+
+>=20
+> > 	Rule 4: children node already after property
+> > 	Rule 5: "status" always is last one.
+> > 	Rule 6: property order as below list[unfinished], otherwise, order
+> > 	        by name.
+> >=20
+> > compatible
+> > reg
+> > reg-names
+> > ranges
+>=20
+> Up to here everything above seems about right, except above caveats.
+>=20
+> > #interrupt-cells
+> > interrupt-controller
+> > interrupts
+> > interrupt-names
+> > #gpio-cells
+> > gpio-controller
+> > gpio-ranges
+> > #address-cells
+> > #size-cells
+> > clocks
+> > clock-names
+> > assigned-clocks
+> > assigned-clock-parents
+> > assigned-clock-rates
+> > dmas
+> > dma-names
+>=20
+> I don't think we have defined order for these.
+
+We may not, but I don't think there's anything wrong with the order that
+Frank has chosen here being a =E2=80=B6default".
+That said, I'd not enjoy getting a bunch of patches for the platforms
+that I maintain redoing things in this order, so it is worth asking the
+platform maintainer for their take on whether it should be used for
+anything other than new code, before sending a rake of patches.
+
+Cheers,
+Conor.
+
+--/Tt7n4fJunpch9ts
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuqMnAAKCRB4tDGHoIJi
+0hX+AP9NH+nyGcjmpcexMw8KQXlvhP2p1To0bdRAyl97RNJfugD/XPWubbog6R8A
+J2pm9iWtrIIFQz/3V+x1z+z7ZeCIiQw=
+=qKd2
+-----END PGP SIGNATURE-----
+
+--/Tt7n4fJunpch9ts--
 
