@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-103880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 631F697C7FD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:32:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ADD397C80F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:39:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18D191F26251
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 10:32:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3BEB2890E0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 10:39:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3654D198E99;
-	Thu, 19 Sep 2024 10:32:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 288D5199FA6;
+	Thu, 19 Sep 2024 10:39:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q6F8MEm7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vNEVWHlK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09FDB3C0C;
-	Thu, 19 Sep 2024 10:32:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE930194C61;
+	Thu, 19 Sep 2024 10:39:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726741955; cv=none; b=EBegl/uwnRrR8gOG27sLzbPv5dkLj3/FAYxcecEMtgFF3M/OrjRZQoHy5xIYx1xD/X+zpp6XeEoJCDpsppma3FrYRgfbvp/MhJaQCFy99KNa/w+aMhCvvx2uDChJtQ9tRgeD6RvwtwEVdJsdrcxvaPORdVp/zIeQTfvJ1zR+hbw=
+	t=1726742353; cv=none; b=dJQAdPsNT52Nn890eWmtXa8yeaw4hPxZlnee5u26ZYz0QGGne/NCwbeamG9zoHPj3zof3IWAnYlQ4dOpI0odP2JRLwsPTERiXXVRNdtNHXlzvkPOWnQ9rRFNyItnwt8xC1TX4JvLH1CBnRRSj8tCf0tbqE7vMXeppunz3wXVh3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726741955; c=relaxed/simple;
-	bh=Sm9wKOBIOkVaiqfIzSIBtet45x+GxQkkZYHds2rEJIw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=hzu/wGrl46TZIGS13fluVHrDqVlmukaRvBEHVcvhLCNGHyqbSBOnJp0+mjW6hyHYnPBr5uj6vSA5fH5kmyMxIGaQxMkeGiJtSGllktVcemMEwjPLlbl27i7Yk3Q073uXK06tYhV70JeLWOjfykAzKDgWO0EMWaxWXjc2vg43Akc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q6F8MEm7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC45FC4CEC4;
-	Thu, 19 Sep 2024 10:32:30 +0000 (UTC)
+	s=arc-20240116; t=1726742353; c=relaxed/simple;
+	bh=InLdzXxiqcdiaSOfy+6xEmWcnOnKYBZZixeTK3dsjNw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=M60lhI597kDHXq486Y+fisYNDpx9dar+LJ1B8rn60EJZ1rqs/0c5NqnvKsvbA1uqVv0kLraSk1++O5a8a3Si4ypb+mn9M4UROv8Joyk3Dr5uwQ0m8Kaff7yYELFcseePFajK8fc4Vigx3m/tey0IHxmBbqlOpLBjg+T9kdCa92I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vNEVWHlK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA452C4CEC4;
+	Thu, 19 Sep 2024 10:39:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726741954;
-	bh=Sm9wKOBIOkVaiqfIzSIBtet45x+GxQkkZYHds2rEJIw=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=q6F8MEm7FqfgPQTHbF1utKOaDnJQoAvXHnOGVSa0VzYoLkPgX893RJq2DJSq77as6
-	 haZak+z1PU1XFMDF1GnVNzjRplOzB9+GAQDY3nP1K8owWwZvTU/ub6oLR9yB71q3cy
-	 WXKeukLrfVDeBXwiu6yrmusH2dmMlWM7QZrZGbLMmlzR2uzIm5T3ldK3RHaRIYCdfq
-	 Nuw9nAVZn6mHlCNED39KwdcUaWVc7yOpc4oRGvKtkCBh4iXznuQ3qUOR3IB1L8OrUt
-	 dTdGyKiuCQt16yaPnlcxLF0sXxamfWV7SxNXu7borO/YPFcgYzgNLoVCnjvpIQt1gC
-	 jqPiRHV/NnymA==
-Message-ID: <3185f620-28be-49b8-85f4-7ff8dd5ffce0@kernel.org>
-Date: Thu, 19 Sep 2024 12:32:28 +0200
+	s=k20201202; t=1726742352;
+	bh=InLdzXxiqcdiaSOfy+6xEmWcnOnKYBZZixeTK3dsjNw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=vNEVWHlKRx739nBoyNcg8IBVt3muv42eketL9Iz526J4kIokN7x+Mi5BeGuWCdqlA
+	 8LpebvZlOfL1m7zGGAMt2YOOpUoBY6POw4jkbBP2WSqszAnpNmf+OQLzL44pJAf31j
+	 /EXFnQ0mJ5uOcImQfCLDARlBaCT4rG9O4o8wSeMIG5f6b7mYtZFb+8OPMMaM7Zry/G
+	 wE6xsNcHHMp3FZi8WHmiVA0FKSGz+KmTcLbxEN581aLpa48MuEns++tfe5xsLEsc7n
+	 Nx+C0cX06CqnL0FByeNThlahYrEu7L2IBztyKqN6QZZChzH4Qgu8zuYIB4Z0OkR8Q1
+	 vhzFHlUgNarIw==
+Message-ID: <2229b659-c753-4f56-a1ab-7e8984f9147f@kernel.org>
+Date: Thu, 19 Sep 2024 12:39:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,27 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: mfd: aspeed: support for AST2700
-To: Ryan Chen <ryan_chen@aspeedtech.com>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "joel@jms.id.au"
- <joel@jms.id.au>, "andrew@codeconstruct.com.au"
- <andrew@codeconstruct.com.au>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>
-References: <20240916091039.3584505-1-ryan_chen@aspeedtech.com>
- <20240916091039.3584505-2-ryan_chen@aspeedtech.com>
- <9b356379-907c-4112-8e24-1810cfa40ef6@kernel.org>
- <OS8PR06MB75416C23247B7AC64260C0AFF2632@OS8PR06MB7541.apcprd06.prod.outlook.com>
- <f79a48e6-e0ff-453f-98c1-1c5acbe6467d@kernel.org>
- <OS8PR06MB7541FDB6A74119A160B1A57CF2632@OS8PR06MB7541.apcprd06.prod.outlook.com>
+Subject: Re: [PATCH] dt-bindings: hwmon: Add adt7462
+To: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>,
+ Rob Herring <robh@kernel.org>, Chanh Nguyen <chanh@os.amperecomputing.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+ OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+ Open Source Submission <patches@amperecomputing.com>,
+ Phong Vo <phong@os.amperecomputing.com>,
+ Thang Nguyen <thang@os.amperecomputing.com>,
+ Quan Nguyen <quan@os.amperecomputing.com>,
+ Khanh Pham <khpham@amperecomputing.com>
+References: <20240918103212.591204-1-chanh@os.amperecomputing.com>
+ <20240918220553.GA2216504-robh@kernel.org>
+ <d825a93f-be5c-45b9-a8d4-5c412ddec232@amperemail.onmicrosoft.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,74 +111,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <OS8PR06MB7541FDB6A74119A160B1A57CF2632@OS8PR06MB7541.apcprd06.prod.outlook.com>
+In-Reply-To: <d825a93f-be5c-45b9-a8d4-5c412ddec232@amperemail.onmicrosoft.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/09/2024 09:13, Ryan Chen wrote:
->> Subject: Re: [PATCH v3 1/4] dt-bindings: mfd: aspeed: support for AST2700
+On 19/09/2024 11:43, Chanh Nguyen wrote:
+>>> +properties:
+>>> +  compatible:
+>>> +    const: onnn,adt7462
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  resets:
+>>> +    maxItems: 1
 >>
->> On 19/09/2024 08:05, Ryan Chen wrote:
->>>>> diff --git
->>>>> a/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
->>>>> b/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
->>>>> index 86ee69c0f45b..127a357051cd 100644
->>>>> --- a/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
->>>>> +++ b/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
->>>>> @@ -9,6 +9,8 @@ title: Aspeed System Control Unit
->>>>>  description:
->>>>>    The Aspeed System Control Unit manages the global behaviour of
->>>>> the
->>>> SoC,
->>>>>    configuring elements such as clocks, pinmux, and reset.
->>>>> +  In AST2700 SOC which has two soc connection, each soc have its
->>>>> + own scu  register control, ast2700-scu0 for soc0, ast2700-scu1 for
->> soc1.
->>>>>
->>>>>  maintainers:
->>>>>    - Joel Stanley <joel@jms.id.au>
->>>>> @@ -21,6 +23,8 @@ properties:
->>>>>            - aspeed,ast2400-scu
->>>>>            - aspeed,ast2500-scu
->>>>>            - aspeed,ast2600-scu
->>>>> +          - aspeed,ast2700-scu0
->>>>> +          - aspeed,ast2700-scu1
->>>>>        - const: syscon
->>>>>        - const: simple-mfd
->>>>>
->>>>> @@ -30,10 +34,12 @@ properties:
->>>>>    ranges: true
->>>>>
->>>>>    '#address-cells':
->>>>> -    const: 1
->>>>> +    minimum: 1
->>>>> +    maximum: 2
->>>>>
->>>>>    '#size-cells':
->>>>> -    const: 1
->>>>> +    minimum: 1
->>>>> +    maximum: 2
->>>>
->>>> Why do the children have 64 bit addressing?
->>>
->>> AST2700 is 64bit address, so it also.
+>> How would this work? 'resets' generally is used for on-chip devices and
+>> a reset controller. That doesn't exist at the board level. A standalone
+>> device typically uses a GPIO lines if there's a s/w controlled reset.
+>> That would be the 'reset-gpios' property.
 >>
->> But why do they need it?
->>
-> Sorry, I may not understand your point.
+> 
+> Thank Rob for your comments! The ADT7462 includes an active low reset 
+> pin (Pin #14).
+> 
+> I'll change 'resets' into the 'reset-gpios' property.
+> 
+> The example in the binding will be
 
-I asked why do you think children require 64-bit addressing, instead of
-working with existing 32-bit address.
-
-> Since address-cell = <2>, Do you mean size-cell still 1?
-
-No... although that's another point, how bug address size is there? For
-the children?
-
-> If yes. I do the dts check it need size-cells=<2>, when I do address-cells = <2>
-
-Well, I talk about bus and children addressing. It's kind of obvious
-that changing one property means using different reg...
+The question how did it work in the first place is still valid... I
+think we might benefit from asking people to post their upstreamed DTS.
+Otherwise we will take broken or half-baked bindings, because we never
+saw the bigger picture. :(
 
 Best regards,
 Krzysztof
