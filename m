@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-103901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C024297C93E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 14:32:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A287197C944
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 14:35:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D4D7B2154B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:31:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 509B41F22968
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:35:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7759B19DFA6;
-	Thu, 19 Sep 2024 12:31:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D0511EB2F;
+	Thu, 19 Sep 2024 12:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DSXDN+XT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m2fewXpq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8EE19B3E3;
-	Thu, 19 Sep 2024 12:31:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F8A18121B;
+	Thu, 19 Sep 2024 12:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726749104; cv=none; b=tsYU3Kpt/NTJnHl5BrCtf3nyS+MLVCITMjxk252rlFP1PLnzh/m0D+OyzSoCjyn1QIqvsFhvlorxj76NemlOHO1APhov2ruFJ/Q7t2xkY3pKiSKZemMwxxYgrzQVGiWzmGxTRZToIwYbAdJNKSPIzWIYlTs2/4nH/WpNeolk93k=
+	t=1726749307; cv=none; b=Yx8PFDnSYSJtrYtwbL/fDBIDSF1TlcTulLlDgQN74cSnvboUAjYwLOIomk7+snMurOzVl31hxP7/dMi1D787xf0rKncBg/hEHmubcACxeNnVgKpFb5TvZ9HGaEDUKv9HFg5nniLhE3LycByycBIuL61zyuIgzPY1aIJXoHcw6Lk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726749104; c=relaxed/simple;
-	bh=Y+lqYF/Ng0G7yZGMjhbQ8WgJL8U2eedtCQjr6g7E1KY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cOCY0EwZkjoRcPEGPpBEYxw8HRXessjTyw5+nPrD6XyQM7h9PWh7hJWd2toljZFRJZS5eGY1BPClNJOPgGMp6ZGyP/apvaztXYxoYYtalPBIuxvHrOQTJSeUmIVYSh/IUjm21sVRWYkxiweC7oiDEsCftwNcuzTyFZMpaxqZJDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DSXDN+XT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37F9AC4CEC6;
-	Thu, 19 Sep 2024 12:31:36 +0000 (UTC)
+	s=arc-20240116; t=1726749307; c=relaxed/simple;
+	bh=Zxr80zXuw6VlHn9vcwSgSJnrhrFeKjdg2RR5HrA90Ak=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Gg+WKufbAC9qRXlo43j+iKrsYIDtfc9Ncog1B7S+1mmXpms2fEDM4bUphPRz/F4j56NNp6J5PrfyZltaMVPDRZFqVBGQpxh2OaZx6piTGBO27U5eCyO1tcfjN49m+8r6CsiXyHljbF7s4Z13cFQl2Wz7+pR3v3XA5MBuMFBuOEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m2fewXpq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0668C4CEC4;
+	Thu, 19 Sep 2024 12:35:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726749103;
-	bh=Y+lqYF/Ng0G7yZGMjhbQ8WgJL8U2eedtCQjr6g7E1KY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DSXDN+XTfpUvavhJqdwbMhRnFjNt5cdtPQXJh4g7CpObXM0EYy36uosth0YuSiVqj
-	 zH1qIPXoydAuXWSHpNH2vfuSnWdwLqWPTDh3h7PNQj/nRk7CwqbCCqrpxCtcff+g+1
-	 nRQ8cPHFLKd72uhu5BNkw3KyPvaSVZCLleppE9yXA5Y6wc6Bij8zjFmRlxDyPIQcXd
-	 eqQBHxyubQy9eCWevE/2ooS3tY/NRp+thP4BIJ6ymUYimF+8wjnFffNCVyV0bUvR3y
-	 JsM/FdCwF9GwTiddBMuySXtE7hxg5FNI00Cv1/h37bRPjGqqp2IutYSjVajuMM6P1o
-	 fTOnWkJxrQppw==
-Message-ID: <10887d65-e643-4ab2-a9e7-af0f829e88ec@kernel.org>
-Date: Thu, 19 Sep 2024 14:31:34 +0200
+	s=k20201202; t=1726749307;
+	bh=Zxr80zXuw6VlHn9vcwSgSJnrhrFeKjdg2RR5HrA90Ak=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=m2fewXpq1/G5djkH4pofvVTtBE5Uh6NOBg9jWOzxXHaUpo7Ljz8cd0IZhIt3e2Cm/
+	 2wvT8N+1ueRTgwAE0SU1xR2jtze+Wlwe8EGOQ0haGPZ1S1z6bwWPGB39gsrCfkXkrJ
+	 kCk0On+q++iRCenq7/03q3irGQLv8ehSADHjIeLdWkFJNoP1hko1h0N094a+nFFcxu
+	 Moab75XRvP2YpgighdY29pQmelRVlUN0a/bPvqT1wAKXxGJh0LKussj/leyBa77kMZ
+	 Bes6IgLC9zUCH+oxxq2f/H9huyPq77vIpKMshqbjrcNXX31UsZmXH40jc9G5nG2z+h
+	 SXp68YL2++4KA==
+Message-ID: <08288a0b-3e10-4f83-8bc7-0587328ee9a0@kernel.org>
+Date: Thu, 19 Sep 2024 14:35:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/8] arm64: dts: qcom: add IPQ5424 SoC and rdp466 board
- support
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Sricharan R <quic_srichara@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
- sboyd@kernel.org, ulf.hansson@linaro.org, linus.walleij@linaro.org,
- catalin.marinas@arm.com, p.zabel@pengutronix.de, geert+renesas@glider.be,
- neil.armstrong@linaro.org, linux-arm-msm@vger.kernel.org,
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: airoha: document watchdog for
+ Airoha EN7581
+To: Christian Marangi <ansuelsmth@gmail.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-watchdog@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-mmc@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- quic_varada@quicinc.com
-References: <20240913121250.2995351-1-quic_srichara@quicinc.com>
- <20240913121250.2995351-8-quic_srichara@quicinc.com>
- <fyoh72in62sfmsw3syqswr2p3pcv26zoce2tvlx53mu4lpoakx@ixyvy4oylms3>
+ Lorenzo Bianconi <lorenzo@kernel.org>, upstream@airoha.com
+References: <20240919122759.10456-1-ansuelsmth@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,34 +105,41 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <fyoh72in62sfmsw3syqswr2p3pcv26zoce2tvlx53mu4lpoakx@ixyvy4oylms3>
+In-Reply-To: <20240919122759.10456-1-ansuelsmth@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/09/2024 14:52, Dmitry Baryshkov wrote:
-> On Fri, Sep 13, 2024 at 05:42:49PM GMT, Sricharan R wrote:
-
->> +	#address-cells = <2>;
->> +	#size-cells = <2>;
->> +	interrupt-parent = <&intc>;
->> +
->> +	clocks {
->> +		xo_board: xo-board-clk {
->> +			compatible = "fixed-clock";
->> +			#clock-cells = <0>;
->> +		};
->> +
->> +		sleep_clk: sleep-clk {
->> +			compatible = "fixed-clock";
->> +			#clock-cells = <0>;
->> +		};
+On 19/09/2024 14:26, Christian Marangi wrote:
+> Document watchdog for Airoha EN7581. This SoC implement a simple
+> watchdog that supports a max timeout of 28 seconds.
 > 
-> I think Krzysztof lately suggested moving these clocks to board DT
-> files.
+> The watchdog ticks on half the BUS clock and require the BUS frequency
+> to be provided.
+
+Clock provider should implement clk_get_rate()...
+
 > 
 
-The node can stay. Just the frequency goes to DTSI. See also DTS coding
-style document.
+...
+
+> +maintainers:
+> +  - Christian Marangi <ansuelsmth@gmail.com>
+> +
+> +allOf:
+> +  - $ref: watchdog.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: airoha,en7581-wdt
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clock-frequency:
+> +    description: BUS frequency in Hz (timer ticks at half the BUS freq)
+> +    const: 300000000
+
+Which bus frequency? Aren't you missing here clock input?
 
 Best regards,
 Krzysztof
