@@ -1,97 +1,85 @@
-Return-Path: <devicetree+bounces-103788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8341697C26C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 03:24:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD07B97C278
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 03:36:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C1FA2836F8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 01:24:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 706271F21757
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 01:36:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C3CDC8DF;
-	Thu, 19 Sep 2024 01:24:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB6C6339AC;
+	Thu, 19 Sep 2024 01:35:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="nMlFYnoL"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Tc7JR9sz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D22302033A;
-	Thu, 19 Sep 2024 01:24:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F063822F1E;
+	Thu, 19 Sep 2024 01:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726709063; cv=none; b=eo49bizuM9/OjO/slCodMnaKxT+m4pd+mTkTRfoSdooisfYS6yKiUCDXh48GpqncijDUCu/xlqGH95mVFeA8iHmsXkA/y977+H1g2xC5c9cplQAk1UosXhE8RLZR82wrBmS2xYgEO98qI+FnD6hNdqMoKByPNY/pzUE21vhKxUA=
+	t=1726709747; cv=none; b=SliQRU3EiJriQ7iAOXK8HcgOuLipgs1lFff5jesgRT5kb/MoB46Ih3Iki2zVyawvZN73gPYxHOt6KEwIh/oIsgy4PqQ2njS8I8MkizauUV7xqDN8WG/EPcrbj6XG8TnLMYQYiEDtKhqKsDzYkJIv9DdpV8aW3EyBoaoBgFHpR6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726709063; c=relaxed/simple;
-	bh=60FNn73+paJ1b9qXIeVpPKtcaqNLNwtGCQXM+znPqJc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Rl512/wUb8MaYQ2q7J5dZWLRP3gMGqzo2UtiZjNB8ylRIBK4lKsti3qDqS8DzykugWAceiyeH9h0Bd77CsId0i5WTM43GbMPABj7D0/tsFrp8CEhGTWEXna72nWg6PPuiDnrnDlfJ+Bdzl8CAjs2kVbRV0w0MS8OLuwTvDS4lQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=nMlFYnoL; arc=none smtp.client-ip=203.29.241.158
+	s=arc-20240116; t=1726709747; c=relaxed/simple;
+	bh=dMDsKPBkOh6eiYle1ouJMD2TuTUdr/MZsmKQrK3fVE0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=UTnjXldE3TOV0L9dR9cHU6JUhoVsmr2YUE60yDlGHB0CQNDWkHJ+k6IQ2/rhOiA2vLq0LGRsJqpjHIrideIRCJY3xldy1cRJPoOZoHC3MNeAMBICXAPuGC0dYCXbyWomJdNB2fccTV4hsscRUA0VEB46wvIZc8BHWMjy3Ut1IUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Tc7JR9sz; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1726709059;
-	bh=60FNn73+paJ1b9qXIeVpPKtcaqNLNwtGCQXM+znPqJc=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=nMlFYnoLPSMfQPySBhM8kfBVbpy4KnB2jzMUy/l6dkNpkQ/NtD8U9lFfMx7BIX4V7
-	 WAst1w04ZfSRN3XGN53Gyj3TFq9pvcBTYrlLQK06lXJiHCLApt0vD1K4d53jy/jRon
-	 r338KJJdyVSRZ3RnJVCjsaKUlP2idSRxPvfNkXFJbz9A8Cztv2FM5XkUkNMGGjI4vf
-	 oR4KaJBplJ6VMAXx9h6JtzxzO1jZtrog00Ztyg2kHKiNjKf3iktT5MRgltf6AbEd4d
-	 aVZAvj6r1nsnSTjzblr4Bq0d1Q8MXZZgTh4wFfpzhCvPi0r0FkBz6sxm04kSJz9rFu
-	 URs12JW9SFM4g==
-Received: from [192.168.238.88] (ppp118-210-188-185.adl-adc-lon-bras34.tpg.internode.on.net [118.210.188.185])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 5BC0065712;
-	Thu, 19 Sep 2024 09:24:18 +0800 (AWST)
-Message-ID: <355b19a62e54aa979451d796c3ebe1e294a0cf45.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v2 2/3] dt-bindings: trivial-devices: support MPS MP5023
+	d=codeconstruct.com.au; s=2022a; t=1726709743;
+	bh=IExdDbZ/GMKRz8cAAHlrjM+Fc2bsSlmO4LT61IojNqU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=Tc7JR9szReZ8ec5ByN9zY+qACCyQZRK8bB60hnp3PLNPwg7kwrb3feyUjgRhE9ll+
+	 EVOsOV+OcL0wkH8r/H3+TBkfWZLEacLTCC3NC9JYsnYbaXIwSPilzhA72cqpiVlNRG
+	 G3d7VX9EO3uZA1frkyQiOZBCZOeQapUcnblkNN0ETla8E5UzC54KSqH96BjZqAoEL6
+	 qmDH9ET6o+SW5a23hsG1G9CKsU6td6iFRwUoygVwcIlWPwCwM8vIbEXWX6GlzpMc2N
+	 TCpCBfxmLx5l+eVrpJVUo0PDBvJiaUPZVcKGcO16QjRdrQqlDIZ7tixiEzCM1uVdvR
+	 EZK1F1R+Jl4/A==
+Received: from [127.0.1.1] (ppp118-210-188-185.adl-adc-lon-bras34.tpg.internode.on.net [118.210.188.185])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 94CD065027;
+	Thu, 19 Sep 2024 09:35:42 +0800 (AWST)
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Guenter Roeck <linux@roeck-us.net>, Delphine CC Chiu
- <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz, Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>
-Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>, Joel Stanley
- <joel@jms.id.au>,  Peter Yin <peteryin.openbmc@gmail.com>, Noah Wang
- <noahwang.wang@outlook.com>, Javier Carrasco
- <javier.carrasco.cruz@gmail.com>, Fabio Estevam <festevam@gmail.com>, Lukas
- Wunner <lukas@wunner.de>, Laurent Pinchart
- <laurent.pinchart@ideasonboard.com>,  devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org
-Date: Thu, 19 Sep 2024 10:54:17 +0930
-In-Reply-To: <bf5258b8-a5a1-4cf3-9bd0-1fa44696c3b0@roeck-us.net>
-References: <20240918095438.1345886-1-Delphine_CC_Chiu@wiwynn.com>
-	 <20240918095438.1345886-3-Delphine_CC_Chiu@wiwynn.com>
-	 <bf5258b8-a5a1-4cf3-9bd0-1fa44696c3b0@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+To: patrick@stwcx.xyz, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240918101742.1346788-1-Delphine_CC_Chiu@wiwynn.com>
+References: <20240918101742.1346788-1-Delphine_CC_Chiu@wiwynn.com>
+Subject: Re: [PATCH v2] ARM: dts: aspeed: yosemite4: Enable interrupt
+ setting for pca9555
+Message-Id: <172670974249.626583.5344001337825691927.b4-ty@codeconstruct.com.au>
+Date: Thu, 19 Sep 2024 11:05:42 +0930
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.1
 
-On Wed, 2024-09-18 at 10:00 -0700, Guenter Roeck wrote:
-> On 9/18/24 02:54, Delphine CC Chiu wrote:
-> > From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
-> >=20
-> > Add support for hot-swap controller MPS MP5023.
-> >=20
-> > Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
-> > Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-> > --
->=20
-> The hardware monitoring mailing list was not copied, so I assume that
-> the expectation is that it will be applied through some other tree.
+On Wed, 18 Sep 2024 18:17:41 +0800, Delphine CC Chiu wrote:
+> Enable interrupt setting and add GPIO line name for pca9555 for the I/O
+> expanders on Medusa board.
+> 
+> 
 
-We can take it through the BMC tree, but I'd prefer that the hardware
-monitoring list were copied regardless.
+Thanks, I've applied this to be picked up through the BMC tree.
 
-Ricky: Please do so for v3 onwards.
+[1/1] ARM: dts: aspeed: yosemite4: Enable interrupt setting for pca9555
+      commit: f2c5e6d55ee4f0a634d2ed0427f55b81cfca8f2f
 
-Andrew
+--
+Andrew Jeffery <andrew@codeconstruct.com.au>
 
 
