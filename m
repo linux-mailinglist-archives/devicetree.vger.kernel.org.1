@@ -1,101 +1,96 @@
-Return-Path: <devicetree+bounces-103817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06EC497C504
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 09:43:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2290997C546
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 09:49:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 359181C219EF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 07:43:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 558DE1C21FF1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 07:49:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EBFB194C65;
-	Thu, 19 Sep 2024 07:43:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FE2F19882B;
+	Thu, 19 Sep 2024 07:48:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fi3QUfE4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lc4q2SML"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8F8722098;
-	Thu, 19 Sep 2024 07:43:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C68F198822;
+	Thu, 19 Sep 2024 07:48:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726731784; cv=none; b=h7DCN8BZCimvfWZwW8+aROryarGuBQLFYMSbTzzr/QbKo8flDXKzTovT/Hx9TIfe6NZDKx4Bs+1T9Wu2kPtvGOkFJ4G7vNjO1bEiy9ARqWSrY+ayFNFjPouIi6qN8Ye/EpMDiJdjdIrgeELU/8I9UbPMuo0yqJM/SpeVjNmHBH4=
+	t=1726732127; cv=none; b=jA7v/LC4Dm5iKZ7KSQd9ftPZ/I+JJyftGevx8dkbfqbZR3K2WwVbKHb46te0k4ltp7S1cYFVuM3YEcb3o3gGIHaAdNVj2SHr5kEBtKTsbGJdo6+yLIZ3XTxq/5qxB7zNybcCjHLo32ehnPBZJXbc1JELO8jCzkNLa9OvCy1nBOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726731784; c=relaxed/simple;
-	bh=2FlpB400FYHilY4CRboRWeQa299N/BZffZFhKBHPz2o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ig0SrseCCJV3q5ilUm8A9eu27oXCK98TMUD8DDhG9uckQEwA4X8ep0hIukvrNNpPvBs71BCte/iNaI9TBa5LQBFV3TW7auJD8uKMu3w8BBupaHTOMftpFuLPZ0z6Gt9pgO8+T+MGGTyppYYYE3zC6x3eDwR4V9mX1U94S0gi8Gg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fi3QUfE4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A2D8C4CEC4;
-	Thu, 19 Sep 2024 07:42:58 +0000 (UTC)
+	s=arc-20240116; t=1726732127; c=relaxed/simple;
+	bh=5i1YXeZcMX46ZW9/4GfFPwm8EbpuGNMp3b6EfmSvDeI=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=r7eLI3tm3PauXAkUZIdnVVu3ZcEj55VF+UXgbuXPTU82v4d8z5Ua1tQZ+QpZi7X0CGuKK4PNo6Ru2T6360K+F7wxHNt+frIVRBHIxqY34Ogu+x0FrvG6n6CB/CEhvT0W9Zj2HvHm51ioXtp+rHWlrxgGOYzNRwUd9kCKrgAn3wM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lc4q2SML; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B63F6C4CECF;
+	Thu, 19 Sep 2024 07:48:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726731783;
-	bh=2FlpB400FYHilY4CRboRWeQa299N/BZffZFhKBHPz2o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Fi3QUfE4kY3F0uOwhIVxeTAGSmTF5x2wmIHr1IRHBxyZSiYv1cKDlLDjlngwV7vlT
-	 NcopmbLDHK1sFgeFEC4nBIAvUUB88XVv0HH8pYE8LBbRyMa1CtZZsxeQKShFkpoT8i
-	 0esdVkLuh1TmKZpMusJFNubHE+74jhHtxElb68F3RZxJmoG+1wcd3HuDuFXNuUJX/w
-	 xqXp00i0YttNxS5xtt0RrmQOJRUz+r7+ISMO7pTJB67koVHqwucfPlr9fXmiQhall8
-	 g3pGGBWTvr4mi4z8WWIcKcSs1S1ynvr/v5BD/bc7nLEckwqJTpMGzldDh9GVuhu1r4
-	 6cznHVTKrPCJA==
-Date: Thu, 19 Sep 2024 08:43:04 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Manikandan Muralidharan <manikandan.m@microchip.com>
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-	jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux@armlinux.org.uk,
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev, dharma.b@microchip.com, arnd@arndb.de,
-	hari.prasathge@microchip.com, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 1/4] dt-bindings: display: bridge: add
- sam9x75-mipi-dsi binding
-Message-ID: <20240919-economist-aqua-c22a1028e87c@squawk>
-References: <20240918103119.385597-1-manikandan.m@microchip.com>
- <20240918103119.385597-2-manikandan.m@microchip.com>
+	s=k20201202; t=1726732126;
+	bh=5i1YXeZcMX46ZW9/4GfFPwm8EbpuGNMp3b6EfmSvDeI=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=Lc4q2SMLW7byQ3nu3pq6Ke7JkI84zZIi5tgrvBMxTozrFDt/cprQepzOCsji+dKY9
+	 X7FyF7gee3j75ZnwvleP4p7AJxqDfI5/iMRbU23K/BikE66k1aX3rqwsCsYlUEWKdQ
+	 FyywpazeYqTz0t/lxgtfKq4Rj4Lk0K0nxAhdIvaSvZwy10qd932Sh3NZ8Cxt+J72Mw
+	 PPLvqFAi+fKRXfD+8ZuW/rNiFX+ShQIMCmrO2w5VcAjO99l+w0Y0P5x0YYE2rHPM9e
+	 PkmPPfwmMjtOxmqu7mKEZe4b8FtFWeYCtTljKmoYnE1NMvDh3x7qsH7Q7PFTz+aOSS
+	 4wzKxa5YYqEAg==
+From: Kalle Valo <kvalo@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>,  "David S . Miller"
+ <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>,  Jakub
+ Kicinski <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
+ Dooley <conor+dt@kernel.org>,  Jeff Johnson <jjohnson@kernel.org>,
+  linux-wireless@vger.kernel.org,  netdev@vger.kernel.org,
+  devicetree@vger.kernel.org,  ath11k@lists.infradead.org,
+  linux-kernel@vger.kernel.org,  Bartosz Golaszewski
+ <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the
+ inputs of the ath11k on WCN6855
+References: <20240814082301.8091-1-brgl@bgdev.pl>
+	<83c562e9-2add-4086-86e7-6e956d2ee70f@kernel.org>
+Date: Thu, 19 Sep 2024 10:48:41 +0300
+In-Reply-To: <83c562e9-2add-4086-86e7-6e956d2ee70f@kernel.org> (Krzysztof
+	Kozlowski's message of "Thu, 19 Sep 2024 08:55:36 +0200")
+Message-ID: <87msk49j8m.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="6wIDwJY7kKxRCN4O"
-Content-Disposition: inline
-In-Reply-To: <20240918103119.385597-2-manikandan.m@microchip.com>
+Content-Type: text/plain
 
+Krzysztof Kozlowski <krzk@kernel.org> writes:
 
---6wIDwJY7kKxRCN4O
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On 14/08/2024 10:23, Bartosz Golaszewski wrote:
+>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>> 
+>> Describe the inputs from the PMU of the ath11k module on WCN6855.
+>> 
+>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>> ---
+>> v1 -> v2:
+>> - update the example
+>
+> I don't understand why this patch is no being picked up. The code
+> correct represents the piece of hardware. The supplies should be
+> required, because this one particular device - the one described in this
+> binding - cannot work without them.
 
-On Wed, Sep 18, 2024 at 04:01:16PM +0530, Manikandan Muralidharan wrote:
-> Add the 'sam9x75-mipi-dsi' compatible binding, which describes the
-> Microchip's specific wrapper for the Synopsys DesignWare MIPI DSI HOST
-> Controller for the sam9x75 series System-on-Chip (SoC) devices.
->=20
-> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+I have already explained the situation. With supplies changed to
+optional I'm happy take the patch.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
---6wIDwJY7kKxRCN4O
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuvWBgAKCRB4tDGHoIJi
-0oiwAP4u4WtSIv6pvtbS2rA34vpsQzjx+zSrniNVEUYAyvVCyAD/Re51iWR/25NJ
-pZ8fzikS6TfOzSc+u3p5O5551zi3rwM=
-=yxo/
------END PGP SIGNATURE-----
-
---6wIDwJY7kKxRCN4O--
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
