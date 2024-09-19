@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-103874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E78F97C7AA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:04:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F10F197C7BC
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:07:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF7941F21E37
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 10:04:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49EA1B28965
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 10:07:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D38DD1862B5;
-	Thu, 19 Sep 2024 10:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6597198E74;
+	Thu, 19 Sep 2024 10:07:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pbWjCrAX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CRYqlHFE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46431CABA;
-	Thu, 19 Sep 2024 10:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F84F168BD;
+	Thu, 19 Sep 2024 10:07:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726740279; cv=none; b=szDETeYX2k9LwJvf2GNTg6K2RsR8mQGr2RIEcuUjRQJYJkB5aEg7YV54CNv5NhyfBY0xeO9IBE2WNLU0sxHmg6fcd2grCWdfIe8hSPaWvTp2igao8yRsyeTzn8TBxLlzbpCYnhfR2DKFpdxjlqTvZZMWyf0pGAyZbC4cNuUaYi0=
+	t=1726740450; cv=none; b=sZLzQRp2cVJcVJJUVzIvEi5NPB8SHbDaE7+BCzBJwMPm5Mxk2z0NTJgbQqcWKbbuCJQKlhiKgYiF7gqa27CQ64jDVUUNH7B8hLcwVDzuYjnbPh0I4ExbieK9LEHNTz1nxnuqHiKI76dXqg4xwg6LEHDMn9OParT5uSf/H6+HASA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726740279; c=relaxed/simple;
-	bh=VJ/w9KvYWfGEMh7f+UtSWlzn3vMDtAd5TpcQAK1f8H4=;
+	s=arc-20240116; t=1726740450; c=relaxed/simple;
+	bh=d4RvRPTEv7tPLqG41lEQB6itRkuPxEa68ADL66VBu5w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YwyYColQ+iUiPKhdGZ2x31lF2d9R4sCTPcAI1oU8iAJFQugq1nvA0qXR+/fBosOGMfTT39mOuzhBJOwYz/tUOwwQAEYD8S7Q3VNWj/FImffbDjBByf7NATpPFY2YNZEibBu9fsjSOhEpcPSx3KcavsqXZHXYsZizlppHSiqSwOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pbWjCrAX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A990C4CEC5;
-	Thu, 19 Sep 2024 10:04:34 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=plc4iZmffFCe0DSJsuURaq8UwY2XEhhcdg8an2R/TAZcS9E23bo2jAPkRbcVUC4BtQVu+q1UvIA1EBLcERtpnqZzcmUVkLuVpj7Hs3OwJfrQpyvlm5JME3WCKCVDWHrHLsEqKFcrP2Sdu6ij8w0bZfY9jpbZuwpdUYtWCVgoRPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CRYqlHFE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 764A1C4CEC4;
+	Thu, 19 Sep 2024 10:07:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726740279;
-	bh=VJ/w9KvYWfGEMh7f+UtSWlzn3vMDtAd5TpcQAK1f8H4=;
+	s=k20201202; t=1726740450;
+	bh=d4RvRPTEv7tPLqG41lEQB6itRkuPxEa68ADL66VBu5w=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pbWjCrAX6MIJAuIY/EXYHRWcDufaMM8WC6X2qQ0vq0zd4pCojdNk+zcE3UpbUSVw5
-	 nwsU8ll11W/G11h9EXaXbRGsfUcqG7dt9t2KuDesAG1fMYNjuVbj0YFbTrU02RlxHt
-	 Gvqogw611UvI+rO5KV07Avgtf/jZ82r+V2/ENzluFdVP1PiqZei3lrk7GmxxdhZ3JA
-	 HvMzGlSCPHnN0tCVfu6kpU3SaYfP/2ysREZV4seeYdJ/Ellmw1Iu5roTueljHM9mMd
-	 m972maQOdR+hf6ywvaXTMm8NI85JfGAua0jg6u0JPXaF+hA3zvfr3PU734+9x72xcp
-	 E5iGN6ksZVQgg==
-Message-ID: <222b3b11-151a-4ad0-91ea-54ae8f280bcb@kernel.org>
-Date: Thu, 19 Sep 2024 12:04:33 +0200
+	b=CRYqlHFE4i74eKfXkGIR4Zfy5ZVQ3e0ae3aBMH7anfjVGG0Ktv076oaI0/z5p4vpa
+	 43W7z9WHHYVjyMJa0khbleMtyIg/a8hXLKpSJnT59ecpwYMw179veaiXezBCk6JUbe
+	 SgTCkgXedRj8fsxcx6Qep8bE1fwKxD7nU6T0r4n8fWPYh3JP+X1Wj1MF8dsgHw+/wb
+	 FntfkUoBe3e1mJPB61iyNMtaVKxHqn0OL3Ll9IQftYsEsSPrFJPShHMXkDv/PWw0Ts
+	 8lm9lJOis+SSPOsKJ4hbIzloXnytnv9MM2kZzetZmZrMcquB8kqb9af18XkxQVyjn7
+	 34uq//IiWHxJQ==
+Message-ID: <70df96b2-b84a-48c7-a417-6bac1f330d27@kernel.org>
+Date: Thu, 19 Sep 2024 12:07:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: remoteproc: sse710: Add the External
- Systems remote processors
-To: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-Cc: mathieu.poirier@linaro.org, Adam.Johnston@arm.com,
- Hugues.KambaMpiana@arm.com, Drew.Reed@arm.com, andersson@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- liviu.dudau@arm.com, lpieralisi@kernel.org, robh@kernel.org,
- sudeep.holla@arm.com, robin.murphy@arm.com
-References: <CANLsYkwOrtXxObL5MKf30OrUYB_uT=DnGEXUtfjH503r_LyMQA@mail.gmail.com>
- <20240822170951.339492-1-abdellatif.elkhlifi@arm.com>
- <20240822170951.339492-2-abdellatif.elkhlifi@arm.com>
- <gzlncpyzwm7x4jcxtdrthrlv2dofk7u3oxn4taadwog5tt37wo@ot6s6kwukd4k>
- <20240919093517.GA43740@e130802.arm.com>
+Subject: Re: [PATCH v4 08/27] mfd: max77693: remove unused declarations
+To: Dzmitry Sankouski <dsankouski@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Bjorn Andersson
+ <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Simona Vetter <simona@ffwll.ch>,
+ cros-qcom-dts-watchers@chromium.org, Konrad Dybcio <konradybcio@kernel.org>,
+ Simona Vetter <simona.vetter@ffwll.ch>, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-leds@vger.kernel.org, linux-pwm@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org
+References: <20240913-starqltechn_integration_upstream-v4-0-2d2efd5c5877@gmail.com>
+ <20240913-starqltechn_integration_upstream-v4-8-2d2efd5c5877@gmail.com>
+ <wywp6vj2pqqe7to55k7ssh5sbqrmy7emvwruvm2waytancf3r4@aygtw3y6huwx>
+ <CABTCjFAvXYrRJS3Dwf-TMq3OW_vN1hskk+qPjosbRym7xOvy1Q@mail.gmail.com>
+ <6886f561-b9e4-468b-9515-72053d57911f@kernel.org>
+ <CABTCjFDKuEM2wogLcJXX+0eCOTCDUSycPi7JCjvdRCbXaP2EOg@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,91 +123,46 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240919093517.GA43740@e130802.arm.com>
+In-Reply-To: <CABTCjFDKuEM2wogLcJXX+0eCOTCDUSycPi7JCjvdRCbXaP2EOg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 19/09/2024 11:35, Abdellatif El Khlifi wrote:
-> Hi Krzysztof,
-> 
->>> Add devicetree binding schema for the External Systems remote processors
+On 19/09/2024 10:40, Dzmitry Sankouski wrote:
+> чт, 19 сент. 2024 г. в 10:00, Krzysztof Kozlowski <krzk@kernel.org>:
+>>
+>> On 18/09/2024 14:53, Dzmitry Sankouski wrote:
+>>> пн, 16 сент. 2024 г. в 12:10, Krzysztof Kozlowski <krzk@kernel.org>:
+>>>>
+>>>> On Fri, Sep 13, 2024 at 06:07:51PM +0300, Dzmitry Sankouski wrote:
+>>>>> Remove `enum max77693_irq_source` declaration because unused.
+>>>>>
+>>>>> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+>>>>> ---
+>>>>>  include/linux/mfd/max77693-private.h | 11 -----------
+>>>>>  1 file changed, 11 deletions(-)
+>>>>
+>>>> Please split your patchset per subsystems. There is no dependency on MFD
+>>>> bits from your DTS... (if there is, this needs to be fixed anyway)
 >>>
->>> The External Systems remote processors are provided on the Corstone-1000
->>> IoT Reference Design Platform via the SSE-710 subsystem.
->>>
->>> For more details about the External Systems, please see Corstone SSE-710
->>> subsystem features [1].
->>>
+>>> Indeed, my dts has no dependency on this patch.
+>>> However, my dts has dependency on MAX77705, so AFAIU,
+>>> I should send this patch separately, while leaving other drivers in same
+>>> patchset, right?
 >>
->> Do not attach (thread) your patchsets to some other threads (unrelated
->> or older versions). This buries them deep in the mailbox and might
->> interfere with applying entire sets.
+>> How DTS could have dependency on MAX77705? It's a clear no go - broken
+>> patch. And something very weird, almost never happening for new hardware.
 >>
->>> [1]: https://developer.arm.com/documentation/102360/0000/Overview-of-Corstone-1000/Corstone-SSE-710-subsystem-features
->>>
->>> Signed-off-by: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
->>> ---
->>>  .../remoteproc/arm,sse710-extsys.yaml         | 90 +++++++++++++++++++
->>>  1 file changed, 90 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml b/Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml
->>> new file mode 100644
->>> index 000000000000..827ba8d962f1
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml
->>> @@ -0,0 +1,90 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/remoteproc/arm,sse710-extsys.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: SSE-710 External System Remote Processor
->>> +
->>> +maintainers:
->>> +  - Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
->>> +  - Hugues Kamba Mpiana <hugues.kambampiana@arm.com>
->>> +
->>> +description: |
->>
->> dt-preserve-formatting
-> 
-> Do you mean I should remove the '|' please ? (I didn't find examples of use of
-> dt-preserve-formatting in Documentation/devicetree/bindings/)
-> 
->>
->>> +  SSE-710 is an heterogeneous subsystem supporting up to two remote
->>> +  processors aka the External Systems.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - arm,sse710-extsys
->>> +
->>> +  firmware-name:
->>> +    description:
->>> +      The default name of the firmware to load to the remote processor.
->>> +
->>> +  '#extsys-id':
->>
->> '#' is not correct for sure, that's not a cell specifier.
->>
->> But anyway, we do not accept in general instance IDs.
-> 
-> I'm happy to replace the instance ID with  another solution.
-> In our case the remoteproc instance does not have a base address
-> to use. So, we can't put remoteproc@address
-> 
-> What do you recommend in this case please ?
+> Oh right, dts only depends on driver bindings, not driver code, so I
+> can send dts
+> patches with bindings in separate series, and per subsystem series for new
+> driver code.
 
-Waiting one month to respond is a great way to drop all context from my
-memory. The emails are not even available for me - gone from inbox.
+This is how you can organize patchsets:
+https://lore.kernel.org/all/20231121-topic-sm8650-upstream-dt-v3-0-db9d0507ffd3@linaro.org/
 
-Bus addressing could note it. Or you have different devices, so
-different compatibles. Tricky to say, because you did not describe the
-hardware really and it's one month later...
 
+Here is a brief description how to organize the patchset:
+https://lore.kernel.org/linux-samsung-soc/CADrjBPq_0nUYRABKpskRF_dhHu+4K=duPVZX==0pr+cjSL_caQ@mail.gmail.com/T/#m2d9130a1342ab201ab49670fa6c858ee3724c83c
 Best regards,
 Krzysztof
 
