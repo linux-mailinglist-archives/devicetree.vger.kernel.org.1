@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-103802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49DAF97C47C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 08:55:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A759C97C484
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 08:57:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5043B223FF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 06:55:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 691A12847EE
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 06:57:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEA5018F2D5;
-	Thu, 19 Sep 2024 06:55:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD5418F2F7;
+	Thu, 19 Sep 2024 06:57:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CNV4Iy/B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A4wHwNxD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9D5818E351;
-	Thu, 19 Sep 2024 06:55:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34A4E18F2E8;
+	Thu, 19 Sep 2024 06:57:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726728943; cv=none; b=o3ZTxfQCy6Xmbe6h0m39AS1mglxg26+eAahp+ODcjx1ES0sGhEsS9MwxrRsPhD8jw2rJMsMJK8RPUcZH3JF1k6WqT7vG9V/UBvWnih221HfTR7eTLNPuZv55tBRH0si1ZQLx+57I6VrrkJnHAv6GU4EDxQJIb06vSU916yoMTDg=
+	t=1726729037; cv=none; b=MSGuUsfiCt7vO7auOF6+WyvJxEUdRl1vE6ebuH7k1F3tS5xtrxlOCJGYEG8AdxsM/CWWEJ+3kCYDPbaOsyh+Tq7JeOXCO5Uwfhiq2DegkvqHf2lh3e/zS4Yaru45ZvPvKBL1NftrUYQQcc7+xWxxhgWDcSQGnzz9b0yih4V8BwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726728943; c=relaxed/simple;
-	bh=zqmGqH5kGvp+im/LRF0CJZ1AGDOmRGUIdV6L5M4ZbsQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aqNJwoG5CjihzF9nk5XYP1LxUl8Ho4PA2D73zQHEDrUv9TG415P7pd5uteNHZaDucCbIsB4y7rzKvQKM/EMnHsKi7vV8wimkzDXu8U9j88OVBJ6poWHpG3xZ6+NynMDVW9teE+No0SnyoISKVZDue9r+97IMfRKznqEDOnNz/tY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CNV4Iy/B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DF49C4CEC4;
-	Thu, 19 Sep 2024 06:55:38 +0000 (UTC)
+	s=arc-20240116; t=1726729037; c=relaxed/simple;
+	bh=ReX0gUnQa9Tc3D01oSqR+Mnv6+e7INrFCrJR6sjtNUU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=gGBxTZ99vbMKb41wYTlEz7s8qkIRIPSvBdQ7vb6RRZiCCIEZ3bb+gvs3zoBK806U8jEnr8eHOYKf2n1ufSwg5Q3WVUIkk+5infbEaklCH8m3CpNOt7k9KfLs9aRztCzHpgp8aLTITcQ5CNPpDBehOxHh7jGvgE5ipR9gq3xok+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A4wHwNxD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0D8EC4CEC4;
+	Thu, 19 Sep 2024 06:57:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726728943;
-	bh=zqmGqH5kGvp+im/LRF0CJZ1AGDOmRGUIdV6L5M4ZbsQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CNV4Iy/Bu7YKBXLQlNOswRhmOu7r9tq8sSLMe28EGvPAtYFElKBSrporfNIcm7ohH
-	 TFT8l5PP3rZ9dxQSQp7wpeRFeIAB/5E+c+Kte0Pps1S0PapX+uSKl5GTINSZ/oVv68
-	 JOJ1Oh4balLfRi71HqUxomigb/oLqNwbqTOhPjCnbdsRj09nzfPMg1avQJOVtqClqi
-	 PdKEQXScAQ1ri+Ewz/P2WGAVsf9YCJc3SrN/5UI1k+BkIblKC0rdYeeGycSwFKzFUB
-	 7LzywctucC/W3GfU6UYsg5aAi6ZH0wNMkfgtmXtSXMfEAuEX5S5OluQoi5kZgQ60bS
-	 orfGoeflOgpNw==
-Message-ID: <83c562e9-2add-4086-86e7-6e956d2ee70f@kernel.org>
-Date: Thu, 19 Sep 2024 08:55:36 +0200
+	s=k20201202; t=1726729037;
+	bh=ReX0gUnQa9Tc3D01oSqR+Mnv6+e7INrFCrJR6sjtNUU=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=A4wHwNxDXZ2hhwRVpJKiCEW0UimU+AsiGkbMpkv62Skw5290PbQuKEE3m5DtGn8zF
+	 RZqscj6XsBSf8B/1YG8ZbXkT3bs6YuOHBZuUH3dz+pYlNbwncjdO1cFlvxmFXb+o+5
+	 fSsfvo4/0fRkDWiaUir3KyG+JMdkRMz01FpbJe2yv/ZtGQKQXLfmVkz8e+MNpbB8ie
+	 FXgNArQ0EHoRBX1XIo22SEn4Dwsb1jo+gK2zFqoM5rS7C+52/7YnZy5XW+scDIM66l
+	 LUYsmqFmkENV8lbbPaWVT5V0M7BkumSfaPSisTJdEPxP493m3TOW7qRokHM9aNmrKH
+	 BRetyFC/qkLGg==
+Message-ID: <f79a48e6-e0ff-453f-98c1-1c5acbe6467d@kernel.org>
+Date: Thu, 19 Sep 2024 08:57:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs
- of the ath11k on WCN6855
-To: Bartosz Golaszewski <brgl@bgdev.pl>, Kalle Valo <kvalo@kernel.org>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, ath11k@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20240814082301.8091-1-brgl@bgdev.pl>
+Subject: Re: [PATCH v3 1/4] dt-bindings: mfd: aspeed: support for AST2700
+To: Ryan Chen <ryan_chen@aspeedtech.com>,
+ "mturquette@baylibre.com" <mturquette@baylibre.com>,
+ "sboyd@kernel.org" <sboyd@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>, "joel@jms.id.au"
+ <joel@jms.id.au>, "andrew@codeconstruct.com.au"
+ <andrew@codeconstruct.com.au>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>
+References: <20240916091039.3584505-1-ryan_chen@aspeedtech.com>
+ <20240916091039.3584505-2-ryan_chen@aspeedtech.com>
+ <9b356379-907c-4112-8e24-1810cfa40ef6@kernel.org>
+ <OS8PR06MB75416C23247B7AC64260C0AFF2632@OS8PR06MB7541.apcprd06.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,28 +114,55 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240814082301.8091-1-brgl@bgdev.pl>
+In-Reply-To: <OS8PR06MB75416C23247B7AC64260C0AFF2632@OS8PR06MB7541.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/08/2024 10:23, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On 19/09/2024 08:05, Ryan Chen wrote:
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
+>>> b/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
+>>> index 86ee69c0f45b..127a357051cd 100644
+>>> --- a/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
+>>> +++ b/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
+>>> @@ -9,6 +9,8 @@ title: Aspeed System Control Unit
+>>>  description:
+>>>    The Aspeed System Control Unit manages the global behaviour of the
+>> SoC,
+>>>    configuring elements such as clocks, pinmux, and reset.
+>>> +  In AST2700 SOC which has two soc connection, each soc have its own
+>>> + scu  register control, ast2700-scu0 for soc0, ast2700-scu1 for soc1.
+>>>
+>>>  maintainers:
+>>>    - Joel Stanley <joel@jms.id.au>
+>>> @@ -21,6 +23,8 @@ properties:
+>>>            - aspeed,ast2400-scu
+>>>            - aspeed,ast2500-scu
+>>>            - aspeed,ast2600-scu
+>>> +          - aspeed,ast2700-scu0
+>>> +          - aspeed,ast2700-scu1
+>>>        - const: syscon
+>>>        - const: simple-mfd
+>>>
+>>> @@ -30,10 +34,12 @@ properties:
+>>>    ranges: true
+>>>
+>>>    '#address-cells':
+>>> -    const: 1
+>>> +    minimum: 1
+>>> +    maximum: 2
+>>>
+>>>    '#size-cells':
+>>> -    const: 1
+>>> +    minimum: 1
+>>> +    maximum: 2
+>>
+>> Why do the children have 64 bit addressing?
 > 
-> Describe the inputs from the PMU of the ath11k module on WCN6855.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
-> v1 -> v2:
-> - update the example
+> AST2700 is 64bit address, so it also.
 
-I don't understand why this patch is no being picked up. The code
-correct represents the piece of hardware. The supplies should be
-required, because this one particular device - the one described in this
-binding - cannot work without them.
+But why do they need it?
 
-Therefore to clarify, as DT maintainer this counts as full approval:
-
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
