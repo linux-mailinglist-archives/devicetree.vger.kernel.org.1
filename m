@@ -1,148 +1,177 @@
-Return-Path: <devicetree+bounces-103842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C36E997C6B7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 11:16:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 907F897C6E6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 11:21:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F8251F211A1
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 09:16:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 186461F28241
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 09:21:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B29EE198A3F;
-	Thu, 19 Sep 2024 09:16:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFB3E19994B;
+	Thu, 19 Sep 2024 09:21:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="eDIQrevV"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="qtvIMknt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A82018B480;
-	Thu, 19 Sep 2024 09:16:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D797B198A3F
+	for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 09:21:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726737379; cv=none; b=Ngvw+uxsw4Vb0JloKbcyK7xQUSmFX8FRdN4rU4DW4zTuvpJOvthxoHQjKJq66nUiAjw01CxF80l4aqjfeGlVdFAMU1m9MnkEXzTCosDUPbzfZ/eiiBehXELR8qegVYuKNRw/w3uI0N7awcCXfM2/q8AP+JyPyGqkOAsprEboUdo=
+	t=1726737699; cv=none; b=NNMO/QgBp1/iBftRanUqb67QZk/IjqzImGCADir9caANjsuxypKWvjsq+T+ZGp2ki3nBO2nDFtLgasaIbNyiLrgUZRXrtrJxHC0LBFAKbMhn7qAbV9Ahm+WpgmdhBjD5eeC9fV/ntHmruKUqktUHYjmsaymQUHmyb8OYTBO7dVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726737379; c=relaxed/simple;
-	bh=NPcZIJk+LJa9EH76yxEJGbJKeWBB8KPoIR8ctK5lxLM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iEeZUkr0170N2GHd3XYxTz3lrcpXCb0qv1bxPHRPFJkZBcH7U/8N4kLrVAjEIfaxUUaYJas33egaWWHniovu1ulnHQ2Dh22cPzDJ1A3xJilIgp1YzmZSDzr8uWBB+Ct1CG8zvq8xf0YIB40g5ja4lsaVz/5XYYZ0aRO1o9cKcGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=eDIQrevV; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1726737377; x=1758273377;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=NPcZIJk+LJa9EH76yxEJGbJKeWBB8KPoIR8ctK5lxLM=;
-  b=eDIQrevV5Bbk1hj9y1DEvDWyZHLG6wGCf2rJgPSB/OPxKzioKGQgBrUQ
-   ac6pQ89wRTnRFXh8Koio+Yy0Ohr+RPP0Bg3vNiO6PnRZJtVWh7VvAvPwm
-   TQySJfsZyHT58wUKJUnjM4hRvrN9w56V1vFArpVubHWdrSwdksH+fHkQt
-   AjNM1G5+wKzZniZep/w0cNuyKYdo+3NsbK8IQzxZn6a9RDmZeyywxNIYu
-   H9sYJuBpUIJtp8+OFeiH+6yCI8eJh9P8kPNUBBJK0+62GfT7sHXLo12TI
-   N873Dja+JEBcd7ONhzjkc1fFqN0CNQAsWWR/ncLBt4wSJ4ko/Ywd3kzP5
-   Q==;
-X-CSE-ConnectionGUID: 3OxAPMVERyGxmKW6ID2HbQ==
-X-CSE-MsgGUID: uOPboF8ARLC6BjUNR42z2A==
-X-IronPort-AV: E=Sophos;i="6.10,241,1719903600"; 
-   d="scan'208";a="31861842"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Sep 2024 02:16:16 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 19 Sep 2024 02:16:03 -0700
-Received: from che-lt-i67131.microchip.com (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Thu, 19 Sep 2024 02:15:58 -0700
-From: Manikandan Muralidharan <manikandan.m@microchip.com>
-To: <neil.armstrong@linaro.org>, <quic_jesszhan@quicinc.com>,
-	<airlied@gmail.com>, <simona@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
-	<mripard@kernel.org>, <tzimmermann@suse.de>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <thierry.reding@gmail.com>,
-	<sam@ravnborg.org>, <dri-devel@lists.freedesktop.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <manikandan.m@microchip.com>, Dharma Balasubiramani
-	<dharma.b@microchip.com>
-Subject: [PATCH v2 2/2] drm/panel: simple: Add Microchip AC69T88A LVDS Display panel
-Date: Thu, 19 Sep 2024 14:45:48 +0530
-Message-ID: <20240919091548.430285-2-manikandan.m@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240919091548.430285-1-manikandan.m@microchip.com>
-References: <20240919091548.430285-1-manikandan.m@microchip.com>
+	s=arc-20240116; t=1726737699; c=relaxed/simple;
+	bh=9K94bsQInkxbf+bSNW5RZty39cCxuDTVv2CdbHV6Ex4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VVyRsDZD+cxa6xjkh3PUjNWeib6CmxnZUG0l7QAxYOhL4pQLYPQGFxsbqH8/57x9LMQnePdByZ3D8sFbVhe+SuUt6ieUGrZXI7ao++OoDEfCk+PD+GHtQhmRqFdefKIMI4ienq+Xhb6/PKWz1EfiF+FsA0fYdwx4DKA6sjhTUz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=qtvIMknt; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2f7657f9f62so6544431fa.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 02:21:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1726737694; x=1727342494; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6JMj5mfXiJJfo04AgibzT9+cKa765pGWiurrBxBDlrs=;
+        b=qtvIMkntWFTIdUOYx9omD6UtlqwkvA6ZbOK0Ag2sueI1jgtB5BiWlf8PvL5WiS49QZ
+         b6CWGk8HWLZLeiy7yQ5IyMeLCrNM/G9bWRLixHHsmEHiYzPUucixq7GIAOsZSZKBTylz
+         6bVfUdyiJ4MCn5cuATQGdTe+IDvExcPK22WBYk+pk4mCg0GaQA0CVfyRwUxRW1B6e/U/
+         vuj9LJ8EEki6TfZr4y3KW2BPPNP+WwMQBx734FsJS0QqpaEmNz/IpqUWBupvQ3jN67G0
+         UIF4syFXFhy3zAGq55d4NYrPdvWx1ND2X/J2FpUXgT3eoTZxfC8O75gPNTBgnMCPHB9R
+         O0AQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726737694; x=1727342494;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6JMj5mfXiJJfo04AgibzT9+cKa765pGWiurrBxBDlrs=;
+        b=GLmyfLAzU5AXjI8PUb13O005Bfao5cKc+GyVqSeffob83tXw3VN/EInCsKEL2aVfuB
+         wUdxQTdDujT+CEeLZ2Dm8fZX50b5Uo34mxGFruChVvx2fn4Gf3E6TCpA1WEoJrfci3fv
+         5ukU3/7RojqCz/irXQnQuVaVuM3sn2M6DZq1tqntXMaRrSdNEDjI8U+k5XYlUIvYnfA9
+         x682KdUdcDs0Yz3M9Xysb6cRNFwYVUVCelIpXSTx9ytb7qC8dyTcIOuAVd7wVP+eDz1d
+         ljXWZUO8QEOr/Ar1Sfht3zJwn9T8xSJVu35373VOW/T2HUo/j5j/YpwY5y5JNNHLXVpK
+         cfew==
+X-Forwarded-Encrypted: i=1; AJvYcCXkha4PdEOMFch+EfqDYPFxWgSvStDLrh46IkFTZxcP4d/3E4TSziS/WoOwIMpyUoMNhVI597mLUrKA@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywc/eNQPKZIWChOYAvk8ZxM/5vszXHcfqKJ0ypP4nOF35E8IOma
+	mKlJOlUXVqGVVGun4CmY15PfuH0HPeTOAwNWUHEhZjg3ucQcl95AP3P7BZ2UpHuBwxO4bKyHp17
+	4
+X-Google-Smtp-Source: AGHT+IGM0Y3r7+gNR/DSAnIT1d21KFJtZd49LfOQKMIvTneI3LyvlzrzglH45meyrNtV1yUu2X09Yg==
+X-Received: by 2002:a05:651c:154a:b0:2f6:4aed:9973 with SMTP id 38308e7fff4ca-2f787f5833dmr154394841fa.44.1726737693720;
+        Thu, 19 Sep 2024 02:21:33 -0700 (PDT)
+Received: from [127.0.1.1] (host-80-117-99-70.retail.telecomitalia.it. [80.117.99.70])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e75468413sm16889465e9.45.2024.09.19.02.21.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Sep 2024 02:21:33 -0700 (PDT)
+From: Angelo Dureghello <adureghello@baylibre.com>
+X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
+Subject: [PATCH v3 00/10] iio: add support for the ad3552r AXI DAC IP
+Date: Thu, 19 Sep 2024 11:19:56 +0200
+Message-Id: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALzs62YC/x3NQQqDMBBG4avIrB2YJBWJVxEXqY72hxIlERXEu
+ zd0+W3euylrgmbqqpuSHshYY4GrKxo/IS7KmIrJin2JN55PbPz+cphc09jE4QIfwsDKu+YdceH
+ We9eKETXjTKWzJZ1x/R/98Dw/3fA05XMAAAA=
+To: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Nuno Sa <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Olivier Moysan <olivier.moysan@foss.st.com>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, dlechner@baylibre.com, 
+ Angelo Dureghello <adureghello@baylibre.com>
+X-Mailer: b4 0.14.1
 
-Add support for Microchip AC69T88A 5 inch TFT LCD 800x480
-Display module with LVDS interface.The panel uses the Sitronix
-ST7262 800x480 Display driver
+Purpose is to add ad3552r AXI DAC (fpga-based) support.
 
-Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
-Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+The "ad3552r" AXI IP, a variant of the generic "DAC" AXI IP,
+has been created to reach the maximum speed (33MUPS) supported
+from the ad3552r. To obtain the maximum transfer rate, the custom
+module has been implemented with a QSPI interface with DDR mode.
+
+The design is actually using the DAC backend since the register
+map is the same of the generic DAC IP, except for some customized
+bitfields. For this reason, a new "compatible" has been added
+in adi-axi-dac.c.
+
+Also, backend has been extended with all the needed functions
+for this use case, keeping the names gneric.
+
+The following patch is actually applying to linux-iio/testing.
+
 ---
-changes in v2:
-- replace microchip,ac69t88a-lvds-panel with
-microchip,ac69t88a
----
- drivers/gpu/drm/panel/panel-simple.c | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+Changes in v2: 
+- use unsigned int on bus_reg_read/write
+- add a compatible in axi-dac backend for the ad3552r DAC IP
+- minor code alignment fixes
+- fix a return value not checked
+- change devicetree structure setting ad3552r-axi as a backend
+  subnode
+- add synchronous_mode_available in the ABI doc
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 86735430462f..06381c628209 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -4565,6 +4565,31 @@ static const struct panel_desc yes_optoelectronics_ytc700tlag_05_201c = {
- 	.connector_type = DRM_MODE_CONNECTOR_LVDS,
- };
- 
-+static const struct drm_display_mode mchp_ac69t88a_mode = {
-+	.clock = 25000,
-+	.hdisplay = 800,
-+	.hsync_start = 800 + 88,
-+	.hsync_end = 800 + 88 + 5,
-+	.htotal = 800 + 88 + 5 + 40,
-+	.vdisplay = 480,
-+	.vsync_start = 480 + 23,
-+	.vsync_end = 480 + 23 + 5,
-+	.vtotal = 480 + 23 + 5 + 1,
-+};
-+
-+static const struct panel_desc mchp_ac69t88a = {
-+	.modes = &mchp_ac69t88a_mode,
-+	.num_modes = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 108,
-+		.height = 65,
-+	},
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+};
-+
- static const struct drm_display_mode arm_rtsm_mode[] = {
- 	{
- 		.clock = 65000,
-@@ -5048,6 +5073,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "yes-optoelectronics,ytc700tlag-05-201c",
- 		.data = &yes_optoelectronics_ytc700tlag_05_201c,
-+	}, {
-+		.compatible = "microchip,ac69t88a",
-+		.data = &mchp_ac69t88a,
- 	}, {
- 		/* Must be the last entry */
- 		.compatible = "panel-dpi",
+Changes in v3: 
+- changing AXI backend approach using a dac ip compatible
+- fdt bindings updates accordingly
+- fdt, ad3552r device must be a subnode of the backend
+- allow probe of child devices
+- passing QSPI bus access function by platform data
+- move synchronous mode as a fdt parameter
+- reorganizing defines in proper patches
+- fix make dt_binding_check errors
+- fix ad3552r maximum SPI speed
+- fix samplerate calulcation
+- minor code style fixes
+
+Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+
+---
+Angelo Dureghello (10):
+      iio: backend: adi-axi-dac: fix wrong register bitfield
+      dt-bindings: iio: dac: axi-dac: add ad3552r axi variant
+      dt-bindings: iio: dac: ad3552r: fix maximum spi speed
+      dt-bindings: iio: dac: ad3552r: add io-backend support
+      iio: backend: extend features
+      iio: backend: adi-axi-dac: extend features
+      iio: dac: ad3552r: changes to use FIELD_PREP
+      iio: dac: ad3552r: extract common code (no changes in behavior intended)
+      iio: dac: ad3552r: add axi platform driver
+      iio: backend: adi-axi-dac: add registering of child fdt node
+
+ .../devicetree/bindings/iio/dac/adi,ad3552r.yaml   |  44 +-
+ .../devicetree/bindings/iio/dac/adi,axi-dac.yaml   |  40 +-
+ drivers/iio/dac/Kconfig                            |  11 +
+ drivers/iio/dac/Makefile                           |   3 +-
+ drivers/iio/dac/ad3552r-axi.c                      | 567 +++++++++++++++++++++
+ drivers/iio/dac/ad3552r-common.c                   | 173 +++++++
+ drivers/iio/dac/ad3552r.c                          | 451 +++-------------
+ drivers/iio/dac/ad3552r.h                          | 199 ++++++++
+ drivers/iio/dac/adi-axi-dac.c                      | 328 +++++++++++-
+ drivers/iio/industrialio-backend.c                 | 111 ++++
+ include/linux/iio/backend.h                        |  23 +
+ include/linux/platform_data/ad3552r-axi.h          |  18 +
+ 12 files changed, 1572 insertions(+), 396 deletions(-)
+---
+base-commit: 4ff29e5af68e081473240420d5ba8fe1c410239f
+change-id: 20240919-wip-bl-ad3552r-axi-v0-iio-testing-79937010e1cf
+
+Best regards,
 -- 
-2.25.1
+
+  o/ QW5nZWxvIER1cmVnaGVsbG8=
+   www.kernel-space.org
+    e: angelo at kernel-space.org
+      c: +39 388 8550663
+       
 
 
