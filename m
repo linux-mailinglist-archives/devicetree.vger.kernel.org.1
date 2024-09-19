@@ -1,248 +1,211 @@
-Return-Path: <devicetree+bounces-103795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F88497C3C6
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 07:07:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C53F97C415
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 08:01:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C9662833B5
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 05:07:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A7881C215B5
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 06:01:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC32418AEA;
-	Thu, 19 Sep 2024 05:07:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2229E14A09A;
+	Thu, 19 Sep 2024 06:01:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="qNLUUBu8"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="CRrSvfoY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2109.outbound.protection.outlook.com [40.107.215.109])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AAC3200B5
-	for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 05:07:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726722424; cv=none; b=Sp3uWOfq4QhZjvd88rvPFxZ103a9ym7EaovcO08snzWx/0hGEgdGKa4C4O0/sTnsJUhHAO8hjPgeFnDqun/BvXzQxP5NFTHfOxp0tWzYny58BNAgD0aObKUi4PH7H8GuQXvMsCbWSizMSf73/N13XPKyvRLU0NxGJQGajPrL1Q0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726722424; c=relaxed/simple;
-	bh=rZHF5yLvHjff/VNjeM6Ib/NXPjUi+W44fvAN6mcUaoE=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=LTsM7tV3nu3td++O2qLx6CAJIhPVsfWQ4bv6Y4X2saTDt3FFxpJMTG2dGS2wAtaXoEFXdF8ZbO7Wj5qirByvjua0FcCWD1Ae6Gy+FnIg6bxd9eJSsaY2bsoDsELxmpsGfV2E1yndkQgTvyXIg6UGM7XC0Aum+4B/1pbCI1ZzpTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=qNLUUBu8; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 5CA872C0666;
-	Thu, 19 Sep 2024 17:06:54 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1726722414;
-	bh=rZHF5yLvHjff/VNjeM6Ib/NXPjUi+W44fvAN6mcUaoE=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=qNLUUBu8bVVesqIcPHHupdiXjRxoRGt8IRhirYIT7wNO1dkY8F80vqdEFfRE3wCRB
-	 QzlezsJCSFNWIO7ZdIRqKZST5VDv7/qOA7R5qh/TYHD1DMwPnWvbhDCr0p1FVxpJL7
-	 0/fdijS6Tl9WhPGWO+qLt0XCGFBM47pnO/5gFTsVmFqSSXf85nRwVu1pDqcAA0NaKi
-	 U7lQ1ogOKcco5eBvZSbVur5MjnQMVLQkGtaaiwykEZeCK9nr8p7I9PhKTiKNb+x8hM
-	 yB3ALWLXviPGP5o9s3S90bbROdJCB11PuofFzY0X/odgId0aznWxQjHFTavRLJZKPT
-	 ZvfgMfIZwNQJQ==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B66ebb16e0000>; Thu, 19 Sep 2024 17:06:54 +1200
-Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 33F3813ECCD;
-	Thu, 19 Sep 2024 17:06:54 +1200 (NZST)
-Message-ID: <89b2d1a7-fcd5-408c-b632-7052013036f1@alliedtelesis.co.nz>
-Date: Thu, 19 Sep 2024 17:06:54 +1200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D78C818EAB;
+	Thu, 19 Sep 2024 06:01:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.109
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726725691; cv=fail; b=XnKqMnlU6oebiW3Ve464lH7p5VwxTMlH4ivosaNRz0rAd/spGRmkPb9QKN4UbA/2NO7J3HYslJ62u3dBj0pp2hgsPpsVSldIPtN+3fRs+Vswih3KVEMehb1GwqXZN5kNpt/ghOwSHujle/4CaIMY2QnTL4W0EiGS/MRU9ehX/xw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726725691; c=relaxed/simple;
+	bh=hz4aXPfyPn5ifDECOsVlZnvyAlOW4DWV4aXuD6uENDo=;
+	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=eAv17ob158ejDnX1/w7f1p04iVvjy8bXKt2SZcMdlVfpYrWY8q1Kuki1wme/O78SElhPmZcG069PVcBUBVUQ7BWnrXLfhjrl+F8sAcasQfvdbYsv0p6PneVFCPEcACd5/UZ7gsX96jPB/WycKr2DYiPduczsZGmHDD6SECNXsHk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=CRrSvfoY; arc=fail smtp.client-ip=40.107.215.109
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jRDYgX0a3b1QXASqecxINwN6LrwCdxeYeC+meE4AyG1TPGMQmKvw6L/Hktnr8efs4zHUtyY4pBnBOm0TZGHPruNEHJH9HwiJjQUxWgGuez6olrUrkMxbByQDqiEdfcBFUHeOS35vwLJTh0fxCZt8gIIn5CkCLkBRRqilMKNOZzUBH54i2sJamQPFUAgt2SdWRqGiDP4AR1vY2OVTiknWA6wYczaxXmdVVOCnWCHkfufjMochF5IrNGtUfHIB4vSFEm2SEQeVKnXpza9ajqKSbMbztFzeX+jJCiVjGIwev60bRt9jC3TttIAZANkrbJ/VkmiGyD0zD7VSN1jvaY9OPA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hz4aXPfyPn5ifDECOsVlZnvyAlOW4DWV4aXuD6uENDo=;
+ b=Qf6Snu2wcrp5/yPT4rQ6j34eL4MjzQfcIJBnaixTHg/avbvDh5G21UjpW+NnwsrUlIaPpdyVCsnB2kLbgNnafhlpFZzD15vc8p+ptplrRY/OeBMxiDv+vjbqIcCMuCheO6paDWoGMzyIQ5mueZFTud1NMKy7oIxUM5Pv+JHDh7wQ65UIeshnmX43Xz4WKoZFAmLHpxufV5bU1DzG7VPZMcXgj8TJT18/sXF4fUxN550zBLBzn5mJBNxnUOwnJi02jFgm0uBfcsEdC+z7+ZvkhttniEJ23yq507tr29bUb6hnrlaTMf0IQdHU6cBSHDvmz08ChI5fJz0vgWeL9pP1lA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hz4aXPfyPn5ifDECOsVlZnvyAlOW4DWV4aXuD6uENDo=;
+ b=CRrSvfoYeB2BnuGGTDi6vxKz2bR71HSn5i/GcWJu9DMf1woq/Xtg7F6ol/Av44DWCpFpmPdyl+G0I7841cC/h/z7ojxGOKLVGW2cT0l4ksVIabdyRN74TL/kzwsNptwYiQYeA4voLhX4JvHIQihs2P42DJCj7NrwlchcDcCI0b42iisciBSZnvkixBaBvkKaVgHk0UbPsD6RHGfUwLwl+QUlpKhn2wTuV9nwC23Li/sVLGARjJaCRrN1NdTajmXv4Bzd5YLKR/GAGhsH/GlljBtT8SFdmtiBMbSxXD4NJ/qyM+uIzhv98x7fnnGMoqN/cURR9F5Doh3HXzJ2U0dThg==
+Received: from OS8PR06MB7541.apcprd06.prod.outlook.com (2603:1096:604:2b1::11)
+ by OSQPR06MB7155.apcprd06.prod.outlook.com (2603:1096:604:295::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.24; Thu, 19 Sep
+ 2024 06:01:23 +0000
+Received: from OS8PR06MB7541.apcprd06.prod.outlook.com
+ ([fe80::9f51:f68d:b2db:da11]) by OS8PR06MB7541.apcprd06.prod.outlook.com
+ ([fe80::9f51:f68d:b2db:da11%4]) with mapi id 15.20.7982.012; Thu, 19 Sep 2024
+ 06:01:23 +0000
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, "mturquette@baylibre.com"
+	<mturquette@baylibre.com>, "sboyd@kernel.org" <sboyd@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"joel@jms.id.au" <joel@jms.id.au>, "andrew@codeconstruct.com.au"
+	<andrew@codeconstruct.com.au>, "p.zabel@pengutronix.de"
+	<p.zabel@pengutronix.de>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-clk@vger.kernel.org"
+	<linux-clk@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>
+Subject: RE: [PATCH v3 2/4] dt-bindings: Add AST2700 bindings
+Thread-Topic: [PATCH v3 2/4] dt-bindings: Add AST2700 bindings
+Thread-Index: AQHbCBhUQ+ayLz0D00qz0gJFvBN4g7JaMBwAgARxxVA=
+Date: Thu, 19 Sep 2024 06:01:23 +0000
+Message-ID:
+ <OS8PR06MB754148AD165538D3D6B6C3DDF2632@OS8PR06MB7541.apcprd06.prod.outlook.com>
+References: <20240916091039.3584505-1-ryan_chen@aspeedtech.com>
+ <20240916091039.3584505-3-ryan_chen@aspeedtech.com>
+ <b9bf19af-0c3c-4622-9124-a66d9df649b2@kernel.org>
+In-Reply-To: <b9bf19af-0c3c-4622-9124-a66d9df649b2@kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS8PR06MB7541:EE_|OSQPR06MB7155:EE_
+x-ms-office365-filtering-correlation-id: 5a0b3c71-236f-463c-7661-08dcd8707d8e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|376014|1800799024|366016|921020|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?a0JyRHRoNnFPRUtoSk0xK3drandpb2NsczR4T3kzSTBEeUpodEorTUI4VjZC?=
+ =?utf-8?B?Qy9CUExiYzNtckJNK2FEVUlwQzBPN3o4bDB2eGp2YS9YcHFCTTVOWXoyZGFS?=
+ =?utf-8?B?UE9TRGVES2d2V3ZFUFpVOW5CdzgzMTUzYTY3WHlQQWR4dVBNTmo3SkJzbWE2?=
+ =?utf-8?B?OTcxRHl5Q3lUbmdyOWtaZ2g1U001ZEgyYXlaZXJrSHJ2RVhoZVp0bWU1UTh2?=
+ =?utf-8?B?Nmp2OUJJSWl0S2NVNHN3MnhadmdMK3JpaENXOFlmcEFLV2ljQUk4cm5VYjJX?=
+ =?utf-8?B?ZE4vU1lyWDdsRE9yUE95T3JCcGxRSHZiTnBpK3Y2eXVnTHdtazYzRklpUEZp?=
+ =?utf-8?B?a2RobEdPLzJXVzZ1MzEwaDBuZjhDa1BBSDVIMEM2dk9GbXV3Z2xwKzVpRkVG?=
+ =?utf-8?B?TkdPWjltK292QXF3YW81cEVKdkh1QWw5UTROVDlQZ0o5ZXZvdm9IM3NUSVZo?=
+ =?utf-8?B?YUhaV1k3OCtoZmFEZjFkTHBkYURxYkVFMU04T1lmYVE4OTY2NmhYQi94eld0?=
+ =?utf-8?B?bVNPN2MzcE5BU2ZmdVhoc2lDRm13ZEh6S3MzR1J0YzlCOWpNaDJCUzZYS3VB?=
+ =?utf-8?B?TzdqaDFsOUtVUjYvWUdmc00rem1meDBtdVd2UloxYXVYNjFRcUlPRFdGOUEz?=
+ =?utf-8?B?N2FTVjRRMWdWT3VZSkJPMmh3cHZhWFNyZUFZbkVsVkZGcGFlRGhVNHZDcUpp?=
+ =?utf-8?B?SlZkaTBTQTR2aE12UU1RaVRNSmF0aVI0WnpZbFNxbCttdnY4Y081TThKbkxE?=
+ =?utf-8?B?VWZkWkRJV2JmWXd1MnNnemFEcEJlYlhzMmg1amhjMTh3RUJhNHo0U2JGMFNK?=
+ =?utf-8?B?SlE0RFllQWhIaGk1aG81Y1RQRHNUejA0UEhwY25jYzErQmRjSWtzNTNEK2ds?=
+ =?utf-8?B?RUU5TFE5T1JzclpuNFpCbm1HMW1jYm84YU1JcnZiY2NIbWFTR0NOZTJadFNs?=
+ =?utf-8?B?cEVZcW1FU1l3WHREY0x1eE1GenlESzNtT05YNWF0ZmVTeXRoMTJsU2ozRG16?=
+ =?utf-8?B?bmlaQkVTdHIvYVl0YVdJcUs0SExMekVzeGE0em4yeUxkNzBNV05jeE5mZWRP?=
+ =?utf-8?B?Y0hBOU1sdzNJQ1E3QUNtMy9WQjZoUng4VG4rU1RjNUFJMk4xRFVPZlNadlBJ?=
+ =?utf-8?B?cEg3aG01dHpCdXN5a3YwNEhuNjNiRVdleDBzNkxXYkl4VmhBS1Q0dFhiSVVP?=
+ =?utf-8?B?MXlmQkNZeDdjNEo0THlVZzlCd0l2WXA0NnR6dzFBNUI2SGJ5cmJqTFZ2R0I5?=
+ =?utf-8?B?SnhNemM3ZWYzNmlJVFROakx5NmkrNW9HYjhSN1FGSERxeWpvRGNvZnY2WmRY?=
+ =?utf-8?B?b2tqWmp0a2ZRWnFSbTRtVXpNb243T1U0bzdLWE9EbVlOS1J0UmdnTlpzZ0xo?=
+ =?utf-8?B?QXM0WXVEblY5MXpMeGVGaXVvSXE0L1VLK3lraGpxdWN4T293cllEMDl5MEdB?=
+ =?utf-8?B?SHhRWldnZ1QwQkdUbkUrMWwrV25tWWVhVU1VS2tEL2pVTlQxaU9pZmJWSTho?=
+ =?utf-8?B?bUh5WlhPZUtsaE9CbzJQYnJyRDAzV2lOYVRTcFdoUW5NZEJWNXFmYkhtUVpt?=
+ =?utf-8?B?L0J2WkN5STN4M2dBQ202T1RhQ3pEWHNvcHZNTUNrK3ByNnc0RVcxdFZHckEw?=
+ =?utf-8?B?K0NDVmphNjdZWWJBTTBUVTZmYXVxVkE2L1lpalM5cGRHZGM0UUJLbE8rTWE1?=
+ =?utf-8?B?QlA0NElQanIwRFJMQXlmanBQL3BQRUE2amYvRk90bkJjU1YyaFNNTVFOblRK?=
+ =?utf-8?B?TmVaL2lqRXIwNnJkODAwKzc4YlBHcHRuUklwYkx6RS9ZUEZ6RUhFdVA0NTBU?=
+ =?utf-8?B?SERNdG1UUzNqeHJZTnlGaVArZUJGZ3ZtZDlpcVdrRlBwWHJBZS8vUHI4VWJt?=
+ =?utf-8?B?ckxPOFFocnM2alloTGdPcEN4bTNyS0VhaE9YbjgySTFoTHh2aUVKVVNXOHA5?=
+ =?utf-8?Q?0IQ0Y3eI+WU=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS8PR06MB7541.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(921020)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?QkVlTUJaTVNENFptQ25ESlBnbThqVmZkYlZKZFZlamk1Mmtjai9idUxkWDZN?=
+ =?utf-8?B?byt3L1pZMG1uQ1dQNndaWGpJNU5CK1RNeVhuQXpzSlVOZk1zZFBpajVWOWUv?=
+ =?utf-8?B?RFl3bk1hQitSM1pieEl4ZzJZMnc0VG1oV0pyZzEyYWYraE5MVFFDRXlUQTdY?=
+ =?utf-8?B?ZVFaSEdUaEJDUUd0VWxGTElJVnk4UHhITGE0ZjZ4MTJkRExZTEs5NkNMSlVN?=
+ =?utf-8?B?TDVYYzFLeDFqMWYzTDNqSTBnZ25EajJtZ2RxZkZXWDdiZjhpQWpTelJaRHg3?=
+ =?utf-8?B?cjVWcUY4TUNSMEdvVUpCMTBsWHY4SU1TYzNsVU9vdCtxbnAwbjFTMzMwOTNF?=
+ =?utf-8?B?dGpuRGEvZWhMNEljMkVPbXBxRFlFRTB5cENLVHJRckFDR3g1ZktOeWFZL1hm?=
+ =?utf-8?B?YmlLSGhCODRkeDFmNVN1Y0NZRmpiSkZxUmpmUS92WmxHRlRKSnZpU1lDS1B1?=
+ =?utf-8?B?MTR0cUNEcUJJT2U2VUVxanpWNkc0MkFQK25hOUs2LzhWaG1ubm5wRC9Ud05J?=
+ =?utf-8?B?UFJhWWl6ZlhOaWw2dFVmMDcvM0w5TnJYRlhCVDl3QmttOENCRHFieXVoWWY0?=
+ =?utf-8?B?WW5qbDQycXRNbnBVbGpmNkk4U21tSE02bnY5NklxQWU2eHZmalJvZXF4Y3pF?=
+ =?utf-8?B?bnlZN1lSb2o2dUZYVVdVbmtoQ2NBZXRxK2ZlNm5Xem1VeDNHd3dmcXVpemtL?=
+ =?utf-8?B?SXFvZHJXWnFXM3grVTB0TXFJWkxSUGZkRjVyeUUvNFo3alJ5QWlaOEtqdHVi?=
+ =?utf-8?B?YnZ5UXRWUU5tU1YveWFOMzEyMDNFNjMxRGY5UngzZmdDQld3YStrVGZuR0Zh?=
+ =?utf-8?B?L25hd3RoTm9MVk96YUFpOUpFTjJOakFrZUFjSUZLTnlGc0ovM3ROTmVySzN5?=
+ =?utf-8?B?NFhXUTBTaVJvdEwyWDVuM0EvRnFKenFTR2d6TzE2ckFmeGpYTE1PYzFiQjFD?=
+ =?utf-8?B?bWpZTTBIbG1lZ01ZWTBOZ1VCTUpDVEF4RGsxUmdFL2YzRUtQejNhRnJYdXRp?=
+ =?utf-8?B?eEI2SFYycUpCcFJvMEUxYTJJanZnT2Nobkh0anRrdHkwOUVOdTIzZmdBdHh3?=
+ =?utf-8?B?QTZLUk9xT0M5NjJ3eG9qTHRGMm9jR05MSUxOeldlWjBWYm5XSUxnc2REa1Jw?=
+ =?utf-8?B?ZEtibGFEZTF4SzZtM0RVbm5ZM0UxaU5ZbTI2aGNDMSs3ZGxVUlVQaEVxQUl4?=
+ =?utf-8?B?OXNKNjR0QlBCWVRBQ2FLSTVidE8yczRNWGhQYVY4R1hmekx4UUgzSHFBVlZX?=
+ =?utf-8?B?MXZjQkpUOWV5dlg0NHlBdmFMMzhCckpSc3lEM0x1OWlHek5nZDRIQUhCdCtN?=
+ =?utf-8?B?L3V1WHByQVc0N3dnN3VZeEdtTzdORnlYek5xNVpZUjZnaHc2VWdvenQ0NXdi?=
+ =?utf-8?B?TStaNHc2enNKTks4U1M3TWh0anBSSEhtS0ZnR3UyWis5cTVnM3cyTE42ZEs2?=
+ =?utf-8?B?UjgxWVR5N3NSRWg4YnZRdU1zK2ZoUGZTc3pMRXVUTEVQQkZRbzF6UEdBRmt6?=
+ =?utf-8?B?UCtPcDg1YWw1Sm85K1p0VFF3TEl3ekRYRWdrcWl5UHNiNzVYbXBaOEFwRkNt?=
+ =?utf-8?B?QXF2a1pDTC95ZmczYmpvUC9lTmNGbzRWYk15YlNnYVJZSGV3Q0NJZ1UwQlJQ?=
+ =?utf-8?B?UHg5SE4vbFkvZFNLazc3WkVQQ2pFTDVHY2dKcVNKSDVhUkJlNVFNa3lHWFRM?=
+ =?utf-8?B?M21kSFVrMEozOXdkMGRRODF3SGZxZ2wyWk1zYXJ4Tml2Q0h6dlV6QTFJcitV?=
+ =?utf-8?B?ZU82R3c5ZG5GRERRSXlmeER5K0ZCdURCVU5kdEdjMzJDTjdpaktQWlN4VDhO?=
+ =?utf-8?B?SFdMZjR4RjVZWU5rdUE5SDZ1VXlJS3lyMGh4R29GZzJMeC9uQkVsWGxJYzdC?=
+ =?utf-8?B?NWpwd0lPWW5RYjZ2WDFGeDF4UDZ4dzlmRVluRHdpQjhBYWQ5LzJERTd1c0gv?=
+ =?utf-8?B?UWp1T3g1b0JHQnV2bmNXZjdKZkI5NmJiQkNpTlNYQTRnWk9ZTzZyemFwcXph?=
+ =?utf-8?B?SmlOZFBLK0lYNDJnVFlSY1J3Um8vS0NTVyttV2lTbTI3a1l2MmVYdy90eWhR?=
+ =?utf-8?B?Z3JCcjJiZGN6a2dWY3ZSSlVVeGUxSk9Tci9iSGFoL0FVSlRJVTlTZFBYSTVP?=
+ =?utf-8?Q?XIIySdyS2L/YUrp7rVWqFWjdB?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] i2c: rtl9300: Add multiplexing support
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- tsbogend@alpha.franken.de, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mips@vger.kernel.org
-References: <20240917232932.3641992-1-chris.packham@alliedtelesis.co.nz>
- <20240917232932.3641992-6-chris.packham@alliedtelesis.co.nz>
- <2wmlmymzxhf7ytpngbqgubka43rd4ytiwcffvwgaaf6gubvenz@w5gwxarev3r6>
- <5ebcd038-a2c7-458d-a04e-31771765ec1f@alliedtelesis.co.nz>
-Content-Language: en-US
-In-Reply-To: <5ebcd038-a2c7-458d-a04e-31771765ec1f@alliedtelesis.co.nz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=Id0kWnqa c=1 sm=1 tr=0 ts=66ebb16e a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=EaEq8P2WXUwA:10 a=uqZk7z4Bu7Qft1aM4NQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS8PR06MB7541.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a0b3c71-236f-463c-7661-08dcd8707d8e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Sep 2024 06:01:23.3882
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: NkP49DFBmfsK8OS4ZZkPhjMRr/S+m2cePPZc0Exspa/i0QOCeAq09r0aKXqzjHbPs/djvrGtnQvd234R4AZf9as66CQOm95M9Eug7i7d4PE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSQPR06MB7155
 
-
-On 19/09/24 09:44, Chris Packham wrote:
-> Hi Andi, Rob,
->
-> On 19/09/24 08:36, Andi Shyti wrote:
->> Hi Chris,
->>
->> ...
->>
->>> -module_platform_driver(rtl9300_i2c_driver);
->>> +static int rtl9300_i2c_select_chan(struct i2c_mux_core *muxc, u32=20
->>> chan)
->>> +{
->>> +=C2=A0=C2=A0=C2=A0 struct i2c_adapter *adap =3D muxc->parent;
->>> +=C2=A0=C2=A0=C2=A0 struct rtl9300_i2c *i2c =3D i2c_get_adapdata(adap=
-);
->>> +=C2=A0=C2=A0=C2=A0 int ret;
->>> +
->>> +=C2=A0=C2=A0=C2=A0 ret =3D rtl9300_i2c_config_io(i2c, chan);
->>> +=C2=A0=C2=A0=C2=A0 if (ret)
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return ret;
->>> +
->>> +=C2=A0=C2=A0=C2=A0 return 0;
->> return "rtl9300_i2c_config_io()"?
->
-> Ack.
->
->>> +}
->> ...
->>
->>> +static int rtl9300_i2c_mux_probe_fw(struct rtl9300_i2c_chan *mux,=20
->>> struct platform_device *pdev)
->>> +{
->>> +=C2=A0=C2=A0=C2=A0 struct device *dev =3D &pdev->dev;
->>> +=C2=A0=C2=A0=C2=A0 struct fwnode_handle *fwnode =3D dev_fwnode(dev);
->>> +=C2=A0=C2=A0=C2=A0 struct device_node *np =3D dev->of_node;
->>> +=C2=A0=C2=A0=C2=A0 struct device_node *adap_np;
->>> +=C2=A0=C2=A0=C2=A0 struct i2c_adapter *adap =3D NULL;
->>> +=C2=A0=C2=A0=C2=A0 struct fwnode_handle *child;
->>> +=C2=A0=C2=A0=C2=A0 unsigned int *chans;
->>> +=C2=A0=C2=A0=C2=A0 int i =3D 0;
->>> +
->>> +=C2=A0=C2=A0=C2=A0 if (!is_of_node(fwnode))
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return -EOPNOTSUPP;
->>> +
->>> +=C2=A0=C2=A0=C2=A0 if (!np)
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return -ENODEV;
->>> +
->>> +=C2=A0=C2=A0=C2=A0 adap_np =3D of_parse_phandle(np, "i2c-parent", 0)=
-;
->>> +=C2=A0=C2=A0=C2=A0 if (!adap_np) {
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_err(&pdev->dev, "Cann=
-ot parse i2c-parent\n");
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return -ENODEV;
->> return dev_err_probe(...)?
->
-> Ack.
->
->>> +=C2=A0=C2=A0=C2=A0 }
->>> +=C2=A0=C2=A0=C2=A0 adap =3D of_find_i2c_adapter_by_node(adap_np);
->>> +=C2=A0=C2=A0=C2=A0 of_node_put(adap_np);
->> ...
->>
->>> +static int __init rtl9300_i2c_init(void)
->>> +{
->>> +=C2=A0=C2=A0=C2=A0 return platform_register_drivers(drivers, ARRAY_S=
-IZE(drivers));
->>> +}
->>> +module_init(rtl9300_i2c_init);
->>> +
->>> +static void __exit rtl9300_i2c_exit(void)
->>> +{
->>> +=C2=A0=C2=A0=C2=A0 platform_unregister_drivers(drivers, ARRAY_SIZE(d=
-rivers));
->>> +}
->>> +module_exit(rtl9300_i2c_exit);
->> You could use module_platform_driver()
->
-> Can I though? I want to support both the simple I2C controller and the=20
-> MUX mode with the same driver. Which is why I've ended up with two=20
-> drivers to register.
->
-> On the binding patch, Rob made the suggestion that I just make the=20
-> i2c-mux part of the parent. I did consider that but quickly got tied=20
-> in knots because I couldn't figure out how to have a device that is=20
-> both an adapter and a mux. The main problem was that any child nodes=20
-> of an i2c adapter in the device tree are presumed to be I2C devices=20
-> and get probed automatically by of_i2c_register_devices(). Equally I=20
-> can't register a mux without having an adapter that the mux operates=20
-> over.
-
-OK I think I've got something working that has a dt binding like
-
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 i2c@36c {
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compat=
-ible =3D "realtek,rtl9300-i2c";
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D=
- <0x36c 0x14>;
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status=
- =3D "okay";
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #addre=
-ss-cells =3D <0x01>;
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-=
-cells =3D <0x00>;
-
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 i2c@0 =
-{
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x00>;
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <1>;
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <1>;
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gpio@20 {
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ...
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
-
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 i2c@2 =
-{
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x02>;
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 };
-
-In the probe() I can iterate over the child nodes and create an adapter=20
-for each. The code is a bit fiddly but I think it's a net win if I can=20
-do away with the rtl9300-i2c-mux part. It also happily means that I=20
-don't have an extra I2C bus that is the same as the first mux channel.
-
-I'll try an tidy things up and get another iteration out before my weeken=
-d.
-
-
->
->>
->> Thanks,
->> Andi
->>
->>> =C2=A0 =C2=A0 MODULE_DESCRIPTION("RTL9300 I2C controller driver");
->>> =C2=A0 MODULE_LICENSE("GPL");
->>> --=20
->>> 2.46.1
->>>
+PiBTdWJqZWN0OiBSZTogW1BBVENIIHYzIDIvNF0gZHQtYmluZGluZ3M6IEFkZCBBU1QyNzAwIGJp
+bmRpbmdzDQo+IA0KPiBPbiAxNi8wOS8yMDI0IDExOjEwLCBSeWFuIENoZW4gd3JvdGU6DQo+ID4g
+QWRkIHJlc2V0LCBjbG9jayBkdCBiaW5kaW5ncyBmb3IgQVNUMjcwMC4NCj4gPg0KPiA+IFNpZ25l
+ZC1vZmYtYnk6IFJ5YW4gQ2hlbiA8cnlhbl9jaGVuQGFzcGVlZHRlY2guY29tPg0KPiA+IC0tLQ0K
+PiA+ICAuLi4vZHQtYmluZGluZ3MvY2xvY2svYXNwZWVkLGFzdDI3MDAtY2xrLmggICAgfCAxNjMN
+Cj4gKysrKysrKysrKysrKysrKysrDQo+ID4gIC4uLi9kdC1iaW5kaW5ncy9yZXNldC9hc3BlZWQs
+YXN0MjcwMC1yZXNldC5oICB8IDEyNCArKysrKysrKysrKysrDQo+ID4gIDIgZmlsZXMgY2hhbmdl
+ZCwgMjg3IGluc2VydGlvbnMoKykNCj4gDQo+IFRoaXMgaXMgc3VwcG9zZWQgdG8gYmUgcGFydCBv
+ZiB0aGUgY29tbWl0IGFkZGluZyB0aGVzZSBiaW5kaW5ncy4gWW91IGdvdCB0aGlzDQo+IGNvbW1l
+bnQgYWxyZWFkeSwgZGlkbid0IHlvdT8NCg0KU29ycnksIEkgbWF5IG1pcy11bmRlcnN0b29kIHlv
+dXIgcG9pbnQgaW4gcHJldmlvdXMuDQpJIHRoaW5rIHlvdSBhcmUgYXNrLCB5YW1sIGFuZCBkdC1i
+aW5kaW5nIGhlYWRlciB0byBiZSB0aGUgc2FtZSBwYXRjaCwgcmlnaHQ/DQoNCj4gDQo+ID4gIGNy
+ZWF0ZSBtb2RlIDEwMDY0NCBpbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2NrL2FzcGVlZCxhc3QyNzAw
+LWNsay5oDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBpbmNsdWRlL2R0LWJpbmRpbmdzL3Jlc2V0
+L2FzcGVlZCxhc3QyNzAwLXJlc2V0LmgNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2R0
+LWJpbmRpbmdzL2Nsb2NrL2FzcGVlZCxhc3QyNzAwLWNsay5oDQo+ID4gYi9pbmNsdWRlL2R0LWJp
+bmRpbmdzL2Nsb2NrL2FzcGVlZCxhc3QyNzAwLWNsay5oDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2
+NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAwMDAuLjYzMDIxYWYzY2FmNQ0KPiA+IC0tLSAvZGV2L251
+bGwNCj4gPiArKysgYi9pbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2NrL2FzcGVlZCxhc3QyNzAwLWNs
+ay5oDQo+IA0KPiBVc2UgY29tcGF0aWJsZSBhcyBmaWxlbmFtZS4NCk1vZGlmeSBmcm9tIGFzcGVl
+ZCxhc3QyNzAwLWNsay5oIHRvIGFzcGVlZCwgY2xrLWFzdDI3MDAuaCwgaXMgaXQgb2s/DQpIb3cg
+YWJvdXQgdGhlIGFzcGVlZCxhc3QyNzAwLXJlc2V0LmggZmlsZSBuYW1lIGlzIG9rID8NCj4gDQo+
+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KDQo=
 
