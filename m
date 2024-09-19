@@ -1,155 +1,151 @@
-Return-Path: <devicetree+bounces-103894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E941B97C908
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 14:21:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67D3E97C928
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 14:28:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABAA5281AEA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:21:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B0E01C20B03
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:28:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D909119D8A9;
-	Thu, 19 Sep 2024 12:21:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1D1119DF67;
+	Thu, 19 Sep 2024 12:28:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SuIE9run"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="du1W/Xmw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A923319D070;
-	Thu, 19 Sep 2024 12:21:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 486E61957F8;
+	Thu, 19 Sep 2024 12:28:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726748487; cv=none; b=YLUYF/rC94uGFRrUoxg0FXXY8p0olx0OovIna07K/l1J0rg2iR5EgOJzm/yM9qxbQQVLe6ZD2Mwru4H7SkqzLvEWrEWTdfkaOpfW9DU6LxKhvKiuh5FjONbj37T1TO7yG5g0+KXifWJko1BwiDmfybWifdY2LgKwEVpGpoeCuQU=
+	t=1726748926; cv=none; b=CoRh2hOEix6cDKODRzDKIpRnM2Dmunrg9i+XF+KnU7ya7p7eMG/Y/PY+SBgmBfVGeBAcCFHH6Ub7sWB4GYpLYz+rSsMlb5ZOZ4NnIYIi6Bl2VGX34TkHh3n38iSzvs7gYSXZ0z4jIBcmMDuRo1dPYkSzCirnz6u195ACkuJViN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726748487; c=relaxed/simple;
-	bh=qPDfi50q4+h+m1QVi+XbdtGKWOu+/D8mXscbYofFnZI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H+xqVxSWkKgud+oVMchDqNLf4jKSj8+QYaBEVVcBholkTrVrPCo0eYoMANK2ILUO1VjTz4hNqRhUf/8oA86aR7GoxHjsSFVxtXiSoEMni8WaEE84B7/N5kL0n8sFpljGLllEA5UCbv/Uk3FDXu5Hm8GwBETJLB8Whe/SDSWRkAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SuIE9run; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FA04C4CEC4;
-	Thu, 19 Sep 2024 12:21:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726748487;
-	bh=qPDfi50q4+h+m1QVi+XbdtGKWOu+/D8mXscbYofFnZI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SuIE9runkmPZL068l3IwoV99o82/ot8KPWQ9qYPXu88P3NWyRcspyCK79iD78YmOM
-	 6/4UqmIU0JNRW9Ysvay3YjdFyBkOFkWmh8IzGgXzySym4NT3sND3fJ/lwtdVCVHNqA
-	 6no7BMO17Bhyt5H+cStz/5lE4eDGwaR6OU7ulGYjT3HEIkM1xjpCzo8HD/zodOS/BZ
-	 oaSjSbiZMLpMFHEsOSy0VlOZwavue78/LXlVyuIzKPCZACfkZQnvss7nYcOouIsJo7
-	 0sMG8/geobpJUMAln16pz+NBcwLCMMg6pUw2X3VzAbQBvaZmIjGAoE4My+H7hQcPWb
-	 2ZaFqYz+FqFSA==
-Message-ID: <d9c82785-d78a-4e3e-8b32-e5fd616fef5a@kernel.org>
-Date: Thu, 19 Sep 2024 14:21:21 +0200
+	s=arc-20240116; t=1726748926; c=relaxed/simple;
+	bh=yYlI6tTus0ZiU3Ar9IfNHE31m1w2Fawm/zJ9bxgzhQg=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=b4j703gFapTO/uU8tPDC9zmkqwRgKd1Eed8qYWQVQT7z2xFQwQcnIn1F0CbOGavEnHHnKrDstPfRIlISfiz9T/oRh20zxmaOrGrZh6ocPaOS3PcvY2zjNrjrfvvnMnr0detJF1QrwjNtURj/v39wZeXvxCHZ2oXQbjFgon116Lw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=du1W/Xmw; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-42cbaf9bfdbso6936595e9.0;
+        Thu, 19 Sep 2024 05:28:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726748924; x=1727353724; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jJ9vLOIwefl3iNMuVxcYqoEs8VcLhp7ZSQofYSHIYJU=;
+        b=du1W/XmwmMeA596nJHe0MPYjPAbpDMmaYNa0L+qos6IqfIH6jzneeSddECUqZ+M/yN
+         qNKRjMUCdoJgFe10bi8aToblceXEEgTc9Hj+EiRxFRek1ptc9qYhjTlOv4CaQyyTu+Dk
+         9uz0zGgcbvJQOeI/2pdYoL170Rc9Xza/P/M4XqpPKMTYnL2X7BGEY/TF6eI9Gj1qDeA4
+         KPlDPAKnASFW4qTb91ljgvaT9ez8BYDFnHJkVvorz6jZCOCrCabuiJfE+pTGn2/Ya1LJ
+         kOGb/d6La8/FnBXRS8f+bfkGDI76SLiLg8k9m2/gwUnNlF0qPjrzaIzfauNEZPkC/ULX
+         vO5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726748924; x=1727353724;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jJ9vLOIwefl3iNMuVxcYqoEs8VcLhp7ZSQofYSHIYJU=;
+        b=KPwTDAPqzcaGMTX20mh7OkpSjFDF67zXn9uu6zU5EL4gCA7V+O5HxzOg3jH/XBtzvw
+         ZKAT9c0S+48Mv7FGLXE2SzbfLVMy7akwQRJe++VjCL4mOr0EmDxyrkuJWA2/Ws7Q5RrI
+         HOgqe6TnB5S5WiAdom0wFByQipBbmex7iLtSLO9MfjW0SVj2/MDqg9KoViz4b/hOVuE+
+         G/IsZJT+NwHeNs+WmgEodzOoTqoEwWnaW/bneILPucOuLRZx04hFAELNTQW84CoGOLdP
+         pH+K2qeedHgcc1y72f+n0i7p2Bt9MhtaFenEO3jaV+t6M5D3l6zQTquDiCnCPkPHPcvq
+         s2yA==
+X-Forwarded-Encrypted: i=1; AJvYcCUpmE6NIBCqwnP+WXoLHyCeijeyfWUO5Kk40eKW+zuB66VmEywCX2o295uirOafID3hhC0U8Dg+h3/Rd5nl@vger.kernel.org, AJvYcCVPqixIggjebsi3Cm1nfT0LB0xnYZGYfhJ+OTATj2tbrzZ7F5dgQKmkaltXbyCiAdk1qL63OsooE9X+@vger.kernel.org, AJvYcCXJfYSWdYnPXPtYBU4kEUNND+Ts91Ag/uFe0w+kFFJEofxwIN8+/LBvg2wlywoiBUtQD3pZ0TqEn9w1by9W8sA=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhZ3GEnwUMhH74nHf0N4o4FpFy5QGYE04dTf6DjRH3E4SKn9Bb
+	zwHxQfqqB5EjNv1IRSrQVeRQB890u8CU9od7sCSiw2tjlXnrGtTq
+X-Google-Smtp-Source: AGHT+IE/Io2i6GSdXSw+/wIr/wc5aJW3eYk5lzU37goMz09UdJc4IALbDWG79muCgWJFt7Z4DxwA3A==
+X-Received: by 2002:a05:600c:34c2:b0:42c:bad0:6c16 with SMTP id 5b1f17b1804b1-42d9070baa1mr144760475e9.2.1726748923270;
+        Thu, 19 Sep 2024 05:28:43 -0700 (PDT)
+Received: from localhost.localdomain (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-42e754ce37bsm20509115e9.48.2024.09.19.05.28.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Sep 2024 05:28:42 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	upstream@airoha.com
+Subject: [PATCH 1/2] dt-bindings: watchdog: airoha: document watchdog for Airoha EN7581
+Date: Thu, 19 Sep 2024 14:26:17 +0200
+Message-ID: <20240919122759.10456-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] dt-bindings: clock: qcom: Add QCS615 GCC clocks
-To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240919-qcs615-clock-driver-v1-0-51c0cc92e3a2@quicinc.com>
- <20240919-qcs615-clock-driver-v1-3-51c0cc92e3a2@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240919-qcs615-clock-driver-v1-3-51c0cc92e3a2@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 19/09/2024 09:32, Taniya Das wrote:
-> Add device tree bindings for global clock controller on QCS615 SoCs.
-> 
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  .../devicetree/bindings/clock/qcom,qcs615-gcc.yaml |  59 ++++++
->  include/dt-bindings/clock/qcom,qcs615-gcc.h        | 211 +++++++++++++++++++++
->  2 files changed, 270 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,qcs615-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,qcs615-gcc.yaml
-> new file mode 100644
-> index 000000000000..fecc694cd71b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,qcs615-gcc.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,qcs615-gcc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Global Clock & Reset Controller on QCS615
-> +
-> +maintainers:
-> +  - Taniya Das <quic_tdas@quicinc.com>
-> +
-> +description: |
-> +  Qualcomm global clock control module provides the clocks, resets and power
-> +  domains on QCS615.
-> +
-> +  See also:: include/dt-bindings/clock/qcom,qcs615-gcc.h
+Document watchdog for Airoha EN7581. This SoC implement a simple
+watchdog that supports a max timeout of 28 seconds.
 
-Since  I expect resend of patchset (other comments), please also switch
-from :: to single :.
+The watchdog ticks on half the BUS clock and require the BUS frequency
+to be provided.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+---
+ .../bindings/watchdog/airoha,en7581-wdt.yaml  | 39 +++++++++++++++++++
+ 1 file changed, 39 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/airoha,en7581-wdt.yaml
 
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/watchdog/airoha,en7581-wdt.yaml b/Documentation/devicetree/bindings/watchdog/airoha,en7581-wdt.yaml
+new file mode 100644
+index 000000000000..47210a5990ee
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/airoha,en7581-wdt.yaml
+@@ -0,0 +1,39 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/airoha,en7581-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Airoha EN7581 Watchdog Timer
++
++maintainers:
++  - Christian Marangi <ansuelsmth@gmail.com>
++
++allOf:
++  - $ref: watchdog.yaml#
++
++properties:
++  compatible:
++    const: airoha,en7581-wdt
++
++  reg:
++    maxItems: 1
++
++  clock-frequency:
++    description: BUS frequency in Hz (timer ticks at half the BUS freq)
++    const: 300000000
++
++required:
++  - compatible
++  - reg
++  - clock-frequency
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    watchdog@1fbf0100 {
++        compatible = "airoha,en7581-wdt";
++        reg = <0x1fbf0100 0x3c>;
++        clock-frequency = <300000000>;
++    };
+-- 
+2.45.2
 
 
