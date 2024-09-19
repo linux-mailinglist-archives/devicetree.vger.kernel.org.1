@@ -1,212 +1,155 @@
-Return-Path: <devicetree+bounces-103877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ECD697C7CC
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:12:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADD9A97C7ED
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:26:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAF7028ACE4
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 10:12:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 588EC1F24E68
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 10:26:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C78B199FB3;
-	Thu, 19 Sep 2024 10:12:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8BF519C572;
+	Thu, 19 Sep 2024 10:26:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r+z9VlVB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G21MlpYA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13D531991B8
-	for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 10:12:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5851199FAB;
+	Thu, 19 Sep 2024 10:26:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726740746; cv=none; b=GdQl4rI8dsd8R5FzYVKU2mKZcxPBQdRw5DnHVXFn9dUCVmX0hbsW4iU7j+3BsVlZ5VaIaetWnXruvemoacQOIpN2YYMKt9DgPA8oUwTBg38cCc/23AthGFrzfeCT0FO4Dj0916wy+UqFAjakLOoMGDx0QdIWxJDQ1tq+3JwoeGw=
+	t=1726741562; cv=none; b=OAgZyQEm/qF7xaEf6340hrMxNW7wtHhyDI7REKgd+kSfHp0tSFp9FOaTabDF9jRoLPZEzAyR03bsS07uD+84eaxHz3J3ihCpM7apEJI5zn1SXwGT4N8ZlFJZifcDOa3p+FOF83KfGl3/SJtXAeOFT3/sh0jgmdxU+ZlAK148Kvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726740746; c=relaxed/simple;
-	bh=DIkAJir5JfJORJ5MkFp4kEfthpXf2iDOkp5wt+Yfn7Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VTqaEJNXuMrt2HUmm24dNfERHhqYFLtvnzq8n2SdGg0hBSgPufa7aTie2P6PJHfDNS0AxXqWcHVtuxl5GvTju2tJoem9XZWOfRcgjnpNB4Pkc8tzPNxA25PaS3cyozjzCF+20ZIOJ30WeU1g5IAHCWYYOI3heh4NI8hxW2SUduw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r+z9VlVB; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2f74e613a10so9025561fa.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 03:12:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726740742; x=1727345542; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=GLFjOu5wJvL2rv+0CoDa2SB5UCn11iYd9z/GnY6i9QI=;
-        b=r+z9VlVBHQ4Am+LOk3sIv+vhsOqdE53ZvrC3Wn8XQTCiOPdbcc2hpZAu6Tg2H6Fw9b
-         H/9IaKVFolhbTRh3p5nCmq2z/OomS+ldQoxuTRP8nWeb/EGbabmRw+KOHUw5d/CaUAW2
-         +xt8Wi+32sJ7jdRVclAeFevZ3gLcFDG+/+e63ey7QWdqgzF8MEk8SnWfm4KcrAmyigkd
-         WlSr7BcA4Yuk9Jb9jsSWvvly/xjynW3idW1tn32YneHQH1zXCVUM7t2+ZDsZ5b9hqLQ/
-         lPtD++iugBt10M7q49I1DZle6d9gUjiSRlkH25s2sHJeAzuT5knbnt/JQbbkKfEJzxph
-         6fFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726740742; x=1727345542;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GLFjOu5wJvL2rv+0CoDa2SB5UCn11iYd9z/GnY6i9QI=;
-        b=Etqh997ZzqP9iCSbbT0CLi5uC3Fhzgw5YvE7phK5Y9WCpMmO66A/EnYd5CKjg217eG
-         zcwm9rlsgLwQso/LbbOlDwo56aKWz6wkjchm0lyGjh7mNIRylaohNsEfUsJMAmugllUG
-         dEinrFrj4Fvc3Egu3gbwV/iVNWZ0Z02WRMVv4zbHaU31TxyC+idtCNOp/nDal9r2M8F2
-         sxRGs1kTpUCVn8FrGTBnVX6YrcBr8+AAPrL+SgM1aeneqgDUPOUKzqrSGTgRZpOIEsYv
-         mwXMVndMupNINbSQrR0PRSsCS7Cx4/AobhyoI2yRV7irP3+iCIKc1sJhroADYYasdRIZ
-         AMsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW/kdK9E6PsinnrZQ6X03C2dezmokDkKOVC0BDRso+y1vnrgroZrvXZC2ZICVYSquKVnEnTAVjSiaTl@vger.kernel.org
-X-Gm-Message-State: AOJu0YyG64nV7qLv6zlFgZ6dzlKAQ/DGxm1Ok6YBvMg9GbEFI5dcfBbG
-	ZS1/Kdym1uj8SUpklXLcaUcSWhLBWPqZbCuEs+bDfrNc3ciUtLK/uqUoPf5sE84=
-X-Google-Smtp-Source: AGHT+IFs8u88LihqDZIZ2JBPSh5x0leTTbUiKEPgu3X0utw4O9nD7aokz6LHJhifGnBWperW+atYZw==
-X-Received: by 2002:a2e:84a:0:b0:2f7:5777:cf14 with SMTP id 38308e7fff4ca-2f7935c342bmr109006111fa.35.1726740742024;
-        Thu, 19 Sep 2024 03:12:22 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f79d59ba9dsm15593971fa.128.2024.09.19.03.12.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Sep 2024 03:12:20 -0700 (PDT)
-Date: Thu, 19 Sep 2024 13:12:17 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Stephen Boyd <swboyd@chromium.org>
-Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	patches@lists.linux.dev, devicetree@vger.kernel.org, 
-	Douglas Anderson <dianders@chromium.org>, Pin-yen Lin <treapking@chromium.org>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Benson Leung <bleung@chromium.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, 
-	David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org, 
-	Guenter Roeck <groeck@chromium.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Lee Jones <lee@kernel.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Prashant Malani <pmalani@chromium.org>, 
-	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Daniel Scally <djrscally@gmail.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Ivan Orlov <ivan.orlov0322@gmail.com>, 
-	linux-acpi@vger.kernel.org, linux-usb@vger.kernel.org, 
-	Mika Westerberg <mika.westerberg@linux.intel.com>, "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH v4 03/18] usb: typec: Stub out typec_switch APIs when
- CONFIG_TYPEC=n
-Message-ID: <kvm44f4c2lejbvfviuykxvcyo3ofcncjt5ssesn7ldequfeymc@eocnaacw425i>
-References: <20240901040658.157425-1-swboyd@chromium.org>
- <20240901040658.157425-4-swboyd@chromium.org>
+	s=arc-20240116; t=1726741562; c=relaxed/simple;
+	bh=KEFt1oFo19jE9sxNEVuuRlx+WDgNLtCsTevNidI3PVs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Kf3CyoDMueWuXQrgdXtdcwCDq4l5RMJA65mLUQFbwxskD0UZ7TWcw3O/k1eyct5BQfM2PwczbMjYhgaqx+ApeQb2bUdx9JM4PDzSldV579ZAWXXXrlozY/89Y0McGYJkQOKkTeJ9wRW8rc2T5TWAUXJZH4Fp2Yb+U6RTxJ8ENks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G21MlpYA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9471EC4CEC4;
+	Thu, 19 Sep 2024 10:25:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726741562;
+	bh=KEFt1oFo19jE9sxNEVuuRlx+WDgNLtCsTevNidI3PVs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=G21MlpYAqJSseevJLE1SGNU3PXOve1CeGtZVkFGTCkK9hoL00WQidsMJE4IzQp0Dz
+	 LdLhDwdckuBeWaoJCG2bbWcMS6fmYQ95chStaUFhyohegeX6LMxYOlb2ZPVifFUFj+
+	 R5aj9EZ+bRo3LoN8syipFeqLrxqRoPboZQeD3ET61vt4CC8zaZbvXsveCydfvfgyu7
+	 X6LMqkeaT5nzjYCV2SpQw6TZbgCy2Edhaizgrv4g5X9hfeyUFiVNAQf8y+wS3sgjcu
+	 IQfnaU4OhmgcAqcBX+zGzgDMdfkj+CxwgtsDiIiWobHzQlVXAx2r9AfUicuaeAyRfo
+	 8ol2w2brMElAw==
+Message-ID: <b926c116-7d5b-4bb6-8199-b7653fc5794b@kernel.org>
+Date: Thu, 19 Sep 2024 12:25:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240901040658.157425-4-swboyd@chromium.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 08/10] arm64: dts: exynos: Add initial support for
+ exynos8895 SoC
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240909110017.419960-1-ivo.ivanov.ivanov1@gmail.com>
+ <20240909110017.419960-9-ivo.ivanov.ivanov1@gmail.com>
+ <ylxrbde4kafbos3qmx54w2d6hpv26ngxgkkpnbdynjj2wfce32@fyzr4jxzn6z4>
+ <ddda4f98-2402-04ab-108d-a1ee4beb33bd@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <ddda4f98-2402-04ab-108d-a1ee4beb33bd@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, Aug 31, 2024 at 09:06:41PM GMT, Stephen Boyd wrote:
-> Ease driver development by adding stubs for the typec_switch APIs when
-> CONFIG_TYPEC=n. Copy the same method used for the typec_mux APIs to be
-> consistent.
+On 18/09/2024 19:54, Ivaylo Ivanov wrote:
+>>> +		cpu3: cpu@103 {
+>>> +			device_type = "cpu";
+>>> +			compatible = "arm,cortex-a53";
+>>> +			reg = <0x103>;
+>>> +			enable-method = "psci";
+>>> +		};
+>>> +
+>>> +		cpu4: cpu@0 {
+>> Why cpu@0 is cpu4 not cpu0? Anyway, these should be ordered by unit
+>> address.
 > 
-> Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: <linux-usb@vger.kernel.org>
-> Cc: Pin-yen Lin <treapking@chromium.org>
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  include/linux/usb/typec_mux.h | 43 +++++++++++++++++++++++++++++++----
->  1 file changed, 38 insertions(+), 5 deletions(-)
+> cpu@100 is the boot core of the first cluster consisting of cortex-a53
 > 
-> diff --git a/include/linux/usb/typec_mux.h b/include/linux/usb/typec_mux.h
-> index 2489a7857d8e..efb5ed32b813 100644
-> --- a/include/linux/usb/typec_mux.h
-> +++ b/include/linux/usb/typec_mux.h
-> @@ -3,6 +3,7 @@
->  #ifndef __USB_TYPEC_MUX
->  #define __USB_TYPEC_MUX
->  
-> +#include <linux/err.h>
->  #include <linux/property.h>
->  #include <linux/usb/typec.h>
->  
-> @@ -24,16 +25,13 @@ struct typec_switch_desc {
->  	void *drvdata;
->  };
->  
-> +#if IS_ENABLED(CONFIG_TYPEC)
-> +
->  struct typec_switch *fwnode_typec_switch_get(struct fwnode_handle *fwnode);
->  void typec_switch_put(struct typec_switch *sw);
->  int typec_switch_set(struct typec_switch *sw,
->  		     enum typec_orientation orientation);
->  
-> -static inline struct typec_switch *typec_switch_get(struct device *dev)
-> -{
-> -	return fwnode_typec_switch_get(dev_fwnode(dev));
-> -}
-> -
->  struct typec_switch_dev *
->  typec_switch_register(struct device *parent,
->  		      const struct typec_switch_desc *desc);
-> @@ -42,6 +40,41 @@ void typec_switch_unregister(struct typec_switch_dev *sw);
->  void typec_switch_set_drvdata(struct typec_switch_dev *sw, void *data);
->  void *typec_switch_get_drvdata(struct typec_switch_dev *sw);
->  
-> +#else
-> +
-> +static inline struct typec_switch *
-> +fwnode_typec_switch_get(struct fwnode_handle *fwnode)
-> +{
-> +	return NULL;
-> +}
-> +static inline void typec_switch_put(struct typec_switch *sw) {}
-> +static inline int typec_switch_set(struct typec_switch *sw,
-> +		     enum typec_orientation orientation)
-> +{
-> +	return 0;
-> +}
+> cores, hence why it's labelled as cpu0. The second cluster contains
+> 
+> the Mongoose cores, labelled and ordered after the first cluster.
+> 
+> 
+> It's ordered like so on a lot of SoCs for sanity's sake, hence why I
+> 
+> believe it should stay like that.
 
-Just my 2c:
+I tend to switch to style expressed in DTS coding style, especially that
+we might use at some point sorting tool which would then need exception
+for CPUs. Keep existing labels, assuming they reflect reality, but order
+by unit address.
 
-The stubs above look fine from my POV, they help us to cleanup the users
-of the API. The register/unregister callbacks are not. The switch
-providers should clearly know whether the API is actually available or
-not. Compare this to how other subsystems (regulators, interconnects,
-etc) provide stubs for consumer API only.
-
-In other words, please consider sending a patch that drops provider-side
-Type-C MUX API stubs.
-
-> +
-> +static inline struct typec_switch_dev *
-> +typec_switch_register(struct device *parent,
-> +		      const struct typec_switch_desc *desc)
-> +{
-> +	return ERR_PTR(-EOPNOTSUPP);
-> +}
-> +static inline void typec_switch_unregister(struct typec_switch_dev *sw) {}
-> +
-> +static inline void typec_switch_set_drvdata(struct typec_switch_dev *sw, void *data) {}
-> +static inline void *typec_switch_get_drvdata(struct typec_switch_dev *sw)
-> +{
-> +	return ERR_PTR(-EOPNOTSUPP);
-> +}
-> +
-> +#endif /* CONFIG_TYPEC */
-> +
-> +static inline struct typec_switch *typec_switch_get(struct device *dev)
-> +{
-> +	return fwnode_typec_switch_get(dev_fwnode(dev));
-> +}
-> +
->  struct typec_mux_state {
->  	struct typec_altmode *alt;
->  	unsigned long mode;
-> -- 
-> https://chromeos.dev
+> 
+> 
+> If you still think that they must be ordered by unit address, please
+> 
+> explicitly let me know so that I include that change in the v5.
 > 
 
--- 
-With best wishes
-Dmitry
+
+Best regards,
+Krzysztof
+
 
