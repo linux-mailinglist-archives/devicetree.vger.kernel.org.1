@@ -1,99 +1,74 @@
-Return-Path: <devicetree+bounces-103882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1113197C814
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:40:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1A1497C82A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:45:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C57AB2898D8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 10:40:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7ACDD1F218D9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 10:45:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F01F519B59D;
-	Thu, 19 Sep 2024 10:40:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62B4219B5A5;
+	Thu, 19 Sep 2024 10:45:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u4klQt6x"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="DNFeORec"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 756BF38389
-	for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 10:40:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D837519C56D;
+	Thu, 19 Sep 2024 10:45:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726742426; cv=none; b=b2gs8GVrbFqSIB5F8jzdVzXIGAt0MqGjuV9ESbn1rJ43z2Xiotn2vDESaDC0HVvBDoJej6uWRw1Mkvf26FLm2bDEZVWWtBdfTso1jaqk4w4GxPpFAvC2D277PN5P6BsNWNhY1h1Bndamoc706cOanUXqjTZLWPR/kvXSp+2Thig=
+	t=1726742709; cv=none; b=OTpYlW0h4gVdUaH90pejKhbq3rGvK31EyNgk4QFjGz1uMqmmR4pxqM0aWatTH1wbp0fShzvhlQ0FUOvHLiYIxyNIirsAk+ogH04MkWQ6yHQ9mtMbVZh9kaXpvhoqjYFcAvf+jwT54yGKVv/Fj0N41TWa1rQsYJ1mjH0Am172OGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726742426; c=relaxed/simple;
-	bh=qoDUajQehGlYjPE+EFxWKCbmqWSP7/qcihd+c2Gym3U=;
+	s=arc-20240116; t=1726742709; c=relaxed/simple;
+	bh=/os8jdsvZNjZzBQqTEH9zSBE9KS0uwILd2ijRnbkvU8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=unOE5cSpJbrV2AUxuBHzyYFYfZRmf6Ag0LTmg3stFd8eTqUb7ZFJneBLR2wFcg/2jEKm0xeiEigrIgqzU3g/L8tCvxTR+7zIfcNCSm9CqxMJTpizXsTb1wtwQenVoRl5F+n3V9c3C2VPmVIXZSEyizm0r+C0cEbcpMbHNjZmcms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u4klQt6x; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5365b71a6bdso759112e87.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 03:40:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726742423; x=1727347223; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tlp0Vtf+ppPpgYrefgR4cL8ADFuvH9H5/WfU6RLRJKw=;
-        b=u4klQt6xDQLGRXdh06UIIZPpqXuJt5MVaUBTerXhaZuAhXBsa/zbncbtvEMxedZbxj
-         w3t3KKoRlaBzkOxaOn+Yeq7i3SF1z9aQvGsJfVsb6ruMFLG7hKDwq64Gs4H7OUI7/n7h
-         TP6zJ0+T2eZm3EV4FsXbaBStFmRS5MLQFTqXL9/xpiyvZsBlZCIvENlAtVLqVUQSHSeB
-         wOX1cHT9jWaBwklWHQcwiJMjN7qRZxDzIRS5SJEZ1Umi9djOf1W34rXyFxJGVwCHnaDU
-         DL+FbjzVBOA2gpVar8xIiTQWAD/6URNQxihyuZnIGKnvYJpgqgjC4yRqLlz1i1fhs7H4
-         Dhxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726742423; x=1727347223;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Tlp0Vtf+ppPpgYrefgR4cL8ADFuvH9H5/WfU6RLRJKw=;
-        b=DxhmObAuY9XG2jOph3poE87YGEy5dLdEbwPCPYKlCzwBnui9aa+jTQVkl8LBfau9t/
-         W+Lssd7B/OR+ZPBmGQaTkEBGnpupFW3QqLn5Iz3svNjZmIBdBrf1HsCur0to7ds3jtnn
-         Hnl9MOcN74aLO+Ko600akEzk2OCNoLHbcDmletak4dLm/aEwQIYzWsqeTE+6jrOXSQV8
-         S3Xm2RJ/xZs3VJ+OxrrO2oWuFGUSeFZFoCn+EYRgH/5VCqopJa9WztcLa2c7rJz3yJq+
-         LHpL90FTVtiLUdqYBYGzWx2DBq9a57t1bjcDUQx53683rq8QGrShQw3LtpsDmMFSF9lG
-         bskw==
-X-Forwarded-Encrypted: i=1; AJvYcCUmQ1T3Zq7Tc8yAwiYrk87G9PjcHEabyXEjOThK4dRbimsGemIkUIa/0Rmn8HoIODYhf15brjEjnrhc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyzd0v5fIrkAMqmajYP8yoUWHMo5YRGUgnm/Ifv4jcBj+e+1/z3
-	1oO2+GmJ60vK5/JgRm/ZWJSHsFahXOw88NwuV51B6FpIgDKpcanue+RzaTcjJJU=
-X-Google-Smtp-Source: AGHT+IFsBfQFVXZbIJ+oDVW1NrcdVcEb6a89r2YZcMp056f8arAvyaJffZux2dBaqfrkRNgZ76BvOw==
-X-Received: by 2002:a05:6512:3d87:b0:535:82eb:21d1 with SMTP id 2adb3069b0e04-5367ff329d7mr11826771e87.57.1726742422532;
-        Thu, 19 Sep 2024 03:40:22 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-536870b421esm1839803e87.254.2024.09.19.03.40.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Sep 2024 03:40:20 -0700 (PDT)
-Date: Thu, 19 Sep 2024 13:40:19 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Stephen Boyd <swboyd@chromium.org>
-Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	patches@lists.linux.dev, devicetree@vger.kernel.org, 
-	Douglas Anderson <dianders@chromium.org>, Pin-yen Lin <treapking@chromium.org>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Benson Leung <bleung@chromium.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, 
-	David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org, 
-	Guenter Roeck <groeck@chromium.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Lee Jones <lee@kernel.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Prashant Malani <pmalani@chromium.org>, 
-	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Daniel Scally <djrscally@gmail.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Ivan Orlov <ivan.orlov0322@gmail.com>, 
-	linux-acpi@vger.kernel.org, linux-usb@vger.kernel.org, 
-	Mika Westerberg <mika.westerberg@linux.intel.com>, "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Vinod Koul <vkoul@kernel.org>, 
-	"Rob Herring (Arm)" <robh@kernel.org>
-Subject: Re: [PATCH v4 13/18] dt-bindings: usb-switch: Extend for DisplayPort
- altmode
-Message-ID: <27acewh6h2xcwp63z5o3tgrjmimf4d3mftpnmkvhdhv273zgsp@i6i5ke4btdqx>
-References: <20240901040658.157425-1-swboyd@chromium.org>
- <20240901040658.157425-14-swboyd@chromium.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=XW7Zd7IwIWPEueJAJuv177W9s3OI/faPshDeKoeZlIrEGLBEJowqFWCqXZ9BiYtoNPg6KnZShlY21vx7X+zsZ+TiZRoP9bWBw85o0Pqn4f8BvN9zwDskcrmro3qq01OP92VTcg7qp0BkTihT1sCdsNUtO02CKfI9tbE7O1crRTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=DNFeORec; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 2CE6523D13;
+	Thu, 19 Sep 2024 12:44:58 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id Qw0S_KiD1mf1; Thu, 19 Sep 2024 12:44:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1726742697; bh=/os8jdsvZNjZzBQqTEH9zSBE9KS0uwILd2ijRnbkvU8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=DNFeORec4f+AS0c8WR+mK9+oKWcxhMjeHXEgkhzRaIFpxvXFdDbniCgSzkNxfPLpf
+	 3fotaflPhH4vQv46nLUVoPuPdMxNflI0okssfRLCA71T/G393xnQ5IzmDNEJBJGT11
+	 QQ8rsOgeRoPemOYd34UP5N3hMQMzgWqDCv4uaHaG42TQnOCfjQWAUguWayIj7LuedM
+	 BTobRFh35Pfrh3V3sN/7M1s4QID0o6lDA/QhQOTh7lVEdIwRtGS/YxNm3MTG4V8rHU
+	 Pv0Bk0XTzAt5no+nIJVTykqWX4MBFHKH+WHIwr0XSquJF2s1t4RdcMCQRm8GjS1M5M
+	 M6HABXoLsluGg==
+Date: Thu, 19 Sep 2024 10:44:25 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
+	Andy Yan <andyshrk@163.com>,
+	Muhammed Efe Cetin <efectn@protonmail.com>,
+	Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>,
+	Ondrej Jirman <megi@xff.cz>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org
+Cc: Celeste Liu <CoelacanthusHex@gmail.com>
+Subject: Re: [PATCH v4 0/4] Add initial support for Rockchip RK3528 SoC
+Message-ID: <ZuwAiaCF6hCr7Fa2@pineapple>
+References: <20240829092705.6241-1-ziyao@disroot.org>
+ <ZunjLMQGEcES2zIV@pineapple>
+ <23655990.6Emhk5qWAg@phil>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,159 +77,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240901040658.157425-14-swboyd@chromium.org>
+In-Reply-To: <23655990.6Emhk5qWAg@phil>
 
-On Sat, Aug 31, 2024 at 09:06:51PM GMT, Stephen Boyd wrote:
-> Extend the usb-switch binding to support DisplayPort (DP) alternate
-> modes. A third port for the DP signal is necessary when a mode-switch is
-> muxing USB and DP together onto a usb type-c connector. Add data-lanes
-> to the usbc output node to allow a device using this binding to remap
-> the data lanes on the output. Add an example to show how this new port
-> can be used.
+On Wed, Sep 18, 2024 at 01:13:25AM +0200, Heiko Stuebner wrote:
+> Hey,
 > 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Benson Leung <bleung@chromium.org>
-> Cc: Guenter Roeck <groeck@chromium.org>
-> Cc: Prashant Malani <pmalani@chromium.org>
-> Cc: Tzung-Bi Shih <tzungbi@kernel.org>
-> Cc: <devicetree@vger.kernel.org>
-> Cc: <chrome-platform@lists.linux.dev>
-> Cc: Pin-yen Lin <treapking@chromium.org>
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  .../devicetree/bindings/usb/usb-switch.yaml   | 89 +++++++++++++++++++
->  1 file changed, 89 insertions(+)
+> Am Dienstag, 17. September 2024, 22:14:36 CEST schrieb Yao Zi:
+> > On Thu, Aug 29, 2024 at 09:27:01AM +0000, Yao Zi wrote:
+> > > Rockchip RK3528 is a quad-core ARM Cortex-A53 SoC designed for
+> > > multimedia application. This series add a basic device tree with CPU,
+> > > interrupts and UART nodes for it and is able to boot into a kernel with
+> > > only UART console.
+> > > 
+> > > Has been tested on Radxa E20C board[1] with vendor U-boot, successfully
+> > > booted into initramfs with this log[2].
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/usb-switch.yaml b/Documentation/devicetree/bindings/usb/usb-switch.yaml
-> index f5dc7e23b134..816f295f322f 100644
-> --- a/Documentation/devicetree/bindings/usb/usb-switch.yaml
-> +++ b/Documentation/devicetree/bindings/usb/usb-switch.yaml
-> @@ -52,6 +52,14 @@ properties:
->            endpoint:
->              $ref: '#/$defs/usbc-in-endpoint'
->  
-> +      port@2:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: '#/$defs/dp-endpoint'
-
-Is it a separate port or is it an endpoint of the same upstream-facing
-(non-connector-facing) SS port?
-
-> +
->  oneOf:
->    - required:
->        - port
-> @@ -65,6 +73,19 @@ $defs:
->      $ref: /schemas/graph.yaml#/$defs/endpoint-base
->      description: Super Speed (SS) output endpoint to a type-c connector
->      unevaluatedProperties: false
-> +    properties:
-> +      data-lanes:
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        description: |
-> +          An array of physical USB Type-C data lane indexes.
-> +          - 0 is SSRX1 lane
-> +          - 1 is SSTX1 lane
-> +          - 2 is SSTX2 lane
-> +          - 3 is SSRX2 lane
-> +        minItems: 4
-> +        maxItems: 4
-> +        items:
-> +          maximum: 3
-
-What is the usecase to delare less than 4 lanes going to the USB-C
-connector?
-
->  
->    usbc-in-endpoint:
->      $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> @@ -79,7 +100,75 @@ $defs:
->          items:
->            maximum: 8
->  
-> +  dp-endpoint:
-> +    $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> +    description: DisplayPort (DP) input from the DP PHY
-> +    unevaluatedProperties: false
-> +    properties:
-> +      data-lanes:
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        description: |
-> +          An array of physical DP data lane indexes
-> +          - 0 is DP ML0 lane
-> +          - 1 is DP ML1 lane
-> +          - 2 is DP ML2 lane
-> +          - 3 is DP ML3 lane
-> +        oneOf:
-> +          - items:
-> +              - const: 0
-> +              - const: 1
-> +          - items:
-> +              - const: 0
-> +              - const: 1
-> +              - const: 2
-> +              - const: 3
-> +
->  examples:
-> +  # A USB + DP mode and orientation switch which muxes DP altmode
-> +  # and USB onto a usb-c-connector node.
-> +  - |
-> +    device {
-> +      mode-switch;
-> +      orientation-switch;
-> +
-> +      ports {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        port@0 {
-> +          reg = <0>;
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          endpoint {
-> +            remote-endpoint = <&usb_c_connector>;
-> +            data-lanes = <0 1 2 3>;
-> +          };
-> +        };
-> +
-> +        port@1 {
-> +          reg = <1>;
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          endpoint {
-> +            remote-endpoint = <&usb_ss_phy>;
-> +          };
-> +        };
-> +
-> +        port@2 {
-> +          reg = <2>;
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          endpoint {
-> +            remote-endpoint = <&dp_phy>;
-> +            data-lanes = <0 1 2 3>;
-> +          };
-> +        };
-> +      };
-> +    };
-> +
->    # A USB orientation switch which flips the pin orientation
->    # for a usb-c-connector node.
->    - |
-> -- 
-> https://chromeos.dev
+> > Ping on this thread. Is it possible to get this merged in v6.12? Or
+> > anything else I need to do?
 > 
+> sadly nope. From a timeline point of view things should ideally be in the
+> Rockchip tree by -rc6 . Which then move to the soc tree and from there
+> to Linus' tree.
+> 
+> There is this rule that all new development for a -rc1 kernel should be
+> present in linux-next _before_ the merge-window opens.
+> 
+> The thing we need to figure out for your series is the uart binding,
+> because that _should_ go through the tree handling serial drivers.
+> Greg is in your cc list but with the amount of mail he gets, I don't
+> think he has single-parts of patch series on his radar.
+> 
+> So I guess the easiest way would be to send the uart-binding from patch 1
+> as a completely separate patch with adapted Cc list, so that it's obvious
+> this should go through the serial tree.
 
--- 
-With best wishes
-Dmitry
+Will do it, thanks for the suggestion.
+
+> From talking with Collabora people today at the Open Source Summit, it
+> seems that's also their plan for the rk3576 that is stuck at a similar
+> state.
+> 
+> 
+> Hope that helps a bit to explain
+
+Thanks for your reply.
+
+Cheers,
+Yao Zi
 
