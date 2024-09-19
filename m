@@ -1,138 +1,333 @@
-Return-Path: <devicetree+bounces-103977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 404FB97CD81
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 20:18:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E181697CDBB
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 20:37:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C461CB22D67
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 18:18:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4A6F9B2235B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 18:37:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE63522612;
-	Thu, 19 Sep 2024 18:18:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE991CF9B;
+	Thu, 19 Sep 2024 18:36:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Eymn/A0k"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X37I/edh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 906EB2135B;
-	Thu, 19 Sep 2024 18:18:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AD2C1CD1F;
+	Thu, 19 Sep 2024 18:35:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726769917; cv=none; b=V2+2RJOFgkc+mqtWxwDIN6Sz9k8apzy4aev4r75ovzEDHAhrVmAhJS6K68oy5wNW45hCSdRR8LaxikmetStCMFQOKX5k8pHg3ZW3ifZckFVFJuc9j+nLFaDKGF0waeeYssYlRuyPvmhgToPxc4ACOoeY/cNhw3k2UGArDmWobFc=
+	t=1726770959; cv=none; b=f/TPXoTMdNXQ/rfHcp2TlhGI2wu1DrfWIa/AE0S8bIQJAsPQgtJXyv3QX6nW/7jZfyVe4OqELM3aiQg5iuPruyY6fDMNoaOHBch4lKPllfIUV78d5k0D1sk51a7URA6xEI0Ho+Wxy3dCibwlJrj8mhO0slV1+/DPIjR66mABnC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726769917; c=relaxed/simple;
-	bh=2HYTLAuWIIiS7gziRBIjfRq23M96swliUqb3niDxuL0=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=km8Pm3GQD1TY7xYi0EosSQQwCElS8A2FnWiGKHgjbO1tHQYlLig6+DopoAkGkWJBypjsrbG9zgEIcDcSAfwmvGuJemxmbOFulhtUJCxTq2EnQYTQR+e12DMGY72MfOI5FcbWqkjfdhZ3LgxMnWHeO32XKFCL2rE3+NXFc1H+WAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Eymn/A0k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE4E6C4CEC4;
-	Thu, 19 Sep 2024 18:18:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726769917;
-	bh=2HYTLAuWIIiS7gziRBIjfRq23M96swliUqb3niDxuL0=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=Eymn/A0k+Z8AqYMCAgFcZY5cLiBMg66nYmdi8QIU/opMipziA/Sjb3/xEJyNIy54w
-	 5uXPMLksV2H3c/5LRx+CoUVCAVFfCX29CzUtGLP7KttwHLJXZZ/KEbJD97W0swwx70
-	 wLmzXWvf5CRHDg44LAp0tpc5+Hq3es66Eoji6bSTbbUgzRxJ16+t3pFhQF2CHsxuL1
-	 5Sso2gcNh4hsrYQ1S36p5tX93VpXJaHKpemsIUqI3kT16G7ZbYBsAuzyafIQaH7TgR
-	 T7IYmWUdjNj+MALm9bU+G47I93/wtNuqMZT8FMLWtrG0aOEqr++36zca2Aobz8tAN1
-	 GXaXWWC2DKrSg==
-Date: Thu, 19 Sep 2024 13:18:35 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1726770959; c=relaxed/simple;
+	bh=W49WozanLprZEJxgdhsiRD8i1r/Epzp6B7fBpUrzNNE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Ju65XGio3JzB33vPUEzP8KxQ+TvMfHY2z7sa7Evubp7C3MLHh6cUSt61unRJwFaeWNTI0pT0Rx/6yWSaGG3Lki2FgnAFI7VEUEWlCRr9FS1IVDfrcpgMVJ876jUtBIyrmY6K/wEElCU/7ayPTh1ZvVN008XposZKuETB1jRGMf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X37I/edh; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-42cae4eb026so10984865e9.0;
+        Thu, 19 Sep 2024 11:35:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726770955; x=1727375755; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=T7wbTHSo9+XfWUpxWPDNev/PMADReLxOtwvmxGAdnEw=;
+        b=X37I/edhlrYahGYoTtacXbdYRakoKI/Li742LQ6RhcAf/ikcMtHuR/y6ucRhPpHRY5
+         TG1DeRInGURFsb10/pc3D//ILqHTMvjSXwCOBwHj8lzxN36H34SaOjrgr/oXSsHNesiL
+         XHpyZfQU6q3jwUzd3Nx1WH4k1eASUSgIbYqNc/v1b9LBExd+BOf1k2LjD5bLQGh7O4c6
+         4qyj/nMsVNmGsuTmkmlfD6bVKYxZPQKPLsh4zMKj81MpBCr5Y285TgB0eJPO+Kat5MsS
+         ru+rcOhvliXb5ZlmJDUq5NmC6sfTt1BmCH82orfOoeeitaNcK2xnIs0Uz0qdaEy15x0s
+         QQTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726770955; x=1727375755;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=T7wbTHSo9+XfWUpxWPDNev/PMADReLxOtwvmxGAdnEw=;
+        b=POp7Sc3NTf95FKekozlNdJWme+S9vo++2um5LpmsffuQdIWcJAO5iTP2ZSu2qnGaWF
+         ehVucUS/tzNq9xDieF6CzcYjLvam3uX750aqvcnIsFJso/wD75hjxg72UMYtBwwHONIm
+         cJLF/BMDCdwGhfWTk3M4pcz2EfZ3yze0x4zSJWrOlTWucP0tnBLz+c1p8n4M6v3vBoHp
+         1XEzBXfmGHJbBa3qXRHjSqrPHEQnjTke6IGe2TzYElXrqpeGBRhUWEX5x+HAiSImekfP
+         hfl8KyXAkgOwudH12pvPp7PagzmANqIFejLU94xJ5fXdH5DgIUoOU/NSn94k/NNEsL6B
+         ZMdA==
+X-Forwarded-Encrypted: i=1; AJvYcCWeji26hmrYJdjCNzK2+DWXVxbgdJzmjXC2yXtnJEKntg+MBRutU2tnvFvdjOWkX7yIVkJOMu4wkK2+Zpk=@vger.kernel.org
+X-Gm-Message-State: AOJu0YysjDPJDRK47ucF7seTV5iAPJhe3wlXlxSphLD7xPDb1N0tFrPE
+	5lhJIoedPcR3+LmPygbEMcHFvE+CiQ7C5fSx2vLUUG2vEdRfU7XZDrcI93o8
+X-Google-Smtp-Source: AGHT+IE52EiCmyv96iQ6F9zx0Vq2tE3Sx85XTboMQtqUo9n54qi1QYTgF3Q3MaSwtjjHK9zj1ChviA==
+X-Received: by 2002:a05:600c:4f51:b0:428:f0c2:ef4a with SMTP id 5b1f17b1804b1-42e7abf3db1mr3004865e9.13.1726770955107;
+        Thu, 19 Sep 2024 11:35:55 -0700 (PDT)
+Received: from cleve-worktop. (85-193-33-128.rib.o2.cz. [85.193.33.128])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-42e75440657sm29110805e9.20.2024.09.19.11.35.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Sep 2024 11:35:54 -0700 (PDT)
+From: =?utf-8?q?Kry=C5=A1tof_=C4=8Cern=C3=BD?= <cleverline1mc@gmail.com>
+Date: Thu, 19 Sep 2024 20:35:39 +0200
+Subject: [PATCH v2] arm64: dts: allwinner: Add disable-wp for boards with
+ micro SD card
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
- Konrad Dybcio <konradybcio@kernel.org>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org
-In-Reply-To: <20240919170018.13672-1-alex.vinarskis@gmail.com>
-References: <20240919170018.13672-1-alex.vinarskis@gmail.com>
-Message-Id: <172676985197.765618.17726985689014014506.robh@kernel.org>
-Subject: Re: [PATCH v1 0/3] X1E Dell XPS 9345 support
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20240919-b4-nanopineoplus2-fix-mmc0-wp-v2-1-c708a9abc9eb@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAPtu7GYC/42NWw6CMBREt0Lut9e0tUDwy30YPnjcwk3oI62ih
+ rB3Kysw83VmkjMbJIpMCa7FBpFWTuxdBnUqYJg7NxHymBmUUFo0UmOv0XXOB3bkw/JMCg2/0dp
+ B4CtgM9a16RuqSnmB7AiR8nz4723mmdPDx89xt8pf+695lZijTKmNGKtKidtkO17Og7fQ7vv+B
+ TbRJH/KAAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Kry=C5=A1tof_=C4=8Cern=C3=BD?= <cleverline1mc@gmail.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1726770954; l=9820;
+ i=cleverline1mc@gmail.com; s=20240824; h=from:subject:message-id;
+ bh=W49WozanLprZEJxgdhsiRD8i1r/Epzp6B7fBpUrzNNE=;
+ b=wfXOiLSQZ9AQdNDPurMx4ypsx/yoUjo62d87kyOsMX3tbkihuOulnziUFV09yRHCP3whqkMBu
+ 8R7ihgSCnXZB6q2qFHDOYxW39Ooix/+QrajYbKIhNn7b2Wxvnu03vDt
+X-Developer-Key: i=cleverline1mc@gmail.com; a=ed25519;
+ pk=CQifx5FUgTQKAoj5VCYrwYHi235AkXQ5yT1P6gkaBxM=
 
+Adding disable-wp property for micro SD nodes of Allwinner arm64 devices.
+Boards were verified from online pictures/tables
+that they have micro SD slots.
 
-On Thu, 19 Sep 2024 18:59:31 +0200, Aleksandrs Vinarskis wrote:
-> Introduce support for the mentioned laptop.
-> 
-> Very similar to other X1E laptops, device tree was derived by analyzing dtsi of
-> existing models and ACPI tables of this laptop [1]. Most notable difference were
-> * TZ protected SPI19.
-> * Keyboard only working after suspend/resume sequence, will do a follow up patch
-> to i2c-hid.
-> * Lots of small deviations in LDOs voltages.
-> 
-> Successfully tested with Debian 12 and Gnome, although this required additional
-> patches, namely harcode GPU chipid, apply [2] and _revert_ [3] - same as in Abel
-> Vesa's branches. Without last two the boot process is terminated by TZ. Firmware
-> for GPU/aDSP/cDSP was extracted from Windows, WiFi firmware from upstream
-> linux-firmware.
-> 
-> Quite a few things alraedy work, details in patches, quite a few still in WIP or
-> TODOs. Since fixing these may take me a while due to lack of documentation,
-> sending current progress as its very much usable.
-> 
-> [1] https://github.com/aarch64-laptops/build/blob/master/misc/dell-xps-9345/acpi/DSDT.dsl
-> [2] https://lore.kernel.org/all/20240830-x1e80100-bypass-pdc-v1-1-d4c00be0c3e3@linaro.org/
-> [3] https://lore.kernel.org/all/20240708-x1e80100-pd-mapper-v1-1-854386af4cf5@linaro.org/
-> 
-> Aleksandrs Vinarskis (3):
->   dt-bindings: arm: qcom: Add Dell XPS 13 9345
->   firmware: qcom: scm: Allow QSEECOM on Dell XPS 13 9345
->   arm64: dts: qcom: Add support for X1-based Dell XPS 13 9345
-> 
->  .../devicetree/bindings/arm/qcom.yaml         |   1 +
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../dts/qcom/x1e80100-dell-tributo-13.dts     | 860 ++++++++++++++++++
->  drivers/firmware/qcom/qcom_scm.c              |   1 +
->  4 files changed, 863 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-dell-tributo-13.dts
-> 
-> --
-> 2.43.0
-> 
-> 
-> 
+Signed-off-by: Kryštof Černý <cleverline1mc@gmail.com>
+---
+Sorry that my last messages were not in mailing list,
+one was wrongly sent and second was rejected, as the bot claimed it contained html.
+---
+Changes in v2:
+- NEW: Added the property to all Sunxi arm64 boards, as discussed in mailing list
+- Link to v1: https://lore.kernel.org/r/20240914-b4-nanopineoplus2-fix-mmc0-wp-v1-1-12f54f0d6620@gmail.com
+---
+ arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts    | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts         | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts       | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts        | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts      | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts  | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts         | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts          | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi           | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts            | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi              | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi    | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts          | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts       | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts | 1 +
+ 16 files changed, 16 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts
+index 526443bb736c..18fa541795a6 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts
+@@ -136,6 +136,7 @@ &mmc0 {
+ 	vmmc-supply = <&reg_vcc3v3>;
+ 	bus-width = <4>;
+ 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
++	disable-wp;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts
+index 05486cccee1c..128295f5a5d6 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts
+@@ -88,6 +88,7 @@ ext_rgmii_phy: ethernet-phy@7 {
+ 
+ &mmc0 {
+ 	vmmc-supply = <&reg_vcc3v3>;
++	disable-wp;
+ 	bus-width = <4>;
+ 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
+ 	status = "okay";
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
+index 3a7ee44708a2..44fdc8b3f79d 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
+@@ -157,6 +157,7 @@ eth_mac1: mac-address@fa {
+ 
+ &mmc0 {
+ 	vmmc-supply = <&reg_vcc3v3>;
++	disable-wp;
+ 	bus-width = <4>;
+ 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
+ 	status = "okay";
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
+index ce3ae19e72db..0f29da7d51e6 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
+@@ -153,6 +153,7 @@ &ir {
+ 
+ &mmc0 {
+ 	vmmc-supply = <&reg_vcc3v3>;
++	disable-wp;
+ 	bus-width = <4>;
+ 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
+ 	status = "okay";
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts
+index b699bb900e13..d4fc4e60e4e7 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts
+@@ -153,6 +153,7 @@ &ir {
+ 
+ &mmc0 {
+ 	vmmc-supply = <&reg_vcc3v3>;
++	disable-wp;
+ 	bus-width = <4>;
+ 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
+ 	status = "okay";
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts
+index ae85131aac9c..3322cc4d9aa4 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts
+@@ -82,6 +82,7 @@ ext_rgmii_phy: ethernet-phy@1 {
+ 
+ &mmc0 {
+ 	vmmc-supply = <&reg_vcc3v3>;
++	disable-wp;
+ 	bus-width = <4>;
+ 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
+ 	status = "okay";
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts
+index 734481e998b8..3eb986c354a9 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts
+@@ -79,6 +79,7 @@ hdmi_out_con: endpoint {
+ 
+ &mmc0 {
+ 	vmmc-supply = <&reg_vcc3v3>;
++	disable-wp;
+ 	bus-width = <4>;
+ 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
+ 	status = "okay";
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+index 3be1e8c2fdb9..13a0e63afeaf 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+@@ -129,6 +129,7 @@ ext_rgmii_phy: ethernet-phy@1 {
+ &mmc0 {
+ 	vmmc-supply = <&reg_cldo1>;
+ 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
++	disable-wp;
+ 	bus-width = <4>;
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
+index 6c3bfe3d09d9..ab87c3447cd7 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
+@@ -131,6 +131,7 @@ hdmi_out_con: endpoint {
+ &mmc0 {
+ 	vmmc-supply = <&reg_cldo1>;
+ 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
++	disable-wp;
+ 	bus-width = <4>;
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
+index 13b07141c334..d05dc5d6e6b9 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
+@@ -94,6 +94,7 @@ hdmi_out_con: endpoint {
+ &mmc0 {
+ 	vmmc-supply = <&reg_cldo1>;
+ 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
++	disable-wp;
+ 	bus-width = <4>;
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
+index c8b275552872..fa7a765ee828 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
+@@ -133,6 +133,7 @@ ext_rgmii_phy: ethernet-phy@1 {
+ &mmc0 {
+ 	vmmc-supply = <&reg_cldo1>;
+ 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
++	disable-wp;
+ 	bus-width = <4>;
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi
+index 855b7d43bc50..bb7de37c0d58 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi
+@@ -124,6 +124,7 @@ &mmc0 {
+ 	pinctrl-0 = <&mmc0_pins>;
+ 	vmmc-supply = <&reg_vcc3v3>;
+ 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
++	disable-wp;
+ 	bus-width = <4>;
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
+index fc7315b94406..a3fe39f8e2ca 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
+@@ -81,6 +81,7 @@ ext_rgmii_phy: ethernet-phy@1 {
+ 
+ &mmc0 {
+ 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
++	disable-wp;
+ 	bus-width = <4>;
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
+index 26d25b5b59e0..dd3bd9cca710 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
+@@ -52,6 +52,7 @@ &ir {
+ &mmc0 {
+ 	vmmc-supply = <&reg_dcdce>;
+ 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
++	disable-wp;
+ 	bus-width = <4>;
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts
+index 18b29c6b867f..16c68177ff69 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts
+@@ -111,6 +111,7 @@ ext_rgmii_phy: ethernet-phy@1 {
+ };
+ 
+ &mmc0 {
++	disable-wp;
+ 	bus-width = <4>;
+ 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>;	/* PF6 */
+ 	vmmc-supply = <&reg_vcc3v3>;
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
+index d6631bfe629f..024377b333c1 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
+@@ -71,6 +71,7 @@ &ir {
+ &mmc0 {
+ 	vmmc-supply = <&reg_dldo1>;
+ 	cd-gpios = <&pio 8 16 GPIO_ACTIVE_LOW>;	/* PI16 */
++	disable-wp;
+ 	bus-width = <4>;
+ 	status = "okay";
+ };
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+---
+base-commit: 57f962b956f1d116cd64d5c406776c4975de549d
+change-id: 20240914-b4-nanopineoplus2-fix-mmc0-wp-9d77fb9e6513
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y qcom/x1e80100-dell-tributo-13.dtb' for 20240919170018.13672-1-alex.vinarskis@gmail.com:
-
-arch/arm64/boot/dts/qcom/x1e80100-dell-tributo-13.dtb: domain-idle-states: cluster-sleep-0: 'idle-state-name' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/power/domain-idle-state.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-dell-tributo-13.dtb: domain-idle-states: cluster-sleep-1: 'idle-state-name' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/power/domain-idle-state.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-dell-tributo-13.dtb: usb@a2f8800: interrupt-names: ['pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
-	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-
-
-
-
+Best regards,
+-- 
+Kryštof Černý <cleverline1mc@gmail.com>
 
 
