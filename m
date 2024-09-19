@@ -1,108 +1,91 @@
-Return-Path: <devicetree+bounces-103946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5754297CB8D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 17:21:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17E1697CBAB
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 17:37:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D3F1287449
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 15:21:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1C02285A63
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 15:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E78419DF52;
-	Thu, 19 Sep 2024 15:21:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B3D219F49D;
+	Thu, 19 Sep 2024 15:37:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="gwuMj+Rw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sqQs/Szp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA88B1EF1D;
-	Thu, 19 Sep 2024 15:21:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32BF9190477;
+	Thu, 19 Sep 2024 15:37:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726759267; cv=none; b=Hp7vUy5KK4EL97GyTvq4wcniGa6/3skN1savyx21YcxEE8ggaRoxJqJa5wtSfsnmLMBHZnaVIdZJ2J8nj9QuXr4EIAJFBXxggEtLYPOWw37iDipAbatZ0C84vzSs7t1ceglo9Cjx4niCcQoeQjtlRLdyPAkSUmkSfg6xDycpvEM=
+	t=1726760262; cv=none; b=ZmD6IJ2n2HoD4/fM1+6RZOEufx/gXiwSSYBfnFKV1DKjS02G2xxOA/UZW/N7UAdlD+jbzHVYoggn6fSZ774Pw1xKVwSfagLOX3mvVRGfw4K+lg+jVpNxO1VFuUiR3stlFyqbrsNi1IS91X/beiJEA0YNh+yEBuMFuLsuVYW7zzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726759267; c=relaxed/simple;
-	bh=nvVtJPZU+6i/0iKiXxq0eINrojPz7dYMmz/1raiBwfw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=c0ryDHj4dvMhmrMZxfb4zvevJhERKZE+7Lb33MRFrGWjJ+V+BfkV8SwQMBicD4UyrKVxqiaUTIhLp3FBoWvn2WBfvq/RJawpEEwoTLILNE1+1ErOgd57fO/1kbuGXv35oWs4soaZnQnY6MwmQAXbC5zli8aJyI3X2kMYZ/68zHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=gwuMj+Rw; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 6C96323D4F;
-	Thu, 19 Sep 2024 17:21:04 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id pNWoonSMiFBj; Thu, 19 Sep 2024 17:21:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1726759263; bh=nvVtJPZU+6i/0iKiXxq0eINrojPz7dYMmz/1raiBwfw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=gwuMj+RwZMpwd6/9vwtYGrppumnTO+qGQlMpTtJ1TVudHFNR/ZjqUykKTazDdSSXz
-	 WZBRnt4N4d2HGJ00vXRCFsvZ9i4YZ0tV1yZy5VyHrQtv9nYa7GnQB420X0RhkWMzUU
-	 4wqRg474W28Rvd6bTlCFGIAiACDItLBxzW6wCC6VJU15NHyyGq2FJS11lNkJM73rAF
-	 yzwCjsiLzPCTk54W2k+WZkhtM40ZK5t4LXk1G7Yrfnc2vkoZf4SgvSYC+tmo3ILv0c
-	 Nh6w1djHuKjpyRww3NTODoSKuiwOomoiCNczoMNqv/GH1VvaCIr//Z6dwgPMpUcDSk
-	 NiPAhJ0wIPRvA==
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-To: kauschluss@disroot.org
-Cc: airlied@gmail.com,
-	alim.akhtar@samsung.com,
-	conor@kernel.org,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	inki.dae@samsung.com,
-	krzk@kernel.org,
-	kyungmin.park@samsung.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	robh@kernel.org,
-	simona@ffwll.ch,
-	sw0312.kim@samsung.com,
-	tzimmermann@suse.de
-Subject: [PATCH 6/6] dt-bindings: display: samsung,exynos7-decon: add exynos7870 compatible
-Date: Thu, 19 Sep 2024 20:50:42 +0530
-Message-ID: <20240919-exynosdrm-decon-v1-6-8c3e3ccffad5@disroot.org>
-In-Reply-To: <20240919-exynosdrm-decon-v1-0-6c5861c1cb04@disroot.org>
-References: <20240919-exynosdrm-decon-v1-0-6c5861c1cb04@disroot.org>
+	s=arc-20240116; t=1726760262; c=relaxed/simple;
+	bh=S6MIWYK6Un51svGZ37c7JU+yySKaaclPw/YJv6ZmRvc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sxu+OLqzvAlF3FitAG89A6IMiYIBtmXYHtxW9B07pmmiBtRaPCmExcHDsS0Iaf5BmKi/Ex1NJhV5fDoXS6iKJWSDudB+5WawsS0gFE6l5uGkf50UbNh1lIh7O/7GvwxoM6EO8v9Ie/XH/XODL6KGpVZEXukFDQi4n7GFkw4m+A8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sqQs/Szp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6401C4CEC4;
+	Thu, 19 Sep 2024 15:37:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726760262;
+	bh=S6MIWYK6Un51svGZ37c7JU+yySKaaclPw/YJv6ZmRvc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=sqQs/SzpmNnddohCXdihZ4r5oYBTBNJ6bP9ZJYIUmw9zHuxB+rYCXPkeW2vqYL1Is
+	 XkCa84DwrMY+qAkTUZAhgtS41A5oynMVOhrsh3pG7sOTYyPnYcE1jkY7N8683yNuZR
+	 +iYiMKNTDTg9CtVwb4AmBFdKSx8AIXC0y6Hucdjky6SZxTJQ1urIDMMnOPdt6+Dn80
+	 rO85T8mvqRCG9TWJ3ESSmX/iW2oTO0DSPpAK/UPxEnebx3QyghNpae1qCH5YmfE3xV
+	 nGYMN4Jv+8hzxYlvwreVnj1Q96N+Q9sVfCntq0R9ZqenFPSFkKuWzJqAAPEV4w8U9F
+	 SnKW13xPqrnjQ==
+Message-ID: <2acbaedc-e577-4685-875c-ba599d845b19@kernel.org>
+Date: Thu, 19 Sep 2024 17:37:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy:
+ Document the X1E80100 QMP PCIe PHY Gen4 x8
+To: Qiang Yu <quic_qianyu@quicinc.com>, Krzysztof Kozlowski <krzk@kernel.org>
+Cc: manivannan.sadhasivam@linaro.org, vkoul@kernel.org, kishon@kernel.org,
+ robh@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
+ sboyd@kernel.org, abel.vesa@linaro.org, quic_msarkar@quicinc.com,
+ quic_devipriy@quicinc.com, dmitry.baryshkov@linaro.org, kw@linux.com,
+ lpieralisi@kernel.org, neil.armstrong@linaro.org,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20240913083724.1217691-1-quic_qianyu@quicinc.com>
+ <20240913083724.1217691-2-quic_qianyu@quicinc.com>
+ <lrcridndulcurod7tc5z76tmfhcf5uqumkw7cijsqicmad2rim@blyor66wt4e4>
+ <b36819ed-0e4a-4820-8c38-ac9d2c6f0f28@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <b36819ed-0e4a-4820-8c38-ac9d2c6f0f28@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add the compatible string of Exynos7870 to the existing list.
+On 19.09.2024 4:03 PM, Qiang Yu wrote:
+> 
+> On 9/16/2024 11:15 PM, Krzysztof Kozlowski wrote:
+>> On Fri, Sep 13, 2024 at 01:37:20AM -0700, Qiang Yu wrote:
+>>> PCIe 3rd instance of X1E80100 support Gen 4x8 which needs different 8 lane
+>>> capable QMP PCIe PHY. Document Gen 4x8 PHY as separate module.
+>> And this is really different hardware? Not just different number of lanes? We discussed it, but I don't see the explanation in commit msg.
+> Yes, PCIe3 use a different phy that supports 8 lanes and provides
+> additional register set, txz and rxz. It is not a bifurcation mode which
+> actually combines two same phys like PCIe6a. It's also not just different
+> number of lanes. Will explain this in commit msg.
 
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
----
- .../devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml    | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Krzysztof, this PHY is new and has a different hardware revision (v6.30 as
+opposed to v6.20? of the other ones)
 
-diff --git a/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml b/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml
-index 992c23ca7a4e..53916e4c95d8 100644
---- a/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml
-+++ b/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml
-@@ -19,7 +19,9 @@ description: |
- 
- properties:
-   compatible:
--    const: samsung,exynos7-decon
-+    enum:
-+      - samsung,exynos7-decon
-+      - samsung,exynos7870-decon
- 
-   clocks:
-     maxItems: 4
-
--- 
-2.46.1
+Konrad
 
