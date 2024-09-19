@@ -1,129 +1,112 @@
-Return-Path: <devicetree+bounces-103979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0604597CDD1
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 20:48:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D35C397CE13
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 21:15:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 249211C21C20
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 18:48:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05F9B1C220F5
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 19:15:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 302081804F;
-	Thu, 19 Sep 2024 18:48:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E80D210FF;
+	Thu, 19 Sep 2024 19:15:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kali.org header.i=@kali.org header.b="MSuxslZ8"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="EmatWS/a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F46423775
-	for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 18:48:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ACC91F95A;
+	Thu, 19 Sep 2024 19:15:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726771732; cv=none; b=inDhOPjwJO49r+GYONScYG6xqDgIraWJEgxKN20zhVmzOSmwXSlQC0ep7Dzh+P71mQJqguVzvEbPIpH0AsOhqCYjG9zoYPX+jWp8rGhi6V5fy3Ql+PLM6BKd2V3OkoyTyW2AL2MbfdmeOxyY2NL1Va/Q8IIuctlxEkmppJqG7W8=
+	t=1726773337; cv=none; b=aLCLYi1YnOtiTYKaQ10GFddAUrMdU1qpfCSr0jvIhBhHk3dSSeXCZQ7FMhWISZv0/ZS/MqhE2Gogd3YU6HEGaGohI2mkDlXx0m0Dj7nAwUgoGlD8h0FosPnP6Osi1OgzqQ1sGHhQ+m1jKNshCcXDlbKR8a7C+2ROiQ/Pqx8imF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726771732; c=relaxed/simple;
-	bh=tBkFsOEGKki/Ujou0mi5ka3jQDUd4rYy6dVeLu5RC6w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IRq9fK/4mTRKRBR+TeWQOcXzUL4PwLlR4o6g/ybEHshErJnprAmu7RwQJZmAK+BAwe+LyT6pMsiJgiED0osdwaaB2UqXb68H2FfN820tVtCV+DdpZvm0Tv3a860W0LlsMnmMecoXnWp7T1j5YjtKtQA92FKYlrpUwttDDigi1mQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kali.org; spf=pass smtp.mailfrom=kali.org; dkim=pass (2048-bit key) header.d=kali.org header.i=@kali.org header.b=MSuxslZ8; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kali.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kali.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-378e5d4a80eso911091f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 11:48:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google; t=1726771729; x=1727376529; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5NKj5Iywn8pi1HV6RavjZasiS19LGez3AtSbupjyBc4=;
-        b=MSuxslZ8E9y9YmWorzOb7RA3Csz+2Okf1MY9ZvOQwn1+sKSyIokoQ9ZXhP7UpHPAYW
-         NOu41thxDOC6siauWBFnbk86zqlCxnFU+EY5UXLM3uUvzSGBVgcY3yWHQQQPzrhJO9sq
-         DclOU6+tYc/4qXtepr8bLvlv6j8p5LstNqOnpk7cROnWS2qw6O1IsMUZ/mVQ2KsiVw78
-         8/wWfXJC0De51TbrfLbv/e/shjHSp00fmCWXpLfmKCDxkvbaonhWqUF2OKz2IRlo8JFJ
-         UMAI0qxgTsXwKlRpVGPhIFkRZ6gSeF8HVD5DgShbPjZ0oni6wBiQQmYZuDDUEKGq+uZU
-         FfkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726771729; x=1727376529;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5NKj5Iywn8pi1HV6RavjZasiS19LGez3AtSbupjyBc4=;
-        b=CMp+Vuyk5Rb0szPyH9UGTHTgMuaKeMx/XHtETuFNI6aSmajGlsZSTjBFfupy2Twgpr
-         CxHj+bwfBZLsJQkhIXjPxIY7KLXg9b4UtKMelJQnNSUxhEgnbnYo1E6VvmaJAva8oMoz
-         3fI+mchmZC8XdguYKlGtNHh8fd0MSHKKAmXGAWVgyigrE6RriHkzPmm6r+pZG12eNxcd
-         5ug1yN79beBE2pEtppnWTKug/unjeuMCEu38gjaTzedIGKnk/R8r/q5duaRgQvlJzLws
-         1D8Ct3YY/dBDlQaaqv81Q7uWCdShqr7tJkWxO32aCHMAf4b59JEuvEw0M3UTqsWx02+K
-         SkBg==
-X-Forwarded-Encrypted: i=1; AJvYcCWryAXvSlz+RgQrNFX3c5/lXmKR8UqTFux/G0EeYvoeSLwRSHpzt97sWf/MT5VXKDY+f4m6Jf6C4rsv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxROlnN6UOicO+kdN6N7m7N/+q8AFucMFY8tQZNkcXH+wYn40m7
-	1xw8guIUIxC/5PCMpJEllw3wCxi8Z3Hm049i2DQ2h3Tjiqn3ng6WLtPL5RwaP2XXD5+4YoU+BKI
-	PKVH+98hvrEiMYdRTh37oLlR3T8xX/6A0/Nw0iA==
-X-Google-Smtp-Source: AGHT+IFwZ00ICb5UCjsH6ziqz8Xe7HABIip24+gKr+pPgaD0kCyAzp+K0Fw2+tCzsUPMbb7TJM5PAUtR0m7y7h5wl6k=
-X-Received: by 2002:a5d:410b:0:b0:369:9358:4634 with SMTP id
- ffacd0b85a97d-37a42277e15mr193773f8f.19.1726771728546; Thu, 19 Sep 2024
- 11:48:48 -0700 (PDT)
+	s=arc-20240116; t=1726773337; c=relaxed/simple;
+	bh=9E/3Qgq2rBfpbjtgScTbvjHlvjhKQCG8spRqQWxVBg4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kFrX1+4kLvZvzly6Wx3jjyAaCZxSZs5mIoXR6WdNd+Jm1AEF7uSJm21A/vBJuyeYRrCFzWIFF3hEqMCsJReeN1/gL+9KdbTEuGGcng8sFjxKpLxwJv7AIc0EPAn18UepdUNv2Nhd2uDK+UqohBTEGmjzJhglJWb3W7mQ2Zo8zXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=EmatWS/a; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1726773331;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=frPsoF6IA06vxq/9oAWMuWEe1ZHs1o7Nlj0WlKwuAH4=;
+	b=EmatWS/aEWyUf+NmlF6h9+8efCkgP8142ojQhpU4D3/WmIAlHnHVh1l5Iha4oVZX5+VSIJ
+	AERMsRQlPCR5kkdvlN7o55S112csBJR/aflj/7Cw9k5mVBIjaLWFuwM1ZFRXxGrIvBJhbE
+	H9kgAM2sEzT15+wDSxTx94p+MS+Ng8B+VlG2Q2C0KCyQoU2kPdhAbYbnY2o4fr4zQuPNdY
+	dkX3MWNAAtu2uqN9x3gAhye8kPHa83Mj3WFQ0o54t4BWtJRA2i53vkua3DQxfx9Vl8EO9P
+	iVq1kuZ9qoH/I+bgs/kCveghEEUP3Vo1GvlzUnmU7eG5xecoV0OdOfe2nO8DSQ==
+To: linux-sunxi@lists.linux.dev
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	wens@csie.org,
+	jernej.skrabec@gmail.com,
+	samuel@sholland.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org,
+	Ondrej Jirman <megi@xff.cz>,
+	Andrey Skvortsov <andrej.skvortzov@gmail.com>
+Subject: [PATCH] arm64: dts: allwinner: pinephone: Add mount matrix to accelerometer
+Date: Thu, 19 Sep 2024 21:15:26 +0200
+Message-Id: <129f0c754d071cca1db5d207d9d4a7bd9831dff7.1726773282.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240919-topic-apps_smmu_coherent-v1-0-5b3a8662403d@quicinc.com>
- <D4A2FKPTXHS5.3AHU7ZEKFVMGG@fairphone.com> <2fb16b35-e6c5-4239-a745-a9dd7412539a@kernel.org>
-In-Reply-To: <2fb16b35-e6c5-4239-a745-a9dd7412539a@kernel.org>
-From: Steev Klimaszewski <steev@kali.org>
-Date: Thu, 19 Sep 2024 13:48:37 -0500
-Message-ID: <CAKXuJqj=5wZg2+EZOmbS4TjrvqNm9UhsqeSPHZyVbOLnir_juA@mail.gmail.com>
-Subject: Re: [RFC PATCH 00/11] Affirm SMMU coherent pagetable walker
- capability on RPMh SoCs
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Luca Weiss <luca.weiss@fairphone.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, 
-	Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Konrad Dybcio <quic_kdybcio@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi Konrad,
+The way InvenSense MPU-6050 accelerometer is mounted on the user-facing side
+of the Pine64 PinePhone mainboard, which makes it rotated 90 degrees counter-
+clockwise, [1] requires the accelerometer's x- and y-axis to be swapped, and
+the direction of the accelerometer's y-axis to be inverted.
 
-On Thu, Sep 19, 2024 at 5:07=E2=80=AFAM Konrad Dybcio <konradybcio@kernel.o=
-rg> wrote:
->
-> On 19.09.2024 9:00 AM, Luca Weiss wrote:
-> > On Thu Sep 19, 2024 at 12:57 AM CEST, Konrad Dybcio wrote:
-> >> I only read back the SMMU config on X1E & 7280, but I have it on good
-> >> authority that this concerns all RPMh SoCs. Sending as RFC just in cas=
-e.
-> >>
-> >> Lacking coherency can hurt performance, but claiming coherency where i=
-t's
-> >> absent would lead to a kaboom.
-> >
-> > Hi Konrad!
-> >
-> > You want people with the affected SoCs to test this I imagine?
->
-> Yeah, would be nice to confirm
->
-> >
-> > Just boot it and see if it doesn't implode, or do you have any more
-> > elaborate test plan for this?
->
-> No, booting should be enough of a test
->
-> Konrad
+Rectify this by adding a mount-matrix to the accelerometer definition in the
+Pine64 PinePhone dtsi file.
 
-I have tested sc8280xp on the Thinkpad X13s.  It still boots and
-nothing seems to be more broken than usual (kidding, it seems to be
-running exactly as it was before the patchset was applied.)  I will
-try to find the time to test sc8180x on a Flex 5G as well as the
-sdm845 on the Lenovo Yoga C630, but I can't promise I'll find the
-time.
+[1] https://files.pine64.org/doc/PinePhone/PinePhone%20mainboard%20bottom%20placement%20v1.1%2020191031.pdf
 
-Tested-by: Steev Klimaszewski <steev@kali.org> # Thinkpad X13s (sc8280xp)
+Fixes: 91f480d40942 ("arm64: dts: allwinner: Add initial support for Pine64 PinePhone")
+Cc: stable@vger.kernel.org
+Helped-by: Ondrej Jirman <megi@xff.cz>
+Helped-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+---
+
+Notes:
+    See also the linux-sunxi thread [2] that has led to this patch, which
+    provides a rather detailed analysis with additional details and pictures.
+    This patch effectively replaces the patch submitted in that thread.
+    
+    [2] https://lore.kernel.org/linux-sunxi/20240916204521.2033218-1-andrej.skvortzov@gmail.com/T/#u
+
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+index 6eab61a12cd8..b844759f52c0 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+@@ -212,6 +212,9 @@ accelerometer@68 {
+ 		interrupts = <7 5 IRQ_TYPE_EDGE_RISING>; /* PH5 */
+ 		vdd-supply = <&reg_dldo1>;
+ 		vddio-supply = <&reg_dldo1>;
++		mount-matrix = "0", "1", "0",
++			       "-1", "0", "0",
++			       "0", "0", "1";
+ 	};
+ };
+ 
 
