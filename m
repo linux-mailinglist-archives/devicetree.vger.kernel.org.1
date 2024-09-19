@@ -1,264 +1,131 @@
-Return-Path: <devicetree+bounces-103792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65BEB97C2C8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 04:10:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A474297C2D3
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 04:23:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF4871F21EAC
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 02:10:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86A7E1C2145C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 02:23:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4BDC1CF8B;
-	Thu, 19 Sep 2024 02:10:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A86071DA4C;
+	Thu, 19 Sep 2024 02:23:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="PbiQn4tz"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NG4KKuHC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFBA0171C2;
-	Thu, 19 Sep 2024 02:10:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.148.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DAEE33080;
+	Thu, 19 Sep 2024 02:23:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726711834; cv=none; b=hVoX9t3WzIrG8rdZrzJLJW0vbAYX++zxjDutHjOFk6dtGdjXZ06qqUMqLQwM/YoWVBmfLqu9B9KFDvKw75IWfcNvDJVAzBr/fjy7/t+rGwXbXqgOHYhaW+3MmWem91rdpfOKYIwbY+DiFC17XPybELeD93Jxeu3NTbwC2fsUs18=
+	t=1726712625; cv=none; b=H8RgnnodeDwqvE6DTBY/OIdeg001fI0J1QN3m9/OxZYtG1HjKMsLsE78U4m36DnkUvtt2AcNxDMQVzF8Vn90ReELSQ7Q0n8ILXacvGIYtbb+KljY89Ehk9TJTgSnHjSjQyf8yII/ePUgwW6xcaU3U8Dqza5AjzLTar734eUHby8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726711834; c=relaxed/simple;
-	bh=GjnnAalKrUo6ZZkksy4vObwETa5MAT4PuvkokRInd08=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DKIRcGmBdrgbmlY7TH8dm5gDbqF83+WDd32kNrMo2Vahd3qWAGWJRuRjVZffuluUOY77Uy1UJmXYK21g+yRpY99a47kK8Dv3ce4+L9DrHmOTLwbHEKRRR31yBecLCyUriFIuwtRzZlohzoFZOTJAexh+ygI1520EIu2R7GsJYco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=PbiQn4tz; arc=none smtp.client-ip=67.231.148.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
-Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
-	by mx0a-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48IITFHX009778;
-	Wed, 18 Sep 2024 19:09:57 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=pfpt0220; bh=PI3aNYe/hvx6qtW3e7Y/iLut/
-	YXbUFclLNSaL99unsg=; b=PbiQn4tzaS4k6PUz0hduiEIzD5RdhKn/wFBT44nh6
-	wc0p+mkPtO/+3ra+mBr7AGPqz6X3HoazB55PbHs73JPzV30FLo6TFtLDxQHRHkO5
-	KZhoBGPtZb2tLncXo7RWTqcMQ2XF3j3HD1wzOGq6Zj6zUzwO5Ggx+j0UD/eP3/+d
-	pcIKm/SspKDKaBg0Af1CUqB8knerKYYGv3nMmsXT7COHwwDwLkFv52tuas1BgrjP
-	CrP3t43in6CVNsoTXFPPadet5GTAa0af2G9mV+1URo8wErPgnxFUo5sC+ONzQNsu
-	UumlAPBeFSguJ5ugXXOSfsm4V8xMtQqZtCYpYC4yT2XMA==
-Received: from dc6wp-exch02.marvell.com ([4.21.29.225])
-	by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 41qdwgf713-1
+	s=arc-20240116; t=1726712625; c=relaxed/simple;
+	bh=fQdh1rwdxhk6nATdB9jFiExYepC36HljZpN22nj/Q6o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Do9iM4MwTGWKRSC0eJNMNRNAvn9ElICfhbr1JGIrJEyA8+IzfQ6LrpcBtK6xsnZBWZzo9hUJBcsM0c1F6Jm1u4SIHuD0SEqxeHScE4RvSq4pe6LSsSnERxFbcD+kX4N1uuTaN9yGV+rkni/nZcK0eCkgDW5Yls5BCFoAUw05ILA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NG4KKuHC; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48IHKWAQ006417;
+	Thu, 19 Sep 2024 02:23:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	cRkAXXKQXQqktqOTPw2UFDlPpF3j7bvKhAXRcQucnQ4=; b=NG4KKuHCMSzC9ybx
+	C9ZwfUMLE5Z0sm6vHC2NeIbWZkpt2LWfW1ZEYrK/DfEeqlJTHnhXb5a5IAxHGfnZ
+	IVYReXrGcnVUmmB94PNoUVIcYdTCzjDVziMrjqEuWc4n8FYSS7NBynGs6rE5dL0b
+	XZIX4UtOQ/OgNVIIinFSLYLHRX1YlBMIgd1aWiOvBk9L8emKhCv04lPcYJfJQNm+
+	U12TFPBObGWaHEwoL8kRJWJlOb6hLQ0OjGI7Z3e/s3jfwrSIHnwNDXPsKyPyBPkZ
+	UAwQWwJe0RhiuSkIRKF+4AC9mncbx9WKABbMNRPhFmcVSapvEf8BnVjKy2JICDL2
+	Atz9OA==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41n4kjkne2-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Sep 2024 19:09:56 -0700 (PDT)
-Received: from DC6WP-EXCH02.marvell.com (10.76.176.209) by
- DC6WP-EXCH02.marvell.com (10.76.176.209) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.4; Wed, 18 Sep 2024 19:09:55 -0700
-Received: from maili.marvell.com (10.69.176.80) by DC6WP-EXCH02.marvell.com
- (10.76.176.209) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
- Transport; Wed, 18 Sep 2024 19:09:55 -0700
-Received: from hyd1403.caveonetworks.com (unknown [10.29.37.84])
-	by maili.marvell.com (Postfix) with SMTP id E20263F704E;
-	Wed, 18 Sep 2024 19:09:50 -0700 (PDT)
-Date: Thu, 19 Sep 2024 07:39:49 +0530
-From: Linu Cherian <lcherian@marvell.com>
-To: Bagas Sanjaya <bagasdotme@gmail.com>
-CC: <suzuki.poulose@arm.com>, <mike.leach@linaro.org>, <james.clark@arm.com>,
-        <linux-arm-kernel@lists.infradead.org>, <coresight@lists.linaro.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <corbet@lwn.net>, <devicetree@vger.kernel.org>, <sgoutham@marvell.com>,
-        <gcherian@marvell.com>
-Subject: Re: [PATCH v10 8/8] Documentation: coresight: Panic support
-Message-ID: <20240919020949.GA735454@hyd1403.caveonetworks.com>
-References: <20240916103437.226816-1-lcherian@marvell.com>
- <20240916103437.226816-9-lcherian@marvell.com>
- <ZujfhpLezHtbXhjs@archie.me>
+	Thu, 19 Sep 2024 02:23:39 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48J2Ncl0005335
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Sep 2024 02:23:38 GMT
+Received: from [10.231.207.28] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 18 Sep
+ 2024 19:23:32 -0700
+Message-ID: <14392fbf-9bf6-4e39-8ba2-59473351a64b@quicinc.com>
+Date: Thu, 19 Sep 2024 10:23:29 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZujfhpLezHtbXhjs@archie.me>
-X-Proofpoint-GUID: N4OEpQ-VPIZHL56J6G_IRQpnxsQeiWxq
-X-Proofpoint-ORIG-GUID: N4OEpQ-VPIZHL56J6G_IRQpnxsQeiWxq
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: pmic: enable rtc
+To: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        <quic_kotarake@quicinc.com>, <quic_kamalw@quicinc.com>,
+        <quic_skakitap@quicinc.com>, <quic_fenglinw@quicinc.com>
+References: <20240902104302.3959670-1-quic_tingguoc@quicinc.com>
+ <f5b768b3-37ad-4bdf-9cb6-b39b14c8ee45@kernel.org>
+Content-Language: en-US
+From: Tingguo Cheng <quic_tingguoc@quicinc.com>
+In-Reply-To: <f5b768b3-37ad-4bdf-9cb6-b39b14c8ee45@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: iNwH0FpVW8GkSFr2muJ26Md8I0t-mLr9
+X-Proofpoint-ORIG-GUID: iNwH0FpVW8GkSFr2muJ26Md8I0t-mLr9
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
+ suspectscore=0 mlxscore=0 clxscore=1011 lowpriorityscore=0 malwarescore=0
+ phishscore=0 impostorscore=0 mlxlogscore=930 priorityscore=1501
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409190015
 
-Hi,
 
-On 2024-09-17 at 07:16:46, Bagas Sanjaya (bagasdotme@gmail.com) wrote:
-> On Mon, Sep 16, 2024 at 04:04:37PM +0530, Linu Cherian wrote:
-> > +3. On a kernel panic, all coresight blocks are disabled, necessary
-> > +   metadata is synced by kernel panic handler.
-> "... and necessary metadata ..."
-> > +
-> > +   System would eventually reboot or boot a crashdump kernel.
-> > +
-> > +4. For  platforms that supports crashdump kernel, raw trace data can be
-> > +   dumped using the coresight sysfs interface from the crashdump kernel
-> > +   itself. Persistent RAM is not a requirement in this case.
-> > +
-> > +5. For platforms that supports persistent RAM, trace data can be dumped
-> > +   using the coresight sysfs interface in the subsequent Linux boot.
-> > +   Crashdump kernel is not a requirement in this case. Persistent RAM
-> > +   ensures that trace data is intact across reboot.
-> > +
-> > +Coresight trace during Watchdog reset
-> > +-------------------------------------
-> > +The main difference between addressing the watchdog reset and kernel panic
-> > +case are below,
-> "... are:"
-> > +Sample commands for testing a Kernel panic case with ETR sink
-> > +-------------------------------------------------------------
-> > +
-> > +1. Boot Linux kernel with "crash_kexec_post_notifiers" added to the kernel
-> > +   bootargs. This is mandatory if the user would like to read the tracedata
-> > +   from the crashdump kernel.
-> > +
-> > +2. Enable the preloaded ETM configuration
-> > +
-> > +    #echo 1 > /sys/kernel/config/cs-syscfg/configurations/panicstop/enable
-> > +
-> > +3. Configure CTI using sysfs interface::
-> > +
-> > +    #./cti_setup.sh
-> > +
-> > +    #cat cti_setup.sh
-> > +
-> > +
-> > +    cd /sys/bus/coresight/devices/
-> > +
-> > +    ap_cti_config () {
-> > +      #ETM trig out[0] trigger to Channel 0
-> > +      echo 0 4 > channels/trigin_attach
-> > +    }
-> > +
-> > +    etf_cti_config () {
-> > +      #ETF Flush in trigger from Channel 0
-> > +      echo 0 1 > channels/trigout_attach
-> > +      echo 1 > channels/trig_filter_enable
-> > +    }
-> > +
-> > +    etr_cti_config () {
-> > +      #ETR Flush in from Channel 0
-> > +      echo 0 1 > channels/trigout_attach
-> > +      echo 1 > channels/trig_filter_enable
-> > +    }
-> > +
-> > +    ctidevs=`find . -name "cti*"`
-> > +
-> > +    for i in $ctidevs
-> > +    do
-> > +            cd $i
-> > +
-> > +            connection=`find . -name "ete*"`
-> > +            if [ ! -z "$connection" ]
-> > +            then
-> > +                    echo "AP CTI config for $i"
-> > +                    ap_cti_config
-> > +            fi
-> > +
-> > +            connection=`find . -name "tmc_etf*"`
-> > +            if [ ! -z "$connection" ]
-> > +            then
-> > +                    echo "ETF CTI config for $i"
-> > +                    etf_cti_config
-> > +            fi
-> > +
-> > +            connection=`find . -name "tmc_etr*"`
-> > +            if [ ! -z "$connection" ]
-> > +            then
-> > +                    echo "ETR CTI config for $i"
-> > +                    etr_cti_config
-> > +            fi
-> > +
-> > +            cd ..
-> > +    done
-> > +
-> > +Note: CTI connections are SOC specific and hence the above script is
-> > +added just for reference.
-> > +
-> > +4. Choose reserved buffer mode for ETR buffer
-> > +    #echo "resrv" > /sys/bus/coresight/devices/tmc_etr0/buf_mode_preferred
-> > +
-> > +5. Enable stop on flush trigger configuration
-> > +    #echo 1 > /sys/bus/coresight/devices/tmc_etr0/stop_on_flush
-> > +
-> > +6. Start Coresight tracing on cores 1 and 2 using sysfs interface
-> > +
-> > +7. Run some application on core 1
-> > +    #taskset -c 1 dd if=/dev/urandom of=/dev/null &
-> > +
-> > +8. Invoke kernel panic on core 2
-> > +    #echo 1 > /proc/sys/kernel/panic
-> > +    #taskset -c 2 echo c > /proc/sysrq-trigger
-> > +
-> > +9. From rebooted kernel or crashdump kernel, read crashdata
-> > +
-> > +    #dd if=/dev/crash_tmc_etr0 of=/trace/cstrace.bin
-> > +
-> > +10. Run opencsd decoder tools/scripts to generate the instruction trace.
+
+On 9/6/2024 8:22 PM, Krzysztof Kozlowski wrote:
+> On 02/09/2024 12:43, Tingguo Cheng wrote:
+>> Add RTC node, the RTC is controlled by PMIC device via spmi bus.
+>>
+>> Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi | 8 ++++++++
+>>   1 file changed, 8 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
+>> index 1369c3d43f86..47d05b897d5a 100644
+>> --- a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
 > 
-> Format all command lines as literal code blocks to be consistent:
+> We achieved consensus allowing sa8775p to stay, but now Qualcomm changes
+> point of view and insists on new approach of dropping sa8775p. Therefore
+> this change does not make much sense in the new approach.
 > 
-> ---- >8 ----
-> diff --git a/Documentation/trace/coresight/panic.rst b/Documentation/trace/coresight/panic.rst
-> index 3b53d91cace8fd..864f6c05b3f7af 100644
-> --- a/Documentation/trace/coresight/panic.rst
-> +++ b/Documentation/trace/coresight/panic.rst
-> @@ -113,7 +113,7 @@ Sample commands for testing a Kernel panic case with ETR sink
->     bootargs. This is mandatory if the user would like to read the tracedata
->     from the crashdump kernel.
->  
-> -2. Enable the preloaded ETM configuration
-> +2. Enable the preloaded ETM configuration::
->  
->      #echo 1 > /sys/kernel/config/cs-syscfg/configurations/panicstop/enable
->  
-> @@ -176,22 +176,26 @@ Sample commands for testing a Kernel panic case with ETR sink
->  Note: CTI connections are SOC specific and hence the above script is
->  added just for reference.
->  
-> -4. Choose reserved buffer mode for ETR buffer
-> +4. Choose reserved buffer mode for ETR buffer::
-> +
->      #echo "resrv" > /sys/bus/coresight/devices/tmc_etr0/buf_mode_preferred
->  
-> -5. Enable stop on flush trigger configuration
-> +5. Enable stop on flush trigger configuration::
-> +
->      #echo 1 > /sys/bus/coresight/devices/tmc_etr0/stop_on_flush
->  
->  6. Start Coresight tracing on cores 1 and 2 using sysfs interface
->  
-> -7. Run some application on core 1
-> +7. Run some application on core 1::
-> +
->      #taskset -c 1 dd if=/dev/urandom of=/dev/null &
->  
-> -8. Invoke kernel panic on core 2
-> +8. Invoke kernel panic on core 2::
-> +
->      #echo 1 > /proc/sys/kernel/panic
->      #taskset -c 2 echo c > /proc/sysrq-trigger
->  
-> -9. From rebooted kernel or crashdump kernel, read crashdata
-> +9. From rebooted kernel or crashdump kernel, read crashdata::
->  
->      #dd if=/dev/crash_tmc_etr0 of=/trace/cstrace.bin
+The new approach(QCS9100+sa8775p compatible) will still use the same 
+PMIC chip(As usually, include sa8775p-pmics.dtsi as it's pmic part). 
+Therefore, from this point, it does make sense in the new approach.
+ From another point, for old boards, this change should have been there.
 
-
-Ack.
-
->  
-> Thanks.
+> Best regards,
+> Krzysztof
 > 
-> -- 
-> An old man doll... just what I always wanted! - Clara
 
-Linu Cherian.
-
+-- 
+Thank you & BRs
+Tingguo
 
 
