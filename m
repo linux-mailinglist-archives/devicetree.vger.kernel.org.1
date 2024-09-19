@@ -1,79 +1,86 @@
-Return-Path: <devicetree+bounces-103903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7652F97C95B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 14:40:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5551897C95F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 14:40:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37AD728467E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:39:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86C5B1C225DF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:40:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 091BE19DF58;
-	Thu, 19 Sep 2024 12:39:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC1FC1991BB;
+	Thu, 19 Sep 2024 12:40:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="oPe/FfHh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DAPLVwzP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 991C419D894;
-	Thu, 19 Sep 2024 12:39:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3982B19DF53;
+	Thu, 19 Sep 2024 12:40:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726749595; cv=none; b=Vwk4eosJivM1WOCs8XrqwT57f2T9+aKAYJYRsGPXcso1KgHebDwXXj0tPVoiyOF9jsdMKsAHYFZw11avY53stYaMPvliATJSWRFpw26FM8+XqOz9GH6ppwrQje2R03N28xIyao6nsdZIo0DI6OJ9V2FmtobQYuDSQlCLw9th0QM=
+	t=1726749607; cv=none; b=OEXsNhYG4VM/Qandvyrj17L0+Ikjvr1IHT7vaoO7893O1BHQ6DHPV9WFC9MDA4j1KuxcPAlG0zguKqDOEJRlCQAW1YTjPC+fKL17p65hbvUjqppyLEBxMudMgZrA9AZyjgYAZsK6vNMMjwktjSpnQ/8CetMOGXu4r1g4TZZcmZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726749595; c=relaxed/simple;
-	bh=iT/z+gt7N6FCrIsgjLpdKSk3oGQDEb+Vb2nnmn2Yo5k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l2cdDPbQqH3159tLKjNstdr1454MioHNnCcyPhFVdP9kKP7LceDfESPaAUL6eGUZTTsgMe7PhkOD2YhAM6kvMdIlJNEa6B7IUbwwbo5E+Jw/y4nsLQW3Dw8IK41pY0dZmgGwJ/g68Kjxy7ajK3Jvxz1dpV79yuG5c6PI5J5FRw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=oPe/FfHh; arc=none smtp.client-ip=217.92.40.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 786EF14858E0;
-	Thu, 19 Sep 2024 14:39:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
-	t=1726749584; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=UBmm9nbuKx5Az853ydHco1hV3oceAC7ff+CGGG7c6PU=;
-	b=oPe/FfHh+kitawSCJxXOgsPXhXaYJ8QQyigAOrqiMEIuoCyJPR0RWMcUjLMycD+FaE+pVA
-	oFC1AyMeBNONTzV0FXu3GIQUjm5TCrphFzMYWFV74/WLLyuSjjP0evNpg8kIW4ZauVes75
-	q3bNFAuOd1WzniHiyFtOfzRAocbnPcyAZyB4t+9DC4d5qi6EKOU7t22zzT/Sj+xkLqLJPo
-	MG2zIMyy0ufJ+kO0+aGgYUp6JBOuU0MgKirc/x8Ey47HmNKD2s6gXhI+SoTSGuhtyAZ1z2
-	f7F5FdEgKzVbNsPkTnZDyWat7rNrfTYWx9lcn9Ore08B1YOaK6xSZNG5LSCRgg==
-Date: Thu, 19 Sep 2024 14:39:40 +0200
-From: Alexander Dahl <ada@thorsis.com>
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Cc: Christian Melki <christian.melki@t2data.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1726749607; c=relaxed/simple;
+	bh=7hM5IwxIWVcQkpCkqyPAN3lBWORY+R++mPpPWbteYyk=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vl4EowWFfxONHivuBN2Rt0+u8YwXzp9DzXO/gQrh9foEqDVve3/QV3xIWQQ63srGSt0pFsn2CbAclyNlasFxYCx0F4mF/MkKPvq8e+yEyIYx4MKN2AFMMaOOcnfXE2y6Cn3bf2KEqP6iclyPfk+UDBuaOTduMxxR5ayF36rugEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DAPLVwzP; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2f75f116d11so8755541fa.1;
+        Thu, 19 Sep 2024 05:40:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726749604; x=1727354404; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ec2PMXOUkfsdcs/oL2kvkQW+d50WPTL2tiu3jRGI1L4=;
+        b=DAPLVwzPBXD6bWkteNVlQKm5QebXfpVXvHyX1tRqOg6RysCV/6N4SbEesOvDjLafSD
+         Wj8JnLrS/VuC5pMeuGr5PkUY0KxcS8lH0MVH/dwH1IbirYrvZyWrCkD7Fij5VpNa2AuY
+         Bi5eis8G15LwI3VViDUb+z+a/3/TOuD20EuclV1cDF7/n7U2HFTKsIuPffqX/HUVjyAv
+         S9QVCqrRAYcvJVwOVPygfOF6UWv9HCfBQ3LJBBT3JDK9NMKiDGBV5CPpCABUo8p/ywkK
+         oss404O7VUCK9cP+7WnsYfSoPEqvIHaSVX4bQmQns7m+H8s7dGqyELmcGLY8R0kpPmcU
+         cjTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726749604; x=1727354404;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ec2PMXOUkfsdcs/oL2kvkQW+d50WPTL2tiu3jRGI1L4=;
+        b=Cb8Zvga1nOxuIhoLn7h8eTOkSN0Ho/OZK/yFQDxqVuiVkuVA/TuAkpzfdG/DOMVEh0
+         uRy0HXH3x/vTGvjL6nneexPJt8D47De1KrAPpqXrxImoziIdry2awiPhZNULps9ChH2b
+         SMDefuWDgpGBfEnJEthrX45qaSKjI5qnjxt5dGylYxMvzj/U8W+Wtha3FcvtDPDcGlwI
+         azCvkhsU2lxFrPJbfef+0XLxPiycx5J8Fu2yka4Qm85qTW7RDdqXbJ4HGrurZSPg6q5j
+         0pVp5cz6r1ErmHDTb7K7fmyVTKQQ1AN8gxYKHo5pYOJMje0EtnrZ0KgQb5RckeTnwwkH
+         9egA==
+X-Forwarded-Encrypted: i=1; AJvYcCUYX4QTbiBNoHTL7V6KEAsuGKmF+lpAMFUxVafaFbmDUtLp/Wv0HVXgFFlH85dyzaXFVTM8iNaCVsXO@vger.kernel.org, AJvYcCWZXif3MLnx1aYCq386nmTWtFyHwAmcym/wDQ1sgEOyDInbrY8jHxOkQ+6a4yyrKdCDO+Gk64g3l3aTedoY@vger.kernel.org, AJvYcCXhpqGW3LD3SqBAtI83+FGq5qlg57cczFvutG61SEib0ZyNI16W1stbBbZS2tWz64D0YiKkU1Z5C4+EmMZ8+g8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YydYyyR+VechEaUhxLRgXH8YSQi4c1QqRKSYvOmrJ7wtwiA/iZp
+	DkejewnFdQIpMBw7c/+9J/Aywt/EMCnCpr5R3LFL+sllol2OsHGeAJTBVkYl
+X-Google-Smtp-Source: AGHT+IH3+FVhZhALnKaeY5afyh+/x/weED266KDJ3Sx9qRtIuvipNscu0eJ6stshOkybbzvtBzJXYw==
+X-Received: by 2002:a2e:602:0:b0:2f6:6198:1cfc with SMTP id 38308e7fff4ca-2f791b5c432mr88043081fa.37.1726749603917;
+        Thu, 19 Sep 2024 05:40:03 -0700 (PDT)
+Received: from Ansuel-XPS. (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e75468393sm20768085e9.42.2024.09.19.05.40.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Sep 2024 05:40:03 -0700 (PDT)
+Message-ID: <66ec1ba3.050a0220.2c6214.5dd4@mx.google.com>
+X-Google-Original-Message-ID: <Zuwbn3UJ8DPNRliS@Ansuel-XPS.>
+Date: Thu, 19 Sep 2024 14:39:59 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-	"moderated list:ARM/Microchip (AT91) SoC support" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v1 09/12] clk: at91: sam9x60: Allow enabling main_rc_osc
- through DT
-Message-ID: <20240919-outsider-extending-e0a926bd23fa@thorsis.com>
-Mail-Followup-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Christian Melki <christian.melki@t2data.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-	"moderated list:ARM/Microchip (AT91) SoC support" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
-References: <20240821105943.230281-1-ada@thorsis.com>
- <20240821105943.230281-10-ada@thorsis.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Lorenzo Bianconi <lorenzo@kernel.org>, upstream@airoha.com
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: airoha: document watchdog for
+ Airoha EN7581
+References: <20240919122759.10456-1-ansuelsmth@gmail.com>
+ <08288a0b-3e10-4f83-8bc7-0587328ee9a0@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,100 +89,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240821105943.230281-10-ada@thorsis.com>
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-Last-TLS-Session-Version: TLSv1.3
+In-Reply-To: <08288a0b-3e10-4f83-8bc7-0587328ee9a0@kernel.org>
 
-Hello Claudiu,
-
-after being busy with other things, I'm back looking at this series.
-As Nicolas pointed out [1], we need three clocks for the OTPC to work,
-quote:
-
-  "for all the products, the main RC oscillator, the OTPC peripheral
-  clock and the MCKx clocks associated to OTP must be enabled."
-
-I have a problem with making the main_rc_osc accessible for both
-SAM9X60 and SAMA7G5 here, see below.
-
-Am Wed, Aug 21, 2024 at 12:59:40PM +0200 schrieb Alexander Dahl:
-> SAM9X60 Datasheet (DS60001579G) Section "23.4 Product Dependencies"
-> says:
+On Thu, Sep 19, 2024 at 02:35:02PM +0200, Krzysztof Kozlowski wrote:
+> On 19/09/2024 14:26, Christian Marangi wrote:
+> > Document watchdog for Airoha EN7581. This SoC implement a simple
+> > watchdog that supports a max timeout of 28 seconds.
+> > 
+> > The watchdog ticks on half the BUS clock and require the BUS frequency
+> > to be provided.
 > 
->     "The OTPC is clocked through the Power Management Controller (PMC).
->     The user must power on the main RC oscillator and enable the
->     peripheral clock of the OTPC prior to reading or writing the OTP
->     memory."
+> Clock provider should implement clk_get_rate()...
+>
+
+The BUS clock is internal and not exposed to the system hence
+clk_get_rate is not possible saddly.
+
+> > 
 > 
-> The code for enabling/disabling that clock is already present, it was
-> just not possible to hook into DT anymore, after at91 clk devicetree
-> binding rework back in 2018 for kernel v4.19.
+> ...
 > 
-> Signed-off-by: Alexander Dahl <ada@thorsis.com>
-> ---
->  drivers/clk/at91/sam9x60.c       | 3 ++-
->  include/dt-bindings/clock/at91.h | 1 +
->  2 files changed, 3 insertions(+), 1 deletion(-)
+> > +maintainers:
+> > +  - Christian Marangi <ansuelsmth@gmail.com>
+> > +
+> > +allOf:
+> > +  - $ref: watchdog.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: airoha,en7581-wdt
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clock-frequency:
+> > +    description: BUS frequency in Hz (timer ticks at half the BUS freq)
+> > +    const: 300000000
 > 
-> diff --git a/drivers/clk/at91/sam9x60.c b/drivers/clk/at91/sam9x60.c
-> index e309cbf3cb9a..4d5ee20b8fc4 100644
-> --- a/drivers/clk/at91/sam9x60.c
-> +++ b/drivers/clk/at91/sam9x60.c
-> @@ -207,7 +207,7 @@ static void __init sam9x60_pmc_setup(struct device_node *np)
->  	if (IS_ERR(regmap))
->  		return;
->  
-> -	sam9x60_pmc = pmc_data_allocate(PMC_PLLACK + 1,
-> +	sam9x60_pmc = pmc_data_allocate(PMC_MAIN_RC + 1,
->  					nck(sam9x60_systemck),
->  					nck(sam9x60_periphck),
->  					nck(sam9x60_gck), 8);
-> @@ -218,6 +218,7 @@ static void __init sam9x60_pmc_setup(struct device_node *np)
->  					   50000000);
->  	if (IS_ERR(hw))
->  		goto err_free;
-> +	sam9x60_pmc->chws[PMC_MAIN_RC] = hw;
->  
->  	hw = at91_clk_register_main_osc(regmap, "main_osc", mainxtal_name, NULL, 0);
->  	if (IS_ERR(hw))
-> diff --git a/include/dt-bindings/clock/at91.h b/include/dt-bindings/clock/at91.h
-> index 3e3972a814c1..f957625cb3ac 100644
-> --- a/include/dt-bindings/clock/at91.h
-> +++ b/include/dt-bindings/clock/at91.h
-> @@ -25,6 +25,7 @@
->  #define PMC_PLLBCK		8
->  #define PMC_AUDIOPLLCK		9
->  #define PMC_AUDIOPINCK		10
-> +#define PMC_MAIN_RC		11
->  
->  /* SAMA7G5 */
->  #define PMC_CPUPLL		(PMC_MAIN + 1)
+> Which bus frequency? Aren't you missing here clock input?
 
-There are IDs defined in the devicetree bindings here, which are used
-both in dts and in driver code as array indexes.  In v1 of the patch
-series I just added a new last element in the end of the generic list
-and used that for SAM9X60.
+I'm putting here property to describe the internal clock to what the
+watchdog is attached. Should I drop this and just hardcode it
+internally to the driver or maybe declare the clock to be 150000000
+directly?
 
-For SAMA7G5 those IDs are branched of from PMC_MAIN in between, making
-SAMA7G5 using a different last element, and different values after
-PMC_MAIN.
+Tick frequency is already not well defined so I tought it was a good
+idea to describe it in DT.
 
-Now we need a new ID for main rc osc, but not only for SAM9X60, but
-also for SAMA7G5.  I'm not sure what the implications would be, if the
-new ID would be added in between before PMC_MAIN, so all values would
-change?  Adding it to the end of the lists would probably be safe, but
-then you would need a diffently named variant for SAMA7G5's different
-IDs.  I find the current status somewhat unfortunate for future
-extensions.  How should this new ID be added here?  What would be the
-way forward?
-
-Greets
-Alex
-
-[1] https://lore.kernel.org/linux-clk/ec34efc2-2051-4b8a-b5d8-6e2fd5e08c28@microchip.com/T/#u
-
-> -- 
-> 2.39.2
-> 
-> 
+-- 
+	Ansuel
 
