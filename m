@@ -1,137 +1,170 @@
-Return-Path: <devicetree+bounces-103829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2273797C60B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 10:40:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37FAF97C632
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 10:49:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47AC51C21FD1
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 08:40:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F151D281DF4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 08:49:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FF831990C7;
-	Thu, 19 Sep 2024 08:40:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B96731922D6;
+	Thu, 19 Sep 2024 08:49:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IxqfnCPu"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FVFJlCOS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com [209.85.217.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB600198A30;
-	Thu, 19 Sep 2024 08:40:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2652FC0E;
+	Thu, 19 Sep 2024 08:49:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726735246; cv=none; b=TAHo8GZgpn1K1cERAhS37dnPVZka11ovKWPldfiPyoIMQ+/uObhxHzz/uO7EEkW5UPxLAgCdj7UgpHq/XDlSa2asLAU3c4rYllOYWx3lANHh8i/pY+N5uuWehTUBZuAigg2jT9Uz1zVHouT+0OsxSI8VphmSM9rMRiUb/F1lqGg=
+	t=1726735742; cv=none; b=QGzS8/Ejr6fAyfhXmL5/ypuFt18o4W2ZZC5JKffRu+vxe5wX2Y22jfj7Sa8SlL3WVH5q001JebxZ3dryI7JMFgLJ3ww+WjovFwCPujyixhm6lStBbnRA2s8Y+FgiznwWfeepRV5Dzq/QTLLsv4yM28JZAakeIhKZ4vv/O8ERanI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726735246; c=relaxed/simple;
-	bh=D0CUj5d6cc8AqQcicr95QuM3BKdQKimPOjS1AgGc/c8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IkcprS9+ZmMhn2MFFjqOAxn2MRuj5Lxj1xEgKtDoOCtnPw3lD74iJa5ILn+fsctWayUL3DF14hYpMH9fBhd6V78Haai2cKNDfStxaMiBxlD8dZ3pW0o3VbidrDGIOLiJXNdmSZt3y0qJPbtf75bnEAENhLLCgAL7pEieK4cPCkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IxqfnCPu; arc=none smtp.client-ip=209.85.217.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-49bcd11fc37so182383137.3;
-        Thu, 19 Sep 2024 01:40:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726735243; x=1727340043; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xykemnfjHLjw1rPIo+7O6AS00C6CkkoCorxyDrzMaEQ=;
-        b=IxqfnCPuWq0aTqLERSIlOiIpwacHfWTvlWFPPxTksJjhS2vt2ntz05f1qmnClbD4fJ
-         PU2FGlTIpcvJTwYIzDBlNRHCYjxYLOpMsN/y9lbup76w1SoJvMuYl9LKzx5On+C0dTzJ
-         /c7rPL2JrdEx7vyVukXKaFL0+KdveXPN9ZihOvVBjx2F52BtdhwYUX5ntVNmOEXLLwFV
-         STH4K1tBf5nU9Tfwzcu8ShIf/iP1JG7cxZy6UqvNkVxzlWTKWOHCse7UFgnEmaV4oZZK
-         e0jFcHCQaScxd78NckHpONcqgsPzX4fnsL3+5xffXPJS83fFO2d6u2o5HDA2CVuuKTmu
-         uD0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726735243; x=1727340043;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xykemnfjHLjw1rPIo+7O6AS00C6CkkoCorxyDrzMaEQ=;
-        b=qWsKzq9CSSGC/i/ctk+2yZjt3ZhibOnLsFPovwK69lswussNOSWq1aCXO6IbUVLVHk
-         LTd/FhXdlIWNFKF5TYA2z/C9z+Fj9VqdoP1c/aT/otP+Yd+skRlFI6/DOvPtd3gJWGor
-         k6zFlS8F13+cJCg0QdHOCsB0AG8tw1UVaRw8hGexdW6+ZNcyjBBjCrvX10vipA5mi/wA
-         yB97X6z8X+DgzHgDDBvCL9uNjodK2kCU7aOlwrApm/jkV0pwnHso+fKgrvF6qWaACkUz
-         g3aF2ligj4nuZ+rKOYJdDNI31lhIr8jHbtkfj7F930evnaMjH9bim2raUN+sMNOauZj0
-         UfDA==
-X-Forwarded-Encrypted: i=1; AJvYcCU7xw/JWmy52kWpzYNA1mWo2+wSEg2URjMVF3m8hJmFyrk7FQxeQh5wihK4xIhlWOzwcJaKV9YPIvyP@vger.kernel.org, AJvYcCUTHapgoPAyvgGgmuICY22biBM8n4in6wqMhv0YGxGIKtZRSmcpkvju1Iy+5c9/6MNIA7/pcsAy5Zs=@vger.kernel.org, AJvYcCUfHUs9OJDNRYYqkMmrBYo2SiM3JJOW06a0D/qCSLe4SL4ozzRJzky32ViCRO5krG7CI1APQsjYcwp2@vger.kernel.org, AJvYcCVHO9M0HTO9Big+vs6zrYqotjrdAE0oR9DDZG03pQbdbKu+fNsyfK6ra2XBzNz0qTuSQAvstRIUK4E1PbZp@vger.kernel.org, AJvYcCVu3G20I1T09Gcn0QBMq8Um3GuTOxm4VFW0DKaAmxCwVwHFlJkHkeCkdwE/akm46+fIejSd9qnYeG8eJQ==@vger.kernel.org, AJvYcCW/kkuYeNQZ/JL6RbuyAkviemGHVHvN/gkOLHFLFfFMpXTgaq81a8AS4m+NcTYm+CoiSITtz+aNzxRqGcY30w==@vger.kernel.org, AJvYcCXHKrkNQONjmFIzA1sLUoCUYLvao//e62WGcnlneDghfeziAmIrWYn4QInPTIdYSZoRsoquM76Dkzsu@vger.kernel.org, AJvYcCXJpdpLoxg67umQGfE4iBdNMdSZr0SHnS2bhl6VAJ1NC2GNW4rSjkM5CwRVPFcdaYlBVRwJhyC5ERy84sI=@vger.kernel.org, AJvYcCXn0kgOg1WcFfP7P6b/OAv3lK6ULCmTOKsPo0ncIEqGsSO2mBmF71daRkLAUDKZdp3W3JqGlYd9rLHtTO2Sc1++TPY=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzN3cEU7FsFpxo4NpzVagGxAY/UsgPmUVRqjndQ8zAeaUYELiO
-	0KsDjK8fF7cn4oLurGNaMbvL2bjDwzNZSqyqNexSyiyOCOzTKx29i8JXS9rSPdxzxdPDls9UeuZ
-	GHIqqlIEylGw4e6xs5gh7AbZipH4=
-X-Google-Smtp-Source: AGHT+IEPF6qaPSTwKWIjFiNSfRRNnkJYm1P330LaZ6f6Fgj87ECtB4FGVzstCMCjXzBEMRn+f/qNz2tsedSZyWrs7oI=
-X-Received: by 2002:a05:6102:38d1:b0:49b:f5ed:4bcb with SMTP id
- ada2fe7eead31-49d4157db8cmr17162683137.24.1726735243511; Thu, 19 Sep 2024
- 01:40:43 -0700 (PDT)
+	s=arc-20240116; t=1726735742; c=relaxed/simple;
+	bh=Xycib8bl7thCGbYvoJLXnNtbcDi/AIgIEqbrTsj8i9A=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=G4x+esgU5pYosta/Wd2Z4Rf1u2czw7ChCwxQbebNXb66CQ/EG4Ui2BX/R1mQGLzXTTrLOysVhUMRGe4Xnbeho6SdXT/eFwPrIl5l1V3Ux15+QdwvhircGvo6L0U8GQsKuPXoHCkghAkBCUlsNjQu5CdXZsFB5QH8x1zMvjjYMzc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FVFJlCOS; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48J11feT006768;
+	Thu, 19 Sep 2024 08:48:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	qcppdkim1; bh=8P8jp37VuVHU6HERyHf8csPpU1ieS8Rj655puJrSMSs=; b=FV
+	FJlCOSrAppaCHBjwT91n9yjSP26iYeBz+o6em5dwAbdu0XCmdn/MDTdFIqHzircd
+	zAg8zD4sZmg2xFCESp36ToGWq2AxFMmllq7AaKnOx1pw8wfBsTcX0+rQqSGEUlmr
+	L7znY2bzjuY7IzW3Bq6pSNiiBsMGDC/YVVclLHPEyL2NTihC728PRPrcUSFSbDTn
+	RoUcvsGv1aLkTCVdr+mpxSEiY+xFzqfTY5idieBh13dpxpx3gxAuaFrWL+1QrHhc
+	wxgP/o1gcTqhKA83t2nyg+GCWl0UHaR8cuxeil98bGWjasT60U+Zn4SqdJFXXZZl
+	G8G8v+M3nZNF9lVuky7g==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41n4j6vren-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Sep 2024 08:48:55 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48J8mrvW008190
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Sep 2024 08:48:53 GMT
+Received: from hu-sachgupt-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 19 Sep 2024 01:48:48 -0700
+From: Sachin Gupta <quic_sachgupt@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_cang@quicinc.com>,
+        <quic_nguyenb@quicinc.com>, <quic_bhaskarv@quicinc.com>,
+        <quic_mapa@quicinc.com>, <quic_narepall@quicinc.com>,
+        <quic_nitirawa@quicinc.com>, <quic_rampraka@quicinc.com>,
+        <quic_sachgupt@quicinc.com>, <quic_sartgarg@quicinc.com>
+Subject: [PATCH V3] arm64: dts: qcom: qcs6490-rb3gen2: Add SD Card node
+Date: Thu, 19 Sep 2024 14:18:26 +0530
+Message-ID: <20240919084826.1117-1-quic_sachgupt@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240913-starqltechn_integration_upstream-v4-0-2d2efd5c5877@gmail.com>
- <20240913-starqltechn_integration_upstream-v4-8-2d2efd5c5877@gmail.com>
- <wywp6vj2pqqe7to55k7ssh5sbqrmy7emvwruvm2waytancf3r4@aygtw3y6huwx>
- <CABTCjFAvXYrRJS3Dwf-TMq3OW_vN1hskk+qPjosbRym7xOvy1Q@mail.gmail.com> <6886f561-b9e4-468b-9515-72053d57911f@kernel.org>
-In-Reply-To: <6886f561-b9e4-468b-9515-72053d57911f@kernel.org>
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Thu, 19 Sep 2024 11:40:32 +0300
-Message-ID: <CABTCjFDKuEM2wogLcJXX+0eCOTCDUSycPi7JCjvdRCbXaP2EOg@mail.gmail.com>
-Subject: Re: [PATCH v4 08/27] mfd: max77693: remove unused declarations
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, Simona Vetter <simona@ffwll.ch>, 
-	cros-qcom-dts-watchers@chromium.org, Konrad Dybcio <konradybcio@kernel.org>, 
-	Simona Vetter <simona.vetter@ffwll.ch>, linux-pm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
-	linux-leds@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 8vBpyNYwEwu2CLIa_WaECk3L3PDpYlCo
+X-Proofpoint-GUID: 8vBpyNYwEwu2CLIa_WaECk3L3PDpYlCo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=768
+ mlxscore=0 malwarescore=0 bulkscore=0 priorityscore=1501 clxscore=1015
+ adultscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2408220000
+ definitions=main-2409190056
 
-=D1=87=D1=82, 19 =D1=81=D0=B5=D0=BD=D1=82. 2024=E2=80=AF=D0=B3. =D0=B2 10:0=
-0, Krzysztof Kozlowski <krzk@kernel.org>:
->
-> On 18/09/2024 14:53, Dzmitry Sankouski wrote:
-> > =D0=BF=D0=BD, 16 =D1=81=D0=B5=D0=BD=D1=82. 2024=E2=80=AF=D0=B3. =D0=B2 =
-12:10, Krzysztof Kozlowski <krzk@kernel.org>:
-> >>
-> >> On Fri, Sep 13, 2024 at 06:07:51PM +0300, Dzmitry Sankouski wrote:
-> >>> Remove `enum max77693_irq_source` declaration because unused.
-> >>>
-> >>> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> >>> ---
-> >>>  include/linux/mfd/max77693-private.h | 11 -----------
-> >>>  1 file changed, 11 deletions(-)
-> >>
-> >> Please split your patchset per subsystems. There is no dependency on M=
-FD
-> >> bits from your DTS... (if there is, this needs to be fixed anyway)
-> >
-> > Indeed, my dts has no dependency on this patch.
-> > However, my dts has dependency on MAX77705, so AFAIU,
-> > I should send this patch separately, while leaving other drivers in sam=
-e
-> > patchset, right?
->
-> How DTS could have dependency on MAX77705? It's a clear no go - broken
-> patch. And something very weird, almost never happening for new hardware.
->
-Oh right, dts only depends on driver bindings, not driver code, so I
-can send dts
-patches with bindings in separate series, and per subsystem series for new
-driver code.
+Add SD Card node for Qualcomm qcs6490-rb3gen2 Board.
+
+Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
+---
+
+Changes from v2:
+ - Moved status "okay" at the last. (Thanks Dmitry)
+
+Changes from v1:
+ - Moving the pinctrl-related nodes below the PINCTRL comment and relocating
+   the sd-cd node within the PINCTRL-related TLMM section. (Thanks Dmitry)
+---
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 33 ++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+index 0d45662b8028..5d81fa2ce86a 100644
+--- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
++++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+@@ -716,6 +716,18 @@
+ 	status = "okay";
+ };
+ 
++&sdhc_2 {
++	pinctrl-0 = <&sdc2_clk>, <&sdc2_cmd>, <&sdc2_data>, <&sd_cd>;
++	pinctrl-1 = <&sdc2_clk_sleep>, <&sdc2_cmd_sleep>, <&sdc2_data_sleep>, <&sd_cd>;
++
++	vmmc-supply = <&vreg_l9c_2p96>;
++	vqmmc-supply = <&vreg_l6c_2p96>;
++
++	cd-gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
++
++	status = "okay";
++};
++
+ &tlmm {
+ 	gpio-reserved-ranges = <32 2>, /* ADSP */
+ 			       <48 4>; /* NFC */
+@@ -812,6 +824,21 @@
+ 	};
+ };
+ 
++&sdc2_clk {
++	bias-disable;
++	drive-strength = <16>;
++};
++
++&sdc2_cmd {
++	bias-pull-up;
++	drive-strength = <10>;
++};
++
++&sdc2_data {
++	bias-pull-up;
++	drive-strength = <10>;
++};
++
+ &tlmm {
+ 	lt9611_irq_pin: lt9611-irq-state {
+ 		pins = "gpio24";
+@@ -819,4 +846,10 @@
+ 		drive-strength = <2>;
+ 		bias-disable;
+ 	};
++
++	sd_cd: sd-cd-state {
++		pins = "gpio91";
++		function = "gpio";
++		bias-pull-up;
++	};
+ };
+-- 
+2.17.1
+
 
