@@ -1,201 +1,298 @@
-Return-Path: <devicetree+bounces-103943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1B5997CB7E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 17:15:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEA9E97CB8A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 17:20:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BB2F1F24D2C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 15:15:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC7A51C23897
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 15:20:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A03D1A08C2;
-	Thu, 19 Sep 2024 15:15:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 639071922C9;
+	Thu, 19 Sep 2024 15:20:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LWMW1dx8"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="A55hCsmd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BADF01A01D8;
-	Thu, 19 Sep 2024 15:14:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 933611DDC9;
+	Thu, 19 Sep 2024 15:20:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726758909; cv=none; b=WreRwFPKSfuku/tm1q1oNalrHH0pJdQxl5apaHqIpfATg4KIryBbm+kHN4ib2O7+u+HgyReU/d2vFvvI/Xxp4P3rtJBiWRtAq3f/olQYG/DiwnsKUJI+U8tsZEg1m06nNRTk2Qp7h81F3KysmjSl6BurD+58s3HHE99x3C+F7qk=
+	t=1726759218; cv=none; b=cB/zRqUn44TD32AwBimAy+kTbsOGSeV9u1C7HLrSCRDyNsppNSfsau0TNPsMy27dDWu8wQFc7vFUOn7E6Sdr8mD1F/zduD0aUwjIMwYUuIxjyr7HXxjYmnPBg0wE+ENay3upHpOB5ZwJhFsepo1ztnuGYnqFeAK+gUcB/r0My7U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726758909; c=relaxed/simple;
-	bh=B2/FOVC9v9i8iEw2MGpo6NCNky8mexa2QIr8h7pOLIo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r/0Kj6J5dtDF6bshcXx0cZWP0EBmqhiTmsjmlK0sR361xIV/k4HTeYQyJ3/IjnyxYaieWOhKX0gs6lQLTkBLLbXjC1Tq7Jp9Th8er13TJdHJ1DTP0mfM9NMNYNeBaC9PMsEoNOP510LXrBtPBpDQMiO0hCi7R6DTkC4ksqpuzMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LWMW1dx8; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2da4e84c198so794643a91.0;
-        Thu, 19 Sep 2024 08:14:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726758875; x=1727363675; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=kNWssd1E6Jef4MU7zQ3uq+JxdfhSZWwf9f7R1jt9wF0=;
-        b=LWMW1dx8RvVXT33CxxEHPzoIgYTK/DJSGXFo42a2udOc4uiorLL1sPuY1YFq2rSScw
-         oNkpkc1nvqJPWS3p9a50G6Z53t4pPp7zD3cmLM5tkCtT9YR7ir0llj/FTTb0ASDiKXVJ
-         rR4ylmJxjK3A9CjcXULPSCcTyl8FngmU/3agOVM04mIW1swcM+fTxu8gQrZmPuDnyP8d
-         CnHB4DuyRPBnjI8jX/yP1fYNLp/pArEokQfc+R3I1GOL9ZIX5gqZqFjjYVOtO23VSKeu
-         Ghnjmeyo/rI5QZasYVMv1IDYz4W8ZVMlYCGpgwmLRUGpRbtVLpG90aY5uxFMQJTH0nEs
-         I4vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726758875; x=1727363675;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kNWssd1E6Jef4MU7zQ3uq+JxdfhSZWwf9f7R1jt9wF0=;
-        b=WAgDFK87EBTY5ekYQOD912/Uwiaa4KB7Q4rnmgKj7DxWbsPv5BMQm1aUZBBd4x1rAA
-         3myk5+DH5mQuqcI0O5RSwN8NVElH40WalqAni6qexs98rMW8/dEE/n5SlCjXuQc0Fk6P
-         FVQmjkAn8QYRqdVMVvW/Ir8OegZg5Wg3BwkLxPDAaqxPUTp+h5iHy9NJN8AeIagaeEfa
-         j+Z8mMK0cZVGz5YIoKZLC+mjLxl3IhY2XuWYa0adSOWX9b6a6ffjleuFcKMwz5fA5NNz
-         wYVWpl+eJb2ZASGH8PID16TJiSFXUKxj842zUm5apdpiDDb624nopt42BGdn2GGCzC6o
-         ruNg==
-X-Forwarded-Encrypted: i=1; AJvYcCU8OMOPZqMsP/5QBtAkflg2rJFe8KyPNQLOWvptZUHN9uv+WZaSyjhjX8tWXuxIDcxHdmCpxiw8OaBDp0+A@vger.kernel.org, AJvYcCUTOLzBvfFi+kyd5B95060802fOkDKRe8HFr6Yzq4hPIlkp3gc7Vg6C3/V8A3OnxDaJvZFopWF9G7my@vger.kernel.org, AJvYcCWIfl+e8CjLcxTCmAFy4HzTyH+pusuYGhgKVNrc3HgJfnYyBHPkZh9+4cIstcAAaNi1GKz3V9SymMA2Hgc=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyD0eFr3r0qfDRBskfProjeMHLe411j7fV/UYkKuoxbW/K/jigG
-	cEXddfac4BKQMyUOj4fPpCxKYNHyaW7TAAok4/ulAb5NW6LKQUFA
-X-Google-Smtp-Source: AGHT+IEi3AowNzO8i9uDs0sXoc447ClTKz2IawdQrcWq92LMtho7EyBxNfabXKon3xWwbNordYRlVw==
-X-Received: by 2002:a17:90a:684a:b0:2d3:babf:f9a3 with SMTP id 98e67ed59e1d1-2db9ff79c75mr26073042a91.2.1726758874968;
-        Thu, 19 Sep 2024 08:14:34 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2dd6ee984f0sm1990263a91.19.2024.09.19.08.14.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Sep 2024 08:14:33 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <e9c4749a-cb15-44a6-ba6b-59beede257df@roeck-us.net>
-Date: Thu, 19 Sep 2024 08:14:31 -0700
+	s=arc-20240116; t=1726759218; c=relaxed/simple;
+	bh=OGLUCgDWH562twCZsYpJURmvO0GqslL15kZSjFqgcgY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SInVDImXt8eFxNNx+k9a8Be8qBYmBnrFNM/1E4Q2PQYOG48dufQHaiAUX8f5aYYbZOPYissVmV9cvrz8inmdLk5SIt83Vx1y/HezIzU2HB2po6zv6H8dKj/xe0eh3opMAyiTg+JNufOCtEqhaaB1IQEjv9ZSKetyvizNTrbqG3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=A55hCsmd; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id A959620454;
+	Thu, 19 Sep 2024 17:20:14 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id Qo0bG5SzFI2j; Thu, 19 Sep 2024 17:20:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1726759213; bh=OGLUCgDWH562twCZsYpJURmvO0GqslL15kZSjFqgcgY=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=A55hCsmdEO8Gznbzp2FRJwmJjccXj+GTJF6zPvzNisXBEsznw9wdjCwIQI166AcPo
+	 kIlEko3sMTln1yqa2b1Za3GTR5vGdGxbmnuJg2f8en3Nup9x+isUhs/IRV5pTH0Ynt
+	 u+2pdEmp5NHsOrDKIJlx8SYiCnhmyyby3o3E2P6gZZdtT1uhtvtzd1GKFHgsy3XmnK
+	 AEK+8+nzGAf8l5C+MbfkqSlMMMr1xiFqB3xB+dVL1uInlA13sT8rKg2ZzZyFnX5kfm
+	 +baHz/b17dQj2fwTqdKwNKPDHAL7wxLx7RLOAIEXi6XAeLjxeeTjhwnwa2RVxeIf0x
+	 rHvLk+VwG0r4Q==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: kauschluss@disroot.org
+Cc: airlied@gmail.com,
+	alim.akhtar@samsung.com,
+	conor@kernel.org,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	inki.dae@samsung.com,
+	krzk@kernel.org,
+	kyungmin.park@samsung.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	robh@kernel.org,
+	simona@ffwll.ch,
+	sw0312.kim@samsung.com,
+	tzimmermann@suse.de
+Subject: [PATCH 5/6] drm/exynos: exynos7_drm_decon: add driver data and support for Exynos7870
+Date: Thu, 19 Sep 2024 20:49:39 +0530
+Message-ID: <20240919-exynosdrm-decon-v1-5-8c3e3ccffad5@disroot.org>
+In-Reply-To: <20240919-exynosdrm-decon-v1-0-6c5861c1cb04@disroot.org>
+References: <20240919-exynosdrm-decon-v1-0-6c5861c1cb04@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: hwmon: Add adt7462
-To: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Chanh Nguyen <chanh@os.amperecomputing.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-kernel@vger.kernel.org, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
- Open Source Submission <patches@amperecomputing.com>,
- Phong Vo <phong@os.amperecomputing.com>,
- Thang Nguyen <thang@os.amperecomputing.com>,
- Quan Nguyen <quan@os.amperecomputing.com>,
- Khanh Pham <khpham@amperecomputing.com>
-References: <20240918103212.591204-1-chanh@os.amperecomputing.com>
- <20240918220553.GA2216504-robh@kernel.org>
- <d825a93f-be5c-45b9-a8d4-5c412ddec232@amperemail.onmicrosoft.com>
- <2229b659-c753-4f56-a1ab-7e8984f9147f@kernel.org>
- <d1a2133e-92d2-492b-9a82-047a9fe80cf6@amperemail.onmicrosoft.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <d1a2133e-92d2-492b-9a82-047a9fe80cf6@amperemail.onmicrosoft.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On 9/19/24 08:02, Chanh Nguyen wrote:
-> 
-> 
-> On 19/09/2024 17:39, Krzysztof Kozlowski wrote:
->> [EXTERNAL EMAIL NOTICE: This email originated from an external sender. Please be mindful of safe email handling and proprietary information protection practices.]
->>
->>
->> On 19/09/2024 11:43, Chanh Nguyen wrote:
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: onnn,adt7462
->>>>> +
->>>>> +  reg:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  resets:
->>>>> +    maxItems: 1
->>>>
->>>> How would this work? 'resets' generally is used for on-chip devices and
->>>> a reset controller. That doesn't exist at the board level. A standalone
->>>> device typically uses a GPIO lines if there's a s/w controlled reset.
->>>> That would be the 'reset-gpios' property.
->>>>
->>>
->>> Thank Rob for your comments! The ADT7462 includes an active low reset
->>> pin (Pin #14).
->>>
->>> I'll change 'resets' into the 'reset-gpios' property.
->>>
->>> The example in the binding will be
->>
->> The question how did it work in the first place is still valid... I
->> think we might benefit from asking people to post their upstreamed DTS.
->> Otherwise we will take broken or half-baked bindings, because we never
->> saw the bigger picture. :(
->>
-> 
-> Thank Krzysztof,
-> 
-> I saw the ADT7462 includes an active low reset pin (Pin #14) to reset device via I/O pin. So, I introduced a reset property follow the device datasheet.
-> 
-> But the adt7462 driver has not yet implemented this property. My platform also doesn't design this pin on board, so I don't need it at least now.
-> 
-> Anyway, I hope Rob, Guenter and Krzysztof can give me advice on whether I should add this property to the binding?
-> 
+Add support for Exynos 7870 DECON in the Exynos 7 DECON driver.
 
-Not from my perspective, and I won't let you add it to the driver unless you can
-actually test it. Really, this is such an old chip that it would make more sense
-to just leave its driver alone unless there is a problem with it. Why didn't you
-just add the chip to the list of trivial devices ?
+Some Exynos 7 series SoCs (Exynos 7580 onwards) have different
+register values. In order to address such changes, include a driver
+data struct (named decon_data) so that correct base addresses and
+shift values can be provided.
 
-Guenter
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+ drivers/gpu/drm/exynos/exynos7_drm_decon.c | 58 ++++++++++++++++++++++--------
+ drivers/gpu/drm/exynos/regs-decon7.h       | 15 ++++----
+ 2 files changed, 51 insertions(+), 22 deletions(-)
 
+diff --git a/drivers/gpu/drm/exynos/exynos7_drm_decon.c b/drivers/gpu/drm/exynos/exynos7_drm_decon.c
+index 7f0985eb216e..4d93d2d7959f 100644
+--- a/drivers/gpu/drm/exynos/exynos7_drm_decon.c
++++ b/drivers/gpu/drm/exynos/exynos7_drm_decon.c
+@@ -37,6 +37,24 @@
+ 
+ #define WINDOWS_NR	2
+ 
++struct decon_data {
++	unsigned int vidw_buf_start_base;
++	unsigned int shadowcon_win_protect_shift;
++	unsigned int wincon_burstlen_shift;
++};
++
++static struct decon_data exynos7_decon_data = {
++	.vidw_buf_start_base = 0x80,
++	.shadowcon_win_protect_shift = 10,
++	.wincon_burstlen_shift = 11,
++};
++
++static struct decon_data exynos7870_decon_data = {
++	.vidw_buf_start_base = 0x880,
++	.shadowcon_win_protect_shift = 8,
++	.wincon_burstlen_shift = 10,
++};
++
+ struct decon_context {
+ 	struct device			*dev;
+ 	struct drm_device		*drm_dev;
+@@ -55,11 +73,19 @@ struct decon_context {
+ 	wait_queue_head_t		wait_vsync_queue;
+ 	atomic_t			wait_vsync_event;
+ 
++	const struct decon_data *data;
+ 	struct drm_encoder *encoder;
+ };
+ 
+ static const struct of_device_id decon_driver_dt_match[] = {
+-	{.compatible = "samsung,exynos7-decon"},
++	{
++		.compatible = "samsung,exynos7-decon",
++		.data = &exynos7_decon_data,
++	},
++	{
++		.compatible = "samsung,exynos7870-decon",
++		.data = &exynos7870_decon_data,
++	},
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, decon_driver_dt_match);
+@@ -92,8 +118,9 @@ static void decon_shadow_protect_win(struct decon_context *ctx,
+ 				     unsigned int win, bool protect)
+ {
+ 	u32 bits, val;
++	unsigned int shift = ctx->data->shadowcon_win_protect_shift;
+ 
+-	bits = SHADOWCON_WINx_PROTECT(win);
++	bits = SHADOWCON_WINx_PROTECT(shift, win);
+ 
+ 	val = readl(ctx->regs + SHADOWCON);
+ 	if (protect)
+@@ -291,6 +318,7 @@ static void decon_win_set_pixfmt(struct decon_context *ctx, unsigned int win,
+ {
+ 	unsigned long val;
+ 	int padding;
++	unsigned int shift = ctx->data->wincon_burstlen_shift;
+ 
+ 	val = readl(ctx->regs + WINCON(win));
+ 	val &= ~WINCONx_BPPMODE_MASK;
+@@ -298,44 +326,44 @@ static void decon_win_set_pixfmt(struct decon_context *ctx, unsigned int win,
+ 	switch (fb->format->format) {
+ 	case DRM_FORMAT_RGB565:
+ 		val |= WINCONx_BPPMODE_16BPP_565;
+-		val |= WINCONx_BURSTLEN_16WORD;
++		val |= WINCONx_BURSTLEN_16WORD(shift);
+ 		break;
+ 	case DRM_FORMAT_XRGB8888:
+ 		val |= WINCONx_BPPMODE_24BPP_xRGB;
+-		val |= WINCONx_BURSTLEN_16WORD;
++		val |= WINCONx_BURSTLEN_16WORD(shift);
+ 		break;
+ 	case DRM_FORMAT_XBGR8888:
+ 		val |= WINCONx_BPPMODE_24BPP_xBGR;
+-		val |= WINCONx_BURSTLEN_16WORD;
++		val |= WINCONx_BURSTLEN_16WORD(shift);
+ 		break;
+ 	case DRM_FORMAT_RGBX8888:
+ 		val |= WINCONx_BPPMODE_24BPP_RGBx;
+-		val |= WINCONx_BURSTLEN_16WORD;
++		val |= WINCONx_BURSTLEN_16WORD(shift);
+ 		break;
+ 	case DRM_FORMAT_BGRX8888:
+ 		val |= WINCONx_BPPMODE_24BPP_BGRx;
+-		val |= WINCONx_BURSTLEN_16WORD;
++		val |= WINCONx_BURSTLEN_16WORD(shift);
+ 		break;
+ 	case DRM_FORMAT_ARGB8888:
+ 		val |= WINCONx_BPPMODE_32BPP_ARGB | WINCONx_BLD_PIX |
+ 			WINCONx_ALPHA_SEL;
+-		val |= WINCONx_BURSTLEN_16WORD;
++		val |= WINCONx_BURSTLEN_16WORD(shift);
+ 		break;
+ 	case DRM_FORMAT_ABGR8888:
+ 		val |= WINCONx_BPPMODE_32BPP_ABGR | WINCONx_BLD_PIX |
+ 			WINCONx_ALPHA_SEL;
+-		val |= WINCONx_BURSTLEN_16WORD;
++		val |= WINCONx_BURSTLEN_16WORD(shift);
+ 		break;
+ 	case DRM_FORMAT_RGBA8888:
+ 		val |= WINCONx_BPPMODE_32BPP_RGBA | WINCONx_BLD_PIX |
+ 			WINCONx_ALPHA_SEL;
+-		val |= WINCONx_BURSTLEN_16WORD;
++		val |= WINCONx_BURSTLEN_16WORD(shift);
+ 		break;
+ 	case DRM_FORMAT_BGRA8888:
+ 	default:
+ 		val |= WINCONx_BPPMODE_32BPP_BGRA | WINCONx_BLD_PIX |
+ 			WINCONx_ALPHA_SEL;
+-		val |= WINCONx_BURSTLEN_16WORD;
++		val |= WINCONx_BURSTLEN_16WORD(shift);
+ 		break;
+ 	}
+ 
+@@ -351,8 +379,8 @@ static void decon_win_set_pixfmt(struct decon_context *ctx, unsigned int win,
+ 
+ 	padding = (fb->pitches[0] / fb->format->cpp[0]) - fb->width;
+ 	if (fb->width + padding < MIN_FB_WIDTH_FOR_16WORD_BURST) {
+-		val &= ~WINCONx_BURSTLEN_MASK;
+-		val |= WINCONx_BURSTLEN_8WORD;
++		val &= ~WINCONx_BURSTLEN_MASK(shift);
++		val |= WINCONx_BURSTLEN_8WORD(shift);
+ 	}
+ 
+ 	writel(val, ctx->regs + WINCON(win));
+@@ -397,6 +425,7 @@ static void decon_update_plane(struct exynos_drm_crtc *crtc,
+ 	unsigned int win = plane->index;
+ 	unsigned int cpp = fb->format->cpp[0];
+ 	unsigned int pitch = fb->pitches[0];
++	unsigned int vidw_addr0_base = ctx->data->vidw_buf_start_base;
+ 
+ 	if (ctx->suspended)
+ 		return;
+@@ -413,7 +442,7 @@ static void decon_update_plane(struct exynos_drm_crtc *crtc,
+ 
+ 	/* buffer start address */
+ 	val = (unsigned long)exynos_drm_fb_dma_addr(fb, 0);
+-	writel(val, ctx->regs + VIDW_BUF_START(win));
++	writel(val, ctx->regs + VIDW_BUF_START(vidw_addr0_base, win));
+ 
+ 	padding = (pitch / cpp) - fb->width;
+ 
+@@ -695,6 +724,7 @@ static int decon_probe(struct platform_device *pdev)
+ 
+ 	ctx->dev = dev;
+ 	ctx->suspended = true;
++	ctx->data = of_device_get_match_data(dev);
+ 
+ 	i80_if_timings = of_get_child_by_name(dev->of_node, "i80-if-timings");
+ 	if (i80_if_timings)
+diff --git a/drivers/gpu/drm/exynos/regs-decon7.h b/drivers/gpu/drm/exynos/regs-decon7.h
+index 5bc5f1db5196..216c106dac8f 100644
+--- a/drivers/gpu/drm/exynos/regs-decon7.h
++++ b/drivers/gpu/drm/exynos/regs-decon7.h
+@@ -48,7 +48,7 @@
+ /* SHADOWCON */
+ #define SHADOWCON				0x30
+ 
+-#define SHADOWCON_WINx_PROTECT(_win)		(1 << (10 + (_win)))
++#define SHADOWCON_WINx_PROTECT(_shf, _win)	(1 << ((_shf) + (_win)))
+ 
+ /* WINCONx */
+ #define WINCON(_win)				(0x50 + ((_win) * 4))
+@@ -58,10 +58,9 @@
+ #define WINCONx_BUFSEL_SHIFT			28
+ #define WINCONx_TRIPLE_BUF_MODE			(0x1 << 18)
+ #define WINCONx_DOUBLE_BUF_MODE			(0x0 << 18)
+-#define WINCONx_BURSTLEN_16WORD			(0x0 << 11)
+-#define WINCONx_BURSTLEN_8WORD			(0x1 << 11)
+-#define WINCONx_BURSTLEN_MASK			(0x1 << 11)
+-#define WINCONx_BURSTLEN_SHIFT			11
++#define WINCONx_BURSTLEN_16WORD(_shf)		(0x0 << (_shf))
++#define WINCONx_BURSTLEN_8WORD(_shf)		(0x1 << (_shf))
++#define WINCONx_BURSTLEN_MASK(_shf)		(0x1 << (_shf))
+ #define WINCONx_BLD_PLANE			(0 << 8)
+ #define WINCONx_BLD_PIX				(1 << 8)
+ #define WINCONx_ALPHA_MUL			(1 << 7)
+@@ -89,9 +88,9 @@
+ #define VIDOSD_H(_x)				(0x80 + ((_x) * 4))
+ 
+ /* Frame buffer start addresses: VIDWxxADD0n */
+-#define VIDW_BUF_START(_win)			(0x80 + ((_win) * 0x10))
+-#define VIDW_BUF_START1(_win)			(0x84 + ((_win) * 0x10))
+-#define VIDW_BUF_START2(_win)			(0x88 + ((_win) * 0x10))
++#define VIDW_BUF_START(_base, _win)		((_base) + ((_win) * 0x10))
++#define VIDW_BUF_START1(_base, _win)		((_base) + ((_win) * 0x10))
++#define VIDW_BUF_START2(_base, _win)		((_base) + ((_win) * 0x10))
+ 
+ #define VIDW_WHOLE_X(_win)			(0x0130 + ((_win) * 8))
+ #define VIDW_WHOLE_Y(_win)			(0x0134 + ((_win) * 8))
+
+-- 
+2.46.1
 
