@@ -1,158 +1,130 @@
-Return-Path: <devicetree+bounces-103971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3258B97CC93
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 18:40:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BCB297CCCC
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 19:01:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE040285E19
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 16:40:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3512B221AF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 17:01:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A2C21A00D3;
-	Thu, 19 Sep 2024 16:40:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D56E1A00D4;
+	Thu, 19 Sep 2024 17:00:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cLtoFE2p"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aur6OaMl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C9F13B1B5;
-	Thu, 19 Sep 2024 16:40:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C823D199E81;
+	Thu, 19 Sep 2024 17:00:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726764049; cv=none; b=QTi9mDQ46RSR7q0MkietZudIkJQAc5W1QU9fuidSxSRM2YZZ1DKfM/exGogA/QG77YhUtQVwjKSW23yp/K+aFpu9cW7r6cNx5JQ226O7dXFwpWY1yES2Gb/g47iHyMMYYZQNsB0jF64SFHuPyArgsT2qjGUVq4GBkx6hT+IXa5c=
+	t=1726765257; cv=none; b=hPEI84PhvB3Av14508tCt+t9qxKSNmbxiMt8ACxkykt6lVSI/EhCdVe5t5mTLM0A9tlvZAK49Gnrs+Sk9cQshCQUoDnG6YEtdYMUYOuMO3mEJbEtjtoIeH3Ow+p5py+bJVEQD5V6XaKVkMNWMxh6EcfP0QvBbNDKFNpeup+xkF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726764049; c=relaxed/simple;
-	bh=QNOcv/CMuxfBfiANmjteV3CHtE7KYq+48Wt6xmGDN9c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=U247baQQbo3dtzpT8NqcD+mLzA3vQRRK62oidW066B+/apMzmuLNZuxaFJVooaiBIws3sC+itvNH96kaNcIja/xKJnS577BOxWk+fmDeK3sxruHHRds5Zmr6EJ7yFVkWXGtH3iflSeSYZYROrpirh04zUGMFOqRLARnaXFJzY5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cLtoFE2p; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 48JGeW0p059001;
-	Thu, 19 Sep 2024 11:40:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1726764033;
-	bh=2fpT6wCJWXNUMpwERF139t8BpQOhPzewLaWwBI2uOOU=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=cLtoFE2pv1DbPD1Ptd7KShdz3OrTzYSczYlhRfWxOaKsuQaLQLi1Ene6ZDnSO5pnC
-	 eGdPUf53XiyE4Zq8zydjo9W+SGhpbz5Ptc2XtraKWt1rhLZee9NLZ0BdWY4llckU5U
-	 Ay15tsWzENubc9hojFqAyFdlRjqqqK8ocwDYk7N8=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 48JGeWro038062
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 19 Sep 2024 11:40:32 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 19
- Sep 2024 11:40:32 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 19 Sep 2024 11:40:32 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 48JGeVt9036216;
-	Thu, 19 Sep 2024 11:40:31 -0500
-Message-ID: <5a54f481-efaa-4719-ac38-b328a6c67762@ti.com>
-Date: Thu, 19 Sep 2024 11:40:31 -0500
+	s=arc-20240116; t=1726765257; c=relaxed/simple;
+	bh=U9cl2GNp1eJj9m08wqeznqeBXqnj2IsCqlahwNX19mc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=okukCgg6YNNfv5G0qWTEoY2Bi66WGCjPyx/Ze9WqmL9pXQ0agCx216OuxJ6kWsnYj1k7zPJDcZLDfPye4ZH7i1W+J4ZD+esBT/G1eqRK+B7w62Cbh7pQCBCDNavbcXoAbQ09b4Qd4nF8yEfMJiDmbJ0sL/5Jw/4M3yij/h/9IGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aur6OaMl; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-42cb2191107so8839955e9.1;
+        Thu, 19 Sep 2024 10:00:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726765254; x=1727370054; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cL7LKzcUwwX8eW07vWj1AErIDhW1T1GovZFQEfH7vVg=;
+        b=aur6OaMlEtN+RkbK1JCD2kNTdYYAQSdUzc1VR6DZn9NCU61vtDPiBkGJECkCreve3Q
+         lVZK3IxhzNFmXfZtKLDgLvPMCsingz/inzKNOqO5OVVyZz1Q3BLBUg5XQ0LhawWn5+w4
+         Y/ZonpbGc0233KoiqR2baKPPb3UvZPpcMOfoAk8gS8llDmLstmp0SgGwjsKs8EUN7o3k
+         uMQJuomih3kQYD1a8z1d2EpiOjn0cT2SKVX7LvnnT7OyLx3kQH28/S5lX73NYhpT1Vgg
+         KiSF0LZaRy/Mwcbhv3lFpNKeyJe+QRSefRg6wG3lyru16RvsmX1md3Kix0pDEzbLkimk
+         SpRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726765254; x=1727370054;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cL7LKzcUwwX8eW07vWj1AErIDhW1T1GovZFQEfH7vVg=;
+        b=Vsg0vKypNCFq5wfI87dDC6oD9c1cQ6YURQq/D+Uq/0QnbzJ/12vxSYrz6ZMHgPpOcs
+         SD90VbBgm6AFiS7Huc20Ov7YGiT84OYpEVh1KI7J00fnraNjTnN4TIYy/bVN4BtUkTXk
+         /MTYafgG364/piRjHT3dZW5gGqv2OrokWskNdB17UmCFVHo0gPEOdtKe7vOjrXcgsNsz
+         H5tO8UZhHJdCfWn6GByw98/to9k9ThdjMl/Jj2xdY7PuK5UZ0HRFaJ3hkzvX7iDw2YJz
+         bPSFGLxUMhWcmXoFIXbesIpxWvKfZgSH0ngHA4hHjXgRnBEJlh0p18OpruwJkB6osCZV
+         i01Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVVwGdljLC9fO06GKygIdyPC3NNiFYc6UW8DJ1+wN6ryPKc+KOrrU2DYgzpRmeSWmq5HHP7CqAhaUBt@vger.kernel.org, AJvYcCVqBnev67IobaTmrtvXYUo3vSy0/NUB7vcJLdIE942X/HUKstBXX1eMfvEeFGD7xQ3KKZINFHW5nEAjlnLT@vger.kernel.org, AJvYcCW87NFYdTeuIdjl229VdG+aGb08yX0cGIMHDkjLPfgksSobEPFAMIlhmG87K6VnW98F36rUjWUrj3iivVCfGA==@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKjZzY63gx1Y4XKG9s5NG887VY0W7Dwiv6AkErwpkiG1tkiHdB
+	Iwv7MOscGzCodgSAHYbXeW0sfAoIYe/24yEgqKasx30Gv1CYLpF0Jl1MWTEX+RkdwO0=
+X-Google-Smtp-Source: AGHT+IFd7BnomeLTALMHc8pe7QfxhYLc8KguM6PoewL8eRwtbjTQgw1F3+F3H2KFRjwg0OqNJQD8bA==
+X-Received: by 2002:a5d:4f12:0:b0:376:27b7:da81 with SMTP id ffacd0b85a97d-378c2cfbb00mr17008400f8f.22.1726765253668;
+        Thu, 19 Sep 2024 10:00:53 -0700 (PDT)
+Received: from localhost.localdomain (adsl-178-39-53-103.adslplus.ch. [178.39.53.103])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378e780dcf1sm15469282f8f.114.2024.09.19.10.00.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Sep 2024 10:00:53 -0700 (PDT)
+From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Subject: [PATCH v1 0/3] X1E Dell XPS 9345 support
+Date: Thu, 19 Sep 2024 18:59:31 +0200
+Message-ID: <20240919170018.13672-1-alex.vinarskis@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 5/6] arm64: dts: ti: k3-am62: use opp_efuse_table for
- opp-table syscon
-To: Dhruva Gole <d-gole@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Viresh Kumar
-	<viresh.kumar@linaro.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>
-CC: <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-References: <20240919082809.174589-1-d-gole@ti.com>
- <20240919082809.174589-6-d-gole@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20240919082809.174589-6-d-gole@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
 
-On 9/19/24 3:28 AM, Dhruva Gole wrote:
-> Add another entry in the wkup_conf for the syscon node, and then use
-> that for the syscon in opp-table.
-> 
-> Marking entire wkup_conf as "syscon", "simple-mfd" is wrong and needs to
-> be addressed similar to how other child-nodes in wkup_conf are implemented
-> in the same file.
-> 
-> Signed-off-by: Dhruva Gole <d-gole@ti.com>
-> ---
-> 
-> **DEPENDS ON:** PATCH 6/6: cpufreq: ti-cpufreq: Update the efuse/rev offsets
-> 
-> Link to v1: https://lore.kernel.org/all/20240902093222.2828345-2-d-gole@ti.com/
-> No changes, just combined it as part of Bryan's AM62A and AM62P series
-> and sending it all together.
-> 
-> ---
->   arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 7 ++++++-
->   arch/arm64/boot/dts/ti/k3-am625.dtsi       | 2 +-
->   2 files changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> index e0afafd532a5..b2b65e31c7cf 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> @@ -10,7 +10,7 @@
->   &cbass_wakeup {
->   	wkup_conf: syscon@43000000 {
->   		bootph-all;
-> -		compatible = "syscon", "simple-mfd";
-> +		compatible = "simple-bus";
+Introduce support for the mentioned laptop.
 
-This can be done in a separate patch after this one. You'll also
-want to change the syscon@43000000 to bus@43000000, and drop the
-"reg = <>;" line at the same time.
+Very similar to other X1E laptops, device tree was derived by analyzing dtsi of
+existing models and ACPI tables of this laptop [1]. Most notable difference were
+* TZ protected SPI19.
+* Keyboard only working after suspend/resume sequence, will do a follow up patch
+to i2c-hid.
+* Lots of small deviations in LDOs voltages.
 
-Andrew
+Successfully tested with Debian 12 and Gnome, although this required additional
+patches, namely harcode GPU chipid, apply [2] and _revert_ [3] - same as in Abel
+Vesa's branches. Without last two the boot process is terminated by TZ. Firmware
+for GPU/aDSP/cDSP was extracted from Windows, WiFi firmware from upstream
+linux-firmware.
 
->   		reg = <0x00 0x43000000 0x00 0x20000>;
->   		#address-cells = <1>;
->   		#size-cells = <1>;
-> @@ -22,6 +22,11 @@ chipid: chipid@14 {
->   			reg = <0x14 0x4>;
->   		};
->   
-> +		opp_efuse_table: syscon@18 {
-> +			compatible = "ti,am62-opp-efuse-table", "syscon";
-> +			reg = <0x18 0x4>;
-> +		};
-> +
->   		cpsw_mac_syscon: ethernet-mac-syscon@200 {
->   			compatible = "ti,am62p-cpsw-mac-efuse", "syscon";
->   			reg = <0x200 0x8>;
-> diff --git a/arch/arm64/boot/dts/ti/k3-am625.dtsi b/arch/arm64/boot/dts/ti/k3-am625.dtsi
-> index c3d1db47dc9f..c249883a8a8d 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am625.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am625.dtsi
-> @@ -108,7 +108,7 @@ cpu3: cpu@3 {
->   	a53_opp_table: opp-table {
->   		compatible = "operating-points-v2-ti-cpu";
->   		opp-shared;
-> -		syscon = <&wkup_conf>;
-> +		syscon = <&opp_efuse_table>;
->   
->   		opp-200000000 {
->   			opp-hz = /bits/ 64 <200000000>;
+Quite a few things alraedy work, details in patches, quite a few still in WIP or
+TODOs. Since fixing these may take me a while due to lack of documentation,
+sending current progress as its very much usable.
+
+[1] https://github.com/aarch64-laptops/build/blob/master/misc/dell-xps-9345/acpi/DSDT.dsl
+[2] https://lore.kernel.org/all/20240830-x1e80100-bypass-pdc-v1-1-d4c00be0c3e3@linaro.org/
+[3] https://lore.kernel.org/all/20240708-x1e80100-pd-mapper-v1-1-854386af4cf5@linaro.org/
+
+Aleksandrs Vinarskis (3):
+  dt-bindings: arm: qcom: Add Dell XPS 13 9345
+  firmware: qcom: scm: Allow QSEECOM on Dell XPS 13 9345
+  arm64: dts: qcom: Add support for X1-based Dell XPS 13 9345
+
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../dts/qcom/x1e80100-dell-tributo-13.dts     | 860 ++++++++++++++++++
+ drivers/firmware/qcom/qcom_scm.c              |   1 +
+ 4 files changed, 863 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-dell-tributo-13.dts
+
+-- 
+2.43.0
+
 
