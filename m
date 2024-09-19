@@ -1,127 +1,215 @@
-Return-Path: <devicetree+bounces-103883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1A1497C82A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:45:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFA8D97C838
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:51:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7ACDD1F218D9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 10:45:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E400A1C24389
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 10:51:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62B4219B5A5;
-	Thu, 19 Sep 2024 10:45:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7F44199FCD;
+	Thu, 19 Sep 2024 10:51:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="DNFeORec"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p4CNbEoV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D837519C56D;
-	Thu, 19 Sep 2024 10:45:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DE7C194C8D;
+	Thu, 19 Sep 2024 10:51:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726742709; cv=none; b=OTpYlW0h4gVdUaH90pejKhbq3rGvK31EyNgk4QFjGz1uMqmmR4pxqM0aWatTH1wbp0fShzvhlQ0FUOvHLiYIxyNIirsAk+ogH04MkWQ6yHQ9mtMbVZh9kaXpvhoqjYFcAvf+jwT54yGKVv/Fj0N41TWa1rQsYJ1mjH0Am172OGY=
+	t=1726743068; cv=none; b=RC3eolAYCKdx2/ep9C64bI4ZCSgkKHqrca50PVfE4alSqW5Pm6AjyQyk7ilyCsGz05QPHU1dmZaj0m3L8ytRZig0znkDpP8b6TBedCZSR3NlXaoa3tP88eVuaYvomekqCMzIi74l2rTjZHpy8BUZCMFL0j5Sw9w+evl0tg5JDdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726742709; c=relaxed/simple;
-	bh=/os8jdsvZNjZzBQqTEH9zSBE9KS0uwILd2ijRnbkvU8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XW7Zd7IwIWPEueJAJuv177W9s3OI/faPshDeKoeZlIrEGLBEJowqFWCqXZ9BiYtoNPg6KnZShlY21vx7X+zsZ+TiZRoP9bWBw85o0Pqn4f8BvN9zwDskcrmro3qq01OP92VTcg7qp0BkTihT1sCdsNUtO02CKfI9tbE7O1crRTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=DNFeORec; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 2CE6523D13;
-	Thu, 19 Sep 2024 12:44:58 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id Qw0S_KiD1mf1; Thu, 19 Sep 2024 12:44:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1726742697; bh=/os8jdsvZNjZzBQqTEH9zSBE9KS0uwILd2ijRnbkvU8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=DNFeORec4f+AS0c8WR+mK9+oKWcxhMjeHXEgkhzRaIFpxvXFdDbniCgSzkNxfPLpf
-	 3fotaflPhH4vQv46nLUVoPuPdMxNflI0okssfRLCA71T/G393xnQ5IzmDNEJBJGT11
-	 QQ8rsOgeRoPemOYd34UP5N3hMQMzgWqDCv4uaHaG42TQnOCfjQWAUguWayIj7LuedM
-	 BTobRFh35Pfrh3V3sN/7M1s4QID0o6lDA/QhQOTh7lVEdIwRtGS/YxNm3MTG4V8rHU
-	 Pv0Bk0XTzAt5no+nIJVTykqWX4MBFHKH+WHIwr0XSquJF2s1t4RdcMCQRm8GjS1M5M
-	 M6HABXoLsluGg==
-Date: Thu, 19 Sep 2024 10:44:25 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
-	Andy Yan <andyshrk@163.com>,
-	Muhammed Efe Cetin <efectn@protonmail.com>,
-	Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>,
-	Ondrej Jirman <megi@xff.cz>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org
-Cc: Celeste Liu <CoelacanthusHex@gmail.com>
-Subject: Re: [PATCH v4 0/4] Add initial support for Rockchip RK3528 SoC
-Message-ID: <ZuwAiaCF6hCr7Fa2@pineapple>
-References: <20240829092705.6241-1-ziyao@disroot.org>
- <ZunjLMQGEcES2zIV@pineapple>
- <23655990.6Emhk5qWAg@phil>
+	s=arc-20240116; t=1726743068; c=relaxed/simple;
+	bh=vRwpMKZt9ZplwSy5/zsgP0nk3xy0m6gt/UUjwakWm5M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=npXlw5fuG5cml6o6rzqdTvaDrtKugBVwYp9X/RxvUoIi2I3Ab1oIVqcDsvbzrVIWxODJNz1SpVufGip4Q1S0x0zOFfpa3el5GbICSGksquE+w1Af0t/OyU5XPeVSbgw2X29hG5CUPhWIB2ZPGTK8NBZVYQwAhCwiMHdRSj9Ls70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p4CNbEoV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67A63C4CEC4;
+	Thu, 19 Sep 2024 10:51:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726743068;
+	bh=vRwpMKZt9ZplwSy5/zsgP0nk3xy0m6gt/UUjwakWm5M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=p4CNbEoVy6npotGjwlVfBh2vI2umMvEbSsJVkE8DgCbP8zfbCgvRdH1g3z6P/K3hc
+	 USl8O0nLGtxUMK2yhE5elf5pz6wey8a7KaahniLUTKPz6hgdDWZxDDu9D1X+vtoo3p
+	 RH5hDrQipiAJSx8CZHOVtjlah0J49Vjjf+C1gWsyZOIFvAUyONJj3G1kOSEDuL+5hN
+	 ZFt2Zhq6teiwZoJ/dl4AOCqe+ZjBE4kZv16vDslTYQZsO9yARIsqNURQIEgEHM18Ru
+	 LFRh6NNVLpR+fhccwVrWtg96sOO0ybZhAgDqUbvweGB82e5sVYvBoLHagOBtvZdGm3
+	 ej+4rpzUbGl8A==
+Message-ID: <f27ba6ce-aa29-4a27-bbca-ea1a5324070f@kernel.org>
+Date: Thu, 19 Sep 2024 12:51:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <23655990.6Emhk5qWAg@phil>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add ArmSoM W3 board
+To: Jianfeng Liu <liujianfeng1994@gmail.com>,
+ linux-rockchip@lists.infradead.org
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>, Rob Herring <robh@kernel.org>,
+ linux-kernel@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <20240918165008.169917-1-liujianfeng1994@gmail.com>
+ <20240918165008.169917-4-liujianfeng1994@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240918165008.169917-4-liujianfeng1994@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Sep 18, 2024 at 01:13:25AM +0200, Heiko Stuebner wrote:
-> Hey,
+On 18/09/2024 18:50, Jianfeng Liu wrote:
+> W3 is the carrier board for LM7 System on Module.
 > 
-> Am Dienstag, 17. September 2024, 22:14:36 CEST schrieb Yao Zi:
-> > On Thu, Aug 29, 2024 at 09:27:01AM +0000, Yao Zi wrote:
-> > > Rockchip RK3528 is a quad-core ARM Cortex-A53 SoC designed for
-> > > multimedia application. This series add a basic device tree with CPU,
-> > > interrupts and UART nodes for it and is able to boot into a kernel with
-> > > only UART console.
-> > > 
-> > > Has been tested on Radxa E20C board[1] with vendor U-boot, successfully
-> > > booted into initramfs with this log[2].
+> W3 features:
+> - 1x 2.5GbE Realtek RTL8125 Ethernet
+> - 2x HDMI Type A out
+> - 1x HDMI Type A in
+> - 1x USB 3.1 Type C
+> - 2x USB 2.0 Type A
+> - 2x USB 3.0 Type A
+> - 1x PCIE 2.0 M.2 E Key (1 lane)
+> - 1x PCIE 3.0 PCIe (4 lanes)
+> - 1x TF scard slot
+> - 1x MIPI CSI
+> - 1x MIPI DSI
+> - 1x ES8316 audio jack
+> - 1x FAN connector
+> - 1x RTC
+> - 40-pin expansion header
 > 
-> > Ping on this thread. Is it possible to get this merged in v6.12? Or
-> > anything else I need to do?
+> Add support for ArmSoM LM7 board.
 > 
-> sadly nope. From a timeline point of view things should ideally be in the
-> Rockchip tree by -rc6 . Which then move to the soc tree and from there
-> to Linus' tree.
+> Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
+> ---
 > 
-> There is this rule that all new development for a -rc1 kernel should be
-> present in linux-next _before_ the merge-window opens.
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../boot/dts/rockchip/rk3588-armsom-w3.dts    | 408 ++++++++++++++++++
+>  2 files changed, 409 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-armsom-w3.dts
 > 
-> The thing we need to figure out for your series is the uart binding,
-> because that _should_ go through the tree handling serial drivers.
-> Greg is in your cc list but with the amount of mail he gets, I don't
-> think he has single-parts of patch series on his radar.
-> 
-> So I guess the easiest way would be to send the uart-binding from patch 1
-> as a completely separate patch with adapted Cc list, so that it's obvious
-> this should go through the serial tree.
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index 09423070c99..b0ed12f41f0 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -125,6 +125,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-display-vz.dtbo
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-io-expander.dtbo
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-sige7.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-w3.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-coolpi-cm5-evb.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-coolpi-cm5-genbook.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-io.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-armsom-w3.dts b/arch/arm64/boot/dts/rockchip/rk3588-armsom-w3.dts
+> new file mode 100644
+> index 00000000000..321a44f081c
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-armsom-w3.dts
+> @@ -0,0 +1,408 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include "rk3588-armsom-lm7.dtsi"
+> +
+> +/ {
+> +	model = "ArmSoM W3";
+> +	compatible = "armsom,w3", "armsom,lm7", "rockchip,rk3588";
+> +
+> +	aliases {
+> +		mmc1 = &sdmmc;
+> +		mmc2 = &sdio;
+> +	};
+> +
+> +	analog-sound {
+> +		compatible = "audio-graph-card";
+> +		label = "rk3588-es8316";
+> +
+> +		widgets = "Microphone", "Mic Jack",
+> +			  "Headphone", "Headphones";
+> +
+> +		routing = "MIC2", "Mic Jack",
+> +			  "Headphones", "HPOL",
+> +			  "Headphones", "HPOR";
+> +
+> +		dais = <&i2s0_8ch_p0>;
+> +		hp-det-gpio = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&hp_detect>;
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&led_rgb_b>;
+> +
+> +		led_rgb_b {
 
-Will do it, thanks for the suggestion.
+Please no underscores in node names.
 
-> From talking with Collabora people today at the Open Source Summit, it
-> seems that's also their plan for the rk3576 that is stuck at a similar
-> state.
-> 
-> 
-> Hope that helps a bit to explain
+> +			function = LED_FUNCTION_STATUS;
+> +			color = <LED_COLOR_ID_BLUE>;
+> +			gpios = <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +
 
-Thanks for your reply.
 
-Cheers,
-Yao Zi
+
+Best regards,
+Krzysztof
+
 
