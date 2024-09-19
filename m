@@ -1,299 +1,267 @@
-Return-Path: <devicetree+bounces-103924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A448097CA2E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 15:34:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B22297CA6D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 15:48:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0249EB2260D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 13:34:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D06001F245E9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 13:48:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D80819E83D;
-	Thu, 19 Sep 2024 13:34:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23CD619E827;
+	Thu, 19 Sep 2024 13:48:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="J8+5Ug+9"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="sj39Hxk3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11011067.outbound.protection.outlook.com [52.101.65.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E8673C0C
-	for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 13:34:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726752891; cv=none; b=hyRn/dhPoPuduDKH9Xjj+Z2OX0Qmgy9p+barI8AdQy3LoNsClVPj49IC86zVJxhvgxR+EK73TN705LIrOKWrB/geDfmJoZ/mEG3JzvSE9TZsow2tDJrc00vLlQz6I5eiyrR8m/ShLPLJQJwoGai7iH2yel3PZhQM004kwAYrJMk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726752891; c=relaxed/simple;
-	bh=YrhcRTTCWuoGmkoGzB4pht4PL31q9jRH2k5wYuqxIPk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=cKqTeEy3SanxGsK3GMbgonrz/T4fa64bxQ7KkH6H9GnjciC+ffvyJRu3i/YTAvVYguj/7SlHvgsqs/4HMmHUgKofXy3vtRkB7ppbErUbSVWOPhgo52k/sQzhlv3lZOmdZTYQC6+9hksr3hPbJqCfHX75HGd1lNbP34hFT3YC44A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=J8+5Ug+9; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20240919133440euoutp016ff5f424fe1f10a260a5c2b37b3f1f88~2qJiBdqUF1076610766euoutp01M
-	for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 13:34:40 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20240919133440euoutp016ff5f424fe1f10a260a5c2b37b3f1f88~2qJiBdqUF1076610766euoutp01M
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1726752880;
-	bh=qdQmGPg1VSoETKo0WkuqbZ5bGtJYIv7EsxGdlDTXxlk=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=J8+5Ug+94sMToCkP8VcVChErqdAwMzrQM/gW991Xcp7aENee+obALCkBG4LWQ/6dA
-	 4MaGXjIRLcmwMDTUIAPCbGfV8z5WYWUQ7++NKeSg/GVK5b79qwbjqsQsScY1eCPNzy
-	 TgxmUIWZVEd5zinlbA6ZOqKt1VAr6G+El6zrg2Lo=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20240919133439eucas1p2bd40e63a5713a562e52350a503fa7363~2qJhlEd0f1199611996eucas1p2U;
-	Thu, 19 Sep 2024 13:34:39 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges3new.samsung.com (EUCPMTA) with SMTP id 01.8F.09620.F682CE66; Thu, 19
-	Sep 2024 14:34:39 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20240919133439eucas1p1a3b58253a5ca27bec1de16a4fbf810ab~2qJhCQL3A0314603146eucas1p1c;
-	Thu, 19 Sep 2024 13:34:39 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20240919133439eusmtrp241b3dad78a800859ec3fd5d365e9e3aa~2qJhBRxbK2225422254eusmtrp2Q;
-	Thu, 19 Sep 2024 13:34:39 +0000 (GMT)
-X-AuditID: cbfec7f5-d1bff70000002594-c1-66ec286f649d
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id 36.89.19096.E682CE66; Thu, 19
-	Sep 2024 14:34:38 +0100 (BST)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20240919133438eusmtip299f5d7d1b3bbe5025126ec0e54560662~2qJgSxhmX1933219332eusmtip2l;
-	Thu, 19 Sep 2024 13:34:38 +0000 (GMT)
-Message-ID: <ac18a7a4-8249-4903-9d25-eb0d20fffb65@samsung.com>
-Date: Thu, 19 Sep 2024 15:34:37 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD88719CD17;
+	Thu, 19 Sep 2024 13:48:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.67
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726753733; cv=fail; b=sdcVSDqP20NnLIFQ6SuYAZmr/VhK30CfFKDB1p+jDeSlu8I68SeUhx2LemU3bHgl3U4WYhbTt9Oc02nyqUJEIaEimqr6lxGsiE+fuZETbUZC8xbgU0FNUiSEpzB5WT0/IvM/SYAkGRLfhzMweg3ad4/LOk5mVx8usFJb+3H+US8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726753733; c=relaxed/simple;
+	bh=MheB6xk7tkSiRs+taarcUKpPBZRcTKPqawqCW24MjZ4=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=bl44rb2KbfiHr0gQxKvKCpRMJh3K2vZX66Wuij1yAqbjCQhEgmoktFZCOZptkwNO3AryX3H0E3XPdYtGYCunMvgcFOEuPxmQnsVMuhJPuGv4kTHHCWnQQwKAXgPNJEozsMLi/QOM+gAGj7Fe0dYLfovBbZGAeq9x6mV3d6mFygg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=sj39Hxk3; arc=fail smtp.client-ip=52.101.65.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IcdJ4wEim0GYs+HNs4hcxxJRpPN01X1QM2C/Wqpr8+qPvTpnN+PkqZg7BUeryIvpCAlwFG4CQUmY6ouVEE+xtZM9HKpgJw16RmORkHfvl0L+AuaZaGGyu851ARC/yoVvo/Uoi5qF9M0iYz609ow54VChEZ+uT6qebKxt4QBT5vjw+99QWU2aXMaRXNY3mWtRjWSFxXcm3dxZcG4KyQCCrgTbfudYNyiBDolBSY4zvaFc+v/WGnaXQu6eMQTAqX7FWkBArezJytlMgMSarTWYdnvE9yKElSRisux/lYGdujAQspxgb2xRqOgFqMeeLX9t3KkHMiu4DXoz/lngWIQnXQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jBH0/Gmz65koXol9twNplDFQDt8S21OC2GAAd/tQ6Bo=;
+ b=wJLlyn5yCAoF5LUS7T0/C9ennBxF4hc3mJM9iTeYbr7uZADg4s0Azk1S3nxdzPO1/tTp7HAosDXaUCbKch8HUse5Y/2OtGOAiD6JE4W1c36NBSYxQRG5lx89PEOYkYue9hiP9MeV/k0XIhOz6R4pMukcvpJDzC3FHXAIPwww0gT/iUvDyzyn2jzPeMrSuWCUvBUXWcnVJPy3HPZGbEv5NC10tugYLAO6bLbsjBX61IVsuB2RamoWV1nGA3tvAH5CMY0zWo8c6ozIswddxuUYID17Hsf4blAlwjy4MGneJLL7i/JSCmPgjljakycorar/sDetRTIs2n+XofAIpE0S2A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jBH0/Gmz65koXol9twNplDFQDt8S21OC2GAAd/tQ6Bo=;
+ b=sj39Hxk3wqUUcVhJDEzOKS+eLoQWBYvtdQcac36/Bg4brXiaQO6++XFxBWzS85qh5ceiJZ8VlttK0r/n22aNOJ9uWPqMTOO1aQbfA47tQnMyBkTMWUoRKtg7GYHt0y6KWeLsIFYz+MpuWtb28hOZhEyO1olXFgQ1bK+yXUjhwL9fbKO3iCgstaMAuERW+3BRIj9pTf3zZ8168v89YO0kj1z3HcYCsTzXvj96CSm2kXjCFIprJ9JPbZC/dXo/ONZiEgcaiRffu2tkKmZEnT4bFc8e5m1/XzOAkrXiLcsuQGg6Mf9G+L+2SBh5cb3dWsIt59o7wcezxO/opaUzFCg6ww==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AM9PR04MB8487.eurprd04.prod.outlook.com (2603:10a6:20b:41a::6)
+ by GVXPR04MB10828.eurprd04.prod.outlook.com (2603:10a6:150:227::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.23; Thu, 19 Sep
+ 2024 13:48:46 +0000
+Received: from AM9PR04MB8487.eurprd04.prod.outlook.com
+ ([fe80::6d7a:8d2:f020:455]) by AM9PR04MB8487.eurprd04.prod.outlook.com
+ ([fe80::6d7a:8d2:f020:455%5]) with mapi id 15.20.7962.022; Thu, 19 Sep 2024
+ 13:48:46 +0000
+From: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>
+Cc: linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	NXP S32 Linux Team <s32@nxp.com>,
+	Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+Subject: [PATCH v3 0/4] gpio: siul2-s32g2: add initial GPIO driver
+Date: Thu, 19 Sep 2024 16:47:20 +0300
+Message-ID: <20240919134732.2626144-1-andrei.stefanescu@oss.nxp.com>
+X-Mailer: git-send-email 2.45.2
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: AM0PR10CA0109.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:e6::26) To AM9PR04MB8487.eurprd04.prod.outlook.com
+ (2603:10a6:20b:41a::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v1 2/3] dt-bindings: mailbox: Add
- thead,th1520-mailbox bindings
-To: Rob Herring <robh@kernel.org>
-Cc: drew@pdp7.com, guoren@kernel.org, wefu@redhat.com,
-	jassisinghbrar@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	m.szyprowski@samsung.com, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20240918203627.GA2069046-robh@kernel.org>
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrBKsWRmVeSWpSXmKPExsWy7djPc7r5Gm/SDDY/lLHY+nsWu8WaveeY
-	LOYfOcdqce/SFiaLF3sbWSyurZjLbvFy1j02i8u75rBZbPvcwmax9shdoNjlHmaLtln8Fv/3
-	7GC3aNk/hcWBz+PNy5csHoc7vrB77Jx1l91j06pONo/NS+o9WtYeY/J4v+8qm0ffllWMHpea
-	r7N7fN4kF8AVxWWTkpqTWZZapG+XwJVx4VY3Y8E+zYp5K7YyNzB2K3YxcnJICJhI7Py9h72L
-	kYtDSGAFo8Sktr1MEM4XRom1mx6zQTifGSVWNqxmhmmZ3NAP1bKcUeL/iy5GCOcto8TWaV3s
-	IFW8AnYSC37PYQWxWQRUJeZtfcwKEReUODnzCQuILSogL3H/1gywemGBSImeF48YQWwRAUWJ
-	323TWEGGMgvsYpK417qHCSTBLCAucevJfDCbTcBI4sHy+WBDOQXMJaafvsYKUSMvsf3tHGaQ
-	ZgmBzZwSrx5eY4e420Xi6NftjBC2sMSr41ug4jIS/3dCDJUQyJd4sPUT1J81Ejt7jkPZ1hJ3
-	zv0CBgYH0AJNifW79CHCjhK/Xv1jBglLCPBJ3HgrCHECn8SkbdOhwrwSHW1CENVqElN7euGW
-	nluxjWkCo9IspFCZheTJWUiemYWwdwEjyypG8dTS4tz01GLjvNRyveLE3OLSvHS95PzcTYzA
-	xHf63/GvOxhXvPqod4iRiYPxEKMEB7OSCK/4h5dpQrwpiZVVqUX58UWlOanFhxilOViUxHlV
-	U+RThQTSE0tSs1NTC1KLYLJMHJxSDUxrWM0Ujt3U/9xkdXkbZ3z/nwnLeVvUvk9qLH4dvirm
-	+qTaJcGPhAIftdlMy/6vfO2azlWvffbfWG7dr1jKxV4X3vlk5qVVx9wzhS9p/Mx58bRt5dqO
-	U9Hbb3DM3GjWqDGj49Uha6sKRS3xZTcif3Qv31mW8oW/1DXkhr26u4+WSQSTIXtr/uZLNZkp
-	q862n5v1db3U7dT09z2asj7dx1tO7bIs00w9ktMUHnAluMT2/A8PhoS+pTkrHhvJrjzcf2HN
-	0+RFa3Yaz61tfKp1n9nP9u3b1V/eZ8S0GBUEzNXJ+cPPlKK202yug+fFUA3et+fkQ+P7bbiW
-	dOScTSgurlq1/0PQ1b16LpxWEc1dT5RYijMSDbWYi4oTAZMSovPrAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrFIsWRmVeSWpSXmKPExsVy+t/xe7p5Gm/SDI7+s7DY+nsWu8WaveeY
-	LOYfOcdqce/SFiaLF3sbWSyurZjLbvFy1j02i8u75rBZbPvcwmax9shdoNjlHmaLtln8Fv/3
-	7GC3aNk/hcWBz+PNy5csHoc7vrB77Jx1l91j06pONo/NS+o9WtYeY/J4v+8qm0ffllWMHpea
-	r7N7fN4kF8AVpWdTlF9akqqQkV9cYqsUbWhhpGdoaaFnZGKpZ2hsHmtlZKqkb2eTkpqTWZZa
-	pG+XoJdx4VY3Y8E+zYp5K7YyNzB2K3YxcnJICJhITG7oZ+9i5OIQEljKKHHi9hNmiISMxLXu
-	lywQtrDEn2tdbBBFrxklJmw+xASS4BWwk1jwew4riM0ioCoxb+tjVoi4oMTJmU/AmkUF5CXu
-	35rBDmILC0RKnD+3H6xGREBR4nfbNFaQocwCu5gkDn3fA7XhC6NE169uNpAqZgFxiVtP5oNt
-	YxMwkniwfD5YN6eAucT009eAbA6gGnWJ9fOEIMrlJba/ncM8gVFoFpI7ZiGZNAuhYxaSjgWM
-	LKsYRVJLi3PTc4uN9IoTc4tL89L1kvNzNzECI33bsZ9bdjCufPVR7xAjEwfjIUYJDmYlEV7x
-	Dy/ThHhTEiurUovy44tKc1KLDzGaAsNiIrOUaHI+MNXklcQbmhmYGpqYWRqYWpoZK4nzsl05
-	nyYkkJ5YkpqdmlqQWgTTx8TBKdXANEPyvN1RKXffko7INrWyl8HcYQnrRQ9X531f9/X3zv6+
-	pzGRbMf1Pyz/cfXJlPgI+zlaDcaJnj1HBSd8PBh096nzhIBdQg/9P21cIL991w/pz1E97fYM
-	8+uWbfJilDX8/iFQODN+vmumlvA+Mz2r7U6pRQvYfvy/nD9jzbVp0fOnh67M/vTg+ePGk4sU
-	M2xSbkz40av5Zcm3pzUVCltzWGZHf5s87YuwwjuBkvZ30zyc/XmUNgfukZQVndUwp3hRaueu
-	dAXDWAGP69PnT9uukJgxy7sy8bz8nt3Rk3MPLfUUn7pePW9T1ewNNrsWdUrVTmzcKS71qe/m
-	ZKGKrOnOZU958s9JSH7K9U2TLMkTV2Ipzkg01GIuKk4EADy8P5N9AwAA
-X-CMS-MailID: 20240919133439eucas1p1a3b58253a5ca27bec1de16a4fbf810ab
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20240918134926eucas1p1df23a583b356505939d4c5501bd6c80f
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20240918134926eucas1p1df23a583b356505939d4c5501bd6c80f
-References: <20240918134901.193033-1-m.wilczynski@samsung.com>
-	<CGME20240918134926eucas1p1df23a583b356505939d4c5501bd6c80f@eucas1p1.samsung.com>
-	<20240918134901.193033-3-m.wilczynski@samsung.com>
-	<20240918203627.GA2069046-robh@kernel.org>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8487:EE_|GVXPR04MB10828:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2a107bdd-7547-475b-3de3-08dcd8b1c83f
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|52116014|7416014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?eWxLUWIxQjMyTG1Dc3gxTGNIMFFoSzhnNVNLZGJoam1NZ1o2WmljRFltUmUr?=
+ =?utf-8?B?MC9NbDF1MDMxeDU5c2R6dHBkSUhVcVBOSW1WdG1VU1NFOUtpeGhKdXFSd1J0?=
+ =?utf-8?B?QWVuYWVYb3piWkNVTTNBUUh4T0pNVDZaaVV1d2hlM0d4UVBBbmJaVnNHbUtV?=
+ =?utf-8?B?dGRiVmtFZVIxcUpRK050V1UxMXpOeGZvK3dkYkFNWEZCdDBzYzc3RVZoNFlH?=
+ =?utf-8?B?NUNEN2lOQVpMMUpIRy9FaU9HSk9Rb2pwVWlQVnV1S1dtaW83V0plY09wTElP?=
+ =?utf-8?B?QUhEMnNxQWhya0lIdWRsalJQZm1BdXJOWGxaZlYwZjk3Sk9JRm9KVHZxc0lz?=
+ =?utf-8?B?RkRXRVZaOGZaR2RNZno3alo4VDVOZTB0VS9YTkJrSm5FSFFFdEhMbG41NDI4?=
+ =?utf-8?B?dk9mamFoRVo4NjQ3RVFWaWpHTVl3QVBhUEJQQ1pJcFA4N2YzaFJiczRuZjRC?=
+ =?utf-8?B?MXd1OHVXWkVBV2IvT0ZJYzZSV0FLUC85VGk2ZUxKZGlPRlFUZi81K2hidm82?=
+ =?utf-8?B?N2ViTDV5TEJGbXJkSXMzZXNGaG1sbnpmT1RvVEdVa0RJdSs1SDc2NFIyS01l?=
+ =?utf-8?B?N1hka0lqRFhuaGtwcG5wTmxSV2VhdDR4WEU5V0syRDBQVENLcmw4Rlo3M3Nl?=
+ =?utf-8?B?V3YvNm1OQmVWS0JBdW9RTVpLdFlZTDBPTmlFeHVjb3J4L1VCRjBOaFZ2Z00r?=
+ =?utf-8?B?YnBuZmZCeHJlck12RUlaK0QyZkZURXpWMkY0SlVqSHV5WVdwcWlVL3ZDV1B4?=
+ =?utf-8?B?cVdJNmlvV1VsN0htWkFtT0lNa1UrQ0h2NUpKdTlucVRzbmprY244N043b0Z1?=
+ =?utf-8?B?WGlmQWZmNGNZUVMxRzJ0enBkV3E4a2lNMng0WlBlSHVEdUdDc0NNUHJlVVA0?=
+ =?utf-8?B?STdnT3FkcVNNRXNSMWVpZUpMU0Q2YUt3aXh0RTJ1bzlCdGJWMk1HUmdFTFl6?=
+ =?utf-8?B?TXdPT3BoQklDaS9hVDhIY0tscy9IVTZ6UE5xVkNDSUx0dG1QOGlQZFZFYzlW?=
+ =?utf-8?B?UVE5bCthSjJJTjZOamhoOW42U2tKb1gzWTNISjFUc251UFh4Q0RkbXRlUi9U?=
+ =?utf-8?B?SjN1ZTFwUEJiZmNlcWsxRHBQZ0Z3NUx4OVJGWElLdWsrT2hPRFNVeXBtQm16?=
+ =?utf-8?B?bkpSNDNGaTRiSHdub01HSUlwRlVnaVhIL0Zkb2h5dlRCc0tIdlpJTnFxQWda?=
+ =?utf-8?B?b29KUGRKcWFwWGNoMSs2SHo3UkxwZGp3MXh0T3FXZWF4NE0wQXhmcVVySzl0?=
+ =?utf-8?B?YVlBNDBURVpDVGFKaHAxa1phbzlNVS8rQ2cwVWN1V2tMSW80OExVNWpseVdP?=
+ =?utf-8?B?Zk1hemJNbGFraHlQblhJQ3QrKzVnTzRZK1F1M2VrVW9ZYi85ZUhrMEpLSXND?=
+ =?utf-8?B?c2k2S0RiellSeHZjcExDMHdlVDFyNVdxQ3E5Mk5wWXBtZlNmcnQyVkVpZWpk?=
+ =?utf-8?B?eTE0bDloNHA4Smo2aGtwRlRkc0huc1JCclZQZHUrMk0wQ1g0dmRNZVUvMEVm?=
+ =?utf-8?B?MVIzM2t2MDJQMGhTTjhUQnhVZmtUbFdyRHRaQ1owTUpISkh5T2I1Q3lPenlF?=
+ =?utf-8?B?dUlhUnUyeERMOUpuQkJ3NmFjN0liNlhJZUg2ckpUSUhsbnZMOXBFTHRubUx0?=
+ =?utf-8?B?MlByZ0c5TldzMzQvVXNGNms2RzNCODVjc1ZiOUk4a2R0Q280emJrRmdJV3N2?=
+ =?utf-8?B?TTVQQWdadlViTWYrcUJhZnZkemdoVVNkbk4vVVNZUmpvcmdJWkFhcDlOTFQv?=
+ =?utf-8?B?TnQ1RWlNMGpHRWRFdjhDWVljbTRibHNTbWE0YlEyV1JrNmxMSDMrWnc4U1dZ?=
+ =?utf-8?B?d1lBeWxuYmxoSHBVemNqMVB3RFFycTVHOTNVeDFra3FiQTlJMWxyWVFmV0hU?=
+ =?utf-8?B?Z3oyZUs0a3VIUVNtcDhiTmhVdHlCQUxWc2t3WEVqNjVqY0E9PQ==?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8487.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(7416014)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?S0FqYVpHOUJEeHE1Z0ErWS9ObUtIMjVPb1ZTd3VaYnNORDNFVkh3d05QeHBE?=
+ =?utf-8?B?RGVyTkZ0Z01hd3dPcXdtbUZVMU1yUzhHd0hjV3J2bG1SeTFxM0trdFRsb1gr?=
+ =?utf-8?B?YmdJYk05TlZwRW5rV09Vem9XcStqeGRHOUp4d0poZGJKZEFSaGxzNGJJVnRn?=
+ =?utf-8?B?ZFEvOXQyZHd1SHBNbFpUdU8wY3oxM21SL2lrTkxtajFPZ2tMMWtGMWlyYmlk?=
+ =?utf-8?B?NGhvQXUwWkVuUkpKSjIzQWtSTERYTEdwcDVoL1pBbVIrRmk3NmZBYnB1OVd6?=
+ =?utf-8?B?SXF1NkFkd3BwWmlXS1JsajQzdUZRcjdhc2lSVTRhdk1vNklqOTVMUVlIY3gr?=
+ =?utf-8?B?UnR4cE9SZ1AybjZGazVaT2UxdDNHZnJBdHRyNkpzbjRzdTVHQmdEZ2hiTHNH?=
+ =?utf-8?B?Z2VxZzcrUDJib0VuUEZqOFVpbGxFWTltZTZWVEREaHF5amNSVGQwL2hpdDJZ?=
+ =?utf-8?B?KzFvOUQ4S0Y0ejZ5SVdHTzNzTTU1MXV2NDQ0OXZyZDVtY2ZPMWY1WkZFaUo2?=
+ =?utf-8?B?M2hnUG1EMGhyempsTHdHNWl6UllSS3hQOGVPSG5BbWEydGdjUC9pNlBmaDZa?=
+ =?utf-8?B?dFZZeXY5MitwSnhhS1RlMFI1amQxUCs5YktQM3krK0Y3SFVKUWpxMko3MU8w?=
+ =?utf-8?B?M3d5UkhHQzRCOXl6cmlrc2h1Mld5Y3hLdCtNKzdLTjdQOGhkY2NGdXlFZldw?=
+ =?utf-8?B?M2t5RzRqQlhGakdzMUJzNVh3N3ZIalJ5WFEwOXVFaFNvb3VDUlhCUFNoUDZi?=
+ =?utf-8?B?UFJFRytRZmEyTEVNUVVudkxQdEozZGhtNmtOVGhzU1dDZy9FWVhyZlFSMFNG?=
+ =?utf-8?B?QWFMUk9uYmo3YUI1RTMvNFM5Q1U4cDJkVFdsYy9VODZ3Y3FPeVJLKzIrZHJF?=
+ =?utf-8?B?VS9IcGR0MXR2NndLSEw3MkFld1JGeDY1eWU1UUFIWjdQMkVlem1oKzA4UHcw?=
+ =?utf-8?B?Vk5BYUhucEpDcWRUNGlKbllBSG1NMGtFNkVGeHl1eG5BSnFadHhCN1AwWC9O?=
+ =?utf-8?B?NExrNytQNWU2SThIVmhEV3pYcCtuU1g3S1kzYjVJTldMNjBOU3Jod0pGSFUr?=
+ =?utf-8?B?RktYYUpodHNoNlI1V1A1NUFINkNwaVhaalRXZnEvR0dBbnVOczVkdVhUNTZo?=
+ =?utf-8?B?YS9sYXJrS1JUSjhoT1Vua2l5QS9EZnpDUm54N2h1dFpyTkNmdDFDcEdycUJN?=
+ =?utf-8?B?Uno4dVpIWlQyWHVtQk1mam5rNEJlcDlXd1JodUtGRkZqcEthaXFtdjhGRnlW?=
+ =?utf-8?B?bG9BaDZON1VEYnRva3ZXTGQ5emRKbmRLSVdtQzNLWkMybnNranRPSk1jejcx?=
+ =?utf-8?B?M2h1UythNGFVbnBkWWdyY0lQN2hUdmV1alNuTVQ5ejlZTHdseWRLdHp3Rzhw?=
+ =?utf-8?B?eHJzaVlyaUpOR2xKT0lPUUYyanVHQzFRSlQ2OXF5VTk1eGZkN2xtYjBuaGtI?=
+ =?utf-8?B?S1g2SS9rSFE5RXhtVGphTi9Nb2czemx6ekV3Rk5SK05tMFd5YnV4S3dkZklj?=
+ =?utf-8?B?YUs4R2FEMm9BV0orV1FVd2xyKy92ZGJQYlNnbkNtVzlUK0gvanBUS2JxV2Nw?=
+ =?utf-8?B?a3NWUFlMNHQrQ2N2UDcwM2t4RjBoY2gwQU5pczB0NHo2NmNjNExiUlVaemlQ?=
+ =?utf-8?B?K1VId20xcSsva0JzaDdoa1VzT29NYTI3SGxzUzBVVUc1U1pCbENHa085K05N?=
+ =?utf-8?B?YXNJSHpHcVZSMW9Yc1FJOFF1VGZIeUJzYlhLV044OWR5dlA4ekRGN2dBYW4y?=
+ =?utf-8?B?QjRhUk9JVW9iM1NoY3l6ODNFdTN3Q3JTMENkWW1PN2pNTy9ZWUIydWFpNFdM?=
+ =?utf-8?B?SmhJU2l1L2xWbmJhd3RuYXNXT2pCSWw2WU1jdEcvVGNyUnpNYTdEZkl3L21M?=
+ =?utf-8?B?b0VJUDBsWFNuNzN0ekptUUdQcjdqUlhYT2FMWHVNNldVVGFXRHE0Z1FUMG9u?=
+ =?utf-8?B?dkJyQ25VanNzbmlZR096NXgzYllON3BqdzJZUzlUckRBT29VdEF0ZHltOE9w?=
+ =?utf-8?B?aFJuZlZyQ0Jrb3QrV3VlM3NRTTFYTWhiZTZKanlOcUtYY1F2M2dhLzNtemQv?=
+ =?utf-8?B?MjF5Znd0TlZEQjYvWEdVWFNMNVMvUUdHTktNREZJT2tHS21NTzJIMktYazNh?=
+ =?utf-8?B?RzN1aTJEV29aMjlVekdUbXI2Tm5mWW1oMVpPZGMrdDAzRzZla2xrcUhjbmNB?=
+ =?utf-8?B?cnc9PQ==?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2a107bdd-7547-475b-3de3-08dcd8b1c83f
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8487.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2024 13:48:46.3140
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: U8Z7GzOQCKQgkzCX6FUxSEQ+bOvX9wc7erXK/MZGRHQyflFWfcWpeycQtzvgWQVl8552siv2tDaXHdAbnoCgH99hR+YU7UvFn+Hh9L7BtCc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10828
 
+This patch series adds support for basic GPIO
+operations(set, get, direction_output/input, set_config).
 
-Thank you for your review ! Will make sure all feedback is addressed in
-v2.
+There are two SIUL2 hardware modules: SIUL2_0 and SIUL2_1.
+However, this driver exports both as a single GPIO driver.
+This is because the interrupt registers are located only
+in SIUL2_1, even for GPIOs that are part of SIUL2_0.
 
-On 9/18/24 22:36, Rob Herring wrote:
-> On Wed, Sep 18, 2024 at 03:49:00PM +0200, Michal Wilczynski wrote:
->> Add bindings for the mailbox controller. This work is based on the vendor
->> kernel. [1]
->>
->> Link: https://protect2.fireeye.com/v1/url?k=385466ab-59df7384-3855ede4-74fe485cbfe7-af60aa2866e904f3&q=1&e=e3a5dfb9-1855-473e-9766-37a7ab5fbec5&u=https%3A%2F%2Fgithub.com%2Frevyos%2Fthead-kernel.git [1]
->>
->> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
->> ---
->>  .../bindings/mailbox/thead,th1520-mbox.yaml   | 83 +++++++++++++++++++
->>  MAINTAINERS                                   |  1 +
->>  2 files changed, 84 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/mailbox/thead,th1520-mbox.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/mailbox/thead,th1520-mbox.yaml b/Documentation/devicetree/bindings/mailbox/thead,th1520-mbox.yaml
->> new file mode 100644
->> index 000000000000..f446fae76398
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mailbox/thead,th1520-mbox.yaml
->> @@ -0,0 +1,83 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +
->> +%YAML 1.2
->> +---
->> +$id: https://protect2.fireeye.com/v1/url?k=8a32b8a9-ebb9ad86-8a3333e6-74fe485cbfe7-0fff00bcf0ce8f57&q=1&e=e3a5dfb9-1855-473e-9766-37a7ab5fbec5&u=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fmailbox%2Fthead%2Cth1520-mbox.yaml%23
->> +$schema: https://protect2.fireeye.com/v1/url?k=6b7f6c2c-0af47903-6b7ee763-74fe485cbfe7-f082b0e2a978f637&q=1&e=e3a5dfb9-1855-473e-9766-37a7ab5fbec5&u=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23
->> +
->> +title: T-head TH1520 Mailbox Controller
->> +
->> +description: |
-> 
-> Don't need '|' if no formatting.
-> 
->> +  The T-head mailbox controller enables two cores within the SoC to
->> +  communicate and coordinate by passing messages (e.g., data, status,
->> +  and control) through the mailbox channels. It also provides the ability
->> +  for one core to signal the other processor using interrupts.
->> +
->> +maintainers:
->> +  - Michal Wilczynski <m.wilczynski@samsung.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: thead,th1520-mbox
->> +
->> +  reg:
->> +    description: Contains base addresses and sizes for the mailbox and remote ICUs.
-> 
-> Drop. Redundant.
-> 
->> +    items:
->> +      - description: Mailbox local base address
->> +      - description: Remote ICU 0 base address
->> +      - description: Remote ICU 1 base address
->> +      - description: Remote ICU 2 base address
->> +
->> +  reg-names:
->> +    items:
->> +      - const: local_base
-> 
-> Just 'local'
-> 
->> +      - const: remote_icu0
->> +      - const: remote_icu1
->> +      - const: remote_icu2
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +    description: Interrupt for the mailbox controller.
-> 
-> Drop description. That's obvious.
-> 
->> +
->> +  clocks:
->> +    maxItems: 1
->> +    description: Clock phandle for the mailbox controller.
-> 
-> Drop
-> 
->> +
->> +  clock-names:
->> +    items:
->> +      - const: ipg
->> +
->> +  icu_cpu_id:
-> 
-> Needs a vendor prefix and s/_/-/.
-> 
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: CPU ID for the ICU.
-> 
-> Constraints?
+There are two gaps in the GPIO ranges:
+- 102-111(inclusive) are invalid
+- 123-143(inclusive) are invalid
 
-There are a total of four ICU's, so this could be constrained as you
-say. Thanks will fix.
+These will be excluded via the `gpio-reserved-ranges`
+property.
 
-> 
-> Nowhere in this patch is ICU defined.
+Writing and reading GPIO values is done via the PGPDO/PGPDI
+registers(Parallel GPIO Pad Data Output/Input) which are
+16 bit registers, each bit corresponding to a GPIO.
 
-ICU stands for Interrupt Controller Unit. Will make sure it's properly
-documented.
+Note that the PGPDO order is similar to a big-endian grouping
+of two registers:
+PGPDO1, PGPDO0, PGPDO3, PGPDO2, PGPDO5, PGPDO4, gap, PGPDO6.
 
-> 
->> +
->> +  '#mbox-cells':
->> +    const: 2
->> +    description: Number of cells required to encode the mailbox specifier.
-> 
-> You need to say what each cell contains.
-> 
->> +
->> +additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - reg-names
->> +  - interrupts
->> +  - icu_cpu_id
->> +  - '#mbox-cells'
->> +
->> +dependencies:
->> +  clock-names: [ clocks ]
-> 
-> Core schema already does this.
-> 
->> +
->> +examples:
->> +  - |
->> +    mbox_910t: mbox@ffffc38000 {
-> 
-> Drop unused labels.
-> 
-> Standard name is 'mailbox', not 'mbox'.
-> 
->> +      compatible = "thead,th1520-mbox";
->> +      reg = <0xff 0xffc38000 0x0 0x4000>,
->> +            <0xff 0xffc44000 0x0 0x1000>,
->> +            <0xff 0xffc4c000 0x0 0x1000>,
->> +            <0xff 0xffc54000 0x0 0x1000>;
->> +      reg-names = "local_base", "remote_icu0", "remote_icu1", "remote_icu2";
->> +      interrupts = <28 IRQ_TYPE_LEVEL_HIGH>;
->> +      icu_cpu_id = <0>;
->> +      #mbox-cells = <2>;
->> +    };
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 7331b30deef8..49198b2ed2e7 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -19719,6 +19719,7 @@ L:	linux-riscv@lists.infradead.org
->>  S:	Maintained
->>  T:	git https://protect2.fireeye.com/v1/url?k=a5b0cb39-c43bde16-a5b14076-74fe485cbfe7-e7359d7be6d6a5b5&q=1&e=e3a5dfb9-1855-473e-9766-37a7ab5fbec5&u=https%3A%2F%2Fgithub.com%2Fpdp7%2Flinux.git
->>  F:	Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
->> +F:	Documentation/devicetree/bindings/mailbox/thead,th1520-mbox.yaml
->>  F:	arch/riscv/boot/dts/thead/
->>  F:	drivers/clk/thead/clk-th1520-ap.c
->>  F:	drivers/mailbox/mailbox-th1520.c
->> -- 
->> 2.34.1
->>
-> 
+I have other patches for this driver:
+- interrupt support
+- power management callbacks
+
+which I plan to upstream after this series gets merged
+in order to simplify the review process.
+
+v3 -> v2
+- fix dt-bindings schema id
+- add maxItems to gpio-ranges
+- removed gpio label from dt-bindings example
+- added changelog for the MAINTAINERS commit and
+  added separate entry for the SIUL2 GPIO driver
+- added guard(raw_spinlock_irqsave) in
+  'siul2_gpio_set_direction'
+- updated the description for
+  'devm_platform_get_and_ioremap_resource_byname'
+
+v2 -> v1
+dt-bindings:
+- changed filename to match compatible
+- fixed commit messages
+- removed dt-bindings unnecessary properties descriptions
+- added minItems for the interrupts property
+driver:
+- added depends on ARCH_S32 || COMPILE_TEST to Kconfig
+- added select REGMAP_MMIO to Kconfig
+- remove unnecessary include
+- add of_node_put after `siul2_get_gpio_pinspec`
+- removed inline from function definitions
+- removed match data and moved the previous platdata
+  definition to the top of the file to be visible
+- replace bitmap_set/clear with __clear_bit/set_bit
+  and devm_bitmap_zalloc with devm_kzalloc
+- switched to gpiochip_generic_request/free/config
+- fixed dev_err format for size_t reported by
+  kernel test robot
+- add platform_get_and_ioremap_resource_byname wrapper
+
+Andrei Stefanescu (4):
+  drivers: provide devm_platform_get_and_ioremap_resource_byname()
+  dt-bindings: gpio: add support for NXP S32G2/S32G3 SoCs
+  gpio: siul2-s32g2: add NXP S32G2/S32G3 SoCs support
+  MAINTAINERS: add MAINTAINER for S32G2 SIUL2 GPIO driver
+
+ .../bindings/gpio/nxp,s32g2-siul2-gpio.yaml   | 107 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/base/platform.c                       |  27 +
+ drivers/gpio/Kconfig                          |  10 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-siul2-s32g2.c               | 576 ++++++++++++++++++
+ include/linux/platform_device.h               |  13 +
+ 7 files changed, 741 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/nxp,s32g2-siul2-gpio.yaml
+ create mode 100644 drivers/gpio/gpio-siul2-s32g2.c
+
+-- 
+2.45.2
+
 
