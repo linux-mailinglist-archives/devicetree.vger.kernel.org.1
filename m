@@ -1,333 +1,129 @@
-Return-Path: <devicetree+bounces-103978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E181697CDBB
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 20:37:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0604597CDD1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 20:48:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4A6F9B2235B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 18:37:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 249211C21C20
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 18:48:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE991CF9B;
-	Thu, 19 Sep 2024 18:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 302081804F;
+	Thu, 19 Sep 2024 18:48:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X37I/edh"
+	dkim=pass (2048-bit key) header.d=kali.org header.i=@kali.org header.b="MSuxslZ8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AD2C1CD1F;
-	Thu, 19 Sep 2024 18:35:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F46423775
+	for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 18:48:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726770959; cv=none; b=f/TPXoTMdNXQ/rfHcp2TlhGI2wu1DrfWIa/AE0S8bIQJAsPQgtJXyv3QX6nW/7jZfyVe4OqELM3aiQg5iuPruyY6fDMNoaOHBch4lKPllfIUV78d5k0D1sk51a7URA6xEI0Ho+Wxy3dCibwlJrj8mhO0slV1+/DPIjR66mABnC8=
+	t=1726771732; cv=none; b=inDhOPjwJO49r+GYONScYG6xqDgIraWJEgxKN20zhVmzOSmwXSlQC0ep7Dzh+P71mQJqguVzvEbPIpH0AsOhqCYjG9zoYPX+jWp8rGhi6V5fy3Ql+PLM6BKd2V3OkoyTyW2AL2MbfdmeOxyY2NL1Va/Q8IIuctlxEkmppJqG7W8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726770959; c=relaxed/simple;
-	bh=W49WozanLprZEJxgdhsiRD8i1r/Epzp6B7fBpUrzNNE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Ju65XGio3JzB33vPUEzP8KxQ+TvMfHY2z7sa7Evubp7C3MLHh6cUSt61unRJwFaeWNTI0pT0Rx/6yWSaGG3Lki2FgnAFI7VEUEWlCRr9FS1IVDfrcpgMVJ876jUtBIyrmY6K/wEElCU/7ayPTh1ZvVN008XposZKuETB1jRGMf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X37I/edh; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-42cae4eb026so10984865e9.0;
-        Thu, 19 Sep 2024 11:35:56 -0700 (PDT)
+	s=arc-20240116; t=1726771732; c=relaxed/simple;
+	bh=tBkFsOEGKki/Ujou0mi5ka3jQDUd4rYy6dVeLu5RC6w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IRq9fK/4mTRKRBR+TeWQOcXzUL4PwLlR4o6g/ybEHshErJnprAmu7RwQJZmAK+BAwe+LyT6pMsiJgiED0osdwaaB2UqXb68H2FfN820tVtCV+DdpZvm0Tv3a860W0LlsMnmMecoXnWp7T1j5YjtKtQA92FKYlrpUwttDDigi1mQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kali.org; spf=pass smtp.mailfrom=kali.org; dkim=pass (2048-bit key) header.d=kali.org header.i=@kali.org header.b=MSuxslZ8; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kali.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kali.org
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-378e5d4a80eso911091f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 11:48:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726770955; x=1727375755; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=T7wbTHSo9+XfWUpxWPDNev/PMADReLxOtwvmxGAdnEw=;
-        b=X37I/edhlrYahGYoTtacXbdYRakoKI/Li742LQ6RhcAf/ikcMtHuR/y6ucRhPpHRY5
-         TG1DeRInGURFsb10/pc3D//ILqHTMvjSXwCOBwHj8lzxN36H34SaOjrgr/oXSsHNesiL
-         XHpyZfQU6q3jwUzd3Nx1WH4k1eASUSgIbYqNc/v1b9LBExd+BOf1k2LjD5bLQGh7O4c6
-         4qyj/nMsVNmGsuTmkmlfD6bVKYxZPQKPLsh4zMKj81MpBCr5Y285TgB0eJPO+Kat5MsS
-         ru+rcOhvliXb5ZlmJDUq5NmC6sfTt1BmCH82orfOoeeitaNcK2xnIs0Uz0qdaEy15x0s
-         QQTA==
+        d=kali.org; s=google; t=1726771729; x=1727376529; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5NKj5Iywn8pi1HV6RavjZasiS19LGez3AtSbupjyBc4=;
+        b=MSuxslZ8E9y9YmWorzOb7RA3Csz+2Okf1MY9ZvOQwn1+sKSyIokoQ9ZXhP7UpHPAYW
+         NOu41thxDOC6siauWBFnbk86zqlCxnFU+EY5UXLM3uUvzSGBVgcY3yWHQQQPzrhJO9sq
+         DclOU6+tYc/4qXtepr8bLvlv6j8p5LstNqOnpk7cROnWS2qw6O1IsMUZ/mVQ2KsiVw78
+         8/wWfXJC0De51TbrfLbv/e/shjHSp00fmCWXpLfmKCDxkvbaonhWqUF2OKz2IRlo8JFJ
+         UMAI0qxgTsXwKlRpVGPhIFkRZ6gSeF8HVD5DgShbPjZ0oni6wBiQQmYZuDDUEKGq+uZU
+         FfkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726770955; x=1727375755;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=T7wbTHSo9+XfWUpxWPDNev/PMADReLxOtwvmxGAdnEw=;
-        b=POp7Sc3NTf95FKekozlNdJWme+S9vo++2um5LpmsffuQdIWcJAO5iTP2ZSu2qnGaWF
-         ehVucUS/tzNq9xDieF6CzcYjLvam3uX750aqvcnIsFJso/wD75hjxg72UMYtBwwHONIm
-         cJLF/BMDCdwGhfWTk3M4pcz2EfZ3yze0x4zSJWrOlTWucP0tnBLz+c1p8n4M6v3vBoHp
-         1XEzBXfmGHJbBa3qXRHjSqrPHEQnjTke6IGe2TzYElXrqpeGBRhUWEX5x+HAiSImekfP
-         hfl8KyXAkgOwudH12pvPp7PagzmANqIFejLU94xJ5fXdH5DgIUoOU/NSn94k/NNEsL6B
-         ZMdA==
-X-Forwarded-Encrypted: i=1; AJvYcCWeji26hmrYJdjCNzK2+DWXVxbgdJzmjXC2yXtnJEKntg+MBRutU2tnvFvdjOWkX7yIVkJOMu4wkK2+Zpk=@vger.kernel.org
-X-Gm-Message-State: AOJu0YysjDPJDRK47ucF7seTV5iAPJhe3wlXlxSphLD7xPDb1N0tFrPE
-	5lhJIoedPcR3+LmPygbEMcHFvE+CiQ7C5fSx2vLUUG2vEdRfU7XZDrcI93o8
-X-Google-Smtp-Source: AGHT+IE52EiCmyv96iQ6F9zx0Vq2tE3Sx85XTboMQtqUo9n54qi1QYTgF3Q3MaSwtjjHK9zj1ChviA==
-X-Received: by 2002:a05:600c:4f51:b0:428:f0c2:ef4a with SMTP id 5b1f17b1804b1-42e7abf3db1mr3004865e9.13.1726770955107;
-        Thu, 19 Sep 2024 11:35:55 -0700 (PDT)
-Received: from cleve-worktop. (85-193-33-128.rib.o2.cz. [85.193.33.128])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-42e75440657sm29110805e9.20.2024.09.19.11.35.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Sep 2024 11:35:54 -0700 (PDT)
-From: =?utf-8?q?Kry=C5=A1tof_=C4=8Cern=C3=BD?= <cleverline1mc@gmail.com>
-Date: Thu, 19 Sep 2024 20:35:39 +0200
-Subject: [PATCH v2] arm64: dts: allwinner: Add disable-wp for boards with
- micro SD card
+        d=1e100.net; s=20230601; t=1726771729; x=1727376529;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5NKj5Iywn8pi1HV6RavjZasiS19LGez3AtSbupjyBc4=;
+        b=CMp+Vuyk5Rb0szPyH9UGTHTgMuaKeMx/XHtETuFNI6aSmajGlsZSTjBFfupy2Twgpr
+         CxHj+bwfBZLsJQkhIXjPxIY7KLXg9b4UtKMelJQnNSUxhEgnbnYo1E6VvmaJAva8oMoz
+         3fI+mchmZC8XdguYKlGtNHh8fd0MSHKKAmXGAWVgyigrE6RriHkzPmm6r+pZG12eNxcd
+         5ug1yN79beBE2pEtppnWTKug/unjeuMCEu38gjaTzedIGKnk/R8r/q5duaRgQvlJzLws
+         1D8Ct3YY/dBDlQaaqv81Q7uWCdShqr7tJkWxO32aCHMAf4b59JEuvEw0M3UTqsWx02+K
+         SkBg==
+X-Forwarded-Encrypted: i=1; AJvYcCWryAXvSlz+RgQrNFX3c5/lXmKR8UqTFux/G0EeYvoeSLwRSHpzt97sWf/MT5VXKDY+f4m6Jf6C4rsv@vger.kernel.org
+X-Gm-Message-State: AOJu0YxROlnN6UOicO+kdN6N7m7N/+q8AFucMFY8tQZNkcXH+wYn40m7
+	1xw8guIUIxC/5PCMpJEllw3wCxi8Z3Hm049i2DQ2h3Tjiqn3ng6WLtPL5RwaP2XXD5+4YoU+BKI
+	PKVH+98hvrEiMYdRTh37oLlR3T8xX/6A0/Nw0iA==
+X-Google-Smtp-Source: AGHT+IFwZ00ICb5UCjsH6ziqz8Xe7HABIip24+gKr+pPgaD0kCyAzp+K0Fw2+tCzsUPMbb7TJM5PAUtR0m7y7h5wl6k=
+X-Received: by 2002:a5d:410b:0:b0:369:9358:4634 with SMTP id
+ ffacd0b85a97d-37a42277e15mr193773f8f.19.1726771728546; Thu, 19 Sep 2024
+ 11:48:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240919-b4-nanopineoplus2-fix-mmc0-wp-v2-1-c708a9abc9eb@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAPtu7GYC/42NWw6CMBREt0Lut9e0tUDwy30YPnjcwk3oI62ih
- rB3Kysw83VmkjMbJIpMCa7FBpFWTuxdBnUqYJg7NxHymBmUUFo0UmOv0XXOB3bkw/JMCg2/0dp
- B4CtgM9a16RuqSnmB7AiR8nz4723mmdPDx89xt8pf+695lZijTKmNGKtKidtkO17Og7fQ7vv+B
- TbRJH/KAAAA
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- =?utf-8?q?Kry=C5=A1tof_=C4=8Cern=C3=BD?= <cleverline1mc@gmail.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1726770954; l=9820;
- i=cleverline1mc@gmail.com; s=20240824; h=from:subject:message-id;
- bh=W49WozanLprZEJxgdhsiRD8i1r/Epzp6B7fBpUrzNNE=;
- b=wfXOiLSQZ9AQdNDPurMx4ypsx/yoUjo62d87kyOsMX3tbkihuOulnziUFV09yRHCP3whqkMBu
- 8R7ihgSCnXZB6q2qFHDOYxW39Ooix/+QrajYbKIhNn7b2Wxvnu03vDt
-X-Developer-Key: i=cleverline1mc@gmail.com; a=ed25519;
- pk=CQifx5FUgTQKAoj5VCYrwYHi235AkXQ5yT1P6gkaBxM=
+References: <20240919-topic-apps_smmu_coherent-v1-0-5b3a8662403d@quicinc.com>
+ <D4A2FKPTXHS5.3AHU7ZEKFVMGG@fairphone.com> <2fb16b35-e6c5-4239-a745-a9dd7412539a@kernel.org>
+In-Reply-To: <2fb16b35-e6c5-4239-a745-a9dd7412539a@kernel.org>
+From: Steev Klimaszewski <steev@kali.org>
+Date: Thu, 19 Sep 2024 13:48:37 -0500
+Message-ID: <CAKXuJqj=5wZg2+EZOmbS4TjrvqNm9UhsqeSPHZyVbOLnir_juA@mail.gmail.com>
+Subject: Re: [RFC PATCH 00/11] Affirm SMMU coherent pagetable walker
+ capability on RPMh SoCs
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Luca Weiss <luca.weiss@fairphone.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	cros-qcom-dts-watchers@chromium.org, 
+	Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Konrad Dybcio <quic_kdybcio@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Adding disable-wp property for micro SD nodes of Allwinner arm64 devices.
-Boards were verified from online pictures/tables
-that they have micro SD slots.
+Hi Konrad,
 
-Signed-off-by: Kryštof Černý <cleverline1mc@gmail.com>
----
-Sorry that my last messages were not in mailing list,
-one was wrongly sent and second was rejected, as the bot claimed it contained html.
----
-Changes in v2:
-- NEW: Added the property to all Sunxi arm64 boards, as discussed in mailing list
-- Link to v1: https://lore.kernel.org/r/20240914-b4-nanopineoplus2-fix-mmc0-wp-v1-1-12f54f0d6620@gmail.com
----
- arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts    | 1 +
- arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts         | 1 +
- arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts       | 1 +
- arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts        | 1 +
- arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts      | 1 +
- arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts  | 1 +
- arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts | 1 +
- arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts         | 1 +
- arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts          | 1 +
- arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi           | 1 +
- arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts            | 1 +
- arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi              | 1 +
- arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi    | 1 +
- arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts          | 1 +
- arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts       | 1 +
- arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts | 1 +
- 16 files changed, 16 insertions(+)
+On Thu, Sep 19, 2024 at 5:07=E2=80=AFAM Konrad Dybcio <konradybcio@kernel.o=
+rg> wrote:
+>
+> On 19.09.2024 9:00 AM, Luca Weiss wrote:
+> > On Thu Sep 19, 2024 at 12:57 AM CEST, Konrad Dybcio wrote:
+> >> I only read back the SMMU config on X1E & 7280, but I have it on good
+> >> authority that this concerns all RPMh SoCs. Sending as RFC just in cas=
+e.
+> >>
+> >> Lacking coherency can hurt performance, but claiming coherency where i=
+t's
+> >> absent would lead to a kaboom.
+> >
+> > Hi Konrad!
+> >
+> > You want people with the affected SoCs to test this I imagine?
+>
+> Yeah, would be nice to confirm
+>
+> >
+> > Just boot it and see if it doesn't implode, or do you have any more
+> > elaborate test plan for this?
+>
+> No, booting should be enough of a test
+>
+> Konrad
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts
-index 526443bb736c..18fa541795a6 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts
-@@ -136,6 +136,7 @@ &mmc0 {
- 	vmmc-supply = <&reg_vcc3v3>;
- 	bus-width = <4>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-+	disable-wp;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts
-index 05486cccee1c..128295f5a5d6 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts
-@@ -88,6 +88,7 @@ ext_rgmii_phy: ethernet-phy@7 {
- 
- &mmc0 {
- 	vmmc-supply = <&reg_vcc3v3>;
-+	disable-wp;
- 	bus-width = <4>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
-index 3a7ee44708a2..44fdc8b3f79d 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
-@@ -157,6 +157,7 @@ eth_mac1: mac-address@fa {
- 
- &mmc0 {
- 	vmmc-supply = <&reg_vcc3v3>;
-+	disable-wp;
- 	bus-width = <4>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
-index ce3ae19e72db..0f29da7d51e6 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
-@@ -153,6 +153,7 @@ &ir {
- 
- &mmc0 {
- 	vmmc-supply = <&reg_vcc3v3>;
-+	disable-wp;
- 	bus-width = <4>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts
-index b699bb900e13..d4fc4e60e4e7 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts
-@@ -153,6 +153,7 @@ &ir {
- 
- &mmc0 {
- 	vmmc-supply = <&reg_vcc3v3>;
-+	disable-wp;
- 	bus-width = <4>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts
-index ae85131aac9c..3322cc4d9aa4 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts
-@@ -82,6 +82,7 @@ ext_rgmii_phy: ethernet-phy@1 {
- 
- &mmc0 {
- 	vmmc-supply = <&reg_vcc3v3>;
-+	disable-wp;
- 	bus-width = <4>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts
-index 734481e998b8..3eb986c354a9 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts
-@@ -79,6 +79,7 @@ hdmi_out_con: endpoint {
- 
- &mmc0 {
- 	vmmc-supply = <&reg_vcc3v3>;
-+	disable-wp;
- 	bus-width = <4>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-index 3be1e8c2fdb9..13a0e63afeaf 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-@@ -129,6 +129,7 @@ ext_rgmii_phy: ethernet-phy@1 {
- &mmc0 {
- 	vmmc-supply = <&reg_cldo1>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
-+	disable-wp;
- 	bus-width = <4>;
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-index 6c3bfe3d09d9..ab87c3447cd7 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-@@ -131,6 +131,7 @@ hdmi_out_con: endpoint {
- &mmc0 {
- 	vmmc-supply = <&reg_cldo1>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-+	disable-wp;
- 	bus-width = <4>;
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-index 13b07141c334..d05dc5d6e6b9 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-@@ -94,6 +94,7 @@ hdmi_out_con: endpoint {
- &mmc0 {
- 	vmmc-supply = <&reg_cldo1>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
-+	disable-wp;
- 	bus-width = <4>;
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-index c8b275552872..fa7a765ee828 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-@@ -133,6 +133,7 @@ ext_rgmii_phy: ethernet-phy@1 {
- &mmc0 {
- 	vmmc-supply = <&reg_cldo1>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
-+	disable-wp;
- 	bus-width = <4>;
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi
-index 855b7d43bc50..bb7de37c0d58 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi
-@@ -124,6 +124,7 @@ &mmc0 {
- 	pinctrl-0 = <&mmc0_pins>;
- 	vmmc-supply = <&reg_vcc3v3>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
-+	disable-wp;
- 	bus-width = <4>;
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-index fc7315b94406..a3fe39f8e2ca 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-@@ -81,6 +81,7 @@ ext_rgmii_phy: ethernet-phy@1 {
- 
- &mmc0 {
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-+	disable-wp;
- 	bus-width = <4>;
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-index 26d25b5b59e0..dd3bd9cca710 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-@@ -52,6 +52,7 @@ &ir {
- &mmc0 {
- 	vmmc-supply = <&reg_dcdce>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-+	disable-wp;
- 	bus-width = <4>;
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts
-index 18b29c6b867f..16c68177ff69 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts
-@@ -111,6 +111,7 @@ ext_rgmii_phy: ethernet-phy@1 {
- };
- 
- &mmc0 {
-+	disable-wp;
- 	bus-width = <4>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>;	/* PF6 */
- 	vmmc-supply = <&reg_vcc3v3>;
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-index d6631bfe629f..024377b333c1 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-@@ -71,6 +71,7 @@ &ir {
- &mmc0 {
- 	vmmc-supply = <&reg_dldo1>;
- 	cd-gpios = <&pio 8 16 GPIO_ACTIVE_LOW>;	/* PI16 */
-+	disable-wp;
- 	bus-width = <4>;
- 	status = "okay";
- };
+I have tested sc8280xp on the Thinkpad X13s.  It still boots and
+nothing seems to be more broken than usual (kidding, it seems to be
+running exactly as it was before the patchset was applied.)  I will
+try to find the time to test sc8180x on a Flex 5G as well as the
+sdm845 on the Lenovo Yoga C630, but I can't promise I'll find the
+time.
 
----
-base-commit: 57f962b956f1d116cd64d5c406776c4975de549d
-change-id: 20240914-b4-nanopineoplus2-fix-mmc0-wp-9d77fb9e6513
-
-Best regards,
--- 
-Kryštof Černý <cleverline1mc@gmail.com>
-
+Tested-by: Steev Klimaszewski <steev@kali.org> # Thinkpad X13s (sc8280xp)
 
