@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-103873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 206FF97C7A2
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:01:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E78F97C7AA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:04:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51C601C28F34
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 10:01:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF7941F21E37
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 10:04:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82979198A02;
-	Thu, 19 Sep 2024 10:00:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D38DD1862B5;
+	Thu, 19 Sep 2024 10:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZvIStKvS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pbWjCrAX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 474DE18A6C5;
-	Thu, 19 Sep 2024 10:00:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46431CABA;
+	Thu, 19 Sep 2024 10:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726740059; cv=none; b=VOjWynXozuX65yoE+TQ2uOSCyDRIqkvUTzVVaB+59JXD8OSELa8pk83XBnxLDQjtbwTAsiMWMKnGuofk1wW12CTs3Febvs+PUHlP+jBfARjLc5xdt5AB1uxTfNTk5lhccwMjkIw64hloQAr5aofIDSP9z88uOdiAcPJBg5eJSEc=
+	t=1726740279; cv=none; b=szDETeYX2k9LwJvf2GNTg6K2RsR8mQGr2RIEcuUjRQJYJkB5aEg7YV54CNv5NhyfBY0xeO9IBE2WNLU0sxHmg6fcd2grCWdfIe8hSPaWvTp2igao8yRsyeTzn8TBxLlzbpCYnhfR2DKFpdxjlqTvZZMWyf0pGAyZbC4cNuUaYi0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726740059; c=relaxed/simple;
-	bh=vXvW7MnCo/+EZQZ4PbmZTj1XR3D+SwmpjrH1EkwAtfA=;
+	s=arc-20240116; t=1726740279; c=relaxed/simple;
+	bh=VJ/w9KvYWfGEMh7f+UtSWlzn3vMDtAd5TpcQAK1f8H4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gIQOSkNrRwV6bzcs+UuBGGFnJL0I34oVbzNC6z8Agt+/s+RzifpK5GEIf6TWOLGUUYVdBj4ulk4DGn9tujtKN+31MdJDlaMwIPdxNyaOb+FROqHI1SvMpGbTva1gmBD7OOQtJqgCDsPt/SbyKDL1WjlLT6pMKjcNrO69m/ML/nM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZvIStKvS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66565C4CECD;
-	Thu, 19 Sep 2024 10:00:55 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=YwyYColQ+iUiPKhdGZ2x31lF2d9R4sCTPcAI1oU8iAJFQugq1nvA0qXR+/fBosOGMfTT39mOuzhBJOwYz/tUOwwQAEYD8S7Q3VNWj/FImffbDjBByf7NATpPFY2YNZEibBu9fsjSOhEpcPSx3KcavsqXZHXYsZizlppHSiqSwOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pbWjCrAX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A990C4CEC5;
+	Thu, 19 Sep 2024 10:04:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726740059;
-	bh=vXvW7MnCo/+EZQZ4PbmZTj1XR3D+SwmpjrH1EkwAtfA=;
+	s=k20201202; t=1726740279;
+	bh=VJ/w9KvYWfGEMh7f+UtSWlzn3vMDtAd5TpcQAK1f8H4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZvIStKvSsi8xJ4NDi52MPo4ITXf6GKYOh9DaDih954gI0FtCLAifkRiInvGSfy5mr
-	 atHot5+8ljM52in3XRxvUSCkSz3T2EauvLekm/Y/OBm+wNMhGGby8+TGUOEYEj0pZv
-	 td8PZH46EEsBX8GaGQlt1bydSxD/2Zx+ZQXRvcTWAb3ZO7aTwJ8U3LQRP0zh2cFX9G
-	 YokszxY0G3ri9cgFJbfAPiRxCF0x+zSbr/wkf7zvdqlNPy4Et/6536wwJR9XE5Sn9b
-	 +ExNnqmY9+yMh4CERNaMg80doU49qObvhw75DecrTZ4xtdkFcGuiwRUPb4AHGqk33g
-	 qwvPlDpjNJDWA==
-Message-ID: <ed6aceb6-4954-43ad-b631-6c6fda209411@kernel.org>
-Date: Thu, 19 Sep 2024 12:00:53 +0200
+	b=pbWjCrAX6MIJAuIY/EXYHRWcDufaMM8WC6X2qQ0vq0zd4pCojdNk+zcE3UpbUSVw5
+	 nwsU8ll11W/G11h9EXaXbRGsfUcqG7dt9t2KuDesAG1fMYNjuVbj0YFbTrU02RlxHt
+	 Gvqogw611UvI+rO5KV07Avgtf/jZ82r+V2/ENzluFdVP1PiqZei3lrk7GmxxdhZ3JA
+	 HvMzGlSCPHnN0tCVfu6kpU3SaYfP/2ysREZV4seeYdJ/Ellmw1Iu5roTueljHM9mMd
+	 m972maQOdR+hf6ywvaXTMm8NI85JfGAua0jg6u0JPXaF+hA3zvfr3PU734+9x72xcp
+	 E5iGN6ksZVQgg==
+Message-ID: <222b3b11-151a-4ad0-91ea-54ae8f280bcb@kernel.org>
+Date: Thu, 19 Sep 2024 12:04:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs
- of the ath11k on WCN6855
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, ath11k@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20240814082301.8091-1-brgl@bgdev.pl>
- <83c562e9-2add-4086-86e7-6e956d2ee70f@kernel.org> <87msk49j8m.fsf@kernel.org>
+Subject: Re: [PATCH v2 1/5] dt-bindings: remoteproc: sse710: Add the External
+ Systems remote processors
+To: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+Cc: mathieu.poirier@linaro.org, Adam.Johnston@arm.com,
+ Hugues.KambaMpiana@arm.com, Drew.Reed@arm.com, andersson@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ liviu.dudau@arm.com, lpieralisi@kernel.org, robh@kernel.org,
+ sudeep.holla@arm.com, robin.murphy@arm.com
+References: <CANLsYkwOrtXxObL5MKf30OrUYB_uT=DnGEXUtfjH503r_LyMQA@mail.gmail.com>
+ <20240822170951.339492-1-abdellatif.elkhlifi@arm.com>
+ <20240822170951.339492-2-abdellatif.elkhlifi@arm.com>
+ <gzlncpyzwm7x4jcxtdrthrlv2dofk7u3oxn4taadwog5tt37wo@ot6s6kwukd4k>
+ <20240919093517.GA43740@e130802.arm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,33 +110,90 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <87msk49j8m.fsf@kernel.org>
+In-Reply-To: <20240919093517.GA43740@e130802.arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/09/2024 09:48, Kalle Valo wrote:
-> Krzysztof Kozlowski <krzk@kernel.org> writes:
+On 19/09/2024 11:35, Abdellatif El Khlifi wrote:
+> Hi Krzysztof,
 > 
->> On 14/08/2024 10:23, Bartosz Golaszewski wrote:
->>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>> Add devicetree binding schema for the External Systems remote processors
 >>>
->>> Describe the inputs from the PMU of the ath11k module on WCN6855.
+>>> The External Systems remote processors are provided on the Corstone-1000
+>>> IoT Reference Design Platform via the SSE-710 subsystem.
 >>>
->>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>> ---
->>> v1 -> v2:
->>> - update the example
+>>> For more details about the External Systems, please see Corstone SSE-710
+>>> subsystem features [1].
+>>>
 >>
->> I don't understand why this patch is no being picked up. The code
->> correct represents the piece of hardware. The supplies should be
->> required, because this one particular device - the one described in this
->> binding - cannot work without them.
+>> Do not attach (thread) your patchsets to some other threads (unrelated
+>> or older versions). This buries them deep in the mailbox and might
+>> interfere with applying entire sets.
+>>
+>>> [1]: https://developer.arm.com/documentation/102360/0000/Overview-of-Corstone-1000/Corstone-SSE-710-subsystem-features
+>>>
+>>> Signed-off-by: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+>>> ---
+>>>  .../remoteproc/arm,sse710-extsys.yaml         | 90 +++++++++++++++++++
+>>>  1 file changed, 90 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml b/Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml
+>>> new file mode 100644
+>>> index 000000000000..827ba8d962f1
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml
+>>> @@ -0,0 +1,90 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/remoteproc/arm,sse710-extsys.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: SSE-710 External System Remote Processor
+>>> +
+>>> +maintainers:
+>>> +  - Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+>>> +  - Hugues Kamba Mpiana <hugues.kambampiana@arm.com>
+>>> +
+>>> +description: |
+>>
+>> dt-preserve-formatting
 > 
-> I have already explained the situation. With supplies changed to
-> optional I'm happy take the patch.
+> Do you mean I should remove the '|' please ? (I didn't find examples of use of
+> dt-preserve-formatting in Documentation/devicetree/bindings/)
+> 
+>>
+>>> +  SSE-710 is an heterogeneous subsystem supporting up to two remote
+>>> +  processors aka the External Systems.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - arm,sse710-extsys
+>>> +
+>>> +  firmware-name:
+>>> +    description:
+>>> +      The default name of the firmware to load to the remote processor.
+>>> +
+>>> +  '#extsys-id':
+>>
+>> '#' is not correct for sure, that's not a cell specifier.
+>>
+>> But anyway, we do not accept in general instance IDs.
+> 
+> I'm happy to replace the instance ID with  another solution.
+> In our case the remoteproc instance does not have a base address
+> to use. So, we can't put remoteproc@address
+> 
+> What do you recommend in this case please ?
 
-You did not provide any relevant argument to this case. Your concerns
-described quite different case and are no applicable to DT based platforms.
+Waiting one month to respond is a great way to drop all context from my
+memory. The emails are not even available for me - gone from inbox.
+
+Bus addressing could note it. Or you have different devices, so
+different compatibles. Tricky to say, because you did not describe the
+hardware really and it's one month later...
 
 Best regards,
 Krzysztof
