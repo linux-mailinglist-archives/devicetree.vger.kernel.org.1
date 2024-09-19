@@ -1,131 +1,160 @@
-Return-Path: <devicetree+bounces-103834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B6B397C675
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 10:59:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FE6697C68C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 11:07:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDE611F26718
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 08:59:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E46721F2393A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 09:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44823199243;
-	Thu, 19 Sep 2024 08:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEE7A199E8C;
+	Thu, 19 Sep 2024 09:06:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="wSOpN+V8"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="aP0e28+9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 900E11991C9
-	for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 08:59:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726736362; cv=none; b=gPjhRc7+/j3LjqxGqT3bwJKBDIyRcrepkr94d8UFVfMpbb00OUxZ7bf0bIzOwFC004Kzu2BzP4Cnpx9By9ZiONJjf5xhLQnEJ5UFG5ouwO62kLhizUjnODI0fUYtlhUbJPthAoZLP9l9ySGuL4Jey4Xrrs8iVkPBdhks7Qoq+Cc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726736362; c=relaxed/simple;
-	bh=gELVqvyqcJInyr8E7hFzpzkNi+tcnEM+7zPPHqXS8a4=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eRy32Onvwf6A2xt3BhLvVpR6PozEeT3ECLyrDiXs4XtlAwUspzRWLTuLuokkvC+CfHdtQsLhi9gl8XiJa4sr4vxRtplHyOg43Ci+DXvnawCF7nLXFYhDKYDS3i83hCPIJplBrsUaX705b6nq7IfMUWKweB5sOU2+nHoKMzEOu80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=wSOpN+V8; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-718d8d6af8fso416677b3a.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 01:59:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1726736360; x=1727341160; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=gELVqvyqcJInyr8E7hFzpzkNi+tcnEM+7zPPHqXS8a4=;
-        b=wSOpN+V8gFi0Mpkzw8xCb9Tl4fqma9+DcfEjcswbq9RGnuj6HGZbqLYYuBZBpL3wnb
-         mP2GH1M9z908073TNINTI3TGxKDRbQLU63ju35/sWymUoCXeZokQVjWRcqrAmBvGyrBU
-         93rN32wfNi71qrJMQqAtt0hx248gV4us+zofHmJbvbvLUGxwuZcJ8Ye9vIwaxN2anHaq
-         qm8V9zVPaYQOV5yRj5Ir34mzIxpO3GzxNZf6bHjkibph+WeTXSYNyIVDzyL9Rbd0coNi
-         Xn6rOSn/AWKm0OFfENgVSQ1xWNEqtIywmWP4+oI8GvMUDBtOrW/SiToQkpAadwmhZqpJ
-         y5jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726736360; x=1727341160;
-        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gELVqvyqcJInyr8E7hFzpzkNi+tcnEM+7zPPHqXS8a4=;
-        b=SWSunykgZBk0BFRVfcPP+d6f2kpPDzZcDXpxNSu/u/8D/j+uv+K3/eUDN+44rsVbVG
-         f8xXHMIPDVIeJ5LwEG0yRL+QbOSvnDWE1sNOcHDdq6R5gbXKys3zBC7lne+Zf+xTgCj5
-         EkH+8eS7jeovIgxHXZvzVkAqUYeidJtYv2w8us1e8wNC262JvlF63MzcJia3CW0CGVHj
-         Zbdj/3EIQqVjchhko5f2z7YLi3gniWzbP49qFhJ6OMrJ7VolswU7FfMLMhnYVEBi/xtb
-         pGj0TTuSyIjSfc8Pvhnn7+UW5V0kxdn/H9frkciEWDbWTLnL+4vqYFeZiN5aO+hQfDVI
-         FbmQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWoLUQdQndT9LWigHQYrFIjzc6mGcvIUpToUStx85wgDEyrmjTkc+UixaNC/WIP/xhNST+NuSmI7B3N@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgqSFndGGljfIQ9WBGmfJzzPXBXVosIudzoAk8UDZihqCQoGpm
-	E3/lTI+U5xNxa9qV9z/M4u1bIMpT9Ls90ME8Qu8EJlRO8GEuP9xJ1TyRZ2Gn6gsDEA99jt14Ctc
-	wS68ekVHsEw1qWT2CvQmXB3LXf8OHNm5BH0X7bw==
-X-Google-Smtp-Source: AGHT+IGvZKhZ+sgK1EVS1v43hs165nAjaXCVBqA4ql8mlkaKawbV4Lhi2ui4b5YR+NQKc/pd5URgnIZnstCpvwceHIs=
-X-Received: by 2002:a05:6a00:c88:b0:717:fd98:4a6 with SMTP id
- d2e1a72fcca58-71926082587mr37728842b3a.11.1726736359963; Thu, 19 Sep 2024
- 01:59:19 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 19 Sep 2024 03:59:17 -0500
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-In-Reply-To: <87msk49j8m.fsf@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCAB5199957;
+	Thu, 19 Sep 2024 09:06:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726736815; cv=pass; b=JYkbLfNezkniIXOEHgm+HHpkz4FY4UFQnyXbSKXUnVX7nED3Jp82K5tjgAdcOHqyVQWFGh6pPSK3uFR6/tafVKlR3HFZ4CYdNvWMo44yTuyrb5h9yGRdP1fcDgRT4v1uHtLUJSoEivU7CGnmHp7e0AohsIzFkzQK2WJYXslGX08=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726736815; c=relaxed/simple;
+	bh=WIyPR9I7SW6Am8W2Xo7ZAkLcKedMPAaJoNrnX9TxwDI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iZwSJqGaYHqgpk//5R9F14omA1a+gpgDl3McyvQk6eTvdvAqvdAPqoW90q1jIQwj5WjEG5Ln8+td3kf5tZR88WE4MczJoFSA9iRusKZOU6zJpJOVdgMYfszRDEj37SC/Z6z2t7za0e9WLgliqfc2RhcPsHey9mU6pA/4NQlqmyc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=aP0e28+9; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1726736744; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=WjG2BOdH75Al6lv/8HNX+J4MZwf54noq6XT02LOFdOST4yvSHm7s95wvHBehc1ibo3irRiz3EWoRQEfwJhJ7u9CeVpnhvL7MTS5K2mYQfVTSH3SXdAG35+ZRgae8HPAaioQEvJy2l3iE527Jc2Trwe+kFkT66DgUIjRkZaSYpO0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1726736744; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=WIyPR9I7SW6Am8W2Xo7ZAkLcKedMPAaJoNrnX9TxwDI=; 
+	b=IX+AgYHmn9h0/JFMcQSb76kpnvvprbj+30Z/H7NWsE6UCw8CilmwCNIXi+zYyi5O0EwTEHF7dWTtTgeutdXSbgyO0GTcO5G+N5JbeljfaBuCKRLmu4urFbgkZFA7CX1S9zkT7mbMBtGO1RF80yyiAQysRRuT46Z63hmBrJwYLUo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1726736744;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=WIyPR9I7SW6Am8W2Xo7ZAkLcKedMPAaJoNrnX9TxwDI=;
+	b=aP0e28+9MF1DAD9w61R9zdYhgHkXUjJgjquFdB9epwQpmoan9kk060se3CanuevN
+	gsKRjfRHKDNUukrlUk6TAVHjDo8/aLBau64DRYxp1VAeWihDccx0PvsOsXTxDubD0Ky
+	tYRiunm+tSWSE5RV/g6BCsqF+yTAIof8Vyj8OOew=
+Received: by mx.zohomail.com with SMTPS id 1726736742399817.1293742983563;
+	Thu, 19 Sep 2024 02:05:42 -0700 (PDT)
+Received: by mercury (Postfix, from userid 1000)
+	id 3C03B106031C; Thu, 19 Sep 2024 11:05:35 +0200 (CEST)
+Date: Thu, 19 Sep 2024 11:05:35 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Elaine Zhang <zhangqing@rock-chips.com>, 
+	=?utf-8?B?QWRyacOhbiBNYXJ0w61uZXo=?= Larumbe <adrian.larumbe@collabora.com>, Boris Brezillon <boris.brezillon@collabora.com>, 
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH v1 0/6] Fix RK3588 GPU domain
+Message-ID: <vh5gsouseahs6ddauzevcdtcjutl35dcyoc5cv4pvn56lyyilv@rekmpklpbbyh>
+References: <20240910180530.47194-1-sebastian.reichel@collabora.com>
+ <CAPDyKFoMyGUagDdjdaBJXL_OEgewQjCeJcBBK+2PFk=vd+kjRg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240814082301.8091-1-brgl@bgdev.pl> <83c562e9-2add-4086-86e7-6e956d2ee70f@kernel.org>
- <87msk49j8m.fsf@kernel.org>
-Date: Thu, 19 Sep 2024 03:59:17 -0500
-Message-ID: <CAMRc=McEWWm8N++4a5LMCAa0GWsQdi0KuSpj3ZuS_he=H0LP+w@mail.gmail.com>
-Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs
- of the ath11k on WCN6855
-To: Kalle Valo <kvalo@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Krzysztof Kozlowski <krzk@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2ey5cyrmazej6g4l"
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFoMyGUagDdjdaBJXL_OEgewQjCeJcBBK+2PFk=vd+kjRg@mail.gmail.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.3.1/223.982.64
+X-ZohoMailClient: External
 
-On Thu, 19 Sep 2024 09:48:41 +0200, Kalle Valo <kvalo@kernel.org> said:
-> Krzysztof Kozlowski <krzk@kernel.org> writes:
->
->> On 14/08/2024 10:23, Bartosz Golaszewski wrote:
->>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>
->>> Describe the inputs from the PMU of the ath11k module on WCN6855.
->>>
->>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>> ---
->>> v1 -> v2:
->>> - update the example
->>
->> I don't understand why this patch is no being picked up. The code
->> correct represents the piece of hardware. The supplies should be
->> required, because this one particular device - the one described in this
->> binding - cannot work without them.
->
-> I have already explained the situation. With supplies changed to
-> optional I'm happy take the patch.
->
 
-No, silent NAKing and needless stalling is what you're doing. I responded to
-your last email with extensive clarifications. You're being told by the
-experts on the subject matter (Krzysztof and Conor) that the change is correct.
+--2ey5cyrmazej6g4l
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The change has no functional impact on the driver code. It's also in line with
-commit 71839a929d9e ("dt-bindings: net: wireless: qcom,ath11k: describe the
-ath11k on QCA6390") under which we had literally the same discussion and that
-you ended up picking up after all.
+Hi,
 
-Arnd: I've added you here to bring this to your attention because it's somewhat
-related to what we discussed yesterday. It's a change that is very much
-SoC-specific, that has trouble getting upstream due to the driver's maintainer
-unwilingness to accept it. Is this a case where a change to DT bindings should
-go through the SoC rather than the driver tree?
+On Fri, Sep 13, 2024 at 01:59:10PM GMT, Ulf Hansson wrote:
+> On Tue, 10 Sept 2024 at 20:05, Sebastian Reichel
+> <sebastian.reichel@collabora.com> wrote:
+> > I got a report, that the Linux kernel crashes on Rock 5B when the panth=
+or
+> > driver is loaded late after booting. The crash starts with the following
+> > shortened error print:
+> >
+> > rockchip-pm-domain fd8d8000.power-management:power-controller: failed t=
+o set domain 'gpu', val=3D0
+> > rockchip-pm-domain fd8d8000.power-management:power-controller: failed t=
+o get ack on domain 'gpu', val=3D0xa9fff
+> > SError Interrupt on CPU4, code 0x00000000be000411 -- SError
+> >
+> > This series first does some cleanups in the Rockchip power domain
+> > driver and changes the driver, so that it no longer tries to continue
+> > when it fails to enable a domain. This gets rid of the SError interrupt
+> > and long backtraces. But the kernel still hangs when it fails to enable
+> > a power domain. I have not done further analysis to check if that can
+> > be avoided.
+> >
+> > Last but not least this provides a fix for the GPU power domain failing
+> > to get enabled - after some testing from my side it seems to require the
+> > GPU voltage supply to be enabled.
+> >
+> > I'm not really happy about the hack to get a regulator for a sub-node
+> > in the 5th patch, which I took over from the Mediatek driver. But to
+> > get things going and open a discussion around it I thought it would be
+> > best to send a first version as soon as possible.
+>=20
+> That creates a circular dependency from the fw_devlink point of view.
 
-Best Regards,
-Bartosz Golaszewski
+Yes.
+
+> I assume that isn't a problem and fw_devlink takes care of this, so
+> the GPU power domain still can probe?
+
+This has been tested on Radxa Rock 5B and RK3588 EVB1. It properly
+probes the GPU power domain and fixes late probing of the GPU driver :)
+
+> Other than this, I think this looks okay to me.
+
+I will send a V2 with the minor things pointed out.
+
+Greetings,
+
+-- Sebastian
+
+--2ey5cyrmazej6g4l
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmbr6VsACgkQ2O7X88g7
++prM1A//Tz6tsfCtFAfD+esskzA7MDO9OW+icEYWp1LK1xBvIu+Sx9kB+ggKKHar
+q09BTcQD+NSweJfBeabKpIScdmw4YRpMkbpqkGKQkQOYuy2h5udtt6g8nUrvbfIG
+BtCo3N1VELMevzo1bW2uYafy2HLqH9rBTUS9kRRxXTfUyYKSwRnmmxrgrhiZJjGx
+nrBPWVbj5HouXNoa2X4yuFs3XNG9MP3FkuFBFNZnKb6hcFCv6IApWvrJ71ESUivD
+JJjDDKcy3yoVzRxb/AvA49WpCefKi/L2ilOOlZQswtLbLjxJ0ED+3nsHCxDA4RDU
+6imPttrxcuEn+bKb8URAYGuxgK110w3TvaBY260JRaPS8EfiI8b439riBllY8aHv
+ydpVBNdpvVaT/qG2RvLntsYlk+vx0M+nGRQCFJ4N+JudicQWmHuExncL8qBe8XiL
+or6gVTsgmcZ9t3EiC8K/9d+S+icu0utnCDwyEV00byRbxKTrSBeZ2y+FUeEZLUSP
+GmpniTJtQ2QkF3afhJZaN/57qZchTg4HmedHlFmqHEBuoh/U1LGG/SDcjiWnKmvp
+DL6WYLIshIEAb1edyPmO/y/PdSUolodr2oeJhD9tFul8wC+eAirXa70AlOsS+EHH
+wHVJ9BXeOfwEornBUsr41u7LDkCnAcX43WBKVobwDIWltnHXW3I=
+=mFbG
+-----END PGP SIGNATURE-----
+
+--2ey5cyrmazej6g4l--
 
