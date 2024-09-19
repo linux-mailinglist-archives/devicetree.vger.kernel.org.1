@@ -1,313 +1,179 @@
-Return-Path: <devicetree+bounces-103984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 101C397CE6E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 22:22:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9967B97CE9D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 23:01:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3249E1C22656
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 20:22:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 432511F235B8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 21:01:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73EFF43ABC;
-	Thu, 19 Sep 2024 20:22:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F03454658;
+	Thu, 19 Sep 2024 21:01:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="Bot40MdD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 014FF29429;
-	Thu, 19 Sep 2024 20:22:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19A942B9B8
+	for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 21:01:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726777338; cv=none; b=cmaMVFb/mvfcnnE5YPI0S7WLr0FGbao0HK9eYEjaaV3jzTh+QVZK6KykLQjpWki03CQD+00MKU92cdDjuf/X026/o2qG9neHaBxYCqbPdsyndmskJrNpEds9dy8QEzc07EnR9iC1bMaKF8OkzkvahqdzzSTiVN721s0SeYFCf+I=
+	t=1726779685; cv=none; b=kEKsLCX4vg8VN8imCWEU8PFRKWW89GEgGapbnsCYW2+3UU0N+iJYosTk1fqHtmQ31ffUQiJYqFfVs8LqgDGsRRCyVv1F7TNMhMFVpuhqOWfZxpu94JPzrzlgnmJOP3oNndYBC7+3IPw2De1J1zjL8CruXCo0IzgVNVfnzABY7bc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726777338; c=relaxed/simple;
-	bh=cBD5rgF3hHsN9vnuoAsIcKWXWxmExELzV7aksgYxIW4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cE8plI+e6jkjTaRnwFjo3RF11JOfh7Peql1yLQj1QoogAzf1OF5Bsfajnob2AIpXLXmWXNopWgLusHr3oq08gSXKqM+nAuArMoEfEuFf/+fCJ5DuUNUm/zZlY2/TnWc8Ujk6Pzndw1zpLCAvOyY762+p/2EvRYS+NTCViz7GYcw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A5EB11007;
-	Thu, 19 Sep 2024 13:22:43 -0700 (PDT)
-Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B98593F71A;
-	Thu, 19 Sep 2024 13:22:12 -0700 (PDT)
-Date: Thu, 19 Sep 2024 21:21:51 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: =?UTF-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
- Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: allwinner: Add disable-wp for boards
- with micro SD card
-Message-ID: <20240919212151.50957a14@minigeek.lan>
-In-Reply-To: <20240919-b4-nanopineoplus2-fix-mmc0-wp-v2-1-c708a9abc9eb@gmail.com>
-References: <20240919-b4-nanopineoplus2-fix-mmc0-wp-v2-1-c708a9abc9eb@gmail.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+	s=arc-20240116; t=1726779685; c=relaxed/simple;
+	bh=/IAYqVgnqJ3z4TN4X7jBK/t1/qCLeiqkdJchA9131AQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IPMERpktkDrY7kwx9zitVXs0JuWn2SY+vZwiSjMvweCzJpGOCAMRpz2Wxw19pBx55GxGpIT7SKVugjE1IuCJVwgJKDCg4trYYBN5VJUVGdQXibNpazoRYOxhCIjgKiCsWBm24Y2L9NMat9kQh8yUrp3eTXsWsj42xEzhJBVeWBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=Bot40MdD; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1726779662;
+ bh=ysV7DgRTroxxirI/BOSZHtoFA/sZ7Gtm5p2xeaatD/o=;
+ b=Bot40MdDSgssinmEy6CSoZy2qhKkP5SUg2s2+K3F4eQcvVeZN8YguJ+zSeS+B5q59I1JIEHwz
+ sCUYCwDR8qNuPXdONGoAfCkSuScYul30i9WnmdW4bgarklyNcnjcpHpcNJqHGrC6xGcaU9UGABY
+ pKho5CyDSI+NGVAzjnTCr3k3cL75pMlAiS+yUXwQs0VfXRvBeXISQLZqdlV2RDgLtH1JqqyXdXS
+ VDhyPOeEkEj9wnFKN3KrVnnO7Tq/VlrJm1XEC0Sy/PVPpoiq/Pjjk7vG09N7kzTnDSKmSk5Lf56
+ vN9Mg3A+UWJqc7oL0jXZ7qO1LgINqSBASTEFsztE65fA==
+Message-ID: <e55c3d9b-52fb-48bf-8336-238f8922dfe5@kwiboo.se>
+Date: Thu, 19 Sep 2024 23:00:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 6/6] arm64: dts: rockchip: Add GPU power domain
+ regulator dependency for RK3588
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Elaine Zhang
+ <zhangqing@rock-chips.com>,
+ =?UTF-8?Q?Adri=C3=A1n_Mart=C3=ADnez_Larumbe?=
+ <adrian.larumbe@collabora.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>, Chen-Yu Tsai
+ <wens@csie.org>, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, kernel@collabora.com
+References: <20240919091834.83572-1-sebastian.reichel@collabora.com>
+ <20240919091834.83572-7-sebastian.reichel@collabora.com>
+ <a4d94eab-8543-45e1-b657-fa7f12470538@kwiboo.se>
+ <zvzrjkacazxbv4cjxcnihv4rb2t3tu2zjd6zkny63ygfifpz7i@j4saijws5rcp>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <zvzrjkacazxbv4cjxcnihv4rb2t3tu2zjd6zkny63ygfifpz7i@j4saijws5rcp>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 66ec910b64435c8d6510b3aa
 
-On Thu, 19 Sep 2024 20:35:39 +0200
-Kry=C5=A1tof =C4=8Cern=C3=BD <cleverline1mc@gmail.com> wrote:
+Hi,
 
-> Adding disable-wp property for micro SD nodes of Allwinner arm64 devices.
-> Boards were verified from online pictures/tables
-> that they have micro SD slots.
+On 2024-09-19 21:27, Sebastian Reichel wrote:
+> Hi,
+> 
+> On Thu, Sep 19, 2024 at 01:33:25PM GMT, Jonas Karlman wrote:
+>> On 2024-09-19 11:12, Sebastian Reichel wrote:
+>>> Enabling the GPU power domain requires that the GPU regulator is
+>>> enabled. The regulator is enabled at boot time, but automatically
+>>> gets disabled when there are no users.
+>>>
+>>> If the GPU driver is not probed at boot time or rebound while
+>>> the system is running the system will try to enable the power
+>>> domain before the regulator is enabled resulting in a failure
+>>> hanging the whole system. Avoid this by adding an explicit
+>>> dependency.
+>>>
+>>> Reported-by: Adrián Martínez Larumbe <adrian.larumbe@collabora.com>
+>>> Tested-by: Adrian Larumbe <adrian.larumbe@collabora.com> # On Rock 5B
+>>> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+>>> ---
+>>>  arch/arm64/boot/dts/rockchip/rk3588-armsom-sige7.dts         | 4 ++++
+>>>  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi                | 2 +-
+>>>  arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5.dtsi          | 4 ++++
+>>>  arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588.dtsi | 4 ++++
+>>>  arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts               | 4 ++++
+>>>  arch/arm64/boot/dts/rockchip/rk3588-ok3588-c.dts             | 4 ++++
+>>>  arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts           | 4 ++++
+>>>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts              | 4 ++++
+>>>  arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi               | 4 ++++
+>>>  arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts           | 4 ++++
+>>>  arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts        | 4 ++++
+>>>  arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts          | 4 ++++
+>>>  12 files changed, 45 insertions(+), 1 deletion(-)
+>>
+>> Any reason why following rk3588 DTs was not updated?
+>>
+>> rk3588-evb1-v10.dts
+>> rk3588-quartzpro64.dts
+> 
+> These two I skipped initially, since they have the GPU regulators
+> always enabled due to the coupling. I'm not 100% sure if the GPU
+> or the GPU-MEM regulator (or both) are required for the GPU power
+> domain.
+> 
+>> rk3588-nanopc-t6.dtsi
+>> rk3588s-gameforce-ace.dts
+>> rk3588s-odroid-m2.dts
+> 
+> ... And these I missed, since they are new.
 
-The changes itself look good to me, and I checked that the boards in
-question have a microSD card slot, so do not feature a write-protect
-switch.
-You seem to be missing the mmc0 node in
-sun50i-h616-bigtreetech-cb1.dtsi though, can you please add this file,
-to fix the two boards using this file as well?
+Great, so no technical reason :-)
 
-With that added:
+> 
+> I don't have enough time to prepare a v3 before my vacation.
+> Note, that not describing the regulator just keeps the current
+> behaviour.
 
-> Signed-off-by: Kry=C5=A1tof =C4=8Cern=C3=BD <cleverline1mc@gmail.com>
+Yeah, remaining boards can be updated in a separate/follow-up series.
 
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> 
+>> I also expect we may need to define domain-supply for the npu on
+>> rk3588 and also both gpu and npu on rk356x in a future series.
+> 
+> Yes, I already discussed that in Vienna with Heiko and Tomeu. The
+> binding change also allows adding a regulator to the NPU power
+> domain.
 
-There are some boards which have their base .dtsi in the arch/arm
-directory, but we can tackle those separately.
+Great and good to know.
 
-Cheers,
-Andre
+> 
+>> Similar freeze issue has been observed on rk356x when booting vendor
+>> kernel with npu support enabled using mainline U-Boot and DT [1].
+>>
+>> To work around that issue on rk356x the npu regulator could be changed
+>> to always-on/boot-on to get past the kernel freeze [2].
+>>
+>> [1] https://github.com/armbian/build/pull/7025#issuecomment-2291067748
+>> [2] https://github.com/Kwiboo/u-boot-rockchip/commit/da31da4b68f858f54364a21b0dd00fef2ab0d0d6
+> 
+> Yes, that looks like the same issue and I guess the changes to the Rockchip
+> power-domain driver should also work for rk356x. I don't have one, though.
 
-> ---
-> Sorry that my last messages were not in mailing list,
-> one was wrongly sent and second was rejected, as the bot claimed it
-> contained html. ---
-> Changes in v2:
-> - NEW: Added the property to all Sunxi arm64 boards, as discussed in
-> mailing list
-> - Link to v1:
-> https://lore.kernel.org/r/20240914-b4-nanopineoplus2-fix-mmc0-wp-v1-1-12f=
-54f0d6620@gmail.com
-> --- arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts    |
-> 1 + arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts         |
-> 1 + arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts       |
-> 1 + arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts        |
-> 1 + arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts      |
-> 1 + arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts  |
-> 1 + arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts |
-> 1 + arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts         |
-> 1 + arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts          |
-> 1 + arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi           |
-> 1 + arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts            |
-> 1 + arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi              |
-> 1 + arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi    |
-> 1 + arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts          |
-> 1 + arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts       |
-> 1 + arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts |
-> 1 + 16 files changed, 16 insertions(+)
->=20
-> diff --git
-> a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts
-> b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts index
-> 526443bb736c..18fa541795a6 100644 ---
-> a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts +++
-> b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts @@
-> -136,6 +136,7 @@ &mmc0 { vmmc-supply =3D <&reg_vcc3v3>; bus-width =3D <4>;
->  	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-> +	disable-wp;
->  	status =3D "okay";
->  };
-> =20
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts
-> b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts index
-> 05486cccee1c..128295f5a5d6 100644 ---
-> a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts +++
-> b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts @@ -88,6
-> +88,7 @@ ext_rgmii_phy: ethernet-phy@7 {=20
->  &mmc0 {
->  	vmmc-supply =3D <&reg_vcc3v3>;
-> +	disable-wp;
->  	bus-width =3D <4>;
->  	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
->  	status =3D "okay";
-> diff --git
-> a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
-> b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts index
-> 3a7ee44708a2..44fdc8b3f79d 100644 ---
-> a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts +++
-> b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts @@ -157,6
-> +157,7 @@ eth_mac1: mac-address@fa { &mmc0 {
->  	vmmc-supply =3D <&reg_vcc3v3>;
-> +	disable-wp;
->  	bus-width =3D <4>;
->  	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
->  	status =3D "okay";
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
-> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts index
-> ce3ae19e72db..0f29da7d51e6 100644 ---
-> a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts +++
-> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts @@ -153,6
-> +153,7 @@ &ir {=20
->  &mmc0 {
->  	vmmc-supply =3D <&reg_vcc3v3>;
-> +	disable-wp;
->  	bus-width =3D <4>;
->  	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
->  	status =3D "okay";
-> diff --git
-> a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts
-> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts index
-> b699bb900e13..d4fc4e60e4e7 100644 ---
-> a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts +++
-> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts @@
-> -153,6 +153,7 @@ &ir { &mmc0 {
->  	vmmc-supply =3D <&reg_vcc3v3>;
-> +	disable-wp;
->  	bus-width =3D <4>;
->  	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
->  	status =3D "okay";
-> diff --git
-> a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts
-> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts
-> index ae85131aac9c..3322cc4d9aa4 100644 ---
-> a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts +++
-> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts @@
-> -82,6 +82,7 @@ ext_rgmii_phy: ethernet-phy@1 { &mmc0 {
->  	vmmc-supply =3D <&reg_vcc3v3>;
-> +	disable-wp;
->  	bus-width =3D <4>;
->  	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
->  	status =3D "okay";
-> diff --git
-> a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts
-> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts
-> index 734481e998b8..3eb986c354a9 100644 ---
-> a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts +++
-> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts @@
-> -79,6 +79,7 @@ hdmi_out_con: endpoint { &mmc0 {
->  	vmmc-supply =3D <&reg_vcc3v3>;
-> +	disable-wp;
->  	bus-width =3D <4>;
->  	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;
->  	status =3D "okay";
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts index
-> 3be1e8c2fdb9..13a0e63afeaf 100644 ---
-> a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts +++
-> b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts @@ -129,6
-> +129,7 @@ ext_rgmii_phy: ethernet-phy@1 { &mmc0 {
->  	vmmc-supply =3D <&reg_cldo1>;
->  	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;
-> +	disable-wp;
->  	bus-width =3D <4>;
->  	status =3D "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts index
-> 6c3bfe3d09d9..ab87c3447cd7 100644 ---
-> a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts +++
-> b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts @@ -131,6
-> +131,7 @@ hdmi_out_con: endpoint { &mmc0 {
->  	vmmc-supply =3D <&reg_cldo1>;
->  	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-> +	disable-wp;
->  	bus-width =3D <4>;
->  	status =3D "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-> b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi index
-> 13b07141c334..d05dc5d6e6b9 100644 ---
-> a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi +++
-> b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi @@ -94,6
-> +94,7 @@ hdmi_out_con: endpoint { &mmc0 {
->  	vmmc-supply =3D <&reg_cldo1>;
->  	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;
-> +	disable-wp;
->  	bus-width =3D <4>;
->  	status =3D "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-> b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts index
-> c8b275552872..fa7a765ee828 100644 ---
-> a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts +++
-> b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts @@ -133,6
-> +133,7 @@ ext_rgmii_phy: ethernet-phy@1 { &mmc0 {
->  	vmmc-supply =3D <&reg_cldo1>;
->  	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;
-> +	disable-wp;
->  	bus-width =3D <4>;
->  	status =3D "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi
-> b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi index
-> 855b7d43bc50..bb7de37c0d58 100644 ---
-> a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi +++
-> b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi @@ -124,6 +124,7
-> @@ &mmc0 { pinctrl-0 =3D <&mmc0_pins>;
->  	vmmc-supply =3D <&reg_vcc3v3>;
->  	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;
-> +	disable-wp;
->  	bus-width =3D <4>;
->  	status =3D "okay";
->  };
-> diff --git
-> a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-> b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi index
-> fc7315b94406..a3fe39f8e2ca 100644 ---
-> a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi +++
-> b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi @@
-> -81,6 +81,7 @@ ext_rgmii_phy: ethernet-phy@1 { &mmc0 {
->  	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-> +	disable-wp;
->  	bus-width =3D <4>;
->  	status =3D "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-> b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts index
-> 26d25b5b59e0..dd3bd9cca710 100644 ---
-> a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts +++
-> b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts @@ -52,6
-> +52,7 @@ &ir { &mmc0 {
->  	vmmc-supply =3D <&reg_dcdce>;
->  	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-> +	disable-wp;
->  	bus-width =3D <4>;
->  	status =3D "okay";
->  };
-> diff --git
-> a/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts
-> b/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts index
-> 18b29c6b867f..16c68177ff69 100644 ---
-> a/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts +++
-> b/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts @@ -111,6
-> +111,7 @@ ext_rgmii_phy: ethernet-phy@1 { };=20
->  &mmc0 {
-> +	disable-wp;
->  	bus-width =3D <4>;
->  	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_HIGH>;	/* PF6 */
->  	vmmc-supply =3D <&reg_vcc3v3>;
-> diff --git
-> a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-> b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-> index d6631bfe629f..024377b333c1 100644 ---
-> a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts +++
-> b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts @@
-> -71,6 +71,7 @@ &ir { &mmc0 { vmmc-supply =3D <&reg_dldo1>;
->  	cd-gpios =3D <&pio 8 16 GPIO_ACTIVE_LOW>;	/* PI16 */
-> +	disable-wp;
->  	bus-width =3D <4>;
->  	status =3D "okay";
->  };
->=20
-> ---
-> base-commit: 57f962b956f1d116cd64d5c406776c4975de549d
-> change-id: 20240914-b4-nanopineoplus2-fix-mmc0-wp-9d77fb9e6513
->=20
-> Best regards,
+I will test this series and try to add domain-supply for GPU and NPU on
+a few rk356x boards, should help avoid possible issues in future.
+
+Will also send a U-Boot series to enable RK806 PMIC support on a few
+more rk3588 boards, should help ensure always-on/boot-on PMIC regulators
+are enabled before Linux is started.
+
+Regards,
+Jonas
+
+> 
+> -- Sebastian
 
 
