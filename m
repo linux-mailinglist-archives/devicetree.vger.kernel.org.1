@@ -1,117 +1,756 @@
-Return-Path: <devicetree+bounces-103935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A906997CAF2
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 16:29:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57DA097CB30
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 16:53:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 532111F2175C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 14:29:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EADD281FD8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 14:53:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFA5B1A01D0;
-	Thu, 19 Sep 2024 14:28:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B17219EECA;
+	Thu, 19 Sep 2024 14:53:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Tejh5jOt"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="mpEulwzZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 250D219E7F0;
-	Thu, 19 Sep 2024 14:28:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 496A519B59D
+	for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 14:53:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726756111; cv=none; b=Fi+p56tSc8t8iaPA12mfBu5j3PURp4VRZ3EA7AYZj03eh0Shp0LMJmePYenKNfDAjqST73mvGtjCBA4CyO9c3zoheODchyTGMxOcmPA2DwYxzIhS0AMTW1MWElpwKtRiA+JiBwHRbIKh1+uCn2Dgxxe5K/myHGXT4UVYgqDzr9I=
+	t=1726757590; cv=none; b=EuZlIIfrKoTjtwIjgO8cTZZf5uGxBw82dl6DZApDCgvGza9C8MspP8L3rz4vXm4NmSXy+VZQYoF8LCI+zwyAOZaB6S8k7b9AF4fggWqfPJ4UJlS20+t7TWt2LILeUJuN/otEtFWwl2VRkCpbDb7L6y+SdJgZw/4FiHZb+IlkqBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726756111; c=relaxed/simple;
-	bh=Lv99Rd2xF1eeQ1uPXvtn6uzDKVYNGbOgwen3TkJJj/k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bzM0cozH4tTebYFT35w0+pzU1gQqWlMWo7a4UMlDvqbI6OYVlKrFazxoNFM5hsepP8E+Aw+AY4E9n59TIzQc5/DC6JfPcF+v47kiFJot//8Gt3BBcZ3Eqg+JAjcGDtJbufveiYii5+kO/sq+dYmP5gqgt2I8Cx3wW3e5qG8zZA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Tejh5jOt; arc=none smtp.client-ip=209.85.210.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-710d5d9aac1so503886a34.3;
-        Thu, 19 Sep 2024 07:28:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726756109; x=1727360909; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Lv99Rd2xF1eeQ1uPXvtn6uzDKVYNGbOgwen3TkJJj/k=;
-        b=Tejh5jOtpaLgQGq7sJ8XfmGP73YeaqnQ6T+HAyH7wGLGriFBCAfH8OR6gHjLoG1UjS
-         Ef3cUWJ07bbklFjxeqPXA/flIu2xFGGZKbZds97InJqOib+u+UMvnmDh/tjhrlvVT0bo
-         YRLvkF5SEWQ7PDs303vTUs7ZlS8GjHZVQPNo29zCTW29th7ZcmRqy3HxG2VKT8j5Y/Eu
-         hnxkm7yloK6VHE6C68aLcAp9i8msEuGY8AnUvDsf89teZlZ3eoY8b8Ho1ctgHiy3SZlJ
-         7pXKyITYwgvXS/tnuqgPW/n9NxjmWijcjeB/f2dBp42ztGxfCl2GkiRlIKiKEid/nhtP
-         vyTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726756109; x=1727360909;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Lv99Rd2xF1eeQ1uPXvtn6uzDKVYNGbOgwen3TkJJj/k=;
-        b=OGsmlA2cjBNYsixK1/mW3JKL85pmhlzmM4E8pQ8yjDLEaOMmr5WY8XFSI8+kSeUNep
-         x7AZlAFaG9aTq2T+xD0RkHu86Y+rRDRz0woM1i3iVVVG6d2dafuQnDouKEJu8WgnpOrz
-         47HG1yWGuLljLQMRwHTmBJTVt+Io15rFGJNIL9z+jb8Lee872eqwLX/QTH8Z/4vqFv0z
-         +QZ7XDpI1lRL3+AyCH/dPG0UVtlrttt0dI03as6nDBLw//6VGcLkWiGscrOY5hmo9qhU
-         PGjlQvKPEsIdHs+3J+JvdEMjCmD5KkAZs9WyOfX4D2B8U47WIZb24iPOy1c1QgjaECIU
-         124w==
-X-Forwarded-Encrypted: i=1; AJvYcCU2rwerUuAjwj6u6pP7shQqn74Ji0b1MAvWQwsOdwBTOgd+ICIHW+EujyZQw2kV4OJi3beh1BmHKHVx@vger.kernel.org, AJvYcCUUITYjE97gFuqeF+XnMRGx7b8SRDvRfNfLfPmRg2LcpFkRZhKnZcFwg4q79zfymk8x8vs5JUVUFkWH9eSM@vger.kernel.org, AJvYcCUmWLy0s7ZReBh3e4U5pWGrELMQ4e4qHIrb0E+nJ8Si8GsJV/wRMT4x80soagF3sSxPEXsTIYI12RL4pQ==@vger.kernel.org, AJvYcCUnsGik155Z1mO9cS8QpoSy+qXenO5tUObtTn4bI4C3PZeh86VnP65kJ2uULla3AxTBsJK0K/2MICDLfC97q4qhT8M=@vger.kernel.org, AJvYcCVyeTrO+D+5/KfrJXT5T8CapXPwS4bE+P8r5Q+Z9UOoVBuuZZU75nHcw+Qra1dgoaUS67ZtBC6uvWo=@vger.kernel.org, AJvYcCWOn0i0NByVxJd8MeXB/9Z1+9vexSfN9TRWbbuJHnpDlVv6c+Bf/acudTAFd37jLHW/Lf3c8DI9/Y5zdThw1Q==@vger.kernel.org, AJvYcCWkwDQqwaag/5QB3XvDNRXHOXZByT+MaP/SgnE1qr3SaGhIPVuEgfViWoDz4FONtLqrV2eQzAi62pWb@vger.kernel.org, AJvYcCWwG3sJh5vRZo9WptqlL7YPOKgQ0X7lZ+A7dja1uExgvqWCUpZRdeeHAnNv90zJ5bRUsol1nnxcK40vzDQ=@vger.kernel.org, AJvYcCXb/xSqk1zSGTiQjVH5Ay8fYZGN/XK5bXCm9TTuremSsHY+2hP7sw/BtkNpKu8GrtmIo89bl/Jyla00@vger.kernel.org
-X-Gm-Message-State: AOJu0YwsIeDaGzavVTSec5fqqm+PtJ3BIU64EgbwXW2v0cWQayTkvNw9
-	81luEAP0atsv5C9gITxRu+94BfOUZ4uvIZDVDtKdZf7+cn3zP6BiOzmWxZshVsnco8MLpXvz+oy
-	WUf0sWte/RuGKm0iM8n/ioeM5JYQ=
-X-Google-Smtp-Source: AGHT+IGwBKKGWJh9wIKK61DdnRwd23qorQxP1cJCpH4kAY5YZpY1WQqWwNfbOqxU7M8iB6BuEvF3r+xT5muishtD3hk=
-X-Received: by 2002:a05:6358:7e8c:b0:19f:4967:4e8f with SMTP id
- e5c5f4694b2df-1bb23dd5df8mr730499455d.22.1726756109157; Thu, 19 Sep 2024
- 07:28:29 -0700 (PDT)
+	s=arc-20240116; t=1726757590; c=relaxed/simple;
+	bh=M0EcSHDGfqTisEuYQT1pdMPgep9J0/Xo+w//KwGAP78=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ENe+3pFabuG8K4Taz7H35svI90yGooNei3TyYpx5jYJSogUzNX4Rar8g7RTHhy73P+C1+3/t4yrVhAEHOWSijemDgsz+cRiJyT+by3jOPG9OTMHzuhRbimHt0t+HHPZRYBAXs0QdZlbCEVI2VnaM4rzrwZAR/8p5EMByzjvevpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=mpEulwzZ; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1726757584;
+ bh=teuxzV9+u9x2HjAHfv9l6CJNvMJKX9WMrxe1ClqQ+ws=;
+ b=mpEulwzZWc3q0ED0VQxdeo/AAIW80V3NVxQu78aJkUnGZAanTWQ8vvKzvbAZ7PvuYfccnB3f/
+ CnHIqSx5l4RevQq6dT731YgI8y4BLbb/iACp6MhZa2D6KodrNBH9KVUijY6l5oDVKh/xXAqlTdP
+ edKystVi/4QNjTLXxCh9bcikh+yi9W1VlvuiDOkh341BCCk0jQSsTo1M6DiNmECbkY+kXFuUww8
+ +hTry/svicVKeItG//kaJ+A/zsEVoscan4uCnQaXnFFDLmqPNzFwPdIywEbhCmBczodvfdVrY9v
+ fl1hqz7LQnR0PF+sL2u58yn5D2GlwUUCQkECp2zQAuLw==
+Message-ID: <8c86229a-8cec-4d65-8194-ee8cdc6931dd@kwiboo.se>
+Date: Thu, 19 Sep 2024 16:52:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240913-starqltechn_integration_upstream-v4-0-2d2efd5c5877@gmail.com>
- <20240913-starqltechn_integration_upstream-v4-15-2d2efd5c5877@gmail.com> <35liocltjuxv3gjueuvpaytx44crebbc4c63atztakuq5dfpax@bquve7tkrvtx>
-In-Reply-To: <35liocltjuxv3gjueuvpaytx44crebbc4c63atztakuq5dfpax@bquve7tkrvtx>
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Thu, 19 Sep 2024 17:28:17 +0300
-Message-ID: <CABTCjFCNuMKTeF8YyqCHGQ2CCQ76C1djL_3rja7itLfBM5vogQ@mail.gmail.com>
-Subject: Re: [PATCH v4 15/27] regulator: add s2dos05 regulator support
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, Simona Vetter <simona@ffwll.ch>, 
-	cros-qcom-dts-watchers@chromium.org, Konrad Dybcio <konradybcio@kernel.org>, 
-	Simona Vetter <simona.vetter@ffwll.ch>, linux-pm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
-	linux-leds@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/3] arm64: dts: rockchip: add dts for Ariaboard
+ Photonicat RK3568
+To: Junhao Xie <bigfoot@classfun.cn>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Chukun Pan <amadeus@jmu.edu.cn>, FUKAUMI Naoki <naoki@radxa.com>,
+ Dragan Simic <dsimic@manjaro.org>, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240914145549.879936-1-bigfoot@classfun.cn>
+ <20240914145549.879936-4-bigfoot@classfun.cn>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20240914145549.879936-4-bigfoot@classfun.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 66ec3acd9010437d2fde8a28
 
-> > diff --git a/include/linux/regulator/s2dos05.h b/include/linux/regulator/s2dos05.h
-> > new file mode 100644
-> > index 000000000000..2e89fcbce769
-> > --- /dev/null
-> > +++ b/include/linux/regulator/s2dos05.h
-> > @@ -0,0 +1,73 @@
-> > +/* SPDX-License-Identifier: GPL-2.0+ */
->
-> Are you sure that here (and other places) you want any newer GPL? This
-> is quite odd. Does original code (from which you took 2016 copyrights)
-> have this as well?
->
-Original code permits redistribution under 2+ license [1].
-Is 2+ preferable over 2 only?
+Hi Junhao,
 
-[1]: https://github.com/klabit87/twrp_android_samsung_kernel_sdm845/blob/android-8.0/include/linux/regulator/s2dos05.h#L9
+On 2024-09-14 16:55, Junhao Xie wrote:
+> Add dts for Ariaboard Photonicat RK3568.
+> 
+> Working IO:
+>     Debug UART
+>     SDIO QCA9377 WiFi and Bluetooth
+>     M.2 E-Key PCIe WiFi and Bluetooth
+>     M.2 B-Key USB Modem WWAN
+>     Ethernet WAN Port
+>     MicroSD Card slot
+>     eMMC
+>     HDMI Output
+>     Mali GPU
+>     USB Type-A
+> 
+> Not working IO:
+>     Ethernet LAN Port (Lack of SGMII support)
+>     Power management MCU on UART4 (Driver pending)
+> 
+> Not working IO in MCU:
+>     Battery voltage sensor
+>     Board temperature sensor
+>     Hardware Power-off
+>     Hardware Watchdog
+>     Network status LED
+>     Real-time clock
+>     USB Charger voltage sensor
+> 
+> About onboard power management MCU:
+>     A heartbeat must be sent to the MCU within 60 seconds,
+>     otherwise the MCU will restart the system.
+>     When powering off, a shutdown command needs to be sent to the MCU.
+>     When the power button is long pressed, the MCU will send a shutdown
+>     command to the system. If system does not shutdown within 60 seconds,
+>     the power will be turned off directly.
+>     MCU only provides voltage for charger and battery.
+>     Manufacturer removed RK8xx PMIC.
+> 
+> Signed-off-by: Junhao Xie <bigfoot@classfun.cn>
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../boot/dts/rockchip/rk3568-photonicat.dts   | 591 ++++++++++++++++++
+>  2 files changed, 592 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-photonicat.dts
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index fda1b980eb4b..56afd63cb9e2 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -130,6 +130,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-ok3588-c.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5-plus.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-photonicat.dtb
+
+This should probably be added where the rest of rk3568 dtb is located,
+not with the rk3588 ones.
+
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-quartzpro64.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5-itx.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-photonicat.dts b/arch/arm64/boot/dts/rockchip/rk3568-photonicat.dts
+> new file mode 100644
+> index 000000000000..b3f4fe485e42
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-photonicat.dts
+> @@ -0,0 +1,591 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +#include <dt-bindings/soc/rockchip,vop2.h>
+> +#include "rk3568.dtsi"
+> +
+> +/ {
+> +	model = "Ariaboard Photonicat";
+> +	compatible = "ariaboard,photonicat", "rockchip,rk3568";
+> +
+> +	aliases {
+> +		ethernet0 = &gmac0;
+> +		ethernet1 = &gmac1;
+> +		mmc0 = &sdhci;
+> +		mmc1 = &sdmmc0;
+> +		mmc2 = &sdmmc1;
+> +	};
+> +
+> +	battery: battery {
+> +		compatible = "simple-battery";
+> +		device-chemistry = "lithium-ion";
+> +		charge-full-design-microamp-hours = <6800000>;
+> +		energy-full-design-microwatt-hours = <25000000>;
+> +		voltage-max-design-microvolt = <4200000>;
+> +		voltage-min-design-microvolt = <3400000>;
+> +
+> +		ocv-capacity-celsius = <25>;
+> +		ocv-capacity-table-0 =  <4100000 100>, <4040000 90>,
+> +					<3980000 80>, <3920000 70>,
+> +					<3870000 60>, <3820000 50>,
+> +					<3790000 40>, <3770000 30>,
+> +					<3740000 20>, <3680000 10>,
+> +					<3450000 0>;
+> +	};
+> +
+> +	chosen: chosen {
+> +		stdout-path = "serial2:1500000n8";
+> +	};
+> +
+> +	hdmi_con: hdmi-con {
+> +		compatible = "hdmi-connector";
+> +		type = "a";
+> +
+> +		port {
+> +			hdmi_con_in: endpoint {
+> +				remote-endpoint = <&hdmi_out_con>;
+> +			};
+> +		};
+> +	};
+> +
+> +	rfkill-modem {
+> +		compatible = "rfkill-gpio";
+> +		label = "M.2 USB Modem";
+> +		radio-type = "wwan";
+> +		reset-gpios = <&gpio0 RK_PB0 GPIO_ACTIVE_LOW>;
+> +		shutdown-gpios = <&gpio4 RK_PC4 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+> +	vdda_0v9: regulator-0v9-vdda {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vdda_0v9";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <900000>;
+> +		regulator-max-microvolt = <900000>;
+> +		vin-supply = <&vcc3v3_sys>;
+> +	};
+> +
+> +	vcc_1v8: regulator-1v8-vcc {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_1v8";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		vin-supply = <&vcc3v3_sys>;
+> +	};
+> +
+> +	vcca_1v8: regulator-1v8-vcca {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcca_1v8";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		vin-supply = <&vcc3v3_sys>;
+> +	};
+> +
+> +	vcc_3v3: regulator-3v3-vcc {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_3v3";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vcc3v3_sys>;
+> +	};
+> +
+> +	/* actually fed by vcc_syson, dependent
+> +	 * on pi6c clock generator
+> +	 */
+> +	vcc3v3_pcie: regulator-3v3-vcc-pcie {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc3v3_pcie";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vcc3v3_pi6c>;
+> +	};
+> +
+> +	/* pi6c pcie clock generator */
+> +	vcc3v3_pi6c: regulator-3v3-vcc-pi6c {
+> +		compatible = "regulator-fixed";
+> +		enable-active-high;
+> +		gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pcie_pwren_h>;
+> +		regulator-name = "vcc3v3_pi6c";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vcc_syson>;
+> +	};
+> +
+> +	vcc3v3_sd: regulator-3v3-vcc-sd {
+> +		compatible = "regulator-fixed";
+> +		gpio = <&gpio0 RK_PB6 GPIO_ACTIVE_LOW>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&sdmmc0_pwren>;
+> +		regulator-boot-on;
+> +		regulator-name = "vcc3v3_sd";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vcc_3v3>;
+> +	};
+> +
+> +	vcc3v3_sys: regulator-3v3-vcc-sys {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc3v3_sys";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vcc_syson>;
+> +	};
+> +
+> +	vcc3v4_rf: regulator-3v4-vcc-rf {
+> +		compatible = "regulator-fixed";
+> +		enable-active-high;
+> +		gpio = <&gpio4 RK_PC2 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&rf_pwr_en>;
+> +		regulator-name = "vcc3v4_rf";
+> +		regulator-min-microvolt = <3400000>;
+> +		regulator-max-microvolt = <3400000>;
+> +		vin-supply = <&vccin_5v>;
+> +	};
+> +
+> +	vcc5v0_usb30_otg0: regulator-vcc5v0-usb30-otg0 {
+> +		compatible = "regulator-fixed";
+> +		enable-active-high;
+> +		gpio = <&gpio0 RK_PA5 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&usb_host_pwren_h>;
+> +		regulator-name = "vcc5v0_usb30_otg0";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&vccin_5v>;
+> +	};
+> +
+> +	vccin_5v: regulator-vccin-5v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vccin_5v";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +	};
+> +
+> +	vcc_sysin: regulator-vcc-sysin {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_sysin";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&vccin_5v>;
+> +	};
+> +
+> +	vcc_syson: regulator-vcc-syson {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_syson";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&vcc_sysin>;
+> +	};
+> +
+> +	vdd_gpu: regulator-vdd-gpu {
+> +		compatible = "pwm-regulator";
+> +		pwms = <&pwm2 0 5000 1>;
+> +		pwm-supply = <&vcc_syson>;
+> +		regulator-name = "vdd_gpu";
+> +		regulator-min-microvolt = <800000>;
+> +		regulator-max-microvolt = <1350000>;
+> +		regulator-ramp-delay = <6001>;
+> +		regulator-settling-time-up-us = <250>;
+> +	};
+> +
+> +	vdd_logic: regulator-vdd-logic {
+> +		compatible = "pwm-regulator";
+> +		pwms = <&pwm1 0 5000 1>;
+> +		pwm-supply = <&vcc_syson>;
+> +		regulator-name = "vdd_logic";
+> +		regulator-min-microvolt = <500000>;
+> +		regulator-max-microvolt = <1350000>;
+> +		regulator-ramp-delay = <6001>;
+> +		regulator-settling-time-up-us = <250>;
+> +	};
+> +
+> +	wifi_pwrseq: wifi-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		clocks = <&pmucru CLK_RTC_32K>;
+> +		clock-names = "ext_clock";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&wifi_reg_on_h &clk32k_out1>;
+> +		post-power-on-delay-ms = <200>;
+> +		reset-gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_LOW>;
+> +	};
+> +};
+> +
+> +&combphy0 {
+> +	status = "okay";
+> +};
+> +
+> +&combphy1 {
+> +	status = "okay";
+> +};
+> +
+> +&combphy2 {
+> +	status = "okay";
+> +};
+> +
+> +&cpu0 {
+> +	cpu-supply = <&vdd_cpu>;
+> +};
+> +
+> +&cpu1 {
+> +	cpu-supply = <&vdd_cpu>;
+> +};
+> +
+> +&cpu2 {
+> +	cpu-supply = <&vdd_cpu>;
+> +};
+> +
+> +&cpu3 {
+> +	cpu-supply = <&vdd_cpu>;
+> +};
+> +
+> +&gmac0 {
+> +	status = "disabled";
+> +	/* Motorcomm YT8521SC LAN port (require SGMII) */
+
+nit: Please be consistent where comments is added, for recgulators above
+the comments is above the node, suggest you move the comment above the
+"&gmac0 {" line, and same for similar comments.
+
+> +};
+> +
+> +&gmac1 {
+> +	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
+> +	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>;
+> +	assigned-clock-rates = <0>, <125000000>;
+> +	clock_in_out = "output";
+> +	phy-handle = <&rgmii_phy1>;
+> +	phy-mode = "rgmii-id";
+> +	phy-supply = <&vcc_3v3>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&gmac1m1_miim
+> +		     &gmac1m1_tx_bus2
+> +		     &gmac1m1_rx_bus2
+> +		     &gmac1m1_rgmii_clk
+> +		     &gmac1m1_rgmii_bus>;
+> +	snps,reset-gpio = <&gpio4 RK_PC0 GPIO_ACTIVE_LOW>;
+> +	snps,reset-active-low;
+> +	snps,reset-delays-us = <0 20000 100000>;
+
+The snps,reset props is deprecated use resets props in phy node instad.
+
+> +	status = "okay";
+> +	/* Motorcomm YT8521SC WAN port */
+> +};
+> +
+> +&gpu {
+> +	mali-supply = <&vdd_gpu>;
+> +	status = "okay";
+> +};
+> +
+> +&hdmi {
+> +	avdd-0v9-supply = <&vdda_0v9>;
+> +	avdd-1v8-supply = <&vcca_1v8>;
+> +	status = "okay";
+> +};
+> +
+> +&hdmi_in {
+> +	hdmi_in_vp0: endpoint {
+> +		remote-endpoint = <&vp0_out_hdmi>;
+> +	};
+> +};
+> +
+> +&hdmi_out {
+> +	hdmi_out_con: endpoint {
+> +		remote-endpoint = <&hdmi_con_in>;
+> +	};
+> +};
+> +
+> +&hdmi_sound {
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +
+> +	vdd_cpu: regulator@1c {
+> +		compatible = "tcs,tcs4525";
+> +		reg = <0x1c>;
+> +		fcs,suspend-voltage-selector = <1>;
+> +		regulator-name = "vdd_cpu";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <800000>;
+> +		regulator-max-microvolt = <1150000>;
+> +		regulator-ramp-delay = <2300>;
+> +		vin-supply = <&vcc_syson>;
+> +
+> +		regulator-state-mem {
+> +			regulator-off-in-suspend;
+> +		};
+> +	};
+> +};
+> +
+> +&i2c2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c2m1_xfer>;
+> +	status = "okay";
+> +};
+> +
+> +&i2s0_8ch {
+> +	status = "okay";
+> +};
+> +
+> +&mdio1 {
+> +	rgmii_phy1: ethernet-phy@0 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0x0>;
+> +		rx-internal-delay-ps = <1500>;
+> +		tx-internal-delay-ps = <1500>;
+> +	};
+> +};
+> +
+> +&pcie30phy {
+> +	phy-supply = <&vcc3v3_pi6c>;
+> +	status = "okay";
+> +};
+> +
+> +&pcie3x2 {
+> +	max-link-speed = <1>;
+> +	num-lanes = <1>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie30x1m0_pins>;
+> +	reset-gpios = <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
+> +	vpcie3v3-supply = <&vcc3v3_pcie>;
+> +	status = "okay";
+> +	/* M.2 E-Key for PCIe WLAN */
+> +};
+> +
+> +&pinctrl {
+> +	bt {
+> +		bt_reg_on_h: bt-reg-on-h {
+> +			rockchip,pins = <2 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	pcie {
+> +		pcie_pwren_h: pcie-pwren-h {
+> +			rockchip,pins = <0 RK_PA6 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	sdmmc0 {
+> +		sdmmc0_pwren: sdmmc0-pwren {
+> +			rockchip,pins = <0 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	usb {
+> +		rf_pwr_en: rf-pwr-en {
+> +			rockchip,pins = <4 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +
+> +		usb_host_pwren_h: usb-host-pwren-h {
+> +			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	wifi {
+> +		wifi_reg_on_h: wifi-reg-on-h {
+> +			rockchip,pins = <2 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +};
+> +
+> +&pmu_io_domains {
+> +	pmuio1-supply = <&vcc_3v3>;
+> +	pmuio2-supply = <&vcc_3v3>;
+> +	vccio1-supply = <&vcc_3v3>;
+> +	vccio2-supply = <&vcc_1v8>;
+> +	vccio3-supply = <&vcc_3v3>;
+> +	vccio4-supply = <&vcc_1v8>;
+> +	vccio5-supply = <&vcc_3v3>;
+> +	vccio6-supply = <&vcc_3v3>;
+> +	vccio7-supply = <&vcc_3v3>;
+> +	status = "okay";
+> +};
+> +
+> +&pwm1 {
+> +	status = "okay";
+> +};
+> +
+> +&pwm2 {
+> +	status = "okay";
+> +};
+> +
+> +&saradc {
+> +	vref-supply = <&vcca_1v8>;
+> +	status = "okay";
+> +};
+> +
+> +&sdhci {
+> +	bus-width = <8>;
+> +	max-frequency = <200000000>;
+
+Can be dropped, already in base dtsi.
+
+> +	mmc-hs200-1_8v;
+> +	non-removable;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&emmc_bus8 &emmc_clk &emmc_cmd>;
+> +	vmmc-supply = <&vcc_3v3>;
+> +	vqmmc-supply = <&vcc_1v8>;
+> +	status = "okay";
+> +	/* eMMC */
+> +};
+> +
+> +&sdmmc0 {
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	cd-gpios = <&gpio0 RK_PB5 GPIO_ACTIVE_LOW>;
+> +	disable-wp;
+> +	no-1-8-v;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd>;
+> +	vmmc-supply = <&vcc3v3_sd>;
+> +	vqmmc-supply = <&vcc_3v3>;
+> +	status = "okay";
+> +	/* Micro SD card slot */
+> +};
+> +
+> +&sdmmc1 {
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	cap-sdio-irq;
+> +	keep-power-in-suspend;
+> +	mmc-pwrseq = <&wifi_pwrseq>;
+> +	non-removable;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sdmmc1_bus4 &sdmmc1_cmd &sdmmc1_clk>;
+> +	sd-uhs-sdr104;
+> +	vmmc-supply = <&vcc3v3_sys>;
+> +	vqmmc-supply = <&vcc_1v8>;
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	status = "okay";
+> +	/* Qualcomm Atheros QCA9377 */
+
+nit: I would move this comment one line down just above the wifi node
+below.
+
+Regards,
+Jonas
+
+> +
+> +	wifi: wifi@1 {
+> +		reg = <1>;
+> +		interrupt-parent = <&gpio2>;
+> +		interrupts = <RK_PB2 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "host-wake";
+> +	};
+> +};
+> +
+> +&tsadc {
+> +	rockchip,hw-tshut-mode = <1>;
+> +	rockchip,hw-tshut-polarity = <0>;
+> +	status = "okay";
+> +};
+> +
+> +&uart1 {
+> +	dma-names = "tx", "rx";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart1m0_xfer &uart1m0_ctsn &uart1m0_rtsn>;
+> +	uart-has-rtscts;
+> +	status = "okay";
+> +
+> +	bluetooth: bluetooth {
+> +		compatible = "qcom,qca9377-bt";
+> +		clocks = <&pmucru CLK_RTC_32K>;
+> +		clock-names = "lpo";
+> +		enable-gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&bt_reg_on_h>;
+> +		vddio-supply = <&vcc_1v8>;
+> +	};
+> +};
+> +
+> +&uart2 {
+> +	status = "okay";
+> +	/* Debug UART */
+> +};
+> +
+> +&uart3 {
+> +	dma-names = "tx", "rx";
+> +	status = "okay";
+> +};
+> +
+> +&uart4 {
+> +	dma-names = "tx", "rx";
+> +	status = "okay";
+> +	/* Onboard power management MCU */
+> +};
+> +
+> +&usb_host0_ehci {
+> +	status = "okay";
+> +	/* M.2 E-Key for USB Bluetooth */
+> +};
+> +
+> +&usb_host0_ohci {
+> +	status = "okay";
+> +};
+> +
+> +&usb_host0_xhci {
+> +	dr_mode = "host";
+> +	status = "okay";
+> +	/* USB Type-A Port */
+> +};
+> +
+> +&usb_host1_xhci {
+> +	dr_mode = "host";
+> +	status = "okay";
+> +	/* M.2 B-Key for USB Modem WWAN */
+> +};
+> +
+> +&usb2phy0 {
+> +	status = "okay";
+> +};
+> +
+> +&usb2phy0_host {
+> +	phy-supply = <&vcc3v4_rf>;
+> +	status = "okay";
+> +};
+> +
+> +&usb2phy0_otg {
+> +	phy-supply = <&vcc5v0_usb30_otg0>;
+> +	status = "okay";
+> +};
+> +
+> +&usb2phy1 {
+> +	status = "okay";
+> +};
+> +
+> +&usb2phy1_otg {
+> +	phy-supply = <&vcc5v0_usb30_otg0>;
+> +	status = "okay";
+> +};
+> +
+> +&vop {
+> +	assigned-clocks = <&cru DCLK_VOP0>, <&cru DCLK_VOP1>;
+> +	assigned-clock-parents = <&pmucru PLL_HPLL>, <&cru PLL_VPLL>;
+> +	status = "okay";
+> +};
+> +
+> +&vop_mmu {
+> +	status = "okay";
+> +};
+> +
+> +&vp0 {
+> +	vp0_out_hdmi: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
+> +		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
+> +		remote-endpoint = <&hdmi_in_vp0>;
+> +	};
+> +};
+> +
+> +&xin32k {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&clk32k_out1>;
+> +};
+
 
