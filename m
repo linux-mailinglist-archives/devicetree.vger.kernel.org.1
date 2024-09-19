@@ -1,91 +1,126 @@
-Return-Path: <devicetree+bounces-103871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-103872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C42597C774
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 11:48:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3435497C79F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 12:01:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33D7E1F28146
-	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 09:48:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7CE92902A1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Sep 2024 10:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AE3A1A071F;
-	Thu, 19 Sep 2024 09:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0864D193432;
+	Thu, 19 Sep 2024 10:00:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE7A21A01D8;
-	Thu, 19 Sep 2024 09:44:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 718B513B2B1
+	for <devicetree@vger.kernel.org>; Thu, 19 Sep 2024 10:00:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726739052; cv=none; b=h2SmRKqVNKLMPbPWAfGObZEgSEl4mu8HcM/CJ4vV7MpVSqQ3t3hj6Eud33xudsPIqHKLQXaT+qu4nJTnpc5pambZx0Bqc2A3UpKUI4JOwsTDWSXph/WU2bp9hmHeSD5o+yohjIEI0L3/iEWFMIjF1IZtdKauVD+e1myhMU9v6qw=
+	t=1726740054; cv=none; b=jMg+JNUSW0lL0CF1Iu5swybYe6oW94NZ7a1FRf8nmdKTfKAY7aGxos4Jt2fbMNYk9tL5cznXt1bUkK9S4+I3qaScbrD3j+5J/LR+uOjbSEHRtY1yyVIOIjbL9wpBCImL4Ssw8HDzQBrD/cAMM8j1k2UkYq0H8W0S/mfqo70ZabU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726739052; c=relaxed/simple;
-	bh=gAlJ7gDxm06bfoNA93gike3Nx8ni1gIqR8faTAfBL60=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eOJeIoWV+MbYgnIz+JLGu/AWPKCgNTdItFFs+98ljETjGlqGooXmtzZ5rIXsmch23QjoGt7foSL9pWXME+DM+DU505wBnvWqkCvy6nRaMudWbpL2frn4zSsG8VXTE4Pl/7jzGmf9AfyHDJH203XFDoFLMEz8WB/vsgiVXF2b0+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Thu, 19 Sep
- 2024 17:43:39 +0800
-Received: from mail.aspeedtech.com (192.168.10.10) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1258.12 via Frontend
- Transport; Thu, 19 Sep 2024 17:43:39 +0800
-From: Billy Tsai <billy_tsai@aspeedtech.com>
-To: <linus.walleij@linaro.org>, <brgl@bgdev.pl>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <joel@jms.id.au>,
-	<andrew@codeconstruct.com.au>, <linux-gpio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-	<BMC-SW@aspeedtech.com>, <Peter.Yin@quantatw.com>, <Jay_Zhang@wiwynn.com>
-Subject: [PATCH v4 6/6] gpio: aspeed: Add the flush write to ensure the write complete.
-Date: Thu, 19 Sep 2024 17:43:39 +0800
-Message-ID: <20240919094339.2407641-7-billy_tsai@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240919094339.2407641-1-billy_tsai@aspeedtech.com>
-References: <20240919094339.2407641-1-billy_tsai@aspeedtech.com>
+	s=arc-20240116; t=1726740054; c=relaxed/simple;
+	bh=sqvfYbzfe1fAW16uJxIic0EOdzlox5FP9GdoIDUmcDc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rx2w+8mOzMmW5T0oVTU6WfhhfZp8oMR63f1XRrGyEQECzayhJdal+fi6XZ6pj64HLMAv6ApeQ0OYoW+ixBzyYlMDIGTTOebBXeaB36JVRrPNl6hZZNdwFXlXeOs1n9+9jhFUt7r/Qka1gg5uG3/axWwxGkNQ+zps7PlLPehWczg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5AF6E1007;
+	Thu, 19 Sep 2024 03:01:22 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CC66B3F64C;
+	Thu, 19 Sep 2024 03:00:51 -0700 (PDT)
+Date: Thu, 19 Sep 2024 11:00:48 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: =?UTF-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH] arm64: dts: allwinner: h5: NanoPi NEO Plus2: Add
+ disable-wp to mmc0
+Message-ID: <20240919110048.7b76cb0e@donnerap.manchester.arm.com>
+In-Reply-To: <48EAA118-8890-4528-A3AA-6C131A8F8F75@gmail.com>
+References: <20240914-b4-nanopineoplus2-fix-mmc0-wp-v1-1-12f54f0d6620@gmail.com>
+	<20240916150809.21889537@donnerap.manchester.arm.com>
+	<D3EE8EF6-A6CC-4888-8699-A917471904CB@gmail.com>
+	<20240918110200.4f6be49c@donnerap.manchester.arm.com>
+	<48EAA118-8890-4528-A3AA-6C131A8F8F75@gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Performing a dummy read ensures that the register write operation is fully
-completed, mitigating any potential bus delays that could otherwise impact
-the frequency of bitbang usage. E.g., if the JTAG application uses GPIO to
-control the JTAG pins (TCK, TMS, TDI, TDO, and TRST), and the application
-sets the TCK clock to 1 MHz, the GPIO’s high/low transitions will rely on
-a delay function to ensure the clock frequency does not exceed 1 MHz.
-However, this can lead to rapid toggling of the GPIO because the write
-operation is POSTed and does not wait for a bus acknowledgment.
+On Thu, 19 Sep 2024 08:18:11 +0200
+Kry=C5=A1tof =C4=8Cern=C3=BD <cleverline1mc@gmail.com> wrote:
 
-Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
----
- drivers/gpio/gpio-aspeed.c | 2 ++
- 1 file changed, 2 insertions(+)
+> 18. z=C3=A1=C5=99=C3=AD 2024 12:02:00 SEL=C4=8C, Andre Przywara <andre.pr=
+zywara@arm.com> napsal:
+> >On Tue, 17 Sep 2024 17:51:11 +0200
+> >Kry=C5=A1tof =C4=8Cern=C3=BD <cleverline1mc@gmail.com> wrote:
+> >
+> >Hi Kry=C5=A1tof,
+> >
+> >(putting back the lists, please keep the discussion public, for everyone=
+'s
+> >benefit and for having this archived) =20
+>=20
+> Sorry, texted from a phone and used the wrong reply button.
+>=20
+> >> 16. z=C3=A1=C5=99=C3=AD 2024 16:08:09 SEL=C4=8C, Andre Przywara <andre=
+.przywara@arm.com> napsal: =20
+> >> >On Sat, 14 Sep 2024 12:07:00 +0200
+> >> >Kry=C5=A1tof =C4=8Cern=C3=BD <cleverline1mc@gmail.com> wrote:
+> >> >   =20
+> >> >> The board does not have wp pin/switch for micro SD card (mmc0).   =
+=20
+> >> >
+> >> >That is true, but for *every* microSD card. So I wonder if we should =
+add
+> >> >this property to all of the boards? I believe none of the arm64 board=
+s have
+> >> >full size SD card slots?   =20
+> >>=20
+> >> I believe this would be a correct thing to do for micro SD cards, few =
+boards do have this property set already, but most don't. However, I am not=
+ 100% certain (I have had a lot of SBCs, in my hands, but definitely not al=
+l of them), so I added it for this board only. So do you think it should be=
+ added for other boards too, or every user should add it for their SBC on t=
+heir own? =20
+> >
+> >Yes, I would like you to add this for the other arm64 boards, too.
+> >I appreciate your concerns about not knowing, but we can help out here.
+> >Maybe you can quickly go over the wiki and check each board's picture for
+> >having a microSD slot, just to be on the safe side. But I am pretty sure
+> >that full-size SD slots were only used on the first generation (A10)
+> >boards, and any arm64 board always uses micro-SD slots. I would double
+> >check this on my side during review.
+> >
+> >If we would wait for individual board owners to submit patches, we would
+> >wait forever. So thank you for spotting this, and sending a fix, but it
+> >would reduce churn and improve the situation for everyone if you would
+> >cover the other boards as well.
+> >
+> >Thanks!
+> >Andre
+> >
+> > =20
+> Do you mean all sunxi arm64? Or every arm64 board? Sunxi arm64 has like 5=
+0 boards or so, that would be probably possible to do manually. If you mean=
+ all arm64, that would be probably too much to handle at once.
 
-diff --git a/drivers/gpio/gpio-aspeed.c b/drivers/gpio/gpio-aspeed.c
-index c811e84db0b9..daa12e21d946 100644
---- a/drivers/gpio/gpio-aspeed.c
-+++ b/drivers/gpio/gpio-aspeed.c
-@@ -400,6 +400,8 @@ static void __aspeed_gpio_set(struct gpio_chip *gc, unsigned int offset,
- 	struct aspeed_gpio *gpio = gpiochip_get_data(gc);
- 
- 	gpio->config->llops->reg_bit_set(gpio, offset, reg_val, val);
-+	// flush write
-+	gpio->config->llops->reg_bits_get(gpio, offset, reg_val);
- }
- 
- static void aspeed_gpio_set(struct gpio_chip *gc, unsigned int offset,
--- 
-2.25.1
+Ah, no, sorry, just the sunxi ones, handling all arm64 boards would indeed
+be quite an endeavour, and it's much harder to verify.
+git grep counts 22 out of the 34 arm64 sunxi boards missing disable-wp, so
+that sounds doable.
 
+Many thanks,
+Andre
 
