@@ -1,110 +1,110 @@
-Return-Path: <devicetree+bounces-104209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEE7C97D952
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 19:47:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13C4497D983
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 20:13:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2DD01C21EA7
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 17:47:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 357111C21066
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 18:13:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C06717F4F6;
-	Fri, 20 Sep 2024 17:47:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dQb+wtqR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49FC717DFF1;
+	Fri, 20 Sep 2024 18:13:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E52D2C1A2;
-	Fri, 20 Sep 2024 17:47:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from chessie.everett.org (chessie.fmt1.pfcs.com [66.220.13.234])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15E82C147;
+	Fri, 20 Sep 2024 18:13:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=66.220.13.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726854447; cv=none; b=Cs3UKgXpbZLnQKetEvmpbRz2GnUVWiMIbOozsuWBQ2JdQTyD1FrDopZn3jtLpPcyNY1WfOhAobNjgrMiSeaETtdo0UZAkugSUo3B16FtuAPP/bRJKUA/UUbtAux9vY0aHjimScu3qg0fOBdlKv1sAPThgYJxlkn6hGtVd3mcSTA=
+	t=1726855994; cv=none; b=BMnDQTg0oqW8t5HAQB44Kgaw2n+O3tIArGnOsf73fODimztYob+2fmm0bHHciAn1y6CJjX0rarf3kpZ4BxX3kQHjvTjI7NFymq0Dkh9XMjo++o8ZET+Xq81IH5zZkU/T4RSVHhQuj7uO64iLotIem8TkmKBXM0lylwRykfGUIfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726854447; c=relaxed/simple;
-	bh=V5IZaW/EHvmQIFTZpHgJ9U1K9XqWMypoJHd7UKAxFgQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=F/bjEGjnnosvVR2s32rdPAqzyxkQmeR6lGY3WSiToaL/Bik9ECs2li9O8kQKTPwX3d6GLAiq0RHqh/dzYs4eq/T0ZnjpBvtAHxqs9Ca/7AnwNRhVPhfni2PN/PiiQVV9QykmNznDp6TSOoKEW0TLZYl/8XSLNYhLJ9nMV/m8IeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dQb+wtqR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id F144AC4CEC5;
-	Fri, 20 Sep 2024 17:47:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726854447;
-	bh=V5IZaW/EHvmQIFTZpHgJ9U1K9XqWMypoJHd7UKAxFgQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=dQb+wtqRAv62MCy/KtJwinLiOS32ffOBpgqxqRQcXBWwS7nOQ+tn3kNBEEYlsjdTn
-	 MWh3TitLVgZvBAhvZiNxs9yD4zBGVSUf192SE170Hnx6RP6GL8AdNkbyN3uBJXTqXu
-	 3aX+vJ51BIkCspq0GBYnNx7gCMMfS4qzUnekHh/rAmPjy8z35XLfUIng7+Ynkl8TY8
-	 +iakEZe1NFT7AivlBXQxl8x+4U08HXhEY6jaULNNzwUml7teanRJTkRj7/j0sYXckl
-	 kZjXUCo4GroXgZrYVOM0llAR30m5GtTYw7SMRwcHDNO4tUnIx0ZsLiNo+MhfVqhBKP
-	 BgkTkkW29Vjcw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EBDBCCF9C62;
-	Fri, 20 Sep 2024 17:47:26 +0000 (UTC)
-From: Jens Glathe via B4 Relay <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org>
-Date: Fri, 20 Sep 2024 19:47:25 +0200
-Subject: [PATCH v2 2/2] dt-bindings: arm: qcom: Add Microsoft Windows Dev
- Kit 2023
+	s=arc-20240116; t=1726855994; c=relaxed/simple;
+	bh=De3fUhKTxQiIceQsWpYKflB9qQQCoUYKWhLOSWPYHvo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=WdE/31aMXoWTj+gf344uHkeaKhYfsU12Ep6IKW/zO/M/M+2w8O8IAJDTHzm5IwgnFtebNyC3JWSeCN1Ny7A4273exrVBeoGOYoUXS70/AkawW5r3GEjlx1ju5lzicOnPQowkFRR5Ly+nDqRLEyFLuDUdxkSRMERnSraZ7t43ew4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nwtime.org; spf=pass smtp.mailfrom=nwtime.org; arc=none smtp.client-ip=66.220.13.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nwtime.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nwtime.org
+Received: from localhost.localdomain (ip-77-25-16-238.web.vodafone.de [77.25.16.238])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by chessie.everett.org (Postfix) with ESMTPSA id 4X9L8t2yByzMR1r;
+	Fri, 20 Sep 2024 18:13:02 +0000 (UTC)
+From: Erez Geva <erezgeva@nwtime.org>
+To: linux-mtd@lists.infradead.org,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Pratyush Yadav <pratyush@kernel.org>,
+	Michael Walle <mwalle@kernel.org>
+Cc: linux-kernel@vger.kernel.org,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Esben Haabendal <esben@geanix.com>,
+	Erez Geva <ErezGeva2@gmail.com>
+Subject: [PATCH v5 0/5] Add support for SPI-NOR Macronix OTP
+Date: Fri, 20 Sep 2024 20:12:26 +0200
+Message-Id: <20240920181231.20542-1-erezgeva@nwtime.org>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240920-jg-blackrock-for-upstream-v2-2-9bf2f1b2191c@oldschoolsolutions.biz>
-References: <20240920-jg-blackrock-for-upstream-v2-0-9bf2f1b2191c@oldschoolsolutions.biz>
-In-Reply-To: <20240920-jg-blackrock-for-upstream-v2-0-9bf2f1b2191c@oldschoolsolutions.biz>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
- Merck Hung <merckhung@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1726854445; l=743;
- i=jens.glathe@oldschoolsolutions.biz; s=20240919;
- h=from:subject:message-id;
- bh=6wRSNxIph3/qSJRgFI6zNdBzJg2ZkmeHrrkm08D757I=;
- b=Ppcbw1ZBVtgy6EykM9PdkoSciMcXAJkUwDpu42Q7pxQAD/BM68+EbOG36QEy86ztlrcN7SzZH
- yn67FO+fI18Bm/QGdOVL2TaisMH5m3qUagZI2tPd7X3g7n3nVAtFJhd
-X-Developer-Key: i=jens.glathe@oldschoolsolutions.biz; a=ed25519;
- pk=JcRJqJc/y8LsxOlPakALD3juGfOKmFBWtO+GfELMJVg=
-X-Endpoint-Received: by B4 Relay for
- jens.glathe@oldschoolsolutions.biz/20240919 with auth_id=216
-X-Original-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-Reply-To: jens.glathe@oldschoolsolutions.biz
+Content-Transfer-Encoding: 8bit
 
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+From: Erez Geva <ErezGeva2@gmail.com>
 
-Add compatible values for WDK2023 with its codename "blackrock"
+Add support for SPI-NOR Macronix OTP.
+And add MX25L12833F with OTP.
 
-Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
----
- Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
- 1 file changed, 1 insertion(+)
+v2:
+Improve description of mx25l12833f.
+Add note about mx25l12833f using the same JEDEC ID as mx25l12805d.
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index f08e13b61172..cbff0313155e 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -812,6 +812,7 @@ properties:
-               - lenovo,thinkpad-x13s
-               - qcom,sc8280xp-crd
-               - qcom,sc8280xp-qrd
-+              - microsoft,blackrock
-           - const: qcom,sc8280xp
- 
-       - items:
+v3:
+Improve description.
+Rename _nor_send_cmd() to spi_nor_send_cmd_internal().
+Remove MX25L12833F specific changes.
+Add reading SFDP to all Macronix chips.
+Add support of reading OTP parameters from device tree.
+Reorgenize patches to 2 SPI-NOR patches and 2 Macronix patches.
+Testing with MX25L3233F using BeagleBone Black.
+Test results are in "mtd: spi-nor: macronix: add manufacturer flags" patch.
+
+v4:
+Add DT bindings of new OTP parameters.
+Test OTP with 'flash_otp_write' and 'flash_otp_lock'.
+Fix macronix_nor_otp_lock() and macronix_nor_otp_is_locked(),
+Macronix uses a single flag for all regions.
+
+v5:
+Fix DT binding errors.
+Fix functions description of Macronix OTP functions.
+
+Erez Geva (5):
+  mtd: spi-nor: core: add manufacturer flags
+  mtd: spi-nor: core: add generic functions
+  dt-bindings: mtd: spi-nor: add OTP parameters
+  mtd: spi-nor: macronix: add support for OTP
+  mtd: spi-nor: macronix: add manufacturer flags
+
+ .../bindings/mtd/jedec,spi-nor.yaml           |  39 ++++
+ drivers/mtd/spi-nor/core.c                    | 166 +++++++++++++----
+ drivers/mtd/spi-nor/core.h                    |  34 +---
+ drivers/mtd/spi-nor/macronix.c                | 168 ++++++++++++++++++
+ drivers/mtd/spi-nor/otp.c                     |   6 +-
+ drivers/mtd/spi-nor/winbond.c                 |   2 +-
+ include/linux/mtd/spi-nor.h                   |   9 +
+ 7 files changed, 356 insertions(+), 68 deletions(-)
 
 -- 
-2.43.0
-
+2.39.5
 
 
