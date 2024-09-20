@@ -1,141 +1,126 @@
-Return-Path: <devicetree+bounces-104167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C25597D76C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 17:26:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7848697D7E0
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 17:51:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC5961F24669
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 15:26:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E7DA1F242AC
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 15:51:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F03D14B940;
-	Fri, 20 Sep 2024 15:26:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34D3417BEC8;
+	Fri, 20 Sep 2024 15:50:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="X+OTZgaM"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="vwIJoaIe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 929CDC13B;
-	Fri, 20 Sep 2024 15:26:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04A9161FCF;
+	Fri, 20 Sep 2024 15:50:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726846011; cv=none; b=PnFGzXLtUl6fpT0Zd0IWGQn/U6om1dISZG3erM+hGRa7bLLDzr2sEQYCyYypRyIdlgTTpXFNUsStS6vPjFD+UR0TxRAWqva9/hLUQ4fCYZFiJrGkzLDCVjTp9NhCzDVP8g42LDMvulkRooRAjgkaU9RMLTHnHUD+E3a/fJ4BasE=
+	t=1726847458; cv=none; b=EABptPOhI5o0NbW5uNtUUrD/fwacdLl1oUVuo01dso4ZZ8onieCNeJ69OZnk+UxSIXBTdAjo7AtnDuf1GKxQU++pqbd+ZyP3W3ABEbT26nGBsIwXwQ8vGyGAtOTub91Ts6Enqk7bmC9TFU3XMeuotmbu1JJBjd6X/TBrP+Xh2+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726846011; c=relaxed/simple;
-	bh=chACH4WRHn+akX62/Tjn9TTs39+T5HAfNHQczpmJWb0=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=E14rNOCnHNDggnHDQFJqTlCJUktOXLRL56jkCzdi4wceD+Uy7R+llaeShcmISvVrT5poWx2d2CZKf9aYwsNsN2SByE82EcVDSfFW8rr+X1yrRT1as3me9R4++mP9vYh/Q+NF1whIdJTLdp70yO85iwP+cIZwAG58K4brct9WE8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=X+OTZgaM; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1726846010; x=1758382010;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=chACH4WRHn+akX62/Tjn9TTs39+T5HAfNHQczpmJWb0=;
-  b=X+OTZgaMOk556xpT4lYAEGaaTCJNfyqdupsOvHbTCAVfWmyvw1IjUbKz
-   61vMSuYdAHJmDZh7KzhTRdRRGQ5La+MV2jNJtN7jP2jaNQeXrUvF9VHP5
-   8DdiYdVqW77zWviA8O/nVFGoj6ZO+e/9HgymhySMN5gErLHWWacdN/5KN
-   QCeYZl/g/dDZgHO6otpysYSQwto5cE6X2cljp+RgQcRZt2hAArvnff2C+
-   FrZHL1Ht3WktdHNelw8Dp8LZeIYf9JHjGnfJUUaXfr6dTKB0UkF+wNd8h
-   x6zjCQfhsGwMKArql+Av4dpRMuwnL0sBatV7Cn/xlI2eduW3FJXIaH5S7
-   g==;
-X-CSE-ConnectionGUID: /XphNNj9Q6u9na6X9ztK7Q==
-X-CSE-MsgGUID: k8t7qNjsRTWPcxPpennAxA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11201"; a="28752540"
-X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; 
-   d="scan'208";a="28752540"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Sep 2024 08:26:43 -0700
-X-CSE-ConnectionGUID: Uv4qBKzbQn6mHbUNnllnZA==
-X-CSE-MsgGUID: fYGpBIJdQwe/2OwE+HtFAA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; 
-   d="scan'208";a="70475427"
-Received: from sj-2308-osc3.sj.altera.com ([10.244.138.69])
-  by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Sep 2024 08:26:43 -0700
-Date: Fri, 20 Sep 2024 08:26:43 -0700 (PDT)
-From: matthew.gerlach@linux.intel.com
-To: Rob Herring <robh@kernel.org>
-cc: lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com, 
-    krzk+dt@kernel.org, conor+dt@kernel.org, dinguyen@kernel.org, 
-    joyce.ooi@intel.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-    linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v2 1/7] dt-bindings: PCI: altera: Convert to YAML
-In-Reply-To: <CAL_JsqJg_ahW451sBht1k5SxP9s4dE09F-EWrgdXdDpUPFDfcQ@mail.gmail.com>
-Message-ID: <5edb1ea6-63e-8bfb-aaa5-a333d5987339@linux.intel.com>
-References: <20240809151213.94533-1-matthew.gerlach@linux.intel.com> <20240809151213.94533-2-matthew.gerlach@linux.intel.com> <20240809181401.GA973841-robh@kernel.org> <98185d65-805f-f09d-789-6eda61c4b36d@linux.intel.com>
- <CAL_JsqJg_ahW451sBht1k5SxP9s4dE09F-EWrgdXdDpUPFDfcQ@mail.gmail.com>
+	s=arc-20240116; t=1726847458; c=relaxed/simple;
+	bh=bmkuLKPssx4ZG+ZMZ7vGQhCfVwgxg+oPQLdk+5zdSqA=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=GwFRYBG/qhegpP0Eoro8NTiRsgaURieljtF5SUGB9AFCLslt5z/wWNQeBHeUpdrIy2XFzEI4Q2fhbaNCVq+0NSDYsz0smk56jC9UeFIWz/skAAN9YpVPS5yvsrBZUl6+vXfxcGDSPjcadwmMQS6hTK74ScxL0RisrAiorT1jXnk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=vwIJoaIe; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id AFC6F120009;
+	Fri, 20 Sep 2024 18:41:33 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru AFC6F120009
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1726846893;
+	bh=kKKoZX10DHxzZppRxtzk+++K95BJQK590YQ7OxuXtd8=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:From;
+	b=vwIJoaIe1a09gWIuxMwRdpIDT1KPg8HGfB7ZBPXjRc8JMhca4z/LqAs2lSiXCHzbL
+	 QfLn2c+fukXOgJhmwAgjj02OY6mhlFnnb9tAg1ULg3yGrY1uUyUMak2ZdUfFDl7+47
+	 h+PWFyzV56rmYrknnNq75lrf6E3+iV4wPiie9BMKyrXjimIZnx+pZ/7/vSbQtEzbfB
+	 n+/NMpxeRv44+9kqEMdPgoNYvmmoOGMDzqGyJwdcrKrGotcM1ocULmzazZMt7N/jh8
+	 e0K2WEsxysklBQ9Dakxl59w6j5lyRurtL+R9L89LWjjhZTuBrMUOdkpuRLtJCYteIi
+	 6tEEVJG6BbB7A==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri, 20 Sep 2024 18:41:33 +0300 (MSK)
+From: Igor Prusov <ivprusov@salutedevices.com>
+Subject: [PATCH v2 0/2] Add ES7243E ADC driver
+Date: Fri, 20 Sep 2024 18:41:06 +0300
+Message-ID: <20240920-es7243e-adc-v2-0-0be019735b81@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-788480230-1726846003=:3046662"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJKX7WYC/x3MTQqAIBBA4avErBOGUfq7SrQwHWs2FgoRiHdPW
+ n6L9wpkTsIZlq5A4keyXLGB+g7caePBSnwzEJLBmVBxHsloVtY7hazRa2emPQzQijtxkPe/rVu
+ tH5tmXsxdAAAA
+X-Change-ID: 20240920-es7243e-adc-0e30d3c48bf6
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Igor Prusov <ivprusov@salutedevices.com>
+CC: <linux-sound@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <kernel@salutedevices.com>,
+	<prusovigor@gmail.com>, David Yang <yangxiaohua@everest-semi.com>, "Martin
+ Kurbanov" <mmkurbanov@salutedevices.com>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
+ p-i-exch-a-m1.sberdevices.ru (172.24.196.116)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 187889 [Sep 20 2024]
+X-KSMG-AntiSpam-Version: 6.1.1.5
+X-KSMG-AntiSpam-Envelope-From: ivprusov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 34 0.3.34 8a1fac695d5606478feba790382a59668a4f0039, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:5.0.1,7.1.1;lore.kernel.org:7.1.1;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;github.com:7.1.1, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/09/20 12:16:00
+X-KSMG-LinksScanning: Clean, bases: 2024/09/20 12:16:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/09/20 14:03:00 #26646385
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+This series adds Everest Semi ES7243E ADC driver and bindings.
+Driver is based on David Yang's implementation [1].
 
---8323329-788480230-1726846003=:3046662
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+[1] https://github.com/BPI-SINOVOIP/BPI-R2PRO-BSP/blob/main/kernel/sound/soc/codecs/es7243e.c
 
+Changes in V2:
+- use generic node name in bindings
+- remove unused include statements
+- add sclk and lrck clocks
+- add const where possible
+- Link to V1: https://lore.kernel.org/lkml/20240709104117.33431-1-ivprusov@salutedevices.com
 
+---
+Igor Prusov (2):
+      ASoC: dt-bindings: Add Everest ES7243E
+      ASoC: codecs: add ES7243E ADC driver
 
-On Fri, 9 Aug 2024, Rob Herring wrote:
+ .../devicetree/bindings/sound/everest,es7243e.yaml |  56 ++
+ sound/soc/codecs/Kconfig                           |   4 +
+ sound/soc/codecs/Makefile                          |   2 +
+ sound/soc/codecs/es7243e.c                         | 693 +++++++++++++++++++++
+ 4 files changed, 755 insertions(+)
+---
+base-commit: baeb9a7d8b60b021d907127509c44507539c15e5
+change-id: 20240920-es7243e-adc-0e30d3c48bf6
 
-> On Fri, Aug 9, 2024 at 12:43 PM <matthew.gerlach@linux.intel.com> wrote:
->> On Fri, 9 Aug 2024, Rob Herring wrote:
->>
->>> On Fri, Aug 09, 2024 at 10:12:07AM -0500, matthew.gerlach@linux.intel.com wrote:
->>>> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->>>>
->>>> Convert the device tree bindings for the Altera Root Port PCIe controller
->>>> from text to YAML. Update the entries in the interrupt-map field to have
->>>> the correct number of address cells for the interrupt parent.
->>>>
->>>> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
->>>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->>>> ---
->>>> v8:
->>>
->>> v2 or v8 or ??? I'm confused and tools will be too.
->>
->> Sorry for the confusion. Patch 1 and patch 2 were individually reviewed
->> previously. Patch 1 was previously reviewed up to v8, and I included them
->> in the greater patch set for convience and completeness, and this is v2 of
->> the entire patch set.
->>
->> How should this be handled for better clarity? Would it be better to not
->> to include Patch 1 and 2 in the patch set and refer to them, or would it
->> better to remove the history in patch 1 and 2, or something else?
->
-> Generally, if you added new patches you keep the versioning and say
-> "vN: new patch" in the new patches.
+Best regards,
+-- 
+Igor Prusov <ivprusov@salutedevices.com>
 
-Thanks for the clarification on the proper way to handle this.
-
->
-> If this was 2 prior series, combined, there's not really a good answer
-> other than don't do that.
-
-Understood, I won't combine prior series in the future.
-
->
-> Rob
->
-
-Krzysztof Wilczyński has applied patch 1 and patch 2 to linux-next. Should 
-I resubmit the patch set minus patch 1 and 2? There would be no changes to 
-patches 3-7. Do I keep the v2, or should it be bumped to v3?
-
-Thanks,
-Matthew Gerlach
-
---8323329-788480230-1726846003=:3046662--
 
