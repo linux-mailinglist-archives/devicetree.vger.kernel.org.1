@@ -1,374 +1,125 @@
-Return-Path: <devicetree+bounces-104008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5B5697D001
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 04:57:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD24C97D014
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 05:11:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16B1B1C22CCE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 02:57:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5BD21C228BA
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 03:11:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CFA3EAD0;
-	Fri, 20 Sep 2024 02:56:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C1F41946F;
+	Fri, 20 Sep 2024 03:10:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Ww3Xnubk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FfdGNfJs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B035C148;
-	Fri, 20 Sep 2024 02:56:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05B02125A9;
+	Fri, 20 Sep 2024 03:10:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726801015; cv=none; b=LtnJEmtktlvj5EjjJTTy+HKQsrl5fWS3N7sYmDdIOwbmjiuFPxkqIejKGv7j4jQrccbK+wu6dntDHuk7yx0vQWQL5LwuflGkI5ksVEgZITbc2/Xq9xvbLrVOG3n6k3i20nZvh7kqFWNQe8sm52OJuqPXSAPrHYj0i8QOO8vUm94=
+	t=1726801859; cv=none; b=aFTy2PY/cudQ2J//PwWzLnPO7iTnzUyzTMWi6CxWNG2NENzxjWHK5ICl/bgRht/cLKzVoYLEirrQ6N8c8Q+ZmAn/P8MP1TaJmzcYpQnSC4i9gRsqZcZrlCqNiYAHAP5bqrC2/x+3tsfHVEbI7Ifov/qWSrcXBZZ8NPf4UBky+tI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726801015; c=relaxed/simple;
-	bh=IbiM8GAY57qSiGUmYqxSLP5xfyTjQ2twAozTsRrgXx8=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Icni//XV81Ij3zeSZcZ7WuaF4wy/8alrfBjUmSeUW408eWrBJ96yz0iOkPgC9tyV1tSQct1tg1+y5uL3/f+PM+0DrjCvfXzcmKLwjxq+66yi7Tpw7CZEDP0OYz9s9D5I73kJZOCsc5TXOXHN9sDyEKZo8PYSj/6FhdI/9jzBDCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Ww3Xnubk; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1726801003;
-	bh=9zq+alk87NveKNSZoqa4mGW5binU0Cse8JboP4bIcE8=;
-	h=Subject:From:To:Date:In-Reply-To:References;
-	b=Ww3Xnubkc9IWScpaCo4g4eMR1oJIS7aCihQreu4ojNIepiOKrPh57FXKGiHwjWfJ4
-	 eCg0764Rez6KOA9XHv+1LMLYo1iZLxhPgcBsIa2hrO2BIu++IP03kxZ5KcrNy2eWAD
-	 vfN0Jehhg78Dk/Nkdb/P65eRng885zvxSftZRJogwqSzxjj3BjZvvqCdq2raidAxZr
-	 8U75fK39G+QpwKYqEY1GvEVyNZWI7xaagWB9lJpe8UoCUj9kd14iDGmcoCqqrgG6v7
-	 FVipWBEIp5fWDOdgIeRPBuBBrmWPOdS4NhKybiIz5xbHfALOeugvQv1I6wBHutphZY
-	 XQ2Wtl1bJejGQ==
-Received: from [192.168.68.112] (ppp118-210-188-185.adl-adc-lon-bras34.tpg.internode.on.net [118.210.188.185])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id A795165027;
-	Fri, 20 Sep 2024 10:56:40 +0800 (AWST)
-Message-ID: <7aaed8cf171b67300aa5b7e861628278de948a27.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v4 3/6] gpio: aspeed: Create llops to handle hardware
- access
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Billy Tsai <billy_tsai@aspeedtech.com>, linus.walleij@linaro.org, 
- brgl@bgdev.pl, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- joel@jms.id.au, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org, BMC-SW@aspeedtech.com,
- Peter.Yin@quantatw.com,  Jay_Zhang@wiwynn.com
-Date: Fri, 20 Sep 2024 12:26:38 +0930
-In-Reply-To: <20240919094339.2407641-4-billy_tsai@aspeedtech.com>
-References: <20240919094339.2407641-1-billy_tsai@aspeedtech.com>
-	 <20240919094339.2407641-4-billy_tsai@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1726801859; c=relaxed/simple;
+	bh=g8Fx5TTJzV1MuTCeRPULLGaYpS2ORG7ZcWbYMH2W/Ds=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YjPfr7qMgE70znuSfg4YtuMmQcW+j+2cfRvSupajybnzli3LB6Q102kxhQbjm9KAlXJDLBWyl1OaZGaoaHM0mAfE2kyamoLW/8IziI26+wgc8GAtLjKYQshWvGSL8JYm9o9L347SF2XLYFWSvjfj5bBm1OEeDlkPsZ6yVIxNYqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FfdGNfJs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6A4E3C4CEC7;
+	Fri, 20 Sep 2024 03:10:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726801858;
+	bh=g8Fx5TTJzV1MuTCeRPULLGaYpS2ORG7ZcWbYMH2W/Ds=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=FfdGNfJs3xXrogoLROEuJoEXYY+YfKX+S+FpOH8f31+FsKqApheF+v8ga1Xm0iWOK
+	 ScRiCJ5XFNoP1E01uvRBj7NnVRUkEEgAoqkAE17160V37FxUlqrHfqkVXzJz7VH9NG
+	 ImMCkjPNxHDhrU7l3umu52l8Fc2BES8uIk2tTNLliKguFbBcjeLHBQ1e5WDl2ful+L
+	 TuSq5zSXX6hiKH3PiBPqH4w+n0nUfrxctIPKBkRNNZt6foO6ZlC9WOLDeIJ5JrFG+0
+	 XE0qG3YcCsF/cHWAHr3eIaei9VOrjv9xXhHVUOrUdrdOhJwj8odfMM4twRrUPxfwjU
+	 3AoMiZpIhdz8w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 59307CE8D62;
+	Fri, 20 Sep 2024 03:10:58 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v4 0/3] support for amlogic rtc
+Date: Fri, 20 Sep 2024 11:10:55 +0800
+Message-Id: <20240920-rtc-v4-0-91ae5fb4e3d5@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMDn7GYC/2XM0Q6CIBTG8VdpXEc7HESgq96jdUGAypbS0Lma8
+ 91DayvX5Xd2fv+J9D4F35PjbiLJj6EPscuj2O+IbUxXexpc3gQBC1DIaRosZSitU0yjYZzkz3v
+ yVXislfMl7yb0Q0zPNTqy5br1I6NAy0oCV8wZVPxk2lusgz3Y2JKlMOJXafgozAqEM0IKcVVO/
+ yv+oxi8Fc+KVQakNKU2CFs1z/MLl/npkwQBAAA=
+To: Yiting Deng <yiting.deng@amlogic.com>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1726801856; l=1589;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=g8Fx5TTJzV1MuTCeRPULLGaYpS2ORG7ZcWbYMH2W/Ds=;
+ b=uJD6SDKCaARt2GvUkVjfOKpc3p7WmcpKrCtYamVgKYVkmUJ8p1FcbSC4CVK4F9Ux1yqBEhbFw
+ 6RjgR8C9736B16+Tc8Ez4mzGpMAqE8qnuEJpdWbEb+vCysWBazzrZTE
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-Hi Billy
+Add rtc driver and bindigns for the amlogic A4(A113L2) and A5(A113X2) SoCs.
 
-On Thu, 2024-09-19 at 17:43 +0800, Billy Tsai wrote:
-> Add low-level operations (llops) to abstract the register access for GPIO
-> registers and the coprocessor request/release. With this abstraction
-> layer, the driver can separate the hardware and software logic, making it
-> easier to extend the driver to support different hardware register
-> layouts.
->=20
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> ---
->  drivers/gpio/gpio-aspeed.c | 429 +++++++++++++++++++------------------
->  1 file changed, 220 insertions(+), 209 deletions(-)
->=20
-> diff --git a/drivers/gpio/gpio-aspeed.c b/drivers/gpio/gpio-aspeed.c
-> index d20e15b2079d..8b334ce7b60a 100644
-> --- a/drivers/gpio/gpio-aspeed.c
-> +++ b/drivers/gpio/gpio-aspeed.c
-> @@ -39,6 +39,10 @@ struct aspeed_bank_props {
->  struct aspeed_gpio_config {
->  	unsigned int nr_gpios;
->  	const struct aspeed_bank_props *props;
-> +	const struct aspeed_gpio_llops *llops;
-> +	const int *debounce_timers_array;
-> +	int debounce_timers_num;
-> +	bool dcache_require;
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v4:
+- Keep the same order as as in properties.
+- Link to v3: https://lore.kernel.org/r/20240910-rtc-v3-0-1fa077a69a20@amlogic.com
 
-Bit of a nitpick, but if we must have it I'd prefer we call this
-`require_dcache`.
+Changes in v3:
+- Perfect the binding description and rename binding.
+- Using dev_err_probe function correctly, and modify commit message.
+- Change placement about MAINTAINERS.
+- Link to v2: https://lore.kernel.org/r/20240903-rtc-v2-0-05da5755b8d9@amlogic.com
 
-> =20
-> +static void aspeed_g4_reg_bit_set(struct aspeed_gpio *gpio, unsigned int=
- offset,
-> +				  const enum aspeed_gpio_reg reg, bool val)
-> +{
-> +	const struct aspeed_gpio_bank *bank =3D to_bank(offset);
-> +	void __iomem *addr =3D bank_reg(gpio, bank, reg);
-> +	u32 temp;
-> +
-> +	if (reg =3D=3D reg_val && gpio->config->dcache_require)
+Changes in v2:
+- Modify bindings clock name and perfect the example.
+- Fix some bug in driver, and use dev_err_probe instead of dev_err in probe process.
+- Use RTC API to handle calibration.
+- Remove unused func and rename driver file name.
+- Link to v1: https://lore.kernel.org/r/20240823-rtc-v1-0-6f70381da283@amlogic.com
 
-We know gpio->config->dcache_require will be true, because this is the
-g4 handler, right?
+---
+Yiting Deng (3):
+      dt-bindings: rtc: Add Amlogic A4 and A5 RTC
+      rtc: support for the Amlogic on-chip RTC
+      MAINTAINERS: Add an entry for Amlogic RTC driver
 
-> +		temp =3D gpio->dcache[GPIO_BANK(offset)];
-> +	else
-> +		temp =3D ioread32(addr);
-> +
-> +	if (val)
-> +		temp |=3D GPIO_BIT(offset);
-> +	else
-> +		temp &=3D ~GPIO_BIT(offset);
-> +
-> +	if (reg =3D=3D reg_val && gpio->config->dcache_require)
-> +		gpio->dcache[GPIO_BANK(offset)] =3D temp;
-> +	iowrite32(temp, addr);
-> +}
-> +
-> +static u32 aspeed_g4_reg_bits_get(struct aspeed_gpio *gpio, unsigned int=
- offset,
-> +				  const enum aspeed_gpio_reg reg)
-> +{
-> +	const struct aspeed_gpio_bank *bank =3D to_bank(offset);
-> +	void __iomem *addr =3D bank_reg(gpio, bank, reg);
-> +
-> +	if (reg =3D=3D reg_rdata || reg =3D=3D reg_irq_status)
-> +		return ioread32(addr);
-> +	return !!(ioread32(addr) & GPIO_BIT(offset));
+ .../devicetree/bindings/rtc/amlogic,a4-rtc.yaml    |  63 +++
+ MAINTAINERS                                        |   8 +
+ drivers/rtc/Kconfig                                |  12 +
+ drivers/rtc/Makefile                               |   1 +
+ drivers/rtc/rtc-amlogic-a4.c                       | 473 +++++++++++++++++++++
+ 5 files changed, 557 insertions(+)
+---
+base-commit: 658b3fec5fc0ef3c016c4a7eedac1a5f3b8c0151
+change-id: 20240823-rtc-127cd8192a13
 
-Okay, the semantics here feel a bit concerning. I think we need one
-behaviour or the other, not both.
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Perhaps we have two callbacks:
-
-1. get_bit()
-2. get_bank()
-
-where get_bank() is only defined for reg_rdata and reg_irq_status, and
-get_bit() for all registers.
-
-> +}
-> +
-> +static bool aspeed_g4_copro_request(struct aspeed_gpio *gpio, unsigned i=
-nt offset)
-> +{
-> +	if (!copro_ops || !gpio->cf_copro_bankmap)
-> +		return false;
-> +	if (!gpio->cf_copro_bankmap[offset >> 3])
-> +		return false;
-> +	if (!copro_ops->request_access)
-> +		return false;
-> +
-> +	/* Pause the coprocessor */
-> +	copro_ops->request_access(copro_data);
-> +
-> +	/* Change command source back to ARM */
-> +	aspeed_gpio_change_cmd_source(gpio, offset, GPIO_CMDSRC_ARM);
-
-I don't think we need the indirection here, this is already a g4-
-specific callback implementation, we can directly call
-aspeed_g4_privilege_ctrl().
-
-> +
-> +	if (gpio->config->dcache_require)
-> +		/* Update cache */
-> +		gpio->dcache[GPIO_BANK(offset)] =3D
-> +			gpio->config->llops->reg_bits_get(gpio, offset, reg_rdata);
-> +
-> +	return true;
-> +}
-> +
-> +static void aspeed_g4_copro_release(struct aspeed_gpio *gpio, unsigned i=
-nt offset)
-> +{
-> +	if (!copro_ops || !gpio->cf_copro_bankmap)
-> +		return;
-> +	if (!gpio->cf_copro_bankmap[offset >> 3])
-> +		return;
-> +	if (!copro_ops->release_access)
-> +		return;
-> +
-> +	/* Change command source back to ColdFire */
-> +	aspeed_gpio_change_cmd_source(gpio, offset, GPIO_CMDSRC_COLDFIRE);
-
-As above for the request implementation, we can call
-aspeed_g4_privilege_ctrl() directly here.
-
-> +
-> +	/* Restart the coprocessor */
-> +	copro_ops->release_access(copro_data);
-> +}
-> +
-> +static void aspeed_g4_privilege_ctrl(struct aspeed_gpio *gpio, unsigned =
-int offset, int cmdsrc)
-> +{
-> +	/*
-> +	 * The command source register is only valid in bits 0, 8, 16, and 24, =
-so we use
-> +	 * (offset & ~(0x7)) to ensure that reg_bits_set always targets a valid=
- bit.
-> +	 */
-> +	/* Source 1 first to avoid illegal 11 combination */
-> +	gpio->config->llops->reg_bit_set(gpio, offset & ~(0x7), reg_cmdsrc1, !!=
-(cmdsrc & BIT(1)));
-> +	/* Then Source 0 */
-> +	gpio->config->llops->reg_bit_set(gpio, offset & ~(0x7), reg_cmdsrc0, !!=
-(cmdsrc & BIT(0)));
-
-Both of these can be direct calls to aspeed_g4_reg_bit_set().
-
-> +}
-> +
-> +static void aspeed_g4_privilege_init(struct aspeed_gpio *gpio)
-> +{
-> +	u32 i;
-> +
-> +	/* Switch all command sources to the ARM by default */
-> +	for (i =3D 0; i < DIV_ROUND_UP(gpio->chip.ngpio, 32); i++) {
-> +		aspeed_gpio_change_cmd_source(gpio, (i << 5) + 0, GPIO_CMDSRC_ARM);
-> +		aspeed_gpio_change_cmd_source(gpio, (i << 5) + 8, GPIO_CMDSRC_ARM);
-> +		aspeed_gpio_change_cmd_source(gpio, (i << 5) + 16, GPIO_CMDSRC_ARM);
-> +		aspeed_gpio_change_cmd_source(gpio, (i << 5) + 24, GPIO_CMDSRC_ARM);
-
-Again as this is a g4-specific callback we can directly call
-aspeed_g4_privilege_ctrl().
-
-> +	}
-> +}
-> +
-> +static const struct aspeed_gpio_llops aspeed_g4_llops =3D {
-> +	.copro_request =3D aspeed_g4_copro_request,
-> +	.copro_release =3D aspeed_g4_copro_release,
-> +	.reg_bit_set =3D aspeed_g4_reg_bit_set,
-> +	.reg_bits_get =3D aspeed_g4_reg_bits_get,
-> +	.privilege_ctrl =3D aspeed_g4_privilege_ctrl,
-> +	.privilege_init =3D aspeed_g4_privilege_init,
-> +};
->  /*
->   * Any banks not specified in a struct aspeed_bank_props array are assum=
-ed to
->   * have the properties:
-> @@ -1120,7 +1111,14 @@ static const struct aspeed_bank_props ast2400_bank=
-_props[] =3D {
-> =20
->  static const struct aspeed_gpio_config ast2400_config =3D
->  	/* 220 for simplicity, really 216 with two 4-GPIO holes, four at end */
-> -	{ .nr_gpios =3D 220, .props =3D ast2400_bank_props, };
-> +	{
-> +		.nr_gpios =3D 220,
-> +		.props =3D ast2400_bank_props,
-> +		.llops =3D &aspeed_g4_llops,
-> +		.debounce_timers_array =3D debounce_timers,
-> +		.debounce_timers_num =3D ARRAY_SIZE(debounce_timers),
-> +		.dcache_require =3D true,
-> +	};
-> =20
->  static const struct aspeed_bank_props ast2500_bank_props[] =3D {
->  	/*     input	  output   */
-> @@ -1132,7 +1130,14 @@ static const struct aspeed_bank_props ast2500_bank=
-_props[] =3D {
-> =20
->  static const struct aspeed_gpio_config ast2500_config =3D
->  	/* 232 for simplicity, actual number is 228 (4-GPIO hole in GPIOAB) */
-> -	{ .nr_gpios =3D 232, .props =3D ast2500_bank_props, };
-> +	{
-> +		.nr_gpios =3D 232,
-> +		.props =3D ast2500_bank_props,
-> +		.llops =3D &aspeed_g4_llops,
-> +		.debounce_timers_array =3D debounce_timers,
-> +		.debounce_timers_num =3D ARRAY_SIZE(debounce_timers),
-> +		.dcache_require =3D true,
-> +	};
-> =20
->  static const struct aspeed_bank_props ast2600_bank_props[] =3D {
->  	/*     input	  output   */
-> @@ -1148,7 +1153,14 @@ static const struct aspeed_gpio_config ast2600_con=
-fig =3D
->  	 * We expect ngpio being set in the device tree and this is a fallback
->  	 * option.
->  	 */
-> -	{ .nr_gpios =3D 208, .props =3D ast2600_bank_props, };
-> +	{
-> +		.nr_gpios =3D 208,
-> +		.props =3D ast2600_bank_props,
-> +		.llops =3D &aspeed_g4_llops,
-> +		.debounce_timers_array =3D debounce_timers,
-> +		.debounce_timers_num =3D ARRAY_SIZE(debounce_timers),
-> +		.dcache_require =3D true,
-> +	};
-> =20
->  static const struct of_device_id aspeed_gpio_of_table[] =3D {
->  	{ .compatible =3D "aspeed,ast2400-gpio", .data =3D &ast2400_config, },
-> @@ -1191,6 +1203,9 @@ static int __init aspeed_gpio_probe(struct platform=
-_device *pdev)
-> =20
->  	gpio->config =3D gpio_id->data;
-> =20
-> +	if (!gpio->config->llops->reg_bit_set || !gpio->config->llops->reg_bits=
-_get)
-> +		return -EINVAL;
-> +
-
-This will need to clean up gpio->clk. Perhaps you could move it above
-the of_clk_get() call instead?
-
-However, looking through the rest it seems we have a few issues with
-this leak :/
-
->  	gpio->chip.parent =3D &pdev->dev;
->  	err =3D of_property_read_u32(pdev->dev.of_node, "ngpios", &ngpio);
->  	gpio->chip.ngpio =3D (u16) ngpio;
-> @@ -1207,27 +1222,23 @@ static int __init aspeed_gpio_probe(struct platfo=
-rm_device *pdev)
->  	gpio->chip.label =3D dev_name(&pdev->dev);
->  	gpio->chip.base =3D -1;
-> =20
-> -	/* Allocate a cache of the output registers */
-> -	banks =3D DIV_ROUND_UP(gpio->chip.ngpio, 32);
-> -	gpio->dcache =3D devm_kcalloc(&pdev->dev,
-> -				    banks, sizeof(u32), GFP_KERNEL);
-> -	if (!gpio->dcache)
-> -		return -ENOMEM;
-> -
-> -	/*
-> -	 * Populate it with initial values read from the HW and switch
-> -	 * all command sources to the ARM by default
-> -	 */
-> -	for (i =3D 0; i < banks; i++) {
-> -		const struct aspeed_gpio_bank *bank =3D &aspeed_gpio_banks[i];
-> -		void __iomem *addr =3D bank_reg(gpio, bank, reg_rdata);
-> -		gpio->dcache[i] =3D ioread32(addr);
-> -		aspeed_gpio_change_cmd_source(gpio, bank, 0, GPIO_CMDSRC_ARM);
-> -		aspeed_gpio_change_cmd_source(gpio, bank, 1, GPIO_CMDSRC_ARM);
-> -		aspeed_gpio_change_cmd_source(gpio, bank, 2, GPIO_CMDSRC_ARM);
-> -		aspeed_gpio_change_cmd_source(gpio, bank, 3, GPIO_CMDSRC_ARM);
-> +	if (gpio->config->dcache_require) {
-> +		/* Allocate a cache of the output registers */
-> +		banks =3D DIV_ROUND_UP(gpio->chip.ngpio, 32);
-> +		gpio->dcache =3D devm_kcalloc(&pdev->dev, banks, sizeof(u32), GFP_KERN=
-EL);
-> +		if (!gpio->dcache)
-> +			return -ENOMEM;
-
-This should also clean up gpio->clk. I don't think you can move it to
-avoid that.
-
-Andrew
-
-> +		/*
-> +		 * Populate it with initial values read from the HW
-> +		 */
-> +		for (i =3D 0; i < banks; i++)
-> +			gpio->dcache[i] =3D
-> +				gpio->config->llops->reg_bits_get(gpio, (i << 5), reg_rdata);
->  	}
-> =20
-> +	if (gpio->config->llops->privilege_init)
-> +		gpio->config->llops->privilege_init(gpio);
-> +
->  	/* Set up an irqchip */
->  	irq =3D platform_get_irq(pdev, 0);
->  	if (irq < 0)
 
 
