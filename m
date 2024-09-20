@@ -1,502 +1,92 @@
-Return-Path: <devicetree+bounces-104215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9D7F97D98D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 20:14:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37F9697DA1F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 22:48:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6353F1F24DCD
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 18:14:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C3149B22738
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 20:48:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D198B185B70;
-	Fri, 20 Sep 2024 18:13:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4F92824BD;
+	Fri, 20 Sep 2024 20:47:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PtWt4N1o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from chessie.everett.org (chessie.fmt1.pfcs.com [66.220.13.234])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7DB6185959;
-	Fri, 20 Sep 2024 18:13:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=66.220.13.234
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726856008; cv=none; b=O9UdVJL6qPf+axA9DFL053m24CxDFIkGsVfTjmoTQnMIqxBJcBP5PGwaql91cbyyAwwvFakg2TJS9uEYIeekzqQREQ5t4N4gnMVNV6t/PXIwZ6xfS/I+ppXupvXD2Jb0VxAP5uTzvU2Mt6QHoO/GQL3YQUIoL2sqy4unUpmdGcI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726856008; c=relaxed/simple;
-	bh=O3ZV2YTiZUnnXZO93FZq2EOAwf/B7dr+S0dSxYKHw9k=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=AG0R10VyrfWPYWwLowxf0+oGJ32QhiqFJ5v1OhWaLGzyUi/CvAQv5eznfUxbxeXMWkICuYiQsyOvLag6EirgfTJe8gJ164qv5gvHWcEFvKY3CFONiRDnLEKOb1eqArOwBlll4nfqXgQJ4l4pMGPdAX0hac5NHzp8etkiFqU56N4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nwtime.org; spf=pass smtp.mailfrom=nwtime.org; arc=none smtp.client-ip=66.220.13.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nwtime.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nwtime.org
-Received: from localhost.localdomain (ip-77-25-16-238.web.vodafone.de [77.25.16.238])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by chessie.everett.org (Postfix) with ESMTPSA id 4X9L992M2YzMR7w;
-	Fri, 20 Sep 2024 18:13:17 +0000 (UTC)
-From: Erez Geva <erezgeva@nwtime.org>
-To: linux-mtd@lists.infradead.org,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Pratyush Yadav <pratyush@kernel.org>,
-	Michael Walle <mwalle@kernel.org>
-Cc: linux-kernel@vger.kernel.org,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Esben Haabendal <esben@geanix.com>,
-	Erez Geva <ErezGeva2@gmail.com>
-Subject: [PATCH v5 5/5] mtd: spi-nor: macronix: add manufacturer flags
-Date: Fri, 20 Sep 2024 20:12:31 +0200
-Message-Id: <20240920181231.20542-6-erezgeva@nwtime.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20240920181231.20542-1-erezgeva@nwtime.org>
-References: <20240920181231.20542-1-erezgeva@nwtime.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 776804963A;
+	Fri, 20 Sep 2024 20:47:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726865279; cv=none; b=cXoqHW68P3USjo8/H12RPGSvg9ccXIM6aYSGgikoqHRbKmaWfZ1zEoLWt36MR00MlFjK7XGkq1GrOOnRH9JAdBAOCmBNpFXbbkGh5fu1Jr4vju2DtZyw4TsY5f4h8M+0NcXZRoeoT8Ecyy2/QDa6GYkrSRxK8seVpOWuL7bplJM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726865279; c=relaxed/simple;
+	bh=8OCDjN2C2KI6fYl48CNV2LTWXL6kQTFbRoaw5uoDF+4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IjLtsbMBIU4z0ijanxng1O1JDEMZIx0VaPXehy4FJM0jxeqDLbMawrWSH5issmynZl5hJNq6Oh/Xhn+PHyJbj7apCt9+0pRrtnrsZBE4aOlf3gTKoLbi7tNTrqNS4rwQZk/N7fgnUTlLaNLghje2Z6/M0dnVhoBXbvSuv+qp0bM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PtWt4N1o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14A2AC4CEC3;
+	Fri, 20 Sep 2024 20:47:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726865278;
+	bh=8OCDjN2C2KI6fYl48CNV2LTWXL6kQTFbRoaw5uoDF+4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PtWt4N1ogh3FzN7mgsLUdZErSmozZ10riFJ8bpswHKMg3OFghlZA7lvc2jcsk0G7Z
+	 I7F/1vX9yT4T6KUxJWYXeMCMTogyvg+ftBk50iEE44CmIjsDqlCEtEf4s+EFHXc8zw
+	 e+tEZfQx4SxEPCAHA+kf7d4J4IYb8qCVCKh6IWzRkTEXH1Ikp5HfxdIOmMyxWsJGzo
+	 4qoYM7vjef8WQMd8oNoH6vGPmE1aacN7EywxOeeunpzFUmtiYI0//8Qnsp6bQXRay7
+	 L73hS1ECOP4jBzLXeuSaWmjc+ikZTl7b2B6YStp82e8n400F+mRBYjwLqYtsN8orOk
+	 jnpu7OSXJrwzg==
+Message-ID: <a8d0213c-1c7c-4a0a-a502-f1570b8ef396@kernel.org>
+Date: Fri, 20 Sep 2024 22:47:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] dt-bindings: arm: qcom: Add Microsoft Windows Dev
+ Kit 2023
+To: jens.glathe@oldschoolsolutions.biz, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Merck Hung <merckhung@gmail.com>
+References: <20240920-jg-blackrock-for-upstream-v2-0-9bf2f1b2191c@oldschoolsolutions.biz>
+ <20240920-jg-blackrock-for-upstream-v2-2-9bf2f1b2191c@oldschoolsolutions.biz>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <20240920-jg-blackrock-for-upstream-v2-2-9bf2f1b2191c@oldschoolsolutions.biz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Erez Geva <ErezGeva2@gmail.com>
+On 20.09.2024 7:47 PM, Jens Glathe via B4 Relay wrote:
+> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+> 
+> Add compatible values for WDK2023 with its codename "blackrock"
+> 
+> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index f08e13b61172..cbff0313155e 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -812,6 +812,7 @@ properties:
+>                - lenovo,thinkpad-x13s
+>                - qcom,sc8280xp-crd
+>                - qcom,sc8280xp-qrd
+> +              - microsoft,blackrock
 
-Add flag for always trying reading SFDP:
-All new chips from Macronix support SFDP.
-All old chips in the IDs table were reused by new chips.
+'m' < 'q'
 
-Add flag for reading OTP parameters from device tree.
-As Macronix reuse JEDEC IDs, there is no way to determine OTP parameters.
-Allow users to define the OTP parameters in device tree.
-
-Signed-off-by: Erez Geva <ErezGeva2@gmail.com>
----
-
-Notes:
-    * My initial Macronix OTP code was tested with MX25l12833F.
-    * As I no longer have that hardware.
-    
-    * I now testing with MX25L3233F connected to my BeagleBone Black
-    *  through an 8-PIN SOP (200mil).
-    * The BeagleBone Black runs with Debian GNU/Linux 12.
-    * And use Kernel 6.6.32-ti-arm32-r5 build with
-    *  arm-linux-gnueabihf-gcc gcc version 12.2.0 (Debian 12.2.0-14).
-    
-    $ cat /sys/bus/spi/devices/spi0.0/spi-nor/jedec_id
-    c22016
-    $ cat /sys/bus/spi/devices/spi0.0/spi-nor/manufacturer
-    macronix
-    $ cat /sys/bus/spi/devices/spi0.0/spi-nor/partname
-    mx25l3205d
-    $ xxd -p /sys/bus/spi/devices/spi0.0/spi-nor/sfdp
-    53464450000101ff00000109300000ffc2000104600000ffffffffffffff
-    ffffffffffffffffffffffffffffffffffffe520f1ffffffff0144eb086b
-    083b04bbeeffffffffff00ffffff00ff0c200f5210d800ffffffffffffff
-    ffffffffffff003650269ef97764fecfffffffffffff
-    $ sha256sum /sys/bus/spi/devices/spi0.0/spi-nor/sfdp
-    22d5d34af77c3628300056a0fc4bfbeafa027f544998852cf27f7cebf7881196  /sys/bus/spi/devices/spi0.0/spi-nor/sfdp
-    
-    $ cat /sys/kernel/debug/spi-nor/spi0.0/capabilities
-    Supported read modes by the flash
-     1S-1S-1S
-      opcode        0x03
-      mode cycles   0
-      dummy cycles  0
-     1S-1S-2S
-      opcode        0x3b
-      mode cycles   0
-      dummy cycles  8
-     1S-2S-2S
-      opcode        0xbb
-      mode cycles   0
-      dummy cycles  4
-     1S-1S-4S
-      opcode        0x6b
-      mode cycles   0
-      dummy cycles  8
-     1S-4S-4S
-      opcode        0xeb
-      mode cycles   2
-      dummy cycles  4
-    
-    Supported page program modes by the flash
-     1S-1S-1S
-      opcode        0x02
-    
-    $ cat /sys/kernel/debug/spi-nor/spi0.0/params
-    name            mx25l3205d
-    id              c2 20 16 c2 20 16
-    size            4.00 MiB
-    write size      1
-    page size       256
-    address nbytes  3
-    flags           HAS_16BIT_SR
-    
-    opcodes
-     read           0x03
-      dummy cycles  0
-     erase          0x20
-     program        0x02
-     8D extension   none
-    
-    protocols
-     read           1S-1S-1S
-     write          1S-1S-1S
-     register       1S-1S-1S
-    
-    erase commands
-     20 (4.00 KiB) [1]
-     52 (32.0 KiB) [2]
-     d8 (64.0 KiB) [3]
-     c7 (4.00 MiB)
-    
-    sector map
-     region (in hex)   | erase mask | flags
-     ------------------+------------+----------
-     00000000-003fffff |     [ 123] |
-    
-    # mtd_debug info /dev/mtd0
-    mtd.type = MTD_NORFLASH
-    mtd.flags = MTD_CAP_NORFLASH
-    mtd.size = 4194304 (4M)
-    mtd.erasesize = 4096 (4K)
-    mtd.writesize = 1
-    mtd.oobsize = 0
-    regions = 0
-    
-    * The BeagleBone Black SPI is very slow, Tests are slow.
-    
-    # dd if=/dev/urandom of=./spi_test bs=1M count=2
-    2+0 records in
-    2+0 records out
-    2097152 bytes (2.1 MB, 2.0 MiB) copied, 0.0682607 s, 30.7 MB/s
-    
-    # time mtd_debug erase /dev/mtd0 0 2097152
-    Erased 2097152 bytes from address 0x00000000 in flash
-    
-    real    0m12.703s
-    user    0m0.000s
-    sys     0m12.692s
-    
-    # time mtd_debug read /dev/mtd0 0 2097152 spi_read
-    Copied 2097152 bytes from address 0x00000000 in flash to spi_read
-    
-    real    0m1.942s
-    user    0m0.000s
-    sys     0m0.053s
-    
-    # hexdump spi_read
-    0000000 ffff ffff ffff ffff ffff ffff ffff ffff
-    *
-    0200000
-    
-    # sha256sum spi_read
-    4bda3a28f4ffe603c0ec1258c0034d65a1a0d35ab7bd523a834608adabf03cc5  spi_read
-    
-    # time mtd_debug write /dev/mtd0 0 2097152 spi_test
-    Copied 2097152 bytes from spi_test to address 0x00000000 in flash
-    
-    real    0m5.883s
-    user    0m0.006s
-    sys     0m3.970s
-    
-    # time mtd_debug read /dev/mtd0 0 2097152 spi_read
-    Copied 2097152 bytes from address 0x00000000 in flash to spi_read
-    
-    real    0m2.208s
-    user    0m0.003s
-    sys     0m0.063s
-    
-    # sha256sum spi*
-    f4f5d1d0a4fef487037cdb3f1be0f9aab68ca32f2dbe8782c927f03adf623ec3  spi_read
-    f4f5d1d0a4fef487037cdb3f1be0f9aab68ca32f2dbe8782c927f03adf623ec3  spi_test
-    
-    # time mtd_debug erase /dev/mtd0 0 2097152
-    Erased 2097152 bytes from address 0x00000000 in flash
-    
-    real    0m12.126s
-    user    0m0.001s
-    sys     0m12.115s
-    
-    # time mtd_debug read /dev/mtd0 0 2097152 spi_read
-    Copied 2097152 bytes from address 0x00000000 in flash to spi_read
-    
-    real    0m2.611s
-    user    0m0.000s
-    sys     0m0.064s
-    
-    # sha256sum spi*
-    4bda3a28f4ffe603c0ec1258c0034d65a1a0d35ab7bd523a834608adabf03cc5  spi_read
-    f4f5d1d0a4fef487037cdb3f1be0f9aab68ca32f2dbe8782c927f03adf623ec3  spi_test
-    
-    * MX25L3233F OTP uses 1 region of size of 4096 bits
-    
-    $ git diff -U1
-    diff --git a/arch/arm/boot/dts/ti/omap/BB-SPINOR-00A0.dtso b/arch/arm/boot/dts/ti/omap/BB-SPINOR-00A0.dtso
-    index 333a6b9556ed..adaddfaa8091 100644
-    --- a/arch/arm/boot/dts/ti/omap/BB-SPINOR-00A0.dtso
-    +++ b/arch/arm/boot/dts/ti/omap/BB-SPINOR-00A0.dtso
-    @@ -63,6 +63,8 @@ channel@0 {
-                    compatible = "jedec,spi-nor";
-    +               otp-len = <512>;
-    +               otp-n-regions = <1>;
-    
-    # flash_otp_info -u /dev/mtd0
-    Number of OTP user blocks on /dev/mtd0: 1
-    block  0:  offset = 0x0000  size = 512 bytes  [unlocked]
-    
-    # flash_otp_dump -u /dev/mtd0
-    OTP user data for /dev/mtd0
-    0x0000: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0010: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0020: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0030: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0040: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0050: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0060: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0070: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0080: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0090: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x00a0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x00b0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x00c0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x00d0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x00e0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x00f0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0100: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0110: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0120: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0130: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0140: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0150: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0160: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0170: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0180: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0190: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x01a0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x01b0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x01c0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x01d0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x01e0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x01f0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    
-    * Macronix OTP does not support erase!
-    * flash_otp_erase
-    
-    # printf '\xde\xad%.0s' {1..256} | flash_otp_write -u /dev/mtd0 0
-    Writing OTP user data on /dev/mtd0 at offset 0x0
-    Wrote 512 bytes of OTP user data
-    
-    # flash_otp_dump -u /dev/mtd0
-    OTP user data for /dev/mtd0
-    0x0000: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0010: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0020: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0030: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0040: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0050: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0060: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0070: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0080: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0090: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00a0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00b0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00c0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00d0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00e0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00f0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0100: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0110: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0120: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0130: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0140: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0150: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0160: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0170: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0180: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0190: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01a0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01b0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01c0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01d0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01e0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01f0: de ad de ad de ad de ad de ad de ad de ad de ad
-    
-    # flash_otp_info -u /dev/mtd0
-    Number of OTP user blocks on /dev/mtd0: 1
-    block  0:  offset = 0x0000  size = 512 bytes  [unlocked]
-    
-    # printf '\xff\xff%.0s' {1..256} | flash_otp_write -u /dev/mtd0 0
-    Writing OTP user data on /dev/mtd0 at offset 0x0
-    Wrote 512 bytes of OTP user data
-    
-    # We cannot overwrite '0' with '1'!
-    
-    # flash_otp_dump -u /dev/mtd0
-    OTP user data for /dev/mtd0
-    0x0000: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0010: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0020: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0030: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0040: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0050: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0060: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0070: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0080: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0090: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00a0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00b0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00c0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00d0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00e0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00f0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0100: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0110: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0120: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0130: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0140: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0150: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0160: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0170: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0180: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0190: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01a0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01b0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01c0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01d0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01e0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01f0: de ad de ad de ad de ad de ad de ad de ad de ad
-    
-    # flash_otp_lock -u /dev/mtd0 0 512
-    About to lock OTP user data on /dev/mtd0 from 0x0 to 0x200
-    flash_otp_lock: Are you sure? (y/N) y
-    Done.
-    
-    # flash_otp_info -u /dev/mtd0
-    Number of OTP user blocks on /dev/mtd0: 1
-    block  0:  offset = 0x0000  size = 512 bytes  [locked]
-    
-    # printf '\x00\x00%.0s' {1..256} | flash_otp_write -u /dev/mtd0 0
-    Writing OTP user data on /dev/mtd0 at offset 0x0
-    write(): Read-only file system
-    
-    # flash_otp_dump -u /dev/mtd0
-    OTP user data for /dev/mtd0
-    0x0000: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0010: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0020: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0030: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0040: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0050: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0060: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0070: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0080: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0090: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00a0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00b0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00c0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00d0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00e0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00f0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0100: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0110: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0120: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0130: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0140: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0150: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0160: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0170: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0180: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0190: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01a0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01b0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01c0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01d0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01e0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01f0: de ad de ad de ad de ad de ad de ad de ad de ad
-    
-    * Test that mimic old Macronix chip lack SFDP.
-    * In order to check how will the driver cope with an old Macronix chip.
-    * As we do not posses such an old chip, we will change RDSFDP to an unused opcode.
-    
-    $ git diff -U0
-    diff --git a/include/linux/mtd/spi-nor.h b/include/linux/mtd/spi-nor.h
-    index 4ebc527aadc1..784cba9b2d0d 100644
-    --- a/include/linux/mtd/spi-nor.h
-    +++ b/include/linux/mtd/spi-nor.h
-    @@ -47 +47 @@
-    -#define SPINOR_OP_RDSFDP       0x5a    /* Read SFDP */
-    +#define SPINOR_OP_RDSFDP       0x57    /* Read SFDP */
-    
-    # dmesg | grep spi
-    [   42.436974] spi-nor spi0.0: mx25l3205d (4096 Kbytes)
-    
-    * No error in kernel log!
-    
-    # ls /sys/bus/spi/devices/spi0.0/spi-nor/
-    jedec_id  manufacturer  partname
-    
-    * No SFDP, as expected!
-    
-    $ cat /sys/kernel/debug/spi-nor/spi0.0/capabilities
-    Supported read modes by the flash
-     1S-1S-1S
-      opcode        0x03
-      mode cycles   0
-      dummy cycles  0
-    
-    Supported page program modes by the flash
-     1S-1S-1S
-      opcode        0x02
-    
-    $ cat /sys/kernel/debug/spi-nor/spi0.0/params
-    name            mx25l3205d
-    id              c2 20 16 c2 20 16
-    size            4.00 MiB
-    write size      1
-    page size       256
-    address nbytes  3
-    flags           HAS_16BIT_SR
-    
-    opcodes
-     read           0x03
-      dummy cycles  0
-     erase          0x20
-     program        0x02
-     8D extension   none
-    
-    protocols
-     read           1S-1S-1S
-     write          1S-1S-1S
-     register       1S-1S-1S
-    
-    erase commands
-     20 (4.00 KiB) [0]
-     d8 (64.0 KiB) [1]
-     c7 (4.00 MiB)
-    
-    sector map
-     region (in hex)   | erase mask | flags
-     ------------------+------------+----------
-     00000000-003fffff |     [01  ] |
-
- drivers/mtd/spi-nor/macronix.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/mtd/spi-nor/macronix.c b/drivers/mtd/spi-nor/macronix.c
-index bee62e9051d6..5a69d5a48033 100644
---- a/drivers/mtd/spi-nor/macronix.c
-+++ b/drivers/mtd/spi-nor/macronix.c
-@@ -375,4 +375,5 @@ const struct spi_nor_manufacturer spi_nor_macronix = {
- 	.parts = macronix_nor_parts,
- 	.nparts = ARRAY_SIZE(macronix_nor_parts),
- 	.fixups = &macronix_nor_fixups,
-+	.flags = SPI_NOR_MANUFACT_TRY_SFDP | SPI_NOR_MANUFACT_DT_OTP,
- };
--- 
-2.39.5
-
+Konrad
 
