@@ -1,52 +1,63 @@
-Return-Path: <devicetree+bounces-104009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26AB197D011
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 05:11:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 941CF97D04C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 05:40:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9D3CFB22908
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 03:11:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 411901F23035
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 03:40:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB28DEADC;
-	Fri, 20 Sep 2024 03:10:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07FA61C693;
+	Fri, 20 Sep 2024 03:40:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J4U8/yxe"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WwrqBiMt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBECD10E5;
-	Fri, 20 Sep 2024 03:10:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 297D223A0;
+	Fri, 20 Sep 2024 03:40:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726801858; cv=none; b=h3lQnYU9lB6gSWdJZpandHzFimlK14ml/mBqv9JBgk7hr+hXiht4bgHJjNZuU/C8d82mEP9awcGasl00u3sF/9dn1FT6Bq3tOVDFFCpVUC8/pV15FI07KLB8ZMbiSqZ7xJzGKugQlKWSbuRzGrxbVSh8I0CXCJRCJ50UGAAtzls=
+	t=1726803621; cv=none; b=g5xJr0HbUgOKoqQAaJUl6iyc6kte0OPMqO84v/6wOBYmqXBjc/0qOVRd0tPkoDRysWpszl+TBH/wf+cp/oSWRRF58FoKM3X/brlZbBjQ+g6Z/yxx5fq5euVGyEGHLj0LqYw6WTbCoraQ51dZOwq2xm7xuO+TeSmiSBhKxGWLxho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726801858; c=relaxed/simple;
-	bh=a/hFCgDZqsbnUBYLjL3wvxEJ7t4hBd6dwDs0Oy9yB58=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZL/iMz4hY57KKpmzokJ3Ae+DYK3d3PeWVPX1SptxfjaVRsYE6NeuuZXBnjHFHPDGuX9ZSvy5Llas8VydS4F93HrtwDEF8OIm0SR15uhwQmf9ZhzRaZL0uYUpn31IW8lfCms2h5zJ4Hhgp1yS8o0RWvPJH+nH28Tl5+iuWbxEV7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J4U8/yxe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 8DBD5C4CED0;
-	Fri, 20 Sep 2024 03:10:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726801858;
-	bh=a/hFCgDZqsbnUBYLjL3wvxEJ7t4hBd6dwDs0Oy9yB58=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=J4U8/yxen4D8YM7iisKEdcQ5GJyH79XM7di0TDTXzM/bxGbMYyfbbDNaWU9rQUsGJ
-	 zpbkJajaIKrP+e5/MMbM74iW6ytKSMxno0PmrilaTEYiMRlGu/N0x0nehEy8TUrSsK
-	 MNnShEweIJMTPIfafyM5yaqhLKVBbkX1A6wpRVHnkpWDeY9zMt4zEtsSo9K/O35Y2I
-	 98nxwMra6eVXcs9QmgPHCX6UcFUImpAXEiPLj+mB1Gpig1ibS1Kogx22qqmN0Eokn6
-	 3fvYKQoMuSooSOhp0MTRHf2kRmDPkVi6/Vf/wzXc1cf7iCzFBjliE5eYW1CJIs0UwG
-	 40CdfobfRtejA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 81BACCE8D75;
-	Fri, 20 Sep 2024 03:10:58 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Fri, 20 Sep 2024 11:10:58 +0800
-Subject: [PATCH v4 3/3] MAINTAINERS: Add an entry for Amlogic RTC driver
+	s=arc-20240116; t=1726803621; c=relaxed/simple;
+	bh=H+fD8RjT5mWdfCrQC6h70YEpWMFrdv0bfpBeHeixig8=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=JgdtmpTi9ir441kixRdxS9MP0PP27D4i5T/0Axgoum8CbYPJG6zLX3xpup/xNMZ+VLl+Yl+iDq8RrbQJBAlI3cDxWS25PzuLHgkaKo2RL01DVH9jUWNCHkBZSbSqA+1ruFSTyOh01lAlx2obvoZ+/w1W4wSwj//XIqCAAh3aBL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WwrqBiMt; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48JJ47cj004618;
+	Fri, 20 Sep 2024 03:40:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=NvjHoROa2CVwOd5E6H5WuS
+	5Pd0lXb06ogNLiuzeUrWk=; b=WwrqBiMt19vcMdzKmlaq3nV6DgdXP5/JebRiJD
+	Vy3gwD71Z4q5eEGEq0OKX7ctW/Qd5QOa+EsJnwIdSk8lgUSnVKMyJBr3MhKZQ4Xf
+	y3Y8GLHHlsGmSj0FVWD15p0eME4zXyuak+5YHjSEFU6RicPzyUI1zlfNc8MyWk+c
+	nQs16PLvwxhWy2fNIkVEc3dL7jEExuVN53v8fx9qVc4UcgK4UlidC6e3j1dZKiXD
+	zHpg1LLzl3QOzTyb1oii4rvA7yS4Zm4Y608FCDjFFtmqG99J2VyfeedjGkoF3pXD
+	GaqX0xoPgZkI1spBVPv6qjg4lEfCxF0qWGksfJ/qXxXYR5lQ==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41n4jdyndu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Sep 2024 03:40:16 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48K3eF9b012973
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Sep 2024 03:40:15 GMT
+Received: from cse-cd02-lnx.ap.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 19 Sep 2024 20:40:08 -0700
+From: Tingguo Cheng <quic_tingguoc@quicinc.com>
+Subject: [PATCH 0/2] Add rpmhpd power domains for QCS8300
+Date: Fri, 20 Sep 2024 11:39:32 +0800
+Message-ID: <20240920-add_qcs8300_powerdomains_driver_support-v1-0-96a2a08841da@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,61 +66,60 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240920-rtc-v4-3-91ae5fb4e3d5@amlogic.com>
-References: <20240920-rtc-v4-0-91ae5fb4e3d5@amlogic.com>
-In-Reply-To: <20240920-rtc-v4-0-91ae5fb4e3d5@amlogic.com>
-To: Yiting Deng <yiting.deng@amlogic.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1726801856; l=931;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=dltl4Bg5cOWUNAG/8WRhVbXcztZ3rrpVcPR+gcSx/Bg=;
- b=Yx3qxfnCd8BhpKgGeHbhtCGrW6gTAHLOfhsHGGU1QIRV2w/mGl+7JUluQ3zbldVjy/MnjEzXd
- w4izZZ/GnX9CeGWhwbsfQHBVWygA2eBKdvuSItHkUUNyVfuDl5Yp46r
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+X-B4-Tracking: v=1; b=H4sIAHXu7GYC/x3NwQrCMAyA4VcZOVuIdZPqq4iU0kTNwbYmcwpj7
+ 27x+F3+fwVjFTY4DysoL2JSS8d+N0B+pHJnJ9QNHv2IJ48uEcVXtnBAjK1+WKk+kxSLpLKwRnu
+ 3VnV2x5E5YKYw5Ql6rSnf5Ps/Xa7b9gMoe3GmeQAAAA==
+X-Change-ID: 20240920-add_qcs8300_powerdomains_driver_support-64ee80cd85c5
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <quic_fenglinw@quicinc.com>,
+        <quic_tingweiz@quicinc.com>, Tingguo Cheng <quic_tingguoc@quicinc.com>,
+        Shazad Hussain <quic_shazhuss@quicinc.com>
+X-Mailer: b4 0.15-dev-dedf8
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1726803608; l=700;
+ i=quic_tingguoc@quicinc.com; s=20240917; h=from:subject:message-id;
+ bh=H+fD8RjT5mWdfCrQC6h70YEpWMFrdv0bfpBeHeixig8=;
+ b=WUdxjXSsniLFOX0HUJTbbzPkLXIvwez36VOYmE15FT11M2KAKOWfKQ+SrL8xBRXfaBFBsdLKD
+ fzre827irV+BE0ivZu/toGr2UfNA6RWvuOgLx2jFXxBpJicLDjrxWxs
+X-Developer-Key: i=quic_tingguoc@quicinc.com; a=ed25519;
+ pk=PiFYQPN5GCP7O6SA43tuKfHAbl9DewSKOuQA/GiHQrI=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: V_aiAY3uos0XpIvSp9Mz2VWd-gZ6wox8
+X-Proofpoint-GUID: V_aiAY3uos0XpIvSp9Mz2VWd-gZ6wox8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
+ clxscore=1011 adultscore=0 mlxscore=0 suspectscore=0 malwarescore=0
+ priorityscore=1501 spamscore=0 bulkscore=0 lowpriorityscore=0
+ mlxlogscore=818 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409200024
 
-From: Yiting Deng <yiting.deng@amlogic.com>
+Document the qcom,qcs8300-rpmhpd compatible and add power domains in
+rpmhpd driver to support QCS8300.
 
-Add Amlogic RTC entry to MAINTAINERS to clarify the maintainers.
-
-Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
 ---
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Tingguo Cheng (2):
+      dt-bindings: power: qcom,rpmpd: document qcs8300 RPMh power domains
+      pmdomain: qcom: rpmhpd: Add qcs8300 power domains
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 42decde38320..f595715eb3e3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1163,6 +1163,14 @@ F:	Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
- F:	drivers/perf/amlogic/
- F:	include/soc/amlogic/
- 
-+AMLOGIC RTC DRIVER
-+M:	Yiting Deng <yiting.deng@amlogic.com>
-+M:	Xianwei Zhao <xianwei.zhao@amlogic.com>
-+L:	linux-amlogic@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/rtc/amlogic,a4-rtc.yaml
-+F:	drivers/rtc/rtc-amlogic-a4.c
-+
- AMPHENOL CHIPCAP 2 HUMIDITY-TEMPERATURE IIO DRIVER
- M:	Javier Carrasco <javier.carrasco.cruz@gmail.com>
- L:	linux-hwmon@vger.kernel.org
+ .../devicetree/bindings/power/qcom,rpmpd.yaml      |  1 +
+ drivers/pmdomain/qcom/rpmhpd.c                     | 24 ++++++++++++++++++++++
+ 2 files changed, 25 insertions(+)
+---
+base-commit: 3621a2c9142bd490af0666c0c02d52d60ce0d2a5
+change-id: 20240920-add_qcs8300_powerdomains_driver_support-64ee80cd85c5
 
+Best regards,
 -- 
-2.37.1
-
+Tingguo Cheng <quic_tingguoc@quicinc.com>
 
 
