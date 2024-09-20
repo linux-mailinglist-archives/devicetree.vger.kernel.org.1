@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-104227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A2BB97DAB8
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 01:10:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDABA97DAC9
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 01:25:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02F6428368E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 23:10:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C150B21FA1
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 23:25:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BE2D18DF66;
-	Fri, 20 Sep 2024 23:10:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8594A18A6B9;
+	Fri, 20 Sep 2024 23:25:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fLiGQUXK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m0RlxiI3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 628DE1C693;
-	Fri, 20 Sep 2024 23:10:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BDF52E634;
+	Fri, 20 Sep 2024 23:25:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726873841; cv=none; b=Lj+lLgprfhHTx8uiogrw6YnnYy5dn8Tfk34UJshU67RZ+sa6shI1zY1av3mqVRi0Ca3pHeh6/hGQosdrxPu/N4/3Lo9zk1+Qh2hmzwGAfXvfikVUX45JtT/LBUMDr1XBPKW7oVQ5Pb3/pCesxKUPbthv6+7WMPsuPpt8CGk8I9E=
+	t=1726874748; cv=none; b=p76jhkDPUsgnjEtRnjxcRokXsFnnwr4RNXFKmVownNU/YTJw6M7+dl1Ti90WBSnzTA2Qw3wrRQZVbl9UPg5Eu2PyKggaciBuqiWHJPj0iW4MJ5wtK5AIUkri4foANDy6qXuFqWJSbOnD94lhJsLxhRxopa5q/JxR4lA+DWi9a+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726873841; c=relaxed/simple;
-	bh=dxdCDfIcHeRolZri5GdD4pfAYCc4d6GtMLMxCPUuxEE=;
+	s=arc-20240116; t=1726874748; c=relaxed/simple;
+	bh=bHKyq9dkPcY3kuSY5//VKVV/vHEafG1whJMO43gGmA0=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=sNh0OdFJHGnot5V1N1diyupUH6kswWp1j4MCiCIUjgl1ZQl+hoS186icraQpag3rsHdOq/oLx1Zc0z7vmymnD0wz9Xzw2UIsqjpgCSZAlAKxpDW6DEze5aw/0Flsddky46sS2rmkomj/y4TGCh6znF7hOa04YV+c4G7fagLGMe4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fLiGQUXK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3418C4CEC3;
-	Fri, 20 Sep 2024 23:10:40 +0000 (UTC)
+	 Message-Id:Subject; b=ZhoCaHTNL4CVyWqLPkkYi5iPXZTqSsrV0CnhRWXF1Fl4ZLk/LdtHC3qZmFj25KTSHgcEQvwTqiZpqqDPenWo73IO0ucsUDW2Ap/lgVq9/vQpqxR+tVJJvhB0Dv1GJ3jpu79XcjE9aPyxdXCQxfAb/hbJcH6CdXCW9pyRggUwYX8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m0RlxiI3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0B71C4CEC3;
+	Fri, 20 Sep 2024 23:25:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726873840;
-	bh=dxdCDfIcHeRolZri5GdD4pfAYCc4d6GtMLMxCPUuxEE=;
+	s=k20201202; t=1726874747;
+	bh=bHKyq9dkPcY3kuSY5//VKVV/vHEafG1whJMO43gGmA0=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=fLiGQUXKyaP9BlXGOCgM7taDdqE+NBVdXGEz81dgGFw/g0dHYW0+Ad24TOW2H9s+g
-	 RVmzQ46U3+6VOqwQiZrlCPr+biLpfcAmXO36poRXdvGsPnfbMQ0r9TQBxub8Sqq4Y5
-	 eoZMShYX2O8SZjp5pbBGszv0oPxSrooSxOjQ//ITD7D8q8GkXJwR22OhBWp8GISIy3
-	 ZDcPkyeHqWju+WTDQZUkH6dXZGcEJBxupC6mm2+HIYUpfddlA4p/AQQ823OLRcju+t
-	 ZIZpm7Ton4QzPZykPGOKRnIF9+mOGIxcwU13RmzBSwjUnKAdUeGtL++gvNW6Rc1FXS
-	 XUtWkevjCMKyQ==
-Date: Fri, 20 Sep 2024 18:10:39 -0500
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	b=m0RlxiI3y6bPkkb/QilR6Qvx1hj1XlrL4rbmSCl2h9fHhjectLdPs4LIOOLkEOwgZ
+	 LkbpNHb5U5Jko7FDO/WLtZ3HEYtjkJcRJOFwMgVEPAooG2ARr1tVA8tsNTGeWBiiyl
+	 NIVSDKA5Kvhb49W0+xFFwI86JNvgty9s4tSJppZqc9DF6VEp3XnJbjMFdT6r465SZg
+	 nZNnymWKQsXQ4oiem7J0NFE7pVyS1wsUei4mwBuO25/0GsO86r+H9Y0h9HoX8iF18+
+	 IrlNpc/XgNdI5sOiD+vd/o6zHXzRv9u71sVCt5EFPcB6f4qyjK0deWdG4FQmJkKPjx
+	 3MV0eZSIjaytg==
+Date: Fri, 20 Sep 2024 18:25:47 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,40 +51,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: krzk+dt@kernel.org, tsbogend@alpha.franken.de, 
- devicetree@vger.kernel.org, andi.shyti@kernel.org, 
- linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
- linux-i2c@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20240920000930.1828086-2-chris.packham@alliedtelesis.co.nz>
-References: <20240920000930.1828086-1-chris.packham@alliedtelesis.co.nz>
- <20240920000930.1828086-2-chris.packham@alliedtelesis.co.nz>
-Message-Id: <172687383994.9882.1653066305378740682.robh@kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: i2c: Add RTL9300 I2C controller
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ William Zhang <william.zhang@broadcom.com>, linux-leds@vger.kernel.org, 
+ Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
+ Pavel Machek <pavel@ucw.cz>, Kursad Oney <kursad.oney@broadcom.com>, 
+ Anand Gore <anand.gore@broadcom.com>
+In-Reply-To: <20240920-bcm63138-leds-v1-1-c150871324a0@linaro.org>
+References: <20240920-bcm63138-leds-v1-0-c150871324a0@linaro.org>
+ <20240920-bcm63138-leds-v1-1-c150871324a0@linaro.org>
+Message-Id: <172687474699.76800.9000778662895195623.robh@kernel.org>
+Subject: Re: [PATCH 1/4] dt-bindings: leds: bcm63128: Add shift register
+ bits
 
 
-On Fri, 20 Sep 2024 12:09:28 +1200, Chris Packham wrote:
-> Add dtschema for the I2C controller on the RTL9300 SoC. The I2C
-> controllers on this SoC are part of the "switch" block which is
-> represented here as a syscon node. The SCL pins are dependent on the I2C
-> controller (GPIO8 for the first controller, GPIO 17 for the second). The
-> SDA pins can be assigned to either one of the I2C controllers (but not
-> both).
+On Fri, 20 Sep 2024 23:59:03 +0200, Linus Walleij wrote:
+> The BCM63138 family of serial LED controllers has a register
+> where we can set up bits for the shift registers. These are
+> the number of rounds the bits need to be shifted before all
+> bits have been shifted through the external shift registers.
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
-> 
-> Notes:
->     Changes in v2:
->     - Use reg property for controller registers
->     - Remove global-control-offset (will be hard coded in driver)
->     - Integrated the multiplexing function. Child nodes now represent the
->       available SDA lines
-> 
->  .../bindings/i2c/realtek,rtl9300-i2c.yaml     | 82 +++++++++++++++++++
->  MAINTAINERS                                   |  6 ++
->  2 files changed, 88 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.yaml
+>  Documentation/devicetree/bindings/leds/leds-bcm63138.yaml | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -92,13 +85,17 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.example.dtb: /example-0/switch@1b000000: failed to match any schema with compatible: ['realtek,rtl9302c-switch', 'syscon', 'simple-mfd']
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.example.dtb: i2c@36c: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'clock-frequency' were unexpected)
-	from schema $id: http://devicetree.org/schemas/i2c/realtek,rtl9300-i2c.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-bcm63138.yaml: properties:brcm,serial-shift-bits: '$ref' should not be valid under {'const': '$ref'}
+	hint: Standard unit suffix properties don't need a type $ref
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-bcm63138.example.dtb: leds@ff800800: brcm,serial-shift-bits: 16 is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/leds/leds-bcm63138.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-bcm63138.example.dtb: leds@ff800800: brcm,serial-shift-bits: 16 is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/property-units.yaml#
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240920000930.1828086-2-chris.packham@alliedtelesis.co.nz
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240920-bcm63138-leds-v1-1-c150871324a0@linaro.org
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
