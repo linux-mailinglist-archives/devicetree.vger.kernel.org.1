@@ -1,145 +1,129 @@
-Return-Path: <devicetree+bounces-104034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 535C797D185
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 09:12:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E6AE97D1AD
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 09:24:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70A101C22B5F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 07:12:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD22E1C21F9A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 07:24:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CBD3433D0;
-	Fri, 20 Sep 2024 07:12:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CE1128E0F;
+	Fri, 20 Sep 2024 07:24:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DSVBRiAx"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Emj5qd3x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46D0F3BB50;
-	Fri, 20 Sep 2024 07:12:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 897A220ED;
+	Fri, 20 Sep 2024 07:24:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726816343; cv=none; b=ETHz+lNWowZW3iV9kgCnT/o3dfgofiwvlbgwIxci06+z6BWu8ueDyxi4c4xskHsOErd+JbCVnbkze5/J0one8HcyFpXkFnvClx4IulOBlsPPMt4Lp+Zb9dgO3vVGCF+cSosp8y97K84PVKQ7K3l8QTUiZBP/owKJqPj/tKXBkVg=
+	t=1726817071; cv=none; b=aOPzkgrX4slIyUr+LCCCkQWmxOsrc82LHb66L7wUDX0/LYTPnkJm6eijhMC9FfPXydHwJk87212x0mqy9tzX2Q5l6A2HKQe2VEnVU4hubgYCE8437f3VWNjX9an1qczekybg6bYsmMzrWG1FI0gxZ85zG5p0HWGXRnlifKTN94s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726816343; c=relaxed/simple;
-	bh=/8F4vC+WrRK8JmcD0TA3VmXt6A8IcZpsr5kN9dbyx7o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=R9PQQSyiMvtZRf4byHzhhB3R6Fpv3Cw/K5eSm2/XRmvMtXEnDG148+DRPbJbeupyV0ZNkeLDWR+2JiJJMBuMly3IblLdeXMvNhSNPuQ0SbHlIpx+/leXHO9i4cshpvjq7HRNEYhwTshO9wBMhSBRrvCMhMNa1TAHEMwbJJLF+V8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DSVBRiAx; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48JLx2kl018133;
-	Fri, 20 Sep 2024 07:12:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=0EKgVH//p3yEU4Of22Zpii
-	69hvSp1EgzKmBMS7nyUfU=; b=DSVBRiAxcTbzJSnxmAek/GIIjgTySK5YYE75XW
-	T7wMWjHt0X4vmDPZ286A1JSNhswbjVDXjzgHzRqNJ22TVDZNHfpasyD+TfueDqZp
-	UnGrEbh4FQlOfpWy1a5As4YB6RJrjZIWKmp7aWrorK6YjdjXp0YoYWs8i1GtciOn
-	Rql7CxLRllKKDYCDmL2SFoYvhe8U6lHIKP/ioJzWmM5bcZNlRf6tcimtYLfkZo48
-	u9PRdbkoSHhJOgQjNWyHfmcj3+YegqnfZ00PzM0kahPp6dd9bcRs8uN8Ivr7faNh
-	GKwEFgoAraZkncksGZUkErPqGzGBqPQdfc5ayjMXRpHfbETA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41n4hfr2rg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Sep 2024 07:12:05 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48K7C4cR006797
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Sep 2024 07:12:04 GMT
-Received: from lijuang2-gv.ap.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 20 Sep 2024 00:11:57 -0700
-From: lijuang <quic_lijuang@quicinc.com>
-Date: Fri, 20 Sep 2024 15:11:41 +0800
-Subject: [PATCH v2] dt-bindings: watchdog: Document Qualcomm QCS615
- watchdog
+	s=arc-20240116; t=1726817071; c=relaxed/simple;
+	bh=/w+v8HTh6PhL3yFrE81jec1x/Cls+I78nmzIIdeypBQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KiANsrxOYgKBsxiA6EM6fMNFh8C2F6H77oROmRxHX8UAkSqRw6L3f3EA/ggXiLDH5l95S5teXnYkrgnjIhPCB6B13MTUm3hSfuDTDRHnx3G5jACXzXTeb9ZndgCJGMPiUu9ou2vB1hjYBbEYonjPDzTizAOJvtCbimS1VjOv+bQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Emj5qd3x; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1726817070; x=1758353070;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=/w+v8HTh6PhL3yFrE81jec1x/Cls+I78nmzIIdeypBQ=;
+  b=Emj5qd3xLoS0wAgFTGWks4WpX6P0zjm1R0O4vxyyyt9J7DjmnrZJvphu
+   33HD1Unyh4uxi4Wg+0kZD/1G/rCPK63FvAuua6AwnDnbE/nSRV7QTueBQ
+   b2qjkPlrTgWMtl6uQ0urlRb+nM+bO/KtjKAUJwK6EVG86BUb8busASYs+
+   vN0Db2VwcoSecLHvjAtNvEjtMiQfN/W44Mcan5J+uuINwO9+jZY5+JhEl
+   fH3IUTklP3jSeeW984SMb/hiV29ZoDwww5OlLXyIEOpIzVx8mCgIfWjEe
+   MNy3Kx7+OyYp2EVHrVv5gVuof09RSyoy3tjZZMY+vxk2rRZveKiy7J1NS
+   w==;
+X-CSE-ConnectionGUID: /xEtq45OTZ6DJGw0FsyicQ==
+X-CSE-MsgGUID: tnVYcfs3Tz2dsMGQULG1ig==
+X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="29598976"
+X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; 
+   d="scan'208";a="29598976"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Sep 2024 00:24:29 -0700
+X-CSE-ConnectionGUID: dF1+ovCVSLWCXn2asfaoVg==
+X-CSE-MsgGUID: HxYdHd+dS3uaImOwHKNHuA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,243,1719903600"; 
+   d="scan'208";a="74991688"
+Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
+  by orviesa003.jf.intel.com with ESMTP; 20 Sep 2024 00:24:26 -0700
+Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1srY07-000E52-1S;
+	Fri, 20 Sep 2024 07:24:23 +0000
+Date: Fri, 20 Sep 2024 15:23:25 +0800
+From: kernel test robot <lkp@intel.com>
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Walle <mwalle@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Subject: Re: [PATCH 2/2] regulator: max20339: add Maxim MAX20339 regulator
+ driver
+Message-ID: <202409201507.snCutX8B-lkp@intel.com>
+References: <20240916-max20339-v1-2-b04ce8e8c471@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240920-add_watchdog_compatible_for_qcs615-v2-1-427944f1151e@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIACwg7WYC/42NQQ6CMBBFr0K6toZOwFBX3sOQpkwHmEQptIgaw
- t2txAO4fD8/760iUmCK4pytItDCkf2QAA6ZwN4OHUl2iQXkUOQacmmdM087Y+98Z9DfRztzcyP
- T+mAmjCdVSiKsbIWAGgqRRGOgll975Fon7jnOPrz35qK+60+v4B/9oqSShABNaZ2utLpMD0Ye8
- Jj+ot627QN1orgt1gAAAA==
-To: Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck
-	<linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rajendra Nayak
-	<quic_rjendra@quicinc.com>
-CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Lijuan Gao <quic_lijuang@quicinc.com>
-X-Mailer: b4 0.15-dev-99b12
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1726816316; l=1347;
- i=quic_lijuang@quicinc.com; s=20240827; h=from:subject:message-id;
- bh=/8F4vC+WrRK8JmcD0TA3VmXt6A8IcZpsr5kN9dbyx7o=;
- b=AyiaB6kq6mN7zrKjfS3c7QTrfacqklSKgmDxslJeYz3hj6UVjrLSwKt755IHXcqoZFueHRPIZ
- x3rutL4hQX6CCGTrsgd7B2zWcYegmzaZ1KJt0erfV8yrLlfupwlQPWx
-X-Developer-Key: i=quic_lijuang@quicinc.com; a=ed25519;
- pk=1zeM8FpQK/J1jSFHn8iXHeb3xt7F/3GvHv7ET2RNJxE=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 2LvPdIpFtkIOlW-stJqeU7CLoU7Wqp4c
-X-Proofpoint-ORIG-GUID: 2LvPdIpFtkIOlW-stJqeU7CLoU7Wqp4c
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- clxscore=1015 phishscore=0 malwarescore=0 mlxlogscore=999 mlxscore=0
- impostorscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409200049
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240916-max20339-v1-2-b04ce8e8c471@linaro.org>
 
-Add devicetree binding for watchdog present on Qualcomm QCS615 SoC.
+Hi André,
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
----
-Add devicetree binding for watchdog present on Qualcomm
-QCS615 SoC.
----
-Changes in v2:
-- Collected Acked-by
-- Rebased patchset on top next-20240919
-- Link to v1: https://lore.kernel.org/r/20240912-add_watchdog_compatible_for_qcs615-v1-1-ec22b5ad9891@quicinc.com
----
- Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
- 1 file changed, 1 insertion(+)
+kernel test robot noticed the following build errors:
 
-diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-index 932393f8c649..32eaf43aadb3 100644
---- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-@@ -26,6 +26,7 @@ properties:
-               - qcom,apss-wdt-msm8994
-               - qcom,apss-wdt-qcm2290
-               - qcom,apss-wdt-qcs404
-+              - qcom,apss-wdt-qcs615
-               - qcom,apss-wdt-sa8255p
-               - qcom,apss-wdt-sa8775p
-               - qcom,apss-wdt-sc7180
+[auto build test ERROR on 7083504315d64199a329de322fce989e1e10f4f7]
 
----
-base-commit: 3621a2c9142bd490af0666c0c02d52d60ce0d2a5
-change-id: 20240920-add_watchdog_compatible_for_qcs615-eec8a8c2c924
+url:    https://github.com/intel-lab-lkp/linux/commits/Andr-Draszik/dt-bindings-regulator-add-max20339-binding/20240917-005024
+base:   7083504315d64199a329de322fce989e1e10f4f7
+patch link:    https://lore.kernel.org/r/20240916-max20339-v1-2-b04ce8e8c471%40linaro.org
+patch subject: [PATCH 2/2] regulator: max20339: add Maxim MAX20339 regulator driver
+config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20240920/202409201507.snCutX8B-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240920/202409201507.snCutX8B-lkp@intel.com/reproduce)
 
-Best regards,
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409201507.snCutX8B-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+>> ERROR: modpost: "__ffsdi2" [drivers/regulator/max20339-regulator.ko] undefined!
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for GET_FREE_REGION
+   Depends on [n]: SPARSEMEM [=n]
+   Selected by [m]:
+   - RESOURCE_KUNIT_TEST [=m] && RUNTIME_TESTING_MENU [=y] && KUNIT [=m]
+   WARNING: unmet direct dependencies detected for OMAP2PLUS_MBOX
+   Depends on [n]: MAILBOX [=y] && (ARCH_OMAP2PLUS || ARCH_K3)
+   Selected by [m]:
+   - TI_K3_M4_REMOTEPROC [=m] && REMOTEPROC [=y] && (ARCH_K3 || COMPILE_TEST [=y])
+
 -- 
-lijuang <quic_lijuang@quicinc.com>
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
