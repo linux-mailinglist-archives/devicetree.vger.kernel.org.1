@@ -1,140 +1,133 @@
-Return-Path: <devicetree+bounces-104129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10C0397D59D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 14:44:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16BA097D5A8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 14:45:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B437A1F240AA
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 12:44:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49B881C218D5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 12:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04CF614F9F1;
-	Fri, 20 Sep 2024 12:44:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F4159149E06;
+	Fri, 20 Sep 2024 12:45:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fA0h2HlJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YaauDj1z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B643013D52B;
-	Fri, 20 Sep 2024 12:44:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230E0B676;
+	Fri, 20 Sep 2024 12:45:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726836274; cv=none; b=Cm0UtULHa3BXFYQn+z46fB3XISSBcUdGVUpb6/2oFlPbEIDwUP4zyCjTLe6qvU7fOGZJmv61QOeGh2KJ6AY5yJoLxrOLj3syWakIaphbiKVQk6sZ6lGq1vLQsWoqk8whvzfdLWVBM7jd0DR9TVML66n4zBb4aMgjpqE9LXxNlVI=
+	t=1726836347; cv=none; b=Enqb4XDbm/HGVLZnkU43S5co1QNobO60t9gJPEMWJf4k1T/CI7xXaZ20zzN/RTmE+A3pBITfP0lEzQ/AKLIt99ieh1SkXR3LlfVUSl9aECcyEyw3Hu98kmsM3VM8rPYc+deVFGacWZkvrG/WCuztzx42QaofeOjvFae6quAlxdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726836274; c=relaxed/simple;
-	bh=l3N4z2t/DFfwO/uan9wDbusPXHDlLtxdDU82/BxByyQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UkVvEMrRLdpuqh+UjBic+UPK44tWdwzM90Tbw2kY2Q+Fo4rft+j7oQLE6rV6t/KNsQDDy+XEjFlGUUFDk0PAjOA27R5D/gEajzVxX5JHVU8IWeW11yGpruBPaOBN3J9bGoFB1exwhMxrAP6rYC0Wx/dV3P7ms+6OPVkOUS6Mo90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fA0h2HlJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26BB7C4CEC3;
-	Fri, 20 Sep 2024 12:44:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726836274;
-	bh=l3N4z2t/DFfwO/uan9wDbusPXHDlLtxdDU82/BxByyQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fA0h2HlJn8kKW45n262aJao2Oil96tYVnA8lOpaotbnRmlU4pIrrJwrypLrGDimpf
-	 DVvdXyJx3fFyv4O67mnTTmhdhKxU7uJQ1UUG1sBnDwyN2l/FeJcfA8/JgOD2LQRn8a
-	 XJ1CzHILHj/rdnoFsSZUIsluUzvL/M4WZOH04VrxMFmsOivQ3Ou4FSvD0lpw368OVy
-	 QDHFCiX7llidUDuxenzZZbAPJ1pC9VtgIJWONvmIc9Wz2/dz5RKnOn6i9ccs3XrSKQ
-	 N2z5Spa+C+735QnR7ljAfzC+jjy6M53kf8zYA3sjYTRIKj6XobBDARlXaatjDkgWnA
-	 W/BwoBXJhx3YQ==
-Message-ID: <91392141-af8b-4161-8e76-6f461aaba42a@kernel.org>
-Date: Fri, 20 Sep 2024 14:44:26 +0200
+	s=arc-20240116; t=1726836347; c=relaxed/simple;
+	bh=Iuc54d6NEiz4BcqdQWijF887D4/QJ1B+uCas39aymUw=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=dVErpyJHYQ9OOjTwCK8sUjdqh2dDKLOYTkn8YtoLI8/lZ4Lj8s/6f6YvlXl/zEarhkkxDyNj1hxpj0tmO6HIfTXJOMNgPiR97tpsgHUDagG9SpYq3yvaJ+PZhc/2MsTOLDOtG1byZ4Jwtc+4xu0hcQPBBdRYCeV7Y5+wWxRbW2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YaauDj1z; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-536a2759f0eso2651373e87.3;
+        Fri, 20 Sep 2024 05:45:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726836344; x=1727441144; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ezAH96T6rrdFYudMYX1pfn/bn7PZvj1jwszwTMpYXKM=;
+        b=YaauDj1zx8gwCPqV15JquvcEq2Iv8QLbXcaa+QuUBEkMdDw7tC8BAUgeKOcyEmvVEL
+         s+xchprOppROC9iAVC0PBi8/HVElchJp28IJyCsXYaJzElvXj9Ddin7EGLtqYyP1BbC6
+         bwGC+gbNMx+Fvn85TnyqwzwBTt5kd/qCvfuD1hBS6BZ1Vo4MR3Qs2Hl0I47QSMw0f0Vn
+         HXWaAEr7VGPWWrx9Qf5MPJKdBMO9Vf7LAkHJn7jFfokSbhv5aRXh2BGf4OOCHAAs7gt+
+         o8sMb6YZpLc7Y/LJUHB5c5e1IB0UOiKaYQEEgvS0HTCro2Qfj9hxR8TGNmgXpo8IqWEA
+         INIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726836344; x=1727441144;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ezAH96T6rrdFYudMYX1pfn/bn7PZvj1jwszwTMpYXKM=;
+        b=km1mdKuvHcAZuYXPoPoG33RntFmvsEDO5rKCdGGdpOfqVDtCl0DppWS/+mAkA/0NBF
+         R56f7hP7/eK+lSLISnCGwelnLpG5BG9gFJBYJsS/q0HP3SBkDLPEmuyAHduK3m8ILlYh
+         6IHPwgWHx/GtGxCDJdBygkFproHu3foUpOy9faktYb7NmlYocLqf19xi3MeOVStzJ12b
+         jVlJ7AtOew38qlwOYhfEr6GZBLX3QB9DT9/tZItTqdttP+EaslwoyN+dMParYBzjLmom
+         0h01t/+KhxY6zl4YZ7DaF035ERYxWJ/H5xhlbLL7goHApNNpal6hqagh6zd20aI7HUG8
+         Piyw==
+X-Forwarded-Encrypted: i=1; AJvYcCWl2mRaC5Szaz0VjHFOJ2jfIzOZ8QhESlFIE90hUC8xIj5BUc6fWFjKlLDGi8pHHY3hjhXpHljeGlmW@vger.kernel.org, AJvYcCWu3TYRCVqU1c98vVeJYq8lgLSUSgNxoROfobOKhpe8RFecNQpSJWwXxV8tdqJlW2gn+5HXScqzH4XaMTQr@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMN868PvKB4fneC2z80J0HZ/mw8uIzzGeZy21BoIR8K6cOrJdz
+	IjovUhaT5WKyx+BDwt80lYQ3X/NYOis0aedDjZqq4tZYj28YfzlT
+X-Google-Smtp-Source: AGHT+IF1XO4+uDzRlH3ZwrLK6nskExOmf3XhHC5T733GHRIqNJ3rjru6JdVYrgJp7oaq9blikUJbFA==
+X-Received: by 2002:ac2:4e08:0:b0:52e:7f6b:5786 with SMTP id 2adb3069b0e04-536ad3f7dcdmr1124478e87.61.1726836343854;
+        Fri, 20 Sep 2024 05:45:43 -0700 (PDT)
+Received: from ?IPv6:2001:a61:341e:1201:c434:b5b1:98a6:efed? ([2001:a61:341e:1201:c434:b5b1:98a6:efed])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c42bb492a1sm7161716a12.8.2024.09.20.05.45.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Sep 2024 05:45:43 -0700 (PDT)
+Message-ID: <c247b5dab409475633ea8dac5ad23fb75aecb1ef.camel@gmail.com>
+Subject: Re: [PATCH v3 01/10] iio: backend: adi-axi-dac: fix wrong register
+ bitfield
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Angelo Dureghello <adureghello@baylibre.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
+ Sa <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, dlechner@baylibre.com
+Date: Fri, 20 Sep 2024 14:45:42 +0200
+In-Reply-To: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-1-a17b9b3d05d9@baylibre.com>
+References: 
+	<20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
+	 <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-1-a17b9b3d05d9@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/8] dt-bindings: clock: Add Qualcomm IPQ5424 GCC
-To: Sricharan Ramabadhran <quic_srichara@quicinc.com>, andersson@kernel.org,
- konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
- ulf.hansson@linaro.org, linus.walleij@linaro.org, catalin.marinas@arm.com,
- p.zabel@pengutronix.de, geert+renesas@glider.be,
- dmitry.baryshkov@linaro.org, neil.armstrong@linaro.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Cc: quic_varada@quicinc.com
-References: <20240913121250.2995351-1-quic_srichara@quicinc.com>
- <20240913121250.2995351-2-quic_srichara@quicinc.com>
- <4cd3d3f8-7d73-4171-bb35-aba975cdc11a@kernel.org>
- <9f2ccf3d-fa71-4784-b6d2-2b12ed50bdd2@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <9f2ccf3d-fa71-4784-b6d2-2b12ed50bdd2@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 20/09/2024 13:56, Sricharan Ramabadhran wrote:
-> 
->>> +
->>> +allOf:
->>> +  - $ref: qcom,gcc.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: qcom,ipq5424-gcc
->>
->> So everything i sthe same as 5332? Why not adding it there?
->>
-> infact, ipq5332 has 1 dual lane and 1 single lane pcie, whereas
-> ipq5424 has 2 dual lane and 2 single lane pcie. will update the
-> bindings in v2 accordingly.
+On Thu, 2024-09-19 at 11:19 +0200, Angelo Dureghello wrote:
+> From: Angelo Dureghello <adureghello@baylibre.com>
+>=20
+> Fix ADI_DAC_R1_MODE of AXI_DAC_REG_CNTRL_2.
+>=20
+> Both generic DAC and ad3552r DAC IPs docs are reporting
+> bit 5 for it.
+>=20
+> https://wiki.analog.com/resources/fpga/docs/axi_dac_ip
+> https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
+>=20
+> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> ---
 
-Hm? What is the difference in the bindings? I don't see. Maybe some diff
-would help.
+Ouch... Missing Fixes tag. With that,
 
-Best regards,
-Krzysztof
+Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+
+> =C2=A0drivers/iio/dac/adi-axi-dac.c | 2 +-
+> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-axi-dac.=
+c
+> index 0cb00f3bec04..b8b4171b8043 100644
+> --- a/drivers/iio/dac/adi-axi-dac.c
+> +++ b/drivers/iio/dac/adi-axi-dac.c
+> @@ -46,7 +46,7 @@
+> =C2=A0#define AXI_DAC_REG_CNTRL_1		0x0044
+> =C2=A0#define=C2=A0=C2=A0 AXI_DAC_SYNC			BIT(0)
+> =C2=A0#define AXI_DAC_REG_CNTRL_2		0x0048
+> -#define	=C2=A0 ADI_DAC_R1_MODE		BIT(4)
+> +#define	=C2=A0 ADI_DAC_R1_MODE		BIT(5)
+> =C2=A0#define AXI_DAC_DRP_STATUS		0x0074
+> =C2=A0#define=C2=A0=C2=A0 AXI_DAC_DRP_LOCKED		BIT(17)
+> =C2=A0/* DAC Channel controls */
+>=20
 
 
