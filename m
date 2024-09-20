@@ -1,705 +1,135 @@
-Return-Path: <devicetree+bounces-104107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6545797D483
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 13:03:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B6BF97D498
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 13:15:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28AEA284042
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 11:03:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA6BE282FD8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 11:15:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E7D113E8A5;
-	Fri, 20 Sep 2024 11:03:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0F6613A86C;
+	Fri, 20 Sep 2024 11:15:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XdkHtb4u"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nINvnpQI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E020C39FF2
-	for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 11:03:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BB214A04
+	for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 11:15:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726830194; cv=none; b=f2W4Vs3NHx7OGxe9lfmVYAZaCYTHK2mar70hVCsK+XvEA3KKSsKFo08bWA0ulpyt9gtX3NObm3utjQLpQTbYqx1vWY8ecGbY9foO/WnGniGJuUGsnp2y/R8dXKMh9jV6BSh8h46fvUZwnVg6Kj8zoJD+aCV1iK9lu0+YCJOG1Fc=
+	t=1726830918; cv=none; b=rs6JLl9r1gb2HEsWQpH1KRs6MrBRiNZ0T5LoHzh1hYeI/0+hUsp7oYPL3fzRu2iQE8YC80cYJK4DUnouy5QUCj2sCqlzl10FGcPuv48quoB9+6jTc0H+C2BW/M69CV831Qm+xJ59WNQ8A/5Rw53vT0tGrtBzUhWBJ8TFawNk4K4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726830194; c=relaxed/simple;
-	bh=7D9c0HLqI3e8nhpbc67rzKHZ7KYlOTJb6TfDwWn2W0w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XZO5px/sNMPHElexQlYZd40hlG+654stcjLl5q+mBLPlIx+QKHGPTVVKJxfnaIJ5ozBPVJ6QK2XouPgRo1t7fdCp4ISm94fR9Q2lby3B5p4AjcnRHEe3aV+CYv+/MHdZa63C8LE/0Kqb2icynrplfV+uVcMF5SrjKS21Z21YtQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XdkHtb4u; arc=none smtp.client-ip=209.85.167.54
+	s=arc-20240116; t=1726830918; c=relaxed/simple;
+	bh=W/l/2NQIDeSWPodi6purnRhJ8jd/DZjrx3WDtrv/tf4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=to/r3H43t9hGvSOs+ZCnzOAG54XBtk4k8gMJxrOLlKpW50dWlaLNIHbFhJmzMhiROPpnWIANuvH48wPzts10zl78SUjJtYb5L6aYbRXLOPP5OePkUPun/ral+qEpkEX0UJtfj47PvlYLo7fsCsGd6DVTLmSj90M+mih8vPhT8I8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nINvnpQI; arc=none smtp.client-ip=209.85.218.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-53655b9bbcdso2275582e87.2
-        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 04:03:10 -0700 (PDT)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a8a7cdfdd80so250402066b.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 04:15:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726830189; x=1727434989; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xjk8FrvE6wUZqASFJpeX6SHywqMNA1Q6HG+IUkIGaJA=;
-        b=XdkHtb4u8qIQOrzsftDlvCH66MR0XIMZg0KRz5XqYJzILXRzNpOtpdbtb4S+CxqcDM
-         vqR4ZkxpefjS5rcUiUDNM8eoF+n8tPe2LkRUWDuP5etgMrYIwFB9GtfXZFmdrtZ7ugYP
-         PbpEnFAe11iH/akHiCBIoNjPzWcKsyvHUW2Y64bkLpr+GK1NWCgM6tkQSWaaKu929h+M
-         RcoxKAR9LbGhZbqI9ZwixBfyDl134b8NHUOQ/mXvjgrrjaJxOB8dGrA4SJ5u/I0X7tyW
-         SlLz7vy+V+hJA4qW3uZP7FKldwPYXVlFN5vXfVaASb1Aif1XJUbJ0LMpWFucD655bBwb
-         TISA==
+        d=linaro.org; s=google; t=1726830915; x=1727435715; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TJ9NqHXUSHxiyxcQjusCgad+8Q1rEeKcLOlI+n4WvTM=;
+        b=nINvnpQIAtH/CQekN6Yjs55bwlSCupXf9leRTwrMMt2LdtdUXUSmM0WJlIgQUkPrlx
+         QdYrl9hrHldfekjQleycpFtEz+6yMF5vwc1e++/4jFoFdbcX2gYaPviC6ECYxjUncoEA
+         mG/IW3XxJBQg3+O17GrqotVX4y0KY8qt9nHOPKqr5vskv/Iox65w008xakAiBFPfcBs/
+         jqA55JfA9qoUXGUG0jHTQ5K5/Fd+xQZhiRfv3DHXG4tbvWGH/7YTDIy/f4oqLH2tVtDh
+         AbZNVukBDcBMu54EHuKW3p6PV1h0e1ROlmFMFNoTjjFk/gsehRRk9BMKSNy0WSanlYbz
+         qrow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726830189; x=1727434989;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Xjk8FrvE6wUZqASFJpeX6SHywqMNA1Q6HG+IUkIGaJA=;
-        b=p0z+mpV7fi21gtRHCRrcJeRBtDkLnInlyddiwv9waohdU2GGGqFxwDzb5yNxe6S3eV
-         9t3R52iYoGZ/h9UcVevV7sfCRxWIxFUdF+YK2Y8oTpjoBbutP2XH8D5wldmGcxjzXlUw
-         DYqV2nhhgkZ8T19JBCDUMOxTSFDZYTOKPUOV5wdvZ/vL/fZQEg7FgwxYNxhgttb+pgKe
-         0fHFNL1FAXkXQ/6c5yTDyHltrsWq+l3IdlpwX2hOUVP+gBT39ogLoJqysjWxQ6avsxkV
-         yNJr4AZ8w9YOtP4cn9hXDpBtOGxtzVO8XxsLlv5Vv1zudJ9GageFT/vvqIRPr08/50Mq
-         l9EA==
-X-Forwarded-Encrypted: i=1; AJvYcCUiuaDmKoP2+LzJfG5Ddp9SMBTp0EVXInhdRPu4b018PkxcMb0oFT60yTNwhsoKTAiPWpr+BO4JTz2i@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWdRWpzztWzakImZMJeq9xJwVxvo3LuXCoAuuqTjdX42XZ4cpe
-	l8mrA3A/a7E/MDQh6fHaKS7KRUGwoVyBoyT5/ygoXQ/g3h1XQylkqWPl8LMQVmc=
-X-Google-Smtp-Source: AGHT+IEIEO9rSWXj2mBWlnCNwmSXmcdxhO4epvisbqVA78YBqGNOLeTHMj6RH1DTK6cJJcTeZ5dpRQ==
-X-Received: by 2002:a05:6512:1386:b0:533:4327:b4b5 with SMTP id 2adb3069b0e04-536ad3d71famr1521720e87.46.1726830188937;
-        Fri, 20 Sep 2024 04:03:08 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53687046926sm2116150e87.14.2024.09.20.04.03.05
+        d=1e100.net; s=20230601; t=1726830915; x=1727435715;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TJ9NqHXUSHxiyxcQjusCgad+8Q1rEeKcLOlI+n4WvTM=;
+        b=wqjMVlbsxmLahxJPebfo68UnPphy+uNrqfGKPonBoqx5RVa4c/KGcBp0W4pEHJaFA7
+         dZzkdGPO+eMBzXX9/vvsbyilo8PfZTkZ6Z5kqZm899VPhGt6P6esNtX6sN+VOd0eRGwQ
+         yYP5nmcg9necRxzVmJ5WXIeUmWqQ7rNMBhVsQ1KjP5kRO8/1SuSUXkOy5r5uF+cGrPZN
+         /PlmpDMO//2HsnhRM191X300sI4Z2ykxq7XRGue2PoUK7aP3+rsBdj/rcwycipr5SM9/
+         QdovpQAv0kK33SI/GOpNPLU4gy9r6oh/zfg9BSX9lpVyZgFlGIULawAPy3wxF1hOQkDo
+         JZoA==
+X-Forwarded-Encrypted: i=1; AJvYcCVLjB49a+UjPuB5Pqqxl5WcvZygeBkWpyWceCYQq/KQqBSEahJUoBk1ejRcXxBVzW8I0Iv7ZJTQkPkM@vger.kernel.org
+X-Gm-Message-State: AOJu0YyAuXlgIkWo7WU6HPC0grr3oMLRVbcehHdzZ97ucfccoZdK+8fV
+	RqhPzlLf1VsmzDVkmWwX6K5PyNwAnaGiQaBL8YQipIo3VbirucuCdLXKSoCtBh4=
+X-Google-Smtp-Source: AGHT+IHnliuN/RkFq3L3GXDKde5hN1tDpf6axzJaFfQtxrEiWrsJoIHee+ltRqo6QGSk3aYNFWzCGQ==
+X-Received: by 2002:a17:906:c148:b0:a8f:f799:e7d4 with SMTP id a640c23a62f3a-a90d517fcc3mr227244166b.59.1726830915317;
+        Fri, 20 Sep 2024 04:15:15 -0700 (PDT)
+Received: from lino.lan ([85.235.12.238])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a90610f452csm838261266b.89.2024.09.20.04.15.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Sep 2024 04:03:07 -0700 (PDT)
-Date: Fri, 20 Sep 2024 14:03:04 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Taniya Das <quic_tdas@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ajit Pandey <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
-	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] clk: qcom: gcc: Add support for QCS615 GCC clocks
-Message-ID: <gokgyvnunjswjdjmbhfvjzvdc6ag7r3dztj2hqk3cglwyz5f5a@aarbe4rrifme>
-References: <20240920-qcs615-clock-driver-v2-0-2f6de44eb2aa@quicinc.com>
- <20240920-qcs615-clock-driver-v2-4-2f6de44eb2aa@quicinc.com>
+        Fri, 20 Sep 2024 04:15:14 -0700 (PDT)
+From: Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH 0/2] leds: Add basic BCMBCA LEDs support
+Date: Fri, 20 Sep 2024 13:15:11 +0200
+Message-Id: <20240920-bcmbca-leds-v1-0-5f70e692c6ff@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240920-qcs615-clock-driver-v2-4-2f6de44eb2aa@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAD9Z7WYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDSyMD3aTk3KTkRN2c1JRi3VSzNEOzNFPT5LQUSyWgjoKi1LTMCrBp0bG
+ 1tQCCdAxRXQAAAA==
+To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ William Zhang <william.zhang@broadcom.com>, 
+ Anand Gore <anand.gore@broadcom.com>, 
+ Kursad Oney <kursad.oney@broadcom.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.14.0
 
-On Fri, Sep 20, 2024 at 04:08:18PM GMT, Taniya Das wrote:
-> Add the global clock controller support for QCS615 SoC.
-> 
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  drivers/clk/qcom/Kconfig      |    9 +
->  drivers/clk/qcom/Makefile     |    1 +
->  drivers/clk/qcom/gcc-qcs615.c | 3035 +++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 3045 insertions(+)
-> 
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index a3e2a09e2105..52a7ba6d4cbf 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -467,6 +467,15 @@ config QCS_GCC_404
->  	  Say Y if you want to use multimedia devices or peripheral
->  	  devices such as UART, SPI, I2C, USB, SD/eMMC, PCIe etc.
->  
-> +config QCS_GCC_615
-> +	tristate "QCS615 Global Clock Controller"
-> +	depends on ARM64 || COMPILE_TEST
-> +	select QCOM_GDSC
-> +	help
-> +	  Support for the global clock controller on QCS615 devices.
-> +	  Say Y if you want to use multimedia devices or peripheral
-> +	  devices such as UART, SPI, I2C, USB, SD/eMMC, PCIe etc.
-> +
->  config SC_CAMCC_7180
->  	tristate "SC7180 Camera Clock Controller"
->  	depends on ARM64 || COMPILE_TEST
-> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-> index 2b378667a63f..a46ce0723602 100644
-> --- a/drivers/clk/qcom/Makefile
-> +++ b/drivers/clk/qcom/Makefile
-> @@ -70,6 +70,7 @@ obj-$(CONFIG_QCOM_CLK_SMD_RPM) += clk-smd-rpm.o
->  obj-$(CONFIG_QCM_GCC_2290) += gcc-qcm2290.o
->  obj-$(CONFIG_QCM_DISPCC_2290) += dispcc-qcm2290.o
->  obj-$(CONFIG_QCS_GCC_404) += gcc-qcs404.o
-> +obj-$(CONFIG_QCS_GCC_615) += gcc-qcs615.o
->  obj-$(CONFIG_QCS_Q6SSTOP_404) += q6sstop-qcs404.o
->  obj-$(CONFIG_QCS_TURING_404) += turingcc-qcs404.o
->  obj-$(CONFIG_QDU_ECPRICC_1000) += ecpricc-qdu1000.o
-> diff --git a/drivers/clk/qcom/gcc-qcs615.c b/drivers/clk/qcom/gcc-qcs615.c
-> new file mode 100644
-> index 000000000000..7db55a5d8e80
-> --- /dev/null
-> +++ b/drivers/clk/qcom/gcc-qcs615.c
-> @@ -0,0 +1,3035 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/clk-provider.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <dt-bindings/clock/qcom,qcs615-gcc.h>
-> +
-> +#include "clk-alpha-pll.h"
-> +#include "clk-branch.h"
-> +#include "clk-rcg.h"
-> +#include "clk-regmap.h"
-> +#include "clk-regmap-divider.h"
-> +#include "clk-regmap-mux.h"
-> +#include "common.h"
-> +#include "gdsc.h"
-> +#include "reset.h"
-> +
-> +enum {
-> +	DT_BI_TCXO,
-> +	DT_BI_TCXO_AO,
-> +	DT_SLEEP_CLK,
-> +};
-> +
-> +enum {
-> +	P_BI_TCXO,
-> +	P_GPLL0_OUT_AUX2_DIV,
-> +	P_GPLL0_OUT_MAIN,
-> +	P_GPLL3_OUT_MAIN,
-> +	P_GPLL3_OUT_MAIN_DIV,
-> +	P_GPLL4_OUT_MAIN,
-> +	P_GPLL6_OUT_MAIN,
-> +	P_GPLL7_OUT_MAIN,
-> +	P_GPLL8_OUT_MAIN,
-> +	P_SLEEP_CLK,
-> +};
-> +
-> +static struct clk_alpha_pll gpll0 = {
-> +	.offset = 0x0,
-> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
-> +	.clkr = {
-> +		.enable_reg = 0x52000,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(const struct clk_init_data) {
-> +			.name = "gpll0",
-> +			.parent_data = &(const struct clk_parent_data) {
-> +				.index = DT_BI_TCXO,
-> +			},
-> +			.num_parents = 1,
-> +			.ops = &clk_alpha_pll_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_fixed_factor gpll0_out_aux2_div = {
-> +	.mult = 1,
-> +	.div = 2,
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "gpll0_out_aux2_div",
-> +		.parent_data = &(const struct clk_parent_data) {
-> +			.hw = &gpll0.clkr.hw,
-> +		},
-> +		.num_parents = 1,
-> +		.ops = &clk_fixed_factor_ops,
-> +	},
-> +};
+This series adds bindings and a driver for the Broadcom
+BCA (Broadband Access) SoC LEDs.
 
-Should it be clk_alpha_pll_postdiv_foo_ops ?
+These LEDs can be either serial using 1-4 shift registers
+or parallel using unique lines per-LED.
 
-> +
-> +static struct clk_alpha_pll gpll3 = {
-> +	.offset = 0x3000,
-> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
-> +	.clkr = {
-> +		.enable_reg = 0x52000,
-> +		.enable_mask = BIT(3),
-> +		.hw.init = &(const struct clk_init_data) {
-> +			.name = "gpll3",
-> +			.parent_data = &(const struct clk_parent_data) {
-> +				.index = DT_BI_TCXO,
-> +			},
-> +			.num_parents = 1,
-> +			.ops = &clk_alpha_pll_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_fixed_factor gpll3_out_aux2_div = {
-> +	.mult = 1,
-> +	.div = 2,
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "gpll3_out_aux2_div",
-> +		.parent_data = &(const struct clk_parent_data) {
-> +			.hw = &gpll3.clkr.hw,
-> +		},
-> +		.num_parents = 1,
-> +		.ops = &clk_fixed_factor_ops,
-> +	},
-> +};
+The LED controller supports hardware triggers from an
+integrated ethernet switch, this support can be added
+later, the modern hardware control framework is complex
+and will require phandles and elaborate lookup of the
+corresponding netdev etc.
 
-Should it be clk_alpha_pll_postdiv_foo_ops ?
+The patches were developed and tested on the Genexis
+XG6846B device using the BCM6846 SoC.
 
-> +
-> +static struct clk_alpha_pll gpll4 = {
-> +	.offset = 0x76000,
-> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
-> +	.clkr = {
-> +		.enable_reg = 0x52000,
-> +		.enable_mask = BIT(4),
-> +		.hw.init = &(const struct clk_init_data) {
-> +			.name = "gpll4",
-> +			.parent_data = &(const struct clk_parent_data) {
-> +				.index = DT_BI_TCXO,
-> +			},
-> +			.num_parents = 1,
-> +			.ops = &clk_alpha_pll_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_alpha_pll gpll6 = {
-> +	.offset = 0x13000,
-> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
-> +	.clkr = {
-> +		.enable_reg = 0x52000,
-> +		.enable_mask = BIT(6),
-> +		.hw.init = &(const struct clk_init_data) {
-> +			.name = "gpll6",
-> +			.parent_data = &(const struct clk_parent_data) {
-> +				.index = DT_BI_TCXO,
-> +			},
-> +			.num_parents = 1,
-> +			.ops = &clk_alpha_pll_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static const struct clk_div_table post_div_table_gpll6_out_main[] = {
-> +	{ 0x1, 2 },
-> +	{ }
-> +};
-> +
-> +static struct clk_alpha_pll_postdiv gpll6_out_main = {
-> +	.offset = 0x13000,
-> +	.post_div_shift = 8,
-> +	.post_div_table = post_div_table_gpll6_out_main,
-> +	.num_post_div = ARRAY_SIZE(post_div_table_gpll6_out_main),
-> +	.width = 4,
-> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
-> +	.clkr.hw.init = &(const struct clk_init_data) {
-> +		.name = "gpll6_out_main",
-> +		.parent_hws = (const struct clk_hw*[]) {
-> +			&gpll6.clkr.hw,
-> +		},
-> +		.num_parents = 1,
-> +		.ops = &clk_alpha_pll_postdiv_ops,
-> +	},
-> +};
-> +
-> +static struct clk_alpha_pll gpll7 = {
-> +	.offset = 0x1a000,
-> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
-> +	.clkr = {
-> +		.enable_reg = 0x52000,
-> +		.enable_mask = BIT(7),
-> +		.hw.init = &(const struct clk_init_data) {
-> +			.name = "gpll7",
-> +			.parent_data = &(const struct clk_parent_data) {
-> +				.index = DT_BI_TCXO,
-> +			},
-> +			.num_parents = 1,
-> +			.ops = &clk_alpha_pll_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_alpha_pll gpll8 = {
-> +	.offset = 0x1b000,
-> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
-> +	.clkr = {
-> +		.enable_reg = 0x52000,
-> +		.enable_mask = BIT(8),
-> +		.hw.init = &(const struct clk_init_data) {
-> +			.name = "gpll8",
-> +			.parent_data = &(const struct clk_parent_data) {
-> +				.index = DT_BI_TCXO,
-> +			},
-> +			.num_parents = 1,
-> +			.ops = &clk_alpha_pll_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static const struct clk_div_table post_div_table_gpll8_out_main[] = {
-> +	{ 0x1, 2 },
-> +	{ }
-> +};
-> +
-> +static struct clk_alpha_pll_postdiv gpll8_out_main = {
-> +	.offset = 0x1b000,
-> +	.post_div_shift = 8,
-> +	.post_div_table = post_div_table_gpll8_out_main,
-> +	.num_post_div = ARRAY_SIZE(post_div_table_gpll8_out_main),
-> +	.width = 4,
-> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
-> +	.clkr.hw.init = &(const struct clk_init_data) {
-> +		.name = "gpll8_out_main",
-> +		.parent_hws = (const struct clk_hw*[]) {
-> +			&gpll8.clkr.hw,
-> +		},
-> +		.num_parents = 1,
-> +		.ops = &clk_alpha_pll_postdiv_ops,
-> +	},
-> +};
-> +
-> +static const struct parent_map gcc_parent_map_0[] = {
-> +	{ P_BI_TCXO, 0 },
-> +	{ P_GPLL0_OUT_MAIN, 1 },
-> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
-> +};
-> +
-> +static const struct clk_parent_data gcc_parent_data_0[] = {
-> +	{ .index = DT_BI_TCXO },
-> +	{ .hw = &gpll0.clkr.hw },
-> +	{ .hw = &gpll0_out_aux2_div.hw },
-> +};
-> +
-> +static const struct clk_parent_data gcc_parent_data_0_ao[] = {
-> +	{ .index = DT_BI_TCXO_AO },
-> +	{ .hw = &gpll0.clkr.hw },
-> +	{ .hw = &gpll0.clkr.hw },
-> +};
-> +
-> +static const struct parent_map gcc_parent_map_1[] = {
-> +	{ P_BI_TCXO, 0 },
-> +	{ P_GPLL0_OUT_MAIN, 1 },
-> +	{ P_GPLL6_OUT_MAIN, 2 },
-> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
-> +};
-> +
-> +static const struct clk_parent_data gcc_parent_data_1[] = {
-> +	{ .index = DT_BI_TCXO },
-> +	{ .hw = &gpll0.clkr.hw },
-> +	{ .hw = &gpll6_out_main.clkr.hw },
-> +	{ .hw = &gpll0_out_aux2_div.hw },
-> +};
-> +
-> +static const struct parent_map gcc_parent_map_2[] = {
-> +	{ P_BI_TCXO, 0 },
-> +	{ P_GPLL0_OUT_MAIN, 1 },
-> +	{ P_SLEEP_CLK, 5 },
-> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
-> +};
-> +
-> +static const struct clk_parent_data gcc_parent_data_2[] = {
-> +	{ .index = DT_BI_TCXO },
-> +	{ .hw = &gpll0.clkr.hw },
-> +	{ .index = DT_SLEEP_CLK },
-> +	{ .hw = &gpll0_out_aux2_div.hw },
-> +};
-> +
-> +static const struct parent_map gcc_parent_map_3[] = {
-> +	{ P_BI_TCXO, 0 },
-> +	{ P_SLEEP_CLK, 5 },
-> +};
-> +
-> +static const struct clk_parent_data gcc_parent_data_3[] = {
-> +	{ .index = DT_BI_TCXO },
-> +	{ .index = DT_SLEEP_CLK },
-> +};
-> +
-> +static const struct parent_map gcc_parent_map_4[] = {
-> +	{ P_BI_TCXO, 0 },
-> +};
-> +
-> +static const struct clk_parent_data gcc_parent_data_4[] = {
-> +	{ .index = DT_BI_TCXO },
-> +};
-> +
-> +static const struct parent_map gcc_parent_map_5[] = {
-> +	{ P_BI_TCXO, 0 },
-> +	{ P_GPLL0_OUT_MAIN, 1 },
-> +	{ P_GPLL7_OUT_MAIN, 3 },
-> +	{ P_GPLL4_OUT_MAIN, 5 },
-> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
-> +};
-> +
-> +static const struct clk_parent_data gcc_parent_data_5[] = {
-> +	{ .index = DT_BI_TCXO },
-> +	{ .hw = &gpll0.clkr.hw },
-> +	{ .hw = &gpll7.clkr.hw },
-> +	{ .hw = &gpll4.clkr.hw },
-> +	{ .hw = &gpll0_out_aux2_div.hw },
-> +};
-> +
-> +static const struct parent_map gcc_parent_map_6[] = {
-> +	{ P_BI_TCXO, 0 },
-> +	{ P_GPLL0_OUT_MAIN, 1 },
-> +	{ P_GPLL7_OUT_MAIN, 3 },
-> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
-> +};
-> +
-> +static const struct clk_parent_data gcc_parent_data_6[] = {
-> +	{ .index = DT_BI_TCXO },
-> +	{ .hw = &gpll0.clkr.hw },
-> +	{ .hw = &gpll7.clkr.hw },
-> +	{ .hw = &gpll0_out_aux2_div.hw },
-> +};
-> +
-> +static const struct parent_map gcc_parent_map_7[] = {
-> +	{ P_BI_TCXO, 0 },
-> +	{ P_GPLL0_OUT_MAIN, 1 },
-> +	{ P_GPLL3_OUT_MAIN_DIV, 4 },
-> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
-> +};
-> +
-> +static const struct clk_parent_data gcc_parent_data_7[] = {
-> +	{ .index = DT_BI_TCXO },
-> +	{ .hw = &gpll0.clkr.hw },
-> +	{ .hw = &gpll3_out_aux2_div.hw },
-> +	{ .hw = &gpll0_out_aux2_div.hw },
-> +};
-> +
-> +static const struct parent_map gcc_parent_map_8[] = {
-> +	{ P_BI_TCXO, 0 },
-> +	{ P_GPLL0_OUT_MAIN, 1 },
-> +	{ P_GPLL8_OUT_MAIN, 2 },
-> +	{ P_GPLL4_OUT_MAIN, 5 },
-> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
-> +};
-> +
-> +static const struct clk_parent_data gcc_parent_data_8[] = {
-> +	{ .index = DT_BI_TCXO },
-> +	{ .hw = &gpll0.clkr.hw },
-> +	{ .hw = &gpll8_out_main.clkr.hw },
-> +	{ .hw = &gpll4.clkr.hw },
-> +	{ .hw = &gpll0_out_aux2_div.hw },
-> +};
-> +
-> +static const struct parent_map gcc_parent_map_9[] = {
-> +	{ P_BI_TCXO, 0 },
-> +	{ P_GPLL0_OUT_MAIN, 1 },
-> +	{ P_GPLL3_OUT_MAIN, 4 },
-> +};
-> +
-> +static const struct clk_parent_data gcc_parent_data_9[] = {
-> +	{ .index = DT_BI_TCXO },
-> +	{ .hw = &gpll0.clkr.hw },
-> +	{ .hw = &gpll3.clkr.hw },
-> +};
-> +
-> +static const struct freq_tbl ftbl_gcc_cpuss_ahb_clk_src[] = {
-> +	F(19200000, P_BI_TCXO, 1, 0, 0),
-> +	{ }
-> +};
-> +
-> +static struct clk_rcg2 gcc_cpuss_ahb_clk_src = {
-> +	.cmd_rcgr = 0x48014,
-> +	.mnd_width = 0,
-> +	.hid_width = 5,
-> +	.parent_map = gcc_parent_map_0,
-> +	.freq_tbl = ftbl_gcc_cpuss_ahb_clk_src,
-> +	.clkr.hw.init = &(const struct clk_init_data) {
-> +		.name = "gcc_cpuss_ahb_clk_src",
-> +		.parent_data = gcc_parent_data_0_ao,
-> +		.num_parents = ARRAY_SIZE(gcc_parent_data_0_ao),
-> +		.ops = &clk_rcg2_ops,
-> +	},
-> +};
-> +
-> +static const struct freq_tbl ftbl_gcc_emac_ptp_clk_src[] = {
-> +	F(19200000, P_BI_TCXO, 1, 0, 0),
-> +	F(50000000, P_GPLL0_OUT_AUX2_DIV, 6, 0, 0),
-> +	F(75000000, P_GPLL0_OUT_AUX2_DIV, 4, 0, 0),
-> +	F(125000000, P_GPLL7_OUT_MAIN, 4, 0, 0),
-> +	F(250000000, P_GPLL7_OUT_MAIN, 2, 0, 0),
-> +	{ }
-> +};
-> +
-> +static struct clk_rcg2 gcc_emac_ptp_clk_src = {
-> +	.cmd_rcgr = 0x6038,
-> +	.mnd_width = 0,
-> +	.hid_width = 5,
-> +	.parent_map = gcc_parent_map_5,
-> +	.freq_tbl = ftbl_gcc_emac_ptp_clk_src,
-> +	.clkr.hw.init = &(const struct clk_init_data) {
-> +		.name = "gcc_emac_ptp_clk_src",
-> +		.parent_data = gcc_parent_data_5,
-> +		.num_parents = ARRAY_SIZE(gcc_parent_data_5),
-> +		.ops = &clk_rcg2_ops,
-> +	},
-> +};
-> +
-> +static const struct freq_tbl ftbl_gcc_emac_rgmii_clk_src[] = {
-> +	F(2500000, P_BI_TCXO, 1, 25, 192),
-> +	F(5000000, P_BI_TCXO, 1, 25, 96),
-> +	F(19200000, P_BI_TCXO, 1, 0, 0),
-> +	F(25000000, P_GPLL0_OUT_AUX2_DIV, 12, 0, 0),
-> +	F(50000000, P_GPLL0_OUT_AUX2_DIV, 6, 0, 0),
-> +	F(75000000, P_GPLL0_OUT_AUX2_DIV, 4, 0, 0),
-> +	F(125000000, P_GPLL7_OUT_MAIN, 4, 0, 0),
-> +	F(250000000, P_GPLL7_OUT_MAIN, 2, 0, 0),
-> +	{ }
-> +};
-> +
-> +static struct clk_rcg2 gcc_emac_rgmii_clk_src = {
-> +	.cmd_rcgr = 0x601c,
-> +	.mnd_width = 8,
-> +	.hid_width = 5,
-> +	.parent_map = gcc_parent_map_6,
-> +	.freq_tbl = ftbl_gcc_emac_rgmii_clk_src,
-> +	.clkr.hw.init = &(const struct clk_init_data) {
-> +		.name = "gcc_emac_rgmii_clk_src",
-> +		.parent_data = gcc_parent_data_6,
-> +		.num_parents = ARRAY_SIZE(gcc_parent_data_6),
-> +		.ops = &clk_rcg2_ops,
-> +	},
-> +};
-> +
-> +static const struct freq_tbl ftbl_gcc_gp1_clk_src[] = {
-> +	F(25000000, P_GPLL0_OUT_AUX2_DIV, 12, 0, 0),
-> +	F(50000000, P_GPLL0_OUT_AUX2_DIV, 6, 0, 0),
-> +	F(100000000, P_GPLL0_OUT_MAIN, 6, 0, 0),
-> +	F(200000000, P_GPLL0_OUT_MAIN, 3, 0, 0),
-> +	{ }
-> +};
-> +
-> +static struct clk_rcg2 gcc_gp1_clk_src = {
-> +	.cmd_rcgr = 0x64004,
-> +	.mnd_width = 8,
-> +	.hid_width = 5,
-> +	.parent_map = gcc_parent_map_2,
-> +	.freq_tbl = ftbl_gcc_gp1_clk_src,
-> +	.clkr.hw.init = &(const struct clk_init_data) {
-> +		.name = "gcc_gp1_clk_src",
-> +		.parent_data = gcc_parent_data_2,
-> +		.num_parents = ARRAY_SIZE(gcc_parent_data_2),
-> +		.ops = &clk_rcg2_ops,
-> +	},
-> +};
-> +
-> +static struct clk_rcg2 gcc_gp2_clk_src = {
-> +	.cmd_rcgr = 0x65004,
-> +	.mnd_width = 8,
-> +	.hid_width = 5,
-> +	.parent_map = gcc_parent_map_2,
-> +	.freq_tbl = ftbl_gcc_gp1_clk_src,
-> +	.clkr.hw.init = &(const struct clk_init_data) {
-> +		.name = "gcc_gp2_clk_src",
-> +		.parent_data = gcc_parent_data_2,
-> +		.num_parents = ARRAY_SIZE(gcc_parent_data_2),
-> +		.ops = &clk_rcg2_ops,
-> +	},
-> +};
-> +
-> +static struct clk_rcg2 gcc_gp3_clk_src = {
-> +	.cmd_rcgr = 0x66004,
-> +	.mnd_width = 8,
-> +	.hid_width = 5,
-> +	.parent_map = gcc_parent_map_2,
-> +	.freq_tbl = ftbl_gcc_gp1_clk_src,
-> +	.clkr.hw.init = &(const struct clk_init_data) {
-> +		.name = "gcc_gp3_clk_src",
-> +		.parent_data = gcc_parent_data_2,
-> +		.num_parents = ARRAY_SIZE(gcc_parent_data_2),
-> +		.ops = &clk_rcg2_ops,
-> +	},
-> +};
-> +
-> +static const struct freq_tbl ftbl_gcc_pcie_0_aux_clk_src[] = {
-> +	F(9600000, P_BI_TCXO, 2, 0, 0),
-> +	F(19200000, P_BI_TCXO, 1, 0, 0),
-> +	{ }
-> +};
-> +
-> +static struct clk_rcg2 gcc_pcie_0_aux_clk_src = {
-> +	.cmd_rcgr = 0x6b02c,
-> +	.mnd_width = 16,
-> +	.hid_width = 5,
-> +	.parent_map = gcc_parent_map_3,
-> +	.freq_tbl = ftbl_gcc_pcie_0_aux_clk_src,
-> +	.clkr.hw.init = &(const struct clk_init_data) {
-> +		.name = "gcc_pcie_0_aux_clk_src",
-> +		.parent_data = gcc_parent_data_3,
-> +		.num_parents = ARRAY_SIZE(gcc_parent_data_3),
-> +		.ops = &clk_rcg2_ops,
+Broadcom guys: if you would rather take sole maintenanceship
+of this or be listed as comaintainers, tell me, it's fine.
 
-Should it be using shared ops?
-I think there are other clocks here which are usually
-clk_rcg2_shared_ops.
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Linus Walleij (2):
+      dt-bindings: leds: bcmbca: Add bindings for BRCMBCA LEDs
+      leds: bcmbca: Add new driver for Broadcom BCMBCA
 
-> +	},
-> +};
-> +
+ .../devicetree/bindings/leds/brcm,bcmbca-leds.yaml |  88 +++++
+ MAINTAINERS                                        |   7 +
+ drivers/leds/Kconfig                               |   9 +
+ drivers/leds/Makefile                              |   1 +
+ drivers/leds/leds-bcmbca.c                         | 391 +++++++++++++++++++++
+ 5 files changed, 496 insertions(+)
+---
+base-commit: 98f7e32f20d28ec452afb208f9cffc08448a2652
+change-id: 20240920-bcmbca-leds-e6f16f55cfd9
 
-[...]
-
-> +static struct clk_rcg2 gcc_vsensor_clk_src = {
-> +	.cmd_rcgr = 0x7a018,
-> +	.mnd_width = 0,
-> +	.hid_width = 5,
-> +	.parent_map = gcc_parent_map_9,
-> +	.freq_tbl = ftbl_gcc_vsensor_clk_src,
-> +	.clkr.hw.init = &(const struct clk_init_data) {
-> +		.name = "gcc_vsensor_clk_src",
-> +		.parent_data = gcc_parent_data_9,
-> +		.num_parents = ARRAY_SIZE(gcc_parent_data_9),
-> +		.ops = &clk_rcg2_ops,
-> +	},
-> +};
-> +
-> +
-
-Extra empty line
-
-> +static struct clk_branch gcc_aggre_ufs_phy_axi_clk = {
-> +	.halt_reg = 0x770c0,
-> +	.halt_check = BRANCH_HALT_VOTED,
-
-[...]
-
-> +
-> +static struct clk_branch gcc_pcie_0_pipe_clk = {
-> +	.halt_reg = 0x6b024,
-> +	.halt_check = BRANCH_HALT_SKIP,
-> +	.clkr = {
-> +		.enable_reg = 0x5200c,
-> +		.enable_mask = BIT(4),
-> +		.hw.init = &(const struct clk_init_data) {
-> +			.name = "gcc_pcie_0_pipe_clk",
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-
-No corresponding gcc_pcie_0_pipe_clk_src?
-
-> +
-> +static struct clk_branch gcc_pcie_0_slv_axi_clk = {
-> +	.halt_reg = 0x6b014,
-> +	.halt_check = BRANCH_HALT_VOTED,
-> +	.hwcg_reg = 0x6b014,
-> +	.hwcg_bit = 1,
-> +	.clkr = {
-> +		.enable_reg = 0x5200c,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(const struct clk_init_data) {
-> +			.name = "gcc_pcie_0_slv_axi_clk",
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-
-[...]
-
+Best regards,
 -- 
-With best wishes
-Dmitry
+Linus Walleij <linus.walleij@linaro.org>
+
 
