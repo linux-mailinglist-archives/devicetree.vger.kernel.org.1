@@ -1,375 +1,705 @@
-Return-Path: <devicetree+bounces-104106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 684CD97D478
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 12:52:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6545797D483
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 13:03:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22BCA2817BE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 10:52:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28AEA284042
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 11:03:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61A2213D893;
-	Fri, 20 Sep 2024 10:52:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E7D113E8A5;
+	Fri, 20 Sep 2024 11:03:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XdkHtb4u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493A213B58C;
-	Fri, 20 Sep 2024 10:52:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E020C39FF2
+	for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 11:03:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726829536; cv=none; b=CxTMlyEVmI/retaKB44k0fjfFc+nULWaQ1XlMBuuUUDeyqg7JeDg4Fjaq+ESJT6HlFv4J7XlQv2Ciqok6QrJ8+0yYkWhCnAldgjrzF+pnjw0SCnkGzexlbDONGpVc+32RpyLw8LQAmN3WudPiWeINXOTWDGSSVCvPnOiO5ghRx0=
+	t=1726830194; cv=none; b=f2W4Vs3NHx7OGxe9lfmVYAZaCYTHK2mar70hVCsK+XvEA3KKSsKFo08bWA0ulpyt9gtX3NObm3utjQLpQTbYqx1vWY8ecGbY9foO/WnGniGJuUGsnp2y/R8dXKMh9jV6BSh8h46fvUZwnVg6Kj8zoJD+aCV1iK9lu0+YCJOG1Fc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726829536; c=relaxed/simple;
-	bh=+AVJHOZFocQEpR4sM/heuTB54p64ztcQeipzPwMW2T4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mwDHjSCIReT6YWT7Ji/qsaCk34i6qw+uJksSAVAeJWG/aaug3lO3mbpvcwlWhCUNREaU2jLNCuXUqsaMMQ5gclkh63UAntlJxasJGR9vtFhC1cno/0vT0XGn2PAl+I+26knAMPWmy5vasS95Cjjh9Rtv9QrC/Qu0Fz0gjiGVSJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F0D871007;
-	Fri, 20 Sep 2024 03:52:41 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0E9403F64C;
-	Fri, 20 Sep 2024 03:52:10 -0700 (PDT)
-Date: Fri, 20 Sep 2024 11:52:06 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: =?UTF-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
- Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: allwinner: Add disable-wp for boards
- with micro SD card
-Message-ID: <20240920115206.1ea2666b@donnerap.manchester.arm.com>
-In-Reply-To: <fed7f9f5-0189-4ac4-bcc5-4b59e8b1ccc1@gmail.com>
-References: <20240919-b4-nanopineoplus2-fix-mmc0-wp-v2-1-c708a9abc9eb@gmail.com>
-	<20240919212151.50957a14@minigeek.lan>
-	<fed7f9f5-0189-4ac4-bcc5-4b59e8b1ccc1@gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1726830194; c=relaxed/simple;
+	bh=7D9c0HLqI3e8nhpbc67rzKHZ7KYlOTJb6TfDwWn2W0w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XZO5px/sNMPHElexQlYZd40hlG+654stcjLl5q+mBLPlIx+QKHGPTVVKJxfnaIJ5ozBPVJ6QK2XouPgRo1t7fdCp4ISm94fR9Q2lby3B5p4AjcnRHEe3aV+CYv+/MHdZa63C8LE/0Kqb2icynrplfV+uVcMF5SrjKS21Z21YtQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XdkHtb4u; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-53655b9bbcdso2275582e87.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 04:03:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1726830189; x=1727434989; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xjk8FrvE6wUZqASFJpeX6SHywqMNA1Q6HG+IUkIGaJA=;
+        b=XdkHtb4u8qIQOrzsftDlvCH66MR0XIMZg0KRz5XqYJzILXRzNpOtpdbtb4S+CxqcDM
+         vqR4ZkxpefjS5rcUiUDNM8eoF+n8tPe2LkRUWDuP5etgMrYIwFB9GtfXZFmdrtZ7ugYP
+         PbpEnFAe11iH/akHiCBIoNjPzWcKsyvHUW2Y64bkLpr+GK1NWCgM6tkQSWaaKu929h+M
+         RcoxKAR9LbGhZbqI9ZwixBfyDl134b8NHUOQ/mXvjgrrjaJxOB8dGrA4SJ5u/I0X7tyW
+         SlLz7vy+V+hJA4qW3uZP7FKldwPYXVlFN5vXfVaASb1Aif1XJUbJ0LMpWFucD655bBwb
+         TISA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726830189; x=1727434989;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Xjk8FrvE6wUZqASFJpeX6SHywqMNA1Q6HG+IUkIGaJA=;
+        b=p0z+mpV7fi21gtRHCRrcJeRBtDkLnInlyddiwv9waohdU2GGGqFxwDzb5yNxe6S3eV
+         9t3R52iYoGZ/h9UcVevV7sfCRxWIxFUdF+YK2Y8oTpjoBbutP2XH8D5wldmGcxjzXlUw
+         DYqV2nhhgkZ8T19JBCDUMOxTSFDZYTOKPUOV5wdvZ/vL/fZQEg7FgwxYNxhgttb+pgKe
+         0fHFNL1FAXkXQ/6c5yTDyHltrsWq+l3IdlpwX2hOUVP+gBT39ogLoJqysjWxQ6avsxkV
+         yNJr4AZ8w9YOtP4cn9hXDpBtOGxtzVO8XxsLlv5Vv1zudJ9GageFT/vvqIRPr08/50Mq
+         l9EA==
+X-Forwarded-Encrypted: i=1; AJvYcCUiuaDmKoP2+LzJfG5Ddp9SMBTp0EVXInhdRPu4b018PkxcMb0oFT60yTNwhsoKTAiPWpr+BO4JTz2i@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWdRWpzztWzakImZMJeq9xJwVxvo3LuXCoAuuqTjdX42XZ4cpe
+	l8mrA3A/a7E/MDQh6fHaKS7KRUGwoVyBoyT5/ygoXQ/g3h1XQylkqWPl8LMQVmc=
+X-Google-Smtp-Source: AGHT+IEIEO9rSWXj2mBWlnCNwmSXmcdxhO4epvisbqVA78YBqGNOLeTHMj6RH1DTK6cJJcTeZ5dpRQ==
+X-Received: by 2002:a05:6512:1386:b0:533:4327:b4b5 with SMTP id 2adb3069b0e04-536ad3d71famr1521720e87.46.1726830188937;
+        Fri, 20 Sep 2024 04:03:08 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53687046926sm2116150e87.14.2024.09.20.04.03.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Sep 2024 04:03:07 -0700 (PDT)
+Date: Fri, 20 Sep 2024 14:03:04 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ajit Pandey <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] clk: qcom: gcc: Add support for QCS615 GCC clocks
+Message-ID: <gokgyvnunjswjdjmbhfvjzvdc6ag7r3dztj2hqk3cglwyz5f5a@aarbe4rrifme>
+References: <20240920-qcs615-clock-driver-v2-0-2f6de44eb2aa@quicinc.com>
+ <20240920-qcs615-clock-driver-v2-4-2f6de44eb2aa@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240920-qcs615-clock-driver-v2-4-2f6de44eb2aa@quicinc.com>
 
-On Fri, 20 Sep 2024 07:38:53 +0200
-Kry=C5=A1tof =C4=8Cern=C3=BD <cleverline1mc@gmail.com> wrote:
+On Fri, Sep 20, 2024 at 04:08:18PM GMT, Taniya Das wrote:
+> Add the global clock controller support for QCS615 SoC.
+> 
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> ---
+>  drivers/clk/qcom/Kconfig      |    9 +
+>  drivers/clk/qcom/Makefile     |    1 +
+>  drivers/clk/qcom/gcc-qcs615.c | 3035 +++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 3045 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> index a3e2a09e2105..52a7ba6d4cbf 100644
+> --- a/drivers/clk/qcom/Kconfig
+> +++ b/drivers/clk/qcom/Kconfig
+> @@ -467,6 +467,15 @@ config QCS_GCC_404
+>  	  Say Y if you want to use multimedia devices or peripheral
+>  	  devices such as UART, SPI, I2C, USB, SD/eMMC, PCIe etc.
+>  
+> +config QCS_GCC_615
+> +	tristate "QCS615 Global Clock Controller"
+> +	depends on ARM64 || COMPILE_TEST
+> +	select QCOM_GDSC
+> +	help
+> +	  Support for the global clock controller on QCS615 devices.
+> +	  Say Y if you want to use multimedia devices or peripheral
+> +	  devices such as UART, SPI, I2C, USB, SD/eMMC, PCIe etc.
+> +
+>  config SC_CAMCC_7180
+>  	tristate "SC7180 Camera Clock Controller"
+>  	depends on ARM64 || COMPILE_TEST
+> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+> index 2b378667a63f..a46ce0723602 100644
+> --- a/drivers/clk/qcom/Makefile
+> +++ b/drivers/clk/qcom/Makefile
+> @@ -70,6 +70,7 @@ obj-$(CONFIG_QCOM_CLK_SMD_RPM) += clk-smd-rpm.o
+>  obj-$(CONFIG_QCM_GCC_2290) += gcc-qcm2290.o
+>  obj-$(CONFIG_QCM_DISPCC_2290) += dispcc-qcm2290.o
+>  obj-$(CONFIG_QCS_GCC_404) += gcc-qcs404.o
+> +obj-$(CONFIG_QCS_GCC_615) += gcc-qcs615.o
+>  obj-$(CONFIG_QCS_Q6SSTOP_404) += q6sstop-qcs404.o
+>  obj-$(CONFIG_QCS_TURING_404) += turingcc-qcs404.o
+>  obj-$(CONFIG_QDU_ECPRICC_1000) += ecpricc-qdu1000.o
+> diff --git a/drivers/clk/qcom/gcc-qcs615.c b/drivers/clk/qcom/gcc-qcs615.c
+> new file mode 100644
+> index 000000000000..7db55a5d8e80
+> --- /dev/null
+> +++ b/drivers/clk/qcom/gcc-qcs615.c
+> @@ -0,0 +1,3035 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <dt-bindings/clock/qcom,qcs615-gcc.h>
+> +
+> +#include "clk-alpha-pll.h"
+> +#include "clk-branch.h"
+> +#include "clk-rcg.h"
+> +#include "clk-regmap.h"
+> +#include "clk-regmap-divider.h"
+> +#include "clk-regmap-mux.h"
+> +#include "common.h"
+> +#include "gdsc.h"
+> +#include "reset.h"
+> +
+> +enum {
+> +	DT_BI_TCXO,
+> +	DT_BI_TCXO_AO,
+> +	DT_SLEEP_CLK,
+> +};
+> +
+> +enum {
+> +	P_BI_TCXO,
+> +	P_GPLL0_OUT_AUX2_DIV,
+> +	P_GPLL0_OUT_MAIN,
+> +	P_GPLL3_OUT_MAIN,
+> +	P_GPLL3_OUT_MAIN_DIV,
+> +	P_GPLL4_OUT_MAIN,
+> +	P_GPLL6_OUT_MAIN,
+> +	P_GPLL7_OUT_MAIN,
+> +	P_GPLL8_OUT_MAIN,
+> +	P_SLEEP_CLK,
+> +};
+> +
+> +static struct clk_alpha_pll gpll0 = {
+> +	.offset = 0x0,
+> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
+> +	.clkr = {
+> +		.enable_reg = 0x52000,
+> +		.enable_mask = BIT(0),
+> +		.hw.init = &(const struct clk_init_data) {
+> +			.name = "gpll0",
+> +			.parent_data = &(const struct clk_parent_data) {
+> +				.index = DT_BI_TCXO,
+> +			},
+> +			.num_parents = 1,
+> +			.ops = &clk_alpha_pll_ops,
+> +		},
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor gpll0_out_aux2_div = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "gpll0_out_aux2_div",
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.hw = &gpll0.clkr.hw,
+> +		},
+> +		.num_parents = 1,
+> +		.ops = &clk_fixed_factor_ops,
+> +	},
+> +};
 
-Hi,
+Should it be clk_alpha_pll_postdiv_foo_ops ?
 
-> Dne 19. 09. 24 v 22:21 Andre Przywara napsal(a):
-> > On Thu, 19 Sep 2024 20:35:39 +0200
-> > Kry=C5=A1tof =C4=8Cern=C3=BD <cleverline1mc@gmail.com> wrote:
-> >  =20
-> >> Adding disable-wp property for micro SD nodes of Allwinner arm64 devic=
-es.
-> >> Boards were verified from online pictures/tables
-> >> that they have micro SD slots. =20
-> >=20
-> > The changes itself look good to me, and I checked that the boards in
-> > question have a microSD card slot, so do not feature a write-protect
-> > switch.
-> > You seem to be missing the mmc0 node in
-> > sun50i-h616-bigtreetech-cb1.dtsi though, can you please add this file,
-> > to fix the two boards using this file as well?
-> >  =20
->=20
-> I wondered about that one, as it's just a compute module without the
-> actual slot, I thought it was not right to put it there, as
-> someone could wire it to full SD or eMMC in their own board.
-> Maybe put it to sun-50i-h616-bigtreetech-cb1-manta.dts and
-> sun-50i-h616-bigtreetech-pi.dts instead? The dtsi has broken-cd
-> property already, but as it seems it is wired to the connector.
-> I was not sure about this, what are your thoughts?
+> +
+> +static struct clk_alpha_pll gpll3 = {
+> +	.offset = 0x3000,
+> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
+> +	.clkr = {
+> +		.enable_reg = 0x52000,
+> +		.enable_mask = BIT(3),
+> +		.hw.init = &(const struct clk_init_data) {
+> +			.name = "gpll3",
+> +			.parent_data = &(const struct clk_parent_data) {
+> +				.index = DT_BI_TCXO,
+> +			},
+> +			.num_parents = 1,
+> +			.ops = &clk_alpha_pll_ops,
+> +		},
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor gpll3_out_aux2_div = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "gpll3_out_aux2_div",
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.hw = &gpll3.clkr.hw,
+> +		},
+> +		.num_parents = 1,
+> +		.ops = &clk_fixed_factor_ops,
+> +	},
+> +};
 
-Oh, you are right, so this is actually a "bug" in the existing DT.
-Could you please send a separate patch, moving this out of the .dtsi and
-into the two board .dts files, adding the disable-wp on the way?
-Please CC: Martin (who sent the original DTs).
+Should it be clk_alpha_pll_postdiv_foo_ops ?
 
-> > With that added:
-> >  =20
-> >> Signed-off-by: Kry=C5=A1tof =C4=8Cern=C3=BD <cleverline1mc@gmail.com> =
-=20
-> >=20
-> > Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-> >=20
-> > There are some boards which have their base .dtsi in the arch/arm
-> > directory, but we can tackle those separately. =20
->=20
-> I missed them, if I add the property to sunxi-libretech-all-h3-cc.dtsi
-> and sunxi-bananapi-m2-plus.dtsi, could tag you as a reviewer?
+> +
+> +static struct clk_alpha_pll gpll4 = {
+> +	.offset = 0x76000,
+> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
+> +	.clkr = {
+> +		.enable_reg = 0x52000,
+> +		.enable_mask = BIT(4),
+> +		.hw.init = &(const struct clk_init_data) {
+> +			.name = "gpll4",
+> +			.parent_data = &(const struct clk_parent_data) {
+> +				.index = DT_BI_TCXO,
+> +			},
+> +			.num_parents = 1,
+> +			.ops = &clk_alpha_pll_ops,
+> +		},
+> +	},
+> +};
+> +
+> +static struct clk_alpha_pll gpll6 = {
+> +	.offset = 0x13000,
+> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
+> +	.clkr = {
+> +		.enable_reg = 0x52000,
+> +		.enable_mask = BIT(6),
+> +		.hw.init = &(const struct clk_init_data) {
+> +			.name = "gpll6",
+> +			.parent_data = &(const struct clk_parent_data) {
+> +				.index = DT_BI_TCXO,
+> +			},
+> +			.num_parents = 1,
+> +			.ops = &clk_alpha_pll_ops,
+> +		},
+> +	},
+> +};
+> +
+> +static const struct clk_div_table post_div_table_gpll6_out_main[] = {
+> +	{ 0x1, 2 },
+> +	{ }
+> +};
+> +
+> +static struct clk_alpha_pll_postdiv gpll6_out_main = {
+> +	.offset = 0x13000,
+> +	.post_div_shift = 8,
+> +	.post_div_table = post_div_table_gpll6_out_main,
+> +	.num_post_div = ARRAY_SIZE(post_div_table_gpll6_out_main),
+> +	.width = 4,
+> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
+> +	.clkr.hw.init = &(const struct clk_init_data) {
+> +		.name = "gpll6_out_main",
+> +		.parent_hws = (const struct clk_hw*[]) {
+> +			&gpll6.clkr.hw,
+> +		},
+> +		.num_parents = 1,
+> +		.ops = &clk_alpha_pll_postdiv_ops,
+> +	},
+> +};
+> +
+> +static struct clk_alpha_pll gpll7 = {
+> +	.offset = 0x1a000,
+> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
+> +	.clkr = {
+> +		.enable_reg = 0x52000,
+> +		.enable_mask = BIT(7),
+> +		.hw.init = &(const struct clk_init_data) {
+> +			.name = "gpll7",
+> +			.parent_data = &(const struct clk_parent_data) {
+> +				.index = DT_BI_TCXO,
+> +			},
+> +			.num_parents = 1,
+> +			.ops = &clk_alpha_pll_ops,
+> +		},
+> +	},
+> +};
+> +
+> +static struct clk_alpha_pll gpll8 = {
+> +	.offset = 0x1b000,
+> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
+> +	.clkr = {
+> +		.enable_reg = 0x52000,
+> +		.enable_mask = BIT(8),
+> +		.hw.init = &(const struct clk_init_data) {
+> +			.name = "gpll8",
+> +			.parent_data = &(const struct clk_parent_data) {
+> +				.index = DT_BI_TCXO,
+> +			},
+> +			.num_parents = 1,
+> +			.ops = &clk_alpha_pll_ops,
+> +		},
+> +	},
+> +};
+> +
+> +static const struct clk_div_table post_div_table_gpll8_out_main[] = {
+> +	{ 0x1, 2 },
+> +	{ }
+> +};
+> +
+> +static struct clk_alpha_pll_postdiv gpll8_out_main = {
+> +	.offset = 0x1b000,
+> +	.post_div_shift = 8,
+> +	.post_div_table = post_div_table_gpll8_out_main,
+> +	.num_post_div = ARRAY_SIZE(post_div_table_gpll8_out_main),
+> +	.width = 4,
+> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
+> +	.clkr.hw.init = &(const struct clk_init_data) {
+> +		.name = "gpll8_out_main",
+> +		.parent_hws = (const struct clk_hw*[]) {
+> +			&gpll8.clkr.hw,
+> +		},
+> +		.num_parents = 1,
+> +		.ops = &clk_alpha_pll_postdiv_ops,
+> +	},
+> +};
+> +
+> +static const struct parent_map gcc_parent_map_0[] = {
+> +	{ P_BI_TCXO, 0 },
+> +	{ P_GPLL0_OUT_MAIN, 1 },
+> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
+> +};
+> +
+> +static const struct clk_parent_data gcc_parent_data_0[] = {
+> +	{ .index = DT_BI_TCXO },
+> +	{ .hw = &gpll0.clkr.hw },
+> +	{ .hw = &gpll0_out_aux2_div.hw },
+> +};
+> +
+> +static const struct clk_parent_data gcc_parent_data_0_ao[] = {
+> +	{ .index = DT_BI_TCXO_AO },
+> +	{ .hw = &gpll0.clkr.hw },
+> +	{ .hw = &gpll0.clkr.hw },
+> +};
+> +
+> +static const struct parent_map gcc_parent_map_1[] = {
+> +	{ P_BI_TCXO, 0 },
+> +	{ P_GPLL0_OUT_MAIN, 1 },
+> +	{ P_GPLL6_OUT_MAIN, 2 },
+> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
+> +};
+> +
+> +static const struct clk_parent_data gcc_parent_data_1[] = {
+> +	{ .index = DT_BI_TCXO },
+> +	{ .hw = &gpll0.clkr.hw },
+> +	{ .hw = &gpll6_out_main.clkr.hw },
+> +	{ .hw = &gpll0_out_aux2_div.hw },
+> +};
+> +
+> +static const struct parent_map gcc_parent_map_2[] = {
+> +	{ P_BI_TCXO, 0 },
+> +	{ P_GPLL0_OUT_MAIN, 1 },
+> +	{ P_SLEEP_CLK, 5 },
+> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
+> +};
+> +
+> +static const struct clk_parent_data gcc_parent_data_2[] = {
+> +	{ .index = DT_BI_TCXO },
+> +	{ .hw = &gpll0.clkr.hw },
+> +	{ .index = DT_SLEEP_CLK },
+> +	{ .hw = &gpll0_out_aux2_div.hw },
+> +};
+> +
+> +static const struct parent_map gcc_parent_map_3[] = {
+> +	{ P_BI_TCXO, 0 },
+> +	{ P_SLEEP_CLK, 5 },
+> +};
+> +
+> +static const struct clk_parent_data gcc_parent_data_3[] = {
+> +	{ .index = DT_BI_TCXO },
+> +	{ .index = DT_SLEEP_CLK },
+> +};
+> +
+> +static const struct parent_map gcc_parent_map_4[] = {
+> +	{ P_BI_TCXO, 0 },
+> +};
+> +
+> +static const struct clk_parent_data gcc_parent_data_4[] = {
+> +	{ .index = DT_BI_TCXO },
+> +};
+> +
+> +static const struct parent_map gcc_parent_map_5[] = {
+> +	{ P_BI_TCXO, 0 },
+> +	{ P_GPLL0_OUT_MAIN, 1 },
+> +	{ P_GPLL7_OUT_MAIN, 3 },
+> +	{ P_GPLL4_OUT_MAIN, 5 },
+> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
+> +};
+> +
+> +static const struct clk_parent_data gcc_parent_data_5[] = {
+> +	{ .index = DT_BI_TCXO },
+> +	{ .hw = &gpll0.clkr.hw },
+> +	{ .hw = &gpll7.clkr.hw },
+> +	{ .hw = &gpll4.clkr.hw },
+> +	{ .hw = &gpll0_out_aux2_div.hw },
+> +};
+> +
+> +static const struct parent_map gcc_parent_map_6[] = {
+> +	{ P_BI_TCXO, 0 },
+> +	{ P_GPLL0_OUT_MAIN, 1 },
+> +	{ P_GPLL7_OUT_MAIN, 3 },
+> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
+> +};
+> +
+> +static const struct clk_parent_data gcc_parent_data_6[] = {
+> +	{ .index = DT_BI_TCXO },
+> +	{ .hw = &gpll0.clkr.hw },
+> +	{ .hw = &gpll7.clkr.hw },
+> +	{ .hw = &gpll0_out_aux2_div.hw },
+> +};
+> +
+> +static const struct parent_map gcc_parent_map_7[] = {
+> +	{ P_BI_TCXO, 0 },
+> +	{ P_GPLL0_OUT_MAIN, 1 },
+> +	{ P_GPLL3_OUT_MAIN_DIV, 4 },
+> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
+> +};
+> +
+> +static const struct clk_parent_data gcc_parent_data_7[] = {
+> +	{ .index = DT_BI_TCXO },
+> +	{ .hw = &gpll0.clkr.hw },
+> +	{ .hw = &gpll3_out_aux2_div.hw },
+> +	{ .hw = &gpll0_out_aux2_div.hw },
+> +};
+> +
+> +static const struct parent_map gcc_parent_map_8[] = {
+> +	{ P_BI_TCXO, 0 },
+> +	{ P_GPLL0_OUT_MAIN, 1 },
+> +	{ P_GPLL8_OUT_MAIN, 2 },
+> +	{ P_GPLL4_OUT_MAIN, 5 },
+> +	{ P_GPLL0_OUT_AUX2_DIV, 6 },
+> +};
+> +
+> +static const struct clk_parent_data gcc_parent_data_8[] = {
+> +	{ .index = DT_BI_TCXO },
+> +	{ .hw = &gpll0.clkr.hw },
+> +	{ .hw = &gpll8_out_main.clkr.hw },
+> +	{ .hw = &gpll4.clkr.hw },
+> +	{ .hw = &gpll0_out_aux2_div.hw },
+> +};
+> +
+> +static const struct parent_map gcc_parent_map_9[] = {
+> +	{ P_BI_TCXO, 0 },
+> +	{ P_GPLL0_OUT_MAIN, 1 },
+> +	{ P_GPLL3_OUT_MAIN, 4 },
+> +};
+> +
+> +static const struct clk_parent_data gcc_parent_data_9[] = {
+> +	{ .index = DT_BI_TCXO },
+> +	{ .hw = &gpll0.clkr.hw },
+> +	{ .hw = &gpll3.clkr.hw },
+> +};
+> +
+> +static const struct freq_tbl ftbl_gcc_cpuss_ahb_clk_src[] = {
+> +	F(19200000, P_BI_TCXO, 1, 0, 0),
+> +	{ }
+> +};
+> +
+> +static struct clk_rcg2 gcc_cpuss_ahb_clk_src = {
+> +	.cmd_rcgr = 0x48014,
+> +	.mnd_width = 0,
+> +	.hid_width = 5,
+> +	.parent_map = gcc_parent_map_0,
+> +	.freq_tbl = ftbl_gcc_cpuss_ahb_clk_src,
+> +	.clkr.hw.init = &(const struct clk_init_data) {
+> +		.name = "gcc_cpuss_ahb_clk_src",
+> +		.parent_data = gcc_parent_data_0_ao,
+> +		.num_parents = ARRAY_SIZE(gcc_parent_data_0_ao),
+> +		.ops = &clk_rcg2_ops,
+> +	},
+> +};
+> +
+> +static const struct freq_tbl ftbl_gcc_emac_ptp_clk_src[] = {
+> +	F(19200000, P_BI_TCXO, 1, 0, 0),
+> +	F(50000000, P_GPLL0_OUT_AUX2_DIV, 6, 0, 0),
+> +	F(75000000, P_GPLL0_OUT_AUX2_DIV, 4, 0, 0),
+> +	F(125000000, P_GPLL7_OUT_MAIN, 4, 0, 0),
+> +	F(250000000, P_GPLL7_OUT_MAIN, 2, 0, 0),
+> +	{ }
+> +};
+> +
+> +static struct clk_rcg2 gcc_emac_ptp_clk_src = {
+> +	.cmd_rcgr = 0x6038,
+> +	.mnd_width = 0,
+> +	.hid_width = 5,
+> +	.parent_map = gcc_parent_map_5,
+> +	.freq_tbl = ftbl_gcc_emac_ptp_clk_src,
+> +	.clkr.hw.init = &(const struct clk_init_data) {
+> +		.name = "gcc_emac_ptp_clk_src",
+> +		.parent_data = gcc_parent_data_5,
+> +		.num_parents = ARRAY_SIZE(gcc_parent_data_5),
+> +		.ops = &clk_rcg2_ops,
+> +	},
+> +};
+> +
+> +static const struct freq_tbl ftbl_gcc_emac_rgmii_clk_src[] = {
+> +	F(2500000, P_BI_TCXO, 1, 25, 192),
+> +	F(5000000, P_BI_TCXO, 1, 25, 96),
+> +	F(19200000, P_BI_TCXO, 1, 0, 0),
+> +	F(25000000, P_GPLL0_OUT_AUX2_DIV, 12, 0, 0),
+> +	F(50000000, P_GPLL0_OUT_AUX2_DIV, 6, 0, 0),
+> +	F(75000000, P_GPLL0_OUT_AUX2_DIV, 4, 0, 0),
+> +	F(125000000, P_GPLL7_OUT_MAIN, 4, 0, 0),
+> +	F(250000000, P_GPLL7_OUT_MAIN, 2, 0, 0),
+> +	{ }
+> +};
+> +
+> +static struct clk_rcg2 gcc_emac_rgmii_clk_src = {
+> +	.cmd_rcgr = 0x601c,
+> +	.mnd_width = 8,
+> +	.hid_width = 5,
+> +	.parent_map = gcc_parent_map_6,
+> +	.freq_tbl = ftbl_gcc_emac_rgmii_clk_src,
+> +	.clkr.hw.init = &(const struct clk_init_data) {
+> +		.name = "gcc_emac_rgmii_clk_src",
+> +		.parent_data = gcc_parent_data_6,
+> +		.num_parents = ARRAY_SIZE(gcc_parent_data_6),
+> +		.ops = &clk_rcg2_ops,
+> +	},
+> +};
+> +
+> +static const struct freq_tbl ftbl_gcc_gp1_clk_src[] = {
+> +	F(25000000, P_GPLL0_OUT_AUX2_DIV, 12, 0, 0),
+> +	F(50000000, P_GPLL0_OUT_AUX2_DIV, 6, 0, 0),
+> +	F(100000000, P_GPLL0_OUT_MAIN, 6, 0, 0),
+> +	F(200000000, P_GPLL0_OUT_MAIN, 3, 0, 0),
+> +	{ }
+> +};
+> +
+> +static struct clk_rcg2 gcc_gp1_clk_src = {
+> +	.cmd_rcgr = 0x64004,
+> +	.mnd_width = 8,
+> +	.hid_width = 5,
+> +	.parent_map = gcc_parent_map_2,
+> +	.freq_tbl = ftbl_gcc_gp1_clk_src,
+> +	.clkr.hw.init = &(const struct clk_init_data) {
+> +		.name = "gcc_gp1_clk_src",
+> +		.parent_data = gcc_parent_data_2,
+> +		.num_parents = ARRAY_SIZE(gcc_parent_data_2),
+> +		.ops = &clk_rcg2_ops,
+> +	},
+> +};
+> +
+> +static struct clk_rcg2 gcc_gp2_clk_src = {
+> +	.cmd_rcgr = 0x65004,
+> +	.mnd_width = 8,
+> +	.hid_width = 5,
+> +	.parent_map = gcc_parent_map_2,
+> +	.freq_tbl = ftbl_gcc_gp1_clk_src,
+> +	.clkr.hw.init = &(const struct clk_init_data) {
+> +		.name = "gcc_gp2_clk_src",
+> +		.parent_data = gcc_parent_data_2,
+> +		.num_parents = ARRAY_SIZE(gcc_parent_data_2),
+> +		.ops = &clk_rcg2_ops,
+> +	},
+> +};
+> +
+> +static struct clk_rcg2 gcc_gp3_clk_src = {
+> +	.cmd_rcgr = 0x66004,
+> +	.mnd_width = 8,
+> +	.hid_width = 5,
+> +	.parent_map = gcc_parent_map_2,
+> +	.freq_tbl = ftbl_gcc_gp1_clk_src,
+> +	.clkr.hw.init = &(const struct clk_init_data) {
+> +		.name = "gcc_gp3_clk_src",
+> +		.parent_data = gcc_parent_data_2,
+> +		.num_parents = ARRAY_SIZE(gcc_parent_data_2),
+> +		.ops = &clk_rcg2_ops,
+> +	},
+> +};
+> +
+> +static const struct freq_tbl ftbl_gcc_pcie_0_aux_clk_src[] = {
+> +	F(9600000, P_BI_TCXO, 2, 0, 0),
+> +	F(19200000, P_BI_TCXO, 1, 0, 0),
+> +	{ }
+> +};
+> +
+> +static struct clk_rcg2 gcc_pcie_0_aux_clk_src = {
+> +	.cmd_rcgr = 0x6b02c,
+> +	.mnd_width = 16,
+> +	.hid_width = 5,
+> +	.parent_map = gcc_parent_map_3,
+> +	.freq_tbl = ftbl_gcc_pcie_0_aux_clk_src,
+> +	.clkr.hw.init = &(const struct clk_init_data) {
+> +		.name = "gcc_pcie_0_aux_clk_src",
+> +		.parent_data = gcc_parent_data_3,
+> +		.num_parents = ARRAY_SIZE(gcc_parent_data_3),
+> +		.ops = &clk_rcg2_ops,
 
-You can always CC: me, though I would spot it through the linux-sunxi list
-anyway (I have a special eye on this one).
+Should it be using shared ops?
+I think there are other clocks here which are usually
+clk_rcg2_shared_ops.
 
-Anyway, if you feel like it, you can do the same exercise for the arch/arm
-directory, though it's a bit more tricky there, since there are far more
-and also older boards, some indeed with a full scale SD card slot.
-Definitely make this a separate patch, maybe even split this up by SoC or
-SoC groups. For instance I'd believe that any H3 boards would have microSD
-only, courtesy of being "newer". Since those are the ones that share .dtsi
-files with arch/arm64, that's probably a good target for one patch.
+> +	},
+> +};
+> +
 
-It looks like there is not a single wp-gpios property for any of those
-boards. I wonder if disable-wp; is then correct regardless. If there are
-boards with full scale SD slots *and* the WP pin connected, this could be
-fixed later, on a case-by-case base. Compared to the current situation we
-don't seem to lose anything.
-And I just checked the BananaPi(-M1), with a full scale slot, and this one
-doesn't connect the WP pin, so "disable-wp;" is definitely correct there
-as well.
+[...]
 
-> There is also a module called Emlid Neutis, the compute module itself
-> has not a slot, but the board that uses it does, unfortunately they are
-> not separate files, so I do not see a clear solution here, as above.
+> +static struct clk_rcg2 gcc_vsensor_clk_src = {
+> +	.cmd_rcgr = 0x7a018,
+> +	.mnd_width = 0,
+> +	.hid_width = 5,
+> +	.parent_map = gcc_parent_map_9,
+> +	.freq_tbl = ftbl_gcc_vsensor_clk_src,
+> +	.clkr.hw.init = &(const struct clk_init_data) {
+> +		.name = "gcc_vsensor_clk_src",
+> +		.parent_data = gcc_parent_data_9,
+> +		.num_parents = ARRAY_SIZE(gcc_parent_data_9),
+> +		.ops = &clk_rcg2_ops,
+> +	},
+> +};
+> +
+> +
 
-Right, so similar to the Bigtreetech boards above, the split
-between the SoM .dtsi and the board .dts files doesn't seem to be right,
-but it affects more than just the SD card - namely UARTs, USB, audio
-routing, etc.
-So this would be a separate patch as well. I have a board with the N5
-module at home, so happy to verify that.
+Extra empty line
 
-Cheers,
-Andre
+> +static struct clk_branch gcc_aggre_ufs_phy_axi_clk = {
+> +	.halt_reg = 0x770c0,
+> +	.halt_check = BRANCH_HALT_VOTED,
 
-> >  =20
-> >> ---
-> >> Sorry that my last messages were not in mailing list,
-> >> one was wrongly sent and second was rejected, as the bot claimed it
-> >> contained html. ---
-> >> Changes in v2:
-> >> - NEW: Added the property to all Sunxi arm64 boards, as discussed in
-> >> mailing list
-> >> - Link to v1:
-> >> https://lore.kernel.org/r/20240914-b4-nanopineoplus2-fix-mmc0-wp-v1-1-=
-12f54f0d6620@gmail.com
-> >> --- arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts    |
-> >> 1 + arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts         |
-> >> 1 + arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts       |
-> >> 1 + arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts        |
-> >> 1 + arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts      |
-> >> 1 + arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts  |
-> >> 1 + arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts |
-> >> 1 + arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts         |
-> >> 1 + arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts          |
-> >> 1 + arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi           |
-> >> 1 + arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts            |
-> >> 1 + arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi              |
-> >> 1 + arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi    |
-> >> 1 + arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts          |
-> >> 1 + arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts       |
-> >> 1 + arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts |
-> >> 1 + 16 files changed, 16 insertions(+)
-> >>
-> >> diff --git
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts index
-> >> 526443bb736c..18fa541795a6 100644 ---
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts +++
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo-plus2.dts @@
-> >> -136,6 +136,7 @@ &mmc0 { vmmc-supply =3D <&reg_vcc3v3>; bus-width =3D =
-<4>;
-> >>   	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-> >> +	disable-wp;
-> >>   	status =3D "okay";
-> >>   };
-> >>  =20
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts index
-> >> 05486cccee1c..128295f5a5d6 100644 ---
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts +++
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts @@ -88,6
-> >> +88,7 @@ ext_rgmii_phy: ethernet-phy@7 {
-> >>   &mmc0 {
-> >>   	vmmc-supply =3D <&reg_vcc3v3>;
-> >> +	disable-wp;
-> >>   	bus-width =3D <4>;
-> >>   	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-> >>   	status =3D "okay";
-> >> diff --git
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts index
-> >> 3a7ee44708a2..44fdc8b3f79d 100644 ---
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts +++
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts @@ -157,6
-> >> +157,7 @@ eth_mac1: mac-address@fa { &mmc0 {
-> >>   	vmmc-supply =3D <&reg_vcc3v3>;
-> >> +	disable-wp;
-> >>   	bus-width =3D <4>;
-> >>   	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-> >>   	status =3D "okay";
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts index
-> >> ce3ae19e72db..0f29da7d51e6 100644 ---
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts +++
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts @@ -153,6
-> >> +153,7 @@ &ir {
-> >>   &mmc0 {
-> >>   	vmmc-supply =3D <&reg_vcc3v3>;
-> >> +	disable-wp;
-> >>   	bus-width =3D <4>;
-> >>   	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-> >>   	status =3D "okay";
-> >> diff --git
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts index
-> >> b699bb900e13..d4fc4e60e4e7 100644 ---
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts +++
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts @@
-> >> -153,6 +153,7 @@ &ir { &mmc0 {
-> >>   	vmmc-supply =3D <&reg_vcc3v3>;
-> >> +	disable-wp;
-> >>   	bus-width =3D <4>;
-> >>   	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-> >>   	status =3D "okay";
-> >> diff --git
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts
-> >> index ae85131aac9c..3322cc4d9aa4 100644 ---
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts +++
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts @@
-> >> -82,6 +82,7 @@ ext_rgmii_phy: ethernet-phy@1 { &mmc0 {
-> >>   	vmmc-supply =3D <&reg_vcc3v3>;
-> >> +	disable-wp;
-> >>   	bus-width =3D <4>;
-> >>   	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-> >>   	status =3D "okay";
-> >> diff --git
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts
-> >> index 734481e998b8..3eb986c354a9 100644 ---
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts +++
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus2.dts @@
-> >> -79,6 +79,7 @@ hdmi_out_con: endpoint { &mmc0 {
-> >>   	vmmc-supply =3D <&reg_vcc3v3>;
-> >> +	disable-wp;
-> >>   	bus-width =3D <4>;
-> >>   	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;
-> >>   	status =3D "okay";
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts index
-> >> 3be1e8c2fdb9..13a0e63afeaf 100644 ---
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts +++
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts @@ -129,6
-> >> +129,7 @@ ext_rgmii_phy: ethernet-phy@1 { &mmc0 {
-> >>   	vmmc-supply =3D <&reg_cldo1>;
-> >>   	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;
-> >> +	disable-wp;
-> >>   	bus-width =3D <4>;
-> >>   	status =3D "okay";
-> >>   };
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts index
-> >> 6c3bfe3d09d9..ab87c3447cd7 100644 ---
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts +++
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts @@ -131,6
-> >> +131,7 @@ hdmi_out_con: endpoint { &mmc0 {
-> >>   	vmmc-supply =3D <&reg_cldo1>;
-> >>   	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-> >> +	disable-wp;
-> >>   	bus-width =3D <4>;
-> >>   	status =3D "okay";
-> >>   };
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi index
-> >> 13b07141c334..d05dc5d6e6b9 100644 ---
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi +++
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi @@ -94,6
-> >> +94,7 @@ hdmi_out_con: endpoint { &mmc0 {
-> >>   	vmmc-supply =3D <&reg_cldo1>;
-> >>   	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;
-> >> +	disable-wp;
-> >>   	bus-width =3D <4>;
-> >>   	status =3D "okay";
-> >>   };
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts index
-> >> c8b275552872..fa7a765ee828 100644 ---
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts +++
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts @@ -133,6
-> >> +133,7 @@ ext_rgmii_phy: ethernet-phy@1 { &mmc0 {
-> >>   	vmmc-supply =3D <&reg_cldo1>;
-> >>   	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;
-> >> +	disable-wp;
-> >>   	bus-width =3D <4>;
-> >>   	status =3D "okay";
-> >>   };
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi index
-> >> 855b7d43bc50..bb7de37c0d58 100644 ---
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi +++
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix.dtsi @@ -124,6 +124,7
-> >> @@ &mmc0 { pinctrl-0 =3D <&mmc0_pins>;
-> >>   	vmmc-supply =3D <&reg_vcc3v3>;
-> >>   	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;
-> >> +	disable-wp;
-> >>   	bus-width =3D <4>;
-> >>   	status =3D "okay";
-> >>   };
-> >> diff --git
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi index
-> >> fc7315b94406..a3fe39f8e2ca 100644 ---
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi +++
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi @@
-> >> -81,6 +81,7 @@ ext_rgmii_phy: ethernet-phy@1 { &mmc0 {
-> >>   	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-> >> +	disable-wp;
-> >>   	bus-width =3D <4>;
-> >>   	status =3D "okay";
-> >>   };
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts index
-> >> 26d25b5b59e0..dd3bd9cca710 100644 ---
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts +++
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts @@ -52,6
-> >> +52,7 @@ &ir { &mmc0 {
-> >>   	vmmc-supply =3D <&reg_dcdce>;
-> >>   	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-> >> +	disable-wp;
-> >>   	bus-width =3D <4>;
-> >>   	status =3D "okay";
-> >>   };
-> >> diff --git
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts index
-> >> 18b29c6b867f..16c68177ff69 100644 ---
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts +++
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts @@ -111,6
-> >> +111,7 @@ ext_rgmii_phy: ethernet-phy@1 { };
-> >>   &mmc0 {
-> >> +	disable-wp;
-> >>   	bus-width =3D <4>;
-> >>   	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_HIGH>;	/* PF6 */
-> >>   	vmmc-supply =3D <&reg_vcc3v3>;
-> >> diff --git
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-> >> index d6631bfe629f..024377b333c1 100644 ---
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts +++
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts @@
-> >> -71,6 +71,7 @@ &ir { &mmc0 { vmmc-supply =3D <&reg_dldo1>;
-> >>   	cd-gpios =3D <&pio 8 16 GPIO_ACTIVE_LOW>;	/* PI16 */
-> >> +	disable-wp;
-> >>   	bus-width =3D <4>;
-> >>   	status =3D "okay";
-> >>   };
-> >>
-> >> ---
-> >> base-commit: 57f962b956f1d116cd64d5c406776c4975de549d
-> >> change-id: 20240914-b4-nanopineoplus2-fix-mmc0-wp-9d77fb9e6513
-> >>
-> >> Best regards, =20
-> >  =20
->=20
+[...]
 
+> +
+> +static struct clk_branch gcc_pcie_0_pipe_clk = {
+> +	.halt_reg = 0x6b024,
+> +	.halt_check = BRANCH_HALT_SKIP,
+> +	.clkr = {
+> +		.enable_reg = 0x5200c,
+> +		.enable_mask = BIT(4),
+> +		.hw.init = &(const struct clk_init_data) {
+> +			.name = "gcc_pcie_0_pipe_clk",
+> +			.ops = &clk_branch2_ops,
+> +		},
+> +	},
+> +};
+
+No corresponding gcc_pcie_0_pipe_clk_src?
+
+> +
+> +static struct clk_branch gcc_pcie_0_slv_axi_clk = {
+> +	.halt_reg = 0x6b014,
+> +	.halt_check = BRANCH_HALT_VOTED,
+> +	.hwcg_reg = 0x6b014,
+> +	.hwcg_bit = 1,
+> +	.clkr = {
+> +		.enable_reg = 0x5200c,
+> +		.enable_mask = BIT(0),
+> +		.hw.init = &(const struct clk_init_data) {
+> +			.name = "gcc_pcie_0_slv_axi_clk",
+> +			.ops = &clk_branch2_ops,
+> +		},
+> +	},
+> +};
+> +
+
+[...]
+
+-- 
+With best wishes
+Dmitry
 
