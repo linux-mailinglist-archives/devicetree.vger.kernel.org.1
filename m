@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-104135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A74CF97D5D5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 14:52:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D655D97D5D7
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 14:53:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBF641C20C37
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 12:52:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0ECFB1C20306
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 12:53:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ACB516ABC6;
-	Fri, 20 Sep 2024 12:52:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E05016ABC6;
+	Fri, 20 Sep 2024 12:53:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r0RjYg+7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="klR9Xjz9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47E28165EEB
-	for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 12:52:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EB2A166F00
+	for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 12:53:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726836749; cv=none; b=sNkB42Jtodo+R8SGmuwHhnFjUleOZjbTFEYf962dxKXGcY5L1InohkmwNZKqGtBlXP8My4TLTPLv9JKiXLOqTDGp/xsTLply7Dhuz3AIDeL2xtw8kOWOAmtPZIjYCW201AjJbGwNdfKULl2Dyc4BO0YGhxn7tI586Ze2w7P2YUI=
+	t=1726836804; cv=none; b=tnhxbL+cMCnHYa1f2yGUGrYSjOpbBt+2ynCM69JU1OJlJFtrfjr54qJh5ZuxYDAKxs6rUdUGx6W5elTgUNe/ujhnKdzoIxYm7tu6GKzytD3xC7XadDHwlQwHHmuDFgOelb8Dahust3E/6bX/r4QA2PJtKY15Co2TogicEuQ25CQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726836749; c=relaxed/simple;
-	bh=pU3ehJAkU0jPqFcjk5J+iYn9uwIXikjr1eW4PI5CxmM=;
+	s=arc-20240116; t=1726836804; c=relaxed/simple;
+	bh=kl32+29wDMJLKm5y5Ry4I20StAeXq44bgCW38vO9c+U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sa44psWx2ya2MQztl5YFja+BVtVemDWKH7YZQeMJTOjdMVV5ZPZ6Qlp1JCGFwpLFQyPRG0uOvimkuqxv+/+HbHpmOb0VTfg0dZmS42xmDTV1R0AC09DeQmgL3vVUmiS/8RuAsGqob+TG2zPR51CP+HGPY0QaHakO3j5bavlz118=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r0RjYg+7; arc=none smtp.client-ip=209.85.218.48
+	 In-Reply-To:Content-Type; b=J7uqEKbSCPuUfrJfwoesg7ZZPiHBgKoqxHzc6zF3kM+or70OLseVad81TxMLQFyOb9lDs0o2fQCh1gBq8uzHgmrrgrKAqLfNkcXBKowbR3jkCFLMV1Cq3GHqejJuGBgre2m2AH/gequ0ZRKs9vGh+KT3SOV9m0z/Spj57nO+T3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=klR9Xjz9; arc=none smtp.client-ip=209.85.218.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a8a913874b8so18470566b.2
-        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 05:52:26 -0700 (PDT)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a8713b00219so27573966b.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 05:53:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726836745; x=1727441545; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1726836801; x=1727441601; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=NWzuVG9MtNb5Bk1t2LtZcYDbl8S7R6RsKoddHcBsg/8=;
-        b=r0RjYg+7kwzWkAxIpuy+CR6akO2tPpZF88/WEDttvbrqAWAH6yovq6WpkZskq6qLqS
-         vyF8vptNYz4KI7MDa4uaKDVMSKBERPhvmBJtfw3E3c3Eyu1SDKfnk1R6TzsspunfdbQs
-         tbW3dvQAUBJbwQXKlVI+kDTG7VVIhbekO2J2RFmrSXNvMt+p1t6irPyGN1w+7sJVgMyt
-         qUa+pGLjKDLK0zy1PKB7ojA7A5Iox0FT4BHJQ2SG6NnT3ZQRWahbMwQbqGsgzPF1oB7M
-         Osk7GemSNVi7uCeE2tG7iqbNafBo3A/1kfHF3NDhnjBGpTC4dc5a5Q9wVfSf5ekcyt22
-         +Pxw==
+        bh=kl32+29wDMJLKm5y5Ry4I20StAeXq44bgCW38vO9c+U=;
+        b=klR9Xjz9o0BVPsrfzcDeJBZySqxZezNmjhr302G/lYiKo6/fmPL7PCpQGGy2Xw4RIi
+         OmZTBfSLAZ0/906DSuYXwjUf9nhrhN5OMHXGH0ygnFJg73hKx83B1DnFa8g0HriEmq73
+         Ekwp/KltZok2evMTq4htVNKj/VRUjrALP/WamYo0ni+m6LnMRZnbHheI1Ep7KAPkHID2
+         caKj/yh/VOiEcjuklFvMzYp29AjjbKLoV/y5cIkRc9Ji9w4MQ2Vxhr1mh8W2XpcSfxyi
+         M+KPDGbdvsuczg50pImT/c6PoDzAS8lSJPhC/wKt1LatHielgvmLj+Jd21ZBG/E3/RYu
+         H2xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726836745; x=1727441545;
+        d=1e100.net; s=20230601; t=1726836801; x=1727441601;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=NWzuVG9MtNb5Bk1t2LtZcYDbl8S7R6RsKoddHcBsg/8=;
-        b=YgJl4xu4DDtU79np3SHjq4nCczUBYmtVBMRP36R/wtpNbm+biV6hA5/Elb2KzOyKrl
-         kJDHCM4qyWsmWSAAR3QdFKwrdmOLVkxtDwDqq/zISVUMnxbeqgYQWdjKfKPhYRlhC610
-         ETckmXxbCg+uYxQ48qXz8tT3hoJagx5of+CdEFTVissIty5HlAQetp+lVHh3eLOWs1Ee
-         pQajhaGF+43hz3y7QxA64GSji1Fd9is2Jxg3G+hUMBr7ZibroM1vkctvsqxM1zBCzki9
-         VhNOf7dMrnl2AkBOQ7q8BsTgEp1ZBEEYIbra8WCsWDO/XZhLkRpVl0AxgSIAiJcxTtDl
-         FFdA==
-X-Forwarded-Encrypted: i=1; AJvYcCUAUVYU2yEqKaxtiO9vHejHNdS1dbtnzZPXf1yuceCqv+3xvSTeRDEUVD0M6/sHbNtvI8PgH6Q8yWM6@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvGMurRvUrkypvS6V9AvPL1k9gbGoaBPxN0wef6F82SzTzBotm
-	u6dj24cRRe9nywwX9kvHde7vqBYEgXc2rZlwbZTCbpXPNij5zaKYr2GDivHtnNo=
-X-Google-Smtp-Source: AGHT+IFwjSBwayaKrRLq6jwEsNGgmc4+zxrI03jCkDv6qvryck0VLkiiYzvfBpZjZ0yql+4+MtAnVw==
-X-Received: by 2002:a17:907:749:b0:a80:a294:f8a with SMTP id a640c23a62f3a-a90d4fc47ebmr106875766b.1.1726836745486;
-        Fri, 20 Sep 2024 05:52:25 -0700 (PDT)
+        bh=kl32+29wDMJLKm5y5Ry4I20StAeXq44bgCW38vO9c+U=;
+        b=YOcUoXbIb/RKFivuydxfHtqtOSi381jhpeJx0mmZVs8d4AxFRHP58RiwfYPjtMLESu
+         fcl9eHTDhsPJiuuyyRJs2JqZEBnSgYQt+r92x/8Vj9Vclzgjd2at7DBMrajLSjWs1whs
+         ZNf1MpFcZ7j2W1Kmp2Abi4Pcc2vjhpvhV1JfnoUHJ1j+E520Too/0Pzg/bcEanLDLhNs
+         pJ2Lrw6qq+uZtjugsV5c3IzOH1NWW6i8GwCaKdKVN1l3UvnJ/Mq/jkmtvenuy34pncfr
+         nD/cPQ7TmmNH4ulrDg9V4bItdpVYCA0UTGn1Pdu7XkpDGy3by4I74u+07GWjq/7BU/s+
+         k/nQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX2ilHU+fFLVocXG6nVfKtnHGAiigEzq/u0Db8tt3knJnQL7qM8zvMpnOQCw2w2P4GPc9Rqxsaynki+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiQ84/J2/9Ue/bW6Wu8hlHkA5kbjRSmWOVTID3ltOIu0dPnuRv
+	67qM8UdqexCr0O5n3FVo3GCIuOmoVVuiLy+aqExv3yY/7fyZE4BklCavUGyl4ZU=
+X-Google-Smtp-Source: AGHT+IHPEtXrWumPTeLERZTSTGilYRH1uR88CoYUEZ8Bdu/b5t2NO6HcTtdnmaFRMbYsCDW7m7PSSA==
+X-Received: by 2002:a17:907:7ba2:b0:a80:f54a:f428 with SMTP id a640c23a62f3a-a90d4fc3130mr121564466b.2.1726836800754;
+        Fri, 20 Sep 2024 05:53:20 -0700 (PDT)
 Received: from [10.138.0.47] ([83.68.141.146])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9061320b9asm845514066b.189.2024.09.20.05.52.24
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a90613315cbsm843291866b.215.2024.09.20.05.53.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Sep 2024 05:52:25 -0700 (PDT)
-Message-ID: <2c600b98-fc0b-4fbc-a951-ec8cc8964378@linaro.org>
-Date: Fri, 20 Sep 2024 14:52:23 +0200
+        Fri, 20 Sep 2024 05:53:20 -0700 (PDT)
+Message-ID: <e9bf2870-8e17-49c6-b08f-881c2992c45b@linaro.org>
+Date: Fri, 20 Sep 2024 14:53:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +77,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/3] arm64: dts: qcom: Add support for X1-based Dell
- XPS 13 9345
+Subject: Re: [PATCH v1 1/3] dt-bindings: arm: qcom: Add Dell XPS 13 9345
 To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
  Bjorn Andersson <andersson@kernel.org>,
  Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
@@ -87,7 +86,7 @@ To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
 Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 References: <20240919170018.13672-1-alex.vinarskis@gmail.com>
- <20240919170018.13672-4-alex.vinarskis@gmail.com>
+ <20240919170018.13672-2-alex.vinarskis@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -134,105 +133,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240919170018.13672-4-alex.vinarskis@gmail.com>
+In-Reply-To: <20240919170018.13672-2-alex.vinarskis@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 19/09/2024 18:59, Aleksandrs Vinarskis wrote:
-> +			panic-indicator;
-> +		};
-> +	};
-> +
-> +	pmic-glink {
-> +		compatible = "qcom,x1e80100-pmic-glink",
-> +					 "qcom,sm8550-pmic-glink",
-> +					 "qcom,pmic-glink";
+> Document the X1E80100-based Dell XPS laptop.
 
-Misaligned. These start with previous ".
+XPS 13 9435, codenamed (?) Tributo 13? Otherwise I don't get the
+connection between compatible and above.
 
 
-> +		orientation-gpios = <&tlmm 121 GPIO_ACTIVE_HIGH>,
-> +							<&tlmm 123 GPIO_ACTIVE_HIGH>;
-
-
-Even more misaligned. I guess this comment applies to multiple places.
-
-
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		/* Right-side USB Type-C port */
-> +		connector@0 {
-> +			compatible = "usb-c-connector";
-> +			reg = <0>;
-> +			power-role = "dual";
-> +			data-role = "dual";
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					pmic_glink_ss0_hs_in: endpoint {
-> +						remote-endpoint = <&usb_1_ss0_dwc3_hs>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +
-> +					pmic_glink_ss0_ss_in: endpoint {
-> +						remote-endpoint = <&usb_1_ss0_qmpphy_out>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		/* Left-side USB Type-C port */
-> +		connector@1 {
-> +			compatible = "usb-c-connector";
-> +			reg = <1>;
-> +			power-role = "dual";
-> +			data-role = "dual";
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					pmic_glink_ss1_hs_in: endpoint {
-> +						remote-endpoint = <&usb_1_ss1_dwc3_hs>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +
-> +					pmic_glink_ss1_ss_in: endpoint {
-> +						remote-endpoint = <&usb_1_ss1_qmpphy_out>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +	reserved-memory {
-> +		linux,cma {
-> +			compatible = "shared-dma-pool";
-> +			size = <0x0 0x8000000>;
-> +			reusable;
-> +			linux,cma-default;
-> +		};
-> +	};
-> +
-> +	vph_pwr: vph-pwr-regulator {
-
-regulator-foo-bar (so regulator-vph-pwr), which will also point to the
-need of reordering the nods. They are sorted alphabetically.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
