@@ -1,150 +1,139 @@
-Return-Path: <devicetree+bounces-104160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B5DA97D66D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 15:45:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A913A97D6C8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 16:20:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14A2A1F25BE1
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 13:45:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 509B61F21C3D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 14:20:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B733017A5BE;
-	Fri, 20 Sep 2024 13:45:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Dx6zclKJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 477D717BB13;
+	Fri, 20 Sep 2024 14:20:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9249517995E
-	for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 13:45:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19496482CD;
+	Fri, 20 Sep 2024 14:20:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726839910; cv=none; b=DRTVTNsZTbwejUfbLNpFstkz9YbTdlxFCVgSE2WIu4Vppwae7+WFjdRgLEV9QYYNeUsYJZi22EEzIDcU25YJm4N7jyfIojH7cA+xTpCEyV+eCbW6ecrTDgdDhsGBgPHTSuB0RHeQWvZMPbClh6dKL9EOzramw0OSJLomMt85qpo=
+	t=1726842014; cv=none; b=Fw5R/6AQDrlTdmHNXYj4hJAg9QHIVJRKHyyMeJwbRbAgKXI/BRpaECw8qDN1dfgkZK6B+5Hu1W4wxiUSxunWYgM8uz8EqhyZfaHxsy/eQobBPbF7GUpSZadpUHJ1kjM4Dc7XSfRyUrJKQx3lvUYTmUsxho8m/r4Bw/skzpepuq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726839910; c=relaxed/simple;
-	bh=gDN/sgBuhIM3JVUFXVcLakscRVbrc1kau7V11AQd7YE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FVH9Gja/QGAEIb9Kl5NP89uXsheqacvlIoxfoSP8lnN51i458W6x14ylp9emsoGOEDJZ4WEV8YFCIPhCqqAgaC8x4egHg8qAgm1w5RB1EA1JFDgFsshbko5AB9pHHWJ5l2DZPAnQBI/tumOVtiHYS9qWgbgwqhf1D5Ev67Q+aLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Dx6zclKJ; arc=none smtp.client-ip=209.85.219.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e1d0e74f484so1834710276.2
-        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 06:45:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1726839907; x=1727444707; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TdvJ+kr1RTk5qIQIrIC2yclK5Px3xgR1ScHS8srLiXw=;
-        b=Dx6zclKJ3rT3xDoek6YfZ7qdF4/D3AD7RrFuwZRU3e+5IZH1BGasPwFVlJILH3uRKV
-         cPZDAwjDKxaK2jkrDJOr7Bdy/pi09qjt3dZz954N6VtvvMRTgLk7EBxyOuXNIKMXroVl
-         NPwUCRdWUw7y4aJ1pIhtHQ5pCK07i4cjDAAiU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726839907; x=1727444707;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TdvJ+kr1RTk5qIQIrIC2yclK5Px3xgR1ScHS8srLiXw=;
-        b=epqZ338T/6ytvOvXKv7EXeREl2FGVYaA8Af9EBterriN9/mxB81bMCw1sIeoxdWYss
-         Z6HgM6KLGujCs9788ZrArjeDkvXXoSo3KrV8vBWk1ovguPQLahkC/DgC+VyX0GnEIGyU
-         WMDwOVrIOlFpmQz9HY8juXmFckmiC7qzlugPbfyUa6EEcdtzjWFpgnzC0QcgPK1TrPdA
-         q9VV+d6rJSWSQk0saN45HrOQfln8bAH78pBomoxbwqnbQ7OR40Xr/FdNpavHSglf1fXo
-         NKXv1YEKPhuc0Y4QP4BEXRxkjSYZeKYi7o6FpS6k2PQuVWFWJihs+Mi9z78+O2Pl9EFD
-         cvug==
-X-Forwarded-Encrypted: i=1; AJvYcCWlyA78y7KegpQ1AiL823G1Jqw2u/ZTRLAYu3DB+ESC0X0L85qYtaV3Cv3zhTi6l1ot10zlaYJvD02D@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiGS0FQMmDN5tZS2iHwfFpIeHsyr1OstgjaBtmf7SOel7/Ubj1
-	+28gVoBhreIu+2Dfha8zWwLkXb/GjkIaul5gmsa7VqO9+TaSHK8rD12ALutkeHeE339eqzVDNHq
-	ZVw==
-X-Google-Smtp-Source: AGHT+IFn74Qa+m8bkxhR48qW/lZztTGRiyeU2D7ByOyJZQS07OkCHtwXXp82nUVo2bH077AGVydGmw==
-X-Received: by 2002:a05:6902:18d1:b0:e1d:2cc2:b16b with SMTP id 3f1490d57ef6-e2252fbb784mr2497890276.38.1726839906606;
-        Fri, 20 Sep 2024 06:45:06 -0700 (PDT)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e1dc13808dasm2582666276.50.2024.09.20.06.45.05
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Sep 2024 06:45:05 -0700 (PDT)
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e0875f1e9edso1835187276.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 06:45:05 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWnyzW+uYiAxpcGzuHUb8qU9amHnDOWDVn8k7akbVB2s35saBI7izDNmOud344gydkghCohWe5QKYfW@vger.kernel.org
-X-Received: by 2002:a05:6902:2b05:b0:e20:2245:6fa2 with SMTP id
- 3f1490d57ef6-e2252f54996mr1772372276.29.1726839904812; Fri, 20 Sep 2024
- 06:45:04 -0700 (PDT)
+	s=arc-20240116; t=1726842014; c=relaxed/simple;
+	bh=57XzM5CSGWeVZRIhqQSfkAgaC6Mb7CGyUkP+XadZxzA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q2AEefeKMulXF5HPU6CLw/cL5oof4U667r3f08RI9hykKrktmPt8osdyfE19hTRrI5nS5FPqUrMk4ar46fSL6p3WxDVhzy3pD6qgzRsOYH9b7f/MbKo1ZP8AIIhWln5NKsioW/gVBOvPfpBM5zUwgdOfKXzpkVix6kp2XbKBfvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5F7AC1007;
+	Fri, 20 Sep 2024 07:20:38 -0700 (PDT)
+Received: from e130802.arm.com (unknown [10.57.52.210])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5BFCF3F66E;
+	Fri, 20 Sep 2024 07:20:05 -0700 (PDT)
+Date: Fri, 20 Sep 2024 15:19:58 +0100
+From: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: mathieu.poirier@linaro.org, Adam.Johnston@arm.com,
+	Hugues.KambaMpiana@arm.com, Drew.Reed@arm.com, andersson@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org, liviu.dudau@arm.com,
+	lpieralisi@kernel.org, robh@kernel.org, sudeep.holla@arm.com,
+	robin.murphy@arm.com
+Subject: Re: [PATCH v2 1/5] dt-bindings: remoteproc: sse710: Add the External
+ Systems remote processors
+Message-ID: <20240920141958.GA288724@e130802.arm.com>
+References: <CANLsYkwOrtXxObL5MKf30OrUYB_uT=DnGEXUtfjH503r_LyMQA@mail.gmail.com>
+ <20240822170951.339492-1-abdellatif.elkhlifi@arm.com>
+ <20240822170951.339492-2-abdellatif.elkhlifi@arm.com>
+ <gzlncpyzwm7x4jcxtdrthrlv2dofk7u3oxn4taadwog5tt37wo@ot6s6kwukd4k>
+ <20240919093517.GA43740@e130802.arm.com>
+ <222b3b11-151a-4ad0-91ea-54ae8f280bcb@kernel.org>
+ <20240919145741.GA7940@e130802.arm.com>
+ <85a223e9-05a4-4034-87a5-57d3eb9409b7@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240919-topic-apps_smmu_coherent-v1-0-5b3a8662403d@quicinc.com> <20240919-topic-apps_smmu_coherent-v1-2-5b3a8662403d@quicinc.com>
-In-Reply-To: <20240919-topic-apps_smmu_coherent-v1-2-5b3a8662403d@quicinc.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Fri, 20 Sep 2024 06:44:53 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Xrbe1NO+trk1SJ30gHm5jLFjd0bAeG3H46gD+vNFZa1w@mail.gmail.com>
-Message-ID: <CAD=FV=Xrbe1NO+trk1SJ30gHm5jLFjd0bAeG3H46gD+vNFZa1w@mail.gmail.com>
-Subject: Re: [PATCH RFC 02/11] arm64: dts: qcom: sc7180: Affirm IDR0.CCTW on apps_smmu
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, 
-	Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Konrad Dybcio <quic_kdybcio@quicinc.com>, Rob Clark <robdclark@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <85a223e9-05a4-4034-87a5-57d3eb9409b7@kernel.org>
 
-Hi,
+Hi Krzysztof,
 
-On Wed, Sep 18, 2024 at 3:58=E2=80=AFPM 'Konrad Dybcio' via
-cros-qcom-dts-watchers <cros-qcom-dts-watchers@chromium.org> wrote:
->
-> From: Konrad Dybcio <quic_kdybcio@quicinc.com>
->
-> On RPMh-based SoCs, the APPS SMMU advertizes support for cache-coherent
+> >>>>> +  '#extsys-id':
+> >>>>
+> >>>> '#' is not correct for sure, that's not a cell specifier.
+> >>>>
+> >>>> But anyway, we do not accept in general instance IDs.
+> >>>
+> >>> I'm happy to replace the instance ID with  another solution.
+> >>> In our case the remoteproc instance does not have a base address
+> >>> to use. So, we can't put remoteproc@address
+> >>>
+> >>> What do you recommend in this case please ?
+> >>
+> >> Waiting one month to respond is a great way to drop all context from my
+> >> memory. The emails are not even available for me - gone from inbox.
+> >>
+> >> Bus addressing could note it. Or you have different devices, so
+> >> different compatibles. Tricky to say, because you did not describe the
+> >> hardware really and it's one month later...
+> >>
+> > 
+> > Sorry for waiting. I was in holidays.
+> > 
+> > I'll add more documentation about the external system for more clarity [1].
+> > 
+> > Basically, Linux runs on the Cortex-A35. The External system is a
+> > Cortex-M core. The Cortex-A35 can not access the memory of the Cortex-M.
+> > It can only control Cortex-M core using the reset control and status registers mapped
+> > in the memory space of the Cortex-A35.
+> 
+> That's pretty standard.
+> 
+> It does not explain me why bus addressing or different compatible are
+> not sufficient here.
 
-FWIW, the "RPMh-based" confused me a bit. This isn't really related to
-RPMh, right? I think you're just using "RPMh-based" to establish a
-point in time and that Qualcomm added RPMh in the same generation of
-SoCs that they added cache-coherent pagetable walk?
+Using an instance ID was a design choice.
+I'm happy to replace it with the use of compatible and match data (WIP).
+
+The match data will be pointing to a data structure containing the right offsets
+to be used with regmap APIs.
+
+syscon node is used to represent the Host Base System Control register area [1]
+where the external system reset registers are mapped (EXT_SYS*).
+
+The nodes will look like this:
+
+syscon@1a010000 {
+        compatible = "arm,sse710-host-base-sysctrl", "simple-mfd", "syscon";
+        reg = <0x1a010000 0x1000>;
+
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        remoteproc@310 {
+            compatible = "arm,sse710-extsys0";
+            reg = <0x310 4>;
+            ...
+        }
+
+        remoteproc@318 {
+            compatible = "arm,sse710-extsys1";
+            reg = <0x318 4>;
+            ...
+}
 
 
-> pagetable walk via the IDR0 register. This however is not respected by
-> the arm-smmu driver unless dma-coherent is set.
->
-> Mark the node as dma-coherent to ensure this (and other) implementations
-> take this coherency into account.
->
-> Signed-off-by: Konrad Dybcio <quic_kdybcio@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 1 +
->  1 file changed, 1 insertion(+)
+[1]: https://developer.arm.com/documentation/102342/0000/Programmers-model/Register-descriptions/Host-Base-System-Control-register-summary
 
-I remotely booted this on sc7180-trogdor-lazor. Since I'm working
-remotely at the moment I can't check the screen, but I can at least
-confirm that nothing seemed to go boom. I can also confirm that
-without your patch I see:
-
-[    1.580607] arm-smmu 15000000.iommu:         non-coherent table walk
-[    1.580612] arm-smmu 15000000.iommu:         (IDR0.CTTW overridden
-by FW configuration)
-
-...and after your patch I see:
-
-[    1.569350] arm-smmu 15000000.iommu:         coherent table walk
-
-Thus:
-
-Tested-by: Douglas Anderson <dianders@chromium.org>
-
-I'm curious: can this also be turned on for the Adreno SMMU also?
-dmesg still has this after your patch (which makes sense since your
-patch didn't touch the Adreno SMMU):
-
-[    2.423521] arm-smmu 5040000.iommu:  non-coherent table walk
-[    2.423526] arm-smmu 5040000.iommu:  (IDR0.CTTW overridden by FW
-configuration)
-
--Doug
+Cheers
+Abdellatif
 
