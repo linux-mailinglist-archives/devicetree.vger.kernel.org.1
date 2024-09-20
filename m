@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-104115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CCC997D4B5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 13:20:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F6C297D4C1
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 13:22:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B668CB2367F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 11:20:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 742BD1C22224
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 11:22:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BCE0142E9D;
-	Fri, 20 Sep 2024 11:19:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D441814290C;
+	Fri, 20 Sep 2024 11:22:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tmPD1QE/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vFmdDWWr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AF6E143878;
-	Fri, 20 Sep 2024 11:19:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F85714290;
+	Fri, 20 Sep 2024 11:22:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726831175; cv=none; b=d46AKypvmJqmBLKhY04YIF05zyK/T4UtHlaP9Aquvjg0TpIvg5B+3wM4bl21lnIPipaEjlcacI43zzofWpDBN/1bfaaz9c1b6HSnzaRRskPXfOzW4yLdCifr2fYOREtPqUNbdMVRa66Aw0/UN7plKjPQ4Ld0eB9m6f3QKjdvZZo=
+	t=1726831364; cv=none; b=GO6Drtp8K+nRone1/HDmXDFNAjLAJwqZ3nnpFZ3jo5+FeqMQ0HS1d5E8/RWd24He79FmpQjKjHlm18laPFGnRnNzej+GC/xK1qn7/t3PeEAgH4lR6grHanFSEX1qMIsGqYLGxFHPXsdzT3r2+Am4OH6rTMLosmJKTw/eQtk8kII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726831175; c=relaxed/simple;
-	bh=llWAH64/ANWl4OOPEUyebIdpM7wu1CPXf1G/4UuCI/o=;
+	s=arc-20240116; t=1726831364; c=relaxed/simple;
+	bh=8tyhqBlECbRr7pRl3MI38dVCFBGcYr6k0Oe3rALWgtk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OsOR4BYrO04250uYRSlYiuTcX6JPMo5Ir6IJqTjm7O3XNz+4HVTJ9sQ2KbLc8/3M2xJutGM1S95et83LeVhK+pIlL1eK7uGITQvqayKAQMg2m2ublySi0XEDgy8ucInOJ01m2aBKRnlf9xxA0qTG5BrGCyYhenVgPu2QTSjuQpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tmPD1QE/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D875C4CEC3;
-	Fri, 20 Sep 2024 11:19:29 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Gg0bxsL0oeyxog7Ow4TJeb0be82MRNl56JLGPWu9KtQ9EQ0AxtZIi3WkY3ElibO3hXeUQ0EF6fUi71PUUldbOHkRRhUrN1K3Bt6u6bQudGwCzWTHd93/LTeHNtXxjrYmoo+040OPJNIgTsyOmMm4zNwYbPpAp0zq52tHNNg32a8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vFmdDWWr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5777C4CEC3;
+	Fri, 20 Sep 2024 11:22:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726831174;
-	bh=llWAH64/ANWl4OOPEUyebIdpM7wu1CPXf1G/4UuCI/o=;
+	s=k20201202; t=1726831364;
+	bh=8tyhqBlECbRr7pRl3MI38dVCFBGcYr6k0Oe3rALWgtk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tmPD1QE/fp3MdP9n8S1fWTK6PzmyycUK6BU5xNRUmfP0wrdxwakUkV3ytZJlsdSUi
-	 v4DEwSUtEyWjsV6YOHBJWVx67S7ti8XXdqCw3ZmCo3L4+A4o2py/5/XqbMYTuf/qcA
-	 gfNWYENkMjdpbB70eIOYGo3Y5lrwshHP5HoU+PT/6V5h9/8HzuvyN2IZrd5DzA+DAM
-	 glJFuF59GZGZ9sadxk7dSDcdTdvEH5L8N7ClEYAa+WSwQKp+JV9InWa7QdktMBcfRn
-	 G68S5JBbcCmZgiJxb44h0iQ3h8KrTY3HfgDuU0+7I/CiACLdQVdaoz5QPJWg6eI7kR
-	 uK5hs7i8gP+jg==
-Message-ID: <dce6b8b3-2171-47a9-b110-89ad02021fc7@kernel.org>
-Date: Fri, 20 Sep 2024 13:19:26 +0200
+	b=vFmdDWWrbnEdhFB+UQhjMVWhfI8qZ9jPZMOI5cZ0KjZ2pQrMsGs6lWepSB6d9Wh9w
+	 TktJ6i/HxafCqU/zm6u3XOO6/SUQn/7JkjOaV6cKxOw1Kr10wAyuwLgmLQPcNcAHzZ
+	 VR3cmFKe2FF+AuFUbhe9rCGDStqyEYf0bmBTrgictmG8DxCQW/HLJo4lwNKcAhHpku
+	 6uVhiNWCJC+a0bkLP2veuuBSWvYyL0J5to2QrVBN4Ompu1xrHWX2FUZx6z1QJhaV81
+	 OsgWrhkKNVfCDDas83aCcTo4O+ShtaZhPTfW0/qIZ8//oHZYj0Sw0TPBn8ZkOyv7PS
+	 UKTBPlTMpyqfA==
+Message-ID: <cd40d57c-51d2-480e-80ef-7d87dd96a6b2@kernel.org>
+Date: Fri, 20 Sep 2024 13:22:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/9] dt-bindings: x86: Add a binding for x86 wakeup
- mailbox
-To: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-Cc: tglx@linutronix.de, mingo@redhat.com, bp@alien8.de,
- dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, kys@microsoft.com,
- haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
- rafael@kernel.org, lenb@kernel.org, kirill.shutemov@linux.intel.com,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-hyperv@vger.kernel.org, linux-acpi@vger.kernel.org
-References: <20240823232327.2408869-1-yunhong.jiang@linux.intel.com>
- <20240823232327.2408869-3-yunhong.jiang@linux.intel.com>
- <ujfqrllrii6iijlhbwx3bltpjogiosw4xx5pqbcddgpxjobrzh@xqqrfxi5lv3i>
- <20240827204549.GA4545@yjiang5-mobl.amr.corp.intel.com>
- <20240910061227.GA76@yjiang5-mobl.amr.corp.intel.com>
- <1d0ba3fc-1504-4af3-a0bc-fba86abe41e8@kernel.org>
- <20240919191725.GA11928@yjiang5-mobl.amr.corp.intel.com>
- <20240919221431.GA14771@yjiang5-mobl.amr.corp.intel.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy:
+ Document the X1E80100 QMP PCIe PHY Gen4 x8
+To: Konrad Dybcio <konradybcio@kernel.org>, Qiang Yu <quic_qianyu@quicinc.com>
+Cc: manivannan.sadhasivam@linaro.org, vkoul@kernel.org, kishon@kernel.org,
+ robh@kernel.org, andersson@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+ abel.vesa@linaro.org, quic_msarkar@quicinc.com, quic_devipriy@quicinc.com,
+ dmitry.baryshkov@linaro.org, kw@linux.com, lpieralisi@kernel.org,
+ neil.armstrong@linaro.org, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20240913083724.1217691-1-quic_qianyu@quicinc.com>
+ <20240913083724.1217691-2-quic_qianyu@quicinc.com>
+ <lrcridndulcurod7tc5z76tmfhcf5uqumkw7cijsqicmad2rim@blyor66wt4e4>
+ <b36819ed-0e4a-4820-8c38-ac9d2c6f0f28@quicinc.com>
+ <2acbaedc-e577-4685-875c-ba599d845b19@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,40 +112,29 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240919221431.GA14771@yjiang5-mobl.amr.corp.intel.com>
+In-Reply-To: <2acbaedc-e577-4685-875c-ba599d845b19@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/09/2024 00:15, Yunhong Jiang wrote:
->>>
->>>>
->>>> For your "validated by the tools", can you please share the tools you used to
->>>> validate the schema? I used "make dt_binding_check" per the
->>>> submitting-patches.rst but I think your comments is about another tool.
->>>
->>> See writing-schema document.
->> Yes, I figured out in the end that the validate tools means the dt-schema tools.
+On 19/09/2024 17:37, Konrad Dybcio wrote:
+> On 19.09.2024 4:03 PM, Qiang Yu wrote:
 >>
->> Thank you
->> --jyh
+>> On 9/16/2024 11:15 PM, Krzysztof Kozlowski wrote:
+>>> On Fri, Sep 13, 2024 at 01:37:20AM -0700, Qiang Yu wrote:
+>>>> PCIe 3rd instance of X1E80100 support Gen 4x8 which needs different 8 lane
+>>>> capable QMP PCIe PHY. Document Gen 4x8 PHY as separate module.
+>>> And this is really different hardware? Not just different number of lanes? We discussed it, but I don't see the explanation in commit msg.
+>> Yes, PCIe3 use a different phy that supports 8 lanes and provides
+>> additional register set, txz and rxz. It is not a bifurcation mode which
+>> actually combines two same phys like PCIe6a. It's also not just different
+>> number of lanes. Will explain this in commit msg.
 > 
-> One thing just come to my mind. The
-> Documentation/devicetree/bindings/x86/wakeup.yaml only adds one property,
-> wakeup-mailbox-addr, to the cpus node, and it does not specify any new object.
-> Per my understanding, the json schema file normally specifies a new object.
-> Is my change a supported scenario in current Documentation/devicetree?
+> Krzysztof, this PHY is new and has a different hardware revision (v6.30 as
+> opposed to v6.20? of the other ones)
 
-I think that's not related. You can add properties per specific devices,
-but (as I said) you do not have a compatible. Compatible represents a
-specific device. You do not have it. Look at the cpus.yaml schema.
-
-> 
-> I checked similar scenario like arm/cpu-enable-method/nuvoton and
-> npcm750-smp/cpu-enable-method/al,alpine-smp, they don't present as a json
-> schema file. Wonder if it's because the same reason.
-
-Rather no one cares about that hardware.
-
+It's fine for me then, but I expect commit msg to say this. For I am a
+bear of very little brain, and I forget the topic right after I close
+the email.
 
 Best regards,
 Krzysztof
