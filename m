@@ -1,88 +1,62 @@
-Return-Path: <devicetree+bounces-104056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104057-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAA0197D242
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 10:03:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6B4E97D25F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 10:18:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 785031F25863
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 08:03:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41CBC2868DD
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 08:18:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D22BC78C91;
-	Fri, 20 Sep 2024 08:02:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89D072B9B7;
+	Fri, 20 Sep 2024 08:17:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="tGZc51sA"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="XkbuQzK5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2047.outbound.protection.outlook.com [40.107.117.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A872762EF;
-	Fri, 20 Sep 2024 08:02:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726819357; cv=fail; b=QYndyQZg9B5cA2GcZyv7sHQ6VPlYzIb/RlPWUp+/0IFRT2GSrbNjkFIxiR0u7c5is6d6ouoGIl8VeXKX8wjo7Ipt1RcerEfrjIgmoehUa6iutmR41bF644Xl2+S/koST1vuEJ0izaJxfuA/1ZuxMhXrlMcdhvSfHKYLmEG1YyL8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726819357; c=relaxed/simple;
-	bh=bC1vaDlTXL6KkbaCo+RYJbMY8DmwtNVaRMxayp36R9E=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=vAUQczIqRKIPJAbBbVd3Q8thJ8b8zL718U3l96O7V7jazXnMg8QhADfBVfBDkN9psg/xGrfjPYxPzCze499rnCqID0f9kOalMa5Oh+HD47IRwMntDllNXm5Ci+Ed7cnp4Zg3AJzUiL2DR7laP5+odW1CLQT2I7+YqwpnvsSq4Ok=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=tGZc51sA; arc=fail smtp.client-ip=40.107.117.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IEBTCIN9L09y12JqtJHDKBi30Bvt5NA3XZxvw1diqgLzIhtCWU3R85XhVMzskSQkXmsFz1aXSXE/V3s9Gy2mfGiBsIBxwKELvvuwRM/OqWsidDAm8H4vfFgiqpkADDfJLQYDDuhszSAOQCDzh+VPtXkEyeZqnnZd+q0Z2oIMH/N6j8ijewBAMqCD/Iexgtb/vRy5BCIy7XC2DpbhlHKBGcjGWyW2D4vYGHhXN8UB7b3Iou4N+nBTcJPZNdvuOSJZaA6i2MtkDzqAkErzINc4NNLycts7CNGu0cqBmXdSzk37B0aQwe+rctwklfJt08GcEkMv/bXo3dhXMSY/TWCShg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YCjI4Z4PhO+v3yk3B6XlKuJlSm6m/P2L9KbKt/2/bxE=;
- b=v02EoFHeOtepwAwilYsWG1gBX6NA7+z02VRVnReMAXhmXhdaBXGYUo7GoaVNFKcVymFn2jtVYHm0/dYQxy34DG4JkszNDY9gVFhakdzSN033zs1piTJPpt86ocL8Bb9x9P6kVd3O6P1djKfEDkkYhM2gvonWRZ98f5pNKHaMJDLdYTUjl4Yi5epASwkxhuxQpcuulHcOyYEgzBm0pZuHbzGy0VpwiHrJCCwQ7KGq4LGXrazp/8sGpIBvvcr4OxizwLo792PF1sud+LU8V7DPiOQlVSkcOSqFWjgPymnI5tzGpQsVVh3t7FvndzpY7qMbXsNrsUBR6hZc/IVgRYZj4A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
- (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YCjI4Z4PhO+v3yk3B6XlKuJlSm6m/P2L9KbKt/2/bxE=;
- b=tGZc51sAnu02UAzkFWrWhew7afcUGbZTzHcn5vDOHalH4HzDMsqsNI0Uv0SFt+sA5BV/9eTFmN+tlIFkdBhayCvNArPJzseffo/YpO8ghZfiMHcUQixzKiWFP2UtX0Rc6f258EsczY5Ghmo5GIU9Wy7EX4TE695nOFEYj5QDwaJliDFDWYUXidCgvq2jBQYYLHmWUAJnMP/coXSVz9xXgTcqgQGk7YkD1uP+8GAPta+quxuG6iD9RSwWFf4xQVSgnCY5ApLNNvEd4ncxZei99wdcHvgNagPZuuGEj+arEIZosYl3FP0zPM6Lix31XFKUF6Zw480jcWHquflf7hwFAw==
-Received: from SI1PR02CA0017.apcprd02.prod.outlook.com (2603:1096:4:1f4::10)
- by TYSPR04MB7275.apcprd04.prod.outlook.com (2603:1096:400:471::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.16; Fri, 20 Sep
- 2024 08:02:29 +0000
-Received: from HK3PEPF0000021A.apcprd03.prod.outlook.com
- (2603:1096:4:1f4:cafe::11) by SI1PR02CA0017.outlook.office365.com
- (2603:1096:4:1f4::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.29 via Frontend
- Transport; Fri, 20 Sep 2024 08:02:29 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
- smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
-Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
- designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
- client-ip=211.20.1.79; helo=localhost.localdomain;
-Received: from localhost.localdomain (211.20.1.79) by
- HK3PEPF0000021A.mail.protection.outlook.com (10.167.8.36) with Microsoft SMTP
- Server id 15.20.7918.13 via Frontend Transport; Fri, 20 Sep 2024 08:02:28
- +0000
-From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-To: patrick@stwcx.xyz,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>,
-	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3869147A66;
+	Fri, 20 Sep 2024 08:17:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726820252; cv=none; b=LvVjdcwm1qPlSUZpbe8bMsSmSq2CDSSGVeiQ+YXMc94hD8lrauFGn3hC/FEmBBcKmjDZTcC2vt5Efzfmx31Zf3WlC2qZHxGO5Fd6/0Abs5CJsiaryyu6AYozDCbN+d1mKcLIQi6cu1IyPWR8SgStoO+V7HliLSUOtEWtYNiVcKQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726820252; c=relaxed/simple;
+	bh=hWGgq2pgUIxxCz3y0vgKfzl/6h1fW4m3X1VA+6U0VK8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TrXdqNcIhzvDTYP0EXdkILmzMaMo/m/5erUyVcS5xUcBgH75AZ0gximtMi9D/oq0p4y7krZ+JEk7kX7dqhLM4ZMLR6I2hicYqIWzr8dUvAJVI+Ozk2ccBT2+6lUPRT594pGeyqtxu0aXVUqBt19Dqp1RGnSHZ/s182mjjFMvKUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=XkbuQzK5; arc=none smtp.client-ip=220.197.31.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=BEGbI
+	sQTh+g3JWARPrbSM2LwRVGpbQaDzPpAvAWnYdQ=; b=XkbuQzK5OxEZbDHFOwj2N
+	Psnjq7i20w5qVIu/QhkgSmvMfmRVaz9p2PCh8vadah/rSPQdKKDhrvA91htuxsjj
+	6Zm3voIpxCnswed2YVrPsKNHT9fPN3F9gILxRJI9cZUAxCkF7IT9DGKRHfCxN/h+
+	Aq1MpTNYkN2X5xSBhOFVVc=
+Received: from ProDesk.. (unknown [58.22.7.114])
+	by gzsmtp2 (Coremail) with SMTP id sSgvCgBHPThcL+1mkXNnBg--.49626S2;
+	Fri, 20 Sep 2024 16:16:32 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: hjc@rock-chips.com,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	s.hauer@pengutronix.de,
 	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] ARM: dts: aspeed: yosemite4: Enable spi-gpio setting for TPM
-Date: Fri, 20 Sep 2024 16:02:26 +0800
-Message-Id: <20240920080227.711691-1-Delphine_CC_Chiu@wiwynn.com>
-X-Mailer: git-send-email 2.25.1
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	derek.foreman@collabora.com,
+	minhuadotchen@gmail.com,
+	detlev.casanova@collabora.com,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: [PATCH v3 00/15] VOP Support for rk3576
+Date: Fri, 20 Sep 2024 16:16:24 +0800
+Message-ID: <20240920081626.6433-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,94 +64,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: HK3PEPF0000021A:EE_|TYSPR04MB7275:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: fdeeac0d-6cd3-4ab3-2591-08dcd94a9284
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|82310400026|7416014|36860700013|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?jW94vp0s6WfkdB0u1KNql1Up78u6DDtPfNmyad8mt+p/0RsmctZxHUqphDsM?=
- =?us-ascii?Q?9bvvFB0LBJpsoG0S7DO3c8KbO882p/bcUXaTyfSJ9Dh18asgIAiOOTC8jZLA?=
- =?us-ascii?Q?JX5XjJ+25rpEIPgt7+C+HBwJr4Jr44eCgXcLPZ3jWj9oIFmRVIZO79qokiyN?=
- =?us-ascii?Q?BgFWW7EbYDLrNS0xHPdwWslNqPD/no+LuDIqxzyQtzV9jesU8JLcEZKyZCI4?=
- =?us-ascii?Q?qa/3oQXfvSFi/Dqj6anw+2XAeWlNPzuK8nxunyMST/WQjjTdcl9v4baM7O54?=
- =?us-ascii?Q?WJ6irLJ5cUcr6RqsNzyT881rHroRZHmrG2XnqEZiY4u7hFopS/IMC15EEOsL?=
- =?us-ascii?Q?Hen3CK5rtNnx4mgdc5gAfE1whbfmtOl0zAiwD2H8NsBTSU/CsIO8JRAgHxgp?=
- =?us-ascii?Q?JCWwmHtnAdogwqxB+Al2kSR1G5GIdTHw9vpanG+44GQxt3gnfdjPgMZ3dLhD?=
- =?us-ascii?Q?Gs4abgD2BU+9h14v5/lMxKb/2hSe5EMiKt4EJYfSprgvTjKLVKD9nKTcdEkt?=
- =?us-ascii?Q?rUX5IS4N9akBWmcvryzpBUhaDDbIMkg0lMBXeeudzyJs3HecpuvRJiNXmBUn?=
- =?us-ascii?Q?mXgT3PlDOuARz8iLu+vYLHd/AZdyqjqjpwGGh9rPqYihHA20kFvO7nitJfr+?=
- =?us-ascii?Q?mROwjA4hG2MV1IpcbifRympZTZd4UVbgJBk7EeyVP7GuJgISweL3wfpQ47BK?=
- =?us-ascii?Q?p7UIVPJmyiPD92S9+ghNpnoSl4/YNbnsbU8JPEKeIAZRDkr+v0eq+fznBVBC?=
- =?us-ascii?Q?zVmKi8JJQzdhabGxO+wqGMq/FuX194goRtzDytGYgFkaIwpVgjxBrknlZpO2?=
- =?us-ascii?Q?yrTVg0v2H30+mJJ7Y+wNlaXB07cqIVUo9MByFF9nWMKZpllTUMa3KDDJAT8+?=
- =?us-ascii?Q?4nhUYSFRdxqvV+y8wPU0DuV7F8+FgY8Ej0MzjPvujaYXOD2QJSAxeVfZL9ET?=
- =?us-ascii?Q?NkF2j1yZZJik/AFb4q5AhHR00e0rnME6wxaDfYqCgTlMtH+8aJwMMzTcAf95?=
- =?us-ascii?Q?yzGDpjNNsXVESLMr7N9bNt/T6FFXdEBZXVIvzNk/crYwCSzxNXsBfhZzPeqT?=
- =?us-ascii?Q?vRMDf5y8WHNkVJl9hc/MIiq+gawuNCD6rdyOl+X7hO4NR+YQHKf841NO4px4?=
- =?us-ascii?Q?W100u4gt0EkyjtjJtXFjM0xCGzpELV5bd5amyIH9RhFiaIodke3yy9dkYay2?=
- =?us-ascii?Q?NFKgmpHSXyUnc2q5HQ2NINP/FOQmcBt5b1tUIMQoE+Vuczp7kRlDTV7Mzd9B?=
- =?us-ascii?Q?DxU2gAXVD7Z/lE6Am8XwfW7oSAd2YqmvtXhj5KRfm/Q2AofcvOj9GBKgGL1S?=
- =?us-ascii?Q?4uDmDji3ZyKaQi4Kcoj7j1V/WcuRFUM/Lni11u666RwFWn658+++4iIfxGuD?=
- =?us-ascii?Q?ER7SJcw=3D?=
-X-Forefront-Antispam-Report:
-	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(376014)(82310400026)(7416014)(36860700013)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: wiwynn.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2024 08:02:28.6365
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fdeeac0d-6cd3-4ab3-2591-08dcd94a9284
-X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
-X-MS-Exchange-CrossTenant-AuthSource:
-	HK3PEPF0000021A.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR04MB7275
+X-CM-TRANSID:sSgvCgBHPThcL+1mkXNnBg--.49626S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxuF1fXF4UAF4UGF13uw4UArb_yoW5Xr15p3
+	98CryrXrZ7CFyjqrn7Gw4UCrWSqwnayay7Ww4fG3ZrA3WSyFnrKr9xuFn8ZrZIq3WxZF4U
+	Crs7X34UGF4IvFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UtWrAUUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0hRgXmWX0hsNzwABsA
 
-From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+From: Andy Yan <andy.yan@rock-chips.com>
 
-Enable spi-gpio setting for TPM device in yosemite4.
 
-Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
-Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
----
- .../aspeed/aspeed-bmc-facebook-yosemite4.dts   | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Thanks for the basic work from Collabora, I can bringup a HDMI
+display out on rk3576.
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-index 98477792aa00..869aa8b3f411 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-@@ -34,6 +34,24 @@ iio-hwmon {
- 				<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
- 				<&adc1 0>, <&adc1 1>;
- 	};
-+
-+	spi {
-+		compatible = "spi-gpio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		sck-gpios = <&gpio0 ASPEED_GPIO(X, 3) GPIO_ACTIVE_HIGH>;
-+		mosi-gpios = <&gpio0 ASPEED_GPIO(X, 4) GPIO_ACTIVE_HIGH>;
-+		miso-gpios = <&gpio0 ASPEED_GPIO(X, 5) GPIO_ACTIVE_HIGH>;
-+		cs-gpios = <&gpio0 ASPEED_GPIO(X, 0) GPIO_ACTIVE_LOW>;
-+		num-chipselects = <1>;
-+
-+		tpm@0 {
-+			compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
-+			reg = <0>;
-+			spi-max-frequency = <33000000>;
-+		};
-+	};
- };
- 
- &uart1 {
+PATCH 1 is a carryover from the working when add support for rk3588,
+        is very usefull when some people want me help debug some issue
+        online, so I really hope it can be merged at this round.
+PATCH 2~5 are bugfix of rk3588 alpha blending which report and test by
+         Derek
+PATCH 6~13 are preparations for rk3576 support
+PATCH 14~15 are real support for rk376
+
+The hdmi depends on WIP patch from Cristian[1]
+I test it with a 1080P/4K HDMI output with modetest and weston output.
+
+If there are some one want to have a try, I have a tree here[2]
+
+[0] https://patchwork.kernel.org/project/linux-rockchip/cover/20231211115547.1784587-1-andyshrk@163.com/
+[1] https://lore.kernel.org/lkml/20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com/
+[2] https://github.com/andyshrk/linux/tree/rk3576-vop2-upstream-v3
+
+Changes in v3:
+- Add comments for why we should treat rk3566 with special care.
+- Add hardware version check
+- Add description for newly added interrupt
+- Share the alpha setup function with rk3568
+- recoder the code block by soc
+
+Changes in v2:
+- split it from main patch add support for rk3576
+- Add platform specific callback
+- Introduce vop hardware version
+- Add dt bindings
+- Add platform specific callback
+
+Andy Yan (15):
+  drm/rockchip: vop2: Add debugfs support
+  drm/rockchip: Set dma mask to 64 bit
+  drm/rockchip: vop2: Fix cluster windows alpha ctrl regsiters offset
+  drm/rockchip: vop2: Fix the mixer alpha setup for layer 0
+  drm/rockchip: vop2: Fix the windows switch between different layers
+  drm/rockchip: vop2: include rockchip_drm_drv.h
+  drm/rockchip: vop2: Support 32x8 superblock afbc
+  drm/rockchip: vop2: Add platform specific callback
+  drm/rockchip: vop2: Support for different layer selet configuration
+    between VPs
+  drm/rockchip: vop2: Introduce vop hardware version
+  drm/rockchip: vop2: Register the primary plane and overlay plane
+    separately
+  drm/rockchip: vop2: Set plane possible crtcs by possible vp mask
+  drm/rockchip: vop2: Add uv swap for cluster window
+  dt-bindings: display: vop2: Add rk3576 support
+  drm/rockchip: vop2: Add support for rk3576
+
+ .../display/rockchip/rockchip-vop2.yaml       |   13 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |    4 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c  | 1572 ++++---------
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.h  |  274 ++-
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c  | 1948 ++++++++++++++++-
+ 5 files changed, 2683 insertions(+), 1128 deletions(-)
+
 -- 
-2.25.1
+2.34.1
 
 
