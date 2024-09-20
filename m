@@ -1,139 +1,138 @@
-Return-Path: <devicetree+bounces-104121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D81D97D51F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 13:59:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8CFE97D52C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 14:03:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0DB61F246F0
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 11:59:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 649E31F24AD6
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 12:03:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD9FC14A093;
-	Fri, 20 Sep 2024 11:59:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Fayq3Nup"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5706714B970;
+	Fri, 20 Sep 2024 12:02:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6030314900E;
-	Fri, 20 Sep 2024 11:59:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A51A14D710
+	for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 12:02:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726833587; cv=none; b=NQEr5EBD9W0zijRo4cRmdUdFHrAaEvz/wJ5hq/sgt6YJZwTVYzFVtfqKUqbG5IDUACg73NucICkymhTXY17weodiFMPR7iiQmqTOgvplpjIs1QdXwSZRafppinoFOy22BfOyVr6Yr6QqO/5LokGmoBxifWKDMKh8FWcD4qQQj5o=
+	t=1726833773; cv=none; b=tXEZjYVmt7O06ESNt7QdzSlk+J6W9JdqwVsHLo4+wV1Z1qU/580l+nZUBIIeS5QfzBAe3TA0HeK8cNR5zJzQwM8s/dJq4JcZ55Hs3fwWPSfZohFu30pSCs4dvIMcCB1GH2hfrsEv090dgT80tmbc85hzqZktg/sULpOtl1IVooE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726833587; c=relaxed/simple;
-	bh=twR9/xKgcPJCn0wKq/pnL447/Bf46ge3JFqvvLcj1NY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=E/TXyosCW1vhRIllipSp7GPTd3xH31bOeJowoXuMTyMXd0HwNBLIeky1yMPv32SBKikS+QPeQ2bUIiKD1p3+Lmgmr1nuuFUUXAxSNkJWqwRNQ/6uRWXLkEopcawmIXWJ/2gbfwQY8lkyuztFvv2ILMeY43O+gdvlvrWBKkQ1M5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Fayq3Nup; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48K84XHP018700;
-	Fri, 20 Sep 2024 11:59:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Y1w2MfHxG82l7hDgOZjGvEcyjxV3FDlBOCExbl4smX4=; b=Fayq3Nupc+DexYdl
-	BA8EfGIFNm/LqfUhPSfCfbCFeC18VDBWyYd5YM+jml3KlC0h9XHpJkoYzCe3xRy/
-	L6SigVOzk4xIUQV1C57TZgYXAIhmPhFv8fHESGdt0hNWdFpvFJUOqFFITOWVsw+H
-	mW7b210SHJRy6/+VC72mWvcgmrXfDKAjQmPsDD0tpTAP/SFnfOaMK8e06YqeqE2Y
-	5vJTeNqhKD5yIqx2jm114IZm3cea6R/oIyM0WXmaMiwdHOhYlAVCKgI15nLwFkDF
-	eUKgNM11mjOeF73yLmbGQXQoSa0+T+8RW2YLwLx9T630fp31PdR3v2kohYwOIp67
-	MCwdiw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41n4j712au-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Sep 2024 11:59:33 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48KBxWkh028033
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Sep 2024 11:59:32 GMT
-Received: from [10.50.45.132] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 20 Sep
- 2024 04:59:26 -0700
-Message-ID: <e8b30b47-2862-4ea6-97cf-2e5c42c514a7@quicinc.com>
-Date: Fri, 20 Sep 2024 17:29:23 +0530
+	s=arc-20240116; t=1726833773; c=relaxed/simple;
+	bh=MLHx3Gi4RClFOYYxLobeZr9bwE8N23lWkMqwLS2hJWU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QZWXJilU8onTn4yOoKC9rNc9MDJM2tBdKoCXw1zd5evs9oIrqAV1PzHoocoSmE2qeGuJ/quHJYDTAzA+THbN3UiIiDwEiKQJsO5kTXpC6N4Bm/wx9IyGZAs4fdfOpYJ21yxufiMgQmwwycDDaS8/Ef1ss1P8vTMFQOEl0z7jYXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1srcLA-0000yX-UX; Fri, 20 Sep 2024 14:02:24 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sha@pengutronix.de>)
+	id 1srcLA-000FEL-7y; Fri, 20 Sep 2024 14:02:24 +0200
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1srcLA-001tQr-0T;
+	Fri, 20 Sep 2024 14:02:24 +0200
+Date: Fri, 20 Sep 2024 14:02:24 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Pankaj Gupta <pankaj.gupta@nxp.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [EXT] Re: [PATCH v7 4/5] firmware: imx: add driver for NXP
+ EdgeLock Enclave
+Message-ID: <Zu1kUDb5dfB5dRbe@pengutronix.de>
+References: <20240904-imx-se-if-v7-0-5afd2ab74264@nxp.com>
+ <20240904-imx-se-if-v7-4-5afd2ab74264@nxp.com>
+ <Zt7n0AxGEw-ZXbui@pengutronix.de>
+ <AS8PR04MB85932B4E47EFC519B0EF6D9A95632@AS8PR04MB8593.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/8] arm64: dts: qcom: add IPQ5424 SoC and rdp466 board
- support
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <ulf.hansson@linaro.org>,
-        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
-        <p.zabel@pengutronix.de>, <geert+renesas@glider.be>,
-        <neil.armstrong@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <quic_varada@quicinc.com>
-References: <20240913121250.2995351-1-quic_srichara@quicinc.com>
- <20240913121250.2995351-8-quic_srichara@quicinc.com>
- <fyoh72in62sfmsw3syqswr2p3pcv26zoce2tvlx53mu4lpoakx@ixyvy4oylms3>
- <10887d65-e643-4ab2-a9e7-af0f829e88ec@kernel.org>
-Content-Language: en-US
-From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <10887d65-e643-4ab2-a9e7-af0f829e88ec@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: MbuGF4Mb9U91R7SattFhlkAB1Rnw9pa4
-X-Proofpoint-GUID: MbuGF4Mb9U91R7SattFhlkAB1Rnw9pa4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=885
- mlxscore=0 malwarescore=0 bulkscore=0 priorityscore=1501 clxscore=1015
- adultscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2408220000
- definitions=main-2409200087
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AS8PR04MB85932B4E47EFC519B0EF6D9A95632@AS8PR04MB8593.eurprd04.prod.outlook.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi Pankaj,
 
-
-On 9/19/2024 6:01 PM, Krzysztof Kozlowski wrote:
-> On 13/09/2024 14:52, Dmitry Baryshkov wrote:
->> On Fri, Sep 13, 2024 at 05:42:49PM GMT, Sricharan R wrote:
+On Thu, Sep 19, 2024 at 06:43:45AM +0000, Pankaj Gupta wrote:
+> > +static void se_load_firmware(const struct firmware *fw, void 
+> > +*context) {
+> > +     struct se_if_priv *priv = context;
+> > +     const struct se_if_node_info *info = priv->info;
+> > +     phys_addr_t se_fw_phyaddr;
+> > +     u8 *se_fw_buf;
+> > +     int ret;
+> > +
+> > +     if (!fw) {
+> > +             if (priv->fw_fail > MAX_FW_LOAD_RETRIES)
+> > +                     dev_dbg(priv->dev,
+> > +                              "External FW not found, using ROM FW.\n");
+> > +             else {
+> > +                     /*add a bit delay to wait for firmware priv released
+> */
+> > +                     msleep(20);
+> > +
+> > +                     /* Load firmware one more time if timeout */
+> > +                     request_firmware_nowait(THIS_MODULE,
+> > +                                     FW_ACTION_UEVENT,
+> priv->se_img_file_to_load,
+> > +                                     priv->dev, GFP_KERNEL, priv,
+> > +                                     se_load_firmware);
+> > +                     priv->fw_fail++;
+> > +                     dev_dbg(priv->dev, "Value of retries = 0x%x.\n",
+> > +                             priv->fw_fail);
+> > +             }
+> > +
+> > +             return;
+> > +     }
 > 
->>> +	#address-cells = <2>;
->>> +	#size-cells = <2>;
->>> +	interrupt-parent = <&intc>;
->>> +
->>> +	clocks {
->>> +		xo_board: xo-board-clk {
->>> +			compatible = "fixed-clock";
->>> +			#clock-cells = <0>;
->>> +		};
->>> +
->>> +		sleep_clk: sleep-clk {
->>> +			compatible = "fixed-clock";
->>> +			#clock-cells = <0>;
->>> +		};
->>
->> I think Krzysztof lately suggested moving these clocks to board DT
->> files.
->>
+> > Are you continuously trying to load the firmware here in the hope that the
+> rootfs is mounted before your retry counter exceeds?
 > 
-> The node can stay. Just the frequency goes to DTSI. See also DTS coding
-> style document.
+> Yes.
+> 
+> > Don't do this.
+> 
+> Shall the retry counter to be removed, to make it predictable?
+> Or am I missing something.
 
-ok, will check
+Either compile the firmware into the kernel or the ELE driver as module.
 
-Regards,
-  Sricharan
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
