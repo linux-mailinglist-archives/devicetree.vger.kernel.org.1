@@ -1,563 +1,342 @@
-Return-Path: <devicetree+bounces-104110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE27897D49B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 13:15:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 969F097D49F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 13:15:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CBBA1F2250E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 11:15:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D53C282F83
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 11:15:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35E4C142904;
-	Fri, 20 Sep 2024 11:15:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BF0A13A86C;
+	Fri, 20 Sep 2024 11:15:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AZmz6NBz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S9qtaxQk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9C4813E020
-	for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 11:15:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 667AC4A04;
+	Fri, 20 Sep 2024 11:15:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726830922; cv=none; b=UW6+2/EiDmr9Q2BO67PN5IerACRApWggkn69hR0ax8TZ6jdiklGX9Cd5fr7CScwzv04uGlYRXQSm4ubGj+Ps/Cfs7wBjsp6K6V0BPlekP3nXKuZiIrVQDNKwnPfJ8xKer5wtFZA6hLT5GVXOhUekOF8uNdwKioZgi61I7/Zb2zg=
+	t=1726830950; cv=none; b=dIFUW+6EwBkOyytrSDBW+xnmIoKBWUoUBYaKylX430ZG9WDHBcXMAlvZFQc/jXgmk+O8bgytrzQVQbde6JSKRuh6J7mvqcCKxLoME7Vu3geo4CzkxYPQWzLTSNqG0og5F6cFMuxns6+937q9qIhPoVAiCvtT7ipN+hOBDLGJik8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726830922; c=relaxed/simple;
-	bh=Gv57wclApeuEMQ7azjdwXA14GxlKdGzrC8sWDLmSgKc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bzB6ymZ0r2iNopKk255/YCqcz8xGmbv9zhnDP/Czx7H11+Ms2oq5WXDUyEhfOb+IkpQSOwe9YGtLwIFjYA3bGB7I3V5Wk/qOjo87dnIip6lF7YhjGJWOprpn+1E+t1b2048oumbjv9xMqX+DjPS8p7yKnKwsyWTizQmjIpng4ak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AZmz6NBz; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a8d2daa2262so217757866b.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 04:15:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726830918; x=1727435718; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ocdV6UAxfoXgEc5jdC/lvxhHos+UsfjtvMrbaeubl44=;
-        b=AZmz6NBzzrhqVOINpatr/2cyLltB0CNoR6pdx1VTT3xq75M0dGgJ276XDD7cpuNqbW
-         4xQK0u9FF2QP8YXxmfApKNv7W4yVpm/LDy0UlSjTS0cW6ACs/IN8LKaTE+YSTAGR3hXb
-         zOf4ye8nSA7oR1hZNingAPO6gJth9yfr1AT9lqoF6r44m8U03hDGTD0QnCxBpEWtqNxp
-         3hu0LMmaTAvkl/xo/IjM/Mn3DHN7edC4v7jUEd0HTyTdZpuoxdNmudvo73m/ob0yjPlt
-         xiFwZ5tbFkx9OwaJJoy5D74qYfcmPelLK3nV9uhdCxdniHTD04qEzePlP4oIycX+SXb8
-         XkSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726830918; x=1727435718;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ocdV6UAxfoXgEc5jdC/lvxhHos+UsfjtvMrbaeubl44=;
-        b=Wfj+krpFzO2SC/6kuyaAiwKj+MUDxyZB5eX77MByDTg/g8smgWkx2JwYGGXR7Jt7Q2
-         7me6zW9dOvD0hpcjct06FNThmO5zmvZt0LiEugs2eL3X7Wr6PgctzCz1Q/NaqfkDRdmW
-         NbvKNxNYQADFZ5WNTvF02bL51ZpqzXFudyyp1mbd4ta5uCEWlfL6NCzVeVK75KOm4Ees
-         gRPcY88OF5Z20NpCj+8yzkMkRalk2K91lh1+uNyRbgnAhPaqvRZh0+pZwj0V8asVOl2x
-         PtcDAJVX3QFuvVVcH7PGwHnWGOGFndtG9i0XP+H2dIfO9MU50XvhdxExkOxltUUKr+bp
-         qhCg==
-X-Forwarded-Encrypted: i=1; AJvYcCXUzFMiuQlQC4pEMG1IsB8e59KHhKGJx2ggiaP4UpfeG7xgXBaKf2BENUTRiuVUCh0lEY2BJfRkehlY@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfJEl8NqQKPVgxksH2v6hpgSYiUyk3D1ZA+EZaDtW1aQNNDz75
-	Y2R68Zltmb1zuU3K1rS1NCe5aWahsfPV/BOb0y5uV5cKGL9z1zT3h8mAy15zMao=
-X-Google-Smtp-Source: AGHT+IHj2ot166L13+w0FJxn9us1Aorz5zwai3bhLb3jdLgcwmz+/gj6pBodxo3X9h/A7yboe/84Fg==
-X-Received: by 2002:a17:907:3f9f:b0:a8a:9054:8394 with SMTP id a640c23a62f3a-a90d4e34f51mr226805866b.0.1726830918156;
-        Fri, 20 Sep 2024 04:15:18 -0700 (PDT)
-Received: from lino.lan ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a90610f452csm838261266b.89.2024.09.20.04.15.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Sep 2024 04:15:17 -0700 (PDT)
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 20 Sep 2024 13:15:13 +0200
-Subject: [PATCH 2/2] leds: bcmbca: Add new driver for Broadcom BCMBCA
+	s=arc-20240116; t=1726830950; c=relaxed/simple;
+	bh=h+s82IjrmrSosXMhpHFrn5GaNziYR2LeeA9e/OGajkI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ctppXn0s+ibzwFgLY8hN9NXnztN72TPNHxw8GP2UdINrIesZHVpFoOysRMFVWnLJGEjbpkuL0MRfBypC8/6AHsZlgqlEsBr+qXdh2+rDzK4XXRHpY7F6bxLdV6dQudgWyIDb+5ddLkKQGZ0a1Kbrb+/W0GldcKkoH44PPOsN930=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S9qtaxQk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B75ACC4CEC3;
+	Fri, 20 Sep 2024 11:15:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726830949;
+	bh=h+s82IjrmrSosXMhpHFrn5GaNziYR2LeeA9e/OGajkI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=S9qtaxQkWq5AmwV6HOSzjTrq8IP+NCm+tnHJFZoHGJa0Qcvc2JG1weGvIdd19vSQm
+	 I55KwXzwglpSXaLaWgQ4dewBmrAeLmtAYh6KcuhKcvEt9q66yK1e/2JMRHVVppmRtN
+	 Z/40hvw5qseayQvjV9Ioz4H6TzYqfpBeeTqiNXZqnSGk/LsKIwONo4LlaON8iJfM9T
+	 N/M+r5LazaCWuif5G+WV342X39S0Y/8+QWOmU31fMYBj6/7wGVfPugtJblIFzFx7ZI
+	 zgAHC5WKmU6wh24n//AnnkBnvbvKLJPBqkrQSBOdToEUI23lunvIRXoxNCBZYrOn2x
+	 9mglxQCl5CplQ==
+Message-ID: <874d5908-f1db-412f-96a2-83fcebe8dd98@kernel.org>
+Date: Fri, 20 Sep 2024 13:15:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/9] dt-bindings: x86: Add a binding for x86 wakeup
+ mailbox
+To: Yunhong Jiang <yunhong.jiang@linux.intel.com>
+Cc: tglx@linutronix.de, mingo@redhat.com, bp@alien8.de,
+ dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, kys@microsoft.com,
+ haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
+ rafael@kernel.org, lenb@kernel.org, kirill.shutemov@linux.intel.com,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-hyperv@vger.kernel.org, linux-acpi@vger.kernel.org
+References: <20240823232327.2408869-1-yunhong.jiang@linux.intel.com>
+ <20240823232327.2408869-3-yunhong.jiang@linux.intel.com>
+ <ujfqrllrii6iijlhbwx3bltpjogiosw4xx5pqbcddgpxjobrzh@xqqrfxi5lv3i>
+ <20240827204549.GA4545@yjiang5-mobl.amr.corp.intel.com>
+ <20240910061227.GA76@yjiang5-mobl.amr.corp.intel.com>
+ <1d0ba3fc-1504-4af3-a0bc-fba86abe41e8@kernel.org>
+ <20240919191725.GA11928@yjiang5-mobl.amr.corp.intel.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240919191725.GA11928@yjiang5-mobl.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240920-bcmbca-leds-v1-2-5f70e692c6ff@linaro.org>
-References: <20240920-bcmbca-leds-v1-0-5f70e692c6ff@linaro.org>
-In-Reply-To: <20240920-bcmbca-leds-v1-0-5f70e692c6ff@linaro.org>
-To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- William Zhang <william.zhang@broadcom.com>, 
- Anand Gore <anand.gore@broadcom.com>, 
- Kursad Oney <kursad.oney@broadcom.com>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: b4 0.14.0
 
-The Broadcom BCA (Broadband Access) SoCs have a LED control
-block that can support either parallel (directly connected)
-LEDs or serial (connected to 1-4 shift registers) LEDs.
+On 19/09/2024 21:19, Yunhong Jiang wrote:
+> On Mon, Sep 16, 2024 at 10:56:38AM +0200, Krzysztof Kozlowski wrote:
+>> On 10/09/2024 08:13, Yunhong Jiang wrote:
+>>> On Tue, Aug 27, 2024 at 01:45:49PM -0700, Yunhong Jiang wrote:
+>>>> On Sun, Aug 25, 2024 at 09:10:01AM +0200, Krzysztof Kozlowski wrote:
+>>>>> On Fri, Aug 23, 2024 at 04:23:20PM -0700, Yunhong Jiang wrote:
+>>>>>> Add the binding to use mailbox wakeup mechanism to bringup APs.
+>>>>>>
+>>>>>> Signed-off-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
+>>>>>> ---
+>>>>>>  .../devicetree/bindings/x86/wakeup.yaml       | 64 +++++++++++++++++++
+>>>>>>  1 file changed, 64 insertions(+)
+>>>>>>  create mode 100644 Documentation/devicetree/bindings/x86/wakeup.yaml
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/x86/wakeup.yaml b/Documentation/devicetree/bindings/x86/wakeup.yaml
+>>>>>> new file mode 100644
+>>>>>> index 000000000000..cb84e2756bca
+>>>>>> --- /dev/null
+>>>>>> +++ b/Documentation/devicetree/bindings/x86/wakeup.yaml
+>>>>>> @@ -0,0 +1,64 @@
+>>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>>> +# Copyright (C) 2024 Intel Corporation
+>>>>>> +%YAML 1.2
+>>>>>> +---
+>>>>>> +$id: http://devicetree.org/schemas/x86/wakeup.yaml#
+>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>> +
+>>>>>> +title: x86 mailbox wakeup
+>>>>>> +maintainers:
+>>>>>> +  - Yunhong Jiang <yunhong.jiang@linux.intel.com>
+>>>>>> +
+>>>>>> +description: |
+>>>>>> +  The x86 mailbox wakeup mechanism defines a mechanism to let the bootstrap
+>>>>>> +  processor (BSP) to wake up application processors (APs) through a wakeup
+>>>>>> +  mailbox.
+>>>>>> +
+>>>>>> +  The "wakeup-mailbox-addr" property specifies the wakeup mailbox address. The
+>>>>>> +  wakeup mailbox is a 4K-aligned 4K-size memory block allocated in the reserved
+>>>>>> +  memory.
+>>>>>> +
+>>>>>> +  The wakeup mailbox structure is defined as follows.
+>>>>>> +
+>>>>>> +    uint16_t command;
+>>>>>> +    uint16_t reserved;
+>>>>>> +    uint32_t apic_id;
+>>>>>> +    uint64_t wakeup_vector;
+>>>>>> +    uint8_t  reservedForOs[2032];
+>>>>>> +
+>>>>>> +  The memory after reservedForOs field is reserved and OS should not touch it.
+>>>>>> +
+>>>>>> +  To wakes up a AP, the BSP prepares the wakeup routine, fills the wakeup
+>>>>>> +  routine's address into the wakeup_vector field, fill the apic_id field with
+>>>>>> +  the target AP's APIC_ID, and write 1 to the command field. After receiving the
+>>>>>> +  wakeup command, the target AP will jump to the wakeup routine.
+>>>>>> +
+>>>>>> +  For each AP, the mailbox can be used only once for the wakeup command. After
+>>>>>> +  the AP jumps to the wakeup routine, the mailbox will no longer be checked by
+>>>>>> +  this AP.
+>>>>>> +
+>>>>>> +  The wakeup mailbox structure and the wakeup process is the same as
+>>>>>> +  the Multiprocessor Wakeup Mailbox Structure defined in ACPI spec version 6.5,
+>>>>>> +  section 5.2.12.19 [1].
+>>>>>> +
+>>>>>> +  References:
+>>>>>> +
+>>>>>> +  [1] https://uefi.org/specs/ACPI/6.5/05_ACPI_Software_Programming_Model.html
+>>>>>> +
+>>>>>> +select: false
+>>>>>
+>>>>> This schema is still a no-op because of this false.
+>>>>>
+>>>>> What is the point of defining one property if it is not placed anywhere?
+>>>>> Every device node can have it? Seems wrong...
+>>>>>
+>>>>> You need to come with proper schema. Lack of an example is another thing
+>>>>> - this cannot be even validated by the tools. 
+>>>>>
+>>>>> Best regards,
+>>>>> Krzysztof
+>>>
+>>> Hi, Krzysztof, I'm working to address your comments and have some questions.
+>>> Hope to get help/guide from your side.
+>>>
+>>> For the select, the writing-schema.rst describes it as "A json-schema used to
+>>> match nodes for applying the schema" but I'm a bit confused. In my case, should
+>>> it be "cpus" node? Is there any code/tools that uses this property, so that I
+>>> can have a better understanding?
+>>
+>> Usually we expect matching by compatible, but it does not seem suitable
+>> here because it is not related to any specific device, right? That is
+>> the problem with all this DT-reuse-for-virtual-stuff work. It just does
+>> not follow usual expectations and guidelines - you do not describe a device.
+> 
+> Thank you for the reply.
+> 
+> I'm a bit confused on your "do not describe a device".
+> I think VM is also a device, it's just a virtual device, but I don't see much
+> difference of the virtual and physical device from DT point of view, possibly I
+> missed some point.
 
-Add a driver for that hardware.
+VM is purely a software construct, so it is not a device. But regardless
+of terminology, you did not describe here VM or its part, either.
 
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- MAINTAINERS                |   7 +
- drivers/leds/Kconfig       |   9 ++
- drivers/leds/Makefile      |   1 +
- drivers/leds/leds-bcmbca.c | 391 +++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 408 insertions(+)
+>  
+>>
+>> You can still match by nodes. See all top-level bindings.
+> 
+> After checking the code at
+> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/validator.py,
+> seems the 'select' is translated to 'if'/'then'.
+> 
+> Do you have any example of "top-level bindings"? I tried to check binding for
+> enable-methods like arm/cpu-enable-method/nuvoton,npcm750-smp or
+> cpu/idle-states.yaml, but they are either not schema file, or quite different.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index cc40a9d9b8cd..0a603b72a6a0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4383,6 +4383,13 @@ N:	bcm[9]?6856
- N:	bcm[9]?6858
- N:	bcm[9]?6878
- 
-+BROADCOM BCMBCA LED DRIVER
-+M:	Linus Walleij <linus.walleij@linaro.org>
-+L:	linux-leds@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/leds/brcm,bcmbca-leds.yaml
-+F:	drivers/leds/leds-bcmbca.c
-+
- BROADCOM BDC DRIVER
- M:	Justin Chen <justin.chen@broadcom.com>
- M:	Al Cooper <alcooperx@gmail.com>
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index 8d9d8da376e4..e14c7fa587f0 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -146,6 +146,15 @@ config LEDS_BCM6358
- 	  This option enables support for LEDs connected to the BCM6358
- 	  LED HW controller accessed via MMIO registers.
- 
-+config LEDS_BCMBCA
-+	tristate "LED Support for Broadcom BCMBCA"
-+	depends on LEDS_CLASS
-+	depends on HAS_IOMEM
-+	depends on OF
-+	help
-+	  This option enables support for LEDs connected to the BCMBCA
-+	  LED HW controller accessed via MMIO registers.
-+
- config LEDS_CHT_WCOVE
- 	tristate "LED support for Intel Cherry Trail Whiskey Cove PMIC"
- 	depends on LEDS_CLASS
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index 18afbb5a23ee..96e036f04e18 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -18,6 +18,7 @@ obj-$(CONFIG_LEDS_AW200XX)		+= leds-aw200xx.o
- obj-$(CONFIG_LEDS_AW2013)		+= leds-aw2013.o
- obj-$(CONFIG_LEDS_BCM6328)		+= leds-bcm6328.o
- obj-$(CONFIG_LEDS_BCM6358)		+= leds-bcm6358.o
-+obj-$(CONFIG_LEDS_BCMBCA)		+= leds-bcmbca.o
- obj-$(CONFIG_LEDS_BD2606MVV)		+= leds-bd2606mvv.o
- obj-$(CONFIG_LEDS_BD2802)		+= leds-bd2802.o
- obj-$(CONFIG_LEDS_BLINKM)		+= leds-blinkm.o
-diff --git a/drivers/leds/leds-bcmbca.c b/drivers/leds/leds-bcmbca.c
-new file mode 100644
-index 000000000000..74dc4245bea4
---- /dev/null
-+++ b/drivers/leds/leds-bcmbca.c
-@@ -0,0 +1,391 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Driver for BCMBCA memory-mapped LEDs
-+ *
-+ * Copyright 2024 Linus Walleij <linus.walleij@linaro.org>
-+ */
-+#include <linux/bits.h>
-+#include <linux/cleanup.h>
-+#include <linux/io.h>
-+#include <linux/leds.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/spinlock.h>
-+
-+#define BCMBCA_CTRL			0x00
-+#define BCMBCA_CTRL_SERIAL_POL_HIGH	BIT(1)
-+#define BCMBCA_CTRL_ENABLE		BIT(3) /* Uncertain about this bit */
-+#define BCMBCA_CTRL_SERIAL_MSB_FIRST	BIT(4)
-+
-+#define BCMBCA_MASK			0x04
-+#define BCMBCA_HW_EN			0x08
-+/*
-+ * In the serial shift selector, set bits to 1 from BIT(0) and upward all
-+ * set to one until the last LED including any unused slots in the shift
-+ * register.
-+ */
-+#define BCMBCA_SERIAL_SHIFT_SEL		0x0c
-+#define BCMBCA_FLASH_RATE		0x10 /* 4 bits per LED so -> 1c */
-+#define BCMBCA_BRIGHTNESS		0x20 /* 4 bits per LED so -> 2c */
-+#define BCMBCA_POWER_LED_CFG		0x30
-+#define BCMBCA_POWER_LUT		0x34 /* -> b0 */
-+#define BCMBCA_HW_POLARITY		0xb4
-+#define BCMBCA_SW_DATA			0xb8 /* 1 bit on/off for each LED */
-+#define BCMBCA_SW_POLARITY		0xbc
-+#define BCMBCA_PARALLEL_POLARITY	0xc0
-+#define BCMBCA_SERIAL_POLARITY		0xc4
-+
-+#define BCMBCA_LED_MAX_COUNT		32
-+#define BCMBCA_LED_MAX_BRIGHTNESS	8
-+
-+enum bcmbca_led_type {
-+	BCMBCA_LED_SERIAL,
-+	BCMBCA_LED_PARALLEL,
-+};
-+
-+/**
-+ * struct bcmbca_led - state container for bcmbca based LEDs
-+ * @cdev: LED class device for this LED
-+ * @base: memory base address
-+ * @lock: memory lock
-+ * @idx: LED index number
-+ * @active_low: LED is active low
-+ * @num_serial_shifters: number of serial shift registers
-+ * @led_type: whether this is a serial or parallel LED
-+ */
-+struct bcmbca_led {
-+	struct led_classdev cdev;
-+	void __iomem *base;
-+	spinlock_t *lock;
-+	unsigned int idx;
-+	bool active_low;
-+	u32 num_serial_shifters;
-+	enum bcmbca_led_type led_type;
-+};
-+
-+static void bcmbca_led_blink_disable(struct led_classdev *ldev)
-+{
-+	struct bcmbca_led *led =
-+		container_of(ldev, struct bcmbca_led, cdev);
-+	/* 8 LEDs per register so integer-divide by 8 */
-+	u8 led_offset = (led->idx >> 3);
-+	/* Find the 4 bits for each LED */
-+	u32 led_mask = 0xf << ((led->idx & 0x07) << 2);
-+	u32 val;
-+
-+	/* Write registers */
-+	guard(spinlock_irqsave)(led->lock);
-+	val = readl(led->base + BCMBCA_FLASH_RATE + led_offset);
-+	val &= led_mask;
-+	writel(val, led->base + BCMBCA_FLASH_RATE + led_offset);
-+}
-+
-+static int bcmbca_led_blink_set(struct led_classdev *ldev,
-+				unsigned long *delay_on,
-+				unsigned long *delay_off)
-+{
-+	struct bcmbca_led *led =
-+		container_of(ldev, struct bcmbca_led, cdev);
-+	u8 led_offset = (led->idx >> 3);
-+	u32 led_mask = 0xf << ((led->idx & 0x07) << 2);
-+	unsigned long period;
-+	u32 led_val;
-+	u32 val;
-+
-+	/* Friendly defaults as specified in the documentation */
-+	if (*delay_on == 0 && *delay_off == 0) {
-+		*delay_on = 240;
-+		*delay_off = 240;
-+	}
-+
-+	if (*delay_on != *delay_off) {
-+		dev_dbg(ldev->dev, "only square blink supported\n");
-+		return -EINVAL;
-+	}
-+
-+	period = *delay_on + *delay_off;
-+	if (period > 2000) {
-+		dev_dbg(ldev->dev, "period too long, %lu max 2000 ms\n",
-+			period);
-+		return -EINVAL;
-+	}
-+
-+	if (period <= 60)
-+		led_val = 1;
-+	else if (period <= 120)
-+		led_val = 2;
-+	else if (period <= 240)
-+		led_val = 3;
-+	else if (period <= 480)
-+		led_val = 4;
-+	else if (period <= 960)
-+		led_val = 5;
-+	else if (period <= 1920)
-+		led_val = 6;
-+	else
-+		led_val = 7;
-+
-+	led_val = led_val << ((led->idx & 0x07) << 2);
-+
-+	/* Write registers */
-+	guard(spinlock_irqsave)(led->lock);
-+	val = readl(led->base + BCMBCA_FLASH_RATE + led_offset);
-+	val &= led_mask;
-+	val |= led_val;
-+	writel(val, led->base + BCMBCA_FLASH_RATE + led_offset);
-+
-+	return 0;
-+}
-+
-+static void bcmbca_led_set(struct led_classdev *ldev,
-+			    enum led_brightness value)
-+{
-+	struct bcmbca_led *led =
-+		container_of(ldev, struct bcmbca_led, cdev);
-+	u8 led_offset = (led->idx >> 3);
-+	u32 led_mask = 0xf << ((led->idx & 0x07) << 2);
-+	u32 led_val = value << ((led->idx & 0x07) << 2);
-+	u32 val;
-+
-+	dev_dbg(ldev->dev, "LED%u, register %08x, mask %08x, value %08x\n",
-+		led->idx, BCMBCA_BRIGHTNESS + led_offset, led_mask, led_val);
-+
-+	/* Write registers */
-+	guard(spinlock_irqsave)(led->lock);
-+
-+	/* Parallel LEDs support brightness control */
-+	if (led->led_type == BCMBCA_LED_PARALLEL) {
-+		val = readl(led->base + BCMBCA_BRIGHTNESS + led_offset);
-+		val &= led_mask;
-+		val |= led_val;
-+		writel(val, led->base + BCMBCA_BRIGHTNESS + led_offset);
-+	}
-+
-+	/* Software control on/off */
-+	if (value == LED_OFF) {
-+		val = readl(led->base + BCMBCA_SW_DATA);
-+		val &= ~BIT(led->idx);
-+		writel(val, led->base + BCMBCA_SW_DATA);
-+		bcmbca_led_blink_disable(ldev);
-+	} else {
-+		val = readl(led->base + BCMBCA_SW_DATA);
-+		val |= BIT(led->idx);
-+		writel(val, led->base + BCMBCA_SW_DATA);
-+	}
-+}
-+
-+static u8 bcmbca_led_get(void __iomem *base, int idx)
-+{
-+	u8 led_offset = (idx >> 3);
-+	u32 led_mask = 0xf << ((idx & 0x07) << 2);
-+	u32 val;
-+
-+	/* Called marshalled so no lock needed */
-+	val = readl(base + BCMBCA_BRIGHTNESS + led_offset);
-+	return ((val & led_mask) >> ((idx & 0x07) << 2));
-+}
-+
-+static int bcmbca_led_probe(struct device *dev, struct device_node *np, u32 reg,
-+			    void __iomem *base, spinlock_t *lock,
-+			    u32 num_shifters, enum bcmbca_led_type led_type)
-+{
-+	struct led_init_data init_data = {};
-+	struct bcmbca_led *led;
-+	enum led_default_state state;
-+	u32 val;
-+	int rc;
-+
-+	led = devm_kzalloc(dev, sizeof(*led), GFP_KERNEL);
-+	if (!led)
-+		return -ENOMEM;
-+
-+	led->idx = reg;
-+	led->base = base;
-+	led->lock = lock;
-+
-+	if (of_property_read_bool(np, "active-low"))
-+		led->active_low = true;
-+
-+	init_data.fwnode = of_fwnode_handle(np);
-+
-+	if (led->led_type == BCMBCA_LED_PARALLEL)
-+		led->cdev.max_brightness = BCMBCA_LED_MAX_BRIGHTNESS;
-+	else
-+		led->cdev.max_brightness = LED_ON;
-+
-+	state = led_init_default_state_get(init_data.fwnode);
-+
-+	switch (state) {
-+	case LEDS_DEFSTATE_ON:
-+		led->cdev.brightness = led->cdev.max_brightness;
-+		break;
-+	case LEDS_DEFSTATE_KEEP:
-+		val = bcmbca_led_get(base, led->idx);
-+		if (val)
-+			led->cdev.brightness = val;
-+		else
-+			led->cdev.brightness = LED_OFF;
-+		break;
-+	default:
-+		led->cdev.brightness = LED_OFF;
-+		break;
-+	}
-+
-+	/*
-+	 * Polarity inversion setting per-LED
-+	 * The default is actually active low, we set a bit to 1
-+	 * in the register to make it active high.
-+	 */
-+	if (!of_property_read_bool(np, "active-low")) {
-+		switch (led_type) {
-+		case BCMBCA_LED_SERIAL:
-+			val = readl(base + BCMBCA_SERIAL_POLARITY);
-+			val |= BIT(led->idx);
-+			writel(val, base + BCMBCA_SERIAL_POLARITY);
-+			break;
-+		case BCMBCA_LED_PARALLEL:
-+			val = readl(base + BCMBCA_PARALLEL_POLARITY);
-+			val |= BIT(led->idx);
-+			writel(val, base + BCMBCA_PARALLEL_POLARITY);
-+			break;
-+		default:
-+			break;
-+		}
-+	}
-+
-+	/* Initial brightness setup */
-+	bcmbca_led_set(&led->cdev, led->cdev.brightness);
-+
-+	led->cdev.brightness_set = bcmbca_led_set;
-+	led->cdev.blink_set = bcmbca_led_blink_set;
-+	/* TODO: implement HW control */
-+
-+	rc = devm_led_classdev_register_ext(dev, &led->cdev, &init_data);
-+	if (rc < 0)
-+		return rc;
-+
-+	dev_info(dev, "registered LED %s\n", led->cdev.name);
-+
-+	return 0;
-+}
-+
-+static int bcmbca_leds_probe(struct platform_device *pdev)
-+{
-+	unsigned int max_leds = BCMBCA_LED_MAX_COUNT;
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np = dev_of_node(&pdev->dev);
-+	enum bcmbca_led_type led_type;
-+	void __iomem *base;
-+	spinlock_t *lock; /* memory lock */
-+	u32 num_shifters;
-+	u32 val;
-+	int ret;
-+	int i;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	lock = devm_kzalloc(dev, sizeof(*lock), GFP_KERNEL);
-+	if (!lock)
-+		return -ENOMEM;
-+
-+	ret = of_property_read_u32(np, "brcm,serial-shifters", &num_shifters);
-+	if (!ret) {
-+		/* Serial LEDs */
-+		dev_dbg(dev, "serial LEDs, %d shift registers used\n", num_shifters);
-+		led_type = BCMBCA_LED_SERIAL;
-+		/*
-+		 * Each shifter can handle maximum 8 LEDs so we cap the
-+		 * maximum LEDs we can handle at that.
-+		 */
-+		max_leds = num_shifters * 8;
-+	} else {
-+		/* Parallel LEDs */
-+		led_type = BCMBCA_LED_PARALLEL;
-+		dev_info(dev, "parallel LEDs requested, this is untested\n");
-+	}
-+
-+	spin_lock_init(lock);
-+
-+	/* Turn off all LEDs and let the driver deal with them */
-+	writel(0, base + BCMBCA_HW_EN);
-+	writel(0, base + BCMBCA_SERIAL_POLARITY);
-+	writel(0, base + BCMBCA_PARALLEL_POLARITY);
-+
-+	/* Set up serial shift register */
-+	switch (num_shifters) {
-+	case 0:
-+		val = 0;
-+		break;
-+	case 1:
-+		val = 0x000000ff;
-+		break;
-+	case 2:
-+		val = 0x0000ffff;
-+		break;
-+	case 3:
-+		val = 0x00ffffff;
-+		break;
-+	case 4:
-+		val = 0xffffffff;
-+		break;
-+	}
-+	writel(val, base + BCMBCA_SERIAL_SHIFT_SEL);
-+
-+	/* ??? */
-+	writel(0xc0000000, base + BCMBCA_HW_POLARITY);
-+	/* Initialize to max brightness */
-+	for (i = 0; i < BCMBCA_LED_MAX_COUNT/8; i++) {
-+		writel(0x88888888, base + BCMBCA_BRIGHTNESS + 4*i);
-+		writel(0, base + BCMBCA_BRIGHTNESS + BCMBCA_FLASH_RATE + 4*i);
-+	}
-+
-+	for_each_available_child_of_node_scoped(np, child) {
-+		u32 reg;
-+
-+		if (of_property_read_u32(child, "reg", &reg))
-+			continue;
-+
-+		if (reg >= max_leds) {
-+			dev_err(dev, "invalid LED (%u >= %d)\n", reg,
-+				max_leds);
-+			continue;
-+		}
-+
-+		ret = bcmbca_led_probe(dev, child, reg, base, lock,
-+				       num_shifters, led_type);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	/* Enable the LEDs */
-+	val = BCMBCA_CTRL_ENABLE | BCMBCA_CTRL_SERIAL_POL_HIGH;
-+	if (of_property_read_bool(np, "brcm,serial-active-low"))
-+		val &= ~BCMBCA_CTRL_SERIAL_POL_HIGH;
-+	writel(val, base + BCMBCA_CTRL);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id bcmbca_leds_of_match[] = {
-+	{ .compatible = "brcm,bcmbca-leds", },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, bcmbca_leds_of_match);
-+
-+static struct platform_driver bcmbca_leds_driver = {
-+	.probe = bcmbca_leds_probe,
-+	.driver = {
-+		.name = "leds-bcmbca",
-+		.of_match_table = bcmbca_leds_of_match,
-+	},
-+};
-+
-+module_platform_driver(bcmbca_leds_driver);
-+
-+MODULE_AUTHOR("Linus Walleij <linus.walleij@linaro.org>");
-+MODULE_DESCRIPTION("LED driver for BCMBCA LED controllers");
-+MODULE_LICENSE("GPL");
-+MODULE_ALIAS("platform:leds-bcmbca");
+Most of board schemas, so for example in arm directory.
 
--- 
-2.46.0
+> 
+> I have been struggling on this device binding document for a while. I
+> reconsidered what this binding is for. This binding means, if the cpus node has
+> "enable-method" as "acpi-wakeup-mailbox", then the device should have property
+> "wakeup-mailbox-addr" with uint64 type.
+> 
+> In that case, I'm considering to set the "select" to be true so that it will
+> apply to any potential device, and add if/then keyword to check the
+> enable-method. But seems it does not work and I'm still trying to figure out the
+> reason (I'm new to the json/json schema and is still learning).
+> 
+> I received followed error:
+> cpus: '#address-cells', '#size-cells', 'cpu@0', 'enable-method' do not match any of the regexes: 'pinctrl-[0-9]+'
+>         from schema $id: http://devicetree.org/schemas/x86/wakeup.yaml#
+> cpu@0: 'device_type', 'reg' do not match any of the regexes: 'pinctrl-[0-9]+'
+>         from schema $id: http://devicetree.org/schemas/x86/wakeup.yaml#
+> 
+> With the followed yaml file (I delete some description).
+> 
+> $ cat Documentation/devicetree/bindings/x86/wakeup.yaml
+> # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> # Copyright (C) 2024 Intel Corporation
+> %YAML 1.2
+> ---
+> $id: http://devicetree.org/schemas/x86/wakeup.yaml#
+> $schema: http://devicetree.org/meta-schemas/core.yaml#
+> 
+> title: x86 mailbox wakeup
+> maintainers:
+>   - Yunhong Jiang <yunhong.jiang@linux.intel.com>
+> 
+> description: |
+>   ......
+>   Removed to save space.
+> 
+> properties:
+>   wakeup-mailbox-addr:
+>     $ref: /schemas/types.yaml#/definitions/uint32
+>     description: |
+>       ......
+>       Removed to save space.
+> 
+> select: true
+> 
+> if:
+>   properties:
+>     enable-method:
+>       contains:
+>         const: acpi-wakeup-mailbox
+>   required:
+>     - enable-method
+
+enable-method is part of CPUs, so you probably should match the CPUs...
+I am not sure, I don't have the big picture here.
+
+Maybe if companies want to push more of bindings for purely virtual
+systems, then they should first get involved more, instead of relying on
+us. Provide reviews for your virtual stuff, provide guidance. There is
+resistance in accepting bindings for such cases for a reason - I don't
+even know what exactly is this and judging/reviewing based on my
+practices will no be accurate.
+
+
+> 
+> then:
+>   required:
+>     - wakeup-mailbox-addr
+> 
+> additionalProperties: false
+> 
+> examples:
+>   - |
+>     cpus {
+>       #address-cells = <1>;
+>       #size-cells = <0>;
+>       enable-method = "acpi-wakeup-mailbox";
+>       wakeup-mailbox-addr = <0x1c000500>;
+>       cpu@0 {
+>         device_type = "cpu";
+>         reg = <0x1>;
+>       };
+>     };
+> ...
+> 
+>>
+>>>
+>>> For your "validated by the tools", can you please share the tools you used to
+>>> validate the schema? I used "make dt_binding_check" per the
+>>> submitting-patches.rst but I think your comments is about another tool.
+>>
+>> See writing-schema document.
+> Yes, I figured out in the end that the validate tools means the dt-schema tools.
+> 
+> Thank you
+> --jyh
+> 
+>>
+>>
+>> Best regards,
+>> Krzysztof
+>>
+>>
+
+Best regards,
+Krzysztof
 
 
