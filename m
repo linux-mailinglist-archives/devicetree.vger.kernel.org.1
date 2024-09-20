@@ -1,190 +1,214 @@
-Return-Path: <devicetree+bounces-104219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E864697DA49
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 23:33:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C6FD97DA50
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 23:40:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 825202831DC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 21:33:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3FE5B21965
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 21:40:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94210186E42;
-	Fri, 20 Sep 2024 21:32:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E724186E4B;
+	Fri, 20 Sep 2024 21:40:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="R3R8Rv99"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="PCrgdGG9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012054.outbound.protection.outlook.com [52.101.66.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 967821862B3
-	for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 21:32:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726867977; cv=none; b=Gr26uLY62VbTY6ykfEI9PjoOC8yGoozsbMIq0Yf+EIUk1GEO0u0JmtuvxRgUlwKHX30ih2H6c7N1JuuMeU1pHkcfBX5ehJwbcAZc6EcWeMQuqdh8OHkb1H7o4Q98/QQrENCwiH6mrDRYLZnl3mLQ5VYSZxIByv1NfFBAOee200k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726867977; c=relaxed/simple;
-	bh=jJbw/9xzyIfVzZRQtRUX26vvhoN6sO9ID/AnJLHVApQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hxTlgcsybwEQRTk8RFGTAyn9sAsdUsfcBY5SPdKUQaH/jeljwmZxO/MXXO7cWDsA0jJsE/+/e+3RKvXdRzJ3vgmInwsPkxyKdtvrpJBw/q7RsBvxi4XxCDpkYQiPbQpsh8A1XRqGl/+O8KCcMe1TIZ28DjAGZvj6VbbCt6zXiQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=R3R8Rv99; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2f761461150so32668031fa.0
-        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 14:32:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1726867974; x=1727472774; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yedMi0rr2m7jZhDqBPtfn8qdlTLdCHVXIS1wYbW0HHw=;
-        b=R3R8Rv99nofduYuM29gb847cmF53/p/mS0C8zq5x677LNYsQAtL8tggxW1sd7SDlLF
-         8cHZ4Go/4fBDNuBT5Bwa6WXrcCopZCpxhl3tFfPanZLfXEztph0b8/N5XD6T2bVEvEYn
-         IIu7syvjkMddUo+OLP8d0efU0U6kCRlFpKIjirc49Thv4dizqVnItMxvwdiInDTvuMVI
-         BAD3rm7r/C0fMmSov5JVVJNSL9xi9YOmDfmbh2Idmagnx5HWpcaFAQ6ab+vmNq42FXU/
-         wwS3rMPMAnZJnBbIt8QN45t600UI/kpDSAJKYTRd86QF6wCUSRcoNe33L/gH1V0/U7PE
-         gZ4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726867974; x=1727472774;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yedMi0rr2m7jZhDqBPtfn8qdlTLdCHVXIS1wYbW0HHw=;
-        b=OMKv7jb9+T36QRu8wEiwwU6jsDHZqfhQ6lJdevwiashwlN4a6vj8y5VcVUQHSlK1BV
-         4zegd7t41UjrHlYku4Ms4zU0y7m2FwxhWfuckhTs4v0qQH9v1Yvv7Crsv8GS97+7gYNE
-         l5qcfghdKLnLTN9+4RSVCpovJ+DCNMaxAZzTpeKFxvCotd5n9UwjwSJf4qE2Jv8pQXn0
-         e+VIvfPAozRPxx8ysX9ps1iSQqJdCN7HSQSHjZDLOxFCw9McoMq02gAaNcIkmiM+IbW0
-         QFEnKqulh1GQyZaQFeJ0tWEDoDvzLzgsR1/jB8StWJ1Hi0UuP3ql+AfqxgsLxppG9lVA
-         963Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXx1p34gNQ1rDr11oZjnWbuxhZhnEdFetT8t5Dbuotqk9dNLRQg66C8Y11xtixeK88LYLf5UbaEM8vj@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaL6IboY4tBEaflaC9E3lRLmmydFXc5RqQuim1ZHDatqzlxSo9
-	HEO89J6UijtpgAiw1/tpiK7ryrprfsQAB8v1OWq6hlSexFqBjxRaLS60fkVIxbo=
-X-Google-Smtp-Source: AGHT+IEaFYnRpbuoQr3t3E0N+OSqX5dBzKegFela78N+6cNOl4laXXImQCFB5g8pd4nLbdJoGf0Uxw==
-X-Received: by 2002:a2e:602:0:b0:2f7:6653:8053 with SMTP id 38308e7fff4ca-2f7cb31b975mr27279601fa.18.1726867973513;
-        Fri, 20 Sep 2024 14:32:53 -0700 (PDT)
-Received: from ghost (93-43-80-122.ip91.fastwebnet.it. [93.43.80.122])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a90612b33d9sm887542066b.114.2024.09.20.14.32.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Sep 2024 14:32:52 -0700 (PDT)
-Date: Fri, 20 Sep 2024 23:32:49 +0200
-From: Charlie Jenkins <charlie@rivosinc.com>
-To: Palmer Dabbelt <palmer@dabbelt.com>
-Cc: jesse@rivosinc.com, linux-riscv@lists.infradead.org, corbet@lwn.net,
-	Paul Walmsley <paul.walmsley@sifive.com>, aou@eecs.berkeley.edu,
-	Conor Dooley <conor@kernel.org>, robh@kernel.org,
-	krzk+dt@kernel.org, cleger@rivosinc.com,
-	Evan Green <evan@rivosinc.com>, ajones@ventanamicro.com,
-	xiao.w.wang@intel.com, andy.chiu@sifive.com, ebiggers@google.com,
-	greentime.hu@sifive.com, Bjorn Topel <bjorn@rivosinc.com>,
-	Heiko Stuebner <heiko@sntech.de>, costa.shul@redhat.com,
-	akpm@linux-foundation.org, bhe@redhat.com, apatel@ventanamicro.com,
-	zong.li@sifive.com, samitolvanen@google.com,
-	ben.dooks@codethink.co.uk, alexghiti@rivosinc.com,
-	gustavoars@kernel.org, erick.archer@gmx.com, j.granados@samsung.com,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v9 0/6] RISC-V: Detect and report speed of unaligned
- vector accesses
-Message-ID: <Zu3qAdGYJfNPTK15@ghost>
-References: <20240820152424.1973078-1-jesse@rivosinc.com>
- <mhng-07137536-28ef-4262-a165-6388fffd2599@palmer-ri-x1c9>
- <Zu3illShBOscs+zN@ghost>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E165C3BBC9;
+	Fri, 20 Sep 2024 21:40:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726868434; cv=fail; b=M+rFwR8FBKXJyfR908e7L9jNRS2oLCC+rfWu+wDgUxmHsDQWQjfLxXTWRUgd2l0Ngi/DIK8janSHM5I0azmSN1e42XDXVso4whAiaTC5U7N0tpMVYyHYBqkk1pAni0rvV+q/XH1lWT6vuG+LfbxiZ3O+GTv6yjeCrTSB4D0Vlz0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726868434; c=relaxed/simple;
+	bh=kGBBeG/n9F4IjubW+JlT3/t0ZGUjaqSdVj3R4ED9VWM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=PQUq39e9W+0zw/4Z/IRWIsfrW+3ABeEbrSTGDYhHoclYnBoH8PQaimiDrRb0ITSHrAGx6PaqBEVlLeV3pnbV46DzCSqpXIXrI8EHUEnDdg0wD7vp76bb1gRSVyQdDPy+BqyTWFNMqxatr6GNCFcXVTmj0Yo1ilmUQmQ2YTbGwzE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=PCrgdGG9; arc=fail smtp.client-ip=52.101.66.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wk8Oh/yNceRwdQsZYZ7ImKJqCsWEAT07gK1j30R2hWazDmgcEFxNnDuQZVb9HPiNDanuUM5+hHeSkTqaB+U51S/rxN/FHcoy3u6yuGkctyXC/1uxJjc4xZkq1+O2hK2zyXgKEJQGYc3Yl0g25jdbJ6DBjjNkLHZrFbnCzsgkdQRhpvM1A+VzRAK+IJXNJyC6mIT9Xu/c49gfGfjcq94rSO0Q1C030zBgwPAro6Qcs4pEwsafl7ZeSfg0P+Kwh0wqieJivvlvYFeqHhoNCUpmwEM78lkqSouToa4KFrsbIcwfsHJ6uNe5bIegtTqP8Y3BftpeGyrLmljLIhN5D2ke1A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vKIkrTyzfHNQ//U4uk35K5Cp51nMNsuuWNejGC6Fd+w=;
+ b=tdd6eMV6Iv5OLPnQZ0dy74lFXKDoxSj8XV0Af0XN62fU4CS3fi9Y6xV3yhsgamfWA7IE65VkMQDrjmy0WTVPySUBdi2u8xWBtm1g7bmmVBqdUdH9D89IM1udV4LPuCptv+fV/cKHkck3xFjYGbpkPC6SEm+yEjuJccZ9I5yvzXh1aN09Jio/j5cvVu2u2/UNCMa3Np665DZrGwjh8U/t75PicUV9LsFUg5leu18v5IbVpQaFRDOw64WNf7MNAC2kyNbQgMqS+oJeiLvAcYpGXSsT7fikxm/cKulz3i9+oRQadWqojtYHzrU9grS3xUOlloL0H62PHKPDtJlNtrb2Pg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vKIkrTyzfHNQ//U4uk35K5Cp51nMNsuuWNejGC6Fd+w=;
+ b=PCrgdGG9nlZMGMrSPlJ3Bn42k6+Pqtx5lh1esitKcbblRS6neRviTbem7Y/BJzaE/0D9qs04vEja9/1oNlSEK1dT8hs619eZVnHoG4NRyfyUDwhALX5CzJ+ALlOg2YXhUQUmn079REts+ozbSeIsGg4LSgS2JjlGqob7HyXIjE0Nm7d/3jZrnwMkjECkz2JfNeZIK7xhOe3+KKwWOk1aP6He1r+z44SZhx4olNicykOtYAiMpF8FEhXjcRIcoOk/SvJ69nA3UDQ8l4t92lkfA79TCZwnkakI1IGUTQi0HTic55qvm1YmnrwopS29r9ImPFc4KfS2UiX6VPoQGFkzdg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by GVXPR04MB9735.eurprd04.prod.outlook.com (2603:10a6:150:118::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.22; Fri, 20 Sep
+ 2024 21:40:26 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.7982.018; Fri, 20 Sep 2024
+ 21:40:25 +0000
+Date: Fri, 20 Sep 2024 17:40:15 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Pratyush Yadav <pratyush@kernel.org>,
+	Michael Walle <mwalle@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 2/3] mtd: spi-nor: support vcc-supply regulator
+Message-ID: <Zu3rv99P6zFnUhYe@lizhi-Precision-Tower-5810>
+References: <20240920-spi-v1-0-97f220c2e10c@nxp.com>
+ <20240920-spi-v1-2-97f220c2e10c@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240920-spi-v1-2-97f220c2e10c@nxp.com>
+X-ClientProxiedBy: SJ0PR03CA0140.namprd03.prod.outlook.com
+ (2603:10b6:a03:33c::25) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zu3illShBOscs+zN@ghost>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GVXPR04MB9735:EE_
+X-MS-Office365-Filtering-Correlation-Id: 64243d62-50ec-492d-9582-08dcd9bcd68c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|52116014|7416014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?XzrWdaMpIjrVvqhyvNXs/XbV4uAaA+e44oH/qnAFFbjLQL/X7+ihNBdHFvEf?=
+ =?us-ascii?Q?50W2J9E8rB+jYTXPYkleYwWmDK+ihKD99T7OKIRDbVT8zxWgIgVhDeT5nTOr?=
+ =?us-ascii?Q?/lw8dGYs32VFkwi7rg5gLkCV0cyAR1RIVkDDAwNWfs8IM3vimc68HbrMpzVQ?=
+ =?us-ascii?Q?U7BGQaVCUTH1SSj6fEeL6rUf0al/V3b5PfpK+wS0SG7h4UObEoSv55A0okBr?=
+ =?us-ascii?Q?dtFqtZEQQGxigL1Bi3G4PjcCHgpsLti5pJhS90DjIdCMp0UiiweYlbo9rX41?=
+ =?us-ascii?Q?phzt3vTNT4oNMempT+digDM1H0Jf2O+k6Tn8aCzz/mx67qcjJBT234Ckiq8y?=
+ =?us-ascii?Q?ZyH4/A31qMxrb2yRT1kMkKZzIF4YkuTlboMTGo3KX84wMGiU3qHSB1ooXwUQ?=
+ =?us-ascii?Q?s1dfo7X/+55A9iSX3/zfFWw/rHxWFun+/6jYRVN3CRzAYAXe0EmTX7LXP2mk?=
+ =?us-ascii?Q?w4rJq0uHmrpmXdahfm6AJeiEHSKLnLwmnuZ7Kc8EWo9ItkVmNwLGdNb6ti+U?=
+ =?us-ascii?Q?U40W4ltha6Ni/IevcbN0R8G0hq0UpmaTVw3F4yGXAvFD9NyrkMxj1NGQAG3z?=
+ =?us-ascii?Q?/C/xjXpqW5pSq8mlFP4jM6an+4Jhei2sOHDEkmEUml8YSaTbAAfrFBqHzGaO?=
+ =?us-ascii?Q?85T6baL4P6xoQYV9u1uSudipdK3xW/XDWNlqt8zMds4m9GiCSDmqMG/6J+yA?=
+ =?us-ascii?Q?Tjj7LxOviNGW8KVKSkqNitK2w+65B4SXyIJZM41l8aeKPWqg0858wxy3Xes7?=
+ =?us-ascii?Q?ww7KT/xjj267PQtDdciBjuvhVVo0/o04eosHbTPDd/KNU56Sn292Yb6n1cY5?=
+ =?us-ascii?Q?EaLoQ2Ccpw7aihPjvAUHL5Id35IpNbnjXsyTZkEKJtdpfvs+z5XfslTrBJpr?=
+ =?us-ascii?Q?pdtEve1oK/ENbbeQ8t7cHMaflFFO0BdDlSNAZ9oGRvWtdOMsFmlroQ3T0bhm?=
+ =?us-ascii?Q?CneIZTtCTqeml//ik622AHFjEbM0wNGrOlazG5KtrLtNCYJqlCxXDyaLwv6r?=
+ =?us-ascii?Q?Cz18PJKr2W08HCHVNahiJ2n2cQ2DqT9GFGLKiTCnJQ+Ulg8MlhS6Nw6t7C3i?=
+ =?us-ascii?Q?TSjvLOAzAiWnw6RsrCw7Q45uCNJW9BpT4t03p9PfSwqbfvT7xEYvrHUKoZBe?=
+ =?us-ascii?Q?1agVG8byewTwHVuLoULxDGK//XmA2fqvS4wBg5GVBLf6G3tK28iKu17Fs4+s?=
+ =?us-ascii?Q?TAzwZ58mP3Lh22fFbDhuUlObHN/YqYMlL5aps+82uhZFy+c9bV3CnLCxnng2?=
+ =?us-ascii?Q?ahuajbuXuqFeRw9d8W0CKIB5X1iPiWvdBd5DAGVR8pGi3FVvnd4CCGqQz0UK?=
+ =?us-ascii?Q?ikRdjbmJAjDhuwwcXz9OMQdvFV76KOncUaTsxGapmAtTnDoORyrZnEYOReQu?=
+ =?us-ascii?Q?2mfjkKZRAhP775w22IZDaaeA2HnCWXWmyPEYAX+e5++xBEXeCg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(7416014)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?uVtckTF2GOOr+9DbNWKnzB8r/Rd0Ya4lHlO3uBtUY3QnoQN2OrgffdT44BXZ?=
+ =?us-ascii?Q?b9JdA7WpeLNFdHO4zmnHPAPJ/0INDavJj1FnzROxNonC00ba6hWjlNTJeu7s?=
+ =?us-ascii?Q?n8v4Zoc4XXer2U3caHHrDBrls57kUDEhfl6sbxfUDfWF3JI+O3qD6cOuozd5?=
+ =?us-ascii?Q?hYR2xDJdVDIGzNk9o4gY+31jREbqMyVGYnPODgQotksQpQJe/gadwhijAClZ?=
+ =?us-ascii?Q?Fhudf7aQZ7wVpA74qJTxg2s1T4wOZwxfOMZ15sBBWIiIMa+Uw0yMOluJK8qq?=
+ =?us-ascii?Q?CmejY9jPbdnyQc+spJN3JUc/4T9EbwFbejqT7flMqWNX/LHZODYAuz6w/JyT?=
+ =?us-ascii?Q?KzxxlAphHb+ZLnr5qVqt6702UlwsEKvQTGQ8j2sV/87CmwM5JqMeH2cHJb6+?=
+ =?us-ascii?Q?2uJvAKM40dRR0hGSJKeyxHilpZCOUYciM/stCVH8l3BiWm4c4Ov3s7slIgQG?=
+ =?us-ascii?Q?uDQLSE80WkFvblq52NL96v4EkvRv0JmTBoBFXqaUHWZaLl50aiD/4s/GG14W?=
+ =?us-ascii?Q?lNv+Kpa4ulMnYpaeoZEg3Eaum2yRR6JT0joNiNCJBznyGbmDYK2SCQtGjdry?=
+ =?us-ascii?Q?tKowRwFsWMZiCKPcFoMLanfyaxPKKnJbriDoOLo07AtGJGZfvR3NXuMCiygK?=
+ =?us-ascii?Q?B6tRrvo8qPWMY6CcfYALCJ/TVO5455ZzULPS/xYQtbdSM7EJuz1C4KCqcDZc?=
+ =?us-ascii?Q?3/7hefGEFQIIPkJ2IgFasepku9Xu0Aii+EZNUNkSySsLdNRaD5q1jaCtzs35?=
+ =?us-ascii?Q?moMQZEh4N9fzR9XwcbTsRURCkaraB54X4oFlWnouiTtMYb6MBjKLkokBzEG3?=
+ =?us-ascii?Q?l7tkSO70KI0y7rC9035c67bH3hukZiCk14LXC4zRaRCRo0r/H2ppJ5qweRCE?=
+ =?us-ascii?Q?3lFBxSe+08/7B8hXOYui5Cxe1PH8ve/R4oKbbDdX4gryb/Nli+yyB/3SuH2g?=
+ =?us-ascii?Q?uXvAkz3Aqbfqir1PT8WWj1kXunuA4qUgp5gcp+Kqd7ftXwFrQ87m4ktzdJJf?=
+ =?us-ascii?Q?fVsWLL+2w2qjx0G8x9Il7kiagoQTd7JVu695EogOqLNSlXIs+w/DkGWqJIuB?=
+ =?us-ascii?Q?2zmveBtkPB5eO4GLk1Z6fCzHoeuUJm4owJ2OkKRbPqkAhnic7szMO/6T5XsO?=
+ =?us-ascii?Q?bkxfv8ksg3zGIHKGWdWz4wGmc94NyvoSNYaLerQPCAtn6AxQdADTxsa1vnqD?=
+ =?us-ascii?Q?V2RiJ2D47o5yvAFRinof3rYgTTsou2qIBz4fIyaK21S7wyr6v/CBdYWvTOQp?=
+ =?us-ascii?Q?Kzl36svyC43guJBvTXycV8RvIWQuJU3EtMWd9gh3uf/uHZOoLRh8bulxmxW3?=
+ =?us-ascii?Q?RATnvxSv7S92/AOCxeF+2213BxeKfDE4rQ714KGlIoLiFCXE05XsXAsc4HwR?=
+ =?us-ascii?Q?NYO77LO4CaOBhdqS+IG8LRIsQyvP0pruGWAXyywkftNvHTOnoleBYX7EP/qe?=
+ =?us-ascii?Q?IklgmlOXExt3W1FV8pu8MKlPl/nFpg4WVDVyIdPPeePffXbuXvyrJfUYalyx?=
+ =?us-ascii?Q?zdc7d7nznfKG/8WeCapUgjFxdU6TiRWfB0TH6viOO4OJt/SZznVODaJmUXZ3?=
+ =?us-ascii?Q?sPyyOuswUwDvqMFTQGY=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 64243d62-50ec-492d-9582-08dcd9bcd68c
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2024 21:40:25.7887
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: z3WHDsRizpdGRNcFstlOzj6BMVOSJjN3LSuxZwVE/w9TiVf/6VtomCA27AwsQ1ydWz6rS5EfDF8R1JJwMytkZw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9735
 
-On Fri, Sep 20, 2024 at 11:01:10PM +0200, Charlie Jenkins wrote:
-> On Fri, Sep 20, 2024 at 05:57:22AM -0700, Palmer Dabbelt wrote:
-> > On Tue, 20 Aug 2024 08:24:18 PDT (-0700), jesse@rivosinc.com wrote:
-> > > Adds support for detecting and reporting the speed of unaligned vector
-> > > accesses on RISC-V CPUs. Adds vec_misaligned_speed key to the hwprobe
-> > > adds Zicclsm to cpufeature and fixes the check for scalar unaligned
-> > > emulated all CPUs. The vec_misaligned_speed key keeps the same format
-> > > as the scalar unaligned access speed key.
-> > > 
-> > > This set does not emulate unaligned vector accesses on CPUs that do not
-> > > support them. Only reports if userspace can run them and speed of
-> > > unaligned vector accesses if supported.
-> > > 
-> > > The Zicclsm is patches are no longer related to this set.
-> > > 
-> > > Changes in v6:
-> > >  Added ("RISC-V: Scalar unaligned access emulated on hotplug CPUs")
-> > > 
-> > > Changes in V8:
-> > >  Dropped Zicclsm
-> > >  s/RISCV_HWPROBE_VECTOR_MISALIGNED/RISCV_HWPROBE_MISALIGNED_VECTOR/g
-> > >   to match RISCV_HWPROBE_MISALIGNED_SCALAR_*
-> > >  Rebased onto palmer/fixes (32d5f7add080a936e28ab4142bfeea6b06999789)
-> > > 
-> > > Changes in V9:
-> > >  Missed a RISCV_HWPROBE_VECTOR_MISALIGNED...
-> > > 
-> > > Jesse Taube (6):
-> > >   RISC-V: Check scalar unaligned access on all CPUs
-> > >   RISC-V: Scalar unaligned access emulated on hotplug CPUs
-> > >   RISC-V: Replace RISCV_MISALIGNED with RISCV_SCALAR_MISALIGNED
-> > >   RISC-V: Detect unaligned vector accesses supported
-> > >   RISC-V: Report vector unaligned access speed hwprobe
-> > >   RISC-V: hwprobe: Document unaligned vector perf key
-> > > 
-> > >  Documentation/arch/riscv/hwprobe.rst       |  16 +++
-> > >  arch/riscv/Kconfig                         |  57 +++++++-
-> > >  arch/riscv/include/asm/cpufeature.h        |  10 +-
-> > >  arch/riscv/include/asm/entry-common.h      |  11 --
-> > >  arch/riscv/include/asm/hwprobe.h           |   2 +-
-> > >  arch/riscv/include/asm/vector.h            |   2 +
-> > >  arch/riscv/include/uapi/asm/hwprobe.h      |   5 +
-> > >  arch/riscv/kernel/Makefile                 |   3 +-
-> > >  arch/riscv/kernel/copy-unaligned.h         |   5 +
-> > >  arch/riscv/kernel/fpu.S                    |   4 +-
-> > >  arch/riscv/kernel/sys_hwprobe.c            |  41 ++++++
-> > >  arch/riscv/kernel/traps_misaligned.c       | 131 +++++++++++++++--
-> > >  arch/riscv/kernel/unaligned_access_speed.c | 156 +++++++++++++++++++--
-> > >  arch/riscv/kernel/vec-copy-unaligned.S     |  58 ++++++++
-> > >  arch/riscv/kernel/vector.c                 |   2 +-
-> > >  15 files changed, 465 insertions(+), 38 deletions(-)
-> > >  create mode 100644 arch/riscv/kernel/vec-copy-unaligned.S
-> > > 
-> > > base-commit: 32d5f7add080a936e28ab4142bfeea6b06999789
-> > 
-> > I get a
-> > 
-> > arch/riscv/kernel/traps_smisaligned.c: In function 'check_vector_unaligned_access_emulated':
-> > arch/riscv/kernel/traps_misaligned.c:591:9: error: unknown register name 'v0' in 'asm'
-> >  591 |         __asm__ __volatile__ (
-> >      |         ^~~~~~~
-> > 
-> > on rv32/defconfig.  Looks like just a missing Kconfg guard as this depends
-> > on V support in the toolchain.
-> 
-> There was an interesting iteraction here!
-> RISCV_PROBE_VECTOR_UNALIGNED_ACCESS was selecting
-> RISCV_VECTOR_MISALIGNED but that bypasses the depends on check of
-> RISCV_ISA_V. I'll send an update for Jesse with the fix for that one
-> patch.
+On Fri, Sep 20, 2024 at 04:54:07PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+>
+> spi nor flash needs power supply to work properly. The power supply
+> maybe software controllable per board design. So add the support
+> for an optional vcc-supply regulator.
+>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/mtd/spi-nor/core.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
+> index 9d6e85bf227b..0449afe6bb20 100644
+> --- a/drivers/mtd/spi-nor/core.c
+> +++ b/drivers/mtd/spi-nor/core.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/mtd/spi-nor.h>
+>  #include <linux/mutex.h>
+>  #include <linux/of_platform.h>
+> +#include <linux/regulator/consumer.h>
+>  #include <linux/sched/task_stack.h>
+>  #include <linux/sizes.h>
+>  #include <linux/slab.h>
+> @@ -3462,6 +3463,10 @@ int spi_nor_scan(struct spi_nor *nor, const char *name,
+>  	if (!nor->bouncebuf)
+>  		return -ENOMEM;
+>
+> +	ret = devm_regulator_get_enable_optional(dev, "vcc");
+> +	if (ret)
+> +		return ret;
+> +
 
-I take it back, I am not able to reproduce this.
-RISCV_PROBE_VECTOR_UNALIGNED_ACCESS is hidden behind "Vector unaligned
-Accesses Support" which depends on RISCV_ISA_V. This function that is
-erroring has the code:
+I think devm_regulator_get_enable_optional() should be called in
+spi_nor_probe(). spi_nor_scan() is public API, which may call many time.
+That will cause regulartor reference counter wrong.
 
-#ifdef CONFIG_RISCV_VECTOR_MISALIGNED
-void check_vector_unaligned_access_emulated(struct work_struct *work __always_unused)
-...
+Frank
 
-Since it is hidden behind CONFIG_RISCV_VECTOR_MISALIGNED, I am unsure
-how it is possible that this error is leaking through. The error you
-posted is also kind of odd because the first file you have is
-"arch/riscv/kernel/traps_smisaligned.c" but the actual file is
-"arch/riscv/kernel/traps_misaligned.c".
-
-> - Charlie
-> 
+>  	ret = spi_nor_hw_reset(nor);
+>  	if (ret)
+>  		return ret;
+>
+> --
+> 2.37.1
+>
 
