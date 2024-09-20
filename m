@@ -1,286 +1,184 @@
-Return-Path: <devicetree+bounces-104085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECC5497D2DC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 10:38:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B44B97D2FE
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 10:50:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CC111C229DF
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 08:38:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA5721F22FA9
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 08:50:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6F6D13B7BC;
-	Fri, 20 Sep 2024 08:38:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3DD7E575;
+	Fri, 20 Sep 2024 08:50:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="chhwzM0s"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="FAX5S2vz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2050.outbound.protection.outlook.com [40.107.117.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9550139CE3
-	for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 08:38:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726821494; cv=none; b=pU2nG1691uRq+1JGWTcvt0sE4w/War4ZomJ93qHOP73FLq3PoXLvj2OXfp7hhFqwUaRdJqakHTaAwbbHQz5o1lOJSpiZxsHEpqiH3kDct0r8J7DJVSGUbm99G3Bqe+6WzyqKFPWeY6cDqtuxs0W1ouhdbfO8gZasL74EA6iI4QY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726821494; c=relaxed/simple;
-	bh=7CJFNsK+RYsiPatWJUwXv7bSU3rHGoSDbNBW/V45qdo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=UShjqHbNOudaLUPKNifrUirZefdp+4dxlEGu9dUJIo3JlWJDp7WXhaecUEwDQW7BSQd39sfAZ4wCcWejqqFB3nRjiO1Zp+rJ19UUUJNzBJnggKI2DFjGZiMmJiRPDYTEJgW2sfuopNuu1aGSifL2dWB9gkqiGI6KmJc0TvZOuyY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=chhwzM0s; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-42bb7298bdeso21336695e9.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 01:38:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726821491; x=1727426291; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=M26p8HJUGVrSTve7LtSl4MnedM6VlYwh3DdAdGmuv7c=;
-        b=chhwzM0sMxRHQRobSnwUarGwHfhuDFKDdbUa7Su86ODuA/4rNWg3PyLCjhcpR1u1n1
-         Aq+gToIAC1vKIbYtJHYrfmHELfBpo0CUMXAdOLujJ/4Z4ihZaNS6izTu4Yv3Xcnx1hZy
-         XvULAcM8qgvCAbxotV4+qnc/catiOZlq2gycMUdJ3xHziVfAPOPytWcL2kE+OXrq27mB
-         4F0DG09niNX9oJsmPYDnC1b/F9VcBse8gSq3KMvnsNTOqRCRCPr7rrdq1DXGx7M7HuLs
-         x85cRLSx2H7Ts9D7bjmiNmdfoqjbErdlg5e5mQ0407RWGyQ3ZgeSA+cMuG3Y2cwZk8UH
-         z1kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726821491; x=1727426291;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=M26p8HJUGVrSTve7LtSl4MnedM6VlYwh3DdAdGmuv7c=;
-        b=bG57a8+TO1fFwNzIcov6K4PUY0Lr9PG+yitXsomCkejTKVFlhqrPUSUGzKG1xhfsgx
-         x+RgbX9ZWbiiw6gBP8QWhfTgTX+VvITXtvdRZPBJFTrPLn5DnNbryXZQ3bF3G0YP1iy9
-         wgytGhVSejZs29TZz54QG0Z6Xcek6t9hq2a2Ag+vWDYJEu3IuqY5d/2eG7/JLom2AcjL
-         ip/ZmeVcoPuhTx0VNT9j5sOJ/HRn2lViXu7Chu7njDfKkYM6SzYA1TCZelT31XX7Y0BZ
-         QfTSqdcmOIcek55w6dXMWxaG22kMimSiihjgAPe85aho7/2q5KKYfDwGWMMCHZkQ0FQn
-         mR5A==
-X-Forwarded-Encrypted: i=1; AJvYcCVEfz7POIue2wpU3xLOjbnJhRDE9eRuK5dJ5Fa1pN0oM/V4CTLNF8SYNOi4oVzMXsMuXjjqu9t9mkz5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzl4NO0VKpbzBtZzjvnuJyL7+hYfXtjOw0Xo4TzO3aEj0SLwsb0
-	9CgKyGvMAVosIUDT6uco/6UJUku3C+CHmj2hg65tbzX6ld7XB/fX3zw9DzrNlYY=
-X-Google-Smtp-Source: AGHT+IGu0mJn0TEAtjrxCTFxsE8k5t1vGcbdWZEZvHC/A/1yKOwaWCwpTcH4rvcoPgrQPnL4UVJgQw==
-X-Received: by 2002:a05:600c:314c:b0:42c:bb58:a077 with SMTP id 5b1f17b1804b1-42e7ac30863mr19117735e9.14.1726821491058;
-        Fri, 20 Sep 2024 01:38:11 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e7540e2c1sm43099165e9.2.2024.09.20.01.38.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Sep 2024 01:38:10 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Fri, 20 Sep 2024 10:38:05 +0200
-Subject: [PATCH v2 3/3] dt-bindings: mmc: convert amlogic,meson-mx-sdio.txt
- to dtschema
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C832B2B9BC;
+	Fri, 20 Sep 2024 08:50:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.50
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726822217; cv=fail; b=bN3aZUEa7LtNahYn8mlN7kp5MY6eFsxDfF0QRCvMWP4skDtOdevua6wtkz7gcrZtM5OlosyU3GZ/WN5vD7jGwJgRNhwRw8/uebCHnUFqi3wVmRCGkGzRD5tgiJkT2WURfDrf9JZigf3yWk9I5lW67SxOt2P7WuvO5Kmesq4gs1U=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726822217; c=relaxed/simple;
+	bh=QrSHOVFROpzkuvi/S2R/MZWfqDhQDEnfs/kVQmmIDtk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=Wc1ZFaA/QILDIBLHOb0EkwLGQbpazEe0tu7buZU8Bb5yrh6mZ/dwfxnLEBL8bIQXgOyCBJYVm81+BOKDM13XUUrhKcWgTzedHlfxHt7QZXCixqL2VK4TzT3nMLYrorL7RG7sWINJNe/7El0M7LBmd2XWHq8gaajXrsxrhDssfOI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=FAX5S2vz; arc=fail smtp.client-ip=40.107.117.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=naK1pldSk6qbI0Xg3T7xJC7qaV9OrWbaZpkM4EWBH3gvEmjOuEMzO368VIzjZTwd7fzQlZZtWq3zx87Ae6oebCRdTBuPVrv2f4wMSb5gEZSMILGOGO6zOGTCvuZ3Y11DlxTAeGQty7+CEdkcqbR26Za+D0VEgPT0v5Kkz77dAHml06/aqSxKgHUKiSVSNQldDSxZGXws4nmbqXmK5Id0n9gqXb7kgVMOq6Rc0qGCkLh5pAcqtDoMgfzcvjEWuyVp3yCsrotgqUIljvuYAiMU4f4HQkPOSkxYcrOZdQJB8kGOpSetw0QN0/EdIeNJcOLrqZ3i7LV0bnMyo+Te0rCnJw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mHvP5SNNJU64H3j5CiQuYovnkukIg1pumSF1+dfbN/w=;
+ b=e22/SC1Nmj+JDW/+nt1b3IGQ2+KnKt3NlBRaOss4AlMyRHBjQMyODQEFkwfCKy9pzpfwGkWuPwOyPlrbo/a00YSrJPoAe6wvVrxlykwoW3nAm100rnPW5CLDC5wWrJsD0QvEMPYsHPjt+supetH9jTN4zYukDynbCxiydEHRhWDtmDVTWRIlyZywzVIVvxlAlKJnjmPm0OcgOQqDEgby+4uu2PoB+JBKMURmrKtlgGyJElvEupD47Dvj2d4Fw+iGUlRD+YPUtCtvq0HW2Taba1I/y6lV6SsDMS2qrZk+WyNP4p8S3eNDqCEb4onkHLO//9PZ+nK1AAuocud+0xV6mw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mHvP5SNNJU64H3j5CiQuYovnkukIg1pumSF1+dfbN/w=;
+ b=FAX5S2vztN72tz3A6KdUdyP4wfbveUOWxYSNjNjQoTYUiPtBFjzXNg0PVxxG771gb4+ahQX6HIUnl0g7WrurXJN1vRlgGXwFvkZbSF/fjsmu5xJtNJbu7NM8PsAUutN4Q/So1LII5MnHzHs8IrneBvULcaahzxBpypJ/IxPyd/WzuLcGXsnd4GN9F31J1gL9Crc8JdueGijMmx/xkjoxGB2GSRAlouXeXP6GiGUPScxS2beyzbs2h2PB18kW/6nS3/MtAqsAMkqG4ckVG/im4WQeewsXsgRUdPAKTT/UzRGLeYt1r++LhODBEI3pLFzrOqxyyNyAMIKHo+T2dbmNPA==
+Received: from KL1PR01CA0151.apcprd01.prod.exchangelabs.com
+ (2603:1096:820:149::7) by TYUPR04MB6692.apcprd04.prod.outlook.com
+ (2603:1096:400:355::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.16; Fri, 20 Sep
+ 2024 08:50:11 +0000
+Received: from HK3PEPF0000021C.apcprd03.prod.outlook.com
+ (2603:1096:820:149:cafe::a4) by KL1PR01CA0151.outlook.office365.com
+ (2603:1096:820:149::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.29 via Frontend
+ Transport; Fri, 20 Sep 2024 08:50:11 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK3PEPF0000021C.mail.protection.outlook.com (10.167.8.38) with Microsoft SMTP
+ Server id 15.20.7918.13 via Frontend Transport; Fri, 20 Sep 2024 08:50:10
+ +0000
+From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+To: patrick@stwcx.xyz,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>,
+	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] ARM: dts: aspeed: yosemite4: Revise adc128d818 adc mode on Spider Board
+Date: Fri, 20 Sep 2024 16:50:07 +0800
+Message-Id: <20240920085007.1076174-1-Delphine_CC_Chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-3-5aa8bdfe01af@linaro.org>
-References: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-0-5aa8bdfe01af@linaro.org>
-In-Reply-To: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-0-5aa8bdfe01af@linaro.org>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5098;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=7CJFNsK+RYsiPatWJUwXv7bSU3rHGoSDbNBW/V45qdo=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBm7TRuyUKbSWggrLcYL3U67aC98p+hgvoXseunmRTZ
- QSonzOGJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZu00bgAKCRB33NvayMhJ0SxZEA
- DD/tHmAUJB6hYWVHojaA5NrWqA/Nhi/mZY7G4EnGnwGWzTLVeD3recvdof38Itt1vty9fYc9qrP3na
- gsszZfV0hOSwZcvJA5SERhRfc4yljd7GjhRuSRBh2C0wzumWXqJm7xcZLxkR+4f/jXGcPaem46tfc0
- CSNZ9meAoaRHWFSzCTnQx3F2NPI1SXnyfLkRNJHZMtli0FNwoXbtd4sfW/IUG47YrfjaWvUcG1+yws
- IqE+8jNZx72J1mCfktuUNB3jC3e9mf2tMAvvGt3AFH5DogngSiZSN6oL3Lh+GNNYmmjENyvota1ryH
- kOZlHb2J+deIdbL3YbmTmMKpnzVw+FmT1wt81kB1avqCMxEFs1XtpSc+wDyEi5vTrrXSD/GXnMtaFt
- 9Vc1aFOcxRfQCQl70a98MiR3j/rkFW2+4teKte7lEQ7339p0N4Gz1WkVNiVmK6elb2RqwJ7cfd/tIO
- mnzJ72REGtGtAhgOSZvUc3pJAIKerQ1U+bFABnqUtu1geaTzNw8zTXg0E+l2PGGRRip1plVIQrrdJt
- I7QIT2ikwZwuqGYOC3Gu4rVcdmugVx28ghj+5VjM8Cs6EnIfglsavmD3vZdal4C4bem+M6VTpU7+I2
- HAo+g5zS5Be191z30RM9QCH/mjcBEvG7BptWhtHO3tJnCumJY1VQuSMNZtjg==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK3PEPF0000021C:EE_|TYUPR04MB6692:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 93d091cb-ec8b-48e8-b024-08dcd9513c75
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|82310400026|36860700013|7416014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?sVmX402X/wPF5gx17Ki1O2agvlEcuIhMZsrLPWVCr94CsGseyE2dib/n5dKD?=
+ =?us-ascii?Q?GTx99i1+pXxBx93SaV0BIuasiws5XFI7eTGsJtSidWgeuh/rIIsfFIrJRUvl?=
+ =?us-ascii?Q?lWAm4JjH+hevkx0mvAV31RgWP6DfPwfU7IBUeE1FjwH1n2pknv4BPqbjzxH7?=
+ =?us-ascii?Q?pqJ6tgne3rshwkFgbUGAIzimTt++qnRKhIBj/Ibu1lLb46QaBlIXSpM7/cOY?=
+ =?us-ascii?Q?eNBR4B8n6Se9YZe6zqJq1Dkj3O4SAXa1BDFBs59XYppthO0EmH0296NXnnj7?=
+ =?us-ascii?Q?BGYdXAMAS3aKcQxKc40knroAKPuNaA0LwDOzPYV6KL1tYPlM4ZGw0xJ20rjH?=
+ =?us-ascii?Q?MWpH629sg2/lSFlF9gMp4EdT2Q1K9Jqe8vWFNO6z5FAi6W0Y8gM/FHXmMYr6?=
+ =?us-ascii?Q?TssUPmOFQ9dnnibbRdyS7DREllbyasUyMAHTd2HNmCPiRuEc0as9H1SMjvxp?=
+ =?us-ascii?Q?bAfYxu2y3ucB82srZFKACCzQ1vo0ZmkJypsH5W0Cc0Pk5LKbXPDka8lXrV71?=
+ =?us-ascii?Q?jOeN1i6Gg/wk/zVN7Ji+LWuTchUVmu23LKb5TWMRs6LmF4at8uxD+fzSMO3O?=
+ =?us-ascii?Q?Uj2BXnCzS/ibs4Hsdd0QRL5zsVOP9ckX3mFFraSMESuADZ4pv0BKDyC6eRNB?=
+ =?us-ascii?Q?eb38RWcR77R7O1uvL8zSCdq+p/iaNRNc6XQoaYGjzu4RrS+7x4/BkgYFeZic?=
+ =?us-ascii?Q?DldcZVDOCfDS8GEoZ23WuPbf4cxtH78JyquluUFz6I4LxIm6LN9fCdh87AFS?=
+ =?us-ascii?Q?t9Hiy8frLShSoPfH39NtSLszNfZaJhDYCW4Hk4f1ctlje/Ik4+1k2AEZ03QO?=
+ =?us-ascii?Q?3M6xFVYhDjZxPxIQvxbVL/EQqncaawdl50ZydMhD8oTw/o6bntZSif6giJsG?=
+ =?us-ascii?Q?rQtrT4jGxWb6n+vEUufH4VofC2ecG220e9UQoqWn2YqY8IEaHQstwLeZTmiy?=
+ =?us-ascii?Q?m/4pgRj17C4duN+DDDmWJPu38XRbCVStwInaK7rxNdk/GZiPhcDKEj6oJ61R?=
+ =?us-ascii?Q?LIMunaIN7dFfbwOc8vj+0D+kHhvRWJQV/38VweQa6sEBaWLbw6is6xbgH04I?=
+ =?us-ascii?Q?gzKk5joV+S04gcIbWMERYK5JXN23CrgqZ3B+6i5d3tU868/IMd3Q2JaoBEX8?=
+ =?us-ascii?Q?hoqlUU+xCCmtBYwyDrdWYHcvsYd9Z1VRBjfk2uPBfMBFWElYf50u8mbsbV+E?=
+ =?us-ascii?Q?zUTuy8sLYh+djFT0VRc5qTsnXqighg724Pp5f5R8eTdLTuB8tUo86pngW9K6?=
+ =?us-ascii?Q?NiuB/qJ51H99Ro5eQflZW9l0LbTtSiOYseOjHy1TApywtUqDBM2RPqtcRm/U?=
+ =?us-ascii?Q?/QnJl2gZOVsjy9dMwAmAGa9njrzyCWyQ0ftBmuJoikJEBtz3xiZf/MNi1xFu?=
+ =?us-ascii?Q?JMZtEudjSWq0hCQJ0lskqXKf/CfEXfK6pt8YHcRD/96xmV12zECxcDhFuXpm?=
+ =?us-ascii?Q?14vfODTPAMwXfJKf1iW9NdRhPbSD4LR7?=
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(376014)(82310400026)(36860700013)(7416014)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2024 08:50:10.6254
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 93d091cb-ec8b-48e8-b024-08dcd9513c75
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	HK3PEPF0000021C.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYUPR04MB6692
 
-Convert the Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
-bindings to dt-schema.
+From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Revise adc128d818 adc mode on Spider Board according to schematic.
+
+Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
 ---
- .../bindings/mmc/amlogic,meson-mx-sdio.txt         | 54 ------------
- .../bindings/mmc/amlogic,meson-mx-sdio.yaml        | 96 ++++++++++++++++++++++
- 2 files changed, 96 insertions(+), 54 deletions(-)
+ .../boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts  | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
-deleted file mode 100644
-index 8765c605e6bc..000000000000
---- a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
-+++ /dev/null
-@@ -1,54 +0,0 @@
--* Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
--
--The highspeed MMC host controller on Amlogic SoCs provides an interface
--for MMC, SD, SDIO and SDHC types of memory cards.
--
--Supported maximum speeds are the ones of the eMMC standard 4.41 as well
--as the speed of SD standard 2.0.
--
--The hardware provides an internal "mux" which allows up to three slots
--to be controlled. Only one slot can be accessed at a time.
--
--Required properties:
-- - compatible : must be one of
--	- "amlogic,meson8-sdio"
--	- "amlogic,meson8b-sdio"
--	along with the generic "amlogic,meson-mx-sdio"
-- - reg : mmc controller base registers
-- - interrupts : mmc controller interrupt
-- - #address-cells : must be 1
-- - size-cells : must be 0
-- - clocks : phandle to clock providers
-- - clock-names : must contain "core" and "clkin"
--
--Required child nodes:
--A node for each slot provided by the MMC controller is required.
--NOTE: due to a driver limitation currently only one slot (= child node)
--      is supported!
--
--Required properties on each child node (= slot):
-- - compatible : must be "mmc-slot" (see mmc.txt within this directory)
-- - reg : the slot (or "port") ID
--
--Optional properties on each child node (= slot):
-- - bus-width : must be 1 or 4 (8-bit bus is not supported)
-- - for cd and all other additional generic mmc parameters
--   please refer to mmc.txt within this directory
--
--Examples:
--	mmc@c1108c20 {
--		compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
--		reg = <0xc1108c20 0x20>;
--		interrupts = <0 28 1>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--		clocks = <&clkc CLKID_SDIO>, <&clkc CLKID_CLK81>;
--		clock-names = "core", "clkin";
--
--		slot@1 {
--			compatible = "mmc-slot";
--			reg = <1>;
--
--			bus-width = <4>;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
-new file mode 100644
-index 000000000000..3b665396169d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
-@@ -0,0 +1,96 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/amlogic,meson-mx-sdio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
-+
-+description: |
-+  The highspeed MMC host controller on Amlogic SoCs provides an interface
-+  for MMC, SD, SDIO and SDHC types of memory cards.
-+
-+  Supported maximum speeds are the ones of the eMMC standard 4.41 as well
-+  as the speed of SD standard 2.0.
-+
-+  The hardware provides an internal "mux" which allows up to three slots
-+  to be controlled. Only one slot can be accessed at a time.
-+
-+maintainers:
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - amlogic,meson8-sdio
-+          - amlogic,meson8b-sdio
-+      - const: amlogic,meson-mx-sdio
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: core
-+      - const: clkin
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "slot@[0-2]+$":
-+    $ref: mmc-slot.yaml#
-+    description:
-+      A node for each slot provided by the MMC controller
-+
-+    properties:
-+      reg:
-+        description:
-+          the slot (or "port") ID
-+        enum: [0, 1, 2]
-+
-+      bus-width:
-+        enum: [1, 4]
-+
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    mmc@c1108c20 {
-+        compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
-+        reg = <0xc1108c20 0x20>;
-+        interrupts = <GIC_SPI 28 IRQ_TYPE_EDGE_RISING>;
-+        clocks = <&clk_core>, <&clk_in>;
-+        clock-names = "core", "clkin";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        slot@1 {
-+            compatible = "mmc-slot";
-+            reg = <1>;
-+            bus-width = <4>;
-+        };
-+    };
-
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+index 98477792aa00..84b7dca88ce8 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+@@ -385,19 +385,19 @@ &i2c14 {
+ 	adc@1d {
+ 		compatible = "ti,adc128d818";
+ 		reg = <0x1d>;
+-		ti,mode = /bits/ 8 <2>;
++		ti,mode = /bits/ 8 <1>;
+ 	};
+ 
+-	adc@35 {
++	adc@36 {
+ 		compatible = "ti,adc128d818";
+-		reg = <0x35>;
+-		ti,mode = /bits/ 8 <2>;
++		reg = <0x36>;
++		ti,mode = /bits/ 8 <1>;
+ 	};
+ 
+ 	adc@37 {
+ 		compatible = "ti,adc128d818";
+ 		reg = <0x37>;
+-		ti,mode = /bits/ 8 <2>;
++		ti,mode = /bits/ 8 <1>;
+ 	};
+ 
+ 	power-sensor@40 {
 -- 
-2.34.1
+2.25.1
 
 
