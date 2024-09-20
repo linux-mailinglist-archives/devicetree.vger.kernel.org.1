@@ -1,227 +1,190 @@
-Return-Path: <devicetree+bounces-104218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FA9B97DA28
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 23:03:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E864697DA49
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 23:33:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B74661F21E53
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 21:03:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 825202831DC
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 21:33:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 328E714A4FF;
-	Fri, 20 Sep 2024 21:03:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94210186E42;
+	Fri, 20 Sep 2024 21:32:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nu93tajL"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="R3R8Rv99"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1738BEBE;
-	Fri, 20 Sep 2024 21:03:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 967821862B3
+	for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 21:32:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726866192; cv=none; b=T71h7Nklr+y1fUFhzEOiinsolMcmT7skPBQLXQ9EM7dM6caFyZLz7x2+cIKWx+SuY+zRwjQhx1ajGdByar36fZ9rVm4h9H1Z8l9GiG5NEOdaAmWGoydzduLYMYyIpIrixfiyUrwgwlf7KznHNGP0iLRuYNCT4ZyqrqcHkBd1GeQ=
+	t=1726867977; cv=none; b=Gr26uLY62VbTY6ykfEI9PjoOC8yGoozsbMIq0Yf+EIUk1GEO0u0JmtuvxRgUlwKHX30ih2H6c7N1JuuMeU1pHkcfBX5ehJwbcAZc6EcWeMQuqdh8OHkb1H7o4Q98/QQrENCwiH6mrDRYLZnl3mLQ5VYSZxIByv1NfFBAOee200k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726866192; c=relaxed/simple;
-	bh=To8EsQs4C3f6m/gBBaaZms93pIspdDdKgL2SmZRBnL0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=BU0TDBIQky5//dM5yf8Iobz0sOODbAJircCb9BBWsO7KtwZF3hohZlwCS3qqw+TfPUHN92TNpUas5Ft+BX91B2V+ugp4LLiBCYw7eQWscPhemZrkvOStRZF6LGiPOro76vpEH7MzZPXk2sWtZp6mdoIuSHQITL4CdJnxhn/OJmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nu93tajL; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48KKfhIK021838;
-	Fri, 20 Sep 2024 21:02:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HPvH/KPFI9cFs02tKe4xQrHmrpWIDZy+NVAg7DBI6Hg=; b=nu93tajLBCkg+R+c
-	B4qjmmfYtTyocAmggLNlaP8hRdjLcWVFh1Ruj8h2vUi7SuWN8vUhd9NZO3Gt87/u
-	92Q5oCdKY+Yx5XZNG/Fo6bjXrdlUe/LHxraDaWD6AC3ViNus/ctcjg97SP+cvXSi
-	F3t+OZ17fvL9uiFG4788huCGYcJgD5f6ZNMAJiVOW1PoD7V0tQ+mcZZWdR7fIEas
-	NrT50GiMnlOLeAYnvP/js1Te8imxSMFDXZUUDb7fojIF93mI3mT7giAHr4Nh7gvT
-	MtymmO4Bn1TubZPB477Fl8dLBWUvhJWgnMqOSRlKW4slAYG2fMKB6XbhP2gwnHOn
-	ybhMMA==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41n4hfafb6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Sep 2024 21:02:54 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48KL2qBS008927
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Sep 2024 21:02:53 GMT
-Received: from [10.111.182.77] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 20 Sep
- 2024 14:02:52 -0700
-Message-ID: <b7fdafd6-5029-4b80-b264-11943740b354@quicinc.com>
-Date: Fri, 20 Sep 2024 14:02:51 -0700
+	s=arc-20240116; t=1726867977; c=relaxed/simple;
+	bh=jJbw/9xzyIfVzZRQtRUX26vvhoN6sO9ID/AnJLHVApQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hxTlgcsybwEQRTk8RFGTAyn9sAsdUsfcBY5SPdKUQaH/jeljwmZxO/MXXO7cWDsA0jJsE/+/e+3RKvXdRzJ3vgmInwsPkxyKdtvrpJBw/q7RsBvxi4XxCDpkYQiPbQpsh8A1XRqGl/+O8KCcMe1TIZ28DjAGZvj6VbbCt6zXiQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=R3R8Rv99; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2f761461150so32668031fa.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 14:32:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1726867974; x=1727472774; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yedMi0rr2m7jZhDqBPtfn8qdlTLdCHVXIS1wYbW0HHw=;
+        b=R3R8Rv99nofduYuM29gb847cmF53/p/mS0C8zq5x677LNYsQAtL8tggxW1sd7SDlLF
+         8cHZ4Go/4fBDNuBT5Bwa6WXrcCopZCpxhl3tFfPanZLfXEztph0b8/N5XD6T2bVEvEYn
+         IIu7syvjkMddUo+OLP8d0efU0U6kCRlFpKIjirc49Thv4dizqVnItMxvwdiInDTvuMVI
+         BAD3rm7r/C0fMmSov5JVVJNSL9xi9YOmDfmbh2Idmagnx5HWpcaFAQ6ab+vmNq42FXU/
+         wwS3rMPMAnZJnBbIt8QN45t600UI/kpDSAJKYTRd86QF6wCUSRcoNe33L/gH1V0/U7PE
+         gZ4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726867974; x=1727472774;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yedMi0rr2m7jZhDqBPtfn8qdlTLdCHVXIS1wYbW0HHw=;
+        b=OMKv7jb9+T36QRu8wEiwwU6jsDHZqfhQ6lJdevwiashwlN4a6vj8y5VcVUQHSlK1BV
+         4zegd7t41UjrHlYku4Ms4zU0y7m2FwxhWfuckhTs4v0qQH9v1Yvv7Crsv8GS97+7gYNE
+         l5qcfghdKLnLTN9+4RSVCpovJ+DCNMaxAZzTpeKFxvCotd5n9UwjwSJf4qE2Jv8pQXn0
+         e+VIvfPAozRPxx8ysX9ps1iSQqJdCN7HSQSHjZDLOxFCw9McoMq02gAaNcIkmiM+IbW0
+         QFEnKqulh1GQyZaQFeJ0tWEDoDvzLzgsR1/jB8StWJ1Hi0UuP3ql+AfqxgsLxppG9lVA
+         963Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXx1p34gNQ1rDr11oZjnWbuxhZhnEdFetT8t5Dbuotqk9dNLRQg66C8Y11xtixeK88LYLf5UbaEM8vj@vger.kernel.org
+X-Gm-Message-State: AOJu0YxaL6IboY4tBEaflaC9E3lRLmmydFXc5RqQuim1ZHDatqzlxSo9
+	HEO89J6UijtpgAiw1/tpiK7ryrprfsQAB8v1OWq6hlSexFqBjxRaLS60fkVIxbo=
+X-Google-Smtp-Source: AGHT+IEaFYnRpbuoQr3t3E0N+OSqX5dBzKegFela78N+6cNOl4laXXImQCFB5g8pd4nLbdJoGf0Uxw==
+X-Received: by 2002:a2e:602:0:b0:2f7:6653:8053 with SMTP id 38308e7fff4ca-2f7cb31b975mr27279601fa.18.1726867973513;
+        Fri, 20 Sep 2024 14:32:53 -0700 (PDT)
+Received: from ghost (93-43-80-122.ip91.fastwebnet.it. [93.43.80.122])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a90612b33d9sm887542066b.114.2024.09.20.14.32.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Sep 2024 14:32:52 -0700 (PDT)
+Date: Fri, 20 Sep 2024 23:32:49 +0200
+From: Charlie Jenkins <charlie@rivosinc.com>
+To: Palmer Dabbelt <palmer@dabbelt.com>
+Cc: jesse@rivosinc.com, linux-riscv@lists.infradead.org, corbet@lwn.net,
+	Paul Walmsley <paul.walmsley@sifive.com>, aou@eecs.berkeley.edu,
+	Conor Dooley <conor@kernel.org>, robh@kernel.org,
+	krzk+dt@kernel.org, cleger@rivosinc.com,
+	Evan Green <evan@rivosinc.com>, ajones@ventanamicro.com,
+	xiao.w.wang@intel.com, andy.chiu@sifive.com, ebiggers@google.com,
+	greentime.hu@sifive.com, Bjorn Topel <bjorn@rivosinc.com>,
+	Heiko Stuebner <heiko@sntech.de>, costa.shul@redhat.com,
+	akpm@linux-foundation.org, bhe@redhat.com, apatel@ventanamicro.com,
+	zong.li@sifive.com, samitolvanen@google.com,
+	ben.dooks@codethink.co.uk, alexghiti@rivosinc.com,
+	gustavoars@kernel.org, erick.archer@gmx.com, j.granados@samsung.com,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 0/6] RISC-V: Detect and report speed of unaligned
+ vector accesses
+Message-ID: <Zu3qAdGYJfNPTK15@ghost>
+References: <20240820152424.1973078-1-jesse@rivosinc.com>
+ <mhng-07137536-28ef-4262-a165-6388fffd2599@palmer-ri-x1c9>
+ <Zu3illShBOscs+zN@ghost>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs
- of the ath11k on WCN6855
-To: Bartosz Golaszewski <brgl@bgdev.pl>, Kalle Valo <kvalo@kernel.org>
-CC: Krzysztof Kozlowski <krzk@kernel.org>,
-        "David S . Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>, <linux-wireless@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>
-References: <20240814082301.8091-1-brgl@bgdev.pl>
- <83c562e9-2add-4086-86e7-6e956d2ee70f@kernel.org> <87msk49j8m.fsf@kernel.org>
- <ed6aceb6-4954-43ad-b631-6c6fda209411@kernel.org> <87a5g2bz6j.fsf@kernel.org>
- <CAMRc=MeLick_+Czy5MhkX=SxVvR4WCmUZ8CQ5hQBVTe2fscCPg@mail.gmail.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <CAMRc=MeLick_+Czy5MhkX=SxVvR4WCmUZ8CQ5hQBVTe2fscCPg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: uWrwlgWhzSafXP1o32PKT16s7q-E5LRi
-X-Proofpoint-GUID: uWrwlgWhzSafXP1o32PKT16s7q-E5LRi
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- suspectscore=0 bulkscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015
- mlxlogscore=999 adultscore=0 malwarescore=0 phishscore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2408220000
- definitions=main-2409200153
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zu3illShBOscs+zN@ghost>
 
-On 9/20/2024 1:22 AM, Bartosz Golaszewski wrote:
-> On Fri, 20 Sep 2024 08:45:56 +0200, Kalle Valo <kvalo@kernel.org> said:
->> Krzysztof Kozlowski <krzk@kernel.org> writes:
->>
->>> On 19/09/2024 09:48, Kalle Valo wrote:
->>>> Krzysztof Kozlowski <krzk@kernel.org> writes:
->>>>
->>>>> On 14/08/2024 10:23, Bartosz Golaszewski wrote:
->>>>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>>>>
->>>>>> Describe the inputs from the PMU of the ath11k module on WCN6855.
->>>>>>
->>>>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>>>> ---
->>>>>> v1 -> v2:
->>>>>> - update the example
->>>>>
->>>>> I don't understand why this patch is no being picked up. The code
->>>>> correct represents the piece of hardware. The supplies should be
->>>>> required, because this one particular device - the one described in this
->>>>> binding - cannot work without them.
->>>>
->>>> I have already explained the situation. With supplies changed to
->>>> optional I'm happy take the patch.
->>>
->>> You did not provide any relevant argument to this case. Your concerns
->>> described quite different case and are no applicable to DT based platforms.
->>
->> Ok, I'll try to explain my concerns one more time. I'll try to be
->> thorough so will be a longer mail.
->>
->> In ath11k we have board files, it's basically board/product specific
->> calibration data which is combined with the calibration data from chip's
->> OTP. Choosing the correct board file is essential as otherwise the
->> performance can be bad or the device doesn't work at all.
->>
->> The board files are stored in board-2.bin file in /lib/firmware. ath11k
->> chooses the correct board file based on the information provided by the
->> ath11k firmware and then transfers the board file to firmware. From
->> board-2.bin the correct board file is search based on strings like this:
->>
->> bus=pci,vendor=17cb,device=1103,subsystem-vendor=105b,subsystem-device=e0ca,qmi-chip-id=2,qmi-board-id=255
->> bus=pci,vendor=17cb,device=1103,subsystem-vendor=105b,subsystem-device=e0ca,qmi-chip-id=2,qmi-board-id=255,variant=HO_BNM
->>
->> But the firmware does not always provide unique enough information for
->> choosing the correct board file and that's why we added the variant
->> property (the second example above). This variant property gives us the
->> means to name the board files uniquely and not have any conflicts. In
->> x86 systems we retrieve it from SMBIOS and in DT systems using
->> qcom,ath11k-calibration-variant property.
->>
+On Fri, Sep 20, 2024 at 11:01:10PM +0200, Charlie Jenkins wrote:
+> On Fri, Sep 20, 2024 at 05:57:22AM -0700, Palmer Dabbelt wrote:
+> > On Tue, 20 Aug 2024 08:24:18 PDT (-0700), jesse@rivosinc.com wrote:
+> > > Adds support for detecting and reporting the speed of unaligned vector
+> > > accesses on RISC-V CPUs. Adds vec_misaligned_speed key to the hwprobe
+> > > adds Zicclsm to cpufeature and fixes the check for scalar unaligned
+> > > emulated all CPUs. The vec_misaligned_speed key keeps the same format
+> > > as the scalar unaligned access speed key.
+> > > 
+> > > This set does not emulate unaligned vector accesses on CPUs that do not
+> > > support them. Only reports if userspace can run them and speed of
+> > > unaligned vector accesses if supported.
+> > > 
+> > > The Zicclsm is patches are no longer related to this set.
+> > > 
+> > > Changes in v6:
+> > >  Added ("RISC-V: Scalar unaligned access emulated on hotplug CPUs")
+> > > 
+> > > Changes in V8:
+> > >  Dropped Zicclsm
+> > >  s/RISCV_HWPROBE_VECTOR_MISALIGNED/RISCV_HWPROBE_MISALIGNED_VECTOR/g
+> > >   to match RISCV_HWPROBE_MISALIGNED_SCALAR_*
+> > >  Rebased onto palmer/fixes (32d5f7add080a936e28ab4142bfeea6b06999789)
+> > > 
+> > > Changes in V9:
+> > >  Missed a RISCV_HWPROBE_VECTOR_MISALIGNED...
+> > > 
+> > > Jesse Taube (6):
+> > >   RISC-V: Check scalar unaligned access on all CPUs
+> > >   RISC-V: Scalar unaligned access emulated on hotplug CPUs
+> > >   RISC-V: Replace RISCV_MISALIGNED with RISCV_SCALAR_MISALIGNED
+> > >   RISC-V: Detect unaligned vector accesses supported
+> > >   RISC-V: Report vector unaligned access speed hwprobe
+> > >   RISC-V: hwprobe: Document unaligned vector perf key
+> > > 
+> > >  Documentation/arch/riscv/hwprobe.rst       |  16 +++
+> > >  arch/riscv/Kconfig                         |  57 +++++++-
+> > >  arch/riscv/include/asm/cpufeature.h        |  10 +-
+> > >  arch/riscv/include/asm/entry-common.h      |  11 --
+> > >  arch/riscv/include/asm/hwprobe.h           |   2 +-
+> > >  arch/riscv/include/asm/vector.h            |   2 +
+> > >  arch/riscv/include/uapi/asm/hwprobe.h      |   5 +
+> > >  arch/riscv/kernel/Makefile                 |   3 +-
+> > >  arch/riscv/kernel/copy-unaligned.h         |   5 +
+> > >  arch/riscv/kernel/fpu.S                    |   4 +-
+> > >  arch/riscv/kernel/sys_hwprobe.c            |  41 ++++++
+> > >  arch/riscv/kernel/traps_misaligned.c       | 131 +++++++++++++++--
+> > >  arch/riscv/kernel/unaligned_access_speed.c | 156 +++++++++++++++++++--
+> > >  arch/riscv/kernel/vec-copy-unaligned.S     |  58 ++++++++
+> > >  arch/riscv/kernel/vector.c                 |   2 +-
+> > >  15 files changed, 465 insertions(+), 38 deletions(-)
+> > >  create mode 100644 arch/riscv/kernel/vec-copy-unaligned.S
+> > > 
+> > > base-commit: 32d5f7add080a936e28ab4142bfeea6b06999789
+> > 
+> > I get a
+> > 
+> > arch/riscv/kernel/traps_smisaligned.c: In function 'check_vector_unaligned_access_emulated':
+> > arch/riscv/kernel/traps_misaligned.c:591:9: error: unknown register name 'v0' in 'asm'
+> >  591 |         __asm__ __volatile__ (
+> >      |         ^~~~~~~
+> > 
+> > on rv32/defconfig.  Looks like just a missing Kconfg guard as this depends
+> > on V support in the toolchain.
 > 
-> No issues here.
-> 
->> If WCN6855 supplies are marked as required, it means that we cannot use
->> qcom,ath11k-calibration-variant DT property anymore with WCN6855 M.2
->> boards. So if we have devices which don't provide unique information
->> then for those devices it's impossible to automatically to choose the
->> correct board file.
->>
-> 
-> What you're really trying to say is: we cannot use the following snippet of
-> DTS anymore:
-> 
-> 	&pcie4_port0 {
-> 		wifi@0 {
-> 			compatible = "pci17cb,1103";
-> 			reg = <0x10000 0x0 0x0 0x0 0x0>;
-> 
-> 			qcom,ath11k-calibration-variant = "LE_X13S";
-> 		};
-> 	};
-> 
-> First: it's not true. We are not allowed to break existing device-tree sources
-> and a change to the schema has no power to do so anyway. You will however no
-> longer be able to upstream just this as it will not pass make dtbs_check
-> anymore.
-> 
-> Second: this bit is incomplete even if the WCN6855 package is on a detachable
-> M.2 card. When a DT property is defined as optional in schema, it doesn't
-> mean: "the driver will work fine without it". It means: "the *hardware* does
-> not actually need it to function". That's a huge difference. DTS is not a
-> configuration file for your convenience.
-> 
->> So based on this, to me the correct solution here is to make the
->> supplies optional so that qcom,ath11k-calibration-variant DT property
->> can continue to be used with WCN6855 M.2 boards.
->>
-> 
-> No, this is the convenient solution. The *correct* solution is to say how the
-> ath11k inside the WCN6855 package is really supplied. The dt-bindings should
-> define the correct representation, not the convenient one.
-> 
-> Let me give you an analogy: we don't really need to have always-on, fixed
-> regulators in DTS. The drivers don't really need them. We do it for
-> completeness of the HW description.
+> There was an interesting iteraction here!
+> RISCV_PROBE_VECTOR_UNALIGNED_ACCESS was selecting
+> RISCV_VECTOR_MISALIGNED but that bypasses the depends on check of
+> RISCV_ISA_V. I'll send an update for Jesse with the fix for that one
+> patch.
 
-Again, since I'm a DT n00b:
-Just to make sure I understand, you are saying that with this change any
-existing .dts/.dtb files will still work with an updated driver, so the new
-properties are not required to be populated on existing devices.
+I take it back, I am not able to reproduce this.
+RISCV_PROBE_VECTOR_UNALIGNED_ACCESS is hidden behind "Vector unaligned
+Accesses Support" which depends on RISCV_ISA_V. This function that is
+erroring has the code:
 
-However a new driver with support for these properties will utilize them when
-they are present, and the current ath11k .dts files will need to be updated to
-include these properties for pci17cb,1103, i.e. the following needs updating:
-arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-&pcie4_port0 {
-	wifi@0 {
-		compatible = "pci17cb,1103";
-		reg = <0x10000 0x0 0x0 0x0 0x0>;
+#ifdef CONFIG_RISCV_VECTOR_MISALIGNED
+void check_vector_unaligned_access_emulated(struct work_struct *work __always_unused)
+...
 
-		qcom,ath11k-calibration-variant = "LE_X13S";
-	};
-};
+Since it is hidden behind CONFIG_RISCV_VECTOR_MISALIGNED, I am unsure
+how it is possible that this error is leaking through. The error you
+posted is also kind of odd because the first file you have is
+"arch/riscv/kernel/traps_smisaligned.c" but the actual file is
+"arch/riscv/kernel/traps_misaligned.c".
 
-
+> - Charlie
+> 
 
