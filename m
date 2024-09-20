@@ -1,103 +1,120 @@
-Return-Path: <devicetree+bounces-104095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F254397D3EC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 11:57:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DD6B97D433
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 12:32:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8359E282B77
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 09:57:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D4B11F21C14
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 10:32:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB30413C3EE;
-	Fri, 20 Sep 2024 09:56:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 850C445C18;
+	Fri, 20 Sep 2024 10:32:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="sORopcg1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kE1Os6Gl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4CA25776;
-	Fri, 20 Sep 2024 09:56:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E1051BC46;
+	Fri, 20 Sep 2024 10:32:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726826217; cv=none; b=N3ncBnIe9NoM1ubAb2O+qHvDo75EwdNDg9Fk/AORWiynG+RANtwntYAit61deTXy3on8tRGyhkfkdbyV/atrmF9duqzQ5+++61XjL48hDaEpigGz0F1iRIsZwuIUi1PGEggIfgkbzbd6qugz+o8l8M1f8IjtzN8C4ucebG4+ujg=
+	t=1726828335; cv=none; b=ptoT+7snyAwgZp07aT677yg9iQXKlqhscNO92d5YP9DvvC7ePZbyoMkm9PP+T+WnlKycFwkMWggfjGNWqpR8/gG3uCID14bknISLSAL1on+cJR2QNtMMFHj4DQAsLeIiZDLPrNH3vKeSNVe/IpdTKJnSOKYANniR7makkLxfF0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726826217; c=relaxed/simple;
-	bh=WdDoGFPSTqZbec6YN4cQkS64m6JSU4DnTNwgzcZBjdA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WiSZsXYFVV+aqeo2JURO9zWkJlRqmAuX2fgargt0lcGti5vUeDzA7UkecD1ObqzU+DM2RGphbbwgA7bUyEg9HCd8hcURCjTZoOpbzO3QLYkhbvWIoj8bk4WGFP4eZPXjBEwavMer6uBsmqlilf7kyi9K8vRU55UZRurZyEBwPVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=sORopcg1; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ZjYXtCI4nuFEDAhXrD2uZbQsprc9VRMwkexVscbAyM0=; b=sORopcg130vTP2BE+HEZOFpnfT
-	Zs6sk4eDWLQoVWqYfadzyCn7a2sdObvIjsa7Lql16zLwBNvae24aYxECwxyajBps4CHQsZe4cTwDc
-	izA6tjN0aAJ4JWz4kj8hmHSICwOj6Xquh9P4jv2p4Id/lxssuqTQFvddtru5NxexjFSeCWOJWHDDo
-	NXMJ8VQgG1g3ozMSc0ZReMf5QHUR3MnhMYHc7/9GlAwQlBVkEgHfJLU8+X+QdhaSXzhCjRepcSayx
-	QvCShrI3QKj5x6JbTH8hKvHJwXd61yikR5VGMVvp0PlIJxdyNhorXQtf3G98dOmlAfT07NEHCl8Yf
-	AehKMy7g==;
-Received: from ip092042140082.rev.nessus.at ([92.42.140.82] helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sraNb-0000fJ-8O; Fri, 20 Sep 2024 11:56:47 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: joro@8bytes.org, Andy Yan <andyshrk@163.com>
-Cc: conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- devicetree@vger.kernel.org, iommu@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH] dt-bindings: iommu: rockchip: Add Rockchip RK3576
-Date: Fri, 20 Sep 2024 11:56:46 +0200
-Message-ID: <2220454.C4sosBPzcN@phil>
-In-Reply-To: <20240920094947.7566-1-andyshrk@163.com>
-References: <20240920094947.7566-1-andyshrk@163.com>
+	s=arc-20240116; t=1726828335; c=relaxed/simple;
+	bh=QFzruwUB5mDp1IbVvvLIMHWezj5sHK08Q71q6P+wdjg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=BDAwdPGCg3smQQo4ig3tlKEl6XFocwEqipDH1YmaEpYlYiZmchYGofeXs8oF0qx14V3WmNRL49+lD1KG/TpJhD/Ut+kWw6XmA6UI2AGShBWfX1Dhr5ViGZYkyHSSrsu0VY8sQbvHByFeJZ5lJkiFEdqvdiqb/6kwqnltqMCRQZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kE1Os6Gl; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48K84Yjq005788;
+	Fri, 20 Sep 2024 10:32:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	eWR+Ld9pcV0LdcC1SWmp8s/9godB2fW5sczBXNzXy9k=; b=kE1Os6Gl4F21v2hr
+	e29w7PmN4JAI7PK9y9flHO9vFN9VQxAAzjIEJRY31QMy+2tdpHNO5YvbusyPWPwP
+	hLUP4aRD+UVr23SbHnk1n4xSRkAB+0df+IEIrBFok6hf+9IygUm5p/wD0gVjsJR3
+	ICLciloeZqM82no2j3wEGAwtYHrFN6rEcR6/1aj26oFZBPQouQxOEVvZDxY3s2Gi
+	epww0Pmq95tRggC1k/S8vjNe3V/HUSFQVp2Xc7Qwth89Mn4w1mhjHF3xUCVgdcw8
+	FjteJMBNu7aNDzEzVpdZ2CEdgaqhATIB4ItHxkyaarYX7V9fiSdfGKAtF6YZqK0K
+	/YElOQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41n4jj0t61-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Sep 2024 10:32:10 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48KAW8w9025479
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Sep 2024 10:32:08 GMT
+Received: from [10.217.216.152] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 20 Sep
+ 2024 03:32:04 -0700
+Message-ID: <0515c7c9-6eb9-4b2d-9b63-6e7f935f1a6a@quicinc.com>
+Date: Fri, 20 Sep 2024 16:02:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: clock: qcom-rpmhcc: Add RPMHCC bindings
+ for QCS615
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen
+ Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Ajit Pandey
+	<quic_ajipan@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        "Jagadeesh Kona" <quic_jkona@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240919-qcs615-clock-driver-v1-0-51c0cc92e3a2@quicinc.com>
+ <20240919-qcs615-clock-driver-v1-1-51c0cc92e3a2@quicinc.com>
+ <96e54706-3e49-4d78-8edc-fa3a66215a1c@kernel.org>
+Content-Language: en-US
+From: Taniya Das <quic_tdas@quicinc.com>
+In-Reply-To: <96e54706-3e49-4d78-8edc-fa3a66215a1c@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Wuh2_7G_lvQW5wERe4tlLyr6Pp7s8suS
+X-Proofpoint-GUID: Wuh2_7G_lvQW5wERe4tlLyr6Pp7s8suS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ clxscore=1011 phishscore=0 impostorscore=0 bulkscore=0 adultscore=0
+ suspectscore=0 lowpriorityscore=0 malwarescore=0 spamscore=0 mlxscore=0
+ mlxlogscore=675 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409200075
 
-Am Freitag, 20. September 2024, 11:49:40 CEST schrieb Andy Yan:
-> From: Andy Yan <andy.yan@rock-chips.com>
-> 
-> Just like RK3588, RK3576 is compatible to the existing rk3568
-> binding.
-> 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-
-> ---
-> 
->  Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
-> index 621dde0e45d8..6ce41d11ff5e 100644
-> --- a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
-> @@ -25,6 +25,7 @@ properties:
->            - rockchip,rk3568-iommu
->        - items:
->            - enum:
-> +              - rockchip,rk3576-iommu
->                - rockchip,rk3588-iommu
->            - const: rockchip,rk3568-iommu
->  
-> 
 
 
+On 9/19/2024 5:49 PM, Krzysztof Kozlowski wrote:
+>>         - qcom,qdu1000-rpmh-clk
+>> +      - qcom,qcs615-rpmh-clk
+> This goes before qdu, keep alphabetical order please.
 
+Yes, definitely my bad to miss in both the files.
 
+-- 
+Thanks & Regards,
+Taniya Das.
 
