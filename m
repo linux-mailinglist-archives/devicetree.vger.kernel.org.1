@@ -1,152 +1,157 @@
-Return-Path: <devicetree+bounces-104136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D655D97D5D7
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 14:53:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1DF597D5DF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 14:57:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0ECFB1C20306
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 12:53:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7274C1F234A8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 12:57:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E05016ABC6;
-	Fri, 20 Sep 2024 12:53:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F8FE16C695;
+	Fri, 20 Sep 2024 12:57:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="klR9Xjz9"
+	dkim=pass (2048-bit key) header.d=dabbelt-com.20230601.gappssmtp.com header.i=@dabbelt-com.20230601.gappssmtp.com header.b="T2Z7t27L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EB2A166F00
-	for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 12:53:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7129516A955
+	for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 12:57:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726836804; cv=none; b=tnhxbL+cMCnHYa1f2yGUGrYSjOpbBt+2ynCM69JU1OJlJFtrfjr54qJh5ZuxYDAKxs6rUdUGx6W5elTgUNe/ujhnKdzoIxYm7tu6GKzytD3xC7XadDHwlQwHHmuDFgOelb8Dahust3E/6bX/r4QA2PJtKY15Co2TogicEuQ25CQ=
+	t=1726837045; cv=none; b=YZx8H15+lfS4nO+NtCUFbRP0FHsOn39rlrG2+Wc2e6vJ+UdiY8bFuh05UI+LuBjJP9Nx2U4itGcBh6rx0i2curfqQIjiYv7H8x5DVnkaBFh1HHnuX+MXIwK50nkf6D3LyUCXzpub24ARE5CJyhH2Q3R74aqEkpfjdG+03VqFNnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726836804; c=relaxed/simple;
-	bh=kl32+29wDMJLKm5y5Ry4I20StAeXq44bgCW38vO9c+U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J7uqEKbSCPuUfrJfwoesg7ZZPiHBgKoqxHzc6zF3kM+or70OLseVad81TxMLQFyOb9lDs0o2fQCh1gBq8uzHgmrrgrKAqLfNkcXBKowbR3jkCFLMV1Cq3GHqejJuGBgre2m2AH/gequ0ZRKs9vGh+KT3SOV9m0z/Spj57nO+T3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=klR9Xjz9; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a8713b00219so27573966b.0
-        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 05:53:22 -0700 (PDT)
+	s=arc-20240116; t=1726837045; c=relaxed/simple;
+	bh=c7QOjrhw6266N3BbYv4ZOi2g4euWje6OvrLBRKMmLUQ=;
+	h=Date:Subject:In-Reply-To:CC:From:To:Message-ID:Mime-Version:
+	 Content-Type; b=CfBjnKDtKH06ezBSvoYjgdKi4B3A3Swkz9+BOseJ7uIHdgVV+6ebTcE4R+Jnpgj8LmZXecRHQwrDGwxOaj0d/QeKaSdrBE0kGqN7chGl7NJJKNZ6c+66+ulKplgLciVP06BoZyAFKO3/+SizzJQjU0w6GmDQ7r0xI4K02uDKEZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dabbelt.com; spf=pass smtp.mailfrom=dabbelt.com; dkim=pass (2048-bit key) header.d=dabbelt-com.20230601.gappssmtp.com header.i=@dabbelt-com.20230601.gappssmtp.com header.b=T2Z7t27L; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dabbelt.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dabbelt.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-71790ed8c2dso1668398b3a.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 05:57:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726836801; x=1727441601; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=kl32+29wDMJLKm5y5Ry4I20StAeXq44bgCW38vO9c+U=;
-        b=klR9Xjz9o0BVPsrfzcDeJBZySqxZezNmjhr302G/lYiKo6/fmPL7PCpQGGy2Xw4RIi
-         OmZTBfSLAZ0/906DSuYXwjUf9nhrhN5OMHXGH0ygnFJg73hKx83B1DnFa8g0HriEmq73
-         Ekwp/KltZok2evMTq4htVNKj/VRUjrALP/WamYo0ni+m6LnMRZnbHheI1Ep7KAPkHID2
-         caKj/yh/VOiEcjuklFvMzYp29AjjbKLoV/y5cIkRc9Ji9w4MQ2Vxhr1mh8W2XpcSfxyi
-         M+KPDGbdvsuczg50pImT/c6PoDzAS8lSJPhC/wKt1LatHielgvmLj+Jd21ZBG/E3/RYu
-         H2xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726836801; x=1727441601;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=dabbelt-com.20230601.gappssmtp.com; s=20230601; t=1726837043; x=1727441843; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=kl32+29wDMJLKm5y5Ry4I20StAeXq44bgCW38vO9c+U=;
-        b=YOcUoXbIb/RKFivuydxfHtqtOSi381jhpeJx0mmZVs8d4AxFRHP58RiwfYPjtMLESu
-         fcl9eHTDhsPJiuuyyRJs2JqZEBnSgYQt+r92x/8Vj9Vclzgjd2at7DBMrajLSjWs1whs
-         ZNf1MpFcZ7j2W1Kmp2Abi4Pcc2vjhpvhV1JfnoUHJ1j+E520Too/0Pzg/bcEanLDLhNs
-         pJ2Lrw6qq+uZtjugsV5c3IzOH1NWW6i8GwCaKdKVN1l3UvnJ/Mq/jkmtvenuy34pncfr
-         nD/cPQ7TmmNH4ulrDg9V4bItdpVYCA0UTGn1Pdu7XkpDGy3by4I74u+07GWjq/7BU/s+
-         k/nQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX2ilHU+fFLVocXG6nVfKtnHGAiigEzq/u0Db8tt3knJnQL7qM8zvMpnOQCw2w2P4GPc9Rqxsaynki+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiQ84/J2/9Ue/bW6Wu8hlHkA5kbjRSmWOVTID3ltOIu0dPnuRv
-	67qM8UdqexCr0O5n3FVo3GCIuOmoVVuiLy+aqExv3yY/7fyZE4BklCavUGyl4ZU=
-X-Google-Smtp-Source: AGHT+IHPEtXrWumPTeLERZTSTGilYRH1uR88CoYUEZ8Bdu/b5t2NO6HcTtdnmaFRMbYsCDW7m7PSSA==
-X-Received: by 2002:a17:907:7ba2:b0:a80:f54a:f428 with SMTP id a640c23a62f3a-a90d4fc3130mr121564466b.2.1726836800754;
-        Fri, 20 Sep 2024 05:53:20 -0700 (PDT)
-Received: from [10.138.0.47] ([83.68.141.146])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a90613315cbsm843291866b.215.2024.09.20.05.53.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Sep 2024 05:53:20 -0700 (PDT)
-Message-ID: <e9bf2870-8e17-49c6-b08f-881c2992c45b@linaro.org>
-Date: Fri, 20 Sep 2024 14:53:19 +0200
+        bh=0c3cLyg1YvGor2bDqxSzz6JVUFgRwHa9Wa4Or/oI7nI=;
+        b=T2Z7t27L3ne287i0RlRouMWEnhBJCmHBmquMUv0ypjHrr6D7CPl0NoKzej4TJBZ3jr
+         rYJbr4ZGj/yEGI6reD24z/JCJWABaciyK9DY76FlHFdaLVgASpsZfu9Nwb2owaHYkJ7e
+         +ppofoiNTEz0VK59uyyZzeALKYm7nHb8Ua+wnpTW5fFKJTwH1gOLGtupjVRDlhBfxYxs
+         iqvCOuBUHvy1Ghr0Cl+iQnDNAVtA0bS4/d1eMRMz8wvhT4cn9e0ssJxV7KsLWQOS4HWv
+         uFobCZQQKGy2KyNpc4xDw52I9PNPjklPluehkBzWaW1S6uGKHms7vlAQAiWD8tTmdhPo
+         vxFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726837043; x=1727441843;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0c3cLyg1YvGor2bDqxSzz6JVUFgRwHa9Wa4Or/oI7nI=;
+        b=Q3bwLphlxBTBRUfaRwPh8uFPr/IMF31pvUm+YHTxLL03ZMheVHlVj3vAXZaIFNwpzU
+         6fpHStC1EEKG5OWYjCo98QZadt3GsNNWoO/58Jc6IptLXE5OispGlr3JBQQhNRexMLR3
+         51mdUghXi5HEB2IaFfCH4Ds70t01LxSY4XvN7F4t6hgy/oU7mza7aS1nx6UGS92zziy2
+         G1Js8GsQULIiYotYLug627NFuS4Lbr4jYsavLjkBKzAkXtCXXYgxhNYXuLBfymxVYdTS
+         vTiIt6N8Ag9P5tl70/zwkIhxzWeWlLUXUEj0nQ6STOB8zMWlfrIEAEGiK8OwEABMQKwP
+         s7iQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUph1H7qP8zoeEh2JOusHWH43X5vpDNOe2WkMJR/SnvfTPbhh1AggusliWhcsfpu/i7nrBKWIhGxi8u@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx87XMp7Pn+ppoTMgSEDCgVVtNmEy/tIwmp1uloPlNWy3IhklPu
+	cCXxf5im6GzTz8rYairxHfDA/hPl+sQh0UmvZcLRjBXD6V70mVMVG1RC6Bb5rjY=
+X-Google-Smtp-Source: AGHT+IFEcEmieepmhhCBAp9vyPOGM/uDpWpO0h0hkALABgjhyRBXGu+BM1BtirEkdZcOfqw0yZOT6A==
+X-Received: by 2002:a05:6a21:398e:b0:1d2:e888:fcd1 with SMTP id adf61e73a8af0-1d30cb1c91cmr4192601637.33.1726837042650;
+        Fri, 20 Sep 2024 05:57:22 -0700 (PDT)
+Received: from localhost ([213.164.21.132])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71944a973bbsm9757320b3a.27.2024.09.20.05.57.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Sep 2024 05:57:22 -0700 (PDT)
+Date: Fri, 20 Sep 2024 05:57:22 -0700 (PDT)
+X-Google-Original-Date: Fri, 20 Sep 2024 05:57:09 PDT (-0700)
+Subject:     Re: [PATCH v9 0/6] RISC-V: Detect and report speed of unaligned vector accesses
+In-Reply-To: <20240820152424.1973078-1-jesse@rivosinc.com>
+CC: linux-riscv@lists.infradead.org, corbet@lwn.net,
+  Paul Walmsley <paul.walmsley@sifive.com>, aou@eecs.berkeley.edu, Conor Dooley <conor@kernel.org>, robh@kernel.org,
+  krzk+dt@kernel.org, cleger@rivosinc.com, Evan Green <evan@rivosinc.com>, ajones@ventanamicro.com,
+  jesse@rivosinc.com, Charlie Jenkins <charlie@rivosinc.com>, xiao.w.wang@intel.com,
+  andy.chiu@sifive.com, ebiggers@google.com, greentime.hu@sifive.com, Bjorn Topel <bjorn@rivosinc.com>,
+  Heiko Stuebner <heiko@sntech.de>, costa.shul@redhat.com, akpm@linux-foundation.org, bhe@redhat.com,
+  apatel@ventanamicro.com, zong.li@sifive.com, samitolvanen@google.com, ben.dooks@codethink.co.uk,
+  alexghiti@rivosinc.com, gustavoars@kernel.org, erick.archer@gmx.com, j.granados@samsung.com,
+  linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+From: Palmer Dabbelt <palmer@dabbelt.com>
+To: jesse@rivosinc.com
+Message-ID: <mhng-07137536-28ef-4262-a165-6388fffd2599@palmer-ri-x1c9>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/3] dt-bindings: arm: qcom: Add Dell XPS 13 9345
-To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-References: <20240919170018.13672-1-alex.vinarskis@gmail.com>
- <20240919170018.13672-2-alex.vinarskis@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240919170018.13672-2-alex.vinarskis@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 19/09/2024 18:59, Aleksandrs Vinarskis wrote:
-> Document the X1E80100-based Dell XPS laptop.
+On Tue, 20 Aug 2024 08:24:18 PDT (-0700), jesse@rivosinc.com wrote:
+> Adds support for detecting and reporting the speed of unaligned vector
+> accesses on RISC-V CPUs. Adds vec_misaligned_speed key to the hwprobe
+> adds Zicclsm to cpufeature and fixes the check for scalar unaligned
+> emulated all CPUs. The vec_misaligned_speed key keeps the same format
+> as the scalar unaligned access speed key.
+>
+> This set does not emulate unaligned vector accesses on CPUs that do not
+> support them. Only reports if userspace can run them and speed of
+> unaligned vector accesses if supported.
+>
+> The Zicclsm is patches are no longer related to this set.
+>
+> Changes in v6:
+>  Added ("RISC-V: Scalar unaligned access emulated on hotplug CPUs")
+>
+> Changes in V8:
+>  Dropped Zicclsm
+>  s/RISCV_HWPROBE_VECTOR_MISALIGNED/RISCV_HWPROBE_MISALIGNED_VECTOR/g
+>   to match RISCV_HWPROBE_MISALIGNED_SCALAR_*
+>  Rebased onto palmer/fixes (32d5f7add080a936e28ab4142bfeea6b06999789)
+>
+> Changes in V9:
+>  Missed a RISCV_HWPROBE_VECTOR_MISALIGNED...
+>
+> Jesse Taube (6):
+>   RISC-V: Check scalar unaligned access on all CPUs
+>   RISC-V: Scalar unaligned access emulated on hotplug CPUs
+>   RISC-V: Replace RISCV_MISALIGNED with RISCV_SCALAR_MISALIGNED
+>   RISC-V: Detect unaligned vector accesses supported
+>   RISC-V: Report vector unaligned access speed hwprobe
+>   RISC-V: hwprobe: Document unaligned vector perf key
+>
+>  Documentation/arch/riscv/hwprobe.rst       |  16 +++
+>  arch/riscv/Kconfig                         |  57 +++++++-
+>  arch/riscv/include/asm/cpufeature.h        |  10 +-
+>  arch/riscv/include/asm/entry-common.h      |  11 --
+>  arch/riscv/include/asm/hwprobe.h           |   2 +-
+>  arch/riscv/include/asm/vector.h            |   2 +
+>  arch/riscv/include/uapi/asm/hwprobe.h      |   5 +
+>  arch/riscv/kernel/Makefile                 |   3 +-
+>  arch/riscv/kernel/copy-unaligned.h         |   5 +
+>  arch/riscv/kernel/fpu.S                    |   4 +-
+>  arch/riscv/kernel/sys_hwprobe.c            |  41 ++++++
+>  arch/riscv/kernel/traps_misaligned.c       | 131 +++++++++++++++--
+>  arch/riscv/kernel/unaligned_access_speed.c | 156 +++++++++++++++++++--
+>  arch/riscv/kernel/vec-copy-unaligned.S     |  58 ++++++++
+>  arch/riscv/kernel/vector.c                 |   2 +-
+>  15 files changed, 465 insertions(+), 38 deletions(-)
+>  create mode 100644 arch/riscv/kernel/vec-copy-unaligned.S
+>
+> base-commit: 32d5f7add080a936e28ab4142bfeea6b06999789
 
-XPS 13 9435, codenamed (?) Tributo 13? Otherwise I don't get the
-connection between compatible and above.
+I get a 
 
+arch/riscv/kernel/traps_smisaligned.c: In function 'check_vector_unaligned_access_emulated':
+arch/riscv/kernel/traps_misaligned.c:591:9: error: unknown register name 'v0' in 'asm'
+  591 |         __asm__ __volatile__ (
+      |         ^~~~~~~
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+on rv32/defconfig.  Looks like just a missing Kconfg guard as this 
+depends on V support in the toolchain.
 
