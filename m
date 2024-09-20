@@ -1,246 +1,145 @@
-Return-Path: <devicetree+bounces-104033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A6D097D176
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 09:05:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 535C797D185
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 09:12:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 581A92838DC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 07:05:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70A101C22B5F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 07:12:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E38A55475C;
-	Fri, 20 Sep 2024 07:05:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CBD3433D0;
+	Fri, 20 Sep 2024 07:12:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="RVTgfh74"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DSVBRiAx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from HK3PR03CU002.outbound.protection.outlook.com (mail-eastasiaazon11011058.outbound.protection.outlook.com [52.101.129.58])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A280502B1;
-	Fri, 20 Sep 2024 07:05:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.129.58
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726815908; cv=fail; b=a/2CD+2ze3C3BfQ4ZWsJwlo/nvFVsncmqWAE8ZNHXIokFhI/nIsqVYxuCcE5wYnoPMCDXx8WCgPwXMnQgh2vH64MUmlVNpN9V3hVHCKCXpkao02jyIGS7YlYGgDE7gEhEwdC/Xc7k3AQUFc6Pski7Y8Oo5b9WOmBvyCUcI51leo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726815908; c=relaxed/simple;
-	bh=6pFNh2fImMqyVBMJtbVGSOT3kFKCTkwaqB9RMc6IPo4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GiRyofuEQaGfZBjWUsU7Upg66IDB2LezR8lYn6jbh+vVE22TUxuixu8F0scJ22K9f39FgyWygSRJ2xmBagNrUxGJZurOrq/LnEhlhfKCaNj0pgjcdHPTmr++HE7JboirKDXZ0cGawij1/Q8HTDnE+cIS9u6Ii6TlIef/DpomsOs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=RVTgfh74; arc=fail smtp.client-ip=52.101.129.58
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XQhzeGkdqNCGuzwoXmRaxLkRUkkDan60nsmQNkUkBaj+SPTGsV584/CJSpdnZaZ7wOt2SyVYxAGLEvVZULbl2aCEn49KFdPlAHjaRQVrGfx8RzyDiB2GR8oLefqx23hi/nx9R/5Z99ePa9WGpFKBH3W7SFrT146ZbvfPlUrpGDF/qNzKbVxQajqxXbsyKvSFNW1/UoUssjaLinrxD0NcOnrl7GCWcD1JXnfyqAPwHWF9leLP5qEq4/FtNqX9XJan4tc/u56j0alrwixLFRgpQaXh/b2VgOUnluLzuEDG/stxhyzeHyRXBm5+qi10vCArUmZ+uafoM/M9k+q6rpexrg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ak/A7LiKceYzH/Ibf+ojUHPoKN59wU2gqDAJjVq66R4=;
- b=Mqli3K1d1ym/7FKLwwCuyA/iwYAGqlFMbib0KvHu410O/mthUkqcg4ir/eOhlVNpg6mlzliqbEbafNjGMtSRGUm102PyivSPIq996WPWUmtSpiTGc8BIa2ahZWX6s8r7qEAA1FnPvNP04Fc1GChTjkpn5vkC1YkcaSb5/dJ7ka2o8xE8BlOGhjtTHnHENlHB7iu46kGrCaF4lccJO1i0zF/paBGReibUuEaqvgwgyuvY3gEZFNwddbdI6PM+3CsvafCdkeEG9pv54NYD15QtiqKox9d/J0xHFTAuKYGthBTX5siPY6tKSrSrE+sDbGMlQ4YMdeKRNjGZF8JAgqFt+A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
- (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ak/A7LiKceYzH/Ibf+ojUHPoKN59wU2gqDAJjVq66R4=;
- b=RVTgfh74g8BpVo/DH8+h+Iy/+LYchTg1b29j3MxV9dgPM6Fya3wLkfcRYdnzPGhuiyUqRcIAfQh6XONkbGX6VfBik3mPqARLpsgIIx8AXv+DAL3t5hTak+zSFJtQJXAlcpkwbXCgOrZpVsoD0rvjtcdoLBO07SafvGC60lKLGNS7GFeqmLmK0wcinaUx7wK8em+ET+35C9PL1dXD6vSPARZI+BlIa8YEw4czKpX59SsE7HQf5ln9uU5Olw3N7oiV7fRZFCn90VcziNMaIEIA9roA38BVrVte5SZIQhRRUEAsQtbGYllZL17vitY+AvgVRXO/8pVbscUA9+aewFAY7g==
-Received: from SG2PR02CA0103.apcprd02.prod.outlook.com (2603:1096:4:92::19) by
- SG2PR04MB5913.apcprd04.prod.outlook.com (2603:1096:4:1d0::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7982.18; Fri, 20 Sep 2024 07:05:00 +0000
-Received: from SG1PEPF000082E3.apcprd02.prod.outlook.com
- (2603:1096:4:92:cafe::74) by SG2PR02CA0103.outlook.office365.com
- (2603:1096:4:92::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.25 via Frontend
- Transport; Fri, 20 Sep 2024 07:05:00 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
- smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
-Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
- designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
- client-ip=211.20.1.79; helo=localhost.localdomain;
-Received: from localhost.localdomain (211.20.1.79) by
- SG1PEPF000082E3.mail.protection.outlook.com (10.167.240.6) with Microsoft
- SMTP Server id 15.20.7918.13 via Frontend Transport; Fri, 20 Sep 2024
- 07:04:59 +0000
-From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-To: patrick@stwcx.xyz,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>,
-	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v19 2/2] ARM: dts: aspeed: yosemite4: add mctp config and sensors for NIC
-Date: Fri, 20 Sep 2024 15:04:49 +0800
-Message-Id: <20240920070449.3871705-3-Delphine_CC_Chiu@wiwynn.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240920070449.3871705-1-Delphine_CC_Chiu@wiwynn.com>
-References: <20240920070449.3871705-1-Delphine_CC_Chiu@wiwynn.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46D0F3BB50;
+	Fri, 20 Sep 2024 07:12:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1726816343; cv=none; b=ETHz+lNWowZW3iV9kgCnT/o3dfgofiwvlbgwIxci06+z6BWu8ueDyxi4c4xskHsOErd+JbCVnbkze5/J0one8HcyFpXkFnvClx4IulOBlsPPMt4Lp+Zb9dgO3vVGCF+cSosp8y97K84PVKQ7K3l8QTUiZBP/owKJqPj/tKXBkVg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1726816343; c=relaxed/simple;
+	bh=/8F4vC+WrRK8JmcD0TA3VmXt6A8IcZpsr5kN9dbyx7o=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=R9PQQSyiMvtZRf4byHzhhB3R6Fpv3Cw/K5eSm2/XRmvMtXEnDG148+DRPbJbeupyV0ZNkeLDWR+2JiJJMBuMly3IblLdeXMvNhSNPuQ0SbHlIpx+/leXHO9i4cshpvjq7HRNEYhwTshO9wBMhSBRrvCMhMNa1TAHEMwbJJLF+V8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DSVBRiAx; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48JLx2kl018133;
+	Fri, 20 Sep 2024 07:12:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=0EKgVH//p3yEU4Of22Zpii
+	69hvSp1EgzKmBMS7nyUfU=; b=DSVBRiAxcTbzJSnxmAek/GIIjgTySK5YYE75XW
+	T7wMWjHt0X4vmDPZ286A1JSNhswbjVDXjzgHzRqNJ22TVDZNHfpasyD+TfueDqZp
+	UnGrEbh4FQlOfpWy1a5As4YB6RJrjZIWKmp7aWrorK6YjdjXp0YoYWs8i1GtciOn
+	Rql7CxLRllKKDYCDmL2SFoYvhe8U6lHIKP/ioJzWmM5bcZNlRf6tcimtYLfkZo48
+	u9PRdbkoSHhJOgQjNWyHfmcj3+YegqnfZ00PzM0kahPp6dd9bcRs8uN8Ivr7faNh
+	GKwEFgoAraZkncksGZUkErPqGzGBqPQdfc5ayjMXRpHfbETA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41n4hfr2rg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Sep 2024 07:12:05 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48K7C4cR006797
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Sep 2024 07:12:04 GMT
+Received: from lijuang2-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 20 Sep 2024 00:11:57 -0700
+From: lijuang <quic_lijuang@quicinc.com>
+Date: Fri, 20 Sep 2024 15:11:41 +0800
+Subject: [PATCH v2] dt-bindings: watchdog: Document Qualcomm QCS615
+ watchdog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG1PEPF000082E3:EE_|SG2PR04MB5913:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 89d0dfe3-717e-48e5-d74c-08dcd9428ade
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|82310400026|36860700013|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?uqjXxOzQghD9h3cdYloxgc8UOBcjtox7kZafgGUHIM1tQRgYJlkNzCnr6Tei?=
- =?us-ascii?Q?Anv1xNTw34bfVJH3mCCs8oMYyJIs7KonweS4tD4fO9Xh6UTMR+VZZ5NTHneF?=
- =?us-ascii?Q?hoxixng5cPoPhI1eJfA9dtPDX+4FQQTaZZl4aCDeEUjqiaruf9bf5AA5a3cB?=
- =?us-ascii?Q?pAzOixuhbk/lHW89o2QM1SlJcR7cYyZApOVDx/1luqYCmpPVX9DRlxv4FKaG?=
- =?us-ascii?Q?r8hTb4pAQCn6Fjkxre2LTsM/0KbRKu88Zy2Xp3ot0BSv29mlgpw1Ao4aGSMe?=
- =?us-ascii?Q?v0k2zvBn+C6RCUm5HHhaZKzPgAJ5bdbdxXgX4n+i14aOaXslmB5IZzPldBzB?=
- =?us-ascii?Q?wl4hJGMdPHYA0BQ0Dj5NjDh2awOO8tawX/6j8tCahr3VfNaSIaBdZvLNUi0h?=
- =?us-ascii?Q?P1jPZrgp5VO2MU/4UYQpjb10G9RrRIy325qomDlZDbshy2miJLRWWm7FADPL?=
- =?us-ascii?Q?aaSOSgF/GS2tzBY44O+XecgSPb5hX7gOlLRaVr6Op9H36j9jUilxgJK9lruX?=
- =?us-ascii?Q?aYI4J1HXW5nqJ3qP+PJJWWDxQxwOdx40B7GQGC8gz1MOIwkxklar5/UwKzOC?=
- =?us-ascii?Q?wb6IovFMZ5rUmld5xv9I5iE2/Vj5zz3+G7lXNSBKgBodC0q/ufGRzhA2zGlG?=
- =?us-ascii?Q?3igzUGAJ01wUB6sb2B93SD1RRx7opyKqITJn96/yqfcdkQsEJ1fLXhIPZlMw?=
- =?us-ascii?Q?/HYRHRM8eo060VySKMSTBEG8PMP8QOjztYjTqqoGm/fDNzkhmzNe1+9fUhPy?=
- =?us-ascii?Q?1bVjhVPYEi6nPBwddVPm8uKRy8WCcSF0VP94Pu8CumPYDdUV6JnfJakjfa3v?=
- =?us-ascii?Q?aCLuULtvlEUR4EpCyTFRdvns7/tb9xJ15O94YcpZaB937Orx3onmtAgVG0+V?=
- =?us-ascii?Q?JSOYxoS0a9WC9E0CtxF0YNDzrbyvdksVFijSkRwPkNxXNFNS7GNG5O/GdE0m?=
- =?us-ascii?Q?7kURUJmtiPdf+QNmrD4Q+Hc2P5vHloQ66ErSkZLf0LyaNscXz+kgNQlQnmlG?=
- =?us-ascii?Q?NgRateoe1r/Oph28tXpp/yAQEYvPaKZSEAelT6DElcMsKPS/bFBPtzyfca50?=
- =?us-ascii?Q?Z7F0Bn2H/bpkvVZ4Xm9LGMm+2ba8dnAJn5yqTCVKtzmBsV7jyJRXnHp9r+FZ?=
- =?us-ascii?Q?RZY6tTPeTI29lKZin/8N4aXU376yht2TVGr3lgfwKUV0KNNQY3ZAVLThl4FJ?=
- =?us-ascii?Q?AyGPfKh1ZSYJxHyzYZnLojT1GsUMIyYyfdLeUtxGVyVy2w5EkhHIqmMgtLqh?=
- =?us-ascii?Q?nnmVqaPatGegl6XLl00JyW9YMgSnzuJufHbA3fSanWivIbtBC0flvzi57JDa?=
- =?us-ascii?Q?S6CnNN4D/TdSs/rqbzkXOR/prz+hhe3EPb47FDj3DEx6q0KWMmDrr+1tB5Z4?=
- =?us-ascii?Q?hNshcsk6BGDnoVF/TO0QfEjcRTCmcBjL96gI0t8Zohmqp3YVuqRwsaInNnPW?=
- =?us-ascii?Q?exUzEyjFV5lqpYUMeQlwlwa8LzWXv/kj?=
-X-Forefront-Antispam-Report:
-	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(7416014)(376014)(82310400026)(36860700013)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: wiwynn.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2024 07:04:59.3977
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 89d0dfe3-717e-48e5-d74c-08dcd9428ade
-X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG1PEPF000082E3.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR04MB5913
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20240920-add_watchdog_compatible_for_qcs615-v2-1-427944f1151e@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIACwg7WYC/42NQQ6CMBBFr0K6toZOwFBX3sOQpkwHmEQptIgaw
+ t2txAO4fD8/760iUmCK4pytItDCkf2QAA6ZwN4OHUl2iQXkUOQacmmdM087Y+98Z9DfRztzcyP
+ T+mAmjCdVSiKsbIWAGgqRRGOgll975Fon7jnOPrz35qK+60+v4B/9oqSShABNaZ2utLpMD0Ye8
+ Jj+ot627QN1orgt1gAAAA==
+To: Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck
+	<linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Rajendra Nayak
+	<quic_rjendra@quicinc.com>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Lijuan Gao <quic_lijuang@quicinc.com>
+X-Mailer: b4 0.15-dev-99b12
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1726816316; l=1347;
+ i=quic_lijuang@quicinc.com; s=20240827; h=from:subject:message-id;
+ bh=/8F4vC+WrRK8JmcD0TA3VmXt6A8IcZpsr5kN9dbyx7o=;
+ b=AyiaB6kq6mN7zrKjfS3c7QTrfacqklSKgmDxslJeYz3hj6UVjrLSwKt755IHXcqoZFueHRPIZ
+ x3rutL4hQX6CCGTrsgd7B2zWcYegmzaZ1KJt0erfV8yrLlfupwlQPWx
+X-Developer-Key: i=quic_lijuang@quicinc.com; a=ed25519;
+ pk=1zeM8FpQK/J1jSFHn8iXHeb3xt7F/3GvHv7ET2RNJxE=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 2LvPdIpFtkIOlW-stJqeU7CLoU7Wqp4c
+X-Proofpoint-ORIG-GUID: 2LvPdIpFtkIOlW-stJqeU7CLoU7Wqp4c
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ clxscore=1015 phishscore=0 malwarescore=0 mlxlogscore=999 mlxscore=0
+ impostorscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409200049
 
-From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+Add devicetree binding for watchdog present on Qualcomm QCS615 SoC.
 
-- Add MCTP config for NIC and remove the unnecessary MCTP config on bus
-15.
-- Add eeprom for NIC.
-
-Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
-Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
 ---
- .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 30 +++++++++++++++++--
- 1 file changed, 28 insertions(+), 2 deletions(-)
+Add devicetree binding for watchdog present on Qualcomm
+QCS615 SoC.
+---
+Changes in v2:
+- Collected Acked-by
+- Rebased patchset on top next-20240919
+- Link to v1: https://lore.kernel.org/r/20240912-add_watchdog_compatible_for_qcs615-v1-1-ec22b5ad9891@quicinc.com
+---
+ Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-index 6b4efb5fbd83..621e4e970790 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-@@ -937,7 +937,6 @@ &i2c15 {
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 	status = "okay";
--	mctp-controller;
- 	multi-master;
- 	bus-frequency = <400000>;
- 
-@@ -951,46 +950,73 @@ i2c-mux@72 {
- 		reg = <0x72>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--		i2c-mux-idle-disconnect;
- 
- 		imux24: i2c@0 {
- 			reg = <0>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			mctp-controller;
-+
- 			temperature-sensor@1f {
- 				compatible = "ti,tmp421";
- 				reg = <0x1f>;
- 			};
-+
-+			eeprom@50 {
-+				compatible = "atmel,24c64";
-+				reg = <0x50>;
-+			};
- 		};
- 
- 		imux25: i2c@1 {
- 			reg = <1>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			mctp-controller;
-+
- 			temperature-sensor@1f {
- 				compatible = "ti,tmp421";
- 				reg = <0x1f>;
- 			};
-+
-+			eeprom@50 {
-+				compatible = "atmel,24c64";
-+				reg = <0x50>;
-+			};
- 		};
- 
- 		imux26: i2c@2 {
- 			reg = <2>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			mctp-controller;
-+
- 			temperature-sensor@1f {
- 				compatible = "ti,tmp421";
- 				reg = <0x1f>;
- 			};
-+
-+			eeprom@50 {
-+				compatible = "atmel,24c64";
-+				reg = <0x50>;
-+			};
- 		};
- 
- 		imux27: i2c@3 {
- 			reg = <3>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			mctp-controller;
-+
- 			temperature-sensor@1f {
- 				compatible = "ti,tmp421";
- 				reg = <0x1f>;
- 			};
-+
-+			eeprom@50 {
-+				compatible = "atmel,24c64";
-+				reg = <0x50>;
-+			};
- 		};
- 	};
- };
+diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+index 932393f8c649..32eaf43aadb3 100644
+--- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+@@ -26,6 +26,7 @@ properties:
+               - qcom,apss-wdt-msm8994
+               - qcom,apss-wdt-qcm2290
+               - qcom,apss-wdt-qcs404
++              - qcom,apss-wdt-qcs615
+               - qcom,apss-wdt-sa8255p
+               - qcom,apss-wdt-sa8775p
+               - qcom,apss-wdt-sc7180
+
+---
+base-commit: 3621a2c9142bd490af0666c0c02d52d60ce0d2a5
+change-id: 20240920-add_watchdog_compatible_for_qcs615-eec8a8c2c924
+
+Best regards,
 -- 
-2.25.1
+lijuang <quic_lijuang@quicinc.com>
 
 
