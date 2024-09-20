@@ -1,246 +1,240 @@
-Return-Path: <devicetree+bounces-104134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B0C397D5CC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 14:51:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A74CF97D5D5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 14:52:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0278B1F21A5B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 12:51:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBF641C20C37
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 12:52:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14E9216C850;
-	Fri, 20 Sep 2024 12:50:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ACB516ABC6;
+	Fri, 20 Sep 2024 12:52:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CPWDQBKr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r0RjYg+7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3834716A955;
-	Fri, 20 Sep 2024 12:50:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47E28165EEB
+	for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 12:52:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726836657; cv=none; b=DJhs4qcqBuhjVoizY/GXqciWxW0GFRYGz42JnqNJAdNk5WpYS5idztYkBUie1kbAA7B1UuW58nHgDOB93gN3Wmqh/1agrQ9foP0TlTTP8LE8Y8uQH52yX9WmCt88CoogJ/gCI2ZZcNmgY4jB0ZkdLGFS23xTx+hmU1EFAiT4Mxw=
+	t=1726836749; cv=none; b=sNkB42Jtodo+R8SGmuwHhnFjUleOZjbTFEYf962dxKXGcY5L1InohkmwNZKqGtBlXP8My4TLTPLv9JKiXLOqTDGp/xsTLply7Dhuz3AIDeL2xtw8kOWOAmtPZIjYCW201AjJbGwNdfKULl2Dyc4BO0YGhxn7tI586Ze2w7P2YUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726836657; c=relaxed/simple;
-	bh=hAgZ+ka00T4iPgRSlHtpXqpUznTxJDKnlbc4iYIWZIc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ksqaAwpQpJ+5cos6YNj2+x/qpBZwTiz6QkIuOC1sjCBy9QfQIRcULup7Ndcafh0SdSizUiOLNZ92z15/fW48Nkc5ufflBT+NatPhltYm7nUiYrwMz6ArWHAh4z1Ni/0SW6gOadM6aLeE1XdynfKZhX+2Dc8QapcH4Iaws/xwNJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CPWDQBKr; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5c24ebaa427so4750470a12.1;
-        Fri, 20 Sep 2024 05:50:54 -0700 (PDT)
+	s=arc-20240116; t=1726836749; c=relaxed/simple;
+	bh=pU3ehJAkU0jPqFcjk5J+iYn9uwIXikjr1eW4PI5CxmM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sa44psWx2ya2MQztl5YFja+BVtVemDWKH7YZQeMJTOjdMVV5ZPZ6Qlp1JCGFwpLFQyPRG0uOvimkuqxv+/+HbHpmOb0VTfg0dZmS42xmDTV1R0AC09DeQmgL3vVUmiS/8RuAsGqob+TG2zPR51CP+HGPY0QaHakO3j5bavlz118=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r0RjYg+7; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a8a913874b8so18470566b.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 05:52:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726836653; x=1727441453; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Q3TNK0Ne4mj4tv9w2rjHOLXOPUridZ81HYwSt+U/uK0=;
-        b=CPWDQBKrAERuQOlia4Uji9zSQdOKH10TU0TD7Xg0UGo3uC8UCBrmRtUWccoeZqHHpI
-         OI8IW681OunbU4Ek75xa46qyV5w7ayvBZiUEKo5iga75S752p4tuCwkjuo8EWxROaveY
-         RvfbmbHpVc2YimZUmtjniW5O7shyINovAH/s1jhntTQTj33/7Wqx4Shbut1uccinlwfG
-         dFe8/3K6gDuUCImnm12d78fzJLeGge6wOjnrqvyztIooj2dKDi7h+BYPoBmOBijsEB8p
-         6JwBNUwL4eEsC3gb3NXyq7uXNzofrsY2rBLQVnXCiS2WRkyvXNT1tlasr2PgTgYMPCzq
-         P9bA==
+        d=linaro.org; s=google; t=1726836745; x=1727441545; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=NWzuVG9MtNb5Bk1t2LtZcYDbl8S7R6RsKoddHcBsg/8=;
+        b=r0RjYg+7kwzWkAxIpuy+CR6akO2tPpZF88/WEDttvbrqAWAH6yovq6WpkZskq6qLqS
+         vyF8vptNYz4KI7MDa4uaKDVMSKBERPhvmBJtfw3E3c3Eyu1SDKfnk1R6TzsspunfdbQs
+         tbW3dvQAUBJbwQXKlVI+kDTG7VVIhbekO2J2RFmrSXNvMt+p1t6irPyGN1w+7sJVgMyt
+         qUa+pGLjKDLK0zy1PKB7ojA7A5Iox0FT4BHJQ2SG6NnT3ZQRWahbMwQbqGsgzPF1oB7M
+         Osk7GemSNVi7uCeE2tG7iqbNafBo3A/1kfHF3NDhnjBGpTC4dc5a5Q9wVfSf5ekcyt22
+         +Pxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726836653; x=1727441453;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q3TNK0Ne4mj4tv9w2rjHOLXOPUridZ81HYwSt+U/uK0=;
-        b=I9GmEkac5rnVl831gu6bJogVp1lfYPJHkC8LO5sOSkH2Ocb29DJY5BQFrBf6X9Pr1I
-         tT/jHRkWO/QRWzECDfPudk+PmwXHK7ShIkNPzdzDfsSDG5WDPpWTmbHuHiIm8JNecY2K
-         8uxEU2BkfrTwA1ErokiHRMqGNEsXXm1oFkjl23v7k1n5xMnfhekTDk9MPEgasvD5GkXM
-         E6bTEXSPkGQlQRpBsciJydQVaOEsen4yz3miK3676cofXQSp8uI8Jqkpv2CTbveuOKSz
-         KgCEr4lFJxw0QQ6+bsDJdI3f7yvaHq/YPgtogf5GSqLoNmkZ/NAw+kG8e4skTxSjkCG+
-         hyyA==
-X-Forwarded-Encrypted: i=1; AJvYcCVE1gcbfV3tBnAgcl0JZKGEQhqIzNxyzJRs2HPSPuMSoS5lXqpkg46IAqU9QJqgnrLz9PQsX9knYXDM@vger.kernel.org, AJvYcCXD6mpZKRwCnt+a0HYxp3rGvdIg4n4yhx5X7/keINudILxlN9/5TNv4v03efvT/dLfYwEBsiH/XfsFYm2pd@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRJYGsQwAxd9bgSjqHrJQD0x5qL4OPnP6c2zUhRM5Kf8kIndun
-	pw2cDeI7BnGTEqDb7aYAhICuLp+3eqSRW19yHdKDND7SeQD/tU+b
-X-Google-Smtp-Source: AGHT+IFaCW38zRvYTrHIZ9b7fyALnjerXHiuZoWu3eQ+kShZryyD398RG9SXF2/Jak1MdAKkSEfnAQ==
-X-Received: by 2002:a17:906:dc92:b0:a8a:7884:c491 with SMTP id a640c23a62f3a-a90c1cba762mr709465866b.17.1726836653259;
-        Fri, 20 Sep 2024 05:50:53 -0700 (PDT)
-Received: from ?IPv6:2001:a61:341e:1201:c434:b5b1:98a6:efed? ([2001:a61:341e:1201:c434:b5b1:98a6:efed])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a90612b38bdsm845185066b.110.2024.09.20.05.50.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Sep 2024 05:50:52 -0700 (PDT)
-Message-ID: <60610fe3e5885033c0a1d14db6e2f576367a2e44.camel@gmail.com>
-Subject: Re: [PATCH v3 05/10] iio: backend: extend features
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Angelo Dureghello <adureghello@baylibre.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
- Sa <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, dlechner@baylibre.com
-Date: Fri, 20 Sep 2024 14:50:52 +0200
-In-Reply-To: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-5-a17b9b3d05d9@baylibre.com>
-References: 
-	<20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
-	 <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-5-a17b9b3d05d9@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
+        d=1e100.net; s=20230601; t=1726836745; x=1727441545;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NWzuVG9MtNb5Bk1t2LtZcYDbl8S7R6RsKoddHcBsg/8=;
+        b=YgJl4xu4DDtU79np3SHjq4nCczUBYmtVBMRP36R/wtpNbm+biV6hA5/Elb2KzOyKrl
+         kJDHCM4qyWsmWSAAR3QdFKwrdmOLVkxtDwDqq/zISVUMnxbeqgYQWdjKfKPhYRlhC610
+         ETckmXxbCg+uYxQ48qXz8tT3hoJagx5of+CdEFTVissIty5HlAQetp+lVHh3eLOWs1Ee
+         pQajhaGF+43hz3y7QxA64GSji1Fd9is2Jxg3G+hUMBr7ZibroM1vkctvsqxM1zBCzki9
+         VhNOf7dMrnl2AkBOQ7q8BsTgEp1ZBEEYIbra8WCsWDO/XZhLkRpVl0AxgSIAiJcxTtDl
+         FFdA==
+X-Forwarded-Encrypted: i=1; AJvYcCUAUVYU2yEqKaxtiO9vHejHNdS1dbtnzZPXf1yuceCqv+3xvSTeRDEUVD0M6/sHbNtvI8PgH6Q8yWM6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvGMurRvUrkypvS6V9AvPL1k9gbGoaBPxN0wef6F82SzTzBotm
+	u6dj24cRRe9nywwX9kvHde7vqBYEgXc2rZlwbZTCbpXPNij5zaKYr2GDivHtnNo=
+X-Google-Smtp-Source: AGHT+IFwjSBwayaKrRLq6jwEsNGgmc4+zxrI03jCkDv6qvryck0VLkiiYzvfBpZjZ0yql+4+MtAnVw==
+X-Received: by 2002:a17:907:749:b0:a80:a294:f8a with SMTP id a640c23a62f3a-a90d4fc47ebmr106875766b.1.1726836745486;
+        Fri, 20 Sep 2024 05:52:25 -0700 (PDT)
+Received: from [10.138.0.47] ([83.68.141.146])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9061320b9asm845514066b.189.2024.09.20.05.52.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Sep 2024 05:52:25 -0700 (PDT)
+Message-ID: <2c600b98-fc0b-4fbc-a951-ec8cc8964378@linaro.org>
+Date: Fri, 20 Sep 2024 14:52:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 3/3] arm64: dts: qcom: Add support for X1-based Dell
+ XPS 13 9345
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+References: <20240919170018.13672-1-alex.vinarskis@gmail.com>
+ <20240919170018.13672-4-alex.vinarskis@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240919170018.13672-4-alex.vinarskis@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, 2024-09-19 at 11:20 +0200, Angelo Dureghello wrote:
-> From: Angelo Dureghello <adureghello@baylibre.com>
->=20
-> Extend backend features with new calls needed later on this
-> patchset from axi version of ad3552r.
->=20
-> The follwoing calls are added:
->=20
-> iio_backend_ext_sync_enable
-> 	enable synchronize channels on external trigger
-> iio_backend_ext_sync_disable
-> 	disable synchronize channels on external trigger
-> iio_backend_ddr_enable
-> 	enable ddr bus transfer
-> iio_backend_ddr_disable
-> 	disable ddr bus transfer
-> iio_backend_set_bus_mode
-> 	select the type of bus, so that specific read / write
-> 	operations are performed accordingly
-> iio_backend_buffer_enable
-> 	enable buffer
-> iio_backend_buffer_disable
-> 	disable buffer
-> iio_backend_data_transfer_addr
-> 	define the target register address where the DAC sample
-> 	will be written.
->=20
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> ---
-> =C2=A0drivers/iio/industrialio-backend.c | 111 ++++++++++++++++++++++++++=
-+++++++++++
-> =C2=A0include/linux/iio/backend.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0 23 ++++++++
-> =C2=A02 files changed, 134 insertions(+)
->=20
-> diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industriali=
-o-
-> backend.c
-> index 20b3b5212da7..f4802c422dbf 100644
-> --- a/drivers/iio/industrialio-backend.c
-> +++ b/drivers/iio/industrialio-backend.c
-> @@ -718,6 +718,117 @@ static int __devm_iio_backend_get(struct device *de=
-v, struct
-> iio_backend *back)
-> =C2=A0	return 0;
-> =C2=A0}
-> =C2=A0
-> +/**
-> + * iio_backend_ext_sync_enable - Enable external synchronization
-> + * @back: Backend device
-> + *
-> + * Enable synchronization by external signal.
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error number on failure.
-> + */
-> +int iio_backend_ext_sync_enable(struct iio_backend *back)
-> +{
-> +	return iio_backend_op_call(back, ext_sync_enable);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(iio_backend_ext_sync_enable, IIO_BACKEND);
+On 19/09/2024 18:59, Aleksandrs Vinarskis wrote:
+> +			panic-indicator;
+> +		};
+> +	};
 > +
-> +/**
-> + * iio_backend_ext_sync_disable - Disable external synchronization
-> + * @back: Backend device
-> + *
-> + * Disable synchronization by external signal.
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error number on failure.
-> + */
-> +int iio_backend_ext_sync_disable(struct iio_backend *back)
-> +{
-> +	return iio_backend_op_call(back, ext_sync_disable);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(iio_backend_ext_sync_disable, IIO_BACKEND);
-> +
-> +/**
-> + * iio_backend_ddr_enable - Enable interface DDR (Double Data Rate) mode
-> + * @back: Backend device
-> + *
-> + * Enabling DDR, data is generated by the IP at each front
-> + * (raising and falling) of the bus clock signal.
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error number on failure.
-> + */
-> +int iio_backend_ddr_enable(struct iio_backend *back)
-> +{
-> +	return iio_backend_op_call(back, ddr_enable);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(iio_backend_ddr_enable, IIO_BACKEND);
-> +
-> +/**
-> + * iio_backend_ddr_disable - Disable interface DDR (Double Data Rate) mo=
-de
-> + * @back: Backend device
-> + *
-> + * Disabling DDR data is generated byt the IP at rising or falling front
-> + * of the interface clock signal (SDR, Single Data Rate).
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error number on failure.
-> + */
-> +int iio_backend_ddr_disable(struct iio_backend *back)
-> +{
-> +	return iio_backend_op_call(back, ddr_disable);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(iio_backend_ddr_disable, IIO_BACKEND);
-> +
-> +/**
-> + * iio_backend_buffer_enable - Enable iio buffering
-> + * @back: Backend device
-> + *
-> + * Enabling the buffer, buffer data is processed and sent out from the
-> + * bus interface.
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error number on failure.
-> + */
-> +int iio_backend_buffer_enable(struct iio_backend *back)
-> +{
-> +	return iio_backend_op_call(back, buffer_enable);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(iio_backend_buffer_enable, IIO_BACKEND);
-> +
-> +/**
-> + * iio_backend_buffer_disable - Disable iio buffering
-> + * @back: Backend device
-> + *
-> + * Disabling the buffer, buffer data transfer on the bus interface
-> + * is stopped.
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error number on failure.
-> + */
-> +int iio_backend_buffer_disable(struct iio_backend *back)
-> +{
-> +	return iio_backend_op_call(back, buffer_disable);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(iio_backend_buffer_disable, IIO_BACKEND);
-> +
+> +	pmic-glink {
+> +		compatible = "qcom,x1e80100-pmic-glink",
+> +					 "qcom,sm8550-pmic-glink",
+> +					 "qcom,pmic-glink";
 
-IIRC, both me and Jonathan had some comments about the above 2 calls? Aren'=
-t they
-about buffering? I think I mentioned something about using the same buffer =
-ops as
-typical IIO devices use.
+Misaligned. These start with previous ".
 
-- Nuno S=C3=A1
+
+> +		orientation-gpios = <&tlmm 121 GPIO_ACTIVE_HIGH>,
+> +							<&tlmm 123 GPIO_ACTIVE_HIGH>;
+
+
+Even more misaligned. I guess this comment applies to multiple places.
+
+
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		/* Right-side USB Type-C port */
+> +		connector@0 {
+> +			compatible = "usb-c-connector";
+> +			reg = <0>;
+> +			power-role = "dual";
+> +			data-role = "dual";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +
+> +					pmic_glink_ss0_hs_in: endpoint {
+> +						remote-endpoint = <&usb_1_ss0_dwc3_hs>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +
+> +					pmic_glink_ss0_ss_in: endpoint {
+> +						remote-endpoint = <&usb_1_ss0_qmpphy_out>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		/* Left-side USB Type-C port */
+> +		connector@1 {
+> +			compatible = "usb-c-connector";
+> +			reg = <1>;
+> +			power-role = "dual";
+> +			data-role = "dual";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +
+> +					pmic_glink_ss1_hs_in: endpoint {
+> +						remote-endpoint = <&usb_1_ss1_dwc3_hs>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +
+> +					pmic_glink_ss1_ss_in: endpoint {
+> +						remote-endpoint = <&usb_1_ss1_qmpphy_out>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	reserved-memory {
+> +		linux,cma {
+> +			compatible = "shared-dma-pool";
+> +			size = <0x0 0x8000000>;
+> +			reusable;
+> +			linux,cma-default;
+> +		};
+> +	};
+> +
+> +	vph_pwr: vph-pwr-regulator {
+
+regulator-foo-bar (so regulator-vph-pwr), which will also point to the
+need of reordering the nods. They are sorted alphabetically.
+
+Best regards,
+Krzysztof
 
 
