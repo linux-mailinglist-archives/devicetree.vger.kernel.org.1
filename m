@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-104165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E622297D71D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 16:54:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A413397D72B
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 16:56:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F2341C21353
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 14:54:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62772287BFE
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 14:56:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C74E17C21B;
-	Fri, 20 Sep 2024 14:54:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 153D917C9AC;
+	Fri, 20 Sep 2024 14:56:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hxuv2Ujr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DW7Eew1p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4421F17BED6;
-	Fri, 20 Sep 2024 14:54:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE27D17C7CA;
+	Fri, 20 Sep 2024 14:56:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726844091; cv=none; b=Wql/Y9GOioWPhc5youNFJjjErb9JpHxIXR+woWMqTgSDlyDlaUZfMdmakShMc2LIrg7LaogXG1gWY1bPX+p5ZcuyEZ1KVe8MZGTer9w4K6mQC2P1de0SBg8l0eC4EGVPBYp64vEXGpWbEIBTIYEiuyonYoltG5Wwf6dLj0FDC/M=
+	t=1726844194; cv=none; b=AprXtqAbsn3eBqgjYroWVqhkmudeftFwClX2kw1bLbSxNwS9WkDjvkYRiIrElvQ+Ua+TeXQQ1GdR3ToYvE5uvbtlVpHDgs9sGpX7W9kgk4tYBgOaN09eXhdXHpwGofnRTRJrFPWuCVxKvYWVdYwZB09CdhA9JfP7cKKuPDJp+ks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726844091; c=relaxed/simple;
-	bh=6BY1Yd9JN+P7E4fi5RFlhBdrQPiO3pKnc2LtEfmsSFU=;
+	s=arc-20240116; t=1726844194; c=relaxed/simple;
+	bh=8Qg1iY3o93a4LTA+ya6IEHEBHO0XR9NhsFaS3l8Zm1k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bRkZ54h77cmj0qjyyyr3wPyQmJtkOq6iG2qG9rZud77SrNwkpHkTopFj6KxUkLAIqOVbftr3JXC1sRghInNaZESYHE7MHQrSwbSytis1yJk4zbKODlMls1Gp2KJWwOf+Jxf+Fh7eRPwVOJ0GKMA6lPzhgmEOD+fbMyryNGQjKkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hxuv2Ujr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FED8C4CEC3;
-	Fri, 20 Sep 2024 14:54:47 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=WpUXsqbPpS4kfe/U9uwFWaix9AELKFe+FZesZCwQaNL5BWqIB2SAhoWQeE+N+jkRqzImTcShlWob5rieIjjD+ujmAeaxeVrGf2TOffhG+tHOvh7kME+YubjzzbGwq6HsKMsdfZjQVnMAUjIJA3ixRbuiQ0xo8GeU4FDLEG5E3yw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DW7Eew1p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1342FC4CEC3;
+	Fri, 20 Sep 2024 14:56:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726844090;
-	bh=6BY1Yd9JN+P7E4fi5RFlhBdrQPiO3pKnc2LtEfmsSFU=;
+	s=k20201202; t=1726844193;
+	bh=8Qg1iY3o93a4LTA+ya6IEHEBHO0XR9NhsFaS3l8Zm1k=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Hxuv2Ujr0kvZaFTvMOM+dmw/5oor/1iIhmSFJUPW2HAPQx03r0fAbwK5l2OVN/mr1
-	 hp+MSeJO2Mp1NF4X/7VUuOhO50SraDVczGsiuOo1MY/0iOwz/bhlYInAPyCAxUOp9n
-	 qisHLdTD2VryovRfbYTvpZZuN6/LvegFV6jy+qC2bTRC2dmr9nJA6U9f0bjXD1nRQc
-	 GsQk/iqZcflXndeYfC8tDoUhEcZpieL3QAaFNxtF01QxiB/Wnx2p5DoMgM+Cy59V80
-	 WpX6oCs0leNi+pRpTDl0JQzFTg/HLWsj0ggyoHj/T3Lt/SugZfMupSHEOSXBzfVWMi
-	 H1X5XXYJ8kK+Q==
-Message-ID: <d369aaa0-b14a-4eb3-97bd-b61188d973ec@kernel.org>
-Date: Fri, 20 Sep 2024 16:54:44 +0200
+	b=DW7Eew1pwfrkc6qYVb14pexGV7yS1IbuW5PsyK2ksVzMRVWKwAYN4G/CQZmeHzkOi
+	 GpIMerXOvcHsq4fICpIg6Ef9qqJjChESQfiAv6nbUwOXNDEYccceSYenMmMnJNEorT
+	 O0p7Gv0nN0JwnE+orEYx3IJdgOPIcm09JGFeIdOk+4hOSOXZ0Z9USZiOghxTX4BSSa
+	 MVUcEEjfXrXZDcyfSiNlpQ+AXtFoty54iE/WJ6ZoAQK2Ig40krp+kMt/HpDXTPZF98
+	 X4AflcX9VWEdWf7Uf/WI5bGj0mR07dITShxUfb4AnYzP0rP2HndlsiE6NCD4BWsVrg
+	 mMZXf8P7iW/1A==
+Message-ID: <7784248d-4372-4cf1-a01a-5b731b3f6b96@kernel.org>
+Date: Fri, 20 Sep 2024 16:56:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH leds v3 05/11] dt-bindings: leds: cznic,turris-omnia-leds:
- Allow interrupts property
-To: =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
- linux-leds@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, soc@kernel.org,
- Gregory CLEMENT <gregory.clement@bootlin.com>, arm@kernel.org,
- Andy Shevchenko <andy@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Andrew Lunn <andrew@lunn.ch>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20240913123103.21226-1-kabel@kernel.org>
- <20240913123103.21226-6-kabel@kernel.org>
- <rchpwlmgzsoj37oz6plzqcyxdyzpcdqtpmzik2gcflakeca3rm@vcdrovzs4nzh>
- <wn6mj233oqouxbrbogpf27w5bdybukoblbold6gk25fdfmy5j2@dlzxkh7whlzw>
+Subject: Re: [PATCH v2 1/5] dt-bindings: remoteproc: sse710: Add the External
+ Systems remote processors
+To: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+Cc: mathieu.poirier@linaro.org, Adam.Johnston@arm.com,
+ Hugues.KambaMpiana@arm.com, Drew.Reed@arm.com, andersson@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ liviu.dudau@arm.com, lpieralisi@kernel.org, robh@kernel.org,
+ sudeep.holla@arm.com, robin.murphy@arm.com
+References: <CANLsYkwOrtXxObL5MKf30OrUYB_uT=DnGEXUtfjH503r_LyMQA@mail.gmail.com>
+ <20240822170951.339492-1-abdellatif.elkhlifi@arm.com>
+ <20240822170951.339492-2-abdellatif.elkhlifi@arm.com>
+ <gzlncpyzwm7x4jcxtdrthrlv2dofk7u3oxn4taadwog5tt37wo@ot6s6kwukd4k>
+ <20240919093517.GA43740@e130802.arm.com>
+ <222b3b11-151a-4ad0-91ea-54ae8f280bcb@kernel.org>
+ <20240919145741.GA7940@e130802.arm.com>
+ <85a223e9-05a4-4034-87a5-57d3eb9409b7@kernel.org>
+ <20240920141958.GA288724@e130802.arm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,60 +114,71 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <wn6mj233oqouxbrbogpf27w5bdybukoblbold6gk25fdfmy5j2@dlzxkh7whlzw>
+In-Reply-To: <20240920141958.GA288724@e130802.arm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 17/09/2024 09:08, Marek Behún wrote:
-> On Mon, Sep 16, 2024 at 04:33:13PM +0200, Krzysztof Kozlowski wrote:
->> On Fri, Sep 13, 2024 at 02:30:57PM +0200, Marek Behún wrote:
->>> Extend the cznic,turris-omnia-leds binding with interrupts property,
->>> specifying the global LED brightness changed by button press interrupt.
+On 20/09/2024 16:19, Abdellatif El Khlifi wrote:
+> Hi Krzysztof,
+> 
+>>>>>>> +  '#extsys-id':
+>>>>>>
+>>>>>> '#' is not correct for sure, that's not a cell specifier.
+>>>>>>
+>>>>>> But anyway, we do not accept in general instance IDs.
+>>>>>
+>>>>> I'm happy to replace the instance ID with  another solution.
+>>>>> In our case the remoteproc instance does not have a base address
+>>>>> to use. So, we can't put remoteproc@address
+>>>>>
+>>>>> What do you recommend in this case please ?
+>>>>
+>>>> Waiting one month to respond is a great way to drop all context from my
+>>>> memory. The emails are not even available for me - gone from inbox.
+>>>>
+>>>> Bus addressing could note it. Or you have different devices, so
+>>>> different compatibles. Tricky to say, because you did not describe the
+>>>> hardware really and it's one month later...
+>>>>
 >>>
->>> Signed-off-by: Marek Behún <kabel@kernel.org>
->>> ---
->>>  .../devicetree/bindings/leds/cznic,turris-omnia-leds.yaml | 8 ++++++++
->>>  1 file changed, 8 insertions(+)
+>>> Sorry for waiting. I was in holidays.
 >>>
->>> diff --git a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
->>> index 34ef5215c150..f52f6304c79e 100644
->>> --- a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
->>> +++ b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
->>> @@ -23,6 +23,12 @@ properties:
->>>      description: I2C slave address of the microcontroller.
->>>      maxItems: 1
->>>  
->>> +  interrupts:
->>> +    description:
->>> +      Specifier for the global LED brightness changed by front button press
->>> +      interrupt.
+>>> I'll add more documentation about the external system for more clarity [1].
+>>>
+>>> Basically, Linux runs on the Cortex-A35. The External system is a
+>>> Cortex-M core. The Cortex-A35 can not access the memory of the Cortex-M.
+>>> It can only control Cortex-M core using the reset control and status registers mapped
+>>> in the memory space of the Cortex-A35.
 >>
->> This "front button press" concerns me that you just hooked here
->> gpio-key. Are you sure that this is the physical interrupt line going to
->> this device?
+>> That's pretty standard.
+>>
+>> It does not explain me why bus addressing or different compatible are
+>> not sufficient here.
 > 
-> No no no, that is a different interrupt from the gpio-key.
+> Using an instance ID was a design choice.
+> I'm happy to replace it with the use of compatible and match data (WIP).
 > 
-> The button can be configure in two modes:
+> The match data will be pointing to a data structure containing the right offsets
+> to be used with regmap APIs.
 > 
-> - it can act like a GPIO to the CPU, forwarding press and release events
->   via the GPIO chip (so button press it is handled by CPU)
->   - can be set with
->       echo cpu >/sys/bus/i2c/devices/1-002a/front_button_mode
->   - pressing it will generate the INT_BUTTON_PRESSED interrupt from the
->     MCU
+> syscon node is used to represent the Host Base System Control register area [1]
+> where the external system reset registers are mapped (EXT_SYS*).
 > 
-> - it can change LED panel brightness (so button press is handled by MCU)
->   - this is the default mode, configured after boot
->   - can be set with
->       echo mcu >/sys/bus/i2c/devices/1-002a/front_button_mode
->   - pressing it will generate the INT_BRIGHTNESS_CHANGED interrupt
+> The nodes will look like this:
 > 
-> The INT_BUTTON_PRESSED and INT_BRIGHTNESS_CHANGED interrupt semantically
-> different (and also literally, they are at different bits). See
->   https://gitlab.nic.cz/turris/hw/omnia_hw_ctrl/-/blob/master/src/drivers/i2c_iface.h?ref_type=heads#L289-L321
+> syscon@1a010000 {
+>         compatible = "arm,sse710-host-base-sysctrl", "simple-mfd", "syscon";
+>         reg = <0x1a010000 0x1000>;
+> 
+>         #address-cells = <1>;
+>         #size-cells = <1>;
+> 
+>         remoteproc@310 {
+>             compatible = "arm,sse710-extsys0";
+>             reg = <0x310 4>;
 
-That's fine, thanks for the explanation.
+Uh, why do you create device nodes for one word? This really suggests it
+is part of parent device and your split is artificial.
 
 Best regards,
 Krzysztof
