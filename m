@@ -1,133 +1,139 @@
-Return-Path: <devicetree+bounces-104130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16BA097D5A8
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 14:45:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39DC297D5B3
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 14:46:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49B881C218D5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 12:45:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBA4F1F23914
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 12:46:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F4159149E06;
-	Fri, 20 Sep 2024 12:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A6A514F9D0;
+	Fri, 20 Sep 2024 12:46:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YaauDj1z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G/Yoki89"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230E0B676;
-	Fri, 20 Sep 2024 12:45:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E89413D50B;
+	Fri, 20 Sep 2024 12:46:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726836347; cv=none; b=Enqb4XDbm/HGVLZnkU43S5co1QNobO60t9gJPEMWJf4k1T/CI7xXaZ20zzN/RTmE+A3pBITfP0lEzQ/AKLIt99ieh1SkXR3LlfVUSl9aECcyEyw3Hu98kmsM3VM8rPYc+deVFGacWZkvrG/WCuztzx42QaofeOjvFae6quAlxdc=
+	t=1726836375; cv=none; b=faKmjIeVhRAEG7UXN++DM4Fnf35HM2YzqVL59Edd11Wr7IeEks3cinMuj16SkKVcVcAIKZARmrnCwYicnbaF5yEXsmdoGwgfOztyxFBPNStHtq1xrA3S/khMVE6rU/GLh0VrmrYeGMn9SKwrL7kQvwPLBzUIPKZQwbQwXn3Jl3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726836347; c=relaxed/simple;
-	bh=Iuc54d6NEiz4BcqdQWijF887D4/QJ1B+uCas39aymUw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=dVErpyJHYQ9OOjTwCK8sUjdqh2dDKLOYTkn8YtoLI8/lZ4Lj8s/6f6YvlXl/zEarhkkxDyNj1hxpj0tmO6HIfTXJOMNgPiR97tpsgHUDagG9SpYq3yvaJ+PZhc/2MsTOLDOtG1byZ4Jwtc+4xu0hcQPBBdRYCeV7Y5+wWxRbW2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YaauDj1z; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-536a2759f0eso2651373e87.3;
-        Fri, 20 Sep 2024 05:45:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726836344; x=1727441144; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ezAH96T6rrdFYudMYX1pfn/bn7PZvj1jwszwTMpYXKM=;
-        b=YaauDj1zx8gwCPqV15JquvcEq2Iv8QLbXcaa+QuUBEkMdDw7tC8BAUgeKOcyEmvVEL
-         s+xchprOppROC9iAVC0PBi8/HVElchJp28IJyCsXYaJzElvXj9Ddin7EGLtqYyP1BbC6
-         bwGC+gbNMx+Fvn85TnyqwzwBTt5kd/qCvfuD1hBS6BZ1Vo4MR3Qs2Hl0I47QSMw0f0Vn
-         HXWaAEr7VGPWWrx9Qf5MPJKdBMO9Vf7LAkHJn7jFfokSbhv5aRXh2BGf4OOCHAAs7gt+
-         o8sMb6YZpLc7Y/LJUHB5c5e1IB0UOiKaYQEEgvS0HTCro2Qfj9hxR8TGNmgXpo8IqWEA
-         INIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726836344; x=1727441144;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ezAH96T6rrdFYudMYX1pfn/bn7PZvj1jwszwTMpYXKM=;
-        b=km1mdKuvHcAZuYXPoPoG33RntFmvsEDO5rKCdGGdpOfqVDtCl0DppWS/+mAkA/0NBF
-         R56f7hP7/eK+lSLISnCGwelnLpG5BG9gFJBYJsS/q0HP3SBkDLPEmuyAHduK3m8ILlYh
-         6IHPwgWHx/GtGxCDJdBygkFproHu3foUpOy9faktYb7NmlYocLqf19xi3MeOVStzJ12b
-         jVlJ7AtOew38qlwOYhfEr6GZBLX3QB9DT9/tZItTqdttP+EaslwoyN+dMParYBzjLmom
-         0h01t/+KhxY6zl4YZ7DaF035ERYxWJ/H5xhlbLL7goHApNNpal6hqagh6zd20aI7HUG8
-         Piyw==
-X-Forwarded-Encrypted: i=1; AJvYcCWl2mRaC5Szaz0VjHFOJ2jfIzOZ8QhESlFIE90hUC8xIj5BUc6fWFjKlLDGi8pHHY3hjhXpHljeGlmW@vger.kernel.org, AJvYcCWu3TYRCVqU1c98vVeJYq8lgLSUSgNxoROfobOKhpe8RFecNQpSJWwXxV8tdqJlW2gn+5HXScqzH4XaMTQr@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMN868PvKB4fneC2z80J0HZ/mw8uIzzGeZy21BoIR8K6cOrJdz
-	IjovUhaT5WKyx+BDwt80lYQ3X/NYOis0aedDjZqq4tZYj28YfzlT
-X-Google-Smtp-Source: AGHT+IF1XO4+uDzRlH3ZwrLK6nskExOmf3XhHC5T733GHRIqNJ3rjru6JdVYrgJp7oaq9blikUJbFA==
-X-Received: by 2002:ac2:4e08:0:b0:52e:7f6b:5786 with SMTP id 2adb3069b0e04-536ad3f7dcdmr1124478e87.61.1726836343854;
-        Fri, 20 Sep 2024 05:45:43 -0700 (PDT)
-Received: from ?IPv6:2001:a61:341e:1201:c434:b5b1:98a6:efed? ([2001:a61:341e:1201:c434:b5b1:98a6:efed])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c42bb492a1sm7161716a12.8.2024.09.20.05.45.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Sep 2024 05:45:43 -0700 (PDT)
-Message-ID: <c247b5dab409475633ea8dac5ad23fb75aecb1ef.camel@gmail.com>
-Subject: Re: [PATCH v3 01/10] iio: backend: adi-axi-dac: fix wrong register
- bitfield
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Angelo Dureghello <adureghello@baylibre.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
- Sa <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, dlechner@baylibre.com
-Date: Fri, 20 Sep 2024 14:45:42 +0200
-In-Reply-To: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-1-a17b9b3d05d9@baylibre.com>
-References: 
-	<20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
-	 <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-1-a17b9b3d05d9@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
+	s=arc-20240116; t=1726836375; c=relaxed/simple;
+	bh=6Vk2/pCNOQK4SJYWsUPOpQuCrskz4KKSil1ZpH+JcZc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ObWziyghp/KQDuokNFqAvT1uULJPn1fwpzqy57tNnTsqT+T1TGNU/ajDFBe7zxW3EKW9bm2N3fzAyUCLnayZMWXF30zTyK5Xb5JyX2QsKIKn0qN4fNBXySrcp4VVZYG3wykY7FpEbj5u/hftK5yf5ivMtAhpHqYGPrnrsRHaEVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G/Yoki89; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 984C5C4CEC3;
+	Fri, 20 Sep 2024 12:46:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726836374;
+	bh=6Vk2/pCNOQK4SJYWsUPOpQuCrskz4KKSil1ZpH+JcZc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=G/Yoki89OCEYmOi1HfSYWOjIP/QgeqyGRSPcZu4X/FGHOKValSW3uuMR1JUf7eri7
+	 +LkTqcqf71ChbS/KEkZqwerbYTgz+EHCo2i5qIara5fW5GwvmIm+f14eSB0eJAj95W
+	 97BH8xX6FKjesLvc/zxOam8wexSRW/C0QPVhjyQIMu1eaxVg3CzwSlff6KZCyuHx5T
+	 4Ta00wCS70Dv00Vvej9XENI2O7XbZD0mOoDc6GxnUr7V2/R+MI0jN+FLe1PWhX4zjj
+	 7c64PNQN2q8B8ebKtXPdlf8dLItEo10Y3UlMmJOqe7BiIJGLkbdE+Vxz3jcVuNZ4mv
+	 sRVmGhbyV747w==
+Date: Fri, 20 Sep 2024 13:46:17 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	NXP S32 Linux Team <s32@nxp.com>
+Subject: Re: [PATCH v3 2/4] dt-bindings: gpio: add support for NXP
+ S32G2/S32G3 SoCs
+Message-ID: <20240920-reapply-amusement-a37cf13fd910@squawk>
+References: <20240919134732.2626144-1-andrei.stefanescu@oss.nxp.com>
+ <20240919134732.2626144-3-andrei.stefanescu@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="JIfcTOkCH42WEvVp"
+Content-Disposition: inline
+In-Reply-To: <20240919134732.2626144-3-andrei.stefanescu@oss.nxp.com>
 
-On Thu, 2024-09-19 at 11:19 +0200, Angelo Dureghello wrote:
-> From: Angelo Dureghello <adureghello@baylibre.com>
+
+--JIfcTOkCH42WEvVp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Sep 19, 2024 at 04:47:22PM +0300, Andrei Stefanescu wrote:
+> Add support for the GPIO driver of the NXP S32G2/S32G3 SoCs.
 >=20
-> Fix ADI_DAC_R1_MODE of AXI_DAC_REG_CNTRL_2.
->=20
-> Both generic DAC and ad3552r DAC IPs docs are reporting
-> bit 5 for it.
->=20
-> https://wiki.analog.com/resources/fpga/docs/axi_dac_ip
-> https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
->=20
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> Signed-off-by: Phu Luu An <phu.luuan@nxp.com>
+> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+> Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
 > ---
-
-Ouch... Missing Fixes tag. With that,
-
-Reviewed-by: Nuno Sa <nuno.sa@analog.com>
-
-> =C2=A0drivers/iio/dac/adi-axi-dac.c | 2 +-
-> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/gpio/nxp,s32g2-siul2-gpio.yaml   | 107 ++++++++++++++++++
+>  1 file changed, 107 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/nxp,s32g2-siul=
+2-gpio.yaml
 >=20
-> diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-axi-dac.=
-c
-> index 0cb00f3bec04..b8b4171b8043 100644
-> --- a/drivers/iio/dac/adi-axi-dac.c
-> +++ b/drivers/iio/dac/adi-axi-dac.c
-> @@ -46,7 +46,7 @@
-> =C2=A0#define AXI_DAC_REG_CNTRL_1		0x0044
-> =C2=A0#define=C2=A0=C2=A0 AXI_DAC_SYNC			BIT(0)
-> =C2=A0#define AXI_DAC_REG_CNTRL_2		0x0048
-> -#define	=C2=A0 ADI_DAC_R1_MODE		BIT(4)
-> +#define	=C2=A0 ADI_DAC_R1_MODE		BIT(5)
-> =C2=A0#define AXI_DAC_DRP_STATUS		0x0074
-> =C2=A0#define=C2=A0=C2=A0 AXI_DAC_DRP_LOCKED		BIT(17)
-> =C2=A0/* DAC Channel controls */
->=20
+> diff --git a/Documentation/devicetree/bindings/gpio/nxp,s32g2-siul2-gpio.=
+yaml b/Documentation/devicetree/bindings/gpio/nxp,s32g2-siul2-gpio.yaml
+> new file mode 100644
+> index 000000000000..0548028e6745
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/nxp,s32g2-siul2-gpio.yaml
+> @@ -0,0 +1,107 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-3-Clause
+> +# Copyright 2024 NXP
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/nxp,s32g2-siul2-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP S32G2 SIUL2 GPIO controller
+> +
+> +maintainers:
+> +  - Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+> +  - Larisa Grigore <larisa.grigore@nxp.com>
+> +  - Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+> +
+> +description:
+> +  Support for the SIUL2 GPIOs found on the S32G2 and S32G3
+> +  chips. It includes an IRQ controller for all pins which have
+> +  an EIRQ associated.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: nxp,s32g2-siul2-gpio
 
+Commit message and binding description say s32g2 and s32g3, but there's
+only a compatible here for g2.
+
+--JIfcTOkCH42WEvVp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZu1ulgAKCRB4tDGHoIJi
+0vVlAP4yvjhZovY4mlXj8+ZUTlXXD4MtYxxGZhYUdN9iHVgQDwD9Gts7H9wuEIti
+sXaY3MGD9OF38hp9yVQhDo2xrE+NkAA=
+=v2Bc
+-----END PGP SIGNATURE-----
+
+--JIfcTOkCH42WEvVp--
 
