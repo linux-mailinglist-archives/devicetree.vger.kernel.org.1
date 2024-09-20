@@ -1,186 +1,141 @@
-Return-Path: <devicetree+bounces-104166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A413397D72B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 16:56:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C25597D76C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 17:26:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62772287BFE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 14:56:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC5961F24669
+	for <lists+devicetree@lfdr.de>; Fri, 20 Sep 2024 15:26:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 153D917C9AC;
-	Fri, 20 Sep 2024 14:56:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F03D14B940;
+	Fri, 20 Sep 2024 15:26:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DW7Eew1p"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="X+OTZgaM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE27D17C7CA;
-	Fri, 20 Sep 2024 14:56:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 929CDC13B;
+	Fri, 20 Sep 2024 15:26:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726844194; cv=none; b=AprXtqAbsn3eBqgjYroWVqhkmudeftFwClX2kw1bLbSxNwS9WkDjvkYRiIrElvQ+Ua+TeXQQ1GdR3ToYvE5uvbtlVpHDgs9sGpX7W9kgk4tYBgOaN09eXhdXHpwGofnRTRJrFPWuCVxKvYWVdYwZB09CdhA9JfP7cKKuPDJp+ks=
+	t=1726846011; cv=none; b=PnFGzXLtUl6fpT0Zd0IWGQn/U6om1dISZG3erM+hGRa7bLLDzr2sEQYCyYypRyIdlgTTpXFNUsStS6vPjFD+UR0TxRAWqva9/hLUQ4fCYZFiJrGkzLDCVjTp9NhCzDVP8g42LDMvulkRooRAjgkaU9RMLTHnHUD+E3a/fJ4BasE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726844194; c=relaxed/simple;
-	bh=8Qg1iY3o93a4LTA+ya6IEHEBHO0XR9NhsFaS3l8Zm1k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WpUXsqbPpS4kfe/U9uwFWaix9AELKFe+FZesZCwQaNL5BWqIB2SAhoWQeE+N+jkRqzImTcShlWob5rieIjjD+ujmAeaxeVrGf2TOffhG+tHOvh7kME+YubjzzbGwq6HsKMsdfZjQVnMAUjIJA3ixRbuiQ0xo8GeU4FDLEG5E3yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DW7Eew1p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1342FC4CEC3;
-	Fri, 20 Sep 2024 14:56:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726844193;
-	bh=8Qg1iY3o93a4LTA+ya6IEHEBHO0XR9NhsFaS3l8Zm1k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DW7Eew1pwfrkc6qYVb14pexGV7yS1IbuW5PsyK2ksVzMRVWKwAYN4G/CQZmeHzkOi
-	 GpIMerXOvcHsq4fICpIg6Ef9qqJjChESQfiAv6nbUwOXNDEYccceSYenMmMnJNEorT
-	 O0p7Gv0nN0JwnE+orEYx3IJdgOPIcm09JGFeIdOk+4hOSOXZ0Z9USZiOghxTX4BSSa
-	 MVUcEEjfXrXZDcyfSiNlpQ+AXtFoty54iE/WJ6ZoAQK2Ig40krp+kMt/HpDXTPZF98
-	 X4AflcX9VWEdWf7Uf/WI5bGj0mR07dITShxUfb4AnYzP0rP2HndlsiE6NCD4BWsVrg
-	 mMZXf8P7iW/1A==
-Message-ID: <7784248d-4372-4cf1-a01a-5b731b3f6b96@kernel.org>
-Date: Fri, 20 Sep 2024 16:56:24 +0200
+	s=arc-20240116; t=1726846011; c=relaxed/simple;
+	bh=chACH4WRHn+akX62/Tjn9TTs39+T5HAfNHQczpmJWb0=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=E14rNOCnHNDggnHDQFJqTlCJUktOXLRL56jkCzdi4wceD+Uy7R+llaeShcmISvVrT5poWx2d2CZKf9aYwsNsN2SByE82EcVDSfFW8rr+X1yrRT1as3me9R4++mP9vYh/Q+NF1whIdJTLdp70yO85iwP+cIZwAG58K4brct9WE8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=X+OTZgaM; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1726846010; x=1758382010;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=chACH4WRHn+akX62/Tjn9TTs39+T5HAfNHQczpmJWb0=;
+  b=X+OTZgaMOk556xpT4lYAEGaaTCJNfyqdupsOvHbTCAVfWmyvw1IjUbKz
+   61vMSuYdAHJmDZh7KzhTRdRRGQ5La+MV2jNJtN7jP2jaNQeXrUvF9VHP5
+   8DdiYdVqW77zWviA8O/nVFGoj6ZO+e/9HgymhySMN5gErLHWWacdN/5KN
+   QCeYZl/g/dDZgHO6otpysYSQwto5cE6X2cljp+RgQcRZt2hAArvnff2C+
+   FrZHL1Ht3WktdHNelw8Dp8LZeIYf9JHjGnfJUUaXfr6dTKB0UkF+wNd8h
+   x6zjCQfhsGwMKArql+Av4dpRMuwnL0sBatV7Cn/xlI2eduW3FJXIaH5S7
+   g==;
+X-CSE-ConnectionGUID: /XphNNj9Q6u9na6X9ztK7Q==
+X-CSE-MsgGUID: k8t7qNjsRTWPcxPpennAxA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11201"; a="28752540"
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; 
+   d="scan'208";a="28752540"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Sep 2024 08:26:43 -0700
+X-CSE-ConnectionGUID: Uv4qBKzbQn6mHbUNnllnZA==
+X-CSE-MsgGUID: fYGpBIJdQwe/2OwE+HtFAA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; 
+   d="scan'208";a="70475427"
+Received: from sj-2308-osc3.sj.altera.com ([10.244.138.69])
+  by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Sep 2024 08:26:43 -0700
+Date: Fri, 20 Sep 2024 08:26:43 -0700 (PDT)
+From: matthew.gerlach@linux.intel.com
+To: Rob Herring <robh@kernel.org>
+cc: lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com, 
+    krzk+dt@kernel.org, conor+dt@kernel.org, dinguyen@kernel.org, 
+    joyce.ooi@intel.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+    linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: PCI: altera: Convert to YAML
+In-Reply-To: <CAL_JsqJg_ahW451sBht1k5SxP9s4dE09F-EWrgdXdDpUPFDfcQ@mail.gmail.com>
+Message-ID: <5edb1ea6-63e-8bfb-aaa5-a333d5987339@linux.intel.com>
+References: <20240809151213.94533-1-matthew.gerlach@linux.intel.com> <20240809151213.94533-2-matthew.gerlach@linux.intel.com> <20240809181401.GA973841-robh@kernel.org> <98185d65-805f-f09d-789-6eda61c4b36d@linux.intel.com>
+ <CAL_JsqJg_ahW451sBht1k5SxP9s4dE09F-EWrgdXdDpUPFDfcQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: remoteproc: sse710: Add the External
- Systems remote processors
-To: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-Cc: mathieu.poirier@linaro.org, Adam.Johnston@arm.com,
- Hugues.KambaMpiana@arm.com, Drew.Reed@arm.com, andersson@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- liviu.dudau@arm.com, lpieralisi@kernel.org, robh@kernel.org,
- sudeep.holla@arm.com, robin.murphy@arm.com
-References: <CANLsYkwOrtXxObL5MKf30OrUYB_uT=DnGEXUtfjH503r_LyMQA@mail.gmail.com>
- <20240822170951.339492-1-abdellatif.elkhlifi@arm.com>
- <20240822170951.339492-2-abdellatif.elkhlifi@arm.com>
- <gzlncpyzwm7x4jcxtdrthrlv2dofk7u3oxn4taadwog5tt37wo@ot6s6kwukd4k>
- <20240919093517.GA43740@e130802.arm.com>
- <222b3b11-151a-4ad0-91ea-54ae8f280bcb@kernel.org>
- <20240919145741.GA7940@e130802.arm.com>
- <85a223e9-05a4-4034-87a5-57d3eb9409b7@kernel.org>
- <20240920141958.GA288724@e130802.arm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240920141958.GA288724@e130802.arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="8323329-788480230-1726846003=:3046662"
 
-On 20/09/2024 16:19, Abdellatif El Khlifi wrote:
-> Hi Krzysztof,
-> 
->>>>>>> +  '#extsys-id':
->>>>>>
->>>>>> '#' is not correct for sure, that's not a cell specifier.
->>>>>>
->>>>>> But anyway, we do not accept in general instance IDs.
->>>>>
->>>>> I'm happy to replace the instance ID with  another solution.
->>>>> In our case the remoteproc instance does not have a base address
->>>>> to use. So, we can't put remoteproc@address
->>>>>
->>>>> What do you recommend in this case please ?
->>>>
->>>> Waiting one month to respond is a great way to drop all context from my
->>>> memory. The emails are not even available for me - gone from inbox.
->>>>
->>>> Bus addressing could note it. Or you have different devices, so
->>>> different compatibles. Tricky to say, because you did not describe the
->>>> hardware really and it's one month later...
->>>>
->>>
->>> Sorry for waiting. I was in holidays.
->>>
->>> I'll add more documentation about the external system for more clarity [1].
->>>
->>> Basically, Linux runs on the Cortex-A35. The External system is a
->>> Cortex-M core. The Cortex-A35 can not access the memory of the Cortex-M.
->>> It can only control Cortex-M core using the reset control and status registers mapped
->>> in the memory space of the Cortex-A35.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
+
+--8323329-788480230-1726846003=:3046662
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8BIT
+
+
+
+On Fri, 9 Aug 2024, Rob Herring wrote:
+
+> On Fri, Aug 9, 2024 at 12:43 PM <matthew.gerlach@linux.intel.com> wrote:
+>> On Fri, 9 Aug 2024, Rob Herring wrote:
 >>
->> That's pretty standard.
+>>> On Fri, Aug 09, 2024 at 10:12:07AM -0500, matthew.gerlach@linux.intel.com wrote:
+>>>> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+>>>>
+>>>> Convert the device tree bindings for the Altera Root Port PCIe controller
+>>>> from text to YAML. Update the entries in the interrupt-map field to have
+>>>> the correct number of address cells for the interrupt parent.
+>>>>
+>>>> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+>>>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>>>> ---
+>>>> v8:
+>>>
+>>> v2 or v8 or ??? I'm confused and tools will be too.
 >>
->> It does not explain me why bus addressing or different compatible are
->> not sufficient here.
-> 
-> Using an instance ID was a design choice.
-> I'm happy to replace it with the use of compatible and match data (WIP).
-> 
-> The match data will be pointing to a data structure containing the right offsets
-> to be used with regmap APIs.
-> 
-> syscon node is used to represent the Host Base System Control register area [1]
-> where the external system reset registers are mapped (EXT_SYS*).
-> 
-> The nodes will look like this:
-> 
-> syscon@1a010000 {
->         compatible = "arm,sse710-host-base-sysctrl", "simple-mfd", "syscon";
->         reg = <0x1a010000 0x1000>;
-> 
->         #address-cells = <1>;
->         #size-cells = <1>;
-> 
->         remoteproc@310 {
->             compatible = "arm,sse710-extsys0";
->             reg = <0x310 4>;
+>> Sorry for the confusion. Patch 1 and patch 2 were individually reviewed
+>> previously. Patch 1 was previously reviewed up to v8, and I included them
+>> in the greater patch set for convience and completeness, and this is v2 of
+>> the entire patch set.
+>>
+>> How should this be handled for better clarity? Would it be better to not
+>> to include Patch 1 and 2 in the patch set and refer to them, or would it
+>> better to remove the history in patch 1 and 2, or something else?
+>
+> Generally, if you added new patches you keep the versioning and say
+> "vN: new patch" in the new patches.
 
-Uh, why do you create device nodes for one word? This really suggests it
-is part of parent device and your split is artificial.
+Thanks for the clarification on the proper way to handle this.
 
-Best regards,
-Krzysztof
+>
+> If this was 2 prior series, combined, there's not really a good answer
+> other than don't do that.
 
+Understood, I won't combine prior series in the future.
+
+>
+> Rob
+>
+
+Krzysztof Wilczyński has applied patch 1 and patch 2 to linux-next. Should 
+I resubmit the patch set minus patch 1 and 2? There would be no changes to 
+patches 3-7. Do I keep the v2, or should it be bumped to v3?
+
+Thanks,
+Matthew Gerlach
+
+--8323329-788480230-1726846003=:3046662--
 
