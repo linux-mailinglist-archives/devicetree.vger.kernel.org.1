@@ -1,62 +1,68 @@
-Return-Path: <devicetree+bounces-104311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CF9997DF51
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 00:06:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23E2A97DF58
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 00:19:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79B71B20C76
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 22:06:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DE841C20B03
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 22:19:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41F844CB2B;
-	Sat, 21 Sep 2024 22:05:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3488114F9F8;
+	Sat, 21 Sep 2024 22:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eaFW6f6H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LKtEWDwW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D46EEBE;
-	Sat, 21 Sep 2024 22:05:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBE3A257B;
+	Sat, 21 Sep 2024 22:19:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726956359; cv=none; b=IZjK5CAVTC0sHzNzOq/OnHJGQUZFpiIxvZ1o1HRaZ0xLpJAXaeqYFb2Oc/C7fSZ+qYyB/CbpY29IcSQpG9ZMqwrFinDUiJxt5tftWRnv6Y9OkNnUv9HbvbOoR6rapmNTO/6CNfC8607oJDxSn/cqF4aYt22633nUQRPd5PKWXPo=
+	t=1726957150; cv=none; b=ofVB5E05CAQFnvGlewBw4hBzEFvFydPLgfWbjvOeueYanQicOevdyDayJPMzmVTkX2vEMIf90CFqGvXr6+l1nd6XEUbizuhsy3kIRhoNN90hpK0QhFlYCTBkcIYTALBvuz/ZO89OgFmfceH9ztia6g+55hIX/socQgocdg+WDSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726956359; c=relaxed/simple;
-	bh=/X57ncqkKV685Tc73lC69jepq5DQEY1k/4jxl0qDY1I=;
+	s=arc-20240116; t=1726957150; c=relaxed/simple;
+	bh=kfR14K5vrihyjIzfXPTU8e1xRsbb7EB2RB9CxAyKGns=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TrDLyybuCXBeWyzzQVi/FO+kb+UdIQ9R2IC+faS9xBFkyL+OROw063Sd72hvnVAbZHtZgg3m7S1CIP07thkIsG0lsxXoDTx2+q2aoCoZjwXSgX9XQmqUcDWYEi+oRIs3wx7Pt8s/w2ztIHnGmNY5m3fjpCbA/kaRdrF9Nx5p6ao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eaFW6f6H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDEE8C4CEC2;
-	Sat, 21 Sep 2024 22:05:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uGR7lScVjz2isv/QhoSWV3GNZ0dbrKs2Rg2Cic/IFKjTF2EYbQbWzCbnM53/jqhtO5nhjeFpYb2hKZiVup6nGkl0jieQxgB8hQr1GCUh2Cwf646CbN2ChwlAeOHykl2rqarelBxzJLEnKO+h/VBHIVbTT7tubgZiDNerwDHUCnQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LKtEWDwW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88A88C4CEC2;
+	Sat, 21 Sep 2024 22:19:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726956358;
-	bh=/X57ncqkKV685Tc73lC69jepq5DQEY1k/4jxl0qDY1I=;
+	s=k20201202; t=1726957149;
+	bh=kfR14K5vrihyjIzfXPTU8e1xRsbb7EB2RB9CxAyKGns=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eaFW6f6H4UbmenZx+RBfLxcjVcGtlv6PLhDt7CBFjY7+rsSkXYal+pGf8Y9K0/ApG
-	 aP+3br8KzKBaSNGIWK73F1GLmQa06AlB3jQ2yTUJNQJW50Z3KwCB8gjCNU8AbuzxhL
-	 n+d+6QS5euVbHibGXG80FHn2iGlM9DIPLErFhBioSqAUxwRCfSHRkDa1fmiAWRnONE
-	 euQiKvpVXbdfRRv0QRhsr1t+iq02bSsK/xnZB5lNBTlIb4cvMz4gT4OynYkSATAXhT
-	 7R6wthhKyj7+sgApV1KTWMw3oHPPLX/LyKH3mFbPfvDLTplyCVzs88G3VKW2IjGgwC
-	 iENCPkcAOpbdg==
-Date: Sat, 21 Sep 2024 23:05:53 +0100
+	b=LKtEWDwWofb5y/OGX5gOxNGrMyVa8YcbIRHQu6UCj/KmRABpTVAnFHfdEFHEA9Fkf
+	 lyjBml+k7UppNw7slrDXufzcHG1EPQp3u9rhVpAOgqC/6eG4atC+4WKx7SjqbjqNN6
+	 8+PGvpylJ11aa4N44u7wkfDlkAzkaFOFcP2gSg9koZ0D7hBvaR8dyI8bB7rae9G3tW
+	 ++dUzQjreatME31JfJIqy/QdGbzYOC7twHAP5o1cY60yVp7G0jdyg/KOxJqGV5BUDt
+	 gOAo6LJHyX6W9hSlju+mYoF1vbWgIWumSOdP0ANHlqeGx6VxVcDdWpaZAmk6/yepUx
+	 bw10rLBy2IblQ==
+Date: Sat, 21 Sep 2024 23:19:03 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Max Hsu <max.hsu@sifive.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Anup Patel <anup@brainfault.org>,
-	Atish Patra <atishp@atishpatra.org>,
-	Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kvm@vger.kernel.org, kvm-riscv@lists.infradead.org,
-	Samuel Holland <samuel.holland@sifive.com>
-Subject: Re: [PATCH RFC 1/3] dt-bindings: riscv: Add Svukte entry
-Message-ID: <20240921-shock-purge-d91482d191a1@spud>
-References: <20240920-dev-maxh-svukte-rebase-v1-0-7864a88a62bd@sifive.com>
- <20240920-dev-maxh-svukte-rebase-v1-1-7864a88a62bd@sifive.com>
+To: Guillaume Stols <gstols@baylibre.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Michal Marek <mmarek@suse.com>,
+	linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-fbdev@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	aardelean@baylibre.com, dlechner@baylibre.com,
+	jstephan@baylibre.com
+Subject: Re: [PATCH v2 03/10] dt-bindings: iio: adc: ad7606: Add iio backend
+ bindings
+Message-ID: <20240921-charter-grouped-9f77e0a640a0@spud>
+References: <20240920-ad7606_add_iio_backend_support-v2-0-0e78782ae7d0@baylibre.com>
+ <20240920-ad7606_add_iio_backend_support-v2-3-0e78782ae7d0@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,71 +70,177 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="e1yUmKuhmIxAjSpf"
+	protocol="application/pgp-signature"; boundary="/E6hod+IHxfXaUGB"
 Content-Disposition: inline
-In-Reply-To: <20240920-dev-maxh-svukte-rebase-v1-1-7864a88a62bd@sifive.com>
+In-Reply-To: <20240920-ad7606_add_iio_backend_support-v2-3-0e78782ae7d0@baylibre.com>
 
 
---e1yUmKuhmIxAjSpf
+--/E6hod+IHxfXaUGB
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 20, 2024 at 03:39:03PM +0800, Max Hsu wrote:
-> Add an entry for the Svukte extension to the riscv,isa-extensions
-> property.
+On Fri, Sep 20, 2024 at 05:33:23PM +0000, Guillaume Stols wrote:
+> Add the required properties for iio-backend support, as well as an
+> example and the conditions to mutually exclude interruption and
+> conversion trigger with iio-backend.
+> The iio-backend's function is to controls the communication, and thus the
+> interruption pin won't be available anymore.
+> As a consequence, the conversion pin must be controlled externally since
+> we will miss information about when every single conversion cycle (i.e
+> conversion + data transfer) ends, hence a PWM is introduced to trigger
+> the conversions.
 >=20
-> Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
-> Signed-off-by: Max Hsu <max.hsu@sifive.com>
+> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
 > ---
->  Documentation/devicetree/bindings/riscv/extensions.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  .../devicetree/bindings/iio/adc/adi,ad7606.yaml    | 76 ++++++++++++++++=
++++++-
+>  1 file changed, 74 insertions(+), 2 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
-cumentation/devicetree/bindings/riscv/extensions.yaml
-> index a06dbc6b4928958704855c8993291b036e3d1a63..df96aea5e53a70b0cb8905332=
-464a42a264e56e6 100644
-> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> @@ -171,6 +171,13 @@ properties:
->              memory types as ratified in the 20191213 version of the priv=
-ileged
->              ISA specification.
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+> index 12995ebcddc2..74a8680904b1 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+> @@ -118,13 +118,32 @@ properties:
+>        this property must be defined.
+>      type: boolean
 > =20
-> +        - const: svukte
-> +          description:
-> +            The standard Svukte supervisor-level extensions for making u=
-ser-mode
-> +            accesses to supervisor memory raise page faults in constant =
-time,
-> +            mitigating attacks that attempt to discover the supervisor
-> +            software's address-space layout, as PR#1564 of riscv-isa-man=
-ual.
+> +  pwms:
+> +    description:
+> +      In case the conversion is triggered by a PWM instead of a GPIO plu=
+gged to
+> +      the CONVST pin, the PWM must be referenced.
+> +    minItems: 1
+> +    maxItems: 2
 
-I'm surprised this doesn't fail dt_binding_check, with the # in it. I'd
-like to see a commit hash here though, in the same format as the other
-extensions using them.
+Please use an items list to describe what each item is, rather than
+doing so in the pwm-names description below.
 
 > +
->          - const: zacas
->            description: |
->              The Zacas extension for Atomic Compare-and-Swap (CAS) instru=
-ctions
+> +  pwm-names:
+> +    description:
+> +      The name of each PWM, the first is connected to CONVST, and the se=
+cond is
+> +      connected to CONVST2 if CONVST2 is available and not connected to =
+CONVST1.
+> +    minItems: 1
+> +    maxItems: 2
+
+You need to define what the names actually are, otherwise you have no
+ABI.
+
+Cheers,
+Conor.
+
+> +
+> +  io-backends:
+> +    description:
+> +      A reference to the iio-backend, which is responsible handling the =
+BUSY
+> +      pin's falling edge and communication.
+> +      An example of backend can be found at
+> +      http://analogdevicesinc.github.io/hdl/library/axi_ad7606x/index.ht=
+ml
+> +
+>  required:
+>    - compatible
+>    - reg
+>    - avcc-supply
+>    - vdrive-supply
+> -  - interrupts
+> -  - adi,conversion-start-gpios
+> =20
+>  oneOf:
+>    - required:
+> @@ -138,6 +157,34 @@ oneOf:
+>            - spi-cpol
+> =20
+>  allOf:
+> +  - if:
+> +      properties:
+> +        pwms: false
+> +    then:
+> +      required:
+> +        - adi,conversion-start-gpios
+> +
+> +  - if:
+> +      properties:
+> +        adi,conversion-start-gpios: false
+> +    then:
+> +      required:
+> +        - pwms
+> +
+> +  - if:
+> +      properties:
+> +        interrupts: false
+> +    then:
+> +      required:
+> +        - io-backends
+> +
+> +  - if:
+> +      properties:
+> +        io-backends: false
+> +    then:
+> +      required:
+> +        - interrupts
+> +
+>    - if:
+>        properties:
+>          compatible:
+> @@ -179,12 +226,37 @@ allOf:
+>          adi,sw-mode: false
+>      else:
+>        properties:
+> +        pwms:
+> +          maxItems: 1
+> +        pwm-names:
+> +          maxItems: 1
+>          adi,conversion-start-gpios:
+>            maxItems: 1
+> =20
+>  unevaluatedProperties: false
+> =20
+>  examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    / {
+> +        adi_adc {
+> +            compatible =3D "adi,ad7606b";
+> +            parallel-interface;
+> +            pwms =3D <&axi_pwm_gen 0 0>;
+> +
+> +            avcc-supply =3D <&adc_vref>;
+> +            vdrive-supply =3D <&vdd_supply>;
+> +
+> +            reset-gpios =3D <&gpio0 91 GPIO_ACTIVE_HIGH>;
+> +            standby-gpios =3D <&gpio0 90 GPIO_ACTIVE_LOW>;
+> +            adi,range-gpios =3D <&gpio0 89 GPIO_ACTIVE_HIGH>;
+> +            adi,oversampling-ratio-gpios =3D <&gpio0 88 GPIO_ACTIVE_HIGH
+> +                                            &gpio0 87 GPIO_ACTIVE_HIGH
+> +                                            &gpio0 86 GPIO_ACTIVE_HIGH>;
+> +            io-backends =3D <&iio_backend>;
+> +        };
+> +    };
+> +
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+>      #include <dt-bindings/interrupt-controller/irq.h>
 >=20
 > --=20
-> 2.43.2
+> 2.34.1
 >=20
 
---e1yUmKuhmIxAjSpf
+--/E6hod+IHxfXaUGB
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZu9DQQAKCRB4tDGHoIJi
-0vpuAP92NYEC9FM8e8Y7BhVJDJvf069DI4tcoz+kx+BoYjEtzQD9Fp1Wj8hFfHNh
-s70/gx+0/zuAYgjxNfQ7GnUDfjIW7A8=
-=lQCo
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZu9GVwAKCRB4tDGHoIJi
+0sp1AP9PpuRy60rPk9JYWnURXlbuDdPob0rbthuXpOdAIPJZewD/bmxcvaFLN3N6
+mVszPN0fIfm39hSecA50i4isHCxlTwA=
+=cklL
 -----END PGP SIGNATURE-----
 
---e1yUmKuhmIxAjSpf--
+--/E6hod+IHxfXaUGB--
 
