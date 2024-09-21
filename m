@@ -1,213 +1,130 @@
-Return-Path: <devicetree+bounces-104238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAD2F97DB1F
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 03:11:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0F5097DBB8
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 06:56:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DD861F22218
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 01:11:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 165381C213BA
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 04:56:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1320423D7;
-	Sat, 21 Sep 2024 01:11:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D95302A1CF;
+	Sat, 21 Sep 2024 04:56:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LbkNmNg0"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="tmZPrOlQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3770164D;
-	Sat, 21 Sep 2024 01:11:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CA9D1CD2B
+	for <devicetree@vger.kernel.org>; Sat, 21 Sep 2024 04:56:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726881087; cv=none; b=eMBWBB4QFW50rLmok+6qafB6ts3C9BJWhNevzMEprHs2b4ewTe5X2ZNarrHJfQOM56fNt2mkfG/FJXaXCYqwOJhDya3BANSrT85h4gPBCqrEmRNsAvK1mYMGsTUZQQZDCQkPA2Ts/eNF85jXF/w8yM84qZcd6NJYBwsN/DdOLBA=
+	t=1726894581; cv=none; b=RdEOW8WpbCezgKV5hd34/4wPsFau8TG6262WAKdjrYFKol4hMfWKWKnmfkie/dMkEN2WppK7mgNL+9AmsYWH/O8SqJAUG24jPEMfv8BSTTZq+HGoHUvB0/eiyQzMemfRCNJXfv6tbrX3Q2i5aoQPXGOp0QPW35HIrDy47ZmNmKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726881087; c=relaxed/simple;
-	bh=knB1T1YQd0DVg/q5DSjwZOV+QhV/i2GJx7TftXT/vMw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nDT7pQ2B4HmarurpOLta77MCNwytGPsVa3F1N7IMQSlv68lqc1HEdY9KQIRR0qR7f4BtgblbpomiS7ePHdS63dtVTzw0FKvY395Rv5i4AkMEeT76U4bqeocWr7ooaIzya12EBmP+NVtEGNm+qC8YEC5RyUUtLeKGuSb8Mc1ttEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LbkNmNg0; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1726881084; x=1758417084;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=knB1T1YQd0DVg/q5DSjwZOV+QhV/i2GJx7TftXT/vMw=;
-  b=LbkNmNg0tNcREXAXTDQWcVblqIuNCQqyv3PBVXWnTLDhVUqsUSiT4jr0
-   LRqsFQwAiDgNkvboPcS+7LfhUlao18vnLBj7/607XlOiLkKZl42uSTGZj
-   zD6HKMldDoQi6AURSxBLOWMfkvWjqTwz9OCHoRe1k6U1uctCFdH3oHwtj
-   0Te6DnemWWsX3Wsv8y3Pfw9rBfCnNGPZB+SmmkMxV/FlSiPbkkwN7cstm
-   LTpUKfQm6DsZWoQW0Gy2bpfcIJ0hiqBU/za/If539ceLLVW/rSHIUufAV
-   xGJUd3H8aEs/jXNjjoJy2cNvyHLeGJxMN2AyWJYOUlvVrfVeHY9z4DqQ6
-   A==;
-X-CSE-ConnectionGUID: dvmS6K6bTVSU9R4uZRjJBQ==
-X-CSE-MsgGUID: 89qJx7rRQKOzOzvKEVAcHg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11201"; a="25776279"
-X-IronPort-AV: E=Sophos;i="6.10,245,1719903600"; 
-   d="scan'208";a="25776279"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Sep 2024 18:11:23 -0700
-X-CSE-ConnectionGUID: bPZnKP4qQsG0tk2teks7CA==
-X-CSE-MsgGUID: vVZ0dxTkS3WZEUkcvmAmSw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,245,1719903600"; 
-   d="scan'208";a="101325655"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 20 Sep 2024 18:11:20 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sroec-000F0V-0k;
-	Sat, 21 Sep 2024 01:11:18 +0000
-Date: Sat, 21 Sep 2024 09:11:12 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mariel Tinaco <Mariel.Tinaco@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
-	Dimitri Fedrau <dima.fedrau@gmail.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v4 2/2] iio: dac: support the ad8460 Waveform DAC
-Message-ID: <202409210849.cRodncgA-lkp@intel.com>
-References: <20240912095435.18639-3-Mariel.Tinaco@analog.com>
+	s=arc-20240116; t=1726894581; c=relaxed/simple;
+	bh=Hn4fReQotENKNmRSfo2n2nLfnja9kCI0SETHuXmadRw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OADx+lWBn9uQQj1MOWg8Fm6+Nz7WTNDtv+v8dV+6Vq1FhLshYu5fmdfTP+yjzVoUQiEwcJHVCLfSqYLonWdj43VRVn+uLu7QWyLln47VRN9p6X/Pij0+UsV6SngQplmsQozh2F97KpvXrliXjqRB1Kq8bs8RyB40MwLPyZgWmS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=tmZPrOlQ; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5365cf5de24so3474088e87.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Sep 2024 21:56:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1726894577; x=1727499377; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Hn4fReQotENKNmRSfo2n2nLfnja9kCI0SETHuXmadRw=;
+        b=tmZPrOlQ0qV/sAovR6H7NfVaU3693v2U6zrkzJvotvmnFeKCrPkIOOaPnN6gIBQuyV
+         xFq6+hX9SDh/grUAjhh7LaPt1qLqmSfa4BJJButZwzVobcVKBMBkw/t/XYJw9QAFihQj
+         jACngkda70jLOl/vH+A844P08cz2AgE5GlB4fFlOre96nj74w24Xj8cdlEJvXx0MRi1S
+         FKG5q5azo7NDmuurujbiuaI1Zh6t8wga3SH53S5SRM6EIoDibFRuJgjYueIABWfc4c8V
+         IzVmdWEk4Or0r5smfynbJravtmFkg5ZljLvi/7YGoV6Sd6CFApKIiuhnL8IOkjnXXz+W
+         3VkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726894577; x=1727499377;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Hn4fReQotENKNmRSfo2n2nLfnja9kCI0SETHuXmadRw=;
+        b=n7ITfZlVFJ8kuDdbuixparmqFCHJXRU/2jwWVYNERICmdjTNvaA0aJtugSkRemZ3PT
+         eN/ig5a/KzKgLRuzyDDjZ6+WIEw42zZ9kiNpAz2MQIMnUbMQOcor81f+H6wJGgRXR3ve
+         6psKTD0IDKRLzEK1Z1PXnrOB/QK1eVxJB6r/WgrCAU9vGZHHsyAw7T98uXKX0rzE6V/X
+         NYm9xpNHaETZWlxOe/0HgTun55TscbQiiTKS3sF3dC62hupX+UuxTc2cxCy13T0ZF4/d
+         fl31H+bjONApMhZDObzc0ISpldx3C6xVPaoonSLS1OWkO0EiBwEgd65hGe2eqqDtHChg
+         xaJw==
+X-Forwarded-Encrypted: i=1; AJvYcCWBElr8G4y1F+B9/s7eG3akzkuMzQFuIxnwfMbxXmKVyQfVUenqewh0ebAmTq8QW5ThTYSLfsBK/cFt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2h6X9sRuMlwxiJkiU2ZozISe7OjQ/cAAp4QkzDqpupHxDySgV
+	sQkXvRt/Qpm5b2uG57viV2vGKeN3DsXUhUAdR9uIzCQecvkkytWy0gP3FppO0atM2YMEgv3Rw48
+	pzd7N6SgURl0YQZs5NYEPuF/G44xUbvZ0deWWfA==
+X-Google-Smtp-Source: AGHT+IGA+v7LGeKCraVVm2W3WnYjYpCsEiYRqZiZBxxc6iUgx4AERJeZIH1YVuoDb+oq4aKfLjDqUP1XyHd4Vib/la0=
+X-Received: by 2002:a05:6512:158e:b0:52e:fdeb:9381 with SMTP id
+ 2adb3069b0e04-536ad3d72c9mr2962459e87.43.1726894576446; Fri, 20 Sep 2024
+ 21:56:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240912095435.18639-3-Mariel.Tinaco@analog.com>
+References: <20240814082301.8091-1-brgl@bgdev.pl> <83c562e9-2add-4086-86e7-6e956d2ee70f@kernel.org>
+ <87msk49j8m.fsf@kernel.org> <ed6aceb6-4954-43ad-b631-6c6fda209411@kernel.org>
+ <87a5g2bz6j.fsf@kernel.org> <CAMRc=MeLick_+Czy5MhkX=SxVvR4WCmUZ8CQ5hQBVTe2fscCPg@mail.gmail.com>
+ <b7fdafd6-5029-4b80-b264-11943740b354@quicinc.com>
+In-Reply-To: <b7fdafd6-5029-4b80-b264-11943740b354@quicinc.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Sat, 21 Sep 2024 06:56:05 +0200
+Message-ID: <CAMRc=Mc2sbTrORZr4K4NgdyofNTipR1-QEqNK9mmNT=sd1myHQ@mail.gmail.com>
+Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs
+ of the ath11k on WCN6855
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: Kalle Valo <kvalo@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Arnd Bergmann <arnd@arndb.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Mariel,
+On Fri, Sep 20, 2024 at 11:02=E2=80=AFPM Jeff Johnson <quic_jjohnson@quicin=
+c.com> wrote:
+>
+> >
+> > Let me give you an analogy: we don't really need to have always-on, fix=
+ed
+> > regulators in DTS. The drivers don't really need them. We do it for
+> > completeness of the HW description.
+>
+> Again, since I'm a DT n00b:
+> Just to make sure I understand, you are saying that with this change any
+> existing .dts/.dtb files will still work with an updated driver, so the n=
+ew
+> properties are not required to be populated on existing devices.
+>
 
-kernel test robot noticed the following build warnings:
+There are no driver updates. No functional change.
 
-[auto build test WARNING on fec496684388685647652ab4213454fbabdab099]
+> However a new driver with support for these properties will utilize them =
+when
+> they are present, and the current ath11k .dts files will need to be updat=
+ed to
+> include these properties for pci17cb,1103, i.e. the following needs updat=
+ing:
+> arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mariel-Tinaco/dt-bindings-iio-dac-add-docs-for-ad8460/20240912-175718
-base:   fec496684388685647652ab4213454fbabdab099
-patch link:    https://lore.kernel.org/r/20240912095435.18639-3-Mariel.Tinaco%40analog.com
-patch subject: [PATCH v4 2/2] iio: dac: support the ad8460 Waveform DAC
-config: sparc-randconfig-r071-20240921 (https://download.01.org/0day-ci/archive/20240921/202409210849.cRodncgA-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 14.1.0
+What new driver? The dts is being updated in a separate series[1]. It
+makes this platform use the new power sequencing subsystem for
+wcn6855. All other changes required to make it work are already
+upstream. There's no change to ath11k.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409210849.cRodncgA-lkp@intel.com/
+Bart
 
-smatch warnings:
-drivers/iio/dac/ad8460.c:545 ad8460_write_event_value() warn: unsigned 'fault' is never less than zero.
-drivers/iio/dac/ad8460.c:545 ad8460_write_event_value() warn: error code type promoted to positive: 'fault'
-drivers/iio/dac/ad8460.c:567 ad8460_read_event_value() warn: unsigned 'fault' is never less than zero.
-drivers/iio/dac/ad8460.c:567 ad8460_read_event_value() warn: error code type promoted to positive: 'fault'
-drivers/iio/dac/ad8460.c:585 ad8460_write_event_config() warn: unsigned 'fault' is never less than zero.
-drivers/iio/dac/ad8460.c:585 ad8460_write_event_config() warn: error code type promoted to positive: 'fault'
-drivers/iio/dac/ad8460.c:605 ad8460_read_event_config() warn: unsigned 'fault' is never less than zero.
-drivers/iio/dac/ad8460.c:605 ad8460_read_event_config() warn: error code type promoted to positive: 'fault'
-
-vim +/fault +545 drivers/iio/dac/ad8460.c
-
-   528	
-   529	static int ad8460_write_event_value(struct iio_dev *indio_dev,
-   530					    const struct iio_chan_spec *chan,
-   531					    enum iio_event_type type,
-   532					    enum iio_event_direction dir,
-   533					    enum iio_event_info info, int val, int val2)
-   534	{
-   535		struct ad8460_state *state = iio_priv(indio_dev);
-   536		unsigned int fault;
-   537	
-   538		if (type != IIO_EV_TYPE_THRESH)
-   539			return -EINVAL;
-   540	
-   541		if (info != IIO_EV_INFO_VALUE)
-   542			return -EINVAL;
-   543	
-   544		fault = ad8460_select_fault_type(chan->type, dir);
- > 545		if (fault < 0)
-   546			return fault;
-   547	
-   548		return ad8460_set_fault_threshold(state, fault, val);
-   549	}
-   550	
-   551	static int ad8460_read_event_value(struct iio_dev *indio_dev,
-   552					   const struct iio_chan_spec *chan,
-   553					   enum iio_event_type type,
-   554					   enum iio_event_direction dir,
-   555					   enum iio_event_info info, int *val, int *val2)
-   556	{
-   557		struct ad8460_state *state = iio_priv(indio_dev);
-   558		unsigned int fault;
-   559	
-   560		if (type != IIO_EV_TYPE_THRESH)
-   561			return -EINVAL;
-   562	
-   563		if (info != IIO_EV_INFO_VALUE)
-   564			return -EINVAL;
-   565	
-   566		fault = ad8460_select_fault_type(chan->type, dir);
- > 567		if (fault < 0)
-   568			return fault;
-   569	
-   570		return ad8460_get_fault_threshold(state, fault, val);
-   571	}
-   572	
-   573	static int ad8460_write_event_config(struct iio_dev *indio_dev,
-   574					     const struct iio_chan_spec *chan,
-   575					     enum iio_event_type type,
-   576					     enum iio_event_direction dir, int val)
-   577	{
-   578		struct ad8460_state *state = iio_priv(indio_dev);
-   579		unsigned int fault;
-   580	
-   581		if (type != IIO_EV_TYPE_THRESH)
-   582			return -EINVAL;
-   583	
-   584		fault = ad8460_select_fault_type(chan->type, dir);
- > 585		if (fault < 0)
-   586			return fault;
-   587	
-   588		return ad8460_set_fault_threshold_en(state, fault, val);
-   589	}
-   590	
-   591	static int ad8460_read_event_config(struct iio_dev *indio_dev,
-   592					    const struct iio_chan_spec *chan,
-   593					    enum iio_event_type type,
-   594					    enum iio_event_direction dir)
-   595	{
-   596		struct ad8460_state *state = iio_priv(indio_dev);
-   597		unsigned int fault;
-   598		bool en;
-   599		int ret;
-   600	
-   601		if (type != IIO_EV_TYPE_THRESH)
-   602			return -EINVAL;
-   603	
-   604		fault = ad8460_select_fault_type(chan->type, dir);
- > 605		if (fault < 0)
-   606			return fault;
-   607	
-   608		ret = ad8460_get_fault_threshold_en(state, fault, &en);
-   609		if (ret)
-   610			return ret;
-   611	
-   612		return en;
-   613	}
-   614	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+[1] https://lore.kernel.org/all/20240905122023.47251-1-brgl@bgdev.pl/
 
