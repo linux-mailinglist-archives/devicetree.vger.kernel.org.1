@@ -1,216 +1,223 @@
-Return-Path: <devicetree+bounces-104281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EC5C97DDBC
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 17:55:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC54897DDC3
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 18:03:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14CBD2808E3
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 15:55:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 301AA1F21A0C
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 16:03:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F5E7174EF0;
-	Sat, 21 Sep 2024 15:54:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E89F1714B9;
+	Sat, 21 Sep 2024 16:03:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="k5uyXHKh"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="mqkFMHEv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C90A215572B;
-	Sat, 21 Sep 2024 15:54:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12D9026AC1
+	for <devicetree@vger.kernel.org>; Sat, 21 Sep 2024 16:03:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726934099; cv=none; b=rnDrFs0F3uFpvDNLnWuK5h5uR26wnBQUWrXFHaXHEJ4wZCa6z+BZZhVKUyvwumjkopJyALVBC44eDI5267kGTCbr4k1stAG6U4etBEwl87ovN1Yg3oo8v8NO8hnD9GEfefqBTfH0RPbLDEisWNFRP+DVf4jrHLqP7iDDYwKMFcU=
+	t=1726934618; cv=none; b=T0sGMdJ2aN9El5ynTm/Gx8eacmM/7n0jGfoLXVTwPMJxdBarP+bInBG6KMbQKhjdvxFR9jJ6N0KShJoELdQjZP/tGFpKCWLiMC+JFqgnXixm0vZY2OuOhTNOA0i4MqNsOYuWcIMZxLle96r3PyrLSha8DkVov/K7Qq8PT3XiLlw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726934099; c=relaxed/simple;
-	bh=tw6tzo5a9+JRFVJ/lYK8+VNKmJnbq5STbmmXDFq6vP0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IWx+NxmRZC7kYIZ1aIU8ZcIIVCqEvBnArlOWHJFLbGFWDvwu8ghcfUMehNr8FsyXA/Yjv+rwXYbnkOX+ZzZLTGAgAkOvvb0Qlcydat0woEooVsjATC0FPWyb3DbqXBZ1hmsgTN1QvfuGLmMlbC/h7UNWAq6VkXXSK7kRcYhLVpc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=k5uyXHKh; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1726934097; x=1758470097;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=tw6tzo5a9+JRFVJ/lYK8+VNKmJnbq5STbmmXDFq6vP0=;
-  b=k5uyXHKhjKL5o5hkZV7Mmhs2lgL8NUgXBQqoYGKLed4N7TqlqsFyU7xg
-   3DPFD/ooNNnff3Y8Dimr+T9eXAIfVwrp9EXUt06zQpxcqQSliMD2NRGOG
-   CTL73v2nefFQpXsh7Yz+NoNuOdytumDnygxsqWJcMbxjpM9cRMnR1xs3n
-   XFOR8Zt+woc9+B34W/tf22sWFuoq34OzwqxwTZ/L/IUfo8Kb0qbEKEaqP
-   7viOrNtC7WVYA5ufBb+f5lsm0WCLFRzypBVqIhRpveCMFHC1XQGGi8fa8
-   vSE4v2bQqHagHn/UtYW8gMYb23RWQPI6xacLBdJdAFkPdf9U7E5fampbM
-   Q==;
-X-CSE-ConnectionGUID: prkftw87Qr6Gbn1aHHVWwA==
-X-CSE-MsgGUID: FdtAoqhaRjGkApNnFkU6vQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11202"; a="36590247"
-X-IronPort-AV: E=Sophos;i="6.10,247,1719903600"; 
-   d="scan'208";a="36590247"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2024 08:54:56 -0700
-X-CSE-ConnectionGUID: sEEhAk27Qwmt16Tw3vZbmA==
-X-CSE-MsgGUID: XFn+9aooS96EHVsxxJPoAw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,247,1719903600"; 
-   d="scan'208";a="93949341"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 21 Sep 2024 08:54:53 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ss2Rf-000FYR-03;
-	Sat, 21 Sep 2024 15:54:51 +0000
-Date: Sat, 21 Sep 2024 23:54:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-mtd@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	Keguang Zhang <keguang.zhang@gmail.com>
-Subject: Re: [PATCH v9 2/2] mtd: rawnand: Add Loongson-1 NAND Controller
- Driver
-Message-ID: <202409212350.WrZuWTUv-lkp@intel.com>
-References: <20240920-loongson1-nand-v9-2-9cc7b9345a03@gmail.com>
+	s=arc-20240116; t=1726934618; c=relaxed/simple;
+	bh=qUXTGgvJMyDqyDBKBg/8KxkY4g1jrvTNP7KLvgOX8Gg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Hk+AZlefVnRJFZJeAOtild7fsOlcZdh2XAff3ikGXUJ6dW1KyC3Lw3fyyEdroUla00IYMAxVa7xHeMU8Bi9ep3qkV+wLkLMDi5OEkodFBay2r6lf7XeFpstFeh8vjM1lfzOXrMaMH0yIF+k/AG9vUgELPbcp/JzfH+R1S6K0rbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=mqkFMHEv; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1726934608;
+ bh=U15UlxtVirdcxoZ2GLNfrhYoIw4f5P0chaeu+zHCYu0=;
+ b=mqkFMHEvzd93WPyInivjp9pz1QLJYTOJJlnMWqgUPIZZqZG0YFciaSmnrhjEtlWeN46xOaPXl
+ k7da1L7m1Vfqf2Az7rDPoGDbnOQKxPOB3hrOXfQJ7nrXgf6PDo1lfmKXantCOvmD7jGSQiJuZbW
+ XjHTgCFfay/HfXh8kMg/I7utQJ6p3Ox4VVALwtrXoROH7ONhE+JPnAmkFQtGmNvJYIW/K0mvbd3
+ PtZ/ftJVyGeeCkEkxgzsbsjRW0kOqtsvp2qHRni+Kt/dj+4yIkJcJDEae+eHvYwXt6VF3PyXT+Z
+ TyrMb78oxQHT+nMz17wRz9Ue9JXDeZHiDjkMmVWdspjA==
+Message-ID: <7d8fa397-7070-42ae-a8df-eb8a532cb0ad@kwiboo.se>
+Date: Sat, 21 Sep 2024 18:03:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240920-loongson1-nand-v9-2-9cc7b9345a03@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/3] arm64: dts: rockchip: add dts for Ariaboard
+ Photonicat RK3568
+To: Junhao Xie <bigfoot@classfun.cn>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Chukun Pan <amadeus@jmu.edu.cn>, FUKAUMI Naoki <naoki@radxa.com>,
+ Dragan Simic <dsimic@manjaro.org>,
+ "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20240914145549.879936-1-bigfoot@classfun.cn>
+ <20240914145549.879936-4-bigfoot@classfun.cn>
+ <8c86229a-8cec-4d65-8194-ee8cdc6931dd@kwiboo.se>
+ <ea7da1f8-5a0e-45ea-a1bb-977a19f8b8b7@classfun.cn>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <ea7da1f8-5a0e-45ea-a1bb-977a19f8b8b7@classfun.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 66eeee4e8fdd19df3796bdb0
 
-Hi Keguang,
+On 2024-09-21 15:27, Junhao Xie wrote:
+> On 2024/9/19 22:52, Jonas Karlman wrote:
+>> Hi Junhao,
+>>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5-plus.dtb
+>>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-photonicat.dtb
+>>
+>> This should probably be added where the rest of rk3568 dtb is located,
+>> not with the rk3588 ones.
+> 
+> Thanks for your reminder, I made a mistake in the order when renaming dts, I will fix it
+> 
+>>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-quartzpro64.dtb
+>>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5-itx.dtb
+>>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
+> [...]
+>>> +
+>>> +&gmac0 {
+>>> +	status = "disabled";
+>>> +	/* Motorcomm YT8521SC LAN port (require SGMII) */
+>>
+>> nit: Please be consistent where comments is added, for recgulators above
+>> the comments is above the node, suggest you move the comment above the
+>> "&gmac0 {" line, and same for similar comments.
+> 
+> I will edit it. This looks better:
+> 
+> /* Motorcomm YT8521SC LAN port (require SGMII) */
+> &gmac0 {
+> 	status = "disabled";
+> };
+> 
+>>> +};
+>>> +
+>>> +&gmac1 {
+>>> +	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
+>>> +	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>;
+>>> +	assigned-clock-rates = <0>, <125000000>;
+>>> +	clock_in_out = "output";
+>>> +	phy-handle = <&rgmii_phy1>;
+>>> +	phy-mode = "rgmii-id";
+>>> +	phy-supply = <&vcc_3v3>;
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&gmac1m1_miim
+>>> +		     &gmac1m1_tx_bus2
+>>> +		     &gmac1m1_rx_bus2
+>>> +		     &gmac1m1_rgmii_clk
+>>> +		     &gmac1m1_rgmii_bus>;
+>>> +	snps,reset-gpio = <&gpio4 RK_PC0 GPIO_ACTIVE_LOW>;
+>>> +	snps,reset-active-low;
+>>> +	snps,reset-delays-us = <0 20000 100000>;
+>>
+>> The snps,reset props is deprecated use resets props in phy node instad.
+> 
+> I edited it and it works fine, is the following correct to write?
 
-kernel test robot noticed the following build warnings:
+Looks like below props in phy node should match the deprecated
+snps,reset props.
 
-[auto build test WARNING on 62f92d634458a1e308bb699986b9147a6d670457]
+> 
+> /* Motorcomm YT8521SC WAN port */
+> &gmac1 {
+> 	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
+> 	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>;
+> 	assigned-clock-rates = <0>, <125000000>;
+> 	clock_in_out = "output";
+> 	phy-handle = <&rgmii_phy1>;
+> 	phy-mode = "rgmii-id";
+> 	phy-supply = <&vcc_3v3>;
+> 	pinctrl-names = "default";
+> 	pinctrl-0 = <&gmac1m1_miim
+> 		     &gmac1m1_tx_bus2
+> 		     &gmac1m1_rx_bus2
+> 		     &gmac1m1_rgmii_clk
+> 		     &gmac1m1_rgmii_bus>;
+> 	tx_delay = <0>;
+> 	rx_delay = <0>;
+> 	status = "okay";
+> };
+> 
+> &mdio1 {
+> 	rgmii_phy1: ethernet-phy@0 {
+> 		compatible = "ethernet-phy-ieee802.3-c22";
+> 		reg = <0x0>;
+> 		pinctrl-names = "default";
+> 		pinctrl-0 = <&eth1_phy_rst>;
+> 		reset-assert-us = <20000>;
+> 		reset-deassert-us = <100000>;
+> 		reset-gpios = <&gpio4 RK_PC0 GPIO_ACTIVE_LOW>;
+> 		rx-internal-delay-ps = <1500>;
+> 		tx-internal-delay-ps = <1500>;
+> 	};
+> };
+> 
+> &pinctrl {
+> 	[...]
+> 	ethernet {
+> 		eth1_phy_rst: eth1_phy_rst {
+> 			rockchip,pins = <4 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
+> 		};
+> 	};
+> 	[...]
+> };
+> 
+>>
+>>> +	status = "okay";
+>>> +	/* Motorcomm YT8521SC WAN port */
+>>> +};
+> [...]
+>>> +&sdhci {
+>>> +	bus-width = <8>;
+>>> +	max-frequency = <200000000>;
+>>
+>> Can be dropped, already in base dtsi.
+> 
+> max-frequency is not in sdhci node of rk356x.dtsi and rk3568.dtsi.
+> I simply removed the max-frequency and it worked fine.
+> Can it really be removed?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Keguang-Zhang-via-B4-Relay/dt-bindings-mtd-Add-Loongson-1-NAND-Controller/20240920-191936
-base:   62f92d634458a1e308bb699986b9147a6d670457
-patch link:    https://lore.kernel.org/r/20240920-loongson1-nand-v9-2-9cc7b9345a03%40gmail.com
-patch subject: [PATCH v9 2/2] mtd: rawnand: Add Loongson-1 NAND Controller Driver
-config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20240921/202409212350.WrZuWTUv-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240921/202409212350.WrZuWTUv-lkp@intel.com/reproduce)
+Ahh, sorry, I looked in rk3588 sdhci node, please ignore my comment
+regarding max-frequency prop :-)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409212350.WrZuWTUv-lkp@intel.com/
+Regards,
+Jonas
 
-All warnings (new ones prefixed by >>):
+> 
+>>> +	mmc-hs200-1_8v;
+>>> +	non-removable;
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&emmc_bus8 &emmc_clk &emmc_cmd>;
+>>> +	vmmc-supply = <&vcc_3v3>;
+>>> +	vqmmc-supply = <&vcc_1v8>;
+>>> +	status = "okay";
+>>> +	/* eMMC */
+>>> +};
+> 
+> Thanks for your review, I will fix all problems in next version!
+> 
+> Best regards,
+> Junhao
+> 
 
-   In file included from include/linux/kernel.h:15,
-                    from drivers/mtd/nand/raw/loongson1_nand.c:8:
-   drivers/mtd/nand/raw/loongson1_nand.c: In function 'ls1x_nand_dma_transfer':
->> drivers/mtd/nand/raw/loongson1_nand.c:349:24: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-     349 |         if (IS_ALIGNED((u32)op->buf, chip->buf_align) &&
-         |                        ^
-   include/linux/align.h:13:44: note: in definition of macro 'IS_ALIGNED'
-      13 | #define IS_ALIGNED(x, a)                (((x) & ((typeof(x))(a) - 1)) == 0)
-         |                                            ^
->> drivers/mtd/nand/raw/loongson1_nand.c:349:24: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-     349 |         if (IS_ALIGNED((u32)op->buf, chip->buf_align) &&
-         |                        ^
-   include/linux/align.h:13:58: note: in definition of macro 'IS_ALIGNED'
-      13 | #define IS_ALIGNED(x, a)                (((x) & ((typeof(x))(a) - 1)) == 0)
-         |                                                          ^
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for OMAP2PLUS_MBOX
-   Depends on [n]: MAILBOX [=y] && (ARCH_OMAP2PLUS || ARCH_K3)
-   Selected by [m]:
-   - TI_K3_M4_REMOTEPROC [=m] && REMOTEPROC [=y] && (ARCH_K3 || COMPILE_TEST [=y])
-
-
-vim +349 drivers/mtd/nand/raw/loongson1_nand.c
-
-   333	
-   334	static int ls1x_nand_dma_transfer(struct ls1x_nfc *nfc,
-   335					  struct ls1x_nfc_op *op)
-   336	{
-   337		struct nand_chip *chip = &nfc->chip;
-   338		struct dma_chan *chan = nfc->dma_chan;
-   339		struct device *dev = chan->device->dev;
-   340		struct dma_async_tx_descriptor *desc;
-   341		enum dma_data_direction data_dir =
-   342		    op->is_write ? DMA_TO_DEVICE : DMA_FROM_DEVICE;
-   343		enum dma_transfer_direction xfer_dir =
-   344		    op->is_write ? DMA_MEM_TO_DEV : DMA_DEV_TO_MEM;
-   345		char *dma_buf = NULL;
-   346		dma_addr_t dma_addr;
-   347		int ret;
-   348	
- > 349		if (IS_ALIGNED((u32)op->buf, chip->buf_align) &&
-   350		    IS_ALIGNED(op->len, chip->buf_align)) {
-   351			dma_addr = dma_map_single(dev, op->buf, op->len, data_dir);
-   352			if (dma_mapping_error(dev, dma_addr)) {
-   353				dev_err(dev, "failed to map DMA buffer\n");
-   354				return -ENXIO;
-   355			}
-   356		} else if (!op->is_write) {
-   357			dma_buf = dma_alloc_coherent(dev, op->dma_len, &dma_addr,
-   358						     GFP_KERNEL);
-   359			if (!dma_buf)
-   360				return -ENOMEM;
-   361		} else {
-   362			dev_err(dev, "subpage writing not supported\n");
-   363			return -EOPNOTSUPP;
-   364		}
-   365	
-   366		desc = dmaengine_prep_slave_single(chan, dma_addr, op->dma_len,
-   367						   xfer_dir, DMA_PREP_INTERRUPT);
-   368		if (!desc) {
-   369			dev_err(dev, "failed to prepare DMA descriptor\n");
-   370			ret = PTR_ERR(desc);
-   371			goto err;
-   372		}
-   373		desc->callback = ls1x_nand_dma_callback;
-   374		desc->callback_param = nfc;
-   375	
-   376		nfc->dma_cookie = dmaengine_submit(desc);
-   377		ret = dma_submit_error(nfc->dma_cookie);
-   378		if (ret) {
-   379			dev_err(dev, "failed to submit DMA descriptor\n");
-   380			goto err;
-   381		}
-   382	
-   383		dev_dbg(dev, "issue DMA with cookie=%d\n", nfc->dma_cookie);
-   384		dma_async_issue_pending(chan);
-   385	
-   386		ret = wait_for_completion_timeout(&nfc->dma_complete,
-   387						  msecs_to_jiffies(2000));
-   388		if (!ret) {
-   389			dmaengine_terminate_sync(chan);
-   390			reinit_completion(&nfc->dma_complete);
-   391			ret = -ETIMEDOUT;
-   392			goto err;
-   393		}
-   394		ret = 0;
-   395	
-   396		if (dma_buf)
-   397			memcpy(op->buf, dma_buf + op->aligned_offset, op->len);
-   398	err:
-   399		if (dma_buf)
-   400			dma_free_coherent(dev, op->dma_len, dma_buf, dma_addr);
-   401		else
-   402			dma_unmap_single(dev, dma_addr, op->len, data_dir);
-   403	
-   404		return ret;
-   405	}
-   406	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
