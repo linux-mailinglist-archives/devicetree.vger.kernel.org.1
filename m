@@ -1,182 +1,145 @@
-Return-Path: <devicetree+bounces-104289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E49397DE17
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 19:39:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E25A597DE21
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 19:59:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64483281ECD
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 17:39:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D6082818F8
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 17:59:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69323176259;
-	Sat, 21 Sep 2024 17:39:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE0F7273FC;
+	Sat, 21 Sep 2024 17:59:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iwUV9wTw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kmzOVD+0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2659A16F265;
-	Sat, 21 Sep 2024 17:39:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A301799B;
+	Sat, 21 Sep 2024 17:59:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726940346; cv=none; b=SGRNQaMXP7eXoFPBYVdjlpncr0LMaRFwIoJBqGqqcoMVqqpHEzYqOX5IhiSfR09hM/gonfHGqT36QoM8IJXCAhAauyFA4VUb2QvBXNSTg66b4GRkvsl71vWiCfkGidAum9FTCto4umibYRLnkhPW9+dpLKdsqUGQZfPILg1QgG0=
+	t=1726941578; cv=none; b=Q7GAq5qT/YeFjCNH9PlZCtDNElT24bjpGakjozpspyTswaXCYWBbEuSPNqmvH05yOm4qZ4VNxDiMCIgbGQAxoRixjCGi4O5dT95a26QiXqQmRKJDJ1FdiFb/uePepZ7hQKWqaRaF4szmd8OPamMiGPzZ8SO0dZxwIgZFuwZmnug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726940346; c=relaxed/simple;
-	bh=ilV8DV0/0cA2R2gNxR9zCw8bK2HJq8L4H4tzzud9HTk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=scEQ5+4gjTPK4bUDWedAXrmpF1GBaW6bqThrtif8DvH+abeyM3s5ODwSIj8xnGz+uTofVGTxmP4Jq2EkYDw+DamhLF8PECSPwMsb2kDAa5pMQG9ClKm1xpiq4S4pTtlA2xz7A7aGUleB20OREH0sMyoUX+io9HMKPpOziSzXMOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iwUV9wTw; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1726940343; x=1758476343;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ilV8DV0/0cA2R2gNxR9zCw8bK2HJq8L4H4tzzud9HTk=;
-  b=iwUV9wTwdtc8YcGeeIqFxmpBj1RFml5vYarVDotwVGHPOmIVu1dap8/f
-   Qnw1BgOlmlfVhxSIxqNexsrhvMS29cCtAH/iFHAc47OTs/L6W/pxChrnJ
-   sOg6dNqM4zm68wHkBXgBPJCfWaWrPVhmF8X69Y5nUGnOc1EEecxeacPgf
-   OSRC8T44PihfnsxzW3X2WwnmdwrTQ33bTgnIPUfzlQOQk2CGTHG3zWOl3
-   vBuse5rdh8fQHIvTb7YKuwOB57ZnazeZRqKelJVrfwuQnEY47XMjaCeH3
-   LjJZ37fwAlWuFa8MaMhC2hw440Nw6gMmtF9uNzLcYinRd6tG/CdcE4BbX
-   A==;
-X-CSE-ConnectionGUID: 6wF0f/zVQ82JdgCw+krAXw==
-X-CSE-MsgGUID: gcJ+2DRiR4S9aouGEqi7XA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11202"; a="26053202"
-X-IronPort-AV: E=Sophos;i="6.10,247,1719903600"; 
-   d="scan'208";a="26053202"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2024 10:39:02 -0700
-X-CSE-ConnectionGUID: HcJg7Uy9QoiT9dVw1Sxmeg==
-X-CSE-MsgGUID: RpNSW0pYQDerDgobzML/PA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,247,1719903600"; 
-   d="scan'208";a="70670154"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 21 Sep 2024 10:38:59 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ss44O-000FeN-1P;
-	Sat, 21 Sep 2024 17:38:56 +0000
-Date: Sun, 22 Sep 2024 01:38:41 +0800
-From: kernel test robot <lkp@intel.com>
-To: Igor Prusov <ivprusov@salutedevices.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	kernel@salutedevices.com, prusovigor@gmail.com,
-	David Yang <yangxiaohua@everest-semi.com>,
-	Martin Kurbanov <mmkurbanov@salutedevices.com>
-Subject: Re: [PATCH v2 2/2] ASoC: codecs: add ES7243E ADC driver
-Message-ID: <202409220118.t4hCju9t-lkp@intel.com>
-References: <20240920-es7243e-adc-v2-2-0be019735b81@salutedevices.com>
+	s=arc-20240116; t=1726941578; c=relaxed/simple;
+	bh=w0C/tAIJReLLbJQwWenLsrx9ocRRmiyTZLEj5OL3PH8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YET16nry+HttoEpzWjn8NQFAAofy4cvo52QnJnK+sQsVyrMj9yeEOeHxus75TVlMuzSDlqlU56157Fn1Kn+1krONA2iRkSJiubuBq3UyfAhT0coG8PbxcKrB5FQYShTuyxnlGV0FzPBCzdo5KAcue2bWfAq0xqYdF51jdjGgTs4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kmzOVD+0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D70DC4CEC2;
+	Sat, 21 Sep 2024 17:59:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726941578;
+	bh=w0C/tAIJReLLbJQwWenLsrx9ocRRmiyTZLEj5OL3PH8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kmzOVD+0nPYwu+iCzr4DeRyJ7xZzeHJHS6YuRqqF5Y2n6BhZ6wJZZP/iqRukPklRl
+	 pxEwMPONgX0dEGvlg3k4/B6A/r1CvDQy2E04eY6S8u43cH0U5RHwVUv2vWS2TBOZbK
+	 6Fn3YRwhyJW/9YNcWtdQOKQAdtZWG9bvv0OIguTmOGatc++GQGVmHIl+TFdiTdv+dM
+	 s995F4jCX+PxcSTQvutZOOU8Lqr0ndVXOAwk06NEmICau2SHKWBjQr92jzBjw5I0SK
+	 7JrB1szTjsdZ6JReNcUWgKEhGnHdDyPJnGn0DiLux0CDHc98UAKFAsSZ4Ii40PU3yv
+	 G8dU7t8+eGnqQ==
+Message-ID: <747a2ed7-f169-4980-8e8c-778e50d9d67b@kernel.org>
+Date: Sat, 21 Sep 2024 19:59:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240920-es7243e-adc-v2-2-0be019735b81@salutedevices.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: qcom: Add Dell XPS 13 9345
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>,
+ Peter de Kraker <peterdekraker@umito.nl>
+References: <20240921163455.12577-1-alex.vinarskis@gmail.com>
+ <20240921163455.12577-2-alex.vinarskis@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240921163455.12577-2-alex.vinarskis@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Igor,
+On 21/09/2024 18:33, Aleksandrs Vinarskis wrote:
+> Document the X1E80100-based Dell XPS 9345 laptop, platform
+> codenamed 'Tributo'/'Tributo R'.
+> 
+> Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
 
-kernel test robot noticed the following build warnings:
+<form letter>
+This is a friendly reminder during the review process.
 
-[auto build test WARNING on baeb9a7d8b60b021d907127509c44507539c15e5]
+It looks like you received a tag and forgot to add it.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Igor-Prusov/ASoC-dt-bindings-Add-Everest-ES7243E/20240920-235246
-base:   baeb9a7d8b60b021d907127509c44507539c15e5
-patch link:    https://lore.kernel.org/r/20240920-es7243e-adc-v2-2-0be019735b81%40salutedevices.com
-patch subject: [PATCH v2 2/2] ASoC: codecs: add ES7243E ADC driver
-config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20240922/202409220118.t4hCju9t-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240922/202409220118.t4hCju9t-lkp@intel.com/reproduce)
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409220118.t4hCju9t-lkp@intel.com/
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
 
-All warnings (new ones prefixed by >>):
-
->> sound/soc/codecs/es7243e.c:23: warning: expecting prototype for es7243e.c(). Prototype was for ES7243E_RESET() instead
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
 
 
-vim +23 sound/soc/codecs/es7243e.c
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-    22	
-  > 23	#define ES7243E_RESET			0x00
-    24	#define ES7243E_CLK1			0x01
-    25	#define  ES7243E_CLK1_ANA_ON		BIT(1)
-    26	#define  ES7243E_CLK1_ADC_ON		BIT(3)
-    27	#define ES7243E_CLK2			0x02
-    28	#define  ES7243E_CLK2_BCLK_INV		BIT(0)
-    29	#define ES7243E_ADC_OSR			0x03
-    30	#define ES7243E_MCLK_PRE		0x04
-    31	#define ES7243E_CF_DSP_DIV		0x05
-    32	#define ES7243E_BCLK_DIV		0x06
-    33	#define ES7243E_CLK7			0x07
-    34	#define  ES7243E_CLK7_LRCK_DIV_HI	GENMASK(3, 0)
-    35	#define ES7243E_LRCK_DIV		0x08
-    36	#define ES7243E_S1_SEL			0x09
-    37	#define ES7243E_S3_SEL			0x0A
-    38	#define ES7243E_SDP			0x0B
-    39	#define  ES7243E_SDP_MUTE		GENMASK(7, 6)
-    40	#define  ES7243E_SDP_LRP		BIT(5)
-    41	#define  ES7243E_SDP_WL			GENMASK(4, 2)
-    42	#define  ES7243E_SDP_FMT		GENMASK(1, 0)
-    43	#define ES7243E_TDM			0x0B
-    44	#define ES7243E_ADCCTL1			0x0D
-    45	#define  ES7243E_ADCCTL1_SCALE		GENMASK(2, 0)
-    46	#define ES7243E_ADC_VOL			0x0E
-    47	#define ES7243E_ADCCTL2			0x0F
-    48	#define ES7243E_AUTOMUTE1		0x10
-    49	#define ES7243E_AUTOMUTE2		0x11
-    50	#define ES7243E_AUTOMUTE3		0x12
-    51	#define ES7243E_AUTOMUTE4		0x13
-    52	#define ES7243E_ADC_HPF1		0x14
-    53	#define ES7243E_ADC_HPF2		0x15
-    54	#define ES7243E_PDN			0x16
-    55	#define  ES7243E_PDN_ANA		BIT(7)
-    56	#define  ES7243E_PDN_BIAS		BIT(6)
-    57	#define  ES7243E_PDN_MOD1_RST		BIT(5)
-    58	#define  ES7243E_PDN_MOD2_RST		BIT(4)
-    59	#define  ES7243E_PDN_MOD1		BIT(3)
-    60	#define  ES7243E_PDN_MOD2		BIT(2)
-    61	#define  ES7243E_PDN_PGA1		BIT(1)
-    62	#define  ES7243E_PDN_PGA2		BIT(0)
-    63	#define ES7243E_VMIDSEL			0x17
-    64	#define ES7243E_ADC_BIAS_0x18		0x18
-    65	#define ES7243E_PGA_BIAS		0x19
-    66	#define ES7243E_ADC_BIAS_0x1A		0x1A
-    67	#define ES7243E_ADC_MICBIAS		0x1B
-    68	#define ES7243E_ADC_VRPBIAS		0x1C
-    69	#define ES7243E_ADC_LP			0x1D
-    70	#define ES7243E_ADC_PGA_LP		0x1E
-    71	#define ES7243E_ADC_VMID		0x1F
-    72	#define ES7243E_PGA1			0x20
-    73	#define	 ES7243E_PGA1_EN		BIT(4)
-    74	#define ES7243E_PGA2			0x21
-    75	#define	 ES7243E_PGA2_EN		BIT(4)
-    76	#define ES7243E_DLL_PWN			0xF9
-    77	#define ES7243E_I2C_CONFIG		0xFC
-    78	#define ES7243E_FLAG			0xFA
-    79	#define ES7243E_CHIP_ID1		0xFD
-    80	#define ES7243E_CHIP_ID2		0xFE
-    81	#define ES7243E_CHIP_VER		0xFF
-    82	
+Best regards,
+Krzysztof
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
