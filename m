@@ -1,105 +1,78 @@
-Return-Path: <devicetree+bounces-104275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EED2B97DD34
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 14:24:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B37B097DD44
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 14:37:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 289091C20CAF
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 12:24:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22BB1B20D25
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 12:37:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86141155316;
-	Sat, 21 Sep 2024 12:24:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3713813BADF;
+	Sat, 21 Sep 2024 12:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aEn4sQhD"
+	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="GB+uyXdY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1B5C137E;
-	Sat, 21 Sep 2024 12:24:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+Received: from classfun.cn (unknown [129.204.178.38])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54DD838DE1;
+	Sat, 21 Sep 2024 12:37:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726921486; cv=none; b=i91rTtbXo5BU3YBSzBjyT1609miwD1hg0JVcyRIQZ8K7bggYthQ3xH8FXzwO59ZeD7OhcxEi0DU45pyzGfCnecXY0OkVbm6si2BERRnrfnrCHmWdEd91TaVJqybkp/KqIyqNhMGW93RrOXb8CgLWxz1Ps4SxBIkTdHkImJGYdZc=
+	t=1726922260; cv=none; b=SGlkeFdoSvn15qRJXdBLtrMo/E56OIBIXWy/0rWPyUlMJ39WeeHiODqwjIHnNT6WvF+hMmwhhGFoGOYfK79sEMsdkDcnHy+pgX26KwyxJM9y1QcvQUlZ8oY+mp8CCwlEhb2xsp6G516u9b22d8v9FvAc1UeffT8I9o0emmhCErE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726921486; c=relaxed/simple;
-	bh=Lm5wT3nctgKw603dwlAmokov0gKbgWJJS54F9VbU9Wc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=o05dQ8RHLcN+doF+etaPIqx02wf6RU5XTNozjJBaAEQr/3yyr7Pz0Q5sskMlGKvBSmjAa8ZhttbfYRWS3vDPO0ss8zLjxXEapQ2BjpMCGYeHksoOneBmT9DT5pfRAm1+o/QvP+KqvD0dnZi/zLvu4QNIX5T4PNXMRgNFq+Ex9i0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aEn4sQhD; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-53654dbde59so3781633e87.1;
-        Sat, 21 Sep 2024 05:24:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1726921483; x=1727526283; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BnV4AAkppYdl3VxpkVdBWhDkeq1tyHDu6V34X7mplIs=;
-        b=aEn4sQhD8vkSZF6exOfNB1HXli4naG8OE8uXoFsZRFVKnw5rUknwATcooGRC/MlqHQ
-         jNjwjR7qnNM00GFgNigRAbF9Q6RWtBCnMFDzXn3uWUrJLv/jgTDJnG0vQhjcvMhfITrf
-         iKsICk8VpjxEFQjKAKQf4Ux2M7fqG0l5hGN+3WQxgeq1diQb9S4cazCnmgtxzODTkVjn
-         du6WEsILsUfk1/4hczT5SrKb7jikrmmyR43IgEPa3PrXVl4g7phXGSEsNIV90YI50rs5
-         74JTa3amWeQSLEayTD+u10tsw7lFEibBel1DefjN81VToeHU6QHCjksIaVFlf6/i6IaA
-         H8Ig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726921483; x=1727526283;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BnV4AAkppYdl3VxpkVdBWhDkeq1tyHDu6V34X7mplIs=;
-        b=CPCHZ2O22Zkdxw3r/d1Ero5s/z6ltdlt+cv68K/DOt3KlHRvmvHuOBbNXwErncT5nk
-         MyLDBvOLyQE9M2SiUL+EbUGxcFE5PBJW2h/OUwR775gQhPNx5tUyEtd6fOOVLImLoZsN
-         R48jYJlrOm9UWBZC6TzywPsQ0d4IkMaSXfQqk1o7gP0iou8Bm593tuQeiXh2FOeKm5C4
-         pHhT0j4uCHXJ2G4o7BZzVDGMajE3xYCIKtTrmdfJrssz3GSbbIB+GWCcsXUB2R0HoKqU
-         ILYgARU5U5GTL0YdLUmaJIwqHtCXpsrJCY2YNovdtZwnAla6psU4vPaS8s1R0iuF/OXo
-         GJlA==
-X-Forwarded-Encrypted: i=1; AJvYcCUHBxmL/S0Fu2EU1krEaOUQtWURZDR32p8Aza1GVGOsySEUMuNzLrRlJoT+V3MzCHptnH5EHVq8XZtsCvyG@vger.kernel.org, AJvYcCVW4p+PzxWvgZ1i1TqWlB51BU25Dg/Hu4FAnux+jnWAcIINwFkaatfAbPlzyI4YdDe6jqVCdWIoBP2+@vger.kernel.org, AJvYcCXCb3uqtYJeKBC+4FQHhzOCVY3/c6VwcBEmkERNWT7RIZhV/HK7GOgYmlFtGgbrb0dKDbwanaJrruBz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyg8ooDKa1EPe9/AX01H5ml/qSCTKVbjnNHrqTLvYM5WhM5k+rO
-	fme/9l7hvc2vjv9z7oPxZ8a+rEDPMeIw8RBWyhkcBcYzxNsdfabTmFn3rJVd4hZ1dDscq/YDsrq
-	1jxDpGMBAafgAoIfsn6dBykh6zp6Sss7u
-X-Google-Smtp-Source: AGHT+IHoWHrGLBUT8JY+piHvjihWgo99vAImbbX2yX9mk8Be7SSOMzH323JpYw94nPlLuAepPzXyxgM4onEBHNSwyKg=
-X-Received: by 2002:a05:6512:a8d:b0:533:3fc8:43fb with SMTP id
- 2adb3069b0e04-536ab7c7c4emr2435107e87.0.1726921482619; Sat, 21 Sep 2024
- 05:24:42 -0700 (PDT)
+	s=arc-20240116; t=1726922260; c=relaxed/simple;
+	bh=vAPIl4pwG8XIOK0ubXrjS3Bek6TxDXFPz8Bm4puAIkE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RSan6ZZQTLVg8vUjSMJbKrN1PJKFJJXtG3jqVMPJBa8/sYgQAVm80WpTD/hXO1u3Rv14/ZZPp4+hvqUOkSZ/uXp323rEfXrB1lvHStl/sFe7LDmYzQiAcaceUdmNvI8DkVqodJqgvYA5Eb+ZuKm6TIYSuzTcaToAQAEzeqLBDuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=GB+uyXdY; arc=none smtp.client-ip=129.204.178.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
+Received: from [192.168.0.160] (unknown [120.40.111.43])
+	(Authenticated sender: bigfoot)
+	by classfun.cn (Postfix) with ESMTPSA id D4ECF7887A;
+	Sat, 21 Sep 2024 20:37:25 +0800 (CST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn D4ECF7887A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
+	s=default; t=1726922247;
+	bh=zcS472w9hdKS/lPmVwyG5rcF8C7SmDI7kxfAxfhqsnY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=GB+uyXdYfJRz0dXGsIXpKaiDqbDCUJEP+daNCcKr1frd4VfcjjR1/iJL9FFTflSUo
+	 jn9mbTwOOCE2H1lmqvyBnyODxmkQ/KwwX1fEtG4aqButCTKdxHSrbcCLjoesVTiO1u
+	 GWb9kKBgVJg0nikD0p2AL5V5uC1YGIm2H7Lt+3GQ=
+Message-ID: <2ff6ab4b-14a6-40ac-beb6-9c21e50cf7fe@classfun.cn>
+Date: Sat, 21 Sep 2024 20:37:25 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240920080154.1595808-1-michal.vokac@ysoft.com> <20240920080154.1595808-3-michal.vokac@ysoft.com>
-In-Reply-To: <20240920080154.1595808-3-michal.vokac@ysoft.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Sat, 21 Sep 2024 09:24:31 -0300
-Message-ID: <CAOMZO5BrmuWdiEo6xi8ChT01jfLMaLAb88iUhS1kt6qqr_h7pQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] arm64: dts: imx: Add imx8mp-iota2-lumpy board
-To: =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Petr Benes <petr.benes@ysoft.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Herburger <gregor.herburger@ew.tq-group.com>, 
-	Hiago De Franco <hiago.franco@toradex.com>, Hugo Villeneuve <hvilleneuve@dimonoff.com>, 
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>, Michael Walle <mwalle@kernel.org>, 
-	Alexander Stein <alexander.stein@ew.tq-group.com>, Mathieu Othacehe <m.othacehe@gmail.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: add dts for Ariaboard
+ Photonicat RK3568
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, dsimic@manjaro.org,
+ heiko@sntech.de, jonas@kwiboo.se, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, Junhao Xie <bigfoot@classfun.cn>
+References: <1a7d017a-8317-462b-8698-03cc7099a74f@classfun.cn>
+ <20240918022005.487551-1-amadeus@jmu.edu.cn>
+Content-Language: en-US
+From: Junhao Xie <bigfoot@classfun.cn>
+In-Reply-To: <20240918022005.487551-1-amadeus@jmu.edu.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Michal,
+On 2024/9/18 10:20, Chukun Pan wrote:
+>> I seem to have misunderstood the rules in dt-bindings before.
+>> The following looks better:
+> 
+> Please also update other regulators to unify the naming.
+Thanks, I will update in PATCH v5.
 
-On Fri, Sep 20, 2024 at 5:02=E2=80=AFAM Michal Vok=C3=A1=C4=8D <michal.voka=
-c@ysoft.com> wrote:
+Best regards,
+Junhao
 
-> +&usb_dwc3_1 {
-> +       dr_mode =3D "host";
-> +       pinctrl-names =3D "default";
-
-Per Rob's robot message, this pinctrl-names entry should be removed.
 
