@@ -1,223 +1,141 @@
-Return-Path: <devicetree+bounces-104282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC54897DDC3
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 18:03:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8487797DDDD
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 18:35:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 301AA1F21A0C
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 16:03:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B53FE1C20CC4
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 16:35:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E89F1714B9;
-	Sat, 21 Sep 2024 16:03:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96076175D29;
+	Sat, 21 Sep 2024 16:35:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="mqkFMHEv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WKzzU95P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12D9026AC1
-	for <devicetree@vger.kernel.org>; Sat, 21 Sep 2024 16:03:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 131F41EA91;
+	Sat, 21 Sep 2024 16:35:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726934618; cv=none; b=T0sGMdJ2aN9El5ynTm/Gx8eacmM/7n0jGfoLXVTwPMJxdBarP+bInBG6KMbQKhjdvxFR9jJ6N0KShJoELdQjZP/tGFpKCWLiMC+JFqgnXixm0vZY2OuOhTNOA0i4MqNsOYuWcIMZxLle96r3PyrLSha8DkVov/K7Qq8PT3XiLlw=
+	t=1726936539; cv=none; b=VOFDxYbSLbkOALo4SK4bSY/FO3hP3o7dY3ppODiVq0dnjKmDQeuAnY6pXUKkorFWzm8ZV52+KzqABjgM7KO1A54rZV8yrEqcJIbq+ZXOIQeXFnI00JjLgMPsbO0qZWMDIyS4QRSi0U+/VWwZrR0S6B0Dr6fx86g2bbY3SBiTbik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726934618; c=relaxed/simple;
-	bh=qUXTGgvJMyDqyDBKBg/8KxkY4g1jrvTNP7KLvgOX8Gg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Hk+AZlefVnRJFZJeAOtild7fsOlcZdh2XAff3ikGXUJ6dW1KyC3Lw3fyyEdroUla00IYMAxVa7xHeMU8Bi9ep3qkV+wLkLMDi5OEkodFBay2r6lf7XeFpstFeh8vjM1lfzOXrMaMH0yIF+k/AG9vUgELPbcp/JzfH+R1S6K0rbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=mqkFMHEv; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1726934608;
- bh=U15UlxtVirdcxoZ2GLNfrhYoIw4f5P0chaeu+zHCYu0=;
- b=mqkFMHEvzd93WPyInivjp9pz1QLJYTOJJlnMWqgUPIZZqZG0YFciaSmnrhjEtlWeN46xOaPXl
- k7da1L7m1Vfqf2Az7rDPoGDbnOQKxPOB3hrOXfQJ7nrXgf6PDo1lfmKXantCOvmD7jGSQiJuZbW
- XjHTgCFfay/HfXh8kMg/I7utQJ6p3Ox4VVALwtrXoROH7ONhE+JPnAmkFQtGmNvJYIW/K0mvbd3
- PtZ/ftJVyGeeCkEkxgzsbsjRW0kOqtsvp2qHRni+Kt/dj+4yIkJcJDEae+eHvYwXt6VF3PyXT+Z
- TyrMb78oxQHT+nMz17wRz9Ue9JXDeZHiDjkMmVWdspjA==
-Message-ID: <7d8fa397-7070-42ae-a8df-eb8a532cb0ad@kwiboo.se>
-Date: Sat, 21 Sep 2024 18:03:19 +0200
+	s=arc-20240116; t=1726936539; c=relaxed/simple;
+	bh=90AnSxGZrfW27syyqcEP2w/mvdQR7pHKGAwgOQsBT9Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HF//iAWsfQPuQCwKfPdV9S/w8QMb4APauR/pnOnAed7UoWt3eCBgwmjvL9d3+TmrBA3u1WkmvtnKqZNdMaY32sf+9RYUB3BbpoC6zIUMki2oLguh7GF6rirmkoidUfI6ac2w4q8JLrFNx5homiw9Le25DDNi/3OJ8Xi23BQGGEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WKzzU95P; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-71971d20a95so2111324b3a.3;
+        Sat, 21 Sep 2024 09:35:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726936537; x=1727541337; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wct8se0gk0W+FAPlmyr9rg9BKBDj/W+HmOoVOccWFnk=;
+        b=WKzzU95P/J3apcRsdAZbNbhjVVQTJcrpkYt7U3TMHSyvYZZxOtbF5iX89B95XShaT7
+         ZCryVIwzPCpDCBHDEzpi+jg445wg+fKQox9VzTiTU6wxo3z2GcnLoZaNtzTX+tB0mQ2J
+         k7wxGWl60HpmzIpsPmRzmZoiVasuH1EHKn+k8An4iZ20UaChtuFb+G/DSztmZIDshg/0
+         FY4B7bikIooDYQJ+cgFCQ77b0x14GDuus1TsWhg8jFJ/Hl5/A/q8fiGEPiSu6PY7tJ+7
+         w4CRnVO1cxIDERpYKemFtqG1+sOOxLPHCeYQ4rWnbXAeRPNjN91W5b1kwGk5RI4hU2Vw
+         IdWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726936537; x=1727541337;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wct8se0gk0W+FAPlmyr9rg9BKBDj/W+HmOoVOccWFnk=;
+        b=r/y+sX+V6fHn6UhrSxOah9rAa1lp3ZT65j565CZN+JHsXb0y7O1g18w1tD2L+f+svE
+         fzpyFcUq9UmEHRYgC59iZvTJzw17CnJTuesh8USl0p7HWcdEhU/TrHT0pmEfN+lj6Y3V
+         bahrQVJ9P2De+WeFSB2GyuIqWrgIrsmRQ3hI95YsGo1hM+FscJVgkz8fuqshslCDyY9I
+         4EYI9WC+GkxnArh0++d3WzaU0EIsJT0r7hlzXy5WgliRmJ2r9yR+nS4HWVM+ff0D9aPj
+         cBw+6uyjFMbBd25ZAzhR2vVdXWU/TSEkvJc7A60EIUV3LYb+7eU2Svh3T3gEOUn9nYT6
+         xH6g==
+X-Forwarded-Encrypted: i=1; AJvYcCUtj10IqsF0VXzsWlMGltxWlpV8FFMj0DeTbbZRaA7cb4s9koB5ptFp0F5/5YEiQO8R3wYCbNn5qS5Z@vger.kernel.org, AJvYcCV+LZLvQlrCp+PdraFgj3L5+pcw0lcWP6EdEgevpYra5b5u9zKziQf7oYCwCSC8teqke7gEEFnvbaT0B7TL/A==@vger.kernel.org, AJvYcCVNaPNIvvHMGVGWyjU0NyiAqvMulQBYPzXKhnWB4HIzQzPm8oNgPdvtzHH9pI+H/zPFit8epyAJuyb4tBwD@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgRqkP2WUkdzLtBfcdn0P/VNd3fuUM+FyVXAKgje4V485+RlRW
+	K+s2kc2Vb/7/8baf8W/REBVSaEr+XXf8BCZcY2EInWAOEH6uq9Q=
+X-Google-Smtp-Source: AGHT+IGBJ1JndDrkUPvvp6fEBiXc08LVCP356CLVISLaF46fI8rGiU1riP+GLp6rMTl14xEwEF4hvQ==
+X-Received: by 2002:a05:6a00:88e:b0:717:88b6:6b1e with SMTP id d2e1a72fcca58-7199c9f0be9mr8974242b3a.18.1726936537100;
+        Sat, 21 Sep 2024 09:35:37 -0700 (PDT)
+Received: from localhost.localdomain ([183.80.189.93])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71944ab4e5fsm11406430b3a.49.2024.09.21.09.35.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 Sep 2024 09:35:36 -0700 (PDT)
+From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rob Clark <robdclark@gmail.com>,
+	Peter de Kraker <peterdekraker@umito.nl>,
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Subject: [PATCH v2 0/3] X1E Dell XPS 9345 support
+Date: Sat, 21 Sep 2024 18:33:30 +0200
+Message-ID: <20240921163455.12577-1-alex.vinarskis@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] arm64: dts: rockchip: add dts for Ariaboard
- Photonicat RK3568
-To: Junhao Xie <bigfoot@classfun.cn>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Chukun Pan <amadeus@jmu.edu.cn>, FUKAUMI Naoki <naoki@radxa.com>,
- Dragan Simic <dsimic@manjaro.org>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20240914145549.879936-1-bigfoot@classfun.cn>
- <20240914145549.879936-4-bigfoot@classfun.cn>
- <8c86229a-8cec-4d65-8194-ee8cdc6931dd@kwiboo.se>
- <ea7da1f8-5a0e-45ea-a1bb-977a19f8b8b7@classfun.cn>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <ea7da1f8-5a0e-45ea-a1bb-977a19f8b8b7@classfun.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-ForwardEmail-ID: 66eeee4e8fdd19df3796bdb0
+Content-Transfer-Encoding: 8bit
 
-On 2024-09-21 15:27, Junhao Xie wrote:
-> On 2024/9/19 22:52, Jonas Karlman wrote:
->> Hi Junhao,
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5-plus.dtb
->>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-photonicat.dtb
->>
->> This should probably be added where the rest of rk3568 dtb is located,
->> not with the rk3588 ones.
-> 
-> Thanks for your reminder, I made a mistake in the order when renaming dts, I will fix it
-> 
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-quartzpro64.dtb
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5-itx.dtb
->>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
-> [...]
->>> +
->>> +&gmac0 {
->>> +	status = "disabled";
->>> +	/* Motorcomm YT8521SC LAN port (require SGMII) */
->>
->> nit: Please be consistent where comments is added, for recgulators above
->> the comments is above the node, suggest you move the comment above the
->> "&gmac0 {" line, and same for similar comments.
-> 
-> I will edit it. This looks better:
-> 
-> /* Motorcomm YT8521SC LAN port (require SGMII) */
-> &gmac0 {
-> 	status = "disabled";
-> };
-> 
->>> +};
->>> +
->>> +&gmac1 {
->>> +	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
->>> +	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>;
->>> +	assigned-clock-rates = <0>, <125000000>;
->>> +	clock_in_out = "output";
->>> +	phy-handle = <&rgmii_phy1>;
->>> +	phy-mode = "rgmii-id";
->>> +	phy-supply = <&vcc_3v3>;
->>> +	pinctrl-names = "default";
->>> +	pinctrl-0 = <&gmac1m1_miim
->>> +		     &gmac1m1_tx_bus2
->>> +		     &gmac1m1_rx_bus2
->>> +		     &gmac1m1_rgmii_clk
->>> +		     &gmac1m1_rgmii_bus>;
->>> +	snps,reset-gpio = <&gpio4 RK_PC0 GPIO_ACTIVE_LOW>;
->>> +	snps,reset-active-low;
->>> +	snps,reset-delays-us = <0 20000 100000>;
->>
->> The snps,reset props is deprecated use resets props in phy node instad.
-> 
-> I edited it and it works fine, is the following correct to write?
+Introduce support for the mentioned laptop.
 
-Looks like below props in phy node should match the deprecated
-snps,reset props.
+Very similar to other X1E laptops, device tree was derived by analyzing dtsi of
+existing models and ACPI tables of this laptop [1]. Most notable difference were
+* TZ protected SPI19.
+* Keyboard only working after suspend/resume sequence, will do a follow up patch
+to i2c-hid.
+* Lots of small deviations in LDOs voltages.
 
-> 
-> /* Motorcomm YT8521SC WAN port */
-> &gmac1 {
-> 	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
-> 	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>;
-> 	assigned-clock-rates = <0>, <125000000>;
-> 	clock_in_out = "output";
-> 	phy-handle = <&rgmii_phy1>;
-> 	phy-mode = "rgmii-id";
-> 	phy-supply = <&vcc_3v3>;
-> 	pinctrl-names = "default";
-> 	pinctrl-0 = <&gmac1m1_miim
-> 		     &gmac1m1_tx_bus2
-> 		     &gmac1m1_rx_bus2
-> 		     &gmac1m1_rgmii_clk
-> 		     &gmac1m1_rgmii_bus>;
-> 	tx_delay = <0>;
-> 	rx_delay = <0>;
-> 	status = "okay";
-> };
-> 
-> &mdio1 {
-> 	rgmii_phy1: ethernet-phy@0 {
-> 		compatible = "ethernet-phy-ieee802.3-c22";
-> 		reg = <0x0>;
-> 		pinctrl-names = "default";
-> 		pinctrl-0 = <&eth1_phy_rst>;
-> 		reset-assert-us = <20000>;
-> 		reset-deassert-us = <100000>;
-> 		reset-gpios = <&gpio4 RK_PC0 GPIO_ACTIVE_LOW>;
-> 		rx-internal-delay-ps = <1500>;
-> 		tx-internal-delay-ps = <1500>;
-> 	};
-> };
-> 
-> &pinctrl {
-> 	[...]
-> 	ethernet {
-> 		eth1_phy_rst: eth1_phy_rst {
-> 			rockchip,pins = <4 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
-> 		};
-> 	};
-> 	[...]
-> };
-> 
->>
->>> +	status = "okay";
->>> +	/* Motorcomm YT8521SC WAN port */
->>> +};
-> [...]
->>> +&sdhci {
->>> +	bus-width = <8>;
->>> +	max-frequency = <200000000>;
->>
->> Can be dropped, already in base dtsi.
-> 
-> max-frequency is not in sdhci node of rk356x.dtsi and rk3568.dtsi.
-> I simply removed the max-frequency and it worked fine.
-> Can it really be removed?
+Successfully tested with Debian 12 and Gnome, although this required additional
+patches, namely harcode GPU chipid, apply [2] and _revert_ [3] - same as in Abel
+Vesa's branches. Without last two the boot process is terminated by TZ. Firmware
+for GPU/aDSP/cDSP was extracted from Windows, WiFi firmware from upstream
+linux-firmware.
 
-Ahh, sorry, I looked in rk3588 sdhci node, please ignore my comment
-regarding max-frequency prop :-)
+Quite a few things alraedy work, details in patches, quite a few still in WIP or
+TODOs. Since fixing these may take me a while due to lack of documentation,
+sending current progress as its very much usable.
 
-Regards,
-Jonas
+[1] https://github.com/aarch64-laptops/build/blob/master/misc/dell-xps-9345/acpi/DSDT.dsl
+[2] https://lore.kernel.org/all/20240830-x1e80100-bypass-pdc-v1-1-d4c00be0c3e3@linaro.org/
+[3] https://lore.kernel.org/all/20240708-x1e80100-pd-mapper-v1-1-854386af4cf5@linaro.org/
 
-> 
->>> +	mmc-hs200-1_8v;
->>> +	non-removable;
->>> +	pinctrl-names = "default";
->>> +	pinctrl-0 = <&emmc_bus8 &emmc_clk &emmc_cmd>;
->>> +	vmmc-supply = <&vcc_3v3>;
->>> +	vqmmc-supply = <&vcc_1v8>;
->>> +	status = "okay";
->>> +	/* eMMC */
->>> +};
-> 
-> Thanks for your review, I will fix all problems in next version!
-> 
-> Best regards,
-> Junhao
-> 
+--------
+
+Changes to V1:
+* Fix misalignments due to wrong tab/space conversion
+* Fix regulator namings
+* Fix reasonable warnings from `scripts/checkpatch.pl`
+* Restructure all (sub)nodes alphabetically
+
+
+Aleksandrs Vinarskis (3):
+  dt-bindings: arm: qcom: Add Dell XPS 13 9345
+  firmware: qcom: scm: Allow QSEECOM on Dell XPS 13 9345
+  arm64: dts: qcom: Add support for X1-based Dell XPS 13 9345
+
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../dts/qcom/x1e80100-dell-tributo-13.dts     | 860 ++++++++++++++++++
+ drivers/firmware/qcom/qcom_scm.c              |   1 +
+ 4 files changed, 863 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-dell-tributo-13.dts
+
+-- 
+2.43.0
 
 
