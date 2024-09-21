@@ -1,231 +1,201 @@
-Return-Path: <devicetree+bounces-104292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49B3197DE2C
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 20:10:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEC0997DE37
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 20:20:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C05C1C20748
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 18:10:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AB241F21871
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 18:20:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E59837703;
-	Sat, 21 Sep 2024 18:10:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E7D43B7AC;
+	Sat, 21 Sep 2024 18:20:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c/b3Cp/M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BFvpl14q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3162024A08;
-	Sat, 21 Sep 2024 18:09:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F0A222094;
+	Sat, 21 Sep 2024 18:20:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726942200; cv=none; b=GUHHXgLG7FqEunX0pTqJkk8gsZcESvdXWh5z6/EbzlVM/PavrjyA0XF1mtXgypJh+3tB5/FHjMVL6R1FCp37C40cjgVTRM2+zsh14IkIZJ+sMbM/Va4VtMByNmPSrzvi/KUsGAD7ABpVRL3ZOrRrMADSOxqRXguXm+6BQ/Ixgrg=
+	t=1726942848; cv=none; b=o/qdtnKT7gFrdC8gaJic2v0t4GgIvrB6LIU6T62HIBSw/55EREH9nSG4NmpO9ImUYGt3vbYsLIc0xVm5DZVNesvMV3DjwwTUHjtJKU1i4h/StS0Ago7XoXzABXWAVNn44AjrXjanIHrH6GQwNbT8BAc3LMu2Hw7Wn0iso2CaSPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726942200; c=relaxed/simple;
-	bh=faoqNButayVSCjVRMFLPewz3GeO158scG7bkVUHWenQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UPOGxLE5fFoANapI8iklNv1A9dFNSNzCzjHptWW/DMmL7t9U+dG1DX4kiG8c2jFT+x2TP8q2F0fa03fQiwcuvwbU/OKSI/H8Y1HrDGaJx1xP2gRewPOEcKXma1JsYuqbAkMozGERT6qqRRFU0ejVeHiHfQgoZG2Yz/iqhRg0w3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c/b3Cp/M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF4B4C4CEC2;
-	Sat, 21 Sep 2024 18:09:58 +0000 (UTC)
+	s=arc-20240116; t=1726942848; c=relaxed/simple;
+	bh=jGWTXU2FmyEE3RyNInUPd012PyW1YlOkrWhl1b6PIY4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TLnqHk1tCSHazyJdgPVIB0eEjQt3UyBgScpXkK5Ev9GFBNQNOiBGHfbmuTivKVEcuoOxWA9eg/AxDtfz3FS7jUd51A7j7703EaPPzFI59oQJol7FcLkND40fJCuFbDf+a8kBs5bfhvTHvukHiwH1BXCeldLJyBaO4+Bnfe1syDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BFvpl14q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C1F1C4CEC2;
+	Sat, 21 Sep 2024 18:20:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726942199;
-	bh=faoqNButayVSCjVRMFLPewz3GeO158scG7bkVUHWenQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c/b3Cp/M5LGAzYeZiEMQ+L40+0b4qH2V+cdHxWtqj2qYpfRirmCn5iZR6UGyawlfD
-	 HCK4whhdYRVjLibmoXDajXTkxHWoASV8wqG8ety+Jy4EXvuThN8AmTpNJQ2a/Hxkxx
-	 3gVfPmfQvSKjw1gTfLhTMxnkWUWSVihc3M/1+Ng8zoDpGzIIe5vHeS1lNkonrgYuYe
-	 +Sgjid2m2R4ZsVea9wV7Vlb4rPxA7U0eUZF4n8d0YyXRkgTVIounk0AimTcwijIGbG
-	 gU3fJ2OPF/akQZFuFTaKoUT+H4EXtKs8g6VDSpQ1oC4Pb+vojPipXORye0QFd9lc3H
-	 CbFqYnVpfBsnA==
-Date: Sat, 21 Sep 2024 20:09:55 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Igor Prusov <ivprusov@salutedevices.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, prusovigor@gmail.com, kernel@salutedevices.com, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/6] ASoC: codecs: Add NeoFidelity NTP8835 codec
-Message-ID: <c67k2dmrwc4oghe25zjobiloeg5cqbtcypn5ibdqw4alb6y7wc@wmyrc6xyslbt>
-References: <20240709172834.9785-1-ivprusov@salutedevices.com>
- <20240709172834.9785-7-ivprusov@salutedevices.com>
- <751ebf34-cd0d-4d3a-bf02-e25ca3dd350b@kernel.org>
- <20240920173312.mc2ylk4n3lliaelj@pc>
+	s=k20201202; t=1726942847;
+	bh=jGWTXU2FmyEE3RyNInUPd012PyW1YlOkrWhl1b6PIY4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BFvpl14qlVw6jIz/O0e8ADaeANBfS1HNPXN6kdZM10f89xnWuEXxykMITjdN1PM9r
+	 dAcvNLYGFndUQipjEdFGGmQz+rH4jhQjx3Un907TbgFyqAMUnq0mZbySsYMoydHVHP
+	 EomM3t1Q2KAjSj6cSGWWPmCNFKZmK1SwApm7+Xj7wFxXs4we4Z1JBrmn4gmv5iWGxU
+	 Tz54aaAjCmNVWgQhshChhYQL6e0E9Cg+7mi7u1s8DqTJvcIjqp1FmmBSQ/S64fU50/
+	 WBJO21Vnij2rYF9CDVlCiDk2b2s4aBRcitoy7arXRVMjLEqUGVatB5+x2n5jvvH/E0
+	 /HZqJZoGv+BOg==
+Message-ID: <e37a0542-d405-4d15-84d2-4c7b1385d3ef@kernel.org>
+Date: Sat, 21 Sep 2024 20:20:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240920173312.mc2ylk4n3lliaelj@pc>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] dt-bindings: remoteproc: sse710: Add the External
+ Systems remote processors
+To: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+Cc: mathieu.poirier@linaro.org, Adam.Johnston@arm.com,
+ Hugues.KambaMpiana@arm.com, Drew.Reed@arm.com, andersson@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ liviu.dudau@arm.com, lpieralisi@kernel.org, robh@kernel.org,
+ sudeep.holla@arm.com, robin.murphy@arm.com
+References: <CANLsYkwOrtXxObL5MKf30OrUYB_uT=DnGEXUtfjH503r_LyMQA@mail.gmail.com>
+ <20240822170951.339492-1-abdellatif.elkhlifi@arm.com>
+ <20240822170951.339492-2-abdellatif.elkhlifi@arm.com>
+ <gzlncpyzwm7x4jcxtdrthrlv2dofk7u3oxn4taadwog5tt37wo@ot6s6kwukd4k>
+ <20240919093517.GA43740@e130802.arm.com>
+ <222b3b11-151a-4ad0-91ea-54ae8f280bcb@kernel.org>
+ <20240919145741.GA7940@e130802.arm.com>
+ <85a223e9-05a4-4034-87a5-57d3eb9409b7@kernel.org>
+ <20240920141958.GA288724@e130802.arm.com>
+ <7784248d-4372-4cf1-a01a-5b731b3f6b96@kernel.org>
+ <20240920163851.GA385919@e130802.arm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240920163851.GA385919@e130802.arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Sep 20, 2024 at 08:33:12PM +0300, Igor Prusov wrote:
- > 
-> > 
-> > > +
-> > > +static void ntp8835_reset_gpio(struct ntp8835_priv *ntp8835, bool active)
-> > > +{
-> > > +	if (active) {
-> > > +		/*
-> > > +		 * According to NTP8835 datasheet, 6.2 Timing Sequence (recommended):
-> > > +		 * Deassert for T2 >= 1ms...
-> > > +		 */
-> > > +		reset_control_deassert(ntp8835->reset);
-> > 
-> > Explain in comment why do you need to power up device to perform
-> > reset... This sounds odd.
-> > 
+On 20/09/2024 18:38, Abdellatif El Khlifi wrote:
+> Hi Krzysztof,
 > 
-> This sequence comes from device datasheet, for some reason vendor
-> recommends to drive /RESET low for 0.1us during initialization.
-> Datasheet also describes (section 6.3) init sequence with simple reset
-> deassert, but it's called legacy, though it works fine on my board. Do
-> you mean to add more verbose comment than linking to a datasheet?
-
-I think verbose comment would be better.
-
+>>>>>>>>> +  '#extsys-id':
+>>>>>>>>
+>>>>>>>> '#' is not correct for sure, that's not a cell specifier.
+>>>>>>>>
+>>>>>>>> But anyway, we do not accept in general instance IDs.
+>>>>>>>
+>>>>>>> I'm happy to replace the instance ID with  another solution.
+>>>>>>> In our case the remoteproc instance does not have a base address
+>>>>>>> to use. So, we can't put remoteproc@address
+>>>>>>>
+>>>>>>> What do you recommend in this case please ?
+>>>>>>
+>>>>>> Waiting one month to respond is a great way to drop all context from my
+>>>>>> memory. The emails are not even available for me - gone from inbox.
+>>>>>>
+>>>>>> Bus addressing could note it. Or you have different devices, so
+>>>>>> different compatibles. Tricky to say, because you did not describe the
+>>>>>> hardware really and it's one month later...
+>>>>>>
+>>>>>
+>>>>> Sorry for waiting. I was in holidays.
+>>>>>
+>>>>> I'll add more documentation about the external system for more clarity [1].
+>>>>>
+>>>>> Basically, Linux runs on the Cortex-A35. The External system is a
+>>>>> Cortex-M core. The Cortex-A35 can not access the memory of the Cortex-M.
+>>>>> It can only control Cortex-M core using the reset control and status registers mapped
+>>>>> in the memory space of the Cortex-A35.
+>>>>
+>>>> That's pretty standard.
+>>>>
+>>>> It does not explain me why bus addressing or different compatible are
+>>>> not sufficient here.
+>>>
+>>> Using an instance ID was a design choice.
+>>> I'm happy to replace it with the use of compatible and match data (WIP).
+>>>
+>>> The match data will be pointing to a data structure containing the right offsets
+>>> to be used with regmap APIs.
+>>>
+>>> syscon node is used to represent the Host Base System Control register area [1]
+>>> where the external system reset registers are mapped (EXT_SYS*).
+>>>
+>>> The nodes will look like this:
+>>>
+>>> syscon@1a010000 {
+>>>         compatible = "arm,sse710-host-base-sysctrl", "simple-mfd", "syscon";
+>>>         reg = <0x1a010000 0x1000>;
+>>>
+>>>         #address-cells = <1>;
+>>>         #size-cells = <1>;
+>>>
+>>>         remoteproc@310 {
+>>>             compatible = "arm,sse710-extsys0";
+>>>             reg = <0x310 4>;
+>>
+>> Uh, why do you create device nodes for one word? This really suggests it
+>> is part of parent device and your split is artificial.
 > 
-> > > +		fsleep(1000);
-> > > +
-> > > +		/* ...Assert for T3 >= 0.1us... */
-> > > +		reset_control_assert(ntp8835->reset);
-> > > +		fsleep(1);
-> > > +
-> > > +		/* ...Deassert, and wait for T4 >= 0.5ms before sound on sequence. */
-> > > +		reset_control_deassert(ntp8835->reset);
-> > > +		fsleep(500);
-> > > +	} else {
-> > > +		reset_control_assert(ntp8835->reset);
-> > 
-> > This function is confusing. It is supposed to perform reset and leave
-> > the device in active state, but here it leaves the device in reset.
-> > 
-> > 
-> > 
-> > > +
-> > > +static struct snd_soc_dai_driver ntp8835_dai = {
-> > 
-> > Not const?
-> > 
+> The external system registers (described by the remoteproc node) are part
+> of the parent device (the Host Base System Control register area) described
+> by syscon.
 > 
-> ntp8835_dai is passed to devm_snd_soc_register_component(), which takes
-> non-const parameter.
-
-Right, indeed.
-
+> In case of the external system 0 , its registers are located at offset 0x310
+> (physical address: 0x1a010310)
 > 
-> > > +	.name = "ntp8835-amplifier",
-> > > +	.playback = {
-> > > +		.stream_name = "Playback",
-> > > +		.channels_min = 1,
-> > > +		.channels_max = 3,
-> > > +		.rates = SNDRV_PCM_RATE_8000_192000,
-> > > +		.formats = NTP8835_FORMATS,
-> > > +	},
-> > > +	.ops = &ntp8835_dai_ops,
-> > > +};
-> > > +
-> > > +static struct regmap_config ntp8835_regmap = {
-> > 
-> > Not const?
-> > 
-> > Judging by weird includes and such simple issues, it looks like you try
-> > to upstream downstream or old code. That's not how you are supposed to
-> > bring new devices. You expect us to perform review on the same issues we
-> > fixed already. Work on newest drivers - take them as template - so you
-> > will not repeat the same issues we already fixed.
-> > 
-> > > +	.reg_bits = 8,
-> > > +	.val_bits = 8,
-> > > +	.max_register = REG_MAX,
-> > > +	.cache_type = REGCACHE_MAPLE,
-> > > +};
-> > > +
-> > > +static int ntp8835_i2c_probe(struct i2c_client *i2c)
-> > > +{
-> > > +	struct ntp8835_priv *ntp8835;
-> > > +	struct regmap *regmap;
-> > > +	int ret;
-> > > +
-> > > +	ntp8835 = devm_kzalloc(&i2c->dev, sizeof(struct ntp8835_priv), GFP_KERNEL);
-> > 
-> > sizeof(*)
-> > 
-> > > +	if (!ntp8835)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	ntp8835->i2c = i2c;
-> > > +
-> > > +	ntp8835->reset = devm_reset_control_get_shared(&i2c->dev, NULL);
-> > 
-> > shared is on purpose?
-> > 
-> 
-> Yes, we have a board with two amplifiers sharing same reset line, so
-> shared allows to work around this hardware issue. Is it the wrong
-> approach?
+> When instantiating the devices without @address, the DTC compiler
+> detects 2 nodes with the same name (remoteproc).
 
-No, it's ok, I just want to be sure you added this consciously.
-
-> 
-> > > +	if (IS_ERR(ntp8835->reset))
-> > > +		return dev_err_probe(&i2c->dev, PTR_ERR(ntp8835->reset),
-> > > +				     "Failed to get reset\n");
-> > > +
-> > > +	ret = reset_control_deassert(ntp8835->reset);
-> > > +	if (ret)
-> > > +		return dev_err_probe(&i2c->dev, PTR_ERR(ntp8835->reset),
-> > > +				     "Failed to deassert reset\n");
-> > > +
-> > > +	dev_set_drvdata(&i2c->dev, ntp8835);
-> > > +
-> > > +	ntp8835_reset_gpio(ntp8835, true);
-> > > +
-> > > +	regmap = devm_regmap_init_i2c(i2c, &ntp8835_regmap);
-> > > +	if (IS_ERR(regmap))
-> > > +		return dev_err_probe(&i2c->dev, PTR_ERR(regmap),
-> > > +				     "Failed to allocate regmap\n");
-> > > +
-> > > +	ret = devm_snd_soc_register_component(&i2c->dev, &soc_component_ntp8835,
-> > > +					      &ntp8835_dai, 1);
-> > > +	if (ret)
-> > > +		return dev_err_probe(&i2c->dev, ret,
-> > > +				     "Failed to register component\n");
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static const struct i2c_device_id ntp8835_i2c_id[] = {
-> > > +	{ "ntp8835", 0 },
-> > > +	{}
-> > > +};
-> > > +MODULE_DEVICE_TABLE(i2c, ntp8835_i2c_id);
-> > > +
-> > > +static const struct of_device_id ntp8835_of_match[] = {
-> > > +	{.compatible = "neofidelity,ntp8835",},
-> > > +	{.compatible = "neofidelity,ntp8835c",},
-> > 
-> > This does not match your i2c IDs, which leads to troubles when matching
-> > variants.
-> > 
-> > Anyway, aren't they compatible?
-> > 
-> > 
-> 
-> They have identical programming interface and only differ in some output
-> signal characteristics. Is it OK use single compatible string in such
-> case?
-
-Driver should have one compatible (and one entry in i2c device ID). You
-add the second in the bindings as one followed by fallback.
-Like this:
-https://elixir.bootlin.com/linux/v6.3-rc6/source/Documentation/devicetree/bindings/sound/nvidia,tegra210-ope.yaml#L31
+There should be no children at all. DT is not for instantiating your
+drivers. I claim you have only one device and that's
+arm,sse710-host-base-sysctrl. If you create child node for one word,
+that's not a device.
 
 Best regards,
 Krzysztof
