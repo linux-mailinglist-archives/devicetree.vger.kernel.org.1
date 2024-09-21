@@ -1,191 +1,199 @@
-Return-Path: <devicetree+bounces-104277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E337D97DD4F
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 15:01:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8DD297DD59
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 15:27:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A72FFB2164F
-	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 13:01:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 641D028231C
+	for <lists+devicetree@lfdr.de>; Sat, 21 Sep 2024 13:27:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A3501714B9;
-	Sat, 21 Sep 2024 13:00:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D21AE156993;
+	Sat, 21 Sep 2024 13:27:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="m7wPDQ+e"
+	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="qCNPPIGk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C8BC13AD26;
-	Sat, 21 Sep 2024 13:00:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+Received: from classfun.cn (unknown [129.204.178.38])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E298F9F8;
+	Sat, 21 Sep 2024 13:27:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726923655; cv=none; b=clSHe1wcZHZ7+JCpPXYri7s+XmwMHO1CLW57axQRu6+AA4WDl7nV6wkjewZwb/gepQtaevhdUp8Fju3pQ5Dug+Jl6ylyEsWw+TEtQ+1YXltZbt+qMn+I2dnDzcyZkonKOjg/FoD2LY2zr/MKZoikb49PfNVO6wWQHVuomDucvvg=
+	t=1726925262; cv=none; b=J6WxjGgvwRbsmCpF2melM8N9VzDoH+B0F3cPhG9lyaNw8se+S0J4b6124MMxwGnxO2zBw2NbRYfG3mGZCbIx0Tq0qb7Ja664B2X6SvoMxJZ1CExGUGWZBKjbZ8TuZAXgB2P/fuIrrI+BaBrPIbgGeBAhvznnbS/KnWrkY2p3R5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726923655; c=relaxed/simple;
-	bh=Qzwnd2JW8YVoqaxd0RoBmQdx5YFfwb7t/+mzl03MbIE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c+xYfm1LRFlP8G04Mg/hqDsKDkDXTvNcynfOb+Jm1w5PG7BF2jSMu+/IVG7qSvZvNbaJsjYLwwXQqLBVy3EiP/LtOmhgCWhoRqG2SXHxHly/zlZsXIdIiZFJ6xmVUsPEepkLBraFhwDUvkZbjYVZCFgEbrHv9k1evw3YMwyKvdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=m7wPDQ+e; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1726923653; x=1758459653;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Qzwnd2JW8YVoqaxd0RoBmQdx5YFfwb7t/+mzl03MbIE=;
-  b=m7wPDQ+eK8mNqMiFDY5F84BeGDz82wU+c6dwn70Vrb0iCSy9tN4jVp2g
-   44WxYcQk1EiCxYfMsu1mOGS2EgxrRnmKtiYYZOkzIHnJ3gCx8rzmDMqw7
-   fgU4usDYfVLOBFExPhXtKCVYefd32txYXT6VMtLc9ummdBJhcDkJ4qKoE
-   D8mo8+Bbzidf76HjW8ZYiQ/WrCQDbQBu6fQLhfV3Qt4i7IwTd9z6a8lPl
-   egoLeLCSYyds6MmHoShMdn64n2N6bzXNmcnI04CCJMuYQxZqjs6azF1TW
-   XJqT/sG/7I7hj/tUW8I23jpqDtz0rWZn3iP+iNTz+wsh0mu2RV5k99JQZ
-   Q==;
-X-CSE-ConnectionGUID: HJnJoL0WQPyOnyLAWIbW/Q==
-X-CSE-MsgGUID: YKRcVH7pRL2NfkobfAEMGg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11202"; a="29818707"
-X-IronPort-AV: E=Sophos;i="6.10,247,1719903600"; 
-   d="scan'208";a="29818707"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2024 06:00:52 -0700
-X-CSE-ConnectionGUID: AnEOb1GcQUqc0jC32N/gFQ==
-X-CSE-MsgGUID: UeIUHx3uQJaI7S4zFIYvVg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,247,1719903600"; 
-   d="scan'208";a="74982765"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 21 Sep 2024 06:00:49 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1srzjC-000FRb-1v;
-	Sat, 21 Sep 2024 13:00:46 +0000
-Date: Sat, 21 Sep 2024 20:59:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: Igor Prusov <ivprusov@salutedevices.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	kernel@salutedevices.com, prusovigor@gmail.com,
-	David Yang <yangxiaohua@everest-semi.com>,
-	Martin Kurbanov <mmkurbanov@salutedevices.com>
-Subject: Re: [PATCH v2 2/2] ASoC: codecs: add ES7243E ADC driver
-Message-ID: <202409212032.P6kjCapX-lkp@intel.com>
-References: <20240920-es7243e-adc-v2-2-0be019735b81@salutedevices.com>
+	s=arc-20240116; t=1726925262; c=relaxed/simple;
+	bh=Xp7yxHie0MlN4F0JUfr2BteFjyQZyFZRlWQuDPLuDk8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Bf9B06TZ7NcS+Lz/IK9j1v+HT8KC/hBfmVZ6hTNjoNHAADTKxv3zqzleFXFL0sjLMDlrMQfxSEmFTFSlFhgsC64RipP8yKkfFwN/IOJDdWItlw5eHTitUb1twhwSHvXi6akpxhQcC4r4DjbGN1cJsiL8DF3t6YwpDbgGzxIGnSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=qCNPPIGk; arc=none smtp.client-ip=129.204.178.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
+Received: from [192.168.0.160] (unknown [120.40.111.43])
+	(Authenticated sender: bigfoot)
+	by classfun.cn (Postfix) with ESMTPSA id 331577890F;
+	Sat, 21 Sep 2024 21:27:35 +0800 (CST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn 331577890F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
+	s=default; t=1726925256;
+	bh=gXttLbForN4sVPU1L8p0lWk2b2Cu1E5xBRiFWAjrSCw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qCNPPIGkqjsqQ8WpcTW6usy/avVL9dLJdtKu5geOUfRC7n9rpqXcB0apjOc/po0R7
+	 FLzzEHJVOEflnHJTh4qektJP45K9fYv9N++FSZxiyyrirxToLaIzwQeArg6BrEc/jV
+	 il1Ad1aO/lc0S2Y7vyZIckzhJfTP+dl5STCCU2mk=
+Message-ID: <ea7da1f8-5a0e-45ea-a1bb-977a19f8b8b7@classfun.cn>
+Date: Sat, 21 Sep 2024 21:27:35 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240920-es7243e-adc-v2-2-0be019735b81@salutedevices.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/3] arm64: dts: rockchip: add dts for Ariaboard
+ Photonicat RK3568
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Chukun Pan <amadeus@jmu.edu.cn>, FUKAUMI Naoki <naoki@radxa.com>,
+ Dragan Simic <dsimic@manjaro.org>, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Junhao Xie <bigfoot@classfun.cn>
+References: <20240914145549.879936-1-bigfoot@classfun.cn>
+ <20240914145549.879936-4-bigfoot@classfun.cn>
+ <8c86229a-8cec-4d65-8194-ee8cdc6931dd@kwiboo.se>
+Content-Language: en-US
+From: Junhao Xie <bigfoot@classfun.cn>
+In-Reply-To: <8c86229a-8cec-4d65-8194-ee8cdc6931dd@kwiboo.se>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Igor,
+On 2024/9/19 22:52, Jonas Karlman wrote:
+> Hi Junhao,
+>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5-plus.dtb
+>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-photonicat.dtb
+> 
+> This should probably be added where the rest of rk3568 dtb is located,
+> not with the rk3588 ones.
 
-kernel test robot noticed the following build errors:
+Thanks for your reminder, I made a mistake in the order when renaming dts, I will fix it
 
-[auto build test ERROR on baeb9a7d8b60b021d907127509c44507539c15e5]
+>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-quartzpro64.dtb
+>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5-itx.dtb
+>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
+[...]
+>> +
+>> +&gmac0 {
+>> +	status = "disabled";
+>> +	/* Motorcomm YT8521SC LAN port (require SGMII) */
+> 
+> nit: Please be consistent where comments is added, for recgulators above
+> the comments is above the node, suggest you move the comment above the
+> "&gmac0 {" line, and same for similar comments.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Igor-Prusov/ASoC-dt-bindings-Add-Everest-ES7243E/20240920-235246
-base:   baeb9a7d8b60b021d907127509c44507539c15e5
-patch link:    https://lore.kernel.org/r/20240920-es7243e-adc-v2-2-0be019735b81%40salutedevices.com
-patch subject: [PATCH v2 2/2] ASoC: codecs: add ES7243E ADC driver
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20240921/202409212032.P6kjCapX-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240921/202409212032.P6kjCapX-lkp@intel.com/reproduce)
+I will edit it. This looks better:
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409212032.P6kjCapX-lkp@intel.com/
+/* Motorcomm YT8521SC LAN port (require SGMII) */
+&gmac0 {
+	status = "disabled";
+};
 
-All errors (new ones prefixed by >>):
+>> +};
+>> +
+>> +&gmac1 {
+>> +	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
+>> +	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>;
+>> +	assigned-clock-rates = <0>, <125000000>;
+>> +	clock_in_out = "output";
+>> +	phy-handle = <&rgmii_phy1>;
+>> +	phy-mode = "rgmii-id";
+>> +	phy-supply = <&vcc_3v3>;
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&gmac1m1_miim
+>> +		     &gmac1m1_tx_bus2
+>> +		     &gmac1m1_rx_bus2
+>> +		     &gmac1m1_rgmii_clk
+>> +		     &gmac1m1_rgmii_bus>;
+>> +	snps,reset-gpio = <&gpio4 RK_PC0 GPIO_ACTIVE_LOW>;
+>> +	snps,reset-active-low;
+>> +	snps,reset-delays-us = <0 20000 100000>;
+> 
+> The snps,reset props is deprecated use resets props in phy node instad.
 
-   sound/soc/codecs/es7243e.c: In function 'es7243e_set_dai_fmt':
->> sound/soc/codecs/es7243e.c:252:27: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
-     252 |                 sdpfmt |= FIELD_PREP(ES7243E_SDP_FMT, 0);
-         |                           ^~~~~~~~~~
+I edited it and it works fine, is the following correct to write?
 
+/* Motorcomm YT8521SC WAN port */
+&gmac1 {
+	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
+	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>;
+	assigned-clock-rates = <0>, <125000000>;
+	clock_in_out = "output";
+	phy-handle = <&rgmii_phy1>;
+	phy-mode = "rgmii-id";
+	phy-supply = <&vcc_3v3>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&gmac1m1_miim
+		     &gmac1m1_tx_bus2
+		     &gmac1m1_rx_bus2
+		     &gmac1m1_rgmii_clk
+		     &gmac1m1_rgmii_bus>;
+	tx_delay = <0>;
+	rx_delay = <0>;
+	status = "okay";
+};
 
-vim +/FIELD_PREP +252 sound/soc/codecs/es7243e.c
+&mdio1 {
+	rgmii_phy1: ethernet-phy@0 {
+		compatible = "ethernet-phy-ieee802.3-c22";
+		reg = <0x0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&eth1_phy_rst>;
+		reset-assert-us = <20000>;
+		reset-deassert-us = <100000>;
+		reset-gpios = <&gpio4 RK_PC0 GPIO_ACTIVE_LOW>;
+		rx-internal-delay-ps = <1500>;
+		tx-internal-delay-ps = <1500>;
+	};
+};
 
-   239	
-   240	static int es7243e_set_dai_fmt(struct snd_soc_dai *dai, unsigned int fmt)
-   241	{
-   242		struct snd_soc_component *component = dai->component;
-   243		unsigned int sdpfmt = 0;
-   244		unsigned int clk2 = 0;
-   245		bool is_dsp = false;
-   246		bool invert_lrck = false;
-   247		int ret;
-   248	
-   249		/* Set protocol of the serial data port */
-   250		switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
-   251		case SND_SOC_DAIFMT_I2S:
- > 252			sdpfmt |= FIELD_PREP(ES7243E_SDP_FMT, 0);
-   253			break;
-   254		case SND_SOC_DAIFMT_LEFT_J:
-   255			sdpfmt |= FIELD_PREP(ES7243E_SDP_FMT, 1);
-   256			break;
-   257		case SND_SOC_DAIFMT_DSP_A:
-   258			sdpfmt |= FIELD_PREP(ES7243E_SDP_FMT, 3);
-   259			is_dsp = true;
-   260			break;
-   261		case SND_SOC_DAIFMT_DSP_B:
-   262			sdpfmt |= FIELD_PREP(ES7243E_SDP_FMT, 3);
-   263			is_dsp = true;
-   264			break;
-   265		default:
-   266			return -EINVAL;
-   267		}
-   268	
-   269		/* Set LR and BCLK polarity */
-   270		switch (fmt & SND_SOC_DAIFMT_INV_MASK) {
-   271		case SND_SOC_DAIFMT_NB_NF:
-   272			clk2 |= FIELD_PREP(ES7243E_CLK2_BCLK_INV, 0);
-   273			sdpfmt |= FIELD_PREP(ES7243E_SDP_LRP, 0);
-   274			break;
-   275		case SND_SOC_DAIFMT_IB_IF:
-   276			clk2 |= FIELD_PREP(ES7243E_CLK2_BCLK_INV, 1);
-   277			sdpfmt |= FIELD_PREP(ES7243E_SDP_LRP, 1);
-   278			invert_lrck = true;
-   279			break;
-   280		case SND_SOC_DAIFMT_IB_NF:
-   281			clk2 |= FIELD_PREP(ES7243E_CLK2_BCLK_INV, 1);
-   282			sdpfmt |= FIELD_PREP(ES7243E_SDP_LRP, 0);
-   283			break;
-   284		case SND_SOC_DAIFMT_NB_IF:
-   285			clk2 |= FIELD_PREP(ES7243E_CLK2_BCLK_INV, 0);
-   286			sdpfmt |= FIELD_PREP(ES7243E_SDP_LRP, 1);
-   287			invert_lrck = true;
-   288			break;
-   289		default:
-   290			return -EINVAL;
-   291		}
-   292	
-   293		/* Inverted LRCK is not available in DSP mode. */
-   294		if (is_dsp && invert_lrck)
-   295			return -EINVAL;
-   296	
-   297		ret = snd_soc_component_update_bits(component, ES7243E_CLK2,
-   298						    ES7243E_CLK2_BCLK_INV, clk2);
-   299		if (ret < 0)
-   300			return ret;
-   301	
-   302		return snd_soc_component_update_bits(component, ES7243E_SDP,
-   303						     ES7243E_SDP_LRP, sdpfmt);
-   304	}
-   305	
+&pinctrl {
+	[...]
+	ethernet {
+		eth1_phy_rst: eth1_phy_rst {
+			rockchip,pins = <4 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
+		};
+	};
+	[...]
+};
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> 
+>> +	status = "okay";
+>> +	/* Motorcomm YT8521SC WAN port */
+>> +};
+[...]
+>> +&sdhci {
+>> +	bus-width = <8>;
+>> +	max-frequency = <200000000>;
+> 
+> Can be dropped, already in base dtsi.
+
+max-frequency is not in sdhci node of rk356x.dtsi and rk3568.dtsi.
+I simply removed the max-frequency and it worked fine.
+Can it really be removed?
+
+>> +	mmc-hs200-1_8v;
+>> +	non-removable;
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&emmc_bus8 &emmc_clk &emmc_cmd>;
+>> +	vmmc-supply = <&vcc_3v3>;
+>> +	vqmmc-supply = <&vcc_1v8>;
+>> +	status = "okay";
+>> +	/* eMMC */
+>> +};
+
+Thanks for your review, I will fix all problems in next version!
+
+Best regards,
+Junhao
+
 
