@@ -1,203 +1,173 @@
-Return-Path: <devicetree+bounces-104320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF75997E043
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 08:16:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 176B997E084
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 10:13:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D24721C20955
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 06:16:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCB50281599
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 08:12:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5284118EFEC;
-	Sun, 22 Sep 2024 06:16:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AB4E153BE8;
+	Sun, 22 Sep 2024 08:12:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SS0c3Wda"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ASacI3/c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC037156F23;
-	Sun, 22 Sep 2024 06:16:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4CD528F4;
+	Sun, 22 Sep 2024 08:12:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1726985784; cv=none; b=YG25yWa2AgH6CgH6hEhrp/Cunj+IBpjI0Doht1bap3eNyDL8M+KWbVUB7PhkOudwhRvbcmskEj/X1/fVzOgEpLly6Ou3Tuth6VkknLfz9/NXuYyWs+ZXoSdmD8Pe7vZYKFXgHF6BL/s+0TVFv6LQm/MeH1NLR53ohrsubCo902k=
+	t=1726992775; cv=none; b=s7twtjfz9PqY8qxPvc780T9CGAeqm6+0aohz4lCdAxjNfv880Zs9eo9cs0TJc63KyrrGugeFaBDQkOsUQ2p5uGpFDvYiWHkpbHasbDLKXxq4CtrhCP4sXKC5nOXU/389nBgRSyR3WyYS5/6Dtjn4atqGNyi32QSdeS+7Bu7Ukn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1726985784; c=relaxed/simple;
-	bh=jLQBBH7PkiFVYfQSNKJyJOqxcJmkYuHF6kgWcROQ/ug=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qu0lP0ItGETZFQ5SNu8XZ+RAHcpfFKbZqPUCdlaFU1wi4RsMxvUf5+1ogoor4cL/aU9ap6ebTwf+8A3XveV4eKdfdhz0ct3DKA8VSs30QGaXJVba67pQlMng/gLY9dxFtX5gnzrQYdI/oIKpejjd5ohqY6kPfXn4v+vbR+oBWiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SS0c3Wda; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1726985782; x=1758521782;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jLQBBH7PkiFVYfQSNKJyJOqxcJmkYuHF6kgWcROQ/ug=;
-  b=SS0c3WdaFj++3iu6Kvyk5dM01OLFpf8lu5FtggJqPf1rHW1ocOOkjCsI
-   8XL/Qe6Nbg6CoFo8V/n+nLUNjaZNGSwEvKwUORWpOmGFl/GkoblwTZCgX
-   IWQppUe50N7Az65+t7m3fOm+G4qHfIvCDju8hetU2b1YYWb+5+a71JWfQ
-   wIBqaUt2Nrh/Xk14khCnnqQ8NkpzyhtZL69Z9pK2c4eA6uQ+9bl71Bm+3
-   s5pWif0X+4KlvH1VR9F5F8zybHyP7mZGngqS9nyG5c7wu7MzJ6B4TDg8v
-   Vch5gu18ddbE5bxjd5Gu/NBVYIX4ymB444Jt9w8aUNgRAyACp+ElInnqO
-   g==;
-X-CSE-ConnectionGUID: 3VLYj2XBSF2JCE88kZP7UQ==
-X-CSE-MsgGUID: NOBgIg9hS4GdcrKaaP9QYQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11202"; a="25774848"
-X-IronPort-AV: E=Sophos;i="6.10,248,1719903600"; 
-   d="scan'208";a="25774848"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2024 23:16:21 -0700
-X-CSE-ConnectionGUID: bfyp8GGcT8qNJwbNe9Xe3Q==
-X-CSE-MsgGUID: j8L92sxcQNCqzwD8e3wgvA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,248,1719903600"; 
-   d="scan'208";a="71045957"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 21 Sep 2024 23:16:17 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ssFtH-000G4s-0m;
-	Sun, 22 Sep 2024 06:16:15 +0000
-Date: Sun, 22 Sep 2024 14:16:00 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian Marangi <ansuelsmth@gmail.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Lorenzo Bianconi <lorenzo@kernel.org>, upstream@airoha.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 2/2] watchdog: Add support for Airoha EN7851 watchdog
-Message-ID: <202409221503.OVlRRuM7-lkp@intel.com>
-References: <20240919122759.10456-2-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1726992775; c=relaxed/simple;
+	bh=u+gqaeFBc/xXWtTw8bAcjlVJ7TwL8P7TRF1D+jnozJ8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dhr+MkJNidjae4l4eZxSYFXDsB3Axl57mrrSaVl5yKQqTvV/aKaUo8tgD/qza9jLsXyQwdX5QlYPC5/b+nW/r95B6lpr//BVB7s3cbCf77/sYdYTU2/E0lMtNQbsMry/fORTd/n3o6KqKuVYoZcCg40If+GpKfnSPwIqtp79rSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ASacI3/c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 393C4C4CEC3;
+	Sun, 22 Sep 2024 08:12:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726992775;
+	bh=u+gqaeFBc/xXWtTw8bAcjlVJ7TwL8P7TRF1D+jnozJ8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ASacI3/cMIAmIgKFgAqNXnA6GlgFpQ3KFHPhj2sF9oXSBAnYxNfQFTLcELWaHnubq
+	 not5fopLFJdbv5JcdCXktihKScLdF9T7li34eSNiddNCXs+xIQT5KGbjHDpY5UKpKW
+	 uUeKmdxkXtUvOj/9P1DowauF9ldKgZTafGc3/aH4zQkPM+MjdP793XTq3jcHmSc6HO
+	 vQ22LSxoMeuuW/IfbQJhShO0lif3sQwjOdMx3w2qehz2zC6T3LHoPOHlTU3VjCMW7+
+	 xgIV29cmne+QAq3p22bTu7j5M3w5UjXETTPtkEjcFfcAGzFttyuXcbmrK7YU3JRy/B
+	 325L+pRg7Zisw==
+Message-ID: <f9b04df3-18f7-416e-a973-422bcf341d3a@kernel.org>
+Date: Sun, 22 Sep 2024 10:12:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240919122759.10456-2-ansuelsmth@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: display: rockchip-vop: Split rk3288-vop
+ into big and lit
+To: Jonas Karlman <jonas@kwiboo.se>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
+ Heiko Stuebner <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240921222007.2301868-1-jonas@kwiboo.se>
+ <20240921222007.2301868-2-jonas@kwiboo.se>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240921222007.2301868-2-jonas@kwiboo.se>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Christian,
+On 22/09/2024 00:20, Jonas Karlman wrote:
+> The Rockchip RK3288 SoC contain two different Visual Output Processor
+> (VOP) blocks, VOP_BIG and VOP_LIT. The VOP blocks support different max
+> output resolution, 3840x2160 and 2560x1600.
+> 
+> Add compatible to differentiate between the two VOP blocks.
+> 
+> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> ---
+>  .../display/rockchip/rockchip-vop.yaml        | 36 +++++++++++--------
+>  1 file changed, 21 insertions(+), 15 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop.yaml
+> index b339b7e708c6..ce4169b030af 100644
+> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop.yaml
+> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop.yaml
+> @@ -17,21 +17,27 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - rockchip,px30-vop-big
+> -      - rockchip,px30-vop-lit
+> -      - rockchip,rk3036-vop
+> -      - rockchip,rk3066-vop
+> -      - rockchip,rk3126-vop
+> -      - rockchip,rk3188-vop
+> -      - rockchip,rk3228-vop
+> -      - rockchip,rk3288-vop
+> -      - rockchip,rk3328-vop
+> -      - rockchip,rk3366-vop
+> -      - rockchip,rk3368-vop
+> -      - rockchip,rk3399-vop-big
+> -      - rockchip,rk3399-vop-lit
+> -      - rockchip,rv1126-vop
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - rockchip,rk3288-vop-big
+> +              - rockchip,rk3288-vop-lit
+> +          - const: rockchip,rk3288-vop
+> +      - enum:
+> +          - rockchip,px30-vop-big
+> +          - rockchip,px30-vop-lit
+> +          - rockchip,rk3036-vop
+> +          - rockchip,rk3066-vop
+> +          - rockchip,rk3126-vop
+> +          - rockchip,rk3188-vop
+> +          - rockchip,rk3228-vop
+> +          - rockchip,rk3288-vop
 
-kernel test robot noticed the following build errors:
+I think this one should be dropped. You will update all in-kernel users,
+so it won't be needed here and all other projects should probably follow up.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on groeck-staging/hwmon-next linus/master v6.11 next-20240920]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Best regards,
+Krzysztof
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/watchdog-Add-support-for-Airoha-EN7851-watchdog/20240919-203006
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240919122759.10456-2-ansuelsmth%40gmail.com
-patch subject: [PATCH 2/2] watchdog: Add support for Airoha EN7851 watchdog
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20240922/202409221503.OVlRRuM7-lkp@intel.com/config)
-compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 8663a75fa2f31299ab8d1d90288d9df92aadee88)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240922/202409221503.OVlRRuM7-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409221503.OVlRRuM7-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/watchdog/airoha_wdt.c:17:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     548 |         val = __raw_readb(PCI_IOBASE + addr);
-         |                           ~~~~~~~~~~ ^
-   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
-      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
-         |                                                   ^
-   In file included from drivers/watchdog/airoha_wdt.c:17:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
-      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
-         |                                                   ^
-   In file included from drivers/watchdog/airoha_wdt.c:17:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     585 |         __raw_writeb(value, PCI_IOBASE + addr);
-         |                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
->> drivers/watchdog/airoha_wdt.c:155:26: error: call to undeclared function 'FIELD_MAX'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     155 |         wdog_dev->max_timeout = FIELD_MAX(WDT_TIMER_VAL) / airoha_wdt->wdt_freq;
-         |                                 ^
-   6 warnings and 1 error generated.
-
-
-vim +/FIELD_MAX +155 drivers/watchdog/airoha_wdt.c
-
-   125	
-   126	static int airoha_wdt_probe(struct platform_device *pdev)
-   127	{
-   128		struct device *dev = &pdev->dev;
-   129		struct watchdog_device *wdog_dev;
-   130		struct airoha_wdt_desc *airoha_wdt;
-   131		int ret;
-   132	
-   133		airoha_wdt = devm_kzalloc(dev, sizeof(*airoha_wdt), GFP_KERNEL);
-   134		if (!airoha_wdt)
-   135			return -ENOMEM;
-   136	
-   137		airoha_wdt->base = devm_platform_ioremap_resource(pdev, 0);
-   138		if (IS_ERR(airoha_wdt->base))
-   139			return PTR_ERR(airoha_wdt->base);
-   140	
-   141		ret = device_property_read_u32(dev, "clock-frequency",
-   142					       &airoha_wdt->wdt_freq);
-   143		if (ret)
-   144			return -EINVAL;
-   145	
-   146		/* Watchdog ticks at half the bus rate */
-   147		airoha_wdt->wdt_freq /= 2;
-   148	
-   149		/* Initialize struct watchdog device */
-   150		wdog_dev = &airoha_wdt->wdog_dev;
-   151		wdog_dev->timeout = heartbeat;
-   152		wdog_dev->info = &airoha_wdt_info;
-   153		wdog_dev->ops = &airoha_wdt_ops;
-   154		/* Bus 300MHz, watchdog 150MHz, 28 seconds */
- > 155		wdog_dev->max_timeout = FIELD_MAX(WDT_TIMER_VAL) / airoha_wdt->wdt_freq;
-   156		wdog_dev->parent = dev;
-   157	
-   158		watchdog_set_drvdata(wdog_dev, airoha_wdt);
-   159		watchdog_set_nowayout(wdog_dev, nowayout);
-   160		watchdog_stop_on_unregister(wdog_dev);
-   161	
-   162		ret = devm_watchdog_register_device(dev, wdog_dev);
-   163		if (ret)
-   164			return ret;
-   165	
-   166		platform_set_drvdata(pdev, airoha_wdt);
-   167		return 0;
-   168	}
-   169	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
