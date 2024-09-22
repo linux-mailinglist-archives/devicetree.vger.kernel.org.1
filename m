@@ -1,114 +1,208 @@
-Return-Path: <devicetree+bounces-104355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2DA397E324
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 22:14:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 022EC97E32E
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 22:21:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 161762811D2
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 20:14:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D3C7B20901
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 20:21:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E8F9481C0;
-	Sun, 22 Sep 2024 20:14:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD1804AEF4;
+	Sun, 22 Sep 2024 20:21:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cIGwx6sK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HIPOxPFV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F6E840855
-	for <devicetree@vger.kernel.org>; Sun, 22 Sep 2024 20:14:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F40047A4C;
+	Sun, 22 Sep 2024 20:21:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727036064; cv=none; b=AX6yDZDdtq0QKqFXFlLP63+poAXbYIDmEUsEZD6zqICTjuHYvwpTyEckjhcHe+0XQVAErL36J7tzIiQ4Fu74yjf967J0Sr0PHG9eVHbV/Oqyubv0n7eBNXSSnlsVXhzD8pp4B+JHiWygHH7Yrehj/bIZQMjh3MekEz3uVwtV1jg=
+	t=1727036477; cv=none; b=Ie6AerpWHtu3smACqgHE1KCLSRDm4ok6ZbW8HSxUpYjkvNESDt+4xR4W8BI+tafGZFvjtEegoy+uly9DHxLiTeBdBaBy9mO9TyYpwrwdNwp+K3dYrxk/Ew40SNVSX7boCvGIVuURkPqbodr4agcuLGd/kLwO+RhMUbtxU3xd6E8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727036064; c=relaxed/simple;
-	bh=US1Fcoz+Y1LQZL0oT9Tl/6knfi8gDalPGn1nY8wLJEI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Yvn0telNNp5g7dJPIlStkp1TCifpCiJdEXgM3jbLGmoitATJ3gyZrGR79otWifgl9CPvlNXFeIL9ITVQUHIheq+6YK/8CWnrMH4icdwmmsygsPtQXl8YnXtc22lLhdcSjWnwFNh9JWEHzgetpbE6lCe9m8kyPUml2PcAEmKJf+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cIGwx6sK; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-53654e2ed93so4122653e87.0
-        for <devicetree@vger.kernel.org>; Sun, 22 Sep 2024 13:14:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727036060; x=1727640860; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=hXnO0dAhio8cKR7ZLjPPkbdRt1uauj4aZsdYTjUljaA=;
-        b=cIGwx6sKn4aTrX1mPY8h2GLuza5SoPVzx4RStj/NpUD69Vyt97VSiXnpyI+KGbWrAC
-         1+kz113mD7Od+5BODUDxPSuJd0nNofo2h7JzZyybvRjSZ5+QpqCExe+SvzdRTxm90Nc8
-         FCRru/4aoAJw1rBrJIql8a94C5RpR1ffY84aSCPOst4yXICP2unQdml4RKCmaafIWUnO
-         Oe6r2s3imh0/4NtDhsasHkh+jN25uiRo2h6dZwTF9eqPUYkqdiqP8mdAZuvXzgkQanuD
-         DzNt3yZBarvgYu4vG4OFeRdjIERrc1UXdG1Pkc1oxsSmf2NC8oHAm+N7QeUa8S6vCLrJ
-         tovA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727036060; x=1727640860;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hXnO0dAhio8cKR7ZLjPPkbdRt1uauj4aZsdYTjUljaA=;
-        b=aSbfbsXTKUzWAM6ZNec5X90fb+t1L3BaVz+Kc2uM9tTlz781Vk5/bWtOZGwLHv2zaI
-         t5IIvNwXT29vdIWEM/An9n09qWpojpEmQflr9JitX2NU6dVbZGwkveSB727wjWHZdVt9
-         +bNBRSkkrk2/pxtYl9FOSXsA8453f6uOXzMPHtzLVuNjGwIGl0eNRyx8ATBwbjsBUeSd
-         TJ7ItIspHYbVE1sh5iKiK1GDIBfhDNQWPGpshMdWQUK+qmtcMkz4PjKYn+ZRI2GKMNK7
-         KsAK1EFRIbE941+zUm5KfytRRurzokeHSN03lhPpZw7oBtGzNbMvhaQzhgLVH3clbfW8
-         Pg2g==
-X-Forwarded-Encrypted: i=1; AJvYcCVTkG0LRMkbAl+YnBviE7vIhKrnpHFzGO+Tb1k1X5qG3RtIpg2Q0ke8plMN7q4iz9aSNpzQe1LrZpwC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKFAbcrVXuZC4KHDmWfb+s9CaDTaJJB9YHgbHCX3/C7Z7+SVDK
-	SaF+uqWbNSUkZ9OoZvZANbqRnS6EP8zpqQKWdp/Hb4Mer1ZoNPP6uOf4nG8KsE4=
-X-Google-Smtp-Source: AGHT+IHNntfHeoqZClLotGkHewiODZdHeP2Ru6UbyB/4XkBdQbNOsyJ6quJdr+0d7MsOdO94wbCHTg==
-X-Received: by 2002:a05:6512:3f04:b0:52c:e1cd:39b7 with SMTP id 2adb3069b0e04-536acf6a527mr4485424e87.5.1727036059628;
-        Sun, 22 Sep 2024 13:14:19 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5368704665bsm3052672e87.55.2024.09.22.13.14.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Sep 2024 13:14:19 -0700 (PDT)
-Date: Sun, 22 Sep 2024 23:14:17 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Alex Lanzano <lanzano.alex@gmail.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Mehdi Djait <mehdi.djait@bootlin.com>, 
-	christophe.jaillet@wanadoo.fr, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] drm/tiny: Add driver for Sharp Memory LCD
-Message-ID: <5brnhm3yqqbsnukllo4l53ohaeqmxum53mwq7dme74ny5dsnjq@shjoravp6beg>
-References: <20240905124432.834831-3-lanzano.alex@gmail.com>
+	s=arc-20240116; t=1727036477; c=relaxed/simple;
+	bh=InhEVXvKe00XKGjJ0zyePEOYAcKMa68cdzla8J9zOr4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hfov7v4qb8b1SfC8yWBVSWeTIL1Hcjp9hoQXEeVKOLIsOzlZ5nYybiSWbQJxyXYEzpIkNtt9FTaL864X6i0QFYV2u+NRmE5mQWumyNvynjw4oQ0u0clhgFDgoJoyyw0NUtCgSqNPta3onQQX+zSyE/Rlxn2aP+oQiKZ26V4qs7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HIPOxPFV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3EC5C4CEC3;
+	Sun, 22 Sep 2024 20:21:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727036477;
+	bh=InhEVXvKe00XKGjJ0zyePEOYAcKMa68cdzla8J9zOr4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HIPOxPFV4y2v+s1byS7VmY+eMlF/84VYPCP3JDSGlXXYyhEvszRdYsjepLXXo7W7j
+	 95IGNKnpZJZzKmk/50ysSe1L0MBcdDts2KP322kwtHRH13qsvjnPFXsAMxa807VDtb
+	 lg7nOV7V6mYwraZVhy1r2gEuDqAbXki60IIpRtAty39YNkrsaJ/JhvXipMT3nENJyv
+	 KRf2ubFSuSmrTRiWveeQkIGl3O057SLtVopYM/PooHJHRPqG7aUVKEM0UWJZZpMrYT
+	 Dr0fjiosjI38ldD2KX9ARq+tZr0dliXT3xQP9MclAhA24A6+iah7VQnEPB3LH/pxEw
+	 kRpbzOEN0EtlA==
+Message-ID: <275b1b46-4ed0-44d8-a240-93a422e96bbf@kernel.org>
+Date: Sun, 22 Sep 2024 22:21:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240905124432.834831-3-lanzano.alex@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 5/5] remoteproc: add support for Microchip IPC
+ remoteproc platform driver
+To: Valentina.FernandezAlanis@microchip.com, paul.walmsley@sifive.com,
+ palmer@dabbelt.com, aou@eecs.berkeley.edu, peterlin@andestech.com,
+ dminus@andestech.com, Conor.Dooley@microchip.com, conor+dt@kernel.org,
+ ycliang@andestech.com, jassisinghbrar@gmail.com, robh@kernel.org,
+ krzk+dt@kernel.org, andersson@kernel.org, mathieu.poirier@linaro.org
+Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org
+References: <20240912170025.455167-1-valentina.fernandezalanis@microchip.com>
+ <20240912170025.455167-6-valentina.fernandezalanis@microchip.com>
+ <6f1fa401-e9ca-466f-990a-52bc37899bf4@kernel.org>
+ <1ece2f4b-6f2d-452f-b2af-18d0895f9443@microchip.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <1ece2f4b-6f2d-452f-b2af-18d0895f9443@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Sep 05, 2024 at 08:44:00AM GMT, Alex Lanzano wrote:
-> Add support for the monochrome Sharp Memory LCDs.
+On 18/09/2024 17:51, Valentina.FernandezAlanis@microchip.com wrote:
+> On 16/09/2024 21:18, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 12/09/2024 19:00, Valentina Fernandez wrote:
+>>> The Microchip family of RISC-V SoCs typically has one or more clusters.
+>>> These clusters can be configured to run in Asymmetric Multi-Processing
+>>> (AMP) mode.
+>>>
+>>> Add a remoteproc platform driver to be able to load and boot firmware
+>>> to the remote processor(s).
+>>
+>> ...
+>>
+>>> +
+>>> +static int mchp_ipc_rproc_prepare(struct rproc *rproc)
+>>> +{
+>>> +     struct mchp_ipc_rproc *priv = rproc->priv;
+>>> +     struct device_node *np = priv->dev->of_node;
+>>> +     struct rproc_mem_entry *mem;
+>>> +     struct reserved_mem *rmem;
+>>> +     struct of_phandle_iterator it;
+>>> +     u64 device_address;
+>>> +
+>>> +     reinit_completion(&priv->start_done);
+>>> +
+>>> +     of_phandle_iterator_init(&it, np, "memory-region", NULL, 0);
+>>> +     while (of_phandle_iterator_next(&it) == 0) {
+>>> +             /*
+>>> +              * Ignore the first memory region which will be used vdev
+>>> +              * buffer. No need to do extra handlings, rproc_add_virtio_dev
+>>> +              * will handle it.
+>>> +              */
+>>> +             if (!strcmp(it.node->name, "vdev0buffer"))
+>>
+>> What? If you ignore the first, then why are you checking names? This
+>> does not make sense. Especially that your binding did not say anything
+>> about these phandles being somehow special.
 > 
-> Co-developed-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> Signed-off-by: Alex Lanzano <lanzano.alex@gmail.com>
-> ---
->  MAINTAINERS                         |   6 +
->  drivers/gpu/drm/tiny/Kconfig        |  20 +
->  drivers/gpu/drm/tiny/Makefile       |   1 +
->  drivers/gpu/drm/tiny/sharp-memory.c | 682 ++++++++++++++++++++++++++++
->  4 files changed, 709 insertions(+)
->  create mode 100644 drivers/gpu/drm/tiny/sharp-memory.c
+> The idea in the code above is to skip the vdev buffer allocation and 
+> carveout registration. Later, when the remoteproc virtio driver 
+> registers the virtio device (rproc_add_virtio_dev), it will attempt to 
+> find the carveout. Since the carveout wasn’t registered, it will use the 
+> first memory region from the parent by calling 
+> of_reserved_mem_device_init_by_idx.
+> 
+> This behavior is based on some existing platform drivers. However, upon 
+> further inspection, it seems that some newer drivers use 
+> rproc_of_resm_mem_entry_init to allocate vdev buffers.
+> 
+> I will restructure this section and rephase/drop the comment.
+> 
+> With regards the bindings, I'll explain better all the memory regions 
+> for v2.
+> 
+> Just for everyone’s information, we have the following use cases:
+> 
+> Early boot: Remote processors are booted by another entity before Linux, 
+> so we only need to attach. For this mode, we require the resource table 
+> as a memory region in the device tree.
+> 
+> Late boot - Linux is responsible for loading the firmware and starting 
+> it on the remote processors. For this, we need the region used for the 
+> firmware image.
+> 
+> In both cases, rpmsg communication is optional. This means that the vdev 
+> buffers and vrings memory regions are also optional.
+> 
+> There could also be a mixed case where we start with early boot mode by 
+> attaching to an existing remoteproc, and then stop, start, and load 
+> another firmware once Linux has booted. In this case, we would require 
+> the resource table and firmware image region, and optionally, vdev 
+> buffers and vrings.
+> 
+>>
+>>> +                     continue;
+>>> +
+>>> +             if (!strcmp(it.node->name, "rsc-table"))
+>>
+>> Nope.
+> Since the resource table is only needed for early boot mode and does not 
+> need to be a carveout region, we are skipping that.
+> 
+> I will work on making the resource table a fixed index in the 
+> memory-region property so that it doesn't have a fixed name.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+The list of memory-regions already HAS fixed indices. All this is not
+only confusing, but incorrect. I commented that if I call the node
+"rsc-not-a-table" your code will stop working.
 
-Please sort out the review tags for dt bindings (either as a v7 or as a
-reply to the corresponding patch). Then the series can be applied.
+Best regards,
+Krzysztof
 
--- 
-With best wishes
-Dmitry
 
