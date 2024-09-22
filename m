@@ -1,134 +1,147 @@
-Return-Path: <devicetree+bounces-104350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F72E97E2CE
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 19:43:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06C6697E2E6
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 20:51:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E38312811D2
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 17:43:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 67B351F216A4
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 18:51:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C7614D8A7;
-	Sun, 22 Sep 2024 17:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FFDB39FCF;
+	Sun, 22 Sep 2024 18:51:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c198BLR1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TTZT6My7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5418F482E2;
-	Sun, 22 Sep 2024 17:43:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 407B42F43;
+	Sun, 22 Sep 2024 18:51:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727027016; cv=none; b=q73elEyDX6HeSI7yQ+7+D5RRIbAphlZ29TCc7vTnaU68lm0XgrRkZKccsEFFdV1jcWH0KRzlJRnOj3PkOwUnfXCeK6T5xmEIS7uYBthaI4y2pFYCbhdriqUTni+fegGkumEqJb1y8l7JyuX3LjMXlKSnIhT8Gqp2aQ/1mAxjEdE=
+	t=1727031098; cv=none; b=sOvKOKj+0Jbm03FNyx9HDGTPmjfDi/NvL3FtrhnFiwcK8kYCZATmQ9XVz8nLsF7kKe1Zll28+NrKl4RVQclIZ3uA9L/9gYa49mT8MHhdAARGIpfT3r7x5Hf2i3qtb6URCbdS42t8e4yigutt9Vc7qeIYgTwOm8/ZSfd1B1KNkI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727027016; c=relaxed/simple;
-	bh=yy9gl9pQz3F5fgfnipmdtFV0zJl13QipSJnEg+3xNDo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=fCTQIwtgFKFODJVCASD+SI91hS7wjgq2ieK/UUwGI63rMoD+pdrvwXpa32bZAI/3zy/oN12nhmoVsME7EoOvGu4JgDcIs1+SukQC5yn76A09DI8jlF9d1N2Lr226uBfjjcbDOVFziCjx10oBwSHZbBmtGIbn6wbB15O9c9ZtgHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c198BLR1; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-42cbbb1727eso31759925e9.2;
-        Sun, 22 Sep 2024 10:43:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727027014; x=1727631814; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wXLPtmmwbw0kH9maBt8kI0QUZhZ3U60BovT7L6yY3xs=;
-        b=c198BLR1AJpnOAz31J9rRuxTuLQjRol54f2Vbaa3SHHXU0bK5oW5jqQLrOmq/gfJUi
-         AhIJThAcfD+53aZFAVHWP/9VPh/+8hL4K91jQfpQUuwWbHhyBOMokFwHJoiDPIGFMXsy
-         Hg2yD9/dL47npRz+sDWuHeZlA2hXPFGmewtZjGT6dXPe/6bL67Z+76dWyhOFULba87Mn
-         d8rKpkPRpx13Q7rQwaEgv2lTpLE8OnwgXd6TT0/FOi+ltjI5blrBx3a3CQDfkMcB4vLO
-         YkS5tr4xG9REhNieMhQg2sm9UB+nVcYw0kdGIeOaLgH/LNAPVhp4nA6Mcp0TZU5WkrlJ
-         ILNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727027014; x=1727631814;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wXLPtmmwbw0kH9maBt8kI0QUZhZ3U60BovT7L6yY3xs=;
-        b=C4YIdCSFf//uwj50Sx1P1WYxKUIUmQBH0DQKsGm2xGdT7v+7HqckaGUTm4F6yMQqz9
-         rNezTPOPCXYhT09g2VCx64Wr6HcASP0Cf+S5QjomrFuDBxhsqREQnunY3qaRxBcUzpZk
-         3U6NQ7WS8yFW+hR6bayoAfD8fAUY7b3OIaoKxXvwnMn6BknTGr2GvKPnqKplE0oao48i
-         oG2KHLeK95LpUP8UuwK79cIwXKlyPQh4jZgxYtMPUocAsBEBWxCJ9LjP58Q5LwrCfcEO
-         AWos4XG63/7RqFsfjLU2RNa5su8A6gWkmcjsIfvK/VCUOWIx1v+FpC4KABum0A0c47dP
-         w2pQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXQ0Duc/Hfh4RQGaAbE+yGVsSJx2YDBzxzoZJuWVyZpGu2VbiOLNuvCg9sXKWEGWyC8rF/YSAzVvMOl4i8=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9iSaW5qmkmJGohUF6goJCf108p61mrbJmM3I84Bs60lUsbHiy
-	u64uha90biIfHXQFnEXtpEofFgUNv1vHu/393MgXSWTeolDQSCJp
-X-Google-Smtp-Source: AGHT+IHphXu0dGNfZ9BDNAw2gAnN60BBDuqllWZxOcm2vfWqG7Fy/AldhWq3sNJHPEbqGKEbIpHQ2w==
-X-Received: by 2002:a05:600c:4695:b0:42c:ae30:fc4d with SMTP id 5b1f17b1804b1-42e7abe12b1mr74954615e9.7.1727027013486;
-        Sun, 22 Sep 2024 10:43:33 -0700 (PDT)
-Received: from playground.localdomain ([86.127.146.72])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e7ae60ad0sm80758535e9.1.2024.09.22.10.43.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Sep 2024 10:43:32 -0700 (PDT)
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liu Ying <victor.liu@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v5 3/3] arm64: dts: imx8ulp: add AVD-SIM node
-Date: Sun, 22 Sep 2024 13:42:25 -0400
-Message-Id: <20240922174225.75948-4-laurentiumihalcea111@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240922174225.75948-1-laurentiumihalcea111@gmail.com>
-References: <20240922174225.75948-1-laurentiumihalcea111@gmail.com>
+	s=arc-20240116; t=1727031098; c=relaxed/simple;
+	bh=QdpXL2C+5bVKvVSMyQQv5nMllIH08YYKXAnkZFZ+sGw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nLdrsaXwPzrC/wX9lkiH+h4tau+s0BdKLoNaImXhj/YMFfbHoXWuLWn8TAB56p71PxGt9kU9KkX5Jd9kO74xGiHf4YXdrkgZalZcWxB2Yk8TNDVYbIsQYfA7glNPcb7R9kVAX3YEcRrERyZ/7XhZWGk6xKVqhFh8+Om+tR+qQAs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TTZT6My7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AF83C4CEC3;
+	Sun, 22 Sep 2024 18:51:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727031097;
+	bh=QdpXL2C+5bVKvVSMyQQv5nMllIH08YYKXAnkZFZ+sGw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TTZT6My7l1XHaLHtT8R5lHc4tjLDn4YF58ihmGaMNYwFf9fTKQqkJ29FgseoKSkAI
+	 Cnm8dRf8kTTw9j4zPlX5sQFXExLNHLDjWsilsHVODruMPFcPvaUsywEBPq42eZ17jI
+	 fT3FXEEvZAiZGZGwq34oV/UOSiry0vK9rQ7Lp7RDY63IhTcDAmJbooQqhZ2VrS3sWB
+	 zVp5kWnTHBix80g6m7z9b6v54O5NrhvWSdJtrabbjHaA0/MmpB9hoJqPDhHsrJyBWT
+	 eUuX7csfLk63jreaakq/+1fNfj7fOt5fTA6siruYIEewIcdl8ztQzeGmXQFiOmz1x0
+	 tsUegUaMqOROA==
+Message-ID: <86595df6-6048-499e-8ac2-d63fbb0c7b9f@kernel.org>
+Date: Sun, 22 Sep 2024 20:51:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: usb: add missing compatible arraylist
+To: Karan Sanghavi <karansanghvi98@gmail.com>,
+ Roger Quadros <rogerq@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <ZvBNLRc8xnAoGvoc@Emma>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <ZvBNLRc8xnAoGvoc@Emma>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+On 22/09/2024 19:00, Karan Sanghavi wrote:
+> Added the vice versa order for compatible property in the yaml file so
+> that the dtb can parse for the order mentioned in the dts file
+> k3-am642-sk.dts for ti,j721e-usb.yaml
+> 
+> This is highly ambiguous to me as where exactly the changes needs to be
+> added is it in the dts file or is the yaml where we have to reverse the
+> order already mentioned or do we have to add the another order as I have
+> done ?
 
-Add node for imx8ulp's AVD-SIM module. This also
-includes its children.
+If you do not understand the problem being fixed thus not know how to
+fix it, I don't quite get why you decided to send a patch...
 
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
-Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8ulp.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+> 
+> Signed-off-by: Karan Sanghavi <karansanghvi98@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+> index 95ff9791baea..822653217c43 100644
+> --- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+> +++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+> @@ -17,6 +17,9 @@ properties:
+>        - items:
+>            - const: ti,j721e-usb
+>            - const: ti,am64-usb
+> +      - items:
+> +          - const: ti,am64-usb
+> +          - const: ti,j721e-usb
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-index e32d5afcf4a9..1ffa4da23042 100644
---- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-@@ -614,6 +614,19 @@ per_bridge5: bus@2d800000 {
- 			#size-cells = <1>;
- 			ranges;
- 
-+			avd_sim: syscon@2da50000 {
-+				compatible = "nxp,imx8ulp-avd-sim-reset", "syscon";
-+				reg = <0x2da50000 0x38>;
-+				clocks = <&pcc5 IMX8ULP_CLK_AVD_SIM>;
-+				#reset-cells = <1>;
-+
-+				mux: mux-controller {
-+					compatible = "mmio-mux";
-+					#mux-control-cells = <1>;
-+					mux-reg-masks = <0x8 0x00000200>;
-+				};
-+			};
-+
- 			cgc2: clock-controller@2da60000 {
- 				compatible = "fsl,imx8ulp-cgc2";
- 				reg = <0x2da60000 0x10000>;
--- 
-2.34.1
+Sorry, this does not look right - duplicates above compatibles. Nothing
+in the commit msg explains why this order is needed (in terms of hardware).
+
+Best regards,
+Krzysztof
 
 
