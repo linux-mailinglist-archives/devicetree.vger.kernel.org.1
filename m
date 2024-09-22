@@ -1,165 +1,154 @@
-Return-Path: <devicetree+bounces-104336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B475897E14A
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 13:36:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C80D197E172
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 14:05:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22AD1281227
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 11:36:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 71ECAB20CC3
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 12:05:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7C44194AFE;
-	Sun, 22 Sep 2024 11:35:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B7014C581;
+	Sun, 22 Sep 2024 12:05:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="L2j8Fapo"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="JQ+pSI5c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560AD194ACF;
-	Sun, 22 Sep 2024 11:35:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76EB878C7B;
+	Sun, 22 Sep 2024 12:05:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727004923; cv=none; b=BywsQzTGw38kQRAqfdxxcZ3w8xWs/LOLxDtbvs5Yfe959JR1BuReXWNkr35JZqLoKC9a2w1I0x26439u0xFuvA7CvLJ1IiyBs2dFECJL96DBOPg91h220ZZGqKrtYV9Rl9TWsIrcEI1JaKxXSY0QAxD//5ITRrhO/6bGNbOPPtM=
+	t=1727006747; cv=none; b=oGqffJyQ+3XY16uZX1BGw9uA2EujZzgQX8cGRcFE1wCJerxLgHy6tY0JRBcRpV115NiWmBmSZ3Z4Bz0D5hg79bxNWtaNmqiDGkqS+i9aXz0xbqBxO9WCJ5kX0PSYS+iv7TYAashoqg2P5KiFX4us68D+P4Z2j7mgK/wsw6af3Qg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727004923; c=relaxed/simple;
-	bh=qjZusq4MHYVgDLTKDaDzbLHF6VSGjrNDgK7kkcNxQPI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SFTeXC421z/BzerJDB3CXC1ta8MOagC1E21Xx24pjn/Pg057CpDqqkaJ7aXsnDVmaavaj9/1wLPmeCfSKg+WkOtQWY+Kz6oanJ+SMEKs05FgCTbQPCPI7y1GVcmSDiNnP2TrlE3QKduXwrhBfDx9S0wyqgcLwc3pS4DskX1fMwo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=L2j8Fapo; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48MBLw5E016468;
-	Sun, 22 Sep 2024 11:34:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	gbHf+P3nPq4KDqc/PmMZ2Shhas1j8bGTl4fboXZQ3DM=; b=L2j8FapoUiIFqz7O
-	UvfXue43ig0ZZRRmvfZxrGAmE2vDr1LIf0zHTnveKCfI9eBYgssdM1JnEgtFXyRG
-	/leGSoroYuHgDFTuu2Me9yr1OKH1FM7qOlqEF9UhihjajCntswp1UQNtJyoO6sQQ
-	Gq2TZErqxafGQmkUbyPTFr0roddgC+surPXd/sSAQKnYyd8EvT0TsUrFx7f8zTr+
-	gp6dPcmTsqgkZbYpYxszKqcl13EfU/yGNRonm2IuzT7bVw1eehmTOiF2C8etJIat
-	JY2DPvLI3hBbBtUX3EXYRhJ90KCeg8p1snHMCzlhVw4cYFDVbCPkkMN1BrNG9k59
-	rzxwGA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41snqyae5s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 22 Sep 2024 11:34:58 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48MBYu8o015393
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 22 Sep 2024 11:34:56 GMT
-Received: from hu-mdalam-blr.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sun, 22 Sep 2024 04:34:51 -0700
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-To: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <miquel.raynal@bootlin.com>,
-        <richard@nod.at>, <vigneshr@ti.com>,
-        <manivannan.sadhasivam@linaro.org>, <vkoul@kernel.org>,
-        <nikita.shubin@maquefel.me>, <esben@geanix.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mtd@lists.infradead.org>
-CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>,
-        <quic_mdalam@quicinc.com>
-Subject: [PATCH v10 8/8] arm64: dts: qcom: ipq9574: Disable eMMC node
-Date: Sun, 22 Sep 2024 17:03:51 +0530
-Message-ID: <20240922113351.2390195-9-quic_mdalam@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240922113351.2390195-1-quic_mdalam@quicinc.com>
-References: <20240922113351.2390195-1-quic_mdalam@quicinc.com>
+	s=arc-20240116; t=1727006747; c=relaxed/simple;
+	bh=CZciqyawGbMv0eDvk5Gg6mOPKjS0zavCvoCZ+etSaQI=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=u+OKjKoZ3ZpkUj2i8qdFklRyMnhmptI8NGPeno6IsO9ehcKQLDImWBPZo0zSU6QmLaBlnAz+aNl1li8CC6PBgDGE9L8yJ3hBF0E9gPl7XygFR75x/cWM1oMROL3WCd555EgON4VdZJVxk5W0LH/gLiS27YV6fr6RyknVGo45MZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=JQ+pSI5c; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: u0xp5SDH9v7_bmmEIHlebn2eJc4z7FvU
-X-Proofpoint-ORIG-GUID: u0xp5SDH9v7_bmmEIHlebn2eJc4z7FvU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 adultscore=0 bulkscore=0 phishscore=0 mlxlogscore=878
- spamscore=0 lowpriorityscore=0 clxscore=1015 mlxscore=0 malwarescore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409220087
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1727006734;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=vftmAoVGKOfWv9wJW7In1MzRai88OEJVEYZ604itMTc=;
+	b=JQ+pSI5cJpwl7CtYu0gIqZvBu618MV/ToALbH6bApRGXWN3ylgs0BasAlVvGqELSKO+CJn
+	UyAmGd/c8VuN88zwmyw82OmCURGQWQKA7DTfZbCJKkK6SUwUlm7qDtkKoSYh/YtKyVH/Jc
+	NeCQDAigxG+4ZEoTP3O2piwYgvO63B3PS5EFFoPpsoa3Ih47ZagI6Z+9rKdNpio9SsS7dY
+	hl0EwPbcUL1neg2aV9cOZ2b6U5JfJz/Xtlg9Yqb1mqpSq1IpdtbiZlc1JGclD7Eo8ruSb2
+	ozycleN6mgy7TrIIHHZ2awmVNH+jb0QC7X+xO6UeUD/v+UMsHBr8j1hhzszxtA==
+Date: Sun, 22 Sep 2024 14:05:33 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Florian Klink <flokli@flokli.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>, =?UTF-8?Q?Tam?=
+ =?UTF-8?Q?=C3=A1s_Sz=C5=B1cs?= <tszucs@protonmail.ch>, Ondrej Jirman
+ <megi@xff.cz>, Muhammed Efe Cetin <efectn@protonmail.com>, FUKAUMI Naoki
+ <naoki@radxa.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: enable automatic fan control on
+ Orange Pi 5+
+In-Reply-To: <20240922112113.251431-1-flokli@flokli.de>
+References: <20240922112113.251431-1-flokli@flokli.de>
+Message-ID: <2441efb1ebbfe1f54507a1cc73c52436@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Disable eMMC node for rdp433, since rdp433
-default boot mode is norplusnand
+Hello Florian,
 
-Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
----
+Please, see a comment below.
 
-Change in [v10]
+On 2024-09-22 13:21, Florian Klink wrote:
+> This links the PWM fan on Orange Pi 5+ as an active cooling device
+> managed automatically by the thermal subsystem, with a target SoC
+> temperature of 65C and a minimum-spin interval from 55C to 65C to
+> ensure airflow when the system gets warm.
+> 
+> This is pretty much the same as '4a152231b050 ("arm64: dts: rockchip:
+> enable automatic fan control on Rock 5B")', except for the Orange Pi
+> 5+ board.
+> 
+> Signed-off-by: Florian Klink <flokli@flokli.de>
+> ---
+>  .../dts/rockchip/rk3588-orangepi-5-plus.dts   | 30 +++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> index e74871491ef5..d91438752006 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> @@ -351,6 +351,36 @@ &i2s2m0_sdi
+>  	status = "okay";
+>  };
+> 
+> +&package_thermal {
+> +	polling-delay = <1000>;
+> +
+> +	trips {
+> +		package_fan0: package-fan0 {
+> +			temperature = <55000>;
+> +			hysteresis = <2000>;
+> +			type = "active";
+> +		};
+> +
+> +		package_fan1: package-fan1 {
+> +			temperature = <65000>;
+> +			hysteresis = <2000>;
+> +			type = "active";
+> +		};
+> +	};
+> +
+> +	cooling-maps {
+> +		map0 {
+> +			trip = <&package_fan0>;
+> +			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
+> +		};
+> +
+> +		map1 {
+> +			trip = <&package_fan1>;
+> +			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
+> +		};
 
-* No change
+Thanks for renumbering these cooling maps.  It's just that you
+missed to label this patch as the v2, i.e. you should have used
+"[PATCH v2]" in the patch subject.
 
-Change in [v9]
+Please, resend this patch with the v2 label, and please provide
+a change log in the patch notes, i.e. below the "---" line.
 
-* No change
+Here's an example of an earlier v2 patch submission [1] that you
+may find helpful.
 
-Change in [v8]
+In the v2 submission, please feel free to also include my
 
-* No change
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
 
-Change in [v7]
+[1] 
+https://lore.kernel.org/linux-rockchip/bdb60f1f793166cd65f58ab7aea025347076019c.1719679068.git.dsimic@manjaro.org/T/#u
 
-* No Change
-
-Change in [v6]
-
-* Updated commit message
-
-Change in [v5]
-
-* No Change
-
-Change in [v4]
-
-* No change
-
-Change in [v3]
-
-* Removed co-developed by 
-
-Change in [v2]
-
-* Posted as initial eMMC disable patch
-
-Change in [v1]
-
-* This patch was not included in v1
-
- arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-index 1bb8d96c9a82..e33e7fafd695 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-@@ -24,7 +24,7 @@ &sdhc_1 {
- 	mmc-hs400-enhanced-strobe;
- 	max-frequency = <384000000>;
- 	bus-width = <8>;
--	status = "okay";
-+	status = "disabled";
- };
- 
- &tlmm {
--- 
-2.34.1
-
+> +	};
+> +};
+> +
+>  /* phy1 - M.KEY socket */
+>  &pcie2x1l0 {
+>  	reset-gpios = <&gpio4 RK_PA5 GPIO_ACTIVE_HIGH>;
 
