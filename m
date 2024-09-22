@@ -1,143 +1,273 @@
-Return-Path: <devicetree+bounces-104328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1981097E11C
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 13:24:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A20997E130
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 13:35:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A3791C206A6
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 11:24:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2A761F21368
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 11:35:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B95B1741C8;
-	Sun, 22 Sep 2024 11:24:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9EF819340C;
+	Sun, 22 Sep 2024 11:34:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=flokli.de header.i=@flokli.de header.b="OrivOjv+"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="C7jRQtN8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.flokli.de (mail.flokli.de [116.203.226.116])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F141361FCF;
-	Sun, 22 Sep 2024 11:24:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.226.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28D7613C9C7;
+	Sun, 22 Sep 2024 11:34:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727004275; cv=none; b=HXiYc/Tx/y5wKtNChifWc+PL6CaYvljb6tw7Zuc5uw7uQQV4bm6zTR0YuWzUkzLByX6PehIC7iZ8H7+oZEJ/ZcCSCQh+SBtbbOI3FhLVpKclhi7NfwzoryFXIQyvG+mpAf+AmWFdSMXljzNrYXHl/e0Jkb5BZpN7KmSs/hH+FAA=
+	t=1727004897; cv=none; b=KLGltoumx5uBvDE56MgWM+AQoT5s3L4FSILxUM12Sd7zz2iZgxB0bPdoNjKraAR8NUhqN2Vtz3AwXMRsoqabHLwf4lsJmugRrxdexUcnDhracVZApCdO7l8DqUPgb7zGDhVn3C5wiY/A7GxJQ4vfjiF2/eL4ILNNrSss5rZ4D4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727004275; c=relaxed/simple;
-	bh=PdsQMQGmT7S3q7vRRbZgj/Q1BEDtZ7Zx9OcJloNKkBM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MpA+9eoJidh0WOemWww7zQkqXJVY25feBjFHq7iw8+jCKQ9UnriildIUIl+024olYAnS+Yad/2wHdnE0k1bY5sX26dlJMP44RuFEPZcF5fAqfY43d0xMPd2kBjlcref8WunohkGIl5xsdL8HqVY9NXwEZhrQHvt3NHsbRIJVlZ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=flokli.de; spf=pass smtp.mailfrom=flokli.de; dkim=pass (1024-bit key) header.d=flokli.de header.i=@flokli.de header.b=OrivOjv+; arc=none smtp.client-ip=116.203.226.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=flokli.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flokli.de
-Date: Sun, 22 Sep 2024 14:24:27 +0300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flokli.de; s=mail;
-	t=1727004269; bh=aE57zikAciRYqk7E2pLxdAkKeLP7zXYKYE2wvhY4tbY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=OrivOjv+IdY/elb73qwBqyr+8eP3hg15N81trSdorH0QcVIqUopN/c3OPsWOqqp1C
-	 zfAHUX4bZS5qgyb/+DcpD4C4fniJcnEK2dOCbZ65LnnsJgP8jxbJ4mwZcw5oZBa8Lk
-	 llJb8J6kWulBHU1I4BUd8wwWB2kR3xNHP4+Zp98Y=
-From: Florian Klink <flokli@flokli.de>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
-	Kever Yang <kever.yang@rock-chips.com>, =?utf-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@protonmail.ch>, 
-	FUKAUMI Naoki <naoki@radxa.com>, Muhammed Efe Cetin <efectn@protonmail.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: enable automatic fan control on
- Orange Pi 5+
-Message-ID: <2u67umujpui4w6b2aut6ugsuknigky2jahcyhslkzi3f2u4onh@epwsqmjnvmvp>
-References: <20240921183810.225322-1-flokli@flokli.de>
- <d90eae7de77a77f023d995c4cc5d6c42@manjaro.org>
+	s=arc-20240116; t=1727004897; c=relaxed/simple;
+	bh=5bo21WyyT2HE5gHnLKcOOgFtLFeXcYv5FTTzNgXDKSI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QKW5U/A0JhNBTfvjth4Lh4CJtqgO7/cFnGy2MzPC3QP0uXsoMASOuhJoKKBrxN0FM54ngaSqcOqbKMENR4l3jtquYt3k+GtcWKSTcXW8Snmsq5JC99ZLfHETq51vNI6CHGpG6WgjBX4eZKIXFEz4MZHEdueA7iKKUw55TtsB+Hs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=C7jRQtN8; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48MBI3GZ023431;
+	Sun, 22 Sep 2024 11:34:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=MfyJjVv98j65NSWG3tHxq2
+	CYLllgcSIRE8e0PoAqBZg=; b=C7jRQtN8JexNfeyK5oKfgFZaolW0s5NiSjHvov
+	iEGhejM5GGv18Wj4IzBDd5NiyErzGmDbO9Rp95DED+2SHWbWeCkd8GFkizCIkITr
+	1l6dvG3la6Fh3yWYZeQpfsugmSoSKEALlZvNHNCCNPSeMmO/qpjhXk5fRngB82JC
+	+1C6ZZ+lEmvLIK8E6P50yMa0EFjk3+MmyaholHZPrx8/Kis4vVdCUPmyKv0pBv9G
+	3rEUdW5wbTZ5sekRdaT+WJm+j20uwXjiDp6kmXftaDL1+bvOADVC9AnyY1sjNIAl
+	R42UlY/lNtPMr2P0SbOy8SzPxSqhr3Aife1LiI2v9e4tm9aA==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41sn5bje09-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 22 Sep 2024 11:34:12 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48MBYBc7014598
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 22 Sep 2024 11:34:11 GMT
+Received: from hu-mdalam-blr.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Sun, 22 Sep 2024 04:34:05 -0700
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+To: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <miquel.raynal@bootlin.com>,
+        <richard@nod.at>, <vigneshr@ti.com>,
+        <manivannan.sadhasivam@linaro.org>, <vkoul@kernel.org>,
+        <nikita.shubin@maquefel.me>, <esben@geanix.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mtd@lists.infradead.org>
+CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>,
+        <quic_mdalam@quicinc.com>
+Subject: [PATCH v10 0/8] Add QPIC SPI NAND driver
+Date: Sun, 22 Sep 2024 17:03:43 +0530
+Message-ID: <20240922113351.2390195-1-quic_mdalam@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <d90eae7de77a77f023d995c4cc5d6c42@manjaro.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: pQIikAQ-j77z-H7W3v-lb5OFd_x7rMeI
+X-Proofpoint-GUID: pQIikAQ-j77z-H7W3v-lb5OFd_x7rMeI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 adultscore=0 impostorscore=0 malwarescore=0 mlxlogscore=812
+ spamscore=0 mlxscore=0 priorityscore=1501 bulkscore=0 phishscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409220087
 
-Thanks, addressed that in the v2.
+v10:
+ * Fixed compilation warnings reported by kernel test robot
+ * Added depends on CONFIG_MTD for qpic-spi nand driver
+ * Removed extra bracket from statement if (i == (num_cw - 1))
+   in qcom_spi_program_raw() api.
 
-On Sat, Sep 21, 2024 at 11:42:43PM GMT, Dragan Simic wrote:
->Hello Florian,
->
->Thanks for the patch.  Please, see a comment below.
->
->On 2024-09-21 20:38, Florian Klink wrote:
->>This links the PWM fan on Orange Pi 5+ as an active cooling device
->>managed automatically by the thermal subsystem, with a target SoC
->>temperature of 65C and a minimum-spin interval from 55C to 65C to
->>ensure airflow when the system gets warm.
->>
->>This is pretty much the same as '4a152231b050 ("arm64: dts: rockchip:
->>enable automatic fan control on Rock 5B")', except for the Orange Pi
->>5+ board.
->>
->>Signed-off-by: Florian Klink <flokli@flokli.de>
->>---
->> .../dts/rockchip/rk3588-orangepi-5-plus.dts   | 30 +++++++++++++++++++
->> 1 file changed, 30 insertions(+)
->>
->>diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
->>b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
->>index e74871491ef5..8569e862b6ee 100644
->>--- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
->>+++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
->>@@ -351,6 +351,36 @@ &i2s2m0_sdi
->> 	status = "okay";
->> };
->>
->>+&package_thermal {
->>+	polling-delay = <1000>;
->>+
->>+	trips {
->>+		package_fan0: package-fan0 {
->>+			temperature = <55000>;
->>+			hysteresis = <2000>;
->>+			type = "active";
->>+		};
->>+
->>+		package_fan1: package-fan1 {
->>+			temperature = <65000>;
->>+			hysteresis = <2000>;
->>+			type = "active";
->>+		};
->>+	};
->>+
->>+	cooling-maps {
->>+		map1 {
->>+			trip = <&package_fan0>;
->>+			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
->>+		};
->>+
->>+		map2 {
->>+			trip = <&package_fan1>;
->>+			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
->>+		};
->
->These two cooling maps should be named map0 and map1 instead, i.e.
->their numbering shoud start from zero, because there are no package
->cooling maps in the parent dtsi file(s).
->
->Having them named map1 and map2 in rk3588-rock-5b.dts was a small
->mistake that slipped by somehow, and I've already submitted a small
->patch [1] that fixes that mistake.
->
->[1] https://lore.kernel.org/linux-rockchip/335ecd5841ab55f333e17bb391d0e1264fac257b.1726954592.git.dsimic@manjaro.org/T/#u
->
->>+	};
->>+};
->>+
->> /* phy1 - M.KEY socket */
->> &pcie2x1l0 {
->> 	reset-gpios = <&gpio4 RK_PA5 GPIO_ACTIVE_HIGH>;
+v9:
+ * Fixed all the compilation warning reported by
+   kernel test robot
+  * Changed type of cmd1, vld to u32 from __le32 in qcom_nand_controller
+   structure
+ * Changed type of cfg0, cfg1, cfg0_raw, cfg1_raw, clrflashstatus,
+   ecc_buf_cfg, ecc_bch_cfg, clrreadstatus to u32 in qcom_nand_host
+   structure
+ * In nandc_set_read_loc_first() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * In nandc_set_read_loc_last() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * Changed data type of cw_offset, read_size, is_last_read_loc to
+   u32 in nandc_set_read_loc() api to fix compilation warning reported
+   by kernel test bot
+ * In set_address() api added cpu_to_le32() macro to fix compilation
+   warning reported by kernel test bot
+ * In update_rw_regs() api added cpu_to_le32() macro to fix compilation
+   warning reported by kernel test bot
+ * In qcom_op_cmd_mapping() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * In qcom_read_status_exec() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * In qcom_read_id_type_exec() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * In qcom_misc_cmd_type_exec() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot
+ * In qcom_param_page_type_exec() api added cpu_to_le32() macro to fix
+   compilation warning reported by kernel test bot   
+ * In update_rw_regs() api added cpu_to_le32() macro to fix compilation
+   issue reported by kernel test bot
+ * In qcom_param_page_type_exec() api added cpu_to_le32() macro to fix
+   compilation issue reported by kernel test bot
+ * Changed data type of addr1, addr2, cmd, to __le32 in qpic_spi_nand
+   structure
+ * In qcom_spi_set_read_loc_first() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_set_read_loc_last() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_init() api added cpu_to_le32() macro to fix compilation
+   warning
+ * In qcom_spi_ecc_init_ctx_pipelined() api removed unused variables
+   reqs, user, step_size, strength and added cpu_to_le32() macro as well
+   to fix compilation warning
+ * In qcom_spi_read_last_cw() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_check_error() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_read_page_ecc() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_read_page_oob() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_program_raw() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_program_ecc() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_program_oob() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_send_cmdaddr() api added cpu_to_le32() macro to fix
+   compilation warning
+ * In qcom_spi_io_op() api added cpu_to_le32() macro to fix compilation
+    warning
+v8:
+ * Fixed compilation warning reported by kernel test robot
+ * Added "chip" description in nandc_set_read_loc_first()
+ * Added "chip" description" in nandc_set_read_loc_last()
+ * Changed data type of read_location0, read_location1,
+   read_location2, read_location3, addr0, addr1, cmd, cfg0,
+   cfg1, ecc_bch_cfg, ecc_buf_cfg, clrflashstatus, clrreadstatus,
+   orig_cmd1, orig_vld to __le32 to fix compilation warning.
+ * Included bitfield.h header file in spi-qpic-snand.c to
+   fix compilation warning
+ * Removed unused variable "steps" variable from 
+   qcom_spi_ecc_init_ctx_pipelined()
+
+v7:
+ * Added read_oob() and write_oob() api
+ * Added FIELD_PREP() in spi init
+ * Made CONFIG_SPI_QPIC_SNAND and CONFIG_MTD_NAND_QCOM
+   as bool type
+ * Removed offset 0 in oob_ecc() layout
+ * Handled multiple error condition
+
+v6:
+ * Added FIELD_PREP() and GENMASK() macro
+ * Added qpic_spi_nand{..} structure for
+   spi nand realted variables
+ * Made qpic_common.c slectable based on
+   either CONFIG_MTD_NAND_QCOM or CONFIG_SPI_QPIC_SNAND
+ * Removed rawnand.h from qpic-common.h 
+ * Removed partitions.h and rawnand.h form spi-qpic-snand.c
+ * Added qcom_nand_unalloc() in remove()
+
+v5:
+ * Fixes nandbiterr issue
+ * Added raw_read() and raw_write() API
+ * Added qcom_ prefix to all the common API
+ * Removed register indirection
+ * Following tests for SPI-NAND devices passed
+
+   - mtd_oobtest
+   - mtd_pagetest
+   - mtd_readtest
+   - mtd_speedtest
+   - mtd_stresstest
+   - mtd_subpagetest
+   - mtd_nandbiterrs
+   - nandtest
+   - nanddump
+   - nandwrite
+   - nandbiterr -i
+   - mtd erase
+   - mtd write
+   - dd
+   - hexddump
+
+v4:
+ * In this patch series fixes kernel doc for all the cmmon api
+ * Also fixes dm-binding commit message
+ * Fix qpic_common.c compilation based on config
+
+v3:
+ * In this patch series fixes multiple things like
+   added clock-name, added _alloc_controller api instead
+   of alloc_master, made common apis more generic etc.
+
+ * Addressed all the comment from v2 patch series
+
+v2:
+ * https://lore.kernel.org/linux-arm-msm/20240215134856.1313239-1-quic_mdalam@quicinc.com/
+ * In this series of patchs we have added basic working QPIC SPI NAND
+   driver with READ, WRITE, ERASE etc functionality
+
+ * Addressed all the comments given in RFC [v1] patch
+
+v1:
+ * https://lore.kernel.org/linux-arm-msm/20231031120307.1600689-1-quic_mdalam@quicinc.com/
+ * Initial set of patches for handling QPIC SPI NAND.
+
+
+Md Sadre Alam (8):
+  spi: dt-bindings: Introduce qcom,spi-qpic-snand
+  mtd: rawnand: qcom: cleanup qcom_nandc driver
+  mtd: rawnand: qcom: Add qcom prefix to common api
+  mtd: nand: Add qpic_common API file
+  mtd: rawnand: qcom: use FIELD_PREP and GENMASK
+  spi: spi-qpic: add driver for QCOM SPI NAND flash Interface
+  arm64: dts: qcom: ipq9574: Add SPI nand support
+  arm64: dts: qcom: ipq9574: Disable eMMC node
+
+ .../bindings/spi/qcom,spi-qpic-snand.yaml     |   83 +
+ .../boot/dts/qcom/ipq9574-rdp-common.dtsi     |   43 +
+ arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts   |    2 +-
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         |   27 +
+ drivers/mtd/nand/Makefile                     |    7 +
+ drivers/mtd/nand/qpic_common.c                |  738 +++++++
+ drivers/mtd/nand/raw/Kconfig                  |    2 +-
+ drivers/mtd/nand/raw/qcom_nandc.c             | 1763 +++--------------
+ drivers/spi/Kconfig                           |    9 +
+ drivers/spi/Makefile                          |    1 +
+ drivers/spi/spi-qpic-snand.c                  | 1634 +++++++++++++++
+ include/linux/mtd/nand-qpic-common.h          |  482 +++++
+ 12 files changed, 3349 insertions(+), 1442 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
+ create mode 100644 drivers/mtd/nand/qpic_common.c
+ create mode 100644 drivers/spi/spi-qpic-snand.c
+ create mode 100644 include/linux/mtd/nand-qpic-common.h
 
 -- 
-Florian Klink
+2.34.1
+
 
