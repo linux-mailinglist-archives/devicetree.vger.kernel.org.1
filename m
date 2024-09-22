@@ -1,133 +1,157 @@
-Return-Path: <devicetree+bounces-104340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC53A97E21B
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 16:59:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13B7497E27B
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 18:34:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAE421C20C59
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 14:59:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C15782812CB
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 16:34:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87216BE6F;
-	Sun, 22 Sep 2024 14:59:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C003B2207A;
+	Sun, 22 Sep 2024 16:34:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=flokli.de header.i=@flokli.de header.b="GUA8Ibtq"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="jm9nwVxc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.flokli.de (mail.flokli.de [116.203.226.116])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BC85BA27;
-	Sun, 22 Sep 2024 14:59:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.226.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC3502581;
+	Sun, 22 Sep 2024 16:34:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727017171; cv=none; b=nfJ+o7fArdBRqZEVqyMR8TF9mueKZ2AmvXStUE7KvJ/6I1a1+eCH6qO4qx8+8J+px0E2c/xsW4Fyl/Zcv2iQSfOa/JpWjgkFTPPsxtt1T3iehzn5Da+42zg3jF6fIeKb6t51MFiu/e06AHeta/LuhiizVeih03TMTFM48FBujN0=
+	t=1727022861; cv=none; b=oKX8gcT5F4l4gZz4NARRQ9gFVMDjuZJ4Duo9dvur6sXRPizjqBiAJFZNAiDRHmH7QKV6gwvMYW6bnvtQtbejg0cCpfR08oJ+ISMslhQdAkgYKWL3HfsnDNP8ypgtj0h9ygmbnVTWudNZ6qcdnBXspqxhMJqkfqW2KIVTusiXhHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727017171; c=relaxed/simple;
-	bh=AgOP0Ok4FSxiKdpNFexjZ88fW1kw6PEgKOe6RQbWgMU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=j6CDAm7kffFqjVD8wU2e62hq8Bw3RFCEXwvC1wtHRO7HY8T7xlBFnC9Zimo74ATLe/Iw+FYQNmfe1yjplwhakBkx6PeOSsi7enA8j1oRUnfCXqot1hcNBqiQeZ0WkFJz1fSCjRqYIMp85Y83mYkoEc7vm3HR9bkqr6UT2sEbAqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=flokli.de; spf=pass smtp.mailfrom=flokli.de; dkim=pass (1024-bit key) header.d=flokli.de header.i=@flokli.de header.b=GUA8Ibtq; arc=none smtp.client-ip=116.203.226.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=flokli.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flokli.de
-From: Florian Klink <flokli@flokli.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flokli.de; s=mail;
-	t=1727017164; bh=wzNkufJNs8JPj15IvW3yIEGMtLG/2YOpr4iUk3QGOrA=;
-	h=From:To:Cc:Subject:Date;
-	b=GUA8IbtqGOgl4JXHafk152p32hTzOHE4TkzL7n35QqLyoHdhIQRC7/TMiD/+p0gQZ
-	 Oi9drzI9lZz2CFkck6JCxJdfgvpLhtFSGDi2S9iFMiuiyXR8bwP87sEk0v5VjFWN4k
-	 PPFFGXKKECoBGyECWReZiWaW0roT/RQo6gbgRous=
-To: 
-Cc: Florian Klink <flokli@flokli.de>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1727022861; c=relaxed/simple;
+	bh=gFlVSCJab296RK5+Ai1YxYQl2rv5hxg3BElMeprdRII=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nl7GyWkI58iZSBwCNs5P8kT0I3tYIQKouCyI/4eih/teDDZHV+SPs+RKOqM0maKBQld2nswJFavS3W3pmrnYqHHwvxT6w3h++ov1E/WgizF3uljXG0OyH5c14Y5H9jG8su2BeMppu9kM2rPRYRXm0CGdivblKe6LUQnNfEtvTug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=jm9nwVxc; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=xGmipcPUvSFvCq++6VT9S82wVCnPIsh0kZdD2tTzbJM=; b=jm9nwVxcMCmtyeT6Oyx1bwlk5b
+	QIt2JFKDn8FmrZFoi10orj33aeO2dLGY8ksjWgFZyWxgHm2j5wid8ZzC7QJ6anDx2t82kwpN088uc
+	UjC91LJRO9zSM2MqYEf+s8dMNGJvEaYn9PgvYMghtzhOHXHeEou9YBad//2eQ5BdVrek=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1ssPX3-0084MO-6x; Sun, 22 Sep 2024 18:33:57 +0200
+Date: Sun, 22 Sep 2024 18:33:57 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Hal Feng <hal.feng@starfivetech.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Ondrej Jirman <megi@xff.cz>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	William Qiu <william.qiu@starfivetech.com>,
+	devicetree@vger.kernel.org, linux-can@vger.kernel.org,
+	netdev@vger.kernel.org, linux-riscv@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: rockchip: enable automatic fan control on Orange Pi 5+
-Date: Sun, 22 Sep 2024 17:55:29 +0300
-Message-ID: <20240922145538.256235-2-flokli@flokli.de>
+Subject: Re: [PATCH v2 3/4] can: Add driver for CAST CAN Bus Controller
+Message-ID: <cf17f15b-cbd7-4692-b3b2-065e549cb21e@lunn.ch>
+References: <20240922145151.130999-1-hal.feng@starfivetech.com>
+ <20240922145151.130999-4-hal.feng@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240922145151.130999-4-hal.feng@starfivetech.com>
 
-This links the PWM fan on Orange Pi 5+ as an active cooling device
-managed automatically by the thermal subsystem, with a target SoC
-temperature of 65C and a minimum-spin interval from 55C to 65C to
-ensure airflow when the system gets warm.
+> +static inline u32 ccan_read_reg(const struct ccan_priv *priv, u8 reg)
+> +{
+> +	return ioread32(priv->reg_base + reg);
+> +}
+> +
+> +static inline void ccan_write_reg(const struct ccan_priv *priv, u8 reg, u32 value)
+> +{
+> +	iowrite32(value, priv->reg_base + reg);
+> +}
 
-This is pretty much the same as '4a152231b050 ("arm64: dts: rockchip:
-enable automatic fan control on Rock 5B")', except for the Orange Pi
-5+ board.
+No inline functions in .c files please. Let the compiler decide.
 
-Signed-off-by: Florian Klink <flokli@flokli.de>
-Reviewed-by: Dragan Simic <dsimic@manjaro.org>
----
+> +static inline u8 ccan_read_reg_8bit(const struct ccan_priv *priv,
+> +				    enum ccan_reg reg)
+> +{
+> +	u8 reg_down;
+> +	union val {
+> +		u8 val_8[4];
+> +		u32 val_32;
+> +	} val;
+> +
+> +	reg_down = ALIGN_DOWN(reg, 4);
+> +	val.val_32 = ccan_read_reg(priv, reg_down);
+> +	return val.val_8[reg - reg_down];
 
-Notes:
-   Changes in v2:
-    - Updated map{1,2} to map{0,1} for the same reasons as [1]
+There is an ioread8(). Is it invalid to do a byte read for this
+hardware? If so, it is probably worth a comment.
 
-   Link to v1: https://lore.kernel.org/linux-rockchip/20240921183810.225322-1-flokli@flokli.de/T/#u
+> +static int ccan_bittime_configuration(struct net_device *ndev)
+> +{
+> +	struct ccan_priv *priv = netdev_priv(ndev);
+> +	struct can_bittiming *bt = &priv->can.bittiming;
+> +	struct can_bittiming *dbt = &priv->can.data_bittiming;
+> +	u32 bittiming, data_bittiming;
+> +	u8 reset_test;
+> +
+> +	reset_test = ccan_read_reg_8bit(priv, CCAN_CFG_STAT);
+> +
+> +	if (!(reset_test & CCAN_RST_MASK)) {
+> +		netdev_alert(ndev, "Not in reset mode, cannot set bit timing\n");
+> +		return -EPERM;
+> +	}
 
-[1] https://lore.kernel.org/linux-rockchip/335ecd5841ab55f333e17bb391d0e1264fac257b.1726954592.git.dsimic@manjaro.org/T/#u
- .../dts/rockchip/rk3588-orangepi-5-plus.dts   | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-index e74871491ef5..d91438752006 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-@@ -351,6 +351,36 @@ &i2s2m0_sdi
- 	status = "okay";
- };
- 
-+&package_thermal {
-+	polling-delay = <1000>;
-+
-+	trips {
-+		package_fan0: package-fan0 {
-+			temperature = <55000>;
-+			hysteresis = <2000>;
-+			type = "active";
-+		};
-+
-+		package_fan1: package-fan1 {
-+			temperature = <65000>;
-+			hysteresis = <2000>;
-+			type = "active";
-+		};
-+	};
-+
-+	cooling-maps {
-+		map0 {
-+			trip = <&package_fan0>;
-+			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
-+		};
-+
-+		map1 {
-+			trip = <&package_fan1>;
-+			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
-+		};
-+	};
-+};
-+
- /* phy1 - M.KEY socket */
- &pcie2x1l0 {
- 	reset-gpios = <&gpio4 RK_PA5 GPIO_ACTIVE_HIGH>;
--- 
-2.46.0
+You don't see nedev_alert() used very often. If this is fatal then
+netdev_err().
 
+Also, EPERM? man 3 errno say:
+
+       EPERM           Operation not permitted (POSIX.1-2001).
+
+Why is this a permission issue?
+
+> +static void ccan_tx_interrupt(struct net_device *ndev, u8 isr)
+> +{
+> +	struct ccan_priv *priv = netdev_priv(ndev);
+> +
+> +	/* wait till transmission of the PTB or STB finished */
+> +	while (isr & (CCAN_TPIF_MASK | CCAN_TSIF_MASK)) {
+> +		if (isr & CCAN_TPIF_MASK)
+> +			ccan_reg_set_bits(priv, CCAN_RTIF, CCAN_TPIF_MASK);
+> +
+> +		if (isr & CCAN_TSIF_MASK)
+> +			ccan_reg_set_bits(priv, CCAN_RTIF, CCAN_TSIF_MASK);
+> +
+> +		isr = ccan_read_reg_8bit(priv, CCAN_RTIF);
+> +	}
+
+Potentially endless loops like this are a bad idea. If the firmware
+crashes, you are never getting out of here. Please use one of the
+macros from iopoll.h
+
+> +static irqreturn_t ccan_interrupt(int irq, void *dev_id)
+> +{
+> +	struct net_device *ndev = (struct net_device *)dev_id;
+
+dev_id is a void *, so you don't need the cast.
+
+	Andrew
 
