@@ -1,98 +1,122 @@
-Return-Path: <devicetree+bounces-104388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A63E097E3AB
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 23:12:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0B6F97E98F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 12:10:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A3D01F2101A
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 21:12:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AD8A1F210CC
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:10:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 934F87580A;
-	Sun, 22 Sep 2024 21:12:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uIKkx/Q2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ABFD19644B;
+	Mon, 23 Sep 2024 10:08:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EBD16CDCC;
-	Sun, 22 Sep 2024 21:12:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6799195F17
+	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 10:08:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727039558; cv=none; b=SSY0bHEYIkJNO6yBWCnKkelsQwBeQA8qh1T3RNBfy/sHZ99/QpBK4UNnba2Z/EX91xx3Zm4kObr2KLlmaEK34kDdCSEYej51AbRUivJAdMtJeWIl7GEoSYzuTQcAaOM37gXl8wN+zUcatAK7K17g9D7x0IKXb/wXdNYJFzZ9Cxc=
+	t=1727086129; cv=none; b=ek6Bg8SEMW8CfTUqpqAWld4nWWyMQj3xutPBvRm0ur0kvCrjxY4LaCogwXLRtliSsVhwu/Im4GtZiXLE7YP1zbD07yy79rgmCJO6mQsre9t7qnW08jRtOyaHtPwvJQIzJEBv7nDEZQwigrM6FvmwTw8Qutzui0C3OY1y0921yWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727039558; c=relaxed/simple;
-	bh=Af3MCPphLi9T5OufNL1FwKlpj2eIIwiy0ezVtjS6q0Y=;
+	s=arc-20240116; t=1727086129; c=relaxed/simple;
+	bh=wAxj4X47rwpfE8DME5JjC/KFI3GHmOUUJeEabElbU5c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jXBh/M6QKPR4chLtknjW0y28WaQhW4zCNqrG2FiE/k/CZID4Axe9NlOUJfZA3Zh2Esd5tCpc4OfkD78+jXhZ7myc3P9DMsE+MMWJGpIbZc4URKwSIjC+HU4fB2iK9SpvDDXyJl6foKB0czUkUZOGkdf2qgeFokkC/Qk/27w7MGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uIKkx/Q2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECFCBC4CEC3;
-	Sun, 22 Sep 2024 21:12:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727039557;
-	bh=Af3MCPphLi9T5OufNL1FwKlpj2eIIwiy0ezVtjS6q0Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uIKkx/Q2X8a3bWCGtrYl3Lq43WA2mpeDsWNQf8nydDP8iceg8Le5fTE5Y1BfnH5RV
-	 +EULVkJitD5+//TnuzYSNVipjClDUrXmM7aIzDyt8ZiklhD2inl5sZZHEGbntNNwy8
-	 P8S2tzSp1slYDtmKHRLe3RWIeAlSOnSZa3b7AOa+Uf5tV49TXCHnSx2KHfT6O4+GWk
-	 ZlQz5kT/D5wfN5eHC1Qdb/TwKoyazbhX+6XCdeUsGycKyWLO7ZNtakQ4KgG+t0vOly
-	 XhoHzNM35drFeiYLFKRMWMabPO8LVnRhkmQx7YYyUxqyNJfpC3Jj1b3XWk2+FOmXNY
-	 4bXzxuLfVcoyA==
-Date: Sun, 22 Sep 2024 22:12:32 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: hwmon: pmbus: add ti tps25990 support
-Message-ID: <20240922-delouse-yo-yo-c97d0774ec97@spud>
-References: <20240920-tps25990-v2-0-f3e39bce5173@baylibre.com>
- <20240920-tps25990-v2-1-f3e39bce5173@baylibre.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DlAQvqSk2JrMFXwqJNBsVCuqhvVOLajkt0QgNPrarHGJtZx8XTy+9mFosSBQ19SuEQlS+EQt+LA4rtFyHrIrz4vGeTGgTHrK/Pz2A8oEByw9Nuo//QEvSov2TFlaWg6TFVsVCsfcQN5azKDzmKXvnwvY5FbocZ7xYAMxerDIAkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1ssfzS-00006g-IR; Mon, 23 Sep 2024 12:08:22 +0200
+Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1ssfzN-000vje-Rt; Mon, 23 Sep 2024 12:08:17 +0200
+Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 6D6CE340BDC;
+	Sun, 22 Sep 2024 21:13:45 +0000 (UTC)
+Date: Sun, 22 Sep 2024 23:13:44 +0200
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Hal Feng <hal.feng@starfivetech.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
+	William Qiu <william.qiu@starfivetech.com>, devicetree@vger.kernel.org, linux-can@vger.kernel.org, 
+	netdev@vger.kernel.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] can: Add driver for CAST CAN Bus Controller
+Message-ID: <20240922-inquisitive-stingray-of-philosophy-b725d3-mkl@pengutronix.de>
+References: <20240922145151.130999-1-hal.feng@starfivetech.com>
+ <20240922145151.130999-4-hal.feng@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="nFeNr7/F8ILTzGvI"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ynvekyrzzuwpg3ly"
 Content-Disposition: inline
-In-Reply-To: <20240920-tps25990-v2-1-f3e39bce5173@baylibre.com>
+In-Reply-To: <20240922145151.130999-4-hal.feng@starfivetech.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
---nFeNr7/F8ILTzGvI
-Content-Type: text/plain; charset=us-ascii
+--ynvekyrzzuwpg3ly
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 20, 2024 at 06:56:12PM +0200, Jerome Brunet wrote:
-> Add DT binding for the Texas Instruments TPS25990 eFuse
+On 22.09.2024 22:51:49, Hal Feng wrote:
+> From: William Qiu <william.qiu@starfivetech.com>
 >=20
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Add driver for CAST CAN Bus Controller used on
+> StarFive JH7110 SoC.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Have you read me review of the v1 of this series?
 
---nFeNr7/F8ILTzGvI
+https://lore.kernel.org/all/20240129-zone-defame-c5580e596f72-mkl@pengutron=
+ix.de/
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--ynvekyrzzuwpg3ly
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvCIQAAKCRB4tDGHoIJi
-0qMjAP9j+2kLi3Snt3QjbxO8A0L1QDvNTdvEOfxIKreHqgvmRAEArTjvJkF83O3g
-bf/jVwkrdw457HrdVpnb0Kdf8ZLLWwE=
-=CS5W
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmbwiIUACgkQKDiiPnot
+vG+1cAf+JRa6qiL+McRGaVYbwDK+5KafGW3568LC7Fz2J4e36IgRjTNWrK3zGdwR
+lUQekR2f2bapcH5T72+S0KDjjyI0v28jzRcWZR/A1/FsKY+xFTeNzOG+6ODx2VRV
+YMxZ58ZM2telOVS0SUtaGiLpXBrayzpz5nCOUxyymt1SdjjkdaVifDayKJI5vwvh
+IT4lXhvNRgPy3Guw9C9YcSk0OyIZ/TFOosTB3Db3j4M9SxdL8HgIc2H5NkV1+4Tz
+UmEmWzNKgZS0XDRPtpMe6DqR+zkm4IVm+9NNk6+0XRQ8aEZr77W7LQq946qSd/1O
+EgLfQi6D50XAsIef/NFxmgOk9EUKAQ==
+=udGo
 -----END PGP SIGNATURE-----
 
---nFeNr7/F8ILTzGvI--
+--ynvekyrzzuwpg3ly--
 
