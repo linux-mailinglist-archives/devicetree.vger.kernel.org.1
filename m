@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-104384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5356A97E3A0
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 23:05:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF13397E3A3
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 23:06:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AA671F21378
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 21:05:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88383B20BEE
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 21:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 865F37174F;
-	Sun, 22 Sep 2024 21:05:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C32F9745CB;
+	Sun, 22 Sep 2024 21:06:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lZtHQMIo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AwHP4ZuY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CD7D6F077;
-	Sun, 22 Sep 2024 21:05:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97F356F077;
+	Sun, 22 Sep 2024 21:06:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727039150; cv=none; b=dnDxOwM/d70evP3xvk0k5BmLDgTVoZbwkn5PvyoKilxg2nKddpGnGDhZRAlifxmNdDTXbPki40VbQhwMLdJFFohoEBeUTQ1sEAkwQNEb4CeH9khykBMA/QmZAYT0rl5O07r9uZhyb/DSiRVvquGFSAZ5aD/YtF+3FES8nBgtGIA=
+	t=1727039205; cv=none; b=bGvB8NlntVVelq1pgtQLJCdxwvu56fwfhYjtSYs+iKxG0HBgZAttxHkk17+i0yc3+N6Ua6Ig267zk5DMDaUGDfow672Us20Ue64CkQSspRtKvo6VtMPit6hL6atBfa6hA2P6RX/HIz90fV/UBWwi4Vm3vHGcqBcosIC65FTFE9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727039150; c=relaxed/simple;
-	bh=aBAPLqLjEzVqTPoaZP+3I2Os2qBCGy/KC+3yMQvfbp4=;
+	s=arc-20240116; t=1727039205; c=relaxed/simple;
+	bh=0bDiEHTafhursfduV1ZVpisNLRB9KGIhx0y0NnN6AjU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n+3+TaAxWcff5TXvn2jYMM3ntlNtkwgOLUu2qGfL+W+ZjmyI7nqTpF4lg9O+0YOHFWR2AlQJRffDFLMcKkaaZvMtd0KcFscT3GhfCh+1euZF0XAlogR9OKcODntuT3qILBRK/NxlBEfJOxs+xeTO6TEeNVKNUZGk9270xXmWu0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lZtHQMIo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01B43C4CEC4;
-	Sun, 22 Sep 2024 21:05:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cqXExLKm47Gt7imj3T1h+z+o4MdxzDKp80tXdq7MNhnIwQLu7kMOPxiT3m8yh8UZAXRpRDrKrfS5Yx65hFeZ+8VPPAb0kCsJuqjNxbjduxGRCAkDACOeVuQ1OBMc18k2O81dbGAXyo/Lw86KVW+Zmz/Q3knrLvVQ8O0btDw5xVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AwHP4ZuY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD47CC4CEC3;
+	Sun, 22 Sep 2024 21:06:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727039150;
-	bh=aBAPLqLjEzVqTPoaZP+3I2Os2qBCGy/KC+3yMQvfbp4=;
+	s=k20201202; t=1727039205;
+	bh=0bDiEHTafhursfduV1ZVpisNLRB9KGIhx0y0NnN6AjU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lZtHQMIo+VxF9Va1Wqn8JBC2KEOy4MaCv1BosGHT6kk58QqdWb0f3DH/G5VBcfk16
-	 D9ExWXyhTFIjm/QBfWAICa2rUd56NuQBLkubUAOUOJ/5oBEVnzzIcDzu6dvXnDVMGp
-	 YtltRShzJEWMjI6uezinpPHDnoZ+oHyoOrQ/eJfWwI+xqMFpIDg279Klst5TQWgDke
-	 7Yc4arcYpsJw1QkY8tOsg+M42JeX43f+U4pHg8Une+qZumCFmvvXD+oVgc/Ou2VTke
-	 a1a5QyAlR03EIrDdJUeTe2R9LAesjiNksJvEiqTpjbdz/c02LJpffyltjNw/4ey8YH
-	 XeAVHh+5tl1gA==
-Date: Sun, 22 Sep 2024 23:05:45 +0200
+	b=AwHP4ZuY6eBkiRqe8LeJ2m3tW/AxQwbx8HLRQixK5kVIogeBscRaJHLfRIjLr2MPy
+	 klvPp+YGnTbg/YTts6+uG0hDynh6ZC053skZGVhYyFPMcWVquQua9d12VG31guEIHl
+	 TplWt/4+aY2Uno6Kqr5nx5ho0ZcBwjonv0YYRo6AVvxhMJ0+vDp4UlmvJ68O4XM5Ux
+	 MNbZUcV7QUPoSMetR8CaIWsF4ochvtL1loTE7EOVtYw/A3WeOmTw8ZB9gpSzvHzkLo
+	 D7OZag84YxHKmEL0g33ZjEfnQCg+37pOBBWvnxct1UcGmmUxw4IdSqY+X4F8GurJx0
+	 J3lvS0n06w36w==
+Date: Sun, 22 Sep 2024 23:06:41 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, hjc@rock-chips.com, krzk+dt@kernel.org, 
-	robh@kernel.org, conor+dt@kernel.org, s.hauer@pengutronix.de, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	derek.foreman@collabora.com, minhuadotchen@gmail.com, detlev.casanova@collabora.com, 
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH v3 14/15] dt-bindings: display: vop2: Add rk3576 support
-Message-ID: <vv3fxx4gqcd3oju2v75dinwdajmfkre4c6wvcm2cpit2wgcsqa@7ykznmou5t4t>
-References: <20240920081626.6433-1-andyshrk@163.com>
- <20240920082306.6982-1-andyshrk@163.com>
+To: 
+	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2 5/6] dt-bindings: media: renesas,isp: Add binding for
+ V4M
+Message-ID: <bni2gdpp65cigjnodckebirahmwacjzb2so5a42lthagcrjmuh@g4nqyanuz3gr>
+References: <20240826144352.3026980-1-niklas.soderlund+renesas@ragnatech.se>
+ <20240826144352.3026980-6-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +63,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240920082306.6982-1-andyshrk@163.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240826144352.3026980-6-niklas.soderlund+renesas@ragnatech.se>
 
-On Fri, Sep 20, 2024 at 04:23:02PM +0800, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
-> 
-> Add vop found on rk3576, the main difference between rk3576 and the
-> previous vop is that each VP has its own interrupt line.
-> 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> 
+On Mon, Aug 26, 2024 at 04:43:51PM +0200, Niklas S=C3=B6derlund wrote:
+> Document support for the ISP module in the Renesas V4M (r8a779h0) SoC.
+> This device is compatible with the CSISP module on the other Gen4 SoCs.
+>=20
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 > ---
+> * Changes since v1
+> - Add to commit message that V4M is compatible with other Gen4 SoCs.
+> ---
+>  Documentation/devicetree/bindings/media/renesas,isp.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
