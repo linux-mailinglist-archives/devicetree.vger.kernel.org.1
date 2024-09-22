@@ -1,70 +1,81 @@
-Return-Path: <devicetree+bounces-104343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13B7497E27B
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 18:34:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD75997E299
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 19:00:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C15782812CB
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 16:34:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF7AA1C211C0
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 17:00:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C003B2207A;
-	Sun, 22 Sep 2024 16:34:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67963286A8;
+	Sun, 22 Sep 2024 17:00:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="jm9nwVxc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZzJrNWrq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC3502581;
-	Sun, 22 Sep 2024 16:34:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F18391CFB9;
+	Sun, 22 Sep 2024 17:00:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727022861; cv=none; b=oKX8gcT5F4l4gZz4NARRQ9gFVMDjuZJ4Duo9dvur6sXRPizjqBiAJFZNAiDRHmH7QKV6gwvMYW6bnvtQtbejg0cCpfR08oJ+ISMslhQdAkgYKWL3HfsnDNP8ypgtj0h9ygmbnVTWudNZ6qcdnBXspqxhMJqkfqW2KIVTusiXhHk=
+	t=1727024435; cv=none; b=uJkr9UWNtzHGk8Usc/qyyIxojj08ygZHlCnn5m9gfEArUIrTBfjTbymNsr9nD7fh77hwz84O+2TuG8voYS8K8FAP1w/XE3pv+hSMGrxLQLcgjXYgDc1konJXCly0GH6GKat6GuYWd1CBN/HCKS3M/gzlKaCtE5sBcq/+chqGw0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727022861; c=relaxed/simple;
-	bh=gFlVSCJab296RK5+Ai1YxYQl2rv5hxg3BElMeprdRII=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nl7GyWkI58iZSBwCNs5P8kT0I3tYIQKouCyI/4eih/teDDZHV+SPs+RKOqM0maKBQld2nswJFavS3W3pmrnYqHHwvxT6w3h++ov1E/WgizF3uljXG0OyH5c14Y5H9jG8su2BeMppu9kM2rPRYRXm0CGdivblKe6LUQnNfEtvTug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=jm9nwVxc; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=xGmipcPUvSFvCq++6VT9S82wVCnPIsh0kZdD2tTzbJM=; b=jm9nwVxcMCmtyeT6Oyx1bwlk5b
-	QIt2JFKDn8FmrZFoi10orj33aeO2dLGY8ksjWgFZyWxgHm2j5wid8ZzC7QJ6anDx2t82kwpN088uc
-	UjC91LJRO9zSM2MqYEf+s8dMNGJvEaYn9PgvYMghtzhOHXHeEou9YBad//2eQ5BdVrek=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1ssPX3-0084MO-6x; Sun, 22 Sep 2024 18:33:57 +0200
-Date: Sun, 22 Sep 2024 18:33:57 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Hal Feng <hal.feng@starfivetech.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1727024435; c=relaxed/simple;
+	bh=Xex4P2H5XpIBZGIjpjiNxh93l99KWf8IG8XW6ulLUDg=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=HbIjFvs0kXHcjGEpXwpsSUCBu1bmiWtkDzgAV2upCJhNBYwQc1N/qQJESE482YhRIra3TJSyZnBPy4EhmqzSy908o7U97h7tVqc/FjPv0WhIBZipBPcf92cBBBXr/vKUvmaJUsGpTRkHGP6tiyHzAQglnV6rSCjZ8mCrCG0+u1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZzJrNWrq; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2068bee21d8so36003455ad.2;
+        Sun, 22 Sep 2024 10:00:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727024433; x=1727629233; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uGCNBFtzzfr7LREvT1rKgJ6X9oNvivfwjJCxXKomsyc=;
+        b=ZzJrNWrqIBo65os5nLFbhUeve94cEps0fuCZCxULNyk/Bc3rTlB0Lb40TKx370zgAp
+         1g1roSs9aUF7ujTDQAykf8vR8UdHdxtQoDIZoQZaG+g+ThhaDXgaQptkkPK4Mev5OSGp
+         bWtYT+exYTWJhGrw9ZQoAqZCkyceQb/qZMrkJj5mjmwxpau7ULMI9yx7EdafCfpSRS4G
+         5lXsB9epiVO+N8teWUVcqb/6Kd7K7RHBct06PXl5gsk+qNlyTMh+erWNaK0Sh7ElfzOq
+         UAoI0Oyp31iTdDkD0OwuG5kmIysLrT8kEhreRYzmUnb2Drql2P80MuowwU0n5pFn2YQH
+         BkAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727024433; x=1727629233;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uGCNBFtzzfr7LREvT1rKgJ6X9oNvivfwjJCxXKomsyc=;
+        b=TYK0IRQGZeyv2VO/7t7guCJoRIqnRr+e43xEIOGZVpiWkb2Omho51hw0kJlqd5a5eK
+         aJ66Mg+I6iV0prJ8r6k5hL9ZgF3hfcSpEHY/yrCEBqxpHzKKrmUDof5pRrUzQvbb5rv/
+         AjIU5xLSmOXwV80NoFQXBxtouyAUbIGIORVsRC2z4pRFZ4BP6/dic2vW2Vc4FwQb/RZ/
+         lAa1+Djoo/V9WNSeZjc2bMIP98EN9tBZ+A2KR2XkpwXttFr+7pNBXkilsJqrLgMUlHaz
+         TMqvBk9WSFIKfJqc8Sfh7fg9owgC6Qc9xmdcK620kc4CPF0BnMFgvzf2KX33kKqWOA72
+         N6WA==
+X-Forwarded-Encrypted: i=1; AJvYcCVZbnMp52DIjOJzgjFO9SXYTWhiwzcVmtW+vq6DDCadEs/Yio1vORWEo95lhNAi8Fg4iSmXSxDLBd9F@vger.kernel.org, AJvYcCWFuKuB7fN8RotfA1AqL0GbCHLP+gOxs4MsWht7K6SWBCazP5caJihieKwDq1fV6+j+j0L8xfKD4tBiUDwv@vger.kernel.org, AJvYcCWLWNWV7BuWsQMIOjYg4s5aaDDHnRKyIbJMsxWl8l1ImBu/5KQYvQwsy+V0FPv7SieoyQjxQDQ1YSmX@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQKx+nlcjCH+Dw0LZpG+blu7zLSNgfH0udOC1+pb/khEPx8g2B
+	Vh3laFGqEVTTNYu3/rzd6A5+UaK5FZpjEVrbb6N3HygieMmthI3X/sw8PVA214M=
+X-Google-Smtp-Source: AGHT+IGUPMaydTjShZ2+bQHHB0JQAQ2UoiJ14DkcjFrcCFXqcP6x5zDbhX1WN83T42b4uA0TTBpdgQ==
+X-Received: by 2002:a17:903:2409:b0:206:ca91:1df8 with SMTP id d9443c01a7336-208d854ec49mr138635355ad.53.1727024432980;
+        Sun, 22 Sep 2024 10:00:32 -0700 (PDT)
+Received: from Emma ([2401:4900:1c94:b281:5054:ff:fe53:2787])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20794600fadsm122155475ad.70.2024.09.22.10.00.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Sep 2024 10:00:32 -0700 (PDT)
+Date: Sun, 22 Sep 2024 17:00:29 +0000
+From: Karan Sanghavi <karansanghvi98@gmail.com>
+To: Roger Quadros <rogerq@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	William Qiu <william.qiu@starfivetech.com>,
-	devicetree@vger.kernel.org, linux-can@vger.kernel.org,
-	netdev@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] can: Add driver for CAST CAN Bus Controller
-Message-ID: <cf17f15b-cbd7-4692-b3b2-065e549cb21e@lunn.ch>
-References: <20240922145151.130999-1-hal.feng@starfivetech.com>
- <20240922145151.130999-4-hal.feng@starfivetech.com>
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Karan Sanghavi <karansanghvi98@gmail.com>
+Subject: [PATCH] dt-bindings: usb: add missing compatible arraylist
+Message-ID: <ZvBNLRc8xnAoGvoc@Emma>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,85 +84,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240922145151.130999-4-hal.feng@starfivetech.com>
 
-> +static inline u32 ccan_read_reg(const struct ccan_priv *priv, u8 reg)
-> +{
-> +	return ioread32(priv->reg_base + reg);
-> +}
-> +
-> +static inline void ccan_write_reg(const struct ccan_priv *priv, u8 reg, u32 value)
-> +{
-> +	iowrite32(value, priv->reg_base + reg);
-> +}
+Added the vice versa order for compatible property in the yaml file so
+that the dtb can parse for the order mentioned in the dts file
+k3-am642-sk.dts for ti,j721e-usb.yaml
 
-No inline functions in .c files please. Let the compiler decide.
+This is highly ambiguous to me as where exactly the changes needs to be
+added is it in the dts file or is the yaml where we have to reverse the
+order already mentioned or do we have to add the another order as I have
+done ?
 
-> +static inline u8 ccan_read_reg_8bit(const struct ccan_priv *priv,
-> +				    enum ccan_reg reg)
-> +{
-> +	u8 reg_down;
-> +	union val {
-> +		u8 val_8[4];
-> +		u32 val_32;
-> +	} val;
-> +
-> +	reg_down = ALIGN_DOWN(reg, 4);
-> +	val.val_32 = ccan_read_reg(priv, reg_down);
-> +	return val.val_8[reg - reg_down];
+Signed-off-by: Karan Sanghavi <karansanghvi98@gmail.com>
+---
+ Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-There is an ioread8(). Is it invalid to do a byte read for this
-hardware? If so, it is probably worth a comment.
+diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+index 95ff9791baea..822653217c43 100644
+--- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
++++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
+@@ -17,6 +17,9 @@ properties:
+       - items:
+           - const: ti,j721e-usb
+           - const: ti,am64-usb
++      - items:
++          - const: ti,am64-usb
++          - const: ti,j721e-usb
+ 
+   reg:
+     maxItems: 1
+-- 
+2.43.0
 
-> +static int ccan_bittime_configuration(struct net_device *ndev)
-> +{
-> +	struct ccan_priv *priv = netdev_priv(ndev);
-> +	struct can_bittiming *bt = &priv->can.bittiming;
-> +	struct can_bittiming *dbt = &priv->can.data_bittiming;
-> +	u32 bittiming, data_bittiming;
-> +	u8 reset_test;
-> +
-> +	reset_test = ccan_read_reg_8bit(priv, CCAN_CFG_STAT);
-> +
-> +	if (!(reset_test & CCAN_RST_MASK)) {
-> +		netdev_alert(ndev, "Not in reset mode, cannot set bit timing\n");
-> +		return -EPERM;
-> +	}
-
-
-You don't see nedev_alert() used very often. If this is fatal then
-netdev_err().
-
-Also, EPERM? man 3 errno say:
-
-       EPERM           Operation not permitted (POSIX.1-2001).
-
-Why is this a permission issue?
-
-> +static void ccan_tx_interrupt(struct net_device *ndev, u8 isr)
-> +{
-> +	struct ccan_priv *priv = netdev_priv(ndev);
-> +
-> +	/* wait till transmission of the PTB or STB finished */
-> +	while (isr & (CCAN_TPIF_MASK | CCAN_TSIF_MASK)) {
-> +		if (isr & CCAN_TPIF_MASK)
-> +			ccan_reg_set_bits(priv, CCAN_RTIF, CCAN_TPIF_MASK);
-> +
-> +		if (isr & CCAN_TSIF_MASK)
-> +			ccan_reg_set_bits(priv, CCAN_RTIF, CCAN_TSIF_MASK);
-> +
-> +		isr = ccan_read_reg_8bit(priv, CCAN_RTIF);
-> +	}
-
-Potentially endless loops like this are a bad idea. If the firmware
-crashes, you are never getting out of here. Please use one of the
-macros from iopoll.h
-
-> +static irqreturn_t ccan_interrupt(int irq, void *dev_id)
-> +{
-> +	struct net_device *ndev = (struct net_device *)dev_id;
-
-dev_id is a void *, so you don't need the cast.
-
-	Andrew
 
