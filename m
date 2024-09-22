@@ -1,133 +1,113 @@
-Return-Path: <devicetree+bounces-104390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A92597E3BC
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 23:42:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3682E97E33D
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 22:32:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3DFA1F21185
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 21:42:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E13DD1F210C8
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 20:32:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8778C77101;
-	Sun, 22 Sep 2024 21:42:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FC4A4AEE6;
+	Sun, 22 Sep 2024 20:32:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="UwHc0Xap"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TiDvsu+9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E00E12B9B4;
-	Sun, 22 Sep 2024 21:42:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E274F39FCF;
+	Sun, 22 Sep 2024 20:32:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727041322; cv=none; b=lQmj52KX7RlKiSH6Z5OdBASK4iaEcERQSruLQdv84deXIGWr2pGyN7ehaGXMW/lhFVZfwpDhtPZHIiH0WNrtWx87r8IGWR/UGwXc+zuDcqoQCVXFE/KsAms5/C92SUU8gfN82xhVxI4pLXIA3Ouicn+7qAuGYZZBC6wLbfH/Wf8=
+	t=1727037137; cv=none; b=hpEZ/Nyj/nBYDX467xs/fuZ/CZdJvYWjDvhUzXMVDsQlRFq/Snw3Zk5lgSjOrOJcqWs2QJ8ksUCO07as2vcpsCjsPPmzRIo1e46FuCJ1N24UdElnYfR+MyWaueY+uAZDkjY2zyTP+2ds61c+u2ikWhZi2WPm33RYet1imUnfaLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727041322; c=relaxed/simple;
-	bh=RbsB7lsvyOsZ0dTvImk2Oj3Ixw6IoZl8Fz3E0VPnKfo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nYOOEUJHMK1sWIYMzifTPl9zhki17/lHfjXZLECt9yuYRQh79baFhHsuQxtGHROw0ih5fRGZ+JBcKfZDBPHbHIkoEJx9LA+NXgsFDxdR/gAdlnrnQQDYXJanFLUmQQy3LpIlnKDiA98flPjzBzMHTHXR8APkGdKZS3l2F0CtuwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=UwHc0Xap; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id CBA23888B7;
-	Sun, 22 Sep 2024 23:41:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1727041313;
-	bh=OeoZq3/qGvqIVWMMmedNVeIHba/YDnXg02p2YwetYOg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UwHc0Xap3IpcE094oz0WCJgf3L1yZOLS648xCIUrQrGeYvLJIJ0hqS80r8aIqmahr
-	 hS1U4Dim52wR8jqV42VmF3GUiArIaZCS/M0spfB+zeOS7NyafFCltURLaawlpDSMoY
-	 Fwb9kz4lIMsooliYL07055+YbF8CWCWb9A5BsXLG6pdAtLLtmT373F6Pejja8QMh5u
-	 +JzbtupSmVsIWa7Yw0WDC4ifVRHGVmIXC2nEatX4RVFDI9VIQUG2zSt9xse28+ti0i
-	 +EJVvZNbAmE1RNxfiScf4vg9Px17c8DUNzs9Jkw/Cn685tFCB2l3UShkgtT3t5tQWS
-	 JQJllBRIk73Uw==
-Message-ID: <4bbee009-3985-4679-a85e-76f4259ff8d6@denx.de>
-Date: Sun, 22 Sep 2024 22:28:02 +0200
+	s=arc-20240116; t=1727037137; c=relaxed/simple;
+	bh=Wkhxr7zFNFIazgoASlMplbrwcKNgSTWyidioOVkTuBk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=juD+eXtM6D8BR57WDVLC5tbteRxK/JKQkgkM85uqfPdKwpzSlYU5XEi5l5VNv/kh1ZiJwbfp/lXaej0kj35Ho1Qt8eLLz0bYPC7XhP/v8ErKZuVTKG+r+3pgRCS7iv0rUf9M+wWW8xjZD6NU+5Cb7WpC/ZHQyJPVDnPTeel9Q9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TiDvsu+9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C88F6C4CEC3;
+	Sun, 22 Sep 2024 20:32:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727037136;
+	bh=Wkhxr7zFNFIazgoASlMplbrwcKNgSTWyidioOVkTuBk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TiDvsu+9gnBUH6LkeNAgFbvmb8NH/msjU0IY5ssA4B4yiyvdSIJOBNVt6vCf+X7YG
+	 WJLbqLlUuc/Te1whGHFwEypeKUFrWs71Bh1+fpInwHV33FhGbpBUTX1jbQ35xmxPB+
+	 TsRxgFFUXsyxhtsD6eQEYfuYmqPak4IBWdVMSgU0lQU2Heut0HrZPS2AbY6B2oADnt
+	 7YwYx+QHfAM1IuTPAuwvjZfHbrt35b0tjZFzqpVzv1x1X4eQoeWM2AhxApYf44d4B0
+	 L8HdmiZEjiRvmc7YWNKlO/6nxa1GF/orW/YVi89RdHNyHrLYhQPcExR94FdWMG1Ya0
+	 aq9rHAbK56XIg==
+Date: Sun, 22 Sep 2024 22:32:12 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Md Sadre Alam <quic_mdalam@quicinc.com>
+Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
+	miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com, 
+	manivannan.sadhasivam@linaro.org, vkoul@kernel.org, nikita.shubin@maquefel.me, esben@geanix.com, 
+	linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org, quic_srichara@quicinc.com, 
+	quic_varada@quicinc.com
+Subject: Re: [PATCH v10 1/8] spi: dt-bindings: Introduce qcom,spi-qpic-snand
+Message-ID: <k3id2ywyghhmoiekehko7ear2nef5ygmizvkax5s6sdi2zhn5d@yfhgl5xte4dw>
+References: <20240922113351.2390195-1-quic_mdalam@quicinc.com>
+ <20240922113351.2390195-2-quic_mdalam@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/1] pwm: imx27: workaround of the pwm output bug when
- decrease the duty cycle
-To: Frank Li <Frank.Li@nxp.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com,
- francesco@dolcini.it, imx@lists.linux.dev, jun.li@nxp.com,
- kernel@pengutronix.de, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org, p.zabel@pengutronix.de, pratikmanvar09@gmail.com,
- robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org,
- ukleinek@kernel.org, xiaoning.wang@nxp.com
-References: <20240917192510.3031493-1-Frank.Li@nxp.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20240917192510.3031493-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240922113351.2390195-2-quic_mdalam@quicinc.com>
 
-Hi,
+On Sun, Sep 22, 2024 at 05:03:44PM +0530, Md Sadre Alam wrote:
+> Document the QPIC-SPI-NAND flash controller present in the IPQ SoCs.
+> It can work both in serial and parallel mode and supports typical
+> SPI-NAND page cache operations.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+> ---
+> 
+> Change in [v10]
+> 
+> * No change
 
-On 9/17/24 9:25 PM, Frank Li wrote:
+...
 
-[...]
-
-> @@ -223,6 +224,8 @@ static int pwm_imx27_apply(struct pwm_chip *chip, struct pwm_device *pwm,
->   	struct pwm_imx27_chip *imx = to_pwm_imx27_chip(chip);
->   	unsigned long long c;
->   	unsigned long long clkrate;
-> +	unsigned long flags;
-> +	int val;
->   	int ret;
->   	u32 cr;
->   
-> @@ -263,7 +266,69 @@ static int pwm_imx27_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-
-[...]
-
-> +	c = clkrate * 1500;
-> +	do_div(c, NSEC_PER_SEC);
+> +title: Qualcomm QPIC NAND controller
 > +
-> +	local_irq_save(flags);
-> +	val = FIELD_GET(MX3_PWMSR_FIFOAV, readl_relaxed(imx->mmio_base + MX3_PWMSR));
+> +maintainers:
+> +  - Md sadre Alam <quic_mdalam@quicinc.com>
+> +
+> +description:
+> +  The QCOM QPIC-SPI-NAND flash controller is an extended version of
+> +  the QCOM QPIC NAND flash controller. It can work both in serial
+> +  and parallel mode. It supports typical SPI-NAND page cache
+> +  operations in single, dual or quad IO mode with pipelined ECC
+> +  encoding/decoding using the QPIC ECC HW engine.
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,spi-qpic-snand
 
-I think the multi-write I mentioned in v5 for > 500 kHz case could 
-further improve the patch, let's see what others think:
+Recently it turned out that Qualcomm generic compatibles are not
+generic... That was odd, but to me it is a clear signal that something
+should not be called generic if it is not generic enough.
 
-if (state->period < 2000) { /* 2000ns = 500 kHz */
-    /* Best effort attempt to fix up >500 kHz case */
-    udelay(6); /* 2us per FIFO entry, 3 FIFO entries written => 6 us */
-    writel_relaxed(duty_cycles, imx->mmio_base + MX3_PWMSAR);
-    writel_relaxed(duty_cycles, imx->mmio_base + MX3_PWMSAR);
-    /* Last write is outside, after this conditional */
-} else if (duty_cycles ...
+Please switch to soc-specific compatibles (and drop my reviewed-by, so
+this will appear in my review queue).
 
-> +	if (duty_cycles < imx->duty_cycle && val < MX3_PWMSR_FIFOAV_2WORDS) {
-> +		val = readl_relaxed(imx->mmio_base + MX3_PWMCNR);
-> +		/*
-> +		 * If counter is close to period, controller may roll over when
-> +		 * next IO write.
-> +		 */
+Best regards,
+Krzysztof
 
-c is only used in this if (duty_cycles ...) { } conditional, the 
-do_div() above can be moved here:
-
-	c = clkrate * 1500;
-	do_div(c, NSEC_PER_SEC);
-
-> +		if ((val + c >= duty_cycles && val < imx->duty_cycle) ||
-> +		    val + c >= period_cycles)
-> +			writel_relaxed(imx->duty_cycle, imx->mmio_base + MX3_PWMSAR);
-> +	}
-> +	writel_relaxed(duty_cycles, imx->mmio_base + MX3_PWMSAR);
-> +	local_irq_restore(flags);
 
