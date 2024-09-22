@@ -1,91 +1,90 @@
-Return-Path: <devicetree+bounces-104345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D41D297E29D
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 19:01:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FCF697E2A9
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 19:09:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 605F51F21929
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 17:01:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91C332813C5
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 17:09:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FBE42C80;
-	Sun, 22 Sep 2024 17:01:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EF382B9C6;
+	Sun, 22 Sep 2024 17:09:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FAybw/64"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RVdVgmwq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B6021CFB9;
-	Sun, 22 Sep 2024 17:01:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D5B122338
+	for <devicetree@vger.kernel.org>; Sun, 22 Sep 2024 17:09:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727024515; cv=none; b=iCNFw9TRB+wCTYZonMzqiLPX2JRuCFwJMWzWTq8/eUH/SdrBEXiRXI2Hyw9aPr9spLiFAMeQvpNZzqSXU10gr0vIkXMsJtuWLlUsTqZ02F1rimp+HGNp8AOOf50RZVcia+0yOkdEVNnrvjDzwu7cqSGdfiMZxNzlPIsPaE8CJbw=
+	t=1727024971; cv=none; b=Z37LKJ2DXZDLWoFBACaPGexr0La8mfzNNlvOk8Zglbk/XtPCC5hv2jGINWd/Cbmm+5sJSCIYOzvgmRt7BNuYbvzYYK9tXaXd2mJZ/zta9oZDR7eOxxY76hJg3Kw9ez5X4KF/jOLxi4V41BRbDxK7Z23viFbhxOEMEBvOm48HqDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727024515; c=relaxed/simple;
-	bh=W0Q3t1cD54SXXSBH7q4jVSfQ0CDLGNlbuw5viLLpA7U=;
+	s=arc-20240116; t=1727024971; c=relaxed/simple;
+	bh=7kPmqFQNL8wHbsPJ1aFo4mgkSTjutG+BY+1kZiG8quU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O1KrcMoUqgV29/8CyWKcQjp8DwrmG706NVuBlHba2yA0ZO3N5scsSe1Kb3zXwmz4CCLllm2iIaSYrmlKGJmEbLFXZVFzAdt8SFvyagzbyZBwD+o2pO8NLRG18zjmEOQ5+Z8HtCpuxR69qOvXZw4c966soxlRueQCWHDIaH1dtOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FAybw/64; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-42e748f78d6so28006775e9.0;
-        Sun, 22 Sep 2024 10:01:53 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bQo4mG/jr1+1h+rr5nybiQFSfF8YDX0+gQ9bhuXX85Ud27b4vhaBsnwo2+88hqiQiFSpV/OcOOgCVjdQE7TOsOp9pt26IIrbAXjdTd7yIxbq3LJ71loyPjd26XN7qpY+QQwpal7sBEqvYlQjPJvn2rf/f3RijIvrW8e2JtCFCjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RVdVgmwq; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-42cbc38a997so22343215e9.1
+        for <devicetree@vger.kernel.org>; Sun, 22 Sep 2024 10:09:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727024512; x=1727629312; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=e6OYj2UJLtKO0PzA2lDG8Hf51QXdlmbxTS6bMeQGk50=;
-        b=FAybw/646ad8wCLqdeUJPrL57SCol+w9qHfNKJwW/RYRFeXfmKZtL4DqtTt+jaKgef
-         0nSx1uKncFCni2+SMDU2wupQlmvUlv8xdSlUVLLmO/Bh8io5Ux+vaY1zR50xNFK8bcO+
-         OXkwlKj9b72pcw1HgHaSJ9f51ZrS4uX/QXG9mCbDxjs5IIg8oqgQHJHy+D8LeahUe9mV
-         nU3cywUkN3VFF6m4smT237SDooxclgT6N6yFGLi7xSZwH8vAaO7saw0WhRXn9HR2wMvg
-         PfmCRv0ob4/DFV5/iORApc9S3luFb6vo6gPi4IIo3BOjRJYkbmfBi6SqSlXThiysW6eO
-         jbcQ==
+        d=linaro.org; s=google; t=1727024968; x=1727629768; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=L0rIrXzxLzm1RYymakq/5yWW79oFHaAAUNk6PTkjpnU=;
+        b=RVdVgmwq2gl2Qr+72ogBtUR1SOZjuyexkfBIdXMRmgMec1gsqU1ivluOcDZScjHaXj
+         c7kg7yLNaBxQ37vi9OnjnQk56KQVhdsiCEuCcEbWXL6vl57lNhQmVb6RvHyaWbkePkGX
+         ZBLoX9P/8+LsgmLH38Vu30KcmqqmTzayP9VLFaIHqnNcIr6rOeb3HIxw82B/DPi/ELFQ
+         O5QVDkdG0mHgIoGNmIKpicnub/wj46rLFc9lr1xCB4bRTl4TYUDoFKKWiUAzy1nz6Nzi
+         SuKDJal/0e3BUEzQIQj2g1CxNhyryqIWRDzqSbedZhHTeSx/EFOmk9hBxZMAsDT98Gzz
+         jXgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727024512; x=1727629312;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1727024968; x=1727629768;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=e6OYj2UJLtKO0PzA2lDG8Hf51QXdlmbxTS6bMeQGk50=;
-        b=umWQAif1DxoGf+nzFm5YjVIpcmGt3xeXIC0duDw8fhbcYAjjAmbRSB+eTjAwSbhfCY
-         Li+mc31CjzlyssTThxKAYRfIcJWHbhC6Y4ppSyRwajKDVebn5xmSZAvk9pECDwKaXmPA
-         U7COxhzQmmMWslEE6eSI/6uP5M/YN3ov706+JOzaO87E2SX04MMOB4jl51P064vMptwr
-         yqYF4vIG23N63TY0mepHtyvTNhW85//vOUls0w5BJl88dOYtiHE0CtCQtZ8BgpZ3WS6c
-         aW/MbN67w2x5kPjFCYd2JtyDj7KYzOrkKUkJXGlTG2juws3r/GXhzD5gueQUgZv+dafy
-         V7Rg==
-X-Forwarded-Encrypted: i=1; AJvYcCVFLbqVpYE8s0drJg1GNtJeyGcDzO+SjxrKV3jII4Y3Zq3HiyWXHFoKC3Y1o8sDNQS/wepSuK8iJ2zN@vger.kernel.org, AJvYcCWjcXei0g/oON2AGHR3R4ZIAcMMCsJ2heKFY4f1FZ9ju5h2tNRz2XIevFckFQnUScMmAz8kzTvG@vger.kernel.org, AJvYcCX74z/0nY6T28K7a3Yd0NdQoNBxHd15p/rzRj+b+/T5uI0e7FnDngbwXOMaOiq9XxnKldGFildvVaN/CpL3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVV+AGMrDH14c5SoETEQtP+VPQNiwvHQLNSYmdmXyarclC3EGn
-	iuczfEjSBXgyVu6TJ3xg26w6h5EwuXTy2IDaSIc03srwfRBAjzBy
-X-Google-Smtp-Source: AGHT+IF+lPG/TGg29MYlU3BmR+FnM5mK3gvHfmebpJCRc6aD+5GdQAF0EcnCJztjRJv/IukZAZEtFw==
-X-Received: by 2002:a05:600c:358e:b0:428:1310:b6b5 with SMTP id 5b1f17b1804b1-42e7c1a3916mr61839915e9.34.1727024511350;
-        Sun, 22 Sep 2024 10:01:51 -0700 (PDT)
-Received: from localhost ([94.19.228.143])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e754c643csm104582835e9.45.2024.09.22.10.01.50
+        bh=L0rIrXzxLzm1RYymakq/5yWW79oFHaAAUNk6PTkjpnU=;
+        b=uNUtD5jjBiPCMEaYTxu7xTMV+TAEhY++XSvXDyL2GH47iQgHGgO/YrfB+HqPur22pO
+         IzeZn/s7G823F5KT0n+D64DnHnnFbwof2DJfRJyhJtAfp70ugexNEC9RtbQEaH/epHWM
+         1OTumybgwcRUC6jb6Dsv7ZuZEUdQG7Vvj3nkxvAY6Ko6m2n1F9/pkhoYAowKy8b4k6cN
+         wZPP2IwS9/XNh4r153/L0p6vrCDwgcpZ1ujgWP+S8w16XWuKo4ROHQfrb4rW+LgAr+KE
+         uG/R43N5ajy87lVWKPKjFOKEMiewI9A6Ol2Uh0sOQsjNBRjV3xZwvkZ6DY4xg1Sfppr2
+         wQdw==
+X-Forwarded-Encrypted: i=1; AJvYcCWE9M1TzfSVV3ZGX3qMpDCh/cf87JLt+OHsYc42pImq3x+muloAc4z/3i6ESYbJxDuQXSBBrbSZ6+yI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzrBNKaWmw/4m4qr7YH/OyIFQFMc9ZwXKRNOac17674tWFDUwqJ
+	3nHldiaTpFFPmwZlHOlBjT7NG2jGuwYMRN9AjiVPN3xFtJXmua2AR3zx9f6Oog==
+X-Google-Smtp-Source: AGHT+IHnnuaHgxDj+rS3r9lgGu134/fQ270qm0dfx4TIlDOErD+D6Q+2jXX//mse26TLw59cSmOqYw==
+X-Received: by 2002:a05:600c:1ca2:b0:42c:b8e5:34d5 with SMTP id 5b1f17b1804b1-42e7a9fe8dbmr52478745e9.15.1727024967852;
+        Sun, 22 Sep 2024 10:09:27 -0700 (PDT)
+Received: from thinkpad (i53873832.versanet.de. [83.135.56.50])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e801d66f6sm55926815e9.29.2024.09.22.10.09.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Sep 2024 10:01:50 -0700 (PDT)
-Date: Sun, 22 Sep 2024 20:01:49 +0300
-From: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: linux-sunxi@lists.linux.dev, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, wens@csie.org, jernej.skrabec@gmail.com,
-	samuel@sholland.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org, Ondrej Jirman <megi@xff.cz>
-Subject: Re: [PATCH] arm64: dts: allwinner: pinephone: Add mount matrix to
- accelerometer
-Message-ID: <ZvBNfeg9uowsM9ub@skv.local>
-Mail-Followup-To: Andrey Skvortsov <andrej.skvortzov@gmail.com>,
-	Dragan Simic <dsimic@manjaro.org>, linux-sunxi@lists.linux.dev,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	wens@csie.org, jernej.skrabec@gmail.com, samuel@sholland.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-	Ondrej Jirman <megi@xff.cz>
-References: <129f0c754d071cca1db5d207d9d4a7bd9831dff7.1726773282.git.dsimic@manjaro.org>
+        Sun, 22 Sep 2024 10:09:27 -0700 (PDT)
+Date: Sun, 22 Sep 2024 19:09:25 +0200
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Qiang Yu <quic_qianyu@quicinc.com>
+Cc: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>, vkoul@kernel.org,
+	kishon@kernel.org, robh@kernel.org, andersson@kernel.org,
+	konradybcio@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	mturquette@baylibre.com, sboyd@kernel.org, abel.vesa@linaro.org,
+	quic_msarkar@quicinc.com, quic_devipriy@quicinc.com,
+	dmitry.baryshkov@linaro.org, kw@linux.com, lpieralisi@kernel.org,
+	neil.armstrong@linaro.org, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 0/5] Add support for PCIe3 on x1e80100
+Message-ID: <20240922170925.qcuwja6oaqlbng5j@thinkpad>
+References: <20240913083724.1217691-1-quic_qianyu@quicinc.com>
+ <36bd9f69-e263-08a1-af07-45185ea03671@quicinc.com>
+ <6f1118eb-89cf-4fd4-a35d-e8b98b0b7a8d@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,58 +93,94 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <129f0c754d071cca1db5d207d9d4a7bd9831dff7.1726773282.git.dsimic@manjaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6f1118eb-89cf-4fd4-a35d-e8b98b0b7a8d@quicinc.com>
 
-On 24-09-19 21:15, Dragan Simic wrote:
-> The way InvenSense MPU-6050 accelerometer is mounted on the user-facing side
-> of the Pine64 PinePhone mainboard, which makes it rotated 90 degrees counter-
-> clockwise, [1] requires the accelerometer's x- and y-axis to be swapped, and
-> the direction of the accelerometer's y-axis to be inverted.
+On Thu, Sep 19, 2024 at 10:14:06PM +0800, Qiang Yu wrote:
 > 
-> Rectify this by adding a mount-matrix to the accelerometer definition in the
-> Pine64 PinePhone dtsi file.
+> On 9/14/2024 11:59 AM, Krishna Chaitanya Chundru wrote:
+> > Hi qiang,
+> > 
+> > In next series can you add logic in controller driver
+> > to have new ops for this x1e80100 since this hardware
+> > has smmuv3 support but currently the ops_1_9_0 ops which
+> > is being used has configuring bdf to sid table which will
+> > be not present for this devices.
+> > 
+> Sure, bdf2sid map is not supported and required since we use smmuv3 for
+> pcie on x1e80100. Can I add a new ops which is same as ops_1_9_0 basically
+> and only config_sid callback is removed. Or add a new flag to determine if
+> we need to config bdf2sid map like no_l0s.
 > 
-> [1] https://files.pine64.org/doc/PinePhone/PinePhone%20mainboard%20bottom%20placement%20v1.1%2020191031.pdf
+> Hi Mani, what do you think about this?
 > 
-> Fixes: 91f480d40942 ("arm64: dts: allwinner: Add initial support for Pine64 PinePhone")
-> Cc: stable@vger.kernel.org
-> Helped-by: Ondrej Jirman <megi@xff.cz>
-> Helped-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
-> ---
-> 
-> Notes:
->     See also the linux-sunxi thread [2] that has led to this patch, which
->     provides a rather detailed analysis with additional details and pictures.
->     This patch effectively replaces the patch submitted in that thread.
->     
->     [2] https://lore.kernel.org/linux-sunxi/20240916204521.2033218-1-andrej.skvortzov@gmail.com/T/#u
-> 
->  arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> index 6eab61a12cd8..b844759f52c0 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> @@ -212,6 +212,9 @@ accelerometer@68 {
->  		interrupts = <7 5 IRQ_TYPE_EDGE_RISING>; /* PH5 */
->  		vdd-supply = <&reg_dldo1>;
->  		vddio-supply = <&reg_dldo1>;
-> +		mount-matrix = "0", "1", "0",
-> +			       "-1", "0", "0",
-> +			       "0", "0", "1";
->  	};
->  };
->  
 
-I've applied the patch to next-20240920, built and run on a
-device. Sensor now works as expected. Screen rotating in Phosh
-according to the device orientation.
+Good question. IMO it is better to add a new ops even though it duplictes the
+callbacks. Because the newer platforms are not going to need this bdf2sid map
+anyway. But if we add a flag to determine that, then the check will become,
 
-Reviewed-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+	if (pcie->cfg->ops->config_sid && !pcie->cfg->smmuv3)
+		...
+
+And this doesn't look good as both conditions are false for X1E80100 i.e., it
+doesn't need bdf2sid mapping and it is also a SMMUv3 platform. Moreover having
+two checks here makes it confusing also.
+
+So let's use a new callback. But please mention the IP revision in comments as
+like other ops.
+
+- Mani
+
+> Thanks,
+> Qiang
+> > 
+> > - Krishna Chaitanya.
+> > 
+> > On 9/13/2024 2:07 PM, Qiang Yu wrote:
+> > > This series add support for PCIe3 on x1e80100.
+> > > 
+> > > PCIe3 needs additional set of clocks, regulators and new set of PCIe QMP
+> > > PHY configuration compare other PCIe instances on x1e80100. Hence add
+> > > required resource configuration and usage for PCIe3.
+> > > 
+> > > v2->v1:
+> > > 1. Squash [PATCH 1/8], [PATCH 2/8],[PATCH 3/8] into one patch and
+> > > make the
+> > >     indentation consistent.
+> > > 2. Put dts patch at the end of the patchset.
+> > > 3. Put dt-binding patch at the first of the patchset.
+> > > 4. Add a new patch where opp-table is added in dt-binding to avoid dtbs
+> > >     checking error.
+> > > 5. Remove GCC_PCIE_3_AUX_CLK, RPMH_CXO_CLK, put in
+> > > TCSR_PCIE_8L_CLKREF_EN
+> > >     as ref.
+> > > 6. Remove lane_broadcasting.
+> > > 7. Add 64 bit bar, Remove GCC_PCIE_3_PIPE_CLK_SRC,
+> > >     GCC_CFG_NOC_PCIE_ANOC_SOUTH_AHB_CLK is changed to
+> > >     GCC_CFG_NOC_PCIE_ANOC_NORTH_AHB_CLK.
+> > > 8. Add Reviewed-by tag.
+> > > 9. Remove [PATCH 7/8], [PATCH 8/8].
+> > > 
+> > > Qiang Yu (5):
+> > >    dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Document the X1E80100
+> > >      QMP PCIe PHY Gen4 x8
+> > >    dt-bindings: PCI: qcom: Add OPP table for X1E80100
+> > >    phy: qcom: qmp: Add phy register and clk setting for x1e80100 PCIe3
+> > >    clk: qcom: gcc-x1e80100: Fix halt_check for pipediv2 clocks
+> > >    arm64: dts: qcom: x1e80100: Add support for PCIe3 on x1e80100
+> > > 
+> > >   .../bindings/pci/qcom,pcie-x1e80100.yaml      |   4 +
+> > >   .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       |   3 +
+> > >   arch/arm64/boot/dts/qcom/x1e80100.dtsi        | 202 ++++++++++++++++-
+> > >   drivers/clk/qcom/gcc-x1e80100.c               |  10 +-
+> > >   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      | 211 ++++++++++++++++++
+> > >   .../qualcomm/phy-qcom-qmp-pcs-pcie-v6_30.h    |  25 +++
+> > >   drivers/phy/qualcomm/phy-qcom-qmp-pcs-v6_30.h |  19 ++
+> > >   7 files changed, 468 insertions(+), 6 deletions(-)
+> > >   create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6_30.h
+> > >   create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-v6_30.h
+> > > 
 
 -- 
-Best regards,
-Andrey Skvortsov
+மணிவண்ணன் சதாசிவம்
 
