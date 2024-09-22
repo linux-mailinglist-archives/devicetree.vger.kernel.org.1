@@ -1,126 +1,175 @@
-Return-Path: <devicetree+bounces-104357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B25FE97E331
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 22:22:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99C8397E336
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 22:26:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E36BE1C20D1A
-	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 20:22:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 107B81F21107
+	for <lists+devicetree@lfdr.de>; Sun, 22 Sep 2024 20:26:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326304AEF4;
-	Sun, 22 Sep 2024 20:22:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99DA4446CF;
+	Sun, 22 Sep 2024 20:25:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i2T2Fuut"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GFWabVu6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05F94219E4;
-	Sun, 22 Sep 2024 20:22:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A42E219E4;
+	Sun, 22 Sep 2024 20:25:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727036566; cv=none; b=ts5KnvzoBfBS2hWwCD9Ja52+fEWdtVUPhz7V9Jwo0Iv7fUWLFYD3+5SmEPbpDTH5j2fGEM8AZukmECY4iViJYWhFDh+NIa5P/G2ljUwJxs71XvvTrwVDiE/fU9YbO4VhJnVtpZsWRUHm0q2+tBdpIkfRwv9mat69S6j2qeymr1c=
+	t=1727036759; cv=none; b=pD8vw9HKZ2RZLTcxDxuVJU15I/CCg6sD+bgmuTlFQ5Ut0+7Zv6rDIQHdOqEAMOBGjldWQiCC8eTQkPJnjtgdp41FETBeXJCxxiwxKb+hpiUthJZzCRMt9dl+SWMzh4Fo5X7ejOaWz/ma4bH9xZ62bez1VUxFyTeYK/4Eu7c9sXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727036566; c=relaxed/simple;
-	bh=IwqEyvZSJsJl6gyXXgtY6Vt8slQzaQblVIKgW9WRdmo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OrqAlxu3JC3Qya+tLg9b5pcUwbfmAVx4GJ9XNfliEfsKYSNSr2y7pV79rFQjrfuW0AGv1TQOZ8yTIoktpXctWcXm+orlD6FhfMOECgNEJNV2TuGwnr4pQVW+eOpQzqwFDlWXsgq/BJAw3Z93RNublnM3eClCqLbk/YyXAG5CpAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i2T2Fuut; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52A07C4CEC3;
-	Sun, 22 Sep 2024 20:22:40 +0000 (UTC)
+	s=arc-20240116; t=1727036759; c=relaxed/simple;
+	bh=sCJqfQ3cx+gDrUkYtzCV35EPLuNeBVpyT3aqAwSo/0k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KgKLYA1tIhaA26sG9mx/g8IrAB9fmFknyD7DNrsr6606L64jfWdxU+DPnaS0nvHH9ZcD/KBQTKA+1N4XfCkkYqLRvkYcbknZBy7JTCjQFxz2kQiAo9ztEMzfDnhtXvcwC0x55aPUVyGWIDdtI6d2Nv/lDOqSk1ZjhHVlym86ozw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GFWabVu6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57CAEC4CEC3;
+	Sun, 22 Sep 2024 20:25:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727036565;
-	bh=IwqEyvZSJsJl6gyXXgtY6Vt8slQzaQblVIKgW9WRdmo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=i2T2FuutSnIB1v01XrgRpYQBhSYjiL8PE6QJLZvCqUipXG5rlcvFymWft6QZZArWC
-	 EU2pW+wtO2EoMpQ8yAFUcunO3MEBe8IM7cI6u31p2etXTzaZR35oOZ1pjbvXiA6HaD
-	 m1B7RjqPdl78Bur/wPO69tXjvlwRN6jFeCK9520+SEO3b3bJOGx3VfSFeAjOJUngwC
-	 tyBPGX5Nt42tc0dXg6xFbb+e6u3967BXxr8JNcsDms9Wspcap+uEjpxdxRXmeqejMj
-	 NvX5u5/F5faLtL40KEnRpN/7FCwedMokxNLl7Dp6kqcy/Enw+BMnE1LdiJiS7rJ2ii
-	 pzCilyuQq3opg==
-Message-ID: <25221af1-5cd3-4d5e-a3d2-7528c5ec3545@kernel.org>
-Date: Sun, 22 Sep 2024 22:22:37 +0200
+	s=k20201202; t=1727036759;
+	bh=sCJqfQ3cx+gDrUkYtzCV35EPLuNeBVpyT3aqAwSo/0k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GFWabVu66kX1+0hbuyI4L2iLtakpYzGT5iwP/aeSagJ8mltE1WKz4604APs81rZUo
+	 wjzvCsqEFXMdru8vZR05Ep5YjS4AJI0s/jXRGOWHgHJ1IEqNkftmcuPsM8FB8Z7nzH
+	 Gd81BHhZX3rvNQsBzkliOkV8V/e01UpblRHHQuFCx5yVHQKnWe0cQFe+8n0qVsneKI
+	 rLJpD4nyIOX3P0rBEsmISrpO0zbbS3V8/OnYwumqLbVNOBjZ8bm0EzxCJIftguurCP
+	 bDBkPN+9vlXhGtOV7mEei18mt9i4wWIcvqyZ87zvvlcvIlxVEOChlXAxtP7OtOXnGR
+	 oc5aApV/6aJCg==
+Date: Sun, 22 Sep 2024 22:25:55 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, tsbogend@alpha.franken.de, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: i2c: Add RTL9300 I2C controller
+Message-ID: <6hlfdtbdf7yhkaoiuglhk4gksgzpahewzjf4cseedon7x2tx3s@m6c23rqxwkyu>
+References: <20240920000930.1828086-1-chris.packham@alliedtelesis.co.nz>
+ <20240920000930.1828086-2-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: xilinx-cpm: Add compatible
- string for CPM5 host1
-To: Thippeswamy Havalige <thippesw@amd.com>, kw@linux.com,
- manivannan.sadhasivam@linaro.org, robh@kernel.org, bhelgaas@google.com,
- devicetree@vger.kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org
-Cc: bharat.kumar.gogada@amd.com, michal.simek@amd.com, lpieralisi@kernel.org,
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240922061318.2653503-1-thippesw@amd.com>
- <20240922061318.2653503-2-thippesw@amd.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240922061318.2653503-2-thippesw@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240920000930.1828086-2-chris.packham@alliedtelesis.co.nz>
 
-On 22/09/2024 08:13, Thippeswamy Havalige wrote:
-> The Xilinx Versal premium series has CPM5 block which supports two typeA
-> Root Port controller functionality at Gen5 speed.
+On Fri, Sep 20, 2024 at 12:09:28PM +1200, Chris Packham wrote:
+> Add dtschema for the I2C controller on the RTL9300 SoC. The I2C
+> controllers on this SoC are part of the "switch" block which is
+> represented here as a syscon node. The SCL pins are dependent on the I2C
+> controller (GPIO8 for the first controller, GPIO 17 for the second). The
+> SDA pins can be assigned to either one of the I2C controllers (but not
+> both).
 > 
-> Add compatible string to distinguish between two CPM5 rootport controller1.
-> since Legacy and error interrupt register and bits for both the controllers
-> are at different offsets.
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
 > 
-> Signed-off-by: Thippeswamy Havalige <thippesw@amd.com>
+> Notes:
+>     Changes in v2:
+>     - Use reg property for controller registers
+>     - Remove global-control-offset (will be hard coded in driver)
+>     - Integrated the multiplexing function. Child nodes now represent the
+>       available SDA lines
+> 
+>  .../bindings/i2c/realtek,rtl9300-i2c.yaml     | 82 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 ++
+>  2 files changed, 88 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.yaml b/Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.yaml
+> new file mode 100644
+> index 000000000000..e8c37239b299
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.yaml
+> @@ -0,0 +1,82 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i2c/realtek,rtl9300-i2c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Realtek RTL I2C Controller
+> +
+> +maintainers:
+> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
+> +
+> +description:
+> +  The RTL9300 SoC has two I2C controllers. Each of these has an SCL line (which
+> +  if not-used for SCL can be a GPIO). There are 8 common SDA lines that can be
+> +  assigned to either I2C controller.
+> +
+> +properties:
+> +  compatible:
+> +    const: realtek,rtl9300-i2c
+> +
+> +  reg:
+> +    description: Register offset and size this I2C controller.
+> +
+> +patternProperties:
+> +  '^i2c@[0-7]$':
+> +    $ref: /schemas/i2c/i2c-controller.yaml
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        description: The SDA pin associated with the I2C bus.
+> +        maxItems: 1
+> +
+> +    required:
+> +      - reg
+> +
+> +unevaluatedProperties: false
 
+This goes after "required:" block.
 
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    switch@1b000000 {
+> +      compatible = "realtek,rtl9302c-switch", "syscon", "simple-mfd";
+
+Drop... or put entire example in the parent device node.
+
+> +      reg = <0x1b000000 0x10000>;
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +
+> +      i2c@36c {
+> +        compatible = "realtek,rtl9300-i2c";
+
+Parent is 9302c, but this is 9300?
+
+> +        reg = <0x36c 0x14>;
+> +        clock-frequency = <100000>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        i2c@0 {
+> +          reg = <0>;
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +          gpio@20 {
+> +              compatible = "nxp,pca9555";
+
+Mixed indentation.
+
+> +              gpio-controller;
+> +              #gpio-cells = <2>;
+> +              reg = <0x20>;
+> +          };
+> +        };
 
 Best regards,
 Krzysztof
