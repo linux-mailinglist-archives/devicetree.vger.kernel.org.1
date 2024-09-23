@@ -1,255 +1,110 @@
-Return-Path: <devicetree+bounces-104490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CE9F97E926
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:56:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A409497E93A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 12:00:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E01BC280DD9
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:56:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3C859B2123B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:00:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53886194AFE;
-	Mon, 23 Sep 2024 09:56:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B581196C9B;
+	Mon, 23 Sep 2024 10:00:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kaehlcke.net header.i=@kaehlcke.net header.b="TmaOEjYK"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Zs9LwxE3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from skyblue.cherry.relay.mailchannels.net (skyblue.cherry.relay.mailchannels.net [23.83.223.167])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0B7AEEB5;
-	Mon, 23 Sep 2024 09:56:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.223.167
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727085411; cv=pass; b=GbpsLfszsEhBPd3QpYy/x2it+Huun3AW9jrTqTOxOag7kcikzasaEOr4ZuVil2WFzx83FfZQuXCUhA7qzupdgqcdbtYkFzeng3bBdnP92deFa9ZBXmCQzOPtOVvpOTLeB/FvWFMqjQ1UFdZYyr2B0zasTVt1JLHJuoiVjTqxwPs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727085411; c=relaxed/simple;
-	bh=MBURGwTkZivGAIcQzi0SHqRB8AcGmiYuiPTuDAYatOQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sdH2M45aF2dQNwxhZjitWM4UMXzImTuAfV9r8UaY3gumdfv2Opvl+tPgL2Zic5qIzNXfKcwyB2dJQIH6ZR9MZXMXtRLDHecdWkcNyV8co/o4GC1YdN6caDgiaqCKnceWE/it8tULYYn91oxqiijTZxgmZ9aAm1Y+zbBODkWLEwo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kaehlcke.net; spf=pass smtp.mailfrom=kaehlcke.net; dkim=pass (2048-bit key) header.d=kaehlcke.net header.i=@kaehlcke.net header.b=TmaOEjYK; arc=pass smtp.client-ip=23.83.223.167
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kaehlcke.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kaehlcke.net
-X-Sender-Id: dreamhost|x-authsender|matthias@kaehlcke.net
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id A940D8A06BE;
-	Mon, 23 Sep 2024 09:56:39 +0000 (UTC)
-Received: from pdx1-sub0-mail-a267.dreamhost.com (100-99-96-206.trex-nlb.outbound.svc.cluster.local [100.99.96.206])
-	(Authenticated sender: dreamhost)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 4272F8A04F8;
-	Mon, 23 Sep 2024 09:56:39 +0000 (UTC)
-ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1727085399; a=rsa-sha256;
-	cv=none;
-	b=vUaWW3BNfdZ5lZc6wHkE72YdcUH346vJX3xX3RbE3oF9coleoK9T/FVrgBbeCB5WQjMZBr
-	yfcoTJ/1PUwCIEOVRjtG3nGDcU7qoDVVq1Mlyy7VFKhQPeLU892ystnMcL55S/5oqsYB/G
-	FtPW53L/vjbZr0TrfzZlgCRCRptLHdJQ82Cjm3sYXZoPOpSI459Vy8vgbGWpOJYcCnVQIx
-	2jCW3Dae9nb7bH5ct+SKvlwbVcwHoRGeioGK7T2t2wPEKUHX+nOXlfK2BOHbDDBaVrX+Rl
-	C1SixgPkXKVtAqy1F/5QNT89F3CGE5xPrG3m8Z2vaTOALK963LXmUQi4ZoBFLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1727085399;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=Ma2+mk6RWxQlsSYkAPohY1aZHptX/zlTiVVO+U88keA=;
-	b=pDeEQXBo4SpXEUUhYvbDJqsT+YSGaMQH4KLnfohfq0VVjDb5Tb6k5yS9UgHMDpskvDBbPc
-	1R/tKmfK+pEz5CBVLAPsvrrzZTa/8E4MCgXEhe1tBeoj+jApBrKR/WUwhxVaZprQj85065
-	B6WNZVscRKaeGDXjXDPVKRHYUjiO/RboyRcTxmnhT1bZc0fEH/c+64EAF6u87dAohIRf0u
-	dDwePbAa5IfQeoIarlLnufD8ewSjfF694nLPrdSSZlWN1L0mvVYZbESYesyM7NiAnmS6fH
-	Tcm5S0gjR4yhcd2ggRHwPs/6/y2arK15COygZ/XVGZP3xKX2OZvEjpN8DNcnSw==
-ARC-Authentication-Results: i=1;
-	rspamd-5b46bcd97f-svd8d;
-	auth=pass smtp.auth=dreamhost smtp.mailfrom=matthias@kaehlcke.net
-X-Sender-Id: dreamhost|x-authsender|matthias@kaehlcke.net
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: dreamhost|x-authsender|matthias@kaehlcke.net
-X-MailChannels-Auth-Id: dreamhost
-X-Harmony-Stop: 4b029e854c8189cf_1727085399594_1084799275
-X-MC-Loop-Signature: 1727085399594:161383076
-X-MC-Ingress-Time: 1727085399594
-Received: from pdx1-sub0-mail-a267.dreamhost.com (pop.dreamhost.com
- [64.90.62.162])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.99.96.206 (trex/7.0.2);
-	Mon, 23 Sep 2024 09:56:39 +0000
-Received: from curie.home (unknown [79.116.59.2])
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DEC7195B28;
+	Mon, 23 Sep 2024 10:00:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727085618; cv=none; b=J9TmqD3LTJ0sbyfm/DEGE/ikSOJRA45WxEUwwUfG2qkMFjjBOJKwOludZ3WhvNdjOoLxCp/iYKWBsJqLIHRp3PLlEYEAneHnQN8v5sM+cG1tInvSNeAkgTHtcfq+YA1nAkylZ69sknkenj+nFw36YA8LWDt5uzIfMxst6RLavzQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727085618; c=relaxed/simple;
+	bh=snK43mCmJ4Ga5wLxzmBewItLUFUZkQuI8ynxqK/sO9Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=orYU82mooo3naXVLcjSMLhwmkq4xNkv0DmAYYqpc3TECty6cxv0DMLy7miUwVFIKZhp94afcZFpbgVpRxvTKpgwrIisx+JWdIhVtQqOXNGnuzEb1ZMtC/548GL4aGOUIsVE/uWLCzOZ80wxFhH/10i3NUsaukZkwOpZ/fVzpo0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Zs9LwxE3; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1727085613;
+	bh=snK43mCmJ4Ga5wLxzmBewItLUFUZkQuI8ynxqK/sO9Q=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Zs9LwxE3N/eT4wW0nlGHI2aBTWIeWrFvW3ZIskTTWwkUGn0RjE86IokAOGuqq0v7x
+	 VHGCWti1VchT5tMyjGGB4nvn13zzpG2P8NjbZ2cMVA1LUFq45N5pW1qww3ZfcP+7oz
+	 vsG3nE0MwxCnTL85/o23QXeEtKu8TAl1r6EvRGpXk9Isa8xvhKkrQDNzWcr2K8EjLb
+	 KBH4TX+WdpEdFzKMSOV8caahCNp6hSzM6RtAbjxK6Pt7PVqFP6w0RQzSEL/jM+LvPv
+	 EvKXwOAkDxdquA+L5jGvaOLjUUPyI6Ze1oFo2ONg48BFlxMnMQDTLopTLuO7UTZqnJ
+	 VidUgMDIvCfqw==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: matthias@kaehlcke.net)
-	by pdx1-sub0-mail-a267.dreamhost.com (Postfix) with ESMTPSA id 4XBz0k6pvdzMN;
-	Mon, 23 Sep 2024 02:56:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kaehlcke.net;
-	s=dreamhost; t=1727085399;
-	bh=Ma2+mk6RWxQlsSYkAPohY1aZHptX/zlTiVVO+U88keA=;
-	h=Date:From:To:Cc:Subject:Content-Type;
-	b=TmaOEjYKnB/YTZlkiNXyTHXQmqxHu3j2OWBSyJ2jgtFgToLXomfM9va9Nyb7dZTy5
-	 017KSqhKUZ81ThP5Wy9l5BEqzLsS8mojyvQsUSaMkYGHVToGP/r2djFMrb9kA0dXWg
-	 1PdAfgLxvWlj/IwzypIS1MaONBrG/Npgzz2tkti8IOvtT9PrigH8J5sPAxdTpdFpjo
-	 15HbHOumXPkEjxCpm10Q8cOpdZC3Wn5xjyvDT8VEV3T6ri2yUugFcguWjWh22/fC97
-	 Msa2RlI2Hi5tAHA+5ySYlX20LnEGxt+Lxif9JkbVGIbLrRBK7E3JsROGU+NQO0KGKR
-	 r0zRFiaixS8Xw==
-Received: by curie.home (Postfix, from userid 1000)
-	id BE4B2103D4A; Mon, 23 Sep 2024 11:56:35 +0200 (CEST)
-Date: Mon, 23 Sep 2024 09:56:35 +0000
-From: Matthias Kaehlcke <matthias@kaehlcke.net>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: kernel test robot <lkp@intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Matthias Kaehlcke <mka@chromium.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, oe-kbuild-all@lists.linux.dev, 
-	kernel@pengutronix.de, linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] usb: hub: add infrastructure to pass onboard_dev
- port features
-Message-ID: <wtvhsdo2zefehkgfcp2cfdl2uht4lcrytyjyhwjhnpcyvx4kd2@iurrw554aegh>
-Mail-Followup-To: Matthias Kaehlcke <matthias@kaehlcke.net>, 
-	Marco Felsch <m.felsch@pengutronix.de>, kernel test robot <lkp@intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Matthias Kaehlcke <mka@chromium.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, oe-kbuild-all@lists.linux.dev, 
-	kernel@pengutronix.de, linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-References: <20240807-b4-v6-10-topic-usb-onboard-dev-v1-1-f33ce21353c9@pengutronix.de>
- <202408081557.FiEe9Tzz-lkp@intel.com>
- <20240809093313.xn3x2p3st2b32g27@pengutronix.de>
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8900A17E10AC;
+	Mon, 23 Sep 2024 12:00:12 +0200 (CEST)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: lee@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	eddie.huang@mediatek.com,
+	sean.wang@mediatek.com,
+	alexandre.belloni@bootlin.com,
+	sen.chu@mediatek.com,
+	macpaul.lin@mediatek.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-rtc@vger.kernel.org,
+	kernel@collabora.com
+Subject: [PATCH v1 0/3] rtc: mt6359: Cleanup and support start-year property
+Date: Mon, 23 Sep 2024 12:00:07 +0200
+Message-ID: <20240923100010.97470-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240809093313.xn3x2p3st2b32g27@pengutronix.de>
+Content-Transfer-Encoding: 8bit
 
-El Fri, Aug 09, 2024 at 11:33:13AM GMT Marco Felsch ha dit:
+This series adds support for the start-year property and removes the
+custom handling of the RTC_MIN_YEAR_OFFSET (which is, effectively, doing
+the exact same).
 
-> Hi all,
-> 
-> On 24-08-08, kernel test robot wrote:
-> > Hi Marco,
-> > 
-> > kernel test robot noticed the following build errors:
-> > 
-> > [auto build test ERROR on 0c3836482481200ead7b416ca80c68a29cfdaabd]
-> > 
-> > url:    https://github.com/intel-lab-lkp/linux/commits/Marco-Felsch/usb-hub-add-infrastructure-to-pass-onboard_dev-port-features/20240807-224100
-> > base:   0c3836482481200ead7b416ca80c68a29cfdaabd
-> > patch link:    https://lore.kernel.org/r/20240807-b4-v6-10-topic-usb-onboard-dev-v1-1-f33ce21353c9%40pengutronix.de
-> > patch subject: [PATCH 1/3] usb: hub: add infrastructure to pass onboard_dev port features
-> > config: i386-randconfig-141-20240808 (https://download.01.org/0day-ci/archive/20240808/202408081557.FiEe9Tzz-lkp@intel.com/config)
-> > compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-> > reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240808/202408081557.FiEe9Tzz-lkp@intel.com/reproduce)
-> > 
-> > If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> > the same patch/commit), kindly add following tags
-> > | Reported-by: kernel test robot <lkp@intel.com>
-> > | Closes: https://lore.kernel.org/oe-kbuild-all/202408081557.FiEe9Tzz-lkp@intel.com/
-> > 
-> > All errors (new ones prefixed by >>):
-> > 
-> >    ld: drivers/usb/core/hub.o: in function `set_port_feature':
-> > >> drivers/usb/core/hub.c:481: undefined reference to `onboard_dev_port_feature'
-> >    ld: drivers/usb/core/hub.o: in function `usb_clear_port_feature':
-> >    drivers/usb/core/hub.c:462: undefined reference to `onboard_dev_port_feature'
-> 
-> I understood the isse but have a few questions. Before continue the work
-> on this topic I would like to ask if the patchset is okay in general?
-> I'm open for alternatives if the patchset approach is not okay.
+The start_secs timestamp was set to match the previous one from the
+custom behavior so that there is no time drift on any device after
+applying this.
 
-From the perspective of the onboard_usb_dev driver it seems sound to me.
+While at it, a cleanup to use the Day-of-Week HW register instead of
+manually calculating tm_wday was also performed.
 
-So far the USB maintainers haven't raised objections, so I would say move
-forward and we'll see if concerns arise and deal with them if needed.
+For the bindings commit, this series goes on top of the MT6397 schema
+conversion from Macpaul Lin [1].
 
-> I have a few ideas in mind (see below) to fix the 0day build issue which
-> was caused by the Kconfig selection:
-> 
->  - CONFIG_USB=y
->  - CONFIG_USB_ONBOARD_DEV=m.
-> 
-> Idea-1:
-> -------
-> 
-> Dropping the module support for CONFIG_USB_ONBOARD_DEV.
+This series was tested on a MT8195 Cherry Tomato Chromebook.
 
-With that CONFIG_USB could not be 'm' when CONFIG_USB_ONBOARD_DEV
-is set, which wouldn't be great.
+[1]: https://lore.kernel.org/all/20240918064955.6518-1-macpaul.lin@mediatek.com/
 
-> Idea-2:
-> -------
-> 
-> CONFIG_USB_ONBOARD_DEV follows CONFIG_USB:
-> 
-> CONFIG_USB=y -> CONFIG_USB_ONBOARD_DEV=y,
-> CONFIG_USB=m -> CONFIG_USB_ONBOARD_DEV=m.
-> 
-> and exporting usb_clear_port_feature().
-> 
-> I don't know to add such Kconfig dependency and also this idea require
-> that the usbcore have to load the usb_onboard_dev module always,
-> regardless if used.
-> 
-> So this idea is rather suboptimal.
-> 
-> Idea-3:
-> -------
-> 
-> Adding a function to the hub.c usbcore which can be used by the
-> usb-onboard-dev driver to register this function as hook. This removes
-> the dependency from the core and the usb-onboard-dev module is only
-> pulled if really required. Of course this require that the hub.c usbcore
-> driver allows custom hooks.
+AngeloGioacchino Del Regno (3):
+  dt-bindings: mfd: mediatek: mt6397: Add start-year property to RTC
+  rtc: mt6359: Add RTC hardware range and add support for start-year
+  rtc: mt6359: Use RTC_TC_DOW hardware register for wday
 
-This seems like the best approach IMO, if USB maintainers are onboard with
-it.
+ .../bindings/mfd/mediatek,mt6397.yaml         |  2 ++
+ drivers/rtc/rtc-mt6397.c                      | 29 +++++++------------
+ 2 files changed, 12 insertions(+), 19 deletions(-)
 
-Since this is about port features (only applicable to hubs) the function
-should be associated with struct usb_hub, not struct usb_device. And we
-probably want two functions, onboard_hub_set_port_feature() and
-onboard_hub_clear_port_feature(), whose implementations may use shared
-code.
+-- 
+2.46.0
 
-> Idea-X:
-> -------
-> 
-> I'm open for your input :)
-> 
-> 
-> Regards,
->   Marco
-> 
-> PS: My favourite is Idea-3 followed by Idea-1.
-> 
-> > vim +481 drivers/usb/core/hub.c
-> > 
-> >    466	
-> >    467	/*
-> >    468	 * USB 2.0 spec Section 11.24.2.13
-> >    469	 */
-> >    470	static int set_port_feature(struct usb_device *hdev, int port1, int feature)
-> >    471	{
-> >    472		int ret;
-> >    473	
-> >    474		ret = usb_control_msg(hdev, usb_sndctrlpipe(hdev, 0),
-> >    475			USB_REQ_SET_FEATURE, USB_RT_PORT, feature, port1,
-> >    476			NULL, 0, 1000);
-> >    477		if (ret)
-> >    478			return ret;
-> >    479	
-> >    480		if (!is_root_hub(hdev))
-> >  > 481			ret = onboard_dev_port_feature(hdev, true, feature, port1);
-> >    482	
-> >    483		return ret;
-> >    484	}
-> >    485	
-> > 
-> > -- 
-> > 0-DAY CI Kernel Test Service
-> > https://github.com/intel/lkp-tests/wiki
-> > 
 
