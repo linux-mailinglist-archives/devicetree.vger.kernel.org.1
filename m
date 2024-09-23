@@ -1,65 +1,73 @@
-Return-Path: <devicetree+bounces-104631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20E7A98390F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 23:23:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C66EF983920
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 23:34:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CEE18282966
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 21:23:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55D3F1F225D1
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 21:34:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39605839EB;
-	Mon, 23 Sep 2024 21:23:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64507839EB;
+	Mon, 23 Sep 2024 21:34:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DWW5WqUH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B69oEG9i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108AD7F7DB;
-	Mon, 23 Sep 2024 21:23:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311D176F1B;
+	Mon, 23 Sep 2024 21:34:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727126625; cv=none; b=kgVSVevF0A/SVitUBB5z9yb1o9bE4DVyAn0gLGYS92RXvctUNdezeiosQTjn0hg40ieipOdvy2pey/cvsFk/n05aItf4TQMsiZpV8a0Xcoehb7dlo0/YJ2tV+czM32pElTTtevcXIZqMZeNbLDaeYgmXFVTNJEag3OpHoAWgT4o=
+	t=1727127251; cv=none; b=Ah7OTZGrFEUS7+3c4HgCgci6GiNLhVOK8NSUt4t8ZEQndYXMSE3/DSwz2TrOB6Zudyu2hNQcwHIC0x7UbxxgWVzkpQ56P4UFLUiYv7mFnGks4d6KiHmWYaEGZfw3YEDtPbWLKV7LxQc0uHrPXwyoaTS1Z8+QguB/ArZC9LdL8uo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727126625; c=relaxed/simple;
-	bh=tj4LmrvGayH3XbbYtlkUr8l9vC6zcGbXYX0A15TEu4g=;
+	s=arc-20240116; t=1727127251; c=relaxed/simple;
+	bh=vVPOUctwnyfB+YD2bNXn8oVlRQeRez4f3tU2z/4oPAM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OaU6twdVZX+/+l+wYwKyWmgbdcNQ/cAYLUMOFe3mXkbrGcYbW6Y7F0aKpbgCmA9zy0AE3SDeMAE6b8Ifl5K5A0MHjTe1D7JylG5RLhyyKRjvOfrrT5MQDbjiBqZOjYuUpJrzB9owoIhCBelgEkE0Cq6KznXjBj8UVNLuxnCGaG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DWW5WqUH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B7E3C4CEC4;
-	Mon, 23 Sep 2024 21:23:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=KgwHHhcIkWplVc5/lZhB2b2+sXpFJ5BO6yxAmgoOKUl8Bu+a6X+d9N9cidN6k7H4mQ5LocMyuiu1zxdqPZp9CX67kxkWNKiRgAV43mLd867AVt9w5jWhZbZn1ttewkkF4tw+DNRL/u/JDlIV083KI+I3RRmqWSAuhfWMKoJJGz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B69oEG9i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABAE3C4CEC4;
+	Mon, 23 Sep 2024 21:34:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727126624;
-	bh=tj4LmrvGayH3XbbYtlkUr8l9vC6zcGbXYX0A15TEu4g=;
+	s=k20201202; t=1727127250;
+	bh=vVPOUctwnyfB+YD2bNXn8oVlRQeRez4f3tU2z/4oPAM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DWW5WqUHlB0Iq+flr9vUnaEgwPU099aociYwPrcfIJx1AP1dhptayX/uq4praF4Mq
-	 rDz8VfnovTd9r3b7esT4ClSZnrzkpgWIv0r8DTH+jgp3JHMLA0rq/R8Ex4jS06S2Xf
-	 Ma3WgsvmHom2mPKXHZehZJPTd6WzvdGTafcuqm0kiOZ7HBWpPEF3b1tHyWOFuDxPyq
-	 2yUwWwNhVYxfe1icSyFWank+6OZ3cU0aGkU7+zGchOSBpxH1FQoLW6lACbHMpQgm0y
-	 VpO5ZHcEkk42YguFpHIK6StJbu3RZqr/eSpVCHHFK/oVTKuGfsmVZNkjSh2OhFubqL
-	 jj+kEjArkoVog==
-Date: Mon, 23 Sep 2024 22:23:39 +0100
+	b=B69oEG9iR2lkgbaavaQIF+rGFjkOhAxIFSb0gLR/US8dDlU1t8itdFNSvLN4acSWA
+	 uezOSixDb4nZ2qizKSmVEHl/IMoat2cNQHh7Gzad5EwtM1/xgfzt10u8K2QbMaao0L
+	 kczydm+8kjvJEHutG8lKOn3DIvS9fWlk2UEoUU3EcovPOOqtgKGXlb7VsALziJSGom
+	 kFb4E1a8b57vx9oP9Drip8Qa6rwlMpEsVTB2p19364RtE40O0KsvlKLLI4Kw3YwICn
+	 pKQENBXWRVORwjwV7gMn3fzyBKIqtVnqv6CpprlMDRlz0jb8oijEvymnwBBpLRuK/d
+	 1CcAHKmZAjuFQ==
+Date: Mon, 23 Sep 2024 22:34:05 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Chanh Nguyen <chanh@os.amperecomputing.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Peter Yin <peteryin.openbmc@gmail.com>,
-	Noah Wang <noahwang.wang@outlook.com>, Marek Vasut <marex@denx.de>,
-	Fabio Estevam <festevam@gmail.com>, Lukas Wunner <lukas@wunner.de>,
+	Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>, linux-gpio@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-	Phong Vo <phong@os.amperecomputing.com>,
-	Thang Nguyen <thang@os.amperecomputing.com>,
-	Quan Nguyen <quan@os.amperecomputing.com>,
-	Khanh Pham <khpham@amperecomputing.com>,
-	Open Source Submission <patches@amperecomputing.com>
-Subject: Re: [PATCH v2] dt-bindings: trivial-devices: add onnn,adt7462
-Message-ID: <20240923-private-grower-af6a7c1fca09@spud>
-References: <20240923093800.892949-1-chanh@os.amperecomputing.com>
+	linux-arm-kernel@lists.infradead.org,
+	NXP S32 Linux Team <s32@nxp.com>
+Subject: Re: [PATCH v3 2/4] dt-bindings: gpio: add support for NXP
+ S32G2/S32G3 SoCs
+Message-ID: <20240923-rentable-okay-922af44b66c8@spud>
+References: <20240919134732.2626144-1-andrei.stefanescu@oss.nxp.com>
+ <20240919134732.2626144-3-andrei.stefanescu@oss.nxp.com>
+ <20240920-reapply-amusement-a37cf13fd910@squawk>
+ <16950e81-e0ef-4e7c-b0ef-4f56415dceed@oss.nxp.com>
+ <bd5a2d24-164c-4707-a5fd-6584e444ee0b@kernel.org>
+ <20240921-party-glass-bfb7099c7ded@spud>
+ <e6u3kui5md4km5xvjzlq5cfgwvtb73c763uep4j5ysaokmmucr@gz5nxiebg7gu>
+ <20240922-plug-legible-74f56d898123@spud>
+ <3b51ff7b-ab9b-431c-a43a-49b5a5e74dff@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,71 +75,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="qNZzXI/TECE47qmF"
+	protocol="application/pgp-signature"; boundary="D4I/hfqMmYR9lhb8"
 Content-Disposition: inline
-In-Reply-To: <20240923093800.892949-1-chanh@os.amperecomputing.com>
+In-Reply-To: <3b51ff7b-ab9b-431c-a43a-49b5a5e74dff@oss.nxp.com>
 
 
---qNZzXI/TECE47qmF
+--D4I/hfqMmYR9lhb8
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 23, 2024 at 09:38:00AM +0000, Chanh Nguyen wrote:
-> The adt7462 supports monitoring and controlling up to
-> four PWM Fan drive outputs and eight TACH inputs measures.
-> The adt7462 supports reading a single on chip temperature
-> sensor and three remote temperature sensors. There are up
-> to 13 voltage monitoring inputs.
+On Mon, Sep 23, 2024 at 01:47:25PM +0300, Andrei Stefanescu wrote:
+> Hi,
 >=20
-> Add device tree bindings for the adt7462 device.
+> On 23/09/2024 00:07, Conor Dooley wrote:
+> > On Sun, Sep 22, 2024 at 11:04:22PM +0200, Krzysztof Kozlowski wrote:
+> >> On Sat, Sep 21, 2024 at 10:58:46PM +0100, Conor Dooley wrote:
+> >>> On Fri, Sep 20, 2024 at 03:40:31PM +0200, Krzysztof Kozlowski wrote:
+> >>>> On 20/09/2024 15:33, Andrei Stefanescu wrote:
+> >=20
+> >>>>>>> +properties:
+> >>>>>>> +  compatible:
+> >>>>>>> +    items:
+> >>>>>>> +      - const: nxp,s32g2-siul2-gpio
+> >>>>>>
+> >>>>>> Commit message and binding description say s32g2 and s32g3, but th=
+ere's
+> >>>>>> only a compatible here for g2.
+> >>>>>
+> >>>>> Yes, the SIUL2 GPIO hardware is the same for both S32G2 and S32G3 S=
+oCs. I plan
+> >>>>> to reuse the same compatible when I add the SIUL2 GPIO device tree =
+node for
+> >>>>> the S32G3 boards. Would that be ok?
+> >>>>
+> >>>> There are only few exceptions where re-using compatible is allowed. =
+Was
+> >>>> S32G on them? Please consult existing practice/maintainers and past =
+reviews.
 >=20
-> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
-> ---
-> Change in v2:
->    - Add onnn,adt7462 to the list of trivial devices       [Guenter]
-
-Is this really a trivial device? If it monitors and controls fans, how
-come those do not need to be represented in the devicetree? How is it
-possible to tell the difference between monitoring 1 and 4 fans without
-the extra detail?
-
-Curious,
-Conor.
-
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Doc=
-umentation/devicetree/bindings/trivial-devices.yaml
-> index 0108d7507215..15f89d7ecf73 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -311,6 +311,8 @@ properties:
->            - nuvoton,w83773g
->              # OKI ML86V7667 video decoder
->            - oki,ml86v7667
-> +            # ON Semiconductor ADT7462 Temperature, Voltage Monitor and =
-Fan Controller
-> +          - onnn,adt7462
->              # 48-Lane, 12-Port PCI Express Gen 2 (5.0 GT/s) Switch
->            - plx,pex8648
->              # Pulsedlight LIDAR range-finding sensor
-> --=20
-> 2.43.0
+> I will add another compatible: "nxp,s32g3-siul2-gpio" for the S32G3 SoC. =
+We currently
+> also have the SIUL2 pinctrl driver in upstream with only one compatible:
+> "nxp,s32g2-siul2-pinctrl". Should I also send a separate patch to add an =
+S32G3 compatible
+> to it?
 >=20
 
---qNZzXI/TECE47qmF
+That would be great, thanks.
+
+--D4I/hfqMmYR9lhb8
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvHcWgAKCRB4tDGHoIJi
-0sNEAQCC3S9W5Yf6XyOTvzS2qKXG/O9P9J+FP7FXrlBEWIaLLAEAkw9U5FDVFaoq
-TX1eEOoIoUhUMlOZ+Tb/wSbZKUP1IQw=
-=I636
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvHezQAKCRB4tDGHoIJi
+0pCmAQC1egpDgRJ3lx7CnNAI1DfohfH3FYOvN94njKldOAyNOgEAjqcWytfOQc+G
+sRWY+YJMcy6ZEW7clxmqi0OwPbJBmws=
+=R/oF
 -----END PGP SIGNATURE-----
 
---qNZzXI/TECE47qmF--
+--D4I/hfqMmYR9lhb8--
 
