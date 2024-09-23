@@ -1,121 +1,150 @@
-Return-Path: <devicetree+bounces-104455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75D3997E750
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:14:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8688297E769
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:19:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC7A0B208F7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 08:14:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3712528162B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 08:19:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D48436A8D2;
-	Mon, 23 Sep 2024 08:13:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77A90193097;
+	Mon, 23 Sep 2024 08:19:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=compal-corp-partner-google-com.20230601.gappssmtp.com header.i=@compal-corp-partner-google-com.20230601.gappssmtp.com header.b="I712QI/p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LeYVMNc/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 502322C9D
-	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 08:13:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E72B6F2EB;
+	Mon, 23 Sep 2024 08:19:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727079237; cv=none; b=s1H2062Y5ZqW2Kb84dDefHLG9MmQWJRQ57gvexsjrSjm67ovHovG4dnbZhKPuQdbimLeWV/vIy8mbmtKecI+WklOiJQYtg/jUA01mnV7nDfV/dFE5y9esKtmOozIBgaGdrKX75Rqo9LsOdPEkv+zndIEBQkwV7ORYnbuz+7bCRM=
+	t=1727079590; cv=none; b=S/MB5YycTgH2zVRoUC/y74/136Y0ZH+82I7m4GLCz8bdtqSWC9qVru9qXoFj8S+PxRWcdOq/PN9g0LkGENKgCkIa38IrZrwYXgKKNY0zXKQMky0Wp48tVPELKR/8AQ3mUK2to6oynJ1TsR1JD0ls6nrzRkhbu5P6ReS/QAPzjWo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727079237; c=relaxed/simple;
-	bh=zl+VItl9QxENvndSaLeMfmluf1i154fUFaBkvmqNL9A=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ckXxMyG4KCUxNwS7uYfpRQ4urNWEhRzMCEvnXVSFCs6Pc3kGhn5JnYhjHiMcn/Ra6ljGxA0TZSV/sZ77zUkvmxbpJuAccaJLGxUqWHq3aXBD3dRoa5TcO0te5MI0cgudWF55jZ2SpuA52YG3xc0qmM0H6wEQR+bisqG6DnnVnAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=compal.corp-partner.google.com; spf=pass smtp.mailfrom=compal.corp-partner.google.com; dkim=pass (2048-bit key) header.d=compal-corp-partner-google-com.20230601.gappssmtp.com header.i=@compal-corp-partner-google-com.20230601.gappssmtp.com header.b=I712QI/p; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=compal.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=compal.corp-partner.google.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2059112f0a7so35238385ad.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 01:13:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=compal-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1727079235; x=1727684035; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pQy8Dxfmu7fap2VOihFGL73YkwS/WJ5DNXUiPdnsd/I=;
-        b=I712QI/pZzQVoMtMQonAXO4spOU5GXyC8ZCfd+c/TpzBYhYqWnadk/7CpaPdwKOtJq
-         pGvugjO0FyAlM1y2F5saJ/15f8mB2SAUitRer1HUZTDtDTRrdRiSQkm815LXriAYPmtD
-         tExUVgc4BFAqXOPudrwWvLNbRWlPXyotJCqN6TnSM7ewnII/h2zGBzETneA9o2+9IThw
-         tB/4XdXRxz3Q01TMjDhW+RvKsepSoB2fzjV4H3pSY7iIid6i7Ke9FGo/nuy+XkEFKtNH
-         aOL2TTW0JiDK+ymDXPPJbn+n0YbwtgihWbl1W82I3VzKaOK2FAXs+gIQ/EjMcWjsf9ur
-         Ou0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727079235; x=1727684035;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pQy8Dxfmu7fap2VOihFGL73YkwS/WJ5DNXUiPdnsd/I=;
-        b=ASLDnEynK2c0pvIQEKBjRAbhdFsWVztV/K8H/qApGurK6k0e1rww0eJTo1SmHMgxej
-         6irhCH6Vp0QkTZF0bFHdozJLt/2IHjXdFQSlize7rZcn2g25/q10A5mZtPgskWvfkpRo
-         aawQnwz0Jw0N3vEPl6eUv2AVuZtuywKtAmyDhBnihQmXsazq78D999Ycn1FcNcy55roY
-         nrHGoZX4WYnJRRUNigWuvXPZZ4gPViLkxmuYr11Jpj0fcH9yOqNFAzSS4JQMb3hUhN8E
-         l7zm3pYZUEB+rRSKMG7z04FJ3477wvTvj9MaO22vVtRrSPkjrSlSDXbwC44Gpi/bYDKU
-         PHfg==
-X-Forwarded-Encrypted: i=1; AJvYcCUg39+uyDC0ee9LfY3TEeXDD7W6iOwXKyUtyuvkPC2jnM7kmlIFXwJMXXJUT8WD38xAsPE1GODgzzha@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0YRPl9nJPlLJrNuvQM4oLYpz8XCgUHc4pN7uAx6hoIQfBNgKE
-	9HOjnIVgjke7TRFR+N0DEAHc2cGTsB3hntNc0Hr1gI4lG3zEK3IP6RfhaCqsFaM=
-X-Google-Smtp-Source: AGHT+IE26gx2jgT7LO3ISI0SJ9dTEoWLtDfoJJBXr1rZ4bhzlohyJeU/p7j2+b//vCf8oO67DUUqNw==
-X-Received: by 2002:a17:902:da85:b0:205:5427:2231 with SMTP id d9443c01a7336-208d840d687mr139802545ad.47.1727079235519;
-        Mon, 23 Sep 2024 01:13:55 -0700 (PDT)
-Received: from maxweng-Latitude-7410.. (2001-b030-0251-0200-ae0b-14c1-5918-69cd.hinet-ip6.hinet.net. [2001:b030:251:200:ae0b:14c1:5918:69cd])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2079470f38csm128256985ad.205.2024.09.23.01.13.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Sep 2024 01:13:54 -0700 (PDT)
-From: Max Weng <max_weng@compal.corp-partner.google.com>
-To: linux-kernel@vger.kernel.org
-Cc: max_weng@compal.corp-partner.google.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH v1] arm64: dts: mediatek: mt8186: add FHCTL node
-Date: Mon, 23 Sep 2024 16:13:40 +0800
-Message-Id: <20240923081340.860715-1-max_weng@compal.corp-partner.google.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1727079590; c=relaxed/simple;
+	bh=gQ1xXXNFSQ0hMp/hqA4GAQ7kD/mpS6i/zp2Gmw3vPRw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E2pi1cxRPiHMQpefEVMvFXojwvCQRywqKWoTHrq68faLrSFg8fI+YWai8I5se7YFJl/eAIf/cg2eU3lpHBLT6X01fvhnYNzoiI9ydRxEpOJfVt3dstQp/aLEPsjwo/9iS5joblMe64QoQULSS0TEMKpij9hDLV8S7cGP4Cpp3Q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LeYVMNc/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CEB1C4CEC4;
+	Mon, 23 Sep 2024 08:19:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727079589;
+	bh=gQ1xXXNFSQ0hMp/hqA4GAQ7kD/mpS6i/zp2Gmw3vPRw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LeYVMNc/c1PpcDq/PGTNH8EeH683lhQ22/Ye7Wa4pPsxVuDDsLY7Q9JyzQS1As9ys
+	 1FxD65e/lBiV5VktoD0dv2pZ7FLgoeIFKJEwS9agXwshH7aqAKWq63ZP+UjytmPKLu
+	 yAIQUsTNGCMG1aQpwo4+9E1W77uhKT3AXbPHR4683BNeokwEgHhRfR2eHDuZoIv+nH
+	 WB483aJV+y58kgAC0/JTULv4RpA1WkJEg+q+q2T6+pLYIygf3JBmgW7xmVAplusijv
+	 wrTGbbhIB55EzaYYVnuIWO5abH1Uweoc6XHXEdDjVa2BsDSfs8pb/9aWkxwrnz6+mn
+	 A7DeNA4vO15LA==
+Date: Mon, 23 Sep 2024 10:19:46 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Sandy Huang <hjc@rock-chips.com>, 
+	Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>, 
+	Luis de Arquer <ldearquer@gmail.com>, Algea Cao <algea.cao@rock-chips.com>
+Subject: Re: [PATCH v6 1/3] drm/bridge: synopsys: Add DW HDMI QP TX
+ Controller support library
+Message-ID: <20240923-spirited-wealthy-pelican-4e15dc@penduick>
+References: <20240906-b4-rk3588-bridge-upstream-v6-0-a3128fb103eb@collabora.com>
+ <20240906-b4-rk3588-bridge-upstream-v6-1-a3128fb103eb@collabora.com>
+ <20240909-horned-congenial-curassow-ebc5fa@houat>
+ <f8b17995-ce53-45ab-8e68-c7087dbc9786@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="bjmxjjuhmv2zdjhq"
+Content-Disposition: inline
+In-Reply-To: <f8b17995-ce53-45ab-8e68-c7087dbc9786@collabora.com>
 
-From: max_weng <max_weng@compal.corp-partner.google.com>
 
-add fhctl device node.
+--bjmxjjuhmv2zdjhq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: max_weng <max_weng@compal.corp-partner.google.com>
----
- arch/arm64/boot/dts/mediatek/mt8186.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+On Sat, Sep 14, 2024 at 10:12:29PM GMT, Cristian Ciocaltea wrote:
+> Hi Maxime,
+>=20
+> On 9/9/24 6:13 PM, Maxime Ripard wrote:
+> > Hi,
+> >=20
+> > On Fri, Sep 06, 2024 at 04:17:40AM GMT, Cristian Ciocaltea wrote:
+> >> +static enum drm_connector_status
+> >> +dw_hdmi_qp_bridge_detect(struct drm_bridge *bridge)
+> >> +{
+> >> +	struct dw_hdmi_qp *hdmi =3D bridge->driver_private;
+> >> +	enum drm_connector_status status;
+> >> +
+> >> +	status =3D hdmi->phy.ops->read_hpd(hdmi, hdmi->phy.data);
+> >> +
+> >> +	dev_dbg(hdmi->dev, "%s conn=3D%d scramb=3D%d\n", __func__,
+> >> +		status =3D=3D connector_status_connected, hdmi->scramb_enabled);
+> >> +
+> >> +	if (hdmi->scramb_enabled) {
+> >> +		cancel_delayed_work_sync(&hdmi->scramb_work);
+> >> +
+> >> +		if (status =3D=3D connector_status_connected)
+> >> +			dw_hdmi_qp_check_and_set_scramb(hdmi);
+> >> +	}
+> >> +
+> >> +	return status;
+> >> +}
+> >=20
+> > Unfortunately, that won't work. The HDMI Spec has (HDMI 2.0, Section
+> > 6.1.3.1 - Scrambling Control):
+> >=20
+> > The minimum time period between the write to the Scrambling_Enable bit,
+> > and the transmission of a scrambled video signal is not specified;
+> > however the Source shall not begin transmission of a scrambled video
+> > signal before writing a 1 to the Scrambling_Enable bit. The maximum time
+> > period between the write to the Scrambling_Enable bit and the
+> > transmission of a scrambled video signal shall be 100 ms.
+> >=20
+> > So you need to disable the output and enable it again.
+> >=20
+> > vc4 does just that, you can have a look here:
+> > https://elixir.bootlin.com/linux/v6.10.9/source/drivers/gpu/drm/vc4/vc4=
+_hdmi.c#L410
+>=20
+> Thanks for all the details and references!
+>=20
+> Unfortunately I had to drop the scrambling setup for now [1], as I
+> encountered some issues while attempting to get this implemented as
+> suggested.  Will get back to this and submit it separately when done.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-index 148c332018b0..d3c3c2a40adc 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-@@ -29,6 +29,13 @@ aliases {
- 		rdma1 = &rdma1;
- 	};
- 
-+	fhctl: fhctl@1000ce00 {
-+		compatible = "mediatek,mt8186-fhctl";
-+		clocks = <&apmixedsys CLK_APMIXED_TVDPLL>;
-+		reg = <0 0x1000ce00 0 0x200>;
-+		status = "disabled";
-+	};
-+
- 	cci: cci {
- 		compatible = "mediatek,mt8186-cci";
- 		clocks = <&mcusys CLK_MCU_ARMPLL_BUS_SEL>,
--- 
-2.34.1
+Yeah, I think that's the best way forward for now :)
 
+Maxime
+--bjmxjjuhmv2zdjhq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZvEkmgAKCRAnX84Zoj2+
+dtqIAYCEGRZltZdX05vOCUhg+bOJmCXtzlvHsgM0R0lqKkF47Ts4/UIXsS4SIBrh
+GzywXicBfA+E1AnqXzojQFvunTAvhnbNDmkORCYsD6W+6g1tpbLD2aeqkSlYNen/
+ghfb0s5gfA==
+=WJBj
+-----END PGP SIGNATURE-----
+
+--bjmxjjuhmv2zdjhq--
 
