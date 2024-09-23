@@ -1,115 +1,158 @@
-Return-Path: <devicetree+bounces-104599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 485AD97EF0E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 18:19:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3DB797EF1B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 18:22:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 093B9282B0F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 16:19:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9B34281109
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 16:22:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92D4519E96E;
-	Mon, 23 Sep 2024 16:19:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A59919E993;
+	Mon, 23 Sep 2024 16:22:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ibjpnFLq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jTYLubTj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A45C7DA81;
-	Mon, 23 Sep 2024 16:19:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA32E823AC;
+	Mon, 23 Sep 2024 16:22:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727108360; cv=none; b=tw0XvDPKjchFU3wpWccuVYX8kfFPkN8MKR0hL75u5c/IAR9c/oAnwGD+me8VwULS9igLFx0TQg00jJOlhPuEsExSMiE15g9GLyX4hlZpQ3Pri71TbsEBivN3TIYcOlHwSQWLEyXuIvNYMnLURC8pH/Dr9vfizv9Pu9OD5phH18U=
+	t=1727108558; cv=none; b=G3TjQ42QbagDSUMe8iE+WbhtZAGN4IY553wG1tfPwHB+h9yB2C1908sQ/00VYLSH+BHCvdj8N8xHf75k83rRpd/x9Oy3KN0EvGq4JAA4ULmVxDQVyXHsZXtBQIOE6R9xfMe4ynuDFKJdXE9AVkWfSrXQXmLKZVZrDq0QO7GeTpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727108360; c=relaxed/simple;
-	bh=L+HrpQOt/sp64V+/b1XLHvuUE4MhTMOvK2G33tvFkgQ=;
-	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:References:
-	 In-Reply-To; b=LDp4JBxwbhv9mCwXZimdrXRZsSbsPbsgRcfXQK4xxSz9s9uTaEUGHuTCqn3fm2FJavwuixSKq0KSey2NJdawju+bYI3N0ZEkJYp5qCiIKnK2fSdgBqDwa4sNGPthnjgJOlFXcqh/HWnIrpgxqNjiwqaZWnVB6K9eOl+OgpwN4oQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ibjpnFLq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81F9AC4CEC4;
-	Mon, 23 Sep 2024 16:19:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727108360;
-	bh=L+HrpQOt/sp64V+/b1XLHvuUE4MhTMOvK2G33tvFkgQ=;
-	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
-	b=ibjpnFLqSxjsJEfMV8/u0ampncfU0/VrFCP41L/7DNMy2V0cRhN0TlZEcK1nK9MF2
-	 ROM3BOT3dVht5+0VXDDELDl5Xq9Q6q+qv9UYbwNZLV9hk+A/lIp3Yp5jnhoy7HXR3y
-	 9pvNor7I4t/1wPXJerCOFK4zBC6F0xUxgdrtlG0PUvK5D5734TdvwdLvKVSJXE2RKE
-	 /m1CbkzWwugm8zmH+9wlBZ4upmvv59moz6WfwO/eHJQuwMHFYEAokArzrgaXHS3Eo2
-	 wAimx41GvvI4SAPN3A/7UGhhteJst5BSQ6k8k5d3R7HbN6xAAu0rgYrFC6y/nS5lYI
-	 v7WJZVg7Nnf9w==
-Content-Type: multipart/signed;
- boundary=4435393838c56d35a9520abeca3bdfccaaf3b3c8ee281df4639bc47aa985;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Mon, 23 Sep 2024 18:19:15 +0200
-Message-Id: <D4DSTDA3HE2B.20ACE70SQAL7A@kernel.org>
-Subject: Re: [PATCH v5 1/5] mtd: spi-nor: core: add manufacturer flags
-Cc: "Tudor Ambarus" <tudor.ambarus@linaro.org>, "Erez Geva"
- <erezgeva@nwtime.org>, <linux-mtd@lists.infradead.org>, "Pratyush Yadav"
- <pratyush@kernel.org>, <linux-kernel@vger.kernel.org>, "Miquel Raynal"
- <miquel.raynal@bootlin.com>, "Richard Weinberger" <richard@nod.at>,
- "Vignesh Raghavendra" <vigneshr@ti.com>, <devicetree@vger.kernel.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Esben Haabendal" <esben@geanix.com>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Erez" <erezgeva2@gmail.com>
-X-Mailer: aerc 0.16.0
-References: <20240920181231.20542-1-erezgeva@nwtime.org>
- <20240920181231.20542-2-erezgeva@nwtime.org>
- <4e0cf43c-4843-451c-ac6f-86775dbccb2b@linaro.org>
- <CANeKEMOmhAPM1j1_ihzcC2wL6jKsWXPCGfZs+euS8mRvtqgE5A@mail.gmail.com>
- <D4DLQGLJSKPB.3OOW4RU9Q3K5O@kernel.org>
- <CANeKEMPSoUu7GW5bL8nuyC5xCKG7Tt0=SvWTL_CcX5oebqN_YA@mail.gmail.com>
-In-Reply-To: <CANeKEMPSoUu7GW5bL8nuyC5xCKG7Tt0=SvWTL_CcX5oebqN_YA@mail.gmail.com>
+	s=arc-20240116; t=1727108558; c=relaxed/simple;
+	bh=VdkM75IQkxU7Lpd/F13lYAcYe/ObislY5V39DVe3lPo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=S1RONPSfQNf1kRv7Fe//d9TsO1Sq3nLkpqT4nb9EwETC4/5lGWRbJRZL1MQduFhKSCclkJZvBuVsiN/jroxE90lA/JqbVeH2hDDNbXT9y9F035aEtFS9TP8JXhnBRg1LMAEKhURXwME3/xBu4X2jccDzf5lV/O396E5mYiGkt4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jTYLubTj; arc=none smtp.client-ip=209.85.160.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-45821ebb4e6so36354711cf.2;
+        Mon, 23 Sep 2024 09:22:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727108556; x=1727713356; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xMAjUDxOyknWcICNvHoeRR5xLaaisNjKFQiCg/h7w/8=;
+        b=jTYLubTjbnmldzO9E53MWvqB8r5o6t4M+pSfAZIPk0PS8gOXzAttLzz+MSYudhUQim
+         VnlP5gMFqeJcvM0C1NvsUx/etqFQ+UaptSVMDDT1O902e0709x5Rrh5qOQrUH4CgVZY+
+         iGHGuHlOHniCfV6e0aEhMEBqaK7RE23FUYTmzRkUgTvGKCiRVlbUTBjIiFF1O3bO9br2
+         aizgaqu/QT+JpQ7eNBx40+MWrFmBn5fdYaBllsuivvLWV/qYwNNQay0ECSkM0wXgxJT7
+         TmGpPbb/Zkxs2cy8gh/g0PakVHL1oXnSaV5WRIj9XuqH6VN03ZmNrcDoEJvCx8jPr/mZ
+         /PXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727108556; x=1727713356;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xMAjUDxOyknWcICNvHoeRR5xLaaisNjKFQiCg/h7w/8=;
+        b=Go61KG1eM/TZoDzac4C818immqCmgf7DE6qT9OsM1kv3vZ6Qcy6Sw2EzQywFQtYnhd
+         9NoyrfZsiyD+UkbJ4th+fuoKcILXM+sc29LudHV3qN9DUESrG4H/Zdq2OZ8pzS5jDNIZ
+         HGhSUSoBFb0JzXedB8cbFn1H1rhI5mZOFUJZnJquu3/rT7cduTiNIbSz8e/Ktn3e63j6
+         RK2m7Hh7S8UrtIRIenNClKQu36KuDRU4qUjlWgtTAeTlFS+o3WDP2EPvIOnj1Fig9Izu
+         hs8qcZVG5Lvl6wZ2lJPzR/vFaLLc7I4qmMxh67MtqlQAoRp7DPQY9g0k2UyK61/6IIqh
+         6Heg==
+X-Forwarded-Encrypted: i=1; AJvYcCVGMOQY3aMi4Lm3RTYDTCPw+w+fZ8BfdDM3LzFL+P1ZvbifsKzgSwdhLP1qaSYsn6g9eBe9JPq3//fJ@vger.kernel.org, AJvYcCWkhmr7qW7KguJHxBD0vn8/zj+SQ7JqVI9rtXS7W90plJAAQmdEwC3FX+G+hR0WeX5UCzQK8hZxklKNfM4S@vger.kernel.org, AJvYcCXxKa7JizGb+dhJGDXOTF7m2/xMiS8hNCgKgNAamQ3Fe2l+rmn2ws6dK8Zbf+IzhdpjSq9qb79hNQe5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwI3Dvxj08nswBwRTBFbw7PvDlEgVLil5CLdxBBcotogZO3ztxe
+	5CifeRx9yZ/Tjki9zYsTI3+8C4AboDGLCYc6ejrCvJZ/x4EOifc3
+X-Google-Smtp-Source: AGHT+IFCJxsI00ZrQnDdvugyIqeqvv9DQpGecgLpiot6gq0UD9k6CQSR8jxNdqQlbuJjiZbrcWW3uQ==
+X-Received: by 2002:ac8:5d4a:0:b0:456:61f0:810d with SMTP id d75a77b69052e-45b226d1230mr220772381cf.10.1727108555440;
+        Mon, 23 Sep 2024 09:22:35 -0700 (PDT)
+Received: from VM-Arch.gst.l3harris.com ([208.127.73.102])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-45b17867fb0sm48587901cf.1.2024.09.23.09.22.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Sep 2024 09:22:34 -0700 (PDT)
+From: Alex Lanzano <lanzano.alex@gmail.com>
+To: dmitry.baryshkov@linaro.org,
+	Alex Lanzano <lanzano.alex@gmail.com>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Mehdi Djait <mehdi.djait@bootlin.com>
+Cc: skhan@linuxfoundation.org,
+	linux-kernel-mentees@lists.linuxfoundation.org,
+	christophe.jaillet@wanadoo.fr,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org
+Subject: [PATCH v7 0/2] Add driver for Sharp Memory LCD
+Date: Mon, 23 Sep 2024 12:21:33 -0400
+Message-ID: <20240923162205.55658-1-lanzano.alex@gmail.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
---4435393838c56d35a9520abeca3bdfccaaf3b3c8ee281df4639bc47aa985
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+This patch series add support for the monochrome Sharp Memory LCD
+panels. This series is based off of the work done by Mehdi Djait.
 
-Hi,
+References:
+https://lore.kernel.org/dri-devel/71a9dbf4609dbba46026a31f60261830163a0b99.1701267411.git.mehdi.djait@bootlin.com/
+https://www.sharpsde.com/fileadmin/products/Displays/2016_SDE_App_Note_for_Memory_LCD_programming_V1.3.pdf
 
-> > > I would gladly remove the obsolete mx25l12805d.
-> > Why? I don't see any need for that.
-> Maybe because we do not want compatibility table?
+Co-developed-by: Mehdi Djait <mehdi.djait@bootlin.com>
+Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+Signed-off-by: Alex Lanzano <lanzano.alex@gmail.com>
+---
+Changes in v7:
+- Add Reviewed-by tag back to dt-binding patch
 
-I don't get this? Anyway, we do not remove support for older
-flashes for no reason.
+Changes in v6:
+- Rebase off latest drm-misc-next
+- Replace pwm_apply_state with pwm_apply_might_sleep
 
-> No, reading the SFDP is great.
-> Except for OTP parameters/configuration.
-> As there is not way to find OTP parameters using JEDEC ID/SFDP
-> So as I understand there are only 2 ways to set the OTP parameters:
-> * Use a compatibility.
-> * Use dynamic OTP configuration, through DT, sysfs,
+Changes in v5:
+- Address minor style issues in sharp-memory.c
 
-* Use the in-kernel database to look up the parameters as it is done
-  with any other flash device. If the id is reused, look for
-  differences in the SFDP to figure out the correct flash device,
-  then add some .fixups to manually add the OTP flags and
-  parameters.
+Changes in v4:
+- Remove redundant dev_err
 
--michael
+Changes in v3:
+- Fix file path in MAINTAINERS file
+- Address review comments
+- Simplify mode selection based on match data instead of model
 
---4435393838c56d35a9520abeca3bdfccaaf3b3c8ee281df4639bc47aa985
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v2:
+- Credited Mehdi Djait in commit messages
+- Renamed sharp,sharp-memory.yaml to sharp,ls010b7dh04.yaml
+- Using strings instead of int for vcom-mode in dt-binding
+- Fixed indentation of binding example
+- Removed binding header
+- Removed extra whitespace in sharp-memory.c
+- Fixed error handling in sharp-memory.c
+- Added match data to of_device_id table to be in-sync with spi_device_id table
+- Replaced redundant function with spi_get_device_match_data
+- Sorted header files in sharp-memory.c
+---
 
------BEGIN PGP SIGNATURE-----
+Alex Lanzano (2):
+  dt-bindings: display: Add Sharp Memory LCD bindings
+  drm/tiny: Add driver for Sharp Memory LCD
 
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCZvGVBBIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/gUEQF/VOQpFkq0WrVXag0EPbAEIxTgFyKdouQs
-QrlWS9ikmx+/jabf2o19//lXIc66quhYAX9FYSiGNxXObzE3jBp5TU7NFXWyMxfV
-Btc6eXuS1c4Pa2RxPYz0IyLkJVdBDcdhrnM=
-=XAMQ
------END PGP SIGNATURE-----
+ .../bindings/display/sharp,ls010b7dh04.yaml   |  92 +++
+ MAINTAINERS                                   |   6 +
+ drivers/gpu/drm/tiny/Kconfig                  |  20 +
+ drivers/gpu/drm/tiny/Makefile                 |   1 +
+ drivers/gpu/drm/tiny/sharp-memory.c           | 682 ++++++++++++++++++
+ 5 files changed, 801 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/sharp,ls010b7dh04.yaml
+ create mode 100644 drivers/gpu/drm/tiny/sharp-memory.c
 
---4435393838c56d35a9520abeca3bdfccaaf3b3c8ee281df4639bc47aa985--
+-- 
+2.46.0
+
 
