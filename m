@@ -1,165 +1,108 @@
-Return-Path: <devicetree+bounces-104517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9833897EA0B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 12:43:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E03F397EA16
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 12:46:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6BB5B21184
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:43:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D9EE1C212CB
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:46:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C90A195803;
-	Mon, 23 Sep 2024 10:43:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="EmzD1NEH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3072E195FF0;
+	Mon, 23 Sep 2024 10:46:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DABA317543;
-	Mon, 23 Sep 2024 10:43:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5719841C77;
+	Mon, 23 Sep 2024 10:46:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.201.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727088218; cv=none; b=fT06AN14CJrcymwCfJiiI64+GGhUU01l8NaRC7Zk0kFkvKwmVo34icrSNqIq3Xp9VHphLpRMrDJ90h0yH3OBjQWZYAQ10x6NU1K/hALNfM777FbWyx1UvsuFHkvsRFTpGo9wzG3ARmvS44L2SerDCr2GMQxCyaRL+0c1CYqGNU4=
+	t=1727088385; cv=none; b=NoYcAUAh3LQwBkGTxuV2IYauljJPQhl2wHv3Ox8xHosdUTS4OGq/07Dymhg0nTNC5zfREVwSbP6N6qNDrCtZ61fnwghIDZ0xgTKHm7L75rrSNQDwT9WBcB7A/BjR3F2/w0wPGxNHMkgxLU8XX39j5X92hQdQW7UqD4Sb80NVDpw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727088218; c=relaxed/simple;
-	bh=+xoSspNKJ5MEUo0tLVZmeEuaK5ipmpy6ZXvedGMFkMg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=cfwOW5pXUue36+6uNd7cdsBfwTIhajLzFxSkS1YbHsDpfKfnsc9h85Z2UzKGabazYbQznQkqil2kwSqfSHg4H4oCURl7hfsrHhNhOEXHB3Ss4ahxu4McF8EYd89Ll2/CYjq/psOmfK4dPtYtOVctJaydIyyyKcxtmQIZNS5e7OM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=EmzD1NEH; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: ac46e808799811efb66947d174671e26-20240923
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=lxJ2u/FvugU1hQiGyVxAGg7yfWlaUL7i8/K8f/CODxM=;
-	b=EmzD1NEHc00QO3MhkzE01AetGGypiXlLNuFwDv/+mf5KzfgIHWm/GRroijcpnlxvaLExCyYaymWknRde/ShztiAIRnciqIbjRd85HhxVq4xrQ3ME3gvh2juN95PR8QysuigX32l0+1Dx/TeOj7mQkDZzdprO1JdIDSzlOfOiRhI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:ab14257d-9121-42ff-9bcd-a013a3e0b8b0,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:c9ca9fd0-7921-4900-88a1-3aef019a55ce,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: ac46e808799811efb66947d174671e26-20240923
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1160707181; Mon, 23 Sep 2024 18:43:30 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 23 Sep 2024 18:43:27 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Mon, 23 Sep 2024 18:43:26 +0800
-Message-ID: <637aca9a-5d1e-6726-4b97-4d5db0ee30a3@mediatek.com>
-Date: Mon, 23 Sep 2024 18:43:23 +0800
+	s=arc-20240116; t=1727088385; c=relaxed/simple;
+	bh=uXUXgnx25r8aS3tCDx/lcw2Qd5SFfMtKH9rCu2OCZds=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
+	 References:In-Reply-To; b=EZo/RsQvP5uazGLQbmX9dgjF3R64B9vUn/Mu/y3+E1IFlOx3tt157uP7ocepQoN5bV4m0QJKqSOtQscMc8qA1OOmqQzasaY7Sz8rAfEHCDRxeqyzCfT9Us9BDJ2XLrnJnQjTDnu1Aomi8oKqjM210lW4NspkXeTn8nIg+ZK7PHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=walle.cc; arc=none smtp.client-ip=159.69.201.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=walle.cc
+Received: from localhost (unknown [IPv6:2a02:810b:4340:4ee9:4685:ff:fe12:5967])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.3ffe.de (Postfix) with ESMTPSA id 5BF0D67;
+	Mon, 23 Sep 2024 12:46:20 +0200 (CEST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v6 2/2] dt-bindings: mfd: mediatek: mt6397: Convert to DT
- schema format
-Content-Language: en-US
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>, "AngeloGioacchino Del
- Regno" <angelogioacchino.delregno@collabora.com>
-CC: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>, "David S . Miller"
-	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, "Liam
- Girdwood" <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Sean Wang
-	<sean.wang@mediatek.com>, Sen Chu <sen.chu@mediatek.com>,
-	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, Dmitry Torokhov
-	<dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, Lee Jones
-	<lee@kernel.org>, Sebastian Reichel <sre@kernel.org>, Chen Zhong
-	<chen.zhong@mediatek.com>, <linux-input@vger.kernel.org>,
-	<linux-leds@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-	<linux-rtc@vger.kernel.org>, <linux-sound@vger.kernel.org>, Alexandre Mergnat
-	<amergnat@baylibre.com>, Bear Wang <bear.wang@mediatek.com>, Pablo Sun
-	<pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, Chris-qj chen
-	<chris-qj.chen@mediatek.com>, MediaTek Chromebook Upstream
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
-	<wenst@chromium.org>
-References: <20240918064955.6518-1-macpaul.lin@mediatek.com>
- <20240918064955.6518-2-macpaul.lin@mediatek.com>
- <20240918115151c896f33f@mail.local> <20240918115651c1475d36@mail.local>
- <2af0621d-14ac-b7f3-b28d-2df698931121@mediatek.com>
- <d8b90ddf-efbc-4434-9ad0-4be6942d51a5@collabora.com>
- <202409201337500284902d@mail.local>
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <202409201337500284902d@mail.local>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--16.104600-8.000000
-X-TMASE-MatchedRID: QW5G6BKkLToOwH4pD14DsF2036HHwFm/C/ExpXrHizwJmdXzOhEMdq1X
-	iPUpd5urvhH72H3yPfRl52ofpDGzAUER5ddgnEDec2k2agnXN3xMkOX0Uoduuf5Ndkm9jGh5+k9
-	OmImxseHdNZBjAe+TD5j4oSfJftZ+Gmdo3OL/XyN17gHAyAFr0z49+ukeLY9133Nl3elSfspkDy
-	hB8FZCo0saY8ROPM6fB++TmiSdVlO6de0YULw0FnuTVkeYosXtYY0tNGdvli3qLnOUXH9QdIcqr
-	S3ZaIiqCEuVF6nuSDFftuJwrFEhTbew1twePJJB3QfwsVk0UbtuRXh7bFKB7n0Bw/xUOCRaQob8
-	Aj73RQ4BdZxBcFC/afKV0PghFKiIHIV02d1rpG8=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--16.104600-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: 29BBBD91297B46FCBF23EA27127FA88C925FF1F3A72ACB71CB857985D524E1632000:8
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 23 Sep 2024 12:46:20 +0200
+Message-Id: <D4DLQGLJSKPB.3OOW4RU9Q3K5O@kernel.org>
+Subject: Re: [PATCH v5 1/5] mtd: spi-nor: core: add manufacturer flags
+Cc: "Erez Geva" <erezgeva@nwtime.org>, <linux-mtd@lists.infradead.org>,
+ "Pratyush Yadav" <pratyush@kernel.org>, <linux-kernel@vger.kernel.org>,
+ "Miquel Raynal" <miquel.raynal@bootlin.com>, "Richard Weinberger"
+ <richard@nod.at>, "Vignesh Raghavendra" <vigneshr@ti.com>,
+ <devicetree@vger.kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Esben Haabendal" <esben@geanix.com>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Erez" <erezgeva2@gmail.com>, "Tudor Ambarus" <tudor.ambarus@linaro.org>
+X-Mailer: aerc 0.16.0
+References: <20240920181231.20542-1-erezgeva@nwtime.org>
+ <20240920181231.20542-2-erezgeva@nwtime.org>
+ <4e0cf43c-4843-451c-ac6f-86775dbccb2b@linaro.org>
+ <CANeKEMOmhAPM1j1_ihzcC2wL6jKsWXPCGfZs+euS8mRvtqgE5A@mail.gmail.com>
+In-Reply-To: <CANeKEMOmhAPM1j1_ihzcC2wL6jKsWXPCGfZs+euS8mRvtqgE5A@mail.gmail.com>
 
+Hi,
 
-On 9/20/24 21:37, Alexandre Belloni wrote:
+> I would gladly remove the obsolete mx25l12805d.
 
-[snip]
+Why? I don't see any need for that.
 
->> > > > >  - RTC:
->> > > > >   - Drop "start-year"
->> > > > 
+> > If there isn't any way to distinguish the flashes at runtime (which I
+> > doubt/challenge btw), then as a last resort we introduce a dedicated
+> > compatible for the flash in cause and specify all needed parameters in =
+a
+> > dedicated flash entry. This shall be more generic as further flash
+> > parameters can be statically specified in the dedicated flash entry,
+> > less invasive for dt, and less confusing for people when they decide
+> > whether to use OTP or not. OTP params in device tree is a no-go.
+> >
+> > But again, you have to prove why you can't distinguish the flash at
+> > runtime before introducing a new flash compatible. So don't go this pat=
+h
+> > before sharing with us what you're trying to achieve.
+>
+> You keep sending me contradictory messages.
+>
+> I told you we can not "guess" OTP settings based on JEDEC ID and
+> SFDP existence.
 
-[snip]
+What are you trying to achieve here? I've told you we are trying
+hard to figure out everything out at runtime. I'd suggest you start
+with one particular device where you want OTP support for. If the
+flash id is already in our database, find a way to distinguish
+between the old and the new one; probably by looking at some SFDP
+parameters. No need for any new compatible. Don't try to solve the
+problem for all the chips out there.
 
->> > 
->> 
->> Alexandre, I definitely agree with you on the fact that the MTK PMIC RTC driver
->> can (and needs to) be improved, and that it can make use of some nice cleanup...
->> 
->> ... but!
->> 
->> This series performs a conversion to schema, and the previous txt file didn't
->> say anything about the start-year property - which was not mandatory to support
->> at that time (nor now, afaik?), so adding support for that is out of scope for
->> this series.
-> 
-> It is mandatory now. I agree this can be done in a subsequent series.
-> 
+Again, the reason why we are trying hard to determine that at
+runtime is that these flashes are usually second source devices and
+a manufacturer might just replace it with a (more or less)
+compatible one. Therefore, the less information we put into the
+devicetree the better. So before you are sending a new version with
+the flash compatibles, you actually have to convince us that there
+is no other way of knowing what kind of flash there is on your
+board except for providing the name by the firmware.
 
-Thanks you all for helping with the review and kindly understanding the
-situation. I see that Angelo has already submitted the RTC patch set.
-I'll check it with the internal driver owner. It seems okay with a quick 
-glance.
-
->> 
->> Eventually, that can come as a series on top, adding support for that in the
->> binding (and, of course, in the driver).
->> 
->> I should be able to tackle that... most probably next week - but still, the
->> improvements would come as a series on top of this one.
->> 
->> Cheers,
->> Angelo
-> 
-
-Thanks
-Macpaul Lin
+-michael
 
