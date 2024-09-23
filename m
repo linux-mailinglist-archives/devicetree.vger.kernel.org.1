@@ -1,154 +1,213 @@
-Return-Path: <devicetree+bounces-104592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E9D497EE5D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 17:41:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5F6597EE66
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 17:42:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 638FB2825C9
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 15:41:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D3581F22716
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 15:42:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29B8E19D8B5;
-	Mon, 23 Sep 2024 15:41:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D54B199944;
+	Mon, 23 Sep 2024 15:42:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ocd5RcnG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WHJ5hmH9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6A3919CCEA
-	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 15:41:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74D4F198E6D;
+	Mon, 23 Sep 2024 15:42:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727106064; cv=none; b=owgUsmYWYHRN/bzAhaBS85RQKI+Z/oihwoZ7UxjeVb2HdjCtoFfCIbPYYtx7/L7bQ4LyviUZ3Wb+cvAZRBO5yGbnFgFN9rbkjYgGwk7Ssd7pT5k8VWReEymXyKgTp6nudLje8dBa7raHcaHMK+FMtQ5+Qwekp9nNxpO6eRfFHSk=
+	t=1727106165; cv=none; b=fWk6fUqpGrzRpM1rb2SqJN2rlMKIFKY5vshXi/euyXX7tyk5rrGfu0c/zKXPELvKaegbKiEL9+8TTWK/5rzmmaduv1xHl/tkEGa1OhXa4/BWZMmCUVsjKNtwTloqZxGSTYgWzmzTe9pZTDHt6mBqj4gO0zLfL+7VpJwTMLjVl0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727106064; c=relaxed/simple;
-	bh=iFXJARjuQ6GuRR2ReXhrm38YPabUlZm4bgLRdENxQxg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FWFPdHn4EdIHvGtcgsyHnmR4AlhufhLb7L5WrXMl25zLcV6v59z8fPmeV1vfad8qEVs3lh4k711bZLpGvWRyR5/4OGKWQbWiDTcFt7X09KovY/BOwblsVXpjv+VqPmXBlYjArlVIH5Dwf1fVyZjVFqGZQgJAvvffTc2+svyvb/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ocd5RcnG; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-42e82f7f36aso17819305e9.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 08:41:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727106060; x=1727710860; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3hEMgT+V6RKCGsVH4avWyT+AgGGovhzaXz1iZrgskY0=;
-        b=Ocd5RcnGAezLzJ6Cz230QRZCoXGZXQrcnjaF9J5qnmLUayNfSAz/WmDox4yxTmRwVJ
-         PHgFou5xiy/KMKINg6ARKyUxPG0ZdfCH1DiIfFE0wUYRas/A4NfFeqL/I3rD+O6YkbHv
-         kJqfD6pcv1Yh7Rqzf4/19Jw148qwVt+G4V8YwV1M2e6Rr59MABLeg3s1IynWs61W7JL3
-         M3voNr5wwQm3fpad2ioHBZnthtrOr0apYEyJBRaTGvbKsG+LeIra0Ih4PU/RDPd46TYn
-         EbYQsTZ4Z1q11M9JZBUADEhwB9wI8K+oQ0Z/pg89NFH75UmFCC1xEoDI3ZsiVKWjhSVL
-         nBUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727106060; x=1727710860;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3hEMgT+V6RKCGsVH4avWyT+AgGGovhzaXz1iZrgskY0=;
-        b=IsUUptuVr3pPGqi+XBBeObLxyVuvBLDluAx42cT5TxC6299Zt1v/ZX5UXHN4Q1QwD6
-         fXwSaElzFRjuT+sgsZnpzy9NmFhgcC1laRkZkq8nXtrx1SiV+xipd180lIcRABCP2QXD
-         Yu/LZ66MvM7H6dpzVizhveAwrOLbdH+RXnOZfivTk/9PFQdt1ZIUM0fmCeyxm0zcqHVy
-         J1/9AQywuFkOnleG4Gc06b913GifT4l0dwbkxB79Nm2XCzjcyOO0Wd8ANr7ddCZM8OTD
-         uB5Xo2i7KR/Ymct5sm5AmpMymYV9TO5ZomDy/Xl6OWjYlIZuzZiWkBZFcNL9fd9OZ89i
-         ZqyA==
-X-Forwarded-Encrypted: i=1; AJvYcCXP1o1RscW6Z0VdvAgdJ39vzplqicP6hR8jZlTzjSDAUGpB/jfi9mmb4fPzm0AS9jO3Al7slmHxd29p@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTQszJJXyPrNsemOK4R7hijvSB4/Dh+KE8w9JaoAoBwneIyGN3
-	X8ZmDED35Mi1YKBZn8FxZHjagitLP8HQOt6es+vjLWK9KG8+ILuLlVTslCNHsxU=
-X-Google-Smtp-Source: AGHT+IHsWmcr4eW+BaYfL8CYsAvdo+Szk8fAimdTZxi5lZN//5fbIfWXxSrhfFtn/GBv/D99t5gVmA==
-X-Received: by 2002:a05:600c:154b:b0:42c:cd88:d0f7 with SMTP id 5b1f17b1804b1-42e7abedd22mr85419165e9.10.1727106060023;
-        Mon, 23 Sep 2024 08:41:00 -0700 (PDT)
-Received: from linaro.org ([82.77.84.93])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3790802b2d7sm12741225f8f.0.2024.09.23.08.40.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Sep 2024 08:40:59 -0700 (PDT)
-Date: Mon, 23 Sep 2024 18:40:57 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Trilok Soni <quic_tsoni@quicinc.com>, linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC 2/2] usb: typec: Add support for Parade PS8830 Type-C
- Retimer
-Message-ID: <ZvGMCTPqBR0VuHd3@linaro.org>
-References: <20240829-x1e80100-ps8830-v1-0-bcc4790b1d45@linaro.org>
- <20240829-x1e80100-ps8830-v1-2-bcc4790b1d45@linaro.org>
- <Zta6cBq881Ju7r7H@hovoldconsulting.com>
- <Zthet0QqChgGWJAe@hovoldconsulting.com>
+	s=arc-20240116; t=1727106165; c=relaxed/simple;
+	bh=t+7IuhRWDk00ypz8u+yjo2secAHWniKaBdDHZARt9tA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QuLL+OyJ0y6o56h2ggf/IJWtpOHVMLTabtde9vipnZlkD/8lEuM2TJoIY7gx4nNkrVPPJJEX7Yxf7IylZ7wyix7JMNhkKDfqQnEzznHc0mwS6u4CqUqkVR1p8G25NzzHl/AWCHdP5Wq2mZMMI4Qt8vuzGK66LVMzTzX8YMK7SnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WHJ5hmH9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BDC1C4CECD;
+	Mon, 23 Sep 2024 15:42:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727106164;
+	bh=t+7IuhRWDk00ypz8u+yjo2secAHWniKaBdDHZARt9tA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WHJ5hmH94HVxC4aUwyQRiop8ww28DHccAf38Cq1/iEbz1FzJ0JHWLaswf2xZq4zLW
+	 T8UiG+jzhMWRYZO49iFmGMLQ8Fe2xUQ/Nm4baHZVGPMWjGohXeAHUoZGyFGaowOrNp
+	 NIAvNt1tO5ymeQpYXTNTYCFY42ug8K01VeUiQRE8u/JdAVc/gl9zVCpIIxbiN/Q/gm
+	 zmnZaCNa+xePHji2SnH5uzkW3ytBjdtqARK+Jt0xNEn6TqqDiWWscp2fxNd7qnjdpX
+	 Bppft+ebCc+/qDyEjPOvzEfdIuuMG5EQfUsapb+rgojUV0n9KNk260IPtCBp55WN3y
+	 R93LWm+1CnZJg==
+Message-ID: <bcb4fcf5-b49b-4e1c-a5c4-e417d04097f0@kernel.org>
+Date: Mon, 23 Sep 2024 17:42:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zthet0QqChgGWJAe@hovoldconsulting.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/5] dt-bindings: mtd: spi-nor: add OTP parameters
+To: Erez <erezgeva2@gmail.com>
+Cc: Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>,
+ linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Esben Haabendal <esben@geanix.com>
+References: <20240920181231.20542-1-erezgeva@nwtime.org>
+ <20240920181231.20542-4-erezgeva@nwtime.org>
+ <2fo7pndjqieq6lfydmq2pnwb374oqoqnrcsezycgougmr7mtl5@2wm6fe3inf5u>
+ <CANeKEMPjLYbBi0AXkEdNum=kqtVe_mfTcVf4zUvJsszVhnh+pw@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CANeKEMPjLYbBi0AXkEdNum=kqtVe_mfTcVf4zUvJsszVhnh+pw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 24-09-04 15:20:55, Johan Hovold wrote:
-> On Tue, Sep 03, 2024 at 09:27:45AM +0200, Johan Hovold wrote:
-> > On Thu, Aug 29, 2024 at 09:44:26PM +0300, Abel Vesa wrote:
-> > > The Parade PS8830 is a Type-C muti-protocol retimer controlled over I2C.
-> > > It provides both altmode and orientation handling.
-> > > 
-> > > Add a driver with support for the following modes:
-> > >  - DP 4lanes
-> > >  - USB3
-> > >  - DP 2lanes + USB3
-> > > 
-> > > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+On 23/09/2024 11:21, Erez wrote:
+> On Sun, 22 Sept 2024 at 22:40, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On Fri, Sep 20, 2024 at 08:12:29PM +0200, Erez Geva wrote:
+>>> From: Erez Geva <ErezGeva2@gmail.com>
+>>>
+>>> Some flash devices need OTP parameters in device tree.
+>>> As we can not deduce the parameters based on JEDEC ID or SFDP.
+>>>
+>>> Signed-off-by: Erez Geva <ErezGeva2@gmail.com>
+>>> ---
+>>>  .../bindings/mtd/jedec,spi-nor.yaml           | 39 +++++++++++++++++++
+>>>  1 file changed, 39 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+>>> index 6e3afb42926e..4f7bb3f41cb1 100644
+>>> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+>>> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+>>> @@ -90,6 +90,43 @@ properties:
+>>>        the SRWD bit while writing the status register. WP# signal hard strapped to GND
+>>>        can be a valid use case.
+>>>
+>>> +  otp-n-regions:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description:
+>>> +      Some flash devices need OTP parameters in the device tree.
+>>> +      As we can not deduce the parameters based on JEDEC ID or SFDP.
+>>> +      This parameter indicates the number of OTP regions.
+>>
+>> OTP regions where? In DTS? On flash itself?
 > 
-> > > +	retimer->supplies[0].supply = "vdd33";
-> > > +	retimer->supplies[1].supply = "vdd18";
-> > > +	retimer->supplies[2].supply = "vdd15";
-> > 
-> > vdd115?
-> > 
-> > > +	retimer->supplies[3].supply = "vcc";
-> 
-> I took a look at the schematics and it seems like all but one of the
-> above supply names are wrong and that some are missing. "vcc" also does
-> not exist in either the binding or dt patches you sent separately.
-> 
-> From what I can tell the supplies are:
-> 
-> 	vdd		1.15 V
-> 	vdd33		3.3 V
-> 	vdd33_cap	3.3 V
-> 	vddat		1.15 V
-> 	vddar		1.15 V
-> 	vddio		1.8 V
+> Where can OTP regions be?
+> Can you please be serious?
+> If you have any suggestions, I am happy to hear.
+> I did ask before.
 
-The schematics seem to suggest that vdd, vddat and vddar are all
-supplied by the 1.15V supply. As for the vdd33 and vdd33_cap, their
-seem to be supplied by the 3.3V supply.
+Yes, I am serious, imagine that we do not know what you wanted to say.
+At first this just sounded like you mix nvmem-cells here.
+
+Out of blue this binding starts mentioning OTP and you add bunch of
+generic properties not really matching anything so far. Instead of being
+sarcastic about reviewers confusion, rather improve your description.
+
+Otherwise, good luck.
+
+
 
 > 
-> Also, have you checked that there are no ordering constraints between
-> the supplies?
+>>
+>>> +      The value must be larger or equal to 1 and mandatory for OTP.
+>>
+>> Don't repeat constraints in free form text. Add proper minimum and
+> 
+> Sure, I will add a minimum.
+> 
+>> default, although it is confusing - property is not required but it is
+>> mandatory for OTP?
+> 
+> You are welcome to suggest a better rephrase.
+> Using OTP settings is optional.
+> If you set OTP then the number of regions and region length are mandatory.
+> While offset and base are optional for OTP settings.
 
-The documentation seems to suggest that there are some timing as well as
-ordering contrains, yes. I can't tell for sure if that is really needed
-or not.
-
-Thanks for reviewing.
+So properties should be required?
 
 > 
-> Johan
 > 
+>>
+>>
+>>
+>>> +
+>>> +  otp-len:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description:
+>>> +      Some flash devices need OTP parameters in the device tree.
+>>> +      As we can not deduce the parameters based on JEDEC ID or SFDP.
+>>
+>> Don't repeat the same.
+> 
+> Is there a grouping description?
+> 
+>>
+>>> +      This parameter indicates the size (length) in bytes of an OTP region.
+>>
+>> What if each region has different length? Is it possible?
+> 
+> Yes, there are. Old Mactronix have chips with the first region bigger
+> than the second region.
+> As these are old chips, we may skip the support of them.
 
-Abel
+Other devices can come later re-introducing this approach.
+
+
+
+Best regards,
+Krzysztof
+
 
