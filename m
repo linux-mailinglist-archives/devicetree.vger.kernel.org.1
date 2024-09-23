@@ -1,148 +1,120 @@
-Return-Path: <devicetree+bounces-104413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDC3897E47F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 03:09:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40C2E97E489
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 03:19:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02CCB1C20F66
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 01:09:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E36C1C20F9B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 01:19:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21A691370;
-	Mon, 23 Sep 2024 01:09:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10B781103;
+	Mon, 23 Sep 2024 01:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="VPnfWP/C"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DqouwM4E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEED0184;
-	Mon, 23 Sep 2024 01:09:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DF00624;
+	Mon, 23 Sep 2024 01:19:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727053753; cv=none; b=MQhWSvQKvmGBZXZ6MmRRBdYCk1CW3Pe4rburtCcGOixZMUfU8nWXfLGcP7KxpY8iFMChwqSyWgnTa+QXUjyLODdZpq1T3fTJxm5fA2VlNrK7czbbD+v+LCqskFftpOqIx8qdIIXmyndOOb1gcgUrCNjczJo4YRzMwcxGi2ZlNLw=
+	t=1727054350; cv=none; b=tj9/YD4JgyN8OKDblu/nyo5vU6cXj1VPLgPccUPqQXbZQLi5Z9avMpicHEekfunfTR2Ct2k2uH2Zwf+7l0DpkC/ULPf1deC9fxMZs8qu9AczxmMkr+gMLZxs/xa6d88EzZZrUi+PlkOvkoD4V3VGtUscTIPlcjkjEGqv17Cvp/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727053753; c=relaxed/simple;
-	bh=tWhZQpczfUoyfOn3SVXRMh0oUsuUO0P7TY3yGm7/BeI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=sKYKb/OcfD7KFmjSNWnFqYGKdcJp5FhQCrc1qyPIMgFmeyTAADRm9x2Tv2EbsynG9QzGBdPgeUT6m1JPr0cUo6TLrPG9cE3V5UnKHFByqBi8Z2iGxLtf8ywCQBwUA16PILJouvUE6WA7bQtdQNV5rmpVY/OcXZ7hXbfWxz11qGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=VPnfWP/C; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+	s=arc-20240116; t=1727054350; c=relaxed/simple;
+	bh=Jwr025/qUgs/LMxPLsqIgUhRpbA3frCNzlT8tBNoFOw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UrZcgdVoviBfTyqG6EzVYCJjdrf+Q6opgbivXzCDfezUa8CRDjEkQzFQAubltn7vL+Ka6pnBPJ2OPmnZhkZLMHNJLvFxBy4R2TuHfvFGqbcXBKTtHiliMuD8UbWQPUAhzSqQiAZboIzRs6phbWwQSx5HjRbGF4rhJ/CE+sDLZqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DqouwM4E; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2055a524017so2172975ad.1;
+        Sun, 22 Sep 2024 18:19:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1727053748;
-	bh=+G0XJf/d/VA4rBfpqhj2Iciipn6AYGuPI900BalqIjA=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=VPnfWP/CS4BJC3Ym9/6/A95bxGfS166HiF09LDabbS3pKJuQyzlUMlAk/VdBpium4
-	 f8rw9uQVUCKGYrxWXQUOjafLr74zaRd1B+Ya+Qy+LIY4FKFACd2TC5+41AcNYMXBgN
-	 58sNuwy9X7AwrmGKVnIYGoS31qyd9Susx10NmNhiwOlBAwsv0wMv018U+kOy/Bnvlm
-	 u5nGHmKypLjwb8kynHTxDBuWMmNXQdeFDtjueQ0V0j1ast8Hr0e/FcB9C4uzCBZNA7
-	 XfE5o0ogJ1ex2QO9hipuVSw7pyw+iGpYNu7onj02iPTStQ00gqQ/2UclPpPFSN6v9W
-	 KhAQnLM0ysIdA==
-Received: from [192.168.68.112] (ppp118-210-177-92.adl-adc-lon-bras34.tpg.internode.on.net [118.210.177.92])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id CBEF1640E8;
-	Mon, 23 Sep 2024 09:09:06 +0800 (AWST)
-Message-ID: <516706cb77ac88ff1b9d94a69b0e1ed54e184ec9.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v2 2/3] dt-bindings: trivial-devices: support MPS MP5023
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>, Guenter
- Roeck <linux@roeck-us.net>, "patrick@stwcx.xyz" <patrick@stwcx.xyz>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>
-Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>, Joel Stanley
- <joel@jms.id.au>,  Peter Yin <peteryin.openbmc@gmail.com>, Noah Wang
- <noahwang.wang@outlook.com>, Javier Carrasco
- <javier.carrasco.cruz@gmail.com>, Fabio Estevam <festevam@gmail.com>, Lukas
- Wunner <lukas@wunner.de>, Laurent Pinchart
- <laurent.pinchart@ideasonboard.com>,  "devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
- <linux-aspeed@lists.ozlabs.org>
-Date: Mon, 23 Sep 2024 10:39:06 +0930
-In-Reply-To: <TYZPR04MB5853BD9CD0774B40BAEF7BDFD66C2@TYZPR04MB5853.apcprd04.prod.outlook.com>
-References: <20240918095438.1345886-1-Delphine_CC_Chiu@wiwynn.com>
-	 <20240918095438.1345886-3-Delphine_CC_Chiu@wiwynn.com>
-	 <bf5258b8-a5a1-4cf3-9bd0-1fa44696c3b0@roeck-us.net>
-	 <355b19a62e54aa979451d796c3ebe1e294a0cf45.camel@codeconstruct.com.au>
-	 <TYZPR04MB5853BD9CD0774B40BAEF7BDFD66C2@TYZPR04MB5853.apcprd04.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+        d=gmail.com; s=20230601; t=1727054347; x=1727659147; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MBqObcMlz70tKe3cTglKMmMCQr1xEdAZC0tejq/Q7zg=;
+        b=DqouwM4EyfP8xVWPXjQXkDmOmOeFPH0opqQLxsbnIz0gvwhKMMn3qSlK+o3dHBRaKo
+         eI6i/eX1HXPrKBXv8XsalZMHTt/7qCTO20M1RxUtvYUfHRMVO1iF+fDsjCl2fBPCr6NO
+         TyGabKF6yOp8aYjFX3TknyGvHW5X8+AZ6Uor2cjrWz1uObkZybiRKNPh+rqkyXI+umlk
+         aO6mEEuq5MmSNEKt+mzouE3OcTYuc+nonqXUd6+cmxGrHHmRVTwx6MWCM1G83a6jsmB2
+         vTP5Iu/WFXsHONxka9PiYNY6AClu1VE88VaFng5mNuZtTTmUH+jGy++/smw/eDdPKnYp
+         51Ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727054347; x=1727659147;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MBqObcMlz70tKe3cTglKMmMCQr1xEdAZC0tejq/Q7zg=;
+        b=AXFdMYmzGQ/x7vaR7J0FI5eMpktC0gpXrsY42cG4+RYPVSorcPA5ozJMvY3LAgcV9Q
+         6GOykwDx+vZTTcH1WmzyGnrYmFgnUlnIUUWSiacwSmQQhb5B9rPOB9eGPFXNv3vJDsem
+         GaLgOgQlQiZeTyjkz/Es7upre9GZ1OPiWhuWy8BvybdUqVok6B9PZL2iJR/RTwipzF8R
+         NQg4Tnu6a4JclLxRGxRa1AIsjv9191GjzUtSshPajlJbyeEoW2UEHGdB8Ky1mWHiBFli
+         dje8cbZC4gphnBEM1E0djq/2mFGTXS6Y2GTnFP2GG+qWX+EhSuSG/tUYN3XMT8H7H5DF
+         batQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUYjTDqtehfQxBwRbhsbsSujuGCNtqgc9REofW527NGspPsiPK3zqRRyFI0ItGwR1CTb10XFCBEbfx2@vger.kernel.org, AJvYcCVVqISw6cwcczvIk9uemEnxjpL5cp4h2ZSemK78+m8/dd2Nkug4DpHSgeh31aBv0FD8QUtkEhsWEjl2qtC3@vger.kernel.org
+X-Gm-Message-State: AOJu0YxVckLRGw60SEznc4vfX9k6JTvh+dIkV7SDaP35qIEMGiXrKogW
+	+XewPzD2ne5Zjw5H2HCWnOE6NmJxZ//De91bwRigPYtOQ3yZvwBrWcQV5xJY
+X-Google-Smtp-Source: AGHT+IGR5fxE8/UV+yJoktV+ptXe3LQJTfZ3S9Ac5NCddrTXRKGPcGBaxU/8XH9gNU9+NZklr/I3TQ==
+X-Received: by 2002:a17:902:f2d2:b0:205:40f5:d1a with SMTP id d9443c01a7336-208d83c811fmr60688865ad.6.1727054347164;
+        Sun, 22 Sep 2024 18:19:07 -0700 (PDT)
+Received: from [127.0.1.1] ([45.32.86.188])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7db49920497sm14408888a12.45.2024.09.22.18.19.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Sep 2024 18:19:06 -0700 (PDT)
+From: Yasin Lee <yasin.lee.x@gmail.com>
+Subject: [PATCH 0/2] iio: proximity: hx9023s: Add performance tuning
+ function
+Date: Mon, 23 Sep 2024 09:16:09 +0800
+Message-Id: <20240923-add-performance-tuning-configuration-v1-0-587220c8aece@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFnB8GYC/x3NQQqDMBBG4avIrDsQUxHaq5QuQvInzsKJTLQUx
+ Ls3dPk23zupwQSNnsNJho80qdpjvA0Ul6AFLKk3eecn9/B3DinxBsvV1qARvB8qWjhWzVIOC3s
+ HGN6NM6Y0w3nq1GbI8v1vXu/r+gGGm/3RdgAAAA==
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Yasin Lee <yasin.lee.x@gmail.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=712; i=yasin.lee.x@gmail.com;
+ h=from:subject:message-id; bh=Jwr025/qUgs/LMxPLsqIgUhRpbA3frCNzlT8tBNoFOw=;
+ b=owGbwMvMwCEYyfeRr6Zs90zG02pJDGkfDt67c0baaediuSSL5D9zjjZ5LLvYoOEQ/+xTtfO3M
+ 3vbpqvs7ChlYRDkYJAVU2Q58/oNa77qwz3Bv10zYOawMoEMYeDiFICJnDrK8D/86ZpAUev1H0Te
+ yKz8aaL7rXJCgrScwLfc7v6/78yeiE5j+F9nKfy9POhgR2HCwc4Iw7q8yi77H6//Tyozbn1lZOJ
+ cZAIA
+X-Developer-Key: i=yasin.lee.x@gmail.com; a=openpgp;
+ fpr=CCEBEC056F25E1BC53FB4568590EF10E7C76BB99
 
-On Fri, 2024-09-20 at 01:54 +0000, Delphine_CC_Chiu/WYHQ/Wiwynn wrote:
->=20
-> > -----Original Message-----
-> > From: Andrew Jeffery <andrew@codeconstruct.com.au>
-> > Sent: Thursday, September 19, 2024 9:24 AM
-> > To: Guenter Roeck <linux@roeck-us.net>; Delphine_CC_Chiu/WYHQ/Wiwynn
-> > <Delphine_CC_Chiu@wiwynn.com>; patrick@stwcx.xyz; Rob Herring
-> > <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dool=
-ey
-> > <conor+dt@kernel.org>
-> > Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>; Joel Stanley
-> > <joel@jms.id.au>; Peter Yin <peteryin.openbmc@gmail.com>; Noah Wang
-> > <noahwang.wang@outlook.com>; Javier Carrasco
-> > <javier.carrasco.cruz@gmail.com>; Fabio Estevam <festevam@gmail.com>;
-> > Lukas Wunner <lukas@wunner.de>; Laurent Pinchart
-> > <laurent.pinchart@ideasonboard.com>; devicetree@vger.kernel.org;
-> > linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> > linux-aspeed@lists.ozlabs.org
-> > Subject: Re: [PATCH v2 2/3] dt-bindings: trivial-devices: support MPS M=
-P5023
-> >=20
-> >  [External Sender]
-> >=20
-> >  [External Sender]
-> >=20
-> > On Wed, 2024-09-18 at 10:00 -0700, Guenter Roeck wrote:
-> > > On 9/18/24 02:54, Delphine CC Chiu wrote:
-> > > > From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
-> > > >=20
-> > > > Add support for hot-swap controller MPS MP5023.
-> > > >=20
-> > > > Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
-> > > > Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-> > > > --
-> > >=20
-> > > The hardware monitoring mailing list was not copied, so I assume that
-> > > the expectation is that it will be applied through some other tree.
-> >=20
-> > We can take it through the BMC tree, but I'd prefer that the hardware
-> > monitoring list were copied regardless.
-> >=20
-> > Ricky: Please do so for v3 onwards.
-> >=20
-> > Andrew
-> Hi Guenter & Andrew,
->=20
-> Would like to ask how to copy the hardware monitoring mailing list?
+When hardware design introduces significant sensor data noise,
+performance can be improved by adjusting register settings.
 
-Not sure how best to answer this, but add it in the To: line for your
-patches?=20
+Signed-off-by: Yasin Lee <yasin.lee.x@gmail.com>
+---
+Yasin Lee (2):
+      dt-bindings: iio: tyhx,hx9023s: Add performance tuning configuration
+      iio: proximity: hx9023s: Add performance tuning function
 
-> Should I just send the v3 patch with only this dt-bindings patch for MP50=
-23
-> and it will be added in the mail automatically?
+ .../bindings/iio/proximity/tyhx,hx9023s.yaml       | 14 ++++++++
+ drivers/iio/proximity/hx9023s.c                    | 37 ++++++++++++++++++++++
+ 2 files changed, 51 insertions(+)
+---
+base-commit: 7f6f44a9e58cd19093b544423bc04e1d668ec341
+change-id: 20240923-add-performance-tuning-configuration-e2016e4d6e02
 
-Well, if whatever process you're already using isn't adding it
-automatically, I doubt it's going to start doing so now.
+Best regards,
+-- 
+Yasin Lee <yasin.lee.x@gmail.com>
 
-You can add it using the `--to` option to `b4 send` or `git send-
-email`, for instance.
-
-The details for the hwmon list are here:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/MAI=
-NTAINERS?h=3Dv6.11#n9836
-
-Andrew
 
