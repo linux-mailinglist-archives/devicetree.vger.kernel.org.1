@@ -1,305 +1,171 @@
-Return-Path: <devicetree+bounces-104466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41B5597E803
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:58:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB25C97E849
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:13:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B4235B21B83
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 08:58:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E1101F21956
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:13:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A1C219414E;
-	Mon, 23 Sep 2024 08:58:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59F531946C4;
+	Mon, 23 Sep 2024 09:12:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ErBlbw9t"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="mccx32tK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 754BF61FFC
-	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 08:58:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEB4649649
+	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 09:12:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727081908; cv=none; b=S8Etl9sqUhk6TWyYbp3KsMRx7kMLVjh+zcYkIbUL6eEH7d3Z645Q9U8uRHE9dAAZ/axxp9WTisI0GZAb3Vuz2YELPCmQ5Nv9KK1XtniaxgcLxn1M18wmxtHVd1kyaaX/63CjCHaAD2QWEhZZs5eAZqyoMRKlE3mmiM9tLE2uDqQ=
+	t=1727082776; cv=none; b=YqHo+PL9ZyxIDkLfMzX7T14bUjs+NCAgDY4kKvluudVfrCcEoltt0IU/8Azl7IguM1BpUbQ2KTT5C2iiPTeJAQBHcftK6tg8LoJZ4BAoOCpYTENE2SHtClQRUqLfg2gUJV+7cD89DgKvpOQtb9YrLF0CH3NgV9yuROAJGw72RIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727081908; c=relaxed/simple;
-	bh=kdnLNpiksyAyDdCgLQjNN7iPGmYGohIAUf9by9wS0XQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZJwY8EBDsCgkUumEigjkdl7cfEiX6vsnsNliNTGU5tGrclykqNR52m/m6CAYDEiP3FTjgjkh9azaZtv/cgKXoXRtfjx7fK6ukQ6fybHfXIN10L2bxHlwrB23+cgewNSzztyDRilqkLyCuocOnh6IZkGUQ6Ds/gH7YCCfV8+zcc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ErBlbw9t; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2f7657f9f62so44202471fa.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 01:58:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727081905; x=1727686705; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U1sQ682pnIkA6X/5BBN5dJdPJY/AuV9vVMjIXL626PQ=;
-        b=ErBlbw9tfmx4MBIKXv1tw0UlRBW9Nb1j4rHvWlBfGO9te4vFOrpz/GstyRc8D9pHN6
-         mxbtRY7PTxsdbx2rRUbXaOhGWnRJ8i34/1FRTZ8QnoOazVpGMTSq7is946hV9oAKXowI
-         jBqKRGRHkcW7E+RxOqxGPIkgnr/NXKvrN+h2duOPA0WAAFr8ZxozMcFgs7azAEDkPWQ5
-         9Vj1m3JwJSfP5xJqKM4KQYW2keLL2q15nzoa+7qykcB4+UsHztTKJS0yCs7nCCiIvhtm
-         AgOb03XE0TeC5eqr3tjRpK27IXa7sQp0XMownXrw4IUUpsZRlV0G2XuO7G2AkEJ/j1Tc
-         l27g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727081905; x=1727686705;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U1sQ682pnIkA6X/5BBN5dJdPJY/AuV9vVMjIXL626PQ=;
-        b=tyd5VcEixtO9Ef2TTtFrovKyvLKYAA13DuS8rydEr5qnNfVhY5wyZ9IajViImnkpee
-         uKHqOYen/pVymWrUohGdyM2XqxX2Y+HkeRX8OQOYuvjASlEderhL/BoYaNcF0U+4vB8h
-         eU6BVClL5Nnrv7AcBdwhPurqjhWRwLqGDgg8LseBYmBqBqQ1rTSVrPi6RjXb9HR59btO
-         oi2c9kocpYcbcApaSTDmudQ8F9vfgCpF/qdRquFO/aYNqQdC8FaSJGfTgQuUqtfvxck3
-         wmu1Q5/0hbPGetknXC9ahNDVDqFIc4OEVzMnRnOf0znyoxTZy4IonfGPnirGWtCyRweD
-         iOkg==
-X-Forwarded-Encrypted: i=1; AJvYcCUkeo2L/R6bZD/FsW6fDSRWVphFJ2O0f4Dn3myzGVFJ6H8Lm6pqC+wiHmakdbtLO3h2hKb/r/WFVJdz@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLE3QZBYzqHLqDui/q7udrXsn59/oVFYaD7Lydr8FqI8iR2R81
-	PYYzxupx1vTb6ELVH5376kNDiSOWZdpuaGKEExzrlqpUlIQIAEGqanhJW3BJgCDoVgc1NAZxVPi
-	66s0h95MoZ7HDGO1mVo9wrkP39CbyAas61DpvTA==
-X-Google-Smtp-Source: AGHT+IGPYbsu7Vn5CAEgdlkW3pqRnZF7mQQ31TPIJrhGD4dXpbxvp4/C/8SvXTIMoXcEgDh7ARRBzdgO2mVEO6KbFlQ=
-X-Received: by 2002:a05:6512:3b14:b0:535:d4e9:28bb with SMTP id
- 2adb3069b0e04-536ad3b7e10mr4529008e87.46.1727081904496; Mon, 23 Sep 2024
- 01:58:24 -0700 (PDT)
+	s=arc-20240116; t=1727082776; c=relaxed/simple;
+	bh=ltbp2Ljs7Bfwl1Q+wylO8WNLdUroGdokwPt/VLPtPDo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AiVfC2e5nl49gCAPHldE8+9eDvZbfJj1QyJid3Bl+0+MMbK02iZDRvnfg6sPkNRIeQIUA5trCiBmRRvC5OdbcjO5p7fCU27J9b6iReSY2uTGeOf7IhoSlboYyrLNJDpqlDcFKvQacaAtf2Ci1dfWO1cdTtKcm3u39QTXyC9TfaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=mccx32tK; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1727082766;
+ bh=dAioT3wyKoxKPb4pl0VnZgSZEzeLXfNhVBSyVYoz4/0=;
+ b=mccx32tKRHC+uZQnSVR+9I2Yp8iB5iFdpx9rfxCgmC+klT/TUJ2rYGZniZ+zpoQ5cV+FanHGj
+ mis3tg4BqxdCf8bA3dQ7odkBcoESNAQLQm/fr76OET7X9wkr3Kf4hkXPgdYCdATnN7aZ5ywzzwo
+ h9dI+KYic6N9Idq8hk1fvG4GuRi+iXv9s3fGj0Rqt3SJY+MlJDN8oYYQaOwsIcspatHHBUiNrbr
+ jmOErRY4/hTFtLZJ6Bu0sc56TVQJDsl+ndnTIFNeMtiQGHcvnaNVstU+Zm8iqvqZr75zdGRAAEZ
+ 8gnPJShe34Pu1xnfcWaviL/W/azuTqoulWgjLg4oTEZQ==
+Message-ID: <26ed8563-b6d6-4e72-91a9-f4d5946cef8f@kwiboo.se>
+Date: Mon, 23 Sep 2024 11:01:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240903-02-k1-pinctrl-v4-0-d76c00a33b2b@gentoo.org> <20240903-02-k1-pinctrl-v4-2-d76c00a33b2b@gentoo.org>
-In-Reply-To: <20240903-02-k1-pinctrl-v4-2-d76c00a33b2b@gentoo.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 23 Sep 2024 10:58:13 +0200
-Message-ID: <CACRpkda2M5kpBi9jJvvAH1SzFurs=c9Z+brSJ_MOkvNz=28t_Q@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] pinctrl: spacemit: add support for SpacemiT K1 SoC
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Conor Dooley <conor@kernel.org>, Yangyu Chen <cyy@cyyself.name>, Jisheng Zhang <jszhang@kernel.org>, 
-	Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
-	Meng Zhang <zhangmeng.kevin@spacemit.com>, Meng Zhang <kevin.z.m@hotmail.com>, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] drm/rockchip: vop: Split rk3288-vop into big and lit
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Sandy Huang <hjc@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240921222007.2301868-1-jonas@kwiboo.se>
+ <20240921222007.2301868-4-jonas@kwiboo.se>
+ <c6821033-57be-4d10-9e37-935f7748570e@kernel.org>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <c6821033-57be-4d10-9e37-935f7748570e@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 66f12e7e53a7abd54c98a970
 
-Hi Yixun,
+Hi Krzysztof,
 
-thanks for your patch!
+On 2024-09-22 10:15, Krzysztof Kozlowski wrote:
+> On 22/09/2024 00:20, Jonas Karlman wrote:
+>> The Rockchip RK3288 SoC contain two different Visual Output Processor
+>> (VOP) blocks, VOP_BIG and VOP_LIT. The VOP blocks support different max
+>> output resolution, 3840x2160 and 2560x1600.
+>>
+>> Add support for the compatible used to differentiate between VOP_BIG and
+>> VOP_LIT, support for the old compatible is kept for compatibility with
+>> older device tree.
+>>
+>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+>> ---
+>>  drivers/gpu/drm/rockchip/rockchip_vop_reg.c | 27 +++++++++++++++------
+>>  1 file changed, 20 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/rockchip/rockchip_vop_reg.c b/drivers/gpu/drm/rockchip/rockchip_vop_reg.c
+>> index e2c6ba26f437..978db93cda33 100644
+>> --- a/drivers/gpu/drm/rockchip/rockchip_vop_reg.c
+>> +++ b/drivers/gpu/drm/rockchip/rockchip_vop_reg.c
+>> @@ -762,7 +762,7 @@ static const struct vop_intr rk3288_vop_intr = {
+>>  	.clear = VOP_REG(RK3288_INTR_CTRL0, 0xf, 8),
+>>  };
+>>  
+>> -static const struct vop_data rk3288_vop = {
+>> +static const struct vop_data rk3288_vop_big = {
+>>  	.version = VOP_VERSION(3, 1),
+>>  	.feature = VOP_FEATURE_OUTPUT_RGB10,
+>>  	.intr = &rk3288_vop_intr,
+>> @@ -772,14 +772,22 @@ static const struct vop_data rk3288_vop = {
+>>  	.win = rk3288_vop_win_data,
+>>  	.win_size = ARRAY_SIZE(rk3288_vop_win_data),
+>>  	.lut_size = 1024,
+>> -	/*
+>> -	 * This is the maximum resolution for the VOPB, the VOPL can only do
+>> -	 * 2560x1600, but we can't distinguish them as they have the same
+>> -	 * compatible.
+>> -	 */
+>>  	.max_output = { 3840, 2160 },
+>>  };
+>>  
+>> +static const struct vop_data rk3288_vop_lit = {
+>> +	.version = VOP_VERSION(3, 1),
+>> +	.feature = VOP_FEATURE_OUTPUT_RGB10,
+>> +	.intr = &rk3288_vop_intr,
+>> +	.common = &rk3288_common,
+>> +	.modeset = &rk3288_modeset,
+>> +	.output = &rk3288_output,
+>> +	.win = rk3288_vop_win_data,
+>> +	.win_size = ARRAY_SIZE(rk3288_vop_win_data),
+>> +	.lut_size = 1024,
+>> +	.max_output = { 2560, 1600 },
+>> +};
+>> +
+>>  static const int rk3368_vop_intrs[] = {
+>>  	FS_INTR,
+>>  	0, 0,
+>> @@ -1245,8 +1253,13 @@ static const struct of_device_id vop_driver_dt_match[] = {
+>>  	  .data = &rk3066_vop },
+>>  	{ .compatible = "rockchip,rk3188-vop",
+>>  	  .data = &rk3188_vop },
+>> +	{ .compatible = "rockchip,rk3288-vop-big",
+>> +	  .data = &rk3288_vop_big },
+> 
+> Hm... that's not really needed. Instead of having three compatibles, you
+> could keep "rk3288-vop" as big and then my comment on bindings patch
+> could be ignored (you keep the compatible).
 
-Some comments and suggestions below:
+Thanks, I guess that just adding a new compatible for vop-lit should be
+enough.
 
-On Tue, Sep 3, 2024 at 2:27=E2=80=AFPM Yixun Lan <dlan@gentoo.org> wrote:
+VOP_BIG: rockchip,rk3288-vop
+VOP_LIT: rockchip,rk3288-vop-lit, rockchip,rk3288-vop
 
-> SpacemiT's K1 SoC has a pinctrl controller which use single register
-> to describe all functions, which include bias pull up/down(strong pull),
-> drive strength, schmitter trigger, slew rate, mux mode.
->
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
+That should ensure backward/forward compatibility with any mix of
+old/new boot-firmware, DTs and kernels.
 
+Will change to use that in v2.
 
-> +config PINCTRL_SPACEMIT_K1
-> +       tristate "SpacemiT K1 SoC Pinctrl driver"
-> +       depends on ARCH_SPACEMIT || COMPILE_TEST
-> +       depends on OF
-> +       select GENERIC_PINCTRL_GROUPS
-> +       select GENERIC_PINMUX_FUNCTIONS
-> +       select GENERIC_PINCONF
+Regards,
+Jonas
 
-(...)
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
-> @@ -0,0 +1,1078 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/* Copyright (c) 2024 Yixun Lan <dlan@gentoo.org> */
-> +
-> +#include <linux/bitfield.h>
-
-I think you really just use <linux/bits.h>
-
-> +#include <linux/export.h>
-
-Why?
-
-> +#include <linux/pinctrl/consumer.h>
-
-Why?
-
-> +#include <linux/pinctrl/machine.h>
-
-Why?
-
-> +#include "../core.h"
-> +#include "../pinctrl-utils.h"
-> +#include "../pinconf.h"
-> +#include "../pinmux.h"
-
-All of them, really?
-
-> +static inline void __iomem *spacemit_pin_to_reg(struct spacemit_pinctrl =
-*pctrl,
-> +                                               unsigned int pin)
-> +{
-> +       return pctrl->regs + spacemit_pin_to_offset(pin);
-> +}
-
-If this is the only user of spacemit_pin_to_offset() then fold it into one
-function, I'd say.
-
-> +static unsigned int spacemit_dt_get_pin(u32 value)
-> +{
-> +       return (value >> 16) & GENMASK(15, 0);
-> +}
-
-Make it a static u16 and drop the genmask, shifting 32 bits
-16 bits right shifts in zeroes in the top bits.
-
-> +
-> +static unsigned int spacemit_dt_get_pin_mux(u32 value)
-> +{
-> +       return value & GENMASK(15, 0);
-> +}
-
-Return static u16
-
-> +static void spacemit_pctrl_dbg_show(struct pinctrl_dev *pctldev,
-> +                                   struct seq_file *seq, unsigned int pi=
-n)
-> +{
-> +       struct spacemit_pinctrl *pctrl =3D pinctrl_dev_get_drvdata(pctlde=
-v);
-> +       const struct spacemit_pin *spin =3D spacemit_get_pin(pctrl, pin);
-> +       enum spacemit_pin_io_type type =3D spacemit_to_pin_io_type(spin);
-> +       void __iomem *reg;
-> +       u32 value;
-> +
-> +       seq_printf(seq, "offset: 0x%04x ", spacemit_pin_to_offset(pin));
-> +       seq_printf(seq, "type: %s ", io_type_desc[type]);
-> +
-> +       reg =3D spacemit_pin_to_reg(pctrl, pin);
-> +       value =3D readl(reg);
-> +       seq_printf(seq, "mux: %ld reg: 0x%04x", (value & PAD_MUX), value)=
-;
-> +}
-
-This is nice and helpful for users and debugging!
-
-> +static int spacemit_pctrl_dt_node_to_map(struct pinctrl_dev *pctldev,
-> +                                        struct device_node *np,
-> +                                        struct pinctrl_map **maps,
-> +                                        unsigned int *num_maps)
-> +{
-> +       struct spacemit_pinctrl *pctrl =3D pinctrl_dev_get_drvdata(pctlde=
-v);
-> +       struct device *dev =3D pctrl->dev;
-> +       struct device_node *child;
-> +       struct pinctrl_map *map;
-> +       const char **grpnames;
-> +       const char *grpname;
-> +       int ngroups =3D 0;
-> +       int nmaps =3D 0;
-> +       int ret;
-> +
-> +       for_each_available_child_of_node(np, child)
-> +               ngroups +=3D 1;
-> +
-> +       grpnames =3D devm_kcalloc(dev, ngroups, sizeof(*grpnames), GFP_KE=
-RNEL);
-> +       if (!grpnames)
-> +               return -ENOMEM;
-> +
-> +       map =3D devm_kcalloc(dev, ngroups * 2, sizeof(*map), GFP_KERNEL);
-> +       if (!map)
-> +               return -ENOMEM;
-> +
-> +       ngroups =3D 0;
-> +       mutex_lock(&pctrl->mutex);
-
-Use a scoped guard in this and other instances:
-
-#include <linux/cleanup.h>
-
-guard(mutex)(&pctrl->mutex);
-
-And just drop the mutex unlock, it will be unlocked when you
-exit the function. (narrower scopes are possible consult
-git grep guard drivers/gpio).
-
-> +       for_each_available_child_of_node(np, child) {
-
-Instead of the kludgy construction requireing of_node_put at the end of the
-function, use for_each_available_child_of_node_scoped().
-
-> +static int spacemit_pmx_set_mux(struct pinctrl_dev *pctldev,
-> +                               unsigned int fsel, unsigned int gsel)
-> +{
-> +       struct spacemit_pinctrl *pctrl =3D pinctrl_dev_get_drvdata(pctlde=
-v);
-> +       const struct group_desc *group;
-> +       const struct spacemit_pin_mux_config *configs;
-> +       unsigned int i, mux;
-> +       void __iomem *reg;
-> +
-> +       group =3D pinctrl_generic_get_group(pctldev, gsel);
-> +       if (!group)
-> +               return -EINVAL;
-> +
-> +       configs =3D group->data;
-> +
-> +       for (i =3D 0; i < group->grp.npins; i++) {
-> +               const struct spacemit_pin *spin =3D configs[i].pin;
-> +               u32 value =3D configs[i].config;
-> +               unsigned long flags;
-> +
-> +               reg =3D spacemit_pin_to_reg(pctrl, spin->pin);
-> +               mux =3D spacemit_dt_get_pin_mux(value);
-> +
-> +               raw_spin_lock_irqsave(&pctrl->lock, flags);
-> +               value =3D readl_relaxed(reg) & ~PAD_MUX;
-> +               writel_relaxed(mux | value, reg);
-> +               raw_spin_unlock_irqrestore(&pctrl->lock, flags);
-
-Use a guard() clause for the lock instead.
-
-> +static int spacemit_request_gpio(struct pinctrl_dev *pctldev,
-> +                                struct pinctrl_gpio_range *range,
-> +                                unsigned int pin)
-> +{
-> +       struct spacemit_pinctrl *pctrl =3D pinctrl_dev_get_drvdata(pctlde=
-v);
-> +       const struct spacemit_pin *spin =3D spacemit_get_pin(pctrl, pin);
-> +       void __iomem *reg;
-> +
-> +       reg =3D spacemit_pin_to_reg(pctrl, pin);
-> +       writel(spin->gpiofunc, reg);
-
-Doesn't this register write require any locking?
-
-> +static int spacemit_pin_set_config(struct spacemit_pinctrl *pctrl,
-> +                                  unsigned int pin, u32 value)
-> +{
-> +       const struct spacemit_pin *spin =3D spacemit_get_pin(pctrl, pin);
-> +       void __iomem *reg;
-> +       unsigned long flags;
-> +       unsigned int mux;
-> +
-> +       if (!pin)
-> +               return -EINVAL;
-> +
-> +       reg =3D spacemit_pin_to_reg(pctrl, spin->pin);
-> +
-> +       raw_spin_lock_irqsave(&pctrl->lock, flags);
-> +       mux =3D readl_relaxed(reg) & PAD_MUX;
-> +       writel_relaxed(mux | value, reg);
-> +       raw_spin_unlock_irqrestore(&pctrl->lock, flags);
-
-Use a scoped guard.
-
-Yours,
-Linus Walleij
 
