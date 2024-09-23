@@ -1,87 +1,89 @@
-Return-Path: <devicetree+bounces-104551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9874F97EB85
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 14:33:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6994397EB9D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 14:41:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C11271C20FE9
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 12:33:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 009D3B211FA
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 12:41:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B8D0195F3A;
-	Mon, 23 Sep 2024 12:33:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B41A01990B5;
+	Mon, 23 Sep 2024 12:40:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="o7z9l6kI"
+	dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b="p6tMOHAX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1nam02on2069.outbound.protection.outlook.com [40.107.96.69])
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2051.outbound.protection.outlook.com [40.107.20.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 958A51714DF;
-	Mon, 23 Sep 2024 12:32:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.96.69
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2E4D195B1A;
+	Mon, 23 Sep 2024 12:40:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.51
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727094780; cv=fail; b=uxT0juARBgOTuAyQNzdSRTVsfIsq8TDyBEl7O58SIcdd+c5yPZqFDa0uT3PvN48P04IRvuPoGjGaKbBVkk1E4zmfUtFZXe6X+Qt0xpNtu5B0jIlprU2NcHuE3leSQvVMGQiz4RmrZpqpo0qii9FUNA2n3tEf9ir/4w+rHYBFnoY=
+	t=1727095255; cv=fail; b=IkTnPfJRUvzosDK4XhETnTgVZTt0qCHBq/iKrjt0nbKZsFGkFy2z4VLPEFH3p5u2CwThWdRNwxhaB57C0EAsfY0NJzdD95/945K/gMN29GqyNkjQ1SjGLbIjgpT2K+dV7WG/vFHy/oT3XlTSyOVL6JdlcffItxQRAtuRksxzebw=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727094780; c=relaxed/simple;
-	bh=wT5bZiKKoW3L/ffG7RX5UbbaU1c2Deb/nXGLHSKePVY=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NgRsJDqoiuiCVpJfAK9/VRwcX0zxBEqSJmmmmP8pyQh49AV6RKKfQtINgY/9bX8wb8fhB7MD/9NpzUPMhVVrr9NarEFCTMdhOafbFFA9ft70ug2/WSda/W2zuD5RTgAViGcsUds0QELx30LKz06wpmUKSiCRUTb8Ro23Fgr3ykQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=o7z9l6kI; arc=fail smtp.client-ip=40.107.96.69
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+	s=arc-20240116; t=1727095255; c=relaxed/simple;
+	bh=llmlBn1l+72tBxiaVi4eHl8WtKpnOFZghtVxT7xFDBU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kl2dSD21oZDcihcWx6oOB7HBInT/vKLULFVd0RvSSjxWEmW8rdxLK6KBZbOu88l1Z54WILVviACEhxT0Tf00qejr216B22Xf12+Y55GTy219kIFCmCjJOZGOtm1XFsHlNGEqAATGGaaIbBLOUmvlYLXbf0gNZG1OFU6AkHdoFqs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com; spf=pass smtp.mailfrom=de.bosch.com; dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b=p6tMOHAX; arc=fail smtp.client-ip=40.107.20.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=de.bosch.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ypZsqzgCUXZCpXHcWQxTxmFjypXKw3dQbuR+5VjuMQ7X8RDcvpaEvNA7hjF8GB4THbBCW2NRyy4Pi31RHJbFshOmAJu8wpcU99ZdJUfK5ltt40hkfkZSG5yYrfJaWzTPVKPnbYJuX2aZSnkGWVTDclSVgiwLHA+SYvfufqbyfp9AGWOI5SRDkZrF67llt1GF6wD3wqkNZ57qKI7BZanbmVKabR+Qns23vW3mXaNQrORg98yTe+5+2i9upFp6X3lZYUpVAQR8rAqttK45cBRntpYITtDiDdI5nk/B1m7kHWggEiXZ9TgEEOgaIz4mewg5yu81GegxKmk6eYKxqQkowg==
+ b=uawIg7q/L2bchSUvizf5587Ns9sVh5BzL6YGJ5Up1LECbJbsCpBANS/qR1NXKMo4Ef/fWkwaaSV5ti6rDMFGJ/tqAslRQuA5JJ1lR/np3zRTiRXOvRNxChziT6Dq1Bg5W9rGJyzE1zs0xiuQhyd6txOA50hSPTJXmiBTOqSExnWsET1/a29asDRRoPnEqUjdWsVYcMlH6xn9mfP8onkoGGWRPvyp2niq58q/s23aofyZIVQTGVrpZlKh0O1Ou1Bpy88aWP/o574CfOLGB001TjafFo8Szhaxknjm75scJqdamvyR/MxwMeFFwVwj753CDBoHj28iQi8QeFipQsfDcg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ekd7HZB+CGDSsjupV/qJVcGpPDLen7CAMpIeKRBAJOE=;
- b=D2eRiMxWH8XiNrjHoUXYaut067hQjneH88zldtA7VlkGvw3hL6ibi7d6I4XOn3XCxpEk2tY96lllmUVr8kAUNfX61UF7w56zusnEXgH1vy249UYIWFJIFcdFUEIy+zfsFlDG3dQwNtiF7cQogQ45JAttQ978wFbS3QQ9Qb3rzLrO/U0MeKZvjBzwD3zOHk8Z+D0YNLJgvN+9txALNC3DZ1RaA4rbh8yD6PhMXSxMEkZbpqMg/Mm7HvnLOQxFfn5pWqsRhGNaHWX0Wpw8476+Au1HLA5n5lyw7a4Wdc9o3tKdZaZkRbD/kqAtIzUt9HjQ3obktaQcXrcOxiAm2EHZqA==
+ bh=j8VEQ5LvxSajqirhl/H1BDdoQOf8N3eFxQ4YZR1h1WE=;
+ b=CDxPGq0br6DMxyA0w7hHd8+FuiKRiQsCrFN2oWv6f3O4FaogdGED7NGha64tD9OQ/IHDOQlsS8rNPdpCmiN4iNEM9QXwqrr5BLmx4OA9ToO//jROpxrnARJ6BpaXqEasczEo3DkhVXpuObqE/rSf9lMS+2s3/Oqc9t+7SmKN+sEdpqSNvNtYmZo2Z+Cw9Uqb+CdH/4W9fmV+hlN6lRpbgmnDSrv8ieWoY3WIfyYBaM0x2D4L/f9frsUTAWLPOPcolWbeufFcptzlidGGKtquE4NTHuDut2hUwpDMe5Nu8H4tBHN2nLsY5UcIAvH/9csX8zGHEX8LlP1/0lk6fTY7Tg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ 139.15.153.206) smtp.rcpttodomain=kernel.org smtp.mailfrom=de.bosch.com;
+ dmarc=pass (p=reject sp=none pct=100) action=none header.from=de.bosch.com;
  dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=de.bosch.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ekd7HZB+CGDSsjupV/qJVcGpPDLen7CAMpIeKRBAJOE=;
- b=o7z9l6kIpvarDsVkJoGRgzmS3r9wTP2rsLJdcgKqyV7ds1ggQThxJVmSnJMQZ4+qqKzfeduAtgESH5sXD5VoDi3cdU2b7GmP68U/Hl9cOVKrWPh/B5nM4/eqab1tttwQQbek+PgYeehkCznH7jQYbFv99OfmMZ2d/u6VfROeIc0=
-Received: from MW4PR03CA0140.namprd03.prod.outlook.com (2603:10b6:303:8c::25)
- by SA1PR12MB6893.namprd12.prod.outlook.com (2603:10b6:806:24c::12) with
+ bh=j8VEQ5LvxSajqirhl/H1BDdoQOf8N3eFxQ4YZR1h1WE=;
+ b=p6tMOHAXZ2omMG7sufhTq/tNib4CQxvC4KT+GBqj1DQsgmZmA8XfwtvxI/KbLS9ew8w5D3vfh/YfQ5a562MUCgfjXmMS1YLq8upqWjvcCJu7uON0Sppk9qAAMirabyEm7wkRMuxe3ZAz2KkYZRMmh6PyZa+uOFnT0XAP5QQzfuNZCm1tzABlrXUYXQzSA7KfEWUGgqkETe7xT75ePAPNf970O9y/qTyr2lD2JgWQOLgyx+vyVBIY+zeFoykzZGeieQJrS4aSY1wahNnUPTNBydTkd1HOPSAwUSJuoTbcMK1K9/iGcgF4s5H/7XLYnGXywIoa4kjVmuAo/WIi6mJD+Q==
+Received: from AS9PR06CA0199.eurprd06.prod.outlook.com (2603:10a6:20b:45d::18)
+ by DB9PR10MB6643.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:3d1::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.25; Mon, 23 Sep
- 2024 12:32:51 +0000
-Received: from CO1PEPF000044F3.namprd05.prod.outlook.com
- (2603:10b6:303:8c:cafe::5d) by MW4PR03CA0140.outlook.office365.com
- (2603:10b6:303:8c::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.30 via Frontend
- Transport; Mon, 23 Sep 2024 12:32:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1PEPF000044F3.mail.protection.outlook.com (10.167.241.73) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7918.13 via Frontend Transport; Mon, 23 Sep 2024 12:32:50 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 23 Sep
- 2024 07:32:48 -0500
-Received: from xhdakumarma40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Mon, 23 Sep 2024 07:32:44 -0500
-From: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-To: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <michal.simek@amd.com>, <linux-spi@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <git@amd.com>, <amitrkcian2002@gmail.com>,
-	Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Subject: [PATCH] dt-bindings: spi: xilinx: Add clocks & clock-names properties
-Date: Mon, 23 Sep 2024 18:02:42 +0530
-Message-ID: <20240923123242.2101562-1-amit.kumar-mahapatra@amd.com>
+ 2024 12:40:42 +0000
+Received: from AM1PEPF000252E0.eurprd07.prod.outlook.com
+ (2603:10a6:20b:45d:cafe::8c) by AS9PR06CA0199.outlook.office365.com
+ (2603:10a6:20b:45d::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.25 via Frontend
+ Transport; Mon, 23 Sep 2024 12:40:42 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 139.15.153.206)
+ smtp.mailfrom=de.bosch.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=de.bosch.com;
+Received-SPF: Pass (protection.outlook.com: domain of de.bosch.com designates
+ 139.15.153.206 as permitted sender) receiver=protection.outlook.com;
+ client-ip=139.15.153.206; helo=eop.bosch-org.com; pr=C
+Received: from eop.bosch-org.com (139.15.153.206) by
+ AM1PEPF000252E0.mail.protection.outlook.com (10.167.16.58) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7918.13 via Frontend Transport; Mon, 23 Sep 2024 12:40:42 +0000
+Received: from SI-EXCAS2000.de.bosch.com (10.139.217.201) by eop.bosch-org.com
+ (139.15.153.206) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Mon, 23 Sep
+ 2024 14:40:31 +0200
+Received: from LR-C-0008DVM.rt.de.bosch.com (10.139.217.196) by
+ SI-EXCAS2000.de.bosch.com (10.139.217.201) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Mon, 23 Sep 2024 14:40:31 +0200
+From: <Jianping.Shen@de.bosch.com>
+To: <jic23@kernel.org>, <lars@metafoo.de>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <dima.fedrau@gmail.com>,
+	<marcelo.schmitt1@gmail.com>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<Jianping.Shen@de.bosch.com>, <Christian.Lorenz3@de.bosch.com>,
+	<Ulrike.Frauendorf@de.bosch.com>, <Kai.Dolde@de.bosch.com>
+Subject: [PATCH v8 0/2] iio: imu: smi240: add bosch smi240 driver
+Date: Mon, 23 Sep 2024 14:40:15 +0200
+Message-ID: <20240923124017.43867-1-Jianping.Shen@de.bosch.com>
 X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -89,132 +91,149 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB04.amd.com: amit.kumar-mahapatra@amd.com does not
- designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000044F3:EE_|SA1PR12MB6893:EE_
-X-MS-Office365-Filtering-Correlation-Id: c62ad539-2d5e-43f5-1567-08dcdbcbd691
+X-MS-TrafficTypeDiagnostic: AM1PEPF000252E0:EE_|DB9PR10MB6643:EE_
+X-MS-Office365-Filtering-Correlation-Id: 214c016e-8a1b-42e3-533e-08dcdbccf023
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|376014|82310400026;
+	BCL:0;ARA:13230040|36860700013|82310400026|376014|7416014|1800799024|921020;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?LEImL5ZPRzhyAAV3Pdr9ZTs/ySzRDSodJMlHMkN3GUy+tLDSE5cOz+nvCD+0?=
- =?us-ascii?Q?KShJOg7TH7oMV/P/NtZJ4VHmcOikeBs18CGkHUMWcHSYBP1lfbFEehWQTAPm?=
- =?us-ascii?Q?hWmTZFqQdJrtydFoWuNTs3TytztRDnIDgxAUXs16Norkk/8pdvPVqMml3iel?=
- =?us-ascii?Q?vo7IH/Xh1eYotBzHyYRKTkBQodbYzji8z7OnkK2L5US2rz8oWmgV3sYq0GFS?=
- =?us-ascii?Q?3J+OfoaivSHSqLaSGh7RnnKnVl3xVk8gMM0uQ3Bhxgc6oQrfhayo4YWPsmMh?=
- =?us-ascii?Q?za/B/KyV652nduuFjFwu2VxQAB43Fag9R5BKDHcL01c0TX1KXsLBPFlhsVP9?=
- =?us-ascii?Q?dmuhfjhrrlVUyC1fJKzDzc+PTxJh9YpbwIzIZi4ECzisZ+1aKhObVzqLcJKj?=
- =?us-ascii?Q?1S79pWCNrthtlVNdsF5eDUos+elQ4eNHUMHdW1GBMQ2lAqjtohOplw03WV1+?=
- =?us-ascii?Q?EbyGveM8w3IaHy/DD/ac+ApNQVKZQrGec3ZI2LyiTUHAhhmicNTdKuwNcB/H?=
- =?us-ascii?Q?iTC2PsmJTOpMZmvLLcH4A71mUu6JF8HLccxyK8VCvsMrgFHcrOYq9hrgzBfz?=
- =?us-ascii?Q?PYwWK6R37ECP5aq1pzeNgk3I5vXm96jotu860MBo6EGZAp++Ntd5u/WZCQWu?=
- =?us-ascii?Q?VLFFsffWXA6T2t6eF2kBewFq0fZ/o0F7oV7DwZmbr9F0jayOpfY5haVJ711G?=
- =?us-ascii?Q?2NViSmih2DgC/INhdm8RE6Y+4h2xy9lnf0sQqa/hTS0noN56U8lOCgb4mYZA?=
- =?us-ascii?Q?yV+LzWifa1LfYcq9Pef94dMJfBl1416ydEH9w/nnDrMWyYmZ/oexVyEgTXCe?=
- =?us-ascii?Q?oHVRXHjqY9m0fHxmeNYvOsgWs98nL7KUA39IvKKNRNVInkbddknqKhMMajDf?=
- =?us-ascii?Q?Cdh2J6YL9ZyVQLFpS6mM2FHHs3v/vgEiXDNczk6Aedy+LNWZo1/+4w5W4BR+?=
- =?us-ascii?Q?D+Ns1QeKs4Z1JNtCNbmm6pBEpep7RBAYFICpo18o2InSH4CY65OXBdY/rw7O?=
- =?us-ascii?Q?7DwY1GNxCzoLrIcSlgoPKU5waWoor+rssbnKKbIltSygbllzbpybubR4hqHJ?=
- =?us-ascii?Q?CEHsqyBtlx9nyM/PB7F+QJTKl6nkhsIU4XtkPsndGYUCnhMO0Ez7DZ31KhzG?=
- =?us-ascii?Q?96+fHrs0qjwCXipza1O5rI2Ma1fR3eAHjgp9llrSnRtHbDbByr6DUeMD8RLK?=
- =?us-ascii?Q?ZKVtaTM/25VI4TfVM6EysSD6gZ9jpvdTMAKSyXStluhDQ6fWmh+n1bKiiKnF?=
- =?us-ascii?Q?KWJzi1eXTg2f5Ut9v5BSA/a9fzCXquCvrA9T/i5SdQTSzKK77rg19wB2QiMw?=
- =?us-ascii?Q?xFRMfJZ6I5iDTcbbr3Oa4U4t3sR1Vrf9K1J2BwQlVFPfgWLJf0i7FKDYLT90?=
- =?us-ascii?Q?hJ/JtwnHKA/SAR6ng/10p6b9RAU+AeCp+i7wJynJProzZr/GR1o5U28ESxbj?=
- =?us-ascii?Q?ACCu8/HdgiLYle67h8Lxc8AhNL2swY0l?=
+	=?utf-8?B?d2JOakpYRWZBYzQyaUhnZHdEbXV1aEZld3JsTEdVT3JvSEEyM0NHZEJSZzVl?=
+ =?utf-8?B?aHhyZStLK1JScW5RWGY4OCtqVWw1N2ltUmJ2aVIyRkp1aVVJdG16ZGNUM3Ni?=
+ =?utf-8?B?TU1rbmZvQkNxR2VEbjV6ZkdxMUhsRjhoSWZXMzFHNnpqMENBRnBJYVd4UDhY?=
+ =?utf-8?B?RVhNRExLYmRyam1TbUxXLzdUNEpkUEZlWk9yVzU2TWY3TnkvNkkrS3I0SGJV?=
+ =?utf-8?B?UnFTS3gxOUl2bzlIT0k2NU92K3NXc21BRXJudkp4andsbnQ0NkxjcWg1N3RI?=
+ =?utf-8?B?ZTFUTDRsTWU3anR5Z3NDS2RhQ1krK0lHUXNuZDFsdGl3OFI5bGRuNEVMSm9v?=
+ =?utf-8?B?dHlFQituNjk0Y24rZnJzYWNDRFNDUkVmcXlGNWZUcTdPY1J6ZFhROEZQcWJs?=
+ =?utf-8?B?NUwzNUtPZVp2RFcwY2doWEEzampPWlhPUVUyQUIxenpUN01sQ05FWkxpRTlp?=
+ =?utf-8?B?SnlmS2U1QmhPNk9HS0xMNTVHRzV5N3FxSjV4dTBpd1ZoQjdxdWVYVWhRczU2?=
+ =?utf-8?B?THR5dmZ2Mys4aFpVL1paVUY2bTJjeTBqbGdLSjRpUVAzbktTUDMyeTduY0xn?=
+ =?utf-8?B?a21sSWdsVzN1VlNkeS93MTJQTWNaZTlTaFUzUHJTQU1uNkUzZDZWT3B2UG00?=
+ =?utf-8?B?U3lad0JvVFZwQXczQjNvQ2R5dHA1ZXVrdjlNdGFTdEtXekZoNGVIK1M5NUdJ?=
+ =?utf-8?B?OEJnZHRNZGZvQjBMeVdsN1ZJS0ppajI0VGQ0RkdrQmhZdlNQcmJad3ZjYVlm?=
+ =?utf-8?B?dDF5T2lVODkzeEFqeUVCVzFLaWNXWTErellrYm85Q3AxWmlzaUk3NzhsWTlS?=
+ =?utf-8?B?RGQvYzJpaCtjKzdPa090VVRzV3R2Yy9xOHpTOW8rZ2VCVU45bm9LbjFsek9p?=
+ =?utf-8?B?R2ZDVFl1bHJ1eEFNN2JKR0JyM2xUcm5TMktnTnUwd0d4c2VFVWRsZ0x5Umxm?=
+ =?utf-8?B?NFkrSUh4ZHpta0NxZkQveisyMkVBbnR5QkV3ajcvZGxTbXZyK0hiMjJRcncy?=
+ =?utf-8?B?QnpoRzg1TDF3bEFrNVBMMEhLOFJpQ21mcWxKdTJadUpVWGI3MDJvcUdkRlov?=
+ =?utf-8?B?R2xWMU0rWmJKVndrNDJWdWpBWGZkTW43SHVoN0t5Tjg3blZRZEt2TGVrN1FC?=
+ =?utf-8?B?eHB3OU9tS210bThTR1pMUU9tM3EwVlNoNVRUbzBCQnlLSVUybEhzdmlGVEFJ?=
+ =?utf-8?B?RjY2Z05ON2xzQlRnQldFTG9GeENBN2xmTXcvdHhZRjVsRGUzRHpZeHplaWl3?=
+ =?utf-8?B?bnQzcEhxK3FTTUp4RGFGWHZkd1FFNVJRT3NLemtNUEUxVHF6V1V3TVJ2U2VM?=
+ =?utf-8?B?aVpBejRoN3RXQ3IyaCtuaGZIMG1sYlZmTVVYc3RCeTR6T2RvdE1RTU5oMlFn?=
+ =?utf-8?B?TFRGY1VwZzlmZUdMR1p0NHBoNnhWYXJBWnhORE9qU1Nrc1c2VGFtdVI2eWN3?=
+ =?utf-8?B?ZWhxQ0Y3TC9aRld2dkt3aGljUVNEUThsbVUvTlhWYkF0Q2VnY0xURHgxY3Ft?=
+ =?utf-8?B?dUhTbG5oWjhuTDVvU20vU2hYeklkLzFBK01zSTM3M05iL2YrSmd0TUt2YnI4?=
+ =?utf-8?B?djZqSTZjYTRYSElGb1c4ZHdIbG1SaXExNmNseGRRSUozK3Y5bmRUTEFPVUZu?=
+ =?utf-8?B?N1dTVVU4YWFXSk9Gekxua3Zsc3A2d1ltVUI0TmpVSXhWMlRzTmxzU3NVcTdB?=
+ =?utf-8?B?cCtuSWtFT1RDQXJyRmhFd296VmgyeWJKdHVPci9wZGE2L2NxUzk2NlBvSnA5?=
+ =?utf-8?B?Y3V4VzZlUUI5R1VGL0lLZjFyZFdacGM2WkU0YUpsOW9BdnFiZEd3bFE2TFB1?=
+ =?utf-8?B?eThGbTNBWlZSZkwzOGR5T0FyWnhlYi9jUHJZSURwZno5QzN6dndCbXlTT2hw?=
+ =?utf-8?B?RUUxY0NMOHRoUG1qNXpNUWMxOWJFM0Z3bXRXYU13aDNrVDQ0N2M2TWFmbHR6?=
+ =?utf-8?Q?G+7PW/vhcxnjz6V5tRjkX31CwW7pnz8n?=
 X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2024 12:32:50.2569
+	CIP:139.15.153.206;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:eop.bosch-org.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(376014)(7416014)(1800799024)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: de.bosch.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2024 12:40:42.7644
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c62ad539-2d5e-43f5-1567-08dcdbcbd691
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-Network-Message-Id: 214c016e-8a1b-42e3-533e-08dcdbccf023
+X-MS-Exchange-CrossTenant-Id: 0ae51e19-07c8-4e4b-bb6d-648ee58410f4
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0ae51e19-07c8-4e4b-bb6d-648ee58410f4;Ip=[139.15.153.206];Helo=[eop.bosch-org.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000044F3.namprd05.prod.outlook.com
+	AM1PEPF000252E0.eurprd07.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6893
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR10MB6643
 
-Include the 'clocks' and 'clock-names' properties in the AXI Quad-SPI
-bindings. When the AXI4-Lite interface is enabled, the core operates in
-legacy mode, maintaining backward compatibility with version 1.00, and
-uses 's_axi_aclk' and 'ext_spi_clk'. For the AXI interface, it uses
-'s_axi4_aclk' and 'ext_spi_clk'.
+From: Shen Jianping <Jianping.Shen@de.bosch.com>
 
-Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
----
-BRANCH: for-next
----
- .../devicetree/bindings/spi/spi-xilinx.yaml   | 29 +++++++++++++++++++
- 1 file changed, 29 insertions(+)
+Add the iio driver for bosch imu smi240. The smi240 is a combined
+three axis angular rate and three axis acceleration sensor module
+with a measurement range of +/-300°/s and up to 16g. This driver
+provides raw data access for each axis through sysfs, and tiggered
+buffer for continuous sampling. A synchronous acc and gyro sampling
+can be triggered by setting the capture bit in spi read command.
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-xilinx.yaml b/Documentation/devicetree/bindings/spi/spi-xilinx.yaml
-index 4beb3af0416d..9dfec195ecd4 100644
---- a/Documentation/devicetree/bindings/spi/spi-xilinx.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-xilinx.yaml
-@@ -12,6 +12,25 @@ maintainers:
- allOf:
-   - $ref: spi-controller.yaml#
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: xlnx,axi-quad-spi-1.00.a
-+    then:
-+      properties:
-+        clock-names:
-+          items:
-+            - const: s_axi_aclk
-+            - const: ext_spi_clk
-+
-+    else:
-+      properties:
-+        clock-names:
-+          items:
-+            - const: s_axi4_aclk
-+            - const: ext_spi_clk
-+
- properties:
-   compatible:
-     enum:
-@@ -25,6 +44,12 @@ properties:
-   interrupts:
-     maxItems: 1
- 
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    maxItems: 2
-+
-   xlnx,num-ss-bits:
-     description: Number of chip selects used.
-     minimum: 1
-@@ -39,6 +64,8 @@ required:
-   - compatible
-   - reg
-   - interrupts
-+  - clocks
-+  - clock-names
- 
- unevaluatedProperties: false
- 
-@@ -49,6 +76,8 @@ examples:
-       interrupt-parent = <&intc>;
-       interrupts = <0 31 1>;
-       reg = <0x41e00000 0x10000>;
-+      clocks = <&clkc 72>, <&clkc 73>;
-+      clock-names = "s_axi4_aclk", "ext_spi_clk";
-       xlnx,num-ss-bits = <0x1>;
-       xlnx,num-transfer-bits = <32>;
-     };
+dt-bindings: 
+v1 -> v2
+    - Add more detail in description
+    - Add maintainer
+    - Add vdd and vddio power supply
+    - Use generic node name
+    - Order the properties according to DTS coding style
+
+v2 -> v3
+    - Improve description
+    - Improve supply definition
+    - Make supply definition as required
+    - Add supply definition in example
+
+v3 -> v4
+    - No changes
+
+v4 -> v5
+    - No changes
+
+v5 -> v6
+    - Fix checkpatch findings
+
+v6 -> v7
+    - No changes
+
+v7 -> v8
+    - No changes
+
+imu driver:
+v1 -> v2
+    - Use regmap for register access
+    - Redefine channel for each singel axis
+    - Provide triggered buffer
+    - Fix findings in Kconfig
+    - Remove unimportant functions
+
+v2 -> v3
+    - Use enum für capture mode
+    - Using spi default init value instead manual init 
+    - remove duplicated module declaration
+    - Fix code to avoid warning
+
+v3 -> v4
+    - Use DMA safe buffer
+    - Use channel info instead of custom ABI
+    - Fix other findings
+
+v4 -> v5
+    - Merge the implementation in one simple file
+    - Add channel info for acc/gyro data channel
+    - Fix other findings
+
+v5 -> v6
+    - Fix checkpatch findings
+    - Fix review findings
+
+v6 -> v7
+    - Fix offset and scale
+
+v7 -> v8
+    - Use memcpy in spi write to keep CPU endian
+    - Fix some minor findings
+
+Shen Jianping (2):
+  dt-bindings: iio: imu: smi240: add Bosch smi240
+  iio: imu: smi240: add driver
+
+ .../bindings/iio/imu/bosch,smi240.yaml        |  51 ++
+ drivers/iio/imu/Kconfig                       |  14 +
+ drivers/iio/imu/Makefile                      |   2 +
+ drivers/iio/imu/smi240.c                      | 622 ++++++++++++++++++
+ 4 files changed, 689 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/imu/bosch,smi240.yaml
+ create mode 100644 drivers/iio/imu/smi240.c
+
 -- 
 2.34.1
 
