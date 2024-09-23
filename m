@@ -1,93 +1,108 @@
-Return-Path: <devicetree+bounces-104478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D879D97E8AF
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:29:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FB8697E8BA
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:31:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 151AF1C20385
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:29:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 603781C2111B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:31:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 398E6194A64;
-	Mon, 23 Sep 2024 09:29:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7FE194158;
+	Mon, 23 Sep 2024 09:31:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GWfz35v3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="awA5lsEk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10EB91946D0;
-	Mon, 23 Sep 2024 09:29:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 651BA5339E;
+	Mon, 23 Sep 2024 09:31:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727083764; cv=none; b=rk4imL6z/G1UT6tiVsPaqIysi1lWGw5WKyLP7KZye2thDDjPSt0ibbmTaT20RgSRX0PHuo9mEbUpoHoNkQ78+dgjPWRpuDeblXa00t61nRrdr16sJxpv0Q/IWS6gSuwoKnxXqzyGyAg2j594BBuKM1BwHLX/iFr/mpRrCfGvvDk=
+	t=1727083872; cv=none; b=ExQOwG/I3FQePat1KN8T0HaP6jh4F+G0eGbXLG5RHV+vXXqydKaN7nzZoieEIAkebx//x4cf3eL6e3ZQSgbQ2szRWsGLOOUb2V+v6q1QHXBxJ8Yjh3Tr0Y87CJQs1QxhPpacQqGWypOCqeqCEnj8aCJwXSNm+6VVQVtrWDTStgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727083764; c=relaxed/simple;
-	bh=iwf1nkRj/tOTwl15MaRvvnK43xbPIYpcWqkXy1mwUMg=;
+	s=arc-20240116; t=1727083872; c=relaxed/simple;
+	bh=b4o15KHRrP7eUWmz7hmE5pW+X7JxqTAywAB5EhIEuAA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oKvZ7eQ2ooE7CSVX9BzSUc/My3fZnbajGzhOV//meFGpRk8nPwJnuYnNTyx4n2J9NWb2CjE1Sjc/3OAsm6Uf08L/XdSi38zf6TCsiyJdIU1AtrjjozH8KCxmtfu/YdCBNZ0umTLxIFiXYBPg4ELC8RDrL+2amqL7jtatPFY4FQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GWfz35v3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FD4CC4CEC4;
-	Mon, 23 Sep 2024 09:29:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oUHIyoHhF382KZF16zPAQaxVU9cCU+ZF/vEWKCTg43XjoBvbhYcisqRrXPG40QhUaUdE5GQv4ZI+Fs1+BG3CWgc4Rfp3W587wHYrefFzHJjW9dxMLfBsbbxWjzeI7T2Xs9+89WyBSsfyps6Fph5OisoKUReSehUvac5X9gqk0cI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=awA5lsEk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE056C4CEC4;
+	Mon, 23 Sep 2024 09:31:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727083763;
-	bh=iwf1nkRj/tOTwl15MaRvvnK43xbPIYpcWqkXy1mwUMg=;
+	s=k20201202; t=1727083871;
+	bh=b4o15KHRrP7eUWmz7hmE5pW+X7JxqTAywAB5EhIEuAA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GWfz35v3AxaywbR0LxXA6c1JHSE4Uyf5NxIiXSvNfZcJ6UpUlqjoQaDYcnDsawxSR
-	 Y1q9kodzPthObVi3mMkAz7G9co4vG+0QlfMfJtujo+1wyMHxcMOxnTDPpSmRA7fAg7
-	 n7bzpvm4kT3EzceGJgYH3AiI0e1ULIHUe3zw7R++PI1HQEXMFwOZ1p8o2bYTwtgGst
-	 rkPXTBojo/oSkc393DGQYRqnBesZNfJeE3GCEanboIlAMuEtnXHRxORO91OLEIbDrY
-	 VMwU7d+krfgN61iCkq1IoTyxl9/M6Pv14f8xtnBUn5UhiD9dpQLXbNAmZSHqplACaH
-	 U85P1DQB1xEZQ==
-Date: Mon, 23 Sep 2024 10:29:19 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Sandie Cao <sandie.cao@deepcomputing.io>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] riscv:configs:starfive:add framework config
-Message-ID: <20240923-bacteria-ending-8bd9dd9efcfd@spud>
-References: <20240923053806.1586080-1-sandie.cao@deepcomputing.io>
+	b=awA5lsEkDZFpaofCD/CcAcMlFtcVwR97wCkFpUR08+GMJr2cHAEA0lWPx/vzw4Jn7
+	 0nxuD6VhstBY6jYyvbHWQLtst7ZOqnb4NSvnCXhjp8MaVI6dP4NT6t8oQEEm1mfOQF
+	 JHzdD9Huv1fLxiR0gZoWFN+1HuA4/1pd8xv7BeOhQ51hDM0qOW06AMpqpN+cgzQ54U
+	 DX/0LV+j0g+nbTV5nATm1ULfNYtsP7or/hAMQP4mmcDhikaRyM/z3DEVZIM7cbUfWs
+	 p6+KGAhIgRneZ/hs24beE5yrCGSdIoq+IVZQ8EgQ5xDqRdh9pkyXaaWB7JCNbSlo0r
+	 wOnf0ghRP4f5Q==
+Date: Mon, 23 Sep 2024 11:31:06 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Frank Wang <frank.wang@rock-chips.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, william.wu@rock-chips.com, 
+	tim.chen@rock-chips.com, wmc@rock-chips.com
+Subject: Re: [RESEND PATCH 1/2] dt-bindings: phy: rockchip,inno-usb2phy: add
+ rk3576
+Message-ID: <snccizbw6thn3lhwad4xppp7vqii4p56ttl2gufwc3ke7vfckf@e4b7nvwwtdfr>
+References: <20240923025326.10467-1-frank.wang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jSqPFTddLCwzgxa7"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240923053806.1586080-1-sandie.cao@deepcomputing.io>
+In-Reply-To: <20240923025326.10467-1-frank.wang@rock-chips.com>
 
+On Mon, Sep 23, 2024 at 10:53:25AM +0800, Frank Wang wrote:
+> Add compatible for the USB2 phy in the Rockchip RK3576 SoC.
+> 
+> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+> ---
+>  .../devicetree/bindings/phy/rockchip,inno-usb2phy.yaml | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+> index 5254413137c64..214917e55c0b6 100644
+> --- a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+> @@ -20,6 +20,7 @@ properties:
+>        - rockchip,rk3366-usb2phy
+>        - rockchip,rk3399-usb2phy
+>        - rockchip,rk3568-usb2phy
+> +      - rockchip,rk3576-usb2phy
+>        - rockchip,rk3588-usb2phy
+>        - rockchip,rv1108-usb2phy
+>  
+> @@ -34,10 +35,16 @@ properties:
+>      const: 0
+>  
+>    clocks:
+> -    maxItems: 1
+> +    minItems: 1
+> +    items:
+> +      - description: phyclk - PHY input reference clocks.
+> +      - description: aclk and aclk_slv are optional and used for USB MMU.
+>  
+>    clock-names:
+> +    minItems: 1
+>      const: phyclk
+> +    const: aclk
+> +    const: aclk_slv
 
---jSqPFTddLCwzgxa7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Please test... Not sure what you wanted to achieve here, but maybe
+oneOf?
 
-On Mon, Sep 23, 2024 at 01:38:06PM +0800, Sandie Cao wrote:
-> Add config to support RISC-V Framework Laptop 13 Mainboard.=20
->=20
-> Signed-off-by: Sandie Cao <sandie.cao@deepcomputing.io>
+Best regards,
+Krzysztof
 
-This shouldn't be required, if there are some config options this board
-needs to be usable, they can be added to defconfig.
-
---jSqPFTddLCwzgxa7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvE07wAKCRB4tDGHoIJi
-0ncGAPsHek8Al7wfJS16NfYR18Bffi2ULmNJqQCTD1U3Z3PeGQEA67v2+b7qOUHk
-7jCExZIEY3Oeit8hRbhXaexM09lsyAA=
-=a9yk
------END PGP SIGNATURE-----
-
---jSqPFTddLCwzgxa7--
 
