@@ -1,173 +1,121 @@
-Return-Path: <devicetree+bounces-104453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECD9E97E735
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:08:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75D3997E750
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:14:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 296791C210A1
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 08:08:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC7A0B208F7
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 08:14:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF524AED1;
-	Mon, 23 Sep 2024 08:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D48436A8D2;
+	Mon, 23 Sep 2024 08:13:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WQrAzPj4"
+	dkim=pass (2048-bit key) header.d=compal-corp-partner-google-com.20230601.gappssmtp.com header.i=@compal-corp-partner-google-com.20230601.gappssmtp.com header.b="I712QI/p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0DDD2C9D;
-	Mon, 23 Sep 2024 08:07:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 502322C9D
+	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 08:13:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727078876; cv=none; b=m3oNkbCpxtDm/TuzE9wtLWkXgx4lFchKd58ADDFxaYdJk1ok7uI8WqTlOwlgwfdxydTJh8iGY+GWijS02k6mvM5cpg8rrGWWngLlq9KRY9a8BWOVLUtmORZAVngmI0b6GzBx9qL1+uGf2CrBgBA8xYoeOkyVZgPM2/yXOKbNwJQ=
+	t=1727079237; cv=none; b=s1H2062Y5ZqW2Kb84dDefHLG9MmQWJRQ57gvexsjrSjm67ovHovG4dnbZhKPuQdbimLeWV/vIy8mbmtKecI+WklOiJQYtg/jUA01mnV7nDfV/dFE5y9esKtmOozIBgaGdrKX75Rqo9LsOdPEkv+zndIEBQkwV7ORYnbuz+7bCRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727078876; c=relaxed/simple;
-	bh=+xNIs7NL1cMhJrrc3GEC3hYmwQtCfinotKNOG960J80=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AuFsF/+bZejewxn1lyAT819wdNWrD2sB5fUvGpN31d0UqQZhLpGbXf+Ku8bMfkiXc5e3uI7CFPuSkcorf8TZUjMfDTDXYVNJEN+lc6a40hLeSEcedH5WzmYGf/34bdr528Bn+lgkjtm+sSAZzdInINpcLza5tcJyQ0Iw5YNyUB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WQrAzPj4; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C0FCD60008;
-	Mon, 23 Sep 2024 08:07:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1727078864;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Mp+vix4e0GRedVNRVnn4wq8Rqo0AYrHWnXPkwqpJzbo=;
-	b=WQrAzPj4rX6JXOJLKL4blGIs6606JDbweq3NLEDWNM7fS+H98K/tMldauoHFUggVIylRoI
-	dQbMTmobwYjaSrRRt3b2fq/pwlujj9iLx3Rekoh1kLdLgmAd+335MEIR3LrnXl5hJJWpbA
-	Z0fUrzMuPWw4mY18V1+xci5BT+9RLwyqFUnGs/dc4JOJRcsN20M4ud64KROIqlijgoAiWO
-	hK3Kee0I/NLRF+FFIK0ZK6Ts/KYH9KLpO6ntlZ0j19ilXoGL8Fd8lTxgbmfdV/ne7TPDvO
-	VSBXZDWlEtADLI2sxPH/y9NJGWqDI2ZiMX819xMtcMmqcoGQ9krFmk88Oq36YQ==
-Date: Mon, 23 Sep 2024 10:07:41 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Lee Jones <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Steen
- Hegelund <Steen.Hegelund@microchip.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Andy Shevchenko
- <andy.shevchenko@gmail.com>, Simon Horman <horms@kernel.org>, Derek Kiernan
- <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Bjorn Helgaas
- <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>, Lars Povlsen
- <lars.povlsen@microchip.com>, Daniel Machon <daniel.machon@microchip.com>,
- UNGLinuxDriver@microchip.com, Rob Herring <robh@kernel.org>, Saravana
- Kannan <saravanak@google.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Horatiu Vultur <horatiu.vultur@microchip.com>,
- Andrew Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, Allan
- Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?=
- <clement.leger@bootlin.com>
-Subject: Re: [PATCH v5 3/8] mfd: syscon: Add reference counting and device
- managed support
-Message-ID: <20240923100741.11277439@bootlin.com>
-In-Reply-To: <20240912143740.GD24460@google.com>
-References: <20240808154658.247873-1-herve.codina@bootlin.com>
-	<20240808154658.247873-4-herve.codina@bootlin.com>
-	<20240903153839.GB6858@google.com>
-	<20240903180116.717a499b@bootlin.com>
-	<20240909095203.3d6effdb@bootlin.com>
-	<20240912143740.GD24460@google.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1727079237; c=relaxed/simple;
+	bh=zl+VItl9QxENvndSaLeMfmluf1i154fUFaBkvmqNL9A=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ckXxMyG4KCUxNwS7uYfpRQ4urNWEhRzMCEvnXVSFCs6Pc3kGhn5JnYhjHiMcn/Ra6ljGxA0TZSV/sZ77zUkvmxbpJuAccaJLGxUqWHq3aXBD3dRoa5TcO0te5MI0cgudWF55jZ2SpuA52YG3xc0qmM0H6wEQR+bisqG6DnnVnAY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=compal.corp-partner.google.com; spf=pass smtp.mailfrom=compal.corp-partner.google.com; dkim=pass (2048-bit key) header.d=compal-corp-partner-google-com.20230601.gappssmtp.com header.i=@compal-corp-partner-google-com.20230601.gappssmtp.com header.b=I712QI/p; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=compal.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=compal.corp-partner.google.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2059112f0a7so35238385ad.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 01:13:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=compal-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1727079235; x=1727684035; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pQy8Dxfmu7fap2VOihFGL73YkwS/WJ5DNXUiPdnsd/I=;
+        b=I712QI/pZzQVoMtMQonAXO4spOU5GXyC8ZCfd+c/TpzBYhYqWnadk/7CpaPdwKOtJq
+         pGvugjO0FyAlM1y2F5saJ/15f8mB2SAUitRer1HUZTDtDTRrdRiSQkm815LXriAYPmtD
+         tExUVgc4BFAqXOPudrwWvLNbRWlPXyotJCqN6TnSM7ewnII/h2zGBzETneA9o2+9IThw
+         tB/4XdXRxz3Q01TMjDhW+RvKsepSoB2fzjV4H3pSY7iIid6i7Ke9FGo/nuy+XkEFKtNH
+         aOL2TTW0JiDK+ymDXPPJbn+n0YbwtgihWbl1W82I3VzKaOK2FAXs+gIQ/EjMcWjsf9ur
+         Ou0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727079235; x=1727684035;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pQy8Dxfmu7fap2VOihFGL73YkwS/WJ5DNXUiPdnsd/I=;
+        b=ASLDnEynK2c0pvIQEKBjRAbhdFsWVztV/K8H/qApGurK6k0e1rww0eJTo1SmHMgxej
+         6irhCH6Vp0QkTZF0bFHdozJLt/2IHjXdFQSlize7rZcn2g25/q10A5mZtPgskWvfkpRo
+         aawQnwz0Jw0N3vEPl6eUv2AVuZtuywKtAmyDhBnihQmXsazq78D999Ycn1FcNcy55roY
+         nrHGoZX4WYnJRRUNigWuvXPZZ4gPViLkxmuYr11Jpj0fcH9yOqNFAzSS4JQMb3hUhN8E
+         l7zm3pYZUEB+rRSKMG7z04FJ3477wvTvj9MaO22vVtRrSPkjrSlSDXbwC44Gpi/bYDKU
+         PHfg==
+X-Forwarded-Encrypted: i=1; AJvYcCUg39+uyDC0ee9LfY3TEeXDD7W6iOwXKyUtyuvkPC2jnM7kmlIFXwJMXXJUT8WD38xAsPE1GODgzzha@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0YRPl9nJPlLJrNuvQM4oLYpz8XCgUHc4pN7uAx6hoIQfBNgKE
+	9HOjnIVgjke7TRFR+N0DEAHc2cGTsB3hntNc0Hr1gI4lG3zEK3IP6RfhaCqsFaM=
+X-Google-Smtp-Source: AGHT+IE26gx2jgT7LO3ISI0SJ9dTEoWLtDfoJJBXr1rZ4bhzlohyJeU/p7j2+b//vCf8oO67DUUqNw==
+X-Received: by 2002:a17:902:da85:b0:205:5427:2231 with SMTP id d9443c01a7336-208d840d687mr139802545ad.47.1727079235519;
+        Mon, 23 Sep 2024 01:13:55 -0700 (PDT)
+Received: from maxweng-Latitude-7410.. (2001-b030-0251-0200-ae0b-14c1-5918-69cd.hinet-ip6.hinet.net. [2001:b030:251:200:ae0b:14c1:5918:69cd])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2079470f38csm128256985ad.205.2024.09.23.01.13.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Sep 2024 01:13:54 -0700 (PDT)
+From: Max Weng <max_weng@compal.corp-partner.google.com>
+To: linux-kernel@vger.kernel.org
+Cc: max_weng@compal.corp-partner.google.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v1] arm64: dts: mediatek: mt8186: add FHCTL node
+Date: Mon, 23 Sep 2024 16:13:40 +0800
+Message-Id: <20240923081340.860715-1-max_weng@compal.corp-partner.google.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
 
-Hi,
+From: max_weng <max_weng@compal.corp-partner.google.com>
 
-On Thu, 12 Sep 2024 15:37:40 +0100
-Lee Jones <lee@kernel.org> wrote:
+add fhctl device node.
 
-> On Mon, 09 Sep 2024, Herve Codina wrote:
-> 
-> > Hi Lee, Arnd,
-> > 
-> > On Tue, 3 Sep 2024 18:01:16 +0200
-> > Herve Codina <herve.codina@bootlin.com> wrote:
-> >   
-> > > Hi Lee,
-> > > 
-> > > On Tue, 3 Sep 2024 16:38:39 +0100
-> > > Lee Jones <lee@kernel.org> wrote:
-> > >   
-> > > > On Thu, 08 Aug 2024, Herve Codina wrote:
-> > > >     
-> > > > > From: Clément Léger <clement.leger@bootlin.com>
-> > > > > 
-> > > > > Syscon releasing is not supported.
-> > > > > Without release function, unbinding a driver that uses syscon whether
-> > > > > explicitly or due to a module removal left the used syscon in a in-use
-> > > > > state.
-> > > > > 
-> > > > > For instance a syscon_node_to_regmap() call from a consumer retrieves a
-> > > > > syscon regmap instance. Internally, syscon_node_to_regmap() can create
-> > > > > syscon instance and add it to the existing syscon list. No API is
-> > > > > available to release this syscon instance, remove it from the list and
-> > > > > free it when it is not used anymore.
-> > > > > 
-> > > > > Introduce reference counting in syscon in order to keep track of syscon
-> > > > > usage using syscon_{get,put}() and add a device managed version of
-> > > > > syscon_regmap_lookup_by_phandle(), to automatically release the syscon
-> > > > > instance on the consumer removal.
-> > > > > 
-> > > > > Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-> > > > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > > > > ---
-> > > > >  drivers/mfd/syscon.c       | 138 ++++++++++++++++++++++++++++++++++---
-> > > > >  include/linux/mfd/syscon.h |  16 +++++
-> > > > >  2 files changed, 144 insertions(+), 10 deletions(-)      
-> > > > 
-> > > > This doesn't look very popular.
-> > > > 
-> > > > What are the potential ramifications for existing users?
-> > > >     
-> > > 
-> > > Existing user don't use devm_syscon_regmap_lookup_by_phandle() nor
-> > > syscon_put_regmap().
-> > > 
-> > > So refcount is incremented but never decremented. syscon is never
-> > > released. Exactly the same as current implementation.
-> > > Nothing change for existing users.
-> > > 
-> > > Best regards,
-> > > Hervé  
-> > 
-> > I hope I answered to Lee's question related to possible impacts on
-> > existing drivers.
-> > 
-> > Is there anything else that blocks this patch from being applied ?  
-> 
-> Arnd usually takes care of Syscon reviews.
-> 
-> Perhaps he's out on vacation.
-> 
-> Let's wait a little longer, since it's too late for this cycle anyway.
-> 
+Signed-off-by: max_weng <max_weng@compal.corp-partner.google.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Discussed the topic with Arnd Bergmann at Linux Plumbers Conference.
-Adding ref-counting and support for removal in syscon is rejected by Arnd.
+diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+index 148c332018b0..d3c3c2a40adc 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+@@ -29,6 +29,13 @@ aliases {
+ 		rdma1 = &rdma1;
+ 	};
+ 
++	fhctl: fhctl@1000ce00 {
++		compatible = "mediatek,mt8186-fhctl";
++		clocks = <&apmixedsys CLK_APMIXED_TVDPLL>;
++		reg = <0 0x1000ce00 0 0x200>;
++		status = "disabled";
++	};
++
+ 	cci: cci {
+ 		compatible = "mediatek,mt8186-cci";
+ 		clocks = <&mcusys CLK_MCU_ARMPLL_BUS_SEL>,
+-- 
+2.34.1
 
-For my LAN966x use case (syscon is used only by the reset controller), the
-solution is to remove the syscon device and handle directly the reset protect
-register in the reset controller itself.
-
-I will propose modifications in that way in the next iteration.
-
-Regards,
-Hervé
 
