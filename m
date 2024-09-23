@@ -1,359 +1,131 @@
-Return-Path: <devicetree+bounces-104476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9736A97E89A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:27:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB27597E8AA
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:28:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA1EF1C20C11
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:27:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57B111F21EF1
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:28:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1479194A64;
-	Mon, 23 Sep 2024 09:27:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBA91195F17;
+	Mon, 23 Sep 2024 09:28:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cChb127u"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RBAqoSIx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C481A1946B8;
-	Mon, 23 Sep 2024 09:27:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E71F194A65
+	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 09:28:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727083674; cv=none; b=HfLBlk+6Bjdtm16C8KPf5gYk5qvXJKMpYZ34Mj3608d2IJVIKvtoYzPYfbEWrfL26g/rRDF5qqPO4JtSLQDmVlcsyHg0o2I0IWbeugFxw6Ofw7a5LRe9tVmjpEFs8YNZ/+WcqT0m5KfgLznRKXjZYjBC4iTDRAhnMmu9iLJbLlM=
+	t=1727083690; cv=none; b=rpBzbVEL8TkEc12T5WQ5RtwXnxCgCOjfcJGqGMbzuXeowXQZ94lKObXayHXSGqS2BZmpeucpH4m4lI4MAv+XdiRHuusuEA3DS54f/5FJNgeEUOXwgd/LrdIH7tsS5yiYunw1CDwXiKXYLkEKXGxRIo7guHMbxXh4tk0txBSBVno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727083674; c=relaxed/simple;
-	bh=S1dpSX+iUq4tmuSiPGkTgc99mQ6bAXtnrX/93YEulHU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=eWAO0NBDgPeCwi01YXrsUNGHRID1BkYN6SVThgoDEJPBBSPnX2ytMUuO7wDr8i8dEDF6hs544EvMBuwnXMeAk0fB15pcvXCutpebAOP+QvBH+yfsybZs0J+12wdJzatgb3qCLfPobcAE3r9WOpXJUkgeRlN4wSjBqbP40XLGdzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cChb127u; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48N0Nd6D002027;
-	Mon, 23 Sep 2024 09:27:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ROkQ9cm1z5Lngcfnv8PbbIVIIc+Lqas1Egz8LdtyO+A=; b=cChb127un9fKFM7b
-	HbHjfmx5DV73PrcIRnG8qSqfdwLjzogW8dJrGrl+zb7SrBksw/NBn3jnucAcQ0zx
-	E4rs0/cApz720nvurbd3SUudRoMDDzziDpd9xALyBYlojeIrDcoJ6+6P7pEn109F
-	t4IGuE9gp3EBOuFGokXfBIva61Taqnw92z/PnpLcfWA45UXQCaA3TZ+P0OCg0VwM
-	DxAtZVGnUSzlMJldzEfjr/udjnCfFv98RCBTXQJURaoJgBnln1m/5Xnx7Z5o7z9X
-	iO66j0eR/SfY1x/15g61q66cKTtVxnk9fC0vlfJeohFZPcs47DTw3BwCIV3+EvW6
-	eBCC4g==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41sph6mfsw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Sep 2024 09:27:35 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48N9RX6e027851
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Sep 2024 09:27:33 GMT
-Received: from [10.50.62.117] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 23 Sep
- 2024 02:27:27 -0700
-Message-ID: <e5960412-e498-49be-a906-c29ee597344b@quicinc.com>
-Date: Mon, 23 Sep 2024 14:57:24 +0530
+	s=arc-20240116; t=1727083690; c=relaxed/simple;
+	bh=Y2H3lLogo29T09ZIg4O5267APGx1T56CgiRzH2uFGiY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RqPfbnRyXg8RKRVq2yJx+RjLIGbwjsFsiE7cySTCrvQUt/1/NnOur27b/ftH5RQxoD+9v9Fm6R0g+B/ZhBTRv3qAiXs+bLSbnb7ykW/o7LkoLw5/vmAtIQCjsocjpxEK5IKq70TEwbZsZ4WCO5i38U/VsMgaAdau29Oy60T40Qs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RBAqoSIx; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5356aa9a0afso6212359e87.2
+        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 02:28:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1727083686; x=1727688486; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Y2H3lLogo29T09ZIg4O5267APGx1T56CgiRzH2uFGiY=;
+        b=RBAqoSIx+RVn8QLjrhgFcTEvyiTWLGut/hdny5rdecWBShI5CYoOtYoyb+Mu/QLt58
+         zKkdIKr2KQrBZXg1+yxkSQ9h42jobYliJrNsBifx6q/H8TeCNLQqWOcOmUL8u2qSKIsN
+         8sywRZq/Rkvf+gb3AxVYacBLhjcqeexz5IFs6L1aEU0cwr9fj4k7LmmeBUUnOgxRrp4h
+         vh0VTUAbPalneuV1+T8yHKardhv/jzSsKGdJQ9DCn42SPiPZtf1w19oy5JUql3ktBGMp
+         P+XBkaQUVmIeWOkiEqcPiLnZdiIHLEQe62A8uau7Pu5z6kEtdn3k0JAJhdLhS2hZHxDf
+         8YnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727083686; x=1727688486;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Y2H3lLogo29T09ZIg4O5267APGx1T56CgiRzH2uFGiY=;
+        b=j5qD7k4+MOhtT2a3QAKOpi2NxtHm3ljaNy3RPVhu3518q5Q2X+ObbHium7mRihD8Mm
+         mD3nzdpTV7rJ7H+sn2NNvb1TvJoy92gAzpgm2s/MwYyU1f1ocSW6+qGjZfVmG3TqYC9T
+         i6aY2AoPLRibFW3cTsR35jjFIXF7yCTLlpfWELv5BdNQRjDgjZDx/2JXKhKQ6aXchMUP
+         grzZ7B15LU8P+i9wCOm1Ql4GDz1zGLZgfU20FwCuJCTx1h88OLdEGWd7/lz/XLZJPu8x
+         uMeDvUB7C3xyo9wWtYRFuv8HcWI8CKCikuO2mqR0At6Fy9OPNWks7kRvdsFgr3D68JhA
+         pelg==
+X-Forwarded-Encrypted: i=1; AJvYcCXB734J9YfATe+lOOEhJ43jh5RqmO6FQoYp1pYzbnT5JZjwsBLJuXA9F5XZu7bHlOIslJQms2mmNj1x@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyjo+cgeF9u7qwwCkkv68/71NkPzs+RMPzKXcRUKiA5LLU7q2Wn
+	CdrbvRQX2H6gQM9bQHi3sIt8zQcxAO5JH1x+97v6tqvx1Wkrvp55Tlwlfj3vrBdwuxw6/PLuz8p
+	t3SpsDr0wdg2xZtcBfa7//mAs0gOgCGp/i1V+CA==
+X-Google-Smtp-Source: AGHT+IFqcb5VcpmKktw95t64Q/tONZlUY5uMG8agXKVRR1VFK+H/O2baR3jHivWHjY41tZ/ZQZoJrQNpCocxjyIuWM4=
+X-Received: by 2002:ac2:4c4d:0:b0:533:45c9:67fe with SMTP id
+ 2adb3069b0e04-536ac32ef59mr6887747e87.48.1727083685755; Mon, 23 Sep 2024
+ 02:28:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/8] arm64: dts: qcom: add IPQ5424 SoC and rdp466 board
- support
-To: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <ulf.hansson@linaro.org>, <linus.walleij@linaro.org>,
-        <catalin.marinas@arm.com>, <p.zabel@pengutronix.de>,
-        <geert+renesas@glider.be>, <dmitry.baryshkov@linaro.org>,
-        <neil.armstrong@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-CC: <quic_varada@quicinc.com>
-References: <20240913121250.2995351-1-quic_srichara@quicinc.com>
- <20240913121250.2995351-8-quic_srichara@quicinc.com>
- <7492618d-4ace-40e2-960b-e10def4f5a17@kernel.org>
-Content-Language: en-US
-From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <7492618d-4ace-40e2-960b-e10def4f5a17@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: yxI19aqE5O-7299szTyucSTZ0oI9cEto
-X-Proofpoint-ORIG-GUID: yxI19aqE5O-7299szTyucSTZ0oI9cEto
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- impostorscore=0 bulkscore=0 spamscore=0 clxscore=1015 mlxlogscore=999
- mlxscore=0 adultscore=0 phishscore=0 suspectscore=0 priorityscore=1501
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409230069
+References: <20240909-ep93xx-v12-0-e86ab2423d4b@maquefel.me>
+ <CAHp75Veusv=f6Xf9-gL3ctoO5Njn7wiWMw-aMN45KbZ=YB=mQw@mail.gmail.com>
+ <0e3902c9a42b05b0227e767b227624c6fe8fd2bb.camel@maquefel.me> <cff6b9b6-6ede-435a-9271-829fde82550d@app.fastmail.com>
+In-Reply-To: <cff6b9b6-6ede-435a-9271-829fde82550d@app.fastmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 23 Sep 2024 11:27:54 +0200
+Message-ID: <CACRpkda7Kef-buHQ3ou3q_xq+OD9-cONh1Ynu-KjvQf=Qx5S_Q@mail.gmail.com>
+Subject: Re: [PATCH v12 00/38] ep93xx device tree conversion
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Nikita Shubin <nikita.shubin@maquefel.me>, Andy Shevchenko <andy.shevchenko@gmail.com>, 
+	Hartley Sweeten <hsweeten@visionengravers.com>, 
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	Lukasz Majewski <lukma@denx.de>, Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
+	Guenter Roeck <linux@roeck-us.net>, Thierry Reding <thierry.reding@gmail.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Mark Brown <broonie@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Damien Le Moal <dlemoal@kernel.org>, 
+	Sergey Shtylyov <s.shtylyov@omp.ru>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Ralf Baechle <ralf@linux-mips.org>, Aaron Wu <Aaron.Wu@analog.com>, Lee Jones <lee@kernel.org>, 
+	Olof Johansson <olof@lixom.net>, Niklas Cassel <cassel@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, 
+	"open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>, linux-clk@vger.kernel.org, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	dmaengine@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org, 
+	Netdev <netdev@vger.kernel.org>, linux-mtd@lists.infradead.org, 
+	linux-ide@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-sound@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Andrew Lunn <andrew@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Sep 11, 2024 at 5:13=E2=80=AFPM Arnd Bergmann <arnd@arndb.de> wrote=
+:
 
+> I've merged the series into the for-next branch of the arm-soc
+> tree now. The timing isn't great as I was still waiting for
+> that final Ack, but it seem better to have it done than to keep
+> respinning the series.
+>
+> I won't send it with the initial pull requests this week
+> but hope to send this one once I get beck from LPC, provided
+> there are no surprises that require a rebase.
 
-On 9/19/2024 6:00 PM, Krzysztof Kozlowski wrote:
-[..]
+Thanks for picking it up! This is a long awaited patch set.
 
->> +
->> diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
->> new file mode 100644
->> index 000000000000..b6c08fac9482
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
->> @@ -0,0 +1,294 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
->> +/*
->> + * IPQ5424 device tree source
->> + *
->> + * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
->> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> +#include <dt-bindings/clock/qcom,ipq5424-gcc.h>
->> +#include <dt-bindings/reset/qcom,ipq5424-gcc.h>
->> +#include <dt-bindings/gpio/gpio.h>
->> +
->> +/ {
->> +	#address-cells = <2>;
->> +	#size-cells = <2>;
->> +	interrupt-parent = <&intc>;
->> +
->> +	clocks {
->> +		xo_board: xo-board-clk {
->> +			compatible = "fixed-clock";
->> +			#clock-cells = <0>;
->> +		};
->> +
->> +		sleep_clk: sleep-clk {
->> +			compatible = "fixed-clock";
->> +			#clock-cells = <0>;
->> +		};
->> +	};
->> +
->> +	cpus: cpus {
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		CPU0: cpu@0 {
-> 
-> Lowercase labels please.
-> 
-> I am in process of fixing it everywhere.
-> 
-ok
-
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a55";
->> +			reg = <0x0>;
->> +			enable-method = "psci";
->> +			next-level-cache = <&L2_0>;
->> +			L2_0: l2-cache {
->> +				compatible = "cache";
->> +				cache-level = <2>;
->> +				cache-unified;
->> +				next-level-cache = <&L3_0>;
->> +				L3_0: l3-cache {
->> +					compatible = "cache";
->> +					cache-level = <3>;
->> +					cache-unified;
->> +				};
->> +			};
->> +		};
->> +
->> +		CPU1: cpu@100 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a55";
->> +			enable-method = "psci";
->> +			reg = <0x100>;
->> +			next-level-cache = <&L2_100>;
->> +			L2_100: l2-cache {
->> +				compatible = "cache";
->> +				cache-level = <2>;
->> +				cache-unified;
->> +				next-level-cache = <&L3_0>;
->> +			};
->> +		};
->> +
->> +		CPU2: cpu@200 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a55";
->> +			enable-method = "psci";
->> +			reg = <0x200>;
->> +			next-level-cache = <&L2_200>;
->> +			L2_200: l2-cache {
->> +				compatible = "cache";
->> +				cache-level = <2>;
->> +				cache-unified;
->> +				next-level-cache = <&L3_0>;
->> +			};
->> +		};
->> +
->> +		CPU3: cpu@300 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a55";
->> +			enable-method = "psci";
->> +			reg = <0x300>;
->> +			next-level-cache = <&L2_300>;
->> +			L2_300: l2-cache {
->> +				compatible = "cache";
->> +				cache-level = <2>;
->> +				cache-unified;
->> +				next-level-cache = <&L3_0>;
->> +			};
->> +		};
->> +	};
->> +
->> +	memory@80000000 {
->> +		device_type = "memory";
->> +		/* We expect the bootloader to fill in the size */
->> +		reg = <0x0 0x80000000 0x0 0x0>;
->> +	};
->> +
->> +	pmu {
-> 
-> pmu-a55
-> 
-ok
-
->> +		compatible = "arm,cortex-a55-pmu";
->> +		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
->> +	};
->> +
->> +	pmu-v7 {
-> 
-> pmu-a7 but... where is the A7 CPU?
-> 
-oops, by mistake. Renamed to a55 above, but missed deleting here.
-
->> +		compatible = "arm,cortex-a7-pmu";
->> +		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-> 
-> Same interrupts? Huh?
-> 
-will be removed.
-
->> +	};
->> +
->> +	dsu-pmu {
-> 
-> pmu-dsu?
-> 
-ok
-
->> +		compatible = "arm,dsu-pmu";
->> +		interrupts = <GIC_SPI 50 IRQ_TYPE_EDGE_RISING>;
->> +		cpus = <&CPU0>, <&CPU1>, <&CPU2>, <&CPU3>;
->> +		status = "okay";
-> 
-> Drop
-> 
-ok
-
->> +	};
->> +
->> +	psci {
->> +		compatible = "arm,psci-1.0";
->> +		method = "smc";
->> +	};
->> +
->> +	reserved-memory {
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges;
->> +
->> +		tz@8a600000 {
->> +			reg = <0x0 0x8a600000 0x0 0x200000>;
->> +			no-map;
->> +		};
->> +	};
->> +
->> +	soc@0 {
->> +		compatible = "simple-bus";
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges = <0 0 0 0 0x10 0>;
->> +
->> +		tlmm: pinctrl@1000000 {
->> +			compatible = "qcom,ipq5424-tlmm";
->> +			reg = <0 0x01000000 0 0x300000>;
->> +			interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
->> +			gpio-controller;
->> +			#gpio-cells = <2>;
->> +			gpio-ranges = <&tlmm 0 0 50>;
->> +			interrupt-controller;
->> +			#interrupt-cells = <2>;
->> +
->> +			uart1_pins: uart1-state {
->> +				pins = "gpio43", "gpio44";
->> +				function = "uart1";
->> +				drive-strength = <8>;
->> +				bias-pull-up;
->> +			};
->> +		};
->> +
->> +		gcc: clock-controller@1800000 {
->> +			compatible = "qcom,ipq5424-gcc";
->> +			reg = <0 0x01800000 0 0x40000>;
->> +			clocks = <&xo_board>,
->> +				 <&sleep_clk>,
->> +				 <0>,
->> +				 <0>,
->> +				 <0>;
->> +			#clock-cells = <1>;
->> +			#reset-cells = <1>;
->> +			#interconnect-cells = <1>;
->> +		};
->> +
->> +		qupv3: geniqup@1ac0000 {
->> +			compatible = "qcom,geni-se-qup";
->> +			reg = <0 0x01ac0000 0 0x2000>;
->> +			clocks = <&gcc GCC_QUPV3_AHB_MST_CLK>,
->> +				 <&gcc GCC_QUPV3_AHB_SLV_CLK>;
->> +			clock-names = "m-ahb", "s-ahb";
->> +			ranges;
->> +			#address-cells = <2>;
->> +			#size-cells = <2>;
->> +
->> +			status = "okay";
-> 
-> Please do not upstream your downstream code...
-> 
-Sure, will remove here and below place
-
-Regards,
-  Sricharan
-
->> +
->> +			uart1: serial@1a84000 {
->> +				compatible = "qcom,geni-debug-uart";
->> +				reg = <0 0x01a84000 0 0x4000>;
->> +				clocks = <&gcc GCC_QUPV3_UART1_CLK>;
->> +				clock-names = "se";
->> +				interrupts = <GIC_SPI 340 IRQ_TYPE_LEVEL_HIGH>;
->> +				status = "okay";
-> 
-> Work on upstream instead.
-> 
->> +			};
->> +		};
->> +
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
-
+Yours,
+Linus Walleij
 
