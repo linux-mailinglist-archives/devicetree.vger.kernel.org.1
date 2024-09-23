@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-104593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5F6597EE66
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 17:42:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61F9D97EE6B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 17:43:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D3581F22716
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 15:42:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 180691F226CE
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 15:43:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D54B199944;
-	Mon, 23 Sep 2024 15:42:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39533197A8A;
+	Mon, 23 Sep 2024 15:43:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WHJ5hmH9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bbyVJVzP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74D4F198E6D;
-	Mon, 23 Sep 2024 15:42:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD49126C01;
+	Mon, 23 Sep 2024 15:43:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727106165; cv=none; b=fWk6fUqpGrzRpM1rb2SqJN2rlMKIFKY5vshXi/euyXX7tyk5rrGfu0c/zKXPELvKaegbKiEL9+8TTWK/5rzmmaduv1xHl/tkEGa1OhXa4/BWZMmCUVsjKNtwTloqZxGSTYgWzmzTe9pZTDHt6mBqj4gO0zLfL+7VpJwTMLjVl0M=
+	t=1727106203; cv=none; b=l3A/FYeVRjFCZjEIcMg2dsyUSgOURAs3MO7YN4IgK66oTbCqgy6g1cfYm808d89vv3u/MnbGyhIRgUkbxTwCxz0xMdtO/teB2ae7JiT75+QN+bkxuYGE/4Iw3mkthGINAYySrzbS6zNH77ZhsUKRtdT+8GyM5Tr65rriSRM7Ro0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727106165; c=relaxed/simple;
-	bh=t+7IuhRWDk00ypz8u+yjo2secAHWniKaBdDHZARt9tA=;
+	s=arc-20240116; t=1727106203; c=relaxed/simple;
+	bh=mABUhkH2kzNPjrHcQ/f8Gpo5mmF7TL7/jd56zHXY2/I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QuLL+OyJ0y6o56h2ggf/IJWtpOHVMLTabtde9vipnZlkD/8lEuM2TJoIY7gx4nNkrVPPJJEX7Yxf7IylZ7wyix7JMNhkKDfqQnEzznHc0mwS6u4CqUqkVR1p8G25NzzHl/AWCHdP5Wq2mZMMI4Qt8vuzGK66LVMzTzX8YMK7SnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WHJ5hmH9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BDC1C4CECD;
-	Mon, 23 Sep 2024 15:42:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=gR2oN3y5C9T3ZY9iLHkuxOb9mG6gI0AFgmAP1mKbrCG4mBmBgPgdmG0F69SkxSXYZsrKBvkpJFICCwAWvNy1jEA1zsaDhi+ge9hwTCAODlJfQDNR2mLZ7Z5ogqX2J7P9j/Ypvxp7R8IAsfL9KReoVuhioyW8OcubatbELCyQBGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bbyVJVzP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 659E7C4CEC4;
+	Mon, 23 Sep 2024 15:43:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727106164;
-	bh=t+7IuhRWDk00ypz8u+yjo2secAHWniKaBdDHZARt9tA=;
+	s=k20201202; t=1727106202;
+	bh=mABUhkH2kzNPjrHcQ/f8Gpo5mmF7TL7/jd56zHXY2/I=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WHJ5hmH94HVxC4aUwyQRiop8ww28DHccAf38Cq1/iEbz1FzJ0JHWLaswf2xZq4zLW
-	 T8UiG+jzhMWRYZO49iFmGMLQ8Fe2xUQ/Nm4baHZVGPMWjGohXeAHUoZGyFGaowOrNp
-	 NIAvNt1tO5ymeQpYXTNTYCFY42ug8K01VeUiQRE8u/JdAVc/gl9zVCpIIxbiN/Q/gm
-	 zmnZaCNa+xePHji2SnH5uzkW3ytBjdtqARK+Jt0xNEn6TqqDiWWscp2fxNd7qnjdpX
-	 Bppft+ebCc+/qDyEjPOvzEfdIuuMG5EQfUsapb+rgojUV0n9KNk260IPtCBp55WN3y
-	 R93LWm+1CnZJg==
-Message-ID: <bcb4fcf5-b49b-4e1c-a5c4-e417d04097f0@kernel.org>
-Date: Mon, 23 Sep 2024 17:42:36 +0200
+	b=bbyVJVzPyyeH9xX0OsfZssIuN3l68I/AN2jTroJxEgb/uP6K0zPR/UUiZk2K5sC+6
+	 gTcpaYXDbHdWVCz19JMqslljC2K18skT14QCBleSpRBIkJeram0MxXUjdt4rKkTmz/
+	 l+j5KZztcZcGK2k9ke1MfiDyAFqdgcx6lmJd3R46qqSDbQXCJMNIioP9JRq7kIvrwr
+	 amqqBE8lNHbybIdQA7K2DnM+jQ6jn69t/+wgURK51Yjs6VtRWgqJpUsVA+zFZ4qVjO
+	 jv9VwRkIr78O06OO3A16IxrZnR36iKbM2kV8KvRK6uO0u3M3M9C2QMvnub3SJj2j67
+	 VEJzQihlWKyZg==
+Message-ID: <7dfc70fa-6076-4bd0-a9d1-2477a5a088e8@kernel.org>
+Date: Mon, 23 Sep 2024 17:43:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/5] dt-bindings: mtd: spi-nor: add OTP parameters
-To: Erez <erezgeva2@gmail.com>
-Cc: Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>,
- linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Esben Haabendal <esben@geanix.com>
-References: <20240920181231.20542-1-erezgeva@nwtime.org>
- <20240920181231.20542-4-erezgeva@nwtime.org>
- <2fo7pndjqieq6lfydmq2pnwb374oqoqnrcsezycgougmr7mtl5@2wm6fe3inf5u>
- <CANeKEMPjLYbBi0AXkEdNum=kqtVe_mfTcVf4zUvJsszVhnh+pw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] drm/rockchip: vop: Split rk3288-vop into big and lit
+To: Jonas Karlman <jonas@kwiboo.se>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Sandy Huang <hjc@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240921222007.2301868-1-jonas@kwiboo.se>
+ <20240921222007.2301868-4-jonas@kwiboo.se>
+ <c6821033-57be-4d10-9e37-935f7748570e@kernel.org>
+ <26ed8563-b6d6-4e72-91a9-f4d5946cef8f@kwiboo.se>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,103 +110,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CANeKEMPjLYbBi0AXkEdNum=kqtVe_mfTcVf4zUvJsszVhnh+pw@mail.gmail.com>
+In-Reply-To: <26ed8563-b6d6-4e72-91a9-f4d5946cef8f@kwiboo.se>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/09/2024 11:21, Erez wrote:
-> On Sun, 22 Sept 2024 at 22:40, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On 23/09/2024 11:01, Jonas Karlman wrote:
+>>>  	0, 0,
+>>> @@ -1245,8 +1253,13 @@ static const struct of_device_id vop_driver_dt_match[] = {
+>>>  	  .data = &rk3066_vop },
+>>>  	{ .compatible = "rockchip,rk3188-vop",
+>>>  	  .data = &rk3188_vop },
+>>> +	{ .compatible = "rockchip,rk3288-vop-big",
+>>> +	  .data = &rk3288_vop_big },
 >>
->> On Fri, Sep 20, 2024 at 08:12:29PM +0200, Erez Geva wrote:
->>> From: Erez Geva <ErezGeva2@gmail.com>
->>>
->>> Some flash devices need OTP parameters in device tree.
->>> As we can not deduce the parameters based on JEDEC ID or SFDP.
->>>
->>> Signed-off-by: Erez Geva <ErezGeva2@gmail.com>
->>> ---
->>>  .../bindings/mtd/jedec,spi-nor.yaml           | 39 +++++++++++++++++++
->>>  1 file changed, 39 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
->>> index 6e3afb42926e..4f7bb3f41cb1 100644
->>> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
->>> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
->>> @@ -90,6 +90,43 @@ properties:
->>>        the SRWD bit while writing the status register. WP# signal hard strapped to GND
->>>        can be a valid use case.
->>>
->>> +  otp-n-regions:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description:
->>> +      Some flash devices need OTP parameters in the device tree.
->>> +      As we can not deduce the parameters based on JEDEC ID or SFDP.
->>> +      This parameter indicates the number of OTP regions.
->>
->> OTP regions where? In DTS? On flash itself?
+>> Hm... that's not really needed. Instead of having three compatibles, you
+>> could keep "rk3288-vop" as big and then my comment on bindings patch
+>> could be ignored (you keep the compatible).
 > 
-> Where can OTP regions be?
-> Can you please be serious?
-> If you have any suggestions, I am happy to hear.
-> I did ask before.
-
-Yes, I am serious, imagine that we do not know what you wanted to say.
-At first this just sounded like you mix nvmem-cells here.
-
-Out of blue this binding starts mentioning OTP and you add bunch of
-generic properties not really matching anything so far. Instead of being
-sarcastic about reviewers confusion, rather improve your description.
-
-Otherwise, good luck.
-
-
-
+> Thanks, I guess that just adding a new compatible for vop-lit should be
+> enough.
 > 
->>
->>> +      The value must be larger or equal to 1 and mandatory for OTP.
->>
->> Don't repeat constraints in free form text. Add proper minimum and
+> VOP_BIG: rockchip,rk3288-vop
+> VOP_LIT: rockchip,rk3288-vop-lit, rockchip,rk3288-vop
 > 
-> Sure, I will add a minimum.
+> That should ensure backward/forward compatibility with any mix of
+> old/new boot-firmware, DTs and kernels.
 > 
->> default, although it is confusing - property is not required but it is
->> mandatory for OTP?
-> 
-> You are welcome to suggest a better rephrase.
-> Using OTP settings is optional.
-> If you set OTP then the number of regions and region length are mandatory.
-> While offset and base are optional for OTP settings.
+> Will change to use that in v2.
 
-So properties should be required?
-
-> 
-> 
->>
->>
->>
->>> +
->>> +  otp-len:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description:
->>> +      Some flash devices need OTP parameters in the device tree.
->>> +      As we can not deduce the parameters based on JEDEC ID or SFDP.
->>
->> Don't repeat the same.
-> 
-> Is there a grouping description?
-> 
->>
->>> +      This parameter indicates the size (length) in bytes of an OTP region.
->>
->> What if each region has different length? Is it possible?
-> 
-> Yes, there are. Old Mactronix have chips with the first region bigger
-> than the second region.
-> As these are old chips, we may skip the support of them.
-
-Other devices can come later re-introducing this approach.
-
-
+Yes, thanks.
 
 Best regards,
 Krzysztof
