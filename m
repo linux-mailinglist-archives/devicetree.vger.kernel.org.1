@@ -1,173 +1,165 @@
-Return-Path: <devicetree+bounces-104516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6197D97E9F3
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 12:32:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9833897EA0B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 12:43:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23348281511
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:32:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6BB5B21184
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:43:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9530F194C6E;
-	Mon, 23 Sep 2024 10:32:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C90A195803;
+	Mon, 23 Sep 2024 10:43:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TAx9xVyR"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="EmzD1NEH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D895A26AC3;
-	Mon, 23 Sep 2024 10:32:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DABA317543;
+	Mon, 23 Sep 2024 10:43:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727087543; cv=none; b=T/jNiI8cSwv0e/kjWm7yuT8PeqrHTy4PMxBKmdXB5Rl/LiJ7G7LpbeTSdYmKy1aY0et82PYs3ortVEmQbh25y5jrpI0EfZSlqd8dupQHQM5LFYAewemo3Jsw9S7pREMAlPmrQYfXm+r5/T45XIxIgsF/A3ks/RjUzBMF0eUbdPg=
+	t=1727088218; cv=none; b=fT06AN14CJrcymwCfJiiI64+GGhUU01l8NaRC7Zk0kFkvKwmVo34icrSNqIq3Xp9VHphLpRMrDJ90h0yH3OBjQWZYAQ10x6NU1K/hALNfM777FbWyx1UvsuFHkvsRFTpGo9wzG3ARmvS44L2SerDCr2GMQxCyaRL+0c1CYqGNU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727087543; c=relaxed/simple;
-	bh=1nn2x9pxDWV/l379KhESWhG2apMUdXu6/sxP7e+JNcc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UpJLd5rmSaDcTzUKW/ow9RPBJ9qtZ47KT9IgiYSvoGgTiYZTnw3yHWp0bOpkBkjINSoroG8Mlwlc5TnnIcWCCX73rzNcm9pQlte8B/LjCoFr7nmCv4YFbArYbjUPl4o/WFbrItWZmWdQ34ZL7M5ezsh5d8FzIf1ko4jsnH4uZD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TAx9xVyR; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a8a7596b7dfso2082566b.0;
-        Mon, 23 Sep 2024 03:32:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727087540; x=1727692340; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=t7WybMhTFjyQNe3MuiaKvgD14pvzxhatRQ1+PvPY2Qk=;
-        b=TAx9xVyRnHoNRn9FrDiazMl8CWSebwC46tXMhbBLXOHgSb9QCMv8XVp6iN1fnqO/R1
-         Tk0PjpuvZ43gNqk79zfuS3EJpWawOtRQVCRxXNvM0bbWG9FQyikh4VhrR+hYQSMJsD6O
-         zDjf26ZerQIQWgujP8OfrQgah/mXaqfD/C9X9D6hENhKUVGAH2fGiP5ElXHUq+j6sJQq
-         fsH5PQNMtPn/7eX8TE99DZuv1MrZRKkxLSmcRCbmY8IZmxF0sn1gd6vB+wnrmprKZIqV
-         rtdkq81XAb0HwO9/e7OKlpfD+tl5+3AvQSgqBt+lxszuozjiW91j2GGjQRL9rTiOJ4n3
-         o1Pg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727087540; x=1727692340;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=t7WybMhTFjyQNe3MuiaKvgD14pvzxhatRQ1+PvPY2Qk=;
-        b=Xq4zH3ZSoV2iqgTTbo4aBvERntHx37FFS/aCFsFmaQUVxVYI4q/m1SBO9oemKT+lHz
-         lNPX8SL5rFev0mJlrZ0jZxl86/ZmPrtijiPmuwota/EghBBZdePsKIhhC372/rcSs31X
-         HBjLJuPurEy+FmkiI0nWvxqwdP7UCBR9kMcmDXPdl2bqggpVpe5RMPRBm6mqrW4gWbfC
-         3eXDggoSxNB2WU5HO5rn0q3SEz05X+sxwk+bY73XS3Mlzf4R5FYkdQmtB7flKk8+viN+
-         UM+y0iGk7jD+mhPBKYMrzk726zDJGoPNADiwgTH/q3PB28Ye4N/tXveNFw4g/JTKJ7Ns
-         eF2g==
-X-Forwarded-Encrypted: i=1; AJvYcCU0uQnZ67YKYDa5tfTrD7BM31Swm6aCQB+OpcCUkcxS7Te2tl3r96P8OMYCio3nb0LZd5mm8HeWa9NP@vger.kernel.org, AJvYcCULxXjIffaNlBLxT62l+wQpttw2plaVasW/tPqCpety1bypUiqSsMGyweA1blzYAN3B29ucChnL99EzLIwY@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRPQrB9xFIb4GRf3HOQVQLGjjhjTsDJUtHcMeOpEWFsyXBBSMo
-	E7XHEVHhcR3WI05zzSy52INq9Dk+dUiWi+Jo4ud/S1qhx7fLVYFT+Gq6nnxYWTi+I/Uy7xuD0gt
-	wyLyPUlEwAuGhbAl4Su9PQe5VbQ==
-X-Google-Smtp-Source: AGHT+IHeqaggM+UXfU/T/6f5PbCqBXtnxIWll8SaceKEzyUrkfKVLbRY45ZmR2+j9VeHTNJR6u24o1KKU9NZSFh29b8=
-X-Received: by 2002:a17:907:3daa:b0:a86:6a9a:d719 with SMTP id
- a640c23a62f3a-a90d364310fmr1068934966b.29.1727087539905; Mon, 23 Sep 2024
- 03:32:19 -0700 (PDT)
+	s=arc-20240116; t=1727088218; c=relaxed/simple;
+	bh=+xoSspNKJ5MEUo0tLVZmeEuaK5ipmpy6ZXvedGMFkMg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=cfwOW5pXUue36+6uNd7cdsBfwTIhajLzFxSkS1YbHsDpfKfnsc9h85Z2UzKGabazYbQznQkqil2kwSqfSHg4H4oCURl7hfsrHhNhOEXHB3Ss4ahxu4McF8EYd89Ll2/CYjq/psOmfK4dPtYtOVctJaydIyyyKcxtmQIZNS5e7OM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=EmzD1NEH; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: ac46e808799811efb66947d174671e26-20240923
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=lxJ2u/FvugU1hQiGyVxAGg7yfWlaUL7i8/K8f/CODxM=;
+	b=EmzD1NEHc00QO3MhkzE01AetGGypiXlLNuFwDv/+mf5KzfgIHWm/GRroijcpnlxvaLExCyYaymWknRde/ShztiAIRnciqIbjRd85HhxVq4xrQ3ME3gvh2juN95PR8QysuigX32l0+1Dx/TeOj7mQkDZzdprO1JdIDSzlOfOiRhI=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:ab14257d-9121-42ff-9bcd-a013a3e0b8b0,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:c9ca9fd0-7921-4900-88a1-3aef019a55ce,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: ac46e808799811efb66947d174671e26-20240923
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1160707181; Mon, 23 Sep 2024 18:43:30 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 23 Sep 2024 18:43:27 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Mon, 23 Sep 2024 18:43:26 +0800
+Message-ID: <637aca9a-5d1e-6726-4b97-4d5db0ee30a3@mediatek.com>
+Date: Mon, 23 Sep 2024 18:43:23 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240920181231.20542-1-erezgeva@nwtime.org> <20240920181231.20542-2-erezgeva@nwtime.org>
- <4e0cf43c-4843-451c-ac6f-86775dbccb2b@linaro.org>
-In-Reply-To: <4e0cf43c-4843-451c-ac6f-86775dbccb2b@linaro.org>
-From: Erez <erezgeva2@gmail.com>
-Date: Mon, 23 Sep 2024 12:31:42 +0200
-Message-ID: <CANeKEMOmhAPM1j1_ihzcC2wL6jKsWXPCGfZs+euS8mRvtqgE5A@mail.gmail.com>
-Subject: Re: [PATCH v5 1/5] mtd: spi-nor: core: add manufacturer flags
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
-	Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, linux-kernel@vger.kernel.org, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Esben Haabendal <esben@geanix.com>
-Content-Type: text/plain; charset="UTF-8"
-
-On Mon, 23 Sept 2024 at 08:04, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
->
-> Hi,
->
-> On 9/20/24 7:12 PM, Erez Geva wrote:
-> > From: Erez Geva <ErezGeva2@gmail.com>
-> >
-> > Add flag for always trying reading SFDP:
-> > Some vendors reuse all JEDEC IDs on manufacture table
-> >  with new chips that support SFDP.
-> >
-> > Add flag for reading OTP parameters from device tree.
-> > Some vendors reuse JEDEC IDs
-> >  with several chips with different OTP parameters.
-> > Alternatively we read parameters from SFDP.
-> > But the OTP parameters are absent from the SFDP.
->
-> Do you have some specific flashes that you try to identify? Why can't
-> they be differentiated at runtime?
-
-You can not figure OTP parameters based on  JEDEC ID and SFDP existence.
-I did send a few examples.
-
-One of them:
-"How?
-
-When using mx25l12805d, we do not read SFDP.
-As it uses the no-SFDP flags.
-When using mx25l12833f hardware with mx25l12805d driver, it did not
-try to read the SFDP.
-Yet mx25l12833f does have SFDP, when I remove the no-SFDP flags, the
-driver fetch the SFDP.
-
-Secondly SFDP does not contain OTP information.
-
-mx25l12805d has two OTP regions of 128 KiB and 384 KiB (yes asymmetric).
-While mx25l12833f has two OTP regions of 512 KiB.
-
-How do we handle it?
-I would gladly remove the obsolete mx25l12805d.
-And skp compatibles all together."
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v6 2/2] dt-bindings: mfd: mediatek: mt6397: Convert to DT
+ schema format
+Content-Language: en-US
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>, "AngeloGioacchino Del
+ Regno" <angelogioacchino.delregno@collabora.com>
+CC: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>, "David S . Miller"
+	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, "Liam
+ Girdwood" <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Sean Wang
+	<sean.wang@mediatek.com>, Sen Chu <sen.chu@mediatek.com>,
+	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, Dmitry Torokhov
+	<dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, Lee Jones
+	<lee@kernel.org>, Sebastian Reichel <sre@kernel.org>, Chen Zhong
+	<chen.zhong@mediatek.com>, <linux-input@vger.kernel.org>,
+	<linux-leds@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+	<linux-rtc@vger.kernel.org>, <linux-sound@vger.kernel.org>, Alexandre Mergnat
+	<amergnat@baylibre.com>, Bear Wang <bear.wang@mediatek.com>, Pablo Sun
+	<pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, Chris-qj chen
+	<chris-qj.chen@mediatek.com>, MediaTek Chromebook Upstream
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
+	<wenst@chromium.org>
+References: <20240918064955.6518-1-macpaul.lin@mediatek.com>
+ <20240918064955.6518-2-macpaul.lin@mediatek.com>
+ <20240918115151c896f33f@mail.local> <20240918115651c1475d36@mail.local>
+ <2af0621d-14ac-b7f3-b28d-2df698931121@mediatek.com>
+ <d8b90ddf-efbc-4434-9ad0-4be6942d51a5@collabora.com>
+ <202409201337500284902d@mail.local>
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <202409201337500284902d@mail.local>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--16.104600-8.000000
+X-TMASE-MatchedRID: QW5G6BKkLToOwH4pD14DsF2036HHwFm/C/ExpXrHizwJmdXzOhEMdq1X
+	iPUpd5urvhH72H3yPfRl52ofpDGzAUER5ddgnEDec2k2agnXN3xMkOX0Uoduuf5Ndkm9jGh5+k9
+	OmImxseHdNZBjAe+TD5j4oSfJftZ+Gmdo3OL/XyN17gHAyAFr0z49+ukeLY9133Nl3elSfspkDy
+	hB8FZCo0saY8ROPM6fB++TmiSdVlO6de0YULw0FnuTVkeYosXtYY0tNGdvli3qLnOUXH9QdIcqr
+	S3ZaIiqCEuVF6nuSDFftuJwrFEhTbew1twePJJB3QfwsVk0UbtuRXh7bFKB7n0Bw/xUOCRaQob8
+	Aj73RQ4BdZxBcFC/afKV0PghFKiIHIV02d1rpG8=
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--16.104600-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP: 29BBBD91297B46FCBF23EA27127FA88C925FF1F3A72ACB71CB857985D524E1632000:8
 
 
->
-> > So there is not other way but to add the OTP parameters in the device tree.
-> >
->
-> If there isn't any way to distinguish the flashes at runtime (which I
-> doubt/challenge btw), then as a last resort we introduce a dedicated
-> compatible for the flash in cause and specify all needed parameters in a
-> dedicated flash entry. This shall be more generic as further flash
-> parameters can be statically specified in the dedicated flash entry,
-> less invasive for dt, and less confusing for people when they decide
-> whether to use OTP or not. OTP params in device tree is a no-go.
->
-> But again, you have to prove why you can't distinguish the flash at
-> runtime before introducing a new flash compatible. So don't go this path
-> before sharing with us what you're trying to achieve.
+On 9/20/24 21:37, Alexandre Belloni wrote:
 
-You keep sending me contradictory messages.
+[snip]
 
-I told you we can not "guess" OTP settings based on JEDEC ID and SFDP existence.
-It may be partial and Macronix may add new chips in the future.
-They reuse JEDEC ID only retaining flash size and blocks.
-This is why compatibilities work with new Macronix chips . Although by
-reading the SFDP, we can use higher speeds.
-We can use SFDP parameters to read  flash size, blocks and speed.
-But it does not contain any OTP parameters.
-I found only one Macronix chip with an enterprise SFDP table with a
-boolean flag for OTP, this does not help us much.
-Macronix technical support was explicit on OTP settings. You can not
-deduce them. You must know what chip you use.
-As far as I can see, Macronix does not reuse module names (god thanks for that).
+>> > > > >  - RTC:
+>> > > > >   - Drop "start-year"
+>> > > > 
 
-I do not mind using flash compatible.
-Just clarify that point.
-And I will send the patches accordingly.
+[snip]
+
+>> > 
+>> 
+>> Alexandre, I definitely agree with you on the fact that the MTK PMIC RTC driver
+>> can (and needs to) be improved, and that it can make use of some nice cleanup...
+>> 
+>> ... but!
+>> 
+>> This series performs a conversion to schema, and the previous txt file didn't
+>> say anything about the start-year property - which was not mandatory to support
+>> at that time (nor now, afaik?), so adding support for that is out of scope for
+>> this series.
+> 
+> It is mandatory now. I agree this can be done in a subsequent series.
+> 
+
+Thanks you all for helping with the review and kindly understanding the
+situation. I see that Angelo has already submitted the RTC patch set.
+I'll check it with the internal driver owner. It seems okay with a quick 
+glance.
+
+>> 
+>> Eventually, that can come as a series on top, adding support for that in the
+>> binding (and, of course, in the driver).
+>> 
+>> I should be able to tackle that... most probably next week - but still, the
+>> improvements would come as a series on top of this one.
+>> 
+>> Cheers,
+>> Angelo
+> 
 
 Thanks
-Erez
-
->
-> Cheers,
-> ta
+Macpaul Lin
 
