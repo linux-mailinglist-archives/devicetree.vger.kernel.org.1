@@ -1,111 +1,118 @@
-Return-Path: <devicetree+bounces-104471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 935F197E86F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:19:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3935097E87A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:21:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DD451F2191F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:19:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE5D0280E7B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:21:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC52C194A4C;
-	Mon, 23 Sep 2024 09:19:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F17A194A40;
+	Mon, 23 Sep 2024 09:21:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dUHtDjqY"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="j092psrs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20BEC1946B9
-	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 09:19:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC5821946A4;
+	Mon, 23 Sep 2024 09:21:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727083184; cv=none; b=u+kysMP3cNlDB9eEKWeIG0nVjpQRJw0nhcs7FT6ceo81SVp6WuqtDpCDNuW4bWXA4XA+V8Vy11p4zCkALQdHkV7ryCznHt6xiarNJdEyuAuDCIrZLlhMCmnTADTZRRDypACQwhawHhYfrAtOx/CgyWJpbPjw+HrmQJ2U5SJxhfI=
+	t=1727083274; cv=none; b=J27VpytP3ZchXrUr8v6AcUOIBWE/3HG4XrAdmNSquAR8wM4DT20XfYB4h8HcUy8nYKq63K1hi3Xe6pDt9v0Nzp1ydEuG+qN90mxrUk6Hkvj5tCHKWhkshZBvoZDGrICiCDn19yZlzY9a+BJdVnf/BpifmRs7ut41vu1hc/SJa/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727083184; c=relaxed/simple;
-	bh=HbqLKOB9xBC4YcqZ9WHS6O6Bgu6BSSEF109W9pv461c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rr9oMzif6kmCO+piaZsci0d540SXE8DTf/WqYdBpLQhdXaRUDWyOUsGLRflvyFRr3mnUmxKYHKrAz42YED7DYYw+zcuhlzEdzbeVy8AZU+FRt5ElhTAXYVrtaOMSCTcxiPNDihnXk1FRl65ZNefCkb0rrOtjgKkzhJl3c6cfOE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dUHtDjqY; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-535dc4ec181so3951591e87.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 02:19:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727083181; x=1727687981; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HbqLKOB9xBC4YcqZ9WHS6O6Bgu6BSSEF109W9pv461c=;
-        b=dUHtDjqYlOr8kpmIf4INscMeuPuy/TGibkEBehqkddXcesdMteAm5CbFv1CjGQAhMf
-         lebb1SnoIdxiQFoDOcwnGncWczWunpY15YDvwDdWmdU5wqyv18Od5jltcvHV0e37PEux
-         gEuEO88Nk7K/w2rilAWm7HsKN4IGd1RTAJscE/2De14DfVNnJA/hu+9R0ijC14WS5IEP
-         FAW3yZzpe4W8WOHnWBXH0RLHBpLjIkPk0VELsdNxXop36GJpdF/WIF5TqpLvSb0Jdb0B
-         dX+naykkKlgvDL40hiBnvETybwhvZJxUoyn9DVzIaBG5cSoEUD+9dTeBUioZcZ15VbVu
-         EGMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727083181; x=1727687981;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HbqLKOB9xBC4YcqZ9WHS6O6Bgu6BSSEF109W9pv461c=;
-        b=h2Panh5hNc7act7YTNt86BceHimXCMq7rg/U1Qli8M9TldqO3qsKXI7JX1mHSikxwK
-         uK5a4NRVifGmorrnm4Dmjah4ugVBjeOd6k7soDgCSNIm7iKFL0Rpse7N/iejkfvYmdh9
-         026EfEGvg+6wRa70jfD2Fsrx0bzfIMbq2/eWrRjOSxjSG4zASvzT1nZ5OFQB4rlVcYTM
-         TXNOw/AtL/5JY332c4Ab7DpIxCOhbBHANVzQauQ84gUx3OAkzYnpTVYy27teOoRCPnKl
-         MCezoGEvE21yInt99GI3ZftnzDENx8A5XX70Fugg7tbnj0RhHDSt8SiJK80ys5cFqU8S
-         wV4A==
-X-Forwarded-Encrypted: i=1; AJvYcCVLs6EtMOaljaet8IQcFAumai0eIO2DxaWbJslZepiO/+DdnAq81sIRDsxeh/g8SXCzYFDs3X/XlPRu@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzisiTlUJKhvlU51R2AuvE9aBwAq9DysWAo51s+tuPX9XqXqw7
-	F32BLtVXk4kwUbC1dN1VhFAuYH0EKe/ayNAIy1FB/qPQRxnry+tvJjP/rUfWNJ+tyyLMwp7ry5k
-	itkKN0CDagexNsejZBCppbwtriMNrdBYrfuI9hg==
-X-Google-Smtp-Source: AGHT+IFbnNUzhyuTeh31UmTh58QKRDJU5vK7TVaf97G8j3XcTVc7O/NrrT0g/ySQvM7uYWrGz4NvSm3Q+S61lZ6eSEw=
-X-Received: by 2002:a05:6512:10cf:b0:533:45a1:88fc with SMTP id
- 2adb3069b0e04-536ad180123mr5184682e87.30.1727083181276; Mon, 23 Sep 2024
- 02:19:41 -0700 (PDT)
+	s=arc-20240116; t=1727083274; c=relaxed/simple;
+	bh=XkTMzR+QaaPQ9beNXFFpDntWSUyMlJZakghbnU0IjVE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=EI7TlBjpkRhI52Kh3tkyZYfpZkkax5uJ5dp8qUGFcs5Z9PABxaRl9aQ6DdmqY0922oAwD3A5HTuKPEqyrQgkpwqPvz9DyDdsZRIRVSnjz3YmqGKmAtNXIdi6j53M7VOdEr3EFNpaqDIivzXBLlUjhdxKk6Fnz+IxHTbVBrBTy6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=j092psrs; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 27eabd06798d11ef8b96093e013ec31c-20240923
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=gjZj/08QvvsJ8Imgl9uWiUrtWHG3Yj6fTeZovpkIvPE=;
+	b=j092psrsPIOVqOfFiiHzAcaVFEJDZfhobjAR/DceUmZ++cq6FBKYvtsn4zYnPQxG2eDQO0P1qwYUPq8+qReH/wuUnrMKAuz0ztDAcrYmeRBzVpbp5L6oKc4PkGkHe+nGwONWYcyPgrnDdl4ukNGOiKj7xYIKI/dYmop+MTGC8gI=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:2517809b-de0c-43c1-b60b-ccbad6e3382d,IP:0,U
+	RL:0,TC:0,Content:1,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:1
+X-CID-META: VersionHash:6dc6a47,CLOUDID:edb56a9e-8e9a-4ac1-b510-390a86b53c0a,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:4|-5,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 27eabd06798d11ef8b96093e013ec31c-20240923
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+	(envelope-from <pablo.sun@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1536765249; Mon, 23 Sep 2024 17:21:03 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 23 Sep 2024 17:20:59 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Mon, 23 Sep 2024 17:20:52 +0800
+Message-ID: <2914fee8-c94a-fecb-a69c-0d58a40caded@mediatek.com>
+Date: Mon, 23 Sep 2024 17:20:51 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240909110017.419960-1-ivo.ivanov.ivanov1@gmail.com> <20240909110017.419960-6-ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <20240909110017.419960-6-ivo.ivanov.ivanov1@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 23 Sep 2024 11:19:30 +0200
-Message-ID: <CACRpkdY=Q5JyLdPE8EdhaKE+J2j5DZMvf2Nan79yB6x5RWFusw@mail.gmail.com>
-Subject: Re: [PATCH v4 05/10] pinctrl: samsung: Add exynos8895 SoC pinctrl configuration
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
-	Rob Herring <robh+dt@kernel.org>, linux-samsung-soc@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 3/5] nvmem: mtk-efuse: Enable postprocess for mt8188 GPU
+ speed binning
+Content-Language: en-US
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>
+References: <20240920134111.19744-1-pablo.sun@mediatek.com>
+ <20240920134111.19744-4-pablo.sun@mediatek.com>
+ <866d7cd8-856b-431a-9408-527cdc021922@collabora.com>
+From: Pablo Sun <pablo.sun@mediatek.com>
+In-Reply-To: <866d7cd8-856b-431a-9408-527cdc021922@collabora.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--4.754000-8.000000
+X-TMASE-MatchedRID: u1zqiMeMcroNtKv7cnNXnSa1MaKuob8Pt3aeg7g/usAM74Nf6tTB9rsI
+	asnPqvyQfVSuQp/lqthxq+Aq7jUw2GN6tywQmwQMngIgpj8eDcC063Wh9WVqgjuUMbK1NdLP+gt
+	Hj7OwNO2OhzOa6g8KrQg299MEvOql1vSXLi9e57Sdpgh/0Y9xmmUJIWO8gdo5djIFhP3krtZiou
+	j39kMFs02viMYyOMeglkEG27gbXTQ3u31m+KVydpeZT8XNJIzV
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--4.754000-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	8FFCC96B34A170870F29F0F6648320318BC4090AB294D4AB700CD9D0A14064CA2000:8
 
-On Mon, Sep 9, 2024 at 1:00=E2=80=AFPM Ivaylo Ivanov
-<ivo.ivanov.ivanov1@gmail.com> wrote:
+Hi Angelo,
 
-> Add support for the pin-controller found on the Exynos8895 SoC
-> used in Samsung Galaxy S8 and S8 Plus phones.
->
-> It has a newly applied pinctrl register layer for FSYS0 with a
-> different bank type offset that consists of the following bit
-> fields:
->
-> CON: 4, DAT: 1, PUD: 2, DRV: 3, CONPDN: 2, PUDPDN: 2
->
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+On 9/23/24 16:37, AngeloGioacchino Del Regno wrote:
+[snipped]
+> 
+> Please reuse mtk_mt8186_efuse_pdata. There's no need to add a duplicate.
+> 
+> { .compatible = "mediatek,mt8188-efuse", .data = &mtk_mt8186_efuse_pdata },
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+Thanks, will fix in v2.
 
-I expect either Krzysztof will queue this or it will come in through
-some other tree.
+Best regards,
+Pablo
 
-Yours,
-Linus Walleij
+
+
 
