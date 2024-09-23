@@ -1,201 +1,160 @@
-Return-Path: <devicetree+bounces-104596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63D7997EE8D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 17:53:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA3CC97EECC
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 18:03:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1E9D2828EF
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 15:53:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EFEECB21496
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 16:03:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32E6019E828;
-	Mon, 23 Sep 2024 15:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4081A46BA;
+	Mon, 23 Sep 2024 16:03:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="jrYzcWo0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SD3L9b6Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C96902746A
-	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 15:53:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 813B114A8B
+	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 16:03:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727106802; cv=none; b=SyKQOcBX12jpCelgzDyMrZJjeFcBJIOqk7PEryTEkEj3M2Np1Sgs5PGRMNZBGBxzWZ5LQPNUJ4X4/Y/ED+YYeEB2oSwMj0oKjm/oVm2Rg84iHtqZzUsCliR6+d1SgJTy2BV6+VD8FDWVbODzQyZY8/hVfLT8fu5lH5WcGciPqec=
+	t=1727107403; cv=none; b=cO4IcDKBiM21QpZSJZ+nr8RNMuM+X35zYVTox30cw4AH8Y4qJ0rR1eKepKfkIFdFISGQX1zPoKEZoMZp9na9udgNr8gt4z8UrubHcV3A4EBO6ri95Bo+zHzdiXCDXc5wWCY5NBJC+6UyRYYYeFBuzHeOjbYuzq7+Bks9YcuCy0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727106802; c=relaxed/simple;
-	bh=ZU5seM9smWEiobYDEf8SS3vXgZi7+1RN7cqeRk4687M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Lhw/nJu1mtMikl/rgpXorWHkQsS/7I22aHS+vncQe2rTTzBryNfYRZ916LeDohXLm6toORfnmL2T6j0X8GgqCFDBDLzEmDIuktbM1aBACLsF4vv3drvt4w1uhfddZTH40CHvQt1Vh06Rc4dTSyp6lLDFeJb86hotDDYtPWWfd80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=jrYzcWo0; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5c5bca59416so1965745a12.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 08:53:18 -0700 (PDT)
+	s=arc-20240116; t=1727107403; c=relaxed/simple;
+	bh=QWyOxzMozsVzk92zGB+9ZHVcsZYCCvPloU+QuPQ+5TM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Pt03fy9fSbE2Q9M8D8JLEuQ/E6eroDQrx1kKANQVb+ellYzqk/r48nx+kYcyC/ARbW9Hpou0j2r667JTQ+OychlxaZQHKVO/Kq0POy0xZF7KPdwlw34uKnRQ9QDJ/xfmYVyIxHzwEd8A/HoOgreCZSiMxCJs+NHis7yN5wCUwz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SD3L9b6Z; arc=none smtp.client-ip=209.85.219.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e201f6eda9fso3989013276.2
+        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 09:03:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727106797; x=1727711597; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QRM+kE0eJyk586xzDQCqEgq0PLZmAXcxdHkE0kZP+34=;
-        b=jrYzcWo0qdmvF92SDo0aMzqTxOst225FkgxYuEDeLAhu4+Vxau25gDXLQEaYo++Oks
-         Y4gufgySM4DHvrFG/I6SilQ3un4SiZQMYJc+r/KKYjuKZ/pqSQYWweXaSkB9lYP1AhaR
-         iU1gweMEOeT31HU/SCm2X0LmPgsZdLRb8DvoUzTX/o1r5rI/dW4M91T7K72W7KzKbbPi
-         JHk+kU1UkfPfFFkNBlp9LdKAUVYK4SxpJv8ob04Y3bhBb95juU9J8UL4gRtpW6kEUlt6
-         tKrATh1dyW7aQ77ZD/UD8D2HbLUKAlcyLCMSAs8YCBOxCC+OcvNr/yI5FvJ1CZOKhrsu
-         pstw==
+        d=linaro.org; s=google; t=1727107400; x=1727712200; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=nFSAZfeQOGgqlvh/cZp+dUBXOJn+NGV/+N6DxfYRjUA=;
+        b=SD3L9b6ZtaFmoTTmBc/53nOmrOx9QHeAO5bq/Wov0Hxn8QgZ3tr5o4zKTjj4CGXyUC
+         FCwl7kGclD2Y4iU/UIclMDPeVmaw7jB0SnStmXgPILtaG59tMgnZDI3GIx7WiZpIx6bR
+         oX6gk0myBkVJnruKEwmN2NbaTXBTgGz/O3dTedgp+BiGUswt9PRUYFwU0Oa5zaAsTAer
+         sIK9LK9e7VRVQn6vxzivLibjzVb5gwoUQSnVoYl+SRbXQ74dzRixkkmZp1l/d9jx6TcZ
+         748RjWDYXh5QmCVbIWWUm32BB2l1sO+E4eeplIDc4BDsQU6KPVgWnAV3v+EdX5O/jn1p
+         j56g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727106797; x=1727711597;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QRM+kE0eJyk586xzDQCqEgq0PLZmAXcxdHkE0kZP+34=;
-        b=bCykQDupQ3oQ28IwP3jnvC98TN8RfWG57emf+ZqA14hvYtsW7i7DD3+sICd7LH+TBv
-         3fdZusowBstjjbBMlqghysauE2gA+6UuDbwjsOzHkVx9uHUiYcsEdzOH12PIMDg9+/+R
-         fB9dy03RXobnLCV3JDZ77gllUeXzEcTIW7DKcZolyoax/W52gAhy80NI6fOx8rOWFXKn
-         O/FfZzL76fW6a/l/aJSq4vSM0TbhNfiqGmupOWV7Pv9594//4MsnB8xTp+ps6jhDQ7vW
-         HsUcREhMvl410lBeerEZQyGXs1OkcWji08BWS0VO8ygkAh152M20Jqp6arpikGgxyRs3
-         l0jQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXRt2ivvPPog10zJb30COf+yJEba3UG9dQZGfKvbNb2oq/UFGeF5kjlus1eeqqtuwIIi3jVOcDmhPHq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+XJEKqKqvpzv4KJApegRZLCY65vQCdfeXDaRWKdRmY51r0etg
-	8tdkNW0+Nx/MaMvmOyUpeVjmeNnWk5Kah6hhzzPyvM9ZbSe5oxBJFnkNjGkgwLo=
-X-Google-Smtp-Source: AGHT+IGBpRkt+8y5+RxqKBR6+1fLPcTp1+wypMHqo/i4CpE6EyOMQS9eX6dcSOj3vIRwPUtwRcX/1Q==
-X-Received: by 2002:a05:6402:234e:b0:5c4:2b0f:fef7 with SMTP id 4fb4d7f45d1cf-5c464daabfdmr11952867a12.4.1727106797008;
-        Mon, 23 Sep 2024 08:53:17 -0700 (PDT)
-Received: from [192.168.30.40] ([151.43.50.54])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c42bb89f7esm10414568a12.66.2024.09.23.08.53.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Sep 2024 08:53:16 -0700 (PDT)
-Message-ID: <418a8a9b-3bcf-4b8f-92a0-619a3bf26ab5@baylibre.com>
-Date: Mon, 23 Sep 2024 17:50:24 +0200
+        d=1e100.net; s=20230601; t=1727107400; x=1727712200;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nFSAZfeQOGgqlvh/cZp+dUBXOJn+NGV/+N6DxfYRjUA=;
+        b=MqAgAJq5ssXNYf8wze4OF/TYiLdqyhYi4v1i4PMsGrNg2+8zXohqQvWKlJBOdbhCTN
+         iyn+78JAta8zTwK+BSbSxUgv87+kTKNEB1RtbKqa5VrWoh2K4s2pnJdbI0ppjlD1+PKo
+         qr7wdeK9Enz/IauTCPBPNjC1bPVOW9bxcQ2SP09QBRR/EkGE7t2n7Sw7Df4tWIuDZaTA
+         NEJuSISGZhfw67+G8CNZ1sv+WNN9VWzoGPRh4b4DNy/JUm5NIZuyE+qDnKJEV/HSVv5A
+         jylJ86qmwCf3wh8h5OvDcdg9vT0ugkclYbii8N8VewagHqrQsgd4gw3cTPGfHPRbjTKm
+         jQAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW0hT4onWgbr5NrUVIyTVqzEFA+dXg9Q/K7W8aWaa9P4CK5pAkKti96ULHikNhYRaL3Q7pSl6Vky6HC@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwyosRjNNqzgts1UFOxtljws7F4EZMMLHFtxBMA+LUGRP6+62z
+	J6KsgNkF9PCQ5fhNWK6/jarHJ/uKTAWizE7XyT6xPyCX/tvdNoROdWWR19McbfwwJjScPe5W8Sc
+	GsMx1mIx4KLm6gavB450ON07Dc1i4KUOnYAJGcQ==
+X-Google-Smtp-Source: AGHT+IFPrXfy+6PpqRhQO2rorgn9zoN0ubR6Sl/agGP8MDcDCIz/xVdzmgZbfESiw8xxQL1DsfBUmp+TRap8Xf4vQ0M=
+X-Received: by 2002:a05:690c:64c6:b0:6db:cd3c:2273 with SMTP id
+ 00721157ae682-6dfeed8eb83mr106089997b3.24.1727107400252; Mon, 23 Sep 2024
+ 09:03:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 04/10] dt-bindings: iio: dac: ad3552r: add io-backend
- support
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Nuno Sa <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- dlechner@baylibre.com
-References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
- <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-4-a17b9b3d05d9@baylibre.com>
- <gojq6ardhvt6vcs2kawdhdn2cj6qbpzp4p5mjjgwsypuatm5eo@3u6k4q7le46s>
-Content-Language: en-US
-From: Angelo Dureghello <adureghello@baylibre.com>
-In-Reply-To: <gojq6ardhvt6vcs2kawdhdn2cj6qbpzp4p5mjjgwsypuatm5eo@3u6k4q7le46s>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240829-x1e80100-ps8830-v1-0-bcc4790b1d45@linaro.org>
+ <20240829-x1e80100-ps8830-v1-2-bcc4790b1d45@linaro.org> <Zta6cBq881Ju7r7H@hovoldconsulting.com>
+ <Zthet0QqChgGWJAe@hovoldconsulting.com> <ZvGMCTPqBR0VuHd3@linaro.org>
+In-Reply-To: <ZvGMCTPqBR0VuHd3@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 23 Sep 2024 18:03:09 +0200
+Message-ID: <CAA8EJpqq9ROYyTnwPwj+mX2T_422vcmcyzPta+QPL53EgtJ6vg@mail.gmail.com>
+Subject: Re: [PATCH RFC 2/2] usb: typec: Add support for Parade PS8830 Type-C Retimer
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Johan Hovold <johan@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rajendra Nayak <quic_rjendra@quicinc.com>, Sibi Sankar <quic_sibis@quicinc.com>, 
+	Trilok Soni <quic_tsoni@quicinc.com>, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Krzysztof,
+On Mon, 23 Sept 2024 at 17:41, Abel Vesa <abel.vesa@linaro.org> wrote:
+>
+> On 24-09-04 15:20:55, Johan Hovold wrote:
+> > On Tue, Sep 03, 2024 at 09:27:45AM +0200, Johan Hovold wrote:
+> > > On Thu, Aug 29, 2024 at 09:44:26PM +0300, Abel Vesa wrote:
+> > > > The Parade PS8830 is a Type-C muti-protocol retimer controlled over I2C.
+> > > > It provides both altmode and orientation handling.
+> > > >
+> > > > Add a driver with support for the following modes:
+> > > >  - DP 4lanes
+> > > >  - USB3
+> > > >  - DP 2lanes + USB3
+> > > >
+> > > > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> >
+> > > > + retimer->supplies[0].supply = "vdd33";
+> > > > + retimer->supplies[1].supply = "vdd18";
+> > > > + retimer->supplies[2].supply = "vdd15";
+> > >
+> > > vdd115?
+> > >
+> > > > + retimer->supplies[3].supply = "vcc";
+> >
+> > I took a look at the schematics and it seems like all but one of the
+> > above supply names are wrong and that some are missing. "vcc" also does
+> > not exist in either the binding or dt patches you sent separately.
+> >
+> > From what I can tell the supplies are:
+> >
+> >       vdd             1.15 V
+> >       vdd33           3.3 V
+> >       vdd33_cap       3.3 V
+> >       vddat           1.15 V
+> >       vddar           1.15 V
+> >       vddio           1.8 V
+>
+> The schematics seem to suggest that vdd, vddat and vddar are all
+> supplied by the 1.15V supply. As for the vdd33 and vdd33_cap, their
+> seem to be supplied by the 3.3V supply.
 
-On 22/09/24 23:02, Krzysztof Kozlowski wrote:
-> On Thu, Sep 19, 2024 at 11:20:00AM +0200, Angelo Dureghello wrote:
->> From: Angelo Dureghello <adureghello@baylibre.com>
->>
->> There is a version AXI DAC IP block (for FPGAs) that provides
->> a physical bus for AD3552R and similar chips, and acts as
->> an SPI controller.
->>
->> For this case, the binding is modified to include some
->> additional properties.
->>
->> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
->> ---
->>   .../devicetree/bindings/iio/dac/adi,ad3552r.yaml   | 42 ++++++++++++++++++++++
->>   1 file changed, 42 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
->> index 41fe00034742..aca4a41c2633 100644
->> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
->> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
->> @@ -60,6 +60,18 @@ properties:
->>       $ref: /schemas/types.yaml#/definitions/uint32
->>       enum: [0, 1, 2, 3]
->>   
->> +  io-backends:
->> +    description: The iio backend reference.
->> +      An example backend can be found at
->> +        https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
->> +    maxItems: 1
->> +
->> +  adi,synchronous-mode:
->> +    description: Enable waiting for external synchronization signal.
->> +      Some AXI IP configuration can implement a dual-IP layout, with internal
->> +      wirings for streaming synchronization.
->> +    type: boolean
->> +
->>     '#address-cells':
->>       const: 1
->>   
->> @@ -128,6 +140,7 @@ patternProperties:
->>             - custom-output-range-config
->>   
->>   allOf:
->> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
->>     - if:
->>         properties:
->>           compatible:
->> @@ -238,4 +251,33 @@ examples:
->>               };
->>           };
->>       };
->> +
->> +  - |
->> +    axi_dac: spi@44a70000 {
->> +        compatible = "adi,axi-ad3552r";
-> That is either redundant or entire example should go to the parent node,
-> if this device is fixed child of complex device (IOW, adi,ad3552r cannot
-> be used outside of adi,axi-ad3552r).
-
-ad3552r can still be used by a generic "classic" spi
-controller (SCLK/CS/MISO) but at a slower samplerate, fpga
-controller only (axi-ad3552r) can reach 33MUPS.
+Please follow the datasheet when naming the supplies. Some of them
+might be supplied by a single rail, but that might be a property of
+your platform.
 
 >
->> +        reg = <0x44a70000 0x1000>;
->> +        dmas = <&dac_tx_dma 0>;
->> +        dma-names = "tx";
->> +        #io-backend-cells = <0>;
->> +        clocks = <&ref_clk>;
->> +
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        dac@0 {
->> +            compatible = "adi,ad3552r";
->> +            reg = <0>;
->> +            reset-gpios = <&gpio0 92 0>;
-> Use standard defines for GPIO flags.
-
-fixed, thanks
-
->> +            io-backends = <&axi_dac>;
-> Why do you need to point to the parent? How much coupled are these
-> devices? Child pointing to parent is not usually expected, because
-> that's obvious.
-
-
-"io-backends" is actually the way to refer to the backend module,
-(used already for i.e. ad9739a),
-it is needed because the backend is not only acting as spi-controller,
-but is also providing some APIs for synchronization and bus setup support.
-
-> Best regards,
-> Krzysztof
+> >
+> > Also, have you checked that there are no ordering constraints between
+> > the supplies?
 >
-Thanks,
-Regards,
-Angelo
+> The documentation seems to suggest that there are some timing as well as
+> ordering contrains, yes. I can't tell for sure if that is really needed
+> or not.
+
+Again, please follow the datasheet.
+
+>
+> Thanks for reviewing.
+>
+> >
+> > Johan
+> >
+>
+> Abel
 
 
+
+-- 
+With best wishes
+Dmitry
 
