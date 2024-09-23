@@ -1,171 +1,305 @@
-Return-Path: <devicetree+bounces-104464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D309597E7CD
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:46:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41B5597E803
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:58:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 809BC1F21E5B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 08:46:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B4235B21B83
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 08:58:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A56419415E;
-	Mon, 23 Sep 2024 08:45:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A1C219414E;
+	Mon, 23 Sep 2024 08:58:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ab2SuDMw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ErBlbw9t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E4CC194138;
-	Mon, 23 Sep 2024 08:45:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 754BF61FFC
+	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 08:58:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727081156; cv=none; b=BeW/byNSwnvLLd/inMm2P4BWXSBe0PSkJe5JkYoEgsLGXWaEnfOJF2PZAyOA9gUSl/iLxINkDuIFAJY54Ous/jgr95JGNsc0p5of2UCfs345XT8MrnUYuoSwAyP1W1O8oIOwzxbotGN+wq5ejWICmC4WsSz6uVDPHEY9aqHZGoU=
+	t=1727081908; cv=none; b=S8Etl9sqUhk6TWyYbp3KsMRx7kMLVjh+zcYkIbUL6eEH7d3Z645Q9U8uRHE9dAAZ/axxp9WTisI0GZAb3Vuz2YELPCmQ5Nv9KK1XtniaxgcLxn1M18wmxtHVd1kyaaX/63CjCHaAD2QWEhZZs5eAZqyoMRKlE3mmiM9tLE2uDqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727081156; c=relaxed/simple;
-	bh=mXPvosYulSuPT7ayp0NuQzaRA/qTKHHryuamBJ6tKAg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qkl1CVSYSGn+84inLuquQA8JyAYtEODwJb1wf5xg6dfkN7Wg/kaiEQPv+YF7pAH59Ye+kmoTMb6xNbyeQFETMO35FLzG+pVs5AXwIMwO/tFinvrIOEwVpL2AIPucmC/i+AQ8H/EnbgulWagnz9Ryto1Oew2VmthSS9X1m2kWu7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ab2SuDMw; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1727081152;
-	bh=mXPvosYulSuPT7ayp0NuQzaRA/qTKHHryuamBJ6tKAg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ab2SuDMwkBRp5z1ddjV1kndbZFoRoDJs/gbRp/1F6QHds+SsCPAzvxlvzwfr1kenn
-	 NZiDzC1RWIb20y3TC0kfXXVsLYmVVvs0+TWow8hdLM2B0/jhqI99oyJuR5RGymHlIZ
-	 vQ1niFnx6iCwtONJyeTXI6WtJK1pC3JKJVebO6e03M1PGQAg/AilT3w3v6VFyn2m4i
-	 iTvp8OTsqw+/CUexEupeYI1I7VjyV69dstsjESnmZPGG4LYz5O+6D3azcm6dhKapdS
-	 9lYKdJ1R2mcDAxtgizIdjq1TGMDv2N4nJSqCnYsMc8bJ3GU0ANeYVZliPo/qFcoj/R
-	 HaAZMWUNdAj7Q==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4419E17E1063;
-	Mon, 23 Sep 2024 10:45:52 +0200 (CEST)
-Message-ID: <eb17085d-78ff-4833-a4de-17b9327d776c@collabora.com>
-Date: Mon, 23 Sep 2024 10:45:51 +0200
+	s=arc-20240116; t=1727081908; c=relaxed/simple;
+	bh=kdnLNpiksyAyDdCgLQjNN7iPGmYGohIAUf9by9wS0XQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZJwY8EBDsCgkUumEigjkdl7cfEiX6vsnsNliNTGU5tGrclykqNR52m/m6CAYDEiP3FTjgjkh9azaZtv/cgKXoXRtfjx7fK6ukQ6fybHfXIN10L2bxHlwrB23+cgewNSzztyDRilqkLyCuocOnh6IZkGUQ6Ds/gH7YCCfV8+zcc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ErBlbw9t; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2f7657f9f62so44202471fa.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 01:58:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1727081905; x=1727686705; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=U1sQ682pnIkA6X/5BBN5dJdPJY/AuV9vVMjIXL626PQ=;
+        b=ErBlbw9tfmx4MBIKXv1tw0UlRBW9Nb1j4rHvWlBfGO9te4vFOrpz/GstyRc8D9pHN6
+         mxbtRY7PTxsdbx2rRUbXaOhGWnRJ8i34/1FRTZ8QnoOazVpGMTSq7is946hV9oAKXowI
+         jBqKRGRHkcW7E+RxOqxGPIkgnr/NXKvrN+h2duOPA0WAAFr8ZxozMcFgs7azAEDkPWQ5
+         9Vj1m3JwJSfP5xJqKM4KQYW2keLL2q15nzoa+7qykcB4+UsHztTKJS0yCs7nCCiIvhtm
+         AgOb03XE0TeC5eqr3tjRpK27IXa7sQp0XMownXrw4IUUpsZRlV0G2XuO7G2AkEJ/j1Tc
+         l27g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727081905; x=1727686705;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=U1sQ682pnIkA6X/5BBN5dJdPJY/AuV9vVMjIXL626PQ=;
+        b=tyd5VcEixtO9Ef2TTtFrovKyvLKYAA13DuS8rydEr5qnNfVhY5wyZ9IajViImnkpee
+         uKHqOYen/pVymWrUohGdyM2XqxX2Y+HkeRX8OQOYuvjASlEderhL/BoYaNcF0U+4vB8h
+         eU6BVClL5Nnrv7AcBdwhPurqjhWRwLqGDgg8LseBYmBqBqQ1rTSVrPi6RjXb9HR59btO
+         oi2c9kocpYcbcApaSTDmudQ8F9vfgCpF/qdRquFO/aYNqQdC8FaSJGfTgQuUqtfvxck3
+         wmu1Q5/0hbPGetknXC9ahNDVDqFIc4OEVzMnRnOf0znyoxTZy4IonfGPnirGWtCyRweD
+         iOkg==
+X-Forwarded-Encrypted: i=1; AJvYcCUkeo2L/R6bZD/FsW6fDSRWVphFJ2O0f4Dn3myzGVFJ6H8Lm6pqC+wiHmakdbtLO3h2hKb/r/WFVJdz@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLE3QZBYzqHLqDui/q7udrXsn59/oVFYaD7Lydr8FqI8iR2R81
+	PYYzxupx1vTb6ELVH5376kNDiSOWZdpuaGKEExzrlqpUlIQIAEGqanhJW3BJgCDoVgc1NAZxVPi
+	66s0h95MoZ7HDGO1mVo9wrkP39CbyAas61DpvTA==
+X-Google-Smtp-Source: AGHT+IGPYbsu7Vn5CAEgdlkW3pqRnZF7mQQ31TPIJrhGD4dXpbxvp4/C/8SvXTIMoXcEgDh7ARRBzdgO2mVEO6KbFlQ=
+X-Received: by 2002:a05:6512:3b14:b0:535:d4e9:28bb with SMTP id
+ 2adb3069b0e04-536ad3b7e10mr4529008e87.46.1727081904496; Mon, 23 Sep 2024
+ 01:58:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] arm64: dts: mediatek: mt8390-genio-700-evk: Enable
- Mali GPU
-To: Pablo Sun <pablo.sun@mediatek.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-clk@vger.kernel.org
-References: <20240920134111.19744-1-pablo.sun@mediatek.com>
- <20240920134111.19744-6-pablo.sun@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240920134111.19744-6-pablo.sun@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240903-02-k1-pinctrl-v4-0-d76c00a33b2b@gentoo.org> <20240903-02-k1-pinctrl-v4-2-d76c00a33b2b@gentoo.org>
+In-Reply-To: <20240903-02-k1-pinctrl-v4-2-d76c00a33b2b@gentoo.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 23 Sep 2024 10:58:13 +0200
+Message-ID: <CACRpkda2M5kpBi9jJvvAH1SzFurs=c9Z+brSJ_MOkvNz=28t_Q@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] pinctrl: spacemit: add support for SpacemiT K1 SoC
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Conor Dooley <conor@kernel.org>, Yangyu Chen <cyy@cyyself.name>, Jisheng Zhang <jszhang@kernel.org>, 
+	Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
+	Meng Zhang <zhangmeng.kevin@spacemit.com>, Meng Zhang <kevin.z.m@hotmail.com>, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 20/09/24 15:41, Pablo Sun ha scritto:
-> Configure GPU regulator supplies and enable GPU for GENIO 700 EVK.
-> 
-> The GPU in MT8390 & MT8188 has two power inputs: "DVDD_GPU" and
-> "DVDD_SRAM_GPU". In Genio 700 EVK, DVDD_GPU is supplied by
-> mt6359_vproc2_buck_reg, and DVDD_SRAM_GPU is supplied by
-> mt6359_vsram_others_ldo_reg.
-> 
-> According to section 5.2 "Recommended Operating Conditions" in
-> MT8390 IoT Application Processor Datasheet v1.9, The recommended
-> operating voltage ranges are:
-> 
-> - DVDD_GPU: min 0.55V, max 0.86V, typical 0.75V
-> - DVDD_SRAM_GPU: min 0.71V, max 0.92V, typical 0.85V
-> 
-> In this commit, we set DVDD_SRAM_GPU to typical 0.85V. It is possbile
-> to couple it to the DVDD_GPU in future patches.
-> 
-> Signed-off-by: Pablo Sun <pablo.sun@mediatek.com>
+Hi Yixun,
 
-Is there any real difference between MT8390 and MT8188 in terms of the GPU OPPs?
+thanks for your patch!
 
-I see that on MT8188, frequencies up to 880MHz want a DVDD_SRAM_GPU of 0.750V,
-then 0.775/0.762/0.750 (bin1-4/5/6) on 915MHz, and 0.800/0.775/0.750 (bin1-4/5/6)
-on 950MHz.
+Some comments and suggestions below:
 
-Those never call for 0.850V...! So is MT8188 (Chromebooks) wrong, or is MT8390
-different in that?
+On Tue, Sep 3, 2024 at 2:27=E2=80=AFPM Yixun Lan <dlan@gentoo.org> wrote:
 
-Cheers,
-Angelo
+> SpacemiT's K1 SoC has a pinctrl controller which use single register
+> to describe all functions, which include bias pull up/down(strong pull),
+> drive strength, schmitter trigger, slew rate, mux mode.
+>
+> Signed-off-by: Yixun Lan <dlan@gentoo.org>
 
-> ---
->   .../dts/mediatek/mt8390-genio-700-evk.dts     | 24 +++++++++++++++++++
->   1 file changed, 24 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
-> index 1474bef7e754..a1d6f4cd4e5f 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
-> @@ -190,6 +190,11 @@ usb_p2_vbus: regulator-10 {
->   	};
->   };
->   
-> +&gpu {
-> +	mali-supply = <&mt6359_vproc2_buck_reg>;
-> +	status = "okay";
-> +};
+
+> +config PINCTRL_SPACEMIT_K1
+> +       tristate "SpacemiT K1 SoC Pinctrl driver"
+> +       depends on ARCH_SPACEMIT || COMPILE_TEST
+> +       depends on OF
+> +       select GENERIC_PINCTRL_GROUPS
+> +       select GENERIC_PINMUX_FUNCTIONS
+> +       select GENERIC_PINCONF
+
+(...)
+
+> @@ -0,0 +1,1078 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Copyright (c) 2024 Yixun Lan <dlan@gentoo.org> */
 > +
->   &i2c0 {
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&i2c0_pins>;
-> @@ -253,6 +258,14 @@ &i2c6 {
->   	status = "okay";
->   };
->   
-> +&mfg0 {
-> +	domain-supply = <&mt6359_vproc2_buck_reg>;
-> +};
-> +
-> +&mfg1 {
-> +	domain-supply = <&mt6359_vsram_others_ldo_reg>;
-> +};
-> +
->   &mmc0 {
->   	status = "okay";
->   	pinctrl-names = "default", "state_uhs";
-> @@ -314,6 +327,11 @@ &mt6359_vpa_buck_reg {
->   	regulator-max-microvolt = <3100000>;
->   };
->   
-> +&mt6359_vproc2_buck_reg {
-> +	regulator-min-microvolt = <550000>;
-> +	regulator-max-microvolt = <860000>;
-> +};
-> +
->   &mt6359_vpu_buck_reg {
->   	regulator-always-on;
->   };
-> @@ -326,6 +344,12 @@ &mt6359_vsim1_ldo_reg {
->   	regulator-enable-ramp-delay = <480>;
->   };
->   
-> +/* for GPU SRAM */
-> +&mt6359_vsram_others_ldo_reg {
-> +	regulator-min-microvolt = <850000>;
-> +	regulator-max-microvolt = <850000>;
-> +};
-> +
->   &mt6359_vufs_ldo_reg {
->   	regulator-always-on;
->   };
+> +#include <linux/bitfield.h>
 
+I think you really just use <linux/bits.h>
+
+> +#include <linux/export.h>
+
+Why?
+
+> +#include <linux/pinctrl/consumer.h>
+
+Why?
+
+> +#include <linux/pinctrl/machine.h>
+
+Why?
+
+> +#include "../core.h"
+> +#include "../pinctrl-utils.h"
+> +#include "../pinconf.h"
+> +#include "../pinmux.h"
+
+All of them, really?
+
+> +static inline void __iomem *spacemit_pin_to_reg(struct spacemit_pinctrl =
+*pctrl,
+> +                                               unsigned int pin)
+> +{
+> +       return pctrl->regs + spacemit_pin_to_offset(pin);
+> +}
+
+If this is the only user of spacemit_pin_to_offset() then fold it into one
+function, I'd say.
+
+> +static unsigned int spacemit_dt_get_pin(u32 value)
+> +{
+> +       return (value >> 16) & GENMASK(15, 0);
+> +}
+
+Make it a static u16 and drop the genmask, shifting 32 bits
+16 bits right shifts in zeroes in the top bits.
+
+> +
+> +static unsigned int spacemit_dt_get_pin_mux(u32 value)
+> +{
+> +       return value & GENMASK(15, 0);
+> +}
+
+Return static u16
+
+> +static void spacemit_pctrl_dbg_show(struct pinctrl_dev *pctldev,
+> +                                   struct seq_file *seq, unsigned int pi=
+n)
+> +{
+> +       struct spacemit_pinctrl *pctrl =3D pinctrl_dev_get_drvdata(pctlde=
+v);
+> +       const struct spacemit_pin *spin =3D spacemit_get_pin(pctrl, pin);
+> +       enum spacemit_pin_io_type type =3D spacemit_to_pin_io_type(spin);
+> +       void __iomem *reg;
+> +       u32 value;
+> +
+> +       seq_printf(seq, "offset: 0x%04x ", spacemit_pin_to_offset(pin));
+> +       seq_printf(seq, "type: %s ", io_type_desc[type]);
+> +
+> +       reg =3D spacemit_pin_to_reg(pctrl, pin);
+> +       value =3D readl(reg);
+> +       seq_printf(seq, "mux: %ld reg: 0x%04x", (value & PAD_MUX), value)=
+;
+> +}
+
+This is nice and helpful for users and debugging!
+
+> +static int spacemit_pctrl_dt_node_to_map(struct pinctrl_dev *pctldev,
+> +                                        struct device_node *np,
+> +                                        struct pinctrl_map **maps,
+> +                                        unsigned int *num_maps)
+> +{
+> +       struct spacemit_pinctrl *pctrl =3D pinctrl_dev_get_drvdata(pctlde=
+v);
+> +       struct device *dev =3D pctrl->dev;
+> +       struct device_node *child;
+> +       struct pinctrl_map *map;
+> +       const char **grpnames;
+> +       const char *grpname;
+> +       int ngroups =3D 0;
+> +       int nmaps =3D 0;
+> +       int ret;
+> +
+> +       for_each_available_child_of_node(np, child)
+> +               ngroups +=3D 1;
+> +
+> +       grpnames =3D devm_kcalloc(dev, ngroups, sizeof(*grpnames), GFP_KE=
+RNEL);
+> +       if (!grpnames)
+> +               return -ENOMEM;
+> +
+> +       map =3D devm_kcalloc(dev, ngroups * 2, sizeof(*map), GFP_KERNEL);
+> +       if (!map)
+> +               return -ENOMEM;
+> +
+> +       ngroups =3D 0;
+> +       mutex_lock(&pctrl->mutex);
+
+Use a scoped guard in this and other instances:
+
+#include <linux/cleanup.h>
+
+guard(mutex)(&pctrl->mutex);
+
+And just drop the mutex unlock, it will be unlocked when you
+exit the function. (narrower scopes are possible consult
+git grep guard drivers/gpio).
+
+> +       for_each_available_child_of_node(np, child) {
+
+Instead of the kludgy construction requireing of_node_put at the end of the
+function, use for_each_available_child_of_node_scoped().
+
+> +static int spacemit_pmx_set_mux(struct pinctrl_dev *pctldev,
+> +                               unsigned int fsel, unsigned int gsel)
+> +{
+> +       struct spacemit_pinctrl *pctrl =3D pinctrl_dev_get_drvdata(pctlde=
+v);
+> +       const struct group_desc *group;
+> +       const struct spacemit_pin_mux_config *configs;
+> +       unsigned int i, mux;
+> +       void __iomem *reg;
+> +
+> +       group =3D pinctrl_generic_get_group(pctldev, gsel);
+> +       if (!group)
+> +               return -EINVAL;
+> +
+> +       configs =3D group->data;
+> +
+> +       for (i =3D 0; i < group->grp.npins; i++) {
+> +               const struct spacemit_pin *spin =3D configs[i].pin;
+> +               u32 value =3D configs[i].config;
+> +               unsigned long flags;
+> +
+> +               reg =3D spacemit_pin_to_reg(pctrl, spin->pin);
+> +               mux =3D spacemit_dt_get_pin_mux(value);
+> +
+> +               raw_spin_lock_irqsave(&pctrl->lock, flags);
+> +               value =3D readl_relaxed(reg) & ~PAD_MUX;
+> +               writel_relaxed(mux | value, reg);
+> +               raw_spin_unlock_irqrestore(&pctrl->lock, flags);
+
+Use a guard() clause for the lock instead.
+
+> +static int spacemit_request_gpio(struct pinctrl_dev *pctldev,
+> +                                struct pinctrl_gpio_range *range,
+> +                                unsigned int pin)
+> +{
+> +       struct spacemit_pinctrl *pctrl =3D pinctrl_dev_get_drvdata(pctlde=
+v);
+> +       const struct spacemit_pin *spin =3D spacemit_get_pin(pctrl, pin);
+> +       void __iomem *reg;
+> +
+> +       reg =3D spacemit_pin_to_reg(pctrl, pin);
+> +       writel(spin->gpiofunc, reg);
+
+Doesn't this register write require any locking?
+
+> +static int spacemit_pin_set_config(struct spacemit_pinctrl *pctrl,
+> +                                  unsigned int pin, u32 value)
+> +{
+> +       const struct spacemit_pin *spin =3D spacemit_get_pin(pctrl, pin);
+> +       void __iomem *reg;
+> +       unsigned long flags;
+> +       unsigned int mux;
+> +
+> +       if (!pin)
+> +               return -EINVAL;
+> +
+> +       reg =3D spacemit_pin_to_reg(pctrl, spin->pin);
+> +
+> +       raw_spin_lock_irqsave(&pctrl->lock, flags);
+> +       mux =3D readl_relaxed(reg) & PAD_MUX;
+> +       writel_relaxed(mux | value, reg);
+> +       raw_spin_unlock_irqrestore(&pctrl->lock, flags);
+
+Use a scoped guard.
+
+Yours,
+Linus Walleij
 
