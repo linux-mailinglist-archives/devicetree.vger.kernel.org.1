@@ -1,178 +1,158 @@
-Return-Path: <devicetree+bounces-104628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2127E98303D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 23:15:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97BCF983901
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 23:20:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99460281E3D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 21:15:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0EB71C21323
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 21:20:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EECE4824BB;
-	Mon, 23 Sep 2024 21:14:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF7EE61FFC;
+	Mon, 23 Sep 2024 21:20:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Xyi40PuD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hwmeCcrJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BB948C06;
-	Mon, 23 Sep 2024 21:14:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBF2617BA9;
+	Mon, 23 Sep 2024 21:20:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727126099; cv=none; b=k2tWgC4dTCjhtp/0PAmHcOWO7hAFj1sBMW9apVtKCcZ7addFXmfpnQ6clT2ttZZkBglLZGWcwmRQJE5pD2bYNPLyDPkIn7otg0cquM634vQUQtna4hjoeHEP7QDvMcNOASYqfXT9LGC6jboA1LWya2li0W2ykJ5fYnBjtc3Iws4=
+	t=1727126432; cv=none; b=gAa06B0gZvzY5Oho3IEUhvKdbR5BGGt0AVo0BQhzoonkmNmzrf51+HH5cwod83qrr8PPHVnPNApv/6vkamgmtrzcRKO8H5sZulRYWJCuLbdVyq5Jad5zI3XL98zMZQH191Ivlw0zjKe2au3lUPcazEGoqXrM5x16nT/HBGC3mBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727126099; c=relaxed/simple;
-	bh=lqgP/1Q9KtOcLKTxVNHpblZ3VGGoPIy3/+XK5F8/cTg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=jQAc05oa/GXSfcQAODS9ZnPZ/fPvOfTTk+Vs/WFHUvIgL9A2m1Kt3KCQWvdsAGx5n7fZ2tQN9DDwuzwQII3+5Z30I/jIWeGIlll4bnzgGrcDHDkNI1QC1pjg33+VZsCP13MBwaNIDJQc3hr5RIh5chnYCqflWKfiULgnLQ7kG+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Xyi40PuD; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48NKnLg5024394;
-	Mon, 23 Sep 2024 21:14:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZXgl4PCb3TvAFDKPDjYDViIP5fOG7TPMmJVSLbpG1Ro=; b=Xyi40PuDVA1oiLP2
-	edWhn1GwJKrfBxo1g5w/yRsTOnNcSlc6WIkK/RAWzzwIUgW5RW93xKC0GJ5MV0wO
-	LNSEzCX2e9Zx6d+XXQ9utfn/XeVE4utvLF8Lhwt5JrilRaFlVd8ydZbrcy/QGNMc
-	v7F4pETM/hcxN0XLb2vK4z1qWgoEw/ZzPuBkpJBUiA+Fjs8TKBF8PAdSpp+RaK/A
-	3nEMA9Nl66nR7a2y/ksjRciloMzuXahWaIHomaFIvPQBMD3htES2a9wTu1KUFld1
-	e6YoIPaG2TIMK7Do912/VE4TZ54pLEcgD+5rpy/bKzDXKdoiNDkbvbtbU7V+1EgY
-	qA17Iw==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41sn3s64hf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Sep 2024 21:14:24 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48NLEOsT020994
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Sep 2024 21:14:24 GMT
-Received: from [10.134.70.212] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 23 Sep
- 2024 14:14:23 -0700
-Message-ID: <42f0b4b1-87c7-4ebe-94a1-e2ad1a759dd7@quicinc.com>
-Date: Mon, 23 Sep 2024 14:14:07 -0700
+	s=arc-20240116; t=1727126432; c=relaxed/simple;
+	bh=6vjF9h6w0iEBpOGjYebX1Lq37GOam2h0x4QliCpQwrM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kBv/RSFZDd67mGQKojsoS+TRPo5RhBb2BOxRZvimg91BczERdR7Xr3jvqqSsF8czu4toHVmnV8Nze+EEUuI02519PT9KgrLRFxNinBWRdZs4/OlL9SEIpRc11RCuDwQ+vmiUoHic29KZtnbr4MDUHPlQ8XafXfBidprflyg2k/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hwmeCcrJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A72FCC4CEC4;
+	Mon, 23 Sep 2024 21:20:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727126432;
+	bh=6vjF9h6w0iEBpOGjYebX1Lq37GOam2h0x4QliCpQwrM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hwmeCcrJMyYBKFdoe86A3XvkH7w61IryBRX8M2uIqrA4Zcm0yf4vQYgIv7VTm568P
+	 SXug/ALW0a1tAL634B7PzGii72GpabjqI3Cj6b9cVcbkycyAF55OwCuNTOhvfU311v
+	 FxQZE9L9XuZIQ65RuDMGBEPPqEctMd0DPrlkDZSljb173zSy17hjIoIiiWmA45uaGh
+	 6ivcVl6u2NAQb7bNh2tHy/i5oBWLcnN2upwJAqlY7wtG31/ukbAwkj2kamdIPzzR2E
+	 euxON1ae4M9OobqRdxuQkjBJTcrlxHTnA7kaiNlowzEJoSDt53EzE+arxxGSHFivps
+	 JTFFfL2Szq7dA==
+Date: Mon, 23 Sep 2024 22:20:25 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	Marius Cristea <marius.cristea@microchip.com>,
+	Dumitru Ceclan <mitrutzceclan@gmail.com>,
+	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Alisa-Dariana Roman <alisadariana@gmail.com>,
+	Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
+	Dragos Bogdan <dragos.bogdan@analog.com>, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pwm@vger.kernel.org
+Subject: Re: [PATCH 5/7] dt-bindings: iio: adc: add ad458x
+Message-ID: <20240923-yippee-symptom-77aaab7d99da@spud>
+References: <20240923101206.3753-1-antoniu.miclaus@analog.com>
+ <20240923101206.3753-6-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] drm/panel: jd9365da: Modify Kingdisplay and Melfas
- panel timing
-To: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>,
-        <neil.armstrong@linaro.org>, <sam@ravnborg.org>,
-        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>,
-        <dianders@chromium.org>, <hsinyi@google.com>,
-        <awarnecke002@hotmail.com>, <dmitry.baryshkov@linaro.org>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240923134227.11383-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240923134227.11383-2-lvzhaoxiong@huaqin.corp-partner.google.com>
-Content-Language: en-US
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <20240923134227.11383-2-lvzhaoxiong@huaqin.corp-partner.google.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: IV3rl3zIZofrCVveXX6jGA2Vl3uEKWiE
-X-Proofpoint-ORIG-GUID: IV3rl3zIZofrCVveXX6jGA2Vl3uEKWiE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
- mlxscore=0 impostorscore=0 spamscore=0 malwarescore=0 suspectscore=0
- priorityscore=1501 lowpriorityscore=0 mlxlogscore=999 clxscore=1011
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409230152
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="RKWl+KWZ2pFNeJy9"
+Content-Disposition: inline
+In-Reply-To: <20240923101206.3753-6-antoniu.miclaus@analog.com>
 
 
+--RKWl+KWZ2pFNeJy9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 9/23/2024 6:42 AM, Zhaoxiong Lv wrote:
-> In MTK chips, if the system starts suspending before the DRM runtime
-> resume has not completed, there is a possibility of a black screen
-> after waking the machine. Reduce the disable delay resolves this issue,
-
-Hi Zhaoxiong,
-
-Do you mean "if the system starts suspending before the DRM runtime 
-resume *has* completed" here?
-
-> 
-> The "backlight_off_to_display_off_delay_ms" was added between
-> "backlight off" and "display off"  to prevent "display off" from being
-> executed when the backlight is not fully powered off, which may cause
-> a white screen. However, we removed this
-> "backlight_off_to_display_off_delay_ms" and found that this situation
-> did not occur. Therefore, in order to solve the problem mentioned
-> above, we We reduced it from 100ms to 3ms (tCMD_OFF >= 1ms).
-
-So from my understanding of this paragraph, 
-`backlight_off_to_display_off_delay_ms` was added to prevent the display 
-powering off before backlight is fully powered off. You recently tested 
-dropping this completely and saw no issue with this.
-
-If that's the case, why not drop this delay completely?
-
-Thanks,
-
-Jessica Zhang
-
-> 
-> This is the timing specification for the two panels:
-> 1. Kingdisplay panel timing spec:
-> https://github.com/KD54183/-JD9365DA_Power-On-Off-Sequence_V0120240923
-> 2. LMFBX101117480 timing spec: https://github.com/chiohsin-lo/TDY-JD_LIB
-> 
-> 
-> Fixes: 2b976ad760dc ("drm/panel: jd9365da: Support for kd101ne3-40ti MIPI-DSI panel")
-> Fixes: c4ce398cf18a ("drm/panel: jd9365da: Support for Melfas lmfbx101117480 MIPI-DSI panel")
-> 
-> Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+On Mon, Sep 23, 2024 at 01:10:22PM +0300, Antoniu Miclaus wrote:
+> Add devicetree bindings for ad458x DAS family.
+>=20
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 > ---
-> Changes between V2 and V1:
-> -  1. Modify the commit message
-> -  2. Modify the value of backlight_off_to_display_off_delay_ms.
-> v1: https://lore.kernel.org/all/20240915080830.11318-2-lvzhaoxiong@huaqin.corp-partner.google.com/
-> ---
->   drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-> index 44897e5218a6..486aa20e5518 100644
-> --- a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-> +++ b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-> @@ -858,7 +858,7 @@ static const struct jadard_panel_desc kingdisplay_kd101ne3_40ti_desc = {
->   	.reset_before_power_off_vcioo = true,
->   	.vcioo_to_lp11_delay_ms = 5,
->   	.lp11_to_reset_delay_ms = 10,
-> -	.backlight_off_to_display_off_delay_ms = 100,
-> +	.backlight_off_to_display_off_delay_ms = 3,
->   	.display_off_to_enter_sleep_delay_ms = 50,
->   	.enter_sleep_to_reset_down_delay_ms = 100,
->   };
-> @@ -1109,7 +1109,7 @@ static const struct jadard_panel_desc melfas_lmfbx101117480_desc = {
->   	.reset_before_power_off_vcioo = true,
->   	.vcioo_to_lp11_delay_ms = 5,
->   	.lp11_to_reset_delay_ms = 10,
-> -	.backlight_off_to_display_off_delay_ms = 100,
-> +	.backlight_off_to_display_off_delay_ms = 3,
->   	.display_off_to_enter_sleep_delay_ms = 50,
->   	.enter_sleep_to_reset_down_delay_ms = 100,
->   };
-> -- 
-> 2.17.1
-> 
+>  .../bindings/iio/adc/adi,ad485x.yaml          | 82 +++++++++++++++++++
+>  1 file changed, 82 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad485x.=
+yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad485x.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad485x.yaml
+> new file mode 100644
+> index 000000000000..5f5bdfa9522b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad485x.yaml
+> @@ -0,0 +1,82 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2022 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad485x.yaml#
 
+The filename should match one of the compatibles.
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD485X DAS family device driver
+> +
+> +maintainers:
+> +  - Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+> +  - Dragos Bogdan <dragos.bogdan@analog.com>
+> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
+> +
+> +description: |
+> +  Analog Devices AD485X DAS family
+> +
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
+4858.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad4858
+> +      - adi,ad4857
+> +      - adi,ad4856
+> +      - adi,ad4855
+> +      - adi,ad4854
+> +      - adi,ad4853
+> +      - adi,ad4852
+> +      - adi,ad4851
+> +      - adi,ad4858i
+
+I take it that all of these devices have some differences between them?
+
+Everything else here seems pretty okay.
+
+--RKWl+KWZ2pFNeJy9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvHbmQAKCRB4tDGHoIJi
+0uihAPsFIAcwaj9rm40O2Lclx/waGRS3P/spBRg1rFcbejwerQD/XCxmG3zGzKIf
+P9268UDee4q7qdLW6O/r6SYrQgUxiQY=
+=P/EX
+-----END PGP SIGNATURE-----
+
+--RKWl+KWZ2pFNeJy9--
 
