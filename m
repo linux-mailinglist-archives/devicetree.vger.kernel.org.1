@@ -1,108 +1,196 @@
-Return-Path: <devicetree+bounces-104479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FB8697E8BA
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:31:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F8D697E8DB
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:37:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 603781C2111B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:31:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 09516B20BC3
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:37:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7FE194158;
-	Mon, 23 Sep 2024 09:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2176C194A64;
+	Mon, 23 Sep 2024 09:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="awA5lsEk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aY3GGgTU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 651BA5339E;
-	Mon, 23 Sep 2024 09:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE283D528;
+	Mon, 23 Sep 2024 09:37:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727083872; cv=none; b=ExQOwG/I3FQePat1KN8T0HaP6jh4F+G0eGbXLG5RHV+vXXqydKaN7nzZoieEIAkebx//x4cf3eL6e3ZQSgbQ2szRWsGLOOUb2V+v6q1QHXBxJ8Yjh3Tr0Y87CJQs1QxhPpacQqGWypOCqeqCEnj8aCJwXSNm+6VVQVtrWDTStgg=
+	t=1727084260; cv=none; b=eA0H6gN/BctCJI+8urpzXVeAPUdk3lc5/7tY7ianXrPfOeqhUfSAvjWB+yZLlPegGHhIvQ9ch7BwzEAEbrRKN+qdi+kIHZu/Fb/YyCTDFjMEjvOb5ZMEbFv64A9xBDgfI/CymY9j5bgopY/pf1QZ7cegppAhfJ0Oz7RQ+m2+JAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727083872; c=relaxed/simple;
-	bh=b4o15KHRrP7eUWmz7hmE5pW+X7JxqTAywAB5EhIEuAA=;
+	s=arc-20240116; t=1727084260; c=relaxed/simple;
+	bh=w3AXe7Q7QQ2NbwO91Ot+VgUMJcArPUctZY4zNwKUOLs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oUHIyoHhF382KZF16zPAQaxVU9cCU+ZF/vEWKCTg43XjoBvbhYcisqRrXPG40QhUaUdE5GQv4ZI+Fs1+BG3CWgc4Rfp3W587wHYrefFzHJjW9dxMLfBsbbxWjzeI7T2Xs9+89WyBSsfyps6Fph5OisoKUReSehUvac5X9gqk0cI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=awA5lsEk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE056C4CEC4;
-	Mon, 23 Sep 2024 09:31:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eRH2dJ3OlUGAj+0S0u1we468b3N4YQmu1cyBGjFr63Zz73DTx0yYVViqecFkiv8eHh2FWnQ/BRK6iSFjFu7bJRQ3ytWYnskP2AHbLqap+L530TcVLrrsSSExUOMOkakROJkC05b/5XFkvYBhZq9nAIfMwVJCUAwhIWypIz0Szc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aY3GGgTU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82CAEC4CEC4;
+	Mon, 23 Sep 2024 09:37:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727083871;
-	bh=b4o15KHRrP7eUWmz7hmE5pW+X7JxqTAywAB5EhIEuAA=;
+	s=k20201202; t=1727084259;
+	bh=w3AXe7Q7QQ2NbwO91Ot+VgUMJcArPUctZY4zNwKUOLs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=awA5lsEkDZFpaofCD/CcAcMlFtcVwR97wCkFpUR08+GMJr2cHAEA0lWPx/vzw4Jn7
-	 0nxuD6VhstBY6jYyvbHWQLtst7ZOqnb4NSvnCXhjp8MaVI6dP4NT6t8oQEEm1mfOQF
-	 JHzdD9Huv1fLxiR0gZoWFN+1HuA4/1pd8xv7BeOhQ51hDM0qOW06AMpqpN+cgzQ54U
-	 DX/0LV+j0g+nbTV5nATm1ULfNYtsP7or/hAMQP4mmcDhikaRyM/z3DEVZIM7cbUfWs
-	 p6+KGAhIgRneZ/hs24beE5yrCGSdIoq+IVZQ8EgQ5xDqRdh9pkyXaaWB7JCNbSlo0r
-	 wOnf0ghRP4f5Q==
-Date: Mon, 23 Sep 2024 11:31:06 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Frank Wang <frank.wang@rock-chips.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, william.wu@rock-chips.com, 
-	tim.chen@rock-chips.com, wmc@rock-chips.com
-Subject: Re: [RESEND PATCH 1/2] dt-bindings: phy: rockchip,inno-usb2phy: add
- rk3576
-Message-ID: <snccizbw6thn3lhwad4xppp7vqii4p56ttl2gufwc3ke7vfckf@e4b7nvwwtdfr>
-References: <20240923025326.10467-1-frank.wang@rock-chips.com>
+	b=aY3GGgTUzXPqD0IvOVjLBC+pCX5A2+Wp0O1iTfphzGduzGxqjZiiJtQjnQ2MI6/TV
+	 Gg0GuVNGAOpkKcsEbzaUsGgwkDereXbpeHH2OYIc4c4rMR3hbrGrbwW30W85CJYGTR
+	 11/MtlSOovKbKzbChcuEJSwp3mkbOM+dGt8s50Vi+wQhxOH//Z/9xkw0jmCtnZYGOW
+	 WLD5/V/B0LFrW55hmItPr3oq4wUqJq90ZVBM8hHspbixOzN2pYVv0d2XI0CmxpAofX
+	 UJotxLa6WZ7RtXkIl9xGcwCagBgB8a+wDN9+6173DGkvX1PZFz0aa0gRbh/sBaFNnH
+	 AB0DYIfw3O1oA==
+Date: Mon, 23 Sep 2024 10:37:35 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Sandie Cao <sandie.cao@deepcomputing.io>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] riscv:dts:starfive:add framework dts
+Message-ID: <20240923-rehydrate-daintily-1199bce1456c@spud>
+References: <20240923053621.1585972-2-sandie.cao@deepcomputing.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="vaw+pNIvYxNDsg5l"
 Content-Disposition: inline
-In-Reply-To: <20240923025326.10467-1-frank.wang@rock-chips.com>
+In-Reply-To: <20240923053621.1585972-2-sandie.cao@deepcomputing.io>
 
-On Mon, Sep 23, 2024 at 10:53:25AM +0800, Frank Wang wrote:
-> Add compatible for the USB2 phy in the Rockchip RK3576 SoC.
-> 
-> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+
+--vaw+pNIvYxNDsg5l
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hey,
+
+Firstly your $subject should have a space after each :
+
+On Mon, Sep 23, 2024 at 01:36:20PM +0800, Sandie Cao wrote:
+> Add dts to support RISC-V Framework Laptop 13 Mainboard.=20
+>=20
+> Signed-off-by: Sandie Cao <sandie.cao@deepcomputing.io>
 > ---
->  .../devicetree/bindings/phy/rockchip,inno-usb2phy.yaml | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
-> index 5254413137c64..214917e55c0b6 100644
-> --- a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
-> @@ -20,6 +20,7 @@ properties:
->        - rockchip,rk3366-usb2phy
->        - rockchip,rk3399-usb2phy
->        - rockchip,rk3568-usb2phy
-> +      - rockchip,rk3576-usb2phy
->        - rockchip,rk3588-usb2phy
->        - rockchip,rv1108-usb2phy
->  
-> @@ -34,10 +35,16 @@ properties:
->      const: 0
->  
->    clocks:
-> -    maxItems: 1
-> +    minItems: 1
-> +    items:
-> +      - description: phyclk - PHY input reference clocks.
-> +      - description: aclk and aclk_slv are optional and used for USB MMU.
->  
->    clock-names:
-> +    minItems: 1
->      const: phyclk
-> +    const: aclk
-> +    const: aclk_slv
+>  arch/riscv/boot/dts/starfive/Makefile         |  1 +
+>  .../boot/dts/starfive/jh7110-framework.dts    | 35 +++++++++++++++++++
+>  2 files changed, 36 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-framework.dts
+>=20
+> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/=
+starfive/Makefile
+> index 7a163a7d6ba3..ebc8966fde0c 100644
+> --- a/arch/riscv/boot/dts/starfive/Makefile
+> +++ b/arch/riscv/boot/dts/starfive/Makefile
+> @@ -12,3 +12,4 @@ dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-milkv-mars.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-pine64-star64.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.2a.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.3b.dtb
+> +dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-framework.dtb
 
-Please test... Not sure what you wanted to achieve here, but maybe
-oneOf?
+Can you add this in alphanumerical order please?
 
-Best regards,
-Krzysztof
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-framework.dts b/arch/ris=
+cv/boot/dts/starfive/jh7110-framework.dts
+> new file mode 100644
+> index 000000000000..4da7ade5c8e7
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-framework.dts
+> @@ -0,0 +1,35 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
+> + */
+> +
+> +/dts-v1/;
+> +#include "jh7110-common.dtsi"
+> +
+> +/ {
+> +	model =3D "jh7110 framework";
+> +	compatible =3D "jh7110 framework", "starfive,jh7110";
 
+"jh7110 framework" is not a real compatible (you need a vendor prefix
+and no spaces) nor is it documented - which produces warnings:
+arch/riscv/boot/dts/starfive/jh7110-framework.dtb: /: compatible: 'oneOf' c=
+onditional failed, one must be fixed:
+        'jh7110 framework' is not one of ['beagle,beaglev-starlight-jh7100-=
+r0', 'starfive,visionfive-v1']
+        'jh7110 framework' is not one of ['milkv,mars', 'pine64,star64', 's=
+tarfive,visionfive-2-v1.2a', 'starfive,visionfive-2-v1.3b']
+        'starfive,jh7100' was expected
+        from schema $id: http://devicetree.org/schemas/riscv/starfive.yaml#
+arch/riscv/boot/dts/starfive/jh7110-framework.dtb: /: compatible:0: 'jh7110=
+ framework' does not match '^[a-zA-Z0-9][a-zA-Z0-9,+\\-._/]+$'
+        from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+arch/riscv/boot/dts/starfive/jh7110-framework.dtb: /: failed to match any s=
+chema with compatible: ['jh7110 framework', 'starfive,jh7110']
+
+Please run dtbs_check on future versions and fix reported warnings
+by documenting things in dt-bindings.
+"jh7110 framework" isn't very specific, so if there's a model number
+attached to the mainboard that'd be good to have. The vendor in the
+vendor prefix should be deepcomputing, so you'll likely have to add a
+new vendor prefix for that.
+
+The model field could also be improved, check out the visionfive 2 and
+see how that property was written there.
+
+
+> +};
+> +
+> +&gmac0 {
+> +	status =3D "disabled";
+> +};
+> +
+> +&gmac1 {
+> +	status =3D "disabled";
+> +};
+> +
+> +&usb0 {
+> +	dr_mode =3D "host"; /*host or peripheral*/
+
+What does the comment here mean?
+
+Cheers,
+Conor.
+
+> +	status =3D "okay";
+> +};
+> +
+> +&pwmdac {
+> +	status =3D "disabled";
+> +};
+> +
+> +
+> +&pcie0 {
+> +	status =3D "disabled";
+> +};
+> --=20
+> 2.34.1
+>=20
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
+--vaw+pNIvYxNDsg5l
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvE23wAKCRB4tDGHoIJi
+0gyvAQDz1vZH2TIvBpTQC58kuTqgGDt/GaaUbL8JEK34HqmPngEAkbAv7lmlYVTe
+qxriIGgNgbxTqp7ZIFQHEzAcLKDa6Ak=
+=sUq6
+-----END PGP SIGNATURE-----
+
+--vaw+pNIvYxNDsg5l--
 
