@@ -1,122 +1,142 @@
-Return-Path: <devicetree+bounces-104549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4BA397EB5F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 14:13:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF7AA97EB77
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 14:25:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5EA031F220DC
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 12:13:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A766E281E90
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 12:25:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A5FD197A9B;
-	Mon, 23 Sep 2024 12:13:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD3121991AB;
+	Mon, 23 Sep 2024 12:25:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="szWKbCKc"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Tj/L4nvR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E76018002A;
-	Mon, 23 Sep 2024 12:13:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B966E195B14;
+	Mon, 23 Sep 2024 12:25:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727093583; cv=none; b=ro65iHbDjL2b2Ixdvn+oBeqSPuDMaYCcawBxDHfC/qH9TOtW/l3SKGyCvbcWPao3m3Ow7d7+a4ZXCr0xD2j3l1kfGpMrWoCmLLH1+LNHjWbtEJX28v98j1Yobryh3o8CSi6XvvYHv644GoFALivhKntO4afQ6ibawfl8bxWqfQs=
+	t=1727094313; cv=none; b=erdPkMrWxTzSNyp+gAhospmI4QhrqNapgKlAiPYGF5SmOgL2Uqt1hkpCw8g18fHzFDGvt7I3whRRuyBY47TFgQgqQ9rNoE6vVN3YnNXPO55KjjiYdX18WT3+YVvxX/R31GCKm2FBPEoiIgtEW1UVbiHPSRwzw37+viTPULPzcUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727093583; c=relaxed/simple;
-	bh=mtUlxP0PeHJOjX6toxYU5t+iAgcA2Ki1i79is5A/tzo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VrR6IR+v46RESeqpR6YaFm05IWWF+iWp6syz0uvDcBGEU/N/bs7wXWItBrFsSY3jDuTjXtuXF//G8Ba3A7KxlGh7zI4abHHY0Al2kHfhvBLUyVPNNF6rFeA3K3Tv2bttv49amfUHCAgIEp207s7lXJAcvShV1Xe85McKGmVL4ig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=szWKbCKc; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Eq1Kj2dvKOSMfRsPuAE8w645hcxyoP4nvyUZ3L3dadU=; b=szWKbCKcaTKaRdtijfzBwrt+0g
-	nzZYalFp99LmsUhBcVHcE368+GrOSM7Pu5kpVlK+LttedoxNLPMLv6udFAkPD0vOqhNNhTJ+Y2qN+
-	oRfGZE5NsaLP2yGEZgxOHEEXuABvcyN2CVi3lqJiKW1O78IAiz3wmyYYCkw102QSS6PA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sshvj-0087dk-SM; Mon, 23 Sep 2024 14:12:39 +0200
-Date: Mon, 23 Sep 2024 14:12:39 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Hal Feng <hal.feng@starfivetech.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	William Qiu <william.qiu@starfivetech.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/4] can: Add driver for CAST CAN Bus Controller
-Message-ID: <9cf40a68-a07f-46d5-bc2c-302ae0e99ab0@lunn.ch>
-References: <20240922145151.130999-1-hal.feng@starfivetech.com>
- <20240922145151.130999-4-hal.feng@starfivetech.com>
- <cf17f15b-cbd7-4692-b3b2-065e549cb21e@lunn.ch>
- <ZQ2PR01MB13071A093EB33F48340F753EE66F2@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+	s=arc-20240116; t=1727094313; c=relaxed/simple;
+	bh=oVnappwI2asg1Mmf+oMcKojkg9+Z0J7WmOxhJWSM3kc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UsGAD2KnKSWsSxZ4WrEQ8pfNVupEAVxhnafJ4mLJ2o45LkxrIZvppKb8xpJoA78F2LeKJReNcc3BomtoLFTlnHp7UDkyL5UQeSNTkPBNngIB1N/6KNJXljevmmZx4MpewxN5hWx1cN7h1IoFPA63tlvQP+3tANFoetLVxjP1vL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Tj/L4nvR; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1727094309;
+	bh=oVnappwI2asg1Mmf+oMcKojkg9+Z0J7WmOxhJWSM3kc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Tj/L4nvRSp5Oa5oywuog3blCYKnRcOhvwJvam8UXfvTh1zG0pASOMhRoDtDkiGfqO
+	 pB6vekai1WFqwSw3bww3yvYXWjavV6cR/8bTXfAUex/Zuvw2K6uvq3HAwegPKO3M9i
+	 DNjlEJLMjzrbxxnmHjsk1zEV8/T2cuyQbAombyyddafGJMMIcEjsPBlC6eUHTvdDLn
+	 TfP1T2k5CDNte7JF9YXwQ4e7QfHt0kXR7FY8B95H8Wi3xWZ9IInMzsEUPSyJG6P+GI
+	 y+fxOvLEU486ptT4KFrQlH3ZZsyZvZ/wPmXbQrMWncY3tYS1XeBB53x+mItSG24WP2
+	 1Q7KulaV9+G7A==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7E36817E121B;
+	Mon, 23 Sep 2024 14:25:09 +0200 (CEST)
+Message-ID: <228c9508-76c3-4772-bf0a-56e85a47af78@collabora.com>
+Date: Mon, 23 Sep 2024 14:25:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZQ2PR01MB13071A093EB33F48340F753EE66F2@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] arm64: dts: mediatek: mt8390-genio-700-evk: Enable
+ Mali GPU
+To: Pablo Sun <pablo.sun@mediatek.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-clk@vger.kernel.org
+References: <20240920134111.19744-1-pablo.sun@mediatek.com>
+ <20240920134111.19744-6-pablo.sun@mediatek.com>
+ <eb17085d-78ff-4833-a4de-17b9327d776c@collabora.com>
+ <bf45531a-eacf-22a9-65f1-f6474a2ca843@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <bf45531a-eacf-22a9-65f1-f6474a2ca843@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-> > > +	reset_test = ccan_read_reg_8bit(priv, CCAN_CFG_STAT);
-> > > +
-> > > +	if (!(reset_test & CCAN_RST_MASK)) {
-> > > +		netdev_alert(ndev, "Not in reset mode, cannot set bit
-> > timing\n");
-> > > +		return -EPERM;
-> > > +	}
-> > 
-> > 
-> > You don't see nedev_alert() used very often. If this is fatal then netdev_err().
-> > 
-> > Also, EPERM? man 3 errno say:
-> > 
-> >        EPERM           Operation not permitted (POSIX.1-2001).
-> > 
-> > Why is this a permission issue?
+Il 23/09/24 12:14, Pablo Sun ha scritto:
+> Hi Angelo,
 > 
-> Will use netdev_err() and return -EWOULDBLOCK instead.
-
-I'm not sure that is any better.
-
-       EAGAIN          Resource  temporarily unavailable (may be the same value
-                       as EWOULDBLOCK) (POSIX.1-2001).
-
-This is generally used when the kernel expects user space to try a
-system call again, and it might then work. Is that what you expect
-here?
-
-> > > +static irqreturn_t ccan_interrupt(int irq, void *dev_id) {
-> > > +	struct net_device *ndev = (struct net_device *)dev_id;
-> > 
-> > dev_id is a void *, so you don't need the cast.
+> On 9/23/24 16:45, AngeloGioacchino Del Regno wrote:
+> [snipped]
+>>
+>> Is there any real difference between MT8390 and MT8188 in terms of the GPU OPPs?
+>>
+>> I see that on MT8188, frequencies up to 880MHz want a DVDD_SRAM_GPU of 0.750V,
+>> then 0.775/0.762/0.750 (bin1-4/5/6) on 915MHz, and 0.800/0.775/0.750 (bin1-4/5/6)
+>> on 950MHz.
+>>
+>> Those never call for 0.850V...! So is MT8188 (Chromebooks) wrong, or is MT8390
+>> different in that?
 > 
-> OK, drop it.
+> To the best of my knowledge, MT8390 and MT8188 has identical GPU
+> subsystem. Thus, the OPP table should have no difference.
+> 
+> To be specific, I list the link to the OPP table of Genio 700 EVK
+> (MT8390) in reference in [1]. It should match the setting in Chromebook
+> kernel branches.
+> 
+> The "typical" voltage in the datasheet is the voltage that would work
+> for all frequency settings. As long as it is smaller than the maximum
+> operating voltage, setting voltages higher than the ones specified in
+> the OPP table does not damage the hardware.
+> 
+> But this 0.85V setting is indeed not optimal. We should follow the
+> voltages described in the OPP table, if we want power savings.
+> 
+> I also considered model the regulator setting with 'regulator-coupled-with' and 
+> 'regulator-coupled-max-spread', but I am not entirely sure how to describe the 
+> relation that "DVDD_GPU_SRAM should follow DVDD_GPU
+> if and only if DVDD_GPU is higher than 0.75V" - should I simply
+> set min-voltage to 0.75V and set 'regulator-coupled-with' ?
+> 
 
-Please look at the whole patch. There might be other instances where a
-void * is used with a cast, which can be removed. This was just the
-first i spotted.
+VSRAM_GPU regulator:
 
-	Andrew
+	regulator-min-microvolt = <750000>;
+	regulator-max-microvolt = <800000>;
+	regulator-coupled-with = <&(vgpu regulator)>;
+	regulator-coupled-max-spread = <1000>;
+
+VGPU regulator:
+	regulator-min-microvolt = <400000>;
+	regulator-max-microvolt = <800000>;
+	regulator-coupled-with = <&(vsram_gpu regulator)>;
+	regulator-coupled-max-spread = <1000>;
+
+Cheers,
+Angelo
+
+> [1]: 
+> https://gitlab.com/mediatek/aiot/rity/meta-mediatek-bsp/-/blob/kirkstone/recipes-kernel/dtbo/mt8390/gpu-mali.dts
+> 
+> Many thanks,
+> Pablo
+> 
+
+
+
 
