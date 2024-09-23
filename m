@@ -1,116 +1,112 @@
-Return-Path: <devicetree+bounces-104457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3BB397E79B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:35:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB2AA97E7A2
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:35:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22C571C21018
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 08:35:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35F24B21753
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 08:35:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCD3C19343B;
-	Mon, 23 Sep 2024 08:35:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7892F192D7E;
+	Mon, 23 Sep 2024 08:35:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="YmPukJah"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="d7ao3V7m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D34932F2D
-	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 08:35:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9197A1885B9;
+	Mon, 23 Sep 2024 08:35:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727080506; cv=none; b=YTCkFyX2Llregy29Y+QhhePctncwUDaV2TJQwDaFQEULE6Gnqnm10I0+vpIWIDXw9JaWtNRcoaS9ZQJgEJyTvjIgj3Uck1F+4Y9y0UieLAnmDTEiUeJrjX4/TXQy9L3b7B1x1woMoeyAnw6U30iPcuQfSOeOeZXRuT2EkikzFVk=
+	t=1727080554; cv=none; b=Ohw1nfFhk2+9vzsDPTWx5xLqQ6M7DJAHCytOBDWa4RrAJi50EWO9UpPuIoaVz02H1FM/ZpCwS0FiCFjAYRaAH7P6b+05f54HOoToj18zBFB/8DCtPIk1t5F9XT86mYpHo/jvysgphV0jDrzh/BelBIjWUHudGmdEQFgonihhbvE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727080506; c=relaxed/simple;
-	bh=WCn0BjX16f0sbfaNXaV5vArZJvaoV0TjIkATMCuqyzc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=f7zRW28FIzKnz8vfwl/S+YozZlJ/V+LjtMRXcU8+bsqtuwk1Qw5ew+km19wFiKpqzSg6Xk0h84DFc/PJWqDjCp3nhWQJu0e6co2drsiv8eHRhoVwruCf7GdGq8GVAmaNGdXMEpIS+cmHqcCB4mvv8k22a7krpAz3oxNvRzrEN/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=YmPukJah; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2f8ca33ef19so4226601fa.2
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 01:35:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727080503; x=1727685303; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WCn0BjX16f0sbfaNXaV5vArZJvaoV0TjIkATMCuqyzc=;
-        b=YmPukJahIBWJ4D4MaecjXhemlkGwS2BQFoTIMwpY5qBktTKhdxV6pC7JK9D3Kbm7Qj
-         4Ye7Lu3iMOEXaH5tIIAnozRmSFvUzKPv/hQzZY6UkFVGsTJPbYrGx8D2NhJa5TDeG1o0
-         03yPubG8wZq18S+xZewQWlDNUl2Gr9/WoRkexoq34VQHHOIZiCv//i4+FhIOW//dnBJb
-         e9bPsSvfcNh2N6VnUNVSM26N6hLcFdg+421bZfqqs3LfLxR3hXJvr9THWu9rIpiG4q5T
-         dmqNxpR0WUSpbyuYqRJlNiAxWxiPNHxCXuPKpelwC9+DUAPXEW4+7n4o0YndBqNPfZag
-         WLyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727080503; x=1727685303;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WCn0BjX16f0sbfaNXaV5vArZJvaoV0TjIkATMCuqyzc=;
-        b=VA0IHh8olX3alWRzrsekOPaRjBYBJS2QNNUL603BnjAhJpRGulPlbUD5Xk1N7RU4Cn
-         Cr5oVxIgHn5onq6tiKUzx4Y8cY2UKNnebYgRJCg/VxPPv/KNX8tv/f7uRA5jPGqTOhm7
-         6B+3R4vyd3JIymfDKF9lnARaPKkO0Oa/v/zVIw01is6sj20VPROEJs1cQNaZ4Q/S/XoX
-         aFHWc66qJQ1szdoDj8Yvr8oUVluGHchjPsG6R3zOpj6e7x+7SKRb2f8luMWbg8szt3gZ
-         7Pvy2/Bncxuzfzp1Nt/WQBTNCwOVrCHdkMh6/lSm5W2SwH8Y4im+VMWChcTgXdlPx6Y4
-         FhHA==
-X-Forwarded-Encrypted: i=1; AJvYcCWgpGpQIAJbSzoE2vADeX4s6h2FFKNqjEvr4WeFaFkTWOLbGrihm6DNrxZ974xPRwmW750V6Uxwi315@vger.kernel.org
-X-Gm-Message-State: AOJu0YzA+1gRejWrq1QDAA4rd9qRy+8OVoHfiaGyogSBbPcgBxEeAjWR
-	NBJQIzAYHySa0bW7H4aq3rNYiCn5Nd7tgdBuDIUpZbYrKXNG5QZxaW8fUcQ954pVRbphTgpYs/Q
-	9xGXr0YJmG0esbhwFtsGXuga/QJPrNSJ7mQFOyw==
-X-Google-Smtp-Source: AGHT+IGB0HmD4yUCXfyiEGHZvou7JbCti99d3PK2v6+1ygu6PUNxbcxYam6wZ0jMVxzgb9p/QjTuS1exJPMjEaQahlc=
-X-Received: by 2002:a05:651c:1543:b0:2f7:c7f3:1d2e with SMTP id
- 38308e7fff4ca-2f7cb31c4e8mr59626701fa.19.1727080502814; Mon, 23 Sep 2024
- 01:35:02 -0700 (PDT)
+	s=arc-20240116; t=1727080554; c=relaxed/simple;
+	bh=e4cC60E4kblxFg6svxGrB/DLOt/LdtfLXEBt+zfPq6o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JPCHFErq6/msvegOFtXMvE9SJB8/Ygko5YN3/LAYEp4M8ODUTAQeQbZcpgtDlurzMr7VN+hBPXv/FvMSjVhjTfZ7dRskmb0eVgjBqnspHqaYFi4/Vu8CRS3VNS1YdnZJfb/G4Lb2KKiYioErtmCDKC/VeGjZL/YWlDlH27lAPKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=d7ao3V7m; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1727080545;
+	bh=e4cC60E4kblxFg6svxGrB/DLOt/LdtfLXEBt+zfPq6o=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=d7ao3V7mR+5JAWYxPQVcVv2U5EBc7eBEh/CHW5gAfTscBY5DkJd2LtNLU7krxGtwf
+	 Ar+5BgjAc05fixS48pzsFiL0l4PSFVeji3z/8/b3z5NgfveeGEiaAcHnZ1cQZB36kV
+	 PevWGSG/be1uaMS3S6rIj1+H3bY14+D8GIl0co3yIO5mTU68e7fyF/fBnVLfJwgBsD
+	 bmcF/pACl6dNYEhZE9SLVb+lJWe76pgIzlGxStouVxWOtZDM348tG0S1/EO6d7lyg7
+	 Q+QpITPTTwbv5ugMx18Clob3e9GkyjCl0GHNcDusdVOORFk/EnRohAuTR+/GwZ49LT
+	 KyEaoR2xMTRxw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 338A817E105F;
+	Mon, 23 Sep 2024 10:35:45 +0200 (CEST)
+Message-ID: <b05d0543-b4f4-463d-a56a-28f7fa99a3f0@collabora.com>
+Date: Mon, 23 Sep 2024 10:35:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240920-ad7606_add_iio_backend_support-v2-0-0e78782ae7d0@baylibre.com>
- <20240920-ad7606_add_iio_backend_support-v2-10-0e78782ae7d0@baylibre.com>
-In-Reply-To: <20240920-ad7606_add_iio_backend_support-v2-10-0e78782ae7d0@baylibre.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Mon, 23 Sep 2024 10:34:51 +0200
-Message-ID: <CAMknhBE51oUjNZVE1mq1xtdOzAG2fpxXW7S+haMGQosdweaZsQ@mail.gmail.com>
-Subject: Re: [PATCH v2 10/10] iio: adc: ad7606: Disable PWM usage for non
- backend version
-To: Guillaume Stols <gstols@baylibre.com>
-Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Michal Marek <mmarek@suse.com>, linux-pwm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-doc@vger.kernel.org, aardelean@baylibre.com, jstephan@baylibre.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] arm64: dts: mediatek: mt8186: add FHCTL node
+To: Max Weng <max_weng@compal.corp-partner.google.com>,
+ linux-kernel@vger.kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20240923081340.860715-1-max_weng@compal.corp-partner.google.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240923081340.860715-1-max_weng@compal.corp-partner.google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Sep 20, 2024 at 7:33=E2=80=AFPM Guillaume Stols <gstols@baylibre.co=
-m> wrote:
->
-> Since the pwm was introduced before backend, there was an example use
-> whit triggered buffers. However, using it may be dangerous, because if
+Il 23/09/24 10:13, Max Weng ha scritto:
+> From: max_weng <max_weng@compal.corp-partner.google.com>
+> 
+> add fhctl device node.
 
-with
+Please clarify the commit description, like so:
 
-> the PWM goes too fast, a new conversion can be triggered before the
-> transmission is over, whit the associated mess in the buffers.
+Add FHCTL device node for Frequency Hopping and Spread Spectrum
+clocking function.
 
-with
+After which,
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> Until a solution is found to mitigate this risk, for instante CRC
 
-instance
-
-> support, the PWM will be disabled.
->
-> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+> 
+> Signed-off-by: max_weng <max_weng@compal.corp-partner.google.com>
 > ---
+>   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 7 +++++++
+>   1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> index 148c332018b0..d3c3c2a40adc 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> @@ -29,6 +29,13 @@ aliases {
+>   		rdma1 = &rdma1;
+>   	};
+>   
+> +	fhctl: fhctl@1000ce00 {
+> +		compatible = "mediatek,mt8186-fhctl";
+> +		clocks = <&apmixedsys CLK_APMIXED_TVDPLL>;
+> +		reg = <0 0x1000ce00 0 0x200>;
+> +		status = "disabled";
+> +	};
+> +
+>   	cci: cci {
+>   		compatible = "mediatek,mt8186-cci";
+>   		clocks = <&mcusys CLK_MCU_ARMPLL_BUS_SEL>,
+
 
