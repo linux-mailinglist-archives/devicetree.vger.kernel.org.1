@@ -1,183 +1,359 @@
-Return-Path: <devicetree+bounces-104475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B85097E888
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:22:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9736A97E89A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:27:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AE1A1C211F2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:22:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA1EF1C20C11
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:27:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 333BB194A68;
-	Mon, 23 Sep 2024 09:22:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1479194A64;
+	Mon, 23 Sep 2024 09:27:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="I7pjSNdF"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cChb127u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C9691946A4
-	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 09:22:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C481A1946B8;
+	Mon, 23 Sep 2024 09:27:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727083355; cv=none; b=k/TOJ5pYiRIJI8H1SRtvucGaQVJJgjANUBzGj1syXEmsyHhd5fQ4LXWZVW0pAw66GgOQZMGuJyNdpIJRSTy51JQvPJA1iJNNh409C9pXAaimx1g4umMHA71cmIczDcsPdRFIHI1jsm7Sh88ggqYUAEnmxQgNMXHuwyHWtIGVQ3g=
+	t=1727083674; cv=none; b=HfLBlk+6Bjdtm16C8KPf5gYk5qvXJKMpYZ34Mj3608d2IJVIKvtoYzPYfbEWrfL26g/rRDF5qqPO4JtSLQDmVlcsyHg0o2I0IWbeugFxw6Ofw7a5LRe9tVmjpEFs8YNZ/+WcqT0m5KfgLznRKXjZYjBC4iTDRAhnMmu9iLJbLlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727083355; c=relaxed/simple;
-	bh=20yp7UF2xtMSFNSWQTwGzQ8Y8WUwoVW0ItEvgc5XuQY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pgPJmCrR+OSsopVHPdx2K7PnTN5BgZiR9lmI6kRpBqEazHvkcd1cPcsGIoFYvBujZqx1wqS/vPAkQxaEnOt59B5Fr2JbaDwfT72U5fFVGIbhJay3bYucVpJ1g8e3PR2PELx+Aur6D0/Xe5BJk8WpDZJk3Q7B3EZzPCu9SgbMKqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=I7pjSNdF; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5c5b8c49088so371296a12.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 02:22:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1727083352; x=1727688152; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=n7cmHyBl9nc6KTcNNqA/aAzbevaaSNsmEu/DrICna2o=;
-        b=I7pjSNdFJYe6YZm0VcPzmyo9R6/zUSooPfKv+oWlBvPcoo9xJK8FO7EACbf+NrUSMA
-         X+0MMmxlRedPh50qmvtRu2qZyLGOufZpGbfiZDVRe6SNvOq0Vrs/0jwnviHseiaZRH9n
-         ruorIrdn+RXjnvZg/w+tyHvIPbXgC0Bm/LrzGDJI338MbSOt8AtZDZ9Qv+fZTPnCiFc/
-         BHYd6kI4Oq6B9hXvrXnqeY+LHH3UmpOnqyu7xLSmkWtXHCbGIe3QZPrWPDfKDJaGbeO2
-         0yLfyVEITlQZ8E4QETYzaK6COomZec1vZrhVQ86+s2KfukkjGcnupooNa+a6Vk/VCvdq
-         p4bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727083352; x=1727688152;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=n7cmHyBl9nc6KTcNNqA/aAzbevaaSNsmEu/DrICna2o=;
-        b=tIzqeRW22dtvcfmn1yECkPRYGd18tU+m+P5P8W8eKPdA+NcupVWvHrE//y9jwM0UOX
-         iiryrwOgdQbMBpOmG+Qf7B3Rqx6WTIaUTNNplWwglefyVazBS4mRQMpvLJswCcuPyzIn
-         5sfrRe4QbE0PfCzcVYtyxUV3x4d6gMDfABrAyL6sBbegqnwVaCMih8z76LS+Dc8ph9q2
-         DVAI8Z8ik/iuXfwaeAnodz28V8ea3vp2mvvQQRAviyv3Hjzu07i3M04N23IntFCl0Ow1
-         o4nF0fe0GJpVZ/KJrYC89OJp7X2Jq35vIMCq+5wHTH9f2Cf5mlxeUJrF+0+nAbOQ2aXy
-         acHA==
-X-Forwarded-Encrypted: i=1; AJvYcCWJkfNIDDNUVrT31FTjF5qu77/bpzRSFajlq21zMq8EZwur28SHYV0ditlq2fuZHhPkUTi6k1W4MFXA@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQxQ4RgTJ16Q9WToKr18n2Kp3ij0OJw1qWULSSrADFX4oWCEgC
-	ClEB1D/pL5tqYW2PDN47jOS1z/w/VXNo0ny+W96Z8mSrR4mFYxMERqQl+l8DauHmNgyuNsDJkVE
-	5XAtX0BKERv56anNaGeTaEIkeqIfA+qc3QbrtZA==
-X-Google-Smtp-Source: AGHT+IHhp17g5Fbe+7A2S2wLr+KiDdABA/q1DteOxMrJXmxR3bBqCME6Ga+w6RWL0BpYabZkxl8ORE3TkRZB3gZj4dU=
-X-Received: by 2002:a05:6402:268b:b0:5c5:c5fc:1aa6 with SMTP id
- 4fb4d7f45d1cf-5c5c5fc1b0amr152694a12.5.1727083351600; Mon, 23 Sep 2024
- 02:22:31 -0700 (PDT)
+	s=arc-20240116; t=1727083674; c=relaxed/simple;
+	bh=S1dpSX+iUq4tmuSiPGkTgc99mQ6bAXtnrX/93YEulHU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=eWAO0NBDgPeCwi01YXrsUNGHRID1BkYN6SVThgoDEJPBBSPnX2ytMUuO7wDr8i8dEDF6hs544EvMBuwnXMeAk0fB15pcvXCutpebAOP+QvBH+yfsybZs0J+12wdJzatgb3qCLfPobcAE3r9WOpXJUkgeRlN4wSjBqbP40XLGdzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cChb127u; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48N0Nd6D002027;
+	Mon, 23 Sep 2024 09:27:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ROkQ9cm1z5Lngcfnv8PbbIVIIc+Lqas1Egz8LdtyO+A=; b=cChb127un9fKFM7b
+	HbHjfmx5DV73PrcIRnG8qSqfdwLjzogW8dJrGrl+zb7SrBksw/NBn3jnucAcQ0zx
+	E4rs0/cApz720nvurbd3SUudRoMDDzziDpd9xALyBYlojeIrDcoJ6+6P7pEn109F
+	t4IGuE9gp3EBOuFGokXfBIva61Taqnw92z/PnpLcfWA45UXQCaA3TZ+P0OCg0VwM
+	DxAtZVGnUSzlMJldzEfjr/udjnCfFv98RCBTXQJURaoJgBnln1m/5Xnx7Z5o7z9X
+	iO66j0eR/SfY1x/15g61q66cKTtVxnk9fC0vlfJeohFZPcs47DTw3BwCIV3+EvW6
+	eBCC4g==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41sph6mfsw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Sep 2024 09:27:35 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48N9RX6e027851
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Sep 2024 09:27:33 GMT
+Received: from [10.50.62.117] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 23 Sep
+ 2024 02:27:27 -0700
+Message-ID: <e5960412-e498-49be-a906-c29ee597344b@quicinc.com>
+Date: Mon, 23 Sep 2024 14:57:24 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240915080830.11318-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240915080830.11318-3-lvzhaoxiong@huaqin.corp-partner.google.com> <CAA8EJpqC5tQ45gj8-0bDutinCs7CoxiQVL1EAzwDK9RJTXYMcQ@mail.gmail.com>
-In-Reply-To: <CAA8EJpqC5tQ45gj8-0bDutinCs7CoxiQVL1EAzwDK9RJTXYMcQ@mail.gmail.com>
-From: zhaoxiong lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Date: Mon, 23 Sep 2024 17:22:20 +0800
-Message-ID: <CA+6=WdR6+nh9e2HCuCVdR6uw3vuJoWfKCG4gPjJMp9db+Quimw@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] drm/panel: boe-th101mb31ig002: Modify Starry panel timing
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, sam@ravnborg.org, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
-	airlied@gmail.com, simona@ffwll.ch, dianders@chromium.org, hsinyi@google.com, 
-	awarnecke002@hotmail.com, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 7/8] arm64: dts: qcom: add IPQ5424 SoC and rdp466 board
+ support
+To: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <ulf.hansson@linaro.org>, <linus.walleij@linaro.org>,
+        <catalin.marinas@arm.com>, <p.zabel@pengutronix.de>,
+        <geert+renesas@glider.be>, <dmitry.baryshkov@linaro.org>,
+        <neil.armstrong@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+CC: <quic_varada@quicinc.com>
+References: <20240913121250.2995351-1-quic_srichara@quicinc.com>
+ <20240913121250.2995351-8-quic_srichara@quicinc.com>
+ <7492618d-4ace-40e2-960b-e10def4f5a17@kernel.org>
+Content-Language: en-US
+From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+In-Reply-To: <7492618d-4ace-40e2-960b-e10def4f5a17@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: yxI19aqE5O-7299szTyucSTZ0oI9cEto
+X-Proofpoint-ORIG-GUID: yxI19aqE5O-7299szTyucSTZ0oI9cEto
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ impostorscore=0 bulkscore=0 spamscore=0 clxscore=1015 mlxlogscore=999
+ mlxscore=0 adultscore=0 phishscore=0 suspectscore=0 priorityscore=1501
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409230069
 
-On Mon, Sep 16, 2024 at 1:15=E2=80=AFPM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> Same comment as the one that I've provided to the other patch, plus:
->
-> On Sun, 15 Sept 2024 at 10:11, Zhaoxiong Lv
-> <lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
-> >
-> > In order to meet the timing, remove the delay between "backlight off"
-> > and "display off", and reduce the delay between "display_off" and
-> > "enter_sleep"
->
-> Separate commit, separate _justification_. Why, not what.
->
-> >
-> > Removing variables: display_off_to_enter_sleep_delay_ms
->
-> This phrase is useless.
->
-hi Dmitry
 
-As in another patch reply, in order to solve a black screen problem,
-the delay is reduced.
-The panel spec:
-1. https://github.com/Vme5o/power-on-off-sequential
 
-> >
-> > Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com=
->
-> > ---
-> >  drivers/gpu/drm/panel/panel-boe-th101mb31ig002-28a.c | 11 +++++------
-> >  1 file changed, 5 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/panel/panel-boe-th101mb31ig002-28a.c b/dri=
-vers/gpu/drm/panel/panel-boe-th101mb31ig002-28a.c
-> > index 0b87f1e6ecae..c2d0ec199829 100644
-> > --- a/drivers/gpu/drm/panel/panel-boe-th101mb31ig002-28a.c
-> > +++ b/drivers/gpu/drm/panel/panel-boe-th101mb31ig002-28a.c
-> > @@ -29,7 +29,7 @@ struct panel_desc {
-> >         bool lp11_before_reset;
-> >         unsigned int vcioo_to_lp11_delay_ms;
-> >         unsigned int lp11_to_reset_delay_ms;
-> > -       unsigned int backlight_off_to_display_off_delay_ms;
-> > +       unsigned int display_off_to_enter_sleep_delay_ms;
-> >         unsigned int enter_sleep_to_reset_down_delay_ms;
-> >         unsigned int power_off_delay_ms;
-> >  };
-> > @@ -184,12 +184,10 @@ static int boe_th101mb31ig002_disable(struct drm_=
-panel *panel)
-> >                                                       panel);
-> >         struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D ctx->dsi }=
-;
-> >
-> > -       if (ctx->desc->backlight_off_to_display_off_delay_ms)
-> > -               mipi_dsi_msleep(&dsi_ctx, ctx->desc->backlight_off_to_d=
-isplay_off_delay_ms);
-> > -
-> >         mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
-> >
-> > -       mipi_dsi_msleep(&dsi_ctx, 120);
-> > +       if (ctx->desc->display_off_to_enter_sleep_delay_ms)
-> > +               mipi_dsi_msleep(&dsi_ctx, ctx->desc->display_off_to_ent=
-er_sleep_delay_ms);
-> >
-> >         mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
-> >
-> > @@ -275,6 +273,7 @@ static const struct panel_desc boe_th101mb31ig002_d=
-esc =3D {
-> >                           MIPI_DSI_MODE_NO_EOT_PACKET |
-> >                           MIPI_DSI_MODE_LPM,
-> >         .init =3D boe_th101mb31ig002_enable,
-> > +       .display_off_to_enter_sleep_delay_ms =3D 120,
-> >  };
-> >
-> >  static const struct drm_display_mode starry_er88577_default_mode =3D {
-> > @@ -302,7 +301,7 @@ static const struct panel_desc starry_er88577_desc =
-=3D {
-> >         .lp11_before_reset =3D true,
-> >         .vcioo_to_lp11_delay_ms =3D 5,
-> >         .lp11_to_reset_delay_ms =3D 50,
-> > -       .backlight_off_to_display_off_delay_ms =3D 100,
-> > +       .display_off_to_enter_sleep_delay_ms =3D 50,
-> >         .enter_sleep_to_reset_down_delay_ms =3D 100,
-> >         .power_off_delay_ms =3D 1000,
-> >  };
-> > --
-> > 2.17.1
-> >
->
->
-> --
-> With best wishes
-> Dmitry
+On 9/19/2024 6:00 PM, Krzysztof Kozlowski wrote:
+[..]
+
+>> +
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+>> new file mode 100644
+>> index 000000000000..b6c08fac9482
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+>> @@ -0,0 +1,294 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+>> +/*
+>> + * IPQ5424 device tree source
+>> + *
+>> + * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
+>> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +#include <dt-bindings/clock/qcom,ipq5424-gcc.h>
+>> +#include <dt-bindings/reset/qcom,ipq5424-gcc.h>
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +
+>> +/ {
+>> +	#address-cells = <2>;
+>> +	#size-cells = <2>;
+>> +	interrupt-parent = <&intc>;
+>> +
+>> +	clocks {
+>> +		xo_board: xo-board-clk {
+>> +			compatible = "fixed-clock";
+>> +			#clock-cells = <0>;
+>> +		};
+>> +
+>> +		sleep_clk: sleep-clk {
+>> +			compatible = "fixed-clock";
+>> +			#clock-cells = <0>;
+>> +		};
+>> +	};
+>> +
+>> +	cpus: cpus {
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +
+>> +		CPU0: cpu@0 {
+> 
+> Lowercase labels please.
+> 
+> I am in process of fixing it everywhere.
+> 
+ok
+
+>> +			device_type = "cpu";
+>> +			compatible = "arm,cortex-a55";
+>> +			reg = <0x0>;
+>> +			enable-method = "psci";
+>> +			next-level-cache = <&L2_0>;
+>> +			L2_0: l2-cache {
+>> +				compatible = "cache";
+>> +				cache-level = <2>;
+>> +				cache-unified;
+>> +				next-level-cache = <&L3_0>;
+>> +				L3_0: l3-cache {
+>> +					compatible = "cache";
+>> +					cache-level = <3>;
+>> +					cache-unified;
+>> +				};
+>> +			};
+>> +		};
+>> +
+>> +		CPU1: cpu@100 {
+>> +			device_type = "cpu";
+>> +			compatible = "arm,cortex-a55";
+>> +			enable-method = "psci";
+>> +			reg = <0x100>;
+>> +			next-level-cache = <&L2_100>;
+>> +			L2_100: l2-cache {
+>> +				compatible = "cache";
+>> +				cache-level = <2>;
+>> +				cache-unified;
+>> +				next-level-cache = <&L3_0>;
+>> +			};
+>> +		};
+>> +
+>> +		CPU2: cpu@200 {
+>> +			device_type = "cpu";
+>> +			compatible = "arm,cortex-a55";
+>> +			enable-method = "psci";
+>> +			reg = <0x200>;
+>> +			next-level-cache = <&L2_200>;
+>> +			L2_200: l2-cache {
+>> +				compatible = "cache";
+>> +				cache-level = <2>;
+>> +				cache-unified;
+>> +				next-level-cache = <&L3_0>;
+>> +			};
+>> +		};
+>> +
+>> +		CPU3: cpu@300 {
+>> +			device_type = "cpu";
+>> +			compatible = "arm,cortex-a55";
+>> +			enable-method = "psci";
+>> +			reg = <0x300>;
+>> +			next-level-cache = <&L2_300>;
+>> +			L2_300: l2-cache {
+>> +				compatible = "cache";
+>> +				cache-level = <2>;
+>> +				cache-unified;
+>> +				next-level-cache = <&L3_0>;
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	memory@80000000 {
+>> +		device_type = "memory";
+>> +		/* We expect the bootloader to fill in the size */
+>> +		reg = <0x0 0x80000000 0x0 0x0>;
+>> +	};
+>> +
+>> +	pmu {
+> 
+> pmu-a55
+> 
+ok
+
+>> +		compatible = "arm,cortex-a55-pmu";
+>> +		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+>> +	};
+>> +
+>> +	pmu-v7 {
+> 
+> pmu-a7 but... where is the A7 CPU?
+> 
+oops, by mistake. Renamed to a55 above, but missed deleting here.
+
+>> +		compatible = "arm,cortex-a7-pmu";
+>> +		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+> 
+> Same interrupts? Huh?
+> 
+will be removed.
+
+>> +	};
+>> +
+>> +	dsu-pmu {
+> 
+> pmu-dsu?
+> 
+ok
+
+>> +		compatible = "arm,dsu-pmu";
+>> +		interrupts = <GIC_SPI 50 IRQ_TYPE_EDGE_RISING>;
+>> +		cpus = <&CPU0>, <&CPU1>, <&CPU2>, <&CPU3>;
+>> +		status = "okay";
+> 
+> Drop
+> 
+ok
+
+>> +	};
+>> +
+>> +	psci {
+>> +		compatible = "arm,psci-1.0";
+>> +		method = "smc";
+>> +	};
+>> +
+>> +	reserved-memory {
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges;
+>> +
+>> +		tz@8a600000 {
+>> +			reg = <0x0 0x8a600000 0x0 0x200000>;
+>> +			no-map;
+>> +		};
+>> +	};
+>> +
+>> +	soc@0 {
+>> +		compatible = "simple-bus";
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges = <0 0 0 0 0x10 0>;
+>> +
+>> +		tlmm: pinctrl@1000000 {
+>> +			compatible = "qcom,ipq5424-tlmm";
+>> +			reg = <0 0x01000000 0 0x300000>;
+>> +			interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
+>> +			gpio-controller;
+>> +			#gpio-cells = <2>;
+>> +			gpio-ranges = <&tlmm 0 0 50>;
+>> +			interrupt-controller;
+>> +			#interrupt-cells = <2>;
+>> +
+>> +			uart1_pins: uart1-state {
+>> +				pins = "gpio43", "gpio44";
+>> +				function = "uart1";
+>> +				drive-strength = <8>;
+>> +				bias-pull-up;
+>> +			};
+>> +		};
+>> +
+>> +		gcc: clock-controller@1800000 {
+>> +			compatible = "qcom,ipq5424-gcc";
+>> +			reg = <0 0x01800000 0 0x40000>;
+>> +			clocks = <&xo_board>,
+>> +				 <&sleep_clk>,
+>> +				 <0>,
+>> +				 <0>,
+>> +				 <0>;
+>> +			#clock-cells = <1>;
+>> +			#reset-cells = <1>;
+>> +			#interconnect-cells = <1>;
+>> +		};
+>> +
+>> +		qupv3: geniqup@1ac0000 {
+>> +			compatible = "qcom,geni-se-qup";
+>> +			reg = <0 0x01ac0000 0 0x2000>;
+>> +			clocks = <&gcc GCC_QUPV3_AHB_MST_CLK>,
+>> +				 <&gcc GCC_QUPV3_AHB_SLV_CLK>;
+>> +			clock-names = "m-ahb", "s-ahb";
+>> +			ranges;
+>> +			#address-cells = <2>;
+>> +			#size-cells = <2>;
+>> +
+>> +			status = "okay";
+> 
+> Please do not upstream your downstream code...
+> 
+Sure, will remove here and below place
+
+Regards,
+  Sricharan
+
+>> +
+>> +			uart1: serial@1a84000 {
+>> +				compatible = "qcom,geni-debug-uart";
+>> +				reg = <0 0x01a84000 0 0x4000>;
+>> +				clocks = <&gcc GCC_QUPV3_UART1_CLK>;
+>> +				clock-names = "se";
+>> +				interrupts = <GIC_SPI 340 IRQ_TYPE_LEVEL_HIGH>;
+>> +				status = "okay";
+> 
+> Work on upstream instead.
+> 
+>> +			};
+>> +		};
+>> +
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
+
 
