@@ -1,132 +1,165 @@
-Return-Path: <devicetree+bounces-104565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F99997EC2A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 15:19:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15D0A97EC39
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 15:26:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 908361C20D9A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 13:19:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95E311F21169
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 13:26:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5BE0199932;
-	Mon, 23 Sep 2024 13:19:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5087F1993A9;
+	Mon, 23 Sep 2024 13:26:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h8NwHA8S"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nZ59gw2f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65A001991AA
-	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 13:19:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9057D19644B;
+	Mon, 23 Sep 2024 13:26:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727097582; cv=none; b=bkKTsl3/lIuKe1KvvmjdZryVpNW3nqkA2FujzlyQMKJbXU7XqZ8lW38Ptm9GtjBUTBrm+12GXXS0D6UK0KpouxkdUy8zHDOgbIZZs5sD8UkarTw1yf/a1T0eAzODBmYickWc8N+/2w9nM5YzAAnhs574jA3hWpU3uA/u83LpE2I=
+	t=1727097970; cv=none; b=RQOnl8Ejc8QgmmMuJfKJuq310tIodb35ASSmOwahqQ0y5lLVwgARbtI6UMyhSbagiS0FaTb6EZkt9NyVQPbd+G4P1mPjR1iMMvGz7lcrYpOHUZxZJXWg62NV5fjyXNd/v1iHjF4Pb0XO6z8++GQOuyVpmjsjWpD9oAsjj+Qbc0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727097582; c=relaxed/simple;
-	bh=h/BEMtHgfJ7o98fvYyXlIv2+yWceMHMTagptnb1Zg5k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fXQPEE3kNrUM5e3bLvkAxj9eLBnSgpuF/QeZyOyzdM51MXljMvUNGh3zQTmIcy9wD6Zlmp52QjcQA36sZLdnn8nnsRoGuxwLJPAnpB2b1kmvQgy8oJgYgW19wqEJnh7XHnRET4rNQPhIjqcZGg802hk5eKgVbmdRiPiIa+JLgqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h8NwHA8S; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-53568ffc525so4910630e87.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 06:19:40 -0700 (PDT)
+	s=arc-20240116; t=1727097970; c=relaxed/simple;
+	bh=Yf4/nRvCuEzmaiaVcScrGIX1Fqwwbl2EfrCWoGhAWx8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Kh+EnEy4d2euvcsllot/4xtsfIMtZCmq9MQwdgEK3cOq53Lx2cdp0aoueUPDrjXdpqKqtDinuQj5Ht6177sG+kcdm6BkrmyHMpSTeWXzcLnoIXtnsbklr8+RuavZSt3CiIelB5O3fRtHopMFqjOLTgU74YbTtwxMffwESiapmA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nZ59gw2f; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5c5bca59416so1736958a12.1;
+        Mon, 23 Sep 2024 06:26:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727097578; x=1727702378; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=kGk2orlX+fi9SeSwRZwCGAgpSwWImCEuGfUk0feNgoc=;
-        b=h8NwHA8SYu29+jh1K5SUYEVF7UpFjCVuUepnDQ2bTAjCMnPgblqFhfm2GASvDJSHNl
-         XFQOv5Efc9rrRST4hUc43+2aTJA9iJEX1ktTiF/uizWko349HRHc/eZCen3aDkHgEgIP
-         L/oxws7rLqX5t35j5wGB1hSiCToVu0gjw+PuyDXaeYbHpI8gpXK3OxmTpZ3A4f1QS1Yt
-         taXHQ0maHTVWr8Yn1cxa2KsAbUH/b3FL+B629nYVHiBFaZIh9iPOfLS6c44f+Yk6s20o
-         ICGrWfKbi8se2WVSpNjFZ0SybAbanXXH63Ez4Nb8sX4wBR+S4R7PnJER5ChNDsLsLNEG
-         94wg==
+        d=gmail.com; s=20230601; t=1727097967; x=1727702767; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yf4/nRvCuEzmaiaVcScrGIX1Fqwwbl2EfrCWoGhAWx8=;
+        b=nZ59gw2f5RQ5AFdV5MsNKjZ+sRBVGMWhZHw9etFOoKaKdEX5h0fyYZDG23e2EQmzRp
+         RBxBmtNus+WF8k/DWeT7Ct9qeayVIsRiS69fC+fIMn5SCal1v4ZlKCQ2j3DVGZLMBB0D
+         1044IunqJtMVIGcElbY5UouZP67Y2f0LkaDzlJ2GNXHyHkQpg8H7b1yjGbnLBfkjyexB
+         xQvTlzyKZEZGRCpo4q2vqyk0KazIf7d+RHk/jNO+tr7VIqZ267AyjOUuG3Zrvy2WwQE9
+         1pZa9I2cs+sOffAhLjE6+cSEbiutKZkl9pKGDc4HvIWhKd1/v0QsQcS0gN0C7/7mnt5H
+         pm3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727097578; x=1727702378;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kGk2orlX+fi9SeSwRZwCGAgpSwWImCEuGfUk0feNgoc=;
-        b=bnBpZpue9f787otX5ZygbmCeAaxwRF5V6Mpy30lg1FQtDsOdGFLBVNoFf3DIaL9dSU
-         z/gHd4+/CUbos3wD/kRpWCjzoFI8PKVJLVmIJKUneOIRbKrIVP4D3gF+t5R6qLzNRQnV
-         AW96F92KZcCsqtWbxOosaUZDR7VJ46ft213uHpXysByc0Wcd6s/pbxVZC3zChabsbkbQ
-         O/aTBnjVQFxULqsChOLiEvSb2e2mKnMxe5jNZ14W1jGGI+rtoW7OYu64ONKfHOtqtOvp
-         FmBjKfBBd0jkbful2FB/thaI19gJXdH+XZ+lAvL7NNzBncf998YwL3j6imJbEpG2yjIP
-         G/Eg==
-X-Forwarded-Encrypted: i=1; AJvYcCWqPk5xr80KARyWZItLWAwqpsXsMqa6syqChmHjf0z1HvREN8wjvG4mQNDq4caLD9MX9mYIwpPjO68q@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfzeRagXyCXzOxzgXUC+10NaTYDfjOBsazPGOVNJiNx/KksMmB
-	aLS+war23m1pqkhweUkPPCTTSKq2XRQ7/9lSHViP07hH9h9rAw+O6KTQg7pwXL8=
-X-Google-Smtp-Source: AGHT+IGOBZJQI5jNN3s4SzM7Ap+2SyMdJN1H7lWTNYEIrJ6+UEojqKqP8ntoAuCXELz9jje36RoeLw==
-X-Received: by 2002:a05:6512:1250:b0:536:7a88:616b with SMTP id 2adb3069b0e04-536ac2f462cmr5710269e87.26.1727097578302;
-        Mon, 23 Sep 2024 06:19:38 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-536870b4108sm3276674e87.244.2024.09.23.06.19.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Sep 2024 06:19:37 -0700 (PDT)
-Date: Mon, 23 Sep 2024 16:19:35 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Qiang Yu <quic_qianyu@quicinc.com>
-Cc: manivannan.sadhasivam@linaro.org, vkoul@kernel.org, kishon@kernel.org, 
-	robh@kernel.org, andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, abel.vesa@linaro.org, 
-	quic_msarkar@quicinc.com, quic_devipriy@quicinc.com, kw@linux.com, lpieralisi@kernel.org, 
-	neil.armstrong@linaro.org, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v3 2/6] dt-bindings: PCI: qcom: Add OPP table for X1E80100
-Message-ID: <jz6eqbreus2hrhxadj643ibfy3ejr5tjhkerln6sh6bsvfhaw4@6uwpabq2d76a>
-References: <20240923125713.3411487-1-quic_qianyu@quicinc.com>
- <20240923125713.3411487-3-quic_qianyu@quicinc.com>
+        d=1e100.net; s=20230601; t=1727097967; x=1727702767;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Yf4/nRvCuEzmaiaVcScrGIX1Fqwwbl2EfrCWoGhAWx8=;
+        b=MtDRI1v6yXfb8hWGLmJUOtUQiXYLZ0TDrGuUIYvketzO5fyPZvgFojn4uLamJOlG7H
+         tP6Gp2rF1U+fZe2dp/hwrY6U5/ZFXiCyfeIrW6756QdgRsu0RDBqARYal5Cw94Z5g9da
+         86Vc5YElHbsFgQ+SeyfABRgOS+qBRMKUxaApVywxda1Jz4iK/wIrWWy5Eze3kytReuxy
+         CCdpRcry6Mcmq9FGGjqvirvmT/3P4NMMgnPeJj6rgHT+441HdUHdBS6Rn4XtZZHXkfjt
+         KUhT9zbvYqkci6PeW7+0u1qSjvjpTIli3qa31PaAgtk5kKlKxJE8Cfn6hOTzhBYEtiup
+         3urA==
+X-Forwarded-Encrypted: i=1; AJvYcCU8XHJ9KZhorgB0FZ2MBVwPUL4Yn4zjiy4nc34e+wsF9UFp4NATEy8oQTg7m4LJKvD/tfYkIhX/1/Gu@vger.kernel.org, AJvYcCWorGUYHLeoffahUF9dXM5nm/84Px2TU6qIpeRZFYJhlaL8n+a1TxOn1Iz7yWnavSIClCwU3Wp5bNKV1feT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEhHMMh3pN5o115oncGt/vsrPnI2rA9DJP3Rl1KWeUHRK4rSDv
+	uOV0LmmfWrbzk+AEzb502tINz14mOfgKzggEksYszSp77HhRY5ISKEumSVZ21ybnuwYg/vpkwHJ
+	nfvjneXniWpTv4kWrEUzveutslw==
+X-Google-Smtp-Source: AGHT+IFX6LAbjPZNPZbNmSp+ctjB+4B1CfWLMYqjFYMdeclx8ePL73CjwOMiK5uMOzSTV+LApwjbnwaYTbCyXr4+vi8=
+X-Received: by 2002:a17:907:9443:b0:a8a:7062:23ef with SMTP id
+ a640c23a62f3a-a90d561ffd8mr1198840866b.32.1727097966528; Mon, 23 Sep 2024
+ 06:26:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240923125713.3411487-3-quic_qianyu@quicinc.com>
+References: <20240920181231.20542-1-erezgeva@nwtime.org> <20240920181231.20542-2-erezgeva@nwtime.org>
+ <4e0cf43c-4843-451c-ac6f-86775dbccb2b@linaro.org> <CANeKEMOmhAPM1j1_ihzcC2wL6jKsWXPCGfZs+euS8mRvtqgE5A@mail.gmail.com>
+ <D4DLQGLJSKPB.3OOW4RU9Q3K5O@kernel.org>
+In-Reply-To: <D4DLQGLJSKPB.3OOW4RU9Q3K5O@kernel.org>
+From: Erez <erezgeva2@gmail.com>
+Date: Mon, 23 Sep 2024 15:25:29 +0200
+Message-ID: <CANeKEMPSoUu7GW5bL8nuyC5xCKG7Tt0=SvWTL_CcX5oebqN_YA@mail.gmail.com>
+Subject: Re: [PATCH v5 1/5] mtd: spi-nor: core: add manufacturer flags
+To: Michael Walle <mwalle@kernel.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Erez Geva <erezgeva@nwtime.org>, 
+	linux-mtd@lists.infradead.org, Pratyush Yadav <pratyush@kernel.org>, 
+	linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Esben Haabendal <esben@geanix.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Sep 23, 2024 at 05:57:09AM GMT, Qiang Yu wrote:
-> Add OPP table so that PCIe is able to adjust power domain performance
-> state and ICC peak bw according to PCIe gen speed and link width.
-> 
-> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml
-> index 704c0f58eea5..3c6430fe9331 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml
-> @@ -78,6 +78,10 @@ properties:
->      description: GPIO controlled connection to WAKE# signal
->      maxItems: 1
->  
-> +  operating-points-v2: true
-> +  opp-table:
-> +    type: object
-> +
->  required:
->    - reg
->    - reg-names
+On Mon, 23 Sept 2024 at 12:46, Michael Walle <mwalle@kernel.org> wrote:
+>
+> Hi,
+>
+> > I would gladly remove the obsolete mx25l12805d.
+>
+> Why? I don't see any need for that.
 
-Please drop it from qcom,pcie-sm8450.yaml, it's redundant now.
+Maybe because we do not want compatibility table?
 
-> -- 
-> 2.34.1
-> 
-> 
-> -- 
-> linux-phy mailing list
-> linux-phy@lists.infradead.org
-> https://lists.infradead.org/mailman/listinfo/linux-phy
+>
+> > > If there isn't any way to distinguish the flashes at runtime (which I
+> > > doubt/challenge btw), then as a last resort we introduce a dedicated
+> > > compatible for the flash in cause and specify all needed parameters in a
+> > > dedicated flash entry. This shall be more generic as further flash
+> > > parameters can be statically specified in the dedicated flash entry,
+> > > less invasive for dt, and less confusing for people when they decide
+> > > whether to use OTP or not. OTP params in device tree is a no-go.
+> > >
+> > > But again, you have to prove why you can't distinguish the flash at
+> > > runtime before introducing a new flash compatible. So don't go this path
+> > > before sharing with us what you're trying to achieve.
+> >
+> > You keep sending me contradictory messages.
+> >
+> > I told you we can not "guess" OTP settings based on JEDEC ID and
+> > SFDP existence.
+>
+> What are you trying to achieve here? I've told you we are trying
+> hard to figure out everything out at runtime. I'd suggest you start
+> with one particular device where you want OTP support for. If the
+> flash id is already in our database, find a way to distinguish
+> between the old and the new one; probably by looking at some SFDP
+> parameters. No need for any new compatibility. Don't try to solve the
+> problem for all the chips out there.
 
--- 
-With best wishes
-Dmitry
+I start with "Add support for SPI-NOR Macronix OTP".
+With one flash chip and move to another one chip.
+I never suggested adding multiple.
+
+Yet, after some research I find that all Macronix chips in the last 15
+years have SFDP.
+So I added a second patch to always read the SFDP of Macronix chips.
+Perhaps I should send it separately,as it seems to confuse you.
+
+And no, I do not try to support all chips, just to remove the
+restriction that if
+Macronix reuses an old chip JEDEC ID, we skip the SFDP of the new
+chip, because we have the old chip in the compatibility table,
+although there are two distinct chips. They use different model names.
+There is no reason to differentiate chips in that way, at least not
+with Macronix chips.
+
+>
+> Again, the reason why we are trying hard to determine that at
+> runtime is that these flashes are usually second source devices and
+> a manufacturer might just replace it with a (more or less)
+> compatible one. Therefore, the less information we put into the
+> devicetree the better. So before you are sending a new version with
+> the flash compatibles, you actually have to convince us that there
+> is no other way of knowing what kind of flash there is on your
+> board except for providing the name by the firmware.
+
+No, reading the SFDP is great.
+Except for OTP parameters/configuration.
+As there is not way to find OTP parameters using JEDEC ID/SFDP
+So as I understand there are only 2 ways to set the OTP parameters:
+* Use a compatibility.
+* Use dynamic OTP configuration, through DT, sysfs,
+
+Erez
+
+
+>
+> -michael
 
