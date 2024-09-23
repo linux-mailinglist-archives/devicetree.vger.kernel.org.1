@@ -1,254 +1,173 @@
-Return-Path: <devicetree+bounces-104452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E33697E6FB
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:57:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECD9E97E735
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:08:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AED281F2169A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 07:57:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 296791C210A1
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 08:08:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 444ED74063;
-	Mon, 23 Sep 2024 07:57:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF524AED1;
+	Mon, 23 Sep 2024 08:07:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YTPTb9+j"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WQrAzPj4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 134D147772;
-	Mon, 23 Sep 2024 07:57:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0DDD2C9D;
+	Mon, 23 Sep 2024 08:07:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727078239; cv=none; b=VCUg8lsoO1WCzDkEnAPYACidQE5gaqE7dMNsEKPIc9s3STFCk5FeTpmjEs//zBLEgioz1UCFWn4T3Kk/a2qRlTzbXQP3jhSC3pvLmXohW4dP+vfI+GCVqMnyAntsO/WJwfMq+cbe8vmBBMYFHTOCljl0gaELpI2lOFrvC0Kqt3g=
+	t=1727078876; cv=none; b=m3oNkbCpxtDm/TuzE9wtLWkXgx4lFchKd58ADDFxaYdJk1ok7uI8WqTlOwlgwfdxydTJh8iGY+GWijS02k6mvM5cpg8rrGWWngLlq9KRY9a8BWOVLUtmORZAVngmI0b6GzBx9qL1+uGf2CrBgBA8xYoeOkyVZgPM2/yXOKbNwJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727078239; c=relaxed/simple;
-	bh=TWkMdFBTmQmqmpC+xZ/pwB45UvOXbJoKSGnpNu/GFSM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IML/M4b/EyCEgSVnOITXYnHFFlvUM0upEEvwaovlolRV9DDd8SHN4DrhAuNxU8oIUXCi+sEQOEhxXqPtejsQF+T5EcWxBDe3NcGwPUMYFWVd5Ck6TPshvFvPl68WJlEhsasu0Nf3N5bZ/q7lwdah3yoHdNAGsO35OkzjcIydPQ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YTPTb9+j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41952C4CECE;
-	Mon, 23 Sep 2024 07:57:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727078238;
-	bh=TWkMdFBTmQmqmpC+xZ/pwB45UvOXbJoKSGnpNu/GFSM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=YTPTb9+jxBilMY8haTRI1bORDb8Vh7bjneQOb1eNaKcr5uHJyV75WZtqhwX/Q98Xr
-	 jz8r5Ys+2gIJMjFPFeMl9pGMkqEIcSQtMOvIxiJVbXAEEJSmlXkd/utqFoO+8+B+B3
-	 BIOBnVVRKPYxS+ctVP7ZnHFDqZrrhAaoBE8Olndp84ZMyaD1NdZft66XZn5dyAPWZc
-	 BXuOBYUX2BEjx+xd+bkU4jST8PrUZqG5jmglLdSfqzY9rZNGjPUygD33afhGyv2Ejp
-	 JsSUBBY6iQX9ISTkI2ZF8sXUlB2OzHt6dC6MXwvi5OrPs7RARbRqiL4S4KSXADEVGJ
-	 o9N6hW+VTtRew==
-From: Masahiro Yamada <masahiroy@kernel.org>
-To: linux-kbuild@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	Andrea della Porta <andrea.porta@suse.com>,
-	linux-clk@vger.kernel.org,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brendan Higgins <brendanhiggins@google.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Alice Ryhl <aliceryhl@google.com>,
-	Andreas Hindborg <a.hindborg@samsung.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>,
-	Gary Guo <gary@garyguo.net>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nicolas Schier <nicolas@fjasle.eu>,
-	Saravana Kannan <saravanak@google.com>,
-	Wedson Almeida Filho <wedsonaf@gmail.com>,
-	rust-for-linux@vger.kernel.org
-Subject: [PATCH v3 2/2] kbuild: add generic support for built-in boot DTBs
-Date: Mon, 23 Sep 2024 16:56:03 +0900
-Message-ID: <20240923075704.3567313-2-masahiroy@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240923075704.3567313-1-masahiroy@kernel.org>
-References: <20240923075704.3567313-1-masahiroy@kernel.org>
+	s=arc-20240116; t=1727078876; c=relaxed/simple;
+	bh=+xNIs7NL1cMhJrrc3GEC3hYmwQtCfinotKNOG960J80=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AuFsF/+bZejewxn1lyAT819wdNWrD2sB5fUvGpN31d0UqQZhLpGbXf+Ku8bMfkiXc5e3uI7CFPuSkcorf8TZUjMfDTDXYVNJEN+lc6a40hLeSEcedH5WzmYGf/34bdr528Bn+lgkjtm+sSAZzdInINpcLza5tcJyQ0Iw5YNyUB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WQrAzPj4; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id C0FCD60008;
+	Mon, 23 Sep 2024 08:07:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1727078864;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Mp+vix4e0GRedVNRVnn4wq8Rqo0AYrHWnXPkwqpJzbo=;
+	b=WQrAzPj4rX6JXOJLKL4blGIs6606JDbweq3NLEDWNM7fS+H98K/tMldauoHFUggVIylRoI
+	dQbMTmobwYjaSrRRt3b2fq/pwlujj9iLx3Rekoh1kLdLgmAd+335MEIR3LrnXl5hJJWpbA
+	Z0fUrzMuPWw4mY18V1+xci5BT+9RLwyqFUnGs/dc4JOJRcsN20M4ud64KROIqlijgoAiWO
+	hK3Kee0I/NLRF+FFIK0ZK6Ts/KYH9KLpO6ntlZ0j19ilXoGL8Fd8lTxgbmfdV/ne7TPDvO
+	VSBXZDWlEtADLI2sxPH/y9NJGWqDI2ZiMX819xMtcMmqcoGQ9krFmk88Oq36YQ==
+Date: Mon, 23 Sep 2024 10:07:41 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Lee Jones <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Steen
+ Hegelund <Steen.Hegelund@microchip.com>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Andy Shevchenko
+ <andy.shevchenko@gmail.com>, Simon Horman <horms@kernel.org>, Derek Kiernan
+ <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Bjorn Helgaas
+ <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>, Lars Povlsen
+ <lars.povlsen@microchip.com>, Daniel Machon <daniel.machon@microchip.com>,
+ UNGLinuxDriver@microchip.com, Rob Herring <robh@kernel.org>, Saravana
+ Kannan <saravanak@google.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, Horatiu Vultur <horatiu.vultur@microchip.com>,
+ Andrew Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, Allan
+ Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?=
+ <clement.leger@bootlin.com>
+Subject: Re: [PATCH v5 3/8] mfd: syscon: Add reference counting and device
+ managed support
+Message-ID: <20240923100741.11277439@bootlin.com>
+In-Reply-To: <20240912143740.GD24460@google.com>
+References: <20240808154658.247873-1-herve.codina@bootlin.com>
+	<20240808154658.247873-4-herve.codina@bootlin.com>
+	<20240903153839.GB6858@google.com>
+	<20240903180116.717a499b@bootlin.com>
+	<20240909095203.3d6effdb@bootlin.com>
+	<20240912143740.GD24460@google.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-Some architectures embed boot DTBs in vmlinux. A potential issue for
-these architectures is a race condition during parallel builds because
-Kbuild descends into arch/*/boot/dts/ twice.
+Hi,
 
-One build thread is initiated by the 'dtbs' target, which is a
-prerequisite of the 'all' target in the top-level Makefile:
+On Thu, 12 Sep 2024 15:37:40 +0100
+Lee Jones <lee@kernel.org> wrote:
 
-  ifdef CONFIG_OF_EARLY_FLATTREE
-  all: dtbs
-  endif
+> On Mon, 09 Sep 2024, Herve Codina wrote:
+> 
+> > Hi Lee, Arnd,
+> > 
+> > On Tue, 3 Sep 2024 18:01:16 +0200
+> > Herve Codina <herve.codina@bootlin.com> wrote:
+> >   
+> > > Hi Lee,
+> > > 
+> > > On Tue, 3 Sep 2024 16:38:39 +0100
+> > > Lee Jones <lee@kernel.org> wrote:
+> > >   
+> > > > On Thu, 08 Aug 2024, Herve Codina wrote:
+> > > >     
+> > > > > From: Clément Léger <clement.leger@bootlin.com>
+> > > > > 
+> > > > > Syscon releasing is not supported.
+> > > > > Without release function, unbinding a driver that uses syscon whether
+> > > > > explicitly or due to a module removal left the used syscon in a in-use
+> > > > > state.
+> > > > > 
+> > > > > For instance a syscon_node_to_regmap() call from a consumer retrieves a
+> > > > > syscon regmap instance. Internally, syscon_node_to_regmap() can create
+> > > > > syscon instance and add it to the existing syscon list. No API is
+> > > > > available to release this syscon instance, remove it from the list and
+> > > > > free it when it is not used anymore.
+> > > > > 
+> > > > > Introduce reference counting in syscon in order to keep track of syscon
+> > > > > usage using syscon_{get,put}() and add a device managed version of
+> > > > > syscon_regmap_lookup_by_phandle(), to automatically release the syscon
+> > > > > instance on the consumer removal.
+> > > > > 
+> > > > > Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> > > > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > > > > ---
+> > > > >  drivers/mfd/syscon.c       | 138 ++++++++++++++++++++++++++++++++++---
+> > > > >  include/linux/mfd/syscon.h |  16 +++++
+> > > > >  2 files changed, 144 insertions(+), 10 deletions(-)      
+> > > > 
+> > > > This doesn't look very popular.
+> > > > 
+> > > > What are the potential ramifications for existing users?
+> > > >     
+> > > 
+> > > Existing user don't use devm_syscon_regmap_lookup_by_phandle() nor
+> > > syscon_put_regmap().
+> > > 
+> > > So refcount is incremented but never decremented. syscon is never
+> > > released. Exactly the same as current implementation.
+> > > Nothing change for existing users.
+> > > 
+> > > Best regards,
+> > > Hervé  
+> > 
+> > I hope I answered to Lee's question related to possible impacts on
+> > existing drivers.
+> > 
+> > Is there anything else that blocks this patch from being applied ?  
+> 
+> Arnd usually takes care of Syscon reviews.
+> 
+> Perhaps he's out on vacation.
+> 
+> Let's wait a little longer, since it's too late for this cycle anyway.
+> 
 
-For architectures that support the built-in boot dtb, arch/*/boot/dts/
-is visited also during the ordinary directory traversal in order to
-build obj-y objects that wrap DTBs.
+Discussed the topic with Arnd Bergmann at Linux Plumbers Conference.
+Adding ref-counting and support for removal in syscon is rejected by Arnd.
 
-Since these build threads are unaware of each other, they can run
-simultaneously during parallel builds.
+For my LAN966x use case (syscon is used only by the reset controller), the
+solution is to remove the syscon device and handle directly the reset protect
+register in the reset controller itself.
 
-This commit introduces a generic build rule to scripts/Makefile.vmlinux
-to support embedded boot DTBs in a race-free way. Architectures that
-want to use this rule need to select CONFIG_GENERIC_BUILTIN_DTB.
+I will propose modifications in that way in the next iteration.
 
-After the migration, Makefiles under arch/*/boot/dts/ will be visited
-only once to build only *.dtb files.
-
-This change also aims to unify the CONFIG options used for built-in DTBs
-support. Currently, different architectures use different CONFIG options
-for the same purposes.
-
-With this commit, the CONFIG options will be unified as follows:
-
- - CONFIG_GENERIC_BUILTIN_DTB
-
-   This enables the generic rule for built-in boot DTBs. This will be
-   renamed to CONFIG_BUILTIN_DTB after all architectures migrate to the
-   generic rule.
-
- - CONFIG_BUILTIN_DTB_NAME
-
-   This specifies the path to the embedded DTB.
-   (relative to arch/*/boot/dts/)
-
- - CONFIG_BUILTIN_DTB_ALL
-
-   If this is enabled, all DTB files compiled under arch/*/boot/dts/ are
-   embedded into vmlinux. Only used by MIPS.
-
-Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
----
-
-(no changes since v1)
-
- Makefile                 |  7 ++++++-
- drivers/of/Kconfig       |  6 ++++++
- scripts/Makefile.vmlinux | 44 ++++++++++++++++++++++++++++++++++++++++
- scripts/link-vmlinux.sh  |  4 ++++
- 4 files changed, 60 insertions(+), 1 deletion(-)
-
-diff --git a/Makefile b/Makefile
-index 0d3d45a88a71..35b8392d2bef 100644
---- a/Makefile
-+++ b/Makefile
-@@ -1413,6 +1413,10 @@ ifdef CONFIG_OF_EARLY_FLATTREE
- all: dtbs
- endif
- 
-+ifdef CONFIG_GENERIC_BUILTIN_DTB
-+vmlinux: dtbs
-+endif
-+
- endif
- 
- PHONY += scripts_dtc
-@@ -1480,7 +1484,8 @@ CLEAN_FILES += vmlinux.symvers modules-only.symvers \
- 	       modules.builtin modules.builtin.modinfo modules.nsdeps \
- 	       modules.builtin.ranges vmlinux.o.map \
- 	       compile_commands.json rust/test \
--	       rust-project.json .vmlinux.objs .vmlinux.export.c
-+	       rust-project.json .vmlinux.objs .vmlinux.export.c \
-+               .builtin-dtbs-list .builtin-dtb.S
- 
- # Directories & files removed with 'make mrproper'
- MRPROPER_FILES += include/config include/generated          \
-diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
-index dd726c7056bf..5142e7d7fef8 100644
---- a/drivers/of/Kconfig
-+++ b/drivers/of/Kconfig
-@@ -2,6 +2,12 @@
- config DTC
- 	bool
- 
-+config GENERIC_BUILTIN_DTB
-+	bool
-+
-+config BUILTIN_DTB_ALL
-+	bool
-+
- menuconfig OF
- 	bool "Device Tree and Open Firmware support"
- 	help
-diff --git a/scripts/Makefile.vmlinux b/scripts/Makefile.vmlinux
-index 1284f05555b9..9ef0480ed755 100644
---- a/scripts/Makefile.vmlinux
-+++ b/scripts/Makefile.vmlinux
-@@ -17,6 +17,50 @@ quiet_cmd_cc_o_c = CC      $@
- %.o: %.c FORCE
- 	$(call if_changed_dep,cc_o_c)
- 
-+quiet_cmd_as_o_S = AS      $@
-+      cmd_as_o_S = $(CC) $(a_flags) -c -o $@ $<
-+
-+%.o: %.S FORCE
-+	$(call if_changed_dep,as_o_S)
-+
-+# Built-in dtb
-+# ---------------------------------------------------------------------------
-+
-+quiet_cmd_wrap_dtbs = WRAP    $@
-+      cmd_wrap_dtbs = {							\
-+	echo '\#include <asm-generic/vmlinux.lds.h>';			\
-+	echo '.section .dtb.init.rodata,"a"';				\
-+	while read dtb; do						\
-+		symbase=__dtb_$$(basename -s .dtb "$${dtb}" | tr - _);	\
-+		echo '.balign STRUCT_ALIGNMENT';			\
-+		echo ".global $${symbase}_begin";			\
-+		echo "$${symbase}_begin:";				\
-+		echo '.incbin "'$$dtb'" ';				\
-+		echo ".global $${symbase}_end";				\
-+		echo "$${symbase}_end:";				\
-+	done < $<;							\
-+	} > $@
-+
-+.builtin-dtbs.S: .builtin-dtbs-list FORCE
-+	$(call if_changed,wrap_dtbs)
-+
-+quiet_cmd_gen_dtbs_list = GEN     $@
-+      cmd_gen_dtbs_list = \
-+	$(if $(CONFIG_BUILTIN_DTB_NAME), echo "arch/$(SRCARCH)/boot/dts/$(CONFIG_BUILTIN_DTB_NAME).dtb",:) > $@
-+
-+.builtin-dtbs-list: arch/$(SRCARCH)/boot/dts/dtbs-list FORCE
-+	$(call if_changed,$(if $(CONFIG_BUILTIN_DTB_ALL),copy,gen_dtbs_list))
-+
-+targets += .builtin-dtbs-list
-+
-+ifdef CONFIG_GENERIC_BUILTIN_DTB
-+targets += .builtin-dtbs.S .builtin-dtbs.o
-+vmlinux: .builtin-dtbs.o
-+endif
-+
-+# vmlinux
-+# ---------------------------------------------------------------------------
-+
- ifdef CONFIG_MODULES
- targets += .vmlinux.export.o
- vmlinux: .vmlinux.export.o
-diff --git a/scripts/link-vmlinux.sh b/scripts/link-vmlinux.sh
-index c27b4e969f20..bd196944e350 100755
---- a/scripts/link-vmlinux.sh
-+++ b/scripts/link-vmlinux.sh
-@@ -68,6 +68,10 @@ vmlinux_link()
- 		libs="${KBUILD_VMLINUX_LIBS}"
- 	fi
- 
-+	if is_enabled CONFIG_GENERIC_BUILTIN_DTB; then
-+		objs="${objs} .builtin-dtbs.o"
-+	fi
-+
- 	if is_enabled CONFIG_MODULES; then
- 		objs="${objs} .vmlinux.export.o"
- 	fi
--- 
-2.43.0
-
+Regards,
+Hervé
 
