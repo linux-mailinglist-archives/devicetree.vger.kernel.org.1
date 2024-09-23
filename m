@@ -1,131 +1,137 @@
-Return-Path: <devicetree+bounces-104429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD09E97E5D5
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 08:04:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E798597E5DD
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 08:08:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDE1C1C20A33
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 06:04:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F0021F20F5C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 06:08:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624FB14A90;
-	Mon, 23 Sep 2024 06:04:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C03218049;
+	Mon, 23 Sep 2024 06:07:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hX9IKgGt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BzW2k26p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FC5E175A1
-	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 06:04:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B96517BA9
+	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 06:07:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727071469; cv=none; b=uhfJhxfSWgh6dA0UJfkAKYCZEIaDrxlae5mWdEhX/H5lG3oKAhk5wOKUZ/NeepINL071DF3c16zotYO52VLEqbwFf5dlcht1U8NW00vWX4XslE+wFGIR1kdTFOUEAP1B7sPC5cP803xluf2N/KNciN0f+yttXnncUA9QwIQirVo=
+	t=1727071679; cv=none; b=ihSi+EyfyYaAskvDm/3UFxOqA/ZcVHX+GwX4F/84eTruVIcdgGxIa1aqF0InPuSUNxXVH5Nr5k2LEcLdlU022TyDCm93pmMuLwUp5to1vwFBWGeha0a2eKPkQL2gjiTvBWfg+18zf3ee/gQVl4jfur7JsW0vpXSb1f08/MKP5LU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727071469; c=relaxed/simple;
-	bh=qI9/SPhx3uEKmNkq9N9RFTaqrDhjhy+lHvk3IFtoLnc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FfQhWnhoVHf3qunaR3WCilZNAjdnYoMFx+mKQ4oJjzfNyX+N942rvmN245hKMUhEzhwvjPtZBH9XwR++ZZtGl7IlQqRLGyOoTdYoxbxVIrl7zJrntAmoKX4nzINgdj+O89wNJtR8JAiUnmJzN9HasEYjXdXqQqgDcnK++D0Qbyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hX9IKgGt; arc=none smtp.client-ip=209.85.221.42
+	s=arc-20240116; t=1727071679; c=relaxed/simple;
+	bh=G3enpQSCpJDlnfNEBv0DcEbUfgDaeO75AF82NJ/37lE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MXbYdpWZSmhoA23Kr9rXI1vszDIjzzZgJSLEHcdseG+gl6KHiJHKRuCudLhrf0TxBtF4Og5+sadiqixCQ35oZ1e5y7GbxfeUOGwRfYyNxDkF7pfNGQI37O3qI88VqV3MqIXsGpXjNAasAQSKuNC9QyNXAyXl7uoFBIEMR4bkjzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BzW2k26p; arc=none smtp.client-ip=209.85.167.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-374ca65cafdso2071526f8f.2
-        for <devicetree@vger.kernel.org>; Sun, 22 Sep 2024 23:04:27 -0700 (PDT)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-53568ffc525so4455947e87.0
+        for <devicetree@vger.kernel.org>; Sun, 22 Sep 2024 23:07:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727071466; x=1727676266; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0RNmrHmblvHO2guL4VXF8jdLa/bnTwxzeoY4QaRaHx8=;
-        b=hX9IKgGtuI/1pJzcfpxue6YuEOEiSOy4NLe61xaHUGmTYGMQhW6vZvsQcm1TVhFBd5
-         w1cWjXDDKRfSDoJ5g4rPQ+oPptccvConBAmEFYpl5iFR5ZdG61KTOtBRUDD+R1vPuW3l
-         VgTTseOF6jqQBB3uFQRH/yLYc+pjHphCHTuxDWFL1dCiJxcICpmlBEz0Wzi5ivR42+eR
-         zMB6+2Biv8cxBRoJgxQCz4k+uSxsfklTEnKRMQhv/KFIckvDF+pNlhhg0pJaNq6WbjAT
-         QJsvLhFoBNQKQcCfFJO8M3auSK/mtQHgc+pFyZwbwVpPf7zrsCfDkno4mGtPr4Qd6Ojh
-         m8DQ==
+        d=linaro.org; s=google; t=1727071675; x=1727676475; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=gCmO/YTjAtYJXPPaJsx5QKtYsIvj2q2oYXd++xIla/8=;
+        b=BzW2k26pz/Z01taXd9LL4YkiTRGNlnaNz/4w/vGs/zzGLPjdFn5Wd8bz0YEfsORaW0
+         ljXXNZR86eUdAAuvBgrfVSr8Oe8c7srIBnjvznuqVCh2WGMiiTxVb4/lHuWLobnaYsdq
+         WCgFgLM8iVShsk6LMuN3AhUdz4hFS737xR3AscRWDmCh6MLKrluAw094kW60VwumLRYj
+         L+1KndwFHbljwrVs/PJg+RTLXXSTohkmKJUlnaSsPNqDFZvaDkae6aS8Nq5YbO9vf3Wk
+         2V7crwxDagugGwnVRjTwWodlZ8K8NEck1iY2BLCgtZ/rVdpAvZesYFa8jVBjpZrWl37j
+         lEbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727071466; x=1727676266;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0RNmrHmblvHO2guL4VXF8jdLa/bnTwxzeoY4QaRaHx8=;
-        b=e1Md2FjgoMr7JnrhlbgNgSc6rvHa3nHSlSp0y9MbXPX2MkHoiqyBWWO4+9pGG/gk7i
-         pTyF54Dip0YdbyYapzYxihyCWLF4oDtZwTnA8fbjEkHAx5FJv8OwVGpO5JdjN5CmRc6Z
-         i23yu957YzJ10Rn2fYYb9mUAvu8HqjWwIuguGgUFmSbkM/TbzIti/csUj5oZS355Dgk1
-         sH9QowuUN4CWrzlk/iXxIdnYY+et838tHG2K3rJdW8dQmZsSdTuHa4e2ZAGPqEpYDxHe
-         /o7joj1zPU7LLrZj4UPY7915rEUssOkHLAZ22/3ikEU5/wHotVAMtBlht0Me2MCFqRV+
-         j+Rw==
-X-Forwarded-Encrypted: i=1; AJvYcCWMPXBC/6fAV79RjI6mGfHzwRq2fegqb/slF57WVyMcKdaye+TdT9E7j4s84k+MLNHXbOMfPrOpy5TL@vger.kernel.org
-X-Gm-Message-State: AOJu0YwI0z4aBY8vdwDPoLVJPeQkE9g4QMpdEAr4eEgrWMqmhipOjZDo
-	QjBwkEnyJ5frqjbRdQeJJXieR9VS6gnuxnoOSH45FU0ToZBzeHk9LyiCCikjo8E=
-X-Google-Smtp-Source: AGHT+IH1eCn5MZAMQDZuDWL0pLjlXPrn6Z677C5pwlLNhKPM9d7744cqjDFZzGFS65Nkq1OxkrDYuQ==
-X-Received: by 2002:a5d:58d9:0:b0:374:bd48:fae9 with SMTP id ffacd0b85a97d-37a422658aamr4808393f8f.20.1727071465802;
-        Sun, 22 Sep 2024 23:04:25 -0700 (PDT)
-Received: from [10.11.12.107] ([79.115.63.20])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378e71f060bsm23742088f8f.1.2024.09.22.23.04.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Sep 2024 23:04:25 -0700 (PDT)
-Message-ID: <4e0cf43c-4843-451c-ac6f-86775dbccb2b@linaro.org>
-Date: Mon, 23 Sep 2024 07:04:22 +0100
+        d=1e100.net; s=20230601; t=1727071675; x=1727676475;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gCmO/YTjAtYJXPPaJsx5QKtYsIvj2q2oYXd++xIla/8=;
+        b=vyqkgpynQ5Ma1FEJkKhAhjLEvUHFLut36RpLX2IqE26OpgYEsoiuu6ANDoAVV8Oczi
+         KnluNch916MzqndXTReqOIMh71tdZOXvXxhL+2WFAg9h3L/VdxaKjemh+aUDFzyaYhiT
+         6SpgWalokMhKycapeHm8vua2MVllDc4PtzRqU1sdrhzD+CxEYcwuPCT476ugtudmuAio
+         eCCz05B1ixOc7mo+zMHt1ZYeblKK/o1lVHL3f8ELZb94Cnx+t354pVzTrN/ROTh8zS6/
+         slljOaEibyLkFgelVO7u9qJ/UA5dGWhDH89Nw6TDtqwMian9/E7FmPWotx3/4j5ftT32
+         4utA==
+X-Forwarded-Encrypted: i=1; AJvYcCWUOjh2O8hBeCxE9fJcOAOm8LyfuYZo43+Dn+FyLIJHP9hpJaou4qRpgGRf//3vxAo5Z/63OzSl01D1@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXlRTaeHbDJVBFOgtRB3hU1OxdN1XNsC9BFwgqBZXHSiSd9WLO
+	TYX11PrejLEaDxtEmPMgGvhKzmaGD5WTtw6nkMeJFDAxFJ+FIZf12hhDff0LjRQ=
+X-Google-Smtp-Source: AGHT+IE9nytSnroJiHN9xKcxla1q+HIPMXUfGMJEkQjc2qU3zMNEUmMCLyZt/tDAoafU+Yd8PgQ6Yg==
+X-Received: by 2002:a05:6512:39c9:b0:536:56d8:24b4 with SMTP id 2adb3069b0e04-536ac2d0514mr5129471e87.5.1727071675372;
+        Sun, 22 Sep 2024 23:07:55 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53687046624sm3172932e87.62.2024.09.22.23.07.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Sep 2024 23:07:54 -0700 (PDT)
+Date: Mon, 23 Sep 2024 09:07:52 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Manikandan.M@microchip.com
+Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, 
+	airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com, 
+	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, thierry.reding@gmail.com, sam@ravnborg.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Dharma.B@microchip.com
+Subject: Re: [PATCH v2 2/2] drm/panel: simple: Add Microchip AC69T88A LVDS
+ Display panel
+Message-ID: <f4z2egmrcoh7kih2pyr3mq7fzuwtvod6vxlzzim2iw3ly7jcr3@2uxiyzlfixhp>
+References: <20240919091548.430285-1-manikandan.m@microchip.com>
+ <20240919091548.430285-2-manikandan.m@microchip.com>
+ <zognzunciriytm3uvoolxjsvu43v3m2lnctsz5swusnmm3aj2z@ag7zkncccdmf>
+ <83e9d20d-f294-4303-b570-816ebc989bcf@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/5] mtd: spi-nor: core: add manufacturer flags
-To: Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org,
- Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Esben Haabendal <esben@geanix.com>,
- Erez Geva <ErezGeva2@gmail.com>
-References: <20240920181231.20542-1-erezgeva@nwtime.org>
- <20240920181231.20542-2-erezgeva@nwtime.org>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <20240920181231.20542-2-erezgeva@nwtime.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <83e9d20d-f294-4303-b570-816ebc989bcf@microchip.com>
 
-Hi,
+On Mon, Sep 23, 2024 at 05:50:22AM GMT, Manikandan.M@microchip.com wrote:
+> On 20/09/24 9:13 pm, Dmitry Baryshkov wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> > 
+> > On Thu, Sep 19, 2024 at 02:45:48PM GMT, Manikandan Muralidharan wrote:
+> >> Add support for Microchip AC69T88A 5 inch TFT LCD 800x480
+> >> Display module with LVDS interface.The panel uses the Sitronix
+> >> ST7262 800x480 Display driver
+> > 
+> > AC69T88A seems to be a module name, rather than a panel name. What is
+> > the actual panel name present on this module?
+> Both names, "Microchip AC69T88A" and "MPU32-LVDS-DISPLAY-WVGA" are 
+> present on the display module
 
-On 9/20/24 7:12 PM, Erez Geva wrote:
-> From: Erez Geva <ErezGeva2@gmail.com>
+Which panel was used for the module? I don't think that Microchip
+produces LVDS panels.
+
+> > 
+> >>
+> >> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+> >> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> >> ---
+> >> changes in v2:
+> >> - replace microchip,ac69t88a-lvds-panel with
+> >> microchip,ac69t88a
+> >> ---
+> >>   drivers/gpu/drm/panel/panel-simple.c | 28 ++++++++++++++++++++++++++++
+> >>   1 file changed, 28 insertions(+)
+> >>
+> > 
+> > --
+> > With best wishes
+> > Dmitry
 > 
-> Add flag for always trying reading SFDP:
-> Some vendors reuse all JEDEC IDs on manufacture table
->  with new chips that support SFDP.
-> 
-> Add flag for reading OTP parameters from device tree.
-> Some vendors reuse JEDEC IDs
->  with several chips with different OTP parameters.
-> Alternatively we read parameters from SFDP.
-> But the OTP parameters are absent from the SFDP.
-
-Do you have some specific flashes that you try to identify? Why can't
-they be differentiated at runtime?
-
-> So there is not other way but to add the OTP parameters in the device tree.
+> -- 
+> Thanks and Regards,
+> Manikandan M.
 > 
 
-If there isn't any way to distinguish the flashes at runtime (which I
-doubt/challenge btw), then as a last resort we introduce a dedicated
-compatible for the flash in cause and specify all needed parameters in a
-dedicated flash entry. This shall be more generic as further flash
-parameters can be statically specified in the dedicated flash entry,
-less invasive for dt, and less confusing for people when they decide
-whether to use OTP or not. OTP params in device tree is a no-go.
-
-But again, you have to prove why you can't distinguish the flash at
-runtime before introducing a new flash compatible. So don't go this path
-before sharing with us what you're trying to achieve.
-
-Cheers,
-ta
+-- 
+With best wishes
+Dmitry
 
