@@ -1,159 +1,189 @@
-Return-Path: <devicetree+bounces-104488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF14997E919
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:53:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6455F97E921
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:54:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 658F41F2201B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:53:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 232532819B0
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:54:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53D46194A54;
-	Mon, 23 Sep 2024 09:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34286194C73;
+	Mon, 23 Sep 2024 09:53:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="MZ+hq6OI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TvUneDpE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 583EE8479;
-	Mon, 23 Sep 2024 09:53:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FCFA8479;
+	Mon, 23 Sep 2024 09:53:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727085191; cv=none; b=LeTCLeYw4/vxkRyqI3nbPsIHUNSonuTIBYdT3KhUOwGhOLaxBl1s6w15YhR44Q3RD1CzI+bbhDvAF562SPnSRcLmbwIYOOD3DINYRMev2uP+ajECrTh7AU2rrwZ/mR86jZYBHwUyzNIQ2Zc6o6spsHuWu6kGZ8mNDFUes3bxw2k=
+	t=1727085237; cv=none; b=oguVboyZ6gOOkXU16oz/ncanXxgZYgq3jc0OCK7n+GXUNSeu2ugeD2CwDXm5ZjHH8rEVflDAXOEEviyIBs0qIwFrmxh/YejR2tebCx4R/eutOMHULwh/KFx3d5BQN1hvB5ENDz76MSkifw1WBb+SERNQAgF/P+Skxs/Do29gZ38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727085191; c=relaxed/simple;
-	bh=oZq/tJZEKhLPOMgfoJYimVhT73cmX0YvXhNZwch10fw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d1Qu7lqr6AZUaNEsGMu9lNPVfB1qH2i3KYsNQz5wFFGTAf2GoX0QhYr9/bA1hQpwMNG1IgSmhL2tHXST+TXNZpTvcm4xEvDDzuapTf7t1Uh0dg5ocg7fcQYW/WEhkqUs6X2dehiS6eDoGhiYM/1GlOkO/yY4edHrspZBv5jNHYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=MZ+hq6OI; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1727085187;
-	bh=oZq/tJZEKhLPOMgfoJYimVhT73cmX0YvXhNZwch10fw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MZ+hq6OINW90+WpTkHHmPOoq2HKPAuvI+1xkqbswtdYsklz/MSFzr68+Q+giSL+I5
-	 OzP9T9Zr4wDKneB6nMIYOUVE4Fm3bAbN3ouV21gTJTi2xXnyp7DzwK9oRCcafr5ody
-	 WFj5GYNdLHfbZbXWSmPRUUGE0etUK0yOuZdYIbdXxTfyrvzezFQV8LHaNU197eITR9
-	 +c9hdBh2po9xsq8ZwmGclZ597SEZhcqwtqv3bVRGUxKmfMJ8PQbFuYjZBdEa1LsKZB
-	 wydLnlk5Im0F2Q9H+qjKlLAFoanlLXpwwrXA2ndHDXHHaqAx/wicl937ots20axw9F
-	 cIAGwuzXBkXfA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 57D9417E10C2;
-	Mon, 23 Sep 2024 11:53:06 +0200 (CEST)
-Message-ID: <122e5099-4f0b-41cc-93c9-7ccdfc0207ad@collabora.com>
-Date: Mon, 23 Sep 2024 11:53:06 +0200
+	s=arc-20240116; t=1727085237; c=relaxed/simple;
+	bh=2d106uzkR+8RT+3V8DfFcnrtgh3IoT5F3iqW40LwDNM=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SKyl7rNjmvctXYM0N3PI7Vr+At2bVPXGCBE9hxeKBrbXdt1p5bNQz+f6Yd6w6BPK+oVzr/V8URkR/rlbFmO5DL7N7Z481yO1eOb+vrgkjcYi3dqodcsT/8e5PpLB0fDK0cDfFFg+k+pAZe8hriWyDyBRlyzhuxG537cKxZB7doo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TvUneDpE; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-378f600e090so2318874f8f.3;
+        Mon, 23 Sep 2024 02:53:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727085233; x=1727690033; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=W/G5Y1Yc2GdbX/HaGBtPNbObghnd/ierGxsK5LlHR+M=;
+        b=TvUneDpEWXe0KAHmm/mAHmajWaaIDWHnd/P1qGgu+lVy3NFIh/Q68WxJiXTumSj6gk
+         kEdt9Mg8JQtz+snk9Jw6Hhxwxr70hS06IbvpdZMbzhQCVZMyEy80br5anDwKUuOV6x/a
+         9jEZqVZxBTNtFpbAgnmNXZx/KkQ/9s0RyFhDCpJgeSaTjlKpJ9N3sTZ3bQdIAIYpv27h
+         mgVrAK7/eM0J618HmGlJK78LztN+0JthrfnDG24AEz42afuuJ4pxmVUewM04EgfWAWci
+         hNv4kDNbVqdFYYFIqK4mlh172IlYrzlRwCI0614UDEjTQDxyD4nHl5Rq0Muqazeg74UR
+         p/Fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727085233; x=1727690033;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W/G5Y1Yc2GdbX/HaGBtPNbObghnd/ierGxsK5LlHR+M=;
+        b=O9yQ/BTnUvV27w0gXWM5DJE+dSAQRB1tahjXZbkYzrED7pSIR1Veg6U3sKQrxExE4P
+         mXGV83ji/4UvElyDTDtTQ3gbsxKRTojkJBKaOQJihxJgFG5irwMCGlzZQLzMfXa9iKp1
+         AzR+wO5fIGf1lQgnJyGDhMiVkr38/KjljozzKmhxru98gMb6ZlD0+wOFxhtEkFppfTWM
+         Tl7VuON5Q36ciuMFkEod9YT1JOS7SpZXttWcvXbXRYae3U64sQftg05tnsdY7V2rw9uK
+         MGyRver4b/PgDyzwmeSXYeAYMwOzLqYCZkHB/eT6YONNeS/nSR3K44SA/7sVQmgut+k6
+         z95g==
+X-Forwarded-Encrypted: i=1; AJvYcCU8vmZSeRvJJ0rvzPNmDroQEM/edvY6azUI7i9yKK8oaG0SmG0CNsab3YnBbYszNgsIeHOewuDGiq3i@vger.kernel.org, AJvYcCWhVHE7IHYXj9Rz/S8D1zc02gMTHRQ/vllg8QrNJDlKoi158H89jdJNy+DoYWoK4aHq5FEBlv+bDcBTZg==@vger.kernel.org, AJvYcCWmPUHSO8Jwqkl9btt+SHw2+ILwWOMO7nxZoqFZYS3BryGkWWEFSo+4sQB1Z8ZLNdUp3tezH6/xOY1d@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVDaZhS4U68mTQUoELdGblKNSloNaVcqwDO8MBuJVO4kYgh8w4
+	d/PUcmk+L8gEVSlBRboqfPWEU5JRQB1VbQwcFIwyVJ8kATWdbGph
+X-Google-Smtp-Source: AGHT+IHFcRqze8NF48rSN4RfnRVSC5MCHRlQsylzZ05QxbfMJ+tA5vQe9UKElu6ng0HSNIhzNc4qfQ==
+X-Received: by 2002:a5d:5f83:0:b0:374:c977:363 with SMTP id ffacd0b85a97d-37a43154e86mr7174926f8f.24.1727085233174;
+        Mon, 23 Sep 2024 02:53:53 -0700 (PDT)
+Received: from Ansuel-XPS. (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378e7805193sm23850774f8f.98.2024.09.23.02.53.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Sep 2024 02:53:52 -0700 (PDT)
+Message-ID: <66f13ab0.5d0a0220.b0c27.b441@mx.google.com>
+X-Google-Original-Message-ID: <ZvE6rpnzlrUJHKLx@Ansuel-XPS.>
+Date: Mon, 23 Sep 2024 11:53:50 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sean Wang <sean.wang@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Lee Jones <lee@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com, benjamin.larsson@genexis.eu,
+	linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v4 0/5] Add mfd, pinctrl and pwm support to EN7581 SoC
+References: <20240911-en7581-pinctrl-v4-0-60ac93d760bb@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] dt-bindings: mfd: mediatek: mt6397: Convert to DT
- schema format
-To: Macpaul Lin <macpaul.lin@mediatek.com>, Andrew Lunn <andrew@lunn.ch>,
- Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean
- <olteanv@gmail.com>, "David S . Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Sean Wang <sean.wang@mediatek.com>, Sen Chu <sen.chu@mediatek.com>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>,
- Lee Jones <lee@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Chen Zhong <chen.zhong@mediatek.com>, linux-input@vger.kernel.org,
- linux-leds@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-rtc@vger.kernel.org, linux-sound@vger.kernel.org,
- Alexandre Mergnat <amergnat@baylibre.com>
-Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
- Macpaul Lin <macpaul@gmail.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
- MediaTek Chromebook Upstream
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- Chen-Yu Tsai <wenst@chromium.org>
-References: <20240918064955.6518-1-macpaul.lin@mediatek.com>
- <20240918064955.6518-2-macpaul.lin@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240918064955.6518-2-macpaul.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240911-en7581-pinctrl-v4-0-60ac93d760bb@kernel.org>
 
-Il 18/09/24 08:49, Macpaul Lin ha scritto:
-> Convert the mfd: mediatek: mt6397 binding to DT schema format.
+On Wed, Sep 11, 2024 at 09:50:00PM +0200, Lorenzo Bianconi wrote:
+> Introduce airoha-mfd driver in order to load pinctrl and pwm drivers for
+> EN7581 SoC. airoha-mfd is needed since both pinctrl and pwm drivers
+> needs to access the same memory block (gpio memory region) to configure
+> {gio,irq}_chip and pwm functionalities respectively, so model them as
+> childs of a parent mfd driver.
+> Current EN7581 pinctrl driver supports the following functionalities:
+> - pin multiplexing via chip_scu syscon
+> - pin pull-up, pull-down, open-drain, current strength,
+>   {input,output}_enable, output_{low,high} via chip_scu syscon
+> - gpio controller
+> - irq controller
 > 
-> MT6323, MT6358, and MT6397 are PMIC devices with multiple function
-> subdevices. They share a common PMIC design but have variations in
-> subdevice combinations.
+> ---
+> Changes in v4:
+> - add 'Limitation' description in pwm driver
+> - fix comments in pwm driver
+> - rely on mfd->base __iomem pointer in pwm driver, modify register
+>   offsets according to it and get rid of sgpio_cfg, flash_cfg and
+>   cycle_cfg pointers
+> - simplify register utility routines in pwm driver
+> - use 'generator' instead of 'waveform' suffix for pwm routines
+> - fix possible overflow calculating duty cycle in pwm driver
+> - do not modify pwm state in free callback in pwm driver
+> - cap the maximum period in pwm driver
+> - do not allow inverse polarity in pwm driver
+> - do not set of_xlate callback in the pwm driver and allow the stack to
+>   do it
+> - fix MAINTAINERS file for airoha pinctrl driver
+> - fix undefined reference to __ffsdi2 in pinctrl driver
+> - simplify airoha,en7581-gpio-sysctl.yam binding
+> - Link to v3: https://lore.kernel.org/r/20240831-en7581-pinctrl-v3-0-98eebfb4da66@kernel.org
 > 
-> Key updates in this conversion:
+> Changes in v3:
+> - introduce airoha-mfd driver
+> - add pwm driver to the same series
+> - model pinctrl and pwm drivers as childs of a parent mfd driver.
+> - access chip-scu memory region in pinctrl driver via syscon
+> - introduce a single airoha,en7581-gpio-sysctl.yaml binding and get rid
+>   of dedicated bindings for pinctrl and pwm
+> - add airoha,en7581-chip-scu.yaml binding do the series
+> - Link to v2: https://lore.kernel.org/r/20240822-en7581-pinctrl-v2-0-ba1559173a7f@kernel.org
 > 
-> 1. RTC:
->     - Convert rtc-mt6397.txt and merge into parent MT6397 PMIC DT schema.
+> Changes in v2:
+> - Fix compilation errors
+> - Collapse some register mappings for gpio and irq controllers
+> - update dt-bindings according to new register mapping
+> - fix some dt-bindings errors
+> - Link to v1: https://lore.kernel.org/all/cover.1723392444.git.lorenzo@kernel.org/
 > 
-> 2. Regulators:
->     - Align to generic name "regulators".
->     - Update references from .txt to .yaml for mt6323, mt6358, and mt6397
->       regulators.
->     - Simplify regulator name labels in device tree examples.
+> ---
+> Benjamin Larsson (1):
+>       pwm: airoha: Add support for EN7581 SoC
 > 
-> 3. Audio Codec:
->     - Convert sound/mt6358.txt and merge into parent MT6397 PMIC DT schema.
->     - Align to generic name "audio-codec" for codec and sound subdevices.
->     - Add "mediatek,dmic-mode" and "Avdd-supply" properties.
+> Christian Marangi (2):
+>       dt-bindings: mfd: Add support for Airoha EN7581 GPIO System Controller
+>       mfd: airoha: Add support for Airoha EN7581 MFD
 > 
-> 4. Clocks:
->     - Align to generic name "clocks" for clockbuffer subdevices.
+> Lorenzo Bianconi (2):
+>       dt-bindings: arm: airoha: Add the chip-scu node for EN7581 SoC
+>       pinctrl: airoha: Add support for EN7581 SoC
 > 
-> 5. LEDs:
->     - Convert leds-mt6323.txt and merge into parent MT6397 PMIC DT schema.
->     - Update LED binding.
+>  .../bindings/arm/airoha,en7581-chip-scu.yaml       |   42 +
+>  .../bindings/mfd/airoha,en7581-gpio-sysctl.yaml    |  433 +++
+>  MAINTAINERS                                        |    7 +
+>  drivers/mfd/Kconfig                                |    8 +
+>  drivers/mfd/Makefile                               |    2 +
+>  drivers/mfd/airoha-en7581-gpio-mfd.c               |   72 +
+>  drivers/pinctrl/mediatek/Kconfig                   |   16 +-
+>  drivers/pinctrl/mediatek/Makefile                  |    1 +
+>  drivers/pinctrl/mediatek/pinctrl-airoha.c          | 2964 ++++++++++++++++++++
+>  drivers/pwm/Kconfig                                |   10 +
+>  drivers/pwm/Makefile                               |    1 +
+>  drivers/pwm/pwm-airoha.c                           |  414 +++
+>  include/linux/mfd/airoha-en7581-mfd.h              |    9 +
+>  13 files changed, 3978 insertions(+), 1 deletion(-)
+> ---
+> base-commit: 264c13114bd71ddfd7b25c7b94f6cda4587eca25
+> change-id: 20240818-en7581-pinctrl-1bf120154be0
+> prerequisite-change-id: 20240705-for-6-11-bpf-a349efc08df8:v2
 > 
-> 6. Keys:
->     - Add detailed descriptions for power and home keys.
->     - Add compatible: mediatek,mt6358-keys.
-> 
-> 7. Power Controller:
->     - Convert mt6323-poweroff.txt and merge into parent MT6397 PMIC DT
->       schema.
->     - Add #power-domain-cells property to fix dt-binding check error.
->     - Clarify "BBPU" as "Baseband power up".
-> 
-> 8. Pinctrl:
->     - Align to generic name "pinctrl" instead of "pin-controller".
-> 
-> 9. Compatible:
->     - Drop "mediatek,mt6357" since there is a separated DT Schema
->       for PMIC MT6357.
-> 
-> 10. Examples:
->     - MT6323: Retain complete examples for this PMIC.
->     - MT6358 and MT6397: simplify settings in regulators.
->      - Preserve "audio-codec", "clocks", "pinctrl", "rtc", and "keys"
->        sections as they contain typical settings for different PMICs.
-> 
-> Additional updates:
-> - MAINTAINERS: Add co-maintainers and reference to
->    mfd/mediatek,mt6397.yaml for LED and power-controller drivers.
-> - input/mediatek,pmic-keys.yaml: Update reference to
->    mfd/mediatek,mt6397.yaml.
-> 
-> Signed-off-by: Sen Chu <sen.chu@mediatek.com>
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Hi,
 
+any news with this? Rob reviewed the DT schemas and he is ok with them.
 
+Any other comments for the MFD driver and/or the pinctrl or PWM driver?
+
+-- 
+	Ansuel
 
