@@ -1,162 +1,105 @@
-Return-Path: <devicetree+bounces-104468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81BA697E83B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:09:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76DFF97E865
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:17:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C982AB21072
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:09:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 386C12809DB
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:17:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4600F1946A2;
-	Mon, 23 Sep 2024 09:09:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 620C2194A5B;
+	Mon, 23 Sep 2024 09:17:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yi/EQek8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P0aGWe7r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18CDA40855;
-	Mon, 23 Sep 2024 09:09:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7163A1946A4
+	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 09:17:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727082586; cv=none; b=rlKOgAW2IrPpi+kFZvZvNO+Uzu62iM+xKkMPKkOkMamBnYMR2u6wEhwdhfk6h75NLwKIUz8VqvqWXiQX8Xvz547N7djZg7e9fieAx4CvUYvRbW9x1musIsACzOlVt3TcZ/NLspUvlLxcfUSP2pMK5Gm+ZLWn91hjo5ZV8aFp/9I=
+	t=1727083036; cv=none; b=ZBfU8UfUr351Z0+kmWleosI5yp/0XAnskK5uBlHHLfb6xUtC97JXIC7KGhde+VJ9rpcptqiKVPj9Fh1Ys7ADHLI/YcDSsM8yZBi7/PnD2EVHDpe/PuKhc8wSroq4GwwlWT1j0DYR9g+gHyJ9vB+UJPI/R9fY1g5d1U+25LlGPPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727082586; c=relaxed/simple;
-	bh=Kgq8MYspzutcGWDFpoter0hnpOzpTVNYh7jCbDxMsAk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=bl8pLyLydWFLxyiVBB32OtiuIs5xvSv/QcTkcXnD6qmyR+4e6JPej+xkZ5MUffbeiTm7V3wyzy2SaX50azcrWcO4OM4EtCdYMBasfrXtlkdDI+MVtaSfviVjyDNNIW31YrhWINLJH/fzeWSzARurimNZnsxUsbyfQrpXcF5jiOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yi/EQek8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB4B9C4CEC4;
-	Mon, 23 Sep 2024 09:09:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727082585;
-	bh=Kgq8MYspzutcGWDFpoter0hnpOzpTVNYh7jCbDxMsAk=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Yi/EQek8n+LGMeJcPmz85ejoyJhmDFhRC9JCAyDW7hYyuZ143NMZa8APZ1nauT2FJ
-	 HClH4FZxtInJTnd4on1QnRXu6JKi5QGhrqk5gqwgL9R7m7Kb8F5AJ6EKmDbae3EDei
-	 nPUNBDj/jhh4QHm0REAFnWIJDy0RFi/sF4tZEwxvrWwWsJNhjG0NvHf1+4CLFa5F4e
-	 yqoWssip6iIhnlm5a6nQqI9O2f3/vKuFQehXuWAaY+m//hnB4x2j6d5icM3GFmEUUc
-	 sWuUHfNZZdVbCCb35v9fxoqqu0sDgh8DSULm31v7p2HUSP/bCj/biw6Dv6agyve8gG
-	 t1kj0i0YGT0gQ==
-Message-ID: <c02f84d2-1306-480b-b6b3-15d3ccae16ad@kernel.org>
-Date: Mon, 23 Sep 2024 11:09:38 +0200
+	s=arc-20240116; t=1727083036; c=relaxed/simple;
+	bh=3Ng+sDg2QT5rzu61/aYwIfYlo9ljmcln0gZXWTADH4M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MQ/uZuQ56udSV7D/uoFJSUzLVL/zFOTpXovnbiy5ZR76iQDvTYdK++luQB0/I5EfTq2PDAkieAl3gX7Y4byR/MKwV0qHoXeXdbUiyJ8EESngK/JKuBa80TpuwC3eyaZhBDcuM97GK5/vwAXPjqDWUkkG4ujeuqEDuTjJgaCV4VQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=P0aGWe7r; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5365aec6fc1so4290504e87.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 02:17:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1727083031; x=1727687831; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3Ng+sDg2QT5rzu61/aYwIfYlo9ljmcln0gZXWTADH4M=;
+        b=P0aGWe7rHFGm9kCI1S9U46WcSoZnr/TLZcYVXhROyGzOC13R7Y37SLKgHR4EhkHGpz
+         9JMgP7g6GuEIhJKSD457CJp5uCWkCKAOn+NUjFWGOsD1NaSfFnMrNNC01rRwoKYfPlul
+         mRF58XbluHOxJxFu7Psxz4SAATRZ45GQJGHvkoNkxQAtxauOQO4VdsIboPM9YXywt5mY
+         OhZolKQ9prXBFp5u1UtLgxNx9240cOqz3UwDO49puuGgOjjcgVxsPp6w/PsTJDJGp/N+
+         GdRFYMGLk40B5gVmCYIm8MN6I/JMMdH8f4ldxzNjf3siRSJKPvFkdlREVe12UaWAD2Qu
+         yLtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727083031; x=1727687831;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3Ng+sDg2QT5rzu61/aYwIfYlo9ljmcln0gZXWTADH4M=;
+        b=lfV6SH4uOsMTpsMA0S+LN3BtlAJNgT1JDeZYZ62iMDDF8T34GgjxgTTNbFvhE5AAaN
+         e53pI6EmbWiLNMK18VJ+Aa393OcripdzLpUTzmFgL3Vn8zIGewPD6vjGVUTS7B8cEQHm
+         Tk8ml8S4+c4xW5BQw+L3ITJmHBeu5YYJgsAKav6yRytJuiyYch9ZZOmMotjQd3we+FVF
+         z02ofg9wZr9dmv2KmgAeP+mDi0d/Cea4Q/USGcOa6UyBN+bNfG6AbEI6oLyKWvczeTy2
+         Ea1cy7VSM+Wou2JLJkwrSegQZib3f8xmtl0mMxLtDXVoeiQtxZsemPospduNJaylrRQE
+         dG3A==
+X-Forwarded-Encrypted: i=1; AJvYcCWNnk1zbrLvjyRQpBxE3YH8lk+sz9zPd7ghA7ap5BQfgQzgrnoqHux6kpKuVhO6lpRmYv8yepY8xsda@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBDCUNVkIZvrjP7b90O85MnjE9Rm9DMgfuIsyDfifF4qcJHg41
+	X3DxRrrQ7rRAB2RHHhoc2vjpB/Dl9bhXQUdgNSQdX5lpWp2SUG3jofXPjb9Ct0nnEnFzQiWF1GC
+	LX+BKvbBmWavAFs7Wg8mUj0mCWdHFsJmOgDNHsA==
+X-Google-Smtp-Source: AGHT+IF5N65MAjSl2RI3rZ8tSubimfvrcMOGWwimT6ri/YlzByTwDzfSSqy/Vo/Rn2B5RVjXBogTTQ/dqeeiG1yGEoY=
+X-Received: by 2002:a05:6512:e94:b0:536:52da:5183 with SMTP id
+ 2adb3069b0e04-536ac2e595emr5416859e87.18.1727083031495; Mon, 23 Sep 2024
+ 02:17:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: mfd: aspeed: support for AST2700
-To: Ryan Chen <ryan_chen@aspeedtech.com>, mturquette@baylibre.com,
- sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- joel@jms.id.au, andrew@codeconstruct.com.au, p.zabel@pengutronix.de,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org
-References: <20240923075012.2264573-1-ryan_chen@aspeedtech.com>
- <20240923075012.2264573-2-ryan_chen@aspeedtech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240923075012.2264573-2-ryan_chen@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240905200218.3810712-1-quic_nkela@quicinc.com>
+In-Reply-To: <20240905200218.3810712-1-quic_nkela@quicinc.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 23 Sep 2024 11:17:00 +0200
+Message-ID: <CACRpkdaKNyO9J265AQjDbta108V6Gw+89nDXscMRyvJN611VGQ@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: pinctrl: Add SA8255p TLMM
+To: Nikunj Kela <quic_nkela@quicinc.com>
+Cc: andersson@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, kernel@quicinc.com, quic_psodagud@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 23/09/2024 09:50, Ryan Chen wrote:
-> Add reset, clk dt bindings headers, and update compatible
-> support for AST2700 clk, silicon-id in yaml.
-> 
-> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-> ---
->  .../bindings/mfd/aspeed,ast2x00-scu.yaml      |   8 +-
->  .../dt-bindings/clock/aspeed,ast2700-scu.h    | 163 ++++++++++++++++++
->  .../dt-bindings/reset/aspeed,ast2700-scu.h    | 124 +++++++++++++
->  3 files changed, 294 insertions(+), 1 deletion(-)
->  create mode 100644 include/dt-bindings/clock/aspeed,ast2700-scu.h
->  create mode 100644 include/dt-bindings/reset/aspeed,ast2700-scu.h
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml b/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
-> index 86ee69c0f45b..c800d5e53b65 100644
-> --- a/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
-> @@ -9,6 +9,8 @@ title: Aspeed System Control Unit
->  description:
->    The Aspeed System Control Unit manages the global behaviour of the SoC,
->    configuring elements such as clocks, pinmux, and reset.
-> +  In AST2700 SOC which has two soc connection, each soc have its own scu
-> +  register control, ast2700-scu0 for soc0, ast2700-scu1 for soc1.
->  
->  maintainers:
->    - Joel Stanley <joel@jms.id.au>
-> @@ -21,6 +23,8 @@ properties:
->            - aspeed,ast2400-scu
->            - aspeed,ast2500-scu
->            - aspeed,ast2600-scu
-> +          - aspeed,ast2700-scu0
-> +          - aspeed,ast2700-scu1
->        - const: syscon
->        - const: simple-mfd
->  
-> @@ -30,7 +34,8 @@ properties:
->    ranges: true
->  
->    '#address-cells':
-> -    const: 1
-> +    minimum: 1
-> +    maximum: 2
+On Thu, Sep 5, 2024 at 10:02=E2=80=AFPM Nikunj Kela <quic_nkela@quicinc.com=
+> wrote:
 
-I would still argue that children do not need full 64-bit addressing,
-but fine, you can grow their space as much as possible.
+> Add compatible for TLMM block representing support on SA8255p.
+>
+> SA8255p uses the same TLMM block as SA8775p however the ownership
+> of pins are split between Firmware VM and Linux VM on SA8255p. For
+> example, pins used by UART are owned and configured by Firmware VM
+> while pins used by ethernet are owned and configured by Linux VM.
+> Therefore, adding a sa8255p specific compatible to mark the difference.
+>
+> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Patch applied!
 
-Best regards,
-Krzysztof
-
+Yours,
+Linus Walleij
 
