@@ -1,108 +1,239 @@
-Return-Path: <devicetree+bounces-104518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E03F397EA16
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 12:46:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A44A97EA1C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 12:47:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D9EE1C212CB
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:46:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB770281AF5
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:47:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3072E195FF0;
-	Mon, 23 Sep 2024 10:46:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95CDD195FF0;
+	Mon, 23 Sep 2024 10:47:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="xKFtmAFo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+Received: from outbound.mail.protection.outlook.com (mail-northeuropeazon11012006.outbound.protection.outlook.com [52.101.66.6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5719841C77;
-	Mon, 23 Sep 2024 10:46:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.201.130
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727088385; cv=none; b=NoYcAUAh3LQwBkGTxuV2IYauljJPQhl2wHv3Ox8xHosdUTS4OGq/07Dymhg0nTNC5zfREVwSbP6N6qNDrCtZ61fnwghIDZ0xgTKHm7L75rrSNQDwT9WBcB7A/BjR3F2/w0wPGxNHMkgxLU8XX39j5X92hQdQW7UqD4Sb80NVDpw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727088385; c=relaxed/simple;
-	bh=uXUXgnx25r8aS3tCDx/lcw2Qd5SFfMtKH9rCu2OCZds=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=EZo/RsQvP5uazGLQbmX9dgjF3R64B9vUn/Mu/y3+E1IFlOx3tt157uP7ocepQoN5bV4m0QJKqSOtQscMc8qA1OOmqQzasaY7Sz8rAfEHCDRxeqyzCfT9Us9BDJ2XLrnJnQjTDnu1Aomi8oKqjM210lW4NspkXeTn8nIg+ZK7PHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=walle.cc; arc=none smtp.client-ip=159.69.201.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=walle.cc
-Received: from localhost (unknown [IPv6:2a02:810b:4340:4ee9:4685:ff:fe12:5967])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.3ffe.de (Postfix) with ESMTPSA id 5BF0D67;
-	Mon, 23 Sep 2024 12:46:20 +0200 (CEST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E5BD78C9C;
+	Mon, 23 Sep 2024 10:47:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.6
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727088466; cv=fail; b=uhedeLnd/7xMKdT2DaaFlGBd5Er81ZJ97lmyxhz+A62l/h4u6SMbQNDo21/sB/mQrWfgQuUqxHjcQVPzZFelSgvfoIMfz21nxbB2wqXmclihlfltHtJer/CG7Mt0DRh291R7kNBFAHI2vhgkWSh+a7HcaHQYYw7Gk/c5hOMhV2c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727088466; c=relaxed/simple;
+	bh=LdpSgwdhtrysPlv4XvNvBXTeH1aZGUSGQSfILnvZ8Ks=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=gs6vDeZ0sQmbTx5cfGwbfNx8P2mJckpJsYlcOAn7eqFxrf849jpT2l/YyA8OH6WdFzZVRskrD/+OQxnVIWkwkP7rKGr/mzc6oPArcWTJ0JObn3tX89kho1ad3sMgkqfhVyM2zLqIZJTb+NnMidTf6/R0nS+CUDohUO8m9kcIz+4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=xKFtmAFo; arc=fail smtp.client-ip=52.101.66.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=c1YCva3A8wnn8e1hwXJHFSpp8qGzxyj1Q1EDu+YDh4u7Po/4kfp+bYaXvsdqC7MzoymTc8xsTworeZkOEJV6iMogNwD7J2DQYug8zuTaQQlBKyd3JrQ65J343rkiwkwIOW71yDHFcclUQbBeC5S6BxAZ/9gYPP9fKB4tjAmSs1g39E277M3AXQbBrVMjSidSbIKbmrAgx2su3G0BBB4YshL5OfudbXwTXWPfah3lX2PcOB/Il+xv9hQ0qqRrvkF+lDyF9dCXPtfqNR3ZwoHuHzxibN+AMIQ6WCEyBlIo9XpvrziclBiI2X22NSAH+d4p/XwDHPXL0B5Ei+eiQeOO8w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NvCoYnfRkuGeeezYJemwS09KmZCiN3ekkYpCh5dKNMA=;
+ b=SRbq53x6XQ/iJX5L7gd01cEv6c5RufdM8saRMQjUkS0MIKoLzHZrAMS9MQLaCkpJ5lXRAg4ZYahA6Cc8ZMtWvHXWEUdzz21J5d8BVT1PVLur+bmFeFx5pUugc8OQGN8wGsqaXePHWadoKdanwfM2v5EWFbUvS1uvx91KKcnk/kYxK9CHfAY7NR73jELCGL89jvLdEEE+L2NUo9HPR+RSfMkyLbw11PQ6EaLCHYahZt7J+aS65qK7o2IHvg/nXltluzpPoQaAgpJ8tzd+2tr3sR8GQ8TsTeS50l6GWJDK86rfDGORoaSmTS3AmaJ1BjcxPnIQNDi/3GEEBOoeaezMdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NvCoYnfRkuGeeezYJemwS09KmZCiN3ekkYpCh5dKNMA=;
+ b=xKFtmAFow1VTovSdeEm6/VvDNZJfKuJS+S94ubfArPx3FL8gcYHW4QhojW0fZekfxJbT9P/nNyBZj6Hgkx8iWX0OfSHmT7Jg1Iaag+5sVbamlsBw/8pRTI4uFtxxM4Ov0TXCutKhUrZFINuNPCGbWHivuifzpsLJHyxBKhuiWBKWB5eqeqs8/LcDCUVG56sSc9zy3XnN3LcDPhvVJmTNxtUFfrzw4qx8aTjjl2N2TvDwODx6ccshXkMLZd8yRYhvlfkzYB1CDGBvaSUMpSg95xsnS5L1aU/dPrJrgSXEsQ8gfcYLBE+ZpT3XsCZj3dtSu8PVhfTscNBeTgNw3UBN0g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AM9PR04MB8487.eurprd04.prod.outlook.com (2603:10a6:20b:41a::6)
+ by DB9PR04MB8331.eurprd04.prod.outlook.com (2603:10a6:10:244::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.25; Mon, 23 Sep
+ 2024 10:47:34 +0000
+Received: from AM9PR04MB8487.eurprd04.prod.outlook.com
+ ([fe80::6d7a:8d2:f020:455]) by AM9PR04MB8487.eurprd04.prod.outlook.com
+ ([fe80::6d7a:8d2:f020:455%5]) with mapi id 15.20.7962.022; Mon, 23 Sep 2024
+ 10:47:34 +0000
+Message-ID: <3b51ff7b-ab9b-431c-a43a-49b5a5e74dff@oss.nxp.com>
+Date: Mon, 23 Sep 2024 13:47:25 +0300
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] dt-bindings: gpio: add support for NXP S32G2/S32G3
+ SoCs
+To: Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chester Lin <chester62515@gmail.com>,
+ Matthias Brugger <mbrugger@suse.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, NXP S32 Linux Team <s32@nxp.com>
+References: <20240919134732.2626144-1-andrei.stefanescu@oss.nxp.com>
+ <20240919134732.2626144-3-andrei.stefanescu@oss.nxp.com>
+ <20240920-reapply-amusement-a37cf13fd910@squawk>
+ <16950e81-e0ef-4e7c-b0ef-4f56415dceed@oss.nxp.com>
+ <bd5a2d24-164c-4707-a5fd-6584e444ee0b@kernel.org>
+ <20240921-party-glass-bfb7099c7ded@spud>
+ <e6u3kui5md4km5xvjzlq5cfgwvtb73c763uep4j5ysaokmmucr@gz5nxiebg7gu>
+ <20240922-plug-legible-74f56d898123@spud>
+Content-Language: en-US
+From: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+In-Reply-To: <20240922-plug-legible-74f56d898123@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM0PR10CA0082.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:15::35) To AM9PR04MB8487.eurprd04.prod.outlook.com
+ (2603:10a6:20b:41a::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 23 Sep 2024 12:46:20 +0200
-Message-Id: <D4DLQGLJSKPB.3OOW4RU9Q3K5O@kernel.org>
-Subject: Re: [PATCH v5 1/5] mtd: spi-nor: core: add manufacturer flags
-Cc: "Erez Geva" <erezgeva@nwtime.org>, <linux-mtd@lists.infradead.org>,
- "Pratyush Yadav" <pratyush@kernel.org>, <linux-kernel@vger.kernel.org>,
- "Miquel Raynal" <miquel.raynal@bootlin.com>, "Richard Weinberger"
- <richard@nod.at>, "Vignesh Raghavendra" <vigneshr@ti.com>,
- <devicetree@vger.kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Esben Haabendal" <esben@geanix.com>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Erez" <erezgeva2@gmail.com>, "Tudor Ambarus" <tudor.ambarus@linaro.org>
-X-Mailer: aerc 0.16.0
-References: <20240920181231.20542-1-erezgeva@nwtime.org>
- <20240920181231.20542-2-erezgeva@nwtime.org>
- <4e0cf43c-4843-451c-ac6f-86775dbccb2b@linaro.org>
- <CANeKEMOmhAPM1j1_ihzcC2wL6jKsWXPCGfZs+euS8mRvtqgE5A@mail.gmail.com>
-In-Reply-To: <CANeKEMOmhAPM1j1_ihzcC2wL6jKsWXPCGfZs+euS8mRvtqgE5A@mail.gmail.com>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8487:EE_|DB9PR04MB8331:EE_
+X-MS-Office365-Filtering-Correlation-Id: ec7b375c-5552-4e3b-7f89-08dcdbbd21f6
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?NEhRNTNjUWVQUHlsOEZzeGNZQnZCUWx1bmtDQjFzYzEvSTY0UjB5bFlWODJj?=
+ =?utf-8?B?UFlvWkxnRE9aanNQNTVER1VsR3RLcWVJL1Z3aEhyNGxxTzRQbGM3WEhwM2JR?=
+ =?utf-8?B?cytndExJT08rK0Myc21CM1FVcGVOQTcyMlVhMXlPL05LcjJuMTcyTVlBa0k0?=
+ =?utf-8?B?Y0FXZm5YbEJjbGpwbnY4YTYzM0JHYVlGYTVQeGt0b2MvSFJEYkZZU1dIeGJT?=
+ =?utf-8?B?QkR6OENPVTA4dVNWU2xtdUxSYlZuYXIxZ3IrM1ZMWFNMOUk1UmlRUTZiSVo3?=
+ =?utf-8?B?NU4vNFhvYmx3VktEYlpYNndHdHRGTTNQS3FaUEN4NmcrN0ppQzVMd2tRSFBz?=
+ =?utf-8?B?RnZibU90QUxyL0k3TkpxWXlZZ0JiaHBkVEZ1NkJrcUpOcEhvVHJpTWxyWWtW?=
+ =?utf-8?B?dUlLNWdtcXJuSjFiUDh4d1JpVFlFalVFWnBtajU4UVYxMndmYkRWRkR6VmNK?=
+ =?utf-8?B?bWxKM050eVVob29mdkovaDk2T3Fudm5XSkF1NDVPa04wdzkycytuVlROd25X?=
+ =?utf-8?B?ZEp2OEVLZmhaVVU3dm1aWjY5Q0wrbTEyMWp5NmtHVkNaZVJkSzJiYVEzWmRN?=
+ =?utf-8?B?T2NhY25SV0NpY2xWb2JZb24wU25iWXNndTRWWm1MZU9XdDNsZ3VQVmhJb1k4?=
+ =?utf-8?B?N2czUEF4WGU5eEE3WTdUUzRYUThwVWQ2K0Nud25PRGZ3Q2U3a01jWGpJRXgw?=
+ =?utf-8?B?ZjBuVkVLR1NxUWJ5ZGhCU0F3NnFWcTFLMTJiL1BlVExqWnVnYzNmOVFPUkp4?=
+ =?utf-8?B?UFBwbDlEZ1NlMjJRQS9UcnVBMU5BQVUxbWZrWWpFWS8vZm9ueExpRWdPTkN3?=
+ =?utf-8?B?U0R2ZEJ1cEEwbm16TXZNZGMxc3cvanY4U0loYUFkNFZ0TmZBcXVpSVBIM1pj?=
+ =?utf-8?B?VGp0RWUzNjY1TUF3d3Q4dllzQUVZMHpYeGdVWHovd0FsQXQwSVdySXgyUUNk?=
+ =?utf-8?B?MXY1RDc1RjdiaG5WN1lxLzNBSWppbWlUczZVNDNtS212UXdiWUF1cXVNd2Jq?=
+ =?utf-8?B?Zzc0NjBsYWVicmgvK1RUUUpiYXpGak81TGJQSUF2czFYWTZvaXJDQWsyYzdm?=
+ =?utf-8?B?c2Q4R2g2OEZkRCtQNlV4enZOR1lNMzZWMmpNclVqNkJQZnZwaVFUMjBNM3lX?=
+ =?utf-8?B?T1BFcjlJRG5LTjlDS3BzeFM3a2xVNU1EY1p3MFlkWmFENzRMMWFmUVk4ODVl?=
+ =?utf-8?B?QUxialRHemFsTStJRzJONlJPdFRUREdXSHNic3ZNdU9wTTZmak1zc0JtRG4r?=
+ =?utf-8?B?RHUvTGVCN1dVVGtVbGFFMlNQbXpHTnVJSGsxZ2I4NGpFZ1VZMXdjMTdjUDV6?=
+ =?utf-8?B?TGl5RnBoYXE2RnpVSUJjOWdHczF0K1Bpb1JwWDNIQzBxY3p6UnkvZEhJYThS?=
+ =?utf-8?B?QUlSUENYT2VjVURTTVo4N0tDYmxJbi9LNHRUUUp5SE5HeUNoenN1Mk1CMVI2?=
+ =?utf-8?B?Zzh5MEZ6bjYrZ2Y3MkJ0cVFwRU9VOXpDdHJkUVcrSGZ4am1ZY0pMcm43Z2xq?=
+ =?utf-8?B?ZUZIRjNNY2VBV2w0ZHRtOFE3VDRRbmtiNHEyZDErZk9jWFU1YWMrZ2l5R1h6?=
+ =?utf-8?B?Uy9sbUpPc1kzYnhqQ3V6aDN4dU5iQkZMZ1dlVzZCN2hHdFM0N01NYW1PQ0tj?=
+ =?utf-8?B?ZHZ5VWl4SkR1YUJ0OUc5dmJTK1A0VER1RS90TklKN3p4Z09lZ1FGQ3ZjUnFN?=
+ =?utf-8?B?dmdGcjk2amVBUTlqYlNEaWxGN00vR3M1dFVRNVNTTTY4WWN2K2xQZFZ1Q2pZ?=
+ =?utf-8?B?ZCs1TkhiTE5GTkVhbThTT0kvbnhaV2pWekkxdGhMZUJHdmtYWHpKODEvbk9s?=
+ =?utf-8?B?NXliYnhJNkNtS3J2T2MxZz09?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8487.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?OVRWYVErRVFQcys3Zzk5YmRTVEpQVmRza3o0cmRCakIvSWF6M0EyWnAzbCt1?=
+ =?utf-8?B?cFZTQTNrU1d3bTdQQUM5aWc4aVUweVZoTUNJREw5OEdGbTVienR5bmVVR2tv?=
+ =?utf-8?B?Y1hmVDhGcVJTSDdYakhmeU9xb2tHQVBNODducEt2Z3U5bTBvVG93dEd6ZkU4?=
+ =?utf-8?B?anRNN0dYamExbnIrdGV1MVU5SndheXpUZDVZNjhjTkJmbndJeWF6Q0ZORis0?=
+ =?utf-8?B?MGNYVWRJeEhRTUtKQlY1M2JVd25INzE0YTRVd2cxVERUVDJhR1d0ZEhkUWpG?=
+ =?utf-8?B?OE9MVGRDaWZBMGJXZ0JwMnJLVXpnOTdBb3ZXNEpPaUZlRDlGL0JJRUtHY3FS?=
+ =?utf-8?B?aVRieU9iNTdEcW53QStYT3hSSEUyL09LSzEzU3RPVDJ0Z2J4aDNRWmUya1Ex?=
+ =?utf-8?B?elM3QnJ0ZElRaTNqckFOUzdQcVhJY3R0c2tVQktRZ3VTU1ZiRXdWdXJmUU8v?=
+ =?utf-8?B?WkRVd1dKZGhEdVRHYXJxbHB1R0FsazNRa0NyZko2bHBSY0dJZGNyU0FXbC80?=
+ =?utf-8?B?dGY1RGpxNDFEdmdKcGtoY3M4bEtvTnVSaXA2WUJQbnp4ZXBvaHY2ZDVPSmd3?=
+ =?utf-8?B?ejdYb0xMd1dzSk9zR1o2enpOMldzOHZSeTdoVDlzQkk3UWR1RU5yZFhCME91?=
+ =?utf-8?B?b2NlNG5BZ2cxby9TSUQ3cVplNVRHMGYzeVFrdkprY0lwanBrODl1WVR0UHVn?=
+ =?utf-8?B?WmRRcGh5QWZsL1gzT1NFc0d1dFI0SHhTZ1UxbmJjdml5RFdmZStad0U0WGl1?=
+ =?utf-8?B?RytJKzZRNmJxcUpZZU1oV3RTL2VGNDhXdHR0bkRoZjBWa3M3S29uWFhkQ0Y3?=
+ =?utf-8?B?eVpFaVZxcXU5Vkp1dnpHOCt1WnoyRkVLTDRxR1A2QXpUckpZQlJDbkZRdWV0?=
+ =?utf-8?B?cHZLMDZ1UEdSeG9EY0xoa2RmRW4zWU1RcVZqWWJjS0xoTjIvRFRvNTliWGtE?=
+ =?utf-8?B?ZjhRSDNPYkFVcDV0MklHVTlKeDR1N0Fsb1hXMmY4THlScDkvSE12UURHRVEr?=
+ =?utf-8?B?UDFtSmJmSzZwMktjckZXK3hJVk5hb29NV2VrWXNGSVdaUUpUSmRpN1M3b0tZ?=
+ =?utf-8?B?SWlFc25kQTRjcmFqUkxkN3BpczJZKysxc3NzRW9GTjNHU1VsQW1yUENyeC9l?=
+ =?utf-8?B?bHZ5T08wRXJSVENCdHRWaE9DZ25NM0dSUlFTdnNpQzlJRXVwRWl4bTlSZUly?=
+ =?utf-8?B?TTg4OGpNeHJrU3ptd2FpRGY4RlJaazdGWGZyRDN6a29PVGZXMEtOT3NlRmFG?=
+ =?utf-8?B?bG02NFVVenJFa1FocDJmUFBVbkR1YmFYSFJPL3ZmWDFwemxSR1JOeDVsZmsx?=
+ =?utf-8?B?MDB4bUViVE9BWlJNT2pwNk9wQURHUis4VWQ4YndPVCt6N3hXK1p5NWR4R0dr?=
+ =?utf-8?B?ODFudGVHL3lYbnFaUzBHamU4M3lTRGR5THdSRjZpVWJtQng2YXRJdm9pdlkv?=
+ =?utf-8?B?MWNNdWRXcU1oWUpqVXltZUtnN2JRWnVqSjN0KzhJN2lsaHQwM1hjYWczWmxw?=
+ =?utf-8?B?L1NXcXFkcW1LblI5WHNLY1hHWVhTMWN5VHRzRXJwdFQwQllZYmRidFZzZFJV?=
+ =?utf-8?B?NjREdXpvcG9QTEdFbVJINCtnVWdZVjQ1WmhzTW4yb0txc09CaDlSdW9pQmlH?=
+ =?utf-8?B?ZmttN0k1Q3VEaExnS2dVQkhPUWFhSjU4S251S25IbldDdmVIV0FEeW52WTNR?=
+ =?utf-8?B?aU9kQXFjZUtXRkd6ZUFOVkpMRjJ0bFFDV2Z2UjFUUnRtTDZXZmVqb1hMZURx?=
+ =?utf-8?B?b2ZuTGt4eTR1NVBONTVSd3F3TU9vd1lZcHIrdCtpeWRjSkQyNVhuL09Ncnhr?=
+ =?utf-8?B?dldMeGp0MnZWMkQwZHp6QTViSTVsM3pRMGNua3ZZN0JzVzA0Kzdtd3VVRjRv?=
+ =?utf-8?B?elJqaTVqaHczTFN3TUpDY3VMZ0dmMjhreFBjOWVZSlExVFo2TldMcDNsMjNv?=
+ =?utf-8?B?cDU5OVNmcnprbVc2YVU0L3BBS2FqRGUyWWwramVOQjZyandqMnRkeG91bTJD?=
+ =?utf-8?B?UXhmMjZWeFlUWVRWMU9vOElyYXdCWVVaS29abC9WWjlyRWZuRFFqbVdqSm0x?=
+ =?utf-8?B?Q3dsK3pLQUcyQ0JQZUpsQk1BRHAxNGgzRTI1NTcyTEZpNTEycEVyTDU0WS9E?=
+ =?utf-8?B?Zk12N3dqK05CWW85RHNYejZDN0ZKcVo3WjVBcDlNaGJUdGFIYmVFZkZxV1Ni?=
+ =?utf-8?B?RVE9PQ==?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec7b375c-5552-4e3b-7f89-08dcdbbd21f6
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8487.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2024 10:47:34.8206
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: o830cF0hdRIyUFKa13bmIG8FsuuYReRJGjlG6cD1l0knTp0sKH8josp5oqWF6zH+pkCvikNy5IDA8TWCvTbHL1XiHKjVR+7ua4aCY57jt0E=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8331
 
 Hi,
 
-> I would gladly remove the obsolete mx25l12805d.
+On 23/09/2024 00:07, Conor Dooley wrote:
+> On Sun, Sep 22, 2024 at 11:04:22PM +0200, Krzysztof Kozlowski wrote:
+>> On Sat, Sep 21, 2024 at 10:58:46PM +0100, Conor Dooley wrote:
+>>> On Fri, Sep 20, 2024 at 03:40:31PM +0200, Krzysztof Kozlowski wrote:
+>>>> On 20/09/2024 15:33, Andrei Stefanescu wrote:
+> 
+>>>>>>> +properties:
+>>>>>>> +  compatible:
+>>>>>>> +    items:
+>>>>>>> +      - const: nxp,s32g2-siul2-gpio
+>>>>>>
+>>>>>> Commit message and binding description say s32g2 and s32g3, but there's
+>>>>>> only a compatible here for g2.
+>>>>>
+>>>>> Yes, the SIUL2 GPIO hardware is the same for both S32G2 and S32G3 SoCs. I plan
+>>>>> to reuse the same compatible when I add the SIUL2 GPIO device tree node for
+>>>>> the S32G3 boards. Would that be ok?
+>>>>
+>>>> There are only few exceptions where re-using compatible is allowed. Was
+>>>> S32G on them? Please consult existing practice/maintainers and past reviews.
 
-Why? I don't see any need for that.
+I will add another compatible: "nxp,s32g3-siul2-gpio" for the S32G3 SoC. We currently
+also have the SIUL2 pinctrl driver in upstream with only one compatible:
+"nxp,s32g2-siul2-pinctrl". Should I also send a separate patch to add an S32G3 compatible
+to it?
 
-> > If there isn't any way to distinguish the flashes at runtime (which I
-> > doubt/challenge btw), then as a last resort we introduce a dedicated
-> > compatible for the flash in cause and specify all needed parameters in =
-a
-> > dedicated flash entry. This shall be more generic as further flash
-> > parameters can be statically specified in the dedicated flash entry,
-> > less invasive for dt, and less confusing for people when they decide
-> > whether to use OTP or not. OTP params in device tree is a no-go.
-> >
-> > But again, you have to prove why you can't distinguish the flash at
-> > runtime before introducing a new flash compatible. So don't go this pat=
-h
-> > before sharing with us what you're trying to achieve.
->
-> You keep sending me contradictory messages.
->
-> I told you we can not "guess" OTP settings based on JEDEC ID and
-> SFDP existence.
+>>
+>> Just in case this was not clear - comment "please consult existing..."
+>> was towards Andrei, not you Conor.
+> 
+> Oh I know, I was just passing through and figured I may as well leave a
+> comment repeating what I said on the other devices :)
+> 
+>>> Pretty sure I had a similar conversation about another peripheral on
+>>> these devices, and it was established that these are not different fusings
+>>> etc, but rather are independent SoCs that reuse an IP core. Given that,
+>>> I'd expect to see a fallback compatible used here, as is the norm.
+>>
+>> Yep.
+>>
+>> Best regards,
+>> Krzysztof
+>>
 
-What are you trying to achieve here? I've told you we are trying
-hard to figure out everything out at runtime. I'd suggest you start
-with one particular device where you want OTP support for. If the
-flash id is already in our database, find a way to distinguish
-between the old and the new one; probably by looking at some SFDP
-parameters. No need for any new compatible. Don't try to solve the
-problem for all the chips out there.
+Best regards,
+Andrei
 
-Again, the reason why we are trying hard to determine that at
-runtime is that these flashes are usually second source devices and
-a manufacturer might just replace it with a (more or less)
-compatible one. Therefore, the less information we put into the
-devicetree the better. So before you are sending a new version with
-the flash compatibles, you actually have to convince us that there
-is no other way of knowing what kind of flash there is on your
-board except for providing the name by the firmware.
-
--michael
 
