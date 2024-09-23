@@ -1,245 +1,383 @@
-Return-Path: <devicetree+bounces-104589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B45C97EDEA
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 17:15:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7546197EE34
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 17:30:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CADAE1F21E39
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 15:15:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 974EE1C21612
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 15:30:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95C6B19EEC9;
-	Mon, 23 Sep 2024 15:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F145919E974;
+	Mon, 23 Sep 2024 15:29:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b="jqFqoHD9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="olT7oJf0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from uho.ysoft.cz (uho.ysoft.cz [81.19.3.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF9EF1FC8;
-	Mon, 23 Sep 2024 15:14:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=81.19.3.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C925E19E96A
+	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 15:29:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727104465; cv=none; b=o72c/pGscVfKOllWJ0MAfcNcz8GmwqCoc4a7Qn4e/T5TncwKtwamOymSFIW+/tSURlcyuH89jmiMeiUYXBPMbdHSCdVHqxP5wxhZjEn6yXw9PsuD/1VyNTv3QZqnq4CfUOttVDj+QlaI90kEjlsAek/fCP8VDu91wWGlUlxlAAc=
+	t=1727105393; cv=none; b=To9DYoG//6P2pBOIIY7lXDr7VeN8dIZj90RXkU3BpElGFK6JfYz8K0vqTkj7WIeZaiWzlVck2HzAEGMguLW8LmXaikyvK6Ivn4+Ev/ozGbgAe4iFQ47bJnNiS1NK0EMPtCkh1ZHJG/f1DYCKjb6ysueRFgD8B1us7jYwQxsPq+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727104465; c=relaxed/simple;
-	bh=g/0Hdg8Un2CXL8LH60icGy740pZE1jnp1uFF0pCD7B8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Y+4Ybwqs7uN0fCtNJmGBNRQ7nw2XuKxNYe2RUDdS1KE6S0VLH6xb6zhLjEsZsYp2I9NVAWpa+efeX41FLWuktxgliYaRaG/xMfOqGJQYj127s22E0xrGlVK5GkAG9ke0/vKdzD8cIDf+k47I3tbgGf6DjNbQiFRnQjYLwShEPTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com; spf=pass smtp.mailfrom=ysoft.com; dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b=jqFqoHD9; arc=none smtp.client-ip=81.19.3.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ysoft.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-	s=20160406-ysoft-com; t=1727104462;
-	bh=YQdTsrkK3A3RwP/xvM3nu45doQX8paQActYi2VSP4Zw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=jqFqoHD9s51BZaXQsoYyxT42Ru3GcdQn0INqUKLAqf9VNJbEufuxN2eNUXeP8UQ2l
-	 8+FQc3LO3MPyYJj2xjCCBTKo685YNPl2rsNA2gmiikhjPlGC5aVu55aXtFsTzb9mw/
-	 gf6fUmjS11rMd6Df/x1pUHX8WbyO8MAt42cwwrxI=
-Received: from vokac-nb.ysoft.local (unknown [10.1.8.111])
-	by uho.ysoft.cz (Postfix) with ESMTP id B2D33A0640;
-	Mon, 23 Sep 2024 17:14:21 +0200 (CEST)
-From: =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Petr Benes <petr.benes@ysoft.com>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Herburger <gregor.herburger@ew.tq-group.com>,
-	Hiago De Franco <hiago.franco@toradex.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	Michael Walle <mwalle@kernel.org>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Mathieu Othacehe <m.othacehe@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	=?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
-Subject: [PATCH v3 4/4] arm64: dts: imx8mp-iota2: Enable the USB Type-C port
-Date: Mon, 23 Sep 2024 17:14:17 +0200
-Message-ID: <20240923151417.1665431-5-michal.vokac@ysoft.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240923151417.1665431-1-michal.vokac@ysoft.com>
-References: <20240923151417.1665431-1-michal.vokac@ysoft.com>
+	s=arc-20240116; t=1727105393; c=relaxed/simple;
+	bh=PUJbPwVGDOFz0HOjhDbpVsRxe9tWFnHQkHBmF7qUfzE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SQ7tvhhzg4yoZmeGuiSb6Anptc/Q7icV9KspxTSkAN74j/RvS1uN1agH3pJ3qxjlyC5QdVN2HYOfMfPlwgB1Gw/VKDXafhQZ4iHHNAvfBxWhvV8YGtLWKxLcHjB/148ljiBRLlHBwB1ShkXOaygER7TOscpJIiQu/KMR09IzqfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=olT7oJf0; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-42cb1866c00so6610725e9.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 08:29:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1727105390; x=1727710190; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=dD7hHYsS283GSbCBplOCkRMwjoDufwPExNMfzIl92yU=;
+        b=olT7oJf0JOXxMR/ESD8sMqClIU9Gi0y+LWgsMMH+QlU4dtJrnZK8MR6kZmYegGntPn
+         RitkOofrXN9uSTr97yx8HdUMMIS3ITUobyRn3ELHx3vipibqVaRQH02al5nejrI6q0Y6
+         k12p4WcZK9cFyReDhRjVn/vOMrSjEsTwsYpumxNVgXr8SE6lLi/a3qCYnyoethumc8Zj
+         J/sKgwgnzbDtCbLKX7kmirFXjtO+HGcDg+axg9jPqcE10W4sqd7/mZnQoXFZLwtFlMBm
+         0st3DrfCPagrVIKQC/a6yQFg0ffblxQ40WTiCBO18t3CGf4elYvrY5g6cDhuOod/mzX6
+         Y+cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727105390; x=1727710190;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dD7hHYsS283GSbCBplOCkRMwjoDufwPExNMfzIl92yU=;
+        b=wplbK1LE0ok4GN7pMd3Cb8z4tpeMhGL7Ab0CqwFR+Qrrgr8CmTyxja/JXEL3QIjxSx
+         9UwIHaC2SYveAouSOz8obqFR1p4G3EuEbgUnjZmBJWsjo2skjhgHZIeX8nwKQ9z7GkgP
+         nlYd8COjp/e8Hehl5rRDX5MGW3TYL2nEeHS3jMwj188CqIOPtpInmpOoh6T6XHlFf1KO
+         kXNvnP4QVgvJ2OTtY2LmZV7DmOzmHQQRXqUe/+HBBxoxgfNpy/nflsayjZamB6mUkHur
+         zPaq36I/zgKM85X+eoJy9bxiftAwYjF+/PPk5XiYyJa6U0ZBpEDhAp7DTf8rCwdS+wkm
+         gcwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUXpbE4/Sfl6LvhGHHCWsb72/qfj3iWO+SmVeCAzibGAwO/6F/VQrbsku59EpvaK2BRpthZhpqbkgbi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yws4BqftehnfyCrA7DHT5pymnbsLxcIS3p7aTNKYvg/4KBEhGVg
+	qIWK8thg6od+hp0ZUYsbAalzo9Kh1infzD0A+z0q+58XlpZTtoi+/Ciu9D8/QgI=
+X-Google-Smtp-Source: AGHT+IHeKCUyjohUfTv2OwDb/BfCJQqRrE8zYdgpcY9fKRGlVv5KGJ083aHsTcr2nBQkM9ny6+e7JQ==
+X-Received: by 2002:a05:600c:1c1e:b0:42c:aeee:d8ed with SMTP id 5b1f17b1804b1-42e7adc7ed0mr34954475e9.7.1727105389915;
+        Mon, 23 Sep 2024 08:29:49 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.211.167])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e7afdda8esm103464185e9.31.2024.09.23.08.29.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Sep 2024 08:29:49 -0700 (PDT)
+Message-ID: <c263b843-50bc-4c2c-b15e-9b87dfb201ab@linaro.org>
+Date: Mon, 23 Sep 2024 17:29:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] dt-bindings: remoteproc: sse710: Add the External
+ Systems remote processors
+To: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: mathieu.poirier@linaro.org, Adam.Johnston@arm.com,
+ Hugues.KambaMpiana@arm.com, Drew.Reed@arm.com, andersson@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ liviu.dudau@arm.com, lpieralisi@kernel.org, robh@kernel.org,
+ sudeep.holla@arm.com, robin.murphy@arm.com
+References: <20240822170951.339492-2-abdellatif.elkhlifi@arm.com>
+ <gzlncpyzwm7x4jcxtdrthrlv2dofk7u3oxn4taadwog5tt37wo@ot6s6kwukd4k>
+ <20240919093517.GA43740@e130802.arm.com>
+ <222b3b11-151a-4ad0-91ea-54ae8f280bcb@kernel.org>
+ <20240919145741.GA7940@e130802.arm.com>
+ <85a223e9-05a4-4034-87a5-57d3eb9409b7@kernel.org>
+ <20240920141958.GA288724@e130802.arm.com>
+ <7784248d-4372-4cf1-a01a-5b731b3f6b96@kernel.org>
+ <20240920163851.GA385919@e130802.arm.com>
+ <e37a0542-d405-4d15-84d2-4c7b1385d3ef@kernel.org>
+ <20240923114945.GA133670@e130802.arm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240923114945.GA133670@e130802.arm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-From: Petr Benes <petr.benes@ysoft.com>
+On 23/09/2024 13:49, Abdellatif El Khlifi wrote:
+> Hi Krzysztof,
+> 
+>>>>>>>>>>> +  '#extsys-id':
+>>>>>>>>>>
+>>>>>>>>>> '#' is not correct for sure, that's not a cell specifier.
+>>>>>>>>>>
+>>>>>>>>>> But anyway, we do not accept in general instance IDs.
+>>>>>>>>>
+>>>>>>>>> I'm happy to replace the instance ID with  another solution.
+>>>>>>>>> In our case the remoteproc instance does not have a base address
+>>>>>>>>> to use. So, we can't put remoteproc@address
+>>>>>>>>>
+>>>>>>>>> What do you recommend in this case please ?
+>>>>>>>>
+>>>>>>>> Waiting one month to respond is a great way to drop all context from my
+>>>>>>>> memory. The emails are not even available for me - gone from inbox.
+>>>>>>>>
+>>>>>>>> Bus addressing could note it. Or you have different devices, so
+>>>>>>>> different compatibles. Tricky to say, because you did not describe the
+>>>>>>>> hardware really and it's one month later...
+>>>>>>>>
+>>>>>>>
+>>>>>>> Sorry for waiting. I was in holidays.
+>>>>>>>
+>>>>>>> I'll add more documentation about the external system for more clarity [1].
+>>>>>>>
+>>>>>>> Basically, Linux runs on the Cortex-A35. The External system is a
+>>>>>>> Cortex-M core. The Cortex-A35 can not access the memory of the Cortex-M.
+>>>>>>> It can only control Cortex-M core using the reset control and status registers mapped
+>>>>>>> in the memory space of the Cortex-A35.
+>>>>>>
+>>>>>> That's pretty standard.
+>>>>>>
+>>>>>> It does not explain me why bus addressing or different compatible are
+>>>>>> not sufficient here.
+>>>>>
+>>>>> Using an instance ID was a design choice.
+>>>>> I'm happy to replace it with the use of compatible and match data (WIP).
+>>>>>
+>>>>> The match data will be pointing to a data structure containing the right offsets
+>>>>> to be used with regmap APIs.
+>>>>>
+>>>>> syscon node is used to represent the Host Base System Control register area [1]
+>>>>> where the external system reset registers are mapped (EXT_SYS*).
+>>>>>
+>>>>> The nodes will look like this:
+>>>>>
+>>>>> syscon@1a010000 {
+>>>>>         compatible = "arm,sse710-host-base-sysctrl", "simple-mfd", "syscon";
+>>>>>         reg = <0x1a010000 0x1000>;
+>>>>>
+>>>>>         #address-cells = <1>;
+>>>>>         #size-cells = <1>;
+>>>>>
+>>>>>         remoteproc@310 {
+>>>>>             compatible = "arm,sse710-extsys0";
+>>>>>             reg = <0x310 4>;
+>>>>
+>>>> Uh, why do you create device nodes for one word? This really suggests it
+>>>> is part of parent device and your split is artificial.
+>>>
+>>> The external system registers (described by the remoteproc node) are part
+>>> of the parent device (the Host Base System Control register area) described
+>>> by syscon.
+>>>
+>>> In case of the external system 0 , its registers are located at offset 0x310
+>>> (physical address: 0x1a010310)
+>>>
+>>> When instantiating the devices without @address, the DTC compiler
+>>> detects 2 nodes with the same name (remoteproc).
+>>
+>> There should be no children at all. DT is not for instantiating your
+>> drivers. I claim you have only one device and that's
+>> arm,sse710-host-base-sysctrl. If you create child node for one word,
+>> that's not a device.
+> 
+> The Host Base System Control [3] is the big block containing various functionalities (MMIO registers).
+> Among the functionalities, the two remote cores registers (aka External system 0 and 1).
+> The remote cores have two registers each.
+> 
+> 1/ In the v1 patchset, a valid point was made by the community:
+> 
+>    Right now it seems somewhat tenuous to describe two consecutive
+>    32-bit registers as separate "reg" entries, but *maybe* it's OK if that's
 
-Enable the USB Type-C port with the Diodes PI5USB30213A port controller.
-The port supports dual role data but can operate only in source power role
-and PD is not supported.
+ARM is not special, neither this hardware is. Therefore:
+1. Each register as reg: nope, for obvious reasons.
+2. One device for entire syscon: quite common, why do you think it is
+somehow odd?
+3. If you quote other person, please provide the lore link, so I won't
+spend useless 5 minutes to find who said that or if it was even said...
 
-Signed-off-by: Petr Benes <petr.benes@ysoft.com>
-Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
----
-v3:
-- none
-v2:
-- Use typec instead of tcpc.
-- Drop unneeded status.
+>    all there ever is. However if it's actually going to end up needing several
+>    more additional MMIO and/or memory regions for other functionality, then
+>    describing each register and location individually is liable to get
+>    unmanageable really fast, and a higher-level functional grouping (e.g. these
+>    reset-related registers together as a single 8-byte region) would likely be
+>    a better design.
+> 
+>    The Exernal system registers are part of a bigger block with other functionality in place.
+>    MFD/syscon might be better way to use these registers. You never know in
+>    future you might want to use another set of 2-4 registers with a different
+>    functionality in another driver.
+> 
+>    I would see if it makes sense to put together a single binding for
+>    this "Host Base System Control" register (not sure what exactly that means).
+>    Use MFD/regmap you access parts of this block. The remoteproc driver can
+>    then be semi-generic (meaning applicable to group of similar platforms)
+>    based on the platform compatible and use this regmap to provide the
+>    functionality needed.
 
- .../boot/dts/freescale/imx8mp-iota2-lumpy.dts | 94 +++++++++++++++++++
- 1 file changed, 94 insertions(+)
+I don't understand how this lengthy semi-quote answers my concerns.
+Please write concise points as arguments to my questions.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts b/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
-index 120e6b87a000..bfed410339a4 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
-@@ -32,6 +32,17 @@ button-reset {
- 		};
- 	};
- 
-+	reg_typec: regulator-typec {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio1 12 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&pinctrl_usbc_vbus>;
-+		pinctrl-names = "default";
-+		regulator-max-microvolt = <5000000>;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-name = "typec";
-+	};
-+
- 	reg_usb_host: regulator-usb-host {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -218,6 +229,46 @@ &i2c2 {
- 	pinctrl-names = "default";
- 	status = "okay";
- 
-+	typec@d {
-+		compatible = "diodes,pi5usb30213a";
-+		reg = <0xd>;
-+		interrupts-extended = <&gpio1 5 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-0 = <&pinctrl_typec>;
-+		pinctrl-names = "default";
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			data-role = "dual";
-+			label = "USB-C";
-+			pd-disable;
-+			power-role = "source";
-+			self-powered;
-+			typec-power-opmode = "default";
-+			vbus-supply = <&reg_typec>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					usb_con_hs: endpoint {
-+						remote-endpoint = <&typec_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					usb_con_ss: endpoint {
-+						remote-endpoint = <&typec_ss>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+
- 	rtc: rtc@68 {
- 		compatible = "dallas,ds1341";
- 		reg = <0x68>;
-@@ -309,6 +360,12 @@ MX8MP_IOMUXC_SAI3_MCLK__PWM4_OUT	0x102
- 		>;
- 	};
- 
-+	pinctrl_typec: typecgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO05__GPIO1_IO05	0x1c0
-+		>;
-+	};
-+
- 	pinctrl_uart2: uart2grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	0x0
-@@ -322,6 +379,11 @@ MX8MP_IOMUXC_GPIO1_IO14__USB2_OTG_PWR	0x0
- 		>;
- 	};
- 
-+	pinctrl_usbc_vbus: usbcgrp {
-+		fsl,pins = <MX8MP_IOMUXC_GPIO1_IO12__GPIO1_IO12	0x0
-+		>;
-+	};
-+
- 	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x194
-@@ -389,15 +451,47 @@ &uart2 {
- 	status = "okay";
- };
- 
-+&usb3_0 {
-+	status = "okay";
-+};
-+
- &usb3_1 {
- 	status = "okay";
- };
- 
-+&usb3_phy0 {
-+	status = "okay";
-+};
-+
- &usb3_phy1 {
- 	vbus-supply = <&reg_usb_host>;
- 	status = "okay";
- };
- 
-+&usb_dwc3_0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	dr_mode = "otg";
-+	usb-role-switch;
-+	status = "okay";
-+
-+	port@0 {
-+		reg = <0>;
-+
-+		typec_hs: endpoint {
-+			remote-endpoint = <&usb_con_hs>;
-+		};
-+	};
-+
-+	port@1 {
-+		reg = <1>;
-+
-+		typec_ss: endpoint {
-+			remote-endpoint = <&usb_con_ss>;
-+		};
-+	};
-+};
-+
- &usb_dwc3_1 {
- 	dr_mode = "host";
- 	status = "okay";
--- 
-2.43.0
+For example, I don't care what your remote proc driver does and it
+should not matter in the terms of this binding.
+
+> 
+> 2/ There are many examples in the kernel that use syscon as a parent node of
+>    child nodes for devices located at an offset from the syscon base address.
+>    Please see these two examples [1][2]. I'm trying to follow a similar design if that
+>    makes sense.
+
+Yeah, for separate devices. If you have two words without any resources,
+I claim you might not have here any separate devices or "not separate
+enough", because all this is somehow fluid. Remote core sounds like
+separate device, but all your arguments about need of extid which cannot
+be used in reg does not support this case.
+
+The example in the binding is also not complete - missing rest of
+devices - which does not help.
+
+> 
+> 3/ Since there are two registers for each remote core. I'm suggesting to set the
+>    size in the reg property to 8. 
+
+How is this related?
+
+> The driver will read the match data to get the right
+>    offset to be used with regmap APIs.
+
+Sorry, no talks about driver. Don't care, at least in this context.
+
+You can completely omit address space from children in DT and everything
+will work fine and look fine from bindings point of view.
+
+> 
+> Suggested nodes:
+> 
+> 
+>     syscon@1a010000 {
+>         compatible = "arm,sse710-host-base-sysctrl", "simple-mfd", "syscon";
+>         reg = <0x1a010000 0x1000>;
+> 
+>         #address-cells = <1>;
+>         #size-cells = <1>;
+> 
+>         remoteproc@310 {
+>             compatible = "arm,sse710-extsys0";
+>             reg = <0x310 8>;
+>             firmware-name = "es_flashfw.elf";
+>             mboxes = <&mhu0_hes0 0 1>, <&mhu0_es0h 0 1>;
+>             mbox-names = "txes0", "rxes0";
+>             memory-region = <&extsys0_vring0>, <&extsys0_vring1>;
+>         };
+> 
+>         remoteproc@318 {
+>             compatible = "arm,sse710-extsys1";
+>             reg = <0x318 8>;
+>             firmware-name = "es_flashfw.elf";
+
+Same firmware? Always or only depends?
+
+>             mboxes = <&mhu0_hes1 0 1>, <&mhu0_es1h 0 1>;
+>             mbox-names = "txes0", "rxes0";
+>             memory-region = <&extsys1_vring0>, <&extsys1_vring1>;
+
+The rest of resources support the idea of two children but I still have
+doubts about need of identifying remote instances.
+
+Looking at your driver it is totally not needed. Your driver just
+duplicates the regs here, so it's a proof that you are not using DT
+correctly.
+
+>         };
+> };
+> 
+> 
+> [1]: Documentation/devicetree/bindings/clock/sprd,sc9863a-clk.yaml
+> 
+>     syscon@20e00000 {
+>       compatible = "sprd,sc9863a-glbregs", "syscon", "simple-mfd";
+>       reg = <0x20e00000 0x4000>;
+>       #address-cells = <1>;
+>       #size-cells = <1>;
+>       ranges = <0 0x20e00000 0x4000>;
+> 
+>       apahb_gate: apahb-gate@0 {
+>         compatible = "sprd,sc9863a-apahb-gate";
+>         reg = <0x0 0x1020>;
+
+Well, size 1020, but please never use sprd as an example. You can as
+well point to a buggy code and say that "I can implement bugs as well,
+because there are bugs already".
+
+Same for few other almost abandoned, poorly maintained platforms.
+
+>         #clock-cells = <1>;
+>       };
+>     };
+> 
+> 
+> [2]: Documentation/devicetree/bindings/arm/arm,juno-fpga-apb-regs.yaml:
+> 
+>     syscon@10000 {
+>         compatible = "arm,juno-fpga-apb-regs", "syscon", "simple-mfd";
+>         reg = <0x010000 0x1000>;
+>         ranges = <0x0 0x10000 0x1000>;
+>         #address-cells = <1>;
+>         #size-cells = <1>;
+> 
+>         led@8,0 {
+>             compatible = "register-bit-led";
+
+register-bit-led... what do you want to prove? You will find
+clocks-per-reg and try to implement them? That's known no-go.
+
+Best regards,
+Krzysztof
 
 
