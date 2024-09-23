@@ -1,233 +1,190 @@
-Return-Path: <devicetree+bounces-104547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B42297EB51
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 14:07:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B19AE97EB55
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 14:08:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2964281AA9
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 12:07:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2691FB22321
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 12:08:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B8941990C5;
-	Mon, 23 Sep 2024 12:07:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAB2A198826;
+	Mon, 23 Sep 2024 12:07:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K9EDCjqy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ee/+bOlg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F136195803
-	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 12:07:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2A24198836
+	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 12:07:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727093243; cv=none; b=mg/aQNyClvDXLs5z9MTbdHBWKpJEP99pL6YK0OdP5HX937nxJ8A+atEF82j2Gv55Oyy6g5zI9eXvouv+h2lX0EeIdtKAS/aKQ4IfOrg537HzNVW7xaEeO0Y7go+w3b73lsrJTN1JahsQi7JaXpQFgaud9ojfO9uHoFikAEjPG4k=
+	t=1727093257; cv=none; b=Lsh+m8bEH/desxJwC/YremBp8hHqHWbMUEGulf1InFfMdUAUvptXwG4ers6DXYopUIaa+rNRwRUqonq0AkUOjGMAagVx83iw40VCjh2NvYbFQa70ylKfYGHWZwaP3RUPivnKVzRjwO8iwnEgPjVrGFiZRrBihf4Eue1tuEF+U2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727093243; c=relaxed/simple;
-	bh=zM1bZyYHd70M8JaWJ1L5fpeK7Sz60CEwLfpmaTylnDw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EEzKaiqW6Bg0+BSzmgkmEmsROz/bZA+BPgG91SKOK6LXK+a11YCdzD/nTjaZ/RC21v9IxdWLUS1vPqldRNyVf3GVK1vxJZiNJlgIKIJmo+PIaHkaRS/D2CkZ0BVDen1Hw9G9KXo9Wh1CYZahVhY7b/4wPt+t4JoIFD9W455YzC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K9EDCjqy; arc=none smtp.client-ip=209.85.128.42
+	s=arc-20240116; t=1727093257; c=relaxed/simple;
+	bh=jsFaJdRU7csPgLct8YOiSBbZklln8JKRpXIkrIMfqSQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R395cuLON3YryICEfYYE6otsPUz/VTqelBqPqkWKHB7c4BvdkqyOJlefGoSMgjepNUOa77WQH8iBKxNZJpj7ZJbHGoFnpFmotn/gL9Ro2qptFxrB5aHmZhyMjf7HwE56JdO6ceiHzkgUOiEwu1zeV1iswWKkr1i/cbCFSx8Iww0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ee/+bOlg; arc=none smtp.client-ip=209.85.167.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-42cba6cdf32so38609625e9.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 05:07:20 -0700 (PDT)
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-53659c8d688so3202115e87.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 05:07:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727093239; x=1727698039; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G2gTdIRa+4av8ZO1VEuKDTF8d0ArdIdZUGvGfp1ZLPQ=;
-        b=K9EDCjqyumhkTqR4mP8jcxWi5YSeKN8FjZn4LEtC+cQxZdjFAExfSQVIG8a6k04kAp
-         LW9psiJNByGCx74yEVcwCJwxgzqf1rI9uevsp6uxxA0HEPNy0McJeo1JeC8tFNmLnEWB
-         DSGxdbUn/Oqxkv11L1B62hcJMNzxMWK7i2TRylaMZstHcBcK3oRRp1JmWj7I7aES2iQO
-         RKS5DQ7yNxktrbxm5N/i/PFI7NYeN6L77ajFnzatz6F5Qj73u+IUtrWfIi8LuJ/L9MT1
-         6azh/Tx7GUgYFRbck9oGSSqtrKG4fAbwIL/iIN6wZlaYgyUkyF0NHDXYn/Z7WlbfIlkX
-         Bo0w==
+        d=linaro.org; s=google; t=1727093254; x=1727698054; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=uITKFHsG45qX3SEwmrkI/jlizm58nr2czIUA71r1rLY=;
+        b=Ee/+bOlggqqWZZQD8Vvt6P0k7vw8x581oEIfPJlJaZbkby4om2nnQgikhb93zFtAJZ
+         vMDL/KYOgUrQ+cgaLpOSAR7dJ9yhdNYzX3MAkRxgM4clCSl8sjtJsLbpdtp1DpHuqB0z
+         OeJ5hy7RCE1XAa8OpNFmmVsbqrGTeJvSLvpwp8bXX2glwVhhs2RyfBMXi5ia3bcH9kU3
+         1QlyrnTnNcFUcbsCdNYHouc+lZAV2Fhgg9Wq/Df5WsrngfkIn3ixEqPYXa6lvlcDfRsu
+         pzJdDKUQIJDdKE5Krk9RsRW4yaa86qx0krzHBKIYv54SzAXoJvVY60gNimJld/Jg+YMG
+         f3vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727093239; x=1727698039;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1727093254; x=1727698054;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G2gTdIRa+4av8ZO1VEuKDTF8d0ArdIdZUGvGfp1ZLPQ=;
-        b=wWXXczUsZOgoTzD0AMaI3qc71gTLKDE23RbLqeXs+Vsm1yjjI/AGu2QXDSGTH/qtju
-         GPPGg1chmeie5WLMPCD+DZQJl9+j2Sdxib4tQA58VK9RTDor6awZiC313EXNa/+FVQ8J
-         M8O6OeDx6e4voUUifeG4MIsxjLTrFuH2mmzQmfLSWXdqIQUsQr2vbTgpr1Wv7PlxnSIG
-         UC3hcBraVNqttLueslRwSfGXpFlnX+sA/VA7jGQd712lNZzZ6S0M5HXG0LO9G8dn8MxU
-         774CKN+yTPuQDtSzqjj5NoDkoIqzuwl/wuj64iRG4dhSrpECFZQO+3yyf1ohtnhHPhmL
-         GVTw==
-X-Forwarded-Encrypted: i=1; AJvYcCVO/kKy2YXiFMPek1KN21j9jfQwPBkR15gxJBhHjLuQwai0+DohDHu8bi5jeloRP1O5aBVWlOtN6FEN@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMkQf3TpbzLA9GWsvUmAUiFSuhjClHvS36E/Tq4LyEHTKakwC+
-	UBDycmK3NRHy2/Dm3JM2PAOvoCvAVDuLQDUmDrePU2CrbrMF1g0k//3mfSDErN4=
-X-Google-Smtp-Source: AGHT+IHxeKCoN6oEL8DDvB657+8nV3I1QTbZQvrmTpr8AD2mgbnDig66H3xC4+6FS9+s0nXhE2pmaQ==
-X-Received: by 2002:a05:600c:3553:b0:42c:bae0:f059 with SMTP id 5b1f17b1804b1-42e7abe1274mr72494645e9.5.1727093239338;
-        Mon, 23 Sep 2024 05:07:19 -0700 (PDT)
-Received: from [192.168.0.157] ([79.115.63.20])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e7543f3f4sm125405035e9.16.2024.09.23.05.07.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Sep 2024 05:07:18 -0700 (PDT)
-Message-ID: <2c87568d-3caa-4162-91de-094684f1b268@linaro.org>
-Date: Mon, 23 Sep 2024 13:07:17 +0100
+        bh=uITKFHsG45qX3SEwmrkI/jlizm58nr2czIUA71r1rLY=;
+        b=FUT2KRot7CP4hfkIdBcVLqADyUBUWbXBfY/gkkgKOzJelVmJnH+1RzrSx9ZVM3iX6/
+         4PJu9+/X2Oc+0PTLvmy2KNCP6Ubdr6fDEHyAKMa5oDmgdhZbrh6HE5nj2o+mTZ59dq+K
+         o+JQxipN0xeL72r+0XYqfNKr0FSNR1jR/zyT3iA551FPRaT9BlYdtAnWNw8LLrP7t3vS
+         g3p3T0RdR1mkrZTwIIk0MAiR28Xe/f+PIfqSKCEkFS6RxeUS5wQmthDGGX29tnFfrKuA
+         CnHmk03hvBvchzN7OdFYna0mLeLWEQ+onMlT1zdMQ5TWO9g3uz+6xsVWrpY/7M30gzFa
+         YB1w==
+X-Forwarded-Encrypted: i=1; AJvYcCWTsLXkf/HNeAldf2gbsnakgJRQqwHPO3i9dGAxr4gvqvXhmp05RKrinpNVm0SmbvBqtJ9/MDhJtLEq@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHPc1Qjumg2WC129IZVs0/eZzVJrx6mNr42xopbInrsCrNNDvI
+	dri20FQFeyoaGU2DfNYWKnqaQ5YmRh009jz+TrAVz1jxE6cXi2GEI5q0G4u6KdE=
+X-Google-Smtp-Source: AGHT+IFNx3alq9qp6GjujjWykYrIjuZcFpCTCcLn/Id2delQNZ6kI974LK25jq1p/gKrcRDCvi7/GQ==
+X-Received: by 2002:a05:6512:281c:b0:535:5eb2:5281 with SMTP id 2adb3069b0e04-536a563e90bmr4901526e87.17.1727093253748;
+        Mon, 23 Sep 2024 05:07:33 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-536870b8ee6sm3249990e87.296.2024.09.23.05.07.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Sep 2024 05:07:32 -0700 (PDT)
+Date: Mon, 23 Sep 2024 15:07:30 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: zhaoxiong lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, sam@ravnborg.org, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
+	simona@ffwll.ch, dianders@chromium.org, hsinyi@google.com, 
+	awarnecke002@hotmail.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] drm/panel: boe-th101mb31ig002: Modify Starry
+ panel timing
+Message-ID: <ovmleeivshtixncuxwv3dink6l4fi242rcspklicl3u4qp73rx@km3nu4co4hen>
+References: <20240915080830.11318-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <20240915080830.11318-3-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <CAA8EJpqC5tQ45gj8-0bDutinCs7CoxiQVL1EAzwDK9RJTXYMcQ@mail.gmail.com>
+ <CA+6=WdR6+nh9e2HCuCVdR6uw3vuJoWfKCG4gPjJMp9db+Quimw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/5] mtd: spi-nor: core: add manufacturer flags
-To: Erez <erezgeva2@gmail.com>
-Cc: Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org,
- Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>,
- linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Esben Haabendal <esben@geanix.com>
-References: <20240920181231.20542-1-erezgeva@nwtime.org>
- <20240920181231.20542-2-erezgeva@nwtime.org>
- <4e0cf43c-4843-451c-ac6f-86775dbccb2b@linaro.org>
- <CANeKEMOmhAPM1j1_ihzcC2wL6jKsWXPCGfZs+euS8mRvtqgE5A@mail.gmail.com>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <CANeKEMOmhAPM1j1_ihzcC2wL6jKsWXPCGfZs+euS8mRvtqgE5A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+6=WdR6+nh9e2HCuCVdR6uw3vuJoWfKCG4gPjJMp9db+Quimw@mail.gmail.com>
 
+On Mon, Sep 23, 2024 at 05:22:20PM GMT, zhaoxiong lv wrote:
+> On Mon, Sep 16, 2024 at 1:15 PM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> >
+> > Same comment as the one that I've provided to the other patch, plus:
+> >
+> > On Sun, 15 Sept 2024 at 10:11, Zhaoxiong Lv
+> > <lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
+> > >
+> > > In order to meet the timing, remove the delay between "backlight off"
+> > > and "display off", and reduce the delay between "display_off" and
+> > > "enter_sleep"
+> >
+> > Separate commit, separate _justification_. Why, not what.
+> >
+> > >
+> > > Removing variables: display_off_to_enter_sleep_delay_ms
+> >
+> > This phrase is useless.
+> >
+> hi Dmitry
+> 
+> As in another patch reply, in order to solve a black screen problem,
+> the delay is reduced.
+> The panel spec:
+> 1. https://github.com/Vme5o/power-on-off-sequential
 
-
-On 9/23/24 11:31 AM, Erez wrote:
-> On Mon, 23 Sept 2024 at 08:04, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
->>
->> Hi,
->>
-
-Hi!
-
->> On 9/20/24 7:12 PM, Erez Geva wrote:
->>> From: Erez Geva <ErezGeva2@gmail.com>
->>>
->>> Add flag for always trying reading SFDP:
->>> Some vendors reuse all JEDEC IDs on manufacture table
->>>  with new chips that support SFDP.
->>>
->>> Add flag for reading OTP parameters from device tree.
->>> Some vendors reuse JEDEC IDs
->>>  with several chips with different OTP parameters.
->>> Alternatively we read parameters from SFDP.
->>> But the OTP parameters are absent from the SFDP.
->>
->> Do you have some specific flashes that you try to identify? Why can't
->> they be differentiated at runtime?
-> 
-> You can not figure OTP parameters based on  JEDEC ID and SFDP existence.
-> I did send a few examples.
-> 
-> One of them:
-> "How?
-> 
-> When using mx25l12805d, we do not read SFDP.
-> As it uses the no-SFDP flags.
-> When using mx25l12833f hardware with mx25l12805d driver, it did not
-> try to read the SFDP.
-> Yet mx25l12833f does have SFDP, when I remove the no-SFDP flags, the
-> driver fetch the SFDP.
-> 
-> Secondly SFDP does not contain OTP information.
-> 
-> mx25l12805d has two OTP regions of 128 KiB and 384 KiB (yes asymmetric).
-> While mx25l12833f has two OTP regions of 512 KiB.
-
-Ok, so you want to add support for mx25l12833f which shares the same ID
-as mx25l12805d and has different OTP settings. Is that correct?
-
-Which flash do you have at hand, both, none, just one of them?
-> 
-> How do we handle it?
-> I would gladly remove the obsolete mx25l12805d.
-> And skp compatibles all together."
-
-I need to understand first what you're trying to do. Don't assume that I
-remember what we discussed one month ago. Describe the why in the commit
-message.
-> 
-> 
->>
->>> So there is not other way but to add the OTP parameters in the device tree.
->>>
->>
->> If there isn't any way to distinguish the flashes at runtime (which I
->> doubt/challenge btw), then as a last resort we introduce a dedicated
->> compatible for the flash in cause and specify all needed parameters in a
->> dedicated flash entry. This shall be more generic as further flash
->> parameters can be statically specified in the dedicated flash entry,
->> less invasive for dt, and less confusing for people when they decide
->> whether to use OTP or not. OTP params in device tree is a no-go.
->>
->> But again, you have to prove why you can't distinguish the flash at
->> runtime before introducing a new flash compatible. So don't go this path
->> before sharing with us what you're trying to achieve.
-> 
-> You keep sending me contradictory messages.
-
-when? Please accept my apologies if that's the case, it's not in my
-intention. Provide better commit message, help me help you.
+It should be described in the commit message(s). You have removed one
+delay and added another one. Is that a single fix or two separate fixes?
 
 > 
-> I told you we can not "guess" OTP settings based on JEDEC ID and SFDP existence.
+> > >
+> > > Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+> > > ---
+> > >  drivers/gpu/drm/panel/panel-boe-th101mb31ig002-28a.c | 11 +++++------
+> > >  1 file changed, 5 insertions(+), 6 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/panel/panel-boe-th101mb31ig002-28a.c b/drivers/gpu/drm/panel/panel-boe-th101mb31ig002-28a.c
+> > > index 0b87f1e6ecae..c2d0ec199829 100644
+> > > --- a/drivers/gpu/drm/panel/panel-boe-th101mb31ig002-28a.c
+> > > +++ b/drivers/gpu/drm/panel/panel-boe-th101mb31ig002-28a.c
+> > > @@ -29,7 +29,7 @@ struct panel_desc {
+> > >         bool lp11_before_reset;
+> > >         unsigned int vcioo_to_lp11_delay_ms;
+> > >         unsigned int lp11_to_reset_delay_ms;
+> > > -       unsigned int backlight_off_to_display_off_delay_ms;
+> > > +       unsigned int display_off_to_enter_sleep_delay_ms;
+> > >         unsigned int enter_sleep_to_reset_down_delay_ms;
+> > >         unsigned int power_off_delay_ms;
+> > >  };
+> > > @@ -184,12 +184,10 @@ static int boe_th101mb31ig002_disable(struct drm_panel *panel)
+> > >                                                       panel);
+> > >         struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi };
+> > >
+> > > -       if (ctx->desc->backlight_off_to_display_off_delay_ms)
+> > > -               mipi_dsi_msleep(&dsi_ctx, ctx->desc->backlight_off_to_display_off_delay_ms);
+> > > -
+> > >         mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
+> > >
+> > > -       mipi_dsi_msleep(&dsi_ctx, 120);
+> > > +       if (ctx->desc->display_off_to_enter_sleep_delay_ms)
+> > > +               mipi_dsi_msleep(&dsi_ctx, ctx->desc->display_off_to_enter_sleep_delay_ms);
+> > >
+> > >         mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
+> > >
+> > > @@ -275,6 +273,7 @@ static const struct panel_desc boe_th101mb31ig002_desc = {
+> > >                           MIPI_DSI_MODE_NO_EOT_PACKET |
+> > >                           MIPI_DSI_MODE_LPM,
+> > >         .init = boe_th101mb31ig002_enable,
+> > > +       .display_off_to_enter_sleep_delay_ms = 120,
+> > >  };
+> > >
+> > >  static const struct drm_display_mode starry_er88577_default_mode = {
+> > > @@ -302,7 +301,7 @@ static const struct panel_desc starry_er88577_desc = {
+> > >         .lp11_before_reset = true,
+> > >         .vcioo_to_lp11_delay_ms = 5,
+> > >         .lp11_to_reset_delay_ms = 50,
+> > > -       .backlight_off_to_display_off_delay_ms = 100,
+> > > +       .display_off_to_enter_sleep_delay_ms = 50,
+> > >         .enter_sleep_to_reset_down_delay_ms = 100,
+> > >         .power_off_delay_ms = 1000,
+> > >  };
+> > > --
+> > > 2.17.1
+> > >
+> >
+> >
+> > --
+> > With best wishes
+> > Dmitry
 
-When? And more importantly, why?
-
-> It may be partial and Macronix may add new chips in the future.
-
-I don't understand what you mean by partial, please elaborate.
-
-And we don't add support for what we assume new chips will look like.
-
-> They reuse JEDEC ID only retaining flash size and blocks.
-
-Yes, I know macronix shares flash IDs among flavors of flashes or new
-chips altogether.
-
-> This is why compatibilities work with new Macronix chips . Although by
-
-In the last 7 years we haven't add any new compatible for SPI NOR, I
-don't understand what are you referring to.
-
-> reading the SFDP, we can use higher speeds.
-
-I don't see what's your point with this sentence.
-
-> We can use SFDP parameters to read  flash size, blocks and speed.
-> But it does not contain any OTP parameters.
-> I found only one Macronix chip with an enterprise SFDP table with a
-> boolean flag for OTP, this does not help us much.
-
-So you say that there's a specific vendor SFDP table that contains a bit
-indicating whether OTP is supported or not? Use that then.
-
-> Macronix technical support was explicit on OTP settings. You can not
-
-Provide us the answer for your specific flash. I don't care yet about
-all their flashes.
-
-> deduce them. You must know what chip you use.
-
-And I think I already said that you can differentiate between the two
-based on SFDP presence. mx25l12833f has SFDP, thus when SFDP present use
-the mx25l12833f-OTP configuration. When SFDP is not presence one may add
-support for the mx25l12805d-OTP configuration.
-
-Is there any case that I miss?
-
-> As far as I can see, Macronix does not reuse module names (god thanks for that).
-> 
-> I do not mind using flash compatible.
-> Just clarify that point.
-> And I will send the patches accordingly.
-> 
-
-I'm afraid I haven't understood yet what you're trying to achieve to
-provide some guidance.
+-- 
+With best wishes
+Dmitry
 
