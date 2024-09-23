@@ -1,284 +1,176 @@
-Return-Path: <devicetree+bounces-104626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E19F97F185
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 22:06:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E890197F1E0
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 23:09:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCA231C20B06
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 20:06:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70AD31F21A14
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 21:09:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 442B51A0732;
-	Mon, 23 Sep 2024 20:06:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 426DE82C8E;
+	Mon, 23 Sep 2024 21:09:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GprJa2hi"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="ro//ND4f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A102C1CA84;
-	Mon, 23 Sep 2024 20:06:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 102FA7711B
+	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 21:09:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727121981; cv=none; b=i4SxoOB9tlu1mAxKe0Zs+VVHevJOyGjJfACvkux+RPu6gUFdJeBm74xwvoNQEeew8H786/Zh+BSZWoyOrpCBHWDP4Bz6KrxO6+xnzFoz/4SpDIvvt7ELWsTBgNJCnFiNZa8GIeRbh85c6EMWL89qrVvdMHDVgZoHVk06Yc42jrw=
+	t=1727125781; cv=none; b=dIhMeDhvCHL7MMbzKYtYHjeBlhI2+d1xl/d2zgkpq6o0dwrzRHlSUQj1yb/LQyhTHlzvG/fDLhn36Y2gEXp2lXNwRimbX0o64ZocBRdbaV9Tj5aOYnydbsyGqhbMp0HRsewmpsliVOFL6BfQ7Zm3afCuQ9aOH7J9/Pb+xYRfyqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727121981; c=relaxed/simple;
-	bh=LXYF61Ek9LnRWDmYPChBDRQ1PsBLt3T+ROBLfUbNjgg=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mV6VfYvPO5fdmxl20ZXiDeHsF5ZvMO0m3KpQGOMx4ndpffg9vOFoztHb1J3BNwIjNGLUEOrPOW2rKvQu4QaYf7099Pmu7rZp3iOVMssWTwMExVC7qtPSDomg/cncZS2DIyrbQT2xTgzco1N9+crXILrGRc2ekjknE/xDbQvMcas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GprJa2hi; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48NB0kfs004282;
-	Mon, 23 Sep 2024 20:05:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=UamudfL21Lb2M9lBmhoBDp2W
-	oIDD5EOwv+TFnn9srvg=; b=GprJa2hiTo1Damd0slzujVHSvkllpBn5GWSUbRqc
-	Q5tgTpuK+9mxg4GdnEMFI0xXgKCVq7fpTV1hQOf/vxOknpzaefghmNdI0Ozc7hhL
-	pdtjJtTfb2dgWZAqn4Y/OE45penl9RxwoURHB4dyQCZQrnTPCOLmjrZpCWdshcvb
-	v3+RJDaU4Y8raouaXe6NyFmFjuMJdUk+iKInc/vG1oAeEdxnEoWgrri/JFl9B8ww
-	qkxnnMAAFb2zybEvM3ITIccGR4I9y6SDZdKwaWvDg4UkgDrbiaNLtFpTTR4QeG4R
-	VSti8U1QqJS/0TBKkkRNjOYls9dV1DcqHhirY6dgtqC72g==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41sqakdtqq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Sep 2024 20:05:48 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48NK5llQ003734
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Sep 2024 20:05:47 GMT
-Received: from hu-akhilpo-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+	s=arc-20240116; t=1727125781; c=relaxed/simple;
+	bh=y/BDAr+WVaqjTV+kyPtji91RDlLPTklaOZh+mKm7qeU=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=aztt0RJwkcAAFZBMJdBH+yGKhv50i/iQmK5mSj6N8VIrnyw1tP1HyUVhfchlFZct0gHLJJMDP/Llv2sP+V58y1yR88geJQTJrEjFdPJ54fPbo9diSgolEzYX6vIxFG+qwvnP6cZcp6cbGhafh2AmNW9Qzxovb+2Chv4etBryDYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=ro//ND4f; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id B8C042C05DB;
+	Tue, 24 Sep 2024 09:09:29 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1727125769;
+	bh=y/BDAr+WVaqjTV+kyPtji91RDlLPTklaOZh+mKm7qeU=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=ro//ND4fdyFcE1LunEeqmjg1bJDqNpc67ohVmbKDYgA6CwuscMABU73KZC4qpPA4C
+	 Whdc4G56+ZvLA0rvuNv7iVieTMCQYti8/iWhlwFLJPKXgrekN5zmC7PfgAsdfjJskZ
+	 EfRMOBpjU69yNduAB68M8reTQQIFhTiNXp/IKXHOJPsLJJ7+81NJlal12gkMQS4ajB
+	 4DXa9hgftME5fKXoXpzTBAdPkG45+WZTJ1p0HbeedIVwYFYlm2AIKdaHH/FGkYVNG6
+	 ya/tQlUaU4eDt9GSwbCos6TgZouJrozMm5u3Dw9LFqUTpc/PE12vRgybXhGaeQZgB1
+	 COeUBF0F64jTg==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B66f1d9090001>; Tue, 24 Sep 2024 09:09:29 +1200
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 23 Sep 2024 13:05:41 -0700
-Date: Tue, 24 Sep 2024 01:35:37 +0530
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        "Konrad
- Dybcio" <konrad.dybcio@linaro.org>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "Puranam V G Tejaswi"
-	<quic_pvgtejas@quicinc.com>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sa8775p: Add gpu and gmu nodes
-Message-ID: <20240923200537.q5rcw66wmqnwmtpk@hu-akhilpo-hyd.qualcomm.com>
-References: <20240918-a663-gpu-support-v1-0-25fea3f3d64d@quicinc.com>
- <20240918-a663-gpu-support-v1-3-25fea3f3d64d@quicinc.com>
- <udt76i3sl7zekhudqpnvhvhfxchvixwoinz7metuwfrpynl47k@wlpforwv7mcf>
+ 15.2.1544.11; Tue, 24 Sep 2024 09:09:29 +1200
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1544.011; Tue, 24 Sep 2024 09:09:29 +1200
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: "andi.shyti@kernel.org" <andi.shyti@kernel.org>, "robh@kernel.org"
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "tsbogend@alpha.franken.de"
+	<tsbogend@alpha.franken.de>, "linux-i2c@vger.kernel.org"
+	<linux-i2c@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-mips@vger.kernel.org"
+	<linux-mips@vger.kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: i2c: Add RTL9300 I2C controller
+Thread-Topic: [PATCH v2 1/3] dt-bindings: i2c: Add RTL9300 I2C controller
+Thread-Index: AQHbCvFfF1/lrjWfeE+OalLwVwvZx7JjfDOAgAGegAA=
+Date: Mon, 23 Sep 2024 21:09:29 +0000
+Message-ID: <ab5c995c-b7b6-4435-9f6e-8b0e37add2e9@alliedtelesis.co.nz>
+References: <20240920000930.1828086-1-chris.packham@alliedtelesis.co.nz>
+ <20240920000930.1828086-2-chris.packham@alliedtelesis.co.nz>
+ <6hlfdtbdf7yhkaoiuglhk4gksgzpahewzjf4cseedon7x2tx3s@m6c23rqxwkyu>
+In-Reply-To: <6hlfdtbdf7yhkaoiuglhk4gksgzpahewzjf4cseedon7x2tx3s@m6c23rqxwkyu>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <3031525CF0626642A5B23B759A5BCE06@atlnz.lc>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <udt76i3sl7zekhudqpnvhvhfxchvixwoinz7metuwfrpynl47k@wlpforwv7mcf>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Z1IHc7ztRIcqQB16xIqxzTzLQGLbnF3B
-X-Proofpoint-GUID: Z1IHc7ztRIcqQB16xIqxzTzLQGLbnF3B
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
- bulkscore=0 impostorscore=0 suspectscore=0 phishscore=0 adultscore=0
- clxscore=1015 malwarescore=0 lowpriorityscore=0 mlxlogscore=999
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409230145
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=Id0kWnqa c=1 sm=1 tr=0 ts=66f1d909 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=EaEq8P2WXUwA:10 a=62ntRvTiAAAA:8 a=gEfo2CItAAAA:8 a=7N9J6BbcnEMxvS8Re7gA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=pToNdpNmrtiFLRE6bQ9Z:22 a=sptkURWiP4Gy88Gu7hUp:22
+X-SEG-SpamProfiler-Score: 0
 
-On Wed, Sep 18, 2024 at 12:27:03AM +0300, Dmitry Baryshkov wrote:
-> On Wed, Sep 18, 2024 at 02:08:43AM GMT, Akhil P Oommen wrote:
-> > From: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
-> > 
-> > Add gpu and gmu nodes for sa8775p based platforms.
-> 
-> Which platforms? The commit adds nodes to the SoC and the single RIDE
-> platform.
-> 
-> > 
-> > Signed-off-by: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
-> > Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi |  8 ++++
-> >  arch/arm64/boot/dts/qcom/sa8775p.dtsi      | 75 ++++++++++++++++++++++++++++++
-> >  2 files changed, 83 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> > index 2a6170623ea9..a01e6675c4bb 100644
-> > --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> > @@ -407,6 +407,14 @@ queue3 {
-> >  	};
-> >  };
-> >  
-> > +&gpu {
-> > +	status = "okay";
-> > +
-> > +	zap-shader {
-> 
-> It's easier to add gpu_zap_shader_link label in the DTSI file and then
-> reference it instead of using the subnode again.
-> 
-> > +		firmware-name = "qcom/sa8775p/a663_zap.mbn";
-> > +	};
-> > +};
-> 
-> Separate patch, please.
-> 
-> > +
-> >  &i2c11 {
-> >  	clock-frequency = <400000>;
-> >  	pinctrl-0 = <&qup_i2c11_default>;
-> > diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> > index 23f1b2e5e624..12c79135a303 100644
-> > --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> > @@ -2824,6 +2824,81 @@ tcsr_mutex: hwlock@1f40000 {
-> >  			#hwlock-cells = <1>;
-> >  		};
-> >  
-> > +		gpu: gpu@3d00000 {
-> > +			compatible = "qcom,adreno-663.0", "qcom,adreno";
-> > +			reg = <0 0x03d00000 0 0x40000>,
-> > +			      <0 0x03d9e000 0 0x1000>,
-> > +			      <0 0x03d61000 0 0x800>;
-> 
-> I think it's suggested to use 0x0 now
-> 
-> > +			reg-names = "kgsl_3d0_reg_memory",
-> > +				    "cx_mem",
-> > +				    "cx_dbgc";
-> > +			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
-> > +			iommus = <&adreno_smmu 0 0xc00>,
-> > +				 <&adreno_smmu 1 0xc00>;
-> > +			operating-points-v2 = <&gpu_opp_table>;
-> > +			qcom,gmu = <&gmu>;
-> > +			interconnects = <&gem_noc MASTER_GFX3D 0 &mc_virt SLAVE_EBI1 0>;
-> 
-> QCOM_ICC_TAG_ALWAYS instead of 0
-> 
-> > +			interconnect-names = "gfx-mem";
-> > +			#cooling-cells = <2>;
-> 
-> No speed bins?
-
-Thanks for the review. Agree on all comments.
-
-Speedbins were missed because we are sharing these changes early in the
-developement cycle, sort of like what we did for chromeos develeopment.
-Will try to pick it up in the next patchset.
-
--Akhil
-
-> 
-> > +
-> > +			status = "disabled";
-> > +
-> > +			zap-shader {
-> 
-> gpu_zap_shader: zap-shader
-> 
-> > +				memory-region = <&pil_gpu_mem>;
-> > +			};
-> > +
-> > +			gpu_opp_table: opp-table {
-> > +				compatible = "operating-points-v2";
-> > +
-> > +				opp-405000000 {
-> 
-> Just a single freq?
-> 
-> > +					opp-hz = /bits/ 64 <405000000>;
-> > +					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-> > +					opp-peak-kBps = <8368000>;
-> > +				};
-> > +
-> 
-> Drop the empty line, please.
-> 
-> > +			};
-> > +		};
-> > +
-> > +		gmu: gmu@3d6a000 {
-> > +			compatible = "qcom,adreno-gmu-663.0", "qcom,adreno-gmu";
-> > +			reg = <0 0x03d6a000 0 0x34000>,
-> > +				<0 0x3de0000 0 0x10000>,
-> > +				<0 0x0b290000 0 0x10000>;
-> 
-> Wrong indentation, please align to the angle bracket.
-> Also I think it's suggested to use 0x0 now
-> 
-> > +			reg-names = "gmu", "rscc", "gmu_pdc";
-> > +			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
-> > +					<GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
-> 
-> And here
-> 
-> > +			interrupt-names = "hfi", "gmu";
-> > +			clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
-> > +				 <&gpucc GPU_CC_CXO_CLK>,
-> > +				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
-> > +				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
-> > +				 <&gpucc GPU_CC_AHB_CLK>,
-> > +				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
-> > +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>;
-> > +			clock-names = "gmu",
-> > +				      "cxo",
-> > +				      "axi",
-> > +				      "memnoc",
-> > +				      "ahb",
-> > +				      "hub",
-> > +				      "smmu_vote";
-> > +			power-domains = <&gpucc GPU_CC_CX_GDSC>,
-> > +					<&gpucc GPU_CC_GX_GDSC>;
-> > +			power-domain-names = "cx",
-> > +					     "gx";
-> > +			iommus = <&adreno_smmu 5 0xc00>;
-> > +			operating-points-v2 = <&gmu_opp_table>;
-> > +
-> > +			gmu_opp_table: opp-table {
-> > +				compatible = "operating-points-v2";
-> > +
-> > +				opp-200000000 {
-> > +					opp-hz = /bits/ 64 <200000000>;
-> > +					opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
-> > +				};
-> > +			};
-> > +		};
-> > +
-> >  		gpucc: clock-controller@3d90000 {
-> >  			compatible = "qcom,sa8775p-gpucc";
-> >  			reg = <0x0 0x03d90000 0x0 0xa000>;
-> > 
-> > -- 
-> > 2.45.2
-> > 
-> 
-> -- 
-> With best wishes
-> Dmitry
+SGkgS3J6eXpzdG9mLA0KDQpPbiAyMy8wOS8yNCAwODoyNSwgS3J6eXN6dG9mIEtvemxvd3NraSB3
+cm90ZToNCj4gT24gRnJpLCBTZXAgMjAsIDIwMjQgYXQgMTI6MDk6MjhQTSArMTIwMCwgQ2hyaXMg
+UGFja2hhbSB3cm90ZToNCj4+IEFkZCBkdHNjaGVtYSBmb3IgdGhlIEkyQyBjb250cm9sbGVyIG9u
+IHRoZSBSVEw5MzAwIFNvQy4gVGhlIEkyQw0KPj4gY29udHJvbGxlcnMgb24gdGhpcyBTb0MgYXJl
+IHBhcnQgb2YgdGhlICJzd2l0Y2giIGJsb2NrIHdoaWNoIGlzDQo+PiByZXByZXNlbnRlZCBoZXJl
+IGFzIGEgc3lzY29uIG5vZGUuIFRoZSBTQ0wgcGlucyBhcmUgZGVwZW5kZW50IG9uIHRoZSBJMkMN
+Cj4+IGNvbnRyb2xsZXIgKEdQSU84IGZvciB0aGUgZmlyc3QgY29udHJvbGxlciwgR1BJTyAxNyBm
+b3IgdGhlIHNlY29uZCkuIFRoZQ0KPj4gU0RBIHBpbnMgY2FuIGJlIGFzc2lnbmVkIHRvIGVpdGhl
+ciBvbmUgb2YgdGhlIEkyQyBjb250cm9sbGVycyAoYnV0IG5vdA0KPj4gYm90aCkuDQo+Pg0KPj4g
+U2lnbmVkLW9mZi1ieTogQ2hyaXMgUGFja2hhbSA8Y2hyaXMucGFja2hhbUBhbGxpZWR0ZWxlc2lz
+LmNvLm56Pg0KPj4gLS0tDQo+Pg0KPj4gTm90ZXM6DQo+PiAgICAgIENoYW5nZXMgaW4gdjI6DQo+
+PiAgICAgIC0gVXNlIHJlZyBwcm9wZXJ0eSBmb3IgY29udHJvbGxlciByZWdpc3RlcnMNCj4+ICAg
+ICAgLSBSZW1vdmUgZ2xvYmFsLWNvbnRyb2wtb2Zmc2V0ICh3aWxsIGJlIGhhcmQgY29kZWQgaW4g
+ZHJpdmVyKQ0KPj4gICAgICAtIEludGVncmF0ZWQgdGhlIG11bHRpcGxleGluZyBmdW5jdGlvbi4g
+Q2hpbGQgbm9kZXMgbm93IHJlcHJlc2VudCB0aGUNCj4+ICAgICAgICBhdmFpbGFibGUgU0RBIGxp
+bmVzDQo+Pg0KPj4gICAuLi4vYmluZGluZ3MvaTJjL3JlYWx0ZWsscnRsOTMwMC1pMmMueWFtbCAg
+ICAgfCA4MiArKysrKysrKysrKysrKysrKysrDQo+PiAgIE1BSU5UQUlORVJTICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICB8ICA2ICsrDQo+PiAgIDIgZmlsZXMgY2hhbmdlZCwgODgg
+aW5zZXJ0aW9ucygrKQ0KPj4gICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL2kyYy9yZWFsdGVrLHJ0bDkzMDAtaTJjLnlhbWwNCj4+DQo+PiBkaWZm
+IC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2kyYy9yZWFsdGVrLHJ0
+bDkzMDAtaTJjLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaTJjL3Jl
+YWx0ZWsscnRsOTMwMC1pMmMueWFtbA0KPj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4+IGluZGV4
+IDAwMDAwMDAwMDAwMC4uZThjMzcyMzliMjk5DQo+PiAtLS0gL2Rldi9udWxsDQo+PiArKysgYi9E
+b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaTJjL3JlYWx0ZWsscnRsOTMwMC1pMmMu
+eWFtbA0KPj4gQEAgLTAsMCArMSw4MiBAQA0KPj4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6
+IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKQ0KPj4gKyVZQU1MIDEuMg0KPj4gKy0tLQ0K
+Pj4gKyRpZDogaHR0cDovL3NjYW5tYWlsLnRydXN0d2F2ZS5jb20vP2M9MjA5ODgmZD0yXzN3NXFk
+S2F3Y3Z3N0J2NkszbUFfdjRKRjFybHhkZE4zQWhDZWtTdGcmdT1odHRwJTNhJTJmJTJmZGV2aWNl
+dHJlZSUyZW9yZyUyZnNjaGVtYXMlMmZpMmMlMmZyZWFsdGVrJTJjcnRsOTMwMC1pMmMlMmV5YW1s
+JTIzDQo+PiArJHNjaGVtYTogaHR0cDovL3NjYW5tYWlsLnRydXN0d2F2ZS5jb20vP2M9MjA5ODgm
+ZD0yXzN3NXFkS2F3Y3Z3N0J2NkszbUFfdjRKRjFybHhkZE55SnhEYmdYc3cmdT1odHRwJTNhJTJm
+JTJmZGV2aWNldHJlZSUyZW9yZyUyZm1ldGEtc2NoZW1hcyUyZmNvcmUlMmV5YW1sJTIzDQo+PiAr
+DQo+PiArdGl0bGU6IFJlYWx0ZWsgUlRMIEkyQyBDb250cm9sbGVyDQo+PiArDQo+PiArbWFpbnRh
+aW5lcnM6DQo+PiArICAtIENocmlzIFBhY2toYW0gPGNocmlzLnBhY2toYW1AYWxsaWVkdGVsZXNp
+cy5jby5uej4NCj4+ICsNCj4+ICtkZXNjcmlwdGlvbjoNCj4+ICsgIFRoZSBSVEw5MzAwIFNvQyBo
+YXMgdHdvIEkyQyBjb250cm9sbGVycy4gRWFjaCBvZiB0aGVzZSBoYXMgYW4gU0NMIGxpbmUgKHdo
+aWNoDQo+PiArICBpZiBub3QtdXNlZCBmb3IgU0NMIGNhbiBiZSBhIEdQSU8pLiBUaGVyZSBhcmUg
+OCBjb21tb24gU0RBIGxpbmVzIHRoYXQgY2FuIGJlDQo+PiArICBhc3NpZ25lZCB0byBlaXRoZXIg
+STJDIGNvbnRyb2xsZXIuDQo+PiArDQo+PiArcHJvcGVydGllczoNCj4+ICsgIGNvbXBhdGlibGU6
+DQo+PiArICAgIGNvbnN0OiByZWFsdGVrLHJ0bDkzMDAtaTJjDQo+PiArDQo+PiArICByZWc6DQo+
+PiArICAgIGRlc2NyaXB0aW9uOiBSZWdpc3RlciBvZmZzZXQgYW5kIHNpemUgdGhpcyBJMkMgY29u
+dHJvbGxlci4NCj4+ICsNCj4+ICtwYXR0ZXJuUHJvcGVydGllczoNCj4+ICsgICdeaTJjQFswLTdd
+JCc6DQo+PiArICAgICRyZWY6IC9zY2hlbWFzL2kyYy9pMmMtY29udHJvbGxlci55YW1sDQo+PiAr
+ICAgIHVuZXZhbHVhdGVkUHJvcGVydGllczogZmFsc2UNCj4+ICsNCj4+ICsgICAgcHJvcGVydGll
+czoNCj4+ICsgICAgICByZWc6DQo+PiArICAgICAgICBkZXNjcmlwdGlvbjogVGhlIFNEQSBwaW4g
+YXNzb2NpYXRlZCB3aXRoIHRoZSBJMkMgYnVzLg0KPj4gKyAgICAgICAgbWF4SXRlbXM6IDENCj4+
+ICsNCj4+ICsgICAgcmVxdWlyZWQ6DQo+PiArICAgICAgLSByZWcNCj4+ICsNCj4+ICt1bmV2YWx1
+YXRlZFByb3BlcnRpZXM6IGZhbHNlDQo+IFRoaXMgZ29lcyBhZnRlciAicmVxdWlyZWQ6IiBibG9j
+ay4NCkFjay4NCj4+ICsNCj4+ICtyZXF1aXJlZDoNCj4+ICsgIC0gY29tcGF0aWJsZQ0KPj4gKyAg
+LSByZWcNCj4+ICsNCj4+ICtleGFtcGxlczoNCj4+ICsgIC0gfA0KPj4gKyAgICBzd2l0Y2hAMWIw
+MDAwMDAgew0KPj4gKyAgICAgIGNvbXBhdGlibGUgPSAicmVhbHRlayxydGw5MzAyYy1zd2l0Y2gi
+LCAic3lzY29uIiwgInNpbXBsZS1tZmQiOw0KPiBEcm9wLi4uIG9yIHB1dCBlbnRpcmUgZXhhbXBs
+ZSBpbiB0aGUgcGFyZW50IGRldmljZSBub2RlLg0KDQpPSyBJJ2xsIGRyb3AgaXQuDQoNCj4NCj4+
+ICsgICAgICByZWcgPSA8MHgxYjAwMDAwMCAweDEwMDAwPjsNCj4+ICsgICAgICAjYWRkcmVzcy1j
+ZWxscyA9IDwxPjsNCj4+ICsgICAgICAjc2l6ZS1jZWxscyA9IDwxPjsNCj4+ICsNCj4+ICsgICAg
+ICBpMmNAMzZjIHsNCj4+ICsgICAgICAgIGNvbXBhdGlibGUgPSAicmVhbHRlayxydGw5MzAwLWky
+YyI7DQo+IFBhcmVudCBpcyA5MzAyYywgYnV0IHRoaXMgaXMgOTMwMD8NCg0KVGhlIFJUTDkzMDJD
+IGlzIG9uZSBvZiBhIHNlcmllcyBvZiBzd2l0Y2ggY2hpcHMgd2l0aCBpbnRlZ3JhdGVkIENQVXMu
+IA0KVGhlcmUgaXMgYWxzbyB0aGUgUlRMOTMwMSwgUlRMOTMwMkIgYW5kIFJUTDkzMDMgKHRoZXJl
+IG15IGJlIG90aGVycyBidXQgDQp0aG9zZSBhcmUgdGhlIDQgSSBrbm93IGFib3V0KS4gVGhlIGRp
+ZmZlcmVuY2VzIGFyZSBhbGwgYXJvdW5kIHRoZSBzd2l0Y2ggDQpwb3J0L1NFUkRFUy4gVGhlIGRv
+Y3VtZW50YXRpb24gdXNlcyAiUlRMOTMwMCIgd2hlbiByZWZlcnJpbmcgdG8gdGhpbmdzIA0KY29t
+bW9uIGFjcm9zcyB0aGUgZmFtaWx5LiBUaGVyZSdzIGV2ZW4gYW4gYXBwIG5vdGUgdGl0bGVkIA0K
+IlJUTDkzMDBfSTJDX0FwcGxpY2F0aW9uX05vdGVfVjEuMSg4MykiLiBTbyBJJ2QgcmVhbGx5IGxp
+a2UgdG8gdXNlIA0KInJ0bDkzMDAiIHdoZW4gdGFsa2luZyBhYm91dCB0aGUgU29DIHBlcmlwaGVy
+YWxzIGJ1dCB1c2UgdGhlIHNwZWNpZmljIA0KY2hpcCBjb21wYXRpYmxlIHdoZW4gdGFsa2luZyBh
+Ym91dCB0aGUgRXRoZXJuZXQgc3dpdGNoIG9yIHRoZSBvdmVyYWxsIA0KY2hpcC4gSSdtIGFsc28g
+dGVtcHRlZCB0byBhZGQgdGhlIG90aGVyIHZhcmlhbnRzIHRvIG15IG90aGVyIGluLWZsaWdodCAN
+CnBhdGNoIHNlcmllcy4NCg0KInJlYWx0ZWsscnRsOTMwMC1pMmMiIGFsc28gaGFwcGVucyB0byBi
+ZSB3aGF0IG9wZW53cnQgaXMgdXNpbmcsIGJ1dCBJJ20gDQpub3Qgc3VyZSB0aGF0IHRoYXQgaGVs
+cHMgbXkgYXJndW1lbnQgYXMgdGhlIGJpbmRpbmcgaXMgbm93IHF1aXRlIGRpZmZlcmVudC4NCg0K
+Pg0KPj4gKyAgICAgICAgcmVnID0gPDB4MzZjIDB4MTQ+Ow0KPj4gKyAgICAgICAgY2xvY2stZnJl
+cXVlbmN5ID0gPDEwMDAwMD47DQo+PiArICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwxPjsNCj4+
+ICsgICAgICAgICNzaXplLWNlbGxzID0gPDA+Ow0KPj4gKw0KPj4gKyAgICAgICAgaTJjQDAgew0K
+Pj4gKyAgICAgICAgICByZWcgPSA8MD47DQo+PiArICAgICAgICAgICNhZGRyZXNzLWNlbGxzID0g
+PDE+Ow0KPj4gKyAgICAgICAgICAjc2l6ZS1jZWxscyA9IDwwPjsNCj4+ICsgICAgICAgICAgZ3Bp
+b0AyMCB7DQo+PiArICAgICAgICAgICAgICBjb21wYXRpYmxlID0gIm54cCxwY2E5NTU1IjsNCj4g
+TWl4ZWQgaW5kZW50YXRpb24uDQpXaG9vcHMgbWlzc2VkIHRoYXQuIFdpbGwgZml4Lg0KPg0KPj4g
+KyAgICAgICAgICAgICAgZ3Bpby1jb250cm9sbGVyOw0KPj4gKyAgICAgICAgICAgICAgI2dwaW8t
+Y2VsbHMgPSA8Mj47DQo+PiArICAgICAgICAgICAgICByZWcgPSA8MHgyMD47DQo+PiArICAgICAg
+ICAgIH07DQo+PiArICAgICAgICB9Ow0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KPg==
 
