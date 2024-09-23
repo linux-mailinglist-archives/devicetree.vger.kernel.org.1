@@ -1,121 +1,128 @@
-Return-Path: <devicetree+bounces-104612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 673AF97F09B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 20:27:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DFEA97F0DE
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 20:53:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F7592819A2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 18:27:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91D1A1F21C15
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 18:53:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4569F1A08DF;
-	Mon, 23 Sep 2024 18:25:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7589719CC1B;
+	Mon, 23 Sep 2024 18:53:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="MoWAEKAG"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ahItg/sL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8111A1A0705;
-	Mon, 23 Sep 2024 18:25:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBA901FA5;
+	Mon, 23 Sep 2024 18:53:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727115937; cv=none; b=OhD59aBLh6M3je8L18pXzIgjnMiiLwMTZjC4TqATKmP9JKSOl141XspeY6szU51qx6zR/s7LjJVcIogpmyVWWTiyaPXn+Fnh0kAVtj51N/i5X0oBdut/L+DIsM9J2HZZBZMlZnjYSF0OrJ6Lm4sD78pt1y8La8mxiiqn1QZ5hhs=
+	t=1727117628; cv=none; b=s4xeaoVf7x8+sULEgzwFjtWIQnW6IrnZkFQZHWZQGUScy+7hMSBCuB1NyqLSGyVdRScHnL3VLvIgMswZBRa8DUCSvAcx9lqgqCslegoKqdcHL+UHjLv+DMZY205T0aIb7wn8maOsk/v7sILRBCHb4w9aKL8QUG3EmyytPZigHMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727115937; c=relaxed/simple;
-	bh=rgY/vVl37tp0D3IIw585H/GDi1MMkXIhiTN/63FpNmE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=MS8lQCVrSf4Km1XOoSEy+/0GlrVf7RGkhWWIfFIsYl8xdPUgbCwKOYEWye/bOphlsyzqA2+ixskL3ddw6gmS9/gdlUGDfcjtpMqn9dS2044adQaIC0UunaaMq3s3zWg/EWpal1GMKL+jkwJt1R0zr91CayZMH7zoRenyHY8uqcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (1024-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=MoWAEKAG; arc=none smtp.client-ip=193.136.128.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 0E216600231E;
-	Mon, 23 Sep 2024 19:25:25 +0100 (WEST)
-X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
- by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
- with LMTP id U7aY_7lLMOXz; Mon, 23 Sep 2024 19:25:22 +0100 (WEST)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id E9BB960029B6;
-	Mon, 23 Sep 2024 19:24:58 +0100 (WEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
-	s=mail; t=1727115899;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=TRSmLjrAR22kYsud3ztBVUWZY/lz/kb9Ctk04S0sog8=;
-	b=MoWAEKAGm+r02j+TTrsqfmgXxFmnZPddBbSDUnskMpujgZmIO92mRH1USNSt/jWVY63GqU
-	NdKptSANrSFnuYgG9SqpUePWZD5MpVZxIPSAopQm+RFYITn8uRXof3CjoORt6ltTxmG56M
-	Of8LgNxDaC5nRJdFS0FVKi/YmCeYD2o=
-Received: from [192.168.1.151] (unknown [IPv6:2001:8a0:6a67:5600:aca0:c311:d240:b169])
-	(Authenticated sender: ist187313)
-	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id A542A36011E;
-	Mon, 23 Sep 2024 19:24:58 +0100 (WEST)
-From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-Date: Mon, 23 Sep 2024 19:24:51 +0100
-Subject: [PATCH] arm64: tegra: Add SDMMC sdr104-offsets for Tegra X1
+	s=arc-20240116; t=1727117628; c=relaxed/simple;
+	bh=wSTLsA5Ybe2xoc8o3MD/A/8FFyISsRuVdTmpWvRDFYM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bAbbkN3T17E/rmuA1QTqg1XI8tKasP7Wldba9/UXBl/Rg9xBok62plkvqUb7ennnAAM8sGeTmlDQjsQj1ROzL7Ps4sawfxPe5UzweFmHQiQrqf/eYNtVTafDo+rKj/beII8eOuNTfp/unhQqSiWDV9dnG7fCthREouIstDS1P1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ahItg/sL; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1727117627; x=1758653627;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wSTLsA5Ybe2xoc8o3MD/A/8FFyISsRuVdTmpWvRDFYM=;
+  b=ahItg/sLMxN385rsy35/ttrUQX5Fe8k5lgU0pqUpNhtMcBgeQ6+IjeIw
+   VrM01rJ0Nwpiwa/94DSsWlowEboKtTeTyass0WEnSqUu+G/gPO6oUoAvk
+   XNGG3qN+NCoFLexW/9qVdbL0QJcFWfWQeWROn0119QQpzJYVeHC98RiGe
+   NdLFlFDXZ5TTfjfll0vKyVGUXzcrhnmRXts7e2N/UiUR89Rurk+jjQk3d
+   kqU73s2I+nNKXuIAXZv9aeCLStD0/EUATWis/yy6/A3IoFSXxLVZsCjL6
+   vIYPG3W0pvavhH9CUhtJWuyIs+nq0PnG92GbK4HhN4PT/Z7udid9mYe6k
+   Q==;
+X-CSE-ConnectionGUID: 4elRHYEnQ/+rli72X+rL3w==
+X-CSE-MsgGUID: XbG0UGj5ShiXLp8z1IdK1g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="37448287"
+X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; 
+   d="scan'208";a="37448287"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Sep 2024 11:53:46 -0700
+X-CSE-ConnectionGUID: qfKhphN1R4KM0lwsB9zRjA==
+X-CSE-MsgGUID: v/ZMOK7mTO6D5F7Mfz+4Jw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; 
+   d="scan'208";a="71155818"
+Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
+  by fmviesa009.fm.intel.com with ESMTP; 23 Sep 2024 11:53:41 -0700
+Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1ssoBm-000HWI-2t;
+	Mon, 23 Sep 2024 18:53:38 +0000
+Date: Tue, 24 Sep 2024 02:52:43 +0800
+From: kernel test robot <lkp@intel.com>
+To: Md Sadre Alam <quic_mdalam@quicinc.com>, broonie@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	andersson@kernel.org, konradybcio@kernel.org,
+	miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+	manivannan.sadhasivam@linaro.org, vkoul@kernel.org,
+	nikita.shubin@maquefel.me, esben@geanix.com,
+	linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mtd@lists.infradead.org
+Cc: oe-kbuild-all@lists.linux.dev, quic_srichara@quicinc.com,
+	quic_varada@quicinc.com, quic_mdalam@quicinc.com
+Subject: Re: [PATCH v10 6/8] spi: spi-qpic: add driver for QCOM SPI NAND
+ flash Interface
+Message-ID: <202409240205.8sGdi5dZ-lkp@intel.com>
+References: <20240922113351.2390195-7-quic_mdalam@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240923-sdr104-v1-1-ec7b3394f880@tecnico.ulisboa.pt>
-X-B4-Tracking: v=1; b=H4sIAHKy8WYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDSyNj3eKUIkMDE11js+TkRFPzREsDE0sloOKCotS0zAqwQdGxtbUACqK
- PNlgAAAA=
-X-Change-ID: 20240923-sdr104-36cca57a9049
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1727115898; l=1337;
- i=diogo.ivo@tecnico.ulisboa.pt; s=20240529; h=from:subject:message-id;
- bh=rgY/vVl37tp0D3IIw585H/GDi1MMkXIhiTN/63FpNmE=;
- b=M3J/ITte7MRVZdkbs49/Vl/+YYNyUfrPHUQdfl6ucPE9rPm7zvs1016mthrc3Ij+Rl7wHcoSK
- S4MjK+5/e5MAdMMNw9UT55hR+0n6ToqsbKQYLuwtfKYQlhhQsKyXh+7
-X-Developer-Key: i=diogo.ivo@tecnico.ulisboa.pt; a=ed25519;
- pk=BRGXhMh1q5KDlZ9y2B8SodFFY8FGupal+NMtJPwRpUQ=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240922113351.2390195-7-quic_mdalam@quicinc.com>
 
-Define the sdr104-specific offsets, preventing the driver from
-defaulting to the 1.8V offsets, which cause the system to hang during
-the SDR104 mode calibration.
+Hi Md,
 
-The zeroing of these values was chosen since it restores functionality
-and no better suggestions are provided by the Tegra X1 TRM.
+kernel test robot noticed the following build errors:
 
-Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
----
- arch/arm64/boot/dts/nvidia/tegra210.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+[auto build test ERROR on mtd/nand/next]
+[also build test ERROR on broonie-spi/for-next robh/for-next linus/master v6.11 next-20240923]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-index 882b1d1f4ada8d9e275e5a6bee633a21cc6cdb2d..942e3a0f81ed768021d2ac25f6369998a9fbfd76 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-@@ -1218,6 +1218,8 @@ mmc@700b0000 {
- 		nvidia,pad-autocal-pull-down-offset-3v3 = <0x7d>;
- 		nvidia,pad-autocal-pull-up-offset-1v8 = <0x7b>;
- 		nvidia,pad-autocal-pull-down-offset-1v8 = <0x7b>;
-+		nvidia,pad-autocal-pull-up-offset-sdr104 = <0x0>;
-+		nvidia,pad-autocal-pull-down-offset-sdr104 = <0x0>;
- 		nvidia,default-tap = <0x2>;
- 		nvidia,default-trim = <0x4>;
- 		assigned-clocks = <&tegra_car TEGRA210_CLK_SDMMC4>,
+url:    https://github.com/intel-lab-lkp/linux/commits/Md-Sadre-Alam/spi-dt-bindings-Introduce-qcom-spi-qpic-snand/20240922-193748
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next
+patch link:    https://lore.kernel.org/r/20240922113351.2390195-7-quic_mdalam%40quicinc.com
+patch subject: [PATCH v10 6/8] spi: spi-qpic: add driver for QCOM SPI NAND flash Interface
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20240924/202409240205.8sGdi5dZ-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240924/202409240205.8sGdi5dZ-lkp@intel.com/reproduce)
 
----
-base-commit: de5cb0dcb74c294ec527eddfe5094acfdb21ff21
-change-id: 20240923-sdr104-36cca57a9049
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409240205.8sGdi5dZ-lkp@intel.com/
 
-Best regards,
+All errors (new ones prefixed by >>):
+
+   m68k-linux-ld: drivers/spi/spi-qpic-snand.o: in function `qcom_spi_remove':
+   spi-qpic-snand.c:(.text+0x19e): undefined reference to `qcom_nandc_unalloc'
+   m68k-linux-ld: drivers/spi/spi-qpic-snand.o: in function `qcom_spi_probe':
+   spi-qpic-snand.c:(.text+0x5da): undefined reference to `qcom_nandc_alloc'
+>> m68k-linux-ld: spi-qpic-snand.c:(.text+0x638): undefined reference to `qcom_write_reg_dma'
+>> m68k-linux-ld: spi-qpic-snand.c:(.text+0x69a): undefined reference to `qcom_submit_descs'
+>> m68k-linux-ld: spi-qpic-snand.c:(.text+0x6ba): undefined reference to `qcom_nandc_unalloc'
+
 -- 
-Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
