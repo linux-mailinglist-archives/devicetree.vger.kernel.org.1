@@ -1,92 +1,51 @@
-Return-Path: <devicetree+bounces-104446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6081C97E69F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:29:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2175C97E6D2
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:50:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E15EDB20BF7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 07:29:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC6F9281463
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 07:50:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D5225475C;
-	Mon, 23 Sep 2024 07:29:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uEKULfIi"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B6553D556;
+	Mon, 23 Sep 2024 07:50:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD31A3E49E
-	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 07:29:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7597728689;
+	Mon, 23 Sep 2024 07:50:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727076553; cv=none; b=fBBlkczm0upe52FzLcMMp/4vHTANJUNMamZCcL1vEbsuMvXLeS0PnyzFO4abIivWUqWNrj4dG+/Hk1IoNhj9ikSzWPvdXSl/AYP2FUO0EE7BXxo2wJpDD7flAWV8TiD/jXooFWBh8B55ULFLga7WPwwwaXMXor/WbqDOXXNLaEM=
+	t=1727077826; cv=none; b=SKrfOBlqcn7cP1RrmbfnB7HrNO+P2tm9L8inOic7RK9FThgzGRD6icWgTEkgRYMkj6KdvPr5oy7zg+4FM/oKPnYgs2MVcdcEVSBvVssHS1wioHiqIf2lhvVAvYqPxEUoaFfAqPFMYmNm5xuebDD0ic6Fr/Z3bZycV1E9SF3spQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727076553; c=relaxed/simple;
-	bh=tFaw6KXY86hMbQIbcttzfO6lDEyEEwPkoBMlSyvbiT8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=c4QJ/pL8GMGHEEyQ9r3GcRgk103VXpaQZAKaDK4WxDex0IGoozSz0yUI1aH8L4Xlza5SNl7JZG7VY9+dcGIIxgMLOk+UGJF6J8BgQZXuQItnYylTKW25LEmbNXzeniEzMXLDIQCPFNFRobdvCXZb0nSP1qZcyktTxuD3Lskz7+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uEKULfIi; arc=none smtp.client-ip=209.85.222.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-7a9a66be37bso44319785a.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 00:29:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727076551; x=1727681351; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9wgNnXvrg8o8t4zipfSpiHUqyxHJSbujSn+QNon+tTo=;
-        b=uEKULfIihSsVCeiWTM7Q3LKQvAvmWljaKPoEKQCj/L5el+YY+8TSG6385rmE13HUCJ
-         DUitIHtbtqI7ANxpTOFTCPsCRPLKJMzWxDv+SPbL6JVUL40Km+KXpLPH0GQggd5BfFIH
-         DYxqjG6hYc6tycV56Zr+jW4ZnArm0sJJnWVAskBo/Q+gI3o56LEvE+KosVIh662E5oAO
-         edz7yx5Am6XA7HEh5FyFBfVwC7zuMTTy1qgoLbLwWTm5I+XL+05/SqgsaqfGbQgdswrj
-         Frxwr4eHj9P+NlDXRlEVsFk9J7v12opQB+bLFTHKrJLODe6E09ssC9LE5r4eR+WTNs03
-         BYSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727076551; x=1727681351;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9wgNnXvrg8o8t4zipfSpiHUqyxHJSbujSn+QNon+tTo=;
-        b=oknb/W8PTfxzdwLp3Y7mtMepykXZ1kIgqUKahOoGctUgKeHiHOrK44ULNwNBA9+HZq
-         TcfT9TR6TqWvc2wuKG3h8qf137QXJIvPNFDeBwJ7H1a8+pQW59EaTH4eci6S6zRom/Qc
-         Tytw+wsVWadBUH84CsIKn3zx68kNBzIybkR8y1AGKwy8TCzZ93allWN2TkXa5JUrDf0E
-         YiLc17/osXL48mOiOvsWSZ8qVQ0L+YnJDT2+0jI0O2zjc2gczplMTr2BrgSNulBjl3gP
-         rDOwgi+HElN5Iva6WEepRAIhXcC42whA1BAb6CN7j847EdSfYJOnKFyV4lJImiqseXUf
-         fNvw==
-X-Forwarded-Encrypted: i=1; AJvYcCWaIZOKuod9KCqZWro6QgryPtPi+TkO3/S6ByzWxDHQqqn6iUmFNVWnz6cIAekrK4i1ZYmLC2L9vJra@vger.kernel.org
-X-Gm-Message-State: AOJu0Yze7KWgVoWq5CJuRrIVDWaT2RSjaw10W2wj/MIzeVpFgdxtXhhO
-	JRf6/yFZQqpq+KJfH7EgDzyw4pdmbHnleIb0Iy/uX0s1HEpw75pAiNr8srzJ+To=
-X-Google-Smtp-Source: AGHT+IHJQDI2HwwKhdUbGM+FNmKSDKzmgVx1HpZfzhq3R43koi3JjFK6uE92zPiu953Z8nKxzWmf4g==
-X-Received: by 2002:a05:620a:1a16:b0:7a7:fa37:d43e with SMTP id af79cd13be357-7acb81faadcmr753473585a.9.1727076550884;
-        Mon, 23 Sep 2024 00:29:10 -0700 (PDT)
-Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7acb08c182dsm452872285a.75.2024.09.23.00.29.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Sep 2024 00:29:10 -0700 (PDT)
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To: Robert Foss <rfoss@kernel.org>,
-	Todor Tomov <todor.too@gmail.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 6/6] arm64: dts: qcom: sm8250: Fix interrupt types of camss interrupts
-Date: Mon, 23 Sep 2024 10:28:27 +0300
-Message-ID: <20240923072827.3772504-7-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240923072827.3772504-1-vladimir.zapolskiy@linaro.org>
-References: <20240923072827.3772504-1-vladimir.zapolskiy@linaro.org>
+	s=arc-20240116; t=1727077826; c=relaxed/simple;
+	bh=oN2xhTBMUcDCGH6zCZbn59pbVfBUj2BXnAtIOG7tWE4=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=BZ/bcyUll+xx+eUCE9+ejGBpC49qwXAQ4jNt/2G8F4GQhMqAYs4KK6QALYMajpPGTtghNHUCYyAysU4O3RUvnhRmPgBDvLqB1CVlgOlgxMz+vJ1fBwCp8BBHTriZRf1zSoZakhn+5xx3A5KekQEW5YiqbU2+zHIUlzssbLYfnyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Mon, 23 Sep
+ 2024 15:50:12 +0800
+Received: from twmbx02.aspeed.com (192.168.10.152) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1258.12 via Frontend
+ Transport; Mon, 23 Sep 2024 15:50:12 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: <ryan_chen@aspeedtech.com>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<joel@jms.id.au>, <andrew@codeconstruct.com.au>, <p.zabel@pengutronix.de>,
+	<linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>
+Subject: [PATCH v4 0/3] Add support for AST2700 clk driver
+Date: Mon, 23 Sep 2024 15:50:09 +0800
+Message-ID: <20240923075012.2264573-1-ryan_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,57 +53,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-The expected type of all CAMSS interrupts is edge rising, fix it in
-the CAMSS device tree node for sm8250 platform.
+This patch series is add clk driver for AST2700.
 
-Fixes: 30325603b910 ("arm64: dts: qcom: sm8250: camss: Add CAMSS block definition")
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 28 ++++++++++++++--------------
- 1 file changed, 14 insertions(+), 14 deletions(-)
+AST2700 is the 8th generation of Integrated Remote Management Processor
+introduced by ASPEED Technology Inc. Which is Board Management controller
+(BMC) SoC family. AST2700 have two SoC connected, one is SoC0, another
+is SoC1, it has it's own scu, this driver inlcude SCU0 and SCU1 driver.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 630f4eff20bf..f4b00cac5fcd 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -4481,20 +4481,20 @@ camss: camss@ac6a000 {
- 				    "vfe_lite0",
- 				    "vfe_lite1";
- 
--			interrupts = <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 478 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 448 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 86 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 89 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 464 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 466 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 468 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 359 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 465 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 467 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 469 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 360 IRQ_TYPE_EDGE_RISING>;
- 			interrupt-names = "csiphy0",
- 					  "csiphy1",
- 					  "csiphy2",
+v4:
+-yaml: keep size-cells=<1>.
+-merge clk,reset dt binding header with yaml the same patch.
+-rename clk,reset dt binding header to aspeed,ast2700-scu.h
+-reset-aspeed: update tables tabs sapces to consistent spaces.
+-reset-aspeed: remove no use dev_set_drvdata.
+-clk-ast2700: modify reset_name to const int scu in struct clk_data.
+-clk-ast2700: use scu number in clk_data generate reset_name for reset
+ driver register.
+-clk-ast2700: fix pll number mix up scu0,scu1.
+-clk-ast2700: update dt-binding clock include file.
+
+v3:
+-yaml: v2 missing send yaml patch, v3 add.
+-yaml: drop 64bits address example.
+-yaml: add discription about soc0 and soc1
+-dt-bindings: remove (), *_NUMS, reserved.
+-dt-bindings: remove dulipated define number.
+-dt-bindings: merge clk and reset to be one patch.
+-reset-aspeed: add auxiliary device for reset driver.
+-clk-ast2700: modify reset to be auxiliary add.
+-clk-ast2700: modify to be platform driver.
+-clk-ast2700: modify each clk to const clk array.
+
+v2:
+-yaml: drop 64bits address example.
+-yaml: add discription about soc0 and soc1
+-dt-bindings: remove (), *_NUMS, reserved.
+-dt-bindings: remove dulipated define number
+-clk-ast2700: drop WARN_ON, weird comment.
+
+Ryan Chen (3):
+  dt-bindings: mfd: aspeed: support for AST2700
+  reset: aspeed: register AST2700 reset auxiliary bus device
+  clk: aspeed: add AST2700 clock driver.
+
+ .../bindings/mfd/aspeed,ast2x00-scu.yaml      |    8 +-
+ drivers/clk/Kconfig                           |    8 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/clk-ast2700.c                     | 1553 +++++++++++++++++
+ drivers/reset/Kconfig                         |    6 +
+ drivers/reset/Makefile                        |    1 +
+ drivers/reset/reset-aspeed.c                  |  257 +++
+ .../dt-bindings/clock/aspeed,ast2700-scu.h    |  163 ++
+ .../dt-bindings/reset/aspeed,ast2700-scu.h    |  124 ++
+ 9 files changed, 2120 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/clk/clk-ast2700.c
+ create mode 100644 drivers/reset/reset-aspeed.c
+ create mode 100644 include/dt-bindings/clock/aspeed,ast2700-scu.h
+ create mode 100644 include/dt-bindings/reset/aspeed,ast2700-scu.h
+
 -- 
-2.45.2
+2.34.1
 
 
