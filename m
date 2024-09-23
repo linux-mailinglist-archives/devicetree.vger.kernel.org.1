@@ -1,140 +1,169 @@
-Return-Path: <devicetree+bounces-104555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24C0C97EBAA
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 14:44:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33AF197EBB8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 14:51:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95F19B21219
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 12:44:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CD031C20DAF
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 12:51:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB2DD198A10;
-	Mon, 23 Sep 2024 12:44:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E8291991DB;
+	Mon, 23 Sep 2024 12:51:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VPoZVdMw"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iMJ55XGi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F1FB195B1A
-	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 12:44:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F1BD1991BD
+	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 12:51:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727095444; cv=none; b=mnl4hB2FBGATzGqIfazkrMnQDWoXDga/8D2/iD23dNc6rIrWksIRKBLvaj0NrFnu0od5qBNp9GWUK9iPUz4njqGAU3/9Vt3KNYeZBdKGQdiovnJgsMYoClSNUU0xCBvsdpLyp7AalbwSg0sIP1eRRjPswn8U4EQEjy4Vxy1nNwU=
+	t=1727095904; cv=none; b=aSFwU66ykJH58jip2Fqq6XTiJv7HmFAZoti66NTmVPWHe0pFPg0HWBU+PR8WhgC8iSV0zkjxVYMAy3D3ZVUgI9ywziiSZfZcRIHy8uDavdRvo1bzrhS+M+fbxsa/h5SjRML3ec/5e1Oks0VsP02aXftbLX2LGrNo8bhclafIs+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727095444; c=relaxed/simple;
-	bh=TVLtiVvW5vaCL46NINDK8Adww8W/D9+l6DqTY+m8VUg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C9W2hgoc2fQnsGLvwuaSfYW/hQyNdxASp7efMpZUk2U64TkrD9QGyahrGaxSrs52PAdcWFbd7sEmDFCfnbQsUSrtje8ho+M4svG7HQVs15Q6mR4LkmeMV5cv0VkP7obG7KI0jtYgmobCzuqTuI9wHtxoicIUWmfE2VGoVODvCwE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VPoZVdMw; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5c3d2f9f896so6063156a12.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 05:44:02 -0700 (PDT)
+	s=arc-20240116; t=1727095904; c=relaxed/simple;
+	bh=NvepIcObAFOW0GAEKprtdJAyQP6u04ZarXNoUN/O9fs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=p2w+Z5oZgBXtjAiszihA11DlWlUOsVCzu1ZBmNO8sqk0zz14t24AcGMyxhghNEAdBrtbQtaZfs/VzPA7DYEUACRjilq5f7SrPMK3Snm6nPBSc6vBZl3uTuztsv7D3KyNneQlihplj7paMnzfoP8GMRSTOfPK2E0ddgi56z8qPPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iMJ55XGi; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2f75c6ed397so44274691fa.2
+        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 05:51:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727095441; x=1727700241; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=i6bIma9HKr/eXg0lAgMWRo2b9ll54v4t077yr94CrZ8=;
-        b=VPoZVdMw2E9eWKDXEBGvqOWGlHg6+TMjU2RGC20e+DSbZuu1M/QBXhPWRM2REt4beX
-         3UD0U0Q7dScxby8PwQxgxY1xpC2DGfdFdfIGFBXQD8XR1mVoTVosWu6oTbiy36Ws+w/w
-         1yKzAbtSiffRLLr6jxQOzWovS3Tow4hE3hT/7Vk6nsOkoVXLSh3f/bOtLd+Exqhr5nlF
-         Sy1Lc3+CynSsDR2hoPN96kIzaQewTgAocDVt6KUx63eEOqwm3/DN0YwpHiM2FwBlwSxh
-         0CCzU3eZaQUyrjfhAhysNi/WSraPPfnXjRHPDRv+cWrIVztsy+8+JIniB/GqpedS3CW0
-         IbEw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727095900; x=1727700700; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JWyVPet8hZnOop/AUNBEWZsHekqaT1mqAy7nCtERCWg=;
+        b=iMJ55XGihjnMld86HJw+77vEGiM9sVdAXEGR3U1OQ9IfwjSGBfS10BfkHlraV3jnFO
+         3kqoODcEnnS3sjesqsLVtMoDmcslZ4uJqwVDLh2w/66TQBsKJtYjBSCj092L9Z6YkRl3
+         Sdc0rpdS5ungFyN4HRkx3wCsdZbhZ5KuZU3hs203gDmOI4ObQN2QyPZ/hCgeYD98UewQ
+         ChJeXaeoVxZ5l+mvNu+WqpjA3vyfMEapqpFfjtCAIfA492APqB3TJPz1Sz5NSzdwqxHY
+         nyVP1kP1RNA0ff+r++xL7mMTuLqY+ZFTT06EHl0xbE3LAQYCghHWg3m00js16XtbQB4I
+         QwrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727095441; x=1727700241;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=i6bIma9HKr/eXg0lAgMWRo2b9ll54v4t077yr94CrZ8=;
-        b=W+Mu2iqJxh2WL8AcVpfwF8LIinxAJyDAvfCpOVW8jCe00M/kYQJcM0mKP61oQSnlFq
-         iP6Y7wM28F8XqUWexDPIgsRh+5RzH86mNVnnBBBaXB67ymWjyVg6h/Q2mbwX2lQVBiai
-         oIjelF+mo2dhV1KlDk9JyMj69L4ZdCPkgRzV8csO7N0c6lFj1PiGDaF0/iwSvAIdWfWd
-         cY/csap5Z+lYgJdxdsiBKvan5D9s7qkhYgWdOa/yeCnkClbvxdcSiJLWTNjbY6NOEsmN
-         eUj1SsEYBB2rKRxqAAWAbwmkDQ+A3+HHwdZzMCmR15xzWHbEMMpgnv7vej119VFiXcds
-         z+ZA==
-X-Forwarded-Encrypted: i=1; AJvYcCUlasBqMuahtp0zYnQAzE1RNX0bYefFLK9BIcrz3j1Hy3UJRFWJahGt7SnhvepcRTtDyZ1MnFvz4orW@vger.kernel.org
-X-Gm-Message-State: AOJu0YymzmhdRPHWNA4lzJFU6IfKYeBEv1m0w8AIJQ6yGtzxJ3IhYLEo
-	jYmN24LkmFruzqgEabbwunXiKawswJKH9qocKRHizHv+/LHY87mXRmhF4kcEX8A=
-X-Google-Smtp-Source: AGHT+IEVAj1HE3hb6jZE4BzB+CcLNa8iY01RAmuxlz+j9hb4CloAziZ26qigCmGcnprsyLA3FBALmA==
-X-Received: by 2002:a17:907:f706:b0:a8d:4e24:5314 with SMTP id a640c23a62f3a-a90d4ffe7dbmr1058725566b.24.1727095441259;
-        Mon, 23 Sep 2024 05:44:01 -0700 (PDT)
-Received: from [192.168.0.25] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a90610f429bsm1211494966b.61.2024.09.23.05.44.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Sep 2024 05:44:00 -0700 (PDT)
-Message-ID: <5ec1aca4-c690-49c9-9432-96b9852de86f@linaro.org>
-Date: Mon, 23 Sep 2024 13:43:59 +0100
+        d=1e100.net; s=20230601; t=1727095900; x=1727700700;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JWyVPet8hZnOop/AUNBEWZsHekqaT1mqAy7nCtERCWg=;
+        b=IWfFtpPGbWtlwnuttdLTEo5KnQPEt2B73q6EakUHUAa3ZdDDuLo9zVXQOyADdFL4D8
+         PzsPklY4QfKLkujKLhYXBsObqH4+fT/iSXMxO51PJa/9QLlzIvzF5i2RUfMXfa2qlGAn
+         RUjSHA1bYbdR7VxRmBLwzP7hjGgAF1Xy2S2Wp8BatMFIvNXKmnch0WWzvoyWh8lpvCC3
+         h8hZhFpDJm+O3QzMjNqUmaO0s43ckTRd3N2s2QAXLEhsAzdJScsI29NR9+s0yyojIhSf
+         9UJQa6HIt9akqjJR8Jkadf0UWLFnCwBkzIO6eCPX6RTAUlDYEqiCOGdnz82Kz1KMgIAp
+         0ljA==
+X-Forwarded-Encrypted: i=1; AJvYcCWLPFEKHY0raNjvnajHntZPqyx73exZ4p4d79YKHzeNBN8yuqRS+/G20gPbHgHNSali8wgt8Af9FJUJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1pcIG+tGJ1J/KJFzI15HhuO+hQt0JFQgdHgJVIHmFtm8hLS99
+	NJCMM5so5ehYduF/2U5Dp7mXd+s/hJ/4KTZ4g8XXExKPn131Bo9cDpQzkkxZJADtW0qaq5TQiyy
+	1Bd0uKhbmzq05HeWjx8lXTi6nxHX4CNeRUWNysA==
+X-Google-Smtp-Source: AGHT+IGjwUls46wFV2p1ok6WP3bWq/lGTfL1sVNuhz5+4xnhesypCJlx6gg4f5K5q/lbcDosAtmu0Hr2KQy8e0jFd1U=
+X-Received: by 2002:a05:651c:1994:b0:2f0:1a19:f3f1 with SMTP id
+ 38308e7fff4ca-2f7cc355ce4mr51007311fa.7.1727095899709; Mon, 23 Sep 2024
+ 05:51:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/6] media: dt-bindings: media: camss: Fix interrupt
- types
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240923072827.3772504-1-vladimir.zapolskiy@linaro.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20240923072827.3772504-1-vladimir.zapolskiy@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240912121609.13438-1-ramona.nechita@analog.com>
+ <20240912121609.13438-4-ramona.nechita@analog.com> <20240914180648.592cd69e@jic23-huawei>
+ <SN6PR03MB4320E03B052A867DE73196CBF36C2@SN6PR03MB4320.namprd03.prod.outlook.com>
+In-Reply-To: <SN6PR03MB4320E03B052A867DE73196CBF36C2@SN6PR03MB4320.namprd03.prod.outlook.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Mon, 23 Sep 2024 14:51:28 +0200
+Message-ID: <CAMknhBFyydCJeAazDYMkkH=rKU2DbJGy=Kpb0242Vn81MHn0mQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] drivers: iio: adc: add support for ad777x family
+To: "Nechita, Ramona" <Ramona.Nechita@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	"Tanislav, Cosmin" <Cosmin.Tanislav@analog.com>, 
+	"Hennerich, Michael" <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"Sa, Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko <andy@kernel.org>, 
+	"Schmitt, Marcelo" <Marcelo.Schmitt@analog.com>, Olivier Moysan <olivier.moysan@foss.st.com>, 
+	Dumitru Ceclan <mitrutzceclan@gmail.com>, Matteo Martelli <matteomartelli3@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Alisa-Dariana Roman <alisadariana@gmail.com>, Ivan Mikhaylov <fr0st61te@gmail.com>, 
+	Mike Looijmans <mike.looijmans@topic.nl>, 
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 23/09/2024 08:28, Vladimir Zapolskiy wrote:
-> It was discovered that on a few Qualcomm platforms types of interrupts
-> do not match both downstream code and a type requested by the CAMSS driver.
-> 
-> The mismatched interrupt type between firmware and the correspondent CAMSS
-> driver leads to known problems, which were discussed previously:
-> 
->    https://lore.kernel.org/lkml/20220530080842.37024-4-manivannan.sadhasivam@linaro.org/
-> 
-> Here the situation is right the same, namely a repeated bind of camss device
-> is not possible due to a wrongly specified interrupt type, and it may lead
-> to an issue in runtime manifested like this:
-> 
->    irq: type mismatch, failed to map hwirq-509 for interrupt-controller@17a00000!
-> 
-> Changes from v1 to v2:
-> * added gained Acked-by, Tested-by and Reviewed-by tags,
-> * per patch review requests from Krzysztof deduplicated "media:" from subjects.
-> 
-> Link to v1 of the changeset:
-> 
->    https://lore.kernel.org/all/20240905164142.3475873-1-vladimir.zapolskiy@linaro.org/
-> 
-> Vladimir Zapolskiy (6):
->    dt-bindings: media: qcom,sc8280xp-camss: Fix interrupt types
->    dt-bindings: media: qcom,sdm845-camss: Fix interrupt types
->    dt-bindings: media: qcom,sm8250-camss: Fix interrupt types
->    arm64: dts: qcom: sc8280xp: Fix interrupt type of camss interrupts
->    arm64: dts: qcom: sdm845: Fix interrupt types of camss interrupts
->    arm64: dts: qcom: sm8250: Fix interrupt types of camss interrupts
-> 
->   .../bindings/media/qcom,sc8280xp-camss.yaml   | 40 +++++++++----------
->   .../bindings/media/qcom,sdm845-camss.yaml     | 20 +++++-----
->   .../bindings/media/qcom,sm8250-camss.yaml     | 28 ++++++-------
->   arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 40 +++++++++----------
->   arch/arm64/boot/dts/qcom/sdm845.dtsi          | 20 +++++-----
->   arch/arm64/boot/dts/qcom/sm8250.dtsi          | 28 ++++++-------
->   6 files changed, 88 insertions(+), 88 deletions(-)
-> 
+On Fri, Sep 20, 2024 at 3:24=E2=80=AFPM Nechita, Ramona
+<Ramona.Nechita@analog.com> wrote:
+>
+> Hello all,
+>
+> Just a minor question
+> ...
+> >
+> >> +
+> >> +static irqreturn_t ad7779_trigger_handler(int irq, void *p) {
+> >> +    struct iio_poll_func *pf =3D p;
+> >> +    struct iio_dev *indio_dev =3D pf->indio_dev;
+> >> +    struct ad7779_state *st =3D iio_priv(indio_dev);
+> >> +    int ret;
+> >> +    int bit;
+> >> +    int k =3D 0;
+> >> +    /*
+> >> +     * Each channel shifts out HEADER + 24 bits of data therefore 8 *=
+ u32
+> >> +     * for the data and 64 bits for the timestamp
+> >> +     */
+> >> +    u32 tmp[10];
+> >> +
+> >> +    struct spi_transfer sd_readback_tr[] =3D {
+> >> +            {
+> >> +                    .rx_buf =3D st->spidata_rx,
+> >> +                    .tx_buf =3D st->spidata_tx,
+> >> +                    .len =3D AD7779_NUM_CHANNELS * AD7779_CHAN_DATA_S=
+IZE,
+> >> +            }
+> >> +    };
+> >> +
+> >> +    if (!iio_buffer_enabled(indio_dev))
+> >> +            goto exit_handler;
+> >
+> >If buffers aren't enabled, the push to buffers won't do anything. So thi=
+s race shouldn't matter.  If it does, what happens?
+> >I'm curious because I'd expect any races that cause trouble in this case=
+ to be pretty universal across drivers.
+>
+> I added that condition rather because the DRDY pulse will keep on being g=
+enerated even when the buffers are not active,
+> and it would be better to exit the function sooner. I tested it and it do=
+es not break to remove the condition, I just
+> thought it made more sense like this. Should I delete it?
+>
+> >....
+>
+> Best regards,
+> Ramona Nechita
+>
+>
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Perhaps a better way to handle this would be to move
 
-For the series.
+    disable_irq(st->spi->irq);
+
+to the buffer predisable callback instead of doing it in the buffer
+postdisable callback. Then we will be sure to not get any more DRDY
+interrupts after the buffer is disabled.
+
+(And to keep things balanced, moved the corresponding irq_enable() to
+the buffer postenable callback.)
+
+Since ad7779_trigger_handler is the IIO trigger interrupt handler and
+not the DRDY interrupt handler though, it is already not possible for
+this interrupt handler to be called while the IIO buffer is enabled.
+So it should be safe to remove the if
+(!iio_buffere_enabled(indio_dev)) even without the other changes I
+suggested.
 
