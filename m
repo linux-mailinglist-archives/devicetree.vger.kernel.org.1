@@ -1,108 +1,171 @@
-Return-Path: <devicetree+bounces-104463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E77697E7C5
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:43:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D309597E7CD
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 10:46:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FA961C21219
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 08:43:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 809BC1F21E5B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 08:46:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F8A519409E;
-	Mon, 23 Sep 2024 08:43:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A56419415E;
+	Mon, 23 Sep 2024 08:45:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VNNxugWp"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ab2SuDMw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C9B52F2D
-	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 08:43:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E4CC194138;
+	Mon, 23 Sep 2024 08:45:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727080994; cv=none; b=cbr/0pI4y0YZ3KU/6mxaONtyu6c+fOLS7GpRK6ToNUZD7wZEOny4HlX0Dol4n9GxaqqguBOZge8N2GlIJZ/FiIXZpGuDNEqtM44ldCVu4QajiFrYAZq85rBWdyQIuW04FSygXoc/7CirADOdZ6Eh8XwXach0l3lkV2szPPwx4hI=
+	t=1727081156; cv=none; b=BeW/byNSwnvLLd/inMm2P4BWXSBe0PSkJe5JkYoEgsLGXWaEnfOJF2PZAyOA9gUSl/iLxINkDuIFAJY54Ous/jgr95JGNsc0p5of2UCfs345XT8MrnUYuoSwAyP1W1O8oIOwzxbotGN+wq5ejWICmC4WsSz6uVDPHEY9aqHZGoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727080994; c=relaxed/simple;
-	bh=XSzUh6ZJJ6sFM4hLu82VZxpVet5y5KagtnDBdYcnFF0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=REPXE135AfL2lWpafCKaDnbtps/aRcwTUri8KvnQOfDkicd4hC5VwujLQq6nM8h/XuTpCOT7jbAaue5Qp384XnsLdumHYcJi5jO1DI6ASbLpCOaxc3X/Q4aBXW9RNLzOhmpKRJtaKL/AUnYE7v+hyye4aV2OtdFK4yZCRCPY3gQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VNNxugWp; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5356bb55224so5335192e87.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 01:43:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727080991; x=1727685791; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aZz5ns/39I9CNLcdEHgb1bq93Bmp6tryH2rW0CAcV34=;
-        b=VNNxugWp6T0f8fg1SEvBLPmORAIyl5X67B9rqHxra+5cBaITskq08SgONOHrMM4XMM
-         xq2vn09c64cji3+XsveCGACoGMWqclM8zSajempw4sf73ujdfagGNJlu/O7yLIxzO8is
-         qbfCIaV+506+gB17GiZAXWwI5fQ+FkLpHp7Rjp7RPxZwBT/1T6FiRXsC9kRsZygHWC5D
-         jYy8rCjidApW3Ui3gqmvZA+MOckjjlLZKGWXibJ42Qw/1qp+uyGLrEmhrVojyQPWLp3X
-         K7clY16foXVp1FjZK9DeLUB1vIJBJCAm6P7E/l5N+ew4nCqL9B9PCxhGDjhaQKM+rPyt
-         Y4mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727080991; x=1727685791;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aZz5ns/39I9CNLcdEHgb1bq93Bmp6tryH2rW0CAcV34=;
-        b=IwjR9+P9dZTBq0WoaTL/YB0O3f3j0g1BWrfLCxT6NoODNrrDHmpX3lwk/AQUFwhmdf
-         YBh4qa0JpaiCt5bDj9Xqj4F5ffHP40H3bBLNQe3uERDsp3u5CmIwNUuFCqe6dKkwXoxK
-         7zXi+uxTcM5a8v/7p+2UEVebuWaSPvT/x80etmArlMKeI+YwT5nkHB9rg2wMJSx7iL1L
-         +JMmyUyMc2EvgRsRd3ZPdaaRDYK5wT1HT9d5NSIAnMgVDcAhpTZo0yZFpqkieU+mA2AA
-         JNobphyvktGfeZpEZXjmrxbA3mzyviksl6bxYPtm2w53Jp7/z13ZIuoYwSVStP0pFMvf
-         p6fw==
-X-Forwarded-Encrypted: i=1; AJvYcCUToZtlwAQ3kuxPwTrznS1guRsn4o5vQOwAMThGbwtY4Mh6o+vKeeQEdC16FAqQ/wcCN8OCuIYGZwIg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxy7lVLPD6Kh48Qp2C/rA9g78NkmsrR+IfKxP3ZVp7hs099rxu6
-	KQ5Ty9VfXaf6cDEO9mByTIpppMrKiQZpnPejeJ6ZimaximjfHHblGSMRxOgGoTRtFhZnN7NUsvZ
-	/n/gNe3LoT+WXS5UNGkuPSGf+Fk02BHjEvK+NNw==
-X-Google-Smtp-Source: AGHT+IH/lTkkxNf7gVB4Qk11bFX5oTtze9g4A3iaawv5kVYgzIVZ7trMrLr/mwDA4DTElB5MHwruJq3qAdcaDv06+ig=
-X-Received: by 2002:a05:6512:398c:b0:535:6033:265f with SMTP id
- 2adb3069b0e04-536ad3ed8a8mr3787007e87.58.1727080990398; Mon, 23 Sep 2024
- 01:43:10 -0700 (PDT)
+	s=arc-20240116; t=1727081156; c=relaxed/simple;
+	bh=mXPvosYulSuPT7ayp0NuQzaRA/qTKHHryuamBJ6tKAg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qkl1CVSYSGn+84inLuquQA8JyAYtEODwJb1wf5xg6dfkN7Wg/kaiEQPv+YF7pAH59Ye+kmoTMb6xNbyeQFETMO35FLzG+pVs5AXwIMwO/tFinvrIOEwVpL2AIPucmC/i+AQ8H/EnbgulWagnz9Ryto1Oew2VmthSS9X1m2kWu7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ab2SuDMw; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1727081152;
+	bh=mXPvosYulSuPT7ayp0NuQzaRA/qTKHHryuamBJ6tKAg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ab2SuDMwkBRp5z1ddjV1kndbZFoRoDJs/gbRp/1F6QHds+SsCPAzvxlvzwfr1kenn
+	 NZiDzC1RWIb20y3TC0kfXXVsLYmVVvs0+TWow8hdLM2B0/jhqI99oyJuR5RGymHlIZ
+	 vQ1niFnx6iCwtONJyeTXI6WtJK1pC3JKJVebO6e03M1PGQAg/AilT3w3v6VFyn2m4i
+	 iTvp8OTsqw+/CUexEupeYI1I7VjyV69dstsjESnmZPGG4LYz5O+6D3azcm6dhKapdS
+	 9lYKdJ1R2mcDAxtgizIdjq1TGMDv2N4nJSqCnYsMc8bJ3GU0ANeYVZliPo/qFcoj/R
+	 HaAZMWUNdAj7Q==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4419E17E1063;
+	Mon, 23 Sep 2024 10:45:52 +0200 (CEST)
+Message-ID: <eb17085d-78ff-4833-a4de-17b9327d776c@collabora.com>
+Date: Mon, 23 Sep 2024 10:45:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240906110113.3154327-1-sai.krishna.potthuri@amd.com>
-In-Reply-To: <20240906110113.3154327-1-sai.krishna.potthuri@amd.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 23 Sep 2024 10:42:58 +0200
-Message-ID: <CACRpkdY0VRAD4+P5aFiJetjxce95K1fDeeYVYwimrMMADRb9fg@mail.gmail.com>
-Subject: Re: [PATCH v5 0/3] pinctrl: pinctrl-zynqmp: Add Versal platform support
-To: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-Cc: Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jay Buddhabhatti <jay.buddhabhatti@amd.com>, 
-	Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, saikrishna12468@gmail.com, git@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] arm64: dts: mediatek: mt8390-genio-700-evk: Enable
+ Mali GPU
+To: Pablo Sun <pablo.sun@mediatek.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-clk@vger.kernel.org
+References: <20240920134111.19744-1-pablo.sun@mediatek.com>
+ <20240920134111.19744-6-pablo.sun@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240920134111.19744-6-pablo.sun@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Sep 6, 2024 at 1:01=E2=80=AFPM Sai Krishna Potthuri
-<sai.krishna.potthuri@amd.com> wrote:
+Il 20/09/24 15:41, Pablo Sun ha scritto:
+> Configure GPU regulator supplies and enable GPU for GENIO 700 EVK.
+> 
+> The GPU in MT8390 & MT8188 has two power inputs: "DVDD_GPU" and
+> "DVDD_SRAM_GPU". In Genio 700 EVK, DVDD_GPU is supplied by
+> mt6359_vproc2_buck_reg, and DVDD_SRAM_GPU is supplied by
+> mt6359_vsram_others_ldo_reg.
+> 
+> According to section 5.2 "Recommended Operating Conditions" in
+> MT8390 IoT Application Processor Datasheet v1.9, The recommended
+> operating voltage ranges are:
+> 
+> - DVDD_GPU: min 0.55V, max 0.86V, typical 0.75V
+> - DVDD_SRAM_GPU: min 0.71V, max 0.92V, typical 0.85V
+> 
+> In this commit, we set DVDD_SRAM_GPU to typical 0.85V. It is possbile
+> to couple it to the DVDD_GPU in future patches.
+> 
+> Signed-off-by: Pablo Sun <pablo.sun@mediatek.com>
 
-> Update the binding and pinctrl-zynqmp driver to add Versal platform
-> support.
-> Add Get Attribute ID in the Xilinx firmware driver to get the pin
-> information from Xilinx Platform Management Firmware.
->
-> Changes in v5:
-> -> 1/3 - Used the pins and groups properties references available in $def=
-s
->          for properties in "mux" (suggested by Rob).
+Is there any real difference between MT8390 and MT8188 in terms of the GPU OPPs?
 
-Patches applied!
+I see that on MT8188, frequencies up to 880MHz want a DVDD_SRAM_GPU of 0.750V,
+then 0.775/0.762/0.750 (bin1-4/5/6) on 915MHz, and 0.800/0.775/0.750 (bin1-4/5/6)
+on 950MHz.
 
-Yours,
-Linus Walleij
+Those never call for 0.850V...! So is MT8188 (Chromebooks) wrong, or is MT8390
+different in that?
+
+Cheers,
+Angelo
+
+> ---
+>   .../dts/mediatek/mt8390-genio-700-evk.dts     | 24 +++++++++++++++++++
+>   1 file changed, 24 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
+> index 1474bef7e754..a1d6f4cd4e5f 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
+> @@ -190,6 +190,11 @@ usb_p2_vbus: regulator-10 {
+>   	};
+>   };
+>   
+> +&gpu {
+> +	mali-supply = <&mt6359_vproc2_buck_reg>;
+> +	status = "okay";
+> +};
+> +
+>   &i2c0 {
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&i2c0_pins>;
+> @@ -253,6 +258,14 @@ &i2c6 {
+>   	status = "okay";
+>   };
+>   
+> +&mfg0 {
+> +	domain-supply = <&mt6359_vproc2_buck_reg>;
+> +};
+> +
+> +&mfg1 {
+> +	domain-supply = <&mt6359_vsram_others_ldo_reg>;
+> +};
+> +
+>   &mmc0 {
+>   	status = "okay";
+>   	pinctrl-names = "default", "state_uhs";
+> @@ -314,6 +327,11 @@ &mt6359_vpa_buck_reg {
+>   	regulator-max-microvolt = <3100000>;
+>   };
+>   
+> +&mt6359_vproc2_buck_reg {
+> +	regulator-min-microvolt = <550000>;
+> +	regulator-max-microvolt = <860000>;
+> +};
+> +
+>   &mt6359_vpu_buck_reg {
+>   	regulator-always-on;
+>   };
+> @@ -326,6 +344,12 @@ &mt6359_vsim1_ldo_reg {
+>   	regulator-enable-ramp-delay = <480>;
+>   };
+>   
+> +/* for GPU SRAM */
+> +&mt6359_vsram_others_ldo_reg {
+> +	regulator-min-microvolt = <850000>;
+> +	regulator-max-microvolt = <850000>;
+> +};
+> +
+>   &mt6359_vufs_ldo_reg {
+>   	regulator-always-on;
+>   };
+
 
