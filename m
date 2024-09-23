@@ -1,106 +1,171 @@
-Return-Path: <devicetree+bounces-104485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F52997E8FE
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:44:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8AB797E903
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:47:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90AD61C21217
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:44:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 030DE1C20F98
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:47:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 998A1194A75;
-	Mon, 23 Sep 2024 09:43:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4875A7E782;
+	Mon, 23 Sep 2024 09:47:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="bepTSk1d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3BBF1957E4;
-	Mon, 23 Sep 2024 09:43:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=124.126.103.232
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23CA08479;
+	Mon, 23 Sep 2024 09:47:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727084634; cv=none; b=EW7LQL+7EyBehzzfuTbHokWDW040kdEYjBvUftICFFTjaq58NwROXspm8jvclpRW9ZY70dEcTiSOFx4sLfYJXzvjExbg9WNBevNSDuY/AYemQ1nqBtV+Kd05XOh+OzJO1EmHkgL9Y1DysYsQbVhHN0j4yl+rz5vCDZPRdfUqmOs=
+	t=1727084838; cv=none; b=CEAcc9FSQAfMkx7tp6X6IkN3bjBIsv3fvop2HwZv1YmgXTf7EYWnqLzP2Acwqv7M/zLtpfnz2ATaZqxAP4hXWVYeh8U95c15lwvpNQfnd3J52TWY87ANh2xXT7Vw88lh/s8CwV4ukVURCaRH7NRHR1osml/euWs3QHx1uOAkfC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727084634; c=relaxed/simple;
-	bh=ydBWyQAf1j55SxemS703r61aCRERlgQqdP6UFOehUGw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jrXi2hvQl4+nAOvh1VdkWSxsv9zBXX8U2kFmYm7Yel+OX7FuBs1+OnmJth+gL8j4weZgDlM7LWjq0/txwmnQGbvl4SsdEpbMqcvRpIsS/HLTOd3gEAA/GtIj1DoJ8exPrqyQA9W5oABQAQffQ/UbT/rmOcvyylElSclK2kwDFuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn; spf=pass smtp.mailfrom=kylinos.cn; arc=none smtp.client-ip=124.126.103.232
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.cn
-X-UUID: 51b7f0b0799011efa216b1d71e6e1362-20240923
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.38,REQID:443a2a91-c211-4926-b0f3-9bf9b8ad4984,IP:0,U
-	RL:0,TC:0,Content:-5,EDM:-25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTI
-	ON:release,TS:-30
-X-CID-META: VersionHash:82c5f88,CLOUDID:9fc400b48005e8f7e8c12eef4317d0b7,BulkI
-	D:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:1,IP:nil,URL:0,
-	File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:N
-	O,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 51b7f0b0799011efa216b1d71e6e1362-20240923
-Received: from mail.kylinos.cn [(10.44.16.175)] by mailgw.kylinos.cn
-	(envelope-from <chentao@kylinos.cn>)
-	(Generic MTA)
-	with ESMTP id 703584644; Mon, 23 Sep 2024 17:43:42 +0800
-Received: from mail.kylinos.cn (localhost [127.0.0.1])
-	by mail.kylinos.cn (NSMail) with SMTP id 4A235E0080FF;
-	Mon, 23 Sep 2024 17:43:42 +0800 (CST)
-X-ns-mid: postfix-66F1384E-1126261213
-Received: from kernel.. (unknown [10.42.12.206])
-	by mail.kylinos.cn (NSMail) with ESMTPA id C3600E000E82;
-	Mon, 23 Sep 2024 17:43:41 +0800 (CST)
-From: Kunwu Chan <chentao@kylinos.cn>
-To: linux@armlinux.org.uk,
-	robh@kernel.org,
-	saravanak@google.com
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Kunwu Chan <chentao@kylinos.cn>
-Subject: [PATCH 2/2] of/platform: PCI: Use dev_is_platform/dev_is_amba to identify platform/amba devices
-Date: Mon, 23 Sep 2024 17:42:48 +0800
-Message-ID: <20240923094249.80399-3-chentao@kylinos.cn>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240923094249.80399-1-chentao@kylinos.cn>
-References: <20240923094249.80399-1-chentao@kylinos.cn>
+	s=arc-20240116; t=1727084838; c=relaxed/simple;
+	bh=hwk0tBbzwWGtPFcWvfrxbwwiC1zX13mWQ0fZaRHWdro=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=j27mVv/jgzlrZ9ucKDfJ4uOpx4dO2Au2sN3heiCqT3DTg0CU6nKmgvk02HFCl8V6Zqifdt/cL0pO/lrlGmyR1s8eMoLmAaF8CdNj/GfhMSffTBa1b5a7B8Sfbpp2usEKHPM7pCbIQfgtO0GaDm6B24Snhm6V00J4vS/5zqP9oW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=bepTSk1d; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from wsk (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: lukma@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id D98378862E;
+	Mon, 23 Sep 2024 11:47:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1727084833;
+	bh=+tppFS2oLuaEwqRTzj9fnAMiRlSoieCQHR+Y3pC9ZME=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=bepTSk1dhA43opvHvQDdQq2JunFcLNitxrJMiNQIJvlZqAKqIvMToMQEyUbLBbV4J
+	 Nf//FDNv7PWTI1xjLkoCqdjTckEYHWmYHNzmpW8F0YauKur/OuQYbAVt51NuRaKedT
+	 Rg6mKqgZLsiJjxttUHrPHzjRih8tMSJ41vG6f21j78+coggQqW/1clpWyQrcLDFnCk
+	 yAaMgOMjuzyZrIbLZfK/B603LeSpa1ku9vMhpf2UQ/g/h3GeVyJhdExR9J8kz7Y/lz
+	 6sRzIsnZZnKBVuePzUt9O/ZWSD0u0QleaDIMAnJisVyoktRw7yG3E/+POJb0kqJax8
+	 Ss0YAjLW8Bivw==
+Date: Mon, 23 Sep 2024 11:47:11 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] dts: nxp: mxs: Add descriptions for imx287 based
+ btt3-[012] devices
+Message-ID: <20240923114711.1c294b6b@wsk>
+In-Reply-To: <CAOMZO5DJ4=ARZEcq+vbisA4kJBg+WFkH3G8-hYDkL82GQBEPBw@mail.gmail.com>
+References: <20240912124825.2528984-1-lukma@denx.de>
+	<20240912124825.2528984-2-lukma@denx.de>
+	<CAOMZO5DJ4=ARZEcq+vbisA4kJBg+WFkH3G8-hYDkL82GQBEPBw@mail.gmail.com>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="Sig_/Ilu4b09qMfQa=FASJqP83n=";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+
+--Sig_/Ilu4b09qMfQa=FASJqP83n=
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Use dev_is_platform()/dev_is_amba() instead of checking bus type directly=
-.
+Hi Fabio,
 
-Signed-off-by: Kunwu Chan <chentao@kylinos.cn>
----
- drivers/of/platform.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> Hi Lukasz,
+>=20
+> On Thu, Sep 12, 2024 at 9:48=E2=80=AFAM Lukasz Majewski <lukma@denx.de> w=
+rote:
+>=20
+> > +&lcdif {
+> > +       pinctrl-names =3D "default";
+> > +       pinctrl-0 =3D <&lcdif_24bit_pins_a>, <&lcdif_sync_pins_bttc>,
+> > +                   <&lcdif_reset_pins_bttc>;
+> > +       lcd-supply =3D <&reg_3v3>;
+> > +       display =3D <&display0>;
+> > +       status =3D "okay";
+> > +       display0: display0 {
+> > +               bits-per-pixel =3D <32>;
+> > +               bus-width =3D <24>;
+> > +               display-timings {
+> > +                       native-mode =3D <&timing0>;
+> > +                       timing0: timing0 {
+> > +                               clock-frequency =3D <6500000>;
+> > +                               hactive =3D <320>;
+> > +                               vactive =3D <240>;
+> > +                               hfront-porch =3D <20>;
+> > +                               hback-porch =3D <38>;
+> > +                               hsync-len =3D <30>;
+> > +                               vfront-porch =3D <4>;
+> > +                               vback-porch =3D <14>;
+> > +                               vsync-len =3D <4>;
+> > +                               hsync-active =3D <0>;
+> > +                               vsync-active =3D <0>;
+> > +                               de-active =3D <0>;
+> > +                               pixelclk-active =3D <1>; =20
+>=20
+> According to fsl,lcdif.yaml, a remote-endpoint to the display is
+> needed.
+>=20
+> See imx28-evk.dts for an example.
 
-diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index 9bafcff3e628..1937cbef55ee 100644
---- a/drivers/of/platform.c
-+++ b/drivers/of/platform.c
-@@ -619,10 +619,10 @@ int of_platform_device_destroy(struct device *dev, =
-void *data)
- 	of_node_clear_flag(dev->of_node, OF_POPULATED);
- 	of_node_clear_flag(dev->of_node, OF_POPULATED_BUS);
-=20
--	if (dev->bus =3D=3D &platform_bus_type)
-+	if (dev_is_platform(dev))
- 		platform_device_unregister(to_platform_device(dev));
- #ifdef CONFIG_ARM_AMBA
--	else if (dev->bus =3D=3D &amba_bustype)
-+	else if (dev_is_amba(dev))
- 		amba_device_unregister(to_amba_device(dev));
- #endif
-=20
---=20
-2.43.0
+This file has the:
+	panel {
+		compatible =3D "sii,43wvf1g";
 
+Whereas in those devices (i.e. btt3) - I don't know the names of the
+displays - manufacturer buys them according to the timing properties.
+
+Hence the question - how shall I proceed?
+
+IMHO the most straightforward way is to modify fsl,lcdif.yaml to
+not require "port" and "remote-endpoint" and instead add support for
+"display-timings" and "timingX"
+
+Especially that
+Documentation/devicetree/bindings/display/panel/display-timings.yaml
+
+are already defined and used by many imx boards (from imx25 to imx6q)
+- git grep -n "display-timings"
+
+Even the imx28-m28evk.dts is using the "display-timings" and not
+"remote-endpoint" approach.
+
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/Ilu4b09qMfQa=FASJqP83n=
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmbxOR8ACgkQAR8vZIA0
+zr0RMAf+P+IBxVFol0awhUrlSAa6pvq0jmSf8oazCU+VunQD0ICMJEQBpxVd4jTN
+Iz7ov8d6CQ1A2e5uJnG+O3va0aZ8mqmwQ6B1wosg+GtUJtQVpOkadJRx7uYs/JQf
+L7ymVrgGQ7vC2xof5qG2mFKHK5AbjNAZNsThXUc8Nfo2wniCcene2bOMzykUfisN
+cav071REJJVVkZ39RAhLy5mv9R61VQaLMgBPWQ+0Ps7xEr50w+er5qspcW+FQBMP
+CVcfZ3VwQ8WYUGuyHzialbpTUcmJAM3MVb+9SdSxGYohjgyHsJpNhNcuHMBu4fET
+1PyLx4J4PqB07xcRnKKymE7dsL5ZEg==
+=BLj/
+-----END PGP SIGNATURE-----
+
+--Sig_/Ilu4b09qMfQa=FASJqP83n=--
 
