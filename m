@@ -1,201 +1,626 @@
-Return-Path: <devicetree+bounces-104481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E73C97E8E0
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:38:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 816C397E8E6
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 11:40:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 749EBB20BAA
-	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:38:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4519D28189B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Sep 2024 09:40:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A06C9194C6E;
-	Mon, 23 Sep 2024 09:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B3B0194AE7;
+	Mon, 23 Sep 2024 09:40:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=os.amperecomputing.com header.i=@os.amperecomputing.com header.b="MvyCFuMh"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ct30iPyJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com (mail-westusazon11020098.outbound.protection.outlook.com [52.101.85.98])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6EED194A49;
-	Mon, 23 Sep 2024 09:38:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.85.98
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727084313; cv=fail; b=fHwx0L52oEz1gW0zZin926GtuPs1SRLmel5ubAN4op0YaVTc0kd9+eiZ/SEZEA1qxtiiMrzIugIDCgohTEyUfisPS7K//Q0uDG3XwALP/9108vck5suWMQkxQ3A9VsVinl4twdwOv5KTOxPbTQqfWZ/NyXTHisJOnT5WAcdd+sk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727084313; c=relaxed/simple;
-	bh=cnKX/R/giV+Tm5cPrwjQLbG1QScSso8/ir76ttaT32o=;
-	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=g8a49u0grLbzSv5kVPnhbpn9fT65jUTfJayAmNHGRXEwIk+iQBUGLvlYbaT0kexmHX3E6rcZTjy0VljeW2/WB6mgRaLSg+TpkaIdKFFRo+inz+e9Jom3HXuPjIg1Ybz6SqmSJmNmP3OBLlcynPsPoFl2+zN/VKcsMZM9VLN79T8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=os.amperecomputing.com; spf=pass smtp.mailfrom=os.amperecomputing.com; dkim=pass (1024-bit key) header.d=os.amperecomputing.com header.i=@os.amperecomputing.com header.b=MvyCFuMh; arc=fail smtp.client-ip=52.101.85.98
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=os.amperecomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=os.amperecomputing.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VmP5ej29fOfSWjpm4R0XcMVgPaErsKCH0R9+THnsLFVl0JwjgxfB2Og2RABEHKUU87zp2fNGTCmdWrC89XVvS0CO7s1c4jAx2J9aAXDMI1PAc+Z+u4DjkM2mz6fsBV6LdW0utGTx5M0JgnKZI9L19fld1Xl7JOZZRle5vuqHSf3zJczPO9UR9y0f1gR20pHI2GNvpSsFuIGLYAwhg79pzj6fcVyMHWybs7asyUqHlA8S0YQNwL3n1EXt8XC1M1Ufb1kv6Ce88kmJIlp9BEVAF+mNKBV4Nq7Rapbl0WRocFD6RRgpJNSvaBx8XngEzrETU6CXoXAWiZqkzJqBp9ekhg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3POTCOh5VA69KAf1cgWGtAFgMUr1N+zowH3OjrEK410=;
- b=QebOplQJbkBHpL2cWHF4BMT4wbIOxiVO45psKuCYC5zibvg+8geeqP2yU2M08roO0QBgpNO5rMlfZaImuSzSbFXjpeTpZbjh+BXu+2Hneqj2OnMmNC6NaEVWVWNtr4wrEWobvjSE6o4YZhIedcDeM5aW2FSEuKISwHtzuJjKF5NN32HwrQt54CiN7/sDFCA5nsHrX4WivtuIjwGTtgWsAsiSCYTnSkdu8K4DBEdIYG+SwIzL6izn6P/C2fLHmyuziSgELix5npFdndivOmUxTGCnTSpynt5jKuU+bIo88x9bpynrplpouNt6h3TjgqrEkIOo6PX16Xrw8D2ygCQwCQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=os.amperecomputing.com; dkim=pass
- header.d=os.amperecomputing.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38EDA194A64
+	for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 09:40:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727084431; cv=none; b=gCUug47yM0wJfmrAZsrP4jrNNJGtV7QOeyQZpSBSAvQ4z4L0xps2vERgZGv0qqFy1+6ukTiHr44c1sHIbwiekxlcVn0FvYYr7BVInmAZPbH2Uh+0NfeiICie4Gj+BBEZ61FM/yYf5XlIo8Pd2YI6VKldJZ0GWBZaVMFfr/ITOjM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727084431; c=relaxed/simple;
+	bh=K7gYqpOdu86p0YAq0PAz0SunG1Wnt4nFKzstqYEdl6o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ONs9sbUEzcJVJPmSy4CiyDV/NydaK/NBtb0t7C1eHFezirAtzLqSNw3vKMVftm3qt/ZJu69HnMSxVT6oCN/GEfR0Wf/3QU3j6KCBPXLFdQeElbWG3YwfICzu4SRvbtYOPwrJ27qDuLvZw79/TyR7+Qa4h8+0rfjQSH5LY4lUVLE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ct30iPyJ; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2f75de9a503so35923421fa.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 02:40:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=os.amperecomputing.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3POTCOh5VA69KAf1cgWGtAFgMUr1N+zowH3OjrEK410=;
- b=MvyCFuMhrlgesSNrch69gFhleI69EJrBtXHXt+nrxvRiDTfu5hC/qavKHDFc3XO7dwmV3qFfXDHHi+QninE9c7sf8EmV+xqQJIK5HA53ykNMeS+QG+WC5WI5D+qWs7yJDN9nxO4hi2oUxmub2eF29fKI5JFL5BNmKsYHOa0YBUk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
-Received: from BL3PR01MB7057.prod.exchangelabs.com (2603:10b6:208:35c::16) by
- PH0PR01MB8120.prod.exchangelabs.com (2603:10b6:510:29f::15) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7982.26; Mon, 23 Sep 2024 09:38:27 +0000
-Received: from BL3PR01MB7057.prod.exchangelabs.com
- ([fe80::b69e:5684:ed7c:4d09]) by BL3PR01MB7057.prod.exchangelabs.com
- ([fe80::b69e:5684:ed7c:4d09%4]) with mapi id 15.20.7982.022; Mon, 23 Sep 2024
- 09:38:27 +0000
-From: Chanh Nguyen <chanh@os.amperecomputing.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Peter Yin <peteryin.openbmc@gmail.com>,
-	Noah Wang <noahwang.wang@outlook.com>,
-	Marek Vasut <marex@denx.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Lukas Wunner <lukas@wunner.de>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	OpenBMC Maillist <openbmc@lists.ozlabs.org>
-Cc: Phong Vo <phong@os.amperecomputing.com>,
-	Thang Nguyen <thang@os.amperecomputing.com>,
-	Quan Nguyen <quan@os.amperecomputing.com>,
-	Khanh Pham <khpham@amperecomputing.com>,
-	Open Source Submission <patches@amperecomputing.com>,
-	Chanh Nguyen <chanh@os.amperecomputing.com>
-Subject: [PATCH v2] dt-bindings: trivial-devices: add onnn,adt7462
-Date: Mon, 23 Sep 2024 09:38:00 +0000
-Message-ID: <20240923093800.892949-1-chanh@os.amperecomputing.com>
-X-Mailer: git-send-email 2.43.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR04CA0191.apcprd04.prod.outlook.com
- (2603:1096:4:14::29) To BL3PR01MB7057.prod.exchangelabs.com
- (2603:10b6:208:35c::16)
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727084425; x=1727689225; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3BIFSWAh9BHN4VRAGH5ZmERVjoR+BTdeLvledqUTR/s=;
+        b=ct30iPyJaOK2tGYZjkoWaMjNQ2qWxIkI3xztRkSqkB128YtQNkjjwaOYnXrKdL04F6
+         tQm+R7sYp2Ar+Or33wDUL4jL05f08h5G+y47hET2bJvhgJydCNVMHVKX+eWJAaz6J3sf
+         XTfKCRKOgSx7ERuhHj83+Gq6mhmbgXRnJ1b3TBnrW0r08QqJCZe3PcEv3hnj8ruZdEY/
+         IWFhUjohvYeYNT+nqO9FmizxEWYI+XYKLg9Qi/0nCKcYIYUt6hA0kUGhxtxksY/9Uzkk
+         BFrCPGi5GHq2/LG3zN7/sN+4srhMzLv84jwwQ6dziS5eiVFajPJWAezHfEHeiv/Ob/aJ
+         6pXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727084425; x=1727689225;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3BIFSWAh9BHN4VRAGH5ZmERVjoR+BTdeLvledqUTR/s=;
+        b=Of5SUSmLifw37cqvA3J0QFP0dgl0r35AR5Zf90Nxe4K2Cop/mJoPD0wBe/9QORrrB4
+         Rk61V6cXO7LzxfzRxOW5z+hf7v3Lh7UKTuHH1B0BYEXWUYUDLh/vnucsaBSc7zCiG2BF
+         0QeYTrOJ3XRmwY5ClBAOrzN1m5O2ZSioko1QVRmgnfZXBtZFD+BcVwjWAM4rfjKwalcu
+         AiTnILcV+iUFh4XgRF6NEzOfWp4IYTiwFPTtvjN72CEkHHDGKdPus8oMzhHg64yBsMyv
+         BGE4l6AFPhI72Tz8o7cl0acr4gaGgUr1UB52i7ioe1m8xd/yNqZdSyYfZ5Hnghqldcdz
+         r2lw==
+X-Forwarded-Encrypted: i=1; AJvYcCVtd8lEakyddCivveiVsbGoke29Vq0Ehztw2Y5fLjWR/p33qoWerzW4DfR0iwKxu7zVoFFinaBGkp+V@vger.kernel.org
+X-Gm-Message-State: AOJu0YxY9zhf2xSU80K498CM8SO42tCU/2ikppDErJHP8QxLmEiz4XZG
+	NG7izmPY47FiLtuts1ei2KOzzWX7/hSrUl90itnRYr2MxGF27ibB9sln8ddDOBKbkWAafQ98+Af
+	m/4lGhNjNdS9uKFZpRE9ALjUf/ErQlIPg6qEi1A==
+X-Google-Smtp-Source: AGHT+IElQHvlRkq48cnX8DzhA4UzbfGapr8aSqkqfRIPPwejqMZX+8ECof58f5lS6wVZ2zJ1Ia8StGFcvbFBMC0a/gs=
+X-Received: by 2002:a05:651c:2122:b0:2f6:6202:bfd5 with SMTP id
+ 38308e7fff4ca-2f7cb335da1mr56862321fa.34.1727084425001; Mon, 23 Sep 2024
+ 02:40:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR01MB7057:EE_|PH0PR01MB8120:EE_
-X-MS-Office365-Filtering-Correlation-Id: f3a5afc3-eccd-4b64-f9b8-08dcdbb3798d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|52116014|7416014|376014|366016|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?FDYKQ8k9LEsrFlfVkywWdbBzyk19x0Qukrl02UNIa4G+V3JIEXnq9Ad9xw5z?=
- =?us-ascii?Q?rRg+/fmAOp+6xi6zdFauUeIWq0MV35Y6nag7aTaVR4Tbdgyfz9MfoygCoylR?=
- =?us-ascii?Q?IawJuRHytIl1ZJK3njXMLMp7HQpRH6o4y9ugOIAkAEB4Cddzch0u5v3nNjRE?=
- =?us-ascii?Q?o0UFsMqAEMomOc/fxN8F6aQJDl3vEwjrIAw/mrC8HYMwMHNPkyLIXO8oVYAd?=
- =?us-ascii?Q?dtvo5D4BOhxOdz4HgYl3Ru3NKTZJzX0G7Ro0f5NiVTXUo0/3FCusCMRLsgsh?=
- =?us-ascii?Q?RZPIQsvbUPE5nTsIlXxcs0bsAMB8yvrhw8BsS51JkpadAP/RS/nxuD/MD31O?=
- =?us-ascii?Q?ot6xryKLXL9F1toJ2Y7+kuMNiCsPVWDQlra7dgZI+xxpcwFY9EZgOx3nqc0R?=
- =?us-ascii?Q?Qw8QyCesKP1FWCndGfmw+P44anObM2QWupg0NsyYpM0Q3dAxSoY9VcbzWZye?=
- =?us-ascii?Q?6j2kPCWY/ZAazvMXHHD/PhKYkr73+VORS3syg87dMi4uGrdJZSzRshE+O/58?=
- =?us-ascii?Q?952pDLPV+z6S/A/6dfPNsQpw1hgysCcXqox6GBkSWI9nuzdMCEY5Y5vZmkuN?=
- =?us-ascii?Q?rPpQiuidyq53jsfWRU983iLjGRNHSuHNG8GNai2nTs8RPryWeOAuxNqv91Sk?=
- =?us-ascii?Q?merMjzn8dnku7Ka+iHn3cT92beXoVKcrw9LeCKApr9D2kyDNKN6La+glwgg1?=
- =?us-ascii?Q?UUI7z2lWG4QGqV7AvIW4ycuVdbpEsFgJzH6Rp1AGRIt4ndxv/ggcg4P2eUWH?=
- =?us-ascii?Q?Qg0arfGvsfYj9117Se2j+Nv8jyeNXiOhC+vBvJ74OdMX1bqQiUorYEX2O2WD?=
- =?us-ascii?Q?n59Ll4iF3ZKvEYRXVHpHezqsv0pf3DsGqkQHcIky+euySj4ExJVW7orSXcNp?=
- =?us-ascii?Q?sAQQRol+2HuEF+W0/LpVIRtCrn+8oNFghRWZOG8IrHbare/SWOL2Ho1tsvTh?=
- =?us-ascii?Q?kzcLSpq0XKZwhS0LGgnd5y2S5ZDqIyHAuZTCiOLzMkQZfWmS1B3Bik51p3Uh?=
- =?us-ascii?Q?f1UP/r5E+P4KwSEdgiI/U9hhsDVEnp/PRQ8pbzJgxtHKcvsE1l7S4MWlQZPS?=
- =?us-ascii?Q?t7QIwDAYeNo5/V9hBO/yp2egfmcDtkZq6Lj4NXeuKF3UP10WjuAR9YcoMre4?=
- =?us-ascii?Q?T7NMPF/XKeRx2+b58W8stpLCsKrRGPAlYqPpp6XaGP24ojLQiiRj0/W+v7n8?=
- =?us-ascii?Q?E0TIWY5HrAhtFqxVK57npYhd9mq01bkcaR3xCmAvGCrF22G5U6qDhGcE5Wbg?=
- =?us-ascii?Q?i/zpumdoEC7e9gdZ972SUqLhII5Sn9TJ3vASPy3CVth/uKYyDAeNLJhPyomH?=
- =?us-ascii?Q?k8GY/LmuITjbqeU+3RDCofPvEj1CFm3Uti5j6IROg6UARGlyacIw24JdlCJe?=
- =?us-ascii?Q?Oq9jjpU=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL3PR01MB7057.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(7416014)(376014)(366016)(38350700014)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?fdbWDOsUaAEfT9rRER4WSf+1uHOCDh0VYF5cimcX9qkxsTIScHxNlaKnwpF6?=
- =?us-ascii?Q?/NFkHv+RzCEghjn+2e+SektbNgiyuc55AFINwSh5KLmKDIndK1PpIYpFXvnX?=
- =?us-ascii?Q?mSMG9AHs+h5VzZzf0I6GiMOF9jFo7oG8ZU5tRCTkf+qx6Ic4qPbXYNwkG2ue?=
- =?us-ascii?Q?yOckm5Qby/I9kv/r6uemkseF2eMiWWM71ia7r4DchyCbiJxRghkpGPGxcK2R?=
- =?us-ascii?Q?6xyi1AESgGLY1ep8doDWoUNoKkid48ZhRp5F4hFI2TDFQOsdyRp9+WFctSQy?=
- =?us-ascii?Q?yOM0WMYhpkRgDR5b/JxOkGAiZazOEFyFQ9grtRA3NDhabOYzAzkHY8kXh5La?=
- =?us-ascii?Q?GIvyeS7qna8u522kq7e7JrQidOqhvI2DQQ4IqFYUbfzbGzQpDpqiuuHt2+li?=
- =?us-ascii?Q?6MGATVFciLiP/A36Gq0XX61cKLKDGlgJ4lHe+nNaLTE/9CBlHg4svhjMz9hW?=
- =?us-ascii?Q?ch9vpPtx6cXYDWQMSZaEnobzSJXqUGGmEoVSXt9eHlDSBhaxgR5FCDOvpS5X?=
- =?us-ascii?Q?ITV+4QwSF/Nh+wJh3VqG4xb4g9rBvSrUgwzryewgyZnyk5c7RpV5XcdivoXs?=
- =?us-ascii?Q?nQA+riILW0X5mn/0cx/9aW5h5Jv7ywrwKOQBEy0uO2abxZUq9ZrAlq41xrAp?=
- =?us-ascii?Q?8eAiSD186oMbSxhihOhQb2BQvCTy0xxW27elSHJqhr/iHJcF7G8mr15ZoVpf?=
- =?us-ascii?Q?zTe/dPa/jYeigmFsa5Tixj/fRI0JqYQgkKK63//oz+5TyPsTKslryxdwDICN?=
- =?us-ascii?Q?DVjcp+FFBBGnkW6OK3ye07Cavx+z7EWVp46oM56dj0Nemz9SOSPqjsbreYfJ?=
- =?us-ascii?Q?hSyArBhruEPi3Aig2FnPEOziq6tQO1Dc5OnSgKXfwa0onv0kqKVwL6S/ecPt?=
- =?us-ascii?Q?JLvP80VyV6tOKh+fFHSdsKoQHZ4DUwySEfK8FXin6cBPlDMG+SKOqomikdzf?=
- =?us-ascii?Q?i3pcIJyY9BcUllP9soBVOUPrtq82rbgIi41hfrmfEAjxXN5IbtIHPBk71Gjy?=
- =?us-ascii?Q?5a3AQPruVOtX2qEdjevRqssQhslFsH5ejz+dOS45RRmBtBvTV5ouZjjlGsPV?=
- =?us-ascii?Q?HuakiVHn92SeQJDFmToB+UA1/9jV6ocpc7npsfwj2XkdNiiAZs+tF6iSG9BE?=
- =?us-ascii?Q?FR55m8G46lFTjxrD+95pAASpe+S+KclFhoJ8ygM/qDj4iLCRgz7KWNv4vzsj?=
- =?us-ascii?Q?eMTtZEE1JbrMFNRe84QyjAg/LBwwIBUh7AjLDFbDFf4dORUuNo+1hM96lLLw?=
- =?us-ascii?Q?lzdpp4s0TzKcWwRspm253szyFgbMUrmYLCQMx7xRMVG3RWPx/oMEvzfRBGLE?=
- =?us-ascii?Q?wLX4wKM3jB3G1nQWag1wHNLSEELaiTweh8+SYZ3JVKuJIPi18mAQb39FaWjX?=
- =?us-ascii?Q?tlotHHAhlUsXEcbZj4NYyFojUgxT7doRAflX/dp+h5Z20tfFTL2NDYigFLes?=
- =?us-ascii?Q?Kc+Kg/VNZnNE2So6GKPj+NIICjBDE/YR0hHEhgqZ+T++/+hFzoMFYWJwnlrZ?=
- =?us-ascii?Q?70Rmy+2rL8xnhdUjbJU8hInFkNIRM8B3/zenlhtDhvtSiG9fY9gH0B3Z43PE?=
- =?us-ascii?Q?oCsTeeldIFM+MgjqRn6VSrXcIGrvGXVRvqf3m6bPK0tTAJMvFgIN3/flhJGa?=
- =?us-ascii?Q?avNUMIpI7duIhg++Q9Wfw5o=3D?=
-X-OriginatorOrg: os.amperecomputing.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3a5afc3-eccd-4b64-f9b8-08dcdbb3798d
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR01MB7057.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2024 09:38:26.9960
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2B79k1cueGXS1LRohDMHN5Nwyhd5Cx7dw0xk5hR1ZVz7lxw+ZnNV2YiVTYFpdUFB3t4th6QF18Tl2qKv/TqNgib/Y5sk3oEhUG1AiwTco2wPjE+QHLImyjKCBJsA/0mE
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR01MB8120
+References: <20240920-ad7606_add_iio_backend_support-v2-0-0e78782ae7d0@baylibre.com>
+ <20240920-ad7606_add_iio_backend_support-v2-9-0e78782ae7d0@baylibre.com>
+In-Reply-To: <20240920-ad7606_add_iio_backend_support-v2-9-0e78782ae7d0@baylibre.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Mon, 23 Sep 2024 11:40:14 +0200
+Message-ID: <CAMknhBEErfs7LhyyjW=tAPbfz1B1SBEABAziU+xOC_6rE-e2jw@mail.gmail.com>
+Subject: Re: [PATCH v2 09/10] iio: adc: ad7606: Add iio-backend support
+To: Guillaume Stols <gstols@baylibre.com>
+Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Michal Marek <mmarek@suse.com>, linux-pwm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-doc@vger.kernel.org, aardelean@baylibre.com, jstephan@baylibre.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The adt7462 supports monitoring and controlling up to
-four PWM Fan drive outputs and eight TACH inputs measures.
-The adt7462 supports reading a single on chip temperature
-sensor and three remote temperature sensors. There are up
-to 13 voltage monitoring inputs.
+On Fri, Sep 20, 2024 at 7:33=E2=80=AFPM Guillaume Stols <gstols@baylibre.co=
+m> wrote:
+>
+> - Basic support for iio backend.
+> - Supports IIO_CHAN_INFO_SAMP_FREQ R/W.
+> - Only hardware mode is available, and that IIO_CHAN_INFO_RAW is not
+>   supported if iio-backend mode is selected.
+>
+> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+> ---
+>  drivers/iio/adc/Kconfig      |  2 +
+>  drivers/iio/adc/ad7606.c     | 94 +++++++++++++++++++++++++++++++++++++-=
+------
+>  drivers/iio/adc/ad7606.h     | 15 +++++++
+>  drivers/iio/adc/ad7606_par.c | 91 ++++++++++++++++++++++++++++++++++++++=
+++++
+>  4 files changed, 187 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index 4ab1a3092d88..9b52d5b2c592 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -224,9 +224,11 @@ config AD7606_IFACE_PARALLEL
+>         tristate "Analog Devices AD7606 ADC driver with parallel interfac=
+e support"
+>         depends on HAS_IOPORT
+>         select AD7606
+> +       select IIO_BACKEND
+>         help
+>           Say yes here to build parallel interface support for Analog Dev=
+ices:
+>           ad7605-4, ad7606, ad7606-6, ad7606-4 analog to digital converte=
+rs (ADC).
+> +         It also support iio_backended devices for AD7606B.
+>
+>           To compile this driver as a module, choose M here: the
+>           module will be called ad7606_par.
+> diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
+> index 7f2ff1674638..f710445bdc22 100644
+> --- a/drivers/iio/adc/ad7606.c
+> +++ b/drivers/iio/adc/ad7606.c
+> @@ -21,6 +21,7 @@
+>  #include <linux/util_macros.h>
+>  #include <linux/units.h>
+>
+> +#include <linux/iio/backend.h>
+>  #include <linux/iio/iio.h>
+>  #include <linux/iio/buffer.h>
+>  #include <linux/iio/sysfs.h>
+> @@ -271,7 +272,15 @@ static int ad7606_set_sampling_freq(struct ad7606_st=
+ate *st, unsigned long freq)
+>
+>  static int ad7606_read_samples(struct ad7606_state *st)
+>  {
+> -       unsigned int num =3D st->chip_info->num_channels - 1;
+> +       unsigned int num =3D st->chip_info->num_channels;
 
-Add device tree bindings for the adt7462 device.
+Probably better to introduce a new num_voltage_channels field to
+chip_info instead of trying to reverse engineer if there is a
+timestamp channel or not.
 
-Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
----
-Change in v2:
-   - Add onnn,adt7462 to the list of trivial devices       [Guenter]
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+> +
+> +       /*
+> +        * Timestamp channel does not contain sample, and no timestamp ch=
+annel if
+> +        * backend is used.
+> +        */
+> +       if (!st->back)
+> +               num--;
+> +
+>         u16 *data =3D st->data;
+>
+>         return st->bops->read_block(st->dev, num, data);
+> @@ -319,11 +328,14 @@ static int ad7606_scan_direct(struct iio_dev *indio=
+_dev, unsigned int ch)
+>                 if (!ret)
+>                         return ret;
+>         }
+> -       ret =3D wait_for_completion_timeout(&st->completion,
+> -                                         msecs_to_jiffies(1000));
+> -       if (!ret) {
+> -               ret =3D -ETIMEDOUT;
+> -               goto error_ret;
+> +
+> +       if (!st->back) {
+> +               ret =3D wait_for_completion_timeout(&st->completion,
+> +                                                 msecs_to_jiffies(1000))=
+;
+> +               if (!ret) {
+> +                       ret =3D -ETIMEDOUT;
+> +                       goto error_ret;
+> +               }
+>         }
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 0108d7507215..15f89d7ecf73 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -311,6 +311,8 @@ properties:
-           - nuvoton,w83773g
-             # OKI ML86V7667 video decoder
-           - oki,ml86v7667
-+            # ON Semiconductor ADT7462 Temperature, Voltage Monitor and Fan Controller
-+          - onnn,adt7462
-             # 48-Lane, 12-Port PCI Express Gen 2 (5.0 GT/s) Switch
-           - plx,pex8648
-             # Pulsedlight LIDAR range-finding sensor
--- 
-2.43.0
+Would it be better to just make a different scan_direct function for
+the case when we don't have the BUSY interrtup?
 
+>
+>         ret =3D ad7606_read_samples(st);
+> @@ -349,6 +361,7 @@ static int ad7606_read_raw(struct iio_dev *indio_dev,
+>  {
+>         int ret, ch =3D 0;
+>         struct ad7606_state *st =3D iio_priv(indio_dev);
+> +       struct pwm_state cnvst_pwm_state;
+>
+>         switch (m) {
+>         case IIO_CHAN_INFO_RAW:
+> @@ -369,6 +382,10 @@ static int ad7606_read_raw(struct iio_dev *indio_dev=
+,
+>         case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+>                 *val =3D st->oversampling;
+>                 return IIO_VAL_INT;
+> +       case IIO_CHAN_INFO_SAMP_FREQ:
+> +               pwm_get_state(st->cnvst_pwm, &cnvst_pwm_state);
+> +               *val =3D DIV_ROUND_CLOSEST_ULL(NSEC_PER_SEC, cnvst_pwm_st=
+ate.period);
+> +               return IIO_VAL_INT;
+>         }
+>         return -EINVAL;
+>  }
+> @@ -458,6 +475,8 @@ static int ad7606_write_raw(struct iio_dev *indio_dev=
+,
+>                         return ret;
+>
+>                 return 0;
+> +       case IIO_CHAN_INFO_SAMP_FREQ:
+> +               return ad7606_set_sampling_freq(st, val);
+>         default:
+>                 return -EINVAL;
+>         }
+> @@ -595,14 +614,49 @@ static int ad7606_buffer_predisable(struct iio_dev =
+*indio_dev)
+>         return 0;
+>  }
+>
+> +static int ad7606_pwm_buffer_postenable(struct iio_dev *indio_dev)
+> +{
+> +       struct ad7606_state *st =3D iio_priv(indio_dev);
+> +
+> +       return ad7606_pwm_set_swing(st);
+> +}
+> +
+> +static int ad7606_pwm_buffer_predisable(struct iio_dev *indio_dev)
+> +{
+> +       struct ad7606_state *st =3D iio_priv(indio_dev);
+> +
+> +       return ad7606_pwm_set_low(st);
+> +}
+> +
+> +static int ad7606_update_scan_mode(struct iio_dev *indio_dev,
+> +                                  const unsigned long *scan_mask)
+> +{
+> +       struct ad7606_state *st =3D iio_priv(indio_dev);
+> +
+> +       /* The update scan mode is only for iio backend compatible driver=
+s.
+> +        * If the specific update_scan_mode is not defined in the bus ops=
+,
+> +        * just do nothing and return 0.
+> +        */
+> +       if (st->bops->update_scan_mode)
+> +               return st->bops->update_scan_mode(indio_dev, scan_mask);
+> +       else
+> +               return 0;
+> +}
+
+Usually, we try to avoid else after return.
+
+So perhaps simpler:
+
+if (!st->bops->update_scan_mode)
+        return 0;
+
+return st->bops->update_scan_mode(indio_dev, scan_mask);
+
+> +
+>  static const struct iio_buffer_setup_ops ad7606_buffer_ops =3D {
+>         .postenable =3D &ad7606_buffer_postenable,
+>         .predisable =3D &ad7606_buffer_predisable,
+>  };
+>
+> +static const struct iio_buffer_setup_ops ad7606_pwm_buffer_ops =3D {
+> +       .postenable =3D &ad7606_pwm_buffer_postenable,
+> +       .predisable =3D &ad7606_pwm_buffer_predisable,
+> +};
+> +
+>  static const struct iio_info ad7606_info_no_os_or_range =3D {
+>         .read_raw =3D &ad7606_read_raw,
+>         .validate_trigger =3D &ad7606_validate_trigger,
+> +       .update_scan_mode =3D &ad7606_update_scan_mode,
+>  };
+>
+>  static const struct iio_info ad7606_info_os_and_range =3D {
+> @@ -610,6 +664,7 @@ static const struct iio_info ad7606_info_os_and_range=
+ =3D {
+>         .write_raw =3D &ad7606_write_raw,
+>         .attrs =3D &ad7606_attribute_group_os_and_range,
+>         .validate_trigger =3D &ad7606_validate_trigger,
+> +       .update_scan_mode =3D &ad7606_update_scan_mode,
+>  };
+>
+>  static const struct iio_info ad7606_info_os_range_and_debug =3D {
+> @@ -618,6 +673,7 @@ static const struct iio_info ad7606_info_os_range_and=
+_debug =3D {
+>         .debugfs_reg_access =3D &ad7606_reg_access,
+>         .attrs =3D &ad7606_attribute_group_os_and_range,
+>         .validate_trigger =3D &ad7606_validate_trigger,
+> +       .update_scan_mode =3D &ad7606_update_scan_mode,
+>  };
+>
+>  static const struct iio_info ad7606_info_os =3D {
+> @@ -625,6 +681,7 @@ static const struct iio_info ad7606_info_os =3D {
+>         .write_raw =3D &ad7606_write_raw,
+>         .attrs =3D &ad7606_attribute_group_os,
+>         .validate_trigger =3D &ad7606_validate_trigger,
+> +       .update_scan_mode =3D &ad7606_update_scan_mode,
+>  };
+>
+>  static const struct iio_info ad7606_info_range =3D {
+> @@ -632,6 +689,7 @@ static const struct iio_info ad7606_info_range =3D {
+>         .write_raw =3D &ad7606_write_raw,
+>         .attrs =3D &ad7606_attribute_group_range,
+>         .validate_trigger =3D &ad7606_validate_trigger,
+> +       .update_scan_mode =3D &ad7606_update_scan_mode,
+>  };
+>
+>  static const struct iio_trigger_ops ad7606_trigger_ops =3D {
+> @@ -700,8 +758,6 @@ int ad7606_probe(struct device *dev, int irq, void __=
+iomem *base_address,
+>         indio_dev->channels =3D st->chip_info->channels;
+>         indio_dev->num_channels =3D st->chip_info->num_channels;
+>
+> -       init_completion(&st->completion);
+> -
+>         ret =3D ad7606_reset(st);
+>         if (ret)
+>                 dev_warn(st->dev, "failed to RESET: no RESET GPIO specifi=
+ed\n");
+> @@ -774,14 +830,22 @@ int ad7606_probe(struct device *dev, int irq, void =
+__iomem *base_address,
+>                 if (ret)
+>                         return ret;
+>         }
+> -       ret =3D devm_request_threaded_irq(dev, irq,
+> -                                       NULL,
+> -                                       &ad7606_interrupt,
+> -                                       IRQF_TRIGGER_FALLING | IRQF_ONESH=
+OT,
+> -                                       chip_info->name, indio_dev);
+> -       if (ret)
+> -               return ret;
+>
+> +       if (st->bops->iio_backend_config) {
+> +               ret =3D st->bops->iio_backend_config(dev, indio_dev);
+> +               if (ret)
+> +                       return ret;
+> +               indio_dev->setup_ops =3D &ad7606_pwm_buffer_ops;
+> +       } else {
+> +               init_completion(&st->completion);
+> +               ret =3D devm_request_threaded_irq(dev, irq,
+> +                                               NULL,
+> +                                               &ad7606_interrupt,
+> +                                               IRQF_TRIGGER_FALLING | IR=
+QF_ONESHOT,
+> +                                               chip_info->name, indio_de=
+v);
+> +               if (ret)
+> +                       return ret;
+> +       }
+>         return devm_iio_device_register(dev, indio_dev);
+>  }
+>  EXPORT_SYMBOL_NS_GPL(ad7606_probe, IIO_AD7606);
+> diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
+> index 18c87fe9a41a..53cd8eb4898e 100644
+> --- a/drivers/iio/adc/ad7606.h
+> +++ b/drivers/iio/adc/ad7606.h
+> @@ -34,6 +34,12 @@
+>                 BIT(IIO_CHAN_INFO_SCALE),               \
+>                 BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO))
+>
+> +#define AD7606_BI_CHANNEL(num)                         \
+> +       AD760X_CHANNEL(num, 0,                          \
+> +               BIT(IIO_CHAN_INFO_SCALE),               \
+> +               BIT(IIO_CHAN_INFO_SAMP_FREQ) |          \
+> +               BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO))
+> +
+>  #define AD7616_CHANNEL(num)    \
+>         AD760X_CHANNEL(num, BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_SC=
+ALE),\
+>                 0, BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO))
+> @@ -59,6 +65,7 @@ enum ad7606_supported_device_ids {
+>   * @os_req_reset       some devices require a reset to update oversampli=
+ng
+>   * @init_delay_ms      required delay in miliseconds for initialization
+>   *                     after a restart
+> + * @has_backend                defines if a backend is available for the=
+ given chip
+>   */
+>  struct ad7606_chip_info {
+>         enum ad7606_supported_device_ids id;
+> @@ -69,6 +76,7 @@ struct ad7606_chip_info {
+>         unsigned int                    oversampling_num;
+>         bool                            os_req_reset;
+>         unsigned long                   init_delay_ms;
+> +       bool                            has_backend;
+
+It isn't clear to me what this flag is for. If the flag is true, does
+it mean that the chip requires to use the IIO backend and not the
+older parallel interface? What if there is some chip that need to
+support both?
+
+>  };
+>
+>  /**
+> @@ -115,6 +123,7 @@ struct ad7606_state {
+>         unsigned int                    num_scales;
+>         const unsigned int              *oversampling_avail;
+>         unsigned int                    num_os_ratios;
+> +       struct iio_backend              *back;
+>         int (*write_scale)(struct iio_dev *indio_dev, int ch, int val);
+>         int (*write_os)(struct iio_dev *indio_dev, int val);
+>
+> @@ -139,16 +148,21 @@ struct ad7606_state {
+>
+>  /**
+>   * struct ad7606_bus_ops - driver bus operations
+> + * @iio_backend_config function pointer for configuring the iio_backend =
+for
+> + *                     the compatibles that use it
+>   * @read_block         function pointer for reading blocks of data
+>   * @sw_mode_config:    pointer to a function which configured the device
+>   *                     for software mode
+>   * @reg_read   function pointer for reading spi register
+>   * @reg_write  function pointer for writing spi register
+>   * @write_mask function pointer for write spi register with mask
+> + * @update_scan_mode   function pointer for handling the calls to iio_in=
+fo's update_scan
+> + *                     mode when enabling/disabling channels.
+>   * @rd_wr_cmd  pointer to the function which calculates the spi address
+>   */
+>  struct ad7606_bus_ops {
+>         /* more methods added in future? */
+> +       int (*iio_backend_config)(struct device *dev, struct iio_dev *ind=
+io_dev);
+>         int (*read_block)(struct device *dev, int num, void *data);
+>         int (*sw_mode_config)(struct iio_dev *indio_dev);
+>         int (*reg_read)(struct ad7606_state *st, unsigned int addr);
+> @@ -159,6 +173,7 @@ struct ad7606_bus_ops {
+>                                  unsigned int addr,
+>                                  unsigned long mask,
+>                                  unsigned int val);
+> +       int (*update_scan_mode)(struct iio_dev *indio_dev, const unsigned=
+ long *scan_mask);
+>         u16 (*rd_wr_cmd)(int addr, char isWriteOp);
+>  };
+>
+> diff --git a/drivers/iio/adc/ad7606_par.c b/drivers/iio/adc/ad7606_par.c
+> index 7bac39033955..564284ede997 100644
+> --- a/drivers/iio/adc/ad7606_par.c
+> +++ b/drivers/iio/adc/ad7606_par.c
+> @@ -3,6 +3,8 @@
+>   * AD7606 Parallel Interface ADC driver
+>   *
+>   * Copyright 2011 Analog Devices Inc.
+> + * Copyright 2024 Analog Devices Inc.
+
+Can just add year to existing copyright line.
+
+> + * Copyright 2024 BayLibre SAS.
+>   */
+>
+>  #include <linux/err.h>
+> @@ -15,8 +17,80 @@
+>  #include <linux/types.h>
+>
+>  #include <linux/iio/iio.h>
+> +#include <linux/iio/backend.h>
+
+Alphabetical order?
+
+> +
+>  #include "ad7606.h"
+>
+> +static const struct iio_chan_spec ad7606b_bi_channels[] =3D {
+> +       AD7606_BI_CHANNEL(0),
+> +       AD7606_BI_CHANNEL(1),
+> +       AD7606_BI_CHANNEL(2),
+> +       AD7606_BI_CHANNEL(3),
+> +       AD7606_BI_CHANNEL(4),
+> +       AD7606_BI_CHANNEL(5),
+> +       AD7606_BI_CHANNEL(6),
+> +       AD7606_BI_CHANNEL(7),
+> +};
+> +
+> +static int ad7606_bi_update_scan_mode(struct iio_dev *indio_dev, const u=
+nsigned long *scan_mask)
+> +{
+> +       struct ad7606_state *st =3D iio_priv(indio_dev);
+> +       unsigned int c, ret;
+> +
+> +       for (c =3D 0; c < indio_dev->num_channels; c++) {
+> +               if (test_bit(c, scan_mask))
+> +                       ret =3D iio_backend_chan_enable(st->back, c);
+> +               else
+> +                       ret =3D iio_backend_chan_disable(st->back, c);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int ad7606_bi_setup_iio_backend(struct device *dev, struct iio_de=
+v *indio_dev)
+> +{
+> +       struct ad7606_state *st =3D iio_priv(indio_dev);
+> +       unsigned int ret, c;
+> +       struct iio_backend_data_fmt data =3D {
+> +               .sign_extend =3D true,
+> +               .enable =3D true,
+> +       };
+> +
+> +       st->back =3D devm_iio_backend_get(dev, NULL);
+> +       if (IS_ERR(st->back))
+> +               return PTR_ERR(st->back);
+> +
+> +       /* If the device is iio_backend powered the PWM is mandatory */
+> +       if (!st->cnvst_pwm)
+> +               return -EINVAL;
+
+Probably useful to print an error message here since EINVAL can be a
+lot of things.
+
+> +
+> +       ret =3D devm_iio_backend_request_buffer(dev, st->back, indio_dev)=
+;
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret =3D devm_iio_backend_enable(dev, st->back);
+> +       if (ret)
+> +               return ret;
+> +
+> +       for (c =3D 0; c < indio_dev->num_channels; c++) {
+> +               ret =3D iio_backend_data_format_set(st->back, c, &data);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+> +       indio_dev->channels =3D ad7606b_bi_channels;
+> +       indio_dev->num_channels =3D 8;
+
+Can use ARRAY_SIZE(ad7606b_bi_channels) instead of hard-coding 8.
+
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct ad7606_bus_ops ad7606_bi_bops =3D {
+> +       .iio_backend_config =3D ad7606_bi_setup_iio_backend,
+> +       .update_scan_mode =3D ad7606_bi_update_scan_mode,
+> +};
+> +
+>  static int ad7606_par16_read_block(struct device *dev,
+>                                    int count, void *buf)
+>  {
+> @@ -96,9 +170,23 @@ static int ad7606_par_probe(struct platform_device *p=
+dev)
+>         void __iomem *addr;
+>         resource_size_t remap_size;
+>         int irq;
+> +       struct iio_backend *back;
+>
+> +       /*
+> +        * If a firmware node is available (ACPI or DT), platform_device_=
+id is null
+> +        * and we must use get_match_data.
+> +        */
+>         if (dev_fwnode(&pdev->dev)) {
+>                 chip_info =3D device_get_match_data(&pdev->dev);
+> +               back =3D devm_iio_backend_get(&pdev->dev, NULL);
+> +               if (!IS_ERR(back))
+> +                       /*
+> +                        * If a backend is available in the device tree, =
+call the core
+> +                        * probe with backend bops, otherwise use the for=
+mer bops.
+> +                        */
+> +                       return ad7606_probe(&pdev->dev, 0, NULL,
+> +                                           chip_info,
+> +                                           &ad7606_bi_bops);
+
+It seems strange to be this adding inside the if statement for the DT
+case. It would be more future proof to have it after instead, e.g. if
+you bring back the patch for ad7606b_bi_channels().
+
+>         } else {
+>                 id =3D platform_get_device_id(pdev);
+>                 chip_info =3D (const struct ad7606_chip_info *)id->driver=
+_data;
+> @@ -125,6 +213,7 @@ static const struct platform_device_id ad7606_driver_=
+ids[] =3D {
+>         { .name =3D "ad7606-4", .driver_data =3D (kernel_ulong_t)&ad7606_=
+4_info, },
+>         { .name =3D "ad7606-6", .driver_data =3D (kernel_ulong_t)&ad7606_=
+6_info, },
+>         { .name =3D "ad7606-8", .driver_data =3D (kernel_ulong_t)&ad7606_=
+8_info, },
+> +       { .name =3D "ad7606b", .driver_data =3D (kernel_ulong_t)&ad7606b_=
+info, },
+>         { }
+>  };
+>  MODULE_DEVICE_TABLE(platform, ad7606_driver_ids);
+> @@ -134,6 +223,7 @@ static const struct of_device_id ad7606_of_match[] =
+=3D {
+>         { .compatible =3D "adi,ad7606-4", .data =3D &ad7606_4_info },
+>         { .compatible =3D "adi,ad7606-6", .data =3D &ad7606_6_info },
+>         { .compatible =3D "adi,ad7606-8", .data =3D &ad7606_8_info },
+> +       { .compatible =3D "adi,ad7606b", .data =3D &ad7606b_info },
+>         { }
+>  };
+>  MODULE_DEVICE_TABLE(of, ad7606_of_match);
+> @@ -153,3 +243,4 @@ MODULE_AUTHOR("Michael Hennerich <michael.hennerich@a=
+nalog.com>");
+>  MODULE_DESCRIPTION("Analog Devices AD7606 ADC");
+>  MODULE_LICENSE("GPL v2");
+>  MODULE_IMPORT_NS(IIO_AD7606);
+> +MODULE_IMPORT_NS(IIO_BACKEND);
+>
+> --
+> 2.34.1
+>ad7606b_bi_channels
 
