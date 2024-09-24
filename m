@@ -1,59 +1,63 @@
-Return-Path: <devicetree+bounces-104978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E62A0984BEF
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 22:11:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C922984C29
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 22:28:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F8F2285305
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 20:11:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DFE3FB2265E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 20:28:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32DDA136E0E;
-	Tue, 24 Sep 2024 20:11:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C3D7136328;
+	Tue, 24 Sep 2024 20:28:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cBsG1ohG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i0J9MP8f"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01F3912FF72;
-	Tue, 24 Sep 2024 20:11:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D408126C0D;
+	Tue, 24 Sep 2024 20:28:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727208700; cv=none; b=mY6R2XX54rx9H1MIKDSQdst0DwCZumn/u209E1ZS0E8kk0m4r4GkkZm/jfjlOMgn7ll11k9DLxcSt/COt5Hw/GinaqLbCi4rsm3kp9qOrFACLYTOeZOhVGhByhdHDFuDEvX+beyiUoGMmUUNOgBxp5lflKusITPRL4+CW+M7MFs=
+	t=1727209719; cv=none; b=nSkLpQ3qKcPS5RsZQz/6lPqDldXPAK4zHlYq1wGULMFH7BIuccyKhyB+4rWJ872j8ZbGCTDbo8CG/PPiNlT+BjpqaosDa6DWjan7I8aeyohzVoxI+tIi2qPnP09vzS1r7ntvo+ax4lsSAeE0SOV9jUdf8akw8DRaiywllxkjXpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727208700; c=relaxed/simple;
-	bh=BpM3L2fJi40cQNfIVH/3sRVNGhX/2TnD4+srh5tJsoI=;
+	s=arc-20240116; t=1727209719; c=relaxed/simple;
+	bh=1BbBMtvhZrJTG25V2HSyKYE2CU7TM+G7e8UL/oziNG0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gMbmQLxZf6DzZcnO3hUyjh7NuEsVMbCajQaQi1PmfivQhiuwPkgLwl8LJvkRy/Parp5NPbKPBp49AOJ1lLvQ3dMgg1FnJ3K5KYCL0BvC2O/YSv/IP9oAuncjamRZYZcpzLkRyqMdWabFxvev895x1E++QE+aQ8DnZCOD4zpAMgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cBsG1ohG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B16FC4CEC4;
-	Tue, 24 Sep 2024 20:11:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=usq7UPvuNYxNK53MUJV0wX+3EZaYWwjpM13lyWfvFLBh4x+oksclgyVGdfm5LEkFaAiIcMOu0d8lr1LqqeG/nYl1QJjlMq6SK7pMqtOb42nAkwxqgyMxOc2VVXtFoiezA7kQiXFplIfNk8R06SLzJcbpadFP3mV1VRLTA69DNxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i0J9MP8f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 045FAC4CEC4;
+	Tue, 24 Sep 2024 20:28:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727208699;
-	bh=BpM3L2fJi40cQNfIVH/3sRVNGhX/2TnD4+srh5tJsoI=;
+	s=k20201202; t=1727209719;
+	bh=1BbBMtvhZrJTG25V2HSyKYE2CU7TM+G7e8UL/oziNG0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cBsG1ohGyn7Y76rCX8gQdF7haDHzuNshMGip9bS5YhzFZY8BNdUrYHdKorXZgcUG+
-	 4R7tH0AxIrYSQ9Ipannc8zzOen6pUDvujS4EuhMEqUbM+qo7Fzlsm2KvBmW+u84udZ
-	 F26E26xu6DY7/+dK9m/N2xV7c3gbVkIAE60m2WlozMN9deKlK3g96eNeRXaUFiRJ5r
-	 Z8kQEwsO1fF1jPWK863cCBla+9flcjhdXbFy2+EHZHPkg5s/J2/2jIgpSKOaMt0EtH
-	 hwpq+4UoLOmc5YB4cZxRB9NCXAB5F7QMl1F18FI1JnVJ2r1/wLfY1ibX3xVz+Ix/hc
-	 VOL4Eq6QAyIHw==
-Date: Tue, 24 Sep 2024 15:11:38 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Dhruva Gole <d-gole@ti.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-	Vignesh Raghavendra <vigneshr@ti.com>, linux-pm@vger.kernel.org,
+	b=i0J9MP8fuBRMumjkooK26XsHl6GDK8uJ6+UdeLVRTkFRZYZqk/W4beOIYSzjYBGq0
+	 REg/eMDP6D29upQ1cpmjIGo1cwY6DwMQjuVow4QIgbL+nqw9zaoBoBfV6y6kQ4aFCK
+	 QHOp5nvz94CICkKDz9oPoSkoeguhLlIGwZY5xoGZ1oo//9DsgtEFcZug4QJuaW/6AN
+	 ZErcfvOBFri/V60jdyf2KMU+TZr+L6mAbU8oFEmsTzRNhxEnERJdST+svLH9eVi8bx
+	 eTigUAcZa58/3lbKn1CcB/CSBlhpDBD/X8biDdDmic9s/j77VcL6Sh4TCrwond0b50
+	 M1gNnys1hTCVg==
+Date: Tue, 24 Sep 2024 15:28:38 -0500
+From: Rob Herring <robh@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Nishanth Menon <nm@ti.com>, Viresh Kumar <vireshk@kernel.org>,
-	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>
-Subject: Re: [PATCH v5] dt-bindings: opp: operating-points-v2-ti-cpu:
- Describe opp-supported-hw
-Message-ID: <172720869759.222696.1265461647431110381.robh@kernel.org>
-References: <20240919-b4-opp-dt-binding-fix-v5-1-199216dc0991@ti.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: mmc: controller: allow node name to
+ be named slot@*
+Message-ID: <20240924202838.GA276949-robh@kernel.org>
+References: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-0-5aa8bdfe01af@linaro.org>
+ <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-1-5aa8bdfe01af@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,50 +66,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240919-b4-opp-dt-binding-fix-v5-1-199216dc0991@ti.com>
+In-Reply-To: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-1-5aa8bdfe01af@linaro.org>
 
-
-On Thu, 19 Sep 2024 18:43:40 +0530, Dhruva Gole wrote:
-> It seems like we missed migrating the complete information from the old
-> DT binding where we had described what the opp-supported-hw is supposed
-> to describe. Hence, bring back the description from the previous binding
-> to the current one along with a bit more context on what the values are
-> supposed to be.
+On Fri, Sep 20, 2024 at 10:38:03AM +0200, Neil Armstrong wrote:
+> In preparation of supporting the mmc-slot subnode, allow
+> the nodename to be either mmc@ or mmc-slot@
 > 
-> Fixes: e576a9a8603f ("dt-bindings: cpufreq: Convert ti-cpufreq to json schema")
-> Signed-off-by: Dhruva Gole <d-gole@ti.com>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
-> Changes in v5:
-> - Fix the new lines inserted to seperate paragraphs.
-> - /eg./example,/
-> - Fix Odd line wrapping
-> - Link to v4: https://lore.kernel.org/all/20240918173431.GA1833339-robh@kernel.org/
+>  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> Changes in v4:
-> - Fix dt_binding_check errors on previous revision.
-> - As per Rob's suggestion, used a blank line in between description
->   and the paragraph.
-> - Reworded the description a bit.
-> - Link to v3: https://lore.kernel.org/all/20240917095252.1292321-1-d-gole@ti.com/
-> 
-> Changes in v3:
-> - Use the items: and then provide description for both required items.
->   This tries to address Rob's comments on previous revision.
-> - I've not use min/max Items as the 2 descriptions items implicitly
->   imply that number of bitfields needed are 2.
-> - Link to v2: https://lore.kernel.org/all/20240905-b4-opp-dt-binding-fix-v2-1-1e3d2a06748d@ti.com/
-> 
-> Changes in v2:
-> - Drop the patch where I updated Maintainers since it's already picked
->   by Viresh.
-> - Add more details of how to populate the property based on device
->   documents like TRM/ datasheet.
-> - Link to v1: https://lore.kernel.org/r/20240903-b4-opp-dt-binding-fix-v1-0-f7e186456d9f@ti.com
-> ---
->  .../bindings/opp/operating-points-v2-ti-cpu.yaml     | 20 +++++++++++++++++++-
->  1 file changed, 19 insertions(+), 1 deletion(-)
-> 
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> index 58ae298cd2fc..f797c32ea688 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> @@ -20,7 +20,9 @@ description: |
+>  
+>  properties:
+>    $nodename:
+> -    pattern: "^mmc(@.*)?$"
+> +    oneOf:
+> +      - pattern: "^mmc(@.*)?$"
+> +      - pattern: "^slot(@.*)?$"
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+'^(mmc|slot)(@.*)?$'
 
+But the description says something else...
+
+In any case, avoiding 'oneOf' when possible makes for better warnings.
+
+Rob
 
