@@ -1,121 +1,102 @@
-Return-Path: <devicetree+bounces-105020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82151984EE6
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 01:21:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82F46984EEC
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 01:25:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37B5F1F23859
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 23:21:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 182872846B5
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 23:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D86146A7A;
-	Tue, 24 Sep 2024 23:21:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB1CE186E32;
+	Tue, 24 Sep 2024 23:25:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WjnCnYMA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FoNN2a4r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4232A1865F7;
-	Tue, 24 Sep 2024 23:21:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CAFD6E614;
+	Tue, 24 Sep 2024 23:25:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727220088; cv=none; b=a7IFB+RdfZED5ik1mZ2lahAe+ZSyCT0BeC8iHroy9WefP7ozpJqSfijunx4oJyWhG6tjMsVhi8vI0FYwpl65vzW5jORxoAGzaXgL0hQygQ5WLDcp6PQdwPnBARzGr0kIs6fbyJu6JUKhS7v7h3E9Ljz0fC25cBzxjiuA1QQamGE=
+	t=1727220327; cv=none; b=mHcoeMCgdVa67CRteA2+TQPTJkPLPwS2xt4Se8Ud91WJs0H9jBotc4E6L48/bKgU0O6yA2xEcxXw2NXGiyQeSY6FmEBZpmI019rXNANi6E/517szYMzvc5G5jTvfKWo3dNJDwc3yV119dNJPodKXCZYrVIYWFjLboha3Wf9zYyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727220088; c=relaxed/simple;
-	bh=lr4vECzgqXsBRGAc4wmmfXegNRhdFyDsQ+2g5rYn83k=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=qTDEm8Guu2Q//Ulbbo3yzH9uqgVr5FtkhKfshxQJqgY2XhBXziFFuDVbOvcrLhCOCxGOzLISqG5PponmTzXYd/vMoHokaLKywEPuXrdx2nljkxqzIaEQWgsEM3iYtglQNAm64aW9uSLGHCSsj8tnUz/9TK6HvTvL3G8QpXs9K48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WjnCnYMA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 899FFC4CEC4;
-	Tue, 24 Sep 2024 23:21:27 +0000 (UTC)
+	s=arc-20240116; t=1727220327; c=relaxed/simple;
+	bh=912y+YG7XFuAmtXvG9yhctVKoh2TVVdU/C0h5V6e6Qk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=crMJXXmi6fi/66s8ckD8C0hqYuTdkN93E+5TfC7xjel+RzGzu6i7HRscY9ilycAdLIezwjfdZkW98+l+JARYbL1a1DUVjwdGh6YgMarxsafx8vCuxOEU/HiybpRcGWueIdlHX1Qt1eYf4we2Noj7QxgYLYVhaex+Hz6oXv8gfMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FoNN2a4r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17812C4CEC4;
+	Tue, 24 Sep 2024 23:25:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727220087;
-	bh=lr4vECzgqXsBRGAc4wmmfXegNRhdFyDsQ+2g5rYn83k=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=WjnCnYMAJUFroe0/pvzMt3ERnU4bW+tkhK14SE9ypZged7uF2Hk5ApY6J62lq1Xuw
-	 +Yf6xvz2WciRfNg+UYR1je+i5YQKYg1xNiByv6UtWMZok7aIyUkpJu6FSJInbWtmrC
-	 Jl9F5ww74/3hDKmgPQ8QZq5UcF+9rLNLQRAEdO8lBfJDfvoy6JLsBTCpie65OyOy31
-	 O3hBX2jhGBhqV5m8kcvBUPlaJQoxvbU+il3+uXcO2K89psD+9tpYvpy1aDBcQPsM+9
-	 EcqMOJ+9N5xanPFLfSgXTG8nO3UwBGtjjksaNqYZnzePE/3p2MIXg6e77NJF1zK3LX
-	 s/qSeFhrC4/VQ==
-Date: Tue, 24 Sep 2024 18:21:26 -0500
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=k20201202; t=1727220327;
+	bh=912y+YG7XFuAmtXvG9yhctVKoh2TVVdU/C0h5V6e6Qk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FoNN2a4rxN6rdy9YVVGu8gvrpAbVzF3PuANAG+jfsbEZlqyow388KK7dgyoHYjos+
+	 3JZdGrab3d/ag8O576eVySaj4PyATouza3Vx4Mmo0zWz0glUt39HQRuTFFpf7QouKQ
+	 4JV4miZzXUrw2S5KS9rofYHTQ7pOZsqz5oBFIpwDgnKLavDSKbNaYawW+9qS6CmYHt
+	 XCVPOXcSFYMJ5v0MMNzqTuH6iojbgfKgS7V/iE/yXCJnwqsvnTi6e3RbhtZTa+sFek
+	 yvT38trERskiwfWOJoIEwlOdS1JEagtZ+rB4c+3ddPjyoVyCrylDBs/j6g+tLoNhm+
+	 A+3Jw9Zjf/L+g==
+Date: Tue, 24 Sep 2024 18:25:26 -0500
+From: Rob Herring <robh@kernel.org>
+To: Shivnandan Kumar <quic_kshivnan@quicinc.com>
+Cc: Sibi Sankar <quic_sibis@quicinc.com>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
+Subject: Re: [PATCH 1/3] dt-bindings: mailbox: qcom,cpucp-mbox: Add sc7280
+ cpucp mailbox instance
+Message-ID: <20240924232526.GA563039-robh@kernel.org>
+References: <20240924050941.1251485-1-quic_kshivnan@quicinc.com>
+ <20240924050941.1251485-2-quic_kshivnan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: devicetree@vger.kernel.org, tsbogend@alpha.franken.de, lee@kernel.org, 
- linux-kernel@vger.kernel.org, krzk@kernel.org, linux-mips@vger.kernel.org, 
- conor+dt@kernel.org
-In-Reply-To: <20240924221626.3290531-1-chris.packham@alliedtelesis.co.nz>
-References: <9abd5e65-da40-4283-b60e-46be5f89e858@alliedtelesis.co.nz>
- <20240924221626.3290531-1-chris.packham@alliedtelesis.co.nz>
-Message-Id: <172722008668.561416.13765711287255233220.robh@kernel.org>
-Subject: Re: [RFC PATCH v4.5] dt-bindings: mfd: Add Realtek RTL9300 switch
- peripherals
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240924050941.1251485-2-quic_kshivnan@quicinc.com>
 
+On Tue, Sep 24, 2024 at 10:39:39AM +0530, Shivnandan Kumar wrote:
+> sc7280 has a cpucp mailbox. Document them.
 
-On Wed, 25 Sep 2024 10:16:26 +1200, Chris Packham wrote:
-> Add device tree schema for the Realtek RTL9300 switches. The RTL9300
-> family is made up of the RTL9301, RTL9302B, RTL9302C and RTL9303. These
-> have the same SoC differ in the Ethernet switch/SERDES arrangement.
+And is different from the existing device how?
+
 > 
-> Currently the only supported features are the syscon-reboot and i2c
-> controllers. The syscon-reboot is needed to be able to reboot the board.
-> The I2C controllers are slightly unusual because they each own an SCL
-> pin (GPIO 8 for the first controller, GPIO 17 for the second) but have 8
-> common SDA pins which can be assigned to either controller (but not
-> both).
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
 > ---
+>  .../devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml         | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 > 
-> This is my initial attempt at addressing Krzysztof's comments from my two
-> series. I expect there may still be a bit of discussion on the binding so I'm
-> just sending this on it's own rather than the whole series.
+> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml b/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+> index f7342d04beec..4a7ea072a3c1 100644
+> --- a/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+> @@ -15,8 +15,9 @@ description:
 > 
->  .../bindings/i2c/realtek,rtl9300-i2c.yaml     |  98 ++++++++++++++++
->  .../bindings/mfd/realtek,rtl9300-switch.yaml  | 110 ++++++++++++++++++
->  2 files changed, 208 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/realtek,rtl9300-switch.yaml
+>  properties:
+>    compatible:
+> -    items:
+> -      - const: qcom,x1e80100-cpucp-mbox
+> +    enum:
+> +      - qcom,x1e80100-cpucp-mbox
+> +      - qcom,sc7280-cpucp-mbox
 > 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/realtek,rtl9300-switch.example.dtb: ethernet-switch@1b000000: 'reboot' is a required property
-	from schema $id: http://devicetree.org/schemas/mfd/realtek,rtl9300-switch.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/realtek,rtl9300-switch.example.dtb: ethernet-switch@1b000000: '#address-cells', '#size-cells', 'i2c@36c', 'i2c@388', 'reboot@c' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/mfd/realtek,rtl9300-switch.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/realtek,rtl9300-switch.example.dtb: reboot@c: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/power/reset/syscon-reboot.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240924221626.3290531-1-chris.packham@alliedtelesis.co.nz
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+>    reg:
+>      items:
+> --
+> 2.25.1
+> 
 
