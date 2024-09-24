@@ -1,286 +1,140 @@
-Return-Path: <devicetree+bounces-104957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D7B29849E8
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 18:43:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D71BB9849F7
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 18:47:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 690BD1C21B2B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 16:43:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74EAF1F21653
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 16:47:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEA461ABEB8;
-	Tue, 24 Sep 2024 16:43:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B672B1AB6E8;
+	Tue, 24 Sep 2024 16:47:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qW09/JmN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cYe7E0cH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DB371A4F16
-	for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 16:43:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 486291DFFB;
+	Tue, 24 Sep 2024 16:47:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727196203; cv=none; b=MDxCLIpZSr+E2TdYnoTsWB1joxdZG0t+QK8cIsxdax75y2AuKvpumXHa90hkjExepqRr4icBqC8hWOL5kbk6TNAM0E3p5ewPxssMXYADuEcnBuAaKgUpdW2N58Xx9CUPm94NwVlvhG61RJ+QptaciY9qi2EjYNbUmgw8LNCjxrk=
+	t=1727196427; cv=none; b=PI4UtCkhruF7ogIcnsvXCFk+rpCOWQogVVmJURoAu7cmUbv6GKrwBBCkZ89ojpKs18XGcQyXSYq27ZnIzK1u+i2UajTwK54mwOKGnyhEhJKeUqriCgv6/uRMtpjABq/4qGtNcRMBVL1EyYG7Lmmq6731//dA89vbf26yikLnCSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727196203; c=relaxed/simple;
-	bh=zT4k+0TxX97y+c3I5eO7EHj/LUItIHnBYBJW7QZhE+A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=golh8l/i1lhoR/sFgNhv3u/tCtPH909cPkEg2NHhlEU8iAKsFVfLuX251c8JWM+fpPyuvzOjemDvjjU/2Fe5czU7qha3V4ZXalCmWksPo8CcZ5ilO8ZAKvNRY6WevzpJQjHDM8RY5/0NPHugj6wJvBiA5KJPF00Q3i1tNnJ+V/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qW09/JmN; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2f754d4a6e4so57556791fa.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 09:43:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727196199; x=1727800999; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=iLmWupQuIxURteGxaOu17nS4Aw/Rss6V3alddoHTmYQ=;
-        b=qW09/JmNyEhkxklbk2TP1irQN9eB3yDkfm5eX8sjC9QoY5vq1Lf9VBv6wOON8RZZOj
-         5wCCrikwehefEIu4AMd2hiD6L8jFWNVjIbs47/XAqOdv074lE/bRd/GhQaL6EJRNcsZq
-         JYHOPvi1SI5gjSXnC3KxQoKsFoR4Y7k1t5l5t3QYLQyPEfBPeb4SloBfI8oTGzq+loWB
-         z4W2a5gfEjJE+ga9Hbnm7Ztns2FwgRWsNanjZDaHV6N4brEkE0PoK0M1CICdUq8Mp4N2
-         KV5Lx++qtJXhUWW547p9dydrLNSKdoBA7PfZosvvKDSzXcFF2VlLDF2Qv9gg4Ds/cojo
-         63Iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727196199; x=1727800999;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iLmWupQuIxURteGxaOu17nS4Aw/Rss6V3alddoHTmYQ=;
-        b=oY3N0qKTvnjtvZGda3SaqO4MA2+UW0FNr2nQJD8W5RwLOWZj/INVp5fXOqoKCTrRG2
-         q7/HFmpi4iBqX16HvpqY/DP6VbZ4WiMQcqfHAm8ywZaspK2uxllYQyQ6Jaj6Pc2V3zvy
-         Qq8ZNzqKI79wVtPUDDYpbu/z4/JViZ3W7zS3G68SyFfUEj8xO6YIWo91Hgrjub6HSXCx
-         KyAEqhnWkgRM+MsJKTxjFCKKgZg0A3H9u3OP8/vXGl0C6WBqT7Yq4qDyRejNHpRmjUs9
-         ZAQwIkWypS9dBPXF5csxqJ4kVa9SDD+SyaaYM8ZjJrwEBWr6FZazrm7vxmkueO4bigRn
-         6a/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV+V2sEuyPTzBBiMw6vGv49ZWT/tS+Lf4e+zK4hxnc/SBUlyOutf7gUnKiMU7dqir77wm2Cr1l0qyGd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5llgWjjGmTDjhz19jh1cMPzMquzAj6UpJuLHWY4hnF8RYB/9K
-	QGyuJmoPUhZgip2woJUtANbYE5ke3nTgWeQnERAvLWmnpoVmfU0mGfewqQMwKzA=
-X-Google-Smtp-Source: AGHT+IEezobaIL04e3lPxMDU2Y+PPIoCnCTJI3N3CWxUIHXwcFH+J92I5mDokhkQOYy3JFhcIgkX5A==
-X-Received: by 2002:a2e:bc26:0:b0:2f5:2e2:eafb with SMTP id 38308e7fff4ca-2f915fc1487mr256741fa.7.1727196199064;
-        Tue, 24 Sep 2024 09:43:19 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:ef80:4518:32:3b61:babd])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c5cf4d7461sm916227a12.79.2024.09.24.09.43.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Sep 2024 09:43:18 -0700 (PDT)
-Date: Tue, 24 Sep 2024 18:43:16 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 2/2] phy: add NXP PTN3222 eUSB2 to USB2 redriver
-Message-ID: <ZvLsJEa2PhIxFRDC@linaro.org>
-References: <20240830-nxp-ptn3222-v2-0-4c6d8535cf6c@linaro.org>
- <20240830-nxp-ptn3222-v2-2-4c6d8535cf6c@linaro.org>
+	s=arc-20240116; t=1727196427; c=relaxed/simple;
+	bh=V5hP6EhqqL1VB4vgcnWs8ptf/NEEpkNyPz1lOH4OJ5A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=CzMud8TsgDCtMmu7dXD0GDEMn/41Y3GsjHYaRnxZBOHqLCVoXBPE4ZKMFnO/WI019d/9jDFgXpSV1zl0KwdD8cW1BbvCUhs9ikKOb5SCI0RNdeJE6Nv98eDYOCc77ls0ThjinkrWAJiJRJ4lU+1+x5s2cV7g9aEvx0gumF2A5nM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cYe7E0cH; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48O8tmP7001351;
+	Tue, 24 Sep 2024 16:46:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	RkdDY9gEmTPSGeBmDdPmUm8d9yq71EH6PpS8U/0msmg=; b=cYe7E0cHGJIJ3PAk
+	JacpGeIk75pVzzEqUn4/zEoWRhVMyuVQPQTnXCw9txb65K2jAG5ONGm0xBfabDXB
+	DGYnJZBU6p8hlO/I+8xfloMziAzR91gYDQaOtwvHSLO2+87WL5BXcyTA1cuT1Jlk
+	cL3lZ20NgYlZP8Qui894Sswjcr4GO1eY2RZ0OM1TA85qyETL47vtahfXbzQOmTVK
+	/CDsYrWFv2kwfSMhp64r7CzGd4fPSEFymwLq5U1+GlQPQ8b3aMcC6QXqRrsIB6Am
+	LfMgdNmff8oBNO8cN7iwSIhQyA23ma9Bjub3LIhhaYn4fwtnQ/2p9qlLkTci5s5R
+	YAU4Fg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41sqakgy4r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 Sep 2024 16:46:45 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48OGkTJO008531
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 Sep 2024 16:46:29 GMT
+Received: from [10.111.183.86] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 24 Sep
+ 2024 09:46:27 -0700
+Message-ID: <312fa408-d385-4b90-b8f4-729af4a3ce65@quicinc.com>
+Date: Tue, 24 Sep 2024 09:46:27 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240830-nxp-ptn3222-v2-2-4c6d8535cf6c@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs
+ of the ath11k on WCN6855
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Bartosz Golaszewski
+	<brgl@bgdev.pl>, Kalle Valo <kvalo@kernel.org>
+CC: "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jeff Johnson
+	<jjohnson@kernel.org>, <linux-wireless@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <ath11k@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Bartosz
+ Golaszewski <bartosz.golaszewski@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>
+References: <20240814082301.8091-1-brgl@bgdev.pl>
+ <83c562e9-2add-4086-86e7-6e956d2ee70f@kernel.org> <87msk49j8m.fsf@kernel.org>
+ <ed6aceb6-4954-43ad-b631-6c6fda209411@kernel.org> <87a5g2bz6j.fsf@kernel.org>
+ <CAMRc=MeLick_+Czy5MhkX=SxVvR4WCmUZ8CQ5hQBVTe2fscCPg@mail.gmail.com>
+ <b7fdafd6-5029-4b80-b264-11943740b354@quicinc.com>
+ <1e79d94e-2f83-4762-b126-ed865142f1ed@kernel.org>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <1e79d94e-2f83-4762-b126-ed865142f1ed@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: BXe6QtAmQNmkBdVuW9HOlyqTvxLGKz_H
+X-Proofpoint-GUID: BXe6QtAmQNmkBdVuW9HOlyqTvxLGKz_H
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
+ bulkscore=0 impostorscore=0 suspectscore=0 phishscore=0 adultscore=0
+ clxscore=1011 malwarescore=0 lowpriorityscore=0 mlxlogscore=999
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409240120
 
-On Fri, Aug 30, 2024 at 11:20:46AM +0300, Dmitry Baryshkov wrote:
-> The NXP PTN3222 is the single-port eUSB2 to USB2 redriver that performs
-> translation between eUSB2 and USB2 signalling schemes. It supports all
-> three data rates: Low Speed, Full Speed and High Speed.
+On 9/24/2024 1:06 AM, Krzysztof Kozlowski wrote:
+> On 20/09/2024 23:02, Jeff Johnson wrote:
+>> Again, since I'm a DT n00b:
+>> Just to make sure I understand, you are saying that with this change any
+>> existing .dts/.dtb files will still work with an updated driver, so the new
+>> properties are not required to be populated on existing devices.
 > 
-> The reset state enables autonegotiation of the PHY role and of the data
-> rate, so no additional programming is required.
-> 
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Tested-by: Konrad Dybcio <konradybcio@kernel.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Did you folks rejected patches acked by DT maintainers on basis of not
+> understanding DT at all?
 
-This works well for the USB fingerprint reader on the Qualcomm X1E80100
-CRD. Thanks a lot for the clean driver :-)
+I personally have not rejected any DT patches. Nor have I accepted any.
+I'm deferring to Kalle.
 
-Reviewed-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-Tested-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+>> However a new driver with support for these properties will utilize them when
+>> they are present, and the current ath11k .dts files will need to be updated to
+> 
+> It is not related to drivers at all. Nothing in this thread is related
+> to drivers.
+> 
+> Can we entirely drop the drivers from the discussion?
 
-> ---
->  drivers/phy/Kconfig           |  11 ++++
->  drivers/phy/Makefile          |   1 +
->  drivers/phy/phy-nxp-ptn3222.c | 123 ++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 135 insertions(+)
-> 
-> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-> index dfab1c66b3e5..cb06a7f79740 100644
-> --- a/drivers/phy/Kconfig
-> +++ b/drivers/phy/Kconfig
-> @@ -82,6 +82,17 @@ config PHY_AIROHA_PCIE
->  	  This driver create the basic PHY instance and provides initialize
->  	  callback for PCIe GEN3 port.
->  
-> +config PHY_NXP_PTN3222
-> +	tristate "NXP PTN3222 1-port eUSB2 to USB2 redriver"
-> +	depends on I2C
-> +	depends on OF
-> +	select GENERIC_PHY
-> +	help
-> +	  Enable this to support NXP PTN3222 1-port eUSB2 to USB2 Redriver.
-> +	  This redriver performs translation between eUSB2 and USB2 signalling
-> +	  schemes. It supports all three USB 2.0 data rates: Low Speed, Full
-> +	  Speed and High Speed.
-> +
->  source "drivers/phy/allwinner/Kconfig"
->  source "drivers/phy/amlogic/Kconfig"
->  source "drivers/phy/broadcom/Kconfig"
-> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-> index 5fcbce5f9ab1..b64247046575 100644
-> --- a/drivers/phy/Makefile
-> +++ b/drivers/phy/Makefile
-> @@ -11,6 +11,7 @@ obj-$(CONFIG_PHY_XGENE)			+= phy-xgene.o
->  obj-$(CONFIG_PHY_PISTACHIO_USB)		+= phy-pistachio-usb.o
->  obj-$(CONFIG_USB_LGM_PHY)		+= phy-lgm-usb.o
->  obj-$(CONFIG_PHY_AIROHA_PCIE)		+= phy-airoha-pcie.o
-> +obj-$(CONFIG_PHY_NXP_PTN3222)		+= phy-nxp-ptn3222.o
->  obj-y					+= allwinner/	\
->  					   amlogic/	\
->  					   broadcom/	\
-> diff --git a/drivers/phy/phy-nxp-ptn3222.c b/drivers/phy/phy-nxp-ptn3222.c
-> new file mode 100644
-> index 000000000000..c6179d8701e6
-> --- /dev/null
-> +++ b/drivers/phy/phy-nxp-ptn3222.c
-> @@ -0,0 +1,123 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2024, Linaro Limited
-> + */
-> +
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> +
-> +#define NUM_SUPPLIES 2
-> +
-> +struct ptn3222 {
-> +	struct i2c_client *client;
-> +	struct phy *phy;
-> +	struct gpio_desc *reset_gpio;
-> +	struct regulator_bulk_data *supplies;
-> +};
-> +
-> +static int ptn3222_init(struct phy *phy)
-> +{
-> +	struct ptn3222 *ptn3222 = phy_get_drvdata(phy);
-> +	int ret;
-> +
-> +	ret = regulator_bulk_enable(NUM_SUPPLIES, ptn3222->supplies);
-> +	if (ret)
-> +		return ret;
-> +
-> +	gpiod_set_value_cansleep(ptn3222->reset_gpio, 0);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ptn3222_exit(struct phy *phy)
-> +{
-> +	struct ptn3222 *ptn3222 = phy_get_drvdata(phy);
-> +
-> +	gpiod_set_value_cansleep(ptn3222->reset_gpio, 1);
-> +
-> +	return regulator_bulk_disable(NUM_SUPPLIES, ptn3222->supplies);
-> +}
-> +
-> +static const struct phy_ops ptn3222_ops = {
-> +	.init		= ptn3222_init,
-> +	.exit		= ptn3222_exit,
-> +	.owner		= THIS_MODULE,
-> +};
-> +
-> +static const struct regulator_bulk_data ptn3222_supplies[NUM_SUPPLIES] = {
-> +	{
-> +		.supply = "vdd3v3",
-> +		.init_load_uA = 11000,
-> +	}, {
-> +		.supply = "vdd1v8",
-> +		.init_load_uA = 55000,
-> +	}
-> +};
-> +
-> +static int ptn3222_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct phy_provider *phy_provider;
-> +	struct ptn3222 *ptn3222;
-> +	int ret;
-> +
-> +	ptn3222 = devm_kzalloc(dev, sizeof(*ptn3222), GFP_KERNEL);
-> +	if (!ptn3222)
-> +		return -ENOMEM;
-> +
-> +	ptn3222->client = client;
-> +
-> +	ptn3222->reset_gpio = devm_gpiod_get_optional(dev, "reset",
-> +						      GPIOD_OUT_HIGH);
-> +	if (IS_ERR(ptn3222->reset_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(ptn3222->reset_gpio),
-> +				     "unable to acquire reset gpio\n");
-> +
-> +	ret = devm_regulator_bulk_get_const(dev, NUM_SUPPLIES, ptn3222_supplies,
-> +					    &ptn3222->supplies);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ptn3222->phy = devm_phy_create(dev, dev->of_node, &ptn3222_ops);
-> +	if (IS_ERR(ptn3222->phy)) {
-> +		dev_err(dev, "failed to create PHY: %d\n", ret);
-> +		return PTR_ERR(ptn3222->phy);
-> +	}
-> +
-> +	phy_set_drvdata(ptn3222->phy, ptn3222);
-> +
-> +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> +
-> +	return PTR_ERR_OR_ZERO(phy_provider);
-> +}
-> +
-> +static const struct i2c_device_id ptn3222_table[] = {
-> +	{ "ptn3222" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, ptn3222_table);
-> +
-> +static const struct of_device_id ptn3222_of_table[] = {
-> +	{ .compatible = "nxp,ptn3222" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, ptn3222_of_table);
-> +
-> +static struct i2c_driver ptn3222_driver = {
-> +	.driver = {
-> +		.name = "ptn3222",
-> +		.of_match_table = ptn3222_of_table,
-> +	},
-> +	.probe = ptn3222_probe,
-> +	.id_table = ptn3222_table,
-> +};
-> +
-> +module_i2c_driver(ptn3222_driver);
-> +
-> +MODULE_DESCRIPTION("NXP PTN3222 eUSB2 Redriver driver");
-> +MODULE_LICENSE("GPL");
-> 
-> -- 
-> 2.39.2
-> 
+I brought up drivers since in the discussion there was concern that this DT
+change would potentially break existing devices that have a DTS that defines
+qcom,ath11k-calibration-variant, and I wanted clarification on that point.
+
+/jeff
 
