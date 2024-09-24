@@ -1,119 +1,80 @@
-Return-Path: <devicetree+bounces-104810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EA0E984316
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 12:07:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AF86984317
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 12:07:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 137A2286D12
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 10:07:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF2F32833C8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 10:07:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C34E175D39;
-	Tue, 24 Sep 2024 10:06:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08A34158DD9;
+	Tue, 24 Sep 2024 10:07:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yITJZXnL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uqgDsw8Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEF1816DEDF
-	for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 10:06:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0D9B13B780;
+	Tue, 24 Sep 2024 10:07:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727172395; cv=none; b=CyAuA6b5i8ogy8UaILNKaDM++8h3SfBesel5P7DksN/I0Dh3OrdRnhWigyo6UydNj5HDbJI+gfgbhoyN5cl+iLiQ4ePW2tmVcafKGsplBtoseJWFUzCBaJBPOCv5PYoJWqIHItLFVJdbTF6XedxgysjXg9dBjWuPUcU0V5blacU=
+	t=1727172423; cv=none; b=m2IXwPWmkKTr7G8nKomoJMBdptF9G8/r5AICkY0Sputy21ssthEQAY+9vasLScSQqgp4Xf2pzUr6rSXm+Qpc/R/7IwSAQfx85vryLZEoFTjw6//QsZ1CWBqChe6+Ryy5eP37DSgK63xLAyKoVmFFbywAVG7bbdWvcTLm2LTLE7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727172395; c=relaxed/simple;
-	bh=T+A2HoWy0UB0lOdd3tHVl27Jcqq7f7SyeKlamEOT2cQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YuMhX9wDS7TJKG2k0WEOTUUUbu//33nWAgJv4JsZqsU85HPUNCsKqSLrZZkiFKv1eg82P/HE3XvoXk4jLRSmAtoxRnHuGz1UtiAS9QKyanVc2DEJnKrdBVMNgfefxQdz41a/y/pdQYQTDlKuY6C15uMoPpIbBUm6sXe0xVc/hbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yITJZXnL; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2f75d529b49so2569751fa.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 03:06:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727172392; x=1727777192; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=G1UynnEcAFUzgtJNN1ekJzPevI5eT5W6roCM6SLRhk4=;
-        b=yITJZXnLLSOiJrlFQCFX/3OYOrKOT6nfYItDH1R7xhscx0juuItAGn/4niz/n/wVhb
-         u2LkfnY7dBa+hcRscQL56J02YFKQo9cXr9mDXcnm7BLHl5l+MCdrb6c+YoZ5Txotyt9y
-         8N1WlArzQhrzgbcFlClRLy7myLa7RnRzsfLnPhib2DjPSU7h/v0leWm0GX3GsWJfpQii
-         ZPZ6VLquxzAHU7pZigj8xcGaljkc/S5DZENPZjxNvsYYi+XRdwseukBsu/iwsj3CGtfH
-         qEJJ2eJldUrVthkgf27jBtwEu9TSm/KIA5B1JN4y4rJJ3CvA6uFj7LnomBzhLaGEg1wy
-         Yojg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727172392; x=1727777192;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=G1UynnEcAFUzgtJNN1ekJzPevI5eT5W6roCM6SLRhk4=;
-        b=pFF1WO3fcKKBwBvW+zw/mk8eUEsMZOwe9nq9d/Sz54Ph6Ro+eFRqLIiRvIhnZpIM0s
-         pNqzsxlPa3pOeIWAEyMJOb0tcdUqBriazmSzVFtUi3RgbTrpyz8fZeVw8QFcPskAwFg7
-         HbDdn/rVrt+VLqbN6rcH0XBj4sd+lWeJ8EN2y8NpZerSKSZLD9QNvcFpuQ9zvYeMhbvm
-         ggMD/fSwHTlzXayBQlyLnoY4lWu/VlkUiTRmE47lGuxE9ef1CtIyiZz80n+1qAZlSoST
-         Zt/tcDj3xpzWLCeytGtC7fnVV3U7I8CN8yv40WyW0rWGYUuqj1t2rGGTquQN73uDpYfI
-         faJg==
-X-Forwarded-Encrypted: i=1; AJvYcCU5qu3uT+nhfuJ57BwPJupx+oOzeqXgqjWfaaDDVHJioGAykqNkEskoA/vsdCBcF5zDr4G+zQ/8tuDy@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIowpG61ifEX54W5UYGErJXfKKwacMFnTj07ySR/XP/pbEADM7
-	DPc17kB/ZHXVD6l2Kc1NLoLD3EZmQfzbPnk6o/Rdt7vXwtuhltIxpeQ3kFZADhA=
-X-Google-Smtp-Source: AGHT+IHZiCP8LoNh0kxeHMtPM4WMuqc/EHUfrUwNvscRInJ0FQ6TMQi+4M0CZgZ2AJ4aRNnfyY7bLg==
-X-Received: by 2002:a2e:be0b:0:b0:2ef:2b6e:f8c2 with SMTP id 38308e7fff4ca-2f7cb323c18mr26110181fa.6.1727172391990;
-        Tue, 24 Sep 2024 03:06:31 -0700 (PDT)
-Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-537a864d937sm156713e87.273.2024.09.24.03.06.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Sep 2024 03:06:30 -0700 (PDT)
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 9/9] arm64: dts: qcom: sm8650-qrd: remove status property from dispcc device tree node
-Date: Tue, 24 Sep 2024 13:06:02 +0300
-Message-ID: <20240924100602.3813725-10-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240924100602.3813725-1-vladimir.zapolskiy@linaro.org>
-References: <20240924100602.3813725-1-vladimir.zapolskiy@linaro.org>
+	s=arc-20240116; t=1727172423; c=relaxed/simple;
+	bh=NNpPCDCmogO6p91duNeLKDWJxcotWnDmbCaTck59iZM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HDEt/6jHibVEb5NnU1Y74u5X3HdhLXwBUKnvcbuO5j+t9umOCATV8oE03PitC6Ee+9rSrbIbVGwRYvwczOrRpkK+LRZpimv5II7R9mBivs3OSTht1JCQ1WfybbAXz1+mf5/VYKatDdHYlVNPo8MTOCUPzkObVVaEyhTtx/rwtNw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uqgDsw8Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99722C4CEC4;
+	Tue, 24 Sep 2024 10:07:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727172423;
+	bh=NNpPCDCmogO6p91duNeLKDWJxcotWnDmbCaTck59iZM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uqgDsw8ZqWOGpuh418XARAbynPCGbqKqK3fsdDARIafYmZjr16YTCmoPrkn1MAW/m
+	 gfRDYAk0KpNY/V50Rc6LAuGGRwQMYexiOQObC5C1EdcUgiHKbeZHT283FsUim2QNO7
+	 puebPJBZqxvOEeZK7d4f1/8jNkcg5qI4vgHAR/a5ewoy7qIqQNd4vcw8aLZRQdpfPs
+	 hVaDQIcpk62r+lUXazDJsvXoIO9SdFrASEHJYgN38fLuBedE0/Y5rsvVPo64j5o2t5
+	 y51nAL+gkMW9qwcv9sqJQs2pquo2GX0BSsZXkqUZyFUtsGIBBpYypICJk69R4/LfX2
+	 Fn0WDJdqheLEQ==
+Date: Tue, 24 Sep 2024 12:06:59 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Rishi Gupta <gupt21@gmail.com>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v2 04/10] dt-bindings: iio: light: veml6030: add
+ vdd-supply property
+Message-ID: <s7ylc7uxh376hmessk3mnuxsmjpmgnvgnxbu7vxect3evqjsfp@ifou7lugbxae>
+References: <20240923-veml6035-v2-0-58c72a0df31c@gmail.com>
+ <20240923-veml6035-v2-4-58c72a0df31c@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240923-veml6035-v2-4-58c72a0df31c@gmail.com>
 
-After a change enabling display clock controller for all Qualcomm SM8650
-powered board by default there is no more need to set a status property
-of dispcc on SM8650-QRD board.
+On Mon, Sep 23, 2024 at 12:17:52AM +0200, Javier Carrasco wrote:
+> Add vdd-supply to account for the sensor's power source.
+> 
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/iio/light/vishay,veml6030.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8650-qrd.dts | 4 ----
- 1 file changed, 4 deletions(-)
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-index 8ca0d28eba9b..c5e8c3c2df91 100644
---- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-@@ -741,10 +741,6 @@ vreg_l7n_3p3: ldo7 {
- 	};
- };
- 
--&dispcc {
--	status = "okay";
--};
--
- &gpi_dma1 {
- 	status = "okay";
- };
--- 
-2.45.2
+Best regards,
+Krzysztof
 
 
