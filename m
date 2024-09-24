@@ -1,124 +1,105 @@
-Return-Path: <devicetree+bounces-104829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 273F39843A6
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 12:32:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74A159843C4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 12:40:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABFAC1F21A29
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 10:32:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 271BE1F22FFA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 10:40:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8F3B19B5A7;
-	Tue, 24 Sep 2024 10:32:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF4DE19C553;
+	Tue, 24 Sep 2024 10:40:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="LRuCdmWI"
+	dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b="pC8Ot6Kn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from uho.ysoft.cz (uho.ysoft.cz [81.19.3.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62F3A19B3C1;
-	Tue, 24 Sep 2024 10:32:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B9D419C540;
+	Tue, 24 Sep 2024 10:40:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=81.19.3.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727173933; cv=none; b=SANJjG8wAnjDYfCPCAAldmEayjDdn1HQO/FM2zy5zRi5OEcAOEuT385O5/E7GRWDYajHPKWlJdMuMIS/054VKJcNKJ+Jj8YY0m64BKViB3ZetGFyfB0+zL4+7XNykhLW1uycvY75NyGDxbiC4G0x10qQtj+JbLICCNjPM8y+PLI=
+	t=1727174410; cv=none; b=r7uNkRcrKUppnWY1fSDEtunHEvPh7ftD46h0IMv2+QpDdpspQ1YDkBHg6XnNxnYS9O7wjHn6xXL8M1SaAdqHeh6OcJJg9z0xlylCVR+ZwUnWlC8+dgaTNdS1U3uxij3gPAFmDN2BUESapZBeG0DXHVhPxf8z+jEjhUtVixvMalE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727173933; c=relaxed/simple;
-	bh=uFkgC/HJ3QuYHN5vM9hqoWdJLetOv8EsvbWn+/yxmaI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qhsp+GeFaz/5GzrWN8X9x39gdG4nEV7msPYrGhySV3FR3yL9rRjS8CwoWHMOfOHWPK4gDu120LR5jnVrtlDiEwhHMe2NHFH/PYAaYIWKG4nVz4V6rc4ArAn3qScaXKx9IpQHPurXJGJJU3fl/WsqTFKMSJiwogzLpWqspnEz/Mw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=LRuCdmWI; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 3eeb3e587a6011efb66947d174671e26-20240924
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=vToQqSYhxoNIBKcHix7YuNNJbigjNkYAawVdnpO/pFY=;
-	b=LRuCdmWIG1+iUTP0SKCDZCV30F+iufAYypBygxoHJ/dks4q75b5n0UxFoBtgliq9gTln/BCukPdxsDDxa45Fu/aNji/4S9uHImdn1eoFszXQ+4GXPptSpxVxarveDADOyoSP8tfeTfqdlYMq27IpCFKC/G7/tZgw2w/d5nfW5tY=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:243263fb-3c96-489f-afeb-c75bea657c17,IP:0,U
-	RL:0,TC:0,Content:0,EDM:-30,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-30
-X-CID-META: VersionHash:6dc6a47,CLOUDID:a0302c18-b42d-49a6-94d2-a75fa0df01d2,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:2,IP:nil,UR
-	L:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,S
-	PR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 3eeb3e587a6011efb66947d174671e26-20240924
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 584628722; Tue, 24 Sep 2024 18:32:06 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS09N1.mediatek.inc (172.21.101.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 24 Sep 2024 18:32:05 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Tue, 24 Sep 2024 18:32:05 +0800
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yong Wu
-	<yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>, Will Deacon
-	<will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, <dri-devel@lists.freedesktop.org>,
-	<linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <iommu@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>, Alexandre Mergnat
-	<amergnat@baylibre.com>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, Sen
- Chu <sen.chu@mediatek.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
-	MediaTek Chromebook Upstream
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
-	<wenst@chromium.org>
-Subject: [PATCH 6/6] dt-bindings: display: mediatek: dpi: Add mt8195 support in power domains
-Date: Tue, 24 Sep 2024 18:31:56 +0800
-Message-ID: <20240924103156.13119-6-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20240924103156.13119-1-macpaul.lin@mediatek.com>
-References: <20240924103156.13119-1-macpaul.lin@mediatek.com>
+	s=arc-20240116; t=1727174410; c=relaxed/simple;
+	bh=dNP4cVkYeMVPCUAl6V9ZNPpmFdKOOmK3mbBZjBEMtfw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=oSrEiU2M/FgWAPoEGxnJ0lIkYkTpZ++Z+BfGGjCZKeaWbXXcQNw2q2ZQRk8Ro0ObpdvS/49az7EKEWYSwhB1tgP3JzqgDIe9H4r4U2SSs48iipuEJ0E7WhpiTRwjipz/CKkP7C5VBXUrnYB4kBiYZYhPUROJhrmqa40CuqLkKy8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com; spf=pass smtp.mailfrom=ysoft.com; dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b=pC8Ot6Kn; arc=none smtp.client-ip=81.19.3.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ysoft.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+	s=20160406-ysoft-com; t=1727174401;
+	bh=b/byf2gL4R1q3RchD94jm7yV/wDyD9oU7cKPxmILi+0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=pC8Ot6KnQD068NvG3k6OTdpC8op+YBVCyBGgBeMfEVA9YrSNM0bljqt+xkeGTqYry
+	 aD8EZKxpYkXtXbs0E5hRAePAjBFrptqUVqiMDue5rDIEL6jEhaT/SYCb2OOD0Kq9zo
+	 27Q+qEQ+w79e68A1nhfXmEb4k9OQXMh/QPbvlpzU=
+Received: from vokac-nb.ysoft.local (unknown [10.1.8.111])
+	by uho.ysoft.cz (Postfix) with ESMTP id 497B7A0419;
+	Tue, 24 Sep 2024 12:40:01 +0200 (CEST)
+From: =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Petr Benes <petr.benes@ysoft.com>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Herburger <gregor.herburger@ew.tq-group.com>,
+	Hiago De Franco <hiago.franco@toradex.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	Michael Walle <mwalle@kernel.org>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Mathieu Othacehe <m.othacehe@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	=?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+Subject: [PATCH v4 0/2] Add support for new IMX8MP based board
+Date: Tue, 24 Sep 2024 12:39:39 +0200
+Message-ID: <20240924103941.1729061-1-michal.vokac@ysoft.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
 
-Add power domain binding to the mediatek DPI controller for MT8185.
+Hi,
+this series adds support for a new member in our IOTA platform.
+The board is based on the i.MX8MP SoC. It adds support for most
+of the board functionality except USB Type-C port and some other
+minor things.
 
-The dpi node in mt8195.dtsi was triggering a dtbs_check error:
-  dp-intf@1c113000: power-domains: False schema does not allow [[44, 18]]
+This series originally included the dt-binding for that Type-C
+port controller but I finally removed it based on a good comment
+from Krzysztof. I will post the Type-C binding including the driver
+in a followup series.
 
-Fixes: 5474d49b2f79 ("dt-bindings: display: mediatek: dpi: Add power domains")
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
----
- .../devicetree/bindings/display/mediatek/mediatek,dpi.yaml       | 1 +
- 1 file changed, 1 insertion(+)
+Michal
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-index 3a82aec9021c..07acc8a76bfc 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-@@ -89,6 +89,7 @@ allOf:
-                 - mediatek,mt6795-dpi
-                 - mediatek,mt8173-dpi
-                 - mediatek,mt8186-dpi
-+                - mediatek,mt8195-dp-intf
-     then:
-       properties:
-         power-domains: false
+Michal Vokáč (2):
+  dt-bindings: arm: Add i.MX8MP IOTA2 Lumpy board
+  arm64: dts: imx: Add imx8mp-iota2-lumpy board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../boot/dts/freescale/imx8mp-iota2-lumpy.dts | 423 ++++++++++++++++++
+ 3 files changed, 425 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
+
 -- 
-2.45.2
+2.43.0
 
 
