@@ -1,249 +1,221 @@
-Return-Path: <devicetree+bounces-104876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E73C9845E3
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 14:28:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BC899845EF
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 14:31:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A7C8B209AD
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 12:28:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B0D6284258
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 12:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34A2A1A4F36;
-	Tue, 24 Sep 2024 12:27:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C6501A4F39;
+	Tue, 24 Sep 2024 12:31:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cBG385Wo"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MA/u2rPQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51C533F9D5;
-	Tue, 24 Sep 2024 12:27:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B78741E492;
+	Tue, 24 Sep 2024 12:31:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727180876; cv=none; b=KOh1BJ8fSl7Glw5g6zLpNDMBSsmLSOdbksPtLmOWuvIF2+MRf3HVEB6F8K6k7TSu/H5Lot98HSbN78+qHfslP52dkN6S0DR1Nwku+QoymqEBd7y51LPmQTlJosOBbE2zGzNi+9WZ8SCQRWVj+fS4Ftf7jMQVzej+49+hbyZpKaU=
+	t=1727181099; cv=none; b=IRjnTWHCavXqsS+TzdApyLGzBf4n7FlfWVrIJJHaUaGb1ER/MATT8hEnvNzr4RYAhwzyYrnUnqvSnGbhwXtZ7m5vPvniFLWKLnFDHPskm9ozx50VVNy8wPXmsF6ek4ybkTckEhVZFxfl100c6WKAX1Vll6MPtRmuTugXn1saTdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727180876; c=relaxed/simple;
-	bh=ywLGceDCYf4x1vFhs+LV/hfPBu8Rv0mc+L+v9FY7oKk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Yt196lsp45cVkXe7JuCcj/VvWAY/A5ImoGNCn3rh1vCYLaTBza1KX9E7Fr76lKXTLvL1eBQExZQfRPd50HIrffAW6t5/mlpQ7c/akg/gxWtxs8NlRbCNaOkpws8hamA7ll+WI2hLpx0/XYw+0Ye6kUMcSrfSuZZYcMH8xkk1MyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cBG385Wo; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a90349aa7e5so815971166b.0;
-        Tue, 24 Sep 2024 05:27:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727180873; x=1727785673; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ywLGceDCYf4x1vFhs+LV/hfPBu8Rv0mc+L+v9FY7oKk=;
-        b=cBG385WouZeWbaaYWNqg9SQhVk+gpvVIXOS20GER9oCZEu9fGhwXAQfa5Kp/8qbOao
-         ePlga3cwem1O0kQIPHEGZD4rNW37d2KVaES5TvhohgdLNBrRjDqYiiORxSJNEIaQy1Zg
-         dFmCygJ8gzJ4TpFvr33iGpoy29z05sZn1JujWGFDYEqLArNvQha9KaMdKDFvKRPSC3qB
-         UmdpHsHQuJSJd9g6cTXpgvIb0hWkuN8/tOmKHpV5CDr+ys0vUor/vCqOdM5O/STCEcKl
-         GbeV6mLPf8sV9lL6+vJLhJhkHzueNc1lPoadJXSWC4cwtvSHaoMVigw6Z5UhnYqNGg9L
-         +4vQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727180873; x=1727785673;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ywLGceDCYf4x1vFhs+LV/hfPBu8Rv0mc+L+v9FY7oKk=;
-        b=Q5fJ8FQ0Ftm6doiOwlRoY6rcAiPgC2I//xkoop+RrzGvwq7vSIkYwRyt2skZJ2mnsb
-         J56pFoTLL22xc9Obl55hZHOY2xTT7e97TCJwru4WwT8d0tzPqypy/dS3A97sbpfcIX08
-         bB2CEVtURWyQ3RN5SoYvOVp3fV320+ul5lle4xImlkwfcT+3cRPQhBXYx9TEZuEpnOcS
-         MAlacAHhZu0unXGRkv4dXTOx/PZdenYT2saKNwsMP+xaN+o97t8GupccZnyREQAY0CHL
-         AvA71kw/8iObpuUYy4QUQoXBC/MImsu8Mr3C5zZse1CM1OoEjIkVTOhL4yKFRUHouD1K
-         xeQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUXRQXcyn6pxQVv1Yu2TV9IiTlMfg9mg0I+1yQPqf59Ad2g0DBwbSAO6wT8supIvjWUHOmR8QSmG48w@vger.kernel.org, AJvYcCVzDgPZTBsvl0X47URz9mqBEWMtTrB4tCNX1oSOaUHfI0sTfh+Yw6tf8uASNu3TCs1JdvLFiDAGFyPm@vger.kernel.org, AJvYcCX8CMZgEHEcMnpZBqu/xD1it15iP5cyPkNmudzIL3PpVNc4XIM8UBr4qovS8vQ0VbBBBp1kN6VXd1H7mPdk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9pQJiHx3ZynYqlMS5BcLBca6dyWSNYtSk3MAtCQazhxbmetx+
-	ITcMoFq6QLxxE2HG4CV6iMBCz55zXrGQ3NU7qOuBRnkzqcrIs8d+
-X-Google-Smtp-Source: AGHT+IGC8mmHOtQXnCx9XFDEgguEDQcdTSD4aC6zAZs1r6ZrSKYGlkIjk8hEZUHlw5byqkTSB3wEZg==
-X-Received: by 2002:a17:907:982:b0:a86:b923:4a04 with SMTP id a640c23a62f3a-a90d5924f6emr1525492166b.50.1727180872327;
-        Tue, 24 Sep 2024 05:27:52 -0700 (PDT)
-Received: from ?IPv6:2001:a61:341e:1201:c434:b5b1:98a6:efed? ([2001:a61:341e:1201:c434:b5b1:98a6:efed])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9392f340a0sm78853366b.38.2024.09.24.05.27.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Sep 2024 05:27:51 -0700 (PDT)
-Message-ID: <0279203b6cd9f1312d9c03654c262c04ac12fbd9.camel@gmail.com>
-Subject: Re: [PATCH v3 04/10] dt-bindings: iio: dac: ad3552r: add io-backend
- support
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Angelo Dureghello
-	 <adureghello@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Jonathan
- Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Olivier
- Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- dlechner@baylibre.com
-Date: Tue, 24 Sep 2024 14:27:51 +0200
-In-Reply-To: <e8af0f3f-a09c-42d7-b8ca-dd633539af73@kernel.org>
-References: 
-	<20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
-	 <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-4-a17b9b3d05d9@baylibre.com>
-	 <gojq6ardhvt6vcs2kawdhdn2cj6qbpzp4p5mjjgwsypuatm5eo@3u6k4q7le46s>
-	 <418a8a9b-3bcf-4b8f-92a0-619a3bf26ab5@baylibre.com>
-	 <e8af0f3f-a09c-42d7-b8ca-dd633539af73@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
+	s=arc-20240116; t=1727181099; c=relaxed/simple;
+	bh=hw8Xn5no9YQQhO+J5jLnsR9xj0RT1VJYy4cPNn0hX8E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=kwxznHGMZGJUvCsBGxl99utyZAKlgWHPtLAQVNtHr2Cg8Ejp+IiPAjo2L8fAGmbcy8/8wYb7526P4tDRz5OuxHU74bqgJxu+SdfJkuhFEp2U5JXAaOByJGW1hf+8fM+9U9DhZ8JwpYOpx5JGVbG4t8mkGXeX3j6iaKkiiB+7bjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MA/u2rPQ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48O9HtHp029683;
+	Tue, 24 Sep 2024 12:31:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	KDMLxLpa4DvKZTxB9Er0izaxMUHOO8cKu8XznRIeN7A=; b=MA/u2rPQiMw7LHUh
+	FKcze571vcNzzwHLePoNiOxUHD/by8Pqg1tElRTgdh0zWzMyvNZubuqII7xOBUQ6
+	W6tLEdoer0LQLSDNVSgicW55obAtmW5v6PB+Uk2/YW3wlfPcDzbiMCp3KVC70u/2
+	RqjJEdeps/7e8pdX/eNGIzEFYoQO5vSCTYEDxeikKz/1aOj04oTksiMhQcbkBwI9
+	neBpo5iPJ+zLf8MjFnGQqXk3h9PT8HmMxXZ8v+moend7voAjMvQToTnDQpVs58Vf
+	szrjBsgSZcml/DKoM1eOiOGXufQl4zd0nyizZIvxuLO/NrS9KCpl5ILs+l0ZoL2c
+	dWh8ug==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41spwer8hh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 Sep 2024 12:31:17 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48OCVGYt026341
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 Sep 2024 12:31:16 GMT
+Received: from [10.204.67.11] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 24 Sep
+ 2024 05:31:08 -0700
+Message-ID: <ba0bc896-41ad-4f1d-9218-fc5a44add422@quicinc.com>
+Date: Tue, 24 Sep 2024 18:01:06 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] drm/msm/dpu: Add SA8775P support
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <robdclark@gmail.com>, <quic_abhinavk@quicinc.com>, <sean@poorly.run>,
+        <marijn.suijten@somainline.org>, <airlied@gmail.com>,
+        <daniel@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <swboyd@chromium.org>,
+        <konrad.dybcio@linaro.org>, <danila@jiaxyga.com>,
+        <bigfoot@classfun.cn>, <neil.armstrong@linaro.org>,
+        <mailingradian@gmail.com>, <quic_jesszhan@quicinc.com>,
+        <andersson@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_kalyant@quicinc.com>, <quic_jmadiset@quicinc.com>,
+        <quic_vpolimer@quicinc.com>
+References: <20240912071437.1708969-1-quic_mahap@quicinc.com>
+ <20240912071437.1708969-5-quic_mahap@quicinc.com>
+ <v4cnmso3nl5oi3scd2lkg6kepb52vjrzgoti42ikds3y2wq6aw@sbn2yu4xeiun>
+ <9b47bd8e-6079-4285-a3d7-932178d5bdf2@quicinc.com>
+ <rmndmhq67lajdmva6gt46rqtkvf6jh2afbqazafz6oxv7ep56j@bznopz3aexyt>
+From: Mahadevan P <quic_mahap@quicinc.com>
+In-Reply-To: <rmndmhq67lajdmva6gt46rqtkvf6jh2afbqazafz6oxv7ep56j@bznopz3aexyt>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Fgaw1YBB5oBIDuwJY2-TfFv7nOrfD-Y_
+X-Proofpoint-ORIG-GUID: Fgaw1YBB5oBIDuwJY2-TfFv7nOrfD-Y_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 adultscore=0 priorityscore=1501 clxscore=1015
+ malwarescore=0 mlxscore=0 mlxlogscore=992 impostorscore=0 phishscore=0
+ spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409240088
 
-On Tue, 2024-09-24 at 10:02 +0200, Krzysztof Kozlowski wrote:
-> On 23/09/2024 17:50, Angelo Dureghello wrote:
-> > Hi Krzysztof,
-> >=20
-> > On 22/09/24 23:02, Krzysztof Kozlowski wrote:
-> > > On Thu, Sep 19, 2024 at 11:20:00AM +0200, Angelo Dureghello wrote:
-> > > > From: Angelo Dureghello <adureghello@baylibre.com>
-> > > >=20
-> > > > There is a version AXI DAC IP block (for FPGAs) that provides
-> > > > a physical bus for AD3552R and similar chips, and acts as
-> > > > an SPI controller.
-> > > >=20
-> > > > For this case, the binding is modified to include some
-> > > > additional properties.
-> > > >=20
-> > > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> > > > ---
-> > > > =C2=A0 .../devicetree/bindings/iio/dac/adi,ad3552r.yaml=C2=A0=C2=A0=
- | 42
-> > > > ++++++++++++++++++++++
-> > > > =C2=A0 1 file changed, 42 insertions(+)
-> > > >=20
-> > > > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.=
-yaml
-> > > > b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
-> > > > index 41fe00034742..aca4a41c2633 100644
-> > > > --- a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
-> > > > +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
-> > > > @@ -60,6 +60,18 @@ properties:
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitio=
-ns/uint32
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum: [0, 1, 2, 3]
-> > > > =C2=A0=20
-> > > > +=C2=A0 io-backends:
-> > > > +=C2=A0=C2=A0=C2=A0 description: The iio backend reference.
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 An example backend can be found at
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > > > https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.ht=
-ml
-> > > > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > > > +
-> > > > +=C2=A0 adi,synchronous-mode:
-> > > > +=C2=A0=C2=A0=C2=A0 description: Enable waiting for external synchr=
-onization signal.
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Some AXI IP configuration can imple=
-ment a dual-IP layout, with
-> > > > internal
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 wirings for streaming synchronizati=
-on.
-> > > > +=C2=A0=C2=A0=C2=A0 type: boolean
-> > > > +
-> > > > =C2=A0=C2=A0=C2=A0 '#address-cells':
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const: 1
-> > > > =C2=A0=20
-> > > > @@ -128,6 +140,7 @@ patternProperties:
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-- custom-output-range-config
-> > > > =C2=A0=20
-> > > > =C2=A0 allOf:
-> > > > +=C2=A0 - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > > > =C2=A0=C2=A0=C2=A0 - if:
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
-> > > > @@ -238,4 +251,33 @@ examples:
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 };
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
-> > > > +
-> > > > +=C2=A0 - |
-> > > > +=C2=A0=C2=A0=C2=A0 axi_dac: spi@44a70000 {
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "adi,axi=
--ad3552r";
-> > > That is either redundant or entire example should go to the parent no=
-de,
-> > > if this device is fixed child of complex device (IOW, adi,ad3552r can=
-not
-> > > be used outside of adi,axi-ad3552r).
-> >=20
-> > ad3552r can still be used by a generic "classic" spi
-> > controller (SCLK/CS/MISO) but at a slower samplerate, fpga
-> > controller only (axi-ad3552r) can reach 33MUPS.
->=20
-> OK, then this is just redundant. Drop the node. Parent example should
-> contain the children, though.
-> >=20
-> > >=20
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x44a70000 0x1=
-000>;
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dmas =3D <&dac_tx_dma 0=
->;
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma-names =3D "tx";
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #io-backend-cells =3D <=
-0>;
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&ref_clk>;
-> > > > +
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <1>;
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <0>;
-> > > > +
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dac@0 {
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- compatible =3D "adi,ad3552r";
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- reg =3D <0>;
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- reset-gpios =3D <&gpio0 92 0>;
-> > > Use standard defines for GPIO flags.
-> >=20
-> > fixed, thanks
-> >=20
-> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- io-backends =3D <&axi_dac>;
-> > > Why do you need to point to the parent? How much coupled are these
-> > > devices? Child pointing to parent is not usually expected, because
-> > > that's obvious.
-> >=20
-> >=20
-> > "io-backends" is actually the way to refer to the backend module,
-> > (used already for i.e. ad9739a),
-> > it is needed because the backend is not only acting as spi-controller,
-> > but is also providing some APIs for synchronization and bus setup suppo=
-rt.
->=20
->=20
-> But if backend is the parent, then this is redundant. You can take it
-> from the child-parent relationship. Is this pointing to other devices
-> (non-parent) in other ad3552r configurations?
->=20
 
-The backend is a provider-consumer type of API. On the consumer side (which=
- is the
-driver the child node will probe on), we need to call devm_iio_backend_get(=
-) to get
-the backend object (which obviously is the parent). For that, 'io-backends'=
- is being
-used. We do have another API called __devm_iio_backend_get_from_fwnode_look=
-up() that
-could be used with the parent fwnode and should work. However that was only=
- added to
-keep backward compatibility in the first user of the IIO backend framework =
-and it's
-not really meant to be used again. We are aware this is awkward at the very=
- least [1]
-but hopefully still acceptable.
+On 9/24/2024 5:46 PM, Dmitry Baryshkov wrote:
+> On Tue, Sep 24, 2024 at 04:42:02PM GMT, Mahadevan P wrote:
+>> On 9/12/2024 1:34 PM, Dmitry Baryshkov wrote:
+>>> On Thu, Sep 12, 2024 at 12:44:36PM GMT, Mahadevan wrote:
+>>>> Add definitions for the display hardware used on the
+>>>> Qualcomm SA8775P platform.
+>>>>
+>>>> Signed-off-by: Mahadevan <quic_mahap@quicinc.com>
+>>>> ---
+>>>>    .../msm/disp/dpu1/catalog/dpu_8_4_sa8775p.h   | 485 ++++++++++++++++++
+>>>>    .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    |   3 +-
+>>>>    .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   3 +-
+>>>>    drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   3 +-
+>>>>    4 files changed, 491 insertions(+), 3 deletions(-)
+>>>>    create mode 100644 drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_8_4_sa8775p.h
+>>>>
+> [...]
+>
+>>>> +static const struct dpu_intf_cfg sa8775p_intf[] = {
+>>>> +	{
+>>>> +		.name = "intf_0", .id = INTF_0,
+>>>> +		.base = 0x34000, .len = 0x280,
+>>>> +		.features = INTF_SC7280_MASK,
+>>>> +		.type = INTF_DP,
+>>>> +		.controller_id = MSM_DP_CONTROLLER_0,
+>>>> +		.prog_fetch_lines_worst_case = 24,
+>>>> +		.intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 24),
+>>>> +		.intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 25),
+>>>> +	}, {
+>>>> +		.name = "intf_1", .id = INTF_1,
+>>>> +		.base = 0x35000, .len = 0x300,
+>>>> +		.features = INTF_SC7280_MASK,
+>>>> +		.type = INTF_DSI,
+>>>> +		.controller_id = MSM_DSI_CONTROLLER_0,
+>>>> +		.prog_fetch_lines_worst_case = 24,
+>>>> +		.intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 26),
+>>>> +		.intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 27),
+>>>> +		.intr_tear_rd_ptr = DPU_IRQ_IDX(MDP_INTF1_TEAR_INTR, 2),
+>>>> +	}, {
+>>>> +		.name = "intf_2", .id = INTF_2,
+>>>> +		.base = 0x36000, .len = 0x300,
+>>>> +		.features = INTF_SC7280_MASK,
+>>>> +		.type = INTF_DSI,
+>>>> +		.controller_id = MSM_DSI_CONTROLLER_1,
+>>>> +		.prog_fetch_lines_worst_case = 24,
+>>>> +		.intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 28),
+>>>> +		.intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 29),
+>>>> +		.intr_tear_rd_ptr = DPU_IRQ_IDX(MDP_INTF2_TEAR_INTR, 2),
+>>>> +	}, {
+>>>> +		.name = "intf_3", .id = INTF_3,
+>>>> +		.base = 0x37000, .len = 0x280,
+>>>> +		.features = INTF_SC7280_MASK,
+>>>> +		.type = INTF_NONE,
+>>>> +		.controller_id = MSM_DP_CONTROLLER_0,	/* pair with intf_0 for DP MST */
+>>>> +		.prog_fetch_lines_worst_case = 24,
+>>>> +		.intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 30),
+>>>> +		.intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 31),
+>>>> +	}, {
+>>>> +		.name = "intf_4", .id = INTF_4,
+>>>> +		.base = 0x38000, .len = 0x280,
+>>>> +		.features = INTF_SC7280_MASK,
+>>>> +		.type = INTF_DP,
+>>>> +		.controller_id = MSM_DP_CONTROLLER_1,
+>>>> +		.prog_fetch_lines_worst_case = 24,
+>>>> +		.intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 20),
+>>>> +		.intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 21),
+>>>> +	}, {
+>>> Where is intf_5 ?
+>>
+>> intf_5 of base address 0x39000 is not supported on this target.
+> Not supported by whom?
 
-[1]: https://lore.kernel.org/linux-iio/20240903203935.358a1423@jic23-huawei=
-/
-- Nuno S=C3=A1
+
+In sa8775p mdss architecture intf_5 is not present. So we are not adding 
+in SW too.
+
+
+>
+>>
+>>>> +		.name = "intf_6", .id = INTF_6,
+>>>> +		.base = 0x3A000, .len = 0x280,
+>>>> +		.features = INTF_SC7280_MASK,
+>>>> +		.type = INTF_NONE,
+>>>> +		.controller_id = MSM_DP_CONTROLLER_0,	/* pair with intf_0 for DP MST */
+>>>> +		.prog_fetch_lines_worst_case = 24,
+>>>> +		.intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 17),
+>>>> +		.intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 16),
+>>>> +	}, {
+> [skipped]
+>
+>>>> @@ -1464,6 +1464,7 @@ static const struct of_device_id dpu_dt_match[] = {
+>>>>    	{ .compatible = "qcom,sm8250-dpu", .data = &dpu_sm8250_cfg, },
+>>>>    	{ .compatible = "qcom,sm8350-dpu", .data = &dpu_sm8350_cfg, },
+>>>>    	{ .compatible = "qcom,sm8450-dpu", .data = &dpu_sm8450_cfg, },
+>>>> +	{ .compatible = "qcom,sa8775p-dpu", .data = &dpu_sa8775p_cfg, },
+>>> Wrong sorting order
+>>
+>> Sure will move below sm8650-dpu.
+> What makes you think that in a dictionary sa8775p comes after sm8650?
+
+
+Will update according to alphabetical order in next patch.
+
+
+>
+>>
+>>>>    	{ .compatible = "qcom,sm8550-dpu", .data = &dpu_sm8550_cfg, },
+>>>>    	{ .compatible = "qcom,sm8650-dpu", .data = &dpu_sm8650_cfg, },
+>>>>    	{ .compatible = "qcom,x1e80100-dpu", .data = &dpu_x1e80100_cfg, },
+>>>> -- 
+>>>> 2.34.1
+>>>>
 
