@@ -1,271 +1,241 @@
-Return-Path: <devicetree+bounces-104968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 637FD984ABD
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 20:13:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DF19984ADF
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 20:33:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 846BC1C21390
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 18:13:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 687C128210F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 18:33:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E674D1AC889;
-	Tue, 24 Sep 2024 18:13:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CDF41AAE20;
+	Tue, 24 Sep 2024 18:33:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WgHBKzw/"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="geVh7DAN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86A3C1B85F5;
-	Tue, 24 Sep 2024 18:13:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D69C11CA0;
+	Tue, 24 Sep 2024 18:33:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727201634; cv=none; b=Ftv6os5+46GMlVDwr5MWAZ8v6HMG4XnMJc4MkU6en4rdopDpWSzecY+2/oms1m6N68J9yJRHuU3q+W6+WDzOjHUe1LiVss2HIfT6bEMvGzy2in7h+HDJidjP/2eyGiiXkihBrZvva0bGdn75ZvEsZC2ZlsKDQenRzOIohgw5kOw=
+	t=1727202820; cv=none; b=aXgJyESqt5tQTWTtgvTcGHmy2C5xlGh0JQ7RMABsE0w6cV9x8AOTnnM6HPQBbpGtvkvsBT8qAjXt2kZ3pwaNFPgEblggJLo8Mx5v7YVSAsTiV+LzDk3atvxyLIn7KiK28jWMMbhottlxdQJwKIWqh/HIzRClZMLc0muRW/e/ZHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727201634; c=relaxed/simple;
-	bh=iSywsxMx9IQ8pv8igFST6punlmmN1FoPBbCm7NDxOSY=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=SLUUPCQRfJdtg0gJRzMKug/2oXdEtAud+MXuHkV1XxoFesKItB2JhQVR5OZjYmSoEeZMyv/vYickG6FoHAhpLEaxzNUhW/JkLZ6IRSDsVYrsP8FHYaQg5jbT0EXJR8Qdo7wl1Oi7Jkub+SwnsLtduZq2ohLBkIDE0VPevPywkEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WgHBKzw/; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 48OIDJS4022889;
-	Tue, 24 Sep 2024 13:13:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1727201599;
-	bh=yz+d9tmE3ccgdNyIA3FDM5CKOiXSktFesbMAzPEmn6c=;
-	h=Date:From:Subject:To:CC:References:In-Reply-To;
-	b=WgHBKzw/NDf+z54iyGZH64D2eGWufidtHZkNh8zBpYoMfbThnyfjdm+O+iTjj+bcd
-	 rkaMQftk3+f1qDShwR2cAfLvceGX8j/zr9tgkFufj2TV4o0H8etKqu9pfQLjk7ueB8
-	 HWT4hNo2qGpgUxpxKx3KGQo3KhZSMyv2QM4hOGJs=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 48OIDJps042351;
-	Tue, 24 Sep 2024 13:13:19 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 24
- Sep 2024 13:13:18 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 24 Sep 2024 13:13:19 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 48OIDIOv057570;
-	Tue, 24 Sep 2024 13:13:18 -0500
-Message-ID: <d8e0cb78-7cfb-42bf-b3a5-f765592e8dd4@ti.com>
-Date: Tue, 24 Sep 2024 13:13:18 -0500
+	s=arc-20240116; t=1727202820; c=relaxed/simple;
+	bh=5GznWfCDnUnyKOCfGDttffNNb5sJr81NujIVW9fi2A8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=J5EmGzoNfe+YuRxKeXhZZMmoqB5vtlBAW1MqAW7ST6xQIhYyDHwV4FeheHGIVFiblahbNCgE/M7SDpv+WD8dNTRgApLl24Dwa0O2L85xkfSLwQubSTOVavvEite+upUKNfNbWUbn8XCquMDIKFH44QTw/Z477q8tG293X9DfP8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=geVh7DAN; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1727202817; x=1758738817;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5GznWfCDnUnyKOCfGDttffNNb5sJr81NujIVW9fi2A8=;
+  b=geVh7DANMo+jx6ES3DcV00dhHKL4wsqLHOaca3kWCwAzxgauJVRuiyTd
+   Ziv2PKM4kjM+CMzK7lYYaF38lvIvyk9JxbvKy+6rzwwgJNMLgrZDYm0N5
+   zrSlnbOIEi4f3AejJYsqXs7fxZnDh3VaxE+0DWl+A9ib9yBn2FmXaqSpD
+   lXm89LVQk3lbXhSow7FoSjx1N12YuuUw5WtlQ/cshRhutsKIigZOXzIhm
+   T2WrHZ7I5gpaT5e7aoe+IYfNi0ZE3KRrP2r8EkVPO24VJt8tgytVmtTNS
+   F/F5uzwHUsjiTt19+jbN/73G2OyIF7dft1h0eD+sh8x8dcAWTy4Cm/n7t
+   g==;
+X-CSE-ConnectionGUID: AdPk8WPdTkGMhnavO5DSLQ==
+X-CSE-MsgGUID: lE1Pw0EqQFOD0830q8deVQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11205"; a="43690613"
+X-IronPort-AV: E=Sophos;i="6.10,255,1719903600"; 
+   d="scan'208";a="43690613"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2024 11:33:36 -0700
+X-CSE-ConnectionGUID: BrxgntzbQjqqAVMJPEq+cA==
+X-CSE-MsgGUID: CxoHm09bTTWpi/JiWpQb7Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,255,1719903600"; 
+   d="scan'208";a="71122146"
+Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 24 Sep 2024 11:33:34 -0700
+Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1stALr-000IgU-1X;
+	Tue, 24 Sep 2024 18:33:31 +0000
+Date: Wed, 25 Sep 2024 02:32:36 +0800
+From: kernel test robot <lkp@intel.com>
+To: Junhui Liu <liujh2818@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Junhui Liu <liujh2818@outlook.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 2/2] reset: canaan: Add reset driver for Kendryte K230
+Message-ID: <202409250201.ZlZsYfH8-lkp@intel.com>
+References: <20240924-k230-reset-v1-2-d0cdc11989eb@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Andrew Davis <afd@ti.com>
-Subject: Re: [RFC PATCH 0/4] Linaro restricted heap
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jens Wiklander
-	<jens.wiklander@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-media@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <linaro-mm-sig@lists.linaro.org>, <op-tee@lists.trustedfirmware.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Olivier Masse <olivier.masse@nxp.com>,
-        Thierry Reding
-	<thierry.reding@gmail.com>,
-        Yong Wu <yong.wu@mediatek.com>,
-        Sumit Semwal
-	<sumit.semwal@linaro.org>,
-        Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>,
-        Brian Starkey <Brian.Starkey@arm.com>,
-        John Stultz <jstultz@google.com>,
-        "T . J . Mercier" <tjmercier@google.com>,
-        =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
-        Sumit Garg
-	<sumit.garg@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>
-References: <20240830070351.2855919-1-jens.wiklander@linaro.org>
- <dhxvyshwi4qmcmwceokhqey2ww4azjcs6qrpnkgivdj7tv5cke@r36srvvbof6q>
-Content-Language: en-US
-In-Reply-To: <dhxvyshwi4qmcmwceokhqey2ww4azjcs6qrpnkgivdj7tv5cke@r36srvvbof6q>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240924-k230-reset-v1-2-d0cdc11989eb@outlook.com>
 
-On 9/23/24 1:33 AM, Dmitry Baryshkov wrote:
-> Hi,
-> 
-> On Fri, Aug 30, 2024 at 09:03:47AM GMT, Jens Wiklander wrote:
->> Hi,
->>
->> This patch set is based on top of Yong Wu's restricted heap patch set [1].
->> It's also a continuation on Olivier's Add dma-buf secure-heap patch set [2].
->>
->> The Linaro restricted heap uses genalloc in the kernel to manage the heap
->> carvout. This is a difference from the Mediatek restricted heap which
->> relies on the secure world to manage the carveout.
->>
->> I've tried to adress the comments on [2], but [1] introduces changes so I'm
->> afraid I've had to skip some comments.
-> 
-> I know I have raised the same question during LPC (in connection to
-> Qualcomm's dma-heap implementation). Is there any reason why we are
-> using generic heaps instead of allocating the dma-bufs on the device
-> side?
-> 
-> In your case you already have TEE device, you can use it to allocate and
-> export dma-bufs, which then get imported by the V4L and DRM drivers.
-> 
+Hi Junhui,
 
-This goes to the heart of why we have dma-heaps in the first place.
-We don't want to burden userspace with having to figure out the right
-place to get a dma-buf for a given use-case on a given hardware.
-That would be very non-portable, and fail at the core purpose of
-a kernel: to abstract hardware specifics away.
+kernel test robot noticed the following build warnings:
 
-Worse, the actual interface for dma-buf exporting changes from
-framework to framework (getting a dma-buf from DRM is different
-than V4L, and there would be yet another API for TEE, etc..)
+[auto build test WARNING on abf2050f51fdca0fd146388f83cddd95a57a008d]
 
-Most subsystem don't need an allocator, they work just fine
-simply being only dma-bufs importers. Recent example being the
-IIO subsystem[0], for which some early posting included an
-allocator, but in the end, all that was needed was to consume
-buffers.
+url:    https://github.com/intel-lab-lkp/linux/commits/Junhui-Liu/dt-bindings-reset-Add-support-for-canaan-k230-rst/20240924-140732
+base:   abf2050f51fdca0fd146388f83cddd95a57a008d
+patch link:    https://lore.kernel.org/r/20240924-k230-reset-v1-2-d0cdc11989eb%40outlook.com
+patch subject: [PATCH 2/2] reset: canaan: Add reset driver for Kendryte K230
+config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20240925/202409250201.ZlZsYfH8-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 8663a75fa2f31299ab8d1d90288d9df92aadee88)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240925/202409250201.ZlZsYfH8-lkp@intel.com/reproduce)
 
-For devices that don't actually contain memory there is no
-reason to be an exporter. What most want is just to consume
-normal system memory. Or system memory with some constraints
-(e.g. contiguous, coherent, restricted, etc..).
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409250201.ZlZsYfH8-lkp@intel.com/
 
-> I have a feeling (I might be completely wrong here) that by using
-> generic dma-buf heaps we can easily end up in a situation when the
-> userspace depends heavily on the actual platform being used (to map the
-> platform to heap names). I think we should instead depend on the
-> existing devices (e.g. if there is a TEE device, use an IOCTL to
-> allocate secured DMA BUF from it, otherwise check for QTEE device,
-> otherwise check for some other vendor device).
-> 
-> The mental experiment to check if the API is correct is really simple:
-> Can you use exactly the same rootfs on several devices without
-> any additional tuning (e.g. your QEMU, HiKey, a Mediatek board, Qualcomm
-> laptop, etc)?
-> 
+All warnings (new ones prefixed by >>):
 
-This is a great north star to follow. And exactly the reason we should
-*not* be exposing device specific constraints to userspace. The constrains
-change based on the platform. So a userspace would have to also pick
-a different set of constraints based on each platform.
+   In file included from drivers/reset/reset-k230.c:8:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     548 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+         |                                                   ^
+   In file included from drivers/reset/reset-k230.c:8:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+         |                                                   ^
+   In file included from drivers/reset/reset-k230.c:8:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     585 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+>> drivers/reset/reset-k230.c:223:7: warning: variable 'ret' is used uninitialized whenever switch case is taken [-Wsometimes-uninitialized]
+     223 |         case RST_TYPE_SW_DONE:
+         |              ^~~~~~~~~~~~~~~~
+   drivers/reset/reset-k230.c:231:9: note: uninitialized use occurs here
+     231 |         return ret;
+         |                ^~~
+   drivers/reset/reset-k230.c:214:7: warning: variable 'ret' is used uninitialized whenever switch case is taken [-Wsometimes-uninitialized]
+     214 |         case RST_TYPE_CPU1:
+         |              ^~~~~~~~~~~~~
+   drivers/reset/reset-k230.c:231:9: note: uninitialized use occurs here
+     231 |         return ret;
+         |                ^~~
+   drivers/reset/reset-k230.c:215:7: warning: variable 'ret' is used uninitialized whenever switch case is taken [-Wsometimes-uninitialized]
+     215 |         case RST_TYPE_FLUSH:
+         |              ^~~~~~~~~~~~~~
+   drivers/reset/reset-k230.c:231:9: note: uninitialized use occurs here
+     231 |         return ret;
+         |                ^~~
+   drivers/reset/reset-k230.c:206:9: note: initialize the variable 'ret' to silence this warning
+     206 |         int ret;
+         |                ^
+         |                 = 0
+   drivers/reset/reset-k230.c:250:7: warning: variable 'ret' is used uninitialized whenever switch case is taken [-Wsometimes-uninitialized]
+     250 |         case RST_TYPE_SW_DONE:
+         |              ^~~~~~~~~~~~~~~~
+   drivers/reset/reset-k230.c:258:9: note: uninitialized use occurs here
+     258 |         return ret;
+         |                ^~~
+   drivers/reset/reset-k230.c:247:7: warning: variable 'ret' is used uninitialized whenever switch case is taken [-Wsometimes-uninitialized]
+     247 |         case RST_TYPE_FLUSH:
+         |              ^~~~~~~~~~~~~~
+   drivers/reset/reset-k230.c:258:9: note: uninitialized use occurs here
+     258 |         return ret;
+         |                ^~~
+   drivers/reset/reset-k230.c:248:7: warning: variable 'ret' is used uninitialized whenever switch case is taken [-Wsometimes-uninitialized]
+     248 |         case RST_TYPE_HW_DONE:
+         |              ^~~~~~~~~~~~~~~~
+   drivers/reset/reset-k230.c:258:9: note: uninitialized use occurs here
+     258 |         return ret;
+         |                ^~~
+   drivers/reset/reset-k230.c:241:7: warning: variable 'ret' is used uninitialized whenever switch case is taken [-Wsometimes-uninitialized]
+     241 |         case RST_TYPE_CPU0:
+         |              ^~~~~~~~~~~~~
+   drivers/reset/reset-k230.c:258:9: note: uninitialized use occurs here
+     258 |         return ret;
+         |                ^~~
+   drivers/reset/reset-k230.c:238:9: note: initialize the variable 'ret' to silence this warning
+     238 |         int ret;
+         |                ^
+         |                 = 0
+   13 warnings generated.
 
-Userspace knows which subsystems it will attach a buffer, and the
-kernel knows what constraints those devices have on a given platform.
-Ideal case is then allocate from the one exporter, attach to various
-devices, and have the constraints solved at map time by the exporter
-based on the set of attached devices.
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for GET_FREE_REGION
+   Depends on [n]: SPARSEMEM [=n]
+   Selected by [m]:
+   - RESOURCE_KUNIT_TEST [=m] && RUNTIME_TESTING_MENU [=y] && KUNIT [=m]
 
-For example, on one platform the display needs contiguous buffers,
-but on a different platform the display can scatter-gather. So
-what heap should our generic application allocate from when it
-wants a buffer consumable by the display, CMA or System?
-Answer *should* be always use the generic exporter, and that
-exporter then picks the right backing type based on the platform.
 
-Userspace shouldn't be dealing with any of these constraints
-(looking back, adding the CMA heap was probably incorrect,
-and the System heap should have been the only one. Idea back
-then was a userspace helper would show up to do the constraint
-solving and pick the right heap. That has yet to materialize and
-folks are still just hardcoding which heap to use..).
+vim +/ret +223 drivers/reset/reset-k230.c
 
-Same for this restricted heap, I'd like to explore if we can
-enhance the System heap such that when attached to the TEE framework,
-the backing memory is either made restricted by fire-walling,
-or allocating from a TEE carveout (based on platform).
+   201	
+   202	static int k230_rst_assert(struct reset_controller_dev *rcdev, unsigned long id)
+   203	{
+   204		struct k230_rst *rstc = to_k230_rst(rcdev);
+   205		const struct k230_rst_map *rmap = &k230_resets[id];
+   206		int ret;
+   207	
+   208		switch (rmap->type) {
+   209		case RST_TYPE_CPU0:
+   210			k230_rst_clear_done(rstc, id, true);
+   211			k230_rst_update(rstc, id, true, true, false);
+   212			ret = k230_rst_wait_and_clear_done(rstc, id, true);
+   213			break;
+   214		case RST_TYPE_CPU1:
+   215		case RST_TYPE_FLUSH:
+   216			k230_rst_update(rstc, id, true, true, false);
+   217			break;
+   218		case RST_TYPE_HW_DONE:
+   219			k230_rst_clear_done(rstc, id, false);
+   220			k230_rst_update(rstc, id, true, false, false);
+   221			ret = k230_rst_wait_and_clear_done(rstc, id, false);
+   222			break;
+ > 223		case RST_TYPE_SW_DONE:
+   224			k230_rst_update(rstc, id, true, false,
+   225					id == RST_SPI2AXI ? false : true);
+   226			break;
+   227		default:
+   228			return -EINVAL;
+   229		}
+   230	
+   231		return ret;
+   232	}
+   233	
 
-This will mean more inter-subsystem coordination, but we can
-iterate on these in kernel interfaces. We cannot iterate on
-userspace interfaces, those have to be correct the first time.
-
-Andrew
-
-[0] https://www.kernel.org/doc/html/next/iio/iio_dmabuf_api.html
-
->>
->> This can be tested on QEMU with the following steps:
->> repo init -u https://github.com/jenswi-linaro/manifest.git -m qemu_v8.xml \
->>          -b prototype/sdp-v1
->> repo sync -j8
->> cd build
->> make toolchains -j4
->> make all -j$(nproc)
->> make run-only
->> # login and at the prompt:
->> xtest --sdp-basic
->>
->> https://optee.readthedocs.io/en/latest/building/prerequisites.html
->> list dependencies needed to build the above.
->>
->> The tests are pretty basic, mostly checking that a Trusted Application in
->> the secure world can access and manipulate the memory.
-> 
-> - Can we test that the system doesn't crash badly if user provides
->    non-secured memory to the users which expect a secure buffer?
-> 
-> - At the same time corresponding entities shouldn't decode data to the
->    buffers accessible to the rest of the sytem.
-> 
->>
->> Cheers,
->> Jens
->>
->> [1] https://lore.kernel.org/dri-devel/20240515112308.10171-1-yong.wu@mediatek.com/
->> [2] https://lore.kernel.org/lkml/20220805135330.970-1-olivier.masse@nxp.com/
->>
->> Changes since Olivier's post [2]:
->> * Based on Yong Wu's post [1] where much of dma-buf handling is done in
->>    the generic restricted heap
->> * Simplifications and cleanup
->> * New commit message for "dma-buf: heaps: add Linaro restricted dmabuf heap
->>    support"
->> * Replaced the word "secure" with "restricted" where applicable
->>
->> Etienne Carriere (1):
->>    tee: new ioctl to a register tee_shm from a dmabuf file descriptor
->>
->> Jens Wiklander (2):
->>    dma-buf: heaps: restricted_heap: add no_map attribute
->>    dma-buf: heaps: add Linaro restricted dmabuf heap support
->>
->> Olivier Masse (1):
->>    dt-bindings: reserved-memory: add linaro,restricted-heap
->>
->>   .../linaro,restricted-heap.yaml               |  56 ++++++
->>   drivers/dma-buf/heaps/Kconfig                 |  10 ++
->>   drivers/dma-buf/heaps/Makefile                |   1 +
->>   drivers/dma-buf/heaps/restricted_heap.c       |  17 +-
->>   drivers/dma-buf/heaps/restricted_heap.h       |   2 +
->>   .../dma-buf/heaps/restricted_heap_linaro.c    | 165 ++++++++++++++++++
->>   drivers/tee/tee_core.c                        |  38 ++++
->>   drivers/tee/tee_shm.c                         | 104 ++++++++++-
->>   include/linux/tee_drv.h                       |  11 ++
->>   include/uapi/linux/tee.h                      |  29 +++
->>   10 files changed, 426 insertions(+), 7 deletions(-)
->>   create mode 100644 Documentation/devicetree/bindings/reserved-memory/linaro,restricted-heap.yaml
->>   create mode 100644 drivers/dma-buf/heaps/restricted_heap_linaro.c
->>
->> -- 
->> 2.34.1
->>
-> 
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
