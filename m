@@ -1,143 +1,153 @@
-Return-Path: <devicetree+bounces-104937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC6B69848F5
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 17:58:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 012BA9848FB
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 18:01:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1884A1C22B6C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 15:58:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF3501C22C0E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 16:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01EFF1AB6D3;
-	Tue, 24 Sep 2024 15:58:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D165713A896;
+	Tue, 24 Sep 2024 16:00:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Lx+0p7q3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GvK37+mp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 456121AB511;
-	Tue, 24 Sep 2024 15:58:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3AC61B85D5;
+	Tue, 24 Sep 2024 16:00:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727193519; cv=none; b=L+oB3O+lLaC+yjYG599nA4tGjYx+HJ18blZUCKisvCfNXXy89NrpFzdMwP96epFPLDP4LtskPEwSCR2Zsc0E7gOyoOpNIK1fcg9KWRGk9QFAsCpmRKjVEBH6VKJY7Q/Ib4D4K09V9vrotGMcvh0Hz740eOsSGXWdPdb9fglmLIE=
+	t=1727193642; cv=none; b=hfUJFlv46CqUMsLKV2w/qOjmoFkDBSdxza2KvV3RRwe9dh7EIIcrcay0UWVyn6f9CV3OsUltJYJ90dsEsCWxtVhyVGS5wCma4bFDvbdoikqA06kc2oC8oz3MS3HjOsgp77vKG4pn5u3Nil5lJ8RLKSCWB73vzPGX6n1pUdsM+ns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727193519; c=relaxed/simple;
-	bh=RKUpJDBsixSrkb2ItQ1xJv7LC2iLPJ3uky1a70WOo1I=;
+	s=arc-20240116; t=1727193642; c=relaxed/simple;
+	bh=RMVPLW4fWUk9yS+HMDAfSQbd+gQJXHQViB5tLV8d35M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aBy3Eu9hesPcVVuwQn5D24nMnUGTcE8Xz7yG1DItciPaOyPaQlmDhv18SdjE8G+HLFA5LpSdBZNSDrosRVMRqSWGRQZm07PjbfacYXwOI598LC6UWWrD9LqghIm5CN34IRBgR19H395Ght1vohXYiT2rScljMb1v/U9bHNDueWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Lx+0p7q3; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1727193517; x=1758729517;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=RKUpJDBsixSrkb2ItQ1xJv7LC2iLPJ3uky1a70WOo1I=;
-  b=Lx+0p7q3hxunj68L8yC1Nw9Nr5Ncw+Z1fanm8zxinYHHa+YOHZXrxluI
-   IuXpCALXfOEN2XVoBKAnmPMD8rdB0xxu4ztpUldswld2IdJ/FO1CePtVb
-   Ms7uFFiw/0S8KlhrNAGhJYeG+BPEDXFpd2yddXDqMkJhQDzOd2VR53sfW
-   fa4+qkxp22PzdNaT/kcKTXpclB7CKO9pMOigk2q98TOvnFECtAjAKMSCp
-   bUWaFCRLh+bw1hRax2p/MIK8XhzyhWKCdb1UIbcw1XST5ishBdMYg5ClM
-   RAEVolHhPPtg9f17mMdX3UtDR9QVWxnAItKqv60819sPZfrLo+JMBOPXU
-   w==;
-X-CSE-ConnectionGUID: aUhE3jrrT2KaZr0lT/Dw4Q==
-X-CSE-MsgGUID: VQ8cpleoT521LZax2U/Vtw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11205"; a="26062147"
-X-IronPort-AV: E=Sophos;i="6.10,255,1719903600"; 
-   d="scan'208";a="26062147"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2024 08:58:32 -0700
-X-CSE-ConnectionGUID: B+7wsJYpQ86JQvsMxw5GKQ==
-X-CSE-MsgGUID: ZteXiXlRQ1yEGZLq6XVHHg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,255,1719903600"; 
-   d="scan'208";a="71347528"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 24 Sep 2024 08:58:25 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1st7vi-000IW3-2K;
-	Tue, 24 Sep 2024 15:58:22 +0000
-Date: Tue, 24 Sep 2024 23:58:15 +0800
-From: kernel test robot <lkp@intel.com>
-To: Binbin Zhou <zhoubinbin@loongson.cn>,
-	Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Weidong Wang <wangweidong.a@awinic.com>,
-	Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Shuming Fan <shumingf@realtek.com>
-Subject: Re: [PATCH v2 4/9] ASoC: codecs: Add uda1342 codec driver
-Message-ID: <202409242348.1aLlK9i6-lkp@intel.com>
-References: <c69743ea929fed210128de765967ea045ebd6b27.1727056789.git.zhoubinbin@loongson.cn>
+	 Content-Type:Content-Disposition:In-Reply-To; b=g1UF7MAIkAH+Ti/+bdLeU8KZ37oQw/IyLcjGD+3we9h19919pMuaaBnHy57p/DqYPfMktUK30UkBBC5NY7vCJ8DrpqS0xzjs46f7BuEZrVXh5umH5uioOJ1K+NkQAA2tD7H6zyGcBy3nmbHNjey5hS8FI4YLIFg9cGtFLWeEI9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GvK37+mp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2AE1C4CEC4;
+	Tue, 24 Sep 2024 16:00:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727193642;
+	bh=RMVPLW4fWUk9yS+HMDAfSQbd+gQJXHQViB5tLV8d35M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GvK37+mp+LghOmr6eoGoJcX94ZEdvjXe7wWGvJCkmU96Jfz4t9wQAMCcHrj456VMu
+	 CTvjH6AQSibawNgM6pXkiRUbDkbpb5OB2u6GHKkU3OdPWYRsMb7NsThJQgay3GxhP5
+	 Oof/N2yNvyvOKMabXyy38g7l3rPmArWwRrHFImcMLmP34qUsZxYMlYO/z5HZ4P0Tlj
+	 1ukf9n15+s9ktGDKRonsgiNiCoFNvXmAw7OCRlWWHp1KQxcofuJX8494GiYt5I/sbF
+	 IQTyI/Kf+rr/XySGhmQGVFj6Xz+1gwU2CDrVff0GanXwhe+9jxkxPT92QrSGMZJLsG
+	 hAPsxiBHsx+3w==
+Date: Tue, 24 Sep 2024 17:00:34 +0100
+From: Conor Dooley <conor@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Macpaul Lin <macpaul.lin@mediatek.com>,
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yong Wu <yong.wu@mediatek.com>,
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Alexandre Mergnat <amergnat@baylibre.com>,
+	Bear Wang <bear.wang@mediatek.com>,
+	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
+	Sen Chu <sen.chu@mediatek.com>,
+	Chris-qj chen <chris-qj.chen@mediatek.com>,
+	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: [PATCH 3/6] dt-bindings: display: mediatek: Fix clocks count
+ constraint for new SoCs
+Message-ID: <20240924-commute-collision-13ad39717d31@spud>
+References: <20240924103156.13119-1-macpaul.lin@mediatek.com>
+ <20240924103156.13119-3-macpaul.lin@mediatek.com>
+ <ffc1900b-3921-48ca-a2b2-1b798c57e572@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="sWezDfs+NRZqmEro"
+Content-Disposition: inline
+In-Reply-To: <ffc1900b-3921-48ca-a2b2-1b798c57e572@collabora.com>
+
+
+--sWezDfs+NRZqmEro
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c69743ea929fed210128de765967ea045ebd6b27.1727056789.git.zhoubinbin@loongson.cn>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Binbin,
+On Tue, Sep 24, 2024 at 01:42:01PM +0200, AngeloGioacchino Del Regno wrote:
+> Il 24/09/24 12:31, Macpaul Lin ha scritto:
+> > The display node in mt8195.dtsi was triggering a CHECK_DTBS error due
+> > to an excessively long 'clocks' property:
+> >    display@14f06000: clocks: [[31, 14], [31, 43], [31, 44]] is too long
+> >=20
+> > To resolve this issue, add "maxItems: 3" to the 'clocks' property in
+> > the DT schema.
+> >=20
+> > Fixes: 4ed545e7d100 ("dt-bindings: display: mediatek: disp: split each =
+block to individual yaml")
+> > Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> > ---
+> >   .../devicetree/bindings/display/mediatek/mediatek,split.yaml     | 1 +
+> >   1 file changed, 1 insertion(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/display/mediatek/mediate=
+k,split.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+split.yaml
+> > index e4affc854f3d..42d2d483cc29 100644
+> > --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,split=
+=2Eyaml
+> > +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,split=
+=2Eyaml
+> > @@ -57,6 +57,7 @@ properties:
+> >     clocks:
+> >       items:
+> >         - description: SPLIT Clock
+>=20
+> That's at least confusing (granted that it works) - either add a descript=
+ion for
+> each clock and then set `minItems: 1` (preferred), or remove this "SPLIT =
+Clock"
+> description and allow a maximum of 3 clocks.
+>=20
+> Removing the description can be done - IMO - because "SPLIT Clock" is, we=
+ll,
+> saying that the SPLIT block gets a SPLIT clock ... stating the obvious, a=
+nyway.
 
-kernel test robot noticed the following build warnings:
+Right, but what are the other two new clocks? Are they as obvious?
+There's no clock-names here to give any more information as to what the
+other clocks are supposed to be.
 
-[auto build test WARNING on broonie-sound/for-next]
-[also build test WARNING on robh/for-next linus/master v6.11 next-20240924]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Kinda unrelated, but I think that "SPLIT Clock" probably isn't what the
+name of the clock in the IP block is anyway, sounds more like the name
+for it on the provider end..
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Binbin-Zhou/ASoC-dt-bindings-Add-Everest-ES8323-Codec/20240924-150942
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-patch link:    https://lore.kernel.org/r/c69743ea929fed210128de765967ea045ebd6b27.1727056789.git.zhoubinbin%40loongson.cn
-patch subject: [PATCH v2 4/9] ASoC: codecs: Add uda1342 codec driver
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20240924/202409242348.1aLlK9i6-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240924/202409242348.1aLlK9i6-lkp@intel.com/reproduce)
+--sWezDfs+NRZqmEro
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409242348.1aLlK9i6-lkp@intel.com/
+-----BEGIN PGP SIGNATURE-----
 
-All warnings (new ones prefixed by >>):
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvLiIgAKCRB4tDGHoIJi
+0jIKAP9UDveIts01lao6hVilWP0TMQRAzvdTTL1WDikEbViR4AD/fS4SyEZ73ptb
+5bNB6iILTufZlc7BaAK6cEiNDImPLAw=
+=ms3M
+-----END PGP SIGNATURE-----
 
->> sound/soc/codecs/uda1342.c:206:26: warning: 'uda1342_mixmode' defined but not used [-Wunused-const-variable=]
-     206 | static const char *const uda1342_mixmode[] = {"Differential", "Analog1", "Analog2", "Both"};
-         |                          ^~~~~~~~~~~~~~~
->> sound/soc/codecs/uda1342.c:205:26: warning: 'uda1342_deemph' defined but not used [-Wunused-const-variable=]
-     205 | static const char *const uda1342_deemph[] = {"None", "32Khz", "44.1Khz", "48Khz"};
-         |                          ^~~~~~~~~~~~~~
-
-
-vim +/uda1342_mixmode +206 sound/soc/codecs/uda1342.c
-
-   204	
- > 205	static const char *const uda1342_deemph[] = {"None", "32Khz", "44.1Khz", "48Khz"};
- > 206	static const char *const uda1342_mixmode[] = {"Differential", "Analog1", "Analog2", "Both"};
-   207	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--sWezDfs+NRZqmEro--
 
