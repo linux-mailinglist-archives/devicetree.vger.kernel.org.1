@@ -1,81 +1,82 @@
-Return-Path: <devicetree+bounces-104846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C4B7984450
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 13:16:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65AD5984463
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 13:18:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCB691C2329A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:16:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C235283798
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:18:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0AE516C6A7;
-	Tue, 24 Sep 2024 11:16:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99FE2195805;
+	Tue, 24 Sep 2024 11:18:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="njf9Sd39"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WeoVvcXp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59BE21C3D;
-	Tue, 24 Sep 2024 11:16:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A3541A270;
+	Tue, 24 Sep 2024 11:18:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727176588; cv=none; b=fXICbuCV1y8IG+k868lPwveiKAFxjxSKsB1D5B8FNjxZqbFnGAzNqYuSEx+h7tKLR2rhsBt8GMDvKT0gVsY81nymY/wq/Os26fpjPZDOOu7RtQ+Z72DW9M7dVEa4qTPGuvivqRffXgRfiCgxj4Fy8rKUiU7GvXLq66LMTQ6l1Zk=
+	t=1727176733; cv=none; b=e9vUdrdSYdKAl5t0FHftE5PhA8PdWY0wH/EovyKyRPU5sjC7uCnesW5I5l983ug3hkYCl+S5wjGWtVEIZ5xr7FUp9P3uHhz0H3MoazUpDgGMGIujTQL+iB0QulCl+Kmd6EcMe3DKpGQ/9g0uveD7IOo0OgpSWFUazDnzjrSWzng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727176588; c=relaxed/simple;
-	bh=ZJnHAssklkneKFT4wY50362h9HDBf9imld/GaH8qaPk=;
+	s=arc-20240116; t=1727176733; c=relaxed/simple;
+	bh=YBAqfCr1rPGxWzSzMR4p/L3+lR7/ASXO7LooTM0/hqA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UzoGFTi4uI0ptuTGd4CyEg5859/Qv6/0a2YTacZXI+5ry+iaeGq19Hy68LNnhbihtQPJz71l+32r3FaRp/KcI1p5LO+vIeCpFVCd5vzTSzCmndR2QaFxFtGmB91OI6Lb1aZZb6iX9fblvXzfP62cYeuWqYYCAS4LRnaT2paBFRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=njf9Sd39; arc=none smtp.client-ip=209.85.167.45
+	 To:Cc:Content-Type; b=m50LHyyS0BAAXoh9wAQB4kCrL9wPOKlkzn4HqBQEUSGQ8h8bmiQASwRWui2esl++IArgEgGuq0p1KSA1NQ/Q9eLJcWFdS1vH6YL6v7Gi2LwsmNP+5/8BtQws4SutA2yAFs9C0hoe2qMxY3QPd0HpnZFVyW9O8eAHNk1VvQGaVQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WeoVvcXp; arc=none smtp.client-ip=209.85.219.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-53653ee23adso4882797e87.3;
-        Tue, 24 Sep 2024 04:16:27 -0700 (PDT)
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e201f146cc8so4915915276.3;
+        Tue, 24 Sep 2024 04:18:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727176585; x=1727781385; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1727176731; x=1727781531; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZJnHAssklkneKFT4wY50362h9HDBf9imld/GaH8qaPk=;
-        b=njf9Sd39pBoI3oRFEv3D5UN1DgDFND4Htu80aD/oHSfRRztslLDzGwaFSoFti2zGFK
-         7w6HAwNir37YUt1azhVjJEPNDDWZBmdHm/Dh3fVAX4J8DarAAUza43BeS9POEQlT1z13
-         5ABQPZWDl9WXebb32rTbUjOAZN/aY3BTqosiCpW9Bi/kcIEPHnA37LFT7Ny0OJ+P+nfM
-         kHbMnRGVJzprO+SYEY96babEowefDultKvbKVqmIDYbuAgeRD9+7ljORsZJKSe40bg9y
-         g/h1pHgydLAyendIVEgQaPYo9OxqdPfk9B/O+zMrlFQN12KINNM5OQSJCHH6ERN0KG/t
-         S69w==
+        bh=YBAqfCr1rPGxWzSzMR4p/L3+lR7/ASXO7LooTM0/hqA=;
+        b=WeoVvcXpupKfScfrTBA7vHp/YllamVH78ISwaKFJAaIFxbMvCXQFE+vlhTS+HHVLwh
+         vD86xPq6wb6BPW0xXrATm2TY5TwkXqq3e8OaCHTN9vNyl9+dg+BMX3v+OQLTs+FcUemX
+         XeOBs0vEGmUnF/KZQyEODH172b5w5Rq2C4rUhA85qsmQPM/ucC+aIctMNyL47YlNmDhq
+         OmzagC/UB8DhucFXxNEca0L+s+LmH2esQOXNWPXBVxYhCsQj9Z7sgHXmlXpcIOQBXSip
+         6rzy4BQZQijVEDf2OwrM20goQIec+6f7IoOFkxuZCxWp4BTyogCWa8hHkWNnSLGG6ThD
+         VZQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727176585; x=1727781385;
+        d=1e100.net; s=20230601; t=1727176731; x=1727781531;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ZJnHAssklkneKFT4wY50362h9HDBf9imld/GaH8qaPk=;
-        b=C6cyfFJAeEFg6Ej6X4JRbh1OiDvWyyVKW2/CkqW6x+0Dny/uRBljyMbPjAnzGHw60t
-         EsxV7GUSYRTMuJu6rYisDiaDWgtOY9x2Nas5We2kK7FmgGgyZ5HnerZItiap/adQvjD7
-         1TqIdl6Zj9BD9WtVQeN61LABYScffCUUzWTflJxePkz8FApmxIdD0anhAkM5tuggCLMC
-         PCPIu7e22ODkT82WVE8DJUthhdA7cQzzXMMPzVC9oRmwo63BsKHAhUKpk1iNon/RB834
-         0Jm20jxMvmiWuWVVSqukUZdYaIpSMAvj6MMCgXPDOt3oT76tHqRZPDSmFHrTC17fmKkZ
-         oReQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVaMG1B8JFXoHMMDyuAK5heO3bq1S1u+52HQoCbFyyZ1ZWTMrDa3tnugdm9TRJIFjk6QGiITiW2gc7uaNf0@vger.kernel.org, AJvYcCWl4JqtDeRD/mAWA34uTQaWaOmTxlH+/cziB4AuyhhAp06QgoVHAOCe4TmlvuA59VguKAZ5Gzm5b8Kn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyvl2hgmM3XLadQfxs09F8iVRpP7Yfm6xBnMlURKBEs87U2B2UA
-	3SkkEgYftrbl11kiiFyqEQi0T/Sh+GJpqpeEujdYEp/a1mb5X2nvosFm2YBmdByHIec0HRhh9L2
-	6XY4gmMSvQQ7Jvh4LIZ61R8wwp8s=
-X-Google-Smtp-Source: AGHT+IH4+cT4zwWzrFXVe0+tKnEFzRr7bKyh0GsnjCOocdPkd+rrwFhT4V3C6MLZrLtYNlVPd5V6oGwHQ5ZqeScaddM=
-X-Received: by 2002:a05:6512:ba2:b0:536:554a:b9c8 with SMTP id
- 2adb3069b0e04-536ad3d4ed8mr8466982e87.54.1727176585070; Tue, 24 Sep 2024
- 04:16:25 -0700 (PDT)
+        bh=YBAqfCr1rPGxWzSzMR4p/L3+lR7/ASXO7LooTM0/hqA=;
+        b=uxWb6tqAJK6ZQlxyaavvyxCrp+dblQrdAc4sraUjnZr+sGj9UrMhTZpm7ey/DIbGkB
+         tHFlLh0m+S/AK7g+r46OI9v2SIXClpkBTzFvlmNDGv92jfrphtzhmrlt1rw6aUpbuYxc
+         IXqg4hnn5IbNO6cxtYFTqh/WvntUuyLc3CuoJy5/NEROaWNN/EtZqOiRjLDQV1fiIfMz
+         bXDVbF+HJ9sfABMIE/ODyan6gNhDG7aCr4vW4y2eWQFX5JIZtfFg9jSQRpY11okAasCn
+         RcviPlIKqeKWffZ94aqgRNvokAcOhn/CWRPtdDMiYOTHOxQcFy+2yla2rH2prDq96C3q
+         CSig==
+X-Forwarded-Encrypted: i=1; AJvYcCU/r5y9E42p9uKU3He6Ewh6w0mv0BBi7fuPgzpYXcPsejjqxIwjAJ7SCyqmlGQrK2UW4ErRXDdcJbB3@vger.kernel.org, AJvYcCXVnc+piefxwFTNPLR94OaUqhPZ+qSZWHIqZODrUBWZ0UDg0p2T0NgpzIYw7F+WiiSLfV6LZP7e3YyGTLVS@vger.kernel.org
+X-Gm-Message-State: AOJu0YydvxI74dw6ur+RwXwLwwh5ZFv+p6AJfZ0NmAENLc375AjfFO3E
+	OKWzvGUN7obNvfmkoq93uAzLh48ePsuFaXBYy74sTR/bbFb3r87ZespTgTsJjZ2UESzUZd4e/EX
+	lpR6QZt3MHQNdi+iWMY9RoMRwC4g=
+X-Google-Smtp-Source: AGHT+IHANp7+/BMwt988SLqyFK4IXfD9/zYPo0ZjUxhHBAeaZYv3Ys8UDFEPSo4JAjl/rljyKlox04YLEYQzEDwc4rk=
+X-Received: by 2002:a05:6902:2b91:b0:e1a:72e9:b243 with SMTP id
+ 3f1490d57ef6-e2250c24a2cmr8718542276.9.1727176731047; Tue, 24 Sep 2024
+ 04:18:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240915114311.75496-1-laurentiu.mihalcea@nxp.com> <20240915114311.75496-3-laurentiu.mihalcea@nxp.com>
-In-Reply-To: <20240915114311.75496-3-laurentiu.mihalcea@nxp.com>
+References: <20240915114311.75496-1-laurentiu.mihalcea@nxp.com>
+ <20240915114311.75496-3-laurentiu.mihalcea@nxp.com> <CAOMZO5DR7xaEGj9=mzzFPy6wB0z7-SmvXkMnFH-wSjs01hp=WQ@mail.gmail.com>
+In-Reply-To: <CAOMZO5DR7xaEGj9=mzzFPy6wB0z7-SmvXkMnFH-wSjs01hp=WQ@mail.gmail.com>
 From: Fabio Estevam <festevam@gmail.com>
-Date: Tue, 24 Sep 2024 08:16:13 -0300
-Message-ID: <CAOMZO5DR7xaEGj9=mzzFPy6wB0z7-SmvXkMnFH-wSjs01hp=WQ@mail.gmail.com>
+Date: Tue, 24 Sep 2024 08:18:38 -0300
+Message-ID: <CAOMZO5Cacne=7ZYQ3eSdO2RRd+QuPurziFN+mS_KU7kucXHBQA@mail.gmail.com>
 Subject: Re: [PATCH v4 2/3] reset: add driver for imx8ulp SIM reset controller
 To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
@@ -86,22 +87,21 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Sha
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Sep 15, 2024 at 8:45=E2=80=AFAM Laurentiu Mihalcea
-<laurentiumihalcea111@gmail.com> wrote:
+On Tue, Sep 24, 2024 at 8:16=E2=80=AFAM Fabio Estevam <festevam@gmail.com> =
+wrote:
+
+> Who is the original author?
 >
-> Certain components can be reset via the SIM module.
-> Add reset controller driver for the SIM module to
-> allow drivers for said components to control the
-> reset signal(s).
+> In the NXP kernel, the author is Liu Ying.
 >
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> If that's still the case the Author field should contain Liu Ying's name.
+>
+> Please double-check.
 
-Who is the original author?
+Also, even if you are the author, there is still something wrong
+as reported by checkpatch:
 
-In the NXP kernel, the author is Liu Ying.
-
-If that's still the case the Author field should contain Liu Ying's name.
-
-Please double-check.
+WARNING: From:/Signed-off-by: email address mismatch: 'From: Laurentiu
+Mihalcea <laurentiumihalcea111@gmail.com>' !=3D 'Signed-off-by:
+Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>'
 
