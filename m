@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-104972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8653F984B30
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 20:41:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33FA2984B63
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 21:03:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1880B22F78
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 18:41:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D19FC1F2230F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 19:03:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A93741AD41B;
-	Tue, 24 Sep 2024 18:40:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F38906F2F2;
+	Tue, 24 Sep 2024 19:03:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SvXpO0HL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kxboQR2i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 828281AD400;
-	Tue, 24 Sep 2024 18:40:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C13711B85D2;
+	Tue, 24 Sep 2024 19:03:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727203241; cv=none; b=BW6axvW/hALM403DHamhzPxeUF7YLgVYJc/RqaSWf1qgtHYD9ADVi1qFCfbEd+PzXzP0JedV2l7eWZDsdn9zJsipjFXpaxmJWEgMf7MUX3fpbEShXawwUGyx+jA/Ce/g96Hh0soExDy4KkiHQ+udo6YsAISOg2aQpprreieqr2I=
+	t=1727204628; cv=none; b=Cpz4J7cAng1hYeEOiE9kcLS5qk4fWkGmEYnBQAMe9IWuflo1g6wnaJbzfS8RebsfTyX/FLGIVGwKxzXPMDGBTZHAIekjOrq/7nHniKu9HzfCWEMDmYHtpdTUYfVNSDqIgYfTwJkpGIr1hrVllbSsSXu1HMNgM78QCKGjQrWhJIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727203241; c=relaxed/simple;
-	bh=2F2V13UnE1xlQc+PHBTB36hG+E3sC+XhLSCiNOaBPpI=;
+	s=arc-20240116; t=1727204628; c=relaxed/simple;
+	bh=dS3+273g6IfFSVUMs3zFlkFWLtDCj83qG48dfGXNT54=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Qw6eQIVX0BHcTxMVmSB02j81dtVa9yHsRLRUxPc7MYUH2EFXi+WVxm6qtqgodBh+VO5goijsbtAQI6g2p17wHayf8X5CVzqvEB0cJsNReuBiXICEorFJygAOxzo7hSkyIF/OysPMy2O6sgIup1PMAHdt0IjUwF2lc1MCvGyzpKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SvXpO0HL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9861BC4CEC4;
-	Tue, 24 Sep 2024 18:40:34 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=A9PjFeHUUFwuuGyN/+QOhvgF6rOfFdGOw20XdOqhBf6OZ35YkuqRGlXntVrpWfEKm3hDxeHMrI1w0Wt7YlbybntDzibZ6pyau5mE6V32LV1tYMENflM+rXE9gv/oX09Nm6966rKu5DaigoJnGZZtP6EVGubdncVBOBDmke+di3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kxboQR2i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40FF8C4CEC4;
+	Tue, 24 Sep 2024 19:03:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727203241;
-	bh=2F2V13UnE1xlQc+PHBTB36hG+E3sC+XhLSCiNOaBPpI=;
+	s=k20201202; t=1727204628;
+	bh=dS3+273g6IfFSVUMs3zFlkFWLtDCj83qG48dfGXNT54=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SvXpO0HLdXBJGdO4ssDnGvf27zq+pMt1Mx+RucyvANVr81Cuv03rdZ7ylXlDlDABO
-	 06GDFM8I381tSSDq+Aw/CIOP3vBECbxlP9DQCpgTgFs5pwTxYklg6ZV8mcwYYB6LoH
-	 5RzcC5OLVkjO3+U0MhbK77yjVY2kewNMA/KivQifoS9RdqJwxW/n3/bivOWpAuFk1n
-	 Fj2fJhEyDrdnIpoQ450K9DXR2Q3SNWNfMDQVPi1vRoJud7hULzAWrwtLcLsQy9CccW
-	 dbXXNybiUK2G/GUDThzWz2sqZkXyjRd5dpgOqGnzV7OyHoVgoJ1ickJ3EDDdATj9ao
-	 1mZNSp9r3yDsw==
-Message-ID: <ce90574a-6be8-4415-9943-b559d274cf04@kernel.org>
-Date: Tue, 24 Sep 2024 20:40:32 +0200
+	b=kxboQR2ivGZccLupnn+lS0+ms67/vkKqEDBLccR50iQ13xHpsyi8qk30NiG88gIRz
+	 l78z/lpzJWTtfmlvL9JE2+QHp5AnHQXFZDSGu4bQnBw+Jv/n9cyVrDXXTemftiM72O
+	 ncy/Yk+C9vSKUkIrFfBEQ9Vb0AQjFrBuXl9XnmwUf5eLGsHlMqso7oUgr0OUZPUkwr
+	 nsMawrIcaXMOydH6hplBFYTs/aqhwiZ68KSv03Qj2jhHE1fvPuq+PdS8fsju47m7L7
+	 +XCgVbI+J2ZAbIl7vM2u/ToZcaHeoStzMqfXuuBZM9XfbZP22JFNjHVvmiEvFXbCDn
+	 /PqKG2qt2vPyA==
+Message-ID: <902310fb-14fd-42ff-bcac-7814cbc0d635@kernel.org>
+Date: Tue, 24 Sep 2024 21:03:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [patch v2 3/3] riscv: dts: starfive: add framework dts
-To: =?UTF-8?B?5pu554+K54+K?= <sandie.cao@deepcomputing.io>
-Cc: Conor Dooley <conor@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Heiko Stuebner <heiko.stuebner@cherry.de>,
- Neil Armstrong <neil.armstrong@linaro.org>, rafal@milecki.pl,
- Linus Walleij <linus.walleij@linaro.org>,
- Michael Zhu <michael.zhu@starfivetech.com>,
- Drew Fustini <drew@beagleboard.org>, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dhs@frame.work,
- ams@frame.work, gregkh@linuxfoundation.org, yuning.liang@deepcomputing.io,
- huiming.qiu@deepcomputing.io
-References: <20240924080650.1345485-4-sandie.cao@deepcomputing.io>
- <edfbcf43-60ae-438f-8348-f6a2e6fa31cf@kernel.org>
- <407ce3d77416bb2522b7906b0df3d5adf02c27ee.5065befe.6789.4275.a840.52c113c23eb9@feishu.cn>
+Subject: Re: [PATCH 1/2] dt-bindings: interconnect: document the RPMh
+ Network-On-Chip interconnect in QCS615 SoC
+To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
+ Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>,
+ Adam Skladowski <a39.skl@gmail.com>,
+ Rajendra Nayak <quic_rjendra@quicinc.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Danila Tikhonov <danila@jiaxyga.com>,
+ Vladimir Lypak <vladimir.lypak@gmail.com>,
+ Sibi Sankar <quic_sibis@quicinc.com>,
+ Odelu Kukatla <quic_okukatla@quicinc.com>,
+ Mike Tipton <quic_mdtipton@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240924143958.25-1-quic_rlaggysh@quicinc.com>
+ <20240924143958.25-2-quic_rlaggysh@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,56 +113,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <407ce3d77416bb2522b7906b0df3d5adf02c27ee.5065befe.6789.4275.a840.52c113c23eb9@feishu.cn>
+In-Reply-To: <20240924143958.25-2-quic_rlaggysh@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 24/09/2024 10:52, 曹珊珊 wrote:
-> Hi Krzysztof,
+On 24/09/2024 16:39, Raviteja Laggyshetty wrote:
+> Document the RPMh Network-On-Chip Interconnect of the QCS615 platform.
 > 
-> Thanks for your time.
-> 
-> A: jh7110-common.dtsi is also used by other boards. Likes: milkv-mars, 
-> pine64-star64. So I can only disable them in jh7110-framework.dts. 
-> Or I need to create a new common.dtsi. 
-> 
-> Q: Why PCIE0 is enabled in the DTSI in the first place? The same questions
-> about MACs.
-> 
-> Regards,
-> Sandie
-> 
-> On 24/09/2024 10:06, Sandie Cao wrote:
->> Add framework dts to support RISC-V Framework Laptop 13 Mainboard.
->>  
->> Signed-off-by: Sandie Cao <sandie.cao@deepcomputing.io>
->> ---
->>   arch/riscv/boot/dts/starfive/Makefile         |  1 +
->>   .../boot/dts/starfive/jh7110-framework.dts    | 34 +++++++++++++++++++
->>   2 files changed, 35 insertions(+)
->>   create mode 100644 arch/riscv/boot/dts/starfive/jh7110-framework.dts
-> 
-> Your threading is entirely broken making applying process more difficult.
-
-So I am talking with myself?
+> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
 
 ...
 
->> +        status = "disabled";
->> +};
->> +
->> +&pcie0 {
->> +        status = "disabled";
-> 
-> Why PCIE0 is enabled in the DTSI in the first place? The same questions
-> about MACs.
-> 
-> Best regards,
-> Krzysztof
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    gem_noc: interconnect@9680000 {
+> +        compatible = "qcom,qcs615-gem-noc";
+> +        reg = <0x9680000 0x3E200>;
 
-And sending myself regards?
 
-Sorry, no clue what's going on here.
+If there is going to be new version, then lowercase hex.
+
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
