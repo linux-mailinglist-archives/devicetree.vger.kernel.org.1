@@ -1,140 +1,229 @@
-Return-Path: <devicetree+bounces-104962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7864C984A1C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 19:07:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 959C5984A4F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 19:31:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 224B11F239F3
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 17:07:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18C321F2471C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 17:31:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D30E75473E;
-	Tue, 24 Sep 2024 17:07:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E3491AC423;
+	Tue, 24 Sep 2024 17:31:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="coVFyBa0"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="brE1PhzN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C6D436130
-	for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 17:07:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FBF21ABEAE;
+	Tue, 24 Sep 2024 17:31:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727197671; cv=none; b=kGbVDmuJVA+hrV/Yl6cAU9i2ZN2D6UaCQKNTRlt4iiuKDnQ3dTd12LPbCHaZ8pt6eXsg39H0taC2lcu1TkqYVzYOaGGBWya6lYZIzAwAnWcymliDIVGZ4t56LBQQg7d24eLd/7qGtFum98mS68Ec+N6fPRoiRWtSDrkpwf/+TOk=
+	t=1727199100; cv=none; b=RFnPU2rV2J8bVhdo/ocMGdcq314ojeVpXISPRMKAu694ySmMoFt0pxzH3Rq94Naj66VgIDEgeFrBkbsNd2fTpaVHdW77+GrtbfPQFcTTDowX4WhxOmtRdGZOhPV+susZji1P8lwwosK+bvZ7mcNMZ4c+nNETH2sVjqbCPKxvgOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727197671; c=relaxed/simple;
-	bh=PmWonUm1P39vQKCEWJndp/5X/hfo7HEf9pMTOa+OnQg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=O0/DpKIgNSIc6aUWfumfI5ECZ8gCXtEWEKppiKVmUP1+rdHyXhrTbMZUxnxCbSX6FvSbTaTNwUkhQ1i2mebcZhk3NXJ6+Lkg7cC5YbW2ioAgmyUnCpgIJmFKNnDOj0A/F2nk8fbmDAYeazKvtOdIDmQon6fj+OAZgFs/o3epBGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=coVFyBa0; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5365b6bd901so6860732e87.2
-        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 10:07:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1727197668; x=1727802468; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PmWonUm1P39vQKCEWJndp/5X/hfo7HEf9pMTOa+OnQg=;
-        b=coVFyBa0bCxOwTosLmoXXSFp5fgvOG9nkCPTGk68hFrA6rYiFdpR/MYIBDgObFJxbn
-         hYuCY9IO3SVd3NYJKlN1M2gTl7IeNJcixbWNfs0zZNTwBgwTNs7Nx3TCz4Yx8iEuKZoc
-         rT4daUauI+csjtkUHTp+ptw7JDd60wABEMQLmYW5UQuFTQCjUW6nJ7W2IE9Zuspw8nkN
-         1EvtocQYOpEDtYkEC1ysrbe0KYQpFLcKY8qeI0Pcwnp1yv6G6ZET+2FvSjwwmOYndRrU
-         Cff0JL95u8m/fccaYXyoKk9d8H/0X6FXwnhjqIPNR8MppXBM81FGSCt80kx158LPz6B5
-         D0SQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727197668; x=1727802468;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PmWonUm1P39vQKCEWJndp/5X/hfo7HEf9pMTOa+OnQg=;
-        b=kDnZq31d5aDuHLPruEud3oeuIX5DmiwrRXQcc5+kZZ7BbJzMPUH3Bwq09UcyqLu8xl
-         taVTv6b7Xn6Ab5lfVoB6HbtXabVuyzAWALIUsccUNRt0qH8YRM/KhboHttR7a6V9oVZD
-         DhRYIQ0Ub2+X67oZoYmFnpt+QfDyXHJN0vWnBZK0hzfjBrm+reTO39TIR3P+X7/n8R37
-         cM5SSBt2xtePVJH+V9AgxpTjzLGWtrBuUYzUKdtMytfW9viEq0L6q650qQEs2fPkzq4j
-         qJH2rKVsqZAeo8TBXRf03bxvHPw1j3xy+3Spy+x+nqLHtuu9Z1TuI0+eaPgl/Ho8xafW
-         CRYw==
-X-Forwarded-Encrypted: i=1; AJvYcCUz6EYwS11fDDG+YNQdIaa9x97ueOawOJcDd6GOuA8QOE3SQyXqNj3DzzMlnAJ39kocQVxuguRscjB0@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWDYlaX6VFEvqKhAnKYay/lt6cm7LU0WwKEnr8/qGLx3RIiAFB
-	SLlp/6N0UrRFKAM9bBPR9T3DvLf7FnMiqWsw9zdDv863fzoAoW6a5ZDW0/uWXB0Lcwy7VtkPeBX
-	oY51ScJa8GEjmpQTbXodRyz6M9E8E8FUrtHrAvg==
-X-Google-Smtp-Source: AGHT+IFQnrBRXhzqzSbxxq2DuX3Rr7dDGfruh+nq0Bk+q33oxwalD2WnXbMn4dLD7JssdiRP1qllG9ZevtZnEADLc0c=
-X-Received: by 2002:a05:6512:2348:b0:51a:f689:b4df with SMTP id
- 2adb3069b0e04-536ad3b7cd8mr8126306e87.44.1727197668160; Tue, 24 Sep 2024
- 10:07:48 -0700 (PDT)
+	s=arc-20240116; t=1727199100; c=relaxed/simple;
+	bh=jbG4i0ioHmRW91jsva1/2DTSCYPyp3hpl7h+4EgbRfE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dA2N8Xg9m8dMkwpZT5aaVfdIQkJxjZ6HKHub8NGwhmITMv3oCeY2KV5FTDTAScuC+4+92e7BngLV4HL9Wh8XIxIiU3EWtiHUX2MjsiqAQ39Iaqo+GUMSbLx+58JMNZsz/Ov8PZiE+9hHt2UfEAHW/cxYWqDsGSQ4fLD9CagcRdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=brE1PhzN; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1727199098; x=1758735098;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=jbG4i0ioHmRW91jsva1/2DTSCYPyp3hpl7h+4EgbRfE=;
+  b=brE1PhzNJE3msoI9fG0YNSv53raZZfzovT3DBsMJ3rgS9FLDQwkbPy1L
+   7VUnLcD5HfGbTGQU94KEyNyDtLCEwqZkOfpgsw8AWDPy1FONb+xDWI5yQ
+   pgcYiELKbdfEypZ4vyCRRtrRFKhobDKCUQR3b+bnRhbkUW6lSNKly7CxI
+   oPxcshxrZtkl8C25VVZaMt3Tv+laBLL1FW7NTNO6JmSNQo3CdZIC9Ysdq
+   GUG1SCujKZkUPqGPDKowq0CrXJe/MccQHHGvB6SCtkMBVHne0GWCPOpt2
+   oDtJGxBWdx0maS5sW4SrVdSZVFd+C3sSWtLQ6OFtkDlXjJAi8H+U5U6sp
+   Q==;
+X-CSE-ConnectionGUID: TsPaMYU+TC6XW5WTPbqVMQ==
+X-CSE-MsgGUID: 5Svu9DBzS2C7HIyzadvAHQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11205"; a="30100586"
+X-IronPort-AV: E=Sophos;i="6.10,255,1719903600"; 
+   d="scan'208";a="30100586"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2024 10:31:37 -0700
+X-CSE-ConnectionGUID: UWXqYtLdSsuCnmkjbw+MKA==
+X-CSE-MsgGUID: t1eWJ//TRfKvBeb+rsVkMw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,255,1719903600"; 
+   d="scan'208";a="94820042"
+Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
+  by fmviesa002.fm.intel.com with ESMTP; 24 Sep 2024 10:31:32 -0700
+Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1st9Np-000Ie1-2D;
+	Tue, 24 Sep 2024 17:31:29 +0000
+Date: Wed, 25 Sep 2024 01:31:04 +0800
+From: kernel test robot <lkp@intel.com>
+To: Binbin Zhou <zhoubinbin@loongson.cn>,
+	Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Weidong Wang <wangweidong.a@awinic.com>,
+	Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Shuming Fan <shumingf@realtek.com>
+Subject: Re: [PATCH v2 4/9] ASoC: codecs: Add uda1342 codec driver
+Message-ID: <202409250031.jLVR7xNR-lkp@intel.com>
+References: <c69743ea929fed210128de765967ea045ebd6b27.1727056789.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240814082301.8091-1-brgl@bgdev.pl> <83c562e9-2add-4086-86e7-6e956d2ee70f@kernel.org>
- <87msk49j8m.fsf@kernel.org> <ed6aceb6-4954-43ad-b631-6c6fda209411@kernel.org>
- <87a5g2bz6j.fsf@kernel.org> <CAMRc=MeLick_+Czy5MhkX=SxVvR4WCmUZ8CQ5hQBVTe2fscCPg@mail.gmail.com>
- <b7fdafd6-5029-4b80-b264-11943740b354@quicinc.com> <1e79d94e-2f83-4762-b126-ed865142f1ed@kernel.org>
- <312fa408-d385-4b90-b8f4-729af4a3ce65@quicinc.com>
-In-Reply-To: <312fa408-d385-4b90-b8f4-729af4a3ce65@quicinc.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 24 Sep 2024 19:07:35 +0200
-Message-ID: <CAMRc=Mc4AZR3aztmODtpgLt3P63=WGGfupjNSSJdFseH=pAhtg@mail.gmail.com>
-Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs
- of the ath11k on WCN6855
-To: Jeff Johnson <quic_jjohnson@quicinc.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Kalle Valo <kvalo@kernel.org>, 
-	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Arnd Bergmann <arnd@arndb.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c69743ea929fed210128de765967ea045ebd6b27.1727056789.git.zhoubinbin@loongson.cn>
 
-On Tue, Sep 24, 2024 at 6:46=E2=80=AFPM Jeff Johnson <quic_jjohnson@quicinc=
-.com> wrote:
->
-> On 9/24/2024 1:06 AM, Krzysztof Kozlowski wrote:
-> > On 20/09/2024 23:02, Jeff Johnson wrote:
-> >> Again, since I'm a DT n00b:
-> >> Just to make sure I understand, you are saying that with this change a=
-ny
-> >> existing .dts/.dtb files will still work with an updated driver, so th=
-e new
-> >> properties are not required to be populated on existing devices.
-> >
-> > Did you folks rejected patches acked by DT maintainers on basis of not
-> > understanding DT at all?
->
-> I personally have not rejected any DT patches. Nor have I accepted any.
-> I'm deferring to Kalle.
->
-> >> However a new driver with support for these properties will utilize th=
-em when
-> >> they are present, and the current ath11k .dts files will need to be up=
-dated to
-> >
-> > It is not related to drivers at all. Nothing in this thread is related
-> > to drivers.
-> >
-> > Can we entirely drop the drivers from the discussion?
->
-> I brought up drivers since in the discussion there was concern that this =
-DT
-> change would potentially break existing devices that have a DTS that defi=
-nes
-> qcom,ath11k-calibration-variant, and I wanted clarification on that point=
-.
->
-> /jeff
+Hi Binbin,
 
-How could this happen? DT schema is used to validate device-tree
-sources but is not used by the kernel code in any way. I've said it
-several times over the course of this and the previous (qca6390)
-discussion.
+kernel test robot noticed the following build warnings:
 
-Bartosz
+[auto build test WARNING on broonie-sound/for-next]
+[also build test WARNING on robh/for-next linus/master v6.11 next-20240924]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Binbin-Zhou/ASoC-dt-bindings-Add-Everest-ES8323-Codec/20240924-150942
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+patch link:    https://lore.kernel.org/r/c69743ea929fed210128de765967ea045ebd6b27.1727056789.git.zhoubinbin%40loongson.cn
+patch subject: [PATCH v2 4/9] ASoC: codecs: Add uda1342 codec driver
+config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20240925/202409250031.jLVR7xNR-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 8663a75fa2f31299ab8d1d90288d9df92aadee88)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240925/202409250031.jLVR7xNR-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409250031.jLVR7xNR-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from sound/soc/codecs/uda1342.c:14:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:25:
+   In file included from include/linux/kernel_stat.h:8:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     548 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+         |                                                   ^
+   In file included from sound/soc/codecs/uda1342.c:14:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:25:
+   In file included from include/linux/kernel_stat.h:8:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+         |                                                   ^
+   In file included from sound/soc/codecs/uda1342.c:14:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:25:
+   In file included from include/linux/kernel_stat.h:8:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     585 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   In file included from sound/soc/codecs/uda1342.c:14:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:21:
+   In file included from include/linux/mm.h:2228:
+   include/linux/vmstat.h:514:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     514 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+   sound/soc/codecs/uda1342.c:48:20: warning: unused function 'uda1342_reset' [-Wunused-function]
+      48 | static inline void uda1342_reset(struct uda1342_priv *uda1342)
+         |                    ^~~~~~~~~~~~~
+>> sound/soc/codecs/uda1342.c:205:26: warning: unused variable 'uda1342_deemph' [-Wunused-const-variable]
+     205 | static const char *const uda1342_deemph[] = {"None", "32Khz", "44.1Khz", "48Khz"};
+         |                          ^~~~~~~~~~~~~~
+>> sound/soc/codecs/uda1342.c:206:26: warning: unused variable 'uda1342_mixmode' [-Wunused-const-variable]
+     206 | static const char *const uda1342_mixmode[] = {"Differential", "Analog1", "Analog2", "Both"};
+         |                          ^~~~~~~~~~~~~~~
+   sound/soc/codecs/uda1342.c:208:38: warning: variable 'uda1342_snd_controls' is not needed and will not be emitted [-Wunneeded-internal-declaration]
+     208 | static const struct snd_kcontrol_new uda1342_snd_controls[] = {
+         |                                      ^~~~~~~~~~~~~~~~~~~~
+   11 warnings generated.
+
+
+vim +/uda1342_deemph +205 sound/soc/codecs/uda1342.c
+
+   204	
+ > 205	static const char *const uda1342_deemph[] = {"None", "32Khz", "44.1Khz", "48Khz"};
+ > 206	static const char *const uda1342_mixmode[] = {"Differential", "Analog1", "Analog2", "Both"};
+   207	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
