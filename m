@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-104956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF58B9849D7
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 18:41:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D7B29849E8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 18:43:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4CAFCB23B96
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 16:41:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 690BD1C21B2B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 16:43:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C74591AB6EA;
-	Tue, 24 Sep 2024 16:41:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEA461ABEB8;
+	Tue, 24 Sep 2024 16:43:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jfjQhOMn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qW09/JmN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f68.google.com (mail-vs1-f68.google.com [209.85.217.68])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23FBF1AB6F6
-	for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 16:41:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DB371A4F16
+	for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 16:43:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727196106; cv=none; b=ce93EultRJg0WwBfqCa0WOtaqLJr6YilcBnRSgUpfVbecJ3jeIzeTP1Qfme1SgfVW7PXmIXZIkg+raSLv5vDLRfYY8ve1xQWlxnSy6vzoBsNvoxhgCTsJnPzgrn6MQklJsAFUaeRfXE9qh07utlesLKV6g1YBlVMz49aLukjuLc=
+	t=1727196203; cv=none; b=MDxCLIpZSr+E2TdYnoTsWB1joxdZG0t+QK8cIsxdax75y2AuKvpumXHa90hkjExepqRr4icBqC8hWOL5kbk6TNAM0E3p5ewPxssMXYADuEcnBuAaKgUpdW2N58Xx9CUPm94NwVlvhG61RJ+QptaciY9qi2EjYNbUmgw8LNCjxrk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727196106; c=relaxed/simple;
-	bh=Prh+3j7UaMsFa6Z08/GrdXNcF2VkeTu8GBdMUK87Lo8=;
+	s=arc-20240116; t=1727196203; c=relaxed/simple;
+	bh=zT4k+0TxX97y+c3I5eO7EHj/LUItIHnBYBJW7QZhE+A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ojl12zTOR2vmqwKG3+wXjuzbzpfQf+jAQTcaZPc/rrlqDbahJt3cTkr9rJePcbmC1yj6vTWAIcgMU9RZt/u8JwzrSQbEKTfNJiqQ5QGWlXnoBHa3zO2jhYV3XYj/1qfD1EqPJPs0cwextJJ05c4+sqpblGFVOpLpQboDLiW3apc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jfjQhOMn; arc=none smtp.client-ip=209.85.217.68
+	 Content-Type:Content-Disposition:In-Reply-To; b=golh8l/i1lhoR/sFgNhv3u/tCtPH909cPkEg2NHhlEU8iAKsFVfLuX251c8JWM+fpPyuvzOjemDvjjU/2Fe5czU7qha3V4ZXalCmWksPo8CcZ5ilO8ZAKvNRY6WevzpJQjHDM8RY5/0NPHugj6wJvBiA5KJPF00Q3i1tNnJ+V/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qW09/JmN; arc=none smtp.client-ip=209.85.208.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-vs1-f68.google.com with SMTP id ada2fe7eead31-49bd40d77e5so1883665137.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 09:41:44 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2f754d4a6e4so57556791fa.3
+        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 09:43:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727196104; x=1727800904; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1727196199; x=1727800999; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=wKFcq68krKcoUA32HXrqc6ME7X0w/Gnspu3t4IYxZ54=;
-        b=jfjQhOMntQ5t/ywzfQqO0x9ejAxlNJbuDPCLjKgBiznqt4lDo6ZhEQlZQKlNLvwObG
-         hS7PluPQ4W9xHnOPakFocXcMSK9K5YL8Oh7mLv9dMtcE1FQjm1A5H0LoEFyQF2h/ftW7
-         bKRVsLccuZAq42YZca3IvYxKn2JF5RA+apc9CJtzPlAA8VwHtlq5D+TWAV1k7UR7Dmfw
-         fnbE2EaUhza+5/j+Ca/3YPHYHND6r4m4bnNGV9z0M7SV9RaDy3AcM4LdmuCJKxQBHXos
-         y0d7he0V5Jce7yD+0Ed9eMBdna9MUdUaDzXSEeWL72Tgloy0jGtq39VCJ4Mclr+FBBEZ
-         c5KQ==
+        bh=iLmWupQuIxURteGxaOu17nS4Aw/Rss6V3alddoHTmYQ=;
+        b=qW09/JmNyEhkxklbk2TP1irQN9eB3yDkfm5eX8sjC9QoY5vq1Lf9VBv6wOON8RZZOj
+         5wCCrikwehefEIu4AMd2hiD6L8jFWNVjIbs47/XAqOdv074lE/bRd/GhQaL6EJRNcsZq
+         JYHOPvi1SI5gjSXnC3KxQoKsFoR4Y7k1t5l5t3QYLQyPEfBPeb4SloBfI8oTGzq+loWB
+         z4W2a5gfEjJE+ga9Hbnm7Ztns2FwgRWsNanjZDaHV6N4brEkE0PoK0M1CICdUq8Mp4N2
+         KV5Lx++qtJXhUWW547p9dydrLNSKdoBA7PfZosvvKDSzXcFF2VlLDF2Qv9gg4Ds/cojo
+         63Iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727196104; x=1727800904;
+        d=1e100.net; s=20230601; t=1727196199; x=1727800999;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wKFcq68krKcoUA32HXrqc6ME7X0w/Gnspu3t4IYxZ54=;
-        b=Vf/Px0fnaRDNXGEksdkIJbn2f+lJMkTMJmeFOL2sckzXol4GjdmW+ZMikApMr9KFPp
-         EevqkK4vALRKT+0cOY/sRt+XhEbvM6YWjd+NDCWuWf7jFR5y3fedJbLS5Kig/mSavK5Z
-         g/Gb+6oNucLuT7L9kXn5jEfEZC6pZr0Z9/lEkQW2Rim/MIe9BVygQ8vEFVe50EpOFAVm
-         FhaouaNHsjRlIzaGZ9+95kiIhgtVWk0GU1/lz+3RhX7Y0SGjsSNatcwkXxF1JyXtdQkj
-         x0YjBLgZo34m92UY6IhSYPRDSYEeVdqgou01g/6r23OHE8goctN5sS90Ru5HZci1roit
-         rYYQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXiy+b7kbwJ0I2TeeXorKJBEakktuQ8WDUqOB/xK2ClQ8sIVWwXGjxda1/BLgYsw25AHr041DL3DXzd@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCyQ3sfy8SANH8ECPKe77v5aoay6OO4lxHAfCqXdb1HFL2aH48
-	Z8FCXoURuiZX6ELehCbJPkqT42BTW37iOT0DplGWNYVdZirnzgG2d7i7D01AZdA=
-X-Google-Smtp-Source: AGHT+IEbKvtyjKhabAyEh03JO+iNT62nJhG9gP0ReHnRFsz8uhKocJKHDYfMutFSgoagOKKUmV2zYw==
-X-Received: by 2002:a05:6102:e0a:b0:492:876e:6d15 with SMTP id ada2fe7eead31-4a15dc99b01mr152354137.8.1727196103814;
-        Tue, 24 Sep 2024 09:41:43 -0700 (PDT)
+        bh=iLmWupQuIxURteGxaOu17nS4Aw/Rss6V3alddoHTmYQ=;
+        b=oY3N0qKTvnjtvZGda3SaqO4MA2+UW0FNr2nQJD8W5RwLOWZj/INVp5fXOqoKCTrRG2
+         q7/HFmpi4iBqX16HvpqY/DP6VbZ4WiMQcqfHAm8ywZaspK2uxllYQyQ6Jaj6Pc2V3zvy
+         Qq8ZNzqKI79wVtPUDDYpbu/z4/JViZ3W7zS3G68SyFfUEj8xO6YIWo91Hgrjub6HSXCx
+         KyAEqhnWkgRM+MsJKTxjFCKKgZg0A3H9u3OP8/vXGl0C6WBqT7Yq4qDyRejNHpRmjUs9
+         ZAQwIkWypS9dBPXF5csxqJ4kVa9SDD+SyaaYM8ZjJrwEBWr6FZazrm7vxmkueO4bigRn
+         6a/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCV+V2sEuyPTzBBiMw6vGv49ZWT/tS+Lf4e+zK4hxnc/SBUlyOutf7gUnKiMU7dqir77wm2Cr1l0qyGd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5llgWjjGmTDjhz19jh1cMPzMquzAj6UpJuLHWY4hnF8RYB/9K
+	QGyuJmoPUhZgip2woJUtANbYE5ke3nTgWeQnERAvLWmnpoVmfU0mGfewqQMwKzA=
+X-Google-Smtp-Source: AGHT+IEezobaIL04e3lPxMDU2Y+PPIoCnCTJI3N3CWxUIHXwcFH+J92I5mDokhkQOYy3JFhcIgkX5A==
+X-Received: by 2002:a2e:bc26:0:b0:2f5:2e2:eafb with SMTP id 38308e7fff4ca-2f915fc1487mr256741fa.7.1727196199064;
+        Tue, 24 Sep 2024 09:43:19 -0700 (PDT)
 Received: from linaro.org ([2a02:2454:ff21:ef80:4518:32:3b61:babd])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4a1517c0cacsm1003262137.19.2024.09.24.09.41.40
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c5cf4d7461sm916227a12.79.2024.09.24.09.43.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Sep 2024 09:41:42 -0700 (PDT)
-Date: Tue, 24 Sep 2024 18:41:35 +0200
+        Tue, 24 Sep 2024 09:43:18 -0700 (PDT)
+Date: Tue, 24 Sep 2024 18:43:16 +0200
 From: Stephan Gerhold <stephan.gerhold@linaro.org>
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc: Vinod Koul <vkoul@kernel.org>,
@@ -77,12 +77,11 @@ Cc: Vinod Koul <vkoul@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
 	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy: add NXP PTN3222 eUSB2 to USB2
- redriver
-Message-ID: <ZvLrv4rW6vbOws8E@linaro.org>
+	Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 2/2] phy: add NXP PTN3222 eUSB2 to USB2 redriver
+Message-ID: <ZvLsJEa2PhIxFRDC@linaro.org>
 References: <20240830-nxp-ptn3222-v2-0-4c6d8535cf6c@linaro.org>
- <20240830-nxp-ptn3222-v2-1-4c6d8535cf6c@linaro.org>
+ <20240830-nxp-ptn3222-v2-2-4c6d8535cf6c@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,85 +90,195 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240830-nxp-ptn3222-v2-1-4c6d8535cf6c@linaro.org>
+In-Reply-To: <20240830-nxp-ptn3222-v2-2-4c6d8535cf6c@linaro.org>
 
-On Fri, Aug 30, 2024 at 11:20:45AM +0300, Dmitry Baryshkov wrote:
+On Fri, Aug 30, 2024 at 11:20:46AM +0300, Dmitry Baryshkov wrote:
 > The NXP PTN3222 is the single-port eUSB2 to USB2 redriver that performs
 > translation between eUSB2 and USB2 signalling schemes. It supports all
 > three data rates: Low Speed, Full Speed and High Speed.
 > 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> The reset state enables autonegotiation of the PHY role and of the data
+> rate, so no additional programming is required.
+> 
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Tested-by: Konrad Dybcio <konradybcio@kernel.org>
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-FWIW:
+This works well for the USB fingerprint reader on the Qualcomm X1E80100
+CRD. Thanks a lot for the clean driver :-)
 
 Reviewed-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+Tested-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 
 > ---
->  .../devicetree/bindings/phy/nxp,ptn3222.yaml       | 55 ++++++++++++++++++++++
->  1 file changed, 55 insertions(+)
+>  drivers/phy/Kconfig           |  11 ++++
+>  drivers/phy/Makefile          |   1 +
+>  drivers/phy/phy-nxp-ptn3222.c | 123 ++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 135 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/nxp,ptn3222.yaml b/Documentation/devicetree/bindings/phy/nxp,ptn3222.yaml
+> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
+> index dfab1c66b3e5..cb06a7f79740 100644
+> --- a/drivers/phy/Kconfig
+> +++ b/drivers/phy/Kconfig
+> @@ -82,6 +82,17 @@ config PHY_AIROHA_PCIE
+>  	  This driver create the basic PHY instance and provides initialize
+>  	  callback for PCIe GEN3 port.
+>  
+> +config PHY_NXP_PTN3222
+> +	tristate "NXP PTN3222 1-port eUSB2 to USB2 redriver"
+> +	depends on I2C
+> +	depends on OF
+> +	select GENERIC_PHY
+> +	help
+> +	  Enable this to support NXP PTN3222 1-port eUSB2 to USB2 Redriver.
+> +	  This redriver performs translation between eUSB2 and USB2 signalling
+> +	  schemes. It supports all three USB 2.0 data rates: Low Speed, Full
+> +	  Speed and High Speed.
+> +
+>  source "drivers/phy/allwinner/Kconfig"
+>  source "drivers/phy/amlogic/Kconfig"
+>  source "drivers/phy/broadcom/Kconfig"
+> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
+> index 5fcbce5f9ab1..b64247046575 100644
+> --- a/drivers/phy/Makefile
+> +++ b/drivers/phy/Makefile
+> @@ -11,6 +11,7 @@ obj-$(CONFIG_PHY_XGENE)			+= phy-xgene.o
+>  obj-$(CONFIG_PHY_PISTACHIO_USB)		+= phy-pistachio-usb.o
+>  obj-$(CONFIG_USB_LGM_PHY)		+= phy-lgm-usb.o
+>  obj-$(CONFIG_PHY_AIROHA_PCIE)		+= phy-airoha-pcie.o
+> +obj-$(CONFIG_PHY_NXP_PTN3222)		+= phy-nxp-ptn3222.o
+>  obj-y					+= allwinner/	\
+>  					   amlogic/	\
+>  					   broadcom/	\
+> diff --git a/drivers/phy/phy-nxp-ptn3222.c b/drivers/phy/phy-nxp-ptn3222.c
 > new file mode 100644
-> index 000000000000..acec5bb2391d
+> index 000000000000..c6179d8701e6
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/nxp,ptn3222.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/nxp,ptn3222.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/drivers/phy/phy-nxp-ptn3222.c
+> @@ -0,0 +1,123 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2024, Linaro Limited
+> + */
 > +
-> +title: NXP PTN3222 1-port eUSB2 to USB2 redriver
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
 > +
-> +maintainers:
-> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> +#define NUM_SUPPLIES 2
 > +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,ptn3222
+> +struct ptn3222 {
+> +	struct i2c_client *client;
+> +	struct phy *phy;
+> +	struct gpio_desc *reset_gpio;
+> +	struct regulator_bulk_data *supplies;
+> +};
 > +
-> +  reg:
-> +    maxItems: 1
+> +static int ptn3222_init(struct phy *phy)
+> +{
+> +	struct ptn3222 *ptn3222 = phy_get_drvdata(phy);
+> +	int ret;
 > +
-> +  "#phy-cells":
-> +    const: 0
+> +	ret = regulator_bulk_enable(NUM_SUPPLIES, ptn3222->supplies);
+> +	if (ret)
+> +		return ret;
 > +
-> +  vdd1v8-supply:
-> +    description: power supply (1.8V)
+> +	gpiod_set_value_cansleep(ptn3222->reset_gpio, 0);
 > +
-> +  vdd3v3-supply:
-> +    description: power supply (3.3V)
+> +	return 0;
+> +}
 > +
-> +  reset-gpios: true
+> +static int ptn3222_exit(struct phy *phy)
+> +{
+> +	struct ptn3222 *ptn3222 = phy_get_drvdata(phy);
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#phy-cells'
+> +	gpiod_set_value_cansleep(ptn3222->reset_gpio, 1);
 > +
-> +additionalProperties: false
+> +	return regulator_bulk_disable(NUM_SUPPLIES, ptn3222->supplies);
+> +}
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
+> +static const struct phy_ops ptn3222_ops = {
+> +	.init		= ptn3222_init,
+> +	.exit		= ptn3222_exit,
+> +	.owner		= THIS_MODULE,
+> +};
 > +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
+> +static const struct regulator_bulk_data ptn3222_supplies[NUM_SUPPLIES] = {
+> +	{
+> +		.supply = "vdd3v3",
+> +		.init_load_uA = 11000,
+> +	}, {
+> +		.supply = "vdd1v8",
+> +		.init_load_uA = 55000,
+> +	}
+> +};
 > +
-> +        redriver@4f {
-> +            compatible = "nxp,ptn3222";
-> +            reg = <0x4f>;
-> +            #phy-cells = <0>;
-> +            vdd3v3-supply = <&vreg_3p3>;
-> +            vdd1v8-supply = <&vreg_1p8>;
-> +            reset-gpios = <&gpio_reset GPIO_ACTIVE_LOW>;
-> +        };
-> +    };
-> +...
+> +static int ptn3222_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct phy_provider *phy_provider;
+> +	struct ptn3222 *ptn3222;
+> +	int ret;
+> +
+> +	ptn3222 = devm_kzalloc(dev, sizeof(*ptn3222), GFP_KERNEL);
+> +	if (!ptn3222)
+> +		return -ENOMEM;
+> +
+> +	ptn3222->client = client;
+> +
+> +	ptn3222->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+> +						      GPIOD_OUT_HIGH);
+> +	if (IS_ERR(ptn3222->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(ptn3222->reset_gpio),
+> +				     "unable to acquire reset gpio\n");
+> +
+> +	ret = devm_regulator_bulk_get_const(dev, NUM_SUPPLIES, ptn3222_supplies,
+> +					    &ptn3222->supplies);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ptn3222->phy = devm_phy_create(dev, dev->of_node, &ptn3222_ops);
+> +	if (IS_ERR(ptn3222->phy)) {
+> +		dev_err(dev, "failed to create PHY: %d\n", ret);
+> +		return PTR_ERR(ptn3222->phy);
+> +	}
+> +
+> +	phy_set_drvdata(ptn3222->phy, ptn3222);
+> +
+> +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+> +
+> +	return PTR_ERR_OR_ZERO(phy_provider);
+> +}
+> +
+> +static const struct i2c_device_id ptn3222_table[] = {
+> +	{ "ptn3222" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, ptn3222_table);
+> +
+> +static const struct of_device_id ptn3222_of_table[] = {
+> +	{ .compatible = "nxp,ptn3222" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, ptn3222_of_table);
+> +
+> +static struct i2c_driver ptn3222_driver = {
+> +	.driver = {
+> +		.name = "ptn3222",
+> +		.of_match_table = ptn3222_of_table,
+> +	},
+> +	.probe = ptn3222_probe,
+> +	.id_table = ptn3222_table,
+> +};
+> +
+> +module_i2c_driver(ptn3222_driver);
+> +
+> +MODULE_DESCRIPTION("NXP PTN3222 eUSB2 Redriver driver");
+> +MODULE_LICENSE("GPL");
 > 
 > -- 
 > 2.39.2
