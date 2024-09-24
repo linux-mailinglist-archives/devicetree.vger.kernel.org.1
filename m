@@ -1,186 +1,176 @@
-Return-Path: <devicetree+bounces-104686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35F6F983D5F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 08:53:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74832983FFA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 10:08:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6177E1C2273B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 06:53:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 273871F23EC5
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 08:08:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A63735A79B;
-	Tue, 24 Sep 2024 06:53:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E4FE14B084;
+	Tue, 24 Sep 2024 08:08:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="hr+1qbKD"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="UQeuz0hI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11013050.outbound.protection.outlook.com [52.101.67.50])
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF2E38BF0;
-	Tue, 24 Sep 2024 06:53:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.67.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727160788; cv=fail; b=ohcop7T6bYIA/m5VVNKuEBAkKQwop/xomdZbSzqfO4hQiPG9z2WomPhEgwO7bdV4mjZa0+rZdfMuUa12LUHW/fpjD02egkraTqyJQ85I4Y/GCdKs6zVspI53BTm/bOPBUnJm4tY3Zu4wp1wsyrgt7OLbJKgGtZDAZOPNa8r385g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727160788; c=relaxed/simple;
-	bh=nN81CRRJaC4Qot1nFZzZZrf+oWYkF59YgflD3Gw6iLE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Vdox7SOtVLrYblFSq/pvVLY50ujpk+ddgH1M1zkoWaQBIwWEUGgnTu2IANIQlspT8ayamZDCZwXzvBGGZ0Z1djqm0+uN5SRQno+9mFlWvt7xn20PLXTMmfC56LD/DQM+OsUZlUvOvsOE0ubWMhZj3FGPvaejQ02REspCV92etOw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=hr+1qbKD; arc=fail smtp.client-ip=52.101.67.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JnKympaHi2FRqhZo75i7QrkMK8bW8PTqeItgOOt6OEOOyVZ3y3XYODv8HpZ0EZ+OczDFoZoctrm/eaZWkqfzVPHVXgEgIzra5SQxzRu03rdDNCGC55aS6REDEFIAnfG2LWJ5adenEP/MFH3bkveUdxfMapKEnpjYsDSR8TJrkicOB8bkY7Q3Y/LYHMH8Py69WncJrPykq6vgMnaL8MP7yC6ndGueevuHGRDvHjXvuEsjxHuGGo4JSoa1gQHdMIoZU91xtb4BnTAVAQFoCQ1mMxXP1pS7KCBtbQutw36DCV2m/ufBuv3TC4Kd7iyydfMZXTxWk5R0KhhhobLeZLOs9w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lbGhPS9jDlj5NqHkF3QPwjov8u203ZdxkDgcTb+mgaA=;
- b=xktpzX6PW1Dxr91EmsQiXWGHbFO7C06u+x6hFHd4YtinA6J8RsTrEkTnDJhny1QqnzfyTgGyYEhKOtyWhY/NMMqFOJB9b4ViVU6c75KGzZr3hTaU6OA0tvIg0b347SeVxzdqL3XEaDaxe9CDd9TEcwoDygzCh6n4hSc8vvqAF6bUW6K0MAC5ECXeypw1GG9he0mnsKrulHN311UxRNH27hAFITNPOY5eVqCbJMoyfyqhwz7avhCDfQuIcEnqF/4TzyFyBN3B0lur/6wdj7cgaJ8c0q72tYZ6hpnHqU93UeCu053If9uPzqiaskWQVjNSeYLPrfAZzaif7kLOphUbpQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lbGhPS9jDlj5NqHkF3QPwjov8u203ZdxkDgcTb+mgaA=;
- b=hr+1qbKD6S+S+gXGWd9XHEND/xSBQg9803ejHJ32EWzmurjs3cJH4PaBQQLPLfKiq/0K2PSw8p9yN8ayd2XGl0nQgUc6+xH1qhMUsEQ7M227lSlKonuLdyYoRe2cxoaUHVpgA3v5jcLi9jrrLAN/WrhC6FcV3s+2b7KHop2YY01Lm8C68svPxBfhc75WVmnXZ3mYhDmPv8Iod7h7JbnBvpqAcuI/pQqqpDCTfL0KSAYZq+bghphDLKojhcE32yajPvzbsAj1IqDPkXr6w47PFRuDgM7mgkZmLft752H2dPtA4nxxZm4zbuwxeVrygzxKJhIGZWpYbrubzoeI3StQdQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB8PR04MB7065.eurprd04.prod.outlook.com (2603:10a6:10:127::9)
- by GV1PR04MB9117.eurprd04.prod.outlook.com (2603:10a6:150:24::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.25; Tue, 24 Sep
- 2024 06:52:52 +0000
-Received: from DB8PR04MB7065.eurprd04.prod.outlook.com
- ([fe80::8af7:8659:9d42:bd84]) by DB8PR04MB7065.eurprd04.prod.outlook.com
- ([fe80::8af7:8659:9d42:bd84%6]) with mapi id 15.20.7982.022; Tue, 24 Sep 2024
- 06:52:51 +0000
-Date: Tue, 24 Sep 2024 15:54:58 -0700
-From: Pengfei Li <pengfei.li_1@nxp.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: krzk+dt@kernel.org, robh@kernel.org, abelvesa@kernel.org,
-	mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, ping.bai@nxp.com,
-	ye.li@nxp.com, peng.fan@nxp.com, aisheng.dong@nxp.com,
-	frank.li@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
-	linux-clk@vger.kernel.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] clk: imx93: Move IMX93_CLK_END macro to clk driver
-Message-ID: <ZvNDQhzuBrs/CO+k@pengfei-OptiPlex-Tower-Plus-7010>
-References: <20240627082426.394937-1-pengfei.li_1@nxp.com>
- <20240627082426.394937-2-pengfei.li_1@nxp.com>
- <60f9e733-f5bd-4bfc-9bd5-94ae18bb3901@kernel.org>
- <Zn92TX9ZsHde7g2f@pengfei-OptiPlex-Tower-Plus-7010>
- <ZpoCxmvgKNgvx4Kw@pengfei-OptiPlex-Tower-Plus-7010>
- <0cddd005-6997-4159-8841-beb837957f0c@kernel.org>
- <ZrHgpuvoXqsoqTJj@pengfei-OptiPlex-Tower-Plus-7010>
- <3e0ea78a-f4d4-47d5-b3f4-622e6da475fb@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3e0ea78a-f4d4-47d5-b3f4-622e6da475fb@kernel.org>
-X-ClientProxiedBy: AS4P191CA0034.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:20b:657::27) To DB8PR04MB7065.eurprd04.prod.outlook.com
- (2603:10a6:10:127::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 755F314AD38
+	for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 08:08:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727165319; cv=none; b=p0DwC/28LunaFGkejMQFQWkiPKOI1hkCtvi+gJy4o6U8CC5w/nRt8uWm8Dzv0gPgfOZq7oAAO03c9fjyNKLtudGd+Ec0IXFJu+8Kt1D1VMWiRDj3ru3C/x/F4IH43zPPA+pWn5KTnNnxpVU9xIqLC6342sRa0hK+6YK5kfqJVkM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727165319; c=relaxed/simple;
+	bh=Y/6F/P6GI6Ued+q693i0Z0AROnyWZBqqJ5etygwM6B8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=GwblLviEMIJupeF0gHCnH4VaK3bjzoy8T9H0JlwR1FcJ+RNpA/g5QhHO3VHVGl0gw6ddi8p4nWDBidL8hMDmhXuLPdkzmL1Bd2WAGpK2AJ1Yv2Rt8g8vP2Y1cP7GjHqu0CrBQi0IuHtcjob8e4z2n+DnCK1DkewizGR4S+Sx+ms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=UQeuz0hI; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1727164392; x=1729756392;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Y/6F/P6GI6Ued+q693i0Z0AROnyWZBqqJ5etygwM6B8=;
+	b=UQeuz0hIRX//UXsL577pdlFCEpXr57yk/76Xpz16xqPCMwuBi995S13EhfjD5NqZ
+	b2ZyVQ0Pxrrk3Pv9RkPmPZd0KYx1qsm/ACTHsPK52N7oZ3zo+DdZuetmvhi/+XPR
+	hWIVBrAZhS+M+y02VBo85wcLM8jUTXEXRR56j9QUD9Y=;
+X-AuditID: ac14000a-4637f70000004e2a-24-66f26fe89aa5
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 65.25.20010.8EF62F66; Tue, 24 Sep 2024 09:53:12 +0200 (CEST)
+Received: from lws-moog.phytec.de (172.25.0.11) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Tue, 24 Sep
+ 2024 09:53:12 +0200
+From: Yannic Moog <y.moog@phytec.de>
+Date: Tue, 24 Sep 2024 09:53:04 +0200
+Subject: [PATCH] arm64: dts: imx8mp-phyboard-pollux-rdk: add gpio-fan
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB8PR04MB7065:EE_|GV1PR04MB9117:EE_
-X-MS-Office365-Filtering-Correlation-Id: 946ceacf-87e0-4109-b1de-08dcdc658237
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|7416014|52116014|376014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?XOYjKu/Gok0VJ3zmB/AilcDTjqZHjEQVZG+6bG57YTD/meP8a6uNDKgYlXHQ?=
- =?us-ascii?Q?ctbKhZbLVCCdQJhSJQ0BdXqnxXN4UYfOJssnsRbiL8arxVMAXdwBtRiw/w+l?=
- =?us-ascii?Q?dU+ex+GJx3JS/SLmFaWrv5EQdOIC436to+VBn1g8SixNhHJnwGV4VJfOHVTz?=
- =?us-ascii?Q?mzcJYo+rLkvPck5FtsBDpvCdHJXWvcNJgqBjrbH0OPaZa7hSACLf3CNuY51o?=
- =?us-ascii?Q?ClfwCkkeN/mQSlmqLy35G5bbbkLtccBP0QHsGK/KTqyLrGjEKjwZOLnAF3pv?=
- =?us-ascii?Q?MIJ3fsNSuVEhQaSfRL/HeJRFFv3gGkKiXBgFNqvub2Zwq5Cmg4HDWa93+jV+?=
- =?us-ascii?Q?YgaQB/9G/zop+RkB/YTZATZNclsJTkmJ0gUQcN2Yzjm1Ge3yKiZKkSlg3XNm?=
- =?us-ascii?Q?PyQ9UNnr67+i7zf5A+ezXs8jDsPk0kL3zM85SbhX2qvaSjtmONFslc7kndP6?=
- =?us-ascii?Q?Xnze65Fuy3hzdo3RFbZTSwCbpvyUd66lnsJokXFWyOJxcd9SMIaKlfMoZz7S?=
- =?us-ascii?Q?ONNVbei4+3aRil7AJcbFhYvF87SC1L73fYfYps3QmqTt5KUevFSriRzagpDf?=
- =?us-ascii?Q?CoHvkFoSzGed61a5E/z3OgTZSWId28pW49eBwc1Kc7ZdKB/2tB7zmIbBmuYL?=
- =?us-ascii?Q?sWyLUsQ7+e0aRaqPwiP5UjqKzTy0veV6wgKphMXO7BYioavN87XpARpeO4+I?=
- =?us-ascii?Q?D1YfjQ0jQUpWe4alpbmGUV2bm6k2oBumeMEOcUhH74Dt1QCU0CW58dW2UhTH?=
- =?us-ascii?Q?q8PRv56FPW+1RNFyJwMeJqTkEU+JPfF8rbDde1tP9xqtEUtsylZ6gwyvzE/+?=
- =?us-ascii?Q?qES0Uz82FObwgjfmiR5deC82V/NBzS0ukQqYlsczpZncAlpkCzDmj1fd7hLE?=
- =?us-ascii?Q?Yu829ZElvlJXciFz4Fi64NWphQfrKJcC9xobETvARVcps6ZAAXC2BfVSp4I+?=
- =?us-ascii?Q?vHFFGBLE2otmbdfF37wLJDShnYgE8LDwVx9t93L1yPHL3GW+vw0LuiH7mKgu?=
- =?us-ascii?Q?722ykDzvF48iB3sE7jHFumolt/uGw9SdZFFCMatjeigoNLuixvI/WqbztZSg?=
- =?us-ascii?Q?8CJFGCYXgUuVQtOJolmEVJ/AzHMFW3By5+9QNh2Fj+250vaVIqKZNXBbWMom?=
- =?us-ascii?Q?uoMsfOaXPxs74FphGnXMWigjqE8hdPGQEKe+sfUXkL1/JSMgEMy6uSz+DkrQ?=
- =?us-ascii?Q?doI0bC9tqpNNwQCWi90YWBm+etncvUjy/DwSuPqUYgAN43B3+pQzG5tvf4W7?=
- =?us-ascii?Q?+58OR/3RT75diU0MSDuIRWI/ieeVbmcNEHfO82T6y6QZ92L9Vk9q9rG3Q7Gj?=
- =?us-ascii?Q?PU+X/xhBw3K1H8qjOHIrpiQIaG3OSOYNS0JqQ1TdEjyeWqyHm6RIG+BUJrWh?=
- =?us-ascii?Q?qHBkRLJTrJOoUJEJ1Ao22T7sXVkDf50CoIxR9a3ciBBfr7Bapw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB7065.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(52116014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?/wbgSROPGN2p/GihQAOd69aAD8RPJztGP5iYJbzt3rsbdKNLoKIkhFHNQi8v?=
- =?us-ascii?Q?ycOnLSq1Ji2aURe4mFK/y8ahalEDSl1/EA8uMazC7lO+RplIOJA16lG9VOzv?=
- =?us-ascii?Q?mdleoB8RB+f55a5Wb2oWFrVpIil/jAIjsT+7XTTiIS0xxB9FS86kN8LCxkMb?=
- =?us-ascii?Q?qGYugPTNmA/bdz9Pe89zUonNh3YQo2Ohynq1QnKrl0dR+qEXK7FMhg00KCwl?=
- =?us-ascii?Q?hOBoKqrzWucqjPlmVPrN4pcsj1L/ZN7ZEppHg0GP9i2+Wn0KpnrYsp13SCmp?=
- =?us-ascii?Q?YGN9Xfa0b7R1pdH9tNMB3MtGzzcTPqvwNzIUEkezWr6C2PTl7ZmnbWlF4c/a?=
- =?us-ascii?Q?ZYa4NK2QH6m8acdOUMp+T/7cjK5EDjpxEYBdGojFCIJcsY6/kP+hh1AgLGHP?=
- =?us-ascii?Q?62rozr4TpNbcPJp1k3Yr8kqpCPZ/D6XZvYcVVFH9hBd12uWL403f4ztwENfl?=
- =?us-ascii?Q?5TI9qjR7niDlb00JImWs4/rrn4JtGXHr7gFOkDwwEGH4Urc2JPPsL+xAIb5n?=
- =?us-ascii?Q?GoHt5bZdzFFXBMB15rmsC+FdLsUECF669ad6wEvStjSwRJ3UVQSz/RJr6rRO?=
- =?us-ascii?Q?+j1UZFLeU2KBozgV1y1W8ymT48pg/r1Y8ZZHK+tpuFYwzxzUdYhHTSUwXtZ1?=
- =?us-ascii?Q?5lhq0nNsPeWRsxPgwrvK7gOjwkkgA9gAo3yEV+3DPzSOy7E9qoIh1F0rsiTS?=
- =?us-ascii?Q?PvmvlM8gWeyaDGnRtE4YTI3aG4ttXZ/FER0eLQzB/ji5V/9h+5SvB6I+986k?=
- =?us-ascii?Q?6tTveDZg4mT4inxmiGkLhvzb2lh7y10F84zoKT9kS8JDf3riYyttkVQMeRb/?=
- =?us-ascii?Q?i33KOZianQlanPAzj/ucb5IxYtFo69h0G9fB5KDmKpcOz2ZHt3HAuYkVvauL?=
- =?us-ascii?Q?Ioir20lfLKaAGtiqlNFOzkb5lwGYMYA3EKBj2twAEKPH91Dnsy/xa+CEUqQ2?=
- =?us-ascii?Q?wXpxCDBVZ+vYrBtiPpjucwX8tDClZ2c16L3Za7spCF6luBVnuzE3g6WwigpO?=
- =?us-ascii?Q?DqXfo9GeoapQ9slJNzgm49FVv9y55Z3kuj8MEXsDVZRwclpYRxzfCUsKYnmg?=
- =?us-ascii?Q?ZT7tLoleflZqtbDS6WNO14SZ2Q02lo94CwUJEZ/UPMBn45arb9rHTmPbUnfB?=
- =?us-ascii?Q?PS4RlkrmS0BP2ZeDxzkwmNgojazccTUj8EeoAD0bdA6GXx2t1bGD0egUMR8P?=
- =?us-ascii?Q?W+oXA7799yuEDtHZXGnFhLIkSgXf6bc9C0OlQPF/e5wwA8Dp0yL//vxyXcTJ?=
- =?us-ascii?Q?c9OXITSBijcfO1ahXwpx6zB2VrkewFpr/+r1Obq41FsHk5RWi1DSYUaTYKvV?=
- =?us-ascii?Q?T9vGThnGKx5EQTyhiq/tcVpaB4N9aq18zB9RFqL6W2/Lh+T6FMUB9OAfRFR3?=
- =?us-ascii?Q?YUfiB1Pp5z+ipAyLbLOn0VmtTuf0srdgg4NnbByhuGXv/XrKayNuA6ZzJbGv?=
- =?us-ascii?Q?QjTGmjqcv6M8HjGxergt4f2YiJ3q7T3PQ4SlDNI/m+K3vccV5S148R0Mxw3E?=
- =?us-ascii?Q?L1os19AtUCqdZeaUE9lkId9ECeoiPNfHqG2nLJ/LzodcJh8H2whN2AG9ZC/q?=
- =?us-ascii?Q?Dys9CwuCtIL/ZOzgJjExzUaNshZCHP/XEIlLGmXT?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 946ceacf-87e0-4109-b1de-08dcdc658237
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB7065.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2024 06:52:51.5638
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OYgQB6GaOmTQXNL1wc2+ETTL16zr2c4hkDu6jN86ojxscKo3YHK6af4f9YndHlSRWDk36EDL85JRFPR4AK2hXg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB9117
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-ID: <20240924-wip-y-moog-phytec-de-phyboard-pollux-fan-v1-1-9ea6ec43f27b@phytec.de>
+X-B4-Tracking: v=1; b=H4sIAN9v8mYC/x2NywrCMBAAf6Xs2YW4iBJ/RTyk2W27ULMh8dFS+
+ u9GbzOXmQ2qFJUK126DIm+taqnJ8dBBnEIaBZWbAzk6OU8OP5pxxYfZiHlanxKR5Ue9hcKYbZ5
+ fCw4hoYtMns9Mvb9Ay+Uigy7/1e2+71/8lcKWegAAAA==
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
+CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<upstream@lists.phytec.de>, Yannic Moog <y.moog@phytec.de>
+X-Mailer: b4 0.14.1
+X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrMLMWRmVeSWpSXmKPExsWyRpKBR/dF/qc0g6Nb5SzW7D3HZDH/yDlW
+	i4dX/S1m3mtls1g1dSeLxctZ99gsNj2+xmpxedccNov/e3awW/zdvonF4sUWcYvud+oOPB47
+	Z91l99i0qpPNY/OSeo8Xm2cyevR3t7B69P818Pi8SS6APYrLJiU1J7MstUjfLoEro3vRAtaC
+	V4IV8+/FNjBO5+ti5OSQEDCReNnRzd7FyMUhJLCESWLe2W+MIAkhgYeMEtsmGYHYbAIqEo9f
+	3GMFsVkEVCXOTmthB7GFBVwlXiyeCmbzCghKnJz5hKWLkYODWUBTYv0ufZAws4C8RPPW2cwQ
+	JdESN8+eYwLZJSFwglFi/+Q9jCCOiMAkJomj104wQnTsZ5SYeysJ4jphic+717BBHCQr8eJ8
+	LztEXF5i2rnXzBB2qMTWL9uZJjAKzkJyxyyEO2YhuWMBI/MqRqHczOTs1KLMbL2CjMqS1GS9
+	lNRNjKCIEWHg2sHYN8fjECMTB+MhRgkOZiUR3kk3P6YJ8aYkVlalFuXHF5XmpBYfYpTmYFES
+	513dEZwqJJCeWJKanZpakFoEk2Xi4JRqYLTdrZilXm65/cUEpZK5lvOqmr6snlYxkf/HOxHW
+	F/Mz9XcX7FNuaM68lnXg79Ow3Vsbbn/7vD/88w6lm881CwJ7s02l769WPRnqnxbxJeh70+Z7
+	zD2eyc/l/V9/jFzgvjT5x9dEJqZXOsnGt4SdN2yKFP6SUjwhxnaxYc6eAMsLRxe+ztvPp6PE
+	UpyRaKjFXFScCAABnFQRhgIAAA==
 
-On Tue, Aug 06, 2024 at 11:39:18AM +0200, Krzysztof Kozlowski wrote:
-> On 06/08/2024 10:36, Pengfei Li wrote:
-> > Hi Krzysztof,
-> > 
-> > If this patchset is ok, could you help merge it? Otherwise I won't be able to send subsequent patches.
-> 
-> Sure, let me apply it to my clk tree. Oh wait...
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
-Hi Krzysztof,
+A GPIO fan may be connected to Pollux fan header. The fan should
+activate at 60°C and stay active until critical SoC temperature is
+reached and the board shuts down.
 
-These patches are still not merged into linux-next, can you help with that? Then I'll be able to send the subsequent patches!
+Signed-off-by: Yannic Moog <y.moog@phytec.de>
+---
+ .../dts/freescale/imx8mp-phyboard-pollux-rdk.dts   | 36 ++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
 
-BR,
-Pengfei Li
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
+index 50debe821c42..9b551a50533f 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
+@@ -9,6 +9,7 @@
+ #include <dt-bindings/phy/phy-imx8-pcie.h>
+ #include <dt-bindings/leds/leds-pca9532.h>
+ #include <dt-bindings/pwm/pwm.h>
++#include <dt-bindings/thermal/thermal.h>
+ #include "imx8mp-phycore-som.dtsi"
+ 
+ / {
+@@ -32,6 +33,16 @@ backlight_lvds: backlight {
+ 		pwms = <&pwm3 0 50000 0>;
+ 	};
+ 
++	fan0: fan {
++		compatible = "gpio-fan";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_fan>;
++		gpio-fan,speed-map = <0     0
++				      13000 1>;
++		gpios = <&gpio5 4 GPIO_ACTIVE_HIGH>;
++		#cooling-cells = <2>;
++	};
++
+ 	panel1_lvds: panel-lvds {
+ 		compatible = "edt,etml1010g3dra";
+ 		backlight = <&backlight_lvds>;
+@@ -111,6 +122,25 @@ reg_vcc_3v3_sw: regulator-vcc-3v3-sw {
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 	};
++
++	thermal-zones {
++		soc-thermal {
++			trips {
++				active1: trip2 {
++					temperature = <60000>;
++					hysteresis = <2000>;
++					type = "active";
++				};
++			};
++
++			cooling-maps {
++				map1 {
++					trip = <&active1>;
++					cooling-device = <&fan0 1 THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++	};
+ };
+ 
+ /* TPM */
+@@ -377,6 +407,12 @@ MX8MP_IOMUXC_SAI1_MCLK__GPIO4_IO20			0x10
+ 		>;
+ 	};
+ 
++	pinctrl_fan: fan0grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SPDIF_RX__GPIO5_IO04       0x16
++		>;
++	};
++
+ 	pinctrl_flexcan1: flexcan1grp {
+ 		fsl,pins = <
+ 			MX8MP_IOMUXC_SAI5_RXD2__CAN1_RX		0x154
+
+---
+base-commit: 79e1b8171ca476abb9b8eceef81cd1b6f58b75e9
+change-id: 20240920-wip-y-moog-phytec-de-phyboard-pollux-fan-0cd29d6d2b97
+
+Best regards,
+-- 
+Yannic Moog <y.moog@phytec.de>
 
 
