@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-104722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A94D3983FCF
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 10:02:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37B08983FDA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 10:05:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5C67B207BF
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 08:02:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEB56B20400
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 08:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC16D13B586;
-	Tue, 24 Sep 2024 08:02:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9266D1494DB;
+	Tue, 24 Sep 2024 08:05:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lNpqkS8G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EUEx97dU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB38F26ACD;
-	Tue, 24 Sep 2024 08:02:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E66026ACD;
+	Tue, 24 Sep 2024 08:05:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727164964; cv=none; b=oWnIA+Q/++TBiJ6r5uE9k9BzvE+T8t8Um8EMG5PW78tVTW4Gchijabqd09FDOrGkm6qhWMJvnS218RXKZrNduwAo+t1LQ6r+PKGmOEbFV8zxY57yefEy1VZCQUY7WTIGB0Xkmm1H4NpbuftZcfRMN7MjVn52hrjJ+ZzZqPInfGY=
+	t=1727165108; cv=none; b=NiNvcJpYeqFp1hoMO5L8Xs4wCiTvgN0/1D1RDvfONkbszGDqlXOcmHAgFpw7xXBZvSXC7vJWaPCIb9xethV3RfROF3pU16oT0TTYtC5WF42ULFRR55X20OT52PJoeWvR6hrThh/3shG/Aw2Urin6w3OgxcN5gpWV2UvAmmOX8Ks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727164964; c=relaxed/simple;
-	bh=GwIj96U0zgt0NA9cPDbtRvwRw9+4p1LybTpIOFcn+yY=;
+	s=arc-20240116; t=1727165108; c=relaxed/simple;
+	bh=1EwgglGXwlkwiwtIMUzxMIDqN0gt1tBgWfIzBlpe2lA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NaizhAVegAiLzDF+1YLZ7TfeVXo9OzUfclG3nz576MNI3IOGP1KTFoe00kL6fdr7NH648halMzeGJZxmY+248Uv2Za/B5TkX88DZXw/tVHjdUAb6mmOmhVLvaXdDLen7YfK1IoixoIveVzoQJ1ZipgXazKJYOFYy+bNDMi57UhI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lNpqkS8G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE837C4CEC4;
-	Tue, 24 Sep 2024 08:02:40 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=C8NxDP7vuOgW1hl7GNylfHImyiI1dq7lg1xYfiuXn9E53l0kCdWEmUCBTvkW4Hw/wA3riD87w2o7yzbrwtZVv6YAwGMGp0UIne4+TyjGfZz1MW6TJ3kzVTze+JJS4bzHHH5OxAX3jBN1+Llp7Mk/+sXRIDwbSHziB5wPBn5THhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EUEx97dU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02752C4CEC4;
+	Tue, 24 Sep 2024 08:05:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727164964;
-	bh=GwIj96U0zgt0NA9cPDbtRvwRw9+4p1LybTpIOFcn+yY=;
+	s=k20201202; t=1727165107;
+	bh=1EwgglGXwlkwiwtIMUzxMIDqN0gt1tBgWfIzBlpe2lA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lNpqkS8Gxtwy24wUEf8d5qRmy/zorF2N+KTvAahjIXx4j2U5UFK3Z0rfkFo9Xdx+U
-	 Wdo04oGYf08qZy7p2T46iQeBYH9xrlJb8NaGe8xbXQCQaEnr2o5QNJ1EtlliIe2DkR
-	 McbvStXOUcvYp+I5d3v9Bon625b1aIGVyT/Qblh7kIJXkXG/vf1Etlu8CCUW2PPCpQ
-	 i6dT1sgUNfGAOrfjWIb/T6b97w36yOx/g+Vkf1Psb7Ex8RhKV3tPeTY0R+rayddhdx
-	 Pw8XEoW7sebiM0y0GNPyRlEoXfwDoqEeyTFDcToQMBW7BPTzN5CBa8LQN5OnsixtNL
-	 V9QH4Gj28UdJA==
-Message-ID: <e8af0f3f-a09c-42d7-b8ca-dd633539af73@kernel.org>
-Date: Tue, 24 Sep 2024 10:02:37 +0200
+	b=EUEx97dUaotLlMRw8KwfNBJopRUoho5wEaBvi6LmCLwuEyV7gTcgjtNiv03MxuOKX
+	 TNI9dNPOabbLB/mpH6QFp+ySjGPASZ8vA0lkjDA/EdJ4Nh5l1GfiY1PhB3yOFawUtY
+	 IohkZNm7qTCuYad5/YTMCC/E+nZXiozbFr4KSHD0DvLYzJJBQjq8bv52RcG47Z0vim
+	 RKtTILvPuKEYdRXT2FPuI2wyAqJPJu0rMZ8UHdCP5wCRF74kPekAhCHkYuVv3PG8B6
+	 JVeEycjg8V4btMW6i9ZMEoiuaYjRQrc+ZwtlEFGykRtxng9NTPIW/tLhxF/EjqojHa
+	 u+bw7wi8mGk3w==
+Message-ID: <3ba2ce52-4da3-4066-baf0-5bab1a9f872a@kernel.org>
+Date: Tue, 24 Sep 2024 10:04:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 04/10] dt-bindings: iio: dac: ad3552r: add io-backend
- support
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Nuno Sa <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- dlechner@baylibre.com
-References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
- <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-4-a17b9b3d05d9@baylibre.com>
- <gojq6ardhvt6vcs2kawdhdn2cj6qbpzp4p5mjjgwsypuatm5eo@3u6k4q7le46s>
- <418a8a9b-3bcf-4b8f-92a0-619a3bf26ab5@baylibre.com>
+Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs
+ of the ath11k on WCN6855
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, ath11k@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Arnd Bergmann <arnd@arndb.de>
+References: <20240814082301.8091-1-brgl@bgdev.pl>
+ <83c562e9-2add-4086-86e7-6e956d2ee70f@kernel.org> <87msk49j8m.fsf@kernel.org>
+ <ed6aceb6-4954-43ad-b631-6c6fda209411@kernel.org> <87a5g2bz6j.fsf@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,112 +112,81 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <418a8a9b-3bcf-4b8f-92a0-619a3bf26ab5@baylibre.com>
+In-Reply-To: <87a5g2bz6j.fsf@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/09/2024 17:50, Angelo Dureghello wrote:
-> Hi Krzysztof,
+On 20/09/2024 08:45, Kalle Valo wrote:
+> Krzysztof Kozlowski <krzk@kernel.org> writes:
 > 
-> On 22/09/24 23:02, Krzysztof Kozlowski wrote:
->> On Thu, Sep 19, 2024 at 11:20:00AM +0200, Angelo Dureghello wrote:
->>> From: Angelo Dureghello <adureghello@baylibre.com>
+>> On 19/09/2024 09:48, Kalle Valo wrote:
+>>> Krzysztof Kozlowski <krzk@kernel.org> writes:
 >>>
->>> There is a version AXI DAC IP block (for FPGAs) that provides
->>> a physical bus for AD3552R and similar chips, and acts as
->>> an SPI controller.
+>>>> On 14/08/2024 10:23, Bartosz Golaszewski wrote:
+>>>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>>>
+>>>>> Describe the inputs from the PMU of the ath11k module on WCN6855.
+>>>>>
+>>>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>>> ---
+>>>>> v1 -> v2:
+>>>>> - update the example
+>>>>
+>>>> I don't understand why this patch is no being picked up. The code
+>>>> correct represents the piece of hardware. The supplies should be
+>>>> required, because this one particular device - the one described in this
+>>>> binding - cannot work without them.
 >>>
->>> For this case, the binding is modified to include some
->>> additional properties.
->>>
->>> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
->>> ---
->>>   .../devicetree/bindings/iio/dac/adi,ad3552r.yaml   | 42 ++++++++++++++++++++++
->>>   1 file changed, 42 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
->>> index 41fe00034742..aca4a41c2633 100644
->>> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
->>> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
->>> @@ -60,6 +60,18 @@ properties:
->>>       $ref: /schemas/types.yaml#/definitions/uint32
->>>       enum: [0, 1, 2, 3]
->>>   
->>> +  io-backends:
->>> +    description: The iio backend reference.
->>> +      An example backend can be found at
->>> +        https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
->>> +    maxItems: 1
->>> +
->>> +  adi,synchronous-mode:
->>> +    description: Enable waiting for external synchronization signal.
->>> +      Some AXI IP configuration can implement a dual-IP layout, with internal
->>> +      wirings for streaming synchronization.
->>> +    type: boolean
->>> +
->>>     '#address-cells':
->>>       const: 1
->>>   
->>> @@ -128,6 +140,7 @@ patternProperties:
->>>             - custom-output-range-config
->>>   
->>>   allOf:
->>> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
->>>     - if:
->>>         properties:
->>>           compatible:
->>> @@ -238,4 +251,33 @@ examples:
->>>               };
->>>           };
->>>       };
->>> +
->>> +  - |
->>> +    axi_dac: spi@44a70000 {
->>> +        compatible = "adi,axi-ad3552r";
->> That is either redundant or entire example should go to the parent node,
->> if this device is fixed child of complex device (IOW, adi,ad3552r cannot
->> be used outside of adi,axi-ad3552r).
-> 
-> ad3552r can still be used by a generic "classic" spi
-> controller (SCLK/CS/MISO) but at a slower samplerate, fpga
-> controller only (axi-ad3552r) can reach 33MUPS.
-
-OK, then this is just redundant. Drop the node. Parent example should
-contain the children, though.
-> 
+>>> I have already explained the situation. With supplies changed to
+>>> optional I'm happy take the patch.
 >>
->>> +        reg = <0x44a70000 0x1000>;
->>> +        dmas = <&dac_tx_dma 0>;
->>> +        dma-names = "tx";
->>> +        #io-backend-cells = <0>;
->>> +        clocks = <&ref_clk>;
->>> +
->>> +        #address-cells = <1>;
->>> +        #size-cells = <0>;
->>> +
->>> +        dac@0 {
->>> +            compatible = "adi,ad3552r";
->>> +            reg = <0>;
->>> +            reset-gpios = <&gpio0 92 0>;
->> Use standard defines for GPIO flags.
+>> You did not provide any relevant argument to this case. Your concerns
+>> described quite different case and are no applicable to DT based platforms.
 > 
-> fixed, thanks
+> Ok, I'll try to explain my concerns one more time. I'll try to be
+> thorough so will be a longer mail.
 > 
->>> +            io-backends = <&axi_dac>;
->> Why do you need to point to the parent? How much coupled are these
->> devices? Child pointing to parent is not usually expected, because
->> that's obvious.
+> In ath11k we have board files, it's basically board/product specific
+> calibration data which is combined with the calibration data from chip's
+> OTP. Choosing the correct board file is essential as otherwise the
+> performance can be bad or the device doesn't work at all.
 > 
+> The board files are stored in board-2.bin file in /lib/firmware. ath11k
+> chooses the correct board file based on the information provided by the
+> ath11k firmware and then transfers the board file to firmware. From
+> board-2.bin the correct board file is search based on strings like this:
 > 
-> "io-backends" is actually the way to refer to the backend module,
-> (used already for i.e. ad9739a),
-> it is needed because the backend is not only acting as spi-controller,
-> but is also providing some APIs for synchronization and bus setup support.
+> bus=pci,vendor=17cb,device=1103,subsystem-vendor=105b,subsystem-device=e0ca,qmi-chip-id=2,qmi-board-id=255
+> bus=pci,vendor=17cb,device=1103,subsystem-vendor=105b,subsystem-device=e0ca,qmi-chip-id=2,qmi-board-id=255,variant=HO_BNM
+> 
+> But the firmware does not always provide unique enough information for
+> choosing the correct board file and that's why we added the variant
+> property (the second example above). This variant property gives us the
+> means to name the board files uniquely and not have any conflicts. In
+> x86 systems we retrieve it from SMBIOS and in DT systems using
+> qcom,ath11k-calibration-variant property.
+> 
+> If WCN6855 supplies are marked as required, it means that we cannot use
+> qcom,ath11k-calibration-variant DT property anymore with WCN6855 M.2
+> boards. So if we have devices which don't provide unique information
 
+No, it does not mean that.
 
-But if backend is the parent, then this is redundant. You can take it
-from the child-parent relationship. Is this pointing to other devices
-(non-parent) in other ad3552r configurations?
+> then for those devices it's impossible to automatically to choose the
+> correct board file.
+
+Anyway, only this device must be fully described, because you cannot
+have pci17cb,1103 without these supplies. It's just electrically not
+possible, according to our investigation.
+
+> 
+> So based on this, to me the correct solution here is to make the
+> supplies optional so that qcom,ath11k-calibration-variant DT property
+> can continue to be used with WCN6855 M.2 boards.
+
+WCN6855 can still do whatever they want. They are not restricted, not
+limited. pci17cb,1103 must provide suppplies, because pci17cb,1103
+cannot work without them.
 
 Best regards,
 Krzysztof
