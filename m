@@ -1,204 +1,130 @@
-Return-Path: <devicetree+bounces-104913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59577984810
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 16:54:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F2798481F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 17:00:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1E831F21A48
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 14:53:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A1782812CE
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 14:59:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB46E1AAE24;
-	Tue, 24 Sep 2024 14:53:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 652FE1AB504;
+	Tue, 24 Sep 2024 14:59:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="GOX8iNnX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NhpUpX7B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A524D1A7249;
-	Tue, 24 Sep 2024 14:53:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E2C1224D7;
+	Tue, 24 Sep 2024 14:59:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727189634; cv=none; b=EO2cmKTmF++vv8urEvrYYsMGbWjh/nSbUur1JZen5fcm/P1qBHIJtaffhRtUmee5bZisyGW5XdR624Vwnzejocdg/Qps3Y1B/wvtJXQitRUFVuxOPRFPB5MQNedIBd4yYklsY4xw6n71h9drBXBmZvdBf94B1OeFL6XYCPT3G5g=
+	t=1727189994; cv=none; b=DQ6m8TDxA0s3LdNE+Y4Poso1BFJporQCoWUYVc5k4z3LkrfLn14ehZ7d+XZB1kw5htQxvCcfs385Np3OAwvtc/a4LKmZch9/PjLTShXJ5DAhmshFq+8XkEuYzWE15I/qaIAW7OB2zH2vKNhfOkx6V1iDnd1xaPLgAV8RjQjZ/HA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727189634; c=relaxed/simple;
-	bh=TCJLDM7gCBvwoMwYfgBNZ+Z5C02vQHEWGskPMXyLimU=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
-	 References:In-Reply-To; b=hysEjnT1FzAlrbkQpweOAPPW4IdAwXv0OJFjpvHCFq3/qHUC9pBwL2aiqhZwwtX2AxE7VkWsyUJYXXrWEPM0BQAqucTNskRG1YvtLTToNa35f+zj12HT1ibTZ7aSBEJjjD0tW+j8+9Y8NUOzS82ap3cYUC9EvKwwLfIOt+SxXLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=GOX8iNnX; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 1306AE0014;
-	Tue, 24 Sep 2024 14:53:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1727189624;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wigSxOqNkKcKbc8lRP6tKsLp+aMKAD5JcJ5P3FL8EaI=;
-	b=GOX8iNnXPdY5HXhMnvys4sJ200DTi2dA+V956WeoyIL0rlp7yMnV83Fy8ylPb9TJB1MgBL
-	4XsVFT1++sB/rpdgGZFZIV1d7kAFYTcpbO+Jj5El4qizEigRgUVLqitjVES5t4kGvPX5yZ
-	+yeo/IMK5hffqfqWZiGIWcgqqcbhnngjjIINGChwwDqVe3xpiNn8SqC+hCD3i8B/J/nbPU
-	kfmWn5StScH1n7waqdK/3BE38XGng+FHEVgOUIfxJvVVxvyQ/AvKn5C/u11923BmGABmT7
-	nImymXPXo7hTV9Z8v2ozEuMWOA3tLrNXPYZolWW9FrhQ5qBZtq0t+mO8EjAHGQ==
+	s=arc-20240116; t=1727189994; c=relaxed/simple;
+	bh=wLEhhCE0jdrFjf4Bccj8YSgM6u/n+FpUlXZY6C0JBYg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qkEOGJotmw5LGrbr1EmHIN4h56yglz/eAumN5T49vNipIp2iAqVZDMs7df0INLNeM4xHt1JXp+KYzHFs5icLJiwVH2U5zwdFO7/E0mEXWMXGgRhPY9DY+Zs+Ws1iW5EiWcQ+LM29dhohvF1wsAk8Ld48X71KXoYsT7WsSJXgbA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NhpUpX7B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC706C4CEC4;
+	Tue, 24 Sep 2024 14:59:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727189993;
+	bh=wLEhhCE0jdrFjf4Bccj8YSgM6u/n+FpUlXZY6C0JBYg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NhpUpX7BjCn3gO2OMSlZBWzdrgFE8Y7V3jn5JRJzs5TH50IeTW6W6ZZPicsdUcGMk
+	 +1Qkaxf1DKRKIrRwgvEn3q/jvz6F6/9LMZeGoXaMl5cGcgRuk7xr1jsyxicvC7qMQ6
+	 co7mtRuyBsEVcdNKDp6X+OhWPT80axS7pjQxsPRY/k308cC+InUI7efvUD0klmDXU1
+	 Jk0mBgdYI39K/nL8qkxdqRXJ1L4xIHr60YH52abxuOnE5SvuA1R6AHZDhN0hoktDoR
+	 eok2ubDCaPHP+jhimrJyiGOl0pPJkmlJAYU2cCmqetn3ZBeG9DnzY1AVX5kIUckQ0M
+	 Xh4aoKLeWYRZQ==
+Date: Tue, 24 Sep 2024 15:59:47 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Guillaume Stols <gstols@baylibre.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, linux-pwm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, aardelean@baylibre.com,
+	dlechner@baylibre.com, jstephan@baylibre.com
+Subject: Re: [PATCH v2 02/10] dt-bindings: iio: adc: ad7606: Make corrections
+ on spi conditions
+Message-ID: <20240924-unvocal-playback-2753bbbb0e45@spud>
+References: <20240920-ad7606_add_iio_backend_support-v2-0-0e78782ae7d0@baylibre.com>
+ <20240920-ad7606_add_iio_backend_support-v2-2-0e78782ae7d0@baylibre.com>
+ <20240921-playgroup-regally-f26c17be26dc@spud>
+ <56090167-15a0-4386-89a6-c379d70faae6@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="LGfhlP19buc7EotU"
+Content-Disposition: inline
+In-Reply-To: <56090167-15a0-4386-89a6-c379d70faae6@baylibre.com>
+
+
+--LGfhlP19buc7EotU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 24 Sep 2024 16:53:43 +0200
-Message-Id: <D4ELMFAUQYZ7.3LXGQZJSX68UF@bootlin.com>
-To: "Stephen Boyd" <sboyd@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Michael Turquette"
- <mturquette@baylibre.com>, "Rob Herring" <robh@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH RESEND v3 4/4] clk: eyeq: add driver
-Cc: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20240730-mbly-clk-v3-0-4f90fad2f203@bootlin.com>
- <20240730-mbly-clk-v3-4-4f90fad2f203@bootlin.com>
- <586966c515e15f455973e7c55bd3ac5e.sboyd@kernel.org>
-In-Reply-To: <586966c515e15f455973e7c55bd3ac5e.sboyd@kernel.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
 
-Hello Stephen,
+On Tue, Sep 24, 2024 at 04:41:50PM +0200, Guillaume Stols wrote:
+>=20
+> On 9/21/24 23:55, Conor Dooley wrote:
+> > On Fri, Sep 20, 2024 at 05:33:22PM +0000, Guillaume Stols wrote:
+> > > The SPI conditions are not always required, because there is also a
+> > > parallel interface. The way used to detect that the SPI interface is
+> > > used is to check if the reg value is between 0 and 256.
+> > And, yaknow, not that the bus you're on is a spi bus? I don't think this
+> > comment is relevant to the binding, especially given you have a property
+> > for it.
+>=20
+> Apologies, I missed to change the commit message, it will be fixed in the
+> next series.
+>=20
+> Since Jonathan did not like very much inferring the interface with the re=
+g's
+> value that I used i the previous verison, I introduced this flag.
+>=20
+> However this is only intended to be use in bindings, to determine whether=
+ or
+> not spi properties should be added.
 
-Only answering to questions to which I have answers.
-The rest is addressed for next revision.
+To be honest, if it is not needed by software to understand what bus the
+device is on, it shouldn't be in the bindings at all. What was Jonathan
+opposed to? Doing an if reg < 1000: do y, otherwise do x?
+I'd not bother with any of that, and just make cpha (or w/e it was)
+optional with a description explaining the circumstances in which is it
+needed.
 
-On Wed Sep 18, 2024 at 7:28 AM CEST, Stephen Boyd wrote:
-> Quoting Th=C3=A9o Lebrun (2024-07-30 09:04:46)
-> > diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-> > index 3e9099504fad..31f48edf855c 100644
-> > --- a/drivers/clk/Kconfig
-> > +++ b/drivers/clk/Kconfig
-> > @@ -218,6 +218,19 @@ config COMMON_CLK_EN7523
-> >           This driver provides the fixed clocks and gates present on Ai=
-roha
-> >           ARM silicon.
-> > =20
-> > +config COMMON_CLK_EYEQ
-> > +       bool "Clock driver for the Mobileye EyeQ platform"
-> > +       depends on 64BIT # for readq()
-> > +       depends on OF || COMPILE_TEST
->
-> What's the OF build dependency? If there isn't one please remove this
-> line.
+> In the driver side of things, the bus interface is inferred by the parent=
+'s
+> node (SPI driver is an module_spi_driver while parallel driver is
+> module_platform_driver).
 
-There is none (at least we have a compat layer that means we can build
-even with CONFIG_OF=3Dn). Removed in next revision.
+--LGfhlP19buc7EotU
+Content-Type: application/pgp-signature; name="signature.asc"
 
->
-> > +               *mult =3D *mult * 0x100000 + FIELD_GET(PCSR1_FRAC_IN, r=
-1);
-> > +       }
-> > +
-> > +       if (!*mult || !*div)
-> > +               return -EINVAL;
-> > +
-> > +       /* Spread spectrum. */
-> > +       if (!(r1 & (PCSR1_RESET | PCSR1_DIS_SSCG))) {
-> > +               /*
-> > +                * Spread is 1/1000 parts of frequency, accuracy is hal=
-f of
-> > +                * that. To get accuracy, convert to ppb (parts per bil=
-lion).
-> > +                */
-> > +               u32 spread =3D FIELD_GET(PCSR1_SPREAD, r1);
-> > +
-> > +               *acc =3D spread * 500000;
->
-> Where does 500000 come from? Half a billion?
+-----BEGIN PGP SIGNATURE-----
 
-In addition to the above comment, I added this to clarify:
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvLT4wAKCRB4tDGHoIJi
+0mCAAQDudOcnB4isEwsLcFNtTyQ31oYWCGB1e95rCdJm05qJ2wEA4xjzPpUt3/Qb
+TKW1SfNsOP2E71J9oya3wCXkKqNqrQY=
+=Mq6o
+-----END PGP SIGNATURE-----
 
-	 * acc =3D spread * 1e6 / 2
-	 *   with acc in parts per billion and,
-	 *        spread in parts per thousand.
-
-[...]
-
-> > +
-> > +static const struct eqc_early_match_data eqc_eyeq6h_central_early_matc=
-h_data =3D {
-> > +       .early_pll_count        =3D ARRAY_SIZE(eqc_eyeq6h_central_early=
-_plls),
-> > +       .early_plls             =3D eqc_eyeq6h_central_early_plls,
-> > +       .nb_late_clks =3D 0,
-> > +};
-> > +
-> > +/* Required early for UART. */
->
-> Is this required for earlycon? Where is the UART not a device driver
-> that needs to get clks early?
-
-The UART is PL011. It is an AMBA device, those get probed before
-platform devices by of_platform_bus_create(). "pll-per" must be
-available at that time.
-
-[...]
-
-> > +static void __init eqc_init(struct device_node *np)
-[...]
-> > +       spin_lock(&eqc_list_slock);
->
-> I don't see how the spinlock provides any value. This function will run
-> before any struct devices have been created.
-
-Indeed no clash can happen. Will remove.
-
->
-> > +       list_add_tail(&priv->list, &eqc_list);
->
-> The list is also kind of unnecessary. Set a bool in the match_data and
-> move on? We could have some sort of static_assert() check to make sure
-> if there's a CLK_OF_DECLARE_DRIVER() then the bool is set in the
-> match_data for the driver. Such a design is cheaper than taking a lock,
-> adding to a list.
-
-This list's main goal is not to know what was early-inited. Its only
-reason for existence is that we want to get, at eqc_probe(), the cells
-pointer allocated at eqc_init().
-
-struct eqc_priv {
-	/* this field is why we store priv inside a linked list: */
-	struct clk_hw_onecell_data	*cells;
-	/* the rest, we don't care much: */
-	const struct eqc_early_match_data *early_data;
-	const struct eqc_match_data	*data;
-	void __iomem			*base;
-	struct device_node		*np;
-	struct list_head		list;
-};
-
-I do not see how to do that with a bool. We could put the pointer into
-the match data, but that would mean we'd have to make them writable
-(currently static const data). We are talking about a linked list with
-two items in the worst case (EyeQ6H), accessed twice.
-
-The reason we store the whole of priv: simpler code and we avoid mapping
-registers twice (once at eqc_init() and once at eqc_probe()).
-
-Can you confirm the current static linked list approach (without any
-spinlock) will be good for next revision?
-
-Thanks,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+--LGfhlP19buc7EotU--
 
