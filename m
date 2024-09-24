@@ -1,382 +1,137 @@
-Return-Path: <devicetree+bounces-104988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6DA2984CD6
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 23:25:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 668F2984CDB
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 23:25:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C55CB1C22F80
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 21:25:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97D78B235CE
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 21:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA5E7140E34;
-	Tue, 24 Sep 2024 21:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 061AC144D0A;
+	Tue, 24 Sep 2024 21:23:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LC3r0Ajp"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="BZntob/h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A874013D251;
-	Tue, 24 Sep 2024 21:22:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A869D13D89D
+	for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 21:23:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727212951; cv=none; b=T6jGMCr8wNxPVJje/IHHiywhwpt7odtzJuy64ZgaUm6uHDjMtj2QCtLf03NWoWH5lK7Y16chGjSUF/75qi9yWmQAnr69XAHvS4xHx3RpupyhG6xPAaGXK6k1lDxa0bsDo8/W8phF+Uv3Bl1WP5zBb4xRRo/trKTAbspdd7tt34c=
+	t=1727213034; cv=none; b=e9x+co34A8IWpl3Ww/n5TfTo9Scz28HKdbvFYRsfW5Q7W/OohYNHAq6nU5wWPswgbUIW2avg6Appu/LE6Lj07pPZ9ArCoT5LiFXes2ocubRPGKqfClrghA+4F6twzrOXs8ngxvjOCxB65nFrp6K6p/4lIZddNn+ZEIPj7OZGZiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727212951; c=relaxed/simple;
-	bh=ORN8sDOxLyn58T65c1ZiKJe2Tx746oGRCmfs/xV060s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e9xFOAmFcd6ut4+hT+Ve82ydqceOBM0ogH4NKW0wZxRI/IqzqH3IJVkRDFo8GRu34H6HT3SbJbT9dg/VBZZNYInnJEnTxkLQpmD8fgj5/bB3zYe6buxT8ysT64QeLt+mCwSwrexsbsi6U5cVz/OUug0KM+2JczlRFmuDqo9BpS0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LC3r0Ajp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F545C4CECD;
-	Tue, 24 Sep 2024 21:22:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727212951;
-	bh=ORN8sDOxLyn58T65c1ZiKJe2Tx746oGRCmfs/xV060s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LC3r0AjpUcP/CLjxzfq8ze/z2K+GqMsZdPos87MLlSua4xCqhNuyX2SlqI5yScJwk
-	 dckS1FF9q73Ewk6gV1EpMgnMMNQxx7IxS0FzW1RNuH2Q4qRr/VBCru+sSvVMxsk0ET
-	 +2HuJtamH6NeE6sRNsY4A7sfU1xysodQI3aEujAuSIP2mEOK3cX//30wW+6/p3ewby
-	 APDVXz+UsumblA4hVP0vseua2oMIB1sdvTkxdFQHKjpsbfLR43uNGTWZMqKuEHLuXv
-	 HWEigbUrdGVC1MPYmSS4aLSQPZX4bzpS9+vVCJKwGkFvzR9CTxtSqfQyadZugkHdmS
-	 HoUAIt3yGrUCw==
-Date: Tue, 24 Sep 2024 23:22:28 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sean Wang <sean.wang@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Lee Jones <lee@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	upstream@airoha.com, benjamin.larsson@genexis.eu,
-	ansuelsmth@gmail.com, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v4 4/5] pinctrl: airoha: Add support for EN7581 SoC
-Message-ID: <ZvMtlJN1xAMHoW-E@lore-desk>
-References: <20240911-en7581-pinctrl-v4-0-60ac93d760bb@kernel.org>
- <20240911-en7581-pinctrl-v4-4-60ac93d760bb@kernel.org>
- <CACRpkdZbyQ5bk8oR+Q4UmQCdM5h1mF1ztBc26YzqNsze_B=ehA@mail.gmail.com>
- <ZvKQe73ZKIFy4fny@lore-desk>
+	s=arc-20240116; t=1727213034; c=relaxed/simple;
+	bh=0trbBWevCDs8OnyEcXvg+bJTXUk38+rmaOI+r/Q8j7U=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=qSMe+L2OYbFh3GqxylaBxtjyrgV5WqeDhsnjykBrkc3OxseUUdqlTWVeP9FPXgC3tVkvYo2PaqerX4XH6+jMHPl6tBrPH3pRKVtA2cpjXhtj8dgGaj/bz7X74x2nbZoW4y4KFIeRj1d9sRsjMoqwyRwqJku2tMkLRRMPx5ZwD/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=BZntob/h; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 646842C05DB;
+	Wed, 25 Sep 2024 09:23:49 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1727213029;
+	bh=0trbBWevCDs8OnyEcXvg+bJTXUk38+rmaOI+r/Q8j7U=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=BZntob/hCZlQdZIxu6IaWTBz4xfmL+dAa/juTqStG+byCOKgiRnBCm5wbanNBIgYW
+	 7Vt+QOzVF/IsueG8sKDgdjJYIhIKCS/8rJEio+lbVvxA5Ahq7rwpMddn57tbeW0Bx7
+	 doez+FxRWjvqcc8xUvW7WNcRlIe1+HaTlZ/ZJ6t1nL84YUz3P9W5XM4ZiA+l/evive
+	 R2MiFL16N/lAUvImnkRF+yLkOGyyIraIUPyUWF0DCb/uoj2cLJ+IkgEiIDklutAhKW
+	 eNvc5swDe9xb4NFqWNN6yEXewfnR8sCRk7XMyBOsmlYQahdJpeijGqHQjOH5lu3EDL
+	 zZ+zZtcsQDBAQ==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B66f32de50001>; Wed, 25 Sep 2024 09:23:49 +1200
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.1544.11; Wed, 25 Sep 2024 09:23:49 +1200
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
+ svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with Microsoft
+ SMTP Server (TLS) id 15.0.1497.48; Wed, 25 Sep 2024 09:23:48 +1200
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1544.011; Wed, 25 Sep 2024 09:23:48 +1200
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: "andi.shyti@kernel.org" <andi.shyti@kernel.org>, "robh@kernel.org"
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "tsbogend@alpha.franken.de"
+	<tsbogend@alpha.franken.de>, "linux-i2c@vger.kernel.org"
+	<linux-i2c@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-mips@vger.kernel.org"
+	<linux-mips@vger.kernel.org>
+Subject: Re: [PATCH v3 3/3] mips: dts: realtek: Add I2C controllers
+Thread-Topic: [PATCH v3 3/3] mips: dts: realtek: Add I2C controllers
+Thread-Index: AQHbDgytdmN5OYfmG0iIxQ5nrdrn47Jl2EIAgADSkAA=
+Date: Tue, 24 Sep 2024 21:23:48 +0000
+Message-ID: <fc8bd7f5-3874-4958-be3d-eda9352cb534@alliedtelesis.co.nz>
+References: <20240923230230.3001657-1-chris.packham@alliedtelesis.co.nz>
+ <20240923230230.3001657-4-chris.packham@alliedtelesis.co.nz>
+ <ocmrfbu4atns3c2p7xev7vhktfzv3roy2ijz5qhqklylelgkor@zkrqoeiyvqoi>
+In-Reply-To: <ocmrfbu4atns3c2p7xev7vhktfzv3roy2ijz5qhqklylelgkor@zkrqoeiyvqoi>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <D42F9084B7041A4089F0477D65319456@atlnz.lc>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="NZtxAZ5/yN8ueZoO"
-Content-Disposition: inline
-In-Reply-To: <ZvKQe73ZKIFy4fny@lore-desk>
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=Id0kWnqa c=1 sm=1 tr=0 ts=66f32de5 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=EaEq8P2WXUwA:10 a=zest7o_Hml77ye0SHoAA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
 
-
---NZtxAZ5/yN8ueZoO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-[...]
->=20
-> I am fine to switch to regmap but I guess we need to enable fast_io
-> since it can run even in interrupt context. Btw, I figured out even
-> airoha_pinctrl_rmw needs to grab a spin_lock since we can exec a led
-> trigger (like timer) where we run airoha_pinctrl_rmw in interrupt context
-> (so it should be fine to use a single regmap for it).
-> However, I guess we need to keep the spin_lock in airoha_pinctrl_gpiochip
-> since we need to grab it in airoha_pinctrl_gpio_irq_unmask() and
-> airoha_pinctrl_gpio_irq_type() (we access irq_type array there).
-> A possible solution would be to keep the local spin_lock and set
-> disable_locking. What do you think? Do you prefer to switch to regmap or
-> keep the current implementation using 'guard(spinlock_irqsave)' instead?
-
-I reworked the code using regmap APIs and setting disable_locking flag
-in order to keep the spinlock local (I switch to guard(spinlock) as
-well). Thx for pointing this out, the code is simpler and more readable,
-I will add it in v5.
-
->=20
-> >=20
-> > > +static int airoha_pinctrl_get_gpio_from_pin(struct pinctrl_dev *pctr=
-l_dev,
-> > > +                                           int pin)
-> > > +{
-> > > +       struct pinctrl_gpio_range *range;
-> > > +       int gpio;
-> > > +
-> > > +       range =3D pinctrl_find_gpio_range_from_pin_nolock(pctrl_dev, =
-pin);
-> > > +       if (!range)
-> > > +               return -EINVAL;
-> > > +
-> > > +       gpio =3D pin - range->pin_base;
-> > > +       if (gpio < 0)
-> > > +               return -EINVAL;
-> > > +
-> > > +       return gpio;
-> > > +}
-> >=20
-> > This function is just used here:
->=20
-> it is used in airoha_pinconf_get()/airoha_pinconf_set()
->=20
-> >=20
-
-[...]
-
-> > > +       case PIN_CONFIG_OUTPUT_ENABLE:
-> > > +       case PIN_CONFIG_INPUT_ENABLE: {
-> > > +               int gpio =3D airoha_pinctrl_get_gpio_from_pin(pctrl_d=
-ev, pin);
-> > > +
-> > > +               if (gpio < 0)
-> > > +                       return gpio;
-> > > +
-> > > +               arg =3D airoha_pinctrl_gpio_get_direction(pinctrl, gp=
-io);
-> >=20
-> > I don't see why a pin would have to exist in a GPIO range in order to
-> > be set as output or input?
-> >=20
-> > Can't you just set up the pin as requested and not care whether
-> > it has a corresponding GPIO range?
-> >=20
-> > Is it over-reuse of the GPIO code? I'd say just set up the pin instead.
->=20
-> Do you mean to get rid of PIN_CONFIG_OUTPUT_ENABLE, PIN_CONFIG_INPUT_ENAB=
-LE
-> (and even PIN_CONFIG_OUTPUT in airoha_pinconf_set()) here?
-> E.g. we need PIN_CONFIG_OUTPUT_ENABLE to enable pwm for pwm-leds:
->=20
-> &mfd {
-> 	...
-> 	pio: pinctrl {
-> 		...
-> 		pwm_gpio18_idx10_pins: pwm-gpio18-idx10-pins {
-> 			function =3D "pwm";
-> 			pins =3D "gpio18";
-> 			output-enable;
-> 		};
-> 	};
-> };
-
-I reworked the code here in order to not explicitly use gpio value in
-airoha_pinconf_get/airoha_pinconf_set routines. However, we need to switch
-=66rom pin to gpio configuring data/direction/out hw registers since:
-- not all pins can be used as gpio (actually we can configure just pins in =
-the
-  range [13, 59])
-- data, dir and out hw register are indexed using gpio id and not pin one.
-  (e.g BIT(0) in data[0] refers to GPIO0 and not to PIN0).
-
-Regards,
-Lorenzo
-
->=20
-> >=20
-> > > +static int airoha_pinconf_set(struct pinctrl_dev *pctrl_dev,
-> > > +                             unsigned int pin, unsigned long *config=
-s,
-> > > +                             unsigned int num_configs)
-> > > +{
-> > > +       struct airoha_pinctrl *pinctrl =3D pinctrl_dev_get_drvdata(pc=
-trl_dev);
-> > > +       int i;
-> > > +
-> > > +       for (i =3D 0; i < num_configs; i++) {
-> > > +               u32 param =3D pinconf_to_config_param(configs[i]);
-> > > +               u32 arg =3D pinconf_to_config_argument(configs[i]);
-> > > +
-> > > +               switch (param) {
-> > > +               case PIN_CONFIG_BIAS_DISABLE:
-> > > +                       airoha_pinctrl_set_pulldown_conf(pinctrl, pin=
-, 0);
-> > > +                       airoha_pinctrl_set_pullup_conf(pinctrl, pin, =
-0);
-> > > +                       break;
-> > > +               case PIN_CONFIG_BIAS_PULL_UP:
-> > > +                       airoha_pinctrl_set_pulldown_conf(pinctrl, pin=
-, 0);
-> > > +                       airoha_pinctrl_set_pullup_conf(pinctrl, pin, =
-1);
-> > > +                       break;
-> > > +               case PIN_CONFIG_BIAS_PULL_DOWN:
-> > > +                       airoha_pinctrl_set_pulldown_conf(pinctrl, pin=
-, 1);
-> > > +                       airoha_pinctrl_set_pullup_conf(pinctrl, pin, =
-0);
-> > > +                       break;
-> > > +               case PIN_CONFIG_DRIVE_STRENGTH: {
-> > > +                       u32 e2 =3D 0, e4 =3D 0;
-> > > +
-> > > +                       switch (arg) {
-> > > +                       case MTK_DRIVE_2mA:
-> > > +                               break;
-> > > +                       case MTK_DRIVE_4mA:
-> > > +                               e2 =3D 1;
-> > > +                               break;
-> > > +                       case MTK_DRIVE_6mA:
-> > > +                               e4 =3D 1;
-> > > +                               break;
-> > > +                       case MTK_DRIVE_8mA:
-> > > +                               e2 =3D 1;
-> > > +                               e4 =3D 1;
-> > > +                               break;
-> > > +                       default:
-> > > +                               return -EINVAL;
-> > > +                       }
-> > > +
-> > > +                       airoha_pinctrl_set_drive_e2_conf(pinctrl, pin=
-, e2);
-> > > +                       airoha_pinctrl_set_drive_e4_conf(pinctrl, pin=
-, e4);
-> > > +                       break;
-> > > +               }
-> > > +               case PIN_CONFIG_DRIVE_OPEN_DRAIN:
-> > > +                       airoha_pinctrl_set_pcie_rst_od_conf(pinctrl, =
-pin, !!arg);
-> > > +                       break;
-> > > +               case PIN_CONFIG_OUTPUT_ENABLE:
-> > > +               case PIN_CONFIG_INPUT_ENABLE:
-> > > +               case PIN_CONFIG_OUTPUT: {
-> > > +                       int gpio =3D airoha_pinctrl_get_gpio_from_pin=
-(pctrl_dev, pin);
-> > > +                       bool input =3D param =3D=3D PIN_CONFIG_INPUT_=
-ENABLE;
-> > > +
-> > > +                       if (gpio < 0)
-> > > +                               return gpio;
-> > > +
-> > > +                       airoha_pinctrl_gpio_set_direction(pinctrl, gp=
-io, input);
-> > > +                       if (param =3D=3D PIN_CONFIG_OUTPUT)
-> > > +                               airoha_pinctrl_gpio_set_value(pinctrl=
-, gpio, !!arg);
-> > > +                       break;
-> >=20
-> > Dito. No need to reuse the GPIO set direction function. Make a helper
-> > that just work on the pin instead, and perhaps the GPIO set direction
-> > can use that instead.
->=20
-> ack, I will fix it in v5.
->=20
-> >=20
-> > > +static int airoha_pinctrl_gpio_direction_output(struct gpio_chip *ch=
-ip,
-> > > +                                               unsigned int gpio, in=
-t value)
-> > > +{
-> > > +       int err;
-> > > +
-> > > +       err =3D pinctrl_gpio_direction_output(chip, gpio);
-> > > +       if (err)
-> > > +               return err;
-> > > +
-> > > +       airoha_pinctrl_gpio_set(chip, gpio, value);
-> >=20
-> > Hm I get a bit confused by the similarly named helpers I guess...
->=20
-> Naming is always hard, I will try to improve :)
->=20
-> >=20
-> > > +static void airoha_pinctrl_gpio_irq_unmask(struct irq_data *data)
-> > > +{
-> > > +       u8 offset =3D data->hwirq % AIROHA_REG_GPIOCTRL_NUM_GPIO;
-> > > +       u8 index =3D data->hwirq / AIROHA_REG_GPIOCTRL_NUM_GPIO;
-> > > +       u32 mask =3D GENMASK(2 * offset + 1, 2 * offset);
-> > > +       struct airoha_pinctrl_gpiochip *gpiochip;
-> > > +       u32 val =3D BIT(2 * offset);
-> > > +       unsigned long flags;
-> > > +
-> > > +       gpiochip =3D irq_data_get_irq_chip_data(data);
-> > > +       if (WARN_ON_ONCE(data->hwirq >=3D ARRAY_SIZE(gpiochip->irq_ty=
-pe)))
-> > > +               return;
-> > > +
-> > > +       spin_lock_irqsave(&gpiochip->lock, flags);
-> >=20
-> > Use a scoped guard here
-> >=20
-> > guard(spinlock_irqsave)(&gpiochip->lock);
-> >=20
-> > > +static void airoha_pinctrl_gpio_irq_mask(struct irq_data *data)
-> > > +{
-> > > +       u8 offset =3D data->hwirq % AIROHA_REG_GPIOCTRL_NUM_GPIO;
-> > > +       u8 index =3D data->hwirq / AIROHA_REG_GPIOCTRL_NUM_GPIO;
-> > > +       u32 mask =3D GENMASK(2 * offset + 1, 2 * offset);
-> > > +       struct airoha_pinctrl_gpiochip *gpiochip;
-> > > +       unsigned long flags;
-> > > +
-> > > +       gpiochip =3D irq_data_get_irq_chip_data(data);
-> > > +
-> > > +       spin_lock_irqsave(&gpiochip->lock, flags);
-> >=20
-> > Dito
-> >=20
-> > > +static int airoha_pinctrl_gpio_irq_type(struct irq_data *data,
-> > > +                                       unsigned int type)
-> > > +{
-> > > +       struct airoha_pinctrl_gpiochip *gpiochip;
-> > > +       unsigned long flags;
-> > > +
-> > > +       gpiochip =3D irq_data_get_irq_chip_data(data);
-> > > +       if (data->hwirq >=3D ARRAY_SIZE(gpiochip->irq_type))
-> > > +               return -EINVAL;
-> > > +
-> > > +       spin_lock_irqsave(&gpiochip->lock, flags);
-> >=20
-> > Dito
-> >=20
-> > > +       girq->chip =3D devm_kzalloc(dev, sizeof(*girq->chip), GFP_KER=
-NEL);
-> > > +       if (!girq->chip)
-> > > +               return -ENOMEM;
-> > > +
-> > > +       girq->chip->name =3D dev_name(dev);
-> > > +       girq->chip->irq_unmask =3D airoha_pinctrl_gpio_irq_unmask;
-> > > +       girq->chip->irq_mask =3D airoha_pinctrl_gpio_irq_mask;
-> > > +       girq->chip->irq_mask_ack =3D airoha_pinctrl_gpio_irq_mask;
-> > > +       girq->chip->irq_set_type =3D airoha_pinctrl_gpio_irq_type;
-> > > +       girq->chip->flags =3D IRQCHIP_SET_TYPE_MASKED | IRQCHIP_IMMUT=
-ABLE;
-> > > +       girq->default_type =3D IRQ_TYPE_NONE;
-> > > +       girq->handler =3D handle_simple_irq;
-> >=20
-> > If the irqchip is immutable it is const and there is no point to malloc=
- it.
-> >=20
-> > Just
-> >=20
-> > static const struct irq_chip airoha_gpio_irq_chip =3D {...
-> >=20
-> > And assign it:
-> >=20
-> > girq =3D &g->gc.irq;
-> > gpio_irq_chip_set_chip(girq, &airoha_gpio_irq_chip);
->=20
-> ack, I will fix it in v5.
->=20
-> Regards,
-> Lorenzo
->=20
-> >=20
-> > Yours,
-> > Linus Walleij
-
-
-
---NZtxAZ5/yN8ueZoO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZvMtlAAKCRA6cBh0uS2t
-rNZFAQDh1TQOTGsS6AJYn4S0E1QSvJxVk5y3yGM385PlB1UoHAEA8edZ+wyz5q9H
-yo2JKGgyRdNvxRP0tcPbnjEYEvDbnAg=
-=6/CL
------END PGP SIGNATURE-----
-
---NZtxAZ5/yN8ueZoO--
+DQpPbiAyNC8wOS8yNCAyMDo1MCwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gT24gVHVl
+LCBTZXAgMjQsIDIwMjQgYXQgMTE6MDI6MzBBTSArMTIwMCwgQ2hyaXMgUGFja2hhbSB3cm90ZToN
+Cj4+IEFkZCB0aGUgSTJDIGNvbnRyb2xsZXJzIHRoYXQgYXJlIHBhcnQgb2YgdGhlIFJUTDkzMDAg
+U29DLg0KPj4NCj4+IFNpZ25lZC1vZmYtYnk6IENocmlzIFBhY2toYW0gPGNocmlzLnBhY2toYW1A
+YWxsaWVkdGVsZXNpcy5jby5uej4NCj4+IC0tLQ0KPj4NCj4+IE5vdGVzOg0KPj4gICAgICBDaGFu
+Z2VzIGluIHYyOg0KPj4gICAgICAtIFVzZSByZWcgcHJvcGVydHkNCj4+DQo+PiAgIGFyY2gvbWlw
+cy9ib290L2R0cy9yZWFsdGVrL3J0bDkzMHguZHRzaSB8IDE4ICsrKysrKysrKysrKysrKysrKw0K
+Pj4gICAxIGZpbGUgY2hhbmdlZCwgMTggaW5zZXJ0aW9ucygrKQ0KPj4NCj4+IGRpZmYgLS1naXQg
+YS9hcmNoL21pcHMvYm9vdC9kdHMvcmVhbHRlay9ydGw5MzB4LmR0c2kgYi9hcmNoL21pcHMvYm9v
+dC9kdHMvcmVhbHRlay9ydGw5MzB4LmR0c2kNCj4+IGluZGV4IGNmMWIzOGI2YzM1My4uY2M0MzAy
+NWNkNDZjIDEwMDY0NA0KPj4gLS0tIGEvYXJjaC9taXBzL2Jvb3QvZHRzL3JlYWx0ZWsvcnRsOTMw
+eC5kdHNpDQo+PiArKysgYi9hcmNoL21pcHMvYm9vdC9kdHMvcmVhbHRlay9ydGw5MzB4LmR0c2kN
+Cj4+IEBAIC0zMywxMiArMzMsMzAgQEAgbHhfY2xrOiBjbG9jay0xNzVtaHogew0KPj4gICAJc3dp
+dGNoMDogc3dpdGNoQDFiMDAwMDAwIHsNCj4+ICAgCQljb21wYXRpYmxlID0gInJlYWx0ZWsscnRs
+OTMwMmMtc3dpdGNoIiwgInN5c2NvbiIsICJzaW1wbGUtbWZkIjsNCj4+ICAgCQlyZWcgPSA8MHgx
+YjAwMDAwMCAweDEwMDAwPjsNCj4+ICsJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KPj4gKwkJI3Np
+emUtY2VsbHMgPSA8MT47DQo+PiAgIA0KPj4gICAJCXJlYm9vdCB7DQo+PiAgIAkJCWNvbXBhdGli
+bGUgPSAic3lzY29uLXJlYm9vdCI7DQo+PiAgIAkJCW9mZnNldCA9IDwweDBjPjsNCj4+ICAgCQkJ
+dmFsdWUgPSA8MHgwMT47DQo+PiAgIAkJfTsNCj4+ICsNCj4+ICsJCWkyYzA6IGkyY0AzNmMgew0K
+Pj4gKwkJCWNvbXBhdGlibGUgPSAicmVhbHRlayxydGw5MzAwLWkyYyI7DQo+PiArCQkJcmVnID0g
+PDB4MzZjIDB4MTQ+Ow0KPj4gKwkJCXN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+PiArCQkJI2FkZHJl
+c3MtY2VsbHMgPSA8MT47DQo+PiArCQkJI3NpemUtY2VsbHMgPSA8MD47DQo+PiArCQl9Ow0KPiBU
+aGlzIHNob3VsZCBiZSBzZW50IGFzIG9uZSBzZXJpZXMuLi4gWW91IGhhdmUgZGVwZW5kZW5jeSBv
+dGhlcndpc2UuIEFsc28NCj4gdGhpcyBwb2ludHMgdG8gaXNzdWUgb2YgbWl4aW5nIG5vZGVzIHdp
+dGggYW5kIHdpdGhvdXQgdW5pdCBhZGRyZXNzLg0KPg0KPiBJIHRoaW5rIGkyYyBjaGlsZHJlbiBz
+aG91bGQgYmUgdW5kZXIgc29tZSBzb3J0IG9mICJpMmMiIGJ1cyBub2RlLg0KDQpzb21ldGhpbmcg
+bGlrZSB0aGlzPw0KDQpzd2l0Y2hAMWIwMDAwMDAgew0KIMKgwqAgaTJjLWNvbnRyb2xsZXIgew0K
+IMKgwqDCoMKgIGkyYy1tc3QxIHsNCiDCoMKgwqDCoMKgwqDCoMKgIHN0YXR1cyA9ICJva2F5IjsN
+CiDCoMKgwqDCoMKgwqDCoMKgIGkyY0AwIHsNCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJlZyA9
+IDwwPjsNCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdwaW9AMjAgew0KIMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCByZWcgPSA8MHgyMD47DQogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9
+Ow0KIMKgwqDCoMKgwqDCoMKgwqAgfTsNCiDCoMKgwqDCoMKgwqDCoMKgIGkyY0AyIHsNCiDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIHJlZyA9IDwyPjsNCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdw
+aW9AMjAgew0KIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZWcgPSA8MHgyMD47DQog
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Ow0KIMKgwqDCoMKgwqDCoMKgwqAgfTsNCiDCoMKgwqDC
+oCB9Ow0KIMKgwqDCoMKgIGkyYy1tc3QyIHsNCiDCoMKgwqDCoMKgwqDCoMKgIHN0YXR1cyA9ICJk
+aXNhYmxlZCI7DQogwqDCoMKgwqAgfTsNCiDCoCB9Ow0KfTsNCg0KPiBQbGVhc2UgcHJvcG9zZSBl
+bnRpcmUgcmVhbHRlayxydGw5MzAyYy1zd2l0Y2ggYmluZGluZyB3aXRoIHRoZSBJMkMuIEl0J3MN
+Cj4gdmVyeSBjb25mdXNpbmcgdG8gc2VlIGl0IHBhcnRpYWwuDQpZZXAgd2lsbCBjb21iaW5lIHRo
+ZXNlIHNlcmllcy4NCj4NCj4NCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCj4=
 
