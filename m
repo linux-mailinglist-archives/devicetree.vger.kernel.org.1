@@ -1,57 +1,59 @@
-Return-Path: <devicetree+bounces-104764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDF369841B4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:11:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26D7A9841BF
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:12:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66F851F24896
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 09:11:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57AD71C24903
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 09:12:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C22F0155342;
-	Tue, 24 Sep 2024 09:11:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80E85154BF8;
+	Tue, 24 Sep 2024 09:12:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HfSxoE7M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tWuEqDAv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99EA41552F5;
-	Tue, 24 Sep 2024 09:11:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56EC814A604;
+	Tue, 24 Sep 2024 09:12:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727169087; cv=none; b=KZBeHYZe5XJPLi+oFSp45M804dIbwNKylD5wUeaPODScyIYZLed4NZxKvEuvXyLp+Qcou1j/R5OepedFM4+ovtlGUz44GRHN/JRsDpdiEL6UN+s7a1Kr89uEZoVsv3gZAF7qyGOGmPLsU6YORMGhvVKIR+i29yINAAa2isNsVhk=
+	t=1727169168; cv=none; b=RX8xxgxWWiq4z86tMItdP1htxeQuYX9bqnd6ZbJJNTFzKXTadzZ+P0u6QsTPLLB2YQ/4W/qLn3/8ivUmTYDJF+pORBfdsGv4DuTRN8IHD+QqbBUQUfeoChU5XoYQ2NVMrIAqn1XLmtlLjS9glsp6BdCQBhqxHwrOZaZknib6v2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727169087; c=relaxed/simple;
-	bh=Tbel8uvGtCqj4KcUrojivaO8C+VEW00V6+EQbi3lJAc=;
+	s=arc-20240116; t=1727169168; c=relaxed/simple;
+	bh=OWP93lxMU7Kz7NXhHpQx1nS5UtQYEswveLq4GJOZPeA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QopK0wONGeLaEQLQ5k9Evr3nwJBnmOLTWV6i+sVyKzaRF5aTAPjuo0GzqgUbXu2F+mPToo7FQ45UoRzqHLyVS0Fg3rQ3OufqIqW1Cwdyzmbbg7wa+7+3I4Z5sy5l/mv8cOCliTrylmgC16CoPz64plyX9Ok6wl2r5AkNTcGihLM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HfSxoE7M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 486F0C4CEC4;
-	Tue, 24 Sep 2024 09:11:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oHf+fHhbI6uTgSKE9temhHwpXE0wrPGfqpuGubX5v2LEIzTe4ub+nI4fDv/XE++OVjUOgBgea2FO2Z9GaIr7Er7SXeyr+LQplygSrdAZy30NDGbXUlwztUwVSj4kEq/GUoCwEp0LI7rXhx5ZHSNLgMdIQE1YB28HB4u1PG55U+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tWuEqDAv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 147DFC4CEC6;
+	Tue, 24 Sep 2024 09:12:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727169087;
-	bh=Tbel8uvGtCqj4KcUrojivaO8C+VEW00V6+EQbi3lJAc=;
+	s=k20201202; t=1727169167;
+	bh=OWP93lxMU7Kz7NXhHpQx1nS5UtQYEswveLq4GJOZPeA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HfSxoE7MAm8p/dLPymACTis4MfzHpHjwe3QUIUF2CX0sF9Nk3l4HqHp8H85CZfRrl
-	 RnCxOEOc/kiZ1R+cp4gtpHU+kbVUTqs2FXE4YR2eIAv9A9IroRjmwFg2wqEcEmmsN6
-	 Qs9XA4USysKvDEbTmsOmr6Uu+JelxT+Qd9KQrZMk7mgzUfPGhLlpTrDVI+uRCMPGKe
-	 3JnT7CUNuLAVLKUv7UAvKYC7cNsQVzqcL+Yt9JlbrIdhO7YNQFAjMC3cX80pIzahCX
-	 P/nXdIRe2VeQVV3sZvh01/E8srVmopGgjmprLTS4aoHFmoiPDMU/SBezeQ3WM2OEZJ
-	 9TgjCwL+NREXA==
-Date: Tue, 24 Sep 2024 11:11:23 +0200
+	b=tWuEqDAvLDmw+g74otC7+T/ALm+AaCx1SFASlCaSbJk0UYwqeGeXw5lH63uAOihzG
+	 M6+/VdXUfX1qwTTNJsaXeVZM4jSczGcEfB+6/suJQeWfFPLjqJNpJhywOvFvi2l0Iy
+	 pFiT0xg1thDnu+RAVaqZa1AuVa7cWCTMsc1nLxecD0EX+/ctZsBnK7KAezw1U3XJig
+	 p0FHHhQAh1ulnvR2TwCfo/VHePqibUD5FnkmfkNotszk+d7Q/S6Od7pMZLL6x7umt4
+	 8vjUSReu3lGW5tGaaOgFU9O19E41UKz8rRNveEtg0Pny1rKA0uKtEe1xUGq6WQereq
+	 Pvaw4Zo5bhDYQ==
+Date: Tue, 24 Sep 2024 11:12:44 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Rohit Agarwal <rohiagar@chromium.org>
-Cc: chunkuang.hu@kernel.org, krzk+dt@kernel.org, ck.hu@mediatek.com, 
-	robh@kernel.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: mediatek: dpi: Add power
- domain for MT8183
-Message-ID: <4djlcabqjkq7thbxadjbbi6oumybnyzv7biwawke46ctjccwye@rmqougrj6pl2>
-References: <20240919112152.2829765-1-rohiagar@chromium.org>
- <20240919112152.2829765-2-rohiagar@chromium.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: mmc: controller: allow node name to
+ be named slot@*
+Message-ID: <qt3ivwsa3uaidcgkzbd2ewohbyd6zbzseraihftdhxpziuhnpq@xsne3f4wdfua>
+References: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-0-5aa8bdfe01af@linaro.org>
+ <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-1-5aa8bdfe01af@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,14 +62,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240919112152.2829765-2-rohiagar@chromium.org>
+In-Reply-To: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-1-5aa8bdfe01af@linaro.org>
 
-On Thu, Sep 19, 2024 at 11:21:51AM +0000, Rohit Agarwal wrote:
-> Add power domain binding to the mediatek DPI controller
+On Fri, Sep 20, 2024 at 10:38:03AM +0200, Neil Armstrong wrote:
+> In preparation of supporting the mmc-slot subnode, allow
+> the nodename to be either mmc@ or mmc-slot@
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> index 58ae298cd2fc..f797c32ea688 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> @@ -20,7 +20,9 @@ description: |
+>  
+>  properties:
+>    $nodename:
+> -    pattern: "^mmc(@.*)?$"
+> +    oneOf:
+> +      - pattern: "^mmc(@.*)?$"
+> +      - pattern: "^slot(@.*)?$"
 
-That's DPI controller, how can you add here power domain binding?
+I don't think mmc-slot is allowed by this.
 
-> for MT8183 that already had the property in DT.
+This should be squashed with mmc-slot child patch. It does not make
+sense to allow mmc-slots if there are no mmc-slots.
 
 Best regards,
 Krzysztof
