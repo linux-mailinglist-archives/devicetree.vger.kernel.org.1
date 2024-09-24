@@ -1,117 +1,106 @@
-Return-Path: <devicetree+bounces-104794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B057C9842BD
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:56:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2364E9842DC
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 12:01:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A7201C21999
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 09:56:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D59572863D9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 10:01:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6937315575C;
-	Tue, 24 Sep 2024 09:56:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A029158DD9;
+	Tue, 24 Sep 2024 10:01:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=milecki.pl header.i=@milecki.pl header.b="H4Qq7VYD"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="EDEzJDOv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from 7.mo560.mail-out.ovh.net (7.mo560.mail-out.ovh.net [188.165.48.182])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB3C61487DC
-	for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 09:55:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.165.48.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56AC214BF9B;
+	Tue, 24 Sep 2024 10:01:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727171762; cv=none; b=LWZOAcg+MC95nLmAmgNvrFKIBe3MGLsTtdO/obiTWVIhKgucXYAFaZpsupcBAVoLUngJ7/kW6RaZ72TUYpl0nkw5X5myO6nLzxskf/6/Pd8yMsgy243jpm10oSU518HK/BhqY5fndl8/ewhlHfLRrNskvbZ/sm6uSz4cUhBFL+M=
+	t=1727172090; cv=none; b=LkX5w/OSIX7Q9qwtyWi3MNM/FCIB9kQOqIIwolpO52YA0yjEucRu4XTPPouHGSlqzxmxEdtK52XcYb6tFebVX0CAfqVI2y0q8mO+HWPGhbaESZFsR/CCcSmR7SBw+f1OuSmluJQAYsjDdoT3hxCZZYLneahrnAR826kLJ68XJHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727171762; c=relaxed/simple;
-	bh=BnNTOClk37Yx5kmE3nkdR71wySOFIiN6hExvBSLNF8Q=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=Ypil2ClhRQwy+VrmGTvUVEDPg6wjIZPSXfiX2rm35HaQ1x3tTVdmWsgppAvr+ZUJyj1oCNCjf6bIqjAKxPT7aCOq3iweOXcX6R260l1rR9v+EqzUX8ZQSWSHayhoaofZCYnGhKfHlUV+GOx2SxxBdjqZeMq9ukFndRylo9GleMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=milecki.pl; spf=pass smtp.mailfrom=milecki.pl; dkim=pass (2048-bit key) header.d=milecki.pl header.i=@milecki.pl header.b=H4Qq7VYD; arc=none smtp.client-ip=188.165.48.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=milecki.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=milecki.pl
-Received: from director6.ghost.mail-out.ovh.net (unknown [10.108.17.147])
-	by mo560.mail-out.ovh.net (Postfix) with ESMTP id 4XCZxK5sLPz1mNB
-	for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 09:55:49 +0000 (UTC)
-Received: from ghost-submission-55b549bf7b-5q9lx (unknown [10.110.164.235])
-	by director6.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 3B7A11FE9B;
-	Tue, 24 Sep 2024 09:55:47 +0000 (UTC)
-Received: from milecki.pl ([37.59.142.101])
-	by ghost-submission-55b549bf7b-5q9lx with ESMTPSA
-	id AqzIBaOM8mZcgQAA+u7rcQ
-	(envelope-from <rafal@milecki.pl>); Tue, 24 Sep 2024 09:55:47 +0000
-Authentication-Results:garm.ovh; auth=pass (GARM-101G004d3854881-9240-4405-bcc0-c07042d02785,
-                    1AB79004D049CCABD2FE35BF073248474FDEF107) smtp.auth=rafal@milecki.pl
-X-OVh-ClientIp:151.80.29.20
+	s=arc-20240116; t=1727172090; c=relaxed/simple;
+	bh=8EkwCtL1pMLPJpFVyhCEcC4yr0fijNXf5bHbvdG9SaE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WzdA1PoOhwKIXKLa3E08m0YBPjrx/Y1VM9DckwVvTH4FflR31Nx449jPYD33SKBA3hDSofSDzvgd8SSo1FLkNkf97yTGoWpcH5uVrkEbNBAKau+4fYqr0PM51aG4EfN6+XbH7gdl+6m/Ply+WgH01Dp1MhOy5O2enOsUo4LkPHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=EDEzJDOv; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=qHRSPWckHafEtxyIwPf3zZU4QzTnqXjXtDJvuDWNGxY=; b=EDEzJDOvTIqfDKu/h0+VACmGM+
+	d6J1krWZp1rP+U/h2l7/YVcCVDjpu9xLJnRT0jmDbF5p1YBo6G9JlgZrdjjkLx63koYHZA0U6V/cE
+	CPLGZkv012RDB9CdDejb5zLOx4r66xa0wDi2FuozwTUXhViqdsJeJVnCFK+e+Nrw3LjyEaZ6TpiPE
+	0zeywkM2krVYU0Lv3u1KRpVQGTvWkxded/eEXWFmo3RttahcJEGMm/OBM9kh9W1va46iz9g53mMUQ
+	JPSFdBsauXBiSDWYaicBVVOaF+G9CrvW0YgpA7nGn0f71bZjQPphw41KIyudHvZrhJKdEz7sI5TMJ
+	O9fETzxQ==;
+Received: from 90-177-212-167.rck.o2.cz ([90.177.212.167] helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1st2MH-0000xL-2Y; Tue, 24 Sep 2024 12:01:25 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, Frank Wang <frawang.cn@gmail.com>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
+ tim.chen@rock-chips.com, wmc@rock-chips.com,
+ Frank Wang <frank.wang@rock-chips.com>
+Subject:
+ Re: [PATCH v2 2/2] phy: rockchip: inno-usb2: Add usb2 phys support for rk3576
+Date: Tue, 24 Sep 2024 12:01:23 +0200
+Message-ID: <15288441.JCcGWNJJiE@phil>
+In-Reply-To: <20240924085510.20863-2-frawang.cn@gmail.com>
+References:
+ <20240924085510.20863-1-frawang.cn@gmail.com>
+ <20240924085510.20863-2-frawang.cn@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 24 Sep 2024 11:55:44 +0200
-From: =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-To: Sandie Cao <sandie.cao@deepcomputing.io>
-Cc: Conor Dooley <conor@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Heiko Stuebner
- <heiko.stuebner@cherry.de>, Neil Armstrong <neil.armstrong@linaro.org>,
- Linus Walleij <linus.walleij@linaro.org>, Michael Zhu
- <michael.zhu@starfivetech.com>, Drew Fustini <drew@beagleboard.org>,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dhs@frame.work, ams@frame.work,
- gregkh@linuxfoundation.org, yuning.liang@deepcomputing.io,
- huiming.qiu@deepcomputing.io
-Subject: Re: [patch v2 3/3] riscv: dts: starfive: add framework dts
-In-Reply-To: <20240924080650.1345485-4-sandie.cao@deepcomputing.io>
-References: <20240924080650.1345485-4-sandie.cao@deepcomputing.io>
-Message-ID: <75d4f0395187f7950e0450a91fbe087d@milecki.pl>
-X-Sender: rafal@milecki.pl
-X-Webmail-UserID: rafal@milecki.pl
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 10134506538491882359
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeeftddrvddtvddgvdduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvvefujghfkfigihgtgfesthekjhdttddtjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepjeejkeekgeejtdffffevffeivedtueeifeeuffegkeehkeeliedugfelfedutdeunecukfhppeduvdejrddtrddtrddupdefuddruddurddvudekrddutdeipdduhedurdektddrvdelrddvtddpfeejrdehledrudegvddruddtudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehiedtpdhmohguvgepshhmthhpohhuth
-DKIM-Signature: a=rsa-sha256; bh=jffzDI9wqpTBxYh402/WuPcxuVwvyleh09GDw3XTbs0=;
- c=relaxed/relaxed; d=milecki.pl; h=From; s=ovhmo3028686-selector1;
- t=1727171750; v=1;
- b=H4Qq7VYDRzRWv9WFaKeW1C47OolejEPczUMrO/b5LLTjo2+5Z3m5nY+1cHFcCufYPh5t/6hk
- oMrRFbUEq/f2QprP1TO9UxEXsV2uwjvrBk3XxOGOfYSh5lvYxK8q5do3FJoXGkBQVlCRRl3O1+G
- j3wAt0duT4a3RN+jaHXNimzKu2hN9qKAr153r4ypR60sYAP9fibB4gSaWR9PBsawYGFcpDlscQ4
- 5UZk7IOgZuy4uu+Q+0HWZBAFmDEiCqhUShtiId4/icFcn0eloP/h2br97bFgUBxA3/YVg3IvwQ+
- qqLrPsjwzccFcyJdJRsf9qwltIPJWn42N5B7jCN4YUvKg==
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 2024-09-24 10:06, Sandie Cao wrote:
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-framework.dts
-> b/arch/riscv/boot/dts/starfive/jh7110-framework.dts
-> new file mode 100644
-> index 000000000000..ff12c24ebab3
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-framework.dts
-> @@ -0,0 +1,34 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
-> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
-> + */
-> +
-> +/dts-v1/;
-> +#include "jh7110-common.dtsi"
-> +
-> +/ {
-> +	model = "Framework FRANME0000";
-> +	compatible = "deepcomputing,fm7110", "starfive,jh7110";
-> +};
+Am Dienstag, 24. September 2024, 10:55:10 CEST schrieb Frank Wang:
+> From: William Wu <william.wu@rock-chips.com>
+> 
+> The RK3576 SoC has two independent USB2.0 PHYs, and
+> each PHY has one port.
 
-Nitpicking: property "compatible" should go first.
+Can you please split the content into "converting to clk_bulk" (see
+additional comment below) and "add rk3576" please?
 
-See Documentation/devicetree/bindings/dts-coding-style.rst
+That would make the patch a lot cleaner.
 
--- 
-Rafał Miłecki
+
+> @@ -376,6 +378,7 @@ rockchip_usb2phy_clk480m_register(struct rockchip_usb2phy *rphy)
+>  {
+>  	struct device_node *node = rphy->dev->of_node;
+>  	struct clk_init_data init;
+> +	struct clk *refclk = of_clk_get_by_name(node, "phyclk");
+
+Doesn't this create an imbalance - with the missing put?
+I think ideally just define clk_bulk_data structs for the
+1-clock and 3-clock variant, attach that to the device-data
+and then use the regular devm_clk_bulk_get ?
+
+That way you can then retrieve the clock from that struct?
+
+
+Thanks
+Heiko
+
+
 
