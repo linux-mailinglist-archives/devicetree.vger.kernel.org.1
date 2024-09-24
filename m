@@ -1,69 +1,57 @@
-Return-Path: <devicetree+bounces-105009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24B43984DBD
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 00:26:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FF77984DC8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 00:29:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BC9C1C2266D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 22:26:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1BA6EB20F56
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 22:29:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61AF0146D76;
-	Tue, 24 Sep 2024 22:26:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2086714AD38;
+	Tue, 24 Sep 2024 22:28:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KW+5rx58"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H3Ic/izS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AC1B13C9D9;
-	Tue, 24 Sep 2024 22:26:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC339155733;
+	Tue, 24 Sep 2024 22:28:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727216787; cv=none; b=XxJSY9KHRri/4+JrTVjnXYEKEG+vsPYWHwBaIueiVSOcjlA0DXYe9nl7uCKqmhRWHZEjm+RA4X+PTyT+Cu1Nt6bQg1sXl3qn9PLPzRf7aa09VFUAPgM19dVbWOKpiWmei8+UesGHfPRgYe/F5GiX1VLNsrE1Q3P5pf2v46JtsPg=
+	t=1727216939; cv=none; b=DFINKHDDF5gQ3n4pakyiH2E8TP+Yn0nQK6k0yRPZbgsim+GSBHxI6pIZQ+JwIm1QwnSLuHHsZmv/RTQf6DThIPrM5PQTu7knyVLSV8NTouK/l/vroMXZHhwNnWBWBjQPgthuCKiLQKZqWDBUb8kGWXRHdcZtDfUVK4nw+ldTjCo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727216787; c=relaxed/simple;
-	bh=YmYTBESt0EqQFqhnzMaFyGYpmk/68DRvs5SHo7cxNSY=;
+	s=arc-20240116; t=1727216939; c=relaxed/simple;
+	bh=csW1xRX/CF25lbQVuhHQ4dXWOUVuHFooioDDiVh4nGY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Px3S9n/yI3eC1KqJ4jtL3McggnUsQ5Fn3XHYK/fqQ6khp/SxTMk6swLXW/x6WP861aKIBqwRlExRIIEIcBV9vkiaIpbIlHYdH2eFmSDttmTKO3bdAKQM2UACeJ2uDHD+ycF8MEoY9XJ3xHneaukkmztHOxBICpO8VlBy0zg/BP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KW+5rx58; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CF21C4CEC4;
-	Tue, 24 Sep 2024 22:26:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=A121osuwHX5iOb+am//fitj9mSNnKNM+4Lb+KIzkK6FWLD/EnrJHfVByHTyO8kYh3klxa3imrIC3ERLI+NBX2Q594ks0Wo0RZbGQPvYbQdMY+eRVESeZVao3DF8mWg7KTXwyHAYU+kH27GDr8kYCdumv5c8AngntziPFwFpHOKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H3Ic/izS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D942C4CEC4;
+	Tue, 24 Sep 2024 22:28:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727216786;
-	bh=YmYTBESt0EqQFqhnzMaFyGYpmk/68DRvs5SHo7cxNSY=;
+	s=k20201202; t=1727216938;
+	bh=csW1xRX/CF25lbQVuhHQ4dXWOUVuHFooioDDiVh4nGY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KW+5rx58Am0dAtvner/unXsVDmx0QycmxdReU8qVh9hd8J2qXt/8xXa+AE2mT669A
-	 nM449DLPXw8eQONRvfIrSVc6HOzA2z+5vj9PwU1qWRvY7780Pmixy56hQte1iFE99J
-	 gqq5yqYsatOS+m9/7mdkTsn2R6+SKq950WwRTgZqTNxZFOyZ3GICGBtC4GXvOW+ac6
-	 3wc/vy2ttKQs2glG0L1bG6zj/XjLvBPebBlFVlPexRp6ne922um0WB2Wf2NK5HaiFN
-	 6ANRkMEOdZPrq50mxAiQS1Pg10OAD0VyioSQa6fnsrRT/GmWTXErnlK/IEKZ3lzpkZ
-	 wIwvBuegE0xow==
-Date: Tue, 24 Sep 2024 17:26:25 -0500
+	b=H3Ic/izSQekLXk6i3LULFQ/fofpaFW4njkZPnfgTKvOiFAGUXWacxJMtiXZzuTl9u
+	 j9gAUiXS2kjjYYuUcsRKdM2sfoYNYlUMCoevA+aAQnfkzfFkEaCbWDRcejmXrkF1C4
+	 X7nh4BoJ73nBKkiWg/TjPmbHgSxFUH417ipdzUvOlHN795g9kouFogrXG1QoxlVIp4
+	 2oC4jseVEq5YaZ8m15E+2Ek7HVMZuGqduiwt/CmeKQNeMlQtQ6Ej3C5YHgz9X1NBy1
+	 Yu2TURioKwqoZGSIR8JiziJ3Igu+akPbP7ViHnZxZkhVhE37q0deNk88VgQel1HGYd
+	 pLEfIrhuGfDqw==
+Date: Tue, 24 Sep 2024 17:28:57 -0500
 From: Rob Herring <robh@kernel.org>
-To: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>
-Cc: Conor Dooley <conor@kernel.org>,
-	Chanh Nguyen <chanh@os.amperecomputing.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Peter Yin <peteryin.openbmc@gmail.com>,
-	Noah Wang <noahwang.wang@outlook.com>, Marek Vasut <marex@denx.de>,
-	Fabio Estevam <festevam@gmail.com>, Lukas Wunner <lukas@wunner.de>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-	Phong Vo <phong@os.amperecomputing.com>,
-	Thang Nguyen <thang@os.amperecomputing.com>,
-	Quan Nguyen <quan@os.amperecomputing.com>,
-	Khanh Pham <khpham@amperecomputing.com>,
-	Open Source Submission <patches@amperecomputing.com>
-Subject: Re: [PATCH v2] dt-bindings: trivial-devices: add onnn,adt7462
-Message-ID: <20240924222625.GA403554-robh@kernel.org>
-References: <20240923093800.892949-1-chanh@os.amperecomputing.com>
- <20240923-private-grower-af6a7c1fca09@spud>
- <c536f43a-56f8-4cbf-99a0-fe3b54a42886@amperemail.onmicrosoft.com>
+To: Kunwu Chan <chentao@kylinos.cn>, linux@armlinux.org.uk
+Cc: saravanak@google.com, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH 1/2] amba: Add dev_is_amba() function and export it for
+ modules
+Message-ID: <20240924222857.GA404805-robh@kernel.org>
+References: <20240923094249.80399-1-chentao@kylinos.cn>
+ <20240923094249.80399-2-chentao@kylinos.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,49 +60,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c536f43a-56f8-4cbf-99a0-fe3b54a42886@amperemail.onmicrosoft.com>
+In-Reply-To: <20240923094249.80399-2-chentao@kylinos.cn>
 
-On Tue, Sep 24, 2024 at 11:17:53AM +0700, Chanh Nguyen wrote:
-> On 24/09/2024 04:23, Conor Dooley wrote:
-> > On Mon, Sep 23, 2024 at 09:38:00AM +0000, Chanh Nguyen wrote:
-> > > The adt7462 supports monitoring and controlling up to
-> > > four PWM Fan drive outputs and eight TACH inputs measures.
-> > > The adt7462 supports reading a single on chip temperature
-> > > sensor and three remote temperature sensors. There are up
-> > > to 13 voltage monitoring inputs.
-> > > 
-> > > Add device tree bindings for the adt7462 device.
-> > > 
-> > > Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
-> > > ---
-> > > Change in v2:
-> > >     - Add onnn,adt7462 to the list of trivial devices       [Guenter]
-> > 
-> > Is this really a trivial device? If it monitors and controls fans, how
-> > come those do not need to be represented in the devicetree? How is it
-> > possible to tell the difference between monitoring 1 and 4 fans without
-> > the extra detail?
-> > 
+On Mon, Sep 23, 2024 at 05:42:47PM +0800, Kunwu Chan wrote:
+> Add dev_is_amba() function to determine
+> whether the device is a AMBA device.
 > 
-> Hi Conor, Thank you for your comments!
-> 
-> The chip is old. The driver was added back in 2008.
-> 
-> Really, this is such an old chip that it would make more sense to just leave
-> its driver alone unless there is a problem with it; this is viewpoint from
-> Guenter.
-> 
-> I'm using the driver and the device tree with only the "compatible" and
-> "reg" properties; now it's being good for me without any extra detail.
-> 
-> Guenter, Rob, Krzysztof, and I discussed making the decision to add this
-> device to the list of trivial devices. You can get more information at
-> thread
-> https://lore.kernel.org/lkml/20240918220553.GA2216504-robh@kernel.org/T/
-> (Because the commit title changed between v1 and v2, it's so hard for
-> everyone to find it. Sorry! I missed mentioning the link to pacth v1).
+> Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Signed-off-by: Kunwu Chan <chentao@kylinos.cn>
+> ---
+>  drivers/amba/bus.c       | 6 ++++++
+>  include/linux/amba/bus.h | 5 +++++
+>  2 files changed, 11 insertions(+)
 
-It's fine. I'll apply this after the merge window.
+Russell, Can I get an ack for this to take it with patch #2.
 
 Rob
 
