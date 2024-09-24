@@ -1,84 +1,90 @@
-Return-Path: <devicetree+bounces-104981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFF39984C34
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 22:32:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D459984C35
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 22:33:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0295C1C22DCD
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 20:32:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C61241F2180C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 20:33:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFF7A136328;
-	Tue, 24 Sep 2024 20:32:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E675139CE9;
+	Tue, 24 Sep 2024 20:33:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="VfMSJ12a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bodrovcq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA7C326AD0
-	for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 20:32:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 154C026AD0;
+	Tue, 24 Sep 2024 20:33:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727209923; cv=none; b=GsZxQf/630uuW569bTjVac4DXtc9jnyyjQCjKA/ZLez/9ZLnGdMuXewEhNEpY6xK6Jq+U9Dt3CnQVPRTIZBLOBHR1IX46b+CxDWJMTaoLEzV3WdbpEMyVUDPVRst9Zc0JT3ktQHv9bE1REFERLkwOmFbKvT1oL7YBRSQQurg2o0=
+	t=1727209996; cv=none; b=bGtpKS8o69UowtsUdYQPNyU15xHqvVoYoy53ScUMN2p6Dv5hTDuFAU6T/gKt+Nq+HDLRj6tO+a4bIJ2zlsRmF8NLTAy1pLIyFVwo6kWTZJIIkSXZ9sN2AE5sUct7voke/2OfIGAy+pBRnyVL+KX1dCB/z2UPt5NVpfk9zAtglNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727209923; c=relaxed/simple;
-	bh=1in3fJTXzJN1owYp36OY+NqRy3fKAZfxa8RM6vUXOZA=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=Mvzck1NH2Tc2lZcE3/9pq220PvX7LFojs9gbbJS5PxzmUVsCWmRp55Eu9irnqKhzVdkGMNHbymr3C0v9KRQeB24ghD6YoOJCSEmnLf1UgT+yzR69MvwmlUGAkE6hToIIRM3iZ+dJVbuC0idsrizTnNlc8LKxBnP97LnpIdo1h10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=VfMSJ12a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42FA5C4CEC4;
-	Tue, 24 Sep 2024 20:32:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1727209923;
-	bh=1in3fJTXzJN1owYp36OY+NqRy3fKAZfxa8RM6vUXOZA=;
-	h=Date:From:To:Cc:Subject:From;
-	b=VfMSJ12az/4eu8ASHb/6/Ph+zC9tAUqKXvAsHS7osmMbQFZ66z+yOaTD0Ri/SpFiJ
-	 IhvMWSZJ8JIn8/T1N1jF1jXT+kBl6bJTtI28Bh+xCokd1z2alVO4vxPDmbEBfgYPXS
-	 8AQ2xL06CxAN6OKMbNXuI9WgVYShyq/H635GfUA4=
-Date: Tue, 24 Sep 2024 16:32:02 -0400
-From: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
-To: Luka Perkov <luka.perkov@sartura.hr>
-Cc: devicetree@vger.kernel.org, helpdesk@kernel.org
-Subject: Bouncing maintainer: Luka Kovacic
-Message-ID: <20240924-powerful-amber-husky-a53cbf@lemur>
+	s=arc-20240116; t=1727209996; c=relaxed/simple;
+	bh=McE1ehFOOaO9ZsLkHofB1vea/POcgDPEQ4Svju5Kh8o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P6VlWjlW/+s1z0BMQrhJKNZe0pXQAX2VCJ9rHYAmNtDASA05G50uI9PNI+YuV1WrJvn8h5UoBRt0Z1OQOh+vBPjqcZJdaoS1s4FyGeDCWuSywkFnYWrQVA1cw4GAGR5Ud3B8lhk1QY8tAYymmZZvWDeJMrciT8JAX8Enma42XGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bodrovcq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0CB2C4CEC4;
+	Tue, 24 Sep 2024 20:33:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727209995;
+	bh=McE1ehFOOaO9ZsLkHofB1vea/POcgDPEQ4Svju5Kh8o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bodrovcqo2at7klVob1pQ8dfshpDN3ftJaleaWJhqKX0QyftgtY0HZBhdiSUEnQOj
+	 NRDpHVdnC4XJB+AfXU/uqU3dVQosPVr7u/SE+x6LOyY0m5vpBCFVR8h8gr1rifkNkn
+	 9WfOZp2Q4p4/MoWfLZTvJSsHgbuAwjwNweWvNTgsTwyKUPiiZmq1BYC6mLETTLwKV5
+	 EXtHoYpgZJqalgyxmGMYDstfj2SkYzOWwGqissDa2154PZuGHbYlOvkI31Iouoh3Eh
+	 J9EBYeakfhnX6EGA+KyXAQQJPum4vuSkO7UNUQNn/9kGmFzfcVL/i5sD3fvgdd1G4W
+	 4L0lF1Ti8X/7g==
+Date: Tue, 24 Sep 2024 15:33:15 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org,
+	Michael Walle <mwalle@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Richard Weinberger <richard@nod.at>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	linux-mtd@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	linux-kernel@vger.kernel.org, Pratyush Yadav <pratyush@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: mtd: jedec,spi-nor: add optional
+ vcc-supply
+Message-ID: <172720999440.288956.7630447926663790865.robh@kernel.org>
+References: <20240920-spi-v1-0-97f220c2e10c@nxp.com>
+ <20240920-spi-v1-1-97f220c2e10c@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20240920-spi-v1-1-97f220c2e10c@nxp.com>
 
-Hello:
 
-I'm reaching out to co-maintainers of the following subsystems:
+On Fri, 20 Sep 2024 16:54:06 +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Introduce optional vcc-supply property, spi nor flash needs power supply
+> to work properly. The power supply maybe software controlable per board
+> design.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
-  - MIKROTIK CRS3XX 98DX3236 BOARD SUPPORT
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-The email address for one of your maintainers is bouncing:
-
-  M: Luka Kovacic <luka.kovacic@sartura.hr>
-
-There are several possible courses of action:
-
-1. If you know the new email address for the maintainer, please ask them to
-   submit a patch for MAINTAINERS and .mailmap files.
-
-2. If this maintainer stepped away from their duties, or if co-maintainers are
-   equally unable to reach them via any other means, please submit a patch to
-   MAINTAINERS to remove their M: entry.
-
-The goal is to have no bouncing M: entries in the maintainers file, so please
-follow up as soon as you have decided on the correct course of action.
-
-Best regards,
---
-Konstantin Ryabitsev
-Linux Foundation
-
-bugspray track
 
