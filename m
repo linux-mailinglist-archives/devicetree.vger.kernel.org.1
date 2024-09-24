@@ -1,64 +1,74 @@
-Return-Path: <devicetree+bounces-105021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82F46984EEC
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 01:25:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 286F4984EF5
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 01:26:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 182872846B5
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 23:25:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BBD2CB24289
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 23:26:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB1CE186E32;
-	Tue, 24 Sep 2024 23:25:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD30186E42;
+	Tue, 24 Sep 2024 23:26:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FoNN2a4r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MEPE6z+0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CAFD6E614;
-	Tue, 24 Sep 2024 23:25:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5076E186E3A;
+	Tue, 24 Sep 2024 23:26:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727220327; cv=none; b=mHcoeMCgdVa67CRteA2+TQPTJkPLPwS2xt4Se8Ud91WJs0H9jBotc4E6L48/bKgU0O6yA2xEcxXw2NXGiyQeSY6FmEBZpmI019rXNANi6E/517szYMzvc5G5jTvfKWo3dNJDwc3yV119dNJPodKXCZYrVIYWFjLboha3Wf9zYyA=
+	t=1727220398; cv=none; b=riuglARmg0ASKGuWxNlSTmjVJh2R+MvR2lPQWsMuj7Ww6kZLkxEYb6H0cUuHgx2Yqy5fpDYrd70PJVd+Qkh0g7QhWcIQXSyHATb/cUWN+I93tYpwCyPzE/Kndt1JkuaLHzaUOOEp0TXk8vD/njE1HMbyZS5jgP8d12/9hnOd+zI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727220327; c=relaxed/simple;
-	bh=912y+YG7XFuAmtXvG9yhctVKoh2TVVdU/C0h5V6e6Qk=;
+	s=arc-20240116; t=1727220398; c=relaxed/simple;
+	bh=I6brExxkWBVpJkhSehQuLcd8T40xvKS1pot9Nh/Ly/U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=crMJXXmi6fi/66s8ckD8C0hqYuTdkN93E+5TfC7xjel+RzGzu6i7HRscY9ilycAdLIezwjfdZkW98+l+JARYbL1a1DUVjwdGh6YgMarxsafx8vCuxOEU/HiybpRcGWueIdlHX1Qt1eYf4we2Noj7QxgYLYVhaex+Hz6oXv8gfMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FoNN2a4r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17812C4CEC4;
-	Tue, 24 Sep 2024 23:25:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bJUoWWGCPAj+m338sIx4GWX4epAZ/GyJHweTO2tuF1GDe1+1sX2fKQKKPLHltAldKY6zy+fyp0a5Ptqq2M7dWSl97gjSVuH7/laYnQW7bsTt2/KODSBgPzCAo6N8Uh4oT0CdyMxIf2JBBV9SyYovh0dVc8SiFiGCXPVaMxMWNAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MEPE6z+0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 017DFC4CEC4;
+	Tue, 24 Sep 2024 23:26:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727220327;
-	bh=912y+YG7XFuAmtXvG9yhctVKoh2TVVdU/C0h5V6e6Qk=;
+	s=k20201202; t=1727220398;
+	bh=I6brExxkWBVpJkhSehQuLcd8T40xvKS1pot9Nh/Ly/U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FoNN2a4rxN6rdy9YVVGu8gvrpAbVzF3PuANAG+jfsbEZlqyow388KK7dgyoHYjos+
-	 3JZdGrab3d/ag8O576eVySaj4PyATouza3Vx4Mmo0zWz0glUt39HQRuTFFpf7QouKQ
-	 4JV4miZzXUrw2S5KS9rofYHTQ7pOZsqz5oBFIpwDgnKLavDSKbNaYawW+9qS6CmYHt
-	 XCVPOXcSFYMJ5v0MMNzqTuH6iojbgfKgS7V/iE/yXCJnwqsvnTi6e3RbhtZTa+sFek
-	 yvT38trERskiwfWOJoIEwlOdS1JEagtZ+rB4c+3ddPjyoVyCrylDBs/j6g+tLoNhm+
-	 A+3Jw9Zjf/L+g==
-Date: Tue, 24 Sep 2024 18:25:26 -0500
-From: Rob Herring <robh@kernel.org>
-To: Shivnandan Kumar <quic_kshivnan@quicinc.com>
-Cc: Sibi Sankar <quic_sibis@quicinc.com>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
+	b=MEPE6z+0cd7mCPScA1J5PEjfaXYS1Ay3aK4LJXSoXQUqv/LgBQy5a3K5ABp3rSjiI
+	 kLvKqc5NuUq8ZgXrH09s8D6mJJjtJcSFv4aSJdejJFVz8kdLxNGKftEIiPGglZGD7+
+	 PcLFMPWLIa/s9HZZF7tU9by1fI7c/832RdwjGLeAjUlLTFR7WyqIHltKPWp2HWTmN7
+	 WovhIurSmeBT7tSTmJx7MhyrJpLdYPbks+tU7Zj0vL0rw4xCgmYffwK6cGdBlHoz3R
+	 ufeEx/5AZjwvibAkXmxgUphbhfUMuYNnjijcNieO0oadap+Df/kLKK0zs9ciYZBvLS
+	 2LUQCn6xt9hBw==
+Date: Tue, 24 Sep 2024 18:26:37 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
+	Katsuhiro Suzuki <katsuhiro@katsuster.net>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Weidong Wang <wangweidong.a@awinic.com>,
+	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
+	Shuming Fan <shumingf@realtek.com>, Mark Brown <broonie@kernel.org>,
+	Daniel Drake <drake@endlessm.com>, Xuerui Wang <kernel@xen0n.name>,
+	devicetree@vger.kernel.org, Takashi Iwai <tiwai@suse.com>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Masahiro Yamada <masahiroy@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
-Subject: Re: [PATCH 1/3] dt-bindings: mailbox: qcom,cpucp-mbox: Add sc7280
- cpucp mailbox instance
-Message-ID: <20240924232526.GA563039-robh@kernel.org>
-References: <20240924050941.1251485-1-quic_kshivnan@quicinc.com>
- <20240924050941.1251485-2-quic_kshivnan@quicinc.com>
+	Herve Codina <herve.codina@bootlin.com>, loongarch@lists.linux.dev,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-sound@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Matteo Martelli <matteomartelli3@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>
+Subject: Re: [PATCH v2 1/9] ASoC: dt-bindings: Add Everest ES8323 Codec
+Message-ID: <172722039635.568388.13431023710025552350.robh@kernel.org>
+References: <cover.1727056789.git.zhoubinbin@loongson.cn>
+ <4269c4bea71230c8145ac6fa5a5881d252b75ec9.1727056789.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,36 +77,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240924050941.1251485-2-quic_kshivnan@quicinc.com>
+In-Reply-To: <4269c4bea71230c8145ac6fa5a5881d252b75ec9.1727056789.git.zhoubinbin@loongson.cn>
 
-On Tue, Sep 24, 2024 at 10:39:39AM +0530, Shivnandan Kumar wrote:
-> sc7280 has a cpucp mailbox. Document them.
 
-And is different from the existing device how?
-
+On Tue, 24 Sep 2024 14:59:50 +0800, Binbin Zhou wrote:
+> Add DT bindings documentation for the Everest-semi ES8323 codec.
 > 
-> Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
+> Everest-semi ES8323 codec is a low-power mono audio codec with I2S
+> audio interface and I2C control.
+> 
+> Cc: Daniel Drake <drake@endlessm.com>
+> Cc: Katsuhiro Suzuki <katsuhiro@katsuster.net>
+> Cc: Matteo Martelli <matteomartelli3@gmail.com>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 > ---
->  .../devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml         | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/sound/everest,es8316.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml b/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
-> index f7342d04beec..4a7ea072a3c1 100644
-> --- a/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
-> +++ b/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
-> @@ -15,8 +15,9 @@ description:
-> 
->  properties:
->    compatible:
-> -    items:
-> -      - const: qcom,x1e80100-cpucp-mbox
-> +    enum:
-> +      - qcom,x1e80100-cpucp-mbox
-> +      - qcom,sc7280-cpucp-mbox
-> 
->    reg:
->      items:
-> --
-> 2.25.1
-> 
+
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
