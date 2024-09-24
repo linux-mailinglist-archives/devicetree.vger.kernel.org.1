@@ -1,105 +1,143 @@
-Return-Path: <devicetree+bounces-104862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AF44984511
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 13:43:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B05EC984516
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 13:44:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E36C31F207CF
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:43:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D32F91C23097
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:44:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C89491A4F2D;
-	Tue, 24 Sep 2024 11:43:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Wi77O6rq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FCC81A7040;
+	Tue, 24 Sep 2024 11:44:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0767586131;
-	Tue, 24 Sep 2024 11:43:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C4419B5B5;
+	Tue, 24 Sep 2024 11:44:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727178199; cv=none; b=aBIwzWQrHUCDGenrDggPJYXo9/zZLvsQzl0H81ufJPcLQF2gilnVxGxMhyZqLA21OZH/yk1rRy4MxmDOCaI1Nol37ek6EeVsQejM9dkSjh+S7z+ehI2JCUKHsFECtZUplLH2sqgPjxCy4pS91Jzin6VLoBJ7+7CRfYZVz6yWDU0=
+	t=1727178262; cv=none; b=oX5Kv60JMqvnK1rRwKEa2FBSH/IfT7GaaBbSNsJgh0eCnQ2CmS2xw5bqhQZhx8uxxMllF7R++9q1jagM0rfGy9gyvbtvEaa4YEk2AKuc009qwBZCY64N/KvMm0A62/pGgXt1430Dyur/SNgTmBnN2oB+2vY1CZTMyDjwOcJlWeE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727178199; c=relaxed/simple;
-	bh=SU5MDVugN9wq2UPurRQrLx+qX4c0j5tAS7Phiv68XM0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V1UL4kdDxQR0pHQdvsFPT6YJOjtHjZ4j4gKDL1qfTovMZ76E3LLXnmU+TAkXLCC/bvyzb6r/AD3Oyzc+RFCwBplOPm5pgvZgcZeg3sS75D/JH4X/yM/SGvoX+PjhR2kVktVmdlldW28MLB7IceMBJxXBxVxUerXrIhnc3friW5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Wi77O6rq; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1727178195;
-	bh=SU5MDVugN9wq2UPurRQrLx+qX4c0j5tAS7Phiv68XM0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Wi77O6rqSD6tSZk8btni0aIKEOC6piGPVcqP1Heu5337fwpUGa50wSEojpHyHu87I
-	 atAAuVDZFLKRV3Nud4DRyR7k7HryJuTUsY5sP8urmJXVzk4M0KE+C4PYEJG7CGalHW
-	 aEi701FKGVKOOKWrqwg3RSkkW3OaVOWX3u9TmDhQ735c68De37y5Cy4UYyVsqkrcXm
-	 4njlzguOP3/pRQCtKNk9TbjkqwZq/vLFKjqXe63ZuchL/jCQaawX0z3WDCfKLdypzs
-	 rdFAywR+ocmuqagsyGYhs8cHnTKNn1azKASnWgt4rD1gg+SglTyfnTIB0O2yCXz0kj
-	 oUtc6ybxbechQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2505217E1250;
-	Tue, 24 Sep 2024 13:43:14 +0200 (CEST)
-Message-ID: <0b573e20-e08b-42e3-bc45-7db07fc6cf57@collabora.com>
-Date: Tue, 24 Sep 2024 13:43:13 +0200
+	s=arc-20240116; t=1727178262; c=relaxed/simple;
+	bh=voPM9RA68skveUvLrh8DSAA/KmOm8MVToLqfgfVCkr4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gm0nZw1lq2fS96zjHNlPSlP7hDyBelrzxVNAi9Tu8kpgt3oW2OI28dvzU2ajUIJZTBvOR0FamuOdOFa8skzhuiYDcpegvXm3F9YpqbL5yBhXAsRaQRr4zoauDjopUfzh05Mn523Wn4bA9f1wWoOM9gK/4iGYBIAi+mFWDbLMqlo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6de05b9fd0bso43602117b3.1;
+        Tue, 24 Sep 2024 04:44:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727178259; x=1727783059;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xGqXhKq0oVLFGXkOOmdjpXMuEBL+BCbru1yFH/7p29U=;
+        b=LPdnd4JexhOxszEwY5Cs/vixcYpCmnLE1v29GEW8qU58FrTolY7pwvJga7c6GJftEJ
+         gn6vkyNwQAOw7fYF4HjKE0cUi0Jnnl6L2x695rB+0m8r3N4AOMmnyv6sBy2sC1eHoD6E
+         XMtmM6KcY2ZAn/sFQ4ZvqKjeH1m3Cq3U1qdVEd1oIPZDeuni491RD6tY1LdoPjUwNUxW
+         UbCKB64mzyTbRLf/ViNOsNJaqgHKsRVbccb9QvOh2vfN9nYxpIuBgnYHcv4xoWvJ0QNS
+         3Zfr8QRb7BXH0So8SQacj01x6ThFxubZSznFkcLBMqQh+MOJ4/KiIaLP+cGtz9KnCLsh
+         A1lA==
+X-Forwarded-Encrypted: i=1; AJvYcCUaHJpK6vVxIY8Ivda9tE2hkjGOa9HBvhRs7BkzC+kh7Rzr22v5NF5RjDsf3SVoZcmtaEc8apW2i1WhBORt@vger.kernel.org, AJvYcCVnXMivyHbaO6c8Jk95ZeL3xJYgUAesV2vUkTJ+4qimzHlYJj3ApkHNgbgACDd+UZMYY9dcvoP+nLDi@vger.kernel.org, AJvYcCXoSTWi82S1qJkliT/G1H7THgvJsEzXc/8qg2ZnO7jNAGqImNUYLkVtpyRIRyv5JuPjHLIFupv5PCAESU4=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSP8okof+T7LFXxDGX03iuFAJqrDmW4dBdPC2PkburmfZknTpO
+	0vOEhQvdi0Cmpgzc7bjalBcHbpRksnxIPQA8ofwqg8bqj7XIBEbEsZyRXpyu
+X-Google-Smtp-Source: AGHT+IEReg254Hpm5WHOwt34zykrxPoTzPib7bcBXcezXbaNsPec3eB7n3iC5KFj7psfZQHu2yxvow==
+X-Received: by 2002:a05:690c:39c:b0:6e2:3e9:d89d with SMTP id 00721157ae682-6e203e9db3fmr35942027b3.38.1727178258920;
+        Tue, 24 Sep 2024 04:44:18 -0700 (PDT)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e20ce8857dsm2244317b3.0.2024.09.24.04.44.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Sep 2024 04:44:18 -0700 (PDT)
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e04196b7603so3242933276.0;
+        Tue, 24 Sep 2024 04:44:17 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCULrbVaj/n1iW09qlsXEUymfkpYCbix4xzB54Dq23J+r+Pc1UmQ6M7A7JJ159W8cgWM1X/zyG3GvqfF7dKu@vger.kernel.org, AJvYcCWDMXf+n9hvx/bmSMlaFNGVnhPr4K6CruQfWxEAifnQdF3p8Doz/BhaWrqLk8La1jng2z24EhuRNLfTeoA=@vger.kernel.org, AJvYcCXnYdPCySHmBGoTsnGiJvjW56FxF6FcrmC5tTI84y55mG+9oCyktMT5UbAI7+N5k6wwIqlRymN8ZycD@vger.kernel.org
+X-Received: by 2002:a05:690c:d82:b0:6e2:993:917c with SMTP id
+ 00721157ae682-6e20993a219mr25327247b3.2.1727178256981; Tue, 24 Sep 2024
+ 04:44:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] arm64: dts: mt8195: Fix dtbs_check error for mutex
- node
-To: Macpaul Lin <macpaul.lin@mediatek.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yong Wu <yong.wu@mediatek.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org,
- Alexandre Mergnat <amergnat@baylibre.com>
-Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
- Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
- Chris-qj chen <chris-qj.chen@mediatek.com>,
- MediaTek Chromebook Upstream
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- Chen-Yu Tsai <wenst@chromium.org>
-References: <20240924103156.13119-1-macpaul.lin@mediatek.com>
- <20240924103156.13119-5-macpaul.lin@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240924103156.13119-5-macpaul.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240226-audio-i350-v8-0-e80a57d026ce@baylibre.com> <20240226-audio-i350-v8-1-e80a57d026ce@baylibre.com>
+In-Reply-To: <20240226-audio-i350-v8-1-e80a57d026ce@baylibre.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 24 Sep 2024 13:44:05 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXtm+jGbbLXnCjPZZu_ZwpR-tCRuwbz0iQxUPkXG=g09A@mail.gmail.com>
+Message-ID: <CAMuHMdXtm+jGbbLXnCjPZZu_ZwpR-tCRuwbz0iQxUPkXG=g09A@mail.gmail.com>
+Subject: Re: [PATCH v8 1/5] ASoC: codecs: add MT6357 support
+To: amergnat@baylibre.com
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+	Nicolas Belin <nbelin@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 24/09/24 12:31, Macpaul Lin ha scritto:
-> The mutex node in mt8195.dtsi was triggering a dtbs_check error:
->    mutex@1c101000: 'clock-names', 'reg-names' do not match any of the
->                    regexes: 'pinctrl-[0-9]+'
-> 
-> This seems no need by inspecting the DT schemas and other reference boards,
-> so drop 'clock-names' and 'reg-names' in mt8195.dtsi.
-> 
-> Fixes: 92d2c23dc269 ("arm64: dts: mt8195: add display node for vdosys1")
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+Hi Alexandre,
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On Thu, Sep 5, 2024 at 11:08=E2=80=AFAM <amergnat@baylibre.com> wrote:
+> From: Nicolas Belin <nbelin@baylibre.com>
+>
+> Add the support of MT6357 PMIC audio codec.
+>
+> Signed-off-by: Nicolas Belin <nbelin@baylibre.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 
+Thanks for your patch, which is now commit 5e2404493f9f6028 ("ASoC:
+codecs: add MT6357 support").
 
+> --- a/sound/soc/codecs/Kconfig
+> +++ b/sound/soc/codecs/Kconfig
+> @@ -2501,6 +2502,12 @@ config SND_SOC_ML26124
+>  config SND_SOC_MT6351
+>         tristate "MediaTek MT6351 Codec"
+>
+> +config SND_SOC_MT6357
+> +       tristate "MediaTek MT6357 Codec"
+
+Does this need dependencies?  The driver uses regmap, but it's not
+immediately clear to me what is the backend (SPI?).
+
+SND_SOC_MT6357 is selected by SND_SOC_MT8365_MT6357 in the next patch,
+but I guess there can be other users, so making the SND_SOC_MT6357
+symbol invisible ("tristate ... if COMPILE_TEST") is not an option?
+
+Similar comments for the pre-existing SND_SOC_MT635[189] symbols,
+but at least SND_SOC_MT6359 depends on MTK_PMIC_WRAP.
+
+> +       help
+> +         Enable support for the platform which uses MT6357 as
+> +         external codec device.
+> +
+>  config SND_SOC_MT6358
+>         tristate "MediaTek MT6358 Codec"
+>         help
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
