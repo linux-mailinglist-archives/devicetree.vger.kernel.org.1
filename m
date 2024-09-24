@@ -1,60 +1,65 @@
-Return-Path: <devicetree+bounces-104848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CD819844D5
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 13:35:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E8049844D7
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 13:35:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CA071F26F81
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:35:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C506FB275AB
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:35:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A2B71A7AF7;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6598A1AC8B1;
 	Tue, 24 Sep 2024 11:31:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="qj09czps"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="zCS3VJGy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17EBD1AC8AA;
-	Tue, 24 Sep 2024 11:31:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51E361AC8AE;
+	Tue, 24 Sep 2024 11:31:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727177470; cv=none; b=KYthMT6ImjnVtsHm+vs0Ke3XQXevDXmIap0Odi6BwIMoWBTOI2Zu3/x6fqnd+jizlvLBNFPJdi44BELFObRCZ9PfwI2YCeuZpH84QMdCPJm7qHuJgcTpZ+6Yz9+Guf3FvcYfPKTMGmrPtzruJ7/zu16naTMoo6l7ar6zF/szkh4=
+	t=1727177470; cv=none; b=iXD1b7/kKvp9727MDox7c8oUauoKX1skmdaIHJt5/rSYN5yCT7M7o/UAPUvKmRpVd815+2tu64tpmWkuJTsEqmMILErJVVmnhHNa1KjeRRYHnwhlXwoGu7JarjA1h/l4cis6i8W17QMW14weLlOFIQo25ygZW+GCdSIrNKG9Z2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1727177470; c=relaxed/simple;
-	bh=iZq8+sv4a3IPEaOahXSkkVEg0bVekSIOVDAIbPyepJ4=;
+	bh=kqCqFpN9v1FXTe8H78fB6N26x+fwYBvAdWQ5hsLRXio=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ANj6fR6okgX8oZ3eThppAR6lyb8rH5yq4HdvJ9NQGuFGJSpBMhQ2bGNK5RMQd6+eXBZSuTKZYvvKiSl1V69EleWcAtur3Xc+abmXZ19dV47c26/mJDFll42MFBu7e00oiX9IrzkXR+MwAbJAsB29bwnfVP110oC2jQh1YhugqW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=qj09czps; arc=none smtp.client-ip=217.194.8.81
+	 MIME-Version:Content-Type; b=NnYdG6EAChlKxQGYoAI+GvXmv0AcqpWkptO8o59tb/jrylTIOV+ElCxFuZgl0tpDS3jiSvYYmyGfqQra/S1VGyETDaSAvlFqvejl1Irh8fruui1fVv6Po6YDKTvuluCxq+9mkTMlAjZw4xe8jDGcMzb5okNmav0cJ2/iNvZLyIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=zCS3VJGy; arc=none smtp.client-ip=217.194.8.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
 Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id C35041FA77;
-	Tue, 24 Sep 2024 13:30:57 +0200 (CEST)
+	by mail11.truemail.it (Postfix) with ESMTPA id 4C7861FA9A;
+	Tue, 24 Sep 2024 13:30:58 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
 	s=default; t=1727177458;
-	bh=N4pgctqrOskoQnPFXmNi07OrbH9q4gxLkxyhTykt8X0=; h=From:To:Subject;
-	b=qj09czpsmoeoqKZxVdoFtqr/lK7+ZdHa/Q5hT7utxzcYfnLZAWGPW+V+H2LhzKuJP
-	 egk3fdbhnOPjcI2y3XUNS1mpZkstvt3I2u53WbE1B7yaGNFAy8gzsK/Fao8aZ4zIgQ
-	 mqlfsjg/yICbye5pZCggkQiXNZ5iFwunvxkGMPYtCFCsuBvNcVYtW7WrV/0EOms5Qs
-	 07XcRtQwh3eteCMuirKif/IN/YQmyuljhKSEgm8wh0qnBF/Uc2q+RZjI6rQXJHv1TR
-	 Awkrepg1Sw09dJ92z7ax9YdkFCNtSjpOoalIdwwHN6Ftcgg6s+Z95p7ePzdBCsfqBk
-	 7bMI7eLMWdx3A==
+	bh=X3I5T6N+k8mSALDhWBHQ9Qrvz6O/s/wkn4hZqV7Itoo=; h=From:To:Subject;
+	b=zCS3VJGyFfy7X4BGsCNd4Xr9M+LrXKbduGCMSfjH+Oxr51KR6VVx9CGmx3oUot74X
+	 RnnboGxF6a0ZfbyonF9ZQYN0jOgTfu+cvcyONG3tC4aImR94/dGcBbBzC4ni3b5zdV
+	 3rwA5lkXskrJE2US+Nj8ee3TqYYej8GwZXz8fS57qCIRch97tVIbDbhaGax/JNI4Gh
+	 0iUQBCMKKicy9ixmE08z1qiZxw8x8XV1tyfvFtRIEoN6vua/EROExU4xWcQDEHCtDF
+	 P7JZfV+o8ZPkWjhFuDiLgG4yUaVfG4vfzp0fz5kj3HvaJDqaPcNEConIDUvjimV8Fa
+	 +WqakWiD0IjFg==
 From: Francesco Dolcini <francesco@dolcini.it>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
 Cc: =?UTF-8?q?Jo=C3=A3o=20Paulo=20Gon=C3=A7alves?= <joao.goncalves@toradex.com>,
 	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v1 1/3] dt-bindings: arm: freescale: Add verdin imx8mm ivy board
-Date: Tue, 24 Sep 2024 13:30:46 +0200
-Message-Id: <20240924113048.125761-2-francesco@dolcini.it>
+Subject: [PATCH v1 2/3] arm64: dts: freescale: imx8mm-verdin: add label to som adc node
+Date: Tue, 24 Sep 2024 13:30:47 +0200
+Message-Id: <20240924113048.125761-3-francesco@dolcini.it>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20240924113048.125761-1-francesco@dolcini.it>
 References: <20240924113048.125761-1-francesco@dolcini.it>
@@ -69,36 +74,33 @@ Content-Transfer-Encoding: 8bit
 
 From: João Paulo Gonçalves <joao.goncalves@toradex.com>
 
-Add Toradex Verdin Ivy carrier board support.
-
-https://www.toradex.com/products/carrier-board/ivy-carrier-board
+Add a label to ti-ads1015 node to make it easier to reference it
+from other nodes.
 
 Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
 Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 ---
- Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 80747d79418a..fbc588a76c2b 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -996,6 +996,7 @@ properties:
-               - menlo,mx8menlo                       # Verdin iMX8M Mini Module on i.MX8MM Menlo board
-               - toradex,verdin-imx8mm-nonwifi-dahlia # Verdin iMX8M Mini Module on Dahlia
-               - toradex,verdin-imx8mm-nonwifi-dev    # Verdin iMX8M Mini Module on Verdin Development Board
-+              - toradex,verdin-imx8mm-nonwifi-ivy    # Verdin iMX8M Mini Module on Ivy
-               - toradex,verdin-imx8mm-nonwifi-mallow # Verdin iMX8M Mini Module on Mallow
-               - toradex,verdin-imx8mm-nonwifi-yavia  # Verdin iMX8M Mini Module on Yavia
-           - const: toradex,verdin-imx8mm-nonwifi     # Verdin iMX8M Mini Module without Wi-Fi / BT
-@@ -1007,6 +1008,7 @@ properties:
-           - enum:
-               - toradex,verdin-imx8mm-wifi-dahlia # Verdin iMX8M Mini Wi-Fi / BT Module on Dahlia
-               - toradex,verdin-imx8mm-wifi-dev    # Verdin iMX8M Mini Wi-Fi / BT M. on Verdin Development B.
-+              - toradex,verdin-imx8mm-wifi-ivy    # Verdin iMX8M Mini Wi-Fi / BT Module on Ivy
-               - toradex,verdin-imx8mm-wifi-mallow # Verdin iMX8M Mini Wi-Fi / BT Module on Mallow
-               - toradex,verdin-imx8mm-wifi-yavia  # Verdin iMX8M Mini Wi-Fi / BT Module on Yavia
-           - const: toradex,verdin-imx8mm-wifi     # Verdin iMX8M Mini Wi-Fi / BT Module
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+index 5fa395914191..c20c2da17524 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+@@ -483,11 +483,12 @@ rtc_i2c: rtc@32 {
+ 		reg = <0x32>;
+ 	};
+ 
+-	adc@49 {
++	verdin_som_adc: adc@49 {
+ 		compatible = "ti,ads1015";
+ 		reg = <0x49>;
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
++		#io-channel-cells = <1>;
+ 
+ 		/* Verdin I2C_1 (ADC_4 - ADC_3) */
+ 		channel@0 {
 -- 
 2.39.5
 
