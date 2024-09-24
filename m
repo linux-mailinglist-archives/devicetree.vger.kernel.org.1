@@ -1,191 +1,144 @@
-Return-Path: <devicetree+bounces-104708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B9A9983F3D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 09:37:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45F21983FBD
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 09:56:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEA642829C4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 07:37:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A07A1C2165A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 07:56:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DD4814830C;
-	Tue, 24 Sep 2024 07:37:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F43F14901B;
+	Tue, 24 Sep 2024 07:56:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="q4QjoN/q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jnPGGvBp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B05731474C9
-	for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 07:37:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B0055B216;
+	Tue, 24 Sep 2024 07:56:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727163425; cv=none; b=LbcLkayTp19dKPUyhUiOPqbj1RB6XzC0VdP6c2Zt/Lmo2e0OGL4lA3GD5wVMlcOf8eR1UZR6azACzdIZDeam2lji3zHOBMK+3jgUMXWvBhO+WUMkzsuUDC35N92jwuB/XOf0f4uuYqkinDW6cXlGfJ/KRcRt05NYOIs+B81nLc4=
+	t=1727164577; cv=none; b=JYr2Oe8jvblQZFFWkNaWldoXpT8jI1NX7kDxf5ljO6UMjKfaSD1WxZ7o2vjeIxsYt2tjVk6oPgTbBnWkI37aLFPsWPIcCHZGx+wgjQSC7MUImD3jAUMugFOA9L+Je52jXBzDqTEICVIlHj6E8DJ7MEdYTMo5ft693y9ENc0hgZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727163425; c=relaxed/simple;
-	bh=z8LfvfJtrZ1r93cSNJ3Z+VfCUZ8yTsfwCoDNDLygQ4Q=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=ODVcpzNRuoNpiwQ8UHvfFEqQuPrxhWznIrqrnRKu/0+P8zAkHxs9mgf5GXcxlxVa2eXMrd8jkaDSZuWiCtK4bBncucD+zz2beEpqdlB5mLQ37lTT7feg3aBlU1q3VTkLNv15wWY9qtB5rkfDixhSC/n+w87NFqRsUpJkj06lFP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=q4QjoN/q; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5c40aea5c40so7961138a12.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 00:37:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1727163422; x=1727768222; darn=vger.kernel.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4Uz+xx89fkl/W06ZQR0o2BcvVOxUxvsFcA4Ij/yTAAU=;
-        b=q4QjoN/qegW5NUH5egbvzys10Su0VmW/pMDVpNqfmiiwSQi4foj47AnYVyWKGSQ7cN
-         p2umqD9ujLOpyVSli62EcqAehZhzMEj9w3gImmSEwJTpFUA18f3fEStxh31BYjkkfjLL
-         tBGVVsmhF/sIA6sIPfWC0p3boDmw4PEaWLlpKdSW/1QOzTmqaHARtM3a7K5wr7oaMmqB
-         dTaIPNaQi8ixEvRvCSEfag9EKTerv36HpgiCeCe+Fpcllg3AlfxLRy68khHplrisjL2h
-         pATzPr8VjpjYVVIlsAAqotZbLKSGVf3h4PVOodyMIe6OPvSoufB6Q/vo7eJuNW2kSEVB
-         zFqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727163422; x=1727768222;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4Uz+xx89fkl/W06ZQR0o2BcvVOxUxvsFcA4Ij/yTAAU=;
-        b=odmNoKZ0TEf1d6UckFPT3Q6lpMWM6SXf6Gygy6yLSWy2pYG4zE0zKSpgKiH3Tvd+cT
-         5jR/2LEkkJHf0ZNfP4I7HvPHtGei8xtXp0RxP9B/Ergux6hYVduhc9BV45z3J8MasOeC
-         rVl2GlZNIYNllCcNCPwbFeqtq1Fc4mb5St1SVe8frVZuEm8Yx1aH7ZPsk2jE+P/Fc+1U
-         Ujs+xAyfrBSxiKTfUN0F47OiHKQ2nODXlxEqJUHKIbyJg1LMQkCxyENjoU5hnOYYvLHh
-         1m3MJRIfGuiAQf6aO7+770X2qvHFxbQ/63MS3jv81YmcXPSIvhAE+YlhyyAABqXdOcMo
-         UhWA==
-X-Forwarded-Encrypted: i=1; AJvYcCVP6NtCPdxPhhkCFAGcFoMU7Na2tawppXMmirUKGHkUQnpkC/AKtFFMissf3Jmam0QARPgEu2W+2i6h@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzhPohL8/bUYQFC3WNsPJ5dGw06y3XFV9h4aW7kgW0vndh3i5H
-	nHAPFJZDruBAWZTCDndJygW7hcPaN9r/Ml+CsPu4vBafnTTHCJ/sRezmkfPh7Lg=
-X-Google-Smtp-Source: AGHT+IHBCTye5uGE8IjsvAkEbPjYaurpvXwGgj8RC+DFxFi8soKD8YSl7Tx2Na4Tu6ExG7xO92fKkQ==
-X-Received: by 2002:a05:6402:380b:b0:5c4:178a:7162 with SMTP id 4fb4d7f45d1cf-5c5cdfd7cf2mr1901837a12.19.1727163422045;
-        Tue, 24 Sep 2024 00:37:02 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c5cf4973c5sm467420a12.35.2024.09.24.00.37.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Sep 2024 00:37:01 -0700 (PDT)
+	s=arc-20240116; t=1727164577; c=relaxed/simple;
+	bh=UVDjWabD7KHjpyDvLulyHQe9GrLQpieeVkCcpsauu/Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=s1w0yEd0c+ijituvmgRa0idcs4VgsR8oqxgA7bVlNBUDCE0JHcpwX45uSTMNad1Ztg0iaVSPSWkIKtSolHmixz9SFBoX89Xkgp7bREKO+idp8eson4g5syFBO2NAJecaJGFteDmDVlv5K7SGlGfCBdHx9ccNnkIBczA8D0GgzcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jnPGGvBp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 699FBC4CEC5;
+	Tue, 24 Sep 2024 07:56:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727164576;
+	bh=UVDjWabD7KHjpyDvLulyHQe9GrLQpieeVkCcpsauu/Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jnPGGvBpp5lhq9PECgu8jWjaQguO6fksuRxGcZhKcBiRqCZR6zK2S7UTJLlEtAVPu
+	 +M3O1B5TkNKA2C6aWkB+zkoTqI86H9dwcwo6UXz63xR7JerLIvaAjzEAKC+qtGVQbF
+	 unHCFju8i36XsNeWdokTBq0MHuKNHTBOCqCKjZNbRR1e0AWTWwSj14/2LzWADAeR0d
+	 PtWJXDzdf85E3C2VIKBnWGMEdfRc+FS8rvXmqZI6wWJ6cwjXWrULcpCLtUxxkl8uxj
+	 cTBZo6iaPxSHhNZ9vUcVQiG1kEe8llC1Rh2XFAAynva8eK+j2MhEJaodKt9MQVmng7
+	 y0GO5pEyBp0PQ==
+Message-ID: <54e7e30b-4aa6-4edd-bbb5-6d9cbf5aa80d@kernel.org>
+Date: Tue, 24 Sep 2024 09:56:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] clk: imx93: Move IMX93_CLK_END macro to clk driver
+To: Pengfei Li <pengfei.li_1@nxp.com>
+Cc: krzk+dt@kernel.org, robh@kernel.org, abelvesa@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, ping.bai@nxp.com,
+ ye.li@nxp.com, peng.fan@nxp.com, aisheng.dong@nxp.com, frank.li@nxp.com,
+ kernel@pengutronix.de, festevam@gmail.com, linux-clk@vger.kernel.org,
+ imx@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240627082426.394937-1-pengfei.li_1@nxp.com>
+ <20240627082426.394937-2-pengfei.li_1@nxp.com>
+ <60f9e733-f5bd-4bfc-9bd5-94ae18bb3901@kernel.org>
+ <Zn92TX9ZsHde7g2f@pengfei-OptiPlex-Tower-Plus-7010>
+ <ZpoCxmvgKNgvx4Kw@pengfei-OptiPlex-Tower-Plus-7010>
+ <0cddd005-6997-4159-8841-beb837957f0c@kernel.org>
+ <ZrHgpuvoXqsoqTJj@pengfei-OptiPlex-Tower-Plus-7010>
+ <3e0ea78a-f4d4-47d5-b3f4-622e6da475fb@kernel.org>
+ <ZvNDQhzuBrs/CO+k@pengfei-OptiPlex-Tower-Plus-7010>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <ZvNDQhzuBrs/CO+k@pengfei-OptiPlex-Tower-Plus-7010>
 Content-Type: text/plain; charset=UTF-8
-Date: Tue, 24 Sep 2024 09:37:01 +0200
-Message-Id: <D4ECC1Y7MLX2.2072IIRC7SJV3@fairphone.com>
-Subject: Re: [PATCH RFC 07/11] arm64: dts: qcom: sm6350: Affirm IDR0.CCTW on
- apps_smmu
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Luca Weiss" <luca.weiss@fairphone.com>, "Konrad Dybcio"
- <konradybcio@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, <cros-qcom-dts-watchers@chromium.org>
-Cc: "Marijn Suijten" <marijn.suijten@somainline.org>,
- <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Konrad Dybcio" <quic_kdybcio@quicinc.com>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20240919-topic-apps_smmu_coherent-v1-0-5b3a8662403d@quicinc.com> <20240919-topic-apps_smmu_coherent-v1-7-5b3a8662403d@quicinc.com> <D4EBVCYB1A56.21TT1WFRGCYGN@fairphone.com>
-In-Reply-To: <D4EBVCYB1A56.21TT1WFRGCYGN@fairphone.com>
+Content-Transfer-Encoding: 7bit
 
-On Tue Sep 24, 2024 at 9:15 AM CEST, Luca Weiss wrote:
-> On Thu Sep 19, 2024 at 12:57 AM CEST, Konrad Dybcio wrote:
-> > From: Konrad Dybcio <quic_kdybcio@quicinc.com>
-> >
-> > On RPMh-based SoCs, the APPS SMMU advertizes support for cache-coherent
-> > pagetable walk via the IDR0 register. This however is not respected by
-> > the arm-smmu driver unless dma-coherent is set.
-> >
-> > Mark the node as dma-coherent to ensure this (and other) implementation=
-s
-> > take this coherency into account.
->
-> Hi Konrad!
->
-> Similar to [0] everything seems to look fine on SM7225 Fairphone 4.
->
-> [    0.190433] arm-smmu 15000000.iommu: probing hardware configuration...
-> [    0.190459] arm-smmu 15000000.iommu: SMMUv2 with:
-> [    0.190499] arm-smmu 15000000.iommu:         stage 1 translation
-> [    0.190515] arm-smmu 15000000.iommu:         coherent table walk
-> [    0.190531] arm-smmu 15000000.iommu:         stream matching with 71 r=
-egister groups
-> [    0.190560] arm-smmu 15000000.iommu:         63 context banks (0 stage=
--2 only)
-> [    0.191097] arm-smmu 15000000.iommu:         Supported page sizes: 0x6=
-1311000
-> [    0.191114] arm-smmu 15000000.iommu:         Stage-1: 36-bit VA -> 36-=
-bit IPA
-> [    0.191299] arm-smmu 15000000.iommu:         preserved 0 boot mappings
->
-> The Adreno SMMU still has non-coherent table walk.
->
-> [    1.141215] arm-smmu 3d40000.iommu: probing hardware configuration...
-> [    1.141243] arm-smmu 3d40000.iommu: SMMUv2 with:
-> [    1.141270] arm-smmu 3d40000.iommu:  stage 1 translation
-> [    1.141279] arm-smmu 3d40000.iommu:  address translation ops
-> [    1.141288] arm-smmu 3d40000.iommu:  non-coherent table walk
-> [    1.141296] arm-smmu 3d40000.iommu:  (IDR0.CTTW overridden by FW confi=
-guration)
-> [    1.141307] arm-smmu 3d40000.iommu:  stream matching with 5 register g=
-roups
-> [    1.141326] arm-smmu 3d40000.iommu:  5 context banks (0 stage-2 only)
-> [    1.141347] arm-smmu 3d40000.iommu:  Supported page sizes: 0x63315000
-> [    1.141356] arm-smmu 3d40000.iommu:  Stage-1: 48-bit VA -> 36-bit IPA
-> [    1.141568] arm-smmu 3d40000.iommu:  preserved 0 boot mappings
->
->
-> Tested-by: Luca Weiss <luca.weiss@fairphone.com> # sm7225-fairphone-fp4
->
-> [0] https://lore.kernel.org/linux-arm-msm/CAD=3DFV=3DXrbe1NO+trk1SJ30gHm5=
-jLFjd0bAeG3H46gD+vNFZa1w@mail.gmail.com/
+On 25/09/2024 00:54, Pengfei Li wrote:
+> On Tue, Aug 06, 2024 at 11:39:18AM +0200, Krzysztof Kozlowski wrote:
+>> On 06/08/2024 10:36, Pengfei Li wrote:
+>>> Hi Krzysztof,
+>>>
+>>> If this patchset is ok, could you help merge it? Otherwise I won't be able to send subsequent patches.
+>>
+>> Sure, let me apply it to my clk tree. Oh wait...
+>>
+>> Best regards,
+>> Krzysztof
+>>
+>>
+> Hi Krzysztof,
+> 
+> These patches are still not merged into linux-next, can you help with that? Then I'll be able to send the subsequent patches!
 
-FWIW adding 'dma-coherent;' to &adreno_smmu also doesn't seem to
-explode:
+What do you need from me?
 
-[    1.451965] arm-smmu 3d40000.iommu: probing hardware configuration...
-[    1.455547] arm-smmu 3d40000.iommu: SMMUv2 with:
-[    1.459041] arm-smmu 3d40000.iommu:  stage 1 translation
-[    1.462446] arm-smmu 3d40000.iommu:  address translation ops
-[    1.465843] arm-smmu 3d40000.iommu:  coherent table walk
-[    1.469216] arm-smmu 3d40000.iommu:  stream matching with 5 register gro=
-ups
-[    1.472645] arm-smmu 3d40000.iommu:  5 context banks (0 stage-2 only)
-[    1.476067] arm-smmu 3d40000.iommu:  Supported page sizes: 0x63315000
-[    1.479458] arm-smmu 3d40000.iommu:  Stage-1: 48-bit VA -> 36-bit IPA
-[    1.483152] arm-smmu 3d40000.iommu:  preserved 0 boot mappings
+Anyway, why are you pinging during merge window?
 
-And kmscube still runs as expected.
-
-Regards
-Luca
-
->
-> Regards
-> Luca
->
-> >
-> > Signed-off-by: Konrad Dybcio <quic_kdybcio@quicinc.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sm6350.dtsi | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts=
-/qcom/sm6350.dtsi
-> > index 7986ddb30f6e8ce6ceeb0f90772b0243aed6bffe..54cfe99006613f8ccc5bf6d=
-83bcb4bf8e72f3cfe 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> > @@ -2685,6 +2685,7 @@ apps_smmu: iommu@15000000 {
-> >  				     <GIC_SPI 411 IRQ_TYPE_LEVEL_HIGH>,
-> >  				     <GIC_SPI 412 IRQ_TYPE_LEVEL_HIGH>,
-> >  				     <GIC_SPI 413 IRQ_TYPE_LEVEL_HIGH>;
-> > +			dma-coherent;
-> >  		};
-> > =20
-> >  		intc: interrupt-controller@17a00000 {
+Best regards,
+Krzysztof
 
 
