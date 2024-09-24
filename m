@@ -1,147 +1,177 @@
-Return-Path: <devicetree+bounces-104656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC38C983B6F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 05:02:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E220983B3F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 04:33:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1B5F2825B6
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 03:02:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 791F2B22417
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 02:33:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A615814263;
-	Tue, 24 Sep 2024 03:02:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5B40C8CE;
+	Tue, 24 Sep 2024 02:33:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="jvCf8PFi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eMOQ8RyW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973175.qiye.163.com (mail-m1973175.qiye.163.com [220.197.31.75])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38A92D2FF;
-	Tue, 24 Sep 2024 03:02:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.75
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2731A1B85E2;
+	Tue, 24 Sep 2024 02:33:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727146952; cv=none; b=DLRuzmOXuibcEGuIllDT6pKpyqETjlTv7NXwBS016BGbicBQLAp7YZ3YW749Op0VdDW0P/2b+VmFcqxG5QTEmoQfEcwAvLCfnyQ9deubaToQzS3STUaCFCjnhHHDscwHM1bzMbqMiWekAbkk9ET0L/lmqJGGdczY9DsIsx3+rUw=
+	t=1727145192; cv=none; b=YSISUsZb4KAdqONE3CuEC+n+baEqjKUZIwgjIq7wavIuPXtCPVlnYS3mK+SaCsfeAhXhczYMfRO21qEnde1a2BXcAmlk/X+CtOjR4Hj90gXPss6G7VizSFH/sE4vRWhpKwnMj0k3kWur6J53QZ1cHSLt7agKrD50ctRoQxa9+tk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727146952; c=relaxed/simple;
-	bh=pXwZnEqjGSb09lASMjE9q0+OExEmhL3BAWRc+GzL+5Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TjwTZGjfJuDcvWBy+I9s5PhfSirA1D9KsEX/q8q/zOffdyAFE5HE76qIO7nJEvw6nvTrQhC4PZ6tRbD+1e5kefBr654lageyuI6rzFW+CmIWoqS6ZmNuM3EZHz16MW3dVT456y7L7K3zKodigNOS/zBjnCbj5KWjIK1BtuPBysE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=jvCf8PFi; arc=none smtp.client-ip=220.197.31.75
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-DKIM-Signature: a=rsa-sha256;
-	b=jvCf8PFie7Rv4vvgABNuw63KB4eqizQfTPWzFKAXlNhMTWshgMx75uGiMPAcHiTnBDrQu+MUZ7t/pD6/2Q50ryzpCdaV62WZnCl8jFkxXX5gi6YAVZXoOXKf8JTelVKC2pLC4x2QR2X18vN8Y8v9e3GYL7ZRJ/xBkplvC5LzSHk=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=4VxoVrkVPVRnqDaq696soZpD1dpa/vvXgnZ7E6DnQJM=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [192.168.60.56] (unknown [103.29.142.67])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id C6FB22803AA;
-	Tue, 24 Sep 2024 10:24:15 +0800 (CST)
-Message-ID: <1f996322-e6f6-4dd5-a1d7-c2bde92c876b@rock-chips.com>
-Date: Tue, 24 Sep 2024 10:24:06 +0800
+	s=arc-20240116; t=1727145192; c=relaxed/simple;
+	bh=fSWKpyrDtbfGlcyDOCQAati8/wwNmKaz4bBmsWzvIl4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t7iW+2zDKXkYGlZhxpAzuaF7L7qSBKBNMQMCBn4e5NCcYE2L7jRy1QfCfTvsbl6WoAJn+dO6SX40vq3y6BQtv5J+RXL+jBlGQ1O+Aq7+o3fNkTAKZgniMRHEg6dSJaHXPXBE45wphgCzOPaEYzA6+HHGI+Vg5x8pI9/V3viBR7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eMOQ8RyW; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-71971d2099cso3821434b3a.2;
+        Mon, 23 Sep 2024 19:33:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727145190; x=1727749990; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9sz24t9DaFcJ/J9khgquQwJaacywf5cMp9UGIeKwXsA=;
+        b=eMOQ8RyW4zdoF99M8tJ6ldht5BoGWzbK2o4XfrsOvEdFxYly0hWhrx0VYMrfLWXPR/
+         YxGPG/qhVaAnKR9slkUyDnWNfgu8vAeBkubyhyao/nkkGajUBePoO1bthVuFjjBEKWBm
+         m+VKcDwlnk/McuaCzR6wWKuFr05IBBtEz8oK8wS3lT1s8K68hs2r4m7opbDAIKuymr2o
+         PXUBFcQj7mrro1oWruyeDDr35EHUzvYIFmVW9UJCOK90zqTPNCweUy3J05S2AAjhYajg
+         fqwbx0lGCDS/iowZ2rG/n+zzpHl9dWG2mEKbF/UF6nfetK/2NepDdoKsF6X+5emZNS8S
+         Watg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727145190; x=1727749990;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9sz24t9DaFcJ/J9khgquQwJaacywf5cMp9UGIeKwXsA=;
+        b=EyeVDNBmbdl5y6d+oMZ4RSuHfrluT/JFLBYM6uowte14H0JbNLVNdpeOoS9pRjoFCo
+         89B3M2xfTEj3i67dPqOhsz6PSh54Hw6xMWayZ1KfuPC5xWhFX57pZoVpz9TsKu+Xe5ib
+         5upCTc2tPMBxWsqXMlBJrOrxNAL0J9hc6F3ZIcFv+byedHlcrgpudO5Rc4Ht10Xw8UC2
+         XVThsDWDz4Gt1VgfMD1fiBpPAUgVuXdgP/wWwOJo5ECIs/BdKSFdtH5ngoxpniLwypdn
+         6yyFJzZ4nT9ligTj4ygnj2+2pGfkBqLjJ7WECNSBDCw8RBCT3pjql0q0lkZgydMHwr2S
+         EhAA==
+X-Forwarded-Encrypted: i=1; AJvYcCUmrTFRPygAg7tYweMSCElwJc/Yd4Bi9krhxwuad8nAC1O2hc7VJ0PImg6BpnGRV1vN+1ytlHoeSWX0@vger.kernel.org, AJvYcCV73ChdygS5qdChDsaL7JOsUi4KnZPwLutHfRI/dFW5xYf8YihVx+i4bEXXTnzTaZuWvumDsPsxToOctwMvwC6X@vger.kernel.org, AJvYcCVcCz3S6UUrAkw4kPOa4wTeoIhXdJzIagACgSeGgwRr2aDlLCleTpwCOyf5yVxlWMdFrCNo84zQPZ7JAz9R@vger.kernel.org, AJvYcCXLISiFISzibUzscbpq+DJb5urFtPZI20wdbJ8Tx+U67w0QmYAm5aGwvUYOQj/YzVHyVKfAf8bIGmiu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6PTNvAaFMpaPrPF+eltOQ6tziHl5cjlgHNQOu8ZVNc1gaBFbM
+	rkhkWYxjvP503/tWGGVl2GyFz6r4AvSxb0nwl+qc1TJzOVmE9jsh
+X-Google-Smtp-Source: AGHT+IFff0oxYvwZTNJKVB9E1Su/vyAp8+fLbEvC4GJfDf6oLpmBS0eQHCHQefYBbC/olvp27zHs1A==
+X-Received: by 2002:a05:6a00:18a8:b0:717:87d6:fdd2 with SMTP id d2e1a72fcca58-7199c9392a8mr21643938b3a.4.1727145190308;
+        Mon, 23 Sep 2024 19:33:10 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7e6b7c3f161sm214194a12.27.2024.09.23.19.33.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Sep 2024 19:33:09 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Mon, 23 Sep 2024 19:33:08 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	patches@lists.linux.dev, kunit-dev@googlegroups.com,
+	linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org,
+	Brendan Higgins <brendan.higgins@linux.dev>,
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Daniel Latypov <dlatypov@google.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Ripard <maxime@cerno.tech>,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH v8 5/8] platform: Add test managed platform_device/driver
+ APIs
+Message-ID: <1ccfca2b-5f17-4f1e-92ae-1426c6d2352f@roeck-us.net>
+References: <20240718210513.3801024-1-sboyd@kernel.org>
+ <20240718210513.3801024-6-sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH 1/2] dt-bindings: phy: rockchip,inno-usb2phy: add
- rk3576
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, heiko@sntech.de, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- william.wu@rock-chips.com, tim.chen@rock-chips.com, wmc@rock-chips.com
-References: <20240923025326.10467-1-frank.wang@rock-chips.com>
- <snccizbw6thn3lhwad4xppp7vqii4p56ttl2gufwc3ke7vfckf@e4b7nvwwtdfr>
-Content-Language: en-US
-From: Frank Wang <frank.wang@rock-chips.com>
-In-Reply-To: <snccizbw6thn3lhwad4xppp7vqii4p56ttl2gufwc3ke7vfckf@e4b7nvwwtdfr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDT00aVk9NSB8YGB5KTU8eTFYVFAkWGhdVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlKS0hVSUJVSk9JVU1MWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09IVUpLS1
-	VKQktLWQY+
-X-HM-Tid: 0a9221d800c109d3kunmc6fb22803aa
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NBQ6SBw5KjIzGUMvAQgXN0o0
-	HjIaCTRVSlVKTElMSk9PTU5MQ0JDVTMWGhIXVR0JGhUQVQwaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlKS0hVSUJVSk9JVU1MWVdZCAFZQU9LSkI3Bg++
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240718210513.3801024-6-sboyd@kernel.org>
 
-Hi Krzysztof,
-On 2024/9/23 17:31, Krzysztof Kozlowski wrote:
-> On Mon, Sep 23, 2024 at 10:53:25AM +0800, Frank Wang wrote:
->> Add compatible for the USB2 phy in the Rockchip RK3576 SoC.
->>
->> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
->> ---
->>   .../devicetree/bindings/phy/rockchip,inno-usb2phy.yaml | 10 +++++++++-
->>   1 file changed, 9 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
->> index 5254413137c64..214917e55c0b6 100644
->> --- a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
->> +++ b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
->> @@ -20,6 +20,7 @@ properties:
->>         - rockchip,rk3366-usb2phy
->>         - rockchip,rk3399-usb2phy
->>         - rockchip,rk3568-usb2phy
->> +      - rockchip,rk3576-usb2phy
->>         - rockchip,rk3588-usb2phy
->>         - rockchip,rv1108-usb2phy
->>   
->> @@ -34,10 +35,16 @@ properties:
->>       const: 0
->>   
->>     clocks:
->> -    maxItems: 1
->> +    minItems: 1
->> +    items:
->> +      - description: phyclk - PHY input reference clocks.
->> +      - description: aclk and aclk_slv are optional and used for USB MMU.
->>   
->>     clock-names:
->> +    minItems: 1
->>       const: phyclk
->> +    const: aclk
->> +    const: aclk_slv
-> Please test... Not sure what you wanted to achieve here, but maybe
-> oneOf?
+On Thu, Jul 18, 2024 at 02:05:04PM -0700, Stephen Boyd wrote:
+> Introduce KUnit resource wrappers around platform_driver_register(),
+> platform_device_alloc(), and platform_device_add() so that test authors
+> can register platform drivers/devices from their tests and have the
+> drivers/devices automatically be unregistered when the test is done.
+> 
+> This makes test setup code simpler when a platform driver or platform
+> device is needed. Add a few test cases at the same time to make sure the
+> APIs work as intended.
+> 
+> Cc: Brendan Higgins <brendan.higgins@linux.dev>
+> Reviewed-by: David Gow <davidgow@google.com>
+> Cc: Rae Moar <rmoar@google.com>
+> Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: "Rafael J. Wysocki" <rafael@kernel.org>
+> Signed-off-by: Stephen Boyd <sboyd@kernel.org>
 
-The "aclk" and "aclk_slv" clocks are new in RK3576, you mean the changes 
-should be like the below?
+This patch adds another intentional warning traceback seen whenever
+CONFIG_KUNIT_TEST is enabled.
 
-@@ -34,10 +35,20 @@ properties:
-      const: 0
+sysfs: cannot create duplicate filename '/devices/platform/kunit-platform-add-2'
+CPU: 0 UID: 0 PID: 421 Comm: kunit_try_catch Tainted: G                 N 6.11.0-mac-09967-g2ece55614b92 #1
+Tainted: [N]=TEST
+Stack from 015a9de0:
+        015a9de0 006168ac 006168ac 0158c000 026e8ea0 00c4a6b8 004bbe32 006168ac
+        00166cd4 005fa210 0158c000 026e8ea0 ffffffef 00c4a6b8 0067a18c 00166dc0
+        00c4a6b8 026e8ea0 01a6ac0e 006cb3c8 01a6ac0a 006cb3c8 00000000 00000000
+        0049b6de 01a6ac0a 00000000 01a6ac0a 00000000 006cb3c8 01a6ac0a 006cb3c8
+        01a6ac0a 015a9e78 0049b8b4 01a6ac0a 01a6ac00 01a6ac0a 0001bbfa 00321592
+        01a6ac0a 006cb3c8 00000000 01a6ac00 00000000 0067a18c 0002d21c 00000000
+Call Trace: [<004bbe32>] dump_stack+0xc/0x10
+ [<00166cd4>] sysfs_warn_dup+0x52/0x64
+ [<00166dc0>] sysfs_create_dir_ns+0x9a/0xac
+ [<0049b6de>] kobject_add_internal+0xdc/0x238
+ [<0049b8b4>] kobject_add+0x7a/0x7e
+ [<0001bbfa>] insert_resource+0x0/0x1a
+ [<00321592>] device_add+0x104/0x588
+ [<0002d21c>] list_del_init+0x0/0x2a
+ [<0001bbfa>] insert_resource+0x0/0x1a
+ [<00326358>] platform_device_add+0x58/0x180
+ [<00326378>] platform_device_add+0x78/0x180
+ [<00273234>] IS_ERR_OR_NULL+0x0/0x1c
+ [<00270c58>] kunit_platform_device_add+0x14/0x118
+ [<0002d21c>] list_del_init+0x0/0x2a
+ [<00270c44>] kunit_platform_device_add+0x0/0x118
+ [<00273234>] IS_ERR_OR_NULL+0x0/0x1c
+ [<002733de>] kunit_platform_device_add_twice_fails_test+0x118/0x170
+ [<00050e44>] ktime_get_ts64+0x0/0xd8
+ [<00050e44>] ktime_get_ts64+0x0/0xd8
+ [<004b04d0>] memset+0x0/0x8c
+ [<0026cc3e>] kunit_try_run_case+0xa0/0x176
+ [<0002d21c>] list_del_init+0x0/0x2a
+ [<0002cfaa>] kthread_exit+0x0/0x14
+ [<0026e3d0>] kunit_generic_run_threadfn_adapter+0x0/0x2a
+ [<0026e3e6>] kunit_generic_run_threadfn_adapter+0x16/0x2a
+ [<0002d2d6>] kthread+0x90/0x9a
+ [<0002d246>] kthread+0x0/0x9a
+ [<0000252c>] ret_from_kernel_thread+0xc/0x14
+kobject: kobject_add_internal failed for kunit-platform-add-2 with -EEXIST, don't try to register things with the same name in the same directory.
+    # kunit_platform_device_add_twice_fails_test: pass:1 fail:0 skip:0 total:1
+    ok 3 kunit_platform_device_add_twice_fails_test
+    # kunit_platform_device_add_cleans_up: pass:1 fail:0 skip:0 total:1
+    ok 4 kunit_platform_device_add_cleans_up
+# kunit_platform_device: pass:4 fail:0 skip:0 total:4
 
-    clocks:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 3
+I have said several times that my test system can and will not handle
+intentional warning backtraces. I strongly believe that it is wrong to
+expect that testbed maintainers have to keep track of intentional
+backtraces. That means that I now also disabled CONFIG_KUNIT_TEST
+in my testbed.
 
-    clock-names:
--    const: phyclk
-+    minItems: 1
-+    maxItems: 3
-+    items:
-+      oneOf:
-+        - description: PHY input reference clocks.
-+          const: phyclk
-+        - description: aclk for USB MMU.
-+          const: aclk
-+        - description: aclk_slv for USB MMU.
-+          const: aclk_slv
-
-
-BR.
-Frank
-
-> Best regards,
-> Krzysztof
->
-
+Guenter
 
