@@ -1,112 +1,106 @@
-Return-Path: <devicetree+bounces-104853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2B479844EB
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 13:37:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D18C19844EC
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 13:37:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D32AA1C22F59
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:37:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D286B21E1C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:37:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE1111A4F39;
-	Tue, 24 Sep 2024 11:36:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F0521A3AA7;
+	Tue, 24 Sep 2024 11:37:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MORHMIvL"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qVNGk8xh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FF641A3AA7;
-	Tue, 24 Sep 2024 11:36:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B3C617ADE9;
+	Tue, 24 Sep 2024 11:37:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727177795; cv=none; b=YdqKzZtK9aW8xERn2aX7KpKOLoavPyDfbmMJKuvAOTszy5rewIvDhqxVHh+rsh7zsynWzl5PLOZAE47nkga76VMgMXi4C6xp4r6SKTlAwGriea3ih29wMlcXnEtuPpSIsw+NWhEsgudfhLFjWFGAQKK3n9XAIfgJHyMpRGIgxYI=
+	t=1727177857; cv=none; b=F4W1b+dJAAQEiBiDbdTQsqPHqTw1KlDVM1cObGNSiSNVTIdmlkLj7ub0BXdVeH8CDgBf8M+4g5x2sb4P8JNuM4sTTeKgFlJn6/2yxmcdS7nnrz7S+rQ0AxJB/9dp4FNUQGKCLJ9Q4gLK003skKhauNsIeqMrIoDnXW9R+f/9JJ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727177795; c=relaxed/simple;
-	bh=uHcigcuqxepjC/oolJeyvJLAeAeV7IC3TY4EBhKmF7I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KCvCTUc+IP1L47NpvxWa2NLtJ2byOPjz3IT+tpCpPsvlLyeNvJ+kya8Y1mSvgqEQBZCtX+6/VbtWY3oLg2HL5GQoyrKoHTaP9FwwfrnHj9MtS6MdZOY/H9k/uaWEv0l7f0ID7b2iPOqOBINgiPRyBdXJD/BinReOe5CeB6cUDWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MORHMIvL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B0FFC4CEC4;
-	Tue, 24 Sep 2024 11:36:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727177795;
-	bh=uHcigcuqxepjC/oolJeyvJLAeAeV7IC3TY4EBhKmF7I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MORHMIvL0Uxfe677ozYHhrMXB4/NRf44Oe6FLnHsm3V2QQ/9i2jLW3DEeWoEcPELE
-	 xQOBdyjdnDZqO+hkRC4s8HqX9Q6YX4rgzgCEuHOAQk2Xyop69z0gs6gFoPTms1DU+r
-	 3wAfyAXisRCxBRHjSpRDNIfMgvblU34n8aFTedZsqEDGEEPMPPAcklNkXodjlKNZpZ
-	 Gi5RsZMFeiRvEX4ihlxUH4bST2LkRnY0uJZUYS18LLLrk0OcRaRYh0IL8Kau0UqzYF
-	 CwbUszApzwagXyFcZ+06l9f8nHjFtfHilcdMM/J5N83FUXcHjU7/wzlvjvizobPC16
-	 Spf5aCfPB4wuA==
-Date: Tue, 24 Sep 2024 13:36:31 +0200
-From: Mark Brown <broonie@kernel.org>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Huacai Chen <chenhuacai@kernel.org>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Weidong Wang <wangweidong.a@awinic.com>,
-	Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Shuming Fan <shumingf@realtek.com>
-Subject: Re: [PATCH v2 0/9] ASoC: Some issues about loongson i2s
-Message-ID: <ZvKkPyitmgNNZ4e7@finisterre.sirena.org.uk>
-References: <cover.1727056789.git.zhoubinbin@loongson.cn>
+	s=arc-20240116; t=1727177857; c=relaxed/simple;
+	bh=ZNGj3fXHWNs2Yk3ko4od30ZdDG3zCz60t4Vi+H2gtZ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=g/p02KGN9NUCuql6qkZwCrrAEQYtXRfFK/PdPiSoXKzdj3EFWkpb6t8RTTQvIUPG0fCLo/IycCUIHuxyCn4KVJP/uSVqdSPuEcu8vTk8+8tL5JyLgGUtpO6IvpSlnWqTCvGnbgfcpnDmeT5JpAc3FbuTfI4kbkG0gjvv9rBQH2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qVNGk8xh; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1727177853;
+	bh=ZNGj3fXHWNs2Yk3ko4od30ZdDG3zCz60t4Vi+H2gtZ0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qVNGk8xh/0Dq8GQ1/4BfpatCqrWfmnwGhgki469IObqRc1ZnyDbIcn/WzoW9Re2XM
+	 Cik24nKD3FoGA7erHPx3DnbbQB3e2j44+TyCO3QqK/huM+IJe2jsHF/GRt6OJ22q6s
+	 /X9QVoJfvia1Bv3ViHSspzXUBQVvVnszIS1zHqfzqKE0121iX9TBNGcAeOO7AkNUt2
+	 EJdfXhhPdsJ3ttI2HYIe/KbBEbuDqtgcKoy80NWUa3ilGESyvJ26YtnqqDgqOdy779
+	 ztzFuV6IuT/UPFz9ULNu3iFh3eEl5aygmOVZgK/iiZLeQPDwoi4zpLZ8AI84126DZZ
+	 HL+FLuJvQn2AQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 971C417E1245;
+	Tue, 24 Sep 2024 13:37:32 +0200 (CEST)
+Message-ID: <459b17d4-439d-4f09-aa0e-f18f9cc184b3@collabora.com>
+Date: Tue, 24 Sep 2024 13:37:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="6MBA/2mvkeDL4zum"
-Content-Disposition: inline
-In-Reply-To: <cover.1727056789.git.zhoubinbin@loongson.cn>
-X-Cookie: Editing is a rewording activity.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] arm64: dts: mt8195: Fix dtbs_check error for
+ infracfg_ao node
+To: Macpaul Lin <macpaul.lin@mediatek.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yong Wu <yong.wu@mediatek.com>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, dri-devel@lists.freedesktop.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org,
+ Alexandre Mergnat <amergnat@baylibre.com>
+Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+ Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
+ Chris-qj chen <chris-qj.chen@mediatek.com>,
+ MediaTek Chromebook Upstream
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ Chen-Yu Tsai <wenst@chromium.org>
+References: <20240924103156.13119-1-macpaul.lin@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240924103156.13119-1-macpaul.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Il 24/09/24 12:31, Macpaul Lin ha scritto:
+> The infracfg_ao node in mt8195.dtsi was causing a dtbs_check error.
+> The error message was:
+> 
+> syscon@10001000: compatible: ['mediatek,mt8195-infracfg_ao', 'syscon',
+>                   'simple-mfd'] is too long
+> 
+> To resolve this, remove 'simple-mfd' from the 'compatible' property of the
+> infracfg_ao node.
+> 
+> Fixes: 37f2582883be ("arm64: dts: Add mediatek SoC mt8195 and evaluation board")
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
---6MBA/2mvkeDL4zum
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Sep 24, 2024 at 02:59:49PM +0800, Binbin Zhou wrote:
-> Hi all:
->=20
-> This patch set is mainly about Loongson i2s related issues.
-
-I did find some issues with this series but apart from the query with
-not using snd_soc_of_get_dlc() they're all fairly small, the bulk of
-this looks good.
-
---6MBA/2mvkeDL4zum
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbypD4ACgkQJNaLcl1U
-h9BC5Af/aVVdDh1r2D6KY1ColJQRPRcOfMxYqHptF12I5+VPZffIutNcdcGWZfgg
-bIIw7EnptBq10xzPyebiEdt5mAJRnt/rpl+rwbU82txq6MXiP0j5Ibi7+iwS2onY
-Z5Id3ZtEnKVvaYBkU0vYwuzjMB7v+gIKshmJ/s2I9O0Cyr1l4MQE6XWV7o5LzrOh
-lcYceXIVChbIl7JbV0S85sjWYjDBfwPnZ4MYdgDfEv3lelfp/iOvQ7gVRaQgFYFu
-+H5mzcXHLzyF1krBK6fDWRopLp9wnm8Ux90tJHDilPLgVGY/ee85WWuG+guekcjT
-d8UDxTo5vAiTqopJMyMENzHMyhcGtg==
-=6dy/
------END PGP SIGNATURE-----
-
---6MBA/2mvkeDL4zum--
 
