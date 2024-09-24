@@ -1,132 +1,121 @@
-Return-Path: <devicetree+bounces-105004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE9B9984D5F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 00:08:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5112A984D76
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 00:15:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4CF8FB222C0
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 22:08:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5313B2170B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 22:15:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52A891AC45C;
-	Tue, 24 Sep 2024 22:08:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C43F143C5D;
+	Tue, 24 Sep 2024 22:15:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tGzg0TIx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tUaxKOuq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A681914D290;
-	Tue, 24 Sep 2024 22:07:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B491768FD;
+	Tue, 24 Sep 2024 22:15:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727215681; cv=none; b=Y5fuJf7uwPMX2WJagAS08eaI6DkoR7ucCh1wQoxI5w3t6yFQqIoS4xEztRJqJzk2mDM9P5vycS3yF0amK3WahmrP3jZ2jNpGuzGkyqqoJB50OrnRZFXshf82bawL5me01w7nc5rkrig4vW7LLoi768lRYFSoJHb4SHLtfs2FP0U=
+	t=1727216115; cv=none; b=ott40MMtlhhsg3yPcph1waZ1HLiQtc43aAlFOR1Dry/sh/qQ45f/zghbdcHMh2DUd3iT7SQ6QuD9DokZdzbyZ1EPr7uklCGDZHJES/WdaP20Lbmm7CB+0vml82Iu5p933zffq690BDVurMr7gHDKmXBNFCVSxwgZAJtGUYEJ2/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727215681; c=relaxed/simple;
-	bh=96tCrm9njad6b6PBI7E/wWAqn4rwOO8KZwmwSrlayPM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FHHZg9BqsVKHK+vwXwuaj7VLBRjyt9tAQjE+eMgwwd4rxepnEnITIxM76llMxGSqqOJt6LMV9/QtKTAr3DhYgPEmkpHRiqCGmr/uiMUnHOivKzyqL+uagAI1wJj3DZNzjP+9ZAZocNTJRULTQmpeXLpvx7rN407KxdKfaY3PqZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=tGzg0TIx; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 48OM72FC054738;
-	Tue, 24 Sep 2024 17:07:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1727215622;
-	bh=4h53RmnxU7gpILaf3yHrv+tcrbJnvBSStCmsQx4E+QM=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=tGzg0TIxL3x7WT9trsK/QBnnh61XHnkmm4NKPf6n3j6CfO48MfHxAtVHcBMo0MdRr
-	 CiJ5hFHtR4FgANRfI7JMAkz4tGdT8vi7Pvazcl8NYhpA9lriZGMS2LrnicWJkq1alV
-	 T8P/5TUfHKvZEsCI/kF39dAsHQohRlaRd/4vRKxE=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 48OM729W036385
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 24 Sep 2024 17:07:02 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 24
- Sep 2024 17:07:02 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 24 Sep 2024 17:07:02 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 48OM72lW037639;
-	Tue, 24 Sep 2024 17:07:02 -0500
-From: Judith Mendez <jm@ti.com>
-To: William Breathitt Gray <wbg@kernel.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>, David Lechner
-	<david@lechnology.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-iio@vger.kernel.org>,
-        Judith Mendez <jm@ti.com>
-Subject: [PATCH v6 5/5] arm64: dts: ti: k3-am64x-sk: Enable eQEP
-Date: Tue, 24 Sep 2024 17:07:00 -0500
-Message-ID: <20240924220700.886313-6-jm@ti.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240924220700.886313-1-jm@ti.com>
-References: <20240924220700.886313-1-jm@ti.com>
+	s=arc-20240116; t=1727216115; c=relaxed/simple;
+	bh=eO7rpd+j+GkUt3i9+9myWUGwe6iHUbQ4BQWoQ6/BBJ0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NzyC2q+HYnc7FM53o3AzuDP0PMqTvjUFjivFJKO2Q+ZBYvVHLG9nTL3Wj4Cg/BZw3xwKzK+sGXWy+4PT1gqqdmdWNpmu3fev+ql3nQMd5/nFa/xC3Uk3CNNQTvLbMmX4A9VaH0GfJAOfl86PxqOlC62sDlhHwR8zZ+D/y1IlTY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tUaxKOuq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2347C4CEC4;
+	Tue, 24 Sep 2024 22:15:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727216114;
+	bh=eO7rpd+j+GkUt3i9+9myWUGwe6iHUbQ4BQWoQ6/BBJ0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tUaxKOuqXzekKuBfH86uEC03wJyrrruiQuMGqlzqKReuFlRHloFn85wsNtTMl7Ocd
+	 ByRHrijjcTCvPfJ8LALpGhufpgbrx2P5m+malRWXJDs+76WFwNJsHWadQt04Yu2NAg
+	 OgBWFvJwg7FXxV96GuACn2+PZiygU6l3jkUPSq7nXTgArya6mDn4GfTsXBwZFUhf2s
+	 sw78buDxWxHZdZG7WCAKvtDaHy6n/XmfjMnRBtIROfC7uSpD8B1xT7uG6JkpvqLzxi
+	 YF2qWbG/pM3DBS3/OlYf5i40CXUrLAq9WWElXNGIzo7izTzg4ccQ4l9HP6J037/Ep2
+	 1ovg919ytQuBw==
+Date: Tue, 24 Sep 2024 17:15:14 -0500
+From: Rob Herring <robh@kernel.org>
+To: Masahiro Yamada <masahiroy@kernel.org>
+Cc: linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Andrea della Porta <andrea.porta@suse.com>,
+	linux-clk@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+	Brendan Higgins <brendanhiggins@google.com>,
+	devicetree@vger.kernel.org, Nathan Chancellor <nathan@kernel.org>,
+	Nicolas Schier <nicolas@fjasle.eu>
+Subject: Re: [PATCH v3 1/2] kbuild: move non-boot built-in DTBs to .rodata
+ section
+Message-ID: <20240924221514.GA374455-robh@kernel.org>
+References: <20240923075704.3567313-1-masahiroy@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240923075704.3567313-1-masahiroy@kernel.org>
 
-There are 3 instances of eQEP on AM64x. Only EQEP0 signals
-can be routed to the user expansion so enable only EQEP0
-in k3-am642-sk.dts.
+On Mon, Sep 23, 2024 at 04:56:02PM +0900, Masahiro Yamada wrote:
+> Commit aab94339cd85 ("of: Add support for linking device tree blobs
+> into vmlinux") introduced a mechanism to embed DTBs into vmlinux.
+> 
+> Initially, it was used for wrapping boot DTBs in arch/*/boot/dts/, but
+> it is now reused for more generic purposes, such as testing.
+> 
+> Built-in DTBs are discarded because KERNEL_DTB() is part of INIT_DATA,
+> as defined in include/asm-generic/vmlinux.lds.h.
+> 
+> This has not been an issue so far because OF unittests are triggered
+> during boot, as defined by late_initcall(of_unittest).
+> 
+> However, the recent clk KUnit test additions have caused problems
+> because KUnit can execute test suites after boot.
+> 
+> For example:
+> 
+>   # echo > /sys/kernel/debug/kunit/clk_register_clk_parent_data_device/run
+> 
+> This command triggers a stack trace because built-in DTBs have already
+> been freed.
+> 
+> While it is possible to move such test suites from kunit_test_suites to
+> kunit_test_init_section_suites, it would be preferable to avoid usage
+> limitations.
+> 
+> This commit moves non-boot built-in DTBs to the .rodata section. Since
+> these generic DTBs are looked up by name, they do not need to be placed
+> in the special .dtb.init.rodata section.
+> 
+> Boot DTBs should remain in .dtb.init.rodata because the arch boot code
+> generally does not know the DT name, thus it uses the __dtb_start symbol
+> to locate it.
+> 
+> This separation also ensures that the __dtb_start symbol references the
+> boot DTB. Currently, the .dtb.init.rodata is a mixture of both boot and
+> non-boot DTBs. The __dtb_start symbol must be followed by the boot DTB,
+> but we currently rely on the link order (i.e., the order in Makefiles),
+> which is very fragile.
+> 
+> Fixes: 5c9dd72d8385 ("of: Add a KUnit test for overlays and test managed APIs")
+> Fixes: 5776526beb95 ("clk: Add KUnit tests for clk fixed rate basic type")
+> Fixes: 274aff8711b2 ("clk: Add KUnit tests for clks registered with struct clk_parent_data")
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> ---
+> 
+> Changes in v3:
+>   - Move to .rodata section instead of .init.rodata
+> 
+>  scripts/Makefile.dtbs | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 
-Signed-off-by: Judith Mendez <jm@ti.com>
----
-Changes since v5:
-- No change
----
- arch/arm64/boot/dts/ti/k3-am642-sk.dts | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-index 86369525259c..47b351067bb8 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -357,6 +357,16 @@ main_ecap0_pins_default: main-ecap0-default-pins {
- 			AM64X_IOPAD(0x0270, PIN_INPUT, 0) /* (D18) ECAP0_IN_APWM_OUT */
- 		>;
- 	};
-+
-+	main_eqep0_pins_default: main-eqep0-default-pins {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x00a0, PIN_INPUT, 3) /* (N16) GPMC0_WPn.EQEP0_A */
-+			AM64X_IOPAD(0x00a4, PIN_INPUT, 3) /* (N17) GPMC0_DIR.EQEP0_B */
-+			AM64X_IOPAD(0x00ac, PIN_INPUT, 3) /* (R20) GPMC0_CSn1.EQEP0_I */
-+			AM64X_IOPAD(0x00a8, PIN_INPUT, 3) /* (R19) GPMC0_CSn0.EQEP0_S */
-+		>;
-+	};
-+
- 	main_wlan_en_pins_default: main-wlan-en-default-pins {
- 		pinctrl-single,pins = <
- 			AM64X_IOPAD(0x00c4, PIN_OUTPUT_PULLUP, 7) /* (V8) GPIO0_48 */
-@@ -687,3 +697,10 @@ &ecap0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_ecap0_pins_default>;
- };
-+
-+&eqep0 {
-+	status = "okay";
-+	/* EQEP0 A & B available on pins 18 & 22 of J4 header */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_eqep0_pins_default>;
-+};
--- 
-2.46.0
-
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
