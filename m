@@ -1,180 +1,111 @@
-Return-Path: <devicetree+bounces-104880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 123C2984608
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 14:36:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D9AD98463F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 14:55:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDE252840A2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 12:36:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0E7A28566C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 12:55:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A55A1A704B;
-	Tue, 24 Sep 2024 12:36:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2C3A1A724F;
+	Tue, 24 Sep 2024 12:55:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S9jBpMSm"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FHL+nuXA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A79D91A4F36
-	for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 12:36:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4BE81A7040;
+	Tue, 24 Sep 2024 12:55:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727181409; cv=none; b=G4JVxlFGZuA1aOkV4CgZ1nKn/4dryoiTZX6RfnVH62oyGjDsggtZX1JG5qNCy5DHHYzPtL8KOA/c9C56aHfb63kW3N78jkyW/23CHhNWK+egRWDcTHlx4pqqepnmBncwWyBK9wwMNfydPrMwNoxzpzFbQfN2nVRyAN3wevAHvrM=
+	t=1727182521; cv=none; b=Bdk733oam8AU1RU/p0/EvAyLb8X2WWwT04EM8hgEzkLCp+XEMUPxkwzAO3gssJRtRppqnaQ8JWPswO5pfv/owIWqNWZrIafm691qiNkvjTHcjc3J7jFnKQFUgRDpT1//SYktbHi5MSYRtLRL+ZuT+RTUzMA8aOde5eGUy1AVDg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727181409; c=relaxed/simple;
-	bh=0tgYaNknECHGcREZzuh0GavXRA4JoNzrI0nt+ohvHAc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=G8U5rauItN7/B2BFPynnnT+VkoLTwwmpY9huO1dJ6onf3uY9IrQrkJRJ50KerVBjSqNweb29+w8H6azHyp9/D0TX8o9kK09MPBOGoFJ1lEbSQqNpocrxwo0AfJMqPEY/euuP+jdtmmWQhG2zca1PWytIVToI5fAb6XwTRkT38wg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S9jBpMSm; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-6de15eefdd3so39541857b3.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 05:36:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727181406; x=1727786206; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZclqvN8OWviCoeP7W2fOBR9cc4G4ZJZYXXNmxnjQMg0=;
-        b=S9jBpMSm2q+HNAhhL9QgKFolkr2nCGbcDH64mL44hYiQzTMBehO8OrH1i9W2Nr+mXY
-         etayHSzpH1zETTVB8yleWvza8EbkZbvwnB5fBpPjeDJQiGtiY8wO1Qq6Wy9v57knbNGm
-         fXkvXWNBY4OWI3JTfMQorBt03b3/lm9h7S5iRZV39SH/MP/SmAp33xMRhr4j+BRjBs7w
-         TSO7HwycuZpO+2CjIXRdROtNe8bH+E2DUzYXdh0L5m6yeFa8+c1KUP7ivpNEAUxsydMZ
-         Hh9963QythiYyYBakmmYjLu3SMbn6+4kQ4faNDwjetJP8g6kzmgsS7BOvLZVqMtzGZMN
-         gxAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727181406; x=1727786206;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZclqvN8OWviCoeP7W2fOBR9cc4G4ZJZYXXNmxnjQMg0=;
-        b=E/5GrOS8XTjtczeSk35LylQ2rx9UmmblB+sdaW5NA83zN8IDXCd6w4tt4yxd49CAHL
-         MB0V28HE4aAa1MkK3F8sEa1RC7ZPdUobAcbUWVdaDzWj0TriQaLK2o3R5Qyvr1qxINXm
-         UgfRyG8yFi32z7WcuHsg/qlbeKSYK2URcj/FjJcE/K/kfW+lFuMfDsbmT1IoUcRRPgCp
-         07gWyLWTu7L2xjWCRk46aOvNgbrQivFKWFbOFDFgevcTysMQ7uskrLrIk3f0VwV8k1wx
-         Fa+5DSQcaJlym9oUmBxfTGgTEyZTnZocKrUIgP2dmGvtpYCC+Jv/y3Ye6LfLL6nixvZL
-         7LDw==
-X-Forwarded-Encrypted: i=1; AJvYcCXBo59l6GPGHfDnjs4kn1ir1mwBAST/+80nNhxfKfd4hpr3NFVPK3XapOheh0sTiczM5TaFFapIxPpN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmI9tVfV8KNN6g3grACv6qAHhEMOBSmo7rjqVQMO4hoMSEngba
-	sBgoOelhp/CfgJ2NWrRwneIEB9/VHCbiENhPflrB8aAuOOFBUXzmYNc8KMF0n2PUIjdvUZFw03T
-	rQ2XC0IN8KNJf4f3ZdxJGNKUxpPZ24OHQfughAg==
-X-Google-Smtp-Source: AGHT+IGYuEuHzLpsgKnYPKtlxcYnqyLY8yYJBAHJhgxQ8dv64VF7X1Tzkg40TcunXFxtwU+tj7usbv8oLmJYhPL74p4=
-X-Received: by 2002:a05:690c:4443:b0:6e2:1062:9b90 with SMTP id
- 00721157ae682-6e210629d20mr13188617b3.44.1727181406631; Tue, 24 Sep 2024
- 05:36:46 -0700 (PDT)
+	s=arc-20240116; t=1727182521; c=relaxed/simple;
+	bh=njvhLKdbbtTckJAQzn4DS7FhQomuThTjVs0QIZxc6e4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YUjodqyJN48wLmmfKrHzXVD02p6OBY/VcJU7l46PvL7IZD0blYpPLv0jcS7GRsOBP5BoOHuv4I0sRg5QFClQYs/9UFZhnQsfjyUDcratI8k0rcEMdIiteOojKDlvji4rAOqFY4aFMWFl2rZGQ5OxdYUoMG9hAxAIKva4biFm8RI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FHL+nuXA; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1727182520; x=1758718520;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=njvhLKdbbtTckJAQzn4DS7FhQomuThTjVs0QIZxc6e4=;
+  b=FHL+nuXAplpWjmvx00Sp5krWDD9gmVvLWHjhCXTG/ITIA3tKGCABvN2F
+   UBLpNA9WUb0JfJcgI91uy4ak3l7rIwK/dp/pmJ8YauIwvbKgVwH1xFaqo
+   TjsMsNUKe89xqGRtVi9IanLkH/Phjfi73Wwe3xi8Hvy4f4l5ZyrPcwqsX
+   yJZzGywsGe4dzTjC7SAtHP8HXYs4mnNT372vXDxfr/6HN50f6b/OY3h4S
+   rzWa3gIEjmfZThXhBNn71sYsbNwgYs+Aso+eaLIJzgTB7FA9Jihc4Wmml
+   +yhYmtLCEVwyqpPG8rUHtPRuewti6snrb9OT+EN68yht5n2pRyHL+urqa
+   A==;
+X-CSE-ConnectionGUID: txZEva12S3+6Dl4+k54UBw==
+X-CSE-MsgGUID: hvGCwMWlReuk+H0jAfxAEw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="25648945"
+X-IronPort-AV: E=Sophos;i="6.10,254,1719903600"; 
+   d="scan'208";a="25648945"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2024 05:55:19 -0700
+X-CSE-ConnectionGUID: xCH/sMlwRCe3tALHwzHhfQ==
+X-CSE-MsgGUID: LN/PMizTTSOz9xRJQRf78Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,254,1719903600"; 
+   d="scan'208";a="94748292"
+Received: from kuha.fi.intel.com ([10.237.72.152])
+  by fmviesa002.fm.intel.com with SMTP; 24 Sep 2024 05:55:16 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 24 Sep 2024 15:55:14 +0300
+Date: Tue, 24 Sep 2024 15:55:14 +0300
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Amit Sunil Dhamne <amitsd@google.com>
+Cc: gregkh@linuxfoundation.org, robh@kernel.org,
+	dmitry.baryshkov@linaro.org, badhri@google.com, kyletso@google.com,
+	rdbabiera@google.com, linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [RFC v3 2/2] usb: typec: tcpm: Add support for parsing time dt
+ properties
+Message-ID: <ZvK2slBHR8PhzaMt@kuha.fi.intel.com>
+References: <20240923224059.3674414-1-amitsd@google.com>
+ <20240923224059.3674414-3-amitsd@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240912071437.1708969-1-quic_mahap@quicinc.com>
- <20240912071437.1708969-5-quic_mahap@quicinc.com> <v4cnmso3nl5oi3scd2lkg6kepb52vjrzgoti42ikds3y2wq6aw@sbn2yu4xeiun>
- <9b47bd8e-6079-4285-a3d7-932178d5bdf2@quicinc.com> <rmndmhq67lajdmva6gt46rqtkvf6jh2afbqazafz6oxv7ep56j@bznopz3aexyt>
- <ba0bc896-41ad-4f1d-9218-fc5a44add422@quicinc.com>
-In-Reply-To: <ba0bc896-41ad-4f1d-9218-fc5a44add422@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 24 Sep 2024 14:36:35 +0200
-Message-ID: <CAA8EJpqTuj2j4mTKCTGpOX6ZfgGLocmDdwX1BwqEp6OkBejnDg@mail.gmail.com>
-Subject: Re: [PATCH 4/5] drm/msm/dpu: Add SA8775P support
-To: Mahadevan P <quic_mahap@quicinc.com>
-Cc: robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run, 
-	marijn.suijten@somainline.org, airlied@gmail.com, daniel@ffwll.ch, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, swboyd@chromium.org, 
-	konrad.dybcio@linaro.org, danila@jiaxyga.com, bigfoot@classfun.cn, 
-	neil.armstrong@linaro.org, mailingradian@gmail.com, quic_jesszhan@quicinc.com, 
-	andersson@kernel.org, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	quic_kalyant@quicinc.com, quic_jmadiset@quicinc.com, 
-	quic_vpolimer@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240923224059.3674414-3-amitsd@google.com>
 
-On Tue, 24 Sept 2024 at 14:31, Mahadevan P <quic_mahap@quicinc.com> wrote:
->
->
-> On 9/24/2024 5:46 PM, Dmitry Baryshkov wrote:
-> > On Tue, Sep 24, 2024 at 04:42:02PM GMT, Mahadevan P wrote:
-> >> On 9/12/2024 1:34 PM, Dmitry Baryshkov wrote:
-> >>> On Thu, Sep 12, 2024 at 12:44:36PM GMT, Mahadevan wrote:
-> >>>> Add definitions for the display hardware used on the
-> >>>> Qualcomm SA8775P platform.
-> >>>>
-> >>>> Signed-off-by: Mahadevan <quic_mahap@quicinc.com>
-> >>>> ---
-> >>>>    .../msm/disp/dpu1/catalog/dpu_8_4_sa8775p.h   | 485 ++++++++++++++++++
-> >>>>    .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    |   3 +-
-> >>>>    .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   3 +-
-> >>>>    drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   3 +-
-> >>>>    4 files changed, 491 insertions(+), 3 deletions(-)
-> >>>>    create mode 100644 drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_8_4_sa8775p.h
-> >>>>
-> > [...]
-> >
-> >>>> +static const struct dpu_intf_cfg sa8775p_intf[] = {
-> >>>> +  {
-> >>>> +          .name = "intf_0", .id = INTF_0,
-> >>>> +          .base = 0x34000, .len = 0x280,
-> >>>> +          .features = INTF_SC7280_MASK,
-> >>>> +          .type = INTF_DP,
-> >>>> +          .controller_id = MSM_DP_CONTROLLER_0,
-> >>>> +          .prog_fetch_lines_worst_case = 24,
-> >>>> +          .intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 24),
-> >>>> +          .intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 25),
-> >>>> +  }, {
-> >>>> +          .name = "intf_1", .id = INTF_1,
-> >>>> +          .base = 0x35000, .len = 0x300,
-> >>>> +          .features = INTF_SC7280_MASK,
-> >>>> +          .type = INTF_DSI,
-> >>>> +          .controller_id = MSM_DSI_CONTROLLER_0,
-> >>>> +          .prog_fetch_lines_worst_case = 24,
-> >>>> +          .intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 26),
-> >>>> +          .intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 27),
-> >>>> +          .intr_tear_rd_ptr = DPU_IRQ_IDX(MDP_INTF1_TEAR_INTR, 2),
-> >>>> +  }, {
-> >>>> +          .name = "intf_2", .id = INTF_2,
-> >>>> +          .base = 0x36000, .len = 0x300,
-> >>>> +          .features = INTF_SC7280_MASK,
-> >>>> +          .type = INTF_DSI,
-> >>>> +          .controller_id = MSM_DSI_CONTROLLER_1,
-> >>>> +          .prog_fetch_lines_worst_case = 24,
-> >>>> +          .intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 28),
-> >>>> +          .intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 29),
-> >>>> +          .intr_tear_rd_ptr = DPU_IRQ_IDX(MDP_INTF2_TEAR_INTR, 2),
-> >>>> +  }, {
-> >>>> +          .name = "intf_3", .id = INTF_3,
-> >>>> +          .base = 0x37000, .len = 0x280,
-> >>>> +          .features = INTF_SC7280_MASK,
-> >>>> +          .type = INTF_NONE,
-> >>>> +          .controller_id = MSM_DP_CONTROLLER_0,   /* pair with intf_0 for DP MST */
-> >>>> +          .prog_fetch_lines_worst_case = 24,
-> >>>> +          .intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 30),
-> >>>> +          .intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 31),
-> >>>> +  }, {
-> >>>> +          .name = "intf_4", .id = INTF_4,
-> >>>> +          .base = 0x38000, .len = 0x280,
-> >>>> +          .features = INTF_SC7280_MASK,
-> >>>> +          .type = INTF_DP,
-> >>>> +          .controller_id = MSM_DP_CONTROLLER_1,
-> >>>> +          .prog_fetch_lines_worst_case = 24,
-> >>>> +          .intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 20),
-> >>>> +          .intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 21),
-> >>>> +  }, {
-> >>> Where is intf_5 ?
-> >>
-> >> intf_5 of base address 0x39000 is not supported on this target.
-> > Not supported by whom?
->
->
-> In sa8775p mdss architecture intf_5 is not present. So we are not adding
-> in SW too.
+Hi,
 
-ack, thanks for the explanation. It's better now.
+> @@ -7611,10 +7650,13 @@ struct tcpm_port *tcpm_register_port(struct device *dev, struct tcpc_dev *tcpc)
+>  	err = tcpm_fw_get_caps(port, tcpc->fwnode);
+>  	if (err < 0)
+>  		goto out_destroy_wq;
+> +
+
+
+This extra newline is not relevant or necessary. Otherwise this LGTM:
+
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+
+>  	err = tcpm_fw_get_snk_vdos(port, tcpc->fwnode);
+>  	if (err < 0)
+>  		goto out_destroy_wq;
+>  
+> +	tcpm_fw_get_timings(port, tcpc->fwnode);
+> +
+>  	port->try_role = port->typec_caps.prefer_role;
+>  
+>  	port->typec_caps.revision = 0x0120;	/* Type-C spec release 1.2 */
+
+thanks,
 
 -- 
-With best wishes
-Dmitry
+heikki
 
