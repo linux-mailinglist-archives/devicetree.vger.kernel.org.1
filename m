@@ -1,152 +1,224 @@
-Return-Path: <devicetree+bounces-104775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7685E98424C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:37:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 091EB984225
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:31:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30DA1B258E3
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 09:30:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A75D1C2311F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 09:31:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A61D214BF9B;
-	Tue, 24 Sep 2024 09:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A52684A32;
+	Tue, 24 Sep 2024 09:31:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JmAz/RIM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q3TI0Vsk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC85684A2C;
-	Tue, 24 Sep 2024 09:30:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 149B3161935
+	for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 09:31:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727170230; cv=none; b=BG7HEuL6zAmceOzZXUn/pLR+Ilk/0hWD5wSd5D49k/oLB2QMFLvO+M8kcb6IIBE1qXlsP0h7xqFy1+Q/R3LX1iGPDuSyOABdIbmM54AveSiYCPfOJz4ODpCt5US8mBtF+8q6CU3HjTTWu3VwcVeDZjvdwlclqfm9ZFzx0STpZxM=
+	t=1727170268; cv=none; b=Q/OPtbTfD7H/lyTWoRpliuAs4gbvkjg7KyAZq6ALEweVDIQPo3kHfDAyY4jjllO6WqK1Ima4Vx7+55zAs7oh5nhHqigcABOtu5dyM/VkwmlifzyKDxFl291spCLaWxwu1xbtRUB/lticadr++iAE1+RSHXKSxMR9drmYeErUqfo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727170230; c=relaxed/simple;
-	bh=yYGyQa85Hiy1PX0vqwd7dAOmJNDEEsVqTrx6k8biPY0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KOFpATO8Tvrcu1agb6Tsv5kkJZrpXhWQFCBp5c10Cr0Zz5yuOvewec1evBpXnH2PCgRaqEBAIBs9IuNhTz8dH31zcMDIcDbq7sOiPfBxUPQdAMx+iN8tZw8gfgaPFXLODXS0re3f+vZAoQPwiXnXx3cSMQvvsYc6Cszqr8+wYrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JmAz/RIM; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1727170226;
-	bh=yYGyQa85Hiy1PX0vqwd7dAOmJNDEEsVqTrx6k8biPY0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JmAz/RIMcfvnkfrzc76Ve42Qwh1mrdn89jlizJg0cYIOINFLr+kOfLxDbtn0fs3u8
-	 4C5At/kPvKrNwaHCBU90aVOFzE03G6vd9Wo4u+Q7SZula5SDL7lMK1rjztXLm5l7QZ
-	 DmhRUtN0KEP/DlFZULU20Gz8ucEb7FEGqaQYPd852giT16O8fXik2ff3BQT72XIBd8
-	 zbiNL9HGNPhpTvZaplBZmMo0vipYN72q3OckbhUEOjALMmeax5aR4k0ACtshCC2vPL
-	 3KbUCcuc5xfh3VwzuWx57oXXpu3VIa7a9vH/9skGPjGJXhw9rN2LieXPc+Raab7uiQ
-	 kzxm9x570OxHQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2E1AA17E10AA;
-	Tue, 24 Sep 2024 11:30:26 +0200 (CEST)
-Message-ID: <72ce817e-63de-40a7-b7e9-a5b44b67e207@collabora.com>
-Date: Tue, 24 Sep 2024 11:30:25 +0200
+	s=arc-20240116; t=1727170268; c=relaxed/simple;
+	bh=7rEm9JEz9RGM0WGcUj3h1rlyBqcC1eBi895PoRFTQg8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hQp9NPM5HyzX1t0rp3sChMXw8vd9wk8PJv11eAk8ey7aRqQdsSRW3ZuETfrBmGISt7i5eUizRhSE8aec8oRXrW0vFo1QNv7M97vOs8OKVbAmQmkbWXeMhJfBdGM55yUKexFqKau/52ld3VWear25mZPykOXNmHqovGd6RbxkfRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q3TI0Vsk; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2f74e468aa8so54642451fa.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 02:31:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1727170264; x=1727775064; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=yWBIbFHZNiPI/HNmpMhvRGObId3eaCn9wFIzXYkz7to=;
+        b=q3TI0VskM3Qp7IW3ebLpJzH+DRyJRVewO8UArC5lGyTCzhhe0cdCBQT1LpfNachVhA
+         Z9dP85Y3wRc+OenK8dt08+ykbj0KsfOYUVmLgdnUYmUcQZUWO1KspPcaLp3ht5zhVQ2o
+         X8wq3mk5F0blPswE31t478IVAheWHNgXxzNtdagigEVePg3LbsCLsnwUJdZ4egrOjBCs
+         TUXo+jywQib6ECGmMI0Hk+Aa3hyqj6QjTiSF5L5YtJInabZQXKyatkMYMSSkWzkn6HRf
+         UukAFZpMO6qF+WZEWYJgzjCJWovv7Z0nfASe64R4Xcd8A1rZuJ1Qi4HuVj9+/+aevn9A
+         q3+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727170264; x=1727775064;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yWBIbFHZNiPI/HNmpMhvRGObId3eaCn9wFIzXYkz7to=;
+        b=RF9o433uOZ7LEIBjNPZOpKX242QkCPNd4opOZd5E2+f92VedNPqfM4+uZ610MXZQ2p
+         qBlLnU4GttyPMvTFXQq7vFoya1vtGlBXwT2klpKCdzJMnSOwLtX7GtQnjJYDmovbQc+r
+         sFj1XEwK1VMKOujZGV1NABVap0GXYhXtFg+3T9I3Gv7AHsZne4x+orPJdPaAEx5co4D0
+         oKaJkZ4siIPC1PdqPBSkfH8CsFoS954q2b5CgnpM3hAjOdtb7T1U7HwaFFNiSyBpSQWj
+         Xw58aHz1ddXCS2j6rTw40l9sTrGWeU9qtZZ3uYycoa4OHBaAaa/0T531tqgkNmeJdUXB
+         inBw==
+X-Forwarded-Encrypted: i=1; AJvYcCXvylnE+wljR+wWGhm0BHGrNDM+oE78m/mOUxHsukAHQQAJdSZ0RuV2IxK0YO9XpIp9So/MT3dj1OcY@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIrDWG0LaDafkAY8FYJmZbN/eBZ2P/TyfofTL+1RIzdJtRe94F
+	IpmbgTybpCOkooIMXeUE/prO7mshs5GrPS/kh3DYBNDksC1Ia60oEQJlTrBn0RQ=
+X-Google-Smtp-Source: AGHT+IHl/avwAYPIhb6TlrUBum/ZYPGtpNgmakP+vyGoMgDMX9PZ7T3T0XlPukXCsWcNZg9FyHE4qw==
+X-Received: by 2002:a05:6512:220f:b0:530:aa4b:81c7 with SMTP id 2adb3069b0e04-536ad3d5526mr6590279e87.59.1727170264125;
+        Tue, 24 Sep 2024 02:31:04 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-537a864029dsm150753e87.120.2024.09.24.02.31.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Sep 2024 02:31:03 -0700 (PDT)
+Date: Tue, 24 Sep 2024 12:31:02 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, 
+	daniel@ffwll.ch, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com, vkoul@kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, mripard@kernel.org, 
+	Sandor Yu <Sandor.yu@nxp.com>, kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com, 
+	sam@ravnborg.org
+Subject: Re: [PATCH v17 1/8] drm: bridge: Cadence: Create mhdp helper driver
+Message-ID: <vlqcv7pdhyf6rjmkm2ccyvg3fv64gcp536zppns6nc3xpzuew6@j3qrwextsp33>
+References: <cover.1727159906.git.Sandor.yu@nxp.com>
+ <6e2e4951aa4c69eed68af231c2b0b2ce302b2358.1727159906.git.Sandor.yu@nxp.com>
+ <2773403.mvXUDI8C0e@steina-w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/3] rtc: mt6359: Add RTC hardware range and add
- support for start-year
-To: Macpaul Lin <macpaul.lin@mediatek.com>, lee@kernel.org,
- ZhanZhan.ge@mediatek.com
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, eddie.huang@mediatek.com, sean.wang@mediatek.com,
- alexandre.belloni@bootlin.com, sen.chu@mediatek.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-rtc@vger.kernel.org, kernel@collabora.com, yong.mao@mediatek.com
-References: <20240923100010.97470-1-angelogioacchino.delregno@collabora.com>
- <20240923100010.97470-3-angelogioacchino.delregno@collabora.com>
- <0748868d-4789-fcaa-e70f-6a4508411b36@mediatek.com>
- <247abc15-d82f-3e8f-5202-edc6099707df@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <247abc15-d82f-3e8f-5202-edc6099707df@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <2773403.mvXUDI8C0e@steina-w>
 
-Il 24/09/24 09:05, Macpaul Lin ha scritto:
+On Tue, Sep 24, 2024 at 10:41:26AM GMT, Alexander Stein wrote:
+> Hi Sandor,
 > 
-> On 9/24/24 12:08, Macpaul Lin wrote:
->>
->> On 9/23/24 18:00, AngeloGioacchino Del Regno wrote:
->>> Add the RTC hardware range parameters to enable the possibility
->>> of using the `start-year` devicetree property which, if present,
->>> will set the start_secs parameter by overriding the defaults
->>> that this driver is setting;
->>>
->>> To keep compatibility with (hence have the same date/time reading
->>> as) the old behavior, set:
->>>   - range_min to 1900-01-01 00:00:00
->>>   - range_max to 2027-12-31 23:59:59 (HW year max range is 0-127)
->>>   - start_secs defaulting to 1968-01-02 00:00:00
->>>
->>> Please note that the oddness of starting from January 2nd is not
->>> a hardware quirk and it's done only to get the same date/time
->>> reading as an RTC which time was set before this commit.
->>>
->>> Also remove the RTC_MIN_YEAR_OFFSET addition and subtraction in
->>> callbacks set_time() and read_time() respectively, as now this
->>> is already done by the API.
->>>
->>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>> ---
->>>   drivers/rtc/rtc-mt6397.c | 13 ++++---------
->>>   1 file changed, 4 insertions(+), 9 deletions(-)
->>
->> [snip]
->>
->> Thanks for helping add new patch fix for RTC.
->>
->>> @@ -302,6 +293,10 @@ static int mtk_rtc_probe(struct platform_device *pdev)
->>>       device_init_wakeup(&pdev->dev, 1);
->>>       rtc->rtc_dev->ops = &mtk_rtc_ops;
->>> +    rtc->rtc_dev->range_min = RTC_TIMESTAMP_BEGIN_1900;
->>> +    rtc->rtc_dev->range_max = mktime64(2027, 12, 31, 23, 59, 59);
->>> +    rtc->rtc_dev->start_secs = mktime64(1968, 1, 2, 0, 0, 0);
->>> +    rtc->rtc_dev->set_start_time = true;
->>>       return devm_rtc_register_device(rtc->rtc_dev);
->>>   }
->>
->> Dear @Zhanhan, Please help to leave comment if you think there is something need 
->> to be clarify. For example, I've found some relate origin defines
->> in "include/linux/mfd/mt6397/rtc.h"
->> #define RTC_MIN_YEAR    1968
->> #define RTC_BASE_YEAR    1900
->> #define RTC_NUM_YEAR    128
->> #define RTC_MIN_YEAR_OFFSET    (RTC_MIN_YEAR - RTC_BASE_YEAR)
->>
->> Should MediaTek remove RTC_MIN_YEAR and RTC_BASE_YEAR in next patch?
->> And since there may not exist any smartphone/tablet/TV using mt6397
->> RTC earlier than 2010? Is it possible to change
->> RTC_TIMESTAMP_BEGIN_1900 to RTC_TIMESTAMP_BEGIN_2000 without breaking
->> compatibility for these devices?
->>
->> Thanks
->> Macpaul Lin
->>
+> Am Dienstag, 24. September 2024, 09:36:46 CEST schrieb Sandor Yu:
+> > MHDP8546 mailbox access functions will be share to other mhdp driver
+> > and Cadence HDP-TX HDMI/DP PHY drivers.
+> > Create a new mhdp helper driver and move all those functions into.
+> > 
+> > cdns_mhdp_reg_write() is renamed to cdns_mhdp_dp_reg_write(),
+> > because it use the DPTX command ID DPTX_WRITE_REGISTER.
+> > 
+> > New cdns_mhdp_reg_write() is created with the general command ID
+> > GENERAL_REGISTER_WRITE.
+> > 
+> > Rewrite cdns_mhdp_set_firmware_active() in mhdp8546 core driver,
+> > use cdns_mhdp_mailbox_send() to replace cdns_mhdp_mailbox_write()
+> > same as the other mailbox access functions.
+> > 
+> > Replaces the local mutex mbox_mutex with a global mutex mhdp_mailbox_mutex
+> > to prevent race conditions in mailbox access by multi drivers.
+> > 
+> > Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
+> > ---
+> > v16->v17:
+> > - Replaces the local mutex mbox_mutex with a global mutex mhdp_mailbox_mutex
+> > 
+> > v12->v16:
+> >  *No change.
+> > 
+> > V11->v12:
+> > - Move status initialize out of mbox_mutex.
+> > - Reorder API functions in alphabetical.
+> > - Add notes for malibox access functions.
+> > - Add year 2024 to copyright.
+> > 
+> >  drivers/gpu/drm/bridge/cadence/Kconfig        |   4 +
+> >  drivers/gpu/drm/bridge/cadence/Makefile       |   1 +
+> >  .../gpu/drm/bridge/cadence/cdns-mhdp-helper.c | 307 +++++++++++++
+> >  .../drm/bridge/cadence/cdns-mhdp8546-core.c   | 425 ++++--------------
+> >  .../drm/bridge/cadence/cdns-mhdp8546-core.h   |  47 +-
+> >  .../drm/bridge/cadence/cdns-mhdp8546-hdcp.c   |  36 +-
+> >  include/drm/bridge/cdns-mhdp-helper.h         |  94 ++++
+> >  7 files changed, 507 insertions(+), 407 deletions(-)
+> >  create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp-helper.c
+> >  create mode 100644 include/drm/bridge/cdns-mhdp-helper.h
+> > 
+> > diff --git a/drivers/gpu/drm/bridge/cadence/Kconfig b/drivers/gpu/drm/bridge/cadence/Kconfig
+> > index cced81633ddcd..e0973339e9e33 100644
+> > --- a/drivers/gpu/drm/bridge/cadence/Kconfig
+> > +++ b/drivers/gpu/drm/bridge/cadence/Kconfig
+> > @@ -21,6 +21,9 @@ config DRM_CDNS_DSI_J721E
+> >  	  the routing of the DSS DPI signal to the Cadence DSI.
+> >  endif
+> >  
+> > +config CDNS_MHDP_HELPER
+> > +	tristate
+> > +
+> >  config DRM_CDNS_MHDP8546
+> >  	tristate "Cadence DPI/DP bridge"
+> >  	select DRM_DISPLAY_DP_HELPER
+> > @@ -28,6 +31,7 @@ config DRM_CDNS_MHDP8546
+> >  	select DRM_DISPLAY_HELPER
+> >  	select DRM_KMS_HELPER
+> >  	select DRM_PANEL_BRIDGE
+> > +	select CDNS_MHDP_HELPER
+> >  	depends on OF
+> >  	help
+> >  	  Support Cadence DPI to DP bridge. This is an internal
+> > diff --git a/drivers/gpu/drm/bridge/cadence/Makefile b/drivers/gpu/drm/bridge/cadence/Makefile
+> > index c95fd5b81d137..087dc074820d7 100644
+> > --- a/drivers/gpu/drm/bridge/cadence/Makefile
+> > +++ b/drivers/gpu/drm/bridge/cadence/Makefile
+> > @@ -2,6 +2,7 @@
+> >  obj-$(CONFIG_DRM_CDNS_DSI) += cdns-dsi.o
+> >  cdns-dsi-y := cdns-dsi-core.o
+> >  cdns-dsi-$(CONFIG_DRM_CDNS_DSI_J721E) += cdns-dsi-j721e.o
+> > +obj-$(CONFIG_CDNS_MHDP_HELPER) += cdns-mhdp-helper.o
+> >  obj-$(CONFIG_DRM_CDNS_MHDP8546) += cdns-mhdp8546.o
+> >  cdns-mhdp8546-y := cdns-mhdp8546-core.o cdns-mhdp8546-hdcp.o
+> >  cdns-mhdp8546-$(CONFIG_DRM_CDNS_MHDP8546_J721E) += cdns-mhdp8546-j721e.o
+> > diff --git a/drivers/gpu/drm/bridge/cadence/cdns-mhdp-helper.c b/drivers/gpu/drm/bridge/cadence/cdns-mhdp-helper.c
+> > new file mode 100644
+> > index 0000000000000..c60a6b69a5343
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/bridge/cadence/cdns-mhdp-helper.c
+> > @@ -0,0 +1,307 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (C) 2023, 2024 NXP Semiconductor, Inc.
+> > + *
+> > + */
+> > +#include <drm/bridge/cdns-mhdp-helper.h>
+> > +#include <linux/dev_printk.h>
+> > +#include <linux/module.h>
+> > +
+> > +/* Protects mailbox communications with the firmware */
+> > +DEFINE_MUTEX(mhdp_mailbox_mutex);
 > 
-> After discussing these change with ZhanZhan, MediaTek think use 
-> RTC_TIMESTAMP_BEGIN_1900 and the other changes are okay.
+> This is not enough if the driver is built as a module:
 > 
-> Reviewed-by: Macpaul Lin <macpaul.lin@mediatek.com>
-> Reviewed-by: ZhanZhan Ge <zhanzhan.ge@mediatek.com>
+> > ERROR: modpost: "mhdp_mailbox_mutex"
+> > [drivers/gpu/drm/bridge/cadence/cdns-mhdp8546.ko] undefined! ERROR:
+> > modpost: "mhdp_mailbox_mutex"
+> > [drivers/gpu/drm/bridge/cadence/cdns-mhdp8501.ko] undefined!
+> 
+> Not sure if EXPORT_SYMBOL_GPL() on a mutex is considered good style.
+
+Absolutely no. The API should wrap register access, using the mutex
+whether required, rather than exporting the mutex for everybody else to
+use.
+
+> 
+> Best regards,
+> Alexander
+> 
+> > [snip]
+> -- 
+> TQ-Systems GmbH | M�hlstra�e 2, Gut Delling | 82229 Seefeld, Germany
+> Amtsgericht M�nchen, HRB 105018
+> Gesch�ftsf�hrer: Detlef Schneider, R�diger Stahl, Stefan Schneider
+> http://www.tq-group.com/
+> 
 > 
 
-Thank you Macpaul, ZhanZhan :-)
-
-Cheers,
-Angelo
+-- 
+With best wishes
+Dmitry
 
