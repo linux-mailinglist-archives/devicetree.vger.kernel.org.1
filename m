@@ -1,95 +1,63 @@
-Return-Path: <devicetree+bounces-105015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46E92984EA0
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 01:06:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 998CF984EA5
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 01:06:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69B0C1C208D8
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 23:06:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E645B265E4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 23:06:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1C8818594A;
-	Tue, 24 Sep 2024 23:01:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8EF1185920;
+	Tue, 24 Sep 2024 23:03:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nqc4ac9s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PtCfff1R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C96F5184554;
-	Tue, 24 Sep 2024 23:01:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C66313C8F0;
+	Tue, 24 Sep 2024 23:03:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727218910; cv=none; b=qE389WR45bvAoCBxqmOydYzluqzVz/Wut8ES5BukuN2F1GHh/5YX5TmkS0Fh7AA+r0uOqN+1uEyacLFvMtfjkhq5Uz1XUJ2X3RQLy3fT9O58T4DWeTU/dhUgHMGC0MzsdZOVKDvJAKB+/dTL5N4F9yW124bLkGZv4OZfs/pxsCw=
+	t=1727219011; cv=none; b=KU/J+EC8adOKEwckQ+gv9kLi8DvAkkXl11smbwBqJr3Gw+6Q3+h6kvT9QmPJVWvkqfTNtjOQmVC+5heAuZs2lGbILmv8rybM+dkGCMxlFDhhK+vLB6NlW3ru3pUvAUQNYo0e//XEnXdIfnYwghNZjosFzKGUTmapnZ1TQRZFdcI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727218910; c=relaxed/simple;
-	bh=iCpstCu67Jc2MNXnXgMRYbHpsGMR/seZfOB+2ddMqn0=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cuF6Mgxwq7qesHdXBnd+AQ0wTJYoJ0ggALTAqW6JFNWXXFqQyMrVHXAYVapvXmS1VnXBy77IahCAieXiae57nCVf3N06odFIZjKll+1sXvHeCWhbNNXNVCrWCo5YO+5SbOPia8uA+oXLZjBzlOYmmkutj5Y5NXwiaY/qwYEUycg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nqc4ac9s; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-375e5c12042so3206418f8f.3;
-        Tue, 24 Sep 2024 16:01:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727218907; x=1727823707; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=EiHP41TD7xH9XF/qUpUvxLVEqhRCLzxrTYdZWcoiVUM=;
-        b=nqc4ac9s9JB09+R/ruP233XyvLhpliVaQCRLWrqdg5AAzxGMeFTdSYWE1oUj74kCJs
-         Eleg6yTqyYZVOGte2pUqxCtxu8PJzd8//Yc2mIElVNJ2lO2lH/izwxR+NEdh1RnrOs5+
-         j4nemyUaEYvPP2t+G4At665BE1tnxZmGjf3SAn7fArNUjk8OdRnHL3QPZoCfERONVfIK
-         Baa7lvTJDYd+g+4E+YwCmazVR6ExwR+ct2wIvzbBKkHRHKMwd/H2/nBrdzacqxXlJg4c
-         lAPRR5KGWfkxzVz7FD/MEMJ1FJ2xujGB5/QjvZ76Bmkk6USLpZ5Zv9q+xSDIFt+uR1dT
-         jRzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727218907; x=1727823707;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EiHP41TD7xH9XF/qUpUvxLVEqhRCLzxrTYdZWcoiVUM=;
-        b=Cd4FtVBCMJWHSEqElrWOtUeACZzd8ksPL2keoGhfBL6BGYR8WOR+2c4y8TCO2pWebO
-         sfYU2IOr2O8BNUdFwzeZNymFF8iayIO7Jxh6+ILVGlkvRTzMVSMTlVDZSQJjNM8wrUXZ
-         OybGEo2o2KOjFPsP2a+bnZyKDFBEK977ww+5q+YcBpqSaIl1W2g04uxo8ig7+3o75ze9
-         QKEW63sKCGD/WId4GW7smTOCbkYIKuDdnGUALmwPC+hrbgPdu8Myy2ir3/lkWTIzvQXW
-         TgGdLC2MQvO67EGYJIuwhaj5WHlcQmjSbI9IyaarZgldiNpc1QGgY3Hpcw2oWDCIc1Hs
-         9f3A==
-X-Forwarded-Encrypted: i=1; AJvYcCUR3wd7BiqWCSJQVJnIFVck68iWAkAMkDTOK+jUpErjMsEwcnPewWK8cxJuzWiIdHNdxGBcDcMuZR2uJAIm@vger.kernel.org, AJvYcCVFd4W1EsR/VgKb0YW1ULEveedVZNtLJBPP2H/zvZqGyzhXMNCVmWaTOU1m2Q6oZxJTVRArhdDQrVMz@vger.kernel.org, AJvYcCWLaFwmnDK3cIEWa6bci9TYz0PfMyCdpw1yFQqnsOIQYpNNba9V6VCZKtns+q9Zf+pc8y5cZh3J+uHR1kM=@vger.kernel.org, AJvYcCX7KqQ3njwgcosJqSSUx68UHw/IB8iF81eJwXw1iscULAO/mzDtfnTMPBO7H7jHpt/1ZR1Qe1eVXpjh@vger.kernel.org, AJvYcCXJ2VOZrLLfoeH0Xq6hDsIhsRt/hT0T9BzSfORM0rR5FidsgdwTveG/9/hftWB9QKWSjJSBsA+DKRY4@vger.kernel.org
-X-Gm-Message-State: AOJu0YzbVs0uRQRESe58yVwE5PX9+ExC2ioL3daS/JViNJVImaJ8muNR
-	Ryf8ssNtkFrhIdifxzLzkc3fDPizUxpKrjmnr6UEvpAU1UhXZ62k
-X-Google-Smtp-Source: AGHT+IHhJIoOphxVKhmWmmKjq29jIYBLCsWBccEN8ZbNLrKJ6c6VCv3EmW4t5yVT7uEqTdAjLsEgVQ==
-X-Received: by 2002:a05:6000:5:b0:374:c69b:5a16 with SMTP id ffacd0b85a97d-37cc24ca382mr433421f8f.50.1727218906570;
-        Tue, 24 Sep 2024 16:01:46 -0700 (PDT)
-Received: from Ansuel-XPS. (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e96a54dd4sm1345465e9.45.2024.09.24.16.01.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Sep 2024 16:01:45 -0700 (PDT)
-Message-ID: <66f344d9.050a0220.3a46fd.0723@mx.google.com>
-X-Google-Original-Message-ID: <ZvNE1qfnCfFPm6hV@Ansuel-XPS.>
-Date: Wed, 25 Sep 2024 01:01:42 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Jens Axboe <axboe@kernel.dk>, Jonathan Corbet <corbet@lwn.net>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	INAGAKI Hiroshi <musashino.open@gmail.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Christian Brauner <brauner@kernel.org>,
-	Al Viro <viro@zeniv.linux.org.uk>, Ming Lei <ming.lei@redhat.com>,
-	Li Lingfeng <lilingfeng3@huawei.com>,
-	Christian Heusel <christian@heusel.eu>, linux-block@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>
-Subject: Re: [RFC PATCH 4/4] dt-bindings: mmc: Document support for partition
- table in mmc-card
-References: <20240923105937.4374-1-ansuelsmth@gmail.com>
- <20240923105937.4374-5-ansuelsmth@gmail.com>
- <20240924225343.GA413172-robh@kernel.org>
+	s=arc-20240116; t=1727219011; c=relaxed/simple;
+	bh=gYYRhZD3rvvtpnrdcL4upxJCTxcxrqykk7cJXG94c74=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gUuqTzMgtttXpHkQCfvlHNxVon+xZ3PfuGQYdNOlCwxXmzoBmpuM/UYR8ZbDsO6k0pEmlSSn9iHFeEtXcKr74OylvYIZQ+25ZgSh842wqm4ekWYdEHwNeqkYVVneFxXFovl2BqA5e14Ox61Ba96RB9uHcDQiZyG+rqYzlK70Qpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PtCfff1R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23EEDC4CEC4;
+	Tue, 24 Sep 2024 23:03:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727219011;
+	bh=gYYRhZD3rvvtpnrdcL4upxJCTxcxrqykk7cJXG94c74=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PtCfff1RO6YZh019eDvWMs7A2ST59pNEh7OgksLQonGnY/lqjFhr+za1Vkuhz/M10
+	 VSnjXlpsbw+qMWzrSO7inHzf4jhbf50hkVF8wCGMrE/Ld1tE6qbxrL9r1GcBT4l4TE
+	 OBgVQdFrORhmBMFcNaC51WgYOZYruTL9Z6HnNwCvgtDiSOZpj9Zjv2X+dJR3zXqEZV
+	 NwBdtpxqfYxtpPz3WG7a2AyMDtuABcN7Y5uSeHAU6ufxzYCm/NuMFsGAUbKKx3oyon
+	 SfEYUMMbk2PrDSoXXcUuEjSku/aaIrXDQ25FJZJkk4YonlZHy1AcAOC+KCulU3oYvh
+	 O42LuoJvm+qMA==
+Date: Tue, 24 Sep 2024 18:03:30 -0500
+From: Rob Herring <robh@kernel.org>
+To: Lukasz Majewski <lukma@denx.de>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+	Stefan Agner <stefan@agner.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: lcdif: Add support for specifying display
+ with timings
+Message-ID: <20240924230330.GB441530-robh@kernel.org>
+References: <20240923135744.2813712-1-lukma@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,128 +66,118 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240924225343.GA413172-robh@kernel.org>
+In-Reply-To: <20240923135744.2813712-1-lukma@denx.de>
 
-On Tue, Sep 24, 2024 at 05:53:43PM -0500, Rob Herring wrote:
-> On Mon, Sep 23, 2024 at 12:59:33PM +0200, Christian Marangi wrote:
-> > Document support for defining a partition table in the mmc-card node.
-> > 
-> > This is needed if the eMMC doesn't have a partition table written and
-> > the bootloader of the device load data by using absolute offset of the
-> > block device. This is common on embedded device that have eMMC installed
-> > to save space and have non removable block devices.
+On Mon, Sep 23, 2024 at 03:57:44PM +0200, Lukasz Majewski wrote:
+> Up till now the fsl,lcdif.yaml was requiring the "port" property as a
+> must have to specify the display interface on iMX devices.
 > 
-> What if the partition table is written? What does one use? One of them 
-> or both and merge them?
->
-
-Hi Rob,
-thanks a lot for the review!
-
-The block code parse partition table with some kind of priority system.
-
-Example if cmdline is found, then anything else is ignored. (simple
-logic, first parser that match an expected structure win)
-
-We apply the same logic. So with partition table defined in OF, then
-anything written will be ignored.
-
-> > eMMC provide a generic disk for user data and if supported also provide
-> > one or two additional disk (boot0 and boot1) for special usage of boot
-> > operation where normally is stored the bootloader or boot info.
-> > 
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> >  .../devicetree/bindings/mmc/mmc-card.yaml     | 75 +++++++++++++++++++
-> >  1 file changed, 75 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mmc/mmc-card.yaml b/Documentation/devicetree/bindings/mmc/mmc-card.yaml
-> > index fd347126449a..fab9fa5c170a 100644
-> > --- a/Documentation/devicetree/bindings/mmc/mmc-card.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/mmc-card.yaml
-> > @@ -13,6 +13,10 @@ description: |
-> >    This documents describes the devicetree bindings for a mmc-host controller
-> >    child node describing a mmc-card / an eMMC.
-> >  
-> > +  It's possible to define a fixed partition table for an eMMC for the user
-> > +  partition and one of the 2 boot partition (boot0/boot1) if supported by the
-> > +  eMMC.
-> > +
-> >  properties:
-> >    compatible:
-> >      const: mmc-card
-> > @@ -26,6 +30,48 @@ properties:
-> >        Use this to indicate that the mmc-card has a broken hpi
-> >        implementation, and that hpi should not be used.
-> >  
-> > +  "#address-cells": true
-> > +
-> > +  "#size-cells": true
-> > +
-> > +patternProperties:
-> > +  "^partitions(-boot[01])?$":
-> > +    type: object
+> However, it shall also be possible to specify the display only with
+> passing its timing parameters (h* and v* ones) via "display" property:
+> (as in
+> Documentation/devicetree/bindings/display/panel/display-timings.yaml).
 > 
-> You don't define this is fixed partitions with a fixed-partitions 
-> compatible. Why not reuse that? Then this all goes away with a 
-> reference to it.
+> Such approach has already been used (also in the mainline) with several
+> imx28, imx5x and imx6q devices.
 > 
-
-My problem is that the fixed-partition schema in MTD have some
-additional property that can't be supported.
-
-Ideally I should define a generic schema that can be shared and then
-expand it in MTD. Any hint on the directory structure tho?
-
-Where should I put this generic schema?
-
-> > +
-> > +    properties:
-> > +      "#address-cells": true
-> > +
-> > +      "#size-cells": true
-> > +
-> > +    patternProperties:
-> > +      "@[0-9a-f]+$":
-> > +        type: object
-> > +
-> > +        properties:
-> > +          reg:
-> > +            description: partition's offset and size within the flash (in sector
-> > +              block, 512byte)
+> This change allows them to pass the DT_SCHEMA check without issues.
 > 
-> Units are sectors? Use bytes instead because everything else does in DT. 
+> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> ---
+>  .../bindings/display/fsl,lcdif.yaml           | 51 ++++++++++++++++++-
+>  1 file changed, 49 insertions(+), 2 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> index 8e3a98aeec32..14bb64b5b72d 100644
+> --- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> +++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> @@ -50,6 +50,10 @@ properties:
+>        - const: disp_axi
+>      minItems: 1
+>  
+> +  display:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: The phandle for display timing information
+> +
+>    dmas:
+>      items:
+>        - description: DMA specifier for the RX DMA channel.
+> @@ -64,6 +68,9 @@ properties:
+>        - description: LCDIF Error interrupt
+>      minItems: 1
+>  
+> +  lcd-supply:
+> +    description: Regulator for LCD supply voltage.
+> +
+>    power-domains:
+>      maxItems: 1
+>  
+> @@ -76,7 +83,10 @@ required:
+>    - reg
+>    - clocks
+>    - interrupts
+> -  - port
+> +
+> +patternProperties:
+> +  'display([0-9])':
 
-Ok will try to convert value to bytes internally.
+This allows for 'foodisplay0bar'. You need start and end anchors.
 
-> > +            maxItems: 1
-> > +
-> > +
-> > +          label:
-> > +            description: The label / name for this partition.
-> > +
-> > +          read-only:
-> > +            description: This parameter, if present, is a hint that this partition
-> > +              should only be mounted read-only. This is usually used for flash
-> > +              partitions containing early-boot firmware images or data which should
-> > +              not be clobbered.
-> > +            type: boolean
-> > +
-> > +        required:
-> > +          - reg
-> > +          - label
-> > +
-> > +        additionalProperties: false
-> > +
-> > +    additionalProperties: false
+And it doesn't even have to be a node because there are no contraints 
+here. You need 'type: object' and then to define what's in the node.
+
+
+> +    description: Node with display timing parameters
+>  
+>  additionalProperties: false
+>  
+> @@ -197,5 +207,42 @@ examples:
+>              };
+>          };
+>      };
+> -
+> +  - |
+> +    lcdif: lcdif@80030000 {
+> +        compatible = "fsl,imx28-lcdif";
+> +        reg = <0x80030000 0x2000>;
+> +        interrupts = <38>;
+> +        clocks = <&clks 55>;
+> +        dmas = <&dma_apbh 13>;
+> +        dma-names = "rx";
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&lcdif_24bit_pins_a>, <&lcdif_sync_pins_bttc>,
+> +                 <&lcdif_reset_pins_bttc>;
+> +        lcd-supply = <&reg_3v3>;
+> +        display = <&display0>;
+> +        status = "okay";
+
+Don't need status in the examples.
+
+> +
+> +                bits-per-pixel = <32>;
+> +                bus-width = <24>;
+> +                display-timings {
+> +                        native-mode = <&timing0>;
+> +                        timing0: timing0 {
+> +                                clock-frequency = <6500000>;
+> +                                hactive = <320>;
+> +                                vactive = <240>;
+> +                                hfront-porch = <20>;
+> +                                hback-porch = <38>;
+> +                                hsync-len = <30>;
+> +                                vfront-porch = <4>;
+> +                                vback-porch = <14>;
+> +                                vsync-len = <4>;
+> +                                hsync-active = <0>;
+> +                                vsync-active = <0>;
+> +                                de-active = <0>;
+> +                                pixelclk-active = <1>;
+> +                        };
+> +                };
+> +        };
+> +    };
+>  ...
+> -- 
+> 2.39.2
 > 
-> Put the indented cases of additionalProperties/unevaluatedProperties 
-> before 'properties'. Easier to see what they apply to that way.
-> 
-
-ack.
-
--- 
-	Ansuel
 
