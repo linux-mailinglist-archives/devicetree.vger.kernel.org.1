@@ -1,133 +1,84 @@
-Return-Path: <devicetree+bounces-104980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30751984C30
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 22:30:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFF39984C34
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 22:32:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 610481C23019
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 20:30:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0295C1C22DCD
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 20:32:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BB0013D8B4;
-	Tue, 24 Sep 2024 20:30:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFF7A136328;
+	Tue, 24 Sep 2024 20:32:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qhrdvOit"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="VfMSJ12a"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A33313B7A3;
-	Tue, 24 Sep 2024 20:30:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA7C326AD0
+	for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 20:32:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727209807; cv=none; b=luIWqg4QHN3srjhkCM9gqVM/fXA0Z92RPmgT3N/xD7+QtFziBYG/lePGuy9LJoQiemaG4z7tIwkft42guR4x81dm5+Te+16FxGJOPRYFIqIUwI444NJTIflawq4xW7IcYBzyya6+2Qd/5vaJXcG1eOA/Izoh0uAv85/H5JpUu0A=
+	t=1727209923; cv=none; b=GsZxQf/630uuW569bTjVac4DXtc9jnyyjQCjKA/ZLez/9ZLnGdMuXewEhNEpY6xK6Jq+U9Dt3CnQVPRTIZBLOBHR1IX46b+CxDWJMTaoLEzV3WdbpEMyVUDPVRst9Zc0JT3ktQHv9bE1REFERLkwOmFbKvT1oL7YBRSQQurg2o0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727209807; c=relaxed/simple;
-	bh=2u0zeg+dHBdxKoMgMF1vko+I8IQky5fnMmQgoOzaaEg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BhvoET2Z/SySwLrKp+7Xx/QyWDrnsJtiThjdGWJ6aqzsdkH5ylAhAWR9Fmex+dW+UJCHrr2Eba6wc7lYT1TxcmtdaA7sKgFryAH/ASgUMpZ8FffgEJ2aOaLRJTGTF3GLBcdvrvNHynlF3yvVSLjCs+WnQiLylSDwnjEfOchLFW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qhrdvOit; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 008CAC4CEC4;
-	Tue, 24 Sep 2024 20:30:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727209807;
-	bh=2u0zeg+dHBdxKoMgMF1vko+I8IQky5fnMmQgoOzaaEg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qhrdvOitcuBAEovMd5FLA8/jNrjkcFLI6ze/m/bUC+tgG1KdEOhNsqUbVrgWyWRem
-	 PFR4c463Nem9cI8uj1VUlAYthS3VUcAY2MqSZpq1l7qiBkhBz2Mcc4EKrvcUifzqO8
-	 Nj3HxXWnueDWNP4zELMGFPx8t7Tu/iJyPEw+sA6numO+MzZnhOSbCM6ZdD/WXgtxXH
-	 P3Hpzz+a1Bv3EWJ/YA/xQUpl1TDifK24yCj/nRsEuEVpPlcbvE/La1M/DEVkTURKDX
-	 ApGFPJMJi07DIbVulX7ef4eqKrP4xMarslXJVmneuCAwcEtQQDmO4vn7W57YoJnFXR
-	 JES2/7uISerRQ==
-Date: Tue, 24 Sep 2024 15:30:06 -0500
-From: Rob Herring <robh@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: mmc: document mmc-slot
-Message-ID: <20240924203006.GA283611-robh@kernel.org>
-References: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-0-5aa8bdfe01af@linaro.org>
- <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-2-5aa8bdfe01af@linaro.org>
+	s=arc-20240116; t=1727209923; c=relaxed/simple;
+	bh=1in3fJTXzJN1owYp36OY+NqRy3fKAZfxa8RM6vUXOZA=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=Mvzck1NH2Tc2lZcE3/9pq220PvX7LFojs9gbbJS5PxzmUVsCWmRp55Eu9irnqKhzVdkGMNHbymr3C0v9KRQeB24ghD6YoOJCSEmnLf1UgT+yzR69MvwmlUGAkE6hToIIRM3iZ+dJVbuC0idsrizTnNlc8LKxBnP97LnpIdo1h10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=VfMSJ12a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42FA5C4CEC4;
+	Tue, 24 Sep 2024 20:32:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1727209923;
+	bh=1in3fJTXzJN1owYp36OY+NqRy3fKAZfxa8RM6vUXOZA=;
+	h=Date:From:To:Cc:Subject:From;
+	b=VfMSJ12az/4eu8ASHb/6/Ph+zC9tAUqKXvAsHS7osmMbQFZ66z+yOaTD0Ri/SpFiJ
+	 IhvMWSZJ8JIn8/T1N1jF1jXT+kBl6bJTtI28Bh+xCokd1z2alVO4vxPDmbEBfgYPXS
+	 8AQ2xL06CxAN6OKMbNXuI9WgVYShyq/H635GfUA4=
+Date: Tue, 24 Sep 2024 16:32:02 -0400
+From: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+To: Luka Perkov <luka.perkov@sartura.hr>
+Cc: devicetree@vger.kernel.org, helpdesk@kernel.org
+Subject: Bouncing maintainer: Luka Kovacic
+Message-ID: <20240924-powerful-amber-husky-a53cbf@lemur>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-2-5aa8bdfe01af@linaro.org>
 
-On Fri, Sep 20, 2024 at 10:38:04AM +0200, Neil Armstrong wrote:
-> Document the mmc-slot, which is a subnode of a multi-slot
-> MMC controlle, each slot is represented as a full MMC controller,
-> the top node handling all the shared resources and slot mux.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  .../devicetree/bindings/mmc/mmc-slot.yaml          | 40 ++++++++++++++++++++++
->  1 file changed, 40 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
-> new file mode 100644
-> index 000000000000..c30eda4fd2a6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/mmc-slot.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MMC/SD/SDIO slot of a multi-slot controller
-> +
-> +maintainers:
-> +  - Ulf Hansson <ulf.hansson@linaro.org>
-> +
-> +allOf:
-> +  - $ref: mmc-controller.yaml
-> +
-> +properties:
-> +  compatible:
-> +    const: mmc-slot
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    mmc-controller {
+Hello:
 
-mmc {
+I'm reaching out to co-maintainers of the following subsystems:
 
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      slot@0 {
-> +        compatible = "mmc-slot";
-> +        reg = <0>;
-> +        bus-width = <4>;
-> +      };
-> +    };
-> +
-> +...
-> 
-> -- 
-> 2.34.1
-> 
+  - MIKROTIK CRS3XX 98DX3236 BOARD SUPPORT
+
+The email address for one of your maintainers is bouncing:
+
+  M: Luka Kovacic <luka.kovacic@sartura.hr>
+
+There are several possible courses of action:
+
+1. If you know the new email address for the maintainer, please ask them to
+   submit a patch for MAINTAINERS and .mailmap files.
+
+2. If this maintainer stepped away from their duties, or if co-maintainers are
+   equally unable to reach them via any other means, please submit a patch to
+   MAINTAINERS to remove their M: entry.
+
+The goal is to have no bouncing M: entries in the maintainers file, so please
+follow up as soon as you have decided on the correct course of action.
+
+Best regards,
+--
+Konstantin Ryabitsev
+Linux Foundation
+
+bugspray track
 
