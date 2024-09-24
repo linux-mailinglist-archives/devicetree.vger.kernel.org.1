@@ -1,107 +1,100 @@
-Return-Path: <devicetree+bounces-104847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65AD5984463
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 13:18:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E5DF9844D8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 13:35:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C235283798
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:18:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49A1B1F26CE4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:35:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99FE2195805;
-	Tue, 24 Sep 2024 11:18:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD4311A7AF1;
+	Tue, 24 Sep 2024 11:31:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WeoVvcXp"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="IQPPA/Q8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A3541A270;
-	Tue, 24 Sep 2024 11:18:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17F471AC8AB;
+	Tue, 24 Sep 2024 11:31:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727176733; cv=none; b=e9vUdrdSYdKAl5t0FHftE5PhA8PdWY0wH/EovyKyRPU5sjC7uCnesW5I5l983ug3hkYCl+S5wjGWtVEIZ5xr7FUp9P3uHhz0H3MoazUpDgGMGIujTQL+iB0QulCl+Kmd6EcMe3DKpGQ/9g0uveD7IOo0OgpSWFUazDnzjrSWzng=
+	t=1727177470; cv=none; b=g0eTEThtIOwOsbArd8jK8bGR8TNvWtKbBEQxViS6kBurCf96Xxp29F/MnoLUgJ8aCQLGT2GjBP1Og4IrgO9xdT8Beik30BJX0MK1rMdMBtksDzNdeiAn/O5wRJ43tadJ2j7kKTQg1jeTeGeM4fepgyqNruf1K7zeFJ0G/6m4Lpg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727176733; c=relaxed/simple;
-	bh=YBAqfCr1rPGxWzSzMR4p/L3+lR7/ASXO7LooTM0/hqA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=m50LHyyS0BAAXoh9wAQB4kCrL9wPOKlkzn4HqBQEUSGQ8h8bmiQASwRWui2esl++IArgEgGuq0p1KSA1NQ/Q9eLJcWFdS1vH6YL6v7Gi2LwsmNP+5/8BtQws4SutA2yAFs9C0hoe2qMxY3QPd0HpnZFVyW9O8eAHNk1VvQGaVQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WeoVvcXp; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e201f146cc8so4915915276.3;
-        Tue, 24 Sep 2024 04:18:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727176731; x=1727781531; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YBAqfCr1rPGxWzSzMR4p/L3+lR7/ASXO7LooTM0/hqA=;
-        b=WeoVvcXpupKfScfrTBA7vHp/YllamVH78ISwaKFJAaIFxbMvCXQFE+vlhTS+HHVLwh
-         vD86xPq6wb6BPW0xXrATm2TY5TwkXqq3e8OaCHTN9vNyl9+dg+BMX3v+OQLTs+FcUemX
-         XeOBs0vEGmUnF/KZQyEODH172b5w5Rq2C4rUhA85qsmQPM/ucC+aIctMNyL47YlNmDhq
-         OmzagC/UB8DhucFXxNEca0L+s+LmH2esQOXNWPXBVxYhCsQj9Z7sgHXmlXpcIOQBXSip
-         6rzy4BQZQijVEDf2OwrM20goQIec+6f7IoOFkxuZCxWp4BTyogCWa8hHkWNnSLGG6ThD
-         VZQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727176731; x=1727781531;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YBAqfCr1rPGxWzSzMR4p/L3+lR7/ASXO7LooTM0/hqA=;
-        b=uxWb6tqAJK6ZQlxyaavvyxCrp+dblQrdAc4sraUjnZr+sGj9UrMhTZpm7ey/DIbGkB
-         tHFlLh0m+S/AK7g+r46OI9v2SIXClpkBTzFvlmNDGv92jfrphtzhmrlt1rw6aUpbuYxc
-         IXqg4hnn5IbNO6cxtYFTqh/WvntUuyLc3CuoJy5/NEROaWNN/EtZqOiRjLDQV1fiIfMz
-         bXDVbF+HJ9sfABMIE/ODyan6gNhDG7aCr4vW4y2eWQFX5JIZtfFg9jSQRpY11okAasCn
-         RcviPlIKqeKWffZ94aqgRNvokAcOhn/CWRPtdDMiYOTHOxQcFy+2yla2rH2prDq96C3q
-         CSig==
-X-Forwarded-Encrypted: i=1; AJvYcCU/r5y9E42p9uKU3He6Ewh6w0mv0BBi7fuPgzpYXcPsejjqxIwjAJ7SCyqmlGQrK2UW4ErRXDdcJbB3@vger.kernel.org, AJvYcCXVnc+piefxwFTNPLR94OaUqhPZ+qSZWHIqZODrUBWZ0UDg0p2T0NgpzIYw7F+WiiSLfV6LZP7e3YyGTLVS@vger.kernel.org
-X-Gm-Message-State: AOJu0YydvxI74dw6ur+RwXwLwwh5ZFv+p6AJfZ0NmAENLc375AjfFO3E
-	OKWzvGUN7obNvfmkoq93uAzLh48ePsuFaXBYy74sTR/bbFb3r87ZespTgTsJjZ2UESzUZd4e/EX
-	lpR6QZt3MHQNdi+iWMY9RoMRwC4g=
-X-Google-Smtp-Source: AGHT+IHANp7+/BMwt988SLqyFK4IXfD9/zYPo0ZjUxhHBAeaZYv3Ys8UDFEPSo4JAjl/rljyKlox04YLEYQzEDwc4rk=
-X-Received: by 2002:a05:6902:2b91:b0:e1a:72e9:b243 with SMTP id
- 3f1490d57ef6-e2250c24a2cmr8718542276.9.1727176731047; Tue, 24 Sep 2024
- 04:18:51 -0700 (PDT)
+	s=arc-20240116; t=1727177470; c=relaxed/simple;
+	bh=9AGh2e/KWjPMH4zNXUUqdUAnvugOvM8w/uKu8iWTqmY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=sFQQJ69J261w/EYPCz3QxL8zdVBXoDX41F1NpX/ZqXKFU5YwAgE9r4GBJERfLEx32YTKbnzkfaYTT/lVXtFvpx6+jU4vMtYYzdbwNDX3esrRnwQbnu1qTZJqJzKMNQWARRwg2JKzJo/AEONBYWauMy95m7UWkDCiQzctx3878R0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=IQPPA/Q8; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 1D5FC1FA23;
+	Tue, 24 Sep 2024 13:30:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1727177457;
+	bh=0v5f1fjph3X6q4fm3ummzDikhRtFPTP55Kr2tXN1pz4=; h=From:To:Subject;
+	b=IQPPA/Q8nTfz0q0pv0J9EvPCUolcSA8QU+BLZeqxFZaKWc5xLGuCiz67NKqZSS1Rb
+	 aLbbU4bK8osPb11Dooj4V+iVPC7tPuwwGLCmVg9t0uLyzEEkVxwjalfAzm75Xw7xTf
+	 fQ7uoXCpSgMLSQnTNyoDKgByDznCL8U9qKN020GENgKPHIvWuOcqCBmBurIHaMzXEC
+	 CwaDGnGvKZjR3U61c3qkegzC6cpaZByA4eMLfX9xrnjI60j5A1mcOa7Jt5XT4jBqnL
+	 4d5APu9PqqVRwl0nzC+RyepCDJ/ItTF1x9XhyXzgckVVoCw7t3cYxdxRwaw5+og59G
+	 K7T1m95+d46Kw==
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v1 0/3] arm64: dts: freescale: imx8mm-verdin: Add Ivy carrier board
+Date: Tue, 24 Sep 2024 13:30:45 +0200
+Message-Id: <20240924113048.125761-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240915114311.75496-1-laurentiu.mihalcea@nxp.com>
- <20240915114311.75496-3-laurentiu.mihalcea@nxp.com> <CAOMZO5DR7xaEGj9=mzzFPy6wB0z7-SmvXkMnFH-wSjs01hp=WQ@mail.gmail.com>
-In-Reply-To: <CAOMZO5DR7xaEGj9=mzzFPy6wB0z7-SmvXkMnFH-wSjs01hp=WQ@mail.gmail.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Tue, 24 Sep 2024 08:18:38 -0300
-Message-ID: <CAOMZO5Cacne=7ZYQ3eSdO2RRd+QuPurziFN+mS_KU7kucXHBQA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] reset: add driver for imx8ulp SIM reset controller
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Liu Ying <victor.liu@nxp.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Sep 24, 2024 at 8:16=E2=80=AFAM Fabio Estevam <festevam@gmail.com> =
-wrote:
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-> Who is the original author?
->
-> In the NXP kernel, the author is Liu Ying.
->
-> If that's still the case the Author field should contain Liu Ying's name.
->
-> Please double-check.
+Add support for the Toradex Verdin iMX8MM Ivy carrier board. Ivy is a carrier
+board designed for industrial environments, supporting industrial
+I/O interfaces such as CAN, RS485, RS232, Gigabit Ethernet, 0-25mA analog
+inputs, relays, PCIe and more. The board also includes a TPM for security
+applications.
 
-Also, even if you are the author, there is still something wrong
-as reported by checkpatch:
+https://www.toradex.com/products/carrier-board/ivy-carrier-board
 
-WARNING: From:/Signed-off-by: email address mismatch: 'From: Laurentiu
-Mihalcea <laurentiumihalcea111@gmail.com>' !=3D 'Signed-off-by:
-Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>'
+João Paulo Gonçalves (3):
+  dt-bindings: arm: freescale: Add verdin imx8mm ivy board
+  arm64: dts: freescale: imx8mm-verdin: add label to som adc node
+  arm64: dts: freescale: imx8mm-verdin: Add Ivy carrier board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   2 +
+ arch/arm64/boot/dts/freescale/Makefile        |   2 +
+ .../boot/dts/freescale/imx8mm-verdin-ivy.dtsi | 471 ++++++++++++++++++
+ .../freescale/imx8mm-verdin-nonwifi-ivy.dts   |  18 +
+ .../dts/freescale/imx8mm-verdin-wifi-ivy.dts  |  18 +
+ .../boot/dts/freescale/imx8mm-verdin.dtsi     |   3 +-
+ 6 files changed, 513 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-ivy.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-ivy.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-ivy.dts
+
+-- 
+2.39.5
+
 
