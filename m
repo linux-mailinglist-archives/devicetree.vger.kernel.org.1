@@ -1,130 +1,124 @@
-Return-Path: <devicetree+bounces-104768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED3C99841CB
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:14:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F6C09841CC
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:15:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28B211C24048
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 09:14:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C03EE1F24F58
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 09:15:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4342B154C03;
-	Tue, 24 Sep 2024 09:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9757A155314;
+	Tue, 24 Sep 2024 09:15:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D7bwh9/G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dtkeOj0J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1567921A1C;
-	Tue, 24 Sep 2024 09:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CC541552ED;
+	Tue, 24 Sep 2024 09:15:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727169289; cv=none; b=WPa1X5Q9VqpJT5T1VdRMhUSbxRiE0cO607Y0EmA2PXnxnza/0LlGtuuIO1pRWj/MdWCTSkjT2LCxLxALb5DIB8cWXIi8/ALM16rjSa9NnCBZJwQ4+AJuYIwNr4RBS50OT+PXsc0wO0EhP8fP6kxyMtsAmb6Dq0nhKN6pqXhhTP4=
+	t=1727169313; cv=none; b=D7eGDemPbY5Ek7+OES6/VyRWVujZSS17OfATn8quHi7xTRWNcJoLFgv21FtM/13rKw4HnPei+aJGASQrkkmofLJN6U/qzNQtuyuAmXsB8DHDQXB1yIKQcbyh/GVyFMD4DGLJCNgwV81tmBs2qnaN40Cab730R4PM4WfTiURlHOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727169289; c=relaxed/simple;
-	bh=tu3MsigXGciQMci2nygCHzdzCD/8dolJH7rs79arCas=;
+	s=arc-20240116; t=1727169313; c=relaxed/simple;
+	bh=2KVuSiYdwxbydC/A7uEWSSCNb1LsPPeJVYNuNNT1jtQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bc529LPg6EngosAbH5X1NUWa6uvEURBlv8cKZyF5CSxwSVeAKPrkW9sQeIKDsVGhtMKfSNcHhNGBQJINDtUVqhqFD620b50pxpvXm2Tsb5eybHM/0GywEWXoyJvGIFUMdH6ZImtBFTst30pICn3BBgSZ1ZS0HJKwGTphj/dunq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D7bwh9/G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BFD7C4CEC4;
-	Tue, 24 Sep 2024 09:14:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LHWB83K2O400G7YNi9jQVsglAwn26Qq7SlRU4P64Xl+Mfsok10fPVq4aNr9BYr2PBGgDSy+FfXc/CaULBcTWtg33XSn8Tdgkyd7vMY22EK18aRDxvatjMdKH4sVlVicUR+jnCZBo/0EXjg7+Iq6U6YaXkBW70fx6IQtUsmTbs4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dtkeOj0J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1575C4CEC4;
+	Tue, 24 Sep 2024 09:15:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727169288;
-	bh=tu3MsigXGciQMci2nygCHzdzCD/8dolJH7rs79arCas=;
+	s=k20201202; t=1727169313;
+	bh=2KVuSiYdwxbydC/A7uEWSSCNb1LsPPeJVYNuNNT1jtQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=D7bwh9/GqkHu6yWilUf0wiObmvSbQSLYccqjo2lcov6LRfjr54u+Dx+ZIGl9xhWdI
-	 wjapAmzEHYyT5dFWZbG1n41fi2PuZ2ywQDIXGZkZpDN5tE9zgfRKmhoGV7Y6LgcN8Y
-	 MYVTBPAqydrBrQ3j0dh1uxrz4bZXCkKpy+livi0+GmYZBXz8iOQCvv672u0p/8c5zj
-	 zFv9a6ZBsdJybE1obSMoE+dKPuEOC/ELWDokZDfTfQE/OjjBL+tBs0yaeic9sfLVhc
-	 JLOg5XAJ7g5WIB1bZIc0tcuZcSerDluVObwu43QTlJAUr2RdSoRHPYmSUw3qSUV9hV
-	 EXIw0Fd+i/73w==
-Date: Tue, 24 Sep 2024 11:14:45 +0200
-From: Mark Brown <broonie@kernel.org>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Huacai Chen <chenhuacai@kernel.org>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Weidong Wang <wangweidong.a@awinic.com>,
-	Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Shuming Fan <shumingf@realtek.com>
-Subject: Re: [PATCH v2 7/9] ASoC: loongson: Add I2S controller driver as
- platform device
-Message-ID: <ZvKDBc2Kohx9kPfQ@finisterre.sirena.org.uk>
-References: <cover.1727056789.git.zhoubinbin@loongson.cn>
- <fd3989d15546502b47f580e6a2c3a59cb628ce93.1727056789.git.zhoubinbin@loongson.cn>
+	b=dtkeOj0JCO59riq3o9U7q6HoDynCZ1sHI7fJLReBh3tlc1BFCSnjKd3DU2py+0Gdl
+	 MJnTRjoRAPJdvcxv0U6KK7S63atk/TaGkYF4PClyYuDbWPBJcWp7EVpSQXsutDNMB8
+	 mBLnYOQ3XZXMn+Rsr/TDCpSGmP0+wreQyaeKuWMjyHyP3JTiIyGaGHrEVAuUCpSRQe
+	 Mekys1F9NomtKLjEFb3fenl3Agt40AD9Ettn/OjTuiL1IeFmHnbZGg7DB+GmOY/TgB
+	 YeeQZB5ccTK4+Ee3UXz7TSKohcXZdX2lhAe9zmV7fTjVKlyWB47nEHu3riDwPaXy+w
+	 MBrUwq7FEa1cQ==
+Date: Tue, 24 Sep 2024 11:15:09 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: mmc: document mmc-slot
+Message-ID: <5o2q5kmchnr3e4opmtp2xq3xqlzkq2hudecd5fszamoav4twhb@o3kcftkoxwzg>
+References: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-0-5aa8bdfe01af@linaro.org>
+ <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-2-5aa8bdfe01af@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="yTp4LDF4JyH//U9k"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <fd3989d15546502b47f580e6a2c3a59cb628ce93.1727056789.git.zhoubinbin@loongson.cn>
-X-Cookie: Editing is a rewording activity.
+In-Reply-To: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-2-5aa8bdfe01af@linaro.org>
 
+On Fri, Sep 20, 2024 at 10:38:04AM +0200, Neil Armstrong wrote:
+> Document the mmc-slot, which is a subnode of a multi-slot
+> MMC controlle, each slot is represented as a full MMC controller,
 
---yTp4LDF4JyH//U9k
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+typo: controller
 
-On Tue, Sep 24, 2024 at 03:00:48PM +0800, Binbin Zhou wrote:
+> the top node handling all the shared resources and slot mux.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  .../devicetree/bindings/mmc/mmc-slot.yaml          | 40 ++++++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
+> new file mode 100644
+> index 000000000000..c30eda4fd2a6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/mmc-slot.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MMC/SD/SDIO slot of a multi-slot controller
+> +
+> +maintainers:
+> +  - Ulf Hansson <ulf.hansson@linaro.org>
+> +
 
->  config SND_SOC_LOONGSON_I2S_PCI
->  	tristate "Loongson I2S-PCI Device Driver"
-> -	select REGMAP_MMIO
->  	depends on PCI
-> +	select REGMAP_MMIO
-> +	select SND_SOC_LOONGSON_CARD
->  	help
->  	  Say Y or M if you want to add support for I2S driver for
->  	  Loongson I2S controller.
+description here saying what is the MMC slot, e.g. what you wrote in
+commit msg.
 
-You shouldn't select the card from the DAI drivers, some system might
-use the driver with a different card for some reason.  If anything a
-select from the card to the DAI driver is more appropriate, cards are
-the main user thing.
+> +allOf:
+> +  - $ref: mmc-controller.yaml
+> +
 
-> +++ b/sound/soc/loongson/loongson_i2s_plat.c
-> @@ -0,0 +1,186 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Loongson I2S controller master mode dirver(platform device)
+Just to be sure - the slots do not have dedicated resources like clocks,
+resets, power supplies, right? IOW, it is indeed one device which
+exposes multiple controllers?
 
-Please use C++ style for the whole comment block so things look more
-intentional.
+> +properties:
+> +  compatible:
+> +    const: mmc-slot
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
 
---yTp4LDF4JyH//U9k
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+Krzysztof
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbygwQACgkQJNaLcl1U
-h9B7/wf/V9dCKKBeH7nKbZObHyBhFPblBC2/1pcdEnwQU3b13G8J6ebTbS3txQV7
-sRT2x31bkdyn2ommG8cbkHa9iTGLgopGv6WMy+bS3jW7lIy6U5TflBVoGn8NkLNU
-yoNHfdFL17nKqFjTDOI5IEcW/nUe7QslABx1BEz3dD5S+VkYtYdyN2HvWkxlwSuD
-rxAbxE7JC3qVyo/CciB9XAEDi1pVsE4YDsT/9woheP9W39YVGfB6aSrulB7Hdf64
-sS3CMT3S3ewweTwhUq6w6DRifToN6ZtBjoG7ISUE+9iM9Akmr6kE7Y5bH3uBZAap
-j/IB8ik2fn0A+K32IOLLPW8hK4bAIQ==
-=v1nf
------END PGP SIGNATURE-----
-
---yTp4LDF4JyH//U9k--
 
