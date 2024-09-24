@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-104718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45F21983FBD
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 09:56:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF7F7983FC0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 09:56:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A07A1C2165A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 07:56:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D10681C20DCC
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 07:56:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F43F14901B;
-	Tue, 24 Sep 2024 07:56:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C4371474A4;
+	Tue, 24 Sep 2024 07:56:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jnPGGvBp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aCQIQvq2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B0055B216;
-	Tue, 24 Sep 2024 07:56:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7EB71B85E7;
+	Tue, 24 Sep 2024 07:56:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727164577; cv=none; b=JYr2Oe8jvblQZFFWkNaWldoXpT8jI1NX7kDxf5ljO6UMjKfaSD1WxZ7o2vjeIxsYt2tjVk6oPgTbBnWkI37aLFPsWPIcCHZGx+wgjQSC7MUImD3jAUMugFOA9L+Je52jXBzDqTEICVIlHj6E8DJ7MEdYTMo5ft693y9ENc0hgZY=
+	t=1727164609; cv=none; b=rihVkT62we0Lwpe9mhx6Zcb02VvoBptLqc8hhq6xpb+3llwxXcdxOfwIbmWHxQCW02qs5/kO5YTSu6Cb0fgrhY2CJgWgm0FbBeCE82picB4szPjVV8xWprJmM/msD1+1VCVOkTUHkyxbFUlFqrTHOS15WPQwsbQmpWaVRkIDeKo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727164577; c=relaxed/simple;
-	bh=UVDjWabD7KHjpyDvLulyHQe9GrLQpieeVkCcpsauu/Q=;
+	s=arc-20240116; t=1727164609; c=relaxed/simple;
+	bh=kzUHa3F8g7HzmaY7eIKodTFvZiEfnXtOihHzuIcg0Vw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=s1w0yEd0c+ijituvmgRa0idcs4VgsR8oqxgA7bVlNBUDCE0JHcpwX45uSTMNad1Ztg0iaVSPSWkIKtSolHmixz9SFBoX89Xkgp7bREKO+idp8eson4g5syFBO2NAJecaJGFteDmDVlv5K7SGlGfCBdHx9ccNnkIBczA8D0GgzcE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jnPGGvBp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 699FBC4CEC5;
-	Tue, 24 Sep 2024 07:56:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Xqo6i1R/6amR6Tq47Pra33OZYjN2w933gfjpaVXbStHTRELlrBA6whgYpy95GTqItfBUX4BaTHlWv8SC9vPYoPMShnfZLCy3Ic56p9YQ37bBEZR6ugJRHgQ3D2FHV5W34WcpvZWWlBURzFuVmpp4i2NGhtfU2oOYaZJ/O26cAgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aCQIQvq2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFED8C4CEC4;
+	Tue, 24 Sep 2024 07:56:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727164576;
-	bh=UVDjWabD7KHjpyDvLulyHQe9GrLQpieeVkCcpsauu/Q=;
+	s=k20201202; t=1727164609;
+	bh=kzUHa3F8g7HzmaY7eIKodTFvZiEfnXtOihHzuIcg0Vw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jnPGGvBpp5lhq9PECgu8jWjaQguO6fksuRxGcZhKcBiRqCZR6zK2S7UTJLlEtAVPu
-	 +M3O1B5TkNKA2C6aWkB+zkoTqI86H9dwcwo6UXz63xR7JerLIvaAjzEAKC+qtGVQbF
-	 unHCFju8i36XsNeWdokTBq0MHuKNHTBOCqCKjZNbRR1e0AWTWwSj14/2LzWADAeR0d
-	 PtWJXDzdf85E3C2VIKBnWGMEdfRc+FS8rvXmqZI6wWJ6cwjXWrULcpCLtUxxkl8uxj
-	 cTBZo6iaPxSHhNZ9vUcVQiG1kEe8llC1Rh2XFAAynva8eK+j2MhEJaodKt9MQVmng7
-	 y0GO5pEyBp0PQ==
-Message-ID: <54e7e30b-4aa6-4edd-bbb5-6d9cbf5aa80d@kernel.org>
-Date: Tue, 24 Sep 2024 09:56:07 +0200
+	b=aCQIQvq2FMrjjooDgWTx27eXRecH0zbuJBRPuDLpDwJTKEkFbeJtGu+RW3ErnWh7v
+	 yyPx5LzrfJ/9j7MpkkGLZoEzkSmvHlwtq1kp0HZOxRDDgAWrueHc5yHq69+3F1Qp8t
+	 2LeK79guRYR3mFDyaLjxvATI72a8ulJJKB4THrxfOwL784uTSJ0w9vod0reCmV3woz
+	 2ZNqVInOXU0CF25ed2fnEiJ5T7JToB1XD4XstzN70QUH2rcxP7aVVynNwF+Q2RdX7g
+	 jFO/KS7CJ24RmfmunmsxMrZbGq0FC1mEc9CxR3j7TfD3hgxSzz2YT0AUG3zDAOJcj9
+	 lKEnHI/5YA0sg==
+Message-ID: <e77cab18-155a-4174-bca0-5ff1ce1d2b6f@kernel.org>
+Date: Tue, 24 Sep 2024 09:56:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] clk: imx93: Move IMX93_CLK_END macro to clk driver
-To: Pengfei Li <pengfei.li_1@nxp.com>
-Cc: krzk+dt@kernel.org, robh@kernel.org, abelvesa@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, ping.bai@nxp.com,
- ye.li@nxp.com, peng.fan@nxp.com, aisheng.dong@nxp.com, frank.li@nxp.com,
- kernel@pengutronix.de, festevam@gmail.com, linux-clk@vger.kernel.org,
- imx@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240627082426.394937-1-pengfei.li_1@nxp.com>
- <20240627082426.394937-2-pengfei.li_1@nxp.com>
- <60f9e733-f5bd-4bfc-9bd5-94ae18bb3901@kernel.org>
- <Zn92TX9ZsHde7g2f@pengfei-OptiPlex-Tower-Plus-7010>
- <ZpoCxmvgKNgvx4Kw@pengfei-OptiPlex-Tower-Plus-7010>
- <0cddd005-6997-4159-8841-beb837957f0c@kernel.org>
- <ZrHgpuvoXqsoqTJj@pengfei-OptiPlex-Tower-Plus-7010>
- <3e0ea78a-f4d4-47d5-b3f4-622e6da475fb@kernel.org>
- <ZvNDQhzuBrs/CO+k@pengfei-OptiPlex-Tower-Plus-7010>
+Subject: Re: [RESEND PATCH 1/2] dt-bindings: phy: rockchip,inno-usb2phy: add
+ rk3576
+To: Frank Wang <frank.wang@rock-chips.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, heiko@sntech.de, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ william.wu@rock-chips.com, tim.chen@rock-chips.com, wmc@rock-chips.com
+References: <20240923025326.10467-1-frank.wang@rock-chips.com>
+ <snccizbw6thn3lhwad4xppp7vqii4p56ttl2gufwc3ke7vfckf@e4b7nvwwtdfr>
+ <1f996322-e6f6-4dd5-a1d7-c2bde92c876b@rock-chips.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,30 +106,76 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZvNDQhzuBrs/CO+k@pengfei-OptiPlex-Tower-Plus-7010>
+In-Reply-To: <1f996322-e6f6-4dd5-a1d7-c2bde92c876b@rock-chips.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 25/09/2024 00:54, Pengfei Li wrote:
-> On Tue, Aug 06, 2024 at 11:39:18AM +0200, Krzysztof Kozlowski wrote:
->> On 06/08/2024 10:36, Pengfei Li wrote:
->>> Hi Krzysztof,
->>>
->>> If this patchset is ok, could you help merge it? Otherwise I won't be able to send subsequent patches.
->>
->> Sure, let me apply it to my clk tree. Oh wait...
->>
->> Best regards,
->> Krzysztof
->>
->>
+On 24/09/2024 04:24, Frank Wang wrote:
 > Hi Krzysztof,
+> On 2024/9/23 17:31, Krzysztof Kozlowski wrote:
+>> On Mon, Sep 23, 2024 at 10:53:25AM +0800, Frank Wang wrote:
+>>> Add compatible for the USB2 phy in the Rockchip RK3576 SoC.
+>>>
+>>> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+>>> ---
+>>>   .../devicetree/bindings/phy/rockchip,inno-usb2phy.yaml | 10 +++++++++-
+>>>   1 file changed, 9 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+>>> index 5254413137c64..214917e55c0b6 100644
+>>> --- a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+>>> +++ b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+>>> @@ -20,6 +20,7 @@ properties:
+>>>         - rockchip,rk3366-usb2phy
+>>>         - rockchip,rk3399-usb2phy
+>>>         - rockchip,rk3568-usb2phy
+>>> +      - rockchip,rk3576-usb2phy
+>>>         - rockchip,rk3588-usb2phy
+>>>         - rockchip,rv1108-usb2phy
+>>>   
+>>> @@ -34,10 +35,16 @@ properties:
+>>>       const: 0
+>>>   
+>>>     clocks:
+>>> -    maxItems: 1
+>>> +    minItems: 1
+>>> +    items:
+>>> +      - description: phyclk - PHY input reference clocks.
+>>> +      - description: aclk and aclk_slv are optional and used for USB MMU.
+>>>   
+>>>     clock-names:
+>>> +    minItems: 1
+>>>       const: phyclk
+>>> +    const: aclk
+>>> +    const: aclk_slv
+>> Please test... Not sure what you wanted to achieve here, but maybe
+>> oneOf?
 > 
-> These patches are still not merged into linux-next, can you help with that? Then I'll be able to send the subsequent patches!
+> The "aclk" and "aclk_slv" clocks are new in RK3576, you mean the changes 
+> should be like the below?
+> 
+> @@ -34,10 +35,20 @@ properties:
+>       const: 0
+> 
+>     clocks:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 3
+> 
+>     clock-names:
+> -    const: phyclk
+> +    minItems: 1
+> +    maxItems: 3
+> +    items:
+> +      oneOf:
+> +        - description: PHY input reference clocks.
+> +          const: phyclk
+> +        - description: aclk for USB MMU.
+> +          const: aclk
+> +        - description: aclk_slv for USB MMU.
+> +          const: aclk_slv
 
-What do you need from me?
-
-Anyway, why are you pinging during merge window?
+Nope, you just messed the order. Order is strict.
 
 Best regards,
 Krzysztof
