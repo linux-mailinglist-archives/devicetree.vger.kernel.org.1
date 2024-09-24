@@ -1,135 +1,121 @@
-Return-Path: <devicetree+bounces-104755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D74F8984125
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 10:55:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E50FE98419A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:06:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 894521F230DE
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 08:55:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A927D2871C6
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 09:06:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 294A81547E7;
-	Tue, 24 Sep 2024 08:55:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FC3116C6A7;
+	Tue, 24 Sep 2024 09:04:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HoqrjFIK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MHAG0lWT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9D57450EE;
-	Tue, 24 Sep 2024 08:55:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 723D114D28C;
+	Tue, 24 Sep 2024 09:04:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727168125; cv=none; b=MiypQtNyvlX2UpRDmnmF6pR7Y0TQ31fQ4L7Th0csvQ5DjsBzn+olsqV1dDSf/9mrF4GSlbicVfINubEJ2SpIEyIBXLn8zH+vSXgZkZXfONDrB1mnJgM8RlA4c/In2+d3gJojqYbsqm3ovsE9DOHbwpwuCvj0rJjjhFUjKXctp/U=
+	t=1727168641; cv=none; b=btDBXwbgqQKmS3MgoRquvMF1xqMt4rn2QX4fQff1/NKhC/7mPyzt9ljdXhdzEknDry4YMVrc9oMDXB0OkedAbWt9JekPQnJvyW9soQKcVvoPdQ5fkCVbYHxw5eCQwo1M4KlwOUd41SfYatsliRjF7Rtje/Ll5/1O9CWvyH8RV10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727168125; c=relaxed/simple;
-	bh=AF/TqDJ7nws4BZEm50+7bH9O/iYwDovQhJ+Sea3Kl4Q=;
+	s=arc-20240116; t=1727168641; c=relaxed/simple;
+	bh=d0cOEchK/X5pgHPOPqH44Hahes82m6rhNdNJLxk/Ysc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bglByXV3VmRW3LnmbkR23jfR/kOrb5DZQX+CboyjYAx23iXaeQQpYM5OkwhF9JP11yfjLD2+B7iSvO944kAw5AJsyUhmVtwiul25SnJTgCora/SA/ZHRLihUwdJMqtJetqSH0jXsrgreG5DSa+pFhZqcsc7YEg/L5D42u1MQBSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HoqrjFIK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6B6FC4CEC4;
-	Tue, 24 Sep 2024 08:55:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SgN9s4IjAFoF1TJLOp++/HvYF9XsBeihq+NASeB/o9j/a9M07e/5ZcLaUv4w5ac5b/QnTu95KXE8WeE46abCuFLySegW4b0cmMoz9iR5lQYA9vAcd7yAIrbql7kFO1EMgqYs+cpBI/dJOsnDmMDJ3EEjjlzViJoyHmcMhHi3Qhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MHAG0lWT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 574AFC4CEC4;
+	Tue, 24 Sep 2024 09:04:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727168124;
-	bh=AF/TqDJ7nws4BZEm50+7bH9O/iYwDovQhJ+Sea3Kl4Q=;
+	s=k20201202; t=1727168641;
+	bh=d0cOEchK/X5pgHPOPqH44Hahes82m6rhNdNJLxk/Ysc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HoqrjFIKDwwx2wreLl6lJ5v0PMjXZUsVuVQBrrQPqZi1mcfS80QdM82bRx51EMh50
-	 yi+nenkv0GVHrfQqSSgHMUnWXDkl6/EAK21GXOQJbKgvOi6o3sLrnto1deZPNDceWx
-	 3EcLktQEF2wOJBBoPwECgzAtklEIlgY+DS9S1i/bVyklEomd9BOCPJlk3M6e6e0U/X
-	 bgSZLKYVTBPviWP3fVZwejVNeq52xr2YgZl8rssZnK5eKftEnf/SbSe5gsl6NjjhJD
-	 rEmkI3gtLYJ9TqkDbN9BBN6zWrZpZZkhLhl5AlCaYanrVGpByIJgrXkZr12Bri2wEG
-	 lXM8peOC84Q6w==
-Date: Tue, 24 Sep 2024 10:55:20 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, tsbogend@alpha.franken.de, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: i2c: Add RTL9300 I2C controller
-Message-ID: <uxv5kzjo5btypvca5vh27i7xkajyqvbqtkys7xcmfz5ltmwezv@fgrlz4yzznri>
-References: <20240923230230.3001657-1-chris.packham@alliedtelesis.co.nz>
- <20240923230230.3001657-2-chris.packham@alliedtelesis.co.nz>
+	b=MHAG0lWTTE3XhATkO4qG7tqEfQV/vLmOBXyFTtzTowQr7ItUYXbxrV1qUigL7DOnp
+	 d8ld6Jvvgqw7LUOljCSjo547nb/1QgohOnA280HR84pNeHGXF4ARkzQf4gWHOiTBLS
+	 QW32Z4JSs8JEyoZwGDKQxKbKsntI6Sk2JbjDIw1/Rybw8ac/4Ldb2vvRGHJJjuXVxW
+	 isNyejiJGcJpwSRVoa8qpeG0KlFOyzVSE8DIDhkPTemLw6wlCqnYLXi0seaioGxJdQ
+	 yQ6C/OgfxwMdOW7g/JHkXCzdaX+o6WRomNBElVHLOwdhf4bSTtlO9ldcAXgXdJ/js1
+	 FHxtRKGjAFQZA==
+Date: Tue, 24 Sep 2024 11:03:57 +0200
+From: Mark Brown <broonie@kernel.org>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Huacai Chen <chenhuacai@kernel.org>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Weidong Wang <wangweidong.a@awinic.com>,
+	Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Shuming Fan <shumingf@realtek.com>
+Subject: Re: [PATCH v2 2/9] ASoC: codecs: Add support for ES8323
+Message-ID: <ZvKAfZH-uaxzY0hh@finisterre.sirena.org.uk>
+References: <cover.1727056789.git.zhoubinbin@loongson.cn>
+ <df28fd5784de4d18929c03c43309f095ae4f4860.1727056789.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="DouZkACFnhQ0PR75"
 Content-Disposition: inline
-In-Reply-To: <20240923230230.3001657-2-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <df28fd5784de4d18929c03c43309f095ae4f4860.1727056789.git.zhoubinbin@loongson.cn>
+X-Cookie: Editing is a rewording activity.
 
-On Tue, Sep 24, 2024 at 11:02:28AM +1200, Chris Packham wrote:
-> Add dtschema for the I2C controller on the RTL9300 SoC. The I2C
-> controllers on this SoC are part of the "switch" block which is
-> represented here as a syscon node. The SCL pins are dependent on the I2C
-> controller (GPIO8 for the first controller, GPIO 17 for the second). The
-> SDA pins can be assigned to either one of the I2C controllers (but not
-> both).
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
-> 
-> Notes:
->     Changes in v3:
->     - Remove parent node in example
->     - put unevaluatedProperties after required
->     - Add #address-cells and #size-cells
->     
->     Changes in v2:
->     - Use reg property for controller registers
->     - Remove global-control-offset (will be hard coded in driver)
->     - Integrated the multiplexing function. Child nodes now represent the
->       available SDA lines
-> 
->  .../bindings/i2c/realtek,rtl9300-i2c.yaml     | 80 +++++++++++++++++++
->  MAINTAINERS                                   |  6 ++
->  2 files changed, 86 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.yaml b/Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.yaml
-> new file mode 100644
-> index 000000000000..979ec22e81f1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i2c/realtek,rtl9300-i2c.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Realtek RTL I2C Controller
-> +
-> +maintainers:
-> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
-> +
-> +description:
-> +  The RTL9300 SoC has two I2C controllers. Each of these has an SCL line (which
 
-This is confusing. It took me some minutes to understand that two I2Cs
-in the example do not match what you wrote here. I got there only because
-of your DTS. Your patchsets - sent separately and describing problem
-incompletely - do not help.
+--DouZkACFnhQ0PR75
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-This is the binding for I2C, not for RTL9300 SoC.
+On Tue, Sep 24, 2024 at 03:00:19PM +0800, Binbin Zhou wrote:
 
-> +  if not-used for SCL can be a GPIO). There are 8 common SDA lines that can be
-> +  assigned to either I2C controller.
-> +
-> +properties:
-> +  compatible:
-> +    const: realtek,rtl9300-i2c
-> +
-> +  reg:
-> +    description: Register offset and size this I2C controller.
+> +	/* interface format */
+> +	switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
+> +	case SND_SOC_DAIFMT_I2S:
+> +		adciface &= 0xFC;
+> +		daciface &= 0xF9;
+> +		break;
+> +	case SND_SOC_DAIFMT_RIGHT_J:
+> +	case SND_SOC_DAIFMT_LEFT_J:
+> +	case SND_SOC_DAIFMT_DSP_A:
+> +	case SND_SOC_DAIFMT_DSP_B:
+> +		break;
 
-Nope, your reboot mode does not have reg. Either fix reboot mode driver
-or this. Preferably reboot mode.
+This results in an identical configuration for everything except I2S
+which must be buggy, these are distinct formats in ways that are visible
+on the bus.
 
-Best regards,
-Krzysztof
+--DouZkACFnhQ0PR75
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbygHwACgkQJNaLcl1U
+h9Cciwf/RG51FA7mTVAleL9bm5r64Arqxaz5HEd7JJuadGOi93aZiTLA2jKvvZQg
+g7rFWtub3JRrzhu/mq15Hh3H9HXAUpW2sLEpIi7QOpKobfGzVYBtls5bubd+Xaim
+W/Gc7z6zIefF/wIWzw1ZDdUV3VBEmtKDLBYjERDE7g0sZnKZFRcbCUp0NxFHWSWV
+ZTKGaenhMmQ2fkJsWTSP6cO5LmdaGj+Agpkrm87Jp9kyZS4orKS7Po69qlgUgx6v
+Ob/QEO3Ibz+VxGJOmr+5vKqcVK890qh31a0KFQpXUiasJLE8x9Pz+JTI8SVuAkad
+yzvjuNE0F/kLI/antznSRyB/8aR0Lg==
+=dRtt
+-----END PGP SIGNATURE-----
+
+--DouZkACFnhQ0PR75--
 
