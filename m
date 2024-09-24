@@ -1,139 +1,149 @@
-Return-Path: <devicetree+bounces-104660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B7FF983BB2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 05:51:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A4E6983BFB
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 06:08:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 337912844E1
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 03:51:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B432E1F22A0E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 04:08:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C47CC6F2E0;
-	Tue, 24 Sep 2024 03:50:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1610C20309;
+	Tue, 24 Sep 2024 04:08:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="SnivXRzQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B16553373;
-	Tue, 24 Sep 2024 03:50:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3787A28F3;
+	Tue, 24 Sep 2024 04:08:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727149838; cv=none; b=EFieYhrm+EuREvmnbJr3Iuwnmp9xr2h5Qa1MAJcHAdLTG39lyd2rytkOEN6h44biju7EZbGk5z76jJJccbrnYQMcUGb55yVwJqvogMCUc7f7i0Ca4jDk6iqI5wLOb0pluy1282iBdFfc2ngfv+YXSpo/HIFRtcBtC27RAGnWAXg=
+	t=1727150897; cv=none; b=VXLeXJ4n0Nb5BA63jU24gBvhKeQod0QTIk94dRTum9acN6OrY4I0X+4NyG/7FGuqd/Lhyk7NfS8gHyRXdDbTOSLPyCPurVudZj+H3KhUWQwMMAo4l4IuFgXi8aOb69t2Myz22PryGpLHUW+sXtoVgFvMe3vbfqezXPEnP4balGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727149838; c=relaxed/simple;
-	bh=Id0QWNRJ07QIW+k0f3ROqnkVTaEdzgVXxKTBSEnj5Kk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=MjvlywtGrkBXX8hKXpRit+psmrsOLrgb9R6n7Z0YrkzAdYqk+LwKqWqfDyp4viLbld35Cksl5YAW8XnjS6ZhYQ0sZjpHLqd2v5UHUFm9gxZNrBTF6ghxeA7mqSOxmWu0ZDnHqOJ24gdWV4SdUcrYR3WFiyscV1PtBRoX2UXxAjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 50A202007E0;
-	Tue, 24 Sep 2024 05:50:35 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 174482006D1;
-	Tue, 24 Sep 2024 05:50:35 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 10BAB183DC02;
-	Tue, 24 Sep 2024 11:50:32 +0800 (+08)
-From: Richard Zhu <hongxing.zhu@nxp.com>
-To: l.stach@pengutronix.de,
-	kwilczynski@kernel.org,
-	bhelgaas@google.com,
-	lpieralisi@kernel.org,
-	frank.li@nxp.com,
-	robh+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	festevam@gmail.com,
-	s.hauer@pengutronix.de
-Cc: linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	kernel@pengutronix.de,
-	imx@lists.linux.dev,
-	Richard Zhu <hongxing.zhu@nxp.com>
-Subject: [PATCH v1 9/9] arm64: dts: imx95: Add ref clock for i.MX95 PCIe
-Date: Tue, 24 Sep 2024 11:27:44 +0800
-Message-Id: <1727148464-14341-10-git-send-email-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1727148464-14341-1-git-send-email-hongxing.zhu@nxp.com>
-References: <1727148464-14341-1-git-send-email-hongxing.zhu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+	s=arc-20240116; t=1727150897; c=relaxed/simple;
+	bh=e3HOsa5pozp8OHR4hKQFX/TQIkoaPX58rjFNrHaMCrM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=P0REdOPoPvbLQnGMmmhMUnuVh45P5DLV5oqOjdy2KPRoejrSk+2yyRWGY3jEGTqrEfrx9qE9NQqOX4g9jKRSFad3kPMxM91KzePvyWTp/QvpI2PtFoJXmOm+mvstflQrqGJSZcH/5hyEtTHUBAakO7MHoTSYZCSWDxjm23Tnyrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=SnivXRzQ; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 9afaa75a7a2a11ef8b96093e013ec31c-20240924
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=lhUlNSypZsjISyjSJbKAwiwST2xLdo0AkzrMaosZ+hw=;
+	b=SnivXRzQZDfgxzfNDJRYLh3r62m/7G9YGNiVgpAxNubVPECQH4wmKoKZ82ldWRUJf31gDkW3ItX0JOacl6RpHOD/qrmmHRt9Zdqu4H3nQjnV0921gLDqH6SylPUw/OOOe3yXYVEbIyr+/iejOsx7kWfBuUqy+EWiqtz8QUe/T2c=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:3d9e494d-2a69-4ae1-849b-3bdb24fe7561,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:97a6759e-8e9a-4ac1-b510-390a86b53c0a,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|-5,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 9afaa75a7a2a11ef8b96093e013ec31c-20240924
+Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw02.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1931946160; Tue, 24 Sep 2024 12:08:07 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Tue, 24 Sep 2024 12:08:06 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Tue, 24 Sep 2024 12:08:05 +0800
+Message-ID: <0748868d-4789-fcaa-e70f-6a4508411b36@mediatek.com>
+Date: Tue, 24 Sep 2024 12:08:04 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v1 2/3] rtc: mt6359: Add RTC hardware range and add
+ support for start-year
+Content-Language: en-US
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	<lee@kernel.org>, <ZhanZhan.ge@mediatek.com>
+CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<matthias.bgg@gmail.com>, <eddie.huang@mediatek.com>,
+	<sean.wang@mediatek.com>, <alexandre.belloni@bootlin.com>,
+	<sen.chu@mediatek.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, <linux-rtc@vger.kernel.org>,
+	<kernel@collabora.com>, <yong.mao@mediatek.com>
+References: <20240923100010.97470-1-angelogioacchino.delregno@collabora.com>
+ <20240923100010.97470-3-angelogioacchino.delregno@collabora.com>
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <20240923100010.97470-3-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add ref clock for i.MX95 PCIe.
 
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx95.dtsi | 25 ++++++++++++++++++++----
- 1 file changed, 21 insertions(+), 4 deletions(-)
+On 9/23/24 18:00, AngeloGioacchino Del Regno wrote:
+> Add the RTC hardware range parameters to enable the possibility
+> of using the `start-year` devicetree property which, if present,
+> will set the start_secs parameter by overriding the defaults
+> that this driver is setting;
+> 
+> To keep compatibility with (hence have the same date/time reading
+> as) the old behavior, set:
+>   - range_min to 1900-01-01 00:00:00
+>   - range_max to 2027-12-31 23:59:59 (HW year max range is 0-127)
+>   - start_secs defaulting to 1968-01-02 00:00:00
+> 
+> Please note that the oddness of starting from January 2nd is not
+> a hardware quirk and it's done only to get the same date/time
+> reading as an RTC which time was set before this commit.
+> 
+> Also remove the RTC_MIN_YEAR_OFFSET addition and subtraction in
+> callbacks set_time() and read_time() respectively, as now this
+> is already done by the API.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>   drivers/rtc/rtc-mt6397.c | 13 ++++---------
+>   1 file changed, 4 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-index 1bbf9a0468f6..e66be264c2f2 100644
---- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-@@ -221,6 +221,13 @@ core5 {
- 		};
- 	};
- 
-+	clk_dummy: clock-dummy {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <0>;
-+		clock-output-names = "clk_dummy";
-+	};
-+
- 	clk_ext1: clock-ext1 {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
-@@ -1055,6 +1062,14 @@ smmu: iommu@490d0000 {
- 			};
- 		};
- 
-+		hsio_blk_ctl: syscon@4c0100c0 {
-+			compatible = "nxp,imx95-hsio-blk-ctl", "syscon";
-+			reg = <0x0 0x4c0100c0 0x0 0x4>;
-+			#clock-cells = <1>;
-+			power-domains = <&scmi_devpd IMX95_PD_HSIO_TOP>;
-+			clocks = <&clk_dummy>;
-+		};
-+
- 		pcie0: pcie@4c300000 {
- 			compatible = "fsl,imx95-pcie";
- 			reg = <0 0x4c300000 0 0x10000>,
-@@ -1082,8 +1097,9 @@ pcie0: pcie@4c300000 {
- 			clocks = <&scmi_clk IMX95_CLK_HSIO>,
- 				 <&scmi_clk IMX95_CLK_HSIOPLL>,
- 				 <&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
--				 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
--			clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux";
-+				 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>,
-+				 <&hsio_blk_ctl 0>;
-+			clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux", "ref";
- 			assigned-clocks =<&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
- 					 <&scmi_clk IMX95_CLK_HSIOPLL>,
- 					 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
-@@ -1149,8 +1165,9 @@ pcie1: pcie@4c380000 {
- 			clocks = <&scmi_clk IMX95_CLK_HSIO>,
- 				 <&scmi_clk IMX95_CLK_HSIOPLL>,
- 				 <&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
--				 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
--			clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux";
-+				 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>,
-+				 <&hsio_blk_ctl 0>;
-+			clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux", "ref";
- 			assigned-clocks =<&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
- 					 <&scmi_clk IMX95_CLK_HSIOPLL>,
- 					 <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
--- 
-2.37.1
+[snip]
 
+Thanks for helping add new patch fix for RTC.
+
+> @@ -302,6 +293,10 @@ static int mtk_rtc_probe(struct platform_device *pdev)
+>   	device_init_wakeup(&pdev->dev, 1);
+>   
+>   	rtc->rtc_dev->ops = &mtk_rtc_ops;
+> +	rtc->rtc_dev->range_min = RTC_TIMESTAMP_BEGIN_1900;
+> +	rtc->rtc_dev->range_max = mktime64(2027, 12, 31, 23, 59, 59);
+> +	rtc->rtc_dev->start_secs = mktime64(1968, 1, 2, 0, 0, 0);
+> +	rtc->rtc_dev->set_start_time = true;
+>   
+>   	return devm_rtc_register_device(rtc->rtc_dev);
+>   }
+
+Dear @Zhanhan, Please help to leave comment if you think there is 
+something need to be clarify. For example, I've found some relate origin 
+defines
+in "include/linux/mfd/mt6397/rtc.h"
+#define RTC_MIN_YEAR	1968
+#define RTC_BASE_YEAR	1900
+#define RTC_NUM_YEAR	128
+#define RTC_MIN_YEAR_OFFSET	(RTC_MIN_YEAR - RTC_BASE_YEAR)
+
+Should MediaTek remove RTC_MIN_YEAR and RTC_BASE_YEAR in next patch?
+And since there may not exist any smartphone/tablet/TV using mt6397
+RTC earlier than 2010? Is it possible to change
+RTC_TIMESTAMP_BEGIN_1900 to RTC_TIMESTAMP_BEGIN_2000 without breaking
+compatibility for these devices?
+
+Thanks
+Macpaul Lin
 
