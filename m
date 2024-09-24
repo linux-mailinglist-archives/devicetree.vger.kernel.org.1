@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-104854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D18C19844EC
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 13:37:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA6E59844F0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 13:38:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D286B21E1C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:37:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 701E31F27023
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 11:38:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F0521A3AA7;
-	Tue, 24 Sep 2024 11:37:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8737E19ADB9;
+	Tue, 24 Sep 2024 11:37:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qVNGk8xh"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="W9b7sxjj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B3C617ADE9;
-	Tue, 24 Sep 2024 11:37:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA4BE1A4E94;
+	Tue, 24 Sep 2024 11:37:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727177857; cv=none; b=F4W1b+dJAAQEiBiDbdTQsqPHqTw1KlDVM1cObGNSiSNVTIdmlkLj7ub0BXdVeH8CDgBf8M+4g5x2sb4P8JNuM4sTTeKgFlJn6/2yxmcdS7nnrz7S+rQ0AxJB/9dp4FNUQGKCLJ9Q4gLK003skKhauNsIeqMrIoDnXW9R+f/9JJ8=
+	t=1727177877; cv=none; b=fhbEW9xo6SUwB3jtKveHaiaUpK090ysX/3vGccT0O9u9MLGAHSW1YRtkFFwzon4m58zE+eLqWnmRK3fyBkDxsZx8rKLV39bmLBfPoa/5uPHFdWmLGpn3coVFf9naQfmbc/NmrIYbXr2JooS1DLOyov0YCJgIsv3+bxNw9qGPkcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727177857; c=relaxed/simple;
-	bh=ZNGj3fXHWNs2Yk3ko4od30ZdDG3zCz60t4Vi+H2gtZ0=;
+	s=arc-20240116; t=1727177877; c=relaxed/simple;
+	bh=HL+IJGvaPoYFWnbwstJlsZ+C2p9dZZSdwImP0j4Q+2k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g/p02KGN9NUCuql6qkZwCrrAEQYtXRfFK/PdPiSoXKzdj3EFWkpb6t8RTTQvIUPG0fCLo/IycCUIHuxyCn4KVJP/uSVqdSPuEcu8vTk8+8tL5JyLgGUtpO6IvpSlnWqTCvGnbgfcpnDmeT5JpAc3FbuTfI4kbkG0gjvv9rBQH2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qVNGk8xh; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:Content-Type; b=ggCqkdmHenhCiWYLSlt/6oWn5fspYqS2rrper4lyhgzo+tlZycvpy3SAVawTgEI29NjA2ByQ6oqmyQ75yEQ8j8NtgK71xAR1bhbUNEyErjf9teRuYOT5s1RbdnCuIexuKKSn6nT2bl+r9rujaiC4GZHQnxY2S5f43guhW/sQbps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=W9b7sxjj; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1727177853;
-	bh=ZNGj3fXHWNs2Yk3ko4od30ZdDG3zCz60t4Vi+H2gtZ0=;
+	s=mail; t=1727177874;
+	bh=HL+IJGvaPoYFWnbwstJlsZ+C2p9dZZSdwImP0j4Q+2k=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qVNGk8xh/0Dq8GQ1/4BfpatCqrWfmnwGhgki469IObqRc1ZnyDbIcn/WzoW9Re2XM
-	 Cik24nKD3FoGA7erHPx3DnbbQB3e2j44+TyCO3QqK/huM+IJe2jsHF/GRt6OJ22q6s
-	 /X9QVoJfvia1Bv3ViHSspzXUBQVvVnszIS1zHqfzqKE0121iX9TBNGcAeOO7AkNUt2
-	 EJdfXhhPdsJ3ttI2HYIe/KbBEbuDqtgcKoy80NWUa3ilGESyvJ26YtnqqDgqOdy779
-	 ztzFuV6IuT/UPFz9ULNu3iFh3eEl5aygmOVZgK/iiZLeQPDwoi4zpLZ8AI84126DZZ
-	 HL+FLuJvQn2AQ==
+	b=W9b7sxjjLGQQX/tO6qWHLxOd6mGb3NzsoNvqpaV4Ve+SCj/ZHb7qw772sM3TRNNUJ
+	 WklzCbkTRP32y+X8sND1JSnBfXce4jyeyh1R780DNuA2x5dO3vM1KI7g68u9huAJva
+	 Sn3TPKTx41FgYSR+OZT1O6RuwYpMCj8tB+Uu3bXPRDVWursmJ4QGHDWaarhg9xbThc
+	 /SXbadtQVTbvTe1o8SdPviC9wUsaACeIf66hvcoHsNIduFdnVQQ8N4SbOhQiu6NQlo
+	 lJIAtvxoLAceu73B9vsbFdaA+Pn0nrgVdyJznELi0ZJDC6fL/uyS10wnNNnM3iKR63
+	 QKYSiyNpEfa7Q==
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 971C417E1245;
-	Tue, 24 Sep 2024 13:37:32 +0200 (CEST)
-Message-ID: <459b17d4-439d-4f09-aa0e-f18f9cc184b3@collabora.com>
-Date: Tue, 24 Sep 2024 13:37:32 +0200
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A41EB17E1245;
+	Tue, 24 Sep 2024 13:37:53 +0200 (CEST)
+Message-ID: <2a74df47-c393-4a3c-bbc0-332c716c9a81@collabora.com>
+Date: Tue, 24 Sep 2024 13:37:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,48 +57,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] arm64: dts: mt8195: Fix dtbs_check error for
- infracfg_ao node
-To: Macpaul Lin <macpaul.lin@mediatek.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yong Wu <yong.wu@mediatek.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org,
- Alexandre Mergnat <amergnat@baylibre.com>
-Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
- Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
- Chris-qj chen <chris-qj.chen@mediatek.com>,
- MediaTek Chromebook Upstream
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- Chen-Yu Tsai <wenst@chromium.org>
-References: <20240924103156.13119-1-macpaul.lin@mediatek.com>
+Subject: Re: [PATCH v3] arm64: dts: mediatek: mt8186: add FHCTL node
+To: Max Weng <max_weng@compal.corp-partner.google.com>,
+ linux-kernel@vger.kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20240924101559.879167-1-max_weng@compal.corp-partner.google.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20240924103156.13119-1-macpaul.lin@mediatek.com>
+In-Reply-To: <20240924101559.879167-1-max_weng@compal.corp-partner.google.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Il 24/09/24 12:31, Macpaul Lin ha scritto:
-> The infracfg_ao node in mt8195.dtsi was causing a dtbs_check error.
-> The error message was:
+Il 24/09/24 12:15, Max Weng ha scritto:
+> From: max_weng <max_weng@compal.corp-partner.google.com>
 > 
-> syscon@10001000: compatible: ['mediatek,mt8195-infracfg_ao', 'syscon',
->                   'simple-mfd'] is too long
+> add FHCTL device node for Frequency Hopping and Spread Spectrum clock function.
 > 
-> To resolve this, remove 'simple-mfd' from the 'compatible' property of the
-> infracfg_ao node.
-> 
-> Fixes: 37f2582883be ("arm64: dts: Add mediatek SoC mt8195 and evaluation board")
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> Signed-off-by: Max Weng <max_weng@compal.corp-partner.google.com>
 
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
