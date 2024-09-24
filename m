@@ -1,137 +1,136 @@
-Return-Path: <devicetree+bounces-104989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 668F2984CDB
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 23:25:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9234984CE3
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 23:26:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97D78B235CE
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 21:25:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E92491C22F90
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 21:26:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 061AC144D0A;
-	Tue, 24 Sep 2024 21:23:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7DB13CAA5;
+	Tue, 24 Sep 2024 21:26:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="BZntob/h"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="U1+qZPKO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A869D13D89D
-	for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 21:23:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7CB22E822;
+	Tue, 24 Sep 2024 21:26:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727213034; cv=none; b=e9x+co34A8IWpl3Ww/n5TfTo9Scz28HKdbvFYRsfW5Q7W/OohYNHAq6nU5wWPswgbUIW2avg6Appu/LE6Lj07pPZ9ArCoT5LiFXes2ocubRPGKqfClrghA+4F6twzrOXs8ngxvjOCxB65nFrp6K6p/4lIZddNn+ZEIPj7OZGZiU=
+	t=1727213210; cv=none; b=Xy196565bFO/j2NRAPJoy5abEZKCuSr/rezMAT6JHP3/E8rdLdpurOg2WqqtH1jXAvMCpTDUIyG0lIKBDpEiGTNkCMw8ZGnmGzDHhrorxw6rEVvfqX4Fj/qwV8jLK7tRE3Pd2TeHCMDacXzGk93bMOV8gIhd5glnGnEdQVywhrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727213034; c=relaxed/simple;
-	bh=0trbBWevCDs8OnyEcXvg+bJTXUk38+rmaOI+r/Q8j7U=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=qSMe+L2OYbFh3GqxylaBxtjyrgV5WqeDhsnjykBrkc3OxseUUdqlTWVeP9FPXgC3tVkvYo2PaqerX4XH6+jMHPl6tBrPH3pRKVtA2cpjXhtj8dgGaj/bz7X74x2nbZoW4y4KFIeRj1d9sRsjMoqwyRwqJku2tMkLRRMPx5ZwD/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=BZntob/h; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 646842C05DB;
-	Wed, 25 Sep 2024 09:23:49 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1727213029;
-	bh=0trbBWevCDs8OnyEcXvg+bJTXUk38+rmaOI+r/Q8j7U=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=BZntob/hCZlQdZIxu6IaWTBz4xfmL+dAa/juTqStG+byCOKgiRnBCm5wbanNBIgYW
-	 7Vt+QOzVF/IsueG8sKDgdjJYIhIKCS/8rJEio+lbVvxA5Ahq7rwpMddn57tbeW0Bx7
-	 doez+FxRWjvqcc8xUvW7WNcRlIe1+HaTlZ/ZJ6t1nL84YUz3P9W5XM4ZiA+l/evive
-	 R2MiFL16N/lAUvImnkRF+yLkOGyyIraIUPyUWF0DCb/uoj2cLJ+IkgEiIDklutAhKW
-	 eNvc5swDe9xb4NFqWNN6yEXewfnR8sCRk7XMyBOsmlYQahdJpeijGqHQjOH5lu3EDL
-	 zZ+zZtcsQDBAQ==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B66f32de50001>; Wed, 25 Sep 2024 09:23:49 +1200
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.1544.11; Wed, 25 Sep 2024 09:23:49 +1200
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with Microsoft
- SMTP Server (TLS) id 15.0.1497.48; Wed, 25 Sep 2024 09:23:48 +1200
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1544.011; Wed, 25 Sep 2024 09:23:48 +1200
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: "andi.shyti@kernel.org" <andi.shyti@kernel.org>, "robh@kernel.org"
-	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "tsbogend@alpha.franken.de"
-	<tsbogend@alpha.franken.de>, "linux-i2c@vger.kernel.org"
-	<linux-i2c@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-mips@vger.kernel.org"
-	<linux-mips@vger.kernel.org>
-Subject: Re: [PATCH v3 3/3] mips: dts: realtek: Add I2C controllers
-Thread-Topic: [PATCH v3 3/3] mips: dts: realtek: Add I2C controllers
-Thread-Index: AQHbDgytdmN5OYfmG0iIxQ5nrdrn47Jl2EIAgADSkAA=
-Date: Tue, 24 Sep 2024 21:23:48 +0000
-Message-ID: <fc8bd7f5-3874-4958-be3d-eda9352cb534@alliedtelesis.co.nz>
-References: <20240923230230.3001657-1-chris.packham@alliedtelesis.co.nz>
- <20240923230230.3001657-4-chris.packham@alliedtelesis.co.nz>
- <ocmrfbu4atns3c2p7xev7vhktfzv3roy2ijz5qhqklylelgkor@zkrqoeiyvqoi>
-In-Reply-To: <ocmrfbu4atns3c2p7xev7vhktfzv3roy2ijz5qhqklylelgkor@zkrqoeiyvqoi>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <D42F9084B7041A4089F0477D65319456@atlnz.lc>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1727213210; c=relaxed/simple;
+	bh=XQhbHPNAG/zsIJVKawyKlQTLP+nsHVY3KM1TS0rfOa0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pB+ZDgmu5h0o2+1bPnIAQLPVWkWEB+KQNPyOi6QFinmxpwOj8ORAVMxmk8tvMdSIostLQDwG+TKBo27aurfV44cuSoEcIihx19wsLqNTSFQhzpqQuNyVyEP/Nv/kL1z/5Aw/bqioV6DOPoOcpuUfqjsbkNJKbm90/q0TDJDvQN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=U1+qZPKO; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1727213209; x=1758749209;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=XQhbHPNAG/zsIJVKawyKlQTLP+nsHVY3KM1TS0rfOa0=;
+  b=U1+qZPKOOP1FpJYoxqylj6d0uvqN7suBlOdjZo8f24wGkZGwylFyVYW5
+   tV1dPe37mIKFjHb5KQGlpRt6rB4icpeD4ARXheYmZ3dgV0fcXgT5qaArM
+   N9dS/WGirS8XKqH458qB0uFL4AAGZcdtLOIstHhXtCNbLIuFQYxXanthI
+   YCt+vfBIKRYTCDgWNpBXk4XBQ+NF93eGGvS23Df6cTY0ZAVmPFX0uOEJu
+   mJWFjpT97PmQRNuayfDxQhSSIs17bXzqYFejThHqY7yJKMKbyyBVvbhsj
+   Gw1FDzjXCvXnC9lpBSDubOiHlqejkmadsGojvLIYzwYanESYY5u5+12Ah
+   w==;
+X-CSE-ConnectionGUID: 3kEeYYLWTU2IvkYb7KW9qQ==
+X-CSE-MsgGUID: iR7muDJrTsezIVevsuALUg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11205"; a="26421467"
+X-IronPort-AV: E=Sophos;i="6.10,255,1719903600"; 
+   d="scan'208";a="26421467"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2024 14:26:47 -0700
+X-CSE-ConnectionGUID: j3qg5jAPS0KvAZmgypfb6Q==
+X-CSE-MsgGUID: s10Fk9+KTbW8kNRfs4PSKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,255,1719903600"; 
+   d="scan'208";a="94887996"
+Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
+  by fmviesa002.fm.intel.com with ESMTP; 24 Sep 2024 14:26:40 -0700
+Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1stD3O-000IrF-1T;
+	Tue, 24 Sep 2024 21:26:38 +0000
+Date: Wed, 25 Sep 2024 05:26:21 +0800
+From: kernel test robot <lkp@intel.com>
+To: Binbin Zhou <zhoubinbin@loongson.cn>,
+	Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Paul Gazzillo <paul@pgazz.com>,
+	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+	oe-kbuild-all@lists.linux.dev, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Weidong Wang <wangweidong.a@awinic.com>,
+	Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Shuming Fan <shumingf@realtek.com>
+Subject: Re: [PATCH v2 7/9] ASoC: loongson: Add I2S controller driver as
+ platform device
+Message-ID: <202409250533.AEodmhZc-lkp@intel.com>
+References: <fd3989d15546502b47f580e6a2c3a59cb628ce93.1727056789.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=Id0kWnqa c=1 sm=1 tr=0 ts=66f32de5 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=EaEq8P2WXUwA:10 a=zest7o_Hml77ye0SHoAA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fd3989d15546502b47f580e6a2c3a59cb628ce93.1727056789.git.zhoubinbin@loongson.cn>
 
-DQpPbiAyNC8wOS8yNCAyMDo1MCwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gT24gVHVl
-LCBTZXAgMjQsIDIwMjQgYXQgMTE6MDI6MzBBTSArMTIwMCwgQ2hyaXMgUGFja2hhbSB3cm90ZToN
-Cj4+IEFkZCB0aGUgSTJDIGNvbnRyb2xsZXJzIHRoYXQgYXJlIHBhcnQgb2YgdGhlIFJUTDkzMDAg
-U29DLg0KPj4NCj4+IFNpZ25lZC1vZmYtYnk6IENocmlzIFBhY2toYW0gPGNocmlzLnBhY2toYW1A
-YWxsaWVkdGVsZXNpcy5jby5uej4NCj4+IC0tLQ0KPj4NCj4+IE5vdGVzOg0KPj4gICAgICBDaGFu
-Z2VzIGluIHYyOg0KPj4gICAgICAtIFVzZSByZWcgcHJvcGVydHkNCj4+DQo+PiAgIGFyY2gvbWlw
-cy9ib290L2R0cy9yZWFsdGVrL3J0bDkzMHguZHRzaSB8IDE4ICsrKysrKysrKysrKysrKysrKw0K
-Pj4gICAxIGZpbGUgY2hhbmdlZCwgMTggaW5zZXJ0aW9ucygrKQ0KPj4NCj4+IGRpZmYgLS1naXQg
-YS9hcmNoL21pcHMvYm9vdC9kdHMvcmVhbHRlay9ydGw5MzB4LmR0c2kgYi9hcmNoL21pcHMvYm9v
-dC9kdHMvcmVhbHRlay9ydGw5MzB4LmR0c2kNCj4+IGluZGV4IGNmMWIzOGI2YzM1My4uY2M0MzAy
-NWNkNDZjIDEwMDY0NA0KPj4gLS0tIGEvYXJjaC9taXBzL2Jvb3QvZHRzL3JlYWx0ZWsvcnRsOTMw
-eC5kdHNpDQo+PiArKysgYi9hcmNoL21pcHMvYm9vdC9kdHMvcmVhbHRlay9ydGw5MzB4LmR0c2kN
-Cj4+IEBAIC0zMywxMiArMzMsMzAgQEAgbHhfY2xrOiBjbG9jay0xNzVtaHogew0KPj4gICAJc3dp
-dGNoMDogc3dpdGNoQDFiMDAwMDAwIHsNCj4+ICAgCQljb21wYXRpYmxlID0gInJlYWx0ZWsscnRs
-OTMwMmMtc3dpdGNoIiwgInN5c2NvbiIsICJzaW1wbGUtbWZkIjsNCj4+ICAgCQlyZWcgPSA8MHgx
-YjAwMDAwMCAweDEwMDAwPjsNCj4+ICsJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KPj4gKwkJI3Np
-emUtY2VsbHMgPSA8MT47DQo+PiAgIA0KPj4gICAJCXJlYm9vdCB7DQo+PiAgIAkJCWNvbXBhdGli
-bGUgPSAic3lzY29uLXJlYm9vdCI7DQo+PiAgIAkJCW9mZnNldCA9IDwweDBjPjsNCj4+ICAgCQkJ
-dmFsdWUgPSA8MHgwMT47DQo+PiAgIAkJfTsNCj4+ICsNCj4+ICsJCWkyYzA6IGkyY0AzNmMgew0K
-Pj4gKwkJCWNvbXBhdGlibGUgPSAicmVhbHRlayxydGw5MzAwLWkyYyI7DQo+PiArCQkJcmVnID0g
-PDB4MzZjIDB4MTQ+Ow0KPj4gKwkJCXN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+PiArCQkJI2FkZHJl
-c3MtY2VsbHMgPSA8MT47DQo+PiArCQkJI3NpemUtY2VsbHMgPSA8MD47DQo+PiArCQl9Ow0KPiBU
-aGlzIHNob3VsZCBiZSBzZW50IGFzIG9uZSBzZXJpZXMuLi4gWW91IGhhdmUgZGVwZW5kZW5jeSBv
-dGhlcndpc2UuIEFsc28NCj4gdGhpcyBwb2ludHMgdG8gaXNzdWUgb2YgbWl4aW5nIG5vZGVzIHdp
-dGggYW5kIHdpdGhvdXQgdW5pdCBhZGRyZXNzLg0KPg0KPiBJIHRoaW5rIGkyYyBjaGlsZHJlbiBz
-aG91bGQgYmUgdW5kZXIgc29tZSBzb3J0IG9mICJpMmMiIGJ1cyBub2RlLg0KDQpzb21ldGhpbmcg
-bGlrZSB0aGlzPw0KDQpzd2l0Y2hAMWIwMDAwMDAgew0KIMKgwqAgaTJjLWNvbnRyb2xsZXIgew0K
-IMKgwqDCoMKgIGkyYy1tc3QxIHsNCiDCoMKgwqDCoMKgwqDCoMKgIHN0YXR1cyA9ICJva2F5IjsN
-CiDCoMKgwqDCoMKgwqDCoMKgIGkyY0AwIHsNCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJlZyA9
-IDwwPjsNCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdwaW9AMjAgew0KIMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCByZWcgPSA8MHgyMD47DQogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9
-Ow0KIMKgwqDCoMKgwqDCoMKgwqAgfTsNCiDCoMKgwqDCoMKgwqDCoMKgIGkyY0AyIHsNCiDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIHJlZyA9IDwyPjsNCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdw
-aW9AMjAgew0KIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZWcgPSA8MHgyMD47DQog
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Ow0KIMKgwqDCoMKgwqDCoMKgwqAgfTsNCiDCoMKgwqDC
-oCB9Ow0KIMKgwqDCoMKgIGkyYy1tc3QyIHsNCiDCoMKgwqDCoMKgwqDCoMKgIHN0YXR1cyA9ICJk
-aXNhYmxlZCI7DQogwqDCoMKgwqAgfTsNCiDCoCB9Ow0KfTsNCg0KPiBQbGVhc2UgcHJvcG9zZSBl
-bnRpcmUgcmVhbHRlayxydGw5MzAyYy1zd2l0Y2ggYmluZGluZyB3aXRoIHRoZSBJMkMuIEl0J3MN
-Cj4gdmVyeSBjb25mdXNpbmcgdG8gc2VlIGl0IHBhcnRpYWwuDQpZZXAgd2lsbCBjb21iaW5lIHRo
-ZXNlIHNlcmllcy4NCj4NCj4NCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCj4=
+Hi Binbin,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on broonie-sound/for-next]
+[also build test WARNING on linus/master next-20240924]
+[cannot apply to robh/for-next v6.11]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Binbin-Zhou/ASoC-dt-bindings-Add-Everest-ES8323-Codec/20240924-150942
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+patch link:    https://lore.kernel.org/r/fd3989d15546502b47f580e6a2c3a59cb628ce93.1727056789.git.zhoubinbin%40loongson.cn
+patch subject: [PATCH v2 7/9] ASoC: loongson: Add I2S controller driver as platform device
+config: alpha-kismet-CONFIG_SND_SOC_LOONGSON_CARD-CONFIG_SND_SOC_LOONGSON_I2S_PCI-0-0 (https://download.01.org/0day-ci/archive/20240925/202409250533.AEodmhZc-lkp@intel.com/config)
+reproduce: (https://download.01.org/0day-ci/archive/20240925/202409250533.AEodmhZc-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409250533.AEodmhZc-lkp@intel.com/
+
+kismet warnings: (new ones prefixed by >>)
+>> kismet: WARNING: unmet direct dependencies detected for SND_SOC_LOONGSON_CARD when selected by SND_SOC_LOONGSON_I2S_PCI
+   WARNING: unmet direct dependencies detected for SND_SOC_LOONGSON_CARD
+     Depends on [n]: SOUND [=y] && SND [=y] && SND_SOC [=y] && (LOONGARCH || COMPILE_TEST [=n])
+     Selected by [y]:
+     - SND_SOC_LOONGSON_I2S_PCI [=y] && SOUND [=y] && SND [=y] && SND_SOC [=y] && PCI [=y]
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
