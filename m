@@ -1,70 +1,68 @@
-Return-Path: <devicetree+bounces-105012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 628BF984E05
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 00:44:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9A05984E2E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 00:53:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9341F1C2376E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 22:44:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C63DB1C2347B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 22:53:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF17D1A76BD;
-	Tue, 24 Sep 2024 22:44:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5691E176FA5;
+	Tue, 24 Sep 2024 22:53:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="UMVXgnwR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i7aMvoOr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D92C1AD3E0;
-	Tue, 24 Sep 2024 22:44:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29B4E146D45;
+	Tue, 24 Sep 2024 22:53:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727217853; cv=none; b=aI60vPg1jCXsyy7CU2v4SMCJi7Oo7heYi/aN08JAT/jGJQ5mZgP8nZW2kvVcQ494jrHbzNrqMpmj/luTv9LHFfQCVLxsFHEJezZUkQcEsVs//2juR7UH89SrNGwSPKfc0w5TR8vtwZFNm8+SFlyd09B5MBKSfhInbAKlaR8c5q0=
+	t=1727218424; cv=none; b=lgSgBZKg0cQX8x2oYVTKwVwuPRscWNUvriUeFnTbNE+x8V8vAZJZB0B2TDJmxzCtkJcE3zZ4NdzqbFkVABSGfCse8o/bENk0jMXRwOU/VKtpoiYReSpJzTh5zbCgy3Z+Pf4GzslQJx6Rd4qMIttGcnpvccVL9puvog1KNXrNs9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727217853; c=relaxed/simple;
-	bh=1kak7Papg+REt0YX9qEAPqyd0bv8zJRl0skoenBu4Es=;
+	s=arc-20240116; t=1727218424; c=relaxed/simple;
+	bh=HoKonSrSZvECoNi9zyjpJDqIafnrRE2PE9Rf0LooWAM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hsuot/I8OkNjlYB5WNMMQzMgbPTXYoZ17RAY7btCl22wMB0OIHJ344Zy+Xi0gw2X2MYvW5eHL4yd7ZUvuddnFytnxSAY+z+AMIxC6RXHRj4Og2Jw831IeqtbsMdBMqEnq310oHBxgjwL925FJSEzKbbogxTOanUIZCqK71aI7QM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=UMVXgnwR; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=IIQp0fRS7W4DUEIrqrSf6cHBI+Xpz5AzpoihIU8mkY0=; b=UMVXgnwRJoohfetEiSKOCMwFSf
-	9exaMvMbJWlLxNI2qwm1q/J7FFqtVvH7OEzUP31x47dJPc3t+VVQpNrBxoj6CUlmATQ8mgqqZRqw1
-	0GsxMl8cO2R3vx23sKuatXPMQwf4yIbp2GdwGfzcakpD4e8rWIc615AubZjeUkSu3VvxeJeAgd5WF
-	D9mKzyFYnZ5a+G51Xo/pbeulxQ2CHvNNzcVkY2OJBslnGBsiRX71Q9oitwXA4b/8Tp2FCL9vpVUjh
-	6/RxNwLCmri8W5hesrDL1DwjafIH3L3shMteym3zHNN8gDveoyaSYlYNNBTnmbkyMMSvdW6qdP0aN
-	iGBwSoXg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:39768)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1stEGJ-0005vY-1Z;
-	Tue, 24 Sep 2024 23:44:03 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1stEGF-0006ki-3D;
-	Tue, 24 Sep 2024 23:44:00 +0100
-Date: Tue, 24 Sep 2024 23:43:59 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Rob Herring <robh@kernel.org>
-Cc: Kunwu Chan <chentao@kylinos.cn>, saravanak@google.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH 1/2] amba: Add dev_is_amba() function and export it for
- modules
-Message-ID: <ZvNAr0d5gYmuM+Zt@shell.armlinux.org.uk>
-References: <20240923094249.80399-1-chentao@kylinos.cn>
- <20240923094249.80399-2-chentao@kylinos.cn>
- <20240924222857.GA404805-robh@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=CZyAPWlT0OgC3d5gWW2/FhMD8i3zfvaY1IZYZMDg/dF0K5LlImmGykY+dRK1f4asxaMwKpZBvAiRsuEq/NfnvLp8VOIH8cp6BnlOvhTsf22wRxHOB2nRIk5uUorZBYt9XgQQEB9HzhwvHpbRbPSrgK73UrPh608aTUu8GuCidn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i7aMvoOr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3F99C4CEC4;
+	Tue, 24 Sep 2024 22:53:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727218424;
+	bh=HoKonSrSZvECoNi9zyjpJDqIafnrRE2PE9Rf0LooWAM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=i7aMvoOrqN1PhSj7sH+w4Qxn3eO0hOF/URnIPfrJ3mldH3a1bSrqFhPr/5il/wN+d
+	 fFsEtrhb43Ve9r6o0G63Ba7XicO5aTY1bQAcUtOHqzB54RbjcDmIOh1vBWaSCgCFmv
+	 XZd3VkDeoQBHLzHL1zYDAl8CZSr+0lVJY+E+Pdw5yb+4uRarwIOh3ZEV8nQK+9aLGy
+	 JBV05yp9mSAP+z22wABAtryYhzUs01YjjbfXEOVSciwtNqaTVG1g8TYEQZCUXJhKq9
+	 KVuwI6EEjcnkGqLJjqLxi8JBqEFU26unJx2zkqj+RuOuqTWBkbCyQ46fmpH1/ZU+5o
+	 5v0COFRir9vCQ==
+Date: Tue, 24 Sep 2024 17:53:43 -0500
+From: Rob Herring <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Jens Axboe <axboe@kernel.dk>, Jonathan Corbet <corbet@lwn.net>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	INAGAKI Hiroshi <musashino.open@gmail.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Christian Brauner <brauner@kernel.org>,
+	Al Viro <viro@zeniv.linux.org.uk>, Ming Lei <ming.lei@redhat.com>,
+	Li Lingfeng <lilingfeng3@huawei.com>,
+	Christian Heusel <christian@heusel.eu>, linux-block@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>
+Subject: Re: [RFC PATCH 4/4] dt-bindings: mmc: Document support for partition
+ table in mmc-card
+Message-ID: <20240924225343.GA413172-robh@kernel.org>
+References: <20240923105937.4374-1-ansuelsmth@gmail.com>
+ <20240923105937.4374-5-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,34 +71,99 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240924222857.GA404805-robh@kernel.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <20240923105937.4374-5-ansuelsmth@gmail.com>
 
-On Tue, Sep 24, 2024 at 05:28:57PM -0500, Rob Herring wrote:
-> On Mon, Sep 23, 2024 at 05:42:47PM +0800, Kunwu Chan wrote:
-> > Add dev_is_amba() function to determine
-> > whether the device is a AMBA device.
-> > 
-> > Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > Signed-off-by: Kunwu Chan <chentao@kylinos.cn>
-> > ---
-> >  drivers/amba/bus.c       | 6 ++++++
-> >  include/linux/amba/bus.h | 5 +++++
-> >  2 files changed, 11 insertions(+)
+On Mon, Sep 23, 2024 at 12:59:33PM +0200, Christian Marangi wrote:
+> Document support for defining a partition table in the mmc-card node.
 > 
-> Russell, Can I get an ack for this to take it with patch #2.
+> This is needed if the eMMC doesn't have a partition table written and
+> the bootloader of the device load data by using absolute offset of the
+> block device. This is common on embedded device that have eMMC installed
+> to save space and have non removable block devices.
 
-Would be nice to discuss "how shall we merge this cross-subsystem
-patch series" first, hmm?
+What if the partition table is written? What does one use? One of them 
+or both and merge them?
 
-The reason I didn't take patch 1 originally is because it was submitted
-to me without any users, and the general principle is not to accept
-patches without users. Too many times, I've merged code where there's
-been a "promise" that it will be used, only to have the author go
-silent and users never come along. So now, my rule is... any code that
-adds something must also come with its user.
+> eMMC provide a generic disk for user data and if supported also provide
+> one or two additional disk (boot0 and boot1) for special usage of boot
+> operation where normally is stored the bootloader or boot info.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../devicetree/bindings/mmc/mmc-card.yaml     | 75 +++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-card.yaml b/Documentation/devicetree/bindings/mmc/mmc-card.yaml
+> index fd347126449a..fab9fa5c170a 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-card.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-card.yaml
+> @@ -13,6 +13,10 @@ description: |
+>    This documents describes the devicetree bindings for a mmc-host controller
+>    child node describing a mmc-card / an eMMC.
+>  
+> +  It's possible to define a fixed partition table for an eMMC for the user
+> +  partition and one of the 2 boot partition (boot0/boot1) if supported by the
+> +  eMMC.
+> +
+>  properties:
+>    compatible:
+>      const: mmc-card
+> @@ -26,6 +30,48 @@ properties:
+>        Use this to indicate that the mmc-card has a broken hpi
+>        implementation, and that hpi should not be used.
+>  
+> +  "#address-cells": true
+> +
+> +  "#size-cells": true
+> +
+> +patternProperties:
+> +  "^partitions(-boot[01])?$":
+> +    type: object
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+You don't define this is fixed partitions with a fixed-partitions 
+compatible. Why not reuse that? Then this all goes away with a 
+reference to it.
+
+> +
+> +    properties:
+> +      "#address-cells": true
+> +
+> +      "#size-cells": true
+> +
+> +    patternProperties:
+> +      "@[0-9a-f]+$":
+> +        type: object
+> +
+> +        properties:
+> +          reg:
+> +            description: partition's offset and size within the flash (in sector
+> +              block, 512byte)
+
+Units are sectors? Use bytes instead because everything else does in DT. 
+
+> +            maxItems: 1
+> +
+> +
+> +          label:
+> +            description: The label / name for this partition.
+> +
+> +          read-only:
+> +            description: This parameter, if present, is a hint that this partition
+> +              should only be mounted read-only. This is usually used for flash
+> +              partitions containing early-boot firmware images or data which should
+> +              not be clobbered.
+> +            type: boolean
+> +
+> +        required:
+> +          - reg
+> +          - label
+> +
+> +        additionalProperties: false
+> +
+> +    additionalProperties: false
+
+Put the indented cases of additionalProperties/unevaluatedProperties 
+before 'properties'. Easier to see what they apply to that way.
+
+Rob
 
