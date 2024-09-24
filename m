@@ -1,212 +1,180 @@
-Return-Path: <devicetree+bounces-104874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C0109845CC
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 14:17:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 499E49845DD
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 14:24:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 057FA1F234B2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 12:17:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0228C281CFD
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 12:24:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E3BC1A7254;
-	Tue, 24 Sep 2024 12:16:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78E921A4F18;
+	Tue, 24 Sep 2024 12:24:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NozaKVRr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SlyGxqDf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 879601A7255
-	for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 12:16:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4870B3F9D5;
+	Tue, 24 Sep 2024 12:24:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727180204; cv=none; b=g8vUrw7cUqs29g8K8T98W11aLdFjyh59Pnakgi3VZlbHVNCAnMCe+HQjghlzsV/zVYKqG905mJDZLJ3xDdmstdvphZLoRVthrPwAxcGaIZsRRdBFaUAzUnP3Cd5oPmZUgAZwGYUqpOZcTBne0r2RzNDoCynNO0zyTWPRFNUbZ48=
+	t=1727180661; cv=none; b=QN+MnDi9rJWKpB5ZUugYzdnPNELtbwlTz4MiYtG9yne08hJF4AiCJxojURtvwn3SRJ/NcHEsYOwE471w3nn+eGYiQ7gs79T9vN/lh3oS5OE6us4G4TmEiOuNwiPfgkem1xydK6Ii+2+TsQua3doTraUCWoSs9hiO+njNmv5/618=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727180204; c=relaxed/simple;
-	bh=f0WjRCWB3BT+gitlWSkmtisB2gJBrgB3iVCdniaUxQU=;
+	s=arc-20240116; t=1727180661; c=relaxed/simple;
+	bh=FKNjfvHnnNhwzScnzuAJn6ULWo2QY+BQ9s4h92IJu7g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XYe48rBE2caXhG7hctt4m3xE3eAvOlVLQwkVTLw4ww5+sKp1MiiaHpjjrtVivISFarW+L0PCxPpe8ZKDvB1JGMifAgGzWZV20GY+CYp0PypICpVgeJiVooAGxMXPu8+9xkGF9zuLyaLtumG7lOOMamS+XlXyFjM8JbbTfq1kUiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NozaKVRr; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2f7528f4658so47624061fa.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 05:16:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727180201; x=1727785001; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=42yhAa85dOyM6/KIcZ7i6acbWsO2ZQlWeVPvvAFTZxY=;
-        b=NozaKVRr1UXp3VoJlhu5U9FdmhlwmVuVYb3yMgVzuPyYFbQ1OFEkGSxHsd1DzmR3Ea
-         kJpYkfOlVZqqx54HfmOHtzbedsfHpXhZDLVwD218uXrkG33Fk0DGJ5DHQpZg2RXAhsD9
-         urQvlC149XPy19R4w10XVExEeWQUTtoDCZaua0n+lu5+esf2KyCde4tft1t3DKXsLG8G
-         UG54WpnmNvDt11VjHQR4o32181ugYBnjD1ztj46Yqand732VDLMYqKikhnuknOYPxpKl
-         6VmI6bHf4GMd9v2jSedmb+7qIvTKvyEjIlG3x/IS/aTeUN4KOMq50hrTt6UWqXG3w4oj
-         S6Xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727180201; x=1727785001;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=42yhAa85dOyM6/KIcZ7i6acbWsO2ZQlWeVPvvAFTZxY=;
-        b=YLC2pUcQBCo2XRc4jSCdYXJEC9KLINL/MJAFwX14ynISjPb6oHmJPS2fwaCaJzODce
-         +YB2p8s6S0k9HJ+xjJjfOFOEVOiSd5tjxoOZVsZe5yMlTKJx7ZhEkaIfc0rf2IE4lFJ8
-         wFMGpr6kWPVvdjKrRDw3oykEaeLdPzAwRW3X12yUcXz0SMF/yjLu9v/dPqt0VWY0RiKC
-         hAgdJ9AsGvxr1xS9LIIjubpyoPvQ1eqi14EBK2e5XFNtU1V1I63onFPcNkNuQFjN+ea3
-         xFtWDODcpdaOp6xH39H476aqgEp/ujK7ULAM76ItxPAXsnfa0nqjOQkawR9ValgXScar
-         7WiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUNxe3haHi/+IfjVHtqE56UH+dHE4HSWfnPOVK6AeLDdaXu00nC4mk4LhdE1xeiItgElDqv+t+UZVg0@vger.kernel.org
-X-Gm-Message-State: AOJu0YzK1k/+LTh7Lwp+xenZAyO3G0tsG1+tLf3U9Ar+SuYc9D7ZQlwa
-	SvDGiicWprKin2HjMiwXZailxSV6ABCU4ROsOdpaMw3VgwNq99cWJPG9vH2qJ74=
-X-Google-Smtp-Source: AGHT+IFuf4z94LE9fZPfQs8tAoR/fMpD/Cf1JY8a9sDQGWJuXR7ve1xZQgGqFjGtUQin17Vd+jF8/Q==
-X-Received: by 2002:a2e:b8c4:0:b0:2f6:6101:5a63 with SMTP id 38308e7fff4ca-2f7cb2e6875mr89179781fa.2.1727180200523;
-        Tue, 24 Sep 2024 05:16:40 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f8d282fd28sm2159471fa.13.2024.09.24.05.16.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Sep 2024 05:16:39 -0700 (PDT)
-Date: Tue, 24 Sep 2024 15:16:37 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Mahadevan P <quic_mahap@quicinc.com>
-Cc: robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run, 
-	marijn.suijten@somainline.org, airlied@gmail.com, daniel@ffwll.ch, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, swboyd@chromium.org, 
-	konrad.dybcio@linaro.org, danila@jiaxyga.com, bigfoot@classfun.cn, 
-	neil.armstrong@linaro.org, mailingradian@gmail.com, quic_jesszhan@quicinc.com, 
-	andersson@kernel.org, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	quic_kalyant@quicinc.com, quic_jmadiset@quicinc.com, quic_vpolimer@quicinc.com
-Subject: Re: [PATCH 4/5] drm/msm/dpu: Add SA8775P support
-Message-ID: <rmndmhq67lajdmva6gt46rqtkvf6jh2afbqazafz6oxv7ep56j@bznopz3aexyt>
-References: <20240912071437.1708969-1-quic_mahap@quicinc.com>
- <20240912071437.1708969-5-quic_mahap@quicinc.com>
- <v4cnmso3nl5oi3scd2lkg6kepb52vjrzgoti42ikds3y2wq6aw@sbn2yu4xeiun>
- <9b47bd8e-6079-4285-a3d7-932178d5bdf2@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=okFbYWW1qR7oOl2vF+gpELs9BzEoDnPmhCAu32ZgjjzWzbKDpOB4LTxKNuZvySVaYxuY+I015b7yo8joRKbVzKFkURX1Y90CJ+9+7P4avJzz5DR+ykyofrs4+fSKtC+yDhi5a32D7TZcnKHpWQRGGNDsJ7O8exCMN9hx2KzWTI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SlyGxqDf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D872FC4CEC4;
+	Tue, 24 Sep 2024 12:24:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727180660;
+	bh=FKNjfvHnnNhwzScnzuAJn6ULWo2QY+BQ9s4h92IJu7g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SlyGxqDfjhGJkSTQcisVILZeXxSa1edRkJ/4QWRrCE8MHXXy45isCcBswgVR3AKEy
+	 aWreqsVZRsT8xtO2bCQQsjhvPbWlJk7kcr+11BvqsUZezHyixVE9RGmJPK4olCXRkt
+	 UODvBwuVY70icQDnLYexkGti9iYILqHJz00oPkOxdMo77zZpSRsIhLEdebAc0o48zi
+	 eOc0/2pkYYaXnFrXExBNTf6bK7iwsE4Y8Us0E9GAH6RGepsfqMvkPYcTlO6ogZJlGU
+	 mj9J6mBcyRx/DvjxCHcAcZcTi12twoncR+W5SufOAi8APADSS8QdqvjD7LXY0KH7b6
+	 ULYX86ChFl0dg==
+Date: Tue, 24 Sep 2024 14:24:16 +0200
+From: Mark Brown <broonie@kernel.org>
+To: Igor Prusov <ivprusov@salutedevices.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	kernel@salutedevices.com, prusovigor@gmail.com,
+	David Yang <yangxiaohua@everest-semi.com>,
+	Martin Kurbanov <mmkurbanov@salutedevices.com>
+Subject: Re: [PATCH v2 2/2] ASoC: codecs: add ES7243E ADC driver
+Message-ID: <ZvKvcBHJU2pKl809@finisterre.sirena.org.uk>
+References: <20240920-es7243e-adc-v2-0-0be019735b81@salutedevices.com>
+ <20240920-es7243e-adc-v2-2-0be019735b81@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="orxiphdiU9CDdCkg"
+Content-Disposition: inline
+In-Reply-To: <20240920-es7243e-adc-v2-2-0be019735b81@salutedevices.com>
+X-Cookie: Editing is a rewording activity.
+
+
+--orxiphdiU9CDdCkg
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9b47bd8e-6079-4285-a3d7-932178d5bdf2@quicinc.com>
 
-On Tue, Sep 24, 2024 at 04:42:02PM GMT, Mahadevan P wrote:
-> 
-> On 9/12/2024 1:34 PM, Dmitry Baryshkov wrote:
-> > On Thu, Sep 12, 2024 at 12:44:36PM GMT, Mahadevan wrote:
-> > > Add definitions for the display hardware used on the
-> > > Qualcomm SA8775P platform.
-> > > 
-> > > Signed-off-by: Mahadevan <quic_mahap@quicinc.com>
-> > > ---
-> > >   .../msm/disp/dpu1/catalog/dpu_8_4_sa8775p.h   | 485 ++++++++++++++++++
-> > >   .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    |   3 +-
-> > >   .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   3 +-
-> > >   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   3 +-
-> > >   4 files changed, 491 insertions(+), 3 deletions(-)
-> > >   create mode 100644 drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_8_4_sa8775p.h
-> > > 
+On Fri, Sep 20, 2024 at 06:41:08PM +0300, Igor Prusov wrote:
 
-[...]
+> +config SND_SOC_ES7243E
+> +	tristate "Everest Semi ES7243E CODEC"
+> +
 
-> > > +static const struct dpu_intf_cfg sa8775p_intf[] = {
-> > > +	{
-> > > +		.name = "intf_0", .id = INTF_0,
-> > > +		.base = 0x34000, .len = 0x280,
-> > > +		.features = INTF_SC7280_MASK,
-> > > +		.type = INTF_DP,
-> > > +		.controller_id = MSM_DP_CONTROLLER_0,
-> > > +		.prog_fetch_lines_worst_case = 24,
-> > > +		.intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 24),
-> > > +		.intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 25),
-> > > +	}, {
-> > > +		.name = "intf_1", .id = INTF_1,
-> > > +		.base = 0x35000, .len = 0x300,
-> > > +		.features = INTF_SC7280_MASK,
-> > > +		.type = INTF_DSI,
-> > > +		.controller_id = MSM_DSI_CONTROLLER_0,
-> > > +		.prog_fetch_lines_worst_case = 24,
-> > > +		.intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 26),
-> > > +		.intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 27),
-> > > +		.intr_tear_rd_ptr = DPU_IRQ_IDX(MDP_INTF1_TEAR_INTR, 2),
-> > > +	}, {
-> > > +		.name = "intf_2", .id = INTF_2,
-> > > +		.base = 0x36000, .len = 0x300,
-> > > +		.features = INTF_SC7280_MASK,
-> > > +		.type = INTF_DSI,
-> > > +		.controller_id = MSM_DSI_CONTROLLER_1,
-> > > +		.prog_fetch_lines_worst_case = 24,
-> > > +		.intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 28),
-> > > +		.intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 29),
-> > > +		.intr_tear_rd_ptr = DPU_IRQ_IDX(MDP_INTF2_TEAR_INTR, 2),
-> > > +	}, {
-> > > +		.name = "intf_3", .id = INTF_3,
-> > > +		.base = 0x37000, .len = 0x280,
-> > > +		.features = INTF_SC7280_MASK,
-> > > +		.type = INTF_NONE,
-> > > +		.controller_id = MSM_DP_CONTROLLER_0,	/* pair with intf_0 for DP MST */
-> > > +		.prog_fetch_lines_worst_case = 24,
-> > > +		.intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 30),
-> > > +		.intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 31),
-> > > +	}, {
-> > > +		.name = "intf_4", .id = INTF_4,
-> > > +		.base = 0x38000, .len = 0x280,
-> > > +		.features = INTF_SC7280_MASK,
-> > > +		.type = INTF_DP,
-> > > +		.controller_id = MSM_DP_CONTROLLER_1,
-> > > +		.prog_fetch_lines_worst_case = 24,
-> > > +		.intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 20),
-> > > +		.intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 21),
-> > > +	}, {
-> > Where is intf_5 ?
-> 
-> 
-> intf_5 of base address 0x39000 is not supported on this target.
+This is an I2C device, it should depend on I2C.
 
-Not supported by whom?
+> @@ -0,0 +1,693 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/**
+> + * es7243e.c - ASoC Everest Semiconductor ES7243E audio ADC driver
+> + *
 
-> 
-> 
-> > 
-> > > +		.name = "intf_6", .id = INTF_6,
-> > > +		.base = 0x3A000, .len = 0x280,
-> > > +		.features = INTF_SC7280_MASK,
-> > > +		.type = INTF_NONE,
-> > > +		.controller_id = MSM_DP_CONTROLLER_0,	/* pair with intf_0 for DP MST */
-> > > +		.prog_fetch_lines_worst_case = 24,
-> > > +		.intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 17),
-> > > +		.intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 16),
-> > > +	}, {
+Please make the enitre comment a C++ one so things look more
+intentional.
 
-[skipped]
+> + * Copyright (c) 2024, SaluteDevices. All Rights Reserved.
 
-> > > @@ -1464,6 +1464,7 @@ static const struct of_device_id dpu_dt_match[] = {
-> > >   	{ .compatible = "qcom,sm8250-dpu", .data = &dpu_sm8250_cfg, },
-> > >   	{ .compatible = "qcom,sm8350-dpu", .data = &dpu_sm8350_cfg, },
-> > >   	{ .compatible = "qcom,sm8450-dpu", .data = &dpu_sm8450_cfg, },
-> > > +	{ .compatible = "qcom,sa8775p-dpu", .data = &dpu_sa8775p_cfg, },
-> > Wrong sorting order
-> 
-> 
-> Sure will move below sm8650-dpu.
+All rights reserved?
 
-What makes you think that in a dictionary sa8775p comes after sm8650?
+> +static const struct reg_sequence init_sequence[] = {
+> +	{ ES7243E_CLK2,			0x00 },
+> +	{ ES7243E_SDP,			0x00 },
+> +	{ ES7243E_TDM,			0x00 },
+> +
+> +	/* Set MCLK/LRCK ratio to 256 */
+> +	{ ES7243E_ADC_OSR,		0x20 },
 
-> 
-> 
-> > 
-> > >   	{ .compatible = "qcom,sm8550-dpu", .data = &dpu_sm8550_cfg, },
-> > >   	{ .compatible = "qcom,sm8650-dpu", .data = &dpu_sm8650_cfg, },
-> > >   	{ .compatible = "qcom,x1e80100-dpu", .data = &dpu_x1e80100_cfg, },
-> > > -- 
-> > > 2.34.1
-> > > 
+This should be dynamically configured rather than hard coded, provide
+set_bclk_ratio().
 
--- 
-With best wishes
-Dmitry
+> +	/* Set ADC volume to 0dB */
+> +	{ ES7243E_ADC_VOL,		0xbf },
+
+Most things should use the chip defaults, especially things like volumes
+- userspace can configure whatever it needs.
+
+> +static int es7243e_suspend(struct snd_soc_component *component)
+> +{
+> +	struct es7243e_priv *es7243e = snd_soc_component_get_drvdata(component);
+> +	int ret;
+> +	unsigned int val, mask;
+> +
+> +	val = FIELD_PREP(ES7243E_SDP_MUTE, 0);
+> +	ret = snd_soc_component_update_bits(component, ES7243E_SDP,
+> +					    ES7243E_SDP_MUTE, val);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	val = FIELD_PREP(ES7243E_PGA1_EN, 0);
+> +	snd_soc_component_update_bits(component, ES7243E_PGA1,
+> +				      ES7243E_PGA1_EN, val);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	val = FIELD_PREP(ES7243E_PGA2_EN, 0);
+> +	snd_soc_component_update_bits(component, ES7243E_PGA2,
+> +				      ES7243E_PGA2_EN, val);
+> +	if (ret < 0)
+> +		return ret;
+
+This looks a lot like you should be using DAPM with events on the PGAs,
+that will give power management at runtime as well.
+
+> +	ret = snd_soc_component_write(component, ES7243E_PDN, 0xff);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	mask = ES7243E_CLK1_ANA_ON | ES7243E_CLK1_ADC_ON;
+> +	ret = snd_soc_component_update_bits(component, ES7243E_CLK1, mask, 0);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	clk_disable_unprepare(es7243e->lrclk);
+> +	clk_disable_unprepare(es7243e->sclk);
+
+You could also use set_bias_level() for chip level power, it doesn't
+look like there's substantial delay.
+
+> +static int es7243e_resume(struct snd_soc_component *component)
+> +{
+> +	struct es7243e_priv *es7243e = snd_soc_component_get_drvdata(component);
+> +	int ret;
+> +	unsigned int val;
+
+This doesn't resync the cache so the user volume settings will be lost.
+
+--orxiphdiU9CDdCkg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbyr28ACgkQJNaLcl1U
+h9C5Kwf/W16rrhnjO3Ye/WN7vpgpY8D0g+YSbt/PXAte3rc5FvsKyZNtqTXUlh2i
+fTlQRNZENEbs012in/83m4vs1eCFi1zJffeBQyBCgwX3J9SjY/iHIFVOnbnIrI9P
+ngQRinfzA+5RIJxka2MuJcESihk+HL/ZIw2tn4CN0DkarXBW/NnJoC84WC4BoEfY
+0jWQYK8S4yoIxSmx4gk+pKPaDwdPuwYC4GdTzmaRTH49xYuScrpRKVbUKxmD5zSp
+QPqpH40/6ub+HMq5yR7BZlCmhGb4V7C0CH5josObPNbakuxdLlcd2+FwkmZxWU/G
+2pdz0D/vynQx0OOYEjgI/v05xEqiLA==
+=QUE8
+-----END PGP SIGNATURE-----
+
+--orxiphdiU9CDdCkg--
 
