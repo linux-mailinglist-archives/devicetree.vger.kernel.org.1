@@ -1,111 +1,124 @@
-Return-Path: <devicetree+bounces-104749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0FD79840EA
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 10:46:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21F549840EF
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 10:46:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6356C1F225F4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 08:46:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 83307B20FC4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 08:46:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF26A154426;
-	Tue, 24 Sep 2024 08:46:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E15671547FB;
+	Tue, 24 Sep 2024 08:46:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JvmBVifE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fyYtC09+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E467315443D;
-	Tue, 24 Sep 2024 08:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACB3E1514CE;
+	Tue, 24 Sep 2024 08:46:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727167574; cv=none; b=Ff/jt8iJWv7Pjqif8ZIr5KBxwg0EL3A2ii6Fw/V5O6Xd1Iqm6ebgPpk/wMhTNkxr8Terf5hyrq+4cXGoJiuvbs4zFYmZdiAPQLmssoLLJXOxRqVO0bVk/IrcXs+rYRBCeZy1CY5Ieb1NhLU1bgbWeiLaxBL170IIEVeHKDXvsCE=
+	t=1727167580; cv=none; b=Kp2PJ6BUtaTzNjql33AkUxR+OrLXuc7u8Fvja/fbCoNGaiV9+rlqRzfvtIewKzIFVYBoJ5m4VPOB11W8tv4puy4VjNLm3wkUnm8NLCrcmfMYIt+DENT2bGX5lQ+BcFJOXfaqN8NUfC2KuWVBfK+vre9dMQTvdEVy7e4GIzu04ME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727167574; c=relaxed/simple;
-	bh=nGDzu/0Mn1eGGrYd8jEPlVx2PsirGUvhYIZqwNI7mtQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jnHV+VqutCNL5RQjTCaimRTo7BxAwf/weRl2X86xC6PVBdn3cgk4IOI+JS2zlgpQsmb6fveXEcnHPJOllAW18euMyhMfl4LEoqhCk1WyjdxpzLrUOFAv1rqCdNdFC+ftX4sQ6JEJ1xbrUybPop1uZD2U5kMWrVmxr5+OiMYgUSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JvmBVifE; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1727167571;
-	bh=nGDzu/0Mn1eGGrYd8jEPlVx2PsirGUvhYIZqwNI7mtQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JvmBVifEXHe67RfNDQ1bcVV3X4iffDdzY05u9F0Nqzx2nCf5GUhMMwKWDKSt5PGL3
-	 83yxSam5NrEmI880ihsFhfyaO4PeYw9+D1I9ly3e/QW80JCGjoJ6O7v6U8PrJ6/M0L
-	 t2Y0bMe8tOG7BKJkgwHBodHdom511MkZBwP7j++jqH+8dL2Y742suaeKGkzaSDnJDl
-	 j8ge0NB+219O42x/pzpM2lvssF8HUFaWJExfTdR+quY5QBzexxR3plJ+kb7lfXtgl9
-	 wpfoaoVklTteV1VdChgiWfRcNo2D4lSJJl81ZdU3mzBSd2qmca8q7z2ZYWtOT3fort
-	 TyHcVFC5cShpA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id BBCAE17E1068;
-	Tue, 24 Sep 2024 10:46:10 +0200 (CEST)
-Message-ID: <69fcaf74-ddf5-4bd8-8f0b-3d1a1793c0f7@collabora.com>
-Date: Tue, 24 Sep 2024 10:46:10 +0200
+	s=arc-20240116; t=1727167580; c=relaxed/simple;
+	bh=B6uvYaPnjBz1RUY6tHRjJdMEouA95lD9v4gxdsvVmsg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=spY/7CY9XhmFxtX4tRxj3wx8ZCLNYRIwQyXL1+er1hNlZrkkmFi5pnAdnooSZQ1OsGTSV9OXH9cJIUaajqR8Dt2i3uppe60CovMlooTjegclgsUvytuSJqn98nu13JU0I9q/p4fBB0j/esMMEDUjmzA4w/Euxtg5Ksm1Aq+SIqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fyYtC09+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23A38C4CEC6;
+	Tue, 24 Sep 2024 08:46:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727167580;
+	bh=B6uvYaPnjBz1RUY6tHRjJdMEouA95lD9v4gxdsvVmsg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fyYtC09+JUgNfu0/O7noXrpIgoPW326OfymRuCS14HrsYIqVUkk0C+kMEw2mjuMzQ
+	 ooQLDjJjMMexh3fx49vtZXOqB+BbMqD7b6+erCIS628OdKtMacjxPVvAc1XD/0R8Yz
+	 rlYRYLWO6Afy9oCrgzje8KV0pOCovGu2U3OtX/QDBTVSdrUtoykrvmFIH8NJWXKohc
+	 3sSFd5ZZDajNybaSL3Gfn6IHsqFQMhrseIU0uXccuAc4OhxnCSNSI/SNU2I9L1jILG
+	 DmA/wmWwkuerZ/4Ed4H2TKZ+9dxuKNc1FTzbYXzpZ0UwY80mCbLHYvjQc7kl3c5G8x
+	 810c2lzhf48iw==
+Date: Tue, 24 Sep 2024 10:46:16 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, tsbogend@alpha.franken.de, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: i2c: Add RTL9300 I2C controller
+Message-ID: <ppcr2rx3kkm5iiykbagv67fqmyoounmvdgscbd5d3t5e42ym2i@37csodg3qbap>
+References: <20240923230230.3001657-1-chris.packham@alliedtelesis.co.nz>
+ <20240923230230.3001657-2-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8186: add FHCTL node
-To: Max Weng <max_weng@compal.corp-partner.google.com>,
- linux-kernel@vger.kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20240923144728.870285-1-max_weng@compal.corp-partner.google.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240923144728.870285-1-max_weng@compal.corp-partner.google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240923230230.3001657-2-chris.packham@alliedtelesis.co.nz>
 
-Il 23/09/24 16:47, Max Weng ha scritto:
-> From: max_weng <max_weng@compal.corp-partner.google.com>
+On Tue, Sep 24, 2024 at 11:02:28AM +1200, Chris Packham wrote:
+> Add dtschema for the I2C controller on the RTL9300 SoC. The I2C
+> controllers on this SoC are part of the "switch" block which is
+> represented here as a syscon node. The SCL pins are dependent on the I2C
+> controller (GPIO8 for the first controller, GPIO 17 for the second). The
+> SDA pins can be assigned to either one of the I2C controllers (but not
+> both).
 > 
-> add FHCTL device node for Frequency Hopping and Spread Spectrum clock function.
-> 
-> Change-Id: I7f9f2991978df7d5d3a6a8bc78f6f443f2f0460d
-
-Please remove the useless Change-Id tag, this means nothing upstream, after which,
-on V3:
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-> Signed-off-by: Max Weng <max_weng@compal.corp-partner.google.com>
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 > ---
->   Change frome v1 to v2
->   * Modify the commit description
->   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 7 +++++++
->   1 file changed, 7 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> index 148c332018b0..d3c3c2a40adc 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> @@ -29,6 +29,13 @@ aliases {
->   		rdma1 = &rdma1;
->   	};
->   
-> +	fhctl: fhctl@1000ce00 {
-> +		compatible = "mediatek,mt8186-fhctl";
-> +		clocks = <&apmixedsys CLK_APMIXED_TVDPLL>;
-> +		reg = <0 0x1000ce00 0 0x200>;
-> +		status = "disabled";
-> +	};
+> Notes:
+>     Changes in v3:
+>     - Remove parent node in example
+>     - put unevaluatedProperties after required
+>     - Add #address-cells and #size-cells
+>     
+>     Changes in v2:
+>     - Use reg property for controller registers
+>     - Remove global-control-offset (will be hard coded in driver)
+>     - Integrated the multiplexing function. Child nodes now represent the
+>       available SDA lines
+> 
+>  .../bindings/i2c/realtek,rtl9300-i2c.yaml     | 80 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 ++
+>  2 files changed, 86 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.yaml b/Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.yaml
+> new file mode 100644
+> index 000000000000..979ec22e81f1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/realtek,rtl9300-i2c.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i2c/realtek,rtl9300-i2c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->   	cci: cci {
->   		compatible = "mediatek,mt8186-cci";
->   		clocks = <&mcusys CLK_MCU_ARMPLL_BUS_SEL>,
+> +title: Realtek RTL I2C Controller
+> +
+> +maintainers:
+> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
+> +
+> +description:
+> +  The RTL9300 SoC has two I2C controllers. Each of these has an SCL line (which
+> +  if not-used for SCL can be a GPIO). There are 8 common SDA lines that can be
+> +  assigned to either I2C controller.
+> +
+> +properties:
+> +  compatible:
+> +    const: realtek,rtl9300-i2c
+
+You need SoC-specific compatibles in the front followed by this
+fallback. For each SoC.
+
+Best regards,
+Krzysztof
 
 
