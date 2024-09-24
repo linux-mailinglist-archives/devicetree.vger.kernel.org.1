@@ -1,113 +1,162 @@
-Return-Path: <devicetree+bounces-104940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F1D1984905
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 18:04:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6263A984941
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 18:10:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E4331C22AEF
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 16:04:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25EA92869D4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 16:10:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4DC71AAE39;
-	Tue, 24 Sep 2024 16:04:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 368001AC887;
+	Tue, 24 Sep 2024 16:09:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pJ4yEG9b"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GzSMNVBP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A35E91E49B;
-	Tue, 24 Sep 2024 16:04:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 738331AC441;
+	Tue, 24 Sep 2024 16:09:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727193863; cv=none; b=b4dYwTtqYvvQ/f3cOuCWgBT1/ZI0U01RsE/oGb4qcm1kf9GNp6JNEMZbGSnckcgL1th8zQH6UBRj247RatNUNU4t40Ssk0J+vewLYM97H0g4wt5vj0UiIbI3762KvwHgtZNddkHGUrOCQquEocQA7JxXV6HATV0vmN9dPPZdjpU=
+	t=1727194174; cv=none; b=Powk/VHSPNfUi1Okyc5GGzEmFrXhnKGrDjYBob7WUXLGDYCEsgHEmpgTFHbHFznp+HcS8eh72R7oOjZurB7Cp8LrG4nZHiTv2LucT7LIrNrmKT5DXf+5uthS/8z+JvNr1ktawH57orh1eDoD1Ns3L2oIbZmqKvuWWr7OhZPGqFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727193863; c=relaxed/simple;
-	bh=U92bSuEAZjnU4w+FGU/py+Q//Fe1SulLSbofqyLyPhg=;
+	s=arc-20240116; t=1727194174; c=relaxed/simple;
+	bh=WDJIymi6jhbzorfvBp3dPP8K22eFx3XqEjkbhxGF0xE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T6zkgSfnsr+sG8yg30oRKKMHlODM6SWnkt3/Qr9MlCCAqO0pmoghRFBYoAxWH5p0Y8ELHJCS9mmvG5bH5VoXh9ycOEBkvTUZiPF08eyOhR5ixNOBoEeDp6dUgm/2a7yl/ZkvXmsnX2YvkU5kMVaqWhGyuhqD7r7w5lYOz5j+cNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pJ4yEG9b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19A4CC4CEC7;
-	Tue, 24 Sep 2024 16:04:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727193863;
-	bh=U92bSuEAZjnU4w+FGU/py+Q//Fe1SulLSbofqyLyPhg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pJ4yEG9beL4nwlPOLmbryx5h75ub112hfFpa8teutRosJNeJVXJ0kWmX0xXWXITf0
-	 bFJPKsJKg9Ks9T1cbndwhb8va9OCsjSgICncZG0raZWYqy0Ai6lGKts2zE8o6XrKZS
-	 exvhIKnqi4iXflPDvO/ZKhFYOfPphrg8nK3xfZ76hr+XHfe239Hjq98QlqeQ3tDHZS
-	 gg8HL9p4wSZChyjMFsh4sLv2yOAb77WsZ5E6kJP7c1JP2mvDlgHswDjq69vdMKb4eg
-	 mCKQ4ZOLPCGWAEp8nbhOaR5y3Lk2KprJlVzJNlil4Ywhp6TPSJkbaMBTZVlUzkoCpe
-	 0tVVNVvhCV3Jw==
-Date: Tue, 24 Sep 2024 17:04:18 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>, l.stach@pengutronix.de,
-	kwilczynski@kernel.org, bhelgaas@google.com, lpieralisi@kernel.org,
-	robh+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, festevam@gmail.com,
-	s.hauer@pengutronix.de, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, kernel@pengutronix.de,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v1 1/9] dt-bindings: imx6q-pcie: Add ref clock for i.MX95
- PCIe
-Message-ID: <20240924-spoilage-fanfare-357c65b8418e@spud>
-References: <1727148464-14341-1-git-send-email-hongxing.zhu@nxp.com>
- <1727148464-14341-2-git-send-email-hongxing.zhu@nxp.com>
- <20240924-ended-unlaced-cc7ddf87af90@spud>
- <ZvLZWqRFnAtgFo3B@lizhi-Precision-Tower-5810>
+	 Content-Type:Content-Disposition:In-Reply-To; b=aZ8q+DW9DDZf3BMy238Ftxu3uND1gv5R3hpglo8YdJMTECJv5RElewl/KKNRI+3NBrVt7P4K0MB7/SSH5xX3Fd8kSH+8MN+66079y9JZnDEwrBX4lS+6Jx/sejr5gQcdgWwGkT2LRa+7tMsuqc4RLT8b4JSLE0/dI/JyhXV4RYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GzSMNVBP; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1727194173; x=1758730173;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WDJIymi6jhbzorfvBp3dPP8K22eFx3XqEjkbhxGF0xE=;
+  b=GzSMNVBPkPkz4UNUr+HYPD1ug3wSEvDHoB0lToCfHHjIRkcKJNrcflD/
+   gmUAEPlcF8piVmwd8mz92YrFOmkzp5969kbls3CXOYvDkJOZfNk6X0vPm
+   hf/FJ3dqz6S+jiHGKbptuOyx1Je79FsakWxMC4rzrNqjH1STIKfCRsWuF
+   ML1l1tSSjoRyXb7cpcCkTydMPGsr1N+OfuO5mPH1ulTsv1JxbVVVgccNH
+   2mwUwHOvJwxuS7u16ljknMNBv7BVPSyWRJZA442PQt+SH7ifpV32cMrI5
+   kEsj/1YApJKkMCcOYbpaD0rEmxYOxInS1FTkJTAiL5EkDB/++/7fD9utC
+   w==;
+X-CSE-ConnectionGUID: dZGt7d54R3yyZf3PoGceNQ==
+X-CSE-MsgGUID: V2lAm4AwRSaL/X1e3CAU8Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11205"; a="51615038"
+X-IronPort-AV: E=Sophos;i="6.10,255,1719903600"; 
+   d="scan'208";a="51615038"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2024 09:09:32 -0700
+X-CSE-ConnectionGUID: +92+O1hhS3SAon2BTcyrVw==
+X-CSE-MsgGUID: RxAyyAicQ2iDrsFlZ4YDwA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,255,1719903600"; 
+   d="scan'208";a="71457803"
+Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
+  by fmviesa009.fm.intel.com with ESMTP; 24 Sep 2024 09:09:26 -0700
+Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1st86O-000IXp-09;
+	Tue, 24 Sep 2024 16:09:24 +0000
+Date: Wed, 25 Sep 2024 00:08:29 +0800
+From: kernel test robot <lkp@intel.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	Dumitru Ceclan <mitrutzceclan@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Alisa-Dariana Roman <alisadariana@gmail.com>,
+	Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
+	Dragos Bogdan <dragos.bogdan@analog.com>, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pwm@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH 6/7] iio: adc: ad485x: add ad485x driver
+Message-ID: <202409242353.rDAcuGYR-lkp@intel.com>
+References: <20240923101206.3753-7-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="2y7ZEn7oTFy8mHq6"
-Content-Disposition: inline
-In-Reply-To: <ZvLZWqRFnAtgFo3B@lizhi-Precision-Tower-5810>
-
-
---2y7ZEn7oTFy8mHq6
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240923101206.3753-7-antoniu.miclaus@analog.com>
 
-On Tue, Sep 24, 2024 at 11:23:06AM -0400, Frank Li wrote:
-> On Tue, Sep 24, 2024 at 11:08:20AM +0100, Conor Dooley wrote:
-> > On Tue, Sep 24, 2024 at 11:27:36AM +0800, Richard Zhu wrote:
-> > > Add one ref clock for i.MX95 PCIe. Increase clocks' maxItems to 5 and
-> > > keep the same restriction with other compatible string.
-> > >
-> > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> >
-> > It'd be really good to mention why this clock is appearing now, when it
-> > did not before. You're just explaining what you've done, which can be
-> > seen in the diff, but not why you did it.
->=20
-> Previous reference clock of i.MX95 is on when system boot to kernel. But
-> boot firmware change the behavor, so it is off when boot. So it need be
-> turn on when it use. Also it need be turn off/on when suspend and resume.
-> Previous miss this feature.
+Hi Antoniu,
 
-Please put this in the commit message Richard.
+kernel test robot noticed the following build errors:
 
-Thanks,
-Conor.
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.11]
+[cannot apply to jic23-iio/togreg next-20240924]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
---2y7ZEn7oTFy8mHq6
-Content-Type: application/pgp-signature; name="signature.asc"
+url:    https://github.com/intel-lab-lkp/linux/commits/Antoniu-Miclaus/iio-backend-add-API-for-interface-get/20240923-182050
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240923101206.3753-7-antoniu.miclaus%40analog.com
+patch subject: [PATCH 6/7] iio: adc: ad485x: add ad485x driver
+config: openrisc-allyesconfig (https://download.01.org/0day-ci/archive/20240924/202409242353.rDAcuGYR-lkp@intel.com/config)
+compiler: or1k-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240924/202409242353.rDAcuGYR-lkp@intel.com/reproduce)
 
------BEGIN PGP SIGNATURE-----
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409242353.rDAcuGYR-lkp@intel.com/
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvLjAQAKCRB4tDGHoIJi
-0hOYAP0XcNVPuI7V62UHF/QiRSFVkV0CAHFfd9a51umMSxHx9wEAtYpToWp7Adbl
-rLzKRXA23fuI970EAdxYZ8ZzmkY9rA4=
-=Rfph
------END PGP SIGNATURE-----
+All errors (new ones prefixed by >>):
 
---2y7ZEn7oTFy8mHq6--
+   drivers/iio/adc/ad485x.c: In function 'ad485x_get_packet_format':
+>> drivers/iio/adc/ad485x.c:396:18: error: implicit declaration of function 'FIELD_GET' [-Wimplicit-function-declaration]
+     396 |         format = FIELD_GET(AD485X_PACKET_FORMAT_MASK, format);
+         |                  ^~~~~~~~~
+   drivers/iio/adc/ad485x.c: At top level:
+   drivers/iio/adc/ad485x.c:854:23: warning: initialized field overwritten [-Woverride-init]
+     854 |         .resolution = 16,
+         |                       ^~
+   drivers/iio/adc/ad485x.c:854:23: note: (near initialization for 'ad4856_info.resolution')
+
+
+vim +/FIELD_GET +396 drivers/iio/adc/ad485x.c
+
+   384	
+   385	static int ad485x_get_packet_format(struct iio_dev *indio_dev,
+   386					    const struct iio_chan_spec *chan)
+   387	{
+   388		struct ad485x_state *st = iio_priv(indio_dev);
+   389		unsigned int format;
+   390		int ret;
+   391	
+   392		ret = regmap_read(st->regmap, AD485X_REG_PACKET, &format);
+   393		if (ret)
+   394			return ret;
+   395	
+ > 396		format = FIELD_GET(AD485X_PACKET_FORMAT_MASK, format);
+   397	
+   398		return format;
+   399	}
+   400	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
