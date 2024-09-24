@@ -1,401 +1,194 @@
-Return-Path: <devicetree+bounces-104685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-104687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B5EA983D44
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 08:44:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A41EB983D74
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 09:00:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB19F28385F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 06:44:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6D7C1C228B1
+	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 07:00:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0030473451;
-	Tue, 24 Sep 2024 06:44:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="whkQAY/7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F365126BE2;
+	Tue, 24 Sep 2024 07:00:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF3F425634
-	for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 06:44:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A73AF7D417;
+	Tue, 24 Sep 2024 07:00:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727160284; cv=none; b=X0dk69SSBQfUp/WP/Lc9MQ4iA4tmxbr8C/5KWa1UtaDVGIaQAmTjYTQvEugjzIlTe91fFQMFnSLXcZ6/Q+as2yjcZ53bcYNxmEpZJcdJ1DK9UTTz+V5M3fu2jO3a2/JENS8ZYEZCrbIcTtAbmHfIv6ZKRc9ZoCTxNeEhaDnZyDM=
+	t=1727161205; cv=none; b=TWJpceaYxDxMOJEKiQINpzPVolZMydyp2AGL3UMXQLV1LDoMRPLRC2fD2+evPxmQwoe8fpw0HMoA7lVMu0QEuz1TnJfFIZwjmEI4sE6hVEdjsfoIeRiFVsR4kUx/nbqbXsGXbLpWMAQslnVRDZ9xGRDbQ+rY1K4a70TPxhUb82U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727160284; c=relaxed/simple;
-	bh=qkVA+8GnWSBbpcFh7+Kzw7Gbzm4sqiceJp9YkI28LoQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pg0mSCZ4hThLnNzrwJGKEJuY4Ut9hHNl/1sLJ2rYzkhW6gIMn+YidSwPtFMZjc53a/8glX9uryxM+4rzE8FXKDgcwTAOdelEAGF+snv/qVNJXnPeaHoDmG+knjF78yJJj4qNQ1/QrGVM0tnZsTMROReLatsVR4yC61G7xNbFXi8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=whkQAY/7; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5365392cfafso5369707e87.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Sep 2024 23:44:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727160280; x=1727765080; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=WobonbhvLVWVF2SpQIM2Ox9WVV/IkG6i0xq7CuV8wbM=;
-        b=whkQAY/7N/nMRfqPcHz/fIkRC8av5Zf8L3uXFimRKdZ93bBEe1FZF+jNrBOd1UOkaR
-         oAqlLFFvHKInoX9zo7gqrOfbU/rOIeE4w28e8FJ0pC96EJUSA0PD/pJuZo2eRrgc6Wix
-         mo2qst7HPGkyVi0qbhQaH+h1065Bo4JlNKrWkS9r1zgQcaabnb835GDAF4WcD0Aahkem
-         cGMCt39E/B8fQlD8+GucmdmHQHVrpbGqDDTZNn9jla9AmTUsOddOpH5Kd0vGreHHecIu
-         9LgJG8+iTmwondBkOQJZoEriFAafeEV0adeI2NZayoTqnuMxrjZ1jAAlimQQiKzuw3tq
-         ugDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727160280; x=1727765080;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WobonbhvLVWVF2SpQIM2Ox9WVV/IkG6i0xq7CuV8wbM=;
-        b=RL9TbCwkxDuFt7LFOz2Q+L11/RLa52uhU5Trij2Xy0ku/FaD6Apnc4BSbZzYpKdFlF
-         brNAFnj+JL4h+Xksk4PpiNEKzN3u5VZROPc5WaQ0ORH+8Zlgl3tSZoQlMHsO6AgPHlI6
-         y48G960wDJbO7/GHDL0DxV1MxcEWaabXnDchknPrWhqyfdFCgzmVobgVfFAtmjoxks/k
-         6ggCMxq7ypYnU8CPSc46r2bMGoYmMYbJl2A2p3+cPJJ6mVAgc5IG9g3w5Z6jrKUkpmPM
-         z+FxU8XJI/ViEzDR7bso5Ei5BL37MyEuK5LXzZGz05KueGiam0Y7wbekLDcG3LnNxPbv
-         USbw==
-X-Forwarded-Encrypted: i=1; AJvYcCWh7h+0i41zFUx+EQi1qgrpwSKp0eu2apLmImBSjL3qxAG5REB+reacNLFpYSx7Vc9XVhnV5WH44QhH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaoTMD/zYAN4qvh5HLeNRV38TgE9f5YxY7smRIrdS78KEDlvLO
-	6vAANC14ALvNElDnMwAQp0BVcNoxDn9ry2SuBdXpWk3OA6xG1azbKM5xOBvkyzU=
-X-Google-Smtp-Source: AGHT+IE3ZlISpugtJ0PmRL0uNfnDhM2JMwQjm+V2w6O7hjj/KrsSRtVuh4RZHdbgJYLfPXyNXOJGaA==
-X-Received: by 2002:ac2:4c41:0:b0:536:533c:c460 with SMTP id 2adb3069b0e04-536ac3401d2mr6456450e87.50.1727160279634;
-        Mon, 23 Sep 2024 23:44:39 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-537a864d905sm107249e87.251.2024.09.23.23.44.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Sep 2024 23:44:39 -0700 (PDT)
-Date: Tue, 24 Sep 2024 09:44:36 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Shivnandan Kumar <quic_kshivnan@quicinc.com>
-Cc: Sibi Sankar <quic_sibis@quicinc.com>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
-Subject: Re: [PATCH 2/3] mailbox: qcom-cpucp-mbox: Add support for SC7280
- CPUCP mailbox controller
-Message-ID: <txdkvdzqiqevwripzxljaxictuy2kn6jbk3hoolj3vgth67mx5@3qnpawbf6243>
-References: <20240924050941.1251485-1-quic_kshivnan@quicinc.com>
- <20240924050941.1251485-3-quic_kshivnan@quicinc.com>
+	s=arc-20240116; t=1727161205; c=relaxed/simple;
+	bh=/lkOPvS3y/qr3A5PFR+lL/l6HBxzbt6nt7mXSIJJQWQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QhvPFxbAbdNLralIkCb8Bl1v9DCoRTAPVb+Y7Q/4+pYMnKQOz3jZnoTQ5HR9/utdBeyaZXq+qaaeGfuRn9tPqeg1TB5Rhig3dI0cqMj+Ov/NXgOZyroJW5LFrBide2dQVvTIY5QKj9IbbMW7FMEZvkvPl9cZu6nVoyBU3QOHSRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.68.38])
+	by gateway (Coremail) with SMTP id _____8CxSOlvY_JmcMQNAA--.30700S3;
+	Tue, 24 Sep 2024 14:59:59 +0800 (CST)
+Received: from localhost.localdomain (unknown [223.64.68.38])
+	by front1 (Coremail) with SMTP id qMiowMCxLeRpY_JmnKQNAA--.11695S2;
+	Tue, 24 Sep 2024 14:59:54 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Weidong Wang <wangweidong.a@awinic.com>,
+	Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Shuming Fan <shumingf@realtek.com>,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v2 0/9] ASoC: Some issues about loongson i2s
+Date: Tue, 24 Sep 2024 14:59:49 +0800
+Message-ID: <cover.1727056789.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.43.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240924050941.1251485-3-quic_kshivnan@quicinc.com>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qMiowMCxLeRpY_JmnKQNAA--.11695S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj93XoWxCryDtFWUCF47Kw1DZr1kJFc_yoWrXw1Upa
+	nxC393Gr15Jr43ArWrGF48CF1rZ3yfZFnxGa1aq34UWry7Xw1UZ3s7tF15ZFZxCryFgry2
+	qryrur48G3W5GagCm3ZEXasCq-sJn29KB7ZKAUJUUUUd529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUBIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r126r13M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+	xVW8Jr0_Cr1UM2kKe7AKxVWUtVW8ZwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
+	AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWU
+	tVWrXwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7V
+	AKI48JMxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY
+	6r1j6r4UMxCIbckI1I0E14v26r1q6r43MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7
+	xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xII
+	jxv20xvE14v26r4j6ryUMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw2
+	0EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x02
+	67AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IUeFoGPUUUUU==
 
-On Tue, Sep 24, 2024 at 10:39:40AM GMT, Shivnandan Kumar wrote:
-> The SC7280 CPUCP mailbox controller is compatible with legacy mailbox
-> hardware.
-> Implement support for this functionality which enable HLOS to
+Hi all:
 
-s/HLOS/Linux/
+This patch set is mainly about Loongson i2s related issues.
 
-> CPUCP communication.
+Please allow me to briefly explain this patch set:
+Patch 1-2: Add ES8323 codec required on Loongson-2K2000
+Patch 3-4: Add uda1342 codec required on Loongson-2K1000
+Patch 5: Fix the problem of unable to detect codec under FDT system.
+Patch 6-7: Add Loongson i2s platform device support
+Patch 8-9: Related DTS support.
 
-This enables Linux to do this and that.
+Thanks.
 
-> 
-> Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
-> ---
->  drivers/mailbox/qcom-cpucp-mbox.c | 156 +++++++++++++++++++++++-------
->  1 file changed, 122 insertions(+), 34 deletions(-)
-> 
-> diff --git a/drivers/mailbox/qcom-cpucp-mbox.c b/drivers/mailbox/qcom-cpucp-mbox.c
-> index e5437c294803..faae6e069ea1 100644
-> --- a/drivers/mailbox/qcom-cpucp-mbox.c
-> +++ b/drivers/mailbox/qcom-cpucp-mbox.c
-> @@ -13,18 +13,24 @@
->  #include <linux/platform_device.h>
-> 
->  #define APSS_CPUCP_IPC_CHAN_SUPPORTED		3
-> -#define APSS_CPUCP_MBOX_CMD_OFF			0x4
-> -
-> -/* Tx Registers */
-> -#define APSS_CPUCP_TX_MBOX_CMD(i)		(0x100 + ((i) * 8))
-> 
->  /* Rx Registers */
-> -#define APSS_CPUCP_RX_MBOX_CMD(i)		(0x100 + ((i) * 8))
-> -#define APSS_CPUCP_RX_MBOX_MAP			0x4000
-> -#define APSS_CPUCP_RX_MBOX_STAT			0x4400
-> -#define APSS_CPUCP_RX_MBOX_CLEAR		0x4800
-> -#define APSS_CPUCP_RX_MBOX_EN			0x4c00
-> -#define APSS_CPUCP_RX_MBOX_CMD_MASK		GENMASK_ULL(63, 0)
-> +#define APSS_CPUCP_V2_RX_MBOX_CMD_MASK		GENMASK_ULL(63, 0)
-> +#define APSS_CPUCP_V1_SEND_IRQ_VAL		BIT(28)
-> +#define APSS_CPUCP_V1_CLEAR_IRQ_VAL		BIT(3)
-> +#define APSS_CPUCP_V1_STATUS_IRQ_VAL		BIT(3)
-> +
-> +struct qcom_cpucp_mbox_desc {
-> +	u32 enable_reg;
-> +	u32 map_reg;
-> +	u32 rx_reg;
-> +	u32 tx_reg;
-> +	u32 status_reg;
-> +	u32 clear_reg;
-> +	u32 chan_stride;
-> +	bool v2_mbox;
-> +	u32 num_chans;
-> +};
-> 
->  /**
->   * struct qcom_cpucp_mbox - Holder for the mailbox driver
-> @@ -35,6 +41,7 @@
->   */
->  struct qcom_cpucp_mbox {
->  	struct mbox_chan chans[APSS_CPUCP_IPC_CHAN_SUPPORTED];
-> +	const struct qcom_cpucp_mbox_desc *desc;
->  	struct mbox_controller mbox;
->  	void __iomem *tx_base;
->  	void __iomem *rx_base;
-> @@ -48,13 +55,40 @@ static inline int channel_number(struct mbox_chan *chan)
->  static irqreturn_t qcom_cpucp_mbox_irq_fn(int irq, void *data)
+-------
+V2:
+- Spilt the improve code readability patch to a separate patch series.
+  The link is:
+  https://lore.kernel.org/all/cover.1725844530.git.zhoubinbin@loongson.cn/
 
-qcom_cpucp_v1_mbox_irq_fn()
+patch (1/9):
+ - Add es8323 compatible in everest,es8316.yaml instead of creating a
+   new yaml file;
 
->  {
->  	struct qcom_cpucp_mbox *cpucp = data;
-> +	const struct qcom_cpucp_mbox_desc *desc = cpucp->desc;
-> +	int i;
-> +
-> +	for (i = 0; i < desc->num_chans; i++) {
-> +		u32 val = readl(cpucp->rx_base + desc->status_reg + (i * desc->chan_stride));
-> +		struct mbox_chan *chan = &cpucp->chans[i];
-> +		unsigned long flags;
-> +
-> +		if (val & APSS_CPUCP_V1_STATUS_IRQ_VAL) {
-> +			writel(APSS_CPUCP_V1_CLEAR_IRQ_VAL,
-> +			       cpucp->rx_base + desc->clear_reg + (i * desc->chan_stride));
-> +			/* Make sure reg write is complete before proceeding */
-> +			mb();
-> +			spin_lock_irqsave(&chan->lock, flags);
-> +			if (chan->cl)
-> +				mbox_chan_received_data(chan, NULL);
+patch (2/9):
+ - Use regmap_config.reg_defaults instead of snd_soc_component_driver.{read/write};
+ - Use the more modern _CBC_CFC(SND_SOC_DAIFMT_BC_FC);
+ - Rewrite suspend/resume function with regmap;
+ - Drop i2c_check_functionality();
+ - Use named variables for the enums rather than putting them into an array;
 
-v1 clears IRQ before processing, v2 does it after pinging mbox subsys.
-Is that expected? What warrants such a difference?
+patch (3/9):
+ - Add Reviewed-by tag from Krzysztof;
 
-> +			spin_unlock_irqrestore(&chan->lock, flags);
-> +		}
-> +	}
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static irqreturn_t qcom_cpucp_v2_mbox_irq_fn(int irq, void *data)
-> +{
-> +	struct qcom_cpucp_mbox *cpucp = data;
-> +	const struct qcom_cpucp_mbox_desc *desc = cpucp->desc;
->  	u64 status;
->  	int i;
-> 
-> -	status = readq(cpucp->rx_base + APSS_CPUCP_RX_MBOX_STAT);
-> +	status = readq(cpucp->rx_base + desc->status_reg);
-> 
-> -	for_each_set_bit(i, (unsigned long *)&status, APSS_CPUCP_IPC_CHAN_SUPPORTED) {
-> -		u32 val = readl(cpucp->rx_base + APSS_CPUCP_RX_MBOX_CMD(i) + APSS_CPUCP_MBOX_CMD_OFF);
-> +	for_each_set_bit(i, (unsigned long *)&status, desc->num_chans) {
-> +		u32 val = readl(cpucp->rx_base + desc->rx_reg + (i * desc->chan_stride));
->  		struct mbox_chan *chan = &cpucp->chans[i];
->  		unsigned long flags;
-> 
-> @@ -62,7 +96,7 @@ static irqreturn_t qcom_cpucp_mbox_irq_fn(int irq, void *data)
->  		spin_lock_irqsave(&chan->lock, flags);
->  		if (chan->cl)
->  			mbox_chan_received_data(chan, &val);
-> -		writeq(BIT(i), cpucp->rx_base + APSS_CPUCP_RX_MBOX_CLEAR);
-> +		writeq(BIT(i), cpucp->rx_base + desc->clear_reg);
->  		spin_unlock_irqrestore(&chan->lock, flags);
->  	}
-> 
-> @@ -72,12 +106,15 @@ static irqreturn_t qcom_cpucp_mbox_irq_fn(int irq, void *data)
->  static int qcom_cpucp_mbox_startup(struct mbox_chan *chan)
->  {
->  	struct qcom_cpucp_mbox *cpucp = container_of(chan->mbox, struct qcom_cpucp_mbox, mbox);
-> +	const struct qcom_cpucp_mbox_desc *desc = cpucp->desc;
->  	unsigned long chan_id = channel_number(chan);
->  	u64 val;
-> 
-> -	val = readq(cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
-> -	val |= BIT(chan_id);
-> -	writeq(val, cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
-> +	if (desc->v2_mbox) {
-> +		val = readq(cpucp->rx_base + desc->enable_reg);
-> +		val |= BIT(chan_id);
-> +		writeq(val, cpucp->rx_base + desc->enable_reg);
-> +	}
+patch (4/9):
+ - Drop unused param to avoid lkp warnning;
+ - Drop some noisy log message(dev_info);
+ - Use normal conditional statements to improve legibility;
+ - Use provider/consumer instead of master/slave;
+ - Use the more modern _CBC_CFC(SND_SOC_DAIFMT_BC_FC);
+ - Drop uda1342_set_bias_level() for it does nothing;
+ - Drop uda1342_mixer_enum[] for it is unused;
+ - Point to controls/routes arrays from the component struct;
+ - REGCACHE_MAP instead of REGCACHE_RBTREE.
 
-So, startup and shutdown are effectively empty for v1 CPUCP chips? Could
-you please add two separate families of functions and two separate
-mbox_chan_ops instances? Which probably will mean one register less in
-the qcom_cpucp_mbox_desc structure.
+patch (5/9):
+ - Add of_node_put(args.np) after snd_soc_get_dai_name();
+ - Use matching label name, such as codec_put instead of free_codec;
+ - Rewrote the loongson_parse_cpu() and loongson_parse_codec() function
+   interfaces to avoid dropping a reference from a pointer that is a
+   random stack value
 
-> 
->  	return 0;
->  }
-> @@ -85,22 +122,26 @@ static int qcom_cpucp_mbox_startup(struct mbox_chan *chan)
->  static void qcom_cpucp_mbox_shutdown(struct mbox_chan *chan)
->  {
->  	struct qcom_cpucp_mbox *cpucp = container_of(chan->mbox, struct qcom_cpucp_mbox, mbox);
-> +	const struct qcom_cpucp_mbox_desc *desc = cpucp->desc;
->  	unsigned long chan_id = channel_number(chan);
->  	u64 val;
-> 
-> -	val = readq(cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
-> -	val &= ~BIT(chan_id);
-> -	writeq(val, cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
-> +	if (desc->v2_mbox) {
-> +		val = readq(cpucp->rx_base + desc->enable_reg);
-> +		val &= ~BIT(chan_id);
-> +		writeq(val, cpucp->rx_base + desc->enable_reg);
-> +	}
->  }
-> 
->  static int qcom_cpucp_mbox_send_data(struct mbox_chan *chan, void *data)
->  {
->  	struct qcom_cpucp_mbox *cpucp = container_of(chan->mbox, struct qcom_cpucp_mbox, mbox);
-> +	const struct qcom_cpucp_mbox_desc *desc = cpucp->desc;
-> +	u32 val = desc->v2_mbox ? *(u32 *)data : APSS_CPUCP_V1_SEND_IRQ_VAL;
->  	unsigned long chan_id = channel_number(chan);
-> -	u32 *val = data;
-> -
-> -	writel(*val, cpucp->tx_base + APSS_CPUCP_TX_MBOX_CMD(chan_id) + APSS_CPUCP_MBOX_CMD_OFF);
-> +	u32 offset = desc->v2_mbox ? (chan_id * desc->chan_stride) : 0;
-> 
-> +	writel(val, cpucp->tx_base + desc->tx_reg + offset);
->  	return 0;
->  }
-> 
-> @@ -112,41 +153,66 @@ static const struct mbox_chan_ops qcom_cpucp_mbox_chan_ops = {
-> 
->  static int qcom_cpucp_mbox_probe(struct platform_device *pdev)
->  {
-> +	const struct qcom_cpucp_mbox_desc *desc;
->  	struct device *dev = &pdev->dev;
->  	struct qcom_cpucp_mbox *cpucp;
->  	struct mbox_controller *mbox;
-> +	struct resource *res;
->  	int irq, ret;
-> 
-> +	desc = device_get_match_data(&pdev->dev);
-> +	if (!desc)
-> +		return -EINVAL;
-> +
->  	cpucp = devm_kzalloc(dev, sizeof(*cpucp), GFP_KERNEL);
->  	if (!cpucp)
->  		return -ENOMEM;
-> 
-> -	cpucp->rx_base = devm_of_iomap(dev, dev->of_node, 0, NULL);
-> -	if (IS_ERR(cpucp->rx_base))
-> -		return PTR_ERR(cpucp->rx_base);
-> +	cpucp->desc = desc;
-> +
-> +	if (desc->v2_mbox) {
-> +		cpucp->rx_base = devm_of_iomap(dev, dev->of_node, 0, NULL);
-> +		if (IS_ERR(cpucp->rx_base))
-> +			return PTR_ERR(cpucp->rx_base);
-> +	/* Legacy mailbox quirks due to shared region with EPSS register space */
+patch (6/9):
+ - Rename file name as loongson,ls2k1000-i2s.yaml;
+ - List and describe items for reg property;
+ - 'unevaluatedProperties: false' instead of 'additionalProperties:
+   false';
 
-Does that mean that on these platforms cpucp should be a child node of the EPSS? Also it might be a high time when the drivers should be switched to use regmaps.
+patch (7/9):
+ - Fix lkp warnning;
+ - Reorder Kconfig items, let
+SND_SOC_LOONGSON_I2S_{PCI,PLATFORM} select SND_SOC_LOONGSON_CARD.
 
-> +	} else {
-> +		res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +		if (!res) {
-> +			dev_err(&pdev->dev, "Failed to get the device base address\n");
-> +			return -ENODEV;
-> +		}
-> +		cpucp->rx_base = devm_ioremap(dev, res->start, resource_size(res));
-> +		if (!cpucp->rx_base) {
-> +			dev_err(dev, "Failed to ioremap the cpucp rx irq addr\n");
-> +			return -ENOMEM;
-> +		}
-> +	}
-> 
->  	cpucp->tx_base = devm_of_iomap(dev, dev->of_node, 1, NULL);
->  	if (IS_ERR(cpucp->tx_base))
->  		return PTR_ERR(cpucp->tx_base);
-> 
-> -	writeq(0, cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
-> -	writeq(0, cpucp->rx_base + APSS_CPUCP_RX_MBOX_CLEAR);
-> -	writeq(0, cpucp->rx_base + APSS_CPUCP_RX_MBOX_MAP);
-> +	if (desc->v2_mbox) {
-> +		writeq(0, cpucp->rx_base + desc->enable_reg);
-> +		writeq(0, cpucp->rx_base + desc->clear_reg);
-> +		writeq(0, cpucp->rx_base + desc->map_reg);
-> +	}
+Link to v1:
+https://lore.kernel.org/all/cover.1725518229.git.zhoubinbin@loongson.cn/
 
-If these registers are only present on V2, there is no need to have them
-in the qcom_cpucp_mbox_desc.
+Binbin Zhou (9):
+  ASoC: dt-bindings: Add Everest ES8323 Codec
+  ASoC: codecs: Add support for ES8323
+  ASoC: dt-bindings: Add NXP uda1342 Codec
+  ASoC: codecs: Add uda1342 codec driver
+  ASoC: loongson: Fix codec detection failure on FDT systems
+  ASoC: dt-bindings: Add Loongson I2S controller
+  ASoC: loongson: Add I2S controller driver as platform device
+  LoongArch: dts: Add I2S support to Loongson-2K1000
+  LoongArch: dts: Add I2S support to Loongson-2K2000
 
-> 
->  	irq = platform_get_irq(pdev, 0);
->  	if (irq < 0)
->  		return irq;
-> 
-> -	ret = devm_request_irq(dev, irq, qcom_cpucp_mbox_irq_fn,
-> -			       IRQF_TRIGGER_HIGH, "apss_cpucp_mbox", cpucp);
-> +	ret = devm_request_irq(dev, irq, desc->v2_mbox ? qcom_cpucp_v2_mbox_irq_fn :
-> +		qcom_cpucp_mbox_irq_fn, IRQF_TRIGGER_HIGH, "apss_cpucp_mbox", cpucp);
->  	if (ret < 0)
->  		return dev_err_probe(dev, ret, "Failed to register irq: %d\n", irq);
-> 
-> -	writeq(APSS_CPUCP_RX_MBOX_CMD_MASK, cpucp->rx_base + APSS_CPUCP_RX_MBOX_MAP);
-> +	if (desc->v2_mbox)
-> +		writeq(APSS_CPUCP_V2_RX_MBOX_CMD_MASK, cpucp->rx_base + desc->map_reg);
-> 
->  	mbox = &cpucp->mbox;
->  	mbox->dev = dev;
-> -	mbox->num_chans = APSS_CPUCP_IPC_CHAN_SUPPORTED;
-> +	mbox->num_chans = desc->num_chans;
->  	mbox->chans = cpucp->chans;
->  	mbox->ops = &qcom_cpucp_mbox_chan_ops;
-> 
-> @@ -157,8 +223,30 @@ static int qcom_cpucp_mbox_probe(struct platform_device *pdev)
->  	return 0;
->  }
-> 
-> +static const struct qcom_cpucp_mbox_desc sc7280_cpucp_mbox = {
-> +	.tx_reg = 0xC,
-> +	.chan_stride = 0x1000,
-> +	.status_reg = 0x30C,
-> +	.clear_reg = 0x308,
-> +	.v2_mbox = false,
-> +	.num_chans = 2,
-> +};
-> +
-> +static const struct qcom_cpucp_mbox_desc x1e80100_cpucp_mbox = {
-> +	.rx_reg = 0x104,
-> +	.tx_reg = 0x104,
-> +	.chan_stride = 0x8,
-> +	.map_reg = 0x4000,
-> +	.status_reg = 0x4400,
-> +	.clear_reg = 0x4800,
-> +	.enable_reg = 0x4C00,
-> +	.v2_mbox = true,
-> +	.num_chans = 3,
-> +};
-> +
->  static const struct of_device_id qcom_cpucp_mbox_of_match[] = {
-> -	{ .compatible = "qcom,x1e80100-cpucp-mbox" },
-> +	{ .compatible = "qcom,x1e80100-cpucp-mbox", .data = &x1e80100_cpucp_mbox},
-> +	{ .compatible = "qcom,sc7280-cpucp-mbox", .data = &sc7280_cpucp_mbox},
-
-Please keep the table sorted.
-
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, qcom_cpucp_mbox_of_match);
-> --
-> 2.25.1
-> 
+ .../bindings/sound/everest,es8316.yaml        |   4 +-
+ .../bindings/sound/loongson,ls2k1000-i2s.yaml |  68 ++
+ .../bindings/sound/nxp,uda1342.yaml           |  42 +
+ arch/loongarch/boot/dts/loongson-2k1000.dtsi  |  17 +-
+ arch/loongarch/boot/dts/loongson-2k2000.dtsi  |  22 +-
+ sound/soc/codecs/Kconfig                      |  13 +
+ sound/soc/codecs/Makefile                     |   4 +
+ sound/soc/codecs/es8323.c                     | 737 ++++++++++++++++++
+ sound/soc/codecs/es8323.h                     |  78 ++
+ sound/soc/codecs/uda1342.c                    | 355 +++++++++
+ sound/soc/codecs/uda1342.h                    |  79 ++
+ sound/soc/loongson/Kconfig                    |  31 +-
+ sound/soc/loongson/Makefile                   |   3 +
+ sound/soc/loongson/loongson_card.c            |  81 +-
+ sound/soc/loongson/loongson_i2s_plat.c        | 186 +++++
+ 15 files changed, 1679 insertions(+), 41 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/loongson,ls2k1000-i2s.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/nxp,uda1342.yaml
+ create mode 100644 sound/soc/codecs/es8323.c
+ create mode 100644 sound/soc/codecs/es8323.h
+ create mode 100644 sound/soc/codecs/uda1342.c
+ create mode 100644 sound/soc/codecs/uda1342.h
+ create mode 100644 sound/soc/loongson/loongson_i2s_plat.c
 
 -- 
-With best wishes
-Dmitry
+2.43.5
+
 
