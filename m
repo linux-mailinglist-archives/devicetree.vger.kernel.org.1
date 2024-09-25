@@ -1,173 +1,135 @@
-Return-Path: <devicetree+bounces-105341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB0AE9865E7
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 19:46:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 157A198662F
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 20:18:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C5F2B20F52
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 17:46:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4481C1C228E5
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 18:18:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9395E4087C;
-	Wed, 25 Sep 2024 17:46:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E50284A31;
+	Wed, 25 Sep 2024 18:18:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="iBWy2gQ0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c2/scw8q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE3E41870
-	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 17:46:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C65CB1D5ACD;
+	Wed, 25 Sep 2024 18:18:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727286391; cv=none; b=fO+y1vXgrpkEYLNNRmO+ic77dSAtvrbDpgmHufrUaxh51IVCgBDK8cLADeR362T6XTMiugJImfF83xbFBNITTZkszBvB39B685XSPucxw0Qw+j0hGCi2uWXR4KPsOk+cZGILoOQX1kqq3GOJTOKKaS+y9Sii+VzjI93dIOKoeGA=
+	t=1727288300; cv=none; b=VED0bxlAHOe77KJQzCwfGGtNY4ObH/qpUSYdMD0P085qvBRnP/VJUWTNTISvKJEADbFf/lsKeWKvRmX5oR7GU3HakQ9Of3RpNWAaotBGRZU5FCuHlAnV+OyGFC/3Nj8r6+9uVQHQikZT+8KliuDwpQBKVcw7EKGyuTxyat1b9uo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727286391; c=relaxed/simple;
-	bh=gMEl6pzrfSp8jdlDkNXOpbbAFlsFDAEvsowOZVPdYhU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g1uTBcyuVFsp0/Vn111sw09dDBCON0rMs6eALcC/9XMofBSiLrWwJ8X0HEgG1Ste+gQkyQpF880tFGOVxqu4H6njWFxEAsOHcQtTYADYqQXoR8F3Rhj6Rdxgo/hQeHydMXwfFl5/gIxwhuuLJIiK9BqTfPz9Dm5E5z85+bRFuTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=iBWy2gQ0; arc=none smtp.client-ip=209.85.160.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-4582c4aa2c2so471491cf.0
-        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 10:46:29 -0700 (PDT)
+	s=arc-20240116; t=1727288300; c=relaxed/simple;
+	bh=gWsy6H13VNTiSSRm01K6ax9aVmZD6+BX8NRpB0HYQ68=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lgOl/DSw2TnVmUMU6AWbf0DM1K/uWGTHzrXQ/gtwV0gs21IGk3ZboCJtD2KMr6VcyriRRgYLnop9aiIFLBWcsZ/FM/wXwjQoEi5ESGn/BLWzGvMK95PBdQh+rx7S31sDijPOsMmnE5JNn5PAatxOlXb7TbQ7cGJlwuHBvQYIU7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c2/scw8q; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-42cbbb1727eso698635e9.2;
+        Wed, 25 Sep 2024 11:18:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1727286389; x=1727891189; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=JJuGncUKRZJkjHqAsChwHvRwF41TEs9tsShUnDpkD1Q=;
-        b=iBWy2gQ0DpMpzoAprkzVGxY+MC7mLKFoHahDyA+WXV5jJx6gI1B04Y1fYdAkfcv8Vb
-         BrFwuZ8UY8/qXzOMzdOJh552Nf47UBLdp4F7AePwECziXQl0wV5c4bBUnWHm4pS/X86p
-         qMkOmvC9/RS/QlZ7jaTYrFK5OnGd30UpzOhyE=
+        d=gmail.com; s=20230601; t=1727288297; x=1727893097; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=EqXz9qu83+EHOYAALTDMwiIK5hs6Ih3Fc29t/kJ0wUw=;
+        b=c2/scw8qFclYaUp4y9jxBtSNQDNgaqYK4iHyG73Gnax1gfIRUzJ30DUVczU7fNW/PO
+         4sJoGhl3ghntFyI/GKu7ZnAFb+oVxfQT3nCJnbeGM+u8krL3r0Unn8BExoPWr6rsdd8q
+         uCZiU3rU4VgeLuN9gclncX0qDvhOJEc1EgxX341wHMsaEY0movkUbVvx/SIAB0qjB6wd
+         GMLQ6kpSZ4LiQvUroXe+OCl49i8Fff7/NE6Bh0KGKGOYtyNRdz3k0U1dRF1epZAxAEbC
+         7eTVFxXfdGqQrk+M/7Cvys/GpltnmfArBhoiP6fITcmaEBXKoKpTwWszb6pGltQSK3Xf
+         m+jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727286389; x=1727891189;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JJuGncUKRZJkjHqAsChwHvRwF41TEs9tsShUnDpkD1Q=;
-        b=eYCmh8ipSBm+2dH+3e8zoMaRVB07l6nUuh8QDYklScUfISm+gkAnndUj85trB0ZB0H
-         4pEWx+0/uKfwPsmNcYXa1SYZZIma2zzIWyMYVeRRTuntxPVrwe1BI/7zun6Zewre9j1N
-         4bkc/yMno0GGf5OyyjfcyU0C09UYGsV19Dm5khUmikrdxxJS1EQPHL+TNPaVx9OTuS1x
-         w0JdX8fG3SFW7srHGivw9naHKEC4FYSGriUgZTTdUgIbe/JiZIJAL2IVRLVO3j6/y6Ji
-         rCBchsKR5OU/F0hLDJ/yXJx1Po3PDTt6qrsyvZzhBy/SkNikPHnPON4pgvo/i5MrJnpo
-         PCEA==
-X-Forwarded-Encrypted: i=1; AJvYcCU/yaJNAdScT6op9otUx33psRxPXzXn7WS4eLcRD56t88YaDnRpfMdoAOrK2poEHP28fHzMbL73vfT9@vger.kernel.org
-X-Gm-Message-State: AOJu0YyM+LGNyaltpXbvBsxbzo3do8r6IZoJpofru9ErvxLrJW0ZwYIs
-	/Q90TXDPUoLFD37tWTomwBGld+WkLu81HlBUgn98oeex13/8GbvYd8scZcOqqA==
-X-Google-Smtp-Source: AGHT+IHox+VvpBePbD2s+aflgBVXVX+hvpsnwocRl3v6DXU+QlF2x0zZUTBA0C/nhUWnQZzJ7hMKGw==
-X-Received: by 2002:ac8:5914:0:b0:458:fb8:9dc3 with SMTP id d75a77b69052e-45b5def1dadmr41209861cf.25.1727286388749;
-        Wed, 25 Sep 2024 10:46:28 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-45b5268af96sm17977171cf.83.2024.09.25.10.46.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Sep 2024 10:46:27 -0700 (PDT)
-Message-ID: <b622c4ec-53ca-4d40-bb1a-01346fb9e44a@broadcom.com>
-Date: Wed, 25 Sep 2024 10:46:24 -0700
+        d=1e100.net; s=20230601; t=1727288297; x=1727893097;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EqXz9qu83+EHOYAALTDMwiIK5hs6Ih3Fc29t/kJ0wUw=;
+        b=Svbs1d8TJT8P0tHDyEcW2w3o0i8sJ3LdWhIQ98o6H9K6LC+k7z3rgCbudK6RHalQQX
+         ihfp26AwRYFov+yvpOd3cmEj0lQzmmDm9Z+toIArGeyBGx3PS/kWZ/vY5IhKJX1WjUMY
+         J01HMZVU2W4XFM3ZHt2LRLT7gpX+2yiUh1WYdVwPaPgKtvW1csAMbH3HaC6o7hn8g/yg
+         f1s/uQ0mj62TPCdrrg5Uj8INyzKF+tQrawJ3+QNeHeUvQEGNIWcmW+2HZ8AN3b8q9/OL
+         Ooespv3mkO5wcK5p6NnrXe6PYLu4/86KW5r3QvE4yJ/Z/fCQ3V5uAUOkNtdACLWS8z7G
+         JAaw==
+X-Forwarded-Encrypted: i=1; AJvYcCUEy1/FWWV01fVhGfCmqM1BNQzNLtAt1mEq7YghDK5H0Co/uAmsFXemKPtaqebq4bZZTviPs1Ac/28w4+b/@vger.kernel.org, AJvYcCV7Fp1NRHAaX8OyNp5mniuE+4CZlTrEfVskLIiDlQiXR4YMHMz2K9JCnqYazFjQEp+HcWN5pI/8skdIZc6odQ==@vger.kernel.org, AJvYcCVny0cabCs2F1rCHxYswKDhitC91EGd6TcD2QwdPSBIHW3/M13Vyf91//Jkm8FO9fXQh5tjdOoy/GVk@vger.kernel.org
+X-Gm-Message-State: AOJu0YytQ2GpSkul+GlpTn5aWR5dUvhe4nM/Wvg3v9jfW3aQk4fwMUPg
+	jIKF+mB1k7CjIbiNInaQzVykR2/LGgYYJ0NdpHiSwYZaw/agZKqvsurwCZiKIWUpI64gAWcyXQB
+	EsCqjn3EQLR+AkyeslGIziRV1IA==
+X-Google-Smtp-Source: AGHT+IFM/qKVjzFn7aqBWOmJl2qCkEB6MuNPyjE6a2MO91pvcCYTDKPiFRPY78zEW0ZlN8N7caPygKoxAPPHxJ28JsM=
+X-Received: by 2002:a05:600c:1e27:b0:42c:ae76:6cea with SMTP id
+ 5b1f17b1804b1-42e9610c8d0mr27192785e9.9.1727288296541; Wed, 25 Sep 2024
+ 11:18:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] leds: bcm63128: Handle shift register config
-To: Linus Walleij <linus.walleij@linaro.org>, Pavel Machek <pavel@ucw.cz>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, William Zhang <william.zhang@broadcom.com>,
- Anand Gore <anand.gore@broadcom.com>, Kursad Oney
- <kursad.oney@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240920-bcm63138-leds-v1-0-c150871324a0@linaro.org>
- <20240920-bcm63138-leds-v1-3-c150871324a0@linaro.org>
-Content-Language: en-US
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20240920-bcm63138-leds-v1-3-c150871324a0@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20240921163455.12577-1-alex.vinarskis@gmail.com> <20240921163455.12577-4-alex.vinarskis@gmail.com>
+In-Reply-To: <20240921163455.12577-4-alex.vinarskis@gmail.com>
+From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Date: Wed, 25 Sep 2024 20:18:04 +0200
+Message-ID: <CAMcHhXrwsBHQ7FeR7AFKp3NGufVQQK0O=PHRq+GZBh9SpVNqQA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: Add support for X1-based Dell
+ XPS 13 9345
+To: Bjorn Andersson <andersson@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Rob Clark <robdclark@gmail.com>, Peter de Kraker <peterdekraker@umito.nl>
+Content-Type: text/plain; charset="UTF-8"
 
-On 9/20/24 14:59, Linus Walleij wrote:
-> This adds code to optionally read the width of the shift register
-> chain from the device tree and use it to set up the register
-> controlling the shifter hardware.
-> 
-> If the property is not present, the boot-time default is used so
-> existing device trees keep working as this is what they assume.
-> 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->   drivers/leds/blink/leds-bcm63138.c | 8 ++++++++
->   1 file changed, 8 insertions(+)
-> 
-> diff --git a/drivers/leds/blink/leds-bcm63138.c b/drivers/leds/blink/leds-bcm63138.c
-> index 374f68f4f277..bf170a5bb12a 100644
-> --- a/drivers/leds/blink/leds-bcm63138.c
-> +++ b/drivers/leds/blink/leds-bcm63138.c
-> @@ -2,6 +2,7 @@
->   /*
->    * Copyright (C) 2021 Rafał Miłecki <rafal@milecki.pl>
->    */
-> +#include <linux/bits.h>
->   #include <linux/cleanup.h>
->   #include <linux/delay.h>
->   #include <linux/io.h>
-> @@ -254,6 +255,7 @@ static int bcm63138_leds_probe(struct platform_device *pdev)
->   	struct device_node *np = dev_of_node(&pdev->dev);
->   	struct device *dev = &pdev->dev;
->   	struct bcm63138_leds *leds;
-> +	u32 shift_bits;
->   
->   	leds = devm_kzalloc(dev, sizeof(*leds), GFP_KERNEL);
->   	if (!leds)
-> @@ -267,6 +269,12 @@ static int bcm63138_leds_probe(struct platform_device *pdev)
->   
->   	spin_lock_init(&leds->lock);
->   
-> +	/* If this property is not present, we use boot defaults */
-> +	if (!of_property_read_u32(np, "brcm,serial-shift-bits", &shift_bits)) {
-> +		bcm63138_leds_write(leds, BCM63138_SERIAL_LED_SHIFT_SEL,
-> +				    GENMASK(32 - shift_bits - 1, 0));
+On Sat, 21 Sept 2024 at 18:35, Aleksandrs Vinarskis
+<alex.vinarskis@gmail.com> wrote:
+>
+> Initial support for Dell XPS 9345 13" 2024 (Tributo) based on X1E80100.
+>
+> Working:
+> * Touchpad
+> * Keyboard (only post suspend&resume, i2c-hid patch WIP)
+> * eDP, with brightness control
+> * NVME
+> * USB Type-C ports in USB2/USB3 (one orientation)
+> * WiFi
+> * GPU/aDSP/cDSP firmware loading (requires binaries from Windows)
+> * Lid switch
+> * Sleep/suspend, nothing visibly broken on resume
+>
+> Not working:
+> * Speakers (WIP, pin guessing, x4 WSA8845)
+> * Microphones (WIP, pin guessing)
+> * Fingerprint Reader (WIP, USB MP with ptn3222)
+> * USB as DP/USB3 (WIP, PS8830 based)
+> * Camera
+> * Battery Info
+>
+> Should be working, but cannot be tested due to lack of hw:
+> * Higher res OLED, higher res IPS panels
+> * Touchscreen
 
-In the binding you allow a value of up to 32 for that property, but that 
-would lead to 32 - 32 - 1, which would be undefined?
--- 
-Florian
+A follow up to the display discussion thread [1] - Peter de Kraker has
+tested these changes on his OLED setup, a few findings:
+* OLED panel works out of the box, with `edp-panel`  compatible. Turns
+on, turns Off on suspend, turns On on resume. Will update description
+when respinning to reflect this.
+* As per Bjorn Andersson's correction, the touchscreen was tested and
+confirmed to be working with 0x10 address. No other i2c devices are
+detected on that bus. Will update description when respinning to
+reflect this.
+* SKU/HWIDs of OLED and non-touch IPS models are 1:1 the same
+* For reference, non-touch IPS panel is 'LQ134N1' according to EDID
+
+Regards,
+Alex
+
+[1] https://lore.kernel.org/all/CAF6AEGtrQzcMFsWCd-JzVFmF1sRk3vgy=L1q4Lzp+K1a4fuRnw@mail.gmail.com/
+
+[...]
 
