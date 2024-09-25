@@ -1,282 +1,138 @@
-Return-Path: <devicetree+bounces-105218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9698C985708
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 12:15:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3591D985732
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 12:31:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27D321F246EA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 10:15:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4FA4284A60
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 10:31:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7384D189BA8;
-	Wed, 25 Sep 2024 10:15:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5DE01474B9;
+	Wed, 25 Sep 2024 10:31:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e09VFQkk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eGX3S6vz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B1C6186E4C;
-	Wed, 25 Sep 2024 10:15:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE8412D758;
+	Wed, 25 Sep 2024 10:31:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727259316; cv=none; b=sfGxctCMipRKHhLt8OKWZ/NeYviV6CX5rt/rsZMiQvyjUW5y4lgnvSCiXaSTOr/yIVHz2cOBhfaIipWwCg0a84q3/G56g1p2HFKg09XUGfeAWCZBDy4qAzGc/kzRUKyoK8Tzcatsx1KafTxz2b5Qz48LGe+a3Yz0tPPoTd/V4X4=
+	t=1727260294; cv=none; b=DlgOelzXrCBVbrliuLZo8M7y6A+LzJmXgz14fYoEuUxWND+jJn5TotWR9Hsrhpim4RM2edgxTlO1W12mC6htFhhECRbCV2/oDG6r6F6mxhdQvOo/kZLUB0qIwz1KgfQEcZS4vGZcc/+0X3vPkCeph47RQKrQ/xvSAiD7bLoBSrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727259316; c=relaxed/simple;
-	bh=43/aBGH/beeq/R6HFa6uglRIgJS7aSs4e4soAOJqPo4=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dS+AR1uOpEJWWxAolxqP5GgT74AmrqtfKLsZmzvT1MjWvpgxUx7JHjR8k7apbvUpoPVjWyCVvNCw7Z74Xl4kHLz9PsPghFk0L812s+hu4sddeym3ZGdd/9/pNIIsp7IACoZETEFXOr3Qg7g7J00u7Q3WubHtBXYdZBof6V5Uq4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e09VFQkk; arc=none smtp.client-ip=209.85.128.52
+	s=arc-20240116; t=1727260294; c=relaxed/simple;
+	bh=qLSJxra/NcqdeZkNSJ0sTyQlAP5XAkHkm+ogyHLRmjo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=YidlUpCkRRru3YlRQF7qpANVlqKb/BQom6i54yBK2s5hbIE0Bl3UFi/lnPwj2UIgG6qu5ZrBR6TNJuQWqE+Lww/1Jl6HUo1CAMbbk63Le29pU6P93zrA/9eg2U/1aXRxAiHA3GLxcMgm2BtvhbuoPO6WutV6ahWtL7vlrvLFA7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eGX3S6vz; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-42cb806623eso56877305e9.2;
-        Wed, 25 Sep 2024 03:15:14 -0700 (PDT)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5365b6bd901so7785680e87.2;
+        Wed, 25 Sep 2024 03:31:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727259312; x=1727864112; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xm9CdzNjdFxXiQLDIbBOl19NIoTai2DZ2tEF/6IV/ts=;
-        b=e09VFQkkBc2fBQk7w9U1qkwxOEEZXc0B9FNMYU/pEH94zCBkNFoch/wiH8fl4YoAVG
-         WL0AJaYHDU0DRSfCMbfN62Z9hD5j6ZAM7nu7b5vJn3k6q/abdX4NCLrQ74QEe9uxU/lw
-         jKnzNK7aF5vv6FAXzxhU0dBgEC7IVLiObyfMv3380HSqtv77+2QUMwOkmgCrHKVftXMI
-         BGC70xfH2ayHOFFS8bE8snCD/PZjKKv0hAIKloHbMW766GuQ17rxPNw8viMALzLbmzur
-         E+brqgB9dkMdC40KrOZq0oESsR244G70mDAHiYWBPrFhpcf37dzeOo8SWhDvMQMd2HIN
-         bw5w==
+        d=gmail.com; s=20230601; t=1727260291; x=1727865091; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jrmf20tbzUs7Mdo75kEoEfr2UsKXf7hiFJq4VlRLhn0=;
+        b=eGX3S6vzbJV9dX4Y9Al3oeYsIMdGaZVQ296fyvykJKMzpyFMw0hDe6DUG7+auzGrxq
+         6ngxEmxlETV9QX/w6QOMyTZZhBmeZqeTqyLZ88od3ieG5cygf4rKZAkLD2GSJVwCb8KH
+         c+tVn38gOsFGA0zMQQfw7gaZq585A/X7A/becmnYjvVyNbIzRWaHGYEy7XjMWK6WfSLt
+         5IAsOIUTBJiMbHPdA5o5pkzN/32c0SvqnQkm9yMZsEunUOrPwmTeh48GHP1Oa9x+0sjG
+         jf9vb15svpg6wmC5Efc6hDcykV999WXlPPQ15Hw5nnjtXNRkBIqDcMRdIfdvJpbKFTJy
+         LCXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727259312; x=1727864112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xm9CdzNjdFxXiQLDIbBOl19NIoTai2DZ2tEF/6IV/ts=;
-        b=avl0pZhvMeiWT8ktDI/KIuyNOGhIVCGEIy7ASDBknhcxamPjAku6hQbBu5C0ndZ5Y/
-         yRjbvDrrJfndLaujBEt8j3PD+/sjNKGWAs9jWI2pvn3W2YOjDsMJ9cjkVPXzd7TcQ5bH
-         jFDZTzGH5DZ4UapaUdBARo4Snwt4W4kuRwD3feqT1sozeXE0CFWAozI7OWIdItybPHM2
-         6s4vIP1Y9YL8YaH3mMsxWp+bjJhGODAmJcfgnwYyawUyFIpQ2Pu3HWy6H3uLqZKP81h9
-         PM9sbV/9efWRE+cpBWED+XhzNbrxuOMvY2jShOr6EXULqiBDtVHjo4ATIcZ+ubDysOpq
-         tbnw==
-X-Forwarded-Encrypted: i=1; AJvYcCUgWgzvshB+/ZQTWbWmbLDIfDqG6JHApa+25rTKNwrYV7pB1wYrWPcPdj/0gahrPPYYYiUmPpivhfyWFApn@vger.kernel.org, AJvYcCV0aUrY3NZXrMn3x6EIymHJfzTRTu4uDRX4QrvzAOSQ15vvBRJLR7fmiiMyXYK1Q1yibU58d67UeAB4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwLFnKy6xirbk1soFwQXwhxslVGY/iHkIRzJ2cCUZnXETcqyMRI
-	JZXPxaF5BXXvlxKa/dOkO0clfgaXpgso9qrKE2v17L6VAOIbn60s
-X-Google-Smtp-Source: AGHT+IFrUhPfnR1ZpaYpm6503WQfwgTFcsU1lGXcEyJha8rBKvGPhx/LgRwNZvRJtSCOoqRvLwLrDw==
-X-Received: by 2002:a05:600c:310f:b0:42c:bd5a:945b with SMTP id 5b1f17b1804b1-42e9611dd5dmr15299805e9.21.1727259312318;
-        Wed, 25 Sep 2024 03:15:12 -0700 (PDT)
-Received: from localhost.localdomain (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-37cbc1560a7sm3628194f8f.0.2024.09.25.03.15.11
+        d=1e100.net; s=20230601; t=1727260291; x=1727865091;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jrmf20tbzUs7Mdo75kEoEfr2UsKXf7hiFJq4VlRLhn0=;
+        b=Rntcgx1xX3avEEc6akOeUd2N4SF6Y8NylKQSOLvajfWP7TSCwTtOHrm6upGBRBKVVD
+         LPKB0GsPkxWU6E2Yc76PqXf7eSzVLajAZY0aBxiUi3jVmFi/OaLnHGg5Ksnpzh5bvgds
+         TZz55/GlwWElSfUWcsU9XRPNvCdVaQ3Nx58+YO5MC2An4MxI6ZLZEVtrvDNtlhlhaGXt
+         25SKjL5y/PG+UV0d2VEgqjBYPKLViSBixhrePUufkXF6HNfdciYMKxfHJSBThad8vt2g
+         dm12cE99W50Su+MKUjIaR3seYdVwlSV0uaoY9teTv1o00dxLHJHXRfxTAPUIujHYtJKG
+         2Ajg==
+X-Forwarded-Encrypted: i=1; AJvYcCUCVqTrCuvOxwQ2C+NiiIowtlHX0T32bqBjC1nP3t8sP53CWVKcTIQ8NjHS9mmQQRW9/Rlf3DcLc0u80nEn@vger.kernel.org, AJvYcCVFLhLOOyDKGinlb8biG/B5om57f2KZ9e/TCRqcE6YxLRDFuZA4vFwhtg6OUbdf2L5/V1K84N5g9ZZ0@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpUMujKGPcZ/buHHe9ystopGMcaUHEv3ahQU8mpMEG41ME9QQ4
+	hU/rRdiHlPGnhI/4Ags2VgUkELZgFCXJ9Tmd8LKsAm+vVQSCe/t1WVxCg+XR
+X-Google-Smtp-Source: AGHT+IE3m4WD6Sb7jchwSPBjoFhGFf5DaX9VC67Z0LPJbbpbGo7gPCT98ZFbLUYAnM1nnitbvMoW+g==
+X-Received: by 2002:a05:6512:ac9:b0:530:e1ee:d95 with SMTP id 2adb3069b0e04-5387048aa6bmr1283273e87.1.1727260290742;
+        Wed, 25 Sep 2024 03:31:30 -0700 (PDT)
+Received: from [192.168.1.11] (83-233-6-197.cust.bredband2.com. [83.233.6.197])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-537a85e0642sm482437e87.27.2024.09.25.03.31.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2024 03:15:12 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-mtd@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	upstream@airoha.com
-Subject: [PATCH 3/3] mtd: parser: add support for Airoha parser
-Date: Wed, 25 Sep 2024 12:13:59 +0200
-Message-ID: <20240925101422.8373-4-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240925101422.8373-1-ansuelsmth@gmail.com>
-References: <20240925101422.8373-1-ansuelsmth@gmail.com>
+        Wed, 25 Sep 2024 03:31:29 -0700 (PDT)
+From: Marcus Folkesson <marcus.folkesson@gmail.com>
+Date: Wed, 25 Sep 2024 12:31:16 +0200
+Subject: [PATCH] ARM: dts: ti: dra7: Remove double include of clock
+ bindings
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240925-dra7-v1-1-3fe33a84bcd7@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAHTm82YC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDSyNT3ZSiRHPdlLS0NIukZBNLYzNTJaDSgqLUtMwKsDHRsbW1ANACcTN
+ WAAAA
+X-Change-ID: 20240925-dra7-dfff8bc49365
+To: =?utf-8?q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>, 
+ Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Marcus Folkesson <marcus.folkesson@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=858;
+ i=marcus.folkesson@gmail.com; h=from:subject:message-id;
+ bh=qLSJxra/NcqdeZkNSJ0sTyQlAP5XAkHkm+ogyHLRmjo=;
+ b=owEBbQKS/ZANAwAIAYiATm9ZXVIyAcsmYgBm8+Z7l+2QvKa6Qn4Q+hyzGmg8OXJCHLxPadgJS
+ 7RVdxZrW5WJAjMEAAEIAB0WIQQFUaLotmy1TWTBLGWIgE5vWV1SMgUCZvPmewAKCRCIgE5vWV1S
+ MpU6EAC7ZK3lmnh3r65YlDaFHPwpYyi+pWIwPYTrobupv/Av5aC1SCcoIW72y9k0toDXjxNdWf2
+ GrEYDIRSIxf68g7+cWm2p5C//BgOxK5Unozi+leiAAC3jMcTgALjC9P2KEbITpns1Nrf8pFDcJ4
+ M8RYfQBmnjxctkntSP1iJ6Hj5BMAaSVd63jFOeGuoyTsxLSLDeQcG7S3ahIabp8u/BsIBDXkHZG
+ 5PQbgkLX1oAqGKeC12lbshVnxpYYi7+tolWKKczJT9k6jPUQ2jiJFs0O657mEkbxMLCii/AzmvH
+ NNaM90MGkgo+xDR+A6d44p+bb8jHPKiD8/yatKyDdb7ja9GgE7/H6uDWF/HXiwGkuN2eNaoD7wY
+ ZRhWPQu9pzlhkKI2nWwMKCuoKh52KOr0y3ZhVjYfDrGp2K+viWkrMyQ5po4lVuaaHcaDmH2zk8U
+ sHgNDbt+0CcvrcQl2eOATlLgeJdpRjxqIcjSjU00miDuiWdlRArDSSENKMz2BE66N/l/Gy8fOrj
+ SCG295E/+jDAgwXfoD9MP5zd2gWj62cgCed8xi4dTMqh3DliEtgcGjJc0L7WJlM1geu22mr8/Ry
+ HBaNnkVKjFdAsst/cVevYQlHTez1VstozEzXMiThHDfhEK5C1/gL1HfPyyWZYBe2Ctk71D+bfu2
+ zGy2YgM9Sxp8wjA==
+X-Developer-Key: i=marcus.folkesson@gmail.com; a=openpgp;
+ fpr=AB91D46C7E0F6E6FB2AB640EC0FE25D598F6C127
 
-Add support for Airoha parser based on a post parse ofpart function.
+There is no need to include the same file twice.
 
-Airoha partition table follow normal fixed-partition implementation
-with a special implementation for the ART partition. This is always the
-last partition and is placed from the end of the flash - the partition
-size.
-
-To enable this special implementation for ART partition, the relevant
-node require the "airoha,dynamic-art" compatible. With that declared,
-offset value is ignored and real offset is updated with the calculated
-value.
-
-Due to usage of specific bad block management driver, the MTD size might
-vary hence the ART partition offset needs to be dynamically parsed and
-can't be declared statically.
-
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
 ---
- drivers/mtd/parsers/Kconfig         | 10 +++++
- drivers/mtd/parsers/Makefile        |  1 +
- drivers/mtd/parsers/ofpart_airoha.c | 57 +++++++++++++++++++++++++++++
- drivers/mtd/parsers/ofpart_airoha.h | 18 +++++++++
- drivers/mtd/parsers/ofpart_core.c   |  6 +++
- 5 files changed, 92 insertions(+)
- create mode 100644 drivers/mtd/parsers/ofpart_airoha.c
- create mode 100644 drivers/mtd/parsers/ofpart_airoha.h
+ arch/arm/boot/dts/ti/omap/dra7.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/mtd/parsers/Kconfig b/drivers/mtd/parsers/Kconfig
-index da03ab6efe04..d6c53aa16ea6 100644
---- a/drivers/mtd/parsers/Kconfig
-+++ b/drivers/mtd/parsers/Kconfig
-@@ -72,6 +72,16 @@ config MTD_OF_PARTS
- 	  flash memory node, as described in
- 	  Documentation/devicetree/bindings/mtd/mtd.yaml.
+diff --git a/arch/arm/boot/dts/ti/omap/dra7.dtsi b/arch/arm/boot/dts/ti/omap/dra7.dtsi
+index 3f3e52e3b37526eb41db0ea13b4c6c962864519b..ba90e44f83e7571b5686bf47ca3c09472eb555b9 100644
+--- a/arch/arm/boot/dts/ti/omap/dra7.dtsi
++++ b/arch/arm/boot/dts/ti/omap/dra7.dtsi
+@@ -9,7 +9,6 @@
+ #include <dt-bindings/clock/dra7.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/pinctrl/dra.h>
+-#include <dt-bindings/clock/dra7.h>
  
-+config MTD_OF_PARTS_AIROHA
-+	bool "Airoha EN7815 partitioning support"
-+	depends on MTD_OF_PARTS && (ARCH_AIROHA || COMPILE_TEST)
-+	default ARCH_AIROHA
-+	help
-+	  This provides partitions parser for Airoha EN7815 family devices
-+	  that can have dynamic "ART" partition at the end of the flash.
-+	  It takes care of finding the correct offset and update property
-+	  with it.
-+
- config MTD_OF_PARTS_BCM4908
- 	bool "BCM4908 partitioning support"
- 	depends on MTD_OF_PARTS && (ARCH_BCMBCA || COMPILE_TEST)
-diff --git a/drivers/mtd/parsers/Makefile b/drivers/mtd/parsers/Makefile
-index 9b00c62b837a..d67f9b4d39ac 100644
---- a/drivers/mtd/parsers/Makefile
-+++ b/drivers/mtd/parsers/Makefile
-@@ -5,6 +5,7 @@ obj-$(CONFIG_MTD_BRCM_U_BOOT)		+= brcm_u-boot.o
- obj-$(CONFIG_MTD_CMDLINE_PARTS)		+= cmdlinepart.o
- obj-$(CONFIG_MTD_OF_PARTS)		+= ofpart.o
- ofpart-y				+= ofpart_core.o
-+ofpart-$(CONFIG_MTD_OF_PARTS_AIROHA)	+= ofpart_airoha.o
- ofpart-$(CONFIG_MTD_OF_PARTS_BCM4908)	+= ofpart_bcm4908.o
- ofpart-$(CONFIG_MTD_OF_PARTS_LINKSYS_NS)+= ofpart_linksys_ns.o
- obj-$(CONFIG_MTD_PARSER_IMAGETAG)	+= parser_imagetag.o
-diff --git a/drivers/mtd/parsers/ofpart_airoha.c b/drivers/mtd/parsers/ofpart_airoha.c
-new file mode 100644
-index 000000000000..5e2cc7b6376b
---- /dev/null
-+++ b/drivers/mtd/parsers/ofpart_airoha.c
-@@ -0,0 +1,57 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2024 Christian Marangi <ansuelsmth@gmail.com>
-+ */
-+
-+#include <linux/mtd/mtd.h>
-+#include <linux/slab.h>
-+#include <linux/mtd/partitions.h>
-+
-+#include "ofpart_airoha.h"
-+
-+int airoha_partitions_post_parse(struct mtd_info *mtd,
-+				 struct mtd_partition *parts,
-+				 int nr_parts)
-+{
-+	struct mtd_partition *part;
-+	int len, a_cells, s_cells;
-+	struct device_node *pp;
-+	struct property *prop;
-+	const __be32 *reg;
-+	__be32 *new_reg;
-+
-+	part = &parts[nr_parts - 1];
-+	pp = part->of_node;
-+
-+	/* Skip if ART partition have a valid offset instead of a dynamic one */
-+	if (!of_device_is_compatible(pp, "airoha,dynamic-art"))
-+		return 0;
-+
-+	/* ART partition is set at the end of flash - size */
-+	part->offset = mtd->size - part->size;
-+
-+	/* Update the offset with the new calculate value in DT */
-+	prop = kzalloc(sizeof(*prop), GFP_KERNEL);
-+	if (!prop)
-+		return -ENOMEM;
-+
-+	/* Reg already validated by fixed-partition parser */
-+	reg = of_get_property(pp, "reg", &len);
-+
-+	/* Fixed partition */
-+	a_cells = of_n_addr_cells(pp);
-+	s_cells = of_n_size_cells(pp);
-+
-+	prop->name = "reg";
-+	prop->length = (a_cells + s_cells) * sizeof(__be32);
-+	prop->value = kmemdup(reg, (a_cells + s_cells) * sizeof(__be32),
-+			      GFP_KERNEL);
-+	new_reg = prop->value;
-+	memset(new_reg, 0, a_cells * sizeof(__be32));
-+	new_reg[a_cells - 1] = cpu_to_be32(part->offset);
-+	if (a_cells > 1)
-+		new_reg[0] = cpu_to_be32(part->offset >> 32);
-+	of_update_property(pp, prop);
-+
-+	return 0;
-+}
-diff --git a/drivers/mtd/parsers/ofpart_airoha.h b/drivers/mtd/parsers/ofpart_airoha.h
-new file mode 100644
-index 000000000000..3e8a8456c13a
---- /dev/null
-+++ b/drivers/mtd/parsers/ofpart_airoha.h
-@@ -0,0 +1,18 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+#ifndef __OFPART_AIROHA_H
-+#define __OFPART_AIROHA_H
-+
-+#ifdef CONFIG_MTD_OF_PARTS_AIROHA
-+int airoha_partitions_post_parse(struct mtd_info *mtd,
-+				 struct mtd_partition *parts,
-+				 int nr_parts);
-+#else
-+static inline int airoha_partitions_post_parse(struct mtd_info *mtd,
-+					       struct mtd_partition *parts,
-+					       int nr_parts)
-+{
-+	return -EOPNOTSUPP;
-+}
-+#endif
-+
-+#endif
-diff --git a/drivers/mtd/parsers/ofpart_core.c b/drivers/mtd/parsers/ofpart_core.c
-index abfa68798918..8e86fa4f3bbd 100644
---- a/drivers/mtd/parsers/ofpart_core.c
-+++ b/drivers/mtd/parsers/ofpart_core.c
-@@ -16,6 +16,7 @@
- #include <linux/slab.h>
- #include <linux/mtd/partitions.h>
+ #define MAX_SOURCES 400
  
-+#include "ofpart_airoha.h"
- #include "ofpart_bcm4908.h"
- #include "ofpart_linksys_ns.h"
- 
-@@ -23,6 +24,10 @@ struct fixed_partitions_quirks {
- 	int (*post_parse)(struct mtd_info *mtd, struct mtd_partition *parts, int nr_parts);
- };
- 
-+static struct fixed_partitions_quirks airoha_partitions_quirks = {
-+	.post_parse = airoha_partitions_post_parse,
-+};
-+
- static struct fixed_partitions_quirks bcm4908_partitions_quirks = {
- 	.post_parse = bcm4908_partitions_post_parse,
- };
-@@ -192,6 +197,7 @@ static const struct of_device_id parse_ofpart_match_table[] = {
- 	/* Generic */
- 	{ .compatible = "fixed-partitions" },
- 	/* Customized */
-+	{ .compatible = "airoha,fixed-partitions", .data = &airoha_partitions_quirks, },
- 	{ .compatible = "brcm,bcm4908-partitions", .data = &bcm4908_partitions_quirks, },
- 	{ .compatible = "linksys,ns-partitions", .data = &linksys_ns_partitions_quirks, },
- 	{},
+
+---
+base-commit: 33cc938e65a98f1d29d0a18403dbbee050dcad9a
+change-id: 20240925-dra7-dfff8bc49365
+
+Best regards,
 -- 
-2.45.2
+Marcus Folkesson <marcus.folkesson@gmail.com>
 
 
