@@ -1,149 +1,125 @@
-Return-Path: <devicetree+bounces-105113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2B4C9852FE
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 08:38:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 319F298535B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:00:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED8F61C22B29
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 06:38:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B9E51C23576
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 07:00:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10B2A154C19;
-	Wed, 25 Sep 2024 06:38:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC60E156237;
+	Wed, 25 Sep 2024 06:59:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XOtCx1jD"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="utEltkYf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79C8F1487FF;
-	Wed, 25 Sep 2024 06:38:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6894E156222;
+	Wed, 25 Sep 2024 06:59:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727246286; cv=none; b=mAJn46JQeRPlloSG7WA59fB1CFNpw3Tm/WzYqRJzpc3qlhSvz4NiSchLcVJFo9gn8N9U7SkFn8CvdRuvBjuDHvn93jkm290FoMNqlAM9TT2Vb+NfNJ2E4JRFaGbvnZHekKxtC5Bj8ZkuNYJLGWZknEumU/2WGUkObQOD0+ByzuQ=
+	t=1727247580; cv=none; b=fShKWLuPpIWoZpJ280N6Xv+A/NiP6Em2ajWErsmqnSM+bHUx6dWCHtFJ+1Ri92E8dBM+TZgACbS7NaPCP2tnnrI+8BFssNgqhdN0Fm5HtIHsZpPtWrK9VwkYU5yDVWR7ahpuhKWsrAdIoV+nX8Ydpk0isuzgGeHPx5iZubjoguM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727246286; c=relaxed/simple;
-	bh=5zYZGAHbR5ox8nsDoXowsKYTIt7yVorK3J8cavTV0P8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JvkpQC+ZoB8zYgcNrwBk7QqbNcgDpSFwVJeUFCgFyyWs53+EotFNAawTpVDs9g3IOs2kSj+bW/SBShClsACQ5i39XNGCbEk95E+fK57evPTJlqAzrc4tBG3PM6AYlaiq41p5BCQf1NXyAEhqPlQN5crk076gB6wDLB439+Ch3YU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XOtCx1jD; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48OIDiDF014189;
-	Wed, 25 Sep 2024 06:37:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	dml4l8YTdpSXN3fvjDeknbMZkf62ADsnaczED9FK9e4=; b=XOtCx1jDy9mjdhL5
-	N7gTxQK5JV8rZYG2h+vxmyXkej+KSosUkUE8jGEGyiAl4xX6tWFzyNKMZ2/ip2OD
-	aFPlEQYyZW0+aCGNf85gSa4THD2Izp+p1e51j+LTjBqJEVwfePiqwsgWKFgrOBaY
-	PuHBcEcGr8s1nhv+LgDZyz3762xjhKvdpdTACMRlrOg1/pZc1mVjtYspTW480oUf
-	jxnvTNLoXZQvRtXBYE67NGeeRvMsA0Ok1GC6Et9FBH65qIHB9ImfxWbUhOMSBF5H
-	jLWsiALDjPjWRNBAMS8KlA9+RYg6+0+AFZ9ZD43MSH6KSL7+hI79+OQI1lemn6BQ
-	54NpaA==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41sn3sb09g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Sep 2024 06:37:50 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48P6bnef003840
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Sep 2024 06:37:49 GMT
-Received: from [10.239.29.179] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 24 Sep
- 2024 23:37:43 -0700
-Message-ID: <ee32742d-9daf-4bff-948b-cf2e705bc73f@quicinc.com>
-Date: Wed, 25 Sep 2024 14:37:41 +0800
+	s=arc-20240116; t=1727247580; c=relaxed/simple;
+	bh=pPGnLwtCha067R6Blg9D6MM8QJP6IClF4qSK62B2Yzs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Azbo/nEE5HwBMRUUG/ve8/YlF0He6WmJaKEKlHBsNYvUatr7R3L0fUoZ0gnq+uNM2c2AjUu4jAhNtbk2jDr5A8ZZj9R+LtJNDTnqU4LWXwzxGIg/82Oc2i3NWOgZB+mteHAJd5tOclhl6mWdTUOHY3ovRYSA+EHjaiLCP9rij/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=utEltkYf; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=4OHDvy0JbwIo9T9ERJY3XrQ0uyG3wqjaKHFSvcXXFsw=; b=utEltkYfHyzwR+C/bwO7gQuIvm
+	OCsXLnaMF0nOUSAoY1NHWyYYEVNsbDaDTqzFdClMIk69dYyHGWRXA5Er+eAkv7xtBWtC8MmhWYUBX
+	kltVnupn96hDAgeokDV+Rm+pfm+QQbM41f/AX2Hu/mj81U/rgj7me4CNw7jEJ9qAXDRQ3EhUuGyFX
+	/aTFheYa4Yrxr0uA4G+LRg+lNrYawxIweumhAU16ej0tO66lUSDscJ8gSpFHf9QcTYeV5O44GlRPS
+	gzR/0wCm4HwoZze+yWHFt0mNvcgNL6mh+kRmFfhqOH/MbCWE9UToh/A0IuB4WvmC+2VD9Pb6q99sn
+	1O7py0vw==;
+Received: from 90-177-212-167.rck.o2.cz ([90.177.212.167] helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1stLzp-0007NK-Jb; Wed, 25 Sep 2024 08:59:33 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, frawang <frawang.cn@gmail.com>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
+ tim.chen@rock-chips.com, Frank Wang <frank.wang@rock-chips.com>
+Subject:
+ Re: [PATCH v2 2/2] phy: rockchip: inno-usb2: Add usb2 phys support for rk3576
+Date: Wed, 25 Sep 2024 08:59:33 +0200
+Message-ID: <5522095.29KlJPOoH8@phil>
+In-Reply-To: <29d80d30-dcbf-4fe1-b7aa-3f8c46fee714@gmail.com>
+References:
+ <20240924085510.20863-1-frawang.cn@gmail.com> <15288441.JCcGWNJJiE@phil>
+ <29d80d30-dcbf-4fe1-b7aa-3f8c46fee714@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/6] arm64: dts: qcom: x1e80100: Add support for PCIe3
- on x1e80100
-To: Johan Hovold <johan@kernel.org>
-CC: <manivannan.sadhasivam@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>, <abel.vesa@linaro.org>,
-        <quic_msarkar@quicinc.com>, <quic_devipriy@quicinc.com>,
-        <dmitry.baryshkov@linaro.org>, <kw@linux.com>, <lpieralisi@kernel.org>,
-        <neil.armstrong@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-References: <20240924101444.3933828-1-quic_qianyu@quicinc.com>
- <20240924101444.3933828-7-quic_qianyu@quicinc.com>
- <ZvLQFSjwR-TvHbm_@hovoldconsulting.com>
-Content-Language: en-US
-From: Qiang Yu <quic_qianyu@quicinc.com>
-In-Reply-To: <ZvLQFSjwR-TvHbm_@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: mpKWqdM3dO_f5WcpP9YB-8ZxXYKPRcS_
-X-Proofpoint-ORIG-GUID: mpKWqdM3dO_f5WcpP9YB-8ZxXYKPRcS_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
- mlxscore=0 impostorscore=0 spamscore=0 malwarescore=0 suspectscore=0
- priorityscore=1501 lowpriorityscore=0 mlxlogscore=966 clxscore=1015
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409250046
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+Hi Frank,
+
+Am Mittwoch, 25. September 2024, 03:42:35 CEST schrieb frawang:
+> >> @@ -376,6 +378,7 @@ rockchip_usb2phy_clk480m_register(struct rockchip_usb2phy *rphy)
+> >>   {
+> >>   	struct device_node *node = rphy->dev->of_node;
+> >>   	struct clk_init_data init;
+> >> +	struct clk *refclk = of_clk_get_by_name(node, "phyclk");
+> > Doesn't this create an imbalance - with the missing put?
+> > I think ideally just define clk_bulk_data structs for the
+> > 1-clock and 3-clock variant, attach that to the device-data
+> > and then use the regular devm_clk_bulk_get ?
+> >
+> > That way you can then retrieve the clock from that struct?
+> 
+> How about keep the clk_bulk_data and num_clks member in rockchip_usb2phy 
+> structs, and retrieve the clock by "clks.id" here?
+> Just like the following codes.
+> 
+> @@ -378,8 +378,9 @@ rockchip_usb2phy_clk480m_register(struct 
+> rockchip_usb2phy *rphy)
+>   {
+>          struct device_node *node = rphy->dev->of_node;
+>          struct clk_init_data init;
+> -       struct clk *refclk = of_clk_get_by_name(node, "phyclk");
+> +       struct clk *refclk = NULL;
+>          const char *clk_name;
+> +       int i;
+>          int ret = 0;
+> 
+>          init.flags = 0;
+> @@ -389,6 +390,13 @@ rockchip_usb2phy_clk480m_register(struct 
+> rockchip_usb2phy *rphy)
+>          /* optional override of the clockname */
+>          of_property_read_string(node, "clock-output-names", &init.name);
+> 
+> +       for (i = 0; i < rphy->num_clks; i++) {
+> +               if (!strncmp(rphy->clks[i].id, "phyclk", 6)) {
+> +                       refclk = rphy->clks[i].clk;
+> +                       break;
+> +               }
+> +       }
+> +
+
+this is exactly what I had in mind :-)
+
+Thanks
+Heiko
 
 
-On 9/24/2024 10:43 PM, Johan Hovold wrote:
-> On Tue, Sep 24, 2024 at 03:14:44AM -0700, Qiang Yu wrote:
->> Describe PCIe3 controller and PHY. Also add required system resources like
->> regulators, clocks, interrupts and registers configuration for PCIe3.
->> @@ -2907,6 +2907,208 @@ mmss_noc: interconnect@1780000 {
->>   			#interconnect-cells = <2>;
->>   		};
->>   
->> +		pcie3: pcie@1bd0000 {
->> +			device_type = "pci";
->> +			compatible = "qcom,pcie-x1e80100";
->> +			interrupts = <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 769 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 836 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 671 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 218 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
->> +			interrupt-names = "msi0",
->> +					  "msi1",
->> +					  "msi2",
->> +					  "msi3",
->> +					  "msi4",
->> +					  "msi5",
->> +					  "msi6",
->> +					  "msi7",
->> +					  "global";
-> This ninth "global" interrupt is not described by the bindings, which
-> would also need to be updated. What is it used for?
-
-As of now, the global interrupts is mainly used to get link up event so
-that the device driver can enumerate the PCIe endpoint devices without
-user intervention. You can refer to
-https://lore.kernel.org/linux-pci/20240828-pci-qcom-hotplug-v4-11-263a385fbbcb@linaro.org.
-
-I see this global interrupts has been documented in qcom,pcie-sm8450.yaml.
-Do I need to move it to qcom,pcie-common.yaml?
-
-Thanks,
-Qiang
->
-> Johan
 
