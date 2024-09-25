@@ -1,125 +1,164 @@
-Return-Path: <devicetree+bounces-105193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23BBD9855CC
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 10:45:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE4AF9855DB
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 10:53:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 549CF1C237D9
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 08:45:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D8DB1C23238
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 08:53:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF00D15C15B;
-	Wed, 25 Sep 2024 08:45:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6893157492;
+	Wed, 25 Sep 2024 08:53:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RBBTQkFR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GpDQU6wD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDCFE15B135;
-	Wed, 25 Sep 2024 08:45:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1F512AE6C;
+	Wed, 25 Sep 2024 08:53:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727253917; cv=none; b=JzW6+INKTojjAqsRBzURWqO5IUXRLBw5aa1exaN9OvL7AOD2GSvlwq/eaHTNJMp15yY01gNSyhgwFuPIALUp8x/fU/NuM70doSNoNCy4ams7sCylpD1dFjffJowc8dkQmoSFFEHGk+ynA9/MgIL0GK8s2l4MpDc+r77tirC6gvI=
+	t=1727254399; cv=none; b=Pq1Re2xpwBzr0nC7QTT6yvLU3P7F3m4IEXbmmpGNWiV89xOvS58425fspsmFFo30Ge2sttHkqZWycIyBUGlfCPdTNFNg6ZAnhOM3iMzGMKav32eNUCz2eEPRE6RE7ewbnwzBYFEbmc4IzcrKluCQK5tSloZ/jhnUjg8ameTZrvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727253917; c=relaxed/simple;
-	bh=mP7Uq00AVwR3Zp5r1zKaElCF0y2R9K7EPxhbb9x/wn0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kGfF+/ihx6xMzzGih07wYiIQvA5Po9hPAK4AtBdAT0+udoJEa4LZSI7NmUHcCTc5rr+l5cAfQztkOOlw+yj7qFf8Lrq0AMciCfyg6JRZe+5A4SmX2nsgs2lcq/Sff8vF+i20S4ufXKOH0qKXtcOLLC4Fn47XtJ8M10Iv9CaETLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RBBTQkFR; arc=none smtp.client-ip=209.85.218.46
+	s=arc-20240116; t=1727254399; c=relaxed/simple;
+	bh=lS2mOuyvD+68D94i949beyw7D6OBOrn2mI7jILlQEZ0=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bO9eVLpRZN9wfEMhMVeUhMowaZ3qmLu2z7YlzJEA5rFeo9siT1Uwy3P26qHP68f9X8z7PkJM67cTLKgvkyx8WKndB7kFp8OW+P5smE3Jym38mwIFGuCfHjSUPKYZG+teOGtaS0m9YjRuwqKac3MDNPliYidBlCGUt8ZffmK62Ak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GpDQU6wD; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a8d29b7edc2so942590366b.1;
-        Wed, 25 Sep 2024 01:45:15 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-42cbb08a1a5so61678405e9.3;
+        Wed, 25 Sep 2024 01:53:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727253914; x=1727858714; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/s0lV7K7xGqyp7HGObiTsi5felYAY5nYIVCT3Xgv5ag=;
-        b=RBBTQkFR3Uuxg3l3E5FE4SHc6PNgjIILgD3hQLnvdeqr/lYdSYrgnHYLFzhE8jBAwf
-         2GwEYjDPRuhw4ysbTclcxBVs54vd0uISvPYoX0oE+8/J7YWK2QuwMlGtOZeN0pUXZgq5
-         ky/K7mLQWNRw3UWP8ucnulho3u0Q5qoxdc7bzUhGIJ2kZKTbmLQ/t2+5r4//9uMyPyax
-         Twj9CdAmMc6VNlMc0PJqYkZlr6yVRrn3ndbHnw6sWwgGXBvMNWWsHETDio5Z0HgdYAYO
-         6yDcdrZE+pbvv6mPP+E7bm+LSQQLYuYNVuuBfbmWjbsIz8kJGxCsdGKrIi6dSUaIQs1S
-         qclA==
+        d=gmail.com; s=20230601; t=1727254396; x=1727859196; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=P166hXmuj+XlKXAFTZIVxMo1jHOSojSxk7n9xeXkzbk=;
+        b=GpDQU6wDhubCzv1Ki+H5gm2pM9TeKx0EESXS+5BnNRNyIQOVyHlyxTJAe2BZNzRdFd
+         15jXbIXQQd9tDa6gFcOQtTxvd7AiCdjw7kx5CKLUoKT/5pAsyyHldebt04pzgiF/cq/Q
+         LJiw2Lf8lZJ7zGrKuGTMXQxhnCVZG7B+PDX5E3jTVVYVwPgm7qr6gdiKhJy9cbsBzXMd
+         kr8JWafx9F6RZQedvzlMVoYlcFQVeaVzfJiW5QcE2iQ64CklRxB267F3R7xN0l3AeAPA
+         HdSIf/9sR3y/JBJWsYlH9ThH2cWTeVxiEf1DsCyzXVrC9o5KQadsAO3JP8c5uQOTwBp7
+         uieA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727253914; x=1727858714;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/s0lV7K7xGqyp7HGObiTsi5felYAY5nYIVCT3Xgv5ag=;
-        b=q+t3HXJV1x9D1xh4RbQwdOlYg6yrHeLDDfqxgqgfL15SsEK+8DPowXjVyzN/eJoRCj
-         OrosuczAvqUoL60u0dHazmwtnMxO/05ezrvas+Z6GVMnGeu/8TO4s1DT2Rr/PXIlnxTT
-         fJtF0uhdCNrWpfLsPNpgMmmciNnwR8iy7la1hSpUCNHGQ9+ia3KOMoakGLTgfzQh4nmU
-         Q7PQP685ofsWEFey3FK4ovrWnzeXI6SFAjdZZeTQnKS83HVwiyQGsRaKAIfHcD3lpGTQ
-         82O3/XMTM6G1Yq4fa6/uSII1di++LUNNhhtflzcmM7NUiUr9zS0QM4xzNUtRDKKZ8ZcA
-         DC1g==
-X-Forwarded-Encrypted: i=1; AJvYcCVxBhSBP2VmtrlZtHY+ojf3BbFVIlDL4BWvTLKQ2o5JfnlpeTZ/AIC4woCXbqNsARy/uwUh95chjtiK@vger.kernel.org, AJvYcCWEat08CmogHFl+rkgWaIIF9pFEpW5UQNQtCXxPIi3CO/PImVZ/JDs8BY9SW/DlVYqW8rZxFxzPKFsPJ9I=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzULThn7Jx71QChvsA9nfCw8QR3Gs9YBjF2KzUsW2ZPadzOfIoS
-	XvZSWIM+gniZ6G41SqyKnvNB8dCy6ZqwP4hNacqXq5VJMwXjedCKVPJnrSIIMLP7qxtCEUqVDBB
-	7dPv9/MDYUPH0fFLolJlB1Y6jRsz5m6QEdk4=
-X-Google-Smtp-Source: AGHT+IHJ9p2T25h1DGXmt5kZkVT5WxVXm73sAkzVAymu155m5T37TOCSBpmD3N4Nbx2vxCxHdTsuLyonZ/MLSAshO7w=
-X-Received: by 2002:a17:907:9487:b0:a7a:8586:d36b with SMTP id
- a640c23a62f3a-a93a03305a3mr173259766b.3.1727253913924; Wed, 25 Sep 2024
- 01:45:13 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1727254396; x=1727859196;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P166hXmuj+XlKXAFTZIVxMo1jHOSojSxk7n9xeXkzbk=;
+        b=kz3/WBzcXLLLo1255yt+z8wEnb4Uq8VZ3x1S9PJiNM7SevKKQOYWk1TXTrfo7mvLSk
+         thkeQ7h+tAGmcMqtnlYXFNBUStYNNnuspWnus0m1grMf0ybYdAVmkxs096KDOCMLyv8J
+         JvERhVUlOEolURkFp3by6/XfipBGG0X+8YstradeOufXUe/iO6kTYr3b1dkPjgREY4nN
+         fAZn7KSQ00GNNsxyS8uJkQ+W9MoMOrbzCrb/U0LCtYpi9SD8nmolWe/le+ldqoasZrqt
+         5bGWZ+pJNCSMjHiky8/kpyVGALxhpPpfLr65vudpnG4TC6oZiu9ndV5lz8BgtuRX9sGW
+         28ag==
+X-Forwarded-Encrypted: i=1; AJvYcCVLe+mDXJc4gCxz+8FYsxhqT7gDs47GEkcW0dQS8Eaibyb/buF8NCRn2AGX2JXsWkMqHwEk2b0FrjVU25VV@vger.kernel.org, AJvYcCVZD8T3hI9oaAvfn+Yt5hQJWGes6r/NMBC4A+Zw5fDJIN3kCcoWdU4vNobxfHOpUolSQkf6OJIrStGLpm7RvHs=@vger.kernel.org, AJvYcCW/ozOYFlE9E8X/c3Qh+91mBwVdCje2iFVBj9GfZqzbb7NwRgt4B3e/Y2ACprdArKAx7FWvCniJKr7R@vger.kernel.org
+X-Gm-Message-State: AOJu0YwCmW/z/1b630WFd2YjffdDdvklVL8nfnF5ZePsE+E8XkKxQG/e
+	LEq8GB008zurVAD+jbLDVUuws4ecKRtQfagwTWkXDw8FjNWNRIDsf9pLTQ3C
+X-Google-Smtp-Source: AGHT+IEcVaSpSj2zEv6r7eOz7mIfzbfgPFam7Wk1O1HspoGRGC11248azZoJkdLpoSoLf8SZCyuaqQ==
+X-Received: by 2002:a05:600c:3c85:b0:42c:df54:1908 with SMTP id 5b1f17b1804b1-42e96114ad3mr11248695e9.18.1727254395949;
+        Wed, 25 Sep 2024 01:53:15 -0700 (PDT)
+Received: from Ansuel-XPS. (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e96a09a3fsm11550325e9.25.2024.09.25.01.53.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Sep 2024 01:53:15 -0700 (PDT)
+Message-ID: <66f3cf7b.050a0220.3af9f1.2fe0@mx.google.com>
+X-Google-Original-Message-ID: <ZvPPd1F4vV6novEg@Ansuel-XPS.>
+Date: Wed, 25 Sep 2024 10:53:11 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Lorenzo Bianconi <lorenzo@kernel.org>, upstream@airoha.com
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: airoha: document watchdog for
+ Airoha EN7581
+References: <20240919122759.10456-1-ansuelsmth@gmail.com>
+ <08288a0b-3e10-4f83-8bc7-0587328ee9a0@kernel.org>
+ <66ec1ba3.050a0220.2c6214.5dd4@mx.google.com>
+ <06f11844-2b85-469d-8729-a8757a566814@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1727056789.git.zhoubinbin@loongson.cn> <df28fd5784de4d18929c03c43309f095ae4f4860.1727056789.git.zhoubinbin@loongson.cn>
- <ZvKAfZH-uaxzY0hh@finisterre.sirena.org.uk>
-In-Reply-To: <ZvKAfZH-uaxzY0hh@finisterre.sirena.org.uk>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Wed, 25 Sep 2024 14:44:59 +0600
-Message-ID: <CAMpQs4+pEXiNknyVEWKY=POS7kk7ow7SBuuF6R+G5EcGAd42jA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/9] ASoC: codecs: Add support for ES8323
-To: Mark Brown <broonie@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
-	Neil Armstrong <neil.armstrong@linaro.org>, 
-	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>, 
-	Richard Fitzgerald <rf@opensource.cirrus.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Weidong Wang <wangweidong.a@awinic.com>, Prasad Kumpatla <quic_pkumpatl@quicinc.com>, 
-	Herve Codina <herve.codina@bootlin.com>, Masahiro Yamada <masahiroy@kernel.org>, 
-	Shuming Fan <shumingf@realtek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <06f11844-2b85-469d-8729-a8757a566814@kernel.org>
 
-Hi Mark:
-
-On Tue, Sep 24, 2024 at 3:04=E2=80=AFPM Mark Brown <broonie@kernel.org> wro=
-te:
+On Thu, Sep 19, 2024 at 02:42:33PM +0200, Krzysztof Kozlowski wrote:
+> On 19/09/2024 14:39, Christian Marangi wrote:
+> > On Thu, Sep 19, 2024 at 02:35:02PM +0200, Krzysztof Kozlowski wrote:
+> >> On 19/09/2024 14:26, Christian Marangi wrote:
+> >>> Document watchdog for Airoha EN7581. This SoC implement a simple
+> >>> watchdog that supports a max timeout of 28 seconds.
+> >>>
+> >>> The watchdog ticks on half the BUS clock and require the BUS frequency
+> >>> to be provided.
+> >>
+> >> Clock provider should implement clk_get_rate()...
+> >>
+> > 
+> > The BUS clock is internal and not exposed to the system hence
+> > clk_get_rate is not possible saddly.
+> > 
+> >>>
+> >>
+> >> ...
+> >>
+> >>> +maintainers:
+> >>> +  - Christian Marangi <ansuelsmth@gmail.com>
+> >>> +
+> >>> +allOf:
+> >>> +  - $ref: watchdog.yaml#
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    const: airoha,en7581-wdt
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  clock-frequency:
+> >>> +    description: BUS frequency in Hz (timer ticks at half the BUS freq)
+> >>> +    const: 300000000
+> >>
+> >> Which bus frequency? Aren't you missing here clock input?
+> > 
+> > I'm putting here property to describe the internal clock to what the
+> > watchdog is attached. Should I drop this and just hardcode it
+> > internally to the driver or maybe declare the clock to be 150000000
+> > directly?
+> 
+> If this stays, then please mention "internal watchdog bus frequency".
+> 
+> If this is internal and it is part of an SoC (so not board!) why would
+> we need it in DT? I would imagine this is fixed per SoC, thus deduced
+> from the compatible.
+> 
+> clock-frequency property is legacy and in general discouraged. This
+> might be an exception, but for that I would like to see more of
+> explanations.
 >
-> On Tue, Sep 24, 2024 at 03:00:19PM +0800, Binbin Zhou wrote:
->
-> > +     /* interface format */
-> > +     switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
-> > +     case SND_SOC_DAIFMT_I2S:
-> > +             adciface &=3D 0xFC;
-> > +             daciface &=3D 0xF9;
-> > +             break;
-> > +     case SND_SOC_DAIFMT_RIGHT_J:
-> > +     case SND_SOC_DAIFMT_LEFT_J:
-> > +     case SND_SOC_DAIFMT_DSP_A:
-> > +     case SND_SOC_DAIFMT_DSP_B:
-> > +             break;
->
-> This results in an identical configuration for everything except I2S
-> which must be buggy, these are distinct formats in ways that are visible
-> on the bus.
 
-Ok, I checked the datasheet for the ES8323 and it has set bits for
-LEFT_J/RIGHT_J etc.
-In the next version, I'll patch it all.
+Ok it took a while but finally I got my answer. The Documentation had a
+mistake and conflicting info. (one bus was said running at 250Mhz instead
+of 300Mhz) With this error fixed I can correctly attach a clock and drop
+this stupiud thing. Win-Win for everyone!
 
-Thanks.
-Binbin
+> > 
+> > Tick frequency is already not well defined so I tought it was a good
+> > idea to describe it in DT.
+> > 
+> 
+
+-- 
+	Ansuel
 
