@@ -1,82 +1,69 @@
-Return-Path: <devicetree+bounces-105186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92B7798552A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 10:10:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9C31985540
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 10:15:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 217441F2436D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 08:10:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E3691F21766
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 08:15:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFBA8158DC0;
-	Wed, 25 Sep 2024 08:10:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A42015A858;
+	Wed, 25 Sep 2024 08:14:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fQJGgLRW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AcA53Ysv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B0DF158A26
-	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 08:10:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB592148849;
+	Wed, 25 Sep 2024 08:14:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727251811; cv=none; b=VhFVLhWE4vRerKtJseqCrRowCyW2UAOm89VSPbWlrWXIHEgC2UyVaue2W0mcp1GUIa4lUw1XQZMjgFieo3shiBY7KHOfb0AIajUE07jp5y5Inf0YTdJYHvWQqHCuJ2pFK/zeZasGGPKhq0g5TwN2DdVcbso2xspX1AgQBxBGhDQ=
+	t=1727252087; cv=none; b=HJX/lYDyAzdicN6SM92lRSmKGFb9pRtK10mQS3qCq+YL86eWnRbtlzWo3eZgzrLfrcEyK06546O7yfJLm5DSk73VMOysgft589gT77QzlfvNtos+eEA8nMHb+bjwL7OhATzj2mmKdOjyOS7pURUew/UE/CBsMLEMWBDa/Rp7daw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727251811; c=relaxed/simple;
-	bh=sZB9n34CcLPl0nWGOJgnnEBbCgjDELU7h6pclwNEQL8=;
+	s=arc-20240116; t=1727252087; c=relaxed/simple;
+	bh=FgyJaMf+udJs61Oebn2XB8BHj/lhCR104SBb9JsLSw4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OcDtZuaI5KvH0dZjyVpWBWlAyBFAezYMKu7PcGp2cjrU8S56y6m1lL2V7c5l1qi9fkXB6BP2kjs3M7sB6eLpBlgQiJACxhoQjr8yLMmqHs0IQJVEbxL/bFPnRbflB8DMO+8xSQtuXuI9U8clU+z+whvDGPrTHqqYW9BKlYDxBf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fQJGgLRW; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-536584f6c84so7921186e87.0
-        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 01:10:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727251808; x=1727856608; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=SfkhxXida/JtPWb46vC3Gc6jJkDn6NGPvPLqIzfsxSo=;
-        b=fQJGgLRW4OoeWs1wt21MRFoIzMm+Ka4FkmGwPMsaU3It8rS9NELj/RIej2YUEsaBAP
-         zyQDfd8k1mBsAYzoonCVbhZidRYOPW1C1Md0axEb7EGu5BEzue/RVxvsLPPhqZDuw768
-         SN0awIXGaOWQw6HekxYxa9rb8rUBY1MSqonike1DS//VDKuV9JNwmMBtXOsZb44RVl6C
-         12x00ECkki2wmwp1PZ5siyk77FoBCAikGF64u9JFc31KtAfaO3ukGaDJSrmYlFKguFW9
-         buJJ9iPmbLa9JTQS0mN8MMedDXK/AMx+zp1aPrWkgVKQstXTgiLTqdKM7IoBmCIe5enW
-         nVZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727251808; x=1727856608;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SfkhxXida/JtPWb46vC3Gc6jJkDn6NGPvPLqIzfsxSo=;
-        b=SYvrmWnRUMIGCHnStMcvYm4mnEjo7qJ0tFwnjpr59TSF4vr+x629GVp0TYF02YWBMR
-         F61BSkYTaLNvcW/mLkXAxeT3+haNyxNcP6K0/j46308ofMkVageaorw3pgu/ZwcVwwpx
-         cwWwRdk1EMWavSlW83CI5oahfK8J7zxNDoVFmjXoR4qZov1OdB34zqlVZaK6CUPRSS3u
-         48OnSgOqFdDPOkTqDaTdph+cqtdO2GvObg7K63B98turHsQKNSWU42kBlSEcNrwGUjhf
-         KsIiaJ67uDGvaRkw7kH5CPYYupAA8+xcA9zqmmNO2lp9bhGSCFWRS4a1S60ejyxpEKml
-         HXYw==
-X-Forwarded-Encrypted: i=1; AJvYcCVZcWXQ1IRgxBasSksgwOEaOU5nmfhkTf75GDYnL/lru9gP5kMtkiUDa4tEBOoVj2OTID9MNAw7ueOU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyy8pNn9M2JJ8B5a/BwheAIkn/cJ31+wGU3GarqcH9aZcR7JSVz
-	tS8xwliW3J7RyIQQCDE7VQOQP1yDAwwhNZzs4KXbkpiPyJFiOfEMg5swfcEoeXk=
-X-Google-Smtp-Source: AGHT+IEkIryks9bO0m+SnMav0JRLez4R3+X6hqtElvaJDmvGZVyqLI3EEhEEL/QFVZHuL0IwsrfB6A==
-X-Received: by 2002:a05:6512:1043:b0:533:46cc:a736 with SMTP id 2adb3069b0e04-5387755b712mr1033267e87.37.1727251807861;
-        Wed, 25 Sep 2024 01:10:07 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-537a85ee58fsm451808e87.70.2024.09.25.01.10.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2024 01:10:06 -0700 (PDT)
-Date: Wed, 25 Sep 2024 11:10:03 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Jingyi Wang <quic_jingyw@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, quic_tengfan@quicinc.com, linux-arm-msm@vger.kernel.org, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: interconnect: qcom-bwmon: Document QCS8300
- bwmon compatibles
-Message-ID: <7ld327om75xpz53fb7itxp2i7gjqvhavywzuhmf52myynawwvo@rmb7yimjxxmy>
-References: <20240925-qcs8300_bwmon_binding-v1-1-a7bfd94b2854@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=AJ4qMqkVx1c0xwhj2y0Rj/0CGg9GhKHydXvSp8QXu/S+8+zLF4jzPWepuC8UBh9sI7rBYxnsjBIu5sHUJXhyb4Ju/gAEqwtwI1Tk2GfFsfkwIL30bqPH3twmVLfgpI2j6iTG8OH5lNciYnWN+6W0fJrin6O4yt3GO3OpnM3xHFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AcA53Ysv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 582D6C4CEC3;
+	Wed, 25 Sep 2024 08:14:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727252087;
+	bh=FgyJaMf+udJs61Oebn2XB8BHj/lhCR104SBb9JsLSw4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AcA53YsvfCo9m8w9ji1QV5Lmm/Lc2HRphqg6nANVhqdPaXhQiPRvtW3/dPWgkJJMz
+	 pSwsRBsnUVNZa1WJAipdt4wOvzp9Q7kDQBZFEv4V2Vhixj+7JFciU/hwLsHyR78r/a
+	 hxmjzst/RVjP4yxB9m8XlfR8SOoEDMVXWh1P30zY5byXK9Ne2QfaL0SslZHH8VRMKc
+	 wRcDSIzFzBorneBLhpufk5PoMg8GDM2h2v/StzE/rRaEwJUvGsyGtIi2kQ+e3Ak5Eh
+	 FCP4P1pwZJElGNlDGVCYkxumj2DQgMmOcYWyORnqRkxiinZlJFy08rtk2USCXlYw3O
+	 KawhRLRM0g8Xw==
+Received: from johan by theta with local (Exim 4.98)
+	(envelope-from <johan@kernel.org>)
+	id 1stNAZ-000000000c9-3ZrB;
+	Wed, 25 Sep 2024 10:14:43 +0200
+Date: Wed, 25 Sep 2024 10:14:43 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Qiang Yu <quic_qianyu@quicinc.com>
+Cc: manivannan.sadhasivam@linaro.org, vkoul@kernel.org, kishon@kernel.org,
+	robh@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
+	sboyd@kernel.org, abel.vesa@linaro.org, quic_msarkar@quicinc.com,
+	quic_devipriy@quicinc.com, dmitry.baryshkov@linaro.org,
+	kw@linux.com, lpieralisi@kernel.org, neil.armstrong@linaro.org,
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v4 3/6] phy: qcom: qmp: Add phy register and clk setting
+ for x1e80100 PCIe3
+Message-ID: <ZvPGc_pPkUfLp6hi@hovoldconsulting.com>
+References: <20240924101444.3933828-1-quic_qianyu@quicinc.com>
+ <20240924101444.3933828-4-quic_qianyu@quicinc.com>
+ <ZvLXjdpBpUS3lLn-@hovoldconsulting.com>
+ <3d4a8243-5c2f-41c4-85ce-6e072331f4f3@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,52 +72,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240925-qcs8300_bwmon_binding-v1-1-a7bfd94b2854@quicinc.com>
+In-Reply-To: <3d4a8243-5c2f-41c4-85ce-6e072331f4f3@quicinc.com>
 
-On Wed, Sep 25, 2024 at 03:45:06PM GMT, Jingyi Wang wrote:
-> Document QCS8300 BWMONs, which has two BWMONv4 instances for the CPU->LLCC
-> path and one BWMONv5 instance for LLCC->DDR path.
+On Wed, Sep 25, 2024 at 11:38:46AM +0800, Qiang Yu wrote:
 > 
-> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-> index 189f5900ee50..251410aabf38 100644
-> --- a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-> @@ -26,6 +26,7 @@ properties:
->        - items:
->            - enum:
->                - qcom,qcm2290-cpu-bwmon
-> +              - qcom,qcs8300-cpu-bwmon
+> On 9/24/2024 11:15 PM, Johan Hovold wrote:
+> > On Tue, Sep 24, 2024 at 03:14:41AM -0700, Qiang Yu wrote:
+> > > Currently driver supports only x4 lane based functionality using tx/rx and
+> > > tx2/rx2 pair of register sets. To support 8 lane functionality with PCIe3,
+> > > PCIe3 related QMP PHY provides additional programming which are available
+> > > as txz and rxz based register set. Hence adds txz and rxz based registers
+> > > usage and programming sequences.
+> > > Phy register setting for txz and rxz will
+> > > be applied to all 8 lanes. Some lanes may have different settings on
+> > > several registers than txz/rxz, these registers should be programmed after
+> > > txz/rxz programming sequences completing.
 
-In most other cases qcs8300 is being declared with the compat fallback
-to sa8775p compat string. Is there any reason why bwmon is different?
+> > Please expand and clarify what you mean by this.
 
->                - qcom,sa8775p-cpu-bwmon
->                - qcom,sc7180-cpu-bwmon
->                - qcom,sc7280-cpu-bwmon
-> @@ -40,6 +41,7 @@ properties:
->            - const: qcom,sdm845-bwmon    # BWMON v4, unified register space
->        - items:
->            - enum:
-> +              - qcom,qcs8300-llcc-bwmon
->                - qcom,sa8775p-llcc-bwmon
->                - qcom,sc7180-llcc-bwmon
->                - qcom,sc8280xp-llcc-bwmon
+> PCIe3 supports 8 lanes, so in general, we have to program 8 pairs tx/rx
+> registers. However, most of tx/rx registers of different lanes have
+> same settings, so the configuration for all 8 lanes tx/rx registers is
+> a little repetitive.
 > 
-> ---
-> base-commit: 4d0326b60bb753627437fff0f76bf1525bcda422
-> change-id: 20240925-qcs8300_bwmon_binding-641d8e4bf376
-> 
-> Best regards,
-> -- 
-> Jingyi Wang <quic_jingyw@quicinc.com>
-> 
+> Hence, txz/rxz registers are included. The values programmed into txz/rxz
+> registers by software will be "broadcasted" to all 8 lanes by hardware.
+> Some lanes may have different settings on several registers than txz/rxz.
+> In order to ensure the different values take effect, they need to be
+> programmed after txz/rxz programming sequences completing.
 
--- 
-With best wishes
-Dmitry
+Thanks for clarifying. This is how I interpreted it, but please include
+(some or all of of) what you just wrote to make this more clear in the
+commit message.
+
+Johan
 
