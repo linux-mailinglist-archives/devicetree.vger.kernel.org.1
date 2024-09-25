@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-105064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4191D9850B0
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 03:42:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E102C9850B7
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 03:49:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B2401C22D23
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 01:42:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F7FE282D17
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 01:49:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90E6D13D62F;
-	Wed, 25 Sep 2024 01:42:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A6D24174C;
+	Wed, 25 Sep 2024 01:49:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ghVyEi63"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TDzV6dgS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10D81EEAE;
-	Wed, 25 Sep 2024 01:42:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAC152E83F;
+	Wed, 25 Sep 2024 01:49:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727228563; cv=none; b=DzjjatAhllRpnBc6ipkZZ71tZGl8bK/vW18wU0zRPyIn0kNwe8eIKhBktw869pOhRMGBbkQsjh+3kPlKaw6Z4jYehYAG5WqDJPfs9OntdJFPHFn1J+Iw6gfr+DEL4VHk+aoWDvV+AAgQ2hTsg3D8TMI/LzJRgNyV/eoF4vk4Qxs=
+	t=1727228991; cv=none; b=iLzGCVxDC0YtF6FUE10hXywpf22TLg/pPiTd4FvnEJT3bv0K1h4XLzNMTctITwqZJOR4X5CuQPqHExBYBh6ad3P/Y45TIYLEEOs+FZlYwFi3a6HyJb0iM7Ou7MR1ZAn5egO1JUoHE12DqaLgnJ1VIGJ0L4/HGkrwB5J7VWHHeEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727228563; c=relaxed/simple;
-	bh=fgukxMgAjrlRQrBVZ6J6xzCFT+TQlgaIYzBfc23MB+A=;
+	s=arc-20240116; t=1727228991; c=relaxed/simple;
+	bh=T/RmI0pD5sA7gq7g/Xw6pv9qbfNnWgxjYriM68Tj61U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PHozCnTAI71+kh7t/3DzwhkI2gEwtLckkQZexqnrt504MF0MSeKv6b7Q1ir9n679/LsCNY4/kZhZDi47cXVi7+yzpX/uWStnilSPPyqaoJbryDGccfdE3i26OwM/oBT8kLuGzfKEABIqWj6rrxibgM5jtMy6vlnXnn6tP8ObmOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ghVyEi63; arc=none smtp.client-ip=209.85.216.50
+	 In-Reply-To:Content-Type; b=It5UZl8O1+QrXrgZ1y3qY1Sx+Ad+5BEZuwu2zvlvCKQOESaMw0bdZZvtzzT0k+xYEWn2jst6eQh7NcTwtzgir+N2tu6nXONCvY0mbrj+PzCqrbmw2TAHb2H1QEmS3CYxPtSZrMtFTVKKP/YkMss2P15xMPRSGSEqDmf4Wah+CWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TDzV6dgS; arc=none smtp.client-ip=209.85.216.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2d8741c85bdso1169106a91.1;
-        Tue, 24 Sep 2024 18:42:41 -0700 (PDT)
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2db6b13c6a0so1123824a91.1;
+        Tue, 24 Sep 2024 18:49:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727228561; x=1727833361; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1727228989; x=1727833789; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GcWVN5jq5I86+F+azhdXxblU0W/zeOeflgS1enKCNA8=;
-        b=ghVyEi63f4DwO5qcJ+7ys4Ss8h96DXACwtNYHAn0h5OfYlCoInOmYoj8q3Gw4Ev/pT
-         xGX03g4O1WUQBsE6i7O26NAKWAWh5IxVqgZIeVcPmyM/vqEUOW2cPr3pf/2Qt25kJNiP
-         yEuTEACsWj7tik79TyVBU0YCt3B7NLwzWiY5lFWrrpw86WdphMrDuGgejZ943gfZD6Lt
-         NVbFppGS1XxvrTr5BS3vZMF8IRi/2SkWe42PMoSYkDJP5lWRywAekWsGOvOCXpWiS8Mk
-         mRao0fEx6gj6u+Fjz8ZPpoFBLcIhBXkfci7hx5teTzjUdEmEUUc3yY1XOdZr1nDHpSF0
-         Rtvg==
+        bh=qfgOUAOcbkxFyXWTo9S/L0xB7TtcO2Ot01YMhuKobrk=;
+        b=TDzV6dgSM79VaE9UbZ0KBt0+/ox/GF3GC47JbTlA5Abe17A8+d6m9W3b/28jlkcFxj
+         QX30/Wg032ugpclqyYEYLI+t8Uoz8x07fWWWLQN20CWkxqIpvpo/vB+xXVqzwnEcjeuv
+         Nc8VVVb/xcprjzr8U5OGWbbt64qEJoOflrsO5NZaw2Es0B+VwMTtA+sdoOlMPtCaQB7i
+         8k/+43OykpW2d1Di+y50jogWUJTDN//BGI4k9PXkPRDX2pRMweunLK+9TsySGnubMdku
+         biJpNtn4aJpnsU4A2rAt6XLOBGd5DO7Tqc3uB/v8MQO7ceMMV4Qpo3/OQzd7lPdbcbyH
+         3qZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727228561; x=1727833361;
+        d=1e100.net; s=20230601; t=1727228989; x=1727833789;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GcWVN5jq5I86+F+azhdXxblU0W/zeOeflgS1enKCNA8=;
-        b=e3txj2rrA1e9KmbrBcsrJtlsdbPdJbnALs2tDtplyvwuSJwJDz5hkxryyssZ5zuWW1
-         B9vsT1ffKXDuYxG44cVwosOJssvpD+3INV2wELSGYwlfEOqjFTK4U+XRwXSdP2qqBxws
-         lSPRJ1iFs3eaYLX1Y32Jh2BW1a0vEbO5XG5izTfKD3ikLlAWpnr0oV4Jrxhz3/w7S1wF
-         uKK6zSSaYzmXniNZhBEYpOuuEPSNV2ktgwuSbZn+1aRx6IvRB6zu9h49zlgWzZgD1Vfl
-         eDW2dDN9nIOJfFeIrWMT26n8WaN97nszLkeahWlYUgguihuc+NAjgzXpwWWbzgPRLNp0
-         avqA==
-X-Forwarded-Encrypted: i=1; AJvYcCUAtkhjVk5Jp30AvluDM1/O/FqiGWElWv06SpzGkDqMgKfdV6+DMAtc9KYwwCzrHWx5f+GlRWyhNjg2@vger.kernel.org, AJvYcCUiPRtNs8xf35ZwWzGcw3uEHKpwR4WL6PCqzJDFxW5d2n65bDt4LY/un6JDzh6jaLTMHCkN16XmgwtJUv0Q@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjB7CXT/ALPQXrM9xQyuZYIJdrK+gZHAbpgbOsfxDh3p4nYh5W
-	X+Z4hdVcdJ+91cDpzvo/DkVPYIsR7AVJ+pefouIPFs+4VQZrX7EF
-X-Google-Smtp-Source: AGHT+IFqIBT66TkyL0J2QfmtEOX6F9Je5mvlnxVw4zEkidcGIvNVdjtGkMa+udbesxpclhLKmHCHiA==
-X-Received: by 2002:a17:903:110c:b0:207:14b3:10f0 with SMTP id d9443c01a7336-20afc6427e0mr6506155ad.14.1727228561153;
-        Tue, 24 Sep 2024 18:42:41 -0700 (PDT)
+        bh=qfgOUAOcbkxFyXWTo9S/L0xB7TtcO2Ot01YMhuKobrk=;
+        b=pwBBdTIDCPyxzcGkC1S0LjOU0sTtqcz5nwNgYnBxg+wgFvEJSwjJb90pmnZDSmD/wc
+         ENwJ8hyd0SHuA8qB16VdQaGO+pcGDoZdCOvhu6By1mP2TM7MkC+0YnV6dZbGYZX4g+os
+         8b4pkt1ViY/2qykrbQtmW+aX4QfW8PIxI5JkEQaKk8o8IYpekLn8/eHdFo1o96OqCUAz
+         ycMm9TEqYklebJlTKUaLMlGoDH5gGDBgRvU5WALJINkTN2HI2H9H13mfLIBk9FKrjtJz
+         N5MXSgAXR/4PpVcrrog3OiH02SZPEnJmOHz2PADQW1XKBqEbv0B0sGS0mJH2+2RlhCPW
+         QjOA==
+X-Forwarded-Encrypted: i=1; AJvYcCUxspAaO6IpkAZPDPL5OBytDMMJANlmQ8yp0qG/sh/UaQ7JxaIBkRl0EflnlZb0Wxl+SlDu+fMCroXX@vger.kernel.org, AJvYcCWk14rXG+6HBOBJRh2n8XxwgqFMIBDYzZeGN10bLESrSLT+LH4Ahkd+ctu6JVOJ2zjG7s/8KtTT/gZXtyB1@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJU8rQ+Mi6NjKyr1UsB5uwp13NVreRqrUS+RlTOSCvMy3aDy+P
+	OZ+mSyQEj4rP8UpYfr/yh/zoM7Sg2u4LqwCspQKCFshU0+tlvxwW
+X-Google-Smtp-Source: AGHT+IF42uHxU+McaJwOYqt74xfZ3X9l8ZaBFNhvW3sc2MTkO66TCrdx6QmGA70vRyBEU069n7D27w==
+X-Received: by 2002:a17:902:eccc:b0:205:9112:6c38 with SMTP id d9443c01a7336-20afc47bbe0mr6799845ad.10.1727228988969;
+        Tue, 24 Sep 2024 18:49:48 -0700 (PDT)
 Received: from [192.168.60.56] ([103.29.142.67])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20af18572bdsm15396675ad.248.2024.09.24.18.42.37
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20af16e5551sm15517245ad.6.2024.09.24.18.49.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Sep 2024 18:42:40 -0700 (PDT)
-Message-ID: <29d80d30-dcbf-4fe1-b7aa-3f8c46fee714@gmail.com>
-Date: Wed, 25 Sep 2024 09:42:35 +0800
+        Tue, 24 Sep 2024 18:49:48 -0700 (PDT)
+Message-ID: <285d7b52-956a-412d-ba85-7641e95226e5@gmail.com>
+Date: Wed, 25 Sep 2024 09:49:43 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] phy: rockchip: inno-usb2: Add usb2 phys support
- for rk3576
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: rockchip,inno-usb2phy: add
+ rk3576
 Content-Language: en-US
 To: Heiko Stuebner <heiko@sntech.de>, vkoul@kernel.org, kishon@kernel.org,
  robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
@@ -86,74 +86,87 @@ Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
  linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
  tim.chen@rock-chips.com, Frank Wang <frank.wang@rock-chips.com>
 References: <20240924085510.20863-1-frawang.cn@gmail.com>
- <20240924085510.20863-2-frawang.cn@gmail.com> <15288441.JCcGWNJJiE@phil>
-From: frawang <frawang.cn@gmail.com>
-In-Reply-To: <15288441.JCcGWNJJiE@phil>
+ <11146778.5MRjnR8RnV@phil>
+From: Frank Wang <frawang.cn@gmail.com>
+In-Reply-To: <11146778.5MRjnR8RnV@phil>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
 Hi Heiko,
 
 On 2024/9/24 18:01, Heiko Stuebner wrote:
-> Am Dienstag, 24. September 2024, 10:55:10 CEST schrieb Frank Wang:
->> From: William Wu <william.wu@rock-chips.com>
+> Hi Frank,
+>
+> Am Dienstag, 24. September 2024, 10:55:09 CEST schrieb Frank Wang:
+>> From: Frank Wang <frank.wang@rock-chips.com>
 >>
->> The RK3576 SoC has two independent USB2.0 PHYs, and
->> each PHY has one port.
-> Can you please split the content into "converting to clk_bulk" (see
-> additional comment below) and "add rk3576" please?
->
-> That would make the patch a lot cleaner.
+>> Add compatible for the USB2 phy in the Rockchip RK3576 SoC.
+> can you please add some details to the commit message, about those
+> new clocks. I.e. what they do.
 
-OK, I shall amend in the next patch.
-
->
->> @@ -376,6 +378,7 @@ rockchip_usb2phy_clk480m_register(struct rockchip_usb2phy *rphy)
->>   {
->>   	struct device_node *node = rphy->dev->of_node;
->>   	struct clk_init_data init;
->> +	struct clk *refclk = of_clk_get_by_name(node, "phyclk");
-> Doesn't this create an imbalance - with the missing put?
-> I think ideally just define clk_bulk_data structs for the
-> 1-clock and 3-clock variant, attach that to the device-data
-> and then use the regular devm_clk_bulk_get ?
->
-> That way you can then retrieve the clock from that struct?
-
-How about keep the clk_bulk_data and num_clks member in rockchip_usb2phy 
-structs, and retrieve the clock by "clks.id" here?
-Just like the following codes.
-
-@@ -378,8 +378,9 @@ rockchip_usb2phy_clk480m_register(struct 
-rockchip_usb2phy *rphy)
-  {
-         struct device_node *node = rphy->dev->of_node;
-         struct clk_init_data init;
--       struct clk *refclk = of_clk_get_by_name(node, "phyclk");
-+       struct clk *refclk = NULL;
-         const char *clk_name;
-+       int i;
-         int ret = 0;
-
-         init.flags = 0;
-@@ -389,6 +390,13 @@ rockchip_usb2phy_clk480m_register(struct 
-rockchip_usb2phy *rphy)
-         /* optional override of the clockname */
-         of_property_read_string(node, "clock-output-names", &init.name);
-
-+       for (i = 0; i < rphy->num_clks; i++) {
-+               if (!strncmp(rphy->clks[i].id, "phyclk", 6)) {
-+                       refclk = rphy->clks[i].clk;
-+                       break;
-+               }
-+       }
-+
+OK, I shall add in the next version.
 
 BR.
 Frank
 
->
 > Thanks
 > Heiko
 >
+>> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+>> ---
+>> Changelog:
+>> v2:
+>>   - Categorize clock names by oneOf keyword.
+>>
+>> v1:
+>>   - https://patchwork.kernel.org/project/linux-phy/patch/20240923025326.10467-1-frank.wang@rock-chips.com/
+>>
+>>   .../bindings/phy/rockchip,inno-usb2phy.yaml      | 16 ++++++++++++++--
+>>   1 file changed, 14 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+>> index 5254413137c64..8af4e0f8637fc 100644
+>> --- a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+>> @@ -20,6 +20,7 @@ properties:
+>>         - rockchip,rk3366-usb2phy
+>>         - rockchip,rk3399-usb2phy
+>>         - rockchip,rk3568-usb2phy
+>> +      - rockchip,rk3576-usb2phy
+>>         - rockchip,rk3588-usb2phy
+>>         - rockchip,rv1108-usb2phy
+>>   
+>> @@ -34,10 +35,20 @@ properties:
+>>       const: 0
+>>   
+>>     clocks:
+>> -    maxItems: 1
+>> +    minItems: 1
+>> +    maxItems: 3
+>>   
+>>     clock-names:
+>> -    const: phyclk
+>> +    minItems: 1
+>> +    maxItems: 3
+>> +    items:
+>> +      oneOf:
+>> +        - description: aclk for USB MMU.
+>> +          const: aclk
+>> +        - description: aclk_slv for USB MMU.
+>> +          const: aclk_slv
+>> +        - description: PHY input reference clocks.
+>> +          const: phyclk
+>>   
+>>     assigned-clocks:
+>>       description:
+>> @@ -143,6 +154,7 @@ allOf:
+>>             contains:
+>>               enum:
+>>                 - rockchip,rk3568-usb2phy
+>> +              - rockchip,rk3576-usb2phy
+>>                 - rockchip,rk3588-usb2phy
+>>   
+>>       then:
+>>
+
 
