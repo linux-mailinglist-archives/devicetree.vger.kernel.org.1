@@ -1,271 +1,165 @@
-Return-Path: <devicetree+bounces-105228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 126D5985779
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 12:59:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C169A98579D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 13:07:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4BA8285BDD
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 10:59:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F1EF280DAC
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:07:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 523C115F330;
-	Wed, 25 Sep 2024 10:59:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D28D84A5E;
+	Wed, 25 Sep 2024 11:07:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kwrMlGXp"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="DHa2MPYe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E87B14B94C;
-	Wed, 25 Sep 2024 10:59:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC2B0482D8
+	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 11:07:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727261952; cv=none; b=D6CEsP8Lz7HJpivmIlGm27Dp0+xJLhCsoHr7avkXwjLzRI3mvRBib3yKzj5snw8bebphIlD0q5qbNd0+8jjYCHlwL/967uJjEWl/MaPEo1NNJZQ6XI+rQH/94iVSHufZ6gDWtS31y1k/lqvYOPMEJ6YVLfZ74Lu6iss0co9nJ0I=
+	t=1727262425; cv=none; b=GGFOg/Ml11DQVkG1mubZNUEMI7BVCLwNaHdH7w1qxlXoz9edp+7qNEZpvhZkRp67/l7WEr4DXjKwrAg4AXjL2IWPc+/IhhyhHRJQkvmt9zPSsY5DKH5+Fjebf8aON3gk/6DWxj0z9n6TChZy4k/S1AAqtVbxXQMPQpnOqXOXonM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727261952; c=relaxed/simple;
-	bh=XGTZ0gqXmMwgEforO4KTxvUcJxOe4Gi7FOr4jUI8f/U=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=j9byAjSxepoaEFtNDvDVcy5zaWxSeeH3Lt9jz3O5hVpx+XoPqbsM/UaoZC6Mpj6gcLNRt4T/Ej55jlFiNqW/8TKHd8pcl/yXQUi8NCZpm/ix/MUf1PCHg7qRJ/GPL2+MBrwzGBP38KXPgJS7E+BqV4iF5nTY/P45oVSDP2Zlo4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=kwrMlGXp; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 831B060004;
-	Wed, 25 Sep 2024 10:58:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1727261942;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Xe5/2RvZiCjpp536f/aZHEPbaWodWphQ8YXt0yFzsUQ=;
-	b=kwrMlGXpIpE2MqDD5Qu/zDMmAK0C/3HSo2JFecxDrBKP56lfbZVieu/Xfpk44AtdTJFDAx
-	OlbOAjTfrOIf0lZkYgq9v6O7C6WpYXdSEJz/hhChrSdh81bahFWwBHHXkxP9+E+xZkVjOK
-	rFaRa9adNy+rsCko+T7ib8RmR9kSpy6jHNS+h9S8z0xp2oL7BERHiXsd8AoK6LXX2QY9tm
-	jRyoq2dlWGJl8lCpeVW6cQRzPQ3JPOujleF1XQ3aUAe6MdttJSjpiwcSE3mgOWqA0+tTOZ
-	Od6HAYTh34B6UHJ8N3qBHK2EOABV8iu5IYGW2N/isUX484jnrYNMJdz9uw/tYw==
-Date: Wed, 25 Sep 2024 12:58:56 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
- <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>, Paul
- Kocialkowski <contact@paulk.fr>, =?UTF-8?Q?Herv=C3=A9?= Codina
- <herve.codina@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Paul
- Kocialkowski <paul.kocialkowski@bootlin.com>, Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v2 0/5] Add support for GE SUNH hot-pluggable connector
- (was: "drm: add support for hot-pluggable bridges")
-Message-ID: <20240925125856.321f7ef7@booty>
-In-Reply-To: <ZvJ3vUCLsowLr_Mv@phenom.ffwll.local>
-References: <20240510-hotplug-drm-bridge-v2-0-ec32f2c66d56@bootlin.com>
-	<ZkYIeWzYyxkURS79@phenom.ffwll.local>
-	<20240520140148.26b91240@booty>
-	<ZkyND17TGj6y0Wjq@phenom.ffwll.local>
-	<20240823123903.1c793c4b@booty>
-	<Zs4AuPPHaFY0WzBZ@phenom.ffwll.local>
-	<20240909152604.1dd27605@booty>
-	<ZvJ3vUCLsowLr_Mv@phenom.ffwll.local>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1727262425; c=relaxed/simple;
+	bh=yngx82xgIdWukmGKi/xseBo9teitA0cjSgQBreiIuxM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mvvDGpO7WGbVut1gn7i0S6JfOoE+ODpNPtIVow5QUWsnNCLieWB5icPtZx0znj0O+LV6T0aLpUOolYPsZZL6Z0IU4RRSj4plwzR3JxMH+w5YtLX1OCh7SlE2wZS4ufpNnSvH2EJq9dg+udK0RisBd2aFMxGFs/a/neEzA8158Uk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=DHa2MPYe; arc=none smtp.client-ip=209.85.222.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7a99a46af10so684363885a.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 04:07:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1727262422; x=1727867222; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GmGZlGs+csivCGtXApnSxfbFdZdlXt+4aKJTW7tsJ8A=;
+        b=DHa2MPYecUu/C8o13J4RG8sNCD129yNKsvsaIFpH+XIEO6OgcXTRVsyaw9dzzm7NHr
+         1lbw3VM2CDHcZSoWfhvY9xCcmA60P6edNzBfYoumYZa2fY2KXm5A1Y16extshdlIG/sJ
+         tNXyeFB2lMPFgQ/nka7Xg3KBWzOYh+fbQ6cHk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727262422; x=1727867222;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GmGZlGs+csivCGtXApnSxfbFdZdlXt+4aKJTW7tsJ8A=;
+        b=jUkSy8juuT01HOeXsrGF5yGgTrUCTEvGANKHKbyfexdVFyuSGyKeo+bmE4rjndoXQi
+         hm4CFvECsdoaesPYTUc1HqM2mVUktIABdaxFCWMsBWzxVE2ceRUX9vLyMXObHleqno4m
+         cV4EJMhlC/3hTOOknTSRJVMujDE52x0JfNoHSVF1zx7hz6MXWgTdOkqjlgup7bba0FpI
+         7FEH9eOCBx3F6YKQpjFbFyYKagDpWMPlY/5LkDGnbj8p6wl6lQT4c0CCB1o8UqZH1vNd
+         uIsyadOBKYh4DZack8osBuuGSkMSYpmFY9rj5VXYPWcp4nW3/99MWnhTAbhgs+aCYhlr
+         pzHg==
+X-Forwarded-Encrypted: i=1; AJvYcCXduiY4Hi0Cr1KMWklMeqCh0xA6p9wojOa3e+CUJMRpY0ON5O45sYXKwyEXjlDXalybXyoC8xU6yax+@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMNSxsjBVAkFcFcqqyLquuU1n6jThT37Zj1Rx/KLB5CbDHc2O3
+	bbozF7048hrId5c4I5xY5aZefktX6ftFzUjSDlt58VwdjJuvxT6kjRF9pmVRvQTmXDcWfA/zJJR
+	tWg==
+X-Google-Smtp-Source: AGHT+IEDQjzBbubWf2wlDqaA/lrxiOVT9rM9NPTZRG/dYJ0o4OT3ghpsyBBXCBWQOrAeTknGCtzKjA==
+X-Received: by 2002:a05:620a:4546:b0:7a9:c0f3:3b71 with SMTP id af79cd13be357-7ace73ff070mr359835085a.19.1727262422254;
+        Wed, 25 Sep 2024 04:07:02 -0700 (PDT)
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-84e73b2631dsm1552171241.16.2024.09.25.04.06.46
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Sep 2024 04:06:46 -0700 (PDT)
+Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-846c0a741cbso1708584241.2
+        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 04:06:46 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUtUKnJ3juCYJLXwoJqA+ctiXu4WBzEnqGsnBa5hAW337kCf65wTEVBRr7dRQukeJsNq3iIshZlHlUh@vger.kernel.org
+X-Received: by 2002:a05:6122:32cc:b0:4f5:199b:2a61 with SMTP id
+ 71dfb90a1353d-505c20922a8mr1813469e0c.9.1727262405347; Wed, 25 Sep 2024
+ 04:06:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
+References: <20240909111535.528624-1-fshao@chromium.org> <20240909111535.528624-7-fshao@chromium.org>
+ <11bc2522-bc10-4dcf-8142-708b57d181cf@kernel.org> <CAC=S1nhiJ=7yAucJsaYKUUBrwrxOVBMB2CF=bFwyLa2o-5RmWw@mail.gmail.com>
+ <64cc35c8-30df-4882-a933-f42119270f48@kernel.org> <CAC=S1ni+pJJZhbjvVqhba5u1JqGv=dZTv8+KH4xburea2AG4Qg@mail.gmail.com>
+ <a9a7038c-4478-4366-831a-81dca8fa5afc@kernel.org>
+In-Reply-To: <a9a7038c-4478-4366-831a-81dca8fa5afc@kernel.org>
+From: Fei Shao <fshao@chromium.org>
+Date: Wed, 25 Sep 2024 19:06:08 +0800
+X-Gmail-Original-Message-ID: <CAC=S1njoAwU+7aveWziJBD760k2LGD=D89Wwb9FmdaPp-sA5nw@mail.gmail.com>
+Message-ID: <CAC=S1njoAwU+7aveWziJBD760k2LGD=D89Wwb9FmdaPp-sA5nw@mail.gmail.com>
+Subject: Re: [PATCH 06/13] arm64: dts: mediatek: mt8188: Update VPPSYS node
+ name and compatible
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Simona,
+On Mon, Sep 16, 2024 at 6:02=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 10/09/2024 13:06, Fei Shao wrote:
+> > On Tue, Sep 10, 2024 at 3:19=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
+l.org> wrote:
+> >>
+> >> On 10/09/2024 07:12, Fei Shao wrote:
+> >>> On Mon, Sep 9, 2024 at 7:41=E2=80=AFPM Krzysztof Kozlowski <krzk@kern=
+el.org> wrote:
+> >>>>
+> >>>> On 09/09/2024 13:14, Fei Shao wrote:
+> >>>>> Use and add "syscon" in VPPSYS node names and compatible to fix err=
+ors
+> >>>>> from `make CHECK_DTBS=3Dy mediatek/mt8188-evb.dtb`.
+> >>>>>
+> >>>>> Signed-off-by: Fei Shao <fshao@chromium.org>
+> >>>>> ---
+> >>>>>
+> >>>>>  arch/arm64/boot/dts/mediatek/mt8188.dtsi | 8 ++++----
+> >>>>>  1 file changed, 4 insertions(+), 4 deletions(-)
+> >>>>>
+> >>>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/=
+boot/dts/mediatek/mt8188.dtsi
+> >>>>> index 2900d78b7ceb..14e51a11f688 100644
+> >>>>> --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> >>>>> +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> >>>>> @@ -1799,8 +1799,8 @@ mfgcfg: clock-controller@13fbf000 {
+> >>>>>                       #clock-cells =3D <1>;
+> >>>>>               };
+> >>>>>
+> >>>>> -             vppsys0: clock-controller@14000000 {
+> >>>>> -                     compatible =3D "mediatek,mt8188-vppsys0";
+> >>>>> +             vppsys0: syscon@14000000 {
+> >>>>> +                     compatible =3D "mediatek,mt8188-vppsys0", "sy=
+scon";
+> >>>>
+> >>>> If this was working before, it looks like this is not a syscon and
+> >>>> bindings need to be fixed.
+> >>>
+> >>> I guess it's because the binding was later updated in commit
+> >>> 26bcd8a53098 ("dt-bindings: arm: mediatek: mmsys: Add VPPSYS
+> >>> compatible for MT8188"), and the corresponding DT update was unnotice=
+d
+> >>> at the time.
+> >>> If that makes sense then this should be a valid fix.
+> >>
+> >> Not necessarily. Why not fixing bindings? Prove that bindings are
+> >> correct, not DTS, first.
+> >
+> > MediaTek's mmsys doesn't merely control clocks, it also provides
+> > display pipeline routing control and other misc control registers, so
+> > it's appropriate to categorize it as a system controller over a clock
+> > controller.
+> > As for vdosys and vppsys, they are likely variants or aliases of mmsys
+> > introduced in their newer SoCs.
+>
+> Nothing like that was in the commit msg...
 
-[+Cc: Dmitry Baryshkov who took part to the LPC discussion]
+Just for a record, I've revised the commit message in the newer series:
+https://lore.kernel.org/all/20240925110044.3678055-7-fshao@chromium.org/
 
-On Tue, 24 Sep 2024 10:26:37 +0200
-Simona Vetter <simona.vetter@ffwll.ch> wrote:
-
-> On Mon, Sep 09, 2024 at 03:26:04PM +0200, Luca Ceresoli wrote:
-
-...
-
-> > There is a fundamental question where your position is not clear to me.
-> > Based on this:
-> >   
-> > > - The last fixed bridges knows that all subsequent bridges are hotplugged.  
-> >     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
-> > >   Which means instead of just asking for the next bridge, it needs to ask
-> > >   for the fully formed bridge chain, including the connector.
-> > >   
-> > 
-> > and this:
-> >   
-> > > - The hotplug bridge connector code checks every time a new bridge shows  
-> >     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
-> > >   up whether the chain is now complete. Once that is the case, it creates
-> > >   the connector (with the new bridge design this is no longer the job of
-> > >   the last bridge in the chain, so we need to require that for
-> > >   hotpluggable bridges). Then it can attach all the bridges to that
-> > >   connector, and hand the entire fully formed chain to the last fixed
-> > >   bridge to hotplug insert and register.  
-> > 
-> > The question is: do you think the hotplug-bridge driver should be
-> > present, or not? To me the two above sentences appear to contradict each
-> > other.
-> > 
-> > The reason we decided to implement a hotplug DRM bridge is it allows to
-> > decouple the fixed and the remote segments of the pipeline, in such a
-> > way that all the regular bridge drivers don't need any special handling
-> > to support hotplug.
-> > 
-> > In my work the upstream bridge driver is samsung-dsim.c and the
-> > downstream one is ti-sn65dsi83.c and none of them needed a single line
-> > changed to support hotplug. I think this is useful: virtually any
-> > physical bridge with pins can be used in a hotplug setup, either in the
-> > fixed or in the removable section, so not needing to modify them is
-> > valuable.
-> > 
-> > OTOH in various parts of this and other e-mails you seem to imply that
-> > there should be no hotplug-bridge (not as a struct drm_bridge, not as
-> > a driver, or both). Except for the fact that there is no chip
-> > implementing such a bridge (there is a physical connector though) I do
-> > not see many reasons.  
-> 
-> Yeah you can have a dummy hotplug-bridge driver which just represents the
-> hotplug connector, I don't see an issue with that. And sounds like a
-> reasonable idea if it helps modelling with DT and all that.
-> 
-> What I described above was just focused on the interaction between bridge
-> drivers and the hotplug support code. I think you absolutely need the last
-> bridge driver to be aware that the entire subsequent chain is hotplugged,
-> otherwise it wont work. That last bridge driver can be a special
-> hotplug driver, but it doesn't need to be the case.
-
-I see, that clarifies your position, thanks.
-
-...
-
-> > > Yeah we need special functions, which the last fixed bridge needs to call
-> > > instead of the current set of functions. So instead of of_drm_find_bridge
-> > > we need something like of_drm_register_hotplug_source_bridge or similar.  
-> > 
-> > Continuing on the above topic, are you suggesting that there should be
-> > no hotplug-bridge, and that every bridge that can be used as the "last
-> > fixed bridge" should handle the hotplug case individually?
-> > 
-> > If that is the case, we'd need to modify any bridge driver that people
-> > want to use as "last fixed bridge" to:
-> > 
-> >  1. know they are the "last fixed bridge" (via device tree?)
-> >  2. use of_drm_register_hotplug_source_bridge()
-> >     instead of of_drm_find_bridge() accordingly  
-> 
-> This depends upon the dt design. If the dt design has a separate distinct
-> hotplug node, then we could bind a hotplug bridge against that, which is
-> aware.
-> 
-> But I think for some case (maybe dsi nodes) the dt design would be more an
-> attribute somewhere plus a link to the first hotplugged element. And in
-> that case the last physical bridge driver needs to be aware of that - we
-> simply don't have any dt node we can bind the hotplug bridge driver
-> against. I think the generic bridge hotplug design should not make an
-> assumption about how the dt is designed here and allow both.
-> 
-> Also if the dt design for the approach without a separate hotplug
-> connector is standardized, we can have a of_drm_handle_next_bridge
-> function which does the right thing for both cases automatically. I think
-> that way the impact on existing bridge drivers is minimal.
-
-Pushing this even more, instead of having bridges aware of being the
-last fixed ones, I've been pondering on a structure where every bridge
-assumes the next one could disappear, and works appropriately. So the
-current case (all bridges are fixed) would be just a special case where
-the next bridge is found initially and never disappears.
-
-This would probably be cleaner, no [if (hotplug) {this} else {that}]
-constructs, but I'm concerned about the transition path for old
-poorly-maintained drivers.
-
-...
-
-> > > > > Instead I think that code should be directly in core bridge code (I don't
-> > > > > see the benefit of having this entirely in a separate driver), using drm
-> > > > > locking to make sure there's no races.    
-> > > > 
-> > > > Not sure I got what you mean here. Which one of the following?
-> > > > 
-> > > >  1. The entire hotplug-bridge driver should not exist, and the DRM
-> > > >     core should handle it all (seems not doable, this driver has lots of
-> > > >     device-specific details)
-> > > >  2. The hotplug-driver should exist, but the code to attach/detach the
-> > > >     pipeline on hotplug/unplug should be moved to the core, with the
-> > > >     hotplug-driver providing callbacks for the device-specific aspects
-> > > >  3. Same as 2, but additionally the hotplug-bridge should become a
-> > > >     connector driver (hotplug-connector.c?) -- not sure it can decouple
-> > > >     the two sides without a bridge however
-> > > >  4. None of the above    
-> > > 
-> > > 3, roughly. The connector creation must be in core bridge code, or things
-> > > will go boom.  
-> > 
-> > Based on this I think you mean:
-> > 
-> >  1. the hotplug-*something* driver should exist  
-> 
-> This part I'm not sure is required, see my comments above. I think it
-> depends upon how the dt design ultimately will look like, and I don't have
-> an input on that.
-> 
-> >  2. it should add the fixed connector (DSI in my case) on probe
-> >  3. it should add/remove the removable connector (LVDS) on hot(un)plug  
-> 
-> The new bridge design is that bridges do _not_ create connectors
-> themselves. Instead the driver does that, using the bridge code as helpers
-> to make sure things work correctly.
-> 
-> But aside from that I think this sounds good. I'm not sure you need the
-> connector from step 2, but it shouldn't hurt either. With dp mst we create
-> that connector because dp can also be driven directly without mst, so
-> there we need that connector to be able to do modesets from userspace.
-
-I had a sort of assumption that the fixed connector is needed to even
-populate the card, not sure I was correct. Surely from a high-level API
-it would make sense to remove it.
-
-I'll postpone this aspect to a later moment, and by that time questions
-about the hotplug-bridge will have been clarified. Right now I'm going
-to tackle the drm_bridge refcounting.
-
-> >  4. it should add _no_ bridge (in the sense of struct drm_bridge)
-> >     [not sure it can still decouple the fixed VS addon pipeline parts]  
-> 
-> Yeah that's the tricky part, but definitely those hotplugged bridges
-> should not be part of the currently existing bridge chain, because that
-> cannot cope with hotplugs.
-
-Not sure what you mean here, and what you mean by "the currently
-existing bridge chain".
-
-Do you mean hot-plugged bridges, when present, should not be in the
-global bridge_list? That would make sense, sure.
-
-Best regards,
-Luca
-
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Thanks,
+Fei
 
