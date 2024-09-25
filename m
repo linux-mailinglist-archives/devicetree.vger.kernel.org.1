@@ -1,101 +1,129 @@
-Return-Path: <devicetree+bounces-105025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D429984F14
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 01:44:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95104984F62
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 02:17:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 473C11F2433B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Sep 2024 23:44:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58F93284A4F
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 00:17:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C652C1891D4;
-	Tue, 24 Sep 2024 23:44:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E65134C62;
+	Wed, 25 Sep 2024 00:17:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="KpAHvQ49"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="iFNm+Db9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1AC4188CD5;
-	Tue, 24 Sep 2024 23:44:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32F8D4C9A
+	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 00:17:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727221459; cv=none; b=JWmErSOs6c/sT8mrc/mEUNuQk49pjnp+rCarg4qpL+YHZDK68HrD21dFrta4dWEOHY8odZXU0ed4NhPNah3NosJZLtAptddTe9RE+8K+0jypbcss/U4YP0RQMNQAqAmN6NVbTVZNa/Wi1srVKYM+7Uow3BFqeyy1IcqugruZ73E=
+	t=1727223427; cv=none; b=hkn3UrJLRJLrSdYwvGDVTFSbansYHwej9l/YzMzm9j1OmNq07e8ngdJgrAT+cnoBeW2UdnMYBj2R56i5dRg59KUsv1t6m0IHtLY0nPH1YJ7X8J+R4sMUJN7plwPaERfq0VLzIQUJ/5Tbf/9VsetacmV9sKCffILZorge4Xa//SQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727221459; c=relaxed/simple;
-	bh=AotKFPH7QXcrobDMlW4cjwINVaM1enlUOmrAycDyfIc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gCXg8RbYyYdQb9AJNTyoQj65wVFJzXA3xcWmsYzHQz8/z3EaOxG2IoXSpYsvhYf8xR2NCWmid70jh81lNY654OO7iWWsTNuGMR/2Nq9VnG3+E2BM4YgZXoB2HOqPDsVcbeNnIuiSDjXIpR+agDmXB2pD6CqgLzuztFzFqAlrtj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=KpAHvQ49; arc=none smtp.client-ip=85.214.62.61
+	s=arc-20240116; t=1727223427; c=relaxed/simple;
+	bh=I+tLTjU4DESl8awu5VwJyfBZu3XV+l2HZXpkvXtpjI8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NEAf9kruilB/4TwUgy+z2DgMc8HnWpvt74Rr73M7OqtHesVfVsygh0ZYy9z01RzhowlAwPCYLTX83vRNUUWtGkl6SHzapRjsbGdlt6qlXM1Mu5K9MLoDOn10C4LRaSPNyVlLZAYiwxVN6d0G7D6x7d4pyJcizlGKVue/23wWSPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=iFNm+Db9; arc=none smtp.client-ip=85.214.62.61
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
 	(No client certificate requested)
 	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 3007188B14;
-	Wed, 25 Sep 2024 01:44:15 +0200 (CEST)
+	by phobos.denx.de (Postfix) with ESMTPSA id 1D9FA88580;
+	Wed, 25 Sep 2024 02:16:58 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1727221456;
-	bh=JcziicMMJvzimVi9UgPNdctmny3nPPC0wqwUTrVG/Cw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KpAHvQ49SvyQev5x4UdCcIavnk/TP8DonOJcyWmsVSvF4wwviGK4aqu/hDVhU+RMJ
-	 Pfn9wR+holwkMRsKh/kYAAlJNlIcebgKrlLbx44mn2fKHSsYVcP5LpytSnQQwuDC02
-	 Oaj4Gyl4Krm3Sz1xJpuhSYY+1dy+G0ORJHw0vZJr0P1/IIPy9wx0tjmeO5nvxEY35Z
-	 grAno1wJGdCh860VysfvPPnI+hLXzzb8TPrKMBVVrIYAPxpk8b4EbH1Hq2s6pFkYBq
-	 nBBxXYjFu3qOtTVSeqNp8cv4UAfi3a7LAVr73/xM4F4bpBHGnd2x/deKQ3Vsvw1U8g
-	 LQhg28dvPT0Jg==
-Message-ID: <16316a89-04f8-4a63-b453-45562e4294d7@denx.de>
-Date: Wed, 25 Sep 2024 01:44:14 +0200
+	s=phobos-20191101; t=1727223424;
+	bh=GuLCwEpbX+q3TN1q8vMe6pE48nad+KaAddCALQ/Ar/A=;
+	h=From:To:Cc:Subject:Date:From;
+	b=iFNm+Db9QtbfGaSwNlGgPSeFgZnDkO+guaRimCMcQgiF9w1X3VZxLGOGwl3aqt8JL
+	 GGJuq+yGMqgW7abXxY8kTiGXbM6sEt0IoCFAbwvO2N4/rv0i9HayLlGIIh6tviJGR/
+	 B2+TiBTuHExUe3+savXWLPvuEoRaOaljRT125Vqk5FlTUoDGfip90f1Zlp8HHz7rTq
+	 NLqDZ5pAMgxSW3txm3XYzW51/nBJ7sac6HJsFy5NgiyRkMyly/Tun0o4h7M4r7nwzT
+	 Ar8YN1k8dD3/rnJ3AkZkBdnO1i58jTiHSbhsbaEbtYNl/7MZ+vow9sUJroP6lxpUoY
+	 TXTgPCY85aiFQ==
+From: Marek Vasut <marex@denx.de>
+To: linux-arm-kernel@lists.infradead.org
+Cc: kernel@dh-electronics.com,
+	Marek Vasut <marex@denx.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+	Hiago De Franco <hiago.franco@toradex.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Mathieu Othacehe <m.othacehe@gmail.com>,
+	Max Merchel <Max.Merchel@ew.tq-group.com>,
+	Michael Walle <mwalle@kernel.org>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: [PATCH 1/2] arm64: dts: imx8mp: Document DH i.MX8MP DHCOM SoM on DRC02 carrier board
+Date: Wed, 25 Sep 2024 02:15:16 +0200
+Message-ID: <20240925001628.669604-1-marex@denx.de>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: lcdif: Add support for specifying display
- with timings
-To: Rob Herring <robh@kernel.org>
-Cc: Lukasz Majewski <lukma@denx.de>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Stefan Agner <stefan@agner.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Fabio Estevam <festevam@gmail.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240923135744.2813712-1-lukma@denx.de>
- <0e72b574-14ec-4369-b899-30d5c615d238@denx.de>
- <20240924225714.GA441530-robh@kernel.org>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20240924225714.GA441530-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
 X-Virus-Status: Clean
 
-On 9/25/24 12:57 AM, Rob Herring wrote:
-> On Mon, Sep 23, 2024 at 07:53:57PM +0200, Marek Vasut wrote:
->> On 9/23/24 3:57 PM, Lukasz Majewski wrote:
->>> Up till now the fsl,lcdif.yaml was requiring the "port" property as a
->>> must have to specify the display interface on iMX devices.
->>>
->>> However, it shall also be possible to specify the display only with
->>> passing its timing parameters (h* and v* ones) via "display" property:
->>> (as in
->>> Documentation/devicetree/bindings/display/panel/display-timings.yaml).
->>
->> Timings should go into panel node, not into scanout engine node.
->>
->> See e.g. panel-timings in arch/arm64/boot/dts/freescale/imx8mm-phg.dts , in
->> your case the compatible might be "panel-dpi" .
-> 
-> I agree, but if this is already in use, we should allow it. We can mark
-> it deprecated though.
-I don't think it is in use yet, at least not in upstream, so let's not 
-allow this.
+Document support for DH electronics i.MX8MP DHCOM SoM on DRC02 carrier board.
+This system is populated with two ethernet ports, two CANs, RS485 and RS232,
+USB, capacitive buttons and an OLED display.
+
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Gregor Herburger <gregor.herburger@ew.tq-group.com>
+Cc: Hiago De Franco <hiago.franco@toradex.com>
+Cc: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Cc: Joao Paulo Goncalves <joao.goncalves@toradex.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Mathieu Othacehe <m.othacehe@gmail.com>
+Cc: Max Merchel <Max.Merchel@ew.tq-group.com>
+Cc: Michael Walle <mwalle@kernel.org>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev
+Cc: linux-arm-kernel@lists.infradead.org
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index b39a7e031177e..09027a4ef515c 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1100,6 +1100,7 @@ properties:
+       - description: i.MX8MP DHCOM based Boards
+         items:
+           - enum:
++              - dh,imx8mp-dhcom-drc02        # i.MX8MP DHCOM SoM on DRC02 board
+               - dh,imx8mp-dhcom-pdk2         # i.MX8MP DHCOM SoM on PDK2 board
+               - dh,imx8mp-dhcom-pdk3         # i.MX8MP DHCOM SoM on PDK3 board
+           - const: dh,imx8mp-dhcom-som       # i.MX8MP DHCOM SoM
+-- 
+2.45.2
+
 
