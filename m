@@ -1,75 +1,54 @@
-Return-Path: <devicetree+bounces-105078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF3C598510A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 04:44:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0152985116
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 04:48:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF6D01C23450
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 02:44:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F08251C22C4A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 02:48:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A01CF148FF2;
-	Wed, 25 Sep 2024 02:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F5B14831F;
+	Wed, 25 Sep 2024 02:48:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="MtAgPLJ/"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="N0W70ggt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E501148827
-	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 02:44:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02F321482ED
+	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 02:48:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727232266; cv=none; b=pQE7bYaitTnNBlmf2kHxyaPYd1a7dnq0rJ5eKFz5jkiFobo8wAseMRFKugyql+VOxUXbC/ygz6B7kzDOx6Nt/JEQB1i25uyGfYwdWRAVsHfpxbW4wnq9WAIAM02Z4uW/w323i1/BH0bdeJo8FY/0bjK1lfVLPUxFeDrXxSkR35Y=
+	t=1727232526; cv=none; b=VSvNTIZTnaYOOFgzUXMTTLaaLqT8mtI4JpVAfaw8GWwl7K+1I6rFcyCCq8RKAGFyuY5ktslKNR+1yz3uXNRR6I4PviG68seZoUANtpINkeNxWAiLPrqOdmJPPuQmkEQxGaiWP0JsYWk2huuGB2sjCCSR6TW0uK1OSdimVI3rxZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727232266; c=relaxed/simple;
-	bh=n4vzVMJk/wnTZoLjPI6/94113lyUB4lEeWRcZRd99M4=;
+	s=arc-20240116; t=1727232526; c=relaxed/simple;
+	bh=qoT8Ty+KPUD7Jv03SSnqGQ1HXFC6PxOKG7psNfv3a1Q=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BaP678S9P5lIGmIVjlnQMBpM52CD8vaoTtYPyXdKR3oYx7ldv8JVfVYpkU0XDnJLgmZpcwAf5F4CKkdItxMg5W/9a/WIc1jWCH9qI6kqkcMKgN2PewgwH06su/ylzrDXhPiVN6SqA9mtKU/av4uiTndp8yf5NBcgxr9hgyUfqXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=MtAgPLJ/; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-206b9455460so3661985ad.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 19:44:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1727232264; x=1727837064; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5u9fJUNtEJazJzPyTQOtG1FO6Z7cS1MgX+7pZ8RK+ts=;
-        b=MtAgPLJ/8BNj+j2n9NpzgVXS/nyxj2z1pFBVCFeRJUWGOoZBxWjaO66AKIce/xlX3k
-         L2jF2mNAmIvH9XI9h6/Djskf461Zxa+me8ksgNS5cb0Kgd16NsljUIen50E+ReCWhtUK
-         YOaR9rZzKUHbEOKCRbXA9NIBQcmO1vomUxxNXqPBTzYocYdWrQhndHZsPX7S9fiYIYja
-         shjcrrC56nlpOT/7hk0hbtKB10SUcxUizR3rpDrmHpSX6ua5IojtY6K3iNW8jd5y5YkW
-         7B+Jtr1SpOVS/HcDI+tUZyPNP2QrHBSb3JiXqIgzaW+5mGnhDek9V9IGhOgmMvOV/o3G
-         DBYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727232264; x=1727837064;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5u9fJUNtEJazJzPyTQOtG1FO6Z7cS1MgX+7pZ8RK+ts=;
-        b=Lfjv5y0ZYuYZwXSjprZGbROOemFcWTfhmd6NpBOkQJmZp8XogRgVr5FjMinc2wA89b
-         1OV5h60OV+YyQvesSXZSJFt4FjyhwnGXVN/zCFHghnrSZv+YfEZYcBWkeMLG5ooGHPoX
-         f5v420n+9y6LxgBfBm50TkziJb0co4N/4tYgCLCbCU4afT1XirzdDs6uv+83sFbrsBNO
-         LZQ5bMUmPq517No1++ktxbunIN+X352Yo7XeFQaGJyp7zxIOwgcwvdNVUB0ejCjdgZ67
-         Suw93+kH4xX+c+6vxP5YHK+gW55kNds3wCAYvbJKpSqle/4nAsWXfmtcokq4OZiPggkV
-         gIRw==
-X-Forwarded-Encrypted: i=1; AJvYcCW8m8zKHttgLY+1MPEGKL8MC+ZFTTs1gEmmGnEC9KIp2sPg5clhm2T0yEBzE2klABgPBUKn+ufTukKO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwoFpEyzND05S+O7pe6y3JeO5ZiC1TJQ1N1B0UeAHFrkvlSVnXS
-	+Vl2s3cruDETphWXDADpnzN39EJOBcRytKdHjuNVLZZBXbrk+fTKjcutMoe/mJYStZUrqMZ7DsO
-	9AGwehpM=
-X-Google-Smtp-Source: AGHT+IFOu3sATw4O+ghyS7x5azvPQ4AJoo6YIcBuz/3H73r9HL0ro3DSjKBapUQ9ynom5wab2GLyuQ==
-X-Received: by 2002:a17:902:f644:b0:207:3a4c:8c6f with SMTP id d9443c01a7336-20afc436639mr16594225ad.29.1727232264093;
-        Tue, 24 Sep 2024 19:44:24 -0700 (PDT)
-Received: from ?IPV6:2a00:79e0:2e14:8:32ad:6c37:2d1:220a? ([2a00:79e0:2e14:8:32ad:6c37:2d1:220a])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20af1859c00sm15796035ad.286.2024.09.24.19.44.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Sep 2024 19:44:23 -0700 (PDT)
-Message-ID: <d72cc89a-7f73-4294-927e-48e647e37310@google.com>
-Date: Tue, 24 Sep 2024 19:44:19 -0700
+	 In-Reply-To:Content-Type; b=DSPMf5C12HBrnK5HKtSP5LoyM/RaXi1Vj8i4vtfUtSz1CvMq/LBtX8QTBDKIZ7/cmiAh8nm3xhur7Ad7phnFq9X6Z0SRDx4MB5CG4koUbXH2FEiGiqr/mRQMI9fo2XtMCstN1ZwMjLfm9t3GaMRUaKjbdJhacNaqr3h2kHXBqYs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=N0W70ggt; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 996FE889ED;
+	Wed, 25 Sep 2024 04:48:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1727232523;
+	bh=qoT8Ty+KPUD7Jv03SSnqGQ1HXFC6PxOKG7psNfv3a1Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=N0W70ggteSIRdcmomJDTxL1Yvl6ROvkYEaO+Al9A4DV9mK+AFcgq9ThQaLhIprflb
+	 ojNaDl4PANPRvpNHhF8un8c4t7+opHR2ittK8/jj5+0TkUMteWK4AzKp5PYr23QQBJ
+	 GpgUToi2fLHkmoNCTtzfQ3fBDS8gZla+XZpSM40xt6cmKOiZiI1o6IZZAflEC26Pvo
+	 lk9nDtLXf+OVBxBuE6kHSGlx6Qwvu6Zjz3J6zUzaQWQbUqBvUM1Co/oup0fT9MvK4k
+	 mY2FMClI/rfOTWxZPziXI94EAoq2gAX7sbgXwg7Q2bZYlJhav5ClOhlUUpS57GDRXi
+	 /Ie+Zu/tSkzTA==
+Message-ID: <af9fe6ec-06fc-4ff8-8fcd-c2f9dfdfe5b0@denx.de>
+Date: Wed, 25 Sep 2024 04:48:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,54 +56,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v3 2/2] usb: typec: tcpm: Add support for parsing time dt
- properties
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: gregkh@linuxfoundation.org, robh@kernel.org, dmitry.baryshkov@linaro.org,
- badhri@google.com, kyletso@google.com, rdbabiera@google.com,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240923224059.3674414-1-amitsd@google.com>
- <20240923224059.3674414-3-amitsd@google.com>
- <ZvK2slBHR8PhzaMt@kuha.fi.intel.com>
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mp: Document DH i.MX8MP DHCOM SoM on
+ DRC02 carrier board
+To: linux-arm-kernel@lists.infradead.org
+Cc: kernel@dh-electronics.com,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+ Hiago De Franco <hiago.franco@toradex.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Mathieu Othacehe <m.othacehe@gmail.com>,
+ Max Merchel <Max.Merchel@ew.tq-group.com>, Michael Walle
+ <mwalle@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev
+References: <20240925001628.669604-1-marex@denx.de>
 Content-Language: en-US
-From: Amit Sunil Dhamne <amitsd@google.com>
-In-Reply-To: <ZvK2slBHR8PhzaMt@kuha.fi.intel.com>
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <20240925001628.669604-1-marex@denx.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hi Heikki,
-
-On 9/24/24 5:55 AM, Heikki Krogerus wrote:
-> Hi,
->
->> @@ -7611,10 +7650,13 @@ struct tcpm_port *tcpm_register_port(struct device *dev, struct tcpc_dev *tcpc)
->>   	err = tcpm_fw_get_caps(port, tcpc->fwnode);
->>   	if (err < 0)
->>   		goto out_destroy_wq;
->> +
->
-> This extra newline is not relevant or necessary. Otherwise this LGTM:
-
-Thanks for reviewing! Please let me know if I should upload a new set or 
-this is alright at this time?
-
---
-
-Amit
-
->
-> Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
->
->>   	err = tcpm_fw_get_snk_vdos(port, tcpc->fwnode);
->>   	if (err < 0)
->>   		goto out_destroy_wq;
->>   
->> +	tcpm_fw_get_timings(port, tcpc->fwnode);
->> +
->>   	port->try_role = port->typec_caps.prefer_role;
->>   
->>   	port->typec_caps.revision = 0x0120;	/* Type-C spec release 1.2 */
-> thanks,
->
+On 9/25/24 2:15 AM, Marek Vasut wrote:
+> Document support for DH electronics i.MX8MP DHCOM SoM on DRC02 carrier board.
+> This system is populated with two ethernet ports, two CANs, RS485 and RS232,
+> USB, capacitive buttons and an OLED display.
+Subject prefix should be dt-bindings: arm: fsl: , will be fixed in V2.
 
