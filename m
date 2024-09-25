@@ -1,165 +1,205 @@
-Return-Path: <devicetree+bounces-105236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C169A98579D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 13:07:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 437689857FB
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 13:30:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F1EF280DAC
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:07:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC7941F21739
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:30:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D28D84A5E;
-	Wed, 25 Sep 2024 11:07:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71D6C14D290;
+	Wed, 25 Sep 2024 11:30:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="DHa2MPYe"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TveXuEvU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC2B0482D8
-	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 11:07:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6954914600D;
+	Wed, 25 Sep 2024 11:30:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727262425; cv=none; b=GGFOg/Ml11DQVkG1mubZNUEMI7BVCLwNaHdH7w1qxlXoz9edp+7qNEZpvhZkRp67/l7WEr4DXjKwrAg4AXjL2IWPc+/IhhyhHRJQkvmt9zPSsY5DKH5+Fjebf8aON3gk/6DWxj0z9n6TChZy4k/S1AAqtVbxXQMPQpnOqXOXonM=
+	t=1727263810; cv=none; b=elQKyKVaeLqq62/aM8fwlY7TsfRBOX2uhu8lgrYFONBvVlrWZGYp9pJDiTjU9HOBYOKJGNXfg+FLTfc54V0msqpB7HgAdD7XsF+k6KxSO541ztMVMdv7LWJSmaWVNU73seo3uFA8KUlcymdFMVjPI/G9ngLweIgl8YjMrJe5DDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727262425; c=relaxed/simple;
-	bh=yngx82xgIdWukmGKi/xseBo9teitA0cjSgQBreiIuxM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mvvDGpO7WGbVut1gn7i0S6JfOoE+ODpNPtIVow5QUWsnNCLieWB5icPtZx0znj0O+LV6T0aLpUOolYPsZZL6Z0IU4RRSj4plwzR3JxMH+w5YtLX1OCh7SlE2wZS4ufpNnSvH2EJq9dg+udK0RisBd2aFMxGFs/a/neEzA8158Uk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=DHa2MPYe; arc=none smtp.client-ip=209.85.222.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7a99a46af10so684363885a.0
-        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 04:07:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1727262422; x=1727867222; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GmGZlGs+csivCGtXApnSxfbFdZdlXt+4aKJTW7tsJ8A=;
-        b=DHa2MPYecUu/C8o13J4RG8sNCD129yNKsvsaIFpH+XIEO6OgcXTRVsyaw9dzzm7NHr
-         1lbw3VM2CDHcZSoWfhvY9xCcmA60P6edNzBfYoumYZa2fY2KXm5A1Y16extshdlIG/sJ
-         tNXyeFB2lMPFgQ/nka7Xg3KBWzOYh+fbQ6cHk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727262422; x=1727867222;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GmGZlGs+csivCGtXApnSxfbFdZdlXt+4aKJTW7tsJ8A=;
-        b=jUkSy8juuT01HOeXsrGF5yGgTrUCTEvGANKHKbyfexdVFyuSGyKeo+bmE4rjndoXQi
-         hm4CFvECsdoaesPYTUc1HqM2mVUktIABdaxFCWMsBWzxVE2ceRUX9vLyMXObHleqno4m
-         cV4EJMhlC/3hTOOknTSRJVMujDE52x0JfNoHSVF1zx7hz6MXWgTdOkqjlgup7bba0FpI
-         7FEH9eOCBx3F6YKQpjFbFyYKagDpWMPlY/5LkDGnbj8p6wl6lQT4c0CCB1o8UqZH1vNd
-         uIsyadOBKYh4DZack8osBuuGSkMSYpmFY9rj5VXYPWcp4nW3/99MWnhTAbhgs+aCYhlr
-         pzHg==
-X-Forwarded-Encrypted: i=1; AJvYcCXduiY4Hi0Cr1KMWklMeqCh0xA6p9wojOa3e+CUJMRpY0ON5O45sYXKwyEXjlDXalybXyoC8xU6yax+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMNSxsjBVAkFcFcqqyLquuU1n6jThT37Zj1Rx/KLB5CbDHc2O3
-	bbozF7048hrId5c4I5xY5aZefktX6ftFzUjSDlt58VwdjJuvxT6kjRF9pmVRvQTmXDcWfA/zJJR
-	tWg==
-X-Google-Smtp-Source: AGHT+IEDQjzBbubWf2wlDqaA/lrxiOVT9rM9NPTZRG/dYJ0o4OT3ghpsyBBXCBWQOrAeTknGCtzKjA==
-X-Received: by 2002:a05:620a:4546:b0:7a9:c0f3:3b71 with SMTP id af79cd13be357-7ace73ff070mr359835085a.19.1727262422254;
-        Wed, 25 Sep 2024 04:07:02 -0700 (PDT)
-Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-84e73b2631dsm1552171241.16.2024.09.25.04.06.46
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Sep 2024 04:06:46 -0700 (PDT)
-Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-846c0a741cbso1708584241.2
-        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 04:06:46 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUtUKnJ3juCYJLXwoJqA+ctiXu4WBzEnqGsnBa5hAW337kCf65wTEVBRr7dRQukeJsNq3iIshZlHlUh@vger.kernel.org
-X-Received: by 2002:a05:6122:32cc:b0:4f5:199b:2a61 with SMTP id
- 71dfb90a1353d-505c20922a8mr1813469e0c.9.1727262405347; Wed, 25 Sep 2024
- 04:06:45 -0700 (PDT)
+	s=arc-20240116; t=1727263810; c=relaxed/simple;
+	bh=yCae2etCCByRezUjvhNLLzMdTdCTpqMJWGwExuZu75M=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uim0dUoUiehB9FOoj2hOtntKYQNKXXAA1gjGWD7/+bPIB1xkcwlZJ1SWPltai0pxhpQsLbfJK52xcB+dPTWNOPht+S6CUe2KccDWa6jeWT8IFMqOatUAtgvNzA/4Nx5jkoVJaIfFq9Nd6nNB3kvW5NOgc8Mpuq5d00cyYxZFTZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TveXuEvU; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 835F6E0005;
+	Wed, 25 Sep 2024 11:30:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1727263805;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=7oOFsbLYbgAjnw+DJoaE3t1B0TAykxqlrbUIk6yDMe4=;
+	b=TveXuEvUwy7B7onF9Bh6GCdUGuJ1x56bn+JOKfsxXRGMPbU3neItQfPpaIAOHuiPamBaL1
+	lSHCM2AjlKCPfZ1tyiBdBo1tSMqwNfIXlo47jm2xLWrkdvp6DJMK48Bs8hDZUfVdGvYvst
+	rvN/kJDcqi6LmkpUH06JY+r20WwvIywVe98+qz15jVQiAeGMkEWD+2xlmAV1Qm5252qoXv
+	iHomUPiSCD66E+JayIxtbxTh53v/1AOoDcCSt/D3xC0MCEMfkq7C9yK3wzW9qiGHZbZqj9
+	GbNEN+DDP/DcdqoloAigwMHsxYuXsxT9qJio4ObttWeVXZymfCCqfJmynW82fw==
+Date: Wed, 25 Sep 2024 13:30:03 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
+ <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Saravana Kannan
+ <saravanak@google.com>, Florian Fainelli <f.fainelli@gmail.com>, Thomas
+ Bogendoerfer <tsbogend@alpha.franken.de>, Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, linux-mtd@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Lorenzo Bianconi
+ <lorenzo@kernel.org>, upstream@airoha.com
+Subject: Re: [PATCH 2/3] dt-bindings: mtd: Add Documentation for Airoha
+ fixed-partitions
+Message-ID: <20240925133003.619c40c4@xps-13>
+In-Reply-To: <20240925101422.8373-3-ansuelsmth@gmail.com>
+References: <20240925101422.8373-1-ansuelsmth@gmail.com>
+	<20240925101422.8373-3-ansuelsmth@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240909111535.528624-1-fshao@chromium.org> <20240909111535.528624-7-fshao@chromium.org>
- <11bc2522-bc10-4dcf-8142-708b57d181cf@kernel.org> <CAC=S1nhiJ=7yAucJsaYKUUBrwrxOVBMB2CF=bFwyLa2o-5RmWw@mail.gmail.com>
- <64cc35c8-30df-4882-a933-f42119270f48@kernel.org> <CAC=S1ni+pJJZhbjvVqhba5u1JqGv=dZTv8+KH4xburea2AG4Qg@mail.gmail.com>
- <a9a7038c-4478-4366-831a-81dca8fa5afc@kernel.org>
-In-Reply-To: <a9a7038c-4478-4366-831a-81dca8fa5afc@kernel.org>
-From: Fei Shao <fshao@chromium.org>
-Date: Wed, 25 Sep 2024 19:06:08 +0800
-X-Gmail-Original-Message-ID: <CAC=S1njoAwU+7aveWziJBD760k2LGD=D89Wwb9FmdaPp-sA5nw@mail.gmail.com>
-Message-ID: <CAC=S1njoAwU+7aveWziJBD760k2LGD=D89Wwb9FmdaPp-sA5nw@mail.gmail.com>
-Subject: Re: [PATCH 06/13] arm64: dts: mediatek: mt8188: Update VPPSYS node
- name and compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On Mon, Sep 16, 2024 at 6:02=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 10/09/2024 13:06, Fei Shao wrote:
-> > On Tue, Sep 10, 2024 at 3:19=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> >>
-> >> On 10/09/2024 07:12, Fei Shao wrote:
-> >>> On Mon, Sep 9, 2024 at 7:41=E2=80=AFPM Krzysztof Kozlowski <krzk@kern=
-el.org> wrote:
-> >>>>
-> >>>> On 09/09/2024 13:14, Fei Shao wrote:
-> >>>>> Use and add "syscon" in VPPSYS node names and compatible to fix err=
-ors
-> >>>>> from `make CHECK_DTBS=3Dy mediatek/mt8188-evb.dtb`.
-> >>>>>
-> >>>>> Signed-off-by: Fei Shao <fshao@chromium.org>
-> >>>>> ---
-> >>>>>
-> >>>>>  arch/arm64/boot/dts/mediatek/mt8188.dtsi | 8 ++++----
-> >>>>>  1 file changed, 4 insertions(+), 4 deletions(-)
-> >>>>>
-> >>>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/=
-boot/dts/mediatek/mt8188.dtsi
-> >>>>> index 2900d78b7ceb..14e51a11f688 100644
-> >>>>> --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-> >>>>> +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-> >>>>> @@ -1799,8 +1799,8 @@ mfgcfg: clock-controller@13fbf000 {
-> >>>>>                       #clock-cells =3D <1>;
-> >>>>>               };
-> >>>>>
-> >>>>> -             vppsys0: clock-controller@14000000 {
-> >>>>> -                     compatible =3D "mediatek,mt8188-vppsys0";
-> >>>>> +             vppsys0: syscon@14000000 {
-> >>>>> +                     compatible =3D "mediatek,mt8188-vppsys0", "sy=
-scon";
-> >>>>
-> >>>> If this was working before, it looks like this is not a syscon and
-> >>>> bindings need to be fixed.
-> >>>
-> >>> I guess it's because the binding was later updated in commit
-> >>> 26bcd8a53098 ("dt-bindings: arm: mediatek: mmsys: Add VPPSYS
-> >>> compatible for MT8188"), and the corresponding DT update was unnotice=
-d
-> >>> at the time.
-> >>> If that makes sense then this should be a valid fix.
-> >>
-> >> Not necessarily. Why not fixing bindings? Prove that bindings are
-> >> correct, not DTS, first.
-> >
-> > MediaTek's mmsys doesn't merely control clocks, it also provides
-> > display pipeline routing control and other misc control registers, so
-> > it's appropriate to categorize it as a system controller over a clock
-> > controller.
-> > As for vdosys and vppsys, they are likely variants or aliases of mmsys
-> > introduced in their newer SoCs.
->
-> Nothing like that was in the commit msg...
+Hi Christian,
 
-Just for a record, I've revised the commit message in the newer series:
-https://lore.kernel.org/all/20240925110044.3678055-7-fshao@chromium.org/
+ansuelsmth@gmail.com wrote on Wed, 25 Sep 2024 12:13:58 +0200:
+
+> Add Documentation for Airoha fixed-partitions compatibles.
+>=20
+> Airoha based SoC declare a dedicated partition at the end of the flash to
+> store calibration and device specific data, in addition to fixed
+> partitions.
+>=20
+> The offset of this special partition is not well defined as a custom bad
+> block management driver is used that reserve space at the end of the flas=
+h.
+>=20
+> This binding allows defining all fixed partitions and marking the last one
+> to detect the correct offset.
+>=20
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../partitions/airoha,fixed-partitions.yaml   | 80 +++++++++++++++++++
+>  .../bindings/mtd/partitions/partitions.yaml   |  1 +
+>  2 files changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/airo=
+ha,fixed-partitions.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/airoha,fixe=
+d-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/airoha=
+,fixed-partitions.yaml
+> new file mode 100644
+> index 000000000000..a45df51065af
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/airoha,fixed-parti=
+tions.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/partitions/airoha,fixed-partition=
+s.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Airoha SoC partitioning
+> +
+> +description: |
+> +  Airoha based SoC declare a dedicated partition at the end of the flash=
+ to
+> +  store calibration and device specific data, in addition to fixed parti=
+tions.
+> +
+> +  The offset of this special partition is not well defined as a custom b=
+ad block
+> +  management driver is used that reserve space at the end of the flash.
+> +
+> +  This binding allows defining all fixed partitions and marking the last=
+ one to
+> +  detect the correct offset from the new end of the flash.
+> +
+> +maintainers:
+> +  - Christian Marangi <ansuelsmth@gmail.com>
+> +
+> +select: false
+> +
+> +properties:
+> +  compatible:
+> +    const: airoha,fixed-partitions
+> +
+> +  "#address-cells":
+> +    enum: [ 1, 2 ]
+> +
+> +  "#size-cells":
+> +    enum: [ 1, 2 ]
+> +
+> +patternProperties:
+> +  "^partition@[0-9a-f]+$":
+> +    $ref: partition.yaml#
+> +    properties:
+> +      compatible:
+> +        const: airoha,dynamic-art
+> +    unevaluatedProperties: false
+> +
+> +required:
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    partitions {
+> +        compatible =3D "airoha,fixed-partitions";
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <1>;
+> +
+> +        partition@0 {
+> +          label =3D "bootloader";
+> +          reg =3D <0x00000000 0x00080000>;
+> +        };
+> +
+> +        partition@80000 {
+> +          label =3D "tclinux";
+> +          reg =3D <0x00080000 0x02800000>;
+> +        };
+> +
+> +        partition@2880000 {
+> +          label =3D "tclinux_slave";
+> +          reg =3D <0x02880000 0x02800000>;
+> +        };
+> +
+> +        partition@5080000 {
+> +          label =3D "rootfs_data";
+> +          reg =3D <0x5080000 0x00800000>;
+> +        };
+> +
+> +        partition@ffffffff {
+> +          compatible =3D "airoha,dynamic-art";
+> +          label =3D "art";
+> +          reg =3D <0xffffffff 0x00300000>;
+
+I'm a little bit puzzled by this kind of information which is known to
+be wrong. As the partition offset and size must be dynamically
+calculated, this reg property (as well as the size parameter of the
+previous one) are notably wrong. I guess we are not fully constrained
+by the fixed-partitions schema here, so could we avoid the reg property
+in the airoha,dynamic-art partition? Maybe we also need a #define for a
+specific placeholder in the penultimate reg property too (for the size).
 
 Thanks,
-Fei
+Miqu=C3=A8l
 
