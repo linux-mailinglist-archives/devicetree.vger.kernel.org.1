@@ -1,286 +1,230 @@
-Return-Path: <devicetree+bounces-105238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36F559857FD
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 13:30:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF12E98580A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 13:35:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD2411F21701
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:30:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D81D1F21604
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:35:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37E2C14B07E;
-	Wed, 25 Sep 2024 11:30:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FA7214600D;
+	Wed, 25 Sep 2024 11:35:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b="K2ZB8PiQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q9eIU1U4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from uho.ysoft.cz (uho.ysoft.cz [81.19.3.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 131AF13A884;
-	Wed, 25 Sep 2024 11:30:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=81.19.3.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9D05137775;
+	Wed, 25 Sep 2024 11:35:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727263843; cv=none; b=SMoXn0kqRBkdYm3qF4VRhNqQCVtmxyTSoOxM1LgJkTBxDX7JZ00oNGR3TMQ+yp60DQNcBNX1bLbcUSrlBbtmvTyWH0Z8wdaO7VxS8EDPQH8BahusK5McZfU8lUJNQIw1B0jGFp0aHgJGR/oAlzsl1lQNTfqYm4f0l/20mOCLUyw=
+	t=1727264146; cv=none; b=C3rcmgwmcZCLkR/GFVp9hWD9THvwA3/1ZvMmH+K9D/AftIavPospDS/W6qxTu9GV4COvDam+JWaC0MEbs7iHK9bl2j3g9Ye9rlSyzSIHF8f27CWZiubGwfeh1EiCJQM973G8ELIavol00n1sHljIFNDxggYPDdDwY25lJn9uoHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727263843; c=relaxed/simple;
-	bh=kH3tIv8Rti5+DuHw8zFtAnwwGg+1JNCj8v1UnbudLJE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=THAxb9Cu+kOR0ivWJObVY5dVLn8xjMVPqsFicLmpfuVQMn9HmaKeSL4f7QWdGgVxaNPOj/2qYi8Z2qwdP4ytsGo9WwOssEOlsqDuP1ly5oHp9BVtkrDbhkUynDhG7AWKSB/0dbEFQThOzxMNjTcXMkFW++UD2ku22p884xnU3HQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com; spf=pass smtp.mailfrom=ysoft.com; dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b=K2ZB8PiQ; arc=none smtp.client-ip=81.19.3.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ysoft.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-	s=20160406-ysoft-com; t=1727263832;
-	bh=hxagW0FnMKA1WsvZNBxUuoXtqQsT77XoKbAVByUrEvw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=K2ZB8PiQCH0Of/+V6shxnF1wQSHyYoF7T3dCeTs1dCkPe5oGFH9UsRFKj4XdkIjLV
-	 MV1Ip/5AON2FxDr5Q8yIN26v8XuSeUU3S+aA725nCw7HPZ9D9enfRpAeZWI3fQlh/u
-	 XjlIVrz02VBW2l1EmRk9iFsTw2+ovlipoZkpfg/A=
-Received: from [10.1.8.111] (unknown [10.1.8.111])
-	by uho.ysoft.cz (Postfix) with ESMTP id DF20CA025E;
-	Wed, 25 Sep 2024 13:30:31 +0200 (CEST)
-Message-ID: <87980643-44b4-4df9-9eb7-1583b5074bdd@ysoft.com>
-Date: Wed, 25 Sep 2024 13:30:31 +0200
+	s=arc-20240116; t=1727264146; c=relaxed/simple;
+	bh=/pSQ/xNkOX6ORmM05y8rQhImn2uy639aERh7uoQXfDw=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ivlKb2HNsCWqU9BKXhSaoSGugoX0sYpumPmYvMyHpcqMN4YNL3zoxL4iYalAEhX7s9v4KQXfsQuoAHivFnTG6QtRvv0sXQDWP1XSnk6dI+KRmcAUxbr8p8jIS5cU7edvnAR+8ReV/FogcMw68hR4Ih+PL0ZMDjLXGSw6+UBF0kQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q9eIU1U4; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-375e5c12042so3484363f8f.3;
+        Wed, 25 Sep 2024 04:35:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727264143; x=1727868943; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=qWs4MKWn4IG5TDYW4mkeYaUP9TdSrJm2s49LW7b6huE=;
+        b=Q9eIU1U4jcD0YkCcfmMRRhl7IcsJnlxHvC2AFOpIe6SbgblAMaz3DvI80A2O+QmiR7
+         fHDgt6y1s53BIgumPDJ9CyfdIjQ3C9y1j9S8TdWjRbqcGIaD5o9Vgvs3/Bw3EgyL1j39
+         QRusOyFwB8Y+p5QjUNXMYSdCC+LFjhDCFCzsIF/oA4o6b1K949nAEn7KQ3SEeZFRKp40
+         d9gTODMffNG4IWVMbPnyoW7ihFA6AsVRgFeOIYgmTXMuRE9NZOfkMRc9zepStlYiGaL8
+         fqDse2dD4v0N+9bCmm29By73A8TOU+8kw824QpOVIsWrrypC4RXGGFXweA5HoZk7ycFv
+         2twg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727264143; x=1727868943;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qWs4MKWn4IG5TDYW4mkeYaUP9TdSrJm2s49LW7b6huE=;
+        b=roQnvtP51JQwf3LoWSGkM7/5fisiXCLr4OwUrIe/B50BmKuLvcW/41XirxpYYRMxb2
+         M+wQgynKmyfby/AX61g2VhzUshCIVV/lBwvrdTUUa2fwcw+4oMC0vNVcppFrl8z97LpN
+         5kWQH6EVXqmywGeGbRFfcn/RLDo7aumxAB2PfLuXBg6kZcu1xbQZBdaBgEefJdfRe/PR
+         moODWczRGGxE9hVvW1nWHz1B3IdvomwX7MqtBmE4q//aHupew7z3cJkctZJ17wbbpEth
+         Nekd9xPkD0P1RDtaDR3BoUr1yzameeKimLrIx6e5eYspsqjCYxEZBXWsI1o2OUxH+cNP
+         FmBA==
+X-Forwarded-Encrypted: i=1; AJvYcCVx8dH7OadR23rFHKRJU7F7PsTgbqLiFkLnCTrThxHfXF7SqWtDSmEGRnHCsv7r9NGQn5TvNK1lM54U@vger.kernel.org, AJvYcCWsf2DG3Cta8K1HvuYwMCtdduO9mRQwdU7qE/8qrDJmHtULYw9D6JAPVsbQdTMo8yKOehypRlraFvSAhBJC@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiNp89Vv6gTafb+EFTPJ/m8iITWAikjY4b53OTw/ER23TBIPib
+	TBIZWhZPGFbqJbvYPXbbEsX9GH1M1JCFeAP2HLeX7FXXxNp91faG
+X-Google-Smtp-Source: AGHT+IHRdPtqmM9PLpkqO4zrDeiSAfnuAfG5Sq385VHJ2FgMeMRF8IuH66Jm6m6MGMrtVGh0FU9tAA==
+X-Received: by 2002:a5d:4b07:0:b0:374:c1bd:f7c0 with SMTP id ffacd0b85a97d-37cc2479fa9mr1649530f8f.22.1727264142558;
+        Wed, 25 Sep 2024 04:35:42 -0700 (PDT)
+Received: from Ansuel-XPS. (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cbc32add1sm3713658f8f.114.2024.09.25.04.35.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Sep 2024 04:35:42 -0700 (PDT)
+Message-ID: <66f3f58e.5d0a0220.5d655.b48a@mx.google.com>
+X-Google-Original-Message-ID: <ZvP1isSJk2ebHdLz@Ansuel-XPS.>
+Date: Wed, 25 Sep 2024 13:35:38 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Lorenzo Bianconi <lorenzo@kernel.org>,
+	upstream@airoha.com
+Subject: Re: [PATCH 2/3] dt-bindings: mtd: Add Documentation for Airoha
+ fixed-partitions
+References: <20240925101422.8373-1-ansuelsmth@gmail.com>
+ <20240925101422.8373-3-ansuelsmth@gmail.com>
+ <20240925133003.619c40c4@xps-13>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] arm64: dts: imx: Add imx8mp-iota2-lumpy board
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Michael Walle <mwalle@kernel.org>,
- devicetree@vger.kernel.org, Alexander Stein
- <alexander.stein@ew.tq-group.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Mathieu Othacehe <m.othacehe@gmail.com>,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>, linux-kernel@vger.kernel.org,
- Hiago De Franco <hiago.franco@toradex.com>,
- Herburger <gregor.herburger@ew.tq-group.com>,
- Petr Benes <petr.benes@ysoft.com>, linux-usb@vger.kernel.org,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Joao Paulo Goncalves <joao.goncalves@toradex.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, imx@lists.linux.dev,
- Shawn Guo <shawnguo@kernel.org>, linux-arm-kernel@lists.infradead.org,
- Frank Li <Frank.li@nxp.com>
-References: <20240924103941.1729061-1-michal.vokac@ysoft.com>
- <20240924103941.1729061-3-michal.vokac@ysoft.com>
- <ZvLXenqG/++AR4We@lizhi-Precision-Tower-5810>
- <20240924173714.qxxkhn6wscze7q5n@pengutronix.de>
-Content-Language: en-US
-From: =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
-In-Reply-To: <20240924173714.qxxkhn6wscze7q5n@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240925133003.619c40c4@xps-13>
 
-On 24. 09. 24 19:37, Marco Felsch wrote:
-> Hi Frank,
+On Wed, Sep 25, 2024 at 01:30:03PM +0200, Miquel Raynal wrote:
+> Hi Christian,
 > 
-> On 24-09-24, Frank Li wrote:
->> On Tue, Sep 24, 2024 at 12:39:41PM +0200, Michal Vokáč wrote:
->>> The IOTA2 Lumpy board is based on the i.MX8MPlus EVK.
->>>
->>> Basic features are:
->>> - 4GB LPDDR4
->>> - 64GB eMMC
->>> - 2x 1GB Ethernet
->>> - USB 3.0 Type-C dual role port, without power delivery
->>> - USB 3.0 Type-A host port
->>> - RGB LED - PWM driven
->>> - speaker - PWM driven
->>> - RTC with super capacitor backup
->>>
->>> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
->>> ---
->>> v4:
->>> - Moved the iomuxc node to the end of the file.
->>> - Moved the bus-width and non-removeable properties below
->>>    the pinctrl-* properties in &usdhc3 node.
->>> - Moved the fsl,ext-reset-output below the pinctrl-* properties
->>>    in &wdog1 node.
->>> v3:
->>> - Dropped pinctrl-names property from &usb_dwc3_1 node.
->>> v2:
->>> - Dropped unused property from pwm4 node.
->>> - Sorted all nodes and properties using dt-format tool from Frank.
->>>
->>>   arch/arm64/boot/dts/freescale/Makefile        |   1 +
->>>   .../boot/dts/freescale/imx8mp-iota2-lumpy.dts | 423 ++++++++++++++++++
->>
->> Suggest use https://github.com/lznuaa/dt-format
->> sort node. any issue, let me know.
+> ansuelsmth@gmail.com wrote on Wed, 25 Sep 2024 12:13:58 +0200:
 > 
-> Thanks for the link :) would be nice to have this script to be part of
-> the kernel. The script follows the rules in [1] I'm just used to have
-> common properties like pinctrl-* in front of the device specific
-> properties e.g. "enable-active-high". But this rule is not part of [1]
-> so I can't blame the script.
+> > Add Documentation for Airoha fixed-partitions compatibles.
+> > 
+> > Airoha based SoC declare a dedicated partition at the end of the flash to
+> > store calibration and device specific data, in addition to fixed
+> > partitions.
+> > 
+> > The offset of this special partition is not well defined as a custom bad
+> > block management driver is used that reserve space at the end of the flash.
+> > 
+> > This binding allows defining all fixed partitions and marking the last one
+> > to detect the correct offset.
+> > 
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > ---
+> >  .../partitions/airoha,fixed-partitions.yaml   | 80 +++++++++++++++++++
+> >  .../bindings/mtd/partitions/partitions.yaml   |  1 +
+> >  2 files changed, 81 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/airoha,fixed-partitions.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mtd/partitions/airoha,fixed-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/airoha,fixed-partitions.yaml
+> > new file mode 100644
+> > index 000000000000..a45df51065af
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mtd/partitions/airoha,fixed-partitions.yaml
+> > @@ -0,0 +1,80 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mtd/partitions/airoha,fixed-partitions.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Airoha SoC partitioning
+> > +
+> > +description: |
+> > +  Airoha based SoC declare a dedicated partition at the end of the flash to
+> > +  store calibration and device specific data, in addition to fixed partitions.
+> > +
+> > +  The offset of this special partition is not well defined as a custom bad block
+> > +  management driver is used that reserve space at the end of the flash.
+> > +
+> > +  This binding allows defining all fixed partitions and marking the last one to
+> > +  detect the correct offset from the new end of the flash.
+> > +
+> > +maintainers:
+> > +  - Christian Marangi <ansuelsmth@gmail.com>
+> > +
+> > +select: false
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: airoha,fixed-partitions
+> > +
+> > +  "#address-cells":
+> > +    enum: [ 1, 2 ]
+> > +
+> > +  "#size-cells":
+> > +    enum: [ 1, 2 ]
+> > +
+> > +patternProperties:
+> > +  "^partition@[0-9a-f]+$":
+> > +    $ref: partition.yaml#
+> > +    properties:
+> > +      compatible:
+> > +        const: airoha,dynamic-art
+> > +    unevaluatedProperties: false
+> > +
+> > +required:
+> > +  - "#address-cells"
+> > +  - "#size-cells"
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    partitions {
+> > +        compatible = "airoha,fixed-partitions";
+> > +        #address-cells = <1>;
+> > +        #size-cells = <1>;
+> > +
+> > +        partition@0 {
+> > +          label = "bootloader";
+> > +          reg = <0x00000000 0x00080000>;
+> > +        };
+> > +
+> > +        partition@80000 {
+> > +          label = "tclinux";
+> > +          reg = <0x00080000 0x02800000>;
+> > +        };
+> > +
+> > +        partition@2880000 {
+> > +          label = "tclinux_slave";
+> > +          reg = <0x02880000 0x02800000>;
+> > +        };
+> > +
+> > +        partition@5080000 {
+> > +          label = "rootfs_data";
+> > +          reg = <0x5080000 0x00800000>;
+> > +        };
+> > +
+> > +        partition@ffffffff {
+> > +          compatible = "airoha,dynamic-art";
+> > +          label = "art";
+> > +          reg = <0xffffffff 0x00300000>;
 > 
-> Regards,
->    Marco
-> 
-> [1] https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
+> I'm a little bit puzzled by this kind of information which is known to
+> be wrong. As the partition offset and size must be dynamically
+> calculated, this reg property (as well as the size parameter of the
+> previous one) are notably wrong. I guess we are not fully constrained
+> by the fixed-partitions schema here, so could we avoid the reg property
+> in the airoha,dynamic-art partition? Maybe we also need a #define for a
+> specific placeholder in the penultimate reg property too (for the size).
+>
 
-Thank you for the review Frank & Marco.
-I quickly went through the file again and found another few properties
-that could be better ordered according to the kernel documentation [1].
+Maybe instead of reg we can use a property like size?
 
->>>   2 files changed, 424 insertions(+)
->>>   create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
->>>
->>> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
->>> index 9d3df8b218a2..aa26a50b7bb4 100644
->>> --- a/arch/arm64/boot/dts/freescale/Makefile
->>> +++ b/arch/arm64/boot/dts/freescale/Makefile
->>> @@ -171,6 +171,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk2.dtb
->>>   dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk3.dtb
->>>   dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
->>>   dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
->>> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-iota2-lumpy.dtb
->>>   dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
->>>   dtb-$(CONFIG_ARCH_MXC) += imx8mp-navqp.dtb
->>>   dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
->>> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts b/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
->>> new file mode 100644
->>> index 000000000000..9eb58e818dc7
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
->>> @@ -0,0 +1,423 @@
->>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>> +/*
->>> + * Copyright 2023 Y Soft
->>> + */
->>> +
->>> +/dts-v1/;
->>> +
->>> +#include "imx8mp.dtsi"
->>> +
->>> +/ {
->>> +	compatible = "ysoft,imx8mp-iota2-lumpy", "fsl,imx8mp";
->>> +	model = "Y Soft i.MX8MPlus IOTA2 Lumpy board";
->>> +
->>> +	beeper {
->>> +		compatible = "pwm-beeper";
->>> +		pwms = <&pwm4 0 500000 0>;
->>> +	};
->>> +
->>> +	chosen {
->>> +		stdout-path = &uart2;
->>> +	};
->>> +
->>> +	gpio_keys: gpio-keys {
->>> +		compatible = "gpio-keys";
->>> +		pinctrl-0 = <&pinctrl_gpio_keys>;
->>> +		pinctrl-names = "default";
->>> +
->>> +		button-reset {
->>> +			gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;
->>> +			label = "Factory RESET";
->>> +			linux,code = <BTN_0>;
->>> +		};
->>> +	};
->>> +
->>> +	reg_usb_host: regulator-usb-host {
->>> +		compatible = "regulator-fixed";
->>> +		enable-active-high;
->>> +		gpio = <&gpio1 14 GPIO_ACTIVE_HIGH>;
+Can you better elaborate the suggestion about the #define?
 
-The enable-active-high and gpio should go bellow regulator-*.
+Do you mean for case where the last partition might overlap
+with the penultimate? Honestly in such case I would error hard, that
+case happen when too much space is reserved and that is a
+misconfiguration of the system (developer error)
 
->>> +		pinctrl-0 = <&pinctrl_usb_host_vbus>;
->>> +		pinctrl-names = "default";
->>> +		regulator-max-microvolt = <5000000>;
->>> +		regulator-min-microvolt = <5000000>;
->>> +		regulator-name = "usb-host";
->>> +	};
->>> +
->>> +	memory@40000000 {
->>> +		reg = <0x0 0x40000000 0 0x80000000>,
->>> +		      <0x1 0x00000000 0 0x80000000>;
->>> +		device_type = "memory";
->>> +	};
->>> +};
->>> +
->>> +&A53_0 {
->>> +	cpu-supply = <&reg_arm>;
->>> +};
->>> +
->>> +&A53_1 {
->>> +	cpu-supply = <&reg_arm>;
->>> +};
->>> +
->>> +&A53_2 {
->>> +	cpu-supply = <&reg_arm>;
->>> +};
->>> +
->>> +&A53_3 {
->>> +	cpu-supply = <&reg_arm>;
->>> +};
->>> +
->>> +&eqos {
->>> +	phy-handle = <&ethphy0>;
->>> +	phy-mode = "rgmii-id";
->>> +	pinctrl-0 = <&pinctrl_eqos>;
->>> +	pinctrl-names = "default";
->>> +	status = "okay";
->>> +
->>> +	mdio {
->>> +		compatible = "snps,dwmac-mdio";
->>> +		#address-cells = <1>;
->>> +		#size-cells = <0>;
->>> +
->>> +		ethphy0: ethernet-phy@0 {
->>> +			reg = <0>;
->>> +			interrupts = <21 IRQ_TYPE_LEVEL_LOW>;
->>> +			interrupt-parent = <&gpio3>;
->>> +			micrel,led-mode = <0>;
-
-The micrel,* is a vendor specific property. It should go bellow the reset-*.
-
->>> +			pinctrl-0 = <&pinctrl_ethphy0>;
->>> +			pinctrl-names = "default";
->>> +			reset-assert-us = <1000>;
->>> +			reset-deassert-us = <1000>;
->>> +			reset-gpios = <&gpio3 22 GPIO_ACTIVE_LOW>;
->>> +		};
->>> +	};
->>> +};
->>> +
->>> +&fec {
->>> +	fsl,magic-packet;
->>> +	phy-handle = <&ethphy1>;
->>> +	phy-mode = "rgmii-id";
->>> +	pinctrl-0 = <&pinctrl_fec>;
->>> +	pinctrl-names = "default";
->>> +	status = "okay";
->>> +
->>> +	mdio {
->>> +		#address-cells = <1>;
->>> +		#size-cells = <0>;
->>> +
->>> +		ethphy1: ethernet-phy@0 {
->>> +			reg = <0>;
->>> +			interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
->>> +			interrupt-parent = <&gpio3>;
->>> +			micrel,led-mode = <0>;
-
-Same as above, micrel,* should go bellow common properties.
-I will send a v5 with these fixed.
-
-Michal
-
->>> +			pinctrl-0 = <&pinctrl_ethphy1>;
->>> +			pinctrl-names = "default";
->>> +			reset-assert-us = <1000>;
->>> +			reset-deassert-us = <1000>;
->>> +			reset-gpios = <&gpio3 20 GPIO_ACTIVE_LOW>;
->>> +		};
->>> +	};
->>> +};
->>> +
+-- 
+	Ansuel
 
