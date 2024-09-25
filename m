@@ -1,118 +1,129 @@
-Return-Path: <devicetree+bounces-105376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3E289868CC
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 23:57:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57CD09868E1
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 00:00:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87C5528240D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 21:57:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 102672824B5
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 22:00:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85A17156236;
-	Wed, 25 Sep 2024 21:57:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8973B165F1A;
+	Wed, 25 Sep 2024 22:00:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ep5aeaa6"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="hrLLV57n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 251B53A8F0;
-	Wed, 25 Sep 2024 21:57:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F11C315B570
+	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 22:00:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727301434; cv=none; b=Svqu59to5pOjTaszU4gv/39GjmlN+2VA66WK9HmHyTTP55oM3e1Y11gMBuBsMCRazeQrQyWrvHFSqnNjS/CoMk3JPxlBjcPBjnrhqzuUInE1FgTTeF5m9tEyYIvZePCvNVJA2DWXBAaLL6VEZitGUmKM2KrxBWonGdOikdClClU=
+	t=1727301613; cv=none; b=GQ8SuXEeLakf8Rc3gXxGAoCSs4urEWExp4srKY2EFgKgJO61BamTmLu1lN5IH0wjofUPUW+lZ6C5vX0wEHp/CNAEJF+RgGxAkxfowyLqkLEh6hVC15GQDDzW7WTkDZ5/CaSaOofYQ0jS0WT8ltCsB8WkYI2Du97PitSoqIK7huc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727301434; c=relaxed/simple;
-	bh=Rqc2X5SMPu63Cqa+DDX7JyDhlqatIp5x/uNwDdENIiY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tzJOQgjnbknOMsNwqplUWOEiud/c/l0bxVz//onFDyJHh7xctkmZXaRLojHX6SD6QzrMkoxsYVEmi6aOtpM1WjiuTYxZGt58K8vpwwg1TgoeTG85sWZfWzdQV/qnAhtcgro3dTvgdaki58Myjd+hePN3xWriMdao4a8L2VQlDs4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ep5aeaa6; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2068a7c9286so2638425ad.1;
-        Wed, 25 Sep 2024 14:57:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727301432; x=1727906232; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kh8uyuzwH0iOnzLqnw2uzJ+CxTGFRCNbmwoBnNZzNgE=;
-        b=Ep5aeaa6Sk85YbjGGJL8yTPZuRGjk54rog8tgR01+uuy+TjSWZbeWqkmsEh0vTh3hy
-         OjZ6LDULKuxSMZhSC3WkMrQnhTQNkS7cT71WZZ+uDIZQtqbE7aM8xK6Hlz1IBBwTvDJQ
-         D6Oq2RDv2o329/91FJqHNWHqJhZJWrUxCUsw/NTzK0c/3tkCSZkTF07JGQWzrKOCGjt0
-         73XMxXZtkZzzCB250j4VMNDLp5r/BJfDjDY+1Uql4OF2xXGRBeaei3txOnjRQOy7mZBB
-         cC8gAimLGStfWKQjXET7QcQklncl0X/JP1n+NcYSy3PzmTY8KTYejH66rA7YdRlvjAcY
-         qr6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727301432; x=1727906232;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Kh8uyuzwH0iOnzLqnw2uzJ+CxTGFRCNbmwoBnNZzNgE=;
-        b=Yyo0/SuElH4+gHOuzM0C5WARD1IRAT6BwMwF5no4g/YStKnL9qql1OHRSjK5WQFw/P
-         DocNRR1oxU2J7UGtyuqyIV7LzBd/hLPvimohwmjdflfdLVyx4YGnXMxGUt9/BokRHFb9
-         Z5rdUb4GOaVycnZ+zkTie5zItU81kTH2w2X1cRmiIDI/UraUsnJl3h83PeADkf9XRsvm
-         YexnZ0WC9e3d3IruRvUABcam0XWYHWweKBwWjRu2b3yOoUeCSrFsxLs2Krqe05sYeBkg
-         Uj0VBzN+1clzDp4MI3jHV8URj4uXckIDllrmIP8kcGJAOhUWNqgWzYWC98Eir6LxbO3D
-         C7VQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUc4rgGt1wUnDSHESURVlO6k6sc6qvjfHeS9/STPAmNYCxb/enhLZbHI6Hm5eqvZYsIT0LQDNKSn52W1Nc=@vger.kernel.org, AJvYcCWsoLAAACz74MsOV3G9TP4vc7pUQJdM7a7zQhU4H1IJL9SBpg/xwYNhL7yYY/SmYNA8AhHLFIu5vqKF@vger.kernel.org, AJvYcCXlgHx2XXlI3m/Q4hs04dJnpEQuTdj2NfnBlfELrlPnWkOhiDDXzS/mqneEzZlcbMhUVyLf/nPBNAzLLP+B@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuCBVvhjCld6Q4ruy2+gZskeZDFV6tt23ychsfcnChRKvQbxjC
-	TokYfnCiV4rii7XMioWmrQ1Lf0RWg6WebgZgwl/gL8dYbBbvxN/0
-X-Google-Smtp-Source: AGHT+IH7P/xvl10Q1V+B6l7XzaGTGgPRRYGBLveGCGwyzJDP/1Re4PziTBm+SPob5q8/JdKGxQGdeA==
-X-Received: by 2002:a17:903:41cd:b0:205:5582:d650 with SMTP id d9443c01a7336-20afc5e3a39mr63011295ad.52.1727301432257;
-        Wed, 25 Sep 2024 14:57:12 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:dda4:383f:ca3a:82bb])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20af17e01absm28424475ad.174.2024.09.25.14.57.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2024 14:57:11 -0700 (PDT)
-Date: Wed, 25 Sep 2024 14:57:08 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Jiri Kosina <jikos@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Charles Wang <charles.goodix@gmail.com>,
-	dianders@chromium.org, dan.carpenter@linaro.org, conor@kernel.org,
-	krzk+dt@kernel.org, bentiss@kernel.org, hbarnor@chromium.org,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	s=arc-20240116; t=1727301613; c=relaxed/simple;
+	bh=19Zs19igwwTsRGrW+qSDylhuecdiuTJmIxRPpqgQ34g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WIDoP+DC7exLm0Qm8Nie4RJ99iaQWFMk/irKxuCW5T1LbCK70t1b6BGQZZA9JqHsih6kOvvIaXtWcaQmSkvKdhY+Paac+gJu6kSxBhI2fAtKlgKtCYBUF3DSb1AnBF+F3quZzKjE5cbIqoQAh146tzYplrNzBr/wL3aYZCj4sb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=hrLLV57n; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 7EEEC2C035A;
+	Thu, 26 Sep 2024 10:00:02 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1727301602;
+	bh=xp0rMPwXL9MRqFT9Vuzo1/tmgEzpG+feYWJ8UxT0M/o=;
+	h=From:To:Cc:Subject:Date:From;
+	b=hrLLV57nthwbrWRmx8OZtAP+n2fMdx8JO+L9HXov/ZCqDOex8wdPYRLxAT7e3dVu8
+	 Xuto5EE1RB81KGGeaZm6sWphMzs1USFid1HNK1Ze/C1ry8xa9hs++eerfgReyIvanU
+	 AB89E9Wd+U9wink7fRI2yU0iBDRLglcP5cEfS9CEaDn76QiDkv1Mk3VOPAjr+v/xKp
+	 yLIlOekqGEUENI1btiG660+65bNz0ub+69dvarm4ZwME+6BwGWjG/X4qu/1mqiNiWB
+	 IkHfg06BVASL0mdESOecjP4gUGTpIb1n7j3vJ9W3KX4EypNAWakk5OTVM7jzMWBSf+
+	 JhOnIrV4Wry+Q==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B66f487e20000>; Thu, 26 Sep 2024 10:00:02 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id 0AC0313EE36;
+	Thu, 26 Sep 2024 10:00:02 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+	id 05413280532; Thu, 26 Sep 2024 10:00:02 +1200 (NZST)
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+To: andi.shyti@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	lee@kernel.org,
+	sre@kernel.org,
+	tsbogend@alpha.franken.de
+Cc: linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v7 2/2] dt-bindings: input: Goodix SPI HID Touchscreen
-Message-ID: <ZvSHNFPPC1NNq33J@google.com>
-References: <20240814024513.164199-1-charles.goodix@gmail.com>
- <20240814024513.164199-3-charles.goodix@gmail.com>
- <CAL_Jsq+QfTtRj_JCqXzktQ49H8VUnztVuaBjvvkg3fwEHniUHw@mail.gmail.com>
- <CAL_JsqKUDj6vrWMVVBHrDeXdb3ogsMb3NUbV6OjKR-EhLLZuGg@mail.gmail.com>
- <CAL_Jsq+6fvCaxLexo9c6zs+8vwyfPAOCCVsejw_uKURVU-Md9w@mail.gmail.com>
- <ZvSEkn66qNziJV0M@google.com>
- <nycvar.YFH.7.76.2409252347140.31206@cbobk.fhfr.pm>
+	linux-pm@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v5 0/6] RTL9300 support for reboot and i2c
+Date: Thu, 26 Sep 2024 09:58:41 +1200
+Message-ID: <20240925215847.3594898-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.46.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <nycvar.YFH.7.76.2409252347140.31206@cbobk.fhfr.pm>
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=Id0kWnqa c=1 sm=1 tr=0 ts=66f487e2 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=EaEq8P2WXUwA:10 a=bFzpBXSQfSLquZs-7NAA:9 a=3ZKOabzyN94A:10
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-On Wed, Sep 25, 2024 at 11:48:50PM +0200, Jiri Kosina wrote:
-> On Wed, 25 Sep 2024, Dmitry Torokhov wrote:
-> 
-> > I see that Krzysztof sent a revert, but what a proper fix would be?
-> > Apparently Goodix is using the same product ID gt7986u for both I2C and
-> > SPI parts, and covering them in one binding is not really easy (well, I
-> > guess it is possible with a big ugly "if"). Do we just slap "-spi"
-> > suffix on the compatible, so it becomes "goodix,gt7986u-spi" and go on
-> > on our merry way? 
-> 
-> I actually see this as a viable option, given the circumstances.
-> 
-> However, given the non-responsiveness of the original author, I am now 
-> proceeding with the revert, and we can try to sort it out later.
+As requested I've combined my two series into a single one to provide som=
+e
+better context for reviewers. I'm not sure which trees the patches should=
+ go in
+via. The first two are reasonably independent and could go in via linux-p=
+m. I
+guess technically the last one could go via linux-i2c but it needs the an=
+d the
+bindings/dts updates which would probably make sense to come via linux-mi=
+ps.
 
-Yeah, no objections there.
+--
+2.46.1
 
-Thanks.
+Chris Packham (6):
+  dt-bindings: reset: syscon-reboot: Add reg property
+  power: reset: syscon-reboot: Accept reg property
+  dt-bindings: mfd: Add Realtek RTL9300 switch peripherals
+  mips: dts: realtek: Add syscon-reboot node
+  mips: dts: realtek: Add I2C controllers
+  i2c: Add driver for the RTL9300 I2C controller
 
--- 
-Dmitry
+ .../bindings/i2c/realtek,rtl9300-i2c.yaml     |  98 ++++
+ .../bindings/mfd/realtek,rtl9300-switch.yaml  | 115 +++++
+ .../bindings/power/reset/syscon-reboot.yaml   |  11 +-
+ MAINTAINERS                                   |   7 +
+ .../cameo-rtl9302c-2x-rtl8224-2xge.dts        |   2 +-
+ arch/mips/boot/dts/realtek/rtl9302c.dtsi      |  15 +
+ arch/mips/boot/dts/realtek/rtl930x.dtsi       |  29 ++
+ drivers/i2c/busses/Kconfig                    |  10 +
+ drivers/i2c/busses/Makefile                   |   1 +
+ drivers/i2c/busses/i2c-rtl9300.c              | 422 ++++++++++++++++++
+ drivers/power/reset/syscon-reboot.c           |   3 +-
+ 11 files changed, 710 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/i2c/realtek,rtl9300=
+-i2c.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/realtek,rtl9300=
+-switch.yaml
+ create mode 100644 arch/mips/boot/dts/realtek/rtl9302c.dtsi
+ create mode 100644 drivers/i2c/busses/i2c-rtl9300.c
+
+--=20
+2.46.2
+
 
