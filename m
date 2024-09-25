@@ -1,147 +1,132 @@
-Return-Path: <devicetree+bounces-105384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8F6898691E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 00:20:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72DB4986961
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 01:21:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80953282432
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 22:20:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9817C1C21244
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 23:21:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FC2D148FE8;
-	Wed, 25 Sep 2024 22:20:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AED01A38E6;
+	Wed, 25 Sep 2024 23:20:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="aqHix8AA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gqYeOOiz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1291A148838
-	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 22:20:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 621A912BEBB;
+	Wed, 25 Sep 2024 23:20:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727302816; cv=none; b=FyEYTnB0v2xGxv9cD42k910PzAnfdqRVO4uiC/HIDm1hEabpHrhWqpY7kGr+E1SWeKgzDCnTqqbzPEPEQz4b+17QNpUWk+uITpRLjY2Oxw7adCaTCPOR8qUH3mJxbfn1xczyJU0SiwDLl+kB81S+gdPVI+WyUixk22NbTuSySRk=
+	t=1727306458; cv=none; b=BjmLgB82iGULdhCqxNMjhpoziK4WnWPAx+v6LXEm2Q5LGG6jwobIevbmviEVlQhmbeI8w/B3lHkpzTGD3iZnb8LDImYwfM8FZNfqJWbnYxOA4/9UXmfXGXaRXNmbhyZw8DmfL9cBxfnPUMuffEhxcHOsbymjhuUblhH+LYqQ3iQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727302816; c=relaxed/simple;
-	bh=xpJItLWdhVBCE/D81RajHvMZJ1ac8DMzzia3bzw8KGE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n1Ai1TpMyv3K1pd9jFJS9egIgW+TfOi1/iQldoewC77+pCSBhc9qDC+r5ns1F5q7m3gWWiqIDnCc/BFluiSFiVRDNahddBd0hU9gVEtIHo7Bqlp1q9AEAp/jEa+TXJvQYiHjqL/2GzF2qXyqnyKlSZ74gRjUbhWZIjKf/6uskp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=aqHix8AA; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id BD06C88B11;
-	Thu, 26 Sep 2024 00:20:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1727302812;
-	bh=do3Sl4RtSTlU/saLa7lvwjMUFA9Jfy3e1vkyEM6S3Q8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aqHix8AAszf/P0G1MSdqx9d2bNOMt34T9H8tnHl5WKnFSGKYxG4zYJNXzZwdZT9sh
-	 YO+9De/SvzzGPwtFZ4hh3HK/du9VJKbOs7Fw8kum1TNsVbPfx5MqBri6nks7tRcdP3
-	 7GI4440na5Z5GPxHPYom+NCKUgf3cBLLgbTbPx/3YqsoaCWI8TTYbj5++ZPwW6L8//
-	 lXPjRm15pkBaj086Lmta3ChHezksTgD1/Meml29499ahP5uS4Q8pEeexRETjYquvo+
-	 6+cU7cl4FUM58WPGQdkVfgts7+cZQ7/q0xTWcn9u7Cidm0MwwBc+JwB5TnhwL2gIPe
-	 56PUb/XSMprKg==
-Message-ID: <0d14b8e5-78e0-4b91-abf7-ec386dd363d4@denx.de>
-Date: Thu, 26 Sep 2024 00:08:03 +0200
+	s=arc-20240116; t=1727306458; c=relaxed/simple;
+	bh=Dt3mws66hpidkeU8bZmwgKFd/DilihuEBnlmhuq74v0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Ljy8HQLN/trnCoDpiIEzZ95425VU7qSMB0lLxdMiUZFKigYxkkJW2YdJQ6BFWLyzPNci8qoLOt+GUQOX+/bsau8KFr2VZltXKvfB1ZVZ2Pp5ZG/QZC/wVUnphSE4DrhbouHZ/gdFuVTkYv3ANGfWgygQkUJGClPLLZiulXu7fUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gqYeOOiz; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5c40942358eso742179a12.1;
+        Wed, 25 Sep 2024 16:20:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727306455; x=1727911255; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wzQJ809oKF/8Xbcsp5/HlODndiAMn4sR7T/Hw/y3LL4=;
+        b=gqYeOOizF8tJc73zYPp/o3M14NjRSPsIetzd6D0Ija6VaoTS/ffx/e1W+N3ivWFj+e
+         PFmWzUjIKTjA2qP3hAo2kmMVAj2zzhctn6K0tNZunbikY8J+v3Aj22z7vs2PpsCV0zG4
+         92aQsi5k9tsukNT43nx/z4rrnr4tSY2jiYtgRSL6+rSSNrk7bCwbVEb9dFSxwfAz/U3o
+         mUE0mOWKrEGUWCNfwNMYYkZAlKqYZzjr5Jz1B0zqJ3mBL8TpJ141yiUYA0gekuWGmW3E
+         PZ6FAF3LMT6jn029HKze3np00T5Hsm7ZyrUDrfrwawccs0M/nCqNlfIj1GJqyeiHrcR5
+         sAQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727306455; x=1727911255;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wzQJ809oKF/8Xbcsp5/HlODndiAMn4sR7T/Hw/y3LL4=;
+        b=AdGMHMC9+ZQ/mBSe4tpsKHFClpO3RxqsyIUi59MrfbQypFZqOFZzqHZYumSYRVclmj
+         2PmYpgL8qHSlwxYSyxdaV1k3KD6L2D+pfkAbTAQAsGbhu5Oe6je6CbHP94Zr5VA7A4Sd
+         rfkufpGOnNq+zsmoEBevo4mbe4OSG8QfghDNvGFenW18CANEt0Ujh4C+EQus+uYiOgBI
+         08h/M3M+l/0bw08mFwoQ7MqRZGK3v5mpOb1eO2uRicokHv8bX0KbXS3MglVCQOaJ1Xau
+         mN3pA3x88F/NIgLj0ibLWrt/nAjtYhw6sb/CFzgXVuCmwP9sqDegFheCr56zn931Qen0
+         MDcg==
+X-Forwarded-Encrypted: i=1; AJvYcCUGDHWZXBOtL5dbpbH2LCoeLNrGgYSPdgXHp3txc8rjqM/okQ1pUNY5g7D3O36RLYK6qMeoOA/IVAPFm40=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4vP1iAOJXrbdZwcBhv30TwZFuqj5pgacBdgt5hvEFp8+bapiD
+	pncw7sXOhDbCTr+x2B+yGrx021atCLdLY9dPb2Fb2YoHeqAiGTsl
+X-Google-Smtp-Source: AGHT+IETQdtsFkGWoGdY4X7UEHpfnHcKB9JMAlZCzHF/aPebg3M4dDMG8IxcrM6yp357zbxA8T3DDw==
+X-Received: by 2002:a05:6402:40d2:b0:5c7:2209:dedb with SMTP id 4fb4d7f45d1cf-5c8777b59c1mr999343a12.8.1727306454482;
+        Wed, 25 Sep 2024 16:20:54 -0700 (PDT)
+Received: from playground.localdomain ([86.127.146.72])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c5cf48c315sm2481026a12.15.2024.09.25.16.20.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Sep 2024 16:20:53 -0700 (PDT)
+From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Iuliana Prodan <iuliana.prodan@nxp.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/6] configure imx8 dsp DT node for rproc usage
+Date: Wed, 25 Sep 2024 19:20:02 -0400
+Message-Id: <20240925232008.205802-1-laurentiumihalcea111@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mp: Add DH i.MX8MP DHCOM SoM on DRC02
- carrier board
-To: Frank Li <Frank.li@nxp.com>
-Cc: linux-arm-kernel@lists.infradead.org, kernel@dh-electronics.com,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
- Gregor Herburger <gregor.herburger@ew.tq-group.com>,
- Hiago De Franco <hiago.franco@toradex.com>,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>,
- Joao Paulo Goncalves <joao.goncalves@toradex.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Mathieu Othacehe <m.othacehe@gmail.com>,
- Max Merchel <Max.Merchel@ew.tq-group.com>, Michael Walle
- <mwalle@kernel.org>, Peng Fan <peng.fan@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
- imx@lists.linux.dev
-References: <20240925001628.669604-1-marex@denx.de>
- <20240925001628.669604-2-marex@denx.de>
- <ZvQ6qWMAEZaR/5pl@lizhi-Precision-Tower-5810>
- <08b805f8-a4c5-4aa1-95b2-66292a681aa9@denx.de>
- <ZvSAXAXeSUdPu2h8@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <ZvSAXAXeSUdPu2h8@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Transfer-Encoding: 8bit
 
-On 9/25/24 11:27 PM, Frank Li wrote:
+From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
-Hi,
+Configure/add imx8 dsp DT node for rproc usage.
+Additionally, fix number of power domains from the fsl,dsp.yaml binding.
 
->>>> +/* USB_OTG port is not routed out on DRC02. */
->>>> +&usb3_0 {
->>>> +	status = "disabled";
->>>> +};
->>>> +
->>>> +&usb_dwc3_0 {
->>>> +	status = "disabled";
->>>> +};
->>>> +
->>>> +/* USB_HOST port has USB Hub connected to it, PWR/OC pins are unused */
->>>> +&usb3_1 {
->>>> +	fsl,disable-port-power-control;
->>>> +	fsl,permanently-attached;
->>>> +};
->>>
->>> Suggest run https://github.com/lznuaa/dt-format to sort node
->>>
->>> &usb_dwc3_0
->>> &usb_dwc3_1
->>> &usb3_0
->>> &usb3_1
->>
->> I'm afraid the tool (I did not try it, I used plain GNU sort) is not sorting
->> this correctly, look at ASCII table, 0x33 is '3' and 0x5f is '_':
->>
->> $ printf 3_ | hexdump -vC
->> 00000000  33 5f
-> 
-> Sorry, I have not run it for this dts. I make misstake - and _ at ascii
-> table.
+---
+Changes in v2:
+- Modify subject of commit changing fsl,dsp.yaml to state that the change
+  is for fsl,dsp.yaml
 
-No worries
+- Fix issue with arm,mhuv2 binding found by Rob's bot caused by the
+  changes to fsl,dsp binding
 
->> So if the sorting was correct, it would be:
->>
->> usb3_0
->> usb3_1
->> usb_dwc3_0
->> usb_dwc3_1
->>
->> But I would prefer to keep the controllers close to each other, i.e. the
->> current order which seems more logical in this case:
->>
->> usb3_0
->> usb_dwc3_0
->> usb3_1
->> usb_dwc3_1
-> 
-> next time, we should use better label name in chip.dtsi file. I try to
-> reduce trivial node name order issue in patch review. And make contributor
-> to be easy to follow.
-I suspect the dwc3_0 and co. is somewhat inherited from other DTs which 
-used the controller before.
+- Improve formatting of commit messages
+
+- Link to v1: https://lore.kernel.org/lkml/20240918182117.86221-1-laurentiumihalcea111@gmail.com
+---
+
+Laurentiu Mihalcea (6):
+  dt-bindings: dsp: fsl,dsp: fix power domain count
+  dt-bindings: arm: arm,mhuv2: remove power domain from example client
+    node
+  arm64: dts: imx8qxp: configure dsp node for rproc usage
+  arm64: dts: imx8qm: drop dsp node from audio_subsys bus
+  arm64: dts: imx8qm: add node for VPU dsp
+  arm64: dts: imx8qm: enable dsp node for rproc usage
+
+ .../devicetree/bindings/dsp/fsl,dsp.yaml      | 62 +++++++++++++++----
+ .../bindings/mailbox/arm,mhuv2.yaml           |  2 +-
+ .../boot/dts/freescale/imx8-ss-audio.dtsi     | 20 +++---
+ arch/arm64/boot/dts/freescale/imx8qm-mek.dts  | 27 ++++++++
+ arch/arm64/boot/dts/freescale/imx8qm.dtsi     | 29 +++++++++
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 15 ++++-
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi    | 19 ++++++
+ 7 files changed, 148 insertions(+), 26 deletions(-)
+
+-- 
+2.34.1
+
 
