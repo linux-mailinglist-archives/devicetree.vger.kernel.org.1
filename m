@@ -1,109 +1,102 @@
-Return-Path: <devicetree+bounces-105111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FB009852D6
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 08:19:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50A1B985316
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 08:47:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB30B283995
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 06:18:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F387C1F241D7
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 06:47:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A58B81547EF;
-	Wed, 25 Sep 2024 06:18:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="bahQ+can"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2491155751;
+	Wed, 25 Sep 2024 06:47:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B362155C98
-	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 06:18:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12398288B5;
+	Wed, 25 Sep 2024 06:47:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727245126; cv=none; b=CSQR189Uf8OEwTivfaDe/SI13X3c8KxhSnLIMZa82et7tvHWs4AXZe5+Z5E682B8BpK4IAHPq/en+VosWw3CKKN89zOHu+sxW9t2IDzCXwTYgu4Pv1k57JvvLj9XhYi/b1hVsyzTOz7pt3lO24LLxdtjw35IL95nzXW0yRg4L7Q=
+	t=1727246825; cv=none; b=oDyrCOStIkIcqJdcgDq8Ulv6t7R6Qule17X3bpt77CxNCkrH2++cLiM0hq+dnl8UWfWvmPBbyI2hI6ggcF13C8S91RFFK5Y13JQpys5oeGFl4h7xTMqy9ThwzI59fMx2mPhGFsA8GVweL6UPtHrMCnc4oSzzDjl7+2s7CczZAIU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727245126; c=relaxed/simple;
-	bh=4PFi3GrWcYBdSSW0hgzBkVDs0dXzs21wTMmchnPoW+s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YQiBtwwXYxE4LNL84M/0FJ3Pg6mdZaDdUy75gzFK8R0za7/aQjlOJQDBuQqmocNSEhpJxL/iYXInKZ2LFgfk2Z50yq2/sMbwC4JQ6uBmefItQZCHa7U0a0Zcn8XDvNIcxwcMUNfnQrIWlb+42DXn597ZhmpsPY1SbF3VzRwnj+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=bahQ+can; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-20792913262so75217245ad.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 23:18:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1727245124; x=1727849924; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gAfB/c2dUK7Tp4TizuYkDvXRM6wc04Km7rfihTnNlVI=;
-        b=bahQ+canDxfoqCvyVVBxpy2yDQTbPoEIGfwsErvWKUcaG0DhTb9u+YhB57wl3rOg7i
-         hEkYGbZG8KnbFZFgJ2FrjJdiLkvGdi/OyLhkF0B3W8WmRTMAcnhiX4By6yTAG2oww8Qx
-         FxYFcFn8EKdL9+/r1Z46NGQem1hSHkOjcjGZs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727245124; x=1727849924;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gAfB/c2dUK7Tp4TizuYkDvXRM6wc04Km7rfihTnNlVI=;
-        b=IEC63B4zu3j4J2JMVh9poiVPnNvHo5shxtqlhj/kkgPN6+BfovBloDxTC1SqsoJqhr
-         W237sWhWd+vg+EbMKbRFyxAt/Egqtwv6u/5nm93dlRXUodSdvaqwoMF7zZQ//NsXOmc4
-         4OOFYjRAYXtLeoRjBWtYgvQiX3TvVB9rQ17w6gWWROHrWXGpylTwTRcBppIzMIyruY/D
-         91wtnClOVIbKG+B7X5BSioFMdwcZ0zFsqs+hOFhTzNzg/x9uj1cPxDxdKPznzIKdkqiM
-         LmCJiAnh9RLUvgVbUv/pOjBXMudxDE8sPTXIaFUjukicC6ztem9ggiIGa0ms9+a+e24E
-         4dUg==
-X-Forwarded-Encrypted: i=1; AJvYcCUQOoHe2nrPW4yF43vTRpHDmxRj44RQBT32URPBs2w63Rs/7EwGqCVqJH7Rmpn/JzjixKfo4ZgtU+IG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3vfL+2Uk3PPVKbDudoeeXCmFD0sFExQUyW4wZxLPqllSbFYr0
-	caq33o+JmwJ9Degc0AHlJ/gJA3oYa59qAJbt+FufZDXAhW+Bpcbao20shw9KUg==
-X-Google-Smtp-Source: AGHT+IEdnYbq5bAx4Sg9X+VZO3Xo5eBYOK7WziCE8Ch3Kc7BECkSDi4+tCYZhgtuKZ8+gFm9JzzLAw==
-X-Received: by 2002:a17:90a:2dc6:b0:2c8:f3b7:ec45 with SMTP id 98e67ed59e1d1-2e06afe8f6fmr1835727a91.36.1727245124474;
-        Tue, 24 Sep 2024 23:18:44 -0700 (PDT)
-Received: from ?IPV6:2401:fa00:61:204:5d35:3dbe:2256:3e42? ([2401:fa00:61:204:5d35:3dbe:2256:3e42])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e06e1ae741sm665351a91.15.2024.09.24.23.18.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Sep 2024 23:18:44 -0700 (PDT)
-Message-ID: <c9f7042b-1e61-4289-9ef9-ea15bd7e9847@chromium.org>
-Date: Wed, 25 Sep 2024 11:48:40 +0530
+	s=arc-20240116; t=1727246825; c=relaxed/simple;
+	bh=4idforpbTEOfIZK6IXKeMTEb84q9Hl3h6Javh1jSOgQ=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=SksjkWm85AGoswHg7J4KDNJ8G4rfcADAg27o/cEnoj30AYvR1GmolRq+AtnL0tdOYKh9q/uY7GCCB79X8F+qqwGz9pL72t9gyOKRUVIpZXFzGdwt+7gbRpvT8JXI9l0M/EmkVYO66sKo0O9z01gFYSmm5Cz0Kxh69iaECJgvDbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5887A202A71;
+	Wed, 25 Sep 2024 08:47:01 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 17822202A83;
+	Wed, 25 Sep 2024 08:47:01 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 22AEA183AD50;
+	Wed, 25 Sep 2024 14:46:59 +0800 (+08)
+From: Richard Zhu <hongxing.zhu@nxp.com>
+To: l.stach@pengutronix.de,
+	kwilczynski@kernel.org,
+	bhelgaas@google.com,
+	lpieralisi@kernel.org,
+	frank.li@nxp.com,
+	robh+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	festevam@gmail.com,
+	s.hauer@pengutronix.de
+Cc: linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	kernel@pengutronix.de,
+	imx@lists.linux.dev
+Subject: [PATCH v2 0/9] A bunch of changes to refine i.MX PCIe driver
+Date: Wed, 25 Sep 2024 14:24:28 +0800
+Message-Id: <1727245477-15961-1-git-send-email-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: mediatek: dpi: Add power
- domain for MT8183
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: chunkuang.hu@kernel.org, krzk+dt@kernel.org, ck.hu@mediatek.com,
- robh@kernel.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240919112152.2829765-1-rohiagar@chromium.org>
- <20240919112152.2829765-2-rohiagar@chromium.org>
- <4djlcabqjkq7thbxadjbbi6oumybnyzv7biwawke46ctjccwye@rmqougrj6pl2>
-Content-Language: en-US
-From: Rohit Agarwal <rohiagar@chromium.org>
-In-Reply-To: <4djlcabqjkq7thbxadjbbi6oumybnyzv7biwawke46ctjccwye@rmqougrj6pl2>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
+A bunch of changes to refine i.MX PCIe driver.
+- Add ref clock gate for i.MX95 PCIe by #1, #2 and #9 patches.
+  The changes of clock part is here [1].
+  [1] https://patchwork.kernel.org/project/linux-arm-kernel/cover/1725525535-22924-1-git-send-email-hongxing.zhu@nxp.com/
+- #3 and #4 patches clean i.MX PCIe driver by removing useless codes.
+  Patch #3 depends on [2].
+  [2] https://patchwork.kernel.org/project/linux-arm-kernel/cover/1723534943-28499-1-git-send-email-hongxing.zhu@nxp.com/
+- Make core reset and enable_ref_clk symmetric for i.MX PCIe driver by
+  #5 and #6 patches.
+- Use dwc common suspend resume method, and enable i.MX8MQ, i.MX8Q and
+  i.MX95 PCIe PM supports by #7 and #8 patches.
 
-On 24/09/24 2:41 PM, Krzysztof Kozlowski wrote:
-> On Thu, Sep 19, 2024 at 11:21:51AM +0000, Rohit Agarwal wrote:
->> Add power domain binding to the mediatek DPI controller
-> That's DPI controller, how can you add here power domain binding?
-I think, I messed up in the commit message. I wanted to add a missing 
-compatible string
-in both the patches.
-Will update the commit messages in both the patches.
+v2 changes:
+- Add the reasons why one more clock is added for i.MX95 PCIe in patch #1.
+- Add the "Reviewed-by: Frank Li <Frank.Li@nxp.com>" into patch #2, #4, #5,
+  #6, #8 and #9.
 
-Thanks,
-Rohit.
->
->> for MT8183 that already had the property in DT.
-> Best regards,
-> Krzysztof
->
+[PATCH v2 1/9] dt-bindings: imx6q-pcie: Add ref clock for i.MX95 PCIe
+[PATCH v2 2/9] PCI: imx6: Add ref clock for i.MX95 PCIe
+[PATCH v2 3/9] PCI: imx6: Fetch dbi2 and iATU base addesses from DT
+[PATCH v2 4/9] PCI: imx6: Correct controller_id generation logic for
+[PATCH v2 5/9] PCI: imx6: Make core reset assertion deassertion
+[PATCH v2 6/9] PCI: imx6: Make *_enable_ref_clk() function symmetric
+[PATCH v2 7/9] PCI: imx6: Use dwc common suspend resume method
+[PATCH v2 8/9] PCI: imx6: Add i.MX8MQ i.MX8Q and i.MX95 PCIe PM
+[PATCH v2 9/9] arm64: dts: imx95: Add ref clock for i.MX95 PCIe
+
+cumentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml |   4 +-
+Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml        |  25 ++++++++++--
+arch/arm64/boot/dts/freescale/imx95.dtsi                         |  25 ++++++++++--
+drivers/pci/controller/dwc/pci-imx6.c                            | 166 +++++++++++++++++++++++++++-------------------------------------------------
+4 files changed, 103 insertions(+), 117 deletions(-)
+
 
