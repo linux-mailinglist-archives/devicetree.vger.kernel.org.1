@@ -1,118 +1,172 @@
-Return-Path: <devicetree+bounces-105210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5AF1985698
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:46:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A303498569C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:47:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 469D6B230AD
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:46:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E227286E66
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:47:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF00E1411DE;
-	Wed, 25 Sep 2024 09:46:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B25E13DDB9;
+	Wed, 25 Sep 2024 09:47:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rMl089XN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RuRyjlJd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 785F128F3;
-	Wed, 25 Sep 2024 09:46:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F4BF156230;
+	Wed, 25 Sep 2024 09:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727257605; cv=none; b=k+i9b8/KZHTtVKtAbGdU7mBYigcfr1jXYt1VU4Sv8Hs8eBIIEZdSVEgvEW01zkHDcCQ+gDjwF+f1zOfAqmmMxCIgCd47Paj+w5AssrK6wN9sUe4bdcyOVcFL3YojeQXZhI4ElQ2XtJX9WkNM1Qg0a3CJHk2XT2u8jvlQqkvVvFs=
+	t=1727257665; cv=none; b=ukHYF2Zua+P0NQawB39/jq0gPVkdhsX8Yn0X9L19OBowqd1BXGXpIam/tBeYjEX+ZQRldtCJ1mmyxqvJVKLdNiQySST56dMJ2k+CVtLlZoNfPjzQbXdWBy6MnBOFGQ3MSZ80tb7DDiZT/2x94vYz7VABYMR56276XZj1e2peYdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727257605; c=relaxed/simple;
-	bh=wtn5+KuMLTAqeZweMoRuxkoCjg49C5loEg74Pkq8niU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dDkzo5gNF/uMNfbk0Lvk1ISlm1kFHXsqqKvAU/p/BNoA6tiF1G2qE4gVyTxvgGIz3Ly02BcG68gFh2WM9arnXIgs1dD1Ii3Z12CIxcdUtM9gqcfaS5viI23MUPr1yZk8eTzha1ziUXS8m9IOGp2FS2n5TNc8UXWp+fWgr5LnhSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rMl089XN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15EA2C4CEC3;
-	Wed, 25 Sep 2024 09:46:37 +0000 (UTC)
+	s=arc-20240116; t=1727257665; c=relaxed/simple;
+	bh=mes99sViCBF6zif+B7hz6V9ArPg0p/BE3GMmFR/yKTY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YTDyLpGxM8deIVk7HF5n2Pt6Ca3p2ACE7fp/CB8VtOrutpyHQHGiLwMdOf3MYdn1QgwsXNIVqMY8THyS9a1fDfnG+q4EV+Lldr01vrM5LBteXs4h9WtHCPRWLbnOVJ0Ylq2Sw2HzphgNasoi5VaB5AenQZ6DgEgKmexKP/KZ4+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RuRyjlJd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A3C1C4CEC3;
+	Wed, 25 Sep 2024 09:47:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727257605;
-	bh=wtn5+KuMLTAqeZweMoRuxkoCjg49C5loEg74Pkq8niU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rMl089XNFRAEGqGjifzGH4vHmkqYCn0PuSiSSxoa44g9uXf9m4QFeUwMFyWZ4/Jrl
-	 RaWXD3u0L8Qt22vg1xvfKfhEXnEe51XdG2dZYT7Xw1P6J0/FadUCOm49X5dW6kf4zE
-	 hT1lEuWPSW5mbij8dbwOKHzfa5Rhyr+ZhFoZ6OxzHE3IZeYZhDa2sRoSDqE7jqdSA0
-	 8gz/HaruwpjM77EOo8nPk4GT+zFAAKpD8cMPuedCRqi+afrz3e5QVRuyl59+Rc3uXE
-	 +tjJZ18viIKSWYX490NH6d9/dZcdd2dpWfj8j/G2Tee3pwbN31N28qqnWwHoIfyStT
-	 leX5AWRIOWgAA==
-Message-ID: <2731e17d-c1ad-4fb4-ab60-82ceafeffbaf@kernel.org>
-Date: Wed, 25 Sep 2024 11:46:35 +0200
+	s=k20201202; t=1727257664;
+	bh=mes99sViCBF6zif+B7hz6V9ArPg0p/BE3GMmFR/yKTY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RuRyjlJdXf1WdwatxCxPZR1VdmzSE9r/ChvwgJke1gj0PClkIWE6mh5ksiTL8YWa9
+	 tVz1iKR9HH8mZXmfZrSSb+fzw3XP2Ey53JTg8AP9SbZ5v944+o2qAppzWHRnaIjcQ6
+	 3+bJ1SeljxYV5mzlYEmgQQdoEDvuoytMLKKRT06xsB59bcrXJuu/GkmgG3DmIIbimn
+	 Lb9sVXRXlpCwPUqmuPfTE2j+ULDfcKIjunJSlcAWNNsrWAbmqxZ/wournJ59k/Dtys
+	 rbUC1OFsr5xvucq4DyJq9SKqP7Q1K781KauxXVcWOqNIuZQmXG2F0r47zmm+pU6wbx
+	 Zrli3O1Cs4tlw==
+Date: Wed, 25 Sep 2024 10:47:38 +0100
+From: Lee Jones <lee@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sean Wang <sean.wang@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com, benjamin.larsson@genexis.eu,
+	linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v4 0/5] Add mfd, pinctrl and pwm support to EN7581 SoC
+Message-ID: <20240925094738.GD7545@google.com>
+References: <20240911-en7581-pinctrl-v4-0-60ac93d760bb@kernel.org>
+ <66f13ab0.5d0a0220.b0c27.b441@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/6] arm64: dts: qcom: x1e80100: Add support for PCIe3
- on x1e80100
-To: Konrad Dybcio <konradybcio@kernel.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Johan Hovold <johan+linaro@kernel.org>
-Cc: Qiang Yu <quic_qianyu@quicinc.com>, vkoul@kernel.org, kishon@kernel.org,
- robh@kernel.org, andersson@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
- abel.vesa@linaro.org, quic_msarkar@quicinc.com, quic_devipriy@quicinc.com,
- dmitry.baryshkov@linaro.org, kw@linux.com, lpieralisi@kernel.org,
- neil.armstrong@linaro.org, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org
-References: <20240924101444.3933828-1-quic_qianyu@quicinc.com>
- <20240924101444.3933828-7-quic_qianyu@quicinc.com>
- <9a692c98-eb0a-4d86-b642-ea655981ff53@kernel.org>
- <20240925080522.qwjeyrpjtz64pccx@thinkpad>
- <4ee4d016-9d68-4925-9f49-e73a4e7fa794@kernel.org>
-Content-Language: en-US
-From: Konrad Dybcio <konradybcio@kernel.org>
-In-Reply-To: <4ee4d016-9d68-4925-9f49-e73a4e7fa794@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <66f13ab0.5d0a0220.b0c27.b441@mx.google.com>
 
-On 25.09.2024 11:30 AM, Konrad Dybcio wrote:
-> On 25.09.2024 10:05 AM, Manivannan Sadhasivam wrote:
->> On Tue, Sep 24, 2024 at 04:26:34PM +0200, Konrad Dybcio wrote:
->>> On 24.09.2024 12:14 PM, Qiang Yu wrote:
->>>> Describe PCIe3 controller and PHY. Also add required system resources like
->>>> regulators, clocks, interrupts and registers configuration for PCIe3.
->>>>
->>>> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
->>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>> ---
->>>
->>> Qiang, Mani
->>>
->>> I have a RTS5261 mmc chip on PCIe3 on the Surface Laptop.
->>
->> Is it based on x1e80100?
-> 
-> You would think so :P
-> 
->>
->>> Adding the global irq breaks sdcard detection (the chip still comes
->>> up fine) somehow. Removing the irq makes it work again :|
->>>
->>> I've confirmed that the irq number is correct
->>>
->>
->> Yeah, I did see some issues with MSI on SM8250 (RB5) when global interrupts are
->> enabled and I'm working with the hw folks to understand what is going on. But
->> I didn't see the same issues on newer platforms (sa8775p etc...).
->>
->> Can you please confirm if the issue is due to MSI not being received from the
->> device? Checking the /proc/interrutps is enough.
-> 
-> There's no msi-map for PCIe3. I recall +Johan talking about some sort of
-> a bug that prevents us from adding it?
+On Mon, 23 Sep 2024, Christian Marangi wrote:
 
-Unless you just meant the msi0..=7 interrupts, then yeah, I only get one irq
-event with "global" in place and it seems to never get more
+> On Wed, Sep 11, 2024 at 09:50:00PM +0200, Lorenzo Bianconi wrote:
+> > Introduce airoha-mfd driver in order to load pinctrl and pwm drivers for
+> > EN7581 SoC. airoha-mfd is needed since both pinctrl and pwm drivers
+> > needs to access the same memory block (gpio memory region) to configure
+> > {gio,irq}_chip and pwm functionalities respectively, so model them as
+> > childs of a parent mfd driver.
+> > Current EN7581 pinctrl driver supports the following functionalities:
+> > - pin multiplexing via chip_scu syscon
+> > - pin pull-up, pull-down, open-drain, current strength,
+> >   {input,output}_enable, output_{low,high} via chip_scu syscon
+> > - gpio controller
+> > - irq controller
+> > 
+> > ---
+> > Changes in v4:
+> > - add 'Limitation' description in pwm driver
+> > - fix comments in pwm driver
+> > - rely on mfd->base __iomem pointer in pwm driver, modify register
+> >   offsets according to it and get rid of sgpio_cfg, flash_cfg and
+> >   cycle_cfg pointers
+> > - simplify register utility routines in pwm driver
+> > - use 'generator' instead of 'waveform' suffix for pwm routines
+> > - fix possible overflow calculating duty cycle in pwm driver
+> > - do not modify pwm state in free callback in pwm driver
+> > - cap the maximum period in pwm driver
+> > - do not allow inverse polarity in pwm driver
+> > - do not set of_xlate callback in the pwm driver and allow the stack to
+> >   do it
+> > - fix MAINTAINERS file for airoha pinctrl driver
+> > - fix undefined reference to __ffsdi2 in pinctrl driver
+> > - simplify airoha,en7581-gpio-sysctl.yam binding
+> > - Link to v3: https://lore.kernel.org/r/20240831-en7581-pinctrl-v3-0-98eebfb4da66@kernel.org
+> > 
+> > Changes in v3:
+> > - introduce airoha-mfd driver
+> > - add pwm driver to the same series
+> > - model pinctrl and pwm drivers as childs of a parent mfd driver.
+> > - access chip-scu memory region in pinctrl driver via syscon
+> > - introduce a single airoha,en7581-gpio-sysctl.yaml binding and get rid
+> >   of dedicated bindings for pinctrl and pwm
+> > - add airoha,en7581-chip-scu.yaml binding do the series
+> > - Link to v2: https://lore.kernel.org/r/20240822-en7581-pinctrl-v2-0-ba1559173a7f@kernel.org
+> > 
+> > Changes in v2:
+> > - Fix compilation errors
+> > - Collapse some register mappings for gpio and irq controllers
+> > - update dt-bindings according to new register mapping
+> > - fix some dt-bindings errors
+> > - Link to v1: https://lore.kernel.org/all/cover.1723392444.git.lorenzo@kernel.org/
+> > 
+> > ---
+> > Benjamin Larsson (1):
+> >       pwm: airoha: Add support for EN7581 SoC
+> > 
+> > Christian Marangi (2):
+> >       dt-bindings: mfd: Add support for Airoha EN7581 GPIO System Controller
+> >       mfd: airoha: Add support for Airoha EN7581 MFD
+> > 
+> > Lorenzo Bianconi (2):
+> >       dt-bindings: arm: airoha: Add the chip-scu node for EN7581 SoC
+> >       pinctrl: airoha: Add support for EN7581 SoC
+> > 
+> >  .../bindings/arm/airoha,en7581-chip-scu.yaml       |   42 +
+> >  .../bindings/mfd/airoha,en7581-gpio-sysctl.yaml    |  433 +++
+> >  MAINTAINERS                                        |    7 +
+> >  drivers/mfd/Kconfig                                |    8 +
+> >  drivers/mfd/Makefile                               |    2 +
+> >  drivers/mfd/airoha-en7581-gpio-mfd.c               |   72 +
+> >  drivers/pinctrl/mediatek/Kconfig                   |   16 +-
+> >  drivers/pinctrl/mediatek/Makefile                  |    1 +
+> >  drivers/pinctrl/mediatek/pinctrl-airoha.c          | 2964 ++++++++++++++++++++
+> >  drivers/pwm/Kconfig                                |   10 +
+> >  drivers/pwm/Makefile                               |    1 +
+> >  drivers/pwm/pwm-airoha.c                           |  414 +++
+> >  include/linux/mfd/airoha-en7581-mfd.h              |    9 +
+> >  13 files changed, 3978 insertions(+), 1 deletion(-)
+> > ---
+> > base-commit: 264c13114bd71ddfd7b25c7b94f6cda4587eca25
+> > change-id: 20240818-en7581-pinctrl-1bf120154be0
+> > prerequisite-change-id: 20240705-for-6-11-bpf-a349efc08df8:v2
+> > 
+> >
+> 
+> Hi,
+> 
+> any news with this? Rob reviewed the DT schemas and he is ok with them.
+> 
+> Any other comments for the MFD driver and/or the pinctrl or PWM driver?
 
-Konrad
+Note that the merge-window is still open.  Some maintainers, myself
+included, use this lull to prioritise other things.  This set is on my
+list and will be dealt with shortly.
+
+-- 
+Lee Jones [李琼斯]
 
