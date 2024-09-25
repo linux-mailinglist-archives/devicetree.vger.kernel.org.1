@@ -1,203 +1,144 @@
-Return-Path: <devicetree+bounces-105354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3272698672B
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 21:49:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B228986741
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 21:56:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 555B71C21503
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 19:49:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9376AB238E4
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 19:56:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3CD149013;
-	Wed, 25 Sep 2024 19:49:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03B0F145336;
+	Wed, 25 Sep 2024 19:56:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gDPFTSuH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jd/QKSpT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 888DB1459F7
-	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 19:49:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBC1C5476B;
+	Wed, 25 Sep 2024 19:56:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727293770; cv=none; b=E+0YVhAON1qMAL3uA0fApYZanwIN5XYe0ruGyZQUlLPG5OjgwUT7qSVAYWluGf3wXY9e6ipRr5OpogjKYp11wGkzrhkbE6UrgiSgyEf6z9vX0UmF9WHN9PL+mpWUzqFvYD8P79sgy130FQyaUUltTQ2PAFrx2OOZyuri88cvLNY=
+	t=1727294201; cv=none; b=Md2DeuIL3QxtvV/WR6RHIq7/+xIyncqMPfcQetfiI242wqelaHbhPn4zbUQEyfUyWvzwE1fm3UtcL64wuf06ccue7OEw+qYBUpcC23qwx6RA8xct/UjNff05Mzu3C5Dcb4HcN7C6Ycqz3iLvFV/xc22YLOdQ3Fs2tq0vNJvT0QM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727293770; c=relaxed/simple;
-	bh=JMy6HzAy+taa3Pj/hIHV0nlXFH/c1wdgNTeuqyl5ahg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=h7Z8bZ7fe66t5cRVLwm2AE7Xkd9SJwRxch+/5yfuwYGfxSDiCLdxItGiv1uw+dM+Jn1FRrIRc0EEm4seCJsNo/1sVRZ9CQMHMqT6PibV32NKGGecxbThWMTTkai5kGbxUILWFa+Yda6YNfemxH7wLZc91ARJ8ud0MFIqOsPmELk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gDPFTSuH; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a8713b00219so3551566b.0
-        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 12:49:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727293766; x=1727898566; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Nnd6FOHE7QpKlvZPwQ8TrimhP2bKS/XiR5+tzZuq2mo=;
-        b=gDPFTSuHCOB2mvwOVNuFSpuJ0T4hYvUP+AKikV7egYFPV0kjMSiwNtwsmpPorp280E
-         KdAtUxQK9QeCoW7JO0Q9YJVXcinRpl2/VnaxodPK2Mju240SSQK9d9GxQUI/ymXptQ2K
-         mapCvAA4daJGKSOPo/1V6HTXFjEf9zvCJ0EglNDLa9+KRaHav7D2oo/1+k68H1OcCC6W
-         BOxP6mFycJvcgjYuH7aPaS8+IkjywiT/BfNhkjJxb+re84EpU+ccYXbPyiNLvGBgx3Gr
-         T2gRwrUc7g7EAprtnpHXpkwZdZuG7c83fp/jy/qLBTGAemSsWvaLXhQOai9KAU6aP6jH
-         4htg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727293766; x=1727898566;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Nnd6FOHE7QpKlvZPwQ8TrimhP2bKS/XiR5+tzZuq2mo=;
-        b=S6WcZQkj/Jd4R0cdMTnPyTJcryAaKvSW4G+tA13t3bf/GEZb4W2gZNJKQy2vb50GeB
-         4VwQCafHSrMA1hsr4hYOARpYujHaBfbVfwJnh6Vq6pEc22Ya4WkU6CRKlVn5Q9WpbdOt
-         2qgNWXx91XtSPDX/fpLyg7V163UoF7NWhARxt5dhAL+MHlhB7OdiAIglPaxZu+tfwaHm
-         dGaD2lr0ZfTy9ZQZwUa+8gBmG3TrT9aaKMgKV2XiWg+q/j/XR5w6ssBCIekH8HYHVMWl
-         SrHBszPBCkUuT48YbEdoDM7CvDMB9fzcXW9DS4mKG5bjJn/pEGTadpHbDrtRh/IzVI9m
-         lmkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWCBdqmeRfd2pHOcOFNVBh2tDJ7B+Y7bpmzTWEXPSuEIeJM1rvzpecbz9embEkjFRHDlLRkE7LPwixP@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEUqRz1o+6ev+NXEat8LSu34JjDbxQBdvVgfAXB2DVUcRSE1yS
-	RcXaeMF6fbXo3hyKflInKW5+BPSIS6/qfYJSWvy4vMb2wBKuQthdLLHxGPT5oXc=
-X-Google-Smtp-Source: AGHT+IFhMhS425ZHN+iwoku5iEmGy3G9tdLPsxDg5U0MGOkvPOPo+zPG0zZr24n8CjUQeLokaoSzuA==
-X-Received: by 2002:a17:907:3e1b:b0:a8d:4410:3bd6 with SMTP id a640c23a62f3a-a93a038315amr170773366b.4.1727293765695;
-        Wed, 25 Sep 2024 12:49:25 -0700 (PDT)
-Received: from krzk-bin.. (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9392f50078sm252268766b.59.2024.09.25.12.49.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2024 12:49:25 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jiri Kosina <jikos@kernel.org>,
-	Benjamin Tissoires <bentiss@kernel.org>,
-	Charles Wang <charles.goodix@gmail.com>,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] dt-bindings: input: Revert "dt-bindings: input: Goodix SPI HID Touchscreen"
-Date: Wed, 25 Sep 2024 21:49:21 +0200
-Message-ID: <20240925194921.18933-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240925194921.18933-1-krzysztof.kozlowski@linaro.org>
-References: <20240925194921.18933-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1727294201; c=relaxed/simple;
+	bh=Uwgjz7lJU3tZKNmj7qZaS3jzdcyRv4kkmx/cj7tP9PI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mehaxeGAMcbLCx1Rr1Jvp0pkun0fN3oL4ttYEnWBSt+GH2yqPYONXdepwH2iPHZlB004jnjvBl0O3VAe3TLjzxvdcXygYC8AtUck5HxJhMx7TjOdRHyCibq3KL/6V8u8wy6VANWPxf3RSjjK9c9yoHPuHjQmondZaxc0R6QiAzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jd/QKSpT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 033E5C4CEC3;
+	Wed, 25 Sep 2024 19:56:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727294201;
+	bh=Uwgjz7lJU3tZKNmj7qZaS3jzdcyRv4kkmx/cj7tP9PI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jd/QKSpTtRrJtOmRJ++0XFaNdssjYesAOvP3pF0bjlSc7xFWDNbT+9+vavM+6CVAu
+	 4maPFPHHFNx1ZSNJRe6WZfxY5fJ9gWpTtkgrH/+vOE65QnOv1Sfp8DcMSWFzDI9cDY
+	 DoITjyG2vHVUzLsg3qgyDME2z4Xyx37dLA5H27NGSQtMtk83TR1htPujq1yv8+YlKy
+	 oPzPj9eIth5zvISfWJaC+ODFfmk6wOya9QogSL3EoxavvpKDLSYmh5Cf0bu3DYxvOM
+	 IRovrin29Mr0pBfwsYrEdjIUQe4QPlco5XRHE5G3ZqQOQ+bS11iy94is2wKIwt1Se3
+	 LYTobmTa875zw==
+Message-ID: <ef786b8b-32c0-457a-9e14-ed7bd9f04172@kernel.org>
+Date: Wed, 25 Sep 2024 21:56:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/6] dt-bindings: display: samsung,exynos7-decon: add
+ exynos7870 compatible
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: airlied@gmail.com, alim.akhtar@samsung.com, conor@kernel.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ inki.dae@samsung.com, kyungmin.park@samsung.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, robh@kernel.org, simona@ffwll.ch,
+ sw0312.kim@samsung.com, tzimmermann@suse.de
+References: <20240919-exynosdrm-decon-v1-0-6c5861c1cb04@disroot.org>
+ <20240919-exynosdrm-decon-v1-6-8c3e3ccffad5@disroot.org>
+ <32ae1188-196d-4fe8-8719-968e5149a771@kernel.org>
+ <7e5caaea80390e8cf87ba0a74d9719f0@disroot.org>
+ <1bc0ad48-03c0-4cf6-afb1-2296d1c259b9@kernel.org>
+ <8e0672ad3fd72f69d2bdb5687e778c86@disroot.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <8e0672ad3fd72f69d2bdb5687e778c86@disroot.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-This reverts commit 9184b17fbc23 ("dt-bindings: input: Goodix SPI HID
-Touchscreen") because it duplicates existing binding leadings to errors:
+On 25/09/2024 21:36, Kaustabh Chakraborty wrote:
+> On 2024-09-25 19:25, Krzysztof Kozlowski wrote:
+>> On 25/09/2024 20:42, Kaustabh Chakraborty wrote:
+>>> On 2024-09-20 12:39, Krzysztof Kozlowski wrote:
+>>>> On 19/09/2024 17:20, Kaustabh Chakraborty wrote:
+>>>>> Add the compatible string of Exynos7870 to the existing list.
+>>>>>
+>>>>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+>>>>
+>>>> ... and the DTS is <please provide lore ink in changelog>?
+>>>
+>>> Didn't quite understand. The patch adds the compatible string
+>>> for Exynos7870 DECON in documentation. There's no DTS involved
+>>> in here, right?
+>>
+>> Provide lore link to the DTS submission.
+> 
+> There aren't any DTS submissions *yet* which use the compatible.
+> Is that an issue?
+> 
 
-  goodix,gt7986u.example.dtb:
-  touchscreen@0: compatible: 'oneOf' conditional failed, one must be fixed:
-        ['goodix,gt7986u'] is too short
-        'goodix,gt7375p' was expected
+Yeah, users are supposed to be upstream. Not downstream.
 
-This was reported on mailing list on 6th of September, but no reaction
-happened from contributor or maintainer to fix it.
-
-Therefore let's drop binding which breaks and duplicates existing one.
-
-Fixes: 9184b17fbc23 ("dt-bindings: input: Goodix SPI HID Touchscreen")
-Reported-by: Rob Herring <robh@kernel.org>
-Closes: https://lore.kernel.org/all/CAL_Jsq+QfTtRj_JCqXzktQ49H8VUnztVuaBjvvkg3fwEHniUHw@mail.gmail.com/
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
----
-
-It is sad that original commit author ignored the report for two weeks.
-This should have never been sent to Linus as pull request.
----
- .../bindings/input/goodix,gt7986u.yaml        | 71 -------------------
- 1 file changed, 71 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
-
-diff --git a/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml b/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
-deleted file mode 100644
-index a7d42a5d6128..000000000000
---- a/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
-+++ /dev/null
-@@ -1,71 +0,0 @@
--# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/input/goodix,gt7986u.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: GOODIX GT7986U SPI HID Touchscreen
--
--maintainers:
--  - Charles Wang <charles.goodix@gmail.com>
--
--description: Supports the Goodix GT7986U touchscreen.
--  This touch controller reports data packaged according to the HID protocol,
--  but is incompatible with Microsoft's HID-over-SPI protocol.
--
--allOf:
--  - $ref: /schemas/spi/spi-peripheral-props.yaml#
--
--properties:
--  compatible:
--    enum:
--      - goodix,gt7986u
--
--  reg:
--    maxItems: 1
--
--  interrupts:
--    maxItems: 1
--
--  reset-gpios:
--    maxItems: 1
--
--  goodix,hid-report-addr:
--    $ref: /schemas/types.yaml#/definitions/uint32
--    description:
--      The register address for retrieving HID report data.
--      This address is related to the device firmware and may
--      change after a firmware update.
--
--  spi-max-frequency: true
--
--additionalProperties: false
--
--required:
--  - compatible
--  - reg
--  - interrupts
--  - reset-gpios
--  - goodix,hid-report-addr
--
--examples:
--  - |
--    #include <dt-bindings/interrupt-controller/irq.h>
--    #include <dt-bindings/gpio/gpio.h>
--
--    spi {
--      #address-cells = <1>;
--      #size-cells = <0>;
--
--      touchscreen@0 {
--        compatible = "goodix,gt7986u";
--        reg = <0>;
--        interrupt-parent = <&gpio>;
--        interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
--        reset-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
--        spi-max-frequency = <10000000>;
--        goodix,hid-report-addr = <0x22c8c>;
--      };
--    };
--
--...
--- 
-2.43.0
+Best regards,
+Krzysztof
 
 
