@@ -1,282 +1,122 @@
-Return-Path: <devicetree+bounces-105260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4610F986066
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 16:22:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7ECF986089
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 16:26:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68A961C24921
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 14:22:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F11728B79C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 14:26:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5FB318991A;
-	Wed, 25 Sep 2024 12:53:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 516FC1AC437;
+	Wed, 25 Sep 2024 13:08:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NL3OQ/Dx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QGr41tm3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 009D31891BA
-	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 12:53:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A316E1AC432
+	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 13:08:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727268829; cv=none; b=oXDgSUTnCqJUpwMriET/12/K16a8qNatCUmxwi2Eq1gZ/O9wIS7+/J0eFFieF3zn3Tj38MrWRDVEk6ZTo43JUiI7xhbccCMNzMze7COPYWaO3A2KxNYILnWGpYZkkzenu/2DR+e0OwKt2YrxdnXw7zcCAY0dpQZlOkrpL5jcnqY=
+	t=1727269735; cv=none; b=s5S+4Kdo3wa/JbDR1pSiv2cE9xsx83QS/xLK7hcGrZHcSE2o+EGFXFxAl9mhObUHjS1DxDGBT2BaA1NRkCRtHkz1f6sL+pasgP9R5d/rxMnkI3DwEJn90oQlAfxqAat++gDUawShxgre+O6FwetIibMKzp7+Q2z/hJx9XrupUrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727268829; c=relaxed/simple;
-	bh=mT33v1BcdCHSqsM4CQRybDcheK6N+x0YaItl1abb8dg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YuAB1Ez+qBaVVuVRrV/M8s7XzUoKloiGoUfRwal7AVkqVbUxq+NnKVWAfaFAoFclZ5uM3gZpB+E5exCEb35gFocTedAp+I+ke8T1rX1sifTY7Ga6+Ju1vtHy29eoOiB9hHOK0ZO40LjdJ/H02DOiBj2Cs4CpXQ9s0TDGyNe+5qc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NL3OQ/Dx; arc=none smtp.client-ip=209.85.160.43
+	s=arc-20240116; t=1727269735; c=relaxed/simple;
+	bh=WR5AnzJF93Qx9LVa6e4GL1bUJ/gZyTq7uc9OMyhdOFQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EPWqTMoSRbKsbqIqJrUTD5VmaX5g7oc4ZdEPF0ILq0ZD8j+1T+ophSbRbOzWGa/CLuTudFo8cFR3nJSNJ4VvRzNhmm2sHZrM3Nslt+qXnr0KxmPDXrJI0BV1vbDYeej++A9UX0KqFF9rGfK2zgsU57ROlR79CY8j0Hu4oNs/jhI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QGr41tm3; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-277f815e6dcso3490595fac.2
-        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 05:53:47 -0700 (PDT)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5365c512b00so1525592e87.3
+        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 06:08:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727268827; x=1727873627; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=j3P64Nuj8GlT9wDKZ+1u3zuMiJRKJGP8MnD/jd+llEk=;
-        b=NL3OQ/Dxp5tOsuIXl0Jx13baOoqlyTbWUA1iuGNJmxvl3dkW0/bqoi1Nb654LPToTG
-         2zH+GZ6rcVQk1KmDwPZWBDmFTyMmPLFqyzDTYLiae1fcx2fzCbtGZ2TBo/M1bPqpQlPY
-         vvLr1uXuP0YrWRh4uWjcRRh5dia/uswGKRHKHZLaYtYorl/IS6djuH1oe0+4OE+pDbeH
-         WwwpeuLZx43+mlc0Ly2aRYrFtrGBzJmD5QqRsQVVK36h+VppUxnJY0RTIgPFXoex6W5b
-         snJXtFaEdFZUOBUVC5cGKGMxIowuqPhEiQ7ld8vGrFFL3SiuSQtYEZCddwv3ftvg+uyO
-         dR4w==
+        d=linaro.org; s=google; t=1727269732; x=1727874532; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=GfIe+0A9/iwZ9+ASBT3gHE6aur04dE6S65bt24Jbj2A=;
+        b=QGr41tm36dzqyVeTbv90aKDJ+Vv+51ygVKoY5PPZNEKFrEelKv2w9e67Bu7Z83diPI
+         1B9xYoJaHzSSmnfDr6nGMgQadeog+YKlS2rXeV+OpCkpAwTUP6eZJPOrIzi/ZC4bH5lh
+         q3uBzQ8eMBLLd+ohjNIqTrpRP3HYyZ2xCagTQrfmmnOfE7KmVRInuycVHL/cdYrJe4Ov
+         eQkx+lcZF41ZJBpR3QBLUIRE9xcVYzZ52MfkM4BzMHcqFQTPFLgSxpC8y7jZ6kGfksu9
+         JhEe3r7yKYNTxEoQTKEaU4SF+iPNNZQZU2RfXuy94gVbQNUka2C9utTuCfImtWPDs0JK
+         97Og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727268827; x=1727873627;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=j3P64Nuj8GlT9wDKZ+1u3zuMiJRKJGP8MnD/jd+llEk=;
-        b=Te0swWwE+0rtk0r6lt5dcI0ytD1/jK/qEJMS5Jp2B3hQRWM1oVRC3BGWPAyoLnAc3U
-         4PgcadJ4ZEdbIR57HimspJ+C6/mEjngsXFkFnAVinNFHr32h+3VXozNJ5mlnIdiiPBPV
-         +KHrludu/enAycOkbKJl1vcW1nfpVNhCM701r/wqUWiySArQU+f9wGnkUsy3xFVHGwh4
-         VnnIgt0h3KMHGRZ6xKM5eENnDsAJo8FZ2okGlW5gE6Yvutl5wq22mW3ZenaU40cTlBJU
-         xlTr3iyhmwhzGXklQx5m0WUlnjd22782Mxbz2K/ZGHpV0Lhuy493QG62xqb/itwNQy9U
-         K3wg==
-X-Forwarded-Encrypted: i=1; AJvYcCV3kZyQzJ4QJYX8deDLJJ2MaSNInhwU1ZmKeN3+nSvetnPuxfve+BewgT0JkAV3NkRe5QBnlR9+RcXx@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzuHCUQ2Itj6ccMDiZ3qR9LPJ3oC/E7OPp+Ex587IY197FnEws
-	3DLQd7l6o87yV4jlhPuoxG1jYuXQRW4qO2oGz/OCGF2161oaz5vCxKn2IUlM2yuX5QBlZlLVFKG
-	OzpkJajX7A7c40N8vkMElXF2WNLcjrmQCEeIAqg==
-X-Google-Smtp-Source: AGHT+IHSJDI5zJNXgia6m+wvn3Z88Lm1Gqvx0KTAh7NQ/EUXrFKHeoOj7pRQGL8LyhcvQBz8DCABmsPEnqj7Sd60oPU=
-X-Received: by 2002:a05:6870:5487:b0:277:f329:f111 with SMTP id
- 586e51a60fabf-286e141f056mr1950128fac.22.1727268826783; Wed, 25 Sep 2024
- 05:53:46 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1727269732; x=1727874532;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GfIe+0A9/iwZ9+ASBT3gHE6aur04dE6S65bt24Jbj2A=;
+        b=Y/YgJLMFNN7w+O2aV9Tqe5VJs6uAnlyCtp7lO8dAywX3bj0I2bEGTaCPMeMV2zQJSG
+         b6lfc0zDk/bbErtfK3ve59koaGX1rqR4USdAkLVmCx77jOb6RGz5txDOOc8xsCkDu/MW
+         JQ0+Ej1b2Sf1qsigcFnSiCLXFw94xtawCUGXTSHegauypai9CT7FBvj1APtWi6wp+hwW
+         t1HtuI+XZ8QQKXIcpnLkfP5zd6hqn0XwQgHZ3U9LuzvA1FlQdkVDE28aYjdeKprDqI6A
+         iqP13R6OBgtlLdqxhX/n2j6E7NmIApdfGsl1FVY3UAE3CfP0qNiercYCoDjyhhOmdZnL
+         0j9g==
+X-Forwarded-Encrypted: i=1; AJvYcCUFRqcMWFlZFboaTe1uZTtn5JDnqd3BFA7jCwyHRHdbBi6Yt0OkrmCLztL/8Hk8/XwDfpqpT4LJMdJ2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyx+D58G8FY+5AqBGZ1s21kbsWr5VzSqXaIabhNVAkn3quFwCeM
+	XILR8tpy5jxIU0SMZ7qxFSO5zXUfDFshzKoqrdX611h+GcCIin4Hu/jH4UO5GGU=
+X-Google-Smtp-Source: AGHT+IGDlc38qNmQApA7G1CZmAUwKPhj6Dzr+UVWgNKV7XNIVs+fN9df6yglg61dDNAhSR3WZLlEBw==
+X-Received: by 2002:a05:6512:1313:b0:536:568f:c5ed with SMTP id 2adb3069b0e04-53873455efemr1670045e87.1.1727269731620;
+        Wed, 25 Sep 2024 06:08:51 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-537a8640abasm519642e87.177.2024.09.25.06.08.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Sep 2024 06:08:50 -0700 (PDT)
+Date: Wed, 25 Sep 2024 16:08:48 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Balaji Pothunoori <quic_bpothuno@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Enable wifi for
+ qcs6490-rb3gen2 boards
+Message-ID: <v2bgxmp6khrrxnpzgwcow6dymwzdil7yfjt7xwnq5xmgda4gor@vt3cj4jgwylu>
+References: <20240925090650.26314-1-quic_bpothuno@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240830070351.2855919-1-jens.wiklander@linaro.org>
- <dhxvyshwi4qmcmwceokhqey2ww4azjcs6qrpnkgivdj7tv5cke@r36srvvbof6q>
- <20240925071504.GA3519798@rayden> <bktt4yanmfn4gjljy2wxmigj6mncpga237oxyf4g4h2vxu2a3q@asnsn7smi4u2>
-In-Reply-To: <bktt4yanmfn4gjljy2wxmigj6mncpga237oxyf4g4h2vxu2a3q@asnsn7smi4u2>
-From: Jens Wiklander <jens.wiklander@linaro.org>
-Date: Wed, 25 Sep 2024 14:53:34 +0200
-Message-ID: <CAHUa44EvgcUg0QFvwsgU6BSs_BtZg6bO_5rx3CJbyCUPbiQZXQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 0/4] Linaro restricted heap
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linaro-mm-sig@lists.linaro.org, op-tee@lists.trustedfirmware.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Olivier Masse <olivier.masse@nxp.com>, Thierry Reding <thierry.reding@gmail.com>, 
-	Yong Wu <yong.wu@mediatek.com>, Sumit Semwal <sumit.semwal@linaro.org>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
-	John Stultz <jstultz@google.com>, "T . J . Mercier" <tjmercier@google.com>, 
-	=?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
-	Sumit Garg <sumit.garg@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240925090650.26314-1-quic_bpothuno@quicinc.com>
 
-On Wed, Sep 25, 2024 at 1:41=E2=80=AFPM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Wed, Sep 25, 2024 at 09:15:04AM GMT, Jens Wiklander wrote:
-> > On Mon, Sep 23, 2024 at 09:33:29AM +0300, Dmitry Baryshkov wrote:
-> > > Hi,
-> > >
-> > > On Fri, Aug 30, 2024 at 09:03:47AM GMT, Jens Wiklander wrote:
-> > > > Hi,
-> > > >
-> > > > This patch set is based on top of Yong Wu's restricted heap patch s=
-et [1].
-> > > > It's also a continuation on Olivier's Add dma-buf secure-heap patch=
- set [2].
-> > > >
-> > > > The Linaro restricted heap uses genalloc in the kernel to manage th=
-e heap
-> > > > carvout. This is a difference from the Mediatek restricted heap whi=
-ch
-> > > > relies on the secure world to manage the carveout.
-> > > >
-> > > > I've tried to adress the comments on [2], but [1] introduces change=
-s so I'm
-> > > > afraid I've had to skip some comments.
-> > >
-> > > I know I have raised the same question during LPC (in connection to
-> > > Qualcomm's dma-heap implementation). Is there any reason why we are
-> > > using generic heaps instead of allocating the dma-bufs on the device
-> > > side?
-> > >
-> > > In your case you already have TEE device, you can use it to allocate =
-and
-> > > export dma-bufs, which then get imported by the V4L and DRM drivers.
-> > >
-> > > I have a feeling (I might be completely wrong here) that by using
-> > > generic dma-buf heaps we can easily end up in a situation when the
-> > > userspace depends heavily on the actual platform being used (to map t=
-he
-> > > platform to heap names). I think we should instead depend on the
-> > > existing devices (e.g. if there is a TEE device, use an IOCTL to
-> > > allocate secured DMA BUF from it, otherwise check for QTEE device,
-> > > otherwise check for some other vendor device).
-> >
-> > That makes sense, it's similar to what we do with TEE_IOC_SHM_ALLOC
-> > where we allocate from a carveout reserverd for shared memory with the
-> > secure world. It was even based on dma-buf until commit dfd0743f1d9e
-> > ("tee: handle lookup of shm with reference count 0").
-> >
-> > We should use a new TEE_IOC_*_ALLOC for these new dma-bufs to avoid
-> > confusion and to have more freedom when designing the interface.
-> >
-> > >
-> > > The mental experiment to check if the API is correct is really simple=
-:
-> > > Can you use exactly the same rootfs on several devices without
-> > > any additional tuning (e.g. your QEMU, HiKey, a Mediatek board, Qualc=
-omm
-> > > laptop, etc)?
-> >
-> > No, I don't think so.
->
-> Then the API needs to be modified.
+On Wed, Sep 25, 2024 at 02:36:50PM GMT, Balaji Pothunoori wrote:
+> Enable the 'wifi' node for qcs6490-rb3gen2 boards.
+> 
+> Signed-off-by: Balaji Pothunoori <quic_bpothuno@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 1 +
+>  1 file changed, 1 insertion(+)
 
-I don't think that is enough. I would have answered no even without
-the secure data path in mind. Communication with the secure world is
-still too fragmented.
 
->
-> Or the userspace needs to be modified in the way similar to Vulkan /
-> OpenCL / glvnd / VA / VDPU: platform-specific backends, coexisting on a
-> single rootfs.
+Please take a look at the mailing list ([1]) before posting.
 
-Yes, that's likely a needed step. But the first step is to have
-something to relate to upstream, without that there's only an
-ever-changing downstream ABI.
+[1] https://lore.kernel.org/linux-arm-msm/20240907-rb3g2-fixes-v1-4-eb9da98e9f80@linaro.org/
 
->
-> It is more or less fine to have platform-specific rootfs when we are
-> talking about the embedded, resource-limited devices. But for the
-> end-user devices we must be able to install a generic distro with no
-> device-specific packages being selected.
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> index 0d45662b8028..21bcfcdb5e46 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> @@ -792,6 +792,7 @@
+>  
+>  &wifi {
+>  	memory-region = <&wlan_fw_mem>;
+> +	status = "okay";
+>  };
+>  
+>  /* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
+> -- 
+> 2.17.1
+> 
 
-I'm not sure we can solve that problem here. But we should of course
-not make matters worse. In the restricted heap patch set which this
-patchset builds on we define a way to allocate memory from a
-restricted heap, but we leave the problem of finding the right heap to
-userspace.
-
-Thanks,
-Jens
-
->
-> >
-> > >
-> > > >
-> > > > This can be tested on QEMU with the following steps:
-> > > > repo init -u https://github.com/jenswi-linaro/manifest.git -m qemu_=
-v8.xml \
-> > > >         -b prototype/sdp-v1
-> > > > repo sync -j8
-> > > > cd build
-> > > > make toolchains -j4
-> > > > make all -j$(nproc)
-> > > > make run-only
-> > > > # login and at the prompt:
-> > > > xtest --sdp-basic
-> > > >
-> > > > https://optee.readthedocs.io/en/latest/building/prerequisites.html
-> > > > list dependencies needed to build the above.
-> > > >
-> > > > The tests are pretty basic, mostly checking that a Trusted Applicat=
-ion in
-> > > > the secure world can access and manipulate the memory.
-> > >
-> > > - Can we test that the system doesn't crash badly if user provides
-> > >   non-secured memory to the users which expect a secure buffer?
-> > >
-> > > - At the same time corresponding entities shouldn't decode data to th=
-e
-> > >   buffers accessible to the rest of the sytem.
-> >
-> > I'll a few tests along that.
-> >
-> > Thanks,
-> > Jens
-> >
-> > >
-> > > >
-> > > > Cheers,
-> > > > Jens
-> > > >
-> > > > [1] https://lore.kernel.org/dri-devel/20240515112308.10171-1-yong.w=
-u@mediatek.com/
-> > > > [2] https://lore.kernel.org/lkml/20220805135330.970-1-olivier.masse=
-@nxp.com/
-> > > >
-> > > > Changes since Olivier's post [2]:
-> > > > * Based on Yong Wu's post [1] where much of dma-buf handling is don=
-e in
-> > > >   the generic restricted heap
-> > > > * Simplifications and cleanup
-> > > > * New commit message for "dma-buf: heaps: add Linaro restricted dma=
-buf heap
-> > > >   support"
-> > > > * Replaced the word "secure" with "restricted" where applicable
-> > > >
-> > > > Etienne Carriere (1):
-> > > >   tee: new ioctl to a register tee_shm from a dmabuf file descripto=
-r
-> > > >
-> > > > Jens Wiklander (2):
-> > > >   dma-buf: heaps: restricted_heap: add no_map attribute
-> > > >   dma-buf: heaps: add Linaro restricted dmabuf heap support
-> > > >
-> > > > Olivier Masse (1):
-> > > >   dt-bindings: reserved-memory: add linaro,restricted-heap
-> > > >
-> > > >  .../linaro,restricted-heap.yaml               |  56 ++++++
-> > > >  drivers/dma-buf/heaps/Kconfig                 |  10 ++
-> > > >  drivers/dma-buf/heaps/Makefile                |   1 +
-> > > >  drivers/dma-buf/heaps/restricted_heap.c       |  17 +-
-> > > >  drivers/dma-buf/heaps/restricted_heap.h       |   2 +
-> > > >  .../dma-buf/heaps/restricted_heap_linaro.c    | 165 ++++++++++++++=
-++++
-> > > >  drivers/tee/tee_core.c                        |  38 ++++
-> > > >  drivers/tee/tee_shm.c                         | 104 ++++++++++-
-> > > >  include/linux/tee_drv.h                       |  11 ++
-> > > >  include/uapi/linux/tee.h                      |  29 +++
-> > > >  10 files changed, 426 insertions(+), 7 deletions(-)
-> > > >  create mode 100644 Documentation/devicetree/bindings/reserved-memo=
-ry/linaro,restricted-heap.yaml
-> > > >  create mode 100644 drivers/dma-buf/heaps/restricted_heap_linaro.c
-> > > >
-> > > > --
-> > > > 2.34.1
-> > > >
-> > >
-> > > --
-> > > With best wishes
-> > > Dmitry
->
-> --
-> With best wishes
-> Dmitry
+-- 
+With best wishes
+Dmitry
 
