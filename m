@@ -1,111 +1,196 @@
-Return-Path: <devicetree+bounces-105071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B83859850C7
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 03:57:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 355249850DD
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 04:09:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E85801C233FE
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 01:57:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1672281737
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 02:09:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE28A14AD29;
-	Wed, 25 Sep 2024 01:56:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A372813D53A;
+	Wed, 25 Sep 2024 02:09:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aSAkSrND"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bytncnkh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C44A714AD03;
-	Wed, 25 Sep 2024 01:56:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26C99136672;
+	Wed, 25 Sep 2024 02:09:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727229417; cv=none; b=cKoL8uc7Qa6xRh5Tz+SyJGFYxIfZQPHqui/7Xkh4Z+PZRKlA5iC4bJ2oIvP3agnKl/T7G5E6/mbS3xxt53l9oklQE0FuGfm2Cz3l5rq/Z1uuXbOpEy08ZSSOZbPyGWotwWl5kx6064ZzGY0Q5GbG9kQ5HOqAA9hegkh12Adu7bA=
+	t=1727230169; cv=none; b=JgFBr7CkQrK413XBtn9boOJVsxtfjB3Zk467WKPWo8SbCWj0expSIvpy0MaD9t0JAtZoBx87vS3jf4P08mnvpx2nyeujtEXMRi3prmoiGvw+c7NGT8p7gSG4ZFCRXN1DV5AioSjTZf2iPnxar9aeqz7cD3ioRzV811SC0tB7meA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727229417; c=relaxed/simple;
-	bh=4urW8mfpIiJf29yB4/ypALycXDHY7mku8Bvw/ccFrQY=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=qcNiUB8JnmuD0hj5dfWcIg8hI83qIvCpn085kDMqa/lgUD54v3FsXKNJqVPPll1xU27+CGFGD4ovjB9fxG4ezZlH2UGnGiFBYLNGfUvWOBUXZvXHfbo0vDDeKbnsx0OOBwVQcbEzBaRJgYbnQayWdGaKsKOncDquTYddesKMBIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aSAkSrND; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77C9FC4CEC7;
-	Wed, 25 Sep 2024 01:56:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727229417;
-	bh=4urW8mfpIiJf29yB4/ypALycXDHY7mku8Bvw/ccFrQY=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=aSAkSrNDEckf4GU1UNDe3Q0fmFU6wx5f2MHy/iR2zgeGckgrKgQltpVG3QlF2j7/y
-	 hLctymXQcR+cNMPZv2XpaAzuL6rHYH/rEYWW9ZSZUjr2OV1cTaIprS+Iw28J1qNQ9R
-	 wN1FeurGkInxNjFx3bicAJnd2jf4c1ZR+WV37ZcASIuZVxwvt2kXkwsoCoWYYzuMxK
-	 Fn3PIGc3dapxSjbQkD0z/o+pz8ivf4FO9/PN7oUKZ0LG6tg9OZrbvyCnLK/EdiJ130
-	 VqhSy5UBJ14hvC3oe/1hpjEi85I+zyzuIgYIxXmu9RhXQBUlwM0kixRUDlQJInCadz
-	 sGF15Ncq9HNrg==
-Date: Tue, 24 Sep 2024 20:56:56 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1727230169; c=relaxed/simple;
+	bh=dALrHiqc+AULWuHCigbUNG/T0LDQA1gxAoWOKjKKFpk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sbjME6017OthbFKGSpaRWdABimqe+c9GCKvzSJiklFQS/A9PAUa3ifVlIlDRf8hHL/DXKv0OHLqG10X5c0w9YkXE91mbqKUPNPm1i4HdQco70bCt4V2Wd8ZKbNIE4qy1G8xt5ACfzBCAuGsbJVtzaA1FfqgkCosDDNi8AcX4Bi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bytncnkh; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2d8a9a15a7fso1176057a91.0;
+        Tue, 24 Sep 2024 19:09:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727230167; x=1727834967; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lhT4emZQMu0iLsfja78mVDr5B3L8j965fQjbvHU4u9w=;
+        b=bytncnkhhzX90WPXW3QnqW2R4zbU2jmCCWm3oapUDF1othhy9pdEtUvdSh9VefvawA
+         dDT6jnTcGVZIREZaj20y8rLWNt8NtEFbdlqKj2+AE9jBK/zG3t+WLCMHsQqwuw1O5S//
+         qR64AyPr1g4R2yJYz3Rmndwp4GJoPuDv7XG76wdERR1pthjeketNhrGUaBUnvzMexGjW
+         lnX2D+nVbe3RmMGq1ebLlpYt20BTksmYfwv86jKhqZX8ARWxkxpzdsgb99ZK1h6JuXGx
+         vw9BSUG7NWWJ7wcU4O4Ph4Q/qCb2oaEomf4T+/ZMnpsG3lCmum/9NTuwfzHBqAoQvCFt
+         m3Dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727230167; x=1727834967;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lhT4emZQMu0iLsfja78mVDr5B3L8j965fQjbvHU4u9w=;
+        b=eg9FsP/cafsbn+f9y2oh5oqG8urQJuebDnQH1sdwR/cdMey5kM9siN41C85wm4Jgy6
+         xIh0bItX5te2ORkqyzYz31yohY/cw8pFxyy0gLu400VFV916jp10Y+UA03P5XVAxhUin
+         agoPbupdZPATIGp6ZOaeIfSZ0DfCdqFggSjXdmfgidnDaCvTbY2bv/MOPXAXCEJx9kiP
+         dkZ+0Y5cupuu/sMtoRdDwekiFtQTogPwPOs4hkFlqpumZ82piF/iO2kztNg/I8PVQ96W
+         YZGb1lT2j4ZTe7wcjBFcjXM+AonPjsq6T09wne5TP1ZxzAzKDfSDxXqkakVVbzkBiLbE
+         /Kdg==
+X-Forwarded-Encrypted: i=1; AJvYcCWmlHoJ+VJA61Ga8vX1sCEE+YXAT3eq9NVYyI/lot254+cx30jZanbDzdiUIyZiaSHWE1Coj1PI0eZko8r3@vger.kernel.org, AJvYcCX+EWAv4eLWrmiLdtFo/bJ/c6oT8JoPoBKZyk0ncTZMc+PW/LR1Ni9cSE44o/Nw2ekIScIajbEwfk6V@vger.kernel.org
+X-Gm-Message-State: AOJu0YyarYQfwjRIaQxF7vyMSZ0zhohiVKA+/mw3mLC5jJDVzruVjMGa
+	tPjNNmNUNCGBzlThe990K+7bBIj1Sy/+/NXqCSBkBFeqaO6L7HGz
+X-Google-Smtp-Source: AGHT+IEgOjNFa2IPtnydRtu4ja6d33MWXnvg3q5KwwfLA4hgKFc9OYCnHhghim3qoE66AaUQyL+GJA==
+X-Received: by 2002:a17:90b:3a86:b0:2db:60b:9be5 with SMTP id 98e67ed59e1d1-2e06affdd19mr597228a91.8.1727230167336;
+        Tue, 24 Sep 2024 19:09:27 -0700 (PDT)
+Received: from [192.168.60.56] ([103.29.142.67])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e06e1e6660sm287402a91.24.2024.09.24.19.09.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Sep 2024 19:09:27 -0700 (PDT)
+Message-ID: <87146372-6d05-4994-8f64-47f4cb07e2b4@gmail.com>
+Date: Wed, 25 Sep 2024 10:09:21 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Sandie Cao <sandie.cao@deepcomputing.io>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, dhs@frame.work, 
- Michael Zhu <michael.zhu@starfivetech.com>, gregkh@linuxfoundation.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, rafal@milecki.pl, 
- devicetree@vger.kernel.org, Drew Fustini <drew@beagleboard.org>, 
- huiming.qiu@deepcomputing.io, linux-riscv@lists.infradead.org, 
- Heiko Stuebner <heiko.stuebner@cherry.de>, 
- Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, linux-kernel@vger.kernel.org, 
- Emil Renner Berthing <kernel@esmil.dk>, ams@frame.work, 
- yuning.liang@deepcomputing.io, Linus Walleij <linus.walleij@linaro.org>
-In-Reply-To: <20240924080650.1345485-4-sandie.cao@deepcomputing.io>
-References: <20240924080650.1345485-4-sandie.cao@deepcomputing.io>
-Message-Id: <172722910449.835930.11480258951992708289.robh@kernel.org>
-Subject: Re: [patch v2 3/3] riscv: dts: starfive: add framework dts
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: rockchip,inno-usb2phy: add
+ rk3576
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>, krzk@kernel.org
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, heiko@sntech.de, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ william.wu@rock-chips.com, tim.chen@rock-chips.com,
+ Frank Wang <frank.wang@rock-chips.com>
+References: <20240924085510.20863-1-frawang.cn@gmail.com>
+ <20240924-overtly-curable-13df2e7fdc9b@spud>
+From: Frank Wang <frawang.cn@gmail.com>
+In-Reply-To: <20240924-overtly-curable-13df2e7fdc9b@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Hi Conor,
+
+On 2024/9/25 0:11, Conor Dooley wrote:
+> On Tue, Sep 24, 2024 at 04:55:09PM +0800, Frank Wang wrote:
+>> From: Frank Wang <frank.wang@rock-chips.com>
+>>
+>> Add compatible for the USB2 phy in the Rockchip RK3576 SoC.
+>>
+>> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+>> ---
+>> Changelog:
+>> v2:
+>>   - Categorize clock names by oneOf keyword.
+>>
+>> v1:
+>>   - https://patchwork.kernel.org/project/linux-phy/patch/20240923025326.10467-1-frank.wang@rock-chips.com/
+>>
+>>   .../bindings/phy/rockchip,inno-usb2phy.yaml      | 16 ++++++++++++++--
+>>   1 file changed, 14 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+>> index 5254413137c64..8af4e0f8637fc 100644
+>> --- a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+>> @@ -20,6 +20,7 @@ properties:
+>>         - rockchip,rk3366-usb2phy
+>>         - rockchip,rk3399-usb2phy
+>>         - rockchip,rk3568-usb2phy
+>> +      - rockchip,rk3576-usb2phy
+>>         - rockchip,rk3588-usb2phy
+>>         - rockchip,rv1108-usb2phy
+>>   
+>> @@ -34,10 +35,20 @@ properties:
+>>       const: 0
+>>   
+>>     clocks:
+>> -    maxItems: 1
+>> +    minItems: 1
+>> +    maxItems: 3
+>>   
+>>     clock-names:
+>> -    const: phyclk
+>> +    minItems: 1
+>> +    maxItems: 3
+> clock-names isn't a required property, you can't allow jumbling the order
+> like this does without breaking the ABI. Why can't the new device have
+> phyclk in position 1?
+
+I sent a draft changes in patch v1 comments which put the "phyclk" in 
+position 1, Krzysztof said I have messed the order, so I reorder them in v2.
+Did I misunderstand? anyway, should the changes like the below?
+
+@@ -34,10 +35,20 @@ properties:
+       const: 0
+
+     clocks:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 3
+
+     clock-names:
+-    const: phyclk
++    minItems: 1
++    maxItems: 3
++    items:
++      oneOf:
++        - description: PHY input reference clocks.
++          const: phyclk
++        - description: aclk for USB MMU.
++          const: aclk
++        - description: aclk_slv for USB MMU.
++          const: aclk_slv
 
 
-On Tue, 24 Sep 2024 16:06:50 +0800, Sandie Cao wrote:
-> Add framework dts to support RISC-V Framework Laptop 13 Mainboard.
-> 
-> Signed-off-by: Sandie Cao <sandie.cao@deepcomputing.io>
-> ---
->  arch/riscv/boot/dts/starfive/Makefile         |  1 +
->  .../boot/dts/starfive/jh7110-framework.dts    | 34 +++++++++++++++++++
->  2 files changed, 35 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-framework.dts
-> 
+BR.
+Frank
 
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y starfive/jh7110-framework.dtb' for 20240924080650.1345485-4-sandie.cao@deepcomputing.io:
-
-arch/riscv/boot/dts/starfive/jh7110-framework.dtb: /: compatible: 'oneOf' conditional failed, one must be fixed:
-	'deepcomputing,fm7110' is not one of ['beagle,beaglev-starlight-jh7100-r0', 'starfive,visionfive-v1']
-	'deepcomputing,fm7110' is not one of ['milkv,mars', 'pine64,star64', 'starfive,visionfive-2-v1.2a', 'starfive,visionfive-2-v1.3b']
-	'starfive,jh7100' was expected
-	from schema $id: http://devicetree.org/schemas/riscv/starfive.yaml#
-arch/riscv/boot/dts/starfive/jh7110-framework.dtb: /: failed to match any schema with compatible: ['deepcomputing,fm7110', 'starfive,jh7110']
-
-
-
-
+>> +    items:
+>> +      oneOf:
+>> +        - description: aclk for USB MMU.
+>> +          const: aclk
+>> +        - description: aclk_slv for USB MMU.
+>> +          const: aclk_slv
+>> +        - description: PHY input reference clocks.
+>> +          const: phyclk
+>>   
+>>     assigned-clocks:
+>>       description:
+>> @@ -143,6 +154,7 @@ allOf:
+>>             contains:
+>>               enum:
+>>                 - rockchip,rk3568-usb2phy
+>> +              - rockchip,rk3576-usb2phy
+>>                 - rockchip,rk3588-usb2phy
+>>   
+>>       then:
+>> -- 
+>> 2.45.2
+>>
 
 
