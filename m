@@ -1,65 +1,74 @@
-Return-Path: <devicetree+bounces-105304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C1FD986478
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 18:08:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5132D98646E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 18:05:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9BC2FB2D2A9
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 15:24:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0F1CAB39410
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 15:32:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 272721714D9;
-	Wed, 25 Sep 2024 15:05:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFCB938DC7;
+	Wed, 25 Sep 2024 15:28:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lV/dEyYi"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="gn1G19OX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70B0416DEDF;
-	Wed, 25 Sep 2024 15:05:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0219179F0
+	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 15:28:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727276727; cv=none; b=UCUqzPdzRLQY8R1yUG0+RoHaWvgISE4CFZpt6EWhqLmjdsRfV0Zf72p8MEGCniJPf3yvryLSTY+B1mt8i//Hu91BL7XuCw1lXKznVtjkNjZHYFUTZGu0MB1Vw02My8NlA1RXVXZQC9t5V7xlCyaBB/2pO25gUFrH8SPdh0JSvDw=
+	t=1727278116; cv=none; b=lRVTSEOLd1pVQVIhx8NUPNEDLhTeJX5inPN78qaacvQSo2wS3gX3RfCNvZLilPle5ce+HIRz6PNQN6SMW/sLc8Dms8TbQnooL2goDj4HRAVdP6Oz0nw0BrmEFYLPycXh7mDA+1B9tHq9Bi83IuDysAcChib9Xd9evh+OEscpQW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727276727; c=relaxed/simple;
-	bh=LTFovhotCR3F0gjdRFbbOMrUPSlsAH2Mi6k1oPhssn0=;
+	s=arc-20240116; t=1727278116; c=relaxed/simple;
+	bh=/B5KIkZH/dNJd7K8EFl1NpdgaaqQMbqnQYkG9BZCTKU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UwLQGKhzmFDiZCEYOFszKA2iysb2DrWh1nMqY68/cvYapmY/kbPd5ZFbh8SWrcYYsNV+AbbP3/ylTKBQoGbcUiNJ3qY04CWf8SkgEtqMdzX/pS2wKrnzp/jvravR1Sk/qOJ40novOJWHnudjE7c0q9mFzKQVvWg2eNjnMjdEXxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lV/dEyYi; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1727276726; x=1758812726;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=LTFovhotCR3F0gjdRFbbOMrUPSlsAH2Mi6k1oPhssn0=;
-  b=lV/dEyYibagIHuQvOXg5M78AV3oH9/1pbaF41/rpAG1o4xfXp5Yf9vC9
-   NdLP3PtytXUqiqbZMd5NGh3zxm1sg4a0H9ruJYXJC8OAtIGLWWwRvuwky
-   DST+0k8NlEABCcGRsyscQve21QpYNt03z79P6KForVrF7cyFQmKS91TsL
-   spWWGTkhkwkAHBfWMYowWbNZiLItv2ReDTUTu74688YrmNYbLM4S6QBRc
-   WHt4aOiQ/d13QZae+tUReW5UDS7xQI8HL6wpitYKWrpDbQfuHnCgL/N54
-   7uEt/7LlRaiGcTqyfE3D+be+UNuVXECahP92qlOXGBeKuyibxvoGesaAI
-   w==;
-X-CSE-ConnectionGUID: BApjExqiTim3RzQByOk0ww==
-X-CSE-MsgGUID: iDKTPwRRQ865FqjgcAKOpA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="26482948"
-X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; 
-   d="scan'208";a="26482948"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Sep 2024 08:05:25 -0700
-X-CSE-ConnectionGUID: uBmKSm89TSiRGkjsbpUpYg==
-X-CSE-MsgGUID: ELGXt5SjQ5GvFpL3sot2/g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; 
-   d="scan'208";a="76317739"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO [10.245.246.30]) ([10.245.246.30])
-  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Sep 2024 08:05:20 -0700
-Message-ID: <8bb65adc-e995-443e-80c9-36e9b5d8eee3@linux.intel.com>
-Date: Wed, 25 Sep 2024 16:54:28 +0200
+	 In-Reply-To:Content-Type; b=dZEbbmo2B3TSg7c8mzWhUJ6elqWqSsb/VW5BoKizWC7qX62YG/Ofh5D/VSz0EeE3udnnSY51FsRCXAC7nON0SqHb7kSUnzL3Zrfgy6Pb2mXqtWHt4waRA6N0+l9q7qIR9utg8uOTbapStmTYigBvlXMEM5bxCspQ4fH27XeTRqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=gn1G19OX; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-374c1e5fe79so4904167f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 08:28:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727278113; x=1727882913; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7PSyy4BN71dy5mqHVexLDzboTAsKUKc2hyFTi3KyPtk=;
+        b=gn1G19OXvt7rEurdAa8o/mgW1cbswZDlAue5/ctfmtRQnkDA1PZbr8XG69QmmNTOMH
+         YBxkygZYOg0nYw09E6kpdKdpiBb9uyWyZtSRlAq/PvGDMii6Di+aRKWE5pz+YtVcEreb
+         TD32bPwy5GO+cbESQHN+PCkcjY0XXnbufAuT1QzXvqbSivMPxPLgw427ztIBVVtXdbJm
+         y01UAZPFDNDnjdID6dRcx20sj7mKtG+DOzG1nUTNYFG+KKDEF46On9UcrgP0kGIhB0uK
+         Ahw9N3fVEz4NwH3JR19ciq4Cmr0jojnbfcc9hCkb2Zs13GWbbRcSExLP2q3r5Mn7t4ev
+         Wfdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727278113; x=1727882913;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7PSyy4BN71dy5mqHVexLDzboTAsKUKc2hyFTi3KyPtk=;
+        b=lHMM6VFe8qRg0Xvi6ZK80JQqugW71P+qKNIv6RlPK4njnT8V/bkYqzihVJuYSdSras
+         0nlIh/qI/+uD4U+qBUJTExXzIXcxpzQv4D+bu6d3MHFayW1AaXk53OfT9BdHQaiWe7qD
+         5AgCTjwZes+HUJ+CtH9I6SJmRi2q54exiju/wGQL1YVc6xg62zKWtNNpRlJYwuSxzpe4
+         ATkrxj1GSMZuY3w0MPby8PuTqbovRc+AgceUqK3TCgHB0R+NR6Xd96P+fzVNRAWqHeFD
+         yPSx5/BwmFEwOLDeACZTZvmrNtmNodt22Ps421/V5ynusjbDLXVhedYZ6AncthWej23l
+         otSw==
+X-Forwarded-Encrypted: i=1; AJvYcCXoSg2l+xcx6Q/6iolwg8L46azaQsUpKZjgBffTrFJqrLnpU13QsXE57zSyayfWSar0GvJiRlEn1Vvv@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrRmaa3nrafXDeY0ulGfoMJc2d/SDmHMuhSAnjo++A4P+tidMp
+	Q/qIpDHoap4WEk6O/tIFMC11nuIzpWHG0MeAzdkxu9SzJAd4LjAeywaqsqTJ334=
+X-Google-Smtp-Source: AGHT+IFp1PAa7fUkvNR1Hu5TOkbb60Z/zetDN4Gii2Kf3uJUYk6thZOMukVHn10+sCEkHp+fUTfHpw==
+X-Received: by 2002:a5d:6e10:0:b0:374:cea0:7d3d with SMTP id ffacd0b85a97d-37cc24c5a71mr2197820f8f.53.1727278112851;
+        Wed, 25 Sep 2024 08:28:32 -0700 (PDT)
+Received: from [10.2.5.161] (amontpellier-556-1-151-252.w109-210.abo.wanadoo.fr. [109.210.7.252])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cc4a57d00sm1747754f8f.64.2024.09.25.08.28.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Sep 2024 08:28:32 -0700 (PDT)
+Message-ID: <da15af17-e5cc-4714-9fe1-4683d990abbb@baylibre.com>
+Date: Wed, 25 Sep 2024 17:28:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,117 +76,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v28 30/32] ALSA: usb-audio: Add USB offload route kcontrol
-To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
- mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
- dmitry.torokhov@gmail.com, corbet@lwn.net, broonie@kernel.org,
- lgirdwood@gmail.com, tiwai@suse.com, krzk+dt@kernel.org,
- Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com, robh@kernel.org,
- gregkh@linuxfoundation.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-doc@vger.kernel.org, alsa-devel@alsa-project.org
-References: <20240925010000.2231406-1-quic_wcheng@quicinc.com>
- <20240925010000.2231406-31-quic_wcheng@quicinc.com>
+Subject: Re: [PATCH v2 02/10] dt-bindings: iio: adc: ad7606: Make corrections
+ on spi conditions
+To: Conor Dooley <conor@kernel.org>
+Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+ aardelean@baylibre.com, dlechner@baylibre.com, jstephan@baylibre.com
+References: <20240920-ad7606_add_iio_backend_support-v2-0-0e78782ae7d0@baylibre.com>
+ <20240920-ad7606_add_iio_backend_support-v2-2-0e78782ae7d0@baylibre.com>
+ <20240921-playgroup-regally-f26c17be26dc@spud>
+ <56090167-15a0-4386-89a6-c379d70faae6@baylibre.com>
+ <20240924-unvocal-playback-2753bbbb0e45@spud>
 Content-Language: en-US
-From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <20240925010000.2231406-31-quic_wcheng@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+From: Guillaume Stols <gstols@baylibre.com>
+In-Reply-To: <20240924-unvocal-playback-2753bbbb0e45@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
-
-
-> +static int
-> +snd_usb_offload_route_get(struct snd_kcontrol *kcontrol,
-> +			  struct snd_ctl_elem_value *ucontrol)
-> +{
-> +	struct device *sysdev = snd_kcontrol_chip(kcontrol);
-> +	int ret;
-> +
-> +	ret = snd_soc_usb_update_offload_route(sysdev,
-> +					       CARD_IDX(kcontrol->private_value),
-> +					       PCM_IDX(kcontrol->private_value),
-> +					       SNDRV_PCM_STREAM_PLAYBACK,
-> +					       ucontrol->value.integer.value);
-> +	if (ret < 0) {
-> +		ucontrol->value.integer.value[0] = -1;
-> +		ucontrol->value.integer.value[1] = -1;
-> +	}
-
-well this invalidates again what I understood from the last patch and
-goes back to what I understood initially: the error code is never
-returned to higher levels - when offload is not supported the kcontrol
-values are encoded to the -1 magic value.
-
-> +	return 0;
-
-and this begs the question if this helper should return a void value.
-
-> +}
-> +
-> +static int snd_usb_offload_route_info(struct snd_kcontrol *kcontrol,
-> +				      struct snd_ctl_elem_info *uinfo)
-> +{
-> +	uinfo->type = SNDRV_CTL_ELEM_TYPE_INTEGER;
-> +	uinfo->count = 2;
-> +	uinfo->value.integer.min = -1;
-> +	/* Arbitrary max value, as there is no 'limit' on number of PCM devices */
-> +	uinfo->value.integer.max = 0xff;
-> +
-> +	return 0;
-> +}
-> +
-> +static struct snd_kcontrol_new snd_usb_offload_mapped_ctl = {
-> +	.iface = SNDRV_CTL_ELEM_IFACE_CARD,
-> +	.access = SNDRV_CTL_ELEM_ACCESS_READ,
-> +	.info = snd_usb_offload_route_info,
-> +	.get = snd_usb_offload_route_get,
-> +};
-> +
-> +/**
-> + * snd_usb_offload_create_ctl() - Add USB offload bounded mixer
-> + * @chip - USB SND chip device
-> + *
-> + * Creates a sound control for a USB audio device, so that applications can
-> + * query for if there is an available USB audio offload path, and which
-> + * card is managing it.
-> + */
-> +int snd_usb_offload_create_ctl(struct snd_usb_audio *chip)
-> +{
-> +	struct usb_device *udev = chip->dev;
-> +	struct snd_kcontrol_new *chip_kctl;
-> +	struct snd_usb_substream *subs;
-> +	struct snd_usb_stream *as;
-> +	char ctl_name[37];
-
-that's quite a magic value.
-
-> +	int ret;
-> +
-> +	list_for_each_entry(as, &chip->pcm_list, list) {
-> +		subs = &as->substream[SNDRV_PCM_STREAM_PLAYBACK];
-> +		if (!subs->ep_num)
-> +			continue;
-> +
-> +		chip_kctl = &snd_usb_offload_mapped_ctl;
-> +		chip_kctl->count = 1;
-> +		/*
-> +		 * Store the associated USB SND card number and PCM index for
-> +		 * the kctl.
-> +		 */
-> +		chip_kctl->private_value = as->pcm_index |
-> +					  chip->card->number << 16;
-> +		sprintf(ctl_name, "USB Offload Playback Route PCM#%d",
-> +			as->pcm_index);
-> +		chip_kctl->name = ctl_name;
-> +		ret = snd_ctl_add(chip->card, snd_ctl_new1(chip_kctl,
-> +				  udev->bus->sysdev));
-> +		if (ret < 0)
-> +			break;
-> +	}
-> +
-> +	return ret;
-> +}
+On 9/24/24 16:59, Conor Dooley wrote:
+> On Tue, Sep 24, 2024 at 04:41:50PM +0200, Guillaume Stols wrote:
+>> On 9/21/24 23:55, Conor Dooley wrote:
+>>> On Fri, Sep 20, 2024 at 05:33:22PM +0000, Guillaume Stols wrote:
+>>>> The SPI conditions are not always required, because there is also a
+>>>> parallel interface. The way used to detect that the SPI interface is
+>>>> used is to check if the reg value is between 0 and 256.
+>>> And, yaknow, not that the bus you're on is a spi bus? I don't think this
+>>> comment is relevant to the binding, especially given you have a property
+>>> for it.
+>> Apologies, I missed to change the commit message, it will be fixed in the
+>> next series.
+>>
+>> Since Jonathan did not like very much inferring the interface with the reg's
+>> value that I used i the previous verison, I introduced this flag.
+>>
+>> However this is only intended to be use in bindings, to determine whether or
+>> not spi properties should be added.
+> To be honest, if it is not needed by software to understand what bus the
+> device is on, it shouldn't be in the bindings at all. What was Jonathan
+> opposed to? Doing an if reg < 1000: do y, otherwise do x?
+> I'd not bother with any of that, and just make cpha (or w/e it was)
+> optional with a description explaining the circumstances in which is it
+> needed.
+OK, it will be removed from the series and sent as a side patch because 
+it anyways does not really belong to this series.
+>> In the driver side of things, the bus interface is inferred by the parent's
+>> node (SPI driver is an module_spi_driver while parallel driver is
+>> module_platform_driver).
 
