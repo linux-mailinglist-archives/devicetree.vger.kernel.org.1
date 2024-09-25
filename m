@@ -1,74 +1,64 @@
-Return-Path: <devicetree+bounces-105219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3591D985732
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 12:31:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25E14985743
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 12:44:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4FA4284A60
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 10:31:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F7B61C21139
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 10:44:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5DE01474B9;
-	Wed, 25 Sep 2024 10:31:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C49C15B966;
+	Wed, 25 Sep 2024 10:44:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eGX3S6vz"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bCCDEdf9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE8412D758;
-	Wed, 25 Sep 2024 10:31:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE84A1304AB;
+	Wed, 25 Sep 2024 10:44:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727260294; cv=none; b=DlgOelzXrCBVbrliuLZo8M7y6A+LzJmXgz14fYoEuUxWND+jJn5TotWR9Hsrhpim4RM2edgxTlO1W12mC6htFhhECRbCV2/oDG6r6F6mxhdQvOo/kZLUB0qIwz1KgfQEcZS4vGZcc/+0X3vPkCeph47RQKrQ/xvSAiD7bLoBSrY=
+	t=1727261044; cv=none; b=aZSk2+NI2TY0BHrl1wVQn/oTeRdRe4a41xrFf8oT9dx5ZRwMI1VbXhQeChOUWs35YYNP6o0O1PQ6jJSaKJtGd902SX1YXWtbHxlOZH1qNgcCixa5/83WM66IlPGVGqwWsgiEhQQ3cYdocx3Ij6pd29+DvnMQ6HFUXH7ZihH3l+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727260294; c=relaxed/simple;
-	bh=qLSJxra/NcqdeZkNSJ0sTyQlAP5XAkHkm+ogyHLRmjo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=YidlUpCkRRru3YlRQF7qpANVlqKb/BQom6i54yBK2s5hbIE0Bl3UFi/lnPwj2UIgG6qu5ZrBR6TNJuQWqE+Lww/1Jl6HUo1CAMbbk63Le29pU6P93zrA/9eg2U/1aXRxAiHA3GLxcMgm2BtvhbuoPO6WutV6ahWtL7vlrvLFA7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eGX3S6vz; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5365b6bd901so7785680e87.2;
-        Wed, 25 Sep 2024 03:31:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727260291; x=1727865091; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jrmf20tbzUs7Mdo75kEoEfr2UsKXf7hiFJq4VlRLhn0=;
-        b=eGX3S6vzbJV9dX4Y9Al3oeYsIMdGaZVQ296fyvykJKMzpyFMw0hDe6DUG7+auzGrxq
-         6ngxEmxlETV9QX/w6QOMyTZZhBmeZqeTqyLZ88od3ieG5cygf4rKZAkLD2GSJVwCb8KH
-         c+tVn38gOsFGA0zMQQfw7gaZq585A/X7A/becmnYjvVyNbIzRWaHGYEy7XjMWK6WfSLt
-         5IAsOIUTBJiMbHPdA5o5pkzN/32c0SvqnQkm9yMZsEunUOrPwmTeh48GHP1Oa9x+0sjG
-         jf9vb15svpg6wmC5Efc6hDcykV999WXlPPQ15Hw5nnjtXNRkBIqDcMRdIfdvJpbKFTJy
-         LCXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727260291; x=1727865091;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jrmf20tbzUs7Mdo75kEoEfr2UsKXf7hiFJq4VlRLhn0=;
-        b=Rntcgx1xX3avEEc6akOeUd2N4SF6Y8NylKQSOLvajfWP7TSCwTtOHrm6upGBRBKVVD
-         LPKB0GsPkxWU6E2Yc76PqXf7eSzVLajAZY0aBxiUi3jVmFi/OaLnHGg5Ksnpzh5bvgds
-         TZz55/GlwWElSfUWcsU9XRPNvCdVaQ3Nx58+YO5MC2An4MxI6ZLZEVtrvDNtlhlhaGXt
-         25SKjL5y/PG+UV0d2VEgqjBYPKLViSBixhrePUufkXF6HNfdciYMKxfHJSBThad8vt2g
-         dm12cE99W50Su+MKUjIaR3seYdVwlSV0uaoY9teTv1o00dxLHJHXRfxTAPUIujHYtJKG
-         2Ajg==
-X-Forwarded-Encrypted: i=1; AJvYcCUCVqTrCuvOxwQ2C+NiiIowtlHX0T32bqBjC1nP3t8sP53CWVKcTIQ8NjHS9mmQQRW9/Rlf3DcLc0u80nEn@vger.kernel.org, AJvYcCVFLhLOOyDKGinlb8biG/B5om57f2KZ9e/TCRqcE6YxLRDFuZA4vFwhtg6OUbdf2L5/V1K84N5g9ZZ0@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpUMujKGPcZ/buHHe9ystopGMcaUHEv3ahQU8mpMEG41ME9QQ4
-	hU/rRdiHlPGnhI/4Ags2VgUkELZgFCXJ9Tmd8LKsAm+vVQSCe/t1WVxCg+XR
-X-Google-Smtp-Source: AGHT+IE3m4WD6Sb7jchwSPBjoFhGFf5DaX9VC67Z0LPJbbpbGo7gPCT98ZFbLUYAnM1nnitbvMoW+g==
-X-Received: by 2002:a05:6512:ac9:b0:530:e1ee:d95 with SMTP id 2adb3069b0e04-5387048aa6bmr1283273e87.1.1727260290742;
-        Wed, 25 Sep 2024 03:31:30 -0700 (PDT)
-Received: from [192.168.1.11] (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-537a85e0642sm482437e87.27.2024.09.25.03.31.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2024 03:31:29 -0700 (PDT)
-From: Marcus Folkesson <marcus.folkesson@gmail.com>
-Date: Wed, 25 Sep 2024 12:31:16 +0200
-Subject: [PATCH] ARM: dts: ti: dra7: Remove double include of clock
- bindings
+	s=arc-20240116; t=1727261044; c=relaxed/simple;
+	bh=L1HoHQHuchfwFS1VghL0sPLR1w8kjOBVdi6ZTuTCmag=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=URMpGiRWRv/tG3BSWdfJcyhyd88eS2CYJRyDf/LlM6/7fmbtFMpZ3Q27zgNGZVP9+SAQD8EBA3Y1p/PCJfzzRVQ5IZJobWke/r3sLXtTi8amVpFkC91MR1XZhq9rhKsB3IIE8Z+llxkouApjLXUo1rQp5jYxIWygT8d1UM627O8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bCCDEdf9; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48P7aRGI030180;
+	Wed, 25 Sep 2024 10:43:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=Nwr5j3VJIL3xNleJgcAwdN
+	+arKX0c9YffWpb2NDMe+M=; b=bCCDEdf9mQZnpRQZZzZ7vPuLZ3kvcQGMmH+G9P
+	4wcEFI0qvQ+RGb/6QVdGk0J000zIgOZ2aXFrNz2rry1aw8lJ6jprsg6zUWuaKj5b
+	pqtdHP3OdjrAzx8nLFCTmW5Y2aVph0Rl31K2Ae02lyW5YQhXhQ38nsa/oWYMEanI
+	8ppH6v6Y8VE6GQnKmmYknzlf4H2/Ou244mYKjMfyxotnOiS4oT0l0KrXSNkzg5cv
+	Olt23P8u7JNEnPFyx5fSxzZFV7WFiQNFrIhLE58I4MQI4QZ+Zip8QoFRbu1uAsla
+	xKKH5ZCq22I93+prU4/jR2k2mtCICTEcfSZPXANx144+pVgg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41sp7ukx3c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 25 Sep 2024 10:43:53 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48PAhpel004072
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 25 Sep 2024 10:43:51 GMT
+Received: from jingyw-gv.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 25 Sep 2024 03:43:47 -0700
+From: Jingyi Wang <quic_jingyw@quicinc.com>
+Subject: [PATCH v2 0/4] Add initial support for QCS8300 SoC and QCS8300
+ RIDE board
+Date: Wed, 25 Sep 2024 18:43:31 +0800
+Message-ID: <20240925-qcs8300_initial_dtsi-v2-0-494c40fa2a42@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,62 +67,126 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240925-dra7-v1-1-3fe33a84bcd7@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAHTm82YC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDSyNT3ZSiRHPdlLS0NIukZBNLYzNTJaDSgqLUtMwKsDHRsbW1ANACcTN
- WAAAA
-X-Change-ID: 20240925-dra7-dfff8bc49365
-To: =?utf-8?q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>, 
- Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Marcus Folkesson <marcus.folkesson@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=858;
- i=marcus.folkesson@gmail.com; h=from:subject:message-id;
- bh=qLSJxra/NcqdeZkNSJ0sTyQlAP5XAkHkm+ogyHLRmjo=;
- b=owEBbQKS/ZANAwAIAYiATm9ZXVIyAcsmYgBm8+Z7l+2QvKa6Qn4Q+hyzGmg8OXJCHLxPadgJS
- 7RVdxZrW5WJAjMEAAEIAB0WIQQFUaLotmy1TWTBLGWIgE5vWV1SMgUCZvPmewAKCRCIgE5vWV1S
- MpU6EAC7ZK3lmnh3r65YlDaFHPwpYyi+pWIwPYTrobupv/Av5aC1SCcoIW72y9k0toDXjxNdWf2
- GrEYDIRSIxf68g7+cWm2p5C//BgOxK5Unozi+leiAAC3jMcTgALjC9P2KEbITpns1Nrf8pFDcJ4
- M8RYfQBmnjxctkntSP1iJ6Hj5BMAaSVd63jFOeGuoyTsxLSLDeQcG7S3ahIabp8u/BsIBDXkHZG
- 5PQbgkLX1oAqGKeC12lbshVnxpYYi7+tolWKKczJT9k6jPUQ2jiJFs0O657mEkbxMLCii/AzmvH
- NNaM90MGkgo+xDR+A6d44p+bb8jHPKiD8/yatKyDdb7ja9GgE7/H6uDWF/HXiwGkuN2eNaoD7wY
- ZRhWPQu9pzlhkKI2nWwMKCuoKh52KOr0y3ZhVjYfDrGp2K+viWkrMyQ5po4lVuaaHcaDmH2zk8U
- sHgNDbt+0CcvrcQl2eOATlLgeJdpRjxqIcjSjU00miDuiWdlRArDSSENKMz2BE66N/l/Gy8fOrj
- SCG295E/+jDAgwXfoD9MP5zd2gWj62cgCed8xi4dTMqh3DliEtgcGjJc0L7WJlM1geu22mr8/Ry
- HBaNnkVKjFdAsst/cVevYQlHTez1VstozEzXMiThHDfhEK5C1/gL1HfPyyWZYBe2Ctk71D+bfu2
- zGy2YgM9Sxp8wjA==
-X-Developer-Key: i=marcus.folkesson@gmail.com; a=openpgp;
- fpr=AB91D46C7E0F6E6FB2AB640EC0FE25D598F6C127
+X-B4-Tracking: v=1; b=H4sIAFTp82YC/22NQQ6CMBBFr0Jmbc20FBVX3sMQ0rSDTKIttEg0h
+ LtbiUuX7yX//QUSRaYE52KBSDMnDj6D2hVge+NvJNhlBoVKY60qMdp0KhFb9jyxubduSizIHKT
+ uSFellpCnQ6SOX1v22mTuOU0hvreXWX7tL4j6f3CWAoVDMrXpnEU8XsYnW/Z2b8MDmnVdP8rxR
+ xi6AAAA
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas
+	<catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+CC: <quic_tengfan@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <quic_tingweiz@quicinc.com>,
+        <quic_aiquny@quicinc.com>, Jingyi Wang <quic_jingyw@quicinc.com>,
+        "Zhenhua
+ Huang" <quic_zhenhuah@quicinc.com>,
+        Xin Liu <quic_liuxin@quicinc.com>,
+        "Kyle
+ Deng" <quic_chunkaid@quicinc.com>,
+        Tingguo Cheng <quic_tingguoc@quicinc.com>,
+        Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+X-Mailer: b4 0.15-dev-99b12
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1727261026; l=3388;
+ i=quic_jingyw@quicinc.com; s=20240910; h=from:subject:message-id;
+ bh=L1HoHQHuchfwFS1VghL0sPLR1w8kjOBVdi6ZTuTCmag=;
+ b=2gBpebP84Ps+5kiVqsSd/qCU9ZOT1plBSV5tuUHXhr+ATdeT68TPMVAu2bqDl8F1Dzz7q4cab
+ jUAr65lNSY3CalHjlHQIqNJ88CzwBFm1wupUBzBccxP6bePyk6lDwig
+X-Developer-Key: i=quic_jingyw@quicinc.com; a=ed25519;
+ pk=ZRP1KgWMhlXXWlSYLoO7TSfwKgt6ke8hw5xWcSY+wLQ=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: z0gN_lrEgOKGI2oLAKeyaKGacmb6-4z3
+X-Proofpoint-ORIG-GUID: z0gN_lrEgOKGI2oLAKeyaKGacmb6-4z3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ clxscore=1011 bulkscore=0 mlxlogscore=999 mlxscore=0 phishscore=0
+ suspectscore=0 impostorscore=0 spamscore=0 malwarescore=0
+ priorityscore=1501 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2408220000 definitions=main-2409250073
 
-There is no need to include the same file twice.
+Introduce the Device Tree for the QCS8300 platform.
 
-Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+Features added and enabled:
+- CPUs with PSCI idle states
+- Interrupt-controller with PDC wakeup support
+- Timers, TCSR Clock Controllers
+- Reserved Shared memory
+- GCC and RPMHCC
+- TLMM
+- Interconnect
+- QuP with uart
+- SMMU
+- QFPROM
+- Rpmhpd power controller
+- UFS
+- Inter-Processor Communication Controller
+- SRAM
+- Remoteprocs including ADSP,CDSP and GPDSP
+- BWMONs
+
+binding dependencies:
+- remoteproc: https://lore.kernel.org/linux-arm-msm/20240925-qcs8300_remoteproc_binding-v3-1-21b0c52b142b@quicinc.com/
+- ufs-phy: https://lore.kernel.org/linux-arm-msm/20240925-qcs8300_ufs_phy_binding-v3-1-c1eb5c393b09@quicinc.com/
+- ufs-controller: https://lore.kernel.org/all/20240911-qcs8300_ufs_binding-v2-1-68bb66d48730@quicinc.com/ - Reviewed
+- smmu: https://lore.kernel.org/all/20240911-qcs8300_smmu_binding-v2-1-f53dd9c047ba@quicinc.com/ - Applied
+- ipcc: https://lore.kernel.org/all/20240911-qcs8300_ipcc_binding-v2-1-ca15326c5d0f@quicinc.com/ - Applied
+- qfprom: https://lore.kernel.org/all/20240911-qcs8300_qfprom_binding-v2-1-d39226887493@quicinc.com/ - Reviewed
+- tcsr: https://lore.kernel.org/all/20240911-qcs8300_tcsr_binding-v2-1-66eb5336b8d1@quicinc.com/ - Reviewed
+- rmphpd: https://lore.kernel.org/all/20240920-add_qcs8300_powerdomains_driver_support-v1-1-96a2a08841da@quicinc.com/ - Reviewed
+- bwmon: https://lore.kernel.org/all/20240925-qcs8300_bwmon_binding-v1-1-a7bfd94b2854@quicinc.com/ - Reviewed
+- others: https://lore.kernel.org/all/20240911-qcs8300_binding-v2-0-de8641b3eaa1@quicinc.com/ - Reviewed
+
+build dependencies:
+- tlmm: https://lore.kernel.org/linux-arm-msm/20240819064933.1778204-1-quic_jingyw@quicinc.com/
+- gcc: https://lore.kernel.org/all/20240822-qcs8300-gcc-v2-0-b310dfa70ad8@quicinc.com/
+- interconnect: https://lore.kernel.org/linux-arm-msm/20240910101013.3020-1-quic_rlaggysh@quicinc.com/
+
+patch made the following verifications:
+- Successfully ran dt_binding_check for binding files
+- Successfully ran dtbs_check with W=1 for dts
+- Features found on the SoC function verified.
+
+Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
 ---
- arch/arm/boot/dts/ti/omap/dra7.dtsi | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/ti/omap/dra7.dtsi b/arch/arm/boot/dts/ti/omap/dra7.dtsi
-index 3f3e52e3b37526eb41db0ea13b4c6c962864519b..ba90e44f83e7571b5686bf47ca3c09472eb555b9 100644
---- a/arch/arm/boot/dts/ti/omap/dra7.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/dra7.dtsi
-@@ -9,7 +9,6 @@
- #include <dt-bindings/clock/dra7.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/pinctrl/dra.h>
--#include <dt-bindings/clock/dra7.h>
- 
- #define MAX_SOURCES 400
- 
+Changes in v2:
+- decoupled from the original series
+- Drop compatible for QCS8275
+- fix property order and add line breaks
+- move sleep_clk node to qcs8300-ride.dts
+- move l3-cache nodes out of l2-cache nodes and remove cluster1/cluster2
+- add BWMON nodes
+- commit-msg update
+- Link to v1: https://lore.kernel.org/r/20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com
 
 ---
-base-commit: 33cc938e65a98f1d29d0a18403dbbee050dcad9a
-change-id: 20240925-dra7-dfff8bc49365
+Jingyi Wang (4):
+      dt-bindings: arm: qcom: document QCS8300 SoC and reference board
+      arm64: defconfig: enable clock controller, interconnect and pinctrl for QCS8300
+      arm64: dts: qcom: add initial support for QCS8300 DTSI
+      arm64: dts: qcom: add base QCS8300 RIDE dts
+
+ Documentation/devicetree/bindings/arm/qcom.yaml |    6 +
+ arch/arm64/boot/dts/qcom/Makefile               |    1 +
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts       |  267 +++++
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi           | 1375 +++++++++++++++++++++++
+ arch/arm64/configs/defconfig                    |    3 +
+ 5 files changed, 1652 insertions(+)
+---
+base-commit: 4d0326b60bb753627437fff0f76bf1525bcda422
+change-id: 20240925-qcs8300_initial_dtsi-ea614fe45341
 
 Best regards,
 -- 
-Marcus Folkesson <marcus.folkesson@gmail.com>
+Jingyi Wang <quic_jingyw@quicinc.com>
 
 
