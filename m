@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-105271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 666BE986159
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 16:47:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45794986178
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 16:52:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86DBC1C26FD8
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 14:47:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E69DF1F2AB0A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 14:52:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53D8E1B580E;
-	Wed, 25 Sep 2024 14:07:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DFC0187346;
+	Wed, 25 Sep 2024 14:18:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="acJH3mb8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="myB6Alc/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25EF41B580D;
-	Wed, 25 Sep 2024 14:07:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05D8218732A;
+	Wed, 25 Sep 2024 14:17:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727273257; cv=none; b=cQ1M0m4ALIDWriKHrsWSr87fVGccf4Gc06AjEImAjbAIjaSOUSaln0MXcrXBFisfRMyBmj4fT3Nl8M55WvyS44RJOdBMDSy4utA91/a+GMke6a8Bnortr3b8Fpy2qCFwPuJoiRwQLIbjyQ+Wlus6AxUKV43gH9MDu3WtsG5zSeA=
+	t=1727273880; cv=none; b=Llnl32LkWdvvlJGuDLxavun8FnEb975ivW39aovEkRF7Spx7/hI4cVG/VsFhsUHDYAGJvrq/W7jA4c3X+pPyKpJyHtnkBHiPvrFV9yQoo2JG7pyEZUco44WnVW4VLKYbsg/mo4Bp8Jm8509ed8WAd/Sy8Q1HDqLq2gOntuelb04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727273257; c=relaxed/simple;
-	bh=gvqnSrhRYuaFfpZy3kXC+zMSnnnyboWPLgboCFLynNM=;
+	s=arc-20240116; t=1727273880; c=relaxed/simple;
+	bh=aP2xA/mU4mwmMWMTZ/93f2YWj6d5WLLwRn9OKUwSK9s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DU2Q4JN7eOPRgpke8DdvdWK1hV+p0kyjZ5/cV9YqXDX+eaaW2Wze+UHoDO7zatRKLbdMKbkiVOdugpy33aJK6R/wBKFNwK7LOUD/2fWdU5FaQcXbf1nlzw3TSQ/DpmYswzgrDy5/Pxz8W27Z8vLxNWTsXKtPnNQSw+coCFPCELc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=acJH3mb8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E830FC4CEC3;
-	Wed, 25 Sep 2024 14:07:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=GPgwEQzX1w8GC2fhriNuh2Ts6d07mGA1PP0Sn7XfWnpVSBj7EW75rHI1wjaI/AaxCYQj8nx2oToz6/91areJWZHVnLSnfkB9LIYYjs9/QE36lp2hjPbyec5/9jYkyLWjCZQUgbrrBmYjizneXsoh1In1R4fEc+EPhOaGFiwXzLI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=myB6Alc/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07E06C4CEC3;
+	Wed, 25 Sep 2024 14:17:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727273256;
-	bh=gvqnSrhRYuaFfpZy3kXC+zMSnnnyboWPLgboCFLynNM=;
+	s=k20201202; t=1727273878;
+	bh=aP2xA/mU4mwmMWMTZ/93f2YWj6d5WLLwRn9OKUwSK9s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=acJH3mb8LYJCz8TqE/o5SL89RXO4dS2UWkc+cGhSui/4G9mZ1ymGIdlTDMf1+Vo8P
-	 e+2WxYaEiSXHPHL18KJar26Yrxqll2cw04vsxa7qB2KOlwXXxM2gZmD+iANVeZeVT8
-	 FtJBprf02UhfAJX6sVXyvRVa7J3YrkO/oHblDb14I5izfEL7Pidn4TYEromdvGpOsa
-	 0+o2BtDFyFrDUXZo1JZOyJQLMAhwI/g6LYedJ+Hj/fybHwUTp3sIztA8ZdE4KDoOOo
-	 u/8lpxMYhkvlqIMCtA4BV3CJGzrI5N097JlvRSOg5wZm6+v8Qk2d6EHkDJCyh1tTER
-	 PkL3LoQDQVWBQ==
-Message-ID: <0fcccdbe-ba46-4d0b-ab8b-ad659bec05d5@kernel.org>
-Date: Wed, 25 Sep 2024 16:07:31 +0200
+	b=myB6Alc/fTtah6PgE13bhUk+7d3j7LjshuCjurFn6SydOet6O9ZP/hTmgzkTZc3m2
+	 ILRAJ/DNiziMWrXn8K9V7EGd8c6AEuqVlsOd2ujoIwVT6FTydBe7eJrrudTVfLwEOK
+	 6uuhVRdrHwJLdH3toHrwGsmTg8slN7mD2wWa5i1QbGeQ6fYsc+/CdAqYlFDqxMevjV
+	 xZdKRlLy1i/gBdv6uPlB4ITjcsNoHqMhSdv0rwBcYxGIbgAsrYK9oa1xcKc9XE8vCE
+	 BuIB48joHqfuKunmpXjtk3BbdLb+ylgpNfItLMOEqY0MHqL7+cnt/AMyGkv7xDKD4n
+	 mBPlcGWXJucrw==
+Message-ID: <16ce3558-7733-4c38-b514-c89525faec06@kernel.org>
+Date: Wed, 25 Sep 2024 16:17:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: phy: Add QMP UFS PHY compatible for
- QCS8300
-To: Jingyi Wang <quic_jingyw@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: quic_tengfan@quicinc.com, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Xin Liu <quic_liuxin@quicinc.com>
-References: <20240925-qcs8300_ufs_phy_binding-v3-1-c1eb5c393b09@quicinc.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: mediatek: Add MT8186
+ Chinchou/Chinchou360 Chromebooks
+To: =?UTF-8?Q?Albert_Jakie=C5=82a?= <jakiela@google.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, wenst@chromium.org,
+ rafal@milecki.pl, hsinyi@chromium.org, nfraprado@collabora.com,
+ macpaul.lin@mediatek.com, sean.wang@mediatek.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20240925080353.2362879-1-jakiela@google.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,37 +105,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240925-qcs8300_ufs_phy_binding-v3-1-c1eb5c393b09@quicinc.com>
+In-Reply-To: <20240925080353.2362879-1-jakiela@google.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 25/09/2024 09:34, Jingyi Wang wrote:
-> From: Xin Liu <quic_liuxin@quicinc.com>
+On 25/09/2024 10:03, Albert Jakieła wrote:
+> Add entries for MT8186 based Chinchou/Chinchou360 Chromebooks.
+> These two are clamshell or convertible with touchscreen, stylus
+> and extra buttons.
 > 
-> Document the QMP UFS PHY compatible for Qualcomm QCS8300 to support
-> physical layer functionality for UFS found on the SoC. Use fallback to
-> indicate the compatibility of the QMP UFS PHY on the QCS8300 with that
-> on the SA8775P.
-> 
-> Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
-> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
+> Signed-off-by: Albert Jakieła <jakiela@google.com>
 > ---
-> Changes in v3:
-> - remove redundant compatible.
-> - Link to v2: https://lore.kernel.org/r/20240911-qcs8300_ufs_phy_binding-v2-1-c801a2d27a84@quicinc.com
+>  .../devicetree/bindings/arm/mediatek.yaml     | 23 +++++++++++++++++++
+>  1 file changed, 23 insertions(+)
 > 
-> Changes in v2:
-> - decoupled from the original series.
-> - Use fallback to indicate compatibility with SA8775P.
-> - typo fixup
-> - Link to v1: https://lore.kernel.org/r/20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com
-> ---
->  .../bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml    | 45 ++++++++++++----------
->  1 file changed, 25 insertions(+), 20 deletions(-)
-> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> index 1d4bb50fcd8d..110149f5d748 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> @@ -239,6 +239,29 @@ properties:
+>            - enum:
+>                - mediatek,mt8183-pumpkin
+>            - const: mediatek,mt8183
+> +      - description: Google Chinchou360 (Asus Chromebook CZ11 Flip CZ1104F)
+> +        items:
+> +          - const: google,chinchou-sku16
+> +          - const: google,chinchou-sku18
+> +          - const: google,chinchou-sku19
+> +          - const: google,chinchou-sku21
+> +          - const: google,chinchou-sku2147483647
 
-
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Wasn't sku-maxint removed? I recall same discussion recently... If yes,
+then please use same rules for all future Chromebook submissions.
 
 Best regards,
 Krzysztof
