@@ -1,110 +1,99 @@
-Return-Path: <devicetree+bounces-105158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 694DE985419
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:27:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86294985435
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:32:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 319C9289B7A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 07:27:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DB071F22302
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 07:32:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A750156F3F;
-	Wed, 25 Sep 2024 07:22:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A27A0156F30;
+	Wed, 25 Sep 2024 07:32:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="S+DTkOq0"
+	dkim=pass (2048-bit key) header.d=milecki.pl header.i=@milecki.pl header.b="Ovl4kHSG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from 3.mo582.mail-out.ovh.net (3.mo582.mail-out.ovh.net [178.33.253.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E16EF15AD8B;
-	Wed, 25 Sep 2024 07:22:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D59D132114
+	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 07:32:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.33.253.26
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727248963; cv=none; b=iWE2kdPMCLDjAKmLJcK6kxphJC2pnxxFK+kUxVATfmqiKFfpInF4XinHTgxfSPVVXxR54ycQsv7Z23j6phkt2UeyR3J6gNPrBUC7/jsUhNOUNBsfkLY7TITEEaXqz6bEDC1nZqOqvbAntjcTpU4c/9OAJniwA9rzSW6gN5yUZMM=
+	t=1727249547; cv=none; b=rUmN6ENeuCXn5r+C5xE4Yk9AtuNj395MzVijqNr9fa1sxHRMckjWmImcf7j12atV4qIDvreQVNgx+76py/Rxvc9VG92Mj7+n+3C+iNZ/QizrlQ1Q1E/dlvm3mN6t0RrUkjcS0yGvQl1eC1GSgmnzKNMsPMqT4EMeQOmmFd+szCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727248963; c=relaxed/simple;
-	bh=fWQc86uvk41jzWAKtD5AHKfG+qWsOinTlTLdzMU6ivo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=t0dYEE8hyHpCy0AnRmQ9AjSanPv5Gp2HAy4sHt25i5xmRjCKx6utg7Q2PlvT1D2wDI4+gi1EkoZqfQBE4qJhzMN5o2E+LmCmA+oPCYxyi2LciokxCehbLGBl/x5zztjWn2c+o+xkttaWAOn9rRFh+s8TAoyrw+DJheaNGmCeYhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=S+DTkOq0; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: f015f3cc7b0e11ef8b96093e013ec31c-20240925
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=xl0YbQNchGMDcxT/riTMU37tGxjdInutMd+47zW0twk=;
-	b=S+DTkOq0tHsWBT2f7xSVhqDnupaPlSY26O1XFuhyxOsZ25lrSOjQDCR8EevL3Ab29VdIYF60lc6LajscoN+9LshhU+J/Vi4FWx1aZAUpO79dl6uU5qKngbNHJapnqBEvDpBeAfqilI9YILmxtQ9l7bTQeihQESs1Zmk84bAuKuk=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:8e35c7da-81c5-4139-91b0-9d0a3373e917,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:682cbcd0-7921-4900-88a1-3aef019a55ce,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|-5,EDM:-3,IP:ni
-	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
-	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: f015f3cc7b0e11ef8b96093e013ec31c-20240925
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 161981965; Wed, 25 Sep 2024 15:22:35 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Wed, 25 Sep 2024 00:22:35 -0700
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Wed, 25 Sep 2024 15:22:35 +0800
-Message-ID: <47c4b502-0c8d-126e-699f-b59a55d895c3@mediatek.com>
-Date: Wed, 25 Sep 2024 15:22:33 +0800
+	s=arc-20240116; t=1727249547; c=relaxed/simple;
+	bh=FyQ+PaSDOc52BM9gnVH3xSMvP/hTE2Dzz/PW17DJve8=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=LERvRoDZxAmYCmhxaMeSyBVurD1NmMTpqQlgkWMcNrYNuTDIWRmq0Z0wJYX2c0RJRkkqeACbGLJw/2XT3tBwPhwsrxjMUEV0LgLXfQcHuxI27IsBJKMSDwn4HqWhTczKNXUHJ4lcPxVy/vqk8dZE5BNyrpY81u2GmP3akxRigQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=milecki.pl; spf=pass smtp.mailfrom=milecki.pl; dkim=pass (2048-bit key) header.d=milecki.pl header.i=@milecki.pl header.b=Ovl4kHSG; arc=none smtp.client-ip=178.33.253.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=milecki.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=milecki.pl
+Received: from director3.ghost.mail-out.ovh.net (unknown [10.109.176.25])
+	by mo582.mail-out.ovh.net (Postfix) with ESMTP id 4XD7WR6g3Gz1Nhr
+	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 07:23:47 +0000 (UTC)
+Received: from ghost-submission-55b549bf7b-64cjv (unknown [10.110.118.154])
+	by director3.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 4775F1FE3C;
+	Wed, 25 Sep 2024 07:23:45 +0000 (UTC)
+Received: from milecki.pl ([37.59.142.103])
+	by ghost-submission-55b549bf7b-64cjv with ESMTPSA
+	id mUbACYG682ZBNAAAyTvjrg
+	(envelope-from <rafal@milecki.pl>); Wed, 25 Sep 2024 07:23:45 +0000
+Authentication-Results:garm.ovh; auth=pass (GARM-103G00530c11656-fd2d-4e51-b038-3339ee5f64f8,
+                    9DD8DC6CF38314E8515C70E4989C69D14BB97D32) smtp.auth=rafal@milecki.pl
+X-OVh-ClientIp:176.31.235.81
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Add power domain for
- dp_intf0
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, Alexandre Mergnat
-	<amergnat@baylibre.com>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>, Chris-qj
- chen <chris-qj.chen@mediatek.com>, MediaTek Chromebook Upstream
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
-	<wenst@chromium.org>, Tommy Chen <tommytl.chen@mediatek.com>
-References: <20240925071514.17626-1-macpaul.lin@mediatek.com>
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <20240925071514.17626-1-macpaul.lin@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Date: Wed, 25 Sep 2024 09:23:44 +0200
+From: =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+To: Sandie Cao <sandie.cao@deepcomputing.io>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, Conor Dooley <conor@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Heiko Stuebner
+ <heiko.stuebner@cherry.de>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Michael Zhu
+ <michael.zhu@starfivetech.com>, Drew Fustini <drew@beagleboard.org>,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dhs@frame.work, ams@frame.work,
+ gregkh@linuxfoundation.org, yuning.liang@deepcomputing.io,
+ huiming.qiu@deepcomputing.io, Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: vendor: add deepcomputing
+In-Reply-To: <20240925053123.1364574-2-sandie.cao@deepcomputing.io>
+References: <20240925053123.1364574-2-sandie.cao@deepcomputing.io>
+Message-ID: <9e32cc30b1c9923f985aa6786d1f9d62@milecki.pl>
+X-Sender: rafal@milecki.pl
+X-Webmail-UserID: rafal@milecki.pl
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 13439585716663266069
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeeftddrvddtgedguddukecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvfevufgjfhfkgihitgfgsehtkehjtddttdejnecuhfhrohhmpeftrghfrghlucfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeejjeekkeegjedtffffveffieevtdeuieefueffgeekheekleeiudfgleefuddtueenucfkphepuddvjedrtddrtddruddpfedurdduuddrvddukedruddtiedpudejiedrfedurddvfeehrdekuddpfeejrdehledrudegvddruddtfeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehkedvpdhmohguvgepshhmthhpohhuth
+DKIM-Signature: a=rsa-sha256; bh=oItKQ7Un4VVtOguEdJMdsbTrZ/zvp+itPGogkzlkK3Y=;
+ c=relaxed/relaxed; d=milecki.pl; h=From; s=ovhmo3028686-selector1;
+ t=1727249028; v=1;
+ b=Ovl4kHSGTKMErUPsh99wFV9ywc1NXhkv4W4b/wxPhu+8OY/PTRr7RVL/1a3rSQ0+zjGtZsCX
+ sBn6acYwUaURTOmlLCHj1xYZjb+yeb/elRftToCNh26hE2BoWnBgAIez5SyHszscWcLwCyt5I3u
+ M4VgZhlwnLHLgIjwUJxrPtqZ4/nCv+OtjjSEgTjQJmCF0BVYhxE5kYM4/S6O0ngtzu4TOf6NBHW
+ K+xThf2JP6f+2J/2QPuEhF8pfvDk6sKz3863KeZynfrARAwpOB+SFKHEWiewOuRkmPzbCwrWodI
+ +Plooid2MqWS9co3Y1LSMvlCwFMD35DuuJQIpzZ82Hh7g==
 
-
-On 9/25/24 15:15, Macpaul Lin wrote:
-> During inspecting dtbs_check errors, we found the power domain
-> setting of DPI node "dp_intf0" is missing. Add power domain setting
-> to "MT8195_POWER_DOMAIN_VDOSYS0" for "dp_intf0"
+On 2024-09-25 07:31, Sandie Cao wrote:
+> Add deepcomputing into vendor list.
 > 
-> Signed-off-by: Tommy Chen <tommytl.chen@mediatek.com>
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> Signed-off-by: Sandie Cao <sandie.cao@deepcomputing.io>
+> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-[snip]
+This "PATCH" is empty. Please verify what's your about to send :)
 
-Sorry there is a typo in the Signed-off-by.
-I'll send v2 to correct this.
-
-Thanks
-Macpaul Lin
-
-
+-- 
+Rafał Miłecki
 
