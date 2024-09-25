@@ -1,122 +1,112 @@
-Return-Path: <devicetree+bounces-105195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C55B1985605
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:05:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D836985613
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:07:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85E2C283FA8
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:05:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01768B22565
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:07:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D644815B10F;
-	Wed, 25 Sep 2024 09:05:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFB3D1591FC;
+	Wed, 25 Sep 2024 09:07:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HOZQ3hJ1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Wp6jtN2r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263DC15A864;
-	Wed, 25 Sep 2024 09:05:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5844212D20D;
+	Wed, 25 Sep 2024 09:07:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727255126; cv=none; b=STuxdPNpR9gaGRDtl5VZ4s3oZV5am3gQMbdwT3euN0K5VEajglncWWDaiq0ATK/dywumnvKapVJyT4dDtdtyVz8p734dQFIvxJLmg19VolPY0WMaaaPNozsLje9TyfnH9m9RXGSjYkbyDtJ8OQvPWXwppcQ9m96j6Qjc/zQ6qVg=
+	t=1727255239; cv=none; b=tAz2qnGHSXVSNUBm31QT28r9D9LKK0AU+ijWzAeVb12AO9kTNGohIRBx2a7faHHkgAp9vcBphvsNZ1HFlGZY/3/5CW9Xjl3G1tkSDP/k0Cbxnn2+YaMpGepESdMpC8SvkY4vBpRYYT1veE5u7A9/L1JZymcJV5J1oZZZu87w9qU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727255126; c=relaxed/simple;
-	bh=1QZUsUnnAE3WSKe8mRvALmjWQTDijRw4NHVHntQSucE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=caWvEO0BiH6o4mgezTusNLd1pNLt9SgbiY6jtPZZU9MPTSNwLuHoSI9is9nCrWy5aIn1AbxxBO9CZICl3V8XnwSe8yaXZTpi8HslT90C1qmxcwR/09qahroZOEYmP1guWvO2z8lfZgus6rZFM/8hUouWXysqPVNxVDt0HNPj7Rs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HOZQ3hJ1; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5c26815e174so8011242a12.0;
-        Wed, 25 Sep 2024 02:05:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727255123; x=1727859923; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OpSxoOSH8sGRYYBVpsIkEfJWqz3E/EfZFQTLjHzT1H0=;
-        b=HOZQ3hJ1pHdA6OI11k2kPLf010UncmSjN6txk0K+9mcjtVPHajf66FYDDvKjaR+t0r
-         NcnRTlaBdf8gdeYE9sf3/xWkE1lGbq+a3uEtL7wmsCdadFcrTJ2Cgd/vVWxSYe7qCtdx
-         tpq8EVKVBnAQMF0hrvtPLtVxrqTdDsejLKiOvMiyAQc1v/kaLiwqZ+hsEsqx74tEzO/3
-         t8Ib60ychNf+xfMczIhEzIRF7L9AqemsnpL1bqaREThgxefMV3yXZI33WcAPHPu53tO0
-         cSV9LZ4jjVMuH7Xs1vZLw/NMtm6wIOtY1OX9liMW7MOUgWmqJNWKq583ri6HO+si8bQo
-         OdaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727255123; x=1727859923;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OpSxoOSH8sGRYYBVpsIkEfJWqz3E/EfZFQTLjHzT1H0=;
-        b=KOdjZGsauMNxO1/YuMdQA8z+tdpH+gpfSXXqwnLGbgfrD1Xo641J8R6Ihy7bai7PqV
-         n2mby3rZJ/12QZ+RWFoTerS7ywKY7bj9l+GqQ5Zm9g+41M0TvGX+dZHBNrdEKS36Px8M
-         BlzyxU4SM1Wp40qqpg9NyDfbM5lGwj2nItZBxPtP2UWPOMZDg0WQtf/0iAjOfKxe8Lbm
-         beeNAa/wlZ59QdOaJrrmliNK2lek+hM2iuiLMNqm8szIZXC1GHC1HBuPV9+VIzSPB/et
-         wLxAZVPzu5QQYjdq1LylnKBQyfDCUiPXYK35cCdzVNCapoUFmcnRnKz9pFhAJM8aXQcr
-         FZxA==
-X-Forwarded-Encrypted: i=1; AJvYcCVqF3d4E7o4eGtTEaC4uhKBA6UAoCCJ4CmZvzfy3ttaHg0fkV4VGbeUmSxCAg+EY6hBJdTqboLEpye2bYU=@vger.kernel.org, AJvYcCWeZxsA4D0Zo5wgIIUh3PBVaowzQevPtElRLyePes5N6/ROqfIMNb17rsR/mwzlL5wGETWC1WlRdHvS@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMzvOWVVJ56TsB6LWQaRf9mFEdBZM2CH5PaMvdo0Hfb18QkAlH
-	QAwm3oxraQqygSRcJm4W6X681DV1Y2Och0SSLxob9qW1gsZtLPUGP5WIbRv3mAo2GMdEuaSlqEF
-	dVjx1vTdu4kei8XXS1ONwYQ+oghA=
-X-Google-Smtp-Source: AGHT+IHMhDBD4VbH/gs1euQafiviuUglJ4RhEofIOUHa7Z/aaoxmzI3ZTPxOSwo9aMR6U646AGZcuD6vs83g04COppE=
-X-Received: by 2002:a05:6402:40c5:b0:5c0:c10c:7c1d with SMTP id
- 4fb4d7f45d1cf-5c72073c6bfmr1772969a12.23.1727255123097; Wed, 25 Sep 2024
- 02:05:23 -0700 (PDT)
+	s=arc-20240116; t=1727255239; c=relaxed/simple;
+	bh=kES6VBN1NljvQbZDMcvTT+f9VfdLXE0r+xGDKiev3fw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tU9psgLHhrIkmgpQ06Xx8wKRaVH/UJfosqgLMfmnOJ9DObESFq50UZjqwrkQagj38AUy3wRjS5mjkWZ8mHOLhFWfy+RciN6D09bcCbl4jU9FUmpE5e6zTNY878Z6kus9JcFPclmn42VrbWdJgraKLOgMUryCne99LFd7ZYbTqxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Wp6jtN2r; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48P8Nm49005416;
+	Wed, 25 Sep 2024 09:07:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=2P7zf0h8271G9c8uj9+9m6
+	5W2uDQEJvoZrE/yBtWvwQ=; b=Wp6jtN2rET+/xRMtav48dsOekqzIluLhENDLFU
+	1mG+8hin7CMC50A/eBw1schp5B6tygPg8ooIMaW127ICHVKqIK12AEW+M1vhXgd7
+	jW2IYTQXtVGKPiZz0VrrMR0WzAupFYyAy6AACXXk0GBGQ4JPyZtm5Tkk1M2jaeOd
+	hLdEe2gh7I/qeRilg1fYYR1bHsLs+HSikaGjHLCe2WDx2f+KEzQ2Z4d104UQL1Zl
+	A0Teeg09SltMmkG6IG5w4TbJRLtBZMAmdVbLgG8jjoT1AhcLyG9MNV6NXu2L+mfG
+	GxfqC+Lglxq5aMCLb66SRcjI8IjugTV4pTyYMk4rn+/rGf8w==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41skueug7d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 25 Sep 2024 09:07:15 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48P97E1P014714
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 25 Sep 2024 09:07:14 GMT
+Received: from hu-bpothuno-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 25 Sep 2024 02:07:11 -0700
+From: Balaji Pothunoori <quic_bpothuno@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Balaji Pothunoori <quic_bpothuno@quicinc.com>
+Subject: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Enable wifi for qcs6490-rb3gen2 boards
+Date: Wed, 25 Sep 2024 14:36:50 +0530
+Message-ID: <20240925090650.26314-1-quic_bpothuno@quicinc.com>
+X-Mailer: git-send-email 2.35.7
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1727056789.git.zhoubinbin@loongson.cn> <9a286537a20f0f96597090f59165b4532e41bdb8.1727056789.git.zhoubinbin@loongson.cn>
- <ZvKEFlARvbFFWI83@finisterre.sirena.org.uk>
-In-Reply-To: <ZvKEFlARvbFFWI83@finisterre.sirena.org.uk>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Wed, 25 Sep 2024 15:05:09 +0600
-Message-ID: <CAMpQs4KW7P0soeTw0Bi_OpcGXjk8EBjcNmHFeAi=MCauhwanYA@mail.gmail.com>
-Subject: Re: [PATCH v2 5/9] ASoC: loongson: Fix codec detection failure on FDT systems
-To: Mark Brown <broonie@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
-	Neil Armstrong <neil.armstrong@linaro.org>, 
-	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>, 
-	Richard Fitzgerald <rf@opensource.cirrus.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Weidong Wang <wangweidong.a@awinic.com>, Prasad Kumpatla <quic_pkumpatl@quicinc.com>, 
-	Herve Codina <herve.codina@bootlin.com>, Masahiro Yamada <masahiroy@kernel.org>, 
-	Shuming Fan <shumingf@realtek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: w9bNEcK5dk9IJ2m6cW8rJu3AcK6Fv1QO
+X-Proofpoint-ORIG-GUID: w9bNEcK5dk9IJ2m6cW8rJu3AcK6Fv1QO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ adultscore=0 clxscore=1011 lowpriorityscore=0 suspectscore=0
+ malwarescore=0 impostorscore=0 mlxlogscore=555 bulkscore=0 mlxscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409250064
 
-Hi Mark:
+Enable the 'wifi' node for qcs6490-rb3gen2 boards.
 
-On Tue, Sep 24, 2024 at 3:19=E2=80=AFPM Mark Brown <broonie@kernel.org> wro=
-te:
->
-> On Tue, Sep 24, 2024 at 03:00:32PM +0800, Binbin Zhou wrote:
->
-> > When the Codec is compiled into a module, we can't use
-> > snd_soc_of_get_dlc() to get the codec dai_name, use
-> > snd_soc_get_dai_name() instead.
->
-> What is the issue with using snd_soc_of_get_dlc()?  Shouldn't we fix the
-> helper instead?
+Signed-off-by: Balaji Pothunoori <quic_bpothuno@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-I'm very sorry for this part, I checked and tested it again and I
-should have over-modified it as well as the use of
-snd_soc_of_get_dlc() is correct.
+diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+index 0d45662b8028..21bcfcdb5e46 100644
+--- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
++++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+@@ -792,6 +792,7 @@
+ 
+ &wifi {
+ 	memory-region = <&wlan_fw_mem>;
++	status = "okay";
+ };
+ 
+ /* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
+-- 
+2.17.1
 
-In fact, what's really being missed here is the assignment of
-snd_soc_dai_link.platforms->of_node, which causes component_empty for
-soc_dai_link_sanity_check().
-
-I'll rewrite this part in the next patch set.
-
-Thanks.
-Binbin
 
