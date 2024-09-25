@@ -1,158 +1,79 @@
-Return-Path: <devicetree+bounces-105361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B70089867B3
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 22:38:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFF4B9867DC
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 22:51:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B02B1F21C13
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 20:38:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C5AD1C2377D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 20:51:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C3814B95A;
-	Wed, 25 Sep 2024 20:38:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 649E51487DC;
+	Wed, 25 Sep 2024 20:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="I46luq1y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JuLbMVFD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4544F14A4F0
-	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 20:38:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 378AD130E58;
+	Wed, 25 Sep 2024 20:51:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727296735; cv=none; b=psyVzMfrGt/EnmJoMInboYWxpfl88/JCAt42ucRIVtY/i0QlU8oniYPgpeDfIKptV3WycR62YLW2qQQjGny4GBeV7VuRoSJUc/SwtbtCNiX3Pl5kvcoAuL9BxTGm92wkAHjPrOU4PkwE5zIXNNSj2ze2vb75fSBGhLG4PEy/CYY=
+	t=1727297467; cv=none; b=ZhcUS+3jUltxHxVSDd9uqAeFvi6KQL12vX8RV8edxDrQcAhm3BabJjEIO0ZYHRjBorzSN4Z8k1tXOzm1pwQ8QffrR5g8As2h/V2xl4yzkVHOZMYdofwVD5aN90kNZJADjvYlZ4MyNoQcg/64Up0VUvsBxjNWmv/mLb7yDI5vKPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727296735; c=relaxed/simple;
-	bh=YVNmR6XXvH8A5mvxHVgdhsaKgdAgwRDKLgBUf6F6wc0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Qm5RY5fxzMYDi/iXLizAyp8iF2zI9woSybDF+qbVgo/TywP1ul659g55EcCDr8096hUme67aBJx1Hzijflm0lCqkhMB6oncvz//QizPDnRksnlzoV3e/j+5J744YAuSVfh5ceYq9BqlAJskkkiCWZl7ouzUOT3F+NRAgg1fODaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=I46luq1y; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2054e22ce3fso2325495ad.2
-        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 13:38:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1727296733; x=1727901533; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=KMqnLJA14tEsx7O9h7xhY2igThYy8VcFXXux1jwsKwM=;
-        b=I46luq1yYoPYyO3TaT/8qIP9cBwvN1cA52v7dzRzg54QT3uHex+0pXMn6Sg5Z0ry3Y
-         mtBJE+wGK6sa+NwR4m2j2lDHfgfrWlvbIH4J5xy2k64F0FG7rWCeSZFG/ub2kI1pYJ/6
-         fyaWev5bv+/x2RNIBmNE3+05RlnC9Awe/Wuf8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727296733; x=1727901533;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KMqnLJA14tEsx7O9h7xhY2igThYy8VcFXXux1jwsKwM=;
-        b=U14QHvsfTWND9jok0RJgzpVO3Th6CTzal4+Tl/X4YWyGmLin801G9yJPjmTr2Vx2yk
-         udIzk4KiV1eMwDv3ewb+3vOBTDL/3VBt8gUzRnSyHeFzhJIJNBEMTCRLxkhAC4jYn+DG
-         /J+4YkQNYHYROZPYDcKZmnOatbcYOAfIj/096BAFliDKgpZhoBmrBymkHnOmbMBAyJJD
-         5b4lfYkF8fjjRd0mTmqQsBhyZ3KAU6wKBPTvbkZlSUGjBePs8cLvHVCaArNkXUvTgaSC
-         xKrfAPzmHIXwmQADYpkrLjD9Fr9MqvfPiHgbMTNkL29MnI2ZOvPbmmZpkrnZrFyvDNta
-         h1pA==
-X-Gm-Message-State: AOJu0YyzMqt1SlXYfa3oNEkJh275J7/ovF3WhFr2xWjPWSBpofJfnYG4
-	HAYvj4mnQW7DrojQoMmDh3qQGOP5ECa0XH07mU9ZmhPe1MkR1rW6IJ2SiUrmJg==
-X-Google-Smtp-Source: AGHT+IH1jpsv0tw2DCcjrIftabUlsulweSmtlXGW2NhlfsDo3ONd9Fj2VcbVlSoC4aSk6HabY5Rwpg==
-X-Received: by 2002:a17:902:d481:b0:20b:f89:de76 with SMTP id d9443c01a7336-20b0f89e1d1mr25897875ad.36.1727296733476;
-        Wed, 25 Sep 2024 13:38:53 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20af16e0551sm27781615ad.3.2024.09.25.13.38.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Sep 2024 13:38:52 -0700 (PDT)
-Message-ID: <6723d91c-ac15-436e-878c-2d6fc1aac5e2@broadcom.com>
-Date: Wed, 25 Sep 2024 13:38:50 -0700
+	s=arc-20240116; t=1727297467; c=relaxed/simple;
+	bh=qlNOe+qn/Ih8XUFiyDGvR6ThhF6SmLlkMOkHMZ1MnNo=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=sPKEJoIkEaw1OHRqGKf60JZjmUItgebNPmyvVR+V/Yg8osyWwBChdRd44ZrryUMrcFVJOKjYcEC9DF+ZXBb6DYg8ysIxYf2EFslc3aqGT/yQmarYrIHI2riK9CINfSIujDrAISHrjet+ioG6PyeuHaoBlFhAjE5lO/gqYUFRqqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JuLbMVFD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A619C4CEC3;
+	Wed, 25 Sep 2024 20:51:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727297466;
+	bh=qlNOe+qn/Ih8XUFiyDGvR6ThhF6SmLlkMOkHMZ1MnNo=;
+	h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+	b=JuLbMVFD5V8Pf4ELlUfOk42/PSwr5/GvUNSrDNrWBIqlr2hT0oAex80mOUcVO6elF
+	 3KVT9DN1kK+eaA+mkCuzIFIU59UFMLDRZAabfyMmFb/AcQUa1wUX20qlH5Pd/b8vON
+	 EHOZRDY4o8IPiuPvUFz3U8GYEka33rPR0e2JF3ZjM6eRC56naBUT5doDml5YL9qkOz
+	 AilTwOfvjE+gwC4pTsRvkjTb/xQTe505Olw7zOpKvrsWeFXHGcjVpB8jLQgFe/GbO4
+	 6zI3y7Bm2e+zPMGCOCz54vZxE29pk6fJ92U/uPo9Kug8QqWbi1bSqsM++hriUoNw3N
+	 gqpGTs9a1AW+w==
+Date: Wed, 25 Sep 2024 22:51:04 +0200 (CEST)
+From: Jiri Kosina <jikos@kernel.org>
+To: Rob Herring <robh@kernel.org>
+cc: Charles Wang <charles.goodix@gmail.com>, dmitry.torokhov@gmail.com, 
+    dianders@chromium.org, dan.carpenter@linaro.org, conor@kernel.org, 
+    krzk+dt@kernel.org, bentiss@kernel.org, hbarnor@chromium.org, 
+    linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+    linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v7 2/2] dt-bindings: input: Goodix SPI HID Touchscreen
+In-Reply-To: <CAL_Jsq+6fvCaxLexo9c6zs+8vwyfPAOCCVsejw_uKURVU-Md9w@mail.gmail.com>
+Message-ID: <nycvar.YFH.7.76.2409252250330.31206@cbobk.fhfr.pm>
+References: <20240814024513.164199-1-charles.goodix@gmail.com> <20240814024513.164199-3-charles.goodix@gmail.com> <CAL_Jsq+QfTtRj_JCqXzktQ49H8VUnztVuaBjvvkg3fwEHniUHw@mail.gmail.com> <CAL_JsqKUDj6vrWMVVBHrDeXdb3ogsMb3NUbV6OjKR-EhLLZuGg@mail.gmail.com>
+ <CAL_Jsq+6fvCaxLexo9c6zs+8vwyfPAOCCVsejw_uKURVU-Md9w@mail.gmail.com>
+User-Agent: Alpine 2.21 (LSU 202 2017-01-01)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm: dts: broadcom: Add missing required fields
-To: Stefan Wahren <wahrenst@gmx.net>,
- Karan Sanghavi <karansanghvi98@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Shuah Khan <skhan@linuxfoundation.org>, Anup <anupnewsmail@gmail.com>
-References: <ZvQ27pvrnEYA8BB9@Emma>
- <3e296eed-5dbc-4098-ac3c-3c3125a352d8@gmx.net>
-Content-Language: en-US
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <3e296eed-5dbc-4098-ac3c-3c3125a352d8@gmx.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
 
-On 9/25/24 09:39, Stefan Wahren wrote:
-> Hi Karan,
-> 
-> Am 25.09.24 um 18:14 schrieb Karan Sanghavi:
->> Added below mentioned required fields
->>    1. interrupt-controller
->>    2. #interrupt-cells
->> in the bcm2711.dtsi file for the
->> interrupt-controller@40000000 block as defined in the
->> bindings/interrupt-controller/brcm,bcm2836-l1-intc.yaml.
->> This issue was noticed while compiling the dtb file
->> for broadcom/bcm2711-rpi-4-b.dts file.
->> After including the above fields in the dtsi file
->> interrupt-conntroller error was resolved.
-> looks like you made the same mistake like me [1]. This change breaks
-> boot of Raspberry Pi 4 [2].
-> 
-> There are a lot of DT schema warnings to fix, but this doesn't belong to
-> the trivial ones.
+On Wed, 25 Sep 2024, Rob Herring wrote:
 
-Including the #interrupt-cells would not have a functional impact 
-however, and we ought to be able to do that.
+> Still an issue and no response. Please fix or revert the series.
 
-The 'interrupt-controller' property presence means that the controller 
-will be picked up by of_irq_init() and that is was causes problems for 
-people testing this. Stefan, do you know if the VPU firmware 
-removes/inserts that property to tell Linux which interrupt controller 
-(bcm2836-l1-intc or ARM GIC) to use or does it make use of the "status" 
-property which would be the canonical way about doing that?
+Reverts are now queued in hid.git#for-6.12/upstream-fixes and I will be 
+sending them to Linus ASAP.
 
-Thanks!
+Sorry for the delay,
+
 -- 
-Florian
+Jiri Kosina
+SUSE Labs
+
 
