@@ -1,151 +1,400 @@
-Return-Path: <devicetree+bounces-105262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40B4098608C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 16:26:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FFE9986100
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 16:38:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC6E91F26615
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 14:26:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20CD62873BF
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 14:38:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8883D1AC8A9;
-	Wed, 25 Sep 2024 13:09:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cPUlUVSM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4DC214264A;
+	Wed, 25 Sep 2024 13:45:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FDE418CBE7
-	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 13:09:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 372C713E02E
+	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 13:45:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727269779; cv=none; b=mPc2Z6orRAW7S0ff8WI2MPXWV9pYDavoDB1ygXH+c6OjDS23kYcQpHMlDKmLKC/SGSNzqgLNrT8x8B9HOFA41b8p6ldr/Nyo8ttHN+wLMBFrc3klhJUe9er9ZZpST1DdwzMLIzjruQmrbVbcjl6/xY2dUTQprb88TbgQ51xWmJ8=
+	t=1727271958; cv=none; b=HUQ4jPUfI/8SreJQmtUOxFO+q7469HL/6SHHslTFz8H9vz+1ycYRiwuXfhf0mahQaa3t68XVPNr+9CcdrXLLe0eAew+Ks6A6vT4m8y4fua13svW+0Tso4HTrLu7kntem59UIHobfE7dN9DnjBQZMcIQawU1vAu0WfBRbYyFnx8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727269779; c=relaxed/simple;
-	bh=400VLpJnX0L0xiQATbyMSk/SgyweDznJoN7IlOnXi9Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ew6MGfSqDn8FHMsWYen+6e2debRIoNzwb3YFWjSGvgLRuJt7HPkzKNvRZSitm7jtxUPl4SAjSm5MEwqdiLbgmsd1TkdscJSEn1HTgTjwAOLhW+EBDvbJxsoAN4HxXVUeOz5Fwde/xHUQ6cjExc9cem0ssKdnuVrM7oaSz3MJ+X4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cPUlUVSM; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2f763e9e759so76339571fa.3
-        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 06:09:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727269776; x=1727874576; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=6+CnqVG7Ol3vAZLpol6YfXDCc1Ev7Iif7KCFWReCBmE=;
-        b=cPUlUVSMn9b5POjZWuIw0gxnB7AvsCKKyyjFAjtvM5qEqtQQFDBo/CY6Ni7rKvVTym
-         asqYZLPu6rc18pHbFp5DHHAOrVEIRiF0JDliXxLrH2Z8iKofJFnmTyk2103ywCQHR0Ev
-         aVTwAlFHAgwguyMSN6+MnfzSeRRYgNW/QO7s/DOnBwueBEBPqQuJ0G/m45RwiUImEQqM
-         cIVnxhnYFiGpk5Du4S1MEvKmzfXyxb91UT0KK2SN51gTAyjFUPUBSHIBJY2Xfk29gkk5
-         9SUXhR8bYm4GTY6oH0kxSXm70mz+zx1n0ttso2+LEM/OM4swNAsRJTPzir4c/nHGG2w5
-         j/tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727269776; x=1727874576;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6+CnqVG7Ol3vAZLpol6YfXDCc1Ev7Iif7KCFWReCBmE=;
-        b=PgtQo2YI08f1i3kjT8u++EgpNVkzM5N05MySoWrd/8nfLlWsg/PAZmuZTixDguoEg9
-         1SN/yHpwFgKulHYoZqEPZ5FFJjh47VChEuYXYza4hO3jGU1yjwr6VLFivcMgvDtD59iu
-         iT8kOpZoz+WZ6SsurRb+bybQhSgX4PP24o/VGKJGTyQQGIHeIy0eqp4Pxdw9d8kNaJdz
-         29p8wpwlVOx3LEL0NN51xmHQ/JosHjG2JAy5R7bRs456EoVC3yhjAQFk0+9LyH/iqDSy
-         kns/71y9D6Y92YG43mVfKQCWOwJ9gs5y7+2JdHOqMtzxQUFZOuvuzd/+yu+pkRCwbJo9
-         fhsw==
-X-Forwarded-Encrypted: i=1; AJvYcCV2Q09D+zpUUSysJQi2AQUv2s32mdhJ7xn0hXLfL7ZmMxkyItmODnMp/YoJFMFgDbMSYw//CT1V08k6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzx2D4rPPRU1ljVvo+6fNc6zlriqovAYnzq02GC/Iijb59PWMW6
-	GHqKkw9Dj9xQ55ZYAVjtl7errZX9fs7MYkfTrXRya/hYfKbkZkqWxrbu/iJZl5g=
-X-Google-Smtp-Source: AGHT+IGinEuA7fG0XrYD7Gh+x6rhKbNFQASd37I1jxJgo4yxPpmtKwWyhB3+miirGI+5mAPiWag2Kg==
-X-Received: by 2002:a05:6512:b01:b0:530:ae22:a6f0 with SMTP id 2adb3069b0e04-53873455f14mr1764608e87.5.1727269775663;
-        Wed, 25 Sep 2024 06:09:35 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-537a85e12d0sm528981e87.12.2024.09.25.06.09.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2024 06:09:34 -0700 (PDT)
-Date: Wed, 25 Sep 2024 16:09:31 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Jingyi Wang <quic_jingyw@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, quic_tengfan@quicinc.com, linux-arm-msm@vger.kernel.org, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: interconnect: qcom-bwmon: Document QCS8300
- bwmon compatibles
-Message-ID: <heemxrecy7hushqeebml3kavxby5jevlcisbpeggymb5a3n4ho@6gzucpr67h5e>
-References: <20240925-qcs8300_bwmon_binding-v1-1-a7bfd94b2854@quicinc.com>
- <7ld327om75xpz53fb7itxp2i7gjqvhavywzuhmf52myynawwvo@rmb7yimjxxmy>
- <56b3ca36-e7b8-480f-99b8-c624acba8d65@quicinc.com>
+	s=arc-20240116; t=1727271958; c=relaxed/simple;
+	bh=UVSWg4IhujBXfCfAJw6n4/iGqi2iZtmhH8p2LGOtxZ8=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=iEWdTrJvFqNDE2813Sldo6+kUP0u4guLy3ipepFdgoIrCUBDPlBAjthHk3aK6/l9lLxJbk07xuYpmM6+QSBSG5nAmnUN1oBe2y6XxNqWRT/FEpdHvEEmES7lBoOzP/u8PeSXSUWUcznPGMUgOOKNWlZGb4I68/SbXz9IYzSQzE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1stSKZ-0007pI-SU; Wed, 25 Sep 2024 15:45:23 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1stSKW-001SeW-M8; Wed, 25 Sep 2024 15:45:20 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1stSKW-000K5C-1x;
+	Wed, 25 Sep 2024 15:45:20 +0200
+Message-ID: <d2289e43e0ede95eb125562dbe889e658ee3a522.camel@pengutronix.de>
+Subject: Re: [PATCH v4 2/3] reset: aspeed: register AST2700 reset auxiliary
+ bus device
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Ryan Chen <ryan_chen@aspeedtech.com>, mturquette@baylibre.com, 
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+  joel@jms.id.au, andrew@codeconstruct.com.au, linux-kernel@vger.kernel.org,
+  linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
+Date: Wed, 25 Sep 2024 15:45:20 +0200
+In-Reply-To: <20240923075012.2264573-3-ryan_chen@aspeedtech.com>
+References: <20240923075012.2264573-1-ryan_chen@aspeedtech.com>
+	 <20240923075012.2264573-3-ryan_chen@aspeedtech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <56b3ca36-e7b8-480f-99b8-c624acba8d65@quicinc.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Wed, Sep 25, 2024 at 04:40:20PM GMT, Jingyi Wang wrote:
-> 
-> 
-> On 9/25/2024 4:10 PM, Dmitry Baryshkov wrote:
-> > On Wed, Sep 25, 2024 at 03:45:06PM GMT, Jingyi Wang wrote:
-> >> Document QCS8300 BWMONs, which has two BWMONv4 instances for the CPU->LLCC
-> >> path and one BWMONv5 instance for LLCC->DDR path.
-> >>
-> >> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
-> >> ---
-> >>  Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml | 2 ++
-> >>  1 file changed, 2 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-> >> index 189f5900ee50..251410aabf38 100644
-> >> --- a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-> >> +++ b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-> >> @@ -26,6 +26,7 @@ properties:
-> >>        - items:
-> >>            - enum:
-> >>                - qcom,qcm2290-cpu-bwmon
-> >> +              - qcom,qcs8300-cpu-bwmon
-> > 
-> > In most other cases qcs8300 is being declared with the compat fallback
-> > to sa8775p compat string. Is there any reason why bwmon is different?
-> > 
-> All the *cpu-bwmon are fallback to "qcom,sdm845-bwmon", so we add "qcom,qcs8300-cpu-bwmon"
-> compatible and fallback to that.
+Hi,
 
-Ack, thanks for the explanation.
+On Mo, 2024-09-23 at 15:50 +0800, Ryan Chen wrote:
+> The AST2700 reset driver is registered as an auxiliary device
+> due to reset and clock controller share the same register region.
+>=20
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> ---
+>  drivers/reset/Kconfig        |   6 +
+>  drivers/reset/Makefile       |   1 +
+>  drivers/reset/reset-aspeed.c | 257 +++++++++++++++++++++++++++++++++++
+>  3 files changed, 264 insertions(+)
+>  create mode 100644 drivers/reset/reset-aspeed.c
+>=20
+> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> index 67bce340a87e..612f22e1180d 100644
+> --- a/drivers/reset/Kconfig
+> +++ b/drivers/reset/Kconfig
+> @@ -22,6 +22,12 @@ config RESET_A10SR
+>  	  This option enables support for the external reset functions for
+>  	  peripheral PHYs on the Altera Arria10 System Resource Chip.
+> =20
+> +config RESET_ASPEED
+> +	tristate "ASPEED Reset Driver"
+> +	depends on ARCH_ASPEED || COMPILE_TEST
 
-> >>                - qcom,sa8775p-cpu-bwmon
-> >>                - qcom,sc7180-cpu-bwmon
-> >>                - qcom,sc7280-cpu-bwmon
-> >> @@ -40,6 +41,7 @@ properties:
-> >>            - const: qcom,sdm845-bwmon    # BWMON v4, unified register space
-> >>        - items:
-> >>            - enum:
-> >> +              - qcom,qcs8300-llcc-bwmon
-> >>                - qcom,sa8775p-llcc-bwmon
-> >>                - qcom,sc7180-llcc-bwmon
-> >>                - qcom,sc8280xp-llcc-bwmon
-> >>
-> >> ---
-> >> base-commit: 4d0326b60bb753627437fff0f76bf1525bcda422
-> >> change-id: 20240925-qcs8300_bwmon_binding-641d8e4bf376
-> >>
-> >> Best regards,
-> >> -- 
-> >> Jingyi Wang <quic_jingyw@quicinc.com>
-> >>
-> > 
-> Thanks,
-> Jingyi
-> 
+This is missing:
 
--- 
-With best wishes
-Dmitry
+	select AUXILIARY_BUS
+
+> +	help
+> +	  This enables the reset controller driver for AST2700.
+> +
+>  config RESET_ATH79
+>  	bool "AR71xx Reset Driver" if COMPILE_TEST
+>  	default ATH79
+> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+> index 27b0bbdfcc04..97482bb56416 100644
+> --- a/drivers/reset/Makefile
+> +++ b/drivers/reset/Makefile
+> @@ -5,6 +5,7 @@ obj-y +=3D starfive/
+>  obj-y +=3D sti/
+>  obj-y +=3D tegra/
+>  obj-$(CONFIG_RESET_A10SR) +=3D reset-a10sr.o
+> +obj-$(CONFIG_RESET_ASPEED) +=3D reset-aspeed.o
+>  obj-$(CONFIG_RESET_ATH79) +=3D reset-ath79.o
+>  obj-$(CONFIG_RESET_AXS10X) +=3D reset-axs10x.o
+>  obj-$(CONFIG_RESET_BCM6345) +=3D reset-bcm6345.o
+> diff --git a/drivers/reset/reset-aspeed.c b/drivers/reset/reset-aspeed.c
+> new file mode 100644
+> index 000000000000..40cc6e76df70
+> --- /dev/null
+> +++ b/drivers/reset/reset-aspeed.c
+> @@ -0,0 +1,257 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (c) 2024 ASPEED Technology Inc.
+> + */
+> +
+> +#include <linux/auxiliary_bus.h>
+> +#include <linux/device.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/reset-controller.h>
+> +
+> +#include <dt-bindings/reset/aspeed,ast2700-scu.h>
+> +
+> +#define SCU0_RESET_CTRL1 0x200
+> +#define SCU0_RESET_CTRL2 0x220
+> +#define SCU1_RESET_CTRL1 0x200
+> +#define SCU1_RESET_CTRL2 0x220
+> +#define SCU1_PCIE3_CTRL 0x908
+> +
+> +struct ast2700_reset_signal {
+> +	bool dedicated_clr; /* dedicated reset clr offset */
+> +	u32 offset, bit;
+> +};
+> +
+> +struct aspeed_reset_info {
+> +	unsigned int nr_resets;
+> +	const struct ast2700_reset_signal *signal;
+> +};
+> +
+> +struct aspeed_reset {
+> +	struct reset_controller_dev rcdev;
+> +	struct aspeed_reset_info *info;
+> +	spinlock_t lock; /* Protect read-modify-write cycle */
+> +	void __iomem *base;
+> +};
+> +
+> +static const struct ast2700_reset_signal ast2700_reset0_signals[] =3D {
+> +	[SCU0_RESET_SDRAM] =3D { true, SCU0_RESET_CTRL1, BIT(0) },
+> +	[SCU0_RESET_DDRPHY] =3D { true, SCU0_RESET_CTRL1, BIT(1) },
+> +	[SCU0_RESET_RSA] =3D { true, SCU0_RESET_CTRL1, BIT(2) },
+> +	[SCU0_RESET_SHA3] =3D { true, SCU0_RESET_CTRL1, BIT(3) },
+> +	[SCU0_RESET_HACE] =3D { true, SCU0_RESET_CTRL1, BIT(4) },
+> +	[SCU0_RESET_SOC] =3D { true, SCU0_RESET_CTRL1, BIT(5) },
+> +	[SCU0_RESET_VIDEO] =3D { true, SCU0_RESET_CTRL1, BIT(6) },
+> +	[SCU0_RESET_2D] =3D { true, SCU0_RESET_CTRL1, BIT(7) },
+> +	[SCU0_RESET_PCIS] =3D { true, SCU0_RESET_CTRL1, BIT(8) },
+> +	[SCU0_RESET_RVAS0] =3D { true, SCU0_RESET_CTRL1, BIT(9) },
+> +	[SCU0_RESET_RVAS1] =3D { true, SCU0_RESET_CTRL1, BIT(10) },
+> +	[SCU0_RESET_SM3] =3D { true, SCU0_RESET_CTRL1, BIT(11) },
+> +	[SCU0_RESET_SM4] =3D { true, SCU0_RESET_CTRL1, BIT(12) },
+> +	[SCU0_RESET_CRT0] =3D { true, SCU0_RESET_CTRL1, BIT(13) },
+> +	[SCU0_RESET_ECC] =3D { true, SCU0_RESET_CTRL1, BIT(14) },
+> +	[SCU0_RESET_DP_PCI] =3D { true, SCU0_RESET_CTRL1, BIT(15) },
+> +	[SCU0_RESET_UFS] =3D { true, SCU0_RESET_CTRL1, BIT(16) },
+> +	[SCU0_RESET_EMMC] =3D { true, SCU0_RESET_CTRL1, BIT(17) },
+> +	[SCU0_RESET_PCIE1RST] =3D { true, SCU0_RESET_CTRL1, BIT(18) },
+> +	[SCU0_RESET_PCIE1RSTOE] =3D { true, SCU0_RESET_CTRL1, BIT(19) },
+> +	[SCU0_RESET_PCIE0RST] =3D { true, SCU0_RESET_CTRL1, BIT(20) },
+> +	[SCU0_RESET_PCIE0RSTOE] =3D { true, SCU0_RESET_CTRL1, BIT(21) },
+> +	[SCU0_RESET_JTAG] =3D { true, SCU0_RESET_CTRL1, BIT(22) },
+> +	[SCU0_RESET_MCTP0] =3D { true, SCU0_RESET_CTRL1, BIT(23) },
+> +	[SCU0_RESET_MCTP1] =3D { true, SCU0_RESET_CTRL1, BIT(24) },
+> +	[SCU0_RESET_XDMA0] =3D { true, SCU0_RESET_CTRL1, BIT(25) },
+> +	[SCU0_RESET_XDMA1] =3D { true, SCU0_RESET_CTRL1, BIT(26) },
+> +	[SCU0_RESET_H2X1] =3D { true, SCU0_RESET_CTRL1, BIT(27) },
+> +	[SCU0_RESET_DP] =3D { true, SCU0_RESET_CTRL1, BIT(28) },
+> +	[SCU0_RESET_DP_MCU] =3D { true, SCU0_RESET_CTRL1, BIT(29) },
+> +	[SCU0_RESET_SSP] =3D { true, SCU0_RESET_CTRL1, BIT(30) },
+> +	[SCU0_RESET_H2X0] =3D { true, SCU0_RESET_CTRL1, BIT(31) },
+> +	[SCU0_RESET_PORTA_VHUB] =3D { true, SCU0_RESET_CTRL2, BIT(0) },
+> +	[SCU0_RESET_PORTA_PHY3] =3D { true, SCU0_RESET_CTRL2, BIT(1) },
+> +	[SCU0_RESET_PORTA_XHCI] =3D { true, SCU0_RESET_CTRL2, BIT(2) },
+> +	[SCU0_RESET_PORTB_VHUB] =3D { true, SCU0_RESET_CTRL2, BIT(3) },
+> +	[SCU0_RESET_PORTB_PHY3] =3D { true, SCU0_RESET_CTRL2, BIT(4) },
+> +	[SCU0_RESET_PORTB_XHCI] =3D { true, SCU0_RESET_CTRL2, BIT(5) },
+> +	[SCU0_RESET_PORTA_VHUB_EHCI] =3D { true, SCU0_RESET_CTRL2, BIT(6) },
+> +	[SCU0_RESET_PORTB_VHUB_EHCI] =3D { true, SCU0_RESET_CTRL2, BIT(7) },
+> +	[SCU0_RESET_UHCI] =3D { true, SCU0_RESET_CTRL2, BIT(8) },
+> +	[SCU0_RESET_TSP] =3D { true, SCU0_RESET_CTRL2, BIT(9) },
+> +	[SCU0_RESET_E2M0] =3D { true, SCU0_RESET_CTRL2, BIT(10) },
+> +	[SCU0_RESET_E2M1] =3D { true, SCU0_RESET_CTRL2, BIT(11) },
+> +	[SCU0_RESET_VLINK] =3D { true, SCU0_RESET_CTRL2, BIT(12) },
+> +};
+> +
+> +static const struct ast2700_reset_signal ast2700_reset1_signals[] =3D {
+> +	[SCU1_RESET_LPC0] =3D { true, SCU1_RESET_CTRL1, BIT(0) },
+> +	[SCU1_RESET_LPC1] =3D { true, SCU1_RESET_CTRL1, BIT(1) },
+> +	[SCU1_RESET_MII] =3D { true, SCU1_RESET_CTRL1, BIT(2) },
+> +	[SCU1_RESET_PECI] =3D { true, SCU1_RESET_CTRL1, BIT(3) },
+> +	[SCU1_RESET_PWM] =3D { true, SCU1_RESET_CTRL1, BIT(4) },
+> +	[SCU1_RESET_MAC0] =3D { true, SCU1_RESET_CTRL1, BIT(5) },
+> +	[SCU1_RESET_MAC1] =3D { true, SCU1_RESET_CTRL1, BIT(6) },
+> +	[SCU1_RESET_MAC2] =3D { true, SCU1_RESET_CTRL1, BIT(7) },
+> +	[SCU1_RESET_ADC] =3D { true, SCU1_RESET_CTRL1, BIT(8) },
+> +	[SCU1_RESET_SD] =3D { true, SCU1_RESET_CTRL1, BIT(9) },
+> +	[SCU1_RESET_ESPI0] =3D { true, SCU1_RESET_CTRL1, BIT(10) },
+> +	[SCU1_RESET_ESPI1] =3D { true, SCU1_RESET_CTRL1, BIT(11) },
+> +	[SCU1_RESET_JTAG1] =3D { true, SCU1_RESET_CTRL1, BIT(12) },
+> +	[SCU1_RESET_SPI0] =3D { true, SCU1_RESET_CTRL1, BIT(13) },
+> +	[SCU1_RESET_SPI1] =3D { true, SCU1_RESET_CTRL1, BIT(14) },
+> +	[SCU1_RESET_SPI2] =3D { true, SCU1_RESET_CTRL1, BIT(15) },
+> +	[SCU1_RESET_I3C0] =3D { true, SCU1_RESET_CTRL1, BIT(16) },
+> +	[SCU1_RESET_I3C1] =3D { true, SCU1_RESET_CTRL1, BIT(17) },
+> +	[SCU1_RESET_I3C2] =3D { true, SCU1_RESET_CTRL1, BIT(18) },
+> +	[SCU1_RESET_I3C3] =3D { true, SCU1_RESET_CTRL1, BIT(19) },
+> +	[SCU1_RESET_I3C4] =3D { true, SCU1_RESET_CTRL1, BIT(20) },
+> +	[SCU1_RESET_I3C5] =3D { true, SCU1_RESET_CTRL1, BIT(21) },
+> +	[SCU1_RESET_I3C6] =3D { true, SCU1_RESET_CTRL1, BIT(22) },
+> +	[SCU1_RESET_I3C7] =3D { true, SCU1_RESET_CTRL1, BIT(23) },
+> +	[SCU1_RESET_I3C8] =3D { true, SCU1_RESET_CTRL1, BIT(24) },
+> +	[SCU1_RESET_I3C9] =3D { true, SCU1_RESET_CTRL1, BIT(25) },
+> +	[SCU1_RESET_I3C10] =3D { true, SCU1_RESET_CTRL1, BIT(26) },
+> +	[SCU1_RESET_I3C11] =3D { true, SCU1_RESET_CTRL1, BIT(27) },
+> +	[SCU1_RESET_I3C12] =3D { true, SCU1_RESET_CTRL1, BIT(28) },
+> +	[SCU1_RESET_I3C13] =3D { true, SCU1_RESET_CTRL1, BIT(29) },
+> +	[SCU1_RESET_I3C14] =3D { true, SCU1_RESET_CTRL1, BIT(30) },
+> +	[SCU1_RESET_I3C15] =3D { true, SCU1_RESET_CTRL1, BIT(31) },
+> +	[SCU1_RESET_MCU0] =3D { true, SCU1_RESET_CTRL2, BIT(0) },
+> +	[SCU1_RESET_MCU1] =3D { true, SCU1_RESET_CTRL2, BIT(1) },
+> +	[SCU1_RESET_H2A_SPI1] =3D { true, SCU1_RESET_CTRL2, BIT(2) },
+> +	[SCU1_RESET_H2A_SPI2] =3D { true, SCU1_RESET_CTRL2, BIT(3) },
+> +	[SCU1_RESET_UART0] =3D { true, SCU1_RESET_CTRL2, BIT(4) },
+> +	[SCU1_RESET_UART1] =3D { true, SCU1_RESET_CTRL2, BIT(5) },
+> +	[SCU1_RESET_UART2] =3D { true, SCU1_RESET_CTRL2, BIT(6) },
+> +	[SCU1_RESET_UART3] =3D { true, SCU1_RESET_CTRL2, BIT(7) },
+> +	[SCU1_RESET_I2C_FILTER] =3D { true, SCU1_RESET_CTRL2, BIT(8) },
+> +	[SCU1_RESET_CALIPTRA] =3D { true, SCU1_RESET_CTRL2, BIT(9) },
+> +	[SCU1_RESET_XDMA] =3D { true, SCU1_RESET_CTRL2, BIT(10) },
+> +	[SCU1_RESET_FSI] =3D { true, SCU1_RESET_CTRL2, BIT(12) },
+> +	[SCU1_RESET_CAN] =3D { true, SCU1_RESET_CTRL2, BIT(13) },
+> +	[SCU1_RESET_MCTP] =3D { true, SCU1_RESET_CTRL2, BIT(14) },
+> +	[SCU1_RESET_I2C] =3D { true, SCU1_RESET_CTRL2, BIT(15) },
+> +	[SCU1_RESET_UART6] =3D { true, SCU1_RESET_CTRL2, BIT(16) },
+> +	[SCU1_RESET_UART7] =3D { true, SCU1_RESET_CTRL2, BIT(17) },
+> +	[SCU1_RESET_UART8] =3D { true, SCU1_RESET_CTRL2, BIT(18) },
+> +	[SCU1_RESET_UART9] =3D { true, SCU1_RESET_CTRL2, BIT(19) },
+> +	[SCU1_RESET_LTPI0] =3D { true, SCU1_RESET_CTRL2, BIT(20) },
+> +	[SCU1_RESET_VGAL] =3D { true, SCU1_RESET_CTRL2, BIT(21) },
+> +	[SCU1_RESET_LTPI1] =3D { true, SCU1_RESET_CTRL2, BIT(22) },
+> +	[SCU1_RESET_ACE] =3D { true, SCU1_RESET_CTRL2, BIT(23) },
+> +	[SCU1_RESET_E2M] =3D { true, SCU1_RESET_CTRL2, BIT(24) },
+> +	[SCU1_RESET_UHCI] =3D { true, SCU1_RESET_CTRL2, BIT(25) },
+> +	[SCU1_RESET_PORTC_USB2UART] =3D { true, SCU1_RESET_CTRL2, BIT(26) },
+> +	[SCU1_RESET_PORTC_VHUB_EHCI] =3D { true, SCU1_RESET_CTRL2, BIT(27) },
+> +	[SCU1_RESET_PORTD_USB2UART] =3D { true, SCU1_RESET_CTRL2, BIT(28) },
+> +	[SCU1_RESET_PORTD_VHUB_EHCI] =3D { true, SCU1_RESET_CTRL2, BIT(29) },
+> +	[SCU1_RESET_H2X] =3D { true, SCU1_RESET_CTRL2, BIT(30) },
+> +	[SCU1_RESET_I3CDMA] =3D { true, SCU1_RESET_CTRL2, BIT(31) },
+> +	[SCU1_RESET_PCIE2RST] =3D { false, SCU1_PCIE3_CTRL, BIT(0) },
+> +};
+> +
+> +#define to_aspeed_reset(p) container_of(p, struct aspeed_reset, rcdev)
+
+Please turn this into a static inline function.
+
+> +static int aspeed_reset_assert(struct reset_controller_dev *rcdev, unsig=
+ned long id)
+> +{
+> +	struct aspeed_reset *rc =3D to_aspeed_reset(rcdev);
+> +	void __iomem *reg_offset =3D rc->base + rc->info->signal[id].offset;
+> +	unsigned long flags;
+> +
+> +	if (rc->info->signal[id].dedicated_clr) {
+> +		writel(rc->info->signal[id].bit, reg_offset);
+> +	} else {
+> +		spin_lock_irqsave(&rc->lock, flags);
+
+You could use guard(spinlock_irqsave)(&rc->lock) to save a few lines.
+
+> +		writel(readl(reg_offset) & ~rc->info->signal[id].bit, reg_offset);
+> +		spin_unlock_irqrestore(&rc->lock, flags);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int aspeed_reset_deassert(struct reset_controller_dev *rcdev, uns=
+igned long id)
+> +{
+> +	struct aspeed_reset *rc =3D to_aspeed_reset(rcdev);
+> +	void __iomem *reg_offset =3D rc->base + rc->info->signal[id].offset;
+> +	unsigned long flags;
+> +
+> +	if (rc->info->signal[id].dedicated_clr) {
+> +		writel(rc->info->signal[id].bit, reg_offset + 0x04);
+> +	} else {
+> +		spin_lock_irqsave(&rc->lock, flags);
+> +		writel(readl(reg_offset) | rc->info->signal[id].bit, reg_offset);
+> +		spin_unlock_irqrestore(&rc->lock, flags);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int aspeed_reset_status(struct reset_controller_dev *rcdev, unsig=
+ned long id)
+> +{
+> +	struct aspeed_reset *rc =3D to_aspeed_reset(rcdev);
+> +	void __iomem *reg_offset =3D rc->base + rc->info->signal[id].offset;
+> +
+> +	return (readl(reg_offset) & rc->info->signal[id].bit) ? 1 : 0;
+> +}
+> +
+> +static const struct reset_control_ops aspeed_reset_ops =3D {
+> +	.assert =3D aspeed_reset_assert,
+> +	.deassert =3D aspeed_reset_deassert,
+> +	.status =3D aspeed_reset_status,
+> +};
+> +
+> +static int aspeed_reset_probe(struct auxiliary_device *adev,
+> +			      const struct auxiliary_device_id *id)
+> +{
+> +	struct aspeed_reset *reset;
+> +	struct device *dev =3D &adev->dev;
+> +
+> +	reset =3D devm_kzalloc(dev, sizeof(*reset), GFP_KERNEL);
+> +	if (!reset)
+> +		return -ENOMEM;
+> +
+> +	spin_lock_init(&reset->lock);
+> +
+> +	reset->info =3D (struct aspeed_reset_info *)(id->driver_data);
+
+Unnecessary parentheses.
+
+> +	reset->rcdev.owner =3D THIS_MODULE;
+> +	reset->rcdev.nr_resets =3D reset->info->nr_resets;
+> +	reset->rcdev.ops =3D &aspeed_reset_ops;
+> +	reset->rcdev.of_node =3D dev->parent->of_node;
+> +	reset->rcdev.dev =3D dev;
+> +	reset->rcdev.of_reset_n_cells =3D 1;
+> +	reset->base =3D (void __iomem *)adev->dev.platform_data;
+> +
+> +	if (!reset->base)
+> +		return -ENOMEM;
+> +
+> +	return devm_reset_controller_register(dev, &reset->rcdev);
+> +}
+> +
+> +static const struct aspeed_reset_info ast2700_reset0_info =3D {
+> +	.nr_resets =3D ARRAY_SIZE(ast2700_reset0_signals),
+> +	.signal =3D ast2700_reset0_signals,
+> +};
+> +
+> +static const struct aspeed_reset_info ast2700_reset1_info =3D {
+> +	.nr_resets =3D ARRAY_SIZE(ast2700_reset1_signals),
+> +	.signal =3D ast2700_reset1_signals,
+> +};
+> +
+> +static const struct auxiliary_device_id aspeed_reset_ids[] =3D {
+> +	{ .name =3D "clk_ast2700.reset0", .driver_data =3D (kernel_ulong_t)&ast=
+2700_reset0_info },
+> +	{ .name =3D "clk_ast2700.reset1", .driver_data =3D (kernel_ulong_t)&ast=
+2700_reset1_info },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(auxiliary, aspeed_reset_ids);
+> +
+> +static struct auxiliary_driver aspeed_reset_driver =3D {
+> +	.probe		=3D aspeed_reset_probe,
+> +	.id_table	=3D aspeed_reset_ids,
+> +};
+> +
+> +module_auxiliary_driver(aspeed_reset_driver);
+> +
+> +MODULE_AUTHOR("Ryan Chen <ryan_chen@aspeedtech.com>");
+> +MODULE_DESCRIPTION("ASPEED SoC Reset Controller Driver");
+> +MODULE_LICENSE("GPL");
+
+regards
+Philipp
 
