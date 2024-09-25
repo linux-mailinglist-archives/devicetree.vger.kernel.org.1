@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-105232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C45A9985786
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 13:02:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFC2F985787
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 13:02:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35319B238C8
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:02:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53F8CB239F4
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:02:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DC9517557E;
-	Wed, 25 Sep 2024 11:01:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A135176FB4;
+	Wed, 25 Sep 2024 11:01:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="kX25KoAK"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="RO/xHM9J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D59061741E8
-	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 11:01:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26160175D45
+	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 11:01:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727262095; cv=none; b=ED2zv2ySOExRejKzLRToNuAYx/5aVq57l6c9xlwOUzwbi2MjsAo9J+cDn/+d9PEVGzWPYGDUs7YWutc99x5l3yvkloMqkvOqkn3d47BdffGnL+FmrWWLpe+zF2QPwJL8nGDxDXnrz5FmnVhFF2DA8Bolu4PSlCj2Nyhp5BlO/EM=
+	t=1727262097; cv=none; b=J45/BtWctBZHrs6y9Az+aVUdFFgcZeEU2A0Z1Hh3AMgTIDyT1g4j8ukqgpvMN5/QiePWo1PlOqtuIQCH8xQMHYrYjNOdUVoavhzHB3n9BRZ34gx8p7KBdqUBnUeL4fEe0Umz4Idi1zSg1DdHWRkcE56tjTg9T8B7BGRR3yFUuhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727262095; c=relaxed/simple;
-	bh=EZ3tqnTMaj2Nrzm8CWRU1l7FBGWn2trh+dpyDESnJAU=;
+	s=arc-20240116; t=1727262097; c=relaxed/simple;
+	bh=Treg63VPAdJVHmDj+VXIBsVkOkKeXKOgO2nyaDRwFiM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HGmu/ZmnGMjsLA3Q1i0av54TJZX8YgGVtDtJPk8PtUKpujRfJLaR+dmP604ZcHsw3zriSvbTjpSfduheW4mp4PuI/qejsfvUqKCVWLSM0odv2fTdWVFdAspbI/cHXZnC4SIB30NWOY1fUr67rvxNtBEPuexYLUknheI0oPhQT40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=kX25KoAK; arc=none smtp.client-ip=209.85.210.180
+	 MIME-Version; b=F8/EoFdlS8sTpImoHlGjBQkutnHA0gU7lmA1nelauPKCnGULeVkc5tnKpzaPuokNuq2etZ4SuyKC/OCZKoWGpLwGAQxiR4DiCDGKFsdmqXw2JROpi2OAONWE8xS+5mPAeOzO1CprPgvbsO8ObZqA1/jxhvkDOlsgmnACFNsvdB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=RO/xHM9J; arc=none smtp.client-ip=209.85.210.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-71b0d9535c0so355462b3a.2
-        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 04:01:33 -0700 (PDT)
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-718da0821cbso5060550b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 04:01:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1727262093; x=1727866893; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1727262095; x=1727866895; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PLqdDDy4JfS9QGhHfm83WJGLQ+zasSrsBp9fJHTMisc=;
-        b=kX25KoAKd4LzvpVFVvljpK7ON+E36l20tbgnjjCZYzN8yaJotWGXx+xQjVsgeO7Koh
-         VXLs1dSEsgVaEiJa/wj1GEgeQvVUmU9+EpSahzRMlpSYSzTgeqdYrj902VxyylvH1YvT
-         fLosNiKQHATTFeJBPhThcqecQZwyU3BlAbte0=
+        bh=hncFvWLq+2HIxkK3IdImc39anusCXRWego+hIX24T7w=;
+        b=RO/xHM9JD6Gjt3PAuQUXUfe8hYmmpeMJXcU+LxEL+kdmIn9O3sa0r409MlKBtF7fW3
+         16OkdyKMDNbRhU0YgFuEtm0GPwulAhWprCtuLHib/fy1pUGn3/nZSjbN16sZuWrRsmdL
+         T2rFC0o8LCz9rO1xOzxIH7rHWW3N/NpHHrgNM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727262093; x=1727866893;
+        d=1e100.net; s=20230601; t=1727262095; x=1727866895;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PLqdDDy4JfS9QGhHfm83WJGLQ+zasSrsBp9fJHTMisc=;
-        b=Y82rHthwrx130hReKfFqx14SV8iHor8rrpRJYsmZ1XopbdtH5FqeP7jh74n9LbeNfV
-         fLcyeiDWcp89ralrenCv6iD9v85edQsVMxFQ1HiP5hVnT1UbWhRpDaffQxfbNW5X7ucI
-         ggAKX7L2H/384Q9dTc1DGO/79XV7gTtNaWE59xp6P2VpeP46jy33ykHZlSgfu001bJ+U
-         jlBsxrQ/FIo8kfpZlxFoUEEtcB5wdPCLLm9i3EPkoNB2+4jffDNcRTg80rtXXalxLB5o
-         7ORGivPScpO/a9v+0y26HJDW0BOwm++Y/623dKe1F+PXkPQTyMM3hAzZYLJi0laEyWct
-         ThWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVtJVe3XvXMm6wEu0yov7O+Mt93C+ENlvlS5APwA2cLsfzIbgSZH5djVTVbs6woBu3DVPOMBL0Z1UFE@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkPYh8sWmu5WCeLF/dlNJhcsaYY5FQxidCROtXaKqmGyQT67Dw
-	4TVb7jdDoCy6JGuTo2uaslZYDXnWEVo3mgGQC45ZEXv5DRZOBdKGVKVF6JcUhg==
-X-Google-Smtp-Source: AGHT+IENDwuswAJbiEaRG30wahCIU1K1GFedjK/Q2vnSIcuGe0nQVExkQCiGetyyP40F5XzuOozohQ==
-X-Received: by 2002:a05:6a00:1496:b0:714:17b5:c1d9 with SMTP id d2e1a72fcca58-71b0aaa2289mr2816985b3a.1.1727262092682;
-        Wed, 25 Sep 2024 04:01:32 -0700 (PDT)
+        bh=hncFvWLq+2HIxkK3IdImc39anusCXRWego+hIX24T7w=;
+        b=lqWl8cxuE38LwoTl8sWNSnkD6PP6w+oiNZ0/JsWUyG7TiFJG1uS0KnxmewcxhHKVS7
+         nQgvEiuQvWkJvx1j1G5IzWK16v60dAnFjj1jy1CaoBPNp9dOI3HQKyNqGSrSoMAQ+WMG
+         bxeDR8reAl8zx0jJLG0sZyPwAjb9aA4fs5nF77fFGNu5pqYOiU5tmoIxBBfzV03Oec+M
+         IsMM118wKmHHaNP+uxEcdMoo72OdtTDmVz4Cl4m0BX8HvLXmHmJI1feLzmY2TUgwz4vG
+         KE7lAAWVlRq2OPjLutb0H4kog6dX44LNYCElj30Qb3xEl7MIT71gaYLxQqHRaTAD16O5
+         RhZw==
+X-Forwarded-Encrypted: i=1; AJvYcCUZdNOfs+68E8s+lkiy2dcg5hoVpHEPwqJew9sSdUX042QICRyYMvj9uCxoqLbMgvCEtg5Mqesb+EAA@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdUsk5DyhgqXhI/s7NhpWYi7/04L0e4cb/r/EgC0uyTLSlZiGF
+	RG3H/MPNibvTcUMiq/8kX+FK262PUc5+sgzCLHT01UUBcVu9+R+KVCU8wKL3vQ==
+X-Google-Smtp-Source: AGHT+IHU28Q8f9/KJ3N8Jxjmx5bV8UUivj8/F3xolVCMLHtBase+oJeqruIcrf8KyuRBh44bM56zZA==
+X-Received: by 2002:a05:6a20:9e49:b0:1cf:32d1:48f with SMTP id adf61e73a8af0-1d4d4b9bcd1mr2511337637.36.1727262095334;
+        Wed, 25 Sep 2024 04:01:35 -0700 (PDT)
 Received: from fshao-p620.tpe.corp.google.com ([2401:fa00:1:10:2b86:78b6:8ebc:e17a])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7e6b7c73085sm2570298a12.59.2024.09.25.04.01.29
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7e6b7c73085sm2570298a12.59.2024.09.25.04.01.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2024 04:01:30 -0700 (PDT)
+        Wed, 25 Sep 2024 04:01:34 -0700 (PDT)
 From: Fei Shao <fshao@chromium.org>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Cc: Fei Shao <fshao@chromium.org>,
@@ -75,9 +75,9 @@ Cc: Fei Shao <fshao@chromium.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH 3/6] arm64: dts: mediatek: mt8188: Define CPU big core cluster
-Date: Wed, 25 Sep 2024 18:57:47 +0800
-Message-ID: <20240925110044.3678055-4-fshao@chromium.org>
+Subject: [PATCH 4/6] arm64: dts: mediatek: mt8188: Add missing dma-ranges to soc node
+Date: Wed, 25 Sep 2024 18:57:48 +0800
+Message-ID: <20240925110044.3678055-5-fshao@chromium.org>
 X-Mailer: git-send-email 2.46.0.792.g87dc391469-goog
 In-Reply-To: <20240925110044.3678055-1-fshao@chromium.org>
 References: <20240925110044.3678055-1-fshao@chromium.org>
@@ -89,38 +89,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The MT8188 SoC features two CPU clusters: one with 6 little Cortex-A55
-cores, and the other with 2 big Cortex-A78 cores.
+Add the missing dma-ranges property to the soc node, similar to how it
+was done for MT8195 and MT8192.
 
-Update the CPU topology to reflect the actual hardware configurations.
+This allows the entire 16GB of iova range to be used and enables
+multimedia processing usages, like vcodec and MIPI camera.
 
 Signed-off-by: Fei Shao <fshao@chromium.org>
 ---
 
- arch/arm64/boot/dts/mediatek/mt8188.dtsi | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-index cd27966d2e3c..51bf08b2ff9b 100644
+index 51bf08b2ff9b..ff5c8e0597f9 100644
 --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
 +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-@@ -195,12 +195,14 @@ core4 {
- 				core5 {
- 					cpu = <&cpu5>;
- 				};
-+			};
+@@ -880,6 +880,7 @@ soc {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+ 		compatible = "simple-bus";
++		dma-ranges = <0x0 0x0 0x0 0x0 0x4 0x0>;
+ 		ranges;
  
--				core6 {
-+			cluster1 {
-+				core0 {
- 					cpu = <&cpu6>;
- 				};
- 
--				core7 {
-+				core1 {
- 					cpu = <&cpu7>;
- 				};
- 			};
+ 		gic: interrupt-controller@c000000 {
 -- 
 2.46.0.792.g87dc391469-goog
 
