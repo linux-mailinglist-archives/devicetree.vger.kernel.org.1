@@ -1,65 +1,63 @@
-Return-Path: <devicetree+bounces-105308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8716E98638C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 17:30:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 159809863D0
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 17:40:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15C9B1F21D9D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 15:30:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5EB631F26C96
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 15:40:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76BC01D5AC6;
-	Wed, 25 Sep 2024 15:25:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5F901849;
+	Wed, 25 Sep 2024 15:40:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="lMMTSp0j"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="o/bWVpAB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE551F5F6;
-	Wed, 25 Sep 2024 15:24:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15C28DDC5;
+	Wed, 25 Sep 2024 15:40:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727277901; cv=none; b=iQd1Spf00jZWxdPLKj2i1jvGdzSvCaXbaPqK9aCrJFkUU04GWQ5ndbFFKSZeDGTASUioeIIuth95zfuIIURcAeIGYIz4yfgClCOw2rdKQfKnjJOdZtL1CWmaHoJIN6PQYyHanER8rcreHY2tM6yg01NdN1rHHTkTSWipt8gDGrA=
+	t=1727278829; cv=none; b=XZf1V6iP99HI9P4zqFqLFPT5Y9MXl91YWffHjKFrgqzcVVfNtk7iyxs0MdsoG/WAoO3zyFMVt95VDUF1m1UCbIP8T2zi6/Zk9HVytff7CGeG+Pnj6Wl0L7wR+wu83ov+ecBsvN2D5jiyVPsw7wB6J9a0teyyEfOvXBXl7oGMWmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727277901; c=relaxed/simple;
-	bh=8UbC7Glv53C5Wh4gGajAzcDOxSrszEi7y/jg4Pu+9Uc=;
+	s=arc-20240116; t=1727278829; c=relaxed/simple;
+	bh=986SlRrlycEw9SEZ7YlGWIbuS0GUP+bBf/BOWdsi/cs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ceSCvc1W5BoITVkLa7xh9CQoO9wplwkVjGkc4g39Amp7GP0cC/x9zv2Upfw7uW+zXZJkgXnq6kVcUuNtulSSl+XcIEMnUUG5A39bm7s3TTnpPxNM3NN1e8pxcmAbRBDt/RLFSicCOd+bhtOaoNtJQNWBHCENZu7Mrc2Qgn4FkQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=lMMTSp0j; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1727277899; x=1758813899;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=8UbC7Glv53C5Wh4gGajAzcDOxSrszEi7y/jg4Pu+9Uc=;
-  b=lMMTSp0jvkGSKtPUgwVt3hAk0vBRMg6FqMrzaV7wSUhawc5JDPW0hXUN
-   5bGUllN/dEJpnmmBrZGPOxgRVujn06R9wuk26A342PHSZpl8f+d2d41rT
-   3uKiX5Ljr13g6gdvpwDiAerCgQ3X1pTWhRZmK7YMlrffHFHxorl2mz8dX
-   wcP2xyAel4T0gwenLSg+XCnqiaDTBRHqrm4Rwi9Osy9p+hc5xv76Lj75t
-   PNcZkZ2pOnVgvcQF89Aq0YaI+h86ZvJH//AcxheR8mBz52lWcWHl+LAAE
-   eGAwiHzjKe90CWwEKJQC6wxWMhwYbsSIzjIP5iKAhFQ7AyZGSHd/AZWwg
-   w==;
-X-CSE-ConnectionGUID: OOlwZxHRS2etYem7By+NLw==
-X-CSE-MsgGUID: 0AFWp061Qqqb5rmbRepGNQ==
-X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; 
-   d="scan'208";a="32100963"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 25 Sep 2024 08:24:58 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 25 Sep 2024 08:24:28 -0700
-Received: from [10.171.248.56] (10.10.85.11) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Wed, 25 Sep 2024 08:24:25 -0700
-Message-ID: <da8ad5eb-355c-44c1-a060-76576bd419e9@microchip.com>
-Date: Wed, 25 Sep 2024 17:24:41 +0200
+	 In-Reply-To:Content-Type; b=NvXSlbn5URxNUwSxmXWXlsk2rGhCmI+zLlsIOutf5PUYmled4IKXmT0dW2C9n7wo6J/Vw1SHK7dX+xrgP7jQsr2F4DPyVFlh4H9u7bVy6jX6JgXC2jQXfUkEkGpGru+EWMlCz7CfzfWACXJr+UPZhXss2fyuEmrdLjjU+vyNs8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=o/bWVpAB; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48P7TBAx002097;
+	Wed, 25 Sep 2024 15:40:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	eu5BTfN7gGDmJfFLzwg37VwuJ3b5VZixko81Swn6aOw=; b=o/bWVpABz4/j08O8
+	InPMwtLHG2uvu/JWp/aQYvHM6s295xronx4XcgfZROWxjkOEtkk9k1uTi2A7B9b9
+	DJ3Y/tJm7PmkpvTywUKQqc572TSKqjbtVPav67OPxsZAXcyCtPcOj1KO/wPSUzjk
+	Iv4AwU48P8SdN8FoEK4K0Uul2bF8B97zX7UvFq9f6ofUeufX8ZlLQQj1CWVyebwu
+	mSEsnyN1fJhskV5ohPicI7bqYyzhr5YKsNzaIKrO4bEywwOLctCuWuEHoZCy7HtB
+	4Cow7GaseO2cTKWZyEddhtz/SUKU6S+yBLZAvdtKk+lw2XiHY4vx8NWVGbE9OriW
+	LmFntw==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41spwevfmf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 25 Sep 2024 15:40:23 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48PFeMpw008110
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 25 Sep 2024 15:40:22 GMT
+Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 25 Sep
+ 2024 08:40:16 -0700
+Message-ID: <a0f66292-fb97-40ae-9fb1-d79160e70bb3@quicinc.com>
+Date: Wed, 25 Sep 2024 23:40:14 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,152 +65,133 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 09/12] clk: at91: sam9x60: Allow enabling main_rc_osc
- through DT
-Content-Language: en-US, fr-FR
-To: Ryan Wanner <ryan.wanner@microchip.com>, Claudiu Beznea
-	<claudiu.beznea@tuxon.dev>, <ada@thorsis.com>
-CC: Conor Dooley <conor+dt@kernel.org>, "moderated list:ARM/Microchip (AT91)
- SoC support" <linux-arm-kernel@lists.infradead.org>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, "open list:OPEN FIRMWARE AND FLATTENED
- DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, "open list:COMMON CLK
- FRAMEWORK" <linux-clk@vger.kernel.org>, Rob Herring <robh@kernel.org>, "open
- list" <linux-kernel@vger.kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Christian Melki <christian.melki@t2data.com>, "Michael
- Turquette" <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>
-References: <20240821105943.230281-1-ada@thorsis.com>
- <20240821105943.230281-10-ada@thorsis.com>
- <20240919-outsider-extending-e0a926bd23fa@thorsis.com>
- <464f599a-7f0b-4e4e-901a-8f88a25428d6@microchip.com>
-From: Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <464f599a-7f0b-4e4e-901a-8f88a25428d6@microchip.com>
+Subject: Re: [PATCH 07/13] dt-bindings: media: camss: Add qcom,sm8550-camss
+ binding
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>, <krzk+dt@kernel.org>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>, Yongsheng Li <quic_yon@quicinc.com>,
+        <mchehab@kernel.org>, <robh@kernel.org>, <todor.too@gmail.com>,
+        <rfoss@kernel.org>, <conor+dt@kernel.org>
+References: <20240812144131.369378-1-quic_depengs@quicinc.com>
+ <20240812144131.369378-8-quic_depengs@quicinc.com>
+ <b1b4a866-fa64-4844-a49b-dfdcfca536df@linaro.org>
+ <82dd61ab-83c0-4f9c-a2ee-e00473f4ff23@linaro.org>
+ <da60cf71-13a4-465d-a0ee-ca2ad3775262@linaro.org>
+ <97e4f888-1ed7-4d82-b972-3e0b95610198@linaro.org>
+ <6eadc285-f413-4bf0-8795-59ff19c734da@linaro.org>
+ <6562a958-47e9-4a49-b235-fe8deba3c051@linaro.org>
+ <cab95caa-9ffb-446a-858b-342939e80811@mleia.com>
+ <4e94106d-5ca9-485b-8c51-c18dcd4e64b0@linaro.org>
+ <b779182f-a963-400a-8fc1-2468710082d2@linaro.org>
+Content-Language: en-US
+From: Depeng Shao <quic_depengs@quicinc.com>
+In-Reply-To: <b779182f-a963-400a-8fc1-2468710082d2@linaro.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: CCd-aqsO0QRZw8MMe7MBcT94d3Vl79kg
+X-Proofpoint-ORIG-GUID: CCd-aqsO0QRZw8MMe7MBcT94d3Vl79kg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 adultscore=0 priorityscore=1501 clxscore=1011
+ malwarescore=0 mlxscore=0 mlxlogscore=999 impostorscore=0 phishscore=0
+ spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409250112
 
-On 24/09/2024 at 17:52, Ryan Wanner wrote:
-> Hello Alex,
-> 
-> I think a possible solution is to put the DT binding ID for main rc oc
-> after PMC_MCK and then add 1 to all the other IDs that are not dependent
-> on PMC_MAIN, the IDs that are before the branch for the sama7g54.
-> 
-> One issue I see with this solution is with SoCs that do not want the
-> main rc os exported to the DT the driver array might be allocating too
-> much memory, this can be solved by removing the +1 that is in the clock
+Hi Vladimir, Bryan,
 
-We're talking about a handful of bytes, we can surely afford that.
-
-My $0.02. Regards,
-   Nicolas
-
-> drivers next to the device tree binding macro, since this macro is now
-> increased by 1 with this change.
+On 9/18/2024 7:16 AM, Vladimir Zapolskiy wrote:
+> Hi Bryan,
 > 
-> Doing a quick test on the sam9x60 and sama7g54 I did not see any glaring
-> issues with this potential solution.
+> On 9/18/24 01:40, Bryan O'Donoghue wrote:
+>> On 13/09/2024 06:06, Vladimir Zapolskiy wrote:
+>>> On 9/13/24 01:41, Bryan O'Donoghue wrote:
+>>>> On 12/09/2024 21:57, Vladimir Zapolskiy wrote:
+>>>>>> 3. Required not optional in the yaml
+>>>>>>
+>>>>>>        => You can't use the PHY without its regulators
+>>>>>
+>>>>> No, the supplies shall be optional, since it's absolutely possible to
+>>>>> have
+>>>>> such a board, where supplies are merely not connected to the SoC.
+>>>>
+>>>> For any _used_ PHY both supplies are certainly required.
+>>>>
+>>>> That's what the yaml/dts check for this should achieve.
+>>>
+>>> I believe it is technically possible by writing an enormously complex
+>>> scheme, when all possible "port" cases and combinations are listed.
+>>>
+>>> Do you see any simpler way? Do you insist that it is utterly needed?
+>>
+>> I asked Krzysztof about this offline.
+>>
+>> He said something like
+>>
+>> Quote:
+>> This is possible, but I think not between child nodes.
+>> https://elixir.bootlin.com/linux/v6.11-rc7/source/Documentation/ 
+>> devicetree/bindings/example-schema.yaml#L194
+>>
+>> You could require something in children, but not in parent node. For
+>> children something around:
+>> https://elixir.bootlin.com/linux/v6.4-rc7/source/Documentation/ 
+>> devicetree/bindings/net/qcom,ipa.yaml#L174
+>>
+>> allOf:
+>>     - if:
+>>         required:
+>>           - something-in-parent
+>>       then:
+>>         properties:
+>>           child-node:
+>>             required:
+>>               - something-in-child
+>>
+>> I will see if I can turn that into a workable proposal/patch.
+>>
 > 
-> Best,
+> thank you for pushing my review request forward.
 > 
-> Ryan
-> 
-> 
-> On 9/19/24 05:39, Alexander Dahl wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> Hello Claudiu,
->>
->> after being busy with other things, I'm back looking at this series.
->> As Nicolas pointed out [1], we need three clocks for the OTPC to work,
->> quote:
->>
->>    "for all the products, the main RC oscillator, the OTPC peripheral
->>    clock and the MCKx clocks associated to OTP must be enabled."
->>
->> I have a problem with making the main_rc_osc accessible for both
->> SAM9X60 and SAMA7G5 here, see below.
->>
->> Am Wed, Aug 21, 2024 at 12:59:40PM +0200 schrieb Alexander Dahl:
->>> SAM9X60 Datasheet (DS60001579G) Section "23.4 Product Dependencies"
->>> says:
->>>
->>>      "The OTPC is clocked through the Power Management Controller (PMC).
->>>      The user must power on the main RC oscillator and enable the
->>>      peripheral clock of the OTPC prior to reading or writing the OTP
->>>      memory."
->>>
->>> The code for enabling/disabling that clock is already present, it was
->>> just not possible to hook into DT anymore, after at91 clk devicetree
->>> binding rework back in 2018 for kernel v4.19.
->>>
->>> Signed-off-by: Alexander Dahl <ada@thorsis.com>
->>> ---
->>>   drivers/clk/at91/sam9x60.c       | 3 ++-
->>>   include/dt-bindings/clock/at91.h | 1 +
->>>   2 files changed, 3 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/clk/at91/sam9x60.c b/drivers/clk/at91/sam9x60.c
->>> index e309cbf3cb9a..4d5ee20b8fc4 100644
->>> --- a/drivers/clk/at91/sam9x60.c
->>> +++ b/drivers/clk/at91/sam9x60.c
->>> @@ -207,7 +207,7 @@ static void __init sam9x60_pmc_setup(struct device_node *np)
->>>        if (IS_ERR(regmap))
->>>                return;
->>>
->>> -     sam9x60_pmc = pmc_data_allocate(PMC_PLLACK + 1,
->>> +     sam9x60_pmc = pmc_data_allocate(PMC_MAIN_RC + 1,
->>>                                        nck(sam9x60_systemck),
->>>                                        nck(sam9x60_periphck),
->>>                                        nck(sam9x60_gck), 8);
->>> @@ -218,6 +218,7 @@ static void __init sam9x60_pmc_setup(struct device_node *np)
->>>                                           50000000);
->>>        if (IS_ERR(hw))
->>>                goto err_free;
->>> +     sam9x60_pmc->chws[PMC_MAIN_RC] = hw;
->>>
->>>        hw = at91_clk_register_main_osc(regmap, "main_osc", mainxtal_name, NULL, 0);
->>>        if (IS_ERR(hw))
->>> diff --git a/include/dt-bindings/clock/at91.h b/include/dt-bindings/clock/at91.h
->>> index 3e3972a814c1..f957625cb3ac 100644
->>> --- a/include/dt-bindings/clock/at91.h
->>> +++ b/include/dt-bindings/clock/at91.h
->>> @@ -25,6 +25,7 @@
->>>   #define PMC_PLLBCK           8
->>>   #define PMC_AUDIOPLLCK               9
->>>   #define PMC_AUDIOPINCK               10
->>> +#define PMC_MAIN_RC          11
->>>
->>>   /* SAMA7G5 */
->>>   #define PMC_CPUPLL           (PMC_MAIN + 1)
->>
->> There are IDs defined in the devicetree bindings here, which are used
->> both in dts and in driver code as array indexes.  In v1 of the patch
->> series I just added a new last element in the end of the generic list
->> and used that for SAM9X60.
->>
->> For SAMA7G5 those IDs are branched of from PMC_MAIN in between, making
->> SAMA7G5 using a different last element, and different values after
->> PMC_MAIN.
->>
->> Now we need a new ID for main rc osc, but not only for SAM9X60, but
->> also for SAMA7G5.  I'm not sure what the implications would be, if the
->> new ID would be added in between before PMC_MAIN, so all values would
->> change?  Adding it to the end of the lists would probably be safe, but
->> then you would need a diffently named variant for SAMA7G5's different
->> IDs.  I find the current status somewhat unfortunate for future
->> extensions.  How should this new ID be added here?  What would be the
->> way forward?
->>
->> Greets
->> Alex
->>
->> [1] https://lore.kernel.org/linux-clk/ec34efc2-2051-4b8a-b5d8-6e2fd5e08c28@microchip.com/T/#u
->>
->>> --
->>> 2.39.2
->>>
->>>
->>
+> Overall I believe making supply properties as optional ones is sufficient,
+> technically straightforward and merely good enough, thus please let me
+> ask you to ponder on this particular variant one more time.
 > 
 
+So, we are discussing two things.
+
+1# Use separate supplies for each CSI block, looks like there is no 
+doubt about it anymore. So, I will update it just like based on suggestion.
+
+csiphyX-vdda-phy-supply
+csiphyX-vdda-pll-supply
+
+Then I will need below items in the required list if they are required.
+required:
+   - csiphy0-vdda-phy-supply
+   - csiphy0-vdda-pll-supply
+   - csiphy1-vdda-phy-supply
+   - csiphy1-vdda-pll-supply
+...
+   - csiphy7-vdda-phy-supply
+   - csiphy7-vdda-pll-supply
+
+2# Regarding the CSI supplies, if they need to be making as optional?
+Looks like there is no conclusion now.
+
+@Bryan, do you agree with this?
+
+Thanks,
+Depeng
 
