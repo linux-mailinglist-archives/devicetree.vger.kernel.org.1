@@ -1,119 +1,96 @@
-Return-Path: <devicetree+bounces-105300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A65E98622D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 17:09:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AE62986409
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 17:46:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BAE6F1C26FFD
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 15:09:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89BA5B3125A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 15:25:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7C3D183CDA;
-	Wed, 25 Sep 2024 14:57:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3686B17F397;
+	Wed, 25 Sep 2024 15:05:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PxaooV7M"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IPJSh30f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99A24176FA5;
-	Wed, 25 Sep 2024 14:57:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95F6E16EC19;
+	Wed, 25 Sep 2024 15:05:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727276239; cv=none; b=u7ofL/G016ov4beuCEQ1X/w1u3TK0zhTE/P1D6ZPXs/Gk+svnO5/Bw76HxxRZLmId1/qlrgcf6nkFv7H85BH/ywbsdSSMySLeWZE8WA8c//ZmPzLGB5XyksvjLDspgaTDTp18hE74gcmWbscsSEN91eRkWaGxFJNFJd/N7FfkwI=
+	t=1727276733; cv=none; b=IK9X3uABdf7Hw851lJ0zGN/qaIaIWmOyXJ5EIn1GblyaJ15kVq9Wsa1vjPj6UYwavGnxMPvbWWTfDyK/QLKahTEVCV7k8+5PYd9ScJdBrrd70QNIfe8fPwUkhQFWCLf4aKG/M6N/ggDuTnzfTQiEnRbFnBmnDBsMww1qq0WW9Bk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727276239; c=relaxed/simple;
-	bh=9SYCC7mLQOM3OuiI7cpij+d1MGpKZ8J9VMN2/6n6G0k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hX1dGfW/H9mQVAa4x3mVtGm4noVy6SLIW3cSNAcQKLODz2UY1RfBYFZOSIGcfYHyRLyc994f8Ffy5gL8QnwprBNQii5NJvoAaXInMePW4Dy/d55IGY3unPTSEBzqQdALZrzqj5qMAUksJLNU2qpe9plakoNh1mG4xQdIj7jK1OY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PxaooV7M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E6D8C4CEC3;
-	Wed, 25 Sep 2024 14:57:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727276239;
-	bh=9SYCC7mLQOM3OuiI7cpij+d1MGpKZ8J9VMN2/6n6G0k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PxaooV7Mtx9r2NdPDWFS18359xSFnLg962Qnpl1y++JiS8j6cHBsCkZGWKjj88jJZ
-	 NudCyI0z1d7Tpk+ZX3PBiWH8hfM0A/vWJw7eOfL/NJIcQeaZmbqyS7ICjf1kRHHAjG
-	 WjNTKP3pR5Xx5f8DtOm8GUjCRxOYTcmtT6Ojkyj+WCFlME8IEuzeWlYqV74rXT7Huc
-	 1x1JWP6kwFyYJ0oYBJ+OUCFciiox1HwNuZJBrZI8HY/HGSyhIWLjAqT6KbvCkITz3v
-	 iPjfdLluRfPzIx/GSV0OR0p5zaZdwUimM5T0PyA5AAKPQNFVvHkjkKFiE96SduQLGL
-	 SUVFWFaWz4+wA==
-Date: Wed, 25 Sep 2024 15:57:15 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Lukasz Majewski <lukma@denx.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 1/2] dt-bindings: arm: Document the btt3 i.MX28 based
- board
-Message-ID: <20240925-sulk-unsafe-2a175b3ae578@spud>
-References: <20240925143129.4081815-1-lukma@denx.de>
+	s=arc-20240116; t=1727276733; c=relaxed/simple;
+	bh=oUEDKfr3g2+OPN66lqRdCh/RebgOM2ORzt3yS88puJc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rqEooliebUccuuGXOs1exAvTtmt0eTviTbHThK3H+HAZVIANXdSsmjo7rzaSPwuqmKSCBDC20lp1m3XNPEWmHoGWMCyC3Y5ZvwrrawIWkwX8lHxBiO1b413grugPVUJCEJGzFxp/ZFJcbjCqaDXQFxXbecAp0LZFonOftwgTvWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IPJSh30f; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1727276732; x=1758812732;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=oUEDKfr3g2+OPN66lqRdCh/RebgOM2ORzt3yS88puJc=;
+  b=IPJSh30fmxlSKqjLJYotYYiGfYR7kKGf6zwpmK4HCW20V2n1oclDJinL
+   Js+VoqLVNgj7JyN+HbsH1HoFcw7UmAsNMRIeCTFaQVgKi7Vu/8mw5GBnm
+   WAziHMA45e97jPdvdpaMn5U6YD6rYaw+WJF+MGKtenluuZbCN8hgweoEG
+   /eAnbNHY04KIjDczdEksPW+1P88CePleqj6Gc2UOSdqcMPpd9JUmXuFys
+   HXTWbimC2HNfFGLY7H2BNzhUNZPeM0/HHAg0SEwMei/oiBnZR50ibLObD
+   wyhSggKNa80WjR7+YoJtLSGPysLRvH4afDkAAsI5gguxYcYlEzgldn9Em
+   Q==;
+X-CSE-ConnectionGUID: Gwlp/nFYRrO0w+Jpm4raDw==
+X-CSE-MsgGUID: JN4MNJDgShKgDRfpsJ4BTg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="26482979"
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; 
+   d="scan'208";a="26482979"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Sep 2024 08:05:31 -0700
+X-CSE-ConnectionGUID: UJBsXjh0QG6gd/Q+NIpkLw==
+X-CSE-MsgGUID: Q21AA1FjTgeEkddoyjPTvw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; 
+   d="scan'208";a="76317772"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO [10.245.246.30]) ([10.245.246.30])
+  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Sep 2024 08:05:26 -0700
+Message-ID: <4552c7fb-2c59-485d-af67-0bf36d2424e5@linux.intel.com>
+Date: Wed, 25 Sep 2024 17:04:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Ipq2zLzyU4Jp5GR6"
-Content-Disposition: inline
-In-Reply-To: <20240925143129.4081815-1-lukma@denx.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v28 00/32] Introduce QC USB SND audio offloading support
+To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
+ mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
+ dmitry.torokhov@gmail.com, corbet@lwn.net, broonie@kernel.org,
+ lgirdwood@gmail.com, tiwai@suse.com, krzk+dt@kernel.org,
+ Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com, robh@kernel.org,
+ gregkh@linuxfoundation.org
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-doc@vger.kernel.org, alsa-devel@alsa-project.org
+References: <20240925010000.2231406-1-quic_wcheng@quicinc.com>
+Content-Language: en-US
+From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <20240925010000.2231406-1-quic_wcheng@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
---Ipq2zLzyU4Jp5GR6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Overall the patchset is much improved but you still have misleading
+information, see e.g. the rather poor description of error codes for the
+update_offload_route() helper.
 
-On Wed, Sep 25, 2024 at 04:31:28PM +0200, Lukasz Majewski wrote:
-> The imx287 based btt3 board is very similar to xea in terms of used SOM
-> module.
->=20
-> Signed-off-by: Lukasz Majewski <lukma@denx.de>
-
-I already acked this:
-https://lore.kernel.org/all/20240912-hardcore-swagger-0d18494c5d56@spud/
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentati=
-on/devicetree/bindings/arm/fsl.yaml
-> index b39a7e031177..2b5c405d15ef 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -97,6 +97,7 @@ properties:
->                - i2se,duckbill
->                - i2se,duckbill-2
->                - karo,tx28                 # Ka-Ro electronics TX28 module
-> +              - lwn,imx28-btt3
->                - lwn,imx28-xea
->                - msr,m28cu3                # M28 SoM with custom base boa=
-rd
->                - schulercontrol,imx28-sps1
-> --=20
-> 2.39.2
->=20
-
---Ipq2zLzyU4Jp5GR6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvQkygAKCRB4tDGHoIJi
-0uIsAQDoGp8ddfbMEMpRBAzjVk94DKxaTnXLF0f09XIc+EkDQAD9HKfgv0LRKcCn
-dx8tu2FLa8k1fTP4j4rFIl755oMsQAw=
-=TUpg
------END PGP SIGNATURE-----
-
---Ipq2zLzyU4Jp5GR6--
+I hope other reviewers step-in to cover this large set of patches...
+Cheers,
+-Pierre
 
