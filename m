@@ -1,172 +1,99 @@
-Return-Path: <devicetree+bounces-105276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0124C98619A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 16:56:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08D469861A9
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 16:58:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BE751F26A6A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 14:56:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 409FC1C26D81
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 14:58:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5221518C038;
-	Wed, 25 Sep 2024 14:27:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 988124C618;
+	Wed, 25 Sep 2024 14:32:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mg00ml7N"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="wnV5yGb8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26AC31591F1;
-	Wed, 25 Sep 2024 14:27:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5467B49620;
+	Wed, 25 Sep 2024 14:31:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727274461; cv=none; b=SxaUfHmpW2PcS+9BJIh2bzDrCLBoXL0nIasoSgdDN7odv0KKW2DQ5lDJ7mbxA0+og8uOhhtgjgK/m0F4R4fLowhxSBmx2wFHmvoyyTjSsB8XZMVJz1P3esu8rlyFX5vv4JEpFuSP7H1bRX73cMfOG1V3xxKwokJUyf0sjuEF6Lo=
+	t=1727274721; cv=none; b=BhbQHSoujsTAcLZhv8Ta+9eI1exUa8vDaXYV5PF0T+1XO9AWxeEdjeQMq2c9YwfluYp2Afd6j1WzaHKPndS+fOoCDYkVOBX1++hL6Ce80cCMdfgpZWCjyTcsL5o4KwyHCzXvtmQKHlzokp6An7xc0cEDmk3Vgw3HCfgUWa4Olxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727274461; c=relaxed/simple;
-	bh=63oaX325SYpxbL3bIK8gMNOxof7JWBN8Cv11K1SrD2I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iQj543ozy7060ZgV38xYqfSBqFAV0JfGcIblp4CLOqm3/fipmLtdRTWKr3T6VdBrMzjpv1Hloj5b5VPKymuvOUDZK7WDUH+Rbpvgu15XApARc4UjVBebNcmW9pU8OUXGDNdCf4kB977m6tC+HVtuMiwspzVFpx1/1h7JyxCerc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mg00ml7N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD72DC4CEC9;
-	Wed, 25 Sep 2024 14:27:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727274460;
-	bh=63oaX325SYpxbL3bIK8gMNOxof7JWBN8Cv11K1SrD2I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Mg00ml7NxMoy3bqxa5/5kyfPA3sl37LnByf7e3eE3+siVonLVNa+lbhLOCHk2WGVx
-	 tE8vLB6T+9rk49Y8d2vqBQWEOSQs4jG9KR5rkP1/cx96CFF3VD62wllvuNIVV9BWTq
-	 N6hzcGS4Q46ktrnzv9AQDegIPK/lGESky1zo0lyfl0wGX3QDc0aAZPYICfbXsX0xMl
-	 QrMgaZDHxAaAa2916wzsqP53Ip9DdPXVJgWcmD8HRTHyMZQL1tfbmS/1NRpWBXx6w3
-	 1Jrp6sr1fP4NtghSWf5wczOFnEIGXHlgEH0kFqZAxC/Tmr7WoBEPsez/NYazNuQK08
-	 wIt7/UJPacSXQ==
-Date: Wed, 25 Sep 2024 15:27:35 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1727274721; c=relaxed/simple;
+	bh=P6Q8H/nVfZxoli/QLkCamvYcqkoFGaMes991H56nXKM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Tmu1CYkGuY/9nwSPhu9nd4xbzhhaiY2a3OL2rOgzkFbu9U+Abzkh/XLKydlYmLt2ovWYACTQVDO/fHlSHdsYuV2KAVilIqJVcG1dbBVzEQPtey2mljeQD6wBYwTqbEl2eAv0bw87G6MKZvlVVelZ4ibUHML2u7HXELDUgYCaJZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=wnV5yGb8; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: lukma@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id BA5EF85B66;
+	Wed, 25 Sep 2024 16:31:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1727274712;
+	bh=Lu4rvVtjeWbLqPkpe2uf4LN2PWTpI6uvoia3eK+/qII=;
+	h=From:To:Cc:Subject:Date:From;
+	b=wnV5yGb8IhjheI7hU3yaeiRng4byjGK6k5+smvKVFI+B1+42LfkkSoQz7gNU9fWeO
+	 O0YrgaPxwBCnvb2PD4VxcIkZ0qF9JqZyMwJvMhy78PDzB5U5O7ranO4Fb1LSXcERiv
+	 YLD3O3FoLZmzx4LgeQ8+GeeJ1MBsbbNwQakFSif3TCAQPvsPdPXNMel7JWlvdZZ04k
+	 P8nN6mdJm/SvrtZfTw6CXnlTGLCeiFswKHstf/exJks4MHmea4u+Wle5dhL7Ozt08d
+	 3deArbxt3GcBM2F8yW4uKpOysx+HHuunNuAHjiHPXvXHUz35GU67O1Rk7Sav+LMx+M
+	 EnKciuilwzmAA==
+From: Lukasz Majewski <lukma@denx.de>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Chester Lin <chester62515@gmail.com>, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>
-Subject: Re: [PATCH 1/2] dt-bindings: linflexuart: add clock definitions
-Message-ID: <20240925-enunciate-bleak-04799744ae2b@spud>
-References: <20240924141247.132455-1-ciprianmarian.costea@oss.nxp.com>
- <20240924141247.132455-2-ciprianmarian.costea@oss.nxp.com>
- <20240924-twitch-embody-0ffb3ab7fd26@spud>
- <b8024c74-f5d7-4b56-96ea-dee5d8dd9a98@oss.nxp.com>
- <20240924-exposure-juiciness-c0e9a0c54854@spud>
- <a043494e-0dd3-4db1-93c7-55f59dbe2d0f@oss.nxp.com>
- <20240924-pulverize-ranging-0ec3fca845a0@spud>
- <b1282273-51d9-436f-bf39-749ff21f4ea2@oss.nxp.com>
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Lukasz Majewski <lukma@denx.de>
+Subject: [PATCH v7 1/2] dt-bindings: arm: Document the btt3 i.MX28 based board
+Date: Wed, 25 Sep 2024 16:31:28 +0200
+Message-Id: <20240925143129.4081815-1-lukma@denx.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="B3l/DQ6TwETtwbP9"
-Content-Disposition: inline
-In-Reply-To: <b1282273-51d9-436f-bf39-749ff21f4ea2@oss.nxp.com>
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
+The imx287 based btt3 board is very similar to xea in terms of used SOM
+module.
 
---B3l/DQ6TwETtwbP9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Lukasz Majewski <lukma@denx.de>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-On Tue, Sep 24, 2024 at 06:32:30PM +0300, Ciprian Marian Costea wrote:
-> On 9/24/2024 6:27 PM, Conor Dooley wrote:
-> > On Tue, Sep 24, 2024 at 06:17:11PM +0300, Ciprian Marian Costea wrote:
-> > > On 9/24/2024 6:01 PM, Conor Dooley wrote:
-> > > > On Tue, Sep 24, 2024 at 05:52:13PM +0300, Ciprian Marian Costea wro=
-te:
-> > > > > On 9/24/2024 5:24 PM, Conor Dooley wrote:
-> > > > > > On Tue, Sep 24, 2024 at 05:12:46PM +0300, Ciprian Costea wrote:
-> > > > > > > From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> > > > > > >=20
-> > > > > > > Add clock definitions for NXP LINFlexD UART bindings
-> > > > > > > and update the binding examples with S32G2 node.
-> > > > > > >=20
-> > > > > > > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@os=
-s.nxp.com>
-> > > > > > > ---
-> > > > > > >     .../bindings/serial/fsl,s32-linflexuart.yaml  | 21 ++++++=
-+++++++++++++
-> > > > > > >     1 file changed, 21 insertions(+)
-> > > > > > >=20
-> > > > > > > diff --git a/Documentation/devicetree/bindings/serial/fsl,s32=
--linflexuart.yaml b/Documentation/devicetree/bindings/serial/fsl,s32-linfle=
-xuart.yaml
-> > > > > > > index 4171f524a928..45fcab9e186d 100644
-> > > > > > > --- a/Documentation/devicetree/bindings/serial/fsl,s32-linfle=
-xuart.yaml
-> > > > > > > +++ b/Documentation/devicetree/bindings/serial/fsl,s32-linfle=
-xuart.yaml
-> > > > > > > @@ -34,6 +34,14 @@ properties:
-> > > > > > >       interrupts:
-> > > > > > >         maxItems: 1
-> > > > > > > +  clocks:
-> > > > > > > +    maxItems: 2
-> > > > > > > +
-> > > > > > > +  clock-names:
-> > > > > > > +    items:
-> > > > > > > +      - const: ipg
-> > > > > > > +      - const: lin
-> > > > > >=20
-> > > > > > Can all devices have 2 clocks, or just the s32g2?
-> > > > > >=20
-> > > > >=20
-> > > > > All devices (S32G2, S32G3 and S32V234) have 2 clocks for LINFlexD=
- module.
-> > > >=20
-> > > > I see. How come the driver is capable of working without them?
-> > > >=20
-> > >=20
-> > > The driver was working because the LINFlexD clocks were configured an=
-d kept
-> > > enabled by the downstream bootloader (TF-A and U-Boot). This is not i=
-deal
-> > > since LINFlexD Linux driver should manage those clocks independently =
-and not
-> > > rely on a previous bootloader configuration (hence the need for this =
-current
-> > > patchset).
-> >=20
-> > I'd also mark them as required in the binding too, but the driver will
-> > still have to account for them being missing, for backwards
-> > compatibility reasons. Add a comment explaining the history to the
-> > commit message when you do that.
->=20
-> Already in the second patch from this patchset the clocking support was
-> added in the LINFlexD driver as optional, indeed for backwards
-> compatibility.
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index b39a7e031177..2b5c405d15ef 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -97,6 +97,7 @@ properties:
+               - i2se,duckbill
+               - i2se,duckbill-2
+               - karo,tx28                 # Ka-Ro electronics TX28 module
++              - lwn,imx28-btt3
+               - lwn,imx28-xea
+               - msr,m28cu3                # M28 SoM with custom base board
+               - schulercontrol,imx28-sps1
+-- 
+2.39.2
 
-Oh great.
-
-> I presumed that because of this optional clock enablement, I should not a=
-dd
-> the clocks as required in the bindings, but I will do so in V2. Thanks.
-
-IMO required is correct, since it would not have worked properly if the
-bootloader hadn't done the setup.
-
---B3l/DQ6TwETtwbP9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvQd1wAKCRB4tDGHoIJi
-0jpzAQC4u1mfSbrQguccpgycXMf3WJfiiUTr6Errb/EdwGB3EwD+NVIBniKKkhll
-1mtG/XuKnspmfTTIWW9UXBLlNyzkpwE=
-=Czve
------END PGP SIGNATURE-----
-
---B3l/DQ6TwETtwbP9--
 
