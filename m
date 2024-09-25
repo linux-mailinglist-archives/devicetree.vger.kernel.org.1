@@ -1,99 +1,90 @@
-Return-Path: <devicetree+bounces-105162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86294985435
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:32:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DE09985424
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:28:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DB071F22302
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 07:32:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB84E1F21466
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 07:28:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A27A0156F30;
-	Wed, 25 Sep 2024 07:32:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 639AE157466;
+	Wed, 25 Sep 2024 07:26:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=milecki.pl header.i=@milecki.pl header.b="Ovl4kHSG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OR1rjyCo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from 3.mo582.mail-out.ovh.net (3.mo582.mail-out.ovh.net [178.33.253.26])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D59D132114
-	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 07:32:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.33.253.26
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37E61156C5E;
+	Wed, 25 Sep 2024 07:26:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727249547; cv=none; b=rUmN6ENeuCXn5r+C5xE4Yk9AtuNj395MzVijqNr9fa1sxHRMckjWmImcf7j12atV4qIDvreQVNgx+76py/Rxvc9VG92Mj7+n+3C+iNZ/QizrlQ1Q1E/dlvm3mN6t0RrUkjcS0yGvQl1eC1GSgmnzKNMsPMqT4EMeQOmmFd+szCA=
+	t=1727249163; cv=none; b=K80it/CXi/5p7nlg5NzJDZGts0VG9VNC3F2nhBA2NQEBwXCGwd2Jn0IXCzDfW5V8XFgQVdsiwALHoQB34PjNN37WJMsXc20vzi80mOgfXf2ojNnWgMbWKhIzdMgtqKcFrOxo0O9x7YPXmzrfB1zFWkEf0P7XxxC00aSznESTBMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727249547; c=relaxed/simple;
-	bh=FyQ+PaSDOc52BM9gnVH3xSMvP/hTE2Dzz/PW17DJve8=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=LERvRoDZxAmYCmhxaMeSyBVurD1NmMTpqQlgkWMcNrYNuTDIWRmq0Z0wJYX2c0RJRkkqeACbGLJw/2XT3tBwPhwsrxjMUEV0LgLXfQcHuxI27IsBJKMSDwn4HqWhTczKNXUHJ4lcPxVy/vqk8dZE5BNyrpY81u2GmP3akxRigQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=milecki.pl; spf=pass smtp.mailfrom=milecki.pl; dkim=pass (2048-bit key) header.d=milecki.pl header.i=@milecki.pl header.b=Ovl4kHSG; arc=none smtp.client-ip=178.33.253.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=milecki.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=milecki.pl
-Received: from director3.ghost.mail-out.ovh.net (unknown [10.109.176.25])
-	by mo582.mail-out.ovh.net (Postfix) with ESMTP id 4XD7WR6g3Gz1Nhr
-	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 07:23:47 +0000 (UTC)
-Received: from ghost-submission-55b549bf7b-64cjv (unknown [10.110.118.154])
-	by director3.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 4775F1FE3C;
-	Wed, 25 Sep 2024 07:23:45 +0000 (UTC)
-Received: from milecki.pl ([37.59.142.103])
-	by ghost-submission-55b549bf7b-64cjv with ESMTPSA
-	id mUbACYG682ZBNAAAyTvjrg
-	(envelope-from <rafal@milecki.pl>); Wed, 25 Sep 2024 07:23:45 +0000
-Authentication-Results:garm.ovh; auth=pass (GARM-103G00530c11656-fd2d-4e51-b038-3339ee5f64f8,
-                    9DD8DC6CF38314E8515C70E4989C69D14BB97D32) smtp.auth=rafal@milecki.pl
-X-OVh-ClientIp:176.31.235.81
+	s=arc-20240116; t=1727249163; c=relaxed/simple;
+	bh=+Jc578DziKnNuyDXuSJKL+IptV/VTcEOs2p6s3mDx3c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XEZG0teJBKmlbWHI+wKdkt1fhBhLY47JOCrVVghP21eZFx2nJdlqvTNZZHET8xwI+ixEF/7DIPyGYL/LzBkJTf0iMARu0vzM49UKqUlvJVH7rKnX/YxNIAT7wZvW7TXx5j4NM5JM6SmqN2l+yLEGIx9M+TTovwo2QhACkO0smkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OR1rjyCo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5BFCC4CEC6;
+	Wed, 25 Sep 2024 07:26:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727249162;
+	bh=+Jc578DziKnNuyDXuSJKL+IptV/VTcEOs2p6s3mDx3c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OR1rjyCo0gp3TTd4+JmJdlTJPo0njj9LlYDJsg/KHcMXHeh2hJuViDSM+g4xILo3j
+	 hCOGwmQdUeaUw1b6NwWAqOW+52Nc3uWkL0aWsXT74QLmD6Z58NhUNm6VRbZ1RcjW/9
+	 P3F59VyefJLz3368RYHn28dPVB4MvTmh+dH+GKO2Y9l6/lT+6l5ZeKi9WQ904MBA91
+	 HxK+JVSN3t03x1n7XTa1edAS9dB1gUbve+GXrc6TF7OceOMVuAZTR79fLY1r8kRtDO
+	 kgYhLYXkTJRbZEfnve+rAU5dq6mSiesjgEwfVlGVdhi29Sc7BCbFJ6+jc9kFOkOwK4
+	 pvfyVaHAS3kVQ==
+Date: Wed, 25 Sep 2024 09:25:59 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: lee@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
+	tsbogend@alpha.franken.de, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-mips@vger.kernel.org
+Subject: Re: [RFC PATCH v4.5] dt-bindings: mfd: Add Realtek RTL9300 switch
+ peripherals
+Message-ID: <ktztkdt6ahvg55l3mkkqopkavmbm5m6yst5fn7ea45jtoe4usp@rcwvp7y2h3ph>
+References: <9abd5e65-da40-4283-b60e-46be5f89e858@alliedtelesis.co.nz>
+ <20240924221626.3290531-1-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Wed, 25 Sep 2024 09:23:44 +0200
-From: =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-To: Sandie Cao <sandie.cao@deepcomputing.io>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, Conor Dooley <conor@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Heiko Stuebner
- <heiko.stuebner@cherry.de>, Neil Armstrong <neil.armstrong@linaro.org>,
- Linus Walleij <linus.walleij@linaro.org>, Michael Zhu
- <michael.zhu@starfivetech.com>, Drew Fustini <drew@beagleboard.org>,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dhs@frame.work, ams@frame.work,
- gregkh@linuxfoundation.org, yuning.liang@deepcomputing.io,
- huiming.qiu@deepcomputing.io, Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v3 1/3] dt-bindings: vendor: add deepcomputing
-In-Reply-To: <20240925053123.1364574-2-sandie.cao@deepcomputing.io>
-References: <20240925053123.1364574-2-sandie.cao@deepcomputing.io>
-Message-ID: <9e32cc30b1c9923f985aa6786d1f9d62@milecki.pl>
-X-Sender: rafal@milecki.pl
-X-Webmail-UserID: rafal@milecki.pl
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 13439585716663266069
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeeftddrvddtgedguddukecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvfevufgjfhfkgihitgfgsehtkehjtddttdejnecuhfhrohhmpeftrghfrghlucfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeejjeekkeegjedtffffveffieevtdeuieefueffgeekheekleeiudfgleefuddtueenucfkphepuddvjedrtddrtddruddpfedurdduuddrvddukedruddtiedpudejiedrfedurddvfeehrdekuddpfeejrdehledrudegvddruddtfeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehkedvpdhmohguvgepshhmthhpohhuth
-DKIM-Signature: a=rsa-sha256; bh=oItKQ7Un4VVtOguEdJMdsbTrZ/zvp+itPGogkzlkK3Y=;
- c=relaxed/relaxed; d=milecki.pl; h=From; s=ovhmo3028686-selector1;
- t=1727249028; v=1;
- b=Ovl4kHSGTKMErUPsh99wFV9ywc1NXhkv4W4b/wxPhu+8OY/PTRr7RVL/1a3rSQ0+zjGtZsCX
- sBn6acYwUaURTOmlLCHj1xYZjb+yeb/elRftToCNh26hE2BoWnBgAIez5SyHszscWcLwCyt5I3u
- M4VgZhlwnLHLgIjwUJxrPtqZ4/nCv+OtjjSEgTjQJmCF0BVYhxE5kYM4/S6O0ngtzu4TOf6NBHW
- K+xThf2JP6f+2J/2QPuEhF8pfvDk6sKz3863KeZynfrARAwpOB+SFKHEWiewOuRkmPzbCwrWodI
- +Plooid2MqWS9co3Y1LSMvlCwFMD35DuuJQIpzZ82Hh7g==
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240924221626.3290531-1-chris.packham@alliedtelesis.co.nz>
 
-On 2024-09-25 07:31, Sandie Cao wrote:
-> Add deepcomputing into vendor list.
+On Wed, Sep 25, 2024 at 10:16:26AM +1200, Chris Packham wrote:
+> Add device tree schema for the Realtek RTL9300 switches. The RTL9300
+> family is made up of the RTL9301, RTL9302B, RTL9302C and RTL9303. These
+> have the same SoC differ in the Ethernet switch/SERDES arrangement.
 > 
-> Signed-off-by: Sandie Cao <sandie.cao@deepcomputing.io>
-> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Currently the only supported features are the syscon-reboot and i2c
+> controllers. The syscon-reboot is needed to be able to reboot the board.
+> The I2C controllers are slightly unusual because they each own an SCL
+> pin (GPIO 8 for the first controller, GPIO 17 for the second) but have 8
+> common SDA pins which can be assigned to either controller (but not
+> both).
+> 
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+> 
+> This is my initial attempt at addressing Krzysztof's comments from my two
+> series. I expect there may still be a bit of discussion on the binding so I'm
+> just sending this on it's own rather than the whole series.
 
-This "PATCH" is empty. Please verify what's your about to send :)
+You need to change the reboot binding first, then you add this one
+(either one or two patches).
 
--- 
-Rafał Miłecki
+Best regards,
+Krzysztof
+
 
