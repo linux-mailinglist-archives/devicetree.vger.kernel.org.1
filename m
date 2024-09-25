@@ -1,203 +1,109 @@
-Return-Path: <devicetree+bounces-105212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC1179856AA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:51:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7F889856B7
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:55:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CAAC280E79
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:51:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04D481C22C2C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:55:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64373145A11;
-	Wed, 25 Sep 2024 09:51:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A89E21537B9;
+	Wed, 25 Sep 2024 09:55:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QUX3m39M"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="Q+0rU5Z9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AD4D14B967;
-	Wed, 25 Sep 2024 09:51:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D422154C0E;
+	Wed, 25 Sep 2024 09:55:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727257878; cv=none; b=cGeWjYBY/mw21mrlkoI6dwAfb/RUTm5bVP18xMxuvU6W6ZWeJoYJgTpQT6wjec1f5Z8gIfrk7LfSDVZAe6Hz6L6hEQVYdIb1DMRW0GWw4pQVbIoPFTMZ2ZX7qPt8t/Lwu+KR4xeEiOgtV+Th02VYU+tcEtlv7QtKDPTXq3DSi9M=
+	t=1727258150; cv=none; b=YuEe0KNLw7aceXiMTanpwQZyXzO2HMWSzHNHR66uQG1ClDSoDauG4V2de2fAl5GC2kxDRnrla9V1u3IBGjuC7rLRVsNBswVIy6MvDL9eKZUUbDLYbeHKj8fkEVHtUAdtnI6vl0pHZT0xQeyklOeNl2TglSB8hHburiWvLSfv0y8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727257878; c=relaxed/simple;
-	bh=6mcOV4Z2H7iVA1xos5dXGhlymzzh+HH/+oqm9Q+z15U=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j/SPpJKBa12qKLcePwjDD86uvsuGH+IuJuH5RJ30rM8WE5AlSQWTZDjfYzGdrCPKBQB7vGAs0OKy8MCXZz+B3snCE9tbNqAZyYQoAPizy0tPVbBmxmUM0UZZ9DE2KG3mFNfJVye/2cE6T5aAz67HR6+wRaCCUIPN6Y3Y1zRwaPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QUX3m39M; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-42cb806623eso56647365e9.2;
-        Wed, 25 Sep 2024 02:51:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727257874; x=1727862674; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=dDln4KXF/7+F5/JQmkbmDgtFCiDcW7/b23N8sYic+uc=;
-        b=QUX3m39MAumBj/R+erwYII1mX/IF1eM4mGO6RIph67JPPmlUFiKbsOgdExV+D3xCEK
-         9f6+4Z5lDkBYu9sJZzxawgXXSQX1xmf6lMz+aU7IxwNDkfhtYurvRTHXKYsW9n2NuDRO
-         q73XcqcxqMXEbvmg98eQDnG0ACTT7AhJ7jdBbrm3roRSaCd/CuEr4bzpoL7PAbggThaI
-         gdKh8pFLICZsqt1fm2nLY7XnJA4mO1Wmn9qzCil+KD1H0UuQ+0c0vckquIo8isQ0Te7z
-         hUcPDZI8bW9LVWKsxv9QRthaDgypW+I57TPQRO3fuohqSo1Pbo/Il/SSofcpH16IlJVE
-         UcLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727257874; x=1727862674;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dDln4KXF/7+F5/JQmkbmDgtFCiDcW7/b23N8sYic+uc=;
-        b=EzX36mJrmcEkSJ5bk7DQMddU9stLK8q+dGxWMtcNndipDZRGu9dYfBJU6ap8SAcNxB
-         uZF7dGceSdpUKmc4p1gTCqhBEBiq3kIY0faCUWnG4lHyYjfPDWklUHnnoDFO7f8HM84m
-         vf/HWOLKLOY6ctlQiQchUKRNC2XR2+E+Ovw8QMw61pito4MaTlwMZ1/b9yHxDPWqBfvo
-         +3uMJsr7yx4mWTR4Bv97AoXc7cn6FmpT4xQHNnQylP2HMxufvQSZNqV6e3nF40xHdCeu
-         EGTDqfJS1Z7UAw6WsYp6WG6d2twoahKjXbgpfpeDxzWGkG0UtgnKwJV1itnuEQJbaQR2
-         gzdw==
-X-Forwarded-Encrypted: i=1; AJvYcCU7Eb0s2FqPYGlmJOdHb4txLjDEGIxX6WXaK528fm7F4/pAENKptwGQzznAAKAHYUt8VTzP8ZA68Ssj@vger.kernel.org, AJvYcCVH4qLOSzi0Xfqdr+BQjq8ubWbIh0iW58T2Ed3hvovfe4Wjyrm19CSd1UIY2pv296uVPQ3sL+67+858@vger.kernel.org, AJvYcCW41dT0ENRccqaEyj9HPJQf2OZprmdN9nyQoee9189aAWgDj1m/t0YN/yWZUFN29f3+fbqoXyDib5bu0w==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6pMk02WSSVshV728C+TZzGJBQlf8r3yl1hsGWIf8AKqnOOHXL
-	8zP3sQsjEUgU6RhWdW7jV6jIrNcRZd4EFqHcrVA06btUQwqt1ebX
-X-Google-Smtp-Source: AGHT+IHDUsmFcuyEuiXMU148+jNbNpI9r1/wqGCcgHuH7haynKQZFs61GjDI7QM15qHBWVStwTWHaw==
-X-Received: by 2002:a05:600c:3b29:b0:42c:bd4d:e8ba with SMTP id 5b1f17b1804b1-42e9610a6famr13626365e9.8.1727257874435;
-        Wed, 25 Sep 2024 02:51:14 -0700 (PDT)
-Received: from Ansuel-XPS. (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cbc1560a7sm3576976f8f.0.2024.09.25.02.51.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2024 02:51:14 -0700 (PDT)
-Message-ID: <66f3dd12.5d0a0220.8f8b6.af43@mx.google.com>
-X-Google-Original-Message-ID: <ZvPdDqLlCVrf5k9R@Ansuel-XPS.>
-Date: Wed, 25 Sep 2024 11:51:10 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Lee Jones <lee@kernel.org>
-Cc: Lorenzo Bianconi <lorenzo@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sean Wang <sean.wang@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	upstream@airoha.com, benjamin.larsson@genexis.eu,
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v4 0/5] Add mfd, pinctrl and pwm support to EN7581 SoC
-References: <20240911-en7581-pinctrl-v4-0-60ac93d760bb@kernel.org>
- <66f13ab0.5d0a0220.b0c27.b441@mx.google.com>
- <20240925094738.GD7545@google.com>
+	s=arc-20240116; t=1727258150; c=relaxed/simple;
+	bh=NiGzAwlZXJqx3WHqtCXxuDZrhPSJbgyMHb4+D2HmuwI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=bAsM8xgbhjXLfNremX3Ui5Og+nC5DhMlAmio3ZBpTM/FEWBzPPCVuQAlQfwXpRwMLmMxDDe3sLjCSzLFXGopdlTLy3yxt6n8RShw6ozWVQSaYkXIRJlPSnNvVV8rjaLpN1/BCBrksyFK+G9vC5Gvp5L5XLryNJtXtOYEHOQhXBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=Q+0rU5Z9 reason="signature verification failed"; arc=none smtp.client-ip=220.197.31.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=NhZ6iwwwuVk4Lk7eKD+fvfCc6FOuugx2njYSOk4fgrM=; b=Q
+	+0rU5Z9VVZziCAs7mZ1sYnWQMVZQghNmJJTDW8EynLomZj8qqokySGfJeyL1vkls
+	q/Ws5jUGv0a2DDJpOCrKFRrbYW2DqZq5g9GvgPjjCiOE/K1sl6dLkS1wPjyT4j13
+	4LUIa2b4cSQ2ePZTiaKn6bu/xRs56z1MW0KKq5iGeg=
+Received: from andyshrk$163.com ( [58.22.7.114] ) by
+ ajax-webmail-wmsvr-40-111 (Coremail) ; Wed, 25 Sep 2024 17:54:26 +0800
+ (CST)
+Date: Wed, 25 Sep 2024 17:54:26 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Michael Riesch" <michael.riesch@wolfvision.net>
+Cc: heiko@sntech.de, hjc@rock-chips.com, krzk+dt@kernel.org, robh@kernel.org, 
+	conor+dt@kernel.org, s.hauer@pengutronix.de, 
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, derek.foreman@collabora.com, 
+	minhuadotchen@gmail.com, detlev.casanova@collabora.com, 
+	"Andy Yan" <andy.yan@rock-chips.com>
+Subject: Re:Re: [PATCH v3 00/15] VOP Support for rk3576
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
+ Copyright (c) 2002-2024 www.mailtech.cn 163com
+In-Reply-To: <3dfe0855-3f58-432f-922d-4c936f36c731@wolfvision.net>
+References: <20240920081626.6433-1-andyshrk@163.com>
+ <3dfe0855-3f58-432f-922d-4c936f36c731@wolfvision.net>
+X-NTES-SC: AL_Qu2ZBf6et0gt4CmcYOlS+zN027ZZGIPiw4tinfIOfuALgRno+Sw7QGRAAUPr2/tGWAP6ZpXDzX0y08JzZZGP
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240925094738.GD7545@google.com>
+Message-ID: <75a13dbb.acb8.192289a8005.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:bygvCgDnz43X3fNmpBQBAA--.7172W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqQtlXmbz2h1NcgACs2
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-On Wed, Sep 25, 2024 at 10:47:38AM +0100, Lee Jones wrote:
-> On Mon, 23 Sep 2024, Christian Marangi wrote:
-> 
-> > On Wed, Sep 11, 2024 at 09:50:00PM +0200, Lorenzo Bianconi wrote:
-> > > Introduce airoha-mfd driver in order to load pinctrl and pwm drivers for
-> > > EN7581 SoC. airoha-mfd is needed since both pinctrl and pwm drivers
-> > > needs to access the same memory block (gpio memory region) to configure
-> > > {gio,irq}_chip and pwm functionalities respectively, so model them as
-> > > childs of a parent mfd driver.
-> > > Current EN7581 pinctrl driver supports the following functionalities:
-> > > - pin multiplexing via chip_scu syscon
-> > > - pin pull-up, pull-down, open-drain, current strength,
-> > >   {input,output}_enable, output_{low,high} via chip_scu syscon
-> > > - gpio controller
-> > > - irq controller
-> > > 
-> > > ---
-> > > Changes in v4:
-> > > - add 'Limitation' description in pwm driver
-> > > - fix comments in pwm driver
-> > > - rely on mfd->base __iomem pointer in pwm driver, modify register
-> > >   offsets according to it and get rid of sgpio_cfg, flash_cfg and
-> > >   cycle_cfg pointers
-> > > - simplify register utility routines in pwm driver
-> > > - use 'generator' instead of 'waveform' suffix for pwm routines
-> > > - fix possible overflow calculating duty cycle in pwm driver
-> > > - do not modify pwm state in free callback in pwm driver
-> > > - cap the maximum period in pwm driver
-> > > - do not allow inverse polarity in pwm driver
-> > > - do not set of_xlate callback in the pwm driver and allow the stack to
-> > >   do it
-> > > - fix MAINTAINERS file for airoha pinctrl driver
-> > > - fix undefined reference to __ffsdi2 in pinctrl driver
-> > > - simplify airoha,en7581-gpio-sysctl.yam binding
-> > > - Link to v3: https://lore.kernel.org/r/20240831-en7581-pinctrl-v3-0-98eebfb4da66@kernel.org
-> > > 
-> > > Changes in v3:
-> > > - introduce airoha-mfd driver
-> > > - add pwm driver to the same series
-> > > - model pinctrl and pwm drivers as childs of a parent mfd driver.
-> > > - access chip-scu memory region in pinctrl driver via syscon
-> > > - introduce a single airoha,en7581-gpio-sysctl.yaml binding and get rid
-> > >   of dedicated bindings for pinctrl and pwm
-> > > - add airoha,en7581-chip-scu.yaml binding do the series
-> > > - Link to v2: https://lore.kernel.org/r/20240822-en7581-pinctrl-v2-0-ba1559173a7f@kernel.org
-> > > 
-> > > Changes in v2:
-> > > - Fix compilation errors
-> > > - Collapse some register mappings for gpio and irq controllers
-> > > - update dt-bindings according to new register mapping
-> > > - fix some dt-bindings errors
-> > > - Link to v1: https://lore.kernel.org/all/cover.1723392444.git.lorenzo@kernel.org/
-> > > 
-> > > ---
-> > > Benjamin Larsson (1):
-> > >       pwm: airoha: Add support for EN7581 SoC
-> > > 
-> > > Christian Marangi (2):
-> > >       dt-bindings: mfd: Add support for Airoha EN7581 GPIO System Controller
-> > >       mfd: airoha: Add support for Airoha EN7581 MFD
-> > > 
-> > > Lorenzo Bianconi (2):
-> > >       dt-bindings: arm: airoha: Add the chip-scu node for EN7581 SoC
-> > >       pinctrl: airoha: Add support for EN7581 SoC
-> > > 
-> > >  .../bindings/arm/airoha,en7581-chip-scu.yaml       |   42 +
-> > >  .../bindings/mfd/airoha,en7581-gpio-sysctl.yaml    |  433 +++
-> > >  MAINTAINERS                                        |    7 +
-> > >  drivers/mfd/Kconfig                                |    8 +
-> > >  drivers/mfd/Makefile                               |    2 +
-> > >  drivers/mfd/airoha-en7581-gpio-mfd.c               |   72 +
-> > >  drivers/pinctrl/mediatek/Kconfig                   |   16 +-
-> > >  drivers/pinctrl/mediatek/Makefile                  |    1 +
-> > >  drivers/pinctrl/mediatek/pinctrl-airoha.c          | 2964 ++++++++++++++++++++
-> > >  drivers/pwm/Kconfig                                |   10 +
-> > >  drivers/pwm/Makefile                               |    1 +
-> > >  drivers/pwm/pwm-airoha.c                           |  414 +++
-> > >  include/linux/mfd/airoha-en7581-mfd.h              |    9 +
-> > >  13 files changed, 3978 insertions(+), 1 deletion(-)
-> > > ---
-> > > base-commit: 264c13114bd71ddfd7b25c7b94f6cda4587eca25
-> > > change-id: 20240818-en7581-pinctrl-1bf120154be0
-> > > prerequisite-change-id: 20240705-for-6-11-bpf-a349efc08df8:v2
-> > > 
-> > >
-> > 
-> > Hi,
-> > 
-> > any news with this? Rob reviewed the DT schemas and he is ok with them.
-> > 
-> > Any other comments for the MFD driver and/or the pinctrl or PWM driver?
-> 
-> Note that the merge-window is still open.  Some maintainers, myself
-> included, use this lull to prioritise other things.  This set is on my
-> list and will be dealt with shortly.
-> 
-
-Wasn't aware the merge window was still open and sorry for the noise.
-Thanks for the feedback!
-
--- 
-	Ansuel
+CkhpIE1pY2hhZWzvvIwKCkF0IDIwMjQtMDktMjQgMTc6MzQ6NTIsICJNaWNoYWVsIFJpZXNjaCIg
+PG1pY2hhZWwucmllc2NoQHdvbGZ2aXNpb24ubmV0PiB3cm90ZToKPkhpIEFuZHksCj4KPk9uIDkv
+MjAvMjQgMTA6MTYsIEFuZHkgWWFuIHdyb3RlOgo+PiBbLi4uXQo+Cj5BIGZldyBtaW5vciBuaXRw
+aWNrczoKPgo+PiBBbmR5IFlhbiAoMTUpOgo+PiAgIGRybS9yb2NrY2hpcDogdm9wMjogQWRkIGRl
+YnVnZnMgc3VwcG9ydAo+Cj5UaGVyZSBpcyBhbiBleHRyYSBzcGFjZSBpbiB0aGUgZXh0ZW5kZWQg
+Y29tbWl0IG1lc3NhZ2UgKCIuLi5zdW1tYXJ5Ogo+ZHVtcC4uLiIgLT4gIi4uLnN1bW1hcnk6IGR1
+bXAuLi4iLgo+Cj4+ICAgZHJtL3JvY2tjaGlwOiBTZXQgZG1hIG1hc2sgdG8gNjQgYml0Cj4+ICAg
+ZHJtL3JvY2tjaGlwOiB2b3AyOiBGaXggY2x1c3RlciB3aW5kb3dzIGFscGhhIGN0cmwgcmVnc2l0
+ZXJzIG9mZnNldAo+Cj5UeXBvICJyZWdzaXRlcnMiIC0+ICJyZWdpc3RlcnMiLgo+Cj4+ICAgZHJt
+L3JvY2tjaGlwOiB2b3AyOiBGaXggdGhlIG1peGVyIGFscGhhIHNldHVwIGZvciBsYXllciAwCj4+
+ICAgZHJtL3JvY2tjaGlwOiB2b3AyOiBGaXggdGhlIHdpbmRvd3Mgc3dpdGNoIGJldHdlZW4gZGlm
+ZmVyZW50IGxheWVycwo+PiAgIGRybS9yb2NrY2hpcDogdm9wMjogaW5jbHVkZSByb2NrY2hpcF9k
+cm1fZHJ2LmgKPj4gICBkcm0vcm9ja2NoaXA6IHZvcDI6IFN1cHBvcnQgMzJ4OCBzdXBlcmJsb2Nr
+IGFmYmMKPj4gICBkcm0vcm9ja2NoaXA6IHZvcDI6IEFkZCBwbGF0Zm9ybSBzcGVjaWZpYyBjYWxs
+YmFjawo+PiAgIGRybS9yb2NrY2hpcDogdm9wMjogU3VwcG9ydCBmb3IgZGlmZmVyZW50IGxheWVy
+IHNlbGV0IGNvbmZpZ3VyYXRpb24KPgo+VHlwbyAic2VsZXQiIC0+ICJzZWxlY3QiPwoKVGhhbmtz
+77yMIGFsbCB0eXBvcyB3aWxsIGJlIGZpeGVkIGluIG5leHQgdmVyc2lvbi4KCj4KPj4gICAgIGJl
+dHdlZW4gVlBzCj4+ICAgZHJtL3JvY2tjaGlwOiB2b3AyOiBJbnRyb2R1Y2Ugdm9wIGhhcmR3YXJl
+IHZlcnNpb24KPj4gICBkcm0vcm9ja2NoaXA6IHZvcDI6IFJlZ2lzdGVyIHRoZSBwcmltYXJ5IHBs
+YW5lIGFuZCBvdmVybGF5IHBsYW5lCj4+ICAgICBzZXBhcmF0ZWx5Cj4+ICAgZHJtL3JvY2tjaGlw
+OiB2b3AyOiBTZXQgcGxhbmUgcG9zc2libGUgY3J0Y3MgYnkgcG9zc2libGUgdnAgbWFzawo+PiAg
+IGRybS9yb2NrY2hpcDogdm9wMjogQWRkIHV2IHN3YXAgZm9yIGNsdXN0ZXIgd2luZG93Cj4+ICAg
+ZHQtYmluZGluZ3M6IGRpc3BsYXk6IHZvcDI6IEFkZCByazM1NzYgc3VwcG9ydAo+PiAgIGRybS9y
+b2NrY2hpcDogdm9wMjogQWRkIHN1cHBvcnQgZm9yIHJrMzU3Ngo+PiAKPj4gIC4uLi9kaXNwbGF5
+L3JvY2tjaGlwL3JvY2tjaGlwLXZvcDIueWFtbCAgICAgICB8ICAgMTMgKy0KPj4gIGRyaXZlcnMv
+Z3B1L2RybS9yb2NrY2hpcC9yb2NrY2hpcF9kcm1fZHJ2LmMgICB8ICAgIDQgKy0KPj4gIGRyaXZl
+cnMvZ3B1L2RybS9yb2NrY2hpcC9yb2NrY2hpcF9kcm1fdm9wMi5jICB8IDE1NzIgKysrKy0tLS0t
+LS0tLQo+PiAgZHJpdmVycy9ncHUvZHJtL3JvY2tjaGlwL3JvY2tjaGlwX2RybV92b3AyLmggIHwg
+IDI3NCArKy0KPj4gIGRyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9yb2NrY2hpcF92b3AyX3JlZy5j
+ICB8IDE5NDggKysrKysrKysrKysrKysrKy0KPj4gIDUgZmlsZXMgY2hhbmdlZCwgMjY4MyBpbnNl
+cnRpb25zKCspLCAxMTI4IGRlbGV0aW9ucygtKQo+Cj5JIGdhdmUgeW91ciBjaGFuZ2VzIGEgcXVp
+Y2sgdGVzdCBvbiBteSBSSzM1NjggZGV2aWNlIGFuZCBkaWQgbm90IGZpbmQKPmFueSByZWdyZXNz
+aW9ucyAtPgoKVGhhbmtzIGFnYWlu77yMIEkgYWxzbyB0ZXN0ZWQgIHRoaXMgc2VyaWVzIG9uIHJr
+MzU2Ni9yazM1ODguCgo+Cj5UZXN0ZWQtYnk6IE1pY2hhZWwgUmllc2NoIDxtaWNoYWVsLnJpZXNj
+aEB3b2xmdmlzaW9uLm5ldD4gIyBvbiBSSzM1NjgKPgo+VGhhbmtzIGFuZCBiZXN0IHJlZ2FyZHMs
+Cj5NaWNoYWVsCg==
 
