@@ -1,96 +1,81 @@
-Return-Path: <devicetree+bounces-105172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ECD99854A4
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:54:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AEC69854AB
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:56:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5432A288169
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 07:54:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B53CC1F226D2
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 07:56:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 837F615575D;
-	Wed, 25 Sep 2024 07:54:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41D08158540;
+	Wed, 25 Sep 2024 07:56:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="erpyU75k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ngCiuEyG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFAFB147C9B;
-	Wed, 25 Sep 2024 07:54:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AEB2158533;
+	Wed, 25 Sep 2024 07:56:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727250858; cv=none; b=ILdA5ufxjUdANFyJSaP+WySH30f4P+wJEZDKUefbul1RLKBBnUaClKcQAQf62it89MpfH0NpSZhj/6CxmxYy2TeEXufYhhKS8h4YfUVg3/PQvRZEZAJ/01Uknr6E140m+qlGlBM2EfSlHhzqzxMWJvjBUwPkyiGJsrTCMg0nzH0=
+	t=1727250972; cv=none; b=igBG3lnuYhpyPJ331NGMsXhpuUYhzCymjL1tCbHByDfCwzwS8PkWVUg7aOej/W0sCQ5HKBPlAUmFSXf/vmEoQOcq1+7xjN/J572laqodAT/Ec+ya0xTJVx/0mhEyYjjANNYccz0nGUWmrPBsbEPJSmD/3H2vvzP8Sp49C+qhPj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727250858; c=relaxed/simple;
-	bh=T6k9dVIsBwrFxk5lHbMHpvg1G0w4z/IStCeKOVMeHQ0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gKLfQU15w0kNh6L7K8sY1T8woxrc5iACa3QBHdf4xRZGxxSsWbfz2ClI/2jZCDWBTLBMXPMRuLGVStfEFx3K0Wmav8J3eJNll+imkGfk+i3sXSJvJAbOepjn7XWKKMdLwP9gdamjM1vEAbO5DaJ3FMmbVxenBebXgF4diVzfrrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=erpyU75k; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1727250855;
-	bh=T6k9dVIsBwrFxk5lHbMHpvg1G0w4z/IStCeKOVMeHQ0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=erpyU75kancqIbh7jqa011BZ7v+l6n1lr/aqaLNpLRFBP+En066UOFqnULkXpQGkJ
-	 13IITw9mGRAundN1yAz2QT2diuiXdBX5vgrZTGTj86JH4OkUfkXu9FVI4wFmpomexU
-	 XjcmycMarAUufrK2BqN0YU/irMlKkmgeF9wIeF07Qq0Ew05B/ngYAS+uDVvSBc7mnR
-	 Jv2ymxQQAbc0Xd48umtz1m4aur/oalSEkffp2Ih/OjYLY6jHTF1G4OdZz9+G8YMThH
-	 MAlw1NCvEe2/qdVEfCbeaDr+I1rcGX7f/1WaampLK6qxfZ9uAn4+6/fAEjmB1qn+uZ
-	 n3WPCfy35GdtA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5E00017E1046;
-	Wed, 25 Sep 2024 09:54:14 +0200 (CEST)
-Message-ID: <7e57ea01-f881-4c6a-95e7-96ab56dbc455@collabora.com>
-Date: Wed, 25 Sep 2024 09:54:13 +0200
+	s=arc-20240116; t=1727250972; c=relaxed/simple;
+	bh=M5dR0p6/zLMmQao2qvRx3Oetiq33fuzs6bbE8evcwPg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rB7rFGyHk2EG7XQ9GpsloafpNMeeENyliiaj4gAEyW7ANtZTOJA9yISgqUO7BfEKIx1wKJhD96YcMAfOB5pQr47BQIgQ1NEj6xaceEdm7cPIVv38SII22whz7mP0vKqmDzyB1C6FVDY9J7knhFmIbC1OR848kXPf/S5e1o6JeX8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ngCiuEyG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FA1EC4CEC6;
+	Wed, 25 Sep 2024 07:56:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727250971;
+	bh=M5dR0p6/zLMmQao2qvRx3Oetiq33fuzs6bbE8evcwPg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ngCiuEyG53ZVEGTVeyyUsHTq18XwtHjLT4//omQ6L2ZlEPygs9aZdtge3wX7L5Z5y
+	 zJzH1SQ16JXb7b3HHoVqam4tWR0ifOOoTInKILh5S7eb0twzuK2Osn0WzfrofD3Yp3
+	 R1YNoUobQKFVUyQqwBG9pJkZXoP2fsBhML7uNeXr52p6Lb9SVmG4RKs+WJgsfOxdR+
+	 HSeQqho0nrB08mrqQnfkgJq+TEyTKhZaakLb+Qxjl4bdgYeQsVPyhlLsce8K9s02OV
+	 NDXrfGbQUxml9+/CAOt+1/qjTgiPX20zmeKWZtEKUs+JXaCN7G5fR9uqBicvx4fqme
+	 871EeCD/usOTQ==
+Date: Wed, 25 Sep 2024 09:56:07 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH] dt-bindings: writing-schema: Add details on YAML
+ text blocks
+Message-ID: <xlqdjvch3m4q5p3qbkr6tpbhkttqf3l5c6elt6fa5lzrs63rcj@ohpbfr4pugpa>
+References: <20240918195130.2024205-2-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Add power domain for
- dp_intf0
-To: Macpaul Lin <macpaul.lin@mediatek.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Alexandre Mergnat <amergnat@baylibre.com>
-Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
- Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
- Chris-qj chen <chris-qj.chen@mediatek.com>,
- MediaTek Chromebook Upstream
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- Chen-Yu Tsai <wenst@chromium.org>, Tommy Chen <tommytl.chen@mediatek.com>
-References: <20240925071514.17626-1-macpaul.lin@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240925071514.17626-1-macpaul.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240918195130.2024205-2-robh@kernel.org>
 
-Il 25/09/24 09:15, Macpaul Lin ha scritto:
-> During inspecting dtbs_check errors, we found the power domain
-> setting of DPI node "dp_intf0" is missing. Add power domain setting
-> to "MT8195_POWER_DOMAIN_VDOSYS0" for "dp_intf0"
+On Wed, Sep 18, 2024 at 02:51:30PM -0500, Rob Herring (Arm) wrote:
+> The YAML format has a couple of different forms for multi-line text
+> blocks which control allowed characters and handling of line-breaks.
+> Getting this wrong is a common review issue. Either a literal block is
+> used when there's no formatting needed or a folded/literal block is
+> not used when there is formatting to maintain.
 > 
-> Signed-off-by: Tommy Chen <tommytl.chen@mediatek.com>
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> Add some descriptions of the different forms to point folks to in
+> reviews.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
 
-You missed a Suggested-by tag here :-)
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-after which,
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
+Best regards,
+Krzysztof
 
 
