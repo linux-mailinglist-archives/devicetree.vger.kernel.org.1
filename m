@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-105349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17F7F9866DC
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 21:28:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF0B19866EB
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 21:31:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAC902846C6
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 19:28:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D83D2859E9
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 19:31:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A6E7140E38;
-	Wed, 25 Sep 2024 19:28:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B5831369BC;
+	Wed, 25 Sep 2024 19:31:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ldQm7a9n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ezqRXrmU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09DEF1EEE9;
-	Wed, 25 Sep 2024 19:28:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C1FF1D5ABE;
+	Wed, 25 Sep 2024 19:31:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727292512; cv=none; b=EXTsASDN14KAiOCR3HicnzaogdfOhcNZfy/A42iudJ22qCeMwc2D+eU+g6EZNnJ47bUf7pEmdmkUoXH7DLeA477HksPCi124Ov1jiKErbHLwxtif3fqwKE/BZzP+/G//++q8QI9uYPVW6372xIgBbAxkprn0C076IAWTt9kXEoc=
+	t=1727292687; cv=none; b=cfiuEcXeguqoKQJHti09Tt+ErOeTyuJT8XX2swO7HIan71f4XW5SjcqqoxkcbBk/lvRyVkBeEYO4E4HLyfd8SrLU0rpopeOUBwXLx+5uZsy2cIKZ3JVvBfyy3yYM3qpwYsUe2AQJk9MK/pe96cR95kId6amHZKUEJLD5UN17x/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727292512; c=relaxed/simple;
-	bh=BHY5b/7aCxpIbeg6RwISb63xJhM+TyHwNQ3PeO7u430=;
+	s=arc-20240116; t=1727292687; c=relaxed/simple;
+	bh=Zw8NRhd8Kj3Wp7zD5zXcK8TNN/qjT42LyVLnuxRSETM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KaEjU5lSfpSaGcz9u46NM8or91Brpyom9bH4yQc87w4GFy12S9qxtw42RfTyJ6d/A7LEIurZpxPm9+yYsyXNWMyP1Ag6TinkE+WhzQhZQQOs4sGgw/f/SrRveF8ICnMK+HERlshEWedCy56pyx29pSD61BHDbjeKe3bub+X64aY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ldQm7a9n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CF91C4CEC3;
-	Wed, 25 Sep 2024 19:28:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=AVrteezevOecWC1JVKKjnpUrviFgbo+kTbv8wCGiOXx7mH160/+i7ZyhYXk4qRx0he20G4kzW6gmW5yy2mUnnpJ/NSoN9yaSgxoEOEKG4iTuBKUfWIaSAPkEhqC8PBhfOm5Ar97Jju8Y7FvKgaJw+v5HvDRc18qikxdpEQrjik4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ezqRXrmU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36D22C4CEC3;
+	Wed, 25 Sep 2024 19:31:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727292511;
-	bh=BHY5b/7aCxpIbeg6RwISb63xJhM+TyHwNQ3PeO7u430=;
+	s=k20201202; t=1727292685;
+	bh=Zw8NRhd8Kj3Wp7zD5zXcK8TNN/qjT42LyVLnuxRSETM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ldQm7a9nP9Ya10copiq24onxV9Q5DcpKS5L3W6NNsjffFf+0h30C+CnvIfCFOuSpz
-	 tgtoyo/dZYX7qsxhvnHlDzMpMvHTQLhefWWwnN8CAOWxn4b4lr8tmz0SPRdyhSJDKN
-	 3r2hEe9aggCQC4AQveofbQFRH6+KQHIaJ5bYpJ5TJgoUVxKnPD+6lpUwLKsUY4WvWw
-	 l4CIGMt70xsdmnt2QT/thKhl4/0epZfwekVMbj0fc1CxklWSHtBr8triSnsD/dcJ3r
-	 BxcdUH5BL/rF70QOSWeKbouszufKDeGlWkkAbSyMX3TqKSbktslBR8CzB1erRLRRFA
-	 0TIYiSPg0pdtg==
-Message-ID: <acb6f417-d8ad-4b73-9752-d30da34b204a@kernel.org>
-Date: Wed, 25 Sep 2024 21:28:25 +0200
+	b=ezqRXrmU476GNOoLcrgM5RmFHqTyDDa+JjHTgd+rnzSaSaodmLwLUupuu5qN2f+kQ
+	 A0a0UU6+j/IlWSswt9juu7QfXKuz5e92fbmjgdFg1YbJMKOiF3FlFxCnglq0cCI2O/
+	 f8Y5Ya6z+Wgb6AsdjNMkX3YiLqQkNJBDPD1qfOYYvC+UEiXVv+w8weBsiB7hYQsX6Z
+	 7NNMOXVaQWHDu3lVk3sYSvlScK+KuVTrsZjQIPFXmBPS/Qz1pSKYDrs/bn4UhX10zk
+	 AWyTVKhe2+MUqe28uCNyeiZc3U+JtlmZ8j3hoJbxz3ZrVb8R/L1XI/DFQq7cwx8Frb
+	 blf1qBViyo9QA==
+Message-ID: <a3777c1f-b01d-41eb-acd3-61b0814668a2@kernel.org>
+Date: Wed, 25 Sep 2024 21:31:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/9] dt-bindings: imx6q-pcie: Add ref clock for i.MX95
- PCIe
-To: Frank Li <Frank.li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>, l.stach@pengutronix.de,
- kwilczynski@kernel.org, bhelgaas@google.com, lpieralisi@kernel.org,
- robh+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, festevam@gmail.com,
- s.hauer@pengutronix.de, linux-pci@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, kernel@pengutronix.de, imx@lists.linux.dev
-References: <1727245477-15961-1-git-send-email-hongxing.zhu@nxp.com>
- <1727245477-15961-2-git-send-email-hongxing.zhu@nxp.com>
- <vtrxj3r4wy6htxyl44rzjyao4zso6z2idexkvxrh3cg4wazcdc@gffmfu22jiyh>
- <ZvQ+YGqqwAUW+FaD@lizhi-Precision-Tower-5810>
+Subject: Re: [PATCH v2 3/3] dt-bindings: mmc: convert
+ amlogic,meson-mx-sdio.txt to dtschema
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-0-5aa8bdfe01af@linaro.org>
+ <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-3-5aa8bdfe01af@linaro.org>
+ <mbc2cacow73vmwn3w42aucq6x6xijbpgustkv3v6etgv35xih7@truf2rbgf3vo>
+ <CAFBinCDu0P8QEvxrUdXXSVCn-1061fjyhYd2nve9QCCvXmoe5Q@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,78 +109,40 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZvQ+YGqqwAUW+FaD@lizhi-Precision-Tower-5810>
+In-Reply-To: <CAFBinCDu0P8QEvxrUdXXSVCn-1061fjyhYd2nve9QCCvXmoe5Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 25/09/2024 18:46, Frank Li wrote:
-> On Wed, Sep 25, 2024 at 09:50:06AM +0200, Krzysztof Kozlowski wrote:
->> On Wed, Sep 25, 2024 at 02:24:29PM +0800, Richard Zhu wrote:
->>> Previous reference clock of i.MX95 is on when system boot to kernel. But
->>> boot firmware change the behavor, it is off when boot. So it needs be turn
->>> on when it is used. Also it needs be turn off/on when suspend and resume.
->>
->> That's an old platform... How come that you changed bootloader just now?
->> Like 7 or 8 years after?
+On 25/09/2024 19:29, Martin Blumenstingl wrote:
+> Hi Krzysztof,
 > 
-> It is new platform, which just publish in this year. Old platform reference
-> clock was controlled in PCI module, so needn't export to DT. So we have
-> not realized it when start i.MX95 work.
-
-Indeed, I missed that it is i.MX95, not i.MX6q.
-
+> On Tue, Sep 24, 2024 at 11:18 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> [...]
+>>> +        enum: [0, 1, 2]
+>>> +
+>>> +      bus-width:
+>>> +        enum: [1, 4]
+>>> +
+>>> +    unevaluatedProperties: false
+>>
+>> Hm, I wonder why not all slots are defined in your DTS? Why not all of
+>> them are required? I assume the slots are there always, as part of the
+>> controller.
+>>
+>> Is this because of driver limitation mentioned in the old binding?
+> The MMC core (still) has a limitation of only supporting one slot per
+> controller - so a limitation will stay in place.
 > 
->>
->> For the future: you should document all clock inputs, not only ones
->> needed for given bootloader...
-> 
-> Understand.
+> However, the driver (drivers/mmc/host/meson-mx-sdio.c) uses
+> of_get_compatible_child(), meaning it will also pick the first child
+> node with the correct compatible string, even if it has status =
+> "disabled".
+> I can send a patch to reduce the scope of this limitation: all slots
+> can be defined but only the first enabled one is used.
+> What do you think?
 
-Sorry, in case of early upstreaming it's understandable.
-
-> 
->>
->>>
->>> Add one ref clock for i.MX95 PCIe. Increase clocks' maxItems to 5 and keep
->>> the same restriction with other compatible string.
->>
->> <form letter>
->> Please use scripts/get_maintainers.pl to get a list of necessary people
->> and lists to CC (and consider --no-git-fallback argument). It might
->> happen, that command when run on an older kernel, gives you outdated
->> entries. Therefore please be sure you base your patches on recent Linux
->> kernel.
->>
->> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
->> people, so fix your workflow. Tools might also fail if you work on some
->> ancient tree (don't, instead use mainline) or work on fork of kernel
->> (don't, instead use mainline). Just use b4 and everything should be
->> fine, although remember about  if you added new
->> patches to the patchset.
->> </form letter>
->>
->> and I was wondering why I cannot find this and previous thread in my
->> inbox... So please stop developing on two year old kernels (and before
->> you say "I do not", well, then fix way how you use tools).
->>
->>
->>>
->>> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
->>> ---
->>>  .../bindings/pci/fsl,imx6q-pcie-common.yaml   |  4 +--
->>>  .../bindings/pci/fsl,imx6q-pcie.yaml          | 25 ++++++++++++++++---
->>>  2 files changed, 23 insertions(+), 6 deletions(-)
->>>
->>
->> You missed to update ep binding.
-> 
-> So far, EP don't need reference clock. PCIe standard require host provide
-> 100MHz reference clock to EP side. But EP side can choose use itself's
-> clock or reference clock from PCIe bus. Currently i.MX95 only support clock
-> from internal PLL when work as EP mode.
-
-But this patch allowed certain existing variants in EP to have 5 clocks.
-You missed to update EP binding...
+For the conversion it can stay as is. Follow-up patches allowing
+multiple slots, adding them in DTC etc. are nice, but not necessary here.
 
 Best regards,
 Krzysztof
