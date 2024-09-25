@@ -1,95 +1,136 @@
-Return-Path: <devicetree+bounces-105364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5C3A986813
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 23:08:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC3CC98681A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 23:09:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FE671F229C0
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 21:08:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F39D21C21691
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 21:09:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A931C174EDB;
-	Wed, 25 Sep 2024 21:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25A9F14B959;
+	Wed, 25 Sep 2024 21:09:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eruObcYr"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="OA1UvoXu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C0EC1714C6;
-	Wed, 25 Sep 2024 21:07:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98F4B145FFF
+	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 21:09:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727298432; cv=none; b=HPh06YEDfKYWI+20iSXahQmmDXTEyVewVqmnh4mCI+wtoZu1OeoHu3iJYkvGQR+wERmWSuZUCX84ACKgh5OMNUR5Y3hewLLSIfV+5zLFIZb/7dDhh/gP6NaiHHdAlQq3jQUIHWUUNtRvhqhBc65Xbq54+NiKLnZWGvackkXkG88=
+	t=1727298560; cv=none; b=pC1l+tgav4+eVsIhsAKcQtE4gEyDBs+osKYjaP8Go4qkVk2kezGGOmMfJ6zYh1FVyfr+ihInlr2CuuNU8Rh4oSLLZ+Xwc4NwO7LNYcMXFZX+ClC5HOSrPxNbGumojzg9zqOchun7s97BOdtFQxFKe+aTsqBEHLlYQIQjqA3tPuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727298432; c=relaxed/simple;
-	bh=vg0Qbh6dRJHvsnKUbYwHG6ZblNViGT9pGTEnf3e+Ox0=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=jE/EV1quxvWdGzxkq/eWcNwbk+ITwbequdAhtpFW4aFuR8r6FJWZ7Gy5w2Dy4/UpqaA+8UJx/QTNzeKxpbuefnsbgd7ldcraA2MeyJ52oA6dLeecaXVHkSqBT/fYcI8s+p0430mksUu1zMOTAb2iN1aNnvAg78xhni14I7VaEio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eruObcYr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D681C4CED0;
-	Wed, 25 Sep 2024 21:07:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727298432;
-	bh=vg0Qbh6dRJHvsnKUbYwHG6ZblNViGT9pGTEnf3e+Ox0=;
-	h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-	b=eruObcYroKITrx3RC1p+AI1vJ5f/xVq1TubrwhrXfNMrBkwa+rrktt11XzjMEnPnW
-	 +F4tqXo0DdVKyscXVakDYl+P/83OLSkV7Qv5D0wumGreWanrgv70TqvLBKyunxBXcY
-	 IZSk4P7wxtVV3GyJp4Zg+HUyYhqnkxL8JoA3Ex4fdthgK1bHD79Y71/+jc9DasU20h
-	 DJv5zWb88debvkTfRMi3zriSWkUYl8vJl+ZLHNc37v1ShbOGSkF2JQ7Sd/sv/LX++S
-	 yir+tsjCKFa7Q4MpJ5b/d9ZujgBCPBpkLuvCQVl1/4UH58lc6Pf/dA/6ZdACrkTd7T
-	 7GM2PSi2r3rkA==
-Date: Wed, 25 Sep 2024 23:07:09 +0200 (CEST)
-From: Jiri Kosina <jikos@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
-    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, 
-    Benjamin Tissoires <bentiss@kernel.org>, 
-    Charles Wang <charles.goodix@gmail.com>, linux-input@vger.kernel.org, 
-    devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: input: Revert "dt-bindings: input:
- Goodix SPI HID Touchscreen"
-In-Reply-To: <20240925194921.18933-2-krzysztof.kozlowski@linaro.org>
-Message-ID: <nycvar.YFH.7.76.2409252306420.31206@cbobk.fhfr.pm>
-References: <20240925194921.18933-1-krzysztof.kozlowski@linaro.org> <20240925194921.18933-2-krzysztof.kozlowski@linaro.org>
-User-Agent: Alpine 2.21 (LSU 202 2017-01-01)
+	s=arc-20240116; t=1727298560; c=relaxed/simple;
+	bh=nf2jRDe7YOb62V0yxLHQRkU3J79+1yvoaoml12fC0GI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kbY0GJ2l8LMBjUMZx5cToNJbN4Ah/UzLDzcgmENVeHoIwS+f4g2Wf/4hA+y/fcJlz4fbYH22kZ48lV+8ER2soXooONUW4v65Ma6cqh48j9nhD/00gent8NPaJkZdOUC7LFnXNvgxEL9QxGaYjx94BExEgOLGG6Zc3rWOzF15ZhE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=OA1UvoXu; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 8CF5386DBD;
+	Wed, 25 Sep 2024 23:09:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1727298556;
+	bh=K75U2k/x20rH4YoM4z8OTVABunQZ5QU6E8UEzcLk2XI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OA1UvoXuikvu+2ZNeOExtJ7J0KZhhxeLKMjLXYr9xAT9zlRBtXti1LFyTxZVp7O8A
+	 O/IzKdkucVOg9NUIsBFsIJ9j7bnCaZ1R5e16WiUUU8/jTHqXst4mDIaPphynX/Tywn
+	 e12Ti5MDysNi5R5pZfFL4J7+q/gthUEnmly7PH1W9MgEB4ELfYJLu1wA+PrC5UsSq2
+	 Zw8qJ1UfVGt4nTEZBBSRVyYWrko6F1hWpjYvR5Af+rhMM4A/92kwNJojYgO5JhZ4N8
+	 P2kNvpbCo8RfupG9UyFXAhZ4cWBJSs2ZrbwWF/tx1cEswKd2Muo3Vj2zy2NU8OY1n6
+	 rXZUy2rNKuALA==
+Message-ID: <08b805f8-a4c5-4aa1-95b2-66292a681aa9@denx.de>
+Date: Wed, 25 Sep 2024 23:09:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: imx8mp: Add DH i.MX8MP DHCOM SoM on DRC02
+ carrier board
+To: Frank Li <Frank.li@nxp.com>
+Cc: linux-arm-kernel@lists.infradead.org, kernel@dh-electronics.com,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+ Hiago De Franco <hiago.franco@toradex.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Mathieu Othacehe <m.othacehe@gmail.com>,
+ Max Merchel <Max.Merchel@ew.tq-group.com>, Michael Walle
+ <mwalle@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev
+References: <20240925001628.669604-1-marex@denx.de>
+ <20240925001628.669604-2-marex@denx.de>
+ <ZvQ6qWMAEZaR/5pl@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <ZvQ6qWMAEZaR/5pl@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Wed, 25 Sep 2024, Krzysztof Kozlowski wrote:
+On 9/25/24 6:30 PM, Frank Li wrote:
 
-> This reverts commit 9184b17fbc23 ("dt-bindings: input: Goodix SPI HID
-> Touchscreen") because it duplicates existing binding leadings to errors:
+[...]
+
+>> +/* USB_OTG port is not routed out on DRC02. */
+>> +&usb3_0 {
+>> +	status = "disabled";
+>> +};
+>> +
+>> +&usb_dwc3_0 {
+>> +	status = "disabled";
+>> +};
+>> +
+>> +/* USB_HOST port has USB Hub connected to it, PWR/OC pins are unused */
+>> +&usb3_1 {
+>> +	fsl,disable-port-power-control;
+>> +	fsl,permanently-attached;
+>> +};
 > 
->   goodix,gt7986u.example.dtb:
->   touchscreen@0: compatible: 'oneOf' conditional failed, one must be fixed:
->         ['goodix,gt7986u'] is too short
->         'goodix,gt7375p' was expected
+> Suggest run https://github.com/lznuaa/dt-format to sort node
 > 
-> This was reported on mailing list on 6th of September, but no reaction
-> happened from contributor or maintainer to fix it.
-> 
-> Therefore let's drop binding which breaks and duplicates existing one.
-> 
-> Fixes: 9184b17fbc23 ("dt-bindings: input: Goodix SPI HID Touchscreen")
-> Reported-by: Rob Herring <robh@kernel.org>
-> Closes: https://lore.kernel.org/all/CAL_Jsq+QfTtRj_JCqXzktQ49H8VUnztVuaBjvvkg3fwEHniUHw@mail.gmail.com/
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> &usb_dwc3_0
+> &usb_dwc3_1
+> &usb3_0
+> &usb3_1
 
-I've applied both patches now and will expedite them to Linus.
+I'm afraid the tool (I did not try it, I used plain GNU sort) is not 
+sorting this correctly, look at ASCII table, 0x33 is '3' and 0x5f is '_':
 
-Thanks,
+$ printf 3_ | hexdump -vC
+00000000  33 5f
 
--- 
-Jiri Kosina
-SUSE Labs
+So if the sorting was correct, it would be:
 
+usb3_0
+usb3_1
+usb_dwc3_0
+usb_dwc3_1
+
+But I would prefer to keep the controllers close to each other, i.e. the 
+current order which seems more logical in this case:
+
+usb3_0
+usb_dwc3_0
+usb3_1
+usb_dwc3_1
+
+[...]
 
