@@ -1,63 +1,74 @@
-Return-Path: <devicetree+bounces-105089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67BF4985158
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 05:16:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 536C198515D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 05:17:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4ADF1F260E5
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 03:16:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8DF7B20ED2
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 03:17:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A44951487FF;
-	Wed, 25 Sep 2024 03:16:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FD9D14B97D;
+	Wed, 25 Sep 2024 03:16:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="E358VeLm"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="2J5Nfg3W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4A412E83F;
-	Wed, 25 Sep 2024 03:16:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 511B414B07E
+	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 03:16:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727234204; cv=none; b=L4RyMFgdYYK2SGTFEM2lLRDR/+RMjcn+hqXqm63GbBZvsMy3oF/K/ItSQglVowMXTMZhrKhxLktvCm6EeA0ppc+LxQmZdWKMsmjDB+FCoCSE5Ed6h5Z3S+poKtEt3QLHn+0pHbpiJlPyKjhRISrz3PQleFanbK2Cy5w2OlN64VA=
+	t=1727234210; cv=none; b=kzHwDzZlv5SQ5i0+1dSgyuZRcAhrRpck5/PU3RFvz0ioUaKGWXVy1D1kPkOPt9qPaOWdwH2pwPZwbK4Mv3GdLMSFt4LTC9+hq6g5SOHIIWokunY6c8V6DTCZeZv/7tuOikXRdwQsjev8PinfErHajKRyVsUnadr2VW4BPj98YYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727234204; c=relaxed/simple;
-	bh=yckZRAtjv2+erTiywXe4fToHqpWBu16BWnOo1K0Owac=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=r75uK6VcrNFTcgOtBngyR+xPofm9dUxu1RXhrZw1Ez8GoM+qc9Wd0COau7O5MCl/rFavCJUJ3e+ry4BPuCfFgXecGsUxMfMwTiyPpM4vXR/y//WIG4QU3KdRyn/VRrsozmu5vKtcTvYReyBNkz6H7S0EpqCxl1veUZBN69gBCDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=E358VeLm; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48OJAkfM023720;
-	Wed, 25 Sep 2024 03:16:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	wSu5BOH4547bOGz/uuDsU2GqijyNrkUbv6wZdQJRvUY=; b=E358VeLmd1wkBr/c
-	11Etlk90/Hacb60+xJQppsBO1mF+vEuolUD4hVt7+So+kMMuDhUfX/4Uvd/4G1pe
-	fBSfg40HB+hP4KgIHXeRd0KAZ8XbVwj99gdjfuWSkjqjfVDqVEVX7fn42IoYHbgT
-	b6Wj6FbvnNySK8hK0TR7t1p2pC8BW/17Ywm8MFMqxixxL1Z7ps5CGnyg8q4rbQe5
-	siZ/copsfyrbK9tmjx48nWRcm30HdkaYRew14T8RDkps3Pros0XwE7qQe06I3PIp
-	cfXpJoE3hcqI/ZPeKdIeqo+10Umrtzcnx3fFk8BCQHadocng4Hig2UAKFDvJk9PC
-	F+ta2w==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41skgnb4d6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Sep 2024 03:16:34 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48P3GXwr031999
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Sep 2024 03:16:33 GMT
-Received: from [10.233.21.53] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 24 Sep
- 2024 20:16:30 -0700
-Message-ID: <6656171b-12d3-490b-b53c-f907b7454f99@quicinc.com>
-Date: Wed, 25 Sep 2024 11:16:28 +0800
+	s=arc-20240116; t=1727234210; c=relaxed/simple;
+	bh=WH3f1wEHTyRTJ7AT+c2IFOfTQMxKRPyA2AXtakgC6sg=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=kZYSJqhar8OJ7DYGXYoQfCKNdVVpGMtIlWbZWENWm9V4HbhZ1onw1gSfGaVrHsNRD1vB/7odCP1/txjQyr3XBVvCaXJ9yuoqXnTBJXYc20GF4FbHPpXKhz8uT/zOj99M8DJAkU0PBnjhWPzP/I9KEwphCDtpX48XSz1HlemQgzQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=2J5Nfg3W; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-20688fbaeafso66603335ad.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Sep 2024 20:16:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1727234206; x=1727839006; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=j/foBZ7L1xcE0uOYfjQY3pnhprf6ad5uc1MzhfvUezU=;
+        b=2J5Nfg3Wlo1FqRRtbPbdRKFX5uQo2fWSeDO4xAJquR2w+XVOg7qVHJ+CYE3aZz+6PJ
+         BIj+nFRb7jMB6F1o8P6AuVGFZYUxdlnrQSPDAY47a+z31gddVHoOD9E5uoVpjpjnJyiJ
+         XvppiA4diX3kWPetnU9of5v2uwOJosbyp1obhCG8xxxER7qAg+/a2ZH68tHzDocpbElm
+         OxH0u8OJM/MujOmSPrCl+eWBEb8LkrVpGsjus43w1vMIFQwas5cyJeBQ1r5l7qixzQDa
+         nd2Smd9uxTbqeEKQu9PBVJ+is7mlhwIcFsFgoinlqPxt6m7A4sjBkFtUilYVKOnZyJFv
+         ivBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727234206; x=1727839006;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=j/foBZ7L1xcE0uOYfjQY3pnhprf6ad5uc1MzhfvUezU=;
+        b=DNxN/CK2ro6klCY5Sn8nX9xDgv0lQDh0c2dEkfOJJwaBjrnd1f+MVdNXSX0I3CEpkm
+         EgcofCV9tE7fHHy1QJqUwLLQ9EP5tkhAZIPX8kuJMdz/gy1a9/T3GdRQ0WfSyE/UCHup
+         tFCFrl2gsxjavmgvYEdXa6AZJXIIbxwfcS3nm1LBiXKKoGWa+czsny9DPQ3bVEV59UFg
+         AbyoD3+6PMLOBeygGjb1WPjAvyYlvZbZgzwci0tiobbYgD7OkqgV/PmFVjk0qNh6iln7
+         XENGp0JAsGekCvHFWhuZH0GG05JvkzCfAHicrfPpwn3gm3z/9QwopHn1Gtq5Db/eC4oh
+         Kehw==
+X-Forwarded-Encrypted: i=1; AJvYcCWCc4YknywdsQ5zkJD6uphUdb7IrO4N6Vurdx1YZFgHVgRcqv3Js437lABZNIhGNMt2wLpWUPxk1KK3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyh0clZXmMqxXWb1VvMwUq917O3EKurR6rh4tOgyxEmz65DVDHz
+	4W7Z/gqHEq0ofvoZYFxYvd6Rr7nXohHepwxgND853u01btH7yXdfn6A/H1tqBQ==
+X-Google-Smtp-Source: AGHT+IHNTG/XEGwlf6r5ouS7N3mZHtb1iWq6Pcvw53rK4zJHPUQ1Ne1Ch54gGVnRgQVdpD3vSX+AvA==
+X-Received: by 2002:a17:90a:17cb:b0:2e0:78a0:55c4 with SMTP id 98e67ed59e1d1-2e078a0572cmr194836a91.9.1727234206189;
+        Tue, 24 Sep 2024 20:16:46 -0700 (PDT)
+Received: from ?IPV6:2a00:79e0:2e14:8:32ad:6c37:2d1:220a? ([2a00:79e0:2e14:8:32ad:6c37:2d1:220a])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e06e1a08fesm327560a91.5.2024.09.24.20.16.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Sep 2024 20:16:45 -0700 (PDT)
+Message-ID: <66d9af81-d211-45c9-bc3e-8dec5a8f92e0@google.com>
+Date: Tue, 24 Sep 2024 20:16:44 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,137 +76,66 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: phy: Add QMP UFS PHY comptible for
- QCS8300
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Xin Liu <quic_liuxin@quicinc.com>
-References: <20240911-qcs8300_ufs_phy_binding-v2-1-c801a2d27a84@quicinc.com>
- <ztpetznwid2om6vylyl2boi665ch3wnkprkmzcq6bem6cqhqtf@ogsi657y4kex>
+Subject: Re: [RFC v3 2/2] usb: typec: tcpm: Add support for parsing time dt
+ properties
+From: Amit Sunil Dhamne <amitsd@google.com>
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, dmitry.baryshkov@linaro.org,
+ badhri@google.com, kyletso@google.com, rdbabiera@google.com,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240923224059.3674414-1-amitsd@google.com>
+ <20240923224059.3674414-3-amitsd@google.com>
+ <ZvK2slBHR8PhzaMt@kuha.fi.intel.com>
+ <d72cc89a-7f73-4294-927e-48e647e37310@google.com>
 Content-Language: en-US
-From: Jingyi Wang <quic_jingyw@quicinc.com>
-In-Reply-To: <ztpetznwid2om6vylyl2boi665ch3wnkprkmzcq6bem6cqhqtf@ogsi657y4kex>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: njFoIUCqwxsEuXUGijLC5iVPOUvMbOGd
-X-Proofpoint-GUID: njFoIUCqwxsEuXUGijLC5iVPOUvMbOGd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 bulkscore=0
- mlxlogscore=999 adultscore=0 suspectscore=0 phishscore=0 impostorscore=0
- spamscore=0 mlxscore=0 priorityscore=1501 lowpriorityscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409250023
+In-Reply-To: <d72cc89a-7f73-4294-927e-48e647e37310@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+Hi,
 
-
-On 9/16/2024 10:53 PM, Krzysztof Kozlowski wrote:
-> On Wed, Sep 11, 2024 at 02:56:16PM +0800, Jingyi Wang wrote:
->> From: Xin Liu <quic_liuxin@quicinc.com>
+On 9/24/24 7:44 PM, Amit Sunil Dhamne wrote:
+> Hi Heikki,
+>
+> On 9/24/24 5:55 AM, Heikki Krogerus wrote:
+>> Hi,
 >>
->> Document the QMP UFS PHY compatible for Qualcomm QCS8300 to support
->> physical layer functionality for UFS found on the SoC. Use fallback to
->> indicate the compatibility of the QMP UFS PHY on the QCS8300 with that
->> on the SA8775P.
+>>> @@ -7611,10 +7650,13 @@ struct tcpm_port *tcpm_register_port(struct 
+>>> device *dev, struct tcpc_dev *tcpc)
+>>>       err = tcpm_fw_get_caps(port, tcpc->fwnode);
+>>>       if (err < 0)
+>>>           goto out_destroy_wq;
+>>> +
 >>
->> Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
->> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
->> ---
->> Changes in v2:
->> - decoupled from the original series.
->> - Use fallback to indicate compatibility with SA8775P.
->> - typo fixup
->> - Link to v1: https://lore.kernel.org/r/20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com
->> ---
->>  .../bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml    | 46 ++++++++++++----------
->>  1 file changed, 26 insertions(+), 20 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
->> index f9cfbd0b2de6..626a2039e177 100644
->> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
->> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
->> @@ -15,26 +15,31 @@ description:
->>  
->>  properties:
->>    compatible:
->> -    enum:
->> -      - qcom,msm8996-qmp-ufs-phy
->> -      - qcom,msm8998-qmp-ufs-phy
->> -      - qcom,sa8775p-qmp-ufs-phy
->> -      - qcom,sc7180-qmp-ufs-phy
->> -      - qcom,sc7280-qmp-ufs-phy
->> -      - qcom,sc8180x-qmp-ufs-phy
->> -      - qcom,sc8280xp-qmp-ufs-phy
->> -      - qcom,sdm845-qmp-ufs-phy
->> -      - qcom,sm6115-qmp-ufs-phy
->> -      - qcom,sm6125-qmp-ufs-phy
->> -      - qcom,sm6350-qmp-ufs-phy
->> -      - qcom,sm7150-qmp-ufs-phy
->> -      - qcom,sm8150-qmp-ufs-phy
->> -      - qcom,sm8250-qmp-ufs-phy
->> -      - qcom,sm8350-qmp-ufs-phy
->> -      - qcom,sm8450-qmp-ufs-phy
->> -      - qcom,sm8475-qmp-ufs-phy
->> -      - qcom,sm8550-qmp-ufs-phy
->> -      - qcom,sm8650-qmp-ufs-phy
->> +    oneOf:
->> +      - items:
->> +          - enum:
->> +              - qcom,qcs8300-qmp-ufs-phy
->> +          - const: qcom,sa8775p-qmp-ufs-phy
->> +      - enum:
->> +          - qcom,msm8996-qmp-ufs-phy
->> +          - qcom,msm8998-qmp-ufs-phy
->> +          - qcom,sa8775p-qmp-ufs-phy
->> +          - qcom,sc7180-qmp-ufs-phy
->> +          - qcom,sc7280-qmp-ufs-phy
->> +          - qcom,sc8180x-qmp-ufs-phy
->> +          - qcom,sc8280xp-qmp-ufs-phy
->> +          - qcom,sdm845-qmp-ufs-phy
->> +          - qcom,sm6115-qmp-ufs-phy
->> +          - qcom,sm6125-qmp-ufs-phy
->> +          - qcom,sm6350-qmp-ufs-phy
->> +          - qcom,sm7150-qmp-ufs-phy
->> +          - qcom,sm8150-qmp-ufs-phy
->> +          - qcom,sm8250-qmp-ufs-phy
->> +          - qcom,sm8350-qmp-ufs-phy
->> +          - qcom,sm8450-qmp-ufs-phy
->> +          - qcom,sm8475-qmp-ufs-phy
->> +          - qcom,sm8550-qmp-ufs-phy
->> +          - qcom,sm8650-qmp-ufs-phy
->>  
->>    reg:
->>      maxItems: 1
->> @@ -85,6 +90,7 @@ allOf:
->>            contains:
->>              enum:
->>                - qcom,msm8998-qmp-ufs-phy
->> +              - qcom,qcs8300-qmp-ufs-phy
-> 
-> Not needed.
-> 
-Well noted.
-> BTW, please be sure you organize your patchsets per subsystem. IOW, that
-> you do not split same subsystem bindings patches into separate
-> patchsets.
-> 
-Do you mean combine the binding of qmp-ufs-phy with ufs controller? I noticed
-that this patch belongs to "GENERIC PHY FRAMEWORK" subsystem and ufs controller
-binding belongs to "UNIVERSAL FLASH STORAGE HOST CONTROLLER DRIVER". If necessary,
-we can pay attention to combine them next time
-> Best regards,
-> Krzysztof
-> 
-Thanks,
-Jingyi
+>> This extra newline is not relevant or necessary. Otherwise this LGTM:
+>
+> Thanks for reviewing! Please let me know if I should upload a new set 
+> or this is alright at this time?
 
+
+Uploaded a new patchset anyway: 
+https://lore.kernel.org/all/20240925031135.1101048-3-amitsd@google.com/
+
+
+Thanks!
+
+>
+> -- 
+>
+> Amit
+>
+>>
+>> Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+>>
+>>>       err = tcpm_fw_get_snk_vdos(port, tcpc->fwnode);
+>>>       if (err < 0)
+>>>           goto out_destroy_wq;
+>>>   +    tcpm_fw_get_timings(port, tcpc->fwnode);
+>>> +
+>>>       port->try_role = port->typec_caps.prefer_role;
+>>>         port->typec_caps.revision = 0x0120;    /* Type-C spec 
+>>> release 1.2 */
+>> thanks,
+>>
 
