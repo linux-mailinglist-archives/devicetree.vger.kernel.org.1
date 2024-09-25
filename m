@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-105272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45794986178
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 16:52:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56555986184
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 16:54:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E69DF1F2AB0A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 14:52:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C6DB1F2AC22
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 14:54:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DFC0187346;
-	Wed, 25 Sep 2024 14:18:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 550E21802AB;
+	Wed, 25 Sep 2024 14:23:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="myB6Alc/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FYSVjuPr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05D8218732A;
-	Wed, 25 Sep 2024 14:17:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28EB8155306;
+	Wed, 25 Sep 2024 14:22:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727273880; cv=none; b=Llnl32LkWdvvlJGuDLxavun8FnEb975ivW39aovEkRF7Spx7/hI4cVG/VsFhsUHDYAGJvrq/W7jA4c3X+pPyKpJyHtnkBHiPvrFV9yQoo2JG7pyEZUco44WnVW4VLKYbsg/mo4Bp8Jm8509ed8WAd/Sy8Q1HDqLq2gOntuelb04=
+	t=1727274180; cv=none; b=V8OCZ0nw3RWpmRnY+6JFsyJKgXCXODiMtSFeQbSdpWkAp37Im4Ugr9Xt9VVUTw5CWyfJV+j6DG3Mvu9jWZAVpbiVPdDstnhBetQccM73KV3IWJcySpB7o4siQQoWBzx0sL5r9kt/mT0KsC1sFBtqka5c2+TqYIchHLhpPCeuO5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727273880; c=relaxed/simple;
-	bh=aP2xA/mU4mwmMWMTZ/93f2YWj6d5WLLwRn9OKUwSK9s=;
+	s=arc-20240116; t=1727274180; c=relaxed/simple;
+	bh=iyz2lf3mkRgiTWfamskFcGdqQaAj/ZxSyUGpTPwhmiI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GPgwEQzX1w8GC2fhriNuh2Ts6d07mGA1PP0Sn7XfWnpVSBj7EW75rHI1wjaI/AaxCYQj8nx2oToz6/91areJWZHVnLSnfkB9LIYYjs9/QE36lp2hjPbyec5/9jYkyLWjCZQUgbrrBmYjizneXsoh1In1R4fEc+EPhOaGFiwXzLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=myB6Alc/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07E06C4CEC3;
-	Wed, 25 Sep 2024 14:17:53 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NgvqsgAkVQ043qsYqx4AsXu9zHAg0sIg6rV8Zrp6KUIZS0EzhkTy3LP2aj97RatJjjbpUcuG5IkWH7SIqIA7094KTNhN4QkEEw3fSQiGcnhZsbCLiMW5yvdyB7SA/PGLqFpUh1c84Mlv9ulEgSeIdiRk+dlxtYUaEI+fbsoeCLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FYSVjuPr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F17CC4CEC3;
+	Wed, 25 Sep 2024 14:22:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727273878;
-	bh=aP2xA/mU4mwmMWMTZ/93f2YWj6d5WLLwRn9OKUwSK9s=;
+	s=k20201202; t=1727274179;
+	bh=iyz2lf3mkRgiTWfamskFcGdqQaAj/ZxSyUGpTPwhmiI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=myB6Alc/fTtah6PgE13bhUk+7d3j7LjshuCjurFn6SydOet6O9ZP/hTmgzkTZc3m2
-	 ILRAJ/DNiziMWrXn8K9V7EGd8c6AEuqVlsOd2ujoIwVT6FTydBe7eJrrudTVfLwEOK
-	 6uuhVRdrHwJLdH3toHrwGsmTg8slN7mD2wWa5i1QbGeQ6fYsc+/CdAqYlFDqxMevjV
-	 xZdKRlLy1i/gBdv6uPlB4ITjcsNoHqMhSdv0rwBcYxGIbgAsrYK9oa1xcKc9XE8vCE
-	 BuIB48joHqfuKunmpXjtk3BbdLb+ylgpNfItLMOEqY0MHqL7+cnt/AMyGkv7xDKD4n
-	 mBPlcGWXJucrw==
-Message-ID: <16ce3558-7733-4c38-b514-c89525faec06@kernel.org>
-Date: Wed, 25 Sep 2024 16:17:52 +0200
+	b=FYSVjuPrVrFvkiPbsNMmdb1puAPUqVQ7hKn6XurxYeclOrxkQUWkJ/z+U3lJNgg3C
+	 31NJZQjQr4e1G83IV2lKMBtzgSB8u+sy/RF8eBzcLi+MtnNjsF8jweHhivN0zJbQSf
+	 flc529CDdaBVfUCw9vwrjKNiN1XPRiL0HfyoiOE3VPfP+LpqK2OHu1a9AAJfghZ/gz
+	 5pFxrlyFIeJOepZp1rHLhWjqwERrCCVyVrzcLdwvKtSZu4rE4Yw8bH3vVi1NwIwHdy
+	 yzO++7eqJQpNkm24MsNIQYbTmIrK/UayYjBV19uhy0kbRNr1FvPJVNgEfAXV7mMROM
+	 zEevPPUZtCuvA==
+Message-ID: <c315bfe0-88ba-4b1b-b57d-c51e4448a870@kernel.org>
+Date: Wed, 25 Sep 2024 16:22:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: mediatek: Add MT8186
- Chinchou/Chinchou360 Chromebooks
-To: =?UTF-8?Q?Albert_Jakie=C5=82a?= <jakiela@google.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, wenst@chromium.org,
- rafal@milecki.pl, hsinyi@chromium.org, nfraprado@collabora.com,
- macpaul.lin@mediatek.com, sean.wang@mediatek.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20240925080353.2362879-1-jakiela@google.com>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sc7280: Add cpucp mbox node
+To: Shivnandan Kumar <quic_kshivnan@quicinc.com>,
+ Sibi Sankar <quic_sibis@quicinc.com>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
+References: <20240924050941.1251485-1-quic_kshivnan@quicinc.com>
+ <20240924050941.1251485-4-quic_kshivnan@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,38 +107,39 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240925080353.2362879-1-jakiela@google.com>
+In-Reply-To: <20240924050941.1251485-4-quic_kshivnan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 25/09/2024 10:03, Albert Jakieła wrote:
-> Add entries for MT8186 based Chinchou/Chinchou360 Chromebooks.
-> These two are clamshell or convertible with touchscreen, stylus
-> and extra buttons.
+On 24/09/2024 07:09, Shivnandan Kumar wrote:
+> Add the CPUCP mailbox node required for communication with CPUCP.
 > 
-> Signed-off-by: Albert Jakieła <jakiela@google.com>
+> Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
 > ---
->  .../devicetree/bindings/arm/mediatek.yaml     | 23 +++++++++++++++++++
->  1 file changed, 23 insertions(+)
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> index 1d4bb50fcd8d..110149f5d748 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> @@ -239,6 +239,29 @@ properties:
->            - enum:
->                - mediatek,mt8183-pumpkin
->            - const: mediatek,mt8183
-> +      - description: Google Chinchou360 (Asus Chromebook CZ11 Flip CZ1104F)
-> +        items:
-> +          - const: google,chinchou-sku16
-> +          - const: google,chinchou-sku18
-> +          - const: google,chinchou-sku19
-> +          - const: google,chinchou-sku21
-> +          - const: google,chinchou-sku2147483647
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 3d8410683402..4b9b26a75c62 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -4009,6 +4009,14 @@ gem_noc: interconnect@9100000 {
+>  			qcom,bcm-voters = <&apps_bcm_voter>;
+>  		};
+> 
+> +		cpucp_mbox: mailbox@17430000 {
 
-Wasn't sku-maxint removed? I recall same discussion recently... If yes,
-then please use same rules for all future Chromebook submissions.
+Are you sure you placed it in correct location (the order is by unit
+address, see DTS coding style).
+
+> +			compatible = "qcom,sc7280-cpucp-mbox";
+> +			reg = <0 0x18590000 0 0x2000>,
+> +			      <0 0x17C00000 0 0x10>;
+
+Lowercase hex... we just fixed it everywhere and you introduce again
+same issues.
+
+
 
 Best regards,
 Krzysztof
