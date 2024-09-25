@@ -1,369 +1,376 @@
-Return-Path: <devicetree+bounces-105201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ABF3985626
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:14:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55A4298561F
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:13:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C248286907
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:14:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 790021C22E31
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:13:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAA3A15B97E;
-	Wed, 25 Sep 2024 09:14:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="niZQvyuw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6748915B10F;
+	Wed, 25 Sep 2024 09:13:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C26D15A858;
-	Wed, 25 Sep 2024 09:13:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F095156257;
+	Wed, 25 Sep 2024 09:13:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727255641; cv=none; b=bZ3Fsqk+yBPjJ0bHp07ZKgaGWBR1ic71nScowtrfXRgzy7njVLrUgM2wxAbvikxKzSoWf7vfoPHRGFpoQt29sNUJryWmRKMUwY38hjuBrtyo/ST6I62djVOVftTYjJDrnL0Vzxp1VMP85F9euPkTwXi0/gfV2XgqnriT7h/tMkE=
+	t=1727255619; cv=none; b=tcfjHd7IjCINhWxqxrIfhohmHLv8qtjcdzQkAOnIX4J0IbUkjG/MBMpBxjTKivwIKWK6Rm0E1D3rD48JhUd1XRK2xmGjmuoLwxvq03EqaTfrJpduJXGaJUDggB7fnL2hypkiuB57DyXSh5rZjBw79A4VIQHC9EZmjBgJZn4LqXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727255641; c=relaxed/simple;
-	bh=ncQGDjVqIcmqLB13jlbaC2EccM0p0Skycwurb7HuorM=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=OwF8vui+WlWJYFWq6eavIDswUPqH104ErOOxccpJ8nUNl3mAP0He6It47v9pg9d/uEIzLwr/49I/X+EchbNehUX6LycC/+DU0a34OZpPj5J89R+YX37Dmu8G/7kB1G2W+V61gnyE0P3XFvhigqEOGRRL/8P5cAACVGhp8erjH9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=niZQvyuw; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42cb6f3a5bcso82734555e9.2;
-        Wed, 25 Sep 2024 02:13:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727255638; x=1727860438; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1FAu/jToo6vv9tVssK1OXqICVkrR1vSVMbEXikZEdW4=;
-        b=niZQvyuwXrnqcRs7HV8/FAz/bfrgxccF6TmH4jziRH2K7d/nS1ZUWTQCm0HHrIrQGH
-         ChhDnvu+cRhMt3PwuIW0XMA8AkECg0koxt20jugUwu2kEdwtAKWHs4x5kr13nfv87gTM
-         8DGyWTS2FcBI82+UfAt6v0FjImPrUUoE8hZfA+yEF69ybww/MFgCsf7nR7BwMCBnwUBT
-         TP0MWjRXHt2/EjXppurIJ/s22eYTygVmGAVRJamTyGfCyzpYkXHvNkCI6+CN8QBURTLj
-         afMLGOlieIstANp3vWxcrAxvtoGMM9AIZBwKsOavnLyDWQB7x79CMt258n9891SKDaC3
-         ygtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727255638; x=1727860438;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1FAu/jToo6vv9tVssK1OXqICVkrR1vSVMbEXikZEdW4=;
-        b=v1QSSytdSLquaPZBqpWHMv3+mauQ/YlQ3vLjkpXPklSmhMLDY1nrV5cNGpLM9kPXci
-         3B73rQEveL/1AqWmX1auUPV3XZrIn+jk2j7+3ykhgGJDNXnWcDn1bB87BoyqMs4ZzqZz
-         tcyLq1sN5n62Wb8c/0CNlJPK3rMgtFba6g6rRNDDkypgOpzPxMYEvrWy3H4PGGk+sS+0
-         7/w4H7bykyBHjTyUc4qjvYrBOnuECroixh3Hiq6uyMJ83Xh8SqfocjbFhR+eS/bEVTc9
-         PU4NRmckdYmtHUItERArs0QN5WzZzINuHCaj0puuLua6IdzOHnGnz0asOSzdfMY5eYaX
-         VQ+g==
-X-Forwarded-Encrypted: i=1; AJvYcCUwmF/ebtTDiEsTjFnUmDWwmAbcYyjtPDUv+lqVpj5T+2ZPwDBiYjcppRSHOy5DU9ZSY9qRPs/gNoDUfZJQ@vger.kernel.org, AJvYcCWPHu9DcUGl0RpwauGpP+kvMF/idNIfoZsp1pFi3n3eQJDCbo8hfGLVx7tqU6j8exuy1I0j2mTMQGlR@vger.kernel.org, AJvYcCWpu3pnb4Kk2D0C+a+7Faw90VEO2ZOq1xMKBAW9K/2fIUSmoP/ug6c+7j1SXHGQFGhwbf4CgqP0A7lGARqImu8=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8rg5IDjpwu8erz1i1RyEuGihWsoB/4bdgDF+83NdAmmUHtmXc
-	S/+302oFs8O5/tEcvT1qoPYO1KdcgJMGG4vuIuuaHNJEXfw7JURw
-X-Google-Smtp-Source: AGHT+IG+sa+aNF+e5tdi4vrxiKj7dJ1NgIdoA7e4HcPtFFu9dVz99A2qyrm0Cxp/nYxMvwobWz8T6A==
-X-Received: by 2002:a05:600c:4b97:b0:426:62c5:4731 with SMTP id 5b1f17b1804b1-42e96ab6d1fmr14188585e9.29.1727255637487;
-        Wed, 25 Sep 2024 02:13:57 -0700 (PDT)
-Received: from localhost.localdomain (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-42e96a16aa3sm12045605e9.39.2024.09.25.02.13.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2024 02:13:56 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	upstream@airoha.com
-Subject: [PATCH v2 2/2] watchdog: Add support for Airoha EN7851 watchdog
-Date: Wed, 25 Sep 2024 11:13:10 +0200
-Message-ID: <20240925091326.2900-2-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240925091326.2900-1-ansuelsmth@gmail.com>
-References: <20240925091326.2900-1-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1727255619; c=relaxed/simple;
+	bh=d6JLoUbDwBjIKDx20ZTHvHtdpUWvWpheRHW6XLbj/t0=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qFVnZpjLGVlIzLKcl015yAts3mTwKblmtxZwK+iAU2s/z+x3iR24idtkoMsDUYfn2gc9lpwyP+sHUwto+aSKcxori9b94YViiQKCAksfmCJ1sgjjiS48gnKJkpWSWK2NZKxPoJDgfKW/SjNldamJK0+R/WmMUHfw9p8JONH2M5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.31])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4XD9xV3L9jz6GBkj;
+	Wed, 25 Sep 2024 17:13:02 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id CBD0E140EDF;
+	Wed, 25 Sep 2024 17:13:33 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 25 Sep
+ 2024 11:13:33 +0200
+Date: Wed, 25 Sep 2024 10:13:31 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Zhao Qunqin <zhaoqunqin@loongson.cn>
+CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<chenhuacai@kernel.org>, <bp@alien8.de>, <tony.luck@intel.com>,
+	<linux-edac@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <kernel@xen0n.name>, <james.morse@arm.com>,
+	<mchehab@kernel.org>, <rric@kernel.org>, <loongarch@lists.linux.dev>
+Subject: Re: [PATCH v5 2/2] Loongarch: EDAC driver for loongson memory
+ controller
+Message-ID: <20240925101331.00000e63@Huawei.com>
+In-Reply-To: <20240925024038.9844-3-zhaoqunqin@loongson.cn>
+References: <20240925024038.9844-1-zhaoqunqin@loongson.cn>
+	<20240925024038.9844-3-zhaoqunqin@loongson.cn>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100006.china.huawei.com (7.191.160.224) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-Add support for Airoha EN7851 watchdog. This is a very basic watchdog
-with no pretimeout support, max timeout is 28 seconds and it ticks based
-on half the SoC BUS clock.
+On Wed, 25 Sep 2024 10:40:38 +0800
+Zhao Qunqin <zhaoqunqin@loongson.cn> wrote:
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
-Changes v2:
-- Drop clock-frequency implementation
-- Add missing bitfield.h header
-- Attach BUS clock
+> Reports single bit errors (CE) only.
+> 
+> Signed-off-by: Zhao Qunqin <zhaoqunqin@loongson.cn>
+Hi. A few quick comments inline
 
- drivers/watchdog/Kconfig      |   8 ++
- drivers/watchdog/Makefile     |   1 +
- drivers/watchdog/airoha_wdt.c | 216 ++++++++++++++++++++++++++++++++++
- 3 files changed, 225 insertions(+)
- create mode 100644 drivers/watchdog/airoha_wdt.c
+Jonathan
 
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index 85eea38dbdf4..be4616d18b29 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -394,6 +394,14 @@ config SL28CPLD_WATCHDOG
- 
- # ARM Architecture
- 
-+config AIROHA_WATCHDOG
-+	tristate "Airoha EN7581 Watchdog"
-+	depends on ARCH_AIROHA || COMPILE_TEST
-+	select WATCHDOG_CORE
-+	help
-+	  Watchdog timer embedded into Airoha SoC. This will reboot your
-+	  system when the timeout is reached.
-+
- config ARM_SP805_WATCHDOG
- 	tristate "ARM SP805 Watchdog"
- 	depends on (ARM || ARM64 || COMPILE_TEST) && ARM_AMBA
-diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-index 2d1117564f5b..32a0f689a9be 100644
---- a/drivers/watchdog/Makefile
-+++ b/drivers/watchdog/Makefile
-@@ -40,6 +40,7 @@ obj-$(CONFIG_USBPCWATCHDOG) += pcwd_usb.o
- obj-$(CONFIG_ARM_SP805_WATCHDOG) += sp805_wdt.o
- obj-$(CONFIG_ARM_SBSA_WATCHDOG) += sbsa_gwdt.o
- obj-$(CONFIG_ARMADA_37XX_WATCHDOG) += armada_37xx_wdt.o
-+obj-$(CONFIG_AIROHA_WATCHDOG) += airoha_wdt.o
- obj-$(CONFIG_ASM9260_WATCHDOG) += asm9260_wdt.o
- obj-$(CONFIG_AT91RM9200_WATCHDOG) += at91rm9200_wdt.o
- obj-$(CONFIG_AT91SAM9X_WATCHDOG) += at91sam9_wdt.o
-diff --git a/drivers/watchdog/airoha_wdt.c b/drivers/watchdog/airoha_wdt.c
-new file mode 100644
-index 000000000000..dc8ca11c14d8
---- /dev/null
-+++ b/drivers/watchdog/airoha_wdt.c
-@@ -0,0 +1,216 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ *	Airoha Watchdog Driver
-+ *
-+ *	Copyright (c) 2024, AIROHA  All rights reserved.
-+ *
-+ *	Mayur Kumar <mayur.kumar@airoha.com>
-+ *	Christian Marangi <ansuelsmth@gmail.com>
-+ *
-+ */
-+
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/moduleparam.h>
-+#include <linux/types.h>
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/io.h>
-+#include <linux/math.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/watchdog.h>
-+
-+/* Base address of timer and watchdog registers */
-+#define TIMER_CTRL			0x0
-+#define   WDT_ENABLE			BIT(25)
-+#define   WDT_TIMER_INTERRUPT		BIT(21)
-+/* Timer3 is used as Watchdog Timer */
-+#define   WDT_TIMER_ENABLE		BIT(5)
-+#define WDT_TIMER_LOAD_VALUE		0x2c
-+#define WDT_TIMER_CUR_VALUE		0x30
-+#define  WDT_TIMER_VAL			GENMASK(31, 0)
-+#define WDT_RELOAD			0x38
-+#define   WDT_RLD			BIT(0)
-+
-+/* Airoha watchdog structure description */
-+struct airoha_wdt_desc {
-+	struct watchdog_device wdog_dev;
-+	unsigned int wdt_freq;
-+	void __iomem *base;
-+};
-+
-+#define WDT_HEARTBEAT			24
-+static int heartbeat = WDT_HEARTBEAT;
-+module_param(heartbeat, int, 0);
-+MODULE_PARM_DESC(heartbeat, "Watchdog heartbeats in seconds. (default="
-+		 __MODULE_STRING(WDT_HEARTBEAT) ")");
-+
-+static bool nowayout = WATCHDOG_NOWAYOUT;
-+module_param(nowayout, bool, 0);
-+MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
-+		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
-+
-+static int airoha_wdt_start(struct watchdog_device *wdog_dev)
-+{
-+	struct airoha_wdt_desc *airoha_wdt = watchdog_get_drvdata(wdog_dev);
-+	u32 val;
-+
-+	val = readl(airoha_wdt->base + TIMER_CTRL);
-+	val |= (WDT_TIMER_ENABLE | WDT_ENABLE | WDT_TIMER_INTERRUPT);
-+	writel(val, airoha_wdt->base + TIMER_CTRL);
-+	val = wdog_dev->timeout * airoha_wdt->wdt_freq;
-+	writel(val, airoha_wdt->base + WDT_TIMER_LOAD_VALUE);
-+
-+	return 0;
-+}
-+
-+static int airoha_wdt_stop(struct watchdog_device *wdog_dev)
-+{
-+	struct airoha_wdt_desc *airoha_wdt = watchdog_get_drvdata(wdog_dev);
-+	u32 val;
-+
-+	val = readl(airoha_wdt->base + TIMER_CTRL);
-+	val &= (~WDT_ENABLE & ~WDT_TIMER_ENABLE);
-+	writel(val, airoha_wdt->base + TIMER_CTRL);
-+
-+	return 0;
-+}
-+
-+static int airoha_wdt_ping(struct watchdog_device *wdog_dev)
-+{
-+	struct airoha_wdt_desc *airoha_wdt = watchdog_get_drvdata(wdog_dev);
-+	u32 val;
-+
-+	val = readl(airoha_wdt->base + WDT_RELOAD);
-+	val |= WDT_RLD;
-+	writel(val, airoha_wdt->base + WDT_RELOAD);
-+
-+	return 0;
-+}
-+
-+static int airoha_wdt_set_timeout(struct watchdog_device *wdog_dev, unsigned int timeout)
-+{
-+	wdog_dev->timeout = timeout;
-+
-+	if (watchdog_active(wdog_dev)) {
-+		airoha_wdt_stop(wdog_dev);
-+		return airoha_wdt_start(wdog_dev);
-+	}
-+
-+	return 0;
-+}
-+
-+static unsigned int airoha_wdt_get_timeleft(struct watchdog_device *wdog_dev)
-+{
-+	struct airoha_wdt_desc *airoha_wdt = watchdog_get_drvdata(wdog_dev);
-+	u32 val;
-+
-+	val = readl(airoha_wdt->base + WDT_TIMER_CUR_VALUE);
-+	return DIV_ROUND_UP(val, airoha_wdt->wdt_freq);
-+}
-+
-+static const struct watchdog_info airoha_wdt_info = {
-+	.options = WDIOF_SETTIMEOUT | WDIOF_MAGICCLOSE | WDIOF_KEEPALIVEPING,
-+	.identity = "Airoha Watchdog",
-+};
-+
-+static const struct watchdog_ops airoha_wdt_ops = {
-+	.owner = THIS_MODULE,
-+	.start = airoha_wdt_start,
-+	.stop = airoha_wdt_stop,
-+	.ping = airoha_wdt_ping,
-+	.set_timeout = airoha_wdt_set_timeout,
-+	.get_timeleft = airoha_wdt_get_timeleft,
-+};
-+
-+static int airoha_wdt_probe(struct platform_device *pdev)
-+{
-+	struct airoha_wdt_desc *airoha_wdt;
-+	struct watchdog_device *wdog_dev;
-+	struct device *dev = &pdev->dev;
-+	struct clk *bus_clk;
-+	int ret;
-+
-+	airoha_wdt = devm_kzalloc(dev, sizeof(*airoha_wdt), GFP_KERNEL);
-+	if (!airoha_wdt)
-+		return -ENOMEM;
-+
-+	airoha_wdt->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(airoha_wdt->base))
-+		return PTR_ERR(airoha_wdt->base);
-+
-+	bus_clk = devm_clk_get_enabled(dev, "bus");
-+	if (IS_ERR(bus_clk))
-+		return dev_err_probe(dev, PTR_ERR(bus_clk),
-+				     "failed to enable bus clock\n");
-+
-+	/* Watchdog ticks at half the bus rate */
-+	airoha_wdt->wdt_freq = clk_get_rate(bus_clk) / 2;
-+
-+	/* Initialize struct watchdog device */
-+	wdog_dev = &airoha_wdt->wdog_dev;
-+	wdog_dev->timeout = heartbeat;
-+	wdog_dev->info = &airoha_wdt_info;
-+	wdog_dev->ops = &airoha_wdt_ops;
-+	/* Bus 300MHz, watchdog 150MHz, 28 seconds */
-+	wdog_dev->max_timeout = FIELD_MAX(WDT_TIMER_VAL) / airoha_wdt->wdt_freq;
-+	wdog_dev->parent = dev;
-+
-+	watchdog_set_drvdata(wdog_dev, airoha_wdt);
-+	watchdog_set_nowayout(wdog_dev, nowayout);
-+	watchdog_stop_on_unregister(wdog_dev);
-+
-+	ret = devm_watchdog_register_device(dev, wdog_dev);
-+	if (ret)
-+		return ret;
-+
-+	platform_set_drvdata(pdev, airoha_wdt);
-+	return 0;
-+}
-+
-+static int airoha_wdt_suspend(struct device *dev)
-+{
-+	struct airoha_wdt_desc *airoha_wdt = dev_get_drvdata(dev);
-+
-+	if (watchdog_active(&airoha_wdt->wdog_dev))
-+		airoha_wdt_stop(&airoha_wdt->wdog_dev);
-+
-+	return 0;
-+}
-+
-+static int airoha_wdt_resume(struct device *dev)
-+{
-+	struct airoha_wdt_desc *airoha_wdt = dev_get_drvdata(dev);
-+
-+	if (watchdog_active(&airoha_wdt->wdog_dev)) {
-+		airoha_wdt_start(&airoha_wdt->wdog_dev);
-+		airoha_wdt_ping(&airoha_wdt->wdog_dev);
-+	}
-+	return 0;
-+}
-+
-+static const struct of_device_id airoha_wdt_of_match[] = {
-+	{ .compatible = "airoha,en7581-wdt", },
-+	{ },
-+};
-+
-+MODULE_DEVICE_TABLE(of, airoha_wdt_of_match);
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(airoha_wdt_pm_ops, airoha_wdt_suspend, airoha_wdt_resume);
-+
-+static struct platform_driver airoha_wdt_driver = {
-+	.probe = airoha_wdt_probe,
-+	.driver = {
-+		.name = "airoha-wdt",
-+		.pm = pm_sleep_ptr(&airoha_wdt_pm_ops),
-+		.of_match_table = airoha_wdt_of_match,
-+	},
-+};
-+
-+module_platform_driver(airoha_wdt_driver);
-+
-+MODULE_AUTHOR("Mayur Kumar <mayur.kumar@airoha.com>");
-+MODULE_AUTHOR("Christian Marangi <ansuelsmth@gmail.com>");
-+MODULE_DESCRIPTION("Airoha EN7581 Watchdog Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.45.2
+> ---
+> Changes in v5:
+> 	- Drop the loongson_ prefix from all static functions.
+> 	- Align function arguments on the opening brace.
+> 	- Drop useless comments and useless wrapper. Drop side comments.
+> 	- Reorder variable declarations.
+> 
+> Changes in v4:
+> 	- None
+> 
+> Changes in v3:
+> 	- Addressed review comments raised by Krzysztof and Huacai
+> 
+> Changes in v2:
+> 	- Addressed review comments raised by Krzysztof
+> 
+>  MAINTAINERS                  |   1 +
+>  arch/loongarch/Kconfig       |   1 +
+>  drivers/edac/Kconfig         |   8 ++
+>  drivers/edac/Makefile        |   1 +
+>  drivers/edac/loongson_edac.c | 168 +++++++++++++++++++++++++++++++++++
+>  5 files changed, 179 insertions(+)
+>  create mode 100644 drivers/edac/loongson_edac.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 6cc8cfc8f..5b4526638 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -13242,6 +13242,7 @@ M:	Zhao Qunqin <zhaoqunqin@loongson.cn>
+>  L:	linux-edac@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/edac/loongson,ls3a5000-mc-edac.yaml
+> +F:	drivers/edac/loongson_edac.c
+>  
+>  LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
+>  M:	Sathya Prakash <sathya.prakash@broadcom.com>
+> diff --git a/arch/loongarch/Kconfig b/arch/loongarch/Kconfig
+> index 70f169210..9c135f1a2 100644
+> --- a/arch/loongarch/Kconfig
+> +++ b/arch/loongarch/Kconfig
+> @@ -181,6 +181,7 @@ config LOONGARCH
+>  	select PCI_MSI_ARCH_FALLBACKS
+>  	select PCI_QUIRKS
+>  	select PERF_USE_VMALLOC
+> +	select EDAC_SUPPORT
+>  	select RTC_LIB
+>  	select SPARSE_IRQ
+>  	select SYSCTL_ARCH_UNALIGN_ALLOW
+> diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
+> index 81af6c344..719bb6ca7 100644
+> --- a/drivers/edac/Kconfig
+> +++ b/drivers/edac/Kconfig
+> @@ -564,5 +564,13 @@ config EDAC_VERSAL
+>  	  Support injecting both correctable and uncorrectable errors
+>  	  for debugging purposes.
+>  
+> +config EDAC_LOONGSON3
+> +	tristate "Loongson-3 Memory Controller"
+> +	depends on LOONGARCH || COMPILE_TEST
+> +	help
+> +	  Support for error detection and correction on the Loongson-3
+> +	  family memory controller. This driver reports single bit
+> +	  errors (CE) only. Loongson-3A5000/3C5000/3D5000/3C5000L/3A6000/3C6000
+> +	  are compatible.
+>  
+>  endif # EDAC
+> diff --git a/drivers/edac/Makefile b/drivers/edac/Makefile
+> index faf310eec..e72ca1be4 100644
+> --- a/drivers/edac/Makefile
+> +++ b/drivers/edac/Makefile
+> @@ -88,3 +88,4 @@ obj-$(CONFIG_EDAC_DMC520)		+= dmc520_edac.o
+>  obj-$(CONFIG_EDAC_NPCM)			+= npcm_edac.o
+>  obj-$(CONFIG_EDAC_ZYNQMP)		+= zynqmp_edac.o
+>  obj-$(CONFIG_EDAC_VERSAL)		+= versal_edac.o
+> +obj-$(CONFIG_EDAC_LOONGSON3)		+= loongson_edac.o
+> diff --git a/drivers/edac/loongson_edac.c b/drivers/edac/loongson_edac.c
+> new file mode 100644
+> index 000000000..2721dfba5
+> --- /dev/null
+> +++ b/drivers/edac/loongson_edac.c
+> @@ -0,0 +1,168 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2024 Loongson Technology Corporation Limited.
+> + */
+> +
+> +#include <linux/edac.h>
+> +#include <linux/module.h>
+> +#include <linux/init.h>
+> +#include <linux/platform_device.h>
+> +
+> +#include "edac_module.h"
+> +
+> +enum ecc_index {
+> +	ECC_SET = 0,
+> +	ECC_RESERVED,
+> +	ECC_COUNT,
+> +	ECC_CS_COUNT,
+> +	ECC_CODE,
+> +	ECC_ADDR,
+> +	ECC_DATA0,
+> +	ECC_DATA1,
+> +	ECC_DATA2,
+> +	ECC_DATA3,
+> +};
+> +
+> +struct loongson_edac_pvt {
+> +	u64 *ecc_base;
+> +	int last_ce_count;
+> +};
+> +
+> +static int read_ecc(struct mem_ctl_info *mci)
+> +{
+> +	struct loongson_edac_pvt *pvt = mci->pvt_info;
+> +	u64 ecc;
+> +	int cs;
+> +
+> +	if (!pvt->ecc_base)
+> +		return pvt->last_ce_count;
+> +
+> +	ecc = pvt->ecc_base[ECC_CS_COUNT];
+> +	/* cs0 -- cs3 */
+> +	cs = ecc & 0xff;
+> +	cs += (ecc >> 8) & 0xff;
+> +	cs += (ecc >> 16) & 0xff;
+> +	cs += (ecc >> 24) & 0xff;
+
+This smells like an endian swap.
+swab32() or is this fixing a wrong endian register?
+In which case b32_to_cpu()
+
+> +
+> +	return cs;
+> +}
+> +
+> +static void edac_check(struct mem_ctl_info *mci)
+> +{
+> +	struct loongson_edac_pvt *pvt = mci->pvt_info;
+> +	int new, add;
+> +
+> +	new = read_ecc(mci);
+> +	add = new - pvt->last_ce_count;
+> +	pvt->last_ce_count = new;
+> +	if (add <= 0)
+
+This has be a little confused. Either this counter can
+wrap in which case why drop out here, or it can't in which case
+does < occur?
+
+> +		return;
+> +
+> +	edac_mc_handle_error(HW_EVENT_ERR_CORRECTED, mci, add,
+> +			     0, 0, 0, 0, 0, -1, "error", "");
+> +	edac_mc_printk(mci, KERN_INFO, "add: %d", add);
+> +}
+> +
+> +static int get_dimm_config(struct mem_ctl_info *mci)
+> +{
+> +	struct dimm_info *dimm;
+> +	u32 size, npages;
+> +
+> +	/* size not used */
+> +	size = -1;
+> +	npages = MiB_TO_PAGES(size);
+> +
+> +	dimm = edac_get_dimm(mci, 0, 0, 0);
+> +	dimm->nr_pages = npages;
+> +	snprintf(dimm->label, sizeof(dimm->label),
+> +		 "MC#%uChannel#%u_DIMM#%u", mci->mc_idx, 0, 0);
+> +	dimm->grain = 8;
+> +
+> +	return 0;
+> +}
+> +
+> +static void pvt_init(struct mem_ctl_info *mci, u64 *vbase)
+> +{
+> +	struct loongson_edac_pvt *pvt = mci->pvt_info;
+> +
+> +	pvt->ecc_base = vbase;
+> +	pvt->last_ce_count = read_ecc(mci);
+> +}
+> +
+> +static int edac_probe(struct platform_device *pdev)
+> +{
+> +	struct edac_mc_layer layers[2];
+> +	struct loongson_edac_pvt *pvt;
+> +	struct mem_ctl_info *mci;
+> +	u64 *vbase;
+> +	int ret;
+> +
+> +	vbase = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(vbase))
+> +		return PTR_ERR(vbase);
+> +
+> +	/* allocate a new MC control structure */
+> +	layers[0].type = EDAC_MC_LAYER_CHANNEL;
+> +	layers[0].size = 1;
+> +	layers[0].is_virt_csrow = false;
+> +	layers[1].type = EDAC_MC_LAYER_SLOT;
+> +	layers[1].size = 1;
+> +	layers[1].is_virt_csrow = true;
+Could move this to a c99 style
+
+	struct edac_mc_layer layers[2] = {
+		{
+			.type = EDAC_MC_LAYER_CHANNEL,
+			.size = 1,
+			.is_virt_csrow = false,
+		}, {
+			.type = EDAC_MC_LAYER_SLOT,
+			.size = 1,
+			is_virt_csrow = true,
+		}
+	};
+Not particularly important though.
+
+> +	mci = edac_mc_alloc(0, ARRAY_SIZE(layers), layers, sizeof(*pvt));
+> +	if (mci == NULL)
+
+Probably !mci is sufficient but I'm not sure on local edac style.
+
+> +		return -ENOMEM;
+> +
+> +	mci->mc_idx = edac_device_alloc_index();
+> +	mci->mtype_cap = MEM_FLAG_RDDR4;
+> +	mci->edac_ctl_cap = EDAC_FLAG_NONE;
+> +	mci->edac_cap = EDAC_FLAG_NONE;
+> +	mci->mod_name = "loongson_edac.c";
+> +	mci->ctl_name = "loongson_edac_ctl";
+> +	mci->dev_name = "loongson_edac_dev";
+> +	mci->ctl_page_to_phys = NULL;
+> +	mci->pdev = &pdev->dev;
+> +	mci->error_desc.grain = 8;
+> +	/* Set the function pointer to an actual operation function */
+> +	mci->edac_check = edac_check;
+
+Similar to above, can initialize this structure more cleanly
+using 
+
+	*mci = (struct mem_ctl_info) {
+		.mc_idx = edac_device_alloc_index,
+	...
+	};
+> +
+> +	pvt_init(mci, vbase);
+> +	get_dimm_config(mci);
+> +
+> +	ret = edac_mc_add_mc(mci);
+
+I'd be tempted to use devm_add_action_or_cleanup() for this and the
+alloc above, but not common in edac but it is done in al_mc_edac.c if
+you want an example.
+
+> +	if (ret) {
+> +		edac_dbg(0, "MC: failed edac_mc_add_mc()\n");
+> +		edac_mc_free(mci);
+> +		return ret;
+> +	}
+> +	edac_op_state = EDAC_OPSTATE_POLL;
+> +
+> +	return 0;
+> +}
+> +
+> +static void edac_remove(struct platform_device *pdev)
+> +{
+> +	struct mem_ctl_info *mci = edac_mc_del_mc(&pdev->dev);
+> +
+> +	if (mci)
+> +		edac_mc_free(mci);
+
+Very odd if you got to remove and edac_mc_del_mc() failed.
+Do we need this check?  At least some drivers (I checked a few
+at random) don't check this.
+
+
+> +}
+> +
+> +static const struct of_device_id loongson_edac_of_match[] = {
+> +	{ .compatible = "loongson,ls3a5000-mc-edac", },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, loongson_edac_of_match);
+> +
+> +static struct platform_driver loongson_edac_driver = {
+> +	.probe		= edac_probe,
+> +	.remove		= edac_remove,
+> +	.driver		= {
+> +		.name	= "loongson-mc-edac",
+> +		.of_match_table = loongson_edac_of_match,
+> +	},
+> +};
+> +module_platform_driver(loongson_edac_driver);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_AUTHOR("Zhao Qunqin <zhaoqunqin@loongson.cn>");
+> +MODULE_DESCRIPTION("EDAC driver for loongson memory controller");
 
 
