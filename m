@@ -1,536 +1,171 @@
-Return-Path: <devicetree+bounces-105278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 635DF9861AB
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 16:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B17BE9861C5
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 17:01:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 865B31C26DF7
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 14:58:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E285E1C26F89
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 15:01:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F8D67E59A;
-	Wed, 25 Sep 2024 14:32:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5281D172BAE;
+	Wed, 25 Sep 2024 14:34:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="R2LGGiNl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oq2W/6ik"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 141CF75809;
-	Wed, 25 Sep 2024 14:32:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E698610B;
+	Wed, 25 Sep 2024 14:34:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727274727; cv=none; b=W43usvtIekGgbt/00vZcQOpmEcZmPpSGIH7/30o/C0dBTAiIoqpAq+H2SEEotCG917ztE63D/ZttZktLIsLTnB7ARnxf/enSln6TPhKy1hm4QOAfbjULHQ0Uth+exJUvNjIm24McvDSGruLPab42U1gL11WxZV70x4nATyWddE8=
+	t=1727274891; cv=none; b=bCz8J04OQ6TrNPvcGCNoH7ft+oTJdWaUnFg1430TqilfDFkAcpRhDcKfNOhwK2OGtbaEUgEdCrosZH2h3Z1p42Zo8lAKXhM9kILOZOGy6XK2E3P/H8s3xl6LiSyusXuNQ6N01SavRz9IOLh2MUyFmyjYpQcJcXyXqfthfuoEGzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727274727; c=relaxed/simple;
-	bh=amk7YygWvmZR5/I93O8Wi12l66/aHyhjh/rq+IfhZrU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=mSfZ8uAZtOP06YDXwrHGSW45uCEOyORcI/um/tWlqI+r0cfbdb9zC7QwULl/oL5H7S/shU7UAPsIQ8hPRLT5GRGXY8lr/FspSXBfiAhyJVKR4wqeGOitWsWPUCCIa4MwmIGrCvIugebIS1Vcnm0XeQHjbXuaDKsvMJwMSQfGs0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=R2LGGiNl; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: lukma@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id BB30D86E61;
-	Wed, 25 Sep 2024 16:31:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1727274723;
-	bh=iJmmLp80d/B4OGaZfwASnBgjcB6gdtVp6qO0zPVchA0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=R2LGGiNl34DAor2mf4WVxaQKPKL31Zip5wghVcwoC2B3qQjDiqHg/XfhJVv3k3sW3
-	 eY0UODuh1mM8eFPqycqK/VXMczkRIhp0vI4HGWoOxzT9kuBWxyrS3EpSNM4s/hAZIV
-	 JNVaVlSp9qJR7xNGSycR0N2zm++xfW5+vnbBPS+YSHjw4kb/fvHWMRWaLomf/8OcKM
-	 Z+8CKNbrLpjm3LvbFGA+GBK/UGidG1IiHcWuoUSeOow8CG9qMgT+g5lTxg4DDYJeFk
-	 Q5bYe+r8a/7D5yi55ddwi90895qiTnenfXaC46F4guEAIcpGJhjGTvURfJjh9Gq80r
-	 2RBvBxJevwYSQ==
-From: Lukasz Majewski <lukma@denx.de>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1727274891; c=relaxed/simple;
+	bh=dpQ/czRVTd2i1LaIRTZfUT2aSTnHS8M++kos8GBDjMI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KghAorWwo0ldzdLQupO97fqs0NN4yEJY50cUebnTbFjg9Ph7feE0hZIzs+Aw5g71U5P+ttIoge6p/pQ5bvWMpjKtmR0sHR8g/cO/+bM5kwVpWtZkvpOWZFQWAm7yPxKDwZoWdRxntbW7dY2ARWxAkQXzMOGOwyjp+7Gps0W48UA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oq2W/6ik; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A959C4CEC3;
+	Wed, 25 Sep 2024 14:34:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727274890;
+	bh=dpQ/czRVTd2i1LaIRTZfUT2aSTnHS8M++kos8GBDjMI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oq2W/6ik4uHLxVqum7YpvzS6LKLKV+OtW5nJejIsnO+dt6aPiWsX6Iu72+JNHxp5c
+	 plKWY3hpOzeu/5aI9yuTbcd7R6afZgYPnp9EhpBs3UmUIqcnAa9pQfBSbI6ZyjuASL
+	 efhuhosNlwbOgW2Jc5mprIaPgqH3LNfsln3GtwEqYN2FTANtuYgXovIdp9OiTGlbk+
+	 AeOi7fNWgTc28lIOEiUBafHDcjJKWPe57zxZMlcSreeVvuGqz7bJFvjjWs3EQaesL/
+	 /5Rv3qZ/D64TvEObsrENGUlIpm2ricXIpygIvJX/H3tluPMBOqQNisr9N0biGpU/1Q
+	 04m4OM2IV/SWA==
+Date: Wed, 25 Sep 2024 15:34:42 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	moudy.ho@mediatek.com, macross.chen@mediatek.com,
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Lukasz Majewski <lukma@denx.de>
-Subject: [PATCH v7 2/2] ARM: dts: mxs: Add descriptions for imx287 based btt3-[012] devices
-Date: Wed, 25 Sep 2024 16:31:29 +0200
-Message-Id: <20240925143129.4081815-2-lukma@denx.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240925143129.4081815-1-lukma@denx.de>
-References: <20240925143129.4081815-1-lukma@denx.de>
+	Conor Dooley <conor+dt@kernel.org>, Yong Wu <yong.wu@mediatek.com>,
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Alexandre Mergnat <amergnat@baylibre.com>,
+	Bear Wang <bear.wang@mediatek.com>,
+	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
+	Sen Chu <sen.chu@mediatek.com>,
+	Chris-qj chen <chris-qj.chen@mediatek.com>,
+	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: [PATCH 3/6] dt-bindings: display: mediatek: Fix clocks count
+ constraint for new SoCs
+Message-ID: <20240925-satisfy-epidermal-bd414891479a@spud>
+References: <20240924103156.13119-1-macpaul.lin@mediatek.com>
+ <20240924103156.13119-3-macpaul.lin@mediatek.com>
+ <ffc1900b-3921-48ca-a2b2-1b798c57e572@collabora.com>
+ <20240924-commute-collision-13ad39717d31@spud>
+ <2821ef09-1b32-082d-69d1-e09a3a302447@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="J8wSVO8x24H35hg9"
+Content-Disposition: inline
+In-Reply-To: <2821ef09-1b32-082d-69d1-e09a3a302447@mediatek.com>
 
-The btt3 device' HW revisions from 0 to 2 use imx287 SoC and are to
-some extend similar to already upstreamed XEA devices, hence are
-using common imx28-lwe.dtsi file.
 
-New, imx28-btt3.dtsi has been added to embrace common DTS
-properties for different HW revisions for this device.
+--J8wSVO8x24H35hg9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-As a result - changes introduced in imx28-btt3-[012].dts are
-minimal.
+On Wed, Sep 25, 2024 at 04:42:59PM +0800, Macpaul Lin wrote:
+>=20
+> On 9/25/24 00:00, Conor Dooley wrote:
+> > On Tue, Sep 24, 2024 at 01:42:01PM +0200, AngeloGioacchino Del Regno wr=
+ote:
+> > > Il 24/09/24 12:31, Macpaul Lin ha scritto:
+> > > > The display node in mt8195.dtsi was triggering a CHECK_DTBS error d=
+ue
+> > > > to an excessively long 'clocks' property:
+> > > >     display@14f06000: clocks: [[31, 14], [31, 43], [31, 44]] is too=
+ long
+> > > >=20
+> > > > To resolve this issue, add "maxItems: 3" to the 'clocks' property in
+> > > > the DT schema.
+> > > >=20
+> > > > Fixes: 4ed545e7d100 ("dt-bindings: display: mediatek: disp: split e=
+ach block to individual yaml")
+> > > > Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> > > > ---
+> > > >    .../devicetree/bindings/display/mediatek/mediatek,split.yaml    =
+ | 1 +
+> > > >    1 file changed, 1 insertion(+)
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/display/mediatek/med=
+iatek,split.yaml b/Documentation/devicetree/bindings/display/mediatek/media=
+tek,split.yaml
+> > > > index e4affc854f3d..42d2d483cc29 100644
+> > > > --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,s=
+plit.yaml
+> > > > +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,s=
+plit.yaml
+> > > > @@ -57,6 +57,7 @@ properties:
+> > > >      clocks:
+> > > >        items:
+> > > >          - description: SPLIT Clock
+> > >=20
+> > > That's at least confusing (granted that it works) - either add a desc=
+ription for
+> > > each clock and then set `minItems: 1` (preferred), or remove this "SP=
+LIT Clock"
+> > > description and allow a maximum of 3 clocks.
+> > >=20
+> > > Removing the description can be done - IMO - because "SPLIT Clock" is=
+, well,
+> > > saying that the SPLIT block gets a SPLIT clock ... stating the obviou=
+s, anyway.
+> >=20
+> > Right, but what are the other two new clocks? Are they as obvious?
+> > There's no clock-names here to give any more information as to what the
+> > other clocks are supposed to be.
+> >=20
+> > Kinda unrelated, but I think that "SPLIT Clock" probably isn't what the
+> > name of the clock in the IP block is anyway, sounds more like the name
+> > for it on the provider end..
+>=20
+> Thanks for the suggestions. I think Moudy could help on the new fixes
+> for both DT schem and mt8195.dtsi. This patch could be separated from
+> origin patch set.
 
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
+Not sure what you mean about separating it, if you mean correcting the
+description for the split clock sure. The other stuff I mentioned needs
+to be resolved before I'm willing to ack this.
 
----
-Changes for v2:
-- Rename dts file from btt3-[012] to imx28-btt3-[012] to match current
-  linux kernel naming convention
-- Remove 'wlf,wm8974' from compatible for codec@1a
+--J8wSVO8x24H35hg9
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Changes for v3:
-- Keep alphabethical order for Makefile entries
+-----BEGIN PGP SIGNATURE-----
 
-Changes for v4:
-- Change compatible for btt3 board (to 'lwn,imx28-btt3')
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvQfggAKCRB4tDGHoIJi
+0kZaAQDow3QEAY+WQ0ufqkVPpT6Klr1sLJA3DGBOMb0OR2mFBAD+LZNm99NaPFvR
+YY8n+V0cs0h8KfWB99zY2q0PPvHvNwc=
+=5wf9
+-----END PGP SIGNATURE-----
 
-Changes for v5:
-- Combine patch, which adds btt3-[012] with one adding board entry to
-  fsl.yaml
-
-Changes for v6:
-- Make the patch series for adding entry in fsl.yaml and btt3
-
-Changes for v7:
-- Use "panel" property as suggested by the community
-- Use panel-timing to specify the display parameters
-- Update subject line with correct tags
----
- arch/arm/boot/dts/nxp/mxs/Makefile         |   3 +
- arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts |  12 +
- arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts |   8 +
- arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts |  40 +++
- arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi  | 309 +++++++++++++++++++++
- 5 files changed, 372 insertions(+)
- create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts
- create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts
- create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts
- create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi
-
-diff --git a/arch/arm/boot/dts/nxp/mxs/Makefile b/arch/arm/boot/dts/nxp/mxs/Makefile
-index a430d04f9c69..96dd31ea19ba 100644
---- a/arch/arm/boot/dts/nxp/mxs/Makefile
-+++ b/arch/arm/boot/dts/nxp/mxs/Makefile
-@@ -8,6 +8,9 @@ dtb-$(CONFIG_ARCH_MXS) += \
- 	imx28-apf28.dtb \
- 	imx28-apf28dev.dtb \
- 	imx28-apx4devkit.dtb \
-+	imx28-btt3-0.dtb \
-+	imx28-btt3-1.dtb \
-+	imx28-btt3-2.dtb \
- 	imx28-cfa10036.dtb \
- 	imx28-cfa10037.dtb \
- 	imx28-cfa10049.dtb \
-diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts
-new file mode 100644
-index 000000000000..6ac46e4b21bb
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-0.dts
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2024
-+ * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
-+ */
-+
-+/dts-v1/;
-+#include "imx28-btt3.dtsi"
-+
-+&hog_pins_rev {
-+	fsl,pull-up = <MXS_PULL_ENABLE>;
-+};
-diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts
-new file mode 100644
-index 000000000000..213fe931c58b
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-1.dts
-@@ -0,0 +1,8 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2024
-+ * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
-+ */
-+
-+/dts-v1/;
-+#include "imx28-btt3.dtsi"
-diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts
-new file mode 100644
-index 000000000000..0b0939ecb59b
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/mxs/imx28-btt3-2.dts
-@@ -0,0 +1,40 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2024
-+ * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
-+ */
-+
-+/dts-v1/;
-+#include "imx28-btt3.dtsi"
-+
-+/ {
-+	panel {
-+		compatible = "panel-dpi";
-+		power-supply = <&reg_3v3>;
-+		width-mm = <70>;
-+		height-mm = <52>;
-+
-+		panel-timing {
-+			clock-frequency = <6500000>;
-+			hactive = <320>;
-+			vactive = <240>;
-+			hfront-porch = <20>;
-+			hback-porch = <68>;
-+			hsync-len = <30>;
-+			vfront-porch = <4>;
-+			vback-porch = <14>;
-+			vsync-len = <4>;
-+
-+			hsync-active = <0>;
-+			vsync-active = <0>;
-+			de-active = <1>;
-+			pixelclk-active = <1>;
-+		};
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&display_out>;
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi b/arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi
-new file mode 100644
-index 000000000000..7d0e1d7da292
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/mxs/imx28-btt3.dtsi
-@@ -0,0 +1,309 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2024
-+ * Lukasz Majewski, DENX Software Engineering, lukma@denx.de
-+ */
-+/dts-v1/;
-+#include "imx28-lwe.dtsi"
-+
-+/ {
-+	model = "BTT3";
-+
-+	compatible = "lwn,imx28-btt3", "fsl,imx28";
-+
-+	chosen {
-+	       bootargs = "root=/dev/mmcblk0p2 rootfstype=ext4 ro rootwait console=ttyAMA0,115200 panic=1 quiet";
-+	};
-+
-+	memory@40000000 {
-+		reg = <0x40000000 0x10000000>;
-+		device_type = "memory";
-+	};
-+
-+	panel {
-+		compatible = "panel-dpi";
-+		power-supply = <&reg_3v3>;
-+		width-mm = <70>;
-+		height-mm = <52>;
-+
-+		panel-timing {
-+			clock-frequency = <6500000>;
-+			hactive = <320>;
-+			vactive = <240>;
-+			hfront-porch = <20>;
-+			hback-porch = <38>;
-+			hsync-len = <30>;
-+			vfront-porch = <4>;
-+			vback-porch = <14>;
-+			vsync-len = <4>;
-+
-+			hsync-active = <0>;
-+			vsync-active = <0>;
-+			de-active = <0>;
-+			pixelclk-active = <1>;
-+		};
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&display_out>;
-+			};
-+		};
-+	};
-+
-+	poweroff {
-+		compatible = "gpio-poweroff";
-+		gpios = <&gpio0 24 0>;
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "BTTC Audio";
-+		simple-audio-card,widgets = "Speaker", "BTTC Speaker";
-+		simple-audio-card,routing = "BTTC Speaker", "SPKOUTN", "BTTC Speaker", "SPKOUTP";
-+		simple-audio-card,dai-link@0 {
-+			format = "left_j";
-+			bitclock-master = <&dai0_master>;
-+			frame-master = <&dai0_master>;
-+			mclk-fs = <256>;
-+			dai0_master: cpu {
-+				sound-dai = <&saif0>;
-+			};
-+			codec {
-+				sound-dai = <&wm89xx>;
-+				clocks = <&saif0>;
-+			};
-+		};
-+	};
-+
-+	wifi_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_en_pin_bttc>;
-+		reset-gpios = <&gpio0 27 GPIO_ACTIVE_LOW>;
-+		/* W1-163 needs 60us for WL_EN to be low and */
-+		/* 150ms after high before downloading FW is possible */
-+		post-power-on-delay-ms = <200>;
-+		power-off-delay-us = <100>;
-+	};
-+};
-+
-+&auart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&auart0_2pins_a>;
-+	status = "okay";
-+};
-+
-+&auart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&auart3_pins_a>;
-+	uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	wm89xx: codec@1a {
-+		compatible = "wlf,wm8940";
-+		reg = <0x1a>;
-+		#sound-dai-cells = <0>;
-+	};
-+};
-+
-+&lcdif {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&lcdif_24bit_pins_a>, <&lcdif_sync_pins_bttc>,
-+		    <&lcdif_reset_pins_bttc>;
-+	status = "okay";
-+
-+	port {
-+		display_out: endpoint {
-+			remote-endpoint = <&panel_in>;
-+		};
-+	};
-+};
-+
-+&mac0 {
-+	clocks = <&clks 57>, <&clks 57>, <&clks 64>;
-+	clock-names = "ipg", "ahb", "enet_out";
-+	phy-handle = <&mac0_phy>;
-+	phy-mode = "rmii";
-+	phy-supply = <&reg_3v3>;
-+	local-mac-address = [ 00 11 B8 00 BF 8A ];
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		mac0_phy: ethernet-phy@0 {
-+			/* LAN8720Ai - PHY ID */
-+			compatible = "ethernet-phy-id0007.c0f0","ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+			smsc,disable-energy-detect;
-+			max-speed = <100>;
-+
-+			reset-gpios = <&gpio4 12 GPIO_ACTIVE_LOW>; /* GPIO4_12 */
-+			reset-assert-us = <1000>;
-+			reset-deassert-us = <1000>;
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&hog_pins_a>, <&hog_pins_rev>;
-+
-+	hog_pins_a: hog@0 {
-+		reg = <0>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_GPMI_RDY2__GPIO_0_22
-+			MX28_PAD_GPMI_RDY3__GPIO_0_23
-+			MX28_PAD_GPMI_RDN__GPIO_0_24
-+			MX28_PAD_LCD_VSYNC__GPIO_1_28
-+			MX28_PAD_SSP2_SS1__GPIO_2_20
-+			MX28_PAD_SSP2_SS2__GPIO_2_21
-+			MX28_PAD_AUART2_CTS__GPIO_3_10
-+			MX28_PAD_AUART2_RTS__GPIO_3_11
-+			MX28_PAD_GPMI_WRN__GPIO_0_25
-+			MX28_PAD_ENET0_RXD2__GPIO_4_9
-+			MX28_PAD_ENET0_TXD2__GPIO_4_11
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_4mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_DISABLE>;
-+	};
-+
-+	hog_pins_rev: hog@1 {
-+		reg = <1>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_ENET0_RXD3__GPIO_4_10
-+			MX28_PAD_ENET0_TX_CLK__GPIO_4_5
-+			MX28_PAD_ENET0_COL__GPIO_4_14
-+			MX28_PAD_ENET0_CRS__GPIO_4_15
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_4mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_DISABLE>;
-+	};
-+
-+	keypad_pins_bttc: keypad-bttc@0 {
-+		reg = <0>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_GPMI_D00__GPIO_0_0
-+			MX28_PAD_AUART0_CTS__GPIO_3_2
-+			MX28_PAD_AUART0_RTS__GPIO_3_3
-+			MX28_PAD_GPMI_D03__GPIO_0_3
-+			MX28_PAD_GPMI_D04__GPIO_0_4
-+			MX28_PAD_GPMI_D05__GPIO_0_5
-+			MX28_PAD_GPMI_D06__GPIO_0_6
-+			MX28_PAD_GPMI_D07__GPIO_0_7
-+			MX28_PAD_GPMI_CE1N__GPIO_0_17
-+			MX28_PAD_GPMI_CE2N__GPIO_0_18
-+			MX28_PAD_GPMI_CE3N__GPIO_0_19
-+			MX28_PAD_GPMI_RDY0__GPIO_0_20
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_4mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_DISABLE>;
-+	};
-+
-+	lcdif_sync_pins_bttc: lcdif-bttc@0 {
-+		reg = <0>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_LCD_DOTCLK__LCD_DOTCLK
-+			MX28_PAD_LCD_ENABLE__LCD_ENABLE
-+			MX28_PAD_LCD_HSYNC__LCD_HSYNC
-+			MX28_PAD_LCD_RD_E__LCD_VSYNC
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_4mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_DISABLE>;
-+	};
-+
-+	lcdif_reset_pins_bttc: lcdif-bttc@1 {
-+		reg = <1>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_LCD_RESET__GPIO_3_30
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_4mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_ENABLE>;
-+	};
-+
-+	ssp1_sdio_pins_a: ssp1-sdio@0 {
-+		reg = <0>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_SSP1_DATA0__SSP1_D0
-+			MX28_PAD_GPMI_D01__SSP1_D1
-+			MX28_PAD_GPMI_D02__SSP1_D2
-+			MX28_PAD_SSP1_DATA3__SSP1_D3
-+			MX28_PAD_SSP1_CMD__SSP1_CMD
-+			MX28_PAD_SSP1_SCK__SSP1_SCK
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_8mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_ENABLE>;
-+	};
-+
-+	wifi_en_pin_bttc: wifi_en_pin@0 {
-+		reg = <0>;
-+		fsl,pinmux-ids = <
-+			MX28_PAD_GPMI_CLE__GPIO_0_27
-+		>;
-+		fsl,drive-strength = <MXS_DRIVE_8mA>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+		fsl,pull-up = <MXS_PULL_ENABLE>;
-+	};
-+};
-+
-+&pwm {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm3_pins_a>;
-+	status = "okay";
-+};
-+
-+&reg_usb_5v {
-+	gpio = <&gpio1 28 0>;
-+};
-+
-+&saif0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&saif0_pins_a>;
-+	#sound-dai-cells = <0>;
-+	assigned-clocks = <&clks 53>;
-+	assigned-clock-rates = <12000000>;
-+	status = "okay";
-+};
-+
-+&saif1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&saif1_pins_a>;
-+	fsl,saif-master = <&saif0>;
-+	#sound-dai-cells = <0>;
-+	status = "okay";
-+};
-+
-+&ssp1 {
-+	compatible = "fsl,imx28-mmc";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ssp1_sdio_pins_a>;
-+	bus-width = <4>;
-+	no-1-8-v;       /* force 3.3V VIO */
-+	pm-ignore-notify;
-+	non-removable;
-+	vmmc-supply = <&reg_3v3>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	keep-power-in-suspend;
-+	status = "okay";
-+
-+	wlan@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-+
-+&ssp2 {
-+	compatible = "fsl,imx28-spi";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi2_pins_a>;
-+	status = "okay";
-+};
--- 
-2.39.2
-
+--J8wSVO8x24H35hg9--
 
