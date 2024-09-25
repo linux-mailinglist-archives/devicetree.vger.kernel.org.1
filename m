@@ -1,142 +1,123 @@
-Return-Path: <devicetree+bounces-105325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A86D986567
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 19:13:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A375986598
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 19:29:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5052C1F24B7E
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 17:13:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C68001F21DAB
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 17:29:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 371BA1311A7;
-	Wed, 25 Sep 2024 17:12:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D55D757880;
+	Wed, 25 Sep 2024 17:29:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="dj3ZLDTe"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="ZCH7+8Rm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EA6E481CE;
-	Wed, 25 Sep 2024 17:12:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 746594AEF2;
+	Wed, 25 Sep 2024 17:29:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727284342; cv=none; b=sp4yly42AhiSnmbujhIrn7pnYIBLmWOLAkqu/JOoSSHLgdQ/fYxpkR80mX9DzVbkDR4PjYWRhFKKs05Gj4RDXOL1dujVCu/HBZ/NR+rnKQRRv1FAi3bqAtOlHSgLiJLfL6lzw+mLSQS76JPgU79kYjbZeYEVP7eMEzh+scPjwoQ=
+	t=1727285378; cv=none; b=cBulvPFmJVYU/6yojM7z7pL8qQzXvhMNk5fJNYcFXbaw810CvdEWdOY1dYuIY1XYsppW62ZNhFyW9fGp0yPEr3KskzzV4efsLCjQeT8laOdJcnWKp5N1UPgoATW3Pg0XaKygJ5ptH/Pv6k12jESGusWA/Z6XfGja9DyvBCZ3paE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727284342; c=relaxed/simple;
-	bh=ZDX/3Uw+OGxEuW7N3xp9JAXC/koSaQ7zuRhrK1YtCZo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sfGEi0h/TWRNBx8VfHjHFA0Q59tUGAhvf3reynzu/9ExHUJoG5bue/ZU1+Tpa+KTaC0eRdsojCbfToe+6p4q2dzX69A6la/S/Rs/nn//N6EfwgVWzvksqPgM1DnMkdhcZ6DXAmX+jxj0teRdgKf4iuW2R4ahMIznHbrtJtgha0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=dj3ZLDTe; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 4df472d27b6111efb66947d174671e26-20240926
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=iAzBCvy0VmUuU94kvJI2+WAtlOqI4D3pcld1I1Auw0w=;
-	b=dj3ZLDTem4f20YkrtdEEH5EPYnMyh+e5gUaf8v63fTbekZFV7KkaCO88NK7WfEkueE1dpPXSCDhISes9PUzCB0LvXJKV0/jJg+67HKPQtqA6yfcKACPAqVUnquYaJgz/+MeiIjrYy3I2J1l1bnawY4ecNXqoFm1fNt2kQWmxbPE=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:7e19de30-bb04-47c8-9f05-b110acb3d76d,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:a178c2d0-7921-4900-88a1-3aef019a55ce,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 4df472d27b6111efb66947d174671e26-20240926
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 822567883; Thu, 26 Sep 2024 01:12:12 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 26 Sep 2024 01:12:09 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 26 Sep 2024 01:12:09 +0800
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-To: Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	<linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, Alexandre Mergnat
-	<amergnat@baylibre.com>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul@gmail.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
-	MediaTek Chromebook Upstream
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
-	<wenst@chromium.org>
-Subject: [PATCH 2/2] arm64: dts: mediatek: mt6359: fix dtbs_check error for RTC and regulators
-Date: Thu, 26 Sep 2024 01:11:56 +0800
-Message-ID: <20240925171156.9115-2-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20240925171156.9115-1-macpaul.lin@mediatek.com>
-References: <20240925171156.9115-1-macpaul.lin@mediatek.com>
+	s=arc-20240116; t=1727285378; c=relaxed/simple;
+	bh=TPOpswsdijw5gm3RbX6cBpr2bSe4KFnYCCRVAKV7fBE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OGgWCde8pjCx/LXSMnmWnkBa8G3z2BvqZBnWBEDULp1t8my2aL6NJpUKN0+Je8RUiAP6PqGwTbtP3svhTfxV+GipWcKjbQ5Pr0iB05ZEJjbLOFhljjcfNAsUucceNEqGrHOuYaCRYTYGLEzX8IuImLBKTf3evcMi+O5QnFMbSwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=ZCH7+8Rm; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-206aee40676so472375ad.0;
+        Wed, 25 Sep 2024 10:29:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1727285377; x=1727890177; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=76c1gfIJ44N/4frQpedFLzuDh4DDf4ytBF5LgFjIvvY=;
+        b=ZCH7+8Rm+cr8Q4ZBhABe/IrjKKsJhGXxpwCUuKvgCF8//Ja4aADmPGC3M/VV9H+Uyx
+         YFcSbAK+6DKQAtALAAP8OZ9nXc77W8f17RR/G3e6HCJiIJZAdDLCggZa5ouhj0gKJaEo
+         u6OOk9ZRrCExcZqbfsasNei82Gd6BzqJHbZObOk6C2CTmxKber05e1PF+qOLXGUsGJig
+         3ZTLJELwq/lVXBmO0OM60ePfCGzeEkeW3VBfd1D7XJlJrhKb/ykBXPJYVjhwZRB5iB0l
+         F5X1T4wrStj8kqie3OzOQv5BUxa27LUSZ/AVAHmGo9g6TsYikSJreKxBGrMjiyc4ujcq
+         qMjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727285377; x=1727890177;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=76c1gfIJ44N/4frQpedFLzuDh4DDf4ytBF5LgFjIvvY=;
+        b=qgulJGd0OpsEdjPdjIyRXFHDQKLy5n3Yhchv/mh7ofCUHEsjKHmSEjp3cmRz84mdQX
+         Pvgu3AVa9+SNHmqzzLa28q/K4n1oRQvUvrOoD2JPZN2YC7phyN1m8SuMyL9jF7N+OYDD
+         WbKSEvmzA4PTad3jGKzrRzTuHhMBdtKersBX3/HXwYKxv2WyRursp1Hf9827YUH2Takb
+         XtC9d4ZG/2p4NlYl8z9jkva8zuCuKF8XOgSUOypyPVlV5PLhYWyVBOPg6i2PhpJ8P322
+         AE8HmbsrLcMUMTjlkD/P/7wxFizEJmIWaVtJDhrnt585J5m24D64pRXotc5WGZDcpJD3
+         Rqdg==
+X-Forwarded-Encrypted: i=1; AJvYcCVkL417E1b1+evUQEamco0dXbYj4etnKZNsj7XbsBvtJK3yJnpMElufM1U2MCLtyGSe65mbcSfFLmvi@vger.kernel.org, AJvYcCWmrWcL5rZdVkE1YmPPXeA2CbOgrhOSS2l+wOu72/IJeCSJ85bhni70mPmTIZgRL35BeMxh4aZznxm6@vger.kernel.org, AJvYcCXcp0q0ujHcxUxSTaWcEII/onzrFGItRmpgpouSlBr+hi60cZnl3oEPgS7ncQs0ZbozkirQQR8p7FspnYrZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOHNqsIFihRNQXWUKz9ArKLs49lkfNg1+iQFcSSoXHmigWNF3t
+	I18MdUqDsuPYFjPbBkSqaMQdga4DGkNM+eWMiLpLo/ScUDd71WKA35TACSbfZVgmzphftW5Etrw
+	ENQj1IiRQ1MULonWlh5O54a2DqP0=
+X-Google-Smtp-Source: AGHT+IGL8Tarnw4aOxyngiyyJMw2bFTvc8HSfobctrnuSaGxAiJN+XPoCfQJeAeS5waKELhDrIf1ZNEdC7ArTM2uMQA=
+X-Received: by 2002:a17:902:f707:b0:206:8f25:a3e with SMTP id
+ d9443c01a7336-20afc60958amr46716805ad.53.1727285376595; Wed, 25 Sep 2024
+ 10:29:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--2.002300-8.000000
-X-TMASE-MatchedRID: 8PwIYNh8Bn1DKVWWbGcmRiZm6wdY+F8KCt59Uh3p/NWUzka/OKYytcFk
-	Mp+HRF4cVkYkwvZAWNf5IV2n4J3Q94JrRWPc34Z+A9lly13c/gF9LQinZ4QefPcjNeVeWlqY+gt
-	Hj7OwNO1J4MCrOTno5+a2TFKA2Ye2AlAf+rnwEGLTwbw0zKGZTcOhnWkOZTjkx9iZU14Li3vKhz
-	P7d9BDrNpZ7JqxkrFqc90KBdA4Y8ReBZp2IvvhrqMnTJRI0XInfXwUEm1ouDzLDYxFC1/7rjCBQ
-	Dy1BJScwL6SxPpr1/I=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--2.002300-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	17DFAE06CD59BBD0E82B8C6D67528A7396DCFB95B7366686CEA392FC3798324A2000:8
-X-MTK: N
+References: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-0-5aa8bdfe01af@linaro.org>
+ <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-3-5aa8bdfe01af@linaro.org>
+ <mbc2cacow73vmwn3w42aucq6x6xijbpgustkv3v6etgv35xih7@truf2rbgf3vo>
+In-Reply-To: <mbc2cacow73vmwn3w42aucq6x6xijbpgustkv3v6etgv35xih7@truf2rbgf3vo>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Wed, 25 Sep 2024 19:29:25 +0200
+Message-ID: <CAFBinCDu0P8QEvxrUdXXSVCn-1061fjyhYd2nve9QCCvXmoe5Q@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: mmc: convert amlogic,meson-mx-sdio.txt
+ to dtschema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This patch fixes the following dtbs_check errors:
-1. 'mt6359rtc' do not match any of the regexes: 'pinctrl-[0-9]+'
- - Update 'mt6359rtc' in 'mt6359.dtsi' with a generic device name 'rtc'
-2. 'pmic: regulators: 'compatible' is a required property'
- - Add 'mediatek,mt6359-regulator' to compatible property.
+Hi Krzysztof,
 
-Fixes: 3b7d143be4b7 ("arm64: dts: mt6359: add PMIC MT6359 related nodes")
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt6359.dtsi | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+On Tue, Sep 24, 2024 at 11:18=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+[...]
+> > +        enum: [0, 1, 2]
+> > +
+> > +      bus-width:
+> > +        enum: [1, 4]
+> > +
+> > +    unevaluatedProperties: false
+>
+> Hm, I wonder why not all slots are defined in your DTS? Why not all of
+> them are required? I assume the slots are there always, as part of the
+> controller.
+>
+> Is this because of driver limitation mentioned in the old binding?
+The MMC core (still) has a limitation of only supporting one slot per
+controller - so a limitation will stay in place.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt6359.dtsi b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-index 8e1b8c85c6ed..dd732a820a7c 100644
---- a/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-@@ -18,6 +18,8 @@ mt6359codec: mt6359codec {
- 		};
- 
- 		regulators {
-+			compatible = "mediatek,mt6359-regulator";
-+
- 			mt6359_vs1_buck_reg: buck_vs1 {
- 				regulator-name = "vs1";
- 				regulator-min-microvolt = <800000>;
-@@ -296,7 +298,7 @@ mt6359_vsram_others_sshub_ldo: ldo_vsram_others_sshub {
- 			};
- 		};
- 
--		mt6359rtc: mt6359rtc {
-+		mt6359_rtc: rtc {
- 			compatible = "mediatek,mt6358-rtc";
- 		};
- 	};
--- 
-2.45.2
+However, the driver (drivers/mmc/host/meson-mx-sdio.c) uses
+of_get_compatible_child(), meaning it will also pick the first child
+node with the correct compatible string, even if it has status =3D
+"disabled".
+I can send a patch to reduce the scope of this limitation: all slots
+can be defined but only the first enabled one is used.
+What do you think?
 
+
+Best regards,
+Martin
 
