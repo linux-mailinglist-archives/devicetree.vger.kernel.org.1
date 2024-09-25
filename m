@@ -1,59 +1,84 @@
-Return-Path: <devicetree+bounces-105198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76E40985616
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:08:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B72A0985623
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:14:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7D321C20EA8
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:08:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7C971C22EC2
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE96F1591FC;
-	Wed, 25 Sep 2024 09:08:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09D8915B118;
+	Wed, 25 Sep 2024 09:14:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="Z5gZxPcM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="imprr0Pn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D601156222
-	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 09:08:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4879714C5A7;
+	Wed, 25 Sep 2024 09:13:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727255314; cv=none; b=JJMODeuzemq6AGqAGqsT0a7BP+Lk8dLS92vzWaDeBBoAsS3OV6JN+1T00EqQqV4+jPj6kh5X1STxexWwNE8IpilfACZV9+xV4e8Iua3MDotPpwsxAfBQBK/hgPPrgxdZCzLZiG8yDrwZ/3x14iE3XDMcWFM0pDBkTnjVBswPMdM=
+	t=1727255639; cv=none; b=EgZ1PluYMgdljmQOrCXAxPCWDW23V+i9o5c6BHI0qBmkRdN+lC3363/8ffX3pOlpZ4/fQLEC4YvXH1fDTow28dJXHJBzN8ULcAik5ypdOJ0HLRVJpbhPMvWNiYYnzu4BXayF4Y8sE6SPFENcuaOi4DjwggWnPO8KUbiZJ1rk7ig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727255314; c=relaxed/simple;
-	bh=O2iU5YFb0EUoLa8iUqnhSQW9C4V3j/ZF5B2SycMLVck=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Sf/uYwdanIwZ59xaxToC0A+6ETOFsdxHmEbx68u7isNgYuI0tjAFE07EoNAwLrOpIpAuqjzI71ijg58D0tIDYd4sTtMOkSTkhNUfZ3IF9/JxQMx0VTPYGiJfuPTCbX29+/dSJ85w/eELV6dftQ0pKBQLyqxdU54vmZWTFEFKPrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=Z5gZxPcM; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:mime-version:content-transfer-encoding; s=k1; bh=JAyhatAU00Ze3X
-	pmj/bpHbUQtyzAHNpP/b/yg3oQHxo=; b=Z5gZxPcMQ8lHCfDNDRa3ARETHifabp
-	x4Lvqn+f70fM5N/ntOunMk72JYNKWbTMXHZ7EIl4HdJ2/qiuAgY4INpnyc6ZWcIu
-	ydaB+jZ8rWkdtWRJSlfPuvp6ldz0inGLlWHBrb2wUy9DoPNMUuQ82oR9sKiwbQyc
-	xpCDm8ji3Ya4O9vNvF5K8f1UQI3hHZ6qYEHDLNHn2Bu+oU7eH8UezbQkAOpQzati
-	f3DO4kW8TEuukFGWp68AM7BLY1J45W4GIQpIp7IWzpIGwUWuMYwoTPkElZbKR0c8
-	rLp9qhTUHWkzBQhJYDz7swix09on59kQlZZBnipqr00eedF90tycc8uQ==
-Received: (qmail 554663 invoked from network); 25 Sep 2024 11:08:29 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 25 Sep 2024 11:08:29 +0200
-X-UD-Smtp-Session: l3s3148p1@CQAb9+0i0hhtKPDh
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
+	s=arc-20240116; t=1727255639; c=relaxed/simple;
+	bh=Bcqy6qwB88bQtZ81AP70em5WMBS3qUjpTWzEt8AZpMw=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=E7pVQHn8wzU5nzjN3Exgtr4rcZ9r49W+2XV0AMTD6yohwxM8G3LaFl0EFJ32ZeQS5BekF85d+W8HQPK3MJ+KK7JtOV/v82QbogFiRhRHgVUVbTgh2NGM3bL0o2wZfqixvwdKFhwK/z/TbWqWl4qkT+hDIU+zCeX0sDBnWmirvsY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=imprr0Pn; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-42e748f78d6so53993475e9.0;
+        Wed, 25 Sep 2024 02:13:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727255636; x=1727860436; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fmc4VwRX2yQnWBOFPsHjrta+OlMkLczgUbDlsoVrhM0=;
+        b=imprr0PnMXrs6l31N9ep4YWReNx3AImy5BzPaA5vFEJtVDILqYom0gpM8tjKpbZ2zH
+         WQs8RIxoWRSsDTMsdDyTueFyY2KEYEijylZBL9ZGgrklQvKFOWTcvHoYJPGf1/z8Viql
+         71di4IJSPdt7iRGImdrWV3p978vu/jaDJXxn0X5k56iU6JzMgCcAJYXMVnofljsyeeut
+         bdJcE4QiTlPjXm3uCFpxPJBWUWNpZWjNytg1AftLxiv3t2tgY8xgHtDPaunQuNKUW/o4
+         W5qgbZfjRb2/ZgGfRLgIdWx4uRqsxVQ7r5MfZ45CvTAIUIkfsV8PXON5WEhuQ5uVvXmJ
+         FhnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727255636; x=1727860436;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fmc4VwRX2yQnWBOFPsHjrta+OlMkLczgUbDlsoVrhM0=;
+        b=iUbL1Vze0GLoHgztwv4JU/bgbSTYNQoEII5AN9v36NkXYuxlN1MwZyqAleP75ZbVut
+         azwigkrHhsRzmaOFJgenaq5ziATz4reoyyLCHq4JufV2oIPRkiLsfM14AjU0dBktddMr
+         /MWmXLGXs1yZphVwoMu7vKRx+GfXXd0T7awwlX/QB+TxkHsp8KMzfmLiDuA0T8gg3CG9
+         gHmd+j2UuMLA9lNjOBVvkmrl86fe6oK0FqnCvvwbGckqkKpjBqNnUH2wiaKfuZHbpgON
+         sy2YV9OIEfSP6ekmqoja8kXYDPEgOQ/F1uaOmV+Av9rFJq2XJGtOmu9l+L9qGq2vARdv
+         JoSg==
+X-Forwarded-Encrypted: i=1; AJvYcCU5pZPHJo32e0J8haXNPL5eLsNYfFgAKqvczeUSNuJCTVbyZpUjxqS9XzVU+4giI86UIg9xZCsi5ST5wtXj0hY=@vger.kernel.org, AJvYcCUbaJNAf7tAMiHBW1dBgqPCeavR+ZqyYGkgGN4JOmj9z6cJNRQGIkiqIULeOLVZ9ZSFI+qX0tQxXyRfbCag@vger.kernel.org, AJvYcCV8GdTxnnZ4c9vDlJFk/VK5XJnusllMI06DFSC2TKyUfI9R/sx8lodh4QkVyUo0vFeg1LQdmqCqRc+g@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpIoDTrN/0JPpMYnjGrIPVNjO/R/eveiFevJAtvhaDHl4dkt1F
+	//b6rzRnew9WNPkr4PUK1S4H578JdI+y00gxDGHQ19GLa9juN1Zc
+X-Google-Smtp-Source: AGHT+IHcV2OIh+TmcPn8x23oHp3VvS46CXzNfiXUqVSUTW/byV5fg4fBk5Ev366laivt9bC5c0sJNQ==
+X-Received: by 2002:a05:600c:3b93:b0:42a:a6aa:4135 with SMTP id 5b1f17b1804b1-42e9611d7c1mr13942035e9.20.1727255636146;
+        Wed, 25 Sep 2024 02:13:56 -0700 (PDT)
+Received: from localhost.localdomain (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-42e96a16aa3sm12045605e9.39.2024.09.25.02.13.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Sep 2024 02:13:55 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH] ARM: dts: renesas: genmai: update audio codec bindings
-Date: Wed, 25 Sep 2024 11:08:13 +0200
-Message-ID: <20240925090812.14497-2-wsa+renesas@sang-engineering.com>
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	upstream@airoha.com
+Subject: [PATCH v2 1/2] dt-bindings: watchdog: airoha: document watchdog for Airoha EN7581
+Date: Wed, 25 Sep 2024 11:13:09 +0200
+Message-ID: <20240925091326.2900-1-ansuelsmth@gmail.com>
 X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -63,33 +88,75 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Meanwhile, bindings for the audio codec exist. Add dai-cells property
-and limit max frequency accordingly:
+Document watchdog for Airoha EN7581. This SoC implement a simple
+watchdog that supports a max timeout of 28 seconds.
 
-  codec@0: '#sound-dai-cells' is a required property
-  codec@0: spi-max-frequency: 5000000 is greater than the maximum of 526000
+The watchdog ticks on half the BUS clock and requires the BUS clock to be
+referenced.
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 ---
- arch/arm/boot/dts/renesas/r7s72100-genmai.dts | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Changes v2:
+- Drop clock-frequency
+- Correctly attach BUS clock
 
-diff --git a/arch/arm/boot/dts/renesas/r7s72100-genmai.dts b/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
-index 2f14522d5b50..2d72daa4fac2 100644
---- a/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
-+++ b/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
-@@ -248,9 +248,10 @@ &spi4 {
- 	status = "okay";
- 
- 	codec: codec@0 {
-+		#sound-dai-cells = <0>;
- 		compatible = "wlf,wm8978";
- 		reg = <0>;
--		spi-max-frequency = <5000000>;
-+		spi-max-frequency = <500000>;
- 	};
- };
- 
+ .../bindings/watchdog/airoha,en7581-wdt.yaml  | 47 +++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/airoha,en7581-wdt.yaml
+
+diff --git a/Documentation/devicetree/bindings/watchdog/airoha,en7581-wdt.yaml b/Documentation/devicetree/bindings/watchdog/airoha,en7581-wdt.yaml
+new file mode 100644
+index 000000000000..6bbab3cb28e5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/airoha,en7581-wdt.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/airoha,en7581-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Airoha EN7581 Watchdog Timer
++
++maintainers:
++  - Christian Marangi <ansuelsmth@gmail.com>
++
++allOf:
++  - $ref: watchdog.yaml#
++
++properties:
++  compatible:
++    const: airoha,en7581-wdt
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description: BUS clock (timer ticks at half the BUS clock)
++    maxItems: 1
++
++  clock-names:
++    const: bus
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/en7523-clk.h>
++
++    watchdog@1fbf0100 {
++        compatible = "airoha,en7581-wdt";
++        reg = <0x1fbf0100 0x3c>;
++
++        clocks = <&scuclk EN7523_CLK_BUS>;
++        clock-names = "bus";
++    };
 -- 
 2.45.2
 
