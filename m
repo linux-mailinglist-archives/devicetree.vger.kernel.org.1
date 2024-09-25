@@ -1,103 +1,125 @@
-Return-Path: <devicetree+bounces-105251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDB42986065
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 16:22:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3EB3986020
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 16:15:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8DCB3B276E4
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 14:05:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B05D1F220C7
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 14:15:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 161781D4E03;
-	Wed, 25 Sep 2024 12:17:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FF5A16F288;
+	Wed, 25 Sep 2024 12:33:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tq9FaHbN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p/Uih25E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E17FE1D4E00;
-	Wed, 25 Sep 2024 12:17:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D74126BFE;
+	Wed, 25 Sep 2024 12:33:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727266657; cv=none; b=iIVi1G1Ew8SwJmf1rQQJF4YmO+NfpYMRpnhD4MDfM9NMg3W3w70wDxbMWgYy4BvO+k0uVByGderLslv0JVnLFjzAG/Cd9xWTF4lpsc9xcSrRi/lEKFTddTxMgUyrw0V7Gx6XLPU88I90zGitNpzKy7BvP42N/votQVZIVvWuREI=
+	t=1727267635; cv=none; b=FOgUb793d74FlAWKyCYT3kRXbfEREeQMwPjX/ZnEiFHPj1Iu+O333lMyLubqWcr3xQOReNXo5MP2F688xOiSRHrAwFmkPQcPF4q9x4CvGCRFPlqeEKddwyC/ppGhgKlG86BqqU9+9HCAm1iYIzE/YSQ0w9pYi3xl0lDjvsUHEQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727266657; c=relaxed/simple;
-	bh=VEA4VGq5kC/9nf4ZTHNm/ys5iKz1PWSfsI27jXlN8a0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uCy6FZ2sSUE/M6XVnJtqGkRF2iA8by3LB4VqUFYXMP57GgEQkrN2yi28IuNvjD3LDuSoZDAlvv6Nzkeh5Nve0tB5eXxDnELDfMKqSM5CAv5Roez/bequubVLM5Sk8DQXj8JXFDZ0l61jP7lHmkPkAs8q89TY/zGYFF4Eh+4UUkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tq9FaHbN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69FF0C4CEC7;
-	Wed, 25 Sep 2024 12:17:35 +0000 (UTC)
+	s=arc-20240116; t=1727267635; c=relaxed/simple;
+	bh=6k5ITNytTdH6fEqAVvLa7B903k78f8uZRP1Pv3xgFEY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Wh91aUTMpKBIS4Q1ADSEkRxvsuynxMDrliag9eNtnr4YLsRgdZZlE5k1jsefgLe4LIwX3c8e7Hyx6pwx1iOc9l6xacTzhEhfeDdY0aukXWtavsreKph2Ed4NJaStVf2pGnnlFBsw4Q1oioTEIsCQb46sGftNJ1hnqzJ0nadgfTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p/Uih25E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EF39C4CEC3;
+	Wed, 25 Sep 2024 12:33:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727266656;
-	bh=VEA4VGq5kC/9nf4ZTHNm/ys5iKz1PWSfsI27jXlN8a0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=tq9FaHbNpl3w9of1O63NztYuRlLOXUwNU5HxJsoaEd+DjayHK7Vs40cYZsICkfRRS
-	 O+M/gA/+Yb9+nhfq999gleajG8GyIfasJV7svXNyKZmNT+ropgA83cQd423byFa73I
-	 snipd92vU4K5mwCAfRTWiYoyIwaNOkWgZ+o2lEVwe5rcJd72fIxIQbArMw9fChMzmS
-	 uXxECjzsXYGiwYB5fidSCjVuJnelRa8NxHSIYYtw31MxZoRpRNbOntwsykJuKKRGfw
-	 tiBIj5938nqIMMNB2XYa9rqIbLW3xL1R7ngfv2H5bUEm2lCROvZrtxolE9JLOPPq7V
-	 5b3I6N7s9RODw==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh@kernel.org>,
-	Sasha Levin <sashal@kernel.org>,
-	saravanak@google.com,
-	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.6 125/139] of/irq: Refer to actual buffer size in of_irq_parse_one()
-Date: Wed, 25 Sep 2024 08:09:05 -0400
-Message-ID: <20240925121137.1307574-125-sashal@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240925121137.1307574-1-sashal@kernel.org>
-References: <20240925121137.1307574-1-sashal@kernel.org>
+	s=k20201202; t=1727267634;
+	bh=6k5ITNytTdH6fEqAVvLa7B903k78f8uZRP1Pv3xgFEY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=p/Uih25E11ECt1iv400ZtPfsX58TF2Vnp3vqSebGnONwGiGWZ4F9PSvOYiDVdXVx+
+	 5NfQavi/T/Fq+OCIgI+w6R6HlBPvU7aaUoKSRU1CVZMuR2osLnYRyGn6aRqI751pUX
+	 wQjP6eFTWMRXk19jB0mgNnqdYmSiiwYVrwV3zL7OPTf5DH/oHDinLmNZz7bPcE6tQG
+	 RKJDTtqEd+r5tzjjqrlrMAxurnwWuhEafmvcHziUzN6sRM/9kDAKLnQ6xxeE6rHkvn
+	 QNxOYLzhbK2CFIPrGWy4JLKWn55bcZEcE0NImL/LZquMis5jmD9/y2CT34nLvoofVT
+	 JuKQZwa0Q+mFg==
+Message-ID: <9507b3e6-3be6-4392-94f7-8fb05e3ace4c@kernel.org>
+Date: Wed, 25 Sep 2024 14:33:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.6.52
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: spi: zynqmp-qspi: Include two 'reg'
+ properties only for the Zynq UltraScale QSPI
+To: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>, broonie@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: michal.simek@amd.com, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, git@amd.com,
+ amitrkcian2002@gmail.com
+References: <20240925114203.2234735-1-amit.kumar-mahapatra@amd.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240925114203.2234735-1-amit.kumar-mahapatra@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Geert Uytterhoeven <geert+renesas@glider.be>
+On 25/09/2024 13:42, Amit Kumar Mahapatra wrote:
+> Linear mode is only supported by the Zynq UltraScale QSPI controller,
+> so update the bindings to include two 'reg' properties only for the
+> Zynq UltraScale QSPI controller.
+> 
+> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+> ---
+> BRANCH: for-next
+> 
 
-[ Upstream commit 39ab331ab5d377a18fbf5a0e0b228205edfcc7f4 ]
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Replace two open-coded calculations of the buffer size by invocations of
-sizeof() on the buffer itself, to make sure the code will always use the
-actual buffer size.
-
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Link: https://lore.kernel.org/r/817c0b9626fd30790fc488c472a3398324cfcc0c.1724156125.git.geert+renesas@glider.be
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/of/irq.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-index 8fd63100ba8f0..d67b69cb84bfe 100644
---- a/drivers/of/irq.c
-+++ b/drivers/of/irq.c
-@@ -357,8 +357,8 @@ int of_irq_parse_one(struct device_node *device, int index, struct of_phandle_ar
- 	addr = of_get_property(device, "reg", &addr_len);
- 
- 	/* Prevent out-of-bounds read in case of longer interrupt parent address size */
--	if (addr_len > (3 * sizeof(__be32)))
--		addr_len = 3 * sizeof(__be32);
-+	if (addr_len > sizeof(addr_buf))
-+		addr_len = sizeof(addr_buf);
- 	if (addr)
- 		memcpy(addr_buf, addr, addr_len);
- 
--- 
-2.43.0
+Best regards,
+Krzysztof
 
 
