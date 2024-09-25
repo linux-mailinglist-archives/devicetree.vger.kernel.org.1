@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-105359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D2679867A8
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 22:28:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36BB19867AE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 22:34:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F37241F22B01
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 20:28:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5A3C28289B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 20:34:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72E1514A0BC;
-	Wed, 25 Sep 2024 20:28:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23AD314A609;
+	Wed, 25 Sep 2024 20:34:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cERwYsrj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vor6ORfe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46F9F14600F;
-	Wed, 25 Sep 2024 20:28:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8783130E58;
+	Wed, 25 Sep 2024 20:34:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727296081; cv=none; b=cG0X1wSNk1SNOTSuEOUFH+HBCnzHTg1WsINgYTInydvg9y6woDarAl0xGFPObCc/HFw96tn/o3fvkXV54Y/H1KHBlpuh7rwSB75xbcjRhThVBq6MUcD5enmqI+rVyyeznf03W5/ip26o7KlbMp6b5OGOVPskFNMsdh1vVLaxPHc=
+	t=1727296467; cv=none; b=ri428YPRq0ThWWuLAoNZAxHXzkRYqmPqpS5vdrzHZ2i0euCZAvis7eLxz+tZilp4d4wiuH7pdJU/f5+zlmAsqxynTGYFmwAUuI5DeGJ663Y/64YBNfhxO3hzsjmN05ivtnxPu779PS/vlo0NBgUuBiC4HTroUlKzxY9NWP4kB5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727296081; c=relaxed/simple;
-	bh=fY5V2QG1m88/quHD1edciMAUm/K5/gsVf/ii276oSm4=;
+	s=arc-20240116; t=1727296467; c=relaxed/simple;
+	bh=m5R3GPQSy0bIi+Po10NtET+RQXjn0TLy6x7dDFzvlRY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kCq1rGl9/mtyhONnggQk7BAYDiq+EpsAu/bGpL4G0VZOWp6GX9YIRpWv0F+hYlw370Xeb2a69zr7mGAoXrjAXs8bSHrKjKIqMDhzVpCatDm7Eas7HM04amcxTrqKewkK8qs8mh676gg0O+Nva+4wjndZcC+gzvYUMHOarSQgRlw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cERwYsrj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACEA9C4CEC3;
-	Wed, 25 Sep 2024 20:27:57 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=OSlBtylvJRbuywT6uiHJyT+B64q4Cl0kzDoN1Sb2gokdIK4iCoLQTZqmGL1EUSdSz2lVb8P9KVgRdsIXDWRBQGfL8zuQyf4cS/waw0qwKltr0EZEbkw4xTuHe9DvJf7HUe05dopUDLnl3grF2uqGVm6JU4cG02KQ7XLcpB5EisY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vor6ORfe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94419C4CEC3;
+	Wed, 25 Sep 2024 20:34:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727296080;
-	bh=fY5V2QG1m88/quHD1edciMAUm/K5/gsVf/ii276oSm4=;
+	s=k20201202; t=1727296466;
+	bh=m5R3GPQSy0bIi+Po10NtET+RQXjn0TLy6x7dDFzvlRY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cERwYsrjOw5XA5a90KYb5+tNUTKI7F+LjK72qPEpPZjGiFzEgplWTM/DKx0IXRSWr
-	 c4nyHcGuQ86ctKZABOQn2CDUbLCYMrY3kpQce6s4cyjMDfBmd4x3zdfn23C5++W8/1
-	 6ErH7sjUvpNjv1RKtNIW1e/A0XQG8VcU+yn+ddSHX/pHwDKKWiGaMrZQzhrDpbao/k
-	 VrFuZ7I7h5odGJTFn8q4p/HsqqZRQR1LoCR43LeuBSj2PwI/tuiLXVqu0EooTXq1NS
-	 oIPHpZ2H+nKDV7y1Tiq1J8k8vr1j/gWWz6MKGa23I0L4eXm/6EvrzbZXECECJ4o5UW
-	 gWddzF/zHHxoA==
-Message-ID: <170933b4-21ae-4243-b50f-ad75c6fca42c@kernel.org>
-Date: Wed, 25 Sep 2024 22:27:55 +0200
+	b=Vor6ORfefnzPPs91Iul7OTslbva5DV5b26gdWDhUQtr2jcwa5zvdcAOBIjv0s4iYB
+	 NV6J4KD+SwPnu1m82IHr9NUYh/tSoV5RqA9T2RB0C5bogOSUvVJhhtxV4AzkhxE6HU
+	 z6UgEhpYzGT7jwIIPeL5ITrndG+lIBzkkrzN41Tu+y2l2mFAXqN+DT/lLEypmOf2pF
+	 WRG5Yy9ZC94sR8RjYqUdOAIjGDBLbNnV4xIxPFBLowQ3DxiwrHQmq5aXMXZSz4he/Y
+	 1tb9TcFhxudeH0/iOxpVjY8onVXQx0fJcxUumIZ57DV9eR6aKw/54Z2YwgKosOgrv+
+	 fxWcPtTYbtEAg==
+Message-ID: <ca92d19a-716e-4737-8e2b-99de25658869@kernel.org>
+Date: Wed, 25 Sep 2024 22:34:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm: dts: broadcom: Add missing required fields
-To: Stefan Wahren <wahrenst@gmx.net>,
- Karan Sanghavi <karansanghvi98@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+Subject: Re: [PATCH 6/6] dt-bindings: display: samsung,exynos7-decon: add
+ exynos7870 compatible
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: airlied@gmail.com, alim.akhtar@samsung.com, conor@kernel.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ inki.dae@samsung.com, kyungmin.park@samsung.com,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Shuah Khan <skhan@linuxfoundation.org>, Anup <anupnewsmail@gmail.com>
-References: <ZvQ27pvrnEYA8BB9@Emma>
- <3e296eed-5dbc-4098-ac3c-3c3125a352d8@gmx.net>
+ linux-samsung-soc@vger.kernel.org, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, robh@kernel.org, simona@ffwll.ch,
+ sw0312.kim@samsung.com, tzimmermann@suse.de
+References: <20240919-exynosdrm-decon-v1-0-6c5861c1cb04@disroot.org>
+ <20240919-exynosdrm-decon-v1-6-8c3e3ccffad5@disroot.org>
+ <32ae1188-196d-4fe8-8719-968e5149a771@kernel.org>
+ <7e5caaea80390e8cf87ba0a74d9719f0@disroot.org>
+ <1bc0ad48-03c0-4cf6-afb1-2296d1c259b9@kernel.org>
+ <8e0672ad3fd72f69d2bdb5687e778c86@disroot.org>
+ <ef786b8b-32c0-457a-9e14-ed7bd9f04172@kernel.org>
+ <d8f5999921a31d7723e0aa9b12bb9eaf@disroot.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,42 +113,52 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <3e296eed-5dbc-4098-ac3c-3c3125a352d8@gmx.net>
+In-Reply-To: <d8f5999921a31d7723e0aa9b12bb9eaf@disroot.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/09/2024 18:39, Stefan Wahren wrote:
-> Hi Karan,
+On 25/09/2024 22:05, Kaustabh Chakraborty wrote:
+> On 2024-09-25 19:56, Krzysztof Kozlowski wrote:
+>> On 25/09/2024 21:36, Kaustabh Chakraborty wrote:
+>>> On 2024-09-25 19:25, Krzysztof Kozlowski wrote:
+>>>> On 25/09/2024 20:42, Kaustabh Chakraborty wrote:
+>>>>> On 2024-09-20 12:39, Krzysztof Kozlowski wrote:
+>>>>>> On 19/09/2024 17:20, Kaustabh Chakraborty wrote:
+>>>>>>> Add the compatible string of Exynos7870 to the existing list.
+>>>>>>>
+>>>>>>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+>>>>>>
+>>>>>> ... and the DTS is <please provide lore ink in changelog>?
+>>>>>
+>>>>> Didn't quite understand. The patch adds the compatible string
+>>>>> for Exynos7870 DECON in documentation. There's no DTS involved
+>>>>> in here, right?
+>>>>
+>>>> Provide lore link to the DTS submission.
+>>>
+>>> There aren't any DTS submissions *yet* which use the compatible.
+>>> Is that an issue?
+>>>
+>>
+>> Yeah, users are supposed to be upstream. Not downstream.
 > 
-> Am 25.09.24 um 18:14 schrieb Karan Sanghavi:
->> Added below mentioned required fields
->>    1. interrupt-controller
->>    2. #interrupt-cells
->> in the bcm2711.dtsi file for the
->> interrupt-controller@40000000 block as defined in the
->> bindings/interrupt-controller/brcm,bcm2836-l1-intc.yaml.
->> This issue was noticed while compiling the dtb file
->> for broadcom/bcm2711-rpi-4-b.dts file.
->> After including the above fields in the dtsi file
->> interrupt-conntroller error was resolved.
-> looks like you made the same mistake like me [1]. This change breaks
-> boot of Raspberry Pi 4 [2].
-> 
-> There are a lot of DT schema warnings to fix, but this doesn't belong to
-> the trivial ones.
+> I understand that. I had plans to submit it in the future.
+> If that's how it's meant to be done, I'll have to revisit this
+> submission at a later date then.
 > 
 
-Karan,
+Partial, asynchronous bringup of a device is fine, so if the basic
+support is there, I understand that drivers come in different pace.
+Although I don't understand why DTS for this piece of hardware would
+come in different pace, considering you cannot test it without DTS. You
+have there DTS, so it should be sent.
 
-Entire commit msg lacks proper rationale for such significant change.
-Rationale is for example: "this is an interrupt controller", but here
-reason is rather "I want to fix error".
+But even without the DTS for DECON, the problem is earlier - lack of
+basic support for this device. There is nothing for this chip.
 
-Important for every work focusing on fixing warnings/errors is to fix
-the cause, not the warning/error itself. Karan, you fixed the warning in
-a way it went away, but this did no fix the cause of the problem. You
-must find the real causes. Usually understanding the problem is
-necessary for that.
+This means it cannot be tested and is trickier to verify. That's not the
+usual upstreaming way we expect, especially that you did not provide
+rationale for such way.
 
 Best regards,
 Krzysztof
