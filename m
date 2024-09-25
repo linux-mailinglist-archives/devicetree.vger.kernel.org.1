@@ -1,110 +1,139 @@
-Return-Path: <devicetree+bounces-105264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FF8E986107
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 16:39:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3CB198612B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 16:42:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDFA41F29E6F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 14:39:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 960991F23769
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 14:42:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9F4C187338;
-	Wed, 25 Sep 2024 13:51:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAFE818FDC2;
+	Wed, 25 Sep 2024 13:59:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=avm.de header.i=@avm.de header.b="YCFrBm6k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MKypVRSJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.avm.de (mail.avm.de [212.42.244.120])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9C6B186E29;
-	Wed, 25 Sep 2024 13:51:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.42.244.120
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB8A618FDB7;
+	Wed, 25 Sep 2024 13:59:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727272304; cv=none; b=mAd6ZelsS4/o3rhH4zoSIDn6YgAftHdEQvT/HD14H6jszrNxygEDfelcUF8cV6t4TTAjsn45zXEvCgM/zfMrTbK0p82aVQbxhoN4+OtotXI63EubiVSYYkKzbUtnl/YSN9Y5Mwg6W+b7Opn9KHdWEp8nlxcWi2wrpCc41y8yQTk=
+	t=1727272759; cv=none; b=etXnM2KVlUBVTfYrOh/Gu6fJrWCko01JPJQJLmz5BCwSIe8R/mW25ATl3VIurWOoAF7/CBFsM3VB+8Ekd00cHbksJZeas5EbvldmXsL5pGKp3oOnVATsrMFzbyH/mTecaY1dpfRlKsVbX+sIY9H6j3cVDOwq+yUqCEqsYHQ5flo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727272304; c=relaxed/simple;
-	bh=PZOseGL0iHKfe7J6qxH1nvMXMdEDwAT/Xy9zLCH3rGY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mdl/1uyaIniE1eMBxaPrEJxg0Plw9E3Bpw+6ufD8a2gWP/t7Sf1TvRoPPwUtl0C04m8VEmSH2rOuXIIPjAPLdWydrSZROi2vZVuM5Swnw5dyZaVNqA3W9GiQpCUaz8jCpLGlsivVcThIfXErYfdivxnxkedk65zFGk8eXhdKlYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=avm.de; spf=pass smtp.mailfrom=avm.de; dkim=pass (1024-bit key) header.d=avm.de header.i=@avm.de header.b=YCFrBm6k; arc=none smtp.client-ip=212.42.244.120
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=avm.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=avm.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=avm.de; s=mail;
-	t=1727272292; bh=PZOseGL0iHKfe7J6qxH1nvMXMdEDwAT/Xy9zLCH3rGY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YCFrBm6k6wflnlpVTTulEJyP+GswIxW6YHKbZacOyy1T8Bq/UqYE6csRcyr/s6GIc
-	 RvZVSxEge8lrfQ3rwMMfx4dTKGRZaTu2q6KBo8+iX+mxUaTaK0JUs9lxa4wQOLpccM
-	 fNSfklfb2LAbfmPUTMQZUKRubDy4fxaZ41e/5ew0=
-Received: from mail-auth.avm.de (dovecot-mx-01.avm.de [IPv6:2001:bf0:244:244::71])
-	by mail.avm.de (Postfix) with ESMTPS;
-	Wed, 25 Sep 2024 15:51:32 +0200 (CEST)
-Received: from l-nschier-nb (unknown [61.8.139.63])
-	by mail-auth.avm.de (Postfix) with ESMTPSA id 05BDB8077D;
-	Wed, 25 Sep 2024 15:51:32 +0200 (CEST)
-Date: Wed, 25 Sep 2024 15:51:31 +0200
-From: Nicolas Schier <n.schier@avm.de>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	masahiroy@kernel.org, nathan@kernel.org, devicetree@vger.kernel.org,
-	linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: Re: [PATCH] kbuild: fix a typo dt_binding_schema ->
- dt_binding_schemas
-Message-ID: <ZvQVY6ChCYdJpBEW@l-nschier-nb>
-References: <20240925053230.45606-1-xu.yang_2@nxp.com>
+	s=arc-20240116; t=1727272759; c=relaxed/simple;
+	bh=lJm+ObDEXANZOJHKSXCxL3oLlApQe9ehHdbO7nUzBeQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mM84cXcTMPo0zNuFU1srBfh/XNSEgDT75WQkY5fW/9alDYPJN4Zy8GD2PbvDmUiQ6qzjETmE5wskyrVkP72iYeS63UREICKT8I33ZIEWhFqw1eOW8f54HJXD4JcSz0wwkVRtzhs/ch3Z8lXIVTFtBFXQzbORxZb/Lq2UeQPbUik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MKypVRSJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74660C4CEC3;
+	Wed, 25 Sep 2024 13:59:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727272759;
+	bh=lJm+ObDEXANZOJHKSXCxL3oLlApQe9ehHdbO7nUzBeQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MKypVRSJR2Epc9UNqTi9FKghSRchqTYo99hNGU+4I7Yyt/mMUzde6QBL88TWRAopy
+	 e+dVxlIh6CSF/ulKmbwvFp7ISXWJSa4CUzzGfJdreOI943MQjw3EEd0ujTbFrPfEyM
+	 7HeKJEqXIdWc1DEqlbqut4zuL1GahJ7XXy1RQ8pgpMrglQv5iQk662F0IQ4sg6SBzR
+	 GKOuYzTLlPqIsED3YlvCRrhp1UbcDOpdbjUGllldpFITc55ZSu0h+BHBrjOE7h+ZQr
+	 70njrKzilu5TCLRYh6WjUAUQrzbpjKRqQ5qN/Fvzgs/Qm3CcxvCy4daOZp5Y3SRTKy
+	 fHux3grZC08XA==
+Message-ID: <6b5b463a-cf01-4e02-bb4e-292f5bd8b7f2@kernel.org>
+Date: Wed, 25 Sep 2024 15:59:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240925053230.45606-1-xu.yang_2@nxp.com>
-X-purgate-ID: 149429::1727272292-9230AE44-25FB1F99/0/0
-X-purgate-type: clean
-X-purgate-size: 1339
-X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
-X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
-X-purgate: clean
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] dt-bindings: PCI: mediatek-gen3: Allow exact number
+ of clocks only
+To: Fei Shao <fshao@chromium.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>,
+ Jianjun Wang <jianjun.wang@mediatek.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84s?=
+ =?UTF-8?Q?ki?= <kw@linux.com>, Lorenzo Bianconi <lorenzo@kernel.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+ Ryder Lee <ryder.lee@mediatek.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-pci@vger.kernel.org
+References: <20240925110044.3678055-1-fshao@chromium.org>
+ <20240925110044.3678055-3-fshao@chromium.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240925110044.3678055-3-fshao@chromium.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Sep 25, 2024 at 01:32:30PM +0800, Xu Yang wrote:
-> If we follow "make help" to "make dt_binding_schema", we will see
-> below error:
+On 25/09/2024 12:57, Fei Shao wrote:
+> In MediaTek PCIe gen3 bindings, "clocks" accepts a range of 1-6 clocks
+> across all SoCs. But in practice, each SoC requires a particular number
+> of clocks as defined in "clock-names", and the length of "clocks" and
+> "clock-names" can be inconsistent with current bindings.
 > 
-> $ make dt_binding_schema
-> make[1]: *** No rule to make target 'dt_binding_schema'.  Stop.
-> make: *** [Makefile:224: __sub-make] Error 2
+> For example:
+> - MT8188, MT8192 and MT8195 all require 6 clocks, while the bindings
+>   accept 4-6 clocks.
+> - MT7986 requires 4 clocks, while the bindings accept 4-6 clocks.
 > 
-> It should be a typo. So this will fix it.
-> 
-> Fixes: 604a57ba9781 ("dt-bindings: kbuild: Add separate target/dependency for processed-schema.json")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> ---
->  Makefile | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Makefile b/Makefile
-> index 265dd990a9b6..7aa71c70305e 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -1645,7 +1645,7 @@ help:
->  		echo '* dtbs               - Build device tree blobs for enabled boards'; \
->  		echo '  dtbs_install       - Install dtbs to $(INSTALL_DTBS_PATH)'; \
->  		echo '  dt_binding_check   - Validate device tree binding documents and examples'; \
-> -		echo '  dt_binding_schema  - Build processed device tree binding schemas'; \
-> +		echo '  dt_binding_schemas - Build processed device tree binding schemas'; \
->  		echo '  dtbs_check         - Validate device tree source files';\
->  		echo '')
->  
-> -- 
-> 2.34.1
+> Update minItems and maxItems properties for individual SoCs as needed to
+> only accept the correct number of clocks.
 > 
 
-Thanks!
 
-Reviewed-by: Nicolas Schier <n.schier@avm.de>
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+
+Best regards,
+Krzysztof
+
 
