@@ -1,90 +1,91 @@
-Return-Path: <devicetree+bounces-105181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92AC098550D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 10:06:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8A5898551C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 10:07:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BEBB1F2427A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 08:06:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 62B2BB22ADA
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 08:07:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C6CA158870;
-	Wed, 25 Sep 2024 08:05:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6412E158D7B;
+	Wed, 25 Sep 2024 08:07:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yc9/tr21"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BNysbl1B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD223158DC5
-	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 08:05:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9550D14D2BB
+	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 08:07:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727251527; cv=none; b=ceZfXn57aCh92DHJfW/TU+IL2bOofQC8y7UVDchRkeIIAj5+2j8O8dY5hsVfbO0P6bQA3cuKYeAyAb5QJjRXQPpwjDx1iNcy69f5Jeqik98FjRRTSKy1YO8G4JGl+0pJDn5gb4pae7yMupTM0YOq2ZEk5wAfjK7nBAhgYY3LPkU=
+	t=1727251650; cv=none; b=JXvayBHRN0tLnPOp9aSG3hvP/pjjnIWuujUaUDBo6XJoyMlNli059L6A2rQh35+TIoJNJTizmy20/KrvpE9Z/M8INJj9sWp5uCJd3ljM499L/mpctOozx0cl/kX3eHkwClyvZwlKyL4+1oQP/Ogg3/Be97fAxlh0UjJ0PW9wfzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727251527; c=relaxed/simple;
-	bh=Ge+7LszBaOT5Dm6+t5UCLcHOk904zSSAP9mOUFtAaLc=;
+	s=arc-20240116; t=1727251650; c=relaxed/simple;
+	bh=NCvEqalJkNobkK4xCLa4xTHDtYUKlDxJri6i+vjftgI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tKagvFrCvFhh8DrQnCQsUkcbwTHV0fNLivmNBRi3NjsKuvOUDlP0J5X1EPa4NWZTxeIJihGtw1Iz4xP+ZM7cWYRX9LC3nFUR7Lif8mxaIJhSVLAs8zs6DZWAyLfdFclposyO97d3e4K8XDdTT7QI7fVvfFJBX1KN6SmO9rDabRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yc9/tr21; arc=none smtp.client-ip=209.85.221.45
+	 Content-Type:Content-Disposition:In-Reply-To; b=LAPTFNS/nIJLD39ePYa3JoGf0rdy0vx9WKR5xNBgaoZsaiuJOGCo5Bk+rZyRwN/h5Q11DYhsXQa5T1HoeMUjut9Rkjvk2cnvq80cRMKQ9G/6sUqOrqPkNeC9b0AYkD0suFztCgq0rArKEnURCl2HVit2YE7+MntCE6HDFD4xsGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BNysbl1B; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-37cc5fb1e45so187663f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 01:05:25 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-42cc43454d5so52399295e9.3
+        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 01:07:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727251524; x=1727856324; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1727251647; x=1727856447; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=fmE1UeERqrchW40NVacg6nrSR6Vcco0wZ6da4wq9+7A=;
-        b=yc9/tr21EW3GzcNSMPS2Z+skDSEURgLHh543NbLFnQy/R3ccxmO4zmG48598TV3/8R
-         MbQl/HfzMXpMd6YqAXIGT8giyg3w1d7+bczZL0jJwnnLZOEsbTHZanyFKjvG+HvJjr64
-         GHbcJCSrI4S2wu9ru5NELW5sFvLnGcChKkjvpbCaAB2wuejaC4uXagXB/ofxLTvRF9oo
-         D+Pkch73c++xHNqwtxx+x640Kj+CBdDIfiGICpZ3fCy3VZaQ2Hx5s9eMK5yowW1Xwbo3
-         m7LpIbi/d2xfX0z6cgq1Do6TlnTsSyOPXXRR5nngfz2yc96Q9o3nDi1AT5SiQZvv5F/G
-         F+3g==
+        bh=YXVU8v0cgzQWSNcs1WDVL/U60/ljsd6Fh51Q9oFrZbQ=;
+        b=BNysbl1BuiRsRQ4Wq85x4ivITW2+USJm++R5WSP8AOyyqRCzBdrtLGCN8ZsG3GD+sP
+         Qic3TS+2TGleF9ZLOCAFLSplpYSMi+rgxcmJYbfkJPVfl6tlJQ2lBO6H+WviHm2w9i77
+         sz7lGDXKPT/ytnRiPcQgvoqRHHI5U3tfBHUEb5yZYs+bcrqXZs/NwtZSkqEL3Wp9o4Ym
+         zaArtnAUfoSyP7ULHZaZtBnpf+mfG6QtkEuF6TgtOYWiheseicTSNUj0fVwbeRYiRJHr
+         hegUyEZo4KAB55R/7xt/9ogvNTQoeN9x/+91+w3sUiPOph2y6nLg9jeUjEKNOYpCydEJ
+         8KRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727251524; x=1727856324;
+        d=1e100.net; s=20230601; t=1727251647; x=1727856447;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fmE1UeERqrchW40NVacg6nrSR6Vcco0wZ6da4wq9+7A=;
-        b=WpnLOuDm/LwgGPGUH27nAsuQ3as8XVxcEQzBKLV5/3AoJzquBu9lO+jnmPEMUV3eEb
-         E9+BY+nNK1jqksnLpsocL3DBLPrL5HDV2OWUHcxQ3ZPeUgyIN6a3ICcd059IojRVg2m5
-         VOGwmW8fS3TEpm3Pp050pSkKjAGRDvjhnI3BjhtT8sPk5cXEB6pXdOj+9F74slc+NmHP
-         OHEIKlOIga7hPYYZAbnUO/HrNGfWgy2OZ3iigPmyagP8TO0USrdroacXtw+cWr0a6yNP
-         RAwwhvaDm+7NCfggdnlR8OI91LWvGubNHqx3eNFJMFtfmb8pcqkthuqTjJyzcvAgIyAs
-         cAZg==
-X-Forwarded-Encrypted: i=1; AJvYcCUMPdnn5G2wj18bufgRTpOy0/eEfUl1dCFKMRgEdw8V88HcWwHFPptiCtVeVNo6az9A7gXk76m2DoGV@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQSCz/4SD1Hn9qXLmf1SXZRTYnCTPrAUyiWyYH6od/+DQgV11G
-	8kdo6KmafgdE7imhHvVS+7KRUIQgmq82mb8eDBXyolW45KX6CYyUSgr+FWbJ2w==
-X-Google-Smtp-Source: AGHT+IGu+EQFdqJdQRNdKI2O1nnUzgvF8rHWsav7UIwu3lMA5nKO4ePunuX3F80nTqxwvNWJ8lBRwg==
-X-Received: by 2002:adf:e7cf:0:b0:374:c64d:5379 with SMTP id ffacd0b85a97d-37cc247945emr1246796f8f.27.1727251523891;
-        Wed, 25 Sep 2024 01:05:23 -0700 (PDT)
+        bh=YXVU8v0cgzQWSNcs1WDVL/U60/ljsd6Fh51Q9oFrZbQ=;
+        b=NHAT1kKZqDSxiZze4kUyxNPgfGd/q2idXtgK8HXEqSPo7QOJhciFQ/VuJz2KKvZRx/
+         rwMeKClDBADoUSIWedquIfFLCZP/B8GlGxZY+GB/2RbDHMHbvH06UNvq9vqwkFHFoO+1
+         LsP2EFAqjdyvH1qbm5zgQYVveqmAgA7Tvs8+baFwsvCtuyKA1yqHyaKnLora+gL6N8mh
+         ZfCw/DtGPGq0vqJour7xNnJ4klC4W7/gGFBLNnzMgDUiVNe4toBhllroYcrmiF0pHbmS
+         OR8GHbZYhpvtMaFcoehhWtpIu8ysdPRvTtV5gzkHc5DN1h44NnX21c0Bl+9NjZ+h4b/2
+         azwg==
+X-Forwarded-Encrypted: i=1; AJvYcCWVqy0EbaHuIPgoLGIf0H5d02sj7oP0oVcI8r2kecQx95cAyvL2EWJlG3aKTSGBsTltPcoL/4dIuKzr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/NavtUylOOhRolhFGybnPs9SvMBP1750l1RZ8XEpDvtwclGDy
+	ztDdR8XUpzMWYJLY4DOEPFdSMD3fuHsKieUihOMG3O/pwfhBUXgebTxIU2Oxsw==
+X-Google-Smtp-Source: AGHT+IF3d7MLoLPQr09BqD6UIJTxajPOYuaB+UljK19usG1V4QJtMVf1uk6Oji0/gyQV5Qdf5Z5vNg==
+X-Received: by 2002:adf:f88c:0:b0:374:bb34:9fd2 with SMTP id ffacd0b85a97d-37cc24ab641mr976949f8f.36.1727251646741;
+        Wed, 25 Sep 2024 01:07:26 -0700 (PDT)
 Received: from thinkpad ([80.66.138.17])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e90cd8c5asm40971185e9.1.2024.09.25.01.05.22
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cbc31f5c9sm3287058f8f.102.2024.09.25.01.07.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2024 01:05:23 -0700 (PDT)
-Date: Wed, 25 Sep 2024 10:05:22 +0200
+        Wed, 25 Sep 2024 01:07:26 -0700 (PDT)
+Date: Wed, 25 Sep 2024 10:07:24 +0200
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Qiang Yu <quic_qianyu@quicinc.com>, vkoul@kernel.org, kishon@kernel.org,
-	robh@kernel.org, andersson@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-	abel.vesa@linaro.org, quic_msarkar@quicinc.com,
+To: Qiang Yu <quic_qianyu@quicinc.com>
+Cc: Johan Hovold <johan@kernel.org>, vkoul@kernel.org, kishon@kernel.org,
+	robh@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
+	sboyd@kernel.org, abel.vesa@linaro.org, quic_msarkar@quicinc.com,
 	quic_devipriy@quicinc.com, dmitry.baryshkov@linaro.org,
 	kw@linux.com, lpieralisi@kernel.org, neil.armstrong@linaro.org,
 	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
 	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v4 6/6] arm64: dts: qcom: x1e80100: Add support for PCIe3
- on x1e80100
-Message-ID: <20240925080522.qwjeyrpjtz64pccx@thinkpad>
+Subject: Re: [PATCH v4 5/6] PCI: qcom: Add support for X1E80100 SoC
+Message-ID: <20240925080724.vgkgmnqc44aoiarv@thinkpad>
 References: <20240924101444.3933828-1-quic_qianyu@quicinc.com>
- <20240924101444.3933828-7-quic_qianyu@quicinc.com>
- <9a692c98-eb0a-4d86-b642-ea655981ff53@kernel.org>
+ <20240924101444.3933828-6-quic_qianyu@quicinc.com>
+ <20240924135021.ybpyoahlpuvedma5@thinkpad>
+ <ZvLX_wkh7_y7sjPZ@hovoldconsulting.com>
+ <4368503f-fb33-4e6a-bef4-517e2b959400@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,35 +95,47 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <9a692c98-eb0a-4d86-b642-ea655981ff53@kernel.org>
+In-Reply-To: <4368503f-fb33-4e6a-bef4-517e2b959400@quicinc.com>
 
-On Tue, Sep 24, 2024 at 04:26:34PM +0200, Konrad Dybcio wrote:
-> On 24.09.2024 12:14 PM, Qiang Yu wrote:
-> > Describe PCIe3 controller and PHY. Also add required system resources like
-> > regulators, clocks, interrupts and registers configuration for PCIe3.
-> > 
-> > Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
-> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
+On Wed, Sep 25, 2024 at 11:47:02AM +0800, Qiang Yu wrote:
 > 
-> Qiang, Mani
-> 
-> I have a RTS5261 mmc chip on PCIe3 on the Surface Laptop.
+> On 9/24/2024 11:17 PM, Johan Hovold wrote:
+> > On Tue, Sep 24, 2024 at 03:50:21PM +0200, Manivannan Sadhasivam wrote:
+> > > On Tue, Sep 24, 2024 at 03:14:43AM -0700, Qiang Yu wrote:
+> > > > X1E80100 has PCIe ports that support up to Gen4 x8 based on hardware IP
+> > > > version 1.38.0.
+> > > > 
+> > > > Currently the ops_1_9_0 which is being used for X1E80100 has config_sid
+> > > > callback to config BDF to SID table. However, this callback is not
+> > > > required for X1E80100 because it has smmuv3 support and BDF to SID table
+> > > > will be not present.
+> > > > 
+> > > > Hence add support for X1E80100 by introducing a new ops and cfg structures
+> > > > that don't require the config_sid callback. This could be reused by the
+> > > > future platforms based on SMMUv3.
+> > > > 
+> > > Oops... I completely overlooked that you are not adding the SoC support but
+> > > fixing the existing one :( Sorry for suggesting a commit message that changed
+> > > the context.
+> > > 
+> > > For this, you can have something like:
+> > > 
+> > > "PCI: qcom: Fix the ops for X1E80100 SoC
+> > > 
+> > > X1E80100 SoC is based on SMMUv3, hence it doesn't need the BDF2SID mapping
+> > > present in the existing cfg_1_9_0 ops. This is fixed by introducing new ops
+> > > 'ops_1_38_0' and cfg 'cfg_1_38_0' structures. These are exactly same as the
+> > > 1_9_0 ones, but they don't have the 'config_sid()' callback that handles the
+> > > BDF2SID mapping in the hardware. These new structures could also be used by the
+> > > future SoCs making use of SMMUv3."
+> > Don't we need something like this for sc8280xp and other platforms using
+> > SMMUv3 as well?
+> From what I know, sc8280xp and other qcom platforms are not using SMMUv3.
 
-Is it based on x1e80100?
+sc8280xp indeed has SMMUv3 for PCIe, but I'm not sure how it is configured. So
+not completely sure whether we can avoid the mapping table or not.
 
-> Adding the global irq breaks sdcard detection (the chip still comes
-> up fine) somehow. Removing the irq makes it work again :|
-> 
-> I've confirmed that the irq number is correct
-> 
-
-Yeah, I did see some issues with MSI on SM8250 (RB5) when global interrupts are
-enabled and I'm working with the hw folks to understand what is going on. But
-I didn't see the same issues on newer platforms (sa8775p etc...).
-
-Can you please confirm if the issue is due to MSI not being received from the
-device? Checking the /proc/interrutps is enough.
+Qiang, please check with the hw team and let us know.
 
 - Mani
 
