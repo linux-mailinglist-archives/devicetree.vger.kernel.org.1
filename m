@@ -1,263 +1,118 @@
-Return-Path: <devicetree+bounces-105209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9802B985685
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:40:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5AF1985698
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:46:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 335D2281685
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:40:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 469D6B230AD
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:46:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 172181662F7;
-	Wed, 25 Sep 2024 09:40:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF00E1411DE;
+	Wed, 25 Sep 2024 09:46:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wkennington-com.20230601.gappssmtp.com header.i=@wkennington-com.20230601.gappssmtp.com header.b="ztcrrgG9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rMl089XN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C29B156257
-	for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 09:40:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 785F128F3;
+	Wed, 25 Sep 2024 09:46:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727257207; cv=none; b=A4NjVYYif1i7ayLaXYfN3JiYNQynU3FutxiGUBactO6AQvPrDnMfkQSg6FEG4aZRIBENc6kkterwSIspgkcPxjSliIVqcpdcSndxL6Z8HcFU1iHkcaHhppIweeZgLNfj1ddlxhlvcdm5amuIwqjWrYYlhdzYO4HXc+nqbS9wgUI=
+	t=1727257605; cv=none; b=k+i9b8/KZHTtVKtAbGdU7mBYigcfr1jXYt1VU4Sv8Hs8eBIIEZdSVEgvEW01zkHDcCQ+gDjwF+f1zOfAqmmMxCIgCd47Paj+w5AssrK6wN9sUe4bdcyOVcFL3YojeQXZhI4ElQ2XtJX9WkNM1Qg0a3CJHk2XT2u8jvlQqkvVvFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727257207; c=relaxed/simple;
-	bh=HoHWhkKjPsscPX7OXwSPeS6ZpkBqZyV0Xy7Ph24Hs9g=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qu7Kr5uRDtZN5h6e3fA0vPPSOXFNyFejV8edsQyuyZwFqy5kfl7fsiGOI09KxW5nPdkcyhMU+WsacHhRYdVS2YXr4VuU6bjmordWboBgT5RVywCTGCicphm+Y1zLDKYtHeuszJUoBuxVo1p0rm/TJ/vEeZ/QhItEMxJXyIrk8co=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wkennington.com; spf=none smtp.mailfrom=wkennington.com; dkim=pass (2048-bit key) header.d=wkennington-com.20230601.gappssmtp.com header.i=@wkennington-com.20230601.gappssmtp.com header.b=ztcrrgG9; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wkennington.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=wkennington.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2053525bd90so60757175ad.0
-        for <devicetree@vger.kernel.org>; Wed, 25 Sep 2024 02:40:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=wkennington-com.20230601.gappssmtp.com; s=20230601; t=1727257204; x=1727862004; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+hVeQm3M9Kb5BEWPHPjrFASpqXLbXMnOU9Rk2NX8DNc=;
-        b=ztcrrgG9GOCX5Qb3kiKcppvkbjG5pzcawKBmH0Ha5k6i8oaE5MjF2JhaBXnBzopFeG
-         FjMPB3dU09x17MfnH8w+SXricwexg40cijrCTiiV9PL1qiyb7kVfe5o0Xy1FLQSZRgTq
-         R5fUtpImVNn76BGNv9AnUit21TmLXYQi+TVGtcIBmzL8dtZlFgebd1tRtiLYeRV4VOs5
-         3190iEH03UpHo9oHloES6/DhEAclmNQJ5DqNmxyCTvyeCMe1jUwHZwuP0rM3wWU95fkA
-         saOtikiT2yj7M7SCuObT2r5vk56vGDGCx8Z5hVLkalMN/9MHdgld4IGgq6hqm7j/St31
-         2OQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727257204; x=1727862004;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+hVeQm3M9Kb5BEWPHPjrFASpqXLbXMnOU9Rk2NX8DNc=;
-        b=Fg7/pRIgnGpgJG2jZ/2k0V7YTCGZm5WhRiMx6gTd7pRQKCrshVGoVg+pvD5Z+xro0C
-         P1tCNRAtSNfg+QRS6kHDQaBXYH4RQ5MYL4xawwTsM/G7miqO5xyUmNM/wLp4/baPFO0H
-         YNqYNMKx9W5IgLpNLJun/wA7lMQR3MwlJyXrPquEcZbviQ1lVW5UETbmy1noEyPW+mqR
-         7+2+PsGngCDOAgFdaX3Ty3KxDmOfprOwSGO60yDZ0GVL+UBfz+dGmnEfQ4uzZqKgFb6d
-         yQKvljhMmVvxozE1sMzqOP/WbgGAIhaMou9PaMhk5NK7Hc4bZGnSgGdn2uljqxTrgpjJ
-         ZVfw==
-X-Gm-Message-State: AOJu0Yy/OjT08XtS9S4fVFA0+0LkWQfd5Jn7F9HZfiwCuupFHdXXSZit
-	xdq4RVRSFsldPoMEBzyv63KtOB982trz7B9EqJxUnznEQnUmvVNE6tCkxAU07cM=
-X-Google-Smtp-Source: AGHT+IEcO5h5KcZFuc3iAGK66yGyxhN/Om1kVIyoX9CJW9qNJjpCSqoZx1payz3X0gYgWX71SgJidw==
-X-Received: by 2002:a17:902:f68b:b0:206:ba7c:9f2e with SMTP id d9443c01a7336-20afc46b986mr28767005ad.25.1727257204439;
-        Wed, 25 Sep 2024 02:40:04 -0700 (PDT)
-Received: from wak-linux.svl.corp.google.com ([2620:15c:2a3:200:a147:cceb:deb3:ec96])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20afb021af7sm10037905ad.168.2024.09.25.02.40.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2024 02:40:03 -0700 (PDT)
-From: "William A. Kennington III" <william@wkennington.com>
-To: Tomer Maimon <tmaimon77@gmail.com>,
-	Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org,
-	"William A. Kennington III" <william@wkennington.com>
-Subject: [PATCH] ARM: dts: nuvoton: Add UDC nodes
-Date: Wed, 25 Sep 2024 02:39:56 -0700
-Message-ID: <20240925093956.2449119-1-william@wkennington.com>
-X-Mailer: git-send-email 2.46.0.792.g87dc391469-goog
+	s=arc-20240116; t=1727257605; c=relaxed/simple;
+	bh=wtn5+KuMLTAqeZweMoRuxkoCjg49C5loEg74Pkq8niU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dDkzo5gNF/uMNfbk0Lvk1ISlm1kFHXsqqKvAU/p/BNoA6tiF1G2qE4gVyTxvgGIz3Ly02BcG68gFh2WM9arnXIgs1dD1Ii3Z12CIxcdUtM9gqcfaS5viI23MUPr1yZk8eTzha1ziUXS8m9IOGp2FS2n5TNc8UXWp+fWgr5LnhSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rMl089XN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15EA2C4CEC3;
+	Wed, 25 Sep 2024 09:46:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727257605;
+	bh=wtn5+KuMLTAqeZweMoRuxkoCjg49C5loEg74Pkq8niU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rMl089XNFRAEGqGjifzGH4vHmkqYCn0PuSiSSxoa44g9uXf9m4QFeUwMFyWZ4/Jrl
+	 RaWXD3u0L8Qt22vg1xvfKfhEXnEe51XdG2dZYT7Xw1P6J0/FadUCOm49X5dW6kf4zE
+	 hT1lEuWPSW5mbij8dbwOKHzfa5Rhyr+ZhFoZ6OxzHE3IZeYZhDa2sRoSDqE7jqdSA0
+	 8gz/HaruwpjM77EOo8nPk4GT+zFAAKpD8cMPuedCRqi+afrz3e5QVRuyl59+Rc3uXE
+	 +tjJZ18viIKSWYX490NH6d9/dZcdd2dpWfj8j/G2Tee3pwbN31N28qqnWwHoIfyStT
+	 leX5AWRIOWgAA==
+Message-ID: <2731e17d-c1ad-4fb4-ab60-82ceafeffbaf@kernel.org>
+Date: Wed, 25 Sep 2024 11:46:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 6/6] arm64: dts: qcom: x1e80100: Add support for PCIe3
+ on x1e80100
+To: Konrad Dybcio <konradybcio@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Johan Hovold <johan+linaro@kernel.org>
+Cc: Qiang Yu <quic_qianyu@quicinc.com>, vkoul@kernel.org, kishon@kernel.org,
+ robh@kernel.org, andersson@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+ abel.vesa@linaro.org, quic_msarkar@quicinc.com, quic_devipriy@quicinc.com,
+ dmitry.baryshkov@linaro.org, kw@linux.com, lpieralisi@kernel.org,
+ neil.armstrong@linaro.org, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20240924101444.3933828-1-quic_qianyu@quicinc.com>
+ <20240924101444.3933828-7-quic_qianyu@quicinc.com>
+ <9a692c98-eb0a-4d86-b642-ea655981ff53@kernel.org>
+ <20240925080522.qwjeyrpjtz64pccx@thinkpad>
+ <4ee4d016-9d68-4925-9f49-e73a4e7fa794@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <4ee4d016-9d68-4925-9f49-e73a4e7fa794@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The driver support was already added but we are missing the nodes in our
-common devicetree. This enables npcm7xx platforms to enable the udc
-nodes and expose USB devices endpoints.
+On 25.09.2024 11:30 AM, Konrad Dybcio wrote:
+> On 25.09.2024 10:05 AM, Manivannan Sadhasivam wrote:
+>> On Tue, Sep 24, 2024 at 04:26:34PM +0200, Konrad Dybcio wrote:
+>>> On 24.09.2024 12:14 PM, Qiang Yu wrote:
+>>>> Describe PCIe3 controller and PHY. Also add required system resources like
+>>>> regulators, clocks, interrupts and registers configuration for PCIe3.
+>>>>
+>>>> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
+>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>> ---
+>>>
+>>> Qiang, Mani
+>>>
+>>> I have a RTS5261 mmc chip on PCIe3 on the Surface Laptop.
+>>
+>> Is it based on x1e80100?
+> 
+> You would think so :P
+> 
+>>
+>>> Adding the global irq breaks sdcard detection (the chip still comes
+>>> up fine) somehow. Removing the irq makes it work again :|
+>>>
+>>> I've confirmed that the irq number is correct
+>>>
+>>
+>> Yeah, I did see some issues with MSI on SM8250 (RB5) when global interrupts are
+>> enabled and I'm working with the hw folks to understand what is going on. But
+>> I didn't see the same issues on newer platforms (sa8775p etc...).
+>>
+>> Can you please confirm if the issue is due to MSI not being received from the
+>> device? Checking the /proc/interrutps is enough.
+> 
+> There's no msi-map for PCIe3. I recall +Johan talking about some sort of
+> a bug that prevents us from adding it?
 
-Signed-off-by: William A. Kennington III <william@wkennington.com>
----
- .../dts/nuvoton/nuvoton-common-npcm7xx.dtsi   | 71 +++++++++++++++++++
- .../arm/boot/dts/nuvoton/nuvoton-npcm750.dtsi | 65 +++++++++++++++++
- 2 files changed, 136 insertions(+)
+Unless you just meant the msi0..=7 interrupts, then yeah, I only get one irq
+event with "global" in place and it seems to never get more
 
-diff --git a/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi b/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
-index 868454ae6bde..358b52894ac0 100644
---- a/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
-+++ b/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
-@@ -99,6 +99,11 @@ rst: rst@801000 {
- 		};
- 	};
- 
-+	udc0_phy: usb-phy {
-+		compatible = "usb-nop-xceiv";
-+		#phy-cells = <0>;
-+	};
-+
- 	ahb {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-@@ -179,6 +184,72 @@ fiux: spi@fb001000 {
- 			status = "disabled";
- 		};
- 
-+		udc5: udc@f0835000 {
-+			compatible = "nuvoton,npcm750-udc";
-+			reg = <0xf0835000 0x1000
-+			       0xfffd2800 0x800>;
-+			interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM7XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
-+		udc6: udc@f0836000 {
-+			compatible = "nuvoton,npcm750-udc";
-+			reg = <0xf0836000 0x1000
-+			       0xfffd3000 0x800>;
-+			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM7XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
-+		udc7: udc@f0837000 {
-+			compatible = "nuvoton,npcm750-udc";
-+			reg = <0xf0837000 0x1000
-+			       0xfffd3800 0x800>;
-+			interrupts = <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM7XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
-+		udc8: udc@f0838000 {
-+			compatible = "nuvoton,npcm750-udc";
-+			reg = <0xf0838000 0x1000
-+			       0xfffd4000 0x800>;
-+			interrupts = <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM7XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
-+		udc9: udc@f0839000 {
-+			compatible = "nuvoton,npcm750-udc";
-+			reg = <0xf0839000 0x1000
-+			       0xfffd4800 0x800>;
-+			interrupts = <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM7XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+			nuvoton,sysgcr = <&gcr>;
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
- 		apb {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-diff --git a/arch/arm/boot/dts/nuvoton/nuvoton-npcm750.dtsi b/arch/arm/boot/dts/nuvoton/nuvoton-npcm750.dtsi
-index 30eed40b89b5..00615e7d1462 100644
---- a/arch/arm/boot/dts/nuvoton/nuvoton-npcm750.dtsi
-+++ b/arch/arm/boot/dts/nuvoton/nuvoton-npcm750.dtsi
-@@ -58,5 +58,70 @@ gmac1: eth@f0804000 {
- 					&rg2mdio_pins>;
- 			status = "disabled";
- 		};
-+
-+		udc0:udc@f0830000 {
-+			compatible = "nuvoton,npcm750-udc";
-+			reg = <0x0 0xf0830000 0x0 0x1000
-+			       0x0 0xfffeb000 0x0 0x800>;
-+			interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM7XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
-+		udc1:udc@f0831000 {
-+			compatible = "nuvoton,npcm750-udc";
-+			reg = <0x0 0xf0831000 0x0 0x1000
-+			       0x0 0xfffeb800 0x0 0x800>;
-+			interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM7XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
-+		udc2:udc@f0832000 {
-+			compatible = "nuvoton,npcm750-udc";
-+			reg = <0x0 0xf0832000 0x0 0x1000
-+			       0x0 0xfffec000 0x0 0x800>;
-+			interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM7XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
-+		udc3:udc@f0833000 {
-+			compatible = "nuvoton,npcm750-udc";
-+			reg = <0x0 0xf0833000 0x0 0x1000
-+			       0x0 0xfffec800 0x0 0x800>;
-+			interrupts = <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM7XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
-+
-+		udc4:udc@f0834000 {
-+			compatible = "nuvoton,npcm750-udc";
-+			reg = <0x0 0xf0834000 0x0 0x1000
-+			       0x0 0xfffed000 0x0 0x800>;
-+			interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk NPCM7XX_CLK_SU>;
-+			clock-names = "clk_usb_bridge";
-+			phys = <&udc0_phy>;
-+			phy_type = "utmi_wide";
-+			dr_mode = "peripheral";
-+			status = "disabled";
-+		};
- 	};
- };
--- 
-2.46.0.792.g87dc391469-goog
-
+Konrad
 
