@@ -1,115 +1,106 @@
-Return-Path: <devicetree+bounces-105333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9243C9865BC
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 19:35:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 498689865C5
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 19:39:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 598272899E8
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 17:35:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0047D1F20631
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 17:39:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB0A71311A7;
-	Wed, 25 Sep 2024 17:35:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 214FC8175F;
+	Wed, 25 Sep 2024 17:39:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lk9PKYmn"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="GZqjFCp9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A00F455785;
-	Wed, 25 Sep 2024 17:35:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD0F26088F;
+	Wed, 25 Sep 2024 17:39:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727285715; cv=none; b=h4bOlDYSJXt23GCmKW+DMHNTnESnlZSf/af1fHIDxG/4cnxGFKZnlbQi4L38N9SjvIAfRv3hYwUsRS7hWB+OCMvNqlOLR2bqM0agQWmeC51XnvN2DrZEF9tQmX5fjPcuTSh6DNBU0kiwNdhcsMBBvKP6k+qaMCWjUyTy7fQ+64Q=
+	t=1727285980; cv=none; b=BTjA1V2eoaekwm3GynTM1zXSWtXgJe4cABYqGOlxneij/DlNaNYIS5oee5b264+VoGLhv40GazbYbYTSZNKrtvaZoiojCuy8sA35XrxHw3TK55NvUG60CLJf5BanZKgd2L58r0EvtAvo8vuvMPvJhtlR8CZBK3l8I5vkkJ9r7KY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727285715; c=relaxed/simple;
-	bh=1PV8bYybivP4bxKgZEi8u1Gj1Lzo4QO+fIu4LD60VLc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Z5Ib9IeP4KNUYXwqKieeDvoH2PxvduFLQQqf5tmeyJOOkj2pJMMqUEOoir4drr4s1v+shc0y6JOqANX1VN5kp9qZQ470D+Cj1C0LjF4cBX1tAYMeLSlOx3HYfrmTzzn38x77/rUpOaCCgwGq3C5m24C0YnNwSoPXnONlYCATM7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lk9PKYmn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CC70C4CEC3;
-	Wed, 25 Sep 2024 17:35:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727285715;
-	bh=1PV8bYybivP4bxKgZEi8u1Gj1Lzo4QO+fIu4LD60VLc=;
-	h=From:To:Cc:Subject:Date:From;
-	b=Lk9PKYmnn7QONn58+TjcuZZtGbRroL+00BnoeRX01Pse2v2TFxPc1JUPjt1fe74sy
-	 bdAfoTZ+nz8IlzA4qS1zLwEsh5pEA+dNkGZdOaMZJJwOL4JqldcVv1H1sdFbAMkzWM
-	 lRGVbbFJH6NbXuXrVc7XwW3ISMJfIipkoX9NUBsPII3VVD9kC8ymqNiZbiJNUEGBQN
-	 afRI8BGTSLdbH2xFcodLPFF932iOsDdt7DO2Wc6SlSQACAwpuz7VyfngcOs6SF4ZLe
-	 pJPyhEZjOdPlIKxLHSNBo1QI0Dqwpo3IqDnequY4Qh7j87RxtcJU4HAXc2JUX6DeDT
-	 LA2/lmNd1guxA==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nikita Shubin <nikita.shubin@maquefel.me>
-Cc: Rob Herring <robh@kernel.org>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: gpio: ep9301: Add missing "#interrupt-cells" to examples
-Date: Wed, 25 Sep 2024 12:35:10 -0500
-Message-ID: <20240925173510.1907048-1-robh@kernel.org>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1727285980; c=relaxed/simple;
+	bh=IduDi2DMCrhnVCRod2FzWEZYqeb95C3KZFHPZWBjPRw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hT59uSoTLuAePeQcfHaQ1l5OwODVYgjlji+8flyOOv9Zk65Jqy4PQnXrnaW92Wqc0jEuaCu8Ywnzux63Y6WBT0cMja6D6uzpq/FMZS7LNcqwJkPQO8kBDWYY+AQ73a50IcOjgKoVbYI3lTYT79eNPFS/Kr+9jokP2wp0FlzEf7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=GZqjFCp9; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2068acc8b98so480655ad.3;
+        Wed, 25 Sep 2024 10:39:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1727285978; x=1727890778; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zk90OIfhTnQ67I6KDPiF6eWhTkqB4aikJ1+T8tujX9k=;
+        b=GZqjFCp9L+Gllgmo4kkFTSdI8h+XM8KuPsBGFpLeFKDgfPlenW+DQEo7tpqhL24BgH
+         GV8FEHBVc/m6sWRx2hUT3M37XPd31sJWt+exXhencJdyJ5sQFn44pA7y9gg/FLJkyc7j
+         a4UObBeXvTvPdEtZeg+Tb09mjF62Dbh90Ss2KwHQgkWOjmWFDpc+7HwxzeFg5W0jLuCU
+         fxsAtGhxyd2hXEVDIRc0CZkfl0PDInM/RitRBgkprtawf/Rhn+KrEMyWMeQtNAvqlSaS
+         YvAhhQUBjmF2r8L0iDYeWF82qphWWSZchf2/V2ZTkcuOi+lSR2pxitui7+po66MrcSkt
+         Rn/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727285978; x=1727890778;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zk90OIfhTnQ67I6KDPiF6eWhTkqB4aikJ1+T8tujX9k=;
+        b=qn37hBIwuwp6aT3KZ096THyqZQ6D5/z+rbY81ZsUNLLdtIn/YvLC+lU8/ql4rWpLUi
+         k5ymzf9WTHFQiPDtpR38CLrNPDWKXEiHsBn+Asbsyn1T/gvZF5U7uKO+q9lA89/xQf5x
+         zl6pTEONCJkL5vgLdh8JbCK3fDLPBIkaCuzNR2Qp4EkJDvVf+A/qg4gBVTFaa3sRYjEK
+         /qkFa2cgcT0TnoQPP3Xp5B5DEIpMfPw4nvQmG6gJConOqe6x+i2AE19mcVhUSM3VK2Jc
+         aRWL7GKi6k+riWOY2uttD0RTLuv/FswZr0eb4068e/SkS8YBfjB+DuV3cXZvpJ63Q1yL
+         6dGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUeOuXA1esNIIBiMxuTaQlqkzjEqT1HUE4y5jeKOciHCuGflzAEcVp3sI+Hguh8NaCAGDj+3BXKdy1gik/O@vger.kernel.org, AJvYcCVuZNkc+fnjCpxbxmNhKGoEPGaDZ5qe5G6DTag81p2xNRoTuHIeP0I3GWGCDnVkWPbdJHksmqn9XH7r@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywr33kZA7cyJa+x8+73wAFJiO1eln6GZmLjxOJvZqvm8EhRhmGe
+	/mBnkLX0A2CZiUwhMC8PZLPH+86yAr8FFsfmu3zdHE8egpocIjEOS9rzy9vsYyKiA+dzI7QRwRK
+	+Z5hXKoFOESvHY/8dxJ3M0+KrhBL2dIj3
+X-Google-Smtp-Source: AGHT+IGlo7PesYg/KmXOi3FOf4+bYxd/B53oypv1/h4B/VNyZnzpGsokuxWkiGSd8uA4GxMVmbbAbsgjOt75o/HZAEQ=
+X-Received: by 2002:a17:903:234a:b0:205:6f2d:adf7 with SMTP id
+ d9443c01a7336-20afc488b1emr40050045ad.21.1727285977974; Wed, 25 Sep 2024
+ 10:39:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240916-topic-amlogic-arm32-upstream-bindings-fixes-v2-0-0b20ed4f0571@linaro.org>
+ <20240916-topic-amlogic-arm32-upstream-bindings-fixes-v2-10-0b20ed4f0571@linaro.org>
+In-Reply-To: <20240916-topic-amlogic-arm32-upstream-bindings-fixes-v2-10-0b20ed4f0571@linaro.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Wed, 25 Sep 2024 19:39:27 +0200
+Message-ID: <CAFBinCDjf7TxwMMxv9+w+Ob6RZZ8hjU0iQvUGHXLtAhvBDm8vA@mail.gmail.com>
+Subject: Re: [PATCH v2 10/11] ARM: dts: amlogic: meson8b-ec100: add missing
+ clocks property in sound card
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Rob Herring <robh@kernel.org>
-
-Enabling dtc interrupt_provider check reveals the examples are missing
-the "#interrupt-cells" property as it is a dependency of
-"interrupt-controller".
-
-Some of the indentation is off, so fix that too.
-
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- Documentation/devicetree/bindings/gpio/gpio-ep9301.yaml | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-ep9301.yaml b/Documentation/devicetree/bindings/gpio/gpio-ep9301.yaml
-index daadfb4926c3..3a1079d6ee20 100644
---- a/Documentation/devicetree/bindings/gpio/gpio-ep9301.yaml
-+++ b/Documentation/devicetree/bindings/gpio/gpio-ep9301.yaml
-@@ -73,9 +73,10 @@ examples:
-       reg-names = "data", "dir", "intr";
-       gpio-controller;
-       #gpio-cells = <2>;
--        interrupt-controller;
--        interrupt-parent = <&vic1>;
--        interrupts = <27>;
-+      interrupt-controller;
-+      #interrupt-cells = <2>;
-+      interrupt-parent = <&vic1>;
-+      interrupts = <27>;
-     };
- 
-     gpio@80840004 {
-@@ -87,6 +88,7 @@ examples:
-       gpio-controller;
-       #gpio-cells = <2>;
-       interrupt-controller;
-+      #interrupt-cells = <2>;
-       interrupt-parent = <&vic1>;
-       interrupts = <27>;
-     };
-@@ -127,6 +129,7 @@ examples:
-       gpio-controller;
-       #gpio-cells = <2>;
-       interrupt-controller;
-+      #interrupt-cells = <2>;
-       interrupts-extended = <&vic0 19>, <&vic0 20>,
-                             <&vic0 21>, <&vic0 22>,
-                             <&vic1 15>, <&vic1 16>,
--- 
-2.45.2
-
+On Mon, Sep 16, 2024 at 10:08=E2=80=AFAM Neil Armstrong
+<neil.armstrong@linaro.org> wrote:
+>
+> Since [1], sound card must have the corresponding clocks property,
+> add it to the EC100 DT, and fix:
+> meson8b-ec100.dtb: sound: 'anyOf' conditional failed, one must be fixed:
+>         'clocks' is a required property
+>         '#clock-cells' is a required property
+>         from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
+>
+> [1] ASoC: dt-bindings: amlogic,gx-sound-card: document clocks property
+>       commit: f189c972f86b00318cf2547b62e461cb98374e34
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
