@@ -1,164 +1,122 @@
-Return-Path: <devicetree+bounces-105194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE4AF9855DB
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 10:53:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C55B1985605
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 11:05:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D8DB1C23238
-	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 08:53:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85E2C283FA8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Sep 2024 09:05:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6893157492;
-	Wed, 25 Sep 2024 08:53:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D644815B10F;
+	Wed, 25 Sep 2024 09:05:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GpDQU6wD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HOZQ3hJ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1F512AE6C;
-	Wed, 25 Sep 2024 08:53:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263DC15A864;
+	Wed, 25 Sep 2024 09:05:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727254399; cv=none; b=Pq1Re2xpwBzr0nC7QTT6yvLU3P7F3m4IEXbmmpGNWiV89xOvS58425fspsmFFo30Ge2sttHkqZWycIyBUGlfCPdTNFNg6ZAnhOM3iMzGMKav32eNUCz2eEPRE6RE7ewbnwzBYFEbmc4IzcrKluCQK5tSloZ/jhnUjg8ameTZrvA=
+	t=1727255126; cv=none; b=STuxdPNpR9gaGRDtl5VZ4s3oZV5am3gQMbdwT3euN0K5VEajglncWWDaiq0ATK/dywumnvKapVJyT4dDtdtyVz8p734dQFIvxJLmg19VolPY0WMaaaPNozsLje9TyfnH9m9RXGSjYkbyDtJ8OQvPWXwppcQ9m96j6Qjc/zQ6qVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727254399; c=relaxed/simple;
-	bh=lS2mOuyvD+68D94i949beyw7D6OBOrn2mI7jILlQEZ0=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bO9eVLpRZN9wfEMhMVeUhMowaZ3qmLu2z7YlzJEA5rFeo9siT1Uwy3P26qHP68f9X8z7PkJM67cTLKgvkyx8WKndB7kFp8OW+P5smE3Jym38mwIFGuCfHjSUPKYZG+teOGtaS0m9YjRuwqKac3MDNPliYidBlCGUt8ZffmK62Ak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GpDQU6wD; arc=none smtp.client-ip=209.85.128.52
+	s=arc-20240116; t=1727255126; c=relaxed/simple;
+	bh=1QZUsUnnAE3WSKe8mRvALmjWQTDijRw4NHVHntQSucE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=caWvEO0BiH6o4mgezTusNLd1pNLt9SgbiY6jtPZZU9MPTSNwLuHoSI9is9nCrWy5aIn1AbxxBO9CZICl3V8XnwSe8yaXZTpi8HslT90C1qmxcwR/09qahroZOEYmP1guWvO2z8lfZgus6rZFM/8hUouWXysqPVNxVDt0HNPj7Rs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HOZQ3hJ1; arc=none smtp.client-ip=209.85.208.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-42cbb08a1a5so61678405e9.3;
-        Wed, 25 Sep 2024 01:53:17 -0700 (PDT)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5c26815e174so8011242a12.0;
+        Wed, 25 Sep 2024 02:05:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727254396; x=1727859196; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=P166hXmuj+XlKXAFTZIVxMo1jHOSojSxk7n9xeXkzbk=;
-        b=GpDQU6wDhubCzv1Ki+H5gm2pM9TeKx0EESXS+5BnNRNyIQOVyHlyxTJAe2BZNzRdFd
-         15jXbIXQQd9tDa6gFcOQtTxvd7AiCdjw7kx5CKLUoKT/5pAsyyHldebt04pzgiF/cq/Q
-         LJiw2Lf8lZJ7zGrKuGTMXQxhnCVZG7B+PDX5E3jTVVYVwPgm7qr6gdiKhJy9cbsBzXMd
-         kr8JWafx9F6RZQedvzlMVoYlcFQVeaVzfJiW5QcE2iQ64CklRxB267F3R7xN0l3AeAPA
-         HdSIf/9sR3y/JBJWsYlH9ThH2cWTeVxiEf1DsCyzXVrC9o5KQadsAO3JP8c5uQOTwBp7
-         uieA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727254396; x=1727859196;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1727255123; x=1727859923; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=P166hXmuj+XlKXAFTZIVxMo1jHOSojSxk7n9xeXkzbk=;
-        b=kz3/WBzcXLLLo1255yt+z8wEnb4Uq8VZ3x1S9PJiNM7SevKKQOYWk1TXTrfo7mvLSk
-         thkeQ7h+tAGmcMqtnlYXFNBUStYNNnuspWnus0m1grMf0ybYdAVmkxs096KDOCMLyv8J
-         JvERhVUlOEolURkFp3by6/XfipBGG0X+8YstradeOufXUe/iO6kTYr3b1dkPjgREY4nN
-         fAZn7KSQ00GNNsxyS8uJkQ+W9MoMOrbzCrb/U0LCtYpi9SD8nmolWe/le+ldqoasZrqt
-         5bGWZ+pJNCSMjHiky8/kpyVGALxhpPpfLr65vudpnG4TC6oZiu9ndV5lz8BgtuRX9sGW
-         28ag==
-X-Forwarded-Encrypted: i=1; AJvYcCVLe+mDXJc4gCxz+8FYsxhqT7gDs47GEkcW0dQS8Eaibyb/buF8NCRn2AGX2JXsWkMqHwEk2b0FrjVU25VV@vger.kernel.org, AJvYcCVZD8T3hI9oaAvfn+Yt5hQJWGes6r/NMBC4A+Zw5fDJIN3kCcoWdU4vNobxfHOpUolSQkf6OJIrStGLpm7RvHs=@vger.kernel.org, AJvYcCW/ozOYFlE9E8X/c3Qh+91mBwVdCje2iFVBj9GfZqzbb7NwRgt4B3e/Y2ACprdArKAx7FWvCniJKr7R@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCmW/z/1b630WFd2YjffdDdvklVL8nfnF5ZePsE+E8XkKxQG/e
-	LEq8GB008zurVAD+jbLDVUuws4ecKRtQfagwTWkXDw8FjNWNRIDsf9pLTQ3C
-X-Google-Smtp-Source: AGHT+IEcVaSpSj2zEv6r7eOz7mIfzbfgPFam7Wk1O1HspoGRGC11248azZoJkdLpoSoLf8SZCyuaqQ==
-X-Received: by 2002:a05:600c:3c85:b0:42c:df54:1908 with SMTP id 5b1f17b1804b1-42e96114ad3mr11248695e9.18.1727254395949;
-        Wed, 25 Sep 2024 01:53:15 -0700 (PDT)
-Received: from Ansuel-XPS. (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e96a09a3fsm11550325e9.25.2024.09.25.01.53.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2024 01:53:15 -0700 (PDT)
-Message-ID: <66f3cf7b.050a0220.3af9f1.2fe0@mx.google.com>
-X-Google-Original-Message-ID: <ZvPPd1F4vV6novEg@Ansuel-XPS.>
-Date: Wed, 25 Sep 2024 10:53:11 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Lorenzo Bianconi <lorenzo@kernel.org>, upstream@airoha.com
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: airoha: document watchdog for
- Airoha EN7581
-References: <20240919122759.10456-1-ansuelsmth@gmail.com>
- <08288a0b-3e10-4f83-8bc7-0587328ee9a0@kernel.org>
- <66ec1ba3.050a0220.2c6214.5dd4@mx.google.com>
- <06f11844-2b85-469d-8729-a8757a566814@kernel.org>
+        bh=OpSxoOSH8sGRYYBVpsIkEfJWqz3E/EfZFQTLjHzT1H0=;
+        b=HOZQ3hJ1pHdA6OI11k2kPLf010UncmSjN6txk0K+9mcjtVPHajf66FYDDvKjaR+t0r
+         NcnRTlaBdf8gdeYE9sf3/xWkE1lGbq+a3uEtL7wmsCdadFcrTJ2Cgd/vVWxSYe7qCtdx
+         tpq8EVKVBnAQMF0hrvtPLtVxrqTdDsejLKiOvMiyAQc1v/kaLiwqZ+hsEsqx74tEzO/3
+         t8Ib60ychNf+xfMczIhEzIRF7L9AqemsnpL1bqaREThgxefMV3yXZI33WcAPHPu53tO0
+         cSV9LZ4jjVMuH7Xs1vZLw/NMtm6wIOtY1OX9liMW7MOUgWmqJNWKq583ri6HO+si8bQo
+         OdaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727255123; x=1727859923;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OpSxoOSH8sGRYYBVpsIkEfJWqz3E/EfZFQTLjHzT1H0=;
+        b=KOdjZGsauMNxO1/YuMdQA8z+tdpH+gpfSXXqwnLGbgfrD1Xo641J8R6Ihy7bai7PqV
+         n2mby3rZJ/12QZ+RWFoTerS7ywKY7bj9l+GqQ5Zm9g+41M0TvGX+dZHBNrdEKS36Px8M
+         BlzyxU4SM1Wp40qqpg9NyDfbM5lGwj2nItZBxPtP2UWPOMZDg0WQtf/0iAjOfKxe8Lbm
+         beeNAa/wlZ59QdOaJrrmliNK2lek+hM2iuiLMNqm8szIZXC1GHC1HBuPV9+VIzSPB/et
+         wLxAZVPzu5QQYjdq1LylnKBQyfDCUiPXYK35cCdzVNCapoUFmcnRnKz9pFhAJM8aXQcr
+         FZxA==
+X-Forwarded-Encrypted: i=1; AJvYcCVqF3d4E7o4eGtTEaC4uhKBA6UAoCCJ4CmZvzfy3ttaHg0fkV4VGbeUmSxCAg+EY6hBJdTqboLEpye2bYU=@vger.kernel.org, AJvYcCWeZxsA4D0Zo5wgIIUh3PBVaowzQevPtElRLyePes5N6/ROqfIMNb17rsR/mwzlL5wGETWC1WlRdHvS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMzvOWVVJ56TsB6LWQaRf9mFEdBZM2CH5PaMvdo0Hfb18QkAlH
+	QAwm3oxraQqygSRcJm4W6X681DV1Y2Och0SSLxob9qW1gsZtLPUGP5WIbRv3mAo2GMdEuaSlqEF
+	dVjx1vTdu4kei8XXS1ONwYQ+oghA=
+X-Google-Smtp-Source: AGHT+IHMhDBD4VbH/gs1euQafiviuUglJ4RhEofIOUHa7Z/aaoxmzI3ZTPxOSwo9aMR6U646AGZcuD6vs83g04COppE=
+X-Received: by 2002:a05:6402:40c5:b0:5c0:c10c:7c1d with SMTP id
+ 4fb4d7f45d1cf-5c72073c6bfmr1772969a12.23.1727255123097; Wed, 25 Sep 2024
+ 02:05:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <06f11844-2b85-469d-8729-a8757a566814@kernel.org>
+References: <cover.1727056789.git.zhoubinbin@loongson.cn> <9a286537a20f0f96597090f59165b4532e41bdb8.1727056789.git.zhoubinbin@loongson.cn>
+ <ZvKEFlARvbFFWI83@finisterre.sirena.org.uk>
+In-Reply-To: <ZvKEFlARvbFFWI83@finisterre.sirena.org.uk>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Wed, 25 Sep 2024 15:05:09 +0600
+Message-ID: <CAMpQs4KW7P0soeTw0Bi_OpcGXjk8EBjcNmHFeAi=MCauhwanYA@mail.gmail.com>
+Subject: Re: [PATCH v2 5/9] ASoC: loongson: Fix codec detection failure on FDT systems
+To: Mark Brown <broonie@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	Neil Armstrong <neil.armstrong@linaro.org>, 
+	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>, 
+	Richard Fitzgerald <rf@opensource.cirrus.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Weidong Wang <wangweidong.a@awinic.com>, Prasad Kumpatla <quic_pkumpatl@quicinc.com>, 
+	Herve Codina <herve.codina@bootlin.com>, Masahiro Yamada <masahiroy@kernel.org>, 
+	Shuming Fan <shumingf@realtek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 19, 2024 at 02:42:33PM +0200, Krzysztof Kozlowski wrote:
-> On 19/09/2024 14:39, Christian Marangi wrote:
-> > On Thu, Sep 19, 2024 at 02:35:02PM +0200, Krzysztof Kozlowski wrote:
-> >> On 19/09/2024 14:26, Christian Marangi wrote:
-> >>> Document watchdog for Airoha EN7581. This SoC implement a simple
-> >>> watchdog that supports a max timeout of 28 seconds.
-> >>>
-> >>> The watchdog ticks on half the BUS clock and require the BUS frequency
-> >>> to be provided.
-> >>
-> >> Clock provider should implement clk_get_rate()...
-> >>
-> > 
-> > The BUS clock is internal and not exposed to the system hence
-> > clk_get_rate is not possible saddly.
-> > 
-> >>>
-> >>
-> >> ...
-> >>
-> >>> +maintainers:
-> >>> +  - Christian Marangi <ansuelsmth@gmail.com>
-> >>> +
-> >>> +allOf:
-> >>> +  - $ref: watchdog.yaml#
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    const: airoha,en7581-wdt
-> >>> +
-> >>> +  reg:
-> >>> +    maxItems: 1
-> >>> +
-> >>> +  clock-frequency:
-> >>> +    description: BUS frequency in Hz (timer ticks at half the BUS freq)
-> >>> +    const: 300000000
-> >>
-> >> Which bus frequency? Aren't you missing here clock input?
-> > 
-> > I'm putting here property to describe the internal clock to what the
-> > watchdog is attached. Should I drop this and just hardcode it
-> > internally to the driver or maybe declare the clock to be 150000000
-> > directly?
-> 
-> If this stays, then please mention "internal watchdog bus frequency".
-> 
-> If this is internal and it is part of an SoC (so not board!) why would
-> we need it in DT? I would imagine this is fixed per SoC, thus deduced
-> from the compatible.
-> 
-> clock-frequency property is legacy and in general discouraged. This
-> might be an exception, but for that I would like to see more of
-> explanations.
+Hi Mark:
+
+On Tue, Sep 24, 2024 at 3:19=E2=80=AFPM Mark Brown <broonie@kernel.org> wro=
+te:
 >
+> On Tue, Sep 24, 2024 at 03:00:32PM +0800, Binbin Zhou wrote:
+>
+> > When the Codec is compiled into a module, we can't use
+> > snd_soc_of_get_dlc() to get the codec dai_name, use
+> > snd_soc_get_dai_name() instead.
+>
+> What is the issue with using snd_soc_of_get_dlc()?  Shouldn't we fix the
+> helper instead?
 
-Ok it took a while but finally I got my answer. The Documentation had a
-mistake and conflicting info. (one bus was said running at 250Mhz instead
-of 300Mhz) With this error fixed I can correctly attach a clock and drop
-this stupiud thing. Win-Win for everyone!
+I'm very sorry for this part, I checked and tested it again and I
+should have over-modified it as well as the use of
+snd_soc_of_get_dlc() is correct.
 
-> > 
-> > Tick frequency is already not well defined so I tought it was a good
-> > idea to describe it in DT.
-> > 
-> 
+In fact, what's really being missed here is the assignment of
+snd_soc_dai_link.platforms->of_node, which causes component_empty for
+soc_dai_link_sanity_check().
 
--- 
-	Ansuel
+I'll rewrite this part in the next patch set.
+
+Thanks.
+Binbin
 
