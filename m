@@ -1,113 +1,321 @@
-Return-Path: <devicetree+bounces-105501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CE52986E20
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:49:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B8B7986E2E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:50:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 35AB21F22E37
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 07:49:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C18B81F23906
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 07:50:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1219D18CC04;
-	Thu, 26 Sep 2024 07:49:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="nzB3GlX4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC6F718A6CC;
+	Thu, 26 Sep 2024 07:50:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC53E18E37A;
-	Thu, 26 Sep 2024 07:49:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 601B2192B69
+	for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 07:50:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727336977; cv=none; b=pwa4FKDUQvjBkI6m39d9cRZL8IK7aPHdm+ok3QL0sz+zOAAKIaKFd1AjgfeKRchrhk0TLeHqfcdIgCWOeF46HKwvG2Dggu47qbXXt9d7nv+DcuzO47T/xlycsAkineeJCh/WcjZLKZNh+pDjU57xwDrgFm8AkUYz2SCDklRwSNE=
+	t=1727337038; cv=none; b=OCHyD+eFvvIDyqw3UVk68J/bMf4EXhItp7UZCg9XjfsNiLYlkyLDRC4VBKKaPH73RRJntZKGfL7t8h26CY69/6OQqgy7P5CZkN/N1Oytfqac6h4efn4CRz89/zndNmQDdJ529k1RP/jRBiuVVKUg9/3s+eFnW5fhaR9AjGbQn90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727336977; c=relaxed/simple;
-	bh=o+CHpCjIYOUmUT4z8xkv0BNu0fP9M1NlZ7YHOM6fvNk=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=iAq8b1q4+BM8iB7aSBEhehhIDzdaqd6ismcirhygQfx505j49ArPjE93dt+8GKp+QGdIQDkWoXjwmiAzNCkkdpN6VOO0u4ezD66ergHZ1LB/beUjxkcG2c4btIh8KUNQplr9syeYvbhkXc4tJ89rCLbreMdq9L54rfiBiJL3/6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=nzB3GlX4; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-From: Dragan Simic <dsimic@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1727336965;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=Q4p8z2L8jrWV5lUcHwvhgC9S3U+XsVqsS61+6JO+Ug0=;
-	b=nzB3GlX4509mBvlajAspZW5HkN9N2/9VFLibpkhCwJJ1IIjK56wCw2OEfDXmeTpSB/hZiT
-	FzYxYFoHw+BJDXzvEohnXgLUfUZxkMGHNfOiJOoxIuq5v189fr8Y2eXX2PpSHVHGMIG8Ux
-	Mnm+v+HGjfj6tQ35fQoNMb87P8v/46omPQK1sp4vA3RmJNx8cdVXjqV+zfLCppHiBsOcws
-	mtALiH2Gkno8h2cCpJGZ6irFCGwvvfNCNlYRnvOWpIHBXDdTobEXpRj7CnzE2Pnm+2uewB
-	vnIqWS/LDc3E4/qQeYZLfU1CQnTjBUuba/OhwXJofQuESAHCv7QE7d8vJD2kWA==
-To: linux-rockchip@lists.infradead.org
-Cc: heiko@sntech.de,
-	linux-arm-kernel@lists.infradead.org,
+	s=arc-20240116; t=1727337038; c=relaxed/simple;
+	bh=Hi9Dm9bHtr/nU89VigzpFVOj84iRJ07qjg1yUVHkIVM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FkA8GH/rxG26ALwaGVHdNpavl5P5lH4gTeOX/VeFgvFPybUYO8hgzRrTJ1rmf+G0oL2W3HbI7ghK3nYScd5QunJt6Y9f+R3boqZGP0H8G/PBBH43k6hmU8E5FRZUu+WOmHnjZyE4Ig3lGpjUJoYAestWMmKhsT/SuUPP0SUDkbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1stjGc-0001MC-VD; Thu, 26 Sep 2024 09:50:26 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1stjGb-001dUm-1u; Thu, 26 Sep 2024 09:50:25 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1stjGa-00D7UJ-32;
+	Thu, 26 Sep 2024 09:50:24 +0200
+Date: Thu, 26 Sep 2024 09:50:24 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Michael Walle <mwalle@kernel.org>, devicetree@vger.kernel.org,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Mathieu Othacehe <m.othacehe@gmail.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
 	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: Move L3 cache under CPUs in RK356x SoC dtsi
-Date: Thu, 26 Sep 2024 09:49:18 +0200
-Message-Id: <da07c30302cdb032dbda434438f89692a6cb0a2d.1727336728.git.dsimic@manjaro.org>
+	Hiago De Franco <hiago.franco@toradex.com>,
+	Herburger <gregor.herburger@ew.tq-group.com>,
+	Petr Benes <petr.benes@ysoft.com>, linux-usb@vger.kernel.org,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, imx@lists.linux.dev,
+	Shawn Guo <shawnguo@kernel.org>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 2/2] arm64: dts: imx: Add imx8mp-iota2-lumpy board
+Message-ID: <20240926075024.777bdooiqd5myv3v@pengutronix.de>
+References: <20240924103941.1729061-1-michal.vokac@ysoft.com>
+ <20240924103941.1729061-3-michal.vokac@ysoft.com>
+ <ZvLXenqG/++AR4We@lizhi-Precision-Tower-5810>
+ <20240924173714.qxxkhn6wscze7q5n@pengutronix.de>
+ <87980643-44b4-4df9-9eb7-1583b5074bdd@ysoft.com>
+ <ZvQ5O553E0QFvced@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+In-Reply-To: <ZvQ5O553E0QFvced@lizhi-Precision-Tower-5810>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Move the "l3_cache" node under the "cpus" node in the dtsi file for Rockchip
-RK356x SoCs.  There's no need for this cache node to be at the higher level.
+On 24-09-25, Frank Li wrote:
+> On Wed, Sep 25, 2024 at 01:30:31PM +0200, Michal Vokáč wrote:
+> > On 24. 09. 24 19:37, Marco Felsch wrote:
+> > > Hi Frank,
+> > >
+> > > On 24-09-24, Frank Li wrote:
+> > > > On Tue, Sep 24, 2024 at 12:39:41PM +0200, Michal Vokáč wrote:
+> > > > > The IOTA2 Lumpy board is based on the i.MX8MPlus EVK.
+> > > > >
+> > > > > Basic features are:
+> > > > > - 4GB LPDDR4
+> > > > > - 64GB eMMC
+> > > > > - 2x 1GB Ethernet
+> > > > > - USB 3.0 Type-C dual role port, without power delivery
+> > > > > - USB 3.0 Type-A host port
+> > > > > - RGB LED - PWM driven
+> > > > > - speaker - PWM driven
+> > > > > - RTC with super capacitor backup
+> > > > >
+> > > > > Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+> > > > > ---
+> > > > > v4:
+> > > > > - Moved the iomuxc node to the end of the file.
+> > > > > - Moved the bus-width and non-removeable properties below
+> > > > >    the pinctrl-* properties in &usdhc3 node.
+> > > > > - Moved the fsl,ext-reset-output below the pinctrl-* properties
+> > > > >    in &wdog1 node.
+> > > > > v3:
+> > > > > - Dropped pinctrl-names property from &usb_dwc3_1 node.
+> > > > > v2:
+> > > > > - Dropped unused property from pwm4 node.
+> > > > > - Sorted all nodes and properties using dt-format tool from Frank.
+> > > > >
+> > > > >   arch/arm64/boot/dts/freescale/Makefile        |   1 +
+> > > > >   .../boot/dts/freescale/imx8mp-iota2-lumpy.dts | 423 ++++++++++++++++++
+> > > >
+> > > > Suggest use https://github.com/lznuaa/dt-format
+> > > > sort node. any issue, let me know.
+> > >
+> > > Thanks for the link :) would be nice to have this script to be part of
+> > > the kernel.
+> 
+> It depend on how much people like and use it.
 
-Fixes: 8612169a05c5 ("arm64: dts: rockchip: Add cache information to the SoC dtsi for RK356x")
-Cc: stable@vger.kernel.org
-Signed-off-by: Dragan Simic <dsimic@manjaro.org>
----
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 24 ++++++++++++------------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+I don't see any reason why the kernel shouldn't have such a script, it
+makes the life easier for all of us (incl. the dt-maintainers). By that
+I mean the idea of having such a script since I actually didn't looked
+into your code.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index 4690be841a1c..9f7136e5d553 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -113,19 +113,19 @@ cpu3: cpu@300 {
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l3_cache>;
- 		};
--	};
- 
--	/*
--	 * There are no private per-core L2 caches, but only the
--	 * L3 cache that appears to the CPU cores as L2 caches
--	 */
--	l3_cache: l3-cache {
--		compatible = "cache";
--		cache-level = <2>;
--		cache-unified;
--		cache-size = <0x80000>;
--		cache-line-size = <64>;
--		cache-sets = <512>;
-+		/*
-+		 * There are no private per-core L2 caches, but only the
-+		 * L3 cache that appears to the CPU cores as L2 caches
-+		 */
-+		l3_cache: l3-cache {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+			cache-size = <0x80000>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+		};
- 	};
- 
- 	cpu0_opp_table: opp-table-0 {
+> >> The script follows the rules in [1] I'm just used to have
+> > > common properties like pinctrl-* in front of the device specific
+> > > properties e.g. "enable-active-high". But this rule is not part of [1]
+> > > so I can't blame the script.
+> 
+> I just write it. Not 100% align order-of-properties-in-device-node yet.
+> Some propertiy need special treated. Thank you provide the feedback.
+> 
+> I push change, enable-active-high and gpio will after regulator*.
+
+:) Thank you!
+
+Regards,
+  Marco
+
+> 
+> Frank
+> 
+> > >
+> > > Regards,
+> > >    Marco
+> > >
+> > > [1] https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
+> >
+> > Thank you for the review Frank & Marco.
+> > I quickly went through the file again and found another few properties
+> > that could be better ordered according to the kernel documentation [1].
+> >
+> > > > >   2 files changed, 424 insertions(+)
+> > > > >   create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
+> > > > >
+> > > > > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> > > > > index 9d3df8b218a2..aa26a50b7bb4 100644
+> > > > > --- a/arch/arm64/boot/dts/freescale/Makefile
+> > > > > +++ b/arch/arm64/boot/dts/freescale/Makefile
+> > > > > @@ -171,6 +171,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk2.dtb
+> > > > >   dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk3.dtb
+> > > > >   dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
+> > > > >   dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
+> > > > > +dtb-$(CONFIG_ARCH_MXC) += imx8mp-iota2-lumpy.dtb
+> > > > >   dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
+> > > > >   dtb-$(CONFIG_ARCH_MXC) += imx8mp-navqp.dtb
+> > > > >   dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
+> > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts b/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
+> > > > > new file mode 100644
+> > > > > index 000000000000..9eb58e818dc7
+> > > > > --- /dev/null
+> > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
+> > > > > @@ -0,0 +1,423 @@
+> > > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > > > > +/*
+> > > > > + * Copyright 2023 Y Soft
+> > > > > + */
+> > > > > +
+> > > > > +/dts-v1/;
+> > > > > +
+> > > > > +#include "imx8mp.dtsi"
+> > > > > +
+> > > > > +/ {
+> > > > > +	compatible = "ysoft,imx8mp-iota2-lumpy", "fsl,imx8mp";
+> > > > > +	model = "Y Soft i.MX8MPlus IOTA2 Lumpy board";
+> > > > > +
+> > > > > +	beeper {
+> > > > > +		compatible = "pwm-beeper";
+> > > > > +		pwms = <&pwm4 0 500000 0>;
+> > > > > +	};
+> > > > > +
+> > > > > +	chosen {
+> > > > > +		stdout-path = &uart2;
+> > > > > +	};
+> > > > > +
+> > > > > +	gpio_keys: gpio-keys {
+> > > > > +		compatible = "gpio-keys";
+> > > > > +		pinctrl-0 = <&pinctrl_gpio_keys>;
+> > > > > +		pinctrl-names = "default";
+> > > > > +
+> > > > > +		button-reset {
+> > > > > +			gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;
+> > > > > +			label = "Factory RESET";
+> > > > > +			linux,code = <BTN_0>;
+> > > > > +		};
+> > > > > +	};
+> > > > > +
+> > > > > +	reg_usb_host: regulator-usb-host {
+> > > > > +		compatible = "regulator-fixed";
+> > > > > +		enable-active-high;
+> > > > > +		gpio = <&gpio1 14 GPIO_ACTIVE_HIGH>;
+> >
+> > The enable-active-high and gpio should go bellow regulator-*.
+> >
+> > > > > +		pinctrl-0 = <&pinctrl_usb_host_vbus>;
+> > > > > +		pinctrl-names = "default";
+> > > > > +		regulator-max-microvolt = <5000000>;
+> > > > > +		regulator-min-microvolt = <5000000>;
+> > > > > +		regulator-name = "usb-host";
+> > > > > +	};
+> > > > > +
+> > > > > +	memory@40000000 {
+> > > > > +		reg = <0x0 0x40000000 0 0x80000000>,
+> > > > > +		      <0x1 0x00000000 0 0x80000000>;
+> > > > > +		device_type = "memory";
+> > > > > +	};
+> > > > > +};
+> > > > > +
+> > > > > +&A53_0 {
+> > > > > +	cpu-supply = <&reg_arm>;
+> > > > > +};
+> > > > > +
+> > > > > +&A53_1 {
+> > > > > +	cpu-supply = <&reg_arm>;
+> > > > > +};
+> > > > > +
+> > > > > +&A53_2 {
+> > > > > +	cpu-supply = <&reg_arm>;
+> > > > > +};
+> > > > > +
+> > > > > +&A53_3 {
+> > > > > +	cpu-supply = <&reg_arm>;
+> > > > > +};
+> > > > > +
+> > > > > +&eqos {
+> > > > > +	phy-handle = <&ethphy0>;
+> > > > > +	phy-mode = "rgmii-id";
+> > > > > +	pinctrl-0 = <&pinctrl_eqos>;
+> > > > > +	pinctrl-names = "default";
+> > > > > +	status = "okay";
+> > > > > +
+> > > > > +	mdio {
+> > > > > +		compatible = "snps,dwmac-mdio";
+> > > > > +		#address-cells = <1>;
+> > > > > +		#size-cells = <0>;
+> > > > > +
+> > > > > +		ethphy0: ethernet-phy@0 {
+> > > > > +			reg = <0>;
+> > > > > +			interrupts = <21 IRQ_TYPE_LEVEL_LOW>;
+> > > > > +			interrupt-parent = <&gpio3>;
+> > > > > +			micrel,led-mode = <0>;
+> >
+> > The micrel,* is a vendor specific property. It should go bellow the reset-*.
+> >
+> > > > > +			pinctrl-0 = <&pinctrl_ethphy0>;
+> > > > > +			pinctrl-names = "default";
+> > > > > +			reset-assert-us = <1000>;
+> > > > > +			reset-deassert-us = <1000>;
+> > > > > +			reset-gpios = <&gpio3 22 GPIO_ACTIVE_LOW>;
+> > > > > +		};
+> > > > > +	};
+> > > > > +};
+> > > > > +
+> > > > > +&fec {
+> > > > > +	fsl,magic-packet;
+> > > > > +	phy-handle = <&ethphy1>;
+> > > > > +	phy-mode = "rgmii-id";
+> > > > > +	pinctrl-0 = <&pinctrl_fec>;
+> > > > > +	pinctrl-names = "default";
+> > > > > +	status = "okay";
+> > > > > +
+> > > > > +	mdio {
+> > > > > +		#address-cells = <1>;
+> > > > > +		#size-cells = <0>;
+> > > > > +
+> > > > > +		ethphy1: ethernet-phy@0 {
+> > > > > +			reg = <0>;
+> > > > > +			interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
+> > > > > +			interrupt-parent = <&gpio3>;
+> > > > > +			micrel,led-mode = <0>;
+> >
+> > Same as above, micrel,* should go bellow common properties.
+> > I will send a v5 with these fixed.
+> >
+> > Michal
+> >
+> > > > > +			pinctrl-0 = <&pinctrl_ethphy1>;
+> > > > > +			pinctrl-names = "default";
+> > > > > +			reset-assert-us = <1000>;
+> > > > > +			reset-deassert-us = <1000>;
+> > > > > +			reset-gpios = <&gpio3 20 GPIO_ACTIVE_LOW>;
+> > > > > +		};
+> > > > > +	};
+> > > > > +};
+> > > > > +
+> 
 
