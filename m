@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-105698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 229899877F1
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 18:56:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD1899877F7
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 18:57:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB8B628559E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 16:56:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 644E01F27019
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 16:57:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81C3F159598;
-	Thu, 26 Sep 2024 16:56:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EED115B10E;
+	Thu, 26 Sep 2024 16:57:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bhj9tCcD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ORb3UPhS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57528158853;
-	Thu, 26 Sep 2024 16:56:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C0D13A24D;
+	Thu, 26 Sep 2024 16:57:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727369815; cv=none; b=lW/ir2KIIEpAz3oS1XSTmSGp5ojFskY8RFJy0lr7p+R7x6EzWiayDHQjuzR5/dAgUbfP+WFoqD6eHQRNe1f1dAHgnmB5Vg17JNTnTkazI9uBKi8t71g3Unmtkryzoqq4Us88oJkGdjsPc64F6oWLM7zjP/HRxYZrI0LRjTy112I=
+	t=1727369848; cv=none; b=nWKu5AiMFWCFfMlBGgacn8Ir+v1fn7Y4uGYu6FqDnl3zLxV12oKyJ7PLNli2xw5URf0cLMcOhrL90RQ2F7HW5W50qAmvNlA8LPPMNFuY+ooBL5CCzoiPptY0PtoUN0K/aKfzxtjcshcO5dosTigHa+cb5S1lqGnbURVC7HGsx6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727369815; c=relaxed/simple;
-	bh=EEXMZ5BTfHmxlTIWPOb6TPeSVlPnjEBarDCP+2U+KJA=;
+	s=arc-20240116; t=1727369848; c=relaxed/simple;
+	bh=4fxs8NFpD3AWmeQlTcIxMrYZLvtu7wE0b6VfF3mHwR4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AUt80unfNwnaOwwQVTJkVAor2WUlxs51bcL0red0+4jLeOCxIllfL8cLrI9d+tBK/hI9eBqS5Ikh1+XFzTrfN2kW2CWTNq0B0EVgTKlG4xSOVyj3RCBx66ctPBKo+uCXB0A5fo0zpYNNESpCpUGGQPb7x0gyBjM0xMDy3zJ0CQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bhj9tCcD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 222D8C4CEC5;
-	Thu, 26 Sep 2024 16:56:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=j5hPbkV0SkrauVgt61zIre1fst6yzHPVnAXGuDsg5mq7bGwmwUE3KmeElLf1kMA9R7PvbC5/9wvsYNQhXYdIywQUIR17MyEiKdVCxXcDVc9hojzo1g0+Th2VFJ+3xksgL2KfpGydnwtqrpjhYtyMXdiuJrMHP72VsW/aZc5Wg5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ORb3UPhS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A255C4CEC5;
+	Thu, 26 Sep 2024 16:57:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727369814;
-	bh=EEXMZ5BTfHmxlTIWPOb6TPeSVlPnjEBarDCP+2U+KJA=;
+	s=k20201202; t=1727369847;
+	bh=4fxs8NFpD3AWmeQlTcIxMrYZLvtu7wE0b6VfF3mHwR4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bhj9tCcDOwf6jthplt9hPGRxBlFy8SD8TQK90HErECG8QSltwzV4cAEPWidr5TReC
-	 P4LhdiBQKdorvD7sftMrTja0iIJvyE0UA7MGjyLKwBUwUPAJoarIPtDgt8gMIQ4wKf
-	 HCJoky5shks/rjMOZLjaDBxF0F21CTphHmfuS1qOS4j9+fRRY05cmHuR06rEP7ZwGt
-	 hbOnRZqfrg4WKOZCaGJssYYRFJkDZfXG6jxeklv5Z08SWQockqFSGdKi99lfdn19w5
-	 VSPhA7dYWWRiQDMe8S3nRqLTf3R6s16wggAwjATGpYTTGZ5n5He7vaNRTwtG3EaW57
-	 n55j5m9pQ6Unw==
-Date: Thu, 26 Sep 2024 17:56:50 +0100
+	b=ORb3UPhSxx3cc5HLrF6knwmVlvhuX9IGcUxS70mnclC3cqHwxWdLPUNa4ItY9SwYN
+	 V7SaikqGKP5ZJgbxjVkxS6uuAxsynSWbXF4CqMef0/hQPsze+Lg5Rzb7I870+toqcJ
+	 BiD5fuo+xMBo/ZFmPRHRLSLMO5SbKNa3Ncq0nRET3ty9R6P5tGjTPSUMT6tClQU+Dh
+	 hkn16ahGiEl845QrmSq8pCMtCce6A3JKANjAkYze5UcmOvcJuDDEwUQGFSourl+9Mm
+	 3dWiN1bHVeFk86AFNjV3nkS6Bg+EVbhPr3abhHHWkPonzqAPAbHLsHFuc76wYs18WL
+	 s9TjVpIAeCPJw==
+Date: Thu, 26 Sep 2024 17:57:24 +0100
 From: Conor Dooley <conor@kernel.org>
 To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+Cc: Thomas Gleixner <tglx@linutronix.de>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Wayne Chang <waynec@nvidia.com>,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: usb: cypress,cypd4226: Drop Tegra specific
- GPIO defines
-Message-ID: <20240926-anybody-purify-f4befab2be4b@spud>
-References: <20240925173449.1906586-1-robh@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: fsl,mu-msi: Drop
+ "interrupt-controller" property
+Message-ID: <20240926-glorious-spongy-29007d254703@spud>
+References: <20240925173438.1906339-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,74 +59,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="kkMV/3HYf1xN56hr"
+	protocol="application/pgp-signature"; boundary="7jj447Zq6p9po9oO"
 Content-Disposition: inline
-In-Reply-To: <20240925173449.1906586-1-robh@kernel.org>
+In-Reply-To: <20240925173438.1906339-1-robh@kernel.org>
 
 
---kkMV/3HYf1xN56hr
+--7jj447Zq6p9po9oO
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 25, 2024 at 12:34:48PM -0500, Rob Herring (Arm) wrote:
-> The Tegra GPIO define is a problem for the magic code which extracts
-> the examples and fixes up the interrupt provider. This was partially
-> worked around by putting #interrupt-cells in the parent. However,
-> that's incomplete and causes a warning when dtc "interrupt_provider"
-> check is enabled. Just drop the Tegra specific define and simplify
-> the example.
+On Wed, Sep 25, 2024 at 12:34:38PM -0500, Rob Herring (Arm) wrote:
+> The Freescale MU-MSI is an MSI provider, not an interrupt provider, so
+> drop the "interrupt-controller" property. This fixes dtc "interrupt_provi=
+der"
+> warning.
 >=20
 > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
+> If this is not correct, then #interrupt-cells needs to be added.
 
-Right, there's no need to have a tegra specific thing here at all, its
-just an example..
+Seems it is correct, per Frank.
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-
->  Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml | 5 +----
->  1 file changed, 1 insertion(+), 4 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml =
-b/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
-> index 89fc9a434d05..0620d82508c1 100644
-> --- a/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
-> +++ b/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
-> @@ -61,18 +61,15 @@ additionalProperties: false
-> =20
->  examples:
->    - |
-> -    #include <dt-bindings/gpio/tegra194-gpio.h>
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      i2c {
->        #address-cells =3D <1>;
->        #size-cells =3D <0>;
-> -      #interrupt-cells =3D <2>;
-> =20
->        typec@8 {
->          compatible =3D "cypress,cypd4226";
->          reg =3D <0x08>;
-> -        interrupt-parent =3D <&gpio_aon>;
-> -        interrupts =3D <TEGRA194_AON_GPIO(BB, 2) IRQ_TYPE_LEVEL_LOW>;
-> +        interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
->          firmware-name =3D "nvidia,jetson-agx-xavier";
->          #address-cells =3D <1>;
->          #size-cells =3D <0>;
-> --=20
-> 2.45.2
->=20
-
---kkMV/3HYf1xN56hr
+--7jj447Zq6p9po9oO
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvWSUgAKCRB4tDGHoIJi
-0k5qAP4iz34mSweP66n+p3/FePwauGkQ0mhw8qmxVpY3UNyJ4gD/XzzJf0H5yNaY
-IENON2ztQeIib7y4j1NZ3mWF4QWIjQs=
-=zFVI
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvWSdAAKCRB4tDGHoIJi
+0iFQAQDfVqdXimRSvdjiD0b2TLlQWPDybzi8qU1cNrVQZ06n6wD8CvCJmt3yptQe
+6kKQrrDDKKAmKStmMLz00bazUo3W9gY=
+=R14F
 -----END PGP SIGNATURE-----
 
---kkMV/3HYf1xN56hr--
+--7jj447Zq6p9po9oO--
 
