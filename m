@@ -1,155 +1,95 @@
-Return-Path: <devicetree+bounces-105703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6169B9878C1
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 19:58:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 307879878C9
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 20:01:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5650B2B2B5
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 17:56:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B6681C208FF
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 18:01:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AADAD15FCE5;
-	Thu, 26 Sep 2024 17:54:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB5EB1509BF;
+	Thu, 26 Sep 2024 18:01:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PN3H9Etl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k+MIckp0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E8151494AC;
-	Thu, 26 Sep 2024 17:54:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73AA01A702;
+	Thu, 26 Sep 2024 18:01:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727373251; cv=none; b=AfJn5Jz/bFNH04zLgSnAZBmEe/4qPp/8VAHVNfQxkNmsAzZkqIXSiHMPtVN/PUpqC/hxXQ0LbAuwlsDap0+sE46z9ZPeqljoJtawo+/U1uPmx7RWP+RV9enu1c9HkJlvDXCJolMraSTvRsB67fXVBjY1c4+Rq1gaemtsHPW5EzY=
+	t=1727373697; cv=none; b=bRn+rk+e4J5QVT0Z4DkWj4u/Ox4UTwY1O4bIot1cYpxrVj/5D/Ry/y9umOHfr+a/CS5jwoKsdRYqaMryKu4K0LomDWHepVlr9MH7UGuKRSxgBCVQM78+ZTbYYOJBuTBUZD1Vw0B2eqvlN9askBijGJO+YpigUvT7gaeoCqxnuwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727373251; c=relaxed/simple;
-	bh=lXPOdfXYiJSIOPk0X98x8wE/c1zTD2p+6mktwIChUvQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MMRIUaBfGFK0U47WGsnuKYklwfkXuvkY40PddeWavL8sK5E3BJ5gxcHt+3ZsOFJe6nigUkpwKyecTvoqyIAEuwdl8RvBs/CkqqdsYYbu5hwGB3iqp7uw+6QPGLzvuncV5FOcAdXu+qV8FbPCbX2nPfihPenAPPsyJHN+MlbX78c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PN3H9Etl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4071C4CEC5;
-	Thu, 26 Sep 2024 17:54:10 +0000 (UTC)
+	s=arc-20240116; t=1727373697; c=relaxed/simple;
+	bh=TFnpVbO9kLbZVjk5/aPheAFT/pdm9LsYlblLnlvukd4=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=b2O88zfZS5FI7yd6OgcVXpTDY6ohxmT8cQj78FHya9Gw8f1X+gxPZQuqXO61eaqo7y87K9Fk4ER5nJsijqXN6Dm4Xu0R9dxdNoUxewzXKe2cGfIpUYhep5lBcrH8r7U/Y9Zwwi622MIknvGZbs7UbTWyuU44+tQ1wFZ0PNBHVus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k+MIckp0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B5E3C4CEC5;
+	Thu, 26 Sep 2024 18:01:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727373251;
-	bh=lXPOdfXYiJSIOPk0X98x8wE/c1zTD2p+6mktwIChUvQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PN3H9EtlobMXbvdAL8DZSVOktwc+8F2pVFoTxbCmf+WKXMxcp6MyHaQledrpLJhvo
-	 8sN9UElr0KicTKG0wJEZm1pVQvJFOtmX4aybnrkpJ/Qb9a0Y8gnnKDaQVH2CgBtFH+
-	 k1r0ST6uwj3gtmhHXxffEefApV23sS+XTmFv3k1RokhidAXtIjA1AjZKiqBFoeoOzf
-	 ZsDbj9VUwa8nNx3wfJawSbJzSaWpCCj3iLEc/dA3+7O8FBxkllH7x9VScC2EAzZM3f
-	 W7JW5RmfHCGB+xRqGrB7FWIiSOYPoRH1bcXR6b7LRW01SV3KOq28FyYRNk1pZKZgDh
-	 sDHAqWFwm1HsQ==
-Date: Thu, 26 Sep 2024 12:54:09 -0500
-From: Rob Herring <robh@kernel.org>
-To: Andy-ld Lu <andy-ld.lu@mediatek.com>
-Cc: ulf.hansson@linaro.org, krzk+dt@kernel.org, matthias.bgg@gmail.com,
-	wenbin.mei@mediatek.com, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/2] dt-bindings: mmc: mtk-sd: Add support for MT8196
-Message-ID: <20240926175409.GA2644361-robh@kernel.org>
-References: <20240926070405.20212-1-andy-ld.lu@mediatek.com>
- <20240926070405.20212-3-andy-ld.lu@mediatek.com>
+	s=k20201202; t=1727373697;
+	bh=TFnpVbO9kLbZVjk5/aPheAFT/pdm9LsYlblLnlvukd4=;
+	h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+	b=k+MIckp0OA2ob5Uw6EWhQ7SBvfgK61kQpbilpRv4C6pVk3+MlPH6JKk7MBXZy+txJ
+	 a+1Z3J+4eUFPyGkIsoZTPcWXFfIuotv4XiOfG/uTVW8C+0o+qvJKGmmmYveIJ6tnCZ
+	 T2bKjYJWCBZzL7cCrHLUDave7spmmI2XzIzvQvkm+sz92bkuBga8WXsxFGV1VZdT04
+	 1ffWhU01sVlOneCtvNP9pVD5T8wB8dzqAqntdrbhhi7NPeUxSa02IN6ZZRPncKvHwC
+	 Q3s4YaMWu3WTQx7ThqzYI6e2IgrG9fwnYEiIH7PNmFRUSxwM0MpSry/3MzmGMuUNZa
+	 AqaibjRkutFbA==
+Date: Thu, 26 Sep 2024 20:01:34 +0200 (CEST)
+From: Jiri Kosina <jikos@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
+    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+    Conor Dooley <conor+dt@kernel.org>, 
+    Benjamin Tissoires <bentiss@kernel.org>, 
+    Charles Wang <charles.goodix@gmail.com>, linux-input@vger.kernel.org, 
+    devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: input: Revert "dt-bindings: input:
+ Goodix SPI HID Touchscreen"
+In-Reply-To: <nycvar.YFH.7.76.2409252306420.31206@cbobk.fhfr.pm>
+Message-ID: <nycvar.YFH.7.76.2409262001220.31206@cbobk.fhfr.pm>
+References: <20240925194921.18933-1-krzysztof.kozlowski@linaro.org> <20240925194921.18933-2-krzysztof.kozlowski@linaro.org> <nycvar.YFH.7.76.2409252306420.31206@cbobk.fhfr.pm>
+User-Agent: Alpine 2.21 (LSU 202 2017-01-01)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240926070405.20212-3-andy-ld.lu@mediatek.com>
+Content-Type: text/plain; charset=US-ASCII
 
-On Thu, Sep 26, 2024 at 03:03:18PM +0800, Andy-ld Lu wrote:
-> Extend the devicetree bindings to include the MT8196 mmc controller
-> by adding the compatible string 'mediatek,msdc-v2', which could be
-> also used for future compatible SoCs that support new tx/rx.
+On Wed, 25 Sep 2024, Jiri Kosina wrote:
 
-Generally, every SoC ends up changing at least slightly. So we don't do 
-version numbers except when there's a well defined versioning scheme of 
-the h/w (e.g. FPGA IP blocks). So, use SoC for compatible string.
-
+> > This reverts commit 9184b17fbc23 ("dt-bindings: input: Goodix SPI HID
+> > Touchscreen") because it duplicates existing binding leadings to errors:
+> > 
+> >   goodix,gt7986u.example.dtb:
+> >   touchscreen@0: compatible: 'oneOf' conditional failed, one must be fixed:
+> >         ['goodix,gt7986u'] is too short
+> >         'goodix,gt7375p' was expected
+> > 
+> > This was reported on mailing list on 6th of September, but no reaction
+> > happened from contributor or maintainer to fix it.
+> > 
+> > Therefore let's drop binding which breaks and duplicates existing one.
+> > 
+> > Fixes: 9184b17fbc23 ("dt-bindings: input: Goodix SPI HID Touchscreen")
+> > Reported-by: Rob Herring <robh@kernel.org>
+> > Closes: https://lore.kernel.org/all/CAL_Jsq+QfTtRj_JCqXzktQ49H8VUnztVuaBjvvkg3fwEHniUHw@mail.gmail.com/
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Add three properties for MT8196 settings:
-> - 'mediatek,prohibit-gate-cg', indicate if the source clock CG could
->   be disabled when CPU access IP registers.
-> 
-> - 'mediatek,stop-dly-sel', configure read data clock stops at block gap.
-> 
-> - 'mediatek,pop-en-cnt', configure the margins of write and read
->   pointers while begin to pop data transfer.
-> 
-> Signed-off-by: Andy-ld Lu <andy-ld.lu@mediatek.com>
-> ---
->  .../devicetree/bindings/mmc/mtk-sd.yaml       | 26 +++++++++++++++++++
->  1 file changed, 26 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> index c532ec92d2d9..82d1a9fac67c 100644
-> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> @@ -25,6 +25,7 @@ properties:
->            - mediatek,mt8173-mmc
->            - mediatek,mt8183-mmc
->            - mediatek,mt8516-mmc
-> +          - mediatek,msdc-v2
->        - items:
->            - const: mediatek,mt7623-mmc
->            - const: mediatek,mt2701-mmc
-> @@ -154,6 +155,30 @@ properties:
->      enum: [32, 64]
->      default: 32
->  
-> +  mediatek,stop-dly-sel:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Some SoCs need to set appropriate stop-dly-sel to configure read data clock
-> +      stops at block gap. The valid range is from 0 to 0xf.
+> I've applied both patches now and will expedite them to Linus.
 
-SoC dependent or board dependent? Imply from the compatible for the 
-former. A property is fine for the latter case.
+Both are now in Linus' tree.
 
-> +    minimum: 0
-> +    maximum: 0xf
-> +
-> +  mediatek,pop-en-cnt:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Some SoCs need to set appropriate pop-en-cnt to configure the margins of write
-> +      and read pointers while begin to pop data transfer. The valid range is from 0
-> +      to 0xf.
-> +    minimum: 0
-> +    maximum: 0xf
+-- 
+Jiri Kosina
+SUSE Labs
 
-Same question.
-
-> +
-> +  mediatek,prohibit-gate-cg:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      Decide if source clock CG could be disabled when CPU access IP registers.
-> +      If present, source clock CG could not be disabled.
-> +      If not present, source clock CG could be disabled.
-
-
-Sounds like you need to describe the clock in "clocks".
-
-> +
->    resets:
->      maxItems: 1
->  
-> @@ -191,6 +216,7 @@ allOf:
->              - mediatek,mt8188-mmc
->              - mediatek,mt8195-mmc
->              - mediatek,mt8516-mmc
-> +            - mediatek,msdc-v2
->      then:
->        properties:
->          clocks:
-> -- 
-> 2.46.0
-> 
 
