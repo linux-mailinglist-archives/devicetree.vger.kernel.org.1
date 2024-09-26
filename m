@@ -1,357 +1,209 @@
-Return-Path: <devicetree+bounces-105738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C5D3987B77
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 01:03:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9EA3987B91
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 01:18:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D3EAF1F22CFF
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 23:03:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BA8D286223
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 23:18:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0ADE183CAF;
-	Thu, 26 Sep 2024 23:02:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B590018595C;
+	Thu, 26 Sep 2024 23:18:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="BRjO8ktC"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="kLxOFeYI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011045.outbound.protection.outlook.com [52.101.125.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1389A282FA
-	for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 23:02:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727391776; cv=none; b=RXEASa+8BvWnv5KCyllIhDtVPWztm2bKMKWCDClYYHrHI9djJkqJOVeNyNYqiA00hHD7r8dBz/YyTBgSIKUOf1YKTGZb8RfEzfOK/EEp90j4j8iMyxNuAl8DS+LdoDzU57wVUQSM+CsIOeOQwYeOvSXua/oGkHhcvb6ayWHxkYA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727391776; c=relaxed/simple;
-	bh=oM59e6kr162a9a2uhU9XEojF6kxpM2IMYzqPQD7xs5E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gYRIUxQTCtGPQOsCEDOg9ciqSSdcbJkFz1T88oyiQHU9h2eyMwlY26dud4gV5w8SY6ZWl4ButJzN2BwnCB8yi4I7ajh9ovpil1FUOuZZGKBkEetb8gxASxjFDWPQZOQ+bPVzGiwZylnS1aeJUj5UiCUARcTwAXAjbI8rUoaEMMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=BRjO8ktC; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6e214c3d045so14333137b3.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 16:02:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1727391774; x=1727996574; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l++ZOmowKHw8XyXDDkEXLL9vXkRtvvkj5VB0cxq2xZk=;
-        b=BRjO8ktCpKV8OvePNZ1Tfm1I++mMCuzU1v5CNoGXFx0SFtdDifOlcZcEcRFvK/rJ4V
-         YHiIbJh+RLDbsrhneDY64cMmOHA10co5Bs9fQkmFsDk9kyRVhyqwyA77dTFDXC4ovqq6
-         2fa4vDpp3BPK1IZTb4muG8TWHpjCdiAcdEMog=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727391774; x=1727996574;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l++ZOmowKHw8XyXDDkEXLL9vXkRtvvkj5VB0cxq2xZk=;
-        b=CnGZWIqCv9vReQwbZSONRZZLdQ0UYtxuHBck3JUHCSm4133USjOUDQyCyFi1SA590r
-         58MS/bAognVSjRSpnkeKuFBLrGQhmdhNzIbg9JzZ7K7IwGVQrIcM/3T2vmhiO1eRCcQm
-         HeAC9Do8qKOlzvAtqEj2s7Xs/WMfjAPe9UHCvlz6BD3t+mCE5hwdATBWF3tn/fzHJkmP
-         JSLSbre/kYPrivtwcVsOe/U3yz+uKOEU70n/ohtU8Vs2xUBGgYKhgi/5H/eUootwdWxb
-         vSP2s3iKo4xg8VXs38YB6Tlxm7AznxFoIrr4afqjODjx5b91hLSoGhbgT5icazSnVFvD
-         eomw==
-X-Forwarded-Encrypted: i=1; AJvYcCWI6zJPa/Y/LJJlelFfL6ghd1mcfMn+7pgYIUtRzzm+2NcaCmW8romHvZg9LBdOvMWjZQCbfprG3jNu@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLeNyHZEHJXKjfZaabN1pVf7gTd+Mr8peszbmoksquwt6YGbd1
-	5/W1Jcs9HCkrF4rjs5SUaYUtXkEo5FjzbqD6i1wjwu4D1u7eEfuM0VovqaBvG8QY2VcQqwxOH18
-	qkLgX/yiBrU7NTx8Lqc7vPF5Rm358Q9iS5N6h
-X-Google-Smtp-Source: AGHT+IHvR0iPjqZka/TBZbcQc4sKK1GUE3B8UbLiK9wUGx6AXR3PAOEAsvGzErlfJJhebhQbh6Ajaz7zXKrEw/n/UGk=
-X-Received: by 2002:a05:690c:6303:b0:6b0:52a6:6515 with SMTP id
- 00721157ae682-6e2474d1f72mr12375437b3.6.1727391773882; Thu, 26 Sep 2024
- 16:02:53 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5C28157A41;
+	Thu, 26 Sep 2024 23:18:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727392725; cv=fail; b=dzuqLVvBvsVdPwRDKv3bj/4UbLhdhYhDr/ykpIV52P9WrciPJCux8dlNuDThw1Qb6MyxGk0WhkpEsDgLuSi847HzmgXHwIweYiNsVgcXuTbKH8PcjlNOCk0h39dSgaAosyA94WVk+TPIWZTAFnj/pB+ImPXpNhcygpvK8o1O+Uc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727392725; c=relaxed/simple;
+	bh=Fbf9Ral9zF+M3P8TQEH7L6Nvv1PC3diL8v30/MBKMOg=;
+	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 Date:MIME-Version; b=qsDpZUFFM2MiSmKuCdeSLby/wYvT8jqBaWaSL8Z1soRuXHlxPRUo8oSVwKRFqEdk1H3ebaSUMduHwl7w8HR7sOEEED2kd9hfyW/Vt6SCuKpdyobM27B22PD24vHy1fbiDMmhxWvZY2Z4VW7ZC1pnGu07SEh5qDm8Mu0C68K9Y+w=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=kLxOFeYI; arc=fail smtp.client-ip=52.101.125.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HAS14i+NQkF6pF444DORt6aamuoM0HUemhh86U5d9Omib8htj4+hi9Tk7Rq/p59gBhNlmLxicZ8REaMsvvlQ4XwU9nYs4TmqAGOKliVeZOkH/6VEUgcn2QFgheI61IWZc+UDzZWJNkQa5jiSuznXuPhCez+WejYnxBOmnR1wl75iNWkKsr4uUY7hAECL2+rQP1NeUslPR4F3067gymBaluUp5taiqk1WYvM//6mf2M+dnxy3HpTbXVS0BVIzZaRxlyNGKUeAmtrOxCn9TIYLWsX/7OIwIRjY0j9QdoSAaBdluQFBVIrj1IEYqxZLU8zMHFiEdcEsFHIdYOymAtV4dA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5ZFE90K4gQt1SSjwF3C6g470VsBNDwFUI4ygQv9Wl/s=;
+ b=GBDReIgcjGzc4l7bg2dJImy82W49e2L5AfdzW+gqiB3AdTpIVRQmS4DTIWXW+V8USYXEDsBKnq1J6X/l1VcJmykbGaFiZaxeLiuaCYfXhuSqlhP9f21Kz6lDfj6vwU2YMS3MQQPd+y7LhH7KONgWlb2kR3opFHq1AAx2T/PHWlCmhwf9XgfPn4QMVg+PI6e9A5+4TFv+iENllX4+AcxxysRfTYCOQ4YD4p3UUvOqKSq0lWDeeky7WJj65GuNeLtcFScMYxfC41QK/35eMicTaQ7TxXhDtCjeMNpYZFxXO2qVEjurPUOcbtpMNxz7LDhz+xijJdVxj5Z/UF2psElKnw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5ZFE90K4gQt1SSjwF3C6g470VsBNDwFUI4ygQv9Wl/s=;
+ b=kLxOFeYIkbIgZQyBRY4Ef0R0BBdOrfiYUV17SuDgjKup/gpbQueT7WNQcRl1KwVC0YHnSQP5T4FLzg90KQm/ktJ93mTZsrJMai5EeEG9BQqDnxuVeVDaDqmZ/HnyIW+2fE5+UHoew1jj4i2Dr2dgbK948yRwcpJt5kWv+k7pBIo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by TY3PR01MB10236.jpnprd01.prod.outlook.com
+ (2603:1096:400:1da::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.21; Thu, 26 Sep
+ 2024 23:18:39 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.8005.017; Thu, 26 Sep 2024
+ 23:18:39 +0000
+Message-ID: <87ploq0zso.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] ASoC: dt-bindings: renesas,rsnd: correct reg-names for R-Car Gen1
+In-Reply-To: <20240926113241.24060-2-wsa+renesas@sang-engineering.com>
+References: <20240926113241.24060-2-wsa+renesas@sang-engineering.com>
+User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Thu, 26 Sep 2024 23:18:38 +0000
+X-ClientProxiedBy: TYBP286CA0030.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:404:10a::18) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240925080353.2362879-1-jakiela@google.com> <20240925080353.2362879-2-jakiela@google.com>
- <bbf023c7-f08b-4f9d-8770-08e63074fb4c@collabora.com>
-In-Reply-To: <bbf023c7-f08b-4f9d-8770-08e63074fb4c@collabora.com>
-From: Hsin-Yi Wang <hsinyi@chromium.org>
-Date: Thu, 26 Sep 2024 16:02:27 -0700
-Message-ID: <CAJMQK-g4BdJPPU59s4X3yuAU+Gy-hTm9bCnSHFfDEbtKv6Xr1A@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: mediate: Introduce MT8186
- Chinchou/Chinchou360 Chromebooks
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: =?UTF-8?Q?Albert_Jakie=C5=82a?= <jakiela@google.com>, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
-	wenst@chromium.org, rafal@milecki.pl, nfraprado@collabora.com, 
-	macpaul.lin@mediatek.com, sean.wang@mediatek.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TY3PR01MB10236:EE_
+X-MS-Office365-Filtering-Correlation-Id: ccd5c08a-b96b-4691-8bfa-08dcde818dbe
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|1800799024|52116014|7416014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?uF9N59Kaq207PRnAOP0rNxrKGC8wPBDSuvY7uMQ1yHGqbSSkhVDD+fwY5swQ?=
+ =?us-ascii?Q?NTUePsxHFKE8B5MFxOlPSNShDMXWwAYqrZT5rY9VTARSfwDWLf21P0HeXpyU?=
+ =?us-ascii?Q?SNPl5vclxDmcG54ABqkjMFaWBKYNSvuT4mfV4LdjnJgpSKk6jcEhcDfmhdDs?=
+ =?us-ascii?Q?qH4U+49eKQeVmwF/bdK63TyZE3eJNT7WgRZkM77aSp39kTRaeC3a0sigB1j4?=
+ =?us-ascii?Q?o6Z6TQdqrQq5TW+OZanSeGAChV1avgnFmVkaXoeV3kRguU5TxRWrWTgXT5Iz?=
+ =?us-ascii?Q?G8ISSAoiimksniHgzy8DUOKe/XG50jD7+pb1t1OH630d7w8XbxqvcDQ/nN10?=
+ =?us-ascii?Q?QwWYGAkWmm4MFZa0m06MINp9HD0gN8TzeBKsb6UcF5XILQZPQ5PjtXzaDHWv?=
+ =?us-ascii?Q?U0v4N2+oNk113Avs1tFIZdl2WtzNQsqFk2wuRdQ2/qWEJaC0Yz6wqGkpZaaK?=
+ =?us-ascii?Q?H56y7EOsIZsCjFWpct9hGPrwYqqhAUhS87fcjFN7epaMNYJY7xuwzci9ZLdf?=
+ =?us-ascii?Q?SOCtq+D8HGjg5oUX/vG1hrMFvhdr7x+eqXWbzEwN28elY/Qf36NYX/CdZVzb?=
+ =?us-ascii?Q?UN4/6YbHcfdCFAKh8J3bPOLsfhMP/6s/tNUU+C463GTp93/qQa6D+hBnbfUC?=
+ =?us-ascii?Q?ff0Va+jVDmoloCyx0mRn6FPvgTaX4sChYIPkztkxa8nXjQ5TlWNjOyU159nb?=
+ =?us-ascii?Q?05UKo31ksFlW1Dk/uBkFaM2czgBlYDor7WGtj625omjBCrs90qmphpD3ivSI?=
+ =?us-ascii?Q?yMOFABAw/yaXsnXxbRre2QSFzIpOvciHclbI/CuUEbWH5VZSS2S0a6sx5pIk?=
+ =?us-ascii?Q?i18ItN8cBXO7ARaI/AZ94yvaGQ6wA1RCfzoFpEc9rP82eE2vMoKN6NHUfX6h?=
+ =?us-ascii?Q?eVu0ON+sMZLmvRrUWvGHWjLqExJvHbcnH929yFxJqoYxyGS/3b2ZWSPhza0d?=
+ =?us-ascii?Q?BaDZSI1gZF0mSkFokb2dfDR7oxsDQdA6Yb3EqeFQqqK9q5zil1GMOoAIuaeP?=
+ =?us-ascii?Q?oB7NQe7ZLvYRlLs1LzU63SAQE3nh7J3vUfFqyIDLCS6araiqEG635ZIfAYze?=
+ =?us-ascii?Q?MiIEDi1S2p3VpGm+ukCne9v2bRSL1hoXjy+pyhbrcJXTZm/e+eLxJr0o9FOG?=
+ =?us-ascii?Q?kFfi8mb+cucNVMTnmrxgXNZhO5VOL1FFFnpZZeJ1XJlwrLd4av7kNO8U8tK9?=
+ =?us-ascii?Q?Zv7VoJbKh2ksgt0SAlk8yFfL426sP+1IMREUH2kAB+1iDwI+lNbrVgiMLblJ?=
+ =?us-ascii?Q?8FIW84bzYWttKV/W7E110nZ6po3MKOLsiGl+I+NKt6cqypNXyYLJa+6U+qa2?=
+ =?us-ascii?Q?waqswj8DLxJ7DP7TiGuwbsTB8iviV/RWpUaJFdti2CyZgg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?P76CGLqRkUsRw11lPd7n8ymVLqLLvMljxLPZP2UGezYi9NW89ixPXWsfDcoO?=
+ =?us-ascii?Q?nOw9bsW1yHXvWwwOpvNfHMq+8YKZgcXEmm/z5p+FMKDwNmZbSxj0lLn58Zyk?=
+ =?us-ascii?Q?MMjUKBB82hPg2MC0ZnKZzMXKM84yAsURosGz8KyRVL6bZJR7sh6SU7XU+Pbd?=
+ =?us-ascii?Q?DRdYUTTKi83xclVDuS1Q8rqZD6WlIeWPRn+J2e9fMp8zIh8OUprJ2K0dTyM9?=
+ =?us-ascii?Q?t3W8jLdMs6WlDLol8vvnV79BA7UG7Vey2+ye8OsK4fpiYCVMIL/cOjbzxNNB?=
+ =?us-ascii?Q?GJQKST7HxJAXvebmARkva+bOxsEn6pPlFcSJGWxoEC5uRO+PA1H/GKJxVRm1?=
+ =?us-ascii?Q?hKKJ1amPiZMsOm30EdKPpfaPlAoQjzNNNKFUIq/S4Oh9JCD4k+jm/qz5/LZz?=
+ =?us-ascii?Q?Rk1o5k+9TcjUGVnS+8Kd7+HiAGcNKpDp/CdlpVvsSbYyvc9qTO8AUx4sPsqZ?=
+ =?us-ascii?Q?y8cu0QkavcZMU+57SXllsyi//cC4M92nCm1IncyZHXY6VzVWX39AojCd/qIE?=
+ =?us-ascii?Q?oJU3Qwzja2PZC3XFnpT4oIX3COSMX8ZFdGbKFK4yG2XaISuKcVz1T9syZjmj?=
+ =?us-ascii?Q?FBrBxLiMmKFCOHbO3ZF2mJLLnITATu7BHvCX1E8X8S8Bc5HXJrgdsMuFXXOO?=
+ =?us-ascii?Q?oVbVebqtM936XI6MQYNmSCJOoUH6CG8lxsHhJ/7cBa+vWfVHrCChihFpTrth?=
+ =?us-ascii?Q?Lq22gNA9Re0Uxyq35g1Fwu2wXuBa0APtPlg6sru4mZhqL9I8gJYMPiLdlHb7?=
+ =?us-ascii?Q?U6OQoKdXzSSLhXtCbjusd/yCII+aluDGCVh1qSaCM6J201GyQ3txk3azcxFf?=
+ =?us-ascii?Q?Rs0JvheOc66Jw2i9FTEbvryjru4zR8uapV3p4NjVo/SxqO6dNdIq8kAQVZe2?=
+ =?us-ascii?Q?W5/xTXgKccfjCz8++nl29/a5wvK0zjM7VyFt5gg4J3ZQ32gdVq/SB0fjTDOz?=
+ =?us-ascii?Q?T2r5TL3Z357wsdnvQZ6CdI0TtGEGdJFlJ78Ri5yyGiT+hKPM/awE6/KKkuJ5?=
+ =?us-ascii?Q?RZsjlylX9hbAJRuLzJz39h9ufYHD7doekT0Lr3tFRQj8ys4Zvr6wG18AZY6y?=
+ =?us-ascii?Q?EJ6ciT9K+/gaIpxJVZCGBJCe9jEgkvO4s7xOv+Ajm5rnNl4zS7zN1m+Yct/r?=
+ =?us-ascii?Q?bN319wKJUm0cWSVBxvKGPJjBsk2SkEOgNChsw38aWkoXOCeirZVrxAkvFQPw?=
+ =?us-ascii?Q?XnPNBP63ReH9LbwIMFqAAWJGK5HH5B906ffcV3Z/bYy6yIeRDpEnqBGudTja?=
+ =?us-ascii?Q?EDoJ4PkmabpoMgeQHNsBiKWEHf7fDr7r/BCl59TD0AUtCaMotdquA+J9aAki?=
+ =?us-ascii?Q?/1Xl8vA8vgY4eGtehuxbldWWqc53sGGXPaXTIDcJ1yQN3clp+mjXRTg79kcR?=
+ =?us-ascii?Q?iTwZfQxo/S+4v6BqveZmOUadfgYp4nIRddT3VMvwKNenBepx28Jvna4RpXae?=
+ =?us-ascii?Q?Dr9H5DZwK04QcIuEW+KmvAlCCnVTZWSWCBOvMXaiCS/ZOD91TnHbcxZelvbM?=
+ =?us-ascii?Q?TEUadevemB4J192taHGlC28wNqX94ylUz4MA8lnKe5/yXBusP8Z0dZicsakm?=
+ =?us-ascii?Q?NJKBqdpfbH8DUvigG7jjCOghTn7DNPexZysMZjhrALpHgM6kJY2734Gzqtrq?=
+ =?us-ascii?Q?TZCo2VFvWXFaiNuWGpcInQw=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ccd5c08a-b96b-4691-8bfa-08dcde818dbe
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2024 23:18:39.0922
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: weavhfTe/jdJcM5EBsJSkEfqF5uWZGP0L3MKaAsRLTcW+2iic7LOKALuGVOmpgpJLGvMfsjmCL/biVVlUBOKCTiTYvWLQbFJfQgnq6D0yN+uGzrumPwPIZ+y+M3kisr0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3PR01MB10236
 
-On Thu, Sep 26, 2024 at 2:27=E2=80=AFAM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 25/09/24 10:03, Albert Jakie=C5=82a ha scritto:
-> > The MT8186 Chinchou/Chinchou360, also known as the Asus Chromebook
-> > CZ12/CZ11 Flip, is a clamshell or convertible device with touchscreen,
-> > stylus and extra buttons.
-> >
-> > Signed-off-by: Albert Jakie=C5=82a <jakiela@google.com>
-> > ---
-> >   arch/arm64/boot/dts/mediatek/Makefile         |   3 +
-> >   .../mediatek/mt8186-corsola-chinchou-sku0.dts |  18 +
-> >   .../mediatek/mt8186-corsola-chinchou-sku1.dts |  34 ++
-> >   .../mt8186-corsola-chinchou-sku16.dts         |  28 ++
-> >   .../dts/mediatek/mt8186-corsola-chinchou.dtsi | 445 +++++++++++++++++=
-+
-> >   5 files changed, 528 insertions(+)
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-chinch=
-ou-sku0.dts
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-chinch=
-ou-sku1.dts
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-chinch=
-ou-sku16.dts
-> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-chinch=
-ou.dtsi
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dt=
-s/mediatek/Makefile
-> > index 8fd7b2bb7a15..0db7770e8907 100644
-> > --- a/arch/arm64/boot/dts/mediatek/Makefile
-> > +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> > @@ -55,6 +55,9 @@ dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-kukui-kodama-=
-sku32.dtb
-> >   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-kukui-krane-sku0.dtb
-> >   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-kukui-krane-sku176.dtb
-> >   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-pumpkin.dtb
-> > +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8186-corsola-chinchou-sku0.dtb
-> > +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8186-corsola-chinchou-sku1.dtb
-> > +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8186-corsola-chinchou-sku16.dtb
-> >   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8186-corsola-magneton-sku393216.dt=
-b
-> >   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8186-corsola-magneton-sku393217.dt=
-b
-> >   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8186-corsola-magneton-sku393218.dt=
-b
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku0.=
-dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku0.dts
-> > new file mode 100644
-> > index 000000000000..29dd92318da1
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku0.dts
-> > @@ -0,0 +1,18 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +/*
-> > + * Copyright 2023 Google LLC
-> > + */
-> > +
-> > +/dts-v1/;
-> > +#include "mt8186-corsola-chinchou.dtsi"
-> > +
-> > +/ {
-> > +     model =3D "Google chinchou sku0 board";
-> > +     compatible =3D "google,chinchou-sku0", "google,chinchou-sku2",
-> > +                     "google,chinchou-sku4", "google,chinchou-sku5",
-> > +                     "google,chinchou", "mediatek,mt8186";
-> > +};
-> > +
-> > +&gpio_keys {
-> > +     status =3D "disabled";
-> > +};
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku1.=
-dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku1.dts
-> > new file mode 100644
-> > index 000000000000..8ba31f81d9ad
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku1.dts
-> > @@ -0,0 +1,34 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +/*
-> > + * Copyright 2023 Google LLC
-> > + */
-> > +
-> > +/dts-v1/;
-> > +#include "mt8186-corsola-chinchou.dtsi"
-> > +
-> > +/ {
-> > +     model =3D "Google chinchou sku1/sku17 board";
-> > +     compatible =3D "google,chinchou-sku1", "google,chinchou-sku17",
-> > +                     "google,chinchou-sku3", "google,chinchou-sku6",
-> > +                     "google,chinchou-sku7", "google,chinchou-sku20",
-> > +                     "google,chinchou-sku22", "google,chinchou-sku23",
-> > +                     "mediatek,mt8186";
-> > +};
-> > +
-> > +&i2c1 {
-> > +     i2c-scl-internal-delay-ns =3D <10000>;
-> > +
-> > +     touchscreen: touchscreen@41 {
-> > +             compatible =3D "ilitek,ili2901";
-> > +             reg =3D <0x41>;
-> > +             interrupts-extended =3D <&pio 12 IRQ_TYPE_LEVEL_LOW>;
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&touchscreen_pins>;
-> > +             reset-gpios =3D <&pio 60 GPIO_ACTIVE_LOW>;
-> > +             vccio-supply =3D <&pp1800_tchscr_report_disable>;
-> > +     };
-> > +};
-> > +
-> > +&gpio_keys {
-> > +     status =3D "disabled";
-> > +};
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku16=
-.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku16.dts
-> > new file mode 100644
-> > index 000000000000..d3378d7ad096
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku16.dts
-> > @@ -0,0 +1,28 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +/*
-> > + * Copyright 2023 Google LLC
-> > + */
-> > +
-> > +/dts-v1/;
-> > +#include "mt8186-corsola-chinchou.dtsi"
-> > +
-> > +/ {
-> > +     model =3D "Google chinchou sku16/sku2147483647 board";
-> > +     compatible =3D "google,chinchou-sku16", "google,chinchou-sku18",
-> > +                     "google,chinchou-sku19", "google,chinchou-sku21",
-> > +                     "google,chinchou-sku2147483647", "mediatek,mt8186=
-";
-> > +};
-> > +
-> > +&i2c1 {
-> > +     i2c-scl-internal-delay-ns =3D <10000>;
-> > +
-> > +     touchscreen: touchscreen@41 {
-> > +             compatible =3D "ilitek,ili2901";
-> > +             reg =3D <0x41>;
-> > +             interrupts-extended =3D <&pio 12 IRQ_TYPE_LEVEL_LOW>;
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&touchscreen_pins>;
-> > +             reset-gpios =3D <&pio 60 GPIO_ACTIVE_LOW>;
-> > +             vccio-supply =3D <&pp1800_tchscr_report_disable>;
-> > +     };
-> > +};
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou.dtsi =
-b/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou.dtsi
-> > new file mode 100644
-> > index 000000000000..c77cc43f8442
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou.dtsi
->
-> ..snip..
->
-> > +
-> > +&mmc1_pins_default {
-> > +     pins-clk {
-> > +             drive-strength =3D <MTK_DRIVE_8mA>;
->
-> Please stop using the meaningless MTK_DRIVE_(x)mA macro.
->
-> drive-strength =3D <8>; is enough :-)
->
-> Cheers,
-> Angelo
->
-> > +     };
-> > +
-> > +     pins-cmd-dat {
-> > +             drive-strength =3D <MTK_DRIVE_8mA>;
-> > +     };
-> > +};
-> > +
-> > +&mmc1_pins_uhs {
-> > +     pins-clk {
-> > +             drive-strength =3D <MTK_DRIVE_8mA>;
-> > +     };
-> > +
-> > +     pins-cmd-dat {
-> > +             drive-strength =3D <MTK_DRIVE_8mA>;
-> > +     };
-> > +};
-> > +
-> > +&sound {
-> > +     status =3D "okay";
-> > +
-> > +     compatible =3D "mediatek,mt8186-mt6366-rt5650-sound";
->
-> You don't need to change this compatible, as the only thing that changes =
-in the
-> actual driver are the dapm_routes. I implemented support for that nice da=
-i-link
-> (standard, kind of) graph so that we stop getting a thousand compatibles =
-for no
-> reason other than routing :-)
->
-> This should work with (99.9% confident it will, but please test):
->
->         model =3D "mt8186_rt5650";
->         status =3D "okay";
->
-> > +     mediatek,adsp =3D <&adsp>;
->
-> This property is already set in the node that you're inheriting from
-> mt8186-corsola.dtsi, please drop.
->
-> > +
-> > +     audio-routing =3D
-> > +             "Headphone", "HPOL",
-> > +             "Headphone", "HPOR",
-> > +             "HDMI1", "TX";
-> > +
-> > +     hs-playback-dai-link {
-> > +             codec {
-> > +                     sound-dai =3D <&rt5650>;
-> > +             };
-> > +     };
-> > +
-> > +     hs-capture-dai-link {
-> > +             codec {
-> > +                     sound-dai =3D <&rt5650>;
-> > +             };
-> > +     };
-> > +
-> > +     spk-share-dai-link {
-> > +     };
->
-> Empty nodes are meaningless (and you're inheriting this dai link from
-> mt8186-corsola.dtsi as well). Drop.
->
-> > +
-> > +     spk-hdmi-playback-dai-link {
-> > +             codec {
-> > +                     sound-dai =3D <&it6505dptx>;
-> > +             };
-> > +     };
-> > +};
-> > +
-> > +&wifi_enable_pin {
-> > +     pins-wifi-enable {
-> > +             pinmux =3D <PINMUX_GPIO51__FUNC_GPIO51>;
-> > +     };
-> > +};
-> > +
-> > +&wifi_pwrseq {
-> > +     reset-gpios =3D <&pio 51 GPIO_ACTIVE_LOW>;
-> > +};
-> > +
->
-> ..snip..
->
-> > +
-> > +&pen_insert {
-> > +     wakeup-event-action =3D <EV_ACT_ANY>;
->
-> Why is this set to EV_ACT_ANY on Chinchou but not on the other Corsola de=
-vices?
-> Is there any specific reason?
 
-Default it's set to EV_ACT_DEASSERTED. Some OEMs want to wake up on
-both assert and deassert.
+Hi Wolfram
 
->
-> Cheers,
-> Angelo
->
+> The device at 0xffd90000 is named SRU, both in the datasheet and SoC
+> DTSI. Fix the typo in the bindings to avoid the false positive report:
+> 
+>   sound@ffd90000: reg-names:0: 'sru' is not one of ['scu', 'ssi', 'adg']
+> 
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+>  Documentation/devicetree/bindings/sound/renesas,rsnd.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> index 3bc93c59535e..6d0d1514cd42 100644
+> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> @@ -302,7 +302,7 @@ allOf:
+>          reg-names:
+>            items:
+>              enum:
+> -              - scu
+> +              - sru
+>                - ssi
+>                - adg
+>    # for Gen2/Gen3
+
+Thank you the patch.
+
+"sru" is old naming which was used for Gen1 only. It is called as "scu"
+after Gen2, and driver is assuming it.
+But sound driver doesn't support SRU(SCU) for Gen1, but this setting was
+needed because driver get resource by using ID (this was needed to for
+Gen2/Gen3 compatibility).
+
+Around Gen4 support, driver gets resource by using "reg-names", "sru"
+setting itself is no longer needed on SoC DTSI, but fixup Doc side is
+good idea.
+
+Acked-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+
+Thank you for your help !!
+
+Best regards
+---
+Kuninori Morimoto
 
