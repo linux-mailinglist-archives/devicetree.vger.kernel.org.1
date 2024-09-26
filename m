@@ -1,82 +1,109 @@
-Return-Path: <devicetree+bounces-105459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4C61986CAC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 08:41:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6EC5986CE1
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 08:50:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C1721F230EA
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 06:41:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A0491C224B4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 06:50:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A469188A16;
-	Thu, 26 Sep 2024 06:40:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CF2618E35C;
+	Thu, 26 Sep 2024 06:49:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G9YMxSAu"
+	dkim=pass (1024-bit key) header.d=maquefel.me header.i=@maquefel.me header.b="BlvMWbVT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from forward501b.mail.yandex.net (forward501b.mail.yandex.net [178.154.239.145])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB3351AAC4;
-	Thu, 26 Sep 2024 06:40:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B64C18DF92;
+	Thu, 26 Sep 2024 06:49:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.145
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727332856; cv=none; b=tMvzVFkht1UE9i+fHmAKA7gpTYo2dT2xSOkbJrJQiEJir3klPNamm5ay2W3WxhN2X+qCGU3WkkJQRa1icay+QZQJEgJlJUacnAkpz3eWPvkFmgjVK6HK6vQnX2ePeE6bj9mvI/n1Pgg7IXl7Wb1ouJIxuRfw8ImGCiaDLF2y63I=
+	t=1727333381; cv=none; b=YtTQsDI1x4xSXZ4OOmVXmLkusLwudTBwujGaxJZgf2LTzeY/WlVWwoYgiFyUs2wSPnVVQu+YMAKPx8TnaFNWc40OTG2eAb9D43FBuJlddP5jG84KIwyKHvVuXynxXcw8W6gkjjKyv3eLT3oW+EVDHNa8Bv1AN1ZS+Fxp39sPai4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727332856; c=relaxed/simple;
-	bh=SbNFfNGwz76DV7PUYKZJ2oHIFY3WANEOgbwiTTyYNvA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g07L2/E8YuEmx9PO4ucCIBupTrkuvtb/6ds5d7dg+IkHJ9Egf7rx6ZIyEEFkI//xzeccZZ+m7DOlz3XB1R2Q5s9KDXVIILUnIaVwJidovayVXNTGbxPB7Nh5nfMBSYWZJN5eipEU1UHhJ3fHPv8qpWmKoHxffe2rkqglQPj9Ifw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G9YMxSAu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 192A1C4CEC5;
-	Thu, 26 Sep 2024 06:40:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727332855;
-	bh=SbNFfNGwz76DV7PUYKZJ2oHIFY3WANEOgbwiTTyYNvA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=G9YMxSAudiuPIPAJg0cwf1jq7LB1fyVWHKEhP/CqiS5O20EErccYVqZhVOLZGP38n
-	 xvX4256BJq4xS1QxOiJBDuWqHJnw/GcjPGn9HmrpV2rbUowf2sm0VTdfe3090RXRje
-	 51kKkKQ66lrczuLxOXsG+oI8fiJ2pz7DjO9ShxkV6rdlrPd8ZhL14Xp8jb/5RrOlbW
-	 x7oXBPE5Z7TGrbqJPDP7pp+YyBUut4Ki38Txq9AmzNkDUBh7vrJUfOsBvx03ny0nua
-	 h0GQ4E4AOf0iwe/G82jdeCE9uPXyADluldvs01ri+tc/XWkT+FOyiLc7ISyKWKlg4U
-	 W7dWTCyMZdwFg==
-Date: Thu, 26 Sep 2024 08:40:52 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jingyi Wang <quic_jingyw@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, quic_tengfan@quicinc.com, linux-arm-msm@vger.kernel.org, 
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Xin Liu <quic_liuxin@quicinc.com>
-Subject: Re: [PATCH v3] dt-bindings: remoteproc: qcom,sa8775p-pas: Document
- QCS8300 remoteproc
-Message-ID: <rch5bhvg2tghg4d2hqzlmwwibx4i3zrxmiisxzdfuwo7zmcmap@6n5x5sweddfu>
-References: <20240925-qcs8300_remoteproc_binding-v3-1-21b0c52b142b@quicinc.com>
+	s=arc-20240116; t=1727333381; c=relaxed/simple;
+	bh=tqh/odynIxXOQ1waZJqQvC8VrmDUVp97OnoXEwg2YRc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=YkoqDSwKhlPikIubv0tBD0r1wyHTK/HF4Nc4+ltOXdBsjfIvhIAUtXfA7OpSP0irV2ZQVIERhTf8IjknlbdA37U8UxOcNlx58o5cNRTcHrBXRNTxpneIrqH/+h8h0R91Mriqc1NIrqTNEnuZ2cVVy8tS5SzF7Z7zISHNYNO+fo0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=maquefel.me; spf=pass smtp.mailfrom=maquefel.me; dkim=pass (1024-bit key) header.d=maquefel.me header.i=@maquefel.me header.b=BlvMWbVT; arc=none smtp.client-ip=178.154.239.145
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=maquefel.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=maquefel.me
+Received: from mail-nwsmtp-smtp-production-main-44.sas.yp-c.yandex.net (unknown [IPv6:2a02:6b8:c08:df8e:0:640:17d3:0])
+	by forward501b.mail.yandex.net (Yandex) with ESMTPS id 79BD86239B;
+	Thu, 26 Sep 2024 09:44:16 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-44.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id EiO1hD0g1uQ0-WgLdjpxD;
+	Thu, 26 Sep 2024 09:44:15 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail;
+	t=1727333055; bh=tqh/odynIxXOQ1waZJqQvC8VrmDUVp97OnoXEwg2YRc=;
+	h=References:Date:In-Reply-To:Cc:To:From:Subject:Message-ID;
+	b=BlvMWbVTj+3/JU4Q6bpN+tkgXHMNJpecWcUNulBHjSf/0TdosxuOgr7mJc4v10WAZ
+	 SJU8v+v2QUoqVXalDqusCX9K8hi5gd26TSVgXHb8abbMmZ0qwQ6zMIIi8TBXkh5wEi
+	 bRijCpBZhIMiOCJKj/DT8tlAhbtDNaJkUawHFtGI=
+Authentication-Results: mail-nwsmtp-smtp-production-main-44.sas.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
+Message-ID: <555edaf290dd3dd4e1c3cc635b41de05ed4af350.camel@maquefel.me>
+Subject: Re: [PATCH] dt-bindings: gpio: ep9301: Add missing
+ "#interrupt-cells" to examples
+From: Nikita Shubin <nikita.shubin@maquefel.me>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>, Arnd Bergmann
+	 <arnd@arndb.de>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski
+	 <brgl@bgdev.pl>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	 <conor+dt@kernel.org>
+Date: Thu, 26 Sep 2024 09:44:14 +0300
+In-Reply-To: <20240925173510.1907048-1-robh@kernel.org>
+References: <20240925173510.1907048-1-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.48.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240925-qcs8300_remoteproc_binding-v3-1-21b0c52b142b@quicinc.com>
+X-Yandex-Filter: 1
 
-On Wed, Sep 25, 2024 at 03:21:37PM +0800, Jingyi Wang wrote:
-> Document the components used to boot the ADSP, CDSP and GPDSP on the
-> Qualcomm QCS8300 SoC. Use fallback to indicate the compatibility of the
-> remoteproc on the QCS8300 with that on the SA8775P.
-> 
-> Co-developed-by: Xin Liu <quic_liuxin@quicinc.com>
-> Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
-> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
-> ---
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+SGkgUm9iIQoKVGhhbmsgeW91IQoKUmV2aWV3ZWQtYnk6IE5pa2l0YSBTaHViaW4gPG5pa2l0YS5z
+aHViaW5AbWFxdWVmZWwubWU+CgpPbiBXZWQsIDIwMjQtMDktMjUgYXQgMTI6MzUgLTA1MDAsIFJv
+YiBIZXJyaW5nIChBcm0pIHdyb3RlOgo+IEZyb206IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5v
+cmc+Cj4gCj4gRW5hYmxpbmcgZHRjIGludGVycnVwdF9wcm92aWRlciBjaGVjayByZXZlYWxzIHRo
+ZSBleGFtcGxlcyBhcmUKPiBtaXNzaW5nCj4gdGhlICIjaW50ZXJydXB0LWNlbGxzIiBwcm9wZXJ0
+eSBhcyBpdCBpcyBhIGRlcGVuZGVuY3kgb2YKPiAiaW50ZXJydXB0LWNvbnRyb2xsZXIiLgo+IAo+
+IFNvbWUgb2YgdGhlIGluZGVudGF0aW9uIGlzIG9mZiwgc28gZml4IHRoYXQgdG9vLgo+IAo+IFNp
+Z25lZC1vZmYtYnk6IFJvYiBIZXJyaW5nIChBcm0pIDxyb2JoQGtlcm5lbC5vcmc+Cj4gLS0tCj4g
+wqBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZ3Bpby9ncGlvLWVwOTMwMS55YW1s
+IHwgOSArKysrKystLQo+IC0KPiDCoDEgZmlsZSBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKyksIDMg
+ZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
+aW5kaW5ncy9ncGlvL2dwaW8tZXA5MzAxLnlhbWwKPiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
+ZS9iaW5kaW5ncy9ncGlvL2dwaW8tZXA5MzAxLnlhbWwKPiBpbmRleCBkYWFkZmI0OTI2YzMuLjNh
+MTA3OWQ2ZWUyMCAxMDA2NDQKPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
+Z3MvZ3Bpby9ncGlvLWVwOTMwMS55YW1sCj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL2dwaW8vZ3Bpby1lcDkzMDEueWFtbAo+IEBAIC03Myw5ICs3MywxMCBAQCBleGFt
+cGxlczoKPiDCoMKgwqDCoMKgwqAgcmVnLW5hbWVzID0gImRhdGEiLCAiZGlyIiwgImludHIiOwo+
+IMKgwqDCoMKgwqDCoCBncGlvLWNvbnRyb2xsZXI7Cj4gwqDCoMKgwqDCoMKgICNncGlvLWNlbGxz
+ID0gPDI+Owo+IC3CoMKgwqDCoMKgwqDCoCBpbnRlcnJ1cHQtY29udHJvbGxlcjsKPiAtwqDCoMKg
+wqDCoMKgwqAgaW50ZXJydXB0LXBhcmVudCA9IDwmdmljMT47Cj4gLcKgwqDCoMKgwqDCoMKgIGlu
+dGVycnVwdHMgPSA8Mjc+Owo+ICvCoMKgwqDCoMKgIGludGVycnVwdC1jb250cm9sbGVyOwo+ICvC
+oMKgwqDCoMKgICNpbnRlcnJ1cHQtY2VsbHMgPSA8Mj47Cj4gK8KgwqDCoMKgwqAgaW50ZXJydXB0
+LXBhcmVudCA9IDwmdmljMT47Cj4gK8KgwqDCoMKgwqAgaW50ZXJydXB0cyA9IDwyNz47Cj4gwqDC
+oMKgwqAgfTsKPiDCoAo+IMKgwqDCoMKgIGdwaW9AODA4NDAwMDQgewo+IEBAIC04Nyw2ICs4OCw3
+IEBAIGV4YW1wbGVzOgo+IMKgwqDCoMKgwqDCoCBncGlvLWNvbnRyb2xsZXI7Cj4gwqDCoMKgwqDC
+oMKgICNncGlvLWNlbGxzID0gPDI+Owo+IMKgwqDCoMKgwqDCoCBpbnRlcnJ1cHQtY29udHJvbGxl
+cjsKPiArwqDCoMKgwqDCoCAjaW50ZXJydXB0LWNlbGxzID0gPDI+Owo+IMKgwqDCoMKgwqDCoCBp
+bnRlcnJ1cHQtcGFyZW50ID0gPCZ2aWMxPjsKPiDCoMKgwqDCoMKgwqAgaW50ZXJydXB0cyA9IDwy
+Nz47Cj4gwqDCoMKgwqAgfTsKPiBAQCAtMTI3LDYgKzEyOSw3IEBAIGV4YW1wbGVzOgo+IMKgwqDC
+oMKgwqDCoCBncGlvLWNvbnRyb2xsZXI7Cj4gwqDCoMKgwqDCoMKgICNncGlvLWNlbGxzID0gPDI+
+Owo+IMKgwqDCoMKgwqDCoCBpbnRlcnJ1cHQtY29udHJvbGxlcjsKPiArwqDCoMKgwqDCoCAjaW50
+ZXJydXB0LWNlbGxzID0gPDI+Owo+IMKgwqDCoMKgwqDCoCBpbnRlcnJ1cHRzLWV4dGVuZGVkID0g
+PCZ2aWMwIDE5PiwgPCZ2aWMwIDIwPiwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8JnZpYzAgMjE+LCA8JnZpYzAgMjI+LAo+IMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDwmdmlj
+MSAxNT4sIDwmdmljMSAxNj4sCgo=
 
 
