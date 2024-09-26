@@ -1,216 +1,352 @@
-Return-Path: <devicetree+bounces-105659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67B089875AF
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 16:32:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B6C79875C6
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 16:39:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80FEF1C25321
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 14:32:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 341401C24F40
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 14:39:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 924A81534E6;
-	Thu, 26 Sep 2024 14:32:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60BD114A0AE;
+	Thu, 26 Sep 2024 14:39:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="EZxKl7u8"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="NahI+6fR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2083.outbound.protection.outlook.com [40.107.249.83])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F5A51531C2;
-	Thu, 26 Sep 2024 14:32:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.83
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727361128; cv=fail; b=CqjJnSx0Yh5kI1jMb56QaaF0YgOUJYypQhCU6HLhDvVmIywBF6HyH9+hEKQDbj7VDeKRGM+8bscv4dfnCUm2e7s9k1fRxTA4Wzm574XIjySwEI43lkJu6YDn0XMMu5TzKXXMPcyjEIhdgUAII02ZGNL852hd6LzBmmbvVFUK+lQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727361128; c=relaxed/simple;
-	bh=OmswE4UUYRkh4J1Bz9FLrgjPRIU019yweMhcEHdadv4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=J+E9Bd0+c+OPRMjFRhnYEDFTeIAzc89s6rbCHWJclRdLHhaHH7vL51dTLFzlqj9kusPGKQhNMQ+TB377nzc/h84xRjDHaDaGEwqE15iIgkgNUVANcv1pUH1+duXqqJqaWSGP6XIRJarThOAhDGcIepKxKTXfh+F6Z/jDU1yW9mM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=EZxKl7u8; arc=fail smtp.client-ip=40.107.249.83
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GVkT0kuoY0uPMF6OwW8muXm6CaUj2LYsw9ZSQBb66YdobF3yTrCbDEXytw74sk8TCcbS1iYzvSp2tlhzCFnHLK7E2crGjO5kwmZEfi3Yq5h2A3wI6KqJZboez7ht9eJNeK2Fvv3eL2gGgJG7kiDryMnyd74uc4TizzsigbPDbBBXeAZHQ1XVgT/eA3ubiQ6OGjXn2sGTrghGBLh6CUdb6NXcetnMZl61dz6TSALB+602xcksya1y8pnYIhDknFNR5tvIDT5r8vwCG2sYCfolWIgg8tOvr/HScxsSuvwDQK4iEVDPdaWHsiEAYaZdPR8VXSnOfW3AsNdXsVWBFvEs9Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dLpP5QUy3RPA5HM3eGobmtdB4jHgEYO2Nzl73CnK638=;
- b=C4Agoet6rS0VGlzO4ACGEZWsbVydV8FlpAUyPIksssFLm32fo9wsyw1okX+Miy0Ba0K290HeK/KNSUiP7On3hI7tDcnUVIAFiCtvGxkDL76ByrC7WTFPOtiFDr1RHD6kuKemszaKlkTFHrYApv3ILE5m4Tp/yr68f3RWB4Br0rcHMiypmGQFfZw2wB6egVShPPLhZZtnz/+8DOIz+hlDTVO0gkU3JhpAQJEqvy5sycRHnzKwSri+1Pm75pjigEpE0RKLk9utgFiQwXSwK/9H/vCBGfJK0rsueY12K/md3efColuNbW9VbjWFhHgUD4oiRjOSeUNzPfWg15bQJW6Bew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dLpP5QUy3RPA5HM3eGobmtdB4jHgEYO2Nzl73CnK638=;
- b=EZxKl7u8rpef28o8mkTr9xxpw4emy275VGqfbRKgemU9lXJ3VdFO8oua6/4BCGEXNuO52IOS2mcZt0lqOsz88yqQNyeZIv2nYUb49R7F6q0WoeARi+3C296d3SN+nA+ZnvA37SH1f4Id51rw6ijKOVS9y+h83x+xSPYx8t4OBctyL5uIveJCmv8kJ475L5aCeSTAsaileHLSHa6zSIeLlsqsdRsFP0RHhy6l2Nm+4rHFaSSWnV3YcJHxjvvOmES2277ZT6UGZyr3FKBFU9LFaZYJK7tqMwv4OzzZ+wDMjigRWeeX1uVaCS57Roy0N4rnKo/dXW4gQOi0K3FOQYBv2Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from AM9PR04MB8487.eurprd04.prod.outlook.com (2603:10a6:20b:41a::6)
- by GV1PR04MB10485.eurprd04.prod.outlook.com (2603:10a6:150:1d4::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.27; Thu, 26 Sep
- 2024 14:31:56 +0000
-Received: from AM9PR04MB8487.eurprd04.prod.outlook.com
- ([fe80::6d7a:8d2:f020:455]) by AM9PR04MB8487.eurprd04.prod.outlook.com
- ([fe80::6d7a:8d2:f020:455%5]) with mapi id 15.20.7962.022; Thu, 26 Sep 2024
- 14:31:56 +0000
-From: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>
-Cc: linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>,
-	Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-Subject: [PATCH v4 4/4] MAINTAINERS: add MAINTAINER for S32G2 SIUL2 GPIO driver
-Date: Thu, 26 Sep 2024 17:31:21 +0300
-Message-ID: <20240926143122.1385658-5-andrei.stefanescu@oss.nxp.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240926143122.1385658-1-andrei.stefanescu@oss.nxp.com>
-References: <20240926143122.1385658-1-andrei.stefanescu@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AM0PR02CA0101.eurprd02.prod.outlook.com
- (2603:10a6:208:154::42) To AM9PR04MB8487.eurprd04.prod.outlook.com
- (2603:10a6:20b:41a::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05C55136347
+	for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 14:39:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727361574; cv=none; b=bfRyz98Ibd/l2Ok62vf5dUgq0fWGU/GCcb/T9ri6l4FTr0nPOuqP3n2axt9DwT02/8a3Aq4n8He+yC0ONfC91MekHVHWR9iC5iU+N5u2BcWuYolAUJTrEDMVEvIzN4bUHjqqpcYJ+72u9j5XhhrGktaf3L93CgfelroGgKtEgt0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727361574; c=relaxed/simple;
+	bh=bOqgL0OkcJySRx4+iOLp6Imqy5HwyG708oO5/8lZs7Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ts0Ff5n0clwucDJezqe4cN4AaIo5/WwAvjWiv7y6aEWIYpePw46mdzCjq0gsBC+X+kLHSVjSF/IZrn4jmcnjmuSLWBHmLZmS3sWxJrFWH++AFDlOaQeR2cTK7Q56Tyy476+BIiQbZL6/+/eyq+aYz5eqr0nKlsOCYDQQFOApAaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=NahI+6fR; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2f75b13c2a8so12105201fa.3
+        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 07:39:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727361570; x=1727966370; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KAtfhXeyVEQreG+8Gv1RrNd0/XsaAVUoNTBNgKuMa8o=;
+        b=NahI+6fRtc9ePZ8pJKxhYa9XbSUtSyyTer7Zh9rs29qnGzL6K9xwR3JeNsBaxO4mF6
+         Ap4YiWOoQ6hAjDLXujDWi8iS0OKnYLfdsgiLWR9RA65zhAWatd8QjZLqt8Yeqdc+jfOK
+         uvq8rvYJnSsxKk9NzNKigcSO3UxDlO3DRmd6DJSxWaHGevaAju/9SqasZ+SAJkmiNZWD
+         SWFpp+TQP4cjV6cEsCdqMX/deao8C2+AVwf0XdyKTI6oQvfMNQNAvUDi0ItD++3HUnWW
+         48Ta37TczW0OrBoVPmcrPgYRCKW+GtUMU3IZMk6vcgXpG1DkCra6wDTTAKCWvYNQsf/c
+         A3JA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727361570; x=1727966370;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KAtfhXeyVEQreG+8Gv1RrNd0/XsaAVUoNTBNgKuMa8o=;
+        b=s/zt+RGKcBwGpcikALriWlW1bTAPd3/xvDdqcfFepwwnYuTamhbA6KgAOYgR4tw3Rd
+         ko1T3tRtkr/2tus/0zYwaoWU4LTin2G9KMsSBWpFUfIflcdTmnU6GpLJyEYsbHeVsz4q
+         phg9DazfEj8qbbTzsZziwN8HIwyVY8P15kStIC656ZO262U8eJLboKIF7lfuF4itw8AV
+         pda7St/P2F2SBT0FGKRQiDqQ1/xncPcWLOwc3ft76TQbNY/hu4nPxg5GMjezbQZqfoqI
+         0XdGM/gQyQnobLikR/sN44fHSeXy1cK1vleIsLTgWHakSsV23HHyuQ1gwKEkt2bJlgxy
+         XWdA==
+X-Forwarded-Encrypted: i=1; AJvYcCXn6guFDuuUyTy7C+WpSBSDBBoth9kclzu7XGlQL83rVQOQUiHi/pU6Xhxb680iUrX/uqNDr1tRx6bv@vger.kernel.org
+X-Gm-Message-State: AOJu0YyL0XFc11VhWDAsrNfqIKHsj69p1xlmOtFN7jAYnP5j5/3bHmWy
+	kJerBawjD9oijhIUhhhpyh4rbXp9fLhEzo8cuGEsS7t4aHmdVxqImbwa/Sl4EEoR3Kphh+rZgTq
+	91xlgI1YJCiVvkzqkZhZYDYUPyBHuOYUxfscNtQ==
+X-Google-Smtp-Source: AGHT+IH41GMrhkz6/W9m0C2gCSr9ypHAusHTpCTIetCCDoyaz1ekdYc1/FyLdWOZsteOSZqSjxEitH8VTE1bN1iNs4M=
+X-Received: by 2002:a2e:b895:0:b0:2f7:4d86:5dcf with SMTP id
+ 38308e7fff4ca-2f91ca6ed08mr40088281fa.35.1727361569936; Thu, 26 Sep 2024
+ 07:39:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM9PR04MB8487:EE_|GV1PR04MB10485:EE_
-X-MS-Office365-Filtering-Correlation-Id: 83009dc9-5420-40fd-4e79-08dcde37f8d9
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|7416014|1800799024|376014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?eFdncWNGVnhnSStXNlZ6ZDVhWlFPTGc0a2ZjTDdLb1lTOXlXZnFIakNqRGVw?=
- =?utf-8?B?UFl2YUhSbDJnRjVkb0JIYmdRakdHYUJrT2d2dW5MYndkR2JSaEs0dEhOZEZX?=
- =?utf-8?B?dHIvSTFKbEdxaitUTCt4YUMyRUorY0JKOXFIYTVJanJ3WVhMZTlxNG1FNi9a?=
- =?utf-8?B?R29QcHVQVWxmUXVNVGxsWTd4bFdQWkNCaEw0MldyWVZrankrcmtEdmpFeTV3?=
- =?utf-8?B?eVpLUjhpUWpOSU5pV1pYR3NvakwyZXRXbXk2SlZLc3Jld1pkNStzVEE4MWlL?=
- =?utf-8?B?Yk5BbytVVFVqdklzR0pkN2Z4OFk3dDJMbGJHcjAwYU9oRFVzUnFrUG12UkE3?=
- =?utf-8?B?ejFLOHdpdWg3d2VsMFFkaVpybkMwQ3E2TXZNc3U3UXdjQTZ6MURLeENwTDZm?=
- =?utf-8?B?T1RSbmgzUTBtT0IwK0FSbUpxRjcxdmdVdXZ6L05LMVVSelRoTzhadnVHeEY2?=
- =?utf-8?B?VWNhZHJUUjhxUWNnb1pDbWJvM0JoOCtidG9CT0Fta2NMc3dBRzNWWmN1WWpV?=
- =?utf-8?B?N3dSSnRueFJKOUl3cUNhOWM4alVmVmIxdFVlWmdQTWlMcTkxaGpKbUNsNUVY?=
- =?utf-8?B?WlRObHFHU1ptUEFtZWFvWjZoNTFWWWZ5YkQrYUg0QUxjS2wrbHlZRXEyREYr?=
- =?utf-8?B?TEkwQmk4NXphVEtvOWY2VVRPL1dzQnlpQkM3ZFBKUTF6RHBwRkRLeHRhM3JU?=
- =?utf-8?B?WmxLUXVPM0haSUltb21Vais3SjYxYUlNSnlJVUVqNFJsNEZYczhLZXNLSkd2?=
- =?utf-8?B?Qkt1OEZ3aE5iSkRJZWFOcWkwakEwVzAwRnB4N2lta3NsUGtQQUsxS3hhYXk5?=
- =?utf-8?B?eW54c1ZBeDE1UFdvZjNCelhSQUR6cTJ1WitHY3hWNGs4N0xrZnFDUWRWYW1H?=
- =?utf-8?B?c002YStvb1NFeE1uOWQ4UWpGZEtOQ0c0bXNRQmxrVGwzc3JERmo1NExXbk9w?=
- =?utf-8?B?VEV6TkRUSWJZRWE5RVFhMHlIZFNwZERVTVFlZmlFM1RaTW02bXhPbnpiKzZ6?=
- =?utf-8?B?QlE0Mml5cnYwTDZIMUlEYWRnVS9GbnVwVVA4Z0RiSS9McHMwMHFsZ1N5L1Ji?=
- =?utf-8?B?aXBTdVh5Q3ZXWjNrSy9zUlVGL0t3NXZuQ2M0WnEvcWt4bmNRU2ZlaS9TU2No?=
- =?utf-8?B?MHBlcStDeDd2RUZTKzlDRUo2TXFyd1hFa0tNdnJqc2h0b21hWnIranFJdm91?=
- =?utf-8?B?QzNhdHlWamtZS002RC9FaHJNTEhqdXZMb0JWYlpYSTNlNG50OVBUYWkrcXIz?=
- =?utf-8?B?Nms3VW9yY2VPcGRBRWtPUTg4aWNiNm9nVlQ1WTVleDQzZnhaaktvc1FwVWsv?=
- =?utf-8?B?ME5QekpBRjhPR3RKb2k0aFpMVmxCM0dkWGxCaXRXY0hVcmlUcHBKYmxJdk54?=
- =?utf-8?B?bXVhZ1ZrcEdrbUNzbjRJbjdUaWthL3RFZzVlRFZVYmpDU0o2cDVMMnpDaktQ?=
- =?utf-8?B?RHZQRDAzQlAzZ211YkZhMDBocDJvVVBJQytFd2FsdlVwNk5tMHQxYTFDbzZq?=
- =?utf-8?B?NENXYlIyV0g4SEpFekRqbTIya3ZqSmxndFM0NkNPcG1qVHNLcnZIbnRiYzl3?=
- =?utf-8?B?ZG0yc2lWVVBOU2UzYnZsTWJDQlNtaGxGdkQ2TnAyZFpIZnIwNExXRlN2RXVx?=
- =?utf-8?B?M0lzSEZUNU1wdnJSeS9XZTZQZzVORXRUOHQrTVdhSGdVa01XM0RJaHU5YWow?=
- =?utf-8?B?VG1iUFJ4UW0vYVhZRURDbXdVbUc0OWNLQ0ZkemdJekg0RkpWY0hGNEdlRGJl?=
- =?utf-8?B?Vzh5Y1p2c3RqbUw1RkJWOHFaMWF1LytqVVZtY3hLM040cWo5Ym1aREZXSDFI?=
- =?utf-8?B?TE5EdnZaOUJ1RDdVSzdNankyamI1RGpzSlFqOUFOUEFTbHJmMms3QnUxMVNJ?=
- =?utf-8?B?TDg5NUpHMi9XUGFCTWJZcVV6S0dDYnJzMlF2UmZtZ0E0d3c9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8487.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(1800799024)(376014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?T3NOcmcwMm14c3RwRmgvWUVCbHdPd3VRUlRyZGxzOE5jajhLUzk0RWpFTEY3?=
- =?utf-8?B?T3d4dVcwQVhOQzIrUDVhY3hibHhoYzFoOEpzZi93b0R1MnN0ZWh3a2VYOHBC?=
- =?utf-8?B?V3JHVTB0RTZuRVhWeUcrMFh0MUNqMkIvOE81ZDc2OUpmTzFMWitUVWtsWWl2?=
- =?utf-8?B?akwwTStkSHBqaGpuS2J0ZWRyaWtuUVNucGIrblF3SHJyU3ZCbWtLbE42eGYx?=
- =?utf-8?B?WGJ6MXFOZ3BNNy8zL3dIeGUrSmJkZWhZeTN3Q0FmTDk4Mks4RUxaYXh4TGx5?=
- =?utf-8?B?V05oMFJ6TFgzVWwwdE83UDZXWG5MM2FJR2xiam5KYmhWMFU3S1dMOXB2RjF4?=
- =?utf-8?B?eWcwbVdETTFzZ0l1RWtXaCtqWWR0RzQranRVZklnWFl2Mm92RVZnZWdvbnJN?=
- =?utf-8?B?L0J0eG51b3lWem9hTEVxQWtJWS8reVJ2NlRGSE5lODJHcFNzd0lRbU1GMkVU?=
- =?utf-8?B?SUlQZkYrNWpFbEFOdDhwWUxFYkNyUllqajhOeis1cDNHUERJU05SekhsV0FX?=
- =?utf-8?B?RUlCeGZJM1QwbGFrS1l1UE5TRkRDZThSUTA4VURBc1RCM2NmWlZPakVLZkNO?=
- =?utf-8?B?WlQ0L0NaWnI1S0dpRkRaallRTjVGbWQzSlFpb2krR1gwL2h0R3hJYzEvM2dr?=
- =?utf-8?B?RkVqdzkzd3BRUFRvM2lpcHVnUTNHL0pjeU1pS2tTSmtiU3NGZ09nb2dVOGVu?=
- =?utf-8?B?ODlXSmk3MXFvWmdKbWVSaHV2c1FUUGh1U21iU3pIYlkxK1lFczZwcXRFWXVV?=
- =?utf-8?B?aXJkd09lOHlWVzRUbHRmR2xwbDdneXl3d0l1UEo5NHBaSUVrM3FJaUV6a3Bt?=
- =?utf-8?B?bDVMcm9kTllCM2hIT1IzRkJtc3hnenpzdi9wb0dyYzdwUlR4QUZsSTVVTEhh?=
- =?utf-8?B?T3ZjOENXZVVwOWJSRVVEa3h4MUNIS1BLL0cweHVhZkdyUnYzeFFObHNpdjZC?=
- =?utf-8?B?VUVrcjFqeVYxdld6MXVaNEVaU1N2OW5hcy9PZXJLTmphTGhUWEZ0Yms1RVVl?=
- =?utf-8?B?eVJSMGhIRkFPUmJObWZ4MzlGcGpMNnM0OXh0YlkvMHNlSHVjSlVZOFlnNXMw?=
- =?utf-8?B?VlVCWFlwS1RTMWljYmNrRjJQdk1UMlVLbFd1SlJCaDFpNnNCK096MWkwMVJl?=
- =?utf-8?B?QXNzQnVGazlLOWk5YmljVzhwbGo2a1RjTmxZcVlNeGJkQTZFUldqWmlNNEpx?=
- =?utf-8?B?WFNGQTRpQ1JxZ2hDU1AyMVR6MFdHRC83K0hPaEVIVktkcFNiTEl2QnRFQWNH?=
- =?utf-8?B?bUVMWWVnUythUldiakZNMXMxaU5oYVVDcCtxZUVTU3Q0dWJqV3AvVjVwazhC?=
- =?utf-8?B?K2JLVjZxeUYxRmEzVUFiNmZndFNhUHdvWXZkWThPS3dSd0NNOHJkTWJIdFVX?=
- =?utf-8?B?RkpMc3Z5a0p5OCt2K0pvRnhJTDROWitiYlN1N0ZaVVZyQkNiajlpVG9tNUtQ?=
- =?utf-8?B?bC9FU1Y0dHdrZDVvSTBSdHgrbnJHMWJZWnJ4Z2tIVHNuR0xxNEd5WUJqZUpO?=
- =?utf-8?B?R0xIS1pic2ZiL0lNaUVoUG9QUC9UZVl1V0dsZUxla0JnRWlscjhWeDg5aHRr?=
- =?utf-8?B?R1VVd2N0c0VZYTl3L1VieEtndkdnUHBSbDZHNHRFdGpTR051TjFMNzZvZEUy?=
- =?utf-8?B?U293aVZPbyt3Sy81VXFMSVpJWFE5dVA5Z2VsZXZqZUFyV3ZlUklzeDdpb1A5?=
- =?utf-8?B?Y1RNbWpYMWR1UGxvMk9RUUx2ZmdtU25aQUg2SllMVk9Dc0NleG8vUW9zM1hX?=
- =?utf-8?B?U29QSEZZbjJLYmhiWlQ3OFhEKy84dmsvZGttMTZHc1dPWHVNMDVuQW9WMnVD?=
- =?utf-8?B?cTVObkFtS3BRZTNPTzRwa1YwZkNTVTgwNnFBblZTLzVaSE9POUlGZDhVMkpt?=
- =?utf-8?B?YmZRTHdjbFBnNTViYkJFcE5xNkZVR050bytyUG9oMURsdTVQN1VUWC9nTjdu?=
- =?utf-8?B?OUlzN1VXNFMxVGs0MlBhTHRQUmJvTDBUUWFrRC9pTXM1NmtaQXhIUi9QZC9y?=
- =?utf-8?B?dExVaiszZ3RqN3dCK3NrOTdPREQvNFdONTlteDdvaUVTUjNjekJGdlJ5Qm8r?=
- =?utf-8?B?V0xtTEhGWHVVc3ZCQVRTM1FqS3hkZVFLbDlFTTg0N0VEU01QakMzbDUvVC9i?=
- =?utf-8?B?cU5CbXl4SFppSFJVTmdaZWlodFdKT0QxZGJML1lrYTI4YmF6RDBVUk1NVThL?=
- =?utf-8?B?UHc9PQ==?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 83009dc9-5420-40fd-4e79-08dcde37f8d9
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8487.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2024 14:31:56.1167
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PYsCix92zFBf52PVSeOhVQYlv+RcfC1TB74ziktNfXutXqTWBJWlJDZZCa6+f2Pq0OYQsmuxxD3O0WFheihHKFp8CllzoYb/5EEutiKbZfQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10485
+References: <20240923101206.3753-1-antoniu.miclaus@analog.com> <20240923101206.3753-7-antoniu.miclaus@analog.com>
+In-Reply-To: <20240923101206.3753-7-antoniu.miclaus@analog.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Thu, 26 Sep 2024 16:39:18 +0200
+Message-ID: <CAMknhBHRfj7d8Uea8vX=t+y+9dqoPABQSzsgNhBMTK-8-f6L7w@mail.gmail.com>
+Subject: Re: [PATCH 6/7] iio: adc: ad485x: add ad485x driver
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>, 
+	Olivier Moysan <olivier.moysan@foss.st.com>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Andy Shevchenko <andy@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>, 
+	=?UTF-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>, 
+	Mike Looijmans <mike.looijmans@topic.nl>, Dumitru Ceclan <mitrutzceclan@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Alisa-Dariana Roman <alisadariana@gmail.com>, Sergiu Cuciurean <sergiu.cuciurean@analog.com>, 
+	Dragos Bogdan <dragos.bogdan@analog.com>, linux-iio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-pwm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add myself as a maintainer for the S32G2 SIUL2 GPIO driver and
-the NXP S32 mailing list for reviews.
+On Mon, Sep 23, 2024 at 12:17=E2=80=AFPM Antoniu Miclaus
+<antoniu.miclaus@analog.com> wrote:
+>
+> Add support for the AD485X DAS familiy.
+>
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
 
-Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+...
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7bfef98226d9..1201f284b0b5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2763,7 +2763,9 @@ R:	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
- L:	NXP S32 Linux Team <s32@nxp.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
-+F:	Documentation/devicetree/bindings/gpio/nxp,s32g2-siul2-gpio.yaml
- F:	arch/arm64/boot/dts/freescale/s32g*.dts*
-+F:	drivers/gpio/gpio-siul2-s32g2.c
- F:	drivers/pinctrl/nxp/
- 
- ARM/Orion SoC/Technologic Systems TS-78xx platform support
--- 
-2.45.2
+> +static int ad485x_find_opt(bool *field, u32 size, u32 *ret_start)
+> +{
+> +       int i, cnt =3D 0, max_cnt =3D 0, start, max_start =3D 0;
+> +
+> +       for (i =3D 0, start =3D -1; i < size; i++) {
+> +               if (field[i] =3D=3D 0) {
+> +                       if (start =3D=3D -1)
+> +                               start =3D i;
+> +                       cnt++;
+> +               } else {
+> +                       if (cnt > max_cnt) {
+> +                               max_cnt =3D cnt;
+> +                               max_start =3D start;
+> +                       }
+> +                       start =3D -1;
+> +                       cnt =3D 0;
+> +               }
+> +       }
+> +
+> +       if (cnt > max_cnt) {
+> +               max_cnt =3D cnt;
+> +               max_start =3D start;
+> +       }
+> +
+> +       if (!max_cnt)
+> +               return -EIO;
 
+EIO seems an odd choice since this function doesn't actually do any
+I/O. Maybe EINVAL would be better?
+
+> +
+> +       *ret_start =3D max_start;
+> +
+> +       return max_cnt;
+> +}
+> +
+
+...
+
+> +static int ad485x_set_calibscale(struct ad485x_state *st, int ch, int va=
+l,
+> +                                int val2)
+> +{
+> +       unsigned long long gain;
+> +       unsigned int reg_val;
+> +       int ret;
+> +
+
+Need to check both val and val2 for negative here before converting to unsi=
+gned.
+
+if (val < 0 || val2 < 0)
+        return -EINVAL;
+
+> +       gain =3D val * 1000000 + val2;
+> +       gain =3D gain * 32768;
+> +       gain =3D DIV_U64_ROUND_CLOSEST(gain, 1000000);
+> +
+> +       reg_val =3D gain;
+> +
+> +       guard(mutex)(&st->lock);
+> +
+> +       ret =3D regmap_write(st->regmap, AD485X_REG_CHX_GAIN_MSB(ch),
+> +                          reg_val >> 8);
+> +       if (ret)
+> +               return ret;
+> +
+> +       return regmap_write(st->regmap, AD485X_REG_CHX_GAIN_LSB(ch),
+> +                           reg_val & 0xFF);
+> +}
+> +
+> +static int ad485x_get_calibbias(struct ad485x_state *st, int ch, int *va=
+l,
+> +                               int *val2)
+> +{
+
+val2 is unused and can be removed
+
+> +       unsigned int lsb, mid, msb;
+> +       int ret;
+> +
+> +       guard(mutex)(&st->lock);
+> +
+> +       ret =3D regmap_read(st->regmap, AD485X_REG_CHX_OFFSET_MSB(ch),
+> +                         &msb);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret =3D regmap_read(st->regmap, AD485X_REG_CHX_OFFSET_MID(ch),
+> +                         &mid);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret =3D regmap_read(st->regmap, AD485X_REG_CHX_OFFSET_LSB(ch),
+> +                         &lsb);
+> +       if (ret)
+> +               return ret;
+> +
+> +       if (st->info->resolution =3D=3D 16) {
+> +               *val =3D msb << 8;
+> +               *val |=3D mid;
+> +               *val =3D sign_extend32(*val, 15);
+> +       } else {
+> +               *val =3D msb << 12;
+> +               *val |=3D mid << 4;
+> +               *val |=3D lsb >> 4;
+> +               *val =3D sign_extend32(*val, 19);
+> +       }
+> +
+> +       return IIO_VAL_INT;
+> +}
+> +
+> +static int ad485x_set_calibbias(struct ad485x_state *st, int ch, int val=
+,
+> +                               int val2)
+> +{
+
+val2 is unused here. It would also be a good idea to implement the
+write_raw_get_fmt callback to select IIO_VAL_INT for this attribute to
+avoid having to deal with negative val2.
+
+> +       unsigned int lsb, mid, msb;
+> +       int ret;
+
+Should check for negative val here before converting to unsigned.
+
+> +
+> +       if (st->info->resolution =3D=3D 16) {
+> +               lsb =3D 0;
+> +               mid =3D val & 0xFF;
+> +               msb =3D (val >> 8) & 0xFF;
+> +       } else {
+> +               lsb =3D (val << 4) & 0xFF;
+> +               mid =3D (val >> 4) & 0xFF;
+> +               msb =3D (val >> 12) & 0xFF;
+> +       }
+> +
+> +       guard(mutex)(&st->lock);
+> +
+> +       ret =3D regmap_write(st->regmap, AD485X_REG_CHX_OFFSET_LSB(ch), l=
+sb);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret =3D regmap_write(st->regmap, AD485X_REG_CHX_OFFSET_MID(ch), m=
+id);
+> +       if (ret)
+> +               return ret;
+> +
+> +       return regmap_write(st->regmap, AD485X_REG_CHX_OFFSET_MSB(ch), ms=
+b);
+> +}
+> +
+
+...
+
+> +static int ad485x_set_offset(struct ad485x_state *st,
+> +                            const struct iio_chan_spec *chan, int val)
+> +{
+> +       guard(mutex)(&st->lock);
+> +
+> +       if (st->offsets[chan->channel] !=3D val) {
+> +               st->offsets[chan->channel] =3D val;
+> +               /* Restore to the default range if offset changes */
+> +               if (st->offsets[chan->channel])
+> +                       return regmap_write(st->regmap,
+> +                                               AD485X_REG_CHX_SOFTSPAN(c=
+han->channel),
+> +                                               AD485X_SOFTSPAN_N40V_40V)=
+;
+> +               return regmap_write(st->regmap,
+> +                                       AD485X_REG_CHX_SOFTSPAN(chan->cha=
+nnel),
+> +                                       AD485X_SOFTSPAN_0V_40V);
+> +       }
+> +
+> +       return 0;
+> +}
+
+I'm not sure I understand the relationship between softspan and the
+offset. A raw value of 0 always means we measured 0V no matter what
+the softspan setting is. So it seems like the offset should always be
+0.
+
+I'm guessing the intent was to handle bipolar vs. unipolar softspans,
+but this doesn't actually work mathematically.
+
+So far, I've only seen inputs that can be bipolar or unipolar
+specified in the devicetree. I'm not aware of a way to select this at
+runtime.
+
+> +static struct iio_chan_spec_ext_info ad4858_ext_info[] =3D {
+> +       IIO_ENUM("packet_format", IIO_SHARED_BY_ALL, &ad4858_packet_fmt),
+> +       IIO_ENUM_AVAILABLE("packet_format",
+> +                          IIO_SHARED_BY_ALL, &ad4858_packet_fmt),
+> +       {},
+> +};
+> +
+> +static struct iio_chan_spec_ext_info ad4857_ext_info[] =3D {
+> +       IIO_ENUM("packet_format", IIO_SHARED_BY_ALL, &ad4857_packet_fmt),
+> +       IIO_ENUM_AVAILABLE("packet_format",
+> +                          IIO_SHARED_BY_ALL, &ad4857_packet_fmt),
+> +       {},
+> +};
+
+Usually, something like this packet format would be automatically
+selected when buffered reads are enabled based on what other features
+it provides are needed, i.e only enable the status bits when events
+are enabled.
+
+(For those that didn't read the datasheet, the different packet
+formats basically enable extra status bits per sample. And in the case
+of oversampling, one of the formats also selects a reduced number of
+sample bits.)
+
+We have quite a few parts in the pipline right like this one that have
+per-sample status bits. In the past, these were generally handled with
+IIO events, but this doesn't really work for these high-speed backends
+since the data is being piped directly to DMA and we don't look at
+each sample in the ADC driver. So it would be worthwhile to try to
+find some general solution here for handling this sort of thing.
+
+> +
+> +static const struct iio_chan_spec ad4858_channels[] =3D {
+> +       AD485X_IIO_CHANNEL(0, 20, 32, ad4858_ext_info),
+> +       AD485X_IIO_CHANNEL(1, 20, 32, ad4858_ext_info),
+> +       AD485X_IIO_CHANNEL(2, 20, 32, ad4858_ext_info),
+> +       AD485X_IIO_CHANNEL(3, 20, 32, ad4858_ext_info),
+> +       AD485X_IIO_CHANNEL(4, 20, 32, ad4858_ext_info),
+> +       AD485X_IIO_CHANNEL(5, 20, 32, ad4858_ext_info),
+> +       AD485X_IIO_CHANNEL(6, 20, 32, ad4858_ext_info),
+> +       AD485X_IIO_CHANNEL(7, 20, 32, ad4858_ext_info),
+> +};
+> +
+> +static const struct iio_chan_spec ad4857_channels[] =3D {
+> +       AD485X_IIO_CHANNEL(0, 16, 16, ad4857_ext_info),
+> +       AD485X_IIO_CHANNEL(1, 16, 16, ad4857_ext_info),
+> +       AD485X_IIO_CHANNEL(2, 16, 16, ad4857_ext_info),
+> +       AD485X_IIO_CHANNEL(3, 16, 16, ad4857_ext_info),
+> +       AD485X_IIO_CHANNEL(4, 16, 16, ad4857_ext_info),
+> +       AD485X_IIO_CHANNEL(5, 16, 16, ad4857_ext_info),
+> +       AD485X_IIO_CHANNEL(6, 16, 16, ad4857_ext_info),
+> +       AD485X_IIO_CHANNEL(7, 16, 16, ad4857_ext_info),
+> +};
+
+How does 16-bit storage size work when packet format is 24-bit?
 
