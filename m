@@ -1,72 +1,59 @@
-Return-Path: <devicetree+bounces-105559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60321987179
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 12:26:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D291B987184
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 12:29:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 232EA286150
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 10:26:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93F872816C0
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 10:29:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B34F81ACE0B;
-	Thu, 26 Sep 2024 10:26:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7F511AC441;
+	Thu, 26 Sep 2024 10:29:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="a81soMie"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ta0WoAD9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0BDD17BB30;
-	Thu, 26 Sep 2024 10:26:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1C17171675;
+	Thu, 26 Sep 2024 10:29:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727346382; cv=none; b=e8UNTnGsgCt0xr+zYSkygdvJFxXzzihDWiAsW2RxxrlDMj9hobuOTu9aIG7uiMGAyDln3+NYbmgkahqGnwfyZGAfzhhybtjkgI7gOgLRV+VgHNOTXBpVhqqTfhNrXiqKuF6J+vyTRIPyWmC+zVIHPODIj/HA6CH28uCrpUZIqW4=
+	t=1727346567; cv=none; b=EXklc7sMS1Mj/ZOj1L8sIyIH5o7NF1GwBivi1hACW0cn9InfEGfhpsJyYhO+QcGZqeKeG/BJa2CdmgHVZcIO9dGQkWLfcUyQeyC/IRYLOIqEJ/r3yhJcp7kdd+4q4pibq/b/c+qr0PBIcMk2ofa3eMPSLiGS212gF4uSpdaMTII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727346382; c=relaxed/simple;
-	bh=n/OnCOMQpH7yJoun9cx3L1qSfqtkSEskvdDm3Mlu0DA=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kdv61PKWyq39o+pIQeohyYGRHTM8h+QGNu8pxbmDCcxhoRJHVAof/6SyDswKdlNUbEAjTRu94jj/ULvqMKAG9nz69QAh+i7TvlpZq7aXQRwM5u9MZahg9h3JcMTbm64HPmxtEhPB8GttBnQu9fQ05uEKIHtXbpwO8JH+1L0hE70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=a81soMie; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 48QAQAKR001304;
-	Thu, 26 Sep 2024 05:26:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1727346370;
-	bh=93SVfvx8unRQzfXSqspJM+q3lBL9z0dAs26DFmVqSeo=;
-	h=From:To:CC:Subject:Date;
-	b=a81soMie7a0VNvz+4DpZHXrbSK8pB9rnsqIDip1/AclOnkPdE0X3VVZtDNxKIBFlZ
-	 buxMt8lIZfkoitW/CBoGXVnfq/5dpomx6dqzWoF0Q0uwpRavRSbUSbbiYcrKrcyGHa
-	 rq2QtcNHe39s7c3pwAOUS06IOuvjbgiVJjjdKV4o=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 48QAQARN124558
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 26 Sep 2024 05:26:10 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 26
- Sep 2024 05:26:09 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 26 Sep 2024 05:26:09 -0500
-Received: from PSDKL-Workstation0.dhcp.ti.com (psdkl-workstation0.dhcp.ti.com [172.24.227.91])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 48QAQ5rr057254;
-	Thu, 26 Sep 2024 05:26:06 -0500
-From: Aniket Limaye <a-limaye@ti.com>
-To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <mranostay@ti.com>,
-        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
-        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>
-CC: <u-kumar1@ti.com>, Jared McArthur <j-mcarthur@ti.com>,
-        Aniket Limaye
-	<a-limaye@ti.com>
-Subject: [PATCH v2] arm64: dts: ti: k3-j7200: Fix register map for main domain pmx
-Date: Thu, 26 Sep 2024 15:55:33 +0530
-Message-ID: <20240926102533.398139-1-a-limaye@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1727346567; c=relaxed/simple;
+	bh=2MY3B56eOb1hPM9DrUHCDpYd4Gw2sDGUFf0Gnq3hnag=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NdAAtz2dCEh5Eft0KJXbyOAj8bi5V5JH1F1skuFV5rUay0wBiqQ7SBC0Z1Bb0WrfMmkMZazEUzG7gevd/f/WPNgcQyE+7aRwsJArABqisvxUSbxXWKvY2GyP255uvZUOwG+cTghMkw9oXVSvw37VpActMoYXG24ZKZtGd4GNH9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ta0WoAD9; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1727346563;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=J/F/BWtIgPoFAzYVwIzm5Lu7wG59Hvzk3WZJccbkqXw=;
+	b=ta0WoAD9Fu40CndxyRcJmvjEFGDADzRsqMlFOSc0kMfuBK3PCnEMoBApTXuEQZkBvv9e83
+	Mdh29pDRShfAw36+tw/Ta26i8POHCA6hqUL015kz5gUiJA/Qq/stTxDsuC1lUzXP3Y4Q1K
+	uNLMNQBsOaFg8hY+lZ0Vs2oF36R8CQt9S/eGxu20moqXsjh1HEzPM9dJAq5bRXaJ/EhU6Y
+	XDVpsLUxu4iXYZpQdCDjq9NZGrbmNAbQ75uBEbVLeyiMQut5FPhByWKezxC9G2RuIPqT89
+	zv39XrECl3UkHnW0Ir9fKw6H4CjSrweXkcY5NkFOf0d8+VUg7px/46RvF2A4ZA==
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Robin Murphy <robin.murphy@arm.com>
+Subject: [PATCH] arm64: dts: rockchip: Move L3 cache outside CPUs in RK3588(S) SoC dtsi
+Date: Thu, 26 Sep 2024 12:29:13 +0200
+Message-Id: <84264d0713fb51ae2b9b731e28fc14681beea853.1727345965.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,107 +61,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-From: Jared McArthur <j-mcarthur@ti.com>
+Move the "l3_cache" node outside the "cpus" node in the base dtsi file for
+Rockchip RK3588(S) SoCs.  The A55 and A76 CPU cores in these SoCs belong to
+the ARM DynamIQ IP core lineup, which places the L3 cache outside the CPUs
+and into the DynamIQ Shared Unit (DSU). [1]  Thus, moving the L3 cache DT
+node one level higher in the DT improves the way the physical topology of
+the RK3588(S) SoCs is represented in the SoC dtsi files.
 
-Commit 0d0a0b441346 ("arm64: dts: ti: k3-j7200: fix main pinmux
-range") split the main_pmx0 into two nodes: main_pmx0 and main_pmx1
-due to a non-addressable region, but incorrectly represented the
-ranges. As a result, the memory map for the pinctrl is incorrect. Fix
-this by introducing the correct ranges.
+While there, add a comment that explains it briefly, to save curious readers
+from the need to reference the repository log for a clarification.
 
-The ranges are taken from the J7200 TRM [1] (Table 5-695. CTRL_MMR0
-Registers).
+[1] ARM DynamIQ Shared Unit revision r4p0 TRM, version 0400-02
 
-Padconfig starting addresses and ranges:
--  0 to 66: 0x11c000, 0x10c
--       68: 0x11c110, 0x004
-- 71 to 73: 0x11c11c, 0x00c
-- 89 to 90: 0x11c164, 0x008
-
-The datasheet [2] doesn't contain PADCONFIG63 (Table 6-106. Pin
-Multiplexing), but the pin is necessary for enabling the MMC1 CLKLP
-pad loopback and should be included in the pinmux register map.
-
-Due to the change in pinmux node addresses, change the pinmux node for
-the USB0_DRVVBUS pin to main_pmx2. The offset has not changed since the
-new main_pmx2 node has the same base address and range as the original
-main_pmx1 node. All other pinmuxing done within J7200 dts or dtso files
-only uses main_pmx0 which has not changed.
-
-[1] https://www.ti.com/lit/pdf/spruiu1
-[2] https://www.ti.com/lit/gpn/dra821u
-
-Fixes: 0d0a0b441346 ("arm64: dts: ti: k3-j7200: fix main pinmux range")
-Signed-off-by: Aniket Limaye <a-limaye@ti.com>
-Signed-off-by: Jared McArthur <j-mcarthur@ti.com>
+Fixes: c9211fa2602b ("arm64: dts: rockchip: Add base DT for rk3588 SoC")
+Helped-by: Robin Murphy <robin.murphy@arm.com>
+Signed-off-by: Dragan Simic <dsimic@manjaro.org>
 ---
-Changes in v2:
-- Explains why PADCONFIG63 is included in the pinmux ranges when it
-  doesn't appear in the datasheet.
 
-* Nishanth
-- Use cannonical links in commit msg for the TRM and Datasheet
-- Explains the reason for the offset not changing for the USB0_DRVVBUS
-  pin and why there are no changes to other pins.
+Notes:
+    See also a related discussion [2] that initiated this patch.
+    
+    [2] https://lore.kernel.org/linux-rockchip/2aa03ce3-1cca-4b3a-935d-6b1b68ebbb6e@arm.com/T/#u
 
-- Link to v1: https://lore.kernel.org/all/20240829071208.2172825-1-a-limaye@ti.com/
----
- .../dts/ti/k3-j7200-common-proc-board.dts     |  2 +-
- arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 22 +++++++++++++++++--
- 2 files changed, 21 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 20 +++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-index 6593c5da82c06..df39f2b1ff6ba 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-@@ -254,7 +254,7 @@ J721E_IOPAD(0x38, PIN_OUTPUT, 0) /* (Y21) MCAN3_TX */
- 	};
- };
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+index b6e4df180f0b..48a79b4b1b6e 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+@@ -337,15 +337,19 @@ l2_cache_b3: l2-cache-b3 {
+ 			cache-unified;
+ 			next-level-cache = <&l3_cache>;
+ 		};
++	};
  
--&main_pmx1 {
-+&main_pmx2 {
- 	main_usbss0_pins_default: main-usbss0-default-pins {
- 		pinctrl-single,pins = <
- 			J721E_IOPAD(0x04, PIN_OUTPUT, 0) /* (T4) USB0_DRVVBUS */
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-index 9386bf3ef9f68..41adfa64418d0 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-@@ -426,10 +426,28 @@ main_pmx0: pinctrl@11c000 {
- 		pinctrl-single,function-mask = <0xffffffff>;
+-		l3_cache: l3-cache {
+-			compatible = "cache";
+-			cache-size = <3145728>;
+-			cache-line-size = <64>;
+-			cache-sets = <4096>;
+-			cache-level = <3>;
+-			cache-unified;
+-		};
++	/*
++	 * The L3 cache belongs to the DynamIQ Shared Unit (DSU),
++	 * so it's represented here, outside the "cpus" node
++	 */
++	l3_cache: l3-cache {
++		compatible = "cache";
++		cache-size = <3145728>;
++		cache-line-size = <64>;
++		cache-sets = <4096>;
++		cache-level = <3>;
++		cache-unified;
  	};
  
--	main_pmx1: pinctrl@11c11c {
-+	main_pmx1: pinctrl@11c110 {
- 		compatible = "ti,j7200-padconf", "pinctrl-single";
- 		/* Proxy 0 addressing */
--		reg = <0x00 0x11c11c 0x00 0xc>;
-+		reg = <0x00 0x11c110 0x00 0x004>;
-+		#pinctrl-cells = <1>;
-+		pinctrl-single,register-width = <32>;
-+		pinctrl-single,function-mask = <0xffffffff>;
-+	};
-+
-+	main_pmx2: pinctrl@11c11c {
-+		compatible = "ti,j7200-padconf", "pinctrl-single";
-+		/* Proxy 0 addressing */
-+		reg = <0x00 0x11c11c 0x00 0x00c>;
-+		#pinctrl-cells = <1>;
-+		pinctrl-single,register-width = <32>;
-+		pinctrl-single,function-mask = <0xffffffff>;
-+	};
-+
-+	main_pmx3: pinctrl@11c164 {
-+		compatible = "ti,j7200-padconf", "pinctrl-single";
-+		/* Proxy 0 addressing */
-+		reg = <0x00 0x11c164 0x00 0x008>;
- 		#pinctrl-cells = <1>;
- 		pinctrl-single,register-width = <32>;
- 		pinctrl-single,function-mask = <0xffffffff>;
--- 
-2.34.1
-
+ 	display_subsystem: display-subsystem {
 
