@@ -1,154 +1,92 @@
-Return-Path: <devicetree+bounces-105480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F37E986D34
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:05:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE92F986D2E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:05:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15D80B24D1E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 07:05:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71BBC280DC7
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 07:05:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11B1818E02B;
-	Thu, 26 Sep 2024 07:05:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A29D1891B9;
+	Thu, 26 Sep 2024 07:05:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="pFFHsbGF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vOMrENlp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E446A18C013;
-	Thu, 26 Sep 2024 07:05:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C3BB188CC7;
+	Thu, 26 Sep 2024 07:05:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727334309; cv=none; b=lY1g1EWuBRAM8l4HzjquBYH5i1x6LFoLI0MkATyWlq1sKBAmKRUoJMoqxn4L0lcwEwrElqy1K35Op6YpGDT+ixwwhXL+P/mhUDfkxTQd4s22Crz8LgXae2E5Ti3AuxFE1xcKU+/YrW3HthHSYx6iesEj44KhfQNZn7VysvtDU68=
+	t=1727334306; cv=none; b=amxu7wvtdlucn9fomizvLerWTr69N9Bq3gQKi84JRPgtExrhG4PdxiN3V+qzvZtrRNeqOXoHqWAPZpUbY1jzAw1wC6o6mYEK356lFh90K3ijtrSvsGRbv72dghiNHzJj0I+1mgB067BOXf07r+yMbuETVKM2E5qnfzBJk69cvLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727334309; c=relaxed/simple;
-	bh=CxmBokh2MPOx5G2rdwQzZy6sHx10A54rwtzhLl4VGMI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lIsBMfIT4CezR9J2BjBpULEye5zUyY8N6u0HbGNDFtRGK0ifM2nLWLsnk84+dTcwyo10nV8BDaymwIhyXrlQfSu1uq71t91q1qwKN9Zt2C/eyz4Mfd866XpzZLcTsiQN9fsDID0M7mPT9/IHfE6eoA0jaou1uQfSyyVHFvLnJyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=pFFHsbGF; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: a5c2143c7bd511efb66947d174671e26-20240926
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=hlnNEhXRofWMhAnm76CEKduewEiEJ3KrrHEcej/gPKY=;
-	b=pFFHsbGFPWGqylBrtus1adQbZYPETocRhjR6iTUylt+sLoXOi7svGhGqwEUekps1Ix6PvEW82tsptiLFB2kxzl1hQig4bSM7ndCvB7HEgCafEd3S2qeVwXARMH6EK34JVGRK5/WWuda6BNhno8/6DnXZ+jlsIjh+M7IesEamoLo=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:c725ec0b-aab0-41a4-90f7-fd91814793ad,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:c058979e-8e9a-4ac1-b510-390a86b53c0a,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
-	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: a5c2143c7bd511efb66947d174671e26-20240926
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-	(envelope-from <andy-ld.lu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1424544824; Thu, 26 Sep 2024 15:05:01 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 26 Sep 2024 15:04:59 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 26 Sep 2024 15:04:59 +0800
-From: Andy-ld Lu <andy-ld.lu@mediatek.com>
-To: <ulf.hansson@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<matthias.bgg@gmail.com>, <wenbin.mei@mediatek.com>
-CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, Andy-ld Lu <andy-ld.lu@mediatek.com>
-Subject: [PATCH 2/2] dt-bindings: mmc: mtk-sd: Add support for MT8196
-Date: Thu, 26 Sep 2024 15:03:18 +0800
-Message-ID: <20240926070405.20212-3-andy-ld.lu@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240926070405.20212-1-andy-ld.lu@mediatek.com>
-References: <20240926070405.20212-1-andy-ld.lu@mediatek.com>
+	s=arc-20240116; t=1727334306; c=relaxed/simple;
+	bh=PmeIsMqrFqSAHKlByfGuq98ieyZORXwH7IlRJ289hkI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=c7rutuvZJ6V4dLpkHJAiO7EbZznKunFrCfTr7y3cW3marwnwz75B2MGdb2KTu5CTpRDeS8Kr3IGPMhF9MwfKSJz036R+PSCVkDD4lPAzbINxkvgZCHCg7yp7EJKalG6+zq6nH/P0FNQUEGF9GF/NOViC+tqebIydwYGUjlFTbWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vOMrENlp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CE93C4CEC5;
+	Thu, 26 Sep 2024 07:05:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727334305;
+	bh=PmeIsMqrFqSAHKlByfGuq98ieyZORXwH7IlRJ289hkI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vOMrENlpetRETktPSGtOA359hRSkrkG8LJYOllofjox8SsQzjhpWT5a4/gJOOoNis
+	 DPTDOOeK2io3H/Oxh18WRYbazxTmOlMmQgmpCemzmM5G2dn90s71QMcdXtNgiYx3Qm
+	 lOssOVusI+Xp0FMIkHFHTV8l0tBxTrh2kE1Z3EyaHhBDKRi+CcG1nqnuyfoQzOvuoX
+	 68nDpQvKl6eMv2wO3ru8Y+LZdpF4QBNsmDeMbj7H7RfHTcRRZQuVo0JHf97Prq+AT2
+	 POLthqzIfDq4unWXO6fUGU5M1VvFsIEdlXhqQUNRz679fLEL5fDLG50ugTyOPO9BAD
+	 irLg1G2ze4Zxw==
+Date: Thu, 26 Sep 2024 09:05:02 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Sebastian Reichel <sre@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Caleb Connolly <caleb.connolly@linaro.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: power/supply: qcom,pmi8998-char: Add
+ missing "interrupt-controller" to example
+Message-ID: <bxxhgmcfxhzvf3m655gl3asiro6v6zaqrxeea3nlehyc54dl6f@3nvonnrzynpw>
+References: <20240925173413.1905782-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240925173413.1905782-1-robh@kernel.org>
 
-Extend the devicetree bindings to include the MT8196 mmc controller
-by adding the compatible string 'mediatek,msdc-v2', which could be
-also used for future compatible SoCs that support new tx/rx.
+On Wed, Sep 25, 2024 at 12:34:12PM -0500, Rob Herring (Arm) wrote:
+> Enabling dtc interrupt_provider check reveals the example is missing
+> the "interrupt-controller" property as it is a dependency of
+> "#interrupt-cells".
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml   | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml b/Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml
+> index 277c47e048b6..a1b4926e7190 100644
+> --- a/Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml
+> +++ b/Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml
+> @@ -61,6 +61,7 @@ examples:
+>        #address-cells = <1>;
+>        #size-cells = <0>;
+>        #interrupt-cells = <4>;
+> +      interrupt-controller;
 
-Add three properties for MT8196 settings:
-- 'mediatek,prohibit-gate-cg', indicate if the source clock CG could
-  be disabled when CPU access IP registers.
+Opposite, the interrupt-cells should be dropped. The parent ("pmic") is
+qcom,spmi-pmic.yaml which is not an interrupt controller, according to
+the bindings.
 
-- 'mediatek,stop-dly-sel', configure read data clock stops at block gap.
-
-- 'mediatek,pop-en-cnt', configure the margins of write and read
-  pointers while begin to pop data transfer.
-
-Signed-off-by: Andy-ld Lu <andy-ld.lu@mediatek.com>
----
- .../devicetree/bindings/mmc/mtk-sd.yaml       | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-index c532ec92d2d9..82d1a9fac67c 100644
---- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-+++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-@@ -25,6 +25,7 @@ properties:
-           - mediatek,mt8173-mmc
-           - mediatek,mt8183-mmc
-           - mediatek,mt8516-mmc
-+          - mediatek,msdc-v2
-       - items:
-           - const: mediatek,mt7623-mmc
-           - const: mediatek,mt2701-mmc
-@@ -154,6 +155,30 @@ properties:
-     enum: [32, 64]
-     default: 32
- 
-+  mediatek,stop-dly-sel:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Some SoCs need to set appropriate stop-dly-sel to configure read data clock
-+      stops at block gap. The valid range is from 0 to 0xf.
-+    minimum: 0
-+    maximum: 0xf
-+
-+  mediatek,pop-en-cnt:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Some SoCs need to set appropriate pop-en-cnt to configure the margins of write
-+      and read pointers while begin to pop data transfer. The valid range is from 0
-+      to 0xf.
-+    minimum: 0
-+    maximum: 0xf
-+
-+  mediatek,prohibit-gate-cg:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      Decide if source clock CG could be disabled when CPU access IP registers.
-+      If present, source clock CG could not be disabled.
-+      If not present, source clock CG could be disabled.
-+
-   resets:
-     maxItems: 1
- 
-@@ -191,6 +216,7 @@ allOf:
-             - mediatek,mt8188-mmc
-             - mediatek,mt8195-mmc
-             - mediatek,mt8516-mmc
-+            - mediatek,msdc-v2
-     then:
-       properties:
-         clocks:
--- 
-2.46.0
+Best regards,
+Krzysztof
 
 
