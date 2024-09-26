@@ -1,204 +1,178 @@
-Return-Path: <devicetree+bounces-105438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58BD4986BDE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 06:55:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F9D1986BF4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 07:19:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5B661F2335D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 04:55:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CFF63B237EA
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 05:19:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DCE61BF2B;
-	Thu, 26 Sep 2024 04:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB493F9CC;
+	Thu, 26 Sep 2024 05:19:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nb2lKybh"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IoRhMtzJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C3217C69;
-	Thu, 26 Sep 2024 04:55:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BB6379C4;
+	Thu, 26 Sep 2024 05:19:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727326538; cv=none; b=sXPBuwhaSG1l7sRQG5gnXjs/96FFm/r8QxYUZbd2xuS0wrA8BxWbbuwNmCem8eJMdy5H30CPDSOD3zld7kRMTd+PGek2MLiJEaWsmnCYJ/XOj48OIi524WhlBdMTigfezvm3SvIl3oEFYjT+L2WX1OIuWfpho9VCZ92lTEYA5vo=
+	t=1727327986; cv=none; b=eLmEP7/95/TyZx/zuXT7RK7eYLQoEqPLQP3xOMaD5Eig6HH9RFYSuOh2O5nktBf3H68uGM1J1fNCbFXadvcF471fIySTuZRKGTBgcaJpRgxs3jyK5rJ2Qno4Oyvbdj/AYACvxeJjSuQkghHd/flAXGcx9JgSWvEcFbCkFQxLvOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727326538; c=relaxed/simple;
-	bh=wrv2hTrsuihMpZyuSLMeW8l+X+1o+M/C/FITAIPx6og=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W+8P36QbAxd4Yb0E/voL+mjM1R8Lmp/lju8FjQvBwp43f8DZyZo9M69aUEZv/EVrO5PLkDkTW24MbQMbMK8oCfyTwrjWQTLkqDPFmrKCz9FJF2djHT/U4i4Z7/zMWBLq4ybH2VcyQ+Tm83/Cuyr5Gq3V1wZsDGucRcIr7sqn9KY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nb2lKybh; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-20792913262so5218835ad.3;
-        Wed, 25 Sep 2024 21:55:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727326536; x=1727931336; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=y4hCTyd7fHdhQhZ39WO73/B3b20ahvldM1PgZuhq9tI=;
-        b=Nb2lKybh61M2LsDfIduBdnwUS3JPvqErp6KIo3mkyzfh36IWXvgoUOfPKqNEUBd3Wk
-         8t3QbsBSmjbRJa45VltGd9wqmblyeRpzCHc5dSJUPOoNskLUukyUqV2+cs5Flb7R9oJM
-         qmxyg6BHp3ORxWexJKmj/TUQFSl7NVAo4lgAuz6hWx9rjjMR//E+o+LsUWvwJ0Cs3k1O
-         37pa1wXsKaEJYv0vTwQRozlCzaXpwIB1L8esexIAu5v6uxS+0fz4YfWgMR/pGE69b1Lo
-         iZR2yCdh755U1WDBgHWx9ABnzsHxonkD3F617kofgPOBp+ZpWGf51kCCNrdNxc7U1q6B
-         UZ9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727326536; x=1727931336;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=y4hCTyd7fHdhQhZ39WO73/B3b20ahvldM1PgZuhq9tI=;
-        b=EkuClIS+daXsZjj3igSSm38aglV85NY/miDHxuMNt2N/tV21wpFRyZEEzOFAbSnLSj
-         YVtIR1h9ETCFA/0lFu9MptEHyGe11WA/I1Zmz1/ua/MGy+KKRoSDklq5Yv9s0Y4Bnfky
-         H1j+zq+8uy7T0GuCUkk8fL26ImXLKMinskK/5xvEDSPFEFHRTPwog3JHBq2Cp9GzOMlr
-         TyXkLBIkfYRQYh/69QNSfmUuUeieYbUh81V4t85Acswog8MbQ2T0evYKOvKdmJJQLnP9
-         nP7ZSctjv+csujT2zrGcieOAikIiqqY0zT38pUOY8AIPpzdKJp7DDgTBA0c9M5nhs1vm
-         VTyg==
-X-Forwarded-Encrypted: i=1; AJvYcCV2RfJZtmhzMq0hWPrsBLbUd9TgsmqWBSSEIdPh5LACALxI/Ds0c5lYRBLrsoFs5lPzPMS51G3f8xIcKZhJ@vger.kernel.org, AJvYcCW9W5IpKh3HJ5v20s1r+eqaAGVZYrcGygoVzDa2dZ+YRaIjCKejGLOjmy7I7OQ1WvtNP7qvqpkcZuUaoXE=@vger.kernel.org, AJvYcCXY7zvElEhSoFKtp6Hl7LDQyhgYf7HoLBaTQtyDnnuA9lRtcp5LsLQhOg0eX8pA0TVcj06JMUCb+N/7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9BIvWnOh0UpCRxttic/WYUPWezCnNeZ4CqYa+80H70XlKW7V6
-	xcgVpLJmLDqCu3Wi1i/Q8fSAP9+lXWy88nIq1RIkNv2XLShn7Uih/eiRJTLb
-X-Google-Smtp-Source: AGHT+IHGSKkd2bXfKl1DXRx+DljOaFnwuucFANq9nw+cKvUGbpTJ7iv/93P8t1Nh8ya7Tw0LiCUO3w==
-X-Received: by 2002:a17:903:2441:b0:207:20c5:42c with SMTP id d9443c01a7336-20afc4c79ecmr75597375ad.45.1727326535706;
-        Wed, 25 Sep 2024 21:55:35 -0700 (PDT)
-Received: from ux-UP-WHL01 ([120.237.109.178])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20af1723f23sm30995005ad.95.2024.09.25.21.55.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2024 21:55:35 -0700 (PDT)
-Date: Thu, 26 Sep 2024 12:54:51 +0800
-From: Charles Wang <charles.goodix@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: dmitry.torokhov@gmail.com, dianders@chromium.org,
-	dan.carpenter@linaro.org, conor@kernel.org, krzk+dt@kernel.org,
-	jikos@kernel.org, bentiss@kernel.org, hbarnor@chromium.org,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, conor.dooley@microchip.com
-Subject: Re: [PATCH v7 2/2] dt-bindings: input: Goodix SPI HID Touchscreen
-Message-ID: <ZvTpG1cTWM3gY_vk@ux-UP-WHL01>
-References: <20240814024513.164199-1-charles.goodix@gmail.com>
- <20240814024513.164199-3-charles.goodix@gmail.com>
- <CAL_Jsq+QfTtRj_JCqXzktQ49H8VUnztVuaBjvvkg3fwEHniUHw@mail.gmail.com>
- <CAL_JsqKUDj6vrWMVVBHrDeXdb3ogsMb3NUbV6OjKR-EhLLZuGg@mail.gmail.com>
- <CAL_Jsq+6fvCaxLexo9c6zs+8vwyfPAOCCVsejw_uKURVU-Md9w@mail.gmail.com>
- <ZvSEkn66qNziJV0M@google.com>
- <CAL_JsqJhchCn8QbT2kV7hPfgtYP=-32YE4WT51fy_5iSOLMZ=g@mail.gmail.com>
+	s=arc-20240116; t=1727327986; c=relaxed/simple;
+	bh=tzPeKYmTniuz2EFup3NSQ66JwYuii7SyNt+2aQ7ByMk=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=H1WKiIx1qadvuVr5JkuKa7HxkOIP5bNI+ga7REhMcDDY594W4yn62jszrW9dzkQqvELiBnlWGo4iRm3840YgKcj/QQst9HgUOGxACJs58yUPq6568l6cqFaSgFxendJ6OrkhABYDzJSAy23DmX6GZFmYwq6oUcdfo4967tQ/ssk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IoRhMtzJ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48PH5V7h008857;
+	Thu, 26 Sep 2024 05:19:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	nAQEOeLb4xsWLNw3Ood9u49cD3boLEhU8f1VROmEwSU=; b=IoRhMtzJQpZr1tEt
+	izypl9/CUn6AJQkdsk46SHTulTIBeID0T7bG29V/1zy3EwD0YsJzbI67aY8zxTCw
+	vzgRGUtY3O15VJgcNCegvm/50T0yslMHUKYgaaFJyK9yt04swZH1ioY7Xa7A3rQ6
+	cNID579Hu31dL/VzFnxFfSUDUb9gLw7rSRPTf6rNTRT5em6lfvjKfq4u4bwQMebm
+	UXwsfjgsxMte7CYRkocmt1I4pU0Q/OmKckDajK+kRUx3PjLMwQHfIQMlZKZqK/iG
+	6xuy9yHZ08gS54b0cQfJio+nelqz/emGlfcU+gMZgE51NecjcwSotQpm2O1eSuF/
+	Tykbhg==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41snfh6j81-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Sep 2024 05:19:28 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48Q5JQbV019378
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Sep 2024 05:19:26 GMT
+Received: from [10.239.29.179] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 25 Sep
+ 2024 22:19:21 -0700
+Message-ID: <fb40afe3-eb27-4136-8942-26a40fb395a7@quicinc.com>
+Date: Thu, 26 Sep 2024 13:19:18 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 5/6] PCI: qcom: Add support for X1E80100 SoC
+From: Qiang Yu <quic_qianyu@quicinc.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: Johan Hovold <johan@kernel.org>, <vkoul@kernel.org>, <kishon@kernel.org>,
+        <robh@kernel.org>, <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <abel.vesa@linaro.org>, <quic_msarkar@quicinc.com>,
+        <quic_devipriy@quicinc.com>, <dmitry.baryshkov@linaro.org>,
+        <kw@linux.com>, <lpieralisi@kernel.org>, <neil.armstrong@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>
+References: <20240924101444.3933828-1-quic_qianyu@quicinc.com>
+ <20240924101444.3933828-6-quic_qianyu@quicinc.com>
+ <20240924135021.ybpyoahlpuvedma5@thinkpad>
+ <ZvLX_wkh7_y7sjPZ@hovoldconsulting.com>
+ <4368503f-fb33-4e6a-bef4-517e2b959400@quicinc.com>
+ <20240925080724.vgkgmnqc44aoiarv@thinkpad>
+ <1419ba07-5163-4126-8869-2213eea6c492@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <1419ba07-5163-4126-8869-2213eea6c492@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqJhchCn8QbT2kV7hPfgtYP=-32YE4WT51fy_5iSOLMZ=g@mail.gmail.com>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: APgLvk1rAOYnLStnfvnDml0VwlQ2ZubS
+X-Proofpoint-GUID: APgLvk1rAOYnLStnfvnDml0VwlQ2ZubS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ lowpriorityscore=0 priorityscore=1501 malwarescore=0 mlxscore=0
+ suspectscore=0 impostorscore=0 spamscore=0 phishscore=0 mlxlogscore=999
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409260032
 
-Hi Rob,
 
-Very sorry for the late response. A fiexd version with compatible
-"goodix,gt7986u-spi" has been submitted.
+On 9/26/2024 11:28 AM, Qiang Yu wrote:
+>
+> On 9/25/2024 4:07 PM, Manivannan Sadhasivam wrote:
+>> On Wed, Sep 25, 2024 at 11:47:02AM +0800, Qiang Yu wrote:
+>>> On 9/24/2024 11:17 PM, Johan Hovold wrote:
+>>>> On Tue, Sep 24, 2024 at 03:50:21PM +0200, Manivannan Sadhasivam wrote:
+>>>>> On Tue, Sep 24, 2024 at 03:14:43AM -0700, Qiang Yu wrote:
+>>>>>> X1E80100 has PCIe ports that support up to Gen4 x8 based on 
+>>>>>> hardware IP
+>>>>>> version 1.38.0.
+>>>>>>
+>>>>>> Currently the ops_1_9_0 which is being used for X1E80100 has 
+>>>>>> config_sid
+>>>>>> callback to config BDF to SID table. However, this callback is not
+>>>>>> required for X1E80100 because it has smmuv3 support and BDF to 
+>>>>>> SID table
+>>>>>> will be not present.
+>>>>>>
+>>>>>> Hence add support for X1E80100 by introducing a new ops and cfg 
+>>>>>> structures
+>>>>>> that don't require the config_sid callback. This could be reused 
+>>>>>> by the
+>>>>>> future platforms based on SMMUv3.
+>>>>>>
+>>>>> Oops... I completely overlooked that you are not adding the SoC 
+>>>>> support but
+>>>>> fixing the existing one :( Sorry for suggesting a commit message 
+>>>>> that changed
+>>>>> the context.
+>>>>>
+>>>>> For this, you can have something like:
+>>>>>
+>>>>> "PCI: qcom: Fix the ops for X1E80100 SoC
+>>>>>
+>>>>> X1E80100 SoC is based on SMMUv3, hence it doesn't need the BDF2SID 
+>>>>> mapping
+>>>>> present in the existing cfg_1_9_0 ops. This is fixed by 
+>>>>> introducing new ops
+>>>>> 'ops_1_38_0' and cfg 'cfg_1_38_0' structures. These are exactly 
+>>>>> same as the
+>>>>> 1_9_0 ones, but they don't have the 'config_sid()' callback that 
+>>>>> handles the
+>>>>> BDF2SID mapping in the hardware. These new structures could also 
+>>>>> be used by the
+>>>>> future SoCs making use of SMMUv3."
+>>>> Don't we need something like this for sc8280xp and other platforms 
+>>>> using
+>>>> SMMUv3 as well?
+>>>  From what I know, sc8280xp and other qcom platforms are not using 
+>>> SMMUv3.
+>> sc8280xp indeed has SMMUv3 for PCIe, but I'm not sure how it is 
+>> configured. So
+>> not completely sure whether we can avoid the mapping table or not.
+>>
+>> Qiang, please check with the hw team and let us know.
+> Sure, will update once I get any response from hw team.
+HW team confirmed sc8280xp uses smmv3 for PCIe and doesn't support BDF2SID
+map.
 
-On Wed, Sep 25, 2024 at 08:51:14PM -0500, Rob Herring wrote:
-> On Wed, Sep 25, 2024 at 4:46 PM Dmitry Torokhov
-> <dmitry.torokhov@gmail.com> wrote:
-> >
-> > On Wed, Sep 25, 2024 at 12:40:56PM -0500, Rob Herring wrote:
-> > > On Tue, Sep 10, 2024 at 5:41 PM Rob Herring <robh@kernel.org> wrote:
-> > > >
-> > > > On Fri, Sep 6, 2024 at 3:28 PM Rob Herring <robh@kernel.org> wrote:
-> > > > >
-> > > > > On Tue, Aug 13, 2024 at 9:45 PM Charles Wang <charles.goodix@gmail.com> wrote:
-> > > > > >
-> > > > > > The Goodix GT7986U touch controller report touch data according to the
-> > > > > > HID protocol through the SPI bus. However, it is incompatible with
-> > > > > > Microsoft's HID-over-SPI protocol.
-> > > > > >
-> > > > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > > > Signed-off-by: Charles Wang <charles.goodix@gmail.com>
-> > > > > > ---
-> > > > > >  .../bindings/input/goodix,gt7986u.yaml        | 71 +++++++++++++++++++
-> > > > > >  1 file changed, 71 insertions(+)
-> > > > > >  create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
-> > > > > >
-> > > > > > diff --git a/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml b/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
-> > > > > > new file mode 100644
-> > > > > > index 000000000..a7d42a5d6
-> > > > > > --- /dev/null
-> > > > > > +++ b/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
-> > > > > > @@ -0,0 +1,71 @@
-> > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > > +%YAML 1.2
-> > > > > > +---
-> > > > > > +$id: http://devicetree.org/schemas/input/goodix,gt7986u.yaml#
-> > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > > +
-> > > > > > +title: GOODIX GT7986U SPI HID Touchscreen
-> > > > > > +
-> > > > > > +maintainers:
-> > > > > > +  - Charles Wang <charles.goodix@gmail.com>
-> > > > > > +
-> > > > > > +description: Supports the Goodix GT7986U touchscreen.
-> > > > > > +  This touch controller reports data packaged according to the HID protocol,
-> > > > > > +  but is incompatible with Microsoft's HID-over-SPI protocol.
-> > > > > > +
-> > > > > > +allOf:
-> > > > > > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > > > > > +
-> > > > > > +properties:
-> > > > > > +  compatible:
-> > > > > > +    enum:
-> > > > > > +      - goodix,gt7986u
-> > > > >
-> > > > > This is already documented in goodix,gt7375p.yaml. Now linux-next has warnings:
-> > > > >
-> > > > > /builds/robherring/linux-dt/Documentation/devicetree/bindings/input/goodix,gt7986u.example.dtb:
-> > > > > touchscreen@0: compatible: 'oneOf' conditional failed, one must be
-> > > > > fixed:
-> > > > >         ['goodix,gt7986u'] is too short
-> > > > >         'goodix,gt7375p' was expected
-> > > > >         from schema $id:
-> > > > > http://devicetree.org/schemas/input/goodix,gt7375p.yaml#
-> > > > > /builds/robherring/linux-dt/Documentation/devicetree/bindings/input/goodix,gt7986u.example.dtb:
-> > > > > touchscreen@0: reg:0:0: 0 is not one of [93, 20]
-> > > > >         from schema $id:
-> > > > > http://devicetree.org/schemas/input/goodix,gt7375p.yaml#
-> > > > > /builds/robherring/linux-dt/Documentation/devicetree/bindings/input/goodix,gt7986u.example.dtb:
-> > > > > touchscreen@0: 'vdd-supply' is a required property
-> > > > >         from schema $id:
-> > > > > http://devicetree.org/schemas/input/goodix,gt7375p.yaml#
-> > > > > /builds/robherring/linux-dt/Documentation/devicetree/bindings/input/goodix,gt7986u.example.dtb:
-> > > > > touchscreen@0: 'goodix,hid-report-addr', 'spi-max-frequency' do not
-> > > > > match any of the regexes: 'pinctrl-[0-9]+'
-> > > > >         from schema $id:
-> > > > > http://devicetree.org/schemas/input/goodix,gt7375p.yaml#
-> > > > >
-> > > > > Please sort this out and send a fix.
-> > > >
-> > > > I should add that it is intermittent whether you see this error or
-> > > > not. The tools select a single schema based on the compatible string
-> > > > and it is undefined which of the 2 schemas you will get.
-> > >
-> > > Still an issue and no response. Please fix or revert the series.
-> >
-> > I see that Krzysztof sent a revert, but what a proper fix would be?
-> > Apparently Goodix is using the same product ID gt7986u for both I2C and
-> > SPI parts, and covering them in one binding is not really easy (well, I
-> > guess it is possible with a big ugly "if"). Do we just slap "-spi"
-> > suffix on the compatible, so it becomes "goodix,gt7986u-spi" and go on
-> > on our merry way? Is there a better option for such products that
-> > support multiple interfaces/transports?
-> 
-> Generally we just have 1 compatible and 1 schema for both. The schema
-> can reference spi-peripheral-props.yaml unconditionally. If someone
-> wants to put SPI properties in a node for I2C connected device, then
-> that would be allowed, but who cares.
-> 
-> There's been some discussion about having some sort of pseudo property
-> similar to $nodename to define the bus for a node and then we could
-> use that.
-> 
+Besides, Abel once got confirmation from Joe that we also need to disable
+L0s for X1E80100. So can we use cfg_sc8280xp for both X1E80100 and SC8280XP
+and change its ops to ops_1_38_0?
 
-Charles
+Thanks,
+Qiang
+>
+> Thanks,
+> Qiang
+>>
+>> - Mani
+>>
 
