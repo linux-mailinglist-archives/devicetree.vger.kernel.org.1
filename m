@@ -1,182 +1,246 @@
-Return-Path: <devicetree+bounces-105518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91A5E986EEF
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 10:37:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B36AD986EF9
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 10:37:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A761E1C24925
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 08:37:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15A7EB20BF8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 08:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A8DA1AC894;
-	Thu, 26 Sep 2024 08:36:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7775C1AD3EF;
+	Thu, 26 Sep 2024 08:36:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dpARYpw5"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="DBecXBrH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3B831A727A;
-	Thu, 26 Sep 2024 08:36:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66C1C1A76DF;
+	Thu, 26 Sep 2024 08:36:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727339772; cv=none; b=lBaWVQPZ05MDMlVkarla6GGO2+EqLpDUXUIbRPWDBDd8/tG6b2cvYQ7FMG5XZFqNIzZHihK+yd4VBSXaiXIpa55P2sBhfw9lFnR1p3H7O2r6Uso8oh4X0nShgQVpnxMRnlL12gT5qNJ6X2dhbVPvH7Mf/Zh4EGvf9BHoqaDA1DM=
+	t=1727339784; cv=none; b=sNTSdVCUpepO3O8PoVE9lg4C9JzanEZrFhIOb7pBE1XdHbyEGtZFhqbroeeq8CC6ecUlDm3zPI7yayLazwBO/nxl9Tuj85RUyAlLO2JFhGbGXgc2UAsm0NlHyvvbAc/l5isQaJfLxqYrqeL8lvZsSjoIKXidrsRAnsAZlN45yOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727339772; c=relaxed/simple;
-	bh=GJlBJ2nije3417X3Duk+yPak7aNIl/IkHg/i7Ff3tgs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=P//t8889myntImuB2iuCSI545jtN/9AFnxX3lD/fnoJ647fxF5l43n5m0mQKjhAMUm7B2bLfuHnU2BIrZyUTYfKeD0hPZwMCiDyi25POoPN9t/i9nxtpKUsg//8V+rKwcxQNxBPMpPathi9zBsM+76RTBABniePCtUl2IY2m7mQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dpARYpw5; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 48Q8a0Wp042677;
-	Thu, 26 Sep 2024 03:36:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1727339760;
-	bh=/NklGAACFNInFGXKnjf+d7lTvw/WjOe5LVumCjbxEJg=;
-	h=From:Date:Subject:References:In-Reply-To:To:CC;
-	b=dpARYpw56iNobO0+/RjIDcfeGv8VLqRjLssXsNpq2pGs52IWDiMmhgn+ycsi1lD9p
-	 eeECBMs7XUYpVu37T3RSsED/m4cDu+qYW1UxwX9TBs74kTq2coPGVDa/A328TTTCbK
-	 Bd0aR8Xytda1X3gP1CJHuTU7LA9tpIyj4v6MN4nc=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 48Q8a0UT053894
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 26 Sep 2024 03:36:00 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 26
- Sep 2024 03:35:59 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 26 Sep 2024 03:35:59 -0500
-Received: from [127.0.1.1] (lcpd911.dhcp.ti.com [172.24.227.226])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 48Q8ZPKA064456;
-	Thu, 26 Sep 2024 03:35:55 -0500
-From: Dhruva Gole <d-gole@ti.com>
-Date: Thu, 26 Sep 2024 14:04:57 +0530
-Subject: [PATCH v7 6/6] cpufreq: ti-cpufreq: Update efuse/rev offsets in
- AM62 family
+	s=arc-20240116; t=1727339784; c=relaxed/simple;
+	bh=0vx2wLHIP341Fcw6qUhYwA5kM6D965fe51U5NDuNykk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G5SfY7IiZbxUm309tSk3epAhTSWi24rD4JaC28BYvPuD3rs84gvOliRIQ17vUhzc08+dqqXlWOqT5DZhr4JCDTliYcuZPpxPMTaWg1WtEuTzAXcK3pYS59qzUlGyFbvoFYmD392sdfNeVwulOy4TALPnMbmv/US8RdtQYY6/gqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=DBecXBrH; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id CFCEF169;
+	Thu, 26 Sep 2024 10:34:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1727339692;
+	bh=0vx2wLHIP341Fcw6qUhYwA5kM6D965fe51U5NDuNykk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DBecXBrHZnJ73ugoSwlvEFZl5HNOOcuYbIIdgLX1AkDR6PH7vK9Arte2y8mICEzuh
+	 DXLodimMtWBjICZsq8QJw6rUDxSmTNStU9keIPkEqgc1e45rvdlA7HJY/31ZgKMTlG
+	 9tBNMwgZHEvdG1BfpH27Ivag8bjqyiquObr5/TM0=
+Date: Thu, 26 Sep 2024 11:36:17 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>, Marc Zyngier <maz@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Jim Quinlan <jim2101024@gmail.com>,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Andy Gross <agross@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Jim Quinlan <james.quinlan@broadcom.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-media@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Fix array property constraints
+Message-ID: <20240926083617.GA29582@pendragon.ideasonboard.com>
+References: <20240925232409.2208515-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240926-ti-cpufreq-fixes-v5-v7-6-3c94c398fe8f@ti.com>
-References: <20240926-ti-cpufreq-fixes-v5-v7-0-3c94c398fe8f@ti.com>
-In-Reply-To: <20240926-ti-cpufreq-fixes-v5-v7-0-3c94c398fe8f@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Rafael
- J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        Andrew Davis
-	<afd@ti.com>, Bryan Brattlof <bb@ti.com>,
-        Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>,
-        Markus Schneider-Pargmann
-	<msp@baylibre.com>,
-        Dhruva Gole <d-gole@ti.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1727339725; l=2979;
- i=d-gole@ti.com; s=20240919; h=from:subject:message-id;
- bh=GJlBJ2nije3417X3Duk+yPak7aNIl/IkHg/i7Ff3tgs=;
- b=SI6s16xvei2mPWIU04o5SUXvMFiKHAW3liKgNmSW0XtdgkRJ8RkPugTxuHbgmbDa5HTg7UGO5
- JkLRdxsqcotCO9U0GLjHWzZ1Ds9v9RApTK770ZYGM9JHmcpG5xwsebk
-X-Developer-Key: i=d-gole@ti.com; a=ed25519;
- pk=k8NnY4RbxVqeqGsYfTHeVn4hPOHkjg7Mii0Ixs4rghM=
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240925232409.2208515-1-robh@kernel.org>
 
-With the Silicon revision being taken directly from socinfo, there's no
-longer any need for reading any SOC register for revision from this driver.
-Hence, we do not require any rev_offset for AM62 family of devices.
-The efuse offset should be 0x0 for AM625 as well, as the syscon
-register being used from DT refers to the efuse_offset directly.
+Hi Rob,
 
-However, to maintain the backward compatibility with old devicetree, also
-add condition to handle the case where we have the wrong offset and add
-the older efuse_offset value there such that we don't end up reading the
-wrong register offset.
+Thank you for the patch.
 
-Signed-off-by: Dhruva Gole <d-gole@ti.com>
----
- drivers/cpufreq/ti-cpufreq.c | 24 ++++++++++++++++++------
- 1 file changed, 18 insertions(+), 6 deletions(-)
+On Wed, Sep 25, 2024 at 06:24:06PM -0500, Rob Herring (Arm) wrote:
+> Schemas for array properties should only have 1 level of array
+> constraints (e.g. items, maxItems, minItems). Sometimes the old
+> encoding of all properties into a matrix leaked into the schema, and
+> didn't matter for validation. Now the inner constraints are just
+> silently ignored as json-schema array keywords are ignored on scalar
+> values.
+> 
+> Generally, keep the inner constraints and drop the outer "items". With
+> gicv3 "mbi-alias" property, it is more appropriately a uint32 or uint64
+> as it is an address and size depends on "#address-cells".
 
-diff --git a/drivers/cpufreq/ti-cpufreq.c b/drivers/cpufreq/ti-cpufreq.c
-index ba621ce1cdda694c98867422dbb7f10c0df2afef..054eadd7a3bf98a15d765e0506dbfa7ed0706f4f 100644
---- a/drivers/cpufreq/ti-cpufreq.c
-+++ b/drivers/cpufreq/ti-cpufreq.c
-@@ -313,10 +313,9 @@ static const struct soc_device_attribute k3_cpufreq_soc[] = {
- 
- static struct ti_cpufreq_soc_data am625_soc_data = {
- 	.efuse_xlate = am625_efuse_xlate,
--	.efuse_offset = 0x0018,
-+	.efuse_offset = 0x0,
- 	.efuse_mask = 0x07c0,
- 	.efuse_shift = 0x6,
--	.rev_offset = 0x0014,
- 	.multi_regulator = false,
- };
- 
-@@ -325,7 +324,6 @@ static struct ti_cpufreq_soc_data am62a7_soc_data = {
- 	.efuse_offset = 0x0,
- 	.efuse_mask = 0x07c0,
- 	.efuse_shift = 0x6,
--	.rev_offset = 0x0014,
- 	.multi_regulator = false,
- };
- 
-@@ -334,7 +332,6 @@ static struct ti_cpufreq_soc_data am62p5_soc_data = {
- 	.efuse_offset = 0x0,
- 	.efuse_mask = 0x07c0,
- 	.efuse_shift = 0x6,
--	.rev_offset = 0x0014,
- 	.multi_regulator = false,
- };
- 
-@@ -349,11 +346,26 @@ static int ti_cpufreq_get_efuse(struct ti_cpufreq_data *opp_data,
- 				u32 *efuse_value)
- {
- 	struct device *dev = opp_data->cpu_dev;
-+	struct device_node *np = of_find_node_by_path("/bus@f0000/bus@b00000/syscon@43000000");
- 	u32 efuse;
- 	int ret;
- 
--	ret = regmap_read(opp_data->syscon, opp_data->soc_data->efuse_offset,
--			  &efuse);
-+	/*
-+	 * This checks for old AM625 Devicetrees where the syscon was a phandle to the
-+	 * wkup_conf parent, this required a hard-coded offset to the efuse register.
-+	 * This node had the compatibles "syscon", "simple-mfd".
-+	 */
-+	if (of_device_is_compatible(np, "simple-mfd") &&
-+	    of_machine_is_compatible("ti,am625")) {
-+		dev_warn(dev,
-+			 "%s: An old devicetree is in use, please consider updating at some point!",
-+			 __func__);
-+		ret = regmap_read(opp_data->syscon, opp_data->soc_data->efuse_offset + 0x0018,
-+				  &efuse);
-+	} else {
-+		ret = regmap_read(opp_data->syscon, opp_data->soc_data->efuse_offset,
-+				  &efuse);
-+	}
- 	if (opp_data->soc_data->quirks & TI_QUIRK_SYSCON_MAY_BE_MISSING && ret == -EIO) {
- 		/* not a syscon register! */
- 		void __iomem *regs = ioremap(OMAP3_SYSCON_BASE +
+I haven't followed what changed in the validation tools, but this is
+definitely less confusing. Thanks for improving the experience.
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/cache/l2c2x0.yaml  |  5 ++---
+>  .../devicetree/bindings/dma/dma-common.yaml          |  7 +++----
+>  .../bindings/interrupt-controller/arm,gic-v3.yaml    | 12 +++++-------
+>  .../devicetree/bindings/media/i2c/thine,thp7312.yaml |  3 +--
+>  .../bindings/memory-controllers/exynos-srom.yaml     |  5 ++---
+>  .../devicetree/bindings/pci/brcm,stb-pcie.yaml       |  5 ++---
+>  .../devicetree/bindings/soc/qcom/qcom,smp2p.yaml     |  3 +--
+>  7 files changed, 16 insertions(+), 24 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/cache/l2c2x0.yaml b/Documentation/devicetree/bindings/cache/l2c2x0.yaml
+> index d7840a5c4037..10c1a900202f 100644
+> --- a/Documentation/devicetree/bindings/cache/l2c2x0.yaml
+> +++ b/Documentation/devicetree/bindings/cache/l2c2x0.yaml
+> @@ -100,9 +100,8 @@ properties:
+>        filter. Addresses in the filter window are directed to the M1 port. Other
+>        addresses will go to the M0 port.
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
+> -    items:
+> -      minItems: 2
+> -      maxItems: 2
+> +    minItems: 2
+> +    maxItems: 2
+>  
+>    arm,io-coherent:
+>      description: indicates that the system is operating in an hardware
+> diff --git a/Documentation/devicetree/bindings/dma/dma-common.yaml b/Documentation/devicetree/bindings/dma/dma-common.yaml
+> index ea700f8ee6c6..fde5160b5d29 100644
+> --- a/Documentation/devicetree/bindings/dma/dma-common.yaml
+> +++ b/Documentation/devicetree/bindings/dma/dma-common.yaml
+> @@ -32,10 +32,9 @@ properties:
+>        The first item in the array is for channels 0-31, the second is for
+>        channels 32-63, etc.
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
+> -    items:
+> -      minItems: 1
+> -      # Should be enough
+> -      maxItems: 255
+> +    minItems: 1
+> +    # Should be enough
+> +    maxItems: 255
+>  
+>    dma-channels:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
+> index 5f051c666cbe..f3247a47f9ee 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
+> @@ -132,10 +132,9 @@ properties:
+>        Address property. Base address of an alias of the GICD region containing
+>        only the {SET,CLR}SPI registers to be used if isolation is required,
+>        and if supported by the HW.
+> -    $ref: /schemas/types.yaml#/definitions/uint32-array
+> -    items:
+> -      minItems: 1
+> -      maxItems: 2
+> +    oneOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - $ref: /schemas/types.yaml#/definitions/uint64
+>  
+>    ppi-partitions:
+>      type: object
+> @@ -223,9 +222,8 @@ patternProperties:
+>            (u32, u32) tuple describing the untranslated
+>            address and size of the pre-ITS window.
+>          $ref: /schemas/types.yaml#/definitions/uint32-array
+> -        items:
+> -          minItems: 2
+> -          maxItems: 2
+> +        minItems: 2
+> +        maxItems: 2
+>  
+>      required:
+>        - compatible
+> diff --git a/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
+> index 535acf2b88a9..bc339a7374b2 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
+> @@ -135,8 +135,7 @@ properties:
+>  
+>            data-lanes:
+>              $ref: /schemas/media/video-interfaces.yaml#/properties/data-lanes
+> -            items:
+> -              maxItems: 4
+> +            maxItems: 4
+>              description:
+>                This property is for lane reordering between the THP7312 and the imaging
+>                sensor that it is connected to.
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/exynos-srom.yaml b/Documentation/devicetree/bindings/memory-controllers/exynos-srom.yaml
+> index 10a2d97e5f8b..a5598ade399f 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/exynos-srom.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/exynos-srom.yaml
+> @@ -66,9 +66,8 @@ patternProperties:
+>  
+>        samsung,srom-timing:
+>          $ref: /schemas/types.yaml#/definitions/uint32-array
+> -        items:
+> -          minItems: 6
+> -          maxItems: 6
+> +        minItems: 6
+> +        maxItems: 6
+>          description: |
+>            Array of 6 integers, specifying bank timings in the following order:
+>            Tacp, Tcah, Tcoh, Tacc, Tcos, Tacs.
+> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> index 0925c520195a..2ad1652c2584 100644
+> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> @@ -92,9 +92,8 @@ properties:
+>        may have two component regions -- base and extended -- so
+>        this information cannot be deduced from the dma-ranges.
+>      $ref: /schemas/types.yaml#/definitions/uint64-array
+> -    items:
+> -      minItems: 1
+> -      maxItems: 3
+> +    minItems: 1
+> +    maxItems: 3
+>  
+>    resets:
+>      minItems: 1
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
+> index 141d666dc3f7..1ba1d419e83b 100644
+> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
+> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
+> @@ -55,8 +55,7 @@ properties:
+>  
+>    qcom,smem:
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
+> -    items:
+> -      maxItems: 2
+> +    maxItems: 2
+>      description:
+>        Two identifiers of the inbound and outbound smem items used for this edge.
+>  
 
 -- 
-2.34.1
+Regards,
 
+Laurent Pinchart
 
