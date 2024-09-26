@@ -1,169 +1,266 @@
-Return-Path: <devicetree+bounces-105572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AD6D987205
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 12:51:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71F4098720B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 12:53:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A28A61C213FC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 10:51:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 945331C2287B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 10:53:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7245C1AD416;
-	Thu, 26 Sep 2024 10:51:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 427DC1AD9F7;
+	Thu, 26 Sep 2024 10:52:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UEDMHKnz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B8Frapnu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D943C1F95C;
-	Thu, 26 Sep 2024 10:51:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5082F1AD9E3;
+	Thu, 26 Sep 2024 10:52:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727347863; cv=none; b=C/7QfwoNJuKhT3f6t/mZDNXx7i+yC3hRB+5UmWhU+LTG5Mp+NBCOLFjvErvWA2+69apKZfHvVzvFm6b6fwncZGzd3b/mHVN4iUDZOmOjJwyQfYhGu9X8576QxCHHsO9DuSGAAvPhtcZ3oUD2q7CDmKmIrudDKfZWUmiueBjeX8U=
+	t=1727347965; cv=none; b=jYhkv85CvkzGcIPLUVausrby7xH8uCIjSuz5PSFa2cVhYl//OPwYeuuBt1WVGER/pS4dPDNEbbWAkk1NAYrBkV4gNEtQ8BKlKK1Vf6m15Ww5iXFtpGIRMDm1YiWMrLHMBU257ymdBmILmP3FDVMxXmyf8s2fRZgp/1IOhBD7mpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727347863; c=relaxed/simple;
-	bh=TwVIWKlnR/D250Uc5Gkp40af/BcL9AuX/yo1Px/eupk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ExVD4ERKkt3+2FQ5/NY0PKCCEeTNYSPuQ2EGlJm/H2jRHP+YrDGD0eQWvYqkMkKU59oKAINYhe/14/h1v2ro8awg5xdMB6LIkp+j+GNDm7KEigssfGOsgnbQQ8ioxkUThhavbZVV6fxClLLpqSaZAc5XhcEH3beoEim1cI/JgTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UEDMHKnz; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48Q75CLW010586;
-	Thu, 26 Sep 2024 10:50:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	j+1ytVElgYRHqGy80fSqI+IlhZMgIedGWEiG7ffAc04=; b=UEDMHKnzMWGUW5ml
-	HSrpuyFQURqWYv7IP+RxEXZi4PDEHhiQTLktx+abIspdtwFAtauwGezU2q5MyoIS
-	MoglHXZwh392D0nKMqewdN6kZVgOnVB1OO+6j/PcpTQVU/05FgREV0oRA1lS1ia4
-	KgWcITYXYrdhOsmoqRa09YCTHrvAEGhQ8x7GRK7pAmgpuqG9Pp+0OHwgTi1XV32U
-	22Qo/R4cQ/rK6RrF/t5PJNp4njrAiLFCOBzGuDKqZWRuBSu9iuXRSQoAVkXZ1pNv
-	+vXQHi2scI5ZpM+oSjGmcjB9vjcmrG2HHeP8tbLGL/A0bCTlxZMTY0U7N2Kvm0ee
-	EAovgg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41sph6ye0x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 26 Sep 2024 10:50:55 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48QAosSl013267
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 26 Sep 2024 10:50:54 GMT
-Received: from [10.216.19.58] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 26 Sep
- 2024 03:50:50 -0700
-Message-ID: <a4f01eaa-bfb2-a5a4-87b2-2960aa61d29e@quicinc.com>
-Date: Thu, 26 Sep 2024 16:20:47 +0530
+	s=arc-20240116; t=1727347965; c=relaxed/simple;
+	bh=rNLSkaEd7oDUKlk8fUcvYr/AJfk6k2J1D0qkHx1VVI8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=eQ+ZW2KcbDGRxmqA87vGsm22vtkXEvwgnDMKpZYpVXFScoymHRCisOTPmFmvPuTfWFZZTjdKvUK9Mb3M8cdXkjGgM/b302yvMPRzusC5/7An9iph7v4rEBArsOQIBuc1xP/YvmrdKISkAXJlbrVrl8Pqt6/CqVNBXdbAKLk/EEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B8Frapnu; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a8d6d0fe021so137162666b.1;
+        Thu, 26 Sep 2024 03:52:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727347961; x=1727952761; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=rNLSkaEd7oDUKlk8fUcvYr/AJfk6k2J1D0qkHx1VVI8=;
+        b=B8FrapnuhKSSh8TS3j1PiqLveNu2BD9Kpsa4hg37bXNzaZQI7FAFUfDOUSrf2YYwHH
+         MhcV8M1fz7Vzo95idRdo9xeTM866UwupCUkJ6Zl9jGXb3Y5kTyFQNpsDRCPPGKg999Bw
+         6e9+f3Fwovc26Caia4uEX50Jrpz4eJSxC7/CBsLsuVjDHMZun6aOdmJdpo7KISLwdzd6
+         2VKqC5SbDgbcsfsP72DYL1raX6tcRhDC/s/FYxIDR4QMSG2kFNAflcDluiWwjBXYEiR6
+         oLX+qXbEnTMvn5UayHCMlSH5kw8mSM3ysbfo5aoYPKwOitk4xDrHZfdO0CikPlGitQKn
+         eV6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727347961; x=1727952761;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rNLSkaEd7oDUKlk8fUcvYr/AJfk6k2J1D0qkHx1VVI8=;
+        b=GJQnqUBhekHd4MjpqHSt4WCJJ+tatKqTPZ7n3AreBYUeVCJuoyCu13YiF1X52TMNxF
+         24qRCyoTDd2EFn8CzR5S39P8w9kDxJE+X6uWqMku/c/fUAxFF9KunTkzMnSq/4cvQxgg
+         /Xu++ZPQa2gIgD+ZikfBBJ0K+UBdkF7H8pqSkd5NmGV7LjqGtlMIGyDAc3xYgI5iPA3V
+         XmLJGBe6WM1Uv//axMCv5xwcvRB7ox1Ickn2aXLnRFZS/B42SgASK3ogSj0lRYqNS/Z6
+         1CBwY7hbB9fjhDx+lQgLVODTI+qiG4dZLOguTDChzYSgfjM5Yox4BdiwHcny0LklhXKT
+         6akQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUSdG7uUR8FAz9jp/Se/jbwX3cuQXACkTejubAocZXxWTPWuEl7g4XoyA2BSTveAJ9tLOMDJSGmGj9MNAW1@vger.kernel.org, AJvYcCW9wQCHIMf2QIB9BVZ2GU0egMyOQkCWfyPud1ftbpp5+QkhNE9H4OfWvnuVdfEVEWBb2l631N3CpMt4@vger.kernel.org, AJvYcCXen2r7H7oO/tivAVX4GBjJwE/zLqH8V4/z5F0x4aoncgO0KeVS/rbr05jtD0bVtM86/rI6EwPLAsqq@vger.kernel.org, AJvYcCXnMPgiatLKU6gu+gv/d4EEaHeGsTvKN9YDAcQ0sIegmknp3G0JLI57DUPkBRhGdydPlzMLQo+xnAJn@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJpWsTVJxx1Qb3mX5z6IIU/EfY2YzbdEP4wHbZq5XqObXpIiS8
+	IAcCHzo4etGR1OsXHTSXUTpYDQTK1kwidtaMXx5sWR/ITrnEp7Y1
+X-Google-Smtp-Source: AGHT+IFEqLjZ85oYoyLQbtQFM71BDt+U30LBxiyP+dOTJVzn/sVZoFDhT1nJPJ4DAiUCLcjVwrOm0w==
+X-Received: by 2002:a17:907:2cc4:b0:a8a:913e:418b with SMTP id a640c23a62f3a-a93a0369e7bmr538221366b.20.1727347961226;
+        Thu, 26 Sep 2024 03:52:41 -0700 (PDT)
+Received: from nsa.fritz.box ([2001:a61:341e:1201:c434:b5b1:98a6:efed])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a93a1a8c71csm221130666b.87.2024.09.26.03.52.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Sep 2024 03:52:40 -0700 (PDT)
+Message-ID: <83cf3c3eb1cc5fcc06ce72cab14cc0da3bd817b6.camel@gmail.com>
+Subject: Re: [PATCH 1/7] iio: backend: add API for interface get
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Antoniu Miclaus
+	 <antoniu.miclaus@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>,  Michael Hennerich <Michael.Hennerich@analog.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>, Olivier Moysan
+ <olivier.moysan@foss.st.com>, Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=
+ <ukleinek@kernel.org>, Andy Shevchenko <andy@kernel.org>, Marcelo Schmitt
+ <marcelo.schmitt@analog.com>, Alisa-Dariana Roman <alisadariana@gmail.com>,
+  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Dumitru Ceclan <mitrutzceclan@gmail.com>,  =?ISO-8859-1?Q?Jo=E3o?= Paulo
+ =?ISO-8859-1?Q?Gon=E7alves?= <joao.goncalves@toradex.com>, Marius Cristea
+ <marius.cristea@microchip.com>,  Sergiu Cuciurean
+ <sergiu.cuciurean@analog.com>, Dragos Bogdan <dragos.bogdan@analog.com>,
+ linux-iio@vger.kernel.org,  linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org,  linux-pwm@vger.kernel.org
+Date: Thu, 26 Sep 2024 12:52:39 +0200
+In-Reply-To: <CAMknhBHmtpnX-nXxReF-rUW1ks1=iw3m_BmiRUTkf5XckPsvPw@mail.gmail.com>
+References: <20240923101206.3753-1-antoniu.miclaus@analog.com>
+	 <20240923101206.3753-2-antoniu.miclaus@analog.com>
+	 <CAMknhBHmtpnX-nXxReF-rUW1ks1=iw3m_BmiRUTkf5XckPsvPw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 17/29] media: iris: implement query_cap, query_ctrl and
- query_menu ioctls
-Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Vikash Garodia
-	<quic_vgarodia@quicinc.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Vedang Nagar
-	<quic_vnagar@quicinc.com>
-References: <20240827-iris_v3-v3-0-c5fdbbe65e70@quicinc.com>
- <20240827-iris_v3-v3-17-c5fdbbe65e70@quicinc.com>
- <8f156cc8-d8f8-4caf-8431-4a549f41ac0f@linaro.org>
-From: Dikshita Agarwal <quic_dikshita@quicinc.com>
-In-Reply-To: <8f156cc8-d8f8-4caf-8431-4a549f41ac0f@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Y2VbOA2zeFw4jLdllrYWmxzu309IXcqA
-X-Proofpoint-ORIG-GUID: Y2VbOA2zeFw4jLdllrYWmxzu309IXcqA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- impostorscore=0 bulkscore=0 spamscore=0 clxscore=1015 mlxlogscore=999
- mlxscore=0 adultscore=0 phishscore=0 suspectscore=0 priorityscore=1501
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409260072
 
+On Thu, 2024-09-26 at 10:40 +0200, David Lechner wrote:
+> On Mon, Sep 23, 2024 at 12:15=E2=80=AFPM Antoniu Miclaus
+> <antoniu.miclaus@analog.com> wrote:
+> >=20
+> > Add backend support for obtaining the interface type used.
+> >=20
+> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> > ---
+> > =C2=A0drivers/iio/industrialio-backend.c | 24 ++++++++++++++++++++++++
+> > =C2=A0include/linux/iio/backend.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 10 ++++++++++
+> > =C2=A02 files changed, 34 insertions(+)
+> >=20
+> > diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industria=
+lio-
+> > backend.c
+> > index efe05be284b6..53ab6bc86a50 100644
+> > --- a/drivers/iio/industrialio-backend.c
+> > +++ b/drivers/iio/industrialio-backend.c
+> > @@ -449,6 +449,30 @@ ssize_t iio_backend_ext_info_set(struct iio_dev *i=
+ndio_dev,
+> > uintptr_t private,
+> > =C2=A0}
+> > =C2=A0EXPORT_SYMBOL_NS_GPL(iio_backend_ext_info_set, IIO_BACKEND);
+> >=20
+> > +/**
+> > + * iio_backend_interface_type_get - get the interace type used.
+> > + * @back: Backend device
+> > + * @type: Interface type
+> > + *
+> > + * RETURNS:
+> > + * 0 on success, negative error number on failure.
+> > + */
+> > +int iio_backend_interface_type_get(struct iio_backend *back,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum iio_backend_int=
+erface_type *type)
+> > +{
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int ret;
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D iio_backend_op_call(back,=
+ interface_type_get, type);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (ret)
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 return ret;
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (*type > IIO_BACKEND_INTERFACE=
+_CMOS)
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 return -EINVAL;
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return 0;
+> > +}
+> > +EXPORT_SYMBOL_NS_GPL(iio_backend_interface_type_get, IIO_BACKEND);
+> > +
+> > =C2=A0/**
+> > =C2=A0 * iio_backend_extend_chan_spec - Extend an IIO channel
+> > =C2=A0 * @indio_dev: IIO device
+> > diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
+> > index 8099759d7242..ba8ad30ac9ba 100644
+> > --- a/include/linux/iio/backend.h
+> > +++ b/include/linux/iio/backend.h
+> > @@ -63,6 +63,11 @@ enum iio_backend_sample_trigger {
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IIO_BACKEND_SAMPLE_TRIGGER_M=
+AX
+> > =C2=A0};
+> >=20
+> > +enum iio_backend_interface_type {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IIO_BACKEND_INTERFACE_LVDS,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IIO_BACKEND_INTERFACE_CMOS
+> > +};
+> > +
+> > =C2=A0/**
+> > =C2=A0 * struct iio_backend_ops - operations structure for an iio_backe=
+nd
+> > =C2=A0 * @enable: Enable backend.
+> > @@ -81,6 +86,7 @@ enum iio_backend_sample_trigger {
+> > =C2=A0 * @extend_chan_spec: Extend an IIO channel.
+> > =C2=A0 * @ext_info_set: Extended info setter.
+> > =C2=A0 * @ext_info_get: Extended info getter.
+> > + * @interface_type_get: Interface type.
+> > =C2=A0 **/
+> > =C2=A0struct iio_backend_ops {
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int (*enable)(struct iio_bac=
+kend *back);
+> > @@ -113,6 +119,8 @@ struct iio_backend_ops {
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 const char *buf, size_t len);
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int (*ext_info_get)(struct i=
+io_backend *back, uintptr_t private,
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 const struct iio_chan_spec *chan, char *buf);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int (*interface_type_get)(struct =
+iio_backend *back,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum iio_backend_interface=
+_type *type);
+> > =C2=A0};
+> >=20
+> > =C2=A0int iio_backend_chan_enable(struct iio_backend *back, unsigned in=
+t chan);
+> > @@ -142,6 +150,8 @@ ssize_t iio_backend_ext_info_set(struct iio_dev *in=
+dio_dev,
+> > uintptr_t private,
+> > =C2=A0ssize_t iio_backend_ext_info_get(struct iio_dev *indio_dev, uintp=
+tr_t private,
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct iio_chan_spec=
+ *chan, char *buf);
+> >=20
+> > +int iio_backend_interface_type_get(struct iio_backend *back,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum iio_backend_int=
+erface_type *type);
+> > =C2=A0int iio_backend_extend_chan_spec(struct iio_dev *indio_dev,
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct iio_backend *back,
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct iio_chan_spec *chan=
+);
+> > --
+> > 2.46.0
+> >=20
+>=20
+> This seems very specific to the AD485x chips and the AXI ADC backend.
+> Since it is describing how the chip is wired to the AXI DAC IP block,
+> I would be tempted to use the devicetree for this info instead of
+> adding a new backend function.
 
+Not sure If I'm following your point but I think this is the typical case w=
+here the
+chip (being it a DAC or ADC) supports both CMOS and LVDS interfaces. Natura=
+lly you
+only use one on your system and this is a synthesis parameter on the FPGA I=
+P core.
+Therefore, it makes sense for the frontend to have way to ask for this info=
+rmation to
+the backend.
 
-On 9/24/2024 8:19 PM, Bryan O'Donoghue wrote:
-> On 27/08/2024 11:05, Dikshita Agarwal via B4 Relay wrote:
->> From: Vedang Nagar <quic_vnagar@quicinc.com>
->>
->> Implement query_cap, query_ctrl and query_menu ioctls in the
->> driver with necessary hooks.
->>
->> Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
->> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
->> ---
->>   drivers/media/platform/qcom/iris/iris_vidc.c | 89
->> ++++++++++++++++++++++++++++
->>   1 file changed, 89 insertions(+)
->>
->> diff --git a/drivers/media/platform/qcom/iris/iris_vidc.c
->> b/drivers/media/platform/qcom/iris/iris_vidc.c
->> index 7d5da30cb1d1..1dd612b7cec5 100644
->> --- a/drivers/media/platform/qcom/iris/iris_vidc.c
->> +++ b/drivers/media/platform/qcom/iris/iris_vidc.c
->> @@ -362,6 +362,92 @@ static int iris_enum_framesizes(struct file *filp,
->> void *fh,
->>       return ret;
->>   }
->>   +static int iris_querycap(struct file *filp, void *fh, struct
->> v4l2_capability *cap)
->> +{
->> +    struct iris_inst *inst;
->> +    int ret = 0;
->> +
->> +    inst = iris_get_inst(filp, fh);
->> +    if (!inst)
->> +        return -EINVAL;
->> +
->> +    mutex_lock(&inst->lock);
->> +    strscpy(cap->driver, IRIS_DRV_NAME, sizeof(cap->driver));
->> +    strscpy(cap->bus_info, IRIS_BUS_NAME, sizeof(cap->bus_info));
->> +    memset(cap->reserved, 0, sizeof(cap->reserved));
->> +    strscpy(cap->card, "iris_decoder", sizeof(cap->card));
->> +    mutex_unlock(&inst->lock);
-> 
-> Locking is a good thing but, this seems very rote.
-> 
-> What's being protected here ?
-> 
-> Please take a critical - no pun intended - look at your locking strategy here.
-> 
-> I mentioned previously taking a core lock and releasing it with a level of
-> granularity that didn't make a ton of sense to me, here's another example
-> of locking for locking's sake.
-> 
-> Please go through your code, look at your locks with a critical eye and say
-> "what's this for, why are doing this, what is the lock supposed to
-> guarantee here".
-> 
-> I appreciate that can be difficult with a progressive patchset so recommend
-> jumping in at the end and doing that analysis.
-> 
-sure, will revisit the usage of inst->lock and improve as needed.
-> ---
-> bod
+That said, we could also have a DT parameter but, ideally, we would then ne=
+ed a way
+to match the parameter with the backend otherwise we could have DT stating =
+LVDS and
+the backend built with CMOS.
+
+Other thing that we could think about is a new devm_iio_backend_get_with_in=
+fo() where
+the frontend would get some constant and static info about the backend (the=
+ interface
+type would an ideal match for something like this). But I feel it's still e=
+arly days
+for something like this :)
+
+- Nuno S=C3=A1
 
