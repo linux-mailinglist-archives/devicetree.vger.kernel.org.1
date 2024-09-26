@@ -1,73 +1,76 @@
-Return-Path: <devicetree+bounces-105636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EAAA98750C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 16:04:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33C33987536
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 16:12:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D4AC283A0C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 14:03:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57BB7B28B44
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 14:12:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D373353389;
-	Thu, 26 Sep 2024 14:03:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ue6+eDGl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9252713049E;
+	Thu, 26 Sep 2024 14:12:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 999EF54F95;
-	Thu, 26 Sep 2024 14:03:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE6FD26296;
+	Thu, 26 Sep 2024 14:12:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727359432; cv=none; b=NuJjR0tzDkOIJXikqO7x9NasusYhnqUYm9Bfrfq7wXijKLQb7rjUNpGsO7HlrN/FNKhYy8NRGpm7/H8Nh9w4Ro5PDrpiAk/kxcwj7dHJ98opNtKwwNVp6INN7tWBt87bQLMCtD+O478iarePJLQmDUngHKLrRAvnyyUbLPT30ak=
+	t=1727359939; cv=none; b=leHNvu8m8oiveDcEAyw7zks2nAEdgaSmZGy4kkuRZzRzqL2R8Ej/6dxkWK5QqAkGDlphNCiArME55pSXANjdtrY8/5SCRMLRpCfIOwqki0m9Ck6weqAboQUkNbfFf9Dkg5ZePe+gFxx8a+1G3CE4utit6LI0YfcRUcp0rgppBhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727359432; c=relaxed/simple;
-	bh=jtCshB+kbsn9FzIzIwY86oEMwzDjCbBE1nTqG/gsx9Q=;
+	s=arc-20240116; t=1727359939; c=relaxed/simple;
+	bh=2nhtvdFj51Zs02wrpcBijb6ad+R6L05k2rianj2S1tM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jp99mhI83Xtr/b20oCMSyOIRIb3nxftZKmDLA7TxXpt4RMjonKRuG6evv0xPiJ42cxt4VetRPqeQZPW5qWAFmfqMEG8XhWPLHokzf56ga/kW2rMAAf3tHHffH7YvO41y9vQYmZ1dsUb/dtMMt+nGgAkCCJLJ7CQdTeXjDvzEvcc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ue6+eDGl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 085A0C4CEC5;
-	Thu, 26 Sep 2024 14:03:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727359432;
-	bh=jtCshB+kbsn9FzIzIwY86oEMwzDjCbBE1nTqG/gsx9Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ue6+eDGlWGKfphSJdEdkbSB0MTnPYtfZ6oX/1NUUtZTB3BncchmRwnjY/aSG9Xqgu
-	 vJh7HohBkSAlYbMWvh7cngB2t1BpoMg6fZuNz6zJyeIKHZo6cmQvx67b5SY0+9+Zct
-	 2KMSEM0mPDm4K2G27car0LT3NUfn5eXeUEVFzNmF4uKv5o4Pw7H0+bXI2/5q2Gdybp
-	 LIv6yuWL2nKqUQyIeAVm0Tc/lMyPpi3RrODjUEA+5AwK/we7lrOZoYy8SM5eDALJJv
-	 0vh6dNdKCbD4rjzo6WwTCu4hS6IvmJ9U2UHoyoyISHi6V0n0OZjH8CojCmP/wFW2EO
-	 D5Cnl6bdEuVng==
-Date: Thu, 26 Sep 2024 09:03:51 -0500
-From: Rob Herring <robh@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Jens Axboe <axboe@kernel.dk>, Jonathan Corbet <corbet@lwn.net>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=YUXKOLb4yyavIsad0nqL8GqPjKpJo8wMjUpY3esvOOP7gmCocXqK2Cxc9xogz/UCLNK8hh65PC9N1qiI/pkEtSxfejqFXsdZWxNke+zpDx6Tffl6eUikKfsqJYBOqkcc9jQJiTDGc3LJgD5FUDaceLEwcCbMDxpFh6RMXjOaEtY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: 7Udm/fb4SwGMvc3IHD6Q9A==
+X-CSE-MsgGUID: NcAND5wTQ5uiXWDKVqXEDQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="26595452"
+X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; 
+   d="scan'208";a="26595452"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Sep 2024 07:12:09 -0700
+X-CSE-ConnectionGUID: iV47HJ+RRnSx71Rt6yhgMg==
+X-CSE-MsgGUID: vQHYOvx/TQmvpv1A/Llysg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; 
+   d="scan'208";a="76941762"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Sep 2024 07:12:06 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andy@kernel.org>)
+	id 1stpDu-0000000DDeC-0hey;
+	Thu, 26 Sep 2024 17:12:02 +0300
+Date: Thu, 26 Sep 2024 17:12:01 +0300
+From: Andy Shevchenko <andy@kernel.org>
+To: Ramona Alexandra Nechita <ramona.nechita@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Simon Glass <sjg@chromium.org>,
-	INAGAKI Hiroshi <musashino.open@gmail.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Al Viro <viro@zeniv.linux.org.uk>,
-	Christian Brauner <brauner@kernel.org>,
-	Li Lingfeng <lilingfeng3@huawei.com>,
-	Christian Heusel <christian@heusel.eu>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	linux-block@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-	Lorenzo Bianconi <lorenzo@kernel.org>
-Subject: Re: [RFC PATCH v2 4/5] dt-bindings: block: Generalize and introduce
- property for partitions
-Message-ID: <20240926140351.GA2596132-robh@kernel.org>
-References: <20240925214544.6114-1-ansuelsmth@gmail.com>
- <20240925214544.6114-5-ansuelsmth@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+	David Lechner <dlechner@baylibre.com>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	Dumitru Ceclan <mitrutzceclan@gmail.com>,
+	Matteo Martelli <matteomartelli3@gmail.com>,
+	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
+	Alisa-Dariana Roman <alisadariana@gmail.com>,
+	Marius Cristea <marius.cristea@microchip.com>,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 2/3] Documentation: ABI: added filter mode doc in
+ sysfs-bus-iio
+Message-ID: <ZvVrsXrm8XBYGeRn@smile.fi.intel.com>
+References: <20240926135418.8342-1-ramona.nechita@analog.com>
+ <20240926135418.8342-3-ramona.nechita@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,107 +79,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240925214544.6114-5-ansuelsmth@gmail.com>
+In-Reply-To: <20240926135418.8342-3-ramona.nechita@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Wed, Sep 25, 2024 at 11:45:24PM +0200, Christian Marangi wrote:
-> Generalize property from MTD partitions schema and introduce property for
-> block partitions defined in OF.
-> 
-> Partition schema for block devices is a reduced schema of the MTD as
-> only a few property are supported for it. (reg, label and read-only)
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  .../bindings/block/partitions/partition.yaml  | 33 +++++++++++++++++++
->  .../bindings/block/partitions/partitions.yaml | 27 +++++++++++++++
->  .../bindings/mtd/partitions/partition.yaml    | 10 ++----
->  3 files changed, 62 insertions(+), 8 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/block/partitions/partition.yaml
->  create mode 100644 Documentation/devicetree/bindings/block/partitions/partitions.yaml
+On Thu, Sep 26, 2024 at 04:53:56PM +0300, Ramona Alexandra Nechita wrote:
+> The filter mode / filter type property is used for ad4130
+> and ad7779 drivers, therefore the ABI doc file for ad4130
+> was removed, merging both of them in the sysfs-bus-iio.
+> Since one of the drivers is available from 6.1, the version
+> has been set to 6.1 for these attributes.
 
-Partitions are partitions. We don't need them defined in both mtd and 
-block. Could perhaps move them to bindings/partitions/, but that's not 
-really worth it in my opinion. Just use and add to what's in mtd.
+...
 
-> 
-> diff --git a/Documentation/devicetree/bindings/block/partitions/partition.yaml b/Documentation/devicetree/bindings/block/partitions/partition.yaml
-> new file mode 100644
-> index 000000000000..b9b1d8139e56
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/block/partitions/partition.yaml
-> @@ -0,0 +1,33 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/block/partitions/partition.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Partition
-> +
-> +description: |
+> +Description:
+> +		Reading returns a list with the possible filter modes. Options
+> +		for the attribute:
+> +			* "sinc3"	- The digital sinc3 filter. Moderate 1st conversion time.
+> +		    Good noise performance.
+> +			* "sinc4"       - Sinc 4. Excellent noise performance. Long
+> +			1st conversion time.
+> +			* "sinc5"	- The digital sinc5 filter. Excellent noise performance
+> +			* "sinc4+sinc1" - Sinc4 + averaging by 8. Low 1st conversion
+> +		    time.
+> +			* "sinc3+rej60" - Sinc3 + 60Hz rejection.
+> +			* "sinc3+sinc1" - Sinc3 + averaging by 8. Low 1st conversion
+> +		    time.
+> +			* "sinc3+pf1"   - Sinc3 + device specific Post Filter 1.
+> +			* "sinc3+pf2"   - Sinc3 + device specific Post Filter 2.
+> +			* "sinc3+pf3"   - Sinc3 + device specific Post Filter 3.
+> +			* "sinc3+pf4"   - Sinc3 + device specific Post Filter 4.
 
-Don't need '|' if no formatting.
+I still think that a compromise to leave the existing values as an example in
+the existing bindings is a good to have.
 
-> +  This binding describes a single flash partition. Each partition must have its
-> +  relative offset and size specified. Depending on partition function extra
-> +  properties can be used.
-> +
-> +maintainers:
-> +  - Christian Marangi <ansuelsmth@gmail.com>
-> +
-> +properties:
-> +  reg:
-> +    description: partition's offset and size within the flash (in sector
-> +      block, 512byte)
-> +    maxItems: 1
-> +
-> +  label:
-> +    description: The label / name for this partition.
-> +
-> +  read-only:
-> +    description: This parameter, if present, is a hint that this partition
-> +      should only be mounted read-only. This is usually used for flash
-> +      partitions containing early-boot firmware images or data which should
-> +      not be clobbered.
-> +    type: boolean
-> +
-> +additionalProperties: true
-> diff --git a/Documentation/devicetree/bindings/block/partitions/partitions.yaml b/Documentation/devicetree/bindings/block/partitions/partitions.yaml
-> new file mode 100644
-> index 000000000000..9c161aac364d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/block/partitions/partitions.yaml
-> @@ -0,0 +1,27 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/block/partitions/partitions.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Partitions
-> +
-> +description: |
-> +  This binding is generic and describes the content of the partitions container
-> +  node.
-> +
-> +maintainers:
-> +  - Christian Marangi <ansuelsmth@gmail.com>
-> +
-> +properties:
-> +  '#address-cells':
-> +    enum: [1, 2]
-> +
-> +  '#size-cells':
-> +    enum: [1, 2]
+But if Jonathan thinks otherwise, I'm not against it.
+For the rest
+Reviewed-by: Andy Shevchenko <andy@kernel.org>
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-Like *all* other 'partitions' nodes, you need a compatible to say what 
-kind of partitions you have. It's conceivable that some vendor invented 
-their own scheme just like MTD devices.
-
-As I said before, this is just 'fixed-partitions'. If some properties 
-aren't supported, that's fine. All the 'align' properties are for 
-flashing tools and aren't supported in Linux. 
-
-Rob
 
