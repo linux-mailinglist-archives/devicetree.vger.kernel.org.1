@@ -1,199 +1,282 @@
-Return-Path: <devicetree+bounces-105494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54B63986DDC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:39:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E1C6986DE0
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:43:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AA912B22E5F
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 07:39:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 269C9283B0C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 07:43:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7002F18E04C;
-	Thu, 26 Sep 2024 07:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B03641925A2;
+	Thu, 26 Sep 2024 07:43:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="bgEoY8HG"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="afJVYSFA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012043.outbound.protection.outlook.com [52.101.66.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A230618E02B
-	for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 07:39:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727336365; cv=fail; b=Tg1GD7KJGhZDHSyclM/eLvGjbhu/vatNCTWfm+QIuEXPr7vESrPXRMCgWlcN5kfP3y0LgKl6TiVImdkkgIybtcWpAO7/nZmnFfHffhAToIum2hscWjYPr41n5lav8XA5yeYkDYVYt/J2anRymWDJ1TqLUOGESp7/s5MINHFAW8s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727336365; c=relaxed/simple;
-	bh=kdz0J3EqFTOx/d9oFH4Fv1H8AcT/8AE5WrKwT1WlmCs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=nbYe6JWZK1yukdNBuGg0NdKm2iD7OiPuDz3pcMyB8BS4YyHAhQmOeZpHRpzemUQ7E35TGt5CjZ/X4g5A9eC4HZZ9kh7D1TxuTM69MdSrlPIPKibE1QYGc+AEctW8RaN+G23ovN3dj6PSCeoRwZys8wbTwBzOSw6zsWCMh7g41gQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=bgEoY8HG; arc=fail smtp.client-ip=52.101.66.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=F2RHBIhbu0dtgD0OTUiQi624XTHTUmDVKybRsxgNkYR9UuDV5JikmGFJz0phblb0Qz4R2C8xoWDBNIdSXjbmsajlZ0nvTZvDyRQtHNDhCRydc8dAs1b83PA32boqbPRGUTbwGuLQif2Yc66q4eF3ck2w3ebyY6cjKp/IuSweaei7sQ3B3WHT8zTK6m6goohctEP2hgG3PnzExsVrBO4Jo1XNM+I274bwMoJx2WuIcbG7rXeu0895n3jDtIsStNGTbWlIHQG209mA/TIRwnXyTbJeVN30JVX57nXgKUDCD4fC3nJdJLN/g2t+pDxyUFNxDvMr86SKGhFYY0ljPe6BvQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+4r6qrC77jfLD8bNbScIs9eLDAgjic3ZgxhTz+SvPhs=;
- b=vihn15jMzS/C2nNHNc6Ha3Z+xhuSX9TNTK5xnKd2OqZLi88Jum08VIfOL1cn9OVl8zHuYesarP5lx2oqt77/KmGaB3tgmkTmywTih8wCLINfPJuBBuMTradpXenGkCVWGmmnt64UwOWkTwsyCruuIhrYBdwcr3mWv8EFRYX+vjpp+aa+oHHlk8e0rtBQm0zPTnGMT+uLUxaH0ihJAdQDeWI36d/25P7gnhka0su072r6X4ZYsLJzh+ijZJYemF6EHYNU5V+UdV3bJpzpxWQazSZ99KBY4MkffK4ZRL8LPyNfew25xE74fJawjLSwvQa+oTjz2DmDQalsc1y1Wc6kfQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+4r6qrC77jfLD8bNbScIs9eLDAgjic3ZgxhTz+SvPhs=;
- b=bgEoY8HG4/xaKbCHoIbIQYYKCEJN7GPQwTphRy3FuiCkaHSZaEXHe7AFFd4he/d/kvUox32NaIvOrW2O7H8jRWgwgPUW42YQotyPlsbiYznBjyvk/N7QlMJdsGkmnfB5nFHiE/bWD7HCJKeie3m0T43QPp2lmJJ0MalvqPAbC6aZruVu/LUWM5ooRWpJ2V4rhuLbZ9cxvDwqmyYYLSiot1ug8LixtRzaMyM4kUrKTOWJhSpaK+f4EUWBZ70rnLx9y4uVXgc38K/+CXOIWqm155h5Om4Xc3JvDQBEZ9VkASAPRyMXKeqTO8PTTBGGfS/oFsxxkY84mmjfBh28lQc76g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB8829.eurprd04.prod.outlook.com (2603:10a6:102:20c::17)
- by GV1PR04MB10893.eurprd04.prod.outlook.com (2603:10a6:150:209::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.20; Thu, 26 Sep
- 2024 07:39:17 +0000
-Received: from PAXPR04MB8829.eurprd04.prod.outlook.com
- ([fe80::cdc5:713a:9592:f7ad]) by PAXPR04MB8829.eurprd04.prod.outlook.com
- ([fe80::cdc5:713a:9592:f7ad%3]) with mapi id 15.20.7918.024; Thu, 26 Sep 2024
- 07:39:11 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-To: vkoul@kernel.org,
-	kishon@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com
-Cc: linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 5/5] ARM: dts: imx6qdl: convert fsl,tx-d-cal to correct value
-Date: Thu, 26 Sep 2024 15:39:51 +0800
-Message-Id: <20240926073951.783869-6-xu.yang_2@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240926073951.783869-1-xu.yang_2@nxp.com>
-References: <20240926073951.783869-1-xu.yang_2@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR01CA0022.apcprd01.prod.exchangelabs.com
- (2603:1096:4:192::14) To PAXPR04MB8829.eurprd04.prod.outlook.com
- (2603:10a6:102:20c::17)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3C3718E04C
+	for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 07:43:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727336587; cv=none; b=QeNyyhoIsy8rLQpwdkxO/vsjeG5bnZjavwmsXpWiHmrAcYSNpGNEYTt6QMLODZ6AgZv7C+mKBD/w6WD0MFZTwYkPUhru8RGzl0a1hDeCkx+VHWrOSLuR+FDsXjY1kLoaN22w81xbUsg9ppFIum8Dp7oelWIzSHTYRgRCTjllWBY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727336587; c=relaxed/simple;
+	bh=+nnlS1M7aeM09zElGK7XTOGlyP0eEhDm1RTB4QdNMaM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=R8LpI2yIZTRAfZU9BrKWgPzaRXX55Y7nJHZ2G63+YBpTGF+LYDxSn5WT+BCrW4oh+7NgA0sDp/SlIrsX03u8TnoCXI0D7gzFaK/vnTyarPkeTT5oDWb1kg7ktPr/4S1L8gwTgcDnOJzOWLEHcnUFnb+jBnW5QlJ9AGU9qYsyJXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=afJVYSFA; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-374ba74e9b6so507481f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 00:43:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1727336582; x=1727941382; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QQkR69sKp8Yewhrmn8jwB2Hc/tFxgtKhEZk1YzyJXlA=;
+        b=afJVYSFATHBbbVO7Ijr+9+h80yLpKn5fxkC4yIcJn/ryeSva7/RWhr4aH5fuqCL3sA
+         sEYSEesWnKNsgec3CWOu441EX6Z2YbFjYxaiWMa9LDswInMoQJ47wYd6JBYJic0XFGaO
+         uGGh26Xzvv4IHpaYJBRPiMjbsXEQ3V+uxDGB5gMqNLlKa8loIyrMHNlPGZrjjbhSfAD/
+         UF0pbIaNCJqjwUrMpArrCVYxXdHmpFgZ8sf6FPuI363To0GJCo40y9DdQ1H7skqfdVAF
+         dof8CUjXX6/8au/Q+3V+AmOneYbIuCRYlcoN+4OoZ4R6dCxmL41mVJbBgiKOYPoNjZHr
+         c8yA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727336582; x=1727941382;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QQkR69sKp8Yewhrmn8jwB2Hc/tFxgtKhEZk1YzyJXlA=;
+        b=jeHZhWQ4pji8v2HOJt/+mQClxLVqoM4YiQkJcQJg5ySTJ13nx+ytqMk4H5hE6b1CFG
+         nOXOh0cxN/9y4gA+i5OFKuQqWPJEboVaBSmQCLYRayvoSU3hxtMDFw1tLxjG5OLnPeex
+         ex3vviZqY6gKb0c3Dism0wW1IHdd/35b+J1rbd07d++Q+6hSgoJajXkumbCUWx/p1xm/
+         t5WSE869kZUJ5dxcGnoLmi/4wGYwUZWh/6BrJkDD8TPgGbxfuuBrdHatgtxW5RDrCCJp
+         B+zYTZYDUuezT21yBvHp9qjnujfEaoe3dj40xRp/GntM15TomA4MuTUbejboGGO1NBgS
+         oF2g==
+X-Forwarded-Encrypted: i=1; AJvYcCWOZX/oSvi6otia5vdyUdbayQQwy8ys0HeiiSSkSePfFWE+U3LdMjHgtUVw9JjdWrtHziDoDiyKlAJu@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQOIz/06Wph8ABIohKVar3EwO4drQiztXzbrZ6Ts/nXLdv2iic
+	KLlHYkCJT/+kX5T4sWm/z+dUXvdB5yFk3wFYs+pln3OYaTWt1qy0Sfia2S3EQpg=
+X-Google-Smtp-Source: AGHT+IHBv+8cCJ4P//uZgQU9mGKQlD7W6/9RP/K5Q7QoHFn/s97lU6vtCpnQ8hrmoZ5KSMACjGqOMw==
+X-Received: by 2002:adf:fbcc:0:b0:374:c44e:ef27 with SMTP id ffacd0b85a97d-37cc245dd30mr4407870f8f.8.1727336581837;
+        Thu, 26 Sep 2024 00:43:01 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.115])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ccd370ab7sm1819223f8f.25.2024.09.26.00.43.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Sep 2024 00:43:01 -0700 (PDT)
+Message-ID: <e6c10efa-0ed6-4040-8fe2-e83d3903547a@tuxon.dev>
+Date: Thu, 26 Sep 2024 10:42:59 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8829:EE_|GV1PR04MB10893:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4d7a9277-08bd-4df3-3a04-08dcddfe4e7e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|7416014|376014|1800799024|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Q2OU6WLJTeDh23DDn5jxS4YEHRZCO3dEmZEZvnmm8q+y6CLf0qgU99IlrVRP?=
- =?us-ascii?Q?6ZwRNNJUIQ1ETURafeVEgEMSQ8++oYdQNE5U0j9yQv45AnXFzw883bmxlDwt?=
- =?us-ascii?Q?6HZ3B79jnrnsh6/z5kMIjtvvb0yp7Vi1Li7lnpZ11rf1VeaTR3+qxpUi5qDg?=
- =?us-ascii?Q?KgwAVgaBCowNh9bB4BS+qtvp2BhN6VOXkuIWGe9UXhaJPtP0+nrQ5LY4CnKt?=
- =?us-ascii?Q?PKEeUm97GM6X7fjPmsvEA+fxCjhOXbq+avvPRwu6VzpcF3yAT3CqigJ3V94H?=
- =?us-ascii?Q?6zp3v5kGRd7pDBMlf9UZSmxJZG1cscIgRC8ON/JcTVLNzyzty21TLC0Hq7MI?=
- =?us-ascii?Q?uGvIv0jJali4rOAjL8QWhjo7e//f1vp5+O28tuN+LWqK/OLeuag4MOlzHkp8?=
- =?us-ascii?Q?Kqvvc/g0XsP6i/LbK/cCr03c49bJ8jdrO5nfelf+Hk2JGRH3PXUvPezVkDxi?=
- =?us-ascii?Q?WzTtOxn0gBEnI4ZXbhZ7I24wEDThS9/br85BELU2CznRMT53JN68RYJ8zL6L?=
- =?us-ascii?Q?r1Uux8il6QXcbyZ6m/fqkfltBG9F4v41YuhjII+l/Fb45To1BR2Et7ae33XJ?=
- =?us-ascii?Q?MP5KihnxvDcUbqhDePLRKX2FN1ret5O82G3L9j/3LubDRY0dXEcEJf9HJfsB?=
- =?us-ascii?Q?R+sMAjcFmXb7jxdqSOHs47FzF/TntMXOwY89USc/y/oLipq2jw5oszRJSWoL?=
- =?us-ascii?Q?ute3QlJl3NVs4t1BOFc7TdRDXsgFkBP61Lyr/Wq92qPP9pLcqu7jSmUCxzXo?=
- =?us-ascii?Q?GJVbi77+pEeoulEoTiadKcHJf3OKVtDwI7pNlnNnpSOD1fNlEPJ1UqcV+ouz?=
- =?us-ascii?Q?dh6NLrQThzp+vh/w8AHijoAod8etJV3Olfg43XcAB1EgTCMnCbl0jhwY26Z9?=
- =?us-ascii?Q?9jMdBaS4OnbjyxLBB5pYrsxnqRampqpl3E0om1GA34JqytsNbeqN8m7Anw0O?=
- =?us-ascii?Q?qC9NXt6IekPkhu9JqxoV/2FQ9O1jBusDCbP3vVEDtnypJR1dweanVcfXbNH7?=
- =?us-ascii?Q?nSELPMtCml8E/tTTg2+KykVXAyPpMJ91K4GeZ4ooyzP1OM7KKEAvq/4i/2IV?=
- =?us-ascii?Q?mifaHzRgIdDpUWmvLgX236vtK2ZitveSnGEGATei4Y+rupWuZScjgSiUIso9?=
- =?us-ascii?Q?Azpdaz0etwmpzkkbvkg6PU8Wo0FqmyUyLnNE5fiUi6k/V3tTABSNyjF9ySla?=
- =?us-ascii?Q?ATCqmcIv0K70mE3d4mCJgPTEkZCy3EiteVjlkIO4hfu2YdBYplQTuPOutMoK?=
- =?us-ascii?Q?cnHJOHZGkaSvH9ntbUVvV3nAgC73BT7qrtI3PrgbVApPftTpo+zJ/astEeLF?=
- =?us-ascii?Q?9W8m0bXpSTe5UD5klKquoLyyknSoF8O4C1fyEc8uuZYRBAmGAIRgRiwqQMCa?=
- =?us-ascii?Q?axSHTIaaHDMAfkFQMeGJSP0OgJGHVdkR8NY0iVhu6aLOMldq8A=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8829.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?gCkpsY9VU9Ljc3v/uaIy4gngUttA6rONj2FW73yThL3Ko5lDnxFbEBHvYVVI?=
- =?us-ascii?Q?6w+zUdqKidtqtXB8HPHkPWx+EZd+wL9p26733GoYtBoMpevnXCrZIE0HW6me?=
- =?us-ascii?Q?Ja0M5tSGgwnQdJylhlRUaoU/pnAyHn3Tj/5dgjfTP+pRytnGuNQls3dd1oM4?=
- =?us-ascii?Q?j62zmjmxB9k7WmfWyZCMC/t2O1/94DRRFBVoUkmchgU6PkK3upgDH8zM6e+A?=
- =?us-ascii?Q?r7PbFk2QLYgjYjlX6UaYlW1MLhrAGnVLef4p0gxjI3OEqXHDHiF4TgoyC3YS?=
- =?us-ascii?Q?7gKHXEzV/sCKDeeVsQlzzr0Jw3XiuImgMu65Ye4J9YGJbmrg6DhKESI6UbPI?=
- =?us-ascii?Q?W221I21GVyVxkZfJZZ0mQusr2wS7VPPWy7hXhCnA3n0flZM8VeGuYd+x5clh?=
- =?us-ascii?Q?JQeN84uJyFH4OQpEVBwLqZ5+4C0blhE9rTJiERlij5/0bL6c346MuG2JVJEu?=
- =?us-ascii?Q?nf9Qangyd4Enx2HYiNifRBO8jB5J71dbFQJd7CBJi+hnZdqoEX7qELAtpEo1?=
- =?us-ascii?Q?X+wv91SGS8mvNOW6PhRR0vVwh+OUu4m3izzezAghAlatFMU6r9dpBmNESkVA?=
- =?us-ascii?Q?0uXdcjYkmSiXAzBUHO4sar3Xiw2sD3NmcWczdgdKlgq5EmHzvNMTKJtASJ35?=
- =?us-ascii?Q?x+HdnHKrcZ/n4xc3WiRj8QwXABePOK6eWJEFinsK0wNaq9fKLxzAaW2KdK3/?=
- =?us-ascii?Q?XoW8EtF3HepclkH2Q/DFcmQ1j0Msg4k1CHMzoZz/pS4TCaK+wXWEnKcIBuqQ?=
- =?us-ascii?Q?JyBtEZJQVozvnfkYr9TtfFv5++7Z3MJSr7kgXxZ4uJtOtSMWTrxBH9GhpXLa?=
- =?us-ascii?Q?z0PN820JoQxhFqRq4sdlUQOIPUvSujM3AOncDssLV13dlof+mKYksVYV12pc?=
- =?us-ascii?Q?6QteCceC9BIzeaWF3CnZLM+jWJzUVERqT9k7qcq5hoapr+jxb5rq2/MWL6xA?=
- =?us-ascii?Q?4jlrLeillxTuVB/33HVbdBk+mNuGb078jLYt7TQsL9uZzkAxjfaDVUmUk0/3?=
- =?us-ascii?Q?oJRHe1uD4i8ExCUtC6PMRaL+Gfc0aM4pWQ5cDDWAwHUPCZtlGpLNB5oOVY5v?=
- =?us-ascii?Q?DBJns0EuTH4F28TO5zFx5A5XFmy+R/5skEikrE8vSnVCKqlrwvh4Sgw47tHw?=
- =?us-ascii?Q?7WBTZzaGeuhzZJL/bA58XZ8BiCwvoyG8IXEIHTalw+mSPwOg0ZKiwJ3S7BAa?=
- =?us-ascii?Q?106tlLde0/QXWzMWhyBaXSDVK4XrvJyMPFIe5w1D1VZ3z+maYEhsqdtyJBzs?=
- =?us-ascii?Q?Cf8P74uoDwOo3XA8Dk/igTm0RUiovsJplE9krLPu3LaBqbIoWjQw7OwPneMl?=
- =?us-ascii?Q?7lLR1Ag8OdTLPaXKFvnjpNYe48SyzqLXkcRCrYqOVqADmY/alhdkjMpd5Yko?=
- =?us-ascii?Q?NIsX7Htno6P9/RZWxUqZk1Vl69BIfHGhElwbPPjhNKgVWfhyrWoO4pt9TT2B?=
- =?us-ascii?Q?supF47tOhXfLWnM75eJd66jYc/qYlt6Im03YW9ORKIsCjUt2AC0Srti++q5P?=
- =?us-ascii?Q?L7AZOaREeNbJ48zh5TCRgce1X0x6RCRMSsffW9FCTCf391Q5abppgutVfPUr?=
- =?us-ascii?Q?DPj5NRPckTY03cSUwCCJ3MCIsW4B1/YxkOTUDrWh?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4d7a9277-08bd-4df3-3a04-08dcddfe4e7e
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8829.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2024 07:39:09.1290
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eZlKF10v8A1gvpfEElruQLhFqB95mxQxO/K8NtW+JxG9Xfuqfkz/pUAluZ7WgQlfxJE2334AzAIlgc+Kwf0Q1Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10893
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 09/12] clk: at91: sam9x60: Allow enabling main_rc_osc
+ through DT
+Content-Language: en-US
+To: Ryan Wanner <ryan.wanner@microchip.com>, ada@thorsis.com
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ "moderated list:ARM/Microchip (AT91) SoC support"
+ <linux-arm-kernel@lists.infradead.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
+ Rob Herring <robh@kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Christian Melki <christian.melki@t2data.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>
+References: <20240821105943.230281-1-ada@thorsis.com>
+ <20240821105943.230281-10-ada@thorsis.com>
+ <20240919-outsider-extending-e0a926bd23fa@thorsis.com>
+ <464f599a-7f0b-4e4e-901a-8f88a25428d6@microchip.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <464f599a-7f0b-4e4e-901a-8f88a25428d6@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-make dtbs_check has below warning:
+Hi, Ryan, Alexander,
 
-/home/nxf75279/work/usb/arch/arm/boot/dts/nxp/imx/imx6q-var-mx6customboard.dtb: usbphy@20c9000: fsl,tx-d-cal: 5 is less than the minimum of 79
-        from schema $id: http://devicetree.org/schemas/phy/fsl,mxs-usbphy.yaml#
+Sorry for returning late, I took some time to think about it...
 
-According to schema, valid value of fsl,tx-d-cal is from 79 to 119. This
-will convert register raw value <0x5> to corresponding <106>.
+On 24.09.2024 18:52, Ryan Wanner wrote:
+> Hello Alex,
+> 
+> I think a possible solution is to put the DT binding ID for main rc oc
+> after PMC_MCK and then add 1 to all the other IDs that are not dependent
+> on PMC_MAIN, the IDs that are before the branch for the sama7g54.
 
-Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
----
- arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+If I understand correctly, wouldn't this shift also the rest of the IDs
+and break the DT ABI?
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
-index a1ea33c4eeb7..d3396cb81912 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
-@@ -529,11 +529,11 @@ &usbotg {
- };
- 
- &usbphy1 {
--	fsl,tx-d-cal = <0x5>;
-+	fsl,tx-d-cal = <106>;
- };
- 
- &usbphy2 {
--	fsl,tx-d-cal = <0x5>;
-+	fsl,tx-d-cal = <106>;
- };
- 
- &usdhc1 {
--- 
-2.34.1
+> 
+> One issue I see with this solution is with SoCs that do not want the
+> main rc os exported to the DT the driver array might be allocating too
+> much memory, this can be solved by removing the +1 that is in the clock
+> drivers next to the device tree binding macro, since this macro is now
+> increased by 1 with this change.
+> 
+> Doing a quick test on the sam9x60 and sama7g54 I did not see any glaring
+> issues with this potential solution.
+> 
+> Best,
+> 
+> Ryan
+> 
+> 
+> On 9/19/24 05:39, Alexander Dahl wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> Hello Claudiu,
+>>
+>> after being busy with other things, I'm back looking at this series.
+>> As Nicolas pointed out [1], we need three clocks for the OTPC to work,
+>> quote:
+>>
+>>   "for all the products, the main RC oscillator, the OTPC peripheral
+>>   clock and the MCKx clocks associated to OTP must be enabled."
+>>
+>> I have a problem with making the main_rc_osc accessible for both
+>> SAM9X60 and SAMA7G5 here, see below.
+>>
+>> Am Wed, Aug 21, 2024 at 12:59:40PM +0200 schrieb Alexander Dahl:
+>>> SAM9X60 Datasheet (DS60001579G) Section "23.4 Product Dependencies"
+>>> says:
+>>>
+>>>     "The OTPC is clocked through the Power Management Controller (PMC).
+>>>     The user must power on the main RC oscillator and enable the
+>>>     peripheral clock of the OTPC prior to reading or writing the OTP
+>>>     memory."
+>>>
+>>> The code for enabling/disabling that clock is already present, it was
+>>> just not possible to hook into DT anymore, after at91 clk devicetree
+>>> binding rework back in 2018 for kernel v4.19.
+>>>
+>>> Signed-off-by: Alexander Dahl <ada@thorsis.com>
+>>> ---
+>>>  drivers/clk/at91/sam9x60.c       | 3 ++-
+>>>  include/dt-bindings/clock/at91.h | 1 +
+>>>  2 files changed, 3 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/clk/at91/sam9x60.c b/drivers/clk/at91/sam9x60.c
+>>> index e309cbf3cb9a..4d5ee20b8fc4 100644
+>>> --- a/drivers/clk/at91/sam9x60.c
+>>> +++ b/drivers/clk/at91/sam9x60.c
+>>> @@ -207,7 +207,7 @@ static void __init sam9x60_pmc_setup(struct device_node *np)
+>>>       if (IS_ERR(regmap))
+>>>               return;
+>>>
+>>> -     sam9x60_pmc = pmc_data_allocate(PMC_PLLACK + 1,
+>>> +     sam9x60_pmc = pmc_data_allocate(PMC_MAIN_RC + 1,
+>>>                                       nck(sam9x60_systemck),
+>>>                                       nck(sam9x60_periphck),
+>>>                                       nck(sam9x60_gck), 8);
+>>> @@ -218,6 +218,7 @@ static void __init sam9x60_pmc_setup(struct device_node *np)
+>>>                                          50000000);
+>>>       if (IS_ERR(hw))
+>>>               goto err_free;
+>>> +     sam9x60_pmc->chws[PMC_MAIN_RC] = hw;
+>>>
+>>>       hw = at91_clk_register_main_osc(regmap, "main_osc", mainxtal_name, NULL, 0);
+>>>       if (IS_ERR(hw))
+>>> diff --git a/include/dt-bindings/clock/at91.h b/include/dt-bindings/clock/at91.h
+>>> index 3e3972a814c1..f957625cb3ac 100644
+>>> --- a/include/dt-bindings/clock/at91.h
+>>> +++ b/include/dt-bindings/clock/at91.h
+>>> @@ -25,6 +25,7 @@
+>>>  #define PMC_PLLBCK           8
+>>>  #define PMC_AUDIOPLLCK               9
+>>>  #define PMC_AUDIOPINCK               10
+>>> +#define PMC_MAIN_RC          11
+>>>
+>>>  /* SAMA7G5 */
+>>>  #define PMC_CPUPLL           (PMC_MAIN + 1)
+>>
+>> There are IDs defined in the devicetree bindings here, which are used
+>> both in dts and in driver code as array indexes.  In v1 of the patch
+>> series I just added a new last element in the end of the generic list
+>> and used that for SAM9X60.
+>>
+>> For SAMA7G5 those IDs are branched of from PMC_MAIN in between, making
+>> SAMA7G5 using a different last element, and different values after
+>> PMC_MAIN.
 
+Looking at it now, I think it was a bad decision to do this branch.
+Thinking at it maybe it would be better to have per SoC specific bindings
+to avoid this kind of issue in future. The PMC IP b/w different SAM SoCs is
+anyway different and, as it happens now, we may reach to a point where, due
+to issues in datasheet, or whatever human errors, we may reach this problem
+again.
+
+So, what do you think about having separate binding files for each SoC?
+
+Another option would be to xlate the clocks not by directly indexing in
+struct pmc_data::chws but by matching the driver clock ID and DT provided
+id. This will increase the lookup time, from O(1) to O(N), N being 13 for
+SAMA7G5, 15 for SAM9X7 and SAMA7D55. And will need adjustment at least for
+SAM9X{60, 7} and SAMA7{G5, D55}. With this the of_clk_hw_pmc_get() will be
+something like:
+
+diff --git a/drivers/clk/at91/pmc.c b/drivers/clk/at91/pmc.c
+index 5aa9c1f1c886..22191d1ca78b 100644
+--- a/drivers/clk/at91/pmc.c
++++ b/drivers/clk/at91/pmc.c
+@@ -52,8 +52,10 @@ struct clk_hw *of_clk_hw_pmc_get(struct of_phandle_args
+*clkspec, void *data)
+
+        switch (type) {
+        case PMC_TYPE_CORE:
+-               if (idx < pmc_data->ncore)
+-                       return pmc_data->chws[idx];
++               for (int i = 0; i < pmc_data->ncore; i++) {
++                       if (pmc_data->chws.idx[i] == i)
++                               return pmc_data->chws.hws[i];
++               }
+                break;
+
+
+diff --git a/drivers/clk/at91/pmc.h b/drivers/clk/at91/pmc.h
+index 4fb29ca111f7..f7e88f9872dc 100644
+--- a/drivers/clk/at91/pmc.h
++++ b/drivers/clk/at91/pmc.h
+@@ -19,7 +19,10 @@ extern spinlock_t pmc_pcr_lock;
+
+ struct pmc_data {
+        unsigned int ncore;
+-       struct clk_hw **chws;
++       struct {
++               struct clk_hw **hws;
++               int *idx;
++       } chws;
+
+Thank you,
+Claudiu Beznea
+
+>>
+>> Now we need a new ID for main rc osc, but not only for SAM9X60, but
+>> also for SAMA7G5.  I'm not sure what the implications would be, if the
+>> new ID would be added in between before PMC_MAIN, so all values would
+>> change?  Adding it to the end of the lists would probably be safe, but
+>> then you would need a diffently named variant for SAMA7G5's different
+>> IDs.  I find the current status somewhat unfortunate for future
+>> extensions.  How should this new ID be added here?  What would be the
+>> way forward?
+>>
+>> Greets
+>> Alex
+>>
+>> [1] https://lore.kernel.org/linux-clk/ec34efc2-2051-4b8a-b5d8-6e2fd5e08c28@microchip.com/T/#u
+>>
+>>> --
+>>> 2.39.2
+>>>
+>>>
+>>
+> 
 
