@@ -1,132 +1,193 @@
-Return-Path: <devicetree+bounces-105610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B03B49873B9
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 14:41:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA7109873FC
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 14:59:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65DAC286A51
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 12:41:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC279281510
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 12:59:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1683AA48;
-	Thu, 26 Sep 2024 12:41:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B288219FC;
+	Thu, 26 Sep 2024 12:59:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i/zY+tjk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42A223FF1;
-	Thu, 26 Sep 2024 12:41:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A0061C6A5
+	for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 12:59:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727354479; cv=none; b=P+xENLQRC3cFpe/wT/q46hfDlI8URrmQuNejEOFOFPuUz4JS63HTNAK+yzhhrIeQU1WWVXFo0vaogP7kiNKTACchpLEciiOwU49qVQ1GA84Cy+I4+HhDuLx60D8gK2zVEcTq4hG6iIr9xZquktpoexaTrsgrJdkJBIHC6Ceu5NE=
+	t=1727355586; cv=none; b=YSidiXd5SURGb9obQsY8rSIerMksf9hqM3RBhPr/4vn7OZ/hCLhgG1rdy6GSU1Y/yviuejrRBLkxvaRLjCVJNl1onVPogWo8R5jJg/HVqxG7yx3uYF+lSK2hG8MXfnstV2qSIASgKI0RsqTZ/viDEJxR2quFEGv6DSrJkmQzQnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727354479; c=relaxed/simple;
-	bh=9H5fLgkM5EykQ7gd7+WWZI0Degjq3pPi1YkZ1bmQzUo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sUaJDqk0TnbHvsr+dQTJ3fTVCZTvFDScTymtNW5Swi0FOwsMqwVmM4QNQdkAKrpwUa2le8aToZdkow5KzbSZAEuhr7Yzrqg2oDKQfSSu8m9FahiPGVa35YvMRSwhtHPdkZnGz7uRGvp931vgk102vUQdOjDsQ6wVMZ0pqDhuTnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6dbc75acbfaso8961617b3.3;
-        Thu, 26 Sep 2024 05:41:17 -0700 (PDT)
+	s=arc-20240116; t=1727355586; c=relaxed/simple;
+	bh=DkP0T2k2pm96b8ugmpQ9mEmyQTi/T2s+vr1nFNVL6ys=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oFWEsDDeHN2PcuwirUNWbyLKaAGu2vefsCm1T+LkEjAezNDs+Kj5sbH0Vci1qrapscDb3gnFDiGnPb144dcB/ontuJ7/MeLe9yaN6FGbkX/N5FNRBfxxsb4O/iDn7glI+wezxYEyMN8Hjq6Ksw29+CR5hY7bLwxHKtA4UWFSpvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i/zY+tjk; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5365a9574b6so1609372e87.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 05:59:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1727355582; x=1727960382; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mvD5VesI/aj5ylaTV7+TzQ4pLVD1SRNWc/3077REPN8=;
+        b=i/zY+tjkwuXwf29Aa6oH/GDl7wtrR2TUR+BWRmI7Wv4bgH/n6NnG/xtDdwiXb3qF/5
+         8tn7r/6uZ6Jkmw7Cu2wvpyRLGKRZyvMASLJ9LgLjCc8FnZJK9cmdxQxBNWj0DLMhxjaD
+         vXk/T4FGxJ2PG92V1D0wTJZkFvLecgEdX6YTiUe+xhddoTKuwkmukqWRSCVxaj7nxI3U
+         ubY/az9zm7P8xN+1pKZ1Ibc5BnQ0LPFheJDC55sr9a5ossfbOuH9wbW4g0p7nh5ivYW+
+         +yZXdzXZxFROIg+ENYGoSvHyj2xEtEGAPVNZ2+wBesE4IdlIKOQYx541ase5xYZEGPP4
+         kRlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727354475; x=1727959275;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qPVnklwhSJaUKS4J3ASyaEzfdqfrhx+UCF1pV70djn8=;
-        b=S9rdUX1St5ZIMkrQJwSP/8LWc1otyTtikSI91cehS9odDp1trP5XTMRyBizLSlO+Vo
-         adKeK9ApAGR697Tos/DoUR2Ntkx0emi4bET4if6RKi5QHC+oiSpxJGGP5o/DrlPfy9p9
-         wsMRrv6MsGQu5+skUhiHuHde35/TdalIrS3NRKkUR8/I5blJTttnqf+e1t/QC+XrIoKS
-         yqCwN2u0kxD7qrvECIACmpyBLqoELdKqDmqRIdCdxaFhicIzkrvaCuvdUaiffWR4U/NN
-         0vpuLj/LzAlgk171OM/qPzrI382wkCt6GSQo5bxw+J7WZw4zIqLUCyJ34Xw+G9gN4DT9
-         /Cew==
-X-Forwarded-Encrypted: i=1; AJvYcCViV7ucNX5+CHWD/BoU6gnVVITOSEMOVupUJ58sFCWpfPFsCIrrjKXJ/4/1YCdhQq4WFXywoCTWrGmf@vger.kernel.org
-X-Gm-Message-State: AOJu0YwDBQr7yksZwIgYoahkOTawiSzIDWTEoHD5MggK1IdlD1R4bLiK
-	NDZfzs8GcKAxY3C8BgxcV6xfr8eNo/cqH3UlQRlxaiZUut2CeS+pAgzrUdbH
-X-Google-Smtp-Source: AGHT+IHlfW6Jiy0RkhoExtFeZDPuFuiVch7JL/gy704pF0Fh8jvUj5ziP6ZkcM/F1AMK+omFE9ysEA==
-X-Received: by 2002:a05:690c:660f:b0:6e2:1527:446b with SMTP id 00721157ae682-6e21d6c71a8mr59932507b3.3.1727354475450;
-        Thu, 26 Sep 2024 05:41:15 -0700 (PDT)
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e22d3a7502sm3807377b3.77.2024.09.26.05.41.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Sep 2024 05:41:15 -0700 (PDT)
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e0875f1e9edso825977276.1;
-        Thu, 26 Sep 2024 05:41:15 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV3Jnwz6UEtdxYG77rW2BBuYu8O+nypi22nN3NSztQhWkzbtcjK6ybmaN+RNUv9FwZibIfGuzeK/W8S@vger.kernel.org
-X-Received: by 2002:a05:690c:660f:b0:6dd:ba98:5c3d with SMTP id
- 00721157ae682-6e21d703938mr60419227b3.14.1727354474637; Thu, 26 Sep 2024
- 05:41:14 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1727355582; x=1727960382;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mvD5VesI/aj5ylaTV7+TzQ4pLVD1SRNWc/3077REPN8=;
+        b=xMbHE5cWZHOazHavDU7+/2GcNxvWhrP5RVwfV3R28nnpNOXlB0xQpgcr7KjWh3svkn
+         NAwrfdT/8eoMHAHjqMywwJbGK7mKuJZXczyPRQ7hV8zPvN4jGF4X+MJjFLFp09qGqazR
+         1L9S2FlbAsfLni1Y2+f6Wdu/tqb7bjkgN7FASinNTL2tqWy+EJZDbTPR4cL3nPKAPceN
+         XiV9UcLMUa7MBSuZnJS2fuAu2FYzy+00zlIsKN6BJwLzw6whnK/dtrobt0KPR9+XrDDy
+         mkNMRPWcKb1qryQcCzTaovRxy3Mwbg37oR1/hLFSc/2vb6+ZDBYgaeQUSVDRw1dNqvDn
+         ByLw==
+X-Forwarded-Encrypted: i=1; AJvYcCWpkXTO+PcLUTNCmLYMbAsZ3B/HZDTg3A5wiHkIUZtaNCjMB1bRfuyhtUIbPrOo8jOH1xlIW4wiSxkA@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBRiZRMS+t8+7dHNV6HjeBznM75h5Bv9SZ3d0L2kWco0XXScKZ
+	GsYfTaWE9zTVgcrP1AGvI3ItqJ+qkC8qD7vkzsx5zTrFazy/QcVqBlA7yisCESQ=
+X-Google-Smtp-Source: AGHT+IHDWkduitjhzRm6lHTb8hOr4NlvZ7w8mBztIp0QiKdICcPR7Kr0FiZmnSQrsTJV08gYOhqOVg==
+X-Received: by 2002:a05:6512:104c:b0:52c:d628:c77c with SMTP id 2adb3069b0e04-5387755cc25mr5494174e87.43.1727355582176;
+        Thu, 26 Sep 2024 05:59:42 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-537a8640908sm798094e87.122.2024.09.26.05.59.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Sep 2024 05:59:41 -0700 (PDT)
+Date: Thu, 26 Sep 2024 15:59:39 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Mahadevan <quic_mahap@quicinc.com>
+Cc: robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run, 
+	marijn.suijten@somainline.org, airlied@gmail.com, daniel@ffwll.ch, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, swboyd@chromium.org, 
+	konrad.dybcio@linaro.org, danila@jiaxyga.com, bigfoot@classfun.cn, 
+	neil.armstrong@linaro.org, mailingradian@gmail.com, quic_jesszhan@quicinc.com, 
+	andersson@kernel.org, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	quic_kalyant@quicinc.com, quic_jmadiset@quicinc.com, quic_vpolimer@quicinc.com
+Subject: Re: [PATCH v2 1/5] dt-bindings: display/msm: Document MDSS on SA8775P
+Message-ID: <2vspsymfbsavcpnx3kuoqnhczuhvhqtdzdzp7qedbjl2ozvnz2@sf65rybvixps>
+References: <20240926110137.2200158-1-quic_mahap@quicinc.com>
+ <20240926110137.2200158-2-quic_mahap@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240921114813.4124-7-wsa+renesas@sang-engineering.com> <20240921114813.4124-12-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20240921114813.4124-12-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 26 Sep 2024 14:41:03 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVDJkf_aibpCx5ua+QCTzM5orN45TA0Ct5OR7fmbiMwJA@mail.gmail.com>
-Message-ID: <CAMuHMdVDJkf_aibpCx5ua+QCTzM5orN45TA0Ct5OR7fmbiMwJA@mail.gmail.com>
-Subject: Re: [PATCH 5/5] ARM: dts: renesas: genmai: define keyboard switch
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240926110137.2200158-2-quic_mahap@quicinc.com>
 
-On Sat, Sep 21, 2024 at 1:48=E2=80=AFPM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.13...
-
-> --- a/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
-> +++ b/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
-
-> @@ -58,6 +59,22 @@ partition@4000000 {
->                 };
->         };
->
-> +       keyboard {
-> +               compatible =3D "gpio-keys";
-> +               interrupt-parent =3D <&irqc>;
-
-... with the interrupt-parent definition moved to the key-1 subnode.
-
+On Thu, Sep 26, 2024 at 04:31:33PM GMT, Mahadevan wrote:
+> Document the MDSS hardware found on the Qualcomm SA8775P platform.
+> 
+> Signed-off-by: Mahadevan <quic_mahap@quicinc.com>
+> ---
+> 
+> [v2]
+> - Use fake DISPCC nodes to avoid clock dependencies in dt-bindings. [Dmitry]
+> - Update bindings by fixing dt_binding_check tool errors (update includes in example),
+>   adding proper spacing and indentation in binding example, dropping unused labels,
+>   dropping status disable, adding reset node. [Dmitry, Rob, Krzysztof]
+> 
+> ---
+>  .../display/msm/qcom,sa8775p-mdss.yaml        | 239 ++++++++++++++++++
+>  1 file changed, 239 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
+> new file mode 100644
+> index 000000000000..e610b66ffa9f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
+> @@ -0,0 +1,239 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/msm/qcom,sa8775p-mdss.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&keyboard_pins>;
+> +title: Qualcomm Technologies, Inc. SA87755P Display MDSS
 > +
-> +               key-1 {
-> +                       /* JP3 must be set to 1-2 (default) */
-> +                       interrupts =3D <6 IRQ_TYPE_EDGE_BOTH>;
-> +                       linux,code =3D <KEY_1>;
-> +                       label =3D "SW6,SW7";
-> +                       wakeup-source;
-> +               };
-> +       };
+> +maintainers:
+> +  - Mahadevan <quic_mahap@quicinc.com>
 > +
->         leds {
->                 status =3D "okay";
->                 compatible =3D "gpio-leds";
+> +description:
+> +  SA8775P MSM Mobile Display Subsystem(MDSS), which encapsulates sub-blocks like
+> +  DPU display controller, DP interfaces and EDP etc.
+> +
+> +$ref: /schemas/display/msm/mdss-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sa8775p-mdss
+> +
+> +  clocks:
+> +    items:
+> +      - description: Display AHB
+> +      - description: Display hf AXI
+> +      - description: Display core
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  interconnects:
+> +    maxItems: 3
+> +
+> +  interconnect-names:
+> +    maxItems: 3
+> +
+> +patternProperties:
+> +  "^display-controller@[0-9a-f]+$":
+> +    type: object
+> +    properties:
+> +      compatible:
+> +        const: qcom,sa8775p-dpu
+> +
+> +  "^displayport-controller@[0-9a-f]+$":
+> +    type: object
+> +    properties:
+> +      compatible:
+> +        items:
+> +          - const: qcom,sa8775p-dp
+> +
+> +required:
+> +  - compatible
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interconnect/qcom,icc.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
+> +    #include <dt-bindings/interconnect/qcom,sa8775p-rpmh.h>
+> +    #include <dt-bindings/power/qcom,rpmhpd.h>
+> +    #include <dt-bindings/power/qcom-rpmpd.h>
+> +
+> +    display-subsystem@ae00000 {
+> +        compatible = "qcom,sa8775p-mdss";
+> +        reg = <0 0x0ae00000 0 0x1000>;
 
-Gr{oetje,eeting}s,
+0x0, not just 0, please. Here and alsmost everywhere else.
 
-                        Geert
+> +        reg-names = "mdss";
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+With best wishes
+Dmitry
 
