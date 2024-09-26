@@ -1,142 +1,186 @@
-Return-Path: <devicetree+bounces-105620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAC63987452
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 15:17:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82DFD987466
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 15:25:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87208281DBB
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 13:17:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40899285592
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 13:25:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAF4A22EF4;
-	Thu, 26 Sep 2024 13:17:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E09B3E47B;
+	Thu, 26 Sep 2024 13:25:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jYubRVYW"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jNFYLAM+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 152BD19BBC;
-	Thu, 26 Sep 2024 13:17:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 860953A8F7;
+	Thu, 26 Sep 2024 13:25:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727356633; cv=none; b=hNkADxnYyFWE+/thCEbRKPRcpDhZByzadg9rm8sET7RRA3EVH/ltJ0w3LJepNWi0ySg7ES5BTFjw8DHH0Q2s5yQEN0ZyLBQI1kznvE4YUeMHiWRw31Oafz9/cwZ2hFOPBIh/iFO1oERkFDvbJmnUWY2zWeZN4TiD0XmQB5rSILE=
+	t=1727357103; cv=none; b=c+3yg1+95HdNuo7z0ioC7d1kI4MLkdpaHx/9ptX8oiSBfvPzZ65bMtMpa6mMXXt6I9/61/1wKuuJNzcL6g3xmMxr29+T14ZEan9+Tr/xXYZIehjzFj6fdzTjutOCBQpTJx9Kfcay3/D/Q3SOPWLNFVep1i0j6jgulOe46BAwX9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727356633; c=relaxed/simple;
-	bh=cnx4zIAWJtFq9rSTLb7/0r8of7OoZslMoGPoymhstBM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eqAZH7lruuI5JRuMk7Mu7DFIXwZuGRwkjmuDONjBOU/zUxeRWlcA8VQpUXWulVx7vB6+41CNV3VKr9QPnFci6yxCYQycgisCBE4YFDqxd0EaA+kHDJXzRFR784PD/HaeClW+7RGXfDox+e1z1p/flS5Nu9JlQxGqIhgL/fynuv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jYubRVYW; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a86e9db75b9so149989166b.1;
-        Thu, 26 Sep 2024 06:17:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727356630; x=1727961430; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=cnx4zIAWJtFq9rSTLb7/0r8of7OoZslMoGPoymhstBM=;
-        b=jYubRVYWlI8xnkRYhiaYPGkoF5onHEuoGFmcfxkkqIpP2xIucfIKk/oG5joDih+xzK
-         3GEclYWLZLUAs191NLdpiB+INYiBVLf2bSL+ATfuEY/FmE6DBjN0F0tn2kwYiuvb56g0
-         cFulPOwabdsnbUu2o+Amp7fjzTIR5MXMfuYel4AnjiU2QcFUdb3g9nzTH8AWyL8lK2Oj
-         zUAp2b49SDO1UXEK1Nm0RmGUJrIVscDZqd2BRlmDsBGCvLpWVHRtFfNfS0IZN4ceck85
-         aj9LRJwHip+Gnh5mpAjOf4xdnEEsUMr6nHNvs9P5LlF24uxTuVkOzcucTH3Xlbj/KjRC
-         JdYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727356630; x=1727961430;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cnx4zIAWJtFq9rSTLb7/0r8of7OoZslMoGPoymhstBM=;
-        b=GcDlPE1+lhpfxTz9CtyETDIwwu9WsgrxgYHKqqw6vNu+hFlTtXkR+adQuXJRc3aAnE
-         K/KVYUslrwLi9rF3RTpXdKVhUpDj7eeHbyPfct+cH0DlPUXOLhag1IJmJNNPry4JvWUg
-         qMqzOcAxymV3oUXP+LCyjJVkaEeITjOYRrj8H6al4TUp6aM6Gwq6l0GP8imiBDuDad5j
-         Dw9hXaj5wvapAeldM1gE6giw/ozkRgcaHUySGJ8tsw+l3P/bjRMi+VqRfYUiFV/FuJaC
-         NpnEYxj+NdCgW3OCfjA2/xUxDzJfffE1oHHBCRRCopO1TWUeEra/6xEO9XKBqH9NLxAP
-         d8gA==
-X-Forwarded-Encrypted: i=1; AJvYcCU2eOfKn1zjIInEKL7yZworDTL4SqutGAA0FqRWGIlzkE7pbWowdgeqoLjfTJtSPyo4jDJcCyDhdrl0@vger.kernel.org, AJvYcCX1l0mzVF33QrM5lBXyT6ZQTu5e8aSWKrdfGzk9PFyqfKXnwhEV71upVM6ZSTqyBbI0fK1Y8ThREMbYTBl5@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaahxyIMUiZYDtJUYacwUcYl0vt50OXRaHzMcD24ktfUctJh4H
-	/L4piYzg61DD1oTIAKAiYmbPwDfusEJ0ph8V2Ea6fjbbkkDqho6erqzyPdRc+subl464IraMvEk
-	tFRuht31XngMJd4v7N7T7reFZVQ==
-X-Google-Smtp-Source: AGHT+IGxkuSZn14CGeSLBxg4a20MxMh+vZrJ6S9Uv0v7mFLjFUHwBvjRSVie0JOJ3Q7qB7rPKyG5eEcor9Qu4RuwHOI=
-X-Received: by 2002:a17:907:e28c:b0:a86:6cb1:4d49 with SMTP id
- a640c23a62f3a-a93a0322a58mr558075166b.13.1727356630231; Thu, 26 Sep 2024
- 06:17:10 -0700 (PDT)
+	s=arc-20240116; t=1727357103; c=relaxed/simple;
+	bh=V9RE/M+gbMJverjB0d1riqFqnVlY5qZURgqdDU9n43k=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jzGzUPxbwSlRewwo7CIfRxB9n4cmLSRXqVPwskZ+gYZ3mO8w9Tyl85h1EpG9ebRGH4jAfeQBaPH1CduxhS+m9XYjOwWtfoWLzFgXZe6Hq6tfS5yDdpIMmOQUkuwfh/kFYuRnITPt5aKSnNSbVEXB5bYhc/Cur4wz6KnETrgEcbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jNFYLAM+; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48Q7Y0sq008702;
+	Thu, 26 Sep 2024 13:24:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=R5l2Vl8aHn8BISv5XlT5lhXk
+	lhnZr7wW2up5Cp71eMc=; b=jNFYLAM+B7aiP4/GbCTI/eKGOJFSBTJJTPRgcpIB
+	x7l2KQCVbTlvQ3wU846CgH3NVm6lWEhx6lJtweAy1MZWZNoHSZm7siVx3FOJIVHA
+	xGhU5ZFfV3sEc+GHt0NXXhJdJFSN0LFzYp2O0E4uRoy6yn7Ot3QnRZoeqPoK+v1j
+	Z5TRCT6vN3tjCyX69NcBGrIrjyeKISGLo38AEPuvGu6XmhWosLRJJaroI9cGdGep
+	amNf+tujJChJyWBbkyyZopMZpHxmea/EYpKw3YjF7D24Ywhp2XlTfkRZwtzx4hfz
+	BlmAttG1O/ixsaTklq9TXIxOGxX0yNN4wQZTuXP5xX2Jbw==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41snfh7tjq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Sep 2024 13:24:43 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48QDOfwI002756
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Sep 2024 13:24:41 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 26 Sep 2024 06:24:41 -0700
+Date: Thu, 26 Sep 2024 06:24:40 -0700
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+To: Mahadevan <quic_mahap@quicinc.com>
+CC: <robdclark@gmail.com>, <quic_abhinavk@quicinc.com>,
+        <dmitry.baryshkov@linaro.org>, <sean@poorly.run>,
+        <marijn.suijten@somainline.org>, <airlied@gmail.com>,
+        <daniel@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <swboyd@chromium.org>,
+        <konrad.dybcio@linaro.org>, <danila@jiaxyga.com>,
+        <bigfoot@classfun.cn>, <neil.armstrong@linaro.org>,
+        <mailingradian@gmail.com>, <quic_jesszhan@quicinc.com>,
+        <andersson@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_kalyant@quicinc.com>, <quic_jmadiset@quicinc.com>,
+        <quic_vpolimer@quicinc.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: display/msm: Document MDSS on SA8775P
+Message-ID: <ZvVgmFUs2bwfEoWD@hu-bjorande-lv.qualcomm.com>
+References: <20240926110137.2200158-1-quic_mahap@quicinc.com>
+ <20240926110137.2200158-2-quic_mahap@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240920181231.20542-1-erezgeva@nwtime.org> <20240920181231.20542-2-erezgeva@nwtime.org>
- <4e0cf43c-4843-451c-ac6f-86775dbccb2b@linaro.org> <CANeKEMOmhAPM1j1_ihzcC2wL6jKsWXPCGfZs+euS8mRvtqgE5A@mail.gmail.com>
- <D4DLQGLJSKPB.3OOW4RU9Q3K5O@kernel.org> <CANeKEMPSoUu7GW5bL8nuyC5xCKG7Tt0=SvWTL_CcX5oebqN_YA@mail.gmail.com>
- <D4DSTDA3HE2B.20ACE70SQAL7A@kernel.org> <CANeKEMO1nyzEKGCt8N8_UCmAcQ3L53=H8U07AdJzcnFaVuwjGQ@mail.gmail.com>
- <87y13ehn6y.fsf@geanix.com> <CANeKEMMcZ+Y-f8Kty_4Nk-kRu+F7ZXBbxpAG1Bd_P1vcju1mUA@mail.gmail.com>
- <8734lmhcil.fsf@geanix.com>
-In-Reply-To: <8734lmhcil.fsf@geanix.com>
-From: Erez <erezgeva2@gmail.com>
-Date: Thu, 26 Sep 2024 15:16:31 +0200
-Message-ID: <CANeKEMMMYu9ugZksnJscCPROAS2vbi_BXHnJcc-MsDZMwJeTvg@mail.gmail.com>
-Subject: Re: [PATCH v5 1/5] mtd: spi-nor: core: add manufacturer flags
-To: Esben Haabendal <esben@geanix.com>
-Cc: Michael Walle <mwalle@kernel.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
-	Pratyush Yadav <pratyush@kernel.org>, linux-kernel@vger.kernel.org, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240926110137.2200158-2-quic_mahap@quicinc.com>
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: WpEB8sxuQbq_9Vrku2F-q9Hnql4jCzpI
+X-Proofpoint-GUID: WpEB8sxuQbq_9Vrku2F-q9Hnql4jCzpI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 adultscore=0
+ lowpriorityscore=0 priorityscore=1501 malwarescore=0 mlxscore=0
+ suspectscore=0 impostorscore=0 spamscore=0 phishscore=0 mlxlogscore=999
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409260092
 
-On Thu, 26 Sept 2024 at 13:37, Esben Haabendal <esben@geanix.com> wrote:
->
-> Erez <erezgeva2@gmail.com> writes:
->
-> > On Thu, 26 Sept 2024 at 09:46, Esben Haabendal <esben@geanix.com> wrote:
-> >>
-> >> Erez <erezgeva2@gmail.com> writes:
-> >>
-> >> > On Mon, 23 Sept 2024 at 18:19, Michael Walle <mwalle@kernel.org> wrote:
-> >> >>
-> >> >> > > > I would gladly remove the obsolete mx25l12805d.
-> >> >> > > Why? I don't see any need for that.
-> >> >> > Maybe because we do not want compatibility table?
-> >> >>
-> >> >> I don't get this? Anyway, we do not remove support for older
-> >> >> flashes for no reason.
-> >> >
-> >> > I did not insist, you asked.
-> >> > Macronix stopped selling these chips 15 year ago.
-> >> > How long do you want to support old chips?
-> >>
-> >> It is not unusual for embedded products to have a support span of more
-> >> than 20 years. And chips such as these flashes might not be entirely new
-> >> when the product is introduced. So dropping support for SPI-NOR flashes
-> >> that are newer than 25-30 years is definitely a risk. Somebody out there
-> >> might not be able to upgrade to latest kernel versions anymore, which is
-> >> not a position we should put anyone in. With the increasing pressure to
-> >> upgrade product for better security, we definitely should not make it
-> >> more difficult to run newer kernel versions than absolutely necessary.
-> >
-> > I do not insist. Nor send any patch in this direction.
->
-> I did not say or imply that you did any such thing.
->
-> You asked an open question, and I gave my response. Nothing more,
-> nothing less.
+On Thu, Sep 26, 2024 at 04:31:33PM +0530, Mahadevan wrote:
+> Document the MDSS hardware found on the Qualcomm SA8775P platform.
+> 
+> Signed-off-by: Mahadevan <quic_mahap@quicinc.com>
+> ---
+> 
+> [v2]
+> - Use fake DISPCC nodes to avoid clock dependencies in dt-bindings. [Dmitry]
+> - Update bindings by fixing dt_binding_check tool errors (update includes in example),
+>   adding proper spacing and indentation in binding example, dropping unused labels,
+>   dropping status disable, adding reset node. [Dmitry, Rob, Krzysztof]
 
-+
+No concerns with the changelog, but please adopt b4 (go/upstream has
+instructions) for sending patches upstream.
 
->
-> > Each project can define the extent of backward compatibility.
-> > In terms of compilers, linkers and tools, i.e. build environment.
-> > In terms of standards like the C standard we use.
-> > In terms of network protocols.
-> > And also what Hardware do we support.
-> >
-> > There is no harm in asking where the boundaries are.
-> > All projects move their boundaries all the time.
-> > The Linux kernel is no exception.
+> 
+> ---
+>  .../display/msm/qcom,sa8775p-mdss.yaml        | 239 ++++++++++++++++++
+>  1 file changed, 239 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
+> new file mode 100644
+> index 000000000000..e610b66ffa9f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
+> @@ -0,0 +1,239 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/msm/qcom,sa8775p-mdss.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. SA87755P Display MDSS
+> +
+> +maintainers:
+> +  - Mahadevan <quic_mahap@quicinc.com>
+
+Please use Firstname Lastname, if possible
+
+> +
+> +description:
+> +  SA8775P MSM Mobile Display Subsystem(MDSS), which encapsulates sub-blocks like
+> +  DPU display controller, DP interfaces and EDP etc.
+> +
+> +$ref: /schemas/display/msm/mdss-common.yaml#
+> +
+[..]
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interconnect/qcom,icc.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
+> +    #include <dt-bindings/interconnect/qcom,sa8775p-rpmh.h>
+> +    #include <dt-bindings/power/qcom,rpmhpd.h>
+> +    #include <dt-bindings/power/qcom-rpmpd.h>
+> +
+> +    display-subsystem@ae00000 {
+> +        compatible = "qcom,sa8775p-mdss";
+> +        reg = <0 0x0ae00000 0 0x1000>;
+
+#address-cells and #size-cells are 1 in the example root node, so drop
+the two 0 entries.
+
+> +        reg-names = "mdss";
+> +
+> +        /* same path used twice */
+
+What do you mean? All three paths below are unique.
+
+> +        interconnects = <&mmss_noc MASTER_MDP0 0 &mc_virt SLAVE_EBI1 0>,
+> +                        <&mmss_noc MASTER_MDP1 0 &mc_virt SLAVE_EBI1 0>,
+> +                        <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+> +                        &config_noc SLAVE_DISPLAY_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
+> +        interconnect-names = "mdp0-mem",
+> +                             "mdp1-mem",
+> +                             "cpu-cfg";
+> +
+> +
+
+Regards,
+Bjorn
 
