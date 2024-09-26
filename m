@@ -1,380 +1,731 @@
-Return-Path: <devicetree+bounces-105662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCDB798760E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 16:56:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25A2498761F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 16:58:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DE69288B92
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 14:56:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DACD1C21C2A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 14:58:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0977E14A615;
-	Thu, 26 Sep 2024 14:56:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LguSiiXW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C557D14884F;
+	Thu, 26 Sep 2024 14:58:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79ACF4D8AD;
-	Thu, 26 Sep 2024 14:56:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA480E56A;
+	Thu, 26 Sep 2024 14:58:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727362615; cv=none; b=pUBhB/aIBirOLThg5WXVrVqBrm7OCZJgMyJPJzUNHyIQdCVZd4z/vgrIN1guViGSyURLtGgj7KQjTPyL2LYbURoTL8eDBL3UIzmLjFzmNmyIJ1eK279ud3iwr3vTIuv+S5576DlN9VkWzZxaYSVeBAUfdNR4qnxrrHz1Fin4AKA=
+	t=1727362721; cv=none; b=JbYV/r2fEksLXKNZzFNXnOk4ZAFGO52kIgGvKTpckXL+Nk9Ii+qVDC99ojivuvQ4tYs0l98wB91uoDENghV+UF+LAlyGHyMTjng6h1Xk/M8IaGDqoWgVV9F8CZ8KW5dsu+IB+eN8YTkiFGwwoZXQ7CrOvrrdfnpPAoXSpy2rQ/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727362615; c=relaxed/simple;
-	bh=hL/S1v/U2Pw16Fp2Kv2bCTu8RT1aNSFlsqzD0f8mLhE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=rJ3euCCSd+kKw2PgodZ8FOraUZEtGkvMPnYnY32GNqh87H9bTobq2/vikVI2Fx5zQ9alkLclMjUVW+yl+orbXkWYt4N655V/FBemi+E3rT8UzKYPPUi/e9GLqP31GUuAdJXCw/Rc0C7heiO2IZ+cXceVPRTtrtfmUSRABBpejj0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=LguSiiXW; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 48QEuCBS024154;
-	Thu, 26 Sep 2024 09:56:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1727362572;
-	bh=Uu1fs8uLbWcRtUOOJKx0lNHHxU3QxRfU9dTppXQ+NlM=;
-	h=Date:From:Subject:To:CC:References:In-Reply-To;
-	b=LguSiiXWaJws4No0OjC3kDAIDVNIywZjKYoySH1WwxpASOFxFt3MaPDuZPEUsax3t
-	 kW9X3WI3/elY2ORP3+QgiuTli5bpDCOrkIISXN9KUygLpUlGTAwCj4m6wtcQfnSdgt
-	 oVFkD1ASp/diOhMxVqq3+m0MdZfE1RG7sE6oW6cg=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 48QEuCS2032275
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 26 Sep 2024 09:56:12 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 26
- Sep 2024 09:56:12 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 26 Sep 2024 09:56:12 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 48QEuBlL102717;
-	Thu, 26 Sep 2024 09:56:11 -0500
-Message-ID: <cba2c216-de99-4f54-8762-ee39018d1b43@ti.com>
-Date: Thu, 26 Sep 2024 09:56:11 -0500
+	s=arc-20240116; t=1727362721; c=relaxed/simple;
+	bh=WXkLoQ+bRaoBgS75iXTKl+e21gQdl6ovFp1A4M+gWbQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u2o/VDIKdIAzax67IaM/DxN6KKk9OuozvpiYr8f35Es9GO7JrnyThux2w1UhS2BeqjIoIl0s72EL1JqOxM8SQj3227USw34eulHrY77QbGiL8nxQecDKCl05vVS54r5BXfJb4eOeQVMTLFkMyJ/ZJ5Rrbq4zdw9uOe3fkgHrsso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: 1K8fEDczQcCVjcU2bWYqxg==
+X-CSE-MsgGUID: ITyfCvRiSnegGoFSIZc0cA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="14086227"
+X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; 
+   d="scan'208";a="14086227"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Sep 2024 07:58:39 -0700
+X-CSE-ConnectionGUID: zoWFdV53TDeQSZev0wKpNg==
+X-CSE-MsgGUID: Q5l7cEXrSIinncGEbTbXbA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; 
+   d="scan'208";a="72333076"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Sep 2024 07:58:35 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andy@kernel.org>)
+	id 1stpwu-0000000DENy-1h54;
+	Thu, 26 Sep 2024 17:58:32 +0300
+Date: Thu, 26 Sep 2024 17:58:32 +0300
+From: Andy Shevchenko <andy@kernel.org>
+To: Ramona Alexandra Nechita <ramona.nechita@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+	David Lechner <dlechner@baylibre.com>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	Dumitru Ceclan <mitrutzceclan@gmail.com>,
+	Matteo Martelli <matteomartelli3@gmail.com>,
+	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
+	Alisa-Dariana Roman <alisadariana@gmail.com>,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 3/3] drivers: iio: adc: add support for ad777x family
+Message-ID: <ZvV2mHkl4qxVVmBH@smile.fi.intel.com>
+References: <20240926135418.8342-1-ramona.nechita@analog.com>
+ <20240926135418.8342-4-ramona.nechita@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Andrew Davis <afd@ti.com>
-Subject: Re: [Linaro-mm-sig] Re: [RFC PATCH 0/4] Linaro restricted heap
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Jens Wiklander <jens.wiklander@linaro.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <linaro-mm-sig@lists.linaro.org>,
-        <op-tee@lists.trustedfirmware.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Olivier Masse <olivier.masse@nxp.com>,
-        Thierry Reding
-	<thierry.reding@gmail.com>,
-        Yong Wu <yong.wu@mediatek.com>,
-        Sumit Semwal
-	<sumit.semwal@linaro.org>,
-        Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>,
-        Brian Starkey <Brian.Starkey@arm.com>,
-        John Stultz <jstultz@google.com>,
-        "T . J . Mercier" <tjmercier@google.com>,
-        =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
-        Sumit Garg
-	<sumit.garg@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>
-References: <20240830070351.2855919-1-jens.wiklander@linaro.org>
- <dhxvyshwi4qmcmwceokhqey2ww4azjcs6qrpnkgivdj7tv5cke@r36srvvbof6q>
- <d8e0cb78-7cfb-42bf-b3a5-f765592e8dd4@ti.com>
- <mzur3odofwwrdqnystozjgf3qtvb73wqjm6g2vf5dfsqiehaxk@u67fcarhm6ge>
- <e967e382-6cca-4dee-8333-39892d532f71@gmail.com>
-Content-Language: en-US
-In-Reply-To: <e967e382-6cca-4dee-8333-39892d532f71@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240926135418.8342-4-ramona.nechita@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 9/25/24 3:51 AM, Christian König wrote:
-> Am 25.09.24 um 01:05 schrieb Dmitry Baryshkov:
->> On Tue, Sep 24, 2024 at 01:13:18PM GMT, Andrew Davis wrote:
->>> On 9/23/24 1:33 AM, Dmitry Baryshkov wrote:
->>>> Hi,
->>>>
->>>> On Fri, Aug 30, 2024 at 09:03:47AM GMT, Jens Wiklander wrote:
->>>>> Hi,
->>>>>
->>>>> This patch set is based on top of Yong Wu's restricted heap patch set[1].
->>>>> It's also a continuation on Olivier's Add dma-buf secure-heap patch set [2].
->>>>>
->>>>> The Linaro restricted heap uses genalloc in the kernel to manage the heap
->>>>> carvout. This is a difference from the Mediatek restricted heap which
->>>>> relies on the secure world to manage the carveout.
->>>>>
->>>>> I've tried to adress the comments on [2], but [1] introduces changes so I'm
->>>>> afraid I've had to skip some comments.
->>>> I know I have raised the same question during LPC (in connection to
->>>> Qualcomm's dma-heap implementation). Is there any reason why we are
->>>> using generic heaps instead of allocating the dma-bufs on the device
->>>> side?
->>>>
->>>> In your case you already have TEE device, you can use it to allocate and
->>>> export dma-bufs, which then get imported by the V4L and DRM drivers.
->>>>
->>> This goes to the heart of why we have dma-heaps in the first place.
->>> We don't want to burden userspace with having to figure out the right
->>> place to get a dma-buf for a given use-case on a given hardware.
->>> That would be very non-portable, and fail at the core purpose of
->>> a kernel: to abstract hardware specifics away.
->> Unfortunately all proposals to use dma-buf heaps were moving in the
->> described direction: let app select (somehow) from a platform- and
->> vendor- specific list of dma-buf heaps. In the kernel we at least know
->> the platform on which the system is running. Userspace generally doesn't
->> (and shouldn't). As such, it seems better to me to keep the knowledge in
->> the kernel and allow userspace do its job by calling into existing
->> device drivers.
-> 
-> The idea of letting the kernel fully abstract away the complexity of inter device data exchange is a completely failed design. There has been plentyof evidence for that over the years.
-> 
+On Thu, Sep 26, 2024 at 04:53:57PM +0300, Ramona Alexandra Nechita wrote:
+> Add support for AD7770, AD7771, AD7779 ADCs. The device is capable of
+> sending out data both on DOUT lines interface,as on the SDO line.
+> The driver currently implements only the SDO data streaming mode. SPI
+> communication is used alternatively for accessing registers and streaming
+> data. Register accesses are protected by crc8.
 
-And forcing userspace to figure it all out is also an unsolved problem
-after all these years. Neither side wants to get their hands dirty, but
-it is fundamentally a kernel problem to handle these device complexities.
+...
 
-> Because of this in DMA-buf it's an intentional design decision that userspace and *not* the kernel decides where and what to allocate from.
-> 
+> +struct ad7779_state {
+> +	struct spi_device *spi;
+> +	const struct ad7779_chip_info *chip_info;
+> +	struct clk *mclk;
+> +	struct iio_trigger *trig;
+> +	struct completion completion;
+> +	unsigned int sampling_freq;
+> +	enum ad7779_filter filter_enabled;
+> +	/*
+> +	 * DMA (thus cache coherency maintenance) requires the
+> +	 * transfer buffers to live in their own cache lines.
+> +	 */
+> +	struct {
+> +		u32 chans[8];
+> +		s64 timestamp;
 
-DMA-buf attach and map stages are split from each other, to me this indicates
-the design intended the actual backing allocation to be chosen based on attached
-devices at map time, not at allocation time. Meaning userspace doesn't really get
-to choose the backing storage.
+	aligned_s64 timestamp;
 
-> What the kernel should provide are the necessary information what type ofmemory a device can work with and if certain memory is accessible or not. This is the part which is unfortunately still not well defined nor implemented at the moment.
-> 
+while it makes no difference in this case, this makes code aligned inside
+the IIO subsystem.
 
-This sounds like the kernel provided "hints" solution. Given enough hints,
-the correct Heap would become obvious, and so a complete hint based solution
-is one step away from just having the kernel simply make that one correct
-selection for you.
+> +	} data __aligned(IIO_DMA_MINALIGN);
 
-> Apart from that there are a whole bunch of intentional design decision which should prevent developers to move allocation decision inside the kernel. For example DMA-buf doesn't know what the content of the buffer is (except for it's total size) and which use cases a buffer will be used with.
-> 
-> So the question if memory should be exposed through DMA-heaps or a driverspecific allocator is not a question of abstraction, but rather one of thephysical location and accessibility of the memory.
-> 
-> If the memory is attached to any physical device, e.g. local memory on a dGPU, FPGA PCIe BAR, RDMA, camera internal memory etc, then expose the memory as device specific allocator.
-> 
-> If the memory is not physically attached to any device, but rather just memory attached to the CPU or a system wide memory controller then expose the memory as DMA-heap with specific requirements (e.g. certain sized pages, contiguous, restricted, encrypted, ...).
-> 
+Note, this is different alignment to the above. And isn't the buffer below
+should have it instead?
 
-Agree with the first part, some exporters are just giving out CPU memory
-but with some specific constraint (some subsystems get a pass like V4L2
-as it came out before DMA-heaps, but no reason to keep making new allocators
-for each and every subsystem just because they may have some memory
-constraint on the consumption side).
+> +	u32			spidata_tx[8];
+> +	u8			reg_rx_buf[3];
+> +	u8			reg_tx_buf[3];
+> +	u8			reset_buf[8];
+> +};
 
->>> Worse, the actual interface for dma-buf exporting changes from
->>> framework to framework (getting a dma-buf from DRM is different
->>> than V4L, and there would be yet another API for TEE, etc..)
->> But if the app is working with the particular subsystem, then it already
->> talks its language. Allocating a dma-buf is just another part of the
->> interface, which the app already has to support.
-> 
-> Correct, yes.
-> 
+...
 
-Importing the buffer to a given subsystem with be subsystem specific yes,
-but I don't see how that means allocating the buffer should have to be too.
-For instance I need one of these new "restricted" heaps to pass to V4L2,
-I'll need to know how to use V4L2 sure, but why should I have to deal with
-the TEE subsystem to get that buffer as proposed? The common allocator
-could have handled this.
+> +static const char * const ad7779_power_supplies[] = {
+> +	"avdd1", "avdd2", "avdd4"
 
->>> Most subsystem don't need an allocator, they work just fine
->>> simply being only dma-bufs importers. Recent example being the
->>> IIO subsystem[0], for which some early posting included an
->>> allocator, but in the end, all that was needed was to consume
->>> buffers.
->>>
->>> For devices that don't actually contain memory there is no
->>> reason to be an exporter. What most want is just to consume
->>> normal system memory. Or system memory with some constraints
->>> (e.g. contiguous, coherent, restricted, etc..).
->> ... secure, accessible only to the camera and video encoder, ... or
->> accessible only to the video decoder and the display unit. Who specifies
->> those restrictions? Can we express them in a platform-neutral way?
-> 
-> I once create a prototype for letting kernel drivers expose hints to which DMA-heap they want to work with.
-> 
-> The problem is that there are tons of different use cases and you need touse specific allocations for specific use cases.
-> 
->>>> I have a feeling (I might be completely wrong here) that by using
->>>> generic dma-buf heaps we can easily end up in a situation when the
->>>> userspace depends heavily on the actual platform being used (to map the
->>>> platform to heap names). I think we should instead depend on the
->>>> existing devices (e.g. if there is a TEE device, use an IOCTL to
->>>> allocate secured DMA BUF from it, otherwise check for QTEE device,
->>>> otherwise check for some other vendor device).
->>>>
->>>> The mental experiment to check if the API is correct is really simple:
->>>> Can you use exactly the same rootfs on several devices without
->>>> any additional tuning (e.g. your QEMU, HiKey, a Mediatek board, Qualcomm
->>>> laptop, etc)?
->>>>
->>> This is a great north star to follow. And exactly the reason we should
->>> *not* be exposing device specific constraints to userspace. The constrains
->>> change based on the platform. So a userspace would have to also pick
->>> a different set of constraints based on each platform.
->> Great, I totally agree here.
-> 
-> That sounds reasonable, but depends on the restriction.
-> 
-> For example a lot of GPUs can work with any imported memory as long as itis DMA accessible for them, but they can scanout a picture to display on amonitor only from their local memory.
-> 
+Leave trailing comma.
 
-And in this case, attaching the DMA-buf to that monitor for scanout
-should fail at attach time, if we had a way to properly communicate
-constraints between importer and exporter..
+> +};
 
->>> Userspace knows which subsystems it will attach a buffer, and the
->>> kernel knows what constraints those devices have on a given platform.
->>> Ideal case is then allocate from the one exporter, attach to various
->>> devices, and have the constraints solved at map time by the exporter
->>> based on the set of attached devices.
-> 
-> That approach doesn't work. We have already tried stuff like that multiple times.
-> 
+...
 
-Past failures don't guarantee future failure :)
+> +static int ad7779_spi_read(struct ad7779_state *st, u8 reg, u8 *rbuf)
+> +{
+> +	int ret;
 
->>> For example, on one platform the display needs contiguous buffers,
->>> but on a different platform the display can scatter-gather. So
->>> what heap should our generic application allocate from when it
->>> wants a buffer consumable by the display, CMA or System?
->>> Answer *should* be always use the generic exporter, and that
->>> exporter then picks the right backing type based on the platform.
->> The display can support scather-gather, the GPU needs bigger stride for
->> this particular format and the video encoder decoder can not support SG.
->> Which set of constraints and which buffer size should generic exporter
->> select?
-> 
-> Yeah, exactly that's the problem. The kernel doesn't know all the necessary information to make an informed allocation decision.
-> 
+> +	int length = 3;
 
-Why not? For instance when we attach a buffer for scanout we provide
-all the format/stride/etc info. What we are missing is a backchannel
-to provide these to the exporter as a set of constraints that those
-formats impose on a memory area for a given device.
+Why signed?
 
-> Sometimes you even have to insert format conversation steps and doing that transparently for userspace inside the kernel is really a no-go from the design side.
-> 
+> +	u8 crc_buf[2];
 
-Agree, we cannot be doing conversions like that in-kernel. We need
-the format and constraints solved at an earlier step.
+> +	u8 exp_crc = 0;
 
-Andrew
+Redundant assignment.
 
->>> Userspace shouldn't be dealing with any of these constraints
->>> (looking back, adding the CMA heap was probably incorrect,
->>> and the System heap should have been the only one. Idea back
->>> then was a userspace helper would show up to do the constraint
->>> solving and pick the right heap. That has yet to materialize and
->>> folks are still just hardcoding which heap to use..).
->>>
->>> Same for this restricted heap, I'd like to explore if we can
->>> enhance the System heap such that when attached to the TEE framework,
->>> the backing memory is either made restricted by fire-walling,
->>> or allocating from a TEE carveout (based on platform).
-> 
-> Clearly NAK from my side to that design.
-> 
-> Regards,
-> Christian.
-> 
->> Firewalling from which devices? Or rather allowing access from which
->> devices? Is it possible to specify that somehow?
->>
->>> This will mean more inter-subsystem coordination, but we can
->>> iterate on these in kernel interfaces. We cannot iterate on
->>> userspace interfaces, those have to be correct the first time.
->>>
->>> Andrew
->>>
->>> [0]https://www.kernel.org/doc/html/next/iio/iio_dmabuf_api.html
->>>
->>>>> This can be tested on QEMU with the following steps:
->>>>> repo init -uhttps://github.com/jenswi-linaro/manifest.git  -m qemu_v8.xml \
->>>>>           -b prototype/sdp-v1
->>>>> repo sync -j8
->>>>> cd build
->>>>> make toolchains -j4
->>>>> make all -j$(nproc)
->>>>> make run-only
->>>>> # login and at the prompt:
->>>>> xtest --sdp-basic
->>>>>
->>>>> https://optee.readthedocs.io/en/latest/building/prerequisites.html
->>>>> list dependencies needed to build the above.
->>>>>
->>>>> The tests are pretty basic, mostly checking that a Trusted Application in
->>>>> the secure world can access and manipulate the memory.
->>>> - Can we test that the system doesn't crash badly if user provides
->>>>     non-secured memory to the users which expect a secure buffer?
->>>>
->>>> - At the same time corresponding entities shouldn't decode data to the
->>>>     buffers accessible to the rest of the sytem.
->>>>
->>>>> Cheers,
->>>>> Jens
->>>>>
->>>>> [1]https://lore.kernel.org/dri-devel/20240515112308.10171-1-yong.wu@mediatek.com/
->>>>> [2]https://lore.kernel.org/lkml/20220805135330.970-1-olivier.masse@nxp.com/
->>>>>
->>>>> Changes since Olivier's post [2]:
->>>>> * Based on Yong Wu's post [1] where much of dma-buf handling is done in
->>>>>     the generic restricted heap
->>>>> * Simplifications and cleanup
->>>>> * New commit message for "dma-buf: heaps: add Linaro restricted dmabuf heap
->>>>>     support"
->>>>> * Replaced the word "secure" with "restricted" where applicable
->>>>>
->>>>> Etienne Carriere (1):
->>>>>     tee: new ioctl to a register tee_shm from a dmabuf file descriptor
->>>>>
->>>>> Jens Wiklander (2):
->>>>>     dma-buf: heaps: restricted_heap: add no_map attribute
->>>>>     dma-buf: heaps: add Linaro restricted dmabuf heap support
->>>>>
->>>>> Olivier Masse (1):
->>>>>     dt-bindings: reserved-memory: add linaro,restricted-heap
->>>>>
->>>>>    .../linaro,restricted-heap.yaml               |  56 ++++++
->>>>>    drivers/dma-buf/heaps/Kconfig                 |  10 ++
->>>>>    drivers/dma-buf/heaps/Makefile                |   1 +
->>>>>    drivers/dma-buf/heaps/restricted_heap.c       |  17 +-
->>>>>    drivers/dma-buf/heaps/restricted_heap.h       |   2 +
->>>>>    .../dma-buf/heaps/restricted_heap_linaro.c    | 165 ++++++++++++++++++
->>>>>    drivers/tee/tee_core.c                        |  38 ++++
->>>>>    drivers/tee/tee_shm.c                         | 104 ++++++++++-
->>>>>    include/linux/tee_drv.h                       |  11 ++
->>>>>    include/uapi/linux/tee.h                      |  29 +++
->>>>>    10 files changed, 426 insertions(+), 7 deletions(-)
->>>>>    create mode 100644 Documentation/devicetree/bindings/reserved-memory/linaro,restricted-heap.yaml
->>>>>    create mode 100644 drivers/dma-buf/heaps/restricted_heap_linaro.c
->>>>>
->>>>> -- 
->>>>> 2.34.1
->>>>>
-> 
+> +	struct spi_transfer reg_read_tr[] = {
+> +		{
+> +			.tx_buf = st->reg_tx_buf,
+> +			.rx_buf = st->reg_rx_buf,
+> +		},
+> +	};
+> +
+> +	st->reg_tx_buf[0] = AD7779_SPI_READ_CMD | FIELD_GET(AD7779_REG_MSK, reg);
+> +	st->reg_tx_buf[1] = 0;
+> +
+> +	if (reg == AD7779_REG_GEN_ERR_REG_1_EN)
+> +		length = 2;
+> +	else
+> +		st->reg_tx_buf[2] = crc8(ad7779_crc8_table, st->reg_tx_buf, 2, 0);
+
+I would write this as
+
+	if (reg == AD7779_REG_GEN_ERR_REG_1_EN) {
+		length = 2;
+	} else {
+		length = 3;
+		st->reg_tx_buf[2] = crc8(ad7779_crc8_table, st->reg_tx_buf, length - 1, 0);
+	}
+
+> +	reg_read_tr[0].len = length;
+> +
+> +	ret = spi_sync_transfer(st->spi, reg_read_tr, ARRAY_SIZE(reg_read_tr));
+> +	if (ret)
+> +		return ret;
+> +
+> +	crc_buf[0] = AD7779_SPI_READ_CMD | FIELD_GET(AD7779_REG_MSK, reg);
+> +	crc_buf[1] = st->reg_rx_buf[1];
+> +	exp_crc = crc8(ad7779_crc8_table, crc_buf, 2, 0);
+
+ARRAY_SIZE(crc_buf) / sizeof(crc_buf)
+
+
+> +	if (reg != AD7779_REG_GEN_ERR_REG_1_EN && exp_crc != st->reg_rx_buf[2]) {
+> +		dev_err(&st->spi->dev, "Bad CRC %x, expected %x",
+> +			st->reg_rx_buf[2], exp_crc);
+> +		return -EINVAL;
+> +	}
+> +	*rbuf = st->reg_rx_buf[1];
+> +
+> +	return 0;
+> +}
+
+Alternatively you can have a helper
+
+static void ad7779_prepare_buf_with_crc(u8 reg, u8 val, u8 *buf)
+{
+	buf[0] = AD7779_SPI_READ_CMD | FIELD_GET(AD7779_REG_MSK, reg);
+	buf[1] = val;
+	buf[2] = crc8(ad7779_crc8_table, buf, 2, 0);
+}
+
+static int ad7779_spi_read(struct ad7779_state *st, u8 reg, u8 *rbuf)
+{
+	struct spi_transfer t[] = {
+		{
+			.tx_buf = st->reg_tx_buf,
+			.rx_buf = st->reg_rx_buf,
+		},
+	};
+	u8 *buf = t[0].tx_buf;
+	unsigned int length;
+	int ret;
+
+	ad7779_prepare_buf_with_crc(reg, 0, buf);
+
+	if (reg == AD7779_REG_GEN_ERR_REG_1_EN)
+		t[0].len = 2;
+	else
+		t[0].len = 3;
+
+	ret = spi_sync_transfer(st->spi, t, ARRAY_SIZE(t));
+	if (ret)
+		return ret;
+
+	ad7779_prepare_buf_with_crc(reg, t[0].rx_buf[1], buf);
+
+	if (reg != AD7779_REG_GEN_ERR_REG_1_EN && buf[2] != t[0].rx_buf[2]) {
+		dev_err(&st->spi->dev, "Bad CRC %x, expected %x", t[0].rx_buf[2], buf[2]);
+		return -EINVAL;
+	}
+	*rbuf = t[0].rx_buf[1];
+
+	return 0;
+}
+
+...
+
+> +static int ad7779_spi_write(struct ad7779_state *st, u8 reg, u8 val)
+
+Same comments as per _read() above.
+
+...
+
+> +static int ad7779_reg_access(struct iio_dev *indio_dev,
+> +			     unsigned int reg,
+> +			     unsigned int writeval,
+> +			     unsigned int *readval)
+> +{
+> +	struct ad7779_state *st = iio_priv(indio_dev);
+> +
+> +	if (readval)
+
+> +		return ad7779_spi_read(st, reg, (u8 *)readval);
+
+This casting is incorrect as it breaks the big endianess.
+
+> +	return ad7779_spi_write(st, reg, writeval);
+> +}
+
+...
+
+> +	freq_khz = sampling_freq / KILO;
+
+Now it's clear to use HZ_PER_KHZ.
+
+...
+
+> +	if (frac) {
+> +		/*
+> +		* In order to obtain the first three decimals of the decimation
+> +		* the initial number is multiplied with 10^3 prior to the
+> +		* division, then the original division result is subtracted and
+> +		* the number is divided by 10^3.
+> +		*/
+> +		temp = (div * KILO) / freq_khz;
+> +		decimal = ((temp -  dec * KILO) << 16) / KILO;
+
+Unneeded extra space. Can be one line, btw.
+
+		decimal = (((div * KILO) / freq_khz - dec * KILO) << 16) / KILO;
+
+Is it something that mult_frac() from math.h does?
+
+> +		ret = ad7779_spi_write(st, AD7779_REG_SRC_N_MSB,
+> +				       FIELD_GET(AD7779_FREQ_MSB_MSK, decimal));
+> +		if (ret)
+> +			return ret;
+> +		ret = ad7779_spi_write(st, AD7779_REG_SRC_N_LSB,
+> +				       FIELD_GET(AD7779_FREQ_LSB_MSK, decimal));
+> +		if (ret)
+> +			return ret;
+> +	} else {
+> +		ret = ad7779_spi_write(st, AD7779_REG_SRC_N_MSB,
+> +				       FIELD_GET(AD7779_FREQ_MSB_MSK, 0x0));
+> +		if (ret)
+> +			return ret;
+> +		ret = ad7779_spi_write(st, AD7779_REG_SRC_N_LSB,
+> +				       FIELD_GET(AD7779_FREQ_LSB_MSK, 0x0));
+> +		if (ret)
+> +			return ret;
+> +	}
+
+...
+
+> +	ret = ad7779_spi_write(st, AD7779_REG_SRC_UPDATE, 0x1);
+
+BIT(0) ?
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* SRC update settling time */
+> +	fsleep(15);
+> +
+> +	ret = ad7779_spi_write(st, AD7779_REG_SRC_UPDATE, 0x0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* SRC update settling time */
+> +	fsleep(15);
+> +
+> +	st->sampling_freq = sampling_freq;
+> +
+> +	return 0;
+> +}
+
+...
+
+> +	ret = ad7779_spi_write_mask(st,
+> +				    AD7779_REG_GENERAL_USER_CONFIG_2,
+> +				    AD7779_FILTER_MSK,
+> +				    FIELD_PREP(AD7779_FILTER_MSK, mode));
+> +	if (ret < 0)
+
+In other cases there is no < 0 part, why here?
+
+> +		return ret;
+> +
+> +	ret = ad7779_set_sampling_frequency(st, st->sampling_freq);
+> +	if (ret < 0)
+
+Ditto.
+
+> +		return ret;
+
+...
+
+> +static int ad7779_set_calibscale(struct ad7779_state *st, int channel, int val)
+> +{
+> +	int ret;
+> +	unsigned int gain;
+> +	unsigned long long tmp;
+> +	u8 gain_bytes[3];
+> +
+> +	/*
+> +	 * The gain value is relative to 0x555555, which represents a gain of 1
+> +	 */
+> +	tmp = val * 5592405LL;
+> +	gain = DIV_ROUND_CLOSEST_ULL(tmp, MEGA);
+
+	gain = DIV_ROUND_CLOSEST_ULL((u64)val * 5592405LL, MEGA);
+
+> +	put_unaligned_be24(gain, gain_bytes);
+> +	ret = ad7779_spi_write(st, AD7779_REG_CH_GAIN_UPPER_BYTE(channel),
+> +			       gain_bytes[0]);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ad7779_spi_write(st, AD7779_REG_CH_GAIN_MID_BYTE(channel),
+> +			       gain_bytes[1]);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return ad7779_spi_write(st, AD7779_REG_CH_GAIN_LOWER_BYTE(channel),
+> +				gain_bytes[2]);
+> +}
+
+...
+
+> +static int ad7779_read_raw(struct iio_dev *indio_dev,
+> +			   struct iio_chan_spec const *chan, int *val,
+> +			   int *val2, long mask)
+> +{
+> +	struct ad7779_state *st = iio_priv(indio_dev);
+> +
+> +	iio_device_claim_direct_scoped(return -EBUSY, indio_dev) {
+> +		switch (mask) {
+> +		case IIO_CHAN_INFO_CALIBSCALE:
+> +			*val = ad7779_get_calibscale(st, chan->channel);
+> +			if (*val < 0)
+
+The rule of thumb is try to avoid polluting output in case of error.
+
+> +				return -EINVAL;
+
+Shadowed error code, why?
+
+> +			*val2 = GAIN_REL;
+> +			return IIO_VAL_FRACTIONAL;
+> +		case IIO_CHAN_INFO_CALIBBIAS:
+> +			*val = ad7779_get_calibbias(st, chan->channel);
+> +			if (*val < 0)
+> +				return -EINVAL;
+
+Ditto.
+
+> +			return IIO_VAL_INT;
+> +		case IIO_CHAN_INFO_SAMP_FREQ:
+> +			*val = st->sampling_freq;
+> +			if (*val < 0)
+> +				return -EINVAL;
+
+Ditto.
+
+> +			return IIO_VAL_INT;
+> +		}
+
+> +		return -EINVAL;
+
+Make this to be default case in the switch.
+
+> +	}
+> +	unreachable();
+> +}
+
+...
+
+> +static int ad7779_write_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan, int val, int val2,
+> +			    long mask)
+
+long? Not unsigned long?
+
+> +{
+> +	struct ad7779_state *st = iio_priv(indio_dev);
+> +
+> +	iio_device_claim_direct_scoped(return -EBUSY, indio_dev) {
+> +		switch (mask) {
+> +		case IIO_CHAN_INFO_CALIBSCALE:
+> +			return ad7779_set_calibscale(st, chan->channel, val2);
+> +		case IIO_CHAN_INFO_CALIBBIAS:
+> +			return ad7779_set_calibbias(st, chan->channel, val);
+> +		case IIO_CHAN_INFO_SAMP_FREQ:
+> +			return ad7779_set_sampling_frequency(st, val);
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	}
+> +	unreachable();
+> +}
+
+...
+
+> +static irqreturn_t ad7779_trigger_handler(int irq, void *p)
+> +{
+> +	struct iio_poll_func *pf = p;
+> +	struct iio_dev *indio_dev = pf->indio_dev;
+> +	struct ad7779_state *st = iio_priv(indio_dev);
+> +	int ret;
+
+> +
+
+This blank line has to be removed. Doesn't checkpatch complain?
+
+> +	struct spi_transfer sd_readback_tr[] = {
+
+It's the only transfer in the function, name it just 't'.
+
+> +		{
+> +			.rx_buf = st->data.chans,
+> +			.tx_buf = st->spidata_tx,
+> +			.len = AD7779_NUM_CHANNELS * AD7779_CHAN_DATA_SIZE,
+> +		}
+> +	};
+
+> +	st->spidata_tx[0] = AD7779_SPI_READ_CMD;
+
+It's better to use t.tx_buf[0] instead. See above as well, and apply this
+approach to all your functions, so the idea is to make code more robust against
+changes. With this in mind, it will become visible which buffer you operates on
+in the entire function, no need to access it differently.
+
+> +	ret = spi_sync_transfer(st->spi, sd_readback_tr,
+> +				ARRAY_SIZE(sd_readback_tr));
+
+With the above, this is one line.
+
+> +	if (ret) {
+> +		dev_err(&st->spi->dev,
+> +			"spi transfer error in irq handler");
+
+SPI
+IRQ
+
+One line.
+
+> +		goto exit_handler;
+> +	}
+> +
+> +	iio_push_to_buffers_with_timestamp(indio_dev, &st->data, pf->timestamp);
+> +
+> +exit_handler:
+> +	iio_trigger_notify_done(indio_dev->trig);
+> +	return IRQ_HANDLED;
+> +}
+
+...
+
+> +static int ad7779_reset(struct iio_dev *indio_dev, struct gpio_desc *reset_gpio)
+> +{
+
+Same comments as per above function.
+
+> +	struct spi_transfer reg_read_tr[] = {
+> +		{
+> +			.tx_buf = st->reset_buf,
+> +			.len = 8,
+> +		},
+> +	};
+> +
+> +	if (reset_gpio) {
+
+> +		/* Delay for reset to occur is 225 microseconds*/
+
+Missing white space and misplaced comment, should be immediate to fsleep()
+and not here.
+
+> +		gpiod_set_value(reset_gpio, 1);
+> +		fsleep(230);
+> +		return 0;
+> +	} else {
+> +		memset(st->reset_buf, 0xff, sizeof(st->reset_buf));
+> +		ret = spi_sync_transfer(st->spi, reg_read_tr,
+> +					ARRAY_SIZE(reg_read_tr));
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	/* Delay for reset to occur is 225 microseconds*/
+
+Missing white space.
+
+> +	fsleep(230);
+> +
+> +	return 0;
+> +}
+
+...
+
+> +	gpiod_set_value(start_gpio, 0);
+> +	/* Start setup time */
+> +	fsleep(15);
+
+This one is commented...
+
+> +	gpiod_set_value(start_gpio, 1);
+> +	fsleep(15);
+> +	gpiod_set_value(start_gpio, 0);
+> +	fsleep(15);
+
+...but the other two.
+
+...
+
+> +static int ad7779_probe(struct spi_device *spi)
+> +{
+
+	struct device *dev = &spi->dev;
+
+> +	struct iio_dev *indio_dev;
+> +	struct ad7779_state *st;
+> +	struct gpio_desc *reset_gpio, *start_gpio;
+> +	int ret = -EINVAL;
+
+> +	if (!spi->irq)
+> +		return dev_err_probe(&spi->dev, ret,
+> +				     "DRDY irq not present\n");
+
+		return dev_err_probe(dev, ret, "DRDY irq not present\n");
+
+> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
+
+	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
+
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st = iio_priv(indio_dev);
+> +
+> +	ret = devm_regulator_bulk_get_enable(&spi->dev,
+
+	ret = devm_regulator_bulk_get_enable(dev,
+
+> +					     ARRAY_SIZE(ad7779_power_supplies),
+> +					     ad7779_power_supplies);
+> +	if (ret)
+> +		return dev_err_probe(&spi->dev, ret,
+> +				     "failed to get and enable supplies\n");
+
+'dev' here and everywhere below and put this on one line.
+
+> +	st->mclk = devm_clk_get_enabled(&spi->dev, "mclk");
+> +	if (IS_ERR(st->mclk))
+> +		return PTR_ERR(st->mclk);
+> +
+> +	reset_gpio = devm_gpiod_get_optional(&spi->dev, "reset", GPIOD_OUT_LOW);
+> +	if (IS_ERR(reset_gpio))
+> +		return PTR_ERR(reset_gpio);
+> +
+> +	start_gpio = devm_gpiod_get(&spi->dev, "start", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(start_gpio))
+> +		return PTR_ERR(start_gpio);
+> +
+> +	crc8_populate_msb(ad7779_crc8_table, AD7779_CRC8_POLY);
+> +	st->spi = spi;
+> +
+> +	st->chip_info = spi_get_device_match_data(spi);
+> +	if (!st->chip_info)
+> +		return -ENODEV;
+> +
+> +	ret = ad7779_reset(indio_dev, reset_gpio);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ad7779_powerup(st, start_gpio);
+> +	if (ret)
+> +		return ret;
+> +
+> +	indio_dev->name = st->chip_info->name;
+> +	indio_dev->info = &ad7779_info;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->channels = st->chip_info->channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(ad7779_channels);
+
+> +	st->trig = devm_iio_trigger_alloc(&spi->dev, "%s-dev%d",
+> +					  indio_dev->name, iio_device_id(indio_dev));
+
+At least it will be a room for one more parameter on the first line.
+
+> +	if (!st->trig)
+> +		return -ENOMEM;
+> +
+> +	st->trig->ops = &ad7779_trigger_ops;
+> +
+> +	iio_trigger_set_drvdata(st->trig, st);
+> +
+> +	ret = devm_request_irq(&spi->dev, spi->irq,
+> +			      iio_trigger_generic_data_rdy_poll,
+> +			      IRQF_ONESHOT | IRQF_NO_AUTOEN,
+> +			      indio_dev->name, st->trig);
+
+It will be one line less with 'dev'.
+
+> +	if (ret)
+> +		return dev_err_probe(&spi->dev, ret, "request irq %d failed\n",
+
+IRQ
+
+> +				     st->spi->irq);
+
+One line. Why out of a sudden st-> ?
+
+
+> +	ret = devm_iio_trigger_register(&spi->dev, st->trig);
+> +	if (ret)
+> +		return ret;
+> +
+> +	indio_dev->trig = iio_trigger_get(st->trig);
+> +
+> +	init_completion(&st->completion);
+> +
+> +	ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
+> +					      &iio_pollfunc_store_time,
+> +					      &ad7779_trigger_handler,
+> +					      &ad7779_buffer_setup_ops);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ad7779_spi_write_mask(st, AD7779_REG_DOUT_FORMAT,
+> +				    AD7779_DCLK_CLK_DIV_MSK,
+> +				    FIELD_PREP(AD7779_DCLK_CLK_DIV_MSK, 7));
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_iio_device_register(&spi->dev, indio_dev);
+> +}
+
+...
+
+> +static int ad7779_suspend(struct device *dev)
+> +{
+> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> +	struct ad7779_state *st = iio_priv(indio_dev);
+
+	... val = FIELD_PREP(AD7779_MOD_POWERMODE_MSK, AD7779_LOW_POWER));
+
+> +	return ad7779_spi_write_mask(st, AD7779_REG_GENERAL_USER_CONFIG_1,
+> +				    AD7779_MOD_POWERMODE_MSK,
+> +				    FIELD_PREP(AD7779_MOD_POWERMODE_MSK,
+> +					       AD7779_LOW_POWER));
+
+	return ad7779_spi_write_mask(st, AD7779_REG_GENERAL_USER_CONFIG_1,
+				     AD7779_MOD_POWERMODE_MSK, val);
+
+Also note broken indentation in your version.
+
+> +}
+
+> +static int ad7779_resume(struct device *dev)
+
+As per above.
+
+> +{
+> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> +	struct ad7779_state *st = iio_priv(indio_dev);
+> +
+> +	return ad7779_spi_write_mask(st, AD7779_REG_GENERAL_USER_CONFIG_1,
+> +				    AD7779_MOD_POWERMODE_MSK,
+> +				    FIELD_PREP(AD7779_MOD_POWERMODE_MSK,
+> +					       AD7779_HIGH_POWER));
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
