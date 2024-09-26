@@ -1,82 +1,74 @@
-Return-Path: <devicetree+bounces-105686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F7E998772A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 18:03:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4A53987739
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 18:05:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5902B287991
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 16:03:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3620A1C21509
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 16:05:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8725315445E;
-	Thu, 26 Sep 2024 16:02:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78DDB15C13B;
+	Thu, 26 Sep 2024 16:05:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aThwMZ7n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i7HvlSFA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50A5F1BC4E;
-	Thu, 26 Sep 2024 16:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 487C3153BF7;
+	Thu, 26 Sep 2024 16:05:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727366575; cv=none; b=TJulGAB5S1SBbftxaFSHm2nhWDJgwpLLLrwmOA+1K5HjU6uJTlENoc6E4RUHWd3ID3sPZ7U4uri/vT0BTiLa1cMEkkVY6wjMVqxv9lRN+wP5GLHNODlROe/Vt/LwjzVY8gMqdYj7zBo6ItrMx9f3++a/rQoyrQ3UuWXzDvuEDF4=
+	t=1727366706; cv=none; b=L3RQWHXfW9++mjMcjJ3H+czJiNzcNPMFyQ7cLN2WqNd/YhFMzdGP4ocAe6uStjJh5agOXP/GHRDFTLlmns1eTuIActeWX5FqSzGh33rAEyaYFTs3Y+K46CAY3QmWQlLkWTjQr9sC6dPXD37A3VRsnBZ7xrFG9jQvttA/znQcuw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727366575; c=relaxed/simple;
-	bh=cFX2iwcGY8smAIVYvPnkwYiVZqSHddjY3KSuwun+Y+0=;
+	s=arc-20240116; t=1727366706; c=relaxed/simple;
+	bh=8oF862eULQ8YFoJtKU6F4+GDmwMiUNpW0n24amXJv4A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UW0Hp0Gva8bCeCAkUDhvZZMf6OmQ8QWW/p7CiPQt+G6gv5NTEWO+i6ZtCUokhgHcG5KadFqOzOf1U3CMfCwuhP3i/ZqWdDgSfVAJGnWXKfSRl+Z6OQQ8VDftb3mvh36EfoOdxoweUAbenBYccpRr+9QgpGBy9AvmzN3CeVj+BYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aThwMZ7n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1329CC4CEC5;
-	Thu, 26 Sep 2024 16:02:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tdUV7R/R8VjhUZQNhdFxrC4cPzUpy7Az+yJSOhW/tQTK0RUAYydVi/Ihr9bPE1iXfPflR+lIXOXhXq5dYYubb7mohevwEv9OHLZY4pLTMtLVmtl7f4GKgVofq152W8CrcRIHGOwkxtqtM8HrkGb9Vlx9vAV5N4BzYZZXi4zYwKY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i7HvlSFA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7F23C4CECE;
+	Thu, 26 Sep 2024 16:05:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727366574;
-	bh=cFX2iwcGY8smAIVYvPnkwYiVZqSHddjY3KSuwun+Y+0=;
+	s=k20201202; t=1727366705;
+	bh=8oF862eULQ8YFoJtKU6F4+GDmwMiUNpW0n24amXJv4A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aThwMZ7ntlmNOCFu3DQ+T0K1QIlQab3w4DPhMzpJ1JdhseWgub0g0zEDmBGlErwJF
-	 FWlVM8N89QkWz50P6pyfNalJO2ApU+QWedSNWKHfYIK3iGIKtBfz/Xu8SMYc+GWUSj
-	 ezHcu3fciWPAamHaBDhctOLJw/ptBPTRu5yRcZ7eO0BeOCgURf9/g/zLYXOWWjWUWr
-	 dQ+BN13pq7yRb37TwZgPTZPCyDLZhjKil9GV7rmQr6FYzo+HN5C031Npy3CelQtxJQ
-	 EACzmJPZi5U3t06UDrfbWPpjRvC8qFr6kpXq5KvL9CpUyRfWnlqPNfo/T19vXIlDEi
-	 HpunNQgRx7pdA==
-Date: Thu, 26 Sep 2024 17:02:45 +0100
+	b=i7HvlSFAY1HpayQkyF0ijnpGCTEfRC6oQ8lepirwQIRabQuVyr4k7Zzcja9HKmqns
+	 qEXlzEiGWQNyb51qNuW1buk6zlOnjz6AjfNry3FfJXnvsucsFAX/ef5PPnhepd0yTF
+	 AkQa0VVTifqwh1JO7LbhkCMLBmV+zkDrKfABvzFZYYmbWmI2TZ76y0DzHzZZBCb6NH
+	 gCrn/Dnjwp8evthCeCve3uNResHbQiJ1nsE7zcBoRsyruP478/CvfdqeM0NDg7o+v6
+	 uW9mjXvFiPkh3cpANJ2YUsIu+sqww1y4UJATUIBGnX6jR+F4+CHmY4850FpHo2/tFz
+	 QeSU6xNxdFMOQ==
+Date: Thu, 26 Sep 2024 17:04:58 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Macpaul Lin <macpaul.lin@mediatek.com>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
+Cc: Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yong Wu <yong.wu@mediatek.com>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>,
-	Tinghan Shen <tinghan.shen@mediatek.com>,
-	Seiya Wang <seiya.wang@mediatek.com>,
-	Ben Lok <ben.lok@mediatek.com>,
-	"Nancy . Lin" <nancy.lin@mediatek.com>,
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Eason Yen <eason.yen@mediatek.com>,
+	Jiaxin Yu <jiaxin.yu@mediatek.com>,
+	Shane Chien <shane.chien@mediatek.com>,
+	Hui Liu <hui.liu@mediatek.com>, linux-pm@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org,
 	Alexandre Mergnat <amergnat@baylibre.com>,
 	Bear Wang <bear.wang@mediatek.com>,
 	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
-	Sen Chu <sen.chu@mediatek.com>,
 	Chris-qj chen <chris-qj.chen@mediatek.com>,
 	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>,
 	Chen-Yu Tsai <wenst@chromium.org>
-Subject: Re: [PATCH v2 2/5] dt-bindings: iommu: mediatek: Fix interrupt count
- constraint for new SoCs
-Message-ID: <20240926-unbounded-gosling-6b4303106f27@spud>
-References: <20240926111449.9245-1-macpaul.lin@mediatek.com>
- <20240926111449.9245-2-macpaul.lin@mediatek.com>
+Subject: Re: [PATCH 2/3] dt-bindings: mfd: mediatek: mt6397: add compatible
+ for mt6359-codec
+Message-ID: <20240926-smokeless-clobber-0fb8a1cdc7ab@spud>
+References: <20240926092519.6556-1-macpaul.lin@mediatek.com>
+ <20240926092519.6556-2-macpaul.lin@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,107 +76,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZBg8ybapNV2iZUhq"
+	protocol="application/pgp-signature"; boundary="gtFGL1RUPZo9Sk8n"
 Content-Disposition: inline
-In-Reply-To: <20240926111449.9245-2-macpaul.lin@mediatek.com>
+In-Reply-To: <20240926092519.6556-2-macpaul.lin@mediatek.com>
 
 
---ZBg8ybapNV2iZUhq
+--gtFGL1RUPZo9Sk8n
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 26, 2024 at 07:14:46PM +0800, Macpaul Lin wrote:
-> The infra-iommu node in mt8195.dtsi was triggering a CHECK_DTBS error due
-> to an excessively long 'interrupts' property. The error message was:
+On Thu, Sep 26, 2024 at 05:25:18PM +0800, Macpaul Lin wrote:
+> This patch updates the audio-codec properties includes:
+>  - compatible:
+>   - Re-order the supported device items.
+>   - Add 'mt6359-codec' to compatible since MT6359 PMIC has been included
+>     in this DT Schema.
+
+>   - Set 'additionalProperties: true' for 'mt6359-codec'.
+
+Why?
+
 >=20
->   infra-iommu@10315000: interrupts: [[0, 795, 4, 0], [0, 796, 4, 0],
->                      [0, 797, 4, 0], [0, 798, 4, 0], [0, 799, 4, 0]]
->                      is too long
->=20
-> To address this issue, add "minItems: 1" and "maxItems: 5" constraints to
-> the 'interrupts' property in the DT binding schema. This change allows for
-> flexibility in the number of interrupts for new SoCs.
-> The purpose of these 5 interrupts is also added.
->=20
-> Fixes: bca28426805d ("dt-bindings: iommu: mediatek: Convert IOMMU to DT s=
-chema")
 > Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
 > ---
->  .../bindings/iommu/mediatek,iommu.yaml        | 25 ++++++++++++++++++-
->  1 file changed, 24 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 >=20
-> Changes for v2:
->  - commit message: re-formatting and add a description of adding 5 interr=
-upts.
->  - add 'description' and 'maxItems: 5' for 'interrupt' property of
->    'mt8195-iommu-infra'
->  - others keeps 'maxItems: 1'
->=20
-> diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml =
-b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> index ea6b0f5f24de..fdd2996d2a31 100644
-> --- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> @@ -96,7 +96,8 @@ properties:
->      maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml b=
+/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
+> index 40cabaf60d0d..ffb5848a96d5 100644
+> --- a/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
+> @@ -104,7 +104,7 @@ properties:
 > =20
->    interrupts:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 5
+>    audio-codec:
+>      type: object
+> -    additionalProperties: false
+> +    additionalProperties: true
+>      description:
+>        Audio codec support with MT6397 and MT6358.
 > =20
->    clocks:
->      items:
-> @@ -210,6 +211,28 @@ allOf:
->        required:
->          - mediatek,larbs
-> =20
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mediatek,mt8195-iommu-infra
-> +
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          description: |
-> +            The IOMMU of MT8195 has 5 banks: 0/1/2/3/4.
-> +            Each bank has a set of APB registers corresponding to the
-> +            normal world, protected world 1/2/3, and secure world, respe=
-ctively.
-> +            Therefore, 5 interrupt numbers are needed.
-
-> +          maxItems: 5
-
-You repeat here the constraint from the original definition. Should this
-be minitems: 5?
-
-> +
-> +    else:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-> +
->  additionalProperties: false
-> =20
->  examples:
+> @@ -112,8 +112,9 @@ properties:
+>        compatible:
+>          oneOf:
+>            - enum:
+> -              - mediatek,mt6397-codec
+>                - mediatek,mt6358-sound
+> +              - mediatek,mt6359-codec
+> +              - mediatek,mt6397-codec
+>            - items:
+>                - enum:
+>                    - mediatek,mt6366-sound
 > --=20
 > 2.45.2
 >=20
 
---ZBg8ybapNV2iZUhq
+--gtFGL1RUPZo9Sk8n
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvWFpQAKCRB4tDGHoIJi
-0ibCAPsHAeniGCRX+/+yKW9HldPNK9p8nlwfyNOBwMEhVkN6jQEAgjDWVAroTKmU
-yK1gwHOVL51DUKPX8wUsyKexjwYaGwU=
-=HLVk
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvWGKgAKCRB4tDGHoIJi
+0nLMAPwNICZFxiXu4ZhvDLmOlTakmKiEVOTVZu/0hCQuyldZZQD+LrT5WwoJnbMH
+g+uamV5Vyo9o/jF8L1GRHbGmPCz4kg4=
+=sQf+
 -----END PGP SIGNATURE-----
 
---ZBg8ybapNV2iZUhq--
+--gtFGL1RUPZo9Sk8n--
 
