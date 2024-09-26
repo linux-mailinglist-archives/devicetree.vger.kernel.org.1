@@ -1,265 +1,154 @@
-Return-Path: <devicetree+bounces-105529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6731D986FE5
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 11:21:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0066D987098
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 11:47:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 898971C208A0
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:21:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FED41F2255A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:47:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AC5D1A76D6;
-	Thu, 26 Sep 2024 09:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BAA31AB6D1;
+	Thu, 26 Sep 2024 09:47:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sony.com header.i=@sony.com header.b="cxHWJv+b"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BOqIVSXC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-001d1705.pphosted.com (mx08-001d1705.pphosted.com [185.183.30.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B70811A76C3;
-	Thu, 26 Sep 2024 09:21:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.183.30.70
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727342475; cv=fail; b=MKQNvCZ4eXPwj1ZceYJ5y26V9kOxlJExPAUBiRYHuJzRgqZ9vY0CnHYAn5YU2y0mA/dIP5DjvmlFNNPQMGFunTxtMaC+uDXU2N3HY55WjwAvlDq2+CyvhA3Z6QDfZs6eZLm0y91MxGY2sx7GKPBA8DTzWnCFGK3+HnVC7GZQsds=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727342475; c=relaxed/simple;
-	bh=YIJP/zMPYHHjCUOk4nlf5FlWxGHGwC0I7DIwJj9WtTg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DmqR/3R7gta+1sdPjbaIzqJUgfaTMcU0N2Mi313JBVY3wPQMvEbCH6csKyf3VNVuvYXD3n9f0UN587dsL33nwf9HPG3YjQT0aWNonaDuOmJwGzVb+++ZbWbqWcNKDeEO7Tu5f0ohC5XDopQMfkHcVptV5nsr73tPXsi4fGT1Rps=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sony.com; spf=pass smtp.mailfrom=sony.com; dkim=pass (2048-bit key) header.d=sony.com header.i=@sony.com header.b=cxHWJv+b; arc=fail smtp.client-ip=185.183.30.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sony.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sony.com
-Received: from pps.filterd (m0209323.ppops.net [127.0.0.1])
-	by mx08-001d1705.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48Q63iWU007227;
-	Thu, 26 Sep 2024 09:13:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sony.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=S1; bh=kiZyaOD1JfRvEwMrXN4Ihj6s+b1K//Y
-	lcOLg9thLxPw=; b=cxHWJv+bL/HpBFRSADLNf//TDjcOfUIofLLJZxolqF5yQh4
-	VLuUXix5DP/y9lysg3PK+5WFemq88yhccFHZXGcJRgdYqYi0l4piarKaHGfbumQH
-	jJ38kc3av7ufVIXWXJnWU+d4QdYgyVtp1gI85eOWe5eqTpOh2pADeoHIMgiI2Wvg
-	JZU80cfCOomLeZN0F9pkcSDHvuC6rPmZpV/gX6yXNhPSi1O98k9tUhQyXFAH4f1P
-	RfRbKoh22cn1miiXLOynJnt0fhU7nC16VIuGDPxSB4zwJFcFQZxBRm5QB5XmLIAE
-	/ehfH0pxCZBA1mbyX7iVFSNv7+m0h03TyukqTKw==
-Received: from nam11-dm6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2172.outbound.protection.outlook.com [104.47.57.172])
-	by mx08-001d1705.pphosted.com (PPS) with ESMTPS id 41snfycceh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 26 Sep 2024 09:13:36 +0000 (GMT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=A5mebtcJhi5k4CgG4y6Y9sqReNqH7b/d50evSqFJ7Z3FTCnVmM21ebsk6WBZVcpEQDSEm0bX4MI2dQjFkj4HeshnCJ1ICJqFgBem4C8nuyNci5P+wmpSjktjDewodLc3mhFmjZcwHaWg0Gt0TjSJQ5TAFcBW5neXfDFbnSHUlCuMTb13y05L4CXvlZ4YY8pYSAjZF2vRzyBtO+nFKzRO6lLDxAR0tRsDcLrG5T0nORxBisZgV7/Ec3x5iTq8ZLl1/1CBqObH2084IV22D1xh7cYcyTu1xUKRW8sWhpvv+Fb7mC8cNmsw2q4kyho+4RRtRElYri/99SiI116Ex9su3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kiZyaOD1JfRvEwMrXN4Ihj6s+b1K//YlcOLg9thLxPw=;
- b=gQyg6t0wPyDxzQ7PUIZCA6jq/X4MQ8XAAapqlRo9hrFjFzZS0hvotpeSEfvHw6AuTpdk3uyiVjm2anX4sZCfKF26asrlSyOCiAmCRP5cWfjM8FXBE2K/ddID/tJeluxRNi8joR0SJLBLgnEEmql3M78E2BL2X7njYgOEHD+xC4qqyn2N04VFQtzG9y7NN/UF7zP0smyiq1rd3+pFOcButpfvexTaeZHUs+gsl8tXHbJP7izjUZ8CXFxu23jhTBgJx35ToZeDWnTAD9SV8Hvpbx2Uq30sbq4MICWvHFCLkeejmUWnuJsWAWPzpcybPk/mMZUrF6Lmq80Ihm40/nG04A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 121.100.38.196) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=sony.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=sony.com;
- dkim=none (message not signed); arc=none (0)
-Received: from BYAPR21CA0025.namprd21.prod.outlook.com (2603:10b6:a03:114::35)
- by MN2PR13MB3990.namprd13.prod.outlook.com (2603:10b6:208:26d::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.27; Thu, 26 Sep
- 2024 09:13:30 +0000
-Received: from MWH0EPF000989EA.namprd02.prod.outlook.com
- (2603:10b6:a03:114:cafe::47) by BYAPR21CA0025.outlook.office365.com
- (2603:10b6:a03:114::35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.3 via Frontend
- Transport; Thu, 26 Sep 2024 09:13:29 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 121.100.38.196)
- smtp.mailfrom=sony.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=sony.com;
-Received-SPF: Fail (protection.outlook.com: domain of sony.com does not
- designate 121.100.38.196 as permitted sender)
- receiver=protection.outlook.com; client-ip=121.100.38.196;
- helo=gepdcl07.sg.gdce.sony.com.sg;
-Received: from gepdcl07.sg.gdce.sony.com.sg (121.100.38.196) by
- MWH0EPF000989EA.mail.protection.outlook.com (10.167.241.137) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8005.15 via Frontend Transport; Thu, 26 Sep 2024 09:13:28 +0000
-Received: from gepdcl04.s.gdce.sony.com.sg (SGGDCSE1NS08.sony.com.sg [146.215.123.198])
-	by gepdcl07.sg.gdce.sony.com.sg (8.14.7/8.14.4) with ESMTP id 48Q9DRBq011675
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Thu, 26 Sep 2024 17:13:27 +0800
-Received: from mail.sony.com ([43.88.80.182])
-	by gepdcl04.s.gdce.sony.com.sg (8.14.7/8.14.4) with ESMTP id 48Q9DPfo008174;
-	Thu, 26 Sep 2024 17:13:25 +0800
-Received: by mail.sony.com (Postfix, from userid 1000)
-	id 0C9D11BA9039; Thu, 26 Sep 2024 15:10:47 +0530 (IST)
-Date: Thu, 26 Sep 2024 15:10:47 +0530
-From: Nayeemahmed Badebade <nayeemahmed.badebade@sony.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        gregkh@linuxfoundation.org, rafael@kernel.org,
-        yoshihiro.toyama@sony.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: probe-control: add probe control driver
-Message-ID: <ZvUsH07dnvvIUg76@NAB-HP-ProDesk-600sony.com>
-References: <20240911142319.3435746-1-nayeemahmed.badebade@sony.com>
- <20240911142319.3435746-2-nayeemahmed.badebade@sony.com>
- <cd4ff3c1-ece5-4508-93f0-2806cc6e76ba@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA77613B7BE;
+	Thu, 26 Sep 2024 09:47:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727344071; cv=none; b=fLaN4LzLZl5ntFz1HC9mdSrYuoJ4RvJmLcTan2LqzhmBWzYYdUSPIZme5DjZJJErHtxSxRFuMTw/frdnwd+5FHM7f8ge8OqTDapC9ffsU4FnSdBOT8uN4dTBBdT+djgFmrIeYYmNy8dM1M85TJm10wyOFjV1gAVqCjlGv4yWZ7g=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727344071; c=relaxed/simple;
+	bh=adZodwCXV3E1L2yUgVldd9HT85Tc8Q6aMcqWnivfDwM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Y3FTtiWGPk9VXkANPm6IwGJjefWSt064MhxZo+hgctQoDAaA/TNSFJP/zVF/D+uwkLfbpmiewztOBmds6Ts2zD7OmeUHNJZ4XP3La3XWyNtzFb1qLgC7q1mKctesGm+afbo1RcCglhxUN4qDOXpwBpGXOuHn6ibt0Pzgs2PUq1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BOqIVSXC; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5365c512b00so940175e87.3;
+        Thu, 26 Sep 2024 02:47:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727344068; x=1727948868; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=G9cLIStHYD0jPVaz7NpQ1Asc2qCOkfbRpKZ83f4Snlg=;
+        b=BOqIVSXC7zpxh7moKSjg6FfhbJPBC+nKtusGEGag/tU4V/g4cojz8LIUnbnOACbPYI
+         IflG324WWQ4/YHm3ocD8TgFQfqqxbgUA+aGXFL5VxjWM+Opwsnamd/7Q2iMcnqoMOAZQ
+         b/7pfWYF+h4ptdwrz6ykp7jc5AIl0ftnNWc8pOgTKVOxvxoFfk8nt4PyZ8li08wcPaow
+         7BzHCrgrtbmBgW+zp/UYVvBmxYkbiPh3jPOIVkWjU47kZoAKRz2izTwgJgIxexziZyu5
+         KeyxINYUN+g8Kk4tOfVM4lltzWOUJ/9+oC35Hix/cEgWX3gziqNYRH2quBqtmatzsIAi
+         BumA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727344068; x=1727948868;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G9cLIStHYD0jPVaz7NpQ1Asc2qCOkfbRpKZ83f4Snlg=;
+        b=VM16+qAjucObApe6EvVQpbOZe80FFfl9HN1mYNhTEX8bcY+C8Hb3xie4xXF+iAhNgq
+         M633utTSrqhyR/v3ahBVx/vu1zmFLKyh6MiTgwmTypq5oxegwHaEZgVbDCsU8iaIykh1
+         TcN7v9E3hmUipuy463BR4ceUeTzjWy+tmEYjQh+KhVbg0d9dzgmj7lEn4BcGpGkkNsJ1
+         ZJdlN4v6OmjVFATKmaPib4Hg6MMC8hbNDxUYXmGuOPhO6Zo0hakXzY8/1/6Q9cPp00w1
+         tfDi5Aey8IeiuyypRZRtbEa1dQSbfx/vTopOmMTPiduyhgwViB4HaCx7ECk0DrLlYBZN
+         M7Lw==
+X-Forwarded-Encrypted: i=1; AJvYcCVB5MOf81O1vwLawiPqo2/qo+uSj9cBjY4BEXWXIN147v1M5Y46fEUrbtWG9vR+u2gaeF8IMeESfQ89@vger.kernel.org, AJvYcCW426uhSjVeqjwdRl42KFQVbvzoOSzXEKf/EUfO5UvoJZLqlQqmyDQmdPBOkxBufgNETpuu6yFNvNDXfRlsAgj6cwE=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5xbLoxNGscK30xm2b9iLYQmqBdRpQJz5tagBmbHgCNqsU3G9T
+	0XggM2uzqyOhZxjDK6dqMspixigfB/v3QC5rnA8+VU2+qctqmkYC
+X-Google-Smtp-Source: AGHT+IF8AkpbjtMaVmDx8uVEdeLGSdKTUIqsBooH7i09P+qWwj/WQOkiBqbXWlb3Lo3jGMxG2NiYFQ==
+X-Received: by 2002:a05:6512:3b8d:b0:52e:9619:e26a with SMTP id 2adb3069b0e04-5387754d154mr3982172e87.26.1727344067252;
+        Thu, 26 Sep 2024 02:47:47 -0700 (PDT)
+Received: from [127.0.1.1] (mm-20-1-84-93.mgts.dynamic.pppoe.byfly.by. [93.84.1.20])
+        by smtp.googlemail.com with ESMTPSA id 2adb3069b0e04-537a8648a60sm750311e87.199.2024.09.26.02.47.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Sep 2024 02:47:46 -0700 (PDT)
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Subject: [PATCH v5 0/3] Add Samsung s2dos05 pmic support
+Date: Thu, 26 Sep 2024 12:47:29 +0300
+Message-Id: <20240617-starqltechn_integration_upstream-v5-0-ea1109029ba5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cd4ff3c1-ece5-4508-93f0-2806cc6e76ba@kernel.org>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000989EA:EE_|MN2PR13MB3990:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6b4a4488-0b10-4e8c-c1b1-08dcde0b7c7a
-x-proofpoint-id: d8690225-876f-412f-87c6-a7cb45557a4c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|1800799024|82310400026|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?X2+XDq4h3BeV0jBhRj/zdF4ouRs+rQam1SFBaKfBUU5O2pa/vrjMEbjQ6lyA?=
- =?us-ascii?Q?zcBsah0n8Ez2WE3DXpLFc9KvXhlKfjqAjFuVpULMa/NoFK+fTjN8c+e93i6x?=
- =?us-ascii?Q?myoaMOgKoKwkXulHudlQg91RfWJcMDq0/j2yAJ9V34ussYjJzvLbLacJRICU?=
- =?us-ascii?Q?zJJr5r4UDG88ZksYp/8qwe0zXurD+fDdJvzxe9KcoBvNnmVCTnX86qqTaLfK?=
- =?us-ascii?Q?Co30RfsD700q6iMJ0+TVipwqY4rkLZrU3zqRvR2swd0L0g40sW7nHaZfFxoG?=
- =?us-ascii?Q?V53GaqNCdyXymC8E8TgIOYyrvEKkxyOVCT6x4FUn7z5j3vOv8+3VJWCvaZWn?=
- =?us-ascii?Q?sqtb9IXQFFelWnlqdxNG22wftNImlsnY8fm/VcMlcd04XJCGHJ+lUyn5bYAJ?=
- =?us-ascii?Q?FjYmjSBGL8X8TAazEepvUGAB2YtgzhIUerNApsZaDrlU9JVnFplH3scXIlBb?=
- =?us-ascii?Q?WKX4geKeNOKqbVREAqjWH9tMw8mBYtvYSLsbSIf193j8qgleWw11x38CeCoZ?=
- =?us-ascii?Q?WqnJX/+PdU/ntqQ31Un9xvXwg6+9nG8TjMbFJKIQKOdWu2rr8MAogu7g3/NQ?=
- =?us-ascii?Q?yru7DmK0ADs35iQKu7KL6XkUGKz6gEOsda4+4whUIFlBOLKLBr3rT3aVWoJd?=
- =?us-ascii?Q?wnIaXfAmbZT6l893PMXEQ4+WI0rd1Q4xVIYbPzV4mc+9/KTT9QNlqb698Wux?=
- =?us-ascii?Q?h3WbyNF4foVIk0r7dGXvemq8FukdstLMG4GhOh1DgB3cWX1KMl/GMKSV1a/R?=
- =?us-ascii?Q?NfPoYODk7dQaWofgJ8nT2s2PYMsp/8JwsMW8DySLqNit10/F1airCcFCRxdy?=
- =?us-ascii?Q?EJFl90EgSq97KjeYWeKFvopXosoaL8PSAyfENzOMmM1k1ruBowLg1XqX2Yrk?=
- =?us-ascii?Q?VQcAcSfO4ExE6RQPMURRADFJne3FjCNhGX6NgcFozXDy90yopD803Yr+Ix+r?=
- =?us-ascii?Q?5JCVO3rYpm8Wey7hueYr/raH64cqAtcxanwSZb+o3sZ0d6yVWDKUFEkwYean?=
- =?us-ascii?Q?qaOPqgWwPCrVoPD8HnUnOPGb3rb6Hmf1DuJ0MKjupybG80neTPA0MQgVvXwX?=
- =?us-ascii?Q?6qosAdxe+MQ97W8DGHxXW0fdHH32jXr8xPK8izlWIiRXN/ahbAjJfUTh/ay5?=
- =?us-ascii?Q?u7BAvUn56eg5cHU6Li4V/A978XNtjF1lsqUPg6t03XWcQLJ8lxdGLHhqtzRR?=
- =?us-ascii?Q?CdAOmFTRd7m570AWF+ocZFeccUP0KmzGRNNKLo41iNOtaMBCcLUosOBlSml9?=
- =?us-ascii?Q?2v11/Jv6tAytiaMFm1w5E3LTeuCr7CbeeHA3Sk5zcTMxITKLqJc28Xgy1A3c?=
- =?us-ascii?Q?4r839cZpxlDF7MY7MOxkf9QmizGAUzWn0PByLBleDqdK5G9x78RJaL5Y5sNb?=
- =?us-ascii?Q?gdxAXkMK6ex6lz7GzCNt0jGQPSJT?=
-X-Forefront-Antispam-Report:
-	CIP:121.100.38.196;CTRY:SG;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:gepdcl07.sg.gdce.sony.com.sg;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
-	BnfNXFm7Wy5lKS4y9VMjwNt816x9DmGE2S/yq81ystlTtgSpOyk9/CmTxJCNxQyGTRlXNpVy6IQMdoYvxYfB6/QMiAR16OrgGQQM2ri/5+mtlhHBohuzZJqj0CleUubczlcz200jpmSjUowtoxY6dQykaNi5TppSzgGMqDzHKqWtUtYlQoumKSY32GN6s2b74mDhs3rITZvnaYsUOi41oxv4lzHqeyFB86uyTmlkD3IYcbz1w7y6w1sjJWf+Pmz1onjNRv8BxrPeAVhubkUPDLMc9BErXjzE4OavoOJ0AkW3LlfQTEvVuq8Ha/7GUZkBYg97Zwe/hJFlySt0q71bO7bhM/vgfJkSxGTDstL6eV6SlJ+kzBB2aYXOF1uQVKLRgm+bMdLknhBXB2t4T4e7KyKjQIZ2oeWGWLOxOjqR7DWZJ/hnGZTc44QNGqt4NNIfZz2n4HJjxEoswzzTdWWtW9NMk1p+RyAZDGm/wagzybDAn7bpZueJKYuGV6IK4jocYuCUln719kCl5ulgIYSBYFNVq8Yl39bzznBjQetDgxkdzf2rTFWyxfEeZ2NM2GAOweP+vs4ZhBPXjAkK6iPxs7xLchdDvmm5wwMeO9nGzZfIPAX9PqJn0xyXrjtu2Sa0
-X-OriginatorOrg: sony.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2024 09:13:28.8881
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b4a4488-0b10-4e8c-c1b1-08dcde0b7c7a
-X-MS-Exchange-CrossTenant-Id: 66c65d8a-9158-4521-a2d8-664963db48e4
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=66c65d8a-9158-4521-a2d8-664963db48e4;Ip=[121.100.38.196];Helo=[gepdcl07.sg.gdce.sony.com.sg]
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-MWH0EPF000989EA.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR13MB3990
-X-Proofpoint-ORIG-GUID: NnZbjdTEBtvIS4w6zq46DBaXgRvReg_I
-X-Proofpoint-GUID: NnZbjdTEBtvIS4w6zq46DBaXgRvReg_I
-X-Sony-Outbound-GUID: NnZbjdTEBtvIS4w6zq46DBaXgRvReg_I
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-26_03,2024-09-26_01,2024-09-02_01
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALIt9WYC/43O0Q6CIBQG4FdxXEdDULCueo/WHOJR2RQNkNWc7
+ x66tbqry//fzvefBTmwGhw6JwuyELTTo4khPyRIddK0gHUdM6KEZoSnAjsv7b33oDpTauOhtdL
+ Hm3KenLcgB1ypghc5qWgDDEWmkg5wZaVRXYTM3PexnCw0+rHvXm8xd9r50T73NwLb2vdi8XsxM
+ EwwsIZzTkkqpLq0g9T9UY0D2vCQfcBTyv4AswjSmkJT5yovhPgG13V9Ad5rAaM2AQAA
+To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, Dzmitry Sankouski <dsankouski@gmail.com>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1727344064; l=2341;
+ i=dsankouski@gmail.com; s=20240619; h=from:subject:message-id;
+ bh=adZodwCXV3E1L2yUgVldd9HT85Tc8Q6aMcqWnivfDwM=;
+ b=Tn4jQZ2eXo+tK+U1h/u5mTg0RCZvgQW/TnpGA60guWpEnw/m1tn3Qj8KR92m67q/mkTQ10Cud
+ /GwmdImG2xWAAixIxYrgrV1INeSVqTOtIlQa8HNcaUdxOD2TbHjeGrJ
+X-Developer-Key: i=dsankouski@gmail.com; a=ed25519;
+ pk=YJcXFcN1EWrzBYuiE2yi5Mn6WLn6L1H71J+f7X8fMag=
 
-On Tue, Sep 17, 2024 at 11:00:23AM +0200, Krzysztof Kozlowski wrote:
+The S2DOS05 is a companion power management IC for the panel and touchscreen
+in smart phones. Provides voltage regulators and
+ADC for power/current measurements.
 
-Hi Krzysztof,
+Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+---
+Changes in v5:
+- Split patchset per subsystem
+- Rewrite cover letter
+- Link to v4: https://lore.kernel.org/r/20240913-starqltechn_integration_upstream-v4-0-2d2efd5c5877@gmail.com
 
-Sorry for the delay in our response. 
-Thank you for checking our patchset and sharing your comments for it.
-We appreciate your feedback.
+Changes in v4:
+- Rewrite max77705, max77705_charger, max77705_fuel_gauge from scratch
+- Reorder patches:
+  - squash max77705 subdevice bindings in core file because
+    no resources there
+  - split device tree changes
+- Use _ as space for filenames in power/supply like the majority
+- Replace gcc-845 freq_tbl frequencies patch with new approach,
+  based on automatic m/n/pre_div value generation
+- Link to v3: https://lore.kernel.org/r/20240618-starqltechn_integration_upstream-v3-0-e3f6662017ac@gmail.com
 
+Changes in version 3:
+- s2dos05 driver converted to MFD
 
-> On 11/09/2024 16:23, Nayeemahmed Badebade wrote:
-> > Device tree binding document for the probe-control driver
-> 
-> Describe the hardware, not driver...
-> 
-> > 
-> > Signed-off-by: Toyama Yoshihiro <yoshihiro.toyama@sony.com>
-> > Signed-off-by: Nayeemahmed Badebade <nayeemahmed.badebade@sony.com>
-> > ---
-> >  .../probe-control/linux,probe-controller.yaml | 59 +++++++++++++++++++
-> >  1 file changed, 59 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/probe-control/linux,probe-controller.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/probe-control/linux,probe-controller.yaml b/Documentation/devicetree/bindings/probe-control/linux,probe-controller.yaml
-> > new file mode 100644
-> > index 000000000000..1945a7a5ab3c
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/probe-control/linux,probe-controller.yaml
-> > @@ -0,0 +1,59 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +# Copyright (c) 2024 Sony Group Corporation
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/linux,probe-controller.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Probe control device
-> > +
-> > +maintainers:
-> > +  - Nayeemahmed Badebade <nayeemahmed.badebade@sony.com>
-> > +  - Toyama Yoshihiro <yoshihiro.toyama@sony.com>
-> > +
-> > +description: |
-> > +  This binding is for controlling the probes of a set of devices in the system.
-> > +  Probe control device is a dummy device that can be used to control the probe
-> > +  of a group of devices. To have finer control, the devices can further be
-> > +  divided into multiple groups and for each group a probe control device can
-> > +  be assigned. This way, individual groups can be managed independently.
-> > +  For example, one group can be for pcie based devices and other can be
-> > +  scsi or usb devices.
-> > +  Probe control device is provider node and the devices whose probes need to be
-> > +  controlled, are consumer nodes. To establish control over consumer device
-> > +  probes, each consumer device node need to refer the probe control provider
-> > +  node by the phandle.
-> 
-> So all this looks like not suitable for DT at all.
-> 
+Changes in version 2:
+- s2dos05 regulator:
+  - hex to decimal in regulator values
+  - fix compatible value
+  - remove interrupt specific code, because it's
+    empty in vendor kernel, and I cannot test it on
+    available hardware anyway.
 
-We understand now that this approach is not suitable for DT.
+---
+Dzmitry Sankouski (3):
+      dt-bindings: mfd: add samsung,s2dos05
+      mfd: sec-core: add s2dos05 support
+      regulator: add s2dos05 regulator support
 
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: linux,probe-control
-> > +
-> > +  probe-control-supply:
-> > +    description:
-> > +      Phandle to the probe control provider node.
-> 
-> I don't understand this. Regulator supply is not a provider node.
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    // The node below defines a probe control device/provider node
-> > +    prb_ctrl_dev_0: prb_ctrl_dev_0 {
-> 
-> No underscores in node names.
+ Documentation/devicetree/bindings/mfd/samsung,s2dos05.yaml |  99 ++++++++++++++++++++++++++++++++++++++
+ MAINTAINERS                                                |   4 +-
+ drivers/mfd/sec-core.c                                     |  11 +++++
+ drivers/regulator/Kconfig                                  |   8 ++++
+ drivers/regulator/Makefile                                 |   1 +
+ drivers/regulator/s2dos05-regulator.c                      | 176 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ include/linux/mfd/samsung/core.h                           |   1 +
+ include/linux/regulator/s2dos05.h                          |  73 ++++++++++++++++++++++++++++
+ 8 files changed, 371 insertions(+), 2 deletions(-)
+---
+base-commit: 92fc9636d1471b7f68bfee70c776f7f77e747b97
+change-id: 20240617-starqltechn_integration_upstream-bc86850b2fe3
 
-Got it.
+Best regards,
+-- 
+Dzmitry Sankouski <dsankouski@gmail.com>
 
-> 
-> > +        compatible = "linux,probe-control";
-> 
-> Where are the resources? It's empty?
->
-
-Yes, this was a dummy device node for controlling probes of actual devices.
-But we understand now that this approach is not right.
-Thank you.
-
-Regards,
-Nayeem
 
