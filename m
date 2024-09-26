@@ -1,321 +1,174 @@
-Return-Path: <devicetree+bounces-105502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B8B7986E2E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:50:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56814986E5E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:58:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C18B81F23906
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 07:50:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DADA1C211FC
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 07:58:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC6F718A6CC;
-	Thu, 26 Sep 2024 07:50:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82BFB192586;
+	Thu, 26 Sep 2024 07:58:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BW47b239"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 601B2192B69
-	for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 07:50:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A6DA18A6CC;
+	Thu, 26 Sep 2024 07:58:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727337038; cv=none; b=OCHyD+eFvvIDyqw3UVk68J/bMf4EXhItp7UZCg9XjfsNiLYlkyLDRC4VBKKaPH73RRJntZKGfL7t8h26CY69/6OQqgy7P5CZkN/N1Oytfqac6h4efn4CRz89/zndNmQDdJ529k1RP/jRBiuVVKUg9/3s+eFnW5fhaR9AjGbQn90=
+	t=1727337516; cv=none; b=bG0iZT20aONJt2B8L3LxZozdPLpVLi9vRyIPLcJVI9NruGXxCqqi06bpHzu2Bcbg01Q+z148NBq4FbIfVWw5ESbc9lLI7af+AIl+VGv/XSIiDmGMchhJmDuz6+3y2mrMwsm4Zhcih+NOTF3ycKxiU4w0bysCQALOS6a4pTRCYrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727337038; c=relaxed/simple;
-	bh=Hi9Dm9bHtr/nU89VigzpFVOj84iRJ07qjg1yUVHkIVM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FkA8GH/rxG26ALwaGVHdNpavl5P5lH4gTeOX/VeFgvFPybUYO8hgzRrTJ1rmf+G0oL2W3HbI7ghK3nYScd5QunJt6Y9f+R3boqZGP0H8G/PBBH43k6hmU8E5FRZUu+WOmHnjZyE4Ig3lGpjUJoYAestWMmKhsT/SuUPP0SUDkbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1stjGc-0001MC-VD; Thu, 26 Sep 2024 09:50:26 +0200
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1stjGb-001dUm-1u; Thu, 26 Sep 2024 09:50:25 +0200
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1stjGa-00D7UJ-32;
-	Thu, 26 Sep 2024 09:50:24 +0200
-Date: Thu, 26 Sep 2024 09:50:24 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Michael Walle <mwalle@kernel.org>, devicetree@vger.kernel.org,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Mathieu Othacehe <m.othacehe@gmail.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	linux-kernel@vger.kernel.org,
-	Hiago De Franco <hiago.franco@toradex.com>,
-	Herburger <gregor.herburger@ew.tq-group.com>,
-	Petr Benes <petr.benes@ysoft.com>, linux-usb@vger.kernel.org,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, imx@lists.linux.dev,
-	Shawn Guo <shawnguo@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 2/2] arm64: dts: imx: Add imx8mp-iota2-lumpy board
-Message-ID: <20240926075024.777bdooiqd5myv3v@pengutronix.de>
-References: <20240924103941.1729061-1-michal.vokac@ysoft.com>
- <20240924103941.1729061-3-michal.vokac@ysoft.com>
- <ZvLXenqG/++AR4We@lizhi-Precision-Tower-5810>
- <20240924173714.qxxkhn6wscze7q5n@pengutronix.de>
- <87980643-44b4-4df9-9eb7-1583b5074bdd@ysoft.com>
- <ZvQ5O553E0QFvced@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1727337516; c=relaxed/simple;
+	bh=fK93/LGxmG73VHNKRXwDaW/YmezZFk9nqAI6SsN2KjI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OTk99ytBMYLXRFxkcTvVTbMu4mssBk9EkVGXc43K6o9A7aETqPi1nX5VqR3iphZGquQy/f66x6kOsPMNzsvWRlCnngGMAkGQMpsUHtW9CD1i3fszhAcpGYAkMGDnCZqIn3Sh81I1yZ/J+EyEnOyubXEM+GIRqFb9cFwcE82S9HM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BW47b239; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-718e55bca81so58915b3a.2;
+        Thu, 26 Sep 2024 00:58:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727337514; x=1727942314; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RWzVuNeEmqHJ1u8ju7YCekIUG85QkK0qD7OXBvRvawM=;
+        b=BW47b239AmsNOVfj4kntbnj336JIJyOOxd3W3rIC41xEl34nZg/Bev5Fb/f2HxToGB
+         6oEBCRYCtkMIZLk5tan6Z5LI7rH5XYRiEfC12IhnllyE3Ehd4yPmrdoZLRpIaf7+UY8v
+         XmSx+/ZzF5NjmSll4j9El10+kZWgxzaCVKSddAMOHF7ZpgKtMJim69GtByZGRnMZcluB
+         o1LUIl0guNoJ63lTklaMpsibzGxOrPw5N1IYku8VP/5LYjcFJjWqoBE03F58yOzoUDU3
+         xNc0/oMXp6aHi3DgVn2fbH8x1GmMmTASfIyfI3QUBLvuCK/vrGrUZrGHsgd+oO8U1ZMC
+         NeMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727337514; x=1727942314;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RWzVuNeEmqHJ1u8ju7YCekIUG85QkK0qD7OXBvRvawM=;
+        b=T84NLSAWff29O2XICtUZcfDWAQNauqi6YIF2Hnx2zQlekvVe17X3opcnHZcfPWEWGT
+         toULZicfa63wlghYswO0tyDxG/xcCc2IwC9W7QrKxQkC+LhQyyO6PmRgsLqk60Lvx7ih
+         B92qO62Iszl2/76Fa/AwTlISvhLv1zH2VlwR45EhbcIusCyPfUgUSxqgzJkkGekaRXkC
+         Ff3bQTDk4QcWLR4I8JZ25NrHB46qKPLMCQBBzmsxAvyit2FOVxDNFXqykipceFEgzRp7
+         /MIDlUex5IcSG97w45Vk7fnBbilu/gwrCPPl/4ef2uUlmjcmyst0IzsdD0DVh6r7tDap
+         skig==
+X-Forwarded-Encrypted: i=1; AJvYcCU2rbk8ttHvYiHuRN37A+JeE+Dr5ts4M/I+yoNBkl0Cim0qy1vUbA2beesxtrZvEITL8VyTvIPwn+MK2Hv6@vger.kernel.org, AJvYcCUv8gRVj1kbm0pq7RG4+pXBVYwM7X7Zhxeh/dytPpK2x7iMcg0BedMSADDuU59Pbj78uFLsBR0cYwnD@vger.kernel.org, AJvYcCV6S7KioTX+IjMSWDFPw28DswhLwNCRmMW4FCyV7HaiGlesgDcnsvGm0+0PjTubKfwJnGJidgUcoPZt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7gFLcfsh3WeYW0Ivvdv8vpjQqOxvRx5OSJzjN2AkE00xbxNp1
+	AffkrDKWwelklXJRaKxCSGNBS6T+200oh7kVvoA8pffAm880orqr
+X-Google-Smtp-Source: AGHT+IFLOhWZU7G8EXAx1qAOb0VWfAM83eWttkRY5go0vsHS6idkSuR6eHJPS7sHJItzPYDA6MGAvg==
+X-Received: by 2002:a05:6a00:23c4:b0:718:e49f:137a with SMTP id d2e1a72fcca58-71b0acb74d7mr3289396b3a.6.1727337514020;
+        Thu, 26 Sep 2024 00:58:34 -0700 (PDT)
+Received: from [100.116.227.126] ([45.32.86.188])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71afc93fed7sm3772045b3a.126.2024.09.26.00.58.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Sep 2024 00:58:33 -0700 (PDT)
+Message-ID: <13e92a64-5921-46ad-b685-87b98807208d@gmail.com>
+Date: Thu, 26 Sep 2024 15:58:28 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZvQ5O553E0QFvced@lizhi-Precision-Tower-5810>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: tyhx,hx9023s: Add performance
+ tuning configuration
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, yasin.lee.x@outlook.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240926-add-performance-tuning-configuration-v2-0-fdbb654f5767@gmail.com>
+ <20240926-add-performance-tuning-configuration-v2-1-fdbb654f5767@gmail.com>
+ <mzymeyslfhnxpnmiqtmmavn2tyx4mm67f5oy6m5pw7sogcuqn4@uexouiqfkdeb>
+Content-Language: en-US
+From: Yasin Lee <yasin.lee.x@gmail.com>
+In-Reply-To: <mzymeyslfhnxpnmiqtmmavn2tyx4mm67f5oy6m5pw7sogcuqn4@uexouiqfkdeb>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 24-09-25, Frank Li wrote:
-> On Wed, Sep 25, 2024 at 01:30:31PM +0200, Michal Vokáč wrote:
-> > On 24. 09. 24 19:37, Marco Felsch wrote:
-> > > Hi Frank,
-> > >
-> > > On 24-09-24, Frank Li wrote:
-> > > > On Tue, Sep 24, 2024 at 12:39:41PM +0200, Michal Vokáč wrote:
-> > > > > The IOTA2 Lumpy board is based on the i.MX8MPlus EVK.
-> > > > >
-> > > > > Basic features are:
-> > > > > - 4GB LPDDR4
-> > > > > - 64GB eMMC
-> > > > > - 2x 1GB Ethernet
-> > > > > - USB 3.0 Type-C dual role port, without power delivery
-> > > > > - USB 3.0 Type-A host port
-> > > > > - RGB LED - PWM driven
-> > > > > - speaker - PWM driven
-> > > > > - RTC with super capacitor backup
-> > > > >
-> > > > > Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
-> > > > > ---
-> > > > > v4:
-> > > > > - Moved the iomuxc node to the end of the file.
-> > > > > - Moved the bus-width and non-removeable properties below
-> > > > >    the pinctrl-* properties in &usdhc3 node.
-> > > > > - Moved the fsl,ext-reset-output below the pinctrl-* properties
-> > > > >    in &wdog1 node.
-> > > > > v3:
-> > > > > - Dropped pinctrl-names property from &usb_dwc3_1 node.
-> > > > > v2:
-> > > > > - Dropped unused property from pwm4 node.
-> > > > > - Sorted all nodes and properties using dt-format tool from Frank.
-> > > > >
-> > > > >   arch/arm64/boot/dts/freescale/Makefile        |   1 +
-> > > > >   .../boot/dts/freescale/imx8mp-iota2-lumpy.dts | 423 ++++++++++++++++++
-> > > >
-> > > > Suggest use https://github.com/lznuaa/dt-format
-> > > > sort node. any issue, let me know.
-> > >
-> > > Thanks for the link :) would be nice to have this script to be part of
-> > > the kernel.
-> 
-> It depend on how much people like and use it.
 
-I don't see any reason why the kernel shouldn't have such a script, it
-makes the life easier for all of us (incl. the dt-maintainers). By that
-I mean the idea of having such a script since I actually didn't looked
-into your code.
+On 9/26/24 14:53, Krzysztof Kozlowski wrote:
+> On Thu, Sep 26, 2024 at 12:40:17AM +0800, Yasin Lee wrote:
+>> When hardware design introduces significant sensor data noise,
+>> performance can be improved by adjusting register settings.
+>>
+>> Signed-off-by: Yasin Lee <yasin.lee.x@gmail.com>
+>> ---
+>>   .../bindings/iio/proximity/tyhx,hx9023s.yaml          | 19 +++++++++++++++++++
+>>   1 file changed, 19 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml b/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml
+>> index 64ce8bc8bd36..0673c40472bd 100644
+>> --- a/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml
+>> +++ b/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml
+>> @@ -28,6 +28,18 @@ properties:
+>>   
+>>     vdd-supply: true
+>>   
+>> +  tyhx,performance-tuning:
+>> +    description:
+>> +      Optional, When hardware design introduces significant sensor data noise,
+>> +      performance can be improved by adjusting register settings, including
+>> +      but not limited to sample integration time and average sample count.
+>> +      Performance tuning parameters represented as register address-value pairs.
+>> +      The array consists of 8-bit values, where each pair represents a register
+>> +      address followed by the value to be written to that register.
+>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> I think you wanted here in such case uint8-matrix with one dimension set
+> to two and other 256 or whatever.
+>
+> I also wonder why do allow any register to be tuned. To me "tuning"
+> sounds like improving or tweaking the configuration, so for example I
+> would not expect to change some control-like registers, e.g. interrupts,
+> enable/disable, reset etc.
+>
+>
+>> +    minItems: 2
+>> +    maxItems: 512
+>> +
+>>     "#address-cells":
+>>       const: 1
+>>   
+>> @@ -65,6 +77,13 @@ examples:
+>>           interrupt-parent = <&pio>;
+>>           interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
+>>           vdd-supply = <&pp1800_prox>;
+>> +        tyhx,performance-tuning = [00 00
+> This above is clearing entirely the GLOBAL_CTRL0 register, which is not
+> tuning.
+>
+> You are basically avoiding hardware description as properties in DT and
+> just dump a blob.
+>
+>
+> Best regards,
+> Krzysztof
+Hi Krzysztof,
 
-> >> The script follows the rules in [1] I'm just used to have
-> > > common properties like pinctrl-* in front of the device specific
-> > > properties e.g. "enable-active-high". But this rule is not part of [1]
-> > > so I can't blame the script.
-> 
-> I just write it. Not 100% align order-of-properties-in-device-node yet.
-> Some propertiy need special treated. Thank you provide the feedback.
-> 
-> I push change, enable-active-high and gpio will after regulator*.
+Thank you for your feedback.
 
-:) Thank you!
+You're absolutely right about the operation on the 00 register. That was 
+indeed a mistake on my part, and it was not my intention to clear the 
+GLOBAL_CTRL0 register. It was only meant to serve as an example.
 
-Regards,
-  Marco
+I also now understand that importing a data block in this manner doesn't 
+align with the design philosophy of device trees. Moving forward, I will 
+abstract each possible tuning configuration into separate properties. 
+Since there are quite a few properties to handle, this will result in a 
+larger codebase.
 
-> 
-> Frank
-> 
-> > >
-> > > Regards,
-> > >    Marco
-> > >
-> > > [1] https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
-> >
-> > Thank you for the review Frank & Marco.
-> > I quickly went through the file again and found another few properties
-> > that could be better ordered according to the kernel documentation [1].
-> >
-> > > > >   2 files changed, 424 insertions(+)
-> > > > >   create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
-> > > > >
-> > > > > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> > > > > index 9d3df8b218a2..aa26a50b7bb4 100644
-> > > > > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > > > > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > > > > @@ -171,6 +171,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk2.dtb
-> > > > >   dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk3.dtb
-> > > > >   dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
-> > > > >   dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
-> > > > > +dtb-$(CONFIG_ARCH_MXC) += imx8mp-iota2-lumpy.dtb
-> > > > >   dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
-> > > > >   dtb-$(CONFIG_ARCH_MXC) += imx8mp-navqp.dtb
-> > > > >   dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
-> > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts b/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
-> > > > > new file mode 100644
-> > > > > index 000000000000..9eb58e818dc7
-> > > > > --- /dev/null
-> > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
-> > > > > @@ -0,0 +1,423 @@
-> > > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > > > +/*
-> > > > > + * Copyright 2023 Y Soft
-> > > > > + */
-> > > > > +
-> > > > > +/dts-v1/;
-> > > > > +
-> > > > > +#include "imx8mp.dtsi"
-> > > > > +
-> > > > > +/ {
-> > > > > +	compatible = "ysoft,imx8mp-iota2-lumpy", "fsl,imx8mp";
-> > > > > +	model = "Y Soft i.MX8MPlus IOTA2 Lumpy board";
-> > > > > +
-> > > > > +	beeper {
-> > > > > +		compatible = "pwm-beeper";
-> > > > > +		pwms = <&pwm4 0 500000 0>;
-> > > > > +	};
-> > > > > +
-> > > > > +	chosen {
-> > > > > +		stdout-path = &uart2;
-> > > > > +	};
-> > > > > +
-> > > > > +	gpio_keys: gpio-keys {
-> > > > > +		compatible = "gpio-keys";
-> > > > > +		pinctrl-0 = <&pinctrl_gpio_keys>;
-> > > > > +		pinctrl-names = "default";
-> > > > > +
-> > > > > +		button-reset {
-> > > > > +			gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;
-> > > > > +			label = "Factory RESET";
-> > > > > +			linux,code = <BTN_0>;
-> > > > > +		};
-> > > > > +	};
-> > > > > +
-> > > > > +	reg_usb_host: regulator-usb-host {
-> > > > > +		compatible = "regulator-fixed";
-> > > > > +		enable-active-high;
-> > > > > +		gpio = <&gpio1 14 GPIO_ACTIVE_HIGH>;
-> >
-> > The enable-active-high and gpio should go bellow regulator-*.
-> >
-> > > > > +		pinctrl-0 = <&pinctrl_usb_host_vbus>;
-> > > > > +		pinctrl-names = "default";
-> > > > > +		regulator-max-microvolt = <5000000>;
-> > > > > +		regulator-min-microvolt = <5000000>;
-> > > > > +		regulator-name = "usb-host";
-> > > > > +	};
-> > > > > +
-> > > > > +	memory@40000000 {
-> > > > > +		reg = <0x0 0x40000000 0 0x80000000>,
-> > > > > +		      <0x1 0x00000000 0 0x80000000>;
-> > > > > +		device_type = "memory";
-> > > > > +	};
-> > > > > +};
-> > > > > +
-> > > > > +&A53_0 {
-> > > > > +	cpu-supply = <&reg_arm>;
-> > > > > +};
-> > > > > +
-> > > > > +&A53_1 {
-> > > > > +	cpu-supply = <&reg_arm>;
-> > > > > +};
-> > > > > +
-> > > > > +&A53_2 {
-> > > > > +	cpu-supply = <&reg_arm>;
-> > > > > +};
-> > > > > +
-> > > > > +&A53_3 {
-> > > > > +	cpu-supply = <&reg_arm>;
-> > > > > +};
-> > > > > +
-> > > > > +&eqos {
-> > > > > +	phy-handle = <&ethphy0>;
-> > > > > +	phy-mode = "rgmii-id";
-> > > > > +	pinctrl-0 = <&pinctrl_eqos>;
-> > > > > +	pinctrl-names = "default";
-> > > > > +	status = "okay";
-> > > > > +
-> > > > > +	mdio {
-> > > > > +		compatible = "snps,dwmac-mdio";
-> > > > > +		#address-cells = <1>;
-> > > > > +		#size-cells = <0>;
-> > > > > +
-> > > > > +		ethphy0: ethernet-phy@0 {
-> > > > > +			reg = <0>;
-> > > > > +			interrupts = <21 IRQ_TYPE_LEVEL_LOW>;
-> > > > > +			interrupt-parent = <&gpio3>;
-> > > > > +			micrel,led-mode = <0>;
-> >
-> > The micrel,* is a vendor specific property. It should go bellow the reset-*.
-> >
-> > > > > +			pinctrl-0 = <&pinctrl_ethphy0>;
-> > > > > +			pinctrl-names = "default";
-> > > > > +			reset-assert-us = <1000>;
-> > > > > +			reset-deassert-us = <1000>;
-> > > > > +			reset-gpios = <&gpio3 22 GPIO_ACTIVE_LOW>;
-> > > > > +		};
-> > > > > +	};
-> > > > > +};
-> > > > > +
-> > > > > +&fec {
-> > > > > +	fsl,magic-packet;
-> > > > > +	phy-handle = <&ethphy1>;
-> > > > > +	phy-mode = "rgmii-id";
-> > > > > +	pinctrl-0 = <&pinctrl_fec>;
-> > > > > +	pinctrl-names = "default";
-> > > > > +	status = "okay";
-> > > > > +
-> > > > > +	mdio {
-> > > > > +		#address-cells = <1>;
-> > > > > +		#size-cells = <0>;
-> > > > > +
-> > > > > +		ethphy1: ethernet-phy@0 {
-> > > > > +			reg = <0>;
-> > > > > +			interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
-> > > > > +			interrupt-parent = <&gpio3>;
-> > > > > +			micrel,led-mode = <0>;
-> >
-> > Same as above, micrel,* should go bellow common properties.
-> > I will send a v5 with these fixed.
-> >
-> > Michal
-> >
-> > > > > +			pinctrl-0 = <&pinctrl_ethphy1>;
-> > > > > +			pinctrl-names = "default";
-> > > > > +			reset-assert-us = <1000>;
-> > > > > +			reset-deassert-us = <1000>;
-> > > > > +			reset-gpios = <&gpio3 20 GPIO_ACTIVE_LOW>;
-> > > > > +		};
-> > > > > +	};
-> > > > > +};
-> > > > > +
-> 
+Given the additional work required, I will take a few more days to 
+revise the patch and resubmit it.
+
+Thank you again for your valuable input.
+
+Best regards,
+Yasin Lee
 
