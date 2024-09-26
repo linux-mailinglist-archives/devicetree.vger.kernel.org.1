@@ -1,83 +1,100 @@
-Return-Path: <devicetree+bounces-105476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1974986D1E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 08:59:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EF02986D22
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:04:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E29591C20C96
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 06:59:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E98AEB20FA8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 07:04:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87FB9188CB0;
-	Thu, 26 Sep 2024 06:59:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5C2C176227;
+	Thu, 26 Sep 2024 07:04:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LbOs5P12"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="ZBl8siqX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A3CB13CAA5;
-	Thu, 26 Sep 2024 06:59:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 006C0139B;
+	Thu, 26 Sep 2024 07:04:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727333980; cv=none; b=QMkQKKmOfx56DWidiLXbiCU9yzX66lKlTFBwpB6XG1B/SNMgw623BGXOKnBQaj/nsB4OuqL4I8GpJ+lveB+2Z1iHuggsDuZ8dAJvf7t5x+odP5iF7nVthdYZVmoQ+6jpHmZYM6V84245kgNt/cvJn7S7baS8G+ZdyZJDvS4p6Wg=
+	t=1727334275; cv=none; b=c2z3c/pzej4scXjY4uzCbeivI6WuwbheQciKDUwM/uscrVhj3W0jknqSqHocPJCG8iuKgebg0lJydO3NmWGEFMWY93FktQkx7CisoOyYfp0qIyotG5bcgzJQhR2LhttC8i52iLAm3j8PykonWVWIBP9+ghcpC3CmCOL38Ek5Xwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727333980; c=relaxed/simple;
-	bh=HP+8QOe9VLGDYsUXS/y2xC5fz7bWuVs+fseDbh7f0M8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q5BKJqnh7mecgKv41l+xhhkZQxXA2zBe4OOeq778Sl6RIjiFCUeJBNS6WA2CHuYRDVe6q5448fJhJ9RXpYndCimQjYfEIxTDxUcKLdDn28kltegxyrpmOyaZ9L0lDE9hJvabukvp4I9HwCOn8YD1xyfF4okXn/WeVyLYIaymZdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LbOs5P12; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2428FC4CEC5;
-	Thu, 26 Sep 2024 06:59:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727333979;
-	bh=HP+8QOe9VLGDYsUXS/y2xC5fz7bWuVs+fseDbh7f0M8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LbOs5P129YqfPYF7VM4zaXt7TLgQXTNcAiqq5/WihGCVnBWEGI4R40oWjF0/Yb3aG
-	 8HQMsQdfi5dxgGkYOcKHAEqf2nlQdZI3NMxM0HwWYv1L199T6TuWw1NmF6T5jQ4sBH
-	 RCGxfOjqVTWQ2HrmlPmDH/69EcGG0b4gp/G1HvCyepM+TXnwvKP3WwERqAKC9l/19O
-	 oWwNWYQYbnYl96rdq4VuYNxLDgICtOQe0BxEotirTtmK4OHHEtCPCH8yuEdndGti58
-	 EEBhfp/y82nko7kEnSXfsyFPhnp0FtwEqXyK+Y7bE3AiREXlkgeO3d87tVQgvf7YVK
-	 rQ14YLFUkgbvg==
-Date: Thu, 26 Sep 2024 08:59:36 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Daniel Baluta <daniel.baluta@nxp.com>, Shengjiu Wang <shengjiu.wang@nxp.com>, 
-	Iuliana Prodan <iuliana.prodan@nxp.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/6] dt-bindings: arm: arm,mhuv2: remove power domain
- from example client node
-Message-ID: <qge5cz7w6od3jmt73hwcepoje4lv65x6dhoqdujpyaohdtopqs@yp37zt7sebge>
-References: <20240925232008.205802-1-laurentiumihalcea111@gmail.com>
- <20240925232008.205802-3-laurentiumihalcea111@gmail.com>
+	s=arc-20240116; t=1727334275; c=relaxed/simple;
+	bh=1XOIqL/2SpN3XIWVOjWZEKZ21s2pnEm2BRcsqxkaxFs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=m7GPcTeDQWYpK6aeGSDKXBIH/pt9M7g4tgFUUQmabsvHFdxD8dJI9NIuQaThshPHKp6VHs/englGrwqwxaj3oxHj2kTkXVwghHfUn1dTVPm9s8VHvd6RNFe+X+jtN6bZFlCj9+j3D0EI+eJACKxuQdioyIPtND6tge1nyGyByvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=ZBl8siqX; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 91ad1c767bd511efb66947d174671e26-20240926
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=u2VyllAmx1eNrj4fBWbMCyugVwolephg65owyjKq1Jk=;
+	b=ZBl8siqXvwMQ0KYfY5y0untMcqNsed9PH0PtmapdYDVaaXbXNH3ZeIbV3aN5hwux6ZFAaWKBwfVefAUpZgefFc5RCXF6PV3iQlzxn/EcwfQtBfDLNpDCb8Wqs71b8NuDsh3uxP//BTPeNuUQiQUSHMzr+WdAMbwduSlpmoKrBVI=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:e54bff40-6095-4f1f-abf9-e11d573064d7,IP:0,U
+	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-5
+X-CID-META: VersionHash:6dc6a47,CLOUDID:4156979e-8e9a-4ac1-b510-390a86b53c0a,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 91ad1c767bd511efb66947d174671e26-20240926
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+	(envelope-from <andy-ld.lu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1415652439; Thu, 26 Sep 2024 15:04:27 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 26 Sep 2024 15:04:26 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 26 Sep 2024 15:04:25 +0800
+From: Andy-ld Lu <andy-ld.lu@mediatek.com>
+To: <ulf.hansson@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<matthias.bgg@gmail.com>, <wenbin.mei@mediatek.com>
+CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, Andy-ld Lu <andy-ld.lu@mediatek.com>
+Subject: [PATCH 0/2] Add mtk-sd support for MT8196
+Date: Thu, 26 Sep 2024 15:03:16 +0800
+Message-ID: <20240926070405.20212-1-andy-ld.lu@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240925232008.205802-3-laurentiumihalcea111@gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Wed, Sep 25, 2024 at 07:20:04PM -0400, Laurentiu Mihalcea wrote:
-> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> 
-> The number of power domains required for DT nodes using the
-> 'fsl,imx8qxp-dsp' compatible is 3. Remove one power domain from
-> the example client node using this compatible to align with this.
-> 
-> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> ---
+There are some new features for Mediatek SoC MT8196, which include new
+command/data transmitting and receiving path (abbreviated as tx/rx), and
+a new bus design that prevents the CPU from accessing the IP registers
+unless the source clock control gate is enabled. Furthermore, some register
+settings are also modified.
 
-Your patches are not bisectable. This must be squashed.
+The driver code has to be adapted to implement the above changes, and the
+compatible 'mediatek,msdc-v2' is added to driver and devicetree bindings,
+for MT8196 and future compatible SoCs that support new tx/rx.
 
-Best regards,
-Krzysztof
+Andy-ld Lu (2):
+  mmc: mtk-sd: Add support for MT8196
+  dt-bindings: mmc: mtk-sd: Add support for MT8196
+
+ .../devicetree/bindings/mmc/mtk-sd.yaml       |  26 +++
+ drivers/mmc/host/mtk-sd.c                     | 179 +++++++++++++++---
+ 2 files changed, 182 insertions(+), 23 deletions(-)
+
+-- 
+2.46.0
 
 
