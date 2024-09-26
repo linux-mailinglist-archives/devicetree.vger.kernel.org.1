@@ -1,167 +1,195 @@
-Return-Path: <devicetree+bounces-105523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B273986F43
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 10:49:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19B64986F86
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 11:04:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D9B11C21A0B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 08:49:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D0AC1F23E50
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C77381A4E9C;
-	Thu, 26 Sep 2024 08:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F23871A4E96;
+	Thu, 26 Sep 2024 09:04:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="IGGNyu2G"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="bM3gB8nU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83E014AD17;
-	Thu, 26 Sep 2024 08:48:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 481C7208CA;
+	Thu, 26 Sep 2024 09:04:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727340540; cv=none; b=jIe5uTVd2dHPzHjF7vbMKcImbxNB4Jwsh9IPrCz17Ze2AyPD8gmd8MbtUm+TtMcxA5x9CpJhZshi3Kx0TvSw2stfMjAljFJ0RVMG47RQhmv8jmPlvbwaccvDde4+1EdNWOyJNe+I5DLx6y8KOYmA6eXw1qdSVJYcYeFEcHfHebc=
+	t=1727341483; cv=none; b=b5BrNKUd46bNnyA6IoGJ2xKnXyWyC/6t2FiCcOAOCZRTqEb6GyyHJGFM3FIVXNAbEghDXaBTAXsJDppR6opEDcBlmCKLsO5ITAQ02X/Lk0yRbNJh8jkK6qqvchNlU8yQoCAtKQIu6mjreuPkxB3OxMoopyN7iNfmwbGUkUAI8W4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727340540; c=relaxed/simple;
-	bh=0H4dM9NzilQ5XHmjN1qEbEUXxix/9JrmttrPTQq+uvI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZbegXg8JJ0wb2QkEBE0Nvt8PsI9DuQY3c6TKrk8Xu3XaldFkFLL1Ywji5Id7VJqeDgPKBqLYG9HBOf4KtAiOmnwtg2dPC4qd+U1+GOYqRllaO3qKes5Q7oudNbQT8qIIYLOFV7n2szvmTYHhHDzFP6QSL67uMEliTfICpZFCidU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=IGGNyu2G; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1727340537;
-	bh=0H4dM9NzilQ5XHmjN1qEbEUXxix/9JrmttrPTQq+uvI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IGGNyu2GGhL861wp8iuj8doPxLtpFHdGi+14N43mzCZfjm5A5rwcPIYKHY1VMQXhr
-	 aggqvQMkA7uulzyzM1aBKZZ2yRP2uF3rjA8qHkaRJxSRzjrkFsWai5YAkG5Cqqeg45
-	 3Ycgkq5ttycO9PjosJ+zp6gIxNP3cNYhNEAFHKNTfZ/xGP+6AFnBbn6jq5rHF/Tl4p
-	 6E1XqaooOWMIA3YoFskEJkzmczduIivnTIqspTnh1tuRShqiTcFmrqlYGWCyb4X5HS
-	 IN75tPtPoNPClqOcM7CNdas3CVEC+40k9KEK4+3vVMTzeMBQ4x/sdlWJMD/yEvPAP9
-	 aZceBE4nfxWag==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A9D5717E107A;
-	Thu, 26 Sep 2024 10:48:56 +0200 (CEST)
-Message-ID: <e3eabcc4-1174-4a58-a084-d37467f63ced@collabora.com>
-Date: Thu, 26 Sep 2024 10:48:56 +0200
+	s=arc-20240116; t=1727341483; c=relaxed/simple;
+	bh=di2rL5GeXYpO0V4uTOsJz4GFmNmDIN3da4xmQ9fk8GI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UegS8ruHt0xyx+In24Y1JQI/38tzHFBo3/qlXpibfs+QxjKzsQPa7zjheCX8ylNfU6KVXOFDvZPXFMj+KiSS0g+aWlus5pJwwT0MnMRj4cm4AwU43XQZcHc4zgVVWrEaurhPI2tTd7EKfQT2lSkYFZIarQPjZRivObNXG6L/M5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=bM3gB8nU; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (mob-5-90-51-229.net.vodafone.it [5.90.51.229])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 883DC8D4;
+	Thu, 26 Sep 2024 11:03:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1727341391;
+	bh=di2rL5GeXYpO0V4uTOsJz4GFmNmDIN3da4xmQ9fk8GI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bM3gB8nUyh5eV5Z5HCch6mMxBZW+JATtWYP/hiQrjV6uKPtjAA20hFUHLJdIEwRfH
+	 Wowr807WRIAsu7i21zsc6UZu/uIozBxjh994yA4RTk/yKXEceSMiXCMHfKW4+vZ7hQ
+	 uYYX4Rva+2K2pKzj+BBJUPtF2bBLKycYm6SASsDc=
+Date: Thu, 26 Sep 2024 11:04:36 +0200
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+	Naushir Patuck <naush@raspberrypi.com>, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, Kieran Bingham <kieran.bingham@ideasonboard.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v5 0/4] media: raspberrypi: Support RPi5's CFE
+Message-ID: <yj5zt4a275pjedrxvs4ys2wgp5heblisihal6jrqdryoq3ydph@6rriiytwpkpq>
+References: <20240910-rp1-cfe-v5-0-9ab4c4c8eace@ideasonboard.com>
+ <fe968dc7-67a5-40be-871e-fe682dc60d70@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 3/3] pmdomain: mediatek: Use OF-specific regulator API
- to get power domain supply
-To: Chen-Yu Tsai <wenst@chromium.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, Douglas Anderson <dianders@chromium.org>,
- Johan Hovold <johan@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>
-References: <20240925093807.1026949-1-wenst@chromium.org>
- <20240925093807.1026949-4-wenst@chromium.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240925093807.1026949-4-wenst@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <fe968dc7-67a5-40be-871e-fe682dc60d70@ideasonboard.com>
 
-Il 25/09/24 11:38, Chen-Yu Tsai ha scritto:
-> The MediaTek power domain driver contains a hack that assigns the device
-> node of the power domain to the struct device of the power domain
-> controller in order to use the devres regulator API.
-> 
-> Now that there is a proper OF-specific regulator API, and even a devres
-> version, replace the hack with proper code.
-> 
-> This change is incompatible with incomplete device trees. Instead of
-> assigning the dummy regulator in cases where the power domain requires
-> a supply but the device tree does not provide one, the driver will just
-> error out. This will be seen on the MT8390 EVK, which is missing
-> supplies for the IMG_VCORE and CAM_VCORE domains. And likely all the
-> MediaTek EVBs, which have no power domain supplies specified. This is
-> however the correct behavior. If the power domain's supply is missing,
-> then it should not work. Relying on other parts of the system to keep
-> the unattached regulator enabled is likely to break in ways less easier
-> to understand.
-> 
+Hi Tomi
 
-Breaking something that was "working" (not really working though) before is a
-hard thing to justify, but I feel like this is one of the cases in which we
-have to swallow the pill.
+On Thu, Sep 26, 2024 at 10:13:29AM GMT, Tomi Valkeinen wrote:
+> Hi,
+>
+> On 10/09/2024 11:07, Tomi Valkeinen wrote:
+> > This series adds support to the CFE hardware block on RaspberryPi 5. The
+> > CFE (Camera Front End) contains a CSI-2 receiver and Front End, a small
+> > ISP.
+> >
+> > To run this, you need the basic RPi5 kernel support plus relevant dts
+> > changes to enable the cfe and camera. My work branch with everything
+> > needed to run CFE can be found from:
+> >
+> > git://git.kernel.org/pub/scm/linux/kernel/git/tomba/linux.git rp1-cfe
+> >
+> > A few notes about the patches:
+> >
+> > - The original work was done by RaspberryPi, mostly by Naushir Patuck.
+> > - The second video node only sets V4L2_CAP_META_CAPTURE instead of both
+> >    V4L2_CAP_META_CAPTURE and V4L2_CAP_META_CAPTURE like the other nodes.
+> >    This is a temporary workaround for userspace (libcamera), and
+> >    hopefully can be removed soon.
+> >
+> > I have tested this with:
+> > - A single IMX219 sensor connected to the RPi5's CSI-2 port
+> > - Arducam's UB960 FPD-Link board with four imx219 sensors connected
+> >
+> >   Tomi
+> >
+> > Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> > ---
+> > Changes in v5:
+> > - Add "depends on PM". The platforms that use CFE will always have PM in
+> >    practice, and it's not worth supporting both the PM and !PM cases as
+> >    it adds complexity to the driver.
+> > - Link to v4: https://lore.kernel.org/r/20240904-rp1-cfe-v4-0-f1b5b3d69c81@ideasonboard.com
+>
+> Is this solution to the PM issue ok for everyone? It feels most sensible to
+> me. Any other comments?
 
-This is a hack that I've always been angry about, and causing all sorts of
-random issues on MediaTek SoCs from time to time... that was fixed multiple
-times by hacking the previous hack which was needed for this hack to still
-work in a way or another.
+There was consensus at the media summit that platform drivers are
+allowed to depend on PM.
 
-I am tempted to give you a R-b right now, but let me carefully test this on
-multiple devices before that.
+I'll do the same for my latest PiSP BE series.
 
-Meanwhile, I just wanted to say that I agree with you about this commit and
-wanted to give a bit more context to people reading "this breaks things" so
-that they can understand what's going on (and that we're not crazy! ..or at
-least, not *that* much :-P).
-
-Cheers,
-Angelo
-
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
-> Changes since v7:
-> - New patch
-> 
-> The other option is to follow what Rockchip will be doing: getting the
-> regulator supply upon first use / enable [1]. This will result in less
-> breakage: only the power domain that is missing its supplies will fail
-> to be attached.
-> 
-> [1] https://lore.kernel.org/all/20240919091834.83572-6-sebastian.reichel@collabora.com/
-> ---
->   drivers/pmdomain/mediatek/mtk-pm-domains.c | 12 +-----------
->   1 file changed, 1 insertion(+), 11 deletions(-)
-> 
-> diff --git a/drivers/pmdomain/mediatek/mtk-pm-domains.c b/drivers/pmdomain/mediatek/mtk-pm-domains.c
-> index 88406e9ac63c..3580913f25d3 100644
-> --- a/drivers/pmdomain/mediatek/mtk-pm-domains.c
-> +++ b/drivers/pmdomain/mediatek/mtk-pm-domains.c
-> @@ -353,7 +353,6 @@ generic_pm_domain *scpsys_add_one_domain(struct scpsys *scpsys, struct device_no
->   {
->   	const struct scpsys_domain_data *domain_data;
->   	struct scpsys_domain *pd;
-> -	struct device_node *root_node = scpsys->dev->of_node;
->   	struct device_node *smi_node;
->   	struct property *prop;
->   	const char *clk_name;
-> @@ -388,16 +387,7 @@ generic_pm_domain *scpsys_add_one_domain(struct scpsys *scpsys, struct device_no
->   	pd->scpsys = scpsys;
->   
->   	if (MTK_SCPD_CAPS(pd, MTK_SCPD_DOMAIN_SUPPLY)) {
-> -		/*
-> -		 * Find regulator in current power domain node.
-> -		 * devm_regulator_get() finds regulator in a node and its child
-> -		 * node, so set of_node to current power domain node then change
-> -		 * back to original node after regulator is found for current
-> -		 * power domain node.
-> -		 */
-> -		scpsys->dev->of_node = node;
-> -		pd->supply = devm_regulator_get(scpsys->dev, "domain");
-> -		scpsys->dev->of_node = root_node;
-> +		pd->supply = devm_of_regulator_get_optional(scpsys->dev, node, "domain");
->   		if (IS_ERR(pd->supply))
->   			return dev_err_cast_probe(scpsys->dev, pd->supply,
->   				      "%pOF: failed to get power supply.\n",
-
-
-
+>
+>  Tomi
+>
+> > Changes in v4:
+> > - Drop unnecessary clock-lanes from the DT bindings
+> > - Drop unnecessary linux-media from MAINTAINERS entry
+> > - Drop unnecessary conversion to bool with !!
+> > - Don't set cap->bus_info in cfe_querycap()
+> > - Make debugfs files not readable by the world
+> > - Check the return value of v4l2_fwnode_endpoint_parse()
+> > - Remove the code dealing with remote_ep_fwnode. Instead use
+> >    v4l2_create_fwnode_links_to_pad() and media_pad_remote_pad_unique() to
+> >    create the link and get the pad index.
+> > - Add cfe/csi2/fe/dphy argument to the respective dbg/info/err print
+> >    macros.
+> > - Drop some debug prints and add a few, clarifying the prints for
+> >    enabling and disabling the streams.
+> > - Some cosmetic changes (linefeed, drop unnecessary assignment, move a
+> >    define)
+> > - Link to v3: https://lore.kernel.org/r/20240815-rp1-cfe-v3-0-e15a979db327@ideasonboard.com
+> >
+> > Changes in v3:
+> > - Based on v6.11-rc3. The PiSP BE series is now in upstream so no extra
+> >    dependencies are needed.
+> > - Fixed cfe_remove() return value, as the .remove hook has changed
+> > - Added Krzysztof's Rb.
+> > - Link to v2: https://lore.kernel.org/r/20240620-rp1-cfe-v2-0-b8b48fdba3b3@ideasonboard.com
+> >
+> > Changes in v2:
+> > - Change the compatible string back to raspberrypi,rp1-cfe from raspberrypi,rpi5-rp1-cfe
+> > - Drop the references to rp1 headers in the DT binding example. This
+> >    allows compiling the example without the rp1 support.
+> > - Fix missing remap lines for mono formats
+> > - Fix csi2_pad_set_fmt() so that the format can be changed back to the
+> >    sink's format from 16-bit or compressed format.
+> > - Link to v1: https://lore.kernel.org/r/20240318-rp1-cfe-v1-0-ac6d960ff22d@ideasonboard.com
+> >
+> > ---
+> > Tomi Valkeinen (4):
+> >        media: uapi: Add meta formats for PiSP FE config and stats
+> >        dt-bindings: media: Add bindings for raspberrypi,rp1-cfe
+> >        media: raspberrypi: Add support for RP1-CFE
+> >        media: admin-guide: Document the Raspberry Pi CFE (rp1-cfe)
+> >
+> >   .../admin-guide/media/raspberrypi-rp1-cfe.dot      |   27 +
+> >   .../admin-guide/media/raspberrypi-rp1-cfe.rst      |   78 +
+> >   Documentation/admin-guide/media/v4l-drivers.rst    |    1 +
+> >   .../bindings/media/raspberrypi,rp1-cfe.yaml        |   93 +
+> >   .../userspace-api/media/v4l/meta-formats.rst       |    1 +
+> >   .../userspace-api/media/v4l/metafmt-pisp-fe.rst    |   39 +
+> >   MAINTAINERS                                        |    7 +
+> >   drivers/media/platform/raspberrypi/Kconfig         |    1 +
+> >   drivers/media/platform/raspberrypi/Makefile        |    1 +
+> >   drivers/media/platform/raspberrypi/rp1-cfe/Kconfig |   15 +
+> >   .../media/platform/raspberrypi/rp1-cfe/Makefile    |    6 +
+> >   .../media/platform/raspberrypi/rp1-cfe/cfe-fmts.h  |  332 +++
+> >   .../media/platform/raspberrypi/rp1-cfe/cfe-trace.h |  196 ++
+> >   drivers/media/platform/raspberrypi/rp1-cfe/cfe.c   | 2487 ++++++++++++++++++++
+> >   drivers/media/platform/raspberrypi/rp1-cfe/cfe.h   |   43 +
+> >   drivers/media/platform/raspberrypi/rp1-cfe/csi2.c  |  583 +++++
+> >   drivers/media/platform/raspberrypi/rp1-cfe/csi2.h  |   89 +
+> >   drivers/media/platform/raspberrypi/rp1-cfe/dphy.c  |  180 ++
+> >   drivers/media/platform/raspberrypi/rp1-cfe/dphy.h  |   27 +
+> >   .../media/platform/raspberrypi/rp1-cfe/pisp-fe.c   |  581 +++++
+> >   .../media/platform/raspberrypi/rp1-cfe/pisp-fe.h   |   53 +
+> >   drivers/media/v4l2-core/v4l2-ioctl.c               |    2 +
+> >   .../uapi/linux/media/raspberrypi/pisp_fe_config.h  |  273 +++
+> >   .../linux/media/raspberrypi/pisp_fe_statistics.h   |   64 +
+> >   include/uapi/linux/videodev2.h                     |    2 +
+> >   25 files changed, 5181 insertions(+)
+> > ---
+> > base-commit: 431c1646e1f86b949fa3685efc50b660a364c2b6
+> > change-id: 20240314-rp1-cfe-142b628b7214
+> >
+> > Best regards,
+>
+>
 
