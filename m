@@ -1,109 +1,155 @@
-Return-Path: <devicetree+bounces-105702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93DF1987888
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 19:44:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6169B9878C1
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 19:58:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A6C71F23D29
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 17:44:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5650B2B2B5
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 17:56:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB2F9156665;
-	Thu, 26 Sep 2024 17:43:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AADAD15FCE5;
+	Thu, 26 Sep 2024 17:54:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TR1exI49"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PN3H9Etl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C00C3FF1;
-	Thu, 26 Sep 2024 17:43:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E8151494AC;
+	Thu, 26 Sep 2024 17:54:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727372639; cv=none; b=UwX5Hwx74hSW4TBL8PDUNJWdXYZqJ3csX7bp33ic0voiUcMd5zQsvI4Xrjj4YXM/PERLwapvEGElAHtxGN5gcr2iIaxkHkVo9n5NHgx/NnyngjCjTY7zqrvjOQ94/Gj8oR4hfMRj5SrzXCFagkxUsz5hQEx3/QWXqVe1YLnZlWI=
+	t=1727373251; cv=none; b=AfJn5Jz/bFNH04zLgSnAZBmEe/4qPp/8VAHVNfQxkNmsAzZkqIXSiHMPtVN/PUpqC/hxXQ0LbAuwlsDap0+sE46z9ZPeqljoJtawo+/U1uPmx7RWP+RV9enu1c9HkJlvDXCJolMraSTvRsB67fXVBjY1c4+Rq1gaemtsHPW5EzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727372639; c=relaxed/simple;
-	bh=nSJMx1a3h0ylmepdIO+5mpI1+TXEC1yBnwRtqqbSKog=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=uAfIV7aGmmmTwrZQR8/hP70PrySlrE694suMyq42neax+H3cYzzA8XOgOEdBCkF62KjszMP3q+E1Rt+aAQu13uMMhC/4mUMAIUJtxaY80cz/yErTZkWe0XfkKQaY+JIF9QDavrdfyUi/u6IinKQKEyS+V23XsLn7Gi7jtPb6pNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TR1exI49; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6C91C4CEC5;
-	Thu, 26 Sep 2024 17:43:58 +0000 (UTC)
+	s=arc-20240116; t=1727373251; c=relaxed/simple;
+	bh=lXPOdfXYiJSIOPk0X98x8wE/c1zTD2p+6mktwIChUvQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MMRIUaBfGFK0U47WGsnuKYklwfkXuvkY40PddeWavL8sK5E3BJ5gxcHt+3ZsOFJe6nigUkpwKyecTvoqyIAEuwdl8RvBs/CkqqdsYYbu5hwGB3iqp7uw+6QPGLzvuncV5FOcAdXu+qV8FbPCbX2nPfihPenAPPsyJHN+MlbX78c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PN3H9Etl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4071C4CEC5;
+	Thu, 26 Sep 2024 17:54:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727372639;
-	bh=nSJMx1a3h0ylmepdIO+5mpI1+TXEC1yBnwRtqqbSKog=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=TR1exI49vooulKRvJ3WH61RfLu4XXJY31khci3K/pY1pVXQ2B5s5umfCDOdyR8FXv
-	 l+y/0mD1wxdA7p3Tj/lJgLDOQb+zizpRBGTPrOwTj2/naItEvR98SKllUHOKxVX4u3
-	 60dIvEhBbvt+ekP2pA8ZScgaOF94F0MkPnybmkevBMojBpb01bM4knqk9o3ZtidviM
-	 YI8vGltAP2AUMJYcdR4xLPL0ZFhYuUvWFy4OXA2376A3A96cHTm9Bk1v5aanMKZUSh
-	 IpvbWaJsGkMn/S1HuofkVbQCu5qEnryOZwOFToG8tuP0s5U60Z7h5xXwB7K5cO+d5z
-	 4EeqxWVU2TKiA==
-Date: Thu, 26 Sep 2024 12:43:58 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1727373251;
+	bh=lXPOdfXYiJSIOPk0X98x8wE/c1zTD2p+6mktwIChUvQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PN3H9EtlobMXbvdAL8DZSVOktwc+8F2pVFoTxbCmf+WKXMxcp6MyHaQledrpLJhvo
+	 8sN9UElr0KicTKG0wJEZm1pVQvJFOtmX4aybnrkpJ/Qb9a0Y8gnnKDaQVH2CgBtFH+
+	 k1r0ST6uwj3gtmhHXxffEefApV23sS+XTmFv3k1RokhidAXtIjA1AjZKiqBFoeoOzf
+	 ZsDbj9VUwa8nNx3wfJawSbJzSaWpCCj3iLEc/dA3+7O8FBxkllH7x9VScC2EAzZM3f
+	 W7JW5RmfHCGB+xRqGrB7FWIiSOYPoRH1bcXR6b7LRW01SV3KOq28FyYRNk1pZKZgDh
+	 sDHAqWFwm1HsQ==
+Date: Thu, 26 Sep 2024 12:54:09 -0500
+From: Rob Herring <robh@kernel.org>
+To: Andy-ld Lu <andy-ld.lu@mediatek.com>
+Cc: ulf.hansson@linaro.org, krzk+dt@kernel.org, matthias.bgg@gmail.com,
+	wenbin.mei@mediatek.com, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 2/2] dt-bindings: mmc: mtk-sd: Add support for MT8196
+Message-ID: <20240926175409.GA2644361-robh@kernel.org>
+References: <20240926070405.20212-1-andy-ld.lu@mediatek.com>
+ <20240926070405.20212-3-andy-ld.lu@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-Cc: Matthias Brugger <mbrugger@suse.com>, NXP S32 Linux Team <s32@nxp.com>, 
- Chester Lin <chester62515@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
- devicetree@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>, 
- Enric Balletbo <eballetb@redhat.com>, linux-gpio@vger.kernel.org, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org
-In-Reply-To: <20240926143122.1385658-3-andrei.stefanescu@oss.nxp.com>
-References: <20240926143122.1385658-1-andrei.stefanescu@oss.nxp.com>
- <20240926143122.1385658-3-andrei.stefanescu@oss.nxp.com>
-Message-Id: <172737263813.2649710.12417820280324530724.robh@kernel.org>
-Subject: Re: [PATCH v4 2/4] dt-bindings: gpio: add support for NXP
- S32G2/S32G3 SoCs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240926070405.20212-3-andy-ld.lu@mediatek.com>
 
+On Thu, Sep 26, 2024 at 03:03:18PM +0800, Andy-ld Lu wrote:
+> Extend the devicetree bindings to include the MT8196 mmc controller
+> by adding the compatible string 'mediatek,msdc-v2', which could be
+> also used for future compatible SoCs that support new tx/rx.
 
-On Thu, 26 Sep 2024 17:31:19 +0300, Andrei Stefanescu wrote:
-> Add support for the GPIO driver of the NXP S32G2/S32G3 SoCs.
+Generally, every SoC ends up changing at least slightly. So we don't do 
+version numbers except when there's a well defined versioning scheme of 
+the h/w (e.g. FPGA IP blocks). So, use SoC for compatible string.
+
 > 
-> Signed-off-by: Phu Luu An <phu.luuan@nxp.com>
-> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+> Add three properties for MT8196 settings:
+> - 'mediatek,prohibit-gate-cg', indicate if the source clock CG could
+>   be disabled when CPU access IP registers.
+> 
+> - 'mediatek,stop-dly-sel', configure read data clock stops at block gap.
+> 
+> - 'mediatek,pop-en-cnt', configure the margins of write and read
+>   pointers while begin to pop data transfer.
+> 
+> Signed-off-by: Andy-ld Lu <andy-ld.lu@mediatek.com>
 > ---
->  .../bindings/gpio/nxp,s32g2-siul2-gpio.yaml   | 110 ++++++++++++++++++
->  1 file changed, 110 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/nxp,s32g2-siul2-gpio.yaml
+>  .../devicetree/bindings/mmc/mtk-sd.yaml       | 26 +++++++++++++++++++
+>  1 file changed, 26 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> index c532ec92d2d9..82d1a9fac67c 100644
+> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> @@ -25,6 +25,7 @@ properties:
+>            - mediatek,mt8173-mmc
+>            - mediatek,mt8183-mmc
+>            - mediatek,mt8516-mmc
+> +          - mediatek,msdc-v2
+>        - items:
+>            - const: mediatek,mt7623-mmc
+>            - const: mediatek,mt2701-mmc
+> @@ -154,6 +155,30 @@ properties:
+>      enum: [32, 64]
+>      default: 32
+>  
+> +  mediatek,stop-dly-sel:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Some SoCs need to set appropriate stop-dly-sel to configure read data clock
+> +      stops at block gap. The valid range is from 0 to 0xf.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+SoC dependent or board dependent? Imply from the compatible for the 
+former. A property is fine for the latter case.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/gpio/nxp,s32g2-siul2-gpio.yaml:25:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> +    minimum: 0
+> +    maximum: 0xf
+> +
+> +  mediatek,pop-en-cnt:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Some SoCs need to set appropriate pop-en-cnt to configure the margins of write
+> +      and read pointers while begin to pop data transfer. The valid range is from 0
+> +      to 0xf.
+> +    minimum: 0
+> +    maximum: 0xf
 
-dtschema/dtc warnings/errors:
+Same question.
 
-doc reference errors (make refcheckdocs):
+> +
+> +  mediatek,prohibit-gate-cg:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Decide if source clock CG could be disabled when CPU access IP registers.
+> +      If present, source clock CG could not be disabled.
+> +      If not present, source clock CG could be disabled.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240926143122.1385658-3-andrei.stefanescu@oss.nxp.com
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Sounds like you need to describe the clock in "clocks".
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> +
+>    resets:
+>      maxItems: 1
+>  
+> @@ -191,6 +216,7 @@ allOf:
+>              - mediatek,mt8188-mmc
+>              - mediatek,mt8195-mmc
+>              - mediatek,mt8516-mmc
+> +            - mediatek,msdc-v2
+>      then:
+>        properties:
+>          clocks:
+> -- 
+> 2.46.0
+> 
 
