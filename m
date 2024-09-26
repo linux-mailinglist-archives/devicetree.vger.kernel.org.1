@@ -1,74 +1,58 @@
-Return-Path: <devicetree+bounces-105687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4A53987739
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 18:05:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E39598773E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 18:06:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3620A1C21509
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 16:05:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9EC051C21C7C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 16:06:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78DDB15C13B;
-	Thu, 26 Sep 2024 16:05:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B8AA15445E;
+	Thu, 26 Sep 2024 16:05:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i7HvlSFA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HLztfgLP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 487C3153BF7;
-	Thu, 26 Sep 2024 16:05:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29CB615B572;
+	Thu, 26 Sep 2024 16:05:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727366706; cv=none; b=L3RQWHXfW9++mjMcjJ3H+czJiNzcNPMFyQ7cLN2WqNd/YhFMzdGP4ocAe6uStjJh5agOXP/GHRDFTLlmns1eTuIActeWX5FqSzGh33rAEyaYFTs3Y+K46CAY3QmWQlLkWTjQr9sC6dPXD37A3VRsnBZ7xrFG9jQvttA/znQcuw4=
+	t=1727366745; cv=none; b=BRb/v+rxcJ7VYYGsObcpc7PUpWwfztr0na6gkl2xPWTKjxNUIXocdGJxNBsxoYEgR3Z/frYoeffkGtEPg9kOB8aA9R/dNzlptl8xowLkKOJDPpsQipZDXJueYEaUJlV33bXj1kBNsSxG0orBt4W2LltmyEretqHaNYgIRpsU9PI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727366706; c=relaxed/simple;
-	bh=8oF862eULQ8YFoJtKU6F4+GDmwMiUNpW0n24amXJv4A=;
+	s=arc-20240116; t=1727366745; c=relaxed/simple;
+	bh=y71oe5djBpgahISwwokUnuA5S6RXN8KO01tpPt8PVFw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tdUV7R/R8VjhUZQNhdFxrC4cPzUpy7Az+yJSOhW/tQTK0RUAYydVi/Ihr9bPE1iXfPflR+lIXOXhXq5dYYubb7mohevwEv9OHLZY4pLTMtLVmtl7f4GKgVofq152W8CrcRIHGOwkxtqtM8HrkGb9Vlx9vAV5N4BzYZZXi4zYwKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i7HvlSFA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7F23C4CECE;
-	Thu, 26 Sep 2024 16:05:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pYwA62LW9CzXnE8FbtGPGD3m0WT2TnI0ySg6k88ZGDDPwNcA2Mynis2oEkoxsFW2cNX/BjoWkw/yvwy/9n6bvJBO1Qk0CEcxh6t7PzTnGa7J2p6yQYWv+hzJqTjFtWpPZL272d67aW4Wf21/wuu53s8AQJ18Wj/Ab1o0SgO+d6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HLztfgLP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00FFEC4CEC5;
+	Thu, 26 Sep 2024 16:05:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727366705;
-	bh=8oF862eULQ8YFoJtKU6F4+GDmwMiUNpW0n24amXJv4A=;
+	s=k20201202; t=1727366744;
+	bh=y71oe5djBpgahISwwokUnuA5S6RXN8KO01tpPt8PVFw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i7HvlSFAY1HpayQkyF0ijnpGCTEfRC6oQ8lepirwQIRabQuVyr4k7Zzcja9HKmqns
-	 qEXlzEiGWQNyb51qNuW1buk6zlOnjz6AjfNry3FfJXnvsucsFAX/ef5PPnhepd0yTF
-	 AkQa0VVTifqwh1JO7LbhkCMLBmV+zkDrKfABvzFZYYmbWmI2TZ76y0DzHzZZBCb6NH
-	 gCrn/Dnjwp8evthCeCve3uNResHbQiJ1nsE7zcBoRsyruP478/CvfdqeM0NDg7o+v6
-	 uW9mjXvFiPkh3cpANJ2YUsIu+sqww1y4UJATUIBGnX6jR+F4+CHmY4850FpHo2/tFz
-	 QeSU6xNxdFMOQ==
-Date: Thu, 26 Sep 2024 17:04:58 +0100
+	b=HLztfgLP34GBrSkn4a2ImWvhxujN3a8PG6cY8g+9hXQbte2MWjU1cMI1nPJKWggS5
+	 xMy4KGxoYnzn+puUv102KhChfUXsv6GVz1pmiKqdNs9ZCxev1cJJcYZGvh8W4m9lm7
+	 o5eEqeA2sWUK7Ql87U1jIhwAqLIIiT9quAREWFkiuf19xgq+k7Vfdnqe/L7B1cjhNv
+	 Z4SLB5KqIBKnFgMqSR68V2GFXNZWON8CGZpGm2cLIHNZap8vALAnza80OxwLA46Gr/
+	 ABH6wNviF5HBJ2qWE0H+M27T21HjDbtHYJPNr/i3I/Wux64RbQt5nmldlp7UXcmnql
+	 BTsGV2mY++V8g==
+Date: Thu, 26 Sep 2024 17:05:39 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Macpaul Lin <macpaul.lin@mediatek.com>
-Cc: Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Eason Yen <eason.yen@mediatek.com>,
-	Jiaxin Yu <jiaxin.yu@mediatek.com>,
-	Shane Chien <shane.chien@mediatek.com>,
-	Hui Liu <hui.liu@mediatek.com>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org,
-	Alexandre Mergnat <amergnat@baylibre.com>,
-	Bear Wang <bear.wang@mediatek.com>,
-	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
-	Chris-qj chen <chris-qj.chen@mediatek.com>,
-	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	Chen-Yu Tsai <wenst@chromium.org>
-Subject: Re: [PATCH 2/3] dt-bindings: mfd: mediatek: mt6397: add compatible
- for mt6359-codec
-Message-ID: <20240926-smokeless-clobber-0fb8a1cdc7ab@spud>
-References: <20240926092519.6556-1-macpaul.lin@mediatek.com>
- <20240926092519.6556-2-macpaul.lin@mediatek.com>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/5] dt-bindings: phy: mxs-usb-phy: add imx8qxp compatible
+Message-ID: <20240926-avid-underwire-b10f52de08e0@spud>
+References: <20240926073951.783869-1-xu.yang_2@nxp.com>
+ <20240926073951.783869-2-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,72 +60,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="gtFGL1RUPZo9Sk8n"
+	protocol="application/pgp-signature"; boundary="NidS9fCP2a6+3gA+"
 Content-Disposition: inline
-In-Reply-To: <20240926092519.6556-2-macpaul.lin@mediatek.com>
+In-Reply-To: <20240926073951.783869-2-xu.yang_2@nxp.com>
 
 
---gtFGL1RUPZo9Sk8n
+--NidS9fCP2a6+3gA+
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 26, 2024 at 05:25:18PM +0800, Macpaul Lin wrote:
-> This patch updates the audio-codec properties includes:
->  - compatible:
->   - Re-order the supported device items.
->   - Add 'mt6359-codec' to compatible since MT6359 PMIC has been included
->     in this DT Schema.
-
->   - Set 'additionalProperties: true' for 'mt6359-codec'.
-
-Why?
-
+On Thu, Sep 26, 2024 at 03:39:47PM +0800, Xu Yang wrote:
+> Add "fsl,imx8qxp-usbphy" compatible.
 >=20
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml b=
-/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
-> index 40cabaf60d0d..ffb5848a96d5 100644
-> --- a/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
-> @@ -104,7 +104,7 @@ properties:
-> =20
->    audio-codec:
->      type: object
-> -    additionalProperties: false
-> +    additionalProperties: true
->      description:
->        Audio codec support with MT6397 and MT6358.
-> =20
-> @@ -112,8 +112,9 @@ properties:
->        compatible:
->          oneOf:
->            - enum:
-> -              - mediatek,mt6397-codec
->                - mediatek,mt6358-sound
-> +              - mediatek,mt6359-codec
-> +              - mediatek,mt6397-codec
->            - items:
->                - enum:
->                    - mediatek,mt6366-sound
-> --=20
-> 2.45.2
->=20
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 
---gtFGL1RUPZo9Sk8n
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+--NidS9fCP2a6+3gA+
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvWGKgAKCRB4tDGHoIJi
-0nLMAPwNICZFxiXu4ZhvDLmOlTakmKiEVOTVZu/0hCQuyldZZQD+LrT5WwoJnbMH
-g+uamV5Vyo9o/jF8L1GRHbGmPCz4kg4=
-=sQf+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvWGUwAKCRB4tDGHoIJi
+0tZjAP45pdp1VzjUVWwXfkqpFjscXqBUz+cV53iFA9/9oJLXHgEAnFqhV/mBKLeG
+spjqaMm7fRaGBcEtBx+Lq4NITSpVmAA=
+=+la4
 -----END PGP SIGNATURE-----
 
---gtFGL1RUPZo9Sk8n--
+--NidS9fCP2a6+3gA+--
 
