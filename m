@@ -1,120 +1,116 @@
-Return-Path: <devicetree+bounces-105733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 829F6987A3D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 22:58:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A937987A52
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 23:05:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BF9E287342
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 20:58:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4CF0B24C85
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 21:04:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5457118455A;
-	Thu, 26 Sep 2024 20:58:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08A8F17BEB8;
+	Thu, 26 Sep 2024 21:04:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="yxBNyHeb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HpTYMJ+1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62828183CB4
-	for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 20:58:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D05AE28371;
+	Thu, 26 Sep 2024 21:04:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727384306; cv=none; b=b1bFHix4Irepeg9qZ4AedIqcGCbg4kQ0Idk/5Y+DMxcn6pBjIYJDKHarLjWCE1HpinbtXqyKs5vxzxVaFp3G9RWMRWciwyDq+L7q87r0ElYLW4b9WuWHJXcqAfWBPDkxdkQ3Jq5j58Y9Dzk770hfEJArwafWiMP99lv98/gUkgo=
+	t=1727384694; cv=none; b=XAFyB5efkgIKc6QSgAiQAASORQrF1tuhAb0YyHJbHhzyiNy7081WXAF4Rrw2Xsz12zHqJVoT3A4rwfGlj0nf8B/ejoAduaBbbX4S+Pz4d0tBv19+2PBMI0BtLFAqMMWpw2s7w1mnEeEV8ga/mNiRQslNCVLiFOD79hsTVmufs/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727384306; c=relaxed/simple;
-	bh=zVQjJkDISCom5VPCemNeeMBPNoi++T+4/isRXOQJThM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aBirHiIA9heZ02aeOMC+/584/sBaO4gH+i7lIHvqowX5mvm2b2wXSQSJg+NHs2xDwgkuAYwcgh3B0DO339do3BstQ6+4192JFpiW9CvELWxN3+9WCqmPx/xMRo3cK2CjxN9ReNea6JEqLAQyIaXdBUL8U0qLL4XlG8QC/RTvcLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=yxBNyHeb; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 4C4E82C057F;
-	Fri, 27 Sep 2024 08:58:21 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1727384301;
-	bh=uzCg5ewSLi9x3Br9Z0HsxtvvSLMm/lsnAcYlP4vwApY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=yxBNyHebSVCAGaPBA0l4WDYd0oxns/VqlFvAwWhzUeUufDG6gss25m5gIXJxRHHj4
-	 2M4cxI2pYS1IbC4VESDYMaXI9EtQ02teO4U0gwJrE5Bb+7XjxsP5mbmvfGv9C31G/L
-	 VeBYGHr6DxA3A2wVpZ+EnQAgelWzj26MlzK3IrEPpx67UbtmtNwyIuCWdP+HUIcTD7
-	 lwIYkm9Ij2LhTLuvb66pSY94S8We0pQuCJuMK8W5XVJIkhShG4T/q6cJTWzZFPJ2D6
-	 94km31+Uc04LnMJwMEJT2xwu8LpP/4h+SIJA5SSTgK+SbOpQt26HTkIAZJPJM3DyZY
-	 uHQEjDAr8Ugug==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B66f5caed0000>; Fri, 27 Sep 2024 08:58:21 +1200
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 1B7EE13EDA9;
-	Fri, 27 Sep 2024 08:58:21 +1200 (NZST)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-	id 17675280B65; Fri, 27 Sep 2024 08:58:21 +1200 (NZST)
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-To: andi.shyti@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	lee@kernel.org,
-	sre@kernel.org,
-	tsbogend@alpha.franken.de
-Cc: linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v5] fixup! i2c: Add driver for the RTL9300 I2C controller
-Date: Fri, 27 Sep 2024 08:58:15 +1200
-Message-ID: <20240926205815.124872-1-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.46.2
-In-Reply-To: <20240925215847.3594898-6-chris.packham@alliedtelesis.co.nz>
-References: <20240925215847.3594898-6-chris.packham@alliedtelesis.co.nz>
+	s=arc-20240116; t=1727384694; c=relaxed/simple;
+	bh=YRej7A7yZeUKbpOWXMs3+vrczVPRhS3F2i9Vz3ZPNl8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qKNRa7pcG9RpTfXsBxSXkZ92HJF2iZ+KIZFaJwSYZ/m2pe6J5V4421SFrSOkeR10BhnTmrE1g7UblXKRe8LRmTMSZwfDGDQ6WxfszVkvYiU6kyCJmckyg1i31fRgN32MLEKqAbouRRh3gcYeeB49Gn2rL8eVJww18v4yk8GC6pc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HpTYMJ+1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEB7CC4CEC5;
+	Thu, 26 Sep 2024 21:04:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727384694;
+	bh=YRej7A7yZeUKbpOWXMs3+vrczVPRhS3F2i9Vz3ZPNl8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HpTYMJ+1qfzYDksvuch1xtDVEo6JnmnrKpKI+TS5U0F79c37P829KAtkVTTdwAp6a
+	 vM/NaUYWVfqWNLAgNeqF1CjdgtIBRBr/70J66nUlv9ifEugHIf8jQTsz+kzZQ0pu4x
+	 rZZJUK+KKCmjIJ/MjNmdptuOdGyyNLjVWteWKsauNm5dIFWbaqe1cFRABJUL1P3Xpn
+	 525D1ZPM93W30/V+i1TPps5Dhbaps9aWsO1nrqguQr5D7AxYQD2HV00mJox2AdX0t2
+	 R1TuQPUCKky3SFCfJM4aJgjG8SSd1eoGE3UxevQZQS7wkB0uIxDGL5CiNVjgtPv69O
+	 RcyEtujeUt0uQ==
+Date: Thu, 26 Sep 2024 16:04:51 -0500
+From: Rob Herring <robh@kernel.org>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Jason Chen <jason.z.chen@intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Sergey Senozhatsky <senozhatsky@chromium.org>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/4] media: dt-bindings: Add OmniVision OV08X40
+Message-ID: <20240926210451.GA2909078-robh@kernel.org>
+References: <20240926-b4-master-24-11-25-ov08x40-v1-0-e4d5fbd3b58a@linaro.org>
+ <20240926-b4-master-24-11-25-ov08x40-v1-2-e4d5fbd3b58a@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=Id0kWnqa c=1 sm=1 tr=0 ts=66f5caed a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=EaEq8P2WXUwA:10 a=HSetc5oJXW78giV3FPcA:9 a=3ZKOabzyN94A:10
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240926-b4-master-24-11-25-ov08x40-v1-2-e4d5fbd3b58a@linaro.org>
 
----
- arch/mips/boot/dts/realtek/rtl930x.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On Thu, Sep 26, 2024 at 04:46:38PM +0100, Bryan O'Donoghue wrote:
+> Add bindings for the already upstream OV08X40 to enable usage of this
+> sensor on dts based systems.
 
-diff --git a/arch/mips/boot/dts/realtek/rtl930x.dtsi b/arch/mips/boot/dts=
-/realtek/rtl930x.dtsi
-index 2fb8461af575..eae059540cec 100644
---- a/arch/mips/boot/dts/realtek/rtl930x.dtsi
-+++ b/arch/mips/boot/dts/realtek/rtl930x.dtsi
-@@ -45,17 +45,17 @@ reboot@c {
- 		i2c0: i2c@36c {
- 			compatible =3D "realtek,rtl9300-i2c";
- 			reg =3D <0x36c 0x14>;
--			status =3D "disabled";
- 			#address-cells =3D <1>;
- 			#size-cells =3D <0>;
-+			status =3D "disabled";
- 		};
-=20
- 		i2c1: i2c@388 {
- 			compatible =3D "realtek,rtl9300-i2c";
- 			reg =3D <0x388 0x14>;
--			status =3D "disabled";
- 			#address-cells =3D <1>;
- 			#size-cells =3D <0>;
-+			status =3D "disabled";
- 		};
- 	};
- };
---=20
-2.46.2
+s/dts/DT/
 
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  .../bindings/media/i2c/ovti,ov08x40.yaml           | 130 +++++++++++++++++++++
+>  1 file changed, 130 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov08x40.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov08x40.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..250785f062d0146e8615d8f3e7700aebbd40b1dc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov08x40.yaml
+> @@ -0,0 +1,130 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (c) 2024 Linaro Ltd.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov08x40.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Omnivision OV08X40 CMOS Sensor
+> +
+> +maintainers:
+> +  - Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> +
+> +description: |-
+
+Drop the '-'.
+
+> +  The Omnivision OV08X40 is a 9.2 megapixel, CMOS image sensor which supports.
+
+supports:
+
+> +  - Automatic black level calibration (ABLC)
+> +  - Programmable controls for frame rate, mirror and flip, binning, cropping
+> +    and windowing
+> +  - Output formats 10-bit 4C RGB RAW, 10-bit Bayer RAW
+> +  - 4-lane MIPI D-PHY TX @ 1 Gbps per lane
+> +  - 2-lane MPIP D-PHY TX @ 2 Gbps per lane
+> +  - Dynamic defect pixel cancellation
+> +  - Standard SCCB command interface
+> +
 
