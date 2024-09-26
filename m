@@ -1,70 +1,76 @@
-Return-Path: <devicetree+bounces-105690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 430F098777E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 18:25:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0DA598779F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 18:37:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD2011C21959
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 16:25:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 780C01F26D20
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 16:37:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66C8C155A4D;
-	Thu, 26 Sep 2024 16:25:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 331B3156256;
+	Thu, 26 Sep 2024 16:37:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="og4sylJb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TJWIDfQi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C632F510;
-	Thu, 26 Sep 2024 16:25:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7B1312BEBB;
+	Thu, 26 Sep 2024 16:36:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727367923; cv=none; b=sWZZEYFU/i+8ryQRuXoAuWQb2uFWlOUh43Izf7E8u8li4kU6GDEtVP4VgsEL1TegNbVdUSYWMsww9KuiucuF+DSm/YSVRRC7ztvAuGUNrFG2pTG8IpWjyFinEBAytcIMiDAYpCnZKhnV4mu0EM+3TlCv9e0qTfsofGQyHmOXSqA=
+	t=1727368620; cv=none; b=ASWskJdqojKnDDXh6nlrYWb0lfNHl/xu26v7CyLB12Q3t8GPo5OmQn1X5rPRntwm3yO7xJX2eku4vRzTbDnmRnFK9lebPyYxf8oe3I+DGgj7b7+vttQfPXxT7jvdu9trIsNGNdqGiTr+cMuCLJBr1Um81piXPnfMlU9P9evRmcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727367923; c=relaxed/simple;
-	bh=B8iLCJEN9rehuLkyemSP/P0mW8WiYBdBMfgJGeUjnWM=;
+	s=arc-20240116; t=1727368620; c=relaxed/simple;
+	bh=w1FJdKOm32c+Ge8FTW9mqPZjuB6KQQTcj8OAX5YmD4o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gTZ2jXYg9o7RN3iQnytE/PEryEudff7lA5jevZ2ASN6RGOlC/mRQ+6X2rKwluwVebJ8YasCLbNkc2rcooxnIr5ZudBKahR486u6weB4fQAKAizpKQD9nhRkOni87e4OXHZbzbbZ04lqJYz29lMkPFv3ONxmAqLsMCE1cVQxvP0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=og4sylJb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DB22C4CEC5;
-	Thu, 26 Sep 2024 16:25:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GkZ5qREBmwl+s7E12XwYPuULtTauWy/qh9/VM3nxeqSZ0IkZSaYn/FOaXsoQVVbU0QjMrvb9cBU/6znPgpq+4FgSKQKS4ygD1ad8ntm6134kaJkf5I1LNNXn0iZNcqk4BDGo7lF6PpP1vC15H0GSDeZ7DfutXc61zn7tLgs+3k4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TJWIDfQi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC584C4CEC5;
+	Thu, 26 Sep 2024 16:36:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727367922;
-	bh=B8iLCJEN9rehuLkyemSP/P0mW8WiYBdBMfgJGeUjnWM=;
+	s=k20201202; t=1727368619;
+	bh=w1FJdKOm32c+Ge8FTW9mqPZjuB6KQQTcj8OAX5YmD4o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=og4sylJbjpQArFQWkV0WlbDkKWm5S/6OIp5xqEim/YHTSRlIRxqagCoFCJkHEF/7h
-	 8fuNRyBDLfqBXLXzZw7xao5Dn8roveccwUeNDitiF/jDERq4cRKlXK9di9+Ga3hu4x
-	 7voxgZewV890lp+47MOpuXekGsFRIGWir0xg4K6Hox3yxhUfOKq778YhhKYhiXlbCX
-	 xgxi3uQRVIZ58B0qAhbUVB3J801qiiGsnwCe+FEEaLfKWoO/+hee6BV1UE+c9a06d0
-	 4QSaa5guU5Mva/qHKSUQKMPfz4t6NcxgI04cqiqwpE6SSyRNIhIBNOEZLbG/W1U3oI
-	 3bBRY7c1IqihQ==
-Date: Thu, 26 Sep 2024 17:25:16 +0100
+	b=TJWIDfQiU3geDX/2aC7h48yAL5lr4yBVoaHkFfIiMG2WxAK9jVbdT8d0DDKwwCfrU
+	 VgGEIMqGfYackuRbizXofkLgd3uwft1kELY7e8nW7oXy8tmugyRHDWlMXuLKrDiVRB
+	 4M+3Y0chGvD5CO/8hcYvhpmKffIvMleF1oZ76l0SCGdRoQ2LTzThDA4hci6c67GzCc
+	 UK29Sg2RR10ZjRqupgOeZK0+tCRHrpLtvLrO7e0xfItdeyN6G1jquRpAoM4/xDTgfX
+	 WmDpEC2Nqz4UvKwHtHtbm94EG0WKQxNunbFiwUfrfN1n8FUtRUNpXc6nebKIN3c6fP
+	 dd6gOhBKhV6UQ==
+Date: Thu, 26 Sep 2024 17:36:51 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Macpaul Lin <macpaul.lin@mediatek.com>
-Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Jim Quinlan <jim2101024@gmail.com>,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Andy Gross <agross@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Jim Quinlan <james.quinlan@broadcom.com>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Alexandre Mergnat <amergnat@baylibre.com>,
-	Bear Wang <bear.wang@mediatek.com>,
-	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
-	Sen Chu <sen.chu@mediatek.com>,
-	Chris-qj chen <chris-qj.chen@mediatek.com>,
-	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	Chen-Yu Tsai <wenst@chromium.org>
-Subject: Re: [PATCH] dt-bindings: phy: mediatek: tphy: add a property for
- power-domains
-Message-ID: <20240926-treadmill-purr-b2e3279a14a4@spud>
-References: <20240926101804.22471-1-macpaul.lin@mediatek.com>
+	dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-media@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Fix array property constraints
+Message-ID: <20240926-bullion-semester-024fab878903@spud>
+References: <20240925232409.2208515-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,58 +78,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="w3rN3Cezyqcq/8tm"
+	protocol="application/pgp-signature"; boundary="uWcwIitsRojZdEUY"
 Content-Disposition: inline
-In-Reply-To: <20240926101804.22471-1-macpaul.lin@mediatek.com>
+In-Reply-To: <20240925232409.2208515-1-robh@kernel.org>
 
 
---w3rN3Cezyqcq/8tm
+--uWcwIitsRojZdEUY
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 26, 2024 at 06:18:04PM +0800, Macpaul Lin wrote:
-> Some platforms requires a dependency for power-domains.
-
-Some, so not all? Why isn't this restricted on a per compatible basis?
-
-> So we add property 'power-domains' and set 'maxItems: 1' in the
-> DT Schema.
+On Wed, Sep 25, 2024 at 06:24:06PM -0500, Rob Herring (Arm) wrote:
+> Schemas for array properties should only have 1 level of array
+> constraints (e.g. items, maxItems, minItems). Sometimes the old
+> encoding of all properties into a matrix leaked into the schema, and
+> didn't matter for validation. Now the inner constraints are just
+> silently ignored as json-schema array keywords are ignored on scalar
+> values.
 >=20
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/phy/mediatek,tphy.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+> Generally, keep the inner constraints and drop the outer "items". With
+> gicv3 "mbi-alias" property, it is more appropriately a uint32 or uint64
+> as it is an address and size depends on "#address-cells".
 >=20
-> diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml b/D=
-ocumentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> index 423b7c4e62f2..c77fe43c224a 100644
-> --- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> @@ -125,6 +125,9 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      default: 28
-> =20
-> +  power-domains:
-> +    maxItems: 1
-> +
->  # Required child node:
->  patternProperties:
->    "^(usb|pcie|sata)-phy@[0-9a-f]+$":
-> --=20
-> 2.45.2
->=20
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
---w3rN3Cezyqcq/8tm
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+--uWcwIitsRojZdEUY
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvWK7AAKCRB4tDGHoIJi
-0n83AQDmlf3s79564V1ZUYmAOBOtHb3MjKIx+OlxbtvzS1/hPwD/d3J9i90sPxTf
-lSL+nqfbpB2W2qroRWWrLyD2axXVpQw=
-=2EfV
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvWNowAKCRB4tDGHoIJi
+0uo/AQCSoUq76yV2zPjc/Dv0ex3UOkszyyKeTqzAyCiuqne2QAD/WOq25LSaE13W
+/Ok8UcwWwBnHRPHDLu6I17O3OvhLEAk=
+=PPnK
 -----END PGP SIGNATURE-----
 
---w3rN3Cezyqcq/8tm--
+--uWcwIitsRojZdEUY--
 
