@@ -1,109 +1,251 @@
-Return-Path: <devicetree+bounces-105666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E49CD987646
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 17:14:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43AFF9876A4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 17:38:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7030FB27370
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 15:14:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A09AB26C83
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 15:38:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDCAD142624;
-	Thu, 26 Sep 2024 15:14:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5187615350B;
+	Thu, 26 Sep 2024 15:38:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="DAx4UMmO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kT0sjHlx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E6B113B7AF
-	for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 15:14:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2487A14F9EA;
+	Thu, 26 Sep 2024 15:38:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727363646; cv=none; b=UK5PoTNWDhWW5mEL/NGbPwdL8qqaoc/x+dBlrylfp1CMo/8lnGJT1O7JQ9y3Bg9I5NDRzh2kfRmwg3kVM1f5gxe5ng4T0kFgd4oqlO/SsNkixAv2kqvClroNY3GsTliO0szR6v0PX5PD7HwFk6xqcURKDr+5BkGX98V5Ozj1EbM=
+	t=1727365123; cv=none; b=QEkJEuhHCXegfa3moKfOlIoKXn4G5rP0ZqdO2pYDDuUPjXgSVk3iZU9W5RIJkkQB7WKQWEui6RQ/fMDuMYRCtp3AlR0CNNZ8ze8MvaLpK47IFRxZd9ZXuw5CxiR+s9SdYDrZqFZ5oDitSmpthSAc8sPv64x7Mc2uMQAb+CgaIlQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727363646; c=relaxed/simple;
-	bh=E0u1kDqhxnr1ysNdtZs+jR46huzaJmlmg8ilGVG2UJo=;
+	s=arc-20240116; t=1727365123; c=relaxed/simple;
+	bh=FPT2YAGW9+hHu5TfpaI/ztalhhPfkbiDDiuJtItLTMs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q7o/hs3GkRMH2LK3kemFhPfb6Hsm1y1stbgI/TNquF8dnAd503IgnQAvODU+tdKul6hzv0udLCnIRq21cnJW4dAji6p57RN4LN9HSaqeDIw0/2SEzlcR1mU8IafOyl6kpUCZQ6cj8QfIzgNHhn1Yf1jbzwR6utw2KvyAsEpJ8VA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=DAx4UMmO; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=E0u1
-	kDqhxnr1ysNdtZs+jR46huzaJmlmg8ilGVG2UJo=; b=DAx4UMmOH4HS3r/Iun7M
-	iJfrgMR0eshVjLFV0ar7h5i7jQPrQgxPY4Kzbr+S24o/1I6sUi8eqBeYOSChK26Y
-	xPvOsuA1a1hozRaSl/y9z0m3WTM1Tq6obCXCxrmBkTy/wwEZHx4o6ya49MYWVmr5
-	L+/I5Pu3gb5FyIA0ajsjWGV/tfUk76qsTOg0KKZzPQanUWZ3Cu8o/AuUln7e9zGj
-	S7tKclaKOyf1jIcvnzKUbByJCQObg7G7Pwse6487nG8ynGv80yub6SzN74L/La2s
-	A1b3M6fYVQDbOkcMs8j7NUrGC4NySyPKnwK6jlcaJi4Ko42PCuGjpqR7qqQ6Qda/
-	Ow==
-Received: (qmail 1031025 invoked from network); 26 Sep 2024 17:13:53 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 26 Sep 2024 17:13:53 +0200
-X-UD-Smtp-Session: l3s3148p1@ppXBLwcjXsZehhYc
-Date: Thu, 26 Sep 2024 17:13:53 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=cWWrrzLPSxuaPoK79bWzZUzHw2MDAS9CiGkcLB8iYFO42DjEvmIoaY9OAGksHP1rAaZ71a9iUg80OCwK6VFgvhFHsMMmkYfngbDxoG+qGOrPXUqBQiXCGpZR+uD60Da6dwRfHdC6vqsU3uZRw+s0mgGppmVT/Z2JDOCw3B/M84Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kT0sjHlx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 421CAC4CEC5;
+	Thu, 26 Sep 2024 15:38:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727365122;
+	bh=FPT2YAGW9+hHu5TfpaI/ztalhhPfkbiDDiuJtItLTMs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kT0sjHlxptVEDKh1a/WtPaYDym9m/flo9vMG/YA4FiNaDb9w/gETJG5bCirboVjnu
+	 KY0whWWWvgBMcvuVJZxrZ2az8NZuo8dXL73pTN7V9MK50GjcOCk1s59/jyoqLuXvoU
+	 Jrt0LTTy5LEj6I7sc94la6XYYxh4rRpZPGpnciHqpAHvrI7WmCsbGL8FgTspvBLdEP
+	 LTiw7+MjJH1r5jX6eQXZ+EFrhxCjtHfe2cDQZ550TfAEhh6vJVn0EPHlwtJ/1tKwTU
+	 MfN8JCrH5KAjAdnZt9bM8yhgCpBwWbjxdKi93E9bmpDwW0LNlB9fHWoLQwVB0qraWH
+	 1rrrwU40i2UGQ==
+Date: Thu, 26 Sep 2024 16:38:37 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/5] ARM: dts: renesas: genmai: sort pinctrl entries
-Message-ID: <ZvV6MfQyH5Cma5kG@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	linux-renesas-soc@vger.kernel.org,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20240921114813.4124-7-wsa+renesas@sang-engineering.com>
- <20240921114813.4124-11-wsa+renesas@sang-engineering.com>
- <CAMuHMdUpW8+REtap4dwKyqEjwbUC=h=+JiidhzidBGJJYpTLuA@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	NXP S32 Linux Team <s32@nxp.com>,
+	Christophe Lizzi <clizzi@redhat.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Enric Balletbo <eballetb@redhat.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: gpio: add support for NXP
+ S32G2/S32G3 SoCs
+Message-ID: <20240926-apricot-unfasten-5577c54a3e2f@spud>
+References: <20240926143122.1385658-1-andrei.stefanescu@oss.nxp.com>
+ <20240926143122.1385658-3-andrei.stefanescu@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="WqIS/9GDZ6dZLZpR"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="IJQMIqEvPuySmWWm"
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdUpW8+REtap4dwKyqEjwbUC=h=+JiidhzidBGJJYpTLuA@mail.gmail.com>
+In-Reply-To: <20240926143122.1385658-3-andrei.stefanescu@oss.nxp.com>
 
 
---WqIS/9GDZ6dZLZpR
+--IJQMIqEvPuySmWWm
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Sep 26, 2024 at 05:31:19PM +0300, Andrei Stefanescu wrote:
+> Add support for the GPIO driver of the NXP S32G2/S32G3 SoCs.
+>=20
+> Signed-off-by: Phu Luu An <phu.luuan@nxp.com>
+> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+> Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+
+What's up with this SoB chain? You're the author what did
+the other 3 people do? Are they missing co-developed-by tags?
+
+> ---
+>  .../bindings/gpio/nxp,s32g2-siul2-gpio.yaml   | 110 ++++++++++++++++++
+>  1 file changed, 110 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/nxp,s32g2-siul=
+2-gpio.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/gpio/nxp,s32g2-siul2-gpio.=
+yaml b/Documentation/devicetree/bindings/gpio/nxp,s32g2-siul2-gpio.yaml
+> new file mode 100644
+> index 000000000000..4556505ee9c9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/nxp,s32g2-siul2-gpio.yaml
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +# Copyright 2024 NXP
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/nxp,s32g2-siul2-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP S32G2 SIUL2 GPIO controller
+> +
+> +maintainers:
+> +  - Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+> +  - Larisa Grigore <larisa.grigore@nxp.com>
+> +  - Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+> +
+> +description:
+> +  Support for the SIUL2 GPIOs found on the S32G2 and S32G3
+> +  chips. It includes an IRQ controller for all pins which have
+> +  an EIRQ associated.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: nxp,s32g2-siul2-gpio
+> +      - items:
+> +        - const: nxp,s32g3-siul2-gpio
+> +        - const: nxp,s32g2-siul2-gpio
+> +
+> +  reg:
+> +    items:
+> +      - description: PGPDO (output value) registers for SIUL2_0
+> +      - description: PGPDO (output value) registers for SIUL2_1
+> +      - description: PGPDI (input value) registers for SIUL2_0
+> +      - description: PGPDI (input value) registers for SIUL2_1
+> +      - description: EIRQ (interrupt) configuration registers from SIUL2=
+_1
+> +      - description: EIRQ IMCR registers for interrupt muxing between pa=
+ds
+> +
+> +  reg-names:
+> +    items:
+> +      - const: opads0
+> +      - const: opads1
+> +      - const: ipads0
+> +      - const: ipads1
+> +      - const: eirqs
+> +      - const: eirq-imcrs
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 2
+> +
+> +  gpio-ranges:
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  gpio-reserved-ranges:
+> +    minItems: 2
+> +
+> +patternProperties:
+> +  "-hog(-[0-9]+)?$":
+> +    required:
+> +      - gpio-hog
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - gpio-controller
+> +  - "#gpio-cells"
+> +  - gpio-ranges
+> +  - gpio-reserved-ranges
+> +  - interrupts
+> +  - interrupt-controller
+> +  - "#interrupt-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    gpio@4009d700 {
+> +        compatible =3D "nxp,s32g2-siul2-gpio";
+> +        reg =3D <0x4009d700 0x10>,
+> +              <0x44011700 0x18>,
+> +              <0x4009d740 0x10>,
+> +              <0x44011740 0x18>,
+> +              <0x44010010 0xb4>,
+> +              <0x44011078 0x80>;
+
+Huh, I only noticed this now. Are you sure that this is a correct
+representation of this device, and it is not really part of some syscon?
+The "random" nature of the addresses  and the tiny sizes of the
+reservations make it seem that way. What other devices are in these
+regions?
+
+Additionally, it looks like "opads0" and "ipads0" are in a different
+region to their "1" equivalents. Should this really be represented as
+two disctint GPIO controllers?
 
 
-> If you don't mind, I will fold this into the previous patch, and move
-> the /memory node while applying.
+Cheers,
+Conor.
 
-Super fine with me. Thank you for assisting!
+> +        reg-names =3D "opads0", "opads1", "ipads0",
+> +                    "ipads1", "eirqs", "eirq-imcrs";
+> +        gpio-controller;
+> +        #gpio-cells =3D <2>;
+> +                      /* GPIO 0-101 */
+> +        gpio-ranges =3D <&pinctrl 0 0 102>,
+> +                      /* GPIO 112-190 */
+> +                      <&pinctrl 112 112 79>;
+> +        gpio-reserved-ranges =3D <102 10>, <123 21>;
+> +        interrupts =3D <GIC_SPI 210 IRQ_TYPE_LEVEL_HIGH>;
+> +        interrupt-controller;
+> +        #interrupt-cells =3D <2>;
+> +    };
+> --=20
+> 2.45.2
+>=20
+>=20
 
-
---WqIS/9GDZ6dZLZpR
+--IJQMIqEvPuySmWWm
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmb1ejEACgkQFA3kzBSg
-KbaXnA/6AzPm/cYu95sUxR7NLISIaxSP4Oy5eJatLFGEENxhnnglnpak1G05AjXw
-3rMDSCg4lHQo7PXxh+OBLl0EXmKUyBzxsRO9f1zTO8P7dquOsGsBIN9BzPjnzIBy
-n0Lo3474nxcNvdckMiCsfLh42/uHyJTThKI6xU336HO3AnsysoU5w3A0CHX5SYrS
-yJLd4+egEk9KuDBhaYKwlpOmRB7DjXLxTWFBbeT6E+LIJb4wFqgGS/pxffVZNxSs
-Upr9JbBUPdzUntY2jf91C2NhLNNlDs69a6R72zmj8kWU2LANNKy1l2DcJg++pWKk
-PHRgnyoOp0pcmcrVuJTx9D2FApL5P4xI09dz8+kCkg5xQeQQh8cd3SB0hoWkiwYO
-wKUyYPeP2ZZrMWutwcT4Z268mlJpbOWL7iEg1frkWuExp6Zl0xwmQNz/iQckRHpK
-M/OTTDgpUNeA9PMwnUDyDEhK7LXzXqH9qbFXK0WFmr+pZMNPgMNlZGFvK+1rpWJQ
-RvagDWH8bYh+nYhY9TjmK1Vi3st+WSb26ORgtIXIQOwxdp41o6f9B/5w2o5FEomK
-YN2Cx5S78JNu4qtflpQV1SXTVz+gJyRGEzM81cR8ezxBDJaLsns/S/vnOiYybck0
-yJPRdCNvm3biTV1sHw9wKzD9oVj9KAGobJ1+lh4T2ECDZjWM2js=
-=+8Wn
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvV//QAKCRB4tDGHoIJi
+0uOxAQCvz6m4Nw9QLswXja2k1N2xfO+ZWjULc/Bx8JXrdJFUdwEA6cM/JPQkNWzg
+eS7vasQdUA/KkS2yHj4qhqW9izZk1gQ=
+=aPrA
 -----END PGP SIGNATURE-----
 
---WqIS/9GDZ6dZLZpR--
+--IJQMIqEvPuySmWWm--
 
