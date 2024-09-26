@@ -1,318 +1,148 @@
-Return-Path: <devicetree+bounces-105534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4443B987016
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 11:27:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8631E98705E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 11:36:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02D3C28339A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:27:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D1BA1F286F3
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:36:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59A9E1AB6CA;
-	Thu, 26 Sep 2024 09:27:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7250C192595;
+	Thu, 26 Sep 2024 09:36:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="PUWd1cqe"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="xRZjG3jm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B374146596;
-	Thu, 26 Sep 2024 09:27:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1415138FA3;
+	Thu, 26 Sep 2024 09:36:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727342855; cv=none; b=Z53uCqFCkCTZ1E0r87Fhj6UXsv/5/ev8rGpTEZ7c68c/zJ/6Tj7CKP+iFnmccGr/qYCSq2l7ddksaraBHTYhEaI3IX7Ov696dr4VZKvWkgriTpG0SjCm1Uewzp63RFKneGp+IURn/4lE0XKtq7AajXdQW7wlFj/6pxm15nv6Nd8=
+	t=1727343378; cv=none; b=pQtFgjeKfAMNBfYzBiqiHA1lbw77uZi1D8j0k2ikdCGLiXO8xWdFzz3y74kYnelhjQHsKcOh+pYNLE466pa7I6YjEMqwazQyF0+CurL7HO2uUFKCrqxXndOp4jbKsRwwzv6c16JlypUiigl72lmXLk8qORzvpA0ZPRh40kLNvZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727342855; c=relaxed/simple;
-	bh=WszBCde+EyMT4WBEAxT2xIQ69xHlvKCrC89Es5BKJOo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dhi2fyQNuDOqSYm9vOO2VD/3IFJaLAqQZhRfrBWtcZ24CeOMMNbeRQRjQ79mJp+faZb/pR6O6KQo0MvIa4ngFZYarBpHtmI1LoisNBuR4WpiEXO/vEpBGS1JFduukKn1zcson8qNSAi2oU5U1mPhQ87qpUj1uxUZycivhMtFhI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=PUWd1cqe; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1727342851;
-	bh=WszBCde+EyMT4WBEAxT2xIQ69xHlvKCrC89Es5BKJOo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PUWd1cqesMv/VLO1Bg+GaG4NUi08+6S/4GRiWxRBlFTqF3na0Vml5mu4v0NL/p2o7
-	 Dp0eOYFUN7+Y7p1S/30vgv8WI8XaxtsVk+AJMSV6wfPQa+aeufzfr/E+EJJOiz37wb
-	 h3wtN0+vob2qHBMrx87IEtPnoXleQom91jT1mDL1VWHG/kCq3Q2nQhLu5fBGvZXfPu
-	 4A9gfEnGeQj8xt4pLhHqKG7Xus/2/vuds9JtvNN0ttAAwQNJ6FFFBiGte0FD6hRduW
-	 RHT7OMVxuoJBktRCciyuJz9U6W0oF5HMTJRwB5OGSCf4iLR4hdDRPqVpGm38aqGyYy
-	 dUB3LOdERVeNQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id AD1EC17E1063;
-	Thu, 26 Sep 2024 11:27:30 +0200 (CEST)
-Message-ID: <bbf023c7-f08b-4f9d-8770-08e63074fb4c@collabora.com>
-Date: Thu, 26 Sep 2024 11:27:30 +0200
+	s=arc-20240116; t=1727343378; c=relaxed/simple;
+	bh=pGzNXwKK5YrzLSLixZD10eC6c3/sJZzIXc84Paz/rAo=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=IsS4p5HeazfzCMVdbgq2QJQPoPP/xC+bxoze4oSYAhwXl8D/wpJOOW8hDc6yNP4E4ShL/jhBcrqd3NMgAs1BAElsFL5TvUBzoZHFVmEbUw2Z5WiD5NJZP/vY2ln4MNSiX2PXtm7jQeIqa5zKVQs7405u0CIm4sZKGRm1hANFYx4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=xRZjG3jm; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: mediate: Introduce MT8186
- Chinchou/Chinchou360 Chromebooks
-To: =?UTF-8?Q?Albert_Jakie=C5=82a?= <jakiela@google.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
- wenst@chromium.org, rafal@milecki.pl, hsinyi@chromium.org,
- nfraprado@collabora.com, macpaul.lin@mediatek.com, sean.wang@mediatek.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20240925080353.2362879-1-jakiela@google.com>
- <20240925080353.2362879-2-jakiela@google.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240925080353.2362879-2-jakiela@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1727343374;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nro0VeXsPWDiC4P3tUhqYu7l5pTbMR920vC1Wc7Li0c=;
+	b=xRZjG3jmKHLtNlc2LBKCppMizR+S8E+xrKtSFrT3CleBSAa1GzZdlPUKwBYnaICacxucJP
+	SIrXwdOBtgt74wvxprD9w7OUAgzz/YcC7AgOYweaqrX/UpiGb3W9gGxZh7E5XctKLwkzrT
+	4z6iJ2n8p/yWGczFxz7EkssWOaFWeGpkjKUHpv1+TKnu6DoWB/cZ/6bvcajQ7djJSJO1fO
+	kVjkEQRf8trbGS1NdL1oyY7JruPl3ahFXg2yVImOb2+eDcd8xWu9/4OzbCEJ9+TzndMWoD
+	HC/fUEgQ0QCR4yVzmISCIndAKizcc8/Q6IXNY0KV1y20Xj2BsMK8LUWT1KNaaw==
+Date: Thu, 26 Sep 2024 11:36:13 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Move L3 cache under CPUs in RK356x
+ SoC dtsi
+In-Reply-To: <2aa03ce3-1cca-4b3a-935d-6b1b68ebbb6e@arm.com>
+References: <da07c30302cdb032dbda434438f89692a6cb0a2d.1727336728.git.dsimic@manjaro.org>
+ <2aa03ce3-1cca-4b3a-935d-6b1b68ebbb6e@arm.com>
+Message-ID: <c3593744e00a9817533609326ee66346@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Il 25/09/24 10:03, Albert Jakieła ha scritto:
-> The MT8186 Chinchou/Chinchou360, also known as the Asus Chromebook
-> CZ12/CZ11 Flip, is a clamshell or convertible device with touchscreen,
-> stylus and extra buttons.
+Hello Robin,
+
+On 2024-09-26 11:24, Robin Murphy wrote:
+> On 2024-09-26 8:49 am, Dragan Simic wrote:
+>> Move the "l3_cache" node under the "cpus" node in the dtsi file for 
+>> Rockchip
+>> RK356x SoCs.  There's no need for this cache node to be at the higher 
+>> level.
 > 
-> Signed-off-by: Albert Jakieła <jakiela@google.com>
-> ---
->   arch/arm64/boot/dts/mediatek/Makefile         |   3 +
->   .../mediatek/mt8186-corsola-chinchou-sku0.dts |  18 +
->   .../mediatek/mt8186-corsola-chinchou-sku1.dts |  34 ++
->   .../mt8186-corsola-chinchou-sku16.dts         |  28 ++
->   .../dts/mediatek/mt8186-corsola-chinchou.dtsi | 445 ++++++++++++++++++
->   5 files changed, 528 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku0.dts
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku1.dts
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku16.dts
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou.dtsi
+> Except it does arguably represent the physical topology - the L3 cache
+> doesn't belong to the CPUs, it belongs to the DSU, which very much is
+> "outside" the CPUs.
+
+That's a very good point, thanks!  I knew there must have been
+a very good reason why I placed the L3 cache outside the CPUs
+originally, in the commit 8612169a05c5 referenced below, but I
+also somehow managed to forget that reason for a moment. :)
+
+Let's drop this patch, and I'll submit another patch for the
+RK3588 SoC dtsi files that moves the L3 cache outside the CPUs,
+to reflect the physical topology better.
+
+>> Fixes: 8612169a05c5 ("arm64: dts: rockchip: Add cache information to 
+>> the SoC dtsi for RK356x")
+>> Cc: stable@vger.kernel.org
+>> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+>> ---
+>>   arch/arm64/boot/dts/rockchip/rk356x.dtsi | 24 
+>> ++++++++++++------------
+>>   1 file changed, 12 insertions(+), 12 deletions(-)
+>> 
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi 
+>> b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>> index 4690be841a1c..9f7136e5d553 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>> @@ -113,19 +113,19 @@ cpu3: cpu@300 {
+>>   			d-cache-sets = <128>;
+>>   			next-level-cache = <&l3_cache>;
+>>   		};
+>> -	};
+>>   -	/*
+>> -	 * There are no private per-core L2 caches, but only the
+>> -	 * L3 cache that appears to the CPU cores as L2 caches
+>> -	 */
+>> -	l3_cache: l3-cache {
+>> -		compatible = "cache";
+>> -		cache-level = <2>;
+>> -		cache-unified;
+>> -		cache-size = <0x80000>;
+>> -		cache-line-size = <64>;
+>> -		cache-sets = <512>;
+>> +		/*
+>> +		 * There are no private per-core L2 caches, but only the
+>> +		 * L3 cache that appears to the CPU cores as L2 caches
+>> +		 */
+>> +		l3_cache: l3-cache {
+>> +			compatible = "cache";
+>> +			cache-level = <2>;
+>> +			cache-unified;
+>> +			cache-size = <0x80000>;
+>> +			cache-line-size = <64>;
+>> +			cache-sets = <512>;
+>> +		};
+>>   	};
+>>     	cpu0_opp_table: opp-table-0 {
+>> 
+>> _______________________________________________
+>> Linux-rockchip mailing list
+>> Linux-rockchip@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-> index 8fd7b2bb7a15..0db7770e8907 100644
-> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -55,6 +55,9 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku32.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-chinchou-sku0.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-chinchou-sku1.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-chinchou-sku16.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393216.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393217.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393218.dtb
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku0.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku0.dts
-> new file mode 100644
-> index 000000000000..29dd92318da1
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku0.dts
-> @@ -0,0 +1,18 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright 2023 Google LLC
-> + */
-> +
-> +/dts-v1/;
-> +#include "mt8186-corsola-chinchou.dtsi"
-> +
-> +/ {
-> +	model = "Google chinchou sku0 board";
-> +	compatible = "google,chinchou-sku0", "google,chinchou-sku2",
-> +			"google,chinchou-sku4", "google,chinchou-sku5",
-> +			"google,chinchou", "mediatek,mt8186";
-> +};
-> +
-> +&gpio_keys {
-> +	status = "disabled";
-> +};
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku1.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku1.dts
-> new file mode 100644
-> index 000000000000..8ba31f81d9ad
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku1.dts
-> @@ -0,0 +1,34 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright 2023 Google LLC
-> + */
-> +
-> +/dts-v1/;
-> +#include "mt8186-corsola-chinchou.dtsi"
-> +
-> +/ {
-> +	model = "Google chinchou sku1/sku17 board";
-> +	compatible = "google,chinchou-sku1", "google,chinchou-sku17",
-> +			"google,chinchou-sku3", "google,chinchou-sku6",
-> +			"google,chinchou-sku7", "google,chinchou-sku20",
-> +			"google,chinchou-sku22", "google,chinchou-sku23",
-> +			"mediatek,mt8186";
-> +};
-> +
-> +&i2c1 {
-> +	i2c-scl-internal-delay-ns = <10000>;
-> +
-> +	touchscreen: touchscreen@41 {
-> +		compatible = "ilitek,ili2901";
-> +		reg = <0x41>;
-> +		interrupts-extended = <&pio 12 IRQ_TYPE_LEVEL_LOW>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&touchscreen_pins>;
-> +		reset-gpios = <&pio 60 GPIO_ACTIVE_LOW>;
-> +		vccio-supply = <&pp1800_tchscr_report_disable>;
-> +	};
-> +};
-> +
-> +&gpio_keys {
-> +	status = "disabled";
-> +};
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku16.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku16.dts
-> new file mode 100644
-> index 000000000000..d3378d7ad096
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou-sku16.dts
-> @@ -0,0 +1,28 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright 2023 Google LLC
-> + */
-> +
-> +/dts-v1/;
-> +#include "mt8186-corsola-chinchou.dtsi"
-> +
-> +/ {
-> +	model = "Google chinchou sku16/sku2147483647 board";
-> +	compatible = "google,chinchou-sku16", "google,chinchou-sku18",
-> +			"google,chinchou-sku19", "google,chinchou-sku21",
-> +			"google,chinchou-sku2147483647", "mediatek,mt8186";
-> +};
-> +
-> +&i2c1 {
-> +	i2c-scl-internal-delay-ns = <10000>;
-> +
-> +	touchscreen: touchscreen@41 {
-> +		compatible = "ilitek,ili2901";
-> +		reg = <0x41>;
-> +		interrupts-extended = <&pio 12 IRQ_TYPE_LEVEL_LOW>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&touchscreen_pins>;
-> +		reset-gpios = <&pio 60 GPIO_ACTIVE_LOW>;
-> +		vccio-supply = <&pp1800_tchscr_report_disable>;
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou.dtsi
-> new file mode 100644
-> index 000000000000..c77cc43f8442
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-chinchou.dtsi
-
-..snip..
-
-> +
-> +&mmc1_pins_default {
-> +	pins-clk {
-> +		drive-strength = <MTK_DRIVE_8mA>;
-
-Please stop using the meaningless MTK_DRIVE_(x)mA macro.
-
-drive-strength = <8>; is enough :-)
-
-Cheers,
-Angelo
-
-> +	};
-> +
-> +	pins-cmd-dat {
-> +		drive-strength = <MTK_DRIVE_8mA>;
-> +	};
-> +};
-> +
-> +&mmc1_pins_uhs {
-> +	pins-clk {
-> +		drive-strength = <MTK_DRIVE_8mA>;
-> +	};
-> +
-> +	pins-cmd-dat {
-> +		drive-strength = <MTK_DRIVE_8mA>;
-> +	};
-> +};
-> +
-> +&sound {
-> +	status = "okay";
-> +
-> +	compatible = "mediatek,mt8186-mt6366-rt5650-sound";
-
-You don't need to change this compatible, as the only thing that changes in the
-actual driver are the dapm_routes. I implemented support for that nice dai-link
-(standard, kind of) graph so that we stop getting a thousand compatibles for no
-reason other than routing :-)
-
-This should work with (99.9% confident it will, but please test):
-
-	model = "mt8186_rt5650";
-	status = "okay";
-
-> +	mediatek,adsp = <&adsp>;
-
-This property is already set in the node that you're inheriting from
-mt8186-corsola.dtsi, please drop.
-
-> +
-> +	audio-routing =
-> +		"Headphone", "HPOL",
-> +		"Headphone", "HPOR",
-> +		"HDMI1", "TX";
-> +
-> +	hs-playback-dai-link {
-> +		codec {
-> +			sound-dai = <&rt5650>;
-> +		};
-> +	};
-> +
-> +	hs-capture-dai-link {
-> +		codec {
-> +			sound-dai = <&rt5650>;
-> +		};
-> +	};
-> +
-> +	spk-share-dai-link {
-> +	};
-
-Empty nodes are meaningless (and you're inheriting this dai link from
-mt8186-corsola.dtsi as well). Drop.
-
-> +
-> +	spk-hdmi-playback-dai-link {
-> +		codec {
-> +			sound-dai = <&it6505dptx>;
-> +		};
-> +	};
-> +};
-> +
-> +&wifi_enable_pin {
-> +	pins-wifi-enable {
-> +		pinmux = <PINMUX_GPIO51__FUNC_GPIO51>;
-> +	};
-> +};
-> +
-> +&wifi_pwrseq {
-> +	reset-gpios = <&pio 51 GPIO_ACTIVE_LOW>;
-> +};
-> +
-
-..snip..
-
-> +
-> +&pen_insert {
-> +	wakeup-event-action = <EV_ACT_ANY>;
-
-Why is this set to EV_ACT_ANY on Chinchou but not on the other Corsola devices?
-Is there any specific reason?
-
-Cheers,
-Angelo
-
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
