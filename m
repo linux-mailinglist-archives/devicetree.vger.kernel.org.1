@@ -1,117 +1,115 @@
-Return-Path: <devicetree+bounces-105498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E791986DF0
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:46:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F940986DF7
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:46:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D84D6281BC3
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 07:46:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A083B2231E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 07:46:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEDE8190693;
-	Thu, 26 Sep 2024 07:46:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F114618E37C;
+	Thu, 26 Sep 2024 07:46:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hZ3qH6lF"
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="qJ1T80oo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E79518FDA6;
-	Thu, 26 Sep 2024 07:46:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25C65186E47;
+	Thu, 26 Sep 2024 07:46:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727336760; cv=none; b=gOAd82Vik6vF4r+yQjl9xDV8L1IvtDjnYgTy6TDziMGbDlLIytdp98Nj7656UuSMde+4axN6RYkGbwBJyXYPi7r1n+E4MqyQBl7uL4XEq0Aq6EMmJoGy7AAMFauT5elBHyV76BS25FAr8bn200vicf2FQGGVobIhSCbrzTuum9Q=
+	t=1727336795; cv=none; b=kmu6FNIhYzHpCZikTVwKUvO4CHAi+/tkNeMlvlM6ZW64Mi5eEWQqWThR3SHlEjr3tnuMLDr7fNjMIllfRGqQI++xJOcA1MIfZ9OZhZSgM/BCjmVzUjsowPzu+yaE7qlwlAV2qdHcci2oerILKHpjY+iv9wNfIJsHKLqtSHaWruA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727336760; c=relaxed/simple;
-	bh=7BD1DRr3dEN2fGhGJbApcotfC5pMbfC3fKHmayjAYZg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hsykh9SpwZiX3N8emBQQjoHgZx4ranucr5zN4oJrpZi+5RWFx0lrhiScLWrIa+jrMKOCcyelg1hZLg+Ho8anGA+9yUk5tH2xtufcv2fh3bIsSw1Im4Vg32z3CcjOi9oIUpPtAZbPY7E2J5tgPt5gI2CllX6VEq9mpwLlaQkQ+ZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hZ3qH6lF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5A36C4CEC5;
-	Thu, 26 Sep 2024 07:45:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727336760;
-	bh=7BD1DRr3dEN2fGhGJbApcotfC5pMbfC3fKHmayjAYZg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hZ3qH6lFGWX+ox7NsmVd37/9/mBj4ZChRc31dgUtUJpQ9cOMVHHDWAv1EJMJKvCGA
-	 PI6LFetip+CDnDhD1g8ElvbTT9m1Oed8StSxqnpwtfqE3npWgLDq3j9KhTMLsZbv7f
-	 zRHLSLP8sh7zc8rZPmAGYYqCNkkb30o0fd6XRtJutHYml/x0IjZXmrFV6lxrI+Dbz3
-	 sm5fktsJXNJyTik5UXwlyQPHVxANx8ZLZPHaIWW7zuJdj8lOBhoWyMYscRO9X0AnJr
-	 EXyfZSFqNdN9If/UCewJsPl1x+xgixAlckwwEQ6UElL+374FLYmLJob+qpsc/ENc6s
-	 C5fMZWHZt2vGA==
-Date: Thu, 26 Sep 2024 08:45:54 +0100
-From: Lee Jones <lee@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>,
-	andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, sre@kernel.org, tsbogend@alpha.franken.de,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-mips@vger.kernel.org
-Subject: Re: [PATCH v5 3/6] dt-bindings: mfd: Add Realtek RTL9300 switch
- peripherals
-Message-ID: <20240926074554.GH7545@google.com>
-References: <20240925215847.3594898-1-chris.packham@alliedtelesis.co.nz>
- <20240925215847.3594898-4-chris.packham@alliedtelesis.co.nz>
- <4pxungrwkjusdalmjbwvqcpjwmbsb7hw4452zqlto6sq54vfa6@psz3gge4uwy7>
+	s=arc-20240116; t=1727336795; c=relaxed/simple;
+	bh=k5daxyw5dgBcLX3lcS28REaQRjV+ba1N+8xCEP6hh7U=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=X9kslp2Q7rZSyf1PdfyKifSfQx4C6x3pc1LbUdEJmat9aMZt2gH0MUlY77QXQNunaIYM5TavHDgwrmliQZaLq5547CcLKw9f4gMhxwsYLa0xWZswnYLBo+mD/zf/nLsWozPu5DwPpmYBFyXgCvoHI2C/9ytLEeCgjlt92PPLqtk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=qJ1T80oo; arc=none smtp.client-ip=188.40.30.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+	s=default2211; h=Content-Type:MIME-Version:Message-ID:Date:References:
+	In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=k5daxyw5dgBcLX3lcS28REaQRjV+ba1N+8xCEP6hh7U=; b=qJ1T80ooP1ors58dxzYmUWDqVU
+	+BgnE9C3YJP5aeFtokGXmaaiSUMxx4p2hycsji/zKjwvXpCvCmpMcWNFAS40k/Ler5dgdKfOx7WS1
+	0exRRVt+O0O44XCxY4llRJwjaD2PiPlB04FE9BXQO1CyWzTNgDSjHKY82rzI4LyleTrCnvu2fhOfm
+	28FaLj8Nv3xcuct4jRHOrWy69vuWiMy3p4Y0QdSl+gP2isAMVrl4pcBLZ1NrWqm463139oLVWRUqI
+	0Y/TmERury7vcQ6EdNiHt+IiNbJeHBFLO03RZaL4AgduMjP71MNd7PGFfMcQDWZEnOsc6OBqx7m0B
+	tg1BQO3g==;
+Received: from sslproxy03.your-server.de ([88.198.220.132])
+	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <esben@geanix.com>)
+	id 1stjCo-000Kzy-Tl; Thu, 26 Sep 2024 09:46:30 +0200
+Received: from [185.17.218.86] (helo=localhost)
+	by sslproxy03.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <esben@geanix.com>)
+	id 1stjCn-0001Ra-2f;
+	Thu, 26 Sep 2024 09:46:30 +0200
+From: Esben Haabendal <esben@geanix.com>
+To: Erez <erezgeva2@gmail.com>
+Cc: Michael Walle <mwalle@kernel.org>,  Tudor Ambarus
+ <tudor.ambarus@linaro.org>,  Erez Geva <erezgeva@nwtime.org>,
+  linux-mtd@lists.infradead.org,  Pratyush Yadav <pratyush@kernel.org>,
+  linux-kernel@vger.kernel.org,  Miquel Raynal <miquel.raynal@bootlin.com>,
+  Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
+ <vigneshr@ti.com>,  devicetree@vger.kernel.org,  Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
+ Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v5 1/5] mtd: spi-nor: core: add manufacturer flags
+In-Reply-To: <CANeKEMO1nyzEKGCt8N8_UCmAcQ3L53=H8U07AdJzcnFaVuwjGQ@mail.gmail.com>
+	(Erez's message of "Mon, 23 Sep 2024 18:31:04 +0200")
+References: <20240920181231.20542-1-erezgeva@nwtime.org>
+	<20240920181231.20542-2-erezgeva@nwtime.org>
+	<4e0cf43c-4843-451c-ac6f-86775dbccb2b@linaro.org>
+	<CANeKEMOmhAPM1j1_ihzcC2wL6jKsWXPCGfZs+euS8mRvtqgE5A@mail.gmail.com>
+	<D4DLQGLJSKPB.3OOW4RU9Q3K5O@kernel.org>
+	<CANeKEMPSoUu7GW5bL8nuyC5xCKG7Tt0=SvWTL_CcX5oebqN_YA@mail.gmail.com>
+	<D4DSTDA3HE2B.20ACE70SQAL7A@kernel.org>
+	<CANeKEMO1nyzEKGCt8N8_UCmAcQ3L53=H8U07AdJzcnFaVuwjGQ@mail.gmail.com>
+Date: Thu, 26 Sep 2024 09:46:29 +0200
+Message-ID: <87y13ehn6y.fsf@geanix.com>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4pxungrwkjusdalmjbwvqcpjwmbsb7hw4452zqlto6sq54vfa6@psz3gge4uwy7>
+Content-Type: text/plain
+X-Authenticated-Sender: esben@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27409/Wed Sep 25 11:17:07 2024)
 
-Intentional top-post.
+Erez <erezgeva2@gmail.com> writes:
 
-These replies all came in without the original mail.
+> On Mon, 23 Sept 2024 at 18:19, Michael Walle <mwalle@kernel.org> wrote:
+>>
+>> > > > I would gladly remove the obsolete mx25l12805d.
+>> > > Why? I don't see any need for that.
+>> > Maybe because we do not want compatibility table?
+>>
+>> I don't get this? Anyway, we do not remove support for older
+>> flashes for no reason.
+>
+> I did not insist, you asked.
+> Macronix stopped selling these chips 15 year ago.
+> How long do you want to support old chips?
 
-Does anyone have any idea why that would have been?
+It is not unusual for embedded products to have a support span of more
+than 20 years. And chips such as these flashes might not be entirely new
+when the product is introduced. So dropping support for SPI-NOR flashes
+that are newer than 25-30 years is definitely a risk. Somebody out there
+might not be able to upgrade to latest kernel versions anymore, which is
+not a position we should put anyone in. With the increasing pressure to
+upgrade product for better security, we definitely should not make it
+more difficult to run newer kernel versions than absolutely necessary.
 
-On Thu, 26 Sep 2024, Krzysztof Kozlowski wrote:
-
-> On Thu, Sep 26, 2024 at 09:58:44AM +1200, Chris Packham wrote:
-> > Add device tree schema for the Realtek RTL9300 switches. The RTL9300
-> > family is made up of the RTL9301, RTL9302B, RTL9302C and RTL9303. These
-> > have the same SoC differ in the Ethernet switch/SERDES arrangement.
-> > 
-> > Currently the only supported features are the syscon-reboot and i2c
-> > controllers. The syscon-reboot is needed to be able to reboot the board.
-> > The I2C controllers are slightly unusual because they each own an SCL
-> > pin (GPIO8 for the first controller, GPIO 17 for the second) but have 8
-> > common SDA pins which can be assigned to either controller (but not
-> > both).
-> > 
-> > Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> > ---
-> > 
-> > Notes:
-> >     Changes in v5:
-> >       I've combined the two series I had in flight so this is the
-> >       combination of adding the switch syscon, the reboot and i2c. It makes
-> >       the changelog a bit meaningless so I've dropped the earlier
-> >       commentary.
-> >     
-> >       As requested I've put a more complete example in the main
-> >       rtl9300-switch.yaml.
-> >     
-> >       I've kept rtl9300-i2c.yaml separate for now but link to it with a $ref
-> >       from rtl9300-switch.yaml to reduce clutter. The example in
-> >       rtl9300-i2c.yaml is technically duplicating part of the example from
-> >       rtl9300-switch.yaml but I feel it's nice to be able to see the example
-> >       next to where the properties are defined.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
-> 
-
--- 
-Lee Jones [李琼斯]
+/Esben
 
