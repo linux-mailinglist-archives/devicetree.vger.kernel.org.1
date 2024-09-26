@@ -1,148 +1,154 @@
-Return-Path: <devicetree+bounces-105536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8631E98705E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 11:36:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 020A3987065
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 11:38:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D1BA1F286F3
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:36:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E897B21EBF
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 09:38:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7250C192595;
-	Thu, 26 Sep 2024 09:36:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F39B51AAE2A;
+	Thu, 26 Sep 2024 09:38:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="xRZjG3jm"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HZGLDGGc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1415138FA3;
-	Thu, 26 Sep 2024 09:36:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 119CE192595;
+	Thu, 26 Sep 2024 09:38:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727343378; cv=none; b=pQtFgjeKfAMNBfYzBiqiHA1lbw77uZi1D8j0k2ikdCGLiXO8xWdFzz3y74kYnelhjQHsKcOh+pYNLE466pa7I6YjEMqwazQyF0+CurL7HO2uUFKCrqxXndOp4jbKsRwwzv6c16JlypUiigl72lmXLk8qORzvpA0ZPRh40kLNvZc=
+	t=1727343507; cv=none; b=J6qpfhghf1tWrAjjgmK4g0bcF8mrsQkA0pIoakhDylPC3Mp0SkOPi5QuJ6lzKUNbemLHUNkPW1jVxMZ61+z189XhyuVDG1T1YYIuiORWKIpJbiPzFu0jQHdlv2znZaih39K+avPQ3Vt8mWzaUfKGFFXWYuURg05I1AulyWGrIvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727343378; c=relaxed/simple;
-	bh=pGzNXwKK5YrzLSLixZD10eC6c3/sJZzIXc84Paz/rAo=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=IsS4p5HeazfzCMVdbgq2QJQPoPP/xC+bxoze4oSYAhwXl8D/wpJOOW8hDc6yNP4E4ShL/jhBcrqd3NMgAs1BAElsFL5TvUBzoZHFVmEbUw2Z5WiD5NJZP/vY2ln4MNSiX2PXtm7jQeIqa5zKVQs7405u0CIm4sZKGRm1hANFYx4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=xRZjG3jm; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1727343507; c=relaxed/simple;
+	bh=7p82Z+0K/eh4XfuDiQGpTvGvbH3Kqj994es0zyo9h2o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V/q8S6canAXas/+Hpu8Zh63A0QxXkz4xmud9oLNjx2UXMvhH1z/LxE0hlHwEVKlhe2RQLnI6lGaOzmpJAMXp8lczj//eElk+lpiKrBHIxRQDg3nnrPO26AuthEKHnevmPbSUd3FK0Ps9oNtXXtfZ9kmvDho0nuaZ6ygbyaeQbGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=HZGLDGGc; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1727343503;
+	bh=7p82Z+0K/eh4XfuDiQGpTvGvbH3Kqj994es0zyo9h2o=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HZGLDGGcTzSqmFrsD6xl58A2Yj+XdU/wYAjesI8ExXUhHFBFFPXDYHLguwq/Qmh9j
+	 zhw+ZoLkrcGpwTWsV9LzzD0CUaZUKZI+6V4BbdiaAj0pKYa1PiFfBmgliB8/c74O0C
+	 j468Yl+8mDdbBU9b0OsZcPfwd5/CqnNCfp91OauB6YwsUc486MARmTYQPeIoweIgWU
+	 5oG7xbgOX0pwfO0n2eJlL8gBwpwQKqaOZwoyWuaYbig1wcFpPn16FEGhIkSmsNqJgV
+	 qbopcnutnivTro5SNGl4CssyrbK3dO7XkhLD3qL+K1BvLqKxUpZW/jcUexE012XBoM
+	 elcSX6ScQOYFg==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 36D2117E10AF;
+	Thu, 26 Sep 2024 11:38:22 +0200 (CEST)
+Message-ID: <7a1315ef-4be5-4528-858b-9f07c814636d@collabora.com>
+Date: Thu, 26 Sep 2024 11:38:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1727343374;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nro0VeXsPWDiC4P3tUhqYu7l5pTbMR920vC1Wc7Li0c=;
-	b=xRZjG3jmKHLtNlc2LBKCppMizR+S8E+xrKtSFrT3CleBSAa1GzZdlPUKwBYnaICacxucJP
-	SIrXwdOBtgt74wvxprD9w7OUAgzz/YcC7AgOYweaqrX/UpiGb3W9gGxZh7E5XctKLwkzrT
-	4z6iJ2n8p/yWGczFxz7EkssWOaFWeGpkjKUHpv1+TKnu6DoWB/cZ/6bvcajQ7djJSJO1fO
-	kVjkEQRf8trbGS1NdL1oyY7JruPl3ahFXg2yVImOb2+eDcd8xWu9/4OzbCEJ9+TzndMWoD
-	HC/fUEgQ0QCR4yVzmISCIndAKizcc8/Q6IXNY0KV1y20Xj2BsMK8LUWT1KNaaw==
-Date: Thu, 26 Sep 2024 11:36:13 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Move L3 cache under CPUs in RK356x
- SoC dtsi
-In-Reply-To: <2aa03ce3-1cca-4b3a-935d-6b1b68ebbb6e@arm.com>
-References: <da07c30302cdb032dbda434438f89692a6cb0a2d.1727336728.git.dsimic@manjaro.org>
- <2aa03ce3-1cca-4b3a-935d-6b1b68ebbb6e@arm.com>
-Message-ID: <c3593744e00a9817533609326ee66346@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/6] dt-bindings: display: mediatek: Fix clocks count
+ constraint for new SoCs
+To: Conor Dooley <conor@kernel.org>, Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: moudy.ho@mediatek.com, macross.chen@mediatek.com,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yong Wu <yong.wu@mediatek.com>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, dri-devel@lists.freedesktop.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org,
+ Alexandre Mergnat <amergnat@baylibre.com>, Bear Wang
+ <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+ Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
+ Chris-qj chen <chris-qj.chen@mediatek.com>,
+ MediaTek Chromebook Upstream
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ Chen-Yu Tsai <wenst@chromium.org>
+References: <20240924103156.13119-1-macpaul.lin@mediatek.com>
+ <20240924103156.13119-3-macpaul.lin@mediatek.com>
+ <ffc1900b-3921-48ca-a2b2-1b798c57e572@collabora.com>
+ <20240924-commute-collision-13ad39717d31@spud>
+ <2821ef09-1b32-082d-69d1-e09a3a302447@mediatek.com>
+ <20240925-satisfy-epidermal-bd414891479a@spud>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240925-satisfy-epidermal-bd414891479a@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hello Robin,
-
-On 2024-09-26 11:24, Robin Murphy wrote:
-> On 2024-09-26 8:49 am, Dragan Simic wrote:
->> Move the "l3_cache" node under the "cpus" node in the dtsi file for 
->> Rockchip
->> RK356x SoCs.  There's no need for this cache node to be at the higher 
->> level.
+Il 25/09/24 16:34, Conor Dooley ha scritto:
+> On Wed, Sep 25, 2024 at 04:42:59PM +0800, Macpaul Lin wrote:
+>>
+>> On 9/25/24 00:00, Conor Dooley wrote:
+>>> On Tue, Sep 24, 2024 at 01:42:01PM +0200, AngeloGioacchino Del Regno wrote:
+>>>> Il 24/09/24 12:31, Macpaul Lin ha scritto:
+>>>>> The display node in mt8195.dtsi was triggering a CHECK_DTBS error due
+>>>>> to an excessively long 'clocks' property:
+>>>>>      display@14f06000: clocks: [[31, 14], [31, 43], [31, 44]] is too long
+>>>>>
+>>>>> To resolve this issue, add "maxItems: 3" to the 'clocks' property in
+>>>>> the DT schema.
+>>>>>
+>>>>> Fixes: 4ed545e7d100 ("dt-bindings: display: mediatek: disp: split each block to individual yaml")
+>>>>> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+>>>>> ---
+>>>>>     .../devicetree/bindings/display/mediatek/mediatek,split.yaml     | 1 +
+>>>>>     1 file changed, 1 insertion(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
+>>>>> index e4affc854f3d..42d2d483cc29 100644
+>>>>> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
+>>>>> @@ -57,6 +57,7 @@ properties:
+>>>>>       clocks:
+>>>>>         items:
+>>>>>           - description: SPLIT Clock
+>>>>
+>>>> That's at least confusing (granted that it works) - either add a description for
+>>>> each clock and then set `minItems: 1` (preferred), or remove this "SPLIT Clock"
+>>>> description and allow a maximum of 3 clocks.
+>>>>
+>>>> Removing the description can be done - IMO - because "SPLIT Clock" is, well,
+>>>> saying that the SPLIT block gets a SPLIT clock ... stating the obvious, anyway.
+>>>
+>>> Right, but what are the other two new clocks? Are they as obvious?
+>>> There's no clock-names here to give any more information as to what the
+>>> other clocks are supposed to be.
+>>>
+>>> Kinda unrelated, but I think that "SPLIT Clock" probably isn't what the
+>>> name of the clock in the IP block is anyway, sounds more like the name
+>>> for it on the provider end..
+>>
+>> Thanks for the suggestions. I think Moudy could help on the new fixes
+>> for both DT schem and mt8195.dtsi. This patch could be separated from
+>> origin patch set.
 > 
-> Except it does arguably represent the physical topology - the L3 cache
-> doesn't belong to the CPUs, it belongs to the DSU, which very much is
-> "outside" the CPUs.
+> Not sure what you mean about separating it, if you mean correcting the
+> description for the split clock sure. The other stuff I mentioned needs
+> to be resolved before I'm willing to ack this.
 
-That's a very good point, thanks!  I knew there must have been
-a very good reason why I placed the L3 cache outside the CPUs
-originally, in the commit 8612169a05c5 referenced below, but I
-also somehow managed to forget that reason for a moment. :)
+He means separating this patch from the rest of the series that he pushed - which
+is okay, as it's a bit mixed anyway :-)
 
-Let's drop this patch, and I'll submit another patch for the
-RK3588 SoC dtsi files that moves the L3 cache outside the CPUs,
-to reflect the physical topology better.
+Besides ... Moudy, can you please help to clarify the description of those clocks?
 
->> Fixes: 8612169a05c5 ("arm64: dts: rockchip: Add cache information to 
->> the SoC dtsi for RK356x")
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
->> ---
->>   arch/arm64/boot/dts/rockchip/rk356x.dtsi | 24 
->> ++++++++++++------------
->>   1 file changed, 12 insertions(+), 12 deletions(-)
->> 
->> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi 
->> b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->> index 4690be841a1c..9f7136e5d553 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->> @@ -113,19 +113,19 @@ cpu3: cpu@300 {
->>   			d-cache-sets = <128>;
->>   			next-level-cache = <&l3_cache>;
->>   		};
->> -	};
->>   -	/*
->> -	 * There are no private per-core L2 caches, but only the
->> -	 * L3 cache that appears to the CPU cores as L2 caches
->> -	 */
->> -	l3_cache: l3-cache {
->> -		compatible = "cache";
->> -		cache-level = <2>;
->> -		cache-unified;
->> -		cache-size = <0x80000>;
->> -		cache-line-size = <64>;
->> -		cache-sets = <512>;
->> +		/*
->> +		 * There are no private per-core L2 caches, but only the
->> +		 * L3 cache that appears to the CPU cores as L2 caches
->> +		 */
->> +		l3_cache: l3-cache {
->> +			compatible = "cache";
->> +			cache-level = <2>;
->> +			cache-unified;
->> +			cache-size = <0x80000>;
->> +			cache-line-size = <64>;
->> +			cache-sets = <512>;
->> +		};
->>   	};
->>     	cpu0_opp_table: opp-table-0 {
->> 
->> _______________________________________________
->> Linux-rockchip mailing list
->> Linux-rockchip@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-rockchip
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+Cheers,
+Angelo
 
