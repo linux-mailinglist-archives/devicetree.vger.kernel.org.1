@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-105606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9015F9873A1
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 14:32:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA71F9873A8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 14:34:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF01B1F2765D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 12:32:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90BC1281B13
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 12:34:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D9C0A31;
-	Thu, 26 Sep 2024 12:32:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BABF44690;
+	Thu, 26 Sep 2024 12:34:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O989Ilp4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TjkthlS2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D2EE12B73;
-	Thu, 26 Sep 2024 12:32:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 929DE3FD4;
+	Thu, 26 Sep 2024 12:34:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727353930; cv=none; b=JUHnSx2ZYncImhZt0sOvZTkHPQU8m63gN9JFvCsOSfgR4AFq/UbLhnnRysVOXPs9NQoZvoGcdo1Tt5GwDNUuLqqjWc/M4ljQde12ELnxhprNXDO16Z6GWSmSblI1BLaGSFT9sydyyiurKT5wmnr7iFbLc0LYzE9MXwdPQywbB+o=
+	t=1727354070; cv=none; b=IfXUJlAF9UWxMcyIEtUxcT1AJTD3n/DbCSFCddECVcN2+ZQgCoFuRZEHDkTZ2zLQMX+t9wVfBGLkZVR3nPETh7VxsQ97Z6y4fkuaCp3IMNc1zSVVg+V3T4nGgwOcc2AfYqxnxseHptpA5PAqN+fvew3VcUAEnHlWmYA0+++AJyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727353930; c=relaxed/simple;
-	bh=EuzHWRCk0RtdtyDt3LqvhZ/AUv65D4/jj//uS4uOgMI=;
+	s=arc-20240116; t=1727354070; c=relaxed/simple;
+	bh=m+m/3s0/CVqCQPYMO71jOIA5IOHOwjtSlfkxiW7PG1Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gAwAEnvg/IQ/2H3iFm5Q2xtZWC7QVuuy5iNO88roTQSAC/IbIDUu9w54lWNYwsYbJgHkaZRHQEKy2U/T8NDEThECS4gH53ptgkyO+aK4vFJyGvEze+8rE2xKB/w+iISuSWqnL5hUpgHsDcL6j+mYKeXoTSNdLbeVE36Be52AenQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O989Ilp4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46901C4CEC5;
-	Thu, 26 Sep 2024 12:32:07 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=RniRL0u54Q9zDtSce/HVzeL+qTE0qhredfXJ9k68ciSsqv0aWNo1A52GawzhMvsfbsxvfP9yE4kgOtLxGrcITipwk5ibiFEt5srGhcat55KtnUeCUDmd5+E0DHQQq19LGdQPm1QG2IjhKKfgWe6HqVue1maESN+nZjJUwSXlJs0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TjkthlS2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0BCCC4CEC9;
+	Thu, 26 Sep 2024 12:34:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727353929;
-	bh=EuzHWRCk0RtdtyDt3LqvhZ/AUv65D4/jj//uS4uOgMI=;
+	s=k20201202; t=1727354070;
+	bh=m+m/3s0/CVqCQPYMO71jOIA5IOHOwjtSlfkxiW7PG1Y=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=O989Ilp4daFCahAF7IG/IC5nJGrzNPqHZJ9A/Cko1j7FcMcng9Y2MPRpYemHXzkWW
-	 H+89LrkBAIX9vK4XjskV2POZ4+n66cmlF46mVJ+o7DWMNH6+rqYiICyvR5k0EJ0RaY
-	 S7qCWoBXwoFGbbwrxzNJXIMqS/gxO2CBpV4XLiC9UK8YwuDx0wr5wd45ExsI4e0a5g
-	 EBS+LNQbVxOBvWGiCl85httmPkiaUwKAaF6Y5QCdldQGYh9LV6xsumJ3CMsPxCSVs6
-	 9ggejWpFT81rfzt8UuLI5Fm8+kiV7unGeci4wOgR00uuky5d3u30QiCTIPOpnrQUVV
-	 pnFItmCm47uDA==
-Message-ID: <87d49032-cb94-4cf8-a5e0-44eb2ec37111@kernel.org>
-Date: Thu, 26 Sep 2024 14:32:05 +0200
+	b=TjkthlS2zMN4U4dat+6LFbPMRbXHxynWSnbz7aAAdEzqYg+yb66Pny+Ip/yFMYkhU
+	 x+5b6jIp5CAv2CMtY6useE4QAK3VRMjj9XvAUl0Yr7MYgAzYeFj0ydkEKZYirRi2bD
+	 oDj3C1TsCUZFPy7VAvSt3O8e1dA+hY0PrELATtCUDpoiGBGuETPC3Whhso6DqSfPOI
+	 SvpobcyU8axZYBmTEV2nGu7SsZ76d1oVgK1MCCLgW8VFI57/Du2vptUC91wigxWhAm
+	 dkDXOWH9LNer5zWxJFaxx70vW0lKBD2EwcQXixuiOSGCVfrEHgQ7A/8RV0q+Ti8ipl
+	 i8r8eAbbWFfnw==
+Message-ID: <43447165-37f9-4b35-ace6-8d32760f75a8@kernel.org>
+Date: Thu, 26 Sep 2024 14:34:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/2] dt-bindings: input: Goodix SPI HID Touchscreen
-To: Charles Wang <charles.goodix@gmail.com>
-Cc: jikos@kernel.org, bentiss@kernel.org, hbarnor@chromium.org,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-References: <20240926044217.9285-1-charles.goodix@gmail.com>
- <20240926044217.9285-3-charles.goodix@gmail.com>
- <998ccefa-8d4a-40c1-aacd-0897070190ce@kernel.org>
- <ZvUwFur1vWYteQMy@ux-UP-WHL01>
+Subject: Re: [PATCH 0/2] Add framework for user controlled driver probes
+To: Nayeemahmed Badebade <nayeemahmed.badebade@sony.com>,
+ Greg KH <gregkh@linuxfoundation.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ rafael@kernel.org, yoshihiro.toyama@sony.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240911142319.3435746-1-nayeemahmed.badebade@sony.com>
+ <2024091327-repacking-avatar-ec23@gregkh>
+ <ZulGr8Ul7y0T0NkQ@NAB-HP-ProDesk-600sony.com>
+ <26fed82b-7c60-4fda-8951-b22654728743@kernel.org>
+ <2024091747-monorail-unbutton-7ebd@gregkh>
+ <ZvVAiVBlBjkMhHMY@NAB-HP-ProDesk-600sony.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,52 +107,31 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZvUwFur1vWYteQMy@ux-UP-WHL01>
+In-Reply-To: <ZvVAiVBlBjkMhHMY@NAB-HP-ProDesk-600sony.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/09/2024 11:57, Charles Wang wrote:
->>>  1 file changed, 71 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml b/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
->>> new file mode 100644
->>> index 000000000..849117639
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
->>> @@ -0,0 +1,71 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/input/goodix,gt7986u.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: GOODIX GT7986U SPI HID Touchscreen
->>> +
->>> +maintainers:
->>> +  - Charles Wang <charles.goodix@gmail.com>
->>> +
->>> +description: Supports the Goodix GT7986U touchscreen.
->>> +  This touch controller reports data packaged according to the HID protocol,
->>> +  but is incompatible with Microsoft's HID-over-SPI protocol.
->>> +
->>> +allOf:
->>> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - goodix,gt7986u-spi
+On 26/09/2024 13:07, Nayeemahmed Badebade wrote:
 >>
->> NAK, you duplicate again the binding. You cannot have bus-flavors.
->> Device is the same.
+>>>> not required at the time of booting.
+>>>> Example: drivers/pci/controller/dwc/pci-imx6.c
+>>
+>> Just this one?  I don't see anything obvious that can't turn that into a
+>> module, have you tried?  What went wrong?
 >>
 > 
-> Could you provide some suggestions regarding this issue?
+> Yes we have tried building it as a module.
+> This driver currently registers abort handler for pci using function
+> hook_fault_code() on arm. This function is not exported and marked with __init
+> tag. So we can't use it post boot.
 
-What is exactly the question or problem? There is a binding for this
-device. Extend it with SPI parts, e.g.
-https://elixir.bootlin.com/linux/v6.4-rc7/source/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml#L22
+Then this is something to fix.
+
+> Also from past attempt made to modularize this driver in community, we saw the
+> hook is not safe to be used post boot.
+> Reference:
+>  https://lore.kernel.org/linux-arm-kernel/1454889644-27830-2-git-send-email-paul.gortmaker@windriver.com/T/#m8995c6dcc40c54baef0665a7ee16d4209cb59655
+
 
 Best regards,
 Krzysztof
