@@ -1,74 +1,50 @@
-Return-Path: <devicetree+bounces-105723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A8C698798C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 21:13:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 390D69879A3
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 21:30:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9458C2813ED
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 19:13:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD4291C227DF
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 19:30:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 671891662FA;
-	Thu, 26 Sep 2024 19:13:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1227515D5B9;
+	Thu, 26 Sep 2024 19:30:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="dYfMKgYP"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="09rsAE21"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E599B15ECDF
-	for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 19:13:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75CB8175B1;
+	Thu, 26 Sep 2024 19:30:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727377990; cv=none; b=ML2zJXRIPgxWOA+eZmC8VmV0vK4w4d3YkOqopcnpZJhfTew9xZ39KVMBDzXIzkIcmZoTdcYNfib4k3syVsANqBh3emq2R5z7yuG9YpLxoNK5HcpPsjRbjVkTBhXzPGPg0jaM8IQOc/Xz+x5RboVEOXeYuiQkrggk7jQl4O5Q3Is=
+	t=1727379051; cv=none; b=Z0S+C/JF9RPjk0MYzqtuqAfGGjDP7eL75zR0dejPXYd3dCUT7mE9kIl5F5zaOLTEIOMVElXPTuoxqAzpOEMqPj6hHqw3/ZsJszr0eMvROybMv46mPCJCUjZLZXFEBjkNCuPzODd8CfYun3lZ62XS0kws7ZY+kw+89tm0am81qV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727377990; c=relaxed/simple;
-	bh=cPPMlB+vtFQT2CeU6d0BNvKEGolYxkwnjZlbZZtBpY8=;
+	s=arc-20240116; t=1727379051; c=relaxed/simple;
+	bh=e3IbxgDmI4jWbKJnnbHhi/u05wo038NjANuVe9/wFO0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R+N7rVn3bR11yG/xPqKYhv+qCZrgzgk20zb8+sRlkBTaiUwX1y0F5Ot23UR0MhI3rvIT699dZIltCrzbIXe2zuaX8siKFtrLdfYCrAJC4ykPdcI0qQR6IvMdZb++tCYosdfCqAVJax9Ut6wqFVPmg42huzcQbTGT7J2P4IeQVEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=dYfMKgYP; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-208cf673b8dso12351495ad.3
-        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 12:13:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1727377988; x=1727982788; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=y4WZTo6nI26Bhfdln9Gf7wFMawvUlUInYNk7SP122zU=;
-        b=dYfMKgYPKAVrvAJStpBvuHVRxAI0/8O/shzmLQsQKHxOwTyZvA9i9Kf5JPHCbv12vO
-         KlhIbQO9eaUjZielRtn3JjEP6DeD8b5H6J60tjuidfePU9CmNRwqC3h4CGuSxEeFny/w
-         wkQBu2sWWTp5D9D2b6kLU0jmJqEDUhhENAPjb7VXKrzxGv/tndhT+A5rSAboI+vwYrF+
-         yEbN/GSb83W5OhnqW+UspJnA2Ri1W2UZiz2Q2labCwMVWGVl2g5MP3dE4cjkA4bLfwt9
-         j+ZSdQ+aHBZL2E7VaBuEJHAq8yigPBHXW0Ljli2SMabz0Hejq2WnRUiwwX6pxpuW1idv
-         8QMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727377988; x=1727982788;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y4WZTo6nI26Bhfdln9Gf7wFMawvUlUInYNk7SP122zU=;
-        b=m8JKUqu6lPSUHppl0XXXK+dFDFRNPz5/lZKwtV7BvZ6VZwCbsIfr4TGX5petnzC9Rv
-         HpKmi9uq+TVnUv09A4tADEzLlhLsUbH5nYl07u1Ymhn661v+yZtG64ZAfY/kVkL5n7g3
-         0DM1M7pbeCtBaYECcC2u0mvhyUglwDQ5y0v4lvsZAKyOWrHT+oCqd6zTEhcK1b+6UgcV
-         IEuDrsZT9Rg6ZNg5Rf4s2zYZeDIaes6ZiAuewvb9EA9F2NPnJ7GkuXn+I4izGQaKNHwZ
-         X6pnH7pLqMXM4mNwle1YrUv1oaDxp5hl1vxwsn7iRADLTsncpWeC6rwCKmQv/6SC8xXc
-         iM5A==
-X-Forwarded-Encrypted: i=1; AJvYcCWp+N4YGQWGdQZAcuMxWqk+yNmEMIfZHOLtlklMEwXGzps2QWKKwDYg/FCitRsdiAzOs89WlZCUtbfr@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKnPdCm96L0MFL2r6TFUuD/Dg+rOqSMCHql4v6HM1k5RUUnETy
-	2aIeIgwgCOtDcOlMMwmMpSdHc2sVe2/WMPWjI4jsaZoRMLFK98t0DZE94YwdXWU=
-X-Google-Smtp-Source: AGHT+IEMklrWdPx+X7c21DcecTVJ7lxpddUaIsHWWZy+aOWGUu3YS5G/It5NPJNOcBI2+VtqDMCCmw==
-X-Received: by 2002:a17:903:41ca:b0:206:9ab3:2ebc with SMTP id d9443c01a7336-20b37b7c063mr8647165ad.47.1727377988323;
-        Thu, 26 Sep 2024 12:13:08 -0700 (PDT)
-Received: from x1 (71-34-69-82.ptld.qwest.net. [71.34.69.82])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20b37e543dasm1740175ad.258.2024.09.26.12.13.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Sep 2024 12:13:08 -0700 (PDT)
-Date: Thu, 26 Sep 2024 12:13:06 -0700
-From: Drew Fustini <dfustini@tenstorrent.com>
-To: Andrew Lunn <andrew@lunn.ch>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZLBwdZpwmGo+Bc0T3b5qJBnGGgKidudKHvBRdZX5b2tkfPiXDMWg2KQGIiqo2NtIycDET8pIq9FogppO9qFXXTEHZO3chxZgCwA6gVIIYlyCJFuTDdgPevYeSw6MwFrtN7Ttjf1TLoyCGO1W+eg3Gwr0ldIuG5tEHI+IS7Fd8xM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=09rsAE21; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=97rXd1MBkbPp1jSwK9uUij1xCT6lwGsNcUi1XGXYkNU=; b=09rsAE21J5GAwQPBlHTy2pwgiE
+	axFWDn2gmyE0MCTdb6q0WpzVX2N0d4GXJH/exOZPAC1XNtf81SWp7VHMIPUdAAhF5iAutYcK5qmnc
+	/O46i3sSo2Gl688xtwM+5n6PMAYNNAWvervVMz6NqPFHnSYnJRawM0D4wyMZHPI8qN0c=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1stuC8-008PNA-1h; Thu, 26 Sep 2024 21:30:32 +0200
+Date: Thu, 26 Sep 2024 21:30:32 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Drew Fustini <dfustini@tenstorrent.com>
 Cc: "David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
@@ -91,10 +67,11 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-riscv@lists.infradead.org
 Subject: Re: [PATCH v2 3/3] riscv: dts: thead: Add TH1520 ethernet nodes
-Message-ID: <ZvWyQo+2mwsC1HS6@x1>
+Message-ID: <0b49b681-2289-412a-8969-d134ffcfb7fc@lunn.ch>
 References: <20240926-th1520-dwmac-v2-0-f34f28ad1dc9@tenstorrent.com>
  <20240926-th1520-dwmac-v2-3-f34f28ad1dc9@tenstorrent.com>
  <3e26f580-bc5d-448e-b5bd-9b607c33702b@lunn.ch>
+ <ZvWyQo+2mwsC1HS6@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,67 +80,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3e26f580-bc5d-448e-b5bd-9b607c33702b@lunn.ch>
+In-Reply-To: <ZvWyQo+2mwsC1HS6@x1>
 
-On Thu, Sep 26, 2024 at 08:39:29PM +0200, Andrew Lunn wrote:
-> > +&mdio0 {
-> > +	phy0: ethernet-phy@1 {
-> > +		reg = <1>;
-> > +	};
-> > +
-> > +	phy1: ethernet-phy@2 {
-> > +		reg = <2>;
-> > +	};
-> > +};
+On Thu, Sep 26, 2024 at 12:13:06PM -0700, Drew Fustini wrote:
+> On Thu, Sep 26, 2024 at 08:39:29PM +0200, Andrew Lunn wrote:
+> > > +&mdio0 {
+> > > +	phy0: ethernet-phy@1 {
+> > > +		reg = <1>;
+> > > +	};
+> > > +
+> > > +	phy1: ethernet-phy@2 {
+> > > +		reg = <2>;
+> > > +	};
+> > > +};
+> > 
+> > Two PHYs on one bus...
 > 
-> Two PHYs on one bus...
+> Thanks for pointing this out. I will move phy1 to mdio1.
 
-Thanks for pointing this out. I will move phy1 to mdio1.
+???
 
+Are you saying the two PHYs are not on the same bus?
+
+> > > +		gmac1: ethernet@ffe7060000 {
+> > > +			compatible = "thead,th1520-gmac", "snps,dwmac-3.70a";
+> > > +			reg = <0xff 0xe7060000 0x0 0x2000>, <0xff 0xec004000 0x0 0x1000>;
+> > > +			reg-names = "dwmac", "apb";
+> > > +			interrupts = <67 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			interrupt-names = "macirq";
+> > > +			clocks = <&clk CLK_GMAC_AXI>, <&clk CLK_GMAC_AXI>;
+> > > +			clock-names = "stmmaceth", "pclk";
+> > > +			snps,pbl = <32>;
+> > > +			snps,fixed-burst;
+> > > +			snps,multicast-filter-bins = <64>;
+> > > +			snps,perfect-filter-entries = <32>;
+> > > +			snps,axi-config = <&stmmac_axi_config>;
+> > > +			status = "disabled";
+> > > +
+> > > +			mdio1: mdio {
+> > > +				compatible = "snps,dwmac-mdio";
+> > > +				#address-cells = <1>;
+> > > +				#size-cells = <0>;
+> > > +			};
+> > > +		};
+> > > +
+> > > +		gmac0: ethernet@ffe7070000 {
+> > > +			compatible = "thead,th1520-gmac", "snps,dwmac-3.70a";
+> > > +			reg = <0xff 0xe7070000 0x0 0x2000>, <0xff 0xec003000 0x0 0x1000>;
+> > > +			reg-names = "dwmac", "apb";
+> > > +			interrupts = <66 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			interrupt-names = "macirq";
+> > > +			clocks = <&clk CLK_GMAC_AXI>, <&clk CLK_GMAC_AXI>;
+> > 
+> > And the MACs are listed in opposite order. Does gmac1 probe first,
+> > find the PHY does not exist, and return -EPROBE_DEFER. Then gmac0
+> > probes successfully, and then sometime later gmac1 then reprobes?
+> > 
+> > I know it is normal to list nodes in address order, but you might be
+> > able to avoid the EPROBE_DEFER if you reverse the order.
 > 
-> > +		gmac1: ethernet@ffe7060000 {
-> > +			compatible = "thead,th1520-gmac", "snps,dwmac-3.70a";
-> > +			reg = <0xff 0xe7060000 0x0 0x2000>, <0xff 0xec004000 0x0 0x1000>;
-> > +			reg-names = "dwmac", "apb";
-> > +			interrupts = <67 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupt-names = "macirq";
-> > +			clocks = <&clk CLK_GMAC_AXI>, <&clk CLK_GMAC_AXI>;
-> > +			clock-names = "stmmaceth", "pclk";
-> > +			snps,pbl = <32>;
-> > +			snps,fixed-burst;
-> > +			snps,multicast-filter-bins = <64>;
-> > +			snps,perfect-filter-entries = <32>;
-> > +			snps,axi-config = <&stmmac_axi_config>;
-> > +			status = "disabled";
-> > +
-> > +			mdio1: mdio {
-> > +				compatible = "snps,dwmac-mdio";
-> > +				#address-cells = <1>;
-> > +				#size-cells = <0>;
-> > +			};
-> > +		};
-> > +
-> > +		gmac0: ethernet@ffe7070000 {
-> > +			compatible = "thead,th1520-gmac", "snps,dwmac-3.70a";
-> > +			reg = <0xff 0xe7070000 0x0 0x2000>, <0xff 0xec003000 0x0 0x1000>;
-> > +			reg-names = "dwmac", "apb";
-> > +			interrupts = <66 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupt-names = "macirq";
-> > +			clocks = <&clk CLK_GMAC_AXI>, <&clk CLK_GMAC_AXI>;
-> 
-> And the MACs are listed in opposite order. Does gmac1 probe first,
-> find the PHY does not exist, and return -EPROBE_DEFER. Then gmac0
-> probes successfully, and then sometime later gmac1 then reprobes?
-> 
-> I know it is normal to list nodes in address order, but you might be
-> able to avoid the EPROBE_DEFER if you reverse the order.
+> The probe order seems to always be the ethernet@ffe7060000 (gmac1) first
+> and then ethernet@ffe7070000 (gmac0). I do not see any probe deferral
+> in the boot log [1].
 
-The probe order seems to always be the ethernet@ffe7060000 (gmac1) first
-and then ethernet@ffe7070000 (gmac0). I do not see any probe deferral
-in the boot log [1].
+> [1] https://gist.github.com/pdp7/02a44b024bdb6be5fe61ac21303ab29a
 
-Thanks,
-Drew
+So two PHYs are found, so they must be on the same bus.
 
-[1] https://gist.github.com/pdp7/02a44b024bdb6be5fe61ac21303ab29a
+It could well be that this MAC driver does not connect to the PHY
+until the interface is opened. That is a good 30 seconds after the
+driver probes in this log message. So there has been plenty of time
+for the PHYs to be found.
+
+What would be interesting is if you used NFS root. Then the interface
+would be opened much faster, and you might see an EPROBE_DEFER. But
+i'm just speculating. If it works for you, there is no need to do
+more.
+
+      Andrew
 
