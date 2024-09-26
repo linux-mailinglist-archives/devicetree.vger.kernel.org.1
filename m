@@ -1,266 +1,233 @@
-Return-Path: <devicetree+bounces-105573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71F4098720B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 12:53:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93E55987221
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 12:58:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 945331C2287B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 10:53:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 39B9BB21510
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 10:56:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 427DC1AD9F7;
-	Thu, 26 Sep 2024 10:52:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB2781AD5D9;
+	Thu, 26 Sep 2024 10:56:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B8Frapnu"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oeKB6cYQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5082F1AD9E3;
-	Thu, 26 Sep 2024 10:52:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 386C315A4AF;
+	Thu, 26 Sep 2024 10:56:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727347965; cv=none; b=jYhkv85CvkzGcIPLUVausrby7xH8uCIjSuz5PSFa2cVhYl//OPwYeuuBt1WVGER/pS4dPDNEbbWAkk1NAYrBkV4gNEtQ8BKlKK1Vf6m15Ww5iXFtpGIRMDm1YiWMrLHMBU257ymdBmILmP3FDVMxXmyf8s2fRZgp/1IOhBD7mpA=
+	t=1727348169; cv=none; b=RNf3Wy9vMDLsClsO8UVaiJf1ffanz6WSq3zq1Y25Xx1FWWZpgOKjkeMBQz3tLplgpoGm/JNI+he2N9x++VejBB4R5SiUGA/KQIQDJwvwCYrwZ+j3L3HJpqXAmAduGEqkHPDJE4M/3n3FLZblxwlpoNcejmmJGKX0ldkPzBJckck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727347965; c=relaxed/simple;
-	bh=rNLSkaEd7oDUKlk8fUcvYr/AJfk6k2J1D0qkHx1VVI8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=eQ+ZW2KcbDGRxmqA87vGsm22vtkXEvwgnDMKpZYpVXFScoymHRCisOTPmFmvPuTfWFZZTjdKvUK9Mb3M8cdXkjGgM/b302yvMPRzusC5/7An9iph7v4rEBArsOQIBuc1xP/YvmrdKISkAXJlbrVrl8Pqt6/CqVNBXdbAKLk/EEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B8Frapnu; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a8d6d0fe021so137162666b.1;
-        Thu, 26 Sep 2024 03:52:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727347961; x=1727952761; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=rNLSkaEd7oDUKlk8fUcvYr/AJfk6k2J1D0qkHx1VVI8=;
-        b=B8FrapnuhKSSh8TS3j1PiqLveNu2BD9Kpsa4hg37bXNzaZQI7FAFUfDOUSrf2YYwHH
-         MhcV8M1fz7Vzo95idRdo9xeTM866UwupCUkJ6Zl9jGXb3Y5kTyFQNpsDRCPPGKg999Bw
-         6e9+f3Fwovc26Caia4uEX50Jrpz4eJSxC7/CBsLsuVjDHMZun6aOdmJdpo7KISLwdzd6
-         2VKqC5SbDgbcsfsP72DYL1raX6tcRhDC/s/FYxIDR4QMSG2kFNAflcDluiWwjBXYEiR6
-         oLX+qXbEnTMvn5UayHCMlSH5kw8mSM3ysbfo5aoYPKwOitk4xDrHZfdO0CikPlGitQKn
-         eV6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727347961; x=1727952761;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rNLSkaEd7oDUKlk8fUcvYr/AJfk6k2J1D0qkHx1VVI8=;
-        b=GJQnqUBhekHd4MjpqHSt4WCJJ+tatKqTPZ7n3AreBYUeVCJuoyCu13YiF1X52TMNxF
-         24qRCyoTDd2EFn8CzR5S39P8w9kDxJE+X6uWqMku/c/fUAxFF9KunTkzMnSq/4cvQxgg
-         /Xu++ZPQa2gIgD+ZikfBBJ0K+UBdkF7H8pqSkd5NmGV7LjqGtlMIGyDAc3xYgI5iPA3V
-         XmLJGBe6WM1Uv//axMCv5xwcvRB7ox1Ickn2aXLnRFZS/B42SgASK3ogSj0lRYqNS/Z6
-         1CBwY7hbB9fjhDx+lQgLVODTI+qiG4dZLOguTDChzYSgfjM5Yox4BdiwHcny0LklhXKT
-         6akQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUSdG7uUR8FAz9jp/Se/jbwX3cuQXACkTejubAocZXxWTPWuEl7g4XoyA2BSTveAJ9tLOMDJSGmGj9MNAW1@vger.kernel.org, AJvYcCW9wQCHIMf2QIB9BVZ2GU0egMyOQkCWfyPud1ftbpp5+QkhNE9H4OfWvnuVdfEVEWBb2l631N3CpMt4@vger.kernel.org, AJvYcCXen2r7H7oO/tivAVX4GBjJwE/zLqH8V4/z5F0x4aoncgO0KeVS/rbr05jtD0bVtM86/rI6EwPLAsqq@vger.kernel.org, AJvYcCXnMPgiatLKU6gu+gv/d4EEaHeGsTvKN9YDAcQ0sIegmknp3G0JLI57DUPkBRhGdydPlzMLQo+xnAJn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJpWsTVJxx1Qb3mX5z6IIU/EfY2YzbdEP4wHbZq5XqObXpIiS8
-	IAcCHzo4etGR1OsXHTSXUTpYDQTK1kwidtaMXx5sWR/ITrnEp7Y1
-X-Google-Smtp-Source: AGHT+IFEqLjZ85oYoyLQbtQFM71BDt+U30LBxiyP+dOTJVzn/sVZoFDhT1nJPJ4DAiUCLcjVwrOm0w==
-X-Received: by 2002:a17:907:2cc4:b0:a8a:913e:418b with SMTP id a640c23a62f3a-a93a0369e7bmr538221366b.20.1727347961226;
-        Thu, 26 Sep 2024 03:52:41 -0700 (PDT)
-Received: from nsa.fritz.box ([2001:a61:341e:1201:c434:b5b1:98a6:efed])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a93a1a8c71csm221130666b.87.2024.09.26.03.52.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Sep 2024 03:52:40 -0700 (PDT)
-Message-ID: <83cf3c3eb1cc5fcc06ce72cab14cc0da3bd817b6.camel@gmail.com>
-Subject: Re: [PATCH 1/7] iio: backend: add API for interface get
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, Antoniu Miclaus
-	 <antoniu.miclaus@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>,  Michael Hennerich <Michael.Hennerich@analog.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>, Olivier Moysan
- <olivier.moysan@foss.st.com>, Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=
- <ukleinek@kernel.org>, Andy Shevchenko <andy@kernel.org>, Marcelo Schmitt
- <marcelo.schmitt@analog.com>, Alisa-Dariana Roman <alisadariana@gmail.com>,
-  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Dumitru Ceclan <mitrutzceclan@gmail.com>,  =?ISO-8859-1?Q?Jo=E3o?= Paulo
- =?ISO-8859-1?Q?Gon=E7alves?= <joao.goncalves@toradex.com>, Marius Cristea
- <marius.cristea@microchip.com>,  Sergiu Cuciurean
- <sergiu.cuciurean@analog.com>, Dragos Bogdan <dragos.bogdan@analog.com>,
- linux-iio@vger.kernel.org,  linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org,  linux-pwm@vger.kernel.org
-Date: Thu, 26 Sep 2024 12:52:39 +0200
-In-Reply-To: <CAMknhBHmtpnX-nXxReF-rUW1ks1=iw3m_BmiRUTkf5XckPsvPw@mail.gmail.com>
-References: <20240923101206.3753-1-antoniu.miclaus@analog.com>
-	 <20240923101206.3753-2-antoniu.miclaus@analog.com>
-	 <CAMknhBHmtpnX-nXxReF-rUW1ks1=iw3m_BmiRUTkf5XckPsvPw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
+	s=arc-20240116; t=1727348169; c=relaxed/simple;
+	bh=qTRkRemlYBcgSh0/Nkoi3/uReReE34+1ByAPeKgnblY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=BO9VRBK1uHxH9iXr18peaGzBvyvFQEgNJ1+s2LRBHkSqyU4vq8sZ89bEtyP+otbGWhENpcivKURbWq76qDR2RKXShiLfluiqCibCpx96F3fUbUwm0HAwB2ptAO+xMkBv1NpYbslz9HbkdNqV2NzjpsAl4wU/8t0wEURg9ObmTTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oeKB6cYQ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48Q7bPK6003273;
+	Thu, 26 Sep 2024 10:56:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	IBwVa7e4K9hvRIbnvmlG+l1h8zml2X9ZLRbV1k7628Y=; b=oeKB6cYQlkQZznZI
+	y/y1fnlTGyP28EYo3yFcYxaQU28+Fa1m9TjQAPhVyzBgjTREouTTrxGu//R1ozjG
+	d436Yof0LU0riKd2C5eN7WUSnt1yDx44MUYTri9Z50HuG0TXtM+ieHeGcxxiEv+C
+	5l5s2C9V7xTGKF5nG279+/HtpZoRr0b2nMlwofiC5zd436DRnEQ5GYFs+FkWOfOv
+	GdygBMuRjHNpWaIFb7b9+5DDhhbwH9ZXkKRGNIJLaQUDANR/+LrrWN9MHq0nywQx
+	Td/qVkKBWlTLaNjp2QqunXbxjgssVyfJFLXei5Ed44oGnAYGLOTLF/SKnJ+tlyh/
+	wZKXOg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41sn5byb9r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Sep 2024 10:56:01 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48QAu0U3014930
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Sep 2024 10:56:00 GMT
+Received: from [10.216.19.58] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 26 Sep
+ 2024 03:55:55 -0700
+Message-ID: <ca3cd653-9ab1-93e6-7862-bca8a45e34d0@quicinc.com>
+Date: Thu, 26 Sep 2024 16:25:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 20/29] media: iris: subscribe parameters and properties
+ to firmware for hfi_gen2
+Content-Language: en-US
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Vikash Garodia
+	<quic_vgarodia@quicinc.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Vedang Nagar
+	<quic_vnagar@quicinc.com>
+References: <20240827-iris_v3-v3-0-c5fdbbe65e70@quicinc.com>
+ <20240827-iris_v3-v3-20-c5fdbbe65e70@quicinc.com>
+ <b259f304-77a2-4b0e-a8b3-c8d0fb8f9750@linaro.org>
+From: Dikshita Agarwal <quic_dikshita@quicinc.com>
+In-Reply-To: <b259f304-77a2-4b0e-a8b3-c8d0fb8f9750@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: TSfwPIFQgIhyv5XemYiS3fU5Rd7-0Rjd
+X-Proofpoint-GUID: TSfwPIFQgIhyv5XemYiS3fU5Rd7-0Rjd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 adultscore=0 impostorscore=0 malwarescore=0 mlxlogscore=999
+ spamscore=0 mlxscore=0 priorityscore=1501 bulkscore=0 phishscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409260073
 
-On Thu, 2024-09-26 at 10:40 +0200, David Lechner wrote:
-> On Mon, Sep 23, 2024 at 12:15=E2=80=AFPM Antoniu Miclaus
-> <antoniu.miclaus@analog.com> wrote:
-> >=20
-> > Add backend support for obtaining the interface type used.
-> >=20
-> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > ---
-> > =C2=A0drivers/iio/industrialio-backend.c | 24 ++++++++++++++++++++++++
-> > =C2=A0include/linux/iio/backend.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 10 ++++++++++
-> > =C2=A02 files changed, 34 insertions(+)
-> >=20
-> > diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industria=
-lio-
-> > backend.c
-> > index efe05be284b6..53ab6bc86a50 100644
-> > --- a/drivers/iio/industrialio-backend.c
-> > +++ b/drivers/iio/industrialio-backend.c
-> > @@ -449,6 +449,30 @@ ssize_t iio_backend_ext_info_set(struct iio_dev *i=
-ndio_dev,
-> > uintptr_t private,
-> > =C2=A0}
-> > =C2=A0EXPORT_SYMBOL_NS_GPL(iio_backend_ext_info_set, IIO_BACKEND);
-> >=20
-> > +/**
-> > + * iio_backend_interface_type_get - get the interace type used.
-> > + * @back: Backend device
-> > + * @type: Interface type
-> > + *
-> > + * RETURNS:
-> > + * 0 on success, negative error number on failure.
-> > + */
-> > +int iio_backend_interface_type_get(struct iio_backend *back,
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum iio_backend_int=
-erface_type *type)
-> > +{
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int ret;
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D iio_backend_op_call(back,=
- interface_type_get, type);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (ret)
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 return ret;
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (*type > IIO_BACKEND_INTERFACE=
-_CMOS)
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 return -EINVAL;
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return 0;
-> > +}
-> > +EXPORT_SYMBOL_NS_GPL(iio_backend_interface_type_get, IIO_BACKEND);
-> > +
-> > =C2=A0/**
-> > =C2=A0 * iio_backend_extend_chan_spec - Extend an IIO channel
-> > =C2=A0 * @indio_dev: IIO device
-> > diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
-> > index 8099759d7242..ba8ad30ac9ba 100644
-> > --- a/include/linux/iio/backend.h
-> > +++ b/include/linux/iio/backend.h
-> > @@ -63,6 +63,11 @@ enum iio_backend_sample_trigger {
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IIO_BACKEND_SAMPLE_TRIGGER_M=
-AX
-> > =C2=A0};
-> >=20
-> > +enum iio_backend_interface_type {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IIO_BACKEND_INTERFACE_LVDS,
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IIO_BACKEND_INTERFACE_CMOS
-> > +};
-> > +
-> > =C2=A0/**
-> > =C2=A0 * struct iio_backend_ops - operations structure for an iio_backe=
-nd
-> > =C2=A0 * @enable: Enable backend.
-> > @@ -81,6 +86,7 @@ enum iio_backend_sample_trigger {
-> > =C2=A0 * @extend_chan_spec: Extend an IIO channel.
-> > =C2=A0 * @ext_info_set: Extended info setter.
-> > =C2=A0 * @ext_info_get: Extended info getter.
-> > + * @interface_type_get: Interface type.
-> > =C2=A0 **/
-> > =C2=A0struct iio_backend_ops {
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int (*enable)(struct iio_bac=
-kend *back);
-> > @@ -113,6 +119,8 @@ struct iio_backend_ops {
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 const char *buf, size_t len);
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int (*ext_info_get)(struct i=
-io_backend *back, uintptr_t private,
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 const struct iio_chan_spec *chan, char *buf);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int (*interface_type_get)(struct =
-iio_backend *back,
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum iio_backend_interface=
-_type *type);
-> > =C2=A0};
-> >=20
-> > =C2=A0int iio_backend_chan_enable(struct iio_backend *back, unsigned in=
-t chan);
-> > @@ -142,6 +150,8 @@ ssize_t iio_backend_ext_info_set(struct iio_dev *in=
-dio_dev,
-> > uintptr_t private,
-> > =C2=A0ssize_t iio_backend_ext_info_get(struct iio_dev *indio_dev, uintp=
-tr_t private,
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct iio_chan_spec=
- *chan, char *buf);
-> >=20
-> > +int iio_backend_interface_type_get(struct iio_backend *back,
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum iio_backend_int=
-erface_type *type);
-> > =C2=A0int iio_backend_extend_chan_spec(struct iio_dev *indio_dev,
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct iio_backend *back,
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct iio_chan_spec *chan=
-);
-> > --
-> > 2.46.0
-> >=20
->=20
-> This seems very specific to the AD485x chips and the AXI ADC backend.
-> Since it is describing how the chip is wired to the AXI DAC IP block,
-> I would be tempted to use the devicetree for this info instead of
-> adding a new backend function.
 
-Not sure If I'm following your point but I think this is the typical case w=
-here the
-chip (being it a DAC or ADC) supports both CMOS and LVDS interfaces. Natura=
-lly you
-only use one on your system and this is a synthesis parameter on the FPGA I=
-P core.
-Therefore, it makes sense for the frontend to have way to ask for this info=
-rmation to
-the backend.
 
-That said, we could also have a DT parameter but, ideally, we would then ne=
-ed a way
-to match the parameter with the backend otherwise we could have DT stating =
-LVDS and
-the backend built with CMOS.
-
-Other thing that we could think about is a new devm_iio_backend_get_with_in=
-fo() where
-the frontend would get some constant and static info about the backend (the=
- interface
-type would an ideal match for something like this). But I feel it's still e=
-arly days
-for something like this :)
-
-- Nuno S=C3=A1
+On 9/24/2024 8:46 PM, Bryan O'Donoghue wrote:
+> On 27/08/2024 11:05, Dikshita Agarwal via B4 Relay wrote:
+>> From: Vedang Nagar <quic_vnagar@quicinc.com>
+>>
+>> For hfi_gen2, subscribe for different bitstream parameters to
+>> firmware to get notified for change in any of the subscribed
+>> parameters.
+>>
+>> Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
+>> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+>> ---
+>>   drivers/media/platform/qcom/iris/iris_hfi_gen2.h   |   6 +
+>>   .../platform/qcom/iris/iris_hfi_gen2_command.c     | 179
+>> +++++++++++++++++++++
+>>   .../platform/qcom/iris/iris_hfi_gen2_defines.h     |   9 ++
+>>   .../platform/qcom/iris/iris_platform_common.h      |   4 +
+>>   .../platform/qcom/iris/iris_platform_sm8550.c      |  13 ++
+>>   5 files changed, 211 insertions(+)
+>>
+>> diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen2.h
+>> b/drivers/media/platform/qcom/iris/iris_hfi_gen2.h
+>> index 8170c1fef569..5fbbab844025 100644
+>> --- a/drivers/media/platform/qcom/iris/iris_hfi_gen2.h
+>> +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen2.h
+>> @@ -18,12 +18,18 @@ struct iris_core;
+>>    *
+>>    * @inst: pointer to iris_instance structure
+>>    * @packet: HFI packet
+>> + * @ipsc_properties_set: boolean to set ipsc properties to fw
+>> + * @opsc_properties_set: boolean to set opsc properties to fw
+>>    * @src_subcr_params: subscription params to fw on input port
+>> + * @dst_subcr_params: subscription params to fw on output port
+>>    */
+>>   struct iris_inst_hfi_gen2 {
+>>       struct iris_inst        inst;
+>>       struct iris_hfi_header        *packet;
+>> +    bool                ipsc_properties_set;
+>> +    bool                opsc_properties_set;
+>>       struct hfi_subscription_params    src_subcr_params;
+>> +    struct hfi_subscription_params    dst_subcr_params;
+>>   };
+>>     void iris_hfi_gen2_command_ops_init(struct iris_core *core);
+>> diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen2_command.c
+>> b/drivers/media/platform/qcom/iris/iris_hfi_gen2_command.c
+>> index e50f00021f6d..791b535a3584 100644
+>> --- a/drivers/media/platform/qcom/iris/iris_hfi_gen2_command.c
+>> +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen2_command.c
+>> @@ -472,6 +472,9 @@ static int iris_hfi_gen2_session_open(struct
+>> iris_inst *inst)
+>>       if (inst->state != IRIS_INST_DEINIT)
+>>           return -EALREADY;
+>>   +    inst_hfi_gen2->ipsc_properties_set = false;
+>> +    inst_hfi_gen2->opsc_properties_set = false;
+>> +
+>>       inst_hfi_gen2->packet = kzalloc(4096, GFP_KERNEL);
+>>       if (!inst_hfi_gen2->packet)
+>>           return -ENOMEM;
+>> @@ -536,9 +539,185 @@ static int iris_hfi_gen2_session_close(struct
+>> iris_inst *inst)
+>>       return ret;
+>>   }
+>>   +static int iris_hfi_gen2_session_subscribe_mode(struct iris_inst *inst,
+>> +                        u32 cmd, u32 plane, u32 payload_type,
+>> +                        void *payload, u32 payload_size)
+>> +{
+>> +    struct iris_inst_hfi_gen2 *inst_hfi_gen2 = to_iris_inst_hfi_gen2(inst);
+>> +
+>> +    iris_hfi_gen2_packet_session_command(inst,
+>> +                         cmd,
+>> +                         (HFI_HOST_FLAGS_RESPONSE_REQUIRED |
+>> +                         HFI_HOST_FLAGS_INTR_REQUIRED),
+>> +                         iris_hfi_gen2_get_port(plane),
+>> +                         inst->session_id,
+>> +                         payload_type,
+>> +                         payload,
+>> +                         payload_size);
+>> +
+>> +    return iris_hfi_queue_cmd_write(inst->core, inst_hfi_gen2->packet,
+>> +                    inst_hfi_gen2->packet->size);
+>> +}
+>> +
+>> +static int iris_hfi_gen2_subscribe_change_param(struct iris_inst *inst,
+>> u32 plane)
+>> +{
+>> +    struct iris_inst_hfi_gen2 *inst_hfi_gen2 = to_iris_inst_hfi_gen2(inst);
+>> +    struct hfi_subscription_params subsc_params;
+>> +    u32 prop_type, payload_size, payload_type;
+>> +    struct iris_core *core = inst->core;
+>> +    const u32 *change_param = NULL;
+>> +    u32 change_param_size = 0;
+>> +    u32 payload[32] = {0};
+>> +    u32 hfi_port = 0;
+>> +    int ret;
+>> +    u32 i;
+>> +
+>> +    if ((V4L2_TYPE_IS_OUTPUT(plane) &&
+>> inst_hfi_gen2->ipsc_properties_set) ||
+>> +        (V4L2_TYPE_IS_CAPTURE(plane) &&
+>> inst_hfi_gen2->opsc_properties_set)) {
+>> +        dev_err(core->dev, "invalid plane\n");
+>> +        return 0;
+>> +    }
+>> +
+>> +    change_param = core->iris_platform_data->input_config_params;
+>> +    change_param_size = core->iris_platform_data->input_config_params_size;
+>> +
+>> +    if (!change_param || !change_param_size)
+>> +        return -EINVAL;
+> 
+> That's an odd one, checking for zero but _not_ bounds checking
+> chanage_param_size < (sizeof(payload)/sizeof(u32)) - 1
+> 
+> I'm not sure where inpug_config_param_size gets populated but I'd rather
+> check that type of parameter - for exactly that reason - than the defensive
+> coding done on your inputs elsewhere.
+> 
+> TL;DR why do you trust change_param_size < your array size but not
+> change_param_size >= 1 ?
+> 
+These NULL checks here are actually not needed as we will make sure this is
+filled in platform data. Will remove these checks in next version and will
+see if bound check is required.
+> ---
+> bod
 
