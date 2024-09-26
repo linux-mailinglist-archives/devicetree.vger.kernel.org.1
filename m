@@ -1,269 +1,258 @@
-Return-Path: <devicetree+bounces-105432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A058A986B63
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 05:34:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D581986B68
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 05:35:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD2E71C21122
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 03:34:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7891A1C21107
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 03:35:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E3F439FCE;
-	Thu, 26 Sep 2024 03:34:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46AF3158875;
+	Thu, 26 Sep 2024 03:35:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gpWpe23P"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="0E9Acv91"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2062.outbound.protection.outlook.com [40.107.117.62])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7807C1D5ADF;
-	Thu, 26 Sep 2024 03:33:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727321640; cv=none; b=BgOsuFSkTuw5DVNyO3GV2cVCLSQAYMWkr3Fj4ArKoDSdzGJNbnsxcl3V+YLwCLyPsJdKfkYhzlM6cd7EIMyU4+MZCKTgJhqEU/1QNFPFdkkHeCd7qkKdBgY7gw2zW1RBS4pXgLwVJS3whWyIGm1esRhCIKbxTXL/63CINe2vz7M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727321640; c=relaxed/simple;
-	bh=d2igtFLYOGy/YznIYiKbWnIF6Q1R9qoxOMgsSesCvYc=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CVxtmuuIGrh6ovGehACUASH6fp07WSAD2h6H3kF8qdLKkie19lTGCNLboF3bZ2tP0b9DTjM1DM9XvkrY9OMgXQ4vXJiqlm+kA9mTQyL1aA5R8nPLfnixAUD4qG3rp7PZxkhTjF3qOcMGfCZdh/SGRQTcps7yK6myfrDQbzfRGDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gpWpe23P; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48PH5KDC021434;
-	Thu, 26 Sep 2024 03:33:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=M2RtsE1iexB0GkdiFUfI7LQ0
-	cbO3blW6rOMDgDc6R0M=; b=gpWpe23PM1+0RZvbq0EET/aMUNBAZ/q4JrMTy026
-	sYyNKE307jaOk1aLWKEQ51O8ZndzJ+GS0QTrUeVsd5Uz3/0ZBwkv1DyzLFtOD/rm
-	nv30Xlz+0XE9sNbMTbNU3uqZbWr2VcDCToAYVf7rmZUkyCqMNKxcukkAkbZlJu5J
-	Y1TrgpX+Zswn2Wxx/m2ltfTqiCAGNMm5YmSjyLN1w2cceN2o0wsYvVoucgdoVH8l
-	A2nYu7rr7tgMW25WftqjTLQZYhMea8mJa4S4Tqj3w0u6yzGkc7AWQ20M4qvUgdfp
-	Q7X8w7sDoVJZlHMTHzNmaloe47GTKe6upIh259kqnHtM4A==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41sqaknrfp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 26 Sep 2024 03:33:51 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48Q3XoI6009888
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 26 Sep 2024 03:33:50 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 25 Sep 2024 20:33:50 -0700
-Date: Wed, 25 Sep 2024 20:33:49 -0700
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Rob Clark
-	<robdclark@gmail.com>,
-        Peter de Kraker <peterdekraker@umito.nl>
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: Add support for X1-based Dell
- XPS 13 9345
-Message-ID: <ZvTWHZC2n+QkKWhq@hu-bjorande-lv.qualcomm.com>
-References: <20240921163455.12577-1-alex.vinarskis@gmail.com>
- <20240921163455.12577-4-alex.vinarskis@gmail.com>
- <effqouni7fmzpag6g6e2t6uq4tltjiufynjhym3rmrpylezydt@ipqglqizisqr>
- <CAMcHhXp=nw8XXNFdw+a7+qcMbJVvkqzBcgZo0fombokBj2tD2Q@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 965511F61C;
+	Thu, 26 Sep 2024 03:35:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.62
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727321742; cv=fail; b=ZZbOv2aEwBWQP90SVRlCjMda1zfATQNiilmykIXjDXxokbDQ2FdMmpNmeYGsTnF/epzAYxTmIsAyHX6recmglQbrUCrijV8iTk2/032soGlkpftOvZIQ0Y6YaZLNZ9xSV2V7kE3KH+6/IY2F8xyX3TUaYwTOE0WFTjUgfJZofsM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727321742; c=relaxed/simple;
+	bh=irLnByNM3ynI9eegtY9kbj/ImX8stkiMdsWUf6sCwG4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=XE8PIkor/q/XA+aJi0COnlEF9ewTmLWG3mJZ2MMG00cgCCstdxzlDipm2+V74kH8gxW+QfmEP9Z9jQ8bvlMWhRUtUuu50jPxHKeWW00OR5Nitb1b+e8lLps80Fh3TthHghPj3qMg2SSsJgB2I9Srl/GPaTt05BaoSMsqoiNBK+Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=0E9Acv91; arc=fail smtp.client-ip=40.107.117.62
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NNK2QbsvMDeD8Wbr9t2UyXnvkTL+plfEcYWeYYA40rowKyjyRxsBDeuHxAQJkgyxwysn7zi6pWmeIBDYfk4wT6xi/m1ZZZhs/kjHDYk6Fcc7wV99aEm7gs8gPMDJibzdWRLZy9nH2PCopko6pLx7TwPvyVUIU8WS1N1ezAR/Tn1gKDZKq65zbVhLkunvsFwQY6Uv0nvrwykoWC8rfDoiUBENB/VVzHV3E5ZmIa+j59fymPdx9+Nn/brJigJeuzhr0YgTZJXHFUAuERyX+z5RKqZVSLHpSlIJLv9OYHf2XUFksgH+a+Hu9+/owN2hoiR+De9lFDemjE9vmNbo62941A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jsXIwyIUN9NziDpxCqaKPL0RZdSJ+2HnJW7nsdwhxIE=;
+ b=MZgJpA5zvT6+uwdt+lkXH2YqAvSlWaDVsN9DEJjJrkMLbuSh9vvvY7sY1l6o48R2oLYYUDatQl48l812qDs3ye6dvn0WcG7Y6Wq3fePyvHF5zZegHntQMbx/SAAAJlp9FSLp+KUN3cBRSSzPd5q0F6YoMtxh0TjL4zwP75xzBwOQnzuHpD3m3idEHM+KoltP7OY8x+h416gtNz5uJIWRNO73CXZEmxhI6Iv6zewmmeDCJ7UgqjUi0OZr7g1s64K49p+HjDDheUo9otRzGvgiHDF8kLQKoAfn3ZM4GB5SBGaUM6dn2v9FANVRrzV+RVx3xOU4RcrYfbj2ht9AGc5tUg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jsXIwyIUN9NziDpxCqaKPL0RZdSJ+2HnJW7nsdwhxIE=;
+ b=0E9Acv91ePHPQUHDs+4N58l4deczZgkevVAYkxiErZeJRrYx4tHhd0cD7ANsV3i/fmBCP6veSHJOXHk5qLW/xgGBJmBaLs5tBvsjb6LUwgWYNxuWQCJiaVEK4Db5upxTzyl+sJ5RlM3FG8aOjZpsim545+rMDprNEW+ZXhtm8yB1mZGc8ZN795X1VaTdJU9CKYcRiVjccrNBtGZgrGyqbSCXKuyBrAOwZ8HT4WLCdsGj10hFfcCvMxSbNmh4cvxTrVWCOsNS0Y56WIeNfnPEM68dP+Qjaejz4jxFjTjLjzNiiMZIWr4qdzu3Ccc3TVooaBRI4Hgp1rDLBu7x25BhLA==
+Received: from SI1PR02CA0036.apcprd02.prod.outlook.com (2603:1096:4:1f6::20)
+ by JH0PR04MB7604.apcprd04.prod.outlook.com (2603:1096:990:6f::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.27; Thu, 26 Sep
+ 2024 03:35:36 +0000
+Received: from HK2PEPF00006FB4.apcprd02.prod.outlook.com
+ (2603:1096:4:1f6:cafe::87) by SI1PR02CA0036.outlook.office365.com
+ (2603:1096:4:1f6::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.30 via Frontend
+ Transport; Thu, 26 Sep 2024 03:35:36 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK2PEPF00006FB4.mail.protection.outlook.com (10.167.8.10) with Microsoft SMTP
+ Server id 15.20.7918.13 via Frontend Transport; Thu, 26 Sep 2024 03:35:35
+ +0000
+From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+To: patrick@stwcx.xyz,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>,
+	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] ARM: dts: aspeed: yosemite4: Add i2c-mux for Management Board
+Date: Thu, 26 Sep 2024 11:35:33 +0800
+Message-Id: <20240926033534.4174707-1-Delphine_CC_Chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAMcHhXp=nw8XXNFdw+a7+qcMbJVvkqzBcgZo0fombokBj2tD2Q@mail.gmail.com>
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 8YCIipDKTUvN2FeEsVEfDWl10x65VgyT
-X-Proofpoint-GUID: 8YCIipDKTUvN2FeEsVEfDWl10x65VgyT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
- bulkscore=0 impostorscore=0 suspectscore=0 phishscore=0 adultscore=0
- clxscore=1011 malwarescore=0 lowpriorityscore=0 mlxlogscore=999
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409260020
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK2PEPF00006FB4:EE_|JH0PR04MB7604:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 8a9ae576-de50-4709-699f-08dcdddc487e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|1800799024|7416014|82310400026|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?bNopIWk2Cg/B5z3XYFOymA4r1swY5EiqL52FZn4HOMnZsFYoCD07M6GWAcY4?=
+ =?us-ascii?Q?ww4pV7WDiA6mZlKEbuRam+iMJyhEnj/esQRkL3raYbqBnluKnshUNbYTeUV+?=
+ =?us-ascii?Q?b16YJPLbOGq1XOH36iA8n2pz8im/oFqlgjHJlxwCFfJQqvU24sY2vr8kYu3X?=
+ =?us-ascii?Q?MEnR51FHhF2yfsdgLuScZzo8j3p2Dh+mRXQ9QuA1W5RkkQe0vhdFMEB6dOpw?=
+ =?us-ascii?Q?KwOnZaSohOe6BEtl0fivJhOopbiDTG379KgUkENi9am4DPXl084lP/XrKQgh?=
+ =?us-ascii?Q?jPNive61KcIN961r9glAaK950j1so3/F++UFDUkHA3g76v8CaTyXkmRKmYyg?=
+ =?us-ascii?Q?oNEIXiN3Ip6Vzb9unmjFSPP8aDg6PyEXq7fDwwZ82OImqUvZJ6OziiSyCyHr?=
+ =?us-ascii?Q?JmVp8163tbd80bN1EIq3xv/gwAgEHeAboWwOuWbt0potRy7PVhfFs1R7DPLs?=
+ =?us-ascii?Q?QJ17ZW5qbMZoKGoIOVFCApfNGiB5vwL6JnXiQ5TnRNvF8EJXhspMT63pfTXW?=
+ =?us-ascii?Q?B8Uv3BFXCzdXGfwuRUM5DkllRfyHhNtQR+qBFbMXJ/WBT079XgIlLod3sLDh?=
+ =?us-ascii?Q?2iAyxHC44UKrulKKXbqqZA4UbW/XrMPwaUlHCYAZ5dAp344paM9nsHvX2fmZ?=
+ =?us-ascii?Q?TZxMO7JM2/D+rR9WE/ukQL/nm34IOVbs7p/QYKH1vcSfoEipe5BiQtECmizi?=
+ =?us-ascii?Q?8Gx7QTGyDR3ITW2v6gXN9U+gCnDUVnNGpE5Uy9wLMrRLc/cMzJV+5QSqDYLr?=
+ =?us-ascii?Q?9HI6q3kWGli66t8A8V4K62KFH6Cl2kdbEfzQLclrbHhcCu1env+914h9YV5D?=
+ =?us-ascii?Q?V0yaSOZJTx+44niGvWBF53tBCiU5h5f3/PqaKO/TaiFjEQ59RTmftUEAIfnb?=
+ =?us-ascii?Q?wAFfRrk9GnUMYkz3BwmxzucV8kgvoSja5cO65vi/C9+6e76CW4/IZyJjyU9S?=
+ =?us-ascii?Q?rf7klEB9/kVhOBNYK9RpEfp5YJzibgwL5yeYsHIrHZavjRgmssp/Pba1300U?=
+ =?us-ascii?Q?sPZxUSGbkK30FHkC5A1rpiHkM4FmcG7uIGcq9kNJvevHH180vIGBtP0qC1dL?=
+ =?us-ascii?Q?aNmioL271QZLAYoxvspt9J4uLDDcPqi44Gocql/Z3WLyb3h5e98XVUTsjf/h?=
+ =?us-ascii?Q?kC1k7l8MO6cUOXs5RMWgLEmknisWvAxVnBTApnTMpZwR8ZN/GKlka13re77M?=
+ =?us-ascii?Q?VYE/DDSMLPtjNDh6EcSA/bcm0v/Xp74hJgK515TA0wHhP4IHVZ2bPHTh773m?=
+ =?us-ascii?Q?PRmKRg5585UVTy5ePaWEkQhDSzCoTuB2xryT6LMd2krieXtXR7czmu5iC8MY?=
+ =?us-ascii?Q?4/fv0601G/qhtyYmyuCxrXXxrM5mMOTMFCU6GASpHBtDbV948BEsZNgaquFH?=
+ =?us-ascii?Q?J4/vTVfmfF8NW5tmGO9niyT873vY?=
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(7416014)(82310400026)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2024 03:35:35.6055
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a9ae576-de50-4709-699f-08dcdddc487e
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	HK2PEPF00006FB4.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR04MB7604
 
-On Wed, Sep 25, 2024 at 12:05:22PM +0200, Aleksandrs Vinarskis wrote:
-> On Wed, 25 Sept 2024 at 00:15, Bjorn Andersson <andersson@kernel.org> wrote:
-> >
-> > On Sat, Sep 21, 2024 at 06:33:33PM GMT, Aleksandrs Vinarskis wrote:
-> > > Initial support for Dell XPS 9345 13" 2024 (Tributo) based on X1E80100.
-> >
-> > Very nice.
-> >
-> > >
-> > > Working:
-> > > * Touchpad
-> > > * Keyboard (only post suspend&resume, i2c-hid patch WIP)
-> >
-> > Hitting scroll lock/unlock on a USB keyboard once fixes this issue for
-> > me as well. Looking forward to your WIP patch.
-> 
-> Thanks for your review.
-> Just submitted the series [3].
-> 
+From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
 
-Thank you.
+Add I2C mux for Management Board to separate the I2C bus 35 for
+updating CPLD firmware and I2C bus 34 for the other devices.
 
-> >
-> > > * eDP, with brightness control
-> > > * NVME
-> > > * USB Type-C ports in USB2/USB3 (one orientation)
-> > > * WiFi
-> > > * GPU/aDSP/cDSP firmware loading (requires binaries from Windows)
-> > > * Lid switch
-> > > * Sleep/suspend, nothing visibly broken on resume
-> > >
-> > > Not working:
-> > > * Speakers (WIP, pin guessing, x4 WSA8845)
-> > > * Microphones (WIP, pin guessing)
-> > > * Fingerprint Reader (WIP, USB MP with ptn3222)
-> > > * USB as DP/USB3 (WIP, PS8830 based)
-> > > * Camera
-> > > * Battery Info
-> >
-> > Adding the ADSP firmware gave me both battery status and info, but
-> > perhaps you're hitting the previously reported issue in pmic_glink?
-> >
-> 
-> Could you please share a bug report for the mentioned issue?
-> 
+Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+---
+ .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 80 ++++++++++++++++---
+ 1 file changed, 69 insertions(+), 11 deletions(-)
 
-I'm referring to https://lore.kernel.org/all/ZsbomSG6DXTfYxXZ@hovoldconsulting.com/
-although I'm not sure where it was first reported.
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+index 98477792aa00..234ce7019fca 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+@@ -17,6 +17,9 @@ aliases {
+ 		serial6 = &uart7;
+ 		serial7 = &uart8;
+ 		serial8 = &uart9;
++
++		i2c34 = &imux34;
++		i2c35 = &imux35;
+ 	};
+ 
+ 	chosen {
+@@ -348,22 +351,77 @@ eeprom@54 {
+ };
+ 
+ &i2c12 {
++	#address-cells = <1>;
++	#size-cells = <0>;
+ 	status = "okay";
+ 	bus-frequency = <400000>;
+ 
+-	temperature-sensor@48 {
+-		compatible = "ti,tmp75";
+-		reg = <0x48>;
+-	};
++	i2c-mux@70 {
++		compatible = "nxp,pca9544";
++		reg = <0x70>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++		i2c-mux-idle-disconnect;
+ 
+-	eeprom@50 {
+-		compatible = "atmel,24c128";
+-		reg = <0x50>;
+-	};
++		imux34: i2c@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			temperature-sensor@48 {
++				compatible = "ti,tmp75";
++				reg = <0x48>;
++			};
++
++			eeprom@50 {
++				compatible = "atmel,24c128";
++				reg = <0x50>;
++			};
++
++			eeprom@54 {
++				compatible = "atmel,24c64";
++				reg = <0x54>;
++			};
++
++			rtc@6f {
++				compatible = "nuvoton,nct3018y";
++				reg = <0x6f>;
++			};
++
++			gpio@20 {
++				compatible = "nxp,pca9506";
++				reg = <0x20>;
++				gpio-controller;
++				#gpio-cells = <2>;
++			};
++
++			gpio@21 {
++				compatible = "nxp,pca9506";
++				reg = <0x21>;
++				gpio-controller;
++				#gpio-cells = <2>;
++			};
++
++			gpio@22 {
++				compatible = "nxp,pca9506";
++				reg = <0x22>;
++				gpio-controller;
++				#gpio-cells = <2>;
++			};
++
++			gpio@23 {
++				compatible = "nxp,pca9506";
++				reg = <0x23>;
++				gpio-controller;
++				#gpio-cells = <2>;
++			};
++		};
+ 
+-	rtc@6f {
+-		compatible = "nuvoton,nct3018y";
+-		reg = <0x6f>;
++		imux35: i2c@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
+ 	};
+ };
+ 
+-- 
+2.25.1
 
-Chris Lew has been debugging this and the problem relates to intent
-allocation in the underlying GLINK driver. We're discussing how to fix
-this.
-
-Hoping to conclude the discussion within the coming days.
-
-> Were you running with [2] patch reverted or not?
-
-I applied your patches on next-20240924, no other changes.
-
-> Without reverting it, I cannot boot Ubuntu at all - it is spamming
-> qcom_battmngr errors and holding services back.
-> With patch reverted I do not get any battery related info, which I
-> guess makes sense.  I tried applying [1], however it did help.
-> 
-
-I think we want [1], but with a better argumentation. It's however
-unrelated to the problem you're seeing.
-
-> There are a few pmic_glink related errors in dmesg, so perhaps its related.
-> 
-
-I do have a few messages about "unknown notification", but it works
-fine. I expect this is just luck...
-
-> > >
-> > > Should be working, but cannot be tested due to lack of hw:
-> > > * Higher res OLED, higher res IPS panels
-> >
-> > I tried closing the lid and opening it again (which I believe is what
-> > was reported to not work on the other devices), and that seems to work
-> > fine.
-> >
-> > > * Touchscreen
-> >
-> > See below
-> >
-> > >
-> > [..]
-> > > diff --git a/arch/arm64/boot/dts/qcom/x1e80100-dell-tributo-13.dts b/arch/arm64/boot/dts/qcom/x1e80100-dell-tributo-13.dts
-> > [..]
-> > > +&i2c8 {
-> > > +     clock-frequency = <400000>;
-> > > +
-> > > +     status = "okay";
-> > > +
-> > > +     touchscreen@0 {
-> > > +             compatible = "hid-over-i2c";
-> > > +             reg = <0x0>;
-> >
-> > Make this 0x10 (and update the unit address accordingly) and we have
-> > touchscreen.
-> 
-> Awesome, thanks for testing. Will add it.
-> Do you have an OLED variant, or high-res IPS? Will update description
-> when respinning to include it.
-
-I have the OLED screen.
-
-> 
-> Thinking about it, perhaps depending on the OLED/IPS variant they have
-> different touchscreen models with different addresses? I find it weird
-> that the address was 0 as per ACPI.
-> 
-
-The 0 is indeed weird, I don't know what's up with that.
-
-I'd suggest that we start with 0x10 and then change things from there if
-necessary.
-
-Regards,
-Bjorn
-
-> > > +
-> > > +             hid-descr-addr = <0x1>;
-> > > +             interrupts-extended = <&tlmm 51 IRQ_TYPE_LEVEL_LOW>;
-> > > +
-> > > +             pinctrl-0 = <&ts0_default>;
-> > > +             pinctrl-names = "default";
-> > > +     };
-> > > +};
-> > [..]
-> > > +&mdss_dp3 {
-> > > +     compatible = "qcom,x1e80100-dp";
-> >
-> > This isn't needed, right?
-> 
-> Indeed. Will fix it.
-> 
-> >
-> > [..]
-> > > +&uart21 {
-> >
-> > This fails to probe, because we don't have an alias for it, which in
-> > turn prevents sync_state on interconnects...
-> >
-> 
-> Indeed. Will fix it.
-> 
-> Thanks,
-> Alex
-> 
-> [1] https://lore.kernel.org/all/20240918-x1e-fix-pdm-pdr-v1-1-cefc79bb33d1@linaro.org/
-> [2] https://lore.kernel.org/all/20240708-x1e80100-pd-mapper-v1-1-854386af4cf5@linaro.org/
-> [3] https://lore.kernel.org/all/20240925100303.9112-1-alex.vinarskis@gmail.com/
-> 
-> 
-> > > +     compatible = "qcom,geni-debug-uart";
-> > > +     status = "okay";
-> > > +};
-> > > +
-> >
-> > Regards,
-> > Bjorn
 
