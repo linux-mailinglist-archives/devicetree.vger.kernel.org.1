@@ -1,190 +1,107 @@
-Return-Path: <devicetree+bounces-105440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C690986C17
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 07:35:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88FBC986C75
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 08:30:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 943211F25ADC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 05:35:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C1731F22E90
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 06:30:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FD5017B4FA;
-	Thu, 26 Sep 2024 05:34:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="i5cT+yIJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51A8E18BBB8;
+	Thu, 26 Sep 2024 06:30:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 482DF3A1DA
-	for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 05:34:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82EC5183CD6;
+	Thu, 26 Sep 2024 06:30:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727328897; cv=none; b=h7FqAEFBOxjKQgCbx34ObND/GWgmUlKR1XgCCYKdoU+3OWS+VK/o4T9Be6+zU9k7Ny5G7Ivw+P3mYLpYV3ZJdK8rZgx7dU/nsglToBcRZMxNs8EVdRXuCp+QTkzicur62ZA7gK27UfqDhYD7IBnIyJuBOAEIfXjUwfCxyNVd/ac=
+	t=1727332232; cv=none; b=cFijJX3lUkj7KN3nl6+BGTzIyLW8SFtzBkeEkXD4p5x4lXbZJIwhuBBHTUkOSN2b5lSvPPG6t0qP4Mf7Rb1xlZmSWUBH8E9l1xIrQeiVFC2Wt06k//NSWeUeFikmNe8LOIJSWB8AyHA0QHqeSdh6Oh4XA1skb3HWIdGQscpMYsA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727328897; c=relaxed/simple;
-	bh=swXyTAcLgwrpOR7vwZIp8q1pyVRfiEN01n1XjACumU4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=hALWDyd7SVa4zJ/s+hQ0BSsZz6zu3bMFX/jnnMOYfOljOb8CymoXNkf84oIdfRNj3Ly3UdF2KwviOVcQ7g3V+csC75oh9adFVXvRDqGDKeqQumaCVc5kuChEUFCKY805/cv6ah7uKNdr2DZ7SrJUbnVAbJmRpcbjdlT/JJ5WZJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=i5cT+yIJ; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20240926053452epoutp01d6c7bb7a0098a243dd20f83d1b5cd75e~4tHnAQQJY1041810418epoutp012
-	for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 05:34:52 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20240926053452epoutp01d6c7bb7a0098a243dd20f83d1b5cd75e~4tHnAQQJY1041810418epoutp012
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1727328892;
-	bh=swXyTAcLgwrpOR7vwZIp8q1pyVRfiEN01n1XjACumU4=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=i5cT+yIJpWuYg8ayC/EMU15wlvMH2VIbUs5utAx6s+jYofMb8ezLl8GYp/4KZqJkH
-	 9GpZipF24hzsqRiE3+7RRyyjJEkYibLG8oOq9+04iC4J43/q62tEh+1KWO5dQdGio1
-	 Rgx12/ACxTAi3YIFTj7pbXw0tTeBKEA6wFk7W23U=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-	epcas1p4.samsung.com (KnoxPortal) with ESMTP id
-	20240926053451epcas1p4c26022781b0e48c369a986b2e79b0e02~4tHmcMMla0679906799epcas1p48;
-	Thu, 26 Sep 2024 05:34:51 +0000 (GMT)
-Received: from epsmges1p3.samsung.com (unknown [182.195.38.237]) by
-	epsnrtp1.localdomain (Postfix) with ESMTP id 4XDj3G0Plcz4x9Q8; Thu, 26 Sep
-	2024 05:34:50 +0000 (GMT)
-Received: from epcas1p2.samsung.com ( [182.195.41.46]) by
-	epsmges1p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-	01.7F.09725.972F4F66; Thu, 26 Sep 2024 14:34:49 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20240926053449epcas1p2e8596f64b7ee5d3b8cdf565bacdc6510~4tHkoAwy11368013680epcas1p2f;
-	Thu, 26 Sep 2024 05:34:49 +0000 (GMT)
-Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20240926053449epsmtrp115837797407d31f4abe8a41f921962b0~4tHknD2Wt0333203332epsmtrp1I;
-	Thu, 26 Sep 2024 05:34:49 +0000 (GMT)
-X-AuditID: b6c32a37-1f3ff700000025fd-48-66f4f279057b
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	8F.49.19367.972F4F66; Thu, 26 Sep 2024 14:34:49 +0900 (KST)
-Received: from [10.113.111.204] (unknown [10.113.111.204]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20240926053449epsmtip12248e1a358afba040f90ca5bfa99b6d0~4tHkRAQg_0521205212epsmtip1K;
-	Thu, 26 Sep 2024 05:34:49 +0000 (GMT)
-Message-ID: <d2a6b8d16b001b72fd01cfc5b4895e6fee0b7032.camel@samsung.com>
-Subject: Re: [PATCH 6/6] dt-bindings: display: samsung,exynos7-decon: add
- exynos7870 compatible
-From: Kwanghoon Son <k.son@samsung.com>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>, Krzysztof Kozlowski
-	<krzk@kernel.org>
-Cc: airlied@gmail.com, alim.akhtar@samsung.com, conor@kernel.org,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	inki.dae@samsung.com, kyungmin.park@samsung.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, maarten.lankhorst@linux.intel.com, 
-	mripard@kernel.org, robh@kernel.org, simona@ffwll.ch,
-	sw0312.kim@samsung.com,  tzimmermann@suse.de
-Date: Thu, 26 Sep 2024 14:34:49 +0900
-In-Reply-To: <d8f5999921a31d7723e0aa9b12bb9eaf@disroot.org>
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1727332232; c=relaxed/simple;
+	bh=2gAqmh13lRW4gCtbiZjmbuICVYnRu9n3yfY1dlQqNOU=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=PUjsmzb4zB0TM2khJGbCKcGI5RnZj/vOTigv33/zJwv6oZiiTXnn4Y8qbS1iAl1Ol5Hh5wyQT8rt96l9SWmeznR+6ByhdWpwzRwR4jclBBH/dvLV4vvsiT46EkPBEx/LW+wKUnaP1A/quvMUi8cs+cDVyrRS/H0G1URdq79WuVM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 47021200FF5;
+	Thu, 26 Sep 2024 08:30:22 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 1717020184C;
+	Thu, 26 Sep 2024 08:30:22 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id DFF15183F0C0;
+	Thu, 26 Sep 2024 14:30:18 +0800 (+08)
+From: Richard Zhu <hongxing.zhu@nxp.com>
+To: l.stach@pengutronix.de,
+	kwilczynski@kernel.org,
+	bhelgaas@google.com,
+	lpieralisi@kernel.org,
+	frank.li@nxp.com,
+	robh+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	festevam@gmail.com,
+	s.hauer@pengutronix.de
+Cc: linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	kernel@pengutronix.de,
+	imx@lists.linux.dev
+Subject: [PATCH v3 0/9] A bunch of changes to refine i.MX PCIe driver
+Date: Thu, 26 Sep 2024 14:07:44 +0800
+Message-Id: <1727330873-17486-1-git-send-email-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrNJsWRmVeSWpSXmKPExsWy7bCmnm7lpy9pBgc2WlicuL6IyeLBvG1s
-	FiunrmKzmH/kHKvFla/v2Swm3Z/AYvHn33k2i/PnN7BbnG16w26x6fE1VovLu+awWcw4v4/J
-	YuHHrSwWbZ3LWC3+79nBbjH73X52ixmTX7JZbHkzkdVByOPkus1MHnu/LWDx2DnrLrvHplWd
-	bB7zTgZ63O8+zuSxeUm9R9+WVYwem09Xe3zeJBfAFZVtk5GamJJapJCal5yfkpmXbqvkHRzv
-	HG9qZmCoa2hpYa6kkJeYm2qr5OIToOuWmQP0k5JCWWJOKVAoILG4WEnfzqYov7QkVSEjv7jE
-	Vim1ICWnwLRArzgxt7g0L10vL7XEytDAwMgUqDAhO2Pd4SmsBRt5Kua8m8DewHiTs4uRk0NC
-	wETi8LMm5i5GLg4hgR2MEkdnrWWBcD4xStzaepUVpArM6Tsa18XIAdax/0IKRM1ORonH109B
-	NbxnlFjWuIMVpIhXwEPi+a8kkF5hgUSJpQtb2UBsNgF1iSVta9lBbBGBKIn7qw+CbWYWWMMs
-	sfH8ZWaQBIuAqsTn30fAFnMKWEu8md3FCGIzC2hLLFv4GqxGVEBeouHhCTCbV0BQ4uTMJ2BH
-	SAh84JBY8LaZCeI3F4nZixawQNjCEq+Ob2GHsKUkXva3QdnZEkc/7mWDsEskrs9axAphG0vs
-	XzqZCeQZZgFNifW79CFu4JN497WHFRIQvBIdbUIQprzErc5yiEZRiTNPP0IN9JB4e/I7EyR4
-	mlgkpt/8zzaBUX4Wkm9mIflgFsKyBYzMqxjFUguKc9NTiw0LjOFxmpyfu4kRnKq1zHcwTnv7
-	Qe8QIxMH4yFGCQ5mJRHeSTc/pgnxpiRWVqUW5ccXleakFh9iNAWG6URmKdHkfGC2yCuJNzSx
-	NDAxMzI2sTA0M1QS5z1zpSxVSCA9sSQ1OzW1ILUIpo+Jg1Oqgalc01zo8tsS98Osj92UAl0E
-	FaNv6zW+ZdosyBktlcaXUzuZ/9Jbjvs/nGctKClvumimKrHM//4ipzniC2zXdM2dbJ3UZX7O
-	0OWZQe3zybEvp3pzf/ZVNG5h+XLudnXgwxyWGb8d9k2VefTsYAb/dLmF5jYdGvIKGdFTZ6+Q
-	vXjGx9c16uTnrJWTF0+VT14QK/ZEunHCf+WmDrFXGyIvcprMjdLrefVjxg2bMIVnn+dWsy7M
-	nj6Ze3rcssNdjiqrZK0EEmf+k3Blu3XSpSl69QbHTottjM3BX/ROJz+b0udinH1B0mPp+3KT
-	M7aPZiv+17yQHHNkcQl/6YXKO+lR4ld5t7oo8D771b9eYfnFR0osxRmJhlrMRcWJAEa0uZRe
-	BAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrGIsWRmVeSWpSXmKPExsWy7bCSnG7lpy9pBvf/i1mcuL6IyeLBvG1s
-	FiunrmKzmH/kHKvFla/v2Swm3Z/AYvHn33k2i/PnN7BbnG16w26x6fE1VovLu+awWcw4v4/J
-	YuHHrSwWbZ3LWC3+79nBbjH73X52ixmTX7JZbHkzkdVByOPkus1MHnu/LWDx2DnrLrvHplWd
-	bB7zTgZ63O8+zuSxeUm9R9+WVYwem09Xe3zeJBfAFcVlk5Kak1mWWqRvl8CV0XryBVPBCp6K
-	nptbWRsYL3F2MXJwSAiYSOy/kNLFyMUhJLCdUeLV+adsXYycQHFRiY7LjYwQNcIShw8Xg4SF
-	BN4ySsw5XAAS5hXwkHj+KwkkLCyQKLF0YStYJ5uAusSStrXsILaIQLTE+1cLmUDGMwusZZbo
-	3LWMBSTBIqAq8fn3EVYQm1PAWuLN7C5GiBu2Mks8fXWWGSTBLKAp0br9NzuErS2xbOFrsLio
-	gLxEw8MTYDavgKDEyZlPWCYwCs5C0jILScssJGULGJlXMYqmFhTnpucmFxjqFSfmFpfmpesl
-	5+duYgRHpVbQDsZl6//qHWJk4mA8xCjBwawkwjvp5sc0Id6UxMqq1KL8+KLSnNTiQ4zSHCxK
-	4rzKOZ0pQgLpiSWp2ampBalFMFkmDk6pBia3lwdduHpuX/qfFfaGb7fPT4OexWor7Jb57uyq
-	ePjgAvcta/919yJ//eV5l742rjhEKWKpuuRdN6sl768sbt+reY5H0vuyA9+Mhy8fdf4/sCr6
-	RPhVHp1rdpObvA/8ufX2jUDFjFM9k+b6z7cOuXXHewuXG6fJ6jjP+BseRtvufrVTvLR4pUje
-	9agVF3W8rtq7Vxlsa1Sb0Rm2Le7cnZyGdYczrm5KFdgmc/Z33Zrl8579DbpgF7HxdcSv2xWB
-	cR/tVyvUHM6t+bqb3eu3h0BY3al7pZP/R5b1h+zL/XKYe+uO7wcP852tMglLNN7pLv/i9O8f
-	/Nbf+DbbHb+YNFOu2fFHsWnntYDmPecTGbhPK7EUZyQaajEXFScCAGYfEWY5AwAA
-X-CMS-MailID: 20240926053449epcas1p2e8596f64b7ee5d3b8cdf565bacdc6510
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240926053449epcas1p2e8596f64b7ee5d3b8cdf565bacdc6510
-References: <20240919-exynosdrm-decon-v1-0-6c5861c1cb04@disroot.org>
-	<20240919-exynosdrm-decon-v1-6-8c3e3ccffad5@disroot.org>
-	<32ae1188-196d-4fe8-8719-968e5149a771@kernel.org>
-	<7e5caaea80390e8cf87ba0a74d9719f0@disroot.org>
-	<1bc0ad48-03c0-4cf6-afb1-2296d1c259b9@kernel.org>
-	<8e0672ad3fd72f69d2bdb5687e778c86@disroot.org>
-	<ef786b8b-32c0-457a-9e14-ed7bd9f04172@kernel.org>
-	<d8f5999921a31d7723e0aa9b12bb9eaf@disroot.org>
-	<CGME20240926053449epcas1p2e8596f64b7ee5d3b8cdf565bacdc6510@epcas1p2.samsung.com>
 
-On Wed, 2024-09-25 at 20:05 +0000, Kaustabh Chakraborty wrote:
-> On 2024-09-25 19:56, Krzysztof Kozlowski wrote:
-> > On 25/09/2024 21:36, Kaustabh Chakraborty wrote:
-> > > On 2024-09-25 19:25, Krzysztof Kozlowski wrote:
-> > > > On 25/09/2024 20:42, Kaustabh Chakraborty wrote:
-> > > > > On 2024-09-20 12:39, Krzysztof Kozlowski wrote:
-> > > > > > On 19/09/2024 17:20, Kaustabh Chakraborty wrote:
-> > > > > > > Add the compatible string of Exynos7870 to the existing list.
-> > > > > > >=20
-> > > > > > > Signed-off-by: Kaustabh Chakraborty <kauschluss=40disroot.org=
->
-> > > > > >=20
-> > > > > > ... and the DTS is <please provide lore ink in changelog>?
-> > > > >=20
-> > > > > Didn't quite understand. The patch adds the compatible string
-> > > > > for Exynos7870 DECON in documentation. There's no DTS involved
-> > > > > in here, right?
-> > > >=20
-> > > > Provide lore link to the DTS submission.
-> > >=20
-> > > There aren't any DTS submissions *yet* which use the compatible.
-> > > Is that an issue?
-> > >=20
-> >=20
-> > Yeah, users are supposed to be upstream. Not downstream.
->=20
-> I understand that. I had plans to submit it in the future.
-> If that's how it's meant to be done, I'll have to revisit this
-> submission at a later date then.
+A bunch of changes to refine i.MX PCIe driver.
+- Add ref clock gate for i.MX95 PCIe by #1, #2 and #9 patches.
+  The changes of clock part is here [1].
+  [1] https://patchwork.kernel.org/project/linux-arm-kernel/cover/1725525535-22924-1-git-send-email-hongxing.zhu@nxp.com/
+- #3 and #4 patches clean i.MX PCIe driver by removing useless codes.
+  Patch #3 depends on [2].
+  [2] https://patchwork.kernel.org/project/linux-arm-kernel/cover/1723534943-28499-1-git-send-email-hongxing.zhu@nxp.com/
+- Make core reset and enable_ref_clk symmetric for i.MX PCIe driver by
+  #5 and #6 patches.
+- Use dwc common suspend resume method, and enable i.MX8MQ, i.MX8Q and
+  i.MX95 PCIe PM supports by #7 and #8 patches.
 
-Hi, may I ask for reason that you don't submit dts?
-I am asking because I wonder if there is an issue related to DPP.
+v3 changes:
+- Update EP binding refer to comments provided by Krzysztof Kozlowski.
+  Thanks.
 
-https://lore.kernel.org/linux-samsung-soc/2e4d3d180f535e57d9cb98e7bac1d14b5=
-1ffc5d4.camel=40gmail.com/=23t
+v2 changes:
+- Add the reasons why one more clock is added for i.MX95 PCIe in patch #1.
+- Add the "Reviewed-by: Frank Li <Frank.Li@nxp.com>" into patch #2, #4, #5,
+  #6, #8 and #9.
 
-Best regards,
-kwang.
+[PATCH v3 1/9] dt-bindings: imx6q-pcie: Add ref clock for i.MX95 PCIe
+[PATCH v3 2/9] PCI: imx6: Add ref clock for i.MX95 PCIe
+[PATCH v3 3/9] PCI: imx6: Fetch dbi2 and iATU base addesses from DT
+[PATCH v3 4/9] PCI: imx6: Correct controller_id generation logic for
+[PATCH v3 5/9] PCI: imx6: Make core reset assertion deassertion
+[PATCH v3 6/9] PCI: imx6: Make *_enable_ref_clk() function symmetric
+[PATCH v3 7/9] PCI: imx6: Use dwc common suspend resume method
+[PATCH v3 8/9] PCI: imx6: Add i.MX8MQ i.MX8Q and i.MX95 PCIe PM
+[PATCH v3 9/9] arm64: dts: imx95: Add ref clock for i.MX95 PCIe
 
->=20
-> >=20
-> > Best regards,
-> > Krzysztof
+Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml |   4 +-
+Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml     |   1 +
+Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml        |  25 ++++++++++--
+arch/arm64/boot/dts/freescale/imx95.dtsi                         |  25 ++++++++++--
+drivers/pci/controller/dwc/pci-imx6.c                            | 166 +++++++++++++++++++++++++++-------------------------------------------------
+5 files changed, 104 insertions(+), 117 deletions(-)
 
 
