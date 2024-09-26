@@ -1,136 +1,129 @@
-Return-Path: <devicetree+bounces-105598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAD459872EA
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 13:37:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 631A798732F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 14:01:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B9A0283631
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 11:37:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E23BB1F24D9A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 12:01:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C485F14C59B;
-	Thu, 26 Sep 2024 11:37:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="0lMH6yYG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 757BC175D50;
+	Thu, 26 Sep 2024 12:01:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C69B347B4;
-	Thu, 26 Sep 2024 11:37:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66B80171088;
+	Thu, 26 Sep 2024 12:00:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727350634; cv=none; b=BeNiV2pmr2ekI711YCtJFNwHK452l8roje4qkaeUBpvZJdyhzHTSJF8ffhkGdy6vnSs2lFQNNrUFwMVeNDkwTsZUDNT2b+v54UiUFNAqrHy/FHL3kG+BpZ25ikZIs1WIy20lB9EcR9y9Fe5Kqrw0dd+RlZP4WTPDNr9vvAGYxDA=
+	t=1727352061; cv=none; b=GCN6B7GuARLy8s2Lq/vhglWeJMgaD0kGuaclcUITeHtG/fjXVLR93bMt1hLZpn1u7QPuq6jT6IPQANu5AJGpMkSBSEjqxMt4lUr53PFkJihZu5Z79k0I5gGfMfxhTO5kRa3Hq1MZVwDJ7Bve87IN2TCmDKfVXHUkxJvnfFVdAMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727350634; c=relaxed/simple;
-	bh=27So1y0Tw3n5pcBmG73qYguDZqInIea/FrfW7bNIYYQ=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=spm7cnYsrXV8B3bojxoEyTBlt7A6FB+vG3F0zlotvOFtPdfNByuEp871531ThqBc5aYiZacfnfNRvfEHo9zzpznNAhfvfEA6kT9IpCT8uXDiNKBBDe7lPoTlP92lnwUrReQLVLPlHlYJyWvSJjF7H8IT1vIWzUoRKnLOyL2O2g0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=0lMH6yYG; arc=none smtp.client-ip=188.40.30.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=Content-Type:MIME-Version:Message-ID:Date:References:
-	In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=27So1y0Tw3n5pcBmG73qYguDZqInIea/FrfW7bNIYYQ=; b=0lMH6yYGufwT291GnfQL9ss0KO
-	Ko9M/L3VppDmvWSJOCi6U0wb0t/4WtNModopiUMIuylJdZZsuI+5Bz5P08MqU9ik4s8L3sEf0ql5B
-	PymFOYnc+XoVRI3s7KvGaEvItySpmBkHSjA62c/O7TIVRBrmOdwQL/gUKcbqUW5vYlxopfhH8vwvn
-	SEsAloNZWjj8HIsNV0fCwcTIbFLHVPDxjbFND8HdsSjUh73d0bbvAiP3aY+wH8zaJck4HN9vDv+fE
-	UdamI+O2YqEoyB12DV2+e0M5hrdQiseBSLdjVcjlYdTc2+T6LefCwMUhIy36PGowOidog3nNADZpC
-	5cddSqyg==;
-Received: from sslproxy01.your-server.de ([78.46.139.224])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <esben@geanix.com>)
-	id 1stmnz-000AQH-NR; Thu, 26 Sep 2024 13:37:07 +0200
-Received: from [185.17.218.86] (helo=localhost)
-	by sslproxy01.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <esben@geanix.com>)
-	id 1stmnz-0005VT-1r;
-	Thu, 26 Sep 2024 13:37:06 +0200
-From: Esben Haabendal <esben@geanix.com>
-To: Erez <erezgeva2@gmail.com>
-Cc: Michael Walle <mwalle@kernel.org>,  Tudor Ambarus
- <tudor.ambarus@linaro.org>,  Erez Geva <erezgeva@nwtime.org>,
-  linux-mtd@lists.infradead.org,  Pratyush Yadav <pratyush@kernel.org>,
-  linux-kernel@vger.kernel.org,  Miquel Raynal <miquel.raynal@bootlin.com>,
-  Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
- <vigneshr@ti.com>,  devicetree@vger.kernel.org,  Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
- Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v5 1/5] mtd: spi-nor: core: add manufacturer flags
-In-Reply-To: <CANeKEMMcZ+Y-f8Kty_4Nk-kRu+F7ZXBbxpAG1Bd_P1vcju1mUA@mail.gmail.com>
-	(Erez's message of "Thu, 26 Sep 2024 13:08:59 +0200")
-References: <20240920181231.20542-1-erezgeva@nwtime.org>
-	<20240920181231.20542-2-erezgeva@nwtime.org>
-	<4e0cf43c-4843-451c-ac6f-86775dbccb2b@linaro.org>
-	<CANeKEMOmhAPM1j1_ihzcC2wL6jKsWXPCGfZs+euS8mRvtqgE5A@mail.gmail.com>
-	<D4DLQGLJSKPB.3OOW4RU9Q3K5O@kernel.org>
-	<CANeKEMPSoUu7GW5bL8nuyC5xCKG7Tt0=SvWTL_CcX5oebqN_YA@mail.gmail.com>
-	<D4DSTDA3HE2B.20ACE70SQAL7A@kernel.org>
-	<CANeKEMO1nyzEKGCt8N8_UCmAcQ3L53=H8U07AdJzcnFaVuwjGQ@mail.gmail.com>
-	<87y13ehn6y.fsf@geanix.com>
-	<CANeKEMMcZ+Y-f8Kty_4Nk-kRu+F7ZXBbxpAG1Bd_P1vcju1mUA@mail.gmail.com>
-Date: Thu, 26 Sep 2024 13:37:06 +0200
-Message-ID: <8734lmhcil.fsf@geanix.com>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	s=arc-20240116; t=1727352061; c=relaxed/simple;
+	bh=M5LwKX11UABhQ3WV980BbjVHWSTbksqC8/3yZSqi9Nw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QOqy0X0jWPrm8h7r8ad0HuP9hKlAKUHrfLaHBPqGc6qotZShcwSDyqHBcnqjbB5KOeOMHvynY5F48GBMxaIClhTqQQetGQ78YElAwjbIsUf21HPwYtXTMu1eJ2svpJ1mM1v6aelob0+RRt4VN1XcjPDsrYC4eTmsv4sxf++heLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e25ccd64be9so663492276.2;
+        Thu, 26 Sep 2024 05:00:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727352058; x=1727956858;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NztW3rzneZk6pB0l9kjPf8VFMhKuqsOv7WNRQfvXinI=;
+        b=Ju7360xPljCe7AWpYw12hFTAjCeJFtgitSm1y7MGPrQC9CSRG7HoGx8D6opEMk2RMP
+         dLwFxQWofnqyCH1n8VyLy/Eq4cch+2qGhZcobdIDLt1RNRW6KugeJH1DuUv0s9yKyTR+
+         Jqq0MmGuew1djRtVUQcu17S54vhZ33lm3+1DNgOjVpT4auczzznqxfZ0XIOTET+mi1Op
+         ilWbB6hfxe7My+CuY7auYfpoUQIWJkhJvYfRyk2fwRzMtLLbhsxM0GIhmtDyxEB7MNU/
+         gGJvD+v87k8Yyn5N0bvRVn44LYt4RBuE61bnVi8gn4mqYczUr8ujLK9QFrrEMfJILFmW
+         F6KA==
+X-Forwarded-Encrypted: i=1; AJvYcCU6OZnhRKbeUJI6x5Y4X0/EbGVOA6QRelWfzHIulgc7JDL+1l0b/EKpScr5YT7DC/xdSdbzW6iPYj3orXk=@vger.kernel.org, AJvYcCXsAgY1TAHW5V7PoBXg4JZ2ipKktoTCyhGPaheW5wdXt43CF20bTE/jXMWZBOtOJ3uzPHLmD/ioMzPK@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNprp/iNyF+xKyka5Fs3EMrEyHMfDgZTGM1qq1Gi0HXAhGkYX1
+	+uo69WlFIyOFcshJe54MCYOcI6wh961Hdny7czmaN7Mj1xhaujoMJD5hfex5
+X-Google-Smtp-Source: AGHT+IFR+B/BOn1qiOPrgzrl3IA93QhDJe3nBQZ2M2BqPfFWynpRUQALgc3JuJ6F33KuY2Rsl79j7A==
+X-Received: by 2002:a05:6902:218a:b0:e1d:eaf:8681 with SMTP id 3f1490d57ef6-e24d97ffc23mr4321751276.40.1727352057751;
+        Thu, 26 Sep 2024 05:00:57 -0700 (PDT)
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e2499c7bc4dsm931883276.64.2024.09.26.05.00.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Sep 2024 05:00:57 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6e22f10cc11so7889437b3.1;
+        Thu, 26 Sep 2024 05:00:57 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUSomSbiDlyLGfJGmHPE5ZzlC20TgKKs7JWzHprf1N0a4dM01yx8y2SXhQgOjP1AHiIuvbC9FhjIUMl@vger.kernel.org, AJvYcCUtik6aJudRYgAobmGmDWlJzL13BAnzIku7sqIIQVMISmd0JhXzTi4cTCBolZa3zlGJSoDh/Uqx6cCy+7Y=@vger.kernel.org
+X-Received: by 2002:a05:690c:4a90:b0:6db:e2a3:4158 with SMTP id
+ 00721157ae682-6e21db97daamr33690887b3.46.1727352056856; Thu, 26 Sep 2024
+ 05:00:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Authenticated-Sender: esben@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27410/Thu Sep 26 11:30:46 2024)
+References: <20240926113241.24060-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20240926113241.24060-2-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 26 Sep 2024 14:00:43 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUwhfqsntn+5JuTjU=FyE4odZ--yJTMtpD8ST9DXqJ=Rw@mail.gmail.com>
+Message-ID: <CAMuHMdUwhfqsntn+5JuTjU=FyE4odZ--yJTMtpD8ST9DXqJ=Rw@mail.gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: renesas,rsnd: correct reg-names for
+ R-Car Gen1
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Erez <erezgeva2@gmail.com> writes:
+Hi Wolfram,
 
-> On Thu, 26 Sept 2024 at 09:46, Esben Haabendal <esben@geanix.com> wrote:
->>
->> Erez <erezgeva2@gmail.com> writes:
->>
->> > On Mon, 23 Sept 2024 at 18:19, Michael Walle <mwalle@kernel.org> wrote:
->> >>
->> >> > > > I would gladly remove the obsolete mx25l12805d.
->> >> > > Why? I don't see any need for that.
->> >> > Maybe because we do not want compatibility table?
->> >>
->> >> I don't get this? Anyway, we do not remove support for older
->> >> flashes for no reason.
->> >
->> > I did not insist, you asked.
->> > Macronix stopped selling these chips 15 year ago.
->> > How long do you want to support old chips?
->>
->> It is not unusual for embedded products to have a support span of more
->> than 20 years. And chips such as these flashes might not be entirely new
->> when the product is introduced. So dropping support for SPI-NOR flashes
->> that are newer than 25-30 years is definitely a risk. Somebody out there
->> might not be able to upgrade to latest kernel versions anymore, which is
->> not a position we should put anyone in. With the increasing pressure to
->> upgrade product for better security, we definitely should not make it
->> more difficult to run newer kernel versions than absolutely necessary.
+On Thu, Sep 26, 2024 at 1:32=E2=80=AFPM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> The device at 0xffd90000 is named SRU, both in the datasheet and SoC
+> DTSI. Fix the typo in the bindings to avoid the false positive report:
 >
-> I do not insist. Nor send any patch in this direction.
-
-I did not say or imply that you did any such thing.
-
-You asked an open question, and I gave my response. Nothing more,
-nothing less.
-
-> Each project can define the extent of backward compatibility.
-> In terms of compilers, linkers and tools, i.e. build environment.
-> In terms of standards like the C standard we use.
-> In terms of network protocols.
-> And also what Hardware do we support.
+>   sound@ffd90000: reg-names:0: 'sru' is not one of ['scu', 'ssi', 'adg']
 >
-> There is no harm in asking where the boundaries are.
-> All projects move their boundaries all the time.
-> The Linux kernel is no exception.
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+
+Thanks for your patch!
+
+> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> @@ -302,7 +302,7 @@ allOf:
+>          reg-names:
+>            items:
+>              enum:
+> -              - scu
+> +              - sru
+>                - ssi
+>                - adg
+>    # for Gen2/Gen3
+
+Nice catch!
+Fortunately the driver uses only the "ssi" and "adg" register blocks.
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
