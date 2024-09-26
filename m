@@ -1,182 +1,113 @@
-Return-Path: <devicetree+bounces-105521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3E79986F21
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 10:44:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DCB3986F3B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 10:48:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22DDE1C21D16
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 08:44:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AED75B2105C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 08:48:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2D4B1A76C9;
-	Thu, 26 Sep 2024 08:44:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CC4D192B65;
+	Thu, 26 Sep 2024 08:48:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ADgHN8gD"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="s1kD5Zj9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C453A1A76AA
-	for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 08:44:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BC0B22318;
+	Thu, 26 Sep 2024 08:48:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727340247; cv=none; b=uagQcL1N3n50tjPz9flDNIXCXk9JFh53/CN7mvB6V/Svx9IsHG3aeIVdcurQcn04dztp1UjXZiXVSgowmPtjanr7M1sfWLcqNq8Pjq/5qYHZJ9cNKByRj1w2ckosz/CB7S/e+TxC4j/wSPSdAvmTE+HDs6xIk+d5X0n0vefHKgI=
+	t=1727340491; cv=none; b=ZWWLmo21krWZktHJVu9de9ZqMD+trpeY95vrtJiQJ5d/ANAj4Wxu/5pg2MH4PwgfF1exhNMOrH7er6EAhJaojuoSW+pkumPMOHnCGITJxfsJX76DYQ8/AlrwEpm1nwSsNlYUKHg5SY32+wPtX/BXIiPfYfad5FWjgSuD9DoA/rQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727340247; c=relaxed/simple;
-	bh=YT336u0TzzzyADlaibqjLJo1Q1OzJN93THARgvbawtE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GAuG0J6eVPRRclxUthOLtBgTc9qCtiFdDEMXutLr4rDCaSmeGs1flTk614cOWlgr793YhI0O5d6dfuHhotM1/tHGW3+isCqxHtvMrjurrUqalU0zq005prb+RWVgjWK3nVq1yafsu4XK0/A3kLIymD3ulIWEcO5sLzPphGgKEsk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ADgHN8gD; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5365aa568ceso840881e87.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 01:44:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1727340244; x=1727945044; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gznSMtiYcyR3w+ziWE7zvvdEk/47hMv313+7HUPIjik=;
-        b=ADgHN8gDwTv/XhcSMPLEVtRlJyFz0orDBleKqssoksS7aiBT1UQgH5QpI5ry07rv8P
-         ZeuTCcxXMeXneP4kOf3iR5PNxN0GYvgXGVRAAMUlVcoQpYYau6voQZT9de6MQu5iNrnW
-         br7Kaiptrt4+9rxVeNTL70XK2/mhlQDb1pr/c=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727340244; x=1727945044;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gznSMtiYcyR3w+ziWE7zvvdEk/47hMv313+7HUPIjik=;
-        b=OiMm+XPjkWKl8ol42wTg0tYD0QTpUeHX4Z4mOGZ5g9Yr1Tssw4q91TGKZLdKLjPZrG
-         /E+K4rLIcNazgGY7Pf361mIVC3hA5IFHn8ZeqH+Mk3NfdM3w+jE8Ya3U0T3QHUY6J7xj
-         I53E+leS23U8DevKRdddY0IBkYXUKCCd3BK+AeXiRQp1S1ZJ8pqfKnbpAES8W3glrEbH
-         g8Dy/5vpps8RGwmamjKT0/xxkYlCzh8ZbHeFYrcmeBSf+YgrDwXTMusWp/eHITqRzIsV
-         UUD8YXKOI6dgBzt0BvFxIY04iQMfnry0O+nSPpNiWXBi5V9kBioUzL6GYrmpO3QNWoVY
-         Afdg==
-X-Forwarded-Encrypted: i=1; AJvYcCXStrYsOcHOgX+G/1byjDIMYZ8Do2sS9BUaeIQws4iSqctIeveXncXNMfR2azAQ/Ut3AId0sz6S9aSu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9aMJLxctVUHEHBfJUJ9ZsKe0HrDhTbOo+DkXlqcoJYJzqDo6D
-	fCeq0OL+cSoCxSm0nwGuMhYTAbq/DZo+y802SvQNzjz19LmlA1BEIbR6a82VADGFr1SjM1gswVN
-	SdVOSrKEfzRUrqdmsCrtd0pVdJxtM9k8DA3Ww
-X-Google-Smtp-Source: AGHT+IHaqH2XD1kwP3As68zb4RqTHQB3YnbJsTJoL46ahD760ygreD1XSQDeJe/F8UpUYLGLJ5vsf+1cWC0dd7Zm+uM=
-X-Received: by 2002:a05:6512:1310:b0:533:483f:9562 with SMTP id
- 2adb3069b0e04-5387755ce6dmr5254176e87.42.1727340243659; Thu, 26 Sep 2024
- 01:44:03 -0700 (PDT)
+	s=arc-20240116; t=1727340491; c=relaxed/simple;
+	bh=IlvTv+4FiylnLOkPfoXKqabv+lAAaCMaWT2hbw/wMf0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Saj2BpXBeYzFn/7n+lXSLgdw2+I6sMY1VUyWrf4HcvLupR3f+Dqqryt4278xFxfsIGF8/PEygm7I75Ptjp1e0JueaRZWLwNshA+NGYzctpMvypBbJsfDLOiJjWrmQKqYYuiU0ltHrLxXYsw6zR8+4CjZTq9s1dGr+0lTgVKCN+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=s1kD5Zj9; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=r7Psuo5wLjW5qDjj4cW4p0k9wjcIcrFjFZh9XT4IWKc=; b=s1kD5Zj9ZV+D6q3RCSz0reepXW
+	AAjinTmt/yMIiUfKOvfGGDWWz8aP5rjx6emWa1xsQWx5prhKCvTsDYuyqLcTOj70uQq2OeWRM1kS4
+	apv1TFrDlp3jnEM+9XBQkFqqQUKBl1tiN5N0eK4drmVtEuXPnJQi+n36PltVfz7kZ/KImQISzEzyC
+	I2DwxfkbgV6mmqs1RQxskhphC/mLGYRPX9tUy1Qrs7yJ1i6PTfiza42h35drXL2oUJSYY1ZfQOEdR
+	FORCpayp5FBT1lYBHsBU44I6JcQB0mZ94iIuYACLFiNqibHOuhB2wPBNV519nMGp2jRkkR3mYmUOe
+	zFYpBgmA==;
+Received: from 85-160-70-253.reb.o2.cz ([85.160.70.253] helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1stkAO-0001nb-Hi; Thu, 26 Sep 2024 10:48:04 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, stable@vger.kernel.org
+Subject:
+ Re: [PATCH] arm64: dts: rockchip: Move L3 cache under CPUs in RK356x SoC dtsi
+Date: Thu, 26 Sep 2024 10:48:03 +0200
+Message-ID: <2007608.CrzyxZ31qj@phil>
+In-Reply-To: <57d360d73054d1bad8566e3fe0ee1921@manjaro.org>
+References:
+ <da07c30302cdb032dbda434438f89692a6cb0a2d.1727336728.git.dsimic@manjaro.org>
+ <3938446.fW5hKsROvD@phil> <57d360d73054d1bad8566e3fe0ee1921@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240925093807.1026949-1-wenst@chromium.org> <20240925093807.1026949-3-wenst@chromium.org>
- <ZvPscRdWlFPmtCyR@smile.fi.intel.com>
-In-Reply-To: <ZvPscRdWlFPmtCyR@smile.fi.intel.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Thu, 26 Sep 2024 16:43:52 +0800
-Message-ID: <CAGXv+5Gf9+rc+vLcr-JFhO561G8dw38ksV3drat+DyCfWEVakQ@mail.gmail.com>
-Subject: Re: [PATCH v8 2/3] regulator: Add devres version of of_regulator_get_optional()
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Mark Brown <broonie@kernel.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Douglas Anderson <dianders@chromium.org>, 
-	Johan Hovold <johan@kernel.org>, Pablo Sun <pablo.sun@mediatek.com>, 
-	Macpaul Lin <macpaul.lin@mediatek.com>, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Wed, Sep 25, 2024 at 6:56=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Wed, Sep 25, 2024 at 05:38:05PM +0800, Chen-Yu Tsai wrote:
-> > There are existing uses for a devres version of of_regulator_get_option=
-al()
-> > in power domain drivers. On MediaTek platforms, power domains may have
-> > regulator supplies tied to them. The driver currently tries to use
-> > devm_regulator_get() to not have to manage the lifecycle, but ends up
-> > doing it in a very hacky way by replacing the device node of the power
-> > domain controller device to the device node of the power domain that is
-> > currently being registered, getting the supply, and reverting the devic=
-e
-> > node.
-> >
-> > Provide a better API so that the hack can be replaced.
->
-> ...
->
-> > +#if IS_ENABLED(CONFIG_OF)
->
-> Do we really need this?
+Am Donnerstag, 26. September 2024, 10:32:17 CEST schrieb Dragan Simic:
+> Hello Heiko,
+> 
+> On 2024-09-26 10:24, Heiko Stuebner wrote:
+> > Am Donnerstag, 26. September 2024, 09:49:18 CEST schrieb Dragan Simic:
+> >> Move the "l3_cache" node under the "cpus" node in the dtsi file for 
+> >> Rockchip
+> >> RK356x SoCs.  There's no need for this cache node to be at the higher 
+> >> level.
+> >> 
+> >> Fixes: 8612169a05c5 ("arm64: dts: rockchip: Add cache information to 
+> >> the SoC dtsi for RK356x")
+> >> Cc: stable@vger.kernel.org
+> > 
+> > I think the commit message needs a bit more rationale on why this is a
+> > stable-worthy fix. Because from the move and commit message it reads
+> > like a styling choice ;-) .
+> > 
+> > I do agree that it makes more sense as child of cpus, but the commit
+> > message should also elaborate on why that would matter for stable.
+> 
+> Thanks for your feedback!  Perhaps it would be the best to simply drop 
+> the
+> submission to stable kernels...  Believe it or not, :) I spent a fair 
+> amount
+> of time deliberating over the submission to stable, but now I think it's
+> simply better to omit that and not increase the amount of patches that 
+> go
+> into stable unnecessary.
+> 
+> Would you like me to send the v2 with no Cc to stable, or would you 
+> prefer
+> to drop that line yourself?
 
-What's the point of going through devres_* stuff if we already know
-_of_regulator_get() is going to fail anyway?
+I'm hopeful that I'll remember to drop it :-), so I guess no need
+to resend for that.
 
-Also, _of_regulator_get() does not have a stub version for !CONFIG_OF.
-
-> > +static struct regulator *_devm_of_regulator_get(struct device *dev, st=
-ruct device_node *node,
-> > +                                             const char *id, int get_t=
-ype)
-> > +{
-> > +     struct regulator **ptr, *regulator;
-> > +
-> > +     ptr =3D devres_alloc(devm_regulator_release, sizeof(*ptr), GFP_KE=
-RNEL);
-> > +     if (!ptr)
-> > +             return ERR_PTR(-ENOMEM);
-> > +
-> > +     regulator =3D _of_regulator_get(dev, node, id, get_type);
-> > +     if (!IS_ERR(regulator)) {
-> > +             *ptr =3D regulator;
-> > +             devres_add(dev, ptr);
-> > +     } else {
-> > +             devres_free(ptr);
-> > +     }
-> > +
-> > +     return regulator;
->
-> Why not using devm_add_action() / devm_add_action_or_reset()
-> (whichever suits better here)?
-
-Cargo cult from _devm_regulator_get() in this file. However since this is
-meant to share the same release function, both functions need to use the
-same mechanism.
-
-I could also argue that this is not an action, but an allocation, and so
-devres_alloc() seems to make more sense.
+Heiko
 
 
-ChenYu
-
-> > +}
->
-> > +#endif
->
-> ...
->
-> > +static inline struct regulator *__must_check devm_of_regulator_get_opt=
-ional(struct device *dev,
-> > +                                                                      =
-   struct device_node *node,
-> > +                                                                      =
-   const char *id)
->
-> I don't know the conventions here, but I find better to have it as
->
-> static inline __must_check struct regulator *
-> devm_of_regulator_get_optional(struct device *dev, struct device_node *no=
-de, const char *id)
->
-> Similar to other stubs and declarations.
-
-I don't think there are any conventions. This file already has three types:
-
-1. Wrap the line with the function name on the second line
-2. Wrap the arguments; wrapped arguments aligned to the left parenthesis.
-3. Wrap the arguments; wrapped arguments aligned with aribtrary number of
-   tabs.
-
-I prefer the way I have put them.
 
