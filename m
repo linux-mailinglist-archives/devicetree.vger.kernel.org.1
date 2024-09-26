@@ -1,632 +1,251 @@
-Return-Path: <devicetree+bounces-105679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7694F9876F8
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 17:52:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 359E29876FE
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 17:53:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 018BBB28E7C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 15:52:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 887DDB2908C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 15:53:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EBF015B548;
-	Thu, 26 Sep 2024 15:52:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E76F157490;
+	Thu, 26 Sep 2024 15:53:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="S5AbWTfl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from chessie.everett.org (chessie.fmt1.pfcs.com [66.220.13.234])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0038315B0EB;
-	Thu, 26 Sep 2024 15:52:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=66.220.13.234
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727365931; cv=none; b=ZICoWXhPWtrWBfIqDCqpdII5/ELH60fHx5MnHjGRuXZUc2rY2hdY5o3UUrv+M7mjX4fQP7IBShSYSlhWLbZmj/WcRlkfQ+cQ4qbV/hD9micVRHLAffVx8loFvMqRSUpRnS9unQJji3WfYjdBarQQU6+zOx4+MvN2fXrX+O5zN7k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727365931; c=relaxed/simple;
-	bh=BClKuSrVJ/0jBjhwm01n2LfswUZWSekAFNWx/+cezTI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=AxUGhztamHOoGo5hriw8pDnm6bOMADRpVnzjTShJqTYSqxFNXJOaVT2t4jN6Pu+l5ztK7MbJns7dEN8itJNak7pdA2vW8e2AbbeQVYk0KL4ISf7qzyLRcJycRkp2lEk4uCeXXVdOGl8oIajD78mD3KEsGGeoeePxUiHYvK2AZaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nwtime.org; spf=pass smtp.mailfrom=nwtime.org; arc=none smtp.client-ip=66.220.13.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nwtime.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nwtime.org
-Received: from localhost.localdomain (ip-77-25-16-238.web.vodafone.de [77.25.16.238])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by chessie.everett.org (Postfix) with ESMTPSA id 4XDylJ03KGzMRC4;
-	Thu, 26 Sep 2024 15:51:55 +0000 (UTC)
-From: Erez Geva <erezgeva@nwtime.org>
-To: linux-mtd@lists.infradead.org,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Pratyush Yadav <pratyush@kernel.org>,
-	Michael Walle <mwalle@kernel.org>
-Cc: linux-kernel@vger.kernel.org,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	devicetree@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CCAB14D71D;
+	Thu, 26 Sep 2024 15:53:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727366006; cv=none; b=lUOTCK0JKhdk1KEfQq8IhIAEQzdLgIZN1YGeIvQpAdxrjiQ4rtAL0Xk2T9KsJUllxvXXktHlcL4YUEein6Nc8goP4RbUsw3MZyUu5OASOA/eqyr+1EJ4ECpqecikuVQfu5NhPG9kde1vnfkm5yWfKD/rZNQwjt8pz1Y9l+5WNq4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727366006; c=relaxed/simple;
+	bh=HdUlhmJM33BN01qsO0SdP+QNOHFS0k9N4WEEYcDOsfc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gx/vKqfiUVhB9ah1QS1WnJG7cU0O2ON+w8dUoAiNTyfrbr1W6N54hx5RTJpCfxzQeNlXXaMxjV3UVKvWAEUl28D2QawUdiPuYhaltJFvpIPyqNRsWUijhwlXPj4aESn7MryZ7M8eCv5HejeQ9BcOypnSIeJok0fLFxKFdzUcivE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=S5AbWTfl; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1727366005; x=1758902005;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=HdUlhmJM33BN01qsO0SdP+QNOHFS0k9N4WEEYcDOsfc=;
+  b=S5AbWTfleFHS4fS9xb+U5kJYrVYAC3bOTzN40Cnk6Pih+bFYzIcJoqjk
+   NGfTTObM1V3KZshGjoUM+Zo2IuVxQMLUWSaQeOk54jJ/MU5FeO6+S6vXz
+   oF9yFTvrdacXTf/i6Vk7dORMCiIDVcAJkwU2Qllip4i3TZ27weObXW8L3
+   vE+mR0D8DqzD4MNBq3zY1DClZbUhQMDLcNDUMY0reIHYQjPNfxpb+PtjP
+   DyeDqyY7dIUt80m1hA/2zx5zRF+Rp0m16EfjcPhoDJsahIzS4ihup2Ikt
+   MrCZdR0BqeCnEhgM5/WsrNWubqK5w2JZQvsFtD5qKWD34xQXpJt3fwbbn
+   A==;
+X-CSE-ConnectionGUID: NQeTUwkDSKOHMDLxqm86bw==
+X-CSE-MsgGUID: WWFLR++3T1amEfPuzTwXIA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="30357813"
+X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; 
+   d="scan'208";a="30357813"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Sep 2024 08:53:25 -0700
+X-CSE-ConnectionGUID: L4CB1lYXRECOnuy6xzgwsg==
+X-CSE-MsgGUID: oJnWVjW4T0iLFckNXC60Dw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; 
+   d="scan'208";a="76291050"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Sep 2024 08:53:22 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id D47C411F843;
+	Thu, 26 Sep 2024 18:53:19 +0300 (EEST)
+Date: Thu, 26 Sep 2024 15:53:19 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Jason Chen <jason.z.chen@intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Sergey Senozhatsky <senozhatsky@chromium.org>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Esben Haabendal <esben@geanix.com>,
-	Erez Geva <ErezGeva2@gmail.com>
-Subject: [PATCH v6 3/3] mtd: spi-nor: macronix: add support for OTP
-Date: Thu, 26 Sep 2024 17:51:27 +0200
-Message-Id: <20240926155127.2450246-4-erezgeva@nwtime.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20240926155127.2450246-1-erezgeva@nwtime.org>
-References: <20240926155127.2450246-1-erezgeva@nwtime.org>
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/4] media: dt-bindings: Add OmniVision OV08X40
+Message-ID: <ZvWDbxzm2cCgC8tP@kekkonen.localdomain>
+References: <20240926-b4-master-24-11-25-ov08x40-v1-0-e4d5fbd3b58a@linaro.org>
+ <20240926-b4-master-24-11-25-ov08x40-v1-2-e4d5fbd3b58a@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240926-b4-master-24-11-25-ov08x40-v1-2-e4d5fbd3b58a@linaro.org>
 
-From: Erez Geva <ErezGeva2@gmail.com>
+Hi Bryan,
 
-Macronix SPI-NOR support OTP.
-Add callbacks to read, write and lock the OTP.
+Thanks for the set.
 
-Notice Macronix OTP do not support erase.
-Every bit written with '0', can not be changed further.
+On Thu, Sep 26, 2024 at 04:46:38PM +0100, Bryan O'Donoghue wrote:
+> Add bindings for the already upstream OV08X40 to enable usage of this
+> sensor on dts based systems.
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  .../bindings/media/i2c/ovti,ov08x40.yaml           | 130 +++++++++++++++++++++
+>  1 file changed, 130 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov08x40.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov08x40.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..250785f062d0146e8615d8f3e7700aebbd40b1dc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov08x40.yaml
+> @@ -0,0 +1,130 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (c) 2024 Linaro Ltd.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov08x40.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Omnivision OV08X40 CMOS Sensor
+> +
+> +maintainers:
+> +  - Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> +
+> +description: |-
+> +  The Omnivision OV08X40 is a 9.2 megapixel, CMOS image sensor which supports.
+> +  - Automatic black level calibration (ABLC)
+> +  - Programmable controls for frame rate, mirror and flip, binning, cropping
+> +    and windowing
+> +  - Output formats 10-bit 4C RGB RAW, 10-bit Bayer RAW
+> +  - 4-lane MIPI D-PHY TX @ 1 Gbps per lane
+> +  - 2-lane MPIP D-PHY TX @ 2 Gbps per lane
+> +  - Dynamic defect pixel cancellation
+> +  - Standard SCCB command interface
+> +
+> +properties:
+> +  compatible:
+> +    const: ovti,ov08x40
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    description:
+> +      Input clock for the sensor.
+> +    items:
+> +      - const: xvclk
 
-Notice Macronix OTP do not support single region lock!
-The locking includes all regions at once!
+This seems redundant.
 
-Signed-off-by: Erez Geva <ErezGeva2@gmail.com>
----
+> +
+> +  clock-frequency:
+> +    description:
+> +      Frequency of the xvclk clock in Hertz.
 
-Notes:
-    * My initial Macronix OTP code was tested with MX25l12833F.
-    * As I no longer have that hardware.
-    
-    * I now testing with MX25L3233F connected to my BeagleBone Black
-    *  through an 8-PIN SOP (200mil).
-    * The BeagleBone Black runs with Debian GNU/Linux 12.
-    * And use Kernel 6.6.32-ti-arm32-r5 build with
-    *  arm-linux-gnueabihf-gcc gcc version 12.2.0 (Debian 12.2.0-14).
-    
-    * With current kernel, the driver do not read the SFDP of MX25L3233F.
-    * The patch to read the SFDP is NOT part of this patch seria
-    
-    $ cat /sys/bus/spi/devices/spi0.0/spi-nor/jedec_id
-    c22016
-    $ cat /sys/bus/spi/devices/spi0.0/spi-nor/manufacturer
-    macronix
-    $ cat /sys/bus/spi/devices/spi0.0/spi-nor/partname
-    mx25l3205d
-    $ xxd -p /sys/bus/spi/devices/spi0.0/spi-nor/sfdp
-    53464450000101ff00000109300000ffc2000104600000ffffffffffffff
-    ffffffffffffffffffffffffffffffffffffe520f1ffffffff0144eb086b
-    083b04bbeeffffffffff00ffffff00ff0c200f5210d800ffffffffffffff
-    ffffffffffff003650269ef97764fecfffffffffffff
-    $ sha256sum /sys/bus/spi/devices/spi0.0/spi-nor/sfdp
-    22d5d34af77c3628300056a0fc4bfbeafa027f544998852cf27f7cebf7881196  /sys/bus/spi/devices/spi0.0/spi-nor/sfdp
-    
-    $ cat /sys/kernel/debug/spi-nor/spi0.0/capabilities
-    Supported read modes by the flash
-     1S-1S-1S
-      opcode        0x03
-      mode cycles   0
-      dummy cycles  0
-     1S-1S-2S
-      opcode        0x3b
-      mode cycles   0
-      dummy cycles  8
-     1S-2S-2S
-      opcode        0xbb
-      mode cycles   0
-      dummy cycles  4
-     1S-1S-4S
-      opcode        0x6b
-      mode cycles   0
-      dummy cycles  8
-     1S-4S-4S
-      opcode        0xeb
-      mode cycles   2
-      dummy cycles  4
-    
-    Supported page program modes by the flash
-     1S-1S-1S
-      opcode        0x02
-    
-    $ cat /sys/kernel/debug/spi-nor/spi0.0/params
-    name            mx25l3205d
-    id              c2 20 16 c2 20 16
-    size            4.00 MiB
-    write size      1
-    page size       256
-    address nbytes  3
-    flags           HAS_16BIT_SR
-    
-    opcodes
-     read           0x03
-      dummy cycles  0
-     erase          0x20
-     program        0x02
-     8D extension   none
-    
-    protocols
-     read           1S-1S-1S
-     write          1S-1S-1S
-     register       1S-1S-1S
-    
-    erase commands
-     20 (4.00 KiB) [1]
-     52 (32.0 KiB) [2]
-     d8 (64.0 KiB) [3]
-     c7 (4.00 MiB)
-    
-    sector map
-     region (in hex)   | erase mask | flags
-     ------------------+------------+----------
-     00000000-003fffff |     [ 123] |
-    
-    # mtd_debug info /dev/mtd0
-    mtd.type = MTD_NORFLASH
-    mtd.flags = MTD_CAP_NORFLASH
-    mtd.size = 4194304 (4M)
-    mtd.erasesize = 4096 (4K)
-    mtd.writesize = 1
-    mtd.oobsize = 0
-    regions = 0
-    
-    * The BeagleBone Black SPI is very slow, Tests are slow.
-    
-    # dd if=/dev/urandom of=./spi_test bs=1M count=2
-    2+0 records in
-    2+0 records out
-    2097152 bytes (2.1 MB, 2.0 MiB) copied, 0.0682607 s, 30.7 MB/s
-    
-    # time mtd_debug erase /dev/mtd0 0 2097152
-    Erased 2097152 bytes from address 0x00000000 in flash
-    
-    real    0m12.703s
-    user    0m0.000s
-    sys     0m12.692s
-    
-    # time mtd_debug read /dev/mtd0 0 2097152 spi_read
-    Copied 2097152 bytes from address 0x00000000 in flash to spi_read
-    
-    real    0m1.942s
-    user    0m0.000s
-    sys     0m0.053s
-    
-    # hexdump spi_read
-    0000000 ffff ffff ffff ffff ffff ffff ffff ffff
-    *
-    0200000
-    
-    # sha256sum spi_read
-    4bda3a28f4ffe603c0ec1258c0034d65a1a0d35ab7bd523a834608adabf03cc5  spi_read
-    
-    # time mtd_debug write /dev/mtd0 0 2097152 spi_test
-    Copied 2097152 bytes from spi_test to address 0x00000000 in flash
-    
-    real    0m5.883s
-    user    0m0.006s
-    sys     0m3.970s
-    
-    # time mtd_debug read /dev/mtd0 0 2097152 spi_read
-    Copied 2097152 bytes from address 0x00000000 in flash to spi_read
-    
-    real    0m2.208s
-    user    0m0.003s
-    sys     0m0.063s
-    
-    # sha256sum spi*
-    f4f5d1d0a4fef487037cdb3f1be0f9aab68ca32f2dbe8782c927f03adf623ec3  spi_read
-    f4f5d1d0a4fef487037cdb3f1be0f9aab68ca32f2dbe8782c927f03adf623ec3  spi_test
-    
-    # time mtd_debug erase /dev/mtd0 0 2097152
-    Erased 2097152 bytes from address 0x00000000 in flash
-    
-    real    0m12.126s
-    user    0m0.001s
-    sys     0m12.115s
-    
-    # time mtd_debug read /dev/mtd0 0 2097152 spi_read
-    Copied 2097152 bytes from address 0x00000000 in flash to spi_read
-    
-    real    0m2.611s
-    user    0m0.000s
-    sys     0m0.064s
-    
-    # sha256sum spi*
-    4bda3a28f4ffe603c0ec1258c0034d65a1a0d35ab7bd523a834608adabf03cc5  spi_read
-    f4f5d1d0a4fef487037cdb3f1be0f9aab68ca32f2dbe8782c927f03adf623ec3  spi_test
-    
-    * MX25L3233F OTP uses 1 region of size of 4096 bits
-    
-    * I configure 1 OTP region with 512 bytes length.
-    * The OTP configure is NOT part of this patch seria
-    
-    # flash_otp_info -u /dev/mtd0
-    Number of OTP user blocks on /dev/mtd0: 1
-    block  0:  offset = 0x0000  size = 512 bytes  [unlocked]
-    
-    # flash_otp_dump -u /dev/mtd0
-    OTP user data for /dev/mtd0
-    0x0000: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0010: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0020: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0030: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0040: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0050: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0060: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0070: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0080: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0090: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x00a0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x00b0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x00c0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x00d0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x00e0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x00f0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0100: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0110: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0120: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0130: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0140: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0150: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0160: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0170: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0180: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x0190: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x01a0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x01b0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x01c0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x01d0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x01e0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    0x01f0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-    
-    * Macronix OTP does not support erase!
-    * flash_otp_erase
-    
-    # printf '\xde\xad%.0s' {1..256} | flash_otp_write -u /dev/mtd0 0
-    Writing OTP user data on /dev/mtd0 at offset 0x0
-    Wrote 512 bytes of OTP user data
-    
-    # flash_otp_dump -u /dev/mtd0
-    OTP user data for /dev/mtd0
-    0x0000: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0010: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0020: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0030: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0040: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0050: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0060: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0070: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0080: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0090: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00a0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00b0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00c0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00d0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00e0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00f0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0100: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0110: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0120: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0130: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0140: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0150: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0160: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0170: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0180: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0190: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01a0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01b0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01c0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01d0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01e0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01f0: de ad de ad de ad de ad de ad de ad de ad de ad
-    
-    # flash_otp_info -u /dev/mtd0
-    Number of OTP user blocks on /dev/mtd0: 1
-    block  0:  offset = 0x0000  size = 512 bytes  [unlocked]
-    
-    # printf '\xff\xff%.0s' {1..256} | flash_otp_write -u /dev/mtd0 0
-    Writing OTP user data on /dev/mtd0 at offset 0x0
-    Wrote 512 bytes of OTP user data
-    
-    # We cannot overwrite '0' with '1'!
-    
-    # flash_otp_dump -u /dev/mtd0
-    OTP user data for /dev/mtd0
-    0x0000: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0010: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0020: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0030: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0040: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0050: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0060: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0070: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0080: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0090: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00a0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00b0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00c0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00d0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00e0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00f0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0100: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0110: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0120: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0130: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0140: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0150: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0160: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0170: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0180: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0190: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01a0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01b0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01c0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01d0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01e0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01f0: de ad de ad de ad de ad de ad de ad de ad de ad
-    
-    # flash_otp_lock -u /dev/mtd0 0 512
-    About to lock OTP user data on /dev/mtd0 from 0x0 to 0x200
-    flash_otp_lock: Are you sure? (y/N) y
-    Done.
-    
-    # flash_otp_info -u /dev/mtd0
-    Number of OTP user blocks on /dev/mtd0: 1
-    block  0:  offset = 0x0000  size = 512 bytes  [locked]
-    
-    # printf '\x00\x00%.0s' {1..256} | flash_otp_write -u /dev/mtd0 0
-    Writing OTP user data on /dev/mtd0 at offset 0x0
-    write(): Read-only file system
-    
-    # flash_otp_dump -u /dev/mtd0
-    OTP user data for /dev/mtd0
-    0x0000: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0010: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0020: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0030: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0040: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0050: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0060: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0070: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0080: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0090: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00a0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00b0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00c0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00d0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00e0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x00f0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0100: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0110: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0120: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0130: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0140: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0150: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0160: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0170: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0180: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x0190: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01a0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01b0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01c0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01d0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01e0: de ad de ad de ad de ad de ad de ad de ad de ad
-    0x01f0: de ad de ad de ad de ad de ad de ad de ad de ad
+Could you instead use the frequency already set, using assigned-clock* in
+the example?
 
- drivers/mtd/spi-nor/macronix.c | 167 +++++++++++++++++++++++++++++++++
- include/linux/mtd/spi-nor.h    |   9 ++
- 2 files changed, 176 insertions(+)
+> +
+> +  avdd-supply:
+> +    description: Analogue circuit voltage supply.
+> +
+> +  dovdd-supply:
+> +    description: I/O circuit voltage supply.
+> +
+> +  dvdd-supply:
+> +    description: Digital circuit voltage supply.
+> +
+> +  reset-gpios:
+> +    description: Active low GPIO connected to XSHUTDOWN pad of the sensor.
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            oneOf:
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +                  - const: 3
+> +                  - const: 4
+> +
+> +          link-frequencies: true
+> +
+> +        required:
+> +          - data-lanes
+> +          - link-frequencies
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - clock-frequency
+> +  - dovdd-supply
+> +  - avdd-supply
+> +  - dvdd-supply
+> +  - reset-gpios
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ov08x40: camera@36 {
+> +            compatible = "ovti,ov08x40";
+> +            reg = <0x36>;
+> +
+> +            reset-gpios = <&tlmm 111 GPIO_ACTIVE_LOW>;
+> +            pinctrl-names = "default";
+> +            pinctrl-0 = <&cam_rgb_defaultt>;
+> +
+> +            clocks = <&ov08x40_clk>;
+> +            clock-names = "xvclk";
+> +            clock-frequency = <19200000>;
+> +
+> +            avdd-supply = <&vreg_l7b_2p8>;
+> +            dvdd-supply = <&vreg_l7b_1p8>;
+> +            dovdd-supply = <&vreg_l3m_1p8>;
+> +
+> +            port {
+> +                ov08x40_ep: endpoint {
+> +                    remote-endpoint = <&csiphy4_ep>;
+> +                    data-lanes = <1 2 3 4>;
+> +                    link-frequencies = /bits/ 64 <400000000>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
+> 
 
-diff --git a/drivers/mtd/spi-nor/macronix.c b/drivers/mtd/spi-nor/macronix.c
-index ea6be95e75a5..bee62e9051d6 100644
---- a/drivers/mtd/spi-nor/macronix.c
-+++ b/drivers/mtd/spi-nor/macronix.c
-@@ -8,6 +8,162 @@
- 
- #include "core.h"
- 
-+/**
-+ * macronix_nor_otp_enter() - Send Enter Secured OTP instruction to the chip.
-+ * @nor:	pointer to 'struct spi_nor'.
-+ *
-+ * Return: 0 on success, -errno otherwise.
-+ */
-+static int macronix_nor_otp_enter(struct spi_nor *nor)
-+{
-+	int error;
-+
-+	error = spi_nor_send_cmd(nor, SPINOR_OP_ENSO);
-+	if (error)
-+		dev_dbg(nor->dev, "error %d on Macronix Enter Secured OTP\n", error);
-+
-+	return error;
-+}
-+
-+/**
-+ * macronix_nor_otp_exit() - Send Exit Secured OTP instruction to the chip.
-+ * @nor:	pointer to 'struct spi_nor'.
-+ *
-+ * Return: 0 on success, -errno otherwise.
-+ */
-+static int macronix_nor_otp_exit(struct spi_nor *nor)
-+{
-+	int error;
-+
-+	error = spi_nor_send_cmd(nor, SPINOR_OP_EXSO);
-+	if (error)
-+		dev_dbg(nor->dev, "error %d on Macronix Exit Secured OTP\n", error);
-+
-+	return error;
-+}
-+
-+/**
-+ * macronix_nor_otp_read() - read OTP data
-+ * @nor:	pointer to 'struct spi_nor'
-+ * @addr:       offset to read from
-+ * @len:        number of bytes to read
-+ * @buf:        pointer to dst buffer
-+ *
-+ * Return: number of bytes read successfully, -errno otherwise
-+ */
-+static int macronix_nor_otp_read(struct spi_nor *nor, loff_t addr, size_t len, u8 *buf)
-+{
-+	int ret, error;
-+
-+	error = macronix_nor_otp_enter(nor);
-+	if (error)
-+		return error;
-+
-+	ret = spi_nor_read_data(nor, addr, len, buf);
-+
-+	error = macronix_nor_otp_exit(nor);
-+
-+	if (ret < 0)
-+		dev_dbg(nor->dev, "error %d on Macronix read OTP data\n", ret);
-+	else if (error)
-+		return error;
-+
-+	return ret;
-+}
-+
-+/**
-+ * macronix_nor_otp_write() - write data to OTP
-+ * @nor:        pointer to 'struct spi_nor'
-+ * @addr:       offset to write to
-+ * @len:        number of bytes to write
-+ * @buf:        pointer to src buffer
-+ *
-+ * Return: number of bytes written successfully, -errno otherwise
-+ */
-+static int macronix_nor_otp_write(struct spi_nor *nor, loff_t addr, size_t len, const u8 *buf)
-+{
-+	int error, ret = 0;
-+
-+	error = macronix_nor_otp_enter(nor);
-+	if (error)
-+		return error;
-+
-+	error = spi_nor_write_enable(nor);
-+	if (error)
-+		goto otp_write_err;
-+
-+	ret = spi_nor_write_data(nor, addr, len, buf);
-+	if (ret < 0) {
-+		dev_dbg(nor->dev, "error %d on Macronix write OTP data\n", ret);
-+		goto otp_write_err;
-+	}
-+
-+	error = spi_nor_wait_till_ready(nor);
-+	if (error)
-+		dev_dbg(nor->dev, "error %d on Macronix waiting write OTP finish\n", error);
-+
-+otp_write_err:
-+
-+	error = macronix_nor_otp_exit(nor);
-+
-+	return ret;
-+}
-+
-+/**
-+ * macronix_nor_otp_lock() - lock the OTP
-+ * @nor:        pointer to 'struct spi_nor'
-+ * @region:     OTP region
-+ *
-+ * Return: 0 on success, -errno otherwise.
-+ */
-+static int macronix_nor_otp_lock(struct spi_nor *nor, unsigned int region)
-+{
-+	int error;
-+	u8 *rdscur = nor->bouncebuf;
-+
-+	error = spi_nor_read_reg(nor, SPINOR_OP_RDSCUR, 1);
-+	if (error) {
-+		dev_dbg(nor->dev, "error %d on read security register\n", error);
-+		return error;
-+	}
-+
-+	if (rdscur[0] & SEC_REG_LDSO)
-+		return 0;
-+
-+	error = spi_nor_write_enable(nor);
-+	if (error) {
-+		dev_dbg(nor->dev, "error %d on enable write before update security register\n",
-+			error);
-+		return error;
-+	}
-+
-+	error = spi_nor_send_cmd(nor, SPINOR_OP_WRSCUR);
-+	if (error)
-+		dev_dbg(nor->dev, "error %d on update security register\n", error);
-+
-+	return error;
-+}
-+
-+/**
-+ * macronix_nor_otp_is_locked() - get the OTP lock status
-+ * @nor:        pointer to 'struct spi_nor'
-+ * @region:     OTP region
-+ *
-+ * Return: 1 on lock, 0 on not locked, -errno otherwise.
-+ */
-+static int macronix_nor_otp_is_locked(struct spi_nor *nor, unsigned int region)
-+{
-+	int error;
-+	u8 *rdscur = nor->bouncebuf;
-+
-+	error = spi_nor_read_reg(nor, SPINOR_OP_RDSCUR, 1);
-+	if (error) {
-+		dev_dbg(nor->dev, "error %d on read security register\n", error);
-+		return error;
-+	}
-+	return rdscur[0] & SEC_REG_LDSO ? 1 : 0;
-+}
-+
- static int
- mx25l25635_post_bfpt_fixups(struct spi_nor *nor,
- 			    const struct sfdp_parameter_header *bfpt_header,
-@@ -190,8 +346,19 @@ static void macronix_nor_default_init(struct spi_nor *nor)
- 	nor->params->quad_enable = spi_nor_sr1_bit6_quad_enable;
- }
- 
-+static const struct spi_nor_otp_ops macronix_nor_otp_ops = {
-+	.read = macronix_nor_otp_read,
-+	.write = macronix_nor_otp_write,
-+	/* .erase = Macronix OTP do not support erase, */
-+	.lock = macronix_nor_otp_lock,
-+	.is_locked = macronix_nor_otp_is_locked,
-+};
-+
- static int macronix_nor_late_init(struct spi_nor *nor)
- {
-+	if (nor->params->otp.org.n_regions)
-+		nor->params->otp.ops = &macronix_nor_otp_ops;
-+
- 	if (!nor->params->set_4byte_addr_mode)
- 		nor->params->set_4byte_addr_mode = spi_nor_set_4byte_addr_mode_en4b_ex4b;
- 
-diff --git a/include/linux/mtd/spi-nor.h b/include/linux/mtd/spi-nor.h
-index cdcfe0fd2e7d..ef834e7fc0ac 100644
---- a/include/linux/mtd/spi-nor.h
-+++ b/include/linux/mtd/spi-nor.h
-@@ -81,6 +81,15 @@
- #define SPINOR_OP_BP		0x02	/* Byte program */
- #define SPINOR_OP_AAI_WP	0xad	/* Auto address increment word program */
- 
-+/* Macronix OTP registers. */
-+#define SPINOR_OP_RDSCUR	0x2b	/* read security register */
-+#define SPINOR_OP_WRSCUR	0x2f	/* write security register */
-+#define SPINOR_OP_ENSO		0xb1	/* enter secured OTP */
-+#define SPINOR_OP_EXSO		0xc1	/* exit secured OTP */
-+
-+/* Macronix security register values */
-+#define SEC_REG_LDSO		BIT(1)  /* Lock-down Secured OTP */
-+
- /* Used for Macronix and Winbond flashes. */
- #define SPINOR_OP_EN4B		0xb7	/* Enter 4-byte mode */
- #define SPINOR_OP_EX4B		0xe9	/* Exit 4-byte mode */
 -- 
-2.39.5
+Kind regards,
 
+Sakari Ailus
 
