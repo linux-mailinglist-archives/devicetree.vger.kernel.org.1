@@ -1,232 +1,142 @@
-Return-Path: <devicetree+bounces-105619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5569498743F
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 15:12:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAC63987452
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 15:17:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4F811C21663
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 13:12:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87208281DBB
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 13:17:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFF6D27733;
-	Thu, 26 Sep 2024 13:12:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAF4A22EF4;
+	Thu, 26 Sep 2024 13:17:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="I8ZmRUY9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jYubRVYW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E468DEAD5
-	for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 13:12:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 152BD19BBC;
+	Thu, 26 Sep 2024 13:17:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727356338; cv=none; b=YbQidNZqI90ttTcrMTeXV2/5QxBT8Gr5K80qdtN81xeP0ERJjQl/qpm4sPYe+x4SVpx20C9yKiovoLgzXq3ydstWKie1vuf0NF09bV/IrrK+/+hcX9TmJx/UPwWGA+KaIeWrcMeSS8y+oCR66sgyc+nNGKTc2hmOMibn4JesZOs=
+	t=1727356633; cv=none; b=hNkADxnYyFWE+/thCEbRKPRcpDhZByzadg9rm8sET7RRA3EVH/ltJ0w3LJepNWi0ySg7ES5BTFjw8DHH0Q2s5yQEN0ZyLBQI1kznvE4YUeMHiWRw31Oafz9/cwZ2hFOPBIh/iFO1oERkFDvbJmnUWY2zWeZN4TiD0XmQB5rSILE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727356338; c=relaxed/simple;
-	bh=olYrCsbi/wSziH0EE5DB3RMwDthW3ZKLc8++5NEfxEk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pmdqinK9R3v23eoRJ941FPr2lHAxCoq3AMQ2n+wz1gzZ6mpAo5bl7j/rJnihJrFYS6652FNtdwL58w8z2UDfljhuOCbdU5X6ZMzIqZEoVD7JiV2Tu6cs9VdbpWaDXJ69cCxOg1LHg9ivMjlqlO2BLcoIL10CYv278FEHtr+gZKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=I8ZmRUY9; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2f77be8ffecso10940991fa.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 06:12:16 -0700 (PDT)
+	s=arc-20240116; t=1727356633; c=relaxed/simple;
+	bh=cnx4zIAWJtFq9rSTLb7/0r8of7OoZslMoGPoymhstBM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eqAZH7lruuI5JRuMk7Mu7DFIXwZuGRwkjmuDONjBOU/zUxeRWlcA8VQpUXWulVx7vB6+41CNV3VKr9QPnFci6yxCYQycgisCBE4YFDqxd0EaA+kHDJXzRFR784PD/HaeClW+7RGXfDox+e1z1p/flS5Nu9JlQxGqIhgL/fynuv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jYubRVYW; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a86e9db75b9so149989166b.1;
+        Thu, 26 Sep 2024 06:17:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727356335; x=1727961135; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=nKriAI4eZkRaHODPjuZ+jj+F+rk5iOr07UhYYqdkBLg=;
-        b=I8ZmRUY9XXgrIe/hhq2E7TPAF+jMeSjLU+rLMDZX8t2hdaT/iM/D25C5roi/Dkycx8
-         0GwaDjD3XoVTvmPae0dRk6Q1gsr95xpuILXBJDqchOX2gIDcBjAC4W0i4b1DamzU/xbO
-         reuL9AFhacVCEKC/TEOlR3CmYE23x7S0zvLfhZVNuWPRb1Ld7Rz+S+v3UFuw4NKEMcCi
-         +tUAcZ7O/HmTfiXawetPzhi/4zr0MKh0iR0A00KzXvRg/v/3Og972krkCYNTyISRLJc2
-         1otuqMX9YCC3SuMttc0C5BnGIXaVJvUUQEBbHbDXnEsOuEX7ftUmYBommOzwlJIKwaRZ
-         sDng==
+        d=gmail.com; s=20230601; t=1727356630; x=1727961430; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=cnx4zIAWJtFq9rSTLb7/0r8of7OoZslMoGPoymhstBM=;
+        b=jYubRVYWlI8xnkRYhiaYPGkoF5onHEuoGFmcfxkkqIpP2xIucfIKk/oG5joDih+xzK
+         3GEclYWLZLUAs191NLdpiB+INYiBVLf2bSL+ATfuEY/FmE6DBjN0F0tn2kwYiuvb56g0
+         cFulPOwabdsnbUu2o+Amp7fjzTIR5MXMfuYel4AnjiU2QcFUdb3g9nzTH8AWyL8lK2Oj
+         zUAp2b49SDO1UXEK1Nm0RmGUJrIVscDZqd2BRlmDsBGCvLpWVHRtFfNfS0IZN4ceck85
+         aj9LRJwHip+Gnh5mpAjOf4xdnEEsUMr6nHNvs9P5LlF24uxTuVkOzcucTH3Xlbj/KjRC
+         JdYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727356335; x=1727961135;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nKriAI4eZkRaHODPjuZ+jj+F+rk5iOr07UhYYqdkBLg=;
-        b=cRLuaqiQ58lF4U+WOzMhy/iW9q09KDEwxDSjHbytyOzgG+EG8A3SsIYgidxdvVS8zr
-         QJSLQjZkCwLwJY2bJ+Y+twKZeRsV9t/Q59Z5GS0/uazLX5ccK68B47xw+5NRnZhWtUKE
-         3LFTzHhIvTMxwCnvVsJVk0TFQOZqvKLViMh7yE1iY2y2n/6TIawAaI63de6k0wazrxvI
-         KKI7b0Bxro2YerpMOPwJ7W7iqAIPG+Z+XoyT7TFXgWA/ALaK46RHT4p1M5yYZ0xqcPtN
-         OyoVo+0n92MwFULw7HCMFR7cf+v+toQiWeycn2kxZjO8MvhOuA3H8d6DhaXsYFBjxg9d
-         b7GQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX3USeMZwh1sXkUO87k8ofjM1j1nbPr6fPn+JNx6OlR+ienmRjdqJuN+sqktDraoI+a4TNjVSceDZ+j@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/WpyaRFNMse8h6NaFvGxc2AmxNHmcST5BOZyDJcG05hxEZTXU
-	xT8kjn6U0BBoxReLhiZEXkkS8yiG2kNZIi8Mdmdbtq6yy13fxYZy4OvIzG0I2MA=
-X-Google-Smtp-Source: AGHT+IEdvfytwo17gCgvymeEaRhz2m8Z7wR8D5FYIwCXKva9/v1xhvvhMLWRmcQBnqRRYBVmBQbL8g==
-X-Received: by 2002:a05:651c:50f:b0:2f6:62c3:4e0e with SMTP id 38308e7fff4ca-2f914ac3ff9mr40894901fa.6.1727356334934;
-        Thu, 26 Sep 2024 06:12:14 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f8d289b54bsm7832621fa.109.2024.09.26.06.12.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Sep 2024 06:12:13 -0700 (PDT)
-Date: Thu, 26 Sep 2024 16:12:12 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Mahadevan <quic_mahap@quicinc.com>
-Cc: robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run, 
-	marijn.suijten@somainline.org, airlied@gmail.com, daniel@ffwll.ch, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, swboyd@chromium.org, 
-	konrad.dybcio@linaro.org, danila@jiaxyga.com, bigfoot@classfun.cn, 
-	neil.armstrong@linaro.org, mailingradian@gmail.com, quic_jesszhan@quicinc.com, 
-	andersson@kernel.org, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	quic_kalyant@quicinc.com, quic_jmadiset@quicinc.com, quic_vpolimer@quicinc.com
-Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: sa8775p: add display dt nodes
-Message-ID: <hyhsyl43xurr25ws2blejxbyae47a73f77hnjmjql3jwcpocvk@565kpktxs2fi>
-References: <20240926110137.2200158-1-quic_mahap@quicinc.com>
- <20240926110137.2200158-6-quic_mahap@quicinc.com>
+        d=1e100.net; s=20230601; t=1727356630; x=1727961430;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cnx4zIAWJtFq9rSTLb7/0r8of7OoZslMoGPoymhstBM=;
+        b=GcDlPE1+lhpfxTz9CtyETDIwwu9WsgrxgYHKqqw6vNu+hFlTtXkR+adQuXJRc3aAnE
+         K/KVYUslrwLi9rF3RTpXdKVhUpDj7eeHbyPfct+cH0DlPUXOLhag1IJmJNNPry4JvWUg
+         qMqzOcAxymV3oUXP+LCyjJVkaEeITjOYRrj8H6al4TUp6aM6Gwq6l0GP8imiBDuDad5j
+         Dw9hXaj5wvapAeldM1gE6giw/ozkRgcaHUySGJ8tsw+l3P/bjRMi+VqRfYUiFV/FuJaC
+         NpnEYxj+NdCgW3OCfjA2/xUxDzJfffE1oHHBCRRCopO1TWUeEra/6xEO9XKBqH9NLxAP
+         d8gA==
+X-Forwarded-Encrypted: i=1; AJvYcCU2eOfKn1zjIInEKL7yZworDTL4SqutGAA0FqRWGIlzkE7pbWowdgeqoLjfTJtSPyo4jDJcCyDhdrl0@vger.kernel.org, AJvYcCX1l0mzVF33QrM5lBXyT6ZQTu5e8aSWKrdfGzk9PFyqfKXnwhEV71upVM6ZSTqyBbI0fK1Y8ThREMbYTBl5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxaahxyIMUiZYDtJUYacwUcYl0vt50OXRaHzMcD24ktfUctJh4H
+	/L4piYzg61DD1oTIAKAiYmbPwDfusEJ0ph8V2Ea6fjbbkkDqho6erqzyPdRc+subl464IraMvEk
+	tFRuht31XngMJd4v7N7T7reFZVQ==
+X-Google-Smtp-Source: AGHT+IGxkuSZn14CGeSLBxg4a20MxMh+vZrJ6S9Uv0v7mFLjFUHwBvjRSVie0JOJ3Q7qB7rPKyG5eEcor9Qu4RuwHOI=
+X-Received: by 2002:a17:907:e28c:b0:a86:6cb1:4d49 with SMTP id
+ a640c23a62f3a-a93a0322a58mr558075166b.13.1727356630231; Thu, 26 Sep 2024
+ 06:17:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240926110137.2200158-6-quic_mahap@quicinc.com>
+References: <20240920181231.20542-1-erezgeva@nwtime.org> <20240920181231.20542-2-erezgeva@nwtime.org>
+ <4e0cf43c-4843-451c-ac6f-86775dbccb2b@linaro.org> <CANeKEMOmhAPM1j1_ihzcC2wL6jKsWXPCGfZs+euS8mRvtqgE5A@mail.gmail.com>
+ <D4DLQGLJSKPB.3OOW4RU9Q3K5O@kernel.org> <CANeKEMPSoUu7GW5bL8nuyC5xCKG7Tt0=SvWTL_CcX5oebqN_YA@mail.gmail.com>
+ <D4DSTDA3HE2B.20ACE70SQAL7A@kernel.org> <CANeKEMO1nyzEKGCt8N8_UCmAcQ3L53=H8U07AdJzcnFaVuwjGQ@mail.gmail.com>
+ <87y13ehn6y.fsf@geanix.com> <CANeKEMMcZ+Y-f8Kty_4Nk-kRu+F7ZXBbxpAG1Bd_P1vcju1mUA@mail.gmail.com>
+ <8734lmhcil.fsf@geanix.com>
+In-Reply-To: <8734lmhcil.fsf@geanix.com>
+From: Erez <erezgeva2@gmail.com>
+Date: Thu, 26 Sep 2024 15:16:31 +0200
+Message-ID: <CANeKEMMMYu9ugZksnJscCPROAS2vbi_BXHnJcc-MsDZMwJeTvg@mail.gmail.com>
+Subject: Re: [PATCH v5 1/5] mtd: spi-nor: core: add manufacturer flags
+To: Esben Haabendal <esben@geanix.com>
+Cc: Michael Walle <mwalle@kernel.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Erez Geva <erezgeva@nwtime.org>, linux-mtd@lists.infradead.org, 
+	Pratyush Yadav <pratyush@kernel.org>, linux-kernel@vger.kernel.org, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Sep 26, 2024 at 04:31:37PM GMT, Mahadevan wrote:
-> Add mdss0 and mdp devicetree nodes for sa8775p target.
-> 
-> Signed-off-by: Mahadevan <quic_mahap@quicinc.com>
-> 
-> ---
-> 
-> This patch depends on the clock enablement change:
-> https://lore.kernel.org/all/20240816-sa8775p-mm-v3-v1-0-77d53c3c0cef@quicinc.com/
-> 
-> ---
-> 
-> [v2]
-> - Update commit message mentioning enablement of mdss0 only is done. [Dmitry]
+On Thu, 26 Sept 2024 at 13:37, Esben Haabendal <esben@geanix.com> wrote:
+>
+> Erez <erezgeva2@gmail.com> writes:
+>
+> > On Thu, 26 Sept 2024 at 09:46, Esben Haabendal <esben@geanix.com> wrote:
+> >>
+> >> Erez <erezgeva2@gmail.com> writes:
+> >>
+> >> > On Mon, 23 Sept 2024 at 18:19, Michael Walle <mwalle@kernel.org> wrote:
+> >> >>
+> >> >> > > > I would gladly remove the obsolete mx25l12805d.
+> >> >> > > Why? I don't see any need for that.
+> >> >> > Maybe because we do not want compatibility table?
+> >> >>
+> >> >> I don't get this? Anyway, we do not remove support for older
+> >> >> flashes for no reason.
+> >> >
+> >> > I did not insist, you asked.
+> >> > Macronix stopped selling these chips 15 year ago.
+> >> > How long do you want to support old chips?
+> >>
+> >> It is not unusual for embedded products to have a support span of more
+> >> than 20 years. And chips such as these flashes might not be entirely new
+> >> when the product is introduced. So dropping support for SPI-NOR flashes
+> >> that are newer than 25-30 years is definitely a risk. Somebody out there
+> >> might not be able to upgrade to latest kernel versions anymore, which is
+> >> not a position we should put anyone in. With the increasing pressure to
+> >> upgrade product for better security, we definitely should not make it
+> >> more difficult to run newer kernel versions than absolutely necessary.
+> >
+> > I do not insist. Nor send any patch in this direction.
+>
+> I did not say or imply that you did any such thing.
+>
+> You asked an open question, and I gave my response. Nothing more,
+> nothing less.
 
-It doesn't
++
 
-> - Add resets node and fix indentation. [Dmitry]
-> ---
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 87 +++++++++++++++++++++++++++
->  1 file changed, 87 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index 93be4683a31f..27ab1921c1f3 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -6,6 +6,7 @@
->  #include <dt-bindings/interconnect/qcom,icc.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/clock/qcom,rpmh.h>
-> +#include <dt-bindings/clock/qcom,sa8775p-dispcc.h>
->  #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
->  #include <dt-bindings/clock/qcom,sa8775p-gpucc.h>
->  #include <dt-bindings/interconnect/qcom,sa8775p-rpmh.h>
-> @@ -2937,6 +2938,92 @@ camcc: clock-controller@ade0000 {
->  			#power-domain-cells = <1>;
->  		};
-> 
-> +		mdss0: display-subsystem@ae00000 {
-> +			compatible = "qcom,sa8775p-mdss";
-> +			reg = <0x0 0x0ae00000 0x0 0x1000>;
-> +			reg-names = "mdss";
-> +
-> +			/* same path used twice */
-> +			interconnects = <&mmss_noc MASTER_MDP0 0 &mc_virt SLAVE_EBI1 0>,
-> +					<&mmss_noc MASTER_MDP1 0 &mc_virt SLAVE_EBI1 0>,
-
-QCOM_ICC_TAG_ACTIVE_ONLY ?
-
-> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-> +					 &config_noc SLAVE_DISPLAY_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-> +			interconnect-names = "mdp0-mem",
-> +					     "mdp1-mem",
-> +					     "cpu-cfg";
-> +
-> +			resets = <&dispcc0 MDSS_DISP_CC_MDSS_CORE_BCR>;
-> +
-> +			power-domains = <&dispcc0 MDSS_DISP_CC_MDSS_CORE_GDSC>;
-> +
-> +			clocks = <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
-> +				 <&gcc GCC_DISP_HF_AXI_CLK>,
-> +				 <&dispcc0 MDSS_DISP_CC_MDSS_MDP_CLK>;
-> +
-> +			interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <1>;
-> +
-> +			iommus = <&apps_smmu 0x1000 0x402>;
-> +
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +
-> +			status = "disabled";
-> +
-> +			mdss0_mdp: display-controller@ae01000 {
-> +				compatible = "qcom,sa8775p-dpu";
-> +				reg = <0x0 0x0ae01000 0x0 0x8f000>,
-> +				      <0x0 0x0aeb0000 0x0 0x2008>;
-> +				reg-names = "mdp", "vbif";
-> +
-> +				clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
-> +					 <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
-> +					 <&dispcc0 MDSS_DISP_CC_MDSS_MDP_LUT_CLK>,
-> +					 <&dispcc0 MDSS_DISP_CC_MDSS_MDP_CLK>,
-> +					 <&dispcc0 MDSS_DISP_CC_MDSS_VSYNC_CLK>;
-> +				clock-names = "bus",
-> +					      "iface",
-> +					      "lut",
-> +					      "core",
-> +					      "vsync";
-> +
-> +				assigned-clocks = <&dispcc0 MDSS_DISP_CC_MDSS_VSYNC_CLK>;
-> +				assigned-clock-rates = <19200000>;
-> +
-> +				operating-points-v2 = <&mdss0_mdp_opp_table>;
-> +				power-domains = <&rpmhpd RPMHPD_MMCX>;
-> +
-> +				interrupt-parent = <&mdss0>;
-> +				interrupts = <0>;
-> +
-> +				mdss0_mdp_opp_table: opp-table {
-> +					compatible = "operating-points-v2";
-> +
-> +					opp-375000000 {
-> +						opp-hz = /bits/ 64 <375000000>;
-> +						required-opps = <&rpmhpd_opp_svs_l1>;
-> +					};
-> +
-> +					opp-500000000 {
-> +						opp-hz = /bits/ 64 <500000000>;
-> +						required-opps = <&rpmhpd_opp_nom>;
-> +					};
-> +
-> +					opp-575000000 {
-> +						opp-hz = /bits/ 64 <575000000>;
-> +						required-opps = <&rpmhpd_opp_turbo>;
-> +					};
-> +
-> +					opp-650000000 {
-> +						opp-hz = /bits/ 64 <650000000>;
-> +						required-opps = <&rpmhpd_opp_turbo_l1>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
->  		dispcc0: clock-controller@af00000 {
->  			compatible = "qcom,sa8775p-dispcc0";
->  			reg = <0x0 0x0af00000 0x0 0x20000>;
-> --
-> 2.34.1
-> 
-
--- 
-With best wishes
-Dmitry
+>
+> > Each project can define the extent of backward compatibility.
+> > In terms of compilers, linkers and tools, i.e. build environment.
+> > In terms of standards like the C standard we use.
+> > In terms of network protocols.
+> > And also what Hardware do we support.
+> >
+> > There is no harm in asking where the boundaries are.
+> > All projects move their boundaries all the time.
+> > The Linux kernel is no exception.
 
