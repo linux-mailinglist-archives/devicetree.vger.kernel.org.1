@@ -1,246 +1,200 @@
-Return-Path: <devicetree+bounces-105519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B36AD986EF9
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 10:37:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95430986F17
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 10:40:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15A7EB20BF8
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 08:37:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B78281C22C21
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 08:40:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7775C1AD3EF;
-	Thu, 26 Sep 2024 08:36:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6FC61A7AD2;
+	Thu, 26 Sep 2024 08:40:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="DBecXBrH"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="W5ewfJad"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66C1C1A76DF;
-	Thu, 26 Sep 2024 08:36:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ACEA190686
+	for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 08:40:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727339784; cv=none; b=sNTSdVCUpepO3O8PoVE9lg4C9JzanEZrFhIOb7pBE1XdHbyEGtZFhqbroeeq8CC6ecUlDm3zPI7yayLazwBO/nxl9Tuj85RUyAlLO2JFhGbGXgc2UAsm0NlHyvvbAc/l5isQaJfLxqYrqeL8lvZsSjoIKXidrsRAnsAZlN45yOk=
+	t=1727340041; cv=none; b=PfDkD+4OoQMIIgyDhsHK7B0qUgI/Ss/qJJtBqCGXNpHTt5wegRlLdwaXvpj6LvCD2aYBd4wRiRnZhM2P3CugYgvtj7MazLxAAc4yhKabo5zV1es1vEYLE3zbbv1gHtotvIaPAZY9dQ+N/q6+67a7AQ8FHT5F88PqhAZ+Nxmj2Nc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727339784; c=relaxed/simple;
-	bh=0vx2wLHIP341Fcw6qUhYwA5kM6D965fe51U5NDuNykk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G5SfY7IiZbxUm309tSk3epAhTSWi24rD4JaC28BYvPuD3rs84gvOliRIQ17vUhzc08+dqqXlWOqT5DZhr4JCDTliYcuZPpxPMTaWg1WtEuTzAXcK3pYS59qzUlGyFbvoFYmD392sdfNeVwulOy4TALPnMbmv/US8RdtQYY6/gqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=DBecXBrH; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id CFCEF169;
-	Thu, 26 Sep 2024 10:34:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1727339692;
-	bh=0vx2wLHIP341Fcw6qUhYwA5kM6D965fe51U5NDuNykk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DBecXBrHZnJ73ugoSwlvEFZl5HNOOcuYbIIdgLX1AkDR6PH7vK9Arte2y8mICEzuh
-	 DXLodimMtWBjICZsq8QJw6rUDxSmTNStU9keIPkEqgc1e45rvdlA7HJY/31ZgKMTlG
-	 9tBNMwgZHEvdG1BfpH27Ivag8bjqyiquObr5/TM0=
-Date: Thu, 26 Sep 2024 11:36:17 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>, Marc Zyngier <maz@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Paul Elder <paul.elder@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Jim Quinlan <jim2101024@gmail.com>,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Andy Gross <agross@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Jim Quinlan <james.quinlan@broadcom.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-media@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Fix array property constraints
-Message-ID: <20240926083617.GA29582@pendragon.ideasonboard.com>
-References: <20240925232409.2208515-1-robh@kernel.org>
+	s=arc-20240116; t=1727340041; c=relaxed/simple;
+	bh=IUAscQfAPWcGfG5KWz3sDO7VY8+Fmjh5TSIrOr5dzxE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=X1Kwmp0TjoYj0iOxDyMbsANSh6FFV5IHDpyK6/6Lg0NMo3d/H2bgzdORirW4MvDfA41UO2ihRURf0H44O1mhA9yXRmGgbz+A83Z61VMvH0/Gyeasc5b2e+5W3cWPxEPMtA+NKXSXbx6k2iklxQ8Yxt4xCv1v71Kt9fuypd5UlKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=W5ewfJad; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2f761461150so10772121fa.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 01:40:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727340036; x=1727944836; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=d0MwdR2iQxztDvYXUCkuzrSSEMztnbTW3zli76Rbrj4=;
+        b=W5ewfJadFVuHrLGU5U67j73/k4OSSM/PVpT9JG/89v0YL9M2q6uYkauDY2tmFToih2
+         GFm/948fND6HL7YE0l5/YKqcYYuFJRy+0b4MctVoVlLrvf43GQcY8OZpDL4GFZtrfHIQ
+         Hgu854NNnRFvBMyRWcS6Q0Hf1MEoba6iKptc4ZV5UEmzp5KEu24dV5LthEnsICNWB8Bs
+         CuV824Hyu72Tbs32ZR+yR+DrA0MVxeqLgLyRC6D2X98hlO6NtS/IugENXIZSL6w3KIlt
+         m+1kGl1Mc4Ql1E0FRVAXDI2apbQMMRxZiFXvGX5enTbCkqHtRyTn5dMo30dBKK1j1oeE
+         HqDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727340036; x=1727944836;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=d0MwdR2iQxztDvYXUCkuzrSSEMztnbTW3zli76Rbrj4=;
+        b=FX0gVKyKWPEd1fM2VmrzvhteaHsdBx3eWNT1o5LJTWVof1ifTvq7zFzvAxoobtxjgw
+         PRc7tfvC+DsLbz2Uy2HluF50SPHIhsImuLkMyntrm2kimbJ04c+YngG81OG8pVKKgpMo
+         pEelE+tirKPFdbCANw6Tym9sV7k1jETYDUO6M7zzWjhTCt9lLmTACbOXy9NCDSs3DGhW
+         cU8RG8YfzBy5BWGJrrvTCqPuU9jfixRoJ2Qq6jhZ1ZyGn4wuvtQdJ5ukyb2VsR3vQbiC
+         yaEydStS5y4/ptzAK2vPjo99Q1OqlzW4SBOJr1dre3syYewVEMKmbGth2oFLvGXisLcI
+         le3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUkQ1/oY9aWM49rRvGSFP7gBUl9EhikSVKS+uoVdULK6pSA/YmIPf5WV8DDfO9JbnYGiH3xLA+I5j7X@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqWjTVwyJAc5GA5GdyEGhJ01VexDH41V6T/mF4Olh4NazSjxj8
+	I5GWHuhCkIsh2kvzuTa/MS4Pa4M2htgog5CVvDd3DVxFgrOMR8kCGEauJrP9aDfrCXXt3ZtElkn
+	8KRNM7nUPP5+XtZ+TzsuoH3hfCsrG+eGNuV3CFw==
+X-Google-Smtp-Source: AGHT+IFSr9JkTwhWfLTZdtSxdCUGQdOwjvJTW9XCc1/LTklMn5Fnfo9IeD+hjurOMKjLb+ULnmN5lGQI4m06ZMeZCDU=
+X-Received: by 2002:a05:651c:54c:b0:2ef:2905:f36d with SMTP id
+ 38308e7fff4ca-2f915fde153mr45484221fa.16.1727340036226; Thu, 26 Sep 2024
+ 01:40:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240925232409.2208515-1-robh@kernel.org>
+References: <20240923101206.3753-1-antoniu.miclaus@analog.com> <20240923101206.3753-2-antoniu.miclaus@analog.com>
+In-Reply-To: <20240923101206.3753-2-antoniu.miclaus@analog.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Thu, 26 Sep 2024 10:40:25 +0200
+Message-ID: <CAMknhBHmtpnX-nXxReF-rUW1ks1=iw3m_BmiRUTkf5XckPsvPw@mail.gmail.com>
+Subject: Re: [PATCH 1/7] iio: backend: add API for interface get
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>, 
+	Olivier Moysan <olivier.moysan@foss.st.com>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Andy Shevchenko <andy@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>, 
+	Alisa-Dariana Roman <alisadariana@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Dumitru Ceclan <mitrutzceclan@gmail.com>, 
+	=?UTF-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>, 
+	Marius Cristea <marius.cristea@microchip.com>, 
+	Sergiu Cuciurean <sergiu.cuciurean@analog.com>, Dragos Bogdan <dragos.bogdan@analog.com>, 
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-pwm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Rob,
-
-Thank you for the patch.
-
-On Wed, Sep 25, 2024 at 06:24:06PM -0500, Rob Herring (Arm) wrote:
-> Schemas for array properties should only have 1 level of array
-> constraints (e.g. items, maxItems, minItems). Sometimes the old
-> encoding of all properties into a matrix leaked into the schema, and
-> didn't matter for validation. Now the inner constraints are just
-> silently ignored as json-schema array keywords are ignored on scalar
-> values.
-> 
-> Generally, keep the inner constraints and drop the outer "items". With
-> gicv3 "mbi-alias" property, it is more appropriately a uint32 or uint64
-> as it is an address and size depends on "#address-cells".
-
-I haven't followed what changed in the validation tools, but this is
-definitely less confusing. Thanks for improving the experience.
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+On Mon, Sep 23, 2024 at 12:15=E2=80=AFPM Antoniu Miclaus
+<antoniu.miclaus@analog.com> wrote:
+>
+> Add backend support for obtaining the interface type used.
+>
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 > ---
->  Documentation/devicetree/bindings/cache/l2c2x0.yaml  |  5 ++---
->  .../devicetree/bindings/dma/dma-common.yaml          |  7 +++----
->  .../bindings/interrupt-controller/arm,gic-v3.yaml    | 12 +++++-------
->  .../devicetree/bindings/media/i2c/thine,thp7312.yaml |  3 +--
->  .../bindings/memory-controllers/exynos-srom.yaml     |  5 ++---
->  .../devicetree/bindings/pci/brcm,stb-pcie.yaml       |  5 ++---
->  .../devicetree/bindings/soc/qcom/qcom,smp2p.yaml     |  3 +--
->  7 files changed, 16 insertions(+), 24 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/cache/l2c2x0.yaml b/Documentation/devicetree/bindings/cache/l2c2x0.yaml
-> index d7840a5c4037..10c1a900202f 100644
-> --- a/Documentation/devicetree/bindings/cache/l2c2x0.yaml
-> +++ b/Documentation/devicetree/bindings/cache/l2c2x0.yaml
-> @@ -100,9 +100,8 @@ properties:
->        filter. Addresses in the filter window are directed to the M1 port. Other
->        addresses will go to the M0 port.
->      $ref: /schemas/types.yaml#/definitions/uint32-array
-> -    items:
-> -      minItems: 2
-> -      maxItems: 2
-> +    minItems: 2
-> +    maxItems: 2
->  
->    arm,io-coherent:
->      description: indicates that the system is operating in an hardware
-> diff --git a/Documentation/devicetree/bindings/dma/dma-common.yaml b/Documentation/devicetree/bindings/dma/dma-common.yaml
-> index ea700f8ee6c6..fde5160b5d29 100644
-> --- a/Documentation/devicetree/bindings/dma/dma-common.yaml
-> +++ b/Documentation/devicetree/bindings/dma/dma-common.yaml
-> @@ -32,10 +32,9 @@ properties:
->        The first item in the array is for channels 0-31, the second is for
->        channels 32-63, etc.
->      $ref: /schemas/types.yaml#/definitions/uint32-array
-> -    items:
-> -      minItems: 1
-> -      # Should be enough
-> -      maxItems: 255
-> +    minItems: 1
-> +    # Should be enough
-> +    maxItems: 255
->  
->    dma-channels:
->      $ref: /schemas/types.yaml#/definitions/uint32
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-> index 5f051c666cbe..f3247a47f9ee 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-> @@ -132,10 +132,9 @@ properties:
->        Address property. Base address of an alias of the GICD region containing
->        only the {SET,CLR}SPI registers to be used if isolation is required,
->        and if supported by the HW.
-> -    $ref: /schemas/types.yaml#/definitions/uint32-array
-> -    items:
-> -      minItems: 1
-> -      maxItems: 2
-> +    oneOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +      - $ref: /schemas/types.yaml#/definitions/uint64
->  
->    ppi-partitions:
->      type: object
-> @@ -223,9 +222,8 @@ patternProperties:
->            (u32, u32) tuple describing the untranslated
->            address and size of the pre-ITS window.
->          $ref: /schemas/types.yaml#/definitions/uint32-array
-> -        items:
-> -          minItems: 2
-> -          maxItems: 2
-> +        minItems: 2
-> +        maxItems: 2
->  
->      required:
->        - compatible
-> diff --git a/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-> index 535acf2b88a9..bc339a7374b2 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-> @@ -135,8 +135,7 @@ properties:
->  
->            data-lanes:
->              $ref: /schemas/media/video-interfaces.yaml#/properties/data-lanes
-> -            items:
-> -              maxItems: 4
-> +            maxItems: 4
->              description:
->                This property is for lane reordering between the THP7312 and the imaging
->                sensor that it is connected to.
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/exynos-srom.yaml b/Documentation/devicetree/bindings/memory-controllers/exynos-srom.yaml
-> index 10a2d97e5f8b..a5598ade399f 100644
-> --- a/Documentation/devicetree/bindings/memory-controllers/exynos-srom.yaml
-> +++ b/Documentation/devicetree/bindings/memory-controllers/exynos-srom.yaml
-> @@ -66,9 +66,8 @@ patternProperties:
->  
->        samsung,srom-timing:
->          $ref: /schemas/types.yaml#/definitions/uint32-array
-> -        items:
-> -          minItems: 6
-> -          maxItems: 6
-> +        minItems: 6
-> +        maxItems: 6
->          description: |
->            Array of 6 integers, specifying bank timings in the following order:
->            Tacp, Tcah, Tcoh, Tacc, Tcos, Tacs.
-> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> index 0925c520195a..2ad1652c2584 100644
-> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> @@ -92,9 +92,8 @@ properties:
->        may have two component regions -- base and extended -- so
->        this information cannot be deduced from the dma-ranges.
->      $ref: /schemas/types.yaml#/definitions/uint64-array
-> -    items:
-> -      minItems: 1
-> -      maxItems: 3
-> +    minItems: 1
-> +    maxItems: 3
->  
->    resets:
->      minItems: 1
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
-> index 141d666dc3f7..1ba1d419e83b 100644
-> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
-> @@ -55,8 +55,7 @@ properties:
->  
->    qcom,smem:
->      $ref: /schemas/types.yaml#/definitions/uint32-array
-> -    items:
-> -      maxItems: 2
-> +    maxItems: 2
->      description:
->        Two identifiers of the inbound and outbound smem items used for this edge.
->  
+>  drivers/iio/industrialio-backend.c | 24 ++++++++++++++++++++++++
+>  include/linux/iio/backend.h        | 10 ++++++++++
+>  2 files changed, 34 insertions(+)
+>
+> diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industriali=
+o-backend.c
+> index efe05be284b6..53ab6bc86a50 100644
+> --- a/drivers/iio/industrialio-backend.c
+> +++ b/drivers/iio/industrialio-backend.c
+> @@ -449,6 +449,30 @@ ssize_t iio_backend_ext_info_set(struct iio_dev *ind=
+io_dev, uintptr_t private,
+>  }
+>  EXPORT_SYMBOL_NS_GPL(iio_backend_ext_info_set, IIO_BACKEND);
+>
+> +/**
+> + * iio_backend_interface_type_get - get the interace type used.
+> + * @back: Backend device
+> + * @type: Interface type
+> + *
+> + * RETURNS:
+> + * 0 on success, negative error number on failure.
+> + */
+> +int iio_backend_interface_type_get(struct iio_backend *back,
+> +                                  enum iio_backend_interface_type *type)
+> +{
+> +       int ret;
+> +
+> +       ret =3D iio_backend_op_call(back, interface_type_get, type);
+> +       if (ret)
+> +               return ret;
+> +
+> +       if (*type > IIO_BACKEND_INTERFACE_CMOS)
+> +               return -EINVAL;
+> +
+> +       return 0;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(iio_backend_interface_type_get, IIO_BACKEND);
+> +
+>  /**
+>   * iio_backend_extend_chan_spec - Extend an IIO channel
+>   * @indio_dev: IIO device
+> diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
+> index 8099759d7242..ba8ad30ac9ba 100644
+> --- a/include/linux/iio/backend.h
+> +++ b/include/linux/iio/backend.h
+> @@ -63,6 +63,11 @@ enum iio_backend_sample_trigger {
+>         IIO_BACKEND_SAMPLE_TRIGGER_MAX
+>  };
+>
+> +enum iio_backend_interface_type {
+> +       IIO_BACKEND_INTERFACE_LVDS,
+> +       IIO_BACKEND_INTERFACE_CMOS
+> +};
+> +
+>  /**
+>   * struct iio_backend_ops - operations structure for an iio_backend
+>   * @enable: Enable backend.
+> @@ -81,6 +86,7 @@ enum iio_backend_sample_trigger {
+>   * @extend_chan_spec: Extend an IIO channel.
+>   * @ext_info_set: Extended info setter.
+>   * @ext_info_get: Extended info getter.
+> + * @interface_type_get: Interface type.
+>   **/
+>  struct iio_backend_ops {
+>         int (*enable)(struct iio_backend *back);
+> @@ -113,6 +119,8 @@ struct iio_backend_ops {
+>                             const char *buf, size_t len);
+>         int (*ext_info_get)(struct iio_backend *back, uintptr_t private,
+>                             const struct iio_chan_spec *chan, char *buf);
+> +       int (*interface_type_get)(struct iio_backend *back,
+> +                                 enum iio_backend_interface_type *type);
+>  };
+>
+>  int iio_backend_chan_enable(struct iio_backend *back, unsigned int chan)=
+;
+> @@ -142,6 +150,8 @@ ssize_t iio_backend_ext_info_set(struct iio_dev *indi=
+o_dev, uintptr_t private,
+>  ssize_t iio_backend_ext_info_get(struct iio_dev *indio_dev, uintptr_t pr=
+ivate,
+>                                  const struct iio_chan_spec *chan, char *=
+buf);
+>
+> +int iio_backend_interface_type_get(struct iio_backend *back,
+> +                                  enum iio_backend_interface_type *type)=
+;
+>  int iio_backend_extend_chan_spec(struct iio_dev *indio_dev,
+>                                  struct iio_backend *back,
+>                                  struct iio_chan_spec *chan);
+> --
+> 2.46.0
+>
 
--- 
-Regards,
-
-Laurent Pinchart
+This seems very specific to the AD485x chips and the AXI ADC backend.
+Since it is describing how the chip is wired to the AXI DAC IP block,
+I would be tempted to use the devicetree for this info instead of
+adding a new backend function.
 
