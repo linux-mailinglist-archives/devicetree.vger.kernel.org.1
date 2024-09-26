@@ -1,136 +1,96 @@
-Return-Path: <devicetree+bounces-105625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 227639874B8
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 15:47:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A5259874BA
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 15:49:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8DD06B20D3A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 13:47:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4A631F248A6
+	for <lists+devicetree@lfdr.de>; Thu, 26 Sep 2024 13:49:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 878501292CE;
-	Thu, 26 Sep 2024 13:47:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cXIYS2oo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF7A43E47B;
+	Thu, 26 Sep 2024 13:48:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [195.130.132.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BB2957C8E;
-	Thu, 26 Sep 2024 13:47:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F099C1C6B2
+	for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 13:48:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727358447; cv=none; b=a1jLJrooSMNOTJVoFT4Vxh37oVWkOMRSq4kRLAQCx4fDaYf26yBHi9NSgqyHGUx3Z4BK+PRKPnlfQtzvIXkNS79TQSAogmuaPpP1UjacQ1NW7Y41xefka6jAL5xbS8nOsCnM+jGhL+ZsXEn0QciB8KvMDkRchWd2/u31GtqrIy4=
+	t=1727358534; cv=none; b=cLkEa+ASIw5eGtdeFvByvFSqnWMP5rA8RPqeNY2zA7BT0vc4L9ymXUCQfjDD+53Ys9XrHdriRFmWhUELB1TkNKhJD57t0HItMpyIIryOSXdp7qKgRe4mTBAYzHaKiPwJdH5+QKZ+q5bMDEXc6x1LgPJfRAGmJtI/sCqZaMxECiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727358447; c=relaxed/simple;
-	bh=ctphzOTB+NOA/GK51VbE/tPCxaAZCjNjqSwu64PcJGc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oSJD9G/Nl9FjqVKme4JQSb3P0Gj8O44G1oHILFL+3YXi2TtUE0egm3Bg1Hfgxni4q7SMtPaEduz4JnrnO27iWUbPRCFI/vw3Fi2gNa2fcY9rWawGNVnJql4u1yDMiUQBI4imfQ0dlxjTmPn8dtvX/BJdQZubnv3wbzLHl0SaAxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cXIYS2oo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C21FC4CEC5;
-	Thu, 26 Sep 2024 13:47:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727358447;
-	bh=ctphzOTB+NOA/GK51VbE/tPCxaAZCjNjqSwu64PcJGc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cXIYS2oohhk0wPVApgA8sV8GfMPwJTcPLbCNEY/cE/UBy1nHorVYKrnPBkEbYtlbJ
-	 iq8wfAEyydQDpVMvA6mA0+MVbcoJYGjh9VbD+Q9LWIgb+Xm+b8kbbJ2ax/Rh1DlGLL
-	 9B5c6dVHqc8odofCoLmrLKD3rS+2ZgNWac2lbdI/Dn//gCRQBBhfx3CUqliEQVYhU0
-	 GJBZgJZAmAmXGhAybYFPeeZxPmPJfZN2MuUDafu++b56/lBPc/gzDBVtMUE/wCWjcl
-	 czGes4th5TX0x1yveAjGJzkVyYlmO3ew+N80fkkHuz+UDAzWhgcy/lLoCkxDW9Z3d6
-	 f6wbqSqG24auQ==
-Message-ID: <f12452ef-5ad1-4095-a772-55109da2debf@kernel.org>
-Date: Thu, 26 Sep 2024 15:47:17 +0200
+	s=arc-20240116; t=1727358534; c=relaxed/simple;
+	bh=W6mQ2ZhwxTOZc/xTM48m9Gnl50C/p+NihbqIhn1bYY0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=TbSvDO1djMHeIx6EXqOoeY2vysDtY739kaKe1SJEXhruXJTExVRyM1c1Z9uESpeOQVvUtel1KUc+KE6v3gzyZa+teqHjBpF2hfNJ7Vjro1C0X2+OnY7Mo2SRiTJkeBcGcJJpIKfEXyGFuDeeu2ZZ1NdxgyfhyQLS4LIsQ0cRDrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:7bd9:a854:38c6:ce04])
+	by baptiste.telenet-ops.be with cmsmtp
+	id H1oj2D0043fTnLU011ojXx; Thu, 26 Sep 2024 15:48:43 +0200
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1storF-000bcY-Qh;
+	Thu, 26 Sep 2024 15:48:42 +0200
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1storK-001yEd-Od;
+	Thu, 26 Sep 2024 15:48:42 +0200
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Andy Yan <andyshrk@163.com>,
+	Jacob Chen <jacob-chen@iotwrt.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH 0/2] arm64: dts: rockchip: rk3399: Fix rt5651 compatible values
+Date: Thu, 26 Sep 2024 15:48:39 +0200
+Message-Id: <cover.1727358193.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/5] dt-bindings: display/msm: Document the DPU for
- SA8775P
-To: Mahadevan <quic_mahap@quicinc.com>, robdclark@gmail.com,
- quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org, sean@poorly.run,
- marijn.suijten@somainline.org, airlied@gmail.com, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- swboyd@chromium.org, konrad.dybcio@linaro.org, danila@jiaxyga.com,
- bigfoot@classfun.cn, neil.armstrong@linaro.org, mailingradian@gmail.com,
- quic_jesszhan@quicinc.com, andersson@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, quic_kalyant@quicinc.com,
- quic_jmadiset@quicinc.com, quic_vpolimer@quicinc.com
-References: <20240926110137.2200158-1-quic_mahap@quicinc.com>
- <20240926110137.2200158-3-quic_mahap@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240926110137.2200158-3-quic_mahap@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 26/09/2024 13:01, Mahadevan wrote:
-> Document the DPU for Qualcomm SA8775P platform.
-> 
-> Signed-off-by: Mahadevan <quic_mahap@quicinc.com>
-> ---
-> 
-> [v2]
-> - Use fake DISPCC nodes to avoid clock dependencies in dt-bindings. [Dmitry]
-> - Update bindings by fixing dt_binding_check tool errors (update includes in example),
->   adding proper spacing and indentation in binding example. [Dmitry, Rob]
-> - Capitalize clock names in description. [Dmitry]
-> 
+	Hi all,
 
-Please start testing patches before you send them.
+This patch series fixes two occurrences of the "rockchip,rt5651"
+compatible value, which is not documented in DT bindings or supported in
+any upstream driver.  Presumable these are typos for "realtek,rt5651",
+as the "simple-audio-card,name" properties in the "rt5651-sound" nodes
+refer to Realtek codecs.
 
-Best regards,
-Krzysztof
+This is untested due to lack of hardware.
+Thanks for your comments!
 
+Geert Uytterhoeven (2):
+  arm64: dts: rockchip: rk3399-eaidk-610: Fix rt5651 compatible value
+  arm64: dts: rockchip: rk3399-sapphire-excavator: Fix rt5651 compatible
+    value
+
+ arch/arm64/boot/dts/rockchip/rk3399-eaidk-610.dts          | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dts | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+-- 
+2.34.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
 
