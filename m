@@ -1,205 +1,132 @@
-Return-Path: <devicetree+bounces-105988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1AF2988C67
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 00:24:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08216988C73
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 00:29:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB1721C215D2
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 22:23:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C5781F21BB6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 22:29:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD236187338;
-	Fri, 27 Sep 2024 22:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35E1918C006;
+	Fri, 27 Sep 2024 22:29:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jV5S01Fa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OwWztq01"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 366A1C139;
-	Fri, 27 Sep 2024 22:23:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B8F818B463
+	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 22:29:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727475826; cv=none; b=AOx8MECCbUyqzVKaNGdi0z98Q2vYnp2S/o9ags/m7n61vedMGX+ByzKdwHYYHHbUSnEFXz5jve/ssQEJeEKy7M60QN9N7qYh5jLJW1jtvYKMzqBhIlVvGApbuZq8xSUq3S+Wsd75fmVYeKFTVB4Fovz4+wE9ZXekKJt7+MbM7AA=
+	t=1727476195; cv=none; b=Gb1mG6z90uQKbafDLWQ+edO/SwT2Otq0mahf9KD+2P9qi96j5edjfK/lpsRQ13oUwiJxR8fi+c6h2JnbZezNqsEA/46bCF4YLVC3Om088yJF6gtJqXwAh2KRodxhYly1GLPZnQUVJETVgTA+OXLvo0AZXcAW4BZEyi0Pb0oPugw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727475826; c=relaxed/simple;
-	bh=cIlpWhYzZ9AXjJM28VbVIh76rDaXlxbbEq8trVQXMqk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ReJkEEmRcdu1BF2XglXQK/2D/MgGNyrxn4+HNpjwf2uaU+2KGFd3+NkVITwGDRnGehFZr0FwqR+6Zb45Z8yFvwCVKkzrqAzghWJYQhuvjgkQ+Q16FbGmfqJlhDjSttCBHCd80EGJD0+/iX+e5+1szceuJKFuan9J2GhPogrKVmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jV5S01Fa; arc=none smtp.client-ip=209.85.222.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7a9a30a0490so271935085a.3;
-        Fri, 27 Sep 2024 15:23:45 -0700 (PDT)
+	s=arc-20240116; t=1727476195; c=relaxed/simple;
+	bh=v4V6dGxRx/wuCTK6Y8Zn2D2hPA9VbhdYs2BaI76Wt84=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Wy8lkGg+ouTLI/1A2Ty5PNoEqyI9+R1vpJfjCFhkANv6XTIlav7WtHDuCxQqqj69e++co0p1CyuaUNoDZ1DjBNb533Yi00lm5g5QS+j2X8aCxavbqnw9Ep5jxvZbgVnmplC/xt0BP6mIFsG5cXuwWOjmgXDfS0IMox16DifF8c4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OwWztq01; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5c874f6f119so2983529a12.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 15:29:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727475824; x=1728080624; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=DanJ6h31Jbn0TSq8bGdh6DzWA3sprA/cMXnBlTSkGbo=;
-        b=jV5S01FaYubiGwonRiQZ5sOjysBQ3saC0WvowIHLbjxJd2KjJri0cO/yc+f9zWvByd
-         /spteR9ErC7QI5mZ4HbyNlimv8ZNuas5esPSiRqb3WyE+T8cULdGYC7aL3qND3nNFtn/
-         lcwP5d//E8ANkz6MvsnF/HeCmvBD+I2kXF4frOMv9SIZwIHC9D6sI8Q5sXzArG2dDNN6
-         azPQPVdos5XhJK3mw8schEk9TJjuyO3RK6UMvZfyVReUQX+WvPJ+5PdEQkgcR1oiSVh7
-         87kDvKZHisYNjyFdwc6pC/UKS5TMwf2F1DsKi+0woXsEeVUUo3pFtv1IDGPVSU/10/P0
-         JhBw==
+        d=linaro.org; s=google; t=1727476192; x=1728080992; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=I3DyDl5P2Lm0RLqXBZQG7t4Im5KI8VDSmS4CyUvHg+4=;
+        b=OwWztq01U5gZqKfbdNm/D8i8L0Ztq2IKlUBknWFZfyPtg7gEMXs8V0+RBGna6z8/1y
+         rGRrrlRdDN7m7xR+bNQhZQAJQtm8v9ejvvj3fESydXvTj18gjLK4UdfprCQW+WRgZt4t
+         Xu50AN+UXw3vh4vYckeNgqVyn68TlZ1KmoTn+kOYzbBzdgoGTl2zo326Ywweqp3H2t7s
+         hiM8SmacRQ6reRQVv0aswCAa36f5oxmsvbB01ATYhl9EH/vSejZsE+O24YWC2V9FPPwY
+         +i2pBPeSRwAlMheXJmabGhaeP4dP3i+/dtWLhbSdBbMRVEIppVBtYv4lP9gVY2hkhyFu
+         Tipg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727475824; x=1728080624;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DanJ6h31Jbn0TSq8bGdh6DzWA3sprA/cMXnBlTSkGbo=;
-        b=nsCVRFJUck9MJWm55tqYYyzMM1wJ9VILOQsuZH+3qDRKfGxzjOkijHf6qWsHhdemk/
-         gE2+t4oBLajV0teoQOfMUHoQoaJjn4b4yXbr0Xq76tT/r6jZ5QkN946DSjbWki0Kvpj7
-         qYvfTTzERstkHcgCmUdZ4B9PV/re1SJDR/ePjQ8cCBGp0TFiGFdpIUNwt2BXUb4/U7Cd
-         TWHqIFyBLTf0qlN08NGKZ2WB4pyQASKIU1cbWY+JpIRIAJovJQ8oy8tes73ib7zO4Vsg
-         l0ouGvUrgcxLEmdg7ulBNXTsTftjkwNZ3EiQdcAtvadZXyQ5zz9mbs0niFbxAaGe8vRo
-         pe7A==
-X-Forwarded-Encrypted: i=1; AJvYcCU1i03iZABQMDm7qAyn18a34GOEnWZ9STInNywNAnTXtrHe7JxFGe4v5h+8P7Nn9UEtZpRYYn2LJfES@vger.kernel.org, AJvYcCURPQqkKOAQwGV7R0f2+L+ymLjvwcxnJP3IattpFySNtY+/Bt3Cq19H/TBxYsHZ2GBomE7uTxfAAiiFamU=@vger.kernel.org, AJvYcCW8i/UIYIdcDwdS6aGGTWHMLXl2YH91n1oij+c1ZOBSH9MZ3JLS4Szn/hulknPiZS/OOySy47ggpPSp@vger.kernel.org, AJvYcCWIykpvuguwTDe0u0NPUVaMpOGJeAhncEuWCfchz07A1nvAw0d0lqUCoHYSThHIPuPccytAKi92WOMZ@vger.kernel.org, AJvYcCXVF9oNJ/9jzZ+bOFwpgvqdNZTn1S9Kr+AxS27Grxaam1XBYDIWYKIVLotTxJ05WRB/avz6T07Vr8nkvRQ/hQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywk5UnJFgcvvpsDvqYvOxPw42VxeA2ocZhxEy34gjpWvPKAVe1q
-	W+M8o6KgSW83kSKfaiJhXi4wI7cft7MQIN/RiQ91UpkWBVt1FTE6
-X-Google-Smtp-Source: AGHT+IF2ytXoD+d32d4iKl7U3UVyVkSgOM2tAMYK5KlTGsf2bIaRccejmrWrhMWpXq/zHUEB2OfcXQ==
-X-Received: by 2002:a05:620a:4623:b0:7a9:c203:7c2f with SMTP id af79cd13be357-7ae37828db1mr853955785a.4.1727475824034;
-        Fri, 27 Sep 2024 15:23:44 -0700 (PDT)
-Received: from localhost ([2607:fea8:52a3:d200::1a17])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7ae377b863asm133692585a.20.2024.09.27.15.23.41
+        d=1e100.net; s=20230601; t=1727476192; x=1728080992;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=I3DyDl5P2Lm0RLqXBZQG7t4Im5KI8VDSmS4CyUvHg+4=;
+        b=HdzrpeMzrLOUntZDgEy1d72kpHvdRrDGv2KsJI/g78qcfoF282+XXE2+8O0Nd0FTzv
+         R7Fhqma2D2qfHcVSIKv+rY6xvI7MRN1024FrJo5q0G5JVNaUSN+TqMiAcvHOnMQ7KIf5
+         A1+atMRNhkKJF4Nqqz4QfIXxB6QumfipV19kdsY8M/tPkwS1w51TTpNa3eCl/6HFJTbS
+         bS76b47uSF8Uq+fWe7U9n7j0uPPgfulgUUAqPMzAYq5iABzuA3kqAGhw936I3JLt52tt
+         Dp6ZPjwp9UBM4XPTgkLoxXlkyduIv7QRD1nT7rV7MILIMf5xjgNAjkDqbrZx+LVF88pC
+         gZyw==
+X-Forwarded-Encrypted: i=1; AJvYcCUCFyLzlOdMPHMP3HeI3g/5+RuOUez5ArbdKIS6nOdVm0eotFQaimBFg4MfOFhxF+MiNnFYMDMo6GWw@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywje1cdPMrPnJ52LSDsrCZodwBMeMIlRRGIyE5UBrcZo3/LSO8p
+	aDC+wvGMVu79HZwB2Kg7ynWEAAdLoVG9KP7Nn8QxBhbHpLJzNtwLRv0sgsSKV2M=
+X-Google-Smtp-Source: AGHT+IEsFbqQMSaAa0zr2VsEYK8RPxFve5n9UId6CEw+JniwOWndvRjsqMY9wvKbLoe6iKJz0Q+1Xw==
+X-Received: by 2002:a17:906:4787:b0:a86:8953:e1fe with SMTP id a640c23a62f3a-a93c4a69b1fmr462520466b.47.1727476191682;
+        Fri, 27 Sep 2024 15:29:51 -0700 (PDT)
+Received: from lino.lan ([85.235.12.238])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a93c29460eesm179504066b.119.2024.09.27.15.29.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Sep 2024 15:23:42 -0700 (PDT)
-Date: Fri, 27 Sep 2024 18:23:40 -0400
-From: Richard Acayan <mailingradian@gmail.com>
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Loic Poulain <loic.poulain@linaro.org>,
-	Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
-	linux-media@vger.kernel.org
-Subject: Re: [PATCH v4 0/7] Add SDM670 camera subsystem
-Message-ID: <ZvcwbCh97WKnvarS@radian>
-References: <20240904020448.52035-9-mailingradian@gmail.com>
- <tthbaop6bkyvebpibiyvyct4khrd5o4apdbipqdthnidxmu2cx@m726xv4ocblg>
- <ZtpqrANbJurWNOzV@radian>
- <5c58b41a-7fc7-456d-979c-edb8dbe4305d@linaro.org>
- <a27adb94-5280-4213-a532-0dcc907f80b7@linaro.org>
+        Fri, 27 Sep 2024 15:29:51 -0700 (PDT)
+From: Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH v2 0/4] leds: bcm63138: Add some new bindings and code
+Date: Sat, 28 Sep 2024 00:29:46 +0200
+Message-Id: <20240928-bcm63138-leds-v2-0-f6aa4d4d6ef2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a27adb94-5280-4213-a532-0dcc907f80b7@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANox92YC/3XMQQ7CIBCF4as0sxbDALXVlfcwXVCg7SQVGjBE0
+ 3B3sXuX/0vet0NykVyCW7NDdJkSBV9DnBowi/azY2Rrg+BC8avgbDTPi0TZs9XZxHA07aTQqM5
+ YqJ8tuoneh/cYai+UXiF+Dj7jb/0nZWScGWx536EUSvP7Sl7HcA5xhqGU8gWEyE3nqwAAAA==
+To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ William Zhang <william.zhang@broadcom.com>, 
+ Anand Gore <anand.gore@broadcom.com>, 
+ Kursad Oney <kursad.oney@broadcom.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.14.0
 
-On Fri, Sep 06, 2024 at 04:00:32PM +0300, Vladimir Zapolskiy wrote:
-> Hi Bryan, Richard,
-> 
-> On 9/6/24 15:19, Bryan O'Donoghue wrote:
-> > On 06/09/2024 03:36, Richard Acayan wrote:
-> > > On Thu, Sep 05, 2024 at 10:09:34PM +0200, Andi Shyti wrote:
-> > > > Hi Richard,
-> > > > 
-> > > > On Tue, Sep 03, 2024 at 10:04:49PM GMT, Richard Acayan wrote:
-> > > > > This adds support for the camera subsystem on the Snapdragon 670.
-> > > > > 
-> > > > > As of next-20240902, camss seems to be a bit broken, but the same series
-> > > > > works on stable (although it is much less reliable now that the CCI clock
-> > > > > frequency is not being assigned).
-> > > > 
-> > > > I am not understanding this bit: is this series making it better
-> > > > or not? Can you please clarify what is broken, what is less
-> > > > reliable and what works?
-> > > 
-> > > When applying this camss series and some camera sensor patches on
-> > > linux-next, the Pixel 3a seems to hang when camera capture starts.
-> > > 
-> > > When applying the same patches on stable, the camera does not cause the
-> > > Pixel 3a to hang.
-> > 
-> > Right so -next isn't stable that's not exactly a revelation.
-> > 
-> > 
-> > > When these device tree properties from the previous series were removed:
-> > > 
-> > > 			assigned-clocks = <&camcc CAM_CC_CCI_CLK>;
-> > > 			assigned-clock-rates = <37500000>;
-> > > 
-> > > the CCI would sometimes fail to probe with the error:
-> > 
-> > Right, we don't have clk_set_rate in the cci driver.
-> > 
-> > Maybe just leave the assigned clock for this submission and we can do a
-> > sweep of fixes to CCI at a later stage including setting the clock
-> > instead of having it be assigned.
-> 
-> first of all it would be nice to confirm that the setting of a particular
-> clock frequency is actually needed.
-> 
-> Fortunately it's pretty trivial to check it in runtime with a temporary
-> modification in the board dts file, namely disable CAMSS in board dts file,
-> but keep CCI enabled, then simply scan the bus with a regular "i2cdetect"
-> tool in runtime.
-> 
-> If i2cdetect on the CCI bus works only for 37.5MHz clock frequency, then it
-> is needed, otherwise (and this is my expectation) it is not needed neither
-> in the dtsi files nor in the driver.
-> 
-> > > 
-> > > 	[   51.572732] i2c-qcom-cci ac4a000.cci: deferred probe timeout, ignoring dependency
-> > > 	[   51.572769] i2c-qcom-cci ac4a000.cci: probe with driver i2c-qcom-cci failed with error -110
-> > > 
-> > > On further testing, the rate can be set to 19.2 MHz, and there would be
-> > > no failure (or rather, it wouldn't happen often enough for me to witness
-> > > it).
-> > 
-> > That's expected 19.2 and 37.5 MHz are supported by CAMCC for your part.
-> > 
-> 
-> I read it as the setting of 37.5MHz clock frequency is not needed, please
-> correct me.
+This brings over the few know-how items and little things
+I found about the BCMBCA LEDs in my previous duplicate driver.
 
-It is not. My test setup just needs specific EPROBE_DEFER behaviour
-(my setup being postmarketOS with a full-disk encryption password prompt
-and camcc-sdm845 loaded after mounting the root filesystem).
+This was tested on the BCM6846-based Genexis XG6846B.
 
-In drivers/base/platform.c, the platform_probe() function calls
-of_clk_set_defaults() then dev_pm_domain_attach() prior to probing the
-driver:
+The main addition is the ability to define the number shifting
+bits in the serial shift register which is necessary if the
+previous boot stages have not set up the hardware properly
+before.
 
-	static int platform_probe(struct device *_dev)
-	{
-		...
-		ret = of_clk_set_defaults(_dev->of_node, false);
-		if (ret < 0)
-			return ret;
-	
-		ret = dev_pm_domain_attach(_dev, true);
-		if (ret)
-			goto out;
-	
-		if (drv->probe) {
-			ret = drv->probe(dev);
-			if (ret)
-				dev_pm_domain_detach(_dev, true);
-		}
-		...
-	}
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Changes in v2:
+- Drop the u32 $ref in the schema, -bits is a standard suffix.
+- Fix algorithm for shift register configuration.
+- Fix spelling errors and numbering errors.
+- Link to v1: https://lore.kernel.org/r/20240920-bcm63138-leds-v1-0-c150871324a0@linaro.org
 
-When handling the assigned-clock-rates property,
-of_clk_get_hw_from_clkspec() eventually returns ERR_PTR(-EPROBE_DEFER),
-being propagated all the way.
+---
+Linus Walleij (4):
+      dt-bindings: leds: bcm63138: Add shift register bits
+      leds: bcm63138: Use scopes and guards
+      leds: bcm63138: Handle shift register config
+      leds: bcm63138: Add some register defines
 
-When handling the power-domains property (if not avoided by deferring
-with the assigned clock), __genpd_dev_pm_attach() returns a value
-returned by driver_deferred_probe_check_state(), which is immediately
--ETIMEDOUT.
+ .../devicetree/bindings/leds/leds-bcm63138.yaml    | 12 ++++++++++
+ drivers/leds/blink/leds-bcm63138.c                 | 28 ++++++++++++----------
+ 2 files changed, 28 insertions(+), 12 deletions(-)
+---
+base-commit: 5724faee6be4109d7a3168625357e4127f42b5d2
+change-id: 20240920-bcm63138-leds-1bc5f41c47cd
+
+Best regards,
+-- 
+Linus Walleij <linus.walleij@linaro.org>
+
 
