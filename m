@@ -1,169 +1,196 @@
-Return-Path: <devicetree+bounces-105750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9229A987D88
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 06:14:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0596987DD6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 07:25:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3EA31C2268D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 04:14:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 419571F23C71
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 05:25:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CFC5172BB9;
-	Fri, 27 Sep 2024 04:14:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEAE8174ECD;
+	Fri, 27 Sep 2024 05:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qur09JOl"
+	dkim=pass (1024-bit key) header.d=kneron.us header.i=@kneron.us header.b="A1W56Db9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2094.outbound.protection.outlook.com [40.107.237.94])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B5B2AE84;
-	Fri, 27 Sep 2024 04:14:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727410453; cv=none; b=bjyV9bmjq9ERUsHqeRNPyIeSA+Ukrg1u7jZa0BxyPl1G6S0OhPcrMuPka4uKJKhnOp4aEx8EoGifVoJZGujwt0q5eaDV2tm/yAKRV0fvSTe6HszfA5IT8yvh9gETcV8S1zDxP7cG6jv+s+iLSb3iIy4j7xd2JR/CC49CLzulPzk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727410453; c=relaxed/simple;
-	bh=JVL2fUPhe7PhfPh2yglWF3nfspxFiAyHvNIEuOzsF4Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VE04jW3FGvpLXcO40vPcc42nMqSstjl9XUQbC1/MNBjRf6JnElYIpMiqMhzPE/KPF5lWamkcMPRF3++m76t59WiTyWE0zE8iM64KFrBE9lQLglsA2o/1fSx4D0cgqdEHO1+wCfpckE/Vp7alMvaM3TJRDX9hgB4m6yul/BJenMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qur09JOl; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-206aee4073cso17849155ad.1;
-        Thu, 26 Sep 2024 21:14:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727410451; x=1728015251; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zmPC7xOEq4xiQYbTsTCCja7E17GlGBjk59a6Y6qmbow=;
-        b=Qur09JOlkHbBXshLpChKTSxuQZSAykBrwObI3ikF2+MvvZELFM4eGQgtUk3wXoWpwW
-         KLCoGrj/1fEQCr89g+5wJoq2X7CtWPlUT1qeW6AC7JImyf9SpeIhrUEVbAWdW7wi5znd
-         9LjVZbhWquXcGdZUJandrFfN9yuag35g9nYe8h59pGnKrqql21uILunwxZ6nrfrwLhht
-         YWEfdrha3uADqAhw0HgcSj255/JHaiLHGOq9Yvaa95oGDpk7oj+uo64M3qqyciQ1/EO2
-         M1h4kXzgDwde53BahlA7OXS/xpbiphYmbi/agZAPJQ0YXCk0LxKafU9cFJugDW7iyoNK
-         1Y8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727410451; x=1728015251;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zmPC7xOEq4xiQYbTsTCCja7E17GlGBjk59a6Y6qmbow=;
-        b=wiM8P6i9hKJiC5jmI5DWytLSpSFq3kO9VrTJ4Fh7laoLO+ISo9MhDDsoUc6TL71Nsr
-         aFp3rNsd08eDlK0uSoQugUcGcTyn6gGge3Nu6V73Sct5YAbGbBSQXKLlR3mReUbtfP3I
-         a4+wtNCwry6zXLJoe5GRGYoix3D6Id751DD4Dyukkcv415H9hVpF0Tcfq1QBUmn+41qK
-         vf35ssjZYgHDSTmInn2Ug9xLfWgvmNXoM8s/TbYzATZFbJe9A9Tjq4wJkfTM14IkF/Gn
-         kaJrCwCFI+y9YrhNHwaEjJ9Jsc9YTGu+A13K8cD77fi5f11TTOlSTqyq8KGMkYY4202x
-         e1Fw==
-X-Forwarded-Encrypted: i=1; AJvYcCU2ZXaP4ugo0HY8z39XAxnc/aTVg95XEsOxCLGvrPuxzlqBhWqOW55zJdes+CYxjy3rFtltoP418DUw@vger.kernel.org, AJvYcCWVGAweQmd4H+CmCPC7oOOe5JLlSXF4yBW0lGP2VjILbvhD/Z9KiTk/RU5kd9GAsN1jO1MZlcSlAfIB@vger.kernel.org, AJvYcCWXu8U7S+fM+wGO6M2BNFtzRXhESfxdtaarghy6FxdV4MWy3nQ5HxX1pc00i0q47cNvGGgIrTSeZRVMXYtZ@vger.kernel.org, AJvYcCXq99sVKXXEpdLOVNcuZbGagTUhoi5sBYWwJlRug5A+vPqDBev2z/lESzi2od5TFCFP3Ve9J3nlWn2e77on8hQ3@vger.kernel.org
-X-Gm-Message-State: AOJu0YzfnI6O7hHO25AeH3gx+/yiaK0stT1Epe9H3OK5Cwo57bWXiHu7
-	S5FcWZ0BwjogIjj1K5FJ4cgDPMRIWFNo0qPG4LmTw3yrAoP8ojNN
-X-Google-Smtp-Source: AGHT+IHDmvSZ+vvEz962F4lkQhrBabPVtLhowwYwbXZHolk9sYGt9iof/C7/GGTTa5vwr7vZ0BjGBw==
-X-Received: by 2002:a17:902:da81:b0:206:adf0:4f15 with SMTP id d9443c01a7336-20b367d035emr34323555ad.8.1727410450894;
-        Thu, 26 Sep 2024 21:14:10 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7e6db2bc531sm689914a12.32.2024.09.26.21.14.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Sep 2024 21:14:09 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Thu, 26 Sep 2024 21:14:08 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	patches@lists.linux.dev, kunit-dev@googlegroups.com,
-	linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org,
-	Brendan Higgins <brendan.higgins@linux.dev>,
-	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99D22170836;
+	Fri, 27 Sep 2024 05:25:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.94
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727414711; cv=fail; b=qEdbdkKuxnRNVrCMd/RsB0DxQajNLNUo4RDOOGlh15aklsf51/JPFO3GG8mm/znQ2cdok4su4ydrXXGIwmIQMhXOg2/sCtCZnaHKTFumSuA6zfsa3kicps4WGHJztjt2vGAZIkjKaCujNij22L8StC346jd+wbjlenhm86v2gWI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727414711; c=relaxed/simple;
+	bh=5ekITy4Ofip2Xj/exR4ZlKCvGt8huJq6VWCdGxO1MfU=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=BdmFqal+d57KPM4E1CdRp0PsJX6tn0YBjpCUK+Bat645WdjTG216kH9xY5EiXVzvJ33BLn0xhA8UxlvY53UAzRY8pgiiAfLg6NRWiYwYsWgEJksAzTBCMSC/5CIXrFhqQSKXenr2hzMUMSfyGWL5wBcpfBqUu+peXln5uT76fps=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kneron.us; spf=pass smtp.mailfrom=kneron.us; dkim=pass (1024-bit key) header.d=kneron.us header.i=@kneron.us header.b=A1W56Db9; arc=fail smtp.client-ip=40.107.237.94
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kneron.us
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kneron.us
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GAjkQoeQ5mG73uNjDWpF75Po2U9FIqyWCEoHXcFNC3eofNJqyqNd2IXnKU77d2KBra4GSbqH5V0lK5nxoHFICAHiW7MCBvG9W5Os6a0CMk2pZS/a/e14cmcAXjjFTBBjbBNmBT37FnvEeSKzvLOlR4X3KlofV2xHRJI60BUP/tyzPBEJp+TvZ37wjS7KreHYKbn9E4mFVf8nG4mdziu0pSICxDQ80q+Cs5coWgROUDIWgucUBO7uADVZNvIXXjE8jDHbPLReub2DnCHm9rpAp1Ivs/RUHRd3o0QZ7NMJdY5JCxeRKc9sGtr7wiLg8FoOSTMyWrpDcctwe91jNAQxJg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HBT8G3MnDtY3w5AoGkKsYicm6VAsPn+OT8Ddcnky3Wo=;
+ b=nM4A07MLa2lrJsMCa/ysfR2YqLqh1xD5DANpAQ8sehCSaVsd2gOUJ72zsuggt26MgjqU42/6uT+cXJUMYU1i/f5F9c3+wzI6s49hsL0ZNPR6JGdWWO82WGvCuHIC6G2XO33T1demiVtmIEs438FwqCcsIKiGclh6A9CuM3eKYtqSlKweOyXgbbfReREBsTZ8e4A2kyc+jB+LeqaqLdCYeOMKs32maANglf4lR9pMhWEuJI1H7kLp6gIz+sIec8CvLE9lG9oNA9vRFvSm9r50aYdHhuuNNbLvB9NHnU+2EnQ9ueipFPfzI8g9IQZCbxS6yL3uqFVb0PbhhYh+Z4Ev+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kneron.us; dmarc=pass action=none header.from=kneron.us;
+ dkim=pass header.d=kneron.us; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kneron.us;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HBT8G3MnDtY3w5AoGkKsYicm6VAsPn+OT8Ddcnky3Wo=;
+ b=A1W56Db9EpQPEHUQHeZ9I5TnA5d+ywlmfV8Inz0RmoDfxaQ4XZsxfQNA18WpGed+i7ciz3esCDbvOVco+DVvZ7yWnKwTYkN/P7HUzTUjrb6A8EhHbjZNY7RHa4bP7NV2LMn4bOjRA4HRDe+UtQi0JlhsjT+VhkMOSOHH32XZ+/w=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=kneron.us;
+Received: from IA1PR14MB6224.namprd14.prod.outlook.com (2603:10b6:208:42b::6)
+ by DM4PR14MB5526.namprd14.prod.outlook.com (2603:10b6:8:bf::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.28; Fri, 27 Sep
+ 2024 05:25:05 +0000
+Received: from IA1PR14MB6224.namprd14.prod.outlook.com
+ ([fe80::c527:653c:698d:3d94]) by IA1PR14MB6224.namprd14.prod.outlook.com
+ ([fe80::c527:653c:698d:3d94%3]) with mapi id 15.20.8005.021; Fri, 27 Sep 2024
+ 05:25:05 +0000
+From: Michael Wu <michael.wu@kneron.us>
+To: Andi Shyti <andi.shyti@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Daniel Latypov <dlatypov@google.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Ripard <maxime@cerno.tech>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH v8 8/8] clk: Add KUnit tests for clks registered with
- struct clk_parent_data
-Message-ID: <6cd337fb-38f0-41cb-b942-5844b84433db@roeck-us.net>
-References: <20240718210513.3801024-1-sboyd@kernel.org>
- <20240718210513.3801024-9-sboyd@kernel.org>
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Jan Dabros <jsd@semihalf.com>,
+	linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Morgan Chang <morgan.chang@kneron.us>,
+	mvp.kutali@gmail.com,
+	Michael Wu <michael.wu@kneron.us>
+Subject: [PATCH v2 0/2] Compute HS HCNT and LCNT based on HW parameters
+Date: Fri, 27 Sep 2024 12:22:15 +0800
+Message-ID: <20240927042230.277144-1-michael.wu@kneron.us>
+X-Mailer: git-send-email 2.43.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: TYAPR01CA0148.jpnprd01.prod.outlook.com
+ (2603:1096:404:7e::16) To IA1PR14MB6224.namprd14.prod.outlook.com
+ (2603:10b6:208:42b::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240718210513.3801024-9-sboyd@kernel.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR14MB6224:EE_|DM4PR14MB5526:EE_
+X-MS-Office365-Filtering-Correlation-Id: e925a85f-3cb8-4603-3f46-08dcdeb4be4b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|52116014|376014|7416014|1800799024|80162021|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?dJ2USWWj7oNg7iuCYdqEh2bWw84+xjG0Cc/yGWvkmnVrdVYnf+ZfhRGEYlLJ?=
+ =?us-ascii?Q?Z0cP78ij0gUn5jyWJIhG3sxv8B8EBFu9zn0Jf9ZQogcCoWGuX/EZzSbhjTK8?=
+ =?us-ascii?Q?V55RwjYYqLEGd1fkHvVF1kuEng66X8QQAxi14JlMBBkpmC0y6BsR1celxGKa?=
+ =?us-ascii?Q?TP7ssrH31YrCUYww1PQqpRtwo/0hGfcAoDiIv7i6V8VdRjKYASkODTb+x/L6?=
+ =?us-ascii?Q?J+n3J4shO+UQLF7P3EHW4UgpVXFMJ1vYbfFJlRwEXe5ZTkMa0Z8h0aC06KB6?=
+ =?us-ascii?Q?ir61yTcrH7iLw7rEl+kSsdnqcJoqvQs6RNLxoY0+70uISBgMvI0Mem9qKe56?=
+ =?us-ascii?Q?AA+gx2yza/1Wotm2/gQIy1G08JFAEDjqD9szkYHANX//jsHsTNemCREg2v4R?=
+ =?us-ascii?Q?XjwUrazO+QlipY5Jw6VLRoegj6h4uCfJt1N6jwxjSB35DUJ3SBCZFYKH4hdA?=
+ =?us-ascii?Q?nGako9d/khotUr9kXsoQxBu2vwfET8gW49RRJPPBI81WRAJIu3euI6Kb3wm+?=
+ =?us-ascii?Q?kwd6d4xjCGA3qBTPusaWVuu9dVyeZoLwsAxN1YSaaVqNODP5GTFatVb4FoAT?=
+ =?us-ascii?Q?kG6EEsPYkZL4/z4AQpzUca9p+T7kHLt4JWCOQCafJfoN6DxgnoeStnJJiaP9?=
+ =?us-ascii?Q?68uu1OQ6+Wg6BtIA0BTACPGPvyE/IeIDAH9wCx8rtrH7q1AqcHozn+gPq+eq?=
+ =?us-ascii?Q?BNwVUXh59Yi9NYN+xf04RdYeA2O8YRWZxxNCEwAnvKbmnJTMVfnN9tWqdR/j?=
+ =?us-ascii?Q?lT+KDBlfaNntYl831dnAFAHEM0Eiui38KK6ALQwnhbcsf4ddkJtYa2mUjOfN?=
+ =?us-ascii?Q?rMhvVQOid/p/j2bofIVrTvDa/0kMBRt9ihvZFcIh1G6IrSnWqDyMPWZxSI0h?=
+ =?us-ascii?Q?SXWAn3v7rbP/T0OL+dmzKYxL2nusQjz0qTmtoNjxGTG+hKubDM298/14uRUg?=
+ =?us-ascii?Q?ppquoWFWQHzxJdsgPJ3HnrNzMtO3+CiexhhEpU/u7cHw8vBp+NiWziSI9w6f?=
+ =?us-ascii?Q?MwpDuyvY6vx8xUfhoSJS7EdQCYOHWI7GQpUcmMDv6sd2SsmKsj7THWL2KThL?=
+ =?us-ascii?Q?k6axMRVQ46tDtXUKD+4icVhiH9RU47DGEx//+6KrOjO8cUpDwK/xBxTq0X7r?=
+ =?us-ascii?Q?PgZMetkChNVoyiTgz7G04DyKc2uEY3t4D1lYVV5o3d/KKPULiBH4B0SuTK0S?=
+ =?us-ascii?Q?xazUOw6jf1lWFEcXXEAMefzXF0dpC5luNH8zqfz0ILbnvtBtMP6HUfzR9DZ9?=
+ =?us-ascii?Q?QMKuu3efeJCDzq2Ssjop7vz5XiVF3lv4HuLWyk2VlT/xCexqL+vzyF1Sld+6?=
+ =?us-ascii?Q?hrnpJB0MV3jOig0d8v0Qow8O58j8oHIm6C3IH47YBNILcJ1eqDOYl9WFewF2?=
+ =?us-ascii?Q?2JrQEEJ5PJECOGhJ4il42rq71VMMnAXNO5+5vkxHl1/k6iMDz1DbVXDVo2SW?=
+ =?us-ascii?Q?1OiIaDqSRmR9l+Fq2+VGjcO1VdPn7NhN?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR14MB6224.namprd14.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(376014)(7416014)(1800799024)(80162021)(921020)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?nADPzshrJ51TyweAGtv4PC7r2eE5uTIJMjzYLlyoPMlXIsQsWd7XR2/M5c0T?=
+ =?us-ascii?Q?i59kRbvqWuiEAR0BTdkbvvUkf4awQfs037XuLXLxUJ29wYtvpBe6brci54E1?=
+ =?us-ascii?Q?cWPgX9ArXPVDQNA9dE1RKUvp0YVM/DcxcXFzIALJuzzoSIz0SZYa7g3bkKxI?=
+ =?us-ascii?Q?0BWo5juaQEYBIAXs7Yu+92TpwdPTaO2B5oqj4STgT+5Ni7jqxexezmPOYw7p?=
+ =?us-ascii?Q?thnncyw65dRS2BeqyQlZ2Mjd8r2aIlXoJO4aMnx4Mcq8Th6tXaiv6p3fcwFN?=
+ =?us-ascii?Q?NjPBxs5/zsMuqwkQ41CMNmN0BbXoma998lougFgeZI5r/zbEVRRjOdeEHqoS?=
+ =?us-ascii?Q?n84nd4ztZY8ak5sjy/o2Dxl0LoCCLuGc2XIZx8tuJNw/Y7kSUz1IF0E8hfc+?=
+ =?us-ascii?Q?NxvVOeY/KBExvKL/6x7QgRKucF4MfPIsQ3SuC1Ds6fGivW7Rwq1MseNnX1/Q?=
+ =?us-ascii?Q?ApHQCDPEFSR2KeppHbmAgcfaQuuY4h588pswqx8lu9DIJu9YZ4NQFXjewM8o?=
+ =?us-ascii?Q?k4vQGUhVKSdJ5DhuF1Pto/OUWZydmzOVlLekukP6whB1Wvv+2f/szdgB9l2P?=
+ =?us-ascii?Q?lTmm5tStRsPWImzcHNzmzcpToZs+WTDSwpzdt68tupiNHLRwzEM5p45lWdLn?=
+ =?us-ascii?Q?yu6cWgBDxTAZo5wt4zEWZwkRlueu2mh+Q3pNh44z/zk8AugHlwP2CXSLv6gk?=
+ =?us-ascii?Q?knQCQkL3hveIXHzv9EL0+3FqRC+j7dEDt4oapFcXSBO9Xu1KDuJGbGVPadGK?=
+ =?us-ascii?Q?OKAg7UzSjq9CJbKwkoxxmXBTZMQedCNmPXReEaFVxfGMieujrAv4LqyqWxel?=
+ =?us-ascii?Q?arf/ShMe5Hs4aLuLrSaPKmxr6mS3gnossA0FosvwB6HaxhBk3PowyD6M8jlX?=
+ =?us-ascii?Q?6xIbpAVQsds23RPjwq5P2gtp6dOVKvia4pTInGVh2ou9Mh/NZ6sqRwbdwPdL?=
+ =?us-ascii?Q?ZEt7LSRTyGtMhyuvrnV34r7tkp6k1wi3QwN1qArobEX7axkPBu2+0fU4HTLm?=
+ =?us-ascii?Q?TzwWwfy/u5fIqSEiX2D4HJ1tiDnF76fXtIcuClmnC9w0M5ME/x27cqQQzPXU?=
+ =?us-ascii?Q?Maq/rosfRK0PjwlIn4UP+3O+ePsqYNxrwWDiW06T9P+hf1RWwFJeYqtgjAjZ?=
+ =?us-ascii?Q?XQpKn7WmCtueXWJo5gGY5IiiL5IHwioxqOtZqk7aQbjcAL5Gi8lzbgcsiGDt?=
+ =?us-ascii?Q?7VZNDkfKa7XWPUwuw3A8Ms6q2yqt0/ax78WpONQQbxk/e+7wzBHrn0K3HwqC?=
+ =?us-ascii?Q?s6XEq/h+LbsModUtX829PF+P3yfcSAxBz3OGYMuVQ/LT7YScuBgLLEArM7pA?=
+ =?us-ascii?Q?n0fPq6y8ZR54YOM3kd3Td+Ipqm/DLhBVoqYBLv36D2yNHtGMJ4UhM3RZM34L?=
+ =?us-ascii?Q?LwrYeDyntmEK90UYSy9sgYfy4pelDhpNk5kPjuvBtaBxLNVFjXAW08LppPI7?=
+ =?us-ascii?Q?tu3N6qWC+X7wj9EPA9CA3UN7hlMo1igU2SKUTfIseucNByIk5Z3Etfoc1pmI?=
+ =?us-ascii?Q?n3rMz3M2YFMN9EUY+2AE9O2wbT82oizykTBuC/a8cm3y8zlhpbDc+paZ78Ub?=
+ =?us-ascii?Q?ylntxYP25sXye+DcRQdGbZu/BOmXLzejQBnbFdMq?=
+X-OriginatorOrg: kneron.us
+X-MS-Exchange-CrossTenant-Network-Message-Id: e925a85f-3cb8-4603-3f46-08dcdeb4be4b
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR14MB6224.namprd14.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2024 05:25:05.2907
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: f92b0f4b-650a-4d8a-bae3-0e64697d65f2
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5BLCvEYBmAOsw/LsaG/ztCuBDLTLvbuSsttv2Q7p4jpPSUYQmvYZCXur1DzPlVFCwCroQI2ua2SlYIaD4xW3ug==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR14MB5526
 
-Hi Stephen,
+In commit 35eba185fd1a ("i2c: designware: Calculate SCL timing parameters for
+High Speed Mode") hs_hcnt and hs_lcnt are computed based on fixed tHIGH = 160
+and tLOW = 320. However, the set of these fixed values only applies to the
+combination of hardware parameters "IC_CAP_LOADING = 400pF" and
+"IC_FREQ_OPTIMIZATION = 1". Outside of this combination, SCL frequency may not
+reach 3.4 MHz if hs_hcnt and hs_lcnt are both computed using these two fixed
+values.
 
-On Thu, Jul 18, 2024 at 02:05:07PM -0700, Stephen Boyd wrote:
-> Test that clks registered with 'struct clk_parent_data' work as
-> intended and can find their parents.
-> 
+Since there are no any registers controlling these two hardware parameters,
+their values can only be declared through the device tree.
 
-When testing this on arm64, I see the error below. The error is only
-seen if I boot through efi, i.e., with "-bios QEMU_EFI-aarch64.fd"
-qemu parameter.
+v2:
+- provide more hardware information in dt-bindings
+- rename "bus-loading" to "bus-capacitance-pf"
+- call new i2c_dw_fw_parse_hw_params() in i2c_dw_fw_parse_and_configure() to
+  parse hardware parameters from the device tree.
 
-Any idea what might cause the problem ?
+Michael Wu (2):
+  dt-bindings: i2c: snps,designware-i2c: add bus-capacitance-pf and
+    clk-freq-optimized
+  i2c: dwsignware: determine HS tHIGH and tLOW based on HW parameters
 
-Thanks,
-Guenter
+ .../bindings/i2c/snps,designware-i2c.yaml        | 14 ++++++++++++++
+ drivers/i2c/busses/i2c-designware-common.c       | 16 ++++++++++++++++
+ drivers/i2c/busses/i2c-designware-core.h         |  6 ++++++
+ drivers/i2c/busses/i2c-designware-master.c       | 14 ++++++++++++--
+ 4 files changed, 48 insertions(+), 2 deletions(-)
 
----
-[   20.464809]     KTAP version 1
-[   20.464865]     # Subtest: clk_register_clk_parent_data_of
-[   20.464936]     # module: clk_test
-[   20.464979]     1..1
-[   20.465098]         KTAP version 1
-[   20.465208]         # Subtest: clk_register_clk_parent_data_of_test
-[   20.468964] OF: overlay: find target, node: /fragment@0, path '/' not found
-[   20.469558] OF: overlay: init_overlay_changeset() failed, ret = -22
-[   20.470177]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
-[   20.470177]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
-[   20.470177]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
-[   20.471793]         not ok 1 clk_parent_data_of_index_test
-[   20.474095] OF: overlay: find target, node: /fragment@0, path '/' not found
-[   20.474373] OF: overlay: init_overlay_changeset() failed, ret = -22
-[   20.474737]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
-[   20.474737]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
-[   20.474737]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
-[   20.477677]         not ok 2 clk_parent_data_of_fwname_test
-[   20.479773] OF: overlay: find target, node: /fragment@0, path '/' not found
-[   20.479941] OF: overlay: init_overlay_changeset() failed, ret = -22
-[   20.480160]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
-[   20.480160]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
-[   20.480160]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
-[   20.481513]         not ok 3 clk_parent_data_of_name_test
-[   20.483711] OF: overlay: find target, node: /fragment@0, path '/' not found
-[   20.483878] OF: overlay: init_overlay_changeset() failed, ret = -22
-[   20.484100]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
-[   20.484100]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
-[   20.484100]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
-[   20.485444]         not ok 4 clk_parent_data_of_fwname_name_test
-[   20.487432] OF: overlay: find target, node: /fragment@0, path '/' not found
-[   20.487600] OF: overlay: init_overlay_changeset() failed, ret = -22
-[   20.487841]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
-[   20.487841]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
-[   20.487841]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
-[   20.489207]         not ok 5 clk_parent_data_of_index_name_priority_test
-[   20.490998] OF: overlay: find target, node: /fragment@0, path '/' not found
-[   20.491504] OF: overlay: init_overlay_changeset() failed, ret = -22
-[   20.491725]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
-[   20.491725]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
-[   20.491725]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
-[   20.493053]         not ok 6 clk_parent_data_of_index_fwname_name_priority_test
-[   20.493583]     # clk_register_clk_parent_data_of_test: pass:0 fail:6 skip:0 total:6
-[   20.493701]     not ok 1 clk_register_clk_parent_data_of_test
-[   20.493822] # clk_register_clk_parent_data_of: pass:0 fail:1 skip:0 total:1
-[   20.493920] # Totals: pass:0 fail:6 skip:0 total:6
-[   20.494032] not ok 49 clk_register_clk_parent_data_of
+-- 
+2.43.0
+
 
