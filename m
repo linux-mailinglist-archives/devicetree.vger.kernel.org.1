@@ -1,221 +1,165 @@
-Return-Path: <devicetree+bounces-105986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1563988C4E
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 00:08:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09531988C5B
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 00:18:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4888A1F218E7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 22:08:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DD771F21532
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 22:18:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 902781B150F;
-	Fri, 27 Sep 2024 22:08:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCDE81865E1;
+	Fri, 27 Sep 2024 22:18:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QXrxkB0m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mBuUlxYX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A0381B1501;
-	Fri, 27 Sep 2024 22:08:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87DAD1F931;
+	Fri, 27 Sep 2024 22:18:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727474931; cv=none; b=NkSb9ZBNLCoeGAvExaLmuBbOKTjvQ+DReBRXUJWdgdwWLwpHtwiWXLtj4G+dtE9jbGBcXk0YsmBj9RHQv4TXbXO5AQTsCbL/Ig0I7OH8MBy9cXLJK8IfRxHYB51FKNpFuyAptxhgDLcFwpe14COFlpl76Ff/CjLfiniGkr8QGd4=
+	t=1727475513; cv=none; b=pXi2HRfRU9896YkmYdwhCrulOXj7IBdg3C1QLuRX08n4U3c1n2CaXsYcEdHyno62DH/YA4wHilyiOZAoCk6ZKSfOCGNRQbwRBsfbaBXggV7hxJX3U9YhiYunKCKVZsoGIpp/3+HiXfUZKx051HM3sD1vkD/H7ia/g2KnsKiU5X4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727474931; c=relaxed/simple;
-	bh=PjwHTGA5BsrsNLC2q0jcT95lWCT2/PR7eV5me+6PLsU=;
+	s=arc-20240116; t=1727475513; c=relaxed/simple;
+	bh=uMyaYEJZLNU05MeCrzdMNUO+M6h8+Xyzu3+DEW7cg3U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZkNd/5H9ue/gioTbLBtmSMfhPU94GfgX3RTITZhHzPoS2+SyJe/foNz7QT9q72QBqpLcsp2iISOQsJIBaVU2NOuv6wgiAjI7TdofqQbftvOTdOKylrArpTXTxmiweQJpnVF6wKs58NCuS7UcgdbCBg28XOOAzeeLSJqfVjnyvV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QXrxkB0m; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1727474929; x=1759010929;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PjwHTGA5BsrsNLC2q0jcT95lWCT2/PR7eV5me+6PLsU=;
-  b=QXrxkB0mg+jZ4oXci1h0EesfJ6RcL9bMNejXyKXmULlI5dtmtMQJe7is
-   Vbftw0yUSM8+jnhHfFATPSh5sh/ymTDjcvES6rPvBjRzku0e1XomN2Glb
-   nrvLGfnGJNNww/3EfZVShOsVB32XNDJF7Isf3S89yQsegDR54WzrOel88
-   nX1nzx6+1QGGj5hP0TUa4OVMkTNZn1sdrifntZRfYb2vblutoRWUjWWu+
-   ktA4gYD1LKzEYBj+CDC0nscWLNiqnV8pZVNzJ5hiaEXDdnKoH/xfzfe8x
-   soOvFKmBqSVP9bsrD2f2adDHFuOsqsoHbRRcYFp8IR7e30LUAziDyBMz4
-   g==;
-X-CSE-ConnectionGUID: 3Yf6mw+1RKmOpRnXA/ekWg==
-X-CSE-MsgGUID: 2S9TSvqXR7Sb0/HkJyIJPw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="30339291"
-X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; 
-   d="scan'208";a="30339291"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Sep 2024 15:08:48 -0700
-X-CSE-ConnectionGUID: +jdEC4j2SnCYNoASp1qIFQ==
-X-CSE-MsgGUID: m2qpjqb4ScKkNMYWZ0WRNQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; 
-   d="scan'208";a="72242342"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 27 Sep 2024 15:08:44 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1suJ8k-000Mg7-18;
-	Fri, 27 Sep 2024 22:08:42 +0000
-Date: Sat, 28 Sep 2024 06:08:36 +0800
-From: kernel test robot <lkp@intel.com>
-To: Yikai Tsai <yikai.tsai.wiwynn@gmail.com>, patrick@stwcx.xyz,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Carsten =?iso-8859-1?Q?Spie=DF?= <mail@carsten-spiess.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, Yikai Tsai <yikai.tsai.wiwynn@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v7 2/2] hwmon: (isl28022) new driver for ISL28022 power
- monitor
-Message-ID: <202409280806.yxX1K5ey-lkp@intel.com>
-References: <20240925031131.14645-3-yikai.tsai.wiwynn@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=cFqltkHKjN/SJW6h0LkFnbBKwlNnIEEIqRbWzte0gUecycXSFRPvMkUlXEgUdQJgzD1SQo0A/GRQk8D8JJFL28GJK6TcTpFo0/Wu89aaOHc3zw/TJLv9prsQ0zLe9+CfBQ/ycQ6f9sbFg+3uQD90zGBKQO9CRzW/YjFilFNhs0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mBuUlxYX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B877DC4CECE;
+	Fri, 27 Sep 2024 22:18:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727475512;
+	bh=uMyaYEJZLNU05MeCrzdMNUO+M6h8+Xyzu3+DEW7cg3U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mBuUlxYXZsaFExSeyCRZG5b0/ei0hlt3jEIT0C1TrYuEoMPsm7OiKpm//pariQSyk
+	 jipNJSO8TttPNtfpe9QGtBVyt9r77r1913wHJDCozoYCkAmum9FHwy641jCF3RN0Dc
+	 rPYLCKyIE6GEi+mPqagxla73qKcqreJ8C2rDviOGATXcClVg9BK0knm8ojIKbUDCoK
+	 BoTK+wTaPcxjaRU1ib8WXwLpcTPQ+f7YM8kPnn9lgk+pooqJVbXyXUwwt39lzfEXbS
+	 QpFPz/RcMZsIrQ7dqV2xHv0JBQwKYDJ2/0TGPDwmbAzbAwPhyZeY5zIXln317pntx7
+	 aPt9tHrpnYS0Q==
+Date: Fri, 27 Sep 2024 17:18:31 -0500
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Saravana Kannan <saravanak@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/3] of: address: Add cpu_untranslate_addr to struct
+ of_pci_range
+Message-ID: <20240927221831.GA135061-robh@kernel.org>
+References: <20240926-pci_fixup_addr-v2-0-e4524541edf4@nxp.com>
+ <20240926-pci_fixup_addr-v2-1-e4524541edf4@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240925031131.14645-3-yikai.tsai.wiwynn@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240926-pci_fixup_addr-v2-1-e4524541edf4@nxp.com>
 
-Hi Yikai,
+On Thu, Sep 26, 2024 at 12:47:13PM -0400, Frank Li wrote:
+> Introduce field 'cpu_untranslate_addr' in of_pci_range to retrieve
+> untranslated CPU address information. This is required for hardware like
+> i.MX8QXP to configure the PCIe controller ATU and eliminate the need for
+> workaround address fixups in drivers. Currently, many drivers use
+> hardcoded CPU addresses for fixups, but this information is already
+> described in the Device Tree. With correct hardware descriptions, such
+> fixups can be removed.
+> 
+>             ┌─────────┐                    ┌────────────┐
+>  ┌─────┐    │         │ IA: 0x8ff0_0000    │            │
+>  │ CPU ├───►│ BUS     ├─────────────────┐  │ PCI        │
+>  └─────┘    │         │ IA: 0x8ff8_0000 │  │            │
+>   CPU Addr  │ Fabric  ├─────────────┐   │  │ Controller │
+> 0x7000_0000 │         │             │   │  │            │
+>             │         │             │   │  │            │   PCI Addr
+>             │         │             │   └──► CfgSpace  ─┼────────────►
+>             │         ├─────────┐   │      │            │    0
+>             │         │         │   │      │            │
+>             └─────────┘         │   └──────► IOSpace   ─┼────────────►
+>                                 │          │            │    0
+>                                 │          │            │
+>                                 └──────────► MemSpace  ─┼────────────►
+>                         IA: 0x8000_0000    │            │  0x8000_0000
+>                                            └────────────┘
+> 
+> bus@5f000000 {
+>         compatible = "simple-bus";
+>         #address-cells = <1>;
+>         #size-cells = <1>;
+>         ranges = <0x5f000000 0x0 0x5f000000 0x21000000>,
+>                  <0x80000000 0x0 0x70000000 0x10000000>;
+> 
+>         pcieb: pcie@5f010000 {
+>                 compatible = "fsl,imx8q-pcie";
+>                 reg = <0x5f010000 0x10000>, <0x8ff00000 0x80000>;
+>                 reg-names = "dbi", "config";
+>                 #address-cells = <3>;
+>                 #size-cells = <2>;
+>                 device_type = "pci";
+>                 bus-range = <0x00 0xff>;
+>                 ranges = <0x81000000 0 0x00000000 0x8ff80000 0 0x00010000>,
+>                          <0x82000000 0 0x80000000 0x80000000 0 0x0ff00000>;
+> 	...
+> 	};
+> };
+> 
+> 'cpu_untranslate_addr' in of_pci_range can indicate above diagram IA
+> address information.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Change from v1 to v2
+> - add cpu_untranslate_addr in of_pci_range, instead adding new API.
+> ---
+>  drivers/of/address.c       | 2 ++
+>  include/linux/of_address.h | 1 +
+>  2 files changed, 3 insertions(+)
+> 
+> diff --git a/drivers/of/address.c b/drivers/of/address.c
+> index 286f0c161e332..f4cb82f5313cf 100644
+> --- a/drivers/of/address.c
+> +++ b/drivers/of/address.c
+> @@ -811,6 +811,8 @@ struct of_pci_range *of_pci_range_parser_one(struct of_pci_range_parser *parser,
+>  	else
+>  		range->cpu_addr = of_translate_address(parser->node,
+>  				parser->range + na);
+> +
+> +	range->cpu_untranslate_addr = of_read_number(parser->range + na, parser->pna);
+>  	range->size = of_read_number(parser->range + parser->pna + na, ns);
+>  
+>  	parser->range += np;
+> diff --git a/include/linux/of_address.h b/include/linux/of_address.h
+> index 26a19daf0d092..0683ce0c07f68 100644
+> --- a/include/linux/of_address.h
+> +++ b/include/linux/of_address.h
+> @@ -26,6 +26,7 @@ struct of_pci_range {
+>  		u64 bus_addr;
+>  	};
+>  	u64 cpu_addr;
+> +	u64 cpu_untranslate_addr;
 
-kernel test robot noticed the following build warnings:
+Let's call it "parent_bus_addr" as it's not really the "cpu" address any 
+more. With that,
 
-[auto build test WARNING on groeck-staging/hwmon-next]
-[also build test WARNING on linus/master v6.11 next-20240927]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yikai-Tsai/dt-bindings-hwmon-add-renesas-isl28022/20240925-111332
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20240925031131.14645-3-yikai.tsai.wiwynn%40gmail.com
-patch subject: [PATCH v7 2/2] hwmon: (isl28022) new driver for ISL28022 power monitor
-config: x86_64-randconfig-121-20240928 (https://download.01.org/0day-ci/archive/20240928/202409280806.yxX1K5ey-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240928/202409280806.yxX1K5ey-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409280806.yxX1K5ey-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
-   drivers/hwmon/isl28022.c:396:36: sparse: sparse: incorrect type in argument 2 (different base types) @@     expected int err @@     got char * @@
-   drivers/hwmon/isl28022.c:396:36: sparse:     expected int err
-   drivers/hwmon/isl28022.c:396:36: sparse:     got char *
-   drivers/hwmon/isl28022.c:396:88: sparse: sparse: incorrect type in argument 3 (different base types) @@     expected char const *fmt @@     got unsigned int [addressable] [assigned] [usertype] val @@
-   drivers/hwmon/isl28022.c:396:88: sparse:     expected char const *fmt
-   drivers/hwmon/isl28022.c:396:88: sparse:     got unsigned int [addressable] [assigned] [usertype] val
-   drivers/hwmon/isl28022.c:406:36: sparse: sparse: incorrect type in argument 2 (different base types) @@     expected int err @@     got char * @@
-   drivers/hwmon/isl28022.c:406:36: sparse:     expected int err
-   drivers/hwmon/isl28022.c:406:36: sparse:     got char *
-   drivers/hwmon/isl28022.c:406:82: sparse: sparse: incorrect type in argument 3 (different base types) @@     expected char const *fmt @@     got unsigned int [addressable] [assigned] [usertype] val @@
-   drivers/hwmon/isl28022.c:406:82: sparse:     expected char const *fmt
-   drivers/hwmon/isl28022.c:406:82: sparse:     got unsigned int [addressable] [assigned] [usertype] val
-   drivers/hwmon/isl28022.c:414:28: sparse: sparse: incorrect type in argument 2 (different base types) @@     expected int err @@     got char * @@
-   drivers/hwmon/isl28022.c:414:28: sparse:     expected int err
-   drivers/hwmon/isl28022.c:414:28: sparse:     got char *
-   drivers/hwmon/isl28022.c:414:87: sparse: sparse: incorrect type in argument 3 (different base types) @@     expected char const *fmt @@     got unsigned int [usertype] shunt @@
-   drivers/hwmon/isl28022.c:414:87: sparse:     expected char const *fmt
-   drivers/hwmon/isl28022.c:414:87: sparse:     got unsigned int [usertype] shunt
->> drivers/hwmon/isl28022.c:396:36: sparse: sparse: non size-preserving pointer to integer cast
->> drivers/hwmon/isl28022.c:396:88: sparse: sparse: non size-preserving integer to pointer cast
-   drivers/hwmon/isl28022.c:406:36: sparse: sparse: non size-preserving pointer to integer cast
-   drivers/hwmon/isl28022.c:406:82: sparse: sparse: non size-preserving integer to pointer cast
-   drivers/hwmon/isl28022.c:414:28: sparse: sparse: non size-preserving pointer to integer cast
-   drivers/hwmon/isl28022.c:414:83: sparse: sparse: non size-preserving integer to pointer cast
-
-vim +396 drivers/hwmon/isl28022.c
-
-   346	
-   347	/*
-   348	 * read property values and make consistency checks.
-   349	 *
-   350	 * following values for shunt range and resistor are allowed:
-   351	 *   40 mV -> gain 1, shunt min.  800 micro ohms
-   352	 *   80 mV -> gain 2, shunt min. 1600 micro ohms
-   353	 *  160 mV -> gain 4, shunt min. 3200 micro ohms
-   354	 *  320 mV -> gain 8, shunt min. 6400 micro ohms
-   355	 */
-   356	static int isl28022_read_properties(struct device *dev, struct isl28022_data *data)
-   357	{
-   358		u32 val;
-   359		int err;
-   360	
-   361		err = device_property_read_u32(dev, "shunt-resistor-micro-ohms", &val);
-   362		if (err == -EINVAL)
-   363			val = 10000;
-   364		else if (err < 0)
-   365			return err;
-   366		data->shunt = val;
-   367	
-   368		err = device_property_read_u32(dev, "renesas,shunt-range-microvolt", &val);
-   369		if (err == -EINVAL)
-   370			val = 320000;
-   371		else if (err < 0)
-   372			return err;
-   373	
-   374		switch (val) {
-   375		case 40000:
-   376			data->gain = 1;
-   377			if (data->shunt < 800)
-   378				goto shunt_invalid;
-   379			break;
-   380		case 80000:
-   381			data->gain = 2;
-   382			if (data->shunt < 1600)
-   383				goto shunt_invalid;
-   384			break;
-   385		case 160000:
-   386			data->gain = 4;
-   387			if (data->shunt < 3200)
-   388				goto shunt_invalid;
-   389			break;
-   390		case 320000:
-   391			data->gain = 8;
-   392			if (data->shunt < 6400)
-   393				goto shunt_invalid;
-   394			break;
-   395		default:
- > 396			dev_err_probe(dev, "renesas,shunt-range-microvolt invalid value %d\n", val);
-   397			return -EINVAL;
-   398		}
-   399	
-   400		err = device_property_read_u32(dev, "renesas,average-samples", &val);
-   401		if (err == -EINVAL)
-   402			val = 1;
-   403		else if (err < 0)
-   404			return err;
-   405		if (val > 128 || hweight32(val) != 1) {
-   406			dev_err_probe(dev, "renesas,average-samples invalid value %d\n", val);
-   407			return -EINVAL;
-   408		}
-   409		data->average = val;
-   410	
-   411		return 0;
-   412	
-   413	shunt_invalid:
-   414		dev_err_probe(dev, "renesas,shunt-resistor-microvolt invalid value %d\n", data->shunt);
-   415		return -EINVAL;
-   416	}
-   417	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Rob
 
