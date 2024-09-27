@@ -1,251 +1,182 @@
-Return-Path: <devicetree+bounces-105751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E1C4987D9D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 06:38:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C904987DA1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 06:39:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 661AC1C21FD4
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 04:38:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B775285B60
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 04:39:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E317116D9AF;
-	Fri, 27 Sep 2024 04:38:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E91C216E863;
+	Fri, 27 Sep 2024 04:39:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="W5WMGoGb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iDEs4/Xo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 041B8158559
-	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 04:38:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A078158559;
+	Fri, 27 Sep 2024 04:39:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727411930; cv=none; b=gwzkEqk0x5zbKfdwlw4XkVEOE7dmFGSPHN5KpBwNg7kV4TvpWYYiL3ecXz4B1mVgGsKB6Kf4gSE7XRep/VuATfowOP0xUxuWp/CEGEx2haoFM68sMg3wgwgfPxaS+5OJcJL32j17zm2I/OzI6Rtm7yuDbeOgaDldJ6o5sQZBNj0=
+	t=1727411980; cv=none; b=tiqGHGCxkzw4yKVpNrchPptNPgNnt1SlgsAZVf77SDRu7yz/A1VBf8f9u9M9Pwi++xMOKlvIJS9LuO7F/a+6yNywoWzDS45RUO6+a5z+JD4InOasWnmSC9ZfeSLlOKzhn1K1BYZrjzFHlIpTIZa3IZ7tSQn9AJExmKa2dC8jz0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727411930; c=relaxed/simple;
-	bh=XnZrFknTED31CpFW1xavqyjmQ1RP1hTTwJB5JF3Tth8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=U/uOGFL+r304BU2f2ebh5OOi+OKTqDlDGQv0Hitie76v+ihPDzl/nPmvjXe2+za5xYMgqmCb5YHKPzCytXjwjtgbpGrR1+jWYt6PA+o7aiO6i50vMb0kXcAjet8PYL/pQJAiJ6aO82M29Y61Z5lb7REa2S6mvbgyMEQGLX1jhzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=W5WMGoGb; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5365a9574b6so2737420e87.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 21:38:48 -0700 (PDT)
+	s=arc-20240116; t=1727411980; c=relaxed/simple;
+	bh=fnuMouiKEyLaGvP0fibwaDVaQx4o0ggHSL2sDNMPTE8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AHB89PaGpE3i4UoxcbpFO1ZAcuC49pwBg7YrzSwAEW3gMi3Y93PZPhhWzCkP2ITTNTqp2fjTQBD4171cjsQarLLU2nngRBiSrnn8NO4i+6GcCCGzwLCbEmzoLCb9oY9GoIyGu1IMMoTIEi78KXMes2W56I9Xnlluf0nv4o/vN58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iDEs4/Xo; arc=none smtp.client-ip=209.85.215.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-7e6afa8baeaso1397082a12.3;
+        Thu, 26 Sep 2024 21:39:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1727411927; x=1728016727; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h/P54adq5wqPeVhdzqGMRKbTP9qOT4nAYJ2m7pC5TLg=;
-        b=W5WMGoGbjzxR4OZua5UMBbYrGfebKWOsMKPHeWxlRVh8ZX1w06+/KxGXYsWMJvyUwv
-         O7zD4KYpHyQSj3fGhmcvyW/RmwG5KaP8XqbD/BKd4hSf7+b8HmAK6YJCXTfEeOgO2Wlt
-         /HIDH5gkJFduGJl/HBAsFRmAn+eL6AuZ8C4d4=
+        d=gmail.com; s=20230601; t=1727411978; x=1728016778; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WkeWKlYqDtXSyz5lb3aYllnaQqnV6uJYVg8fzlxg5tg=;
+        b=iDEs4/Xorkfa3zfrfqQkfCnh2Dr6PmTR5VkGj0feXmPhfljq1RAJ78e9ufwYr+AYxs
+         /V13RJEoahDcsK8mJ9dpYu0S1evMrkGQlMW1iXFfmdqQ2dHxiWoqYRE0eiarLtWuKEnf
+         4O3yjDpUd088bl3w6bLM0JVyWXbhDkEYJ9IsbiNAkrN6tprs0Z9q5Y8WplAdxL/28HO+
+         +DKK+LvSLK4WlFeC2dare5aAFtHDoQYtx+gUYc31tpVJUDDDK6YDw4I95wfDF85ySuoe
+         7To3Oc975vp9PRqqtAnmxZut4GtNI3HXrt4aPV/LiP/htqGVVwhYA5uJXTr9zOfACXCr
+         BCqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727411927; x=1728016727;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1727411978; x=1728016778;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=h/P54adq5wqPeVhdzqGMRKbTP9qOT4nAYJ2m7pC5TLg=;
-        b=CzNxRCmmT23Imgfjvvd5S2vABqlZU5V1AulPtIp86qSLq8XSaAleGEjksKm4lj7Xxz
-         lWAHCGF2wnyz0eLQXEaH79lqkzrjPQg7kpKS0qtvkiz6e/iu7h4pGXuV2ergV02k9OHg
-         OcV5ZJEuVOwfhJofV+i8xlgArwfk2QIx3QA3Ap9ub8ax7eDD1l/NS5waYf0DdoMh5sLV
-         cjIpjaqx7IDxf9F5YEPgJ8jT41xTozaah8+wrnxYdWwL5J9Z/9qp2J8U2h2YWCUIDLwN
-         5rwrJdmZyAPnv2PxANmXd7iwGE6Ei4yKX2aWXE+YXRr+uOf5wFUsOqVV8PqhIcCqbS/r
-         d6FQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUyOFy8ybKPN6zt/LKRQHNWTQchw8gz+M3VzDhmhF695bNLEqeNpc98FfG9LLoUk7ldSMuTPCpRpx3C@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2OE3bqZ4itYhJEEu9iajzR5XzrslMWapUb5j+GkxtArNE0G9n
-	2ZhsBhzOOQgwQXOgnw9M1vwKdehXefz3OOrKvxQ/khC/bqD6HsnlezZi79R/CPmmuIaHSKCwo/K
-	iqNMQQVw5+YppcO/yKnYld/jUwnOJN4JOc6F9
-X-Google-Smtp-Source: AGHT+IEuKMKaL9pm5ASOI7F2wVDmv6urgJgoH8ydyHLtVrSS2VSiUn0vrSHcCfRK5Gdvnw9KKS+IW86HHLQ+3e6fKoQ=
-X-Received: by 2002:a05:6512:3e05:b0:52c:cd77:fe03 with SMTP id
- 2adb3069b0e04-5389fc3bd31mr1339969e87.14.1727411927087; Thu, 26 Sep 2024
- 21:38:47 -0700 (PDT)
+        bh=WkeWKlYqDtXSyz5lb3aYllnaQqnV6uJYVg8fzlxg5tg=;
+        b=oPjM2pddSxYVk+WwksoUrwChuw5kBV5ysxZYai520VE5Zq9mh8FfOIDpO+XQsRxTFH
+         alaQpZg8Eb9TJmR3Vg9fC3Tv9Kg/qTYUg/Lj2RARI+DQcBD0AhFOOZBXIcicm1dGpW1R
+         4MXVOeYBH6AuPbcyE7UwgT+77oZEvFFaPAfLg91c6fS1SQr0gD8nMVrT/LBI/RxiaGyY
+         RgNwX6sLDSvAtg8BP3mu8BqOnhfkl+PNgig7K1WLhxP9+DVpu3pfaFtpxJxGuul/S2JA
+         lt1vXOIY8VL5C4VUudhL9qFNJXtlrtiiPM5xeLC9zyLaZNHw2isDwo7PjS62bUJMWyh/
+         4t2g==
+X-Forwarded-Encrypted: i=1; AJvYcCUjCtdQJHKG3+SE9v0UaBgpgz00ZzQCRN6WiSWCPE5M73L4GlnkhefapmNcqH4MdXO4M2ryptR5bFesXCIe@vger.kernel.org, AJvYcCWAayJqMMzrndRl2FJ15X7lTyE8ce4nI3JJ8GjqbW3K8Ft5/4sQ1NtaUjOcgP9wcFE7QPgFS0U9WBWr@vger.kernel.org, AJvYcCWNHtvA2P2LlwP6opP6TtOEx0lVcIQDfQciP5ByJ0vlcNJ4UZ8KbnXPCdBsBe2Zy+4Kb4cPRQ4FbSTw@vger.kernel.org, AJvYcCXptez1Wh0u2LUhGxgi3LEqorbD4YXFXlU9CDBoqtS5yXz5UTQm9Pe0qhiSrpxgGlHE1DX225EvgAqtZ0wcMXDq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUfoR99+DWz0XpsdXHeUR6n6+yduX7VFTMCkS4UejQLDfkGw/t
+	nQT6DS7uvl2y5xPOS0qdwgzlfx2YwNwlsGA7VN+l9dxGg6KSAxzH
+X-Google-Smtp-Source: AGHT+IEfM+rRMxnYnAc6tMRBBhgU2qe67B99fXVKBiUZ3r0r2t2KmJEVITgi/OZS2CHi1py9nNGxkg==
+X-Received: by 2002:a05:6a21:3405:b0:1d2:bb49:908b with SMTP id adf61e73a8af0-1d4fa67b980mr2948871637.18.1727411978276;
+        Thu, 26 Sep 2024 21:39:38 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7e6db60e3fasm721443a12.78.2024.09.26.21.39.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Sep 2024 21:39:37 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Thu, 26 Sep 2024 21:39:36 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	patches@lists.linux.dev, kunit-dev@googlegroups.com,
+	linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org,
+	Brendan Higgins <brendan.higgins@linux.dev>,
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Daniel Latypov <dlatypov@google.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Ripard <maxime@cerno.tech>,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH v8 8/8] clk: Add KUnit tests for clks registered with
+ struct clk_parent_data
+Message-ID: <a339ec8c-38f6-425a-94d1-ad69b5ddbd88@roeck-us.net>
+References: <20240718210513.3801024-1-sboyd@kernel.org>
+ <20240718210513.3801024-9-sboyd@kernel.org>
+ <6cd337fb-38f0-41cb-b942-5844b84433db@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240925093807.1026949-1-wenst@chromium.org> <20240925093807.1026949-3-wenst@chromium.org>
- <ZvPscRdWlFPmtCyR@smile.fi.intel.com> <CAGXv+5Gf9+rc+vLcr-JFhO561G8dw38ksV3drat+DyCfWEVakQ@mail.gmail.com>
- <ZvVS7ITg2t-RIh8C@smile.fi.intel.com>
-In-Reply-To: <ZvVS7ITg2t-RIh8C@smile.fi.intel.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 27 Sep 2024 12:38:35 +0800
-Message-ID: <CAGXv+5EV4nNiAneajqr4VBkX4TO3zV76yqBM_u81ZMNjU52Bvw@mail.gmail.com>
-Subject: Re: [PATCH v8 2/3] regulator: Add devres version of of_regulator_get_optional()
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Mark Brown <broonie@kernel.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Douglas Anderson <dianders@chromium.org>, 
-	Johan Hovold <johan@kernel.org>, Pablo Sun <pablo.sun@mediatek.com>, 
-	Macpaul Lin <macpaul.lin@mediatek.com>, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6cd337fb-38f0-41cb-b942-5844b84433db@roeck-us.net>
 
-On Thu, Sep 26, 2024 at 8:26=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Thu, Sep 26, 2024 at 04:43:52PM +0800, Chen-Yu Tsai wrote:
-> > On Wed, Sep 25, 2024 at 6:56=E2=80=AFPM Andy Shevchenko
-> > <andriy.shevchenko@linux.intel.com> wrote:
-> > > On Wed, Sep 25, 2024 at 05:38:05PM +0800, Chen-Yu Tsai wrote:
->
-> ...
->
-> > > > +#if IS_ENABLED(CONFIG_OF)
-> > >
-> > > Do we really need this?
-> >
-> > What's the point of going through devres_* stuff if we already know
-> > _of_regulator_get() is going to fail anyway?
->
-> With devm_add_action*() this will be other way around and there are plent=
-y of
-> APIs done this way. The ifdeffery is simply ugly in the code.
+On Thu, Sep 26, 2024 at 09:14:11PM -0700, Guenter Roeck wrote:
+> Hi Stephen,
+> 
+> On Thu, Jul 18, 2024 at 02:05:07PM -0700, Stephen Boyd wrote:
+> > Test that clks registered with 'struct clk_parent_data' work as
+> > intended and can find their parents.
+> > 
+> 
+> When testing this on arm64, I see the error below. The error is only
+> seen if I boot through efi, i.e., with "-bios QEMU_EFI-aarch64.fd"
+> qemu parameter.
+> 
+> Any idea what might cause the problem ?
+> 
+I noticed that the new overlay tests fail as well, also with "path '/' not
+found".
 
-It's still extra code that doesn't get compiled out.
+[Maybe] answering my own question: I think the problem may be that there
+is no devicetree file and thus no devicetree root when booting through
+efi (in other words, of_root is NULL). Would it make sense to skip the
+tests in that case ?
 
-> > Also, _of_regulator_get() does not have a stub version for !CONFIG_OF.
->
-> So, what prevents us from adding it?
+Thanks,
+Guenter
 
-Because there's no need if the only internal user isn't using it.
-
-I could also move them over to of_regulator.c.
-
-_of_regulator_get() stays internal to that file, and devm_regulator_release=
-()
-gets exposed instead.
-
-Does that sound better?
-
-> > > > +static struct regulator *_devm_of_regulator_get(struct device *dev=
-, struct device_node *node,
-> > > > +                                             const char *id, int g=
-et_type)
-> > > > +{
-> > > > +     struct regulator **ptr, *regulator;
-> > > > +
-> > > > +     ptr =3D devres_alloc(devm_regulator_release, sizeof(*ptr), GF=
-P_KERNEL);
-> > > > +     if (!ptr)
-> > > > +             return ERR_PTR(-ENOMEM);
-> > > > +
-> > > > +     regulator =3D _of_regulator_get(dev, node, id, get_type);
-> > > > +     if (!IS_ERR(regulator)) {
-> > > > +             *ptr =3D regulator;
-> > > > +             devres_add(dev, ptr);
-> > > > +     } else {
-> > > > +             devres_free(ptr);
-> > > > +     }
-> > > > +
-> > > > +     return regulator;
-> > >
-> > > Why not using devm_add_action() / devm_add_action_or_reset()
-> > > (whichever suits better here)?
-> >
-> > Cargo cult from _devm_regulator_get() in this file. However since this =
-is
-> > meant to share the same release function, both functions need to use th=
-e
-> > same mechanism.
-> >
-> > I could also argue that this is not an action, but an allocation, and s=
-o
-> > devres_alloc() seems to make more sense.
->
-> It's rather matter of the naming of the devm_add_action*() APIs, but agai=
-n,
-> we have plenty of APIs using it when it's allocation and not strictly spe=
-aking
-> an action.
-
-OK. Still the mechanism used needs to match that of the existing API.
-So devres_add() it is for now.
-
-> > > > +}
-> > >
-> > > > +#endif
->
-> ...
->
-> > > > +static inline struct regulator *__must_check devm_of_regulator_get=
-_optional(struct device *dev,
-> > > > +                                                                  =
-       struct device_node *node,
-> > > > +                                                                  =
-       const char *id)
-> > >
-> > > I don't know the conventions here, but I find better to have it as
-> > >
-> > > static inline __must_check struct regulator *
-> > > devm_of_regulator_get_optional(struct device *dev, struct device_node=
- *node, const char *id)
-> > >
-> > > Similar to other stubs and declarations.
-> >
-> > I don't think there are any conventions. This file already has three ty=
-pes:
-> >
-> > 1. Wrap the line with the function name on the second line
-> > 2. Wrap the arguments; wrapped arguments aligned to the left parenthesi=
-s.
-> > 3. Wrap the arguments; wrapped arguments aligned with aribtrary number =
-of
-> >    tabs.
-> >
-> > I prefer the way I have put them.
->
-> The way you put it despite relaxed limit is slightly harder to read.
-> I don't remember many headers that do so-o indented parameters. Besides
-> your way defers the burden of resplit to the future in case one more para=
-meter
-> needs to be added which will excess the 100 limit.
->
-> Also __must_check is somehow misplaced in my opinion (talking from my
-> experience and this can be simply checked by grepping other headers).
-
-Seems correct to me. It's between the return type and the function name.
-From the coding style doc:
-
- __init void * __must_check action(enum magic value, size_t size, u8 count,
-                                   char *fmt, ...) __printf(4, 5) __malloc;
-
-The preferred order of elements for a function prototype is:
-
-- storage class (below, ``static __always_inline``, noting that
-``__always_inline``
-  is technically an attribute but is treated like ``inline``)
-- storage class attributes (here, ``__init`` -- i.e. section
-declarations, but also
-  things like ``__cold``)
-- return type (here, ``void *``)
-- return type attributes (here, ``__must_check``)
-- function name (here, ``action``)
-- function parameters (here, ``(enum magic value, size_t size, u8
-count, char *fmt, ...)``,
-  noting that parameter names should always be included)
-- function parameter attributes (here, ``__printf(4, 5)``)
-- function behavior attributes (here, ``__malloc``)
-
-
-> That said, I prefer the way I suggested or something alike.
-
-Two people arguing over style that is not clearly specified in the coding
-style doc is probably wasting time. I'll use what `clang-format` gave:
-
-static inline struct regulator *__must_check of_regulator_get_optional(
-       struct device *dev, struct device_node *node, const char *id)
-static inline struct regulator *__must_check devm_of_regulator_get_optional=
-(
-       struct device *dev, struct device_node *node, const char *id)
-
-
-ChenYu
+> Thanks,
+> Guenter
+> 
+> ---
+> [   20.464809]     KTAP version 1
+> [   20.464865]     # Subtest: clk_register_clk_parent_data_of
+> [   20.464936]     # module: clk_test
+> [   20.464979]     1..1
+> [   20.465098]         KTAP version 1
+> [   20.465208]         # Subtest: clk_register_clk_parent_data_of_test
+> [   20.468964] OF: overlay: find target, node: /fragment@0, path '/' not found
+> [   20.469558] OF: overlay: init_overlay_changeset() failed, ret = -22
+> [   20.470177]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
+> [   20.470177]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
+> [   20.470177]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
+> [   20.471793]         not ok 1 clk_parent_data_of_index_test
+> [   20.474095] OF: overlay: find target, node: /fragment@0, path '/' not found
+> [   20.474373] OF: overlay: init_overlay_changeset() failed, ret = -22
+> [   20.474737]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
+> [   20.474737]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
+> [   20.474737]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
+> [   20.477677]         not ok 2 clk_parent_data_of_fwname_test
+> [   20.479773] OF: overlay: find target, node: /fragment@0, path '/' not found
+> [   20.479941] OF: overlay: init_overlay_changeset() failed, ret = -22
+> [   20.480160]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
+> [   20.480160]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
+> [   20.480160]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
+> [   20.481513]         not ok 3 clk_parent_data_of_name_test
+> [   20.483711] OF: overlay: find target, node: /fragment@0, path '/' not found
+> [   20.483878] OF: overlay: init_overlay_changeset() failed, ret = -22
+> [   20.484100]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
+> [   20.484100]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
+> [   20.484100]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
+> [   20.485444]         not ok 4 clk_parent_data_of_fwname_name_test
+> [   20.487432] OF: overlay: find target, node: /fragment@0, path '/' not found
+> [   20.487600] OF: overlay: init_overlay_changeset() failed, ret = -22
+> [   20.487841]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
+> [   20.487841]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
+> [   20.487841]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
+> [   20.489207]         not ok 5 clk_parent_data_of_index_name_priority_test
+> [   20.490998] OF: overlay: find target, node: /fragment@0, path '/' not found
+> [   20.491504] OF: overlay: init_overlay_changeset() failed, ret = -22
+> [   20.491725]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
+> [   20.491725]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
+> [   20.491725]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
+> [   20.493053]         not ok 6 clk_parent_data_of_index_fwname_name_priority_test
+> [   20.493583]     # clk_register_clk_parent_data_of_test: pass:0 fail:6 skip:0 total:6
+> [   20.493701]     not ok 1 clk_register_clk_parent_data_of_test
+> [   20.493822] # clk_register_clk_parent_data_of: pass:0 fail:1 skip:0 total:1
+> [   20.493920] # Totals: pass:0 fail:6 skip:0 total:6
+> [   20.494032] not ok 49 clk_register_clk_parent_data_of
 
