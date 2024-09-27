@@ -1,139 +1,138 @@
-Return-Path: <devicetree+bounces-105863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AA97988239
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 12:08:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D02A98826D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 12:30:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10B46282CFE
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 10:08:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2BA4028222F
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 10:30:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE7A71BBBF1;
-	Fri, 27 Sep 2024 10:08:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8782B15FD16;
+	Fri, 27 Sep 2024 10:30:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="HnBMVLhb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC7AD185B7C;
-	Fri, 27 Sep 2024 10:08:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38761CD31;
+	Fri, 27 Sep 2024 10:30:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727431687; cv=none; b=aHARCXSjFKTlv7KYHmhonSwAxS2i/E0QKTeC5PZd/TMXXPSX1lI/BWaagCc5DHkdRmm53wLCR/u6XNEqL8B3kFKb1db+/cQEJ/1M1HUT3yUJH9yVXG0CU2v2SHLlKOL387qlxBL10P2QPB42Nmej28kOsnWWq6QMkOG9dMrabhw=
+	t=1727433053; cv=none; b=iyv55fvjWm+1RIlh/USfgvMOfBdiiJVTkBcgG4RtlRYVlw9LWoNPfvxcC07LUPhlDcb5RgxM/hbXQA931CYWgOf6l9aePbcdgoaSXmzE7mWDHh9ylmwFsWkD0zfLSSVvY7LHz83ASeHTHUuJHpGipgsHj0W6O6L2cCL7pQjf11I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727431687; c=relaxed/simple;
-	bh=S2joWCU6hUCjgmqEoFTt2ye75YB6Gh+l7UXQjvfV4Ck=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YgDvUuRM5cKA9Suhe6fGnh5QiSFzCLnCiLjCIXhdAxUlyMRuPGl1MOtxnwucDwF1Y95o2VEoLz/hvau7zWtVWip1bemEe9RbnCH2mnGq+9S4bV8rkY8bt8T45VnnLYJXVmU2DTUoceB2DaQQ+j7Ly/eskJ81kHwkbXiqqfYFC/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e25d6342837so1180744276.1;
-        Fri, 27 Sep 2024 03:08:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727431684; x=1728036484;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=L9jFqo+XfSXsqB7EAnslsl8zonehgOa3+GNAG8VGEt4=;
-        b=HGy+/CzGSOHCEz/aJmI9w36kNfcAgtDTdw/you4lsK9tHyu9lhkkOIqu77OvfPXeWU
-         PQoC7teaWsh/d8g2DjEBztz7W9F9RQ+jOqcYnK8ossZJbDLMLeB0dB6CQ09RfKGGynbh
-         dRJB5jgkHMXiZSe7ui6Pybk4uea7T1AO5k/hlLEwdlcxgg2JLeyVvPvHBQP68Rfwjgyn
-         26ZazSUUOssWe5FfoVqtau62peh0joIWDcgZWv4Urky+AufYtBlH0MmOKdY6eGck63DY
-         oACtTzI/Xb1/MK8o4BnbD6K7aT78hRuPGI5hVizoi//EKEbeHswKZgwX6vRZaL5tFKTM
-         KwEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWRwzqWZ5Xlh4Ftpuv82eBzQRBrjd0DMs64a6xfLPkdC2ewfi4gF1OM3PgMj5ZXtiAwc2Z9BlE8H2CmHNyJxvcywRY=@vger.kernel.org, AJvYcCXRpPvjc7h3fQqv096Sy7esovDUA0iD9RG+tTn7QMEf9YazwTtnM0Wq5tpkDU+TMkT0+IkYTMi0FnkE@vger.kernel.org, AJvYcCXaXm9l6bLc36/bIcIbcYQpSExgTzSnDP3wTnYBuuXQhehw7BMrbag0wnEa8qGinlpkAqjB4Oe8kJpc908J@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQDlaaFeD0d231gPQEQtdZ/a4Dy4eMzeZlUDkVYExZdwi1FIgc
-	B3x9Jivr4UuunAOJXh8NgTZQwYg4Nk+WAG00ir+rPWFurvlGlcgzEwtKPcqx
-X-Google-Smtp-Source: AGHT+IEb6jEQVnZMR889ipxa9PqwLjKHys1haNjKcWik2FAtT1yARLt5iCaqj9YXEyrtulqmmZPyXw==
-X-Received: by 2002:a05:6902:1027:b0:e20:2ad3:570e with SMTP id 3f1490d57ef6-e2604b7d6d8mr1575496276.40.1727431684479;
-        Fri, 27 Sep 2024 03:08:04 -0700 (PDT)
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e25e3ef8ef5sm369281276.11.2024.09.27.03.08.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Sep 2024 03:08:04 -0700 (PDT)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-6c3f1939d12so17087637b3.2;
-        Fri, 27 Sep 2024 03:08:04 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUk0l+ArMQ4MkZi/4/J8mHLxasMOi4OPulRbl0aAWXBk5WDx0YH7s6fmcRO/XHca6Y2GqJXVlbhXsnUvcpc@vger.kernel.org, AJvYcCWIguPQVw6o2p27fxUQkRwKjZ/pRf8ImQTL3PtjYnmLKdqNzbg0aRyQL37xKyphGITq/zWlbVNmMyZHah1VzO8xqww=@vger.kernel.org, AJvYcCWyepAwCH73ZZ/6xmbaxOBcgcVMbHiTdyQTn9CNRSmReyuw0psnUm8eljZgv0WXwf1aWIvA2WH4ymx2@vger.kernel.org
-X-Received: by 2002:a05:690c:60c5:b0:6de:1e2:d66a with SMTP id
- 00721157ae682-6e2474f4adamr19241267b3.2.1727431683946; Fri, 27 Sep 2024
- 03:08:03 -0700 (PDT)
+	s=arc-20240116; t=1727433053; c=relaxed/simple;
+	bh=gGlVStBekd6tn5scRrWK5ZAhxic3Z9UU5MfQzxxUMJ4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=HpOxp56y2ZlvcuDhnOMks72t6GdwTlt1GNJQJRWMQoa3qIL4bPWQzxez21aJgb54lQU6UlcE9/diSsQJ91UaFcbrI5xydy814KY964f7GDBCkEYwiEEH4XtzTOiuu2xaUGSIGbfnWEtdq06V4PtrjamcvolLSGc92LXxuQ9UQy8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=HnBMVLhb; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 8d713dd67cbb11efb66947d174671e26-20240927
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=m46+FnCMQHOmqn0PoIzre0+LrIPiIFVNgGTSNn1G4lU=;
+	b=HnBMVLhbPhUcs3t0NSgzyZJgxtovAZPaNcI0ORLMOmq+G36QMcdIAjAAhdYVH3V/+ZxenL18+OiKYELWCxfab731z2/zRfpjNNsxd4OVwR+ziTHYVnLAdHkNTIXxpweK/I9niv4vRy+NqDJuvqYwzKezUORbctVkCEi6oBMkQ+8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:5a2343ec-6235-44f3-8d97-821c9dd2ee93,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:c231ded0-7921-4900-88a1-3aef019a55ce,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 8d713dd67cbb11efb66947d174671e26-20240927
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+	(envelope-from <pablo.sun@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 288267427; Fri, 27 Sep 2024 18:30:44 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 27 Sep 2024 18:30:41 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Fri, 27 Sep 2024 18:30:41 +0800
+From: Pablo Sun <pablo.sun@mediatek.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Michael Turquette
+	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, "Srinivas
+ Kandagatla" <srinivas.kandagatla@linaro.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>, Pablo Sun <pablo.sun@mediatek.com>
+Subject: [PATCH v2 0/6] Enable Mali GPU on MediaTek Genio 700 EVK
+Date: Fri, 27 Sep 2024 18:29:59 +0800
+Message-ID: <20240927103005.17605-1-pablo.sun@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240926180903.479895-1-sean.anderson@linux.dev> <cb716925-f6c0-4a00-8cfd-b30aed132fd1@linux.dev>
-In-Reply-To: <cb716925-f6c0-4a00-8cfd-b30aed132fd1@linux.dev>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 27 Sep 2024 12:07:50 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUmf=BYrVWGDp4kjLGK=66HSMJbHuMvne-xGLkTYnGv2g@mail.gmail.com>
-Message-ID: <CAMuHMdUmf=BYrVWGDp4kjLGK=66HSMJbHuMvne-xGLkTYnGv2g@mail.gmail.com>
-Subject: Re: [PATCH 0/2] arm64: dts: renesas: Add SD/OE pin properties
-To: Sean Anderson <sean.anderson@linux.dev>
-Cc: linux-arm-kernel@lists.infradead.org, Adam Ford <aford173@gmail.com>, 
-	Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>, 
-	Biju Das <biju.das@bp.renesas.com>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, linux-renesas-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--0.806400-8.000000
+X-TMASE-MatchedRID: 9hizXfD21dsmTNBjrl+CAW3NvezwBrVmojQrbrPpzzqGisL/BZ/9PdW+
+	IybvzGvgNj6y7Vt/6GWC5iz+AfW7iGUlOh2o2oTOXP5rFAucBUGUi9wB9gmcSg6QlBHhBZuwdO+
+	/9tNlGWiVMlcqqHWd7aBVvEjzNBpCHxPMjOKY7A8LbigRnpKlKZx+7GyJjhAUhkdrz87uCrRgoB
+	lboHSVM/+AFuk/l+IJhhE+xzpC0Amtj3NsCFywmxooWenQjZ+C/qp3hdj9VidpK/dq5WMpuQtpr
+	0rlZmVdSZrfNhP3sgUBh9AgBSEFrJm+YJspVvj2xkvrHlT8euI+kK598Yf3Mg==
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--0.806400-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	D0C318A38EBB130AA739C695458581D634A5D984CB05CC042F6AC14E61DE43042000:8
+X-MTK: N
 
-Hi Sean,
+This series is based on linux-next, tag: next-20240927
 
-On Thu, Sep 26, 2024 at 8:24=E2=80=AFPM Sean Anderson <sean.anderson@linux.=
-dev> wrote:
-> On 9/26/24 14:09, Sean Anderson wrote:
-> > Linux can configure almost every part of this clock generator without
-> > relying on the OTP settings. However, the correct configuration for the
-> > SD/OE pin cannot be determined automatically. Therefore, add the
-> > appropriate properties to configure this pin.
-> >
-> > I have CC'd some people who appear to have access to the following
-> > boards which use the versaclock5:
-> >
-> > - Salvator-X
-> > - HiHope RZ/G2[MN] Main Board
-> > - Beacon Embedded Works RZ/G2N Development Kit
-> >
-> > as I could not find schematics for these boards. You can help me out by
-> > (pick one):
-> >
-> > - Run the following command and send me the output:
-> >
-> >     $ grep 10: /sys/kernel/debug/regmap/*-006a/registers
+Enables the GPU on mt8390-genio-700-evk.dts. 
+The panfrost driver probed with dmesg:
 
-On Salvator-X (5p49v5923) and ULCB (5p49v5925): 82
-On Salvator-XS (5p49v6901): 8a
+panfrost 13000000.gpu: clock rate = 390000000
+panfrost 13000000.gpu: mali-g57 id 0x9093 major 0x0 minor 0x0 status 0x0
+panfrost 13000000.gpu: features: 00000000,000019f7, 
+  issues: 00000003,80000400
+panfrost 13000000.gpu: Features: L2:0x08130206 Shader:0x00000000
+  Tiler:0x00000809 Mem:0x1 MMU:0x00002830 AS:0xff JS:0x7
+panfrost 13000000.gpu: shader_present=0x10005 l2_present=0x1
+[drm] Initialized panfrost 1.2.0 for 13000000.gpu on minor 0
 
-> > - Inspect (or send me) the schematic to determine the state of the SD/O=
-E
-> >   pin during normal operation.
-> >
-> > My suspicion is that all of these boards use the same configuration
-> > (SD/OE pin tied high) owing to their common design heritage. Thanks in
-> > advance.
+Changes in v2:
+- Fixes the "Fixes" tag in patch ("arm64: dts: mediatek: mt8188: 
+  Fix wrong clock provider in MFG1 power domain")
+- Reuse mtk_mt8186_efuse_pdata
+- Remove comma at the end of mainpll_d5_d2
+- Add patch ("soc: mediatek: mediatek-regulator-coupler: Support mt8188")
+- Couple GPU SRAM voltage to GPU voltage instead of fixed value
 
-According to the schematics, the SD/OE pin is indeed strapped high on
-all of the Salvator-X(S), ULCB, HiHope, and Renesom base and SoM boards.
+Pablo Sun (6):
+  arm64: dts: mediatek: mt8188: Fix wrong clock provider in MFG1 power
+    domain
+  clk: mediatek: clk-mt8188-topckgen: Remove univpll from parents of
+    mfg_core_tmp
+  nvmem: mtk-efuse: Enable postprocess for mt8188 GPU speed binning
+  arm64: dts: mediatek: mt8188: Add efuse for GPU speed binning
+  soc: mediatek: mediatek-regulator-coupler: Support mt8188
+  arm64: dts: mediatek: mt8390-genio-700-evk: Enable Mali GPU
 
-Gr{oetje,eeting}s,
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi      | 11 +++++--
+ .../dts/mediatek/mt8390-genio-700-evk.dts     | 31 +++++++++++++++++++
+ drivers/clk/mediatek/clk-mt8188-topckgen.c    |  9 ++++--
+ drivers/nvmem/mtk-efuse.c                     |  1 +
+ drivers/soc/mediatek/mtk-regulator-coupler.c  |  1 +
+ 5 files changed, 48 insertions(+), 5 deletions(-)
 
-                        Geert
+-- 
+2.45.2
 
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
