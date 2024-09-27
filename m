@@ -1,104 +1,105 @@
-Return-Path: <devicetree+bounces-105892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4109898839B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 13:58:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E15AF98839E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 13:59:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEF4F287873
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 11:58:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9925C1F24F88
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 11:59:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20BA618A937;
-	Fri, 27 Sep 2024 11:58:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94FF18A937;
+	Fri, 27 Sep 2024 11:59:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="LuYkyrSc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from andre.telenet-ops.be (andre.telenet-ops.be [195.130.132.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC8F418A6DF
-	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 11:58:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CBD0143C4C;
+	Fri, 27 Sep 2024 11:59:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727438333; cv=none; b=YZPgYueJ+3uwmSlE+eTfu9vj8LO7pl/4bT5zikjrONljE0wapvUO4AiZLyman0X42PGZjghOV1EotqGVOB2wwQvnPAV6iA/Vkry+tzJErLUOdBRolSZHwCVXoAER8qWTl44hASFyJfW7izGnA4F9J9/W+siOKaQEQ7OrTtF30pM=
+	t=1727438352; cv=none; b=Xd0Xox36iM3uXln823USgMxRKHsP2dJ/goJfhpr/HypS7HkvrTl37WL1sFW55bBd3aR0+1u8PMMnL/wG7iYIjH/YlVQpcgvcQal9KJOxOtAR1abgkDI7h07xxSIsSjbNNs2HyNiB+KOnfuTf8lLHopAXRjuM3OCvTRor+hVgJkI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727438333; c=relaxed/simple;
-	bh=jGfrihTMjOjtDU0xAXTW+0hESJNZ1uSL6quBcZx9ieQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=gnDfjkeQ2nRNUX8yF/6FQqaBW74AAOnAR8yPG/hpMBEZFV+b+q1kJZqjy/KFNVSiefHQi9JajlDA2Rvexr841QopCXhg0I2f8tB4+sT9UGqgnu/TUyiQA1QuJcqJwwSmgUmPdwylxpHx0Z/Odw0OyLdlhDpwVDOtc7UQl8S1ggM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:b47d:fd74:3975:15b7])
-	by andre.telenet-ops.be with cmsmtp
-	id HPyh2D00N3BfLyr01PyhEX; Fri, 27 Sep 2024 13:58:42 +0200
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1su9cJ-000fNw-Q0;
-	Fri, 27 Sep 2024 13:58:41 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1su9cP-0089tB-A1;
-	Fri, 27 Sep 2024 13:58:41 +0200
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] arm64: dts: renesas: rcar-gen4: Switch PCIe to reset-gpios
-Date: Fri, 27 Sep 2024 13:58:38 +0200
-Message-Id: <853019acdfcdf05fcb46d8124157ef298da55188.1727438172.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1727438352; c=relaxed/simple;
+	bh=OHgltXjCCbzVialuRwKHad3k4S6bdpxLuP2Vdgj2Jiw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HCef0CDulARBc+wA9OCv+RmSYUwBT6t1KnKSLb2yYXx8E7lbkfIiLanfJY0Ut60zK6/LbivUdE6JuXhNBiV0rfEwGqizZeaX5hPc1ybLJrKqE+MfWPOv4tuUQEaw3Iu8WtJil9f5cPFP47tPq7zwuK+3XWMDpylkxZx5gY8LniI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=LuYkyrSc; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=9SUDZW4Es71/qXQBSzrGEM3NsuyUoGW8P/PUFbYZIA4=; b=LuYkyrScUAmp094kXm5CrB4SqI
+	bD0g3c/LHBoFXF9vxq0zltKH8MYcEb5MIUKZy4cz3s+GrBCPY4AX7IDpWjrN+FiSBoqEMJf0A6ech
+	u+VgkaueeK7a6s98+SNVXzfeOgl4jem99PE7O3VCni51eghIxcykdlATXLosRG9w+JNc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1su9cO-008SQd-4u; Fri, 27 Sep 2024 13:58:40 +0200
+Date: Fri, 27 Sep 2024 13:58:40 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Drew Fustini <dfustini@tenstorrent.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 3/3] riscv: dts: thead: Add TH1520 ethernet nodes
+Message-ID: <5076789c-3a35-4349-9733-f5d47528c184@lunn.ch>
+References: <20240926-th1520-dwmac-v2-0-f34f28ad1dc9@tenstorrent.com>
+ <20240926-th1520-dwmac-v2-3-f34f28ad1dc9@tenstorrent.com>
+ <3e26f580-bc5d-448e-b5bd-9b607c33702b@lunn.ch>
+ <ZvWyQo+2mwsC1HS6@x1>
+ <0b49b681-2289-412a-8969-d134ffcfb7fc@lunn.ch>
+ <ZvYJfrPx75FA1IFC@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZvYJfrPx75FA1IFC@x1>
 
-Commit 42694f9f6407a933 ("dt-bindings: PCI: add snps,dw-pcie.yaml")
-deprecated the "reset-gpio" property in favor of "reset-gpios".
-Hence replace the "reset-gpio" property by "reset-gpios" in PCIe device
-nodes.
+> I tried to setup an nfs server with a rootfs on my local network. I can
+> mount it okay from my laptop so I think it is working okay. However, it
+> does not seem to work on the lpi4a [3]. It appears the rgmii-id
+> validation fails and the dwmac driver can not open the phy:
+> 
+>  thead-dwmac ffe7060000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+>  thead-dwmac ffe7060000.ethernet eth0: validation of rgmii-id with support \
+>              00,00000000,00000000,00006280 and advertisementa \
+> 	     00,00000000,00000000,00006280 failed: -EINVAL
+>  thead-dwmac ffe7060000.ethernet eth0: __stmmac_open: Cannot attach to PHY (error: -22)
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-To be queued in renesas-devel for v6.13.
+Given what Emil said, i would suggest flipping the MDIO busses
+around. Put the PHYs on gmac1's MDIO bus, and set the pinmux so that
+its MDIO bus controller is connected to the outside world. Then, when
+gmac1 probes first, its MDIO bus will be probed at the same time, and
+its PHY found.
 
- arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi   | 2 +-
- arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi b/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi
-index 4ed8d4c379066342..e03baefb6a98b070 100644
---- a/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi
-@@ -171,7 +171,7 @@ &pcie0_clkref {
- };
- 
- &pciec0 {
--	reset-gpio = <&gpio_exp_20 0 GPIO_ACTIVE_LOW>;
-+	reset-gpios = <&gpio_exp_20 0 GPIO_ACTIVE_LOW>;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi b/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-index 3845b413bd24cd72..6dc968352c046129 100644
---- a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-@@ -302,7 +302,7 @@ &pcie0_clkref {
- };
- 
- &pciec0 {
--	reset-gpio = <&io_expander_a 0 GPIO_ACTIVE_LOW>;
-+	reset-gpios = <&io_expander_a 0 GPIO_ACTIVE_LOW>;
- 	status = "okay";
- };
- 
--- 
-2.34.1
-
+	Andrew
 
