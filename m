@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-105901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF6AD9883D6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 14:04:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76F229883DF
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 14:05:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 569451F20EEE
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 12:04:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F10EC1F210EF
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 12:05:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF7CF18A92A;
-	Fri, 27 Sep 2024 12:04:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 540C6189B9C;
+	Fri, 27 Sep 2024 12:05:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DenDDL2G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kOHEfXpB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EE5E61FCE;
-	Fri, 27 Sep 2024 12:04:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E4C5188CBE;
+	Fri, 27 Sep 2024 12:05:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727438644; cv=none; b=X3jMH4ZqvsOamO152WLwN7p7AAmlAcyPj0eFeE48MsVi5XHTbJ0KwAAr9HUsLms3R/o7TtcoF7Nm43NpyJ0jtORDahfK5LqrHHWA1gqA7x9+Df9TCCn9Jx5CXAZTIW9eHYyTc3LtBw5z4BbMRqOa8pYuhB8XNL8slYWSILQl0To=
+	t=1727438729; cv=none; b=qypphoh2Z+Y1C6mSkk8PoRZDFN9l/K/hJ4DZa2I5XPkaK8FOmrOBeSkn1RVzcm1N8G+DTKYG/I+WhfMJ1hJsW32THe7k4ze/Rhn1wUO/j0B6k+BNO7YpyTStKKCf2NitzupxGw59JQ+VSpjmE31Vstu+DkuYXjuLY8fVzun6r0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727438644; c=relaxed/simple;
-	bh=tVqjFHEaB7hFNxzh+RNievSG+KxIiC6UbwlmwhcDrRM=;
+	s=arc-20240116; t=1727438729; c=relaxed/simple;
+	bh=TE0LKX2c8E2TfT9Hkddc6qnG6wPmZG77HUmFBLIjakI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sr/JWlGvLRJhqEM4Kmq1D6d7HnYZJ/9Cr1KPT9jjBcXxkc1TuSnzeWgzOpSZtWcGjY2n+jvyFmpIMqXh4nMd7AWphnl4izMM9mMvHydQQ0xjff4/Tn1AGLZogr1s4PU2ILtvCVzutoJcuLOord57OqSMzOOQhYDQJbr/8UIwh8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DenDDL2G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81C54C4CEC4;
-	Fri, 27 Sep 2024 12:03:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JDAz5Oc9pjuS1G3S5LsNtNTuQORO8TMXSiR4xtd7B8MOON4rjB2fif1b5QwnOWLhxCW9FNDPePubEEcrlS/69+8WtOBOBgTJNoqQ9Cne7CiIE5vtc2SBN0Xbi621OfZGuCt3QHY2W/8afQwN6bPbmSSOKeduwdTzuHZ5u12wJsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kOHEfXpB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B7EFC4CEC4;
+	Fri, 27 Sep 2024 12:05:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727438644;
-	bh=tVqjFHEaB7hFNxzh+RNievSG+KxIiC6UbwlmwhcDrRM=;
+	s=k20201202; t=1727438728;
+	bh=TE0LKX2c8E2TfT9Hkddc6qnG6wPmZG77HUmFBLIjakI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DenDDL2GxaPEhzEqEClzghH5qrkQLS8s7dK4p7RnucnqYhu5DRl3scTLgZJAbn5kD
-	 pH8iMFhLvLWvEGON1tW2qDlTinPyxswCBjtxymTQa2LuTi2oFV7+3nXCuR4PdSziAq
-	 k4oUg/iC9h2JpXbxSxsydqLbnH1GqNv8m/10l7piZNxVDJaTCh0HmQf6BmbnFEqt0Z
-	 gjKlr2Xmngn+VssbFI5EjHfdX0nNlIknn4AAk0nImakhmFXzNUktBOl0CvYgxCHuFf
-	 Ho1keslgRwYL6GQNCdsncnRu/WHim4C7hc48E+NukmdtjlTHZazp6xkAuBpCZh6G8W
-	 QMXsYlBqdN/QQ==
-Message-ID: <52f83419-cc5e-49f3-90a7-26a5b4ddd5a0@kernel.org>
-Date: Fri, 27 Sep 2024 14:03:57 +0200
+	b=kOHEfXpB9+ydIEuC+pfZodkQQ8eyy4bD6HLDQewhrZ1cGBkrjVoMuF2QlsvbSpmgU
+	 x188wYvJMfJlIc0TS3IpcjbB5yhVUJG6d9GYuohuAzUewGFenBsdIj9XMfv7urLtnW
+	 RoFZrUE8i3iPKE0i6/0gCryi3iHXuVHtbfZNy6LLy+C37UiuDLAcY61vGIhCJkrove
+	 wI2KJpE5v8TyFvVDZ9MPenfMBUqjcFB1bIwFWotXTyr+TK+zuJeq+qd5we04BNNWiI
+	 gth/iJcUxfbLFJMX//xNB3T3ms3oah33OmsbXjiJBwjtPWeZUAnJ51AoZds+kQODYj
+	 H5YrKft7fmp9A==
+Message-ID: <417fa0ae-fe9c-4407-acbe-09173a0a2a47@kernel.org>
+Date: Fri, 27 Sep 2024 14:05:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
- flag
-To: Konrad Dybcio <konradybcio@kernel.org>,
- Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-Cc: konrad.dybcio@linaro.org, andersson@kernel.org, andi.shyti@kernel.org,
- linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
- conor+dt@kernel.org, agross@kernel.org, devicetree@vger.kernel.org,
- vkoul@kernel.org, linux@treblig.org, dan.carpenter@linaro.org,
- Frank.Li@nxp.com, bryan.odonoghue@linaro.org, krzk+dt@kernel.org,
- robh@kernel.org
-References: <20240927063108.2773304-1-quic_msavaliy@quicinc.com>
- <20240927063108.2773304-2-quic_msavaliy@quicinc.com>
- <we3wmw6e25y6e4443ndrduurwvkkpvuw7ozrizuys6pwxppwfy@2uq7uda4evhd>
- <320e0685-3dae-42a7-a387-75f6f52f4090@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: phy: rockchip,inno-usb2phy: add
+ rk3576
+To: Frank Wang <frawang.cn@gmail.com>, vkoul@kernel.org, kishon@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
+ tim.chen@rock-chips.com, frank.wang@rock-chips.com
+References: <20240926103223.29538-1-frawang.cn@gmail.com>
+ <ed829240-d4f7-471f-84f6-3509f87f11a1@kernel.org>
+ <7944f4dd-96f0-40df-8c91-523409e3cb20@gmail.com>
+ <4b98196a-c898-4d08-9101-31feb4e59b5c@kernel.org>
+ <a06af01a-656b-4ef6-84a6-bc1c35d5bafa@gmail.com>
+ <2815219e-3a20-4a5b-8573-d8a4ad2df1c9@kernel.org>
+ <f5e547ac-cb5b-492d-8cfd-d77d3e9bbf9d@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,68 +110,65 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <320e0685-3dae-42a7-a387-75f6f52f4090@kernel.org>
+In-Reply-To: <f5e547ac-cb5b-492d-8cfd-d77d3e9bbf9d@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 27/09/2024 13:20, Konrad Dybcio wrote:
-> On 27.09.2024 11:24 AM, Krzysztof Kozlowski wrote:
->> On Fri, Sep 27, 2024 at 12:01:05PM +0530, Mukesh Kumar Savaliya wrote:
->>> Adds qcom,shared-se flag usage. Use this when particular I2C serial
->>> controller needs to be shared between two subsystems.
->>>
->>> SE = Serial Engine, meant for I2C controller here.
->>> TRE = Transfer Ring Element, refers to Queued Descriptor.
->>> SS = Subsystems (APPS processor, Modem, TZ, ADSP etc).
->>>
->>> Example :
->>> Two clients from different SS can share an I2C SE for same slave device
->>> OR their owned slave devices.
->>> Assume I2C Slave EEPROM device connected with I2C controller.
->>> Each client from ADSP SS and APPS Linux SS can perform i2c transactions.
->>> This gets serialized by lock TRE + DMA Transfers + Unlock TRE at HW level.
->>>
->>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
->>> ---
->>>  Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml | 4 ++++
->>>  1 file changed, 4 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
->>> index 9f66a3bb1f80..3b9b20a0edff 100644
->>> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
->>> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
->>> @@ -60,6 +60,10 @@ properties:
->>>    power-domains:
->>>      maxItems: 1
->>>  
->>> +  qcom,shared-se:
->>> +    description: True if I2C needs to be shared between two or more subsystems(SS).
->>
->> The "SS" and subsystem should be explained in the binding. Please do not
->> use some qcom-specific abbreviations here, but explain exactly, e.g.
->> processors like application processor and DSP.
->>
->> "se" is also not explained in the binding - please open it and look for
->> such explanation.
->>
->> This all should be rephrased to make it clear... We talked about this
->> and I do not see much of improvements except commit msg, so we are
->> making circles. I don't know, get someone internally to help you in
->> upstreaming this.
->>
->> Is sharing of IP blocks going to be also for other devices? If yes, then
->> this should be one property for all Qualcomm devices. If not, then be
->> sure that this is the case because I will bring it up if you come with
->> one more solution for something else.
+On 27/09/2024 12:59, Frank Wang wrote:
+> Hi Krzysztof,
 > 
-> As far as I understand, everything that's not protocol-specific (in
-> this case it would be I2C tunables etc.) is common across all
-> protocols supported by the serial engine.
+> On 2024/9/27 17:52, Krzysztof Kozlowski wrote:
+>> On 27/09/2024 09:59, Frank Wang wrote:
+>>>>> -  clocks:
+>>>>> -    maxItems: 1
+>>>>> +  clocks: true
+>>>>>
+>>>>> -  clock-names:
+>>>>> -    const: phyclk
+>>>>> +  clock-names: true
+>>>> For the third time, read the code I gave you. Do you see something like
+>>>> this there? Why doing all the time something different than existing code?
+>>> Refer to the link you sent me that I must add minItems property for
+>>> clocks, just like the below codes:
+>>>
+>>> @@ -35,7 +35,8 @@ properties:
+>>>        const: 0
+>>>
+>>>      clocks:
+>>> -    maxItems: 1
+>>> +    minItems: 1
+>>> +    maxItems: 3
+>> Yes, for all variable properties, so also names.
+>>
+>>> That can pass dt_binding and dtb checking, however, "clocks" is the
+>>> optional property for some old Rockchip PHYs,  I am not sure is it right
+>>> to force set  minItems as 1 .
+>>> If just keep maxItems, the dt_binding checking is failure.
+>> Please specify the question you want to ask.
+>>
+> 
+> Please ignore my last garbled email as mailbox client issue.
+> 
+> Q1: The "clocks" is an optional property for some old Rockchip PHYs, so 
+> set "minItems: 1" likes the below, is this a suitable setting?
+> 
+>      clocks:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 3
+> 
+> Q2: Do you want me to amend the code to like this?
+> 
+>     clocks:
+>      minItems: 1
+>      maxItems: 3
+> 
+>     clock-names:
+>      minItems: 1
+>      maxItems: 3
 
-Yeah, but I also think about other things like clock controllers, TLMMs,
-MMUs and so on. Each of them will get a new "qcom,shared-xxx" property?
-
-I expect Mukesh to solve it in qcom-wide way, not only his one problem.
+List should be here with minItems. Then you only define the constraints
+in if:then:
 
 Best regards,
 Krzysztof
