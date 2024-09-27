@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-105879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 039629882C9
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 12:50:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 498349882F0
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 12:59:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A365B1F2214A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 10:50:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1CE01F224D1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 10:59:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AF8A187547;
-	Fri, 27 Sep 2024 10:50:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FFDC1898E6;
+	Fri, 27 Sep 2024 10:59:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ijD0Bixl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EkFeqHgO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99C1D183092;
-	Fri, 27 Sep 2024 10:50:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC93018951F;
+	Fri, 27 Sep 2024 10:59:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727434205; cv=none; b=DMDe56VvO2lOFs/hMv/n0wmazPrgRC33pRMufS/sjLWliQbgYq0cyshRcyLZS7vLw6mrc8Jlb+QWGd2cJT1KHHDVPb1yL9bouradXgp49ZHzme3v9uEmoFjX2QzzomOm+Y+0B+3tiPGxKL+PRSsagRX6+WxeSCwNOpdMxiIVB1U=
+	t=1727434763; cv=none; b=irgfswQt6PHt8s9b6NYPNC8GywLLYd45CSxYiJ7VzAiqdjJmWksK6m+0wdq462cDWiytKrzlasXxcukvlb0aeLlpYDtFa9LWI1Y0P88lBgHTXlQNu4Y0HxXYWaLCZBQTs/guoSqJ5YLwMLNrnh5B2VibkuZ27UHmI7pAmymwYeA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727434205; c=relaxed/simple;
-	bh=8dAV29tDl0in/jujhsDMPKKy8mxkYTcUS99fDHyNz4M=;
+	s=arc-20240116; t=1727434763; c=relaxed/simple;
+	bh=n1kiuobhp7nO7fCIfJA7iEh5eDophUx5d0KHYqiFbEQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OmeskleVIDkM4P5/gSUVAd09Qwle2F7r2g299EOZzNs6RM3AwjyZjClqsjJPAY8TLZCqv/fGHTJLVp5DSZzOF+jrdbGN1zhuXsieYAH7kaCG/kxk3WW7Ypj5WzfYZxJAzeqAZpvuVHKnyrV/gBNVFd5dsz+V2NVcsPdFj9wKkGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ijD0Bixl; arc=none smtp.client-ip=209.85.216.48
+	 In-Reply-To:Content-Type; b=QdtQE4JlG0/eR4Mo4KMKkytaYBBLedRvHP8ZqCISTpVzH2jxDkh0QLBCQVlw3IyJIATKvEP0mt9W8yWcuUmHpKjJgLg4zsQw1se8TlJNB0FAP8cS/r/IJFYt6dSjVbgErl9pcUAzOm+p0Ud6f8yUOyA+QolinHfNKxo74BgegH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EkFeqHgO; arc=none smtp.client-ip=209.85.214.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2e0a47fda44so286156a91.1;
-        Fri, 27 Sep 2024 03:50:04 -0700 (PDT)
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-20b2ee7629fso1407705ad.3;
+        Fri, 27 Sep 2024 03:59:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727434204; x=1728039004; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1727434761; x=1728039561; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0Cm/CaH+7rnCuQElMA0wHSDFr0ElI/GNiHs3+I9HxOc=;
-        b=ijD0BixlbWUQr2KwsjCGLSOb0t0d3JrBUeTZ3LMBIYEMR7rjjMcIR3qrBNKHsUzkeT
-         o9N2J+MXZWZ1XQfaoKRqzSaY8cgID62VBXqpZvyKG1QYML53VZxlviGzz/7ZnzoaMAWl
-         i3bgBPLXX+USUKxBj5LODl9D7UF/XOs2Dl9nGasoSAOasrGTLqyObtInNJ5g5Dvm75mf
-         x4Jj26Jb2Kbj7qSbkB0FHf2IN3tqb4FtuLxbMgPP7iuFjNL8/wiRZRtVMIys/LWOcwh5
-         hWUg+tAqvad4irtgzl1i/81ggWsNBMlNfJiRqZ8iY623on/Rx51WHmuJprGSG2Tf5fSR
-         1Ydw==
+        bh=DObtMepEvbntbYxpIRGYmA2PApftPcBR1DNFAq+0tiU=;
+        b=EkFeqHgOHCgJaF9fzxBId9deBoyFaOQ3XB4C0AHQC6ir+GNgvxCp6J8z8Xc7YrHI5u
+         OfALhQ3fID6oLhAeo5Smbr4isZDiZzbxVi1NZTp8L+fK09ty6ZlfUN7A8S971sot7Wj7
+         bDbLwm6fY2zwx64eaqPJokAj27XtApyphJ7L8Q9snEJJDiX2qLVJbn3Pl9Ww+H6tjIub
+         ExGYCfFFoVCIDfkkDZrZ0V43xenx22ELMv4ghsNfAamNxDeX5wURTZPFk3/pUPu43M/m
+         gwkZ51tjwb77jmWFl+9dL+JgIzKf36k3zo74GhdidvCHvX8zFGIzaA2BSMvUg5V5jcwt
+         iyXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727434204; x=1728039004;
+        d=1e100.net; s=20230601; t=1727434761; x=1728039561;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0Cm/CaH+7rnCuQElMA0wHSDFr0ElI/GNiHs3+I9HxOc=;
-        b=XTVIJ5Be+jwJyyqtKTkp0F6l2Q7THc/+Mfr8Z22wNaPCOG1CqXBKc5Q+XakDlp2yr2
-         r34QOV9FIVaxeabV+HpJerymUM9XGR1MwbupdIzItEzmCGvVb5rd+x/31dHraecbwJRl
-         Ebrva8vGGd7WMJEqb3mA0cQXlfqTiKchksm8FAajsVqAJQWGBEWkXSSiNK88aBrS9CVP
-         gL5Lfh9HB/57ZpAXjdU0lMOgY5rJFwF75BzujpOCheooBofX4geaSPR1OFpbNdtUkY9M
-         ezLHXdzIGPVClQlhYPGy+BOEGZt6UCdxtLmAdGrL6BmvpA6rVTINu/XVp1hxCEXuCv8E
-         FUlw==
-X-Forwarded-Encrypted: i=1; AJvYcCW+xACvfKUaZsDPe5E9laPg3jhDhZkQ5POq0uDv3rCXRsGksbIfrk0kjvDYarvGgXpTQEvjRnR0z5OR@vger.kernel.org, AJvYcCXSYY8+kbp6eeksc+e28Lkx/3JjhKz2ccMLzX30PuOFLCGMImmfa4Qht9I4+KjIp8A5fQBhoJSxIpqJQr0w@vger.kernel.org
-X-Gm-Message-State: AOJu0YzuTAdOdFwFT3RJeheZgOE3hVVBgeFNKPFeiV7a1+VoR186so4E
-	to3TigMfDPU/5bX+QW1fbyb3y1cy6nx9II0Ai2UK4F7BE6bdl9v3m9L6Kgis
-X-Google-Smtp-Source: AGHT+IHSYMyuGVO/gtIn+YKc6BCcgImGwsAagdTinej2ygKLLnFEyRNG87k8Y5G0jBj0H9zg6u8HXA==
-X-Received: by 2002:a05:6a20:1590:b0:1cf:2be2:8dd1 with SMTP id adf61e73a8af0-1d4fa7adf82mr1868218637.10.1727434203743;
-        Fri, 27 Sep 2024 03:50:03 -0700 (PDT)
+        bh=DObtMepEvbntbYxpIRGYmA2PApftPcBR1DNFAq+0tiU=;
+        b=dmnZie7P+n9lHOXzoZdhVBGOOjQNZumsh9XUFlMhXNlMjKjvuLqKLbZHLXV56CrExl
+         cv9PnUCQY+5X6AFARHUU5RLMXKVdx3Zq9oNPtk1J6mE2EYdrDjxZdbMx/QiSfzVEMxQK
+         30XtI7Ei6J+AY9kSBvrImNuUvFVCxLcbjzojEHwtCNAqKqXBg+HCFF72UbC72pifITIw
+         LLGxS8iUlWI+/x9aj5UshoBoGKbHB/vwoSbT1tIYeOQmUQ3UkEnn5O73aYH0n2R5m2it
+         eI4H79HN++5vZszyijtZIqCO0wdf6GEODYsILbAm6V/l6GocF6lGEDIPnsy59Wy5pxXM
+         qm+w==
+X-Forwarded-Encrypted: i=1; AJvYcCVJrQHV4NV2rWL5JfYyza/qF8QNusAdh70QAxwKk+rLz/YWy+Rns+mPq4i35KVf3UkZk3dF2SLT9dSlwjsD@vger.kernel.org, AJvYcCXu5pHGsIUJmqdnEflrmA34CSwkQm79TXKoPAwNWzPayTAx72Ts024T/8lUxd7yiZrICvdMvVFWnmZk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxng87ZbDi3Txh1d0gUt9RH0II4Nc8t79F3nz2CHS6vvl7+/tTt
+	WstGLscnvrfbn8h6UN2Nmp97h6mjsXXsUFgmEXiaUyF0UyoeL2LXAnJhT1zE
+X-Google-Smtp-Source: AGHT+IHYLP9kUGQWnN2G8U5PQVJytgo7cazkgDwW/mKcpQ1mFG2jLNZxG0CwjnvcSkfgmE0hIzd/hQ==
+X-Received: by 2002:a17:903:191:b0:20b:9aa:efca with SMTP id d9443c01a7336-20b36adbadamr18954335ad.9.1727434761087;
+        Fri, 27 Sep 2024 03:59:21 -0700 (PDT)
 Received: from [192.168.60.56] ([103.29.142.67])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71b2653726csm1315488b3a.205.2024.09.27.03.49.59
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20b37d60eb3sm11688325ad.44.2024.09.27.03.59.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Sep 2024 03:50:03 -0700 (PDT)
-Message-ID: <7eead817-fe37-472d-ab5a-f46133031e18@gmail.com>
-Date: Fri, 27 Sep 2024 18:49:57 +0800
+        Fri, 27 Sep 2024 03:59:20 -0700 (PDT)
+Message-ID: <f5e547ac-cb5b-492d-8cfd-d77d3e9bbf9d@gmail.com>
+Date: Fri, 27 Sep 2024 18:59:15 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -129,27 +129,70 @@ On 2024/9/27 17:52, Krzysztof Kozlowski wrote:
 > Please specify the question you want to ask.
 >
 
+Please ignore my last garbled email as mailbox client issue.
+
 Q1: The "clocks" is an optional property for some old Rockchip PHYs, so 
 set "minItems: 1" likes the below, is this a suitable setting?
 
-    clocks:
+     clocks:
 -    maxItems: 1
 +    minItems: 1
-+    maxItems: 3Q2: Do you want me to amend the code to like this? 
-clocks: minItems: 1 maxItems: 3 clock-names: minItems: 1 maxItems: 3 
-allOf: [...] - if: properties: compatible: contains: enum: - 
-rockchip,px30-usb2phy - rockchip,rk3128-usb2phy - 
-rockchip,rk3228-usb2phy - rockchip,rk3308-usb2phy - 
-rockchip,rk3328-usb2phy - rockchip,rk3366-usb2phy - 
-rockchip,rk3399-usb2phy - rockchip,rk3568-usb2phy - 
-rockchip,rk3588-usb2phy - rockchip,rv1108-usb2phy then: properties: 
-clocks: maxItems: 1 clock-names: const: phyclk - if: properties: 
-compatible: contains: enum: - rockchip,rk3576-usb2phy then: properties: 
-clocks: minItems: 3 maxItems: 3 clock-names: items: - const: phyclk - 
-const: aclk - const: aclk_slv
++    maxItems: 3
 
+Q2: Do you want me to amend the code to like this?
 
-Best regards,
+    clocks:
+     minItems: 1
+     maxItems: 3
+
+    clock-names:
+     minItems: 1
+     maxItems: 3
+
+allOf:
+
+[...]
+
+   - if:
+       properties:
+         compatible:
+           contains:
+             enum:
+               - rockchip,px30-usb2phy
+               - rockchip,rk3128-usb2phy
+               - rockchip,rk3228-usb2phy
+               - rockchip,rk3308-usb2phy
+               - rockchip,rk3328-usb2phy
+               - rockchip,rk3366-usb2phy
+               - rockchip,rk3399-usb2phy
+               - rockchip,rk3568-usb2phy
+               - rockchip,rk3588-usb2phy
+               - rockchip,rv1108-usb2phy
+     then:
+       properties:
+         clocks:
+           maxItems: 1
+         clock-names:
+           const: phyclk
+
+   - if:
+       properties:
+         compatible:
+           contains:
+             enum:
+               - rockchip,rk3576-usb2phy
+     then:
+       properties:
+         clocks:
+           minItems: 3
+           maxItems: 3
+         clock-names:
+           items:
+             - const: phyclk
+             - const: aclk
+             - const: aclk_slv
+
+BR.
 Frank
 
 > Best regards,
