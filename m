@@ -1,114 +1,152 @@
-Return-Path: <devicetree+bounces-105821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2776098811C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 11:09:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 863A098813C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 11:23:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C71DF1F21435
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 09:09:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 727A2282D97
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 09:23:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17628189520;
-	Fri, 27 Sep 2024 09:09:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF2518A6B5;
+	Fri, 27 Sep 2024 09:23:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="BZkg73XF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C0D5157490;
-	Fri, 27 Sep 2024 09:09:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0488B16D9B8
+	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 09:23:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727428163; cv=none; b=nphy7B6PXbhEpuP9NOzMsSn4jHsxwY903hSdyCijmJjv0aNFgIqLuHenqrlD688Tqr2x858wKRiB9VTch/QTzYl4iTJXl0UMPfSYEosgwMwf2fuiJwUabc5/rZflGixCfeMqRvhUkbImnPVr7HBwM/CMGUALfoqMJDHp2FKn7+8=
+	t=1727428997; cv=none; b=UPGVgIct181pluVFePDzT5dO3Hzrr/hINPm/3TvLWDXVX5AGEbzTclPbU/YipyPmExjTFsWHkYNOoenzIrVOemUFc9BBo1MYD5yjUcyWxwe1WM0/LVimybMbDA8UiOOFiQpfBRnVMGSGwcSFAKQfPswqRoN518eOCoBkowU70uY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727428163; c=relaxed/simple;
-	bh=cQpDxDvyACMdOMajscbHWwweOtpsS7MCHWX4VJUvtGE=;
+	s=arc-20240116; t=1727428997; c=relaxed/simple;
+	bh=crutcP0xnGvGIZF+MQbEA0++mSe9NvxV4Gn+IsZHwVQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=k1XzLHllDMDuJ12BeBdjAmOONhxHKqzR6V8gWlB7HsyHIYM38p2InIoXRQ9isBzWLaY93+7X45fzpykoMKwZYdkvGTZa0dcVh+BtKJQkr3hD625MWcT1WiqLi8ZsANKrr1tYttIfJluHwoURQEbaom3trPaGPCWU2sL21aSxT0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-e22531db3baso1819335276.3;
-        Fri, 27 Sep 2024 02:09:20 -0700 (PDT)
+	 To:Cc:Content-Type; b=PfmMN2vGv1vZaIzlOy/8Hl20kGUetaUSst7eej+2DjKMN6Wn/s66bZD9Fgdys5fXwOqR5p/2m7SNbjBbLKyhLdPaI+qxx9lOr82CkStgWOFL3YFUynHRrfeThLT/U1gbmTP11Xpr2UnY06lpZJALTAVpTZMxvtl6Bk9bgF8/UOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=BZkg73XF; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5c40aea5c40so3462092a12.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 02:23:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1727428994; x=1728033794; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Nqf7J6uVRTMjV8Mkr5LkK+rt2+orKvSYQp47d/slH6I=;
+        b=BZkg73XFwjMYfwPiG8VagS2CmPJkKBqperLhKucETsr8ZzpysPIJp1kXtBuJCIBKxq
+         SiULOcfRXImdGya5juW3WUPwkl1SeshJtAr6ll8Nckcf/f46msZiuO218aboQ5QCFAZM
+         qcazQczegIF/HlU9phJ6NBGmjKIKJMHgmlQJtY/svK8RYwbGSAYAoJtXgZT/HNucu8Qd
+         2ZvoZPF+Cnjy1VPZxiKXRxspQkwo4utC2uYnpeSBptPY2IFPLo5bP6QX2t4c64ISFpOc
+         dDJCXrlgSifz/bb+pslFaRSHB3OGzLcF28SzHiGOborb51v1YVyw8i5huhEUyV4luQIF
+         lYUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727428160; x=1728032960;
+        d=1e100.net; s=20230601; t=1727428994; x=1728033794;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gD7HYc2ykFp2Z6YaTnlKUeCem16iQ9uMqHuzQPPeNLs=;
-        b=Eha4z30mtdqRAw27cNKLp4RwF7F705ORVGjH2Ffo5oLpwN5m8OqOSsb/PcjmdqGjI8
-         bvkWKEvjxXf+QfnzDvBDlsUzvlevS8bfWBk9RxHnNikBMFnvVOG5wapmZ8CnJ+dTPhmv
-         lnZhPtkzbTwwK9Px29bLOpnTp6IamFGb/I9nQzkBi6RwXppJ0wmkKZgzmrg8qluh5wUL
-         YDUcFpp/xyc19W4FHi7a4wwf1W24iIPEIubRzVyL930xkcBJVI1JN6vt4kopOlwijzdg
-         95xoCdsdt/Xtr5HpaCGUHj4m2KkPa5ivDsNkrb1qNbNqEPKCeo9LuZWedkTNPWSXxex4
-         O/PQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU0aSJzcIK6jvEGZ7qmviEt1w3JxOODWOVb63TZqDjr5Cz40Fa1T4KFgaTzImA+JM/jmq0Tw+85NqBvpQwKyQZ7lUM=@vger.kernel.org, AJvYcCWwAdNpgp10um8L1YI25h8ESjJVGCBd2wxw7DR2dLjqX5UzpVSro78BO3QjWeXGz99/DApsDEQ6BhOt@vger.kernel.org, AJvYcCXrpUNJ+bezt/BnHwiaUuDDEPzOKanMgHs2TzA2FvBV+bzc/yTEDuUmKG8JVcHZTH2ZR9+KLKcYJ027qQM=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTQ61zaZa6QoCAkH0TER3hw98vXQpQmJDQt7PAIA/GyBcSQLcJ
-	tR/+oXECMo9xe1FuLMOZn5alnQvmdX67jmmWt6h4yDRoOWox1/9nQ+BRu0I0
-X-Google-Smtp-Source: AGHT+IGJc8Hc1dlXUBSMOW+FUdvs5BRg4q6W6ebmJMSFcku96A8+wvXceNj08Z2J2oYM9VlN4lY0WA==
-X-Received: by 2002:a05:6902:2084:b0:e20:2876:8b6a with SMTP id 3f1490d57ef6-e2604d0cd30mr1450198276.48.1727428159872;
-        Fri, 27 Sep 2024 02:09:19 -0700 (PDT)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e25e3ef9b70sm366809276.3.2024.09.27.02.09.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Sep 2024 02:09:19 -0700 (PDT)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6dbc9a60480so16577897b3.0;
-        Fri, 27 Sep 2024 02:09:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVGDKUmRJ+3Mt5z9HrNrTEyOfUcpCvoCbN6kNcsLND+0tRgP6t4xM0X0clh44BY54cTbBM9RAOrBszNrfSAOMqZH+4=@vger.kernel.org, AJvYcCWa+wgLslXxGay0kj4RgrgL7aeVZFKKkLf1CXkW9JBESktwyWv5DfNB2Gpg/cqdTSgk9icgo30c63UH@vger.kernel.org, AJvYcCXCseGCVlTfC4feS03bMMYLCewwPXATejhhRt9RmpskyvBh+cfKCR1qlLjcQmCXn5+lqDZRXjAVzHvfBCs=@vger.kernel.org
-X-Received: by 2002:a05:690c:2901:b0:6e2:50a:f43b with SMTP id
- 00721157ae682-6e2475e667dmr15059647b3.35.1727428159382; Fri, 27 Sep 2024
- 02:09:19 -0700 (PDT)
+        bh=Nqf7J6uVRTMjV8Mkr5LkK+rt2+orKvSYQp47d/slH6I=;
+        b=FLwSUmv0mqRzfmlCRbaNAsgnmfvcc1e+IC0LishefE6zfVcGPIYU0d9N7e3HKb/k1y
+         k2td6hABMdk5x+3L2QUVNEE9WsejD2GTD39/joULhJ6PVsOIEa9XCqbbIDYhwnSXc8xc
+         OKCV3Sle6Zkpt/lwDqjEzUNgMHUyHqA+T5rNnUcXq0WaBSAqCdtiSSR9Fyp2EB9hPuKt
+         H3eTcHT9zVZC2hr640zq6K76yt9XQJ+HEtLOdDk3BJNrx/qg8+YxeUCQkcVJZ70JUAAC
+         QafhTuBKFFBHqACMiTijC7ZGvOHfSShBpa5rc3UDkOnxrfdeSe+Zi4SWoQZYvB4Be3QP
+         EWAA==
+X-Forwarded-Encrypted: i=1; AJvYcCVojRQXasZAomHsQ7sxoSmwSWfGcuraBfIUh2FT1zZpPDyeGhdHkRSRAvZse3zNDikxg04Jc7+g5yLA@vger.kernel.org
+X-Gm-Message-State: AOJu0YyceOvkhMPk9DtK9+BoQlF/wH7jvWHeHYLY2whrLe8hUN2j+jLK
+	jmWT+aj3cPwmZTXzFs7oz2WnM+fvCW25UJcf4V0gaUCP6ApcLbVqTRVtb1PR/zUF+j8ps/R7dsN
+	+zPMgbklSO5NFwAjt1YI4yDexXuiXvKbbKMWEwA==
+X-Google-Smtp-Source: AGHT+IFGU7PYEBeWJ9XyJiJyw2tA09AFezreXCXdZppeh4nf2YQMIVbOaLNTp72I5G5qbddr12Ia8AF3t2lz4EjKMB4=
+X-Received: by 2002:a05:6402:230e:b0:5c3:cc1c:4d9c with SMTP id
+ 4fb4d7f45d1cf-5c8777eae4amr5673166a12.18.1727428993884; Fri, 27 Sep 2024
+ 02:23:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240927081757.7022-2-wsa+renesas@sang-engineering.com> <1762ec04-4dba-4de1-b380-73bf391462e5@kernel.org>
-In-Reply-To: <1762ec04-4dba-4de1-b380-73bf391462e5@kernel.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 27 Sep 2024 11:09:07 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUQdTL+hP2fuDxzsuF0wRzAh-uuGQExNqkwsUZZWJ6OMg@mail.gmail.com>
-Message-ID: <CAMuHMdUQdTL+hP2fuDxzsuF0wRzAh-uuGQExNqkwsUZZWJ6OMg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: input: gpio-keys: allow generic
- 'interrupt-parent' for subnodes
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-renesas-soc@vger.kernel.org, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org, 
-	devicetree@vger.kernel.org
+References: <20240920-dev-maxh-svukte-rebase-v1-0-7864a88a62bd@sifive.com>
+ <20240920-dev-maxh-svukte-rebase-v1-1-7864a88a62bd@sifive.com> <20240921-shock-purge-d91482d191a1@spud>
+In-Reply-To: <20240921-shock-purge-d91482d191a1@spud>
+From: Max Hsu <max.hsu@sifive.com>
+Date: Fri, 27 Sep 2024 17:23:02 +0800
+Message-ID: <CAHibDyxcxe87mTLMkWZ9Ko3v7uyEbJd_BP7GSTpZFFO1nfmn0A@mail.gmail.com>
+Subject: Re: [PATCH RFC 1/3] dt-bindings: riscv: Add Svukte entry
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Anup Patel <anup@brainfault.org>, 
+	Atish Patra <atishp@atishpatra.org>, Palmer Dabbelt <palmer@sifive.com>, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, kvm@vger.kernel.org, 
+	kvm-riscv@lists.infradead.org, Samuel Holland <samuel.holland@sifive.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+Thanks, Conor,
+I will modify the format and send it as RFC v2.
 
-On Fri, Sep 27, 2024 at 10:32=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
-> If you want less lines in DTS, just switch to interrupts-extended.
+Since the Svukte extension is still in the review stage, I will put
+the latest commit of the PR in the riscv-isa-manual as an indication,
+Once the Svukte extension is ratified, I will modify it and send it as
+a formal patch.
 
-Oh cool!
+Best,
+Max Hsu
 
-Documentation/devicetree/bindings/interrupt-controller/interrupts.txt used =
-to
-explicitly prohibit this use case, but I seem to have missed
-commit 6df58e485fd002f6 ("dt-bindings: Clarify interrupts-extended
-usage") lifting that restriction.
 
-/me thawes his old patches to make better use of interrupts-extended
-in Renesas DTS files...
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+On Sun, Sep 22, 2024 at 6:05=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Fri, Sep 20, 2024 at 03:39:03PM +0800, Max Hsu wrote:
+> > Add an entry for the Svukte extension to the riscv,isa-extensions
+> > property.
+> >
+> > Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
+> > Signed-off-by: Max Hsu <max.hsu@sifive.com>
+> > ---
+> >  Documentation/devicetree/bindings/riscv/extensions.yaml | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/=
+Documentation/devicetree/bindings/riscv/extensions.yaml
+> > index a06dbc6b4928958704855c8993291b036e3d1a63..df96aea5e53a70b0cb89053=
+32464a42a264e56e6 100644
+> > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > @@ -171,6 +171,13 @@ properties:
+> >              memory types as ratified in the 20191213 version of the pr=
+ivileged
+> >              ISA specification.
+> >
+> > +        - const: svukte
+> > +          description:
+> > +            The standard Svukte supervisor-level extensions for making=
+ user-mode
+> > +            accesses to supervisor memory raise page faults in constan=
+t time,
+> > +            mitigating attacks that attempt to discover the supervisor
+> > +            software's address-space layout, as PR#1564 of riscv-isa-m=
+anual.
+>
+> I'm surprised this doesn't fail dt_binding_check, with the # in it. I'd
+> like to see a commit hash here though, in the same format as the other
+> extensions using them.
+>
+> > +
+> >          - const: zacas
+> >            description: |
+> >              The Zacas extension for Atomic Compare-and-Swap (CAS) inst=
+ructions
+> >
+> > --
+> > 2.43.2
+> >
 
