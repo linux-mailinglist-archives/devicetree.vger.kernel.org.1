@@ -1,164 +1,228 @@
-Return-Path: <devicetree+bounces-105982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09F41988B6E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 22:46:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04EA5988B8A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 22:51:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 234901C215A5
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 20:46:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3BD9CB24270
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 20:51:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD721C32ED;
-	Fri, 27 Sep 2024 20:45:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B502A1C32FC;
+	Fri, 27 Sep 2024 20:51:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Dp88WDvA"
+	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="Rzy7i+Ka"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 220341C32E1
-	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 20:45:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E311B1C2DB8
+	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 20:51:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727469951; cv=none; b=CPYEqafy2onKIsP9umlVqUk0801VhDYTuw5G+fGjcqh+2XGtLhXtiiFSSALwzNQvIahH+ZlM/Vu5YZ7gO1Yn8mLFb73PF8u5JUHFIO/nw7NpGfvBxSOLevfEXHjJe+E1ENf+ydTKA9I9WlcZv4lxs/lmeM8i9TYPxLuYget/eM8=
+	t=1727470277; cv=none; b=rv4LWkkFTmwcB7mLNwqZcxAZiPOLuiBzZ1sXv2ceyyIQCtZRZ3u9rxZzI18eQT0sSGw8H4xeCFZfKBqyeBtbc6DXjRzGpzBVfmli+tz2zWoKbihXeKpOAPCpUR89QGUcpXY1edCWlYHJnU5rb/rHFQC7/7AAdcbMb01WvaTCAns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727469951; c=relaxed/simple;
-	bh=6Of1VxGdAUu5212I6xyD0qz6mSisX0o6Xz6i9ngeA6E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p4lO4AtcdxN+dcquHHFdLiotEs/xpAnehy3gwQI4m6Tb616AdbqELWcVIWejGIFrBrSwtpif2ajffpSWRdvdnZ/H9e8TK/FgJ1xMsuxFzQ1swc4oeo1qqlsA/K7r7siNZeGjLoyapUWTyzJup/O6HtddKg0v5GH1vsTGAKebWnY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linuxfoundation.org; spf=pass smtp.mailfrom=linuxfoundation.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=Dp88WDvA; arc=none smtp.client-ip=209.85.166.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linuxfoundation.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linuxfoundation.org
-Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-3a342bae051so7790495ab.3
-        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 13:45:49 -0700 (PDT)
+	s=arc-20240116; t=1727470277; c=relaxed/simple;
+	bh=t5Z0F96nnpNVbvXiI93914QUNkWsiBwAzwQoJCfZ5Ew=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hb01/XDyxinWhFiMNkl6pdWGp9dLls0lKLTKScO0R/0DToq8yHxoj0EQqHavnk2QEvvQJ/7Y2K/eXnZPw3k1H5UGmjB1gXZzw3LxlhjVEhWzPAKl3iurjjvQ3El9h2mkP4AZFYsw0OqGLD65JB8HmYw3wkNveaiv+RLba73ARZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=Rzy7i+Ka; arc=none smtp.client-ip=209.85.215.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7db299608e7so1800722a12.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 13:51:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1727469949; x=1728074749; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ELeUhyHEhkX/mXAg1aV0b4XCeqINhoTNbiqlv9cXJu0=;
-        b=Dp88WDvAg+uodPTF8RxbmEWY5PVWhc2ztmEvdLiYXxQT3v8Eps9Of3Jlf8Mr+7ITRA
-         zyvzCRq9SgKd4Od4k4ds509MdH2tpIxDHrcowqZW9Ne4JLjXMYOSwStIgY+vqBTvKX9d
-         q49nIqM3xrtvJxlKa53Fz3zWxXELVkb86Ob88=
+        d=tenstorrent.com; s=google; t=1727470275; x=1728075075; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=bRdgVrabZHhxovBskXyfa2tZhEPgLz1eNAdYEQ47v4A=;
+        b=Rzy7i+KaY6oZlRoWG7tYY3YnfGjDMcAWIDuo+cvRC0JZ/fvo0MnClazthRZnHL2iUD
+         0gEMjpfFcTINWaoVOr1SbEPk6GV1jsddYG1bhyLoUp9hYJ0gzg0flr/OT/Z9VvelgpJg
+         Yy7e0hBcvo5JILKcJoRC4vJqVLvzMfrs1cioeMi6lqLEPby/E7AKdaEtY1m0Mh4PHHDY
+         T0SFZjGUqxPGkDbfQ/aVXvODzIIjwK1YgDrQrfhIqZ46sTyzk16j+EjkyiVAkzU1KcwL
+         TJ2zxmEKF+86mrss0wjd8tsBkNL7eIM23X+Yn68di5DqflaP2tg5b8wokIaLFrWCSvZP
+         MUww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727469949; x=1728074749;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ELeUhyHEhkX/mXAg1aV0b4XCeqINhoTNbiqlv9cXJu0=;
-        b=mvUqm6MXBf5A0xvZmVoC27f4Qee7uCYm7NiZjGw6DfDsaG5WtjSdH1Zu8Y9AVWEzbu
-         ikBZeYPEpwoboAaQrc08hJrmbvoXcS5o07EW1zi3kkFxiTYV9ArDz8IKxAlPnMmVvCgO
-         W3HzKab2lzW6K8maJS5sIjxocrAQJ6+2UY7JAnskai17UTprv9LljqvKHP3dUk11TEZc
-         x285AXeBMYChJFSfeHGFAbgRvDxfA6v5fpFYlxWk6zUbJhAr23KVoVEA068lJkSjRo1s
-         iakoy2qFyicwiPMwjMDryeOm5dhsuVq3jFaGoBj6RWFosAGZmKOA8+z1IvArQGuCEL4s
-         rupg==
-X-Forwarded-Encrypted: i=1; AJvYcCU4cA58QdoTs1245IMK/2QoqPZAlyvQLaWqfmF7JOdX1ypxjDblsguI7G+AoaWLk6DzGYEW53n+le88@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiKudeSONvu6izceu+aYEhEayYg9GHMQa0VwfGT7lwNf4JOkVj
-	2MXAkxh1JmRZ0o6jmavW1ROii3ZCgmiMd4rMdxq7+15JxHt5zoH6vPvHNYgPHTE=
-X-Google-Smtp-Source: AGHT+IG8H8BaLurHSTTAfNxUSV4X7fVN3L5lrZqFFO8rs0RzP2N+Y+8YF1zbMMAzEzM94iNQwXnCAg==
-X-Received: by 2002:a05:6e02:12ee:b0:3a3:445d:f711 with SMTP id e9e14a558f8ab-3a344fc8ff7mr59088925ab.0.1727469949083;
-        Fri, 27 Sep 2024 13:45:49 -0700 (PDT)
-Received: from [192.168.1.128] ([38.175.170.29])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4d888849ca8sm694390173.41.2024.09.27.13.45.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Sep 2024 13:45:48 -0700 (PDT)
-Message-ID: <6f5a5b5f-71a7-4ed3-8cb3-d930bbce599b@linuxfoundation.org>
-Date: Fri, 27 Sep 2024 14:45:47 -0600
+        d=1e100.net; s=20230601; t=1727470275; x=1728075075;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bRdgVrabZHhxovBskXyfa2tZhEPgLz1eNAdYEQ47v4A=;
+        b=ISUrFwUt9uS9BKwbjowXdeaPOMtLbu3ppkL257I2/Kt1f7BuSTjL9XiuVfu87ct0/8
+         kJYusxynpr8Yaa2yJxv5REu7OsV33zfk2+BUgrbqSYFhdGaL+2nayz7EpiyQ3Dkuabp9
+         NsQn1V0N190qHb8s3rJsHA0jfD9HL8pJK4XCL9A1vppXq4rtptxtDEHaa8LcQcbyW1p/
+         xhE8bZyLW4loWIBVRC64ItxSj+CDl8sSZXGQBOhQn1zZzNQ3aXdHpUsmEap1FCr/X40b
+         /YLFti4HZ5HBDsyYP0ymJuh35Aq0MJ+uUjO4KXbRyoyBJ2ghMiQ3P644+dZBg0+IhGkY
+         alRw==
+X-Forwarded-Encrypted: i=1; AJvYcCXWKZlGtQ413fQQn152lMv0NHOnsr3yylK4JMjHFegiZ0vwRjcErNekM3KsO5+GouL+sPaS4wd6+pDH@vger.kernel.org
+X-Gm-Message-State: AOJu0YzK1hDWI9CQaqYgE7C2h9vxrl+x+UCD9Fo6fndUK+NGSoxMfjKs
+	PAQXxJdZhNbbxXGgdK3I2tvckqRiloGZXdhEW5UFcp8Q5KUEZS2VIZCSpepVlH8=
+X-Google-Smtp-Source: AGHT+IFG7leoR14jtfC3q5GGKEHjsTA70H4zEAbpBSmxJ/3keC3i6/61ObBCaup/qbxMFhZgbbqM5Q==
+X-Received: by 2002:a17:90a:ec11:b0:2e0:6cd4:973a with SMTP id 98e67ed59e1d1-2e0b887184amr5335905a91.5.1727470275087;
+        Fri, 27 Sep 2024 13:51:15 -0700 (PDT)
+Received: from x1 (71-34-69-82.ptld.qwest.net. [71.34.69.82])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e0e4ca7019sm336000a91.18.2024.09.27.13.51.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Sep 2024 13:51:14 -0700 (PDT)
+Date: Fri, 27 Sep 2024 13:51:12 -0700
+From: Drew Fustini <dfustini@tenstorrent.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: net: Add T-HEAD dwmac support
+Message-ID: <ZvcawOIcufEHXCHU@x1>
+References: <20240926-th1520-dwmac-v2-0-f34f28ad1dc9@tenstorrent.com>
+ <20240926-th1520-dwmac-v2-1-f34f28ad1dc9@tenstorrent.com>
+ <4pxpku3btckw7chyxlqw56entdb2s3gqeas4w3owbu5egmq3nf@5v76h4cczv4z>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 8/8] clk: Add KUnit tests for clks registered with
- struct clk_parent_data
-To: Guenter Roeck <linux@roeck-us.net>, Stephen Boyd <sboyd@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- patches@lists.linux.dev, kunit-dev@googlegroups.com,
- linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org,
- Brendan Higgins <brendan.higgins@linux.dev>, David Gow
- <davidgow@google.com>, Rae Moar <rmoar@google.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@google.com>, Daniel Latypov
- <dlatypov@google.com>, Christian Marangi <ansuelsmth@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <maxime@cerno.tech>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Shuah Khan <skhan@linuxfoundation.org>
-References: <20240718210513.3801024-1-sboyd@kernel.org>
- <20240718210513.3801024-9-sboyd@kernel.org>
- <6cd337fb-38f0-41cb-b942-5844b84433db@roeck-us.net>
- <a339ec8c-38f6-425a-94d1-ad69b5ddbd88@roeck-us.net>
- <dcd8894f-1eb6-4b5c-9e6f-f6e584c601d2@roeck-us.net>
-Content-Language: en-US
-From: Shuah Khan <skhan@linuxfoundation.org>
-In-Reply-To: <dcd8894f-1eb6-4b5c-9e6f-f6e584c601d2@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4pxpku3btckw7chyxlqw56entdb2s3gqeas4w3owbu5egmq3nf@5v76h4cczv4z>
 
-On 9/27/24 10:19, Guenter Roeck wrote:
-> Copying devicetree maintainers.
+On Fri, Sep 27, 2024 at 11:34:48AM +0200, Krzysztof Kozlowski wrote:
+> On Thu, Sep 26, 2024 at 11:15:50AM -0700, Drew Fustini wrote:
+> > From: Jisheng Zhang <jszhang@kernel.org>
+> > 
+> > Add documentation to describe T-HEAD dwmac.
+> > 
+> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> > [drew: change apb registers from syscon to second reg of gmac node]
+> > [drew: rename compatible, add thead rx/tx internal delay properties]
+> > Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
+> > ---
+> >  .../devicetree/bindings/net/snps,dwmac.yaml        |   1 +
+> >  .../devicetree/bindings/net/thead,th1520-gmac.yaml | 109 +++++++++++++++++++++
+> >  MAINTAINERS                                        |   1 +
+> >  3 files changed, 111 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > index 4e2ba1bf788c..474ade185033 100644
+> > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > @@ -99,6 +99,7 @@ properties:
+> >          - snps,dwxgmac-2.10
+> >          - starfive,jh7100-dwmac
+> >          - starfive,jh7110-dwmac
+> > +        - thead,th1520-gmac
+> >  
+> >    reg:
+> >      minItems: 1
+> > diff --git a/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml b/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
+> > new file mode 100644
+> > index 000000000000..1070e891c025
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
+> > @@ -0,0 +1,109 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/thead,th1520-gmac.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: T-HEAD TH1520 GMAC Ethernet controller
+> > +
+> > +maintainers:
+> > +  - Drew Fustini <dfustini@tenstorrent.com>
+> > +
+> > +description: |
+> > +  The TH1520 GMAC is described in the TH1520 Peripheral Interface User Manual
+> > +  https://git.beagleboard.org/beaglev-ahead/beaglev-ahead/-/tree/main/docs
+> > +
+> > +  Features include
+> > +    - Compliant with IEEE802.3 Specification
+> > +    - IEEE 1588-2008 standard for precision networked clock synchronization
+> > +    - Supports 10/100/1000Mbps data transfer rate
+> > +    - Supports RGMII/MII interface
+> > +    - Preamble and start of frame data (SFD) insertion in Transmit path
+> > +    - Preamble and SFD deletion in the Receive path
+> > +    - Automatic CRC and pad generation options for receive frames
+> > +    - MDIO master interface for PHY device configuration and management
+> > +
+> > +  The GMAC Registers consists of two parts
+> > +    - APB registers are used to configure clock frequency/clock enable/clock
+> > +      direction/PHY interface type.
+> > +    - AHB registers are use to configure GMAC core (DesignWare Core part).
+> > +      GMAC core register consists of DMA registers and GMAC registers.
+> > +
+> > +select:
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        enum:
+> > +          - thead,th1520-gmac
+> > +  required:
+> > +    - compatible
+> > +
+> > +allOf:
+> > +  - $ref: snps,dwmac.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - thead,th1520-gmac
+> > +      - const: snps,dwmac-3.70a
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: DesignWare GMAC IP core registers
+> > +      - description: GMAC APB registers
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: dwmac
+> > +      - const: apb
+> > +
+> > +  thead,rx-internal-delay:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: |
+> > +      RGMII receive clock delay. The value is used for the delay_ctrl
+> > +      field in GMAC_RXCLK_DELAY_CTRL. Units are not specified.
 > 
-> On Thu, Sep 26, 2024 at 09:39:38PM -0700, Guenter Roeck wrote:
->> On Thu, Sep 26, 2024 at 09:14:11PM -0700, Guenter Roeck wrote:
->>> Hi Stephen,
->>>
->>> On Thu, Jul 18, 2024 at 02:05:07PM -0700, Stephen Boyd wrote:
->>>> Test that clks registered with 'struct clk_parent_data' work as
->>>> intended and can find their parents.
->>>>
->>>
->>> When testing this on arm64, I see the error below. The error is only
->>> seen if I boot through efi, i.e., with "-bios QEMU_EFI-aarch64.fd"
->>> qemu parameter.
->>>
->>> Any idea what might cause the problem ?
->>>
->> I noticed that the new overlay tests fail as well, also with "path '/' not
->> found".
->>
->> [Maybe] answering my own question: I think the problem may be that there
->> is no devicetree file and thus no devicetree root when booting through
->> efi (in other words, of_root is NULL). Would it make sense to skip the
->> tests in that case ?
->>
+> What do you mean by "unspecified units"? They are always specified,
+> hardware does not work randomly, e.g. once uses clock cycles, but next
+> time you run it will use picoseconds.
 > 
-> The problem is that of_root is not initialized in arm64 boots if ACPI
-> is enabled.
-> 
->  From arch/arm64/kernel/setup.c:setup_arch():
-> 
-> 	if (acpi_disabled)
-> 		unflatten_device_tree();		// initializes of_root
-> 
-> ACPI is enabled if the system boots from EFI. This also affects
-> CONFIG_OF_KUNIT_TEST, which explicitly checks if of_root exists and
-> fails the test if it doesn't.
-> 
-> I think those tests need to add a check for this condition, or affected
-> machines won't be able to run those unit tests. The obvious solution would
-> be to check if of_root is set, but then the associated test case in
-> CONFIG_OF_KUNIT_TEST would not make sense.
-> 
-> Any suggestions ?
-> 
+> You also miss default (property is not required) and some sort of constraints.
 
-Would it work if these tests check if acpi_disabled and skip if it isn't
-disabled? It might be low overhead condition to check from these tests.
+I should have stated that I don't know the units for delay_ctrl. The
+5-bit field has a max value of 31 which seems far too small for
+picoseconds. Unfortunately, the documentation from the SoC vendor does
+not give anymore details about what the value represents.
 
-acpi_disabled is exported:
+Andrew Lunn replied [1] to my cover letter that it is best to hard code
+the field to 0 (which is the hardware reset value) if I don't know what
+the units are for delay_ctrl. The hardware that I have works okay with
+delay_ctrl of 0, so it seems these new vendor properties are not needed.
 
-arch/arm64/kernel/acpi.c:EXPORT_SYMBOL(acpi_disabled);
-arch/loongarch/kernel/acpi.c:EXPORT_SYMBOL(acpi_disabled);
-arch/riscv/kernel/acpi.c:EXPORT_SYMBOL(acpi_disabled);
-arch/x86/kernel/acpi/boot.c:EXPORT_SYMBOL(acpi_disabled);
+Thanks,
+Drew
 
-thanks,
--- Shuah
-
+[1] https://lore.kernel.org/lkml/5e379911-e3de-478c-b785-61dbcc9627b1@lunn.ch/
 
