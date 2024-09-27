@@ -1,127 +1,169 @@
-Return-Path: <devicetree+bounces-105886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32047988327
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 13:20:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50867988360
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 13:34:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8EC4283106
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 11:20:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 088F92819DE
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 11:34:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59A09188732;
-	Fri, 27 Sep 2024 11:20:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BE8F1898FF;
+	Fri, 27 Sep 2024 11:34:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eM7PUCIE"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="AML2FVtg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F211184545;
-	Fri, 27 Sep 2024 11:20:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35D71189530
+	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 11:34:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727436048; cv=none; b=aJKNHfkv4Jfcv5dKpM34Ty1Pr6WLy9TKFdJrOvPyYrGP5n3VsNhM1m6rSXKzUGe/5+Id+yLvpo8xXE/G6q0mwNhAJQ1L7FfNZZSieNwbvC3GEWGFTkt2/RtOFv0DaCwkjN3P3u6MNjjrmoToKmGC31i7iTpRZQBYeZQw6wc/I6Y=
+	t=1727436876; cv=none; b=WUjIDdZGiSYGUxshsUlzwfzdPpdtdhYIdzuQGpkvq9xjUbUyLti3Jt7z7G7g98oVjew5Xbx11qbBnVGtByiUDZJ0BADsY7PcLBnPiAWkjhtX3P4tjnGBvdEGqBv461V1dXwQtqUu39euuA0RNdUiZg6CMekQgtdIdbZdb6NHimY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727436048; c=relaxed/simple;
-	bh=sgKeHbNcpyAKUI1elNkL0fBx61mN0MG6AdCqqDPHUhg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fkXOnDmVWVW9jo03m6X082Rxdg/9nFzl/w0Vca5qxoKBM1ZPtJV44tr3yJq3XPi4h3ChWRz33cGh5iAQ7edBbBe7AQekJb4v7gY+aKbkc5gWrQbBC5lJxv+jOnTBDUyytwlLFfN9AtFbHi1JjSAVwq3VxI2b9rF7P86uKNzRGLM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eM7PUCIE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E41B0C4CEC6;
-	Fri, 27 Sep 2024 11:20:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727436047;
-	bh=sgKeHbNcpyAKUI1elNkL0fBx61mN0MG6AdCqqDPHUhg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eM7PUCIE0o5jmZ6JFjW6Os52mWUpc6DYgeYMS5Pm9RplNaYH/El31hmeme+uzkmc7
-	 dO2OinJr0fV3ZS3iFwrjFoNg/CagSlMqVNU8sHUUe2FS9eBjZCkXM87wmR+gWTm9Ua
-	 zf+tZI2VrfqQQA16ivNttQa8RFmIjSvbFxGuAgJkfH05m7t+BAS7Rdb8gO4EiFontC
-	 UTcN0o4uBXOzqz0oTLAB+Qu9Tzwr6VEGNfeSqcNs5h3+dGYBG3hhG0np0ftQhrobAB
-	 YiXvPUZj+Fe0eWaG5wPd2gAUCO/hvjDRXjcMTyqMrMFK1cmNvZleD4gELJj9FW+rrY
-	 WCAo3a5ecYwow==
-Message-ID: <320e0685-3dae-42a7-a387-75f6f52f4090@kernel.org>
-Date: Fri, 27 Sep 2024 13:20:40 +0200
+	s=arc-20240116; t=1727436876; c=relaxed/simple;
+	bh=mLnVJ+RCBSll6397HDYIxG0p1+y9qDqy/rM7C01/DGk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=oD/LMelVBY9Jts0KulW/hmtRj9zL+7ysDEdO53Zqw387RnbSNRCr4e6lzB9k1WcydSM3/5zZs5ESTQSes4VYtY9sVRZ4ogbVIwR0uOAsYNhWBL3/A0kh8a9j9/BuSMfMleVL1z4uHZlbn7fIWARr09ju5LwnRDMxDKkllhdDw04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=AML2FVtg; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1727436863; x=1730028863;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=mLnVJ+RCBSll6397HDYIxG0p1+y9qDqy/rM7C01/DGk=;
+	b=AML2FVtgwwsUgjOAkwAR9yRqA3DYNfb1tiKPe50GkSo9yKARlEd+0SbtaLkqnPVs
+	3PMMDKvQYgvnoJByMA3kTBYNHsnI470UEll1klIdRlRf7YnpHEOhkPMJNEi1uX8H
+	tMnBtMWtuWVKyUJPKMAH+EB/yEY3vNmEYxq149OmBuc=;
+X-AuditID: ac14000a-4577e70000004e2a-f4-66f6983f8091
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 04.AA.20010.F3896F66; Fri, 27 Sep 2024 13:34:23 +0200 (CEST)
+Received: from llp-hahn.hahn.test (172.25.0.11) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 27 Sep
+ 2024 13:34:23 +0200
+From: Benjamin Hahn <B.Hahn@phytec.de>
+Date: Fri, 27 Sep 2024 13:34:16 +0200
+Subject: [PATCH] arm64: dts: imx8mp-phyboard-pollux-rdk: update
+ gpio-line-names
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
- flag
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-Cc: konrad.dybcio@linaro.org, andersson@kernel.org, andi.shyti@kernel.org,
- linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
- conor+dt@kernel.org, agross@kernel.org, devicetree@vger.kernel.org,
- vkoul@kernel.org, linux@treblig.org, dan.carpenter@linaro.org,
- Frank.Li@nxp.com, konradybcio@kernel.org, bryan.odonoghue@linaro.org,
- krzk+dt@kernel.org, robh@kernel.org
-References: <20240927063108.2773304-1-quic_msavaliy@quicinc.com>
- <20240927063108.2773304-2-quic_msavaliy@quicinc.com>
- <we3wmw6e25y6e4443ndrduurwvkkpvuw7ozrizuys6pwxppwfy@2uq7uda4evhd>
-Content-Language: en-US
-From: Konrad Dybcio <konradybcio@kernel.org>
-In-Reply-To: <we3wmw6e25y6e4443ndrduurwvkkpvuw7ozrizuys6pwxppwfy@2uq7uda4evhd>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-ID: <20240927-wip-bhahn-update_gpio_lines-v1-1-49aca212e25a@phytec.de>
+X-B4-Tracking: v=1; b=H4sIADeY9mYC/x3MSwqAIBAA0KvErBswK/pcJSIspxwIE+0H0d2Tl
+ m/zHgjkmQK0yQOeTg682YgsTWAyyi6ErKNBClmIRpZ4scPRKGPxcFrtNCyOt2FlSwHzuprVJGr
+ KdQVxcJ5mvv+969/3A1wcBuxtAAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Teresa Remmet
+	<t.remmet@phytec.de>
+CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<upstream@lists.phytec.de>, Benjamin Hahn <B.Hahn@phytec.de>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1727436863; l=2230;
+ i=B.Hahn@phytec.de; s=20240126; h=from:subject:message-id;
+ bh=mLnVJ+RCBSll6397HDYIxG0p1+y9qDqy/rM7C01/DGk=;
+ b=1JTTL5w+Ysf2NDXnsTQKYgK8LBQoP7X4qcSWb2sYtvFIodHDs80v/KwDPMWdsS813e+dnUKsJ
+ NiY9GUqJHFhCwy10VlZAoanmHqcC3rVog65kwplVFBB31aaE4LfxrMW
+X-Developer-Key: i=B.Hahn@phytec.de; a=ed25519;
+ pk=r04clMulHz6S6js6elPBA+U+zVdDAqJyEyoNd8I3pSw=
+X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFuphkeLIzCtJLcpLzFFi42JZI8nAo2s/41uaweVnYhZr9p5jsph/5Byr
+	xcOr/hYz77WyWayaupPF4uWse2wWmx5fY7W4vGsOm8X/PTvYLf5u38Ri8WKLuEX3O3UHHo+d
+	s+6ye2xa1cnmsXlJvceLzTMZPfq7W1g9+v8aeHzeJBfAHsVlk5Kak1mWWqRvl8CVcWzXC8aC
+	HYIVF1bPZ21gPMDXxcjJISFgIrF30mr2LkYuDiGBJUwST/7dZYVwHjJKrN06mQWkik1ATWLX
+	m9esIDaLgKrExWtTmLoYOTiEBQIl9mzMAAnzCghKnJz5hAUkzCygKbF+lz5ImFlAXmL72znM
+	ECV+Eg3rp7KAjJcQ2MEoceXLVUaQhIjADiaJx/2GIAlmgYOMEuvP72SGuE5Y4vPuNWwQHbuZ
+	JKZNe8AKskFCIFFi52s5kBohAVmJm+e3sEHUy0tMO/caqjdUYuuX7UwTGIVnIblvFsJ9s5Dc
+	t4CReRWjUG5mcnZqUWa2XkFGZUlqsl5K6iZGUIyJMHDtYOyb43GIkYmD8RCjBAezkgiv1bmv
+	aUK8KYmVValF+fFFpTmpxYcYpTlYlMR5V3cEpwoJpCeWpGanphakFsFkmTg4pRoYmb4fuiw4
+	6WVHace6Pa/z2tTFlIyahIXm/3rb38/2pK650Jrtcg/jqX/y9YopR5zO/IvZWndWavHPy9PK
+	TBTdK9fnMPyuebm2Pesdy/flnh/VHTPcnh+bcb82bd2jhb8WRVUuzKo4K+NyTebg52s3Luxq
+	vGFwv/tZ5rmPQmfFYya6cwcyMV2xUWIpzkg01GIuKk4EAPY0g2yfAgAA
 
-On 27.09.2024 11:24 AM, Krzysztof Kozlowski wrote:
-> On Fri, Sep 27, 2024 at 12:01:05PM +0530, Mukesh Kumar Savaliya wrote:
->> Adds qcom,shared-se flag usage. Use this when particular I2C serial
->> controller needs to be shared between two subsystems.
->>
->> SE = Serial Engine, meant for I2C controller here.
->> TRE = Transfer Ring Element, refers to Queued Descriptor.
->> SS = Subsystems (APPS processor, Modem, TZ, ADSP etc).
->>
->> Example :
->> Two clients from different SS can share an I2C SE for same slave device
->> OR their owned slave devices.
->> Assume I2C Slave EEPROM device connected with I2C controller.
->> Each client from ADSP SS and APPS Linux SS can perform i2c transactions.
->> This gets serialized by lock TRE + DMA Transfers + Unlock TRE at HW level.
->>
->> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
->> ---
->>  Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml | 4 ++++
->>  1 file changed, 4 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
->> index 9f66a3bb1f80..3b9b20a0edff 100644
->> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
->> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
->> @@ -60,6 +60,10 @@ properties:
->>    power-domains:
->>      maxItems: 1
->>  
->> +  qcom,shared-se:
->> +    description: True if I2C needs to be shared between two or more subsystems(SS).
-> 
-> The "SS" and subsystem should be explained in the binding. Please do not
-> use some qcom-specific abbreviations here, but explain exactly, e.g.
-> processors like application processor and DSP.
-> 
-> "se" is also not explained in the binding - please open it and look for
-> such explanation.
-> 
-> This all should be rephrased to make it clear... We talked about this
-> and I do not see much of improvements except commit msg, so we are
-> making circles. I don't know, get someone internally to help you in
-> upstreaming this.
-> 
-> Is sharing of IP blocks going to be also for other devices? If yes, then
-> this should be one property for all Qualcomm devices. If not, then be
-> sure that this is the case because I will bring it up if you come with
-> one more solution for something else.
+Update gpio-line-names. Add missing and remove unused.
 
-As far as I understand, everything that's not protocol-specific (in
-this case it would be I2C tunables etc.) is common across all
-protocols supported by the serial engine.
+Signed-off-by: Benjamin Hahn <B.Hahn@phytec.de>
+---
+ .../boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts      | 14 ++++++++++----
+ arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi      |  4 +---
+ 2 files changed, 11 insertions(+), 7 deletions(-)
 
-Konrad
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
+index 50debe821c42..cd8645be7ffd 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
+@@ -322,15 +322,16 @@ &usdhc2 {
+ 
+ &gpio1 {
+ 	gpio-line-names = "", "", "X_PMIC_WDOG_B", "",
+-		"PMIC_SD_VSEL", "", "", "", "", "",
+-		"", "", "USB1_OTG_PWR", "", "", "X_nETHPHY_INT";
++		"PMIC_SD_VSEL", "", "", "", "PCIe_nPERST", "LVDS1REG_EN",
++		"PCIe_nWAKE", "PCIe_nCLKREQ", "USB1_OTG_PWR", "",
++		"PCIe_nW_DISABLE";
+ };
+ 
+ &gpio2 {
+ 	gpio-line-names = "", "", "", "",
+ 		"", "", "", "", "", "",
+ 		"", "", "X_SD2_CD_B", "", "", "",
+-		"", "", "", "SD2_RESET_B";
++		"", "", "", "SD2_RESET_B", "LVDS1_BL_EN";
+ };
+ 
+ &gpio3 {
+@@ -344,7 +345,12 @@ &gpio4 {
+ 	gpio-line-names = "", "", "", "",
+ 		"", "", "", "", "", "",
+ 		"", "", "", "", "", "",
+-		"", "", "X_PMIC_IRQ_B", "", "nENET0_INT_PWDN";
++		"", "", "X_PMIC_IRQ_B", "nRTC_INT", "nENET0_INT_PWDN";
++};
++
++&gpio5 {
++	gpio-line-names = "", "", "", "",
++		"", "", "", "", "", "X_ECSPI1_SSO";
+ };
+ 
+ &iomuxc {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
+index a5ecdca8bc0e..04f724c6ec21 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
+@@ -209,9 +209,7 @@ &wdog1 {
+ };
+ 
+ &gpio1 {
+-	gpio-line-names = "", "", "X_PMIC_WDOG_B", "",
+-		"", "", "", "", "", "",
+-		"", "", "", "", "", "X_nETHPHY_INT";
++	gpio-line-names = "", "", "X_PMIC_WDOG_B";
+ };
+ 
+ &gpio4 {
+
+---
+base-commit: de5cb0dcb74c294ec527eddfe5094acfdb21ff21
+change-id: 20240925-wip-bhahn-update_gpio_lines-387fac08e3d7
+
+Best regards,
+-- 
+Benjamin Hahn <B.Hahn@phytec.de>
+
 
