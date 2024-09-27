@@ -1,60 +1,64 @@
-Return-Path: <devicetree+bounces-105994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A33A6988C7F
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 00:32:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBCAA988C9F
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 00:48:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57C09283546
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 22:32:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03085B2169C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 22:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0E9118C006;
-	Fri, 27 Sep 2024 22:32:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 404211B6520;
+	Fri, 27 Sep 2024 22:48:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uZBsGNZu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hmRdPUHc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C650A16F909;
-	Fri, 27 Sep 2024 22:32:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1024E1B5ED4;
+	Fri, 27 Sep 2024 22:48:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727476348; cv=none; b=G3XvEE9FSMCVCf8IN7h+fDmmXseBbP2yUdYYRegagUPEH4mxcAE7bDSUXT4g3jj00yU/EOCbd4at6yN1t5R8AZ2B5S1Gge6UHyIpXP9ZYOOIxcIKeLcfMhyE4QyLUF8DjOgsPuf1JdYYnSdMTzu7fFoE+zB7jobSHKBvUUY3MxY=
+	t=1727477315; cv=none; b=nFN6edJVdypldvmlgxRDDBgOFMGSxzyA8sfHsLs7ZvL1qLSQyndFLHhSz8BKST/L9ngHCwc4NjlpYnY/IyL6GD79yEfz3n9V7FVran0fzbvmLaBTOGkiLASQKAsl7NgAE2HAw0Q+qDKIqFjd1KiUMPWmCfrubd0PrWQh5kVDYi8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727476348; c=relaxed/simple;
-	bh=saH4LjPEzRLlPysFm5GNlLBTMwG5yytpd3WGfVUXEyo=;
+	s=arc-20240116; t=1727477315; c=relaxed/simple;
+	bh=1T2DBWFpUEl4LR7s6nY1OCs1JvrlTPH3zAkcEcXGX+0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=scLeQOHxzkUagEK5WtnICaLA4eO9P8KiauxRjv5eS7AXlluVnSHQc5NkQDOLlrGQ4KYQK9o+gfLwOp7n9pDCKsgKUsuleQCalAlMsMAcvxDTLLQeaX7xCp9HUTMlx+pNk24uhaFydEFZgGR9jc0xpphawdqg5SPJ9lPPs1KoKI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uZBsGNZu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30D40C4CEC9;
-	Fri, 27 Sep 2024 22:32:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=sLc4csRy/CBxUjjQeQyLK1SAi/lZkC9D467C0HD6QndvMQZuZqdj2p/rDsLXR0wkRYR2M8NBevWuLpQTLwad0bzGs4VBWl3XaRVGuob/9lq3Dy+DxAQ1ED9+NK4+aOLCMHOxwnllsxhsdZc0eO/yb74ZR6FiT/5jgBFjdkas2EU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hmRdPUHc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8295AC4CEC4;
+	Fri, 27 Sep 2024 22:48:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727476348;
-	bh=saH4LjPEzRLlPysFm5GNlLBTMwG5yytpd3WGfVUXEyo=;
+	s=k20201202; t=1727477314;
+	bh=1T2DBWFpUEl4LR7s6nY1OCs1JvrlTPH3zAkcEcXGX+0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uZBsGNZuq9MB/AGCvy2dlV0PCwMC6bCDrwHmdtoqUwW9glT8YLYabhE+3KvBu8TFD
-	 wXl0EIkmZw6cJL8G9pYJUpYFXHWuMaNjhJDXBmVFv7fhufOGFlFGGLOIFDfXgErAUu
-	 OPrd35dCrJl7dG1qoMcD//EtqCgVCjahvHh7aA4MwfWsNQdJCoKLVc+LqtF2GJFBCu
-	 7Gc9JesiDOU+R7KQCHluFcTaH0EJzgugNgfmqpaA673/IpXt21sZu7jnMiV8cXtQLb
-	 F4mDHCOxEz09IvMTUlKFz+zLggOrvodQG5sJFItec4dAhoYoz+x6JvYTEAMl2AzoPj
-	 tVWbiyzwa8yjA==
-Date: Fri, 27 Sep 2024 17:32:27 -0500
+	b=hmRdPUHcf5NPTzP4nMqsCwbKXvX7ow0VM2zp1bNvu/pK4DYfOeTZ/9gcbx2+jrZZ2
+	 +Avl6b6K3H2OvT9PuH9HfKgNqsqUV+ERppGFbVhdhyY3j8ez/E/uB3/E+JUPmyWvhO
+	 uZ5QCSbfB2zCXohYoqnX4/yi5aU65icxGGsx4vX5nfcShXSmWzEBy+qu7kngTDBrhe
+	 fcuWEUqKFqQVfjVRIHCYWjok07TbVUH8mbJG7dGvb5SWBoJGMdRRS14QF/JmtqdglS
+	 vDCslZC6UuHIsw8t0QOL8cjtMU/v1F8Nz8SrIyyDaWNFghjkoyvGRipXBg1JAJ4LKu
+	 /froGnHygnYEg==
+Date: Fri, 27 Sep 2024 17:48:33 -0500
 From: Rob Herring <robh@kernel.org>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: drew@pdp7.com, guoren@kernel.org, wefu@redhat.com,
-	jassisinghbrar@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	m.szyprowski@samsung.com, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC v2 2/3] dt-bindings: mailbox: Add
- thead,th1520-mailbox bindings
-Message-ID: <20240927223227.GA152909-robh@kernel.org>
-References: <20240927094207.1650085-1-m.wilczynski@samsung.com>
- <CGME20240927094215eucas1p1be4d58084ff19e47450dcad3e6da5f5e@eucas1p1.samsung.com>
- <20240927094207.1650085-3-m.wilczynski@samsung.com>
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Jagadeesh Kona <quic_jkona@quicinc.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: clock: qcom,sm8450-camcc: do not
+ restrict power domain to MMCX
+Message-ID: <20240927224833.GA159707-robh@kernel.org>
+References: <20240927103212.4154273-1-vladimir.zapolskiy@linaro.org>
+ <20240927103212.4154273-3-vladimir.zapolskiy@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,134 +67,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240927094207.1650085-3-m.wilczynski@samsung.com>
+In-Reply-To: <20240927103212.4154273-3-vladimir.zapolskiy@linaro.org>
 
-On Fri, Sep 27, 2024 at 11:42:06AM +0200, Michal Wilczynski wrote:
-> Add bindings for the mailbox controller. This work is based on the vendor
-> kernel. [1]
+On Fri, Sep 27, 2024 at 01:32:11PM +0300, Vladimir Zapolskiy wrote:
+> It was unveiled that Qualcomm SM8550 Camera clock controller is attached
+> to MXC power domain, therefore it has to be reflected and generalized in
+> the device tree bindings description.
 > 
-> Link: https://github.com/revyos/thead-kernel.git [1]
-> 
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 > ---
->  .../bindings/mailbox/thead,th1520-mbox.yaml   | 84 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 85 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/thead,th1520-mbox.yaml
+>  .../devicetree/bindings/clock/qcom,sm8450-camcc.yaml          | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mailbox/thead,th1520-mbox.yaml b/Documentation/devicetree/bindings/mailbox/thead,th1520-mbox.yaml
-> new file mode 100644
-> index 000000000000..b517d0c6eb12
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/thead,th1520-mbox.yaml
-> @@ -0,0 +1,84 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/thead,th1520-mbox.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: T-head TH1520 Mailbox Controller
-> +
-> +description:
-> +  The T-head mailbox controller enables communication and coordination between
-> +  cores within the SoC by passing messages (e.g., data, status, and control)
-> +  through mailbox channels. It also allows one core to signal another processor
-> +  using interrupts via the Interrupt Controller Unit (ICU).
-> +
-> +maintainers:
-> +  - Michal Wilczynski <m.wilczynski@samsung.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: thead,th1520-mbox
-> +
-> +  reg:
-> +    items:
-> +      - description: Mailbox local base address
-> +      - description: Remote ICU 0 base address
-> +      - description: Remote ICU 1 base address
-> +      - description: Remote ICU 2 base address
-> +
-> +  reg-names:
-> +    items:
-> +      - const: local
-> +      - const: remote-icu0
-> +      - const: remote-icu1
-> +      - const: remote-icu2
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  thead,icu-cpu-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+> index 26afbbe65511..9ef967523987 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+> @@ -40,12 +40,12 @@ properties:
+>    power-domains:
+>      maxItems: 1
+>      description:
+> -      A phandle and PM domain specifier for the MMCX power domain.
+> +      A phandle and PM domain specifier for the supplying power domain.
 
-Don't need '|' if no formatting.
+Just drop as it just describes every 'power-domains' property.
 
-> +      CPU ID associated with the Interrupt Controller Unit (ICU). This ID should
-> +      correspond to a valid CPU core in the system. The value must be between 0
-> +      and (N - 1), where N is the total number of CPU cores in the SoC.
-> +    minimum: 0
-> +    maximum: 3
+>  
+>    required-opps:
+>      maxItems: 1
+>      description:
+> -      A phandle to an OPP node describing required MMCX performance point.
+> +      A phandle to an OPP node describing the power domain's performance point.
 
-The normal way we associate a node with some subset of CPUs is the 
-'cpus' property linking to the CPU node.
-
-Or is this CPUs which are not part of what Linux is running on (i.e. the 
-SMP cores).
-
-> +
-> +  '#mbox-cells':
-> +    const: 2
-> +    description: |
-> +      Specifies the number of cells needed to encode the mailbox specifier.
-> +      The mailbox specifier consists of two cells:
-> +        - The first cell is the destination CPU ID.
-> +        - The second cell is the mailbox channel ID.
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - thead,icu-cpu-id
-> +  - '#mbox-cells'
-> +
-> +examples:
-> +  - |
-> +
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +      mailbox@ffffc38000 {
-> +        compatible = "thead,th1520-mbox";
-> +        reg = <0xff 0xffc38000 0x0 0x4000>,
-> +              <0xff 0xffc44000 0x0 0x1000>,
-> +              <0xff 0xffc4c000 0x0 0x1000>,
-> +              <0xff 0xffc54000 0x0 0x1000>;
-> +        reg-names = "local", "remote-icu0", "remote-icu1", "remote-icu2";
-> +        interrupts = <28>;
-> +        thead,icu-cpu-id = <0>;
-> +        #mbox-cells = <2>;
-> +      };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index df4d7be6cf35..a6028f850a25 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19943,6 +19943,7 @@ L:	linux-riscv@lists.infradead.org
->  S:	Maintained
->  T:	git https://github.com/pdp7/linux.git
->  F:	Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
-> +F:	Documentation/devicetree/bindings/mailbox/thead,th1520-mbox.yaml
->  F:	arch/riscv/boot/dts/thead/
->  F:	drivers/clk/thead/clk-th1520-ap.c
->  F:	drivers/mailbox/mailbox-th1520.c
-> -- 
-> 2.34.1
-> 
+Same
 
