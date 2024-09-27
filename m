@@ -1,249 +1,183 @@
-Return-Path: <devicetree+bounces-105999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ED18988D02
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 01:33:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 213A2988D0F
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 01:51:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A530BB213DF
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 23:33:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 220B3B21437
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 23:51:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28A1318892D;
-	Fri, 27 Sep 2024 23:33:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 754BD1B07D9;
+	Fri, 27 Sep 2024 23:51:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b="dfqTDqOF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YrYKABT6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2110.outbound.protection.outlook.com [40.107.102.110])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23801EEAA;
-	Fri, 27 Sep 2024 23:33:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.102.110
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727480014; cv=fail; b=s78/KnblhrxKdeY5gD+zIkxpjyKQguayalMmlNPkdaXv+239/0h6AiM/1SfuWt5F7RXaKl/mSEg1ne0TvwXhH3Ybzc/eYg6HcCLIwys4KT64f97Ckj/owsg+8nLkGTqiNmIerAIu6Cvc2R7nfIADOnkqpFZjJGo1GFbLLpRZmHQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727480014; c=relaxed/simple;
-	bh=IOqgk0h/LNnsaFua+vP48UoiW53g+A/SidSZQixR+QI=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=cojLZTuMJerfaNspFHatDMaw0xYKdjtp9wjDLaAEjS/8CGgjiyFg0nWu0vb4L6yB2db8GrJdMxdZX8KdqbuoCyYluqSib4Zsc+QWBeH+xcOJXl6hBiB0YR+RGOle9qC5Whs6J792rBQY8W2CRgse4r5l5L5tT/Ah+hTBB+iBKgI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=phytec.com; spf=pass smtp.mailfrom=phytec.com; dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b=dfqTDqOF; arc=fail smtp.client-ip=40.107.102.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=phytec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Xs3RxVZBGbi6Lujhu7oVLjSb4dT3ZftujkmqiCnZMgbZU8SxRSEyjOssc543s6bMnE4JcVfe0AxjSrl6+vCog6mvRBfEVncD1SZlO44NCLdGFrsopASBw4o2tWsznd0yJk47dVcY3qaoeMLLVdwPwUW1Pwx9vuW6ijK8Sw0dB2Hr5S8q385H8HEGlAe/gJPd3iZU0M3yh2BuvQqnCdEe+e/9JWN8o4irCOImTngx7Frl25k0fqKB/9H8v7v0ZiIttcEQXYGQa4nkNuleVsMhy5Z0GHYPT8zGM1khot379A39IjTON3QBA5Nvl3zabeOZpbupDqXmLfCVHHfH6MzX1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wyjNvd8M/2lae61xTa9xAYZ9jL2jLFYCHVSHlEIF46w=;
- b=L4S2zuHnQEuwdaxivZsjIoR0RYjB5wGs189kCI6wZMLeqa5dAeRDKbxtSwPzvPHm4mBOhpJzc5pPYpB5jq/8wOU+OQ2qn4s0LW8CebpasDzasxdABmYf5v5CE+on42dasxi9yu7CvRezbkqXsfQ1jKfE7Jor6cYKLorwzr/UHU6PlL6DeXqoPWl1MkwBH7IILdJtDz0jav2xAeoJEJqI5X1zbmAjkhfPRBjtWr8uQJQmIEOw3MHx5C+ABqb9WlO+MNuwDDkLMZ0hyzF4lQVUVlM43uVa/NXK9TeFIwwziQU3u/sHoxVAM0EzN9D8R4+CHvG50CLMu6ggIRjWq98umA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=phytec.com; dmarc=pass action=none header.from=phytec.com;
- dkim=pass header.d=phytec.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wyjNvd8M/2lae61xTa9xAYZ9jL2jLFYCHVSHlEIF46w=;
- b=dfqTDqOFAZoWnUqbKw77H45hxE1wtN4STne4lo4PqLI90ftN3oof+vK1e+rgbYywORHDr1IR5NTo9CzApP6ROFLU0jPt4/iREzW4U4Gdeu8nxJBdaO7dVyuHbzBV0qYk5CEgWVdGmF4xfPoMleNgrJ/tLdkR4BstrLf2vAOCkyI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=phytec.com;
-Received: from SJ2PR22MB4354.namprd22.prod.outlook.com (2603:10b6:a03:537::8)
- by CO3PR22MB3278.namprd22.prod.outlook.com (2603:10b6:303:178::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.21; Fri, 27 Sep
- 2024 23:33:29 +0000
-Received: from SJ2PR22MB4354.namprd22.prod.outlook.com
- ([fe80::789c:e41e:1367:383d]) by SJ2PR22MB4354.namprd22.prod.outlook.com
- ([fe80::789c:e41e:1367:383d%5]) with mapi id 15.20.7982.022; Fri, 27 Sep 2024
- 23:33:28 +0000
-Message-ID: <bf3ea670-4759-462b-8694-87db180ee4b8@phytec.com>
-Date: Fri, 27 Sep 2024 16:33:26 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: ti: am62-phycore-som: Increase cpu
- frequency to 1.4 GHz
-To: Nishanth Menon <nm@ti.com>
-Cc: vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, w.egorov@phytec.de,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, upstream@lists.phytec.de
-References: <20240913175625.3190757-1-ggiordano@phytec.com>
- <20240913175625.3190757-2-ggiordano@phytec.com>
- <20240913180949.dlw3k6epqmzlpuu5@studied>
-Content-Language: en-US
-From: Garrett Giordano <ggiordano@phytec.com>
-In-Reply-To: <20240913180949.dlw3k6epqmzlpuu5@studied>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW4PR04CA0206.namprd04.prod.outlook.com
- (2603:10b6:303:86::31) To SJ2PR22MB4354.namprd22.prod.outlook.com
- (2603:10b6:a03:537::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45F279443;
+	Fri, 27 Sep 2024 23:51:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727481080; cv=none; b=MWqTYl6tPpNTAjE6ADC4ePU8j7up3B7891PzsO8TJT8brV3BnB46ED2Op+2IYpDIIuKwGRUzE/efONh6cdLjPmdVbgpD4ah8AEQ8s7SSScUW3qj7buN1EVpQ0ewU4MTe8dfeVU1oKVwQw6dTtSOYcUficBMYx3kPJ/mjFOfDzm4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727481080; c=relaxed/simple;
+	bh=ewY/sv1t7nj53njmVivVzd//BFGp3FOUKqt7Okgo7NI=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=dGCq6Kt/tbc4JkR0/LN46Q74oDQEvbUgDpFObNfXOMBEMZEXtLaSLz44+ljk8BvIBZkvkEJl2M2btMFSfP4766ETLjWmpoQcwbwPFcYgmQK7PfOxt6wHDknz2lr91hpPoYe8isqCJqwdW2jtzBQi2i9PIZut9/Ty9tvQTtFlzQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YrYKABT6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AC6FC4CEC6;
+	Fri, 27 Sep 2024 23:51:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727481079;
+	bh=ewY/sv1t7nj53njmVivVzd//BFGp3FOUKqt7Okgo7NI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=YrYKABT6UQnYignz9+180E4GcxNgMeqQQyEgAHmmbf7Bh897jAsp8D8U1v1pYffw9
+	 IZ4lRZ2CJyVCSo5WQh3gU6/AGXEEOpZqTTCi7ObWJYdcTqBwL8qD1wRV0f7qh4UGlb
+	 EE2TufiS4ABxVmTIQOGY93zl7Mj6eP9O2LL/C1bOos31Fn/K8MgoYrC1G68KyAsi4P
+	 N1UbrNlDlEdnf9jAQ738cJGWW0HRi8bIKBWp2hhxeR1sg62oXg8UF+qoP9eWhg4QMD
+	 9sADzU5wBKz+MnpBvlaY/39tSvOAol46oIGrtTbjdFKleKOI1Ru8+Px7KgzcCsW+EZ
+	 QbEDrCh+r13vg==
+Date: Fri, 27 Sep 2024 18:51:17 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/3] of: address: Add cpu_untranslate_addr to struct
+ of_pci_range
+Message-ID: <20240927235117.GA98484@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR22MB4354:EE_|CO3PR22MB3278:EE_
-X-MS-Office365-Filtering-Correlation-Id: 753cccdb-e8ad-4579-cd38-08dcdf4cca7b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|7416014|366016|376014|10070799003;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?MDZpK2dEalVnQks0ZzFxdUs3enhjRmhjb2FVQzAwVm1XVmxDK1lNcFNJcE9v?=
- =?utf-8?B?S1QvbHBUaHhaMHQ5OWZuZnVlWHFYRmxMczkrTHcwdWFqZnZNYUhzOHp6NkpB?=
- =?utf-8?B?OFMyZUpsdDROQjFSNVFFTTBRWUhKcExydU5NeVJoWEloRGZ1OGUwSE1rSmhY?=
- =?utf-8?B?VjN3S0ZhQ3lNQjd0RmdWc1dVN2JVZHl1ZlBSNHh3SjBJYUVqSUV3M0VaSW1u?=
- =?utf-8?B?RlNreTE2VlFJTzZIdDRIeWlsWlg3QUw5ZjRDTUFIMDA0N2hNOEpqK0s1NXlV?=
- =?utf-8?B?YjlwZjEyQUVFRFZzNmxaaUgrZlNiYzE3ckIvL2d2cTAza0hIZFVsbWlRanp3?=
- =?utf-8?B?QTVqU2gzQnVmNnY0TTRiM2R0aVBsMTVpR3ByOXNaS1ZpbVRhRFh0OHBZRFBl?=
- =?utf-8?B?bVJ4NnplazRlM3dicnRMQ2F2S3JJdnhZUldqU2kyQjNuZmFhbmNxRm5jWmJy?=
- =?utf-8?B?UUl3S3hzTnFCaEYveDJndWt3aEdqdVQ1SWRMZ2ovbklMLzlUYkxqdFdyZTJv?=
- =?utf-8?B?R2Z6V2hKOXRtN09SWEZUMm5kN1VWcTRvd3VIdkhPU1Brb1QxNW94WVh6UmVY?=
- =?utf-8?B?Wmh4bzh5Nk9CTWhkWjV0VHRhakFWMXc0RkZ3bytGOXVBbkFXc01NWWo4Ti9i?=
- =?utf-8?B?Nk9iUFB5amtjZEgwenVqdktoWWxpM1BDcS9CVjRoRE5GQUdRRVpBdE1ZVFdG?=
- =?utf-8?B?NWx5Q3Vwd0ppSXlUSC9qR0N3K3ZmU3RCTVJZMk0wRXFaQWo3SVZ2QkV5cVhQ?=
- =?utf-8?B?amNUaWRySmErWnA1clJ3YnVDRFBLTnUzMCtOdWVDRUlWdWtaczBZdGkrQUV4?=
- =?utf-8?B?YWFQSVFQN0VhREJLNXZMT085UDNINGRtQVFFM3pxUGp5ejUwUWl1V2xCMEFL?=
- =?utf-8?B?bUR0QWVQaTIvUGxwcjdncTdVVXhsMnhnQXRTa1NYOHQvTzlQUENscVl1cFJE?=
- =?utf-8?B?dXZhRVpwQnR0TkE2Yjl0cmp4Z2R6Qmtlb2NDOXNaK2l5N1prWVAxVW1kbXEw?=
- =?utf-8?B?T2kzSEg5dVBsMkhvYXErc2NhT1pZQ2dvYTI0N3l3aUhQMldGMVhKdzR6am1Y?=
- =?utf-8?B?OTl5ekFJMGZSL0lnOUExU0NGeTdETExvV1ZlMDl3QkVkMW9lOVFDTE9MelBV?=
- =?utf-8?B?T1EzaytXOHp0cVFGenJOQzBaVVFlNG9mUG5RSllIZm9JeExjTWFxSm1iQ2s4?=
- =?utf-8?B?bnNseFI5bkdDaU1VeVlieDdWVVcxWjl3aGJxZzdNUmtPWXB5WFZqNEF3SzVi?=
- =?utf-8?B?MlNPYmd5MExVQmRTZk0wNXpDeWxxSy8zTjRIaWl1dXRvbG8yMW5vQ0JkRDN6?=
- =?utf-8?B?NHJwOWRpM2lhNGNSQlVPNDE3dGs3Tmc4Y0JXcC9VTXFjYklTc3dkVWNnS0NU?=
- =?utf-8?B?TkZUanUxc0swM3RUcnpQRlBaWVFZc2VteUJzcGJiS2F5VmdyMlhabm9uQmxH?=
- =?utf-8?B?UERzSGd3a3NrellLdFkxSzRaUmpYRXpRN1AwNjZRTS95cVNBRmh2a3dZRmIr?=
- =?utf-8?B?dkhaZEx4empVbDcwVVZ0bkticEsyVnVxZlNzNHhHZEZjaFlGVUNjWENBZVFq?=
- =?utf-8?B?cXpnRUVFZWNSUzR5RUwwL0lTUGFlU0s3QzJ6QllGYUkxb2t0c1ZiYUR0dXc3?=
- =?utf-8?B?T1h4U2JVR1pSNmVXdlBsdXVIYnBob2lESDBVNEJadklrajR0dWpTZXNnM1NG?=
- =?utf-8?B?SE5sZmM2dVN0eHYzWkZtejl4Y3ZhaEt6YzZVbXB4YWU3Q1RaNVhYUGF4SXZZ?=
- =?utf-8?B?MFMyVTN1SlUwMUE0Y1l6Zkk3YnBuOE5qSElldm1ReWVNRzJ0UFlxdnRWSmQ2?=
- =?utf-8?B?ZU9LS3k1MmhiWkxrMk9lUT09?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR22MB4354.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(366016)(376014)(10070799003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?TW41ckovSkJReUlqUlBNcnpFQ2FtSGZBOFU4dUtBaDBxcTZLaVFoYUZpWkdn?=
- =?utf-8?B?NVExODhubkpMVzhVNDU2SUR1TWRDR2t0bmE4L1QwdjBtdnN3SFFQSXF1MUxG?=
- =?utf-8?B?Y1FKZWRzT1R3WUdxZFZNMzk3b01hTGFUWUk1SFRZNWNrSDR6dkpCY2pEMEpC?=
- =?utf-8?B?cW5uMTBzYTZKUE5YYWRRMjFWNitNYzl2TmFWOFUvSkRrRnAxTkc2U0NKRS8y?=
- =?utf-8?B?QnRwc2hsRlpVd0xFeFkwMHlXQlJJVDk2cXBSY0JDWHAvb21NWXhENFFTMFFX?=
- =?utf-8?B?YkE1YitZL3UwSTdLMmFRTDduUThsQ21KMjBIVkh6UkJoVGZqSmE2b1VKWmJX?=
- =?utf-8?B?bXBsZGNNQkZnV2FZUXZrMGtqdVdVaDRJVmpEQTRKa20rTjl3azlDRGVRS1F5?=
- =?utf-8?B?WG1ZbUY1NStKNW0xakRmYi9BWDU1b0V1TDkzakVLdzBBbDA4ZGFoY0t1RCtP?=
- =?utf-8?B?SnVYbG8yczQ0RWNncmxUeE5waEx2eXZ5Nkk3WURPRjU2amQ2cVI2T0Y1VDRu?=
- =?utf-8?B?ek1RZnJjdHJjNzliU0xPcFpRcERlMm43T2dYcnQrYnZCY2l3ZFdVWUZ2K1V6?=
- =?utf-8?B?VmZ6Rm04Q3NqU3NpRWcxTVA5WndpUmh4NUdXbFBwMFNoZGZYcktTVUcxSHY2?=
- =?utf-8?B?UlVaOTYrSGdMaTFVVWhLZWVVa0pMU2M2ZnExY3E0T0FZeUxiQ20wRWExNWZH?=
- =?utf-8?B?bm55SHZmc1NEdUxNdVFBTlJTM2c4NTNCZFVnOTlMQ1pKaGxSNGtQTE1EdzVt?=
- =?utf-8?B?NHV2eG1sTXRTb2VOejJ6QTYrRG1IQ0trYW5udmRnZ3JwTGwxYkp0WWhTaXlR?=
- =?utf-8?B?cVlxTWdLejVJQkdZVzhINW8yQS9GZUpvZzIwMFBWOTJpOU5SZWl2NzdYNW1q?=
- =?utf-8?B?NEpWaUxmbVc3ZnRhdlBQVkV3Mmp5RzlWMk0xaFI3VDhsUDdoa0doeGh5RG9w?=
- =?utf-8?B?RTM1M1cyL1ZzSlc3cndjTDN2eEpPbk1Nci9tQk04TDRsTHU5dU9nYnN6M1ZJ?=
- =?utf-8?B?M0doVmhoT0RxTEhkakI3Y0xaV2lrWWFrTnYyMTZMeDQzZkRZWW5QbUo2YnRl?=
- =?utf-8?B?QnByalJyNkxpYUxsUFlXZUpZalRYQ21NQjBaSXF1RkFtc2JVYVZFb0JNN3F5?=
- =?utf-8?B?VkZxSkQwTFFSY1ArYTNtNkpsUGNHdkZsVm1EaHg5aG1NRXRSVDVLTjNUajU1?=
- =?utf-8?B?NzRZb2xrRGhyU25yOXJ4ZVNrbGpHamJ0Mk95TW9uQWJMcUczajl4NjBDYXh2?=
- =?utf-8?B?SHU4N3hpenVGZFpqc2ZLL1RaVldkUGx0S0dNbldtTWRCSS9BVzlZMUNhbnpM?=
- =?utf-8?B?TWt4d0Y0Tnh5aDM3UVNPaXZZNGZkaVRSbnBIbXdaT09ibU41Vy82ZlZkd1Zn?=
- =?utf-8?B?ZVlKTnFJVzZiaHVPYTVRTkFoU2Z6WVB5aElpdDVmZ3ZpeDEwOUxYQjEyWjlV?=
- =?utf-8?B?RzhzdERLRHBtOXZMUkdmc0E2MCtyRk5WaXlDaHhYb2NFWGlrV0ZRamE4MTE0?=
- =?utf-8?B?QzBvVVNKOW80WlZNRTlYYzJRYTdNRzl6MURyMTBsc0h3M2M5OVRrQnJDMmM1?=
- =?utf-8?B?MXN1SWZrV1o1TURzVTJwTkJ1a2tUdmZ4NlREcDJSSStyamlhaGd1bGtKQzFU?=
- =?utf-8?B?S2MvMVBpN2djUG5OMVBmd0Y3QkRabzhXR09kZ3duV2JCNHZLbUVUamZBYkFR?=
- =?utf-8?B?WFhHWWJKcGExWWkwdkdsTnhycXlsZXVnY2tQVXdpYnpCNUJ4VlpQancxNXBj?=
- =?utf-8?B?RmVLRlFXeHBBQm1kY2FlMGl5L1BJMjYzRUZ1TTJkcDlNRFJXcWxWYjFpLzFk?=
- =?utf-8?B?Witja0gxNnZCTmozVkhFQTVhaE1BRjdTMlVkRm9GUGpRd0xNeHNrc0VBOUxF?=
- =?utf-8?B?ZXJtSU5MM3dnYVpDTjRteUJqNDlKcjREYXEwVnhUSTRYUmZkbzU4MUJKOE1k?=
- =?utf-8?B?dFRiVGRMSGlEbTBVZ2Qva2o4MXJNRG5RY3dYSGxCeSttU0tvN29uTW5PeDds?=
- =?utf-8?B?S1hsM0dHRHZ5UlBjK0VNaE5qUkVOeTVtVmNPR1RzRnY1SHBOM0pJa2J4ZnBV?=
- =?utf-8?B?cFptdlA0MHdLdjZBR2h4WHFtOGtaY1JoTDUvQlpFc2V5SEtXMGdGQjY0NThM?=
- =?utf-8?B?NUNndzVUenozOFNrekEzc2RnaGc4aStDZmJWQlkzME03MjhYcHF5WTlLUEc2?=
- =?utf-8?Q?B0UuHBzZFRytRC7/xju3JWHN6YhFkjUFrUiStMjQ6KRb?=
-X-OriginatorOrg: phytec.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 753cccdb-e8ad-4579-cd38-08dcdf4cca7b
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR22MB4354.namprd22.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2024 23:33:28.8873
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 67bcab1a-5db0-4ee8-86f4-1533d0b4b5c7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7b51l8snIQFhYl/EkhJc2lIi7WqvfLj7rTR43PB+IMjLebRdQ6ryaD7BjLZ5liJD2LcmxyCiztA+avTT60+PcA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO3PR22MB3278
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240926-pci_fixup_addr-v2-1-e4524541edf4@nxp.com>
 
-Hey Nishanth,
+On Thu, Sep 26, 2024 at 12:47:13PM -0400, Frank Li wrote:
+> Introduce field 'cpu_untranslate_addr' in of_pci_range to retrieve
+> untranslated CPU address information. This is required for hardware like
+> i.MX8QXP to configure the PCIe controller ATU and eliminate the need for
+> workaround address fixups in drivers. Currently, many drivers use
+> hardcoded CPU addresses for fixups, but this information is already
+> described in the Device Tree. With correct hardware descriptions, such
+> fixups can be removed.
 
-On 9/13/24 11:09, Nishanth Menon wrote:
-> On 10:56-20240913, Garrett Giordano wrote:
->> The am625 is capable of running at 1.4 GHz when VDD_CORE is increased
->> from 0.75V to 0.85V. Here we add a 1.4 GHz node to the a53_opp_table and
->> increase the VDD_CORE voltage accordingly.
-> The entire argument in introducing the 1.4Ghz overlay seems to have been
-> to let users have the choice. What has changed since then?
+Instead of saying "required for hardware like i.MX8QXP", can we say
+something specific about what this kind of hardware *does* that
+requires this?
 
-I talked with the team and we came back with the following:
+I *think* the point is that there's some address translation being
+done between the primary and secondary sides of some bridge.
 
-- Our default PMIC configuration changed for 850000 uV / 1.4 GHz operations
+I think "many drivers use hardcoded CPU addresses for fixups"
+basically means the .cpu_addr_fixup() callback hardcodes that
+translation in the code, e.g., "cpu_addr & CDNS_PLAT_CPU_TO_BUS_ADDR",
+"cpu_addr + BUS_IATU_OFFSET", etc, even though those translations
+*should* be described via DT.
 
-- All available users will receive a PCN on update with instructions 
-towards 850000 uV / 1.4 GHz operations
+>             ┌─────────┐                    ┌────────────┐
+>  ┌─────┐    │         │ IA: 0x8ff0_0000    │            │
+>  │ CPU ├───►│ BUS     ├─────────────────┐  │ PCI        │
+>  └─────┘    │         │ IA: 0x8ff8_0000 │  │            │
+>   CPU Addr  │ Fabric  ├─────────────┐   │  │ Controller │
+> 0x7000_0000 │         │             │   │  │            │
+>             │         │             │   │  │            │   PCI Addr
+>             │         │             │   └──► CfgSpace  ─┼────────────►
+>             │         ├─────────┐   │      │            │    0
+>             │         │         │   │      │            │
+>             └─────────┘         │   └──────► IOSpace   ─┼────────────►
+>                                 │          │            │    0
+>                                 │          │            │
+>                                 └──────────► MemSpace  ─┼────────────►
+>                         IA: 0x8000_0000    │            │  0x8000_0000
+>                                            └────────────┘
 
-These changes make this overlay obsolete.
+What does "IA" stand for?
 
->
-> Ref: commit 7a5775a3da906dab059b8de60a2b88f6016cb4b8
->
-> btw, instead of putting a patch to delete the dtso, you should
-> probably consider a revert patch instead.
+I don't quite understand the mapping done by the "BUS Fabric" block.
+It looks like you're saying the CPU Addr 0x7000_0000 is translated to
+all three of IA 0x8ff0_0000, IA 0x8ff8_0000, and IA 0x8000_0000, but
+that doesn't seem right.
 
-Thank you, I will send a v2 Monday reverting this patch instead. This 
-will also address the Makefile edits.
-
-Regards,
-
-Garrett
-
->> Signed-off-by: Garrett Giordano <ggiordano@phytec.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi | 11 +++++++++--
->>   1 file changed, 9 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
->> index ac8959f3d953..8acbd4facf37 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
->> @@ -205,6 +205,13 @@ AM62X_IOPAD(0x01f4, PIN_INPUT, 0) /* (D16) EXTINTn */
->>   	};
->>   };
->>   
->> +&a53_opp_table {
->> +	opp-1400000000 {
->> +		opp-hz = /bits/ 64 <1400000000>;
->> +		opp-supported-hw = <0x01 0x0004>;
->> +	};
->> +};
->> +
->>   &mcu_m4fss {
->>   	mboxes = <&mailbox0_cluster0 &mbox_m4_0>;
->>   	memory-region = <&mcu_m4fss_dma_memory_region>,
->> @@ -265,8 +272,8 @@ pmic@30 {
->>   		regulators {
->>   			vdd_core: buck1 {
->>   				regulator-name = "VDD_CORE";
->> -				regulator-min-microvolt = <750000>;
->> -				regulator-max-microvolt = <750000>;
->> +				regulator-min-microvolt = <850000>;
->> +				regulator-max-microvolt = <850000>;
->>   				regulator-boot-on;
->>   				regulator-always-on;
->>   			};
->> -- 
->> 2.25.1
->>
->
+> bus@5f000000 {
+>         compatible = "simple-bus";
+>         #address-cells = <1>;
+>         #size-cells = <1>;
+>         ranges = <0x5f000000 0x0 0x5f000000 0x21000000>,
+>                  <0x80000000 0x0 0x70000000 0x10000000>;
+> 
+>         pcieb: pcie@5f010000 {
+>                 compatible = "fsl,imx8q-pcie";
+>                 reg = <0x5f010000 0x10000>, <0x8ff00000 0x80000>;
+>                 reg-names = "dbi", "config";
+>                 #address-cells = <3>;
+>                 #size-cells = <2>;
+>                 device_type = "pci";
+>                 bus-range = <0x00 0xff>;
+>                 ranges = <0x81000000 0 0x00000000 0x8ff80000 0 0x00010000>,
+>                          <0x82000000 0 0x80000000 0x80000000 0 0x0ff00000>;
+> 	...
+> 	};
+> };
+> 
+> 'cpu_untranslate_addr' in of_pci_range can indicate above diagram IA
+> address information.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Change from v1 to v2
+> - add cpu_untranslate_addr in of_pci_range, instead adding new API.
+> ---
+>  drivers/of/address.c       | 2 ++
+>  include/linux/of_address.h | 1 +
+>  2 files changed, 3 insertions(+)
+> 
+> diff --git a/drivers/of/address.c b/drivers/of/address.c
+> index 286f0c161e332..f4cb82f5313cf 100644
+> --- a/drivers/of/address.c
+> +++ b/drivers/of/address.c
+> @@ -811,6 +811,8 @@ struct of_pci_range *of_pci_range_parser_one(struct of_pci_range_parser *parser,
+>  	else
+>  		range->cpu_addr = of_translate_address(parser->node,
+>  				parser->range + na);
+> +
+> +	range->cpu_untranslate_addr = of_read_number(parser->range + na, parser->pna);
+>  	range->size = of_read_number(parser->range + parser->pna + na, ns);
+>  
+>  	parser->range += np;
+> diff --git a/include/linux/of_address.h b/include/linux/of_address.h
+> index 26a19daf0d092..0683ce0c07f68 100644
+> --- a/include/linux/of_address.h
+> +++ b/include/linux/of_address.h
+> @@ -26,6 +26,7 @@ struct of_pci_range {
+>  		u64 bus_addr;
+>  	};
+>  	u64 cpu_addr;
+> +	u64 cpu_untranslate_addr;
+>  	u64 size;
+>  	u32 flags;
+>  };
+> 
+> -- 
+> 2.34.1
+> 
 
