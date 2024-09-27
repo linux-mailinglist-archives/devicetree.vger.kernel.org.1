@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-105799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEF0E987F74
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 09:30:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A8C4987F78
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 09:32:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BB12282143
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 07:30:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C3081C2224A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 07:32:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09AB21741E8;
-	Fri, 27 Sep 2024 07:30:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124AE165EE3;
+	Fri, 27 Sep 2024 07:32:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hXM+Lz2y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YjZ16KAe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D633D158557;
-	Fri, 27 Sep 2024 07:30:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF442179654;
+	Fri, 27 Sep 2024 07:32:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727422237; cv=none; b=Gmsv7zzkZ9j4umJ6ioFggQHmepSl5reJaOzqdBrLaXbQ51lmPThecMpg52CEdZhxohcNcNoen4PRD/cjD8Nrn/Q2ivdVYapY+u/JViuNJqOkFBp6X7nRUga5Z6yXZJMAocxJOJF3c7fjyoQGDMmyXh9MNlHDyqit9uoXHwFmrAk=
+	t=1727422326; cv=none; b=CcY3ZcjjCEAVBoijM1fhMgeM56F9ZrJ6rlbS4W3gJuQRIt1jrBKcfe2jkQZn/+/dYLXRMFK7li7yAEJSz/iTi/Yx5D7KgxknhhOEwuieZREqpv45pSX+N9/JW3253YdAOg1Lhtv8RIfeUMMjUusLEB/gw3C1mXocxLMBAZJb3aM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727422237; c=relaxed/simple;
-	bh=7BBmEL4qhfybuaet/VOBEv3xMEna/TL1iMvTU7ecAdY=;
+	s=arc-20240116; t=1727422326; c=relaxed/simple;
+	bh=wl7wagn1xatXPkiK7dV4BKJ+7XviKYIHQFGKNWj3oao=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mG+kXvchuVjxTfKgaiQH11rld+cY34dSgysLpfCR3x+XjvNXP3Q+fPqPjjtTOCm/IGpR1E7tmgi6MPWmYZH/YB/cDRCti7pTojUAXy9JpjBFaYoSBcHkdRwG+IdEKYkCYZr1wMCgCpSj6FmxTSzSSX7eYjxtjU4WUFt2K1UzI/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hXM+Lz2y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A435C4CEC4;
-	Fri, 27 Sep 2024 07:30:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=BUz2cO/M5BjVUo1VzvwV7DXuJ2nDeW/H8X7XfyaBw4TuCVPMiW8kmKWXWEk2gFF3KUIJj7aDyBiOMUv5535KigiHBVAsJSXUAfJV4zFTsdghRiYZqvqZ/dproeTYl9CtbR9BF1wswJCx99jspnyZf53Qk6J+tHSaEtVMX3TFGi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YjZ16KAe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0F4DC4CEC4;
+	Fri, 27 Sep 2024 07:32:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727422237;
-	bh=7BBmEL4qhfybuaet/VOBEv3xMEna/TL1iMvTU7ecAdY=;
+	s=k20201202; t=1727422325;
+	bh=wl7wagn1xatXPkiK7dV4BKJ+7XviKYIHQFGKNWj3oao=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hXM+Lz2yqgY5/IVVeAABostlIQMd0BjIGsnQE0PtSa65PWiLO1pR5gKH6ZNp24UGI
-	 l5ElqWnNFj6nH6ubTQwfCUN+gsCaMvc7ulbRzocm116p/SnOyZU6P3Uh5z73BmaHdd
-	 WgJk8nuXA9X+C6fcMTKumHLUZ6HbaiG5KHWSgpIwDIw8jFc/MSqvB5sn9EjYIw0lPl
-	 oqgCZImfUlMPeQp2Hgn4RdiV27LUVib5cabFFWvV+gRPEr6IFky0A2LqcEPNVQAsMA
-	 TGU0PIL+4WQ+Af4M2MDDDjNzcmKWo+xODKn3RIXG8jBYAAIlFH8Q8SC9UuxK0cndoj
-	 tW4KPv7byrcLA==
-Message-ID: <4b98196a-c898-4d08-9101-31feb4e59b5c@kernel.org>
-Date: Fri, 27 Sep 2024 09:30:30 +0200
+	b=YjZ16KAe1qKn/CoPqKiQyoMga5QmR+aHLpZw4tExknzuT2Vtc/o7zZWg9kfyTY4MQ
+	 AtepcmuhefxIfbOuDIq7gE6t1SI5A2j+yv9ks8gmCyloMeTC1OoLym+wT5SQpRiTZc
+	 e4A09bUOgKoeLCdl4ea11/+VXj+oQ1UKxlisbjM38J6yyi9AJpphR2pHa+0BX+HOB6
+	 Mi2R+r1irvb3+YX3CN+4LyDr0OSu694HEmSki9JCvAPSptpOolvWE2sGN1G32yra7h
+	 sDPS0J3wKwkt3BASUyar3k1UyNrdPOB6+zQoK8/SsUf+TDZydpWo+2nEmLHcBsu2uD
+	 zqiG77t4tKxBg==
+Message-ID: <63011ffe-6c98-47ad-8cd0-44ee1684c12e@kernel.org>
+Date: Fri, 27 Sep 2024 09:32:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: phy: rockchip,inno-usb2phy: add
- rk3576
-To: Frank Wang <frawang.cn@gmail.com>, vkoul@kernel.org, kishon@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
- tim.chen@rock-chips.com, frank.wang@rock-chips.com
-References: <20240926103223.29538-1-frawang.cn@gmail.com>
- <ed829240-d4f7-471f-84f6-3509f87f11a1@kernel.org>
- <7944f4dd-96f0-40df-8c91-523409e3cb20@gmail.com>
+Subject: Re: Device tree node order sort tool
+To: Shawn Guo <shawnguo2@yeah.net>, Conor Dooley <conor@kernel.org>
+Cc: Frank Li <Frank.li@nxp.com>, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, imx@lists.linux.dev, krzk+dt@kernel.org,
+ robh@kernel.org, shawnguo@kernel.org, festevam@gmail.com
+References: <ZumjueKy+tvkODnB@lizhi-Precision-Tower-5810>
+ <2fdfmn7wjt5tr6lsxee2qubjgiphys5n2fivlracaksilvvgmi@od6t76mpd3co>
+ <20240918-igloo-unspoken-45443a52e338@squawk> <ZvUjp5uSo0SSyPAZ@dragon>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,47 +103,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <7944f4dd-96f0-40df-8c91-523409e3cb20@gmail.com>
+In-Reply-To: <ZvUjp5uSo0SSyPAZ@dragon>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 27/09/2024 09:01, Frank Wang wrote:
-> Hi Krzysztof,
+On 26/09/2024 11:04, Shawn Guo wrote:
+> On Wed, Sep 18, 2024 at 09:17:37AM +0100, Conor Dooley wrote:
+>> That said, I'd not enjoy getting a bunch of patches for the platforms
+>> that I maintain redoing things in this order, so it is worth asking the
+>> platform maintainer for their take on whether it should be used for
+>> anything other than new code, before sending a rake of patches.
 > 
-> On 2024/9/26 22:19, Krzysztof Kozlowski wrote:
->> On 26/09/2024 12:32, Frank Wang wrote:
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - rockchip,rk3576-usb2phy
->>> +    then:
->>> +      properties:
->>> +        clocks:
->>> +          minItems: 3
->>> +          maxItems: 3
->> Read one more time the example I gave you. Top-level constraints are
->> saying max one clock.
->>
->> Best regards,
->> Krzysztof
->>
+> +1
 > 
-> Sorry for overlooking this, I will set both "clocks" and "clock-names" 
-> to true, and add the else case below the above codes for the "old" SoCs.
-> Just like the below.
-> 
-> -  clocks:
-> -    maxItems: 1
-> +  clocks: true
-> 
-> -  clock-names:
-> -    const: phyclk
-> +  clock-names: true
+> I do not like to receive tons of patches churning the existing files
+> with such order changes.
 
-For the third time, read the code I gave you. Do you see something like
-this there? Why doing all the time something different than existing code?
+Yeah, it would seriously affect backporting and git blame.
 
 Best regards,
 Krzysztof
