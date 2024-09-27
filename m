@@ -1,138 +1,117 @@
-Return-Path: <devicetree+bounces-105761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F531987DFD
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 07:51:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CA7C987E0D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 07:57:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 748B01C21EE1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 05:51:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17E511F22190
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 05:57:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3918A17107F;
-	Fri, 27 Sep 2024 05:51:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8720817A599;
+	Fri, 27 Sep 2024 05:57:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="F13NfxBv"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Bj5SYJBS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3168C749C;
-	Fri, 27 Sep 2024 05:51:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6DBA179957;
+	Fri, 27 Sep 2024 05:57:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727416314; cv=none; b=GZB5+Jzcb/yEGgUCtMMoJotqkN6HJBjoaYuoYvZ6YuI1LCw4EzegH5q76WT4Iphc+lAFULEO0LS+8sMMmw7eyDjjI0RsyZmQHreHP50NxKNOiDJG0KOKFrO1g9WxENEVOl7qtGFl7BEFJi8ZvF55oRX3Sf6ST6ycr4zN9YWiJco=
+	t=1727416652; cv=none; b=cCfA22dp2v3P5cYo38VxIk+D4aR+DOUKZ77zt3U3FMYSwh5Fc/apA7F7PtfN6BsqlWfQn6IdILE157lF0ZgtEbvYGFNNIqeq66DbgLBP3JAbDqFX6GII0oR42UtrlStdT7ZPi3a/ZPbZJuD+/qNguAFC3weiw2mUIJbsMdPkn2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727416314; c=relaxed/simple;
-	bh=vWZf6FFs4h1bjrlf72/WtC13v798TwiG9h+Y/cshKBs=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=eZ+1Ne+uKN5wGXo9fLyMyFumjG2cDA8DLQnkuKz56S5d2e7AlwUDSJNb9FM/bSC497HlP4Zc4uKLVE95GPdvbr1V0BJfbwX8ZVHGD5bLswiSyxdmm9QsvPVeSv4JdwTcTEs6Jvg7nzR3Blx7ae5W12k62uJyD0uX6D/ou6vsqf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=F13NfxBv; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 93721f067c9411ef8b96093e013ec31c-20240927
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=FZu0ZPTLpZWjX8yCbYqdxdHinvG8NnXZbGPHD2DiMCg=;
-	b=F13NfxBvUXOLvVc5TZ35BA+kQkDddvFPEHO72FuhfZ2r9qUkxtJAcdXAkXAy+pE38r+deuVs6ak0F0Jg8WYCcvWCgb0466JXBdz+BD0t8gx1jZ4SB+XmzYPwmm1MwDKoDE39xa4o+vSVaADO7waKey0vWQHqF5r5OhLPw1gYEaY=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:f377f6a7-e040-4a52-8584-01eeb4d7394c,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:62cda59e-8e9a-4ac1-b510-390a86b53c0a,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
-X-UUID: 93721f067c9411ef8b96093e013ec31c-20240927
-Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw02.mediatek.com
-	(envelope-from <moudy.ho@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1090322006; Fri, 27 Sep 2024 13:51:44 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 27 Sep 2024 13:51:43 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 27 Sep 2024 13:51:43 +0800
-From: Moudy Ho <moudy.ho@mediatek.com>
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, Simona Vetter
-	<simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, "jason-jh . lin"
-	<jason-jh.lin@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>
-CC: <dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, Moudy Ho
-	<moudy.ho@mediatek.corp-partner.google.com>, Moudy Ho <moudy.ho@mediatek.com>
-Subject: [PATCH v2] dt-bindings: display: mediatek: split: add clocks count constraint for MT8195
-Date: Fri, 27 Sep 2024 13:51:40 +0800
-Message-ID: <20240927055140.19688-1-moudy.ho@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+	s=arc-20240116; t=1727416652; c=relaxed/simple;
+	bh=H9RTD74ddbmi3cjBhUqyYqgTmv+zK70VnZUBD2ZppfI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=nIISSD5Eq2lqbiOi7EnQWsDBIfz5R0WslCWxAnaJtMuZWeaJn3zvbUour3tYh3m5T4SIFVWjC9k1xIwPXDhm5MWPA0m2Xvbrj7z3MNSyBw9ACnGE08lYwmw8J5LVHReXAi3nLC0oXCeJHZ+CDEIFtV8R4jbV+0hcxng8dKpSU54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Bj5SYJBS; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1727416648;
+	bh=eGQo/HTGjs3ISaIHu6Q8vT0fMKDRuGcwPfT4rFP9Omc=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=Bj5SYJBSHeTkNGOeTLidEjQytHkORHTbweHdN0NHnLekD0t4Rs2tqz1ONv0KhUFsY
+	 lLGDgZ+YgtK03IReFtcwJJdLBMABgMAwF1VxVK1l9vyFDYK1yu/o4a9WT/IOyZH9JV
+	 JYC9WxKzvgcktRgfXhy3XtzDnZ0uKZPdDRtg34msQ/01UgyFFjP1ew4Jvah9PNuOSd
+	 5tb23z9fM3HdfgqmnJa5cBeXiZvZtXi+Qqb2/ms8x5cXD61UUBUJ3DWIEWGoDu6yNR
+	 +6Eitm5VBPJAJ7Q+o5Ewiym/fFSnMF1t8uqUw+lC624/gQtSB7Rws93GufUmzwpci5
+	 rJ4+rmTd5/iLw==
+Received: from [192.168.68.112] (ppp118-210-187-73.adl-adc-lon-bras34.tpg.internode.on.net [118.210.187.73])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id B483A65029;
+	Fri, 27 Sep 2024 13:57:27 +0800 (AWST)
+Message-ID: <fbdc9efe87a1bed9fea7d0abaf955aa1a3dc24ac.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v1] ARM: dts: aspeed: yosemite4: Add i2c-mux for CPLD
+ IOE on Spider Board
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
+Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org
+Date: Fri, 27 Sep 2024 15:27:25 +0930
+In-Reply-To: <20240926024133.3786712-1-Delphine_CC_Chiu@wiwynn.com>
+References: <20240926024133.3786712-1-Delphine_CC_Chiu@wiwynn.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK: N
 
-From: Moudy Ho <moudy.ho@mediatek.corp-partner.google.com>
+On Thu, 2024-09-26 at 10:41 +0800, Delphine CC Chiu wrote:
+> From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+>=20
+> Add I2C mux for CPLD IOE on Spider Board.
+>=20
+> Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> ---
+>  .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b=
+/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> index 98477792aa00..ea1a9c765483 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> @@ -17,6 +17,9 @@ aliases {
+>  		serial6 =3D &uart7;
+>  		serial7 =3D &uart8;
+>  		serial8 =3D &uart9;
+> +
+> +		i2c28 =3D &imux28;
+> +		i2c29 =3D &imux29;
+>  	};
+> =20
 
-The display node in mt8195.dtsi was triggering a CHECK_DTBS error due
-to an excessively long 'clocks' property:
-  display@14f06000: clocks: [[31, 14], [31, 43], [31, 44]] is too long
+Have you tried to apply all of your individual yosemite4 patches
+together in one branch? I have, and unfortunately I can't apply them
+all, because they generate conflicts with each other.
 
-To resolve this issue, apply the limit by setting 'maxItems: 3' in MT8195
-additional condition.
+If your patches have context dependencies you need to send them as a
+single series and not separate patches that cannot be properly
+combined.
 
-Fixes: 4ed545e7d100 ("dt-bindings: display: mediatek: disp: split each block to individual yaml")
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
---
-The purpose of this patch is to separate the corrections for
-MediaTek SPLIT CHECK_DTBS error from the original mailing list
-mentioned below:
-https://lore.kernel.org/all/20240924103156.13119-2-macpaul.lin@mediatek.com/
+Please assess the remaining yosemite4 devicetree patches (those you
+haven't received a thank-you email for) and send an appropriately
+constructed series so they can all be applied together, based on the
+tree here:
 
-Changes since v1:
-  - Adding functional descriptions and quantity restrictions.
----
- .../bindings/display/mediatek/mediatek,split.yaml           | 6 ++++++
- 1 file changed, 6 insertions(+)
+https://github.com/amboar/linux/tree/for/bmc/dt
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
-index e4affc854f3d..bce1b8b866ce 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
-@@ -57,6 +57,9 @@ properties:
-   clocks:
-     items:
-       - description: SPLIT Clock
-+      - description: HDMI RX Clock
-+      - description: HDMI Metadata Clock
-+    minItems: 1
- 
- required:
-   - compatible
-@@ -72,6 +75,9 @@ allOf:
-             const: mediatek,mt8195-mdp3-split
- 
-     then:
-+      properties:
-+        clocks:
-+          maxItems: 3
-       required:
-         - mediatek,gce-client-reg
- 
--- 
-2.34.1
+Please also indicate in the cover letter (with links to lore) which
+remaining patches are truly independent that still need to be applied.
 
+Thanks,
+
+Andrew
 
