@@ -1,142 +1,169 @@
-Return-Path: <devicetree+bounces-105749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B816A987D69
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 06:01:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9229A987D88
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 06:14:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75A32281ACC
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 04:01:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3EA31C2268D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 04:14:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DD2215358F;
-	Fri, 27 Sep 2024 04:01:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CFC5172BB9;
+	Fri, 27 Sep 2024 04:14:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="P2YREVYE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qur09JOl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CCF41BC5C
-	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 04:01:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B5B2AE84;
+	Fri, 27 Sep 2024 04:14:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727409663; cv=none; b=Kn+O7YEFNWjRiUGYtSIXgjIKGJb+Itof+P7KWCUBajj8X75nY40+tYl74b5eOOogKywh+rvSP693Ie4I0gWDXdL2DiNW+uiIlzvPMiiKH9OkgXQkM0JQD+GP4FUTJkHd4ecLSkCX9y0aVcRmT/OsW/Ua26UZDWy6CuQHZGdAMGQ=
+	t=1727410453; cv=none; b=bjyV9bmjq9ERUsHqeRNPyIeSA+Ukrg1u7jZa0BxyPl1G6S0OhPcrMuPka4uKJKhnOp4aEx8EoGifVoJZGujwt0q5eaDV2tm/yAKRV0fvSTe6HszfA5IT8yvh9gETcV8S1zDxP7cG6jv+s+iLSb3iIy4j7xd2JR/CC49CLzulPzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727409663; c=relaxed/simple;
-	bh=/rigCc5vpyD5j9AYkIW/Sw3s5sCexLETUpveXhlJF30=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lksLcAyiPbgmRQY0swO09r9i3kank1wbtIph7JNlZfm0x9Oa4F9gM4IvIbQbudB08+TpwEFFgvESHpua5EYppAvC0lEeKMq2m3+dgFD6dR9uSkmh5DWQf6maBYmVlsMOPI6HFo7z6zG09JH4PMI3npTbx7roL4e212UKcZxHk6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=P2YREVYE; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5398939d29eso106265e87.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 21:01:01 -0700 (PDT)
+	s=arc-20240116; t=1727410453; c=relaxed/simple;
+	bh=JVL2fUPhe7PhfPh2yglWF3nfspxFiAyHvNIEuOzsF4Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VE04jW3FGvpLXcO40vPcc42nMqSstjl9XUQbC1/MNBjRf6JnElYIpMiqMhzPE/KPF5lWamkcMPRF3++m76t59WiTyWE0zE8iM64KFrBE9lQLglsA2o/1fSx4D0cgqdEHO1+wCfpckE/Vp7alMvaM3TJRDX9hgB4m6yul/BJenMU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qur09JOl; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-206aee4073cso17849155ad.1;
+        Thu, 26 Sep 2024 21:14:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1727409660; x=1728014460; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ts6Ybuhxy9EO97nxINn08YUin8kXfW9IAD6aPStdVq8=;
-        b=P2YREVYEDoXLeaubx+0K3YrRZhMAFY6JadFFkkREnYZq6vJ+WZ979JQ96WeJkomJmZ
-         adSeurEHic+9sz09nR50oebq8HM6bxjlC7v4lEMoAYOF4bBAqliA5Zf6Lh1dgqGzeVFA
-         FOEPcaMSasplUZZbLdzCe05Mm0wY2ZZTeQQNc=
+        d=gmail.com; s=20230601; t=1727410451; x=1728015251; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zmPC7xOEq4xiQYbTsTCCja7E17GlGBjk59a6Y6qmbow=;
+        b=Qur09JOlkHbBXshLpChKTSxuQZSAykBrwObI3ikF2+MvvZELFM4eGQgtUk3wXoWpwW
+         KLCoGrj/1fEQCr89g+5wJoq2X7CtWPlUT1qeW6AC7JImyf9SpeIhrUEVbAWdW7wi5znd
+         9LjVZbhWquXcGdZUJandrFfN9yuag35g9nYe8h59pGnKrqql21uILunwxZ6nrfrwLhht
+         YWEfdrha3uADqAhw0HgcSj255/JHaiLHGOq9Yvaa95oGDpk7oj+uo64M3qqyciQ1/EO2
+         M1h4kXzgDwde53BahlA7OXS/xpbiphYmbi/agZAPJQ0YXCk0LxKafU9cFJugDW7iyoNK
+         1Y8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727409660; x=1728014460;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1727410451; x=1728015251;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ts6Ybuhxy9EO97nxINn08YUin8kXfW9IAD6aPStdVq8=;
-        b=nEIQ6vG1QKAu2WoCc14B31ln0wXsP2TlTQuuFc9yJ0dCslSe9Wsy6IwVwBk8bHvcRr
-         nuqL3A/1Ne7Qf0a2a/q1iLuEtTh8mzPJgD3inZ5X6ERcspTQz0unts+3UxWWjNHsdYvd
-         B7OAxZj5QRfq0wZrydHvaVNxiSeOFI2SWwy4r75giDwjLB371VBGyzOialsrSxIQjoO6
-         d3pLRchr458BA0w7t9892q/jpkY706JLI5oLNzCW0tF78SO1dsEb8xfkiFX8dQG8JXOe
-         Hi95AR9XVUqnbwRd2sKpzBTNuu3poMMP+i51YQqja9RdhnHU6wWxlcDaDjGthOwhsUuq
-         FyQw==
-X-Forwarded-Encrypted: i=1; AJvYcCUTlRlrhUjnBAxZlCz+3xp6VZloQ9Oe2jgP73rg7Hpbg+caBdsbx37r2VCS/ttvSyy1Nqqo6gMLq1Ei@vger.kernel.org
-X-Gm-Message-State: AOJu0YwR/lZeV4NoPPyYVIJCcjrlr1JUziLOkItlBxmcyJpWK6PtOJyS
-	HGHi5xrTFiw518M0jdsMMxgiWiZ+5dywPYw35TgMPCEkbkHd0s0TK9TM4Vs+sfnC0qI2X4W7Rpw
-	0CaV4Du0hVnjw8B46Duv3WCv0TRthXrsbTyyj
-X-Google-Smtp-Source: AGHT+IFhILfvyN612dVfAZjt7mlHdsnT36bs2zlQCVH9UI+WtCiOa7LORMIXTip1YcFTiMjzEjST5u3lqpdVSQXGrdI=
-X-Received: by 2002:a05:6512:1256:b0:535:6400:1da8 with SMTP id
- 2adb3069b0e04-5389fc477eemr884467e87.28.1727409659514; Thu, 26 Sep 2024
- 21:00:59 -0700 (PDT)
+        bh=zmPC7xOEq4xiQYbTsTCCja7E17GlGBjk59a6Y6qmbow=;
+        b=wiM8P6i9hKJiC5jmI5DWytLSpSFq3kO9VrTJ4Fh7laoLO+ISo9MhDDsoUc6TL71Nsr
+         aFp3rNsd08eDlK0uSoQugUcGcTyn6gGge3Nu6V73Sct5YAbGbBSQXKLlR3mReUbtfP3I
+         a4+wtNCwry6zXLJoe5GRGYoix3D6Id751DD4Dyukkcv415H9hVpF0Tcfq1QBUmn+41qK
+         vf35ssjZYgHDSTmInn2Ug9xLfWgvmNXoM8s/TbYzATZFbJe9A9Tjq4wJkfTM14IkF/Gn
+         kaJrCwCFI+y9YrhNHwaEjJ9Jsc9YTGu+A13K8cD77fi5f11TTOlSTqyq8KGMkYY4202x
+         e1Fw==
+X-Forwarded-Encrypted: i=1; AJvYcCU2ZXaP4ugo0HY8z39XAxnc/aTVg95XEsOxCLGvrPuxzlqBhWqOW55zJdes+CYxjy3rFtltoP418DUw@vger.kernel.org, AJvYcCWVGAweQmd4H+CmCPC7oOOe5JLlSXF4yBW0lGP2VjILbvhD/Z9KiTk/RU5kd9GAsN1jO1MZlcSlAfIB@vger.kernel.org, AJvYcCWXu8U7S+fM+wGO6M2BNFtzRXhESfxdtaarghy6FxdV4MWy3nQ5HxX1pc00i0q47cNvGGgIrTSeZRVMXYtZ@vger.kernel.org, AJvYcCXq99sVKXXEpdLOVNcuZbGagTUhoi5sBYWwJlRug5A+vPqDBev2z/lESzi2od5TFCFP3Ve9J3nlWn2e77on8hQ3@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfnI6O7hHO25AeH3gx+/yiaK0stT1Epe9H3OK5Cwo57bWXiHu7
+	S5FcWZ0BwjogIjj1K5FJ4cgDPMRIWFNo0qPG4LmTw3yrAoP8ojNN
+X-Google-Smtp-Source: AGHT+IHDmvSZ+vvEz962F4lkQhrBabPVtLhowwYwbXZHolk9sYGt9iof/C7/GGTTa5vwr7vZ0BjGBw==
+X-Received: by 2002:a17:902:da81:b0:206:adf0:4f15 with SMTP id d9443c01a7336-20b367d035emr34323555ad.8.1727410450894;
+        Thu, 26 Sep 2024 21:14:10 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7e6db2bc531sm689914a12.32.2024.09.26.21.14.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Sep 2024 21:14:09 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Thu, 26 Sep 2024 21:14:08 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	patches@lists.linux.dev, kunit-dev@googlegroups.com,
+	linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org,
+	Brendan Higgins <brendan.higgins@linux.dev>,
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Daniel Latypov <dlatypov@google.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Ripard <maxime@cerno.tech>,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH v8 8/8] clk: Add KUnit tests for clks registered with
+ struct clk_parent_data
+Message-ID: <6cd337fb-38f0-41cb-b942-5844b84433db@roeck-us.net>
+References: <20240718210513.3801024-1-sboyd@kernel.org>
+ <20240718210513.3801024-9-sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240925093807.1026949-1-wenst@chromium.org> <CAPDyKFqoqppLipOG1vK-8oU_6cMdZ3DV5Gxqhs5-+7+cQJ6=qQ@mail.gmail.com>
-In-Reply-To: <CAPDyKFqoqppLipOG1vK-8oU_6cMdZ3DV5Gxqhs5-+7+cQJ6=qQ@mail.gmail.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 27 Sep 2024 12:00:48 +0800
-Message-ID: <CAGXv+5Fot5BVxtAiEj==2u1ew7mGYkrS7=mTqeTMjTiEg8LNag@mail.gmail.com>
-Subject: Re: [PATCH v8 0/3] Add of_regulator_get_optional() and Fix MTK Power
- Domain Driver
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Mark Brown <broonie@kernel.org>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Douglas Anderson <dianders@chromium.org>, Johan Hovold <johan@kernel.org>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Pablo Sun <pablo.sun@mediatek.com>, 
-	Macpaul Lin <macpaul.lin@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240718210513.3801024-9-sboyd@kernel.org>
 
-On Thu, Sep 26, 2024 at 11:49=E2=80=AFPM Ulf Hansson <ulf.hansson@linaro.or=
-g> wrote:
->
-> On Wed, 25 Sept 2024 at 11:38, Chen-Yu Tsai <wenst@chromium.org> wrote:
-> >
-> > Hi folks,
-> >
-> > This series is split off from my "DT hardware prober" series [1].
-> >
-> > Changes since v7:
-> > - Added stub versions for of_regulator_get_optional() for !CONFIG_OF
-> >   and !CONFIG_REGULATOR
-> > - Added new patches for devres version and converting MTK pmdomain
-> >   driver
-> >
-> > At ELCE, Sebastian told me about his recent work on adding regulator
-> > supply support to the Rockchip power domain driver [2], how the MediaTe=
-k
-> > driver has been using the existing devm_regulator_get() API and
-> > reassigning different device nodes to the device doing the lookup, and
-> > how the new of_regulator_get_optional() is the proper fit for this.
-> >
-> > Patch 1 adds a new of_regulator_get_optional() function to look up
-> > regulator supplies using device tree nodes.
-> >
-> > Patch 2 adds a devres version of the aforementioned function at
-> > Sebastian's request for the two power domain drivers.
-> >
-> > Patch 3 converts the MediaTek power domain driver to use function.
-> >
-> >
-> > Each of the latter two patches depend on the previous one at build time=
-.
-> > Mark, would it be possible for you to put the two regulator patches
-> > on an immutable branch / tag? Otherwise we could have Ulf ack the
-> > pmdomain patch and merge it through your tree. Sebastian was fine
-> > with converting the rockchip pmdomain some time later.
->
-> Thanks for providing some context!
->
-> In my opinion I would prefer an immutable branch/tag of the regulator
-> core changes, so I can carry the pmdomain changes for MTK through my
-> pmdomain tree, but also because I would prefer if Sebastian could make
-> the corresponding conversion for the Rockchip pmdomain driver. If this
-> can get queued soon, there is really no need to have an intermediate
-> step for Rockchip, I think.
->
-> Does it make sense - or do you prefer another way forward?
+Hi Stephen,
 
-Makes sense to me!
+On Thu, Jul 18, 2024 at 02:05:07PM -0700, Stephen Boyd wrote:
+> Test that clks registered with 'struct clk_parent_data' work as
+> intended and can find their parents.
+> 
 
-ChenYu
+When testing this on arm64, I see the error below. The error is only
+seen if I boot through efi, i.e., with "-bios QEMU_EFI-aarch64.fd"
+qemu parameter.
+
+Any idea what might cause the problem ?
+
+Thanks,
+Guenter
+
+---
+[   20.464809]     KTAP version 1
+[   20.464865]     # Subtest: clk_register_clk_parent_data_of
+[   20.464936]     # module: clk_test
+[   20.464979]     1..1
+[   20.465098]         KTAP version 1
+[   20.465208]         # Subtest: clk_register_clk_parent_data_of_test
+[   20.468964] OF: overlay: find target, node: /fragment@0, path '/' not found
+[   20.469558] OF: overlay: init_overlay_changeset() failed, ret = -22
+[   20.470177]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
+[   20.470177]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
+[   20.470177]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
+[   20.471793]         not ok 1 clk_parent_data_of_index_test
+[   20.474095] OF: overlay: find target, node: /fragment@0, path '/' not found
+[   20.474373] OF: overlay: init_overlay_changeset() failed, ret = -22
+[   20.474737]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
+[   20.474737]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
+[   20.474737]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
+[   20.477677]         not ok 2 clk_parent_data_of_fwname_test
+[   20.479773] OF: overlay: find target, node: /fragment@0, path '/' not found
+[   20.479941] OF: overlay: init_overlay_changeset() failed, ret = -22
+[   20.480160]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
+[   20.480160]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
+[   20.480160]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
+[   20.481513]         not ok 3 clk_parent_data_of_name_test
+[   20.483711] OF: overlay: find target, node: /fragment@0, path '/' not found
+[   20.483878] OF: overlay: init_overlay_changeset() failed, ret = -22
+[   20.484100]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
+[   20.484100]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
+[   20.484100]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
+[   20.485444]         not ok 4 clk_parent_data_of_fwname_name_test
+[   20.487432] OF: overlay: find target, node: /fragment@0, path '/' not found
+[   20.487600] OF: overlay: init_overlay_changeset() failed, ret = -22
+[   20.487841]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
+[   20.487841]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
+[   20.487841]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
+[   20.489207]         not ok 5 clk_parent_data_of_index_name_priority_test
+[   20.490998] OF: overlay: find target, node: /fragment@0, path '/' not found
+[   20.491504] OF: overlay: init_overlay_changeset() failed, ret = -22
+[   20.491725]     # clk_register_clk_parent_data_of_test: ASSERTION FAILED at drivers/clk/clk_test.c:2760
+[   20.491725]     Expected 0 == ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }), but
+[   20.491725]         ({ extern uint8_t __dtbo_kunit_clk_parent_data_test_begin[]; extern uint8_t __dtbo_kunit_clk_parent_data_test_end[]; __of_overlay_apply_kunit((test), __dtbo_kunit_clk_parent_data_test_begin, __dtbo_kunit_clk_parent_data_test_end); }) == -22 (0xffffffffffffffea)
+[   20.493053]         not ok 6 clk_parent_data_of_index_fwname_name_priority_test
+[   20.493583]     # clk_register_clk_parent_data_of_test: pass:0 fail:6 skip:0 total:6
+[   20.493701]     not ok 1 clk_register_clk_parent_data_of_test
+[   20.493822] # clk_register_clk_parent_data_of: pass:0 fail:1 skip:0 total:1
+[   20.493920] # Totals: pass:0 fail:6 skip:0 total:6
+[   20.494032] not ok 49 clk_register_clk_parent_data_of
 
