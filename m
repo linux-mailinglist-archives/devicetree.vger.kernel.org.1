@@ -1,72 +1,69 @@
-Return-Path: <devicetree+bounces-105860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D73DB988211
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 11:59:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5A9F988235
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 12:04:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B05E1F20EDF
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 09:59:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D86861C225F5
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 10:04:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 696CC1BB690;
-	Fri, 27 Sep 2024 09:59:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 495D61BC9F4;
+	Fri, 27 Sep 2024 10:03:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="bBp2E6OH"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="VB2LG1jJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 074A115F3FB
-	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 09:59:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 401A71BBBEF;
+	Fri, 27 Sep 2024 10:03:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727431152; cv=none; b=naiiQHHrMAy8bggW5MGxpctd1kS1nk3UvJs0TbkNTolCsGAa0hhCF/hfbvLZg7iatJrBSt5tVtcK6BHiL2rgM5OsXAZWvkkNKcot6VmY13baixmHbabVG7c3la21DH7m3aoThy8p66577CQGjkjF8PPEJ+MrsIDMnLdkdxlbGAk=
+	t=1727431424; cv=none; b=WXlN+hC2v6n7w995z12Jo3LqP4SZTKsnUN7xct+c4mnhXtLVwRF5WXMA/T7G2RSvZE4QKUdsdef7LUWKvBz4Z+/ra9S+KwBiKpurFpOnHpfkzHsxdQvj+20MjkOxRtEJtbiOhklWimsOMUu2qQJoVClzsPmSa3H9psk1AspMzR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727431152; c=relaxed/simple;
-	bh=2flsGpB1c9ksM0YD7oL8sidu+g6UnIcj0j5F137b1LY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=CDFN4QTzrNSLfm3gZA1IzGeJEGxItIso4dfiOIq27gbi5FRhPqIr12Nat7Nl6rtBbu0iqgSbT3ONaWZrIZVtVc3KhqUtX10d0jCCsqFBAib7OSTZ1AC+eQat6qRwthfagGJqECDG2oZarDVMGW4Q3UBX5CLStYuO8Fdhtwo//2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=bBp2E6OH; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20240927095908euoutp027a08d08a57b7dae1c3a31eab31d88b3a~5EXobi7dI2815428154euoutp02p
-	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 09:59:08 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20240927095908euoutp027a08d08a57b7dae1c3a31eab31d88b3a~5EXobi7dI2815428154euoutp02p
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1727431148;
-	bh=j7PzyRcbV//YpQacJQIeRez+0I/Vcd+wMl5eZe9x8S0=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=bBp2E6OHBKqz1mrq4nyWLARyKuYvBFgRiwIV9xKJJlF/M1ZOUcNMS5PQgJWB0Q+eK
-	 3RP8CySIac5H2Sm1mpxWHI17Q+GfYiXYd9/fu5yPsK6leMFmvTzydyKDKho6JDxBmz
-	 B4yrfXHzCpK2hF5ao6HPb+XZpbgGBQQCpVk3ujeQ=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-	20240927095907eucas1p1f7eb7595a0e1cae436aa6474804bda4a~5EXn18_Jt2385023850eucas1p1U;
-	Fri, 27 Sep 2024 09:59:07 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges1new.samsung.com (EUCPMTA) with SMTP id 83.23.09624.BE186F66; Fri, 27
-	Sep 2024 10:59:07 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20240927095907eucas1p1e2d5b2b17548f6998435fd5b02724439~5EXnVoCK32613326133eucas1p1F;
-	Fri, 27 Sep 2024 09:59:07 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20240927095907eusmtrp227bc16714369bc915d064a998234be5f~5EXnUzRwm0584705847eusmtrp2F;
-	Fri, 27 Sep 2024 09:59:07 +0000 (GMT)
-X-AuditID: cbfec7f2-bfbff70000002598-79-66f681eb4e8a
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id DF.49.19096.AE186F66; Fri, 27
-	Sep 2024 10:59:06 +0100 (BST)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20240927095906eusmtip1d4f85eac2a19b366f79e8ef0c61978e6~5EXmlsglA1880218802eusmtip1e;
-	Fri, 27 Sep 2024 09:59:06 +0000 (GMT)
-Message-ID: <53a614cd-6dff-40fe-a715-690d37e50f68@samsung.com>
-Date: Fri, 27 Sep 2024 11:59:06 +0200
+	s=arc-20240116; t=1727431424; c=relaxed/simple;
+	bh=4+91uN+HsgS8y6/zcWcTatQFkDiR7QhlmSt1L9ELjOY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ELWi8C0NGfqBQV8hGzfNJkB6YozS/sFjwXA9297xgKU0ru9lBdijiRu8yVbTAo52pmsb/ahMzyKigu8DJIHIhxHZBi67rhJpN2oOAJh8Nw0SeVoEgCGiC7BqJImjqVSe0TG2cI5D7S0ANhOV0I6O7+Z1zql522zoiPbZnRCnPYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=VB2LG1jJ; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48R54m7C027365;
+	Fri, 27 Sep 2024 12:03:07 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	X346+p5deRL6SEcB76ngn4tEJM5Pn2Gyvnk4kicZAzE=; b=VB2LG1jJRDC6w4qg
+	Q+xG6L69XQ3NdKeh0+I0czuvIW4P9VPP1e+2nH9qGhRnqsFCM8J6lU8oU+Tbw5og
+	qf9mNLtsyKTuD3yx+bOrRCSxaXUrTgeb+d1ytKe5+NNOcauOagrHjvVZh8SNitOX
+	33UJvaGBWAhfWJqYpulOtTx6hlQ9wM1x6NQoTIjY+0xuX1L8v4HXS452qdm+XGiU
+	kcNc+W8dhINW7Cv0UTHvAJ2JtkTR6zK4RE4rj7giAGbLwIyJ2dPwlzHz8wCenjSl
+	f3/t1WzpoXeLC0lDpVZybn0clCelAV3Ti2YD7X8Y2tHpKgxHdbJOgerc+umbAuqs
+	LRbz7Q==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41snfyf32e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Sep 2024 12:03:07 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id B09914002D;
+	Fri, 27 Sep 2024 12:02:01 +0200 (CEST)
+Received: from Webmail-eu.st.com (eqndag1node6.st.com [10.75.129.135])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 957E623AA6A;
+	Fri, 27 Sep 2024 12:01:10 +0200 (CEST)
+Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE6.st.com
+ (10.75.129.135) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 27 Sep
+ 2024 12:01:10 +0200
+Received: from [10.48.86.121] (10.48.86.121) by SAFDAG1NODE1.st.com
+ (10.75.90.17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 27 Sep
+ 2024 12:01:09 +0200
+Message-ID: <b96cef62-950b-44f9-9cc4-b7d6cc3aad45@foss.st.com>
+Date: Fri, 27 Sep 2024 12:01:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,102 +71,142 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 0/3] Introduce support for T-head TH1520 Mailbox
-To: drew@pdp7.com, guoren@kernel.org, wefu@redhat.com,
-	jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, m.szyprowski@samsung.com
-Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 4/7] remoteproc: core: Add TEE interface support for
+ firmware release
+To: Bjorn Andersson <andersson@kernel.org>
+CC: Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Jens Wiklander
+	<jens.wiklander@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <op-tee@lists.trustedfirmware.org>, <devicetree@vger.kernel.org>
+References: <20240830095147.3538047-1-arnaud.pouliquen@foss.st.com>
+ <20240830095147.3538047-5-arnaud.pouliquen@foss.st.com>
+ <yvax326sikpqkaygfldunjpziwwlwccfzmi6r5ikaqoyvfvama@w7kifjv5yt47>
 Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20240927094207.1650085-1-m.wilczynski@samsung.com>
+From: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+Organization: STMicroelectronics
+In-Reply-To: <yvax326sikpqkaygfldunjpziwwlwccfzmi6r5ikaqoyvfvama@w7kifjv5yt47>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrMKsWRmVeSWpSXmKPExsWy7djPc7qvG7+lGTyYomCx9fcsdos1e88x
-	Wcw/co7V4t6lLUwWL/Y2slhcWzGX3eLlrHtsFpd3zWGz2Pa5hc1i7ZG7QLHLPcwWbbP4Lf7v
-	2cFu0bJ/CosDn8ebly9ZPA53fGH32DnrLrvHplWdbB6bl9R7tKw9xuTxft9VNo++LasYPS41
-	X2f3+LxJLoArissmJTUnsyy1SN8ugSvj8Wy/gt8CFc/3T2RpYFzK28XIySEhYCIx98xN5i5G
-	Lg4hgRWMEo+ftrNDOF8YJa60HWCEcD4zSizqOc7SxcgB1jJ9JwdEfDmjxL3Xd1ghnLeMEu1H
-	IYp4Bewk1l4zBFnBIqAqcfziUxYQm1dAUOLkzCdgtqiAvMT9WzPYQWxhAW+JT/232EDmiAi8
-	Y5SYdO02E0iCWSBe4vGUC1C2uMStJ/PBbDYBI4kHy+ezgticAg4Sn5e+YYWokZfY/nYOM8Rv
-	2zkl1nWlQNguEh/272aEsIUlXh3fwg5hy0j83wkxU0IgX+LB1k9QvTUSO3uOQ9nWEnfO/WID
-	+YtZQFNi/S59SDg4Sty6YwFh8knceCsIcQCfxKRt05khwrwSHW1CEDPUJKb29MLtPLdiG9ME
-	RqVZSGEyC8mLs5C8Mgth7QJGllWM4qmlxbnpqcWGeanlesWJucWleel6yfm5mxiB6e70v+Of
-	djDOffVR7xAjEwfjIUYJDmYlEV6rc1/ThHhTEiurUovy44tKc1KLDzFKc7AoifOqpsinCgmk
-	J5akZqemFqQWwWSZODilGpgWdkfVNlSIst1g21z3rH+i7eUbIZuX7Lb9wXJ5R+65x8vEz9Tf
-	d2yX91lSLfru0wr1ycwCvOt+O7pIlv32kjXcNefnxEVr7yunWyXdiVBzPrH30HIvzUluASsl
-	BKcJsMYoOQY0ztUxruXPlFK589XJeJ/9iZSqx4lve3NuGS6669bFK558+60a75wII0v1zeLf
-	QxwDfm0y3tEz+Wbnpo/JKU93mcnduZb5aROLXXKrilrzDT/VBY1xqhtl/y75XqRyc6q605n1
-	cabVov62+9Qf7Ft2RjHETuLxydnxc2c5CkxWSettEPI8o9KnExXx2zzntp3SHI90b95NqhL7
-	5rqYK6Yums/3MC+v7LKgrRJLcUaioRZzUXEiAIw3eB/mAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrGIsWRmVeSWpSXmKPExsVy+t/xu7qvGr+lGfzYbmmx9fcsdos1e88x
-	Wcw/co7V4t6lLUwWL/Y2slhcWzGX3eLlrHtsFpd3zWGz2Pa5hc1i7ZG7QLHLPcwWbbP4Lf7v
-	2cFu0bJ/CosDn8ebly9ZPA53fGH32DnrLrvHplWdbB6bl9R7tKw9xuTxft9VNo++LasYPS41
-	X2f3+LxJLoArSs+mKL+0JFUhI7+4xFYp2tDCSM/Q0kLPyMRSz9DYPNbKyFRJ384mJTUnsyy1
-	SN8uQS/j8Wy/gt8CFc/3T2RpYFzK28XIwSEhYCIxfSdHFyMXh5DAUkaJRZuXMXYxcgLFZSSu
-	db9kgbCFJf5c62KDKHrNKPHr53EmkGZeATuJtdcMQWpYBFQljl98ClbPKyAocXLmEzBbVEBe
-	4v6tGewgtrCAt8Sn/ltgc0QE3jFKHFk+jxFkDrNAvMSGm8oQ8yczSvze2wZ2BLOAuMStJ/OZ
-	QGw2ASOJB8vns4LYnAIOEp+XvmGF6FWXWD9PCKJcXmL72znMExiFZiE5YxaSSbMQOmYh6VjA
-	yLKKUSS1tDg3PbfYSK84Mbe4NC9dLzk/dxMjMMK3Hfu5ZQfjylcf9Q4xMnEwHmKU4GBWEuG1
-	Ovc1TYg3JbGyKrUoP76oNCe1+BCjKTAoJjJLiSbnA1NMXkm8oZmBqaGJmaWBqaWZsZI4L9uV
-	82lCAumJJanZqakFqUUwfUwcnFINTHPMzFcU+/PZ6e2IFbslki3Y8ye2sOBB+1+tHZmsczXt
-	bin4VTZ9U2t8zVlilfJeavW8/ob/74LM2LbGP+/fZXTMZXnVgYRNzV9PbVl0UHf7N9bfy7/b
-	Lp1h/+GJ8qLlSU2VK2/pSr5ofX/yt6zZ2aUWjRcNCp+tChV7rXP08pQjUY37lnD+2fL/1M0T
-	nZWpq4TaGmb1s/svdbA8PeWG3Hr/w3fr25f9f1H3WNCr7lbtx4Nv4p7tU918YuP9jyHfcv+s
-	uCwatv5o8IszKde5Tqn9nTnvttUs15lvuCKcOxWeeum11t2f7j3DXs3C+tyeNpu0HcK7tO1r
-	rD68MnjC7rht71vxez/Kljh4JxhW5pxXYinOSDTUYi4qTgQAfPhgLHkDAAA=
-X-CMS-MailID: 20240927095907eucas1p1e2d5b2b17548f6998435fd5b02724439
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20240927094213eucas1p22449c12701e67bc29371a6a6cb6f72a2
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20240927094213eucas1p22449c12701e67bc29371a6a6cb6f72a2
-References: <CGME20240927094213eucas1p22449c12701e67bc29371a6a6cb6f72a2@eucas1p2.samsung.com>
-	<20240927094207.1650085-1-m.wilczynski@samsung.com>
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SAFDAG1NODE1.st.com
+ (10.75.90.17)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
+Hello Bjorn,
 
-
-On 9/27/24 11:42, Michal Wilczynski wrote:
-> The T-head TH1520 SoC supports a hardware mailbox that enables two cores
-> within the SoC to communicate and coordinate [1]. One example of such
-> coordination would be cooperation with the T-Head E902 core, which is
-> responsible for power, clock, and resource management. For example, in
-> the specific case of the BXM-4-64 GPU, it needs to be powered on by the
-> E902 core, and the kernel running on the E910 needs to 'ask' the
-> firmware running on the E902 core to enable power to the GPU island.
-> Given recent advancements in work on the upstream GPU driver [2], there
-> is an emerging need to get this code in the mainline kernel.
+On 9/26/24 05:51, Bjorn Andersson wrote:
+> On Fri, Aug 30, 2024 at 11:51:44AM GMT, Arnaud Pouliquen wrote:
+>> Add support for releasing remote processor firmware through
+>> the Trusted Execution Environment (TEE) interface.
+>>
+>> The tee_rproc_release_fw() function is called in the following cases:
+>>
+>> - An error occurs in rproc_start() between the loading of the segments and
+>>   the start of the remote processor.
+>> - When rproc_release_fw is called on error or after stopping the remote
+>>   processor.
+>>
+>> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+>> ---
+>>  drivers/remoteproc/remoteproc_core.c | 10 ++++++++--
+>>  1 file changed, 8 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
+>> index 7694817f25d4..32052dedc149 100644
+>> --- a/drivers/remoteproc/remoteproc_core.c
+>> +++ b/drivers/remoteproc/remoteproc_core.c
+>> @@ -29,6 +29,7 @@
+>>  #include <linux/debugfs.h>
+>>  #include <linux/rculist.h>
+>>  #include <linux/remoteproc.h>
+>> +#include <linux/remoteproc_tee.h>
+>>  #include <linux/iommu.h>
+>>  #include <linux/idr.h>
+>>  #include <linux/elf.h>
+>> @@ -1258,6 +1259,9 @@ static int rproc_alloc_registered_carveouts(struct rproc *rproc)
+>>  
+>>  static void rproc_release_fw(struct rproc *rproc)
+>>  {
+>> +	if (rproc->state == RPROC_OFFLINE && rproc->tee_interface)
+>> +		tee_rproc_release_fw(rproc);
 > 
-> Link: https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf [1]
-> Link: https://gitlab.freedesktop.org/imagination/linux-firmware/-/issues/1 [2]
-> 
-> Michal Wilczynski (3):
->   mailbox: Introduce support for T-head TH1520 Mailbox driver
->   dt-bindings: mailbox: Add thead,th1520-mailbox bindings
->   riscv: dts: thead: Add mailbox node
+> I don't like the idea of having op-tee specific calls made from the
+> core. If the problem is that we need to unroll something we did at load,
+> can we instead come up with a more generic mechanism to unload that? Or
 
-Just realized that I haven't included a summary of changes for v2.
-Here it is:
+As proposed in [1] an alternative could be to define a new rproc_ops->release_fw
+operation that will be initialized to tee_rproc_release_fw in the platform driver.
 
-v2:
- - fixed thead,th1520-mbox.yaml binding file by dropping redundant
-   descriptions, renaming reg-names, removing unnecessary clocks,
-   providing constraints and defining ICU's
- - fixed the mailbox driver code to work well with updated binding-file,
-   removed clocks support, as it's not necessary for mailbox to work
- - adjusted the device tree node instance of mbox_910t so it will work
-   with updated bindings file
+> can we perhaps postpone the tee interaction until start() to avoid the
+> gap?
+
+In such a case, the management of the resource table should also be postponed
+as the firmware has to be authenticated first.
+
+The OP-TEE implementation authenticates the firmware during the load
+(in-destination memory authentication), so the sequence is:
+1) Load the firmware.
+2) Get the resource table and initialize resources.
+3) Start the firmware.
+
+The tee_rproc_release_fw() is used if something goes wrong during step 2 an3.
+
+From my perspective, this would result in an alternative boot sequence, as we
+have today for "attach". I proposed this approach in my V3 [2]. But this add
+complexity in remote proc core.
+
+
+Please, could you align with Mathieu to define how we should move forward to
+address your concerns?
+
+[1]https://lkml.org/lkml/2024/9/18/612
+[2]https://lore.kernel.org/lkml/8af59b01-53cf-4fc4-9946-6c630fb7b38e@quicinc.com/T/
+
+Thanks and Regards,
+Arnaud
 
 > 
->  .../bindings/mailbox/thead,th1520-mbox.yaml   |  84 +++
->  MAINTAINERS                                   |   2 +
->  arch/riscv/boot/dts/thead/th1520.dtsi         |  13 +
->  drivers/mailbox/Kconfig                       |  10 +
->  drivers/mailbox/Makefile                      |   2 +
->  drivers/mailbox/mailbox-th1520.c              | 551 ++++++++++++++++++
->  6 files changed, 662 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/thead,th1520-mbox.yaml
->  create mode 100644 drivers/mailbox/mailbox-th1520.c
 > 
+> PS. Most of the Qualcomm drivers are TEE-based...so the "tee_interface"
+> boolean check here is not very nice.
+> 
+> Regards,
+> Bjorn
+> 
+>> +
+>>  	/* Free the copy of the resource table */
+>>  	kfree(rproc->cached_table);
+>>  	rproc->cached_table = NULL;
+>> @@ -1348,7 +1352,7 @@ static int rproc_start(struct rproc *rproc, const struct firmware *fw)
+>>  	if (ret) {
+>>  		dev_err(dev, "failed to prepare subdevices for %s: %d\n",
+>>  			rproc->name, ret);
+>> -		goto reset_table_ptr;
+>> +		goto release_fw;
+>>  	}
+>>  
+>>  	/* power up the remote processor */
+>> @@ -1376,7 +1380,9 @@ static int rproc_start(struct rproc *rproc, const struct firmware *fw)
+>>  	rproc->ops->stop(rproc);
+>>  unprepare_subdevices:
+>>  	rproc_unprepare_subdevices(rproc);
+>> -reset_table_ptr:
+>> +release_fw:
+>> +	if (rproc->tee_interface)
+>> +		tee_rproc_release_fw(rproc);
+>>  	rproc->table_ptr = rproc->cached_table;
+>>  
+>>  	return ret;
+>> -- 
+>> 2.25.1
+>>
 
