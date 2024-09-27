@@ -1,214 +1,132 @@
-Return-Path: <devicetree+bounces-105774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5851987E9D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 08:48:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E29B987EAB
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 08:50:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39F8D1F21949
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 06:48:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D75EBB24BFC
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 06:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97BDA1714AA;
-	Fri, 27 Sep 2024 06:48:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD3D8178368;
+	Fri, 27 Sep 2024 06:50:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="QcRqs906"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="az1WeokD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f66.google.com (mail-ej1-f66.google.com [209.85.218.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 742ED6BFC0
-	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 06:48:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7547017277F;
+	Fri, 27 Sep 2024 06:50:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727419699; cv=none; b=ZRyt6fzA4uZuyoFAIImMUjJtPZx08jaqP1+ieGLgXGp7yJFozF+/YE/NHeCdUnYi7C+/J338fYAUUO+vJBF+AF2pODLQ6FP+frEqd2HeHalztsyNudKSxr9kKWm6QtHCITQTrUiOuKkdC7Ka+CABH3zNHeATHhjWwDVmH1wkouA=
+	t=1727419853; cv=none; b=eP9BnC8kWP3KObTsBThKmwHLhIPt+WY1q1joTrNI+9aM2IJhsqw7Sv7SydYIiYkzLLRayCQOOkkkUnaRe5ADQRGNUZR55E+e8MvX2MOiHiLHNWk1CpYtWwjxO01YKON0CpIe9P3cHSbkI8lKpDCjtSt3AqO3T9vuDvG6gK/GqDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727419699; c=relaxed/simple;
-	bh=seoZJVVkae3s3IXICNZ9fMVHO4f0TO87iEurq5MP/xM=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VMqANpkM6NXSJ1lk1P7euxZClwvdL5tcxoAQ5wJw7ewgysMb3s6VK3munM1aYQA6aE+j92TpZTji8Z4wGERr/mpBY+j47PRwLlxqUg7+oBIUykxQGgHfeU6IQ/+TdULvetI9AyV4LcSrgkwrcdEga+F9Kbg3SN2YywoIpJAcN6M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=QcRqs906; arc=none smtp.client-ip=209.85.218.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f66.google.com with SMTP id a640c23a62f3a-a8d56155f51so205390466b.2
-        for <devicetree@vger.kernel.org>; Thu, 26 Sep 2024 23:48:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1727419696; x=1728024496; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vBJMtcLG7aQHBsMfuf0SnmVlujb00WcTg7o4/+0tb1U=;
-        b=QcRqs906kEG4AOJd4M8ypDrdj2F7Nmar84H0DYraYjLszLCJ5eQcHrp9r3IRQKUsGU
-         8Kp/MBCZx6IDm6LcAyBnCM9tf/lzbqp/0fgWz49c0aB9KaF9lj/JnKCBeTbbZ/4N0/ne
-         o8+nWNeLPRaAZkq4stpvTHPU9CP7yDs7407FDueyaGYH09XAIs51p0VsaQRefuR+z5ti
-         34apjIEAnL5QrI7enG5CLXENbyyD3/ANx0J/76IKxekr5PzUJecsLkv4erB2lfa5YF/Z
-         q/8GwsBenU/tt9NgSC84WyrpWiQ7MAGaO+gPtSG1LaGvwbDuXY5LCpq3nbAYMf1qU1b2
-         K1YA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727419696; x=1728024496;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vBJMtcLG7aQHBsMfuf0SnmVlujb00WcTg7o4/+0tb1U=;
-        b=OTL3B7lc06Q/LXbuZut2ehqHX93YEW10XwgT+AKudQG1jjzNy76zuDCAwxJ5fw0PpZ
-         SN6EIeP6cWPd4FtPF/PIJQGWggFMgrG67n4+o8spaga3jiDMbERmchHoHjiWas1YsBF1
-         hkYxK6ckSHp7SmbxgfxQKWabg9QBH61sG/yGVuIJi1FcYgiJO/gCZXavFYrKuPc+y0sz
-         AMeqFteajib+jeejs0OIWPGQkXGT/QdYlXA/Q/3Gwn71cFz+h/MPxlTdudYk/I9wdkk9
-         KVAhVKbRKU5EF7Ll04dacZZUgaRWx73yqjJviv2F2O147EiTS4atWMal4dpJh1mu4QKS
-         Mm6A==
-X-Forwarded-Encrypted: i=1; AJvYcCWUslxIJZTHHknArfbybGAwsFuljbv28+w74vQVY0PVU4+dMLYpYzuE+vl42W8rx0+bE634SgcWHFxu@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywh6r/580p+Ltt9fQVaRqY4DF6kKLCB7r5xlsm55pwGvW+MbZLU
-	amXobENY8ppM7zzWchsq3l9BJf7fIclw8Yc/DOtSrVM5N6utKrv1iSv76jWOQD0=
-X-Google-Smtp-Source: AGHT+IGLDHBeNa6D6RZfpkGvMPVnCQ8ZzsxDN0YoVSie0mpImcNcS8+a9hjT0lBohBj3W/lmYOd11w==
-X-Received: by 2002:a17:906:c113:b0:a8a:7d13:297e with SMTP id a640c23a62f3a-a93c4c284cfmr178037066b.55.1727419695753;
-        Thu, 26 Sep 2024 23:48:15 -0700 (PDT)
-Received: from localhost (host-79-32-222-228.retail.telecomitalia.it. [79.32.222.228])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a93c2997e64sm87199066b.190.2024.09.26.23.48.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Sep 2024 23:48:15 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Fri, 27 Sep 2024 08:48:28 +0200
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Stefan Wahren <wahrenst@gmx.net>, Lizhi Hou <lizhi.hou@amd.com>
-Subject: Re: [PATCH 03/11] PCI: of_property: Sanitize 32 bit PCI address
- parsed from DT
-Message-ID: <ZvZVPA6ov5XgScpz@apocalypse>
-References: <Ztnft3p3tb_kP1jc@apocalypse>
- <20240905201656.GA391855@bhelgaas>
+	s=arc-20240116; t=1727419853; c=relaxed/simple;
+	bh=2epJ24lOq66xl+SuNkwsg3Bt29VRH+GED6ap3EN6t9g=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=e1K2Jr497vsG682D+YUs4BfFrNTj8CANUKa/QZhWLkBjfChI9wXZVGXrFwdSZrNTMJuemh9Ec/51MVQ2EpbnugCs/44wCmZPmQB9wOu5d6z+od2NbcJsBp+3ZzDKmicTdWzr5RjYF00CxUJ2ykk7UI1gIxaYPmnK+rZ8ScS9auc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=az1WeokD; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: d16b3db27c9c11efb66947d174671e26-20240927
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=GoF6SJc6wFMZEyc0BXdDEMxFE4JRik1GAvCk+nHZpN4=;
+	b=az1WeokDZGRi82UL/o/mNmP75tNjN5oaRjOKcgXvVlM0fLk/6rF7lgEm/Cy8dPKv2k9qSaZuYyX7bq7K5D+ysDL93Qhxgpt0x0RAUjfYmaLIg+m3JsCtsPb83Pp/E668N1/eK0XaxVVnZdHFbtvDUaUuXoRj6FNFC3lsznF5HPQ=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:7a126580-f70f-4747-b9ab-559b40f02486,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:c3bbdad0-7921-4900-88a1-3aef019a55ce,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: d16b3db27c9c11efb66947d174671e26-20240927
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1291877166; Fri, 27 Sep 2024 14:50:44 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 27 Sep 2024 14:50:42 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Fri, 27 Sep 2024 14:50:42 +0800
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, Simona Vetter
+	<simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yong Wu <yong.wu@mediatek.com>, Joerg
+ Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin Murphy
+	<robin.murphy@arm.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, CK Hu
+	<ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>, Tinghan Shen
+	<tinghan.shen@mediatek.com>, Seiya Wang <seiya.wang@mediatek.com>, Ben Lok
+	<ben.lok@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>, "Nancy . Lin"
+	<nancy.lin@mediatek.com>, <dri-devel@lists.freedesktop.org>,
+	<linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <iommu@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>, Alexandre Mergnat
+	<amergnat@baylibre.com>
+CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+	Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>, Chris-qj
+ chen <chris-qj.chen@mediatek.com>, MediaTek Chromebook Upstream
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
+	<wenst@chromium.org>
+Subject: [PATCH v3 1/5] arm64: dts: mt8195: Fix dtbs_check error for infracfg_ao node
+Date: Fri, 27 Sep 2024 14:50:37 +0800
+Message-ID: <20240927065041.15247-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240905201656.GA391855@bhelgaas>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-Hi Bjorn,
+The infracfg_ao node in mt8195.dtsi was causing a dtbs_check error.
+The error message was:
 
-On 15:16 Thu 05 Sep     , Bjorn Helgaas wrote:
-> [+cc Lizhi]
-> 
-> On Thu, Sep 05, 2024 at 06:43:35PM +0200, Andrea della Porta wrote:
-> > On 17:26 Tue 03 Sep     , Bjorn Helgaas wrote:
-> > > On Mon, Aug 26, 2024 at 09:51:02PM +0200, Andrea della Porta wrote:
-> > > > On 10:24 Wed 21 Aug     , Bjorn Helgaas wrote:
-> > > > > On Tue, Aug 20, 2024 at 04:36:05PM +0200, Andrea della Porta wrote:
-> > > > > > The of_pci_set_address() function parses devicetree PCI range
-> > > > > > specifier assuming the address is 'sanitized' at the origin,
-> > > > > > i.e. without checking whether the incoming address is 32 or 64
-> > > > > > bit has specified in the flags.  In this way an address with no
-> > > > > > OF_PCI_ADDR_SPACE_MEM64 set in the flags could leak through and
-> > > > > > the upper 32 bits of the address will be set too, and this
-> > > > > > violates the PCI specs stating that in 32 bit address the upper
-> > > > > > bit should be zero.
-> > > 
-> > > > > I don't understand this code, so I'm probably missing something.  It
-> > > > > looks like the interesting path here is:
-> > > > > 
-> > > > >   of_pci_prop_ranges
-> > > > >     res = &pdev->resource[...];
-> > > > >     for (j = 0; j < num; j++) {
-> > > > >       val64 = res[j].start;
-> > > > >       of_pci_set_address(..., val64, 0, flags, false);
-> > > > >  +      if (OF_PCI_ADDR_SPACE_MEM64)
-> > > > >  +        prop[1] = upper_32_bits(val64);
-> > > > >  +      else
-> > > > >  +        prop[1] = 0;
-> > ...
-> > > However, the CPU physical address space and the PCI bus address are
-> > > not the same.  Generic code paths should account for that different by
-> > > applying an offset (the offset will be zero on many platforms where
-> > > CPU and PCI bus addresses *look* the same).
-> > > 
-> > > So a generic code path like of_pci_prop_ranges() that basically copies
-> > > a CPU physical address to a PCI bus address looks broken to me.
-> > 
-> > Hmmm, I'd say that a translation from one bus type to the other is
-> > going on nonetheless, and this is done in the current upstream function
-> > as well. This patch of course does not add the translation (which is
-> > already in place), just to do it avoiding generating inconsistent address.
-> 
-> I think I was looking at this backwards.  I assumed we were *parsing"
-> a "ranges" property, but I think in fact we're *building* a "ranges"
-> property to describe an existing PCI device (either a PCI-to-PCI
-> bridge or an endpoint).  For such devices there is no address
-> translation.
-> 
-> Any address translation would only occur at a PCI host bridge that has
-> CPU address space on the upstream side and PCI address space on the
-> downstream side.
-> 
-> Since (IIUC), we're building "ranges" for a device in the interior of
-> a PCI hierarchy where address translation doesn't happen, I think both
-> the parent and child addresses in "ranges" should be in the PCI
-> address space.
-> 
-> But right now, I think they're both in the CPU address space, and we
-> basically do this:
-> 
->   of_pci_prop_ranges(struct pci_dev *pdev, ...)
->     res = &pdev->resource[...];
->     for (j = 0; j < num; j++) {   # iterate through BARs or windows
->       val64 = res[j].start;       # CPU physical address
->       # <convert to PCI address space>
->       of_pci_set_address(..., rp[i].parent_addr, val64, ...)
->         rp[i].parent_addr = val64
->       if (pci_is_bridge(pdev))
->         memcpy(rp[i].child_addr, rp[i].parent_addr)
->       else
->         rp[i].child_addr[0] = j   # child addr unset/unused
-> 
-> Here "res" is a PCI BAR or bridge window, and it contains CPU physical
-> addresses, so "val64" is a CPU physical address.  It looks to me like
-> we should convert to a PCI bus address at the point noted above, based
-> on any translation described by the PCI host bridge.  That *should*
-> naturally result in a 32-bit value if OF_PCI_ADDR_SPACE_MEM64 is not
-> set.
+syscon@10001000: compatible: ['mediatek,mt8195-infracfg_ao', 'syscon',
+                 'simple-mfd'] is too long
 
-That's exactly the point, ecxept that right now a 64 bit address would
-"unnaturally" pass through even if OF_PCI_ADDR_SPACE_MEM64 is not set.
-Hence the purpose of this patch.
+To resolve this, remove 'simple-mfd' from the 'compatible' property of the
+infracfg_ao node.
 
-Many thanks,
-Andrea
+Fixes: 37f2582883be ("arm64: dts: Add mediatek SoC mt8195 and evaluation board")
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> 
-> > > Maybe my expectation of this being described in DT is mistaken.
-> > 
-> > Not sure what you mean here, the address being translated are coming from
-> > DT, in fact they are described by "ranges" properties.
-> 
-> Right, for my own future reference since I couldn't find a generic
-> description of "ranges" in Documentation/devicetree/:
-> 
-> [1] https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#ranges
+Changes for v2 and v3:
+ - no change.
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+index e89ba384c4aa..2e1b41359b43 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+@@ -487,7 +487,7 @@ topckgen: syscon@10000000 {
+ 		};
+ 
+ 		infracfg_ao: syscon@10001000 {
+-			compatible = "mediatek,mt8195-infracfg_ao", "syscon", "simple-mfd";
++			compatible = "mediatek,mt8195-infracfg_ao", "syscon";
+ 			reg = <0 0x10001000 0 0x1000>;
+ 			#clock-cells = <1>;
+ 			#reset-cells = <1>;
+-- 
+2.45.2
+
 
