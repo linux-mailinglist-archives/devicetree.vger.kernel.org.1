@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-105909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90C47988445
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 14:26:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E13E98849C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 14:29:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B87FA1C22643
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 12:26:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA2511F231E3
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 12:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BFDD18C034;
-	Fri, 27 Sep 2024 12:25:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61D4918BC26;
+	Fri, 27 Sep 2024 12:29:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OoDp0xHJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dlkrZWa5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BF4418BC33;
-	Fri, 27 Sep 2024 12:25:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B12518BC1D;
+	Fri, 27 Sep 2024 12:29:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727439951; cv=none; b=lryV6eaznApwUNTaQI0Vxke2I2/8g+WpEEgYK/Lutq9iVrTfN8xCW/eaew1GChl2m6tlQY69x62toCaidklQjwlRN14j8JcOn3lzofUKG7tWrTMOrJ+QlAkxKpPUthV+AY5qqX0gmV9JXhkBC+u7fmtv0PL6C3205z1yHOvrHVI=
+	t=1727440168; cv=none; b=nqiMvE+/+yhoK02t/ZHOA8xos/JvcdjzSqOXOeTFaDDU5McdvqcjPc2c6f22bFJOc6ySKqQcVl66tPS3tN7Q2m7AgO/UwebyTohdKwF8eF9AsdIL2UHelsMsppDB3iNohPnVR9diHjBlN1w4zqWXHsK5Zli+iObLrj83aAI678k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727439951; c=relaxed/simple;
-	bh=5/aTywjszcFdL4TiAfPImD5MRBzQIeR2ebX5yRMrvjI=;
+	s=arc-20240116; t=1727440168; c=relaxed/simple;
+	bh=UDXihsRr5ZptKwJK6vosrDwZ/WY/vJSD1CSvxUAHb+w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K8Xowo9EN0cbw1lSXN4DUHXqbKZxYcuxgGaRtQW3D1BmiwcTJAU5MZWDyiapSThYav2hyrT5OKzHLADPkzAjNUIf32QCP6XU6iXaQu8xzO+k6KIXYT646MZn9gSYrjkiZSE1FsoJL+y59yirQYoFZDYXLU21lL9fblLMSft9zR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OoDp0xHJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D74EC4CEC4;
-	Fri, 27 Sep 2024 12:25:47 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IZHyu6Hk1vC2d84bPWEsId270WcnZbYnwvhHfQ29IkUItsYGbUbNBCwLSEIawTsgcWhqNqzNyBMs2j+mcI4DX2TCRnyEaVfRjEub3+NY2oO2lecv2YiK+oqEii+VEQqqh2uTW774amGd64sJOw9Jix55o1jSNuT31YkURzo5mIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dlkrZWa5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD7D1C4CEC4;
+	Fri, 27 Sep 2024 12:29:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727439950;
-	bh=5/aTywjszcFdL4TiAfPImD5MRBzQIeR2ebX5yRMrvjI=;
+	s=k20201202; t=1727440168;
+	bh=UDXihsRr5ZptKwJK6vosrDwZ/WY/vJSD1CSvxUAHb+w=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OoDp0xHJdzDLGjSJSXiZGs2QRci7oNMIVJEYl4ArK0EOAqe/7/0RhBVsrWSIhNbKf
-	 9AIztz3QJKvh6bP/e6Q5Fp3mtyVPFN9JrYnodkaiHnZdFVUY9iY80SQ7KgBNN48lVy
-	 5aXpoP09tOgIIoDcp9OUUh1U1O2CgxZICmAC7A9lgLtwvBILO3sxds6WQZwd9NGkkT
-	 HmRoQs0fEqvOmIdfox/4ScxUkfpM7m79YGZFHFZ6omRHxmVLw0t1fEYKXvr2HQDdCD
-	 st1X7Z0pVr7C8drMlpyGAXoAmDV2t5tQvpQmq0zzDzqvOpxgeTF1d7pplbQTMOaWci
-	 F9e2y7EndWJ2A==
-Message-ID: <6da6159f-10e0-42be-8215-1071cb22e25d@kernel.org>
-Date: Fri, 27 Sep 2024 14:25:45 +0200
+	b=dlkrZWa5AzwGmldMen1M2R42A1qQaJB4j3Hz+kHQPGEcd0f0oLJjHihywzKx1UjWF
+	 +Mzt7OHbnqJ476pFSO2sRe9nEcy0PhOhGapMd8iFBoLTLpjS1ZDB/eS8Uz4QHR+Or+
+	 MATqQPhzlMXKP83Ejwsak7R9TShPpUORhLlA8O1KH9ap4XMTocMjukp9ErQsZuotyT
+	 lKZhaXkEH2FeIMkNN/36QD6Utjd1R0Beon7x+qCRKb3OxRhSHfNpQChIckBVh4jd1N
+	 /3IO6zmeAelRLw8kTpXBImaglOtZdl/7OBum9H5HJCRHvJ3LdBAkrlQVJED7oA7MYh
+	 7h0Y34x27hy0A==
+Message-ID: <073f910a-763e-4e40-bdc3-6dfd84eb3721@kernel.org>
+Date: Fri, 27 Sep 2024 14:29:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: power: qcom,rpmpd: document qcs615 RPMh
- power domains
-To: Tingguo Cheng <quic_tingguoc@quicinc.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 1/4] ARM: dts: renesas: marzen: use interrupts-extended
+ for gpio-keys
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ linux-renesas-soc@vger.kernel.org
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>
-Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, quic_fenglinw@quicinc.com,
- quic_tingweiz@quicinc.com
-References: <20240920-add_qcs615_powerdomains_driver_support-v1-0-8846efaf9454@quicinc.com>
- <20240920-add_qcs615_powerdomains_driver_support-v1-1-8846efaf9454@quicinc.com>
- <30458916-90f4-4126-b5b4-a52f580c4fa7@kernel.org>
- <a0c4ba44-8cd3-419e-89cc-0c9cbfcbfda5@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20240927095414.10241-6-wsa+renesas@sang-engineering.com>
+ <20240927095414.10241-7-wsa+renesas@sang-engineering.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -109,42 +105,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <a0c4ba44-8cd3-419e-89cc-0c9cbfcbfda5@quicinc.com>
+In-Reply-To: <20240927095414.10241-7-wsa+renesas@sang-engineering.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/09/2024 14:16, Tingguo Cheng wrote:
+On 27/09/2024 11:54, Wolfram Sang wrote:
+> Using the inherited interrupt-parent is discouraged. Use
+> interrupts-extended to fully describe the interrupt.
 > 
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+>  arch/arm/boot/dts/renesas/r8a7779-marzen.dts | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
 > 
-> On 9/20/2024 9:15 PM, Krzysztof Kozlowski wrote:
->> On 20/09/2024 06:08, Tingguo Cheng wrote:
->>> Add compatible string for the RPMh power domains on qcs615 platform.
->>>
->>> Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
->>> ---
->>>   Documentation/devicetree/bindings/power/qcom,rpmpd.yaml | 1 +
->>>   1 file changed, 1 insertion(+)
->>>
->>
->> You sent within 30 minutes two independent patchsets touching the same
->> part of code, so you knew it will lead to conflicts. I don't get how you
->> imagine this to be applied. I suggest combining patchsets in such case.
-> I created a new patchset by combining the two patchsets into one to 
-> resolve the conflicts.
-> 
-> 20240927-add_qcs615_qcs8300_powerdomains_driver_support-v2-0-18c030ad7b68@quicinc.com
-> |
-> |<--Patchset 1:Current patchset.
-> |<--Patchset 
-> 2:https://lore.kernel.org/r/20240920-add_qcs8300_powerdomains_driver_support-v1-0-96a2a08841da@quicinc.com
-> 
->>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-And this?
-
-Please carefully read your internal go/upstream guides and in-kernel
-submitting patches before posting.
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
