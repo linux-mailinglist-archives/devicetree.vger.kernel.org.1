@@ -1,138 +1,134 @@
-Return-Path: <devicetree+bounces-105907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF14F988412
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 14:20:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 672F998843E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 14:25:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F226E1C22556
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 12:20:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5F49B21598
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 12:25:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99F2818BC04;
-	Fri, 27 Sep 2024 12:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC4A018BC29;
+	Fri, 27 Sep 2024 12:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FtvCBuZJ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Oxn3Nb3k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 387F818BBB6;
-	Fri, 27 Sep 2024 12:20:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 133BA1779BD;
+	Fri, 27 Sep 2024 12:25:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727439609; cv=none; b=g2y4bVOareh1xT4tv0CTXDb96wICDtsq1tVVTQNvoE3ajcODAP7WVMga9cDqKW1BsEYUkV/GnfrR6gtVFby9fGgAtokzDsSyb/6GskGTeocfO5HgZMArOMr6UZFNorBMRisIirwIpzGU5xnMO5RIbeZInF7MDBou9M2PjKaGk6I=
+	t=1727439943; cv=none; b=mrMIHUzYTw03NHfYVsAGqbeDCUslCT52J9neaPxxbNSqLgAqYdewjXrczxtS/v+pSREd075rUY5GcnfqJ0MJvkMoc8dnWpNc7VPzNEpkDlle19ASVxqVhmHRSeqY45mtbJtQtz+VoV9pgju/j0tO2bRzajv9BZuDUv3bh1bN+u8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727439609; c=relaxed/simple;
-	bh=WPNYO+xd1s1KN3jUa+JBRRpxKWaYwWSOMkkB8tCf+NQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QX2Psro8YHlBIPHwrAU6CCap6WkSGSejSG/vsznCYPuHNydFm1wIxG0s+jaskrmo14sLHUNkV1CSvI5nmUZEdBu2HI/BI5SNkd8mhvEEolPe3mKWKC6D+Y3W/fTtcvPhZbhbfiY+G/G1OIuDr5ipBo+RL3q+GNvwMqyXTfu3+8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FtvCBuZJ; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-20570b42f24so23842125ad.1;
-        Fri, 27 Sep 2024 05:20:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727439607; x=1728044407; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wmpHJeLs6NJdfwlzRVUknQADxAgUSEiuTv5BJcRJnFc=;
-        b=FtvCBuZJqQ1lZf6mSKiHpm2+DJgLbow9NCkWHV4IDQ3ktEL6VIv3M9fAx7r5tE0Svs
-         APTuIAx1/cTOVwhqXb2oGzeYneUJlzMbt4aFa6R+qTVYd/5KyVCr5FUzECEQS+unF+2d
-         VEs5P56IHZs8/W1tzSXTmsfUPvPyo8QVpT3Pynktn0/tEs4U0w4pnLHOgyeys+RBiV67
-         pTSnomoATzEHzge6MkcJ3T/7Yp/UawokYlnZTanboD2I6pqBpr/zaNQzTOkf0OPEtpxY
-         +zOOGXr/rFYwYc6GUaIXevn+dhoWown0Mpesi5DplM13G7lLXuq5bbT6uVNW55u+HRHL
-         6d+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727439607; x=1728044407;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wmpHJeLs6NJdfwlzRVUknQADxAgUSEiuTv5BJcRJnFc=;
-        b=wPIxAnASGJigz1jyaAMJEpZ8YOjpmKxLJEriVYjXCd++gQJ6anW0S0F5U12N8+WV8b
-         qzXNmG/lM/mJF83Q8mfxLBldRJfRtriJhUlorc6bTr9CcbXlNHSsYIC/EWDI3D1gagqf
-         nuksO3GJoFhbN9qNnbiUcSwnLFmw3+CPr56b61yvIrTUEJVNtTQ5zFY8PeGaWNsLVyTC
-         cnYDEue2s2hUdEGJFImpiMOsg7zH5B33bq5DQar50hBTEpShJkgP2COIf3pMTwrD2GJ+
-         gSp+sOhz4MWUyEgpG1BQ9z8rWjYXmB443hFqxVOIkriNTSvHdNoIxSUqVW4zv7GLEupM
-         qHYA==
-X-Forwarded-Encrypted: i=1; AJvYcCW2EmWJAe1RGAGbBic3BApC8gWcO70uT/cgf/DaTbbbDdblOTL9TvaA0C9lFredh476aFWq2lZKGMc4@vger.kernel.org, AJvYcCWzWQ3IBtWZFAYh8pht8PFYwKLkiifE56YjsXrS34FGyRMkMlVE9SUzYPwr4KPf2x1VmDNaDzSMVlgV8licFm8Xduo=@vger.kernel.org, AJvYcCXkY4r5h7EAWMq7BWlsr6WHfIDtZRHZ8WKTmeL6G3e6SaiBapHhpF/6aYEZQf6Dq59/Iun1yOt3m4IzwK2F@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5Nu1ne+RxcObONcW2ZQ01a0eolv5FrxGo7lQF+FhxHDXffuJ0
-	h+OTlucf12I1w73sTg9ebFIM1nsCKIpvjAaGYOoO7Qp09a9tl3w73ZftSz7JeC1rp/vgKEf2mxx
-	Tg3DyBdcbEhW2S2wyAjUVIOyNnNs=
-X-Google-Smtp-Source: AGHT+IG8xzE2YhDlqy6m9OCQv2i651ZoyrhJRmx3DU1y1XLHaGexnr0U8wiN8jW67VoZb0Kdz0KoguDZte066MqyFCk=
-X-Received: by 2002:a17:903:98b:b0:206:8d6e:cff9 with SMTP id
- d9443c01a7336-20b36be53e9mr53189825ad.4.1727439607242; Fri, 27 Sep 2024
- 05:20:07 -0700 (PDT)
+	s=arc-20240116; t=1727439943; c=relaxed/simple;
+	bh=U9TWvLV4SZiogvM28Bg89ipiAtD7eYtvuup/pgPR4wE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=TckIOfUuLHWE25DoSio0FESiBujGaeWTd2ehk6vYG0hSrHyEsEL4A2z8LPkNgbe9MfWC2ehjXLMUHr+SAa9N6UWIImROrDhTiaI1utFpawmfOiOCnvmBtNfcdmuLp15HX1A+3DHKJoaTwqVTQdXmVZQjRg8Vci3sQNbPi2AmnWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Oxn3Nb3k; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48R6kBuo003275;
+	Fri, 27 Sep 2024 12:25:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	xtCCTFQDBjjjsQDJEgXfFZwnFD5KhlZEr1Kh2yvnXIY=; b=Oxn3Nb3kkDFngdiS
+	jSqJVsSkVcfyXAL1idQwUQxDaVJygkdKh7GCAni7in+I5HxVucvNM+OC4lsYSgu5
+	2nicgVcB55oFhsXavlGAASoeHoedv6uG5m6x+ANRnhL8Ywmib95xk5tr7D5mQuKL
+	71OmQN2hblxrnoGvv42I+24RksZZIxx+df2quRFtHh6LB1RBpCYDeD5NAB66mz5f
+	696gAVAuUMaadQbkQh2cVKb69Q1Z/+yLOk+653j7pI3kiAG/he7SX8c+Bdd1yGfz
+	BKNLXjK6qADPDciZIF7K772wTSueTg/M1LcPErEP70V7D2bvd1XpDvT2eo0FA1ls
+	U0wiLg==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41snqyu0sy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Sep 2024 12:25:37 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48RCPaVC009427
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Sep 2024 12:25:36 GMT
+Received: from [10.231.207.28] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 27 Sep
+ 2024 05:25:30 -0700
+Message-ID: <5bae0888-7e48-4f88-93e0-db46074dea40@quicinc.com>
+Date: Fri, 27 Sep 2024 20:25:28 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240926180903.479895-1-sean.anderson@linux.dev> <cb716925-f6c0-4a00-8cfd-b30aed132fd1@linux.dev>
-In-Reply-To: <cb716925-f6c0-4a00-8cfd-b30aed132fd1@linux.dev>
-From: Adam Ford <aford173@gmail.com>
-Date: Fri, 27 Sep 2024 07:19:55 -0500
-Message-ID: <CAHCN7x+tcvih1-kmUs8tVLCAk0Gnj11t0yEZLPWk3UBNyad7Jg@mail.gmail.com>
-Subject: Re: [PATCH 0/2] arm64: dts: renesas: Add SD/OE pin properties
-To: Sean Anderson <sean.anderson@linux.dev>
-Cc: linux-arm-kernel@lists.infradead.org, 
-	Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>, 
-	Biju Das <biju.das@bp.renesas.com>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, linux-renesas-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: power: qcom,rpmpd: document qcs8300 RPMh
+ power domains
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <quic_fenglinw@quicinc.com>,
+        <quic_tingweiz@quicinc.com>
+References: <20240920-add_qcs8300_powerdomains_driver_support-v1-0-96a2a08841da@quicinc.com>
+ <20240920-add_qcs8300_powerdomains_driver_support-v1-1-96a2a08841da@quicinc.com>
+ <1e4aeeba-0d98-472d-aa58-8eff6a27a1e1@kernel.org>
+Content-Language: en-US
+From: Tingguo Cheng <quic_tingguoc@quicinc.com>
+In-Reply-To: <1e4aeeba-0d98-472d-aa58-8eff6a27a1e1@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: AvX46QHqT_Kv4id8bczL3p9z1H9oPRjD
+X-Proofpoint-ORIG-GUID: AvX46QHqT_Kv4id8bczL3p9z1H9oPRjD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 adultscore=0 bulkscore=0 phishscore=0 mlxlogscore=999
+ spamscore=0 lowpriorityscore=0 clxscore=1015 mlxscore=0 malwarescore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409270089
 
-On Thu, Sep 26, 2024 at 1:24=E2=80=AFPM Sean Anderson <sean.anderson@linux.=
-dev> wrote:
->
-> On 9/26/24 14:09, Sean Anderson wrote:
-> > Linux can configure almost every part of this clock generator without
-> > relying on the OTP settings. However, the correct configuration for the
-> > SD/OE pin cannot be determined automatically. Therefore, add the
-> > appropriate properties to configure this pin.
-> >
-> > I have CC'd some people who appear to have access to the following
-> > boards which use the versaclock5:
-> >
-> > - Salvator-X
-> > - HiHope RZ/G2[MN] Main Board
-> > - Beacon Embedded Works RZ/G2N Development Kit
-> >
-> > as I could not find schematics for these boards. You can help me out by
-> > (pick one):
-> >
-> > - Run the following command and send me the output:
-> >
-> >     $ grep 10: /sys/kernel/debug/regmap/*-006a/registers
 
-Without any of the patches from this series, for the Beacon RZ/G2 Boards:
 
-grep 10: /sys/kernel/debug/regmap/*-006a/registers
-/sys/kernel/debug/regmap/2-006a/registers:10: a0
-/sys/kernel/debug/regmap/4-006a/registers:10: a0
+On 9/20/2024 9:12 PM, Krzysztof Kozlowski wrote:
+> On 20/09/2024 05:39, Tingguo Cheng wrote:
+>> Add compatible string for the RPMh power domains on qcs8300 platform.
+>>
+>> Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
+>> ---
+>>   Documentation/devicetree/bindings/power/qcom,rpmpd.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+As comments in 
+"https://lore.kernel.org/all/30458916-90f4-4126-b5b4-a52f580c4fa7@kernel.org/", 
+I created a new patchset by combining the two patchsets into one to 
+resolve the conflicts.
 
-> >
-> > - Measure the voltage on the SD/OE pin on a functioning board.
-> > - Inspect (or send me) the schematic to determine the state of the SD/O=
-E
-> >   pin during normal operation.
+20240927-add_qcs615_qcs8300_powerdomains_driver_support-v2-0-18c030ad7b68@quicinc.com
+|
+|<--Patchset 
+1:https://lore.kernel.org/r/20240920-add_qcs615_powerdomains_driver_support-v1-0-8846efaf9454@quicinc.com
+|<--Patchset 2:Current patchset.
 
-The SD/OE pins on the Beacon boards are not tied high by default.
-They have an optional pull-up resistor, but it is not populated by
-default.
+> Best regards,
+> Krzysztof
+> 
 
-adam
-> >
-> > My suspicion is that all of these boards use the same configuration
-> > (SD/OE pin tied high) owing to their common design heritage. Thanks in
-> > advance.
->
-> +CC the people I meant to CC in the first place
+-- 
+Thank you & BRs
+Tingguo
+
 
