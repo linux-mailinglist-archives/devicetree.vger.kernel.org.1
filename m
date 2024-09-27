@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-105962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CBD998871C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 16:27:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62460988728
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 16:35:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CF68282D69
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 14:27:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 361D71F223BD
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 14:35:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E75284D13;
-	Fri, 27 Sep 2024 14:27:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6BF61465A9;
+	Fri, 27 Sep 2024 14:35:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kr3MeE29"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H8i4btJK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 506B818B1A;
-	Fri, 27 Sep 2024 14:27:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC18F8248D;
+	Fri, 27 Sep 2024 14:35:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727447267; cv=none; b=E3IfSbuWLteWdKSjWMRVY/2tvva51jQzARqr+pdIjpp38UqH47qgADSlYxRukOYQqCmSIF2lrhW64IEZmmLzl3kiqA6z4wlc/Ne95S0ZEb4tXGIeqE29X+tQzK+ZdVHDai6bPXieWy5jZIkRf/y+ddTkEdsEAWo9DboJ2ibn1mQ=
+	t=1727447704; cv=none; b=qBEBQtJGJIXkXDOMqDxe5p4kH9VwRCL8chDCIWQsevS7kwVM5fbW5yUBdTmNFiHcYsrB+cTG1sG/6jUwvq6oOO05WYhVgC9LX3B+bsrzp60TU5oq7JmAwAr3s0jfhVoJ3xKOUnrZCG+QbRinmK96XrIYoLVcbqPzF8ZA5i23t/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727447267; c=relaxed/simple;
-	bh=FxZxgtfgqfHDxs3AOvc6shkAVLFSDrbmr7JB/qqnWco=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Dyfa46ZOghh5mxTTt/JzUaeTQQc/ctapu2WH/M0IF7lAB88+PypwwCUdjC2iKssz6kuFkRvYctaJqHSScOy1T/9VtK/9SNvywkYzZkr1aSPz3o5ixDqQFUMUNdsHOMClJUhjk9Jhk3DIp4kcSUT7SgWbCqcC/VcGgKrPV3dr/zc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kr3MeE29; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD741C4CEC4;
-	Fri, 27 Sep 2024 14:27:40 +0000 (UTC)
+	s=arc-20240116; t=1727447704; c=relaxed/simple;
+	bh=c6DFyrTDOyFgnE5oy8Fypufr4Eipzb/YxNk57blAT1Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=urwGRH+njzT3pbN8XW4L4zbuG9ePd2rQy+t+YQXLh6pAGBEeVnCGekP2oSUeGlXqcKeJXN9RPtsc188LqnXcrfVfaBIgc+XkglBPpfUrzNYWK6Asaph02mFjWp8iHJIU89CQJAaRys3CTEZoIH701SYYAcw8ZK6+nl2B2sm4sCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H8i4btJK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AA4AC4CEC4;
+	Fri, 27 Sep 2024 14:34:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727447265;
-	bh=FxZxgtfgqfHDxs3AOvc6shkAVLFSDrbmr7JB/qqnWco=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=kr3MeE29xvsQXHtRIFLnzhbFSReUsFKqa3TrX6PLjYuvTV2h35qWua6EiKvRRHF/7
-	 g54iWlLTFL7TwwL9MCbUWnrjqGus8abP8HkYl3HzQ/dIj6P85v1tV9D+Nn2/OET6iw
-	 5vEfyDsB+lSqQKWcMgxfAQX7ufQSCDINStNqJ798X7ayF9thwZ6jyYU4BMVQpW7h3b
-	 Sz8iKTMCC8hY1tsNefIFSVn39CYVJTOAsrcMESowJnJ/b4nc9HZffXA5/1R/FjYj2p
-	 Wbio+4xEf9BRHCqVHncqRnig8BLFUmTme7WZkkAwmP39kiGsOknih2HTOwusCZVXjs
-	 fFkIs82QmXPTA==
-Message-ID: <374e7b60-d288-44a8-acc3-bec912e1d6b6@kernel.org>
-Date: Fri, 27 Sep 2024 16:27:39 +0200
+	s=k20201202; t=1727447704;
+	bh=c6DFyrTDOyFgnE5oy8Fypufr4Eipzb/YxNk57blAT1Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=H8i4btJK6GUo67PcYqZZEM9HUyAAq4JTE+kOkDqNB7CSpKImFVx1qtBSRuRBBc6rL
+	 YDRzLII19h4zTz/8emIk/EI++yRZzm8DcSPBk7OT7SNa6fh/F7DfFCkEdZVb4UijvS
+	 zTKC9U2EInzr8bSg3Ifjt8fgZbdmp/Jq9Xu4+P7iTzVp44NV/ebJjJYc5R0CiKgWSI
+	 V/aVB3R1zteOMguL2bw/mS9HoMGjxe7kHNrmbwGQEb1InGrzoaDWxlnE1/JGAjpHMP
+	 fgIcKtLdM79BCoTUnkqELL2iyicFDWOir4cSIYu/Wz34DmkNTNkrpVokn1JZRh3DnW
+	 zFL6lAXsg0+IQ==
+Message-ID: <9ea704e6-df1b-4dea-843b-008a3a7c3a67@kernel.org>
+Date: Fri, 27 Sep 2024 16:34:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/3] Summary of changes
-To: iansdannapel@gmail.com, mdf@kernel.org, hao.wu@intel.com,
- yilun.xu@intel.com, trix@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, neil.armstrong@linaro.org, heiko.stuebner@cherry.de,
- rafal@milecki.pl, linus.walleij@linaro.org, linux-fpga@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240927141445.157234-1-iansdannapel@gmail.com>
- <20240927141445.157234-4-iansdannapel@gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: mediatek: Add MT8186
+ Chinchou/Chinchou360 Chromebooks
+To: =?UTF-8?Q?Albert_Jakie=C5=82a?= <jakiela@google.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, wenst@chromium.org,
+ rafal@milecki.pl, hsinyi@chromium.org, nfraprado@collabora.com,
+ sean.wang@mediatek.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20240927122940.4190949-1-jakiela@google.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,20 +105,58 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240927141445.157234-4-iansdannapel@gmail.com>
+In-Reply-To: <20240927122940.4190949-1-jakiela@google.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 27/09/2024 16:14, iansdannapel@gmail.com wrote:
-> Dear Linux FPGA Maintainers,
+On 27/09/2024 14:29, Albert Jakieła wrote:
+> Add entries for MT8186 based Chinchou/Chinchou360 Chromebooks.
+> These two are clamshell or convertible with touchscreen, stylus
+> and extra buttons.
 > 
-> I did not found a way to use the struct spi_transfer to manage the chip
-> select the way this fpga programming requires. Since the chip select is 
-> managed by this driver alone, it may interfere with the communication 
-> with other devices on the bus, which I tried to make clear in 
+> Signed-off-by: Albert Jakieła <jakiela@google.com>
+> ---
+> 
+> Changes since v1:
+> - PATCH 1/2: Delete sku2147483647
+> - Link to v1: https://lore.kernel.org/all/20240925080353.2362879-1-jakiela@google.com/
+> 
+> ---
+>  .../devicetree/bindings/arm/mediatek.yaml     | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> index 1d4bb50fcd8d..47efd96e5659 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> @@ -239,6 +239,28 @@ properties:
+>            - enum:
+>                - mediatek,mt8183-pumpkin
+>            - const: mediatek,mt8183
+> +      - description: Google Chinchou360 (Asus Chromebook CZ11 Flip CZ1104F)
+> +        items:
+> +          - const: google,chinchou-sku16
+> +          - const: google,chinchou-sku18
+> +          - const: google,chinchou-sku19
+> +          - const: google,chinchou-sku21
+> +          - const: mediatek,mt8186
+> +      - description: Google Chinchou (Asus Chromebook CZ12 Flip CZ1204C)
+> +        items:
+> +          - const: google,chinchou-sku0
+> +          - const: google,chinchou-sku1
+> +          - const: google,chinchou-sku2
+> +          - const: google,chinchou-sku3
+> +          - const: google,chinchou-sku4
+> +          - const: google,chinchou-sku5
+> +          - const: google,chinchou-sku6
+> +          - const: google,chinchou-sku7
+> +          - const: google,chinchou-sku17
+> +          - const: google,chinchou-sku22
+> +          - const: google,chinchou-sku23
+> +          - const: google,chinchou
+> +          - const: mediatek,mt8186
 
-Start using b4... or use proper --cover-letter argument for git
-format-patch. Your patchset is not correctly threaded.
+These don't match your DTS. Which also means you did not test your DTS. :(
 
 Best regards,
 Krzysztof
