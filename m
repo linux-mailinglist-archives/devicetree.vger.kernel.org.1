@@ -1,60 +1,71 @@
-Return-Path: <devicetree+bounces-105824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66051988143
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 11:24:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB2C4988153
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 11:29:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 278C2282F41
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 09:24:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 622012819D4
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 09:29:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3323E18BBA3;
-	Fri, 27 Sep 2024 09:24:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D29B1BAEF4;
+	Fri, 27 Sep 2024 09:28:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oMUAkxCS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xr3Hvbz9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF3F616D9B8;
-	Fri, 27 Sep 2024 09:24:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D61681BA89D;
+	Fri, 27 Sep 2024 09:28:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727429092; cv=none; b=IqXhLaehsUajQlpFMEQOoRJ9E5JCqR8QuT1x6JEeGHUzxakXdzXuoA+lUI7OIMRbn4hkRikkudIoNZRj1hywF7oMjtz6nn9fIPcLp5cdroTPwljG84XK+N0vPqteFf2CpNoU4qZph664TSW+7ZwCkkf0Xa+RVCh4F40Ac0JFAIA=
+	t=1727429335; cv=none; b=mcSeTxWWYNzwm275QNDeqDdTvP05SRoD1vTv5SmfHmcVkQW+DZGmIlIdyMnUbocCUvpfvJ5gG7nBecTAh+/PWv6D/B2hZsV6nMWktuarb2JEVh9Ih2BlLILHrAKiFocRZAvfJp9DLZcqapYphFVupZ5WPu5VTApfpnpVlypIE2s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727429092; c=relaxed/simple;
-	bh=prAV8NCYOXfLCw33iIj+Y+TwoCH1xT9xCcNBQqqbOkc=;
+	s=arc-20240116; t=1727429335; c=relaxed/simple;
+	bh=tEADgN4+0MVD8NyE8u9DHCW1941Zple++xFgdtE7Lqs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lHD7vVQooNA+dqYIm9KgdszjLmLncj9tjHU5KfG2UqobjEmKyHm0NHsMB/uiHLqFOxgAQPjq4sr5DgyfO/2hbzb2rhStfEeNCKjfYGn0KBD0YD+iFYomjdeSPL+G7ZnPamHHemewPz2PGlPPCzoPHw5kQKNt59lWOoHBh9XmX/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oMUAkxCS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCBE2C4CEC4;
-	Fri, 27 Sep 2024 09:24:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SWod66k6NjDBjN7pUu4Sp7HqgMmUjzBTfGazZwZyUZbGsKJ++JzEFQ6yfVCKotaSa8ndBWUiyrms7JttA3cA6PED3QS4D/498IIhZyDg37rgMRcPllp9qgyvzduA7MGQbB5l7ltp81azZ/ZZk4wcnMZ5uI0BjkpoyKsFRG9MzbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xr3Hvbz9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4CACC4CEC4;
+	Fri, 27 Sep 2024 09:28:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727429091;
-	bh=prAV8NCYOXfLCw33iIj+Y+TwoCH1xT9xCcNBQqqbOkc=;
+	s=k20201202; t=1727429335;
+	bh=tEADgN4+0MVD8NyE8u9DHCW1941Zple++xFgdtE7Lqs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oMUAkxCSLaU9i4prSJ7nT57Jkiga3+cl+WYzt/9EmzVRfFWc2aE/UT5XJ5ngNGcKp
-	 1YX7SyjNVQjn89/i6aX/nBi8tBWDkEMVtuCT6OIQlm26DiszXybLfImFi6l8a0M3C0
-	 BaPEHOg6UK2vLtbfGXeOTvPiVx+4GrRE1Iqia02nDfyx3fPUkSnmiHkau3q5YH+xr0
-	 7USfHSngAvUNm+IVnyYaYNNvG+HxNXLCdo6TnYYqi9vAlSqcxeEjfaCAt4rtvHkRKC
-	 W+0bitPV2wB66aVbctVsn2vY+9AR2QEttgTvaNH3IjA0yjs7x9LK7qGCjl9ccUmnHe
-	 Odxn+Yex3Pc2g==
-Date: Fri, 27 Sep 2024 11:24:48 +0200
+	b=Xr3Hvbz9t2MSHH3v4Q8FmyZxHemGNFrG+e7jK5spLTweDQIHHfOukGsWd5qJPO2V5
+	 BmijwD7NKAcFaETkdLToPdAZAJhyXB3Y4Z7vOPUGry/pV1RQfWao72ENnh8tg03Y9E
+	 PcClg8MxJm/m+/LcaI2Wd6qmh1MxpR8O+Xm2fQlmbFo4Vtn0it4ZbLDkk/U2x4JBmk
+	 ASMGonfS6In7VYo9OrMOHFSx0vBUWPrQwRcXqYTQERRrdxfeL6hbSFIXtbRGo4XgAx
+	 BYQKSAm+qjgwsZp96nulVPwISp74jMAIIWEo//X8KMevoHvcDktw2yhlXv0uqGkFGE
+	 jqQrYJAXlgQ7g==
+Date: Fri, 27 Sep 2024 11:28:52 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-Cc: konrad.dybcio@linaro.org, andersson@kernel.org, andi.shyti@kernel.org, 
-	linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, conor+dt@kernel.org, agross@kernel.org, 
-	devicetree@vger.kernel.org, vkoul@kernel.org, linux@treblig.org, dan.carpenter@linaro.org, 
-	Frank.Li@nxp.com, konradybcio@kernel.org, bryan.odonoghue@linaro.org, 
-	krzk+dt@kernel.org, robh@kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
- flag
-Message-ID: <we3wmw6e25y6e4443ndrduurwvkkpvuw7ozrizuys6pwxppwfy@2uq7uda4evhd>
-References: <20240927063108.2773304-1-quic_msavaliy@quicinc.com>
- <20240927063108.2773304-2-quic_msavaliy@quicinc.com>
+To: Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>, 
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>, 
+	Tinghan Shen <tinghan.shen@mediatek.com>, Seiya Wang <seiya.wang@mediatek.com>, 
+	Ben Lok <ben.lok@mediatek.com>, "Nancy . Lin" <nancy.lin@mediatek.com>, 
+	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	Alexandre Mergnat <amergnat@baylibre.com>, Bear Wang <bear.wang@mediatek.com>, 
+	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>, 
+	Chris-qj chen <chris-qj.chen@mediatek.com>, 
+	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: [PATCH v3 2/5] dt-bindings: iommu: mediatek: Fix interrupt count
+ constraint for new SoCs
+Message-ID: <bilc7elacctsvr3eeqi5n45loy2w3qnzymwwhytlaeb3bmn4u7@thakmicixlko>
+References: <20240927065041.15247-1-macpaul.lin@mediatek.com>
+ <20240927065041.15247-2-macpaul.lin@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,55 +74,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240927063108.2773304-2-quic_msavaliy@quicinc.com>
+In-Reply-To: <20240927065041.15247-2-macpaul.lin@mediatek.com>
 
-On Fri, Sep 27, 2024 at 12:01:05PM +0530, Mukesh Kumar Savaliya wrote:
-> Adds qcom,shared-se flag usage. Use this when particular I2C serial
-> controller needs to be shared between two subsystems.
+On Fri, Sep 27, 2024 at 02:50:38PM +0800, Macpaul Lin wrote:
+> The infra-iommu node in mt8195.dtsi was triggering a CHECK_DTBS error due
+> to an excessively long 'interrupts' property. The error message was:
 > 
-> SE = Serial Engine, meant for I2C controller here.
-> TRE = Transfer Ring Element, refers to Queued Descriptor.
-> SS = Subsystems (APPS processor, Modem, TZ, ADSP etc).
+>   infra-iommu@10315000: interrupts: [[0, 795, 4, 0], [0, 796, 4, 0],
+>                      [0, 797, 4, 0], [0, 798, 4, 0], [0, 799, 4, 0]]
+>                      is too long
 > 
-> Example :
-> Two clients from different SS can share an I2C SE for same slave device
-> OR their owned slave devices.
-> Assume I2C Slave EEPROM device connected with I2C controller.
-> Each client from ADSP SS and APPS Linux SS can perform i2c transactions.
-> This gets serialized by lock TRE + DMA Transfers + Unlock TRE at HW level.
+> To address this issue, update the compatbile matching rule for
+> 'interrupts' property. This change allows flexibility in the number
+> of interrupts for new SoCs like MT8195.
+> The purpose of these 5 interrupts is also added into description.
 > 
-> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+> Fixes: bca28426805d ("dt-bindings: iommu: mediatek: Convert IOMMU to DT schema")
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  .../bindings/iommu/mediatek,iommu.yaml        | 25 ++++++++++++++++++-
+>  1 file changed, 24 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
-> index 9f66a3bb1f80..3b9b20a0edff 100644
-> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
-> @@ -60,6 +60,10 @@ properties:
->    power-domains:
+> Changes for v2:
+>  - commit message: re-formatting and add a description of adding 5 interrupts.
+>  - add 'description' and 'maxItems: 5' for 'interrupt' property of
+>    'mt8195-iommu-infra'
+>  - others keeps 'maxItems: 1'
+> 
+> Changes for v3:
+>  - Refine the description for 'interrupts' property and fixes the compatible
+>    matching rules.
+>  - Refine commit message.
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> index ea6b0f5f24de..10e2bb0f0704 100644
+> --- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> @@ -96,7 +96,13 @@ properties:
 >      maxItems: 1
 >  
-> +  qcom,shared-se:
-> +    description: True if I2C needs to be shared between two or more subsystems(SS).
+>    interrupts:
+> -    maxItems: 1
 
-The "SS" and subsystem should be explained in the binding. Please do not
-use some qcom-specific abbreviations here, but explain exactly, e.g.
-processors like application processor and DSP.
+This does not make sense and was not here at v2. Keep constraints at top
+level.
 
-"se" is also not explained in the binding - please open it and look for
-such explanation.
-
-This all should be rephrased to make it clear... We talked about this
-and I do not see much of improvements except commit msg, so we are
-making circles. I don't know, get someone internally to help you in
-upstreaming this.
-
-Is sharing of IP blocks going to be also for other devices? If yes, then
-this should be one property for all Qualcomm devices. If not, then be
-sure that this is the case because I will bring it up if you come with
-one more solution for something else.
+This is how variable-length lists are created:
+https://elixir.bootlin.com/linux/v6.11-rc6/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L127
 
 Best regards,
 Krzysztof
