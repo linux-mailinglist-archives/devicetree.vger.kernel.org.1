@@ -1,81 +1,88 @@
-Return-Path: <devicetree+bounces-105975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1A3C988A80
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 20:55:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83FBC988A87
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 20:56:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D3A01F25355
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 18:55:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB7CB1C230E4
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 18:56:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 020A41C331E;
-	Fri, 27 Sep 2024 18:54:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88CCC1C462A;
+	Fri, 27 Sep 2024 18:54:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BMeX4l2y"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nHPHv3HK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452E21C330C;
-	Fri, 27 Sep 2024 18:54:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCDDF1C4609;
+	Fri, 27 Sep 2024 18:54:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727463247; cv=none; b=XDBTqV2vTSW5KL8ktlV88SQmQFQym/5UeIdvm8+qXPBvM2BVZUaKsCEkEYvlUfmVh4hh2aIeO8qxI5I6V2jgCSKbFMcX1Xw8PLTLh/0taPTLb+kILsTxFaNz8up+qYzGy4K2RMTAqg8VejdjEZFqn6+oiN7nY5Mo2BqdAbpMaRA=
+	t=1727463254; cv=none; b=f7eHG8XinBe+Bz2PqrMRpj87D4JJGKDNkbDDitLrcAOqJ566HmqEwUZ7t8hlsc+2dhbDnvg7XLP6JEP2DD8/jVreIC/Qgm4PgdCN6WXtSZTnv7Yo+vtLxrlEoTFtMbjO2IMjg+W8QEAD6HJyYTmQRuoKDXP0fCCWvhuXjL8A6qA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727463247; c=relaxed/simple;
-	bh=RL/oXS8HT/W7F9kFa8WXbFROZ++mPP9IRzr6gEiSpFQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fSQlje1eKVGcDaV9UtbbU/6ciSR/6FuptBAbngKX3+au8+DIg4Y8EfVelTs/pPs7Bpm1vKzoey0QDCDGvoCXn4nQ27yUdEQkZFFxfOLpmT8THCeD+bKRHt3ebQ5Mg6DTquXMrDVkbrE9v7jWdldJtHTaQaL3fWuMTsbHK98OdFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BMeX4l2y; arc=none smtp.client-ip=209.85.208.45
+	s=arc-20240116; t=1727463254; c=relaxed/simple;
+	bh=6Gc297kbohd1KXyHYcOXcYvV+7M6wU2fvd38r1y/JHM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=f4qjUS478Le6Rzgp0oQJmoZsIUmKgfI4ayoqJwGbH2p0UnUFB45ejtHilaWLVVg4xWuNgpYLcWYGYXAKGrwgk/yltczbS7/SpCO0+VveRLHPoAji/2dQXoxOaa/kM7Gi/YmPykKuGa7CdDw9cIbviaPm64deBoQUBXJFWkn2Y20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nHPHv3HK; arc=none smtp.client-ip=209.85.167.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5c88370ad7bso1293247a12.3;
-        Fri, 27 Sep 2024 11:54:06 -0700 (PDT)
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5366fd6fdf1so3150301e87.0;
+        Fri, 27 Sep 2024 11:54:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727463245; x=1728068045; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=gINxRe+ASYqtepoVoa4Hly4r/EQvvxkKq3TYC82Kds0=;
-        b=BMeX4l2y6Lo9cn2+qw6CA8ET8fu266tFBYu1UUdORb6yQ6L3l7OgylgzYuOHTv3nJ2
-         8yTgr9hxx9YpdejRp4HuzoNcsB2CykJ/rz6JcNQVDY42NVMmi5Gl0hR2uYI8kzAyDrlv
-         M2jQUMuZ/MQ4Zv4Vc9/fPg2CflxS/2I0tcr0j7YGn3k+PJQ6R5RAZe98anEf1TKdILq0
-         3AOY1Hn/U+9MCoctQlLuD3ASX71iIdo127BfqCh2tDPHz5vhlHRVLduOAl6bRrpCFXKF
-         W2XT1s9bii61LFYbNyTCN/nnn+nIvHsubQm0LZeLZ4vtBA+mQCW9Vmx/EEHeiDjLuKly
-         H9tA==
+        d=gmail.com; s=20230601; t=1727463251; x=1728068051; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=snynujVqPkbeH/0vNGxwh5Z8PvbFt+V17/BQvx0Ptb4=;
+        b=nHPHv3HKLPfbbhV0f5pRV22/3qAxOwwHTLF3gdFUroxeWQPu/PhMLiCrAcj8qUVA2+
+         ip2R2AixCwQKQQxY9nP6mxScaXgto9uXD4z0t8ry7PI26Hk35oLdCn9rOwuk8TPA55SF
+         MgpKrpzzcKtK0zQ8NrjdeoBLuO0IPZ0MzsCFqlfAaxjeDhwq9a7oemcpEESShPSZ0wv4
+         EvJxxRAIhPdOirq54p7zn0Xqg7X8RsHEIy7/yIOMtg4i5j6JIgTScE577krs5D8+0jIK
+         Z0RSYnUHX6sOKa7pgF/EICVIKGzobl5YvupiRBECv5/x377B3Bs0lc9orMEIb4ZG2OuM
+         lCTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727463245; x=1728068045;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gINxRe+ASYqtepoVoa4Hly4r/EQvvxkKq3TYC82Kds0=;
-        b=tmN4rjkElAs0WjGyGnC4nERNfEZuV2+JPJ5qWzPMn9XYM1GTpCIn30QjQ2l2OTJ7kZ
-         lYntEh5mHGSY7m0L6HHXi0ZHCc8giig2uGiKvMY1bA9q63aEZewtjYESUIt+mxP7+erh
-         v0IcRsZWX865dsSOVLV+Vgk76LBb+FrNgdKqhMQ1Oas+CCMwXogADfYgHL6AS0QGTP0I
-         As3Nt/XMYcE+bZM8K4nLzBpDfACQ9K7VrSFXbF8vdCq1/gBea82ScB3qsumvKw5nMieP
-         dHcaWf2ZBzHrwzzi8svSjAz9ZO4lkrXKWeUsbAPp7LLnZ3lSncg7T0/5reNbErgJ0Per
-         oybQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWNWZnbKPFwLfmlpUiRqTV0BIvGfhIq3QI9UKOUfbKjYWOVro8kU8TaITuwkCi1SL+zSvurrVWIKZ4eMco=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzEfpfSmtRwa/aC4B4JlRe6Tw8zSemIr/DKE8gRhblcxSktDe9s
-	IjlkvAcEBOQiCPb0ENXzGstDBTsEGk6/NlnOXdIcG+lIHGaSext8
-X-Google-Smtp-Source: AGHT+IGPftOepGRLoDTnihg6bcpLgsR5r3KDRKKWvBIB5J4B4iX6OcAQNwhbRzPhxLJMXNogQEkqpg==
-X-Received: by 2002:a05:6402:1d4e:b0:5c7:20f9:f744 with SMTP id 4fb4d7f45d1cf-5c8824ea530mr3446185a12.15.1727463244292;
-        Fri, 27 Sep 2024 11:54:04 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1727463251; x=1728068051;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=snynujVqPkbeH/0vNGxwh5Z8PvbFt+V17/BQvx0Ptb4=;
+        b=dQY0d3VnVIfNbjuadoJaHWPmC2vPBpv6VXugADkP/ObEI/bX7N8g/a06b9ArJs47Pt
+         Cn28yPk2oLzHgI93/lyASfvrvr7z6ngpk/SkDrNsI3sEbU47WDmrWk08searFzuFVk47
+         X/2PgIRVr05EHb+Xdsing/8m2+Nfliz6Hc2ZSU6Lt24yl/zh2hV3spj/MCE+y2cT2Ty2
+         gCaTISA4Ubq9yq8lmRSM7uZdsw41Yqo7/O+DcYkLpw+/tG5WPHDBzgUZF0SK+TMx4ap8
+         31jSdK2/0M9R9BkijjFgUbl6ByTtrK7j4KGcpEQS+O/4PC3yfhjeQCM8+CEuW1MXDZkj
+         0bgw==
+X-Forwarded-Encrypted: i=1; AJvYcCUFqxZA8vcqzIgVb05P4hLwgbSFLiHU9NL2JGFkZzlm52o2OSEZzTjhoQjuf0K4A6hqyOZhgxfCpgRP@vger.kernel.org, AJvYcCWU+h4PWYfnmryth7mgH5QjZZXq1hbLTj0BZ3lF2AGK7/ahBqbrJ7fh+50zPsFIlnQPLtpDdsqd4E+LQYjC@vger.kernel.org, AJvYcCXmSKr/Pu2GLPGIg3VQeSVOTly+/CPY5J3SItMtgi/7kLlZzIfo9h8CrsEzpHHHhqU0MKQBG7SrAf0AgCsWUw==@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZmI2oYWVQs5ZQ/fIOFOTW1039Rj8avIIaFJDMKxDHdj8mOOfX
+	HjVOmUS/hKlcmufjUHjUBqeG4r+1PlRmQBgA0NhbBTofzIAJhv6pq1OqM93u
+X-Google-Smtp-Source: AGHT+IFYQl6lXrEizrf/3BI7raR0KcP8q4zRY8Z5grxJJrQD8/Hc//8cRFABj5z6aQEDWztSxSeRfw==
+X-Received: by 2002:a05:6512:12d6:b0:52e:9dee:a6f5 with SMTP id 2adb3069b0e04-5389fc70e87mr2919353e87.46.1727463250460;
+        Fri, 27 Sep 2024 11:54:10 -0700 (PDT)
 Received: from localhost.localdomain ([2a02:a311:80b0:1c80:9433:9060:39fc:2954])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c882405d39sm1434704a12.18.2024.09.27.11.54.02
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c882405d39sm1434704a12.18.2024.09.27.11.54.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Sep 2024 11:54:03 -0700 (PDT)
+        Fri, 27 Sep 2024 11:54:09 -0700 (PDT)
 From: Maya Matuszczyk <maccraft123mc@gmail.com>
-To: Maya Matuszczyk <maccraft123mc@gmail.com>,
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
+Cc: Maya Matuszczyk <maccraft123mc@gmail.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] dt-bindings: platform: Add bindings for Lenovo Yoga Slim 7x EC
-Date: Fri, 27 Sep 2024 20:53:40 +0200
-Message-ID: <20240927185345.3680-1-maccraft123mc@gmail.com>
+Subject: [PATCH 3/3] arm64: dts: qcom: Add EC to Lenovo Yoga Slim 7x
+Date: Fri, 27 Sep 2024 20:53:42 +0200
+Message-ID: <20240927185345.3680-3-maccraft123mc@gmail.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240927185345.3680-1-maccraft123mc@gmail.com>
+References: <20240927185345.3680-1-maccraft123mc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,88 +91,54 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This patch adds devicetree binding documentation for Lenovo Yoga Slim 7x
-EC driver.
+This device has an EC on i2c5 bus at address 0x76, driver for the EC was
+added in a previous patch.
 
 Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
 ---
- .../platform/lenovo,yoga-slim7x-ec.yaml       | 50 +++++++++++++++++++
- MAINTAINERS                                   |  5 ++
- 2 files changed, 55 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/platform/lenovo,yoga-slim7x-ec.yaml
+ .../dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/platform/lenovo,yoga-slim7x-ec.yaml b/Documentation/devicetree/bindings/platform/lenovo,yoga-slim7x-ec.yaml
-new file mode 100644
-index 000000000000..32f8a0b5d667
---- /dev/null
-+++ b/Documentation/devicetree/bindings/platform/lenovo,yoga-slim7x-ec.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/platform/lenovo,yoga-slim7x-ec.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Lenovo Yoga Slim 7x Embedded Controller.
-+
-+maintainers:
-+  - Maya Matuszczyk <maccraft123mc@gmail.com>
-+
-+description:
-+  The Lenovo Yoga Slim 7x has an EC which handles some minor functions, like
-+  power LED or some special keys on the keyboard. This bindings describes
-+  how it is connected
-+
-+properties:
-+  compatible:
-+    const: lenovo,yoga-slim7x-ec
-+
-+  reg:
-+    const: 0x76
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |+
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c5 {
-+        clock-frequency = <400000>;
-+
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        embedded-controller@76 {
-+            compatible = "lenovo,yoga-slim7x-ec";
-+            reg = <0x76>;
-+
-+            interrupts-extended = <&tlmm 66 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 00716c1faff6..0d4bfdde166d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12902,6 +12902,11 @@ S:	Maintained
- W:	http://legousb.sourceforge.net/
- F:	drivers/usb/misc/legousbtower.c
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+index 3c13331a9ef4..63b627f60ec7 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+@@ -536,6 +536,22 @@ keyboard@3a {
+ 	};
+ };
  
-+LENOVO YOGA SLIM 7X EC DRIVER
-+M:	Maya Matuszczyk <maccraft123mc@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/platform/lenovo,yoga-slim7x-ec.yaml
++&i2c5 {
++	clock-frequency = <400000>;
 +
- LETSKETCH HID TABLET DRIVER
- M:	Hans de Goede <hdegoede@redhat.com>
- L:	linux-input@vger.kernel.org
++	status = "okay";
++
++	embedded-controller@76 {
++		compatible = "lenovo,yoga-slim7x-ec";
++		reg = <0x76>;
++
++		interrupts-extended = <&tlmm 66 IRQ_TYPE_EDGE_FALLING>;
++
++		pinctrl-0 = <&ec_int_n_default>;
++		pinctrl-names = "default";
++	};
++};
++
+ &i2c8 {
+ 	clock-frequency = <400000>;
+ 
+@@ -794,6 +810,12 @@ &tlmm {
+ 			       <44 4>, /* SPI (TPM) */
+ 			       <238 1>; /* UFS Reset */
+ 
++	ec_int_n_default: ec-int-n-state {
++		pins = "gpio66";
++		function = "gpio";
++		bias-disable;
++	};
++
+ 	edp_reg_en: edp-reg-en-state {
+ 		pins = "gpio70";
+ 		function = "gpio";
 -- 
 2.45.2
 
