@@ -1,202 +1,198 @@
-Return-Path: <devicetree+bounces-105965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 018EE988792
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 16:52:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A68D39887B4
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 16:58:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 746351F2234D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 14:52:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24E8D1F224D1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 14:58:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 407AF1C0DF8;
-	Fri, 27 Sep 2024 14:52:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3269F1C1730;
+	Fri, 27 Sep 2024 14:58:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LpFybpCq"
+	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="U/BHstmX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2065.outbound.protection.outlook.com [40.107.241.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FFB21C0DF0;
-	Fri, 27 Sep 2024 14:52:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727448757; cv=none; b=I2dwKsoUrzeC7s0sl1emKW7SxcTQ0M+SdmCkm88y8OyAPbChtAUuUyiD/q0jsrUBXN1WiiqqgsU0loXlLi48+2/3y7RzFmIfOgQ/BvXqC31D8x+l2lt9e5gPH35x/5iqFpQhgxBfz3JJzDZ0cXDWi7CxKv74URNM90DfQViY+/g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727448757; c=relaxed/simple;
-	bh=gDwgLjsgEbVK6CAyiM/XC4tlQtgHp+sr8EE3XMvYS1o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ARSCLMulwsFYHpF/Wd0PZ/A5ISHTgWp7BLG0rS/+Ic61ZG6z4EQB/JcEOCPqiyrLuCEn4skjIff1okJaBfvIjHx5nsaqVIkkk/MTftDDMm0UZJIH4T6nDf9vrNyXAw0vr/DIj0wWSsGPfsQldyYAsIbzDXlc/WwSHzHLE1GYS1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LpFybpCq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92FF5C4CED0;
-	Fri, 27 Sep 2024 14:52:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727448756;
-	bh=gDwgLjsgEbVK6CAyiM/XC4tlQtgHp+sr8EE3XMvYS1o=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=LpFybpCqnFA6+C6gS+W/DRPRA05bJjtJusc6ZI8dESfsW4Bn26AuZ8Mmx7ZReOECo
-	 GrQonou4zP8OqRft0P7hCVeHkllH3eUvZIyVJRQhk1vR1vakq/a4yrLwwQ2CM4V3MT
-	 kzwhNqksp/On5K2/zcOMg/p9jhDZK2qb2ept9NOUUPruT04Zj3UiAnjdrEF08uW0Fq
-	 0OyBkYDV9u5ehoAG4KbwPlj2EfEXAyWrg1i0iLvg7pIKgMTKO0ScuSwnhZco1C2NUc
-	 7FeuP8uxincskeUTOmfoR5s1PpJqG/1g02BW4SkgBLSne9rUyT+cGdmKDut3q9doBc
-	 NHPtjtHXQ1YcA==
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5366fd6fdf1so2872021e87.0;
-        Fri, 27 Sep 2024 07:52:36 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUaK1q82xZQWyAUFxfW77OehMEX3AM8K3BXG02Fb7JcQdhq4n74zIYkE70qMZEKJQSyT1UmTfUQyVsd@vger.kernel.org, AJvYcCWvkoh/tuoxSLeREdKJL6pug2qZ9nVK9K+eKlVFV79dxiWgNwaVq/iz9/rLaB5UhZIONsN2isnIZhWZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcSOvDtjSrLCElwuy/Knmh0Xetp6VdzViPMIYAxvsKPyO42lI+
-	Lh8A3CY7PdlExbErCJqOR+TojY1AiU+DUhBg1034TgqzDPnNfyejmT9GzNoioFrA1FozaRgMZj1
-	rtQ0prWiYkyYhGtu5tH5jWavLaFk=
-X-Google-Smtp-Source: AGHT+IHb8xgqd7Gm6Y55ygBHuwhYVS4X0q4tFLNa0w8W2c5fHVscGYifd8lNeY6zB2uUsxl35QFzqU27pcJ8AY/skp0=
-X-Received: by 2002:a05:6512:33d3:b0:535:6892:3be6 with SMTP id
- 2adb3069b0e04-5389fc7fe55mr2285769e87.54.1727448755139; Fri, 27 Sep 2024
- 07:52:35 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1D391C172A;
+	Fri, 27 Sep 2024 14:58:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.65
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727449101; cv=fail; b=CmfxkoUeXGofe/9C3JVH3+ZM0iGzSq/ix88SBuK0J/FD2ciiyL0eNVzPyd1mFcm+Hnc5CbS9dhRu7a+DTCF8PvyFHndSw8iSXmecV7LEHgy02I8nIObRBdmHad26exdgXe38vz0qo++S6DVsJQw52W7kX4/7ykZ4lR6K9xq9TaY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727449101; c=relaxed/simple;
+	bh=1dRmZswAg6NoiKmyMrqMg9I/N2V5MyjviSOZoUY31zk=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=ixVVGels0hO1YFMDbX4GeoCAnWzcQdnDHpZTL44aGIosP2xAPv0ZZAbca9a658ot9fA5ldU8vPyioovTHEZoFL+/fE0Pad/cjbfzB2/Xbxu8E8QtuP/ThxFHkpdAZyVEP726M9lJe2J7j9xm2hi6wLnf6c/kQU4oF68rQPzBbSQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=U/BHstmX; arc=fail smtp.client-ip=40.107.241.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=v731WUWpl2ci552+qttFSjgax92zwJybgNzQCC+FPDE1lFF1ILCDoOLALApbPebxn8XZeb+LuHl3AZWT8lDgPAIP87Pn96ZXMXfyK+ZAHUg08wLE6rWahxNIn4PewVAQMxip5hBGeSGTprTXyfFF6lfbYyGdxS7atCp+gPbhE7MAV7fcHASWC8rAvt6j+O8ggL3hqKcu8PaJQ080dbdg8D5dyKJYzYPFAkznbCpdVVy/HkOZKPIc8hcv+Ryldfdy/+y2R5vKuBXFGZGJsSlmh7ztU2dGkzbwO6pFOl4gjXEp9cXuwpeBJXTCpafHuRNxJXQYJzxKerSZfOGakQbNYg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fdBhvxwRmJCjfv5jF8yAl2AC9ZuNdT/cokZimrMtSa0=;
+ b=FphXzNWbRQedVb0J1ufH8lwRVuSRcYSteyFt7wsU/Py3ePdbi7If/Qk3GpRgQCJBttsRAces+8GqTq6GmdvGOSE+2YfNzfyKGsH6NTtp8r6s3RnTve6PY6bHLBpoN/ekL8WREi9nN8jA378M4qS9NRkSZoWVGr+8UGVkcHlg2HM7qohrfHxiNQnYFc3qglaTOrX4C1FQQZ50TjjOxkK5B7lRK+6Kza8HCONBRunNk0l+ulsfhw1OolD2eKMdxKGmJZrdEZ/ESKIMnaLd+GZasaJ1I20hbjBniXv5EDzb2IWZsw2WIPsk0ieaj1ehASyi/73jE+0rswR9r3/BpMP/8w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
+ dkim=pass header.d=cherry.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fdBhvxwRmJCjfv5jF8yAl2AC9ZuNdT/cokZimrMtSa0=;
+ b=U/BHstmXG0QAHjV2pRzUu8IH+NKqyhHah70gGat+Su1kGo5ddcmsMP2RyjMhRKDiiB+MBoBktIjM3HpVdOrIxapvo3Uqn0fLiQmWjtnJc16133fqmU1DJBD+dS2E8JrLLKFtb0bejqpysaiOAXI/UR4bDy1/EvhT6QIta7DrYxc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cherry.de;
+Received: from DU0PR04MB9562.eurprd04.prod.outlook.com (2603:10a6:10:321::10)
+ by DBBPR04MB7692.eurprd04.prod.outlook.com (2603:10a6:10:1f6::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.25; Fri, 27 Sep
+ 2024 14:58:13 +0000
+Received: from DU0PR04MB9562.eurprd04.prod.outlook.com
+ ([fe80::ad4d:8d53:1663:d181]) by DU0PR04MB9562.eurprd04.prod.outlook.com
+ ([fe80::ad4d:8d53:1663:d181%7]) with mapi id 15.20.7982.022; Fri, 27 Sep 2024
+ 14:58:12 +0000
+Message-ID: <df6b9303-155e-4796-adb2-e05c7e76e289@cherry.de>
+Date: Fri, 27 Sep 2024 16:58:10 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 3/8] dt-bindings: hwmon: add support for ti,amc6821
+To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Quentin Schulz <quentin.schulz@cherry.de>,
+ Peter Rosin <peda@axentia.se>, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Heiko Stuebner <heiko@sntech.de>
+Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+References: <20240906-dev-mule-i2c-mux-v8-0-dbd28a150e41@cherry.de>
+ <20240906-dev-mule-i2c-mux-v8-3-dbd28a150e41@cherry.de>
+Content-Language: en-US
+From: Farouk Bouabid <farouk.bouabid@cherry.de>
+In-Reply-To: <20240906-dev-mule-i2c-mux-v8-3-dbd28a150e41@cherry.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR08CA0266.eurprd08.prod.outlook.com
+ (2603:10a6:803:dc::39) To DU0PR04MB9562.eurprd04.prod.outlook.com
+ (2603:10a6:10:321::10)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240923075704.3567313-1-masahiroy@kernel.org>
-In-Reply-To: <20240923075704.3567313-1-masahiroy@kernel.org>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Fri, 27 Sep 2024 23:51:57 +0900
-X-Gmail-Original-Message-ID: <CAK7LNARrs18T74-+JOnLCPqP1-nJEnVaOAGOZVDOvxEH0y2_pg@mail.gmail.com>
-Message-ID: <CAK7LNARrs18T74-+JOnLCPqP1-nJEnVaOAGOZVDOvxEH0y2_pg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] kbuild: move non-boot built-in DTBs to .rodata section
-To: linux-kbuild@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org, Andrea della Porta <andrea.porta@suse.com>, 
-	linux-clk@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>, 
-	Brendan Higgins <brendanhiggins@google.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9562:EE_|DBBPR04MB7692:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3e54c281-fa0b-492c-69b9-08dcdf04cf1f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Z2xYeWhaQXd4elFKSEg5RXoxY1pYZ2FUOTFwYnpmTXlXV0pSMjVBWkRTTWVv?=
+ =?utf-8?B?eVE2ZExBd200anVvc0x2dUdJYTNRWVg4QVJodm9uYTVzNE5EOFNvbHk5YUlx?=
+ =?utf-8?B?dzUzOCtvR0ZxdjZRUXFKa1pRQ2Qvbk54eTNTSDlhTWFiSFc4WHE5VCtpVEZP?=
+ =?utf-8?B?RjQ1aVJxcCt3Y1RJa1VsdG1laHU5TXJadnZHQlZFaCs2SmFTcEhpenFaY0pH?=
+ =?utf-8?B?eDkzTWxGaS9xb2JpUlpJUVFjK3FsRVoreW5yWEpCUTZIdmw4b3QySDRpOWhD?=
+ =?utf-8?B?QTJGby9rQ1pLMDRjZ053ZGtISzhnWWdlNDh5NWQ5NG9zbmVLSklpRERzMnpw?=
+ =?utf-8?B?ZkRUbHJFZ2NBa0RvR2RWMDNzNWpQNW5KQ01Fd3kyY1lvaitjMGxjVDBJNDVJ?=
+ =?utf-8?B?eVM2RGpFRXZ2MEJDeGhEUDZGR0ttMThLQ0gxaG1JT3FBSGJJWklwWUpCU0tR?=
+ =?utf-8?B?ZzMxTjVXMmdCRWxKekxYMzdISlNNVUQ4akJUbzZOOG5NOFNZcjRJT0M1VWZh?=
+ =?utf-8?B?MTVIZ0U4dE1sbXVzOTVqRTYwWXVnN3Mwbk9JWlVHTTFxMlZqcytaMmgycEtF?=
+ =?utf-8?B?eW9HbGlUVTA2a2J4a0JkUVJHZjB0cXBDZ1o5WlFxcm1TUTg3S1d0VC91SmRu?=
+ =?utf-8?B?VXV5N2diZ1lmVWUyWjJlcE1lTUtyQVBmT3l0THpCYXJsUWtmYWF1RXNDRk9Q?=
+ =?utf-8?B?Z2JWQ1VLdCtGdDcvbmlDaWhhb1p3b3IyYUhNMUlKOUc0WDAxOTRvT282OS81?=
+ =?utf-8?B?MFh6bGcyVmdUNUNjbE9kWitZOHR1MGZOWXdlR0tlQTZRT3hTSHY3dGs1QkFi?=
+ =?utf-8?B?Ry83SDk0Kzc4SytrUjEvUUNCcUhzSlNGNFBVV0hWRTZ3TzVGc0lqVjYwS255?=
+ =?utf-8?B?cDdWRzBIbE5TZUFKQkF1MmRGUUpEV2tlWTlJM0VndnE1eWFwcWRzK1Nzejdv?=
+ =?utf-8?B?TndCMmdVUXFndGJnd2RhQUV0QktxUXdwTEJPeW52YnZET1BsNHhPNlpiYTRZ?=
+ =?utf-8?B?OEUwRUYzSVRzK1NaNTNwVHRIbGN0MjlWeGVnK2ZRcU50cFF6NUg2NVF3dnZ6?=
+ =?utf-8?B?dXB4ZUk5a0YzRzdTell6cU9SQk9BaVlmYXcwNkJiWTI2bHFScGFKS1pISWtG?=
+ =?utf-8?B?Y05oTjVWSWZqV2JDdEJuaUwyRGZsd2psKzFHVDRSOVFHK1RoTDdOSWlCYWVO?=
+ =?utf-8?B?cnpSTUlxSU41cTFiT2dNWlQ3YnRNc29BTTBEVE04OFRxVXNNMEgxKzZGcjda?=
+ =?utf-8?B?QlJvbWxuYS9QVEdGelRUU1VzdGc2SDhIazhBUDdKMTBHUHZaeTZ2R2diL2No?=
+ =?utf-8?B?bmdyZDNzUzFJcjIxV04vWlNyM2ZVNmZ3VXI1RXM1dmlFKzZBS21hNXY5OCt2?=
+ =?utf-8?B?bE1Hd1ZVNnZQSkZDRnlTaHo5eHNmK2wyMGdINVlBenF5UzZpQVdVVUVLdUM3?=
+ =?utf-8?B?b3ZtdHJuK0pHZzRtSXNJcVFYTUZHQTZreVNSOGRuY3VxRjVOejBXYVJGSkVM?=
+ =?utf-8?B?YmM0L2FyQ3ZwQk9wT3BZU0JHY3hrUHpGRVZSVTNnam5ORnlYNzdSTCtDcW90?=
+ =?utf-8?B?ZmhPcU9nOUo2NjdIaHhLMVBzT3ZST2hqTVNUZVJZbCtjanFhOXphaTlWcnpN?=
+ =?utf-8?B?elBHanlnVitKbTl3SUh1ZTJyaWZCckI3byszalRHR0cxaVRzSzJWWFdRYnRF?=
+ =?utf-8?B?ZkcydnV6NXRmbGI0Y1g2amlTVGIzUW81RTUrUFkydGUzZ201ZVhFTm5BPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9562.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?bWFLRVFVVWM0eG5tNUx4YjBCY2J2OFkxSUxraERnOFhXMDUwNGxjUzl3cVI1?=
+ =?utf-8?B?c2pJbzQ3cEttK0tQSS9xUUYzSTY0VUtiSW1GMzhoWFFBS3VmR2ErSVBtTDRo?=
+ =?utf-8?B?cU1WOFphbFBNMVpVZzdjSElZUTVnZFJCTGFhRS9oRkl1a09DRnRiWDNoZjRV?=
+ =?utf-8?B?OVQxMmV0TGdod3VFQ1ZaR2ZRbVF3VHlLa3pIeGt4Y1Z0NlB4UHc0OXg1MEJP?=
+ =?utf-8?B?WmJNZEVrM1dVYVIrdWUyM3J2Q0U3NzUvTzZSaG9sdjZXbVYwMml4cStMVTFa?=
+ =?utf-8?B?b0taMzZ6WDNaUDcwZVhUR09yMytnUzQ0VjlpSFI5L2ZSN1l0KzlMS3BURDRC?=
+ =?utf-8?B?aVJkOW5xU01rd2JabTRieVp5MEh2TVpxMTVqNjVwM2xUR25qU3IxRFlFMEsw?=
+ =?utf-8?B?OVNRNlA3NUFGSFN5amNsaHM2OG1ON0x5WnNXNGNQV0FFZ29QM0dLZzJDcjdo?=
+ =?utf-8?B?SmNRY2gvUHVJY0IxcHdUNEIzdC8yWWZMV0hFU3p1MkJ2dFRBdnNMMi9kR0xJ?=
+ =?utf-8?B?VE9XMGFsKzEwK1hnanQycXNQZFAwQVRRTm9qc0VJN3hRaFFFM280eGdaUi9h?=
+ =?utf-8?B?MC9HSFMwa1ZHeGRtWFNDL1VHUllKcFRXMURhaURSeUI3UGUyeGx2N1RaL1Yr?=
+ =?utf-8?B?Q0VmRElSZ1p1c3dsK1F3ZkY3Q1VOUE5GVm9SYWZTZkkxTTlNeXVNd0YvY0dE?=
+ =?utf-8?B?SExDQ2V0blJtVEZuaXN5cVZmcFJnYkg4aWhyUzl0NTRjci9BUTBYaWRJUzdx?=
+ =?utf-8?B?U2hkTDZ1YnNjTTVEZzYzOTkxM0JIQVpiNjJ2Q2RJOHZYVmRIbVNWT3JrVCtM?=
+ =?utf-8?B?WWo0Vlc4cERhZ1dBZDdxdkZuaU5kbjRFUlpLRnQxb09vVXZXNzJCcUxYOHZ3?=
+ =?utf-8?B?b2RrSiszcG5sYW5sK1oxOWNkU0ZIUmN0REc0NmZWSWhNTGlod2VSMnR5K2Nj?=
+ =?utf-8?B?VGdUMU92YVRYeGIwQTVsS1IxTkd1RDV5ZldqWEh0aDlJMnU3SW1aVGk3UmJi?=
+ =?utf-8?B?TlZnQ3lTNHlGLy94aUtFTWtzVTJVdm5lSFM0U2NnSnRXRzZUTmZTdTB4eGRv?=
+ =?utf-8?B?K2JVbkJqVS84YVQ4STlXb2x0YkxTTWk0by9SNGZzOFFabVNaUk13dmwrZk8x?=
+ =?utf-8?B?QnhMbWtod0xQc0h5d0hBUUJmQ3ZWaWlsT2xRRzBhelN5NnY2SUpUWlRIWEJn?=
+ =?utf-8?B?QjBVaVJ4VHpOTkVQUTZrQWQ5L21yYi9oMW8ydEpMaHJDQUd2MlJGai9VdE5E?=
+ =?utf-8?B?c0ZEVnJTOENkd1Nlck5ETTFHaHBVTkp5MFdaVWhhdVBFTU5EQUVVajEyMkhW?=
+ =?utf-8?B?c1B2b295K1pmajVEQmZVamhqTDlmMHpiYVkvanJ6a0p3ejZpTFpUYXdGbkIz?=
+ =?utf-8?B?Ukw0OUdlb3ZZYXp2MEE3bzFiamYzSWRmR1doTjk4ZGwyOFNHeHFlYXYzQ3hP?=
+ =?utf-8?B?b0huODU2cEI0OU5LZVdIVkVvTXF0THkvODY5WVpnZjJ4VWdaaHdGMzJOQWVK?=
+ =?utf-8?B?UHdGOTVJNGF1RmZ2T3FQMis1SlpMNFdXS1RSNWRYcXdkcUZzSjNiNEJzSzlG?=
+ =?utf-8?B?bmJTelExNWtnWGRNUGZoZUhDUGo2YUo0QnkxQUNPOXpmYmNFSnlJaXJsWXdO?=
+ =?utf-8?B?Z3lNN2Z0b1F4RVJ5aC9ra2dOT2d3Y3p1VnZQZW1aUFkzRXJRdlorQ3BuanFE?=
+ =?utf-8?B?THhxVU1TUFdnSzkxQ1JOTDE0V1pwNW9Nc2JrWUFwWHpJR3NYaGhvU2JzRHd1?=
+ =?utf-8?B?OWlkcnZ4M0I3Qm5vOElNUFAxREdDQ0VTNlhUUTdEd2hzZnpwb1h1cXVIOVlK?=
+ =?utf-8?B?RHpPSVdzb0RNVnkzYXM2T1NsY1hIdVEzNncxMWV5N1ZiNFAybkl5Qm1xMnVE?=
+ =?utf-8?B?VWhnQk9hY21XRSt0THBPejUycnMwMjc3U09OMmJZclIwT1gvNmNzaXQyZkJk?=
+ =?utf-8?B?V3NPWjRYYVFIWTRLT2ZuTHdmTTVkV1hDWnRYMmtqYkNtTzdkcEJCcnJyU2Z3?=
+ =?utf-8?B?enRpVWNFQVVFaFlPOWVORjJGOHZValRhMUhqVngxSWo3NkF4ZkliUWhWcHk0?=
+ =?utf-8?B?Qmxua1hlc1pTeEMrS1hINTE5elVaS1BCUXMvQ0RpZFNCMURYQmR0VnBlanNx?=
+ =?utf-8?B?cUhHcVJFREtaV2RrS1dkdm1RZllOYUVXRDdaZkQ1dWtmS3k2Q3NkeE5Mak01?=
+ =?utf-8?B?ZHc9PQ==?=
+X-OriginatorOrg: cherry.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e54c281-fa0b-492c-69b9-08dcdf04cf1f
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9562.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2024 14:58:12.9138
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eCTYsVsE5jgiKJVPVdKxGmyra4e20PEbYlR7YgORCCr14ixAuhn6H4Djfvm6CeMWAqagfMgnTfcC8inZoZe1lfs0v/oAnlgKAy1yKYt2dg4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7692
 
-On Mon, Sep 23, 2024 at 4:57=E2=80=AFPM Masahiro Yamada <masahiroy@kernel.o=
-rg> wrote:
+Hi,
+
+On 06.09.24 17:54, Farouk Bouabid wrote:
+> Add dt-bindings for amc6821 intelligent temperature monitor and
+> pulse-width modulation (PWM) fan controller.
 >
-> Commit aab94339cd85 ("of: Add support for linking device tree blobs
-> into vmlinux") introduced a mechanism to embed DTBs into vmlinux.
->
-> Initially, it was used for wrapping boot DTBs in arch/*/boot/dts/, but
-> it is now reused for more generic purposes, such as testing.
->
-> Built-in DTBs are discarded because KERNEL_DTB() is part of INIT_DATA,
-> as defined in include/asm-generic/vmlinux.lds.h.
->
-> This has not been an issue so far because OF unittests are triggered
-> during boot, as defined by late_initcall(of_unittest).
->
-> However, the recent clk KUnit test additions have caused problems
-> because KUnit can execute test suites after boot.
->
-> For example:
->
->   # echo > /sys/kernel/debug/kunit/clk_register_clk_parent_data_device/ru=
-n
->
-> This command triggers a stack trace because built-in DTBs have already
-> been freed.
->
-> While it is possible to move such test suites from kunit_test_suites to
-> kunit_test_init_section_suites, it would be preferable to avoid usage
-> limitations.
->
-> This commit moves non-boot built-in DTBs to the .rodata section. Since
-> these generic DTBs are looked up by name, they do not need to be placed
-> in the special .dtb.init.rodata section.
->
-> Boot DTBs should remain in .dtb.init.rodata because the arch boot code
-> generally does not know the DT name, thus it uses the __dtb_start symbol
-> to locate it.
->
-> This separation also ensures that the __dtb_start symbol references the
-> boot DTB. Currently, the .dtb.init.rodata is a mixture of both boot and
-> non-boot DTBs. The __dtb_start symbol must be followed by the boot DTB,
-> but we currently rely on the link order (i.e., the order in Makefiles),
-> which is very fragile.
->
-> Fixes: 5c9dd72d8385 ("of: Add a KUnit test for overlays and test managed =
-APIs")
-> Fixes: 5776526beb95 ("clk: Add KUnit tests for clk fixed rate basic type"=
-)
-> Fixes: 274aff8711b2 ("clk: Add KUnit tests for clks registered with struc=
-t clk_parent_data")
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Farouk Bouabid <farouk.bouabid@cherry.de>
 > ---
 >
-> Changes in v3:
->   - Move to .rodata section instead of .init.rodata
->
->  scripts/Makefile.dtbs | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/scripts/Makefile.dtbs b/scripts/Makefile.dtbs
-> index 46009d5f1486..3e81cca6f68a 100644
-> --- a/scripts/Makefile.dtbs
-> +++ b/scripts/Makefile.dtbs
-> @@ -34,12 +34,14 @@ $(obj)/dtbs-list: $(dtb-y) FORCE
->  # Assembly file to wrap dtb(o)
->  # ----------------------------------------------------------------------=
------
->
-> +builtin-dtb-section =3D $(if $(filter arch/%, $(obj)),.dtb.init.rodata,.=
-rodata)
+> Notes:
+>      Merge after patch 1
 
+Patch 1 is merged in next-20240910 and it represents the dependency 
+required for patches 3. I guess we should be ready to merge patches 3 
+and 4 through the hwmon subsystem.
 
-For more precise matching, I will change as follows:
+Thanks,
 
+Farouk
 
-diff --git a/scripts/Makefile.dtbs b/scripts/Makefile.dtbs
-index 3e81cca6f68a..8d56c0815f33 100644
---- a/scripts/Makefile.dtbs
-+++ b/scripts/Makefile.dtbs
-@@ -34,7 +34,7 @@ $(obj)/dtbs-list: $(dtb-y) FORCE
- # Assembly file to wrap dtb(o)
- # ------------------------------------------------------------------------=
----
-
--builtin-dtb-section =3D $(if $(filter arch/%, $(obj)),.dtb.init.rodata,.ro=
-data)
-+builtin-dtb-section =3D $(if $(filter arch/$(SRCARCH)/boot/dts%,
-$(obj)),.dtb.init.rodata,.rodata)
-
- # Generate an assembly file to wrap the output of the device tree compiler
- quiet_cmd_wrap_S_dtb =3D WRAP    $@
-
-
-
-Applied to linux-kbuild/fixes.
-
-
-
-
-> +
->  # Generate an assembly file to wrap the output of the device tree compil=
-er
->  quiet_cmd_wrap_S_dtb =3D WRAP    $@
->        cmd_wrap_S_dtb =3D {                                              =
-                 \
->                 symbase=3D__$(patsubst .%,%,$(suffix $<))_$(subst -,_,$(n=
-otdir $*));      \
->                 echo '\#include <asm-generic/vmlinux.lds.h>';            =
-               \
-> -               echo '.section .dtb.init.rodata,"a"';                    =
-               \
-> +               echo '.section $(builtin-dtb-section),"a"';              =
-               \
->                 echo '.balign STRUCT_ALIGNMENT';                         =
-               \
->                 echo ".global $${symbase}_begin";                        =
-               \
->                 echo "$${symbase}_begin:";                               =
-               \
-> --
-> 2.43.0
->
-
-
---=20
-Best Regards
-Masahiro Yamada
 
