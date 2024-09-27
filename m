@@ -1,126 +1,232 @@
-Return-Path: <devicetree+bounces-105972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA4BB9889B4
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 19:37:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE7D99889D9
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 19:54:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C86631C213C4
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 17:37:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78937280DC8
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 17:54:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC0DE16E86F;
-	Fri, 27 Sep 2024 17:36:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TTzRxJR6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC8D71C1755;
+	Fri, 27 Sep 2024 17:54:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2E0513A3F2;
-	Fri, 27 Sep 2024 17:36:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 099BC19AD85;
+	Fri, 27 Sep 2024 17:54:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727458616; cv=none; b=bW08PIhzG98nM0q4FlME+s6/O5pqINzgn/GNqjlxGrs+owOW6m5gsrR5AB/WXeNc3HGxGhB9k5S0xSpaOAMGqT4uqH2FtLkh2O9oXKfgTb97WunZtZ99mGTX0ym8WRoMr98yNd5NJwIE/CoZiX70WtlU9ghWC4eHkXJuElEiovM=
+	t=1727459694; cv=none; b=ZGRTi4SuZQ+vhEXDN4c8D/qd1CPz3RJ+r3h+gu8zZ9AZfoocVVMM7LxYRIdLXxZ6P80RsCdPZaZOI76fHlIs8mwIXRF1BPeWhR55Vybvq9SI5AJJDwj1WiLLKaaOT5zkKwMurTbFjjiyIfuF1ExN3ZUavsQHr8uNleUYZwZe+C0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727458616; c=relaxed/simple;
-	bh=4AV1qyaZqQGzNswF3ZfC0nI8svQB0aLi7ePsr9U2//M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uhCgjzmVOPfFegZShLvyUa5qu9/BoEdFJ98hm6zFrvOWoDcOEkR2iwiLyluOqhHD9V7HOnkYMacduSpVcm/FamaBPDiM9k44fy86c08tyvDdw+7+BSk6lkgyVuswHCFLBsy4OU9/EnI6/YwJifeTTg5JVTkfxogRtA8gYzZpwuU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TTzRxJR6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36BEEC4CECE;
-	Fri, 27 Sep 2024 17:36:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727458616;
-	bh=4AV1qyaZqQGzNswF3ZfC0nI8svQB0aLi7ePsr9U2//M=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=TTzRxJR6PpAvBGNJ/FRI0cdtrO+z380eLJ27Q0B4q0I8tmj0XIcmxnuGlW8eFlFiL
-	 6PCxs2gMg7WKDzAoCEgfdrN0b/kQnMVh+mY7BZ8/xiE7S2g/ZsQGc2RB4Wps+nFLr8
-	 v4zDCmvlxTLjahVDXyTcEsbfVUS6I2eVQIDgaelT3fOqWnUzKhPiosMfraqkUL8hRc
-	 QPOvDOn9lJCIsxl4c94VexHM0/yxL2fVPdfvPhW1ia2HSV5JVYsM2k3/Mdz//WWt5K
-	 AHwg/yQV1HBSC5SVqph0GWP728KxDAEBrkH5tUDPizXdMkmkrpcmqqrL7Vlx0I1V7i
-	 4AhEdwbDWjtqQ==
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5365aa568ceso3013834e87.0;
-        Fri, 27 Sep 2024 10:36:56 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXLXTMj9jn9plGJ0ofPfthx465PnyBvB9atIemL4oXBzJfTeX46UbgOIGWmzpfWidwSGZIiSbG3t4oc@vger.kernel.org, AJvYcCXZ5OTiNNKPbpNJ3QgXnjqgzKamzOL/2OAmiuOTZputtzRBvBMDDe5YPwJ68jpxPfU9iN1gsWVkLHq71ogM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx176yV/nWiQ0CNF9h+lLxEP4e2Jeil6h0lVBV+6HKNEp+d89Z4
-	xBUxSr5kJiW1uaebJR26vpwadYuIzgpA22uScykVw4xdzRtUBJM0JzVgvNg/4osGJoUwxhELnNh
-	PIi/GEC6KA1UOQfAqyZvQPpjuTw==
-X-Google-Smtp-Source: AGHT+IEkT0Cr4HV3qKw4LoLuVsCrCw4Ghn2KGPHuNWdPKaIEM8Vj/4gh7caa8Sp19fPf1sdu1BpsOtMed2CuFeBJd+w=
-X-Received: by 2002:a05:6512:eaa:b0:535:6a34:b8c3 with SMTP id
- 2adb3069b0e04-5389fc34366mr4395103e87.5.1727458614368; Fri, 27 Sep 2024
- 10:36:54 -0700 (PDT)
+	s=arc-20240116; t=1727459694; c=relaxed/simple;
+	bh=T/yHHLjFuHMeyNnrNGZw88F3h9EBXeADl+aBiBEkQ9w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tlrHnfG+PRB3MYXLQaAP/4nFUJy8oyBaLkfUFTOjUYXBoGnjqRZLMBlNDxXPxCj0nXTKxp+uGwH8Mk+WkhMnH39IxA2JvxbgVcVEvw1b7mz+QDtY17xKZ2K/y1+pqvebpHC03A5rRIS4l49y9WYh2rLcpzJJo58oXhWZ7NxD6lQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B2DB514BF;
+	Fri, 27 Sep 2024 10:55:20 -0700 (PDT)
+Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1A9253F6A8;
+	Fri, 27 Sep 2024 10:54:48 -0700 (PDT)
+Message-ID: <ce534365-0110-4aba-b8b5-0a46c5ea81d0@arm.com>
+Date: Fri, 27 Sep 2024 18:54:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240911142319.3435746-1-nayeemahmed.badebade@sony.com>
- <2024091327-repacking-avatar-ec23@gregkh> <ZulGr8Ul7y0T0NkQ@NAB-HP-ProDesk-600sony.com>
- <26fed82b-7c60-4fda-8951-b22654728743@kernel.org> <2024091747-monorail-unbutton-7ebd@gregkh>
- <ZvVAiVBlBjkMhHMY@NAB-HP-ProDesk-600sony.com> <43447165-37f9-4b35-ace6-8d32760f75a8@kernel.org>
- <ZvbP2e8nZzjXKfVK@NAB-HP-ProDesk-600sony.com>
-In-Reply-To: <ZvbP2e8nZzjXKfVK@NAB-HP-ProDesk-600sony.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 27 Sep 2024 12:36:40 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKLT_H5jMnZYrpaZ246YmDtZHg7eQ6PJVp7sykVi3SG0A@mail.gmail.com>
-Message-ID: <CAL_JsqKLT_H5jMnZYrpaZ246YmDtZHg7eQ6PJVp7sykVi3SG0A@mail.gmail.com>
-Subject: Re: [PATCH 0/2] Add framework for user controlled driver probes
-To: Nayeemahmed Badebade <nayeemahmed.badebade@sony.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Greg KH <gregkh@linuxfoundation.org>, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, rafael@kernel.org, yoshihiro.toyama@sony.com, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] dt-bindings: remoteproc: sse710: Add the External
+ Systems remote processors
+To: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>,
+ mathieu.poirier@linaro.org
+Cc: Adam.Johnston@arm.com, Hugues.KambaMpiana@arm.com, Drew.Reed@arm.com,
+ andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ liviu.dudau@arm.com, lpieralisi@kernel.org, robh@kernel.org,
+ sudeep.holla@arm.com
+References: <CANLsYkwOrtXxObL5MKf30OrUYB_uT=DnGEXUtfjH503r_LyMQA@mail.gmail.com>
+ <20240822170951.339492-1-abdellatif.elkhlifi@arm.com>
+ <20240822170951.339492-2-abdellatif.elkhlifi@arm.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20240822170951.339492-2-abdellatif.elkhlifi@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Sep 27, 2024 at 10:04=E2=80=AFAM Nayeemahmed Badebade
-<nayeemahmed.badebade@sony.com> wrote:
->
-> On Thu, Sep 26, 2024 at 02:34:26PM +0200, Krzysztof Kozlowski wrote:
-> > On 26/09/2024 13:07, Nayeemahmed Badebade wrote:
-> > >>
-> > >>>> not required at the time of booting.
-> > >>>> Example: drivers/pci/controller/dwc/pci-imx6.c
-> > >>
-> > >> Just this one?  I don't see anything obvious that can't turn that in=
-to a
-> > >> module, have you tried?  What went wrong?
-> > >>
-> > >
-> > > Yes we have tried building it as a module.
-> > > This driver currently registers abort handler for pci using function
-> > > hook_fault_code() on arm. This function is not exported and marked wi=
-th __init
-> > > tag. So we can't use it post boot.
-> >
-> > Then this is something to fix.
-> >
-> Thank you for the suggestion.
-> As per discussion in below link, its mentioned that hooks should be stati=
-c and
-> should not change during runtime due to locking support not being there.
-> So its not safe to export this function to use in modules as per the comm=
-ents
-> there.
-> We would appreciate any suggestions you might have on any possible
-> alternatives.
-> > > Also from past attempt made to modularize this driver in community, w=
-e saw the
-> > > hook is not safe to be used post boot.
-> > > Reference:
-> > >  https://lore.kernel.org/linux-arm-kernel/1454889644-27830-2-git-send=
--email-paul.gortmaker@windriver.com/T/#m8995c6dcc40c54baef0665a7ee16d4209cb=
-59655
+On 22/08/2024 6:09 pm, Abdellatif El Khlifi wrote:
+> Add devicetree binding schema for the External Systems remote processors
+> 
+> The External Systems remote processors are provided on the Corstone-1000
+> IoT Reference Design Platform via the SSE-710 subsystem.
+> 
+> For more details about the External Systems, please see Corstone SSE-710
+> subsystem features [1].
+> 
+> [1]: https://developer.arm.com/documentation/102360/0000/Overview-of-Corstone-1000/Corstone-SSE-710-subsystem-features
+> 
+> Signed-off-by: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+> ---
+>   .../remoteproc/arm,sse710-extsys.yaml         | 90 +++++++++++++++++++
+>   1 file changed, 90 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml b/Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml
+> new file mode 100644
+> index 000000000000..827ba8d962f1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml
+> @@ -0,0 +1,90 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/arm,sse710-extsys.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SSE-710 External System Remote Processor
 
-The hook implementations have no interaction with the drivers other
-than being installed by the driver. So move them out of the drivers
-and the handler can be built-in with the driver as a module. For
-example, see arch/arm/mach-bcm/bcm_5301x.c. Could possibly combine
-some implementations. I haven't figured out why imx6 checks 2
-different instructions while keystone only handles one. But imx6's
-implementation being a superset should work for keystone perhaps.
+Thing is, this is not describing SSE-710. As far as I can work out, it 
+is describing the firmware and hardware that a particular example 
+implementation of the Corstone-1000 kit has chosen to put in the 
+"external system" hole in the SSE-710 within that kit.
 
-Rob
+If I license SSE-710 alone or even the Corstone-1000 kit, I can put 
+whatever I want in *my* implementation of those subsystems, so there 
+clearly cannot possibly be a common binding for that.
+
+For instance what if I decide to combine a Cortex-M core plus a radio 
+and some other glue as my external subsystem? Do we have dozens of 
+remoteproc bindings and drivers for weird fixed-function remoteprocs 
+whose "firmware-name" implies a Bluetooth protocol stack? No, we treat 
+them as Bluetooth controller devices. Look at 
+devicetree/bindings/sound/fsl,rpmsg.yaml - it's even unashamedly an 
+rpmsg client, but it's still not abusing the remoteproc subsystem 
+because its function to the host OS is as an audio controller, not an 
+arbitrarily configurable processor.
+
+As I said before, all SSE-710 actually implements is a reset mechanism, 
+so it only seems logical to model it as a reset controller, e.g. 
+something like:
+
+	hbsys: syscon@xyz {
+		compatible = "arm,sse710-host-base-sysctrl", "syscon";
+		reg = <xyz>;
+		#reset-cells = <1>;
+	};
+
+	something {
+		...
+		resets = <&hbsys 0>;
+	};
+
+	something-else {
+		...
+		resets = <&hbsys 1>;
+	};
+
+
+Then if there is actually any meaningful functionality in the default 
+extsys0 firmware preloaded on the FPGA setup then define a binding for 
+"arm,corstone1000-an550-extsys0" to describe whatever that actually 
+does. If a user chooses to create and load their own different firmware, 
+they're going to need their own binding and driver for whatever *that* 
+firmware does.
+
+FWIW, driver-wise the mapping to the reset API seems straightforward - 
+.assert hits RST_REQ, .deassert clears CPUWAIT (.status is possibly a 
+combination of CPUWAIT and RST_ACK?)
+
+Thanks,
+Robin.
+
+> +
+> +maintainers:
+> +  - Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+> +  - Hugues Kamba Mpiana <hugues.kambampiana@arm.com>
+> +
+> +description: |
+> +  SSE-710 is an heterogeneous subsystem supporting up to two remote
+> +  processors aka the External Systems.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - arm,sse710-extsys
+> +
+> +  firmware-name:
+> +    description:
+> +      The default name of the firmware to load to the remote processor.
+> +
+> +  '#extsys-id':
+> +    description:
+> +      The External System ID.
+> +    enum: [0, 1]
+> +
+> +  mbox-names:
+> +    items:
+> +      - const: txes0
+> +      - const: rxes0
+> +
+> +  mboxes:
+> +    description:
+> +      The list of Message Handling Unit (MHU) channels used for bidirectional
+> +      communication. This property is only required if the virtio-based Rpmsg
+> +      messaging bus is used. For more details see the Arm MHUv2 Mailbox
+> +      Controller at devicetree/bindings/mailbox/arm,mhuv2.yaml
+> +
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  memory-region:
+> +    description:
+> +      If present, a phandle for a reserved memory area that used for vdev
+> +      buffer, resource table, vring region and others used by the remote
+> +      processor.
+> +    minItems: 2
+> +    maxItems: 32
+> +
+> +required:
+> +  - compatible
+> +  - firmware-name
+> +  - '#extsys-id'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    reserved-memory {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        extsys0_vring0: vdev0vring0@82001000 {
+> +            reg = <0 0x82001000 0 0x8000>;
+> +            no-map;
+> +        };
+> +
+> +        extsys0_vring1: vdev0vring1@82009000 {
+> +            reg = <0 0x82009000 0 0x8000>;
+> +            no-map;
+> +        };
+> +    };
+> +
+> +    syscon@1a010000 {
+> +        compatible = "arm,sse710-host-base-sysctrl", "simple-mfd", "syscon";
+> +        reg = <0x1a010000 0x1000>;
+> +
+> +        extsys0 {
+> +            compatible = "arm,sse710-extsys";
+> +            #extsys-id = <0>;
+> +            firmware-name = "es_flashfw.elf";
+> +            mbox-names = "txes0", "rxes0";
+> +            mboxes = <&mhu0_hes0 0 1>, <&mhu0_es0h 0 1>;
+> +            memory-region = <&extsys0_vring0>, <&extsys0_vring1>;
+> +        };
+> +    };
 
