@@ -1,141 +1,164 @@
-Return-Path: <devicetree+bounces-105946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38C2998860B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 15:04:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3759D98863C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 15:27:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B4261C21D36
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 13:04:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9AFE284524
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 13:27:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A22D18CC18;
-	Fri, 27 Sep 2024 13:04:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 738A91EB35;
+	Fri, 27 Sep 2024 13:27:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QytLK7YK"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UgYgjDtk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9491618CBF9;
-	Fri, 27 Sep 2024 13:04:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62C396AAD;
+	Fri, 27 Sep 2024 13:27:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727442245; cv=none; b=ULD9qu1oRdaFkw6tFzWeDL5cFi55M/cLpDP80fRWYF+HTUEBLMUaDBEc7Jv/Z0zxHvUsCjkjzN+MPZdH9kUWokFzrdUXsLIo4+1MMEl8O+CM+xFsbWpwLtTVGmi5arnqmaUvDUePTmjyNq7tHJ1ggkGluHOv7OL7mKZdio/xRxU=
+	t=1727443648; cv=none; b=Epmjoun5qC02EfIyvvH4LNDs+w+2v80e5ro9Dkjb1SVgJnfGh24YvFDcKHNi+4Mw/KAnVo5L94UQ8NBlyP2RlCFTO9huAGd7qQJJAZp6O/hx6sIvx3wMwJdFq2TY2DGefiuQAv/+++v+ffJ8wIxC1cqzNXyHpbMY4Ziy9X7DbmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727442245; c=relaxed/simple;
-	bh=lMZjaaCr3EBfndkZEzdIumPZ24tnOworlO7tnZ5+lEE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YLUVFp2FiLEF0XDrDYLKZl069AM4cwnSY+DQIZGAJaUSSHFrMrH7T1+nUHsfpxoBDXnTIxh2EnCQhX468mWEIVlp+RiyHKKjCMdrjnZ3oE/zVSGsedOj8wA418Goxq3tkg5K8DWIhF65ij7wLR8JRcIJWeundnrF75cqMa4x8js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QytLK7YK; arc=none smtp.client-ip=209.85.216.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2e077a4b8c0so1558046a91.1;
-        Fri, 27 Sep 2024 06:04:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727442243; x=1728047043; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lLZBoouw/VuTYq1d8wJ2tQsyjB5lc2Ro32qoC8DsyX8=;
-        b=QytLK7YKJn7neczB3bLXKsGmCCbl0VMugxkmb76y0yvEgWyfc4W/8ow/jJjQbQMGsq
-         8k4Vhs8fIT8oc8M50e6O7T4G98xJIvojZHY5vLmNThRXzT8t9mdbHYTF3kHwbt9z0vkF
-         Uxxx5qz6gPlRw0HXvGv7ef6s5L6V+/Dw3oPSLbACHD5CaIQ8Jq6z6qwAWVzxjwjUb3y7
-         4FnYHSIHNggRD5vImFyzDYl7V4SBZzWCPDlu1O//NiGUWsbYd/hGpGmwdyeDpQL2l2A5
-         VFp6CBkfaXasJxQ1Xvh8oF0UAGJLx4dOjiajerR6LMjBRVSp8fl78TwKypZmXcqc37Q5
-         Ujkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727442243; x=1728047043;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lLZBoouw/VuTYq1d8wJ2tQsyjB5lc2Ro32qoC8DsyX8=;
-        b=BjZYNicTtak1D7V+g9v6aPn741xrkFafmYzgNzbgtxM/xODxgmk88gVj+l7qggxrw8
-         sG5H9Si9XO+sRY64ba0lkpqrSd2WTEVpe3mWfOyTvHgHWoXckUd3jKRbYTeD99z/SnEj
-         IfLFvp/dMaIy2ut2C16+7oHnx/L4/EVltKWivDO4Tj+2HPPHqt7PqMhmQq3cFaw5n/uD
-         kMVV63sLiiyPUJMTQFIEMblCLWy5ECelnr4qqBDIrxRLlwBpyLDUvyFvdEgMB3kkEbuO
-         UfKxxJAlCe3K2VEY13Q22p/zeUTrkdWerQELLFdwSpltSQThtNXzC68UVNHnuqrHLfd1
-         XIBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVM0ZvYgoQFByMIHDRWwcHNHtb5Zz2fokMnsG2S+LepTKOKYbCcqDa1G5gvguQSfxtj8tvlgkcHNeVJr0w=@vger.kernel.org, AJvYcCVRNQVnx8xp+4Vv+chQ4OS+NZ9jQ/MRnG1zgDSs3fjjEojeAUiKBEVuJ9NUgJ5rRtRBslxE1BlU8vGGZOAZ@vger.kernel.org, AJvYcCVTtcp3UMYQFumBFqGon7PMrcQLgaoISTIXcGJm3wpI7hCxdq2k8p2VkSTdH/dCCChmwXiX5XGaTgD8xUtQqYe6A3Y=@vger.kernel.org, AJvYcCVVaVn3xe9gce6/4yizsE6WyfvWAtbF/k6VQVXzog5NUxGly+A0jUsg4fw/M90Ceu5GeVYiergifVmBqg==@vger.kernel.org, AJvYcCVwRQ705lyQXPMbUsf1Sy3tVXjGwcbUb0FSbULcKKMcoM6DYQUXolaQ0KjGRm+MwstpaP8xg4hWbFN9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZinjBMtr0qnsDDlCOMWX6YR1HB6W9ez+j3pWYD/aeTrH7PuXX
-	RttEa42HAbrhWfBXSovOkqGKJcFaYfYJHmBnT7wKTSKCHOcwHnQ1/mbEtY190Sc+cMnusgnPdAE
-	TIaqDIFYm+A08VwNRSwFctVTY/80=
-X-Google-Smtp-Source: AGHT+IFtB7KLDPn+GDWKySAL2J4hNThlacj2FyNRmL5tDSlTqDrYlCCyOxeg5M2NMx4sjqT6GHGIxy0O+b+GZDd+MQM=
-X-Received: by 2002:a17:90a:8984:b0:2e0:855b:9b21 with SMTP id
- 98e67ed59e1d1-2e09111a9ebmr10387052a91.8.1727442242759; Fri, 27 Sep 2024
- 06:04:02 -0700 (PDT)
+	s=arc-20240116; t=1727443648; c=relaxed/simple;
+	bh=Jee1hp+0I7JxHs3iOVPdrygPNdq5QxvD0moDqalykeA=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Rg3YEIqlE/dJr3YfIFOmTnUviISOsOHi5iH0mgr/sZiB7lahIMWziOiodcr3xsW3QjMMkV5Inuk1Q/rK6an9V1T4/dzIVqiSIxBy1br6rDhwTvhJew6uaIjJur945TiQDVIbfCnv3foym/BAfwpiYFbfYAIAu4m4PlNvmIYARw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UgYgjDtk; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 48RDRBb0109961;
+	Fri, 27 Sep 2024 08:27:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1727443631;
+	bh=ErNz+C4ju+kKjJuxkumlB09+OuXJTi+3cKXOxVFdnao=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=UgYgjDtkhdGEi4F+8w3hrRZ7QQhFmkWrrfK1Uu3nM5QiSEiIZjdz3y81Wt/IL66kF
+	 XTfc1XMT0A9GCrCkLBlrdg60V0kePde/VDrMKznizGD576nXSRhsvT2ALIICYlG6W1
+	 l1HeXLevYbV40PZ+ZnxNjSg8VOTMPBbBF57gout8=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 48RDRBOO002983;
+	Fri, 27 Sep 2024 08:27:11 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 27
+ Sep 2024 08:27:11 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 27 Sep 2024 08:27:11 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 48RDRBLB040777;
+	Fri, 27 Sep 2024 08:27:11 -0500
+Date: Fri, 27 Sep 2024 08:27:11 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Dhruva Gole <d-gole@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        Andrew Davis
+	<afd@ti.com>, Bryan Brattlof <bb@ti.com>,
+        Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>,
+        Markus Schneider-Pargmann
+	<msp@baylibre.com>
+Subject: Re: [PATCH v7 6/6] cpufreq: ti-cpufreq: Update efuse/rev offsets in
+ AM62 family
+Message-ID: <20240927132711.mfxv4nitr5ygx4tf@throat>
+References: <20240926-ti-cpufreq-fixes-v5-v7-0-3c94c398fe8f@ti.com>
+ <20240926-ti-cpufreq-fixes-v5-v7-6-3c94c398fe8f@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1727438777.git.geert+renesas@glider.be> <7ff1bfb73a6d6fc71f3d751dbb7133b045853f64.1727438777.git.geert+renesas@glider.be>
- <00fd0f7d-e05b-4140-9997-b4ffe0fcd8e9@kernel.org>
-In-Reply-To: <00fd0f7d-e05b-4140-9997-b4ffe0fcd8e9@kernel.org>
-From: Adam Ford <aford173@gmail.com>
-Date: Fri, 27 Sep 2024 08:03:51 -0500
-Message-ID: <CAHCN7xKywTnuW9W-5abwpq8txNYhN39G9OX8zJDy_j=fqJFPfg@mail.gmail.com>
-Subject: Re: [PATCH treewide 10/11] ARM: dts: nxp: imx: Switch to {hp,mic}-det-gpios
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Lubomir Rintel <lkundrak@v3.sk>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, 
-	Masami Hiramatsu <mhiramat@kernel.org>, Paul Cercueil <paul@crapouillou.net>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Shengjiu Wang <shengjiu.wang@gmail.com>, 
-	Xiubo Li <Xiubo.Lee@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
-	Adrien Grassein <adrien.grassein@gmail.com>, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-mips@vger.kernel.org, 
-	alsa-devel@alsa-project.org, linuxppc-dev@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240926-ti-cpufreq-fixes-v5-v7-6-3c94c398fe8f@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Fri, Sep 27, 2024 at 8:00=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 27/09/2024 14:42, Geert Uytterhoeven wrote:
-> > Replace the deprecated "hp-det-gpio" and "mic-det-gpio" properties by
-> > "hp-det-gpios" resp. "mic-det-gpios" in Freescale Generic ASoC Sound
-> > Card device nodes.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> > This has a run-time dependency on "ASoC: fsl-asoc-card: Add missing
-> > handling of {hp,mic}-dt-gpios".
->
-> Therefore this should wait a cycle. Patch is good, although maybe we
-> should keep both properties for backwards compatibility?
+On 14:04-20240926, Dhruva Gole wrote:
+[...]
 
-I also wonder what the point of the customer fsl-asoc-card is when
-used in conjunction with a standard audio codec because the simple
-audio card works just fine.  I think they have some special drivers
-that need it like their ARC/eARC and HDMI drivers, but I have tested
-several NXP boards using a simple sound card and it works fine.
+> +	/*
+> +	 * This checks for old AM625 Devicetrees where the syscon was a phandle to the
+> +	 * wkup_conf parent, this required a hard-coded offset to the efuse register.
+> +	 * This node had the compatibles "syscon", "simple-mfd".
+> +	 */
+> +	if (of_device_is_compatible(np, "simple-mfd") &&
+> +	    of_machine_is_compatible("ti,am625")) {
+> +		dev_warn(dev,
+> +			 "%s: An old devicetree is in use, please consider updating at some point!",
+> +			 __func__);
 
-adam
->
-> Subject: drop "nxp" prefix.
->
-> > ---
-> >  arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi  | 4 ++--
-> >  arch/arm/boot/dts/nxp/imx/imx6sl-evk.dts        | 2 +-
-> >  arch/arm/boot/dts/nxp/imx/imx6sll-evk.dts       | 2 +-
-> >  arch/arm/boot/dts/nxp/imx/imx6sx-sdb.dtsi       | 2 +-
-> >  arch/arm/boot/dts/nxp/imx/imx6ul-14x14-evk.dtsi | 2 +-
-> >  arch/arm/boot/dts/nxp/imx/imx7d-sdb.dts         | 2 +-
->
->
-> Best regards,
-> Krzysztof
->
+No need to print.. just handle it seamlessly.
+
+> +		ret = regmap_read(opp_data->syscon, opp_data->soc_data->efuse_offset + 0x0018,
+> +				  &efuse);
+> +	} else {
+> +		ret = regmap_read(opp_data->syscon, opp_data->soc_data->efuse_offset,
+> +				  &efuse);
+> +	}
+>  	if (opp_data->soc_data->quirks & TI_QUIRK_SYSCON_MAY_BE_MISSING && ret == -EIO) {
+>  		/* not a syscon register! */
+>  		void __iomem *regs = ioremap(OMAP3_SYSCON_BASE +
+
+
+All these hanky panky is because sycon does not report access fails when
+syscon reg size is 1 word.
+
+https://lore.kernel.org/linux-arm-kernel/20240903184710.1552067-1-nm@ti.com/
+fixes that. With that applied, instead of using explicit property of the
+syscon - which could change simple-mfd or simple-bus or what ever.. Let
+us use the quirk for backward compatibility (introduced for similar
+messy old code), consider the following (macro probably needs a better
+naming):
+
+diff --git a/drivers/cpufreq/ti-cpufreq.c b/drivers/cpufreq/ti-cpufreq.c
+index ba621ce1cdda..f0d76fc02ff2 100644
+--- a/drivers/cpufreq/ti-cpufreq.c
++++ b/drivers/cpufreq/ti-cpufreq.c
+@@ -93,6 +93,8 @@ struct ti_cpufreq_soc_data {
+ 	bool multi_regulator;
+ /* Backward compatibility hack: Might have missing syscon */
+ #define TI_QUIRK_SYSCON_MAY_BE_MISSING	0x1
++/* Backward compatibility hack: new syscon size is 1 register wide */
++#define TI_QUIRK_SYSCON_NEW_SINGLE_REG	0x2
+ 	u8 quirks;
+ };
+ 
+@@ -318,6 +320,7 @@ static struct ti_cpufreq_soc_data am625_soc_data = {
+ 	.efuse_shift = 0x6,
+ 	.rev_offset = 0x0014,
+ 	.multi_regulator = false,
++	.quirks = TI_QUIRK_SYSCON_NEW_SINGLE_REG,
+ };
+ 
+ static struct ti_cpufreq_soc_data am62a7_soc_data = {
+@@ -354,6 +357,10 @@ static int ti_cpufreq_get_efuse(struct ti_cpufreq_data *opp_data,
+ 
+ 	ret = regmap_read(opp_data->syscon, opp_data->soc_data->efuse_offset,
+ 			  &efuse);
++
++	if (opp_data->soc_data->quirks & TI_QUIRK_SYSCON_NEW_SINGLE_REG && ret == -EIO)
++		ret = regmap_read(opp_data->syscon, 0x0, &efuse);
++
+ 	if (opp_data->soc_data->quirks & TI_QUIRK_SYSCON_MAY_BE_MISSING && ret == -EIO) {
+ 		/* not a syscon register! */
+ 		void __iomem *regs = ioremap(OMAP3_SYSCON_BASE +
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
