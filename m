@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-105802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C5BD987FB6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 09:48:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4A17987FD1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 09:57:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2F2728430A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 07:48:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C45E61C22D2F
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 07:57:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C1C317DFFF;
-	Fri, 27 Sep 2024 07:48:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ED8E188A1F;
+	Fri, 27 Sep 2024 07:57:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AmSAQ1yo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bcn5Idzk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4947116FF4E
-	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 07:48:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12E4A188CB2
+	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 07:57:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727423325; cv=none; b=uCtx734EWn3Cf4e7nnSs/8axTyd9g80Qmmlb7/ini2AgqqWy+1DJgFFw4ntolU2paqB5jHiJx52ar6sYP1+tYzjajkC+xazOIVDANj/VQv1BJsNgCbpOVkXyBuPE08lJQ7j1lzf/xT11NOdDqASHaFvTM8dOAAgEm6O18WwyVFs=
+	t=1727423827; cv=none; b=mrBJrRf1X/zVJEck9xW2cW7doMm3lh4dxi3SWbDj4m7+301GTQFJ6J0xc9DLS7gokijvTpJdGmyfDJPEbBLTCd/9yjyTLEfFfHFm9O7+qF3BgaQu7hkocG8dt/llhc3CsnmHSsLehXoiTxxCriV1VIkeQWM2TA5iylNkhOxg+Ws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727423325; c=relaxed/simple;
-	bh=C+0z+9oD+EvuG+OzPQefzmEH2PUteYyKJn06IpQOBpo=;
+	s=arc-20240116; t=1727423827; c=relaxed/simple;
+	bh=OZtUCfvDaSRTPyDPgz9cjRsWvyFdmjmqLZwQsHr4xfc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kE6lvzeWhd03VnUfWqdq6NPO49Q8ghBce2o9NDepjxbW8qmq0FIwnjYMKKjbF0xA2ZaAym53BauxSnQgBqxEump9y5axj6nyHDONGtBN5+n7ACFhkSwF3gsEYrhMIFeBHuLUBB3B/8JkeNjvPR1JQg99/PpIq4maJAQ8jlSr9Nw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AmSAQ1yo; arc=none smtp.client-ip=209.85.208.53
+	 In-Reply-To:Content-Type; b=t09S2VIy+9jRr5z+a3jEObVzvLlGOWui4gWqryd2ifQCnUidgOGexdnnphaGFCgvGuorudJ+/Z9cYqCYHL/uUIZnljFp3I9lJBkQuSpY/7n1Goafn1B7aoXgLC4aDpJiduzr2i5L4Lx9lzQSuIVEnQXGdbZjFFyIq0lWceGHbK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bcn5Idzk; arc=none smtp.client-ip=209.85.208.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5c462b14103so227837a12.2
-        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 00:48:42 -0700 (PDT)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5c8856e3e99so5857a12.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 00:57:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727423321; x=1728028121; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1727423823; x=1728028623; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=3pCqHS8QCjF3AyE7Hlns+lS+1rNia1GoqF6RaOHTvFo=;
-        b=AmSAQ1yo+g9a4mJjNdlgPaFq8eyMu+Sc4XdZkAtmNBEDK+BFhX3/2jWmtpL/JF5ePP
-         EQ8tIKaXCijKG9x5jkB+/QrAChSyrYnfQJS7W9FE6u4bYIsokghwpKqUx8annkCw5NNM
-         jV77g5jUD+TcqU3zq5+6PZ+Ij1wUXYEMFjpOuc80Vrzyx0Ih600jJChKC6NcyzZZr3kF
-         G+K3SjxhdU+NMy32wYvp7jPvy2O0+OFoI0jm3N3gjRzcW1alnTqVA+u2GPBzFwqlmFj5
-         Ccgbcg906U0FoJtCeHGizdw4fs2+NNngS3sck6GGV/jlrNq1myNakVmNQG3kuimMUwLl
-         tHfg==
+        bh=L+nFUwTG8TeeWwku7cS7rWiWP38oV+D+0z+Xf1wWA7E=;
+        b=bcn5Idzkl3Mg9HG3HkKgJyEoM7hz2VHny5n2BzGNrDWpA6IoiNuY1eYNrSOct9dFsx
+         x6uHTlkhe02WvNWRZGfSHfmOjeJhlBA1q+XekAe5yW2wWq/ucNDCdJBa819E8pG2D6P/
+         a8x+MhHZj4ljNYKAHBAh/pTOaxmoOSk02R5f3UoRQpwGhb1WvIY6VRQ3Xuf1NvlTd9Wf
+         f89uhGqJuOi9usXrTpGHgI9/TUzh9bXCbxE8Tb+XuDP6iDeEtQC64Dzff3euIcP1U7ex
+         lrDUGbCrjjg+eiwafLPD34TZ29lL+QBkOv8ZcSSS0Z5GE6AW/4UglsX79rAis3roN+4E
+         mcNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727423321; x=1728028121;
+        d=1e100.net; s=20230601; t=1727423823; x=1728028623;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=3pCqHS8QCjF3AyE7Hlns+lS+1rNia1GoqF6RaOHTvFo=;
-        b=CZeelPEV3IiUZnKHc7ORAtr4Kgc6r+x4brXQ3Ry6gWLcSHmiU8Apn+kchjGyIxOQAK
-         H9hPhKfjnEfZSTucQxA4tTeUoaXkUAOJwrmBHLLASh0c2AZMxhy8a/umYC3og9rK2aRr
-         u+3wSCSZ9UBpKWbCt6h4wTiVGZWAFsvPRyYSdv5e2it0sx1xKVU9Zq1bEPdqg4+lvvwO
-         ObKt+mITGHVAnqj+5ydOvnQwcKgPipaS03czFFYlptB4gIqRiA4mEc3g8SbHeLjdek83
-         5znaelj37E/9VnUXq5vSXdEh4aFLK2GZbz49cWwPSyGrcz38Z28jsHyJUMTkp8D8Y6a9
-         sgDw==
-X-Forwarded-Encrypted: i=1; AJvYcCUbwDofT1aEvE4q5IPoGDj+pijXRwSTS1P2uKxU9tgfiWdRXpJty+D+febYx6ZeGjfj9yZawpdmex2B@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZ1mG02AH3W2pIAzW/Q3x6tB9ILEkR1cxQ0gGh7Gvt9DcxZVi6
-	TJlRoZl2RRO9XqEFylpysWaTHT3FzNxOkCeKYt4GCjM4oJ9kM3qXS39s6YtACtg=
-X-Google-Smtp-Source: AGHT+IG0ESOAAQflviCqGeX6WfN4wPdulS4UlAVTKzxCL3NXbTuIiTYdKxoRYwbi5RWXhNYBGjy/5w==
-X-Received: by 2002:a17:907:3f19:b0:a80:f54c:ad68 with SMTP id a640c23a62f3a-a93c48f001amr89324866b.2.1727423321482;
-        Fri, 27 Sep 2024 00:48:41 -0700 (PDT)
+        bh=L+nFUwTG8TeeWwku7cS7rWiWP38oV+D+0z+Xf1wWA7E=;
+        b=egx36vyZYFukIUqJFIeaBYwYnRmQ5ww/xgV8mWIKkE4dHXGy/tvefg9IhuqIhMPQ5Y
+         8Jz3PhMb7mbs9xYEiOlfhGRL6SIz0rbyCP86HHPNVIeJwqEcebheX6BzKEzVmQi0cRrM
+         DlI6P4cZNICOT2BLwbf8qJmGf40C9V4PuAFzPbidjRwfMpBC2KOCxK+m2WS/r+Ze18Gw
+         BQvbzBxDAxI71YvyxpiYq0felBQuV4S23/XhrThS0GaNjc6CBpIV0XgZU4oH6sxwKin4
+         nO8BNibm0mBAA1Hb61w1q5d0SjDrWub4OA63yNMtfWKf19o8Pga92ItAgFGvKpWts2Gv
+         UscQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXlju0ZeLTYOMeHHk2+XagenHj7zsyEsgMs+UwzVBpJ6YWikGKaAikNE7S6oR9wIPgqtP96vgjuBbYy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxj7OWLDRNLYHQeX4iI2GquJGrMLggzefVlbWoGSxMxYwbuDZUF
+	g1f/GsWOcW5C+RN12RoIZBljlXMnIfVGN+G9ZddSKiGZFWayB8AsyutJtnHm67U=
+X-Google-Smtp-Source: AGHT+IFi7rOXtdUqAxhUetMwe8gtb6a/xV9ZXm9g63edqmUl5elGNWyp7G8/RmAbdH72cxyAjilTug==
+X-Received: by 2002:a17:907:1c8b:b0:a8d:2623:dd19 with SMTP id a640c23a62f3a-a93c4ade9bcmr88134366b.14.1727423823198;
+        Fri, 27 Sep 2024 00:57:03 -0700 (PDT)
 Received: from [192.168.0.18] (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a93c2948355sm97339666b.142.2024.09.27.00.48.40
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a93c294747asm96048666b.107.2024.09.27.00.57.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Sep 2024 00:48:40 -0700 (PDT)
-Message-ID: <ce64e869-4a52-4da3-b95e-d60a0247006a@linaro.org>
-Date: Fri, 27 Sep 2024 09:48:39 +0200
+        Fri, 27 Sep 2024 00:57:02 -0700 (PDT)
+Message-ID: <e1523562-0cf9-44a9-9cbe-23ace46ea997@linaro.org>
+Date: Fri, 27 Sep 2024 09:57:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,18 +77,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 1/2] dt-bindings: connector: Add property to set pd timer
- values
-To: Amit Sunil Dhamne <amitsd@google.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org
-Cc: linux-kernel@vger.kernel.org, kyletso@google.com, rdbabiera@google.com,
- Badhri Jagan Sridharan <badhri@google.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240911000715.554184-1-amitsd@google.com>
- <20240911000715.554184-2-amitsd@google.com>
- <ae520641-38a4-405e-89d0-e0921dfc7cff@linaro.org>
- <2dab1111-49fd-43b7-8624-2d61b3d546b1@google.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: remoteproc: sse710: Add the External
+ Systems remote processors
+To: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+Cc: mathieu.poirier@linaro.org, Adam.Johnston@arm.com,
+ Hugues.KambaMpiana@arm.com, Drew.Reed@arm.com, andersson@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ liviu.dudau@arm.com, lpieralisi@kernel.org, robh@kernel.org,
+ sudeep.holla@arm.com, robin.murphy@arm.com
+References: <20240919093517.GA43740@e130802.arm.com>
+ <222b3b11-151a-4ad0-91ea-54ae8f280bcb@kernel.org>
+ <20240919145741.GA7940@e130802.arm.com>
+ <85a223e9-05a4-4034-87a5-57d3eb9409b7@kernel.org>
+ <20240920141958.GA288724@e130802.arm.com>
+ <7784248d-4372-4cf1-a01a-5b731b3f6b96@kernel.org>
+ <20240920163851.GA385919@e130802.arm.com>
+ <e37a0542-d405-4d15-84d2-4c7b1385d3ef@kernel.org>
+ <20240923114945.GA133670@e130802.arm.com>
+ <c263b843-50bc-4c2c-b15e-9b87dfb201ab@linaro.org>
+ <20240923171948.GA348509@e130802.arm.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -135,184 +144,215 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <2dab1111-49fd-43b7-8624-2d61b3d546b1@google.com>
+In-Reply-To: <20240923171948.GA348509@e130802.arm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 17/09/2024 03:59, Amit Sunil Dhamne wrote:
-> Hi Krzysztof,
-> 
-> Thanks for the review!
-> 
-> On 9/16/24 9:05 AM, Krzysztof Kozlowski wrote:
->> On 11/09/2024 02:07, Amit Sunil Dhamne wrote:
->>> This commit adds a new property "pd-timers" to enable setting of
->>> platform/board specific pd timer values for timers that have a range of
->>> acceptable values.
+On 23/09/2024 19:19, Abdellatif El Khlifi wrote:
+
 >>>
->>> Cc: Badhri Jagan Sridharan <badhri@google.com>
->>> Cc: linux-usb@vger.kernel.org
->>> Cc: devicetree@vger.kernel.org
->>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
->> Please work on mainline, not ancient tree. You cannot get my CC address
->> like that from mainline.
-> I was working off gregkh's tree on usb-next branch as that's suggested 
-> for USB development.
-> 
-> 
->> It's not possible. So either you don't develop
->> on mainline or you don't use get_maintainers.pl/b4/patman.
->>
-> The above branch and even the tree on Linus' master branch has you
-> listed as a maintainer
-> (https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/MAINTAINERS#n17181).
-> I guess that's why the get_maintainers script probably returned your
-> email id when I ran it. Please let me know if I missed something :).
-
-You really just skimmed over my email... I know how maintainers work.
-
-So I REPEAT: You cannot get this email address you Cced. Point me to the
-line in your tree having such email. The one here:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/MAINTAINERS#n17181
-
-does not have it.
-
-> 
-> 
->>> ---
->>>   .../bindings/connector/usb-connector.yaml     | 23 +++++++++++++++++++
->>>   include/dt-bindings/usb/pd.h                  |  8 +++++++
->>>   2 files changed, 31 insertions(+)
+>>> The Host Base System Control [3] is the big block containing various functionalities (MMIO registers).
+>>> Among the functionalities, the two remote cores registers (aka External system 0 and 1).
+>>> The remote cores have two registers each.
 >>>
->>> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>> index fb216ce68bb3..9be4ed12f13c 100644
->>> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>> @@ -253,6 +253,16 @@ properties:
->>>   
->>>       additionalProperties: false
->>>   
->>> +  pd-timers:
->>> +    description: An array of u32 integers, where an even index (i) is the timer (referenced in
->>> +      dt-bindings/usb/pd.h) and the odd index (i+1) is the timer value in ms (refer
->> timer of what? OS behavior?
-> In the context of USB Type C Power Delivery (PD), timers are run on the 
-> typec protocol driver
-> (usb/typec/tcpm/tcpm.c).
-> These are used to keep track of min/max or range of time required to 
-> enter a PD state with the
-> goal of a successful USB typec capabilities negotiation.  Eg., the timer 
-> PD_TIMER_SINK_WAIT_CAP (referred to as SinkWaitCapTimer in spec)would be 
-> responsible to keep track of whether a power source sent us (as sink) PD 
-> source capabilities pkts within 600ms (say), if yes, then we would 
-> transition to the next state or do a state machine reset. USB PD 3.1 
-> spec refers to these elements as timers and therefore referred to as 
-> such here.
-> 
-> 
->>> +      "Table 6-68 Time Values" of "USB Power Delivery Specification Revision 3.0, Version 1.2 " for
->>> +      the appropriate value). For certain timers the PD spec defines a range rather than a fixed
->>> +      value. The timers may need to be tuned based on the platform. This dt property allows the user
->> Do not describe what DT is. We all know what DT properties allow.
->> Instead describe how this relates to hardware or boards.
+>>> 1/ In the v1 patchset, a valid point was made by the community:
+>>>
+>>>    Right now it seems somewhat tenuous to describe two consecutive
+>>>    32-bit registers as separate "reg" entries, but *maybe* it's OK if that's
 >>
->> All this is wrongly wrapped. See Coding style (and I am not telling you
->> the value on purpose, so you will read the coding style) .
+>> ARM is not special, neither this hardware is. Therefore:
+>> 1. Each register as reg: nope, for obvious reasons.
+>> 2. One device for entire syscon: quite common, why do you think it is
+>> somehow odd?
+>> 3. If you quote other person, please provide the lore link, so I won't
+>> spend useless 5 minutes to find who said that or if it was even said...
 > 
+> Please have a look at this lore link [1]. The idea is to add syscon
+> and regmap support which I did in the v2 patchset.
 > 
-> Ack. Thanks for pointing it out, I will fix both the above in the next 
-> revision.
-> 
+> [1]: https://lore.kernel.org/all/ZfMVcQsmgQUXXcef@bogus/
+
+There is nothing there about DT bindings. We do not talk here about
+drivers. MFD and regmap are Linux driver stuff, not bindings.
+
+I said nothing about not using MFD, regmap or whatever driver stuff you
+want. We talk *only* about bindings. Syscon is mentioned there but I am
+sorry - that quite a stretch to call a block syscon just because you
+want regmap.
+
 > 
 >>
->>> +      to assign specific values based on the platform. If these values are not explicitly defined,
->>> +      TCPM will use a valid default value for such timers.
->> And what is the default?
+>>>    all there ever is. However if it's actually going to end up needing several
+>>>    more additional MMIO and/or memory regions for other functionality, then
+>>>    describing each register and location individually is liable to get
+>>>    unmanageable really fast, and a higher-level functional grouping (e.g. these
+>>>    reset-related registers together as a single 8-byte region) would likely be
+>>>    a better design.
+>>>
+>>>    The Exernal system registers are part of a bigger block with other functionality in place.
+>>>    MFD/syscon might be better way to use these registers. You never know in
+>>>    future you might want to use another set of 2-4 registers with a different
+>>>    functionality in another driver.
+>>>
+>>>    I would see if it makes sense to put together a single binding for
+>>>    this "Host Base System Control" register (not sure what exactly that means).
+>>>    Use MFD/regmap you access parts of this block. The remoteproc driver can
+>>>    then be semi-generic (meaning applicable to group of similar platforms)
+>>>    based on the platform compatible and use this regmap to provide the
+>>>    functionality needed.
+>>
+>> I don't understand how this lengthy semi-quote answers my concerns.
+>> Please write concise points as arguments to my questions.
+>>
+>> For example, I don't care what your remote proc driver does and it
+>> should not matter in the terms of this binding.
 > 
-> Defaults are given in (include/linux/usb/pd.h). But I guess I should 
-> have probably mentioned
-> that here.
-> 
+> I just wanted to show why we are using syscon based on the arguments
+> of other reviewers.
 > 
 >>
->>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> I guess you want matrix here.
-> 
-> Yes, I should have. Though, I will be re-implementing this such that 
-> each timer is represented
-> as a separate property based on Rob and Dmitry's suggestion in
-> https://lore.kernel.org/lkml/20240916163328.GA394032-robh@kernel.org/ .
-> 
->>> +
->>>   dependencies:
->>>     sink-vdos-v1: [ sink-vdos ]
->>>     sink-vdos: [ sink-vdos-v1 ]
->>> @@ -478,3 +488,16 @@ examples:
->>>               };
->>>           };
->>>       };
->>> +
->>> +  # USB-C connector with PD timers
->>> +  - |
->>> +    #include <dt-bindings/usb/pd.h>
->>> +    usb {
->>> +        connector {
->>> +            compatible = "usb-c-connector";
->>> +            label = "USB-C";
->>> +            pd-timers =
->>> +                <PD_TIMER_SINK_WAIT_CAP 600>,
->>> +                <PD_TIMER_CC_DEBOUNCE 170>;
->> Incorporate it into existing example.
+>>>
+>>> 2/ There are many examples in the kernel that use syscon as a parent node of
+>>>    child nodes for devices located at an offset from the syscon base address.
+>>>    Please see these two examples [1][2]. I'm trying to follow a similar design if that
+>>>    makes sense.
 >>
-> Ack.
+>> Yeah, for separate devices. If you have two words without any resources,
+>> I claim you might not have here any separate devices or "not separate
+>> enough", because all this is somehow fluid. Remote core sounds like
+>> separate device, but all your arguments about need of extid which cannot
+>> be used in reg does not support this case.
+>>
+>> The example in the binding is also not complete - missing rest of
+>> devices - which does not help.
 > 
+> Here I would like to explain the current suggestion and suggest an alternative solution.
 > 
->>> +        };
->>> +    };
->>> diff --git a/include/dt-bindings/usb/pd.h b/include/dt-bindings/usb/pd.h
->>> index e6526b138174..6c58c30f3f39 100644
->>> --- a/include/dt-bindings/usb/pd.h
->>> +++ b/include/dt-bindings/usb/pd.h
->>> @@ -465,4 +465,12 @@
->>>   	 | ((vbm) & 0x3) << 15 | (curr) << 14 | ((vbi) & 0x3f) << 7	\
->>>   	 | ((gi) & 0x3f) << 1 | (ct))
->>>   
->>> +/* PD Timer definitions */
->>> +/* tTypeCSinkWaitCap (Table 6-68 Time Values, USB PD3.1 Spec) */
->> Please expand this a bit, so we won't have to reach to external sources.
+> 1/ For more clarity, here is a complete example of use of both remote cores
+> at the same time:
 > 
-> Ack.
+>     syscon@1a010000 {
+>         compatible = "arm,sse710-host-base-sysctrl", "simple-mfd", "syscon";
+>         reg = <0x1a010000 0x1000>;
 > 
-> I will incorporate all of your review comments.
+>         #address-cells = <1>;
+>         #size-cells = <1>;
 > 
-> Since you are no longer maintaining the
-> "OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" component, please let 
+>         remoteproc@310 {
+>             compatible = "arm,sse710-extsys0";
+>             reg = <0x310 8>;
+>             firmware-name = "es0_flashfw.elf";
+>             mboxes = <&mhu0_hes0 0 1>, <&mhu0_es0h 0 1>;
+>             mbox-names = "txes0", "rxes0";
+>             memory-region = <&extsys0_vring0>, <&extsys0_vring1>;
+>         };
+> 
+>         remoteproc@318 {
+>             compatible = "arm,sse710-extsys1";
+>             reg = <0x318 8>;
+>             firmware-name = "es1_flashfw.elf";
+>             mboxes = <&mhu0_hes1 0 1>, <&mhu0_es1h 0 1>;
+>             mbox-names = "txes0", "rxes0";
+>             memory-region = <&extsys1_vring0>, <&extsys1_vring1>;
+>         };
+> };
+> 
+> Here we have 2 cores, each one have 2 registers mapped respectively
+> at 0x1a010310 and 0x1a010318.
 
-Who said that? You CC wrong emails because either you work on ancient
-tree or you do not use tools like get_maintainers.pl or b4. You cannot
-get this email from proper process. It is not physically possible
-because that email is nowhere mentioned.
+All this looks fine, resources are indeed reasonable, except that I
+still do not understand why do you need to call them 0 and 1 (now via
+compatible).
 
-> me know
-> if you'd still like to be CC'ed in the subsequent revisions.
+Your driver code shows this nicely - it is entirely redundant! The 'reg'
+- so the base - is already there! You just duplicate it with the
+extsys_id, instead of relying on the base. So think what is the point of
+'reg' property if you do not use it?
+
+> 
+> Definetly these cores have seperate HW resources associated with them
+> which are the MHUs (mailboxes HW). There are 2 pairs of MHUs associated
+> with each core. These mailbox peripherals are obviously seperate.
+> Furthermore, the vring buffers used for communication are seperate.
+> 
+> Moreover, the remote cores are independent. They are not SMP cores of one processor.
+> 
+> They can have different default firmware to use. In this example es0_flashfw.elf
+> and es1_flashfw.elf
+> 
+> The current HW implementation (Corstone-1000) provides one remote core only.
+> However, the second core control registers are at 0x1a010318 do exist.
+> 
+> Support for a second core is taken into consideration in this work to help
+> end users who want to add a second core to their HW.
+> 
+> 2/ Here I'm suggesting an alternative solution by using one remoteproc node for both cores as
+> follows:
+> 
+>     syscon@1a010000 {
+>         compatible = "arm,sse710-host-base-sysctrl", "simple-mfd", "syscon";
+>         reg = <0x1a010000 0x1000>;
+> 
+>         remoteproc {
+>             compatible = "arm,sse710-extsys";
+>             firmware-name = "es0_flashfw.elf";
+>             mboxes = <&mhu0_hes0 0 1>, <&mhu0_es0h 0 1>, <&mhu0_hes1 0 1>, <&mhu0_es1h 0 1>;
+>             mbox-names = "txes0", "rxes0", "txes1", "rxes1";
+>             memory-region = <&extsys0_vring0>, <&extsys0_vring1>, <&extsys1_vring0>, <&extsys1_vring1>;
+>         };
+> };
+> 
+> Does this meet your expectations please ?
+> 
+>>
+>>>
+>>> 3/ Since there are two registers for each remote core. I'm suggesting to set the
+>>>    size in the reg property to 8. 
+>>
+>> How is this related?
+>>
+>>> The driver will read the match data to get the right
+>>>    offset to be used with regmap APIs.
+>>
+>> Sorry, no talks about driver. Don't care, at least in this context.
+>>
+>> You can completely omit address space from children in DT and everything
+>> will work fine and look fine from bindings point of view.
+>>
+>>>
+>>> Suggested nodes:
+>>>
+>>>
+>>>     syscon@1a010000 {
+>>>         compatible = "arm,sse710-host-base-sysctrl", "simple-mfd", "syscon";
+>>>         reg = <0x1a010000 0x1000>;
+>>>
+>>>         #address-cells = <1>;
+>>>         #size-cells = <1>;
+>>>
+>>>         remoteproc@310 {
+>>>             compatible = "arm,sse710-extsys0";
+>>>             reg = <0x310 8>;
+>>>             firmware-name = "es_flashfw.elf";
+>>>             mboxes = <&mhu0_hes0 0 1>, <&mhu0_es0h 0 1>;
+>>>             mbox-names = "txes0", "rxes0";
+>>>             memory-region = <&extsys0_vring0>, <&extsys0_vring1>;
+>>>         };
+>>>
+>>>         remoteproc@318 {
+>>>             compatible = "arm,sse710-extsys1";
+>>>             reg = <0x318 8>;
+>>>             firmware-name = "es_flashfw.elf";
+>>
+>> Same firmware? Always or only depends?
+> 
+> The firmware of the second core depends on the end user choice.
+> Currently the second core is not implemented in the HW.
+> Users who want to tweak Corstone-1000 HW can add
+> a second core.
 
 
-Damn, just use standard tools. You are not supposed to invent maintainers.
-
-<form letter>
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC (and consider --no-git-fallback argument). It might
-happen, that command when run on an older kernel, gives you outdated
-entries. Therefore please be sure you base your patches on recent Linux
-kernel.
-
-Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-people, so fix your workflow. Tools might also fail if you work on some
-ancient tree (don't, instead use mainline) or work on fork of kernel
-(don't, instead use mainline). Just use b4 and everything should be
-fine, although remember about `b4 prep --auto-to-cc` if you added new
-patches to the patchset.
-</form letter>
+Two cores make more sense in such case.
 
 Best regards,
 Krzysztof
