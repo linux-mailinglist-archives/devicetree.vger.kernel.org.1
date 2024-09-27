@@ -1,161 +1,170 @@
-Return-Path: <devicetree+bounces-105805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA917987FDC
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 09:59:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4A8F987FED
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 10:02:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 080E21C21845
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 07:59:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 158451C21F80
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 08:02:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C11188A19;
-	Fri, 27 Sep 2024 07:59:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D56B6188CB2;
+	Fri, 27 Sep 2024 08:02:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YiLIls2e"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="QLSmztuc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA7C216EBE6;
-	Fri, 27 Sep 2024 07:59:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCB2D17ADF9;
+	Fri, 27 Sep 2024 08:02:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727423956; cv=none; b=fPh+pWAIhi/DTuh8SWDxHDyV/Wkool7OH1JDgratEEHRS6u0G66vKMlfj7N84Hkx+N0+m84FExkY9M3rQdeOvaF/wyyHaoYKRbAc856qaLA58j7N4zkP4FZpTIvvvjmyefWe+Pwlyn0B5Zavy6OrShjmt6Xw7agCVbt2Q34h+/0=
+	t=1727424132; cv=none; b=gY5zN6U45UzoIXIz+Ge5lHvRmDm8Hm9Sy/jkMPCSJvDFstUZYYEA2xthbVWryjAs3pjZJyrNad4DiW0oEqxEF9KtRFZciG6LX5wAdFw3LzDFdbCqMH0Z/zO0r6NhenYHAb/xafLN3+Xmv3i7A4hDQsJGubaURSwmEy0u+JJxu2s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727423956; c=relaxed/simple;
-	bh=/Kcf/b+lxAS+6JG63ZN2/fBZp3TbJh5lzZtV7oWOqK4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TAlPHMRsq5p4wSrBZcyc5pds/BMiSLZrHpJGBSrxyY/MKiJQOuONW36apfx5NxuZhkGthf9B1SAU8fINGQFTP5dUHnHH3aJ06kfoQGpQg9y5lSHCLV3F6aILGl0EYn6/26cs38zzlR4S4lFmT1isxGFeIndrd2KGSfb48jMJcYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YiLIls2e; arc=none smtp.client-ip=209.85.215.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-72703dd2b86so167565a12.1;
-        Fri, 27 Sep 2024 00:59:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727423954; x=1728028754; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7HwX6OI4gIIHbN/hK9fjNZGmVtettbN++9lE7NDiTf8=;
-        b=YiLIls2e4TSgAhwABVhcbvWcvtK7wtIdMUip/PtlH08sbxcdo9iS42HGHS57YPUzgU
-         2gpzaPSI5n3mxRM3SZ8ElxvunwrIiP0QOBf1diWtnoroSjP+k4GXBaHUxINC02OomhWG
-         wKMFfwjeB/OI1hUMwi/3eM9k2B30B/WvCRyjvQ9WNMuMG2NwcDYTAU9HXzmPdT1hJbCs
-         UJyW70kE347SBYF/vQD8KLQKBfcjln2Oz1tKgpMILqddFxlGPRzts1+n9fzgtEEjRU49
-         to7VBPaMdnZ9rshSLZi5Hp7Zgszw/ap52+9SRa01Y2ndJ/z767S3golelCk2EGyEnqJp
-         KqWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727423954; x=1728028754;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7HwX6OI4gIIHbN/hK9fjNZGmVtettbN++9lE7NDiTf8=;
-        b=A4LGeNiQ9pkZ1Gpx0Z1jEf8WnNslNeDiq5DBQlFhKdwrBleRB19TaY2BcZL0gvxoL1
-         B9/JgC2V3scpI6eX4gsRSTXxZ0P4TJbJt9Vn8tzxi8NUgVzZg0QmAsr3BsgGecJp1hxQ
-         z5TWGakecjN6Gq/vJtlhniM2YWUeGe1cg6zTDbTi5fn/0+EK9J2E0i3STFz1snUT5Crw
-         CB5lcoPaxVOTEfTzLCVLwJkqQ0OHJbbadyiwKsVPF9XSRwuE2tLGbWEsS5TpykclnsQ5
-         xJncewP/JwTr4aDCOFXGQ7C9etfXQMrNhYP4a2nichbBAMVm8isoIC3V92kqYuKJ6L+T
-         fG2w==
-X-Forwarded-Encrypted: i=1; AJvYcCVDkG1nypUp+95FD6KWWEWl8hsgRDNCzUBKuLDcVCdhR3FvPXuUlqhzhnDc7JYzKWmSLk1DWEKWU5gX@vger.kernel.org, AJvYcCWVK1NIsqb84UqnolJCzOdO3GxfMsTaZmUs3HZGSfEpYlvnPWFC/5wM2j83+Fyks3N+MggC4pfDNKesVN8n@vger.kernel.org
-X-Gm-Message-State: AOJu0YxeQ5VBO3L295YLS/bm7Mi60vr3MfehIdqWHy/ZDsMZI+xmGDNC
-	2duKAGg0mTGWVzR4Cs7VFmhCmlN9TRfQBxhOt5d+R3rSm38V8K0GRBo/FQvd
-X-Google-Smtp-Source: AGHT+IE8JYRGGpZv4q306yHVh3sNMzBl8mIZYgoblrNJM7FaZO2kvA7WslMeA3lBcRj9DzjVCS+SCA==
-X-Received: by 2002:a05:6a00:39a8:b0:714:1bcf:adbe with SMTP id d2e1a72fcca58-71b25dacbdemr1720656b3a.0.1727423954093;
-        Fri, 27 Sep 2024 00:59:14 -0700 (PDT)
-Received: from [192.168.60.56] ([103.29.142.67])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71b265249b7sm1060789b3a.148.2024.09.27.00.59.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Sep 2024 00:59:13 -0700 (PDT)
-Message-ID: <a06af01a-656b-4ef6-84a6-bc1c35d5bafa@gmail.com>
-Date: Fri, 27 Sep 2024 15:59:08 +0800
+	s=arc-20240116; t=1727424132; c=relaxed/simple;
+	bh=UjG+AW3XkETGoYj/hG0y6HDZiabj/vW+w6RW0BAihzU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=HQ+B372ra/YP4cyYG4Axjg+qEQv3Qsb+Wq641SMyUJmOiivkKSIgdI3w04nkDRqEMXaL5p4tWWxDsO7KF6nOC/LkQEnqoSQpAjciVifPI2gyOTa7B1taR6U/Wem/dXeJQzdngOZqQ5coUC43PkwO6fGRlpideZv98bKFrnNJ9Rs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=QLSmztuc; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=VrHmD3qjrTGLP9NWMXSPhKgSjDl2KVnQsH7jouH3UsI=; b=QLSmztucKNR9BO55sYkVhudf8M
+	zxv4k5lSfkeSk9O/fAfcX+6YrDVdYAJ4BXUdhMzUt2GlIDFp/VFi+wKbizLPemDqINc5q+BdwGlUm
+	KAnzGihqcTR1VEqDfA2GidGdVaB2FTCyLA8yd7BT4TW8+UoXXAbiaZo2ii5a4iBGMkQnOXWyl3spz
+	+gJXa6F4pqt+uGWneO8VsAP4tnIbY/vMfzfv1OvTOw+xB/IDp/iSneW81xEAthSAqdmYAKW0MP8O5
+	N3L0b4Ay2DAgQ3cq0ZE9q7Jf/H1RL4z47VoVXe7EyTTu8/MQDeH6/vscyWyejC0MGjVqwVs6UNSYX
+	kH7HbgnQ==;
+Received: from 85-160-70-253.reb.o2.cz ([85.160.70.253] helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1su5vT-00009l-Ez; Fri, 27 Sep 2024 10:02:07 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Frank Wang <frawang.cn@gmail.com>, vkoul@kernel.org, kishon@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
+ tim.chen@rock-chips.com, frank.wang@rock-chips.com
+Subject:
+ Re: [PATCH v3 1/2] dt-bindings: phy: rockchip,inno-usb2phy: add rk3576
+Date: Fri, 27 Sep 2024 10:02:05 +0200
+Message-ID: <20816071.Yz81rIOvuz@phil>
+In-Reply-To: <4b98196a-c898-4d08-9101-31feb4e59b5c@kernel.org>
+References:
+ <20240926103223.29538-1-frawang.cn@gmail.com>
+ <7944f4dd-96f0-40df-8c91-523409e3cb20@gmail.com>
+ <4b98196a-c898-4d08-9101-31feb4e59b5c@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: phy: rockchip,inno-usb2phy: add
- rk3576
-To: Krzysztof Kozlowski <krzk@kernel.org>, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- heiko@sntech.de
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
- tim.chen@rock-chips.com, frank.wang@rock-chips.com
-References: <20240926103223.29538-1-frawang.cn@gmail.com>
- <ed829240-d4f7-471f-84f6-3509f87f11a1@kernel.org>
- <7944f4dd-96f0-40df-8c91-523409e3cb20@gmail.com>
- <4b98196a-c898-4d08-9101-31feb4e59b5c@kernel.org>
-Content-Language: en-US
-From: Frank Wang <frawang.cn@gmail.com>
-In-Reply-To: <4b98196a-c898-4d08-9101-31feb4e59b5c@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
 Hi Krzysztof,
 
-On 2024/9/27 15:30, Krzysztof Kozlowski wrote:
+Am Freitag, 27. September 2024, 09:30:30 CEST schrieb Krzysztof Kozlowski:
 > On 27/09/2024 09:01, Frank Wang wrote:
->> Hi Krzysztof,
->>
->> On 2024/9/26 22:19, Krzysztof Kozlowski wrote:
->>> On 26/09/2024 12:32, Frank Wang wrote:
->>>> +  - if:
->>>> +      properties:
->>>> +        compatible:
->>>> +          contains:
->>>> +            enum:
->>>> +              - rockchip,rk3576-usb2phy
->>>> +    then:
->>>> +      properties:
->>>> +        clocks:
->>>> +          minItems: 3
->>>> +          maxItems: 3
->>> Read one more time the example I gave you. Top-level constraints are
->>> saying max one clock.
->>>
->>> Best regards,
->>> Krzysztof
->>>
->> Sorry for overlooking this, I will set both "clocks" and "clock-names"
->> to true, and add the else case below the above codes for the "old" SoCs.
->> Just like the below.
->>
->> -  clocks:
->> -    maxItems: 1
->> +  clocks: true
->>
->> -  clock-names:
->> -    const: phyclk
->> +  clock-names: true
+> > Hi Krzysztof,
+> > 
+> > On 2024/9/26 22:19, Krzysztof Kozlowski wrote:
+> >> On 26/09/2024 12:32, Frank Wang wrote:
+> >>> +  - if:
+> >>> +      properties:
+> >>> +        compatible:
+> >>> +          contains:
+> >>> +            enum:
+> >>> +              - rockchip,rk3576-usb2phy
+> >>> +    then:
+> >>> +      properties:
+> >>> +        clocks:
+> >>> +          minItems: 3
+> >>> +          maxItems: 3
+> >> Read one more time the example I gave you. Top-level constraints are
+> >> saying max one clock.
+> >>
+> >> Best regards,
+> >> Krzysztof
+> >>
+> > 
+> > Sorry for overlooking this, I will set both "clocks" and "clock-names" 
+> > to true, and add the else case below the above codes for the "old" SoCs.
+> > Just like the below.
+> > 
+> > -  clocks:
+> > -    maxItems: 1
+> > +  clocks: true
+> > 
+> > -  clock-names:
+> > -    const: phyclk
+> > +  clock-names: true
+> 
 > For the third time, read the code I gave you. Do you see something like
 > this there? Why doing all the time something different than existing code?
 
-Refer to the link you sent me that I must add minItems property for 
-clocks, just like the below codes:
+On vacation right now so late to the party, and somewhat confused :-) .
 
-@@ -35,7 +35,8 @@ properties:
-      const: 0
+I've tried to find the code you mentioned, but did fail.
+In [0] you mention "maybe oneOf". The other replies in that version were
+about the ordering needing to stay for the older phy variants.
 
-    clocks:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 3
+[1] in v2 has that NAK thing and [2] from v3 references that example again
 
-That can pass dt_binding and dtb checking, however, "clocks" is the 
-optional property for some old Rockchip PHYs,  I am not sure is it right 
-to force set  minItems as 1 .
-If just keep maxItems, the dt_binding checking is failure.
+I am probably just blind, but could use a pointer.
 
 
-Best regards,
-Frank
+Because I think going with a
+  - if:
+      properties:
+        compatible:
+          contains:
+            enum:
+              - rockchip,rk3576-usb2phy
+    then:
+      properties:
+        clocks:
+          minItems: 3
+          maxItems: 3
+        clock-names:
+          items:
+            - const: phyclk
+            - const: aclk
+            - const: aclk_slv
+    else:
+      properties:
+        clocks:
+          maxItems: 1
+        clock-names:
+          const: phyclk
 
-> Best regards,
-> Krzysztof
->
+block should actually make sure each variant will check for the appropriate
+number of clocks?
+
+And having clocks:true in the main part then makes sure that the property
+is not getting marked as:
+arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: usb2-phy@0: 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
+        from schema $id: http://devicetree.org/schemas/phy/rockchip,inno-usb2phy.yaml#
+
+
+Heiko
+
+
+[0] https://lore.kernel.org/lkml/snccizbw6thn3lhwad4xppp7vqii4p56ttl2gufwc3ke7vfckf@e4b7nvwwtdfr/
+[1] https://lore.kernel.org/lkml/2a4200ac-3ea2-4449-94ac-c4b9f37ad800@kernel.org/#t
+[2] https://lore.kernel.org/lkml/ed829240-d4f7-471f-84f6-3509f87f11a1@kernel.org/
+
 
 
