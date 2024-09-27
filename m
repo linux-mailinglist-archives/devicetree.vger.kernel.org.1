@@ -1,165 +1,116 @@
-Return-Path: <devicetree+bounces-105835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C939E98818D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 11:44:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01983988191
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 11:44:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2C90FB24D2B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 09:44:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32BC21C22121
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 09:44:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF7501BC9F0;
-	Fri, 27 Sep 2024 09:42:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 772EA1BD002;
+	Fri, 27 Sep 2024 09:42:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="CYSOHS09"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o2Av3ebH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E7EE1BC069
-	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 09:42:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 464721B0120;
+	Fri, 27 Sep 2024 09:42:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727430147; cv=none; b=MT4gatoCgwZSx6eEWP7vywHu/vKX3x6371Cwyn1q8oqBq2gc8xChkjMOCqyyt12Mkj7cyQrWApbZu9xMNrKL8ZauXc9BUn860uXvvUYjH2w71YHe++uSjgMrqp1OrXn8GUL4q6lHDmtyZR6nrXdw3D+G1HvY2dRVe2KvO+T/UIc=
+	t=1727430154; cv=none; b=gmdcGJgv9leyZT01aVh2zyGlAooj8lywWnSYDc8mEiPyrWGWRa48jfKna9QgcqZrJL7504AP6d2EeJc4iZfh27B7K/dDnqas/Lm8vSJcLqF00fH7Ft27cFWYnvn7p5+UB5s09lG0d9ZxZYb7J1K5EBGgVX8h6z3Pve78iHEpD08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727430147; c=relaxed/simple;
-	bh=SJw5Yqr/AcqADMJgnPbnXE8o3F0Vz/K73SSnHERIeic=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=hwaoPgmKK8gdHUhiAMMuJSU8bkilmjhL5rDF/u72VZ83VrAd+EqTXofEdDkdnQr95X/9I19SCwB60AxnZHbjuUtQzMBCrGl7+XZ3zoIkBGt/JBTMy5/kReLMl0fHziHzYDTrhMdMjl4ArkMJTGmDjkMLNgd8FQtEO7TgitNmhU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=CYSOHS09; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20240927094216euoutp02266ce456d64916051327c7d5c5ce990b~5EI6hSLdP0681806818euoutp02M
-	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 09:42:16 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20240927094216euoutp02266ce456d64916051327c7d5c5ce990b~5EI6hSLdP0681806818euoutp02M
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1727430136;
-	bh=3MO46mXfOuocY1HlZiYe3RsDsrIw9zYFpIh9D2ZuYOA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=CYSOHS09S8uPEq1aRBPWXDQUDHSLt3XMfdsP3ajsa/F2QbBnt4uph8zyJsxNBS3xH
-	 JGlNyZbBSDUv0ge9RGRMXkpOMjDUaJEQ0LBeJkBI+o3h8nymmSepunhyGhAt5aNIJS
-	 usePpPpnuaZnvPpMqzFsXVmjp9TVBje9LNyiEEPU=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-	20240927094216eucas1p12673651e7c57f716ec7ac14ab1fbee3d~5EI6Kir9k2561425614eucas1p1B;
-	Fri, 27 Sep 2024 09:42:16 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-	eusmges1new.samsung.com (EUCPMTA) with SMTP id 97.CF.09624.8FD76F66; Fri, 27
-	Sep 2024 10:42:16 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20240927094215eucas1p29ac564998ea7f9dbe8b5d908060c7c38~5EI5oe4Gz1993719937eucas1p2W;
-	Fri, 27 Sep 2024 09:42:15 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20240927094215eusmtrp2c68f985da93ddaac31c79cf6c49d4ca6~5EI5kpq1s2855228552eusmtrp2O;
-	Fri, 27 Sep 2024 09:42:15 +0000 (GMT)
-X-AuditID: cbfec7f2-c11ff70000002598-c0-66f67df8f5d6
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id DD.86.19096.7FD76F66; Fri, 27
-	Sep 2024 10:42:15 +0100 (BST)
-Received: from AMDC4942.home (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20240927094214eusmtip28b1dc98ba9577f83b1b7b3fe58569a5f~5EI4y8ReL1991519915eusmtip2n;
-	Fri, 27 Sep 2024 09:42:14 +0000 (GMT)
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-To: drew@pdp7.com, guoren@kernel.org, wefu@redhat.com,
-	jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, m.szyprowski@samsung.com
-Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Michal Wilczynski <m.wilczynski@samsung.com>
-Subject: [PATCH RFC v2 3/3] riscv: dts: thead: Add mailbox node
-Date: Fri, 27 Sep 2024 11:42:07 +0200
-Message-Id: <20240927094207.1650085-4-m.wilczynski@samsung.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240927094207.1650085-1-m.wilczynski@samsung.com>
+	s=arc-20240116; t=1727430154; c=relaxed/simple;
+	bh=TST2aU00V+a/b6WJK9LCwWG80Mq75dZu+SmOHyfGhDw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sh2c8MX949/8aR7Vu9AMev7yHy08zfIeUmTdqOXF/LyYxld6NL9VvWq9fwgGP5kES6fUVBx7PKfV7y/kXjt+RclsDGOi1aexaAjBuZRsqeFo4ytafP6MXNa4ozo6ifBtP/tYpf9xoBTJRMACmQzXN9wEUJMmpXPTgSfR9UNdHjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o2Av3ebH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C71EC4CEC9;
+	Fri, 27 Sep 2024 09:42:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727430153;
+	bh=TST2aU00V+a/b6WJK9LCwWG80Mq75dZu+SmOHyfGhDw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=o2Av3ebHVSl6qmxEGQZKjs86KC6ZaA6DIYPXM79Z6t6ndEl6tL6O7q8ePXtYVBCz8
+	 NFDA7kMcX2J/JBk0DLWyxK+CHpSt0xM8kXlHqSyvjyeJNwSfhbXGGyJCqHh7mc/AqU
+	 YBhz9hNlH/2nzaDLCSrtg3SHW3Ns9MeFQjlxw6SMRcj1L+rUfKVK/EpLVz64LgBcTH
+	 mW6dimPJMBckLxty4HXgLoeT24s1mWNhjwjJhI9fusH43oJz7W3EZPmsbAfm7kTqQN
+	 iTP7t4Eyp85G+qpzHpjA5TxQ/23G4wQQ6tB0BZV/7QS8tPH6kuXFm68xcnB2DzHHAG
+	 xg8NPMi43ymDQ==
+Date: Fri, 27 Sep 2024 11:42:31 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: Conor Dooley <conor@kernel.org>, Sen Chu <sen.chu@mediatek.com>, 
+	Sean Wang <sean.wang@mediatek.com>, Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Eason Yen <eason.yen@mediatek.com>, 
+	Jiaxin Yu <jiaxin.yu@mediatek.com>, Shane Chien <shane.chien@mediatek.com>, 
+	Hui Liu <hui.liu@mediatek.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org, 
+	Alexandre Mergnat <amergnat@baylibre.com>, Bear Wang <bear.wang@mediatek.com>, 
+	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, 
+	Chris-qj chen <chris-qj.chen@mediatek.com>, 
+	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: [PATCH 2/3] dt-bindings: mfd: mediatek: mt6397: add compatible
+ for mt6359-codec
+Message-ID: <z5zehicgqqsbgsjz5nrjlqrkpqll57gb26jdc3ctpeajtlfusm@b2s5vrbuv3es>
+References: <20240926092519.6556-1-macpaul.lin@mediatek.com>
+ <20240926092519.6556-2-macpaul.lin@mediatek.com>
+ <20240926-smokeless-clobber-0fb8a1cdc7ab@spud>
+ <78381b10-eae6-1414-6913-994e1ed03410@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrEKsWRmVeSWpSXmKPExsWy7djP87o/ar+lGaxcImax9fcsdos1e88x
-	Wcw/co7V4t6lLUwWL/Y2slhcWzGX3eLlrHtsFpd3zWGz2Pa5hc1i7ZG77Bbrv85nsnh5uYfZ
-	om0Wv8X/PTvYLVr2T2Fx4Pd48/Ili8fhji/sHjtn3WX32LSqk81j85J6j5a1x5g83u+7yubR
-	t2UVo8el5uvsHp83yQVwRXHZpKTmZJalFunbJXBlbH79h7HgO0fFt8NHGBsYf7N1MXJySAiY
-	SNzveMrSxcjFISSwglHi386tzBDOF0aJ+x8eskE4nxklju5+CNfy+P8qVojEckaJWZ03oKre
-	MEr8f3qEGaSKTcBI4sHy+WBVIgLvGCUmXbvNBOIwC/QySkzdO5MJpEpYwF7i44N2dhCbRUBV
-	4mLHJbBuXqD40snbmCD2yUvsP3gWLM4p4CDxeekbVogaQYmTM5+wgNjMQDXNW2eDXS4hMJtT
-	4seJp4wQzS4S/QdgfhWWeHV8CzuELSPxf+d8qAX5Eg+2fmKGsGskdvYch7KtJe6c+wXUywG0
-	QFNi/S59iLCjxL8HG1lBwhICfBI33gpCnMAnMWnbdGaIMK9ER5sQRLWaxNSeXril51bAfOUh
-	sWnjObYJjIqzkDwzC8kzsxD2LmBkXsUonlpanJueWmyYl1quV5yYW1yal66XnJ+7iRGY7E7/
-	O/5pB+PcVx/1DjEycTAeYpTgYFYS4bU69zVNiDclsbIqtSg/vqg0J7X4EKM0B4uSOK9qinyq
-	kEB6YklqdmpqQWoRTJaJg1OqgSntb64bo8mrN9/fPW5/6ftI/XWZkYpjgMqdRT9XT54ZdGiH
-	wGtdlv1FuS+29xv/OfunvPzz+d2t7yNNgo2OqTzVuFq6bZmH1WSfapX0jN1z1S/lteS167a+
-	ZG50WbPCsNJN6qHxeq4NKiV50b5np+WqvHrsslWQycl2wTejqF+ivMJPzE/4pUcsnpZoJWrV
-	vKnD7DDPPxuudMPKldUTS+bP+LNm25RMlyMuk/e/7FNbwZX1KEHjQJWrHMfJZ/JxW3LcpZtj
-	b0s+VJp0zzX8tGw0k3PwCd5fM6K+vXaJmy2ftHTBPJ4TG4356w4c4TGc81Xbxe90zMOj29n+
-	K5/ZY+t2a9Fc/nXz+jZ3ZlRfnazEUpyRaKjFXFScCABlL4aP5QMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrIIsWRmVeSWpSXmKPExsVy+t/xe7rfa7+lGexo1bPY+nsWu8WaveeY
-	LOYfOcdqce/SFiaLF3sbWSyurZjLbvFy1j02i8u75rBZbPvcwmax9shddov1X+czWby83MNs
-	0TaL3+L/nh3sFi37p7A48Hu8efmSxeNwxxd2j52z7rJ7bFrVyeaxeUm9R8vaY0we7/ddZfPo
-	27KK0eNS83V2j8+b5AK4ovRsivJLS1IVMvKLS2yVog0tjPQMLS30jEws9QyNzWOtjEyV9O1s
-	UlJzMstSi/TtEvQyNr/+w1jwnaPi2+EjjA2Mv9m6GDk5JARMJB7/X8XaxcjFISSwlFHi3sXJ
-	jBAJGYlr3S9ZIGxhiT/Xutggil4xSpyY2gyWYBMwkniwfD5Yt4jAH0aJ68/eMII4zAITGSVu
-	zr0PNkpYwF7i44N2dhCbRUBV4mLHJWYQmxcovnTyNiaIFfIS+w+eBYtzCjhIfF76hhXEFgKq
-	6Ti6nx2iXlDi5MwnYJuZgeqbt85mnsAoMAtJahaS1AJGplWMIqmlxbnpucVGesWJucWleel6
-	yfm5mxiBcbnt2M8tOxhXvvqod4iRiYPxEKMEB7OSCK/Vua9pQrwpiZVVqUX58UWlOanFhxhN
-	ge6eyCwlmpwPTAx5JfGGZgamhiZmlgamlmbGSuK8bFfOpwkJpCeWpGanphakFsH0MXFwSjUw
-	9SxcXpzvLt+ZlXTy8rYo3R/PHzn/mPj3aarLuundvq0TY4+ZS5ycsLNVafLX5OaYZMk1r+Y7
-	rYpfkTDj8aVY/wurXq5IsV52TGdPx/MCfaWPe9a82XF00sF5uxgeV/491b9fYu81N0bFCVO8
-	YicaGD097OG49suVCJ1Xxf6usyPnxzE4vJQuPSS/fcJ7bTl/McPwhxkSUtpaP8q/S8uZfDra
-	tnDnR/lAfb039vMtUz68WB79alv+ZeXEssrlOv7nPtd8fpK7iC//y7LdEx4pxN28fM72jzeL
-	BceU4u/fm/6WfNm9yp3DZlLbuR4Px3vv7/Lmnls5SdPenevywv2R4oLXhG3XLPz1mLHAIPJh
-	vrYSS3FGoqEWc1FxIgBKqnpPVAMAAA==
-X-CMS-MailID: 20240927094215eucas1p29ac564998ea7f9dbe8b5d908060c7c38
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20240927094215eucas1p29ac564998ea7f9dbe8b5d908060c7c38
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20240927094215eucas1p29ac564998ea7f9dbe8b5d908060c7c38
-References: <20240927094207.1650085-1-m.wilczynski@samsung.com>
-	<CGME20240927094215eucas1p29ac564998ea7f9dbe8b5d908060c7c38@eucas1p2.samsung.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <78381b10-eae6-1414-6913-994e1ed03410@mediatek.com>
 
-Add mailbox device tree node. This work is based on the vendor kernel [1].
+On Fri, Sep 27, 2024 at 03:57:58PM +0800, Macpaul Lin wrote:
+> On 9/27/24 00:04, Conor Dooley wrote:
+> > On Thu, Sep 26, 2024 at 05:25:18PM +0800, Macpaul Lin wrote:
+> > > This patch updates the audio-codec properties includes:
+> > >   - compatible:
+> > >    - Re-order the supported device items.
+> > >    - Add 'mt6359-codec' to compatible since MT6359 PMIC has been included
+> > >      in this DT Schema.
+> > 
+> > >    - Set 'additionalProperties: true' for 'mt6359-codec'.
+> > 
+> > Why?
+> 
+> The mt6359-codec support these 3 properties:
+> mediatek,mic-type0, mediatek,mic-type-1, mediatek-mic-type2.
+> While mt6358-sound and mt6397-codec don't (at least, I didn't find
+> these 3 properties in driver codes.
+> 
+> Set 'additionalProperties: true' is also required to fix the following
+> dtbs_check errors:
+> pmic: audio-codec: 'mediatek,mic-type-0', 'mediatek,mic-type-1',
+>       'mediatek,mic-type-2' do not match any of the regexes:
+>       'pinctrl-[0-9]+'
 
-Link: https://github.com/revyos/thead-kernel.git [1]
+Why is this a correct fix? Aren't you allowing "pink-pony" property as
+well?
 
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
----
- arch/riscv/boot/dts/thead/th1520.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+> 
+> > > 
+> > > Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> > > ---
+> > >   Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml | 5 +++--
 
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index 6992060e6a54..7474f8b28592 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -555,5 +555,18 @@ portf: gpio-controller@0 {
- 				interrupts = <55 IRQ_TYPE_LEVEL_HIGH>;
- 			};
- 		};
-+
-+		mbox_910t: mailbox@ffffc38000 {
-+		       compatible = "thead,th1520-mbox";
-+		       reg = <0xff 0xffc38000 0x0 0x4000>,
-+			     <0xff 0xffc44000 0x0 0x1000>,
-+			     <0xff 0xffc4c000 0x0 0x1000>,
-+			     <0xff 0xffc54000 0x0 0x1000>;
-+		       reg-names = "local", "remote-icu0", "remote-icu1", "remote-icu2";
-+		       interrupt-parent = <&plic>;
-+		       interrupts = <28 IRQ_TYPE_LEVEL_HIGH>;
-+		       thead,icu-cpu-id = <0>;
-+		       #mbox-cells = <2>;
-+		};
- 	};
- };
--- 
-2.34.1
+There is no such file.
+
+Best regards,
+Krzysztof
 
 
