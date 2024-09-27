@@ -1,170 +1,97 @@
-Return-Path: <devicetree+bounces-105806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4A8F987FED
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 10:02:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44793988026
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 10:18:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 158451C21F80
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 08:02:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3D44284742
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 08:18:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D56B6188CB2;
-	Fri, 27 Sep 2024 08:02:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 986C9176ABB;
+	Fri, 27 Sep 2024 08:18:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="QLSmztuc"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="KZGq2xx6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCB2D17ADF9;
-	Fri, 27 Sep 2024 08:02:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22F6E175D2C
+	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 08:18:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727424132; cv=none; b=gY5zN6U45UzoIXIz+Ge5lHvRmDm8Hm9Sy/jkMPCSJvDFstUZYYEA2xthbVWryjAs3pjZJyrNad4DiW0oEqxEF9KtRFZciG6LX5wAdFw3LzDFdbCqMH0Z/zO0r6NhenYHAb/xafLN3+Xmv3i7A4hDQsJGubaURSwmEy0u+JJxu2s=
+	t=1727425094; cv=none; b=U7FhsxiJ/oMjV7h0uS8nob84QFzEFRH+wt2wHwXRXKC5o4v2wl8/RVF5nrsYw6j7bGWtpy2+OeLkEdqwC/0YQJ4iQzmWUCZdLA+vs+D1Q1DLmrBKZFCrGZhZ19Rx2Ax6D+sxPyppitlx7SdrUcAYL5JpusrwjhThJXcZQ3x/L+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727424132; c=relaxed/simple;
-	bh=UjG+AW3XkETGoYj/hG0y6HDZiabj/vW+w6RW0BAihzU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HQ+B372ra/YP4cyYG4Axjg+qEQv3Qsb+Wq641SMyUJmOiivkKSIgdI3w04nkDRqEMXaL5p4tWWxDsO7KF6nOC/LkQEnqoSQpAjciVifPI2gyOTa7B1taR6U/Wem/dXeJQzdngOZqQ5coUC43PkwO6fGRlpideZv98bKFrnNJ9Rs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=QLSmztuc; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=VrHmD3qjrTGLP9NWMXSPhKgSjDl2KVnQsH7jouH3UsI=; b=QLSmztucKNR9BO55sYkVhudf8M
-	zxv4k5lSfkeSk9O/fAfcX+6YrDVdYAJ4BXUdhMzUt2GlIDFp/VFi+wKbizLPemDqINc5q+BdwGlUm
-	KAnzGihqcTR1VEqDfA2GidGdVaB2FTCyLA8yd7BT4TW8+UoXXAbiaZo2ii5a4iBGMkQnOXWyl3spz
-	+gJXa6F4pqt+uGWneO8VsAP4tnIbY/vMfzfv1OvTOw+xB/IDp/iSneW81xEAthSAqdmYAKW0MP8O5
-	N3L0b4Ay2DAgQ3cq0ZE9q7Jf/H1RL4z47VoVXe7EyTTu8/MQDeH6/vscyWyejC0MGjVqwVs6UNSYX
-	kH7HbgnQ==;
-Received: from 85-160-70-253.reb.o2.cz ([85.160.70.253] helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1su5vT-00009l-Ez; Fri, 27 Sep 2024 10:02:07 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Frank Wang <frawang.cn@gmail.com>, vkoul@kernel.org, kishon@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
- tim.chen@rock-chips.com, frank.wang@rock-chips.com
-Subject:
- Re: [PATCH v3 1/2] dt-bindings: phy: rockchip,inno-usb2phy: add rk3576
-Date: Fri, 27 Sep 2024 10:02:05 +0200
-Message-ID: <20816071.Yz81rIOvuz@phil>
-In-Reply-To: <4b98196a-c898-4d08-9101-31feb4e59b5c@kernel.org>
-References:
- <20240926103223.29538-1-frawang.cn@gmail.com>
- <7944f4dd-96f0-40df-8c91-523409e3cb20@gmail.com>
- <4b98196a-c898-4d08-9101-31feb4e59b5c@kernel.org>
+	s=arc-20240116; t=1727425094; c=relaxed/simple;
+	bh=fBHfcEiZZGuP5usLwbcN9YryX5dSN7tGN7MyxGHsLwQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XEemHxM03iZtcND9Ffd8YK/rWbSIIOlCLb/OrioPEqmFULbpVVmEMHQdmcoeg4XhO2wArJxyZqB2od4E3ZUzF/ktj8Z72w4PIAHKmAnufqOx0xH+xXWOS0EHamrTcCrAX6yvy8AiATp+bZTGz4hfCu+JFILDUnBuSrbdQW8K6rA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=KZGq2xx6; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=PySyXx2pxaUYeq
+	OZfQ2g3qtreAEhMIkycLX7jWSQHmA=; b=KZGq2xx6j4AeqXzw29kfgDSn6uHOXn
+	+evTiZJCH+z9NQXx9Y6j/ayVgiCd9OI+ZeZ2rVcf+60TWwHvQWLoiqKcTEfpL+/3
+	HaVWrcTyzwSmJqPIjqYhia3j0h0mFduu6u7yobrVYcWwJz8e/NafVaxqjSjXym8p
+	N7LtI0PjXGspE2Jm89M1P/GuNwFhJNoxkgAP6afJb11lvCdrm5H+FOgzzXu29Lx2
+	N/pdYd4YWd/6jqJp9AGOTH4QQ/NEh4k9sHAFj//XTHSf5QzRhzUhcuoVQakl/V3U
+	JHP5ylrbg3kxjhEXBKwyzncg2FRjHor1Kz2f/pCviwnoTw1p2F33N7kA==
+Received: (qmail 1253136 invoked from network); 27 Sep 2024 10:18:03 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 27 Sep 2024 10:18:03 +0200
+X-UD-Smtp-Session: l3s3148p1@nsJ2fhUjOK4gAwDPXzRXADDuo30Z+IZ9
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: input: gpio-keys: allow generic 'interrupt-parent' for subnodes
+Date: Fri, 27 Sep 2024 10:15:04 +0200
+Message-ID: <20240927081757.7022-2-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
+Allow interrupt-parent in the main node, so it can be inherited to all
+subnodes. This is more compact and less error-prone.
 
-Am Freitag, 27. September 2024, 09:30:30 CEST schrieb Krzysztof Kozlowski:
-> On 27/09/2024 09:01, Frank Wang wrote:
-> > Hi Krzysztof,
-> > 
-> > On 2024/9/26 22:19, Krzysztof Kozlowski wrote:
-> >> On 26/09/2024 12:32, Frank Wang wrote:
-> >>> +  - if:
-> >>> +      properties:
-> >>> +        compatible:
-> >>> +          contains:
-> >>> +            enum:
-> >>> +              - rockchip,rk3576-usb2phy
-> >>> +    then:
-> >>> +      properties:
-> >>> +        clocks:
-> >>> +          minItems: 3
-> >>> +          maxItems: 3
-> >> Read one more time the example I gave you. Top-level constraints are
-> >> saying max one clock.
-> >>
-> >> Best regards,
-> >> Krzysztof
-> >>
-> > 
-> > Sorry for overlooking this, I will set both "clocks" and "clock-names" 
-> > to true, and add the else case below the above codes for the "old" SoCs.
-> > Just like the below.
-> > 
-> > -  clocks:
-> > -    maxItems: 1
-> > +  clocks: true
-> > 
-> > -  clock-names:
-> > -    const: phyclk
-> > +  clock-names: true
-> 
-> For the third time, read the code I gave you. Do you see something like
-> this there? Why doing all the time something different than existing code?
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
 
-On vacation right now so late to the party, and somewhat confused :-) .
+It would fix dtbs_check for arch/arm/boot/dts/renesas/r8a7779-marzen.dts
+and would simplify arch/arm/boot/dts/renesas/r7s72100-rskrza1.dts.
 
-I've tried to find the code you mentioned, but did fail.
-In [0] you mention "maybe oneOf". The other replies in that version were
-about the ordering needing to stay for the older phy variants.
+Plus, it is the behaviour I would expect.
 
-[1] in v2 has that NAK thing and [2] from v3 references that example again
+ Documentation/devicetree/bindings/input/gpio-keys.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-I am probably just blind, but could use a pointer.
-
-
-Because I think going with a
-  - if:
-      properties:
-        compatible:
-          contains:
-            enum:
-              - rockchip,rk3576-usb2phy
-    then:
-      properties:
-        clocks:
-          minItems: 3
-          maxItems: 3
-        clock-names:
-          items:
-            - const: phyclk
-            - const: aclk
-            - const: aclk_slv
-    else:
-      properties:
-        clocks:
-          maxItems: 1
-        clock-names:
-          const: phyclk
-
-block should actually make sure each variant will check for the appropriate
-number of clocks?
-
-And having clocks:true in the main part then makes sure that the property
-is not getting marked as:
-arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: usb2-phy@0: 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
-        from schema $id: http://devicetree.org/schemas/phy/rockchip,inno-usb2phy.yaml#
-
-
-Heiko
-
-
-[0] https://lore.kernel.org/lkml/snccizbw6thn3lhwad4xppp7vqii4p56ttl2gufwc3ke7vfckf@e4b7nvwwtdfr/
-[1] https://lore.kernel.org/lkml/2a4200ac-3ea2-4449-94ac-c4b9f37ad800@kernel.org/#t
-[2] https://lore.kernel.org/lkml/ed829240-d4f7-471f-84f6-3509f87f11a1@kernel.org/
-
+diff --git a/Documentation/devicetree/bindings/input/gpio-keys.yaml b/Documentation/devicetree/bindings/input/gpio-keys.yaml
+index cc78c2152921..8fc331e01f7e 100644
+--- a/Documentation/devicetree/bindings/input/gpio-keys.yaml
++++ b/Documentation/devicetree/bindings/input/gpio-keys.yaml
+@@ -15,6 +15,9 @@ properties:
+       - gpio-keys
+       - gpio-keys-polled
+ 
++  interrupt-parent:
++    description: Common interrupt parent for the following subnodes
++
+   autorepeat: true
+ 
+   label:
+-- 
+2.45.2
 
 
