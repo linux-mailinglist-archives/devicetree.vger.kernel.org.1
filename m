@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-105990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 003C6988C7A
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 00:30:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5B15988C75
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 00:30:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 925DBB214D3
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 22:29:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 389921F21B4B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 22:30:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 072F61891A9;
-	Fri, 27 Sep 2024 22:29:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA27919D8B7;
+	Fri, 27 Sep 2024 22:29:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v5CMLCZ9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WDOFKvIv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45CFF18EFCD
-	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 22:29:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6D5A1974FA
+	for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 22:29:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727476196; cv=none; b=NjbToMYkU9A52ZzMuZajesZYbxQ/UJgiFtQy1KggOtkvy6b7VLX7RSdeRfaflaNBZbXrYIm/mhw2+PldL9hOKDERiD6wJWkTnAMYLYi+fo7iAwD4yik6zHukSqHtweak6b8LLrUzVIkhMf6NxChSLMj2gA1zq5cLfYe6TWqa5BI=
+	t=1727476198; cv=none; b=g/o+n1N8fhQBl4yaiuyDqX1Q7cKpxW9v6npp+EyfZ/yjxPfyPGhgVf7wtAfoguwC7WKROqITc14stZOVqDfYN80AbeLEvbLD4UKxDArEwks/D4MXaSkhtM65Vz0A6sPLFRBUNTzB9RUyo7AHMHkkyohBcP1Kty0P7GCgAg31F7E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727476196; c=relaxed/simple;
-	bh=FmGcDe1p/XryRMot0XsEfBe1wWBOoapRPT+K+lRDZVU=;
+	s=arc-20240116; t=1727476198; c=relaxed/simple;
+	bh=Xtn246ffe+DO8hn0Ugf8AMOw+Lw1qO4c2sSOIr/ZryM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PCfJSEYHf21W6EFsOuU1Sj0TiQt82WbJ7xmHkRvnW2s1W1/5WqnBb/kz8d05mKv/rHAbcuOkaruDhE7iqO46VaHt7+wcwmVPmhsRiIdewi5TTJ0d0HhOEH6T8bfDGWoUdv8+4oxb5E64YzRspuQEleRJ78PQbPUCX3IGXUjRhR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=v5CMLCZ9; arc=none smtp.client-ip=209.85.208.42
+	 In-Reply-To:To:Cc; b=QIsnmiLqF5pPcm6xBgZ4F8tFZrVcQ3Es8S5uaU0OUBBbT/dtYrhasi8JhAr9TRqGs3ZRInfj30iTMGzFkRi2/Ho2XXUZj9AuWXg4ZHR0Y0dTI+YDJwTwHO+IU1HJq/qd5DRYHA8P7f8oAfQ9rToJ3zJlCFKzMMgvz31674bJ4Ug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WDOFKvIv; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5c5b9d2195eso3095622a12.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 15:29:55 -0700 (PDT)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a8d29b7edc2so336454166b.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Sep 2024 15:29:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727476194; x=1728080994; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1727476195; x=1728080995; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=3LUVzEQIz/A5tXIUDtOQ9ez96BC3u8YRQCjYb/XLh+M=;
-        b=v5CMLCZ96CVN8GhX801mFuZAszZjsM7C5Gj7zP9KftndCbjfPU9pFzBjE3tYiNdVRz
-         pwMgsrToxhh80kf+z/cb/INye2ByscwHVbzgXhFXahp7g7ZdWjmSxfCCtLC2iLxAG7Ym
-         49UfpYluO0zqE0HxVVoCu4DDCXKG0MvH8IIW8qGDQ96zPvK/aRAykCmWeipPr1VdXOLb
-         YRNQOZb2Nsp9owJg9WwY+KP1dzpuofHJbrTdW/hisGaWSwh7kuQjssbaOfbKZdmxSXUX
-         xFp06pUYLxr/7hEzpQ5Trzqf/XLoHuG8NpZHc8Np7Al424UdebCF5XvDYSr1bF0PC6HO
-         ocSw==
+        bh=sWnKbsxefkmEHGrZFlS1qac5gpq5RncaWSP6AZtVnA0=;
+        b=WDOFKvIv4neao9vZQtslmU4Jlvl+KVpFCpzKYIfNTWALJjr6ay1cacMNTQiL4yaImn
+         HoqX+qUzps9dfLlJzpeo7ksl7iPi7lOxbN+QDL8vBTfvD+DxZSniMhHc0ONULAG/yfxE
+         1ROCQJYMSI7uQF9HpeqQVUY8ZReQ3CfIeLtG/Uv3jl2hxYgmEWHp7QV/CQyjRtKYfKAw
+         NhXI//yAhjkDzJpapZ5osV/MLjWnejncgti+JBqoHN6FeIldc3VrrJJSkxFO6JWoiaPi
+         tiTj2HD6MH7ZZhTlEPH2UeJa3iLsYEHKQ3PdI+Q5nCCuzYbkIO+VLpSxKliVru0WFdRb
+         O+Ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727476194; x=1728080994;
+        d=1e100.net; s=20230601; t=1727476195; x=1728080995;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3LUVzEQIz/A5tXIUDtOQ9ez96BC3u8YRQCjYb/XLh+M=;
-        b=d2MuvKtg5OxneHZ7+5bBtcN+9kSWII+VaoN7eykPqYsWcrTGfoNURKaAGgv5PEP4lw
-         B22M+Gez2IwpRURJkdk2sLXSE5Am0NXNti1VlK++yQl7WZYqPFyokphTltSwHAP53Beq
-         BSri3iXTR+0EBhxeuqhjdZkQWSGWx9HwyFGIHD5dOrDKLCvbaLnzh4QL6BL7igEQTv3Z
-         Y36D+hgB6MVPiViOWxzvZUwX87NUxvpEA28FNsnEBfDMEZH5TyXt2FmBpEqk3e3V0qUe
-         slvWhNDP9VpAIFpzAy5GoYvdUEKrhIWdOrWd4lSZHPz7e/tHeeg1Hnln0yfaLtlpnQg2
-         pIbA==
-X-Forwarded-Encrypted: i=1; AJvYcCUc+rIOsVGcuwRdcWBTZt8gR1XqNbSPtJYF0TBvSCkpthxPurX3uHxg2qR8d19FLNdHRGOB+Nzfb5ol@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkPbtrn26k9FMzyQOqplRocqBEcPIWxah6aQAreoB119bQgYna
-	WfTJuTFPc4c3OkwvnsB7j7Vuy/FIC8BK0uMSq5LGBSz3bMGgrwS3RcVhZtUwWfM=
-X-Google-Smtp-Source: AGHT+IHB0zTVjEfwaHCQx8PIwBJBJrhn37SfrjLIPeiADOfkCNOJ4wTJti1Tz9xOpDocnW+tseBUwQ==
-X-Received: by 2002:a17:907:930a:b0:a8b:ddf4:46f1 with SMTP id a640c23a62f3a-a93c4a98de5mr450042266b.63.1727476193687;
-        Fri, 27 Sep 2024 15:29:53 -0700 (PDT)
+        bh=sWnKbsxefkmEHGrZFlS1qac5gpq5RncaWSP6AZtVnA0=;
+        b=Lmr0W0DmGGbex85O6ohMkb6iO0MT2m9Nb4MfPGFCf76tIMPPQEMDCG1ooU3iu8FLDm
+         2q6zYpB2uub/Injp9FiZqFLamhPsPtF5BCH+WHIKOvwJ8t7NTm7q8/tJ8lQH4BVKOQ4L
+         eFTn+HrEu5SZ634qouMoA2LMSNQ2K+e7HQ+JEwVthZ6LJ8W+z5BdWwxfTZawDFbODIGp
+         MfoeJc7sTmXjONSVjnNQoztuqQRnuylIN+jEv/Oy6y2JV++65wfRnMW3RJnNrIeuRqts
+         EUjU3+jv6aGKtvQYA0Dw6tgOgUhzEpdb3lXhOd74pQ1M1sZ0K3VSMU1TeSgPIrPHE6LZ
+         tF4A==
+X-Forwarded-Encrypted: i=1; AJvYcCVgxK3uTQo5yW6JHW6FMwywMCwWgkKWyvFmSkf1SZziA5nba6Pr+pAg1BesogfK5SPgLM0M5ARs1Fk+@vger.kernel.org
+X-Gm-Message-State: AOJu0YznaO4XsNyKJKkE/Z/j4uA9fFxfv6rfzL22spSZ5WY3lImJlvDh
+	p6Q9EfSphgSAaewiiKqtGt6ZZH6enX1grca6pqVTDBcE8kgyHu8zqeHIwiFzxZE=
+X-Google-Smtp-Source: AGHT+IEOTcEGxxl1GF0PinK1NeaeqxJkKelV79iOWepyZC9Lm/huNFkmzogsSUwTSIpX/ag79RoKAg==
+X-Received: by 2002:a17:907:25c3:b0:a91:158b:122c with SMTP id a640c23a62f3a-a93c496952emr400472466b.38.1727476195059;
+        Fri, 27 Sep 2024 15:29:55 -0700 (PDT)
 Received: from lino.lan ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a93c29460eesm179504066b.119.2024.09.27.15.29.51
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a93c29460eesm179504066b.119.2024.09.27.15.29.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Sep 2024 15:29:52 -0700 (PDT)
+        Fri, 27 Sep 2024 15:29:54 -0700 (PDT)
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sat, 28 Sep 2024 00:29:47 +0200
-Subject: [PATCH v2 1/4] dt-bindings: leds: bcm63138: Add shift register
- bits
+Date: Sat, 28 Sep 2024 00:29:48 +0200
+Subject: [PATCH v2 2/4] leds: bcm63138: Use scopes and guards
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,8 +77,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240928-bcm63138-leds-v2-1-f6aa4d4d6ef2@linaro.org>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20240928-bcm63138-leds-v2-2-f6aa4d4d6ef2@linaro.org>
 References: <20240928-bcm63138-leds-v2-0-f6aa4d4d6ef2@linaro.org>
 In-Reply-To: <20240928-bcm63138-leds-v2-0-f6aa4d4d6ef2@linaro.org>
 To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
@@ -95,50 +94,87 @@ Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
  Linus Walleij <linus.walleij@linaro.org>
 X-Mailer: b4 0.14.0
 
-The BCM63138 family of serial LED controllers has a register
-where we can set up bits for the shift registers. These are
-the number of rounds the bits need to be shifted before all
-bits have been shifted through the external shift registers.
+Use scoped helpers and guards to handle DT node iterations
+and spinlocks. This cuts some lines of code and eliminates
+common mistakes (such as the missing of_node_put()).
 
+Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
-ChangeLog v1->v2:
-- Drop the $ref to u32 since the new property is suffixed
-  with "-bits" and thus get standard treatment.
----
- Documentation/devicetree/bindings/leds/leds-bcm63138.yaml | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/leds/blink/leds-bcm63138.c | 14 ++++----------
+ 1 file changed, 4 insertions(+), 10 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-bcm63138.yaml b/Documentation/devicetree/bindings/leds/leds-bcm63138.yaml
-index bb20394fca5c..b3d530c46061 100644
---- a/Documentation/devicetree/bindings/leds/leds-bcm63138.yaml
-+++ b/Documentation/devicetree/bindings/leds/leds-bcm63138.yaml
-@@ -41,6 +41,17 @@ properties:
-   "#size-cells":
-     const: 0
+diff --git a/drivers/leds/blink/leds-bcm63138.c b/drivers/leds/blink/leds-bcm63138.c
+index 3a5e0b98bfbc..374f68f4f277 100644
+--- a/drivers/leds/blink/leds-bcm63138.c
++++ b/drivers/leds/blink/leds-bcm63138.c
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright (C) 2021 Rafał Miłecki <rafal@milecki.pl>
+  */
++#include <linux/cleanup.h>
+ #include <linux/delay.h>
+ #include <linux/io.h>
+ #include <linux/leds.h>
+@@ -125,17 +126,14 @@ static void bcm63138_leds_brightness_set(struct led_classdev *led_cdev,
+ {
+ 	struct bcm63138_led *led = container_of(led_cdev, struct bcm63138_led, cdev);
+ 	struct bcm63138_leds *leds = led->leds;
+-	unsigned long flags;
  
-+  brcm,serial-shift-bits:
-+    minimum: 1
-+    maximum: 32
-+    description:
-+      This describes the number of 8-bit serial shifters
-+      connected to the LED controller block. The hardware
-+      is typically using 8-bit shift registers with 8 LEDs
-+      per shift register, so 4 shifters results in 32 LEDs
-+      or 2 shifters give 16 LEDs etc, but the hardware
-+      supports any odd number of registers.
-+
- patternProperties:
-   "^led@[a-f0-9]+$":
-     type: object
-@@ -71,6 +82,7 @@ examples:
-     leds@ff800800 {
-         compatible = "brcm,bcm4908-leds", "brcm,bcm63138-leds";
-         reg = <0xff800800 0xdc>;
-+        brcm,serial-shift-bits = <16>;
+-	spin_lock_irqsave(&leds->lock, flags);
++	guard(spinlock_irqsave)(&leds->lock);
  
-         #address-cells = <1>;
-         #size-cells = <0>;
+ 	bcm63138_leds_enable_led(leds, led, value);
+ 	if (!value)
+ 		bcm63138_leds_set_flash_rate(leds, led, 0);
+ 	else
+ 		bcm63138_leds_set_bright(leds, led, value);
+-
+-	spin_unlock_irqrestore(&leds->lock, flags);
+ }
+ 
+ static int bcm63138_leds_blink_set(struct led_classdev *led_cdev,
+@@ -144,7 +142,6 @@ static int bcm63138_leds_blink_set(struct led_classdev *led_cdev,
+ {
+ 	struct bcm63138_led *led = container_of(led_cdev, struct bcm63138_led, cdev);
+ 	struct bcm63138_leds *leds = led->leds;
+-	unsigned long flags;
+ 	u8 value;
+ 
+ 	if (!*delay_on && !*delay_off) {
+@@ -179,13 +176,11 @@ static int bcm63138_leds_blink_set(struct led_classdev *led_cdev,
+ 		return -EINVAL;
+ 	}
+ 
+-	spin_lock_irqsave(&leds->lock, flags);
++	guard(spinlock_irqsave)(&leds->lock);
+ 
+ 	bcm63138_leds_enable_led(leds, led, BCM63138_MAX_BRIGHTNESS);
+ 	bcm63138_leds_set_flash_rate(leds, led, value);
+ 
+-	spin_unlock_irqrestore(&leds->lock, flags);
+-
+ 	return 0;
+ }
+ 
+@@ -259,7 +254,6 @@ static int bcm63138_leds_probe(struct platform_device *pdev)
+ 	struct device_node *np = dev_of_node(&pdev->dev);
+ 	struct device *dev = &pdev->dev;
+ 	struct bcm63138_leds *leds;
+-	struct device_node *child;
+ 
+ 	leds = devm_kzalloc(dev, sizeof(*leds), GFP_KERNEL);
+ 	if (!leds)
+@@ -280,7 +274,7 @@ static int bcm63138_leds_probe(struct platform_device *pdev)
+ 	bcm63138_leds_write(leds, BCM63138_SERIAL_LED_POLARITY, 0);
+ 	bcm63138_leds_write(leds, BCM63138_PARALLEL_LED_POLARITY, 0);
+ 
+-	for_each_available_child_of_node(np, child) {
++	for_each_available_child_of_node_scoped(np, child) {
+ 		bcm63138_leds_create_led(leds, child);
+ 	}
+ 
 
 -- 
 2.46.1
