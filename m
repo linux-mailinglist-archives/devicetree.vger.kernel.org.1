@@ -1,56 +1,58 @@
-Return-Path: <devicetree+bounces-105997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-105998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76738988CA8
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 00:58:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1D21988CCC
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 01:03:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F159B20C71
-	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 22:58:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE5DB1F22455
+	for <lists+devicetree@lfdr.de>; Fri, 27 Sep 2024 23:03:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52EED1B6522;
-	Fri, 27 Sep 2024 22:58:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70A3E1A2542;
+	Fri, 27 Sep 2024 23:03:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eFcETG81"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sC/lmtg/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28802188CA1;
-	Fri, 27 Sep 2024 22:58:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 438051384B3;
+	Fri, 27 Sep 2024 23:03:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727477894; cv=none; b=ad/wivvH0E8oVu1bhE/famhjKX6ZliFvc0NE7ZO8f70WSCbz25wvIFE2KUawjh3XymdgvMq+QqhxeNsPbFTdRR4ri/034tFIRcWdyL7qvtWE13RAE1HOT5Xbb6EmsuwBT1Jsa0V4ZqRgtU8YWs6vfM0sT7niiryAMbN1816TSGQ=
+	t=1727478215; cv=none; b=QJK16OQcMZ/RlzpqG6bkmLkv8gk+zV2EMuVDbWm+wfCAmBTAMp8xAOxaKubYW+ycjAF0RlQGoXI+/yq5Q3VpPeoLvIZsi+F63AqsaE4lrWVYh1fwRE44lZKdUyVwaicrF/0eCQmpGhCtnnldD/1/MzZP0Zj85hdHD2etWKESTFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727477894; c=relaxed/simple;
-	bh=yrRZGlfYTshe02Szz0JVhV3pS+xPGgunl3lCOJQlCDY=;
+	s=arc-20240116; t=1727478215; c=relaxed/simple;
+	bh=cDsTwguOFWY1iKRV1PzfSAUB+ha3Hm/urm6km6cIwQs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qc79Xcou+lF/1WWQ1d+U9HtF+BddNMwoHqYBGmvYR3F2mRTgzRSdFRy765tk8nhAcbPbHkyeqajG9RWy0NIICLmk8xtI0c4JaXSZl3rxCS6nIGFFtkj9qKkeNjjBGeY1rLsqeECJvr0u7yViA2Ia+0Pbv883zSA+zc17/JGQ3tU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eFcETG81; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80381C4CEC4;
-	Fri, 27 Sep 2024 22:58:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JcxH+iB0iGwlPrLL8hk7ExdLCMsCu2GQzvmbw0w/yPdBtUeCexMt4H/dFo9k+QVZZm3VNuPnq01HRgP2ySUEuNV8PLKOdca319ej/W1+n/wI1txezNM6152/t0TwARzNURGSqyFK0THuJxLSI8y38x6/WCgvj+FKibQ6H9FvXPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sC/lmtg/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91996C4CEC4;
+	Fri, 27 Sep 2024 23:03:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727477893;
-	bh=yrRZGlfYTshe02Szz0JVhV3pS+xPGgunl3lCOJQlCDY=;
+	s=k20201202; t=1727478214;
+	bh=cDsTwguOFWY1iKRV1PzfSAUB+ha3Hm/urm6km6cIwQs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eFcETG81zwjiDPvoAunXoGwIipb7TyFWN1wZKb6M/cWCvDKO5c+Ym6ReTV3RyAc9w
-	 woxom2VmxmFu1JT+VBu+FiLjwLUy9NaX5yJS4I0qmj3DgeflvUTkHx6faTn3F91iAj
-	 fHgXgMkSZciUSOBOITyBsx4KtA8qO42RTRIqUm+2hj50IIQxHE0+X5c+ntlE7/BNUs
-	 m6pmyw6lzV6EudPBiloTk0oOu8uTCmrG36n7hpVV/1scJ7TsoAGkqwySRUUrK3MmjO
-	 o5fIrCfdWOTY0/BgoPf1TAuFMqSgBwPeAujGRXIu1KhQ27KGNdl6pF7KsGxU5KyR/h
-	 HLntf2Xjoi3UQ==
-Date: Fri, 27 Sep 2024 17:58:11 -0500
-From: Rob Herring <robh@kernel.org>
-To: Maya Matuszczyk <maccraft123mc@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: platform: Add bindings for Lenovo Yoga
- Slim 7x EC
-Message-ID: <20240927225811.GA169571-robh@kernel.org>
-References: <20240927185345.3680-1-maccraft123mc@gmail.com>
+	b=sC/lmtg/Dj6yYjZS40EzTKyfeqQSjFJ6ZCfNYohkRL+c3NEjFVeBZWLrkh3faHGm+
+	 HgEQ3URuIO/pqDabxFvPBQ3V9unj4mvdf0YGB5umR55O5wbew9UZ/W1KKMADAhQGo+
+	 xElAiqWim84+LeSJfZperGeDrPDoy17r+/28YvN4CeAhspGXANinQYI8f7/qK+iDhl
+	 NknCvVbJIoslonMbTbGsRj9tCs210hU1/cL5+2ZnpeMe8U10mSBCCDXVUHFd/mUMgF
+	 0gEbBSM25pybq9EwBbxgJNoiEKZ4WptN1sLWReqUtrBq1dLLYdzu2xgCc7O5hd1B+j
+	 Q8kWLPiI89fkA==
+Date: Fri, 27 Sep 2024 18:03:32 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-sound@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 1/1] ASoC: dt-bindings: fsl-esai: Add power-domains for
+ fsl,imx8qm-esai
+Message-ID: <172747821203.186059.10337981239925605095.robh@kernel.org>
+References: <20240927205618.4093591-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,101 +61,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240927185345.3680-1-maccraft123mc@gmail.com>
+In-Reply-To: <20240927205618.4093591-1-Frank.Li@nxp.com>
 
-On Fri, Sep 27, 2024 at 08:53:40PM +0200, Maya Matuszczyk wrote:
-> This patch adds devicetree binding documentation for Lenovo Yoga Slim 7x
-> EC driver.
+
+On Fri, 27 Sep 2024 16:56:18 -0400, Frank Li wrote:
+> i.MX8QM's esai require power-domains property. Keep the same restriction
+> for other compatible string.
 > 
-> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../platform/lenovo,yoga-slim7x-ec.yaml       | 50 +++++++++++++++++++
->  MAINTAINERS                                   |  5 ++
->  2 files changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/platform/lenovo,yoga-slim7x-ec.yaml
+>  .../devicetree/bindings/sound/fsl,esai.yaml        | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/platform/lenovo,yoga-slim7x-ec.yaml b/Documentation/devicetree/bindings/platform/lenovo,yoga-slim7x-ec.yaml
-> new file mode 100644
-> index 000000000000..32f8a0b5d667
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/platform/lenovo,yoga-slim7x-ec.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/platform/lenovo,yoga-slim7x-ec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Lenovo Yoga Slim 7x Embedded Controller.
-> +
-> +maintainers:
-> +  - Maya Matuszczyk <maccraft123mc@gmail.com>
-> +
-> +description:
-> +  The Lenovo Yoga Slim 7x has an EC which handles some minor functions, like
-> +  power LED or some special keys on the keyboard. This bindings describes
-> +  how it is connected
-> +
-> +properties:
-> +  compatible:
-> +    const: lenovo,yoga-slim7x-ec
-> +
-> +  reg:
-> +    const: 0x76
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |+
 
-Drop the '+'
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c5 {
-
-i2c {
-
-> +        clock-frequency = <400000>;
-
-Not really relevant for the example.
-
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        embedded-controller@76 {
-> +            compatible = "lenovo,yoga-slim7x-ec";
-> +            reg = <0x76>;
-> +
-> +            interrupts-extended = <&tlmm 66 IRQ_TYPE_LEVEL_HIGH>;
-> +        };
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 00716c1faff6..0d4bfdde166d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12902,6 +12902,11 @@ S:	Maintained
->  W:	http://legousb.sourceforge.net/
->  F:	drivers/usb/misc/legousbtower.c
->  
-> +LENOVO YOGA SLIM 7X EC DRIVER
-> +M:	Maya Matuszczyk <maccraft123mc@gmail.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/platform/lenovo,yoga-slim7x-ec.yaml
-> +
->  LETSKETCH HID TABLET DRIVER
->  M:	Hans de Goede <hdegoede@redhat.com>
->  L:	linux-input@vger.kernel.org
-> -- 
-> 2.45.2
-> 
 
