@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-106043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F2BB988F6C
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 15:40:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BA0E988F7C
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 15:45:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E112EB21DB7
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 13:39:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 998051C20926
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 13:45:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 527C0187FFE;
-	Sat, 28 Sep 2024 13:39:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36F1E15B13C;
+	Sat, 28 Sep 2024 13:45:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uc4lAi5L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jjugqKHr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19B7BC8DF;
-	Sat, 28 Sep 2024 13:39:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BDAF125DE;
+	Sat, 28 Sep 2024 13:45:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727530792; cv=none; b=gBtoXF/o2Of+KVVYkcU49lxPYp0LjiKOzLBQoAG+EwpgZcC33F3Yy1lqzjqzvAkM2DFM+VhXwnqKWreHpXgq/dSW5NI7LIzBblYTdDmn46uN8h8bG/WuhK4LnWSgoKVRdCLVgsdHpYn4uUrYaCRQHv+nqeKETm1qCLouS0784dk=
+	t=1727531155; cv=none; b=usgvp8GRR0g4v6TMCa9AOiFI9dFU/qUfCx+enMAHazZUmhijVu4mTpCw6GpZdviaO0sFJV6zc6xrhgLvemO1hJc2esriwygjwOfYpBnZtUPW1FD/ea46R7MhlgkslMLOieQOBfzebJHu2hQ3E+3AYghQnjJLV5V3YPuJRJAhWNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727530792; c=relaxed/simple;
-	bh=H5ZN0gpItc2hzxYwHv5spamvIBLBAgjW6cCpZ+l4R7Q=;
+	s=arc-20240116; t=1727531155; c=relaxed/simple;
+	bh=Em0L9ku5aG9RNOTHFg9WI2703n/XMa40ZjERGqjIMys=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZYk9Da18kcmuIec2dlHEVhUvNhZ8jD++tmHrwbAV2jfuNNWDySIdpqtOza3CAxuARSIKY3fj0ZyeHbLH7++WyOPR+eH+vQAPbA5uOb1sSKfHZWLaScLYxBL4yWRRgFanBoqb+ilGjuAg3YlYzpPTcTh0OHxwplx1QV2vL4i/S3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uc4lAi5L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92ABCC4CEC3;
-	Sat, 28 Sep 2024 13:39:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=my4qyR9cDMNTypiIK5K63nUjAtvzVJl8/r73R+ElJGXmfbD3nLGbLCjvHJ4L3aEwbb2tzkbQwo8JvG4VVM6Z4+XSBAvhP40vGXPiJ1AQZ5SQVg93E7EotUWtgnoHyTCSQIsvUhBJCH0+NL76jtN7v3xtYmq6HQldR66bpn56szA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jjugqKHr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9470FC4CEC3;
+	Sat, 28 Sep 2024 13:45:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727530791;
-	bh=H5ZN0gpItc2hzxYwHv5spamvIBLBAgjW6cCpZ+l4R7Q=;
+	s=k20201202; t=1727531154;
+	bh=Em0L9ku5aG9RNOTHFg9WI2703n/XMa40ZjERGqjIMys=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uc4lAi5Lsvgx1JHrdNvawk0WkKZ5YJUKC2Rq36zUzdTwrD4P73ehT/q+NGlNGwLDQ
-	 sK8Ha9eJEB83DdeeT2V6zjSGstN3jLRSNC057M0Tleawil/HdDuxraB2ttd+nRg+DM
-	 J9Dx4TsoiPx8s+oLJeaWxIbGM7cQSoAQIlzleQnlIVPkbOaLA5GTii74muoJ5Mu29K
-	 WvScgSycgAIvaBZBSuEk7tRdk+NJl4PhfA272OQxLWSuzm319FfKqZfjjKChYhNQ5U
-	 37MPReypFNLtzXJY26/+EE47dIEvSXboVV31sxvpRO8rNmekAoL57DXNIFpZmI5H2x
-	 sZJNtYsqzr3Ug==
-Message-ID: <30e4735e-bf50-440c-8ad1-6bcf8b8bd930@kernel.org>
-Date: Sat, 28 Sep 2024 15:39:46 +0200
+	b=jjugqKHrIv3vNaDuhfHJ1jxkwavZfKlmJCtAseRoK1162VHFQERDhTi0E37QmTb+J
+	 gzjDRq6hT4HUMXvV+MUE5JUw+Mi2i+eFGPvl2h822iTkbkRe42cYejCSYvMidto82G
+	 OtchMtSO7HMIBa6b+2bMLKo4byvZ5SwsI92V2UvZY2U4jsNU9UfDwfkfHClMPLXzKH
+	 QtMd8kf/i+aGbLBXhbo/NkY24Bt/Bn4TfqBD7YDN788jxsNPZKqgsT/WJGzoePAu8g
+	 chZgKbr6FwcZ07ExusgJ3+TUPwQ3xg+/fSiW5/Pp4pPPgayJgmoCQlgLyPzOrt1X+Y
+	 uyCVg43JL+3Qg==
+Message-ID: <18e9d774-813b-427e-9938-53853d695e18@kernel.org>
+Date: Sat, 28 Sep 2024 15:45:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: mmc: mtk-sd: Add support for MT8196
-To: =?UTF-8?B?QW5keS1sZCBMdSAo5Y2i5LicKQ==?= <Andy-ld.Lu@mediatek.com>,
- "robh@kernel.org" <robh@kernel.org>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- =?UTF-8?B?V2VuYmluIE1laSAo5qKF5paH5b2sKQ==?= <Wenbin.Mei@mediatek.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>
-References: <20240926070405.20212-1-andy-ld.lu@mediatek.com>
- <20240926070405.20212-3-andy-ld.lu@mediatek.com>
- <20240926175409.GA2644361-robh@kernel.org>
- <10ce6e9af6daa69735f46b45028ec1b2d25ee66a.camel@mediatek.com>
+Subject: Re: [PATCH RFC 1/2] dt-bindings: mtd: ubi-volume: add
+ 'volume-is-critical' property
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Zhihao Cheng <chengzhihao1@huawei.com>,
+ John Crispin <john@phrozen.org>, linux-mtd@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <e0936674dd1d6c98322e35831b8f0538a5cfa7a3.1727527457.git.daniel@makrotopia.org>
+ <7a2e8819-ac70-4070-a731-53994c72cd79@kernel.org>
+ <Zvf_84xxhxwpPgee@makrotopia.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,125 +107,76 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <10ce6e9af6daa69735f46b45028ec1b2d25ee66a.camel@mediatek.com>
+In-Reply-To: <Zvf_84xxhxwpPgee@makrotopia.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 28/09/2024 15:14, Andy-ld Lu (卢东) wrote:
-> On Thu, 2024-09-26 at 12:54 -0500, Rob Herring wrote:
->>  	 
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>  On Thu, Sep 26, 2024 at 03:03:18PM +0800, Andy-ld Lu wrote:
->>> Extend the devicetree bindings to include the MT8196 mmc controller
->>> by adding the compatible string 'mediatek,msdc-v2', which could be
->>> also used for future compatible SoCs that support new tx/rx.
->>
->> Generally, every SoC ends up changing at least slightly. So we don't
->> do 
->> version numbers except when there's a well defined versioning scheme
->> of 
->> the h/w (e.g. FPGA IP blocks). So, use SoC for compatible string.
-> Thanks for your review.
-> 
-> The new tx/rx represents a significant update for mmc controller of
-> mediatek from the MT8196 chipset, and the dependent settings remain
-> consistent for MT8196 and subsequent SoCs. Therefore, It is proposed to
-> use a unified compatible string for these SoCs that support new tx/rx,
-> and name it as 'IP(msdc) version two'.
-
-Sorry, nope. That's not valid reasons.
-
->>
+On 28/09/2024 15:09, Daniel Golle wrote:
+> On Sat, Sep 28, 2024 at 03:02:47PM +0200, Krzysztof Kozlowski wrote:
+>> On 28/09/2024 14:47, Daniel Golle wrote:
+>>> Add the 'volume-is-critical' boolean property which marks a UBI volume
+>>> as critical for the device to boot. If set it prevents the user from
+>>> all kinds of write access to the volume as well as from renaming it or
+>>> detaching the UBI device it is located on.
 >>>
->>> Add three properties for MT8196 settings:
->>> - 'mediatek,prohibit-gate-cg', indicate if the source clock CG
->> could
->>>   be disabled when CPU access IP registers.
->>>
->>> - 'mediatek,stop-dly-sel', configure read data clock stops at block
->> gap.
->>>
->>> - 'mediatek,pop-en-cnt', configure the margins of write and read
->>>   pointers while begin to pop data transfer.
->>>
->>> Signed-off-by: Andy-ld Lu <andy-ld.lu@mediatek.com>
+>>> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 >>> ---
->>>  .../devicetree/bindings/mmc/mtk-sd.yaml       | 26
->> +++++++++++++++++++
->>>  1 file changed, 26 insertions(+)
+>>>  .../devicetree/bindings/mtd/partitions/ubi-volume.yaml   | 9 +++++++++
+>>>  1 file changed, 9 insertions(+)
 >>>
->>> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
->> b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
->>> index c532ec92d2d9..82d1a9fac67c 100644
->>> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
->>> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
->>> @@ -25,6 +25,7 @@ properties:
->>>            - mediatek,mt8173-mmc
->>>            - mediatek,mt8183-mmc
->>>            - mediatek,mt8516-mmc
->>> +          - mediatek,msdc-v2
->>>        - items:
->>>            - const: mediatek,mt7623-mmc
->>>            - const: mediatek,mt2701-mmc
->>> @@ -154,6 +155,30 @@ properties:
->>>      enum: [32, 64]
->>>      default: 32
+>>> diff --git a/Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml b/Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml
+>>> index 19736b26056b..2bd751bb7f9e 100644
+>>> --- a/Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml
+>>> +++ b/Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml
+>>> @@ -29,6 +29,15 @@ properties:
+>>>      description:
+>>>        This container may reference an NVMEM layout parser.
 >>>  
->>> +  mediatek,stop-dly-sel:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description:
->>> +      Some SoCs need to set appropriate stop-dly-sel to configure
->> read data clock
->>> +      stops at block gap. The valid range is from 0 to 0xf.
+>>> +  volume-is-critical:
+>>> +    description: This parameter, if present, indicates that the UBI volume
+>>> +      contains early-boot firmware images or data which should not be clobbered.
+>>> +      If set, it prevents the user from renaming the volume, writing to it or
+>>> +      making any changes affecting it, as well as detaching the UBI device it is
+>>> +      located on, so direct access to the underlying MTD device is prevented as
+>>> +      well.
+>>> +    type: boolean
 >>
->> SoC dependent or board dependent? Imply from the compatible for the 
->> former. A property is fine for the latter case.
-> Yes, it is SoC dependent in principle, but we would like to use a
-> unified compatible string for MT8196 and subsequent SoCs as mentioned
+>> UBI volumes are mapping to partitions 1-to-1, right? So rather I would
+>> propose to use partition.yaml - we already have read-only there with
+>> very similar description.
+> 
+> No, that's not the case.
+> 
+> An MTD partition can be used as UBI device. A UBI device (and hence MTD
+> partition) can host *several* UBI volumes.
+> 
+> Marking the MTD partition as 'read-only' won't work, as UBI needs
+> read-write access to perform bad block relocation, scrubbing, ...
 
-Also no :(. Use SoC specific compatible.
+OK, so not partition but read-only volume.
 
-> above, and this register setting(not relavant with new tx/rx) may be
-> variant. Therefore, want to use the property of device tree to set
-> individually.
->>
->>> +    minimum: 0
->>> +    maximum: 0xf
->>> +
->>> +  mediatek,pop-en-cnt:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description:
->>> +      Some SoCs need to set appropriate pop-en-cnt to configure
->> the margins of write
->>> +      and read pointers while begin to pop data transfer. The
->> valid range is from 0
->>> +      to 0xf.
->>> +    minimum: 0
->>> +    maximum: 0xf
->>
->> Same question.
-> Same as the reply above.
->>
->>> +
->>> +  mediatek,prohibit-gate-cg:
->>> +    $ref: /schemas/types.yaml#/definitions/flag
->>> +    description:
->>> +      Decide if source clock CG could be disabled when CPU access
->> IP registers.
->>> +      If present, source clock CG could not be disabled.
->>> +      If not present, source clock CG could be disabled.
->>
->>
->> Sounds like you need to describe the clock in "clocks".
-> It is not with clock itself, but rather with the bus design that would
-> check the 'source_cg' status bit to decide whether to prevent the CPU
-> from accessing the IP registers. And there have been no changes to the
-> 'source_cg'(already been descirbed before) for MT8196.
+> 
+> Also, typically not all UBI volumes on a UBI device are
+> read-only/critical but only a subset of them.
+> 
+> But you are right that the description is inspired by the description
+> of the 'read-only' property in partition.yaml ;)
+> 
+> I initially thought to also name the property 'read-only', just like
+> for MTD partitions. However, as the desired effect goes beyond
+> preventing write access to the volume itself, I thought it'd be
+> better to use a new name.
 
-I don't understand why do you need this property if it was already
-described. Please do not describe things twice.
+Yeah, maybe... critical indeed covers multiple cases but is also
+subjective. For some bootloader is critical, for other bootloader still
+might be fully A/B updateable thus could be modifiable. For others, they
+want to use fw_setenv from user-space so not critical at all.
 
+I am in general not so happy in describing flash layout in DT, because
+it sounds way too policy or one-use-case specific.
+
+UBI volume is purely SW construct. One OS can partition MTD in multiple
+ways, so maybe I just do not understand why we have in the first place.
 
 Best regards,
 Krzysztof
