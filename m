@@ -1,71 +1,74 @@
-Return-Path: <devicetree+bounces-106083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3B5B989119
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 21:27:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42DE3989135
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 21:50:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC54C1C21175
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 19:27:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F05D21F212AD
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 19:50:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56557158A36;
-	Sat, 28 Sep 2024 19:27:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C5E14C5BA;
+	Sat, 28 Sep 2024 19:50:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="TdlHA2HQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kxHv9ksx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 868EE17C95
-	for <devicetree@vger.kernel.org>; Sat, 28 Sep 2024 19:27:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83321CA80;
+	Sat, 28 Sep 2024 19:50:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727551632; cv=none; b=nyX8HyVs6POqBPWbA5jZrvu3McK54mLA7x/7cFcRPJ5pV8OSD92PqMn//n/SslJTKqUnLkSIh64IKo59R7bT4lI13rpvvc4pPiybwLOXp/tKDao6sjPzD3zr9qfov8fVDALLtixbP3wSe04+VX3b8O1OyTIUq6z7Om9DKpN41j0=
+	t=1727553033; cv=none; b=no1KTnxYNu6qtc2TjLO1SDC+4ygdt/RK301SQ2HXUo3wQwPmB8HGB8h07LVMhfiKJABa/+jDQLmQgMJmDdGKSk9e9SoKpyH86BmUMJ5/e2mirD+efiYRDzV6e3v6BmotYHYd86bUYhVShk6cf3V17OUB97Rvl7mLvkbp9cpz05s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727551632; c=relaxed/simple;
-	bh=Ke5M2bzJZMGA0rx3L5zcW7DOtXBhjSEgxr0Xn2oVOTI=;
+	s=arc-20240116; t=1727553033; c=relaxed/simple;
+	bh=LQiKpMH/ph7ZUlKx+GoGwWZjBExHGVOCY4oNQxEglf4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OvlnGzx1qY22u1ezJL12rZx8aGSAfYl9G/LqZeY7QMdya3p4SuxrX0r/3Abd5HLvwxZde17pB93EvQGwIxNPaMyqluAGO1jklPLrGH2DEZFOQkoJTJrPE0Si/wr9HGJyFQbKqJWR5Xk9gBsTFW1U2QdbiFULzqoAKZLkELVJH9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linuxfoundation.org; spf=pass smtp.mailfrom=linuxfoundation.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=TdlHA2HQ; arc=none smtp.client-ip=209.85.166.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linuxfoundation.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linuxfoundation.org
-Received: by mail-io1-f47.google.com with SMTP id ca18e2360f4ac-82aac438539so160081139f.1
-        for <devicetree@vger.kernel.org>; Sat, 28 Sep 2024 12:27:10 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=H73B7SSxlYkOyOG09z6o2a1mg5F+TW3Tbby38Bo7PXg+1s0/FNQIYBhhHu/GCAgvF+DWh/FzOXrb8RxSFYms4XLWU2QD8Nd1fV9EUmDhTvsZnVpdpUTbOuh4msLySlLp9ZFe9VFfrsclcPQ39cIfPPFqg2h4RSQt7KmogzuVnCw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kxHv9ksx; arc=none smtp.client-ip=209.85.128.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6dbbe7e51bbso25754127b3.3;
+        Sat, 28 Sep 2024 12:50:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1727551630; x=1728156430; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1727553031; x=1728157831; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=X+DZWccg96cZ6nO8zxhSFiTG/Zg2x5D9SPND5SVdZ7U=;
-        b=TdlHA2HQ1dDlkJJIzFLLj6wF6zerhUhk28YhLKXXqnLDSwVE44gU6rKlv7P2tiQg4I
-         CD5RxrpTlg+YgWmv0F0YP97dYSoPHCncXCsqgUU25SftHyVJO/dltHqWjFQovXgyK/jD
-         5Kq/3vC09fQfqIlIlUDQawH7oVWGigW7dE09w=
+        bh=FIHwIoYLONfgdXE36Akj8OIPXg8AMYwd+9WehTb8EVE=;
+        b=kxHv9ksx6Ahy77wc7S2ZujSvoTZ0MC4qscbQZV87CG+AcjVLFD3soII0IGCegZwC2f
+         N+37rygPwBr16oYqWgVeXNjvHh9cvDbs6jZsASWqNYX2Ce5ad3Z9CvxO2wtjIsgCgyap
+         tYJvNFFqwRM/GECzAFv9rfsR8Uscgfii0zwSDOzNbE3TqXfwvVd5IhPiVBP2N7NyPsPF
+         wCwnEpV3tPSBLg7sUhe8B2L5KanMZ2z2Caxt9a0MkNk/vm6SAwC2AOhuNK4m6sxmQhyB
+         CEMTmp7L0ShxVCm+pV8zvTYovXDPLQRHqmJuVMwh9fKNPtQg3z32/HcZK0m8U7tDJ1WL
+         qszw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727551630; x=1728156430;
+        d=1e100.net; s=20230601; t=1727553031; x=1728157831;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X+DZWccg96cZ6nO8zxhSFiTG/Zg2x5D9SPND5SVdZ7U=;
-        b=LpDK8l1ItX0SGraMu72PNtxFKOty07WpQ4jy0R9RSdFiR3aQ9zwfBcwuUmoIef+ldG
-         clCqPzT5NG/pnQlqEmm9Z9/46g/tf2eOBsK9SJgZNrmoqCrpqEE25VdoI8FW2HDnmrNb
-         j48ewgc11PBuzDR1j51jz6c42gyTTbxBWlYUazmvWnOpJivAGX+bWljEBqU/T6hYMk32
-         7WaX2UgNBa08sCKum/s3m6t+TnXRRqZUtO9kfshkn+LFR9y/jr8vgK7a7F2Gb8m5Lo1B
-         Z0A+ZQOjdxwZjuq5NHx4SLXT217MZMTQeb6NW3UqWPed+V4SeDEL8EDUROrm87wqperT
-         Lujw==
-X-Forwarded-Encrypted: i=1; AJvYcCX+KupjzfurHRUm4N7rMUPRpUFGE0vekVEBVSkW1N+WUMKL8Klq4e96Bkw5VYuJ6LCgNNeM5EQ2AIXQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfRsqqhZ1ZC/iDjFxV9KGx7vqxWfspRHTa2drC/sKDvQRHtL7e
-	568/HZK8IgQNgrWtz0lN3PMcLoZUmZtmBEb8Hs5lp9BSgLrvTCcy3TzafxnbjtI=
-X-Google-Smtp-Source: AGHT+IE52kMDYc8cTV6xfdfVDMfxNEDyxKcur10Po9ZKv+rKoDwbwuwvV4NYy+Y854Z6saLyRNwySA==
-X-Received: by 2002:a05:6602:2c03:b0:82b:40f:63c6 with SMTP id ca18e2360f4ac-834931cc6e7mr583881039f.4.1727551629680;
-        Sat, 28 Sep 2024 12:27:09 -0700 (PDT)
-Received: from [192.168.1.128] ([38.175.170.29])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4d888872548sm1199776173.79.2024.09.28.12.27.08
+        bh=FIHwIoYLONfgdXE36Akj8OIPXg8AMYwd+9WehTb8EVE=;
+        b=h4G49gF8gzQR1dNZuPBLb2efJup1EMBAc2vgv/1VyIZwBozxDn1d6SpH3maeUqWXDa
+         wr0US9RYBFC5kDoaiYWjH6UTG3AsRhPPQZo8SpEVHlXM4CxcgKWIOOk/F7xGeFIQnIiQ
+         WCZ81oVXLE/akXjOhxS/c2ZZK/h0EMIik4hpCRVtVVvhPSOZl4F710ikihIV0t389/4L
+         Vx2zFIerdpYCBujJxbChqC9kBbCH2djXLN936G4Es38FIUqf8SXMe61zdPSxeFhczUxG
+         Uz6vHWC6z8lw7u2qKoSqVK5pjF3nSkx1TCDeM6CsklczG7DhYTRZSecyv07fvlNkuGsr
+         5MBw==
+X-Forwarded-Encrypted: i=1; AJvYcCVnczR0eb1vgkMMXGV/sFZIrTQIgiTIrXMlVj2CwHk84i37noIxIZz4Znc3n02rFtuSvC1+iR4St5oWvMEqRFTkGsVFVg==@vger.kernel.org, AJvYcCWEz+N5MJ2gPtnZbkyh33DYg1dfnbLFWLndkyxsvMH1t7nP0YOTHqWZFvDcAL1SSSkiO1ZxiO9ZQFuCS16I@vger.kernel.org, AJvYcCWoC4B7xXLsVNZJAm7Hlp04U9uRiH4x4xVrdRxoQVFHMgAZFaxpSikSFgUoqir9v3ODSh1J2POi0w7d@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywu49PFcqSKvCcXT3FqkuCa9/o6C1EEDECsbq5beyIJBUJucWOF
+	whyTgEB/YmzGTqtCLGYSkAqMQmq8S8ZX6zhMadPHHk8TbBpD8WWn
+X-Google-Smtp-Source: AGHT+IGZe2d8nDDal1LwC8XiKjrlMJJQqMfq0jJhGf1m2tBSSm52enRhK++p0LYFveZJjLXFXogzwA==
+X-Received: by 2002:a05:690c:4e02:b0:6dd:b920:6e61 with SMTP id 00721157ae682-6e247603c31mr36070427b3.40.1727553030756;
+        Sat, 28 Sep 2024 12:50:30 -0700 (PDT)
+Received: from ?IPV6:2604:2d80:4022:0:9007:a741:5566:7d2e? ([2604:2d80:4022:0:9007:a741:5566:7d2e])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e245369a20sm7694127b3.85.2024.09.28.12.50.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Sep 2024 12:27:09 -0700 (PDT)
-Message-ID: <da260b77-2ecb-4486-90cb-6db456d381ef@linuxfoundation.org>
-Date: Sat, 28 Sep 2024 13:27:07 -0600
+        Sat, 28 Sep 2024 12:50:30 -0700 (PDT)
+Message-ID: <11c36b3b-5fc4-45c6-a9d2-3d45d8cca7ee@gmail.com>
+Date: Sat, 28 Sep 2024 14:50:28 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,132 +76,55 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 8/8] clk: Add KUnit tests for clks registered with
- struct clk_parent_data
-To: Guenter Roeck <linux@roeck-us.net>, Stephen Boyd <sboyd@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- patches@lists.linux.dev, kunit-dev@googlegroups.com,
- linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org,
- Brendan Higgins <brendan.higgins@linux.dev>, David Gow
- <davidgow@google.com>, Rae Moar <rmoar@google.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@google.com>, Daniel Latypov
- <dlatypov@google.com>, Christian Marangi <ansuelsmth@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <maxime@cerno.tech>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Shuah Khan <skhan@linuxfoundation.org>
-References: <20240718210513.3801024-1-sboyd@kernel.org>
- <20240718210513.3801024-9-sboyd@kernel.org>
- <6cd337fb-38f0-41cb-b942-5844b84433db@roeck-us.net>
- <a339ec8c-38f6-425a-94d1-ad69b5ddbd88@roeck-us.net>
- <dcd8894f-1eb6-4b5c-9e6f-f6e584c601d2@roeck-us.net>
- <6f5a5b5f-71a7-4ed3-8cb3-d930bbce599b@linuxfoundation.org>
- <ba88a29c-f05e-4ca3-82d1-0a634613caee@roeck-us.net>
- <4216b852-11a2-41ae-bb01-5f9b578ee41b@roeck-us.net>
- <879831a8-2039-4cdb-bce2-aefdeb7ab25f@linuxfoundation.org>
+Subject: Re: [PATCH v5 0/3] novatek-nvt-ts: add support for NT36672A
+ touchscreen
+To: Krzysztof Kozlowski <krzk@kernel.org>, Hans de Goede
+ <hdegoede@redhat.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
+References: <20240601-nvt-ts-devicetree-regulator-support-v5-0-aa9bf986347d@gmail.com>
+ <a0e00c43-a879-4a4c-a3b4-26c485e0c261@gmail.com>
+ <1e43c2e2-4859-4452-a4d3-433aeea1fcef@kernel.org>
 Content-Language: en-US
-From: Shuah Khan <skhan@linuxfoundation.org>
-In-Reply-To: <879831a8-2039-4cdb-bce2-aefdeb7ab25f@linuxfoundation.org>
+From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+In-Reply-To: <1e43c2e2-4859-4452-a4d3-433aeea1fcef@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 9/28/24 11:54, Shuah Khan wrote:
-> On 9/28/24 11:31, Guenter Roeck wrote:
->> On 9/27/24 17:08, Guenter Roeck wrote:
->>> On 9/27/24 13:45, Shuah Khan wrote:
->>>> On 9/27/24 10:19, Guenter Roeck wrote:
->>>>> Copying devicetree maintainers.
->>>>>
->>>>> On Thu, Sep 26, 2024 at 09:39:38PM -0700, Guenter Roeck wrote:
->>>>>> On Thu, Sep 26, 2024 at 09:14:11PM -0700, Guenter Roeck wrote:
->>>>>>> Hi Stephen,
->>>>>>>
->>>>>>> On Thu, Jul 18, 2024 at 02:05:07PM -0700, Stephen Boyd wrote:
->>>>>>>> Test that clks registered with 'struct clk_parent_data' work as
->>>>>>>> intended and can find their parents.
->>>>>>>>
->>>>>>>
->>>>>>> When testing this on arm64, I see the error below. The error is only
->>>>>>> seen if I boot through efi, i.e., with "-bios QEMU_EFI-aarch64.fd"
->>>>>>> qemu parameter.
->>>>>>>
->>>>>>> Any idea what might cause the problem ?
->>>>>>>
->>>>>> I noticed that the new overlay tests fail as well, also with "path '/' not
->>>>>> found".
->>>>>>
->>>>>> [Maybe] answering my own question: I think the problem may be that there
->>>>>> is no devicetree file and thus no devicetree root when booting through
->>>>>> efi (in other words, of_root is NULL). Would it make sense to skip the
->>>>>> tests in that case ?
->>>>>>
->>>>>
->>>>> The problem is that of_root is not initialized in arm64 boots if ACPI
->>>>> is enabled.
->>>>>
->>>>>  From arch/arm64/kernel/setup.c:setup_arch():
->>>>>
->>>>>     if (acpi_disabled)
->>>>>         unflatten_device_tree();        // initializes of_root
->>>>>
->>>>> ACPI is enabled if the system boots from EFI. This also affects
->>>>> CONFIG_OF_KUNIT_TEST, which explicitly checks if of_root exists and
->>>>> fails the test if it doesn't.
->>>>>
->>>>> I think those tests need to add a check for this condition, or affected
->>>>> machines won't be able to run those unit tests. The obvious solution would
->>>>> be to check if of_root is set, but then the associated test case in
->>>>> CONFIG_OF_KUNIT_TEST would not make sense.
->>>>>
->>>>> Any suggestions ?
->>>>>
->>>>
->>>> Would it work if these tests check if acpi_disabled and skip if it isn't
->>>> disabled? It might be low overhead condition to check from these tests.
->>>>
->>>> acpi_disabled is exported:
->>>>
->>>> arch/arm64/kernel/acpi.c:EXPORT_SYMBOL(acpi_disabled);
->>>> arch/loongarch/kernel/acpi.c:EXPORT_SYMBOL(acpi_disabled);
->>>> arch/riscv/kernel/acpi.c:EXPORT_SYMBOL(acpi_disabled);
->>>> arch/x86/kernel/acpi/boot.c:EXPORT_SYMBOL(acpi_disabled);
->>>>
->>>
->>> I don't think that would work. Looking through the use of acpi_init,
->>> I don't think that of_root is always NULL when acpi_init is false; that
->>> just happens to be the case on arm64 when booting through efi.
->>> However, even arm64 has the following code.
->>>
->>>          if (acpi_disabled)
->>>                  psci_dt_init();
->>>          else
->>>                  psci_acpi_init();
->>>
->>> While psci_dt_init() doesn't set of_root, it does try to do a devicetree
->>> match. So there must be some other condition where acpi_disabled is set
->>> but of_root is set anyway. I just have not found that code path.
->>>
+Hi Krzysztof Kozlowski,
+
+On 9/28/24 02:49, Krzysztof Kozlowski wrote:
+> On 28/09/2024 07:45, Joel Selvaraj wrote:
+>> Hi,
 >>
->> I ended up disabling all affected unit tests for arm64. I'll do the same
->> for other architectures if I encounter the problem there as well.
->>
->> Unfortunately that includes all clock unit tests because the tests requiring
->> devicetree support can not be enabled/disabled separately, but that can't be
->> helped and is still better than "mandatory" failures.
->>
+>> A gentle ping to the maintainers/reviewers. I was initially hoping this
+>> patch would land in 6.11. And it got kind of missed. So I am currently
+>> hoping it would land in 6.12. But I haven't seen any update in the
+>> patch. There is no hurry and can wait for 6.13 or future. Just don't
+>> want the patch to be forgotten/lost/missed. Kindly let me know if any
+>> further changes are required! I will be happy to fix them.
 > 
+> We are still in merge window, so nothing can happen with your patches.
+> Pinging during merge window is not welcomed, just unnecessary noise.
+> Wait till merge window finishes and then ping, or better resend.
 
-of_root is set in drivers/of/pdt.c when it creates the root node.
-This could be a definitive test for kunit tests that depend on
-devicetree support.
+Ah I see. Understood. Sorry for the noise.
 
-It is an exported symbol. drivers/of/base.c exports it.
+> Your patch waited indeed way too long, but if you wanted it to reach
+> v6.12, then you should have done something earlier. No one has it in
+> their inbox anymore.
+> 
+> Please resend with accumulated tags, assuming there is no outstanding
+> review comments, after the merge window.
 
-thanks,
--- SHuah
-
+Will do. Thanks!
+Joel Selvaraj
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
