@@ -1,60 +1,71 @@
-Return-Path: <devicetree+bounces-106074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 384639890A9
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 19:11:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 762569890C0
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 19:23:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A8BD8B21316
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 17:11:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0DB24B212B1
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 17:23:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8A712940F;
-	Sat, 28 Sep 2024 17:11:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5C1513D53E;
+	Sat, 28 Sep 2024 17:23:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HHLdmlC8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sTFwQpOM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9796B1755C;
-	Sat, 28 Sep 2024 17:11:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 684101E531;
+	Sat, 28 Sep 2024 17:23:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727543489; cv=none; b=oJ2Edme1/hbtMRRkkLL7SnVpAjtQJ7NtJb+OxRS3tZFSpcnzggitG7spqqElHzKLfSOfrtSW+0IaDfX2C3nJhkdmqqAt+Fsld9napP4aRC9r1dOx8r3G19nkBeJME2hTZYQhtvumcxwyM7c2Budsz3vObBUGf6K6vcLl6K+dXuM=
+	t=1727544194; cv=none; b=YZu8t1cAA1vuRvvke1aPwRSof3CzZXK0u3ZXlh+Y88wINjywOgbwzIIPfJqOQ7eRaA8wQYj1ymk1eTQjlYDx8NxgZ4sB6GckVfR/9W4XeQTG0s3dOq+vVhs2juNZWwVfmSp+4vCA9jMME5YsDSwvkigxhThK5+YiaaBI9AM+bdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727543489; c=relaxed/simple;
-	bh=hwBbv+gqJx570oJqh9my+jWcN57dgOBGoUYfFkoRYjo=;
+	s=arc-20240116; t=1727544194; c=relaxed/simple;
+	bh=wd/Emuxjg9/zfO5SPUVqf/dFDYAu1S36dkWeltTNXUM=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZoAxTV7ZKA/aAQbDnCA5X3JQ1QYZvfQmVVZEEW6b84Mval2Zqh+U3jS6AIwmgIMAwFRKZ91hMT1eqmAJi+yZWLdmyW8XC521T6X+J0cAtBh9I8mroNhJnjHuJ3xGL4GnbWcNk9YZJDekj6cBc71UNg0OR+y9OPsm9rjyoITC9R8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HHLdmlC8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A541C4CEC3;
-	Sat, 28 Sep 2024 17:11:25 +0000 (UTC)
+	 MIME-Version:Content-Type; b=cmMdd/8Mdp6UycSpESk2XGgBCaV6azYI2tSVhQRR4HZEP3bwMt0wyd4/IqGVG4zhKhVeXN3x/FPSGz7AZhBU1/FVEiiHSvgq4d04eF9HJdTpNxFL5pmH3hylQI7FZdt8fKCefkc5lTdz/iNIgPMine4mFplGf8zQWfuO3kYr3/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sTFwQpOM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7667C4CEC3;
+	Sat, 28 Sep 2024 17:23:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727543489;
-	bh=hwBbv+gqJx570oJqh9my+jWcN57dgOBGoUYfFkoRYjo=;
+	s=k20201202; t=1727544193;
+	bh=wd/Emuxjg9/zfO5SPUVqf/dFDYAu1S36dkWeltTNXUM=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=HHLdmlC8WLTHPwKgaP12x8qz9BX9/OAe+M49DzrW+ZW9PCX7f5zKJpNQZQoU9d2VO
-	 qc3U0/wl+Ie3+5HNAB4Zk+/lwgGdU0oQFlKnUVgn46+7JhxvJ4VV1UbOzRprIcWtQy
-	 cG4dUFjdeCO1QFBmaFASVHbdeX/BJ9pLxcmWleL2s7R78j7GQk7pqLdzFduuKmEuW7
-	 mArf/ia5xASArplsJhlD6JS9aq5BiWjRGnYswHhUDdiZ7WXK8oQyjYYYGuLzCOfB0J
-	 D9HUg0565tbj997wVAB3RWSL7uV4U5GhEKH4GoGY7k+ccWnR1trDQtiNoqkrZtUYsV
-	 9iTj8bvk4vIfQ==
-Date: Sat, 28 Sep 2024 18:11:21 +0100
+	b=sTFwQpOMyyOFFEYGSu6JfEqLrn9WOtqSDuuiEyYE1LGC03I9qVhfH8jTMhdMG0Oex
+	 ZYYfcvaNT//8TIrgX7mzFSwzLwHFsaWdp2zgzd8DAVxmtvCDcZnhtMpDbiEgOeSVP9
+	 BRCBy34W6Vp9zbHG0qBJSD48+OezpiYt6iuNWPwHXvzljEuzPVDOK++aAI8LyL3TMV
+	 3OcsvwpXSCWnA0JUkdKD0UU33W33siXl42IHofSvmhQ+EOokmEqssbmGI3W/FyaKsG
+	 JgNNCEf4fvVZW3WJtx802yH2i07YpCrmVeeA6roelpmGJxGfTb+1DqfjIBNOW+EBJ/
+	 SOfaPnym7puog==
+Date: Sat, 28 Sep 2024 18:23:02 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: <Jianping.Shen@de.bosch.com>
-Cc: <lars@metafoo.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
- <conor+dt@kernel.org>, <dima.fedrau@gmail.com>,
- <marcelo.schmitt1@gmail.com>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <Christian.Lorenz3@de.bosch.com>, <Ulrike.Frauendorf@de.bosch.com>,
- <Kai.Dolde@de.bosch.com>
-Subject: Re: [PATCH v8 2/2] iio: imu: smi240: add driver
-Message-ID: <20240928181121.0e62f0ad@jic23-huawei>
-In-Reply-To: <20240923124017.43867-3-Jianping.Shen@de.bosch.com>
-References: <20240923124017.43867-1-Jianping.Shen@de.bosch.com>
-	<20240923124017.43867-3-Jianping.Shen@de.bosch.com>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, Antoniu Miclaus 
+ <antoniu.miclaus@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>, Olivier Moysan
+ <olivier.moysan@foss.st.com>, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?=
+ <ukleinek@kernel.org>, Andy Shevchenko <andy@kernel.org>, Marcelo Schmitt
+ <marcelo.schmitt@analog.com>, Alisa-Dariana Roman <alisadariana@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Dumitru Ceclan <mitrutzceclan@gmail.com>, =?UTF-8?B?Sm/Do28=?= Paulo
+ =?UTF-8?B?R29uw6dhbHZlcw==?= <joao.goncalves@toradex.com>, Marius Cristea
+ <marius.cristea@microchip.com>, Sergiu Cuciurean
+ <sergiu.cuciurean@analog.com>, Dragos Bogdan <dragos.bogdan@analog.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH 1/7] iio: backend: add API for interface get
+Message-ID: <20240928182302.767953f1@jic23-huawei>
+In-Reply-To: <83cf3c3eb1cc5fcc06ce72cab14cc0da3bd817b6.camel@gmail.com>
+References: <20240923101206.3753-1-antoniu.miclaus@analog.com>
+	<20240923101206.3753-2-antoniu.miclaus@analog.com>
+	<CAMknhBHmtpnX-nXxReF-rUW1ks1=iw3m_BmiRUTkf5XckPsvPw@mail.gmail.com>
+	<83cf3c3eb1cc5fcc06ce72cab14cc0da3bd817b6.camel@gmail.com>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,138 +76,190 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, 23 Sep 2024 14:40:17 +0200
-<Jianping.Shen@de.bosch.com> wrote:
+On Thu, 26 Sep 2024 12:52:39 +0200
+Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
 
-> From: Shen Jianping <Jianping.Shen@de.bosch.com>
+> On Thu, 2024-09-26 at 10:40 +0200, David Lechner wrote:
+> > On Mon, Sep 23, 2024 at 12:15=E2=80=AFPM Antoniu Miclaus
+> > <antoniu.miclaus@analog.com> wrote: =20
+> > >=20
+> > > Add backend support for obtaining the interface type used.
+> > >=20
+> > > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> > > ---
+> > > =C2=A0drivers/iio/industrialio-backend.c | 24 ++++++++++++++++++++++++
+> > > =C2=A0include/linux/iio/backend.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 10 ++++++++++
+> > > =C2=A02 files changed, 34 insertions(+)
+> > >=20
+> > > diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industr=
+ialio-
+> > > backend.c
+> > > index efe05be284b6..53ab6bc86a50 100644
+> > > --- a/drivers/iio/industrialio-backend.c
+> > > +++ b/drivers/iio/industrialio-backend.c
+> > > @@ -449,6 +449,30 @@ ssize_t iio_backend_ext_info_set(struct iio_dev =
+*indio_dev,
+> > > uintptr_t private,
+> > > =C2=A0}
+> > > =C2=A0EXPORT_SYMBOL_NS_GPL(iio_backend_ext_info_set, IIO_BACKEND);
+> > >=20
+> > > +/**
+> > > + * iio_backend_interface_type_get - get the interace type used.
+> > > + * @back: Backend device
+> > > + * @type: Interface type
+> > > + *
+> > > + * RETURNS:
+> > > + * 0 on success, negative error number on failure.
+> > > + */
+> > > +int iio_backend_interface_type_get(struct iio_backend *back,
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum iio_backend_=
+interface_type *type)
+> > > +{
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int ret;
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D iio_backend_op_call(bac=
+k, interface_type_get, type);
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (ret)
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 return ret;
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (*type > IIO_BACKEND_INTERFA=
+CE_CMOS)
+Put a COUNT entry or similar on the end of the enum so this doesn't need
+updating for more types.
+
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 return -EINVAL;
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return 0;
+> > > +}
+> > > +EXPORT_SYMBOL_NS_GPL(iio_backend_interface_type_get, IIO_BACKEND);
+> > > +
+> > > =C2=A0/**
+> > > =C2=A0 * iio_backend_extend_chan_spec - Extend an IIO channel
+> > > =C2=A0 * @indio_dev: IIO device
+> > > diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
+> > > index 8099759d7242..ba8ad30ac9ba 100644
+> > > --- a/include/linux/iio/backend.h
+> > > +++ b/include/linux/iio/backend.h
+> > > @@ -63,6 +63,11 @@ enum iio_backend_sample_trigger {
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IIO_BACKEND_SAMPLE_TRIGGER=
+_MAX
+> > > =C2=A0};
+> > >=20
+> > > +enum iio_backend_interface_type {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IIO_BACKEND_INTERFACE_LVDS,
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IIO_BACKEND_INTERFACE_CMOS
+
+trailing comma.
+
+This is going to get bigger!
+
+> > > +};
+> > > +
+> > > =C2=A0/**
+> > > =C2=A0 * struct iio_backend_ops - operations structure for an iio_bac=
+kend
+> > > =C2=A0 * @enable: Enable backend.
+> > > @@ -81,6 +86,7 @@ enum iio_backend_sample_trigger {
+> > > =C2=A0 * @extend_chan_spec: Extend an IIO channel.
+> > > =C2=A0 * @ext_info_set: Extended info setter.
+> > > =C2=A0 * @ext_info_get: Extended info getter.
+> > > + * @interface_type_get: Interface type.
+> > > =C2=A0 **/
+> > > =C2=A0struct iio_backend_ops {
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int (*enable)(struct iio_b=
+ackend *back);
+> > > @@ -113,6 +119,8 @@ struct iio_backend_ops {
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 const char *buf, size_t len);
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int (*ext_info_get)(struct=
+ iio_backend *back, uintptr_t private,
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 const struct iio_chan_spec *chan, char *buf);
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int (*interface_type_get)(struc=
+t iio_backend *back,
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum iio_backend_interf=
+ace_type *type);
+> > > =C2=A0};
+> > >=20
+> > > =C2=A0int iio_backend_chan_enable(struct iio_backend *back, unsigned =
+int chan);
+> > > @@ -142,6 +150,8 @@ ssize_t iio_backend_ext_info_set(struct iio_dev *=
+indio_dev,
+> > > uintptr_t private,
+> > > =C2=A0ssize_t iio_backend_ext_info_get(struct iio_dev *indio_dev, uin=
+tptr_t private,
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct iio_chan_spec=
+ *chan, char *buf);
+> > >=20
+> > > +int iio_backend_interface_type_get(struct iio_backend *back,
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum iio_backend_=
+interface_type *type);
+> > > =C2=A0int iio_backend_extend_chan_spec(struct iio_dev *indio_dev,
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct iio_backend *back,
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct iio_chan_spec *chan=
+);
+> > > --
+> > > 2.46.0
+> > >  =20
+> >=20
+> > This seems very specific to the AD485x chips and the AXI ADC backend.
+> > Since it is describing how the chip is wired to the AXI DAC IP block,
+> > I would be tempted to use the devicetree for this info instead of
+> > adding a new backend function. =20
 >=20
-> add the iio driver for bosch imu smi240. The smi240 is a combined
-> three axis angular rate and three axis acceleration sensor module
-> with a measurement range of +/-300=C2=B0/s and up to 16g. A synchronous
-> acc and gyro sampling can be triggered by setting the capture bit
-> in spi read command.
+> Not sure If I'm following your point but I think this is the typical case=
+ where the
+> chip (being it a DAC or ADC) supports both CMOS and LVDS interfaces. Natu=
+rally you
+> only use one on your system and this is a synthesis parameter on the FPGA=
+ IP core.
+> Therefore, it makes sense for the frontend to have way to ask for this in=
+formation to
+> the backend.
 >=20
-> Implemented features:
-> * raw data access for each axis through sysfs
-> * tiggered buffer for continuous sampling
-> * synchronous acc and gyro data from tiggered buffer
+> That said, we could also have a DT parameter but, ideally, we would then =
+need a way
+> to match the parameter with the backend otherwise we could have DT statin=
+g LVDS and
+> the backend built with CMOS.
+
+That would be a DTS bug that you should fix :)  For this to make sense you =
+are
+relying on an FPGA that also has pins flexible enough to support LVDS and C=
+MOS
+so it's only a firmware thing. Been a while since I last messed with FPGAs,
+but that seems unlikely to be true in general.
+
+So far I'm with David on this, feels like something we shouldn't be discove=
+ring
+at runtime though maybe that's a convenience that we do want to enable.
+
 >=20
-> Signed-off-by: Shen Jianping <Jianping.Shen@de.bosch.com>
-At least one endian issue remaining ;( =20
+> Other thing that we could think about is a new devm_iio_backend_get_with_=
+info() where
+> the frontend would get some constant and static info about the backend (t=
+he interface
+> type would an ideal match for something like this). But I feel it's still=
+ early days
+> for something like this :)
+>=20
+> - Nuno S=C3=A1
 
-Make sure you run at least C=3D1 builds before sending patches to the list
-  CHECK   drivers/iio/imu/smi240.c
-drivers/iio/imu/smi240.c:223:14: warning: incorrect type in assignment (dif=
-ferent base types)
-drivers/iio/imu/smi240.c:223:14:    expected unsigned short [usertype]
-drivers/iio/imu/smi240.c:223:14:    got restricted __le16 [usertype]
-
-
-> +
-> +static int smi240_regmap_spi_read(void *context, const void *reg_buf,
-> +				  size_t reg_size, void *val_buf,
-> +				  size_t val_size)
-> +{
-> +	int ret;
-> +	u32 request, response;
-> +	u16 *val =3D val_buf;
-> +	struct spi_device *spi =3D context;
-> +	struct iio_dev *indio_dev =3D dev_get_drvdata(&spi->dev);
-> +	struct smi240_data *iio_priv_data =3D iio_priv(indio_dev);
-> +
-> +	if (reg_size !=3D 1 || val_size !=3D 2)
-> +		return -EINVAL;
-> +
-> +	request =3D FIELD_PREP(SMI240_WRITE_BUS_ID_MASK, SMI240_BUS_ID);
-> +	request |=3D FIELD_PREP(SMI240_WRITE_CAP_BIT_MASK, iio_priv_data->captu=
-re);
-> +	request |=3D FIELD_PREP(SMI240_WRITE_ADDR_MASK, *(u8 *)reg_buf);
-> +	request |=3D smi240_crc3(request, SMI240_CRC_INIT, SMI240_CRC_POLY);
-> +
-> +	iio_priv_data->spi_buf =3D cpu_to_be32(request);
-> +
-> +	/*
-> +	 * SMI240 module consists of a 32Bit Out Of Frame (OOF)
-> +	 * SPI protocol, where the slave interface responds to
-> +	 * the Master request in the next frame.
-> +	 * CS signal must toggle (> 700 ns) between the frames.
-> +	 */
-> +	ret =3D spi_write(spi, &iio_priv_data->spi_buf, sizeof(request));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D spi_read(spi, &iio_priv_data->spi_buf, sizeof(response));
-> +	if (ret)
-> +		return ret;
-> +
-> +	response =3D be32_to_cpu(iio_priv_data->spi_buf);
-> +
-> +	if (!smi240_sensor_data_is_valid(response))
-> +		return -EIO;
-> +
-> +	*val =3D cpu_to_le16(FIELD_GET(SMI240_READ_DATA_MASK, response));
-So this is line sparse doesn't like which is reasonable given you are forci=
-ng
-an le16 value into a u16.=20
-Minimal fix is just to change type of val to __le16 *
-
-I still find the endian handling in here mess and am not convinced
-the complexity is strictly necessary or correct.
-
-I'd expect the requirements of reordering to be same in read and write
-directions (unless device is really crazy), so why do we need
-a conversion to le16 here but not one from le16 in the write?
-
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int smi240_regmap_spi_write(void *context, const void *data,
-> +				   size_t count)
-> +{
-> +	u8 reg_addr;
-> +	u16 reg_data;
-> +	u32 request;
-> +	const u8 *data_ptr =3D data;
-> +	struct spi_device *spi =3D context;
-> +	struct iio_dev *indio_dev =3D dev_get_drvdata(&spi->dev);
-> +	struct smi240_data *iio_priv_data =3D iio_priv(indio_dev);
-> +
-> +	if (count < 2)
-> +		return -EINVAL;
-> +
-> +	reg_addr =3D data_ptr[0];
-> +	memcpy(&reg_data, &data_ptr[1], sizeof(reg_data));
-> +
-> +	request =3D FIELD_PREP(SMI240_WRITE_BUS_ID_MASK, SMI240_BUS_ID);
-> +	request |=3D FIELD_PREP(SMI240_WRITE_BIT_MASK, 1);
-> +	request |=3D FIELD_PREP(SMI240_WRITE_ADDR_MASK, reg_addr);
-> +	request |=3D FIELD_PREP(SMI240_WRITE_DATA_MASK, reg_data);
-
-This is built as fields in a native 32 bit register.
-My gut feeling is that you don't want the REGMAP_ENDIAN_LITTLE but
-rather use REGMAP_ENDIAN_NATIVE.
-
-The explicit reorder to be32 is fine though as that is just
-switching from the this native endian value to the byte ordering on
-the bus.
-
-> +	request |=3D smi240_crc3(request, SMI240_CRC_INIT, SMI240_CRC_POLY);
-> +
-> +	iio_priv_data->spi_buf =3D cpu_to_be32(request);
-> +
-> +	return spi_write(spi, &iio_priv_data->spi_buf, sizeof(request));
-> +}
-> +
-> +static const struct regmap_bus smi240_regmap_bus =3D {
-> +	.read =3D smi240_regmap_spi_read,
-> +	.write =3D smi240_regmap_spi_write,
-> +};
-> +
-> +static const struct regmap_config smi240_regmap_config =3D {
-> +	.reg_bits =3D 8,
-> +	.val_bits =3D 16,
-> +	.val_format_endian =3D REGMAP_ENDIAN_LITTLE,
-> +};
 
