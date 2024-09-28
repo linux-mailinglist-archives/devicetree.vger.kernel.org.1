@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-106018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC379988E55
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 10:01:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 868B1988E5C
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 10:06:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 390871C20DAD
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 08:01:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1FBC1C20DA3
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 08:05:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0784519DF43;
-	Sat, 28 Sep 2024 08:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4551418DF9E;
+	Sat, 28 Sep 2024 08:05:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IrLubET9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QaiyGwrL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF96B42A82;
-	Sat, 28 Sep 2024 08:01:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CA0812E75;
+	Sat, 28 Sep 2024 08:05:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727510461; cv=none; b=sIwxLaMZwKYEiSenigdypiRsY6Ut14eqmwZiEtrgDg9oCkV2s20bDplhkh94f6oOa4N3gc+5MYBrHw5V6EuiDtMuI09V7YkKDFZNgRkWDzfChxcALZGwxbNFRrK4bIC0XIjo7n6dVCKxyMbcCmNiHSDjRaAfOoJ+ogcmK/Q0Rco=
+	t=1727510756; cv=none; b=s1pqNaHJMx3nTJGUeDNxautPHkHZcPFUA1kKm5n+tS7RCe07ixZD3Nab6m32VXTmFZPr67g3+wFw8mAeyB6uSeNx45u9ZyQ25tidHjdDmde5ur4oDqm9LirjoQT+CFTTXU6dMzbnUUZliilr0Fi0xKnNAlqjoUlVAkUD7CEuCqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727510461; c=relaxed/simple;
-	bh=qlJzuJRE9Sn5Kw0Zcfet8Sxavy9TJ8gtErUmJx8vCWM=;
+	s=arc-20240116; t=1727510756; c=relaxed/simple;
+	bh=oBWMk5IXftwDZHR1DA8gs5+5AjQ0N9WxypmUP0N6Pw8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qSR8Q0GTWRKfxJeRRz6hxWXZUiPnLESQgyCe3EBi86nVb+V/zKMNjgVAAeGdp4G0dpuzuHRPTjeiPxeO3khlDYtCOQ7Cew40YzT7hI2Wu2VGsk86dUIbO5ulsEexTtaqQvJel+Y4x6Uev8U1ra42Wi8IEVcn8w0sg/hUJtBRWSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IrLubET9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF4FC4CEC3;
-	Sat, 28 Sep 2024 08:01:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=WsRT9IWznWnI2uQxH1MKGent/SX/wfxM4KObCkLRjbjcuEYHilFLuZfMmv34c7PFh/Y9kiXOdTNLPjzSJOYXJ0Sd0b0mt04E6kG6tztCKV1RYreGQ5NIKOpnxwmWdmqEudZM2LJoTY1BkqceYm+ZMrBd+JAOWIPYjNM7xXTrkCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QaiyGwrL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E56D2C4CEC3;
+	Sat, 28 Sep 2024 08:05:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727510461;
-	bh=qlJzuJRE9Sn5Kw0Zcfet8Sxavy9TJ8gtErUmJx8vCWM=;
+	s=k20201202; t=1727510755;
+	bh=oBWMk5IXftwDZHR1DA8gs5+5AjQ0N9WxypmUP0N6Pw8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IrLubET93T+OXdMS+LoTOq9d2NZJU3b2Ekbwwegi5ck8RcOUrkEYa/shXTDNXFHzY
-	 kv5kwXB6ckx/1fOia+/RgM+36ztyPZVU+lK+839m3CfsMBnWWqbHBJ5gpCK9+wDP47
-	 u1cG4xJ530oF/FRmw1ehW/Q6sEDPvTtMvGJnzq1FoQZsX6cIQaHQ5PlHNz7BC/FnQL
-	 PGjtN26mCMfRnkM4OlvFSRlvDGqYbRxGmmRI4NtTBNMPofUX57pkvmFJAF7a2pknxu
-	 Ji+6RrreaGryF4gzKRarRbTvmeku7mqftNHBh8MvHZhaapD/IJSkGB+JCj53nWPACx
-	 hK5eRuNfjjrLQ==
-Date: Sat, 28 Sep 2024 10:00:58 +0200
+	b=QaiyGwrLw2XtwAIBVPsGq6n1pRXl0ow3G80G2c/fQuhlTwHI5OxwRMqNH5nvpye54
+	 u5qagd1tSzbEzMJenpYJwJcdzetQv5KY0l6/G+pG9XaE4ykQ3rm9VvLibMVzP5LMrX
+	 CjuXsHWBJcy56xfEfKvejxH3oPHoGA9wVi0+LOqhaSsPBA+KzXQsbg/WwWt/rHIN0J
+	 jxULFQ1BAZ3GnVcY0S4z7GhHKQNhogl5c/qmntZHIEN2ujZWpRUBEhBZZqY4j4yvfU
+	 HPTfo72R8PyV7cAx7KE28XwVA8Ef0J9ZLBx6WfB9Oxlge8yAOJYDNsN5fUArwVWYoE
+	 J2YD2rYW5Yl+w==
+Date: Sat, 28 Sep 2024 10:05:52 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: drew@pdp7.com, guoren@kernel.org, wefu@redhat.com, 
-	jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	m.szyprowski@samsung.com, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC v2 1/3] mailbox: Introduce support for T-head TH1520
- Mailbox driver
-Message-ID: <vgnd5fbapw2hhjbbtzcmxikzprbnzo6m7dr6tqh7n4yepdlmyd@hs7lkieqtshk>
-References: <20240927094207.1650085-1-m.wilczynski@samsung.com>
- <CGME20240927094214eucas1p272cf99b40344f501cbbfaa91c929c709@eucas1p2.samsung.com>
- <20240927094207.1650085-2-m.wilczynski@samsung.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, William Zhang <william.zhang@broadcom.com>, 
+	Anand Gore <anand.gore@broadcom.com>, Kursad Oney <kursad.oney@broadcom.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: leds: bcm63138: Add shift register
+ bits
+Message-ID: <fmuxz5w77tfkodvntaley2b6kv2c7acgcfb6ojk3plw7g6rbdd@sahgzglndrda>
+References: <20240928-bcm63138-leds-v2-0-f6aa4d4d6ef2@linaro.org>
+ <20240928-bcm63138-leds-v2-1-f6aa4d4d6ef2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,206 +63,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240927094207.1650085-2-m.wilczynski@samsung.com>
+In-Reply-To: <20240928-bcm63138-leds-v2-1-f6aa4d4d6ef2@linaro.org>
 
-On Fri, Sep 27, 2024 at 11:42:05AM +0200, Michal Wilczynski wrote:
-> This driver was tested using the drm/imagination GPU driver. It was able
-> to successfully power on the GPU, by passing a command through mailbox
-> from E910 core to E902 that's responsible for powering up the GPU. The
-> GPU driver was able to read the BVC version from control registers,
-> which confirms it was successfully powered on.
+On Sat, Sep 28, 2024 at 12:29:47AM +0200, Linus Walleij wrote:
+> The BCM63138 family of serial LED controllers has a register
+> where we can set up bits for the shift registers. These are
+> the number of rounds the bits need to be shifted before all
+> bits have been shifted through the external shift registers.
 > 
-> [   33.957467] powervr ffef400000.gpu: [drm] loaded firmware
-> powervr/rogue_36.52.104.182_v1.fw
-> [   33.966008] powervr ffef400000.gpu: [drm] FW version v1.0 (build
-> 6621747 OS)
-> [   38.978542] powervr ffef400000.gpu: [drm] *ERROR* Firmware failed to
-> boot
-> 
-> Though the driver still fails to boot the firmware, the mailbox driver
-> works when used with the not-yet-upstreamed firmware AON driver. There
-> is ongoing work to get the BXM-4-64 supported with the drm/imagination
-> driver [1], though it's not completed yet.
-> 
-> This work is based on the driver from the vendor kernel [2].
-> 
-> Link: https://gitlab.freedesktop.org/imagination/linux-firmware/-/issues/2 [1]
-> Link: https://github.com/revyos/thead-kernel.git [2]
-> 
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  MAINTAINERS                      |   1 +
->  drivers/mailbox/Kconfig          |  10 +
->  drivers/mailbox/Makefile         |   2 +
->  drivers/mailbox/mailbox-th1520.c | 551 +++++++++++++++++++++++++++++++
->  4 files changed, 564 insertions(+)
->  create mode 100644 drivers/mailbox/mailbox-th1520.c
+> ChangeLog v1->v2:
+> - Drop the $ref to u32 since the new property is suffixed
+>   with "-bits" and thus get standard treatment.
+> ---
+>  Documentation/devicetree/bindings/leds/leds-bcm63138.yaml | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-bcm63138.yaml b/Documentation/devicetree/bindings/leds/leds-bcm63138.yaml
+> index bb20394fca5c..b3d530c46061 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-bcm63138.yaml
+> +++ b/Documentation/devicetree/bindings/leds/leds-bcm63138.yaml
+> @@ -41,6 +41,17 @@ properties:
+>    "#size-cells":
+>      const: 0
+>  
+> +  brcm,serial-shift-bits:
 
-...
+bits is an uint32-array, so you need to limit number of items, e.g.
+items:
+ - minimum: 1
+   maximum: 32
 
-> +static int th1520_mbox_startup(struct mbox_chan *chan)
-> +{
-> +	struct th1520_mbox_priv *priv = to_th1520_mbox_priv(chan->mbox);
-> +	struct th1520_mbox_con_priv *cp = chan->con_priv;
-> +	u32 data[8] = {};
-> +	int mask_bit;
-> +	int ret;
-> +
-> +	/* clear local and remote generate and info0~info7 */
-> +	th1520_mbox_chan_rmw(cp, TH_1520_MBOX_GEN, 0x0, 0xff, true);
-> +	th1520_mbox_chan_rmw(cp, TH_1520_MBOX_GEN, 0x0, 0xff, false);
-> +	th1520_mbox_chan_wr_ack(cp, &data[7], true);
-> +	th1520_mbox_chan_wr_ack(cp, &data[7], false);
-> +	th1520_mbox_chan_wr_data(cp, &data[0], true);
-> +	th1520_mbox_chan_wr_data(cp, &data[0], false);
-> +
-> +	/* enable the chan mask */
-> +	mask_bit = th1520_mbox_chan_id_to_mapbit(cp);
-> +	th1520_mbox_rmw(priv, TH_1520_MBOX_MASK, BIT(mask_bit), 0);
-> +
-> +	if (cp->type == TH_1520_MBOX_TYPE_DB)
-> +		/* tx doorbell doesn't have ACK, rx doorbell requires isr */
-> +		tasklet_init(&cp->txdb_tasklet, th1520_mbox_txdb_tasklet,
-> +			     (unsigned long)cp);
-> +
-> +	ret = request_irq(priv->irq, th1520_mbox_isr,
-> +			  IRQF_SHARED | IRQF_NO_SUSPEND, cp->irq_desc, chan);
+default: [0]? or something else?
 
-Mixing devm- and non-devm with shared interrupts is error-prone (or even
-discouraged). Your code looks here correct, but probably this deserves
-a comment that you investigated the path and it is not possible to
-trigger interrupt from another device while device is unbound.
-
-> +	if (ret) {
-> +		dev_err(priv->dev, "Unable to acquire IRQ %d\n", priv->irq);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void th1520_mbox_shutdown(struct mbox_chan *chan)
-> +{
-> +	struct th1520_mbox_priv *priv = to_th1520_mbox_priv(chan->mbox);
-> +	struct th1520_mbox_con_priv *cp = chan->con_priv;
-> +	int mask_bit;
-> +
-> +	/* clear the chan mask */
-> +	mask_bit = th1520_mbox_chan_id_to_mapbit(cp);
-> +	th1520_mbox_rmw(priv, TH_1520_MBOX_MASK, 0, BIT(mask_bit));
-> +
-> +	free_irq(priv->irq, chan);
-
-Odd order. This should be reverse order from startup. Why is it not?
-
-> +}
-> +
-> +static const struct mbox_chan_ops th1520_mbox_ops = {
-> +	.send_data = th1520_mbox_send_data,
-> +	.startup = th1520_mbox_startup,
-> +	.shutdown = th1520_mbox_shutdown,
-> +};
-> +
-> +static int th1520_mbox_init_generic(struct th1520_mbox_priv *priv)
-> +{
-> +#ifdef CONFIG_PM_SLEEP
-> +	priv->ctx = devm_kzalloc(priv->dev, sizeof(*priv->ctx), GFP_KERNEL);
-> +	if (!priv->ctx)
-> +		return -ENOMEM;
-> +#endif
-> +	/* Set default configuration */
-> +	th1520_mbox_write(priv, 0xff, TH_1520_MBOX_CLR);
-> +	th1520_mbox_write(priv, 0x0, TH_1520_MBOX_MASK);
-> +	return 0;
-> +}
-> +
-> +static struct mbox_chan *th1520_mbox_xlate(struct mbox_controller *mbox,
-> +					  const struct of_phandle_args *sp)
-> +{
-> +	struct th1520_mbox_priv *priv = to_th1520_mbox_priv(mbox);
-> +	struct th1520_mbox_con_priv *cp;
-> +	u32 chan, type;
-> +
-> +	if (sp->args_count != 2) {
-> +		dev_err(mbox->dev, "Invalid argument count %d\n",
-> +			sp->args_count);
-> +		return ERR_PTR(-EINVAL);
-> +	}
-> +
-> +	chan = sp->args[0]; /* comm remote channel */
-> +	type = sp->args[1]; /* comm channel type */
-> +
-> +	if (chan >= mbox->num_chans) {
-> +		dev_err(mbox->dev, "Not supported channel number: %d\n", chan);
-> +		return ERR_PTR(-EINVAL);
-> +	}
-> +
-> +	if (chan == priv->cur_icu_cpu_id) {
-> +		dev_err(mbox->dev, "Cannot communicate with yourself\n");
-> +		return ERR_PTR(-EINVAL);
-> +	}
-> +
-> +	if (type > TH_1520_MBOX_TYPE_DB) {
-> +		dev_err(mbox->dev, "Not supported the type for channel[%d]\n",
-> +			chan);
-> +		return ERR_PTR(-EINVAL);
-> +	}
-> +
-> +	cp = mbox->chans[chan].con_priv;
-> +	cp->type = type;
-> +
-> +	return &mbox->chans[chan];
-> +}
-> +
-> +static int th1520_mbox_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct th1520_mbox_priv *priv;
-> +	struct resource *res;
-> +	unsigned int remote_idx = 0;
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	if (of_property_read_u32(np, "thead,icu-cpu-id", &priv->cur_icu_cpu_id)) {
-> +		dev_err(dev, "thead,icu-cpu-id is missing\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (priv->cur_icu_cpu_id != TH_1520_MBOX_ICU_CPU0 &&
-> +	    priv->cur_icu_cpu_id != TH_1520_MBOX_ICU_CPU3) {
-> +		dev_err(dev, "thead,icu-cpu-id is invalid\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	priv->dev = dev;
-> +
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "local");
-> +	priv->local_icu[TH_1520_MBOX_ICU_CPU0] = devm_ioremap_resource(dev, res);
-
-Use proper wrapper over these two.
-
-> +	if (IS_ERR(priv->local_icu[TH_1520_MBOX_ICU_CPU0]))
-> +		return PTR_ERR(priv->local_icu[TH_1520_MBOX_ICU_CPU0]);
-> +
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "remote-icu0");
-> +	priv->remote_icu[0] = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(priv->remote_icu[0]))
-> +		return PTR_ERR(priv->remote_icu[0]);
-> +
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "remote-icu1");
-> +	priv->remote_icu[1] = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(priv->remote_icu[1]))
-> +		return PTR_ERR(priv->remote_icu[1]);
-> +
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "remote-icu2");
-> +	priv->remote_icu[2] = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(priv->remote_icu[2]))
-> +		return PTR_ERR(priv->remote_icu[2]);
+> +    minimum: 1
+> +    maximum: 32
+> +    description:
+> +      This describes the number of 8-bit serial shifters
+> +      connected to the LED controller block. The hardware
+> +      is typically using 8-bit shift registers with 8 LEDs
+> +      per shift register, so 4 shifters results in 32 LEDs
+> +      or 2 shifters give 16 LEDs etc, but the hardware
+> +      supports any odd number of registers.
 
 Best regards,
 Krzysztof
