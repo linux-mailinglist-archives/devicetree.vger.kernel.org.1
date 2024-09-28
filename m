@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-106020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4671E988E6D
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 10:19:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19958988E6F
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 10:22:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 844741F21BBB
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 08:19:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DB8A282331
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 08:21:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EC5A19DF5E;
-	Sat, 28 Sep 2024 08:19:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38F4319DF5E;
+	Sat, 28 Sep 2024 08:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m41TU5Kv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IB2hBVEX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10F7815B13C;
-	Sat, 28 Sep 2024 08:19:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B35E1487E2;
+	Sat, 28 Sep 2024 08:21:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727511547; cv=none; b=INvAy8sS4kz5Vu1EeSfYz4AIzcp9CfK5TYI49GEX+mNeHwkcvgKLnqdrD6hjvMyIYHuQnAjIcKoM5qj8uZIZlmFdcbbd4gOtZEa2xOtVGpQ1yYZVqrCTKuLBb4A2hZzBOXqKWvoU0Rkr7Yk3pmQS22ShR2jQvKvIlu9/cN7dSZU=
+	t=1727511715; cv=none; b=GLFGrwSlnz6heSGdljcDQG8ssFVWqHH9qQZOBHtAfZcWCT2blm6aDLe9xdW9acWvUgyqRr/w6SkqXydrIkcrnfWmPvzUpCVmNu6WIaeUY34kwdwmsC52buvuQ/Wpv5GIWiQeHWGhUUo006tjM3aULjTUaQpMOm+Ew9SAmGgyKHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727511547; c=relaxed/simple;
-	bh=t95Q70yzSXRniYkGguehvKbeFe1PNoF1YMFWI2TbiNs=;
+	s=arc-20240116; t=1727511715; c=relaxed/simple;
+	bh=5fOanKY7FxjCR0nN5e/yRmeV/6E6+Fe3b6Wq3+dnoaI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WKH6vEJ1EZtJwisWXS6OWpVZtUPTdwwxvM2wAq4NyjclaWR6kiW3+FPNMSYH+U49c8hhyho3rBaUhJ2+3KhdZ/XAU9bK0aKRoyNj/SGigecxqXiwshp4wc6SPDKOpSHuq3ny7Pl21vdStsQrm4mh9CphokIiA90vbBsdnLJKwQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m41TU5Kv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67814C4CEC3;
-	Sat, 28 Sep 2024 08:19:03 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=qG5EhXABH8WNwlEqvyBuB4VOl7b45Ly+qhGFF71qDWiz58x2R0vMbgGD51wTCS2ZSxrbJ0DtnR5PyBhJCaH63/H69dbZlGXaNExhRjVdfhO7cAVUZ1ugru41MwUi8Wj+fInoBEWFL/P7o+7KCRVpyuBWJfeiNrKhK2pL6gmDSkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IB2hBVEX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F0D5C4CEC3;
+	Sat, 28 Sep 2024 08:21:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727511546;
-	bh=t95Q70yzSXRniYkGguehvKbeFe1PNoF1YMFWI2TbiNs=;
+	s=k20201202; t=1727511714;
+	bh=5fOanKY7FxjCR0nN5e/yRmeV/6E6+Fe3b6Wq3+dnoaI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=m41TU5KvcV8AFVgBmJpblbhxbCmSJh3FPq4AACcVd9FXnSIa4V1awFedSKcuJe7Ki
-	 wi087SYdbAMXN6fV6cDwdHgxXD3vya/U/erhsJCLncXhnG7kSdC81CKJGvZfBabsfJ
-	 eyzUOn7ybqhuHO7zIRgwVxRdwn0UhC6Y8VhTZSXPnSHFlOKq97eV+ZsnXpX5jdyIBN
-	 ItbSROO0jMXFf9D/v9Nr6vCeuUwweKPDRWLmBIg1G8ZQGySSUvV8JiecHi6F1cc2AY
-	 aPdvdwQKbcPqttojEH0yyaAzkUGiVc80Huq5qNKRYyFo4HLFPkn6T1uf9nxvECnWWQ
-	 a2oP8DFtnivog==
-Message-ID: <03a1c7e7-c516-41ab-a668-7c6785ab1c4f@kernel.org>
-Date: Sat, 28 Sep 2024 10:19:01 +0200
+	b=IB2hBVEX1/cHCPANjz5BKIosRx35MSy+1rlibcPpL12XGhVBQv0zi56tVEyv1ljxn
+	 BCNt0s4FSfz3z4LVd8djt5MYQ/5Mrzhxcw2wt6rvSRrxv95Hfe71BVVhJA2raTUIst
+	 sQOeU/eozgPjIYjl1zWX/8sqZ4iQb5D+DSDYDcqxIVr/bKv3Pb76MZK5o3l00eHM+a
+	 NrS+Xey925Wr2gDqG/ej1eJ0u5PEs0DC/2WrTPwklRigDD3J8nryDobKeLpTcMV09a
+	 JTNq7BOvCi981gW/4FaS+K6B9oHcgBJaZijfEIoeAbtUAz/ZY8ojEbWAjkuSzTTM8Q
+	 DOC5wj2ouIGQw==
+Message-ID: <4b7a8888-e43d-4a90-bcf1-a09c83117d4b@kernel.org>
+Date: Sat, 28 Sep 2024 10:21:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: spi: xilinx: Add clocks & clock-names
- properties
-To: "Mahapatra, Amit Kumar" <amit.kumar-mahapatra@amd.com>,
- Conor Dooley <conor@kernel.org>
-Cc: "broonie@kernel.org" <broonie@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "Simek, Michal" <michal.simek@amd.com>,
- "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "git (AMD-Xilinx)" <git@amd.com>,
- "amitrkcian2002@gmail.com" <amitrkcian2002@gmail.com>
-References: <20240923123242.2101562-1-amit.kumar-mahapatra@amd.com>
- <20240924-impaired-starving-eef91b339f67@spud>
- <IA0PR12MB76998D7BC3429606508E6202DC692@IA0PR12MB7699.namprd12.prod.outlook.com>
- <20240925-trapdoor-stunt-33516665fdc5@spud>
- <IA0PR12MB76999B696A9BA0834644AC71DC6B2@IA0PR12MB7699.namprd12.prod.outlook.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: gpio: add support for NXP S32G2/S32G3
+ SoCs
+To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>,
+ "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Matthias Brugger <mbrugger@suse.com>, NXP S32 Linux Team <s32@nxp.com>,
+ Chester Lin <chester62515@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ devicetree@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Christophe Lizzi
+ <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
+ Enric Balletbo <eballetb@redhat.com>, linux-gpio@vger.kernel.org,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org
+References: <20240926143122.1385658-1-andrei.stefanescu@oss.nxp.com>
+ <20240926143122.1385658-3-andrei.stefanescu@oss.nxp.com>
+ <172737263813.2649710.12417820280324530724.robh@kernel.org>
+ <0db056b9-f420-40b7-8757-ed572c65c817@oss.nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,133 +112,77 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <IA0PR12MB76999B696A9BA0834644AC71DC6B2@IA0PR12MB7699.namprd12.prod.outlook.com>
+In-Reply-To: <0db056b9-f420-40b7-8757-ed572c65c817@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/09/2024 11:30, Mahapatra, Amit Kumar wrote:
-> Hello Conor,
+On 27/09/2024 09:19, Andrei Stefanescu wrote:
+> Hi,
 > 
-> 
->>>> Subject: Re: [PATCH] dt-bindings: spi: xilinx: Add clocks &
->>>> clock-names properties
->>>>
->>>> On Mon, Sep 23, 2024 at 06:02:42PM +0530, Amit Kumar Mahapatra wrote:
->>>>> Include the 'clocks' and 'clock-names' properties in the AXI
->>>>> Quad-SPI bindings. When the AXI4-Lite interface is enabled, the
->>>>> core operates in legacy mode, maintaining backward compatibility
->>>>> with version 1.00, and uses 's_axi_aclk' and 'ext_spi_clk'. For
->>>>> the AXI interface, it uses 's_axi4_aclk' and 'ext_spi_clk'.
->>>>>
->>>>> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
->>>>> ---
->>>>> BRANCH: for-next
->>>>> ---
->>>>>  .../devicetree/bindings/spi/spi-xilinx.yaml   | 29 +++++++++++++++++++
->>>>>  1 file changed, 29 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/spi/spi-xilinx.yaml
->>>>> b/Documentation/devicetree/bindings/spi/spi-xilinx.yaml
->>>>> index 4beb3af0416d..9dfec195ecd4 100644
->>>>> --- a/Documentation/devicetree/bindings/spi/spi-xilinx.yaml
->>>>> +++ b/Documentation/devicetree/bindings/spi/spi-xilinx.yaml
->>>>> @@ -12,6 +12,25 @@ maintainers:
->>>>>  allOf:
->>>>>    - $ref: spi-controller.yaml#
->>>>
->>>> Please move the allOf block down to the end of the binding, after
->>>> the property definitions.
->>>
->>> Sure, I'll take care of it in the next series
->>>>
->>>>> +  - if:
->>>>> +      properties:
->>>>> +        compatible:
->>>>> +          contains:
->>>>> +            const: xlnx,axi-quad-spi-1.00.a
->>>>> +    then:
->>>>> +      properties:
->>>>> +        clock-names:
->>>>> +          items:
->>>>> +            - const: s_axi_aclk
->>>>> +            - const: ext_spi_clk
->>>>
->>>> These are all clocks, there should be no need to have "clk" in the names.
->>>
->>> These are the names exported by the IP and used by the DTG.
+> On 26/09/2024 20:43, Rob Herring (Arm) wrote:
 >>
->> So? This is a binding, not a verilog file.
-> 
-> Axi Quad SPI is an FPGA-based IP, and the clock names are derived from the 
-> IP signal names as specified in the IP documentation [1]. 
-> We chose these names to ensure alignment with the I/O signal names listed 
-> in Table 2-2 on page 19 of [1].
-> 
-> [1] chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.amd.com/content/dam/xilinx/support/documents/ip_documentation/axi_quad_spi/v3_2/pg153-axi-quad-spi.pdf
-
-So if hardware engineers call them "pink_pony_clk_aclk_really_clk" we
-should follow...
-
- - bus or axi
- - ext_spi or spi
-
-You have descriptions of each item to reference real signals. Conor's
-comment is valid - do no make it verilog file.
-
-> 
->>
->>>>> +
->>>>> +    else:
->>>>> +      properties:
->>>>> +        clock-names:
->>>>> +          items:
->>>>> +            - const: s_axi4_aclk
->>>>> +            - const: ext_spi_clk
-
-Nah, these are the same.
-
->>>>> +
->>>>>  properties:
->>>>>    compatible:
->>>>>      enum:
->>>>> @@ -25,6 +44,12 @@ properties:
->>>>>    interrupts:
->>>>>      maxItems: 1
->>>>>
->>>>> +  clocks:
->>>>> +    maxItems: 2
->>>>> +
->>>>> +  clock-names:
->>>>> +    maxItems: 2
->>>>> +
->>>>>    xlnx,num-ss-bits:
->>>>>      description: Number of chip selects used.
->>>>>      minimum: 1
->>>>> @@ -39,6 +64,8 @@ required:
->>>>>    - compatible
->>>>>    - reg
->>>>>    - interrupts
->>>>> +  - clocks
->>>>> +  - clock-names
->>>>
->>>> New required properties are an ABI break, where is the driver patch
->>>> that makes use of these clocks?
+>> On Thu, 26 Sep 2024 17:31:19 +0300, Andrei Stefanescu wrote:
+>>> Add support for the GPIO driver of the NXP S32G2/S32G3 SoCs.
 >>>
->>> Alright, I will remove these from the required properties to avoid
->>> breaking the ABI. We're working on the driver patch and will send it
->>> once it's ready.
+>>> Signed-off-by: Phu Luu An <phu.luuan@nxp.com>
+>>> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+>>> Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+>>> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+>>> ---
+>>>  .../bindings/gpio/nxp,s32g2-siul2-gpio.yaml   | 110 ++++++++++++++++++
+>>>  1 file changed, 110 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/gpio/nxp,s32g2-siul2-gpio.yaml
+>>>
 >>
->> What changed to make the clocks needed now? It's possible that making them
->> required is the correct thing to do, so breaking the ABI would be justified (provided
->> the driver can still handle there being no clocks).
+>> My bot found errors running 'make dt_binding_check' on your patch:
+>>
+>> yamllint warnings/errors:
+>> ./Documentation/devicetree/bindings/gpio/nxp,s32g2-siul2-gpio.yaml:25:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 > 
-> Axi Quad SPI is an FPGA-based IP that was previously tested on MicroBlaze 
-> soft-core systems, where the driver didn't need to enable the clock, as it 
-> would already be enabled before the PL is loaded. However, when used 
-> with ARM hard-core SoCs, the driver must explicitly enable the clocks, 
+> I don't get this error locally:
 
+Really?
 
-Commit msg should explain this. Including ABI break impact.
+The code is clearly not correct, wrong indentation, so if you do not see
+the error, then something in your setup needs to be fixed.
+
+> 
+> $ make DT_SCHEMA_FILES=nxp,s32g2-siul2-gpio.yaml dt_binding_check
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>   CHKDT   Documentation/devicetree/bindings
+>   LINT    Documentation/devicetree/bindings
+>   DTEX    Documentation/devicetree/bindings/gpio/nxp,s32g2-siul2-gpio.example.dts
+>   DTC [C] Documentation/devicetree/bindings/gpio/nxp,s32g2-siul2-gpio.example.dtb
+> 
+> $ pip3 show dtschema
+> Name: dtschema
+> Version: 2024.9
+> 
+> $ yamllint --version
+> yamllint 1.35.1
+> 
+> 
+> Lines around 25:
+> 
+>  20 properties:
+>  21   compatible:
+>  22     oneOf:
+>  23       - description: for S32G2 SoCs
+>  24         items:
+>  25           - const: nxp,s32g2-siul2-gpio
+>  26       - description: for S32G3 SoCs
+>  27         items:
+>  28           - const: nxp,s32g3-siul2-gpio
+>  29           - const: nxp,s32g2-siul2-gpio
+> 
+> I initially had the reported error but I fixed it locally by adding the following:
+
+I don't understand. So you had the error, but you fixed it, but you sent
+wrong patch with the error?
+
+This is just confusing. Re-apply this patch (b4 shazam) and test it
+again. Please keep testing till you see the error, so you know your
+environment works properly.
 
 Best regards,
 Krzysztof
