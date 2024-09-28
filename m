@@ -1,192 +1,165 @@
-Return-Path: <devicetree+bounces-106049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57EA4988F9D
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 16:26:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53169988FA7
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 16:29:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15422281E4C
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 14:26:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10492B216BC
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 14:29:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C538418873F;
-	Sat, 28 Sep 2024 14:26:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02702188929;
+	Sat, 28 Sep 2024 14:29:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kv0zVEoY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mQHjJYtF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 395E9188736;
-	Sat, 28 Sep 2024 14:26:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAF26186E59;
+	Sat, 28 Sep 2024 14:29:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727533576; cv=none; b=Zmu1DEjeOwuBGmtcRusxofyda06DQWIhJY5i9XfBioyp1vr8FoCiLwV1VHUOD/hi0F9UkERcSR4D+4OmsE74gMdNwNI19+taMeA6M+eTZqwgM+ANyvgQCmm2LJMAJy9+mGxMR97/WHS7SlElEA2WVQeZN1jY9N0XsTUU5nvFf2o=
+	t=1727533779; cv=none; b=X8Fg1NIShf79V0MxHH+LmEAzRApk8FGV7vVJwO3VQCYOmFOF7Pi+l8TqWPR7w1ZNh0LWLDAl4sHiVxY1zkPxVK0/37ArdgW+l7NPr1Jzud8DwXJLzdZ/wT4p6hbqBh8bS1vRr46zA4PgPaCEDNi04p7/obhxjTTQx/QRj98eMwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727533576; c=relaxed/simple;
-	bh=CqACvt4uPObOZuE6ZysyiZbqZ+n1Gy2VqWBmupvIcQQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BY+Jl0X3O9IZekf+s+BG6zTyzzXd0llbI7LcLzgKvMv/q0JPfHe8e+OpKzp1DA0d45UUvR0kgG1W5vpg1aDtMWCldii9B+/L2aHegvnTUQrXbcxPrLiDpd1y8ZjRXJPVArjP7xFpuRlxNolEsWYXqbr4lP7HSj/vBchKacEoT28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kv0zVEoY; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e25cb91f3b3so2946164276.1;
-        Sat, 28 Sep 2024 07:26:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727533574; x=1728138374; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oR+0oOiN8d/1wYicxD2JwSqLGDZwlCg3FFKs5UVXkaQ=;
-        b=kv0zVEoYUdD9jdCDWp299AboKwziNwbwVVSYtdsf05v8K5saXKwoObVcucj4GR+kcR
-         DeLXnmMZaBvLjrMs4r43tfAQrKF5lMNn+4Y1HniwVz/w2BrbBT2Cet/AmYkbsSofmYO/
-         ZvUZka/bUA18puQGhf2Wz7Z362/gkUXRXQb+cEcHkwtT7HO90um7lNGsZ8ohmr85VR5l
-         9lQmtxn2Ol+yJKzs7vIXQdfGr5wCR1QN4qr9t/53DkSY9EH2FJ/iDEa20hfiA29mfX9z
-         Z0x/YQEFk9v5gOWX8F/gFJjZ1unxaFmtpczvf6HpAI+WTjECqklR8lhMg3/+bRxVPG5i
-         Eu+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727533574; x=1728138374;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oR+0oOiN8d/1wYicxD2JwSqLGDZwlCg3FFKs5UVXkaQ=;
-        b=A4z2E+1DKe6RnzadjNZyfe5bGqvmv5/73PObRkNTtVDPsGQUvWMsXXPEMbPCKe/VwD
-         N6KmrjbJPIMFReWfks2/TfNv33R+y7eppkMmTRAwAUWcapAOQbHyEbgZfnmhRHnXzp2h
-         YMZ5v6z/WNYx/lynhDnUh01AafrITGCZsXnPmmgPHpVxDVXbh4Fj2OhwfOEaPgUwEi0o
-         o3omskguxdOxONW8a234gSJ32dNbMqBVswWyWxoLeNQGRSDylkbDg758JF/AJijlUad/
-         q+p+0BmLFcHynCtk1rW7jlIKobKz3l8oOCW1fcSNV4IygS1wDCS4Kqwg107+EXromaxC
-         fBAg==
-X-Forwarded-Encrypted: i=1; AJvYcCU5rZZKiCLX/25rcmvn2598e0v8MpKf2TDuHy35K5ADZ8Z2cTqgIBxSO9mQClSJGHsL5Nl5cMUK4wzlTlFO@vger.kernel.org, AJvYcCU6Icjkm43HXY+ADyKsHYyJ/T1Z6ban8r4q6zxhAusBBa4vRjkNvEGti2T1f4DdxdkIrRiGNgQN2xd1@vger.kernel.org, AJvYcCXLtbROqPLLmke9cxe3DdeyjC7wWQN7Rgljx9wizCopvqr2ZZt93HW6hXsMnSMT8YnWbsh4rnSJJquBhw==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy515IfLQZRKhImESdlYyldsLKijzqOGt8a6ORbqXZiGMUv78IU
-	MZ0hKsay7eiIumy5uEKHQb3pjkGqk1X0h/7xJIL2qkhY7lahctMhhoVlggDigBEekPR8q91kLPn
-	EaAMO2LogOng1VgQMgcVlQE+Am1o=
-X-Google-Smtp-Source: AGHT+IH3PnqrIfD196KWiWq7zGkumFiC9yGM8Nc1vv/w+CjbKYRbXBPsh2nOXQj9kirbOcjpp+BnnIOXrKb8zy0u7L0=
-X-Received: by 2002:a05:6902:238a:b0:e25:d554:c06d with SMTP id
- 3f1490d57ef6-e2604b5f495mr5743887276.7.1727533573882; Sat, 28 Sep 2024
- 07:26:13 -0700 (PDT)
+	s=arc-20240116; t=1727533779; c=relaxed/simple;
+	bh=BQe8e7lFzVfmZUr+z2sDDGSb5uLfPX8XMR5x5U2lb1k=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nn3tglf3Uvvbpr9dSMlZ9XiWbUolU9mSAxz5kHFfAC7g4Ul+KgESMbRgW14qkq9a1AriQJcxMbAXz3hmMxMJGfTcfTa4tezE8NK3+Wi9QAdMb9ukiIfGFB5CVT6ZYC0M7V6dOUZvJjrcDmWfGh1hz+EQG2pUCjL9KrxJuGbMIeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mQHjJYtF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35F07C4CEC3;
+	Sat, 28 Sep 2024 14:29:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727533779;
+	bh=BQe8e7lFzVfmZUr+z2sDDGSb5uLfPX8XMR5x5U2lb1k=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=mQHjJYtFlEhZLQlmUwozo1Yr23MlhMSqY4p/UtWwNWhZaXGG77Zie9XTRVRqK15rF
+	 bb069Iq4WvmGLkAtNE1/WyqOw6Lm6oJ5l+RzZ3SEcKmse8Eulns9HyiEgXnwKLW8wb
+	 Yb9SOZWr4LkHumNHH6lgF5bX+yLfb2FpZGbB9jLdT9YRXmeP/ulDFTkRlzJ8mCrnYY
+	 /IgsV75WCSz3PawyVgKik4PGPAmrlXlC2HRpEgvRux3rUugmw2Dlwprj+j5np3QlTc
+	 CeuuMPtqqu9/mxnbtl0hktIBmtp8WeaHQDgBad6dTQszVYqFp+EQsaFSzvrc1uUXXA
+	 3NMEI1O8Z2x7g==
+Date: Sat, 28 Sep 2024 15:29:28 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: "Nechita, Ramona" <Ramona.Nechita@analog.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, "Tanislav, Cosmin" <Cosmin.Tanislav@analog.com>,
+ "Hennerich, Michael" <Michael.Hennerich@analog.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "Sa, Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko
+ <andy@kernel.org>, "Schmitt, Marcelo" <Marcelo.Schmitt@analog.com>, Olivier
+ Moysan <olivier.moysan@foss.st.com>, Dumitru Ceclan
+ <mitrutzceclan@gmail.com>, Matteo Martelli <matteomartelli3@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Alisa-Dariana Roman <alisadariana@gmail.com>, Ivan Mikhaylov
+ <fr0st61te@gmail.com>, Mike Looijmans <mike.looijmans@topic.nl>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v5 3/3] drivers: iio: adc: add support for ad777x family
+Message-ID: <20240928152928.38ee18b1@jic23-huawei>
+In-Reply-To: <CAMknhBFyydCJeAazDYMkkH=rKU2DbJGy=Kpb0242Vn81MHn0mQ@mail.gmail.com>
+References: <20240912121609.13438-1-ramona.nechita@analog.com>
+	<20240912121609.13438-4-ramona.nechita@analog.com>
+	<20240914180648.592cd69e@jic23-huawei>
+	<SN6PR03MB4320E03B052A867DE73196CBF36C2@SN6PR03MB4320.namprd03.prod.outlook.com>
+	<CAMknhBFyydCJeAazDYMkkH=rKU2DbJGy=Kpb0242Vn81MHn0mQ@mail.gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240927141445.157234-1-iansdannapel@gmail.com>
- <20240927141445.157234-2-iansdannapel@gmail.com> <dd9ae106-3c39-423b-9413-5a7ca57f7aec@kernel.org>
- <CAKrir7irvRbwCsdjF_NNfWy68wTDfRuyW2oHb90gYgBA=L7-Tg@mail.gmail.com>
- <c6ac1c4d-7f7a-41a9-9f32-55428f88bdfe@kernel.org> <CAKrir7iyiDWXQnxMrkDhsRj4+2XEUDBFpHYyfzdJksE_HE62JA@mail.gmail.com>
- <f57ca7c6-cb60-42cd-bba1-b48144bdef14@kernel.org>
-In-Reply-To: <f57ca7c6-cb60-42cd-bba1-b48144bdef14@kernel.org>
-From: Ian Dannapel <iansdannapel@gmail.com>
-Date: Sat, 28 Sep 2024 16:26:03 +0200
-Message-ID: <CAKrir7hfMww8GgxEbDd-WWhXmXD-q6=xddfy1GATr9JnF5Xohg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: fpga: Add Efinix serial SPI programming bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	neil.armstrong@linaro.org, heiko.stuebner@cherry.de, rafal@milecki.pl, 
-	linus.walleij@linaro.org, linux-fpga@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Am Sa., 28. Sept. 2024 um 14:53 Uhr schrieb Krzysztof Kozlowski
-<krzk@kernel.org>:
->
-> On 28/09/2024 14:33, Ian Dannapel wrote:
-> >>>>
-> >>>>> +
-> >>>>> +  spi-cpha: true
-> >>>>> +
-> >>>>> +  spi-cpol: true
-> >>>>> +
-> >>>>> +  spi-max-frequency:
-> >>>>> +    maximum: 25000000
-> >>>>> +
-> >>>>> +  reg:
-> >>>>> +    maxItems: 1
-> >>>>> +
-> >>>>> +  creset-gpios:
-> >>>>
-> >>>> reset-gpios
-> >>>>
-> >>>> Do not invent own properties.
-> >>>>
-> >>>>> +    description:
-> >>>>> +      reset and re-configuration trigger pin (low active)
-> >>>>> +    maxItems: 1
-> >>>>> +
-> >>>>> +  cs-gpios:
-> >>>>> +    description:
-> >>>>> +      chip-select pin (low active)
-> >>>>
-> >>>> Eee? That's a property of controller, not child. Aren't you duplicat=
-ing
-> >>>> existing controller property?
-> >>> This device uses this pin in combination with the reset to enter the
-> >>> programming mode. Also, the driver must guarantee that the pin is
-> >>
-> >> Isn't this the same on every SPI device?
-> > Yes, but I was not very clear. In this case the pin must be hold
-> > active including entering the programming mode. And if the controller
->
-> Just like every CS, no?
->
-> The only difference is that you must send entire programming sequence
-> without releasing the CS.
->
-> > transfers the data in bursts, the pin is also not allowed to go
-> > inactive between transfer bursts.
-> >>
-> >>> active for the whole transfer process, including ending dummy bits.
-> >>> This is why I added a warning to NOT use this driver with other
-> >>> devices on the same bus.
-> >>
-> >> Not really related. None of this grants exception from duplicating
-> >> controller's property.
-> >>
-> >> How do you think it will even work in Linux, if same GPIO is requested
-> >> twice (imagine controller also has it)? Till now, this would be -EBUSY=
-.
-> > I expected that the controller is not able request the same gpio. From
-> > the controller point of view, it is a device that does not have a chip
-> > select. Not sure if the controller would be able to get to this gpio
-> > if it is not explicitly given.
->
-> But it could be given. Don't think only about your case.
-it won't work if the controller also may request this gpio or interfere wit=
-h it.
->
-> Your description earlier clearly suggests it is CS. Description here
-> suggests it is not a CS.
->
-> No clue then.
->
-> >>
-> >> But regardless of implementation, I still do not understand why do you
-> >> need duplicate same chip-select. Maybe just the naming is the confusio=
-n,
-> >> dunno.
-> > This could be an option to make the difference to a "real chip-select"
-> > clear, but it would drift away from the datasheet naming. Eg,
-> > prog-select?
->
-> Please go back to datasheet. Which pin is this? CS, yes or not? If not,
-> then which other pin is CS?
-Yes, this pin in question is referred to as the Chip Select (CS) or
-Slave Select in the datasheet and pinout.
-It is used in combination with the reset for entering the programming
-mode and then used for the SPI data transfer to the FPGA=E2=80=99s volatile
-configuration RAM.
-There must be no state change on this CS pin between entering
-programming mode and the completion of the SPI transfer.
-Since the controller chip-select functionality can't fulfill these
-requirements for this device, the proposed solution is to move this
-pin from the controller to the child driver.
->
-> Best regards,
-> Krzysztof
->
-Best regards
-Ian
+On Mon, 23 Sep 2024 14:51:28 +0200
+David Lechner <dlechner@baylibre.com> wrote:
+
+> On Fri, Sep 20, 2024 at 3:24=E2=80=AFPM Nechita, Ramona
+> <Ramona.Nechita@analog.com> wrote:
+> >
+> > Hello all,
+> >
+> > Just a minor question
+> > ... =20
+> > > =20
+> > >> +
+> > >> +static irqreturn_t ad7779_trigger_handler(int irq, void *p) {
+> > >> +    struct iio_poll_func *pf =3D p;
+> > >> +    struct iio_dev *indio_dev =3D pf->indio_dev;
+> > >> +    struct ad7779_state *st =3D iio_priv(indio_dev);
+> > >> +    int ret;
+> > >> +    int bit;
+> > >> +    int k =3D 0;
+> > >> +    /*
+> > >> +     * Each channel shifts out HEADER + 24 bits of data therefore 8=
+ * u32
+> > >> +     * for the data and 64 bits for the timestamp
+> > >> +     */
+> > >> +    u32 tmp[10];
+> > >> +
+> > >> +    struct spi_transfer sd_readback_tr[] =3D {
+> > >> +            {
+> > >> +                    .rx_buf =3D st->spidata_rx,
+> > >> +                    .tx_buf =3D st->spidata_tx,
+> > >> +                    .len =3D AD7779_NUM_CHANNELS * AD7779_CHAN_DATA=
+_SIZE,
+> > >> +            }
+> > >> +    };
+> > >> +
+> > >> +    if (!iio_buffer_enabled(indio_dev))
+> > >> +            goto exit_handler; =20
+> > >
+> > >If buffers aren't enabled, the push to buffers won't do anything. So t=
+his race shouldn't matter.  If it does, what happens?
+> > >I'm curious because I'd expect any races that cause trouble in this ca=
+se to be pretty universal across drivers. =20
+> >
+> > I added that condition rather because the DRDY pulse will keep on being=
+ generated even when the buffers are not active,
+> > and it would be better to exit the function sooner. I tested it and it =
+does not break to remove the condition, I just
+> > thought it made more sense like this. Should I delete it?
+> > =20
+> > >.... =20
+> >
+> > Best regards,
+> > Ramona Nechita
+> >
+> > =20
+>=20
+> Perhaps a better way to handle this would be to move
+>=20
+>     disable_irq(st->spi->irq);
+>=20
+> to the buffer predisable callback instead of doing it in the buffer
+> postdisable callback. Then we will be sure to not get any more DRDY
+> interrupts after the buffer is disabled.
+>=20
+> (And to keep things balanced, moved the corresponding irq_enable() to
+> the buffer postenable callback.)
+
+That makes logical sense but in reality in the vast majority of cases
+it makes no practical difference whether things are in the pre or
+post callbacks as the fundamental races with tear down are there in
+both cases but shouldn't matter as they correspond to slightly
+earlier or later disabling of the buffer.  So this is a nice to
+have for readabilty and understanding rather than a required change I think.
+
+>=20
+> Since ad7779_trigger_handler is the IIO trigger interrupt handler and
+> not the DRDY interrupt handler though, it is already not possible for
+> this interrupt handler to be called while the IIO buffer is enabled.
+> So it should be safe to remove the if
+> (!iio_buffere_enabled(indio_dev)) even without the other changes I
+> suggested.
+Exactly. =20
+
+Jonathan
+
+
 
