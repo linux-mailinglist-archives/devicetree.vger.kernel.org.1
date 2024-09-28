@@ -1,152 +1,138 @@
-Return-Path: <devicetree+bounces-106015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57990988E3A
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 09:40:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B7C1988E49
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 09:49:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E71541F21A94
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 07:40:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71F0A282617
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 07:49:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B4F19DF5E;
-	Sat, 28 Sep 2024 07:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC45719A282;
+	Sat, 28 Sep 2024 07:49:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D4LG0Zmv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oZvOVF7o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9A491494CC;
-	Sat, 28 Sep 2024 07:40:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96B0812E75;
+	Sat, 28 Sep 2024 07:49:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727509212; cv=none; b=pQvWlXbMsfkRKcAsWgvPsRIyYk1SekqpYd/SMEHCgK1WIR7V2q0qF6rsubk+24OZAGRospkiPfHdEA6k88YRFWSEKkookWcmql7878X5e3IzfDWSNTwHjQcoMW6gwZN6t4tcPmRR9f8yvj6ftxO025xgewoKMzB2/1v6vLe087M=
+	t=1727509750; cv=none; b=KPKGWLgFJ7vQJywJaiAb7EgxOijRCLER0w8HR9lryzRImPmryhcTm0TT7LJ9iPqmdqjMSVxVgiCtlJAYkZ2q/R16ZMzlDqD8XRK7fkAcmQNBh2WltUAemhCsk7naQwLPxNKXm7Fq+sbyksHDCZPD4bnbfVhDvP4VQIZhInMtApU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727509212; c=relaxed/simple;
-	bh=/UWJOTsRZemcTUIr83ftWwyv8s9cpMDc8tBEv1rZNl0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AoIlVbNjfUTxOSq2SlB7uLkQVYHtud801hU5qQD+2BvMXrAIsoxolTsljGNbHOJoBVkKEmgPxN1wHMlobJfBTA74ihhAnF9UensuvTZqGEurFBbipiU1D9Cq0MXNizfoUhT5GB8vHdTlme92shZ5wEWyUYs+14aOYSwKQ3wDWzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D4LG0Zmv; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-71c63a43146so510792b3a.3;
-        Sat, 28 Sep 2024 00:40:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727509209; x=1728114009; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=vIk5qHEBeiHNYaEjsxp0VwqnS+Dln2niDGd+PmLgkWE=;
-        b=D4LG0ZmvCmoXbvCQ5C9+DrrPgtctjFSGOSuhkTpVWgRhptLp8aJ/lCZZYD++HU/ZMf
-         gDZNvHdG4a1A5OeYMy8KozdtAte3wND8UFi4gcEToeFDMPtTnBU4kMPNuCevijckWrE8
-         70PmP3zmHhRA6R0lYo2Y9hg5P+mHOL9BSny2OjkF95aNIWaomYedfuWMNa4n/NgB8iEn
-         lY0567NIrH74XNMo2I2JbRajGFYWuQGTmTheqJFvOuYwYw6/tSYmPWJ2cO1sIGTAeYOC
-         adR0aJVLZSKFFb+GDJyIBvqjKXPw1UhEAbC3M4OGX5dWy6UgpKmC7uYz1zY+0ZKl/+Jk
-         Eo+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727509209; x=1728114009;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vIk5qHEBeiHNYaEjsxp0VwqnS+Dln2niDGd+PmLgkWE=;
-        b=tBvLBH7ShoWFDLomHREFjNCARGSGGLypHKF+mow8VlK5Y8Tl3n1Y+3nSnvV/gTHFvS
-         FSwnKq5t8ouOgd0PsRGXhWD3sRetWLvHnGRRy9NMYTlCbZj4mwJTVwCbWGo6S2LO4cCk
-         H5MSAto6V/7EYTQtU70q00C2ptXXXQgAE7221qF5/lAI76pMLQqfuZWyPtFlmhGNJPsT
-         lFDvpfGssj+Kc6W0ABVOGHHvgVUWJ/GOTcmGa747LeDPwtY9FFE+qsDHznTa1fTMTk0o
-         /48yqovCVfyURc6sG8z5Hyn1RifdFN8eVRSH4AHucy9uEjkvDPAOZjCRIUaWC8yNGh4b
-         ZCXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUPQdsbW9sXOCoSlwJJDyYOPgPDaBHpEiQrrmdCRP1pEV2/QS0LElMhHXxQAoBzTqX7opIyPQLTLeDENmf4@vger.kernel.org, AJvYcCUlxEUEz4Nwof0nblW0x2S1zkpsx3eAij7BbVqNkEtRsC/lfWOCri2c4lOyS8DCTC4hYI30lTuYo8TX@vger.kernel.org, AJvYcCXSg29Oc+YCCJwtu5qhYMTSnNWDIduzhZyua1dzkYrgCjInHSxUQr9JHMptsegV+1iZirjOrgeB2eYX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLLyVhw6QP3/aq8SpnnEUxCQxQpsUGoz+ARqI3VtA7iwW9zb5S
-	+No0LP+ozmibBK9+qQgYhJYu2yspOMhP1yr3FxzPOM1aSABtIFnlB/AlQ5lT0RXmGZNrHGimIGI
-	SOYc7d3UIuaPtfwO5nIMXF7k//W4jRfvexrAbxA==
-X-Google-Smtp-Source: AGHT+IFRckPeGI3mK4TJy2Ans1VBN719sE90BUID/5AeSMpimloz0bUHIVjYsGfDx0ihK02KRAinHGQFEM/ysc/uGF0=
-X-Received: by 2002:a05:6a00:2d9b:b0:70e:9907:ef75 with SMTP id
- d2e1a72fcca58-71b25f014bcmr10074551b3a.4.1727509209060; Sat, 28 Sep 2024
- 00:40:09 -0700 (PDT)
+	s=arc-20240116; t=1727509750; c=relaxed/simple;
+	bh=c1IDKLm02EA5K7xI98m22tdfwag8mjjOWwF+gmFUCqA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Wvski+Ty1c9/ALKb8RArpyucCpJKKrvWN+RQ2ahTVdY6cArBwn8QxtVSjyw/64DSLvuc6Ons1Q9xOn2RmMsQk5sMTWbRaOqgcuxPuEAmGhWE73BDxUBsKFMYvkF8+TT+3BLJXibVFGEREX8M5e8e2ZOHQRyBNgfxtfN2HsUBAhc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oZvOVF7o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2099EC4CEC3;
+	Sat, 28 Sep 2024 07:49:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727509750;
+	bh=c1IDKLm02EA5K7xI98m22tdfwag8mjjOWwF+gmFUCqA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oZvOVF7oRWnswVRQe1ByBJBheyqcd1oWyEW4x8FYTAx5e47tId8xetME5xnjtASEM
+	 hOn+/PUDCw0D2ZQHLNPlsXRyp+wwsYINyab+sEb0kygUF8V4F3fyWr+I0sec7I64EB
+	 WSO7jmroLsrzJPGP+UZKt1g56vFM/hOkBnNHmuePjlLAWErRJN/smQmYPF9+g9Zz5K
+	 UZe+4tQTXwKRO2/sk5xjDKVyUAxB+ZODdClgIn3yJKH4qUzx9Uos7KjQwkFIYX4eDb
+	 luKb0qLgDgHsgNDMXJTqRZfExaf9nYuHu8vkQpiLo1HMd+b9BAVIVqA5Cohk7AW/0+
+	 2KaFZxWxrV3MQ==
+Message-ID: <1e43c2e2-4859-4452-a4d3-433aeea1fcef@kernel.org>
+Date: Sat, 28 Sep 2024 09:49:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <ZvBNLRc8xnAoGvoc@Emma> <a02e472c-f206-44d3-9a6b-d921e73110fd@kernel.org>
-In-Reply-To: <a02e472c-f206-44d3-9a6b-d921e73110fd@kernel.org>
-From: Karan Sanghavi <karansanghvi98@gmail.com>
-Date: Sat, 28 Sep 2024 13:09:57 +0530
-Message-ID: <CAEDjzLK1juaOCogWgyDudOn9B1EqbE-vMuGYPxnR9B35y+uAOQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: usb: add missing compatible arraylist
-To: Roger Quadros <rogerq@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Shuah Khan <skhan@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/3] novatek-nvt-ts: add support for NT36672A
+ touchscreen
+To: Joel Selvaraj <joelselvaraj.oss@gmail.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?=
+ <ilpo.jarvinen@linux.intel.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
+References: <20240601-nvt-ts-devicetree-regulator-support-v5-0-aa9bf986347d@gmail.com>
+ <a0e00c43-a879-4a4c-a3b4-26c485e0c261@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <a0e00c43-a879-4a4c-a3b4-26c485e0c261@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, 23 Sept 2024 at 17:23, Roger Quadros <rogerq@kernel.org> wrote:
->
-> On 22/09/2024 20:00, Karan Sanghavi wrote:
-> > Added the vice versa order for compatible property in the yaml file so
-> > that the dtb can parse for the order mentioned in the dts file
-> > k3-am642-sk.dts for ti,j721e-usb.yaml
->
-> k3-am642-sk.dts does not introduce any nodes with the said compatibles.
->
-> "ti,am64-usb" compatible is introduced by k3-am642-main.dtsi.
-> There is only one compatible introduced so there is nothing to do about
-> order here.
->
-> i.e.
->         usbss0: cdns-usb@f900000 {
->                 compatible = "ti,am64-usb";
->                 reg = <0x00 0xf900000 0x00 0x100>;
->
-> What is the functional problem you are facing? Maybe then someone
-> can point you in the right direction.
->
+On 28/09/2024 07:45, Joel Selvaraj wrote:
+> Hi,
+> 
+> A gentle ping to the maintainers/reviewers. I was initially hoping this 
+> patch would land in 6.11. And it got kind of missed. So I am currently 
+> hoping it would land in 6.12. But I haven't seen any update in the 
+> patch. There is no hurry and can wait for 6.13 or future. Just don't 
+> want the patch to be forgotten/lost/missed. Kindly let me know if any 
+> further changes are required! I will be happy to fix them.
 
-Sorry for mentioning the wrong file name; yes,
-the problem is in k3-am64-main.dtsi file as mentioned below
+We are still in merge window, so nothing can happen with your patches.
+Pinging during merge window is not welcomed, just unnecessary noise.
+Wait till merge window finishes and then ping, or better resend.
 
- usbss0: cdns-usb@f900000 {
- 766                 compatible = "ti,am64-usb", "ti,j721e-usb";
- 767                 reg = <0x00 0xf900000 0x00 0x100>;
+Your patch waited indeed way too long, but if you wanted it to reach
+v6.12, then you should have done something earlier. No one has it in
+their inbox anymore.
 
-Due to this, it gives an error as in the YAML file the order is in
-reverse order.
-Also, I cloned the repo yesterday and still found the same error in
-the dtsi file.
-So have I done something wrong? as I see I might be out of sync with
-latest changes
+Please resend with accumulated tags, assuming there is no outstanding
+review comments, after the merge window.
 
-Thank you.
-> >
-> > This is highly ambiguous to me as where exactly the changes needs to be
-> > added is it in the dts file or is the yaml where we have to reverse the
-> > order already mentioned or do we have to add the another order as I have
-> > done ?
-> >
-> > Signed-off-by: Karan Sanghavi <karansanghvi98@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> > index 95ff9791baea..822653217c43 100644
-> > --- a/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml
-> > @@ -17,6 +17,9 @@ properties:
-> >        - items:
-> >            - const: ti,j721e-usb
-> >            - const: ti,am64-usb
-> > +      - items:
-> > +          - const: ti,am64-usb
-> > +          - const: ti,j721e-usb
-> >
-> >    reg:
-> >      maxItems: 1
->
-> --
-> cheers,
-> -roger
+Best regards,
+Krzysztof
+
 
