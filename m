@@ -1,285 +1,195 @@
-Return-Path: <devicetree+bounces-106037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CE57988F3F
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 14:48:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1567A988F48
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 14:53:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 938701C20C45
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 12:48:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 369511C20975
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 12:53:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41E36188596;
-	Sat, 28 Sep 2024 12:48:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B14C187874;
+	Sat, 28 Sep 2024 12:53:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SuHUK8lb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 822F1185E50;
-	Sat, 28 Sep 2024 12:48:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F0531DFF7;
+	Sat, 28 Sep 2024 12:53:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727527711; cv=none; b=VXLs4iAO5FUpQyzS2s2XFwwg2WpY9BCnuJu8a05rHMDJ2ZGq30qOuypUl6+AQvk5ZKFP6wtmrC12H62tr+1Sns+8EjJOTjpBFFXWY6cDxTdf+It69lVzwENDCOMNiGLOvEJ4XTXaBCcrsA/9XivIkIPzbpCaus2t0c+Q9cAZSx8=
+	t=1727528030; cv=none; b=jI0svOpizkPQukU4clsencE9OLewCnT52ghDYodQCi1jQTnW9VomAtHqnTp/j+jTwO2WeS72PbypJEDA/1OXUGbnje3jlBIvmt9+meO2bSjJc4DSnZZv4jf2OZ1Jlzy8AIYiqUx68kp1rpJB1o4HwCX58CJp/qA+vwggpLuf9nA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727527711; c=relaxed/simple;
-	bh=epCBAMsrS+4nyms5pTA1WPFA1BEMtZwZjL0fQGfZv0s=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bQe4CRKFk77PK9Wzh1tF8F1Q9Zxt0TpS7UeS0QPXyIEMwrBVRHbGEnlWtY/SwPTNEuV3ZLkBmH39p3CXHSlZnXX0Z5J1z9FylQUx/qDe+PVWdU/uUn5xjWXUfXOOs0yQXiLjues82i2s2ydGT0tmuStkszSHlg61k2LzFGa1g1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.98)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1suWrr-000000004VK-3Rm6;
-	Sat, 28 Sep 2024 12:48:11 +0000
-Date: Sat, 28 Sep 2024 13:48:08 +0100
-From: Daniel Golle <daniel@makrotopia.org>
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Zhihao Cheng <chengzhihao1@huawei.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	John Crispin <john@phrozen.org>, linux-mtd@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH RFC 2/2] mtd: ubi: add support for protecting critical volumes
-Message-ID: <b43a7155f80995c3986893951c092291caf3a5f4.1727527457.git.daniel@makrotopia.org>
-References: <e0936674dd1d6c98322e35831b8f0538a5cfa7a3.1727527457.git.daniel@makrotopia.org>
+	s=arc-20240116; t=1727528030; c=relaxed/simple;
+	bh=lXQwcL/7NWG7ExGqevrmOkKKrfoWwNZ/kwtDJvmkYvQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jTfKgWyvaYAAyGJyk2QXJjLC8c3+NbG5uSTHQ84cSUKktuZ2IvEHTay1dH1gV1f6aEWwtfLMqyN/7pSlV4ppyAqbQc9tRitqHnISPuuOR20UH+eTzcJ3hnHiOVRV5MBsrP4QkSl1DCD5sYMIXlRKu2PhYqtsn8xp0nSst2KgGTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SuHUK8lb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B9D4C4CEC3;
+	Sat, 28 Sep 2024 12:53:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727528029;
+	bh=lXQwcL/7NWG7ExGqevrmOkKKrfoWwNZ/kwtDJvmkYvQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=SuHUK8lbW1G+8la6edvfe1a9KQFgdB/phyRrc9AvoHruEPkerycv8w5/zwiZ4IH/v
+	 sY8rO13eS7SYdBeKeMQHdq0k5ZsG62R4JpT+qzlKbP1gdYVyenRVzbhghQsW1uC1E7
+	 Xt4zMOcCBf6loR6VzyLYKDdUubT+dlIQSDbCGMkqG6/93XoS9AFBSJIKRY8FqBkrfK
+	 b6mNJ46yKcIaJafjXiskBs0VlCIaewv+CfdDZdI23gsLcIiv74EKQX6snyMQngpvoz
+	 itC9UT0qzRIR6XL+HO+FJ2mrt4gdpQY+JF8qLf+pB5mpppAosLHy4KA3GvTA1pyg8+
+	 9zzpk4Tp51eEw==
+Message-ID: <f57ca7c6-cb60-42cd-bba1-b48144bdef14@kernel.org>
+Date: Sat, 28 Sep 2024 14:53:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e0936674dd1d6c98322e35831b8f0538a5cfa7a3.1727527457.git.daniel@makrotopia.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] dt-bindings: fpga: Add Efinix serial SPI programming
+ bindings
+To: Ian Dannapel <iansdannapel@gmail.com>
+Cc: mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ neil.armstrong@linaro.org, heiko.stuebner@cherry.de, rafal@milecki.pl,
+ linus.walleij@linaro.org, linux-fpga@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240927141445.157234-1-iansdannapel@gmail.com>
+ <20240927141445.157234-2-iansdannapel@gmail.com>
+ <dd9ae106-3c39-423b-9413-5a7ca57f7aec@kernel.org>
+ <CAKrir7irvRbwCsdjF_NNfWy68wTDfRuyW2oHb90gYgBA=L7-Tg@mail.gmail.com>
+ <c6ac1c4d-7f7a-41a9-9f32-55428f88bdfe@kernel.org>
+ <CAKrir7iyiDWXQnxMrkDhsRj4+2XEUDBFpHYyfzdJksE_HE62JA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAKrir7iyiDWXQnxMrkDhsRj4+2XEUDBFpHYyfzdJksE_HE62JA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Allow the boot firmware to define volumes which are critical for the
-system to boot, such as the bootloader itself if stored inside a UBI
-volume. Protect critical volumes by preventing the user from removing,
-resizing or writing to them, and also prevent the UBI device from
-being detached if a critical volume is present.
+On 28/09/2024 14:33, Ian Dannapel wrote:
+>>>>
+>>>>> +
+>>>>> +  spi-cpha: true
+>>>>> +
+>>>>> +  spi-cpol: true
+>>>>> +
+>>>>> +  spi-max-frequency:
+>>>>> +    maximum: 25000000
+>>>>> +
+>>>>> +  reg:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  creset-gpios:
+>>>>
+>>>> reset-gpios
+>>>>
+>>>> Do not invent own properties.
+>>>>
+>>>>> +    description:
+>>>>> +      reset and re-configuration trigger pin (low active)
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  cs-gpios:
+>>>>> +    description:
+>>>>> +      chip-select pin (low active)
+>>>>
+>>>> Eee? That's a property of controller, not child. Aren't you duplicating
+>>>> existing controller property?
+>>> This device uses this pin in combination with the reset to enter the
+>>> programming mode. Also, the driver must guarantee that the pin is
+>>
+>> Isn't this the same on every SPI device?
+> Yes, but I was not very clear. In this case the pin must be hold
+> active including entering the programming mode. And if the controller
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- drivers/mtd/ubi/build.c | 29 +++++++++++++++++++++++++++++
- drivers/mtd/ubi/cdev.c  | 33 +++++++++++++++++++++++++++++++++
- drivers/mtd/ubi/ubi.h   |  1 +
- drivers/mtd/ubi/vmt.c   | 27 ++++++++++++++++++++++++++-
- 4 files changed, 89 insertions(+), 1 deletion(-)
+Just like every CS, no?
 
-diff --git a/drivers/mtd/ubi/build.c b/drivers/mtd/ubi/build.c
-index 30be4ed68fad..7a96329c5fd9 100644
---- a/drivers/mtd/ubi/build.c
-+++ b/drivers/mtd/ubi/build.c
-@@ -314,6 +314,30 @@ struct ubi_device *ubi_get_by_major(int major)
- 	return NULL;
- }
- 
-+/**
-+ * ubi_device_got_critical_volume - check if device contains critical volume
-+ * @ubi: UBI device description object
-+ *
-+ * This function checks if any volume on a given UBI device is critical.
-+ *
-+ * Context: Expects ubi_devices_lock to be held by caller.
-+ * Returns: True if there is a critical volume, false otherwise.
-+ */
-+static bool ubi_device_got_critical_volume(struct ubi_device *ubi)
-+{
-+	int i;
-+
-+	for (i = 0; i < ubi->vtbl_slots; i++) {
-+		if (!ubi->volumes[i])
-+			continue;
-+
-+		if (ubi->volumes[i]->critical)
-+			return true;
-+	}
-+
-+	return false;
-+}
-+
- /**
-  * ubi_major2num - get UBI device number by character device major number.
-  * @major: major number
-@@ -1102,6 +1126,11 @@ int ubi_detach_mtd_dev(int ubi_num, int anyway)
- 		return -EINVAL;
- 
- 	spin_lock(&ubi_devices_lock);
-+	if (ubi_device_got_critical_volume(ubi)) {
-+		spin_unlock(&ubi_devices_lock);
-+		return -EPERM;
-+	}
-+
- 	ubi->ref_count -= 1;
- 	if (ubi->ref_count) {
- 		if (!anyway) {
-diff --git a/drivers/mtd/ubi/cdev.c b/drivers/mtd/ubi/cdev.c
-index 0d8f04cf03c5..897791ebb71c 100644
---- a/drivers/mtd/ubi/cdev.c
-+++ b/drivers/mtd/ubi/cdev.c
-@@ -328,6 +328,9 @@ static ssize_t vol_cdev_write(struct file *file, const char __user *buf,
- 	struct ubi_volume *vol = desc->vol;
- 	struct ubi_device *ubi = vol->ubi;
- 
-+	if (vol->critical)
-+		return -EPERM;
-+
- 	if (!vol->updating && !vol->changing_leb)
- 		return vol_cdev_direct_write(file, buf, count, offp);
- 
-@@ -390,6 +393,11 @@ static long vol_cdev_ioctl(struct file *file, unsigned int cmd,
- 	{
- 		int64_t bytes, rsvd_bytes;
- 
-+		if (vol->critical) {
-+			err = -EPERM;
-+			break;
-+		}
-+
- 		if (!capable(CAP_SYS_RESOURCE)) {
- 			err = -EPERM;
- 			break;
-@@ -430,6 +438,11 @@ static long vol_cdev_ioctl(struct file *file, unsigned int cmd,
- 	{
- 		struct ubi_leb_change_req req;
- 
-+		if (vol->critical) {
-+			err = -EPERM;
-+			break;
-+		}
-+
- 		err = copy_from_user(&req, argp,
- 				     sizeof(struct ubi_leb_change_req));
- 		if (err) {
-@@ -464,6 +477,11 @@ static long vol_cdev_ioctl(struct file *file, unsigned int cmd,
- 	{
- 		int32_t lnum;
- 
-+		if (vol->critical) {
-+			err = -EPERM;
-+			break;
-+		}
-+
- 		err = get_user(lnum, (__user int32_t *)argp);
- 		if (err) {
- 			err = -EFAULT;
-@@ -495,6 +513,11 @@ static long vol_cdev_ioctl(struct file *file, unsigned int cmd,
- 	{
- 		struct ubi_map_req req;
- 
-+		if (vol->critical) {
-+			err = -EPERM;
-+			break;
-+		}
-+
- 		err = copy_from_user(&req, argp, sizeof(struct ubi_map_req));
- 		if (err) {
- 			err = -EFAULT;
-@@ -509,6 +532,11 @@ static long vol_cdev_ioctl(struct file *file, unsigned int cmd,
- 	{
- 		int32_t lnum;
- 
-+		if (vol->critical) {
-+			err = -EPERM;
-+			break;
-+		}
-+
- 		err = get_user(lnum, (__user int32_t *)argp);
- 		if (err) {
- 			err = -EFAULT;
-@@ -537,6 +565,11 @@ static long vol_cdev_ioctl(struct file *file, unsigned int cmd,
- 	{
- 		struct ubi_set_vol_prop_req req;
- 
-+		if (vol->critical) {
-+			err = -EPERM;
-+			break;
-+		}
-+
- 		err = copy_from_user(&req, argp,
- 				     sizeof(struct ubi_set_vol_prop_req));
- 		if (err) {
-diff --git a/drivers/mtd/ubi/ubi.h b/drivers/mtd/ubi/ubi.h
-index 1c9e874e8ede..21b8ce77426b 100644
---- a/drivers/mtd/ubi/ubi.h
-+++ b/drivers/mtd/ubi/ubi.h
-@@ -364,6 +364,7 @@ struct ubi_volume {
- 	unsigned int updating:1;
- 	unsigned int changing_leb:1;
- 	unsigned int direct_writes:1;
-+	unsigned int critical:1;
- 
- #ifdef CONFIG_MTD_UBI_FASTMAP
- 	unsigned long *checkmap;
-diff --git a/drivers/mtd/ubi/vmt.c b/drivers/mtd/ubi/vmt.c
-index 5a3558bbb903..a16b84e009a1 100644
---- a/drivers/mtd/ubi/vmt.c
-+++ b/drivers/mtd/ubi/vmt.c
-@@ -370,6 +370,11 @@ int ubi_remove_volume(struct ubi_volume_desc *desc, int no_vtbl)
- 		return -EROFS;
- 
- 	spin_lock(&ubi->volumes_lock);
-+	if (vol->critical) {
-+		err = -EPERM;
-+		goto out_unlock;
-+	}
-+
- 	if (vol->ref_count > 1) {
- 		/*
- 		 * The volume is busy, probably someone is reading one of its
-@@ -472,6 +477,12 @@ int ubi_resize_volume(struct ubi_volume_desc *desc, int reserved_pebs)
- 		return PTR_ERR(new_eba_tbl);
- 
- 	spin_lock(&ubi->volumes_lock);
-+	if (vol->critical) {
-+		spin_unlock(&ubi->volumes_lock);
-+		err = -EPERM;
-+		goto out_free;
-+	}
-+
- 	if (vol->ref_count > 1) {
- 		spin_unlock(&ubi->volumes_lock);
- 		err = -EBUSY;
-@@ -578,9 +589,22 @@ int ubi_resize_volume(struct ubi_volume_desc *desc, int reserved_pebs)
-  */
- int ubi_rename_volumes(struct ubi_device *ubi, struct list_head *rename_list)
- {
--	int err;
-+	int err = 0;
- 	struct ubi_rename_entry *re;
- 
-+	spin_lock(&ubi->volumes_lock);
-+	list_for_each_entry(re, rename_list, list) {
-+		struct ubi_volume *vol = re->desc->vol;
-+
-+		if (vol->critical) {
-+			err = -EPERM;
-+			break;
-+		}
-+	}
-+	spin_unlock(&ubi->volumes_lock);
-+	if (err)
-+		return err;
-+
- 	err = ubi_vtbl_rename_volumes(ubi, rename_list);
- 	if (err)
- 		return err;
-@@ -641,6 +665,7 @@ int ubi_add_volume(struct ubi_device *ubi, struct ubi_volume *vol)
- 	vol->dev.groups = volume_dev_groups;
- 	dev_set_name(&vol->dev, "%s_%d", ubi->ubi_name, vol->vol_id);
- 	device_set_node(&vol->dev, find_volume_fwnode(vol));
-+	vol->critical = device_property_read_bool(&vol->dev, "volume-is-critical");
- 	err = device_register(&vol->dev);
- 	if (err) {
- 		cdev_del(&vol->cdev);
--- 
-2.46.2
+The only difference is that you must send entire programming sequence
+without releasing the CS.
+
+> transfers the data in bursts, the pin is also not allowed to go
+> inactive between transfer bursts.
+>>
+>>> active for the whole transfer process, including ending dummy bits.
+>>> This is why I added a warning to NOT use this driver with other
+>>> devices on the same bus.
+>>
+>> Not really related. None of this grants exception from duplicating
+>> controller's property.
+>>
+>> How do you think it will even work in Linux, if same GPIO is requested
+>> twice (imagine controller also has it)? Till now, this would be -EBUSY.
+> I expected that the controller is not able request the same gpio. From
+> the controller point of view, it is a device that does not have a chip
+> select. Not sure if the controller would be able to get to this gpio
+> if it is not explicitly given.
+
+But it could be given. Don't think only about your case.
+
+Your description earlier clearly suggests it is CS. Description here
+suggests it is not a CS.
+
+No clue then.
+
+>>
+>> But regardless of implementation, I still do not understand why do you
+>> need duplicate same chip-select. Maybe just the naming is the confusion,
+>> dunno.
+> This could be an option to make the difference to a "real chip-select"
+> clear, but it would drift away from the datasheet naming. Eg,
+> prog-select?
+
+Please go back to datasheet. Which pin is this? CS, yes or not? If not,
+then which other pin is CS?
+
+Best regards,
+Krzysztof
+
 
